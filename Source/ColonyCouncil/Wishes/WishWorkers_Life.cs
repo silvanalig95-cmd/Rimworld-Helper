@@ -134,7 +134,7 @@ namespace ColonyCouncil
         }
 
         /// <summary>A body part item that can be installed on this part and is in stock or craftable.</summary>
-        private static ThingDef ObtainableInstall(Map map, BodyPartDef partDef)
+        internal static ThingDef ObtainableInstall(Map map, BodyPartDef partDef)
         {
             foreach (var r in DefDatabase<RecipeDef>.AllDefsListForReading)
             {

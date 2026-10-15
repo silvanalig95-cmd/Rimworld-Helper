@@ -68,9 +68,13 @@
         </accepted>
         <ready>
           <li>Everything {FACTION} asked for is ready. Their carts will come for it in {DAYS}.</li>
+          <li>[funeral] Everything for {DEAD}'s funeral is stacked and ready. {FACTION}'s carts will come for it in {DAYS}.</li>
+          <li>[wedding] Everything for {DEAD}'s wedding is stacked and ready. {FACTION}'s carts will come for it in {DAYS}.</li>
         </ready>
         <reminder>
           <li>{FACTION}'s carts come for the goods within {DAYS}: {ITEM}.</li>
+          <li>[funeral] {DEAD}'s funeral is in {DAYS}, and {FACTION} are still counting on the colony for {ITEM}.</li>
+          <li>[wedding] {DEAD}'s wedding is in {DAYS}, and {FACTION} are still counting on the colony for {ITEM}.</li>
         </reminder>
         <doneTitles>
           <li>[delivered] The goods for {PLACE}</li>
@@ -91,6 +95,8 @@
         </fail>
         <cancelled>
           <li>{FACTION} are no longer on terms with the colony, and the order for {PLACE} is off.</li>
+          <li>[funeral] {FACTION} have broken with the colony, and will bury {DEAD} without its help.</li>
+          <li>[wedding] {FACTION} have broken with the colony, and {DEAD}'s wedding will go on without its help.</li>
         </cancelled>
       </li>
     </modExtensions>
@@ -112,10 +118,14 @@
         <notable>false</notable>
         <titles>
           <li>{BEAST} has bolted</li>
+          <li>A runaway from {PLACE}</li>
+          <li>{FACTION}'s prize {THING}</li>
         </titles>
         <texts>
           <li>[lowtech] A herder of {FACTION} came to the colony out of breath. {BEAST}, the prize {THING} of {PLACE}, broke through a fence three nights ago and has run wild onto the colony's land, and none of the town's people can get near {BEAST}.\n\nIf the colony can tame {BEAST} and hand {BEAST} back, {FACTION} will pay {COUNT} silver, and be grateful besides. {A_nameDef} thinks it can be done.</li>
           <li>[!lowtech] A herder of {FACTION} came to the colony out of breath. {BEAST}, a breeder's prize {THING} from {PLACE}, jumped a fence three nights ago and has run wild onto the colony's land, and none of the town's people can get near {BEAST}.\n\nIf the colony can tame {BEAST} and hand {BEAST} back, {FACTION} will pay {COUNT} silver, and be grateful besides. {A_nameDef} thinks it can be done.</li>
+          <li>[skill:Animals] {A_nameDef} saw it before the herder arrived: a {THING} with a good coat and a braided halter, grazing at the edge of the colony's land as if it owned the place. Then {FACTION}'s herder came puffing up the road. It's {BEAST}, the prize of {PLACE}, three days loose, and the town's people can't get within a stone's throw.\n\nIf the colony can tame {BEAST} and hand {BEAST} back, {FACTION} will pay {COUNT} silver. {A_nameDef} is already watching how {BEAST} moves.</li>
+          <li>[winter] A herder of {FACTION} came through the snow to the colony, worried sick. {BEAST}, the prize {THING} of {PLACE}, broke out in a storm and has run onto the colony's land, and won't let anyone from the town come near.\n\nIf the colony can tame {BEAST} and hand {BEAST} back before the cold gets worse, {FACTION} will pay {COUNT} silver. {A_nameDef} thinks it can be done.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -149,9 +159,11 @@
         </terms>
         <accepted>
           <li>The colony will try to tame {BEAST} for {FACTION}. {BEAST} is somewhere on the colony's land now: mark {BEAST} to be tamed. Time: {DAYS}.</li>
+          <li>{A_nameDef} has promised {FACTION}'s herder to bring {BEAST} in. Mark {BEAST} to be tamed before {DAYS} are out.</li>
         </accepted>
         <reminder>
           <li>{BEAST} is still wild, and will wander off for good unless tamed within {DAYS}.</li>
+          <li>{FACTION}'s herder keeps asking after {BEAST}. Mark {BEAST} to be tamed: {DAYS} left.</li>
         </reminder>
         <doneTitles>
           <li>[returned] {BEAST} goes home</li>
@@ -176,6 +188,7 @@
         </fail>
         <cancelled>
           <li>{FACTION} are no longer on terms with the colony. Whatever becomes of {BEAST} now is the colony's own business.</li>
+          <li>Word came that {FACTION} want nothing more to do with the colony. {BEAST} is the colony's own problem now.</li>
         </cancelled>
       </li>
     </modExtensions>
@@ -197,9 +210,13 @@
         <notable>false</notable>
         <titles>
           <li>{BEAST} is tamed</li>
+          <li>{BEAST} comes when called</li>
+          <li>The herder's rope</li>
         </titles>
         <texts>
           <li>{BEAST} has been tamed, and follows the colony's handlers around the yard as if {BEAST} had always lived here. {FACTION}'s herder is waiting at the gate with a rope.\n\nThe colony can hand {BEAST} back for the {TALE} silver promised, or keep {BEAST}: {FACTION} would sell {BEAST} for {COUNT} silver. Keeping {BEAST} without paying would be another thing entirely.</li>
+          <li>[skill:Animals] {A_nameDef} has {BEAST} eating out of {A_possessive} hand, quite literally, and {BEAST} has stopped trying to kick the fence down. {FACTION}'s herder has come up the road with a rope and a hopeful face.\n\nThe colony can hand {BEAST} back for the {TALE} silver promised, or keep {BEAST}: {FACTION} would sell {BEAST} for {COUNT} silver. Keeping {BEAST} without paying would be another thing entirely.</li>
+          <li>{BEAST} is tame now, and has taken to following the colony's handlers to the well and back. The herder from {PLACE} is waiting at the gate.\n\nThe colony can hand {BEAST} back for the {TALE} silver promised, or buy {BEAST} from {FACTION} for {COUNT} silver. Keeping {BEAST} without paying would be another thing entirely.</li>
         </texts>
         <defaultOption>0</defaultOption>
         <options>
@@ -241,10 +258,13 @@
         <notable>false</notable>
         <titles>
           <li>A shrine for the pilgrims</li>
+          <li>A stopping place for the faithful</li>
+          <li>The pilgrims' road</li>
         </titles>
         <texts>
           <li>[lowtech] Every year, pilgrims of {FACTION} walk from {PLACE} to a holy spring in the far hills, and their road passes the colony. The elders of {PLACE} have sent to ask a favor: a place on the colony's land where the pilgrims can stop and pray, marked with something made by human hands and open to the sky.\n\nIf a shrine is waiting for them, the pilgrims will pray there, leave an offering, and remember who raised it. {A_nameDef} already has an idea for it.</li>
           <li>[!lowtech] Every year, pilgrims of {FACTION} walk from {PLACE} to an old monastery in the far hills, and their road passes the colony. The elders of {PLACE} have sent to ask a favor: a place on the colony's land where the pilgrims can stop and pray, marked with something made by human hands and open to the sky.\n\nIf a shrine is waiting for them, the pilgrims will pray there, leave an offering, and remember who raised it. {A_nameDef} already has an idea for it.</li>
+          <li>[skill:Artistic] A messenger from the elders of {PLACE} came with a request that made {A_nameDef} sit up. Pilgrims of {FACTION} pass the colony every year on their way to the far hills, and the elders would like a shrine on the colony's land for them to pray at: something made by human hands, under the open sky.\n\nIf it's there when the pilgrims come, they'll pray, leave an offering and remember who raised it. {A_nameDef} has started sketching.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -264,18 +284,23 @@
         </terms>
         <accepted>
           <li>The colony will raise a shrine for the pilgrims of {FACTION}: a sculpture of {TALE} quality or better, under the open sky, within {DAYS}.</li>
+          <li>{A_nameDef} has the colony's word to pass on to {PLACE}: a shrine for the pilgrims, a sculpture of {TALE} quality or better under the open sky, within {DAYS}.</li>
         </accepted>
         <ready>
           <li>Word of the colony's shrine has reached {PLACE}: {ITEM} stands ready, and the pilgrims have set out. They'll arrive in about {DAYS}.</li>
+          <li>The shrine is finished, and a rider has gone to {PLACE} to say so: {ITEM} stands under the sky waiting. The pilgrims should arrive in about {DAYS}.</li>
         </ready>
         <reminder>
           <li>The pilgrims of {FACTION} are coming within {DAYS}, and there's no shrine for them yet: a sculpture of {TALE} quality or better, under the open sky.</li>
+          <li>The pilgrims of {FACTION} set out soon, and there's still no shrine: a sculpture of {TALE} quality or better, open to the sky. {DAYS} left.</li>
         </reminder>
         <doneTitles>
           <li>[blessed] Pilgrims at the shrine</li>
+          <li>[blessed] The shrine is blessed</li>
         </doneTitles>
         <done>
           <li>[blessed] The pilgrims of {FACTION} came singing up the road and stopped at the colony's shrine to pray, as their elders asked. They left an offering at its foot, {ITEM} silver, and will carry word of the colony home to {PLACE}.\n\nThey say they'll stop here every year now.</li>
+          <li>[blessed] The pilgrims of {FACTION} came at dusk with lamps, knelt at the colony's shrine and prayed until the stars were out. In the morning their offering lay at its foot, {ITEM} silver, and they went on their way singing.\n\nThe elders of {PLACE} will hear of it, and the pilgrims mean to stop here every year.</li>
         </done>
         <failTitles>
           <li>[noshrine] No shrine</li>
@@ -288,6 +313,7 @@
         </fail>
         <cancelled>
           <li>{FACTION} are no longer on terms with the colony, and their pilgrims will take another road.</li>
+          <li>Word came that {FACTION} want nothing more to do with the colony. The pilgrims of {PLACE} will walk another road this year.</li>
         </cancelled>
       </li>
     </modExtensions>

@@ -8,14 +8,12 @@ namespace ColonyCouncil
 {
     /// <summary>
     /// Hospitality: someone sociable wants the colony to host its guests well, with a guest bed in a room worth
-    /// sleeping in. With no guest bed yet, any guest bed indoors in a decent room will do; once there is one, the best
-    /// guest room should reach the next step of impressiveness. Without Hospitality there are no guest beds and nobody
-    /// asks. The guest room plan comes with it.
+    /// sleeping in: the best guest room should reach the next step of impressiveness. Only once the colony has a guest
+    /// bed indoors (before that, the guest bed wish asks for one: WishWorker_GuestBed). Without Hospitality there are
+    /// no guest beds and nobody asks. The guest room plan comes with it.
     /// </summary>
     public class WishWorker_GuestRoom : WishWorker
     {
-        /// <summary>A first guest room counts once it reaches this (decent).</summary>
-        private const float FirstRoom = 20f;
         /// <summary>Beyond this (very impressive), nobody asks for more.</summary>
         private const float Enough = 65f;
 
@@ -44,13 +42,14 @@ namespace ColonyCouncil
             }
             if (w <= 0f) yield break;
             float best = BestRoom(map, out bool any);
-            float target = !any ? FirstRoom : RoomUtil.NextStageThreshold(RoomStatDefOf.Impressiveness, Mathf.Max(best, 0f));
-            if (target <= 0f || (any && best >= Enough)) yield break;
+            if (!any || best >= Enough) yield break;
+            float target = RoomUtil.NextStageThreshold(RoomStatDefOf.Impressiveness, Mathf.Max(best, 0f));
+            if (target <= 0f) yield break;
             // Guests on the map now make it come to mind.
             if (Strangers.On(map, StrangerKind.Visitor).Any(Strangers.IsHospitalityGuest)) w *= 2f;
             var c = Candidate(w, reason);
             c.targetValue = target;
-            c.baseline = any ? best : 0f;
+            c.baseline = best;
             c.subjectLabel = RoomUtil.StageLabel(RoomStatDefOf.Impressiveness, target);
             yield return c;
         }

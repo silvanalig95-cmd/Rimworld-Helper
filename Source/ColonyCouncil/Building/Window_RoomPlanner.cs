@@ -131,6 +131,7 @@ namespace ColonyCouncil
 
             y = VariantRow(y, w, t, map);
             y = StyleRow(y, w, cfg);
+            y = ThemeRow(y, w, cfg, map);
 
             // Building new or upgrading a built room
             if (Widgets.ButtonText(new Rect(0f, y, w, RowH), des.upgradeMode ? "CC_Upgrade_Back".Translate() : "CC_Upgrade_Button".Translate()))
@@ -367,6 +368,61 @@ namespace ColonyCouncil
             }
             Text.Font = GameFont.Small;
             return y + 28f;
+        }
+
+        /// <summary>
+        /// The look the room is built in: as designed, or a theme from a menu. A theme the colony can't use yet is shown
+        /// with the reason. The tooltip says what the theme changes in this room.
+        /// </summary>
+        private float ThemeRow(float y, float w, RoomPlanConfig cfg, Map map)
+        {
+            var themes = RoomThemeDef.All;
+            if (themes.Count == 0) return y;
+            var r = new Rect(0f, y, w, 24f);
+            Text.Font = GameFont.Tiny;
+            string current = cfg.theme != null ? cfg.theme.LabelCap.ToString() : "CC_Theme_None".Translate().CapitalizeFirst().ToString();
+            if (Widgets.ButtonText(r, "CC_Theme_Button".Translate(current), true, true, cfg.theme != null ? new Color(1f, 0.9f, 0.55f) : Color.white))
+            {
+                var opts = new List<FloatMenuOption>();
+                var none = new FloatMenuOption("CC_Theme_None".Translate().CapitalizeFirst(), () => PickTheme(cfg, null));
+                none.tooltip = new TipSignal("CC_Theme_None_Tip".Translate().ToString());
+                opts.Add(none);
+                foreach (var th in themes)
+                {
+                    var local = th;
+                    string reason = th.UnavailableReason(map);
+                    string label = reason == null ? th.LabelCap.ToString() : th.LabelCap + " (" + reason + ")";
+                    System.Action act = reason == null ? () => PickTheme(cfg, local) : (System.Action)null;
+                    var icon = th.IconDef;
+                    var opt = icon != null ? new FloatMenuOption(label, act, icon) : new FloatMenuOption(label, act);
+                    if (!th.description.NullOrEmpty()) opt.tooltip = new TipSignal(th.description);
+                    opts.Add(opt);
+                }
+                Find.WindowStack.Add(new FloatMenu(opts));
+            }
+            TooltipHandler.TipRegion(r, () => ThemeTip(cfg), 0x7E3A51);
+            Text.Font = GameFont.Small;
+            return y + 28f;
+        }
+
+        private static void PickTheme(RoomPlanConfig cfg, RoomThemeDef theme)
+        {
+            cfg.SetTheme(theme);
+            SoundDefOf.Click.PlayOneShotOnCamera();
+        }
+
+        /// <summary>What themes are, and for the chosen one what it put in this room.</summary>
+        private string ThemeTip(RoomPlanConfig cfg)
+        {
+            var lines = new List<string> { "CC_Theme_Tip".Translate().ToString() };
+            var theme = cfg.theme;
+            if (theme == null) return lines[0];
+            lines.Add("");
+            lines.Add(theme.LabelCap + ": " + theme.description);
+            var swapped = (des.Furniture ?? new List<ResolvedThing>()).Where(f => f.themed).GroupBy(f => f.def)
+                .Select(g => g.Count() > 1 ? g.Count() + "× " + g.Key.label : g.Key.label).ToList();
+            lines.Add(swapped.Count > 0 ? "CC_Theme_Swapped".Translate(TextUtil.JoinAnd(swapped)).Resolve() : "CC_Theme_NoSwaps".Translate().Resolve());
+            return string.Join("\n", lines);
         }
 
         private static float Section(float y, float w, string text)

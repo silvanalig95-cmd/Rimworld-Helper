@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The colony calendar (Source/ColonyCouncil/Calendar): small moods for a day kept. All share the budget of good
+    moods; a tradition kept or broken uses the council's own Council_TraditionKept and Council_TraditionBroken.
+  -->
+
+  <!-- A remembrance: those who knew the dead, or fought that day, keep a quiet hour. -->
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Cal_Remembered</defName>
+    <durationDays>1.5</durationDays>
+    <stages>
+      <li>
+        <label>a day of remembrance</label>
+        <description>We set the day aside to remember. I still miss them, and I'm glad we didn't let the day go by.</description>
+        <baseMoodEffect>2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- A long-serving colonist's birthday. -->
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Cal_Birthday</defName>
+    <durationDays>1</durationDays>
+    <stages>
+      <li>
+        <label>my birthday, remembered</label>
+        <description>It's my birthday, and the others remembered it without being told.</description>
+        <baseMoodEffect>2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- A feast day when no gathering could be held. -->
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Cal_FeastDay</defName>
+    <durationDays>1</durationDays>
+    <stages>
+      <li>
+        <label>a feast day</label>
+        <description>We marked the day with a better supper than usual.</description>
+        <baseMoodEffect>2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Cal_GamesDay</defName>
+    <durationDays>1</durationDays>
+    <stages>
+      <li>
+        <label>a day of games</label>
+        <description>We took the afternoon off for games. My legs ache from the races.</description>
+        <baseMoodEffect>2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Cal_RestDay</defName>
+    <durationDays>1</durationDays>
+    <stages>
+      <li>
+        <label>a day of rest</label>
+        <description>Nobody had to work today. I slept late and didn't do one useful thing.</description>
+        <baseMoodEffect>2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+</Defs>

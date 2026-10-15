@@ -52,6 +52,7 @@ Medieval Overhaul has its own cheese press and cheese, so build both presses onl
           <li>A fine grill or a gourmet dish counts as a birthday feast.</li>
           <li>A bout of food poisoning makes the better-meals wish more likely.</li>
           <li>The soy sauce fermenter and the cheese press aren't brewing barrels, so they don't meet a colonist's wish for a brewery.</li>
+          <li>In spring and summer a cook may wish for a grill once Grilling is researched, and canned meat, fish, fruit and produce count as "food that keeps" for the wish to put food by before winter.</li>
         </points>
       </li>
     </sections>
@@ -120,7 +121,7 @@ Hot coffee helps against hypothermia. Coffee kept in a freezer turns into iced c
         <heading>With Rimfolk</heading>
         <text>The whiskey cask, tequila barrel, gin still, vodka drum and ambrandy distillery count for a colonist's wish for a brewery. The brewery room plan can swap its barrels for a tequila barrel, a gin still or a vodka drum.
 
-The liquors, cigarettes and cigars count for a colonist's wish for "something to drink or smoke" in the stores. Tea, coffee and soda don't: a teetotaler may drink them, so they aren't what that colonist is asking for. A cup of tea now and then makes it into someone's journal.</text>
+The liquors, cigarettes and cigars count for a colonist's wish for "something to drink or smoke" in the stores. Tea, coffee and soda don't: a teetotaler may drink them, so they aren't what that colonist is asking for. A cup of tea now and then makes it into someone's journal, and a colonist down with a cold or a cough may wish for a pot of tea once the colony can brew it.</text>
       </li>
     </sections>
     <keywords>
@@ -667,7 +668,7 @@ Blueprints and maps come only from traders. Reading a blueprint long enough fini
       </li>
       <li>
         <heading>With Rimfolk</heading>
-        <text>The bathroom, bathhouse and sauna room plans place the fixtures the colony can build now, and the advisor counts toilets and places to wash. Colonists ask for a latrine, a water tub, a real bath or hot water when they need one.
+        <text>The bathroom, bathhouse and sauna room plans place the fixtures the colony can build now, and the advisor counts toilets and places to wash. Colonists ask for a latrine, a water tub, a real bath or hot water when they need one, and in fall and winter for a sauna.
 
 The burn pit and the sauna heater never count as a heater for a bedroom. A campfire, brazier or firepit meets the wish for a fire of one's own.</text>
       </li>

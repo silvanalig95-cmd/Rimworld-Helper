@@ -33,6 +33,8 @@ namespace ColonyCouncil
         private HashSet<int> announced = new HashSet<int>();
         /// <summary>Wounds (load IDs) already rolled for tetanus.</summary>
         private HashSet<int> woundsRolled = new HashSet<int>();
+        /// <summary>Bites and stings (load IDs) already rolled for what an animal or an insect can pass on.</summary>
+        private HashSet<int> bitesRolled = new HashSet<int>();
         /// <summary>Hediff load ID: the ThingID of the doctor who last tended it.</summary>
         private Dictionary<int, string> doctors = new Dictionary<int, string>();
         /// <summary>"ThingID|defName": they've had it before.</summary>
@@ -262,16 +264,22 @@ namespace ColonyCouncil
                     if (c == null || !AilmentChecks.Counted(c.trigger) || d.hours[(int)c.trigger] < c.hours) continue;
                     string key = def.defName + "|" + (int)c.trigger;
                     if (!d.rolled.Add(key)) continue;
-                    if (!Rand.Chance(c.chance * Freq * PersonFactor(p, info))) continue;
+                    if (!Rand.Chance(c.chance * Freq * PersonFactor(p, info) * Boost(p, c))) continue;
                     if (!CanGet(p, def, info, false)) continue;
                     Give(p, def, info, false);
                 }
             }
+            // Lice go round with the everyday ailments; the serious ones only while they're on.
+            if (!awake) Spread(p);
+            Bites(p, d);
             if (!SeriousOn) return;
             if (!d.rolled.Contains("Wound")) Wounds(p, d);
             if (!d.rolled.Contains("AfterCold")) AfterCold(p, d);
-            if (!awake) Spread(p);
         }
+
+        /// <summary>A cause that's likelier for someone who already has something (typhus for someone with lice).</summary>
+        private static float Boost(Pawn p, AilmentCause c) =>
+            c.boostHediff != null && c.boost != 1f && p.health.hediffSet.HasHediff(c.boostHediff) ? c.boost : 1f;
 
         /// <summary>
         /// Once a day per colonist: the diet, sweets, and the illnesses that come from them. Done once per game day even
@@ -325,6 +333,8 @@ namespace ColonyCouncil
             if (!On || (info.serious && !SeriousOn)) return false;
             if (p.health.hediffSet.HasHediff(def)) return false;
             if (p.DevelopmentalStage.Juvenile() && info.childFactor <= 0f) return false;
+            if (info.childrenOnly && !p.DevelopmentalStage.Juvenile()) return false;
+            if (info.once && HadBefore(p, def)) return false;
             int now = Find.TickManager.TicksGame;
             if (last.TryGetValue(p.ThingID + "|" + def.defName, out int t) && t <= now && now - t < info.cooldownDays * GenDate.TicksPerDay) return false;
             try
@@ -561,6 +571,56 @@ namespace ColonyCouncil
             }
         }
 
+        private static readonly HashSet<string> BiteWounds = new HashSet<string> { "Bite" };
+        private static readonly HashSet<string> StingWounds = new HashSet<string> { "Bite", "Stab", "Scratch", "Cut" };
+
+        /// <summary>
+        /// Fresh bites from a warm-blooded animal, or bites and stings from an insectoid: one roll a day for each kind,
+        /// however many wounds there are, for what such bites can pass on (rabies, hive fever). Each wound counts once,
+        /// a few hours after it was made or as soon as it's dressed; animal bites that were all cleaned and dressed in
+        /// that time are half as likely to pass anything on.
+        /// </summary>
+        private void Bites(Pawn p, PawnDay d)
+        {
+            bool bitten = false, stung = false, allCleaned = true;
+            var hs = p.health.hediffSet.hediffs;
+            for (int i = 0; i < hs.Count; i++)
+            {
+                if (!(hs[i] is Hediff_Injury inj) || inj.Severity < 2f || inj.IsPermanent() || bitesRolled.Contains(inj.loadID)) continue;
+                var race = inj.sourceDef?.race;
+                if (race == null || !race.IsFlesh || race.Humanlike) continue;
+                bool insect = race.FleshType == FleshTypeDefOf.Insectoid && StingWounds.Contains(inj.def.defName);
+                bool animal = !insect && race.Animal && race.FleshType == FleshTypeDefOf.Normal && BiteWounds.Contains(inj.def.defName);
+                if (!insect && !animal) continue;
+                // Given a few hours to be cleaned first; then counted once, whatever happens.
+                if (inj.ageTicks < GenDate.TicksPerHour * 4 && !inj.IsTended()) continue;
+                bitesRolled.Add(inj.loadID);
+                if (insect) stung = true;
+                else
+                {
+                    bitten = true;
+                    if (!inj.IsTended()) allCleaned = false;
+                }
+            }
+            if (bitten && d.rolled.Add("AnimalBite")) BiteRoll(p, AilmentTrigger.AnimalBite, allCleaned ? 0.5f : 1f);
+            if (stung && d.rolled.Add("InsectBite")) BiteRoll(p, AilmentTrigger.InsectBite, 1f);
+        }
+
+        private void BiteRoll(Pawn p, AilmentTrigger trigger, float factor)
+        {
+            foreach (var def in Defs)
+            {
+                var info = InfoOf(def);
+                var cause = info?.Cause(trigger);
+                if (cause == null || (info.serious && !SeriousOn)) continue;
+                if (Rand.Chance(cause.chance * factor * Freq * PersonFactor(p, info)) && CanGet(p, def, info, false))
+                {
+                    Give(p, def, info, false);
+                    return;
+                }
+            }
+        }
+
         /// <summary>Colonies with modern medicine vaccinate: tetanus is much rarer there.</summary>
         private static float EraFactor
         {
@@ -640,7 +700,7 @@ namespace ColonyCouncil
             foreach (var h in p.health.hediffSet.hediffs)
             {
                 var info = InfoOf(h.def);
-                if (info == null || info.spreadPerHour <= 0f || !h.Visible) continue;
+                if (info == null || info.spreadPerHour <= 0f || !h.Visible || (info.serious && !SeriousOn)) continue;
                 if (room == null)
                 {
                     var bed = RestUtility.CurrentBed(p);
@@ -675,6 +735,33 @@ namespace ColonyCouncil
             string id = p.ThingID;
             if (IsFresh(food)) freshDay[id] = Find.TickManager.TicksGame / GenDate.TicksPerDay;
             if (IsSweet(def)) sweets[id] = (sweets.TryGetValue(id, out float s) ? s : 0f) + 1f;
+            if (!On || !Eligible(p) || Find.TickManager.TicksGame < GenDate.TicksPerDay * 2) return;
+            bool rich = def.ingestible.preferability >= FoodPreferability.MealFine;
+            bool drink = IsAlcohol(def);
+            if (!rich && !drink) return;
+            float age = Flavor.HumanAge(p);
+            foreach (var d in Defs)
+            {
+                var info = InfoOf(d);
+                if (info?.causes == null || info.serious) continue;
+                var c = rich ? info.Cause(AilmentTrigger.RichMeal) : null;
+                float chance = c != null ? c.chance * (age >= 60f ? 2f : age >= 40f ? 1.5f : 1f) : 0f;
+                var dc = drink ? info.Cause(AilmentTrigger.Drink) : null;
+                if (dc != null) chance = Mathf.Max(chance, dc.chance);
+                if (chance <= 0f) continue;
+                if (Rand.Chance(chance * Freq * PersonFactor(p, info)) && CanGet(p, d, info, false))
+                {
+                    Give(p, d, info, false);
+                    return;
+                }
+            }
+        }
+
+        private static bool IsAlcohol(ThingDef d)
+        {
+            if (!d.IsDrug) return false;
+            var drug = d.GetCompProperties<CompProperties_Drug>();
+            return drug?.chemical != null && drug.chemical == ChemicalDefOf.Alcohol;
         }
 
         private static bool IsFresh(Thing food)
@@ -782,20 +869,14 @@ namespace ColonyCouncil
             if (p == null || p.Dead || p.Destroyed || p.Discarded || p.health?.hediffSet == null) return;
             var info = InfoOf(e.def);
             if (info == null) return;
-            // Cured outright (a healer serum, surgery, a resurrection) rather than got over: nothing more to it.
-            if (e.severity > 0.001f) return;
-            // Got over it: what it leaves behind for a while.
-            if (info.afterEffects != null)
+            // Cured outright (a healer serum, surgery, a resurrection) rather than got over: only what a cure leaves.
+            if (e.severity > 0.001f)
             {
-                foreach (var ae in info.afterEffects)
-                {
-                    if (ae?.hediff == null || p.health.hediffSet.HasHediff(ae.hediff) || !Rand.Chance(ae.chance)) continue;
-                    var after = HediffMaker.MakeHediff(ae.hediff, p);
-                    after.Severity = ae.severity.RandomInRange;
-                    p.health.AddHediff(after);
-                    announced.Add(after.loadID);
-                }
+                AfterEffects(p, info.curedAfterEffects);
+                return;
             }
+            // Got over it: what it leaves behind for a while.
+            AfterEffects(p, info.afterEffects);
             if (p.Faction != Faction.OfPlayer || !People.HasInnerLife(p)) return;
             if (info.serious)
             {
@@ -811,6 +892,19 @@ namespace ColonyCouncil
                 }
             }
             else if (!info.lingering && Rand.Chance(0.15f)) Journal(p, "Council_Journal_Ail_Better", e.def, info);
+        }
+
+        private void AfterEffects(Pawn p, List<AilmentAfterEffect> list)
+        {
+            if (list == null) return;
+            foreach (var ae in list)
+            {
+                if (ae?.hediff == null || p.health.hediffSet.HasHediff(ae.hediff) || !Rand.Chance(ae.chance)) continue;
+                var after = HediffMaker.MakeHediff(ae.hediff, p);
+                after.Severity = ae.severity.RandomInRange;
+                p.health.AddHediff(after);
+                announced.Add(after.loadID);
+            }
         }
 
         /// <summary>An illness killed them: the doctor who fought it remembers.</summary>
@@ -897,6 +991,7 @@ namespace ColonyCouncil
             }
             announced.RemoveWhere(id => !live.Contains(id));
             woundsRolled.RemoveWhere(id => !live.Contains(id));
+            bitesRolled.RemoveWhere(id => !live.Contains(id));
             foreach (var k in doctors.Keys.Where(k => !live.Contains(k)).ToList()) doctors.Remove(k);
             foreach (var p in days.Keys.Where(p => p == null || p.Dead || p.Destroyed || !Eligible(p)).ToList()) days.Remove(p);
         }
@@ -921,6 +1016,7 @@ namespace ColonyCouncil
             Scribe_Collections.Look(ref sweets, "sweets", LookMode.Value, LookMode.Value, ref tmpKeys4, ref tmpFloats);
             Scribe_Collections.Look(ref announced, "announced", LookMode.Value);
             Scribe_Collections.Look(ref woundsRolled, "woundsRolled", LookMode.Value);
+            Scribe_Collections.Look(ref bitesRolled, "bitesRolled", LookMode.Value);
             Scribe_Collections.Look(ref doctors, "doctors", LookMode.Value, LookMode.Value, ref tmpIds, ref tmpDoctors);
             Scribe_Collections.Look(ref had, "had", LookMode.Value);
             Scribe_Values.Look(ref lastSeriousTick, "lastSeriousTick", -9999999);
@@ -932,6 +1028,7 @@ namespace ColonyCouncil
                 sweets ??= new Dictionary<string, float>();
                 announced ??= new HashSet<int>();
                 woundsRolled ??= new HashSet<int>();
+                bitesRolled ??= new HashSet<int>();
                 doctors ??= new Dictionary<int, string>();
                 had ??= new HashSet<string>();
             }

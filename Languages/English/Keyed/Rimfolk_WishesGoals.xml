@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Wishes, council projects (ambitions) and life goals added for breadth: the wish workers in
+       Source/ColonyCouncil/Wishes/WishWorkers_Breadth.cs, the goals in Ambitions/AmbitionGoals2.cs and the life-goal
+       workers in Aspirations/AspirationWorkers2.cs. -->
+
+  <!-- ===================== Wishes: why they want it ===================== -->
+  <CC_Reason_Sickbed>{PAWN_nameDef} is unwell, and the colony has no bed set aside for the sick.</CC_Reason_Sickbed>
+  <CC_Reason_CampEvening>{PAWN_nameDef} would like to sit a while at the fire of the {CAMP} camped nearby.</CC_Reason_CampEvening>
+  <CC_Reason_GuestBed_Visitors>Visitors are here, and the colony has no bed kept for guests. {PAWN_nameDef} noticed.</CC_Reason_GuestBed_Visitors>
+  <CC_Reason_GuestBed>{PAWN_nameDef} wants a bed kept ready for guests, for whoever comes next.</CC_Reason_GuestBed>
+  <CC_Reason_Meeting>{PAWN_nameDef} has something to put before the council, and it hasn't met in a long while.</CC_Reason_Meeting>
+  <CC_Reason_MeetingMissed>{PAWN_nameDef} missed the last council meeting and still has things to say.</CC_Reason_MeetingMissed>
+  <CC_Reason_SeatsForAll>{SEATS} seats at the tables for {COUNT} people who eat. {PAWN_nameDef} wants everyone at a table at once.</CC_Reason_SeatsForAll>
+  <CC_Reason_Apprentice>{PAWN_nameDef} knows {SKILL} well and wants to pass it on, and {OTHER_nameDef} is keen to learn.</CC_Reason_Apprentice>
+  <CC_Reason_Fishing>{PAWN_nameDef} has seen fish in the water and wants a spot marked out to catch them.</CC_Reason_Fishing>
+  <CC_Reason_ChildPet>{PAWN_nameDef} has been watching the {ANIMALS} near the colony and wants one to look after.</CC_Reason_ChildPet>
+  <CC_Reason_Floor>{PAWN_nameDef}'s room still has a floor of bare ground.</CC_Reason_Floor>
+
+  <!-- ===================== Wishes: progress and promises ===================== -->
+  <CC_Progress_CampEvening>{0} of {1} visits to the camp</CC_Progress_CampEvening>
+  <CC_Progress_Seats>{0} / {1} seats at tables</CC_Progress_Seats>
+  <CC_Progress_Apprentice>{0}: skill {1} / {2}</CC_Progress_Apprentice>
+  <CC_Promise_Meeting>The council calls a meeting. {PAWN_nameDef} will have a chance to speak.</CC_Promise_Meeting>
+  <CC_Promise_Apprentice>The council asks {FOR_nameDef} to teach {OTHER_nameDef} {SUBJECT}. The lessons start today.</CC_Promise_Apprentice>
+  <CC_Progress_Floor>{0} of the room floored</CC_Progress_Floor>
+  <CC_Promise_Floor>The council plans a floor ({SUBJECT}) for {FOR_nameDef}'s room.</CC_Promise_Floor>
+  <CC_SelfHelp_Floor>Tired of the dirt, {PAWN_nameDef} planned a floor ({SUBJECT}) for {PAWN_possessive} room. The builders will find the blueprints; cancel them if you object.</CC_SelfHelp_Floor>
+
+  <!-- ===================== Council projects ===================== -->
+  <CC_Ambition_StageReached>{AMBITION}: stage {STAGE} of {COUNT} is done. Next: {NEXT}</CC_Ambition_StageReached>
+  <CC_Ambition_InStages>In stages, one after another:</CC_Ambition_InStages>
+  <CC_Ambition_LaterStage>Later: {0}</CC_Ambition_LaterStage>
+  <CC_Goal_SeatsForAll>A seat at a table indoors for everyone who eats ({0} / {1})</CC_Goal_SeatsForAll>
+  <CC_Goal_BedsForAll>A real bed for everyone, not a sleeping spot or the floor ({0} / {1})</CC_Goal_BedsForAll>
+  <CC_Goal_CalmDays>{0} days in a row without anyone having a mental break ({1} so far)</CC_Goal_CalmDays>
+  <CC_Goal_HealthyDays>{0} days in a row with nobody sick ({1} so far; {2} unwell now)</CC_Goal_HealthyDays>
+  <CC_Goal_CampFriends>{0} colonists who have visited the {1} often enough to know them ({2} so far)</CC_Goal_CampFriends>
+  <CC_Goal_WarmClothes>Everyone dressed to stay comfortable at {0} ({1} / {2})</CC_Goal_WarmClothes>
+  <CC_Goal_SkillDepth>{0} people with {1} at {2} or better ({3} now)</CC_Goal_SkillDepth>
+  <CC_Goal_Whole>Nobody missing a limb or an eye the colony could replace ({0} missing now)</CC_Goal_Whole>
+  <CC_Goal_RoomStat>A {0} with {1} at {2} or better (best now: {3})</CC_Goal_RoomStat>
+  <CC_Stock_lavishmeals>lavish meals</CC_Stock_lavishmeals>
+  <CC_Stock_herbal>herbal medicine</CC_Stock_herbal>
+  <CC_Role_comms>comms consoles</CC_Role_comms>
+
+  <!-- ===================== Life goals ===================== -->
+  <CC_Asp_GrowUpProgress>age {0} of {1}</CC_Asp_GrowUpProgress>
+  <CC_Asp_FaithProgress>{0} of {1} share it</CC_Asp_FaithProgress>
+  <CC_Asp_StreakProgress>{0} of {1} days in a row</CC_Asp_StreakProgress>
+
+</LanguageData>

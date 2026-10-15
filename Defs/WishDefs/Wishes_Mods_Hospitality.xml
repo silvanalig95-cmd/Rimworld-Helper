@@ -3,7 +3,8 @@
 
   <!--
     A wish for Hospitality. It always loads (a saved wish must find its def if the mod is removed later), but its
-    worker (Integrations/HostingGuests.cs) needs Hospitality's guest beds, so without the mod nobody asks.
+    worker (Integrations/HostingGuests.cs) needs Hospitality's guest beds, so without the mod nobody asks. It comes
+    once the colony has a guest bed indoors; before that, the guest bed wish (Wishes_Mods_Breadth.xml) asks for one.
     {SUBJECT} is the impressiveness the best guest room should reach ("decent", "slightly impressive"...).
   -->
 
@@ -40,7 +41,7 @@
     <thanks>
       <plain>
         <li>The guest room is ready. I made the bed up myself.</li>
-        <li>Now when travelers come, we have somewhere to put them.</li>
+        <li>Now when travelers come, we have a room to be proud of.</li>
       </plain>
       <warm><li>Thank you. Whoever comes next will sleep well here.</li></warm>
       <blunt><li>Good. Now we're hosts, not a barn.</li></blunt>

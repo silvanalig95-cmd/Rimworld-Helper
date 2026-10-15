@@ -92,6 +92,8 @@
         <answerDays>1</answerDays>
         <titles>
           <li>An order from {FACTION}</li>
+          <li>A rider with an order</li>
+          <li>{FACTION} are buying</li>
         </titles>
         <texts>
           <li>[lowtech] A rider from {FACTION} has come with an order. Their people are running short, and they've heard the colony keeps what they need. They want {TALE}, and will pay {COUNT} silver for it, more than any trader would.\n\nThey'll send for it in five days, and they want the whole order or none of it.</li>
@@ -220,6 +222,8 @@
         <answerDays>0.75</answerDays>
         <titles>
           <li>Sickness among {FACTION}</li>
+          <li>A fever among the neighbors</li>
+          <li>{FACTION} ask for help</li>
         </titles>
         <texts>
           <li>[lowtech] A runner of {FACTION} came in at dawn, out of breath. A fever is going through their settlement, worst among the old and the very young, and their healer has used up every last herb. They ask the colony for {TALE}, and can pay {COUNT} silver for it if they must.</li>
@@ -293,6 +297,8 @@
         <journal>Council_Journal_Evt_Dispute</journal>
         <titles>
           <li>A quarrel between neighbors</li>
+          <li>Asked to judge</li>
+          <li>{FACTION} and {ENEMY} disagree</li>
         </titles>
         <texts>
           <li>[water] {FACTION} and {ENEMY} both claim the same spring, in the hills between their lands. The argument has gone on all season, and now both have asked the colony to judge. Each has sent someone to make its case, and each expects the colony to agree with them.</li>
@@ -369,6 +375,8 @@
         <notable>false</notable>
         <titles>
           <li>Growing weather</li>
+          <li>The crops shoot up</li>
+          <li>Soft rain, warm nights</li>
         </titles>
         <texts>
           <li>A week of warm nights and soft rain has done the fields a lot of good. The crops out in the open have shot up and are days ahead of where they should be. {A_nameDef} keeps walking out to look at them.</li>
@@ -432,6 +440,8 @@
         <journal>Council_Journal_Evt_Grave</journal>
         <titles>
           <li>An old grave</li>
+          <li>Bones in the field</li>
+          <li>Someone buried long ago</li>
         </titles>
         <texts>
           <li>[farming] {A_nameDef}'s spade struck bone at the edge of the field. Someone was buried there long before the colony came, with no marker left, and a few of their things went into the ground with them.</li>
@@ -484,6 +494,8 @@
         <notable>false</notable>
         <titles>
           <li>A box of old letters</li>
+          <li>Letters in a box</li>
+          <li>Two people, many years</li>
         </titles>
         <texts>
           <li>[lowtech] {A_nameDef} found a cedar box wedged in the roots of an old tree, its lid sealed with wax. Inside are letters tied in bundles, two people writing to each other over many years. The names and the town on them are from {FACTION}'s lands.</li>
@@ -536,6 +548,8 @@
         <journal>Council_Journal_Evt_Elopers</journal>
         <titles>
           <li>Runaway lovers</li>
+          <li>Two young people at the gate</li>
+          <li>Running away together</li>
         </titles>
         <texts>
           <li>Two young people of {FACTION}, {X_nameDef} and {TALE}, came to the colony after dark, out of breath and holding hands. Their families won't allow the match, so they ran. They ask to be taken in, and {A_nameDef} has already brought them bread and blankets.</li>
@@ -590,6 +604,8 @@
         <journal>Council_Journal_Evt_FamilyVisit</journal>
         <titles>
           <li>{X_nameDef} comes to visit</li>
+          <li>A visit from {A_nameDef}'s {RELATION}</li>
+          <li>Family for the day</li>
         </titles>
         <texts>
           <li>{X_nameDef}, {A_nameDef}'s {RELATION}, has come from {FACTION}'s lands for a visit, with a few things from home. {X_nameDef} will stay the day and head back tomorrow.</li>
@@ -637,6 +653,8 @@
         <notable>false</notable>
         <titles>
           <li>A fortune teller</li>
+          <li>The cards and the bones</li>
+          <li>Fortunes told</li>
         </titles>
         <texts>
           <li>[lowtech] {X_nameDef}, a fortune teller of {FACTION} with a deck of painted cards and a pouch of knucklebones, offers to read every colonist's fortune tonight for {COUNT} silver, and promises only the truth.</li>

@@ -12,6 +12,7 @@
   <ColonyCouncil.SocialEventDef>
     <defName>Council_Soc2_Confession</defName>
     <label>a confession</label>
+    <tone>warm</tone>
     <weight>0.8</weight>
     <tie>Friends</tie>
     <minStrength>20</minStrength>
@@ -33,6 +34,7 @@
   <ColonyCouncil.SocialEventDef>
     <defName>Council_Soc2_SharedSecret</defName>
     <label>a secret shared</label>
+    <tone>warm</tone>
     <weight>0.5</weight>
     <tie>Friends</tie>
     <minStrength>50</minStrength>
@@ -56,6 +58,7 @@
   <ColonyCouncil.SocialEventDef>
     <defName>Council_Soc2_CoveredShift</defName>
     <label>covering a shift</label>
+    <tone>warm</tone>
     <weight>1.0</weight>
     <tie>Friends</tie>
     <minStrength>15</minStrength>
@@ -78,6 +81,8 @@
   <ColonyCouncil.SocialEventDef>
     <defName>Council_Soc2_FallingOut</defName>
     <label>a falling-out</label>
+    <tone>friction</tone>
+    <soreHours>36</soreHours>
     <weight>0.4</weight>
     <tie>Friends</tie>
     <minStrength>20</minStrength>
@@ -100,6 +105,8 @@
   <ColonyCouncil.SocialEventDef>
     <defName>Council_Soc2_Jealousy</defName>
     <label>jealousy</label>
+    <tone>friction</tone>
+    <soreHours>12</soreHours>
     <weight>0.6</weight>
     <tie>Friends</tie>
     <minStrength>25</minStrength>
@@ -123,6 +130,8 @@
   <ColonyCouncil.SocialEventDef>
     <defName>Council_Soc2_Sabotage</defName>
     <label>suspected sabotage</label>
+    <tone>friction</tone>
+    <soreHours>24</soreHours>
     <weight>0.8</weight>
     <tie>Rivals</tie>
     <minStrength>20</minStrength>
@@ -145,6 +154,8 @@
   <ColonyCouncil.SocialEventDef>
     <defName>Council_Soc2_OneUpmanship</defName>
     <label>one-upmanship</label>
+    <tone>friction</tone>
+    <soreHours>12</soreHours>
     <weight>0.9</weight>
     <tie>Rivals</tie>
     <minStrength>10</minStrength>
@@ -189,6 +200,8 @@
   <ColonyCouncil.SocialEventDef>
     <defName>Council_Soc2_DinnerInsult</defName>
     <label>an insult at dinner</label>
+    <tone>friction</tone>
+    <soreHours>24</soreHours>
     <weight>0.8</weight>
     <tie>Rivals</tie>
     <minStrength>25</minStrength>
@@ -210,6 +223,8 @@
   <ColonyCouncil.SocialEventDef>
     <defName>Council_Soc2_NearFight</defName>
     <label>a near fight</label>
+    <tone>friction</tone>
+    <soreHours>36</soreHours>
     <weight>0.4</weight>
     <tie>Rivals</tie>
     <minStrength>40</minStrength>
@@ -235,6 +250,7 @@
   <ColonyCouncil.SocialEventDef>
     <defName>Council_Soc2_Sparring</defName>
     <label>sparring</label>
+    <tone>warm</tone>
     <weight>1.0</weight>
     <tie>Comrades</tie>
     <minStrength>10</minStrength>
@@ -257,6 +273,7 @@
   <ColonyCouncil.SocialEventDef>
     <defName>Council_Soc2_Nightmare</defName>
     <label>a nightmare</label>
+    <tone>warm</tone>
     <weight>0.6</weight>
     <tie>Comrades</tie>
     <minStrength>20</minStrength>
@@ -278,6 +295,7 @@
   <ColonyCouncil.SocialEventDef>
     <defName>Council_Soc2_PatchedWound</defName>
     <label>a patched wound</label>
+    <tone>warm</tone>
     <weight>0.8</weight>
     <tie>Comrades</tie>
     <minStrength>15</minStrength>
@@ -300,6 +318,8 @@
   <ColonyCouncil.SocialEventDef>
     <defName>Council_Soc2_FrustratedLesson</defName>
     <label>a frustrating lesson</label>
+    <tone>friction</tone>
+    <soreHours>12</soreHours>
     <weight>0.8</weight>
     <tie>Mentor</tie>
     <children>true</children>
@@ -320,6 +340,7 @@
   <ColonyCouncil.SocialEventDef>
     <defName>Council_Soc2_StudentSurpasses</defName>
     <label>the student surpasses</label>
+    <tone>warm</tone>
     <weight>0.5</weight>
     <tie>Mentor</tie>
     <minStrength>40</minStrength>
@@ -344,6 +365,7 @@
   <ColonyCouncil.SocialEventDef>
     <defName>Council_Soc2_TeacherLearns</defName>
     <label>the teacher learns</label>
+    <tone>warm</tone>
     <weight>0.7</weight>
     <tie>Mentor</tie>
     <minStrength>20</minStrength>
@@ -389,6 +411,7 @@
   <ColonyCouncil.SocialEventDef>
     <defName>Council_Soc2_SharedHobby</defName>
     <label>a shared hobby</label>
+    <tone>warm</tone>
     <weight>0.7</weight>
     <minOpinion>-10</minOpinion>
     <maxOpinion>25</maxOpinion>
@@ -430,6 +453,7 @@
   <ColonyCouncil.SocialEventDef>
     <defName>Council_Soc2_Borrowed</defName>
     <label>borrowing without asking</label>
+    <tone>friction</tone>
     <weight>0.8</weight>
     <minOpinion>-30</minOpinion>
     <maxOpinion>20</maxOpinion>
@@ -451,6 +475,7 @@
   <ColonyCouncil.SocialEventDef>
     <defName>Council_Soc2_Kindness</defName>
     <label>a kindness</label>
+    <tone>warm</tone>
     <weight>0.8</weight>
     <minOpinion>-30</minOpinion>
     <maxOpinion>30</maxOpinion>
@@ -474,6 +499,7 @@
   <ColonyCouncil.SocialEventDef>
     <defName>Council_Soc2_AbrasiveRemark</defName>
     <label>a cutting remark</label>
+    <tone>friction</tone>
     <weight>0.8</weight>
     <maxOpinion>60</maxOpinion>
     <roleA><anyTrait><li>Abrasive</li></anyTrait></roleA>
@@ -495,6 +521,7 @@
   <ColonyCouncil.SocialEventDef>
     <defName>Council_Soc2_ColdRemark</defName>
     <label>a cold remark</label>
+    <tone>friction</tone>
     <weight>0.5</weight>
     <roleA><anyTrait><li>Psychopath</li></anyTrait></roleA>
     <roleB><notTrait><li>Psychopath</li></notTrait></roleB>
@@ -519,6 +546,7 @@
   <ColonyCouncil.SocialEventDef>
     <defName>Council_Soc2_SecretLanguage</defName>
     <label>a secret language</label>
+    <tone>warm</tone>
     <weight>0.9</weight>
     <roleA><child>true</child></roleA>
     <roleB><child>true</child></roleB>
@@ -538,6 +566,7 @@
   <ColonyCouncil.SocialEventDef>
     <defName>Council_Soc2_ChildDare</defName>
     <label>a dare</label>
+    <tone>warm</tone>
     <weight>0.7</weight>
     <roleA><child>true</child></roleA>
     <roleB><child>true</child></roleB>
@@ -557,6 +586,7 @@
   <ColonyCouncil.SocialEventDef>
     <defName>Council_Soc2_ChildPesters</defName>
     <label>a child's questions</label>
+    <tone>warm</tone>
     <weight>0.8</weight>
     <minOpinion>0</minOpinion>
     <roleA><child>true</child></roleA>
@@ -581,6 +611,8 @@
   <ColonyCouncil.SocialEventDef>
     <defName>Council_Soc2_JealousRoom</defName>
     <label>envy of a room</label>
+    <tone>friction</tone>
+    <soreHours>12</soreHours>
     <weight>0.6</weight>
     <roleA><anyTrait><li>Jealous</li></anyTrait></roleA>
     <texts>
@@ -599,6 +631,8 @@
   <ColonyCouncil.SocialEventDef>
     <defName>Council_Soc2_GoryStory</defName>
     <label>a gory story</label>
+    <tone>friction</tone>
+    <soreHours>12</soreHours>
     <weight>0.6</weight>
     <roleA><anyTrait><li>Bloodlust</li></anyTrait></roleA>
     <roleB><notTrait><li>Bloodlust</li><li>Psychopath</li></notTrait></roleB>
@@ -619,6 +653,8 @@
   <ColonyCouncil.SocialEventDef>
     <defName>Council_Soc2_KnowItAll</defName>
     <label>a know-it-all</label>
+    <tone>friction</tone>
+    <soreHours>12</soreHours>
     <weight>0.6</weight>
     <roleA><anyTrait><li>TooSmart</li></anyTrait></roleA>
     <texts>

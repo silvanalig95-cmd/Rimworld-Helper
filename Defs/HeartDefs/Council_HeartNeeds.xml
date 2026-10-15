@@ -19,6 +19,7 @@
       <li>Council_Wish_Music</li>
       <li>Council_Wish_Birthday</li>
       <li>Council_Wish_Recruit</li>
+      <li>Council_Wish_ChildPet</li>
     </wishes>
     <wishCategories><li>Social</li></wishCategories>
     <goals>
@@ -28,6 +29,10 @@
       <li>Council_Asp_Peace</li>
       <li>Council_Asp2_Beloved</li>
       <li>Council_Asp_Hospitable</li>
+      <li>Council_Asp3_BestFriend</li>
+      <li>Council_Asp3_Belonging</li>
+      <li>Council_Asp3_Grandchild</li>
+      <li>Council_Asp3_SharedFaith</li>
     </goals>
   </ColonyCouncil.HeartNeedDef>
 
@@ -40,6 +45,7 @@
       <li>Council_Wish_Lessons</li>
       <li>Council_Wish_Books</li>
       <li>Council_Wish_TrainingDummy</li>
+      <li>Council_Wish_ChildLessons</li>
     </wishes>
     <wishCategories><li>Work</li></wishCategories>
     <goals>
@@ -54,6 +60,12 @@
       <li>Council_Asp2_Artist</li>
       <li>Council_Asp2_Orator</li>
       <li>Council_Asp2_Surgeon</li>
+      <li>Council_Asp3_Grower</li>
+      <li>Council_Asp3_Maker</li>
+      <li>Council_Asp3_ChildSkill</li>
+      <li>Council_Asp3_Legacy</li>
+      <li>Council_Asp3_FaithRole</li>
+      <li>Council_Asp3_Heard</li>
     </goals>
   </ColonyCouncil.HeartNeedDef>
 
@@ -68,6 +80,10 @@
       <li>Council_Wish_Freezer</li>
       <li>Council_Wish_WeaponRack</li>
       <li>Council_Wish_BetterWeapon</li>
+      <li>Council_Wish_Sickbed</li>
+      <li>Council_Wish_Healroot</li>
+      <li>Council_Wish_FreshFood</li>
+      <li>Council_Wish_Tea</li>
     </wishes>
     <wishCategories><li>Safety</li></wishCategories>
     <goals>
@@ -76,6 +92,8 @@
       <li>Council_Asp2_Marshal</li>
       <li>Council_Asp_Endure</li>
       <li>Council_Asp_Grow</li>
+      <li>Council_Asp3_Blademaster</li>
+      <li>Council_Asp3_OneMoreYear</li>
     </goals>
   </ColonyCouncil.HeartNeedDef>
 
@@ -89,12 +107,17 @@
       <li>Council_Wish_DayOff</li>
       <li>Council_Wish_GardenSeat</li>
       <li>Council_Wish_RecreationVariety</li>
+      <li>Council_Wish_CampEvening</li>
+      <li>Council_Wish_Telescope</li>
+      <li>Council_Wish_Fishing</li>
     </wishes>
     <goals>
       <li>Council_Asp2_Discovery</li>
       <li>Council_Asp2_Hunter</li>
       <li>Council_Asp_Tamer</li>
       <li>Council_Asp_Hospitable</li>
+      <li>Council_Asp3_Freedom</li>
+      <li>Council_Asp3_GrowUp</li>
     </goals>
   </ColonyCouncil.HeartNeedDef>
 

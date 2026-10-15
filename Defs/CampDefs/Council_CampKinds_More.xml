@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- More kinds of camp (ColonyCouncil.CampKindDef, see Council_CampKinds.xml): traveling healers, a procession of
+       the faithful, traveling players and surveyors. They use the same camp life as the others; their good turns are
+       new (heal, show, blessing, survey: Source/ColonyCouncil/Camps/CampKinds.cs), told in their helpTexts. Healers come
+       more often in a year of sickness, the faithful in a holy year or a pilgrimage, and surveyors while a road is
+       being built. Their people are any people at peace with the colony, so no DLC is needed. -->
+
+  <!-- ===================== Traveling healers ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Council_Camp_Healers</defName>
+    <label>traveling healers</label>
+    <minTech>Neolithic</minTech>
+    <weight>0.8</weight>
+    <people>2~4</people>
+    <days>4~8</days>
+    <ages>25~70</ages>
+    <chopsPerDay>0.3</chopsPerDay>
+    <task>Council_CampHeal</task>
+    <taskAt>stall</taskAt>
+    <hireChance>0.2</hireChance>
+    <joinChance>0.05</joinChance>
+    <helpChance>0.35</helpChance>
+    <help>
+      <li>heal</li>
+    </help>
+    <pride>0.15</pride>
+    <breakTerms>0.05</breakTerms>
+    <tensionPerDay>0.5</tensionPerDay>
+    <extendChance>0.4</extendChance>
+    <situationKinds>
+      <li>sickness</li>
+    </situationKinds>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+      <li><role>bed</role><defs><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff></li>
+      <li><role>stall</role><defs><li>Table1x2c</li></defs><stuff><li>WoodLog</li></stuff></li>
+      <li><role>light</role><defs><li>TorchLamp</li></defs></li>
+    </structures>
+    <titles>
+      <li>Healers make camp</li>
+      <li>[lowtech] Herb-healers on the road</li>
+      <li>[!lowtech] A traveling clinic</li>
+    </titles>
+    <texts>
+      <li>[lowtech] A few healers of {FACTION} have come down the road with packs of dried herbs and a mule loaded with pots. {X_nameDef}, the eldest, told {A_nameDef} they go from village to village seeing to whatever needs seeing to, and they'd like to camp {PLACE} for a few days.</li>
+      <li>[!lowtech] A traveling clinic of {FACTION} has stopped by the colony: a handful of medics, a folding table and a crate of supplies. {X_nameDef}, who runs it, told {A_nameDef} they'll set up {PLACE} for a few days and see anyone who needs seeing.</li>
+      <li>[ws:sickness] Healers of {FACTION} are on the roads because of {SITUATION}, going wherever they're needed. {X_nameDef} told {A_nameDef} they'd like to rest {PLACE} for a few days, and will see to anyone at the colony who's ailing while they're here.</li>
+      <li>[winter] Healers of {FACTION} came in out of the cold with frost on their packs. Winter is their busiest season, {X_nameDef} told {A_nameDef}: coughs, chilblains, falls on the ice. They'd like to camp {PLACE} for a few days and rest before the next village.</li>
+      <li>Healers of {FACTION} have stopped on the colony's land with a cart of remedies and a sign that says, in three languages, that they ask no questions. {X_nameDef} told {A_nameDef} they'll camp {PLACE} a few days, and the colony is welcome at their table.</li>
+    </texts>
+    <settled>
+      <li>The healers from {FACTION} have their camp up {PLACE}: a fire, a table of remedies and a torch to work by after dark.</li>
+      <li>[lowtech] The healers from {FACTION} have hung bundles of herbs to dry around their fire {PLACE}, and the smell of them carries to the colony.</li>
+      <li>[!lowtech] The healers from {FACTION} have set out their table {PLACE}, with bottles in neat rows and a clean cloth over the instruments.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef}, one of the healers camped {PLACE}, says the colony has more need of a healer than the road does, and asks whether {X_pronoun} might stay.</li>
+      <li>{X_nameDef} from the healers' camp has been seeing to the colonists' scrapes and coughs every evening, unasked. Tonight {X_nameDef} asked whether there might be a place for a healer here, for good.</li>
+    </joinTexts>
+    <farewell>
+      <li>The healers from {FACTION} packed up their remedies and went on to the next village, with a long list of the colony's coughs to ask about next time.</li>
+      <li>The healers' camp {PLACE} is gone, and the smell of drying herbs with it. {X_nameDef} left a jar of salve on the gatepost.</li>
+    </farewell>
+    <lines>
+      <li>Where does it hurt?</li>
+      <li>Drink all of it.</li>
+      <li>Rest is half the cure.</li>
+      <li>Boil the water first.</li>
+      <li>Next, please.</li>
+      <li>[lowtech] Willow bark for the fever.</li>
+      <li>[!lowtech] Wash your hands.</li>
+    </lines>
+    <helpTexts>
+      <li>[heal] {X_nameDef} from the healers' camp caught {A_nameDef} at the well and saw to {A_possessive} {THING} there and then, with a poultice and a cup of something bitter. {A_nameDef} is already feeling better.</li>
+      <li>[heal,lowtech] {X_nameDef}, the eldest of the healers, sat {A_nameDef} down by the camp's fire and saw to the {THING} with herbs and a lot of muttering. {A_nameDef} came back to the colony looking much brighter.</li>
+      <li>[heal,!lowtech] {X_nameDef} from the clinic {PLACE} took one look at {A_nameDef}'s {THING}, sat {A_objective} down at the folding table, and dealt with it in twenty minutes. No charge.</li>
+      <li>[herbs] The healers {PLACE} had herbs to spare, and left {COUNT} bundles of herbal medicine where the colony can collect them.</li>
+      <li>[herbs] {X_nameDef} from the healers' camp came by with {COUNT} bundles of dried healroot for the colony's stores, and a long lecture on how to keep them dry.</li>
+    </helpTexts>
+  </ColonyCouncil.CampKindDef>
+
+  <!-- ===================== A procession of the faithful ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Council_Camp_Procession</defName>
+    <label>procession of the faithful</label>
+    <weight>0.7</weight>
+    <people>4~7</people>
+    <days>2~5</days>
+    <ages>16~75</ages>
+    <chopsPerDay>0.3</chopsPerDay>
+    <task>Council_CampPray</task>
+    <taskAt>spot</taskAt>
+    <hireChance>0.05</hireChance>
+    <joinChance>0.05</joinChance>
+    <helpChance>0.3</helpChance>
+    <help>
+      <li>blessing</li>
+    </help>
+    <pride>0.2</pride>
+    <breakTerms>0.03</breakTerms>
+    <tensionPerDay>0.4</tensionPerDay>
+    <canPay>false</canPay>
+    <extendChance>0.2</extendChance>
+    <situationKinds>
+      <li>faith</li>
+    </situationKinds>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+      <li><role>bed</role><defs><li>SleepingSpot</li></defs></li>
+      <li><role>spot</role><defs><li>MeditationSpot</li><li>PartySpot</li></defs></li>
+      <li><role>light</role><defs><li>TorchLamp</li></defs></li>
+    </structures>
+    <titles>
+      <li>A procession of the faithful</li>
+      <li>[ideology] The faithful of {IDEO}</li>
+      <li>Singing on the road</li>
+    </titles>
+    <texts>
+      <li>A procession of {FACTION} has come singing up the road behind a carried shrine: the faithful of a dozen villages, bound for a holy place far beyond the colony. {X_nameDef}, who leads them, asked {A_nameDef} whether they might rest {PLACE} for a few days and keep their prayers.</li>
+      <li>[ideology] Followers of {IDEO} from {FACTION} have come up the road carrying the relics of their faith on poles. {X_nameDef}, who walks at the front, asked {A_nameDef} for leave to camp {PLACE}, to rest and to pray.</li>
+      <li>[ideology,sameFaith] A procession of {FACTION} has arrived singing hymns the colony knows: they keep {IDEO}, the colony's own faith, and they've come out of their way to rest among their own. {X_nameDef} asked {A_nameDef} for a few days' camp {PLACE}.</li>
+      <li>[ws:faith] {SITUATION} has brought the faithful out on every road, and a procession of {FACTION} has stopped by the colony on its way. {X_nameDef} asked {A_nameDef} whether they might camp {PLACE} for a few days.</li>
+      <li>[lowtech] A procession of {FACTION} has come over the hill with bells and drums, carrying a carved figure on a litter. {X_nameDef}, their leader, asked {A_nameDef} whether the figure and its people might rest {PLACE} a few nights on their long road.</li>
+    </texts>
+    <settled>
+      <li>The faithful from {FACTION} have set their shrine down {PLACE}, with a place cleared before it for prayer and their bedrolls in a ring around the fire.</li>
+      <li>[ideology] The followers of {IDEO} have made their camp {PLACE}. Their relics stand on a cloth near the cookpot, and someone is always keeping watch over them.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef}, one of the faithful camped {PLACE}, says the road has brought {X_objective} where {X_pronoun} was meant to be, and asks whether {X_pronoun} might stay with the colony instead of walking on.</li>
+      <li>[sameFaith] {X_nameDef} from the procession {PLACE} has found people of {X_possessive} own faith here, and asks, after a night's prayer about it, to stay.</li>
+    </joinTexts>
+    <farewell>
+      <li>The procession from {FACTION} lifted its shrine at dawn and went on singing up the road. The colony could hear them long after they'd gone out of sight.</li>
+      <li>The faithful from {FACTION} broke camp {PLACE} and went on toward their holy place. {X_nameDef} said they'd pray for the colony there.</li>
+    </farewell>
+    <lines>
+      <li>Walk in peace.</li>
+      <li>Not much further now.</li>
+      <li>Sing it again, from the start.</li>
+      <li>We pray for this place.</li>
+      <li>Keep the candle lit.</li>
+      <li>[ideology] Praise to {IDEO}.</li>
+    </lines>
+    <helpTexts>
+      <li>[blessing] {X_nameDef}, the eldest of the faithful, came to the colony at dusk and walked its paths with a bell, blessing the houses, the fields and the people one by one.</li>
+      <li>[blessing,ideology] The followers of {IDEO} came to the colony's gate at sunset and sang a blessing over it, the whole procession together, before going back to their fire.</li>
+      <li>[blessing,sameFaith] The procession came to the colony this evening to pray with it, as people of one faith. {X_nameDef} led the prayers, and {A_nameDef} stood at the front.</li>
+      <li>[blessing,lowtech] The faithful carried their shrine around the colony's fields at dusk, ringing bells, so the land would be kind to the people working it.</li>
+    </helpTexts>
+  </ColonyCouncil.CampKindDef>
+
+  <!-- ===================== Traveling players ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Council_Camp_Players</defName>
+    <label>traveling players</label>
+    <weight>0.7</weight>
+    <people>3~6</people>
+    <days>3~6</days>
+    <ages>18~60</ages>
+    <chopsPerDay>0.4</chopsPerDay>
+    <task>Council_CampRehearse</task>
+    <taskAt>spot</taskAt>
+    <hireChance>0.15</hireChance>
+    <joinChance>0.05</joinChance>
+    <helpChance>0.5</helpChance>
+    <help>
+      <li>show</li>
+    </help>
+    <pride>0.3</pride>
+    <breakTerms>0.08</breakTerms>
+    <tensionPerDay>0.5</tensionPerDay>
+    <extendChance>0.4</extendChance>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+      <li><role>bed</role><defs><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff></li>
+      <li><role>spot</role><defs><li>PartySpot</li></defs></li>
+      <li><role>light</role><defs><li>TorchLamp</li></defs></li>
+    </structures>
+    <titles>
+      <li>Traveling players</li>
+      <li>[lowtech] Mummers make camp</li>
+      <li>[!lowtech] The circus comes</li>
+    </titles>
+    <texts>
+      <li>[lowtech] A troupe of {FACTION}'s players has come up the road with a painted wagon and a dancing goat. {X_nameDef}, who does the talking, told {A_nameDef} they'd like to camp {PLACE} for a few nights and put on shows for anyone who comes, for whatever anyone wants to give.</li>
+      <li>[!lowtech] A small circus of {FACTION} has pulled up by the colony: a handful of performers, a striped tent rolled up on a trailer, and a juggler who hasn't stopped juggling since they arrived. {X_nameDef} told {A_nameDef} they'll camp {PLACE} for a few nights and perform every evening.</li>
+      <li>Players of {FACTION} have stopped at the colony with costumes in a trunk and a play they're tired of. {X_nameDef} asked {A_nameDef} if they could camp {PLACE} for a few nights, rehearse something new, and try it out on the colony.</li>
+      <li>[winter] Players of {FACTION} came in out of the snow in their stage clothes, which are warmer than they look. There are no audiences on the roads in winter, {X_nameDef} told {A_nameDef}; they'd like to camp {PLACE} for a few nights and play for the colony instead.</li>
+      <li>[tribal] Dancers and drummers of {FACTION} have come to the colony, painted for the dance. They travel from camp to camp and dance the old stories, {X_nameDef} told {A_nameDef}, and would like to stay {PLACE} a few nights.</li>
+    </texts>
+    <settled>
+      <li>The players from {FACTION} have their camp up {PLACE}, with a stage of packed earth and a torch at each corner.</li>
+      <li>[!lowtech] The circus from {FACTION} has strung lanterns between two poles {PLACE} and marked out a ring in the dirt. The juggler is still juggling.</li>
+      <li>[tribal] The dancers from {FACTION} have cleared a dancing ground {PLACE} and beaten it flat. Their drums are already going at dusk.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef}, one of the players camped {PLACE}, is tired of the road and of sleeping in a different field every week, and asks whether the colony has room for someone who can sing, juggle and lift heavy things.</li>
+      <li>{X_nameDef} from the players' camp has been coming to the colony's supper table more than the camp's. Tonight {X_nameDef} asked, with a bow, whether {X_pronoun} might stay.</li>
+    </joinTexts>
+    <farewell>
+      <li>The players from {FACTION} packed their costumes into the trunk and went on to the next town, waving from the wagon until they were out of sight.</li>
+      <li>The players' camp {PLACE} is empty, except for a painted backdrop of a castle they decided they didn't need.</li>
+    </farewell>
+    <lines>
+      <li>Again, from the top!</li>
+      <li>Louder, they can't hear you at the back.</li>
+      <li>Who's got my hat?</li>
+      <li>That's my line.</li>
+      <li>Smile, it's a comedy.</li>
+      <li>[lowtech] Mind the goat.</li>
+      <li>[!lowtech] Who moved the ladder?</li>
+      <li>[tribal] Faster on the drum.</li>
+    </lines>
+    <helpTexts>
+      <li>[show] The players {PLACE} put on a play at their fire this evening, a comedy about a lord who loses his trousers, and the colony was invited. {X_nameDef} played the lord.</li>
+      <li>[show,!lowtech] The circus {PLACE} put on its full show tonight: juggling, a tightrope between two poles, and a strongman who lifted {A_nameDef} over his head. The colony laughed itself hoarse.</li>
+      <li>[show,tribal] The dancers {PLACE} danced the story of the first hunt tonight, round the fire, with the colony watching from the dark. {X_nameDef} danced the beast.</li>
+      <li>[show,lowtech] The mummers {PLACE} played the old story of the fool and the dragon tonight, and {X_nameDef}'s dragon chased the colony's children all round the fire.</li>
+      <li>[show] The players camped {PLACE} tried out their new play on the colony tonight. It needs work, {X_nameDef} says. The colony clapped anyway.</li>
+    </helpTexts>
+  </ColonyCouncil.CampKindDef>
+
+  <!-- ===================== Surveyors ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Council_Camp_Surveyors</defName>
+    <label>surveyors</label>
+    <eras>
+      <li>medieval</li>
+      <li>industrial</li>
+      <li>spacer</li>
+    </eras>
+    <minTech>Medieval</minTech>
+    <weight>0.6</weight>
+    <people>2~4</people>
+    <days>4~8</days>
+    <ages>22~60</ages>
+    <huntsPerDay>0.2</huntsPerDay>
+    <chopsPerDay>0.5</chopsPerDay>
+    <task>Council_CampSurvey</task>
+    <hireChance>0.25</hireChance>
+    <joinChance>0.03</joinChance>
+    <helpChance>0.3</helpChance>
+    <help>
+      <li>survey</li>
+      <li>wood</li>
+    </help>
+    <pride>0.35</pride>
+    <breakTerms>0.1</breakTerms>
+    <tensionPerDay>1</tensionPerDay>
+    <extendChance>0.3</extendChance>
+    <situationKinds>
+      <li>road</li>
+      <li>rush</li>
+    </situationKinds>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+      <li><role>bed</role><defs><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff></li>
+      <li><role>wall</role><defs><li>Wall</li></defs><stuff><li>WoodLog</li></stuff><count>3</count></li>
+      <li><role>light</role><defs><li>TorchLamp</li></defs></li>
+    </structures>
+    <titles>
+      <li>Surveyors make camp</li>
+      <li>[ws:road] Surveyors for the road</li>
+    </titles>
+    <texts>
+      <li>[medieval] Surveyors of {FACTION}, with chains, measuring rods and a great deal of string, have come onto the colony's land. {X_nameDef} told {A_nameDef} their lord wants the whole valley mapped, and they'll camp {PLACE} for a few days while they do this part of it.</li>
+      <li>[industrial|spacer] Surveyors of {FACTION} have set up a tripod on the ridge and are squinting at the colony through it. {X_nameDef} told {A_nameDef} they're mapping the region for {FACTION}'s charts, and would like to camp {PLACE} for a few days.</li>
+      <li>[ws:road] {SITUATION} needs a line through the hills, and surveyors of {FACTION} have come to find it. {X_nameDef} told {A_nameDef} they'll camp {PLACE} for a few days, and will keep their stakes off the colony's fields.</li>
+      <li>[ws:rush] With everyone in the region talking about {SITUATION}, {FACTION} have sent surveyors to map the rock properly. {X_nameDef} told {A_nameDef} they'd like to camp {PLACE} a few days, and will share what they find in the colony's hills.</li>
+    </texts>
+    <settled>
+      <li>The surveyors from {FACTION} have their camp up {PLACE}, with a windbreak against the weather and their instruments wrapped in oilcloth.</li>
+      <li>The surveyors' camp {PLACE} is up, with a torch to work their figures by at night and a line of stakes running off into the hills.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef} from the surveyors' camp has walked every hill around the colony and decided {X_pronoun} likes this one best. {X_nameDef} asks whether the colony would take on someone who knows rock and distances.</li>
+    </joinTexts>
+    <farewell>
+      <li>The surveyors from {FACTION} pulled up their stakes and went on to map the next valley, leaving a copy of their sketch of the colony's land pinned to the gate.</li>
+      <li>The surveyors' camp {PLACE} is gone. Somewhere in {FACTION}'s charts, the colony is a small careful square with its name beside it.</li>
+    </farewell>
+    <lines>
+      <li>Hold the rod straight.</li>
+      <li>Three hundred paces. Write it down.</li>
+      <li>That hill's in the wrong place.</li>
+      <li>Check it again.</li>
+      <li>[!lowtech] The batteries are flat.</li>
+    </lines>
+    <helpTexts>
+      <li>[survey] {X_nameDef} from the surveyors' camp has been studying the colony's rock, and walked {A_nameDef} out to show {A_objective} a seam of {THING} the colony never knew was there.</li>
+      <li>[survey,industrial|spacer] The surveyors {PLACE} ran their instruments over the colony's hills for a day, and {X_nameDef} came back with a marked map: a seam of {THING}, close to the surface.</li>
+      <li>[survey,medieval] {X_nameDef}, the surveyors' master, has a nose for ore. A morning of tapping at the rock with a jeweler's hammer, and {X_nameDef} showed {A_nameDef} a seam of {THING}.</li>
+    </helpTexts>
+  </ColonyCouncil.CampKindDef>
+
+  <!-- ===================== Their work, and how the colony feels about them ===================== -->
+
+  <JobDef ParentName="Council_CampJobBase">
+    <defName>Council_CampHeal</defName>
+    <reportString>preparing remedies.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.CampJobExtension"><ticks>2500</ticks><social>true</social></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef ParentName="Council_CampJobBase">
+    <defName>Council_CampRehearse</defName>
+    <reportString>rehearsing.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.CampJobExtension"><ticks>2500</ticks><social>true</social></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef ParentName="Council_CampJobBase">
+    <defName>Council_CampSurvey</defName>
+    <reportString>taking sightings.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.CampJobExtension"><ticks>3000</ticks></li>
+    </modExtensions>
+  </JobDef>
+
+  <ThoughtDef>
+    <defName>Council_Camp_Healed</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>a healer from the camp saw to me</label><description>One of the healers camped nearby saw I was poorly and saw to it, for nothing. I feel better already.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Camp_Show</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>2</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>a show at the camp</label><description>The people camped nearby put on a show at their fire, and we were all invited. I laughed until it hurt.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Camp_Blessing</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>blessed by the faithful</label><description>The faithful camped nearby came and blessed the colony. Whatever it's worth, it was kindly meant.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+</Defs>

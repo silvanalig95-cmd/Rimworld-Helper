@@ -1,0 +1,731 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The third set of dreams: dreams that grow out of what a colonist feels, what ails them, what is happening around
+    them, and the time of year. The fields are explained at the top of Council_Dreams.xml; these also use:
+    feelings: only while they feel one of these (the heart's FeelingDef keys), at least minFeeling of full strength
+      (default 0.3); the stronger the feeling, the likelier. feelingTarget: the feeling is about someone, who is OTHER.
+      Never with the heart off.
+    camp: only while a camp (world events) is set up on the dreamer's map.
+    situations: only while a world event of one of these kinds or defNames is running in the region.
+  -->
+
+  <!-- ===================== What they feel ===================== -->
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf3_Quarrel</defName>
+    <label>a dream of a quarrel</label>
+    <kind>Strange</kind>
+    <feelings><li>Anger</li></feelings>
+    <feelingTarget>true</feelingTarget>
+    <lines>
+      <plain>
+        <li>{OTHER_nameDef} and I argued all night in my dream, in a room with no doors, and neither of us would give an inch.</li>
+        <li>In the dream I finally said everything I've been holding back to {OTHER_nameDef}, and {OTHER_nameDef} didn't hear a word of it.</li>
+        <li>Dreamt {OTHER_nameDef} had taken my bed, my tools and my name, and everyone was calling {OTHER_objective} by it.</li>
+        <li>{OTHER_nameDef} stood at the end of my bed in the dream, and I was too angry to speak.</li>
+        <li>[trait:Volatile|trait:Abrasive] I threw a cup at {OTHER_nameDef} in my dream. It never landed; it just kept flying.</li>
+        <li>[again] The same argument with {OTHER_nameDef} again. I lose it a little differently every night.</li>
+      </plain>
+      <warm><li>{OTHER_nameDef} and I shouted ourselves hoarse in my dream, then sat down and shared a pipe. I don't know what to make of that.</li></warm>
+      <blunt>
+        <li>Fought with {OTHER_nameDef} all night in my sleep. Still angry.</li>
+        <li>Dreamt about {OTHER_nameDef}. Woke up angrier.</li>
+      </blunt>
+      <cheerful><li>Won an argument with {OTHER_nameDef} in my dream! It doesn't count, but still.</li></cheerful>
+      <gloomy><li>Even asleep I can't get away from {OTHER_nameDef}.</li></gloomy>
+      <cold><li>A dream about my grievance with {OTHER_nameDef}. My mind is still chewing on it.</li></cold>
+    </lines>
+    <changeTie>Rivals</changeTie>
+    <change>2</change>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf3_Debt</defName>
+    <label>a dream of a debt repaid</label>
+    <kind>Sweet</kind>
+    <children>true</children>
+    <feelings><li>Gratitude</li></feelings>
+    <feelingTarget>true</feelingTarget>
+    <lines>
+      <plain>
+        <li>In the dream {OTHER_nameDef} was in trouble, and for once I was the one who could help.</li>
+        <li>Dreamt I built {OTHER_nameDef} a house with my own hands, with a window on every side.</li>
+        <li>{OTHER_nameDef} walked beside me in my dream, carrying half of everything I carried.</li>
+        <li>I found the words to thank {OTHER_nameDef} properly in my dream. I'm trying to remember them.</li>
+        <li>[child] {OTHER_nameDef} was a giant in my dream, and I rode on {OTHER_possessive} shoulders over the fields.</li>
+      </plain>
+      <warm><li>In my dream the whole colony gave {OTHER_nameDef} a feast, and I got to carry in the bread.</li></warm>
+      <blunt><li>Dreamt I paid {OTHER_nameDef} back. Should do that awake.</li></blunt>
+      <cheerful><li>I dreamt I gave {OTHER_nameDef} a present so good {OTHER_nameDef} cried!</li></cheerful>
+      <gloomy><li>Dreamt I owed {OTHER_nameDef} more than I'll ever be able to give back.</li></gloomy>
+      <cold><li>A dream about what I owe {OTHER_nameDef}. I'll settle it.</li></cold>
+    </lines>
+    <changeTie>Friends</changeTie>
+    <change>3</change>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf3_OtherLife</defName>
+    <label>a dream of someone else's life</label>
+    <kind>Strange</kind>
+    <feelings><li>Envy</li></feelings>
+    <feelingTarget>true</feelingTarget>
+    <lines>
+      <plain>
+        <li>In the dream I woke up as {OTHER_nameDef}, in {OTHER_possessive} bed, and nobody noticed the difference.</li>
+        <li>Dreamt everyone at supper was praising {OTHER_nameDef}, and the bread went right past me.</li>
+        <li>{OTHER_nameDef} had everything in my dream: the best room, the best coat, the seat nearest the fire. I stood outside at the window.</li>
+        <li>I dreamt I was given {OTHER_nameDef}'s work and did it better, and nobody saw.</li>
+        <li>[trait:Greedy|trait:Jealous] In the dream I took {OTHER_nameDef}'s things one at a time, and each one turned to sand in my hands.</li>
+      </plain>
+      <warm><li>Dreamt {OTHER_nameDef} and I swapped lives for a day, and by evening we both wanted our own back.</li></warm>
+      <blunt><li>Dreamt I had what {OTHER_nameDef} has. Woke up without it.</li></blunt>
+      <cheerful><li>I had a dream I was the colony's favorite! For once it was {OTHER_nameDef} looking on.</li></cheerful>
+      <gloomy><li>Dreamt about {OTHER_nameDef}'s good luck. Woke up to mine.</li></gloomy>
+      <cold><li>A dream of envy, about {OTHER_nameDef}. Noted, and set aside.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf3_Hunted</defName>
+    <label>a dream of being hunted</label>
+    <kind>Nightmare</kind>
+    <children>true</children>
+    <feelings><li>Fear</li></feelings>
+    <lines>
+      <plain>
+        <li>Something followed me through the dark in my dream, always one corner behind.</li>
+        <li>In the dream I hid under the floor while footsteps went back and forth over my head all night.</li>
+        <li>I was running in my dream and my legs wouldn't work. The ground kept pulling at them.</li>
+        <li>Dreamt the walls had holes in them I'd never noticed, and something was looking through each one.</li>
+        <li>[child] There was a monster under my bed and it knew my name.</li>
+        <li>[afterraid] The raiders were back in my dream, and this time I couldn't find my weapon.</li>
+        <li>[tribal] In my dream the wolves had our scent, and the drums wouldn't stop.</li>
+      </plain>
+      <warm><li>I was hiding in my dream, and someone took my hand and led me somewhere safe. I never saw who.</li></warm>
+      <blunt><li>Chased all night in my sleep. Didn't get caught.</li></blunt>
+      <cheerful><li>Nightmare about being chased! I outran it, though.</li></cheerful>
+      <gloomy><li>It caught me, in the dream. It always does.</li></gloomy>
+      <cold><li>A fear dream. Predictable, given the week.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf3_Coming</defName>
+    <label>a dream of something coming</label>
+    <kind>Nightmare</kind>
+    <feelings><li>Dread</li></feelings>
+    <lines>
+      <plain>
+        <li>There was a cloud on the horizon in my dream that got bigger every time I looked up from my work.</li>
+        <li>Dreamt the whole colony was waiting at the gate for something, holding its breath, and it never came, and we couldn't stop waiting.</li>
+        <li>I heard drums in my dream, far off and getting closer, and nobody else could hear them.</li>
+        <li>Dreamt I was marking the days on a wall, and there was no more wall.</li>
+        <li>[winter] Dreamt the snow kept rising up the walls until it covered the windows, and we sat in the dark listening to it.</li>
+      </plain>
+      <warm><li>Something was coming in my dream, and we all stood at the wall together. That part I liked.</li></warm>
+      <blunt><li>Bad dream. Something coming. Checked the walls.</li></blunt>
+      <cheerful><li>Dreamt something awful was coming over the hill, and it was a very large goat.</li></cheerful>
+      <gloomy><li>Something's coming. The dream just said it out loud.</li></gloomy>
+      <cold><li>A dream of dread. I'll check the stores anyway.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf3_FoundOut</defName>
+    <label>a dream of being found out</label>
+    <kind>Nightmare</kind>
+    <children>true</children>
+    <feelings><li>Shame</li></feelings>
+    <lines>
+      <plain>
+        <li>Everyone in my dream knew what I'd done. Nobody said anything; they just looked.</li>
+        <li>In the dream my mistake was carved over the dining room door, and I had to walk under it to eat.</li>
+        <li>Dreamt I stood before the council while they read out every wrong thing I've ever done. It took all night.</li>
+        <li>I was scrubbing my hands in my dream, and the water kept running dirty.</li>
+        <li>[child] I broke something in my dream and everyone saw.</li>
+      </plain>
+      <warm><li>Dreamt I told everyone what I did, and they were kinder about it than I am.</li></warm>
+      <blunt><li>Dreamt about what I did. Didn't help.</li></blunt>
+      <cheerful><li>Dreamt everyone found out my worst secret, and they just laughed and passed the salt!</li></cheerful>
+      <gloomy><li>The dream told everyone what I already know about myself.</li></gloomy>
+      <cold><li>A shame dream. Unpleasant, and it taught me nothing.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf3_Unseen</defName>
+    <label>a dream of being unseen</label>
+    <kind>Strange</kind>
+    <children>true</children>
+    <feelings><li>Loneliness</li><li>Homesick</li></feelings>
+    <lines>
+      <plain>
+        <li>In my dream the colony was full of people, and none of them could see me. I stood by the table and waved.</li>
+        <li>Dreamt I talked and talked, and the words came out as birdsong.</li>
+        <li>Everyone in my dream went into a room laughing and shut the door. I could hear them through the wall.</li>
+        <li>I dreamt someone sat down next to me and just stayed. I can't remember the face, only that they stayed.</li>
+        <li>[newcomer] Dreamt everyone here had known each other for years and spoke a language I hadn't learned yet.</li>
+        <li>[old] In the dream all my old friends were sitting on a porch, alive, and there was a chair for me.</li>
+      </plain>
+      <warm><li>Someone in my dream knocked on my door just to see how I was. I'd like that to happen awake.</li></warm>
+      <blunt><li>Dreamt I was alone. I mostly am.</li></blunt>
+      <cheerful><li>Dreamt the whole colony threw me a surprise party! I'm taking it as a sign.</li></cheerful>
+      <gloomy><li>Even in my dreams I eat alone.</li></gloomy>
+      <cold><li>Dreamt nobody could see me. It was restful.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf3_Gray</defName>
+    <label>a gray dream</label>
+    <kind>Nightmare</kind>
+    <feelings><li>Despair</li></feelings>
+    <lines>
+      <plain>
+        <li>Everything in my dream was gray: the food, the sky, the faces. Nobody minded but me.</li>
+        <li>I was digging in my dream, and the hole kept filling in behind me.</li>
+        <li>Dreamt I was walking home to the colony, and it got further away with every step.</li>
+        <li>In the dream the sun came up and went straight back down, and we all went back to bed.</li>
+        <li>[again] The gray dream again. It's getting harder to tell it from the mornings.</li>
+      </plain>
+      <warm><li>Even in the gray dream, someone had left a light in the window for me.</li></warm>
+      <blunt><li>Gray dream. Gray morning.</li></blunt>
+      <cheerful><li>A gloomy dream, but the sun came up for real afterward, and that helped a bit.</li></cheerful>
+      <gloomy><li>Dreamt nothing would ever change. Then I woke up, and it hasn't.</li></gloomy>
+      <cold><li>A gray dream, about the size of the mood I've been in.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf3_Honored</defName>
+    <label>a dream of being honored</label>
+    <kind>Sweet</kind>
+    <children>true</children>
+    <feelings><li>Pride</li></feelings>
+    <lines>
+      <plain>
+        <li>In my dream they carved my name over the workshop door, and I pretended not to look at it.</li>
+        <li>Dreamt my work was still standing a hundred years from now, with children climbing on it.</li>
+        <li>I dreamt people came from the next town to see what I'd made, and stood looking at it a long time.</li>
+        <li>In the dream I showed my old teacher what I can do with {SKILL} now.</li>
+        <li>[child] I dreamt I was the best in the whole colony at everything, and they gave me a medal made of bread.</li>
+        <li>[old] Dreamt the young ones were telling stories about me, and they got most of it right.</li>
+      </plain>
+      <warm><li>Dreamt everyone I've ever worked with came to shake my hand. It took all night.</li></warm>
+      <blunt><li>Dreamt I was good at {SKILL}. I am.</li></blunt>
+      <cheerful><li>They put up a statue of me in my dream! The nose was wrong, but I loved it.</li></cheerful>
+      <gloomy><li>Dreamt I was proud of myself. Strange feeling. It didn't last.</li></gloomy>
+      <cold><li>A dream of recognition. Gratifying, and it changes nothing.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf3_Town</defName>
+    <label>a hopeful dream</label>
+    <kind>Sweet</kind>
+    <children>true</children>
+    <feelings><li>Hope</li></feelings>
+    <lines>
+      <plain>
+        <li>Dreamt the colony had grown into a town, with lanterns along the paths and children I didn't know.</li>
+        <li>In the dream it was the first warm morning after a long winter, and everything smelled green.</li>
+        <li>I dreamt we were planting trees that would only bear fruit in twenty years, and nobody minded the wait.</li>
+        <li>Dreamt the road in front of the colony was full of people coming to stay.</li>
+        <li>[winter] Dreamt of the thaw: water running under the ice, and the first green on the hill.</li>
+        <li>[lowtech] In the dream our fields ran all the way to the river, and the granary was too small for the harvest.</li>
+      </plain>
+      <warm><li>Everyone I care about was in my dream, older and happier, at a long table outside.</li></warm>
+      <blunt><li>Good dream. Things worked out in it.</li></blunt>
+      <cheerful><li>Dreamt everything turned out fine! I'm holding the dream to it.</li></cheerful>
+      <gloomy><li>A hopeful dream. I'll try not to trust it too much.</li></gloomy>
+      <cold><li>A dream of better times. Possible, with work.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf3_HiddenDoor</defName>
+    <label>a dream of a hidden door</label>
+    <kind>Strange</kind>
+    <children>true</children>
+    <feelings><li>Curiosity</li><li>Awe</li></feelings>
+    <lines>
+      <plain>
+        <li>I found a door in the hill behind the colony in my dream, and it opened onto stairs going down forever.</li>
+        <li>Dreamt I could read every book ever written, but only one page of each.</li>
+        <li>In the dream I took the sky apart to see how it worked. There were gears behind the clouds.</li>
+        <li>Dreamt I followed a strange bird to the edge of the map and saw what lies past it.</li>
+        <li>[trait:TooSmart] I solved something enormous in my dream and wrote it on my arm. It's just scribbles.</li>
+        <li>[spacer] I was aboard a ship I've never seen, and every panel I opened had another ship inside it.</li>
+      </plain>
+      <warm><li>Dreamt I showed everyone a secret garden I'd found, and they loved it as much as I did.</li></warm>
+      <blunt><li>Dreamt about a door. Didn't open it. Annoying.</li></blunt>
+      <cheerful><li>There was a secret room under the kitchen in my dream! I'm knocking on the walls today.</li></cheerful>
+      <gloomy><li>I found a door in my dream, and it opened onto the same room, over and over.</li></gloomy>
+      <cold><li>A curious dream. I've written down the parts that might mean something.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf3_OpenRoad</defName>
+    <label>a dream of the open road</label>
+    <kind>Strange</kind>
+    <feelings><li>Restless</li><li>Frustration</li></feelings>
+    <lines>
+      <plain>
+        <li>In my dream the road went on past every horizon, and I walked it without getting tired.</li>
+        <li>Dreamt I packed everything I own into one bag and walked out the gate, and nobody stopped me.</li>
+        <li>I was on a boat in my dream, going somewhere, with the wind in the sail.</li>
+        <li>Dreamt the colony had wheels, and we were rolling it across the plains toward the mountains.</li>
+        <li>[tribal] In my dream we followed the herds again, all of us, camp after camp, and never built a wall.</li>
+      </plain>
+      <warm><li>Dreamt the whole colony went on a long trip together and sang on the road.</li></warm>
+      <blunt><li>Dreamt I left. Woke up here.</li></blunt>
+      <cheerful><li>I dreamt of a trip to the sea! Somebody should organize that.</li></cheerful>
+      <gloomy><li>Dreamt the road went on forever. So does this place.</li></gloomy>
+      <cold><li>A wandering dream. I've been here too long without a change.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf3_OrdinaryDay</defName>
+    <label>a dream of an ordinary day</label>
+    <kind>Sweet</kind>
+    <children>true</children>
+    <feelings><li>Contentment</li><li>Joy</li><li>Love</li></feelings>
+    <lines>
+      <plain>
+        <li>Dreamt of an ordinary day: breakfast, work, supper, bed. Nothing went wrong.</li>
+        <li>In my dream I sat on the step in the evening sun and watched everyone come in from the fields.</li>
+        <li>I dreamt about a cup of tea. That was the whole dream, and it was a good one.</li>
+        <li>Dreamt we all ate outside on a long summer night and nobody had to be anywhere.</li>
+        <li>[child] I dreamt about playing all day, and nobody called me in.</li>
+      </plain>
+      <warm><li>The whole colony was in my dream, just going about the day, and I loved every one of them.</li></warm>
+      <blunt><li>Good dream. Nothing happened in it.</li></blunt>
+      <cheerful><li>Had the nicest dream about absolutely nothing!</li></cheerful>
+      <gloomy><li>A dream where everything was fine. Hard to believe, even asleep.</li></gloomy>
+      <cold><li>A dull, pleasant dream. Restful.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <!-- ===================== What ails them ===================== -->
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf3_LooseTeeth</defName>
+    <label>a dream of loose teeth</label>
+    <kind>Nightmare</kind>
+    <weight>2</weight>
+    <children>true</children>
+    <hediffs><li>Council_Ail_Toothache</li></hediffs>
+    <lines>
+      <plain>
+        <li>My teeth came loose in my dream, one at a time, and I kept putting them in my pocket.</li>
+        <li>Dreamt I bit into an apple and it was made of stone.</li>
+        <li>In the dream my mouth was full of pebbles, and I had to give a speech.</li>
+        <li>[child] I lost all my teeth in my dream and had to eat soup forever.</li>
+      </plain>
+      <blunt><li>Teeth dream. Tooth still hurts.</li></blunt>
+      <cheerful><li>Dreamt my teeth fell out and grew back golden!</li></cheerful>
+      <gloomy><li>Dreamt I lost all my teeth. Not far off.</li></gloomy>
+      <cold><li>The toothache followed me into my sleep.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf3_Itching</defName>
+    <label>an itching dream</label>
+    <kind>Nightmare</kind>
+    <weight>2</weight>
+    <children>true</children>
+    <hediffs>
+      <li>Council_Ail_InsectBites</li>
+      <li>Council_Ail_Lice</li>
+      <li>Council_Ail_HeatRash</li>
+      <li>Council_Ail_PlantRash</li>
+      <li>Council_Ail_Chilblains</li>
+    </hediffs>
+    <lines>
+      <plain>
+        <li>Dreamt I was lying in an ants' nest and couldn't get up.</li>
+        <li>In the dream my blanket was woven out of nettles, and it wouldn't come off.</li>
+        <li>Something was crawling under my skin in my dream, mapping me.</li>
+        <li>I dreamt I scratched until I came apart at the seams like an old sack.</li>
+      </plain>
+      <warm><li>Someone in my dream spread cool mud on my arms until the itching stopped.</li></warm>
+      <blunt><li>Itched in my sleep. Itching now.</li></blunt>
+      <cheerful><li>Dreamt I jumped into a cold river, and the itch floated off downstream!</li></cheerful>
+      <gloomy><li>Dreamt about bugs. Woke up to bugs.</li></gloomy>
+      <cold><li>The itching shaped my dreams. Expected.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf3_LyingAwake</defName>
+    <label>a dream of lying awake</label>
+    <kind>Strange</kind>
+    <weight>3</weight>
+    <hediffs><li>Council_Ail_Insomnia</li></hediffs>
+    <lines>
+      <plain>
+        <li>I dreamt I was lying awake. Then I woke up, and I was lying awake.</li>
+        <li>In the dream I counted sheep, and the sheep counted me back.</li>
+        <li>Dreamt the night went on for three days, and I was the only one who noticed.</li>
+        <li>I dreamt about sleeping. It looked lovely.</li>
+      </plain>
+      <blunt><li>Dreamt I couldn't sleep. Accurate.</li></blunt>
+      <cheerful><li>I finally slept, at least in my dream!</li></cheerful>
+      <gloomy><li>Even my dreams are about not sleeping.</li></gloomy>
+      <cold><li>A dream about insomnia. The mind runs out of ideas.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf3_Millstone</defName>
+    <label>a heavy dream</label>
+    <kind>Strange</kind>
+    <weight>2</weight>
+    <hediffs>
+      <li>Council_Ail_StrainedBack</li>
+      <li>Council_Ail_SprainedAnkle</li>
+      <li>Council_Ail_SoreHands</li>
+      <li>Council_Ail_Migraine</li>
+      <li>Council_Ail_KidneyStone</li>
+      <li>Council_Ail_Shingles</li>
+      <li>Council_Ail_NervePain</li>
+    </hediffs>
+    <lines>
+      <plain>
+        <li>In my dream I was carrying a millstone up a hill, and every time I set it down it climbed back onto my back.</li>
+        <li>Dreamt I was made of wood, and I creaked whenever I moved.</li>
+        <li>I was wading through deep water in my dream, slower with every step.</li>
+        <li>Dreamt I was trying to get up off the floor, and the floor had other ideas.</li>
+        <li>[old] I was young again in my dream, and nothing hurt. I ran for the joy of it.</li>
+      </plain>
+      <warm><li>Dreamt someone carried me home on their back, the whole way.</li></warm>
+      <blunt><li>Dreamt about the pain. Still there.</li></blunt>
+      <gloomy><li>Even in my sleep it hurts.</li></gloomy>
+      <cold><li>Pain shapes dreams. That's all that was.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf3_Underwater</defName>
+    <label>a stuffy dream</label>
+    <kind>Strange</kind>
+    <weight>2</weight>
+    <children>true</children>
+    <hediffs>
+      <li>Council_Ail_HeadCold</li>
+      <li>Council_Ail_ChestCold</li>
+      <li>Council_Ail_LingeringCough</li>
+      <li>Council_Ail_SmokeCough</li>
+      <li>Council_Ail_RimrotCough</li>
+      <li>Council_Ail_AshLung</li>
+    </hediffs>
+    <lines>
+      <plain>
+        <li>Dreamt I was breathing through a reed at the bottom of a pond.</li>
+        <li>In my dream the air was thick as porridge, and we all had to chew it.</li>
+        <li>I was a fish in my dream, gulping at the surface.</li>
+        <li>Dreamt my head was a bucket full of wool.</li>
+        <li>[child] I dreamt my nose was a tap and it wouldn't turn off.</li>
+      </plain>
+      <blunt><li>Cold dream. Stuffy. Still stuffy.</li></blunt>
+      <cheerful><li>I dreamt I could breathe through my nose! What a luxury.</li></cheerful>
+      <gloomy><li>Dreamt I was drowning in my own blankets.</li></gloomy>
+      <cold><li>The cold has reached my dreams. Unremarkable.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf3_GettingWell</defName>
+    <label>a dream of getting well</label>
+    <kind>Sweet</kind>
+    <weight>2</weight>
+    <children>true</children>
+    <hediffs><li>Council_Ail_Convalescent</li></hediffs>
+    <lines>
+      <plain>
+        <li>In my dream I ran all the way to the river and back, and my legs held.</li>
+        <li>Dreamt I was a tree in spring, putting out new leaves one at a time.</li>
+        <li>I dreamt I carried a full load again and set it down without shaking.</li>
+        <li>Dreamt of my first good meal after the illness. I could taste it.</li>
+      </plain>
+      <warm><li>Everyone who looked after me was in my dream, and this time I was bringing them soup.</li></warm>
+      <blunt><li>Dreamt I was strong again. Getting there.</li></blunt>
+      <cheerful><li>Dreamt I was back to my old self! Soon, I hope.</li></cheerful>
+      <gloomy><li>Dreamt I was well. Not yet.</li></gloomy>
+      <cold><li>A dream of recovery. Reasonable, at this stage.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <!-- ===================== Camps and the council ===================== -->
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf3_CampFires</defName>
+    <label>a dream of the camp's fires</label>
+    <kind>Strange</kind>
+    <children>true</children>
+    <camp>true</camp>
+    <lines>
+      <plain>
+        <li>In my dream I walked over to the strangers' camp at night, and they made room for me by their fire.</li>
+        <li>Dreamt the camp's tents had spread over the whole valley, and our colony was just one tent among them.</li>
+        <li>I dreamt the people at the camp were singing a song from my home, though I'd never taught it to them.</li>
+        <li>Dreamt I woke up in their camp and couldn't find the way back to ours.</li>
+        <li>[child] I dreamt I went to live with the camp people, and they let me ride their animals.</li>
+      </plain>
+      <warm><li>Dreamt we all ate together, the colony and the camp, at one long table, and nobody counted the bowls.</li></warm>
+      <blunt><li>Dreamt about the camp. They're still there.</li></blunt>
+      <cheerful><li>Had a dream the camp threw a festival and invited the whole colony!</li></cheerful>
+      <gloomy><li>Dreamt the camp took everything and left in the night.</li></gloomy>
+      <cold><li>A dream about the strangers on our land. I'll keep an eye on them.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf3_CampGone</defName>
+    <label>a dream of the camp</label>
+    <kind>Sweet</kind>
+    <afterThoughts><li>Council_Camp_FriendLeft</li><li>Council_Camp_GoodNeighbors</li></afterThoughts>
+    <withinDays>4</withinDays>
+    <lines>
+      <plain>
+        <li>Dreamt the friend I made at the camp came back up the road, waving.</li>
+        <li>In my dream the camp was still there, and I walked over in the morning like I used to.</li>
+        <li>I dreamt I followed the camp's tracks for days and found them by a river, waiting for me.</li>
+        <li>Dreamt my friend from the camp and I sent each other messages, and every one arrived.</li>
+      </plain>
+      <warm><li>Dreamt the camp came back, and everyone was glad to see each other again.</li></warm>
+      <blunt><li>Dreamt about the camp. They're gone.</li></blunt>
+      <cheerful><li>Dreamt the camp people moved in for good!</li></cheerful>
+      <gloomy><li>Dreamt the road was empty all the way to the horizon.</li></gloomy>
+      <cold><li>A dream about the camp that left. Sentiment.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf3_CouncilTable</defName>
+    <label>a dream of the council table</label>
+    <kind>Strange</kind>
+    <afterThoughts><li>Council_HeardAtMeeting</li><li>Council_HeardAtMeetingLate</li></afterThoughts>
+    <lines>
+      <plain>
+        <li>In my dream the council table went on for a mile, and everyone I've ever known had a seat at it.</li>
+        <li>Dreamt we voted on whether the sun should come up tomorrow. It was close.</li>
+        <li>I gave the speech of my life at the council in my dream, and when I sat down nobody could remember a word of it, me included.</li>
+        <li>Dreamt the council met up in the treetops, and we passed the motions up and down in a basket.</li>
+        <li>[trait:Kind] In the dream everyone at the council table agreed, and then we all went for a walk.</li>
+      </plain>
+      <warm><li>Dreamt the council listened to every one of us, right down to the youngest.</li></warm>
+      <blunt><li>Council dream. We argued. Same as awake.</li></blunt>
+      <cheerful><li>I dreamt I was elected to everything! I'd be terrible at it.</li></cheerful>
+      <gloomy><li>Dreamt the council decided everything before I got there.</li></gloomy>
+      <cold><li>A dream about the meeting. My mind was still rehearsing its arguments.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf3_EndlessMeeting</defName>
+    <label>a dream of a meeting without end</label>
+    <kind>Nightmare</kind>
+    <afterThoughts>
+      <li>Council_WokenForMeeting</li>
+      <li>Council_Dlm_LongMeeting</li>
+      <li>Council_MissedMeeting</li>
+      <li>Council_DecidedWithoutMe</li>
+    </afterThoughts>
+    <lines>
+      <plain>
+        <li>The council meeting in my dream lasted a hundred years. The candles burned down and grew back.</li>
+        <li>Dreamt I was trying to get into the council meeting, and every door led back outside.</li>
+        <li>In my dream the council voted on me, and I couldn't hear the count.</li>
+        <li>I dreamt they decided everything while I slept, and when I woke in the dream, the colony belonged to someone else.</li>
+      </plain>
+      <blunt><li>Dreamt about the council. Woke up tired.</li></blunt>
+      <cheerful><li>A nightmare about a meeting that never ended! At least the bread was good.</li></cheerful>
+      <gloomy><li>Dreamt they decided without me. They do.</li></gloomy>
+      <cold><li>A dream about procedure. Tedious, like the real thing.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <!-- ===================== The region's troubles and gatherings ===================== -->
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf3_SickRoad</defName>
+    <label>a dream of the sickness on the road</label>
+    <kind>Nightmare</kind>
+    <situations><li>sickness</li></situations>
+    <lines>
+      <plain>
+        <li>Dreamt the sick from the towns were walking up our road in a long line, and the first one knew my name.</li>
+        <li>In the dream every door in the colony had a mark painted on it except mine.</li>
+        <li>I dreamt I was carrying water from house to house in a town I didn't know, and every bed was full.</li>
+        <li>Dreamt I coughed, and the whole colony turned to look.</li>
+      </plain>
+      <warm><li>Dreamt our doctor went to the towns and came back with everyone well.</li></warm>
+      <blunt><li>Dreamt about the sickness out there. Washed my hands twice this morning.</li></blunt>
+      <cheerful><li>Dreamt the sickness went round us, like a storm going round the hill!</li></cheerful>
+      <gloomy><li>Dreamt the sickness came here. Only a matter of time.</li></gloomy>
+      <cold><li>A dream about the sickness in the region. We'll keep strangers at a distance.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf3_EmptyGranary</defName>
+    <label>a dream of an empty granary</label>
+    <kind>Nightmare</kind>
+    <situations><li>hunger</li></situations>
+    <lines>
+      <plain>
+        <li>In my dream I opened the granary door, and there was nothing inside but wind.</li>
+        <li>Dreamt the locusts came down like snow, and when they lifted, the fields were bare to the dirt.</li>
+        <li>I was dividing one loaf among the whole colony in my dream, and the slices kept getting thinner.</li>
+        <li>Dreamt of the hungry towns, and children at our gate holding out bowls.</li>
+      </plain>
+      <warm><li>Dreamt we shared what we had with the hungry, and there was enough to go round.</li></warm>
+      <blunt><li>Hunger dream. Counted the stores this morning.</li></blunt>
+      <cheerful><li>Dreamt the famine ended with a rain of bread rolls!</li></cheerful>
+      <gloomy><li>Dreamt we ran out of food. We will, one day.</li></gloomy>
+      <cold><li>A dream about the famine. Our stores are adequate, for now.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf3_Lanterns</defName>
+    <label>a dream of lanterns on the road</label>
+    <kind>Sweet</kind>
+    <children>true</children>
+    <situations><li>fair</li><li>faith</li><li>peace</li><li>trade</li><li>town</li></situations>
+    <lines>
+      <plain>
+        <li>Dreamt the road was lined with lanterns all the way to the fair, and people from everywhere were walking it.</li>
+        <li>In my dream the pilgrims stopped at our gate and sang until the stars came out.</li>
+        <li>I dreamt of a market so big you could get lost in it, with a stall for every kind of bread.</li>
+        <li>Dreamt two old enemies shook hands at our table, then argued about the soup instead.</li>
+        <li>[child] I dreamt there was a fair with a tent full of puppies, and I could take one home.</li>
+      </plain>
+      <warm><li>Dreamt the whole region came together for one night, and our colony was part of it.</li></warm>
+      <blunt><li>Good dream about the gathering. We should go.</li></blunt>
+      <cheerful><li>Dreamt I won every prize at the fair! Even the pie one.</li></cheerful>
+      <gloomy><li>Dreamt of the gathering. We weren't invited.</li></gloomy>
+      <cold><li>A dream about the gathering in the region. Possibly worth attending, for trade.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf3_Riders</defName>
+    <label>a dream of riders on the road</label>
+    <kind>Nightmare</kind>
+    <situations><li>war</li><li>roads</li><li>sellswords</li><li>creed</li><li>court</li></situations>
+    <lines>
+      <plain>
+        <li>Riders on the road in my dream, dozens of them, with torches, and they didn't stop at our gate. Not yet.</li>
+        <li>Dreamt the warband camped on the hill and sat there watching us, night after night.</li>
+        <li>In my dream we buried our silver under the floor and then forgot where.</li>
+        <li>I dreamt the banners on the road changed every morning, and nobody knew whose side we were on.</li>
+      </plain>
+      <warm><li>Dreamt we all stood at the wall together while the riders went by.</li></warm>
+      <blunt><li>Dreamt of the fighting out there. Sharpened my knife.</li></blunt>
+      <cheerful><li>Dreamt the riders went right past and waved!</li></cheerful>
+      <gloomy><li>Dreamt they came. They will.</li></gloomy>
+      <cold><li>A dream about the fighting in the region. I'd rather it stayed out there.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <!-- ===================== The seasons ===================== -->
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf3_Thaw</defName>
+    <label>a spring dream</label>
+    <kind>Sweet</kind>
+    <weight>0.6</weight>
+    <children>true</children>
+    <seasons><li>Spring</li></seasons>
+    <lines>
+      <plain>
+        <li>Dreamt I could hear the ice cracking on the river, and the whole valley turned green in an afternoon.</li>
+        <li>In my dream the seeds came up the moment I put them in, and I couldn't plant fast enough.</li>
+        <li>I dreamt of lambs in the fields, so many I had to step over them.</li>
+        <li>Dreamt I opened every window in the colony and let the winter out.</li>
+        <li>[child] I dreamt about mud, the good squishy kind, all the way up to my knees.</li>
+      </plain>
+      <warm><li>Dreamt we all walked out on the first warm day and lay in the new grass.</li></warm>
+      <blunt><li>Spring dream. Fields need work.</li></blunt>
+      <cheerful><li>Dreamt of spring flowers everywhere, even on the roof!</li></cheerful>
+      <gloomy><li>Dreamt of spring. The mud's real enough.</li></gloomy>
+      <cold><li>A seasonal dream. Planting is due.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf3_LongDay</defName>
+    <label>a summer dream</label>
+    <kind>Strange</kind>
+    <weight>0.6</weight>
+    <children>true</children>
+    <seasons><li>Summer</li><li>PermanentSummer</li></seasons>
+    <lines>
+      <plain>
+        <li>In my dream the sun never set, and after a while we stopped working and just sat in the gold light.</li>
+        <li>Dreamt I was lying in tall grass, and the clouds were spelling words I almost understood.</li>
+        <li>I dreamt the heat had turned everyone slow and sweet, like honey.</li>
+        <li>Dreamt we swam in the river at midnight, and the water was warm.</li>
+      </plain>
+      <warm><li>Dreamt of a summer evening with everyone outside, and nobody in a hurry to go in.</li></warm>
+      <blunt><li>Hot dream. Hot morning.</li></blunt>
+      <cheerful><li>Dreamt I spent the whole day in the river!</li></cheerful>
+      <gloomy><li>Dreamt the sun would never set. It felt like a threat.</li></gloomy>
+      <cold><li>A summer dream. The heat gets into everything.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf3_Harvest</defName>
+    <label>a harvest dream</label>
+    <kind>Sweet</kind>
+    <weight>0.6</weight>
+    <children>true</children>
+    <seasons><li>Fall</li></seasons>
+    <lines>
+      <plain>
+        <li>Dreamt the harvest was so big we had to sleep in the fields beside it.</li>
+        <li>In the dream every leaf on the trees was a different color, and they all came down at once.</li>
+        <li>I dreamt we brought in the last of the crops, and the whole colony sang on the way back.</li>
+        <li>Dreamt the larder was full to the ceiling, and I could smell every jar.</li>
+      </plain>
+      <warm><li>Dreamt we were all in the kitchen putting up the harvest, and nobody wanted to leave.</li></warm>
+      <blunt><li>Harvest dream. Then the harvest.</li></blunt>
+      <cheerful><li>Dreamt of the biggest pumpkin anyone's ever grown, and it was ours!</li></cheerful>
+      <gloomy><li>Dreamt of the harvest, and then the long winter after it.</li></gloomy>
+      <cold><li>A harvest dream. My mind is counting the stores again.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf3_Snowbound</defName>
+    <label>a winter dream</label>
+    <kind>Strange</kind>
+    <weight>0.6</weight>
+    <children>true</children>
+    <seasons><li>Winter</li><li>PermanentWinter</li></seasons>
+    <lines>
+      <plain>
+        <li>In my dream the snow came up to the roof, and we lived in tunnels under it, warm as mice.</li>
+        <li>Dreamt I was walking across a frozen lake at night, and I could see fish asleep under the ice.</li>
+        <li>I dreamt the cold had a voice and was asking to come in.</li>
+        <li>Dreamt the whole world was white and silent, and the only footprints in it were mine.</li>
+        <li>[child] I dreamt I built a snow fort so big the whole colony could live in it.</li>
+      </plain>
+      <warm><li>Dreamt we all slept in one room by the fire, piled up like puppies, while the snow came down.</li></warm>
+      <blunt><li>Snow dream. Snow outside.</li></blunt>
+      <cheerful><li>Dreamt of sledding down the biggest hill in the world!</li></cheerful>
+      <gloomy><li>Dreamt the winter never ended.</li></gloomy>
+      <cold><li>A winter dream. The season gets into the mind.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+</Defs>

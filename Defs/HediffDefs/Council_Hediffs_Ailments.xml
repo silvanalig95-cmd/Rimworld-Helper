@@ -10,7 +10,9 @@
       on, and once a day's hours (the cause's <hours>) are reached, rolls the cause's <chance> once that day.
     Tending is the game's TendDuration (severityPerDayTended 0) plus HediffCompProperties_AilmentMedicine, whose
     basic/industrial/ultra factors say how much the kind of medicine matters. Moods are in
-    Defs/ThoughtDefs/Council_Thoughts_Ailments.xml. The last two here are after-effects: what an illness leaves behind.
+    Defs/ThoughtDefs/Council_Thoughts_Ailments.xml. The last three here are after-effects: what an illness leaves behind.
+    Some causes are counted in hours (hunger, worry, the small hours, bitter cold...), some are rolled per meal or drink
+    (heartburn, hiccups); lice go round in dirty rooms like the contagious serious illnesses.
   -->
 
   <HediffDef Name="Council_AilmentBase" Abstract="True">
@@ -34,6 +36,7 @@
         <key>HeadCold</key>
         <afterEffects>
           <li><hediff>Council_Ail_LingeringCough</hediff><chance>0.35</chance><severity>0.2~0.35</severity></li>
+          <li><hediff>Council_Ail_ColdSore</hediff><chance>0.1</chance><severity>0.3~0.5</severity></li>
         </afterEffects>
         <notes>
           <li>Rest, warmth and plenty to drink. It runs its course in about a week whatever we do; the ones who stay in bed get over it sooner.</li>
@@ -885,6 +888,590 @@
     </stages>
   </HediffDef>
 
+  <!-- ===================== From circumstance: the second round ===================== -->
+
+  <HediffDef ParentName="Council_AilmentBase">
+    <defName>Council_Ail_Insomnia</defName>
+    <label>insomnia</label>
+    <description>Nights of lying awake, from worry or from being up in the small hours too often. They fall asleep late, wake early and get less out of the sleep they do have, and the tiredness builds through the day. A regular bedtime, no work after dark, something warm to drink and a quiet room help, and a doctor can give them something to help them sleep for a few nights. It passes in a week or so once whatever keeps them up eases. Night owls don't get it from late hours.</description>
+    <tendable>true</tendable>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <key>Insomnia</key>
+        <causes>
+          <li><trigger>Worry</trigger><hours>8</hours><chance>0.02</chance></li>
+          <li><trigger>NightWork</trigger><hours>3</hours><chance>0.03</chance></li>
+        </causes>
+        <childFactor>0.5</childFactor>
+        <oldFactor>1.3</oldFactor>
+        <startSeverity>0.3~0.55</startSeverity>
+        <gotText>{PAWN_nameDef} hasn't been sleeping properly.</gotText>
+        <notes>
+          <li>The same bedtime every night, and no work once it's dark. Something warm to drink before bed.</li>
+          <li>[lowtech] Chamomile, or warm milk with honey, before bed. Nothing heavier than mending after dark, and no talk of raids at supper.</li>
+          <li>[!lowtech] A dark room and a fixed bedtime. Something mild from the medicine shelf for a few nights, no longer than that.</li>
+        </notes>
+      </li>
+      <li Class="HediffCompProperties_TendDuration">
+        <baseTendDurationHours>48</baseTendDurationHours>
+        <severityPerDayTended>0</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentMedicine">
+        <severityPerDayTended>-0.08</severityPerDayTended>
+        <basic>0.8</basic>
+        <industrial>1.2</industrial>
+        <ultra>1.3</ultra>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentRecovery">
+        <severityPerDay>-0.06</severityPerDay>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>restless nights</label>
+        <restFallFactor>1.15</restFallFactor>
+      </li>
+      <li>
+        <minSeverity>0.4</minSeverity>
+        <label>sleepless</label>
+        <restFallFactor>1.3</restFallFactor>
+        <capMods><li><capacity>Consciousness</capacity><offset>-0.05</offset></li></capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Council_AilmentBase">
+    <defName>Council_Ail_Migraine</defName>
+    <label>migraine</label>
+    <description>A pounding headache, usually on one side, with sickness and eyes that can't bear the light. It tends to come after missed meals, worry or a bad night, and lasts most of a day. Lying down in a dark, quiet room helps most, and twice as fast as working through it. A doctor can ease the pain, and modern painkillers work best.</description>
+    <tendable>true</tendable>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <key>Migraine</key>
+        <causes>
+          <li><trigger>Hungry</trigger><hours>6</hours><chance>0.012</chance></li>
+          <li><trigger>Worry</trigger><hours>6</hours><chance>0.012</chance></li>
+        </causes>
+        <childFactor>0.3</childFactor>
+        <oldFactor>0.7</oldFactor>
+        <cooldownDays>10</cooldownDays>
+        <startSeverity>0.4~0.7</startSeverity>
+        <gotText>{PAWN_nameDef} has a migraine and needs a dark room.</gotText>
+        <notes>
+          <li>Bed, curtains drawn, and quiet. A cold cloth on the forehead. It'll be gone by morning.</li>
+          <li>[lowtech] Willow bark tea, a cold cloth and a dark corner. Make sure they eat something once they can.</li>
+          <li>[!lowtech] Painkillers early, before it takes hold, then a dark room. Regular meals keep them away.</li>
+        </notes>
+      </li>
+      <li Class="HediffCompProperties_TendDuration">
+        <baseTendDurationHours>24</baseTendDurationHours>
+        <severityPerDayTended>0</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentMedicine">
+        <severityPerDayTended>-0.4</severityPerDayTended>
+        <basic>0.7</basic>
+        <industrial>1.3</industrial>
+        <ultra>1.5</ultra>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentRecovery">
+        <severityPerDay>-0.6</severityPerDay>
+        <bedFactor>2</bedFactor>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>dull ache</label>
+        <painOffset>0.08</painOffset>
+        <capMods><li><capacity>Sight</capacity><offset>-0.05</offset></li></capMods>
+      </li>
+      <li>
+        <minSeverity>0.35</minSeverity>
+        <label>pounding</label>
+        <painOffset>0.18</painOffset>
+        <vomitMtbDays>1</vomitMtbDays>
+        <capMods>
+          <li><capacity>Consciousness</capacity><offset>-0.1</offset></li>
+          <li><capacity>Sight</capacity><offset>-0.15</offset></li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Council_AilmentBase">
+    <defName>Council_Ail_Heartburn</defName>
+    <label>heartburn</label>
+    <description>A burning ache behind the breastbone after a rich, heavy meal, worse when lying down. Common and harmless; it's over in a few hours. Smaller helpings, sitting up for a while after eating and not eating late prevent it. It gets more common from middle age on.</description>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <key>Heartburn</key>
+        <quiet>true</quiet>
+        <causes><li><trigger>RichMeal</trigger><chance>0.04</chance></li></causes>
+        <childFactor>0.2</childFactor>
+        <cooldownDays>2</cooldownDays>
+        <startSeverity>0.3~0.5</startSeverity>
+        <gotText>{PAWN_nameDef} has heartburn after that rich meal.</gotText>
+        <notes>
+          <li>Sit up, sip some water and wait. Smaller helpings next time.</li>
+          <li>[lowtech] A cup of milk or a pinch of chalk in water. And don't lie down straight after a feast.</li>
+          <li>[!lowtech] Something from the shelf to settle the stomach, if it's bad. Mostly, smaller helpings.</li>
+        </notes>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentRecovery">
+        <severityPerDay>-1.2</severityPerDay>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>burning</label>
+        <painOffset>0.04</painOffset>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Council_AilmentBase">
+    <defName>Council_Ail_Nosebleed</defName>
+    <label>nosebleed</label>
+    <description>A nosebleed from freezing air that dries and cracks the inside of the nose. It looks worse than it is: pinched shut with the head tipped forward, it stops within the hour, and the nose is tender for a while after. A scarf over the face in the bitter cold prevents it.</description>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <key>Nosebleed</key>
+        <quiet>true</quiet>
+        <causes><li><trigger>BitterCold</trigger><hours>2</hours><chance>0.025</chance></li></causes>
+        <childFactor>1.5</childFactor>
+        <cooldownDays>3</cooldownDays>
+        <startSeverity>0.3~0.45</startSeverity>
+        <gotText>{PAWN_nameDef} has a nosebleed from the freezing air.</gotText>
+        <notes>
+          <li>Pinch the soft part of the nose and lean forward, not back. It stops.</li>
+          <li>[lowtech] A cold stone on the back of the neck and the nose pinched. A scarf over the face next time.</li>
+          <li>[!lowtech] Pressure for ten minutes, head forward. A little grease inside the nose stops the cracking.</li>
+        </notes>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentRecovery">
+        <severityPerDay>-3</severityPerDay>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>bleeding nose</label>
+        <capMods><li><capacity>Breathing</capacity><offset>-0.04</offset></li></capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Council_AilmentBase">
+    <defName>Council_Ail_MotionSick</defName>
+    <label>motion sickness</label>
+    <description>Queasiness, sweating and the odd bout of sickness from days on the move with a caravan: the sway of the pack animals and a road that never keeps still. It eases once the caravan stops and is gone within a day of arriving. Walking beside the animals instead of riding, fresh air, eyes on the horizon and something plain to eat help; ginger is the old remedy. Children are prone to it, old travelers much less.</description>
+    <tendable>true</tendable>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <key>MotionSick</key>
+        <causes><li><trigger>CaravanTravel</trigger><hours>3</hours><chance>0.04</chance></li></causes>
+        <childFactor>1.5</childFactor>
+        <oldFactor>0.5</oldFactor>
+        <cooldownDays>6</cooldownDays>
+        <startSeverity>0.35~0.6</startSeverity>
+        <gotText>{PAWN_nameDef} is travel-sick from the caravan's sway.</gotText>
+        <notes>
+          <li>Walk, don't ride, and keep your eyes on the horizon. Dry bread, small sips of water.</li>
+          <li>[lowtech] Chew a piece of ginger root and walk at the front, where the air is fresh.</li>
+          <li>[!lowtech] Something for the nausea from the kit, plain food, and the window seat if there is one.</li>
+        </notes>
+      </li>
+      <li Class="HediffCompProperties_TendDuration">
+        <baseTendDurationHours>24</baseTendDurationHours>
+        <severityPerDayTended>0</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentMedicine">
+        <severityPerDayTended>-0.3</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentRecovery">
+        <severityPerDay>-0.8</severityPerDay>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>queasy</label>
+        <capMods><li><capacity>Consciousness</capacity><offset>-0.03</offset></li></capMods>
+      </li>
+      <li>
+        <minSeverity>0.4</minSeverity>
+        <label>travel-sick</label>
+        <vomitMtbDays>0.6</vomitMtbDays>
+        <capMods>
+          <li><capacity>Consciousness</capacity><offset>-0.06</offset></li>
+          <li><capacity>Moving</capacity><offset>-0.04</offset></li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Council_AilmentBase">
+    <defName>Council_Ail_Splinter</defName>
+    <label>splinter</label>
+    <description>A sliver of wood driven deep into the hand from felling and handling trees. Sore and fiddly rather than dangerous: any doctor can pick it out in one go, and left alone it works its way out in a week or so. Gloves prevent it.</description>
+    <tendable>true</tendable>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <key>Splinter</key>
+        <quiet>true</quiet>
+        <causes><li><trigger>Chopping</trigger><hours>4</hours><chance>0.03</chance></li></causes>
+        <cooldownDays>6</cooldownDays>
+        <startSeverity>0.3~0.5</startSeverity>
+        <gotText>{PAWN_nameDef} has a splinter deep in one hand.</gotText>
+        <notes>
+          <li>A clean needle, good light and a steady hand. Out it comes.</li>
+          <li>[lowtech] Soak the hand in warm water, then the needle, heated in the fire first. Gloves for the woodcutters.</li>
+          <li>[!lowtech] Tweezers, a dab of antiseptic and a plaster. Gloves for anyone felling trees.</li>
+        </notes>
+      </li>
+      <li Class="HediffCompProperties_TendDuration">
+        <baseTendDurationHours>72</baseTendDurationHours>
+        <severityPerDayTended>0</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentMedicine">
+        <severityPerDayTended>-2</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentRecovery">
+        <severityPerDay>-0.07</severityPerDay>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>a splinter in the hand</label>
+        <painOffset>0.03</painOffset>
+        <capMods><li><capacity>Manipulation</capacity><offset>-0.03</offset></li></capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Council_AilmentBase">
+    <defName>Council_Ail_InsectBites</defName>
+    <label>insect bites</label>
+    <description>Dozens of itchy, swollen bites from the mosquitoes and biting flies of the swamps and jungles. They itch for a few days and keep people up at night. Smoke from a fire, long sleeves, a net over the bed and not scratching help, and a soothing salve takes the edge off.</description>
+    <tendable>true</tendable>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <key>InsectBites</key>
+        <quiet>true</quiet>
+        <causes><li><trigger>Insects</trigger><hours>3</hours><chance>0.05</chance></li></causes>
+        <childFactor>1.2</childFactor>
+        <cooldownDays>4</cooldownDays>
+        <startSeverity>0.3~0.55</startSeverity>
+        <gotText>{PAWN_nameDef} has been eaten alive by the insects.</gotText>
+        <notes>
+          <li>Don't scratch. Cool water on the bites, and long sleeves out there.</li>
+          <li>[lowtech] A paste of clay and crushed leaves on the bites, and a smoky fire at dusk to keep them off.</li>
+          <li>[!lowtech] Anti-itch cream from the shelf. Nets over the beds would save us a lot of this.</li>
+        </notes>
+      </li>
+      <li Class="HediffCompProperties_TendDuration">
+        <baseTendDurationHours>48</baseTendDurationHours>
+        <severityPerDayTended>0</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentMedicine">
+        <severityPerDayTended>-0.15</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentRecovery">
+        <severityPerDay>-0.2</severityPerDay>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>itchy bites</label>
+        <restFallFactor>1.05</restFallFactor>
+      </li>
+      <li>
+        <minSeverity>0.4</minSeverity>
+        <label>covered in bites</label>
+        <restFallFactor>1.1</restFallFactor>
+        <capMods><li><capacity>Consciousness</capacity><offset>-0.03</offset></li></capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Council_AilmentBase">
+    <defName>Council_Ail_PlantRash</defName>
+    <label>plant rash</label>
+    <description>An itchy, blistering rash on the hands and arms from the sap of some wild plant, picked up while weeding, harvesting or cutting. It isn't catching. Washing the skin right after the work helps, gloves and long sleeves prevent it, and a soothing salve eases the itch while it heals over a week or so; modern creams work best.</description>
+    <tendable>true</tendable>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <key>PlantRash</key>
+        <causes><li><trigger>PlantWork</trigger><hours>5</hours><chance>0.015</chance></li></causes>
+        <cooldownDays>15</cooldownDays>
+        <startSeverity>0.3~0.6</startSeverity>
+        <gotText>{PAWN_nameDef} has an itchy rash from some plant's sap.</gotText>
+        <notes>
+          <li>Wash it with plenty of water and keep the hands out of the fields for a few days.</li>
+          <li>[lowtech] Oatmeal in cool water for the itch, and find out which plant it was before someone else touches it.</li>
+          <li>[!lowtech] A steroid cream clears it in days. Gloves and long sleeves for the field hands.</li>
+        </notes>
+      </li>
+      <li Class="HediffCompProperties_TendDuration">
+        <baseTendDurationHours>48</baseTendDurationHours>
+        <severityPerDayTended>0</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentMedicine">
+        <severityPerDayTended>-0.08</severityPerDayTended>
+        <basic>0.9</basic>
+        <industrial>1.3</industrial>
+        <ultra>1.4</ultra>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentRecovery">
+        <severityPerDay>-0.08</severityPerDay>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>itchy rash</label>
+        <capMods><li><capacity>Manipulation</capacity><offset>-0.02</offset></li></capMods>
+      </li>
+      <li>
+        <minSeverity>0.4</minSeverity>
+        <label>blistered arms</label>
+        <painOffset>0.04</painOffset>
+        <capMods><li><capacity>Manipulation</capacity><offset>-0.05</offset></li></capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Council_AilmentBase">
+    <defName>Council_Ail_Frostnip</defName>
+    <label>frostnip</label>
+    <description>The first stage of frostbite, on cheeks, nose and fingertips left bare in bitter cold: the skin goes white and numb, then stings as it warms. Warmed gently, without rubbing, it does no lasting harm and is gone within a day or so. A hood, a scarf and mittens prevent it; harder cold brings real frostbite.</description>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <key>Frostnip</key>
+        <causes><li><trigger>BitterCold</trigger><hours>3</hours><chance>0.04</chance></li></causes>
+        <childFactor>1.3</childFactor>
+        <oldFactor>1.3</oldFactor>
+        <cooldownDays>5</cooldownDays>
+        <startSeverity>0.3~0.5</startSeverity>
+        <gotText>{PAWN_nameDef} has frostnip on the fingertips and cheeks.</gotText>
+        <notes>
+          <li>Warm it slowly against the skin, never by the fire, and don't rub it. Mittens next time.</li>
+          <li>[lowtech] Hands under the armpits, a warm drink and a fur hood. Snow rubbed on it is an old mistake.</li>
+          <li>[!lowtech] Lukewarm water, not hot, and no rubbing. Better gloves for whoever works out there.</li>
+        </notes>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentRecovery">
+        <severityPerDay>-0.4</severityPerDay>
+        <bedFactor>1.5</bedFactor>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>numb fingertips</label>
+        <painOffset>0.03</painOffset>
+        <capMods><li><capacity>Manipulation</capacity><offset>-0.05</offset></li></capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Council_AilmentBase">
+    <defName>Council_Ail_HeatRash</defName>
+    <label>heat rash</label>
+    <description>Prickly heat: tiny itchy red bumps where sweat is trapped under clothes in hot, sticky weather. Harmless, and gone in a day or two once the skin can breathe. Cool water, loose clothes, shade and a cooler room to sleep in help.</description>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <key>HeatRash</key>
+        <quiet>true</quiet>
+        <causes><li><trigger>Sweltering</trigger><hours>6</hours><chance>0.03</chance></li></causes>
+        <childFactor>1.5</childFactor>
+        <cooldownDays>6</cooldownDays>
+        <startSeverity>0.25~0.5</startSeverity>
+        <gotText>{PAWN_nameDef} has prickly heat from the sticky weather.</gotText>
+        <notes>
+          <li>Cool water, loose clothes, and the coolest room we have at night.</li>
+          <li>[lowtech] A cool wash in the evening and a linen shirt instead of wool.</li>
+          <li>[!lowtech] Calamine for the itch, and a cooler in the bedrooms before the next heat.</li>
+        </notes>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentRecovery">
+        <severityPerDay>-0.3</severityPerDay>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>prickly heat</label>
+        <restFallFactor>1.05</restFallFactor>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Council_AilmentBase">
+    <defName>Council_Ail_ColdSore</defName>
+    <label>cold sore</label>
+    <description>A small, painful blister at the edge of the lip, from a virus that sleeps in the skin and wakes with worry, strong sun or a cold. It crusts over and heals in about a week, and passes to others by kissing and shared cups while it weeps. Modern medicine (an antiviral cream) shortens it a good deal.</description>
+    <tendable>true</tendable>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <key>ColdSore</key>
+        <causes>
+          <li><trigger>Worry</trigger><hours>8</hours><chance>0.008</chance></li>
+          <li><trigger>SunWork</trigger><hours>4</hours><chance>0.012</chance></li>
+        </causes>
+        <childFactor>0.6</childFactor>
+        <cooldownDays>20</cooldownDays>
+        <startSeverity>0.3~0.55</startSeverity>
+        <gotText>{PAWN_nameDef} has a cold sore on {PAWN_possessive} lip.</gotText>
+        <notes>
+          <li>Leave it alone and keep your own cup. A week, and it's gone.</li>
+          <li>[lowtech] A dab of honey or lemon balm on it, and no kissing anyone for a week.</li>
+          <li>[!lowtech] Antiviral cream, early. Own cup, own towel until it's crusted over.</li>
+        </notes>
+      </li>
+      <li Class="HediffCompProperties_TendDuration">
+        <baseTendDurationHours>48</baseTendDurationHours>
+        <severityPerDayTended>0</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentMedicine">
+        <severityPerDayTended>-0.08</severityPerDayTended>
+        <basic>0.6</basic>
+        <industrial>1.4</industrial>
+        <ultra>1.6</ultra>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentRecovery">
+        <severityPerDay>-0.08</severityPerDay>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>a sore lip</label>
+        <painOffset>0.02</painOffset>
+        <capMods><li><capacity>Eating</capacity><offset>-0.03</offset></li></capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Council_AilmentBase">
+    <defName>Council_Ail_Lice</defName>
+    <label>lice</label>
+    <description>Head and body lice, picked up in a crowded, dirty sleeping room or from someone who has them: constant itching, worse at night. They pass to whoever sleeps in the same dirty room. A fine comb, boiled bedding and clothes, short hair and a clean room get rid of them, and a doctor's treatment clears them in a day or two; left alone they hang on for a couple of weeks. The same body lice carry typhus, so someone with lice in dirty quarters is three times as likely to catch it.</description>
+    <tendable>true</tendable>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <key>Lice</key>
+        <causes><li><trigger>CrowdedDirty</trigger><hours>4</hours><chance>0.03</chance></li></causes>
+        <childFactor>1.5</childFactor>
+        <cooldownDays>10</cooldownDays>
+        <spreadPerHour>0.004</spreadPerHour>
+        <spreadNeedsDirt>true</spreadNeedsDirt>
+        <spreadWhileTended>0.2</spreadWhileTended>
+        <startSeverity>0.3~0.5</startSeverity>
+        <gotText>{PAWN_nameDef} has lice.</gotText>
+        <notes>
+          <li>A fine comb, every evening, and all the bedding boiled. Then scrub that room.</li>
+          <li>[lowtech] Cut the hair short, boil every blanket and shirt, and comb through with vinegar. The whole room, or they'll be back.</li>
+          <li>[!lowtech] A delousing wash for everyone in that room, and the bedding through the hottest wash we have.</li>
+        </notes>
+      </li>
+      <li Class="HediffCompProperties_TendDuration">
+        <baseTendDurationHours>48</baseTendDurationHours>
+        <severityPerDayTended>0</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentMedicine">
+        <severityPerDayTended>-0.35</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentRecovery">
+        <severityPerDay>-0.03</severityPerDay>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>itching</label>
+        <restFallFactor>1.05</restFallFactor>
+      </li>
+      <li>
+        <minSeverity>0.4</minSeverity>
+        <label>crawling with lice</label>
+        <restFallFactor>1.1</restFallFactor>
+        <capMods><li><capacity>Consciousness</capacity><offset>-0.02</offset></li></capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Council_AilmentBase">
+    <defName>Council_Ail_AthletesFoot</defName>
+    <label>athlete's foot</label>
+    <description>A fungus between the toes from feet that stay wet: itchy, cracked, peeling skin that stings. It comes from days of wading through water, marsh and mud, and clears in a week or two once the feet are kept dry. Dry socks, airing the feet in the evening and drying carefully between the toes help; a doctor's powder, or better a modern antifungal cream, clears it faster.</description>
+    <tendable>true</tendable>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <key>AthletesFoot</key>
+        <causes><li><trigger>WetFeet</trigger><hours>3</hours><chance>0.03</chance></li></causes>
+        <childFactor>0.7</childFactor>
+        <cooldownDays>15</cooldownDays>
+        <startSeverity>0.3~0.5</startSeverity>
+        <gotText>{PAWN_nameDef} has athlete's foot from wading through the wet.</gotText>
+        <notes>
+          <li>Dry feet. Dry socks every morning and bare feet in the evening.</li>
+          <li>[lowtech] Wash and dry between the toes, then a dusting of wood ash. Boots off by the fire at night.</li>
+          <li>[!lowtech] Antifungal cream twice a day and clean, dry socks. Nobody borrows anyone's boots.</li>
+        </notes>
+      </li>
+      <li Class="HediffCompProperties_TendDuration">
+        <baseTendDurationHours>48</baseTendDurationHours>
+        <severityPerDayTended>0</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentMedicine">
+        <severityPerDayTended>-0.1</severityPerDayTended>
+        <basic>0.8</basic>
+        <industrial>1.4</industrial>
+        <ultra>1.5</ultra>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentRecovery">
+        <severityPerDay>-0.06</severityPerDay>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>itchy toes</label>
+        <capMods><li><capacity>Moving</capacity><offset>-0.02</offset></li></capMods>
+      </li>
+      <li>
+        <minSeverity>0.4</minSeverity>
+        <label>cracked feet</label>
+        <painOffset>0.03</painOffset>
+        <capMods><li><capacity>Moving</capacity><offset>-0.04</offset></li></capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Council_AilmentBase">
+    <defName>Council_Ail_Hiccups</defName>
+    <label>hiccups</label>
+    <description>Hiccups after a drink or a big, rich meal: a spasm of the breathing muscle every few seconds that won't stop for a while. Harmless; they stop on their own within an hour or two. Holding the breath, a slow drink of water or a good fright are the old cures.</description>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <key>Hiccups</key>
+        <quiet>true</quiet>
+        <causes>
+          <li><trigger>Drink</trigger><chance>0.05</chance></li>
+          <li><trigger>RichMeal</trigger><chance>0.01</chance></li>
+        </causes>
+        <childFactor>1.5</childFactor>
+        <cooldownDays>1</cooldownDays>
+        <startSeverity>0.3~0.5</startSeverity>
+        <gotText>{PAWN_nameDef} has the hiccups.</gotText>
+        <notes>
+          <li>Hold your breath and count to twenty. Or wait.</li>
+        </notes>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentRecovery">
+        <severityPerDay>-5</severityPerDay>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>hiccuping</label>
+        <capMods><li><capacity>Talking</capacity><offset>-0.1</offset></li></capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
   <!-- ===================== After-effects ===================== -->
 
   <HediffDef ParentName="Council_AilmentBase">
@@ -942,6 +1529,31 @@
         <restFallFactor>1.2</restFallFactor>
         <statFactors><WorkSpeedGlobal>0.88</WorkSpeedGlobal></statFactors>
         <capMods><li><capacity>Moving</capacity><offset>-0.06</offset></li></capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Council_AilmentBase">
+    <defName>Council_Ail_NervePain</defName>
+    <label>nerve pain</label>
+    <description>A burning, aching pain where the shingles rash was, after the blisters have healed: the nerve underneath is slow to settle. It fades over a week or two. Warmth, rest and something for the pain help.</description>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <key>NervePain</key>
+        <lingering>true</lingering>
+        <notes>
+          <li>It's the nerve, still sore after the rash. It fades.</li>
+        </notes>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentRecovery">
+        <severityPerDay>-0.04</severityPerDay>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>burning</label>
+        <painOffset>0.06</painOffset>
+        <restFallFactor>1.05</restFallFactor>
       </li>
     </stages>
   </HediffDef>

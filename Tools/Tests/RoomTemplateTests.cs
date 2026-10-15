@@ -29,7 +29,7 @@ public static class RoomTemplateTests
         public string kind = "";
     }
 
-    private static readonly Dictionary<string, Fact> facts = new();
+    internal static readonly Dictionary<string, Fact> facts = new();
 
     /// <summary>Furniture that isn't in the base game: the packageId of the DLC or mod it comes from.</summary>
     private static readonly Dictionary<string, string> source = new(StringComparer.OrdinalIgnoreCase);
@@ -40,10 +40,10 @@ public static class RoomTemplateTests
     }
 
     /// <summary>Where a def comes from: a DLC or mod packageId, "mod" for other mods' furniture, null for the base game.</summary>
-    private static string SourceOf(string name)
+    internal static string SourceOf(string name)
     {
         if (source.TryGetValue(name, out var s)) return s;
-        foreach (var prefix in new[] { "VFE_", "VFEE_", "DankPyon_", "AM_", "Bed_", "Seat_", "Table_Royal", "Table_Wardrobe" })
+        foreach (var prefix in new[] { "VFE_", "VFEE_", "VFEM2_", "VFES_", "DankPyon_", "AM_", "Bed_", "Seat_", "Table_Royal", "Table_Wardrobe", "Table_Illuminated", "Table_interactive" })
             if (name.StartsWith(prefix, StringComparison.Ordinal)) return "mod";
         return null;
     }
@@ -70,10 +70,10 @@ public static class RoomTemplateTests
     static RoomTemplateTests()
     {
         // Beds: the head is the root cell.
-        F("Bed HospitalBed Bed_Simple Bed_Ergonomic Bed_StoneSlab", 1, 2, kind: "bed");
+        F("Bed HospitalBed Bed_Simple Bed_Ergonomic Bed_StoneSlab Bed_AdvBed VFEM2_FurBed", 1, 2, kind: "bed");
         F("Sarcophagus", 1, 2);
         F("Bedroll SleepingSpot", 1, 2, "stand", kind: "bed");
-        F("DoubleBed RoyalBed Bed_Kingsize VFE_Bed_SimpleDouble Bed_DoubleErgonomic", 2, 2, kind: "bed");
+        F("DoubleBed RoyalBed Bed_Kingsize VFE_Bed_SimpleDouble Bed_DoubleErgonomic Bed_AdvDoubleBed VFEM2_DoubleFurBed", 2, 2, kind: "bed");
         F("BedrollDouble DoubleSleepingSpot", 2, 2, "stand", kind: "bed");
         F("Crib", 1, 1, kind: "bed");
         F("Grave", 1, 2, "stand");
@@ -81,13 +81,16 @@ public static class RoomTemplateTests
         F("AnimalSleepingSpot", 1, 1, "stand");
         // Seats and tables.
         F("DiningChair Stool Armchair Seat_SquareChair Seat_ModernChair Seat_RoyalChair Seat_RoyalArmchair Throne DBHSaunaSeating", 1, 1, "sit", kind: "chair");
+        // Seats the room themes use (Vanilla Furniture Expanded and its Spacer module).
+        F("Seat_Bench Seat_Cushion VFE_ModularCouch Seat_AdvChair", 1, 1, "sit", kind: "chair");
         F("GrandThrone", 2, 2, "sit", kind: "chair");
         F("Pew", 3, 1, "sit", kind: "chair");
         F("Table1x2c Table_Royal1x2c", 1, 2, kind: "table");
         F("Table2x2c Table_Royal2x2c", 2, 2, kind: "table");
         F("Table2x4c Table_Royal2x4c", 2, 4, kind: "table");
         F("Table3x3c Table_Royal3x3c", 3, 3, kind: "table");
-        F("ChessTable", 1, 1, kind: "table");
+        F("ChessTable Table_interactive_1x1c", 1, 1, kind: "table");
+        F("Table_interactive_2x2c", 2, 2, kind: "table");
         F("PokerTable", 2, 2, kind: "table");
         // Billiards players walk round the table; no seats, no work spot.
         F("BilliardsTable", 2, 3);
@@ -122,10 +125,12 @@ public static class RoomTemplateTests
         F("Brazier DarklightBrazier", 1, 1, "norot");
         F("Column VFE_Plinth DankPyon_Pedestal", 1, 1, "norot");
         // Furniture, light, storage
-        F("EndTable Table_RoyalEndTable", 1, 1);
-        F("Dresser Table_RoyalDresser Table_Wardrobe VFE_RoyalWardrobe", 2, 1);
+        F("EndTable Table_RoyalEndTable Table_IlluminatedEndTable", 1, 1);
+        F("Dresser Table_RoyalDresser Table_Wardrobe VFE_RoyalWardrobe Table_IlluminatedDresser VFES_Table_IlluminatedWardrobe", 2, 1);
         F("PlantPot VFE_DecorativePlantPot", 1, 1, "norot");
-        F("StandingLamp TorchLamp SunLamp Heater PassiveCooler", 1, 1, "norot");
+        F("StandingLamp TorchLamp SunLamp Heater PassiveCooler VFE_RoyalLamp VFEE_Candelabra", 1, 1, "norot");
+        // Vanilla Furniture Expanded's floor lamp can be walked over.
+        F("VFE_FloorLamp", 1, 1, "stand norot");
         F("MeditationSpot", 1, 1, "stand norot");
         F("Cooler Vent", 1, 1);
         F("Shelf Bookcase ToolCabinet", 2, 1);
@@ -239,7 +244,7 @@ public static class RoomTemplateTests
     }
 
     /// <summary>The def the game would use: the first (or last) listed one we know.</summary>
-    private static string Pick(Thing th, bool fallback)
+    internal static string Pick(Thing th, bool fallback)
     {
         var known = th.defs.Where(facts.ContainsKey).ToList();
         if (known.Count == 0) return null;
@@ -329,11 +334,13 @@ public static class RoomTemplateTests
             }
         }
         Console.WriteLine($"Checked {baseLayouts} room layouts with missing DLC and mod furniture left out ({unavailable} rooms wait for their key piece).");
+        int themed = RoomThemeTests.Run(root, templates, check);
+        Console.WriteLine($"Checked {themed} room layouts in a theme, with and without the DLC and mod furniture.");
         return checkedLayouts;
     }
 
     /// <summary>The CC_Role_ labels in the English keyed files.</summary>
-    private static HashSet<string> RoleKeys(string root)
+    internal static HashSet<string> RoleKeys(string root)
     {
         var keys = new HashSet<string>();
         foreach (var file in Directory.GetFiles(Path.Combine(root, "Languages", "English", "Keyed"), "*.xml"))
@@ -346,7 +353,7 @@ public static class RoomTemplateTests
         Arrange(t, th => Pick(th, fallback), style);
 
     /// <summary>Lays out a template with the def <paramref name="pick"/> chooses for each piece (null: left out).</summary>
-    public static (List<(TemplateLayout.Piece piece, Fact fact)> pieces, List<string> notes) Arrange(Template t, Func<Thing, string> pick, int style)
+    public static (List<(TemplateLayout.Piece piece, Fact fact)> pieces, List<string> notes) Arrange(Template t, Func<Thing, string> pick, int style, int decorFrom = TemplateLayout.Lavish)
     {
         var list = new List<(TemplateLayout.Piece, Fact)>();
         for (int i = 0; i < t.things.Count; i++)
@@ -375,9 +382,9 @@ public static class RoomTemplateTests
             list.Add((p, f));
         }
         var notes = TemplateLayout.Arrange(t.w, t.h, t.DoorX, list.Select(x => x.Item1).ToList());
-        if (style == TemplateLayout.Lavish)
+        if (ThemeMath.AddsDecor(style, decorFrom))
         {
-            // The lavish style's plant pots must leave everything reachable.
+            // The plant pots the lavish style (or a theme that wants plants) adds must leave everything reachable.
             var live = list.Select(x => x.Item1).Where(p => !p.dropped).ToList();
             var spots = TemplateLayout.DecorSpots(t.w, t.h, t.DoorX, live, 4);
             foreach (var (x, z) in spots)
@@ -386,12 +393,12 @@ public static class RoomTemplateTests
                 list.Add((pot, facts["PlantPot"]));
             }
             var all = list.Select(p => p.Item1).Where(p => !p.dropped).ToList();
-            if (TemplateLayout.Unreachable(t.w, t.h, t.DoorX, all, null, out string problem) > 0) notes.Add("lavish decor walls something in: " + problem);
+            if (TemplateLayout.Unreachable(t.w, t.h, t.DoorX, all, null, out string problem) > 0) notes.Add("decor walls something in: " + problem);
         }
         return (list.Where(x => !x.Item1.dropped).ToList(), notes);
     }
 
-    private static void CheckWorld(Template t, List<(TemplateLayout.Piece piece, Fact fact)> pieces, bool mirror, int turn, string where, Action<bool, string> check)
+    internal static void CheckWorld(Template t, List<(TemplateLayout.Piece piece, Fact fact)> pieces, bool mirror, int turn, string where, Action<bool, string> check)
     {
         int fullW = t.w + 2, fullH = t.h + 2;
         TemplateMath.RotatedSize(fullW, fullH, turn, out int rw, out int rh);
