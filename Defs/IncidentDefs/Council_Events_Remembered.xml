@@ -78,6 +78,7 @@
               <li Class="ColonyCouncil.DilemmaEffect_Remember"><settle>true</settle><kind>welcomed</kind><about>x</about></li>
               <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.08</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Mem_DebtRepaid</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>the feast for {X_nameDef}</label><hours>16~22</hours></li>
             </effects>
             <ways><openness>1</openness><generosity>1</generosity></ways>
           </li>
@@ -105,6 +106,7 @@
               <li Class="ColonyCouncil.DilemmaEffect_Gift"><factor>1.4</factor><fancy>true</fancy></li>
               <li Class="ColonyCouncil.DilemmaEffect_Remember"><settle>true</settle></li>
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Social</skill><xp>300</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><who>B</who><to>Stranger</to><duration>1~1.5</duration></li>
             </effects>
             <riskEffects>
               <li Class="ColonyCouncil.DilemmaEffect_Gift" />
@@ -186,6 +188,7 @@
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Construction</skill><xp>400</xp></li>
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>8</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_Remember"><settle>true</settle><kind>favorDone</kind><about>none</about></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><who>B</who><to>Stranger</to><hours>17~22</hours><duration>2~3</duration></li>
             </effects>
             <ways><toil>1</toil><generosity>1</generosity></ways>
           </li>
@@ -344,6 +347,7 @@
               <li Class="ColonyCouncil.DilemmaEffect_MakePeace"><goodwill>5</goodwill></li>
               <li Class="ColonyCouncil.DilemmaEffect_Remember"><settle>true</settle><kind>madePeace</kind><about>none</about></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Mem_PeaceAfterYears</thought><exceptTrait><li>Bloodlust</li></exceptTrait></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><duration>0.5~0.75</duration></li>
             </effects>
             <ways><mercy>2</mercy><openness>1</openness></ways>
           </li>
@@ -371,6 +375,7 @@
               <li Class="ColonyCouncil.DilemmaEffect_MakePeace"><goodwill>15</goodwill></li>
               <li Class="ColonyCouncil.DilemmaEffect_Remember"><settle>true</settle><kind>madePeace</kind><about>none</about><weight>12</weight></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Mem_PeaceAfterYears</thought><exceptTrait><li>Bloodlust</li></exceptTrait></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><duration>1~1.5</duration></li>
             </effects>
             <ways><openness>2</openness><mercy>1</mercy></ways>
           </li>
@@ -463,6 +468,7 @@
               <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>mediated</kind><enemy>true</enemy><about>other</about></li>
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Social</skill><xp>400</xp></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Mem_JudgedFairly</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><who>B</who><to>Stranger</to><hours>17~23</hours><duration>2~3</duration></li>
             </effects>
             <riskEffects>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><who>Both</who><amount>-3</amount></li>

@@ -34,6 +34,8 @@
   <CC_Play_Where_Stranger>around {OTHER_nameDef}</CC_Play_Where_Stranger>
   <CC_Play_Where_GraveOf>by {DEAD_nameDef}'s grave</CC_Play_Where_GraveOf>
   <CC_Play_Where_Graves>by the graves</CC_Play_Where_Graves>
+  <CC_Play_Where_Water>at the water's edge</CC_Play_Where_Water>
+  <CC_Play_Where_Fields>out in the fields</CC_Play_Where_Fields>
 
   <!-- When it begins -->
   <CC_Play_Begin_Gathering>{0}: the colony gathers {1}.</CC_Play_Begin_Gathering>

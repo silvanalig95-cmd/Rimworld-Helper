@@ -41,6 +41,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>5</count></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Trad_Blessing</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>4</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Words"><label>the blessing of the fields</label><spots><li>Fields</li><li>Outdoors</li></spots><hours>5~10</hours><duration>0.75~1</duration></li>
         </effects>
       </li>
       <li>
@@ -96,6 +97,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Trad_Walk</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
           <li Class="ColonyCouncil.DilemmaEffect_StrainRelief"><target>Colony</target><amount>6</amount><onlyStrained>true</onlyStrained></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>3</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Words"><label>the walk to the graves</label><spots><li>Grave</li></spots><pool>Council_Pool_PlayRemembrance</pool><hours>16~21</hours><duration>1~1.5</duration></li>
         </effects>
       </li>
       <li>
@@ -105,6 +107,7 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Trad_Walk</thought><exceptTrait><li>Psychopath</li></exceptTrait><chance>0.5</chance></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>1</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Grave</to><hours>16~21</hours><duration>1~1.5</duration></li>
         </effects>
       </li>
       <li>
@@ -114,6 +117,7 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_NoCelebration</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-3</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Grave</to><hours>18~23</hours><duration>1~1</duration></li>
         </effects>
       </li>
     </options>
@@ -155,6 +159,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Trad_Swim</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.25</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>4</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>the midsummer swim</label><spots><li>Water</li><li>Outdoors</li></spots><hours>12~18</hours><duration>2.5~3.5</duration></li>
         </effects>
       </li>
       <li>
@@ -164,6 +169,7 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.12</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>1</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>the evening swim</label><spots><li>Water</li><li>Outdoors</li></spots><hours>17~21</hours><duration>1.5~2</duration></li>
         </effects>
       </li>
       <li>
@@ -216,6 +222,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.2</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_StrainRelief"><target>Colony</target><amount>5</amount><onlyStrained>true</onlyStrained></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>4</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Bonfire"><label>the harvest dance</label><music>true</music><hours>17~23</hours><duration>4~5</duration></li>
         </effects>
       </li>
       <li>
@@ -225,6 +232,7 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.1</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>1</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Bonfire"><label>the harvest dance</label><music>true</music><hours>17~22</hours><duration>1~1.5</duration></li>
         </effects>
       </li>
       <li>
@@ -271,6 +279,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Trad_FrostSoup</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>4</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>the first frost soup</label><spots><li>Outdoors</li><li>Dining</li><li>Gather</li></spots><hours>12~19</hours><duration>1.5~2</duration></li>
         </effects>
       </li>
       <li>
@@ -330,6 +339,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>WoodLog</what><count>30</count></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Trad_Lanterns</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>4</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>the lantern night</label><spots><li>Outdoors</li><li>Gather</li><li>Dining</li></spots><hours>16~21</hours><duration>1~1.5</duration></li>
         </effects>
       </li>
       <li>

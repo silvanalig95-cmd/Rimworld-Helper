@@ -47,7 +47,11 @@ namespace ColonyCouncil
         /// <summary>Visits: to a person (see <see cref="DilemmaEffect_Visit.whom"/>).</summary>
         Person,
         /// <summary>Visits: a long walk out under the sky.</summary>
-        Walk
+        Walk,
+        /// <summary>At the water: shallow water near the colony (a swim), when the weather allows.</summary>
+        Water,
+        /// <summary>In the fields: the colony's biggest growing zone.</summary>
+        Fields
     }
 
     /// <summary>One of the people of a dilemma or an event.</summary>

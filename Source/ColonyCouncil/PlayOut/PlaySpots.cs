@@ -102,6 +102,24 @@ namespace ColonyCouncil
                         where = "CC_Venue_Outside".Translate();
                         return true;
                     }
+                    case PlaySpot.Water:
+                    {
+                        if (!Outside(map, p)) break;
+                        var c = WaterCell(map, organizer);
+                        if (!c.IsValid) break;
+                        spot = c;
+                        where = "CC_Play_Where_Water".Translate();
+                        return true;
+                    }
+                    case PlaySpot.Fields:
+                    {
+                        if (!Outside(map, p)) break;
+                        var c = FieldCell(map, organizer);
+                        if (!c.IsValid) break;
+                        spot = c;
+                        where = "CC_Play_Where_Fields".Translate();
+                        return true;
+                    }
                     case PlaySpot.Grave:
                     {
                         var grave = GraveFor(p);
@@ -169,6 +187,35 @@ namespace ColonyCouncil
             var center = TemplatePlanner.ColonyCenter(map);
             foreach (var c in GenRadial.RadialCellsAround(center, 16f, true))
                 if (c.InBounds(map) && !c.Roofed(map) && c.GetEdifice(map) == null && !(c.GetTerrain(map)?.IsWater ?? false) && Ok(c, map, pawn)) return c;
+            return IntVec3.Invalid;
+        }
+
+        /// <summary>Shallow water near the middle of the colony that someone can wade into (a river's edge, a pond, the shore).</summary>
+        public static IntVec3 WaterCell(Map map, Pawn pawn)
+        {
+            var center = TemplatePlanner.ColonyCenter(map);
+            foreach (var c in GenRadial.RadialCellsAround(center, 45f, true))
+            {
+                if (!c.InBounds(map) || !(c.GetTerrain(map)?.IsWater ?? false) || !c.Standable(map) || c.Roofed(map)) continue;
+                if (Ok(c, map, pawn)) return c;
+            }
+            if (CellFinder.TryFindRandomCellNear(center, map, 90, x => (x.GetTerrain(map)?.IsWater ?? false) && x.Standable(map) && !x.Roofed(map) && Ok(x, map, pawn),
+                    out var far))
+                return far;
+            return IntVec3.Invalid;
+        }
+
+        /// <summary>A walkable cell in the colony's biggest growing zone.</summary>
+        public static IntVec3 FieldCell(Map map, Pawn pawn)
+        {
+            foreach (var zone in map.zoneManager.AllZones.OfType<Zone_Growing>().OrderByDescending(z => z.CellCount).Take(3))
+            {
+                var cells = zone.Cells;
+                if (cells == null || cells.Count == 0) continue;
+                var middle = cells[cells.Count / 2];
+                var c = First(cells.OrderBy(x => x.DistanceToSquared(middle)).Take(30), x => !x.Roofed(map) && Ok(x, map, pawn));
+                if (c.IsValid) return c;
+            }
             return IntVec3.Invalid;
         }
 

@@ -348,7 +348,8 @@ gives those taking part come once it's over (PlayOut/).
 
 - **Data, not code per answer.** Real effects are `DilemmaEffect`s like any other, listed with an answer's effects in
   XML; the order doesn't matter, because `PlayOuts.Ordered` applies them first. `DilemmaEffect_Gathering` (a party:
-  the rec room, the dining table, a gather spot, the open air), `_Feast` (the dining table, and a cooked meal from the
+  the rec room, the dining table, a gather spot, the open air, the water's edge for a swim, the fields, a grave, the
+  camp's fire, around a stranger), `_Feast` (the dining table, and a cooked meal from the
   stores for everyone who comes, the finest first: `Ingest` jobs on real meals, so the food is eaten), `_Bonfire` (the
   colony's campfire, or one laid for the evening in the open from 20 of its wood, or from wood the answer already took
   with `woodPaid`; it burns down to ash afterwards), `_Toast` and `_Words` (an hour round the table: a toast, an
@@ -428,6 +429,15 @@ read for something people do. These now play out (A and B are the dilemma's or e
 - **a path: the healer** (`Council_Dilemma_Path_Medicine`): "Apprentice A to B in medicine": A learns at B's side (medicine).
 - **a path: the scholar** (`Council_Dilemma_Path_Scholar`): "Apprentice A to B in study": A learns at B's side (intellectual).
 - **a path: the wall** (`Council_Dilemma_Path_Warrior`): "Apprentice A to B at arms": A learns at B's side (shooting).
+
+**Council_Dilemmas_Customs**
+
+- **the planting blessing** (`Council_Dilemma_PlantingBlessing`): "Bless the fields together": gathering to hear it, A speaks ("the blessing of the fields").
+- **the remembrance walk** (`Council_Dilemma_RemembranceWalk`): "Walk to the graves together": gathering to hear it, A speaks ("the walk to the graves") · "Those who want to can go": A sits by a grave · "The living have work to do": A sits by a grave.
+- **the midsummer swim** (`Council_Dilemma_MidsummerSwim`): "Everyone to the water": gathering ("the midsummer swim") · "A swim once the day's work is done": gathering ("the evening swim").
+- **the harvest dance** (`Council_Dilemma_HarvestDance`): "Dance until the fire burns down": bonfire with music ("the harvest dance") · "One dance, then bed": bonfire with music ("the harvest dance").
+- **first-frost soup** (`Council_Dilemma_FirstFrostSoup`): "One big pot for everyone": feast from the stores ("the first frost soup").
+- **lantern night** (`Council_Dilemma_LanternNight`): "A lantern in every window": gathering ("the lantern night").
 
 **Council_Dilemmas_Goals**
 
@@ -544,6 +554,13 @@ read for something people do. These now play out (A and B are the dilemma's or e
 - **old comrade** (`Council_Evt_OldComrade`): "Welcome X": A spends time with X.
 - **lost family** (`Council_Evt_LostKin`): "Bring X in": A spends time with X.
 
+**Council_Events_Remembered**
+
+- **an old debt repaid** (`Council_Evt_OldDebt`): "Accept it, and feast their envoy (20 raw food)": feast from the stores ("the feast for X") · "Ask for something the colony needs instead (a good talker)": B spends time with X.
+- **a favor called in** (`Council_Evt_FavorCalled`): "Draw up plans for their rebuilding (a builder)": B spends time with X.
+- **an old enemy offers peace** (`Council_Evt_OldEnemyPeace`): "Make peace": A spends time with X · "Make peace over a meal (25 raw food)": A spends time with X.
+- **a quarrel between neighbors** (`Council_Evt_Quarrel`): "Hear both sides and judge fairly (a good talker)": B spends time with X.
+
 **Council_Events_Roots**
 
 - **a taste of home** (`Council_Evt_TasteOfHome`): "Buy it, and let A cook it for everyone (n silver, 10 food)": feast from the stores ("A's supper from home").
@@ -585,7 +602,6 @@ read for something people do. These now play out (A and B are the dilemma's or e
 - **traveling scholar** (`Council_Evt_Scholar`): "Host X for the night": A spends time with X · "Ask X to teach everyone instead": gathering to hear it ("X's lesson").
 - **would-be apprentice** (`Council_Evt_Apprentice`): "Take X on": X learns at A's side.
 - **quiet stranger** (`Council_Evt_QuietStranger`): "Let A talk to X first": A spends time with X.
-
 
 ### What stays a mood, and why
 

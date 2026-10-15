@@ -265,8 +265,8 @@ wants to be back at work, family who want a say before an operation, a squabble 
 put down the tools, a child's question, a broken promise, the same meal every day. Many answers call on whoever is
 best placed (the doctor, a forager, a tracker, the best talker), and their skill decides how it goes.
 
-**Answers play out on the map.** When an answer describes something people do, they do it (152 answers of 61
-dilemmas and 49 Rimfolk events and stories, plus calendar days, three decrees and seven ambitions). A victory feast is
+**Answers play out on the map.** When an answer describes something people do, they do it (168 answers of 67
+dilemmas and 53 Rimfolk events and stories, plus calendar days, three decrees and seven ambitions). A victory feast is
 eaten at the dining table, each guest sent to eat a cooked meal from the stores, the finest first. The midsummer
 bonfire is lit (a campfire laid for the evening if the colony has none, burned down to ash after), a toast is raised,
 an apology or a reading is heard round the table, a friend sits with someone who is ill, a colonist sits by a grave
