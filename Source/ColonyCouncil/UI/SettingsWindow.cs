@@ -663,7 +663,9 @@ namespace ColonyCouncil
         {
             try
             {
-                var dialog = Find.WindowStack?.WindowOfType<Dialog_ModSettings>();
+                // Only the dialog drawing these settings right now: another mod's settings dialog open under it (some
+                // mods open one from their own) is left as it is.
+                var dialog = Find.WindowStack?.currentlyDrawnWindow as Dialog_ModSettings;
                 if (dialog == null) return;
                 float sw = UI.screenWidth, sh = UI.screenHeight;
                 var r = dialog.windowRect;
