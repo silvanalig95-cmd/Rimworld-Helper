@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Names for healers (Source/ColonyCouncil/Health/): from the records in Defs/Misc/Council_Health_Records.xml. -->
+
+  <ColonyCouncil.EpithetDef>
+    <defName>Council_Epithet_Goodhands</defName>
+    <label>Goodhands</label>
+    <record>Council_PatientsPulledThrough</record>
+    <threshold>5</threshold>
+    <earned>{PAWN_nameDef} has pulled more patients through than anyone here, through fevers and under the knife. People say they're in good hands with {PAWN_objective}, and now they call {PAWN_objective} Goodhands.</earned>
+  </ColonyCouncil.EpithetDef>
+
+  <ColonyCouncil.EpithetDef>
+    <defName>Council_Epithet_Midwife</defName>
+    <label>the Midwife</label>
+    <record>Council_BirthsAttended</record>
+    <threshold>3</threshold>
+    <earned>{PAWN_nameDef} has brought more of the colony's children into the world than anyone. Whatever else {PAWN_pronoun} does, everyone calls {PAWN_objective} the Midwife now.</earned>
+  </ColonyCouncil.EpithetDef>
+
+</Defs>
