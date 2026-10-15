@@ -270,8 +270,26 @@ Overrule the vote only when the difference matters. The colonist who won the ele
     <order>8</order>
     <summary>What the colony keeps doing becomes expected.</summary>
     <tip>Hold the midsummer feast two years running and they'll expect it every year after.</tip>
-    <description>Some seasonal dilemmas have an answer the colony can make its own: a midsummer feast, a harvest celebration, a vigil on the longest night. Choose the same answer two years running and it becomes a tradition. From then on it comes up first every year, keeping it pleases everyone, and breaking it disappoints them.</description>
+    <description>Some seasonal dilemmas have an answer the colony can make its own: a midsummer bonfire, a harvest celebration, a vigil on the longest night, a blessing on the fields. Choose the same answer two years running and it becomes a tradition. From then on it comes up first every year, keeping it pleases everyone, and breaking it disappoints them.</description>
     <sections>
+      <li>
+        <heading>The customs</heading>
+        <table>
+          <li>Season | Custom | What it needs</li>
+          <li>Spring | The planting blessing: everyone walks the fields at dawn before the sowing | a grower to ask for it</li>
+          <li>Spring | The remembrance walk: the colony visits its graves together and says the names | graves of the colony's own dead</li>
+          <li>Spring | Naming the year (the muffalo is a tradition too) | nothing</li>
+          <li>Summer | The midsummer bonfire | firewood</li>
+          <li>Summer | The midsummer swim: an afternoon in the water | a river, the coast or open water, and a hot day (22 °C or more)</li>
+          <li>Fall | Harvest home, a feast | raw food</li>
+          <li>Fall | The harvest dance: music and dancing, no feast | nothing but a late night</li>
+          <li>Fall or winter | First-frost soup: one big pot on the first freezing day | raw food, and the first frost</li>
+          <li>Winter | The midwinter supper on the longest night | raw food</li>
+          <li>Winter | Lantern night: a lantern in every window | firewood</li>
+          <li>After a raid | Burying the enemy dead, the victory feast | a raid</li>
+          <li>Any time | The remembrance night, for a fight two comrades want marked | comrades, raw food</li>
+        </table>
+      </li>
       <li>
         <text>The letter says when a choice is a tradition, and when choosing it again will make one. Keeping a tradition gives everyone a good memory; breaking one gives a bad one and resets the count. New, kept and broken traditions are written into the chronicle and the year's annals, and someone usually writes about a new tradition in their journal.
 
