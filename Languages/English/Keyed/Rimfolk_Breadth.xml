@@ -18,6 +18,16 @@
   <!-- Names: one that depends on never doing something, lost the day they do it. -->
   <CC_Epithet_NoLonger>{PAWN_nameDef} isn't {TITLE} any more.</CC_Epithet_NoLonger>
 
+  <!-- What the colony grows into by what its people do (Character/ColonyTraits.cs). -->
+  <CC_Ways_TraitLabel>Known as {0}</CC_Ways_TraitLabel>
+  <CC_Ways_TraitPride>Colonists with a passion for {0} are proud of it.</CC_Ways_TraitPride>
+  <CC_Ways_TraitFading>People have stopped calling the colony {0}.</CC_Ways_TraitFading>
+  <CC_Ways_TraitWhy>The colony is known as {0}.</CC_Ways_TraitWhy>
+  <CC_Ways_TraitsHeader>What the work has made us</CC_Ways_TraitsHeader>
+  <CC_Ways_TraitsIntro>Beside the five ways, a colony grows into what its people keep doing. Steady work for a season earns the name; it fades if the work stops.</CC_Ways_TraitsIntro>
+  <CC_Ways_TraitKnown>known</CC_Ways_TraitKnown>
+  <CC_Ways_TraitProgress>{0} of the way</CC_Ways_TraitProgress>
+
   <!-- The advisor's gentler checks (Advisor/AdvisorSignals4.cs). -->
   <CC_Adv_Fresh_Title>{0} colonist(s) without fresh food</CC_Adv_Fresh_Title>
   <CC_Adv_Fresh_Detail>No fruit or vegetables in a week or more: {0}. Weeks of that bring scurvy. Raw vegetables, berries or meals cooked with them all count.</CC_Adv_Fresh_Detail>

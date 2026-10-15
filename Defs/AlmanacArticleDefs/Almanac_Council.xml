@@ -581,8 +581,22 @@ Old deeds slowly fade, so a colony can change its name: about half of a way is f
 
 Some encounters and dilemmas only come up for a colony with a certain name: refugees seeking a merciful colony, traders who heard you count every grain.</text>
       </li>
+      <li>
+        <heading>What the work makes a colony</heading>
+        <text>Beside the five ways, a colony grows into what its people keep doing, counted from their own records as a rolling daily average per head over about forty days. Steady work for a season earns the name, and a letter says so; it fades if the work stops for long, though one winter alone won't undo a farming colony.</text>
+        <table>
+          <li>Known as | Earned by | Proud of it</li>
+          <li>Green-fingered | sowing and harvesting | those with a passion for growing</li>
+          <li>Builders | building | those with a passion for construction</li>
+          <li>Learned | research | those with a passion for intellectual work</li>
+          <li>Craftsfolk | crafting | those with a passion for crafting</li>
+          <li>Hunters | game brought down | those with a passion for shooting</li>
+          <li>Delvers | rock mined | those with a passion for mining</li>
+        </table>
+        <after>The proud get a small lasting mood (+2) while the name holds. The "Our ways" page shows how close the colony is to each.</after>
+      </li>
     </sections>
-    <keywords><li>reputation</li><li>character</li><li>ways</li><li>merciful</li><li>harsh</li><li>generous</li><li>thrifty</li><li>traditional</li><li>restless</li><li>open</li><li>guarded</li><li>hard-working</li><li>easygoing</li></keywords>
+    <keywords><li>reputation</li><li>character</li><li>ways</li><li>merciful</li><li>harsh</li><li>generous</li><li>thrifty</li><li>traditional</li><li>restless</li><li>open</li><li>guarded</li><li>hard-working</li><li>easygoing</li><li>green-fingered</li><li>builders</li><li>learned</li><li>craftsfolk</li><li>hunters</li><li>delvers</li></keywords>
     <seeAlso><li>Council_Alm_C_Dilemmas</li><li>Council_Alm_C_Decrees</li><li>Council_Alm_C_Strangers</li></seeAlso>
   </ColonyCouncil.AlmanacArticleDef>
 

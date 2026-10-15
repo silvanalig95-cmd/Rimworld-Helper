@@ -92,6 +92,8 @@ namespace ColonyCouncil
         private List<int> tiers = new List<int> { 0, 0, 0, 0, 0 };
         public List<CharacterEvent> recent = new List<CharacterEvent>();
         private int lastWordTick = -999999;
+        /// <summary>What the colony grows into by what its people do (green-fingered, builders...).</summary>
+        public ColonyTraits traits = new ColonyTraits();
 
         private static CouncilSettings S => ColonyCouncilMod.Settings;
 
@@ -116,7 +118,7 @@ namespace ColonyCouncil
 
         public static IEnumerable<string> TagNames => TagMap.Keys;
 
-        public bool Is(string tag) => S.colonyCharacter && TagMap.TryGetValue(tag, out var t) && Math.Sign(Tier(t.way)) == t.sign;
+        public bool Is(string tag) => S.colonyCharacter && (TagMap.TryGetValue(tag, out var t) ? Math.Sign(Tier(t.way)) == t.sign : traits.HasTag(tag));
 
         public bool Fits(List<string> isAll, List<string> isNot)
         {
@@ -156,6 +158,14 @@ namespace ColonyCouncil
             for (int i = 0; i < values.Count; i++) values[i] *= 0.988f;
             Check(comp);
             Word(comp);
+            try
+            {
+                traits.Daily(comp);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("colony traits", e);
+            }
         }
 
         private int TierFor(float v, int current)
@@ -298,8 +308,10 @@ namespace ColonyCouncil
             Scribe_Collections.Look(ref tiers, "tiers", LookMode.Value);
             Scribe_Collections.Look(ref recent, "recent", LookMode.Deep);
             Scribe_Values.Look(ref lastWordTick, "lastWordTick", -999999);
+            Scribe_Deep.Look(ref traits, "traits");
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
+                if (traits == null) traits = new ColonyTraits();
                 if (values == null || values.Count != All.Length) values = new List<float> { 0f, 0f, 0f, 0f, 0f };
                 if (tiers == null || tiers.Count != All.Length) tiers = new List<int> { 0, 0, 0, 0, 0 };
                 if (recent == null) recent = new List<CharacterEvent>();
