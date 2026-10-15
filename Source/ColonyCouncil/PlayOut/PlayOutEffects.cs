@@ -320,7 +320,8 @@ namespace ColonyCouncil
                 if (who.Count == 0 || cal == null) return;
                 var given = cal.RestFor(ctx.map, who, sleep);
                 if (given.Count == 0) return;
-                string names = TextUtil.JoinAnd(given.Select(p => p.LabelShort).ToList());
+                string names = target == DilemmaTarget.Colony && given.Count > 2 ? "CC_Play_Everyone".Translate().Resolve()
+                    : TextUtil.JoinAnd(given.Select(p => p.LabelShort).ToList());
                 string text = (sleep ? "CC_Play_Sleep" : "CC_Play_Rest").Translate(names, given.Count).Resolve();
                 Messages.Message(text, new LookTargets(given), MessageTypeDefOf.NeutralEvent, false);
             }

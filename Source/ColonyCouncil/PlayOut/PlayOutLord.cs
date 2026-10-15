@@ -114,6 +114,9 @@ namespace ColonyCouncil
             }
         }
 
+        /// <summary>One of those it's for (see <see cref="IsInvited"/>).</summary>
+        public bool Invites(Pawn p) => IsInvited(p);
+
         /// <summary>Only those the answer was for; anyone at all from the colony if its plan was lost.</summary>
         protected override bool IsInvited(Pawn p)
         {

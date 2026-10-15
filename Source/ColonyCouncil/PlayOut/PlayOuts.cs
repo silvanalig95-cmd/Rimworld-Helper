@@ -362,13 +362,25 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>A colonist ate something (from the meal hook): counted if it was at a feast.</summary>
+        /// <summary>
+        /// A colonist ate something (from the meal hook): counted at a feast they're at, or one they were asked to and
+        /// stepped away from to eat, so nobody is served a second plate.
+        /// </summary>
         public static void Notify_Ate(Pawn p, Thing food)
         {
             if (p == null || food?.def?.ingestible == null) return;
             try
             {
-                if (p.GetLord()?.LordJob is LordJob_PlayOut job) job.Notify_Ate(p, food);
+                if (p.GetLord()?.LordJob is LordJob_PlayOut job)
+                {
+                    job.Notify_Ate(p, food);
+                    return;
+                }
+                var lords = p.MapHeld?.lordManager?.lords;
+                if (lords == null) return;
+                foreach (var l in lords)
+                    if (l?.LordJob is LordJob_PlayOut feast && feast.Invites(p))
+                        feast.Notify_Ate(p, food);
             }
             catch (Exception e)
             {

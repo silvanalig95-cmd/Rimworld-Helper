@@ -73,6 +73,7 @@
   <CC_Play_Why_CutShort>it was cut short</CC_Play_Why_CutShort>
 
   <!-- A day off, a hunt -->
+  <CC_Play_Everyone>everyone</CC_Play_Everyone>
   <CC_Play_Rest>The rest of today's work hours are free time for {0}.</CC_Play_Rest>
   <CC_Play_Sleep>Sent to bed for the rest of the day: {0}.</CC_Play_Sleep>
   <CC_Play_Hunt>Marked for the hunters: {0}.</CC_Play_Hunt>
