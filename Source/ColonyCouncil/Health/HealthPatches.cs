@@ -53,6 +53,13 @@ namespace ColonyCouncil
                 CouncilLog.ErrorOnce("health: surgery hook", e);
             }
         }
+
+        /// <summary>Whatever happened in the check, nobody is on the table any more.</summary>
+        public static Exception Finalizer(Exception __exception)
+        {
+            HealthTracker.underKnife = null;
+            return __exception;
+        }
     }
 
     /// <summary>
