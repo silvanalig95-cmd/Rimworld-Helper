@@ -73,6 +73,19 @@ namespace ColonyCouncil
                 Messages.Message("CC_Epithet_FirstRound".Translate(TextUtil.JoinAnd(firstRound)).Resolve(), MessageTypeDefOf.NeutralEvent, false);
         }
 
+        /// <summary>
+        /// A name earned some other way than by a record (a personal story's ending): given only if nobody living here
+        /// holds it already. Names without a record stay with their holder.
+        /// </summary>
+        public bool Bestow(EpithetDef def, Pawn p, CouncilGameComponent comp)
+        {
+            if (def == null || p == null || comp == null || !ColonyCouncilMod.Settings.epithets) return false;
+            var holder = HolderOf(def);
+            if (holder != null && !holder.Dead && holder.IsColonist) return false;
+            Award(def, p, null, comp);
+            return true;
+        }
+
         private void Award(EpithetDef def, Pawn p, Pawn previous, CouncilGameComponent comp)
         {
             using var _cause = Causes.Push("CC_Cause_Epithet".Translate(p.LabelShort, def.label).Resolve());

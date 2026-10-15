@@ -72,6 +72,8 @@ namespace ColonyCouncil
         public bool socialEvents = true;
         public bool dreams = true;
         public bool aspirations = true;
+        /// <summary>Personal stories (Arcs/): how often a colonist's own story begins.</summary>
+        public ArcFrequency arcFrequency = ArcFrequency.Normal;
         public bool secrets = true;
         public bool vendettas = true;
         public bool eulogies = true;
@@ -220,6 +222,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref socialEvents, "socialEvents", true);
             Scribe_Values.Look(ref dreams, "dreams", true);
             Scribe_Values.Look(ref aspirations, "aspirations", true);
+            Scribe_Values.Look(ref arcFrequency, "arcFrequency", ArcFrequency.Normal);
             Scribe_Values.Look(ref secrets, "secrets", true);
             Scribe_Values.Look(ref vendettas, "vendettas", true);
             Scribe_Values.Look(ref eulogies, "eulogies", true);
@@ -485,6 +488,7 @@ namespace ColonyCouncil
 
             Header(l, "CC_Settings_Lives".Translate());
             l.CheckboxLabeled("CC_Settings_Aspirations".Translate(), ref aspirations, "CC_Settings_Aspirations_Tip".Translate());
+            ArcView.SettingsRow(l, this);
             l.CheckboxLabeled("CC_Settings_Quirks".Translate(), ref quirks, "CC_Settings_Quirks_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_Heirlooms".Translate(), ref heirlooms, "CC_Settings_Heirlooms_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_ComingOfAge".Translate(), ref comingOfAge, "CC_Settings_ComingOfAge_Tip".Translate());
@@ -628,6 +632,8 @@ namespace ColonyCouncil
             socialWeb = socialEvents = secrets = vendettas = aspirations = quirks = heirlooms = comingOfAge = dreams = dreamOmens = eulogies = heart = on;
             strangers = nemeses = nemesisReturns = petMoments = colonistMoments = frictions = autonomy = worldReactions = worldEvents = worldSituations = on;
             ailments = on;
+            if (!on) arcFrequency = ArcFrequency.Off;
+            else if (arcFrequency == ArcFrequency.Off) arcFrequency = ArcFrequency.Normal;
             enableDilemmas = decreeRequests = offices = colonyCharacter = councilOn;
             enableWishes = enableAmbitions = councilOn || on;
             journals = epithets = anniversaries = annals = colonyCalendar = on || councilOn;
@@ -684,6 +690,7 @@ namespace ColonyCouncil
             socialEvents = d.socialEvents;
             dreams = d.dreams;
             aspirations = d.aspirations;
+            arcFrequency = d.arcFrequency;
             secrets = d.secrets;
             vendettas = d.vendettas;
             eulogies = d.eulogies;

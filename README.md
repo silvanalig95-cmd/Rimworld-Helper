@@ -285,9 +285,9 @@ rivals) write about it. The **Social** tab shows every bond with its strength an
 
 ### Story: a page for every colonist
 Select a colonist and open the **Story** tab in their inspect panel (next to Bio, Social and Gear): their trust,
-office and earned names, their life goal and how close they are, their friends, rivals, comrades, students and the
-people they've lost, their quirks, vendettas and the secrets the colony knows about, their last dreams and the latest
-lines of their journal.
+office and earned names, their life goal and how close they are, their personal story and what it waits for next,
+their friends, rivals, comrades, students and the people they've lost, their quirks, vendettas and the secrets the
+colony knows about, their last dreams and the latest lines of their journal.
 
 ### Life goals
 A few days after settling in, each colonist sets their heart on something to do before they die: master a craft,
@@ -306,6 +306,25 @@ want the same. Something big can change their mind, and when someone dies before
 loved them most may take it up and finish it for them. The Social tab shows everyone's progress and why. Achieving one is a big
 moment: a letter, a long good mood, trust, often an inspiration, friends who are glad for them. Dying before it is
 remembered: the chronicle notes what they never got to do, and their friends write about it.
+
+### Personal stories
+A few times a year, one colonist's own story begins, and plays out in three or four stages over days to a season.
+There are 16 of them: the long way home (away for days, missing someone; home; the road told), somewhere to belong (a
+homesick newcomer finds a friendly face, a room, roots), a companion (an animal that follows its master about, until
+they bond), grudging respect (rivals who are good at the same thing), old wounds (former lovers, family at odds, a
+friend who let a secret slip), an old debt (a rescue or a kindness repaid with something made by hand), second chances
+(a colonist who gave up on the council), the apprentice's masterwork, a calling (a child or teenager taken with what a
+grown-up does well), passing it on (an elder's craft handed down), a long grief, a secret told (to a friend first, then
+everyone), a fear faced (an enemy who got away, a dread of the dark or of storms), the recurring dream, a grudge laid
+down, and within reach (halfway to a life goal and doubting it). Each starts from what Rimfolk already knows about the
+colonist (their losses, rivals, secrets, life goal, feelings, skills, animals, trust) and moves on only when something
+happens in play: a skill reached, a talk between the two of them in the social log, a piece of excellent quality made,
+a fight at home come through, days with a good mood or a room of their own. Every stage is written in their journal in
+their own voice (and often in the other person's), and in the chronicle; the end brings a letter that tells it all,
+modest earned moods, and sometimes something that lasts: a friendship, a mentorship, a rivalry ended, an inspiration, a
+quirk or a name (the Wanderer, Steadyhand, the Unafraid). Stories can fizzle too, gently, and a death mid-story is
+remembered by the one who shared it. At most one per colonist; how often is a setting (off, rare, normal, frequent).
+The Almanac page "personal stories" lists them all.
 
 ### Secrets, vendettas and eulogies
 Some colonists carry a **secret**, often from the life their backstory hints at: a raider's past, noble blood, a
@@ -1081,7 +1100,7 @@ journals, the Story tab and History) or **Important only**.
 - **material counts in build menus**: the game's own material list shows what the colony has (one of the deeper
   game hooks)
 - **council life**: decrees, dilemmas, petitions, annals, names, journals, offices, the social web, social
-  events, life goals, secrets, vendettas, eulogies, heirlooms, coming of age, quirks, dreams and dream omens, encounters with strangers, nemeses (and whether they return), pets, the
+  events, life goals, personal stories (off, rare, normal or frequent), secrets, vendettas, eulogies, heirlooms, coming of age, quirks, dreams and dream omens, encounters with strangers, nemeses (and whether they return), pets, the
   colony's character, everyday frictions, the colony calendar's days, each on its own switch
 - **Rimfolk events**: on or off, whether they may bring fights, whether groups may make camp on the map, whether
   missions show up in the Quests tab, and whether the storyteller draws them (and how likely each is) or Rimfolk's

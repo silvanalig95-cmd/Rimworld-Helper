@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_C_Arcs</defName>
+    <label>personal stories</label>
+    <category>Council</category>
+    <order>11</order>
+    <summary>A few times a year, one colonist's own story, in three or four stages over days to a season.</summary>
+    <tip>Read the journals now and then. That's where most of these get told.</tip>
+    <description>A few times a year, one colonist's own story begins: a journey home, a quarrel mended, an apprenticeship that ends in a fine piece of work, a grief that slowly eases. Each grows out of what Rimfolk already knows about that colonist (their losses, rivals, secrets, life goals, feelings, skills, animals and the council's dealings with them), never from a roll alone, and moves on through three or four stages over days to a season as things happen in play. A colonist has at most one story at a time.
+
+The Story tab shows where a colonist's story stands, what it waits for next and how close it is, and the stories they've lived through.</description>
+    <sections>
+      <li>
+        <heading>How a story moves</heading>
+        <text>Each stage waits for something to happen: days to pass, a skill level reached, hours of work at a skill, a conversation between the two people in it (it shows in the social log), something made of good enough quality, a fight at home come through on their feet, a bond with an animal, another dream, a wish granted, a life goal reached, or a stretch of days with something holding (a good mood, a room of their own, getting along). Each hour it holds counts; each hour it doesn't takes half an hour back, so a bad evening costs a little and a bad week costs the lot.
+
+Every stage writes a line in the colonist's journal in their own voice (a kind colonist and an abrasive one tell it differently), often one in the other person's journal too, and a line in the chronicle. When a story ends well, a letter retells it from the start. While a colonist is away on a journey, their story waits, and so does its clock.</text>
+      </li>
+      <li>
+        <heading>The stories</heading>
+        <table>
+          <li>Story | Begins when | Moves on through | Can leave behind</li>
+          <li>The long way home | Someone has been away 5 days or more, with a person they love waiting at home | Coming home; a talk about the road | A friendship, a name (the Wanderer, after 15 days away), a quirk</li>
+          <li>Somewhere to belong | A newcomer (2 to 25 days here) is homesick, lonely or short of belonging | A welcome from an old hand; a room of their own; good days | Trust in the council</li>
+          <li>A companion | An animal lover, or a kind or lonely colonist, is master of an animal with no bond | Hours together; time spent handling; trust | A bond with the animal</li>
+          <li>Grudging respect | Rivals share a passion, or fought side by side | Hours working near each other; a word of respect; days of getting along | The rivalry ended, a friendship</li>
+          <li>Old wounds | Former lovers, family at odds, or a friend who let a secret slip | Quiet days without a sharp word; a talk; days of getting along | The quarrel ended, a friendship, strain lifted</li>
+          <li>An old debt | Someone rescued, tended, covered for or spoke up for them | Days; hours of work on a gift; giving it | A friendship</li>
+          <li>Second chances | Their trust in the council is doubtful or bitter | One of their wishes granted; days of trusting it more | Trust</li>
+          <li>The apprentice's masterwork | A keen crafter, artist or builder (level 4 to 11) has a master (12 or better) to learn from | 2 levels gained; the master's eye; something excellent made | An inspiration, a name (Steadyhand), a quirk, rarely a deeper passion</li>
+          <li>A calling | A child or a teenager, and a grown-up good at something (8 or better) | Questions; practice; a level gained | A friendship, rarely a new passion</li>
+          <li>Passing it on | An elder (55 or older) or an old hand (3 years here) with a skill of 12 or better | An offer to teach; the student gains 2 levels; the last lessons | A mentorship, lessons</li>
+          <li>A long grief | Someone close died in the last few weeks | Days; talking about them or dreaming of them; better days | Strain lifted, a quirk</li>
+          <li>A secret told | Someone with a secret has a close friend | Days; confiding in the friend; steady days; telling everyone | The secret out, strain lifted</li>
+          <li>A fear faced | An enemy who hurt them got away, or they dread the dark, storms or the eclipse | Days; training; a fight at home come through, or the enemy gone for good | The dread gone, strain lifted, a name (the Unafraid)</li>
+          <li>The recurring dream | The same strange dream 2 or more times in 12 days | Another dream; telling someone; making something of it | Strain lifted, sometimes an inspiration</li>
+          <li>A grudge laid down | A vendetta 15 days old or more, and someone tired of carrying it | Days; talking it over; calmer days | The vendetta laid down, strain lifted</li>
+          <li>Within reach | Halfway or more to a life goal, 10 days or more in | A push from a friend; the goal reached | A friend's good opinion</li>
+        </table>
+      </li>
+      <li>
+        <heading>Endings, good and otherwise</heading>
+        <text>The good moods come at the end, not along the way, and they're modest: Rimfolk memories, sharing the budget of good moods with everything else Rimfolk gives. Some stories leave something lasting: a friendship, a mentorship, a rivalry ended, trust in the council, strain lifted, an inspiration, a quirk (tells stories of the road, marks every piece, sets a place for the lost) or a name the colony gives (the Wanderer, Steadyhand, the Unafraid). Very rarely a calling or a masterwork deepens a passion.
+
+A story can also fizzle: a stage that waits too long, a fight that reopens the quarrel, a secret that comes out before it could be told, the enemy's banners at the walls again. That gets a journal line and a chronicle line too, and usually nothing worse. If the other person in it dies or leaves, the story ends there (unless they were only a friend to talk to). If the colonist dies before it ends, the chronicle says so, and a day later the other person in it, or whoever was closest, writes about what was left unfinished.</text>
+      </li>
+      <li>
+        <heading>How often</heading>
+        <text>Set it under Options, Mod options, Rimfolk, People: off, rare (about 2 a year in a colony of 6), normal (about 4) or frequent (about 7). One to three colonists see three quarters as many, and from 12 up to half again as many. One story runs at a time on rare, 2 on normal and 3 on frequent, one more from 9 colonists. Off: none begin, and any under way wait where they are.</text>
+      </li>
+    </sections>
+    <keywords><li>story</li><li>arc</li><li>homecoming</li><li>reconciliation</li><li>apprentice</li><li>masterwork</li><li>grief</li><li>debt</li><li>calling</li><li>fear</li><li>secret</li><li>companion</li></keywords>
+    <seeAlso><li>Council_Alm_C_Goals</li><li>Council_Alm_C_Secrets</li><li>Council_Alm_C_Social</li><li>Council_Alm_C_Heart</li></seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+</Defs>

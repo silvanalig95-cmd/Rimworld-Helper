@@ -180,7 +180,11 @@ play deep. In order:
 
 ### 4. Deep (features and variety)
 - Personal arcs: a colonist's goals, feelings, secrets and history woven into a few personal stories a year (a
-  homecoming, a reconciliation, an apprenticeship that ends in a masterwork).
+  homecoming, a reconciliation, an apprenticeship that ends in a masterwork). Done (October 2026): 16 personal stories
+  in 61 stages, each started by what Rimfolk knows about a colonist and moved on by what happens in play (a skill, a
+  talk in the social log, a piece made, a fight come through, days with a condition held), told in journals, the
+  chronicle and the Story tab, with a setting for how often. Next: stories for camps, offices and world events, stories
+  between three people.
 - Done (October 2026): the colony calendar. Days written down from the colony's history (founding, first harvest,
   first snow, battles, deaths of the loved, weddings, founding members' arrivals, long-serving colonists' birthdays)
   and days the player names (feast, remembrance, rest day, games) on a Calendar page; each comes round with a letter
@@ -213,7 +217,8 @@ the content itself, not only to systems, alongside whatever else it does. Where 
 | Dilemmas | 119 | more for children, elders and the camps; dilemmas for each new system as it lands |
 | Encounters | 122 | more lands (lakes, rivers, other mods' biomes), mod animals, rarer night and weather moments |
 | Decrees | 19 | decrees tied to world situations, faith and mods (tithes, curfews, alms) |
-| Quirks | 29 | quirks that touch others (a hummer and a light sleeper), more from events and dreams |
+| Quirks | 32 | quirks that touch others (a hummer and a light sleeper), more from events and dreams |
+| Personal stories | 16 (61 stages) | stories from camps, offices and world events, more for children and elders, stories of three |
 | Dreams | 117 | dreams for more feelings, quirks, life goals and mod content |
 | World events | 28 | more regional situations, and their follow-ups |
 | Camp kinds | 11 | caravans of every kind, pilgrims of every faith |

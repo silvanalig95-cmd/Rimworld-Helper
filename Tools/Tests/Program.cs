@@ -374,6 +374,7 @@ for (int r = 0; r < 4; r++)
         Console.WriteLine($"Checked {ailments} ailments and illnesses.");
         int memories = ThoughtClassTests.Run(root, Check);
         Console.WriteLine($"Checked {memories} memories share the budget of good moods.");
+        Console.WriteLine($"Checked {ArcTests.Run(root, Check)} things about personal stories (their pace, stages and lines).");
     }
 }
 
@@ -381,5 +382,5 @@ for (int r = 0; r < 4; r++)
 Console.WriteLine($"Checked {UiTests.Run(Check)} tab sizes.");
 Console.WriteLine($"Checked the calendar's dates over {CalendarTests.Run(Check)} days.");
 
-Console.WriteLine(failures == 0 ? "All tests passed (template math, layout, strain, meetings, pressures, ailments, line memory, good times, tab sizes, calendar)." : failures + " failure(s).");
+Console.WriteLine(failures == 0 ? "All tests passed (template math, layout, strain, meetings, pressures, ailments, line memory, good times, tab sizes, calendar, personal stories)." : failures + " failure(s).");
 return failures == 0 ? 0 : 1;
