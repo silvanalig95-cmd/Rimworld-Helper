@@ -52,6 +52,8 @@ namespace ColonyCouncil
 
         private float lastPulse = -100f;
         private int pulses;
+        /// <summary>The in-game hour the hourly look last ran in.</summary>
+        private int lastHour = -1;
 
         /// <summary>Flecks still to come over someone's head (hearts at a wedding, a few notes of a song).</summary>
         private readonly List<Pending> pending = new List<Pending>();
@@ -109,7 +111,14 @@ namespace ColonyCouncil
             try
             {
                 Look();
-                if (now % GenDate.TicksPerHour == 1211) Hourly(now);
+                // The first pulse of each in-game hour: an hour isn't a whole number of pulses, so a fixed tick of the
+                // hour would only fall on a pulse every third hour.
+                int hour = now / GenDate.TicksPerHour;
+                if (hour != lastHour)
+                {
+                    lastHour = hour;
+                    Hourly(now);
+                }
                 float real = Time.realtimeSinceStartup;
                 if (real - lastPulse < MinPulseSeconds && real >= lastPulse) return;
                 lastPulse = real;
