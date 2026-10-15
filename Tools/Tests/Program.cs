@@ -374,11 +374,12 @@ for (int r = 0; r < 4; r++)
         Console.WriteLine($"Checked {ailments} ailments and illnesses.");
         int memories = ThoughtClassTests.Run(root, Check);
         Console.WriteLine($"Checked {memories} memories share the budget of good moods.");
+        Console.WriteLine($"Checked {ArcTests.Run(root, Check)} things about personal stories (their pace, stages and lines).");
     }
 }
 
 // Rimfolk's inspect tabs fit above the inspect pane on small screens, big interface scales and RimHUD's taller pane.
 Console.WriteLine($"Checked {UiTests.Run(Check)} tab sizes.");
 
-Console.WriteLine(failures == 0 ? "All tests passed (template math, layout, strain, meetings, pressures, ailments, line memory, good times, tab sizes)." : failures + " failure(s).");
+Console.WriteLine(failures == 0 ? "All tests passed (template math, layout, strain, meetings, pressures, ailments, line memory, good times, tab sizes, personal stories)." : failures + " failure(s).");
 return failures == 0 ? 0 : 1;
