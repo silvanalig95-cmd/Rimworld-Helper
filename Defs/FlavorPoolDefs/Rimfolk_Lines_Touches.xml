@@ -28,8 +28,8 @@
         <li>[touch:dresser,winter] Winter clothes take up room. They need a dresser, not a corner.</li>
       </plain>
       <warm>
-        <li>There's a spot in my room I've been looking at for a while. {THING} would suit it.</li>
-        <li>[newcomer] I'd like to settle in properly. {THING} in my room would help.</li>
+        <li>There's a spot in my room I've been looking at for a while, and {THING} would suit it.</li>
+        <li>[newcomer] I'd like to settle in properly, and {THING} in my room would help.</li>
         <li>I've marked out {THING} for my room, out of everyone's way, whenever there's time.</li>
         <li>[touch:plantpot] A pot of something green would make my room feel like home. I've found a spot where it'll get light.</li>
         <li>[touch:plantpot] I'd like to grow a few leaves by my bed. I'll look after them myself.</li>
