@@ -130,7 +130,17 @@ namespace ColonyCouncil
         {
             int t = Find.TickManager.TicksGame;
             if (t % HourTicks != 1777) return;
-            if (!On) return;
+            if (!On)
+            {
+                // Switched off: stories wait where they are, clocks and all.
+                foreach (var arc in active)
+                {
+                    if (arc == null) continue;
+                    arc.stagePausedTicks += HourTicks;
+                    arc.pausedTicks += HourTicks;
+                }
+                return;
+            }
             Safe("personal stories", Hourly);
             if (t % Day < HourTicks) Safe("new personal stories", TryStart);
         }
@@ -230,7 +240,7 @@ namespace ColonyCouncil
             // Away from home (or the other person is): the story waits, and so do its clocks.
             if (Paused(arc))
             {
-                arc.stageTick += HourTicks;
+                arc.stagePausedTicks += HourTicks;
                 arc.pausedTicks += HourTicks;
                 return;
             }
@@ -256,7 +266,7 @@ namespace ColonyCouncil
             }
         }
 
-        public static float DaysInStage(Arc arc) => (Now - arc.stageTick) / (float)Day;
+        public static float DaysInStage(Arc arc) => (Now - arc.stageTick - arc.stagePausedTicks) / (float)Day;
 
         public static float DaysOfStory(Arc arc) => (Now - arc.startedTick - arc.pausedTicks) / (float)Day;
 
@@ -410,6 +420,7 @@ namespace ColonyCouncil
         private static void ResetStage(Arc arc)
         {
             arc.stageTick = Now;
+            arc.stagePausedTicks = 0;
             arc.held = 0f;
             arc.heldOr.Clear();
             arc.talkedTick = -1;

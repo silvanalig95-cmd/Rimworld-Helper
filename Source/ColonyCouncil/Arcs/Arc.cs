@@ -28,8 +28,10 @@ namespace ColonyCouncil
         public int stage;
         public int startedTick;
         public int stageTick;
-        /// <summary>Time spent waiting while its people were away, when its clocks don't run.</summary>
+        /// <summary>Time spent waiting while its people were away (or the setting was off), when its clocks don't run.</summary>
         public int pausedTicks;
+        /// <summary>The same, within the current stage.</summary>
+        public int stagePausedTicks;
         /// <summary>The chronicle lines of the stages so far, for the letter that retells it at the end.</summary>
         public List<string> told = new List<string>();
         /// <summary>The colonist's journal line at the last stage, quoted in that letter.</summary>
@@ -104,6 +106,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref startedTick, "startedTick");
             Scribe_Values.Look(ref stageTick, "stageTick");
             Scribe_Values.Look(ref pausedTicks, "pausedTicks");
+            Scribe_Values.Look(ref stagePausedTicks, "stagePausedTicks");
             Scribe_Collections.Look(ref told, "told", LookMode.Value);
             Scribe_Values.Look(ref held, "held");
             Scribe_Collections.Look(ref heldOr, "heldOr", LookMode.Value);
