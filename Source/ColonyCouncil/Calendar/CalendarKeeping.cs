@@ -294,11 +294,16 @@ namespace ColonyCouncil
             switch (d.way)
             {
                 case DayWay.Feast:
+                    // With answers playing out: a meal from the stores eaten together, then the evening; its lift comes after.
+                    if (PlayDay(d, map, home, PlayKind.Feast, CalendarDefOf.Council_Cal_FeastDay, null, null, null)) return true;
                     if (StartParty(map, Keeper(d, home))) return true;
                     // No gathering possible (nowhere to gather, everyone busy): a better supper, and a little lift.
                     foreach (var p in home) CouncilGameComponent.GiveThought(p, CalendarDefOf.Council_Cal_FeastDay);
                     return false;
                 case DayWay.Games:
+                    if (PlayDay(d, map, home, PlayKind.Gathering, CalendarDefOf.Council_Cal_GamesDay, null,
+                            new List<PlaySpot> { PlaySpot.Rec, PlaySpot.Outdoors, PlaySpot.Gather, PlaySpot.Dining }, null))
+                        return true;
                     foreach (var p in home)
                     {
                         p.needs?.joy?.GainJoy(0.15f, JoyKindDefOf.Social);
@@ -314,10 +319,57 @@ namespace ColonyCouncil
                         : d.kind == CalendarKind.Battle ? "CC_Cal_Subject_Battle".Translate(d.enemy ?? "?").Resolve()
                         : d.label;
                     string cause = "CC_Cal_Cause_Remembered".Translate(subject ?? "?").Resolve();
-                    foreach (var p in Mourners(d, home)) CouncilGameComponent.GiveThought(p, CalendarDefOf.Council_Cal_Remembered, null, -1f, cause);
+                    var mourners = Mourners(d, home);
+                    // With answers playing out, those who knew them stand a while at the grave, if there is one here.
+                    var grave = d.kind == CalendarKind.Death ? PlaySpots.GraveOf(map, d.pawnId) : null;
+                    if (grave != null && PlayDay(d, map, mourners, PlayKind.Toast, CalendarDefOf.Council_Cal_Remembered, cause,
+                            new List<PlaySpot> { PlaySpot.Grave }, grave))
+                        return false;
+                    foreach (var p in mourners) CouncilGameComponent.GiveThought(p, CalendarDefOf.Council_Cal_Remembered, null, -1f, cause);
                     return false;
             }
             return false;
+        }
+
+        /// <summary>
+        /// A day kept on the map (PlayOut/, with "Answers play out on the map" on): those it's for gather for it, and
+        /// <paramref name="thought"/> comes to those who were there when it's over (to all of them if it never happens).
+        /// False when there's nothing to set going: the day is kept the old way.
+        /// </summary>
+        private static bool PlayDay(CalendarDay d, Map map, List<Pawn> who, PlayKind kind, ThoughtDef thought, string cause, List<PlaySpot> spots, Thing grave)
+        {
+            var tracker = PlayOutTracker.Instance;
+            if (!PlayOuts.On || tracker == null || map == null || who == null || who.Count == 0) return false;
+            try
+            {
+                int now = Find.TickManager.TicksGame;
+                var keeper = Keeper(d, who);
+                var p = new PlayOut
+                {
+                    kind = kind,
+                    map = map,
+                    created = now,
+                    label = d.label,
+                    invited = who.Where(PlayOuts.OurPerson).ToList(),
+                    organizer = keeper != null && who.Contains(keeper) ? keeper : null,
+                    spots = spots ?? new List<PlaySpot> { PlaySpot.Dining, PlaySpot.Rec, PlaySpot.Gather, PlaySpot.Outdoors },
+                    place = grave,
+                    durationTicks = PlayOutMath.DurationTicks(kind == PlayKind.Toast ? 1f : 3f),
+                    pool = kind == PlayKind.Feast ? "Council_Pool_PlayFeast" : grave != null ? "Council_Pool_PlayRemembrance" : "Council_Pool_PlayParty"
+                };
+                if (p.invited.Count == 0) return false;
+                p.deadline = PlayOutMath.Deadline(now, GenLocalDate.HourOfDay(map), p.hourFrom, p.hourTo, PlayOutMath.DefaultWaitHours);
+                if (thought != null)
+                    foreach (var x in p.invited)
+                        p.moods.Add(new HeldMood { pawn = x, thought = thought, cause = cause ?? Causes.Current });
+                tracker.Add(p);
+                return true;
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("calendar play out", e);
+                return false;
+            }
         }
 
         /// <summary>A vanilla party, thrown by whoever stands for the day if they can, else by anyone.</summary>
@@ -365,7 +417,51 @@ namespace ColonyCouncil
             restDate = DateKey(map);
         }
 
-        /// <summary>The day after a rest day: each hour turned to recreation goes back to what it was, unless someone changed it since.</summary>
+        /// <summary>
+        /// Time off for a few, from an answer that plays out (PlayOut/): the rest of today's work hours become recreation
+        /// (or, with <paramref name="sleep"/>, sleep, recreation hours too) for these colonists, the industrious keeping
+        /// theirs unless sent to bed, and they go back tomorrow with the calendar's own rest day. Returns who got any.
+        /// </summary>
+        public List<Pawn> RestFor(Map map, List<Pawn> pawns, bool sleep)
+        {
+            var given = new List<Pawn>();
+            var to = sleep ? TimeAssignmentDefOf.Sleep : TimeAssignmentDefOf.Joy;
+            if (map == null || pawns == null || to == null) return given;
+            int today = DateKey(map);
+            if (restDate >= 0 && restDate != today) RestoreRest();
+            int hour = GenLocalDate.HourOfDay(map);
+            foreach (var p in pawns)
+            {
+                if (p?.timetable == null || (!sleep && Industrious(p))) continue;
+                restHours.TryGetValue(p.ThingID, out var had);
+                var changed = had.NullOrEmpty() ? new List<string>() : had.Split(';').Where(s => !s.NullOrEmpty()).ToList();
+                bool any = false;
+                for (int h = hour; h < GenDate.HoursPerDay; h++)
+                {
+                    var a = p.timetable.GetAssignment(h);
+                    bool free = a == TimeAssignmentDefOf.Work || a == TimeAssignmentDefOf.Anything || (sleep && a == TimeAssignmentDefOf.Joy);
+                    if (!free || a == to) continue;
+                    // An hour already given today keeps what it was first; only what it's turned into changes.
+                    int i = changed.FindIndex(s => s.StartsWith(h + "="));
+                    string original = i >= 0 ? changed[i].Substring(changed[i].IndexOf('=') + 1).Split('>')[0] : a.defName;
+                    string entry = h + "=" + original + (to == TimeAssignmentDefOf.Joy ? "" : ">" + to.defName);
+                    if (i >= 0) changed[i] = entry;
+                    else changed.Add(entry);
+                    p.timetable.SetAssignment(h, to);
+                    any = true;
+                }
+                if (!any) continue;
+                restHours[p.ThingID] = string.Join(";", changed);
+                given.Add(p);
+            }
+            if (given.Count > 0) restDate = today;
+            return given;
+        }
+
+        /// <summary>
+        /// The day after a rest day: each hour turned to recreation (or to sleep, "hour=Work>Sleep") goes back to what it
+        /// was, unless someone changed it since.
+        /// </summary>
         private void RestoreRest()
         {
             try
@@ -379,8 +475,16 @@ namespace ColonyCouncil
                     {
                         int eq = part.IndexOf('=');
                         if (eq <= 0 || !int.TryParse(part.Substring(0, eq), out int h) || h < 0 || h >= GenDate.HoursPerDay) continue;
-                        var def = DefDatabase<TimeAssignmentDef>.GetNamedSilentFail(part.Substring(eq + 1));
-                        if (def != null && p.timetable.GetAssignment(h) == joy) p.timetable.SetAssignment(h, def);
+                        string was = part.Substring(eq + 1);
+                        var set = joy;
+                        int gt = was.IndexOf('>');
+                        if (gt >= 0)
+                        {
+                            set = DefDatabase<TimeAssignmentDef>.GetNamedSilentFail(was.Substring(gt + 1));
+                            was = was.Substring(0, gt);
+                        }
+                        var def = DefDatabase<TimeAssignmentDef>.GetNamedSilentFail(was);
+                        if (def != null && set != null && p.timetable.GetAssignment(h) == set) p.timetable.SetAssignment(h, def);
                     }
                 }
             }

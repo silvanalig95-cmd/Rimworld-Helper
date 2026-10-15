@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    What's said now and then at a gathering an answer called (Source/ColonyCouncil/PlayOut), over the speaker's head.
+    Short lines: they float up and fade. An answer can add lines of its own; these fill in between.
+  -->
+
+  <!-- At a feast or a shared meal. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_PlayFeast</defName>
+    <lines>
+      <plain>
+        <li>Pass the salt down this end.</li>
+        <li>Is there more of this?</li>
+        <li>Who cooked? Somebody thank them.</li>
+        <li>I'll do the washing-up. Tomorrow.</li>
+        <li>Save some for whoever's on watch.</li>
+        <li>[winter] Warm food and a full table. That's the winter beaten.</li>
+        <li>[lowtech] Bread still warm from the stones.</li>
+        <li>[child] Can I have the last one?</li>
+      </plain>
+      <warm>
+        <li>Look at us, all at one table.</li>
+        <li>Eat up. There's plenty.</li>
+      </warm>
+      <blunt>
+        <li>Good food. More, please.</li>
+      </blunt>
+      <cheerful>
+        <li>Best meal in weeks.</li>
+        <li>I'm not moving until morning.</li>
+      </cheerful>
+      <gloomy>
+        <li>Make it last. You never know.</li>
+      </gloomy>
+      <cold>
+        <li>Adequate. Better than adequate, in fact.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- At a party, games, a remembrance night, an evening of stories. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_PlayParty</defName>
+    <lines>
+      <plain>
+        <li>Tell the one about the boar again.</li>
+        <li>Who's got the cards?</li>
+        <li>I haven't laughed like this in a while.</li>
+        <li>Your turn. Go on.</li>
+        <li>Remember the first winter?</li>
+        <li>[child] I'm not tired. I'm not.</li>
+      </plain>
+      <warm>
+        <li>We should do this more often.</li>
+      </warm>
+      <blunt>
+        <li>Fine. One more round.</li>
+      </blunt>
+      <cheerful>
+        <li>Again, again!</li>
+      </cheerful>
+      <gloomy>
+        <li>Enjoy it while it lasts.</li>
+      </gloomy>
+      <cold>
+        <li>I suppose this is good for morale.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Round a fire: a bonfire, a midsummer fire, a long night. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_PlayFire</defName>
+    <lines>
+      <plain>
+        <li>Another log on, somebody.</li>
+        <li>Look at the sparks go.</li>
+        <li>Move over, I'm freezing on this side.</li>
+        <li>My face is hot and my back is cold.</li>
+        <li>[night] Look at all those stars.</li>
+        <li>[child] Can I poke it with a stick?</li>
+      </plain>
+      <warm>
+        <li>This is what home is.</li>
+      </warm>
+      <blunt>
+        <li>Don't let it die down.</li>
+      </blunt>
+      <cheerful>
+        <li>Let's keep it going till dawn.</li>
+      </cheerful>
+      <gloomy>
+        <li>Everything burns down in the end.</li>
+      </gloomy>
+      <cold>
+        <li>A waste of wood. A good waste.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- At a toast, a speech, a reading, a few words said in front of everyone. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_PlayToast</defName>
+    <lines>
+      <plain>
+        <li>Cups up, everyone.</li>
+        <li>Hear, hear.</li>
+        <li>Quiet at the back.</li>
+        <li>To all of us.</li>
+        <li>Somebody say a few words.</li>
+      </plain>
+      <warm>
+        <li>To the ones who aren't here to drink with us.</li>
+      </warm>
+      <blunt>
+        <li>Short speech. Then we drink.</li>
+      </blunt>
+      <cheerful>
+        <li>To us, and to many more of these.</li>
+      </cheerful>
+      <gloomy>
+        <li>To getting through the next one.</li>
+      </gloomy>
+      <cold>
+        <li>Noted. Now, the cups.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- At a gathering to hear something said: an apology, a reading, a story told, a question answered. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_PlayWords</defName>
+    <lines>
+      <plain>
+        <li>Quiet, everyone. Let them speak.</li>
+        <li>Go on.</li>
+        <li>I never knew that.</li>
+        <li>Can you say that last part again?</li>
+        <li>[child] Is that true?</li>
+      </plain>
+      <warm>
+        <li>Thank you for telling us.</li>
+      </warm>
+      <blunt>
+        <li>Get to the point.</li>
+      </blunt>
+      <cheerful>
+        <li>Better than any story I know.</li>
+      </cheerful>
+      <gloomy>
+        <li>Some things are better left unsaid.</li>
+      </gloomy>
+      <cold>
+        <li>Noted.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- At a gathering with music: a song, a dance, the fiddler's evening. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_PlaySong</defName>
+    <lines>
+      <plain>
+        <li>Everyone knows this one.</li>
+        <li>Faster. No, slower.</li>
+        <li>That's not how the second verse goes.</li>
+        <li>Clap along, then.</li>
+        <li>[child] Teach me the words.</li>
+      </plain>
+      <warm>
+        <li>My mother used to sing this.</li>
+      </warm>
+      <blunt>
+        <li>I'm not singing. Fine, one.</li>
+      </blunt>
+      <cheerful>
+        <li>Up you get. Dance.</li>
+      </cheerful>
+      <gloomy>
+        <li>Why are all the old songs sad?</li>
+      </gloomy>
+      <cold>
+        <li>Off key, all of you.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- At a grave or a remembrance: quiet words for the dead. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_PlayRemembrance</defName>
+    <lines>
+      <plain>
+        <li>I still set out a cup for them.</li>
+        <li>They'd have hated all this fuss.</li>
+        <li>Do you remember how they laughed?</li>
+        <li>The flowers came up again this year.</li>
+      </plain>
+      <warm>
+        <li>We haven't forgotten you.</li>
+      </warm>
+      <blunt>
+        <li>Miss you, you old fool.</li>
+      </blunt>
+      <cheerful>
+        <li>They'd want us to tell the funny stories.</li>
+      </cheerful>
+      <gloomy>
+        <li>It doesn't get easier.</li>
+      </gloomy>
+      <cold>
+        <li>A good worker. A good friend.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

@@ -18,6 +18,8 @@ namespace ColonyCouncil
             try
             {
                 CouncilGameComponent.Instance?.pressures?.Notify_Ate(ingester, __instance);
+                // A meal eaten at a feast an answer called (PlayOut/): counted for its closing message.
+                PlayOuts.Notify_Ate(ingester, __instance);
             }
             catch (System.Exception e)
             {
