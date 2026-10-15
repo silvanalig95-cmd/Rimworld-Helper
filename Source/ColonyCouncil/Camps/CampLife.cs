@@ -357,7 +357,7 @@ namespace ColonyCouncil
             dayKey = -1;
             Unpack();
             foreach (var p in plans.Where(p => !p.placed && !p.dropped)) PlaceBlueprint(p);
-            Note(Text("CC_Camp_Arrived"), MessageTypeDefOf.NeutralEvent, Importance.Notable);
+            Note(Text("CC_Camp_Arrived"), MessageTypeDefOf.NeutralEvent, Importance.Notable, now: true);
         }
 
         /// <summary>The materials they carried go down in their stash.</summary>

@@ -284,7 +284,7 @@ namespace ColonyCouncil
             var keeper = Keeper(d, home);
             comp?.AddChronicle(new ChronicleEntry(ChronicleKind.Life, "CC_Cal_Chronicle_Kept".Translate(d.label).Resolve(), keeper));
             if (!told && !quiet && d.way != DayWay.Remembrance)
-                Notify.Message("CC_Cal_Kept".Translate(d.label.CapitalizeFirst(), WayLabel(d.way)).Resolve(), new LookTargets(home), MessageTypeDefOf.PositiveEvent,
+                News.Post("CC_Cal_Kept".Translate(d.label.CapitalizeFirst(), WayLabel(d.way)).Resolve(), new LookTargets(home), NewsKind.Colony, MessageTypeDefOf.PositiveEvent,
                     byDefault ? Importance.Notable : Importance.Flavor);
         }
 
@@ -400,7 +400,7 @@ namespace ColonyCouncil
             var result = CalendarMath.Pass(ref d.keptYears, ref d.tradition, ref d.breaks);
             if (result == CalendarMath.PassResult.Passed)
             {
-                Notify.Message("CC_Cal_LetPass".Translate(d.label.CapitalizeFirst()).Resolve(), null, MessageTypeDefOf.NeutralEvent, Importance.Flavor);
+                News.Post("CC_Cal_LetPass".Translate(d.label.CapitalizeFirst()).Resolve(), null, NewsKind.Colony, MessageTypeDefOf.NeutralEvent, Importance.Flavor);
                 return;
             }
             using var _cause = Causes.Push("CC_Cause_Tradition".Translate(d.label).Resolve());
@@ -412,7 +412,7 @@ namespace ColonyCouncil
             }
             comp?.annals.Notify_Tradition(d.label, false);
             bool lapsed = result == CalendarMath.PassResult.Lapsed;
-            Messages.Message((lapsed ? "CC_Tradition_Lapsed" : "CC_Tradition_Broken").Translate(d.label).Resolve(), MessageTypeDefOf.NegativeEvent, false);
+            News.Post((lapsed ? "CC_Tradition_Lapsed" : "CC_Tradition_Broken").Translate(d.label).Resolve(), null, NewsKind.Colony, MessageTypeDefOf.NegativeEvent);
             comp?.AddChronicle(new ChronicleEntry(ChronicleKind.Council, (lapsed ? "CC_Chronicle_TraditionLapsed" : "CC_Chronicle_TraditionBroken").Translate(d.label).Resolve(), null));
         }
 
@@ -463,7 +463,7 @@ namespace ColonyCouncil
                 if (!S.anniversaries)
                 {
                     string msg = Fill(Flavor.FromPool("Council_Cal_Letter_Arrival", p, null, null, Tags(d, years).ToArray()), d, years, map, p, null);
-                    if (!msg.NullOrEmpty()) Notify.Message(msg, new LookTargets(p), MessageTypeDefOf.PositiveEvent, Importance.Notable);
+                    if (!msg.NullOrEmpty()) News.Post(msg, new LookTargets(p), NewsKind.People, MessageTypeDefOf.PositiveEvent, Importance.Notable);
                     using (Causes.Push("CC_Cause_Anniversary".Translate().Resolve())) CouncilGameComponent.GiveThought(p, CouncilDefOf.Council_Anniversary);
                 }
                 if (friend != null) comp?.journals.WriteTagged(friend, "Council_Journal_Cal_Arrival", Tags(d, years).ToArray(), null, args.Concat(new[] { p.Named("OTHER") }).ToArray());
@@ -476,7 +476,7 @@ namespace ColonyCouncil
                 return;
             }
             string line = Fill(Flavor.FromPool("Council_Cal_Letter_Birthday", p, null, null, Tags(d, years).ToArray()), d, years, map, p, friend);
-            if (!line.NullOrEmpty()) Notify.Message(line, new LookTargets(p), MessageTypeDefOf.PositiveEvent, Importance.Notable);
+            if (!line.NullOrEmpty()) News.Post(line, new LookTargets(p), NewsKind.People, MessageTypeDefOf.PositiveEvent, Importance.Notable);
             CouncilGameComponent.GiveThought(p, CalendarDefOf.Council_Cal_Birthday, null, -1f, "CC_Cal_Cause_Birthday".Translate().Resolve());
             var tags = Tags(d, years);
             comp?.journals.WriteTagged(p, "Council_Journal_Cal_Birthday", tags.Concat(new[] { "self" }).ToArray(), null, args.ToArray());

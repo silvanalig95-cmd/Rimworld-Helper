@@ -172,7 +172,7 @@ namespace ColonyCouncil
                 {
                     m.due = Mathf.Min(now + GenDate.TicksPerDay / 2, m.deadline);
                     string line = Line(More?.ready, m, map, null, TextUtil.DaysString(m.due - now));
-                    if (!line.NullOrEmpty()) Messages.Message(line, MessageTypeDefOf.PositiveEvent, false);
+                    if (!line.NullOrEmpty()) News.Post(line, null, NewsKind.World, MessageTypeDefOf.PositiveEvent);
                 }
             }
             else if (m.stage == 1 && !all) m.stage = 0;

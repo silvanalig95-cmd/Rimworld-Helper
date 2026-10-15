@@ -100,7 +100,7 @@ namespace ColonyCouncil
                 if (S.offices && gone != null)
                 {
                     var def = DefDatabase<OfficeDef>.GetNamedSilentFail(k);
-                    if (def != null) Messages.Message("CC_Office_Vacant".Translate(def.label, gone.LabelShort).Resolve(), MessageTypeDefOf.NeutralEvent, false);
+                    if (def != null) News.Post("CC_Office_Vacant".Translate(def.label, gone.LabelShort).Resolve(), null, NewsKind.Colony, MessageTypeDefOf.NeutralEvent);
                 }
             }
             SyncHediffs();

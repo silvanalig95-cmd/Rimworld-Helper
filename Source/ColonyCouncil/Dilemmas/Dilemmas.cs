@@ -1020,12 +1020,12 @@ namespace ColonyCouncil
                 traditions.Remove(key);
                 traditionCount[key] = 0;
                 traditionBreaks[key] = 0;
-                Messages.Message("CC_Tradition_Lapsed".Translate(def.traditionLabel).Resolve(), MessageTypeDefOf.NegativeEvent, false);
+                News.Post("CC_Tradition_Lapsed".Translate(def.traditionLabel).Resolve(), null, NewsKind.Colony, MessageTypeDefOf.NegativeEvent);
                 comp.AddChronicle(new ChronicleEntry(ChronicleKind.Council, "CC_Chronicle_TraditionLapsed".Translate(def.traditionLabel).Resolve(), null));
             }
             else
             {
-                Messages.Message("CC_Tradition_Broken".Translate(def.traditionLabel).Resolve(), MessageTypeDefOf.NegativeEvent, false);
+                News.Post("CC_Tradition_Broken".Translate(def.traditionLabel).Resolve(), null, NewsKind.Colony, MessageTypeDefOf.NegativeEvent);
                 comp.AddChronicle(new ChronicleEntry(ChronicleKind.Council, "CC_Chronicle_TraditionBroken".Translate(def.traditionLabel).Resolve(), null));
             }
         }

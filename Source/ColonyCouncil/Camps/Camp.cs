@@ -245,10 +245,12 @@ namespace ColonyCouncil
             if (chronicle) CouncilGameComponent.Instance?.AddChronicle(new ChronicleEntry(ChronicleKind.World, label + ": " + FirstSentence(text), about));
         }
 
-        public void Note(string text, MessageTypeDef type, Importance importance = Importance.Notable, Thing look = null)
+        /// <summary>A message about the camp's life; it waits for the evening's colony news unless it's news <paramref name="now"/> (the camp arriving).</summary>
+        public void Note(string text, MessageTypeDef type, Importance importance = Importance.Notable, Thing look = null, bool now = false)
         {
             if (text.NullOrEmpty()) return;
-            Notify.Message(text, look != null && look.Spawned ? new LookTargets(look) : Look, type, importance);
+            if (now) Notify.Message(text, look != null && look.Spawned ? new LookTargets(look) : Look, type, importance);
+            else News.Post(text, look != null && look.Spawned ? new LookTargets(look) : Look, NewsKind.World, type, importance);
         }
 
         private static string FirstSentence(string text)

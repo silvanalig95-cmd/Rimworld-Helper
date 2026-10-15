@@ -192,7 +192,7 @@ namespace ColonyCouncil
                 else
                 {
                     string text = "CC_Ways_Fading".Translate(pole).Resolve();
-                    Notify.Message(text, LookTargets.Invalid, MessageTypeDefOf.NeutralEvent, Importance.Notable);
+                    News.Post(text, LookTargets.Invalid, NewsKind.Colony, MessageTypeDefOf.NeutralEvent, Importance.Notable);
                     comp.AddChronicle(new ChronicleEntry(ChronicleKind.Council, text, null));
                 }
             }
@@ -214,8 +214,8 @@ namespace ColonyCouncil
             faction.TryAffectGoodwillWith(Faction.OfPlayer, amount, false, false);
             string key = amount > 0 ? "CC_Ways_WordGood" : "CC_Ways_WordBad";
             string what = PoleLabel(Mathf.Abs(g) >= Mathf.Abs(o) ? Way.Generosity : Way.Openness, amount > 0);
-            Notify.Message(key.Translate(faction.Name, what, amount.ToStringWithSign()).Resolve(), LookTargets.Invalid,
-                amount > 0 ? MessageTypeDefOf.PositiveEvent : MessageTypeDefOf.NegativeEvent, Importance.Flavor);
+            News.Post(key.Translate(faction.Name, what, amount.ToStringWithSign()).Resolve(), LookTargets.Invalid,
+                NewsKind.World, amount > 0 ? MessageTypeDefOf.PositiveEvent : MessageTypeDefOf.NegativeEvent, Importance.Flavor);
         }
 
         // ---------------- Who approves ----------------

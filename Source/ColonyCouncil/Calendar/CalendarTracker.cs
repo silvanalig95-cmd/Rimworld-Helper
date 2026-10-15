@@ -266,7 +266,7 @@ namespace ColonyCouncil
                 if (d.lastYear >= occ) continue;
                 d.lastYear = occ;
                 if (On && !d.Personal && occ > d.sinceYear)
-                    Notify.Message("CC_Cal_Missed".Translate(d.label.CapitalizeFirst()).Resolve(), null, MessageTypeDefOf.NeutralEvent, Importance.Notable);
+                    News.Post("CC_Cal_Missed".Translate(d.label.CapitalizeFirst()).Resolve(), null, NewsKind.Colony, MessageTypeDefOf.NeutralEvent, Importance.Notable);
             }
         }
 
@@ -359,7 +359,7 @@ namespace ColonyCouncil
             }
             days.Add(d);
             if (announce && On && !d.Personal)
-                Notify.Message("CC_Cal_NewDay".Translate(d.label, DateText(d.day)).Resolve(), null, MessageTypeDefOf.NeutralEvent, Importance.Flavor);
+                News.Post("CC_Cal_NewDay".Translate(d.label, DateText(d.day)).Resolve(), null, NewsKind.Colony, MessageTypeDefOf.NeutralEvent, Importance.Flavor);
             return d;
         }
 
@@ -538,7 +538,7 @@ namespace ColonyCouncil
                 };
                 if (TryAdd(d, false) == null || !On) return;
                 bool young = now < GenDate.TicksPerYear;
-                Notify.Message((young ? "CC_Cal_FirstSnowEver" : "CC_Cal_FirstSnowNoted").Translate().Resolve(), null, MessageTypeDefOf.NeutralEvent, Importance.Notable);
+                News.Post((young ? "CC_Cal_FirstSnowEver" : "CC_Cal_FirstSnowNoted").Translate().Resolve(), null, NewsKind.Land, MessageTypeDefOf.NeutralEvent, Importance.Notable);
                 var writer = AtHome(map).RandomElementWithFallback();
                 if (writer != null)
                     CouncilGameComponent.Instance?.journals.WriteTagged(writer, "Council_Journal_Cal_FirstSnow", new[] { "new" }, null, d.label.Named("NAME"), 0.Named("YEARS"));

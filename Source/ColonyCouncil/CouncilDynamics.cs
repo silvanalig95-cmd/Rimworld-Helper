@@ -167,8 +167,8 @@ namespace ColonyCouncil
             if (line.NullOrEmpty()) line = Flavor.FromPool("Council_Pool_Objection", best, w, ToneUtility.ToneFor(best));
             line = line?.Formatted(best.Named("PAWN"), w.pawn.Named("OTHER"), w.Label.Named("WISH"), (w.other ?? w.Beneficiary).Named("ABOUT")).Resolve();
             if (line.NullOrEmpty()) return;
-            Messages.Message("CC_ObjectionMessage".Translate(best.Named("PAWN"), w.pawn.Named("OTHER"), w.Label.Named("WISH")).Resolve() + " \"" + TextUtil.ShortSpeech(line, 120) + "\"",
-                new LookTargets(best), MessageTypeDefOf.SilentInput, false);
+            News.Post("CC_ObjectionMessage".Translate(best.Named("PAWN"), w.pawn.Named("OTHER"), w.Label.Named("WISH")).Resolve() + " \"" + TextUtil.ShortSpeech(line, 120) + "\"",
+                new LookTargets(best), NewsKind.Colony, MessageTypeDefOf.SilentInput);
             Speak(best, line, SpeechSour);
             AddChronicle(new ChronicleEntry(ChronicleKind.Petition, "CC_Chronicle_Objection".Translate(best.LabelShort, w.pawn.LabelShort, w.Label).Resolve(), best));
         }
@@ -327,7 +327,7 @@ namespace ColonyCouncil
             if (s.grantedLetters || inspired != null)
                 Find.LetterStack.ReceiveLetter(title, body, LetterDefOf.PositiveEvent, new LookTargets(who));
             else
-                Messages.Message(title + ": \"" + TextUtil.ShortSpeech(thanks, 120) + "\"", new LookTargets(who), MessageTypeDefOf.PositiveEvent, false);
+                News.Post(title + ": \"" + TextUtil.ShortSpeech(thanks, 120) + "\"", new LookTargets(who), NewsKind.Colony, MessageTypeDefOf.PositiveEvent);
 
             Speak(who, thanks, SpeechGood);
             AddChronicle(new ChronicleEntry(ChronicleKind.WishGranted,
@@ -526,8 +526,8 @@ namespace ColonyCouncil
             }
             if (line.NullOrEmpty()) line = "CC_ExpiredFallback".Translate();
             string titleKey = w.promised ? "CC_PromiseBrokenTitle" : "CC_WishExpiredTitle";
-            Messages.Message(titleKey.Translate(w.pawn.Named("PAWN"), w.Label.Named("WISH")).Resolve() + ": \"" + TextUtil.ShortSpeech(line, 120) + "\"",
-                new LookTargets(w.pawn), w.promised && pen > 0f ? MessageTypeDefOf.NegativeEvent : MessageTypeDefOf.NeutralEvent, false);
+            News.Post(titleKey.Translate(w.pawn.Named("PAWN"), w.Label.Named("WISH")).Resolve() + ": \"" + TextUtil.ShortSpeech(line, 120) + "\"",
+                new LookTargets(w.pawn), NewsKind.Colony, w.promised && pen > 0f ? MessageTypeDefOf.NegativeEvent : MessageTypeDefOf.NeutralEvent);
             if (w.pawn.Spawned) Speak(w.pawn, line, w.promised ? SpeechSour : SpeechGrey);
             AddChronicle(new ChronicleEntry(ChronicleKind.WishExpired,
                 (w.promised ? "CC_Chronicle_PromiseBroken" : "CC_Chronicle_WishExpired").Translate(w.pawn.LabelShort, w.Label).Resolve(), w.pawn));
@@ -678,8 +678,8 @@ namespace ColonyCouncil
                     if (line != null)
                     {
                         Speak(p, line, SpeechSour);
-                        if (s.Negatives) Messages.Message("CC_BitterMessage".Translate(p.Named("PAWN")).Resolve() + " \"" + TextUtil.ShortSpeech(line, 120) + "\"",
-                            new LookTargets(p), MessageTypeDefOf.SilentInput, false);
+                        if (s.Negatives) News.Post("CC_BitterMessage".Translate(p.Named("PAWN")).Resolve() + " \"" + TextUtil.ShortSpeech(line, 120) + "\"",
+                            new LookTargets(p), NewsKind.Colony, MessageTypeDefOf.SilentInput);
                     }
                 }
                 if (s.Harsh && Rand.Chance(0.2f)) MaybeSulk(p, null);
@@ -809,7 +809,7 @@ namespace ColonyCouncil
 
         public void Notify_DecreeEnded(DecreeDef def, bool early)
         {
-            Messages.Message((early ? "CC_Decree_Repealed" : "CC_Decree_Expired").Translate(def.LabelCap).Resolve(), MessageTypeDefOf.NeutralEvent, false);
+            News.Post((early ? "CC_Decree_Repealed" : "CC_Decree_Expired").Translate(def.LabelCap).Resolve(), null, NewsKind.Colony, MessageTypeDefOf.NeutralEvent);
             AddChronicle(new ChronicleEntry(ChronicleKind.Council, (early ? "CC_Chronicle_DecreeRepealed" : "CC_Chronicle_DecreeExpired").Translate(def.label).Resolve(), null));
         }
 
@@ -860,8 +860,8 @@ namespace ColonyCouncil
                 st.yearsMarked = years;
                 string key = years == 1 ? "CC_Anniversary_One" : years >= 5 ? "CC_Anniversary_Old" : "CC_Anniversary_Many";
                 string line = Scene("Council_Pool_Anniversary", p, null);
-                Messages.Message(key.Translate(p.Named("PAWN"), years.Named("YEARS")).Resolve() + (line != null ? " \"" + TextUtil.ShortSpeech(line, 120) + "\"" : ""),
-                    new LookTargets(p), MessageTypeDefOf.PositiveEvent, false);
+                News.Post(key.Translate(p.Named("PAWN"), years.Named("YEARS")).Resolve() + (line != null ? " \"" + TextUtil.ShortSpeech(line, 120) + "\"" : ""),
+                    new LookTargets(p), NewsKind.People, MessageTypeDefOf.PositiveEvent);
                 Speak(p, line, SpeechGood);
                 GiveThought(p, CouncilDefOf.Council_Anniversary);
                 standings.Change(p, 3f, "CC_Log_Anniversary".Translate(years));
