@@ -8,7 +8,7 @@
 
   <!-- Settings -->
   <CC_Settings_Camps>... including groups who make camp on the map</CC_Settings_Camps>
-  <CC_Settings_Camps_Tip>Now and then a group that isn't hostile (hunters, refugees, prospectors, pilgrims, traders, a smith, a hermit) makes camp on the colony's map for a few days to a season. They build a small camp, hunt and cut wood around it, and can be traded with, given terms, hired, asked to leave or driven off. At most one camp at a time, never in a colony's first weeks. Off: no new camps (one already here stays until its time is up).</CC_Settings_Camps_Tip>
+  <CC_Settings_Camps_Tip>Now and then a group that isn't hostile (hunters, refugees, prospectors, pilgrims, traders, a smith, a hermit, healers, a procession of the faithful, traveling players, surveyors) makes camp on the colony's map for a few days to a season. They build a small camp, hunt and cut wood around it, and can be traded with, given terms, hired, asked to leave or driven off. At most one camp at a time, never in a colony's first weeks. Off: no new camps (one already here stays until its time is up).</CC_Settings_Camps_Tip>
 
   <!-- Where -->
   <CC_Camp_Dir_E>east of the colony</CC_Camp_Dir_E>
