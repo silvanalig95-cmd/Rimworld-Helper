@@ -84,7 +84,9 @@ namespace ColonyCouncil
         {
             if (text.NullOrEmpty()) return;
             if (importance.HasValue && !Notify.Shows(importance.Value)) return;
-            var item = new NewsItem { text = text, kind = kind, look = look != null && look.IsValid ? look : null, type = type ?? MessageTypeDefOf.NeutralEvent };
+            // A copy of the places, so what's kept for the evening isn't shared with (or changed under) whoever sent it.
+            var places = look?.targets != null && look.IsValid ? new LookTargets(look.targets) : null;
+            var item = new NewsItem { text = text, kind = kind, look = places, type = type ?? MessageTypeDefOf.NeutralEvent };
             try
             {
                 switch (Mode)
