@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- ===================== Colony news: the day's smaller news in one letter (Source/ColonyCouncil/UI/News.cs) ===================== -->
+
+  <CC_News_Label>Colony news</CC_News_Label>
+  <CC_News_Intro>What happened today that didn't need an answer from you, gathered for the evening.</CC_News_Intro>
+  <CC_News_Kind_People>people</CC_News_Kind_People>
+  <CC_News_Kind_Health>health</CC_News_Kind_Health>
+  <CC_News_Kind_Colony>the colony</CC_News_Kind_Colony>
+  <CC_News_Kind_World>the world</CC_News_Kind_World>
+  <CC_News_Kind_Land>the land</CC_News_Kind_Land>
+  <CC_News_Go>Go there</CC_News_Go>
+  <CC_News_GoTip>Close the news and go to where it happened. The letter stays until you close it.</CC_News_GoTip>
+
+  <!-- The setting (Interface & integrations page, under Messages) -->
+  <CC_SetLabel_ColonyNews>Colony news</CC_SetLabel_ColonyNews>
+  <CC_SetTip_ColonyNews>Where Rimfolk's smaller news goes: new friends and rivals, quirks, personal stories, birthdays, ailments and recoveries, kept days and traditions, names, dreams, camps, strangers and the like. Letters that ask you to decide something, and serious news (a death, a raid, a serious illness, a camp arriving), always come at once. How much of the smaller news there is at all is set by "How many messages".</CC_SetTip_ColonyNews>
+  <CC_NewsMode_AsItHappens>As it happens</CC_NewsMode_AsItHappens>
+  <CC_NewsMode_AsItHappens_Tip>A message in the corner for each piece of news, the moment it happens, as Rimfolk always did.</CC_NewsMode_AsItHappens_Tip>
+  <CC_NewsMode_Digest>Daily digest</CC_NewsMode_Digest>
+  <CC_NewsMode_Digest_Tip>One quiet "Colony news" letter each evening, around six, with a line for each piece of news under its heading (people, health, the colony, the world, the land) and a button to go where it happened. A day with only one piece of news brings a message instead.</CC_NewsMode_Digest_Tip>
+  <CC_NewsMode_Off>Off</CC_NewsMode_Off>
+  <CC_NewsMode_Off_Tip>No message and no letter: the smaller news goes straight into the message log of the History tab, to read when you like.</CC_NewsMode_Off_Tip>
+  <CC_SetNote_News_AsItHappens>A message for each piece of smaller news, the moment it happens.</CC_SetNote_News_AsItHappens>
+  <CC_SetNote_News_Digest>The smaller news comes together in one Colony news letter each evening.</CC_SetNote_News_Digest>
+  <CC_SetNote_News_Off>The smaller news goes only to the message log in the History tab.</CC_SetNote_News_Off>
+
+</LanguageData>

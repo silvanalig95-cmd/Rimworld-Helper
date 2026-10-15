@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The evening's colony news (UI/News.cs): the day's smaller news in one letter. Quiet on purpose, like the welcome
+       letter: no bounce, no flash, the plain letter sound. -->
+  <LetterDef>
+    <defName>Council_NewsLetter</defName>
+    <letterClass>ColonyCouncil.ChoiceLetter_News</letterClass>
+    <color>(185, 180, 160)</color>
+    <flashColor>(185, 180, 160)</flashColor>
+    <arriveSound>LetterArrive</arriveSound>
+    <bounce>false</bounce>
+  </LetterDef>
+
+</Defs>
