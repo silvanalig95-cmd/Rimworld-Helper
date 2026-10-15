@@ -70,7 +70,7 @@ namespace ColonyCouncil
                 awarded++;
             }
             if (firstRound.Count > 0)
-                Messages.Message("CC_Epithet_FirstRound".Translate(TextUtil.JoinAnd(firstRound)).Resolve(), MessageTypeDefOf.NeutralEvent, false);
+                News.Post("CC_Epithet_FirstRound".Translate(TextUtil.JoinAnd(firstRound)).Resolve(), null, NewsKind.People, MessageTypeDefOf.NeutralEvent);
         }
 
         /// <summary>
@@ -92,7 +92,7 @@ namespace ColonyCouncil
             holders[def.defName] = p;
             string text = def.earned.Formatted(p.Named("PAWN")).Resolve();
             if (previous != null) text += " " + "CC_Epithet_Taken".Translate(previous.Named("OTHER"), def.label.Named("TITLE")).Resolve();
-            Notify.Message(text, new LookTargets(p), def.dubious ? MessageTypeDefOf.NeutralEvent : MessageTypeDefOf.PositiveEvent, Importance.Notable);
+            News.Post(text, new LookTargets(p), NewsKind.People, def.dubious ? MessageTypeDefOf.NeutralEvent : MessageTypeDefOf.PositiveEvent, Importance.Notable);
             CouncilGameComponent.GiveThought(p, def.dubious ? CouncilDefOf.Council_EpithetDubious : CouncilDefOf.Council_Epithet);
             if (previous != null && !def.dubious)
             {

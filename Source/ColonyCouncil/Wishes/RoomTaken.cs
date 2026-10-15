@@ -121,7 +121,7 @@ namespace ColonyCouncil
             st.ownRoomLossNoted = true;
             int had = Math.Max(0, Find.TickManager.TicksGame - st.ownRoomGranted);
             comp.journals.Write(p, "Council_Journal_RoomTaken", null, TextUtil.DaysString(had).Named("DAYS"));
-            if (On) Notify.Message("CC_RoomTaken_Message".Translate(p.Named("PAWN")).Resolve(), new LookTargets(p), MessageTypeDefOf.NeutralEvent, Importance.Notable);
+            if (On) News.Post("CC_RoomTaken_Message".Translate(p.Named("PAWN")).Resolve(), new LookTargets(p), NewsKind.People, MessageTypeDefOf.NeutralEvent, Importance.Notable);
         }
 
         /// <summary>

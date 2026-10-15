@@ -254,7 +254,7 @@ namespace ColonyCouncil
             SyncKnacks();
             string line = Line(d.gained, q);
             if (!line.NullOrEmpty()) comp.journals.WriteText(p, line);
-            Notify.Message("CC_Quirk_Gained".Translate(p.Named("PAWN"), q.Label.Named("QUIRK")).Resolve() + (line.NullOrEmpty() ? "" : " \"" + line + "\""), p, MessageTypeDefOf.SilentInput, Importance.Flavor);
+            News.Post("CC_Quirk_Gained".Translate(p.Named("PAWN"), q.Label.Named("QUIRK")).Resolve() + (line.NullOrEmpty() ? "" : " \"" + line + "\""), p, NewsKind.People, MessageTypeDefOf.SilentInput, Importance.Flavor);
         }
 
         private static List<HediffDef> knacks;

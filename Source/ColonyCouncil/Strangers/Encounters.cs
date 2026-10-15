@@ -213,7 +213,7 @@ namespace ColonyCouncil
                 }
             }
             comp.character.Shift(def.ways, text);
-            Notify.Message(text, new LookTargets(a, x), MessageTypeDefOf.SilentInput, def.notable ? Importance.Notable : Importance.Flavor);
+            News.Post(text, new LookTargets(a, x), NewsKind.World, MessageTypeDefOf.SilentInput, def.notable ? Importance.Notable : Importance.Flavor);
             // Into the social log too, where Interaction Bubbles picks it up (Integrations/SocialLog.cs).
             SocialLog.Add(a, x, text);
             if (def.notable) comp.AddChronicle(new ChronicleEntry(ChronicleKind.Stranger, text, a));

@@ -179,8 +179,12 @@ play deep. In order:
   (light touch, story-rich, demanding, default, beside the old quick setups) that list what they'd change before
   they do; every page scrolls, and the window fits small screens at big interface scales. Drawn from one list that the
   tests check against the settings class, so every setting is on exactly one page and keeps its saved name.
-- A news digest: minor happenings gathered into one "colony news" letter a day instead of many messages; letters
-  kept for decisions.
+- Done (October 2026): a news digest. The smaller news of Rimfolk's systems (quirks, personal stories, birthdays,
+  health records, traditions, dreams, camps, encounters, names, bonds and the like) waits for the evening and comes
+  around six as one quiet "Colony news" letter, a line each under people, health, the colony, the world and the
+  land, with a button to go where each happened; a single piece of news comes as a message. Decisions and serious
+  news (deaths, raids, serious illness, a camp arriving) keep their own letters and messages, at once. A setting,
+  Colony news (as it happens, daily digest, off: the History tab's message log only), on the Interface page.
 - Done (October 2026): a first-run welcome letter (once per colony; saves that already had Rimfolk skip it without a
   setting) and a "Start here" Almanac page; the council window remembers its page, across sessions too.
 - Done (October 2026): Rimfolk's pawn tabs fit the space above RimHUD and other tall inspect panes (checked by tests for

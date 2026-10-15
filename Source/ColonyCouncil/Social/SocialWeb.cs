@@ -318,7 +318,7 @@ namespace ColonyCouncil
             string key = graduated ? "CC_Tie_Graduated" : "CC_Tie_Ended_" + t.kind;
             if (!key.CanTranslate()) return;
             var comp = CouncilGameComponent.Instance;
-            Notify.Message(key.Translate(t.a.Named("A"), t.b.Named("B"), (t.skill?.label ?? "").Named("SKILL")).Resolve(), new LookTargets(t.a, t.b), MessageTypeDefOf.NeutralEvent, graduated ? Importance.Notable : Importance.Flavor);
+            News.Post(key.Translate(t.a.Named("A"), t.b.Named("B"), (t.skill?.label ?? "").Named("SKILL")).Resolve(), new LookTargets(t.a, t.b), NewsKind.People, MessageTypeDefOf.NeutralEvent, graduated ? Importance.Notable : Importance.Flavor);
             comp?.AddChronicle(new ChronicleEntry(ChronicleKind.Bond, key.Translate(t.a.Named("A"), t.b.Named("B"), (t.skill?.label ?? "").Named("SKILL")).Resolve(), t.a));
             string prefix = graduated ? "Council_Journal_TieGraduated_" : "Council_Journal_TieEnded_";
             comp?.journals.Write(t.a, JournalPool(prefix, t, t.a), null, t.b.Named("OTHER"), (t.skill?.label ?? "").Named("SKILL"));
@@ -331,7 +331,7 @@ namespace ColonyCouncil
             var comp = CouncilGameComponent.Instance;
             string key = "CC_Tie_Formed_" + t.kind;
             var args = new[] { t.a.Named("A"), t.b.Named("B"), (t.skill?.label ?? "").Named("SKILL") };
-            Notify.Message(key.Translate(args).Resolve(), new LookTargets(t.a, t.b), t.kind == TieKind.Rivals ? MessageTypeDefOf.NegativeEvent : MessageTypeDefOf.PositiveEvent, Importance.Notable);
+            News.Post(key.Translate(args).Resolve(), new LookTargets(t.a, t.b), NewsKind.People, t.kind == TieKind.Rivals ? MessageTypeDefOf.NegativeEvent : MessageTypeDefOf.PositiveEvent, Importance.Notable);
             comp?.AddChronicle(new ChronicleEntry(ChronicleKind.Bond, key.Translate(args).Resolve(), t.a));
             comp?.annals.Notify_Tie(t);
             comp?.journals.Write(t.a, JournalPool("Council_Journal_TieFormed_", t, t.a), null, t.b.Named("OTHER"), (t.skill?.label ?? "").Named("SKILL"));

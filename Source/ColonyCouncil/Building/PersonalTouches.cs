@@ -105,8 +105,8 @@ namespace ColonyCouncil
                 GenConstruct.PlaceBlueprintForBuild(def, cell, map, rot, Faction.OfPlayer, stuff);
                 pending.Add(new PersonalTouch { pawn = pawn, def = def, cell = cell, map = map, createdTick = Find.TickManager.TicksGame });
                 string line = Line("CC_Touch_", pawn, def);
-                Messages.Message("CC_Touch_Message".Translate(pawn.Named("PAWN"), Avail.Indefinite(def).Named("THING")).Resolve() + " \"" + line + "\"",
-                    new LookTargets(new TargetInfo(cell, map)), MessageTypeDefOf.NeutralEvent, false);
+                News.Post("CC_Touch_Message".Translate(pawn.Named("PAWN"), Avail.Indefinite(def).Named("THING")).Resolve() + " \"" + line + "\"",
+                    new LookTargets(new TargetInfo(cell, map)), NewsKind.Colony, MessageTypeDefOf.NeutralEvent);
                 CouncilGameComponent.Speak(pawn, line, new Color(1f, 0.92f, 0.6f));
                 comp.AddChronicle(new ChronicleEntry(ChronicleKind.PersonalTouch,
                     "CC_Chronicle_Touch".Translate(pawn.LabelShort, def.label).Resolve(), pawn));

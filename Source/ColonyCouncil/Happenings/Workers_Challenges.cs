@@ -100,7 +100,7 @@ namespace ColonyCouncil
                     v.due = now + GenDate.TicksPerHour * 2;
                     return true;
                 }
-                Messages.Message("CC_Evt_ContestOff".Translate().Resolve(), MessageTypeDefOf.NeutralEvent, false);
+                News.Post("CC_Evt_ContestOff".Translate().Resolve(), null, NewsKind.World, MessageTypeDefOf.NeutralEvent);
                 return false;
             }
             int al = a.skills.GetSkill(v.skill)?.Level ?? 0;
@@ -253,7 +253,7 @@ namespace ColonyCouncil
             }
             if (!beast.Spawned)
             {
-                Messages.Message("CC_Evt_BeastGone".Translate(t.beastName ?? beast.LabelShort).Resolve(), MessageTypeDefOf.NeutralEvent, false);
+                News.Post("CC_Evt_BeastGone".Translate(t.beastName ?? beast.LabelShort).Resolve(), null, NewsKind.Land, MessageTypeDefOf.NeutralEvent);
                 comp.AddChronicle(new ChronicleEntry(ChronicleKind.World, "CC_Evt_BeastGone".Translate(t.beastName ?? beast.LabelShort).Resolve()));
                 t.beast = null;
             }
@@ -269,7 +269,7 @@ namespace ColonyCouncil
             var killer = dinfo?.Instigator as Pawn;
             if (killer == null || killer.Faction != Faction.OfPlayer || !killer.RaceProps.Humanlike)
             {
-                Messages.Message("CC_Evt_BeastDied".Translate(name).Resolve(), beast, MessageTypeDefOf.NeutralEvent, false);
+                News.Post("CC_Evt_BeastDied".Translate(name).Resolve(), beast, NewsKind.Land, MessageTypeDefOf.NeutralEvent);
                 comp.AddChronicle(new ChronicleEntry(ChronicleKind.World, "CC_Evt_BeastDied".Translate(name).Resolve()));
                 return;
             }

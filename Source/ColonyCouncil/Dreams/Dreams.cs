@@ -505,7 +505,7 @@ namespace ColonyCouncil
             untold[p] = new DreamMemo { kind = def.kind, other = c.other, tick = Find.TickManager.TicksGame };
 
             string message = "CC_Dream_Message".Translate(p.Named("PAWN"), text.Named("DREAM")).Resolve();
-            Notify.Message(message, p, def.omen != null ? MessageTypeDefOf.NeutralEvent : MessageTypeDefOf.SilentInput,
+            News.Post(message, p, NewsKind.People, def.omen != null ? MessageTypeDefOf.NeutralEvent : MessageTypeDefOf.SilentInput,
                 S.allDreamMessages || changed ? Importance.Notable : Importance.Flavor);
             if (def.notable || def.omen != null) comp.AddChronicle(new ChronicleEntry(ChronicleKind.Dream, message, p));
         }

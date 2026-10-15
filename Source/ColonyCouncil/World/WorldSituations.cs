@@ -454,7 +454,7 @@ namespace ColonyCouncil
             if (beat.options.NullOrEmpty())
             {
                 if (text.NullOrEmpty()) return true;
-                if (beat.message) Notify.Message(text, look, MessageTypeDefOf.NeutralEvent, Importance.Notable);
+                if (beat.message) News.Post(text, look, NewsKind.World, MessageTypeDefOf.NeutralEvent, Importance.Notable);
                 else Find.LetterStack.ReceiveLetter(label, text, beat.letter ?? WorldSituationDefOf.Council_WorldNews, look);
                 return true;
             }
@@ -598,7 +598,7 @@ namespace ColonyCouncil
                         try
                         {
                             VarietyUtil.PaySilver(map, IntVec3.Invalid, owed);
-                            Notify.Message("CC_WS_OwedPaid".Translate(owed, s.Label).Resolve(), LookTargets.Invalid, MessageTypeDefOf.PositiveEvent, Importance.Notable);
+                            News.Post("CC_WS_OwedPaid".Translate(owed, s.Label).Resolve(), LookTargets.Invalid, NewsKind.World, MessageTypeDefOf.PositiveEvent, Importance.Notable);
                         }
                         catch (Exception e)
                         {

@@ -1121,6 +1121,18 @@ then a content colonist hums at work, someone outside says something about the c
 night an idle colonist in good spirits may lie down to watch the sky. All of it happens only on the map you're
 looking at and only on screen, a handful at a time, and one setting (**Visual and sound touches**) turns it off.
 
+## Colony news
+Rimfolk's many systems each have small news to tell: a quirk picked up, a personal story moving on, a birthday, a
+doctor's good name, a tradition broken, a dream, a day at the camp, an encounter, a name earned. Rather than a
+message in the corner for each, the day's smaller news waits for the evening: around six a quiet **Colony news**
+letter brings it all, a line each under **people**, **health**, **the colony**, **the world** and **the land**, with a
+**Go there** button on every line that has a place. A day with a single piece of news brings a message instead, and
+what's waiting is saved with the game. Letters and messages that ask you to decide something (dilemmas, wishes,
+petitions, decree requests, meetings) and serious news (a death and its remembrance, raids and battles, nemeses, a
+serious illness, a camp arriving) still come at once. The **Colony news** setting can bring back a message for each,
+**as it happens**, or turn it **off**, so the smaller news goes only to the message log in the History tab; how much
+of it there is at all is still set by **How many messages**.
+
 ## Slow speeds
 Two speeds slower than normal, **½×** and **¼×**, for planning without pausing: the colony keeps living, gently.
 Small buttons sit next to the time controls (drag them by their grip to put them wherever you like; on a
@@ -1187,8 +1199,9 @@ The pages:
   plants, mine rock, replace your own buildings, smooth stone; the planner shows the same switches); and **material
   counts in build menus** (the game's own material list shows what the colony has; one of the deeper game hooks).
 - **Interface & integrations**: how chatty Rimfolk is: **Everything**, **Notable only** (default: messages for what
-  changes something; small moments stay in the journals, the Story tab and History) or **Important only**; a message
-  for every dream, letters or messages for new and granted wishes, floating speech text, the visual and sound
+  changes something; small moments stay in the journals, the Story tab and History) or **Important only**; where the
+  smaller news goes (**Colony news**: one letter each evening by default, as it happens, or off, to the History tab
+  only); a message for every dream, letters or messages for new and granted wishes, floating speech text, the visual and sound
   touches; the two alerts; mood insight (and its hints in the Needs tab), the slow speed buttons (and putting them
   back), where the council button sits in the bottom bar, the rooms button; the deeper game hooks and the notes in
   the game's letters.

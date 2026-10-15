@@ -174,7 +174,7 @@ namespace ColonyCouncil
 
             if (done == null) return;
             MarkActed(p);
-            Notify.Message(done, look, MessageTypeDefOf.NeutralEvent, Importance.Notable);
+            News.Post(done, look, NewsKind.People, MessageTypeDefOf.NeutralEvent, Importance.Notable);
             comp.journals.Write(p, "Council_Journal_SelfHelp", null);
         }
 

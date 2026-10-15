@@ -304,7 +304,7 @@ namespace ColonyCouncil
                 if (first || !ColonyCouncilMod.Settings.socialWeb) continue;
                 comp.social.Bump(a, b, TieKind.Friends, 10f, "CC_PM_TieNote_BestFriends".Translate().Resolve(), true);
                 string text = "CC_PM_BestFriends".Translate(a.Named("A"), b.Named("B")).Resolve();
-                Notify.Message(text, new LookTargets(a, b), MessageTypeDefOf.PositiveEvent, Importance.Notable);
+                News.Post(text, new LookTargets(a, b), NewsKind.People, MessageTypeDefOf.PositiveEvent, Importance.Notable);
                 comp.AddChronicle(new ChronicleEntry(ChronicleKind.Bond, text, a));
                 comp.journals.Write(a, "Council_Journal_PM_BestFriend", null, b.Named("OTHER"));
                 comp.journals.Write(b, "Council_Journal_PM_BestFriend", null, a.Named("OTHER"));

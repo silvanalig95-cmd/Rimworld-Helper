@@ -563,7 +563,7 @@ namespace ColonyCouncil
             if (!line.NullOrEmpty()) comp.journals.WriteText(p, line);
             string why = a.SparkText;
             string text = "CC_Asp_Chosen".Translate(p.Named("PAWN"), a.Goal.Named("GOAL")).Resolve() + (why.NullOrEmpty() ? "" : " (" + why + ")");
-            ColonyCouncil.Notify.Message(text + (line.NullOrEmpty() ? "" : " \"" + line + "\""), p, MessageTypeDefOf.SilentInput, spark != null || inheritedFrom != null ? Importance.Notable : Importance.Flavor);
+            ColonyCouncil.News.Post(text + (line.NullOrEmpty() ? "" : " \"" + line + "\""), p, NewsKind.People, MessageTypeDefOf.SilentInput, spark != null || inheritedFrom != null ? Importance.Notable : Importance.Flavor);
             comp.AddChronicle(new ChronicleEntry(ChronicleKind.Life, text, p));
             return a;
         }

@@ -150,7 +150,7 @@ namespace ColonyCouncil
             if (raw.NullOrEmpty()) return;
             string text = raw.Formatted(p.Named("A"), thing.Named("THING")).Resolve();
             CouncilGameComponent.GiveThought(p, def.thought, null, 1f, text);
-            Notify.Message(text, new LookTargets(p), MessageTypeDefOf.SilentInput, Importance.Flavor);
+            News.Post(text, new LookTargets(p), NewsKind.Colony, MessageTypeDefOf.SilentInput, Importance.Flavor);
         }
 
         /// <summary>The thing it's about (its label), "" when it's about no one thing, or null when it doesn't fit.</summary>
