@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Room themes: a look any room plan can be built in. The style (spartan, comfortable, lavish) decides how much goes
+    in; the theme decides what it looks like. A theme keeps the layout: each piece is swapped only for furniture with the
+    same purpose and the same shape (footprint, work spots, facing), so every theme passes the same layout checks as the
+    plan itself (Tools/Tests).
+
+    swaps: for a purpose (role), the furniture the theme prefers, best first. The first one the colony can build is
+    used; a name from a DLC or mod that isn't loaded is skipped, and in the end the plan keeps its own piece.
+    wallStuff / furnitureStuff: materials by name, best first, used when the colony has enough of them; then any material
+    of the listed categories in stock (never a precious one); then the planner's usual pick from the stock.
+    floors: replace the plan's floor where it has one; rooms that must stay clean keep their sterile tiles, and rooms
+    without a floor (a greenhouse, a crypt) stay bare. The spartan style lays no floor in any theme.
+    decorFrom comfortable: plant pots along the walls from the comfortable style on.
+
+    Mod furniture: Vanilla Furniture Expanded (Bed_Simple, Seat_Bench, Table_Royal..., VFE_RoyalLamp, VFE_FloorLamp,
+    VFE_ModularCouch, Seat_Cushion), its Spacer module (Bed_AdvBed, Seat_AdvChair, Table_Illuminated...), Art
+    (VFE_DecorativePlantPot), Architect (floors), Vanilla Factions Expanded Medieval 2 (fur beds, heraldic rugs) and
+    Empire (candelabra, royal rugs), Dubs Bad Hygiene (toilets, washing, showers) and Alpha Prefabs (its floors, when
+    its option makes them buildable).
+  -->
+
+  <ColonyCouncil.RoomThemeDef>
+    <defName>Council_Theme_Rustic</defName>
+    <label>rustic</label>
+    <description>Timber walls, plain wooden furniture, benches and stools, and straw matting or planks underfoot. A farmhouse room that smells of sawdust, and cheap wherever there are trees to fell.</description>
+    <order>10</order>
+    <iconDefs><li>Stool</li></iconDefs>
+    <wallStuff><li>WoodLog</li></wallStuff>
+    <wallStuffCategories><li>Woody</li></wallStuffCategories>
+    <furnitureStuff><li>WoodLog</li></furnitureStuff>
+    <furnitureStuffCategories><li>Woody</li></furnitureStuffCategories>
+    <floors><li>StrawMatting</li><li>VFEArch_WoodenParquet</li><li>WoodPlankFloor</li></floors>
+    <lavishFloors><li>VFEArch_FineWoodenFloor</li><li>VFEArch_WoodenParquet</li><li>WoodPlankFloor</li></lavishFloors>
+    <swaps>
+      <li><role>bed</role><defs><li>Bed_Simple</li><li>Bed</li></defs></li>
+      <li><role>doublebed</role><defs><li>VFE_Bed_SimpleDouble</li><li>DoubleBed</li></defs></li>
+      <li><role>chair</role><defs><li>Seat_Bench</li><li>Stool</li></defs></li>
+    </swaps>
+  </ColonyCouncil.RoomThemeDef>
+
+  <ColonyCouncil.RoomThemeDef>
+    <defName>Council_Theme_Stately</defName>
+    <label>stately</label>
+    <description>Marble or granite walls, polished stone or fine carpet, armchairs, royal tables and dressers where the colony can make them, and candlelight. A room that tells every visitor the colony has arrived.</description>
+    <order>20</order>
+    <iconDefs><li>Armchair</li></iconDefs>
+    <wallStuff><li>BlocksMarble</li><li>BlocksGranite</li></wallStuff>
+    <wallStuffCategories><li>Stony</li></wallStuffCategories>
+    <furnitureStuff><li>BlocksMarble</li><li>BlocksGranite</li></furnitureStuff>
+    <floors><li>TileMarble</li><li>TileGranite</li><li>VFEArch_PolishedStoneFloorMarble</li><li>CarpetRed</li><li>CarpetDark</li></floors>
+    <lavishFloors><li>CarpetFineRed</li><li>CarpetFineScarlet</li><li>FineTileMarble</li><li>FineTileGranite</li><li>TileMarble</li><li>CarpetRed</li></lavishFloors>
+    <swaps>
+      <li><role>chair</role><defs><li>Seat_RoyalArmchair</li><li>Armchair</li></defs></li>
+      <li><role>doublebed</role><defs><li>RoyalBed</li><li>Bed_Kingsize</li></defs></li>
+      <li><role>table</role><defs><li>Table_Royal1x2c</li><li>Table_Royal2x2c</li><li>Table_Royal2x4c</li><li>Table_Royal3x3c</li></defs></li>
+      <li><role>endtable</role><defs><li>Table_RoyalEndTable</li></defs></li>
+      <li><role>dresser</role><defs><li>Table_RoyalDresser</li></defs></li>
+      <li><role>light</role><defs><li>VFEE_Candelabra</li><li>VFE_RoyalLamp</li></defs></li>
+    </swaps>
+    <rugs><li>VFEE_LargeRoyalRug</li><li>VFEM2_HeraldicRugBroad</li></rugs>
+  </ColonyCouncil.RoomThemeDef>
+
+  <ColonyCouncil.RoomThemeDef>
+    <defName>Council_Theme_Spartan</defName>
+    <label>spartan</label>
+    <description>Steel walls and furniture, simple beds, stools and a concrete floor. Nothing to dust and little to burn. With the spartan style it makes a bare bunkhouse; with the comfortable one, a tidy barracks.</description>
+    <order>30</order>
+    <iconDefs><li>Steel</li></iconDefs>
+    <wallStuff><li>Steel</li></wallStuff>
+    <wallStuffCategories><li>Metallic</li></wallStuffCategories>
+    <furnitureStuff><li>Steel</li></furnitureStuff>
+    <furnitureStuffCategories><li>Metallic</li></furnitureStuffCategories>
+    <floors><li>Concrete</li><li>PavedTile</li><li>Go_KitchenTile</li><li>MetalTile</li></floors>
+    <lavishFloors><li>MetalTile</li><li>PavedTile</li><li>Concrete</li></lavishFloors>
+    <swaps>
+      <li><role>bed</role><defs><li>Bed_Simple</li><li>Bed</li></defs></li>
+      <li><role>doublebed</role><defs><li>VFE_Bed_SimpleDouble</li><li>DoubleBed</li></defs></li>
+      <li><role>chair</role><defs><li>Stool</li><li>Seat_SquareChair</li></defs></li>
+      <li><role>light</role><defs><li>StandingLamp</li></defs></li>
+    </swaps>
+  </ColonyCouncil.RoomThemeDef>
+
+  <ColonyCouncil.RoomThemeDef>
+    <defName>Council_Theme_Cozy</defName>
+    <label>cozy</label>
+    <description>Soft carpet, plants in the corners, a standing lamp for the evenings and the softest seats the colony can build. Plant pots go along the walls from the comfortable style on.</description>
+    <order>40</order>
+    <iconDefs><li>PlantPot</li></iconDefs>
+    <furnitureStuff><li>WoodLog</li></furnitureStuff>
+    <furnitureStuffCategories><li>Woody</li></furnitureStuffCategories>
+    <floors><li>CarpetCream</li><li>CarpetBrownLight</li><li>CarpetRed</li><li>CarpetGreen</li><li>CarpetBlue</li><li>VFEArch_WoodenParquet</li><li>WoodPlankFloor</li></floors>
+    <swaps>
+      <li><role>light</role><defs><li>StandingLamp</li><li>VFE_FloorLamp</li></defs></li>
+      <li><role>chair</role><defs><li>VFE_ModularCouch</li><li>Armchair</li></defs></li>
+      <li><role>plantpot</role><defs><li>VFE_DecorativePlantPot</li><li>PlantPot</li></defs></li>
+    </swaps>
+    <pots><li>VFE_DecorativePlantPot</li></pots>
+    <decorFrom>comfortable</decorFrom>
+  </ColonyCouncil.RoomThemeDef>
+
+  <ColonyCouncil.RoomThemeDef>
+    <defName>Council_Theme_Tribal</defName>
+    <label>tribal</label>
+    <description>Fur beds or hide bedrolls, cushions and stools, torchlight, straw matting and walls of wood or sandstone in earthen tones. Made from what the land and the hunt give.</description>
+    <order>50</order>
+    <iconDefs><li>Bedroll</li></iconDefs>
+    <wallStuff><li>WoodLog</li><li>BlocksSandstone</li></wallStuff>
+    <wallStuffCategories><li>Woody</li><li>Stony</li></wallStuffCategories>
+    <furnitureStuffCategories><li>Leathery</li><li>Woody</li></furnitureStuffCategories>
+    <floors><li>StrawMatting</li><li>FlagstoneSandstone</li><li>CarpetSandstone</li><li>WoodPlankFloor</li></floors>
+    <swaps>
+      <li><role>bed</role><defs><li>VFEM2_FurBed</li><li>Bedroll</li></defs></li>
+      <li><role>doublebed</role><defs><li>VFEM2_DoubleFurBed</li><li>BedrollDouble</li></defs></li>
+      <li><role>chair</role><defs><li>Seat_Cushion</li><li>Stool</li></defs></li>
+      <li><role>light</role><defs><li>TorchLamp</li></defs></li>
+      <li><role>toilet</role><defs><li>PitLatrine</li></defs></li>
+      <li><role>wash</role><defs><li>WashBucket</li></defs></li>
+      <li><role>bath</role><defs><li>ShowerSimple</li></defs></li>
+    </swaps>
+  </ColonyCouncil.RoomThemeDef>
+
+  <ColonyCouncil.RoomThemeDef>
+    <defName>Council_Theme_Spacer</defName>
+    <label>spacer</label>
+    <description>Sterile tiles, steel walls, an autodoor and the most advanced furniture the colony has researched: spacer and ergonomic beds and chairs, illuminated end tables and dressers, and the latest in plumbing where mods provide them.</description>
+    <order>60</order>
+    <era>industrial</era>
+    <iconDefs><li>Autodoor</li></iconDefs>
+    <wallStuff><li>Steel</li></wallStuff>
+    <wallStuffCategories><li>Metallic</li></wallStuffCategories>
+    <furnitureStuff><li>Steel</li></furnitureStuff>
+    <furnitureStuffCategories><li>Metallic</li></furnitureStuffCategories>
+    <floors><li>SterileTile</li><li>Go_KitchenTileBlue</li><li>MetalTile</li></floors>
+    <doors><li>Autodoor</li></doors>
+    <swaps>
+      <li><role>bed</role><defs><li>Bed_AdvBed</li><li>Bed_Ergonomic</li></defs></li>
+      <li><role>doublebed</role><defs><li>Bed_AdvDoubleBed</li><li>Bed_DoubleErgonomic</li></defs></li>
+      <li><role>chair</role><defs><li>Seat_AdvChair</li><li>Seat_ModernChair</li></defs></li>
+      <li><role>table</role><defs><li>Table_interactive_1x1c</li><li>Table_interactive_2x2c</li></defs></li>
+      <li><role>endtable</role><defs><li>Table_IlluminatedEndTable</li></defs></li>
+      <li><role>dresser</role><defs><li>Table_IlluminatedDresser</li><li>VFES_Table_IlluminatedWardrobe</li></defs></li>
+      <li><role>light</role><defs><li>VFE_FloorLamp</li><li>StandingLamp</li></defs></li>
+      <li><role>toilet</role><defs><li>ToiletAdvStuff</li></defs></li>
+      <li><role>bath</role><defs><li>ShowerAdvStuff</li></defs></li>
+    </swaps>
+  </ColonyCouncil.RoomThemeDef>
+
+</Defs>

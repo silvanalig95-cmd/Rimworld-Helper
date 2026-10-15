@@ -235,16 +235,18 @@ namespace ColonyCouncil
         /// <summary>
         /// Picks concrete furniture for this colony: the first preferred def it can build that fits, else anything with
         /// the same purpose and footprint. Missing optional pieces are dropped, and so are pieces the chosen style leaves
-        /// out. Then the layout is checked as a whole (<see cref="TemplateLayout.Arrange"/>): a piece whose work spot would
-        /// face a wall is turned, one that fits nowhere is left out. The lavish style adds plant pots along free stretches
-        /// of wall and a rug. The planner's choices (another variant, another material, the style, the door) are applied
-        /// when <paramref name="config"/> is given.
+        /// out. A theme then swaps pieces for its own furniture of the same shape, where the colony can build it. Then the
+        /// layout is checked as a whole (<see cref="TemplateLayout.Arrange"/>): a piece whose work spot would face a wall is
+        /// turned, one that fits nowhere is left out. The lavish style adds plant pots along free stretches of wall and a
+        /// rug (a theme that wants plants adds the pots from the comfortable style on). The planner's choices (another
+        /// variant, another material, the style, the theme, the door) are applied when <paramref name="config"/> is given.
         /// </summary>
         public List<ResolvedThing> Resolve(Map map, out List<string> missing, RoomPlanConfig config = null)
         {
             var list = new List<ResolvedThing>();
             missing = new List<string>();
             var style = config?.style ?? RoomStyle.Comfortable;
+            var theme = config?.theme;
             var groupCounts = new Dictionary<string, int>();
             foreach (var t in things)
             {
@@ -252,7 +254,7 @@ namespace ColonyCouncil
                 groupCounts.TryGetValue(t.GroupKey, out int n);
                 groupCounts[t.GroupKey] = n + 1;
             }
-            var picked = new List<(TemplateThing t, ThingDef def, int slot)>();
+            var picked = new List<(TemplateThing t, ThingDef def, int slot, bool themed)>();
             for (int i = 0; i < things.Count; i++)
             {
                 var t = things[i];
@@ -267,10 +269,23 @@ namespace ColonyCouncil
                     }
                     continue;
                 }
+                bool themed = false;
+                if (theme != null)
+                {
+                    var swapped = ThemePick(t, pick, theme, map);
+                    if (swapped != null && swapped != pick)
+                    {
+                        pick = swapped;
+                        themed = true;
+                    }
+                }
                 if (config != null && config.variant.TryGetValue(t.GroupKey, out var chosen) && chosen != pick
                     && Avail.CanBuild(chosen, map) && Fits(t, chosen))
+                {
                     pick = chosen;
-                picked.Add((t, pick, i));
+                    themed = false;
+                }
+                picked.Add((t, pick, i, themed));
             }
 
             int door = config != null ? config.DoorX(this) : DoorX;
@@ -301,7 +316,7 @@ namespace ColonyCouncil
             {
                 var piece = pieces[i];
                 if (piece.dropped) continue;
-                var (t, def, slot) = picked[i];
+                var (t, def, slot, themed) = picked[i];
                 int units = groupCounts.TryGetValue(t.GroupKey, out int n) ? n : 1;
                 if (!groupStuff.TryGetValue((t.GroupKey, def), out var stuff))
                 {
@@ -317,11 +332,50 @@ namespace ColonyCouncil
                     rot = new Rot4(piece.facing),
                     inWall = t.inWall,
                     group = t.GroupKey,
-                    slot = slot
+                    slot = slot,
+                    themed = themed
                 });
             }
-            if (style == RoomStyle.Lavish && missing.Count == 0) AddDecor(list, pieces.Where(p => !p.dropped).ToList(), map, config, door, reserved);
+            int decorFrom = theme?.DecorFrom ?? TemplateLayout.Lavish;
+            if (missing.Count == 0 && ThemeMath.AddsDecor((int)style, decorFrom))
+                AddDecor(list, pieces.Where(p => !p.dropped).ToList(), map, config, door, reserved, ThemeMath.AddsRug((int)style));
             return list;
+        }
+
+        /// <summary>
+        /// The theme's furniture for a piece: the first of its choices for the piece's purpose that the colony can build,
+        /// that does the same job and has the same shape as the plan's own pick, so the layout stays as designed. Null
+        /// if the theme has nothing for it (walls, doors and pieces in the wall are never swapped).
+        /// </summary>
+        private ThingDef ThemePick(TemplateThing t, ThingDef basePick, RoomThemeDef theme, Map map)
+        {
+            if (basePick == null || theme == null || !ThemeMath.Themable(t.role, t.inWall)) return null;
+            var names = theme.CandidatesFor(t.role);
+            if (names.Count == 0) return null;
+            try
+            {
+                var pred = RolePredicate(t.role);
+                var medical = RolePredicate("medical");
+                bool baseMedical = medical(basePick);
+                var shape = RoomThemeDef.ShapeOf(basePick);
+                foreach (var name in names)
+                {
+                    var d = DefDatabase<ThingDef>.GetNamedSilentFail(name);
+                    if (d == null) continue;
+                    // The plan's own pick is one of the theme's: keep it.
+                    if (d == basePick) return basePick;
+                    if (d.category != ThingCategory.Building || !Avail.CanBuild(d, map)) continue;
+                    if (pred != null && !pred(d)) continue;
+                    if (!ThemeMath.KeepsPurpose(baseMedical, medical(d))) continue;
+                    if (!ThemeMath.KeepsShape(shape, RoomThemeDef.ShapeOf(d)) || !Fits(t, d)) continue;
+                    return d;
+                }
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("room theme " + theme.defName + " for " + t.role, e);
+            }
+            return null;
         }
 
         /// <summary>The layout rules' view of a piece: its size, facing rules and work spots.</summary>
@@ -367,6 +421,11 @@ namespace ColonyCouncil
                 var w = config.WallStuff(this, map);
                 if (w != null && Avail.StuffAllowed(pick, w) && MaterialPicker.Allowed(w, use)) return w;
             }
+            if (config?.theme != null)
+            {
+                var themed = config.theme.PickStuff(pick, map, units, use, reserved);
+                if (themed != null) return themed;
+            }
             if (!t.stuff.NullOrEmpty())
             {
                 var hint = DefDatabase<ThingDef>.GetNamedSilentFail(t.stuff);
@@ -381,16 +440,20 @@ namespace ColonyCouncil
 
         /// <summary>
         /// The lavish style: a rug on open floor where a mod provides one, and plant pots in free corners and along walls,
-        /// never in the way of the door, a work spot or a bed.
+        /// never in the way of the door, a work spot or a bed. A theme brings its own pots and rugs, and one that wants
+        /// plants adds the pots from the comfortable style on (without the rug).
         /// </summary>
-        private void AddDecor(List<ResolvedThing> list, List<TemplateLayout.Piece> pieces, Map map, RoomPlanConfig config, int door, Dictionary<ThingDef, int> reserved)
+        private void AddDecor(List<ResolvedThing> list, List<TemplateLayout.Piece> pieces, Map map, RoomPlanConfig config, int door, Dictionary<ThingDef, int> reserved, bool withRug)
         {
-            if (rug)
+            var theme = config?.theme;
+            var rugThing = theme?.RugThing ?? TemplateThing.AutoRug;
+            var potThing = theme?.PotThing ?? TemplateThing.AutoDecor;
+            if (rug && withRug)
             {
-                var rugDef = DefaultPick(TemplateThing.AutoRug, map);
+                var rugDef = DefaultPick(rugThing, map);
                 if (rugDef != null && TemplateLayout.RugSpot(size.x, size.z, door, pieces, rugDef.size.x, rugDef.size.z, out int rx, out int rz))
                 {
-                    var rugPiece = PieceFor(TemplateThing.AutoRug, rugDef, -1);
+                    var rugPiece = PieceFor(rugThing, rugDef, -1);
                     rugPiece.minX = rx;
                     rugPiece.minZ = rz;
                     rugPiece.w = rugDef.size.x;
@@ -402,22 +465,22 @@ namespace ColonyCouncil
                         list.Add(new ResolvedThing
                         {
                             def = rugDef,
-                            stuff = rugDef.MadeFromStuff ? StuffFor(TemplateThing.AutoRug, rugDef, map, config, 1, reserved) : null,
+                            stuff = rugDef.MadeFromStuff ? StuffFor(rugThing, rugDef, map, config, 1, reserved) : null,
                             rect = new CellRect(rx, rz, rugPiece.w, rugPiece.h),
                             rot = Rot4.North,
-                            group = TemplateThing.AutoRug.GroupKey,
+                            group = rugThing.GroupKey,
                             slot = -1
                         });
                     }
                 }
             }
-            var pot = DefaultPick(TemplateThing.AutoDecor, map);
+            var pot = DefaultPick(potThing, map);
             if (pot == null || pot.size.x != 1 || pot.size.z != 1) return;
             int existing = list.Count(r => Avail.IsPlantPot(r.def));
             int max = Mathf.Clamp(size.x * size.z / 12, 1, 4) - existing / 2;
             var spots = TemplateLayout.DecorSpots(size.x, size.z, door, pieces, max);
-            string group = TemplateThing.AutoDecor.GroupKey;
-            ThingDef stuff = pot.MadeFromStuff ? StuffFor(TemplateThing.AutoDecor, pot, map, config, spots.Count, reserved) : null;
+            string group = potThing.GroupKey;
+            ThingDef stuff = pot.MadeFromStuff ? StuffFor(potThing, pot, map, config, spots.Count, reserved) : null;
             foreach (var (x, z) in spots)
             {
                 list.Add(new ResolvedThing
@@ -480,7 +543,7 @@ namespace ColonyCouncil
 
         public TemplateThing ThingInGroup(string group) =>
             things.FirstOrDefault(t => t.GroupKey == group)
-            ?? (group == TemplateThing.AutoDecor.GroupKey ? TemplateThing.AutoDecor : group == TemplateThing.AutoRug.GroupKey ? TemplateThing.AutoRug : null);
+            ?? (group == TemplateThing.AutoDecor.GroupKey ? TemplateThing.AutoDecor : group == TemplateThing.AutoRug.GroupKey ? TemplateThing.AutoRug : RoomThemeDef.DecorThingFor(group));
 
         [Unsaved] private Texture2D cachedIcon;
         [Unsaved] private bool iconResolved;
@@ -533,9 +596,17 @@ namespace ColonyCouncil
             return ResolveFloor(lavishFloors ?? DefaultLavishFloors, map) ?? ResolveFloor(map);
         }
 
-        /// <summary>The floor for a style: none for spartan (unless the room has to stay clean), the template's own, or a finer one for lavish.</summary>
-        public TerrainDef FloorFor(RoomStyle style, Map map)
+        /// <summary>
+        /// The floor for a style: none for spartan (unless the room has to stay clean), the template's own, or a finer one
+        /// for lavish. A theme lays its own floor instead, where the plan has a floor at all and doesn't need a clean one.
+        /// </summary>
+        public TerrainDef FloorFor(RoomStyle style, Map map, RoomThemeDef theme = null)
         {
+            if (theme != null && style != RoomStyle.Spartan && !NeedsCleanFloor && !floors.NullOrEmpty())
+            {
+                var themed = style == RoomStyle.Lavish ? ResolveFloor(theme.lavishFloors ?? theme.floors, map) ?? ResolveFloor(theme.floors, map) : ResolveFloor(theme.floors, map);
+                if (themed != null) return themed;
+            }
             switch (style)
             {
                 case RoomStyle.Spartan: return NeedsCleanFloor ? ResolveFloor(map) : null;
@@ -658,5 +729,7 @@ namespace ColonyCouncil
         public bool inWall;
         public string group;
         public int slot;
+        /// <summary>The room's theme put this piece in instead of the plan's own.</summary>
+        public bool themed;
     }
 }

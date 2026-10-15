@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Room plans: themes (Source/ColonyCouncil/Building/RoomThemeDef.cs, Window_RoomPlanner.cs), and the advice about
+       rooms the colony has outgrown (Source/ColonyCouncil/Advisor/AdvisorSignals_Rooms.cs). -->
+
+  <!-- Themes -->
+  <CC_Theme_Button>Theme: {0}</CC_Theme_Button>
+  <CC_Theme_None>as designed</CC_Theme_None>
+  <CC_Theme_None_Tip>The room as its plan was drawn: the furniture, materials and floor the planner picks from your stock.</CC_Theme_None_Tip>
+  <CC_Theme_Tip>The look the room is built in. The style decides how much goes in; the theme decides what it looks like: the furniture, the walls and the floor. The layout stays the same, and a piece is only swapped for one of the same size and shape.
+
+A theme uses only what the colony can build and has enough of; the rest stays as planned. Picking a theme starts the materials over, like "Use what we have", and anything you pick after that wins.</CC_Theme_Tip>
+  <CC_Theme_Swapped>In this room it puts in: {0}.</CC_Theme_Swapped>
+  <CC_Theme_NoSwaps>None of this room's furniture changes yet, only the walls and floor where the colony has the materials.</CC_Theme_NoSwaps>
+  <CC_Theme_ForLowTech>for tribal and medieval colonies</CC_Theme_ForLowTech>
+  <CC_Theme_ForIndustrial>once the colony is industrial</CC_Theme_ForIndustrial>
+  <CC_Theme_NothingYet>nothing of it within reach yet</CC_Theme_NothingYet>
+
+</LanguageData>

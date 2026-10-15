@@ -6,7 +6,7 @@ using Verse;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// The player's choices for one kind of room while planning: orientation, door, style, materials, furniture
+    /// The player's choices for one kind of room while planning: orientation, door, style, theme, materials, furniture
     /// variants. The variants of a room type (a cozy, standard and roomy bedroom) share one, so switching size keeps the
     /// rest. Kept for the whole session; the materials the player picks are also remembered in the mod settings and used
     /// again next time while there's still enough of them. The clearing options (cut plants, mine rock, ...) are shared
@@ -27,12 +27,14 @@ namespace ColonyCouncil
         /// <summary>The material for a floor that can be made of different ones (null = whatever there's most of).</summary>
         public ThingDef floorStuff;
         public RoomStyle style = RoomStyle.Comfortable;
+        /// <summary>The look the room is built in (rustic, stately, ...); null: as the plan was designed.</summary>
+        public RoomThemeDef theme;
         public readonly Dictionary<string, ThingDef> variant = new Dictionary<string, ThingDef>();
         public readonly Dictionary<string, ThingDef> stuff = new Dictionary<string, ThingDef>();
         /// <summary>Groups whose material the player picked since the planner opened: kept even if the stock runs short.</summary>
         public readonly HashSet<string> pickedNow = new HashSet<string>();
 
-        public const string WallKey = "walls", DoorKey = "door", FloorKey = "floor";
+        public const string WallKey = "walls", DoorKey = "door", FloorKey = "floor", ThemeKey = "theme";
 
         /// <summary>Bumped on every change, so cached plans know they're stale.</summary>
         public int version;
@@ -110,6 +112,32 @@ namespace ColonyCouncil
             Changed();
         }
 
+        /// <summary>
+        /// Builds the room in another theme (null: as designed). The theme picks the look, so the materials, floor, door
+        /// and furniture picked so far give way to it, as with "Use what we have"; what the player picks after that wins
+        /// again. The theme is remembered for this room like a material.
+        /// </summary>
+        public void SetTheme(RoomThemeDef t)
+        {
+            if (t == theme) return;
+            UseWhatWeHave();
+            theme = t;
+            floorChosen = false;
+            floor = null;
+            doorDef = null;
+            variant.Clear();
+            var settings = S;
+            if (settings != null)
+            {
+                settings.planMaterials ??= new List<string>();
+                string entry = scope + "::" + ThemeKey + "=>";
+                settings.planMaterials.RemoveAll(e => e != null && e.StartsWith(entry));
+                if (t != null) settings.planMaterials.Add(entry + t.defName);
+                CouncilSettings.SaveNow();
+            }
+            Changed();
+        }
+
         /// <summary>"Use what we have": forget every material choice for this room, so each one is picked from the stock again.</summary>
         public void UseWhatWeHave()
         {
@@ -122,7 +150,8 @@ namespace ColonyCouncil
             if (s?.planMaterials != null)
             {
                 string prefix = scope + "::";
-                if (s.planMaterials.RemoveAll(e => e != null && e.StartsWith(prefix)) > 0) CouncilSettings.SaveNow();
+                string themeEntry = prefix + ThemeKey + "=>";
+                if (s.planMaterials.RemoveAll(e => e != null && e.StartsWith(prefix) && !e.StartsWith(themeEntry)) > 0) CouncilSettings.SaveNow();
             }
             Changed();
         }
@@ -150,6 +179,11 @@ namespace ColonyCouncil
                 int arrow = e.LastIndexOf("=>");
                 if (arrow <= prefix.Length) continue;
                 string group = e.Substring(prefix.Length, arrow - prefix.Length);
+                if (group == ThemeKey)
+                {
+                    theme = DefDatabase<RoomThemeDef>.GetNamedSilentFail(e.Substring(arrow + 2));
+                    continue;
+                }
                 var def = DefDatabase<ThingDef>.GetNamedSilentFail(e.Substring(arrow + 2));
                 if (def == null) continue;
                 switch (group)
@@ -177,6 +211,7 @@ namespace ColonyCouncil
                 floor = floor,
                 floorStuff = floorStuff,
                 style = style,
+                theme = theme,
                 scope = scope,
                 version = version
             };
@@ -204,6 +239,11 @@ namespace ColonyCouncil
             if (wallStuff != null && Avail.StuffAllowed(wall, wallStuff) && MaterialPicker.Allowed(wallStuff, MaterialUse.Wall)
                 && (pickedNow.Contains(WallKey) || MaterialPicker.Affordable(wall, wallStuff, units, map)))
                 return wallStuff;
+            if (theme != null)
+            {
+                var themed = theme.PickStuff(wall, map, units, MaterialUse.Wall);
+                if (themed != null) return themed;
+            }
             if (!t.wallStuffHint.NullOrEmpty())
             {
                 var hint = DefDatabase<ThingDef>.GetNamedSilentFail(t.wallStuffHint);
@@ -216,6 +256,8 @@ namespace ColonyCouncil
         public ThingDef DoorDef(Map map)
         {
             if (doorDef != null && Avail.CanBuild(doorDef, map)) return doorDef;
+            var themed = theme?.DoorFor(map);
+            if (themed != null) return themed;
             if (Avail.CanBuild(ThingDefOf.Door, map)) return ThingDefOf.Door;
             return DoorOptions(map).FirstOrDefault() ?? ThingDefOf.Door;
         }
@@ -233,7 +275,7 @@ namespace ColonyCouncil
             return MaterialPicker.Pick(door, map, 1, MaterialUse.Door);
         }
 
-        public TerrainDef Floor(RoomTemplateDef t, Map map) => floorChosen ? floor : t.FloorFor(style, map);
+        public TerrainDef Floor(RoomTemplateDef t, Map map) => floorChosen ? floor : t.FloorFor(style, map, theme);
 
         /// <summary>The floor's material: the player's pick if it suits this floor (and there's enough), else the best the colony has.</summary>
         public ThingDef FloorStuff(TerrainDef f, Map map, int cells = -1)
@@ -243,6 +285,8 @@ namespace ColonyCouncil
             if (floorStuff != null && Avail.StuffAllowed(f, floorStuff) && MaterialPicker.Allowed(floorStuff, MaterialUse.Floor)
                 && (pickedNow.Contains(FloorKey) || MaterialPicker.Affordable(f, floorStuff, units, map)))
                 return floorStuff;
+            var themed = theme?.PickStuff(f, map, units, MaterialUse.Floor);
+            if (themed != null) return themed;
             return MaterialPicker.Pick(f, map, units, MaterialUse.Floor);
         }
 

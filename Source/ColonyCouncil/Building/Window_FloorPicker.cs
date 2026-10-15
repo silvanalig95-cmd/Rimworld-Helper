@@ -113,7 +113,7 @@ namespace ColonyCouncil
             // Quick picks: none, and what the plan would use on its own.
             float bx = inRect.x;
             if (QuickButton(ref bx, y, "CC_Planner_NoFloor".Translate(), current == null)) Pick(null, true);
-            var suggested = template.FloorFor(cfg.style, map) ?? template.ResolveFloor(map);
+            var suggested = template.FloorFor(cfg.style, map, cfg.theme) ?? template.ResolveFloor(map);
             if (suggested != null && QuickButton(ref bx, y, "CC_Floor_Suggested".Translate(suggested.label), current == suggested)) Pick(suggested, !suggested.MadeFromStuff);
             y += 30f;
             Widgets.CheckboxLabeled(new Rect(inRect.x, y, inRect.width, 24f), "CC_Floor_OnlyAffordable".Translate(area), ref onlyAffordable);
