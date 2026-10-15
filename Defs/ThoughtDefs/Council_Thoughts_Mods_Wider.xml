@@ -141,6 +141,26 @@
     <stages><li><label>we handed over a deserter</label><description>That soldier came to us for help, and we sold them to the Empire. I keep thinking about the face.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
+  <!-- ===================== Medieval Overhaul ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncM_CraftPraised</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>a visitor liked what we make</label><description>A traveler tried what this colony makes and asked for more. We're getting good at this.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncM_Hearth</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>an evening by the hearth</label><description>I sat by the hearth with a traveler. A warm fire and company.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncM_Books</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>shared our books</label><description>A visitor who could read wanted to see our books. We traded pages.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Granted_GuestRoom</defName>
     <durationDays>5</durationDays>

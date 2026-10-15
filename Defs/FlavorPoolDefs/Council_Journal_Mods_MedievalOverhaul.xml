@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Medieval Overhaul in the everyday journal: its dishes, drinks and library leave memories of their own
+    (DankPyon_AteApplePie, DankPyon_DrankWine...), and on a day one of them is on a colonist's mind the entry may come
+    from these pools (ColonyCouncil.JournalDayDef, Integrations/ModJournal.cs). The thoughts only exist with the mod,
+    so without it these days never come. Tags good/bad: whether the memory lifts or sours their mood (the mod's cheese
+    and wine go from awful to masterwork).
+  -->
+
+  <!-- ===================== Which memories make which day ===================== -->
+
+  <ColonyCouncil.JournalDayDef>
+    <defName>Council_JDay_MO_Sweet</defName>
+    <key>MO_Sweet</key>
+    <weight>1</weight>
+    <thoughts>
+      <li>DankPyon_AteApplePie</li>
+      <li>DankPyon_AtePumpkinPie</li>
+      <li>DankPyon_AteGriffonBerryPie</li>
+      <li>DankPyon_AteCarrotCake</li>
+      <li>DankPyon_AteLemonCake</li>
+      <li>DankPyon_AteSweetPancakes</li>
+    </thoughts>
+  </ColonyCouncil.JournalDayDef>
+
+  <ColonyCouncil.JournalDayDef>
+    <defName>Council_JDay_MO_Pot</defName>
+    <key>MO_Pot</key>
+    <weight>0.8</weight>
+    <thoughts>
+      <li>DankPyon_AteHeartyStew</li>
+      <li>DankPyon_AteHuntersStew</li>
+      <li>DankPyon_AteBreadSoup</li>
+      <li>DankPyon_AteCheeseSoup</li>
+      <li>DankPyon_AtePumpkinSoup</li>
+      <li>DankPyon_AteWinterLentilSoup</li>
+      <li>DankPyon_AteMushroomSoup</li>
+      <li>DankPyon_AteVegetablePot</li>
+      <li>DankPyon_AteBoiledBeansAndOnion</li>
+      <li>DankPyon_AteWeakStew</li>
+    </thoughts>
+  </ColonyCouncil.JournalDayDef>
+
+  <ColonyCouncil.JournalDayDef>
+    <defName>Council_JDay_MO_Slop</defName>
+    <key>MO_Slop</key>
+    <weight>1</weight>
+    <badOnly>true</badOnly>
+    <thoughts>
+      <li>DankPyon_AteSlopMeal</li>
+    </thoughts>
+  </ColonyCouncil.JournalDayDef>
+
+  <ColonyCouncil.JournalDayDef>
+    <defName>Council_JDay_MO_Cheese</defName>
+    <key>MO_Cheese</key>
+    <weight>0.9</weight>
+    <thoughts>
+      <li>DankPyon_AteCheese</li>
+      <li>DankPyon_AteGrilledCheese</li>
+    </thoughts>
+  </ColonyCouncil.JournalDayDef>
+
+  <ColonyCouncil.JournalDayDef>
+    <defName>Council_JDay_MO_Wine</defName>
+    <key>MO_Wine</key>
+    <weight>1</weight>
+    <thoughts>
+      <li>DankPyon_DrankWine</li>
+      <li>DankPyon_AteSteakWithWine</li>
+    </thoughts>
+  </ColonyCouncil.JournalDayDef>
+
+  <ColonyCouncil.JournalDayDef>
+    <defName>Council_JDay_MO_Ale</defName>
+    <key>MO_Ale</key>
+    <weight>0.9</weight>
+    <thoughts>
+      <li>DankPyon_DrankAle</li>
+      <li>DankPyon_DrankMead</li>
+    </thoughts>
+  </ColonyCouncil.JournalDayDef>
+
+  <ColonyCouncil.JournalDayDef>
+    <defName>Council_JDay_MO_Smoked</defName>
+    <key>MO_Smoked</key>
+    <weight>0.7</weight>
+    <thoughts>
+      <li>DankPyon_AteSmokedMeat</li>
+      <li>DankPyon_AteGrilledSausages</li>
+      <li>DankPyon_AteGrilledSkewers</li>
+      <li>DankPyon_AteDriedMeat</li>
+    </thoughts>
+  </ColonyCouncil.JournalDayDef>
+
+  <ColonyCouncil.JournalDayDef>
+    <defName>Council_JDay_MO_Library</defName>
+    <key>MO_Library</key>
+    <weight>0.8</weight>
+    <thoughts>
+      <li>DankPyon_ReadInLibrary</li>
+    </thoughts>
+  </ColonyCouncil.JournalDayDef>
+
+  <!-- ===================== A visitor by the hearth (Council_Encounters_Mods_MedievalOverhaul.xml) ===================== -->
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_EncM_Hearth</defName>
+    <lines>
+      <plain>
+        <li>Sat by the hearth with {X_nameDef} tonight. Neither of us said much. Didn't need to.</li>
+        <li>{X_nameDef} says {X_possessive} people keep one fire going all winter and never let it out. I banked ours extra carefully tonight.</li>
+        <li>[cold] {X_nameDef} came in frozen. By the time {X_possessive} boots stopped steaming, we were friends.</li>
+        <li>[rain] Chestnuts by the hearth with {X_nameDef} while it poured. A good night.</li>
+      </plain>
+      <warm><li>Our hearth warmed a stranger tonight. That's what it's there for.</li></warm>
+      <blunt><li>Hearth, a visitor, a quiet evening. Fine.</li></blunt>
+      <cheerful><li>{X_nameDef} and I roasted chestnuts and burned most of them! Still good.</li></cheerful>
+      <gloomy><li>{X_nameDef} stared into the fire like someone who'd lost a lot. I didn't ask.</li></gloomy>
+      <cold><li>{X_nameDef} talks more by a fire. Learned a fair amount about the roads east.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== The days ===================== -->
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_MO_Sweet</defName>
+    <lines>
+      <plain>
+        <li>Apple pie after supper. The crust cracked like thin ice.</li>
+        <li>Somebody made a pie today and it lasted about as long as it took to cut it.</li>
+        <li>[fall] Pumpkin pie. The first one of the season, and the kitchen smelled of it all afternoon.</li>
+        <li>Cake. On an ordinary day, for no reason anyone would tell me.</li>
+        <li>[child] I had pancakes with honey and I didn't share.</li>
+        <li>[winter] Hot pie on a cold night. I ate it standing by the oven.</li>
+        <li>[work:Cooking] Baked today. Burned my wrist on the oven door and didn't care, the pie came out right.</li>
+      </plain>
+      <warm><li>Saved the last slice of pie for whoever came in late. It was the right thing to do, and I regret it a little.</li></warm>
+      <blunt><li>Pie. Good pie.</li></blunt>
+      <cheerful><li>Griffon berry pie! I didn't know a pie could make you that happy.</li></cheerful>
+      <gloomy><li>A good pie. One good thing in a long week.</li></gloomy>
+      <cold><li>Sweets lift everyone's mood for the price of some flour and fruit. We should bake more often.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_MO_Pot</defName>
+    <lines>
+      <plain>
+        <li>Stew from the big pot. Thick enough to stand a spoon in.</li>
+        <li>Soup and bread for supper. Not fancy, and I had two bowls.</li>
+        <li>[winter] Lentil soup, hot enough to burn. The best thing about winter is the soup.</li>
+        <li>[bad] Weak stew again. More water than stew.</li>
+        <li>[work:Hunting] Hunter's stew tonight, with meat I brought in myself. Tastes better that way.</li>
+        <li>[rain] Rain all day, and the soup pot going all day. Everybody came in wet and went out warm.</li>
+        <li>Cheese soup. I didn't know you could make soup out of cheese and now I don't want anything else.</li>
+      </plain>
+      <warm><li>Somebody kept the stew pot going all day so whoever came in could eat. That's the kind of place this is.</li></warm>
+      <blunt><li>Stew. Filling. Fine.</li></blunt>
+      <cheerful><li>Hearty stew tonight! I scraped the pot.</li></cheerful>
+      <gloomy><li>Stew again. It's warm, at least.</li></gloomy>
+      <cold><li>One pot feeds everyone and wastes nothing. Sensible cooking.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_MO_Slop</defName>
+    <lines>
+      <plain>
+        <li>Slop from the slop pot. Grey, warm, and not something I'd describe to anyone.</li>
+        <li>A bowl of slop for supper. I ate it fast so I wouldn't have to look at it.</li>
+        <li>[afterraid] Slop the day after the raid. Nobody had the heart to cook.</li>
+        <li>[child] The grey stuff again. I gave half of mine to the dog.</li>
+      </plain>
+      <warm><li>Slop for supper. The cook looked so tired I said it was fine.</li></warm>
+      <blunt><li>Slop. Again.</li></blunt>
+      <cheerful><li>Slop for supper! Well. It's food.</li></cheerful>
+      <gloomy><li>Slop. This is what we've come to.</li></gloomy>
+      <cold><li>The slop keeps us alive. That's all it's for.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_MO_Cheese</defName>
+    <lines>
+      <plain>
+        <li>[good] Cheese from the press, sharp enough to make my eyes water. Good cheese.</li>
+        <li>[good] Grilled cheese on bread. I could live on that.</li>
+        <li>[bad] Tried the new cheese. It needed more time, or less of whatever went into it.</li>
+        <li>[bad] The cheese has gone wrong somewhere. It smells like the pens.</li>
+        <li>[good,winter] Cheese and bread by the fire. Winter food.</li>
+        <li>[good,skill:Cooking] The cheese I pressed in spring is ready, and it's good. I may have bragged.</li>
+      </plain>
+      <warm><li>[good] Shared a wedge of cheese with whoever was nearest. Some things are better shared.</li></warm>
+      <blunt><li>[bad] Bad cheese. Somebody should learn to make it properly.</li></blunt>
+      <cheerful><li>[good] The cheese is ready! It's the best thing we've ever made.</li></cheerful>
+      <gloomy><li>[bad] Even the cheese is against me today.</li></gloomy>
+      <cold><li>[good] Cheese keeps for months and sells well. Good use of the milk.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_MO_Wine</defName>
+    <lines>
+      <plain>
+        <li>[good] A cup of the colony's wine after supper. It has come along well since spring.</li>
+        <li>[good] Steak with wine tonight. I didn't think we lived like that out here.</li>
+        <li>[bad] The wine has turned. Drank it anyway, and wished I hadn't.</li>
+        <li>[bad] Sour wine. Whoever minds the barrels should taste it before pouring.</li>
+        <li>[good,evening] Wine on the step at dusk, watching the light go off the fields.</li>
+        <li>[good,trait:Teetotaler] Tasted the wine to be polite. It was good, which annoyed me.</li>
+      </plain>
+      <warm><li>[good] Opened a bottle with friends tonight. We toasted the ones who aren't here.</li></warm>
+      <blunt><li>[bad] The wine is vinegar. Fix the barrels.</li></blunt>
+      <cheerful><li>[good] The wine is good this year! Somebody stop me before I write a song about it.</li></cheerful>
+      <gloomy><li>Drank wine to forget the week. The week is still here.</li></gloomy>
+      <cold><li>[good] Good wine is worth more than silver to the right buyer. We should keep some back.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_MO_Ale</defName>
+    <lines>
+      <plain>
+        <li>A mug of ale at the end of the day. I'd earned it.</li>
+        <li>Mead tonight. It tastes the way summer smells.</li>
+        <li>[evening] Ale, the long table, and nobody in a hurry to go to bed.</li>
+        <li>[work:Growing] Brought in the barley this morning and drank last year's barley tonight. That's how it should go.</li>
+        <li>[winter] Hot mead with spice in it. My hands finally warmed up.</li>
+      </plain>
+      <warm><li>Bought the next round, so to speak. Nobody here pays for ale, but the gesture counts.</li></warm>
+      <blunt><li>Good ale. One mug. Then bed.</li></blunt>
+      <cheerful><li>Mead night! Somebody started singing and I think it was me.</li></cheerful>
+      <gloomy><li>Ale helps. Not much, and not for long.</li></gloomy>
+      <cold><li>One mug of ale, no more. A clear head in the morning matters more.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_MO_Smoked</defName>
+    <lines>
+      <plain>
+        <li>Smoked meat for lunch. My fingers still smell of the smokehouse.</li>
+        <li>Grilled sausages tonight. Burnt at the ends, which is the best part.</li>
+        <li>[bad] Dried meat again. Like chewing a boot.</li>
+        <li>[winter] Smoked meat from the autumn hanging. That's what it was for.</li>
+        <li>Skewers off the grill, eaten standing up in the yard.</li>
+      </plain>
+      <warm><li>Shared my sausages with the youngest at the table. Growing children need it more.</li></warm>
+      <blunt><li>Sausages. Good.</li></blunt>
+      <cheerful><li>Sausage night! The best night.</li></cheerful>
+      <gloomy><li>Dried meat and water. Supper of kings.</li></gloomy>
+      <cold><li>Smoked meat keeps all winter. Worth every hour at the smoker.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_MO_Library</defName>
+    <lines>
+      <plain>
+        <li>An hour in the library with a candle and a book about rivers. I don't care about rivers. I read the whole thing.</li>
+        <li>Read in the library today. Quiet, and it smells of paper and wax.</li>
+        <li>[skill:Intellectual] Found a book in the library I'd missed. Copied out a page of it.</li>
+        <li>[rain] Rain on the roof and a book in the library. A perfect afternoon.</li>
+        <li>[child] I read a book in the library all by myself. It had pictures of a dragon.</li>
+      </plain>
+      <warm><li>Read aloud in the library to whoever wanted to listen. Two stayed until the end.</li></warm>
+      <blunt><li>Read. Quiet. Good.</li></blunt>
+      <cheerful><li>The library is my favorite room! Nobody shouts in it.</li></cheerful>
+      <gloomy><li>The library is the only room where nobody needs anything from me.</li></gloomy>
+      <cold><li>The library is worth what it cost. People read, and people who read make fewer mistakes.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>
