@@ -100,7 +100,7 @@ namespace ColonyCouncil
             var colony = CampSite.ColonyCenter(map);
             for (int tries = 0; tries < 6; tries++)
             {
-                var kind = kinds.RandomElementByWeight(k => k.weight);
+                var kind = kinds.RandomElementByWeight(k => k.WeightNow());
                 var f = Arrivals.Friendly(x => kind.FitsFaction(x));
                 if (f == null) continue;
                 int n = Mathf.Clamp(kind.people.RandomInRange, 1, 8);

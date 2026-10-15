@@ -24,7 +24,7 @@ namespace ColonyCouncil
         Declined
     }
 
-    /// <summary>Something to deliver: a number of things of one kind ("meals", "art", "blocks", "textiles", or a def name).</summary>
+    /// <summary>Something to deliver: a number of things of one kind ("meals", "art", "blocks", "textiles", "rawfood", "medicine", or a def name).</summary>
     public class MissionGoal : IExposable
     {
         public string what;
@@ -518,7 +518,7 @@ namespace ColonyCouncil
                         yield return t;
                 yield break;
             }
-            var def = what == "meals" || what == "blocks" || what == "textiles" ? null : DefDatabase<ThingDef>.GetNamedSilentFail(what);
+            var def = IsGroup(what) ? null : DefDatabase<ThingDef>.GetNamedSilentFail(what);
             IEnumerable<Thing> pool = def != null ? map.listerThings.ThingsOfDef(def) : map.listerThings.ThingsInGroup(ThingRequestGroup.HaulableEver);
             foreach (var t in pool)
             {
@@ -528,15 +528,32 @@ namespace ColonyCouncil
             }
         }
 
+        /// <summary>A goal that counts many kinds of thing rather than one def.</summary>
+        public static bool IsGroup(string what) =>
+            what == "meals" || what == "blocks" || what == "textiles" || what == "rawfood" || what == "medicine";
+
         private static bool Fits(Thing t, string what)
         {
             var d = t.def;
             switch (what)
             {
                 case "meals":
+                {
                     if (d.ingestible == null || !d.IsNutritionGivingIngestible || d.IsDrug || d.ingestible.preferability < FoodPreferability.MealSimple) return false;
                     var rot = t.TryGetComp<CompRottable>();
                     return rot == null || rot.Stage == RotStage.Fresh;
+                }
+                case "rawfood":
+                {
+                    // Raw food people can eat: meat, vegetables, grain, berries; fresh.
+                    var ing = d.ingestible;
+                    if (ing == null || !d.IsNutritionGivingIngestible || d.IsDrug || d.IsCorpse || !ing.HumanEdible) return false;
+                    if (ing.preferability != FoodPreferability.RawBad && ing.preferability != FoodPreferability.RawTasty) return false;
+                    var rot = t.TryGetComp<CompRottable>();
+                    return rot == null || rot.Stage == RotStage.Fresh;
+                }
+                case "medicine":
+                    return d.IsMedicine;
                 case "blocks":
                     return d.thingCategories != null && d.thingCategories.Contains(ThingCategoryDefOf.StoneBlocks);
                 case "textiles":
@@ -576,6 +593,8 @@ namespace ColonyCouncil
                 case "art": return 220f;
                 case "blocks": return 1.5f;
                 case "textiles": return 2f;
+                case "rawfood": return 1.5f;
+                case "medicine": return 15f;
             }
             return DefDatabase<ThingDef>.GetNamedSilentFail(what)?.BaseMarketValue ?? 1f;
         }
@@ -595,6 +614,8 @@ namespace ColonyCouncil
                 case "art": return g.count == 1 ? "CC_Mission_Need_Art1".Translate().ToString() : "CC_Mission_Need_Art".Translate(g.count).ToString();
                 case "blocks": return "CC_Mission_Need_Blocks".Translate(g.count);
                 case "textiles": return "CC_Mission_Need_Textiles".Translate(g.count);
+                case "rawfood": return "CC_Mission_Need_RawFood".Translate(g.count);
+                case "medicine": return "CC_Mission_Need_Medicine".Translate(g.count);
             }
             var def = DefDatabase<ThingDef>.GetNamedSilentFail(g.what);
             return "CC_Mission_Need_Thing".Translate(g.count, def?.label ?? g.what);
@@ -608,6 +629,8 @@ namespace ColonyCouncil
                 case "art":
                 case "blocks":
                 case "textiles":
+                case "rawfood":
+                case "medicine":
                     return ("CC_Mission_Goal_" + g.what).Translate();
             }
             return DefDatabase<ThingDef>.GetNamedSilentFail(g.what)?.LabelCap ?? g.what;

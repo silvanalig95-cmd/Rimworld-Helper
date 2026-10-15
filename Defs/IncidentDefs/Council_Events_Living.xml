@@ -78,6 +78,8 @@
         <journal>Council_Journal_Evt_LoversKin</journal>
         <titles>
           <li>{A_nameDef}'s {RELATION} comes asking</li>
+          <li>Family at the gate</li>
+          <li>{X_nameDef} has found them</li>
         </titles>
         <texts>
           <li>{X_nameDef}, {A_nameDef}'s {RELATION}, has walked from {FACTION}'s lands and is waiting at the gate. The family worked out a while ago where {A_nameDef} and {B_nameDef} went when they ran. {X_nameDef} came alone, without a weapon, and asks only to talk.</li>
@@ -150,6 +152,9 @@
         <journal>Council_Journal_Evt_KinLetter</journal>
         <titles>
           <li>A letter from {X_nameDef}</li>
+          <li>News from {FACTION}'s lands</li>
+          <li>A parcel for {A_nameDef}</li>
+          <li>[winter] A winter letter</li>
         </titles>
         <texts>
           <li>[lowtech] A peddler on the road from {FACTION}'s lands brought a letter for {A_nameDef} and a parcel tied with twine. It's from {X_nameDef}, {A_possessive} {RELATION}, who visited a while back.\n\nThe letter is mostly news: who has married, whose roof finally came down in the rain, how the goats are doing. {A_nameDef} has read it three times.</li>
@@ -159,6 +164,11 @@
           <li>[spring] {X_nameDef}, {A_nameDef}'s {RELATION}, has written from {FACTION}'s lands. There's been a wedding, the spring floods took out the lower bridge, and a parcel came along with the letter. {A_nameDef} has been reading the good parts aloud to anyone who stops.</li>
           <li>[fall] A trader passing through left a letter and a parcel for {A_nameDef}. It's from {X_nameDef}, {A_possessive} {RELATION}: the harvest was fair, the roof held, and the family still sets a place for {A_objective} at the long table on feast days.</li>
           <li>{A_nameDef} has a letter from {X_nameDef}, {A_possessive} {RELATION}, who visited a while ago. It came with a parcel from home, and it's full of small news: a birth, a wedding, a dog that went missing for a week and came back fat.</li>
+          <li>[past:farmer] A trader brought {A_nameDef} a letter and a parcel from {X_nameDef}, {A_possessive} {RELATION}. Most of it is about the fields back home: which strip flooded, which one finally took the barley, and who borrowed the plow and never brought it back.\n\nThe parcel smells of home. {A_nameDef} hasn't opened it yet, only held it.</li>
+          <li>[trait:Nervous] {A_nameDef} turned the letter over three times before opening it, sure it held bad news. It didn't. {X_nameDef}, {A_possessive} {RELATION}, only writes to say that everyone is well, the roof is mended and the dog has had puppies, and sends a parcel along with it.\n\n{A_nameDef} has been smiling at nothing all afternoon.</li>
+          <li>[skill:Artistic] {X_nameDef}, {A_nameDef}'s {RELATION}, has written from {FACTION}'s lands, and drawn the old house in the margin so {A_nameDef} would know what it looks like now. The drawing is terrible. {A_nameDef} has pinned it over {A_possessive} bed anyway.\n\nA parcel came with the letter, wrapped in a scarf {A_nameDef} remembers.</li>
+          <li>[trait:Kind] A letter came for {A_nameDef} today from {X_nameDef}, {A_possessive} {RELATION}, with a parcel tied up in string. Half of the letter is questions: is {A_nameDef} eating, is {A_pronoun} warm enough, are the people here good to {A_objective}.\n\n{A_nameDef} has started a reply that is already longer than the letter.</li>
+          <li>[past:soldier] {A_nameDef} has a letter from {X_nameDef}, {A_possessive} {RELATION}, and a parcel with it. {X_nameDef} never asks about the old days in the army, and doesn't now. The letter is all small things: a new well, a neighbor's wedding, the price of salt.\n\n{A_nameDef} read it standing up, then sat down and read it again.</li>
         </texts>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_LetterFromHome</thought></li>
@@ -169,6 +179,11 @@
           <li>
             <label>Write back</label>
             <outcome>{A_nameDef} spends the evening on a reply, and the next trader heading that way takes it along.</outcome>
+            <outcomes>
+              <li>[trait:Kind] {A_nameDef} writes four pages back, asking after everyone by name, and the next trader heading that way takes them along.</li>
+              <li>[past:soldier] {A_nameDef} writes back in the short square hand of someone used to writing reports, then adds a long postscript about everyone here. The next trader heading that way takes it along.</li>
+              <li>[trait:Abrasive] {A_nameDef} writes back. It's short, and it complains about the weather twice, but it ends with "love" and that is more than {A_nameDef} usually says.</li>
+            </outcomes>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><skill>Social</skill><xp>150</xp></li>
             </effects>
@@ -177,34 +192,79 @@
           <li>
             <label>Invite {X_objective} to come and live here</label>
             <outcome>{A_nameDef} writes back asking {X_nameDef} to come and live at the colony. If {X_nameDef} can get away, the journey takes about a week.</outcome>
+            <outcomes>
+              <li>{A_nameDef} writes back the same evening: there's a bed here, and work, and a place at the table. The next trader heading that way takes the letter. If {X_nameDef} can get away, the journey takes about a week.</li>
+              <li>[trait:Kind] {A_nameDef} writes that {X_nameDef} should come, and that there's no need to bring anything but warm clothes. If {X_nameDef} can get away, the journey takes about a week.</li>
+            </outcomes>
             <ways><openness>2</openness></ways>
+          </li>
+          <li>
+            <label>Send a parcel home (30 silver)</label>
+            <outcome>{A_nameDef} packs a parcel for home: coin sewn into a sock, something from the colony's own stores, and a letter with news of everyone here. {FACTION} think well of the colony for it.</outcome>
+            <outcomes>
+              <li>[skill:Crafting] {A_nameDef} packs a parcel for home with coin sewn into the lining and a carved box {A_pronoun} made in the evenings, and writes a letter to go with it.</li>
+              <li>[trait:Greedy] {A_nameDef} packs a parcel for home, and only counts the coin twice before tying it up.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>30</count></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_ParcelHome</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>4</amount></li>
+            </effects>
+            <ways><generosity>2</generosity><tradition>1</tradition></ways>
+          </li>
+          <li>
+            <label>Read it out at supper</label>
+            <outcome>{A_nameDef} reads the letter out at supper, all the small news from home, and by the end everyone at the table is asking after people they've never met.</outcome>
+            <outcomes>
+              <li>[trait:Abrasive] {A_nameDef} reads the letter out at supper, adding remarks of {A_possessive} own about every relative in it. The table hasn't laughed that hard in weeks.</li>
+              <li>[skill:Social] {A_nameDef} reads the letter out at supper and does all the voices. By the end the colony feels it knows {X_nameDef} well.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_LetterReadOut</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><skill>Social</skill><xp>120</xp></li>
+            </effects>
+            <ways><openness>1</openness><tradition>1</tradition></ways>
           </li>
         </options>
       </li>
       <li Class="ColonyCouncil.HappeningLivingText">
         <coming>
           <li>{X_nameDef}, {A_nameDef}'s {RELATION}, has been asked to come and live here. Expected within {DAYS}.</li>
+          <li>[winter] {X_nameDef}, {A_nameDef}'s {RELATION}, is on the winter roads to come and live here. Expected within {DAYS}, snow allowing.</li>
+          <li>{A_nameDef} has asked {X_nameDef} to come and live here, and keeps looking down the road. Expected within {DAYS}.</li>
         </coming>
         <doneTitles>
           <li>{X_nameDef} has come to stay</li>
+          <li>{A_nameDef}'s {RELATION} arrives</li>
+          <li>Family at the gate</li>
         </doneTitles>
         <done>
           <li>[lowtech] {X_nameDef}, {A_nameDef}'s {RELATION}, walked in from {FACTION}'s lands this morning with a pack, a walking stick and everything else left behind at home. {A_nameDef} saw {X_objective} from a long way off and went out to meet {X_objective} on the road.\n\n{X_nameDef} is a colonist now.</li>
           <li>[!lowtech] {X_nameDef} came up the road this morning with two bags and a coat too warm for the weather, and asked for {A_nameDef}. {A_nameDef}'s {RELATION} is here to stay.\n\n{X_nameDef} is a colonist now.</li>
+          <li>[winter] {X_nameDef} came in through the snow this morning, wrapped in three coats and carrying a sack of things from home. {A_nameDef} took one look and ran to the gate.\n\n{A_nameDef}'s {RELATION} is here to stay. {X_nameDef} is a colonist now.</li>
+          <li>{X_nameDef} turned up at the gate at midday with a bundle on {X_possessive} back and the letter {A_nameDef} sent, worn soft from reading. {A_nameDef} hasn't let go of {X_possessive} arm since.\n\n{X_nameDef} is a colonist now.</li>
         </done>
         <failTitles>
           <li>A letter from {X_nameDef}</li>
+          <li>{X_nameDef} can't come yet</li>
+          <li>News from {FACTION}'s lands</li>
         </failTitles>
         <fail>
           <li>{X_nameDef} wrote back. There's nothing {X_nameDef} would like better than to come, but someone at home is sick and there's nobody else to look after them. {A_nameDef} has put the letter away with the others.</li>
           <li>A reply came from {X_nameDef}, {A_nameDef}'s {RELATION}. The harvest is late, the family needs every pair of hands, and the journey will have to wait. {X_nameDef} promises to come one day.</li>
           <li>{X_nameDef} won't be coming after all. A grandchild is on the way among {FACTION}, and {X_nameDef} means to be there for it. The letter asks {A_nameDef} to visit instead.</li>
+          <li>[winter] {X_nameDef} wrote back that the passes are snowed shut until spring. {X_nameDef} means to come when the roads open, and has sent a pair of mittens on ahead. {A_nameDef} wears them every day.</li>
+          <li>A reply came from {X_nameDef}: the family has talked {X_objective} out of it, for now. The roads are bad and the news from the rim is worse. {X_nameDef} still writes that {X_pronoun} will come one day, and {A_nameDef} believes it.</li>
         </fail>
         <cancelled>
           <li>Word came from {FACTION}'s lands: {X_nameDef} won't be coming to the colony after all.</li>
+          <li>A trader from {FACTION}'s lands brought word that {X_nameDef} won't be making the journey after all.</li>
+          <li>{X_nameDef} sent word that the journey is off. {A_nameDef} read the note and folded it away without a word.</li>
         </cancelled>
         <remembered>
           <li>{X_nameDef}, {A_nameDef}'s {RELATION}, lives among {FACTION} and may write.</li>
+          <li>{X_nameDef}, {A_nameDef}'s {RELATION}, writes now and then from {FACTION}'s lands.</li>
+          <li>{A_nameDef} keeps the letters from {X_nameDef}, {A_possessive} {RELATION}, tied in a bundle by the bed.</li>
         </remembered>
       </li>
     </modExtensions>
@@ -226,6 +286,9 @@
         <journal>Council_Journal_Evt_FortuneScare</journal>
         <titles>
           <li>A close call</li>
+          <li>The bad fortune, used up</li>
+          <li>{A_nameDef}'s narrow escape</li>
+          <li>[winter] A slip on the ice</li>
         </titles>
         <texts>
           <li>[winter] {A_nameDef} slipped on the ice outside the storeroom and slid most of the way down the path on {A_possessive} back, with a full jug held up in the air. Nothing was broken, not even the jug.\n\nSince the fortune teller read the cards, {A_nameDef} has been waiting for something bad to happen. {A_nameDef} has decided this was it.</li>
@@ -235,6 +298,12 @@
           <li>[spring|fall] A startled animal came crashing out of the brush and ran past {A_nameDef}, close enough to touch, and was gone before {A_nameDef} could shout.\n\nSince the fortune teller's visit, {A_nameDef} has been waiting for the bad fortune to arrive. {A_nameDef} has decided that was it, and seems relieved.</li>
           <li>[child] {A_nameDef} climbed onto the storeroom roof after a lost ball and couldn't get down again. Two of the grown-ups fetched a ladder, and {A_nameDef} came down without a scratch.\n\nThe fortune teller's bad card has been on {A_nameDef}'s mind for days. Now {A_nameDef} is telling everyone the bad luck is used up.</li>
           <li>{A_nameDef} missed a step on the way down to the stores with a full basket, and landed sitting on the bottom step, basket still in hand, with no harm done.\n\nThe fortune teller saw something bad coming for {A_nameDef}. {A_nameDef} has decided that was it.</li>
+          <li>[skill:Animals] One of the colony's animals spooked at nothing, bolted straight at {A_nameDef}, then swerved at the last moment and went on into the fields.\n\nSince the fortune teller read the cards, {A_nameDef} has been waiting for the bad fortune. That was it, {A_nameDef} has decided, and {A_pronoun} went back to work whistling.</li>
+          <li>[skill:Cooking] A full kettle slid off its hook while {A_nameDef} was cooking and landed a hand's width from {A_possessive} feet, without a drop on {A_objective}.\n\nThe fortune teller's cards said something bad was coming for {A_nameDef}. {A_nameDef} has decided this was it, and has been humming over the pots ever since.</li>
+          <li>[trait:Nervous] A shutter banged in the wind right behind {A_nameDef}, and {A_nameDef} jumped so hard {A_pronoun} dropped an armful of firewood on {A_possessive} own boots. Nothing worse came of it.\n\nEver since the fortune teller's visit, {A_nameDef} has been jumping at shadows. {A_nameDef} has decided that was the bad fortune, and the others are glad of it, if only for the quiet.</li>
+          <li>[spring] A rotten fence rail gave way as {A_nameDef} leaned on it, and {A_nameDef} sat down hard in the mud, unhurt and laughing.\n\nThe fortune teller saw something bad coming for {A_nameDef}. {A_nameDef} has decided that was it, and says a muddy coat is a fair price.</li>
+          <li>[skill:Mining] A slab of loose rock came down in the cut where {A_nameDef} had been working a moment before, and broke into pieces on the floor.\n\nThe fortune teller's cards had shown something bad for {A_nameDef}. {A_nameDef} looked at the rubble a long while, then decided that was it, and went back in with a lighter step.</li>
+          <li>[trait:Optimist] A gust took {A_nameDef}'s hat clean off and dropped it in the well, and {A_nameDef} nearly went in after it.\n\nThe fortune teller saw bad luck coming, and {A_nameDef} has decided a lost hat is the whole of it. {A_nameDef} is telling everyone the stars have done their worst.</li>
         </texts>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_FortuneSpent</thought></li>
@@ -294,6 +363,8 @@
         <journal>Council_Journal_Evt_Renown</journal>
         <titles>
           <li>Looking for {TALE}</li>
+          <li>Someone asks for {A_nameDef}</li>
+          <li>Word has spread</li>
         </titles>
         <texts>
           <li>[heal,lowtech] {X_nameDef} of {FACTION} walked two days with an arm that was set badly last winter and never healed straight. On the road, {X_nameDef} heard about {A_nameDef}, the one people call {TALE}, and came to ask {A_objective} to look at it.</li>
@@ -354,6 +425,8 @@
         <journal>Council_Journal_Evt_VendettaBand</journal>
         <titles>
           <li>{ENEMY} nearby</li>
+          <li>{ENEMY} camped close by</li>
+          <li>Old scores</li>
         </titles>
         <texts>
           <li>[killed,lowtech] Hunters came back with news: a small band of {ENEMY} has made camp a few hours' walk from the colony, resting on the way somewhere else. {A_nameDef} swore to make {ENEMY} pay for {DEAD}, and hasn't said a word since hearing it.\n\nThe colony could draw them out to fight here, on its own ground, or let them pass.</li>
@@ -482,6 +555,8 @@
         <journal>Council_Journal_Evt_KindredSpirit</journal>
         <titles>
           <li>A kindred spirit</li>
+          <li>A long talk at supper</li>
+          <li>Someone who has done it</li>
         </titles>
         <texts>
           <li>{X_nameDef} of {FACTION} stopped at the colony for the night, and over supper {A_nameDef} mentioned wanting to {GOAL}. {X_nameDef} set out to do the same thing years ago, and did it.\n\nThe two of them talked until late. {A_nameDef} came away with a head full of advice and a clearer idea of how to go about it.</li>
@@ -512,6 +587,8 @@
         <answerDays>1</answerDays>
         <titles>
           <li>A caravan to {PLACE}</li>
+          <li>Room on the wagons</li>
+          <li>A long way to market</li>
         </titles>
         <texts>
           <li>[lowtech] A trading caravan of {FACTION} has stopped on its way to the market at {PLACE}, a long way off. The caravan master has room on the wagons and an offer: send {TALE} along, and they'll trade it at {PLACE} for {THING}, which the colony is running short of.\n\nThey'll be back this way in a week or so.</li>
@@ -572,6 +649,8 @@
         <answerDays>1</answerDays>
         <titles>
           <li>The harvest fair at {PLACE}</li>
+          <li>An invitation to the fair</li>
+          <li>Fair days at {PLACE}</li>
         </titles>
         <texts>
           <li>[lowtech] {FACTION} hold their harvest fair at {PLACE} this week: stalls, music, a judging for the best of the harvest, and buyers from three valleys. Their crier came by to invite the colony.\n\nThe colony could send a cart of {TALE}. {A_nameDef}, who grew most of it, thinks the best of it might take a prize.</li>
@@ -638,6 +717,8 @@
         <journal>Council_Journal_Evt_MidwinterGuest</journal>
         <titles>
           <li>A traveler at dusk</li>
+          <li>A knock in the cold</li>
+          <li>A guest for the night</li>
         </titles>
         <texts>
           <li>[lowtech] At dusk a lone traveler came in out of the {PLACE}, white with frost, and knocked at the gate. {X_nameDef} of {FACTION} is on the way home and won't make it before dark. It's {TALE} outside and getting colder.\n\n{X_nameDef} asks for a place near the fire for the night, nothing more.</li>
@@ -719,6 +800,8 @@
         <notable>false</notable>
         <titles>
           <li>The thaw</li>
+          <li>Mud and meltwater</li>
+          <li>The snow lets go</li>
         </titles>
         <texts>
           <li>[first] The snow is going at last. It's the colony's first spring here in the {PLACE}, and the ground under the drifts is turning soft and muddy. People keep finding reasons to work outside.\n\nIn the melt, {A_nameDef} found what someone lost on the road over the winter: {TALE}.</li>
