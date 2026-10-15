@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More journal lines for convalescence, setbacks, sickbed visits, doctors and midwives (Council_Journal_Health.xml),
+    in every voice. Same placeholders and tags: {OTHER_...} is the surgeon, the patient or the mother as in each pool,
+    {BABY_...} the newborn; [bed], [surgery], [illness], [patient], [trusted], [renowned], [word].
+  -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Journal_Health_Convalescing</defName>
+    <pool>Council_Journal_Health_Convalescing</pool>
+    <lines>
+      <warm>
+        <li>Someone brings me a bowl every evening before I can ask. I'll find out who and thank them.</li>
+        <li>[bed] Out of bed at last. I went round and thanked everyone who sat with me.</li>
+      </warm>
+      <blunt>
+        <li>[bed] Out of bed. Legs wobbly. Walking anyway.</li>
+        <li>Stronger than yesterday. That's enough.</li>
+      </blunt>
+      <cheerful>
+        <li>Walked to the window and back without stopping! Tomorrow, the door.</li>
+        <li>[illness] The fever's gone, and I've never been so glad to be bored.</li>
+      </cheerful>
+      <gloomy>
+        <li>Weak and slow. I watch the others work and feel useless.</li>
+        <li>[bed] Out of bed, but everything takes twice as long. I hate being a burden.</li>
+      </gloomy>
+      <cold>
+        <li>Recovering. I've drawn up a list of tasks I can manage sitting down.</li>
+        <li>[surgery] {OTHER_nameDef}'s work is holding. The stitches are clean. I'll be back on my feet soon enough.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Journal_Health_Setback</defName>
+    <pool>Council_Journal_Health_Setback</pool>
+    <lines>
+      <plain><li>Stood up too fast, and the room went sideways. Back to bed, with orders.</li></plain>
+      <warm><li>I wanted to help so badly I forgot I was still healing. The others put me back to bed, kindly.</li></warm>
+      <blunt><li>Pushed too hard. Paid for it.</li></blunt>
+      <cheerful><li>I've been sent back to bed! At least the blankets are warm.</li></cheerful>
+      <gloomy><li>One good day, then this. It's always like this.</li></gloomy>
+      <cold><li>Exertion exceeded my current capacity. I'll pace myself more carefully.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Journal_Health_Strong</defName>
+    <pool>Council_Journal_Health_Strong</pool>
+    <lines>
+      <plain><li>Hauled stone with the others today and kept up. Nobody fussed over me once.</li></plain>
+      <warm><li>Back to full strength. I went round and helped everyone who'd covered my work.</li></warm>
+      <blunt><li>Strong again. Good.</li></blunt>
+      <cheerful><li>I'm back! I did a little jump in the yard and nobody even saw.</li></cheerful>
+      <gloomy><li>All better. My body remembers what happened even if the others forget.</li></gloomy>
+      <cold><li>Full strength restored. I've taken back my old duties.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Journal_Health_Visited</defName>
+    <pool>Council_Journal_Health_Visited</pool>
+    <lines>
+      <plain><li>{OTHER_nameDef} came by with a handful of berries and the latest gossip. Both were sweet.</li></plain>
+      <warm><li>{OTHER_nameDef} sat with me and held my hand when the pain was bad. I won't forget it.</li></warm>
+      <blunt><li>{OTHER_nameDef} came. Talked. Left. Helped.</li></blunt>
+      <cheerful><li>{OTHER_nameDef} visited and we played a game of guessing what's for supper. I won twice!</li></cheerful>
+      <gloomy><li>{OTHER_nameDef} sat with me today. For an hour I forgot how long I've been stuck here.</li></gloomy>
+      <cold><li>{OTHER_nameDef} came to see me. It costs a person an hour to visit the sick. I noticed who paid it.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Journal_Health_Surgery</defName>
+    <pool>Council_Journal_Health_Surgery</pool>
+    <lines>
+      <plain><li>Spent the whole afternoon on {OTHER_nameDef}. Afterward I ate standing up and couldn't taste a thing.</li></plain>
+      <warm><li>{OTHER_nameDef} thanked me before I'd even finished washing my hands. It's the patients that keep me going.</li></warm>
+      <blunt><li>{OTHER_nameDef}'s operation. Done. Good.</li></blunt>
+      <cheerful><li>Another one put back together! {OTHER_nameDef} is going to be fine.</li></cheerful>
+      <gloomy><li>{OTHER_nameDef} made it through. I keep going over every cut anyway.</li></gloomy>
+      <cold><li>{OTHER_nameDef}'s operation went as planned. The method holds up.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Journal_Health_LostOnTable</defName>
+    <pool>Council_Journal_Health_LostOnTable</pool>
+    <lines>
+      <plain><li>I washed my hands three times after {OTHER_nameDef}. They still don't feel clean.</li></plain>
+      <warm><li>I sat with {OTHER_nameDef} after, and told {OTHER_objective} I was sorry. It was all I had.</li></warm>
+      <blunt><li>Lost {OTHER_nameDef}. Can't sleep.</li></blunt>
+      <cheerful><li>I'll keep remembering {OTHER_nameDef} laughing before we started. I'll have to.</li></cheerful>
+      <gloomy><li>{OTHER_nameDef} trusted my hands, and my hands failed.</li></gloomy>
+      <cold><li>I've gone over {OTHER_nameDef}'s operation step by step. The error was not where I expected.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Journal_Health_LostRun</defName>
+    <pool>Council_Journal_Health_LostRun</pool>
+    <lines>
+      <plain><li>I've lost another, {OTHER_nameDef}. The infirmary feels like a different room tonight.</li></plain>
+      <warm><li>I talked to {OTHER_nameDef} until the end. It's the only part I did right.</li></warm>
+      <blunt><li>{OTHER_nameDef}. Gone. Another one.</li></blunt>
+      <gloomy><li>First the last one, now {OTHER_nameDef}. My hands shake when I pick up the knife.</li></gloomy>
+      <cold><li>{OTHER_nameDef} is dead. I'll go back over both cases tonight.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Journal_Health_Midwife</defName>
+    <pool>Council_Journal_Health_Midwife</pool>
+    <lines>
+      <plain><li>{BABY_nameDef} arrived just before dawn. {OTHER_nameDef} was brave, and very loud about it.</li></plain>
+      <warm><li>I wrapped {BABY_nameDef} in the softest blanket we have and stayed until {OTHER_nameDef} slept.</li></warm>
+      <blunt><li>New baby. {BABY_nameDef}. Everyone fine.</li></blunt>
+      <cheerful><li>{BABY_nameDef} has a grip like a blacksmith! I'm very proud of {BABY_objective} already.</li></cheerful>
+      <gloomy><li>{BABY_nameDef} is here and breathing. Out here, I count that as a blessing every time.</li></gloomy>
+      <cold><li>{OTHER_nameDef} delivered {BABY_nameDef} without trouble. The preparations paid off.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Journal_Health_MotherMidwife</defName>
+    <pool>Council_Journal_Health_MotherMidwife</pool>
+    <lines>
+      <plain><li>When it was over, {OTHER_nameDef} put the baby on my chest and told me I'd done well. I cried.</li></plain>
+      <warm><li>{OTHER_nameDef} held my hand through the worst of it. I'll owe {OTHER_objective} forever.</li></warm>
+      <blunt><li>Baby's here. {OTHER_nameDef} knew what to do. I didn't.</li></blunt>
+      <cheerful><li>{OTHER_nameDef} made a terrible joke halfway through, and I laughed, and then there was the baby!</li></cheerful>
+      <gloomy><li>I was sure something would go wrong. {OTHER_nameDef} didn't let it.</li></gloomy>
+      <cold><li>{OTHER_nameDef} was calm and exact. I'll want {OTHER_objective} again, if there's a next time.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Journal_Health_Stillborn</defName>
+    <pool>Council_Journal_Health_Stillborn</pool>
+    <lines>
+      <plain><li>{OTHER_nameDef} asked me to name the baby anyway. We did, together, quietly.</li></plain>
+      <warm><li>I helped {OTHER_nameDef} choose a place for the little grave. We picked the sunniest spot.</li></warm>
+      <blunt><li>Couldn't save the baby. I'll carry that.</li></blunt>
+      <cheerful><li>There's nothing bright to write today. I'll sit with {OTHER_nameDef} again tomorrow.</li></cheerful>
+      <gloomy><li>The baby never cried. I keep listening for it.</li></gloomy>
+      <cold><li>The child didn't survive. {OTHER_nameDef} will need time, and someone watching.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Journal_Health_Standing</defName>
+    <pool>Council_Journal_Health_Standing</pool>
+    <lines>
+      <plain><li>[trusted] A child brought me a scraped knee today because "you're the one who fixes things".</li></plain>
+      <warm><li>[trusted] People leave little gifts at the infirmary door now. I don't know what to say to them.</li></warm>
+      <blunt><li>[renowned] Everyone trusts me with their lives. I'd better keep earning it.</li></blunt>
+      <cheerful><li>[renowned] Someone called me the best doctor on the rim! A huge exaggeration, but I'll take it.</li></cheerful>
+      <gloomy><li>[renowned] They all look at me as if I can't fail. I can. I have.</li></gloomy>
+      <cold><li>[renowned] My record speaks for itself. People defer to me on matters of health now.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Journal_Health_TrustDoctor</defName>
+    <pool>Council_Journal_Health_TrustDoctor</pool>
+    <lines>
+      <warm><li>[patient] {OTHER_nameDef} was so gentle with my wound. I'm in good hands.</li></warm>
+      <blunt><li>[patient] {OTHER_nameDef} fixed me. Good doctor.</li></blunt>
+      <cheerful><li>[word] With {OTHER_nameDef} around, I'm practically indestructible!</li></cheerful>
+      <gloomy><li>[patient] {OTHER_nameDef} patched me up again. One day it won't be enough, but not today.</li></gloomy>
+      <cold><li>[patient] {OTHER_nameDef} tended me efficiently. I'll recommend {OTHER_objective}.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+</Defs>
