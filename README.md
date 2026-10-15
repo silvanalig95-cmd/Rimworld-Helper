@@ -563,6 +563,11 @@ conflicts, and how it works with Rimfolk. Each page only shows when its mod is a
 page) gives Rimfolk in a few lines with links to the main systems' pages, and **Checking that it works** is a short
 checklist of where to look to see the newer features at work.
 
+Pages read at four text sizes: the **Aa** buttons at the top of the Almanac (also on the Interface page of the mod
+settings) pick Small, Normal, Large or Larger. The « button folds the categories and the page list into a thin strip,
+with buttons for the previous and next page, so a page gets the whole width. Tables size their columns by their text
+and never break a word; a table too wide for the page shows each row as a small card instead.
+
 ### Names, anniversaries and petitions
 Whoever has done the most of something earns a name for it, until someone overtakes them: *the Healer*, *the
 Surgeon*, *Deadeye*, *the Builder*, *Beastfriend*, *Silver-Tongue*, and some less flattering ones (*the Broom*,
@@ -1206,8 +1211,8 @@ The pages:
   smaller news goes (**Colony news**: one letter each evening by default, as it happens, or off, to the History tab
   only); a message for every dream, letters or messages for new and granted wishes, floating speech text, the visual and sound
   touches; the two alerts; mood insight (and its hints in the Needs tab), the slow speed buttons (and putting them
-  back), where the council button sits in the bottom bar, the rooms button; the deeper game hooks and the notes in
-  the game's letters.
+  back), where the council button sits in the bottom bar, the rooms button, the Almanac's text size; the deeper game
+  hooks and the notes in the game's letters.
 - **Advanced**: this colony's era (detected, pre-industrial or industrial; set per colony, so it needs a loaded game),
   **Check what's on and working** (the same report as the dev action "Rimfolk: check myself"), and a full reset to
   the defaults (with the list of what changes; saved rooms are kept).

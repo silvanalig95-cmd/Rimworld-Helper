@@ -33,7 +33,9 @@ All of it lives in the council window. Open it with the council button in the bo
       </li>
       <li>
         <heading>Reading on</heading>
-        <text>The pages below explain the main parts. Each one ends with its own links, like this page.</text>
+        <text>The pages below explain the main parts. Each one ends with its own links, like this page.
+
+If the text is too small or too cramped, the Aa buttons at the top of the almanac set its text size (Small, Normal, Large or Larger, also in the mod settings), and the « button beside them folds the lists away so a page gets the whole width. Tables too wide for the page show each row as a small card.</text>
       </li>
     </sections>
     <keywords><li>start</li><li>welcome</li><li>new</li><li>first</li><li>begin</li><li>help</li><li>tutorial</li><li>rimfolk</li></keywords>
