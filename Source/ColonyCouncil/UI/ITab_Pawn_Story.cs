@@ -145,6 +145,15 @@ namespace ColonyCouncil
                 if (goal.lines.Count > 0) yield return goal;
             }
 
+            // Personal story (Arcs/).
+            var arcLines = ArcView.Lines(p);
+            if (arcLines.Count > 0)
+            {
+                var arc = new Section { header = "CC_Story_Arc".Translate(), icon = Icons.Journal };
+                arc.lines.AddRange(arcLines);
+                yield return arc;
+            }
+
             // Bonds.
             if (s.socialWeb)
             {
