@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More everyday journal lines (Council_Journal_Everyday.xml) for the moments written most often: a fine meal, a deep
+    talk, the colony's looks and one's own bedroom. Same placeholders and tags: [good] / [bad] for how the moment felt,
+    {OTHER_...} for the one talked with. Seasons come in small groups, so no single line takes a whole season.
+  -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Journal_Day_FineMeal</defName>
+    <pool>Council_Journal_Day_FineMeal</pool>
+    <lines>
+      <plain>
+        <li>[winter] Hot porridge with honey this morning, while the frost was still on the window.</li>
+        <li>[summer] Cold meat and fresh greens for supper, too hot for anything else. It was just right.</li>
+        <li>[spring] The first fresh greens of the year in the stew tonight. They tasted of the field.</li>
+        <li>[spring] Eggs for breakfast, and enough for everyone. The hens have started laying again.</li>
+        <li>[fall] Supper from the new harvest tonight, with more on the table than we could finish.</li>
+        <li>[fall] Baked roots and smoked meat after a day in the fields. I slept the moment I lay down.</li>
+        <li>[hurt] Someone cut my meat for me without being asked. It was a good supper, and I ate all of it.</li>
+        <li>[skill:Cooking] Ate a dish I'd never thought to make. I'm going to try it myself, with a few changes.</li>
+        <li>Ate with my back to the wall and my feet up, and nobody needed me for a whole meal.</li>
+      </plain>
+      <warm>
+        <li>The cook remembered I don't like onions and left them out of my bowl. Small thing. I noticed.</li>
+        <li>Good supper, and good company at the table. I stayed long after my bowl was empty.</li>
+      </warm>
+      <blunt>
+        <li>Meat, bread, gravy. That's a meal.</li>
+        <li>Ate well. Slept well after. Good day.</li>
+      </blunt>
+      <cheerful>
+        <li>Supper was so good I licked the spoon, and then the bowl, when nobody was looking!</li>
+        <li>Fresh bread tonight, still warm. I had three slices and I'd do it again.</li>
+      </cheerful>
+      <gloomy>
+        <li>A fine supper. I ate it as if it might be the last good one for a while.</li>
+        <li>Good food tonight. I'd almost forgotten what that was like.</li>
+      </gloomy>
+      <cold>
+        <li>The meal was well made. I'll eat whatever that cook makes from now on.</li>
+        <li>Good food, served hot and on time. That's rarer here than it should be.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Journal_Day_DeepTalk</defName>
+    <pool>Council_Journal_Day_DeepTalk</pool>
+    <lines>
+      <plain>
+        <li>[winter] Long dark evening, so {OTHER_nameDef} and I talked until the candle guttered. I learned where {OTHER_pronoun} grew up.</li>
+        <li>[spring] Planting all day beside {OTHER_nameDef}, talking the whole time. The rows came out crooked.</li>
+        <li>[summer] Too hot to sleep, so {OTHER_nameDef} and I sat outside and talked until the air cooled.</li>
+        <li>[summer] {OTHER_nameDef} and I lay on the roof after dark and talked about the stars and the people under them.</li>
+        <li>[fall] Brought in the harvest beside {OTHER_nameDef}, and we talked about the years we'd want to forget.</li>
+        <li>[fall] Leaves coming down, and {OTHER_nameDef} and I walked the long way back so we could keep talking.</li>
+        <li>[rain] Rain on the roof, and {OTHER_nameDef} told me about the worst storm {OTHER_pronoun} ever lived through.</li>
+        <li>[skill:Social] {OTHER_nameDef} usually keeps to {OTHER_objective}self, but tonight {OTHER_nameDef} talked and I mostly listened.</li>
+        <li>[newcomer] {OTHER_nameDef} asked where I came from and actually wanted to know. I talked more than I have since I got here.</li>
+      </plain>
+      <warm>
+        <li>{OTHER_nameDef} and I sat up late and talked about the people we love. I'm glad {OTHER_pronoun} is here.</li>
+        <li>I told {OTHER_nameDef} something I was ashamed of, and {OTHER_pronoun} didn't flinch.</li>
+      </warm>
+      <blunt>
+        <li>Talked with {OTHER_nameDef} half the night. Tired today. Worth it.</li>
+        <li>{OTHER_nameDef} is all right. More than all right.</li>
+      </blunt>
+      <cheerful>
+        <li>{OTHER_nameDef} and I traded stories about our worst haircuts and laughed until we couldn't breathe.</li>
+        <li>I found out {OTHER_nameDef} used to want to be a singer! I've asked for a song tomorrow.</li>
+      </cheerful>
+      <gloomy>
+        <li>{OTHER_nameDef} and I talked about the friends we've buried. It helped, and it hurt.</li>
+        <li>Talked late with {OTHER_nameDef}. It's easier to say the hard things in the dark.</li>
+      </gloomy>
+      <cold>
+        <li>{OTHER_nameDef} told me about {OTHER_possessive} family tonight. I'll be careful with what I know now.</li>
+        <li>A long talk with {OTHER_nameDef}. I said less than {OTHER_pronoun} did, which is how I prefer it.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Journal_Day_Beauty</defName>
+    <pool>Council_Journal_Day_Beauty</pool>
+    <lines>
+      <plain>
+        <li>[good] The path to the fields has been swept and lined with stones. It's a nicer walk than it was.</li>
+        <li>[bad] Somebody left a heap of dirty rags by the kitchen door, and it's been there since yesterday.</li>
+      </plain>
+      <warm>
+        <li>[good] Someone put a sprig of flowers on the supper table. Nobody said anything, but everyone saw.</li>
+        <li>[good] The hall looks lovely since the new rug went down. I sat on it with my back to the wall for a while.</li>
+        <li>[bad] Picked up the scraps by the door on my way past. Somebody has to start.</li>
+        <li>[bad] The place has gotten shabby, but I don't blame anyone. We've all been so busy.</li>
+      </warm>
+      <blunt>
+        <li>[good] Nice walls. Nice floor. Don't wreck it.</li>
+        <li>[good] Someone made the hall look decent. Good.</li>
+        <li>[bad] Bones in the yard. Who leaves bones in the yard?</li>
+        <li>[bad] Ugly place. Ugly week.</li>
+      </blunt>
+      <cheerful>
+        <li>[good] There's a new carving by the door, and I patted it on the head on my way past!</li>
+        <li>[good] The garden's blooming, and the hall smells of flowers. I could live in this hall.</li>
+        <li>[bad] Mud everywhere, so I've started calling the hall the swamp. Somebody laughed!</li>
+        <li>[bad] The place is a mess, but I scrubbed one window, and it sparkles.</li>
+      </cheerful>
+      <gloomy>
+        <li>[good] It's pretty here now. That only makes it worse to think about losing it.</li>
+        <li>[good] The painting in the hall is good. I stood in front of it longer than I meant to.</li>
+        <li>[bad] Stains, rubble and a wall half built. That's about how I feel too.</li>
+        <li>[bad] Nobody's cleaned the hall in days. Maybe nobody has the heart.</li>
+      </gloomy>
+      <cold>
+        <li>[good] The colony looks cared for. Cared-for places are better defended.</li>
+        <li>[good] The new art is well placed. I'll grant the sculptor that.</li>
+        <li>[bad] The yard is a mess, and a messy yard is a sign of a colony that's lost its grip.</li>
+        <li>[bad] Dirt spreads if it's left. I've written down where it started.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Journal_Day_Bedroom</defName>
+    <pool>Council_Journal_Day_Bedroom</pool>
+    <lines>
+      <plain>
+        <li>[good] Changed the straw in my mattress today. Slept like a stone.</li>
+        <li>[bad] Something in my room creaks every time the wind picks up. I lay awake waiting for it.</li>
+      </plain>
+      <warm>
+        <li>[good] My room's small, but it's mine, and I've put the things people gave me where I can see them.</li>
+        <li>[good] Fell asleep tonight feeling safe, in a room I'm starting to love.</li>
+        <li>[bad] My room needs work, but I've got time, and people have offered to help.</li>
+        <li>[bad] Slept badly in that cold room. I'll ask someone about it gently tomorrow.</li>
+      </warm>
+      <blunt>
+        <li>[good] Warm room, quiet night. Good.</li>
+        <li>[good] Woke rested. That room works.</li>
+        <li>[bad] Cold, damp and small. Not a room. A cupboard.</li>
+        <li>[bad] Slept badly again. It's the room.</li>
+      </blunt>
+      <cheerful>
+        <li>[good] My bed is the best place in the world, and I'm not getting out of it until breakfast smells ready.</li>
+        <li>[good] Woke to sunlight on my wall and a bird outside the window. Perfect morning!</li>
+        <li>[bad] My room's cold, so I've built a nest of every blanket I own. It's actually lovely.</li>
+        <li>[bad] Small room, but I've decided it's snug!</li>
+      </cheerful>
+      <gloomy>
+        <li>[good] Slept well for once. I don't trust it.</li>
+        <li>[good] The room is nice. I lay in it and didn't think about anything, which hasn't happened in a while.</li>
+        <li>[bad] Woke in the dark and couldn't remember where I was, and then I did, and that was worse.</li>
+        <li>[bad] Four walls, a damp bed and the sound of someone snoring through the wall.</li>
+      </gloomy>
+      <cold>
+        <li>[good] Good room, good rest. I'll be sharper tomorrow for it.</li>
+        <li>[good] I've arranged the room so I can see the door from the bed. I slept well.</li>
+        <li>[bad] The room is badly built. I could do better in an afternoon, and I may have to.</li>
+        <li>[bad] A poor room means poor sleep, and poor sleep means mistakes. I've raised it.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+</Defs>
