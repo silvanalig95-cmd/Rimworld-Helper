@@ -13,8 +13,12 @@ namespace ColonyCouncil
     /// Rimfolk's touches the wind; the cause lies with the game or another mod. But a NaN wind stops every wind
     /// turbine ("NaN W"), breaks mods that divide by it, and wind-driven sounds pass it on to the audio, which then
     /// goes silent until the game is reloaded from the main menu. When the wind isn't a number after the game works it
-    /// out, this puts back the last good value for that map, and says once in the log what the weather and conditions
-    /// were, so the real cause can be found. A wind that is a number is never touched.
+    /// out, this does what changing the weather in dev mode did for the player: it settles the weather's change (the
+    /// last weather becomes the current one, so nothing is half-way between two weathers any more), and the game works
+    /// the wind out properly again from the next tick, at full strength on an always-windy map. For the one tick in
+    /// between it gives the strongest of the last good wind and what the map's conditions hold it at. It says once in
+    /// the log what the weather and conditions were, so the real cause can be found. A wind that is a number is never
+    /// touched.
     /// </summary>
     [HarmonyPatch(typeof(WindManager), nameof(WindManager.WindManagerTick))]
     public static class Patch_WindGuard
@@ -52,13 +56,17 @@ namespace ColonyCouncil
                     lastGood[id] = v;
                     return;
                 }
-                float fix = lastGood.TryGetValue(id, out float good) ? good : 1f;
+                string before = told ? null : Describe(map, v);
+                // What fixed it by hand: the weather settled (dev mode's "change weather" leaves last and current the same).
+                var w = map?.weatherManager;
+                if (w != null && w.curWeather != null && w.lastWeather != w.curWeather) w.lastWeather = w.curWeather;
+                float fix = Strongest(map, lastGood.TryGetValue(id, out float good) ? good : -1f);
                 speed(__instance) = fix;
                 Fixed++;
                 if (!told)
                 {
                     told = true;
-                    Log.Warning(Describe(map, v, fix));
+                    Log.Warning(before + "\n  Rimfolk settled the weather and set the wind to " + fix.ToString("0.00") + " for this moment; the game works it out again from the next tick.");
                 }
             }
             catch (Exception e)
@@ -68,12 +76,30 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>Everything the game's wind is worked out from, for the log.</summary>
-        private static string Describe(Map map, float v, float fix)
+        /// <summary>
+        /// The wind for the one tick until the game works it out again: the last good wind, or what the map's conditions
+        /// hold it at if that's stronger (an always-windy map), or a steady breeze if neither is known.
+        /// </summary>
+        private static float Strongest(Map map, float lastGoodWind)
+        {
+            float best = lastGoodWind;
+            var conditions = map?.gameConditionManager?.ActiveConditions;
+            if (conditions != null)
+                foreach (var c in conditions)
+                {
+                    if (c == null) continue;
+                    float min = c.MinWindSpeed();
+                    if (!float.IsNaN(min) && !float.IsInfinity(min) && min > best) best = min;
+                }
+            return best >= 0f ? best : 1f;
+        }
+
+        /// <summary>Everything the game's wind is worked out from, for the log (read before anything is settled).</summary>
+        private static string Describe(Map map, float v)
         {
             var sb = new StringBuilder();
-            sb.Append("[Rimfolk] The map's wind speed was ").Append(v).Append(" (not a number). Rimfolk put back ").Append(fix.ToString("0.00"))
-                .Append(" so wind turbines and sounds keep working. This comes from the game or another mod, not Rimfolk; what the wind is worked out from:");
+            sb.Append("[Rimfolk] The map's wind speed was ").Append(v)
+                .Append(" (not a number), which stops wind turbines and can silence the game's sound. This comes from the game or another mod, not Rimfolk; what the wind is worked out from:");
             try
             {
                 var w = map?.weatherManager;
