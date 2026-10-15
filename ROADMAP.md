@@ -171,7 +171,14 @@ play deep. In order:
 - The long view of the world: factions that remember the colony over years (debts, favors, grudges), envoys and
   missions that follow from it, more mission kinds (an apprentice, a dignitary, refugees to see through).
 - Health and recovery stories: ailments (started), convalescence, a doctor's reputation, a midwife's.
-- Rooms with character: furniture sets per era and mod, room themes, upgrades suggested as the colony grows.
+- Done (October 2026): rooms with character. Six room themes beside the three styles (rustic, stately, spartan,
+  cozy, tribal, spacer) that swap furniture, materials, floor and door while keeping the layout, using only what the
+  colony can build and has in stock, with furniture sets from Vanilla Furniture Expanded (and its Spacer, Art and
+  Architect modules), Vanilla Factions Expanded Medieval 2 and Empire, Dubs Bad Hygiene and Alpha Prefabs, checked
+  by the layout tests in every turn and mirror, with and without that furniture. Gentle advice as the colony grows:
+  a dining or rec room it has outgrown, a barracks that could become bedrooms, a hospital upgrade it has
+  researched. Next: themes for Medieval Overhaul and the Alpha furniture mods, and more upgrade advice (bedrooms
+  for nobles, a kitchen that has outgrown its stove).
 - Variety checks: a dev report of the lines shown most often, so the pools that repeat get new lines first.
 
 ### Always: breadth grows with every round
@@ -192,7 +199,7 @@ the content itself, not only to systems, alongside whatever else it does. Where 
 | World events | 22 | more regional situations, and their follow-ups |
 | Camp kinds | 7 | caravans of every kind, pilgrims of every faith |
 | Ailments | (in progress) | a broad everyday tier, a rare serious tier |
-| Room types | 28 (108 layouts) | odd shapes beyond partitions, more spacer and mod-furniture sizes |
+| Room types | 28 (108 layouts, 6 themes) | odd shapes beyond partitions, more spacer and mod-furniture sizes, themes for more furniture mods |
 | Social events, moments, frictions, nuisances | 53, 93, 12 | every trait pairing and home condition |
 
 ### 5. Wider (integrations)

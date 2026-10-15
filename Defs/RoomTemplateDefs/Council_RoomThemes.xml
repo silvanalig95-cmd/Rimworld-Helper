@@ -44,7 +44,7 @@
   <ColonyCouncil.RoomThemeDef>
     <defName>Council_Theme_Stately</defName>
     <label>stately</label>
-    <description>Marble or granite walls, polished stone or fine carpet, armchairs, royal tables and dressers where the colony can make them, and candlelight. A room that tells every visitor the colony has arrived.</description>
+    <description>Marble or granite walls, polished stone or fine carpet, armchairs, royal tables and dressers where the colony can make them, and candlelight. Built to impress a visiting noble.</description>
     <order>20</order>
     <iconDefs><li>Armchair</li></iconDefs>
     <wallStuff><li>BlocksMarble</li><li>BlocksGranite</li></wallStuff>
@@ -66,7 +66,7 @@
   <ColonyCouncil.RoomThemeDef>
     <defName>Council_Theme_Spartan</defName>
     <label>spartan</label>
-    <description>Steel walls and furniture, simple beds, stools and a concrete floor. Nothing to dust and little to burn. With the spartan style it makes a bare bunkhouse; with the comfortable one, a tidy barracks.</description>
+    <description>Steel walls and furniture, simple beds, stools and a concrete floor, quick to sweep and slow to burn. With the spartan style it makes a bare bunkhouse; with the comfortable one, a tidy barracks.</description>
     <order>30</order>
     <iconDefs><li>Steel</li></iconDefs>
     <wallStuff><li>Steel</li></wallStuff>
