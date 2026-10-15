@@ -170,7 +170,9 @@ play deep. In order:
   actually celebrates.
 - The long view of the world: factions that remember the colony over years (debts, favors, grudges), envoys and
   missions that follow from it, more mission kinds (an apprentice, a dignitary, refugees to see through).
-- Health and recovery stories: ailments (started), convalescence, a doctor's reputation, a midwife's.
+- Health and recovery stories: ailments, convalescence (after illness, operations, long bed rest and lost limbs, with
+  sickbed visits and setbacks), a doctor's reputation and a midwife's (done, October 2026). Next: dreams for
+  convalescents and healers, a hospital's own reputation, more after-effects.
 - Rooms with character: furniture sets per era and mod, room themes, upgrades suggested as the colony grows.
 - Variety checks: a dev report of the lines shown most often, so the pools that repeat get new lines first.
 
@@ -191,7 +193,7 @@ the content itself, not only to systems, alongside whatever else it does. Where 
 | Dreams | 117 | dreams for more feelings, quirks, life goals and mod content |
 | World events | 22 | more regional situations, and their follow-ups |
 | Camp kinds | 7 | caravans of every kind, pilgrims of every faith |
-| Ailments | 32 everyday, 14 serious | ailments for every biome and DLC, more after-effects |
+| Ailments | 32 everyday, 14 serious; convalescence from 4 causes, 2 healers' names | ailments for every biome and DLC, more after-effects |
 | Room types | 28 (108 layouts) | odd shapes beyond partitions, more spacer and mod-furniture sizes |
 | Social events, moments, frictions, nuisances | 67, 123 (40 frictions), 19 | every trait pairing and home condition |
 

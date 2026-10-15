@@ -194,7 +194,9 @@ Check the trust list first: a colonist who is already doubtful takes being overr
         <heading>Everyday life</heading>
         <text>Many dilemmas grow out of what is happening to people right now. Someone ill when the medicine is down to a few doses; a fever that could spread through a shared room; a cook with a cold; an old family remedy, or a visitor's strange cure. A group camped on the colony's land asking for medicine, food or searchers for a lost child: how the colony answers changes how tense things are at their camp and what their people think of you. A council meeting someone missed while they were out working. A worn-out colonist (with feelings and strain on) asking for days off just when the harvest is in or the walls are broken. A squabble that grew into a feud, an elder who wants to put down the tools, a child with a question, a broken promise, the same meal or the same work every day, too many people in too little room.
 
-Many answers call on whoever is best placed: the doctor, a forager, a tracker, a scholar, the best talker. They are grayed out when nobody fits, their skill makes a gamble less likely to go wrong, and the outcome names them. Medicine spent on someone eases their illness but never cures it outright, and no answer makes anyone sicker.</text>
+Many answers call on whoever is best placed: the doctor, a forager, a tracker, a scholar, the best talker. They are grayed out when nobody fits, their skill makes a gamble less likely to go wrong, and the outcome names them. Medicine spent on someone eases their illness but never cures it outright, and no answer makes anyone sicker.
+
+Health brings its own: a doctor who lost a patient asking for a day away, someone still convalescing who wants to be back at work (where going back too soon can make the recovery longer, never worse), family who want a say before an operation (putting it off suspends the operation until you resume it), and with Biotech, a midwife looking for an apprentice.</text>
       </li>
     </sections>
     <keywords><li>dilemma</li><li>choice</li><li>letter</li><li>feud</li><li>thief</li></keywords>
@@ -212,7 +214,7 @@ Many answers call on whoever is best placed: the doctor, a forager, a tracker, a
     <sections>
       <li>
         <heading>Earning a name</heading>
-        <text>Names come from the colonist's records: wounds tended, operations, kills, headshots, things built, rock mined, harvests, meals, animals tamed, prisoners recruited, research, crafting, fires fought, and less flattering ones like messes cleaned, times on fire or mental breaks. A name moves to someone else only when they're clearly ahead, by about 15%.</text>
+        <text>Names come from the colonist's records: wounds tended, operations, kills, headshots, things built, rock mined, harvests, meals, animals tamed, prisoners recruited, research, crafting, fires fought, patients pulled through, babies delivered, and less flattering ones like messes cleaned, times on fire or mental breaks. A name moves to someone else only when they're clearly ahead, by about 15%.</text>
       </li>
       <li>
         <heading>The annals</heading>

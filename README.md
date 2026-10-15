@@ -88,7 +88,7 @@ to them. A raid makes someone ask for defenses within hours; a cold night, a mea
 friend's death or food poisoning all set off matching wishes. Every wish arrives with a little scene and a line
 in the colonist's own voice, chosen to fit the season, weather, time of day and their situation.
 
-105 kinds of wish, most with variants (six kinds of work room, a dozen pieces of furniture, any
+106 kinds of wish, most with variants (six kinds of work room, a dozen pieces of furniture, any
 missing body part), so the same colony rarely hears the same request twice in a row: a wish the colony has
 heard several times lately becomes much less likely, and one nobody here has ever made a little more likely.
 Every wish asks only for what the colony can do now, in its era: a tribe hears about healroot and pemmican, an
@@ -245,10 +245,11 @@ stash of beer, a cook who wants to spend the stores on one magnificent feast, a 
 can't cope. Kind, greedy, industrious and teetotal colonists all react differently. Leave a dilemma unanswered and
 the council's silence decides for you.
 
-There are 119 of them, and many grow out of everyday life: a sick colonist when the medicine is nearly gone,
+There are 123 of them, and many grow out of everyday life: a sick colonist when the medicine is nearly gone,
 whether to keep someone with a fever apart, a cook with a cold, an old family remedy, a visitor's strange cure, the
 camp on the colony's land asking for medicine, food or searchers for a lost child, a council meeting someone missed,
-a worn-out colonist asking for days off at the worst time, a squabble that turned into a feud, an elder who wants to
+a worn-out colonist asking for days off at the worst time, a doctor who just lost a patient, someone convalescing who
+wants to be back at work, family who want a say before an operation, a squabble that turned into a feud, an elder who wants to
 put down the tools, a child's question, a broken promise, the same meal every day. Many answers call on whoever is
 best placed (the doctor, a forager, a tracker, the best talker), and their skill decides how it goes.
 
@@ -295,7 +296,7 @@ three more years. Children have goals of their own (Biotech): a best friend, get
 for older children growing up, which comes true when they come of age, so a grown-up's goal follows. The old may
 want a grandchild, one more year or two students who can stand alone; believers a role in their faith or the whole
 colony sharing it (Ideology); some only want to feel at home or free again, the heart's need well met for ten days
-in a row. 57 in all, listed on the Almanac page "every life goal". Goals fit the
+in a row. 59 in all, listed on the Almanac page "every life goal". Goals fit the
 person (their passions, traits and situation) and grow out of what happens to them: a battle makes a warrior, a
 brush with death a healer, a wedding someone who wants to marry, a birth someone who wants a child, a lost election
 someone who wants a seat, loneliness someone who wants friends, and seeing a friend reach their goal can make them
@@ -979,6 +980,26 @@ medicine is short, and pulling a patient through lifts both. Settings (People pa
 serious illnesses on or off, and how often (25% to 200%). Off, nothing new starts; what's running finishes its
 course.
 
+### Recovery, doctors and midwives
+Getting better takes a while. After a dangerous illness that got serious (the game's own flu, plague or wound
+infection as well as Rimfolk's), a major operation (an organ, a limb, the brain), four days or more laid up in bed, or
+losing an arm or a leg, a colonist is **convalescing** for a few days to two weeks: a little slower at work and on
+their feet, less in bed. Most are glad to be alive (a good mood that fades); the industrious and hard workers are weak
+and frustrated instead. A friend who sits by the sickbed (the game's own visit) lifts both their moods, friends walk
+slowly with a convalescent or take the load out of their hands, and someone laid up may wish for a visit from a
+particular friend (promising it sends them over). Back at work while still weak, a setback can come now and then, and
+a setback only makes the recovery longer.
+
+Each **doctor** builds a record: patients pulled through (dangerous illnesses, major operations done well) and
+patients lost, shown on their Story tab and in the game's Records. A doctor the colony trusts puts patients in bed at
+ease (a small good mood when they tend them) and others write "I'd trust no one else with a knife" in their journals; a
+run of losses weighs on the doctor (the heart's grief and shame) and can cost them the trust. The best is called
+**Goodhands**. With Biotech, whoever attends a birth as the doctor is its **midwife**: a good mood, the mother's
+lasting good opinion and, for the one with the most births, the name **the Midwife**. Two life goals (pull ten patients
+through, deliver five babies), a wish (a visit from a friend) and four dilemmas (a doctor's day away after a loss, back
+to work too soon, family who want a say in an operation, a midwife's apprentice) come with it. Two switches on the
+People page: convalescence and sickbed visits, and doctors' and midwives' reputations.
+
 ## Seen and heard
 Rimfolk adds no art of its own, so it uses the game's own effects, sky and sounds to show what its events say is
 happening. Under a **comet** the night sky takes a faint cool cast, and a **warm spell** warms the daylight a little
@@ -1029,7 +1050,8 @@ journals, the Story tab and History) or **Important only**.
 - **feelings and strain**: on or off, whether a colonist at the end of their rope takes a day off, the line in the
   inspector, and how quickly strain builds (50% to 150%)
 - **ailments and illnesses**: everyday ailments on or off, the serious (possibly fatal) illnesses on their own switch,
-  and how often they come (25% to 200%)
+  and how often they come (25% to 200%); convalescence and sickbed visits, and doctors' and midwives' reputations,
+  each on or off
 - **how often** the smaller things happen: moments with strangers and animals, moments between colonists, social
   events and dreams, each from a quarter as often to three times as often
 

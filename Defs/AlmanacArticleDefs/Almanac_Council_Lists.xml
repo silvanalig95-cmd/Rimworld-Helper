@@ -16,7 +16,7 @@
     <order>1</order>
     <summary>Every kind of wish, who makes it, and when it can come up.</summary>
     <tip>A wish you can't grant never comes up: nobody in a tribe asks for a deep drill.</tip>
-    <description>There are 105 kinds of wish, many with variants (six kinds of work room, a dozen pieces of furniture, any skill to learn or teach). A colonist only voices a wish that fits who they are and what is happening to them, and only for something the colony can actually do now: a building it can place (the research is done, it's in the build menu, and anything that needs power waits for electricity), something it can make or grow, or something within reach on the map.
+    <description>There are 106 kinds of wish, many with variants (six kinds of work room, a dozen pieces of furniture, any skill to learn or teach). A colonist only voices a wish that fits who they are and what is happening to them, and only for something the colony can actually do now: a building it can place (the research is done, it's in the build menu, and anything that needs power waits for electricity), something it can make or grow, or something within reach on the map.
 
 Some wishes belong to an era (healroot for a tribe or a medieval village, a deep drill or a comms console once there's electricity), some to an age (children want lessons, pets and stories; the old want a soft chair, a resting place or an apprentice), some to a season or the weather, and some to a DLC or another mod. Without it, they simply never come up.</description>
     <sections>
@@ -95,6 +95,7 @@ Some wishes belong to an era (healroot for a tribe or a medieval village, a deep
           <li>A bed for the sick | Anyone ill (a cold, a stomach bug, flu or worse), when no bed is marked for medical use.</li>
           <li>A replacement for a lost part | The maimed, when something to install is in stock or can be made.</li>
           <li>Their animal patched up | When a bonded animal is hurt.</li>
+          <li>A visit from a friend | Anyone laid up in bed or convalescing, when a good friend hasn't been by for days (with convalescence on). Promising it sends the friend over.</li>
           <li>A steady supply, or help getting off it | The addicted.</li>
         </table>
       </li>
@@ -267,7 +268,7 @@ A few are done in stages, one after another: only the current stage counts, each
     <label>every life goal</label>
     <category>Council</category>
     <order>11</order>
-    <summary>All 57 life goals, who sets their heart on each, and what can spark it.</summary>
+    <summary>All 59 life goals, who sets their heart on each, and what can spark it.</summary>
     <tip>A child's goal can be to grow up. When they do, a grown-up's goal follows.</tip>
     <description>A colonist sets their heart on one life goal at a time, from what fits them: passions, traits, age, faith and what has happened to them lately. What sparks a goal (a battle, a brush with death, a loss, a birth, a dream that came true, a friend reaching the same goal, a recent memory) makes it far likelier, and can change their mind about a goal they've barely started. Children have goals of their own (Biotech), and a few goals are only for the old (ages in human years).</description>
     <sections>
@@ -281,6 +282,7 @@ A few are done in stages, one after another: only the current stage counts, each
           <li>make 120 things by hand | Crafters; a new tool cabinet.</li>
           <li>cook 500 meals | Cooks; a fine or lavish meal.</li>
           <li>tend 100 wounds, perform 20 operations | Doctors; a brush with death, a loss.</li>
+          <li>pull 10 patients through, deliver 5 babies (Biotech) | Doctors, with healers' reputations on; a loss, a patient lost or pulled through, a birth.</li>
           <li>tame 5 animals, win 3 prisoners over | Handlers; the sociable.</li>
           <li>make a great discovery, become a true scholar | Researchers; the too smart.</li>
           <li>make art worth remembering | Artists.</li>
