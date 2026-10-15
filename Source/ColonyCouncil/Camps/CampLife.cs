@@ -984,6 +984,15 @@ namespace ColonyCouncil
             }
             phase = CampPhase.Over;
             if (!told || ending == "fight") TellEnding(true);
+            // Their people remember how the camp went: helped, hosted, driven off (World/FactionMemory.cs).
+            try
+            {
+                if (MemoryHooks.Listening) MemoryHooks.CampEnded(this);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("camp memory", e);
+            }
             CampTracker.Instance?.Ended(this);
         }
 

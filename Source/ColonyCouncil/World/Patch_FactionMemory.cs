@@ -347,27 +347,4 @@ namespace ColonyCouncil
             }
         }
     }
-
-    /// <summary>A camp on the colony's map has gone (Rimfolk's own camps).</summary>
-    [HarmonyPatch(typeof(Camp), nameof(Camp.Finish))]
-    public static class Patch_MemoryCamp
-    {
-        public static void Prefix(Camp __instance, out bool __state)
-        {
-            __state = __instance != null && __instance.phase != CampPhase.Over;
-        }
-
-        public static void Postfix(Camp __instance, bool __state)
-        {
-            if (!__state || !MemoryHooks.Listening || __instance.phase != CampPhase.Over) return;
-            try
-            {
-                MemoryHooks.CampEnded(__instance);
-            }
-            catch (Exception e)
-            {
-                CouncilLog.ErrorOnce("faction memory camp hook", e);
-            }
-        }
-    }
 }

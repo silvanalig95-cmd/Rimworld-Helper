@@ -579,7 +579,14 @@ namespace ColonyCouncil
                 if (GuestRoom(map, m.target) == null) m.misses++;
                 Fed(m, map, 0.4f, 0.9f);
             }
-            if (now < m.deadline) return;
+            // Gone before the end (a fight drove them off): the stay is judged on the hours there were.
+            bool gone = !x.Spawned || x.Map != map;
+            if (now < m.deadline && !gone) return;
+            if (m.tally == 0)
+            {
+                Missions.Finish(m, MissionState.Failed, "ended", null);
+                return;
+            }
             var look = x.Spawned ? new LookTargets(x) : LookTargets.Invalid;
             if (m.misses == 0)
             {
@@ -767,7 +774,13 @@ namespace ColonyCouncil
                 m.lastLook += GenDate.TicksPerDay;
                 Day(m, map, here);
             }
-            if (now < m.deadline) return;
+            // All of them gone before the end (a fight drove them off): judged on the days there were.
+            if (now < m.deadline && here.Count > 0) return;
+            if (m.tally == 0 && m.misses == 0)
+            {
+                Missions.Finish(m, MissionState.Failed, "ended", null);
+                return;
+            }
             var look = Targets(m);
             if (m.misses == 0 && m.tally > 0)
             {
