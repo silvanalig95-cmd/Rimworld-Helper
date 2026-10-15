@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Vendettas (Source/ColonyCouncil/Secrets/Vendettas.cs): how one is sworn and how it ends.
+    Sworn: {NAMES} the ones who swore (one or several), {LOST_...} the one lost (a person, or an animal with [pet]),
+    {FACTION} who did it. Tags: [killed] or [taken], [pet], [many] (more than one swore), [mech], and for the first who
+    swore [kin], [partner] or [friend]. Every line carries killed, taken or pet so it never tells the wrong story.
+  -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_VendettaSworn</defName>
+    <lines>
+      <plain>
+        <li>[killed] {NAMES} swore vengeance on {FACTION} for {LOST_nameDef}.</li>
+        <li>[killed] Over {LOST_nameDef}'s grave, {NAMES} swore that {FACTION} would pay.</li>
+        <li>[killed] {NAMES} won't forget {LOST_nameDef}, and won't forgive {FACTION}.</li>
+        <li>[killed,kin,!many] {NAMES} lost family to {FACTION} today, and has sworn to make them pay for {LOST_nameDef}.</li>
+        <li>[killed,partner,!many] {NAMES} buried {LOST_nameDef}, and has sworn on the grave that {FACTION} will pay.</li>
+        <li>[killed,friend,!many] {LOST_nameDef} was {NAMES}'s friend. {FACTION} will find that out.</li>
+        <li>[killed,many] {NAMES} stood together at {LOST_nameDef}'s grave and swore the same oath against {FACTION}.</li>
+        <li>[killed,mech] {NAMES} swore to tear apart three of the machines for every year {LOST_nameDef} should have had.</li>
+        <li>[taken,!many] {FACTION} carried off {LOST_nameDef}, and {NAMES} means to make them pay.</li>
+        <li>[taken] {NAMES} watched {FACTION} drag {LOST_nameDef} away, and swore they'd regret it.</li>
+        <li>[taken,many] {NAMES} have sworn to make {FACTION} answer for taking {LOST_nameDef}.</li>
+        <li>[taken,partner,!many] {FACTION} took {LOST_nameDef}. {NAMES} hasn't slept since, and has sworn they'll pay for it.</li>
+        <li>[pet] {FACTION} killed {LOST_nameDef} in the fighting, and {NAMES} has sworn they'll pay for it.</li>
+        <li>[pet] {NAMES} dug {LOST_nameDef}'s grave alone, and swore on it that {FACTION} would answer for it.</li>
+      </plain>
+      <warm>
+        <li>[killed,!many] {NAMES} has never wanted to hurt anyone. For {LOST_nameDef}'s sake, {NAMES} will make an exception for {FACTION}.</li>
+        <li>[pet] {NAMES} held {LOST_nameDef} until the end, and swore then that {FACTION} would answer for it.</li>
+      </warm>
+      <blunt>
+        <li>[killed,!many] {FACTION} killed {LOST_nameDef}. {NAMES} is going to kill some of them back.</li>
+        <li>[taken,!many] {FACTION} took {LOST_nameDef}. {NAMES} wants them to try that again.</li>
+        <li>[pet] They killed {NAMES}'s animal. {FACTION} picked the wrong fight.</li>
+      </blunt>
+      <gloomy>
+        <li>[killed,!many] {NAMES} says vengeance won't bring {LOST_nameDef} back, and has sworn it on {FACTION} anyway.</li>
+      </gloomy>
+      <cold>
+        <li>[killed,!many] {NAMES} has added {FACTION} to a short list, with {LOST_nameDef}'s name beside it.</li>
+        <li>[taken,!many] {NAMES} has quietly begun counting what {FACTION} owes for {LOST_nameDef}.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!--
+    Settled: {PAWN_...} the avenger, {LOST} the name of the one lost, {FACTION} who did it. One tag says how it ended:
+    [blood] three of them fell, [captive] some were taken alive in the same fights, [home] the one taken came back,
+    [forgiven] laid down in time, [peace] laid down after peace was made. Also [pet] and [taken].
+  -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_VendettaSettled</defName>
+    <lines>
+      <plain>
+        <li>[blood] {PAWN_nameDef} has avenged {LOST} on {FACTION}.</li>
+        <li>[blood] {FACTION} has paid {PAWN_nameDef} what it owed for {LOST}, in full.</li>
+        <li>[blood,pet] {PAWN_nameDef} has paid {FACTION} back for {LOST}, and finally put the empty collar away.</li>
+        <li>[captive] {PAWN_nameDef} has settled with {FACTION} over {LOST}, some of it in blood and some of it in chains.</li>
+        <li>[captive] {PAWN_nameDef} says the ones taken alive count as much as the dead. The debt for {LOST} is paid.</li>
+        <li>[home] {LOST} is home, and {PAWN_nameDef} has no quarrel left with {FACTION}.</li>
+        <li>[home] {PAWN_nameDef} met {LOST} at the gate and didn't let go for a long while. Whatever {FACTION} owed, it can keep.</li>
+        <li>[forgiven] {PAWN_nameDef} has laid down the vendetta against {FACTION}. {LOST} wouldn't have wanted {PAWN_objective} to carry it forever.</li>
+        <li>[forgiven] {PAWN_nameDef} woke up one morning and found the hatred for {FACTION} gone. {PAWN_nameDef} still misses {LOST}, but that's all now.</li>
+        <li>[forgiven,pet] {PAWN_nameDef} has let the matter of {LOST} go. Animals don't hold grudges, {PAWN_nameDef} says, and {LOST} never did.</li>
+        <li>[peace] With peace made, {PAWN_nameDef} has decided to stop counting what {FACTION} owes for {LOST}.</li>
+        <li>[peace] {PAWN_nameDef} saw a caravan of {FACTION} pass in peace, and found {PAWN_pronoun} had nothing left to say to them about {LOST}.</li>
+      </plain>
+      <warm>
+        <li>[forgiven] {PAWN_nameDef} lit a candle for {LOST} and let the anger at {FACTION} go out with the old one.</li>
+        <li>[home] {PAWN_nameDef} is too happy to have {LOST} back to remember why {FACTION} mattered.</li>
+      </warm>
+      <blunt>
+        <li>[blood] {FACTION} paid for {LOST}. {PAWN_nameDef} says that's that.</li>
+        <li>[forgiven] {PAWN_nameDef} is done with {FACTION}. Hating them was getting tiring.</li>
+      </blunt>
+      <gloomy>
+        <li>[blood] {PAWN_nameDef} has had {PAWN_possessive} revenge on {FACTION} for {LOST}, and says it feels like less than expected.</li>
+        <li>[forgiven] {PAWN_nameDef} has stopped hating {FACTION}. {LOST} is still gone; the hating never changed that.</li>
+      </gloomy>
+      <cold>
+        <li>[blood] {PAWN_nameDef} has closed the account with {FACTION} for {LOST}.</li>
+        <li>[peace] {PAWN_nameDef} has judged a feud with {FACTION} no longer worth the cost, and dropped it.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Journals. {LOST}: the name of the one lost. {FACTION}: who did it. Tags as for the settled lines. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_VendettaForgiven</defName>
+    <lines>
+      <plain>
+        <li>I don't hate {FACTION} any more. I looked for it this morning and it wasn't there.</li>
+        <li>I told {LOST} at the grave that I'm letting it go. It felt like being forgiven myself.</li>
+        <li>[peace] Their traders came through today and I said good morning to them. {LOST}, I hope that was all right.</li>
+        <li>[pet] {LOST} never held a grudge in its life. I'm trying to learn that from it, late.</li>
+      </plain>
+      <warm><li>I'm putting it down, the anger at {FACTION}. I'd rather carry {LOST}'s memory than their weight.</li></warm>
+      <blunt><li>Done hating {FACTION}. Too much work.</li></blunt>
+      <cheerful><li>I laughed today, properly, for the first time since {LOST}. I think that means I'm done with {FACTION}.</li></cheerful>
+      <gloomy><li>Let it go, they said. I have. {LOST} is still gone.</li></gloomy>
+      <cold><li>The feud with {FACTION} served no further purpose. I've ended it.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_VendettaHome</defName>
+    <lines>
+      <plain>
+        <li>{LOST} is home. I don't care about {FACTION} any more. I don't care about anything except that.</li>
+        <li>I kept my promise to find {LOST}. Or {LOST} found us. It doesn't matter which.</li>
+      </plain>
+      <warm><li>{LOST} is home and eating at our table again. I keep looking over to make sure.</li></warm>
+      <blunt><li>{LOST}'s back. {FACTION} can keep the rest.</li></blunt>
+      <cheerful><li>{LOST} IS HOME. I'm writing it in big letters so I'll remember how this felt.</li></cheerful>
+      <gloomy><li>{LOST} is back, but quieter. Whatever {FACTION} did, it will take a while.</li></gloomy>
+      <cold><li>{LOST} has returned. The account with {FACTION} is closed.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- More lines for the existing vendetta journals (Council_Journal_Secrets.xml). -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Journal_VendettaSworn</defName>
+    <pool>Council_Journal_VendettaSworn</pool>
+    <lines>
+      <plain>
+        <li>[pet] {FACTION} killed {OTHER_nameDef} in the fighting. It only ever wanted to be near me. I won't forget who did it.</li>
+        <li>[pet] There's an empty place by my bed where {OTHER_nameDef} slept. {FACTION} made it empty.</li>
+      </plain>
+      <blunt><li>[pet] {FACTION} killed my animal. Next time they come, I'm first out the gate.</li></blunt>
+      <gloomy><li>[pet] People will say it was only an animal. {OTHER_nameDef} was more than that, and {FACTION} knows it now too.</li></gloomy>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Journal_Avenged</defName>
+    <pool>Council_Journal_Avenged</pool>
+    <lines>
+      <plain>
+        <li>[captive] Not all of them died. One of them is in our cells now, and I find that's enough for {LOST}.</li>
+        <li>[captive] I took one of {FACTION} alive today. I thought I'd want them dead. I just wanted them to stop.</li>
+        <li>[pet] {FACTION} paid for {LOST}. I went and sat where {LOST} used to sleep, and told it so.</li>
+      </plain>
+      <cold><li>[captive] One of {FACTION} is in a cell because of me. The ledger for {LOST} is balanced.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+</Defs>

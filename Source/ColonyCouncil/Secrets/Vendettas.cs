@@ -7,17 +7,30 @@ using Verse;
 
 namespace ColonyCouncil
 {
-    /// <summary>A colonist's sworn vengeance on the faction that killed (or took) someone they loved.</summary>
+    /// <summary>
+    /// A colonist's sworn vengeance on the faction that killed (or took) someone they loved, or the animal bonded to
+    /// them. It ends in blood (three of them fall to the avenger), with captives taken in the same fights, with the
+    /// one who was taken coming home, or with the avenger laying it down: in time, more easily for the kind, and more
+    /// easily still once there's peace with the killers.
+    /// </summary>
     public class Vendetta : IExposable
     {
         public Pawn avenger;
         public Faction faction;
         public string victim;
+        /// <summary>The ThingID of the one lost (to know when someone taken comes home). Null in older saves.</summary>
+        public string victimId;
         public bool kidnapped;
+        /// <summary>Sworn for a bonded animal rather than a person.</summary>
+        public bool pet;
         public int tick;
         public int kills;
+        /// <summary>Of the kills, how many were taken alive instead.</summary>
+        public int captives;
         public bool settled;
         public bool peaceNoticed;
+        /// <summary>How it ended: blood, captive, home, forgiven or peace (null while open, or when it simply lapsed).</summary>
+        public string how;
 
         public const int KillsToSettle = 3;
 
@@ -32,6 +45,17 @@ namespace ColonyCouncil
 
         public bool Active => !settled && avenger != null && !avenger.Dead && faction != null && !faction.defeated;
 
+        /// <summary>The key for its line on the Bonds page and the Story tab ({0} avenger, {1} faction, {2} the lost, {3} paid, {4} of).</summary>
+        public string LineKey
+        {
+            get
+            {
+                if (!settled) return kidnapped ? "CC_Social_VendettaTaken" : "CC_Social_Vendetta";
+                string key = "CC_Social_VendettaSettled_" + how;
+                return how != null && key.CanTranslate() ? key : "CC_Social_VendettaSettled";
+            }
+        }
+
         public void ExposeData()
         {
             Scribe_References.Look(ref avenger, "avenger");
@@ -42,6 +66,10 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref kills, "kills");
             Scribe_Values.Look(ref settled, "settled");
             Scribe_Values.Look(ref peaceNoticed, "peaceNoticed");
+            Scribe_Values.Look(ref victimId, "victimId");
+            Scribe_Values.Look(ref pet, "pet");
+            Scribe_Values.Look(ref captives, "captives");
+            Scribe_Values.Look(ref how, "how");
         }
     }
 
@@ -81,6 +109,7 @@ namespace ColonyCouncil
         private Faction lastBattleFaction;
         [Unsaved] private Map lastBattleMap;
         [Unsaved] private Dictionary<Pawn, int> killsAtBattleStart = new Dictionary<Pawn, int>();
+        [Unsaved] private Dictionary<Pawn, int> capturesAtBattleStart = new Dictionary<Pawn, int>();
         [Unsaved] private bool wasFighting;
         [Unsaved] private HashSet<Faction> warnedThisBattle = new HashSet<Faction>();
 
@@ -213,17 +242,54 @@ namespace ColonyCouncil
             if (faction == Faction.OfPlayer || !faction.HostileTo(Faction.OfPlayer) || Vendetta.KillRecord(faction) == null) return;
             var avengers = PawnsFinder.AllMaps_FreeColonists.Where(Eligible).Where(p => !p.DevelopmentalStage.Juvenile() && Close(comp, p, lostOne)
                                                                                  && !vendettas.Any(v => v.avenger == p && v.faction == faction && v.Active)).ToList();
+            Sworn(comp, avengers, lostOne, faction, kidnapped, false);
+        }
+
+        /// <summary>
+        /// A bonded animal killed in a fight with a hostile people (the pets' farewell asks): the one it was bonded to
+        /// swears on them too.
+        /// </summary>
+        public void Notify_PetKilled(CouncilGameComponent comp, Pawn pet, Pawn person)
+        {
+            if (!S.vendettas || pet == null || person == null || !Eligible(person) || person.DevelopmentalStage.Juvenile()) return;
+            var faction = Killers(pet, Find.TickManager.TicksGame);
+            if (faction == null || faction == Faction.OfPlayer || !faction.HostileTo(Faction.OfPlayer) || Vendetta.KillRecord(faction) == null) return;
+            if (vendettas.Any(v => v.avenger == person && v.faction == faction && v.Active)) return;
+            Sworn(comp, new List<Pawn> { person }, pet, faction, false, true);
+        }
+
+        private void Sworn(CouncilGameComponent comp, List<Pawn> avengers, Pawn lostOne, Faction faction, bool kidnapped, bool pet)
+        {
+            if (avengers.Count == 0) return;
             foreach (var p in avengers)
             {
-                vendettas.Add(new Vendetta { avenger = p, faction = faction, victim = lostOne.LabelShort, kidnapped = kidnapped, tick = Find.TickManager.TicksGame });
-                comp.journals.Write(p, kidnapped ? "Council_Journal_VendettaTaken" : "Council_Journal_VendettaSworn", null, lostOne.Named("OTHER"), faction.Name.Named("FACTION"));
+                vendettas.Add(new Vendetta
+                {
+                    avenger = p, faction = faction, victim = lostOne.LabelShort, victimId = lostOne.ThingID, kidnapped = kidnapped, pet = pet,
+                    tick = Find.TickManager.TicksGame
+                });
+                comp.journals.WriteTagged(p, kidnapped ? "Council_Journal_VendettaTaken" : "Council_Journal_VendettaSworn", pet ? new[] { "pet" } : null, null,
+                    lostOne.Named("OTHER"), faction.Name.Named("FACTION"));
             }
-            if (avengers.Count > 0)
+            string names = TextUtil.JoinAnd(avengers.Select(a => a.LabelShort).ToList());
+            var first = avengers[0];
+            var tags = new List<string> { kidnapped ? "taken" : "killed" };
+            if (pet) tags.Add("pet");
+            if (avengers.Count > 1) tags.Add("many");
+            if (faction == Faction.OfMechanoids) tags.Add("mech");
+            if (!pet && first.relations != null)
             {
-                string text = (kidnapped ? "CC_Vendetta_SwornTaken" : "CC_Vendetta_Sworn").Translate(TextUtil.JoinAnd(avengers.Select(a => a.LabelShort).ToList()), lostOne.Named("LOST"), faction.Name.Named("FACTION")).Resolve();
-                Notify.Message(text, new LookTargets(avengers), MessageTypeDefOf.NegativeEvent, Importance.Notable);
-                comp.AddChronicle(new ChronicleEntry(ChronicleKind.Loss, text, avengers[0]));
+                var rel = first.GetRelations(lostOne).ToList();
+                if (rel.Any(r => r.familyByBloodRelation)) tags.Add("kin");
+                else if (rel.Any(r => r == PawnRelationDefOf.Spouse || r == PawnRelationDefOf.Lover || r == PawnRelationDefOf.Fiance)) tags.Add("partner");
+                else tags.Add("friend");
             }
+            string line = Flavor.FromPool("Council_Pool_VendettaSworn", first, null, null, tags.ToArray());
+            string text = !line.NullOrEmpty()
+                ? line.Formatted(names.Named("NAMES"), lostOne.Named("LOST"), faction.Name.Named("FACTION")).Resolve()
+                : (kidnapped ? "CC_Vendetta_SwornTaken" : "CC_Vendetta_Sworn").Translate(names, lostOne.Named("LOST"), faction.Name.Named("FACTION")).Resolve();
+            Notify.Message(text, new LookTargets(avengers), MessageTypeDefOf.NegativeEvent, Importance.Notable);
+            comp.AddChronicle(new ChronicleEntry(ChronicleKind.Loss, text, first));
         }
 
         private static bool Close(CouncilGameComponent comp, Pawn p, Pawn lostOne)
@@ -244,6 +310,7 @@ namespace ColonyCouncil
             if (fighting && !wasFighting)
             {
                 killsAtBattleStart.Clear();
+                capturesAtBattleStart.Clear();
                 warnedThisBattle.Clear();
             }
             if (fighting && faction != null)
@@ -251,7 +318,10 @@ namespace ColonyCouncil
                 // Count from when they joined this fight (also after loading a save mid-battle).
                 var record = Vendetta.KillRecord(faction);
                 foreach (var v in vendettas.Where(v => v.Active && v.faction == faction && record != null))
+                {
                     if (!killsAtBattleStart.ContainsKey(v.avenger)) killsAtBattleStart[v.avenger] = (int)(v.avenger.records?.GetValue(record) ?? 0f);
+                    if (!capturesAtBattleStart.ContainsKey(v.avenger)) capturesAtBattleStart[v.avenger] = (int)(v.avenger.records?.GetValue(RecordDefOf.PeopleCaptured) ?? 0f);
+                }
                 // The banners they swore against: fury.
                 var sworn = vendettas.Where(v => v.Active && v.faction == faction && v.avenger.Spawned && v.avenger.Map.IsPlayerHome).ToList();
                 foreach (var v in sworn)
@@ -270,28 +340,74 @@ namespace ColonyCouncil
                 {
                     var record = Vendetta.KillRecord(v.faction);
                     if (record == null || !killsAtBattleStart.TryGetValue(v.avenger, out int before)) continue;
-                    int delta = (int)(v.avenger.records?.GetValue(record) ?? 0f) - before;
-                    if (delta <= 0) continue;
-                    v.kills += delta;
-                    if (v.kills >= Vendetta.KillsToSettle) Settle(comp, v, false);
+                    int delta = Math.Max(0, (int)(v.avenger.records?.GetValue(record) ?? 0f) - before);
+                    // Taken alive in the same fight counts too: a debt paid without a grave.
+                    int taken = v.faction.def.humanlikeFaction && capturesAtBattleStart.TryGetValue(v.avenger, out int capBefore)
+                        ? Math.Max(0, (int)(v.avenger.records?.GetValue(RecordDefOf.PeopleCaptured) ?? 0f) - capBefore) : 0;
+                    if (delta + taken <= 0) continue;
+                    v.kills += delta + taken;
+                    v.captives += taken;
+                    if (v.kills >= Vendetta.KillsToSettle) Settle(comp, v, false, v.captives > 0 ? "captive" : "blood");
                     else CouncilGameComponent.GiveThought(v.avenger, CouncilDefOf.Council_Vendetta_Blood);
                 }
             }
             wasFighting = fighting;
         }
 
-        private void Settle(CouncilGameComponent comp, Vendetta v, bool quietly)
+        /// <summary>
+        /// It's over. <paramref name="how"/>: blood (three of them fell), captive (some were taken alive), home (the one
+        /// taken came back), forgiven (laid down in time) or peace (laid down once the killers made peace).
+        /// </summary>
+        private void Settle(CouncilGameComponent comp, Vendetta v, bool quietly, string how = "blood")
         {
             using var _cause = Causes.Push("CC_Cause_VendettaSettled".Translate(v.faction?.Name ?? "?", v.victim ?? "?").Resolve());
             v.settled = true;
             if (quietly) return;
-            CouncilGameComponent.GiveThought(v.avenger, CouncilDefOf.Council_Vendetta_Avenged);
-            string text = "CC_Vendetta_Avenged".Translate(v.avenger.Named("PAWN"), v.victim.Named("LOST"), v.faction.Name.Named("FACTION")).Resolve();
+            v.how = how;
+            bool paid = how == "blood" || how == "captive";
+            var tags = new List<string> { how };
+            if (v.pet) tags.Add("pet");
+            if (v.kidnapped) tags.Add("taken");
+            string line = Flavor.FromPool("Council_Pool_VendettaSettled", v.avenger, null, null, tags.ToArray());
+            string text = !line.NullOrEmpty()
+                ? line.Formatted(v.avenger.Named("PAWN"), (v.victim ?? "?").Named("LOST"), v.faction.Name.Named("FACTION")).Resolve()
+                : "CC_Vendetta_Avenged".Translate(v.avenger.Named("PAWN"), v.victim.Named("LOST"), v.faction.Name.Named("FACTION")).Resolve();
             Notify.Message(text, v.avenger, MessageTypeDefOf.PositiveEvent, Importance.Notable);
             comp.AddChronicle(new ChronicleEntry(ChronicleKind.Loss, text, v.avenger));
-            comp.journals.Write(v.avenger, "Council_Journal_Avenged", null, v.victim.Named("LOST"), v.faction.Name.Named("FACTION"));
-            comp.aspirations.Notify(v.avenger, "avenged");
+            string journal = paid ? "Council_Journal_Avenged" : how == "home" ? "Council_Journal_VendettaHome" : "Council_Journal_VendettaForgiven";
+            comp.journals.WriteTagged(v.avenger, journal, tags.ToArray(), null, v.victim.Named("LOST"), v.faction.Name.Named("FACTION"));
+            if (paid)
+            {
+                CouncilGameComponent.GiveThought(v.avenger, CouncilDefOf.Council_Vendetta_Avenged);
+                comp.aspirations.Notify(v.avenger, "avenged");
+                return;
+            }
+            var thought = DefDatabase<ThoughtDef>.GetNamedSilentFail(how == "home" ? "Council_Vendetta_Home" : "Council_Vendetta_LetGo");
+            if (thought != null) CouncilGameComponent.GiveThought(v.avenger, thought);
         }
+
+        /// <summary>
+        /// Laying it down: after a month at least, and not while the fighting is fresh. The kind do it sooner; the
+        /// bloodthirsty and the cold never do; peace with the killers makes it far likelier.
+        /// </summary>
+        private bool LaysItDown(Vendetta v, bool hostile, int now)
+        {
+            if (now - v.tick < GenDate.TicksPerDay * 30) return false;
+            if (lastBattleFaction == v.faction && now - lastBattleTick < GenDate.TicksPerDay * 15) return false;
+            var t = v.avenger.story?.traits;
+            if (t != null && (t.HasTrait(TraitDefOf.Bloodlust) || t.HasTrait(TraitDefOf.Psychopath))) return false;
+            float chance = 0.008f;
+            if (t != null && t.HasTrait(TraitDefOf.Kind)) chance *= 3f;
+            if (t != null && t.HasTrait(TraitDefOf.Abrasive)) chance *= 0.5f;
+            if (!hostile) chance *= 3f;
+            if ((v.avenger.needs?.mood?.CurLevelPercentage ?? 0.5f) >= 0.7f) chance *= 1.5f;
+            if (v.pet) chance *= 1.5f;
+            return Rand.Chance(chance);
+        }
+
+        /// <summary>Someone who was carried off is one of ours again.</summary>
+        private static bool BackHome(Vendetta v) =>
+            v.kidnapped && !v.victimId.NullOrEmpty() && PawnsFinder.AllMaps_FreeColonists.Any(p => p.ThingID == v.victimId && !p.Dead);
 
         public void Daily(CouncilGameComponent comp)
         {
@@ -306,6 +422,16 @@ namespace ColonyCouncil
                 }
                 if (!S.vendettas) continue;
                 bool hostile = v.faction.HostileTo(Faction.OfPlayer);
+                if (v.avenger.IsColonist && BackHome(v))
+                {
+                    Settle(comp, v, false, "home");
+                    continue;
+                }
+                if (v.avenger.IsColonist && LaysItDown(v, hostile, Find.TickManager.TicksGame))
+                {
+                    Settle(comp, v, false, hostile ? "forgiven" : "peace");
+                    continue;
+                }
                 // Peace with the people who did it.
                 if (!hostile && !v.peaceNoticed && v.avenger.IsColonist)
                 {

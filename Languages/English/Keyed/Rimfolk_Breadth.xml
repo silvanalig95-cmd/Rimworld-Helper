@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- A breadth round for the quieter systems: vendettas, offices, traditions, names, the advisor, the colony's ways, pets, nemeses and feelings. -->
+
+  <!-- Vendettas: how one ended, on the Bonds page and the Story tab ({0} avenger, {1} faction, {2} the lost). -->
+  <CC_Social_VendettaSettled_blood>{0} has avenged {2} on {1}.</CC_Social_VendettaSettled_blood>
+  <CC_Social_VendettaSettled_captive>{0} has settled with {1} for {2}, partly with captives.</CC_Social_VendettaSettled_captive>
+  <CC_Social_VendettaSettled_home>{2} came home, and {0} let the matter of {1} rest.</CC_Social_VendettaSettled_home>
+  <CC_Social_VendettaSettled_forgiven>{0} laid down the vendetta against {1} for {2}.</CC_Social_VendettaSettled_forgiven>
+  <CC_Social_VendettaSettled_peace>{0} made peace with {1} over {2}, once the colony had.</CC_Social_VendettaSettled_peace>
+
+</LanguageData>

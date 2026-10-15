@@ -76,6 +76,8 @@ namespace ColonyCouncil
             if (person == null || pet.Name == null) return;
             bool bonded = Bonded(pet, person);
             bool hero = inBattle || Find.TickManager.TicksGame - battleStart < GenDate.TicksPerDay;
+            // Killed by raiders: the one it was bonded to may swear on them.
+            if (bonded && hero) comp.vendettas?.Notify_PetKilled(comp, pet, person);
             string line = Flavor.FromPool("Council_Pool_PetFarewell", person, null, null, hero ? "hero" : "quiet");
             if (line.NullOrEmpty()) return;
             string text = line.Formatted(person.Named("PAWN"), pet.Named("PET")).Resolve();

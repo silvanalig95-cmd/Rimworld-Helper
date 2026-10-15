@@ -412,7 +412,7 @@ Check the Roster page now and then. A colonist one level short of mastery is wor
     <order>12</order>
     <summary>What colonists hide, who they can't forgive, and how they say goodbye.</summary>
     <tip>Not everyone talks about where they came from.</tip>
-    <description>Some colonists carry a secret, often from the life their backstory hints at: a raider's past, noble blood, a deserter's shame, a child left behind, a borrowed name, a hidden kindness. You won't know what it is; the Bonds page only shows when they confide in a close friend.</description>
+    <description>Some colonists carry a secret, often from the life their backstory hints at: a raider's past, noble blood, a deserter's shame, a child left behind, a borrowed name, an old illness, a debt to a trading house, a childhood in the camps, a broken vow, a hidden kindness. There are over fifty. You won't know what it is; the Bonds page only shows when they confide in a close friend, and the news of it gives a hint and no more.</description>
     <sections>
       <li>
         <heading>Confiding and coming out</heading>
@@ -420,13 +420,21 @@ Check the Roster page now and then. A colonist one level short of mastery is wor
 
 When a secret comes out, everyone reacts according to their nature: the kind forgive, the hard despise, the greedy envy, the abrasive mock. Betraying a confidence makes enemies. Some secrets put the council on the spot with a dilemma.
 
-A secret the colonist never told anyone dies with them. If they told someone, it comes out at the funeral.</text>
+A secret the colonist never told anyone dies with them. If they told someone, it comes out at the graveside, each secret in its own way: a lamp left burning, a card in the grave, a name said aloud.</text>
       </li>
       <li>
         <heading>Vendettas</heading>
-        <text>When raiders kill or carry off someone, the people who loved them swear vengeance on that faction. They carry it as a weight, fight harder when that faction shows up again, and are avenged once three of the enemy fall to them.
+        <text>When raiders kill or carry off someone, the people who loved them swear vengeance on that faction; when they kill a bonded animal in a fight, its person does. They carry it as a weight and fight harder when that faction shows up again.
 
-Those who swore vengeance take peace with the killers as a betrayal. It may still be worth it, but think twice before making peace with a faction that killed someone well loved.</text>
+A vendetta ends in one of several ways:</text>
+        <points>
+          <li>three of the enemy fall to the avenger, in the fights that come anyway;</li>
+          <li>some of them are taken alive in those fights instead: a captive counts as much as a death;</li>
+          <li>the one who was carried off comes home, by rescue, ransom or escape;</li>
+          <li>the avenger lays it down, after a month at least and not while the fighting is fresh. The kind do it sooner, the bloodthirsty and the cold never, and peace with the killers makes it much likelier;</li>
+          <li>it lapses after two years, or when the faction is gone.</li>
+        </points>
+        <after>Those who swore vengeance take peace with the killers as a betrayal at first, though peace is also what lets most of them lay it down. Think twice before making peace with a faction that killed someone well loved, and give it time.</after>
       </li>
       <li>
         <heading>Quirks</heading>
