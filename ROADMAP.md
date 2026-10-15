@@ -166,8 +166,12 @@ play deep. In order:
 ### 4. Deep (features and variety)
 - Personal arcs: a colonist's goals, feelings, secrets and history woven into a few personal stories a year (a
   homecoming, a reconciliation, an apprenticeship that ends in a masterwork).
-- The colony calendar: player-named holidays, harvest and founding days, traditions that grow from what the colony
-  actually celebrates.
+- Done (October 2026): the colony calendar. Days written down from the colony's history (founding, first harvest,
+  first snow, battles, deaths of the loved, weddings, founding members' arrivals, long-serving colonists' birthdays)
+  and days the player names (feast, remembrance, rest day, games) on a Calendar page; each comes round with a letter
+  or message, a party, games, a rest day or a quiet hour, journal lines and talk, and grows into a tradition when kept
+  three years running. Ideology's rites are suggested where they fit; older saves are filled in from the chronicle.
+  Next: more kinds of day (a first child born, the day the walls went up, a caravan's return), and lines per biome.
 - The long view of the world: factions that remember the colony over years (debts, favors, grudges), envoys and
   missions that follow from it, more mission kinds (an apprentice, a dignitary, refugees to see through).
 - Health and recovery stories: ailments (started), convalescence, a doctor's reputation, a midwife's.
@@ -193,6 +197,7 @@ the content itself, not only to systems, alongside whatever else it does. Where 
 | Camp kinds | 7 | caravans of every kind, pilgrims of every faith |
 | Ailments | 32 everyday, 14 serious | ailments for every biome and DLC, more after-effects |
 | Room types | 28 (108 layouts) | odd shapes beyond partitions, more spacer and mod-furniture sizes |
+| Calendar days and ways to keep them | 9 kinds, 4 ways (about 300 lines) | more kinds of day, lines per biome and faith |
 | Social events, moments, frictions, nuisances | 67, 123 (40 frictions), 19 | every trait pairing and home condition |
 
 ### 5. Wider (integrations)

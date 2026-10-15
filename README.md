@@ -387,6 +387,25 @@ Choose the same answer to a seasonal dilemma two years running (a midsummer feas
 on the longest night) and it becomes a tradition. From then on it comes up first every year: keeping it pleases
 everyone, breaking it disappoints them.
 
+### The colony calendar
+The days that matter to this colony, written down as its history happens: its **founding day**, its **first good
+harvest**, **the first snow** (which comes with the first snow of each winter, not on a date), **a battle it
+remembers** (a big raid seen off, ours who fell, a nemesis brought down), **the death of someone it loved**,
+**weddings**, the **arrivals** of its first members and the **birthdays** of its long-serving colonists, up to a dozen
+of the most meaningful. On the **Calendar** page under History you can also **name days of your own** (up to 8) as a
+feast, a day of remembrance, a rest day or a day of games, rename any day, or change how it's kept.
+
+When a day comes round, a letter asks whether to keep it this year: a **feast** is a party at the gathering spot,
+**games** an afternoon of recreation, a **rest day** turns the rest of the day's work hours to recreation (the
+schedule goes back the next day); a **remembrance** is kept with a quiet, bittersweet mood for those who knew the
+person. A birthday comes as a message and a small lift for the colonist. People write about the day in their
+journals, talk about it in the social log, and mention it the evening before; the World page shows the days coming
+up. All the moods are small and share the budget of good moods. Kept **three years running**, a day becomes a
+**tradition**, with the same letter, moods, chronicle and annals as the council's seasonal traditions, and letting it
+pass then disappoints everyone. With Ideology, the letter suggests the faith's own rite where one fits (a funeral rite,
+a feast or festival), and holding it keeps the day. With Rimfolk events on, founding day is the founding event's to
+keep. An older save fills its calendar in from the chronicle, its dead and its nemeses.
+
 ### Journals
 Every colonist keeps a journal in their own voice: wishes granted and ignored, promises, decrees, raids, losses,
 names earned, friendships made and lost, lessons learned. Ordinary days get written down too: now and then, something
@@ -1021,7 +1040,7 @@ journals, the Story tab and History) or **Important only**.
   game hooks)
 - **council life**: decrees, dilemmas, petitions, annals, names, journals, offices, the social web, social
   events, life goals, secrets, vendettas, eulogies, heirlooms, coming of age, quirks, dreams and dream omens, encounters with strangers, nemeses (and whether they return), pets, the
-  colony's character, everyday frictions, each on its own switch
+  colony's character, everyday frictions, the colony calendar's days, each on its own switch
 - **Rimfolk events**: on or off, whether they may bring fights, whether groups may make camp on the map, whether
   missions show up in the Quests tab, and whether the storyteller draws them (and how likely each is) or Rimfolk's
   own timer does (and how often)
