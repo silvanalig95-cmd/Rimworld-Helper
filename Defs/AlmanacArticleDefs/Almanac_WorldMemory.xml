@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The Almanac page on what the world's peoples remember of the colony (Source/ColonyCouncil/World/FactionMemory.cs,
+       Defs/IncidentDefs/Council_Events_Remembered.xml, Defs/MissionDefs/Council_Missions_Remembered.xml). -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_C_WorldMemory</defName>
+    <label>what the world remembers</label>
+    <category>Council</category>
+    <order>16</order>
+    <summary>Every people out there remembers what the colony did for them and against them, for years, and acts on it.</summary>
+    <tip>The prisoner you let go this spring may be why a cart of food comes up the road in a famine two years from now.</tip>
+    <description>Goodwill is a number that moves up and down. Memory is the story behind it. Every people in the world keeps a record of the colony: what it did for them, what it did to them, and what they did in turn, each deed with its date and its size. A prisoner set free is remembered; so are traders robbed, a camp driven off, raiders killed on the colony's land, and fighters they sent when the colony called.
+
+Memories fade over the years, the big ones slowest, and a people keeps a dozen at most: when there are more, a deed already repaid or put right makes way first, then the faintest. The same kind of deed again within a few days adds to the first instead of standing alone (a run of trades, a raid's dead), up to a limit. Most of it comes from the game's own reasons for changing goodwill, so it works with the game's quests and with mods that use those reasons.</description>
+    <sections>
+      <li>
+        <heading>What they remember</heading>
+        <text>Each deed has a size. It is remembered at full strength at first, and at half strength after its half-life: three quarters of a year, plus a year for every 12 points of size (a game year is 60 days).</text>
+        <table>
+          <li>Deed | Size | Half forgotten after</li>
+          <li>A prisoner set free (released, or rescued and sent home) | 12 | 1.75 years</li>
+          <li>A wounded guest tended and sent home | 10 | 1.6 years</li>
+          <li>A gift | the goodwill it gave, 3 to 25 | 1 to 2.8 years</li>
+          <li>A fair trade (200 silver or more; a run of them adds up to 8) | 1 to 3 | a year at most each</li>
+          <li>A quest or a Rimfolk mission done for them | 10 | 1.6 years</li>
+          <li>A quest or mission failed | 8 or 6 | 1.25 to 1.4 years</li>
+          <li>A camp of theirs helped (each help or gift adds 2, up to 18) | 10 to 18 | 1.6 to 2.25 years</li>
+          <li>A camp of theirs hosted, driven off, or attacked | 4, 10, 15 | 1.1 to 2 years</li>
+          <li>Standing by them in a world event's hard year | 15, and 3 more for each answer that helped (up to 33) | 2 to 3.5 years</li>
+          <li>Peace talks that went well, or badly | 8 to 12, or 6 to 10 | 1.25 to 1.75 years</li>
+          <li>Their traders attacked, a caravan of theirs attacked | 20 | 2.4 years</li>
+          <li>Someone of theirs killed while not at war, or sold into slavery | 15 | 2 years</li>
+          <li>Someone of theirs taken prisoner, or dead in the colony's keeping | 8, 12 | 1.4 to 1.75 years</li>
+          <li>Their people killed in a raid on the colony (3 each) or on their own ground (4 each), up to 30 | 3 to 30 | 1 to 3.25 years</li>
+          <li>One of their towns attacked, or destroyed | 25, 45 | 2.8, 4.5 years</li>
+          <li>Their land fouled with the colony's waste (Biotech) | 6 | 1.25 years</li>
+          <li>Fighters they sent when the colony called | 12 | 1.75 years</li>
+          <li>A raid of theirs on the colony | 6 | 1.25 years</li>
+          <li>A colonist they killed | 15 | 2 years</li>
+        </table>
+        <after>A deed is forgotten once it fades below 1: a small gift after about three years, a prisoner set free after about six, a town destroyed after more than twenty.</after>
+      </li>
+      <li>
+        <heading>What comes of it</heading>
+        <text>With "Peoples remember the colony" on, five Rimfolk events follow from the memory. They come like any other Rimfolk event, as long as a people remembers enough, and their answers settle the deed they're about (it stays in the memory, but asks nothing more) or add new ones.</text>
+        <table>
+          <li>Event | When it can come | The colony's answers</li>
+          <li>An old debt repaid | A friendly people remembers a good turn of 8 or more, at least 15 days old | Take their gift; take it and feast their envoy (20 raw food); tell them they owe nothing (15 goodwill); or let a good talker (Social 6) trade it for something better, which may offend them</li>
+          <li>A favor called in | A friendly people did the colony a good turn of 6 or more, at least 10 days ago | Send the silver they ask, or 8 medicine, or a builder's plans (Construction 8); or say no, which they remember</li>
+          <li>Help from old friends | Times are hard (a plague, famine, locusts, drought, hard winter or flood in the region; less than about four days' food at home; or two or more colonists sick, a third of the colony at least), and a friendly people remembers a good turn of 8 or more | Take their food or medicine; send them home with 60 silver; feed their carters (a cook, Cooking 4, 15 raw food); or ask them to give it to someone worse off</li>
+          <li>An old enemy offers peace | A people at war with the colony, with a grievance on either side still at 3 or more, and nothing between them for 90 days | Make peace; make peace and ask weregild for a colonist they killed (Social 6, a gamble); make peace over a meal (25 raw food); or send the envoy away</li>
+          <li>A quarrel between neighbors | A people grateful at 6 or more (or with 40 goodwill), and another friendly people not at war with it | Side with either (8 goodwill with one, 8 less with the other), judge fairly (Social 6, a gamble: 6 goodwill with both if it works), or stay out</li>
+        </table>
+        <after>Raid letters say what the raiders remember: an old wrong of the colony's (traders robbed, kin killed on its land, a camp driven off), how often they have raided before, or a colonist they killed. The prisoners, guests and envoys of an event are never harmed by it, and none of these events ends in a fight.</after>
+      </li>
+      <li>
+        <heading>Missions from old friends</heading>
+        <text>Four missions are offered by the peoples that think best of the colony (the more a people is grateful, the likelier it asks), whether or not the memory is switched on, and add to what that people remembers when they end.</text>
+        <table>
+          <li>Mission | What it asks | What comes of it</li>
+          <li>An invitation | At least 2 of the colony's people at their town by caravan before the day (towns up to about 3.5 days away), staying 10 hours for the feast, a wedding or midwinter | Gifts worth about 180 to 320 silver (more for a richer colony) in the caravan, a good mood for the guests, 10 goodwill; not going is noticed</li>
+          <li>An apprenticeship | The apprentice at their town by caravan (up to 3 days away), staying 30 to 42 hours at the master's side | About two levels in the craft (half that if time runs out at half the hours), a good mood; they remember they taught the colony</li>
+          <li>A guest of rank | A bedroom with one bed nobody else uses (not a prisoner's or a sickbed), at least slightly, somewhat or very impressive (by the colony's wealth), ready when they come and kept for 2 to 3 days | Checked every hour: never missing, a gift of 250 to 450 silver (more for a richer colony) and 14 goodwill; missing a quarter of the hours or less, half the goodwill; no room at all, they leave the next morning slighted</li>
+          <li>Refugees to see through | 3 to 5 people fed (two meals each a day; raw food will do, ten for a meal) and sheltered (free beds or sleeping spots under a roof, enough for all) for 3 to 4 days | Every day fed and sheltered: 15 goodwill and a deed of 20; more good days than bad: 5 goodwill and a deed of 8; mostly short: they go hungry and remember it</li>
+        </table>
+        <after>Guests never starve or go hungry for staying days instead of hours: a day the colony can't feed its refugees, they eat what little they carried. Refugees come from whatever runs in the region (a plague, a famine, a flood, a hard winter, a town abandoned, a warlord or bandits), or from a fire at home.</after>
+      </li>
+      <li>
+        <heading>Reading the World page</heading>
+        <text>The council window's World page has a "What they remember" section: a card for each people that remembers the colony for something, with how it stands (well disposed, in the colony's debt, the colony owes them, wary, holding a grudge, or grateful and aggrieved at once) and its biggest memories with how long ago they were. Green is what the colony did for them, red what it did to them, gold what they did for the colony, orange what they did to it; a faded line has been settled. Hover over a card for everything the people remembers.</text>
+      </li>
+    </sections>
+    <keywords><li>memory</li><li>remember</li><li>faction</li><li>people</li><li>goodwill</li><li>debt</li><li>favor</li><li>grudge</li><li>envoy</li><li>relief</li><li>peace</li><li>quarrel</li><li>invitation</li><li>apprentice</li><li>dignitary</li><li>refugees</li><li>raid letter</li></keywords>
+    <seeAlso><li>Council_Alm_C_WorldSituations</li><li>Council_Alm_C_WorldEvents</li><li>Council_Alm_C_Camps</li></seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+</Defs>
