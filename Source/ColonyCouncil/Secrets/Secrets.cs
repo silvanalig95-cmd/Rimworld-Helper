@@ -238,6 +238,7 @@ namespace ColonyCouncil
             using var _cause = Causes.Push("CC_Cause_Confided".Translate(s.owner?.LabelShort ?? "?", friend?.LabelShort ?? "?").Resolve());
             var owner = s.owner;
             s.knowers.Add(friend);
+            CouncilRecords.Add(friend, CouncilRecords.SecretsKept);
             comp.social.Bump(owner, friend, TieKind.Friends, 6f, "CC_TieNote_Confided".Translate());
             CouncilGameComponent.GiveThought(owner, CouncilDefOf.Council_Secret_Unburdened);
             CouncilGameComponent.GiveThought(friend, CouncilDefOf.Council_Secret_Trusted, owner);

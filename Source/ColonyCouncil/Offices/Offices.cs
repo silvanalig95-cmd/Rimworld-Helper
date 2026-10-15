@@ -159,8 +159,7 @@ namespace ColonyCouncil
             if (pair == null) return;
             using var _cause = Causes.Push("CC_Cause_Peacemaker".Translate(peacemaker.LabelShort).Resolve());
             comp.social.Weaken(pair.a, pair.b, TieKind.Rivals, 6f, "CC_TieNote_Peacemaker".Translate(peacemaker.LabelShort));
-            var mended = DefDatabase<RecordDef>.GetNamedSilentFail("Council_QuarrelsMended");
-            if (mended != null) peacemaker.records?.Increment(mended);
+            CouncilRecords.Add(peacemaker, CouncilRecords.QuarrelsMended);
             string line = Flavor.FromPool("Council_Pool_PeacemakerMediates", peacemaker);
             if (line.NullOrEmpty()) return;
             News.Post(line.Formatted(peacemaker.Named("PAWN"), pair.a.Named("A"), pair.b.Named("B")).Resolve(), new LookTargets(peacemaker, pair.a, pair.b),

@@ -484,6 +484,7 @@ namespace ColonyCouncil
             Find.LetterStack.ReceiveLetter("CC_Eulogy_Label".Translate(dead.LabelShort), text, LetterDefOf.NeutralEvent, speaker);
             comp.AddChronicle(new ChronicleEntry(ChronicleKind.Loss, text, speaker));
             comp.journals.Write(speaker, "Council_Journal_GaveEulogy", null, dead.Named("OTHER"));
+            CouncilRecords.Add(speaker, CouncilRecords.EulogiesGiven);
             CouncilGameComponent.GiveThought(speaker, CouncilDefOf.Council_GaveEulogy);
             foreach (var p in speakers.Where(p => p != speaker && p.relations.OpinionOf(dead) >= 20 && p.Spawned))
                 CouncilGameComponent.GiveThought(p, CouncilDefOf.Council_EulogyHeard);

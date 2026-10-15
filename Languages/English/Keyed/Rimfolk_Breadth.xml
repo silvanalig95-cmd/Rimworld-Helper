@@ -15,6 +15,9 @@
   <CC_TieNote_Peacemaker>{0} sat them down together</CC_TieNote_Peacemaker>
   <CC_Cause_KeeperOfDays>{0}, the keeper of days, saw it kept properly</CC_Cause_KeeperOfDays>
 
+  <!-- Names: one that depends on never doing something, lost the day they do it. -->
+  <CC_Epithet_NoLonger>{PAWN_nameDef} isn't {TITLE} any more.</CC_Epithet_NoLonger>
+
   <!-- Scenarios: the married couple, and what the new starts promise. -->
   <CC_ScenPart_Bond_spouses>Rimfolk: two of the colonists are married (or close friends, if they couldn't be).</CC_ScenPart_Bond_spouses>
   <CC_Scen_Bond_spouses>{A_nameDef} and {B_nameDef} are married, and everything they own is in this place now.</CC_Scen_Bond_spouses>
