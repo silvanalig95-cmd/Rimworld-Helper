@@ -204,9 +204,10 @@ namespace ColonyCouncil
             if (days < 1f)
             {
                 int hours = UnityEngine.Mathf.Max(1, UnityEngine.Mathf.RoundToInt(ticks / (float)GenDate.TicksPerHour));
-                return "CC_Hours".Translate(hours);
+                return hours == 1 ? "CC_Hour".Translate() : "CC_Hours".Translate(hours);
             }
-            return "CC_Days".Translate(days.ToString("0.#"));
+            string d = days.ToString("0.#");
+            return d == "1" ? "CC_Day".Translate() : "CC_Days".Translate(d);
         }
 
         public static string JoinAnd(IList<string> parts)

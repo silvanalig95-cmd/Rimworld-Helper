@@ -73,7 +73,7 @@ namespace ColonyCouncil
             for (int i = 0; i < things.Count; i++)
             {
                 var t = things[i];
-                if (t.def.category == ThingCategory.Building && room.ContainsCell(t.Position) && pred(t.def)) n++;
+                if (t.def.category == ThingCategory.Building && !t.def.IsFrame && room.ContainsCell(t.Position) && pred(t.def)) n++;
             }
             return n;
         }

@@ -79,7 +79,7 @@ namespace ColonyCouncil
         /// Whether a building (or a floor) of this kind is what the wish is about: a plan or frame of one being built where
         /// it belongs counts as still there for a while.
         /// </summary>
-        public virtual bool Concerns(Wish wish, BuildableDef d) => d != null && d == wish.thingDef;
+        public virtual bool Concerns(Wish wish, BuildableDef d) => d != null && d == wish.thingDef && !(d is ThingDef td && td.IsFrame);
 
         /// <summary>
         /// The things that make it hold right now (a bed, a telescope), remembered while it holds, so that one being moved

@@ -118,6 +118,13 @@ namespace ColonyCouncil
             {
                 if (inherited) return "CC_Asp_Spark_Inherited".Translate(sparkName ?? "?").Resolve();
                 if (spark.NullOrEmpty()) return null;
+                // A memory that sparked it: say which ("after \"idea turned down\""), not just "after what happened".
+                if (spark.StartsWith("thought:"))
+                {
+                    var td = DefDatabase<ThoughtDef>.GetNamedSilentFail(spark.Substring(8));
+                    string what = td?.stages?.FirstOrDefault(st => st != null && !st.label.NullOrEmpty())?.label ?? td?.label;
+                    if (!what.NullOrEmpty() && what.IndexOf('{') < 0) return "CC_Asp_Spark_thoughtNamed".Translate(what.UncapitalizeFirst()).Resolve();
+                }
                 string key = "CC_Asp_Spark_" + (spark.StartsWith("thought:") ? "thought" : spark);
                 return key.CanTranslate() ? key.Translate(sparkName ?? "").Resolve() : null;
             }

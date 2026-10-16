@@ -92,7 +92,8 @@ namespace ColonyCouncil
 
         public bool Matches(ThingDef d)
         {
-            if (d == null) return false;
+            // A frame or a blueprint is the thing still to be built, not the thing.
+            if (d == null || d.IsFrame || d.IsBlueprint) return false;
             if (matcher == null) matcher = BuildMatcher();
             return matcher(d);
         }
