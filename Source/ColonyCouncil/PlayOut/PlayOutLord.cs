@@ -149,6 +149,8 @@ namespace ColonyCouncil
             try
             {
                 if (serve && kind == PlayKind.Feast) Serve();
+                // A drink from the stores to raise (Integrations/ToastDrinks.cs: beer, Vanilla Brewing Expanded's wines and teas).
+                if (kind == PlayKind.Toast) ToastDrinks.Pour(lord, Map, spot, words);
                 Touches();
             }
             catch (Exception e)
