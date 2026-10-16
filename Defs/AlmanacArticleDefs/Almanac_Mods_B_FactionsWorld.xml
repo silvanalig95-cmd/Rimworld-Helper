@@ -42,6 +42,7 @@ Guests also help with chores, but only where their skill is 7 or more (a setting
           <li>With no guest bed in the colony, a kind or sociable colonist may wish for one, most often while visitors are here. Switching any bed to a guest bed grants it.</li>
           <li>Once there is a guest bed, sociable and kind colonists, and the steward or speaker, may wish for a guest room worth the name: the best guest room should reach the next step of impressiveness. The guest room plan builds a small room for one visitor; switch its bed to a guest bed once it's built. A colonist with no bed never counts a guest bed as free.</li>
           <li>The guests' people remember each visit: one that goes home delighted leaves the colony a good name with them, one that ends in disappointment a poor one, and a run of either adds up. The World page lists it among what that people remembers, and a raid letter can name a poor welcome.</li>
+          <li>Guests are part of the colony's everyday life without leaving Hospitality's hands: a lonely colonist may go and keep a guest company in their free time (the colonist goes to them; the guest is never moved), guests standing near one of the council's toasts raise their cups with everyone else, and now and then a guest on screen says a word about their stay, from how it's going, the bed they were given or the feast they've wandered into. This week, on the council window's first page, lists each party staying and how their visit is going; click to go to them.</li>
         </points>
       </li>
     </sections>
@@ -162,7 +163,7 @@ The hidden pot traps hold chemfuel fire, smoke or knockout gas. They can't sit n
       </li>
       <li>
         <heading>With Rimfolk</heading>
-        <text>Workshops are recognized by what their benches make, so Outland's basic workbench and forge count when a colonist wishes for a place to craft.</text>
+        <text>Workshops are recognized by what their benches make, so Outland's basic workbench and forge count when a colonist wishes for a place to craft. Its tent flap is the door of the tents that camps put up.</text>
       </li>
     </sections>
     <keywords>
@@ -220,7 +221,9 @@ The hidden pot traps hold chemfuel fire, smoke or knockout gas. They can't sit n
       </li>
       <li>
         <heading>With Rimfolk</heading>
-        <text>Their people are humanlike pawns like any other, so visitors from these factions take part in Rimfolk's encounters, and their raiders can earn vendettas and become nemeses.</text>
+        <text>Their people are humanlike pawns like any other, so visitors from these factions take part in Rimfolk's encounters, and their raiders can earn vendettas and become nemeses.
+
+Each of the four also has an encounter of its own: an Eastborn visitor makes tea and will not let it be drunk unlooked-at; a Motz sits with a colonist just past the lamplight after dark; a goblin of the Redburn Pact haggles over a skull "from a very important orc"; and a Vathun noble wants to know everyone's caste. The Vathun and the Eastborn may make a lord's progress past the colony (a world event: host the retinue for a night or send a gift, for their goodwill), and the Redburn Pact may hold its moot, sending an envoy for a token of respect, which can be paid, refused, or answered by warning the neighbours.</text>
       </li>
     </sections>
     <keywords>

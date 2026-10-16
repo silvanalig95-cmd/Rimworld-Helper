@@ -94,8 +94,8 @@
   <CC_Week_Fight>{0} coming to fight</CC_Week_Fight>
 
   <!-- This week: missions and camps -->
-  <CC_Week_Missions>Missions and camps</CC_Week_Missions>
-  <CC_Week_Empty_Missions>No missions, and no camp on the map.</CC_Week_Empty_Missions>
+  <CC_Week_Missions>Missions, camps and guests</CC_Week_Missions>
+  <CC_Week_Empty_Missions>No missions, no camp and no guests on the map.</CC_Week_Empty_Missions>
   <CC_Week_ToAccept>{0} to accept</CC_Week_ToAccept>
   <CC_Week_Offered>offered</CC_Week_Offered>
   <CC_Week_Camp>{0} camped on the map</CC_Week_Camp>

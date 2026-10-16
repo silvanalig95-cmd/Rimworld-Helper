@@ -108,8 +108,9 @@ namespace ColonyCouncil
 
     /// <summary>
     /// One kind of building in a camp. Roles: fire (the center), bed (one per person), wall (a windbreak), hut (walls,
-    /// a door and a roof around one bed), stall, light, spot (a work or prayer spot), butcher. The first def that exists
-    /// is used, built from the first material that fits it.
+    /// a door and a roof around one bed: a tent, with a tent mod's walls), stall, light, spot (a work or prayer spot),
+    /// butcher. The first def that exists is used, built from the first material that fits it, so a tent mod's piece
+    /// listed first stands in for the plain one only while that mod is loaded.
     /// </summary>
     public class CampStructure
     {
@@ -117,8 +118,13 @@ namespace ColonyCouncil
         public List<string> defs = new List<string>();
         public List<string> stuff = new List<string>();
         public int count = 1;
+        /// <summary>A hut's door, best first (a tent's flap); the plain door when none of them exists.</summary>
+        public List<string> doors;
 
         public ThingDef Def => defs?.Select(n => DefDatabase<ThingDef>.GetNamedSilentFail(n)).FirstOrDefault(d => d != null && d.category == ThingCategory.Building);
+
+        /// <summary>The hut's door: the first of <see cref="doors"/> that exists, else the plain door.</summary>
+        public ThingDef DoorDef => doors?.Select(n => DefDatabase<ThingDef>.GetNamedSilentFail(n)).FirstOrDefault(d => d != null && d.IsDoor) ?? ThingDefOf.Door;
 
         /// <summary>The first listed material this building can be made of (null for things made of no material).</summary>
         public ThingDef StuffFor(ThingDef def)

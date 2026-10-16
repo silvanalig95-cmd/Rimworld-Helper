@@ -22,8 +22,10 @@
     Mod furniture: Vanilla Furniture Expanded (Bed_Simple, Seat_Bench, Table_Royal..., VFE_RoyalLamp, VFE_FloorLamp,
     VFE_ModularCouch, Seat_Cushion), its Spacer module (Bed_AdvBed, Seat_AdvChair, Table_Illuminated...), Art
     (VFE_DecorativePlantPot), Architect (floors), Vanilla Factions Expanded Medieval 2 (fur beds, heraldic rugs) and
-    Empire (candelabra, royal rugs), Dubs Bad Hygiene (toilets, washing, showers) and Alpha Prefabs (its floors, when
-    its option makes them buildable).
+    Empire (candelabra, royal rugs), Medieval Overhaul's royal furniture (DankPyon_Royal..., in the stately theme), Dubs
+    Bad Hygiene (toilets, washing, showers) and Alpha Prefabs (its floors, when its option makes them buildable). The
+    themes made mostly of one mod's furniture (Medieval Overhaul's hall, Alpha Props' garden) are in
+    Rimfolk_RoomThemes_Mods.xml.
   -->
 
   <ColonyCouncil.RoomThemeDef>
@@ -57,12 +59,12 @@
     <floors><li>TileMarble</li><li>TileGranite</li><li>VFEArch_PolishedStoneFloorMarble</li><li>CarpetRed</li><li>CarpetDark</li></floors>
     <lavishFloors><li>CarpetFineRed</li><li>CarpetFineScarlet</li><li>FineTileMarble</li><li>FineTileGranite</li><li>TileMarble</li><li>CarpetRed</li></lavishFloors>
     <swaps>
-      <li><role>chair</role><defs><li>Seat_RoyalArmchair</li><li>Armchair</li></defs></li>
-      <li><role>doublebed</role><defs><li>RoyalBed</li><li>Bed_Kingsize</li></defs></li>
+      <li><role>chair</role><defs><li>Seat_RoyalArmchair</li><li>DankPyon_RoyalArmchair</li><li>Armchair</li></defs></li>
+      <li><role>doublebed</role><defs><li>RoyalBed</li><li>Bed_Kingsize</li><li>DankPyon_RoyalTudorBed</li></defs></li>
       <li><role>table</role><defs><li>Table_Royal1x2c</li><li>Table_Royal2x2c</li><li>Table_Royal2x4c</li><li>Table_Royal3x3c</li></defs></li>
-      <li><role>endtable</role><defs><li>Table_RoyalEndTable</li></defs></li>
-      <li><role>dresser</role><defs><li>Table_RoyalDresser</li></defs></li>
-      <li><role>light</role><defs><li>VFEE_Candelabra</li><li>VFE_RoyalLamp</li></defs></li>
+      <li><role>endtable</role><defs><li>Table_RoyalEndTable</li><li>DankPyon_RoyalEndTable</li></defs></li>
+      <li><role>dresser</role><defs><li>Table_RoyalDresser</li><li>DankPyon_RoyalDresser</li></defs></li>
+      <li><role>light</role><defs><li>VFEE_Candelabra</li><li>VFE_RoyalLamp</li><li>DankPyon_Candelabra</li><li>DankPyon_WallLamp</li></defs></li>
     </swaps>
     <rugs><li>VFEE_LargeRoyalRug</li><li>VFEM2_HeraldicRugBroad</li></rugs>
   </ColonyCouncil.RoomThemeDef>

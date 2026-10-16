@@ -6,7 +6,7 @@ using System.Xml.Linq;
 /// line said over a head is one sentence of 90 characters at most and doesn't start with a quote (the floating text
 /// keeps only the first sentence and trims quotes from the ends); every tag naming a feeling, an ailment, a setback or
 /// a personal story names one that exists, so a typo can't leave a line unsaid; every pool the code and the habits'
-/// jobs name exists. How many feelings, ailments, setbacks and stories have lines of their own is reported, not
+/// jobs name exists, and each of the twelve habits has a job of its own. How many feelings, ailments, setbacks and stories have lines of their own is reported, not
 /// required: the pools' untagged lines cover the rest, and a feeling without lines is simply not said.
 /// </summary>
 public static class ImmersionTests
@@ -16,12 +16,14 @@ public static class ImmersionTests
         "Council_Pool_SayFeeling", "Council_Pool_SayAilment", "Council_Pool_SayConvalescing", "Council_Pool_SayStory", "Council_Pool_SayTomorrow",
         "Council_Pool_SaySetback", "Council_Pool_SayTakenBack", "Council_Pool_SayNemesis", "Council_Pool_SayWish", "Council_Pool_SayFirstSnow",
         "Council_Pool_SayHeatWave", "Council_Pool_SayColdSnap", "Council_Pool_SayStorm", "Council_Pool_HabitGrave", "Council_Pool_HabitLookOut",
-        "Council_Pool_HabitFire", "Council_Pool_HabitRemember"
+        "Council_Pool_HabitFire", "Council_Pool_HabitRemember", "Council_Pool_HabitStars", "Council_Pool_HabitPlants", "Council_Pool_HabitAnimals",
+        "Council_Pool_HabitStores", "Council_Pool_HabitCompany", "Council_Pool_HabitStories", "Council_Pool_SayDream", "Council_Pool_TouchCampComing",
+        "Council_Pool_TouchCouncilWedding", "Council_Pool_GuestSays"
     };
 
     private static readonly string[] JournalPools =
     {
-        "Council_Journal_FirstSnowSeason", "Council_Journal_HeatWave", "Council_Journal_ColdSnap", "Council_Journal_Storm"
+        "Council_Journal_FirstSnowSeason", "Council_Journal_HeatWave", "Council_Journal_ColdSnap", "Council_Journal_Storm", "Council_Journal_Changed"
     };
 
     private static readonly string[] Prefixes = { "Council_Setback_", "Council_Friction_", "Council_Nuisance_", "Council_Arc_" };
@@ -114,7 +116,19 @@ public static class ImmersionTests
             string pool = ext.Element("pool")?.Value;
             Check(pool != null && pools.ContainsKey(pool), $"a small habit's pool {pool} exists");
         }
-        Check(habits.Elements("JoyGiverDef").Count() == 6, "six small habits");
+        Check(habits.Elements("JoyGiverDef").Count() == 12, "twelve small habits");
+        // Every habit's job has a kind of its own, and every kind the code knows has a job.
+        var kinds = habits.Descendants("li").Where(li => (string)li.Attribute("Class") == "ColonyCouncil.HabitExtension").Select(li => li.Element("kind")?.Value).ToList();
+        Check(kinds.Count == kinds.Distinct().Count(), "each habit's job has a kind of its own");
+        foreach (var k in new[] { "Grave", "LookOut", "Fire", "Remember", "Stars", "Plants", "Animals", "Stores", "Company", "Stories" })
+            Check(kinds.Contains(k), $"a small habit's job for {k}");
+        // Each joy giver names a job that exists here or in the game (the snowman is the game's own).
+        var jobDefs = new HashSet<string>(habits.Elements("JobDef").Select(j => j.Element("defName")?.Value ?? ""));
+        foreach (var giver in habits.Elements("JoyGiverDef"))
+        {
+            string job = giver.Element("jobDef")?.Value ?? "";
+            Check(jobDefs.Contains(job) || job == "BuildSnowman", $"joy giver {giver.Element("defName")?.Value} names a job that exists ({job})");
+        }
         return checks;
     }
 

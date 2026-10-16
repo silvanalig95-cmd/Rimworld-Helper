@@ -80,7 +80,7 @@ every era. Called world events until the world situations below took that name.
   with its own good turn; camps follow world events (refugees from a famine or a war say so) and name their creed
   with Ideology. Older events with one title, text or answer got more (a letter from home and the lost child grown
   got new answers).
-- Next: more events per group; camps that use tent mods' tents when present; more chains (hooking the storyteller
+- Next: more events per group; more chains (hooking the storyteller
   batch's memos: the peace bought, the survivor, the star-iron blade) and missions (an apprentice to train, a dignitary to host, refugees to see safely through).
 
 ## Phase H2: Scenarios with stakes (done)
@@ -196,8 +196,10 @@ play deep. In order:
   sortable table of every colonist with what helps for their setbacks; Council → Dilemmas, with how each answer went;
   "Mark all read" for the colony news; pages that remember their filters and sort orders; optional page shortcuts;
   and a setting for the page the window opens on. Layout and page links are checked by tests.
-- A small visual pass with the game's own effects: the comet tints the sky, fireflies glow, camps smoke, a warlord's
-  raid comes with banners of dust.
+- Done (October 2026): a small visual pass with the game's own effects: the comet tints the sky, fireflies glow, camps
+  smoke, a warlord's raid comes with banners of dust; and more of Rimfolk's events seen: a camp arriving (dust on the
+  road, a word from whoever sees it), the first snow's flakes, a dream told at breakfast, the council's bell at a
+  wedding it promised, a Hospitality guest's word about their stay.
 - Translation-ready: every string keyed and a guide for translators.
 
 ### 4. Deep (features and variety)
@@ -232,8 +234,8 @@ play deep. In order:
   Architect modules), Vanilla Factions Expanded Medieval 2 and Empire, Dubs Bad Hygiene and Alpha Prefabs, checked
   by the layout tests in every turn and mirror, with and without that furniture. Gentle advice as the colony grows:
   a dining or rec room it has outgrown, a barracks that could become bedrooms, a hospital upgrade it has
-  researched. Next: themes for Medieval Overhaul and the Alpha furniture mods, and more upgrade advice (bedrooms
-  for nobles, a kitchen that has outgrown its stove).
+  researched. Done: a hall theme for Medieval Overhaul and a garden theme for Alpha Props: Parks and Gardens.
+  Next: more upgrade advice (bedrooms for nobles, a kitchen that has outgrown its stove).
 - Variety checks: a dev report of the lines shown most often, so the pools that repeat get new lines first.
   Done: a round of about 1,800 lines for the pools it ranked highest and the thin ones it doesn't rank (personal
   touches, reminders and last calls, journals, quirks, wishes' own lines, the calendar, personal stories, health,
@@ -274,7 +276,7 @@ the content itself, not only to systems, alongside whatever else it does. Where 
 | Colony character | 5 ways (10 names), 6 things a colony grows into | traits from hospitality, faith and the calendar |
 | Pets and nemeses | 14 heroics, 32 farewells, 22 taunts and parting words, 4 endings told from pools (one new: let go from the cells) | pets in the calendar, nemeses in dreams and personal stories |
 | Feelings | 26 (4 deepened by a heart's need that runs low) | feelings that touch the camps and world events, each with more dreams and moments |
-| Seen and heard (touches, speech, small habits) | 18 touches; lines about 9 kinds of state (about 400) and 4 kinds of weather; 6 small habits | touches for more of Rimfolk's events (a camp arriving, a dream told), habits for more feelings and quirks |
+| Seen and heard (touches, speech, small habits) | 24 touches (6 new: a camp arriving, the first snow's flakes, a dream told at breakfast, a council wedding, a guest's word, guests' cups at a toast); lines about 9 kinds of state (about 400), dreams, guests and 4 kinds of weather; 12 small habits (6 → 12: stars, plants, animals, the stores, company, old stories) | touches for the world events' beats and the calendar's ways, habits for children and elders |
 | Mood hints | 173 | hints for every new thought as it lands |
 | Small good moments that give something other than mood | 248 of 474 (opinion, recreation, rest, comfort, practice, a feeling, an inspiration, trust, research, goodwill, the journal), 4 habits with a knack instead | a reward instead for each new small moment as it lands |
 | Negative moods | 589 thoughts with a bad side (548 → 589); 41 setbacks from play (8 council, 3 gatherings, 10 work, 7 home, 6 worries, 7 between people) | setbacks for camps, world events and the calendar, more from mod content (a mod's bench, crop or ritual gone wrong) |
@@ -309,11 +311,22 @@ the content itself, not only to systems, alongside whatever else it does. Where 
   forbid (the game's Ideology, Vanilla Ideology Expanded - Memes, Alpha Memes, More Precepts, read by name and by what
   a precept frowns on); feasts and toasts serve only what fits each colonist's policies and diet, and never what
   Alpha Memes would make them sick for.
-- Still open: Vanilla Factions Expanded Medieval and Tribals (not in the current modlists), Outland and Medieval Total
-  Rim's peoples in world events, more Hospitality (a renowned-hosts council project), Alpha Genes and Alpha Memes in
-  moments.
-- New where it pays: PokéWorld (started), tent mods for camps, Big & Small, character editors that change people
-  mid-game.
+- Done (October 2026): the player's other mods in the colony's everyday life, 23 integrations, each checked against the
+  mod's own def names (Tools/Tests/ModDefNames.txt). Outland's four peoples (seven encounters with Medieval Total
+  Rim's nations: 172 → 179) and two world events for them (a lord's progress, the clans gather: 32 → 34); Medieval
+  Total Rim's nations are named by their mod ("mod:" and the package id) since their def names aren't published.
+  Alpha Genes' and Alpha Memes' people in seven moments and six social events (79 → 85). Room themes for
+  Medieval Overhaul (a hall theme, its royal furniture in the stately theme) and Alpha Props: Parks and Gardens (a
+  garden theme): 6 → 8 themes, checked by the layout tests. Tent mods for camps (Vanilla Factions Expanded -
+  Classical's tents, Medieval Overhaul's hide and cloth tents with Outland's flap). Big & Small and the character
+  editors: people who change mid-game are read again, their wishes asked again, and their records carry over.
+  Hospitality's guests in the newer systems (keeping a lonely colonist company, cups at a toast, a word about their
+  stay, This week), without leaving Hospitality's lord.
+- Still open: Vanilla Factions Expanded Medieval and Tribals (not in the current modlists), more Hospitality (a
+  renowned-hosts council project), Outland's and Medieval Total Rim's peoples in more of the existing world events'
+  lines (the base worker doesn't tag its people yet), the Outland furniture as a room theme once its 1.6 def names
+  are checked.
+- New where it pays: PokéWorld (started).
 
 ### 6. Shared (release)
 - The Workshop page (private first), preview art from the game's own sprites, and a changelog written for players.

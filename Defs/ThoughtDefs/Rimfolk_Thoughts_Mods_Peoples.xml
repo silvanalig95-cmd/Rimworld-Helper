@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Memories for the medieval modlist's peoples (Outland, Medieval Total Rim) and Alpha Genes' and Alpha Memes' moments:
+    Rimfolk_Encounters_Mods_Peoples.xml, Rimfolk_Moments_Mods_Alpha.xml, Rimfolk_WS_Mods_Peoples.xml. They always load
+    (a saved memory must still find its def if the mod is removed later); without the mod nobody gets them. The good
+    ones give practice, recreation, rest, comfort or a feeling instead of mood; the one bad one has a mood hint.
+  -->
+
+  <!-- ===================== Visitors of the medieval peoples ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncO_EastbornTea</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>tea with the Eastborn</label><description>An Eastborn visitor made me tea and wouldn't let me drink it until I'd looked at it properly. It was very good tea.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.06</joy><felt>2</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncO_MotzDusk</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>a Motz at dusk</label><description>Sat with one of the moth-folk just past the lamplight. They find their way by smell and sound. I've been listening to the dark differently since.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt><feelings><li>Curiosity</li></feelings></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncO_PactHaggle</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>haggled with the Pact</label><description>Bargained with a goblin of the Redburn Pact and came out even. I'm told that's practically a friendship, with them.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><skill>Social</skill><xp>120</xp><felt>1</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncO_VathunCaste</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>a Vathun's questions</label><description>A Vathun noble wanted to know my caste. I said we don't have them. They looked at me as if I'd said we don't have weather.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>1</felt><journal>true</journal></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncM_KnightOnTheRoad</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>a knight's tales</label><description>A knight on the road told me about vows, far kingdoms and how to keep mail from rusting. Mostly the mail.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.06</joy><felt>2</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncM_SteppeRider</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>a rider's ways</label><description>A rider from the steppe showed me how they calm a frightened animal. A low song, and never a hurried hand.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncM_Scholar</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>a learned traveller</label><description>A traveller who had read more books than I've seen showed me how to tell the hour by the stars, and a quicker way to count.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><research>30</research><felt>2</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <!-- ===================== Alpha Genes and Alpha Memes moments ===================== -->
+
+  <ThoughtDef>
+    <defName>Council_Moment_TalkOfTheDeep</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>1</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>talked of the deep</label><description>We talked about the sea, the deep part, where it's dark and slow. One of us misses it.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>4</baseOpinionOffset></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.05</joy><felt>2</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Moment_WarmedHands</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>1</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>warmed my hands</label><description>Came in half frozen, and someone who runs hotter than a hearth held my hands until I could feel them again.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>6</baseOpinionOffset></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><comfort>0.15</comfort><felt>2</felt><feelings><li>Gratitude</li></feelings></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Moment_ReadTheStone</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>1</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>read the stone together</label><description>We read the rock together: where the seam runs, where it's weak. I know the hill better now.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>3</baseOpinionOffset></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><skill>Mining</skill><xp>150</xp><felt>1</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Moment_SketchedSomeone</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>1</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>drew someone</label><description>I drew someone today, a dozen quick lines. Got the nose right.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>3</baseOpinionOffset></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><skill>Artistic</skill><xp>150</xp><felt>1</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Moment_SatForSketch</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>1</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>sat for a sketch</label><description>Someone drew me. I didn't know I looked like that. I think I like it.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>4</baseOpinionOffset></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.04</joy><felt>2</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Moment_WaterBlessed</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>1</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>blessed with water</label><description>Someone touched clean water to my brow and said the old words over me. I felt washed through.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>4</baseOpinionOffset></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><rest>0.05</rest><felt>2</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Moment_RanchTalk</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>1</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>talked ranching</label><description>Leaned on the fence and talked about herds and grazing until the light went.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>3</baseOpinionOffset></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><skill>Animals</skill><xp>120</xp><felt>1</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Moment_SharedSilence</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>1</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>sat in silence</label><description>Someone sat with me without a word until my breathing slowed. Ten breaths, and start again.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>6</baseOpinionOffset></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><rest>0.06</rest><felt>3</felt><feelings><li>Relief</li></feelings></li></modExtensions>
+  </ThoughtDef>
+
+  <!-- ===================== World events ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_WS_ProgressHosted</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>hosted a lord</label><description>A lord's whole retinue stayed the night with us. Someone lost a boot and the cook took our bread recipe. We'll be talking about it for years.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.08</joy><felt>3</felt><journal>true</journal></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_WS_WarbandWatched</defName>
+    <durationDays>1.5</durationDays>
+    <stages><li><label>watched a warband pass</label><description>A warband went by on the road, slowly, looking hard at our walls. We'd refused their envoy. I didn't sleep well.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+</Defs>
