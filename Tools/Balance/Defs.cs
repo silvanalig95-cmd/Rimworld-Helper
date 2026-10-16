@@ -422,6 +422,12 @@ namespace Balance
             if (seasons != null) d.seasons = seasons.Elements("li").Select(x => x.Value).ToList();
             ReadOptions(d, el);
             d.gate = Gate(el);
+            // A custom of the land or the faith (DilemmaWorker_Custom's CustomConditions): only where the land fits, it
+            // rains, or the colony's faith holds the right memes.
+            var custom = el.Element("modExtensions")?.Elements("li").FirstOrDefault(x => ((string)x.Attribute("Class") ?? "").EndsWith("CustomConditions"));
+            if (custom != null)
+                foreach (var c in custom.Elements())
+                    if (Rates.CustomGates.TryGetValue(c.Name.LocalName, out float cg)) d.gate *= cg;
             d.aboutEvents = el.Element("afterThoughts") != null || el.Element("afterThreat") != null || el.Element("hediffs") != null || el.Element("unconscious") != null;
             if (kind == "nuisance")
             {

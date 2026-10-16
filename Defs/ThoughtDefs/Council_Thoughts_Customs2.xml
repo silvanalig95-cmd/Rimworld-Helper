@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The customs of the land and the faith (Defs/DilemmaDefs/Council_Dilemmas_Customs2.xml). Kept small, and half of them
+    give something other than mood (RewardInstead): recreation in the rain, trust from the blessing of the waters, a
+    long view's awe from the high watch, recreation and awe from the tree-singing.
+  -->
+
+  <ThoughtDef>
+    <defName>Council_Dlm_Trad_SunsReturn</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>the sun's return</label><description>We stood round the fire in the dark and watched the sun come back over the ridge. The winter is over. I felt it go.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Dlm_Trad_RainWelcome</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>2</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>the rain welcome</label><description>We stood out in the rain together until we were soaked through, laughing like children.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.15</joy><feelings><li>Joy</li></feelings><felt>3</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Dlm_Trad_WaterBlessing</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>the waters blessed</label><description>We gave the water its loaf and asked it for a kind year. Whatever comes from it now, we started the year right.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><trust>1.5</trust><feelings><li>Hope</li></feelings><felt>2</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Dlm_Trad_MarshLights</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>2</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>the marsh lights</label><description>We walked the bounds with smoking torches after dark, the whole colony coughing and laughing. The lights went all the way round.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Dlm_Trad_HighWatch</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>the high watch</label><description>From the high ground the whole colony fits in one look: every roof and field and wall. We made all of that.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.08</joy><feelings><li>Awe</li><li>Pride</li></feelings><felt>3</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Dlm_Trad_NightVigil</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>the night vigil</label><description>We kept the vigil through the longest night, the words said and answered until the first light. I feel lighter than I have in weeks.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Dlm_Trad_TreeSinging</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>2</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>the tree-singing</label><description>We sang to the old tree all afternoon, and I'd swear it listened.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.12</joy><feelings><li>Awe</li></feelings><felt>3</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Dlm_Trad_AncestorsSupper</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>supper with the dead</label><description>A place laid for every one of them, and their names said before we ate. It was sad, and it was good, and they felt very near.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+</Defs>

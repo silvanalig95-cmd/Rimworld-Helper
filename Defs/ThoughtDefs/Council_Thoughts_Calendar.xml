@@ -57,6 +57,49 @@
     </stages>
   </ThoughtDef>
 
+  <!--
+    The newer ways to keep a day give something other than mood (RewardInstead): a bonfire some recreation, a day of
+    gifts a little recreation (its friendships are the real gift: CalendarKeeping.GiveGifts), a hunt a day's practice.
+  -->
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Cal_BonfireNight</defName>
+    <durationDays>1</durationDays>
+    <stages>
+      <li>
+        <label>a night round the fire</label>
+        <description>We built a fire for the day and sat round it with music until it burned down.</description>
+        <baseMoodEffect>0</baseMoodEffect>
+      </li>
+    </stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.12</joy><feelings><li>Fellowship</li></feelings><felt>2</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Cal_GiftDay</defName>
+    <durationDays>1</durationDays>
+    <stages>
+      <li>
+        <label>a day of gifts</label>
+        <description>Everyone gave a small gift and got one. Mine was better than I deserved.</description>
+        <baseMoodEffect>0</baseMoodEffect>
+      </li>
+    </stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.06</joy><feelings><li>Gratitude</li></feelings><felt>2</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Cal_HuntDay</defName>
+    <durationDays>1</durationDays>
+    <stages>
+      <li>
+        <label>a hunting day</label>
+        <description>Out with the hunters from first light for the day's game. My legs ache and my eye is sharper.</description>
+        <baseMoodEffect>0</baseMoodEffect>
+      </li>
+    </stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><skill>Shooting</skill><xp>300</xp><joy>0.06</joy><felt>2</felt></li></modExtensions>
+  </ThoughtDef>
+
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Cal_RestDay</defName>
     <durationDays>1</durationDays>

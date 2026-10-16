@@ -34,7 +34,11 @@ namespace ColonyCouncil
         Illness,
         Winter,
         /// <summary>Someone joined the colony in the last ten days.</summary>
-        Newcomer
+        Newcomer,
+        /// <summary>Good times: food for twenty days or more and the colony in a good mood.</summary>
+        Plenty,
+        /// <summary>The world event the decree is for is running (its <see cref="DecreeDef.situationKinds"/>).</summary>
+        Situation
     }
 
     /// <summary>Who feels how about a decree: by trait (and degree), by passion for a skill, or by being unable to fight.</summary>
@@ -49,10 +53,32 @@ namespace ColonyCouncil
         public bool nonViolent;
         /// <summary>Someone who lost a friend or family member lately.</summary>
         public bool grieving;
+        /// <summary>
+        /// Who they are, by name (see PeopleTags): "devout", "meme:NaturePrimacy", "trait:VTE_Workaholic". The way to
+        /// name a mod's trait or a faith's meme: it simply never matches when that mod or DLC is missing.
+        /// </summary>
+        public string tags;
+        /// <summary>Of the colony's own faith (Ideology), or of another one.</summary>
+        public bool sameFaith;
+        public bool otherFaith;
+        /// <summary>Whose faith, traits or habits rule out any of these (Wishes/Beliefs.cs): NoViolence, NoRecreation, NoReligion.</summary>
+        public List<Belief> beliefs;
         public DecreeReaction reaction = DecreeReaction.Neutral;
+
+        [Unsaved] private ulong beliefMask;
+        [Unsaved] private bool beliefMaskSet;
 
         public bool Matches(Pawn p)
         {
+            if (!beliefs.NullOrEmpty())
+            {
+                if (!beliefMaskSet)
+                {
+                    beliefMask = BeliefMath.Mask(beliefs);
+                    beliefMaskSet = true;
+                }
+                return Beliefs.ForbidsAny(p, beliefMask);
+            }
             if (trait != null)
             {
                 var traits = p.story?.traits;
@@ -67,6 +93,9 @@ namespace ColonyCouncil
             }
             if (nonViolent) return p.WorkTagIsDisabled(WorkTags.Violent);
             if (grieving) return Flavor.IsGrieving(p);
+            if (!tags.NullOrEmpty()) return PeopleTags.Matches(p, tags);
+            if (sameFaith) return DecreeWork.Believer(p);
+            if (otherFaith) return DecreeWork.OtherFaith(p);
             return false;
         }
     }
@@ -144,6 +173,50 @@ namespace ColonyCouncil
         /// </summary>
         public List<DilemmaEffect> onEnact;
 
+        // ---------------- When it can be declared at all (DecreeWork.cs) ----------------
+
+        /// <summary>Only in these eras, named as the line tags name them (tribal, medieval, industrial, spacer, lowtech, !lowtech).</summary>
+        public List<string> eras;
+        /// <summary>Only once the colony has finished one of these research projects (defNames; a mod's that's missing never counts).</summary>
+        public List<string> research;
+        /// <summary>Only with Ideology, for a colony with a faith of its own.</summary>
+        public bool needsIdeology;
+        /// <summary>Only when the colony's faith holds one of these memes (defNames). Implies <see cref="needsIdeology"/>.</summary>
+        public List<string> memes;
+        /// <summary>Only while a world event of one of these kinds runs in the region (sickness, hunger, drought...).</summary>
+        public List<string> situationKinds;
+        /// <summary>...or while one of these moments holds (a quarantine also when someone at home is ill).</summary>
+        public List<DecreeMoment> orWhen;
+        /// <summary>Only when one of these mods or DLCs is active (package ids).</summary>
+        public List<string> mods;
+        /// <summary>Only for a colony of at least this many people.</summary>
+        public int minColonists;
+
+        // ---------------- What it does each day and hour (DecreeWork.cs) ----------------
+
+        /// <summary>What it takes from the stores each morning (a tithe, alms, bread for the hungry).</summary>
+        public DecreeTake take;
+        /// <summary>Goodwill a day with <see cref="goodwillTo"/>, on a day something was given (or always, with nothing to take).</summary>
+        public int goodwillPerDay;
+        public DecreeGoodwillTo goodwillTo = DecreeGoodwillTo.Neighbour;
+        /// <summary>Ideology: certainty a day for those of the colony's faith (0.02 = 2%).</summary>
+        public float certaintyPerDay;
+        /// <summary>A curfew: the night hours (22 to 5) are sleep for everyone but night owls and the sleepless, put back after.</summary>
+        public bool nightSleep;
+        /// <summary>Recreation an hour (a share of the bar) for everyone at work who doesn't mind it: a work song.</summary>
+        public float joyWhileWorking;
+        /// <summary>A quarantine: the factor on illnesses passing between people sharing a bedroom.</summary>
+        public float contagionFactor = 1f;
+        /// <summary>A quarantine: the factor on Rimfolk's visitor events while it holds.</summary>
+        public float visitorFactor = 1f;
+        /// <summary>A market day: word goes out, and a trade caravan of a friendly people comes that day.</summary>
+        public bool callsTraders;
+        /// <summary>Applied when it's declared, whether or not answers play out on the map (a gift, a thought).</summary>
+        public List<DilemmaEffect> enactEffects;
+
+        /// <summary>Never possible in this game as it stands (another era, a DLC or mod missing, another faith): not listed.</summary>
+        public bool Hidden => DecreeWork.Hidden(this);
+
         public DecreeReaction ReactionOf(Pawn p)
         {
             // Other mods' traits, classes and memes, by name (ModPeopleDef): some come first, the rest only decide
@@ -159,6 +232,8 @@ namespace ColonyCouncil
         {
             foreach (var e in base.ConfigErrors()) yield return e;
             if (thought != null && (thought.stages == null || thought.stages.Count < 4)) yield return "decree thought needs 4 stages (hate, dislike, like, love)";
+            if (take != null && take.what.NullOrEmpty()) yield return "take needs a what";
+            if (requestWhen != null && requestWhen.Contains(DecreeMoment.Situation) && situationKinds.NullOrEmpty()) yield return "requestWhen Situation needs situationKinds";
         }
     }
 
@@ -210,6 +285,9 @@ namespace ColonyCouncil
         public List<DecreeRequest> requests = new List<DecreeRequest>();
         private int lastRequestTick = -999999;
         public const int RequestDays = 5;
+        /// <summary>A curfew's night hours: each colonist's (by ThingID) hours turned to sleep, "hour=TimeAssignmentDef;...".</summary>
+        public Dictionary<string, string> nightHours = new Dictionary<string, string>();
+        private List<string> tmpNightKeys, tmpNightValues;
 
         public DecreeRequest RequestFor(DecreeDef def) => requests.FirstOrDefault(r => r.def == def);
 
@@ -261,7 +339,7 @@ namespace ColonyCouncil
             if (!force && ReadyAt(def) > now) return "CC_Decree_Cooldown".Translate(TextUtil.DaysString(ReadyAt(def) - now));
             if (active.Count >= MaxActive) return "CC_Decree_TooMany".Translate(MaxActive);
             if (def.needsGrief && !PawnsFinder.AllMaps_FreeColonists.Any(Flavor.IsGrieving)) return "CC_Decree_NeedsGrief".Translate();
-            return null;
+            return DecreeWork.Blocked(def);
         }
 
         public void Enact(DecreeDef def, CouncilGameComponent comp, bool force = false)
@@ -306,6 +384,7 @@ namespace ColonyCouncil
                     PlayOuts.Run(def.onEnact, new DilemmaContext { map = map, a = a, why = def.LabelCap }, "decree " + def.defName);
                 }
             }
+            DecreeWork.Enacted(this, def, asker);
         }
 
         /// <summary>
@@ -347,6 +426,7 @@ namespace ColonyCouncil
             active.Remove(a);
             readyAt[def.defName] = Find.TickManager.TicksGame + Mathf.RoundToInt(def.cooldownDays * GenDate.TicksPerDay);
             SyncHediffs();
+            DecreeWork.Ended(this, def);
             comp.Notify_DecreeEnded(def, early);
             comp.kept?.Notify_DecreeEnded(def, early);
             var req = RequestFor(def);
@@ -366,6 +446,7 @@ namespace ColonyCouncil
             int now = Find.TickManager.TicksGame;
             foreach (var a in active.Where(x => now >= x.endTick).ToList()) Repeal(a.def, comp, false);
             SyncHediffs();
+            DecreeWork.Hourly(this);
             foreach (var a in active)
             {
                 if (a.def.fuelSaving > 0f) SaveFuel(a.def.fuelSaving);
@@ -451,10 +532,10 @@ namespace ColonyCouncil
                 CouncilGameComponent.Speak(hater, gripe, new Color(0.95f, 0.6f, 0.5f));
                 return;
             }
-            foreach (var def in DefDatabase<DecreeDef>.AllDefsListForReading.Where(d => !d.requestWhen.NullOrEmpty()).InRandomOrder())
+            foreach (var def in DefDatabase<DecreeDef>.AllDefsListForReading.Where(d => !d.requestWhen.NullOrEmpty() && !d.Hidden).InRandomOrder())
             {
                 if (IsActive(def) || RequestFor(def) != null || CannotEnact(def) != null) continue;
-                if (!def.requestWhen.Any(m => MomentNow(m, map, pawns))) continue;
+                if (!def.requestWhen.Any(m => MomentNow(m, map, pawns, def))) continue;
                 var asker = pawns.Where(p => def.ReactionOf(p) == DecreeReaction.Love).RandomElementWithFallback()
                             ?? pawns.Where(p => def.ReactionOf(p) == DecreeReaction.Like).RandomElementWithFallback();
                 if (asker == null) continue;
@@ -469,8 +550,10 @@ namespace ColonyCouncil
             }
         }
 
-        private static bool MomentNow(DecreeMoment m, Map map, List<Pawn> pawns)
+        /// <summary>Whether a moment holds now at the home map (<paramref name="def"/>: the decree, for its world event).</summary>
+        internal static bool MomentNow(DecreeMoment m, Map map, List<Pawn> pawns, DecreeDef def)
         {
+            if (map == null || pawns == null || pawns.Count == 0) return false;
             switch (m)
             {
                 case DecreeMoment.FoodLow:
@@ -503,14 +586,19 @@ namespace ColonyCouncil
                 }
                 case DecreeMoment.Newcomer:
                     return pawns.Any(p => p.records != null && p.records.GetAsInt(RecordDefOf.TimeAsColonistOrColonyAnimal) < GenDate.TicksPerDay * 10);
+                case DecreeMoment.Plenty:
+                    return AdvisorWorker_Food.DaysOfFood(map) >= 20f && pawns.Average(p => p.needs?.mood?.CurLevelPercentage ?? 0.5f) > 0.6f;
+                case DecreeMoment.Situation:
+                    return def != null && DecreeWork.SituationRunning(def) != null;
                 default:
                     return false;
             }
         }
 
-        /// <summary>Once a day: grief fades faster under a day of mourning.</summary>
+        /// <summary>Once a day: grief fades faster under a day of mourning; tithes, alms and the faith's days do their day's work.</summary>
         public void Daily()
         {
+            foreach (var a in active.ToList()) DecreeWork.Daily(this, a);
             foreach (var a in active)
             {
                 if (a.def.griefFadePerDay <= 0f) continue;
@@ -562,8 +650,10 @@ namespace ColonyCouncil
             Scribe_Collections.Look(ref readyAt, "readyAt", LookMode.Value, LookMode.Value);
             Scribe_Collections.Look(ref requests, "requests", LookMode.Deep);
             Scribe_Values.Look(ref lastRequestTick, "lastRequestTick", -999999);
+            Scribe_Collections.Look(ref nightHours, "nightHours", LookMode.Value, LookMode.Value, ref tmpNightKeys, ref tmpNightValues);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
+                if (nightHours == null) nightHours = new Dictionary<string, string>();
                 if (active == null) active = new List<ActiveDecree>();
                 active.RemoveAll(a => a?.def == null);
                 if (readyAt == null) readyAt = new Dictionary<string, int>();

@@ -48,6 +48,12 @@ public static class CalendarTests
         check(CalendarMath.BirthdayWeight(6f) > CalendarMath.BirthdayWeight(2f) && CalendarMath.BirthdayWeight(2f) < CalendarMath.HarvestWeight, "birthdays mean less than the colony's own days");
         check(CalendarMath.Standing(20f, true, 0) > CalendarMath.Standing(20f, false, 0) && CalendarMath.Standing(20f, false, 2) > CalendarMath.Standing(20f, false, 0),
             "a tradition, and every year kept, count for more");
+        check(CalendarMath.HomecomingWeight(12f, 2) > CalendarMath.HomecomingWeight(6f, 2) && CalendarMath.HomecomingWeight(6f, 4) > CalendarMath.HomecomingWeight(6f, 1)
+              && CalendarMath.HomecomingWeight(400f, 50) == CalendarMath.HomecomingWeight(20f, 5), "a longer journey, and more of ours on it, mean more (up to a point)");
+        check(CalendarMath.HuntWeight(12) > CalendarMath.HuntWeight(CalendarMath.GreatHuntKills) && CalendarMath.HuntWeight(999) < CalendarMath.FoundingWeight,
+            "a bigger hunt means more, never as much as the founding");
+        check(CalendarMath.FirstChildWeight > CalendarMath.HarvestWeight && CalendarMath.NewCropWeight < CalendarMath.HarvestWeight && CalendarMath.FirstTradeWeight < CalendarMath.WallsWeight,
+            "the first child means more than a harvest; a new crop less than the first harvest; the first trade less than the walls");
 
         // Making room.
         var w = new List<float> { 30f, 20f, 50f };

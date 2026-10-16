@@ -10,9 +10,9 @@
     <order>8</order>
     <summary>The days that matter to this colony, how it keeps them, and how they become traditions.</summary>
     <tip>Name a rest day for the end of harvest. The colony will thank you for it every year.</tip>
-    <description>The colony calendar is a list of the days that matter to this colony, written down as its history happens: its founding, its first good harvest, the first snow, a battle it remembers, the death of someone it loved, a wedding, the arrival of one of its first members, the birthday of a long-serving colonist, and any day you name yourself. It's on the Calendar page under History, soonest first.
+    <description>The colony calendar is a list of the days that matter to this colony, written down as its history happens: its founding, its first good harvest, the first snow, a battle it remembers, the death of someone it loved, a wedding, the arrival of one of its first members, the birthday of a long-serving colonist, the first child born here, the day its walls went up, a caravan home safe, the first harvest of a new crop, its first trade, a great hunt, and any day you name yourself. It's on the Calendar page under History, soonest first.
 
-Each year, when a day comes round, the colony can keep it with a feast, games, a rest day or a quiet hour of remembrance. A day kept three years running becomes a tradition, and from then on the colony expects it.</description>
+Each year, when a day comes round, the colony can keep it with a feast, games, a rest day, a bonfire, a day of gifts, a hunt or a quiet hour of remembrance. A day kept three years running becomes a tradition, and from then on the colony expects it.</description>
     <sections>
       <li>
         <heading>The days it writes down</heading>
@@ -26,9 +26,15 @@ Each year, when a day comes round, the colony can keep it with a feast, games, a
           <li>A wedding | Two people are married | Feast</li>
           <li>An arrival | One of the colony's first members (came within its first year, after the founding day) has been here a year | Their own day</li>
           <li>A birthday | A colonist has been with the colony 2 years, children born here too | Their own day</li>
-          <li>A day of your own | You name it on the Calendar page, with its date | Feast, remembrance, rest day or games</li>
+          <li>The first child | The first child born into the colony (Biotech), dated at the birth: an older save finds its first child too | Gifts</li>
+          <li>The day the walls went up | The colony first has 80 sections of wall (only while the calendar is watching: walls already up in an older save went up unwritten) | Bonfire</li>
+          <li>The homecoming | Some of the colony's people come home after 5 days or more away (a caravan, a journey). One is kept: the longest journey, and the more who went, the more it means | Feast</li>
+          <li>A new crop | The first real harvest (10 or more come into the stores) of a crop the colony had never grown before; the crops of its first days don't count. Up to 2 | Feast</li>
+          <li>The first trade | The colony's first trade (Rimfolk counts its negotiators' deals; trades made before the calendar looked don't count) | Gifts</li>
+          <li>A great hunt | The colony's hunters bring down 5 animals or more in a day, with no raid or maddened pack behind it (those are battles). Up to 2 | Hunt</li>
+          <li>A day of your own | You name it on the Calendar page, with its date | Feast, remembrance, rest day, games, bonfire, gifts or hunt</li>
         </table>
-        <after>The calendar keeps up to 12 days of its own besides the founding day and yours: at most 3 battles, 4 deaths, 3 weddings, 3 arrivals and 4 birthdays. When it's full, a new day takes the place of the one that means least, if it means more: a bigger battle, a death felt by more people, a longer-serving colonist. A tradition never makes way. You can name up to 8 days, rename any day, change how it's kept (not a birthday or an arrival) and take days off the calendar.</after>
+        <after>The calendar keeps up to 12 days of its own besides the founding day and yours: at most 3 battles, 4 deaths, 3 weddings, 3 arrivals, 4 birthdays, 2 new crops, 2 great hunts and one of each of the others. When it's full, a new day takes the place of the one that means least, if it means more: a bigger battle, a death felt by more people, a longer-serving colonist. A tradition never makes way. You can name up to 8 days, rename any day, change how it's kept (not a birthday or an arrival) and take days off the calendar.</after>
       </li>
       <li>
         <heading>When a day comes round</heading>
@@ -39,6 +45,9 @@ Each year, when a day comes round, the colony can keep it with a feast, games, a
           <li>Games | A letter. Kept: everyone at home gets some recreation (15%) and "a day of games" (+2 for a day).</li>
           <li>Rest day | A letter. Kept: the rest of the day's work and anything hours turn to recreation, and go back the next day (an hour you changed meanwhile is left as you set it). Everyone but the industrious, who work anyway, gets "a day of rest" (+2 for a day).</li>
           <li>Remembrance | A letter, and the day is kept: those who knew the dead, or fought that day, get "a day of remembrance" (+2 for a day and a half). For a day you name, everyone at home. Psychopaths don't.</li>
+          <li>Bonfire | A letter. Kept: with answers playing out, a fire at nightfall with music round it (one is laid in the open from the colony's wood if it has no campfire, and burns down to ash after); everyone there gets "a night round the fire": some recreation (12%), no mood. Those whose faith despises fire stay away from it.</li>
+          <li>Gifts | A letter. Kept: everyone gives a small gift to the next person round the circle, handed over face to face when the two meet that day (or the giver walks over in their free time), and each pair's friendship grows a little (the social web). "A day of gifts" gives a little recreation, no mood.</li>
+          <li>Hunt | A letter. Kept: with answers playing out, three head of good game on the map are marked for hunting (never a predator). Those who hunt get "a hunting day" (practice at shooting and a little recreation, no mood); everyone else "a feast day" (+2 for a day). Nobody whose faith forbids hunting is glad of it, and those who eat no meat get no feast from it.</li>
           <li>Their own day | A message. A birthday gives "my birthday, remembered" (+2 for a day). An arrival is marked by the colonist's own anniversary; with anniversaries off, the calendar gives that mood instead.</li>
         </table>
         <after>A letter left unanswered until 10 in the evening keeps the day. A kept day goes into the chronicle, one or two colonists write about it in their journals, and it comes up two or three times in conversation (in the social log, and over people's heads with Interaction Bubbles); the evening before, someone mentions it's tomorrow. These moods share the budget of good moods, so a busy week doesn't stack them.</after>
@@ -48,6 +57,12 @@ Each year, when a day comes round, the colony can keep it with a feast, games, a
         <text>Kept 3 years running, a day becomes a tradition, announced and remembered just as the council's seasonal traditions are: a letter, the chronicle, the year's annals, and someone's journal. Each year it's kept, everyone at home gets "a tradition kept" (+3 for 4 days; a remembrance's quiet hour is its own mood) and a few people sing. Letting it pass gives everyone but the ascetic "a tradition broken" (-5 for 5 days) and costs a little trust; let it pass twice in a row and it lapses. A day missed for a fight, or with nobody at home, costs nothing.
 
 The calendar's traditions are listed with the colony's other customs in the founding day's letter, and the Calendar page shows the seasonal customs grown from the council's dilemmas too. Keep a day only as long as you can afford it in a bad year.</text>
+      </li>
+      <li>
+        <heading>The land and the faith</heading>
+        <text>What people say and write about a day knows where the colony stands and what it believes: founding day in the desert is a jar of sand from where the first tent stood, on the coast a walk down to the shore where the colony came ashore, in the tundra a story about how cold the first night was; a devout colonist keeps a lamp lit at the altar for the dead, and a colony with a faith says its words over the feast. Other mods' biomes count by their names (a mangrove is a swamp, an oasis a desert).
+
+With a chaplain in office, the chaplain leads the colony's remembrances.</text>
       </li>
       <li>
         <heading>With Ideology</heading>
@@ -62,7 +77,7 @@ People are kept by name, not tied to the save: a day about someone who has died 
 The setting "The colony calendar" (People, under Memory) turns its events off: days are still written down, but nothing happens when they come.</text>
       </li>
     </sections>
-    <keywords><li>calendar</li><li>holiday</li><li>festival</li><li>feast</li><li>birthday</li><li>anniversary</li><li>remembrance</li><li>founding</li><li>harvest</li><li>snow</li><li>rest day</li><li>tradition</li></keywords>
+    <keywords><li>calendar</li><li>holiday</li><li>festival</li><li>feast</li><li>birthday</li><li>anniversary</li><li>remembrance</li><li>founding</li><li>harvest</li><li>snow</li><li>rest day</li><li>tradition</li><li>bonfire</li><li>gifts</li><li>hunt</li><li>walls</li><li>homecoming</li><li>caravan</li><li>crop</li><li>trade</li><li>first child</li></keywords>
     <seeAlso><li>Council_Alm_C_Traditions</li><li>Council_Alm_C_Names</li><li>Council_Alm_C_Dilemmas</li></seeAlso>
   </ColonyCouncil.AlmanacArticleDef>
 

@@ -93,6 +93,16 @@ namespace Balance
             ["minMedicine"] = 0.8f, ["maxMedicine"] = 0.4f, ["minMood"] = 0.7f, ["needsMechanoids"] = 0.1f
         };
 
+        /// <summary>
+        /// The conditions of a custom of the land or the faith (CustomConditions on a dilemma): the land it needs (a
+        /// colony is one or two of a dozen lands), rain falling that day, and a faith of the colony's own with the right
+        /// memes (Ideology, and one of a few kinds of belief).
+        /// </summary>
+        public static readonly Dictionary<string, float> CustomGates = new Dictionary<string, float>
+        {
+            ["lands"] = 0.3f, ["raining"] = 0.3f, ["faith"] = 0.4f, ["memes"] = 0.15f
+        };
+
         /// <summary>The same for who the stranger in an encounter or a stranger's question must be.</summary>
         public static readonly Dictionary<string, float> StrangerGates = new Dictionary<string, float>
         {

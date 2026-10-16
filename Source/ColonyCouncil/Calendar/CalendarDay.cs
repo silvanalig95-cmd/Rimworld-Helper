@@ -22,7 +22,19 @@ namespace ColonyCouncil
         /// <summary>A long-serving colonist's birthday.</summary>
         Birthday,
         /// <summary>A day the player named.</summary>
-        Holiday
+        Holiday,
+        /// <summary>The day the first child was born into the colony (Biotech).</summary>
+        FirstChild,
+        /// <summary>The day the colony's walls went up: the first day it had a real wall around it.</summary>
+        Walls,
+        /// <summary>A caravan's safe return: the longest journey the colony's people came home from.</summary>
+        Homecoming,
+        /// <summary>The first harvest of a crop the colony had never grown before.</summary>
+        NewCrop,
+        /// <summary>The colony's first trade.</summary>
+        FirstTrade,
+        /// <summary>A great hunt: a day the hunters brought down a good many animals, with no raid to thank for it.</summary>
+        GreatHunt
     }
 
     /// <summary>How the colony keeps a day.</summary>
@@ -33,7 +45,13 @@ namespace ColonyCouncil
         Rest,
         Games,
         /// <summary>A birthday or an arrival: the person's own day, marked without a gathering.</summary>
-        Personal
+        Personal,
+        /// <summary>A fire at nightfall, built for the day and burned down to ash, with music.</summary>
+        Bonfire,
+        /// <summary>Small gifts given and taken, and friendships the better for it.</summary>
+        Gifts,
+        /// <summary>The hunters go out for the day's game, and come back with something for the pot.</summary>
+        Hunt
     }
 
     /// <summary>
@@ -60,6 +78,8 @@ namespace ColonyCouncil
         public string pawnName;
         public string otherId;
         public string otherName;
+        /// <summary>What the day is about besides a person: a new crop's name, the game of a great hunt.</summary>
+        public string subject;
         /// <summary>A battle's enemy, how many of them fell, and the names of ours who fell.</summary>
         public string enemy;
         public int kills;
@@ -105,6 +125,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref otherId, "otherId");
             Scribe_Values.Look(ref otherName, "otherName");
             Scribe_Values.Look(ref enemy, "enemy");
+            Scribe_Values.Look(ref subject, "subject");
             Scribe_Values.Look(ref kills, "kills");
             Scribe_Collections.Look(ref fallen, "fallen", LookMode.Value);
             Scribe_Collections.Look(ref knew, "knew", LookMode.Value);

@@ -9,9 +9,10 @@ namespace ColonyCouncil
 {
     /// <summary>
     /// A seat on the council: Speaker, Marshal, Quartermaster, Physician, Steward, and for a bigger colony the Reeve,
-    /// Peacemaker, Keeper of Days and Herdmaster. The holder gets a small edge (<see cref="hediff"/>), the colony
-    /// sometimes too (<see cref="colonyHediff"/>), and the office does its job in code (see <see cref="OfficeTracker"/>
-    /// helpers). Filled by a yearly election; the council can overrule it.
+    /// Peacemaker, Keeper of Days, Herdmaster, Chaplain (with Ideology), Warden of Guests and the council of elders (three
+    /// seats). The holder gets a small edge (<see cref="hediff"/>), the colony sometimes too (<see cref="colonyHediff"/>),
+    /// and the office does its job in code (see <see cref="OfficeTracker"/> helpers and Interplay/). Filled by a yearly
+    /// election; the council can overrule it.
     /// </summary>
     public class OfficeDef : Def
     {
@@ -28,8 +29,21 @@ namespace ColonyCouncil
         public int minColonists;
         /// <summary>A line for the election letter after the winner's name, one picked at random ({PAWN_...} the winner).</summary>
         [MustTranslate] public List<string> elected;
+        /// <summary>How many hold it at once (the council of elders sits three).</summary>
+        public int seats = 1;
+        /// <summary>Only with Ideology, for a colony with a faith of its own (the chaplain).</summary>
+        public bool needsIdeology;
+        /// <summary>Competence for each ten years of age over thirty (up to seventy): seats that want the old.</summary>
+        public float ageWeight;
+        /// <summary>Competence for being of the colony's own faith, and as much against for another (Ideology).</summary>
+        public float faithWeight;
 
-        public bool OpenFor(int voters) => voters >= minColonists;
+        /// <summary>The seat exists in this game: with Ideology and a faith for the chaplain.</summary>
+        public bool Available => !needsIdeology || DecreeWork.ColonyFaith != null;
+
+        public bool OpenFor(int voters) => voters >= minColonists && Available;
+
+        public int Seats => Mathf.Max(1, seats);
 
         /// <summary>
         /// Whether they could do this office's work at all: not when every skill it needs is one they can't use (a
@@ -80,6 +94,13 @@ namespace ColonyCouncil
                 if (goodTraits != null) c += goodTraits.Count(traits.HasTrait) * 2f;
                 if (badTraits != null) c -= badTraits.Count(traits.HasTrait) * 3f;
             }
+            if (ageWeight != 0f && p.RaceProps != null && p.RaceProps.Humanlike)
+                c += ageWeight * Mathf.Clamp(Flavor.HumanAge(p) - 30f, 0f, 40f) / 10f;
+            if (faithWeight != 0f)
+            {
+                if (DecreeWork.Believer(p)) c += faithWeight;
+                else if (DecreeWork.OtherFaith(p)) c -= faithWeight;
+            }
             // Other mods' traits and classes, by name (ModPeopleDef): a healer for physician, a fighter for marshal.
             return c + ModPeople.OfficeBonus(this, p);
         }
@@ -100,11 +121,39 @@ namespace ColonyCouncil
 
         public static IEnumerable<OfficeDef> Offices => DefDatabase<OfficeDef>.AllDefsListForReading.OrderBy(o => o.order);
 
-        public Pawn HolderOf(OfficeDef o) => o != null && holders.TryGetValue(o.defName, out var p) && Valid(p) ? p : null;
+        /// <summary>The key a seat is kept under: the office's defName, and "|2", "|3" for the further seats of a bench.</summary>
+        private static string Key(OfficeDef o, int seat) => seat <= 0 ? o.defName : o.defName + "|" + (seat + 1);
+
+        /// <summary>The office a key belongs to (its defName, without the seat).</summary>
+        private static string DefNameOf(string key)
+        {
+            int bar = key?.IndexOf('|') ?? -1;
+            return bar < 0 ? key : key.Substring(0, bar);
+        }
+
+        public Pawn HolderOf(OfficeDef o) => HolderOf(o, 0);
+
+        /// <summary>Who holds one seat of an office (seat 0 is the first, and the only one of most offices).</summary>
+        public Pawn HolderOf(OfficeDef o, int seat) => o != null && holders.TryGetValue(Key(o, seat), out var p) && Valid(p) ? p : null;
+
+        /// <summary>Everyone holding a seat of this office.</summary>
+        public List<Pawn> HoldersOf(OfficeDef o)
+        {
+            var list = new List<Pawn>();
+            if (o == null) return list;
+            for (int s = 0; s < o.Seats; s++)
+            {
+                var p = HolderOf(o, s);
+                if (p != null && !list.Contains(p)) list.Add(p);
+            }
+            return list;
+        }
 
         public Pawn HolderOf(string defName) => HolderOf(DefDatabase<OfficeDef>.GetNamedSilentFail(defName));
 
-        public OfficeDef OfficeOf(Pawn p) => Offices.FirstOrDefault(o => HolderOf(o) == p);
+        public List<Pawn> HoldersOf(string defName) => HoldersOf(DefDatabase<OfficeDef>.GetNamedSilentFail(defName));
+
+        public OfficeDef OfficeOf(Pawn p) => p == null ? null : Offices.FirstOrDefault(o => HoldersOf(o).Contains(p));
 
         public bool Filled(string defName) => HolderOf(defName) != null;
 
@@ -139,7 +188,7 @@ namespace ColonyCouncil
         {
             // A holder who can no longer do the seat's work (an injury, a new incapability) steps down with the dead and
             // the departed.
-            foreach (var k in holders.Where(kv => !Valid(kv.Value) || !(DefDatabase<OfficeDef>.GetNamedSilentFail(kv.Key)?.CanHold(kv.Value) ?? true))
+            foreach (var k in holders.Where(kv => !Valid(kv.Value) || !(DefDatabase<OfficeDef>.GetNamedSilentFail(DefNameOf(kv.Key))?.CanHold(kv.Value) ?? true))
                          .Select(kv => kv.Key).ToList())
             {
                 var gone = holders[k];
@@ -147,7 +196,7 @@ namespace ColonyCouncil
                 elected.Remove(k);
                 if (S.offices && gone != null)
                 {
-                    var def = DefDatabase<OfficeDef>.GetNamedSilentFail(k);
+                    var def = DefDatabase<OfficeDef>.GetNamedSilentFail(DefNameOf(k));
                     if (def != null) News.Post("CC_Office_Vacant".Translate(def.label, gone.LabelShort).Resolve(), null, NewsKind.Colony, MessageTypeDefOf.NeutralEvent);
                 }
             }
@@ -161,7 +210,8 @@ namespace ColonyCouncil
             bool newYear = year > lastElectionYear;
             // An open seat with nobody in it, and someone free to fill it (a small colony doesn't vote every few days for seats it can't fill).
             var eligible = Eligible();
-            bool vacancy = Offices.Any(o => o.OpenFor(eligible.Count) && HolderOf(o) == null && eligible.Any(p => OfficeOf(p) == null && o.CanHold(p)))
+            bool vacancy = Offices.Any(o => o.OpenFor(eligible.Count) && Enumerable.Range(0, o.Seats).Any(s => HolderOf(o, s) == null)
+                                            && eligible.Any(p => OfficeOf(p) == null && o.CanHold(p)))
                            && Find.TickManager.TicksGame - lastElectionTick > GenDate.TicksPerDay * 3;
             if (firstEver || newYear) Hold(comp, year, false);
             else if (vacancy) Hold(comp, year, true);
@@ -243,18 +293,20 @@ namespace ColonyCouncil
             var taken = new HashSet<Pawn>();
             // A seat a colony this size doesn't need yet stays as it is.
             foreach (var office in Offices.Where(o => !o.OpenFor(voters.Count)))
-                if (HolderOf(office) != null) taken.Add(HolderOf(office));
+                foreach (var h in HoldersOf(office)) taken.Add(h);
             var text = new StringBuilder();
             text.Append(ruler != null ? (byElection ? "CC_PM_Appoint_ByText" : "CC_PM_Appoint_Text").Translate(ruler.Named("PAWN")).Resolve()
                 : (byElection ? "CC_Election_ByText" : "CC_Election_Text").Translate(year).Resolve());
             var open = Offices.Where(o => o.OpenFor(voters.Count)).ToList();
             if (byElection)
                 foreach (var office in open)
-                    if (HolderOf(office) != null) taken.Add(HolderOf(office));
+                    foreach (var h in HoldersOf(office)) taken.Add(h);
             // The seats few people can fill go first, so the colony's only doctor isn't spent on the speaker's chair.
             foreach (var office in open.OrderBy(o => voters.Count(p => o.CanHold(p))).ThenBy(o => o.order).ToList())
+            for (int seat = 0; seat < office.Seats; seat++)
             {
-                if (byElection && HolderOf(office) != null) continue;
+                string key = Key(office, seat);
+                if (byElection && HolderOf(office, seat) != null) continue;
                 // Only those who can do the work stand, and only those competent enough unless nobody who can is.
                 var able = voters.Where(p => !taken.Contains(p) && office.CanHold(p)).ToList();
                 if (able.Count == 0) continue;
@@ -269,9 +321,9 @@ namespace ColonyCouncil
                 }
                 var ranked = tally.OrderByDescending(kv => kv.Value).ThenByDescending(kv => office.Competence(kv.Key)).ToList();
                 var winner = ranked[0].Key;
-                var previous = HolderOf(office);
-                holders[office.defName] = winner;
-                elected[office.defName] = winner;
+                var previous = HolderOf(office, seat);
+                holders[key] = winner;
+                elected[key] = winner;
                 taken.Add(winner);
                 text.Append("\n\n").Append(ruler != null ? "CC_PM_Appoint_Line".Translate(office.LabelCap, winner.Named("PAWN")).Resolve()
                     : "CC_Election_Line".Translate(office.LabelCap, winner.Named("PAWN"), ranked[0].Value, voters.Count).Resolve());
@@ -323,16 +375,18 @@ namespace ColonyCouncil
         }
 
         /// <summary>The council puts someone else in the seat. Overruling the vote costs the trust of those who wanted the winner.</summary>
-        public void Appoint(OfficeDef office, Pawn p, CouncilGameComponent comp)
+        public void Appoint(OfficeDef office, Pawn p, CouncilGameComponent comp, int seat = 0)
         {
-            using var _cause = Causes.Push("CC_Cause_Appointed".Translate(p.LabelShort, office.label).Resolve());
             if (office == null || p == null || !office.CanHold(p)) return;
+            using var _cause = Causes.Push("CC_Cause_Appointed".Translate(p.LabelShort, office.label).Resolve());
             // apart: the council names an officer (a message).
-            var current = HolderOf(office);
+            seat = Mathf.Clamp(seat, 0, office.Seats - 1);
+            string key = Key(office, seat);
+            var current = HolderOf(office, seat);
             if (current == p) return;
-            foreach (var other in Offices.Where(o => HolderOf(o) == p).ToList()) holders.Remove(other.defName);
-            holders[office.defName] = p;
-            bool overrule = current != null && elected.TryGetValue(office.defName, out var e) && e == current;
+            foreach (var k in holders.Where(kv => kv.Value == p).Select(kv => kv.Key).ToList()) holders.Remove(k);
+            holders[key] = p;
+            bool overrule = current != null && elected.TryGetValue(key, out var e) && e == current;
             if (overrule)
             {
                 CouncilGameComponent.GiveThought(current, CouncilDefOf.Council_LostOffice, p);
@@ -351,12 +405,13 @@ namespace ColonyCouncil
             SyncHediffs();
         }
 
-        public void Dismiss(OfficeDef office, CouncilGameComponent comp)
+        public void Dismiss(OfficeDef office, CouncilGameComponent comp, int seat = 0)
         {
+            if (office == null) return;
             using var _cause = Causes.Push("CC_Cause_Dismissed".Translate(office.label).Resolve());
-            var current = HolderOf(office);
+            var current = HolderOf(office, seat);
             if (current == null) return;
-            holders.Remove(office.defName);
+            holders.Remove(Key(office, seat));
             CouncilGameComponent.GiveThought(current, CouncilDefOf.Council_LostOffice, null);
             comp.standings.Change(current, -6f, "CC_Log_RemovedFromOffice".Translate(office.label));
             comp.journals.Write(current, "Council_Journal_LostOffice", null, office.label.Named("OFFICE"));
@@ -369,14 +424,15 @@ namespace ColonyCouncil
             var colonists = PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_FreeColonists;
             foreach (var office in Offices)
             {
-                var holder = S.offices ? HolderOf(office) : null;
+                var seated = S.offices ? HoldersOf(office) : new List<Pawn>();
                 if (office.hediff != null)
                 {
                     foreach (var p in colonists)
                     {
                         var h = p.health?.hediffSet?.GetFirstHediffOfDef(office.hediff);
-                        if (p == holder && h == null) p.health.AddHediff(HediffMaker.MakeHediff(office.hediff, p));
-                        else if (p != holder && h != null) p.health.RemoveHediff(h);
+                        bool holds = seated.Contains(p);
+                        if (holds && h == null) p.health.AddHediff(HediffMaker.MakeHediff(office.hediff, p));
+                        else if (!holds && h != null) p.health.RemoveHediff(h);
                     }
                 }
                 if (office.colonyHediff != null)
@@ -384,7 +440,7 @@ namespace ColonyCouncil
                     foreach (var p in colonists)
                     {
                         var h = p.health?.hediffSet?.GetFirstHediffOfDef(office.colonyHediff);
-                        bool on = holder != null && !p.IsQuestLodger();
+                        bool on = seated.Count > 0 && !p.IsQuestLodger();
                         if (on && h == null) p.health.AddHediff(HediffMaker.MakeHediff(office.colonyHediff, p));
                         else if (!on && h != null) p.health.RemoveHediff(h);
                     }

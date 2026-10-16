@@ -50,7 +50,7 @@ window, organized in five sections:
 |---|---|---|
 | **Colony** | This week · Overview · Priorities · Moods · World · Room plans | what needs you, what's coming and how people are; the colony at a glance (numbers, how they moved this week, graphs of mood, trust, wealth and people over the last weeks); the advisor's ranked list of what the colony needs; every mood added up; what's coming and who's out there; ready-made rooms |
 | **People** | Roster · Everyone · Bonds · Wishes | every colonist at a glance with their full story; all colonists in one sortable table; friendships, rivalries, circles, vendettas, secrets; open wishes, promises kept and trust |
-| **Council** | Decrees · Ambition · Our ways · Dilemmas | decrees, petitions and the council's offices (five, nine in a bigger colony); the current ambition and meetings; what the colony is known for; questions waiting and how the answers went |
+| **Council** | Decrees · Ambition · Our ways · Dilemmas | decrees, petitions and the council's offices (five, up to fourteen seats in a bigger colony); the current ambition and meetings; what the colony is known for; questions waiting and how the answers went |
 | **History** | Chronicle · Calendar · Dreams · Journals | everything that happened (filter by wishes, council, people, strangers, world events, dreams, losses), the colony calendar, recent dreams, every colonist's journal |
 | **Almanac** | | the knowledge base |
 
@@ -312,12 +312,23 @@ living under a decree you hate wears down your trust in the council. With feelin
 (long hours, drills, on guard...) also build a little strain in those who resent them, and **days of rest** lets the
 colony recover: 10% slower work for three days, while strain drains about twice as fast.
 
-Nineteen decrees in all. The everyday ones each trade a little work for something else: **quiet hours** (deeper
+The everyday ones each trade a little work for something else: **quiet hours** (deeper
 sleep, far fewer quarrels; night owls hate it), **shared meals** (talk and goodwill at one table), **rest when ill**
 (wounds and illnesses mend faster while the well cover for the sick), **banked fires** (fires, torches and fueled
 heaters burn a quarter less fuel, in colder, darker rooms), **apprenticeships** (everyone practices building,
 crafting, cooking and growing every hour) and **a feast day** (one day of eating well and working half). Colonists
 petition for them when someone is ill, in winter, or when a newcomer joins.
+
+Thirty decrees in all. The newest come from a village's own year and do something no stat can: **tithes** (a tenth
+of the silver each morning to a people of the colony's faith or the nearest village, for goodwill and, with Ideology,
+the faithful's certainty), **a curfew** (everyone's night hours turned to sleep and put back after; night owls keep
+the watch), **militia drills** (twelve days of light practice for everyone who can fight), **alms for the poor** (a
+little food at the gate each morning, and the neighbours remember it), **holy days** (with Ideology: three days for
+the faith), **a market day** (a trade caravan comes that day), **a fast**, **a work song** (recreation while working,
+slower research), and **open gates** (more visitors). Two answer the region's hard times and can only be declared
+while they last: a **quarantine** while sickness goes round (illness passes between roommates a fifth as often, and
+visitors are turned away) and **famine bread** while a famine lies over the region (the colony eats a little less
+and sends bread to the hungry people). A decree for another era or faith isn't listed at all.
 
 There's no hard limit on repeating a decree, but there is a price. Enact the same one again within a month, or
 **force it through** before its cooldown is over, and those against it lose more trust and resent it more each
@@ -357,7 +368,7 @@ put down the tools, a child's question, a broken promise, the same meal every da
 best placed (the doctor, a forager, a tracker, the best talker), and their skill decides how it goes.
 
 **Answers play out on the map.** When an answer describes something people do, they do it (168 answers of 67
-dilemmas and 53 Rimfolk events and stories, plus calendar days, three decrees and seven ambitions). A victory feast is
+dilemmas and 53 Rimfolk events and stories, plus calendar days, five decrees and nine ambitions). A victory feast is
 eaten at the dining table, each guest sent to eat a cooked meal from the stores, the finest first. The midsummer
 bonfire is lit (a campfire laid for the evening if the colony has none, burned down to ash after), a toast is raised,
 an apology or a reading is heard round the table, a friend sits with someone who is ill, a colonist sits by a grave
@@ -536,10 +547,12 @@ Colonists meet everyone else on the map, too:
 ### Offices and elections
 Five council seats: **speaker** (chairs meetings, everyone's trust rises a little each day), **marshal** (drills
 count for more, better aim), **quartermaster** (dilemmas cost less, better trade), **physician** (faster healing)
-and **steward** (standards rise more slowly). Four more open as the colony grows: the **reeve** (fuller harvests,
-from four voters), the **peacemaker** (rivalries cool, and now and then the worst-feuding pair is sat down
-together, from five), the **keeper of days** (every kept custom and calendar day a small occasion, from six) and
-the **herdmaster** (more from the animals, from six). Colonists elect them every year, voting for the skilled, the
+and **steward** (standards rise more slowly). Seven more offices open as the colony grows: the **reeve** (fuller
+harvests, from four voters), the **peacemaker** (rivalries cool, and now and then the worst-feuding pair is sat down
+together, from five), the **chaplain** (with Ideology: keeps the colony's faith, from five), the **warden of guests**
+(looks after visitors and the camp on the colony's land, from five), the **keeper of days** (every kept custom and
+calendar day a small occasion, from six), the **herdmaster** (more from the animals, from six) and, for a colony of
+ten, a **council of elders** (three seats, where age counts, and a steadier colony while they sit). Colonists elect them every year, voting for the skilled, the
 suited and the liked, friends and circles voting together, and the election letter has a word about each new
 holder. You can appoint and dismiss from the Decrees tab, but whoever the colony actually voted for will remember
 being overruled. A wish the council took back counts against those sitting on it at the next election, and the
@@ -549,27 +562,37 @@ The offices also do their jobs in the colony's life: the keeper of days organise
 the peacemaker steps into spats nearby (they're over in half the time), the physician does the rounds of the
 convalescents every morning and counts as a trusted doctor sooner, the reeve deals with neighbours who need goods
 (and they remember it), the herdmaster sits with those whose animal died and minds the animals of those away, the
-marshal has a word with everyone who fought beside them, and the steward's company at a gathering eases strain.
+marshal has a word with everyone who fought beside them, and the steward's company at a gathering eases strain. The
+chaplain sits with the grieving, has a word with whoever is losing faith (their certainty rises) and leads the
+calendar's remembrances; the warden of guests spends an hour at the camp's fire (its tension eases) and sees visitors
+welcomed (their people's goodwill rises); the elders sit with the young and pass on what they know best.
 
 ### Traditions
 Choose the same answer to a seasonal dilemma two years running (a midsummer feast, a harvest celebration, a vigil
 on the longest night) and it becomes a tradition. From then on it comes up first every year: keeping it pleases
-everyone, breaking it disappoints them. Thirteen customs can become traditions, among them the **planting blessing**
+everyone, breaking it disappoints them. Twenty-one customs can become traditions, among them the **planting blessing**
 and the **remembrance walk** to the colony's graves in spring, the **midsummer swim** on a hot day by the water,
-the **harvest dance**, **first-frost soup** on the first freezing day, and **lantern night** in winter.
+the **harvest dance**, **first-frost soup** on the first freezing day, and **lantern night** in winter. Some belong
+to the land: **the sun's return** in the tundra, **the rain welcome** in the desert, **the blessing of the waters** by
+the sea or a river, **the marsh lights** in a swamp or jungle, **the high watch** in the hills. Some to the faith,
+with Ideology: **the night vigil**, **the tree-singing** and **the ancestors' supper**.
 
 ### The colony calendar
 The days that matter to this colony, written down as its history happens: its **founding day**, its **first good
 harvest**, **the first snow** (which comes with the first snow of each winter, not on a date), **a battle it
 remembers** (a big raid seen off, ours who fell, a nemesis brought down), **the death of someone it loved**,
-**weddings**, the **arrivals** of its first members and the **birthdays** of its long-serving colonists, up to a dozen
-of the most meaningful. On the **Calendar** page under History you can also **name days of your own** (up to 8) as a
-feast, a day of remembrance, a rest day or a day of games, rename any day, or change how it's kept.
+**weddings**, the **arrivals** of its first members and the **birthdays** of its long-serving colonists, the **first
+child** born here, **the day the walls went up**, a caravan's **homecoming** after a long journey, the first harvest of
+a **new crop**, the **first trade** and a **great hunt**, up to a dozen of the most meaningful. On the **Calendar**
+page under History you can also **name days of your own** (up to 8) as a feast, a day of remembrance, a rest day, a
+day of games, a **bonfire**, a **day of gifts** or a **hunt**, rename any day, or change how it's kept. What people say
+about a day knows the land and the faith: founding day in the desert is a jar of sand from where the first tent stood.
 
 When a day comes round, a letter asks whether to keep it this year: a **feast** is a party at the gathering spot,
 **games** an afternoon of recreation, a **rest day** turns the rest of the day's work hours to recreation (the
-schedule goes back the next day); a **remembrance** is kept with a quiet, bittersweet mood for those who knew the
-person. A birthday comes as a message and a small lift for the colonist. People write about the day in their
+schedule goes back the next day), a **bonfire** is built at nightfall with music, a **day of gifts** warms every
+friendship round the circle, and a **hunt** sends the hunters out after the day's game; a **remembrance** is kept with
+a quiet, bittersweet mood for those who knew the person. A birthday comes as a message and a small lift for the colonist. People write about the day in their
 journals, talk about it in the social log, and mention it the evening before; the World page shows the days coming
 up. All the moods are small and share the budget of good moods. Kept **three years running**, a day becomes a
 **tradition**, with the same letter, moods, chronicle and annals as the council's seasonal traditions, and letting it
@@ -614,15 +637,19 @@ why. Going with the room's favorite pleases its backers; overruling a clear majo
 - With only one colonist, the council "meets" in passing. The setting *Meetings call people from their work*
   (on by default) can be turned off; then colonists come only when they're free, and attendance is still kept.
 
-54 ambitions, from *a full larder* and *hold the line* to *clean hands*, *law and order*, *the brewmasters*,
+64 ambitions, from *a full larder* and *hold the line* to *clean hands*, *law and order*, *the brewmasters*,
 *stone and mortar*, *a master healer*, *a seat of power* and *school days*. Achieving one lifts everyone's mood
 and trust; one that was already more than half done when the colony chose it counts for less (down to 60%).
 Only those the colony can achieve now are pitched, and some fit a colony's size or era: *a home, not a camp* and
 *nobody is the only one* for a small band, *the great feast* for a crowd, *the healing garden* before electricity,
 *word from outside* after it. Some answer the newer systems (*a calm season*, *a healthy season*, *a proper
-infirmary*, *friends at the camp*, *a table for everyone*). A few come in stages (*a home, not a camp*, *a proper
-infirmary*, *ready for every season*): only the current stage counts, and a message says what comes next. Some take
-seasons (*ready for every season*, *a year of steady nerves*). The Almanac page "council projects" lists them all.
+infirmary*, *friends at the camp*, *a table for everyone*). Eight come in stages (*a home, not a camp*, *a proper
+infirmary*, *ready for every season*, *raise the walls*, *a market town*, *the winter cache*, *the starlight
+archive*, *renowned hosts*): only the current stage counts, and a message says what comes next. Some take a season
+(*a season of hot meals* and *a season of plenty*, where one lean day starts the count again, *keep the year's days*,
+*a year of steady nerves*). A tribe has *the winter cache* and *the hunters' year*, a spacer colony *the starlight
+archive* and *a hospital of the stars*, and with Hospitality the colony can set out to become *renowned hosts*. The
+Almanac page "council projects" lists them all.
 
 ### Build: room plans
 108 ready-made rooms, grouped by purpose. 28 kinds of room come in several sizes and kinds, picked in the
