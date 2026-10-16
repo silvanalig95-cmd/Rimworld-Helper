@@ -612,6 +612,9 @@ namespace ColonyCouncil
                 float order = inBreak ? -3f : mood < major ? -2f + mood : band == StrainBand.Breaking ? -1f : mood - minor;
                 string body = PeopleTable.MoodLines(p);
                 if (h != null && band >= StrainBand.Strained) body = (body.NullOrEmpty() ? "" : body + "\n\n") + HeartView.StrainTip(p, h);
+                // The heart's needs too: what is missing, what follows from it and what would help.
+                string needs = h != null ? HeartView.NeedsTip(p, h) : null;
+                if (!needs.NullOrEmpty()) body = (body.NullOrEmpty() ? "" : body + "\n\n") + needs;
                 c.rows.Add(new WeekRow
                 {
                     pawn = p,
