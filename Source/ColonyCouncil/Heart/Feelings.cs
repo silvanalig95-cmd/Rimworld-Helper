@@ -8,7 +8,8 @@ namespace ColonyCouncil
 {
     /// <summary>
     /// Works out a colonist's feelings once an hour: each FeelingDef adds up the mood thoughts it lists (as big as the
-    /// game counts them), what its worker sees, a little strain for fear and grief, then traits. The ones above their
+    /// game counts them, or as big as the heart takes a small moment that gives no mood: RewardInstead.felt), what its
+    /// worker sees, a little strain for fear and grief, then traits. The ones above their
     /// threshold are felt; the strongest one or two stand out. Feelings never add mood of their own.
     /// </summary>
     public static class Feelings
@@ -54,18 +55,24 @@ namespace ColonyCouncil
             for (int i = 0; i < defs.Count; i++)
                 foreach (var f in defs[i].AllFeeds)
                     if (!f.Generic && f.NameMatches(name)) (list ??= new List<(int, FeelingFeed, float)>()).Add((i, f, 1f));
-            // Tags on the thought itself (any mod can put them there).
+            // Tags on the thought itself (any mod can put them there), and the feelings a small moment feeds instead of mood.
             var tags = def.GetModExtension<HeartTags>();
-            if (tags?.feelings != null)
-                foreach (var t in tags.feelings)
-                {
-                    int i = defs.FindIndex(d => d.key == t || d.defName == t);
-                    if (i < 0) continue;
-                    var feed = new FeelingFeed { thought = name, sign = 0, weight = tags.weight };
-                    (list ??= new List<(int, FeelingFeed, float)>()).Add((i, feed, 1f));
-                }
+            if (tags?.feelings != null) AddTagged(ref list, name, tags.feelings, tags.weight);
+            var instead = def.GetModExtension<RewardInstead>();
+            if (instead?.feelings != null) AddTagged(ref list, name, instead.feelings, 1f);
             index[def] = list;
             return list;
+        }
+
+        private static void AddTagged(ref List<(int feeling, FeelingFeed feed, float weight)> list, string name, List<string> feelings, float weight)
+        {
+            foreach (var t in feelings)
+            {
+                int i = defs.FindIndex(d => d.key == t || d.defName == t);
+                if (i < 0) continue;
+                var feed = new FeelingFeed { thought = name, sign = 0, weight = weight };
+                (list ??= new List<(int, FeelingFeed, float)>()).Add((i, feed, 1f));
+            }
         }
 
         // ---------------- The hour's work ----------------
@@ -116,6 +123,8 @@ namespace ColonyCouncil
                 {
                     continue;
                 }
+                // A small moment that gives something else instead of mood is still felt (RewardInstead.felt).
+                if (Mathf.Abs(off) < 0.01f) off = RewardInstead.Felt(group.def);
                 if (Mathf.Abs(off) < 0.01f) continue;
                 var feeds = FeedsOf(group.def);
                 if (feeds == null && generic.Count == 0) continue;

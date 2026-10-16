@@ -30,7 +30,8 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_FairsFair</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>fair's fair</label><description>The council dealt with it properly. Good.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>fair's fair</label><description>The council dealt with it properly. Good.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><trust>1</trust><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -60,7 +61,8 @@
     <durationDays>15</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>worked it out</label><description>We were told to sort it out between ourselves, and we did. We get along better now.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>15</baseOpinionOffset></li></stages>
+    <stages><li><label>worked it out</label><description>We were told to sort it out between ourselves, and we did. We get along better now.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>15</baseOpinionOffset></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -108,7 +110,8 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_Helped</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>helped someone through a bad time</label><description>I sat with one of the others through a bad stretch. I'm glad I could help.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>helped someone through a bad time</label><description>I sat with one of the others through a bad stretch. I'm glad I could help.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><feelings><li>Tenderness</li></feelings><felt>4</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -117,7 +120,8 @@
     <durationDays>20</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>was there for me</label><description>When things were bad, they stayed with me.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>20</baseOpinionOffset></li></stages>
+    <stages><li><label>was there for me</label><description>When things were bad, they stayed with me.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>20</baseOpinionOffset></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -147,7 +151,8 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_Clean</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>the poison is gone</label><description>That stash would only have caused trouble. Good riddance.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>the poison is gone</label><description>That stash would only have caused trouble. Good riddance.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><feelings><li>Relief</li></feelings><felt>4</felt></li></modExtensions>
   </ThoughtDef>
 
 </Defs>

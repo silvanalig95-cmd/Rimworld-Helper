@@ -69,7 +69,8 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmGoal_Bet</defName>
     <durationDays>6</durationDays>
-    <stages><li><label>an easy bet</label><description>I bet a week of dinners that their dream will come to nothing. Easy winnings.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>an easy bet</label><description>I bet a week of dinners that their dream will come to nothing. Easy winnings.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><journal>true</journal><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">

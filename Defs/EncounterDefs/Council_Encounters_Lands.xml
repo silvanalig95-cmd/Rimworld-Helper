@@ -580,6 +580,7 @@
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncN_LateTea</thought></li>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_GoodCompany</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>1</amount><chance>0.5</chance></li>
     </effects>
   </ColonyCouncil.EncounterDef>
 

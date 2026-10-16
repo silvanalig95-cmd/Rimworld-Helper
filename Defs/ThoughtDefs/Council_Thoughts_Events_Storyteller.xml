@@ -18,7 +18,8 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>3</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>a quiet guest</label><description>A guest who never says a word is sitting by the fields. I went and sat near them for a while, and came back calmer than I went.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>a quiet guest</label><description>A guest who never says a word is sitting by the fields. I went and sat near them for a while, and came back calmer than I went.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><feelings><li>Contentment</li></feelings><felt>3</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -108,7 +109,8 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>4</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>warm water from the ground</label><description>Since the tremor, warm water comes up out of the ground near the colony. I went and put my hands in it.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>warm water from the ground</label><description>Since the tremor, warm water comes up out of the ground near the colony. I went and put my hands in it.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><comfort>0.2</comfort><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -116,7 +118,8 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>5</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>the lightning tree</label><description>Lightning split the old tree, and we left it standing. It looks like it's been there forever, and now it's ours.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>the lightning tree</label><description>Lightning split the old tree, and we left it standing. It looks like it's been there forever, and now it's ours.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><feelings><li>Awe</li></feelings><felt>3</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -124,7 +127,8 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>2</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>wild honey</label><description>There was wild honeycomb with supper. I ate mine slowly and licked the plate.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>wild honey</label><description>There was wild honeycomb with supper. I ate mine slowly and licked the plate.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.08</joy><joyKind>Gluttonous</joyKind><felt>3</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -140,7 +144,8 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>4</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>bees at work</label><description>We left the wild bees alone, and now I hear them working the flowers from morning to dusk.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>bees at work</label><description>We left the wild bees alone, and now I hear them working the flowers from morning to dusk.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.05</joy><joyKind>Meditative</joyKind><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -156,7 +161,8 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>4</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>a star fell near us</label><description>A star came down out on our land, and it's still lying where it fell. I've been out to look at it twice.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>a star fell near us</label><description>A star came down out on our land, and it's still lying where it fell. I've been out to look at it twice.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><research>60</research><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef>

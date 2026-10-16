@@ -736,6 +736,7 @@
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_GaveWater</thought></li>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_KindToMe</thought></li>
       <li Class="ColonyCouncil.DilemmaEffect_LifeEvent"><target>A</target><counter>stranger</counter><chance>0.5</chance></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>2</amount></li>
     </effects>
     <journal>Council_Journal_EncP_Water</journal>
   </ColonyCouncil.EncounterDef>
