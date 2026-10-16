@@ -21,6 +21,15 @@ namespace ColonyCouncil
         public virtual bool StillValid(Wish wish) => true;
 
         /// <summary>
+        /// The colonist's beliefs rule this out (Wishes/Beliefs.cs): the def's <see cref="WishDef.forbiddenBy"/>, or what
+        /// it asks for. <paramref name="pawn"/> is who it's for; <paramref name="other"/> the other one it's about. A
+        /// candidate that clashes is never raised, and an open wish that comes to clash is let go quietly.
+        /// </summary>
+        public virtual bool AgainstBeliefs(Pawn pawn, Pawn other, ThingDef thing) => Beliefs.AgainstWish(def, pawn, thing);
+
+        public bool AgainstBeliefs(Wish wish) => wish != null && AgainstBeliefs(wish.Beneficiary, wish.other, wish.thingDef);
+
+        /// <summary>
         /// False when what the wish asks for can't be had at all any more (its mod was removed, nothing like it can
         /// be built, made or bought). A wish like that lapses without blame instead of expiring with a penalty.
         /// </summary>
@@ -79,7 +88,7 @@ namespace ColonyCouncil
         /// Whether a building (or a floor) of this kind is what the wish is about: a plan or frame of one being built where
         /// it belongs counts as still there for a while.
         /// </summary>
-        public virtual bool Concerns(Wish wish, BuildableDef d) => d != null && d == wish.thingDef;
+        public virtual bool Concerns(Wish wish, BuildableDef d) => d != null && d == wish.thingDef && !(d is ThingDef td && td.IsFrame);
 
         /// <summary>
         /// The things that make it hold right now (a bed, a telescope), remembered while it holds, so that one being moved

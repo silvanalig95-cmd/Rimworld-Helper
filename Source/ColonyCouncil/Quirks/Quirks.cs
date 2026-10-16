@@ -100,6 +100,11 @@ namespace ColonyCouncil
         public QuirkDef def;
         public Pawn pawn;
         public ThingDef item;
+        /// <summary>
+        /// For a lucky-item quirk, the very thing that's lucky (its thingIDNumber; 0 until known), so it can say whose it
+        /// is (LuckyItems). The mood still comes with any thing of that kind.
+        /// </summary>
+        public int thingId;
         public int gainedTick;
         public int expiresTick;
 
@@ -114,6 +119,7 @@ namespace ColonyCouncil
             Scribe_References.Look(ref pawn, "pawn");
             // Silently: the item may come from a mod that has since been removed.
             CouncilScribe.LookDef(ref item, "item");
+            Scribe_Values.Look(ref thingId, "thingId");
             Scribe_Values.Look(ref gainedTick, "gainedTick");
             Scribe_Values.Look(ref expiresTick, "expiresTick");
         }
@@ -122,6 +128,8 @@ namespace ColonyCouncil
     public class QuirkTracker : IExposable
     {
         public List<Quirk> quirks = new List<Quirk>();
+        /// <summary>Lucky things that were someone's once (LuckyItems): whose, for how long, and how it ended.</summary>
+        public List<LuckyRecord> luckyPast = new List<LuckyRecord>();
         private Dictionary<Pawn, int> downedTick = new Dictionary<Pawn, int>();
         private Dictionary<Pawn, int> battleTick = new Dictionary<Pawn, int>();
         private List<Pawn> k1, k2;
@@ -130,7 +138,20 @@ namespace ColonyCouncil
 
         private static CouncilSettings S => ColonyCouncilMod.Settings;
 
+        /// <summary>A new game or a loaded one: the lucky things are looked up again.</summary>
+        public QuirkTracker() => LuckyItems.MarkDirty();
+
         public IEnumerable<Quirk> Of(Pawn p) => quirks.Where(q => q.pawn == p);
+
+        /// <summary>Ends the quirks that match (a story ends a fear); a lucky thing remembers whose it was.</summary>
+        public int Remove(Predicate<Quirk> which, LuckyEnd end = LuckyEnd.Faded)
+        {
+            if (which == null) return 0;
+            foreach (var q in quirks)
+                if (q != null && which(q))
+                    LuckyItems.Remember(this, q, end);
+            return quirks.RemoveAll(q => q != null && which(q));
+        }
 
         /// <summary>Their quirk of this kind, or null. Asked by the quirk moods for every colonist, so a plain loop.</summary>
         public Quirk Get(Pawn p, QuirkDef def)
@@ -186,11 +207,16 @@ namespace ColonyCouncil
                 downedTick[p] = now;
                 CouncilGameComponent.Instance?.aspirations.Notify_Event(p, "downed");
             }
+            LuckyItems.Bind(this);
         }
 
         public void Daily(CouncilGameComponent comp)
         {
             int now = Find.TickManager.TicksGame;
+            // Someone who died, or was lost to the colony for good: their lucky thing remembers them.
+            foreach (var q in quirks)
+                if (q != null && !q.Broken && (q.pawn.Dead || q.pawn.Discarded))
+                    LuckyItems.Remember(this, q, q.pawn.Dead ? LuckyEnd.Died : LuckyEnd.Gone);
             quirks.RemoveAll(q => q.Broken || q.pawn.Dead || q.pawn.Discarded);
             foreach (var k in downedTick.Keys.Where(k => k == null || k.Dead || k.Discarded).ToList()) downedTick.Remove(k);
             foreach (var k in battleTick.Keys.Where(k => k == null || k.Dead || k.Discarded).ToList()) battleTick.Remove(k);
@@ -205,6 +231,7 @@ namespace ColonyCouncil
             // Fading.
             foreach (var q in quirks.Where(q => q.expiresTick > 0 && now >= q.expiresTick).ToList())
             {
+                LuckyItems.Remember(this, q, LuckyEnd.Faded);
                 quirks.Remove(q);
                 string line = Line(q.def.faded, q);
                 if (!line.NullOrEmpty()) comp.journals.WriteText(q.pawn, line);
@@ -245,12 +272,14 @@ namespace ColonyCouncil
             var q = new Quirk { def = d, pawn = p, gainedTick = Find.TickManager.TicksGame, expiresTick = d.days > 0f ? Find.TickManager.TicksGame + (int)(d.days * GenDate.TicksPerDay) : 0 };
             if (d.condition == QuirkCondition.LuckyItem)
             {
-                q.item = p.apparel?.WornApparel.Where(a => a.def.apparel?.layers?.Contains(ApparelLayerDefOf.Overhead) ?? false).Select(a => a.def).FirstOrDefault()
-                         ?? p.equipment?.Primary?.def
-                         ?? p.apparel?.WornApparel.Select(a => a.def).RandomElementWithFallback();
+                // The very thing they had on: a hat or helmet first, else their weapon. It will say whose it is.
+                var thing = LuckyItems.Pick(p);
+                q.item = thing?.def;
                 if (q.item == null) return;
+                if (thing.thingIDNumber > 0 && !LuckyItems.Claimed(this, thing.thingIDNumber)) q.thingId = thing.thingIDNumber;
             }
             quirks.Add(q);
+            if (q.thingId != 0) LuckyItems.MarkDirty();
             SyncKnacks();
             string line = Line(d.gained, q);
             if (!line.NullOrEmpty()) comp.journals.WriteText(p, line);
@@ -303,6 +332,7 @@ namespace ColonyCouncil
         public void ExposeData()
         {
             Scribe_Collections.Look(ref quirks, "quirks", LookMode.Deep);
+            Scribe_Collections.Look(ref luckyPast, "luckyPast", LookMode.Deep);
             if (Scribe.mode == LoadSaveMode.Saving)
             {
                 foreach (var k in downedTick.Keys.Where(k => k == null || k.Dead || k.Destroyed || k.Discarded).ToList()) downedTick.Remove(k);
@@ -314,6 +344,10 @@ namespace ColonyCouncil
             {
                 if (quirks == null) quirks = new List<Quirk>();
                 quirks.RemoveAll(q => q == null || q.Broken);
+                // Saves from before lucky things remembered their owners have none yet.
+                if (luckyPast == null) luckyPast = new List<LuckyRecord>();
+                luckyPast.RemoveAll(r => r == null || r.thingId == 0 || r.owner.NullOrEmpty());
+                LuckyItems.MarkDirty();
                 if (downedTick == null) downedTick = new Dictionary<Pawn, int>();
                 if (battleTick == null) battleTick = new Dictionary<Pawn, int>();
                 // (A pawn that couldn't be found again is simply left out by the loader: a dictionary has no null keys.)

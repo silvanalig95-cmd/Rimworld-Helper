@@ -51,6 +51,13 @@
 Green: enough with some to spare. Amber: only just enough. Red: not enough.</CC_Planner_UseWhatWeHave_Tip>
   <CC_Planner_CostLineLying>{0}: {1} / {2} (+{3} lying around)</CC_Planner_CostLineLying>
   <CC_Plan_Block_CantTurn>{0} can only be built facing north, and it doesn't fit that way here.</CC_Plan_Block_CantTurn>
+
+  <!-- Wall lamps -->
+  <CC_Role_walllight>wall lamps</CC_Role_walllight>
+  <CC_Plan_Block_NoWallForLamp>There's no free stretch of wall left here for the {0} to hang on.</CC_Plan_Block_NoWallForLamp>
+  <CC_Plan_Block_LampCell>Something else is planned on the spot where the {0} would hang.</CC_Plan_Block_LampCell>
+  <CC_Plan_Block_LampTaken>Something already hangs on that side of the wall, where the {0} would go.</CC_Plan_Block_LampTaken>
+  <CC_Adv_Dark_DetailWall>Colonists in the dark work slower and get a mood penalty. {0} on a wall of each would fix it.</CC_Adv_Dark_DetailWall>
   <CC_Plan_Warn_Rearranged>Some furniture was turned or left out, so every piece can be reached and used.</CC_Plan_Warn_Rearranged>
 
   <!-- Ground that can't hold walls (water, marsh, mud): the rest of the room still goes down -->

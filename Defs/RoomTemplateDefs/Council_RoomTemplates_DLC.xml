@@ -35,8 +35,8 @@
       <li><defs><li>Pew</li><li>DiningChair</li></defs><role>pew</role><pos>(5,3)</pos></li>
       <li><defs><li>Pew</li><li>DiningChair</li></defs><role>pew</role><pos>(1,1)</pos></li>
       <li><defs><li>Pew</li><li>DiningChair</li></defs><role>pew</role><pos>(5,1)</pos></li>
-      <li><defs><li>Brazier</li><li>DarklightBrazier</li><li>TorchLamp</li><li>StandingLamp</li></defs><role>light</role><pos>(0,6)</pos></li>
-      <li><defs><li>Brazier</li><li>DarklightBrazier</li><li>TorchLamp</li><li>StandingLamp</li></defs><role>light</role><pos>(6,6)</pos></li>
+      <li><defs><li>Brazier</li><li>DarklightBrazier</li><li>TorchLamp</li><li>StandingLamp</li></defs><role>light</role><keepOnFloor>true</keepOnFloor><pos>(0,6)</pos></li>
+      <li><defs><li>Brazier</li><li>DarklightBrazier</li><li>TorchLamp</li><li>StandingLamp</li></defs><role>light</role><keepOnFloor>true</keepOnFloor><pos>(6,6)</pos></li>
       <li><defs><li>Drape</li></defs><role>drape</role><pos>(0,5)</pos><rot>East</rot><tier>lavish</tier></li>
       <li><defs><li>Drape</li></defs><role>drape</role><pos>(6,4)</pos><rot>West</rot><tier>lavish</tier></li>
       <li><defs><li>Column</li></defs><role>column</role><pos>(0,0)</pos><tier>lavish</tier></li>

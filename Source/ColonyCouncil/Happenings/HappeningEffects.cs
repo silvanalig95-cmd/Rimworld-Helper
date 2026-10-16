@@ -123,6 +123,7 @@ namespace ColonyCouncil
 
         public override void Apply(DilemmaContext ctx)
         {
+            // apart: an answer to an event; what it says people do together plays out through its play-out effects.
             var other = withB ? ctx.b : ctx.stranger;
             if (ctx.a == null || other == null || other.Faction != Faction.OfPlayer) return;
             if (chance < 1f && !Rand.Chance(chance)) return;

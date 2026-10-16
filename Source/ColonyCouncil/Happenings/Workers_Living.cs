@@ -678,6 +678,7 @@ namespace ColonyCouncil
                 LivingEvents.Tell(ctx, more?.failTitles, more?.fail, null, LetterDefOf.NeutralEvent, a.Spawned ? new LookTargets(a) : null);
                 return;
             }
+            // apart: kin moving in, told in the event's letter.
             var moved = DefDatabase<ThoughtDef>.GetNamedSilentFail("Council_Evt_KinMovedIn");
             using (Causes.Push(LivingEvents.Cause(def)))
             {

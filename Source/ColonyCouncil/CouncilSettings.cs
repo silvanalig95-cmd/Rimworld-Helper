@@ -167,7 +167,10 @@ namespace ColonyCouncil
         public bool petitions = true;
         public bool wishLetters = true;
         public bool grantedLetters = false;
+        /// <summary>The old "colonists speak" switch, kept in step with <see cref="speechShows"/> (off when it is Off) so older settings files load.</summary>
         public bool speechText = true;
+        /// <summary>How colonists' speech shows: bubbles when Interaction Bubbles is loaded, floating text, or not at all (Immersion/Speech.cs).</summary>
+        public SpeechMode speechShows = SpeechMode.Bubbles;
         /// <summary>The game's own flecks, sky colors and sounds for what Rimfolk says is happening (Touches/).</summary>
         public bool visualTouches = true;
         /// <summary>Recreation Rimfolk's knowledge makes likelier: graves visited, slow walks, the fire after a fight (Immersion/SmallHabits.cs).</summary>
@@ -308,7 +311,11 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref petitions, "petitions", true);
             Scribe_Values.Look(ref wishLetters, "wishLetters", true);
             Scribe_Values.Look(ref grantedLetters, "grantedLetters", false);
+            // The old switch is written from the new choice, and an old settings file with it off reads as "off".
+            if (Scribe.mode == LoadSaveMode.Saving) speechText = speechShows != SpeechMode.Off;
             Scribe_Values.Look(ref speechText, "speechText", true);
+            Scribe_Values.Look(ref speechShows, "speechShows", SpeechMode.Bubbles);
+            if (Scribe.mode == LoadSaveMode.LoadingVars && !speechText) speechShows = SpeechMode.Off;
             Scribe_Values.Look(ref visualTouches, "visualTouches", true);
             Scribe_Values.Look(ref smallHabits, "smallHabits", true);
             Scribe_Values.Look(ref daysBetweenMeetings, "daysBetweenMeetings", 15f);

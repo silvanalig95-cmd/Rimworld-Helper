@@ -104,6 +104,7 @@ namespace ColonyCouncil
 
         private static void StewardThere(List<Pawn> attended)
         {
+            // together: only those who were at the gathering with the steward (the play-out's own count of who came).
             var steward = Officer(Steward);
             if (steward == null || !attended.Contains(steward) || !Heart.On) return;
             foreach (var p in attended)
@@ -122,6 +123,7 @@ namespace ColonyCouncil
         /// </summary>
         private static void PetsComfort(CouncilGameComponent comp)
         {
+            // together: the animal close by its person, both up (a few steps apart at most).
             if (!S.petMoments || !Heart.On) return;
             foreach (var map in Find.Maps)
             {

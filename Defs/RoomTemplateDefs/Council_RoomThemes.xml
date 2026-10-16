@@ -14,6 +14,10 @@
     floors: replace the plan's floor where it has one; rooms that must stay clean keep their sterile tiles, and rooms
     without a floor (a greenhouse, a crypt) stay bare. The spartan style lays no floor in any theme.
     decorFrom comfortable: plant pots along the walls from the comfortable style on.
+    Lights: the room's size decides whether its plain lights hang on the walls (small and medium rooms) or stand on the
+    floor (large ones); see Source/ColonyCouncil/Building/LightMath.cs. The theme's lights are used for whichever it is:
+    the first wall light it lists that the colony can build for the walls (the tribal look's wall torch), the first
+    standing one for the floor. A brazier by a throne or an altar (keepOnFloor) stays as the plan has it.
 
     Mod furniture: Vanilla Furniture Expanded (Bed_Simple, Seat_Bench, Table_Royal..., VFE_RoyalLamp, VFE_FloorLamp,
     VFE_ModularCouch, Seat_Cushion), its Spacer module (Bed_AdvBed, Seat_AdvChair, Table_Illuminated...), Art
@@ -86,7 +90,7 @@
   <ColonyCouncil.RoomThemeDef>
     <defName>Council_Theme_Cozy</defName>
     <label>cozy</label>
-    <description>Soft carpet, plants in the corners, a standing lamp for the evenings and the softest seats the colony can build. Plant pots go along the walls from the comfortable style on.</description>
+    <description>Soft carpet, plants in the corners, warm lamplight for the evenings and the softest seats the colony can build. Plant pots go along the walls from the comfortable style on.</description>
     <order>40</order>
     <iconDefs><li>PlantPot</li></iconDefs>
     <furnitureStuff><li>WoodLog</li></furnitureStuff>
@@ -115,7 +119,7 @@
       <li><role>bed</role><defs><li>VFEM2_FurBed</li><li>Bedroll</li></defs></li>
       <li><role>doublebed</role><defs><li>VFEM2_DoubleFurBed</li><li>BedrollDouble</li></defs></li>
       <li><role>chair</role><defs><li>Seat_Cushion</li><li>Stool</li></defs></li>
-      <li><role>light</role><defs><li>TorchLamp</li></defs></li>
+      <li><role>light</role><defs><li>TorchWallLamp</li><li>TorchLamp</li></defs></li>
       <li><role>toilet</role><defs><li>PitLatrine</li></defs></li>
       <li><role>wash</role><defs><li>WashBucket</li></defs></li>
       <li><role>bath</role><defs><li>ShowerSimple</li></defs></li>

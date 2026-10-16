@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using RimWorld;
 using Verse;
 
@@ -112,6 +113,13 @@ namespace ColonyCouncil
                             waiting = true;
                         else hopeless = true;
                     }
+                    // A wall lamp hangs on the wall it faces: it waits for that wall as long as the wall is still to come.
+                    bool wallToCome = false;
+                    if (!done && !hopeless && q.thing != null && WallLights.IsAttached(q.thing))
+                    {
+                        if (q.cell.GetThingList(map).Any(t => t.def == q.thing && t.Rotation == q.rot)) done = true;
+                        else wallToCome = WallToCome(q.cell + q.rot.FacingCell, dm);
+                    }
                     if (done || hopeless)
                     {
                         if (hopeless) given++;
@@ -119,7 +127,7 @@ namespace ColonyCouncil
                         continue;
                     }
                     if (waiting) continue;
-                    if (TemplatePlanner.TryPlace(def, q.cell, q.rot, q.stuff, map) || Find.TickManager.TicksGame - q.tick > GenDate.TicksPerDay * 3)
+                    if (TemplatePlanner.TryPlace(def, q.cell, q.rot, q.stuff, map) || (!wallToCome && Find.TickManager.TicksGame - q.tick > GenDate.TicksPerDay * 3))
                         queue.RemoveAt(i);
                 }
                 if (given > 0)
@@ -129,6 +137,18 @@ namespace ColonyCouncil
             {
                 CouncilLog.ErrorOnce("plan queue", e);
             }
+        }
+
+        /// <summary>A wall is still to come on this cell: planned, half-built, queued, or waiting for rock to be mined there.</summary>
+        private bool WallToCome(IntVec3 c, DesignationManager dm)
+        {
+            if (!c.InBounds(map)) return false;
+            foreach (var t in c.GetThingList(map))
+                if ((t is Blueprint || t is Frame) && t.def.entityDefToBuild is ThingDef td && WallLights.Supports(td)) return true;
+            if (dm.DesignationAt(c, DesignationDefOf.Mine) != null) return true;
+            foreach (var q in queue)
+                if (q.cell == c && WallLights.Supports(q.thing)) return true;
+            return false;
         }
     }
 }

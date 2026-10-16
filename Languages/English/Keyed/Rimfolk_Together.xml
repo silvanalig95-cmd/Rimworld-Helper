@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- ===================== How colonists' speech shows (Source/ColonyCouncil/Immersion/Speech.cs) ===================== -->
+
+  <CC_SetLabel_SpeechShows>Colonists' speech shows as</CC_SetLabel_SpeechShows>
+  <CC_SetTip_SpeechShows>Everything Rimfolk's colonists say shows one way: a wish, a word about the weather, how they really are, a meeting's back and forth, a moment between two of them. With Interaction Bubbles it can all be speech bubbles, like the game's own chats; without it, short lines of floating text over the speaker. A line one person says never goes into the Log tab; moments between two people are kept there either way.</CC_SetTip_SpeechShows>
+  <CC_SpeechShows_Bubbles>Bubbles if available</CC_SpeechShows_Bubbles>
+  <CC_SpeechShows_Bubbles_Tip>Speech bubbles when Interaction Bubbles is loaded, floating text when it isn't. Its own toggle among the play settings hides them all.</CC_SpeechShows_Bubbles_Tip>
+  <CC_SpeechShows_Floating>Floating text</CC_SpeechShows_Floating>
+  <CC_SpeechShows_Floating_Tip>Short lines of floating text over the speaker, even with Interaction Bubbles loaded (its bubbles keep showing the game's own chats).</CC_SpeechShows_Floating_Tip>
+  <CC_SpeechShows_Off>Off</CC_SpeechShows_Off>
+  <CC_SpeechShows_Off_Tip>Nothing over anyone's head from Rimfolk. Moments between two people are still kept in the social log.</CC_SpeechShows_Off_Tip>
+  <CC_SetNote_SpeechShows_Bubbles>Everything colonists say shows as speech bubbles with Interaction Bubbles, else as floating text.</CC_SetNote_SpeechShows_Bubbles>
+  <CC_SetNote_SpeechShows_Floating>Everything colonists say floats over their heads as short lines of text.</CC_SetNote_SpeechShows_Floating>
+  <CC_SetNote_SpeechShows_Off>Colonists say nothing over their heads; the social log still keeps their moments.</CC_SetNote_SpeechShows_Off>
+
+  <!-- ===================== Going to have a word with someone (Source/ColonyCouncil/Social/Together.cs) ===================== -->
+
+  <CC_Together_ReportGoing>going to have a word with {OTHER_nameDef}.</CC_Together_ReportGoing>
+  <CC_Together_ReportTalking>having a word with {OTHER_nameDef}.</CC_Together_ReportTalking>
+
+  <!-- Moments that now happen face to face, as they show between the two (the social log, a bubble or floating text). -->
+  <CC_Together_SecretSlipped>{LEAKER_nameDef} let something slip to {OTHER_nameDef} about {PAWN_nameDef}.</CC_Together_SecretSlipped>
+  <CC_Together_SecretConfessed>{PAWN_nameDef} said it out loud at last, with {OTHER_nameDef} there to hear it.</CC_Together_SecretConfessed>
+  <CC_Together_Graduated>{B_nameDef} thanked {A_nameDef} for all the lessons in {SKILL}. There isn't much left to teach.</CC_Together_Graduated>
+  <CC_Together_PhysicianLooksIn>{PAWN_nameDef} looked in on {OTHER_nameDef}: a look at the healing, a fresh dressing, a word about taking it slowly.</CC_Together_PhysicianLooksIn>
+  <CC_Together_GoalShared>{OTHER_nameDef} told {PAWN_nameDef} what it was like to {GOAL} at last.</CC_Together_GoalShared>
+  <CC_Together_GladBack>{PAWN_nameDef} was glad to see {OTHER_nameDef} home again.</CC_Together_GladBack>
+  <CC_Together_MarshalWord>{PAWN_nameDef} had a quiet word with {OTHER_nameDef} about the fight.</CC_Together_MarshalWord>
+  <CC_Together_CampShowLabel>the show at the camp</CC_Together_CampShowLabel>
+
+</LanguageData>

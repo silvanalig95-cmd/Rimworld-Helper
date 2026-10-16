@@ -9,6 +9,7 @@
     <label>{OTHER_nameDef}'s execution</label>
     <description>A bloodthirsty, cold or grieving colonist wants a captured raider executed. Kind colonists will likely object, and executions upset most people anyway.</description>
     <workerClass>ColonyCouncil.WishWorker_Justice</workerClass>
+    <forbiddenBy><li>NoExecution</li></forbiddenBy>
     <category>Safety</category>
     <weight>0.7</weight>
     <expiryDays>6</expiryDays>
@@ -160,6 +161,7 @@
     <label>a party</label>
     <description>A sociable colonist thinks the colony needs a party, or everyone is miserable and someone wants to do something about it. Promise it and the council calls one right away, if there's a place to gather.</description>
     <workerClass>ColonyCouncil.WishWorker_Party</workerClass>
+    <forbiddenBy><li>NoRecreation</li></forbiddenBy>
     <category>Social</category>
     <weight>0.8</weight>
     <expiryDays>5</expiryDays>
@@ -301,6 +303,7 @@
     <label>a hunt</label>
     <description>A colonist who loves shooting, or one with blood on the brain, wants to go hunting. Promise it and the council marks an animal for them.</description>
     <workerClass>ColonyCouncil.WishWorker_Hunt</workerClass>
+    <forbiddenBy><li>NoHunting</li><li>NoMeat</li></forbiddenBy>
     <category>Work</category>
     <weight>0.6</weight>
     <expiryDays>6</expiryDays>

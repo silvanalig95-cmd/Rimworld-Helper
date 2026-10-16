@@ -143,6 +143,7 @@ namespace ColonyCouncil
 
         public override void Setup(ScenarioSetupContext ctx)
         {
+            // apart: the start of a game, what the colonists bring with them from before.
             var faction = ScenarioSetup.Enemy(outlaws);
             if (faction == null)
             {
@@ -335,6 +336,7 @@ namespace ColonyCouncil
     {
         public override void Setup(ScenarioSetupContext ctx)
         {
+            // apart: the start of a game, what the colonists bring with them from before.
             var people = ctx.colonists.Where(p => p.needs?.mood != null).ToList();
             if (people.Count < 4) return;
             // People already related (siblings, a couple) stay on the same side.
@@ -789,6 +791,7 @@ namespace ColonyCouncil
 
         public override void Setup(ScenarioSetupContext ctx)
         {
+            // apart: the start of a game, what the colonists bring with them from before.
             var adults = ctx.Adults.Where(p => p.needs?.mood != null).ToList();
             if (adults.Count < 2) return;
             Pawn a = null, b = null;

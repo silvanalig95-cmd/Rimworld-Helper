@@ -230,7 +230,9 @@ namespace ColonyCouncil
 
     /// <summary>
     /// What follows from a need of the heart being unmet: which wishes and life goals become a little likelier for
-    /// someone who lacks it. The values themselves are computed (HeartNeeds.cs) and never saved.
+    /// someone who lacks it most, and which feeling a low value deepens. The values themselves are computed
+    /// (HeartNeeds.cs) and never saved. Its texts are in the Keyed file, under CC_Heart_Need_{need}, _Desc (what meets
+    /// it), _Answers (what it makes likelier, in a few words) and _Help (what the player can do).
     /// </summary>
     public class HeartNeedDef : Def
     {
@@ -238,7 +240,28 @@ namespace ColonyCouncil
         public List<WishDef> wishes;
         public List<WishCategory> wishCategories;
         public List<AspirationDef> goals;
+        /// <summary>The feeling a low value deepens (loneliness for belonging), below 35, by up to <see cref="feelingAmount"/>.</summary>
+        public FeelingDef feeling;
+        public float feelingAmount = 3f;
 
         public string Label => ("CC_Heart_Need_" + need).Translate();
+
+        /// <summary>What becomes likelier for someone lacking it most, in a few words.</summary>
+        public string Answers => Keyed("_Answers");
+
+        /// <summary>What the player can do about it, in general.</summary>
+        public string Help => Keyed("_Help");
+
+        private string Keyed(string suffix)
+        {
+            string k = "CC_Heart_Need_" + need + suffix;
+            return k.CanTranslate() ? k.Translate().ToString() : null;
+        }
+
+        public override IEnumerable<string> ConfigErrors()
+        {
+            foreach (var e in base.ConfigErrors()) yield return e;
+            if (feelingAmount < 0f || feelingAmount > 6f) yield return "feelingAmount should stay small (0 to 6): a low need only deepens a feeling";
+        }
     }
 }

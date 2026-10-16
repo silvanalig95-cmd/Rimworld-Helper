@@ -785,8 +785,8 @@ namespace ColonyCouncil
             var eve = days.Where(x => x.kind != CalendarKind.FirstSnow && !x.Personal && CalendarMath.DaysUntil(today, x.day) == 1 && x.lastYear < tomorrowYear
                                       && (x.byPlayer || tomorrowYear > x.sinceYear))
                 .OrderByDescending(x => x.Standing).FirstOrDefault();
-            eveTalkDate = date;
-            if (eve != null) DoTalk(eve, map, "Council_Cal_Talk_Eve", YearsOf(eve, tomorrowYear));
+            // Brought up once that evening, by two who are together (tried again at a later hour if nobody is).
+            if (eve == null || DoTalk(eve, map, "Council_Cal_Talk_Eve", YearsOf(eve, tomorrowYear))) eveTalkDate = date;
         }
 
         private static bool DoTalk(CalendarDay d, Map map, string pool, int years)
@@ -828,7 +828,8 @@ namespace ColonyCouncil
             if (a == null) a = home.RandomElement();
             if (b == null || b == a)
                 b = home.Where(p => p != a).OrderByDescending(p => SocialLog.Near(a, p) ? 2f : 0f).ThenByDescending(p => d.knew.Contains(p.ThingID) ? 1f : 0f).ThenBy(_ => Rand.Value).FirstOrDefault();
-            if (b == null) return false;
+            // Only a talk between two who are really together counts; otherwise it comes up at a later hour.
+            if (b == null || !Together.Can(a, b)) return false;
             string line = Flavor.FromPool(pool, a, null, null, tags.ToArray());
             if (line.NullOrEmpty()) return false;
             SocialLog.Add(a, b, Fill(line, d, years, map, a, b));
