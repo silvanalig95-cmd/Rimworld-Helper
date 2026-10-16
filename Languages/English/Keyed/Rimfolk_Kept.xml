@@ -23,6 +23,7 @@
   <CC_Kept_TakenBack>{PAWN_nameDef} takes it as the council going back on its word: "{WISH}" was taken away and not put back. Put it back within a few days and {PAWN_pronoun} may still let it go.</CC_Kept_TakenBack>
   <CC_Kept_MadeRight>The council made it right with {PAWN_nameDef}: "{WISH}" is back.</CC_Kept_MadeRight>
   <CC_Cause_TakenBack>the council gave {0} this, then took it away: {1}.</CC_Cause_TakenBack>
+  <CC_Cause_MadeRight>the council put back what it had taken from {0}: {1}.</CC_Cause_MadeRight>
   <CC_Log_TakenBack>taken back: {0}</CC_Log_TakenBack>
   <CC_Log_MadeRight>made right: {0}</CC_Log_MadeRight>
   <CC_Log_BackedTakenBack>{0}'s wish was taken back</CC_Log_BackedTakenBack>

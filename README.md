@@ -142,10 +142,10 @@ plan or frame of the same thing being built (for up to a week), a bed lent to a 
 happens. Still gone after it: "they took back what the council gave me" (-3 to -6 for 5 days, the bigger the sooner
 it happened, scaled by their standards), the trust a broken promise costs, a line in their journal, a little less
 trust from their partner and close friends, and they may soon ask for it again. Put it back within 5 days and the
-council made it right: the mood ends and half the trust comes back. A fire, a raid or a collapse isn't the council's
-doing, and for two days after a raid nothing counts as missing. One-offs (a party, a hunt, a visit, a lesson) aren't
-watched, and neither are clothes, weapons or stores meant to be eaten. The Wishes page lists everything watched:
-kept, missing (with the time left) or taken back.
+council made it right: the mood ends, half the trust comes back, and they feel grateful. A fire, a raid or a
+collapse isn't the council's doing, and for two days after a raid nothing counts as missing. One-offs (a party, a
+hunt, a visit, a lesson) aren't watched, and neither are clothes, weapons or stores meant to be eaten. The Wishes
+page lists everything watched: kept, missing (with the time left) or taken back.
 
 **Trust.** Each colonist's trust in the council (bitter, doubtful, neutral, trusting, devoted) rises and falls
 with all of this. Trust isn't only mood: loyal colonists work and learn faster and hold together better, while

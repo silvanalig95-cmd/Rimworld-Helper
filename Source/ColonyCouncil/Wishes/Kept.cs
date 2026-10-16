@@ -11,6 +11,7 @@ namespace ColonyCouncil
     public static class KeptDefOf
     {
         public static ThoughtDef Council_TakenBack;
+        public static ThoughtDef Council_MadeRight;
 
         static KeptDefOf()
         {
@@ -624,6 +625,9 @@ namespace ColonyCouncil
                 foreach (var m in mine) memories.RemoveMemory(m);
             }
             comp.standings.Change(p, KeptMath.TrustBack(w.trustLost), "CC_Log_MadeRight".Translate(w.label).ToString());
+            // A small relief: it feeds their gratitude rather than their mood (the bad mood ending is the mood's part).
+            using (Causes.Push("CC_Cause_MadeRight".Translate(p.LabelShort, w.label).Resolve()))
+                CouncilGameComponent.GiveThought(p, KeptDefOf.Council_MadeRight);
             var st = comp.standings.For(p);
             if (st.promisesBroken > 0) st.promisesBroken--;
             WriteJournal(comp, w, "Council_Journal_MadeRight");

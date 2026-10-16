@@ -22,4 +22,21 @@
     </stages>
   </ThoughtDef>
 
+  <!--
+    The council put it back within a few days of it being taken (Wishes/Kept.cs): the bad mood above ends early and half
+    the trust comes back in code, so the relief itself gives no mood: it feeds the heart's gratitude (RewardInstead).
+  -->
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_MadeRight</defName>
+    <durationDays>3</durationDays>
+    <stages>
+      <li>
+        <label>the council made it right</label>
+        <description>They took back what they'd given me, and then they put it back. I'll let it go.</description>
+        <baseMoodEffect>0</baseMoodEffect>
+      </li>
+    </stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><feelings><li>Gratitude</li></feelings><felt>2</felt></li></modExtensions>
+  </ThoughtDef>
+
 </Defs>
