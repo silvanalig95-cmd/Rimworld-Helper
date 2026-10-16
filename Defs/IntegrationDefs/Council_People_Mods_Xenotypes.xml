@@ -11,7 +11,7 @@
   -->
 
   <ColonyCouncil.ModPeopleDef>
-    <defName>Council_ModPeople_Xenotypes</defName>
+    <defName>Council_ModPeople_RaceXenotypes</defName>
     <label>xenotypes of the race mods (Stoneborn, Elves, Merfolk, Det's xenotypes, Alpha Genes)</label>
     <wishes>
       <!-- Stoneborn: miners and builders with a passion for stone, and a hearth to come home to. -->
