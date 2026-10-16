@@ -583,10 +583,12 @@ namespace ColonyCouncil
         {
             // A bed for someone whose genes never let them sleep, a meal for someone who never eats (ModPeopleDef).
             if (!ModPeople.WishFits(def, pawn)) yield break;
+            // Nothing their beliefs rule out: a shared bed before the wedding, meat for a vegetarian (Wishes/Beliefs.cs).
+            if (Beliefs.ForbidsAny(pawn, def.ForbiddenMask)) yield break;
             List<WishCandidate> list;
             try
             {
-                list = def.Worker.CandidatesFor(pawn)?.Where(c => c != null).ToList();
+                list = def.Worker.CandidatesFor(pawn)?.Where(c => c != null && !def.Worker.AgainstBeliefs(pawn, c.other, c.thingDef)).ToList();
             }
             catch (Exception e)
             {
@@ -785,7 +787,8 @@ namespace ColonyCouncil
                 bool valid, fulfilled;
                 try
                 {
-                    valid = w.Worker.StillValid(w);
+                    // Their beliefs have come to rule it out (a new faith, a precept changed): let go quietly, no blame.
+                    valid = w.Worker.StillValid(w) && !w.Worker.AgainstBeliefs(w);
                     fulfilled = valid && w.Worker.IsFulfilled(w);
                 }
                 catch (Exception e)

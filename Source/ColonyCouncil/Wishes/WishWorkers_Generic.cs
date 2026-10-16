@@ -333,23 +333,32 @@ namespace ColonyCouncil
 
         private List<ThingDef> Defs => defs ?? (defs = DefDatabase<ThingDef>.AllDefsListForReading.Where(d => d.category == ThingCategory.Item && P.Matches(d)).ToList());
 
-        public int Count(Map map)
+        /// <summary>A store of food or drink (every kind of it something people eat or drink): judged by what each colonist may have.</summary>
+        private bool Consumable => Defs.Count > 0 && Defs.All(d => d.ingestible != null && d.ingestible.HumanEdible);
+
+        /// <summary>Some kind of it is theirs to have (Wishes/Beliefs.cs): fungus for a fungus eater, no tea for one whose faith forbids drugs.</summary>
+        private bool AnyFor(Pawn p) => p == null || !Consumable || Defs.Any(d => Beliefs.FitForStock(p, d));
+
+        /// <summary>How much is in store; for food or drink with <paramref name="forPawn"/>, only what their beliefs let them have.</summary>
+        public int Count(Map map, Pawn forPawn = null)
         {
             if (map == null) return 0;
             int n = 0;
+            bool judge = forPawn != null && Consumable;
             var home = map.areaManager.Home;
             foreach (var d in Defs)
             {
+                if (judge && !Beliefs.FitForStock(forPawn, d)) continue;
                 var list = map.listerThings.ThingsOfDef(d);
                 for (int i = 0; i < list.Count; i++)
                 {
                     var t = list[i];
-                    if (t.Spawned && !t.IsForbidden(Faction.OfPlayer) && (t.IsInAnyStorage() || home[t.Position])) n += t.stackCount;
+                    if (t.Spawned && !t.IsForbidden(Faction.OfPlayer) && (t.IsInAnyStorage() || home[t.Position]) && (!judge || Beliefs.FitForStock(forPawn, t))) n += t.stackCount;
                 }
             }
             // Things kept inside furniture (books on a bookcase) aren't spawned.
             foreach (var t in HeldInBuildings(map))
-                if (Defs.Contains(t.def)) n += t.stackCount;
+                if (Defs.Contains(t.def) && (!judge || Beliefs.FitForStock(forPawn, t))) n += t.stackCount;
             return n;
         }
 
@@ -384,37 +393,53 @@ namespace ColonyCouncil
             return producible;
         }
 
-        private bool FindProducible(Map map) =>
-            DefDatabase<RecipeDef>.AllDefsListForReading.Any(r => r.ProducedThingDef != null && Defs.Contains(r.ProducedThingDef) && r.AvailableNow
+        private bool FindProducible(Map map) => FindProducible(map, Defs);
+
+        private static bool FindProducible(Map map, ICollection<ThingDef> defs) =>
+            DefDatabase<RecipeDef>.AllDefsListForReading.Any(r => r.ProducedThingDef != null && defs.Contains(r.ProducedThingDef) && r.AvailableNow
                                                                   && Avail.RecipeUsers(r).Any(u => map.listerBuildings.ColonistsHaveBuilding(u) || Avail.CanBuild(u, map)))
-            || DefDatabase<ThingDef>.AllDefsListForReading.Any(p => p.plant?.harvestedThingDef != null && Defs.Contains(p.plant.harvestedThingDef)
+            || DefDatabase<ThingDef>.AllDefsListForReading.Any(p => p.plant?.harvestedThingDef != null && defs.Contains(p.plant.harvestedThingDef)
                                                                     && p.plant.Sowable && (p.plant.sowResearchPrerequisites == null || p.plant.sowResearchPrerequisites.All(rp => rp.IsFinished)));
+
+        /// <summary>
+        /// Can the colony make or grow some of what this colonist may have: fungus, for someone whose faith wants only
+        /// fungus or insect, not just any crop (Wishes/Beliefs.cs).
+        /// </summary>
+        private bool ProducibleFor(Map map, Pawn pawn)
+        {
+            if (!Consumable) return Producible(map);
+            var mine = Defs.Where(d => Beliefs.FitForStock(pawn, d)).ToList();
+            return mine.Count == Defs.Count ? Producible(map) : mine.Count > 0 && FindProducible(map, mine);
+        }
 
         public override IEnumerable<WishCandidate> CandidatesFor(Pawn pawn)
         {
             var map = HomeMap(pawn);
-            if (map == null || Defs.Count == 0 || !P.Who(pawn)) yield break;
-            int have = Count(map);
+            if (map == null || Defs.Count == 0 || !P.Who(pawn) || !AnyFor(pawn)) yield break;
+            int have = Count(map, pawn);
             if (have >= P.count) yield break;
-            if (!P.anySource && !Producible(map)) yield break;
-            if (P.anySource && have == 0 && !Producible(map)) yield break;
+            if (!P.anySource && !ProducibleFor(map, pawn)) yield break;
+            if (P.anySource && have == 0 && !ProducibleFor(map, pawn)) yield break;
             var c = Make(pawn, 1f);
             c.targetValue = P.count;
             c.subjectKey = "colony";
             yield return c;
         }
 
-        public override bool IsFulfilled(Wish wish) => Count(wish.Beneficiary.MapHeld) >= wish.targetValue;
+        public override bool IsFulfilled(Wish wish) => Count(wish.Beneficiary.MapHeld, wish.Beneficiary) >= wish.targetValue;
 
-        public override string ProgressText(Wish wish) => "CC_Progress_Stock".Translate(Count(wish.Beneficiary.MapHeld), wish.targetValue.ToString("0")).ToString();
+        /// <summary>Nothing of it is theirs to have any more (their faith now forbids it all).</summary>
+        public override bool AgainstBeliefs(Pawn pawn, Pawn other, ThingDef thing) => base.AgainstBeliefs(pawn, other, thing) || !AnyFor(pawn);
 
-        public override float Progress(Wish wish) => Mathf.Clamp01(Count(wish.Beneficiary.MapHeld) / Mathf.Max(1f, wish.targetValue));
+        public override string ProgressText(Wish wish) => "CC_Progress_Stock".Translate(Count(wish.Beneficiary.MapHeld, wish.Beneficiary), wish.targetValue.ToString("0")).ToString();
+
+        public override float Progress(Wish wish) => Mathf.Clamp01(Count(wish.Beneficiary.MapHeld, wish.Beneficiary) / Mathf.Max(1f, wish.targetValue));
 
         /// <summary>Promises kept: enough of it stays in store (a share of it, for what's meant to be used or spent: keepShare).</summary>
         public override KeptCheck Holds(Wish wish)
         {
             if (Outgrown(wish)) return KeptCheck.Over;
-            return Count(wish.Beneficiary.MapHeld) >= KeptMath.Needed(wish.targetValue, def.keepShare) ? KeptCheck.Holds : KeptCheck.Gone;
+            return Count(wish.Beneficiary.MapHeld, wish.Beneficiary) >= KeptMath.Needed(wish.targetValue, def.keepShare) ? KeptCheck.Holds : KeptCheck.Gone;
         }
 
         public override string KeptKind(Wish wish) => "stock";
@@ -504,6 +529,10 @@ namespace ColonyCouncil
         private static float Appeal(Pawn p, Thing t)
         {
             var d = t.def;
+            // Nothing their beliefs rule out: clothes for a nudist, a weapon for a pacifist, leather for one who abhors it.
+            if (Beliefs.AgainstThing(p, d)) return 0f;
+            if (d.IsApparel && t.Stuff != null && ThingCategoryDefOf.Leathers != null && t.Stuff.IsWithinCategory(ThingCategoryDefOf.Leathers)
+                && Beliefs.Forbids(p, Belief.NoLeather)) return 0f;
             if (d.IsApparel)
             {
                 if (!ApparelUtility.HasPartsToWear(p, d) || (d.apparel.gender != Gender.None && d.apparel.gender != p.gender)) return 0f;

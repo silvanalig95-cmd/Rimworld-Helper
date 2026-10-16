@@ -401,6 +401,7 @@ Console.WriteLine($"Checked {MemoryTests.Run(Check)} things about what the peopl
 Console.WriteLine($"Checked {PlayOutTests.Run(Check)} things about answers playing out on the map.");
 Console.WriteLine($"Checked {KeptTests.Run(Check)} things about granted wishes taken back (grace, timing, making it right).");
 Console.WriteLine($"Checked {HeartNeedTests.Run(Check)} things about the heart's needs (what follows from them, and a lack that lasts).");
+Console.WriteLine($"Checked {BeliefTests.Run(Check)} things about beliefs and diets (precepts, a shared bed, what may be served).");
 
-Console.WriteLine(failures == 0 ? "All tests passed (template math, layout, strain, meetings, pressures, ailments, line memory, good times, tab sizes, calendar, personal stories, clock and caps, faction memory, answers on the map, setbacks, promises kept, what colonists say, the heart's needs)." : failures + " failure(s).");
+Console.WriteLine(failures == 0 ? "All tests passed (template math, layout, strain, meetings, pressures, ailments, line memory, good times, tab sizes, calendar, personal stories, clock and caps, faction memory, answers on the map, setbacks, promises kept, what colonists say, the heart's needs, beliefs and diets)." : failures + " failure(s).");
 return failures == 0 ? 0 : 1;

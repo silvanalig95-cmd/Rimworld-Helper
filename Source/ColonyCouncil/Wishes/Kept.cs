@@ -407,6 +407,8 @@ namespace ColonyCouncil
             if (check != KeptCheck.Gone) return check;
             // Gone. But was it the council?
             if (!worker.StillObtainable(w.wish)) return KeptCheck.Over;
+            // Their beliefs now rule it out (a new faith that keeps the bed for the married, say): letting it go is no slight.
+            if (worker.AgainstBeliefs(w.wish)) return KeptCheck.Over;
             if (w.misfortuneTick >= 0 && now - w.misfortuneTick <= KeptMath.MisfortuneDays * KeptMath.TicksPerDay) return KeptCheck.Over;
             int threat = map.storyState?.LastThreatBigTick ?? 0;
             if (threat > 0 && now - threat < KeptMath.ThreatDays * KeptMath.TicksPerDay) return KeptCheck.Unclear;

@@ -305,6 +305,10 @@ the content itself, not only to systems, alongside whatever else it does. Where 
   memory; Geological Landforms' landforms, More Vanilla Biomes' lands and Seasonal Weather's skies in encounters;
   Alpha Biomes' lands with ailments of their own; a drink at a toast, no spoiled grills at a feast, the meme mods'
   rites on calendar days; the race mods' xenotypes in wishes and the colony's ways; four more RimHUD lines.
+- Done: beliefs and diets. Wishes, life goals and council projects never ask for what a colonist's faith or traits
+  forbid (the game's Ideology, Vanilla Ideology Expanded - Memes, Alpha Memes, More Precepts, read by name and by what
+  a precept frowns on); feasts and toasts serve only what fits each colonist's policies and diet, and never what
+  Alpha Memes would make them sick for.
 - Still open: Vanilla Factions Expanded Medieval and Tribals (not in the current modlists), Outland and Medieval Total
   Rim's peoples in world events, more Hospitality (a renowned-hosts council project), Alpha Genes and Alpha Memes in
   moments.

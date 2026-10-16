@@ -154,6 +154,7 @@
     <label>{THING} for summer evenings</label>
     <description>Vanilla Cooking Expanded: a cook has been thinking about meat over hot coals all week and wants a grill.</description>
     <workerClass>ColonyCouncil.WishWorker_Have</workerClass>
+    <forbiddenBy><li>NoMeat</li></forbiddenBy>
     <lasting>true</lasting>
     <category>Comfort</category>
     <weight>0.6</weight>
