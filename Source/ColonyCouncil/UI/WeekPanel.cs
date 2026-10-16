@@ -30,8 +30,16 @@ namespace ColonyCouncil
         {
             if (model == null || modelAt < 0f || Time.realtimeSinceStartup - modelAt > 1f)
             {
-                model = WeekModel.Build(comp, map);
                 modelAt = Time.realtimeSinceStartup;
+                try
+                {
+                    model = WeekModel.Build(comp, map);
+                }
+                catch (System.Exception e)
+                {
+                    CouncilLog.ErrorOnce("this week", e);
+                    model ??= new WeekModel { title = "CC_Week_Header".Translate(), sub = "CC_UI_Sub_Week".Translate() };
+                }
             }
             return model;
         }

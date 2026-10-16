@@ -61,12 +61,26 @@ namespace ColonyCouncil
             {
                 loaded = true;
                 filter = PageMemory.GetEnum("dilemmas.filter", Filter.All);
+                filterLabels = new[] { "CC_Dil_Filter_All".Translate().ToString(), "CC_Dil_Filter_WentWrong".Translate().ToString(), "CC_Dil_Filter_Unanswered".Translate().ToString() };
+                headers = new[]
+                {
+                    "CC_Dil_Col_Day".Translate().ToString(), "CC_Dil_Col_Question".Translate().ToString(), "CC_Dil_Col_Answer".Translate().ToString(),
+                    "CC_Dil_Col_Who".Translate().ToString(), "CC_Dil_Col_Went".Translate().ToString()
+                };
             }
             if (model == null || modelFilter != filter || Time.realtimeSinceStartup - modelAt > 1f)
             {
-                model = Build(comp);
                 modelAt = Time.realtimeSinceStartup;
                 modelFilter = filter;
+                try
+                {
+                    model = Build(comp);
+                }
+                catch (System.Exception e)
+                {
+                    CouncilLog.ErrorOnce("dilemmas page", e);
+                    model ??= new Model { stat = "", countText = "" };
+                }
             }
             var m = model;
             float top = UiKit.PageHeader(rect, Icons.Dilemmas ?? Icons.Decree, "CC_Dil_Header".Translate(), "CC_UI_Sub_Dilemmas".Translate(), m.stat, null, 330f);
@@ -191,15 +205,6 @@ namespace ColonyCouncil
 
         private static Model Build(CouncilGameComponent comp)
         {
-            if (filterLabels == null)
-            {
-                filterLabels = new[] { "CC_Dil_Filter_All".Translate().ToString(), "CC_Dil_Filter_WentWrong".Translate().ToString(), "CC_Dil_Filter_Unanswered".Translate().ToString() };
-                headers = new[]
-                {
-                    "CC_Dil_Col_Day".Translate().ToString(), "CC_Dil_Col_Question".Translate().ToString(), "CC_Dil_Col_Answer".Translate().ToString(),
-                    "CC_Dil_Col_Who".Translate().ToString(), "CC_Dil_Col_Went".Translate().ToString()
-                };
-            }
             var m = new Model();
             int now = Find.TickManager.TicksGame;
             foreach (var l in Find.LetterStack.LettersListForReading.OfType<ChoiceLetter_Dilemma>())

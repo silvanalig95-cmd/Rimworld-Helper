@@ -311,7 +311,17 @@ namespace ColonyCouncil
                 }
             }
             var list = new List<Row>();
-            foreach (var p in WeekModel.Colonists())
+            List<Pawn> colonists;
+            try
+            {
+                colonists = WeekModel.Colonists();
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("people table", e);
+                colonists = new List<Pawn>();
+            }
+            foreach (var p in colonists)
             {
                 try
                 {

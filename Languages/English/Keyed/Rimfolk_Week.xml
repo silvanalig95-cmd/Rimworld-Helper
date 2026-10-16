@@ -57,10 +57,10 @@
   <!-- This week: letters waiting for an answer -->
   <CC_Week_Answers>Waiting for an answer</CC_Week_Answers>
   <CC_Week_Empty_Answers>No letters are waiting for an answer.</CC_Week_Empty_Answers>
-  <CC_Week_LetterDilemma>A question for the council: {0}</CC_Week_LetterDilemma>
+  <CC_Week_LetterDilemma>{0}</CC_Week_LetterDilemma>
   <CC_Week_LetterQuestion>{0}</CC_Week_LetterQuestion>
   <CC_Week_LetterDay>{0}: keep the day, or let it pass</CC_Week_LetterDay>
-  <CC_Week_LetterMeeting>{0}: the meeting waits for its choice</CC_Week_LetterMeeting>
+  <CC_Week_LetterMeeting>{0}: waiting for your choice</CC_Week_LetterMeeting>
   <CC_Week_News>Colony news letters not yet read: {0}</CC_Week_News>
   <CC_Week_NewsTip>The evenings' colony news, still on the letter stack. Click to read the newest; "Mark all read" puts them all away.</CC_Week_NewsTip>
   <CC_Week_MarkRead>Mark all read</CC_Week_MarkRead>
