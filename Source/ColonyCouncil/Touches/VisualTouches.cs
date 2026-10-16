@@ -20,6 +20,10 @@ namespace ColonyCouncil
     /// <para>Nothing here changes the game: no stats, no thoughts, no needs. The one exception is small and vanilla's own:
     /// on a comet night, an idle colonist in good spirits may go and lie down to watch the sky (the game's skygazing,
     /// with its usual recreation), instead of wandering about with nothing to do.</para>
+    /// <para>The same clock runs the parts in Immersion/: a colonist now and then saying something about how they really
+    /// are (<see cref="StateSpeech"/>), the first snow, heat waves, cold snaps and storms remarked on and written down
+    /// (<see cref="WeatherTalk"/>), a gathering's fire, a grave's low glow and a toast's raised cups (<see cref="Glows"/>),
+    /// and a small bell when a calendar day comes round (<see cref="Chimes"/>).</para>
     /// <para>Cost: one modulo per tick. Twice a second of game time (and never more often than about twice a second of
     /// real time, whatever the speed), on the map being looked at only, a few cheap checks and at most a handful of
     /// flecks, each only on cells in view. Once an in-game hour, one ambient line or hum at most. No textures, materials,
@@ -66,6 +70,13 @@ namespace ColonyCouncil
         private readonly Dictionary<int, int> lineUntil = new Dictionary<int, int>();
         private readonly Dictionary<int, int> gazeUntil = new Dictionary<int, int>();
 
+        /// <summary>A gathering's fire, a grave's glow, a toast's raised cups (Immersion/Glows.cs).</summary>
+        internal readonly Glows glows = new Glows();
+        /// <summary>The first snow, heat waves, cold snaps and storms (Immersion/WeatherTalk.cs).</summary>
+        internal readonly WeatherTalk weather = new WeatherTalk();
+        /// <summary>A small bell when a calendar day comes round (Immersion/Chimes.cs).</summary>
+        private readonly Chimes chimes = new Chimes();
+
         private sealed class Pending
         {
             public Pawn pawn;
@@ -103,10 +114,12 @@ namespace ColonyCouncil
         {
             int now = Find.TickManager.TicksGame;
             if (now % PulseTicks != PulseOffset) return;
-            if (!On)
+            bool on = On;
+            if (!on)
             {
-                if (pending.Count > 0 || band.Count > 0) Clear();
-                return;
+                if (pending.Count > 0 || band.Count > 0 || glows.Any) Clear();
+                // Small habits still need to know when the first snow fell (children out playing in it).
+                if (!SmallHabits.On) return;
             }
             try
             {
@@ -117,8 +130,10 @@ namespace ColonyCouncil
                 if (hour != lastHour)
                 {
                     lastHour = hour;
-                    Hourly(now);
+                    if (on) Hourly(now);
+                    else weather.Hourly(this, now, false);
                 }
+                if (!on) return;
                 float real = Time.realtimeSinceStartup;
                 if (real - lastPulse < MinPulseSeconds && real >= lastPulse) return;
                 lastPulse = real;
@@ -136,6 +151,7 @@ namespace ColonyCouncil
             pending.Clear();
             band.Clear();
             bandUntil = -1;
+            glows.Clear();
         }
 
         /// <summary>The map being looked at and the cells in view, or false when there's nothing to look at.</summary>
@@ -158,8 +174,10 @@ namespace ColonyCouncil
             pulses++;
             if (pending.Count > 0) Pendings(map, view);
             if (band.Count > 0) Band(map, view, now);
+            chimes.Pulse(map, now);
             // From that far out, a firefly or a bit of ice is a pixel at best.
             if (Find.CameraDriver.CurrentZoom >= CameraZoomRange.Furthest) return;
+            if (glows.Any) glows.Pulse(map, view, now, pulses);
             var conditions = map.gameConditionManager;
             if (conditions == null) return;
             if (conditions.GetActiveCondition<GameCondition_Fireflies>() != null) Fireflies(map, view);
@@ -167,7 +185,7 @@ namespace ColonyCouncil
             if (pulses % 4 == 0) CampFire(map, view);
         }
 
-        private static bool Dark(Map map) => GenCelestial.CurCelestialSunGlow(map) < 0.3f;
+        internal static bool Dark(Map map) => GenCelestial.CurCelestialSunGlow(map) < 0.3f;
 
         // ---------------- Fireflies ----------------
 
@@ -263,13 +281,19 @@ namespace ColonyCouncil
             if (camp == null || camp.map != map || !camp.Active || camp.phase == CampPhase.Coming) return;
             var cell = camp.FireCell;
             if (!cell.IsValid || !view.ExpandedBy(3).Contains(cell)) return;
-            var fire = camp.Fire;
-            if (fire == null || !fire.Spawned) return;
+            FireSmoke(camp.Fire, map);
+        }
+
+        /// <summary>A thin line of smoke from a lit fire, and at night now and then a few sparks going up. False when it's out.</summary>
+        internal static bool FireSmoke(Thing fire, Map map)
+        {
+            if (fire == null || !fire.Spawned || fire.Map != map) return false;
             var fuel = fire.TryGetComp<CompRefuelable>();
-            if (fuel != null && !fuel.HasFuel) return;
+            if (fuel != null && !fuel.HasFuel) return false;
             var top = fire.DrawPos + new Vector3(Rand.Range(-0.15f, 0.15f), 0f, 0.3f);
             FleckMaker.ThrowSmoke(top, map, Rand.Range(0.45f, 0.7f));
             if (Dark(map) && Rand.Chance(0.5f)) FleckMaker.ThrowMicroSparks(fire.DrawPos, map);
+            return true;
         }
 
         // ---------------- A warlord's band ----------------
@@ -470,12 +494,17 @@ namespace ColonyCouncil
         {
             Prune(lineUntil, now);
             Prune(gazeUntil, now);
+            // The weather is watched on every home map (a journal is written wherever it snows); it speaks only in view.
+            bool spoke = weather.Hourly(this, now, true);
             if (!Looking(out var map, out var view)) return;
             var conditions = map.gameConditionManager;
             if (conditions == null) return;
             bool comet = conditions.GetActiveCondition<GameCondition_Comet>() != null;
             if (comet) CometGazer(map, now);
-            if (ColonyCouncilMod.Settings?.speechText == true && AmbientLine(map, view, now, comet, conditions)) return;
+            if (spoke) return;
+            bool speech = ColonyCouncilMod.Settings?.speechText == true;
+            if (speech && AmbientLine(map, view, now, comet, conditions)) return;
+            if (speech && StateSpeech.TrySay(this, map, view, now)) return;
             Hum(map, view, now);
         }
 
@@ -575,10 +604,73 @@ namespace ColonyCouncil
             return null;
         }
 
-        private static bool CanSpeak(Pawn p, Map map, CellRect view) =>
+        internal static bool CanSpeak(Pawn p, Map map, CellRect view) =>
             p != null && p.Spawned && p.Map == map && view.Contains(p.Position) && !p.Dead && !p.Downed && p.Awake() && !p.InMentalState
             && People.HasInnerLife(p) && !p.DevelopmentalStage.Baby() && p.health?.capacities != null && p.health.capacities.CapableOf(PawnCapacityDefOf.Talking);
 
         private static bool Visible(Map map, IntVec3 c) => Looking(out var current, out var view) && current == map && view.Contains(c);
+
+        /// <summary>The map being looked at and the cells in view (for Immersion/), or false when there's nothing to look at.</summary>
+        internal static bool InView(out Map map, out CellRect view) => Looking(out map, out view);
+
+        // ---------------- Who may speak (shared with Immersion/) ----------------
+
+        /// <summary>
+        /// A colonist on screen, awake, free and able to talk, who isn't under arms or at a gathering and hasn't said an
+        /// ambient line (or hummed) lately: one rate for everything said this way, so nobody talks more than about once a day.
+        /// </summary>
+        internal bool Free(Pawn p, Map map, CellRect view, int now) =>
+            CanSpeak(p, map, view) && !p.Drafted && p.GetLord() == null && !(lineUntil.TryGetValue(p.thingIDNumber, out int until) && until > now);
+
+        /// <summary>They just said something: the next ambient line from them waits until then.</summary>
+        internal void Spoke(Pawn p, int until)
+        {
+            if (p != null) lineUntil[p.thingIDNumber] = until;
+        }
+
+        // ---------------- Fires, glows and cups (Immersion/Glows.cs) ----------------
+
+        /// <summary>A gathering round this fire: smoke now and then, and sparks at night, while it goes on (refreshed by the gathering).</summary>
+        public static void Bonfire(Thing fire, int untilTick)
+        {
+            if (!On || fire == null) return;
+            try
+            {
+                Instance?.glows.Fire(fire, untilTick);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("bonfire touch", e);
+            }
+        }
+
+        /// <summary>Someone remembering at a grave: after dark, a low warm glow there, like a candle, while they stay.</summary>
+        public static void Candle(Map map, IntVec3 cell, int untilTick)
+        {
+            if (!On || map == null || !cell.IsValid) return;
+            try
+            {
+                Instance?.glows.Candle(map, cell, untilTick);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("grave glow touch", e);
+            }
+        }
+
+        /// <summary>A toast: cups go up together (a small warm glint over each head in view).</summary>
+        public static void RaiseCups(IList<Pawn> who)
+        {
+            if (!On || who == null) return;
+            try
+            {
+                if (!Looking(out var map, out var view)) return;
+                Glows.Raise(who, map, view);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("toast touch", e);
+            }
+        }
     }
 }

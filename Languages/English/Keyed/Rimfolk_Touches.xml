@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
 
-  <!-- ===================== Visual and sound touches (Source/ColonyCouncil/Touches/) ===================== -->
+  <!-- ===================== Visual and sound touches (Source/ColonyCouncil/Touches/, Immersion/) ===================== -->
 
   <CC_Settings_VisualTouches>Visual and sound touches</CC_Settings_VisualTouches>
-  <CC_Settings_VisualTouches_Tip>Uses the game's own effects, sky colors and sounds so you can see what Rimfolk's events are doing: a cooler night sky under a comet and warmer daylight in a warm spell, fireflies around colonists outside on firefly nights, hail bouncing off the fields, smoke from a camp's fire, dust when a warlord's band marches in, hearts at a wedding, a few notes of song for a kept tradition, a bell when a council meeting opens, and now and then a colonist humming at work or saying something about the sky. On a comet night an idle colonist in good spirits may stop to watch the sky.\n\nOnly on the map you're looking at and only on screen, a handful at a time. Nothing else in the game changes. Turn this off if you'd rather not have any of it.</CC_Settings_VisualTouches_Tip>
+  <CC_Settings_VisualTouches_Tip>Uses the game's own effects, sky colors and sounds so you can see what Rimfolk's events are doing: a cooler night sky under a comet and warmer daylight in a warm spell, fireflies around colonists outside on firefly nights, hail bouncing off the fields, smoke from a camp's fire, dust when a warlord's band marches in, hearts at a wedding, a few notes of song for a kept tradition, a bell when a council meeting opens or a calendar day comes round, and now and then a colonist humming at work or saying something about the sky. On a comet night an idle colonist in good spirits may stop to watch the sky.\n\nColonists also say, now and then, a short line about how they really are: a strong feeling, an ailment, getting back on their feet, their personal story, a calendar day tomorrow, a setback, a promise taken back, a nemesis still out there, a wish still waiting. Each says something like this about once a day at most. The first snow, a heat wave, a cold snap and a storm get a word from whoever is out in them, and a line in someone's journal. A gathering's fire smokes and sparks, a grave glows faintly after dark while someone remembers there, and at a toast the cups go up together.\n\nOnly on the map you're looking at and only on screen, a handful at a time. Nothing else in the game changes. Turn this off if you'd rather not have any of it.</CC_Settings_VisualTouches_Tip>
+
+  <!-- ===================== Small habits (Source/ColonyCouncil/Immersion/SmallHabits.cs) ===================== -->
+
+  <CC_Settings_SmallHabits>Small habits</CC_Settings_SmallHabits>
+  <CC_Settings_SmallHabits_Tip>Free time spent the way people really would: a grieving colonist visits the grave, a homesick one sits a while alone just outside the colony looking out, a convalescent takes slow walks, those who fought a hard fight sit round the fire afterwards if one is lit, someone whose friend left talks about them with whoever is free, and after the first snow the children go out to build snowmen.\n\nThese are recreation, picked by the game's own joy system only in free time. They never take anyone from danger, sleep, food or medical care, never start while someone is drafted, ill, exhausted or busy with the player's orders, and any order ends them. Each comes round at most once a day or so for the same colonist.</CC_Settings_SmallHabits_Tip>
+  <CC_SetNote_SmallHabits>Graves visited, slow walks, the fire after a fight, snowmen after the first snow.</CC_SetNote_SmallHabits>
+
+  <CC_Habit_Report_Grave>visiting {OTHER}'s grave.</CC_Habit_Report_Grave>
+  <CC_Habit_Report_LookOut>looking out toward home.</CC_Habit_Report_LookOut>
+  <CC_Habit_Report_Fire>sitting by the fire after the fight.</CC_Habit_Report_Fire>
+  <CC_Habit_Report_Remember>talking about {OTHER}.</CC_Habit_Report_Remember>
 
 </LanguageData>

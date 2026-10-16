@@ -41,6 +41,7 @@ Guests also help with chores, but only where their skill is 7 or more (a setting
           <li>A guest whose visit is going well and who has grown close to a colonist may ask the council to stay. Taking them in uses Hospitality's own way of adopting a guest, the same as its join request, and their people take it better with a parting gift. A guest whose visit is going badly may bring a complaint instead. The council never sends guests away: their visit ends when Hospitality says.</li>
           <li>With no guest bed in the colony, a kind or sociable colonist may wish for one, most often while visitors are here. Switching any bed to a guest bed grants it.</li>
           <li>Once there is a guest bed, sociable and kind colonists, and the steward or speaker, may wish for a guest room worth the name: the best guest room should reach the next step of impressiveness. The guest room plan builds a small room for one visitor; switch its bed to a guest bed once it's built. A colonist with no bed never counts a guest bed as free.</li>
+          <li>The guests' people remember each visit: one that goes home delighted leaves the colony a good name with them, one that ends in disappointment a poor one, and a run of either adds up. The World page lists it among what that people remembers, and a raid letter can name a poor welcome.</li>
         </points>
       </li>
     </sections>
@@ -683,7 +684,9 @@ During a whiteout, desperate refugees may beg for shelter. Take them in and they
       </li>
       <li>
         <heading>With Rimfolk</heading>
-        <text>The advisor warns about vanilla weather events such as heat waves, cold snaps and droughts, but not yet about this mod's own drought, whiteout, scorch and long night, so watch for those letters yourself.</text>
+        <text>The advisor warns about vanilla weather events such as heat waves, cold snaps and droughts, but not yet about this mod's own drought, whiteout, scorch and long night, so watch for those letters yourself.
+
+Its psychic aurora is felt as awe in Rimfolk's feelings, and the superbloom's drone as dread.</text>
       </li>
     </sections>
     <keywords>

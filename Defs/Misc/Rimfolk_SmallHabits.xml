@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Small habits (Source/ColonyCouncil/Immersion/SmallHabits.cs, the "Small habits" setting): recreation the game's own
+    joy system picks, made likelier by what Rimfolk knows of someone. Each joy giver has no chance at all unless the
+    setting is on, the colonist is free (no danger, not drafted, not in a sickbed or in need of one, not starving,
+    exhausted, bleeding, caring for someone or under orders, not at a gathering, not in their sleep hours), the habit
+    is off its cooldown, and it fits them. The game only looks for recreation in free time, after danger, sleep, food
+    and medical care, so a habit never takes anyone from those, and any order from the player ends it.
+  -->
+
+  <!-- ===================== The jobs ===================== -->
+
+  <!-- Grieving: a while at the grave of the one they lost; after dark, a low glow there while they stay. -->
+  <JobDef>
+    <defName>Council_Habit_Grave</defName>
+    <driverClass>ColonyCouncil.JobDriver_SmallHabit</driverClass>
+    <reportString>standing at a grave.</reportString>
+    <joyKind>Meditative</joyKind>
+    <joyGainRate>0.8</joyGainRate>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+    <modExtensions>
+      <li Class="ColonyCouncil.HabitExtension">
+        <kind>Grave</kind>
+        <pool>Council_Pool_HabitGrave</pool>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- Homesick: a while alone just outside the colony, facing away from it. -->
+  <JobDef>
+    <defName>Council_Habit_LookOut</defName>
+    <driverClass>ColonyCouncil.JobDriver_SmallHabit</driverClass>
+    <reportString>looking out over the land.</reportString>
+    <joyKind>Meditative</joyKind>
+    <joyGainRate>0.8</joyGainRate>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+    <modExtensions>
+      <li Class="ColonyCouncil.HabitExtension">
+        <kind>LookOut</kind>
+        <pool>Council_Pool_HabitLookOut</pool>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- After a hard fight: a while round the colony's lit fire, talking with whoever else came. -->
+  <JobDef>
+    <defName>Council_Habit_Fire</defName>
+    <driverClass>ColonyCouncil.JobDriver_SmallHabit</driverClass>
+    <reportString>sitting by the fire.</reportString>
+    <joyKind>Social</joyKind>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+    <modExtensions>
+      <li Class="ColonyCouncil.HabitExtension">
+        <kind>Fire</kind>
+        <pool>Council_Pool_HabitFire</pool>
+        <social>true</social>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- A friend left: a talk about them with someone at their leisure. -->
+  <JobDef>
+    <defName>Council_Habit_Remember</defName>
+    <driverClass>ColonyCouncil.JobDriver_SmallHabit</driverClass>
+    <reportString>talking with TargetA.</reportString>
+    <joyKind>Social</joyKind>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+    <modExtensions>
+      <li Class="ColonyCouncil.HabitExtension">
+        <kind>Remember</kind>
+        <pool>Council_Pool_HabitRemember</pool>
+        <social>true</social>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- Convalescing: the game's own walk for pleasure, under a name of its own. -->
+  <JobDef>
+    <defName>Council_Habit_SlowWalk</defName>
+    <driverClass>JobDriver_GoForWalk</driverClass>
+    <reportString>taking a slow walk.</reportString>
+    <joyKind>Meditative</joyKind>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+  <!-- ===================== The joy givers ===================== -->
+
+  <JoyGiverDef>
+    <defName>Council_HabitGiver_Grave</defName>
+    <giverClass>ColonyCouncil.JoyGiver_HabitGrave</giverClass>
+    <baseChance>6</baseChance>
+    <jobDef>Council_Habit_Grave</jobDef>
+    <joyKind>Meditative</joyKind>
+    <requiredCapacities>
+      <li>Moving</li>
+    </requiredCapacities>
+  </JoyGiverDef>
+
+  <JoyGiverDef>
+    <defName>Council_HabitGiver_LookOut</defName>
+    <giverClass>ColonyCouncil.JoyGiver_HabitLookOut</giverClass>
+    <baseChance>4</baseChance>
+    <jobDef>Council_Habit_LookOut</jobDef>
+    <joyKind>Meditative</joyKind>
+    <requiredCapacities>
+      <li>Moving</li>
+    </requiredCapacities>
+  </JoyGiverDef>
+
+  <JoyGiverDef>
+    <defName>Council_HabitGiver_Fire</defName>
+    <giverClass>ColonyCouncil.JoyGiver_HabitFire</giverClass>
+    <baseChance>6</baseChance>
+    <jobDef>Council_Habit_Fire</jobDef>
+    <joyKind>Social</joyKind>
+    <requiredCapacities>
+      <li>Moving</li>
+      <li>Talking</li>
+    </requiredCapacities>
+  </JoyGiverDef>
+
+  <JoyGiverDef>
+    <defName>Council_HabitGiver_Remember</defName>
+    <giverClass>ColonyCouncil.JoyGiver_HabitRemember</giverClass>
+    <baseChance>4</baseChance>
+    <jobDef>Council_Habit_Remember</jobDef>
+    <joyKind>Social</joyKind>
+    <requiredCapacities>
+      <li>Moving</li>
+      <li>Talking</li>
+    </requiredCapacities>
+  </JoyGiverDef>
+
+  <JoyGiverDef>
+    <defName>Council_HabitGiver_SlowWalk</defName>
+    <giverClass>ColonyCouncil.JoyGiver_HabitSlowWalk</giverClass>
+    <baseChance>8</baseChance>
+    <jobDef>Council_Habit_SlowWalk</jobDef>
+    <joyKind>Meditative</joyKind>
+    <requiredCapacities>
+      <li>Moving</li>
+    </requiredCapacities>
+  </JoyGiverDef>
+
+  <!-- Children, in the two days after the first snow: the game's own snowman building, much likelier than usual. -->
+  <JoyGiverDef>
+    <defName>Council_HabitGiver_SnowPlay</defName>
+    <giverClass>ColonyCouncil.JoyGiver_HabitSnowPlay</giverClass>
+    <baseChance>8</baseChance>
+    <jobDef>BuildSnowman</jobDef>
+    <joyKind>Meditative</joyKind>
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
+  </JoyGiverDef>
+
+</Defs>

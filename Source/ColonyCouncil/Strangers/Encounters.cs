@@ -24,7 +24,7 @@ namespace ColonyCouncil
         public bool nightOnly;
         public bool dayOnly;
         /// <summary>Only on these lands, any of them (see <see cref="Lands"/>: desert, tundra, boreal, jungle, swamp, forest,
-        /// grassland, mountains, hills, coast, lake, river). Empty: anywhere.</summary>
+        /// grassland, mountains, hills, coast, lake, river, valley, canyon, island, caves, cliffs, oasis, crater). Empty: anywhere.</summary>
         public List<string> lands;
         /// <summary>
         /// Only when the moment fits, as A lives it: a line's tags without the brackets ("rain|snow", "storm,outside",

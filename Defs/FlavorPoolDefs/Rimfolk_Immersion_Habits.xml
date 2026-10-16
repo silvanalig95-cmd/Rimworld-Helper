@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Small habits (Source/ColonyCouncil/Immersion/SmallHabits.cs, Defs/Misc/Rimfolk_SmallHabits.xml): the line said on
+    arriving, with the touches and speech settings on, if they're in view and haven't said anything lately. One
+    sentence each. {OTHER} is whom it's about: the dead at the grave, the friend who left; tagged [partner], [kin],
+    [animal] or [young] by who they were to the speaker.
+  -->
+
+  <!-- At the grave of someone they're grieving. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_HabitGrave</defName>
+    <lines>
+      <plain>
+        <li>I miss you, {OTHER_nameDef}.</li>
+        <li>I just wanted to sit here a while.</li>
+        <li>It's too quiet without you.</li>
+        <li>I should have brought flowers, I'll bring some next time.</li>
+        <li>[partner] I still sleep on my side of the bed.</li>
+        <li>[kin] We're managing, mostly, I wanted you to know.</li>
+        <li>[animal] You were a good one, {OTHER_nameDef}.</li>
+        <li>[young] You should have had so many more years.</li>
+        <li>[winter] The snow's covered you over, so I swept it off.</li>
+      </plain>
+      <warm>
+        <li>I tell everyone about you, you know.</li>
+      </warm>
+      <blunt>
+        <li>Still not fair.</li>
+      </blunt>
+      <cheerful>
+        <li>I told them that story about you again, and they all laughed.</li>
+      </cheerful>
+      <gloomy>
+        <li>I keep thinking it should have been me.</li>
+      </gloomy>
+      <cold>
+        <li>I come here because it's quiet.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Homesick, alone just outside the colony, looking out. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_HabitLookOut</defName>
+    <lines>
+      <plain>
+        <li>Home is that way, somewhere.</li>
+        <li>I wonder if anyone back home still thinks about me.</li>
+        <li>The hills back home were greener than these.</li>
+        <li>[night] Same stars as at home, at least.</li>
+        <li>[lowtech] My village will be bringing the herds down about now.</li>
+        <li>[!lowtech] I'd give a lot to hear the old street noise one more time.</li>
+      </plain>
+      <warm>
+        <li>It's all right, I just need a minute.</li>
+      </warm>
+      <blunt>
+        <li>Leave me be for a bit.</li>
+      </blunt>
+      <cheerful>
+        <li>One day I'll go back and visit, just to see it.</li>
+      </cheerful>
+      <gloomy>
+        <li>There's no going back now.</li>
+      </gloomy>
+      <cold>
+        <li>Different sky, same work.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- By the colony's fire, with the others who fought, after a hard fight. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_HabitFire</defName>
+    <lines>
+      <plain>
+        <li>We're still here.</li>
+        <li>I can't stop my hands shaking.</li>
+        <li>Pass that cup this way.</li>
+        <li>That was too close, all of it.</li>
+        <li>Who's hurt worst?</li>
+        <li>[lowtech] We'll want more arrows fletched before the next one.</li>
+        <li>[!lowtech] I'm cleaning my gun before I sleep tonight.</li>
+        <li>[night] I don't think I'll sleep tonight anyway.</li>
+      </plain>
+      <warm>
+        <li>You were all brave today.</li>
+      </warm>
+      <blunt>
+        <li>We won, that's what counts.</li>
+      </blunt>
+      <cheerful>
+        <li>Did you see them run?</li>
+      </cheerful>
+      <gloomy>
+        <li>They'll be back, and more of them.</li>
+      </gloomy>
+      <cold>
+        <li>The east side needs a better wall.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Talking with someone about a friend who left the colony. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_HabitRemember</defName>
+    <lines>
+      <plain>
+        <li>I wonder where {OTHER_nameDef} is tonight.</li>
+        <li>{OTHER_nameDef} would have known what to say.</li>
+        <li>Remember how {OTHER_nameDef} used to whistle at work?</li>
+        <li>I hope {OTHER_nameDef} found somewhere good.</li>
+        <li>I keep expecting to see {OTHER_nameDef} at supper.</li>
+      </plain>
+      <warm>
+        <li>I miss {OTHER_nameDef}, don't you?</li>
+      </warm>
+      <blunt>
+        <li>{OTHER_nameDef} left, and that's that.</li>
+      </blunt>
+      <cheerful>
+        <li>{OTHER_nameDef} will turn up again one day, you'll see!</li>
+      </cheerful>
+      <gloomy>
+        <li>Everyone leaves, sooner or later.</li>
+      </gloomy>
+      <cold>
+        <li>{OTHER_nameDef} made a choice, and so did we.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== More for the gatherings (PlayOut/, Immersion/GatheringTouches.cs) ===================== -->
+
+  <!-- At a feast: those eating are heard most, so [eating] lines are about the food in front of them. -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Immersion_PlayFeast</defName>
+    <pool>Council_Pool_PlayFeast</pool>
+    <lines>
+      <plain>
+        <li>[eating] This is the best thing I've eaten all season.</li>
+        <li>[eating] Whoever made this, thank you.</li>
+        <li>[eating] Pass the bread down, would you?</li>
+        <li>[eating] I'm saving the best bit for last.</li>
+        <li>[eating] Slow down, there's plenty for everyone.</li>
+        <li>[eating,lowtech] Still warm from the fire, this.</li>
+        <li>[eating,child] I ate all of mine, can I have more?</li>
+        <li>[eating,winter] Hot food on a cold night, there's nothing better.</li>
+        <li>Remember last year's feast?</li>
+        <li>Same table, all of us, for once.</li>
+      </plain>
+      <warm>
+        <li>[eating] Have some of mine, go on.</li>
+      </warm>
+      <blunt>
+        <li>[eating] Needs salt.</li>
+      </blunt>
+      <cheerful>
+        <li>[eating] I'm going to need a nap after this!</li>
+      </cheerful>
+      <gloomy>
+        <li>[eating] Eat it while it's hot, it won't last.</li>
+      </gloomy>
+      <cold>
+        <li>[eating] Well seasoned, and enough of it.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- At a toast, the moment the cups go up together ([raise]). -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Immersion_PlayToast</defName>
+    <pool>Council_Pool_PlayToast</pool>
+    <lines>
+      <plain>
+        <li>[raise] Cups up.</li>
+        <li>[raise] To the colony.</li>
+        <li>[raise] To the ones we've lost.</li>
+        <li>[raise] To good days, and more of them.</li>
+        <li>[raise] To whoever cooked.</li>
+        <li>[raise,lowtech] Raise your horns, all of you.</li>
+      </plain>
+      <warm>
+        <li>[raise] To friends, every one of you.</li>
+      </warm>
+      <blunt>
+        <li>[raise] Drink.</li>
+      </blunt>
+      <cheerful>
+        <li>[raise] To us, the best colony on the rim!</li>
+      </cheerful>
+      <gloomy>
+        <li>[raise] To getting through another season.</li>
+      </gloomy>
+      <cold>
+        <li>[raise] To the work ahead.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- Round the fire at a bonfire: smoke, sparks and stories. -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Immersion_PlayFire</defName>
+    <pool>Council_Pool_PlayFire</pool>
+    <lines>
+      <plain>
+        <li>Somebody tell a story.</li>
+        <li>The smoke always finds me, wherever I sit.</li>
+        <li>[night] The sparks are climbing higher than the roof.</li>
+        <li>[child] I can see shapes in the flames.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- At a remembrance by a grave; after dark a low glow shows there. -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Immersion_PlayRemembrance</defName>
+    <pool>Council_Pool_PlayRemembrance</pool>
+    <lines>
+      <plain>
+        <li>Stay a while longer, it's early yet.</li>
+        <li>[night] It's dark, but I don't want to go in yet.</li>
+        <li>[winter] Someone brush the snow off the stone.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+</Defs>

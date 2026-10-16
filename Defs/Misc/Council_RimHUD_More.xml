@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More RimHUD widgets (see Council_RimHUD.xml for how they load): Rimfolk's ailments, the recovery after an illness
+    (a line and a bar), the personal story under way, and a doctor's or midwife's standing. Classes in
+    Source/ColonyCouncil/Integrations/RimHudMore.cs. They load only with RimHUD (MayRequire).
+  -->
+
+  <RimHUD.CustomValueDef MayRequire="jaxe.rimhud">
+    <defName>Council_Hud_Ailments</defName>
+    <label>Rimfolk: ailments</label>
+    <textStyle>Small</textStyle>
+    <defClass>ColonyCouncil.RimHud_Ailments</defClass>
+    <apiVersion>1</apiVersion>
+  </RimHUD.CustomValueDef>
+
+  <RimHUD.CustomValueDef MayRequire="jaxe.rimhud">
+    <defName>Council_Hud_Recovery</defName>
+    <label>Rimfolk: recovery</label>
+    <textStyle>Small</textStyle>
+    <defClass>ColonyCouncil.RimHud_Recovery</defClass>
+    <apiVersion>1</apiVersion>
+  </RimHUD.CustomValueDef>
+
+  <RimHUD.CustomValueDef MayRequire="jaxe.rimhud">
+    <defName>Council_Hud_Story</defName>
+    <label>Rimfolk: personal story</label>
+    <textStyle>Small</textStyle>
+    <defClass>ColonyCouncil.RimHud_Story</defClass>
+    <apiVersion>1</apiVersion>
+  </RimHUD.CustomValueDef>
+
+  <RimHUD.CustomValueDef MayRequire="jaxe.rimhud">
+    <defName>Council_Hud_Healer</defName>
+    <label>Rimfolk: doctor and midwife</label>
+    <textStyle>Small</textStyle>
+    <defClass>ColonyCouncil.RimHud_Healer</defClass>
+    <apiVersion>1</apiVersion>
+  </RimHUD.CustomValueDef>
+
+  <!-- Recovery as a bar: it fills as they get their strength back, marked where they stop being weak. Hidden while they aren't convalescing. -->
+  <RimHUD.CustomBarDef MayRequire="jaxe.rimhud">
+    <defName>Council_Hud_RecoveryBar</defName>
+    <label>Rimfolk: recovery (bar)</label>
+    <colorStyle>LowToMain</colorStyle>
+    <defClass>ColonyCouncil.RimHud_RecoveryBar</defClass>
+    <apiVersion>1</apiVersion>
+  </RimHUD.CustomBarDef>
+
+</Defs>

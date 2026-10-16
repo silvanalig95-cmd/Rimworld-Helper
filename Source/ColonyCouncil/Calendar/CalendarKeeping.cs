@@ -30,7 +30,13 @@ namespace ColonyCouncil
     /// </summary>
     public partial class CalendarTracker
     {
-        private static readonly string[] FeastWords = { "feast", "party", "celebrat", "festival", "dance", "drum", "skylantern", "banquet", "bonfire", "concert" };
+        // The game's own rites and other mods' that can be held any day: Alpha Memes' tea ceremony, coffee roasting and
+        // banquet, Vanilla Ideology Expanded - Memes' bonfire, trading fair, wicker man and star-gazing.
+        private static readonly string[] FeastWords =
+        {
+            "feast", "party", "celebrat", "festival", "dance", "drum", "skylantern", "banquet", "bonfire", "concert", "teaceremony", "coffeeroasting",
+            "tradingfair", "wickerman", "divinethestars"
+        };
 
         public static int YearsOf(CalendarDay d, int occurrence) => Mathf.Max(d.byPlayer ? 0 : 1, occurrence - d.sinceYear);
 

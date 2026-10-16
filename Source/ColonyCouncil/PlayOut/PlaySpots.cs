@@ -387,13 +387,14 @@ namespace ColonyCouncil
 
         // ---------------- Meals ----------------
 
-        /// <summary>A cooked meal a colonist would sit down to: simple or better, never paste, kibble, drugs or baby food.</summary>
+        /// <summary>A cooked meal a colonist would sit down to: simple or better, never paste, kibble, drugs, baby food or a spoiled grill.</summary>
         public static bool IsFeastMeal(Thing t)
         {
             var ing = t?.def?.ingestible;
             if (ing == null || !t.def.IsNutritionGivingIngestible || t.def.IsDrug || t.def.IsCorpse || !ing.HumanEdible) return false;
             if (ing.preferability < FoodPreferability.MealSimple) return false;
-            return t.def.defName != "BabyFood";
+            // Vanilla Cooking Expanded's grills spoiled by the cold keep their grade on paper, but nobody serves them at a feast.
+            return t.def.defName != "BabyFood" && !Cuisine.IsSpoiledMeal(t.def);
         }
 
         /// <summary>The colony's cooked meals: in storage or lying about at home, not forbidden.</summary>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Memories from the encounters of the land's shape and the sky (Defs/EncounterDefs/Council_Encounters_Mods_Landforms.xml):
+    Geological Landforms' canyons, valleys, islands, caves, cliffs, oases and craters, and Seasonal Weather's double
+    rainbow, wind and dust. Small and brief, like the rest of the encounters: a good moment rather than a mood.
+  -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncL_CanyonEcho</defName>
+    <durationDays>1</durationDays>
+    <stages><li><label>an echo in the canyon</label><description>I called across the canyon and the rock called back three times. An animal on the far ledge looked up at every one.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.05</joy><felt>2</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncL_ValleyMorning</defName>
+    <durationDays>1</durationDays>
+    <stages><li><label>mist in the valley</label><description>The valley was full of mist this morning, white to the brim, and an animal came up out of it as if out of a lake.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><feelings><li>Awe</li></feelings><felt>2</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncL_KnowTheWays</defName>
+    <durationDays>1.5</durationDays>
+    <stages><li><label>learned the ways in and out</label><description>A traveler showed me the ways in and out of this place, and where a lookout would see them all.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><feelings><li>Curiosity</li></feelings><felt>2</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncL_SeaAllRound</defName>
+    <durationDays>1</durationDays>
+    <stages><li><label>the sea all round</label><description>Water on every side of the island and nothing else. An animal grazed at my feet as if that were ordinary.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.06</joy><joyKind>Meditative</joyKind><felt>2</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncL_CaveBreath</defName>
+    <durationDays>1</durationDays>
+    <stages><li><label>the cave's cold breath</label><description>The cave breathes out cold air at dusk. I stood in it to cool off and something came out of the dark past me.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><comfort>0.08</comfort><felt>1</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncL_CliffLight</defName>
+    <durationDays>1</durationDays>
+    <stages><li><label>the cliffs in the evening light</label><description>The cliff face went gold in the late sun, and the animal at the foot of it too.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><feelings><li>Awe</li></feelings><felt>2</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncL_OasisShade</defName>
+    <durationDays>1</durationDays>
+    <stages><li><label>shade by the water</label><description>Everything for a day's walk around comes to the oasis to drink. I sat in the shade and watched them come.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><comfort>0.1</comfort><felt>2</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncL_CraterStory</defName>
+    <durationDays>1.5</durationDays>
+    <stages><li><label>a story about the crater</label><description>A traveler told me what made the great bowl of land we live in. I look at the rim differently now.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><feelings><li>Curiosity</li></feelings><felt>2</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncW_TwoRainbows</defName>
+    <durationDays>1</durationDays>
+    <stages><li><label>saw a double rainbow</label><description>Two rainbows together, one inside the other. I stopped what I was doing to look, and so did an animal in the field.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><feelings><li>Awe</li><li>Joy</li></feelings><inspiration>0.02</inspiration><felt>3</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncW_InTheWind</defName>
+    <durationDays>1</durationDays>
+    <stages><li><label>a day of wind</label><description>The wind blew all day and flattened the grass in long waves. An animal leaned into it across the field, looking offended.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.05</joy><felt>1</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncW_WaitedOutDust</defName>
+    <durationDays>1</durationDays>
+    <stages><li><label>waited out the dust</label><description>The dust came over and I sheltered in the lee of the wall. An animal had the same idea, and we waited it out together.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>1</felt></li></modExtensions>
+  </ThoughtDef>
+
+</Defs>

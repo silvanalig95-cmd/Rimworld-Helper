@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Journal entries after the encounters of the land's shape and the sky
+    (Defs/EncounterDefs/Council_Encounters_Mods_Landforms.xml). {PAWN_...} is the writer. Shared by encounters with
+    animals and with travelers, so the lines are about the place and the day rather than whoever was met.
+  -->
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_EncL_Shape</defName>
+    <lines>
+      <plain>
+        <li>The land around here is a strange shape. I keep finding new corners of it, and something is usually living in each one.</li>
+        <li>Walked out past the last field today to see how the land lies. Steeper than I thought, and older.</li>
+        <li>Rock on every side here. It makes the place feel safe one day and shut in the next.</li>
+        <li>[morning] Got up early to see the light come into the low places. Worth the cold feet.</li>
+        <li>[evening] Watched the shadows climb the rock until the whole place went blue.</li>
+        <li>[rain] Every gully runs with water after rain. You can hear every one of them from the doorstep.</li>
+      </plain>
+      <warm>
+        <li>I'm getting fond of this place, odd shape and all.</li>
+      </warm>
+      <blunt>
+        <li>Walked the land. Learned the ways in and out. Good to know.</li>
+      </blunt>
+      <cheerful>
+        <li>Found a new place to sit and look at things. This colony is full of them.</li>
+      </cheerful>
+      <gloomy>
+        <li>All this rock around us. Some days it feels like the bottom of a bowl someone could tip.</li>
+      </gloomy>
+      <cold>
+        <li>Mapped the approaches in my head today. Few ways in, fewer ways out.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_EncL_Water</defName>
+    <lines>
+      <plain>
+        <li>Water is what everything here comes back to, people and animals alike. I sat by it for a while today and watched them come.</li>
+        <li>Went down to the water in the evening. Something had been there before me and left tracks all along the edge.</li>
+        <li>[hot] The water is the only cool thing for miles. Everyone who can find it does.</li>
+        <li>[storm] The water was wild today. Stayed well back from it and watched.</li>
+        <li>[night] You hear the water more at night. I fell asleep listening to it.</li>
+      </plain>
+      <warm>
+        <li>There's enough water here for everything that needs it. That feels like a kind of luck.</li>
+      </warm>
+      <blunt>
+        <li>Water. Shade. Animals drinking. Good day.</li>
+      </blunt>
+      <cheerful>
+        <li>Paddled my feet in the water at the end of the day! Highly recommended.</li>
+      </cheerful>
+      <gloomy>
+        <li>All that water around us and it still doesn't feel like enough some days.</li>
+      </gloomy>
+      <cold>
+        <li>Noted where the animals drink and when. It may be useful one day.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_EncW_Sky</defName>
+    <lines>
+      <plain>
+        <li>Strange weather today. I spent more of it looking at the sky than I should have.</li>
+        <li>The weather here doesn't do anything by halves. I've learned to keep an eye on it.</li>
+        <li>[rain] After the rain the light came in sideways and everything shone.</li>
+        <li>Wind all day. My ears are still ringing with it.</li>
+        <li>Dust got into the flour, the bedding and the water barrel. The sky is clear again, and everything is gritty.</li>
+      </plain>
+      <warm>
+        <li>Stood out with the others to watch the sky, all of us with our heads tipped back like children.</li>
+      </warm>
+      <blunt>
+        <li>Odd weather. Got the work done anyway.</li>
+      </blunt>
+      <cheerful>
+        <li>The sky put on a show today and I had the best seat in the colony.</li>
+      </cheerful>
+      <gloomy>
+        <li>Weather like this always feels like it's about to turn into something worse.</li>
+      </gloomy>
+      <cold>
+        <li>Unusual conditions today. I wrote down when they started and when they stopped.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>
