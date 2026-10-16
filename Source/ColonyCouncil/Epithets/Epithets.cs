@@ -24,22 +24,93 @@ namespace ColonyCouncil
         /// name, and can't earn it again.
         /// </summary>
         public List<RecordDef> requireNone;
+        /// <summary>
+        /// Only for someone with a place in the colony's years: "founder" (here since its first days), "lastFounder" (the
+        /// only founder still here, of two or more), "firstborn" (the first child born here, now grown).
+        /// </summary>
+        public string only;
+        /// <summary>A line for their death letter while they hold the name ({PAWN_...}): what the colony loses with them.</summary>
+        [MustTranslate] public string deathNote;
 
         /// <summary>Whether this colonist can hold the name at all (the record conditions aside from the count).</summary>
         public bool Allows(Pawn p)
         {
+            if (!only.NullOrEmpty() && !(CouncilGameComponent.Instance?.epithets?.Fits(only, p) ?? false)) return false;
             if (requireNone.NullOrEmpty()) return true;
             foreach (var r in requireNone)
                 if (r != null && p.records.GetValue(r) > 0f) return false;
             return true;
+        }
+
+        public override IEnumerable<string> ConfigErrors()
+        {
+            foreach (var e in base.ConfigErrors()) yield return e;
+            if (!only.NullOrEmpty() && !EpithetTracker.Conditions.Contains(only)) yield return "unknown condition " + only;
         }
     }
 
     public class EpithetTracker : IExposable
     {
         private Dictionary<string, Pawn> holders = new Dictionary<string, Pawn>();
+        /// <summary>Everyone who was here in the colony's first days (ThingIDs), the living and the gone.</summary>
+        private List<string> founders = new List<string>();
+        /// <summary>The first child born into the colony (ThingID), once one has been.</summary>
+        private string firstbornId;
 
-        public Pawn HolderOf(EpithetDef def) => holders.TryGetValue(def.defName, out var p) ? p : null;
+        /// <summary>The conditions a name can ask for (<see cref="EpithetDef.only"/>).</summary>
+        public static readonly HashSet<string> Conditions = new HashSet<string> { "founder", "lastFounder", "firstborn" };
+
+        public bool IsFounder(Pawn p) => p != null && founders.Contains(p.ThingID);
+
+        /// <summary>Whether someone has the place in the colony's years a name asks for.</summary>
+        public bool Fits(string only, Pawn p)
+        {
+            if (p == null) return false;
+            switch (only)
+            {
+                case "founder": return IsFounder(p);
+                case "lastFounder":
+                {
+                    if (!IsFounder(p)) return false;
+                    int here = PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_FreeColonists.Count(IsFounder);
+                    return ColonyTraitMath.LastOfTheFirst(founders.Count, here, GenDate.DaysPassed / (float)GenDate.DaysPerYear);
+                }
+                case "firstborn": return firstbornId != null && p.ThingID == firstbornId && !p.DevelopmentalStage.Juvenile();
+                default: return false;
+            }
+        }
+
+        /// <summary>
+        /// Writes down the colony's founders (those who joined in its first days, by their time as colonists, so an older
+        /// save finds its own) and the first child born here (the calendar's first child, or the eldest born here).
+        /// </summary>
+        public void NoteFounders(List<Pawn> colonists)
+        {
+            int now = Find.TickManager.TicksGame;
+            foreach (var p in colonists)
+            {
+                if (p?.records == null || founders.Contains(p.ThingID)) continue;
+                int here = (int)p.records.GetValue(RecordDefOf.TimeAsColonistOrColonyAnimal);
+                if (here > 0 && ColonyTraitMath.Founder(now - here, GenDate.TicksPerDay)) founders.Add(p.ThingID);
+            }
+            if (firstbornId != null || !ModsConfig.BiotechActive) return;
+            string fromCalendar = CalendarTracker.Instance?.Get("firstchild")?.pawnId;
+            if (!fromCalendar.NullOrEmpty())
+            {
+                firstbornId = fromCalendar;
+                return;
+            }
+            var born = colonists.Where(p => p.ageTracker != null && p.records != null
+                                            && p.records.GetValue(RecordDefOf.TimeAsColonistOrColonyAnimal) >= p.ageTracker.AgeBiologicalTicks - GenDate.TicksPerDay * 2)
+                .OrderByDescending(p => p.ageTracker.AgeBiologicalTicks).FirstOrDefault();
+            if (born != null) firstbornId = born.ThingID;
+        }
+
+        public Pawn HolderOf(EpithetDef def) => def != null && holders.TryGetValue(def.defName, out var p) ? p : null;
+
+        /// <summary>Who holds the name of this defName (alive and here), or null.</summary>
+        public Pawn HolderOf(string defName) =>
+            defName != null && holders.TryGetValue(defName, out var p) && p != null && !p.Dead && p.IsColonist ? p : null;
 
         public IEnumerable<EpithetDef> Of(Pawn p) => DefDatabase<EpithetDef>.AllDefsListForReading.Where(d => HolderOf(d) == p);
 
@@ -53,6 +124,15 @@ namespace ColonyCouncil
                 holders.Remove(k);
             if (!ColonyCouncilMod.Settings.epithets) return;
             var pawns = PawnsFinder.AllMaps_FreeColonists.Where(p => p.records != null && !p.IsQuestLodger()).ToList();
+            // A day more in the seats and roles the names count, and who founded the colony.
+            try
+            {
+                NameRecords.Daily(this, pawns);
+            }
+            catch (System.Exception e)
+            {
+                CouncilLog.ErrorOnce("names: records", e);
+            }
             bool quiet = !initialized;
             initialized = true;
             int awarded = 0;
@@ -131,8 +211,11 @@ namespace ColonyCouncil
         {
             Scribe_Collections.Look(ref holders, "holders", LookMode.Value, LookMode.Reference, ref keys, ref values);
             Scribe_Values.Look(ref initialized, "initialized");
+            Scribe_Collections.Look(ref founders, "founders", LookMode.Value);
+            Scribe_Values.Look(ref firstbornId, "firstbornId");
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
+                if (founders == null) founders = new List<string>();
                 if (holders == null) holders = new Dictionary<string, Pawn>();
                 foreach (var k in holders.Where(kv => kv.Value == null || DefDatabase<EpithetDef>.GetNamedSilentFail(kv.Key) == null).Select(kv => kv.Key).ToList())
                     holders.Remove(k);

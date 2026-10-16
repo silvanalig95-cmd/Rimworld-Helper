@@ -230,10 +230,12 @@ namespace ColonyCouncil
             var character = Comp?.character;
             if (character == null) return nature;
             int tier = character.Tier(w);
-            if (tier == 0) return nature;
+            // What the colony has grown into leans its old hands too: good hosts mind a door shut on strangers.
+            float grown = character.traits?.Lean(w) ?? 0f;
+            if (tier == 0 && grown == 0f) return nature;
             float years = (p.records?.GetValue(RecordDefOf.TimeAsColonistOrColonyAnimal) ?? 0f) / GenDate.TicksPerYear;
             if (years < 1f) return nature;
-            return Mathf.Clamp(nature + OldHandsLean * tier, -1.5f, 1.5f);
+            return Mathf.Clamp(nature + OldHandsLean * tier + grown, -1.5f, 1.5f);
         }
 
         /// <summary>How much of the colony's name an old hand takes on, per tier (known 1, renowned 2).</summary>

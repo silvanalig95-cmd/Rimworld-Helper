@@ -383,6 +383,10 @@
           <li>[make] {X_nameDef} of {FACTION} has brought a broken piece of work and a lot of questions for {A_nameDef}, the one people call {TALE}. The carpenters at home can't tell {X_nameDef} where the joint went wrong.</li>
           <li>[talk] A family of {FACTION} has been in a dispute with their landlord for a year. {X_nameDef} has come to ask {A_nameDef}, known as {TALE}, to help them make their case.</li>
           <li>[defend] {X_nameDef} speaks for a village of {FACTION} that has been raided twice this year. {X_nameDef} has heard of {A_nameDef}, the one people call {TALE}, and has come to ask how a small place holds out.</li>
+          <li>[bless] {X_nameDef} of {FACTION} is to be married at the next new moon, and the couple's own priest died in the winter. {X_nameDef} has heard of {A_nameDef}, the one people call {TALE}, and has come to ask {A_objective} for the words and a blessing to carry home.</li>
+          <li>[bless] A child was born in {X_nameDef}'s house among {FACTION}, small and early, and the family want the old words said over it properly. They have heard of {A_nameDef}, called {TALE}, and {X_nameDef} has come the whole way on foot to ask.</li>
+          <li>[counsel] {X_nameDef} of {FACTION} has lost {X_possessive} faith, or thinks so, and can't talk about it at home. On the road {X_nameDef} heard of the colony's {A_nameDef}, the one they call {TALE}, and has come to sit with {A_objective} for a day.</li>
+          <li>[counsel] {FACTION} have quarrelled over what their faith allows, and the quarrel has split a family. {X_nameDef} has come to ask {A_nameDef}, known on the roads as {TALE}, what {A_pronoun} would tell them.</li>
         </texts>
         <defaultOption>0</defaultOption>
         <options>
@@ -540,6 +544,8 @@
           <li>[lost] Colonists who have died since: {ITEM}.</li>
           <li>[known] On the roads, the colony is known as {ITEM}.</li>
           <li>[customs] Customs kept here: {ITEM}.</li>
+          <li>[lastfounder] Of those who were here on the first day, only {ITEM} is left, and lights the fire.</li>
+          <li>[firstborn] The colony's first child, {ITEM}, is grown and sits with the adults tonight.</li>
         </extra>
       </li>
     </modExtensions>

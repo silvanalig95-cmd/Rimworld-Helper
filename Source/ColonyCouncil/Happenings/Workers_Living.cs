@@ -806,7 +806,10 @@ namespace ColonyCouncil
             ("Council_Epithet_Tamer", "Animals", "beasts"), ("Council_Epithet_Hunter", "Animals", "hunt"),
             ("Council_Epithet_Scholar", "Intellectual", "study"), ("Council_Epithet_Maker", "Crafting", "make"),
             ("Council_Epithet_SilverTongue", "Social", "talk"), ("Council_Epithet_Defender", "Shooting", "defend"),
-            ("Council_Epithet_Deadeye", "Shooting", "defend")
+            ("Council_Epithet_Deadeye", "Shooting", "defend"),
+            // Names that come with years in a seat or in the faith (Rimfolk_Epithets_Years.xml).
+            ("Council_Epithet_OldDoc", "Medicine", "heal"), ("Council_Epithet_OldIron", "Shooting", "defend"),
+            ("Council_Epithet_Celebrant", "Social", "bless"), ("Council_Epithet_Shepherd", "Social", "counsel")
         };
 
         private static IEnumerable<(Pawn p, int i)> Known(Map map)
@@ -958,6 +961,12 @@ namespace ColonyCouncil
             var parts = new List<string>();
             var founders = Founders(ctx.map);
             if (founders.Count > 0) parts.Add(Part(lines, ctx, "founders", TextUtil.JoinAnd(founders.Select(p => p.LabelShort).ToList())));
+            // The names that come with the colony's years: the last of its founders, and its first child, grown.
+            var names = ColonyCouncilMod.Settings.epithets ? CouncilGameComponent.Instance?.epithets : null;
+            var last = names?.HolderOf("Council_Epithet_LastOfTheFirst");
+            if (last != null && last.Spawned && last.Map == ctx.map) parts.Add(Part(lines, ctx, "lastfounder", last.LabelShort));
+            var firstborn = names?.HolderOf("Council_Epithet_Firstborn");
+            if (firstborn != null && firstborn.Spawned && firstborn.Map == ctx.map) parts.Add(Part(lines, ctx, "firstborn", firstborn.LabelShort));
             int lost = Find.StoryWatcher?.statsRecord?.colonistsKilled ?? 0;
             if (lost > 0) parts.Add(Part(lines, ctx, "lost", lost.ToString()));
             var comp = CouncilGameComponent.Instance;

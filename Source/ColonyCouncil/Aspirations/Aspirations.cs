@@ -478,6 +478,18 @@ namespace ColonyCouncil
             return null;
         }
 
+        /// <summary>
+        /// A goal they came with (a scenario's: Scenarios/ScenarioParts.cs): set now, if they have none yet, could want it
+        /// (their beliefs, whatever it needs; their age too, unless <paramref name="anyAge"/>: the carers of an orphanage
+        /// want to see their children grown long before they're old) and it can start. Returns it, or null.
+        /// </summary>
+        public Aspiration GiveFromStart(CouncilGameComponent comp, Pawn p, AspirationDef def, bool anyAge = false)
+        {
+            if (!S.aspirations || comp == null || def == null || !Eligible(p) || Active(p) != null) return null;
+            if (def.AgainstBeliefsOf(p) || (!anyAge && !OldEnough(def, p)) || !SafeCanHave(def, p)) return null;
+            return Begin(comp, p, def, null, null);
+        }
+
         /// <summary>Something happened that might give them a goal (battle, downed, loss, birth, omen).</summary>
         public void Notify_Event(Pawn p, string key)
         {

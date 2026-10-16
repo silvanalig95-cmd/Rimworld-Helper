@@ -238,6 +238,8 @@ namespace ColonyCouncil
             ["taught"] = K(DeedSide.TheirFavor, 8),
             ["amends"] = K(DeedSide.TheirFavor, 8),
             ["apologised"] = K(DeedSide.TheirFavor, 6),
+            // A grant of land the colony holds of them (a scenario's start): a debt that fades slowly, and is called in.
+            ["granted"] = K(DeedSide.TheirFavor, 25),
             // Their wrongs.
             ["raided"] = K(DeedSide.TheirWrong, 6, 1f, 20),
             ["killedOurs"] = K(DeedSide.TheirWrong, 15, 2f)
@@ -262,6 +264,8 @@ namespace ColonyCouncil
             if (k == null) return null;
             try
             {
+                // Taking people in counts toward a name for hospitality (Character/ColonyTraits.cs).
+                if (ColonyTraitMath.Hosting(kind)) ColonyTraits.Tally("welcomed");
                 return Instance.Add(f, kind, k, name, weight > 0 ? weight : k.weight, Mathf.Max(1, count));
             }
             catch (Exception e)

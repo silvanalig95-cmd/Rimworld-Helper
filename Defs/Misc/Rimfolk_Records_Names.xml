@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    What Rimfolk counts for the names that come with offices, faith and the colony's years (Source/ColonyCouncil/
+    Epithets/NameRecords.cs): they show in the game's Records tab, and names (Defs/EpithetDefs/Rimfolk_Epithets_Years.xml)
+    are built on them. Days in a seat count while the names are switched on.
+  -->
+
+  <RecordDef>
+    <defName>Council_DaysAsPhysician</defName>
+    <label>days as the colony's physician</label>
+    <description>Days this colonist held the physician's seat on the council.</description>
+    <type>Int</type>
+    <displayOrder>1620</displayOrder>
+  </RecordDef>
+
+  <RecordDef>
+    <defName>Council_DaysAsMarshal</defName>
+    <label>days as the colony's marshal</label>
+    <description>Days this colonist held the marshal's seat on the council.</description>
+    <type>Int</type>
+    <displayOrder>1621</displayOrder>
+  </RecordDef>
+
+  <RecordDef>
+    <defName>Council_SpeakerTerms</defName>
+    <label>terms won as speaker</label>
+    <description>Elections this colonist won for the speaker's chair, by the colony's vote.</description>
+    <type>Int</type>
+    <displayOrder>1622</displayOrder>
+  </RecordDef>
+
+  <RecordDef>
+    <defName>Council_VotesLost</defName>
+    <label>votes lost</label>
+    <description>Elections for a council seat this colonist stood in and lost, or was voted out of.</description>
+    <type>Int</type>
+    <displayOrder>1623</displayOrder>
+  </RecordDef>
+
+  <RecordDef>
+    <defName>Council_RitualsLed</defName>
+    <label>rituals of the faith led</label>
+    <description>Rituals of the colony's faith this colonist led to their end: feasts, speeches, funerals, celebrations.</description>
+    <type>Int</type>
+    <displayOrder>1624</displayOrder>
+  </RecordDef>
+
+  <RecordDef>
+    <defName>Council_DaysAsGuide</defName>
+    <label>days as the faith's moral guide</label>
+    <description>Days this colonist served as the moral guide of the colony's faith.</description>
+    <type>Int</type>
+    <displayOrder>1625</displayOrder>
+  </RecordDef>
+
+  <RecordDef>
+    <defName>Council_AnnalsWritten</defName>
+    <label>years of annals written</label>
+    <description>Years of the colony's annals this colonist wrote down when the year turned.</description>
+    <type>Int</type>
+    <displayOrder>1626</displayOrder>
+  </RecordDef>
+
+</Defs>

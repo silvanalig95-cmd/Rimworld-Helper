@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    What a colony grows into beyond its work (same format as Council_ColonyTraits.xml): from the guests it takes in, the
+    faith it keeps and the days it keeps every year. They are counted from Rimfolk's own records rather than the
+    colonists': tallies for the colony as a whole (perColony; Source/ColonyCouncil/Character/ColonyTraits.cs: camps that
+    stayed their time and left on good terms, people taken in as the region remembers it, Hospitality's guests by the
+    night, the faith's rituals held to their end, a chaplain in the seat and a moral guide in the faith), or a standing
+    count read each day (level: the calendar's days kept two years running and more, and its traditions).
+    No skill, so no pride mood: what they do is in play. The tag is a name encounters, camps, world events and lines
+    ask for ([colony:Hospitable]); lean is how the colony's old hands lean when an answer goes against it ("not my
+    choice"); campGap brings camps sooner after the last one. Camp kinds and world events that are drawnBy a tag come
+    twice as often to a colony known for it.
+  -->
+
+  <ColonyCouncil.ColonyTraitDef>
+    <defName>Council_Trait_Hosts</defName>
+    <label>good hosts</label>
+    <description>Travellers know the colony as a place that takes people in: camps welcomed on its land and seen off on good terms, guests fed and given a bed, the hungry and the hurt seen to.</description>
+    <order>7</order>
+    <perColony>true</perColony>
+    <tallies>
+      <li><key>campHosted</key><weight>1</weight></li>
+      <li><key>welcomed</key><weight>0.5</weight></li>
+      <li><key>guestNight</key><weight>0.02</weight></li>
+    </tallies>
+    <knownAt>0.05</knownAt>
+    <tag>Hospitable</tag>
+    <lean><openness>0.3</openness><generosity>0.15</generosity></lean>
+    <campGap>0.67</campGap>
+    <earned>Camps have come and gone on the colony's land and left on good terms, guests have been fed and seen safely on their way, and the road has noticed. Travellers have started to call the colony good hosts, and to plan their journeys around it.\n\nCamps will come a little sooner after one another now, and those who have lived here a while will mind a door shut on strangers.</earned>
+    <lost>The road has gone quiet, and travellers no longer speak of the colony as a place to stop.</lost>
+  </ColonyCouncil.ColonyTraitDef>
+
+  <ColonyCouncil.ColonyTraitDef>
+    <defName>Council_Trait_Devout</defName>
+    <label>devout</label>
+    <description>The colony keeps its faith in the open: its rituals are held and finished, someone sits in the chaplain's seat or guides the faithful, and the old words are said when they should be.</description>
+    <order>8</order>
+    <requires>Ideology</requires>
+    <perColony>true</perColony>
+    <tallies>
+      <li><key>ritual</key><weight>1</weight></li>
+      <li><key>chaplainDay</key><weight>0.03</weight></li>
+      <li><key>guideDay</key><weight>0.03</weight></li>
+    </tallies>
+    <knownAt>0.12</knownAt>
+    <tag>Devout</tag>
+    <lean><tradition>0.3</tradition><mercy>0.1</mercy></lean>
+    <earned>The colony's rituals have been kept one after another, seen through to the last word, and the faith has someone to speak for it. Word has spread that this is a devout place.\n\nPilgrims and processions will seek it out, and those who have lived here a while will mind an answer that sets the old ways aside.</earned>
+    <lost>The rituals have lapsed, and people no longer speak of the colony as devout.</lost>
+  </ColonyCouncil.ColonyTraitDef>
+
+  <ColonyCouncil.ColonyTraitDef>
+    <defName>Council_Trait_LongMemoried</defName>
+    <label>long-memoried</label>
+    <description>The colony keeps its days: the founding, its dead, its battles and its feasts come round every year, and every year they are kept.</description>
+    <order>9</order>
+    <level>calendar</level>
+    <knownAt>3</knownAt>
+    <tag>LongMemoried</tag>
+    <lean><tradition>0.3</tradition></lean>
+    <earned>Year after year the colony has kept its days: the fire lit on the founding day, the names read out for the dead, the feast after the harvest. The neighbours have started to call it long-memoried, half in respect and half as a warning.\n\nPlayers and mourners will come its way more often, and those who have lived here a while will mind an answer that lets the old ways go.</earned>
+    <lost>Too many of the colony's days have been let pass, and people no longer say it remembers.</lost>
+  </ColonyCouncil.ColonyTraitDef>
+
+</Defs>

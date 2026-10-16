@@ -995,6 +995,8 @@ namespace ColonyCouncil
             {
                 CouncilLog.ErrorOnce("camp memory", e);
             }
+            // A camp that came, stayed its time and left on good terms counts toward a name for hospitality (Character/).
+            if (ColonyTraitMath.HostedWell(ending, arrivedTick >= 0)) ColonyTraits.Tally("campHosted", helps + gifts > 0 ? 1.5f : 1f);
             CampTracker.Instance?.Ended(this);
         }
 
