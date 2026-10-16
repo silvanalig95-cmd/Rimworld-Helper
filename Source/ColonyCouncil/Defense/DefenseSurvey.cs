@@ -395,7 +395,8 @@ namespace ColonyCouncil
                         var outside = c + step;
                         if (!outside.InBounds(map)) continue;
                         int oi = g.Index(outside.x, outside.z);
-                        if (!g.Passable(oi) || r.dist[oi] < 0 || g.home[oi]) continue;
+                        // Raiders' side: walkable, with a way in, and not where people live (the inside of the walls, or home).
+                        if (!g.Passable(oi) || r.dist[oi] <= 0) continue;
                         // Faces raiders' ground: is there something solid behind it?
                         s.outerWalls++;
                         var behind = c - step;

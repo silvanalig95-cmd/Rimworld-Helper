@@ -25,6 +25,10 @@ namespace ColonyCouncil
         public List<Thing> deconstruct = new List<Thing>();
         public HashSet<IntVec3> deconstructCells = new HashSet<IntVec3>();
         public List<Plant> cut = new List<Plant>();
+        /// <summary>Cells the plan keeps open that have something built on them (a kill zone with a shed in it).</summary>
+        public List<IntVec3> clearBlocked = new List<IntVec3>();
+        /// <summary>Pieces left out because they'd stand in rock the plan doesn't dig (where a gap ends against the hill).</summary>
+        public HashSet<PlannedThing> inRock = new HashSet<PlannedThing>();
         public int chunks;
         public List<string> warnings = new List<string>();
         public bool edgeBlocked;
@@ -119,7 +123,11 @@ namespace ColonyCouncil
             bool mirror = cfg.mirror;
             var plan = new DefensePlan { template = t, rotation = rot, mirror = mirror, anchor = anchor };
             var g = t.Grid;
-            bool cutPlants = S.planCutPlants, mineRock = S.planMineRock, replace = S.planReplaceOwn;
+            bool cutPlants = S.planCutPlants, replace = S.planReplaceOwn;
+            // A plan that closes a natural gap never digs: widening the gap would undo it. Rock where a piece would go is
+            // simply where the gap ends. Other plans dig their positions out of the rock when the player allows it.
+            bool closes = t.kind == "gate" || t.kind == "wall" || t.kind == "palisade";
+            bool mineRock = S.planMineRock && !closes;
             var taken = new HashSet<IntVec3>();
 
             foreach (var piece in resolved)
@@ -157,6 +165,16 @@ namespace ColonyCouncil
                     var c = ToWorld(t, anchor, x, z, mirror, rot);
                     if (!c.InBounds(map) || c.Fogged(map)) continue;
                     (ch == DefenseLayout.Firing ? plan.firing : plan.clear).Add(c);
+                    // Open ground must be open: rock is dug out (raiders and defenders have to get through), anything
+                    // else built there is the player's to move.
+                    var ed = c.GetEdifice(map);
+                    if (ed == null || ed.def.passability != Traversability.Impassable || ed.def.IsDoor) continue;
+                    if (ed.def.mineable && mineRock)
+                    {
+                        if (plan.mineSet.Add(c)) plan.mine.Add(c);
+                    }
+                    // The rock beside a gap is the gap's own side, not something in the way.
+                    else if (!(ed.def.mineable && closes)) plan.clearBlocked.Add(c);
                 }
             }
 
@@ -223,7 +241,8 @@ namespace ColonyCouncil
                 {
                     if (!mineRock)
                     {
-                        reason = "CC_Plan_Block_Rock".Translate();
+                        reason = "CC_Def_InRock".Translate();
+                        plan.inRock.Add(pt);
                         return PieceState.Blocked;
                     }
                     if (plan.mineSet.Add(c)) plan.mine.Add(c);
@@ -324,8 +343,9 @@ namespace ColonyCouncil
             }
             int ground = plan.pieces.Count(p => p.state == PieceState.Blocked && p.ground);
             if (ground > 0) plan.warnings.Add("CC_Def_Warn_Ground".Translate(ground));
-            int blocked = plan.pieces.Count(p => p.state == PieceState.Blocked && !p.ground);
+            int blocked = plan.pieces.Count(p => p.state == PieceState.Blocked && !p.ground && !plan.inRock.Contains(p));
             if (blocked > 0) plan.warnings.Add("CC_Def_Warn_Blocked".Translate(blocked));
+            if (plan.inRock.Count > 0) plan.warnings.Add("CC_Def_Warn_InRock".Translate(plan.inRock.Count));
             if (plan.mine.Count > 0) plan.warnings.Add("CC_Plan_Warn_Mine".Translate(plan.mine.Count));
             if (plan.deconstruct.Count > 0) plan.warnings.Add("CC_Plan_Warn_Deconstruct".Translate(plan.deconstruct.Count));
             int waiting = plan.Count(PieceState.Waiting);
@@ -346,6 +366,7 @@ namespace ColonyCouncil
                 plan.warnings.Add("CC_Def_Warn_Wood".Translate(wall.stuff.label));
             if (plan.pieces.Any(p => p.group == "trap" && p.state != PieceState.Present && map.areaManager.Home[p.cell]))
                 plan.warnings.Add("CC_Def_Warn_TrapsHome".Translate());
+            if (plan.clearBlocked.Count > 0) plan.warnings.Add("CC_Def_Warn_ClearBlocked".Translate(plan.clearBlocked.Count));
             if (plan.chunks > 0) plan.warnings.Add("CC_Def_Warn_Chunks".Translate(plan.chunks));
         }
 
@@ -449,7 +470,9 @@ namespace ColonyCouncil
                         var plan = Plan(t, map, a, trial, resolved, true);
                         if (!plan.CanPlace) continue;
                         float score = plan.Count(PieceState.Ready) * 2f + plan.Count(PieceState.Present) * 2.5f - plan.Count(PieceState.Waiting) * 0.5f
-                                      - plan.pieces.Count(p => p.state == PieceState.Blocked) * 4f - plan.mine.Count * 0.6f - (Mathf.Abs(dx) + Mathf.Abs(dz)) * 0.8f;
+                                      - plan.pieces.Count(p => p.state == PieceState.Blocked && !plan.inRock.Contains(p)) * 4f - plan.inRock.Count * 0.5f
+                                      - plan.mine.Count * 0.6f - plan.clearBlocked.Count * 3f
+                                      - (Mathf.Abs(dx) + Mathf.Abs(dz)) * 0.8f;
                         // The roof over a mortar stops it firing.
                         if (t.kind == "mortar" && plan.pieces.Any(p => p.group == "mortar" && p.rect.Cells.Any(c => c.Roofed(map)))) score -= 40f;
                         if (score > best)

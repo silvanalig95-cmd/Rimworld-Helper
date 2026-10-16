@@ -204,6 +204,9 @@
   <CC_Def_Warn_MortarRoof>A mortar here would stand under a roof, and it can't fire through one.</CC_Def_Warn_MortarRoof>
   <CC_Def_Warn_Wood>The walls would be of {0}, which burns. Stone is better near the fighting.</CC_Def_Warn_Wood>
   <CC_Def_Warn_TrapsHome>Traps inside the home area: your own people walk there.</CC_Def_Warn_TrapsHome>
+  <CC_Def_InRock>The rock is there already.</CC_Def_InRock>
+  <CC_Def_Warn_InRock>{0} piece(s) would stand in the rock at the sides and are left out: a gap's own rock is the wall there.</CC_Def_Warn_InRock>
+  <CC_Def_Warn_ClearBlocked>{0} cell(s) meant to stay open have something built on them: move it, or raiders and your own people have to go round.</CC_Def_Warn_ClearBlocked>
   <CC_Def_Warn_Chunks>{0} stone chunk(s) lie in the field of fire: haul them away, or raiders shelter behind them.</CC_Def_Warn_Chunks>
   <CC_Def_MapLabel>{0} wide · {1}/10 of raids</CC_Def_MapLabel>
   <CC_Def_MapOpen>open ground: most raids</CC_Def_MapOpen>
@@ -214,6 +217,13 @@
   <CC_Def_Off_Traps>traps are switched off in this game's difficulty settings</CC_Def_Off_Traps>
   <CC_Def_Off_Turrets>turrets are switched off in this game's difficulty settings</CC_Def_Off_Turrets>
   <CC_Def_Off_Mortars>mortars are switched off in this game's difficulty settings</CC_Def_Off_Mortars>
+
+  <!-- The council project "hold the way in" (Source/ColonyCouncil/Defense/DefenseGoals.cs) -->
+  <CC_Goal_HoldWayIn>A gate across the way in to the {0}: {1}. Cover behind it: {2} of {3}.</CC_Goal_HoldWayIn>
+  <CC_Goal_WallIn>The home walled in, with one gate: {0}.</CC_Goal_WallIn>
+  <CC_Goal_HoldWayIn_Done>done</CC_Goal_HoldWayIn_Done>
+  <CC_Goal_HoldWayIn_NotYet>not yet</CC_Goal_HoldWayIn_NotYet>
+  <CC_Goal_HoldWayIn_None>The council can't find a way in on foot to hold.</CC_Goal_HoldWayIn_None>
 
   <CC_DefRole_wall>walls</CC_DefRole_wall>
   <CC_DefRole_gate>gate</CC_DefRole_gate>

@@ -13,7 +13,7 @@ namespace ColonyCouncil
     public static class CouncilKeys
     {
         /// <summary>The pages with a key of their own, by the council window's page names; each key is "Council_Key_" + the name.</summary>
-        public static readonly string[] Pages = { "Week", "Everyone", "Wishes", "Moods", "World", "Calendar", "Dilemmas", "Almanac" };
+        public static readonly string[] Pages = { "Week", "Everyone", "Wishes", "Moods", "World", "Defenses", "Calendar", "Dilemmas", "Almanac" };
 
         private static KeyBindingDef[] keys;
         private static KeyBindingDef next, previous;

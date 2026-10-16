@@ -247,6 +247,7 @@ namespace ColonyCouncil
             if (plan.clear.Count > 0) GenDraw.DrawFieldEdges(plan.clear, ClearColor);
             if (plan.firing.Count > 0) GenDraw.DrawFieldEdges(plan.firing, FiringColor);
             if (plan.mine.Count > 0) GenDraw.DrawFieldEdges(plan.mine, RockColor);
+            if (plan.clearBlocked.Count > 0) GenDraw.DrawFieldEdges(plan.clearBlocked, Designator_Place.CannotPlaceColor);
             foreach (var p in plan.pieces)
             {
                 if (!p.cell.InBounds(map)) continue;

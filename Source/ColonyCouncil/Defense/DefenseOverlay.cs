@@ -53,6 +53,9 @@ namespace ColonyCouncil
         public override void MapComponentUpdate()
         {
             if (!Showing || map != Find.CurrentMap) return;
+            // With the switch on and the page closed, the survey is kept fresh now and then (it works itself out at most
+            // once a game hour, and only when the colony's buildings have changed a lot).
+            if (Time.frameCount % 300 == 0) DefenseSurvey.For(map);
             var s = DefenseSurvey.Kept(map);
             if (s?.result == null) return;
             if (s != drawn) Prepare(s);
