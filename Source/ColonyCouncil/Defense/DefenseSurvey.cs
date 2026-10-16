@@ -372,14 +372,9 @@ namespace ColonyCouncil
             var empShell = DefDatabase<ThingDef>.GetNamedSilentFail("Shell_EMP");
             if (!s.emp && empShell != null && map.listerThings.ThingsOfDef(empShell).Count > 0) s.emp = true;
 
-            // The busiest way in: how many doors it passes (a second door behind the gate is a line to fall back to).
+            // The busiest way in, on to the beds: how many doors it passes (a second door behind the gate is a line to fall back to).
             var r = s.result;
-            if (r != null && r.shown.Count > 0)
-            {
-                var busiest = r.shown.OrderByDescending(rt => r.sideReach[rt.side]).First();
-                foreach (int i in busiest.cells)
-                    if (s.grid.kind[i] == DefenseMath.Door) s.doorsOnWay++;
-            }
+            if (r != null) s.doorsOnWay = r.doorsToCore;
             // Walls facing the outside, and how many have a second wall or rock behind them.
             if (r != null && !r.unreachable)
             {

@@ -78,7 +78,7 @@ namespace ColonyCouncil
                 GenMapUI.DrawThingLabel(cell.ToVector3Shifted().MapToUIPosition(), text, GapColor);
         }
 
-        /// <summary>Works out what to draw for a survey, once: the ways in thinned to every third cell, the gaps, the arrows, the gate lines.</summary>
+        /// <summary>Works out what to draw for a survey, once: the ways in thinned to every fourth cell, the gaps, the arrows, the gate lines.</summary>
         private void Prepare(DefenseSurvey s)
         {
             drawn = s;
@@ -92,7 +92,7 @@ namespace ColonyCouncil
             foreach (var way in r.shown)
             {
                 var pts = new List<Vector3>();
-                for (int i = 0; i < way.cells.Count; i += 3)
+                for (int i = 0; i < way.cells.Count; i += 4)
                 {
                     int c = way.cells[i];
                     pts.Add(new IntVec3(c % w, 0, c / w).ToVector3Shifted());

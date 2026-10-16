@@ -67,7 +67,7 @@ namespace ColonyCouncil
                 modelAt = Time.realtimeSinceStartup;
             }
             var m = model;
-            float top = UiKit.PageHeader(rect, Icons.CatDefense, "CC_Def_Header".Translate(), "CC_Def_Sub".Translate(), m.stat, null, 300f);
+            float top = UiKit.PageHeader(rect, Icons.Defenses ?? Icons.CatDefense, "CC_Def_Header".Translate(), "CC_Def_Sub".Translate(), m.stat, null, 300f);
             var again = new Rect(rect.xMax - 140f, rect.y + 6f, 140f, 26f);
             if (Widgets.ButtonText(again, "CC_Def_SurveyAgain".Translate()))
             {

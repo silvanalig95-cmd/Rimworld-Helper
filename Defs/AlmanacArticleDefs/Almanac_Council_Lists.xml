@@ -165,7 +165,7 @@ Some wishes belong to an era (healroot for a tribe or a medieval village, a deep
     <order>19</order>
     <summary>Every ambition the council can take on, what it asks, and when it's proposed.</summary>
     <tip>A staged project shows its later stages greyed out. They start counting when they begin.</tip>
-    <description>At each council meeting, three colonists pitch ambitions: projects the colony takes on together, each with its goals and a deadline. There are 64. Only those the colony can achieve now are ever proposed: every goal must be possible with what it can build, make and grow, its season and its people. Some are only for a small band or a crowded colony, or for one era. The advisor's warnings make the matching projects likelier.
+    <description>At each council meeting, three colonists pitch ambitions: projects the colony takes on together, each with its goals and a deadline. There are 65. Only those the colony can achieve now are ever proposed: every goal must be possible with what it can build, make and grow, its season and its people. Some are only for a small band or a crowded colony, or for one era. The advisor's warnings make the matching projects likelier.
 
 A few are done in stages, one after another: only the current stage counts, each stage reached stays reached, and a message says what comes next. A stage that counts new work (new things built, new days in a row) starts counting when it begins.
 
@@ -213,6 +213,7 @@ Some run for a whole season: so many days in a row with something kept up, where
         <table>
           <li>Project | What it asks</li>
           <li>hold the line | Defenses that match the raids you attract, and 8 new pieces of cover.</li>
+          <li>hold the way in | A gate across the way in most raids take, with 3 pieces of cover behind it; on open ground with no narrow place, the home walled in. Colony → Defenses shows where.</li>
           <li>a ring of iron, teeth in the mud | 3 turrets; 6 traps.</li>
           <li>keep the lights on | 2 batteries and 1500 Wd stored.</li>
           <li>law and order | A prison cell with a bed.</li>

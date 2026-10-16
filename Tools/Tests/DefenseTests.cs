@@ -350,6 +350,39 @@ public static class DefenseTests
             check(r2.chokes.Count > 0 && r2.chokes[0].width == 3, "breach: the open gap takes the raids, not the door");
         }
 
+        // A house with a bedroom on open ground: its door doesn't wall the colony in. Round it a perimeter wall with a gate does.
+        {
+            char House(int x, int z, bool perimeter)
+            {
+                bool houseRing = (x == 20 || x == 26) && z >= 20 && z <= 26 || (z == 20 || z == 26) && x >= 20 && x <= 26;
+                if (houseRing) return x == 23 && z == 20 ? 'D' : 'W';
+                if (x > 20 && x < 26 && z > 20 && z < 26) return 'c';
+                if (perimeter)
+                {
+                    bool ring = (x == 12 || x == 37) && z >= 12 && z <= 37 || (z == 12 || z == 37) && x >= 12 && x <= 37;
+                    if (ring) return x == 24 && z == 37 ? 'D' : 'W';
+                }
+                return x >= 10 && x <= 39 && z >= 10 && z <= 39 ? 'h' : '.';
+            }
+            var open = DefenseMath.Analyse(Map(50, 50, (x, z) => House(x, z, false)));
+            check(!open.enclosed, "house: a house on open ground isn't walled in");
+            var walled = DefenseMath.Analyse(Map(50, 50, (x, z) => House(x, z, true)));
+            check(walled.enclosed, "house: inside a perimeter wall with a gate, it is");
+            check(walled.chokes.Count > 0 && walled.chokes[0].doors == 1 && walled.chokes[0].x == 24 && walled.chokes[0].z == 37 && walled.chokes[0].facing == 0,
+                $"house: the perimeter gate is the way in, facing north ({(walled.chokes.Count > 0 ? walled.chokes[0].x + "," + walled.chokes[0].z + " facing " + walled.chokes[0].facing : "none")})");
+            check(walled.shown.All(rt => rt.cells.Any(c => c == 37 * 50 + 24)), "house: every way in passes the gate");
+            check(walled.doorsToCore == 1, $"house: one door on the way to the beds besides the bedroom's own ({walled.doorsToCore})");
+            var inner = DefenseMath.Analyse(Map(50, 50, (x, z) =>
+            {
+                bool ring2 = (x == 16 || x == 30) && z >= 16 && z <= 32 || (z == 16 || z == 32) && x >= 16 && x <= 30;
+                if (ring2) return x == 23 && z == 32 ? 'D' : 'W';
+                return House(x, z, true);
+            }));
+            check(inner.doorsToCore == 2, $"house: an inner ring makes a second line ({inner.doorsToCore})");
+            // A strip of home area outside the wall doesn't make it open.
+            check(DefenseMath.HomeDepth(Map(50, 50, (x, z) => House(x, z, true)))[11 * 50 + 25] <= 2, "house: the home strip outside the wall is shallow");
+        }
+
         // Two passes: three wide to the north, nine wide to the east. More of the edge is open to the east, so more raids pass there.
         {
             var m = Map(50, 50, (x, z) =>

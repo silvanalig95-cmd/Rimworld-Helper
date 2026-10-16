@@ -112,6 +112,11 @@ namespace ColonyCouncil
             public float angle, concentration;
             /// <summary>The walks that pass no choke point narrower than <see cref="MaxChokeWidth"/> (open country all the way).</summary>
             public float openShare;
+            /// <summary>
+            /// Doors on the easiest way from the busiest edge to where people sleep, not counting the door of the room they
+            /// sleep in: two or more mean a second line behind the gate.
+            /// </summary>
+            public int doorsToCore;
 
             public int TotalReach => sideReach[0] + sideReach[1] + sideReach[2] + sideReach[3];
         }
@@ -124,28 +129,20 @@ namespace ColonyCouncil
         {
             var r = new Result { w = m.w, h = m.h };
             int n = m.w * m.h;
-            // Walled in: where people live can't be reached from any map edge without passing a door. Then the ways in
-            // end inside the walls, so the gates themselves show as the narrow places; else they end at the home area.
-            var inner = Inner(m);
-            r.enclosed = true;
-            for (int side = 0; side < 4 && r.enclosed; side++)
-                foreach (int i in EdgeCells(m, side))
-                    if (inner[i])
-                    {
-                        r.enclosed = false;
-                        break;
-                    }
-            bool anyInner = false;
-            for (int i = 0; i < n && !anyInner; i++) anyInner = inner[i];
-            if (!anyInner) r.enclosed = false;
+            // Walled in: raiders walking in from the edge without passing a door reach neither the rooms people sleep in,
+            // nor their doors, nor the heart of the home area (the cells more than a few steps inside its edge; a strip of
+            // home area outside the walls doesn't count). Then the ways in end inside the walls, so the gates themselves
+            // show as the narrow places; else they end at the home area.
+            var outside = Outside(m);
+            r.enclosed = Enclosed(m, outside);
             var sources = new bool[n];
-            bool anyHome = false;
+            bool anySource = false;
             for (int i = 0; i < n; i++)
             {
-                sources[i] = r.enclosed ? inner[i] : m.home[i];
-                anyHome |= sources[i];
+                sources[i] = m.Passable(i) && m.home[i] && (!r.enclosed || !outside[i]) && m.kind[i] != Door;
+                anySource |= sources[i];
             }
-            if (!anyHome)
+            if (!anySource)
                 for (int i = 0; i < n; i++) sources[i] = m.core[i];
             r.dist = Distances(m, sources);
             r.flow = new int[n];
@@ -273,7 +270,44 @@ namespace ColonyCouncil
             if (r.chokes.Count > 8) r.chokes.RemoveRange(8, r.chokes.Count - 8);
 
             if (!r.enclosed) Openings(m, entries, r);
+            r.doorsToCore = DoorsToCore(m, r);
             return r;
+        }
+
+        /// <summary>
+        /// Doors passed on the way from the busiest side's edge to the rooms people sleep in, leaving out a door into one of
+        /// those rooms. Zero when nothing is known of where people sleep.
+        /// </summary>
+        public static int DoorsToCore(MapGrid m, Result r)
+        {
+            if (r.shown.Count == 0) return 0;
+            int n = m.w * m.h;
+            bool any = false;
+            for (int i = 0; i < n && !any; i++) any = m.core[i] && m.Passable(i);
+            if (!any) return 0;
+            var dist = Distances(m, m.core);
+            int side = 0;
+            for (int k = 1; k < 4; k++)
+                if (r.sideReach[k] > r.sideReach[side]) side = k;
+            var start = r.shown.FirstOrDefaultSide(side);
+            if (start < 0 || dist[start] < 0) return 0;
+            int budget = n;
+            var way = Walk(m, dist, start, ref budget);
+            if (way == null) return 0;
+            int doors = 0;
+            foreach (int c in way.cells)
+            {
+                if (m.kind[c] != Door) continue;
+                int x = c % m.w, z = c / m.w;
+                bool roomDoor = false;
+                for (int d = 0; d < 4; d++)
+                {
+                    int nx = x + DX[d], nz = z + DZ[d];
+                    if (m.In(nx, nz) && m.core[m.Index(nx, nz)]) roomDoor = true;
+                }
+                if (!roomDoor) doors++;
+            }
+            return doors;
         }
 
         /// <summary>The cells of one map edge (0 north, 1 east, 2 south, 3 west), corners on the north and south edges only.</summary>
@@ -483,21 +517,19 @@ namespace ColonyCouncil
             return list;
         }
 
-        /// <summary>
-        /// Where people live and what they reach without passing a door or a wall: the cells round the core, flooded over
-        /// open ground. A colony walled in keeps this inside its walls.
-        /// </summary>
-        public static bool[] Inner(MapGrid m)
+        /// <summary>Everywhere raiders reach from the map's walkable edge without passing a door.</summary>
+        public static bool[] Outside(MapGrid m)
         {
             int n = m.w * m.h;
             var seen = new bool[n];
             var queue = new Queue<int>();
-            for (int i = 0; i < n; i++)
-            {
-                if (!m.core[i] || !m.Passable(i) || m.kind[i] == Door) continue;
-                seen[i] = true;
-                queue.Enqueue(i);
-            }
+            for (int side = 0; side < 4; side++)
+                foreach (int i in EdgeCells(m, side))
+                {
+                    if (seen[i] || !m.Passable(i) || m.kind[i] == Door) continue;
+                    seen[i] = true;
+                    queue.Enqueue(i);
+                }
             while (queue.Count > 0)
             {
                 int i = queue.Dequeue();
@@ -513,6 +545,81 @@ namespace ColonyCouncil
                 }
             }
             return seen;
+        }
+
+        /// <summary>How far inside the home area a cell is: steps to the nearest cell that isn't home (or the map's edge).</summary>
+        public static int[] HomeDepth(MapGrid m)
+        {
+            int n = m.w * m.h;
+            var depth = new int[n];
+            var queue = new Queue<int>();
+            for (int i = 0; i < n; i++)
+            {
+                int x = i % m.w, z = i / m.w;
+                bool edge = x == 0 || z == 0 || x == m.w - 1 || z == m.h - 1;
+                if (!m.home[i] || edge)
+                {
+                    depth[i] = m.home[i] ? 1 : 0;
+                    queue.Enqueue(i);
+                }
+                else depth[i] = -1;
+            }
+            while (queue.Count > 0)
+            {
+                int i = queue.Dequeue();
+                int x = i % m.w, z = i / m.w;
+                for (int d = 0; d < 4; d++)
+                {
+                    int nx = x + DX[d], nz = z + DZ[d];
+                    if (!m.In(nx, nz)) continue;
+                    int j = m.Index(nx, nz);
+                    if (depth[j] >= 0) continue;
+                    depth[j] = depth[i] + 1;
+                    queue.Enqueue(j);
+                }
+            }
+            return depth;
+        }
+
+        /// <summary>Cells this many steps inside the home area's edge are its heart.</summary>
+        public const int HomeHeart = 4;
+
+        /// <summary>
+        /// Walled in: from the map's edge, without passing a door, raiders reach no room people sleep in, no door of one,
+        /// and at most a tenth of the heart of the home area. A colony with no home area isn't walled in.
+        /// </summary>
+        public static bool Enclosed(MapGrid m, bool[] outside)
+        {
+            int n = m.w * m.h;
+            var depth = HomeDepth(m);
+            int heart = 0, heartReached = 0;
+            bool anyHome = false;
+            for (int i = 0; i < n; i++)
+            {
+                if (!m.home[i] || !m.Passable(i)) continue;
+                anyHome = true;
+                if (m.core[i] && outside[i]) return false;
+                if (depth[i] >= HomeHeart)
+                {
+                    heart++;
+                    if (outside[i]) heartReached++;
+                }
+                // A door into a room where people sleep, with raiders' ground on its other side.
+                if (m.kind[i] != Door) continue;
+                int x = i % m.w, z = i / m.w;
+                bool core = false, open = false;
+                for (int d = 0; d < 4; d++)
+                {
+                    int nx = x + DX[d], nz = z + DZ[d];
+                    if (!m.In(nx, nz)) continue;
+                    int j = m.Index(nx, nz);
+                    core |= m.core[j];
+                    open |= outside[j];
+                }
+                if (core && open) return false;
+            }
+            if (!anyHome) return false;
+            return heartReached * 10 <= heart;
         }
 
         /// <summary>How many separate openings the home area has where raiders walk in without a door (cells within two of each other are one).</summary>
@@ -581,6 +688,14 @@ namespace ColonyCouncil
 
         /// <summary>The compass point of a facing (0 north, 1 east, 2 south, 3 west).</summary>
         public static int CompassOfFacing(int facing) => (TemplateMath.Norm(facing) * 2) % 8;
+
+        /// <summary>The edge cell a shown way of this side starts from (any side's when none), or -1.</summary>
+        private static int FirstOrDefaultSide(this List<Route> shown, int side)
+        {
+            foreach (var rt in shown)
+                if (rt.side == side && rt.cells.Count > 0) return rt.cells[0];
+            return shown.Count > 0 && shown[0].cells.Count > 0 ? shown[0].cells[0] : -1;
+        }
 
         /// <summary>A small binary heap of (cost, cell), lowest cost first.</summary>
         public class MinHeap
