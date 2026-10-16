@@ -516,7 +516,11 @@ namespace ColonyCouncil
     {
         public override string TrySelfHelp(Wish wish) => PlanInRoom(RoomUtil.BedRoom(wish.Beneficiary), wish.Beneficiary, wish.thingDef) ? "CC_SelfHelp_Plan" : null;
 
-        // Promises kept: the heater (or cooler) stays in their bedroom; out of season, a comfortable room is enough.
+        // Promises kept: the heater (or cooler) stays in their bedroom; out of season, a comfortable room is enough. Only
+        // watched when it came true with one: a mild night isn't something the council gave.
+        public override bool Lasting(Wish wish) => base.Lasting(wish)
+                                                   && RoomUtil.RoomContains(RoomUtil.BedRoom(wish.Beneficiary), wish.subjectKey == "hot" ? (System.Func<ThingDef, bool>)Avail.IsCooler : Avail.IsHeater);
+
         public override bool InTheirRoom => true;
 
         public override Room TheirRoom(Wish wish) => RoomUtil.BedRoom(wish.Beneficiary);

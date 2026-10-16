@@ -87,6 +87,20 @@ namespace ColonyCouncil
                     var t = things[i];
                     if (t == null || t.Destroyed || t.Discarded) things.RemoveAt(i);
                 }
+                // Nor can someone the game has let go of: whoever asked on their behalf, a partner, a backer.
+                if (wish != null)
+                {
+                    if (wish.pawn != null && wish.pawn.Discarded)
+                    {
+                        wish.pawn = wish.beneficiary;
+                        wish.beneficiary = null;
+                    }
+                    if (wish.beneficiary != null && wish.beneficiary.Discarded) wish.beneficiary = null;
+                    if (wish.other != null && wish.other.Discarded) wish.other = null;
+                    if (wish.envied != null && wish.envied.Discarded) wish.envied = null;
+                    if (wish.objector != null && wish.objector.Discarded) wish.objector = null;
+                    wish.coSigners?.RemoveAll(p => p == null || p.Discarded);
+                }
             }
             Scribe_Values.Look(ref id, "id");
             Scribe_Deep.Look(ref wish, "wish");

@@ -145,7 +145,10 @@ namespace ColonyCouncil
         public override string ProgressText(Wish wish) =>
             "CC_Progress_JoyHours".Translate(wish.Beneficiary.timetable?.times.Count(t => t == TimeAssignmentDefOf.Joy) ?? 0, wish.targetValue.ToString("0"));
 
-        /// <summary>Promises kept: the hours of rest stay in their schedule.</summary>
+        /// <summary>Promises kept: the hours of rest stay in their schedule ("anything" hours are free time too).</summary>
+        public override KeptCheck Holds(Wish wish) => wish.Beneficiary.timetable == null ? KeptCheck.Over
+            : JoyHours(wish.Beneficiary) >= wish.targetValue ? KeptCheck.Holds : KeptCheck.Gone;
+
         public override string KeptKind(Wish wish) => "assignment";
     }
 

@@ -430,7 +430,7 @@ namespace ColonyCouncil
         }
 
         // Promises kept: a brewing barrel, when that's what came of it (a stockroom of beer is drunk, as it should be).
-        public override bool Lasting(Wish wish) => base.Lasting(wish) && Avail.ColonyHas(wish.Beneficiary.MapHeld, Avail.IsFermenter);
+        public override bool Lasting(Wish wish) => base.Lasting(wish) && wish.Beneficiary?.MapHeld is Map map && Avail.ColonyHas(map, Avail.IsFermenter);
 
         public override KeptCheck Holds(Wish wish) => Avail.ColonyHas(wish.Beneficiary.MapHeld, Avail.IsFermenter) ? KeptCheck.Holds : KeptCheck.Gone;
 

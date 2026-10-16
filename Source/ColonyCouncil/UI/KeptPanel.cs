@@ -66,7 +66,7 @@ namespace ColonyCouncil
             float pillW = Mathf.Min(UiKit.PillWidth(state, icon), Mathf.Max(80f, width * 0.35f));
             float x = 4f;
             x += UiKit.PawnChip(x, y + 1f, w.pawn, 24f, true, Mathf.Min(170f, width * 0.3f)) + 10f;
-            UiKit.LabelFit(new Rect(x, y + 1f, Mathf.Max(20f, width - x - pillW - 14f), 24f), w.label.CapitalizeFirst(), Color.white);
+            UiKit.LabelFit(new Rect(x, y + 1f, Mathf.Max(20f, width - x - pillW - 14f), 24f), (w.label ?? "").CapitalizeFirst(), Color.white);
             UiKit.Pill(width - pillW - 6f, y + 4f, state, color, icon, null, pillW);
             var watch = w;
             TooltipHandler.TipRegion(row, () => Tip(watch), w.id ^ 0x4B3E7);
