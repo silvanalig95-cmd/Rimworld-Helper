@@ -17,12 +17,13 @@ namespace ColonyCouncil
     }
 
     /// <summary>
-    /// Good moods add up slowly. Everything good Rimfolk gives a colonist (a wish granted, a wedding, a laugh, a good
-    /// talk, a contest won, an animal asleep on someone's feet, a sweet dream) shares one budget, so a pile of them
-    /// can't carry a colonist's mood: the two biggest count in full, each one after that half as much as the one
-    /// before (GoodTimesMath.RankFactor). Every bad memory counts as it is, and so does everything the game and other
-    /// mods give (high standards take their own share of those, GoodTimes). The class keeps its old name, as does the
-    /// setting (smallJoysDiminish): it began with the small moments only.
+    /// Good moods add up slowly. Everything good Rimfolk gives a colonist as a mood (a wish granted, a wedding, a
+    /// dilemma that went their way, a reunion, a feast) shares one budget, so a pile of them can't carry a colonist's
+    /// mood: the two biggest count in full, the next ones a half, a third and a quarter, and every one after that a
+    /// fifth (GoodTimesMath.RankFactor). Each stays on the Needs tab at what it counts for now. Every bad memory counts
+    /// as it is, and so does everything the game and other mods give (high standards take their own share of those,
+    /// GoodTimes). Many small moments give something else instead of mood (RewardInstead), so they never join the
+    /// pile. The class keeps its old name, as does the setting (smallJoysDiminish): it began with the small moments only.
     /// </summary>
     public static class SmallJoys
     {
@@ -44,24 +45,13 @@ namespace ColonyCouncil
             return factors.TryGetValue(t, out float f) ? f : 1f;
         }
 
-        /// <summary>
-        /// A good mood that now counts for less than half a point: the Needs tab would show it as 0, so it's left off
-        /// the list (its little bit still counts toward mood).
-        /// </summary>
-        public static bool Faded(Thought_Memory t)
-        {
-            if (!(t is ICouncilMood mood)) return false;
-            float f = Factor(t);
-            if (f >= 1f) return false;
-            float own = mood.OwnOffset();
-            return own > 0f && own * f < 0.5f;
-        }
-
-        /// <summary>The tooltip line for a good mood that counts for less.</summary>
+        /// <summary>The tooltip line for a good mood that counts for less: its share, and what it counts for now.</summary>
         public static string Note(Thought_Memory t, string description)
         {
             float f = Factor(t);
-            return f >= 1f ? description : description + "\n\n" + "CC_SmallJoy_Less".Translate(f.ToStringPercent());
+            if (f >= 1f || !(t is ICouncilMood mood)) return description;
+            float own = mood.OwnOffset();
+            return description + "\n\n" + "CC_SmallJoy_Less".Translate(f.ToStringPercent(), MoodView.Number(own * f), MoodView.Number(own));
         }
 
         private static void Rank(Pawn pawn, List<Thought_Memory> memories, int tick)
