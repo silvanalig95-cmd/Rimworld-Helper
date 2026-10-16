@@ -60,6 +60,7 @@
     <thoughts><li>Council_Setback_MissedGathering</li><li>Council_Setback_NoPlate</li><li>Council_Setback_RainedOut</li></thoughts>
     <fix>Small, and gone in a day. Keep enough cooked meals in the stores for everyone before a feast, hold gatherings under a roof in wet weather, and bring people home before one if you can.</fix>
     <article>Council_Alm_C_Setbacks</article>
+    <councilTab>Week</councilTab>
   </ColonyCouncil.MoodHintDef>
 
   <!-- ===================== Work ===================== -->
@@ -198,6 +199,7 @@
     <thoughts><li>Council_Setback_NemesisAtLarge</li></thoughts>
     <fix>It ends when the nemesis is captured or killed, and fades two months after what they did. Steady colonists don't feel it.</fix>
     <article>Council_Alm_C_Strangers</article>
+    <councilTab>World</councilTab>
   </ColonyCouncil.MoodHintDef>
 
   <ColonyCouncil.MoodHintDef>

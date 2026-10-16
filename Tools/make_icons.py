@@ -371,6 +371,45 @@ def g_calendar():
     return over(rings, m, 10)
 
 
+def g_week():
+    """This week: a page with a header band and a bold check: what needs doing."""
+    m = new()
+    rect(m, 22, 30, 234, 230, r=24)
+    rect(m, 42, 84, 214, 210, r=10, fill=OFF)  # the page under the header band
+    check(m, [(78, 148), (114, 182), (180, 112)], 28, ON)
+    return m
+
+
+def g_table():
+    """Everyone: a table with a header row and a grid of cells."""
+    m = new()
+    rect(m, 20, 34, 236, 222, r=18)
+    for x0, x1 in ((36, 92), (106, 162), (176, 220)):
+        for y0, y1 in ((94, 142), (156, 206)):
+            rect(m, x0, y0, x1, y1, r=6, fill=OFF)
+    return m
+
+
+def g_dilemmas():
+    """Dilemmas: a signpost, one arm each way."""
+    m = new()
+    rect(m, 116, 30, 140, 238, r=8)  # the post
+    rect(m, 84, 222, 172, 240, r=8)  # its foot
+    poly(m, [(30, 82), (62, 50), (150, 50), (150, 114), (62, 114)])  # pointing left
+    poly(m, [(106, 128), (194, 128), (226, 160), (194, 192), (106, 192)])  # pointing right
+    return m
+
+
+def g_pin():
+    """The pin: a push pin, head up."""
+    m = new()
+    rect(m, 80, 18, 176, 54, r=14)  # the cap
+    poly(m, [(100, 50), (156, 50), (168, 132), (88, 132)])  # the body
+    rect(m, 62, 128, 194, 158, r=12)  # the collar
+    line(m, [(128, 158), (128, 240)], 16)  # the needle
+    return m
+
+
 def g_journals():
     m = new()
     rect(m, 52, 20, 214, 236, r=16)
@@ -741,6 +780,7 @@ GLYPHS = [
     ("Overview", g_overview), ("Priorities", g_priorities), ("Moods", g_moods), ("World", g_world), ("Rooms", g_rooms),
     ("Roster", g_roster), ("Bonds", g_bonds), ("Wishes", g_wishes), ("Decrees", g_decrees), ("Ambition", g_ambition),
     ("Ways", g_ways), ("Chronicle", g_chronicle), ("Calendar", g_calendar), ("Dreams", g_dreams), ("Journals", g_journals),
+    ("Week", g_week), ("Table", g_table), ("Dilemmas", g_dilemmas), ("Pin", g_pin),
     # markers
     ("Trust", g_trust), ("Office", g_office), ("LifeGoal", g_lifegoal), ("Secret", g_secret), ("Vendetta", g_vendetta),
     ("Nemesis", g_nemesis), ("Dream", g_dream), ("Journal", g_journal), ("WorldEvent", g_worldevent), ("Raid", g_raid),

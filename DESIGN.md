@@ -637,6 +637,59 @@ Outcomes that describe something people do but can't sensibly become one afterno
   answers can take these effects later. Personal stories, social events, dreams and encounters are moments that have
   already happened (interactions and moods), not answers to carry out.
 
+## How the systems talk to each other
+
+Each of Rimfolk's systems was built to stand on its own, and many already read each other (feelings nudge wishes,
+dreams and moments; setbacks feed feelings; the colony's ways decide who minds an answer; bonds vote). Interplay
+(Source/ColonyCouncil/Interplay/) adds the links that were missing, so that what happens in one part shows up in
+another and the colony reads as one life.
+
+- **Rules.** Every link rides on a pass or an event that already happens (the council's day and hour, a gathering
+  ending, a spat recorded, a day kept, a deed settled, an election's ballot, the evening news) through a one-line hook;
+  nothing ticks of its own. Nothing new is saved: cooldowns and the rolling count of setbacks are session memory, and a
+  load only gives them a second chance. Each link answers to the **Systems talk to each other** setting and to the
+  settings of the systems it joins. Effects are small and prefer what isn't mood (strain eased, a bond, trust, a story
+  moved on, a wish more likely, a recovery a little shorter); no link adds a good mood of its own.
+- **Where to look.** `Interplay.cs` (the passes, grief, cooldowns, lines), `Interplay_Offices.cs`,
+  `Interplay_Gatherings.cs` (grief, health and the steward at gatherings, pets and grief), `Interplay_Stories.cs`
+  (nudging a story: a Time gate's clock moves on, a Hold gate gains held hours, a Talk counts as had),
+  `Interplay_Council.cs` (setback runs, votes, ways, the meeting, quirk tags), `Interplay_World.cs` (camps, memory
+  tags), `NewsDays.cs`. Lines: Defs/FlavorPoolDefs/Rimfolk_Interplay.xml.
+
+| From | To | Trigger | What happens |
+|---|---|---|---|
+| Keeper of days | Calendar, PlayOut | a calendar feast or games day not about one person | the keeper organises it, and writes about it |
+| Peacemaker | Moments, social events | a friction between two, the peacemaker within a few steps | half the time, they step in: the spat is sore half as long |
+| Physician | Convalescence | the council's day | rounds of everyone convalescing on their map: 0.04 off each recovery |
+| Physician | Doctors' reputation | a tend | the office counts for two patients pulled through |
+| Reeve | Missions | a delivery mission offered, then filled in full | the reeve deals with the neighbours; +3 goodwill, a journal line |
+| Herdmaster | Pets, heart, bonds | a named animal dies; its person away two days | sits with the one who lost it (strain -4, friendship); minds the animal and is thanked |
+| Marshal | Heart | the end of a fight at home | those who fought beside the marshal: strain -4 |
+| Steward | Heart, PlayOut | a gathering over, the steward there | everyone else: strain -2 |
+| Heart (grief) | Calendar, PlayOut | a festive calendar day | the grieving sit it out (unless it's their day); a journal line |
+| Heart (grief) | Setbacks | a gathering missed | no "missed the gathering" |
+| Pets | Heart | the hour, their own animal close by | grieving: strain -3, once a day |
+| Heart (strain) | Wishes | a wish roll | worn out: rest and comfort wishes up to 1.3 times as likely |
+| Calendar | Personal stories | a day kept | stories of those at home move on a day; a waited-for talk with someone there counts |
+| Faction memory | Personal stories | a good turn the colony did is repaid | the stories of those who met the envoy move on two days |
+| Camps | Personal stories, heart | a camp leaves, a colonist made a friend there | story on a day, strain -2 |
+| Convalescence | Personal stories | back to full strength | story on two days |
+| Nemeses | Personal stories | going for their nemesis in a fight | a fear-faced story ends, well |
+| Faction memory | Camps | which people camps nearby | up to twice as likely after good turns, less with grudges, hardly after a camp was driven off; half with a vendetta |
+| Faction memory | Encounters, letters | any line about a stranger's people | tags their:grateful, their:rescued, their:grudge, their:owed; 5 encounters and 6 sets of lines use them |
+| Setbacks | Wishes | two of a kind in ten days | the wishes that answer them up to 1.4 times as likely |
+| Setbacks | Personal stories | the same | the stories that answer them twice as likely to begin |
+| PlayOut | Convalescence | a gathering over | convalescents who came: 0.03 off their recovery |
+| Feasts | Ailments | a feast over, fruit or vegetables in the stores | those who ate count as having had fresh food (scurvy) |
+| Traditions | The colony's ways | a council tradition kept, founded, broken, lapsed | tradition +1, +2, -1, -2; a calendar feast or rest-day tradition: a little more generous or easygoing |
+| The colony's ways | Setbacks | an answer to a dilemma or event | a colonist here a year or more leans 0.25 per tier toward the colony's name |
+| Secrets | Council meeting | the meeting's talk, a confidant who now dislikes the owner | a pointed remark (in the meeting's remarks), a rivalry; a rival may let it out |
+| Promises kept | Elections | a ballot | a wish taken back in the last year: -3 for sitting officers |
+| Epithets | Elections | a ballot | +1 per name the colony gave, -1 per dubious one (at most 2) |
+| Quirks | Who someone is | any tag check | quirk:Hums, quirk:SleepTalker... for roles, lines and dreams; 12 social events use them |
+| Calendar, kept, setbacks, health | Dreams | the memory those leave | 5 dreams (XML) |
+| News | News | the evening digest | three or more lines about one colonist come together as their day |
+
 ## Building help: how far should the mod build things itself?
 
 Think of it as a ladder. Each rung is optional and builds on the one below:
@@ -867,12 +920,12 @@ the 250-tick cycle or of the day.
 | 327 | A camp's hour (only while a camp is there) | the camp's members, trade, fees, its day's event |
 | 502 | Council's day, first half (first hour of the day only): trust, standards, decree trust and petitions, anniversaries, names, journals, offices | per colonist (their memories, for the journal) |
 | 677 | Health stories (with convalescence or reputation on) | per colonist: limbs lost, bed rest, setbacks; the cases of dangerous illness; pruning in the first hour of the day |
-| 852 | Council's day, second half (first hour of the day only): the social web, social events, life goals, secrets, vendettas, quirks, legacy, the colony's ways, the day's history sample, trust effects, bitter colonists | per pair of colonists (opinions, ties, circles), per colonist and quirk def |
+| 852 | Council's day, second half (first hour of the day only): the social web, social events, life goals, secrets, vendettas, quirks, legacy, the colony's ways, the links between systems (the physician's rounds, the herdmaster, setbacks counted), the day's history sample, trust effects, bitter colonists | per pair of colonists (opinions, ties, circles), per colonist and quirk def |
 | 1027 | Council: ambitions, personal touches, dilemmas, annals, dreams, quirks | the ambition's goals on its map; per colonist (asleep or waking; a dream weighs every dream def for the one waking) |
 | 1203 | World situations | per running situation (at most two); a new one rolls now and then |
 | 1311 | Colony calendar | the home map: snow, the day's first look (harvest, deaths, rest day), talk, a day coming round |
 | 1427 | Setbacks: the lasting ones (a wish still waiting, a decree dragging on, a sick friend, quiet days...), crops lost, rain on gatherings, noisy nights, long hauls, waiting for a doctor; outshone, cooled friendships and hard weeks in the first hour of the day | per colonist (their wish, decrees, those close to them who are ill or away), per home map (gatherings, sleepers and who is at loud work nearby, hauls, beds), per skill once a day |
-| 1544 | Council: nemeses, pets, PokeWorld, autonomy, who is home, everyday pressures | per colony animal on home maps, per spawned colonist (a plan or a job now and then), per colonist (meals, work), per home map (crowded rooms, half-built frames) |
+| 1544 | Council: nemeses, pets, the links between systems (pets and grief, the marshal after a fight, a fear faced), PokeWorld, autonomy, who is home, everyday pressures | per colony animal on home maps, per spawned colonist (a plan or a job now and then), per colonist (meals, work), per home map (crowded rooms, half-built frames) |
 | 1777 | Personal stories | per story under way; new stories in the first hour of the day |
 | 2089 | Story chains and missions; the peoples' memory fades (first hour of the day only) | per running chain, per mission; per remembered deed |
 | 2280 | Council: encounters and nuisances, Rimfolk's own events | one roll each; event memory pruned in the first hour of the day |

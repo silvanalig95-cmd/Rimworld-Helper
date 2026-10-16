@@ -87,6 +87,8 @@ namespace ColonyCouncil
             Notify.Message(text, person.Spawned ? new LookTargets(person) : LookTargets.Invalid, MessageTypeDefOf.NeutralEvent, bonded || hero ? Importance.Notable : Importance.Flavor);
             if (bonded || hero || pet.Name != null) comp.AddChronicle(new ChronicleEntry(ChronicleKind.Stranger, text, person));
             comp.journals.Write(person, "Council_Journal_PetFarewell", null, pet.Named("PET"));
+            // The herdmaster comes to sit with them (Interplay/).
+            Interplay.Notify_PetLost(comp, pet, person);
             // Bonded animals already bring their own grief; a master who wasn't bonded still misses them.
             if (!bonded) CouncilGameComponent.GiveThought(person, CouncilDefOf.Council_Pet_Lost);
             else comp.aspirations.Notify_Event(person, "loss");

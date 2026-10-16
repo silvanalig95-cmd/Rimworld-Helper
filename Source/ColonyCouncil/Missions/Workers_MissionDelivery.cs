@@ -127,7 +127,8 @@ namespace ColonyCouncil
             m.faction = Neighbor(map);
             if (m.faction == null) return false;
             m.place = LivingEvents.TownOf(m.faction, map) ?? m.faction.Name;
-            m.a = VarietyUtil.Best(map, SkillDefOf.Social) ?? StorytellerEvents.Adults(map).RandomElementWithFallback();
+            // The reeve deals with neighbours who need goods, when there is one (Interplay/).
+            m.a = Interplay.MissionHead(map) ?? VarietyUtil.Best(map, SkillDefOf.Social) ?? StorytellerEvents.Adults(map).RandomElementWithFallback();
             if (m.a == null) return false;
             m.variant = variant.tag;
             foreach (var g in variant.goals)
@@ -192,6 +193,7 @@ namespace ColonyCouncil
                 foreach (var g in m.goals) Missions.Take(map, g.what, g.count);
                 VarietyUtil.PaySilver(map, spot, m.reward);
                 Missions.Goodwill(m, m.goodwill);
+                Interplay.Notify_Delivered(m);
                 Missions.Finish(m, MissionState.Done, "delivered", m.reward.ToString(), look);
                 return;
             }

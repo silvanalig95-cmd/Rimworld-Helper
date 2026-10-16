@@ -175,6 +175,41 @@ namespace ColonyCouncil
             Find.LetterStack.ReceiveLetter(label, text, LetterDefOf.NeutralEvent);
         }
 
+        /// <summary>How many colony news letters are still on the letter stack.</summary>
+        public static int Unread()
+        {
+            int n = 0;
+            var stack = Find.LetterStack?.LettersListForReading;
+            if (stack == null) return 0;
+            foreach (var l in stack)
+                if (l is ChoiceLetter_News)
+                    n++;
+            return n;
+        }
+
+        /// <summary>"Mark all read": every colony news letter off the letter stack (they stay in the History tab). Returns how many.</summary>
+        public static int PutAllAway()
+        {
+            var stack = Find.LetterStack?.LettersListForReading;
+            if (stack == null) return 0;
+            var letters = new List<ChoiceLetter_News>();
+            foreach (var l in stack)
+                if (l is ChoiceLetter_News n && !n.ArchivedOnly)
+                    letters.Add(n);
+            foreach (var l in letters)
+            {
+                try
+                {
+                    l.PutAway();
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("putting colony news away", e);
+                }
+            }
+            return letters.Count;
+        }
+
         /// <summary>A piece of news whose place can still be gone to: not gone from the world, not on a map that's gone.</summary>
         public static bool CanGo(NewsItem item)
         {
@@ -270,7 +305,8 @@ namespace ColonyCouncil
 
         public void SendNow()
         {
-            var items = waiting.ToList();
+            // A busy colonist's lines come together as their day (Interplay/NewsDays.cs).
+            var items = NewsDays.Group(waiting.ToList());
             waiting.Clear();
             News.Send(items);
         }
@@ -349,6 +385,9 @@ namespace ColonyCouncil
         private readonly ChoiceLetter_News letter;
         private Vector2 scroll;
         private float viewHeight;
+        private int unread;
+        private float unreadAt = -1f;
+        private string unreadLabel;
 
         public Dialog_News(ChoiceLetter_News letter)
         {
@@ -399,6 +438,25 @@ namespace ColonyCouncil
             {
                 letter.PutAway();
                 Close();
+            }
+            // "Mark all read": when other evenings' news is still waiting on the stack too.
+            if (unreadAt < 0f || Time.realtimeSinceStartup - unreadAt > 1f)
+            {
+                int n = News.Unread();
+                if (n != unread || unreadLabel == null) unreadLabel = "CC_News_PutAllAway".Translate(n).Resolve();
+                unread = n;
+                unreadAt = Time.realtimeSinceStartup;
+            }
+            if (unread > 1)
+            {
+                var all = new Rect(inRect.x, inRect.yMax - CloseButSize.y, Mathf.Min(220f, close.x - inRect.x - 10f), CloseButSize.y);
+                if (all.width >= 120f && Widgets.ButtonText(all, unreadLabel))
+                {
+                    News.PutAllAway();
+                    WeekPanel.Dirty();
+                    Close();
+                }
+                TooltipHandler.TipRegion(all, "CC_Week_MarkRead_Tip".Translate());
             }
         }
 

@@ -298,8 +298,12 @@ namespace ColonyCouncil
             else if (firstLook) Limbs(p, true);
             var conv = ConvalescenceOf(p);
             if (conv != null) convalescing.Add(id);
-            else if (convalescing.Remove(id) && ConvalescenceOn && People.HasInnerLife(p) && Rand.Chance(0.4f))
-                Journal(p, "Council_Journal_Health_Strong");
+            else if (convalescing.Remove(id))
+            {
+                // Back on their feet: a story waiting on them moves on (Interplay/).
+                Interplay.Notify_Recovered(p);
+                if (ConvalescenceOn && People.HasInnerLife(p) && Rand.Chance(0.4f)) Journal(p, "Council_Journal_Health_Strong");
+            }
         }
 
         // ---------------- Convalescence ----------------
@@ -470,7 +474,8 @@ namespace ColonyCouncil
                 c.peak = Mathf.Max(c.peak, h.Severity);
             }
             var rec = ReputationOn ? RecordOf(doctor) : null;
-            int level = rec?.Level ?? 0;
+            // The physician's office counts toward the doctor's standing (Interplay/).
+            int level = Interplay.DoctorLevel(doctor, rec);
             if (level <= 0 || !(patient.InBed() || patient.Downed)) return;
             float scale = S.rewardFactor * (level >= 2 ? 1.5f : 1f);
             CouncilGameComponent.GiveThought(patient, HealthDefOf.Council_Health_InGoodHands, null, scale, "CC_Cause_About".Translate(doctor.LabelShort).ToString());

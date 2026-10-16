@@ -242,6 +242,7 @@ namespace ColonyCouncil
                     if (p != null && !attended.Contains(p)) attended.Add(p);
                 int ate = !serve || kind != PlayKind.Feast ? -1 : RimfolkPatches.On ? fed.Count : served.Count;
                 Setbacks.Notify_GatheringOver(Play, attended, fed, serve && kind == PlayKind.Feast, early, Map, spot);
+                Interplay.Notify_GatheringOver(Play, attended, fed, kind, early, Map);
                 PlayOutTracker.Instance?.GatheringEnded(playId, attended, early, ate, laidFire != null, label);
             }
             catch (Exception e)
