@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Journal entries from the links with other mods (Source/ColonyCouncil/Integrations/ModLinks.cs): a convalescent's
+    comfort. {PAWN_...} is the writer. Warm water is tagged [bath] (Dubs Bad Hygiene's bath, shower and heated pool) or
+    [spring] (a hot spring from ReGrowth, the healing spring from Alpha Biomes); untagged lines fit either.
+  -->
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Links_WarmWater</defName>
+    <lines>
+      <plain>
+        <li>Sat in hot water until my fingers wrinkled. Nothing ached, which hasn't happened since I fell ill.</li>
+        <li>Warm water does what the medicine can't. I came out of it feeling half a person again, which is half more than this morning.</li>
+        <li>[bath] A hot bath, and then straight to bed. Slept the whole night through for once.</li>
+        <li>[bath] Someone had left the water hot. I lay in it with my eyes shut and let the weakness soak out of my legs.</li>
+        <li>[bath,winter] A hot bath in the middle of winter, still weak as I am. I could have stayed in it till spring.</li>
+        <li>[spring] Walked down to the spring with a blanket over my shoulders and sat in it up to my chin. The warmth went right to the bone.</li>
+        <li>[spring] The water comes up warm out of the ground here. I don't know why, and I don't care. My joints have stopped complaining.</li>
+        <li>[spring,winter] Snow on the rocks all round the spring, and me sitting in warm water in the middle of it like a lord.</li>
+        <li>[old] At my age a hot soak is worth more than any doctor. Don't tell the doctor.</li>
+        <li>[impatient] They tell me to rest. A soak is the only kind of resting I can stand.</li>
+      </plain>
+      <warm>
+        <li>Someone had warmed the water before I asked. I don't know who. I hope they know how much it helped.</li>
+      </warm>
+      <blunt>
+        <li>Hot water. Felt better. Doing it again tomorrow.</li>
+      </blunt>
+      <cheerful>
+        <li>A hot soak, and I'm a new person! Well, a slightly less wobbly one.</li>
+      </cheerful>
+      <gloomy>
+        <li>The warmth is the only thing these days that doesn't hurt. I stayed in it until it went cold.</li>
+      </gloomy>
+      <cold>
+        <li>Heat eases the muscles and shortens the recovery. I have started taking it every evening.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Links_Mended</defName>
+    <lines>
+      <plain>
+        <li>The healer's spell settled into me like warm milk. By supper I could climb the stairs without stopping.</li>
+        <li>I could feel the magic working in my legs, a slow tingling, like pins and needles in reverse. The weakness is going.</li>
+        <li>Mended by magic today. I don't understand it, but my body seems to, and it's grateful.</li>
+        <li>There was a light in the room, and then there wasn't, and I felt days better than I had any right to.</li>
+        <li>[mage] I've cast that working on others a hundred times. It's a strange thing to feel it from the other side.</li>
+        <li>[child] The healer did magic on me and it tickled. Now I'm allowed to go outside again.</li>
+      </plain>
+      <warm>
+        <li>The healer sat with me while the spell took. Kind hands, whatever else they can do.</li>
+      </warm>
+      <blunt>
+        <li>Magic. Felt it work. Stronger now.</li>
+      </blunt>
+      <cheerful>
+        <li>A spell for a sore body! Why doesn't everyone get one of these?</li>
+      </cheerful>
+      <gloomy>
+        <li>The spell helped. I wish I didn't need it.</li>
+      </gloomy>
+      <cold>
+        <li>The working shortened my recovery by a day at least. I'll note the effect.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

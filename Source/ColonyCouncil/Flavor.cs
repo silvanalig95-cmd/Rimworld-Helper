@@ -12,7 +12,7 @@ namespace ColonyCouncil
     /// happening to them. Tags:
     /// <list type="bullet">
     /// <item>season: spring, summer, fall, winter; time: morning, day, evening, night</item>
-    /// <item>weather: rain, snow, fog, storm, clear, hot, cold</item>
+    /// <item>weather: rain, snow, fog, storm, clear, hot, cold, and weather:WeatherDef (weather:DoubleRainbow)</item>
     /// <item>mood: lowmood, highmood; trust: trusting, doubtful, bitter</item>
     /// <item>tech: tribal, medieval, industrial, spacer; wealth: poor, rich; colony: small, large</item>
     /// <item>the speaker: child, teen, old, hurt, trait:DefName, skill:DefName (passionate about it)</item>
@@ -49,6 +49,8 @@ namespace ColonyCouncil
                         if (weather.snowRate > 0.01f) tags.Add("snow");
                         else if (weather.rainRate > 0.01f) tags.Add("rain");
                         if (weather.defName.Contains("Fog")) tags.Add("fog");
+                        // The weather by name, for lines and encounters written for one (Seasonal Weather's double rainbow).
+                        tags.Add("weather:" + weather.defName);
                         if (IsStorm(weather)) tags.Add("storm");
                         if (!weather.isBad && weather.rainRate <= 0.01f && weather.snowRate <= 0.01f) tags.Add("clear");
                     }

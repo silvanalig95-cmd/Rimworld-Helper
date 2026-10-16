@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Everyday ailments of other mods' lands (Source/ColonyCouncil/Ailments/). Like the others in
+    Council_Hediffs_Ailments.xml, with <biomes>: they only come on a map of one of these biomes (BiomeDef names), so
+    without the mod that adds the land they never come. Never lethal, gone within days.
+    Alpha Biomes: the mycotic jungle's spores and the miasmic mangrove's rot; the tar pits' and propane lakes' fumes.
+  -->
+
+  <HediffDef ParentName="Council_AilmentBase">
+    <defName>Council_Ail_SporeCough</defName>
+    <label>spore cough</label>
+    <description>A tickling, dusty cough from breathing the spores that hang in the air where fungus is the forest: a night in a damp room, or hours of work among the plants. Nothing grows in the lungs; it only irritates them for a few days. A clean, dry, well-roofed bedroom and a cloth over the face for field work keep it away.</description>
+    <tendable>true</tendable>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <key>SporeCough</key>
+        <biomes>
+          <li>AB_MycoticJungle</li>
+          <li>AB_MiasmicMangrove</li>
+        </biomes>
+        <causes>
+          <li><trigger>DampSleep</trigger><hours>4</hours><chance>0.05</chance></li>
+          <li><trigger>PlantWork</trigger><hours>4</hours><chance>0.03</chance></li>
+        </causes>
+        <cooldownDays>10</cooldownDays>
+        <startSeverity>0.25~0.5</startSeverity>
+        <gotText>{PAWN_nameDef} has a cough from the spores in the air.</gotText>
+        <notes>
+          <li>It's the spores. Keep the bedrooms dry and the doors shut at night, and cover the face out in the fields.</li>
+          <li>[lowtech] Steam over a bowl of hot water clears the chest. A damp cloth over the mouth in the fields keeps the worst out.</li>
+          <li>[!lowtech] A dust mask for field work and a heater to keep the bedrooms dry. The cough itself clears in a few days.</li>
+        </notes>
+      </li>
+      <li Class="HediffCompProperties_TendDuration">
+        <baseTendDurationHours>24</baseTendDurationHours>
+        <severityPerDayTended>0</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentMedicine">
+        <severityPerDayTended>-0.1</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentRecovery">
+        <severityPerDay>-0.12</severityPerDay>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>tickling throat</label>
+        <capMods><li><capacity>Breathing</capacity><offset>-0.04</offset></li></capMods>
+      </li>
+      <li>
+        <minSeverity>0.35</minSeverity>
+        <label>coughing spores</label>
+        <restFallFactor>1.1</restFallFactor>
+        <capMods>
+          <li><capacity>Breathing</capacity><offset>-0.08</offset></li>
+          <li><capacity>Consciousness</capacity><offset>-0.02</offset></li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Council_AilmentBase">
+    <defName>Council_Ail_FumeHeadache</defName>
+    <label>fume headache</label>
+    <description>A dull, pressing headache from hours of hard work or heat in air thick with fumes, where tar or gas seeps out of the ground. Clean air and a rest clear it in a day or two. Working upwind of the seeps, and not in the worst of the heat, keeps it away.</description>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <key>FumeHeadache</key>
+        <quiet>true</quiet>
+        <biomes>
+          <li>AB_TarPits</li>
+          <li>AB_PropaneLakes</li>
+        </biomes>
+        <causes>
+          <li><trigger>HeavyWork</trigger><hours>5</hours><chance>0.04</chance></li>
+          <li><trigger>Sweltering</trigger><hours>4</hours><chance>0.04</chance></li>
+        </causes>
+        <childFactor>0.5</childFactor>
+        <cooldownDays>6</cooldownDays>
+        <startSeverity>0.25~0.5</startSeverity>
+        <gotText>{PAWN_nameDef} has a headache from the fumes.</gotText>
+        <notes>
+          <li>The fumes. Get them into clean air, give them water and a lie-down, and it passes.</li>
+          <li>[lowtech] Work upwind of the seeps, and stop for the hottest hours. The air is worst then.</li>
+          <li>[!lowtech] A filter mask helps, and so does moving the heavy work away from the seeps.</li>
+        </notes>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentRecovery">
+        <severityPerDay>-0.3</severityPerDay>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>dull headache</label>
+        <capMods><li><capacity>Consciousness</capacity><offset>-0.03</offset></li></capMods>
+      </li>
+      <li>
+        <minSeverity>0.35</minSeverity>
+        <label>pounding headache</label>
+        <painOffset>0.05</painOffset>
+        <capMods><li><capacity>Consciousness</capacity><offset>-0.06</offset></li></capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+</Defs>

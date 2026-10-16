@@ -44,6 +44,9 @@ Only a mage can enchant. Enchantments are permanent, one of each type per item, 
           <li>The classes talk to each other: a mage and a fighter go over the last fight together, two mages compare their schools, two fighters walk through their forms, and a healer eases someone's aches. These moments, and the small wonders mages show their friends, become days in the journals.</li>
           <li>Life goals for the classes: grow ten levels, learn or deepen six workings (or techniques, for a fighter), understand the theory as a scholar of the art, or tend sixty wounds as a healer.</li>
           <li>Traveling mages and fighters visit: a mage may show a colonist a small working, compare schools with one of your mages, or correct a fighter's footwork.</li>
+          <li>Its moods reach the feelings: a ranger's lost companion is grief, a polymorph against one's will shame, a spirit of light's bright day joy, pleasant dreams contentment, minion meat disgust, a commander's orders frustration.</li>
+          <li>Arcane weakness and mana sickness wear on a mage the way exhaustion does: the deeper they go, the faster strain builds, a few points a day at most. Regeneration, mending or inner healing on someone convalescing takes a day off the recovery, once a day.</li>
+          <li>A personal story for the classes, the long discipline: a mage or a fighter with someone further along in the same art hits a wall, talks it through, practices until a class level comes, and makes the art their own.</li>
         </points>
       </li>
     </sections>
@@ -143,7 +146,9 @@ Added to a running save, the mod turns existing psycasts into levels you can spe
       </li>
       <li>
         <heading>With Rimfolk</heading>
-        <text>The council reads biological age, which the ageless gene holds at about 30, so elves never count as old and stay able to set their heart on having a child.</text>
+        <text>The council reads biological age, which the ageless gene holds at about 30, so elves never count as old and stay able to set their heart on having a child.
+
+Wood elves wish for flowers, a garden seat and healroot more often than most, high elves for books and a telescope, dark elves for a weapon rack. Wood and high elves pull the colony's ways toward the old traditions; dark elves keep strangers at a distance.</text>
       </li>
     </sections>
     <keywords>
@@ -197,7 +202,9 @@ The Stoneborn Dwarven Style Pack and Stoneborn Delights in your list add dwarven
       </li>
       <li>
         <heading>With Rimfolk</heading>
-        <text>As undergrounders they never ask the council for time outside, and they hate the harvest push decree. One with a passion for mining may set their heart on carving a home out of the mountain.</text>
+        <text>As undergrounders they never ask the council for time outside, and they hate the harvest push decree. One with a passion for mining may set their heart on carving a home out of the mountain.
+
+They want stone: stone blocks and a deep drill even without a passion for them, and a hearth more often than most. They like long hours and a building push, and pull the colony's ways toward hard work and tradition.</text>
       </li>
     </sections>
     <keywords>
@@ -250,6 +257,10 @@ With Dubs Bad Hygiene, baths can refill hydration too. That option is switched o
       <li>
         <heading>Newcomers and extras</heading>
         <text>Merren may join through special events: one may rescue a colonist lying wounded on a shore, and with Royalty a merren virtuoso may answer a colonist's recital. The mod also brings a wood-fueled floating lantern, a squid dryad with Ideology, and waterborne plants with VE Plants More (in your list).</text>
+      </li>
+      <li>
+        <heading>With Rimfolk</heading>
+        <text>Coastal and abyssal merren wish for a bath and a fountain more often than most. Coastal merren are open to strangers and like a festival; abyssal ones hold to the old ways and keep outsiders at a distance, and the colony's ways feel both pulls.</text>
       </li>
     </sections>
     <keywords>
@@ -331,6 +342,10 @@ Some xenotypes come with heavy drawbacks, so read a stranger's genes before you 
       <li>
         <heading>Labs and gene tools</heading>
         <text>Abandoned biotech lab quests give access to the new genes. Gene tools come from lab quests and ordinary quest rewards: the gene remover takes out a random gene and the germline mutator adds a random one. Either puts the target in a coma for 3 days, so use them in a quiet season. If Rimedieval keeps your research medieval, treat found tools and recruits as your only way into genetics.</text>
+      </li>
+      <li>
+        <heading>With Rimfolk</heading>
+        <text>Nereids wish for a bath and a fountain more often than most, efreet and drakonori for a hearth and a sauna. Xenotypes that never sleep or never eat aren't asked about beds or meals, and the sunfed don't ask for finer food.</text>
       </li>
     </sections>
     <keywords>
@@ -420,7 +435,9 @@ The mod's quests and raids run on their own timer outside the storyteller, and t
       </li>
       <li>
         <heading>With Rimfolk</heading>
-        <text>A funeral that cremates the body settles a colonist's wish for a proper burial, just as a grave would.</text>
+        <text>A funeral that cremates the body settles a colonist's wish for a proper burial, just as a grave would.
+
+On a calendar feast or games day, the letter suggests the colony's own tea ceremony, coffee roasting or banquet if its faith holds one.</text>
       </li>
     </sections>
     <keywords>
@@ -469,7 +486,9 @@ Other memes include trader, party life, pacifist, vegan, healthcare, cultured, s
       </li>
       <li>
         <heading>With Rimfolk</heading>
-        <text>The council's offices sit beside your ideoligion's roles. Under an aristocratic, royal or god emperor creed the colony holds no council elections; its leader names the officers instead.</text>
+        <text>The council's offices sit beside your ideoligion's roles. Under an aristocratic, royal or god emperor creed the colony holds no council elections; its leader names the officers instead.
+
+On a calendar feast or games day, the letter suggests the colony's own bonfire, trading fair, wicker man burning or star-gazing if its faith holds one.</text>
       </li>
     </sections>
     <keywords>
@@ -771,6 +790,8 @@ Since it can also hand out traits, like People Can Change, switch one of the two
           <li>Its lessons, venting, memories and best friends feed the council's bonds, and lessons that keep coming can grow into a mentorship.</li>
           <li>Its aspirations are short inspiration tasks, not life goals.</li>
           <li>When a granted wish turns into an inspiration that doesn't match the wish, it can be one of these new ones.</li>
+          <li>Its moods reach the feelings: a best friend lost or dead is grief, the one who killed or sold them anger, sharing the burden relief, its parties and a chat over a beer fellowship.</li>
+          <li>Sharing the burden with a friend eases strain like Rimfolk's own talks with friends, under the same daily limit.</li>
         </points>
       </li>
     </sections>

@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+  <!--
+    Other mods' moods feeding Rimfolk's feelings (Defs/HeartDefs/Council_Feelings*.xml, Source/ColonyCouncil/Heart/).
+    These patch only Rimfolk's own feelings: each adds the names of another mod's mood thoughts to a feeling's list. A
+    name that isn't in the game is never matched, so with the mod missing nothing changes and nothing is logged.
+    <thoughts>: counted at their full size, on the feeling's own side of mood (hard feelings while it hurts, bright ones
+    while it helps). <feeds>: the same with a weight, for moods that last (a situational mood) or only partly fit.
+
+    Mods: Dubs Bad Hygiene (the rest of its moods; the first ones are in the feelings themselves), A RimWorld of Magic,
+    Vanilla Social Interactions Expanded, Vanilla Factions Expanded - Empire, Alpha Biomes, Alpha Animals,
+    ReGrowth: Core, Vanilla Events Expanded, Therapy, Gastronomy, Snap Out!.
+  -->
+
+  <!-- ===================== Hard feelings ===================== -->
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ColonyCouncil.FeelingDef[defName="Council_Feeling_Grief"]/thoughts</xpath>
+    <value>
+      <!-- A RimWorld of Magic: a ranger's animal companion -->
+      <li>RangerPetDied</li>
+      <li>RangerSoldBondedPet</li>
+      <!-- Vanilla Social Interactions Expanded: a best friend -->
+      <li>VSIE_MyBestFriendDied</li>
+      <li>VSIE_MyBestFriendDied_Female</li>
+      <li>VSIE_MyBestFriendLost</li>
+      <li>VSIE_MyBestFriendLost_Female</li>
+      <li>VSIE_SoldMyBestFriend</li>
+      <li>VSIE_KilledMyBestFriend</li>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ColonyCouncil.FeelingDef[defName="Council_Feeling_Grief"]/feeds</xpath>
+    <value>
+      <!-- Vanilla Social Interactions Expanded: closure after a death, and a loss in a raid -->
+      <li><thought>VSIE_GotSomeClosure</thought><weight>0.6</weight></li>
+      <li><thought>VSIE_SufferedLossNegative</thought><weight>0.6</weight></li>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ColonyCouncil.FeelingDef[defName="Council_Feeling_Fear"]/thoughts</xpath>
+    <value>
+      <!-- Alpha Biomes: sinking in quicksand; Alpha Animals: the black queen -->
+      <li>AB_Quicksand</li>
+      <li>AAVPE_SeenBlackQueen</li>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ColonyCouncil.FeelingDef[defName="Council_Feeling_Dread"]/thoughts</xpath>
+    <value>
+      <!-- Alpha Biomes: the forsaken crags' unnatural night and storms, red fog, ash, ominous echoes -->
+      <li>AB_ForsakenNight</li>
+      <li>AB_ForsakenRain</li>
+      <li>AB_ForsakenThunderstorm</li>
+      <li>AB_RedFogThought</li>
+      <li>AB_VolcanicAshThought</li>
+      <li>AB_GelatinousEchoes_Bad</li>
+      <!-- Alpha Animals: a creature's horrifying presence, a psychic harmony gone sour -->
+      <li>AA_HorrifyingDread</li>
+      <li>AA_PsychicHarmonyBad</li>
+      <!-- Vanilla Events Expanded: the superbloom's drone -->
+      <li>VEE_SuperbloomPsychicDrone</li>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ColonyCouncil.FeelingDef[defName="Council_Feeling_Anger"]/thoughts</xpath>
+    <value>
+      <!-- Vanilla Social Interactions Expanded: the one who sold or killed a best friend -->
+      <li>VSIE_SoldMyBestFriend</li>
+      <li>VSIE_KilledMyBestFriend</li>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ColonyCouncil.FeelingDef[defName="Council_Feeling_Shame"]/thoughts</xpath>
+    <value>
+      <!-- Dubs Bad Hygiene: walked in on, and worse -->
+      <li>WashPrivacy</li>
+      <li>ToiletPrivacy</li>
+      <li>SoiledSelf</li>
+      <!-- A RimWorld of Magic: turned into an animal against one's will; a companion sold -->
+      <li>Polymorphed</li>
+      <li>RangerSoldBondedPet</li>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ColonyCouncil.FeelingDef[defName="Council_Feeling_Envy"]/thoughts</xpath>
+    <value>
+      <!-- Vanilla Social Interactions Expanded: a partner who saw someone else -->
+      <li>VSIE_JealouslyMyPartnerDatedSomeoneElse</li>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ColonyCouncil.FeelingDef[defName="Council_Feeling_Disgust"]/thoughts</xpath>
+    <value>
+      <!-- Alpha Animals: a disgusting creature, awful meals of its making -->
+      <li>AA_Disgust</li>
+      <li>AA_AteSuperAwfulMeal</li>
+      <li>AA_AteHorribleRot</li>
+      <li>AA_UncomfortablyHot</li>
+      <!-- A RimWorld of Magic: minion meat -->
+      <li>AteMysteryMeatDirect</li>
+      <li>AteMysteryMeatAsIngredient</li>
+      <!-- ReGrowth: a dip in toxic waste; Alpha Biomes: the ocular forest's water -->
+      <li>RG_WasteBathing</li>
+      <li>AB_MutagenicOcularWater</li>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ColonyCouncil.FeelingDef[defName="Council_Feeling_Disgust"]/feeds</xpath>
+    <value>
+      <!-- Alpha Biomes: mold everywhere; Dubs Bad Hygiene: an awful bathroom of one's own -->
+      <li><thought>AB_MoldyEnvironment</thought><weight>0.5</weight></li>
+      <li><thought>UsedPrivateBathroom</thought><weight>0.5</weight></li>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ColonyCouncil.FeelingDef[defName="Council_Feeling_Frustration"]/thoughts</xpath>
+    <value>
+      <!-- Dubs Bad Hygiene: no hot water -->
+      <li>ColdWater</li>
+      <!-- A RimWorld of Magic: taking orders from a commander -->
+      <li>TM_TakingOrdersTD</li>
+      <!-- Vanilla Social Interactions Expanded: an inspiration that came to nothing -->
+      <li>VSIE_InspirationNotSatisfied</li>
+      <!-- Gastronomy: kept waiting at the restaurant -->
+      <li>Gastronomy_HadToWait</li>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ColonyCouncil.FeelingDef[defName="Council_Feeling_Frustration"]/feeds</xpath>
+    <value>
+      <!-- Dubs Bad Hygiene: bursting for the latrine -->
+      <li><thought>BowelLevel</thought><weight>0.5</weight></li>
+      <!-- Vanilla Factions Expanded - Empire: a title without the ballroom, gallery or court it asks for; a ball or an exhibit gone badly -->
+      <li><thought>VFEE_TitleNoBallroom</thought><weight>0.6</weight></li>
+      <li><thought>VFEE_TitleNoGallery</thought><weight>0.6</weight></li>
+      <li><thought>VFEE_TitleBallroomRequirementsNotMet</thought><weight>0.6</weight></li>
+      <li><thought>VFEE_TitleGalleryRequirementsNotMet</thought><weight>0.6</weight></li>
+      <li><thought>VFEE_LackingNobleCourt</thought><weight>0.6</weight></li>
+      <li><thought>VFEE_TerribleBall</thought><weight>0.6</weight></li>
+      <li><thought>VFEE_TerribleExhibit</thought><weight>0.6</weight></li>
+      <!-- ReGrowth: soaked to the skin, sand in everything -->
+      <li><thought>RG_ExtremelyWet</thought><weight>0.5</weight></li>
+      <li><thought>RG_Sandy</thought><weight>0.5</weight></li>
+    </value>
+  </Operation>
+
+  <!-- ===================== Bright feelings ===================== -->
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ColonyCouncil.FeelingDef[defName="Council_Feeling_Joy"]/thoughts</xpath>
+    <value>
+      <!-- A RimWorld of Magic: a spirit of light, a polymorph a transhumanist enjoyed -->
+      <li>TM_BrightDayTD</li>
+      <li>Polymorphed_Transhumanist</li>
+      <!-- Vanilla Social Interactions Expanded: one's own birthday party -->
+      <li>VSIE_HadBirthdayParty</li>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ColonyCouncil.FeelingDef[defName="Council_Feeling_Pride"]/thoughts</xpath>
+    <value>
+      <!-- Vanilla Factions Expanded - Empire: honors -->
+      <li>VFEE_TheGreat</li>
+      <li>VFEE_FirstOfName</li>
+      <li>VFEE_Chosen</li>
+      <!-- Vanilla Social Interactions Expanded: an inspiration put to use -->
+      <li>VSIE_InspirationSatisfied</li>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ColonyCouncil.FeelingDef[defName="Council_Feeling_Love"]/thoughts</xpath>
+    <value>
+      <li>VSIE_GotSomeLovin</li>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ColonyCouncil.FeelingDef[defName="Council_Feeling_Awe"]/thoughts</xpath>
+    <value>
+      <!-- Vanilla Events Expanded: the psychic aurora -->
+      <li>VEE_Aurora</li>
+      <!-- Alpha Biomes: a petal storm, red fog for those who love it, the superorganism's kinder echoes -->
+      <li>AB_PetalStorms</li>
+      <li>AB_RedFogThoughtPositive</li>
+      <li>AB_GelatinousEchoes_Good</li>
+      <!-- Vanilla Factions Expanded - Empire: an art exhibit -->
+      <li>VFEE_EnjoyableExhibit</li>
+      <li>VFEE_AmazingExhibit</li>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ColonyCouncil.FeelingDef[defName="Council_Feeling_Contentment"]/thoughts</xpath>
+    <value>
+      <!-- Dubs Bad Hygiene: a hot shower, the heated pool -->
+      <li>HotShower</li>
+      <li>HeatedPool</li>
+      <!-- ReGrowth: a bath in a hot spring, the sea or a clean river -->
+      <li>RG_HotSpringBathing</li>
+      <li>RG_HotSpringWet</li>
+      <li>RG_BathingOcean</li>
+      <li>RG_BathingWater</li>
+      <!-- Alpha Biomes: the healing spring -->
+      <li>AB_HealingSpringwaterThought</li>
+      <!-- Alpha Animals: psychic harmony -->
+      <li>AA_PsychicHarmonyGood</li>
+      <!-- A RimWorld of Magic: pleasant dreams -->
+      <li>TM_PleasantDreamsTD</li>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ColonyCouncil.FeelingDef[defName="Council_Feeling_Contentment"]/feeds</xpath>
+    <value>
+      <!-- Dubs Bad Hygiene: clean, and a fine bathroom of one's own -->
+      <li><thought>HygieneLevel</thought><weight>0.4</weight></li>
+      <li><thought>UsedPrivateBathroom</thought><weight>0.6</weight></li>
+      <!-- Gastronomy: good service at the restaurant -->
+      <li><thought>Gastronomy_ServicedMood</thought><weight>0.6</weight></li>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ColonyCouncil.FeelingDef[defName="Council_Feeling_Relief"]/thoughts</xpath>
+    <value>
+      <!-- Therapy: a session on the couch; Vanilla Social Interactions Expanded: unbottled to a friend -->
+      <li>TherapyRelieved</li>
+      <li>VSIE_SharingBurden</li>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ColonyCouncil.FeelingDef[defName="Council_Feeling_Tenderness"]/thoughts</xpath>
+    <value>
+      <!-- Snap Out!: talked someone down from a breakdown; Alpha Animals: nuzzled by a psionic creature -->
+      <li>SnapOut_HelpedSomeoneThought</li>
+      <li>AA_BeenPsionicallyNuzzled</li>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ColonyCouncil.FeelingDef[defName="Council_Feeling_Fellowship"]/thoughts</xpath>
+    <value>
+      <!-- Vanilla Social Interactions Expanded: its parties and a chat over a beer -->
+      <li>VSIE_HadNiceChatWithBeer</li>
+      <li>VSIE_AttendedBingeParty</li>
+      <li>VSIE_AttendedOutdoorParty</li>
+      <li>VSIE_AttendedBirthdayParty</li>
+      <li>VSIE_HadBirthdayParty</li>
+      <!-- Vanilla Factions Expanded - Empire: a ball -->
+      <li>VFEE_EnjoyableBall</li>
+      <li>VFEE_AmazingBall</li>
+    </value>
+  </Operation>
+
+</Patch>
