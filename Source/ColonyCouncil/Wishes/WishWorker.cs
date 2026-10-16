@@ -56,6 +56,99 @@ namespace ColonyCouncil
         /// </summary>
         public virtual string OnPromised(Wish wish) => null;
 
+        // ---------- Promises kept: a granted lasting wish is watched for a while (Wishes/Kept.cs) ----------
+
+        /// <summary>Whether this wish, once granted, is watched: something that stays and can be taken away. By default the def's lasting flag.</summary>
+        public virtual bool Lasting(Wish wish) => def.lasting;
+
+        /// <summary>
+        /// For a granted lasting wish: is what was given still there? By default the wish's own fulfilment check. A worker
+        /// says Unclear when it can't tell right now (their room is gone, and the room's own watch covers that) and Over
+        /// when it no longer makes sense to watch (the partner left, the pet died, the child grew up). Things being moved,
+        /// reinstalled or rebuilt are allowed for by the watch itself.
+        /// </summary>
+        public virtual KeptCheck Holds(Wish wish) => IsFulfilled(wish) ? KeptCheck.Holds : KeptCheck.Gone;
+
+        /// <summary>It belongs in their room: what's kept, and plans to build it again, are looked for there.</summary>
+        public virtual bool InTheirRoom => false;
+
+        /// <summary>The room it belongs in: their own bedroom.</summary>
+        public virtual Room TheirRoom(Wish wish) => RoomUtil.PrivateRoom(wish.Beneficiary);
+
+        /// <summary>
+        /// Whether a building (or a floor) of this kind is what the wish is about: a plan or frame of one being built where
+        /// it belongs counts as still there for a while.
+        /// </summary>
+        public virtual bool Concerns(Wish wish, BuildableDef d) => d != null && d == wish.thingDef;
+
+        /// <summary>
+        /// The things that make it hold right now (a bed, a telescope), remembered while it holds, so that one being moved
+        /// or stored isn't taking it away, and one lost to a fire or a raid isn't blamed on the council.
+        /// </summary>
+        public virtual IEnumerable<Thing> KeptThings(Wish wish)
+        {
+            var map = wish.Beneficiary?.MapHeld;
+            if (map == null) yield break;
+            if (InTheirRoom)
+            {
+                var room = TheirRoom(wish);
+                if (room == null || room.PsychologicallyOutdoors) yield break;
+                var things = room.ContainedAndAdjacentThings;
+                for (int i = 0; i < things.Count; i++)
+                {
+                    var t = things[i];
+                    if (t.def.category == ThingCategory.Building && room.ContainsCell(t.Position) && Concerns(wish, t.def)) yield return t;
+                }
+                yield break;
+            }
+            var list = map.listerBuildings.allBuildingsColonist;
+            for (int i = 0; i < list.Count; i++)
+                if (Concerns(wish, list[i].def)) yield return list[i];
+        }
+
+        /// <summary>Just granted, before the watch starts: anything to remember (which animal is the new pet).</summary>
+        public virtual void OnGranted(Wish wish)
+        {
+        }
+
+        /// <summary>What kind of thing was given, for the journal's lines: room, bed, thing, stock, work or pet.</summary>
+        public virtual string KeptKind(Wish wish) => InTheirRoom ? "room" : "thing";
+
+        /// <summary>What's gone, for the message: the def's own line, else a general one.</summary>
+        public virtual string LostText(Wish wish) => !def.lostText.NullOrEmpty()
+            ? wish.Format(def.lostText)
+            : "CC_Kept_Lost_Generic".Translate(wish.Beneficiary.Named("PAWN"), wish.Label.Named("WISH")).Resolve();
+
+        /// <summary>
+        /// The animal a pet wish brought (Wishes/Kept.cs): one bonded to them, else one they're master of, else the colony's
+        /// newest. Null if the colony has none here.
+        /// </summary>
+        protected static Pawn NewAnimalFor(Pawn person)
+        {
+            var map = person?.MapHeld;
+            if (map == null) return null;
+            Pawn best = null;
+            int bestRank = -1;
+            foreach (var a in map.mapPawns.SpawnedColonyAnimals)
+            {
+                if (a == null || a.Dead) continue;
+                int rank = a.relations != null && a.relations.DirectRelationExists(PawnRelationDefOf.Bond, person) ? 2 : a.playerSettings?.Master == person ? 1 : 0;
+                if (best == null || rank > bestRank || (rank == bestRank && a.thingIDNumber > best.thingIDNumber))
+                {
+                    best = a;
+                    bestRank = rank;
+                }
+            }
+            return best;
+        }
+
+        /// <summary>A pet given: still the colony's. Dead isn't taken back; sold, released or run off is.</summary>
+        protected static KeptCheck PetKept(Pawn pet)
+        {
+            if (pet == null || pet.Dead || pet.Discarded) return KeptCheck.Over;
+            return pet.Faction == Faction.OfPlayer ? KeptCheck.Holds : KeptCheck.Gone;
+        }
+
         /// <summary>Plans <paramref name="thing"/> in the colonist's own room. Shared by the furniture-like wishes.</summary>
         protected static bool PlanInOwnRoom(Pawn p, ThingDef thing) => PlanInRoom(RoomUtil.PrivateRoom(p), p, thing);
 

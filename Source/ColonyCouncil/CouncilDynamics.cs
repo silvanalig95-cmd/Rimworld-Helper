@@ -293,7 +293,6 @@ namespace ColonyCouncil
             var st = standings.For(who);
             st.granted++;
             st.recentGrants.Add(Find.TickManager.TicksGame);
-            RoomTaken.Notify_Granted(w, st);
             standings.Change(who, w.promised ? 18f : 12f, "CC_Log_Granted".Translate(w.Label));
             foreach (var p in w.Supporters)
                 if (p != who) standings.Change(p, 6f, "CC_Log_Granted".Translate(w.Label));
@@ -338,6 +337,8 @@ namespace ColonyCouncil
             SetCooldown(who, w.def);
             w.state = WishState.Granted;
             Setbacks.Tracker?.Notify_Granted(w);
+            // A lasting wish (a bed, a room, a telescope) is watched for a while: taking it away again is noticed.
+            Safe("promises kept", () => kept.Notify_Granted(this, w));
             ambitions.Notify_WishGranted(w);
             Safe("ripples", () => GrantRipples(w));
             Safe("objection", () => ResolveObjection(w, true));
@@ -631,7 +632,7 @@ namespace ColonyCouncil
 
         // ================= Daily =================
 
-        /// <summary>The day's first half (Sched.CouncilDayFirst): trust and standards, decrees, rooms, anniversaries, names, journals, offices.</summary>
+        /// <summary>The day's first half (Sched.CouncilDayFirst): trust and standards, decrees, anniversaries, names, journals, offices.</summary>
         private void DailyFirst()
         {
             standings.Daily();
@@ -639,7 +640,6 @@ namespace ColonyCouncil
             // Each step on its own, so one failure doesn't take the rest of the day with it.
             Safe("standards", () => Standards.Daily(standings, decrees.active.Sum(a => a.def.standardsPerDay)));
             Safe("decree trust", DecreeDaily);
-            if (s.enableWishes) Safe("own room taken", () => RoomTaken.Daily(this));
             if (s.enableWishes) Safe("decree petitions", () => decrees.DailyRequests(this));
             if (s.anniversaries) Safe("anniversaries", Anniversaries);
             Safe("epithets", () => epithets.Daily(this));

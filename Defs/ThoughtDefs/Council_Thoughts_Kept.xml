@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Promises kept (Source/ColonyCouncil/Wishes/Kept.cs): something the council granted that stays (a bed kept for guests,
+    a room of their own, a telescope, the work they love), taken away again and not put back within the grace period.
+    -6 when it's taken right after it was given, down to -3 at the very end of the watch, then scaled by the stakes and,
+    as a letdown, by their standards. The "why" line names the wish. It ends early if the council makes it right within
+    a few days. Several things taken back stack, each one after the first at half strength.
+  -->
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_TakenBack</defName>
+    <durationDays>5</durationDays>
+    <stackLimit>3</stackLimit>
+    <stackedEffectMultiplier>0.5</stackedEffectMultiplier>
+    <stages>
+      <li>
+        <label>they took back what the council gave me</label>
+        <description>I asked the council for something, and they gave it to me. Now it's gone again, as if they never meant it.</description>
+        <baseMoodEffect>-6</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <!--
+    The council put it back within a few days of it being taken (Wishes/Kept.cs): the bad mood above ends early and half
+    the trust comes back in code, so the relief itself gives no mood: it feeds the heart's gratitude (RewardInstead).
+  -->
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_MadeRight</defName>
+    <durationDays>3</durationDays>
+    <stages>
+      <li>
+        <label>the council made it right</label>
+        <description>They took back what they'd given me, and then they put it back. I'll let it go.</description>
+        <baseMoodEffect>0</baseMoodEffect>
+      </li>
+    </stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><feelings><li>Gratitude</li></feelings><felt>2</felt></li></modExtensions>
+  </ThoughtDef>
+
+</Defs>

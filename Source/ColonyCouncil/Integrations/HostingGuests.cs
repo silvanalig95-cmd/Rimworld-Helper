@@ -90,5 +90,17 @@ namespace ColonyCouncil
             if (wish.targetValue <= wish.baseline) return best >= wish.targetValue ? 1f : 0f;
             return Mathf.Clamp01((best - wish.baseline) / (wish.targetValue - wish.baseline));
         }
+
+        // Promises kept: the guest room stays about as impressive as asked (Wishes/Kept.cs).
+        public override KeptCheck Holds(Wish wish)
+        {
+            if (!People.ModActive(Guests.Mod)) return KeptCheck.Over;
+            float best = BestRoom(wish.Beneficiary.MapHeld, out bool any);
+            return any && KeptMath.RoomHolds(best, wish.targetValue) ? KeptCheck.Holds : KeptCheck.Gone;
+        }
+
+        public override bool Concerns(Wish wish, BuildableDef d) => d is ThingDef td && td.thingClass != null && td.thingClass.Name == "Building_GuestBed";
+
+        public override string KeptKind(Wish wish) => "room";
     }
 }

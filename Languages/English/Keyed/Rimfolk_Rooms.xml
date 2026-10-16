@@ -82,12 +82,6 @@ Green: enough with some to spare. Amber: only just enough. Red: not enough.</CC_
   <CC_Upgrade_Counts>{0} piece(s) to add, {1} already there</CC_Upgrade_Counts>
   <CC_Upgrade_Done>Furnished the room from the {0} plan: {1} piece(s) of furniture planned, {2} already there.</CC_Upgrade_Done>
 
-  <!-- A room of their own, taken away again (Wishes/RoomTaken.cs) -->
-  <CC_RoomTaken_Message>{PAWN_nameDef} is sleeping in shared quarters again, after the council gave {PAWN_objective} a room of {PAWN_possessive} own.</CC_RoomTaken_Message>
-  <CC_RoomTaken_Why_Barracks>Moved back into the barracks.</CC_RoomTaken_Why_Barracks>
-  <CC_RoomTaken_Why_Shared>Now shares a bedroom with {0}.</CC_RoomTaken_Why_Shared>
-  <CC_Log_RoomTaken>lost the room the council gave</CC_Log_RoomTaken>
-
   <!-- Your rooms -->
   <CC_BuildGroup_Yours>Your rooms</CC_BuildGroup_Yours>
   <CC_Yours_Save>Save a room</CC_Yours_Save>

@@ -16,6 +16,7 @@
     <label>{THING}</label>
     <description>A mage wants a place set aside for working magic: a magic circle, a focal point or an arcane forge.</description>
     <workerClass>ColonyCouncil.WishWorker_Have</workerClass>
+    <lasting>true</lasting>
     <category>Work</category>
     <weight>0.8</weight>
     <expiryDays>15</expiryDays>

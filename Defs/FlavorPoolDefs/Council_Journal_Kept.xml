@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Promises kept (Source/ColonyCouncil/Wishes/Kept.cs): lines for something the council granted, taken away again and
+    not put back in time. {WISH} is the wish's label ("a bed kept for guests"), {DAYS} how long they had it ("23 days").
+    Lines tagged [kept:...] fit one kind of thing: ownroom (a room of their own), room (a nicer, roomier room, a work
+    room, a guest room, and things in their bedroom), bed (a bed shared, kept for guests or for the sick), thing (a
+    building in the colony), stock (a store kept full), assignment (work they love, hours of rest, a different room
+    from someone), pet, decree. Untagged lines must fit any of them.
+  -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_TakenBack</defName>
+    <lines>
+      <plain>
+        <li>The council gave me "{WISH}", and now it's gone again. Nobody said a word to me about it.</li>
+        <li>I had it for {DAYS}. I'm writing that down, because they seem to have forgotten.</li>
+        <li>Crossed "{WISH}" off this page when I got it. Now I'm writing it back in.</li>
+        <li>[kept:ownroom] They put me back in with the others today. I had that room for {DAYS}.</li>
+        <li>[kept:ownroom] My room isn't just mine any more. I'm sharing again, and I wasn't asked first.</li>
+        <li>[kept:ownroom, winter] Back in shared quarters, in the middle of winter. More breathing in the dark, less sleep.</li>
+        <li>[kept:room] My room isn't what it was when they gave it to me. I keep looking at the empty corner.</li>
+        <li>[kept:bed] The bed they gave us isn't ours any more. I'd only just got used to it.</li>
+        <li>[kept:thing] It stood there for {DAYS}. Then one morning it was gone, and nobody would say why.</li>
+        <li>[kept:stock] The stores they filled for me are nearly empty again, and nobody seems in a hurry.</li>
+        <li>[kept:assignment] They let me do what I asked for {DAYS}, and then quietly changed it back.</li>
+        <li>[kept:pet] I'd only just learned all its habits. Now someone else will.</li>
+        <li>[kept:decree] I asked the council for that decree, and they lifted it before its time.</li>
+      </plain>
+      <warm>
+        <li>I suppose it was needed somewhere else. I wish someone had told me.</li>
+        <li>[kept:ownroom] I suppose the room was needed for someone. I still miss it.</li>
+        <li>[kept:pet] I keep saving scraps from supper out of habit. There's nobody to give them to.</li>
+      </warm>
+      <blunt>
+        <li>They gave it and they took it back. I won't forget that.</li>
+        <li>[kept:ownroom] They gave me a room and took it back. I won't forget that.</li>
+        <li>[kept:assignment] Gave me the work I wanted, then took it off me again. Make up your minds.</li>
+      </blunt>
+      <cheerful>
+        <li>Easy come, easy go, I suppose. I did enjoy it while it lasted.</li>
+        <li>[kept:ownroom] Out of my room and back with the others. At least the card games are closer now.</li>
+      </cheerful>
+      <gloomy>
+        <li>Of course it didn't last. Nothing given here ever does.</li>
+        <li>[kept:ownroom] I knew the room wouldn't last. Back to the snoring.</li>
+        <li>[kept:stock] Full shelves for {DAYS}, and now we're back to scraping.</li>
+      </gloomy>
+      <cold>
+        <li>"{WISH}": granted, then withdrawn. Noted, with the date.</li>
+        <li>[kept:ownroom] My private quarters were reassigned. I'll remember who decided that.</li>
+        <li>[kept:decree] The council's word lasted exactly as long as it was convenient.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Put back within a few days of being taken back: the council made it right. Same tags and arguments as above. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_MadeRight</defName>
+    <lines>
+      <plain>
+        <li>It's back: "{WISH}". Someone must have heard me. I'll let it go.</li>
+        <li>They put it right. I'm crossing out what I wrote the other day.</li>
+        <li>[kept:ownroom] My room is mine again. I slept with the door shut and didn't wake once.</li>
+        <li>[kept:pet] Back where it belongs, curled up by my feet as if it never left.</li>
+        <li>[kept:assignment] They've let me get back to it. I didn't know how much I'd missed it until today.</li>
+      </plain>
+      <warm>
+        <li>They made it right, and quickly. That matters more to me than the thing itself.</li>
+      </warm>
+      <blunt>
+        <li>It's back. Good. Don't do that again.</li>
+      </blunt>
+      <cheerful>
+        <li>It's back. I'll pretend it was all a misunderstanding. Maybe it even was.</li>
+      </cheerful>
+      <gloomy>
+        <li>They put it back. For now, anyway.</li>
+      </gloomy>
+      <cold>
+        <li>Restored. The council corrected its mistake. I'll keep the earlier entry anyway.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!--
+    Said before a wish that asks again for what was granted and then taken back (it opens the request's quote).
+    {PAWN}, {WISH} and the wish's other placeholders.
+  -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_RenewedWish</defName>
+    <lines>
+      <plain>
+        <li>You gave me this once already.</li>
+        <li>I had it, and then I didn't. I'd like it back.</li>
+        <li>I'm asking again for something I already had.</li>
+      </plain>
+      <warm>
+        <li>I know there must have been a reason it went. I'd still like it back, if it can be done.</li>
+      </warm>
+      <blunt>
+        <li>You took it away. Now give it back.</li>
+      </blunt>
+      <cheerful>
+        <li>Remember when I had this? Good times. Could we have them again?</li>
+      </cheerful>
+      <gloomy>
+        <li>I don't expect it to last this time either, but I'm asking.</li>
+      </gloomy>
+      <cold>
+        <li>The council granted this before, and then went back on it. I'm giving it a second chance.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

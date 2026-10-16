@@ -58,6 +58,8 @@
     <label>music in the colony</label>
     <description>An artist or born entertainer wants an instrument: music for the evenings.</description>
     <workerClass>ColonyCouncil.WishWorker_Music</workerClass>
+    <lasting>true</lasting>
+    <lostText>The colony has no instrument any more, after {FOR_nameDef} asked for music.</lostText>
     <category>Comfort</category>
     <weight>0.7</weight>
     <expiryDays>15</expiryDays>

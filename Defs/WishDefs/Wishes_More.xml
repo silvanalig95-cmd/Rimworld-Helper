@@ -168,6 +168,8 @@
     <label>not sleeping next to {OTHER_nameDef}</label>
     <description>A colonist shares a bedroom or barracks with someone they can't stand, and wants one of them moved.</description>
     <workerClass>ColonyCouncil.WishWorker_Separate</workerClass>
+    <lasting>true</lasting>
+    <lostText>{FOR_nameDef} is sleeping in the same room as {OTHER_nameDef} again.</lostText>
     <category>Comfort</category>
     <weight>1</weight>
     <expiryDays>6</expiryDays>
@@ -217,6 +219,9 @@
     <label>a stocked infirmary</label>
     <description>A doctor looks at the medicine shelf and doesn't like what they see. They want enough medicine for everyone, with some to spare.</description>
     <workerClass>ColonyCouncil.WishWorker_Infirmary</workerClass>
+    <lasting>true</lasting>
+    <keepShare>0.33</keepShare>
+    <lostText>The infirmary {FOR_nameDef} asked to have stocked is running bare.</lostText>
     <category>Health</category>
     <weight>0.9</weight>
     <expiryDays>10</expiryDays>

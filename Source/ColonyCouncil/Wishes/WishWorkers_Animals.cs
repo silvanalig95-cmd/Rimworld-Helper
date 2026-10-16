@@ -50,6 +50,21 @@ namespace ColonyCouncil
         public override string TrySelfHelp(Wish wish) => PlanInOwnRoom(wish.Beneficiary, wish.thingDef) ? "CC_SelfHelp_Plan" : null;
 
         public override LookTargets LookAt(Wish wish) => wish.other != null && wish.other.Spawned ? new LookTargets(wish.other) : base.LookAt(wish);
+
+        // Promises kept: the pet's bed stays in their room, as long as there's a pet to sleep in it.
+        public override bool InTheirRoom => true;
+
+        public override bool Concerns(Wish wish, BuildableDef d) => d is ThingDef td && AnimalUtil.IsAnimalBed(td);
+
+        public override KeptCheck Holds(Wish wish)
+        {
+            var pet = wish.other;
+            if (pet == null || pet.Dead || pet.Faction != Faction.OfPlayer) return KeptCheck.Over;
+            if (RoomUtil.PrivateRoom(wish.Beneficiary) == null) return KeptCheck.Unclear;
+            return IsFulfilled(wish) ? KeptCheck.Holds : KeptCheck.Gone;
+        }
+
+        public override string KeptKind(Wish wish) => "pet";
     }
 
     /// <summary>A bonded animal is hurt: its person wants it tended and on its feet again.</summary>

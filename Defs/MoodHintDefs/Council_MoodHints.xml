@@ -752,10 +752,10 @@
   </ColonyCouncil.MoodHintDef>
 
   <ColonyCouncil.MoodHintDef>
-    <defName>Council_Mood_RoomTaken</defName>
-    <thoughts><li>Council_RoomTaken</li></thoughts>
-    <fix>Give them a room of their own again, or a bedroom they share only with their partner. It also costs some trust each day. After about 30 days in shared quarters they accept it and it stops.</fix>
-    <article>Council_Alm_2_10_BarracksOrBedrooms</article>
-    <signal>Council_Adv_Beds</signal>
+    <defName>Council_Mood_TakenBack</defName>
+    <thoughts><li>Council_TakenBack</li></thoughts>
+    <fix>Something the council granted them was taken away and not put back in time; the "why" line says what. Put it back within a few days and the council makes it right: the mood ends and half the trust comes back. Moving or rebuilding a thing is fine, as long as it's back before the grace period runs out.</fix>
+    <article>Council_Alm_C_Wishes</article>
+    <councilTab>Wishes</councilTab>
   </ColonyCouncil.MoodHintDef>
 </Defs>

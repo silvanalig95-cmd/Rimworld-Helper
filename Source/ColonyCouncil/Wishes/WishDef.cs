@@ -75,6 +75,23 @@ namespace ColonyCouncil
         /// <summary>How granting it shapes the colony's character (an execution, a party, letting a prisoner go).</summary>
         public WayShift ways;
 
+        // ---- Promises kept (Wishes/Kept.cs) ----
+        /// <summary>
+        /// Something that stays and can be taken away again (a bed for guests, a room of one's own, a telescope, an
+        /// assignment): once granted, it's watched for <see cref="watchDays"/>, and taking it away upsets the one who asked.
+        /// One-offs (a party, a hunt, a visit) aren't.
+        /// </summary>
+        public bool lasting;
+        /// <summary>How long a granted lasting wish is watched (rooms longer); after that, changing it is just life.</summary>
+        public float watchDays = KeptMath.DefaultWatchDays;
+        /// <summary>Stocks that are meant to be used (medicine, healroot) or spent (silver): the share of the amount that must stay.</summary>
+        public float keepShare = 1f;
+        /// <summary>
+        /// What's gone, for the message when it goes missing ({PAWN}, {OTHER}, {THING}, {THINGBARE}, {SUBJECT}, {WISH}):
+        /// "{PAWN_nameDef}'s guest bed is no longer kept for guests." Without it, the worker's own line or a general one.
+        /// </summary>
+        [MustTranslate] public string lostText;
+
         public ToneLines request = new ToneLines();
         public ToneLines requestForOther = new ToneLines();
         public ToneLines thanks = new ToneLines();
@@ -103,6 +120,8 @@ namespace ColonyCouncil
             if (workerClass == null) yield return "workerClass is null";
             else if (!typeof(WishWorker).IsAssignableFrom(workerClass)) yield return "workerClass is not a WishWorker";
             if (request == null || !request.Any) yield return "no request lines";
+            if (lasting && watchDays <= 0f) yield return "a lasting wish needs watchDays above 0";
+            if (keepShare <= 0f || keepShare > 1f) yield return "keepShare must be above 0 and at most 1";
         }
     }
 }

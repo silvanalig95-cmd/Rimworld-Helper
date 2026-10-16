@@ -131,11 +131,21 @@ industrial colony about a deep drill or a comms console. The Almanac page "what 
 **Others are watching.** Friends are happy for the one who got their wish. The jealous, rivals and anyone who
 has been waiting longer can feel passed over, and some will want the same thing.
 
-**A room taken back.** Someone whose wish for a room of their own came true minds being moved back into a barracks
-or into a bedroom with someone who isn't their partner: "my room was taken from me" (-3, and some trust lost each
-day, scaled like the council's other letdowns), with a line in their journal the first time. It ends when they have
-a room of their own again, and after about 30 days in shared quarters they accept it for good. Children, slaves and
-ascetics don't mind.
+**Promises kept.** 61 kinds of wish give something that stays, and the council is watched on it for about 60 days
+after granting it (90 for rooms): a bed kept for guests, a room of their own, a nicer or roomier bedroom, a bed shared,
+a workshop, kitchen or other room for their passion, a telescope, a sauna, a pen for the animals, a real floor, a
+stocked infirmary, a pet, the work they love switched on, hours of rest, a decree they asked for. Take it away and you
+get a message at once ("Hector's guest bed is no longer kept for guests. If it isn't back within a day, he will take
+it as the council going back on its word."), and a grace period starts: a day by default, or none, half a day or
+three days in the settings. Moving it doesn't count: a building packed up to be carried, stored or reinstalled, a
+plan or frame of the same thing being built (for up to a week), a bed lent to a patient. Back in time, nothing
+happens. Still gone after it: "they took back what the council gave me" (-3 to -6 for 5 days, the bigger the sooner
+it happened, scaled by their standards), the trust a broken promise costs, a line in their journal, a little less
+trust from their partner and close friends, and they may soon ask for it again. Put it back within 5 days and the
+council made it right: the mood ends, half the trust comes back, and they feel grateful. A fire, a raid or a
+collapse isn't the council's doing, and for two days after a raid nothing counts as missing. One-offs (a party, a
+hunt, a visit, a lesson) aren't watched, and neither are clothes, weapons or stores meant to be eaten. The Wishes
+page lists everything watched: kept, missing (with the time left) or taken back.
 
 **Trust.** Each colonist's trust in the council (bitter, doubtful, neutral, trusting, devoted) rises and falls
 with all of this. Trust isn't only mood: loyal colonists work and learn faster and hold together better, while
@@ -1315,7 +1325,8 @@ The pages:
   - **Advisor only**: no mood effects at all
 
   with the strength of downsides and of rewards; wish frequency, how many can be open at once and how long they
-  last, jealousy and favoritism, wishes after events, reminders, self-help, leaving, wishes for others and
+  last, jealousy and favoritism, wishes after events, reminders, self-help, granted wishes taken back (and the grace
+  before they mind), leaving, wishes for others and
   petitions; dilemmas (and how often), decree requests, the colony's character and offices; the meeting interval,
   ambition deadlines, and whether meetings call people from their work.
 - **People & moods**: **life's ups and downs** (how hard the everyday pressures and setbacks press: **gentle**, half

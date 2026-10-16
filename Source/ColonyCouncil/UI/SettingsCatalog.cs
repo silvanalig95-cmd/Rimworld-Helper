@@ -222,6 +222,9 @@ namespace ColonyCouncil
             Toggle("eventWishes", "CC_Settings_EventWishes", "CC_SetNote_EventWishes");
             Toggle("reminders", "CC_Settings_Reminders", "CC_SetNote_Reminders");
             Toggle("selfHelp", "CC_Settings_SelfHelp", "CC_SetNote_SelfHelp");
+            Toggle("wishesTakenBack", "CC_Settings_TakenBack", "CC_SetNote_TakenBack", "stakes=Balanced|Demanding", "CC_SetWhy_Downsides");
+            Choice("takenBackGrace", "CC_Settings_KeptGrace", "CC_SetTip_KeptGrace", "CC_KeptGrace_", "CC_SetNote_KeptGrace_", new[] { "Off", "Short", "Normal", "Long" },
+                "wishesTakenBack,stakes=Balanced|Demanding", "CC_SetWhy_Downsides");
             Toggle("allowQuitting", "CC_Settings_Quitting", "CC_SetNote_Quitting");
             Toggle("wishesForOthers", "CC_Settings_ForOthers", "CC_SetNote_ForOthers");
             Toggle("petitions", "CC_Settings_Petitions", "CC_SetNote_Petitions");

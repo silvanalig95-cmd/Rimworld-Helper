@@ -49,6 +49,10 @@ namespace ColonyCouncil
         public float penaltyFactor = 1f;
         public bool jealousy = true;
         public bool selfHelp = true;
+        /// <summary>Promises kept (Wishes/Kept.cs): a lasting wish granted and then taken away again upsets the one who asked.</summary>
+        public bool wishesTakenBack = true;
+        /// <summary>How long what was given may be gone (moved, reassigned) before they mind.</summary>
+        public KeptGrace takenBackGrace = KeptGrace.Normal;
         public bool allowQuitting = true;
         public bool risingStandards = true;
         /// <summary>Rimfolk's good moods count with diminishing returns when several are on a colonist's mind (SmallJoys).</summary>
@@ -214,6 +218,8 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref penaltyFactor, "penaltyFactor", 1f);
             Scribe_Values.Look(ref jealousy, "jealousy", true);
             Scribe_Values.Look(ref selfHelp, "selfHelp", true);
+            Scribe_Values.Look(ref wishesTakenBack, "wishesTakenBack", true);
+            Scribe_Values.Look(ref takenBackGrace, "takenBackGrace", KeptGrace.Normal);
             Scribe_Values.Look(ref allowQuitting, "allowQuitting", true);
             Scribe_Values.Look(ref risingStandards, "risingStandards", true);
             Scribe_Values.Look(ref smallJoysDiminish, "smallJoysDiminish", true);

@@ -13,6 +13,9 @@
     <label>a room of their own</label>
     <description>Sleeping in the barracks, sharing a room or without a bed at all, this colonist wants a private bedroom.</description>
     <workerClass>ColonyCouncil.WishWorker_OwnRoom</workerClass>
+    <lasting>true</lasting>
+    <watchDays>90</watchDays>
+    <lostText>{FOR_nameDef} no longer has the room of {FOR_possessive} own the council gave {FOR_objective}.</lostText>
     <envy>0.9</envy>
     <meToo>true</meToo>
     <triggers>
@@ -131,6 +134,9 @@
     <label>a more impressive bedroom</label>
     <description>Greedy, jealous or simply used to better, this colonist wants a bedroom that impresses.</description>
     <workerClass>ColonyCouncil.WishWorker_NicerBedroom</workerClass>
+    <lasting>true</lasting>
+    <watchDays>90</watchDays>
+    <lostText>{FOR_nameDef}'s bedroom isn't {SUBJECT} any more, as the council made it.</lostText>
     <envy>0.8</envy>
     <meToo>true</meToo>
     <category>Comfort</category>
@@ -213,6 +219,9 @@
     <label>a roomier bedroom</label>
     <description>This colonist's bedroom is cramped and they'd like room to breathe.</description>
     <workerClass>ColonyCouncil.WishWorker_Spacious</workerClass>
+    <lasting>true</lasting>
+    <watchDays>90</watchDays>
+    <lostText>{FOR_nameDef}'s bedroom isn't {SUBJECT} any more, as the council made it.</lostText>
     <envy>0.6</envy>
     <meToo>true</meToo>
     <category>Comfort</category>
@@ -275,6 +284,8 @@
     <label>to share a bed with {OTHER_nameDef}</label>
     <description>Partners who sleep apart would like a bed for two.</description>
     <workerClass>ColonyCouncil.WishWorker_ShareBed</workerClass>
+    <lasting>true</lasting>
+    <lostText>{FOR_nameDef} and {OTHER_nameDef} no longer share a bed.</lostText>
     <envy>0.1</envy>
     <grantEffects>
       <li Class="ColonyCouncil.WishEffect_Hediff">
@@ -358,6 +369,8 @@
     <label>{THING} for {FOR_possessive} room</label>
     <description>A small piece of furniture to make a bedroom feel lived-in.</description>
     <workerClass>ColonyCouncil.WishWorker_BedroomFurniture</workerClass>
+    <lasting>true</lasting>
+    <lostText>The {THINGBARE} is gone from {FOR_nameDef}'s room.</lostText>
     <envy>0.4</envy>
     <meToo>true</meToo>
     <category>Comfort</category>
@@ -416,6 +429,8 @@
     <label>light in {FOR_possessive} bedroom</label>
     <description>Night owls and colonists who've been left in the dark want a light in their room.</description>
     <workerClass>ColonyCouncil.WishWorker_Light</workerClass>
+    <lasting>true</lasting>
+    <lostText>{FOR_nameDef}'s bedroom has no light any more.</lostText>
     <envy>0.1</envy>
     <triggers>
       <li>
@@ -482,6 +497,8 @@
     <label>{SUBJECT} at night</label>
     <description>After sleeping in the cold or heat, this colonist wants their bedroom kept comfortable.</description>
     <workerClass>ColonyCouncil.WishWorker_ComfortTemperature</workerClass>
+    <lasting>true</lasting>
+    <lostText>The {THINGBARE} is gone from {FOR_nameDef}'s bedroom, and the nights there aren't comfortable any more.</lostText>
     <envy>0.2</envy>
     <triggers>
       <li>
@@ -566,6 +583,8 @@
     <label>a table to eat at</label>
     <description>Eating off the floor gets old. This colonist wants a proper place to eat.</description>
     <workerClass>ColonyCouncil.WishWorker_DiningTable</workerClass>
+    <lasting>true</lasting>
+    <lostText>The colony has no table indoors to eat at any more.</lostText>
     <envy>0</envy>
     <triggers>
       <li>
@@ -638,6 +657,8 @@
     <label>something new to do for fun</label>
     <description>Bored colonists want a new kind of recreation.</description>
     <workerClass>ColonyCouncil.WishWorker_RecreationVariety</workerClass>
+    <lasting>true</lasting>
+    <lostText>The new way to pass the time that {FOR_nameDef} asked for is gone.</lostText>
     <envy>0</envy>
     <triggers>
       <li>
@@ -718,6 +739,8 @@
     <label>a plant for {FOR_possessive} room</label>
     <description>Someone who loves growing things wants a little greenery in their room.</description>
     <workerClass>ColonyCouncil.WishWorker_Greenery</workerClass>
+    <lasting>true</lasting>
+    <lostText>The plant pot is gone from {FOR_nameDef}'s room.</lostText>
     <envy>0.2</envy>
     <category>Comfort</category>
     <weight>0.6</weight>

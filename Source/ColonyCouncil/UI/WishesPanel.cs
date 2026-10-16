@@ -90,6 +90,9 @@ namespace ColonyCouncil
             }
             if (shown == 0) y += UiKit.Paragraph(4f, y, width, "CC_Overview_Nothing".Translate(), UiKit.Faint) + 4f;
 
+            // Promises kept: what was granted and could still be taken away (UI/KeptPanel.cs).
+            y += KeptPanel.Draw(comp, y, width);
+
             y += 16f;
             y += UiKit.SectionTitle(0f, y, width, "CC_Trust_Header".Translate(), Icons.Trust);
             y += UiKit.Paragraph(0f, y, width, "CC_Trust_Sub".Translate(), UiKit.Faint) + 6f;
