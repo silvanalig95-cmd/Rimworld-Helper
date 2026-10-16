@@ -72,6 +72,9 @@ namespace ColonyCouncil
             if (tags == null) return;
             if (!Ideo(f).NullOrEmpty()) tags.Add("ideology");
             if (SameFaith(f)) tags.Add("sameFaith");
+            // What their people remember: their:grateful, their:grudge, their:friend ({FRIEND})...
+            Interplay.AddMemoryTags(tags, f);
+            KinMemory.AddTags(tags, f, null);
             var s = Situation(kind);
             if (s?.def?.kind != null) tags.Add("ws:" + s.def.kind);
             if (map != null && !tags.Contains("spring") && !tags.Contains("summer") && !tags.Contains("fall") && !tags.Contains("winter"))

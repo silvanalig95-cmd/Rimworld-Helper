@@ -348,6 +348,9 @@ namespace ColonyCouncil
             if (s.ctx.faction != null) tags.Add(s.ctx.faction.def.techLevel <= TechLevel.Medieval ? "theirLowtech" : "theirHightech");
             if (s.ctx.enemy != null) tags.Add(s.ctx.enemy.def.techLevel <= TechLevel.Medieval ? "enemyLowtech" : "enemyHightech");
             if (s.ctx.a != null) tags.Add(s.ctx.a.gender == Gender.Female ? "aFemale" : "aMale");
+            // What the people remember of the colony and of single colonists: their:grateful, their:grudge, their:friend...
+            Interplay.AddMemoryTags(tags, s.ctx.faction);
+            KinMemory.AddTags(tags, s.ctx.faction, s.ctx.a);
             AddTags(s, tags);
             return tags;
         }

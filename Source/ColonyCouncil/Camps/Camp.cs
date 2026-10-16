@@ -219,7 +219,8 @@ namespace ColonyCouncil
                 (place ?? "").Named("PLACE"),
                 DaysText.Named("DAYS"),
                 count.Named("COUNT"),
-                (thing ?? "").Named("THING")
+                (thing ?? "").Named("THING"),
+                KinMemory.FriendArg(faction)
             };
             return s.Formatted(args.ToArray()).Resolve();
         }

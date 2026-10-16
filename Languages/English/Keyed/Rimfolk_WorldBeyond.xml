@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- The world beyond the walls: a people's memory of single colonists (Source/ColonyCouncil/World/KinMemory.cs), the
+       deeds of the newer missions, world events and camps, follow-ups to world events, the camps' own requests, the
+       newer missions, vendetta endings and secrets born of world events and camps. -->
+
+  <!-- ===================== A people's memory of single colonists ===================== -->
+  <CC_Kin_By>They remember {NAME} for it.</CC_Kin_By>
+  <CC_Kin_ByGone>They remember {NAME} for it, though {NAME} is gone.</CC_Kin_ByGone>
+
+  <!-- ===================== Deeds (see Rimfolk_FactionMemory.xml) ===================== -->
+  <CC_Memory_Deed_escorted>walked one of their pilgrims safely home</CC_Memory_Deed_escorted>
+  <CC_Memory_Deed_escorted_Name>walked {NAME} safely home</CC_Memory_Deed_escorted_Name>
+  <CC_Memory_Deed_carriedWord>carried their word to a far town</CC_Memory_Deed_carriedWord>
+  <CC_Memory_Deed_carriedWord_Name>carried their word to {NAME}</CC_Memory_Deed_carriedWord_Name>
+  <CC_Memory_Deed_foundChild>found one of their children lost in the hills</CC_Memory_Deed_foundChild>
+  <CC_Memory_Deed_foundChild_Name>found little {NAME} lost in the hills and brought them home</CC_Memory_Deed_foundChild_Name>
+  <CC_Memory_Deed_harvestHelp>helped bring in their harvest</CC_Memory_Deed_harvestHelp>
+  <CC_Memory_Deed_harvestHelp_Name>helped bring in the harvest at {NAME}</CC_Memory_Deed_harvestHelp_Name>
+  <CC_Memory_Deed_mourned>mourned their dead with them</CC_Memory_Deed_mourned>
+  <CC_Memory_Deed_mourned_Name>mourned {NAME} with them</CC_Memory_Deed_mourned_Name>
+  <CC_Memory_Deed_rebuilt>helped them rebuild after the war</CC_Memory_Deed_rebuilt>
+  <CC_Memory_Deed_rebuilt_Name>helped them rebuild {NAME}</CC_Memory_Deed_rebuilt_Name>
+  <CC_Memory_Deed_sheltered>sheltered their people on the road</CC_Memory_Deed_sheltered>
+  <CC_Memory_Deed_sheltered_Name>sheltered {NAME} on the road</CC_Memory_Deed_sheltered_Name>
+  <CC_Memory_Deed_campHealed>sent for their healer and paid them well</CC_Memory_Deed_campHealed>
+  <CC_Memory_Deed_campHealed_Name>sent for their healer {NAME} and paid well</CC_Memory_Deed_campHealed_Name>
+  <CC_Memory_Deed_amends>paid the blood price for a life they took</CC_Memory_Deed_amends>
+  <CC_Memory_Deed_amends_Name>paid the blood price for {NAME}</CC_Memory_Deed_amends_Name>
+  <CC_Memory_Deed_apologised>came to say they were sorry for a life they took</CC_Memory_Deed_apologised>
+  <CC_Memory_Deed_apologised_Name>came to say they were sorry for {NAME}</CC_Memory_Deed_apologised_Name>
+
+</LanguageData>

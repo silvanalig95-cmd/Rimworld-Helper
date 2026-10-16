@@ -147,6 +147,8 @@ namespace ColonyCouncil
             args.Add((enemy?.Name ?? "").Named("ENEMY"));
             args.Add((tale ?? "").Named("TALE"));
             args.Add((placeName ?? "").Named("PLACE"));
+            // The colonist their people remember by name (World/KinMemory.cs), for lines tagged [their:friend].
+            args.Add(KinMemory.FriendArg(faction ?? (stranger != null && stranger.RaceProps.Humanlike ? stranger.Faction : null)));
         }
 
         public override void ExposeData()
