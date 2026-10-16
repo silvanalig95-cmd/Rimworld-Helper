@@ -26,7 +26,7 @@
     <defName>Council_Ail_Inc_HeadCold</defName>
     <label>head cold</label>
     <diseaseIncident>Council_Ail_HeadCold</diseaseIncident>
-    <diseaseVictimFractionRange>0.2~0.5</diseaseVictimFractionRange>
+    <diseaseVictimFractionRange>0.15~0.4</diseaseVictimFractionRange>
     <diseaseMaxVictims>5</diseaseMaxVictims>
     <minRefireDays>20</minRefireDays>
     <letterLabel>A cold going round</letterLabel>
@@ -60,7 +60,7 @@
     <defName>Council_Ail_Inc_ChestCold</defName>
     <label>chest cold</label>
     <diseaseIncident>Council_Ail_ChestCold</diseaseIncident>
-    <diseaseVictimFractionRange>0.15~0.4</diseaseVictimFractionRange>
+    <diseaseVictimFractionRange>0.1~0.35</diseaseVictimFractionRange>
     <diseaseMaxVictims>4</diseaseMaxVictims>
     <minRefireDays>25</minRefireDays>
     <letterLabel>A chest cold</letterLabel>

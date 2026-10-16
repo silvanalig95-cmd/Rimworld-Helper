@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!--
+    The colony-year balance simulator: runs without the game, from the def XML, the mod's own arithmetic (linked below)
+    and the rates in Rates.cs. How to run it is at the top of Program.cs; it writes docs/balance-report.md.
+  -->
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RollForward>Major</RollForward>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- The mod's own arithmetic, shared as it is (no game types): the same numbers the game uses. -->
+    <Compile Include="../../Source/ColonyCouncil/Moods/GoodTimesMath.cs" Link="Linked/GoodTimesMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Ailments/AilmentMath.cs" Link="Linked/AilmentMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Arcs/ArcMath.cs" Link="Linked/ArcMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Pressures/PressureMath.cs" Link="Linked/PressureMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Setbacks/SetbackMath.cs" Link="Linked/SetbackMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/UI/SettingsCatalog.cs" Link="Linked/SettingsCatalog.cs" />
+  </ItemGroup>
+</Project>

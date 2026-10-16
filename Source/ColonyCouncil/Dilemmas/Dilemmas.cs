@@ -880,7 +880,8 @@ namespace ColonyCouncil
                 if (home == null || !t.Worker.CanHappenNow(home)) continue;
                 if (TryFire(true, d => d == t)) return;
             }
-            if (now < nextTick) return;
+            // A dilemma that's due waits out the gap after Rimfolk's last question, then comes the next hour it can.
+            if (now < nextTick || !LetterGap.Open) return;
             if (TryFire(false)) nextTick = now + Interval();
             else nextTick = now + GenDate.TicksPerDay;
         }
@@ -899,6 +900,7 @@ namespace ColonyCouncil
             var map = Find.Maps.Where(m => m.IsPlayerHome).OrderByDescending(m => m.mapPawns.FreeColonistsSpawnedCount).FirstOrDefault();
             if (map == null) return false;
             if (Find.LetterStack.LettersListForReading.Any(l => l is ChoiceLetter_Dilemma d && !d.resolved)) return false;
+            if (!force && !LetterGap.Open) return false;
             int now = Find.TickManager.TicksGame;
             var pool = DefDatabase<DilemmaDef>.AllDefsListForReading
                 .Where(d => only == null || only(d))

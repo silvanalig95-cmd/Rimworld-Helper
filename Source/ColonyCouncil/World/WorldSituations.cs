@@ -148,7 +148,7 @@ namespace ColonyCouncil
             var map = HappeningTracker.HomeMap();
             if (map == null) return;
             // Not in the middle of a fight, and not while the last one's question is still open.
-            if (GenHostility.AnyHostileActiveThreatToPlayer(map, false, false) || Waiting)
+            if (GenHostility.AnyHostileActiveThreatToPlayer(map, false, false) || Waiting || !LetterGap.Open)
             {
                 nextTick = now + GenDate.TicksPerHour * 6;
                 return;

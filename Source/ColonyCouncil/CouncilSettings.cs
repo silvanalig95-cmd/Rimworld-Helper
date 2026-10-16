@@ -160,7 +160,7 @@ namespace ColonyCouncil
         /// <summary>Where the smaller news goes: a message as it happens, one letter each evening (default), or only the History tab (UI/News.cs).</summary>
         public NewsMode colonyNews = NewsMode.Digest;
         public EraMode era = EraMode.Auto;
-        public float daysBetweenDilemmas = 8f;
+        public float daysBetweenDilemmas = 10f;
         public bool eventWishes = true;
         public bool reminders = true;
         public bool wishesForOthers = true;
@@ -301,7 +301,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref messageLevel, "messageLevel", MessageLevel.Notable);
             Scribe_Values.Look(ref colonyNews, "colonyNews", NewsMode.Digest);
             Scribe_Values.Look(ref era, "era", EraMode.Auto);
-            Scribe_Values.Look(ref daysBetweenDilemmas, "daysBetweenDilemmas", 8f);
+            Scribe_Values.Look(ref daysBetweenDilemmas, "daysBetweenDilemmas", 10f);
             Scribe_Values.Look(ref eventWishes, "eventWishes", true);
             Scribe_Values.Look(ref reminders, "reminders", true);
             Scribe_Values.Look(ref wishesForOthers, "wishesForOthers", true);

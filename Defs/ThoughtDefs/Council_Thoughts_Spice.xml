@@ -44,7 +44,7 @@
       <li>
         <label>they came back for us</label>
         <description>Someone I love was taken, and the colony went and brought them home.</description>
-        <baseMoodEffect>12</baseMoodEffect>
+        <baseMoodEffect>10</baseMoodEffect>
       </li>
     </stages>
   </ThoughtDef>
@@ -103,7 +103,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Granted_Quit</defName>
     <durationDays>15</durationDays>
-    <stages><li><label>got clean</label><description>I beat my addiction. The others kept it from me when I couldn't stop myself. I feel like myself again.</description><baseMoodEffect>12</baseMoodEffect></li></stages>
+    <stages><li><label>got clean</label><description>I beat my addiction. The others kept it from me when I couldn't stop myself. I feel like myself again.</description><baseMoodEffect>10</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">

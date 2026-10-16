@@ -100,7 +100,7 @@ namespace ColonyCouncil
         private static float Freq => AilmentMath.Frequency(S?.ailmentFrequency ?? 1f);
 
         /// <summary>Mean days between catching everyday ailments on a map, and between catching serious illnesses, at 100%.</summary>
-        public const float EverydayCatchingDays = 20f;
+        public const float EverydayCatchingDays = 30f;
         public const float SeriousCatchingDays = 300f;
 
         /// <summary>No new serious illness starts within this many days of the last one.</summary>

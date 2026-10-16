@@ -79,16 +79,19 @@ namespace ColonyCouncil
             { StrangerKind.Wild, 0.015f }
         };
 
-        /// <summary>How likely, each hour, that someone of this kind brings a question to the council.</summary>
+        /// <summary>
+        /// How likely, each hour, that someone of this kind brings a question to the council. Visitors and traders ask
+        /// about one stay in three or four (Tools/Balance: questions stay near one every two days).
+        /// </summary>
         private static readonly Dictionary<StrangerKind, float> DilemmaChance = new Dictionary<StrangerKind, float>
         {
-            { StrangerKind.Visitor, 0.03f },
-            { StrangerKind.Trader, 0.03f },
+            { StrangerKind.Visitor, 0.02f },
+            { StrangerKind.Trader, 0.02f },
             { StrangerKind.Lodger, 0.02f },
             { StrangerKind.Prisoner, 0.004f },
             { StrangerKind.Fallen, 0.08f },
             { StrangerKind.Pet, 0.002f },
-            { StrangerKind.Wild, 0.003f }
+            { StrangerKind.Wild, 0.002f }
         };
 
         private const int MaxPerDay = 3;

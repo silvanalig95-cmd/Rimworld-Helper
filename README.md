@@ -267,7 +267,7 @@ Meals are noted through one of the deeper game hooks. The Almanac's *everyday pr
 play, each naming its cause in its tooltip and, in the Mood tab, what helps. Most are -1 to -4 for a day or a few; the
 few bigger ones (-5 to -6) are for real losses.
 - **The council**: a wish still waiting while wishes voiced after it come true (-1 to -2), an idea turned down at a
-  meeting (-3, -4 if the meeting backed it) or a vote lost (-1), a disliked decree dragging on past two days (-1 to
+  meeting (-2, -4 if the meeting backed it) or a vote lost (-1), a disliked decree dragging on past two days (-1 to
   -2), a promise broken to a close friend or someone they love (-3 to -5), a rival given a name or a council seat
   (-2), and answers that go against someone's nature: "not my choice" (-1 to -2), or "I said it would go wrong" (-2)
   when the answer's gamble failed. These follow the stakes' downsides.
@@ -1292,7 +1292,7 @@ illness.
 
 - **Going round** (the game's own disease events, so immunity, genes and the medical tab work as usual; never babies):
   a head cold, a stomach bug, a chest cold in cold weather, hay fever in spring and summer (back to the same people
-  each year), pinkeye, and dreamfever, an invented rim fever of vivid dreams. About one every 20 days, more where the
+  each year), pinkeye, and dreamfever, an invented rim fever of vivid dreams. About one every 30 days, more where the
   game's diseases are common, less on gentle storyteller settings.
 - **From the day's work**, once a colonist's day holds enough hours of the cause: a strained back after long hauling,
   mining or building, sore hands after long bench work, blisters after a day's walking or a caravan trip, chilblains
@@ -1393,7 +1393,10 @@ letter brings it all, a line each under **people**, **health**, **the colony**, 
 together as that colonist's day ("Hector's day: ..."). A day with a single piece of news brings a message instead, and
 what's waiting is saved with the game. Letters and messages that ask you to decide something (dilemmas, wishes,
 petitions, decree requests, meetings) and serious news (a death and its remembrance, raids and battles, nemeses, a
-serious illness, a camp arriving) still come at once. The **Colony news** setting can bring back a message for each,
+serious illness, a camp arriving) still come at once. Rimfolk's questions keep a little distance from each other: a
+dilemma, an event that asks something or a world event's first question waits until twelve hours have passed since
+Rimfolk's last question (a calendar day, a meeting's vote or a camp at the gate comes when it comes), so they arrive
+about one every two days and seldom two at once. The **Colony news** setting can bring back a message for each,
 **as it happens**, or turn it **off**, so the smaller news goes only to the message log in the History tab; how much
 of it there is at all is still set by **How many messages**.
 
@@ -1425,12 +1428,17 @@ apply it. Each sets only the values listed here and leaves everything else as yo
   personal stories, a dilemma about every 5 days, moments, social events, dreams and encounters at 150%, Rimfolk's
   events at 150% (every 3 days on its own timer), world events about every 30 days, and a message for everything.
   Moods, pressures and stakes are left alone.
-- **Demanding**: harder moods, more frictions and pressures, rarer rewards. Demanding stakes, downsides at 125% and
-  rewards at 75%, wishes and ambitions with 75% of the time, demanding everyday pressures, frictions on and moments
+- **Demanding**: harder moods, more frictions and pressures, rarer rewards. Demanding stakes, downsides at 115% and
+  rewards at 80%, wishes and ambitions with 75% of the time, demanding everyday pressures, frictions on and moments
   between colonists (frictions among them) at 125%, jealousy, leaving, rising standards (also over the game's
   comforts), good moods adding up slowly and fading sooner in good times, feelings and strain with the day off, and
   strain building at 125%.
 - **Default**: everything the three presets above can change, back to how Rimfolk ships. Nothing else.
+
+Each preset aims at its own balance (DESIGN.md, "Balance targets"; `Tools/Balance` measures it, `docs/balance-report.md`
+has the numbers). What Rimfolk adds to a colonist's mood, in a well-run, an ordinary and a neglected colony: about +3,
+0 and -10 by default (and with Story-rich, which asks a little more often); about +5, +4 and 0 with Light touch; about
+0, -4 and -18 with Demanding. By default it asks about one question every two days, fewer with Light touch.
 
 The pages:
 - **Council & wishes**: a quick setup (*Everything on*, *Council only*, *Advisor only*, also with a list of what
@@ -1523,6 +1531,10 @@ clipboard" button) says most of what a bug report needs.
   constant, Harmony target and by-name lookup it uses). `-p:RimRef=1.7` builds against the 1.7 references. See
   "Checking a new game version" in [DESIGN.md](DESIGN.md).
 - `Tools/Tests/`: tests for the room rotation and mirroring math (`dotnet run --project Tools/Tests`).
+- `Tools/Balance/`: a colony-year simulator for balance. It plays a settled colony of 6 and of 12 through one year,
+  well run, average and neglected, from the defs, the code's rates and the mod's own mood arithmetic, and writes
+  `docs/balance-report.md` (moods, trust, letters per day by system, ailments, the presets), against the targets in
+  DESIGN.md ("Balance targets"): `dotnet run -c Release --project Tools/Balance -- .`
 - `Source/ColonyCouncil/Lean/`: on which tick of the hour each periodic pass runs (`Sched.cs`, so none share a tick)
   and how much history each part keeps in the save (`Caps.cs`). DESIGN.md lists them all under "Ticking" and
   "Save size"; a new hourly pass gets its own tick there.

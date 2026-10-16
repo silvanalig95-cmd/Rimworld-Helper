@@ -161,7 +161,7 @@
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Granted_Travel</defName>
-    <durationDays>10</durationDays>
+    <durationDays>8</durationDays>
     <stages>
       <li>
         <label>saw something of the world</label>
@@ -190,7 +190,7 @@
       <li>
         <label>the beast is dead</label>
         <description>The animal that mauled one of us is dead. I can walk past the tree line again without my heart in my throat.</description>
-        <baseMoodEffect>8</baseMoodEffect>
+        <baseMoodEffect>7</baseMoodEffect>
       </li>
     </stages>
   </ThoughtDef>

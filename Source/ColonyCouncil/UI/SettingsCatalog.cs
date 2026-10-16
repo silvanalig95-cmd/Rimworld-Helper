@@ -437,8 +437,13 @@ namespace ColonyCouncil
 
         private static void BuildPresets()
         {
+            // Each preset maps to the balance targets (DESIGN.md, "Balance targets"; Tools/Balance measures them, and
+            // docs/balance-report.md has the numbers): what Rimfolk adds to a colonist's mood in a well-run, an average and
+            // a neglected colony, and how often it asks a question.
+            //
             // Light touch: Rimfolk in the background. Only upsides, gentle pressures, fewer and quieter interruptions, no
-            // deadly illnesses and no fights from its events. Every system stays on, just slower.
+            // deadly illnesses and no fights from its events. Every system stays on, just slower. Targets: about +4 to +7
+            // well run, +2 to +5 average, around 0 neglected; under one question every two days.
             var light = NewPreset("lightTouch", "CC_SetPreset_LightTouch");
             light.values.AddRange(new[]
             {
@@ -452,7 +457,8 @@ namespace ColonyCouncil
             });
 
             // Story-rich: every system that tells a story switched on, and more of each: personal stories, dilemmas,
-            // events, moments and dreams, with a message for each. Moods and pressures stay as they are.
+            // events, moments and dreams, with a message for each. Moods and pressures stay as they are. Targets: the
+            // default's moods, and more questions by choice (a little over one every two days).
             var story = NewPreset("storyRich", "CC_SetPreset_StoryRich");
             foreach (var f in PeopleSystems.Where(f => f != "frictions"))
                 story.values.Add(V(f, "true"));
@@ -467,18 +473,22 @@ namespace ColonyCouncil
                 V("daysBetweenWorldSituations", "30")
             });
 
-            // Demanding: harder moods, more frictions and pressures, rarer rewards. Downsides 50% stronger and then a quarter
-            // more, rewards three quarters as strong, less time to grant wishes and reach ambitions, strain building faster.
+            // Demanding: harder moods, more frictions and pressures, rarer rewards. Downsides 50% stronger and then 15% more,
+            // rewards at 80%, less time to grant wishes and reach ambitions, strain building faster. Targets: a well-run
+            // colony about breaks even (0 to +2), an average one feels it (-3 to -6), a neglected one is in real trouble
+            // (-15 to -20). (Downsides were a quarter more and rewards 75%: an average colony sat near -5, a well-run one
+            // below nothing.)
             var hard = NewPreset("demanding", "CC_SetPreset_Demanding");
             hard.values.AddRange(new[]
             {
-                V("stakes", "Demanding"), V("lifePressure", "Demanding"), V("penaltyFactor", "1.25"), V("rewardFactor", "0.75"),
+                V("stakes", "Demanding"), V("lifePressure", "Demanding"), V("penaltyFactor", "1.15"), V("rewardFactor", "0.8"),
                 V("wishDurationFactor", "0.75"), V("ambitionDeadlineFactor", "0.75"), V("jealousy", "true"), V("allowQuitting", "true"),
                 V("frictions", "true"), V("momentFrequency", "1.25"), V("risingStandards", "true"), V("standardsCoverComforts", "true"),
                 V("smallJoysDiminish", "true"), V("goodTimesFade", "true"), V("heart", "true"), V("heartEpisodes", "true"), V("strainSpeed", "1.25")
             });
 
-            // Default: everything the three presets above can change, back to how Rimfolk ships. Nothing else.
+            // Default: everything the three presets above can change, back to how Rimfolk ships. Nothing else. Targets: +3
+            // to +6 well run, 0 to +3 average, -4 to -10 neglected; about one question every two days or fewer.
             var normal = NewPreset("default", "CC_SetPreset_Default");
             foreach (var f in light.Fields.Concat(story.Fields).Concat(hard.Fields).Distinct())
                 normal.values.Add(V(f, DefaultValue));
