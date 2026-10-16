@@ -46,7 +46,8 @@ namespace ColonyCouncil
                     }
                     result.Add(i);
                 }
-                return result;
+                // A day that was all one colonist's stays a letter of lines, not one long message.
+                return result.Count < 2 ? items : result;
             }
             catch (System.Exception e)
             {
