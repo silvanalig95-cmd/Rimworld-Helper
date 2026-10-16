@@ -37,7 +37,7 @@
 
   <!-- A decree that costs more than it gives -->
   <CC_Adv_DecreeCost_Title>{0} costs more than it gives</CC_Adv_DecreeCost_Title>
-  <CC_Adv_DecreeCost_Detail>{0} against it and {1} for it: the moods it stirs add up to {2} across the colony. It runs another {3}. If what it does no longer matters more than that, lift it from the Decrees page.</CC_Adv_DecreeCost_Detail>
+  <CC_Adv_DecreeCost_Detail>What it was enacted for has passed, and it still runs another {3}: {0} against it and {1} for it, with moods that add up to {2} across the colony. Unless it's still needed, lift it from the Decrees page.</CC_Adv_DecreeCost_Detail>
   <CC_Adv_DecreeCost_Again>Enacted again so soon after the last time, it weighs on people more.</CC_Adv_DecreeCost_Again>
 
   <!-- An office standing empty -->

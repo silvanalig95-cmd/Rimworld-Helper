@@ -173,7 +173,11 @@ namespace ColonyCouncil
             foreach (var a in comp.decrees.active.ToList())
             {
                 var stages = a?.def?.thought?.stages;
-                if (stages == null || stages.Count < 4) continue;
+                if (stages == null || stages.Count < 4 || now - a.startTick < GenDate.TicksPerDay) continue;
+                // What it was enacted for (the moments it's asked for at): with none named, its purpose can't be judged here.
+                var reasons = (a.def.requestWhen ?? new List<DecreeMoment>()).Concat(a.def.orWhen ?? new List<DecreeMoment>()).Distinct().ToList();
+                if (reasons.Count == 0) continue;
+                bool holds = reasons.Any(m => DecreeTracker.MomentNow(m, map, people, a.def));
                 float good = 0f, bad = 0f;
                 int against = 0, forIt = 0;
                 float badScale = settings.ChosenPenaltyScale * (1f + 0.35f * a.fatigue);
@@ -200,7 +204,7 @@ namespace ColonyCouncil
                         forIt++;
                     }
                 }
-                if (!AdvisorMath.DecreeCostsMore(good, bad, against, forIt)) continue;
+                if (!AdvisorMath.DecreeCostsMore(good, bad, against, forIt, holds)) continue;
                 float net = good + bad;
                 var s = Signal(Mathf.Min(0.5f, 0.2f + 0.02f * -net), "CC_Adv_DecreeCost_Title".Translate(a.def.LabelCap.ToString()).Resolve(),
                     "CC_Adv_DecreeCost_Detail".Translate(against, forIt, net.ToString("0"), TextUtil.DaysString(Mathf.Max(0, a.endTick - now))).Resolve()

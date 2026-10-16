@@ -29,12 +29,13 @@ public static class AdvisorTests
         Check(!AdvisorMath.MissionPressing(0, 10 * day, false), "over is over");
         Check(!AdvisorMath.MissionPressing(-day, 10 * day, false), "past the deadline isn't pressing any more");
 
-        // ---------- Decrees: a loss of three or more, and more against than for ----------
-        Check(AdvisorMath.DecreeCostsMore(4f, -10f, 3, 1), "three against, one for, net -6");
-        Check(!AdvisorMath.DecreeCostsMore(8f, -10f, 3, 2), "net -2 isn't enough");
-        Check(!AdvisorMath.DecreeCostsMore(6f, -10f, 2, 3), "more for than against: worth it");
-        Check(!AdvisorMath.DecreeCostsMore(0f, 0f, 0, 0), "nobody minds");
-        Check(AdvisorMath.DecreeCostsMore(0f, -3f, 1, 0), "exactly -3 with one against counts");
+        // ---------- Decrees: its reason gone, a loss of three or more, and more against than for ----------
+        Check(AdvisorMath.DecreeCostsMore(4f, -10f, 3, 1, false), "three against, one for, net -6, the reason passed");
+        Check(!AdvisorMath.DecreeCostsMore(4f, -10f, 3, 1, true), "while what it's for still holds, its cost is the point");
+        Check(!AdvisorMath.DecreeCostsMore(8f, -10f, 3, 2, false), "net -2 isn't enough");
+        Check(!AdvisorMath.DecreeCostsMore(6f, -10f, 2, 3, false), "more for than against: worth it");
+        Check(!AdvisorMath.DecreeCostsMore(0f, 0f, 0, 0, false), "nobody minds");
+        Check(AdvisorMath.DecreeCostsMore(0f, -3f, 1, 0, false), "exactly -3 with one against counts");
 
         // ---------- Doctors ----------
         Check(AdvisorMath.NeedsBackupDoctor(1, 3), "one doctor for three");

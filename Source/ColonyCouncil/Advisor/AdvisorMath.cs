@@ -28,11 +28,14 @@ namespace ColonyCouncil
         // ---------------- Decrees ----------------
 
         /// <summary>
-        /// A decree costs more than it gives when the colony's moods about it add up to a loss of three or more, and more
-        /// people are against it than for it. <paramref name="good"/> is the sum of the good moods, <paramref name="bad"/>
-        /// of the bad ones (a negative number).
+        /// A decree costs more than it gives when what it was enacted for has passed (<paramref name="reasonHolds"/> false:
+        /// the food is no longer low, the threat is days gone) while the colony's moods about it still add up to a loss of
+        /// three or more, with more people against it than for it. A decree is meant to cost some mood while it does its
+        /// work; only one that no longer does is worth a word. <paramref name="good"/> is the sum of the good moods,
+        /// <paramref name="bad"/> of the bad ones (a negative number).
         /// </summary>
-        public static bool DecreeCostsMore(float good, float bad, int against, int forIt) => good + bad <= -3f && against > forIt;
+        public static bool DecreeCostsMore(float good, float bad, int against, int forIt, bool reasonHolds) =>
+            !reasonHolds && good + bad <= -3f && against > forIt;
 
         // ---------------- People ----------------
 
