@@ -81,7 +81,7 @@ namespace ColonyCouncil
                     var arc = tracker?.Of(p);
                     if (arc == null) continue;
                     var with = arc.other != null && home.Contains(arc.other) ? arc.other : null;
-                    NudgeAndTell(p, 1f, "day", with, (d.label ?? "").Named("DAY"));
+                    NudgeAndTell(p, 1f, "day", with, (d.label ?? "").Named("NAME"));
                 }
             });
         }
@@ -111,7 +111,7 @@ namespace ColonyCouncil
             if (!On || !Ours(friend)) return;
             Safe("interplay: camp friend", () =>
             {
-                NudgeAndTell(friend, 1f, "camp", null, (them?.LabelShort ?? "?").Named("OTHER"));
+                NudgeAndTell(friend, 1f, "camp", null, (them?.LabelShort ?? "?").Named("NAME"));
                 if (Heart.Eligible(friend)) HeartLogic.Change(friend, -2f, StrainRelief.Friends);
             });
         }

@@ -28,7 +28,7 @@ namespace ColonyCouncil
                     bool theirDay = p != null && (p.ThingID == d.pawnId || p.ThingID == d.otherId);
                     if (p != null && !theirDay && Grieving(p))
                     {
-                        if (Rand.Chance(0.5f)) Journal(p, "Council_Pool_Interplay_SatOut", null, (d.label ?? "").Named("DAY"));
+                        if (Rand.Chance(0.5f)) Journal(p, "Council_Pool_Interplay_SatOut", null, (d.label ?? "").Named("NAME"));
                         continue;
                     }
                     kept.Add(p);

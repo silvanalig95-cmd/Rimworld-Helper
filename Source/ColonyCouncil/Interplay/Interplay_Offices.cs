@@ -40,7 +40,7 @@ namespace ColonyCouncil
             var keeper = Officer(Keeper);
             if (keeper == null || !who.Contains(keeper) || !Able(keeper) || Grieving(keeper)) return null;
             if (Ready("keeperday|" + d.id, 0.5f) && Rand.Chance(0.6f))
-                Journal(keeper, "Council_Pool_Interplay_KeeperOrganised", null, (d.label ?? "").Named("DAY"));
+                Journal(keeper, "Council_Pool_Interplay_KeeperOrganised", null, (d.label ?? "").Named("NAME"));
             return keeper;
         }
 

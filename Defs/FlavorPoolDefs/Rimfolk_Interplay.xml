@@ -8,31 +8,31 @@
 
   <!-- ===================== Offices at work ===================== -->
 
-  <!-- The keeper of days organised a calendar day's feast or games (journal). {DAY}: the day's name. -->
+  <!-- The keeper of days organised a calendar day's feast or games (journal). {NAME}: the day's name. -->
   <ColonyCouncil.FlavorPoolDef>
     <defName>Council_Pool_Interplay_KeeperOrganised</defName>
     <lines>
       <plain>
-        <li>I had {DAY} marked on the calendar for weeks. Today I got to watch it kept properly, every bench where it should be.</li>
-        <li>Organised {DAY} today. Counted the plates twice and still came up one short. Nobody noticed but me.</li>
-        <li>It's my job to remember what {DAY} means. Today I got to watch everyone else remember it too.</li>
-        <li>Up before dawn to get {DAY} ready. By supper it looked as if it had arranged itself, which is the idea.</li>
-        <li>[lowtech] Walked round the whole settlement this morning telling people it was {DAY}. Most of them knew already. I told them anyway.</li>
+        <li>I had {NAME} marked on the calendar for weeks. Today I got to watch it kept properly, every bench where it should be.</li>
+        <li>Organised {NAME} today. Counted the plates twice and still came up one short. Nobody noticed but me.</li>
+        <li>It's my job to remember what {NAME} means. Today I got to watch everyone else remember it too.</li>
+        <li>Up before dawn to get {NAME} ready. By supper it looked as if it had arranged itself, which is the idea.</li>
+        <li>[lowtech] Walked round the whole settlement this morning telling people it was {NAME}. Most of them knew already. I told them anyway.</li>
       </plain>
       <warm>
-        <li>Watching everyone sit down together for {DAY} was worth every hour I spent getting it ready.</li>
+        <li>Watching everyone sit down together for {NAME} was worth every hour I spent getting it ready.</li>
       </warm>
       <blunt>
-        <li>{DAY}. Organised it. Went well.</li>
+        <li>{NAME}. Organised it. Went well.</li>
       </blunt>
       <cheerful>
-        <li>{DAY}! I've been looking forward to it since the last one, and this one was better.</li>
+        <li>{NAME}! I've been looking forward to it since the last one, and this one was better.</li>
       </cheerful>
       <gloomy>
-        <li>Kept {DAY} today. Someone always forgets what it's for. I don't.</li>
+        <li>Kept {NAME} today. Someone always forgets what it's for. I don't.</li>
       </gloomy>
       <cold>
-        <li>{DAY} was kept as it should be. I saw to it.</li>
+        <li>{NAME} was kept as it should be. I saw to it.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -205,30 +205,30 @@
 
   <!-- ===================== The heart ===================== -->
 
-  <!-- Someone grieving sat out a calendar day's feast or games (journal). {DAY}: the day's name. -->
+  <!-- Someone grieving sat out a calendar day's feast or games (journal). {NAME}: the day's name. -->
   <ColonyCouncil.FlavorPoolDef>
     <defName>Council_Pool_Interplay_SatOut</defName>
     <lines>
       <plain>
-        <li>They kept {DAY} today. I couldn't face it. I sat on my bed and listened to them through the wall.</li>
-        <li>Everyone went to {DAY}. Nobody made me go, and I was grateful for that.</li>
+        <li>They kept {NAME} today. I couldn't face it. I sat on my bed and listened to them through the wall.</li>
+        <li>Everyone went to {NAME}. Nobody made me go, and I was grateful for that.</li>
         <li>I'm not ready for feasts. Maybe next year.</li>
-        <li>Someone brought me a plate from {DAY} and left it by the door without a word.</li>
+        <li>Someone brought me a plate from {NAME} and left it by the door without a word.</li>
       </plain>
       <warm>
-        <li>I told them to go and enjoy {DAY} without me. They should. I'll come next time.</li>
+        <li>I told them to go and enjoy {NAME} without me. They should. I'll come next time.</li>
       </warm>
       <blunt>
-        <li>Skipped {DAY}. Not up to it.</li>
+        <li>Skipped {NAME}. Not up to it.</li>
       </blunt>
       <cheerful>
         <li>Even I didn't feel like a party today. That's how I know how bad it is.</li>
       </cheerful>
       <gloomy>
-        <li>They were singing for {DAY}. I don't know how anyone sings.</li>
+        <li>They were singing for {NAME}. I don't know how anyone sings.</li>
       </gloomy>
       <cold>
-        <li>I did not go to {DAY}. It would have been a performance, and I had none in me.</li>
+        <li>I did not go to {NAME}. It would have been a performance, and I had none in me.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -280,45 +280,45 @@
 
   <!--
     A personal story moved on because of something outside it (journal). Every line is tagged with what did it: [day] a
-    calendar day kept ({DAY}), [favour] an old good turn repaid by a people ({FACTION}), [camp] a friend made at a camp
-    that has gone ({OTHER}, a name), [recovered] back to full strength after convalescing. {STORY}: the story's name.
+    calendar day kept ({NAME}: the day), [favour] an old good turn repaid by a people ({FACTION}), [camp] a friend made
+    at a camp that has gone ({NAME}: their name), [recovered] back to full strength after convalescing.
   -->
   <ColonyCouncil.FlavorPoolDef>
     <defName>Council_Pool_Interplay_StoryNudge</defName>
     <lines>
       <plain>
-        <li>[day] {DAY} helped more than I expected. For an evening the rest of it went quiet.</li>
-        <li>[day] We kept {DAY} together, and somewhere in the middle of it I stopped feeling so far from everyone.</li>
-        <li>[day] I almost didn't go to {DAY}. I'm glad I did.</li>
+        <li>[day] {NAME} helped more than I expected. For an evening the rest of it went quiet.</li>
+        <li>[day] We kept {NAME} together, and somewhere in the middle of it I stopped feeling so far from everyone.</li>
+        <li>[day] I almost didn't go to {NAME}. I'm glad I did.</li>
         <li>[favour] {FACTION} came back to repay what we once did for them. Kindness comes round after all. I needed to see that.</li>
         <li>[favour] An envoy from {FACTION}, to settle an old debt. It made me think the world isn't as cold as I'd decided.</li>
-        <li>[camp] {OTHER} has gone on with the camp. We talked most nights by their fire. I feel more like myself for it.</li>
-        <li>[camp] I'll miss {OTHER}. Strange, how a stranger can say exactly what you needed to hear.</li>
+        <li>[camp] {NAME} has gone on with the camp. We talked most nights by their fire. I feel more like myself for it.</li>
+        <li>[camp] I'll miss {NAME}. Strange, how a stranger can say exactly what you needed to hear.</li>
         <li>[recovered] Back on my feet properly today. Lying in bed I had a lot of time to think. Now I can do something about it.</li>
         <li>[recovered] Strong again. Being laid up made a few things clearer.</li>
       </plain>
       <warm>
-        <li>[day] Everyone together for {DAY}. I needed that more than I knew.</li>
+        <li>[day] Everyone together for {NAME}. I needed that more than I knew.</li>
         <li>[recovered] Everyone was so kind while I was ill. I mean to pay it back, starting now.</li>
-        <li>[camp] I hope {OTHER}'s road is a kind one. {OTHER} was kind to me.</li>
+        <li>[camp] I hope {NAME}'s road is a kind one. {NAME} was kind to me.</li>
       </warm>
       <blunt>
-        <li>[day] {DAY}. Helped.</li>
+        <li>[day] {NAME}. Helped.</li>
         <li>[favour] {FACTION} paid back what they owed. Good.</li>
-        <li>[camp] Good talks with {OTHER}. Helped.</li>
+        <li>[camp] Good talks with {NAME}. Helped.</li>
         <li>[recovered] Better. Moving on.</li>
       </blunt>
       <cheerful>
-        <li>[day] What a day! {DAY} always lifts me.</li>
+        <li>[day] What a day! {NAME} always lifts me.</li>
         <li>[recovered] Up and about! Watch out, everyone.</li>
       </cheerful>
       <gloomy>
-        <li>[day] {DAY} was a kind of relief. They don't come often.</li>
+        <li>[day] {NAME} was a kind of relief. They don't come often.</li>
         <li>[recovered] Well again. I suppose that's something.</li>
       </gloomy>
       <cold>
         <li>[favour] {FACTION} honoured their debt. That is worth noting.</li>
-        <li>[camp] {OTHER} was good company. The conversations were useful.</li>
+        <li>[camp] {NAME} was good company. The conversations were useful.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
