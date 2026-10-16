@@ -485,7 +485,7 @@ namespace ColonyCouncil
             var c = Open(pawn);
             // The visit's ticking feeds recreation: never for someone without that need (it would fail every tick).
             if (c == null || !pawn.IsFreeColonist || pawn.Drafted || pawn.DevelopmentalStage.Baby() || pawn.needs?.joy == null) return null;
-            if (!pawn.Position.InHorDistOf(c.center, 90f) || GenHostility.AnyHostileActiveThreatToPlayer(pawn.Map, false, false)) return null;
+            if (!pawn.Position.InHorDistOf(c.center, 90f) || MapFacts.ThreatOn(pawn.Map)) return null;
             var map = pawn.Map;
             var fire = c.FireCell;
             if (!CellFinder.TryFindRandomCellNear(fire, map, 3, x => x != fire && x.Standable(map) && x.GetEdifice(map) == null && !x.Roofed(map) && x.GetFirstPawn(map) == null

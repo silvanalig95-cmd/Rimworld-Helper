@@ -675,7 +675,7 @@ namespace ColonyCouncil
         {
             if (map == null) return;
             // Not on top of a fight, or while another question waits for an answer.
-            if (HappeningTracker.Waiting || GenHostility.AnyHostileActiveThreatToPlayer(map, false, false))
+            if (HappeningTracker.Waiting || MapFacts.ThreatOn(map))
             {
                 m.due = now + GenDate.TicksPerHour * 6;
                 return;
@@ -702,7 +702,7 @@ namespace ColonyCouncil
                 m.due = 0;
                 return;
             }
-            if (map == null || !IncidentWorker_Happening.ScenarioFightsPossible || GenHostility.AnyHostileActiveThreatToPlayer(map, false, false) || HappeningTracker.Waiting)
+            if (map == null || !IncidentWorker_Happening.ScenarioFightsPossible || MapFacts.ThreatOn(map) || HappeningTracker.Waiting)
             {
                 m.due = now + GenDate.TicksPerDay;
                 return;

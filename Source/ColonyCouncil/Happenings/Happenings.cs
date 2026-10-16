@@ -509,7 +509,7 @@ namespace ColonyCouncil
         private static int Now => Find.TickManager.TicksGame;
 
         public static Map HomeMap() =>
-            Find.Maps.Where(m => m.IsPlayerHome).OrderByDescending(m => m.mapPawns.FreeColonistsSpawnedCount).FirstOrDefault();
+            MapFacts.BusiestHome;
 
         public void Hourly(CouncilGameComponent comp)
         {
@@ -534,7 +534,7 @@ namespace ColonyCouncil
             var map = HomeMap();
             if (map == null) return;
             // Not on top of a fight, and not while the colony still has an event to answer.
-            if (GenHostility.AnyHostileActiveThreatToPlayer(map, false, false) || Waiting)
+            if (MapFacts.ThreatOn(map) || Waiting)
             {
                 nextTick = now + GenDate.TicksPerHour * 4;
                 return;
@@ -725,7 +725,7 @@ namespace ColonyCouncil
                     continue;
                 }
                 // Not on top of another fight, nor right after one: they wait a little.
-                bool busy = GenHostility.AnyHostileActiveThreatToPlayer(r.map, false, false) || now - r.map.storyState.LastThreatBigTick < GenDate.TicksPerDay;
+                bool busy = MapFacts.ThreatOn(r.map) || now - r.map.storyState.LastThreatBigTick < GenDate.TicksPerDay;
                 if (busy && r.postponed < 4)
                 {
                     r.postponed++;

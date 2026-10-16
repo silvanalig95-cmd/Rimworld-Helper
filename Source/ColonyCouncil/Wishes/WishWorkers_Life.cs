@@ -136,24 +136,74 @@ namespace ColonyCouncil
         /// <summary>A body part item that can be installed on this part and is in stock or craftable.</summary>
         internal static ThingDef ObtainableInstall(Map map, BodyPartDef partDef)
         {
-            foreach (var r in DefDatabase<RecipeDef>.AllDefsListForReading)
+            if (map == null || partDef == null) return null;
+            BuildInstalls();
+            if (!installs.TryGetValue(partDef, out var list)) return null;
+            // The same order and the same questions as walking every recipe: only what can't change while playing (which
+            // recipe fits which part, its items, who makes them) was worked out beforehand.
+            RecipeDef recipe = null;
+            bool available = false;
+            foreach (var (r, item) in list)
             {
-                if (r.addsHediff == null || r.appliedOnFixedBodyParts == null || !r.appliedOnFixedBodyParts.Contains(partDef)) continue;
-                if (!r.AvailableNow || r.ingredients == null) continue;
-                foreach (var ing in r.ingredients)
+                if (r != recipe)
                 {
-                    if (ing.filter == null) continue;
-                    foreach (var item in ing.filter.AllowedThingDefs)
+                    recipe = r;
+                    available = r.AvailableNow;
+                }
+                if (!available) continue;
+                if (map.listerThings.ThingsOfDef(item).Any()) return item;
+                if (!producers.TryGetValue(item, out var makers)) continue;
+                foreach (var cr in makers)
+                    if (cr.AvailableNow && Avail.RecipeUsers(cr).Any(u => map.listerBuildings.ColonistsHaveBuilding(u) || Avail.CanBuild(u, map)))
+                        return item;
+            }
+            return null;
+        }
+
+        // Which recipes install something on each body part, with the items each takes (in the game's order), and which
+        // recipes make each of those items: worked out once, the first time someone is missing a part. A large modlist
+        // has thousands of recipes, and this used to walk them all, twice over, for every missing part of every colonist.
+        private static Dictionary<BodyPartDef, List<(RecipeDef recipe, ThingDef item)>> installs;
+        private static Dictionary<ThingDef, List<RecipeDef>> producers;
+        private static int installsGeneration = -1;
+
+        private static void BuildInstalls()
+        {
+            // Built again for each game (DefRefs' generation), in case the defs were reloaded in between.
+            if (installs != null && installsGeneration == DefRefs.Generation) return;
+            installsGeneration = DefRefs.Generation;
+            var byPart = new Dictionary<BodyPartDef, List<(RecipeDef, ThingDef)>>();
+            var items = new HashSet<ThingDef>();
+            var recipes = DefDatabase<RecipeDef>.AllDefsListForReading;
+            foreach (var r in recipes)
+            {
+                if (r.addsHediff == null || r.appliedOnFixedBodyParts == null || r.ingredients == null) continue;
+                foreach (var part in r.appliedOnFixedBodyParts.Distinct())
+                {
+                    if (part == null) continue;
+                    if (!byPart.TryGetValue(part, out var list)) byPart[part] = list = new List<(RecipeDef, ThingDef)>();
+                    foreach (var ing in r.ingredients)
                     {
-                        if (item.IsMedicine || !item.isTechHediff) continue;
-                        if (map.listerThings.ThingsOfDef(item).Any()) return item;
-                        if (DefDatabase<RecipeDef>.AllDefsListForReading.Any(cr => cr.ProducedThingDef == item && cr.AvailableNow
-                                && Avail.RecipeUsers(cr).Any(u => map.listerBuildings.ColonistsHaveBuilding(u) || Avail.CanBuild(u, map))))
-                            return item;
+                        if (ing.filter == null) continue;
+                        foreach (var item in ing.filter.AllowedThingDefs)
+                        {
+                            if (item.IsMedicine || !item.isTechHediff) continue;
+                            list.Add((r, item));
+                            items.Add(item);
+                        }
                     }
                 }
             }
-            return null;
+            var makes = new Dictionary<ThingDef, List<RecipeDef>>();
+            foreach (var cr in recipes)
+            {
+                var made = cr.ProducedThingDef;
+                if (made == null || !items.Contains(made)) continue;
+                if (!makes.TryGetValue(made, out var list)) makes[made] = list = new List<RecipeDef>();
+                list.Add(cr);
+            }
+            producers = makes;
+            installs = byPart;
         }
 
         public override bool IsFulfilled(Wish wish)

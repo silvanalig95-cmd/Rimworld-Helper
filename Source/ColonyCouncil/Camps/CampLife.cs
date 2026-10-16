@@ -740,7 +740,7 @@ namespace ColonyCouncil
         /// <summary>Whether something sends them on their way now (raid, weather, hunger, crowding, time).</summary>
         private bool Ends()
         {
-            if (GenHostility.AnyHostileActiveThreatToPlayer(map, false, false))
+            if (MapFacts.ThreatOn(map))
             {
                 Leave("raid", true);
                 return true;

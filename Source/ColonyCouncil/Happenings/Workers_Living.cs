@@ -996,7 +996,7 @@ namespace ColonyCouncil
             var map = HappeningTracker.HomeMap();
             if (def == null || map == null) return;
             int hour = GenLocalDate.HourOfDay(map);
-            if (hour < 9 || hour > 19 || HappeningTracker.Waiting || GenHostility.AnyHostileActiveThreatToPlayer(map, false, false)) return;
+            if (hour < 9 || hour > 19 || HappeningTracker.Waiting || MapFacts.ThreatOn(map)) return;
             var parms = StorytellerUtility.DefaultParmsNow(def.category, map);
             if (def.Worker.CanFireNow(parms)) Find.Storyteller.TryFire(new FiringIncident(def, null, parms));
         }

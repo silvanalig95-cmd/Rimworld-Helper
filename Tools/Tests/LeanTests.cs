@@ -89,6 +89,34 @@ public static class LeanTests
         }
         C(seen.All(k => k == 3), "each heart slice comes round once an hour");
 
+        // Ailments and health stories: a tenth of the colony every 250 ticks, each slice once an hour; the ailments' colony
+        // part keeps its old tick of the hour, which is one of its slices' turns; no slice lands on another hourly pass.
+        foreach (var (name, offset) in new[] { ("ailments", Sched.RareAilments), ("health", Sched.RareHealth) })
+        {
+            var turns = new int[Sched.Slices];
+            var landed = new List<int>();
+            for (int tick = 0; tick < Sched.HourTicks * 2; tick++)
+            {
+                int slice = Sched.SliceTurn(tick, Sched.HourTicks, Sched.Slices, offset);
+                if (slice < 0) continue;
+                turns[slice]++;
+                if (tick < Sched.HourTicks) landed.Add(tick);
+            }
+            C(turns.All(k => k == 2), $"each {name} slice comes round once an hour ({string.Join(",", turns)})");
+            C(landed.Count == Sched.Slices, $"{name}: {Sched.Slices} turns an hour");
+            foreach (int t in landed)
+            {
+                if (name == "ailments" && t == Sched.Ailments) continue;
+                C(!hourly.Contains(t), $"{name} slice at tick {t} misses every hourly pass");
+            }
+        }
+        C(Sched.SliceTurn(Sched.Ailments, Sched.HourTicks, Sched.Slices, Sched.RareAilments) >= 0, "the ailments' colony part rides on one of its slices");
+        C(Sched.SliceTurn(Sched.Health, Sched.HourTicks, Sched.Slices, Sched.RareHealth) < 0, "the health stories' colony part has a tick of its own");
+        // The passes that only run while something waits keep off the hourly passes too.
+        foreach (int o in new[] { Sched.RareNews, Sched.RarePlayOut, Sched.RareWeekMemory })
+        for (int tick = o; tick < Sched.HourTicks; tick += Sched.RareTicks)
+            C(!hourly.Contains(tick), $"the 250-tick pass at {o} misses every hourly pass (tick {tick})");
+
         // ---------------- Caps ----------------
 
         // Over the cap, the oldest go first.

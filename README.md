@@ -1716,9 +1716,14 @@ clipboard" button) says most of what a bug report needs.
   well run, average and neglected, from the defs, the code's rates and the mod's own mood arithmetic, and writes
   `docs/balance-report.md` (moods, trust, letters per day by system, ailments, the presets), against the targets in
   DESIGN.md ("Balance targets"): `dotnet run -c Release --project Tools/Balance -- .`
-- `Source/ColonyCouncil/Lean/`: on which tick of the hour each periodic pass runs (`Sched.cs`, so none share a tick)
-  and how much history each part keeps in the save (`Caps.cs`). DESIGN.md lists them all under "Ticking" and
+- `Source/ColonyCouncil/Lean/`: on which tick of the hour each periodic pass runs (`Sched.cs`, so none share a tick;
+  per-colonist passes take a tenth of the colony every 250 ticks) and how much history each part keeps in the save
+  (`Caps.cs`); the map facts many passes share (`MapFacts.cs`), tagged lines taken apart once (`LineTags.cs`), defs by
+  name kept (`DefRef.cs`) and how long a kept answer holds (`Fresh.cs`). DESIGN.md lists them all under "Ticking" and
   "Save size"; a new hourly pass gets its own tick there.
+- `python3 Tools/perf_audit.py` ranks the code's hot spots without the game (`docs/perf-audit.md`; `--compare` beside
+  an earlier run), and `python3 Tools/save_estimate.py` shows how each saved collection grows over five in-game years
+  (`docs/save-size.md`; `--strict` fails on a new saved collection with no rule written down).
 - People on the map: a moment between two colonists goes through `Together.When` (Social/Together.cs: now if they're
   together, else waiting a day or two, optionally with a walk over for a word), and every line a colonist says through
   `Speech.Say` (Immersion/Speech.cs), never `MoteMaker.ThrowText` or the play log directly; `Tools/Tests` checks the

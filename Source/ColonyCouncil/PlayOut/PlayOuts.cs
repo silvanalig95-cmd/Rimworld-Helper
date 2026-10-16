@@ -528,7 +528,7 @@ namespace ColonyCouncil
         /// <summary>Why nobody should be called anywhere right now, or null: a threat, a gathering already going on, half the colony under arms.</summary>
         public static string WhyNotNow(Map map, bool gathering)
         {
-            if (map == null || map.dangerWatcher.DangerRating != StoryDanger.None || GenHostility.AnyHostileActiveThreatToPlayer(map, false, false))
+            if (map == null || map.dangerWatcher.DangerRating != StoryDanger.None || MapFacts.ThreatOn(map))
                 return "CC_Play_Why_Danger".Translate();
             if (!gathering) return null;
             // The council meeting's own rules for when people can sit down together: no other gathering on, not half

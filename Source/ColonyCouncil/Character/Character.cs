@@ -92,6 +92,10 @@ namespace ColonyCouncil
         private List<int> tiers = new List<int> { 0, 0, 0, 0, 0 };
         public List<CharacterEvent> recent = new List<CharacterEvent>();
         private int lastWordTick = -999999;
+
+        // Not saved: counts up whenever the ways move, so approval kept for the mood (ApprovalKept) is worked out again.
+        private int version;
+        private readonly KeptAnswers<float> approvals = new KeptAnswers<float>(Sched.RareTicks);
         /// <summary>What the colony grows into by what its people do (green-fingered, builders...).</summary>
         public ColonyTraits traits = new ColonyTraits();
 
@@ -147,6 +151,7 @@ namespace ColonyCouncil
                 if (Mathf.Sign(amt) == Mathf.Sign(v)) amt *= 1f - Mathf.Abs(v) / 130f;
                 values[i] = Mathf.Clamp(v + amt, -100f, 100f);
             }
+            version++;
             recent.Add(new CharacterEvent { what = why, shift = s.Summary(), tick = Find.TickManager.TicksGame });
             if (recent.Count > 30) recent.RemoveAt(0);
             Check(CouncilGameComponent.Instance);
@@ -156,6 +161,7 @@ namespace ColonyCouncil
         {
             if (!S.colonyCharacter) return;
             for (int i = 0; i < values.Count; i++) values[i] *= 0.988f;
+            version++;
             Check(comp);
             Word(comp);
             try
@@ -284,6 +290,20 @@ namespace ColonyCouncil
             return Mathf.Clamp(a, -1.5f, 1.5f);
         }
 
+        /// <summary>
+        /// <see cref="Approval"/> as the mood asks for it (every colonist, every few seconds): kept per colonist until the
+        /// ways move, and for at most 250 ticks, so a trait gained or a birthday shows within a few seconds.
+        /// </summary>
+        public float ApprovalKept(Pawn p)
+        {
+            if (p == null) return 0f;
+            int now = Find.TickManager?.TicksGame ?? 0;
+            if (approvals.TryGet(p.thingIDNumber, now, version, out float a)) return a;
+            a = Approval(p);
+            approvals.Set(p.thingIDNumber, now, version, a);
+            return a;
+        }
+
         /// <summary>Overall approval of the colony's ways (around -100..100), and the reasons.</summary>
         public float Approval(Pawn p, List<string> reasons = null)
         {
@@ -332,7 +352,7 @@ namespace ColonyCouncil
             var s = ColonyCouncilMod.Settings;
             var comp = CouncilGameComponent.Instance;
             if (comp?.character == null || !s.colonyCharacter || !s.MoodEffects || !p.IsColonist || p.IsQuestLodger() || !People.HasInnerLife(p) || p.DevelopmentalStage.Baby()) return ThoughtState.Inactive;
-            float a = comp.character.Approval(p);
+            float a = comp.character.ApprovalKept(p);
             if (a >= Strong) return ThoughtState.ActiveAtStage(3);
             if (a >= Mild) return ThoughtState.ActiveAtStage(2);
             if (!s.Negatives) return ThoughtState.Inactive;

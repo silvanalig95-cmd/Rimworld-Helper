@@ -168,11 +168,15 @@ namespace ColonyCouncil
         {
             if (ended.Count > 0) ProcessEnded();
             int now = Find.TickManager.TicksGame;
-            if (!Sched.Hourly(now, Sched.Ailments)) return;
+            // A tenth of the colony every 250 ticks (Sched): each colonist's hour comes round once an hour, and no one tick
+            // carries the whole colony. The colony's own part (the catching clock, the day's pruning) rides on the slice
+            // that lands on the old tick of the hour.
+            int slice = Sched.SliceTurn(now, Sched.HourTicks, Sched.Slices, Sched.RareAilments);
+            if (slice < 0) return;
             if (!On) return;
             try
             {
-                Hourly(now);
+                Slice(slice, now);
             }
             catch (Exception e)
             {
@@ -181,19 +185,21 @@ namespace ColonyCouncil
         }
 
         private static readonly int PawnErrorKey = "ColonyCouncilailments of a colonist".GetHashCode();
+        private readonly List<Pawn> sliceTmp = new List<Pawn>();
 
-        private void Hourly(int now)
+        private void Slice(int slice, int now)
         {
             int day = now / GenDate.TicksPerDay;
-            CountSerious();
-            if (now >= GenDate.TicksPerDay) Clock();
+            bool colony = Sched.Hourly(now, Sched.Ailments);
+            // The colony's serious illnesses are counted afresh before every slice, as they were before every hour's rolls,
+            // so each colonist's rolls see them as they are; the same walk picks out this slice's colonists.
+            CountSerious(slice);
+            if (colony && now >= GenDate.TicksPerDay) Clock();
             // The first two days of a colony are for settling in.
             bool circumstance = now >= GenDate.TicksPerDay * 2;
-            // A copy: the game's list is shared and rebuilt whenever anyone asks for it.
-            var everyone = PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_Colonists.ToList();
-            for (int i = 0; i < everyone.Count; i++)
+            for (int i = 0; i < sliceTmp.Count; i++)
             {
-                var p = everyone[i];
+                var p = sliceTmp[i];
                 if (!Eligible(p)) continue;
                 try
                 {
@@ -204,7 +210,8 @@ namespace ColonyCouncil
                     Log.ErrorOnce("[Rimfolk] ailments of " + p.LabelShort + ": " + e, PawnErrorKey);
                 }
             }
-            if (day != lastDay)
+            sliceTmp.Clear();
+            if (colony && day != lastDay)
             {
                 lastDay = day;
                 try
@@ -379,13 +386,20 @@ namespace ColonyCouncil
 
         private int CasesOf(HediffDef def) => casesNow.TryGetValue(def, out int n) ? n : 0;
 
-        /// <summary>Which serious illnesses the colony has right now (hidden ones too), and how many cases of each.</summary>
-        private void CountSerious()
+        /// <summary>
+        /// Which serious illnesses the colony has right now (hidden ones too), and how many cases of each; and, given a
+        /// slice, which colonists are in it (into sliceTmp). Only reads, so the game's shared list needs no copy.
+        /// </summary>
+        private void CountSerious(int slice = -1)
         {
             seriousNow.Clear();
             casesNow.Clear();
-            foreach (var p in PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_Colonists.ToList())
+            sliceTmp.Clear();
+            var everyone = PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_Colonists;
+            for (int k = 0; k < everyone.Count; k++)
             {
+                var p = everyone[k];
+                if (p != null && slice >= 0 && Sched.SliceOf(p.thingIDNumber, Sched.Slices) == slice) sliceTmp.Add(p);
                 var hs = p?.health?.hediffSet?.hediffs;
                 if (hs == null) continue;
                 for (int i = 0; i < hs.Count; i++)

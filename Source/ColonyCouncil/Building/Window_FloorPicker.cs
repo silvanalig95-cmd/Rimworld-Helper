@@ -82,19 +82,104 @@ namespace ColonyCouncil
 
         // ---------------- Materials ----------------
 
-        private ThingDef StuffFor(TerrainDef f) => f == null || !f.MadeFromStuff ? null : f == cfg.Floor(template, map) ? cfg.FloorStuff(f, map, area) : MaterialPicker.Pick(f, map, area, MaterialUse.Floor);
+        // ---------------- What each floor shows, kept a second ----------------
 
-        private bool Locked(TerrainDef f) => !Avail.CanBuild(f, map);
+        // The window is drawn every frame, and a floor mod brings hundreds of floors: whether each is researched, has
+        // enough material, which material it would take, its stats line and its tooltip are worked out once a second and
+        // kept, and at once again after a pick, a material or a checkbox (the plan's version, the filters, the floor).
+        private float keptAt = -1f;
+        private int keptVersion = int.MinValue;
+        private bool keptOnly, keptShowLocked;
+        private TerrainDef keptCurrent;
+        private readonly Dictionary<TerrainDef, bool> lockedKept = new Dictionary<TerrainDef, bool>();
+        private readonly Dictionary<TerrainDef, ThingDef> stuffKept = new Dictionary<TerrainDef, ThingDef>();
+        private readonly Dictionary<(TerrainDef, ThingDef), bool> affordableKept = new Dictionary<(TerrainDef, ThingDef), bool>();
+        private readonly Dictionary<(TerrainDef, ThingDef), string> statsKept = new Dictionary<(TerrainDef, ThingDef), string>();
+        private readonly Dictionary<(TerrainDef, ThingDef), string> tipKept = new Dictionary<(TerrainDef, ThingDef), string>();
+        private readonly Dictionary<Family, List<TerrainDef>> shownKept = new Dictionary<Family, List<TerrainDef>>();
+        private TerrainDef suggestedKept;
+
+        private float currentAt = -1f;
+        private int currentVersion = int.MinValue;
+        private TerrainDef currentFloor;
+
+        /// <summary>The floor the plan would use now: the player's pick, else the plan's own (worked out once a second, or at once after a change).</summary>
+        private TerrainDef CurrentFloor()
+        {
+            if (cfg.floorChosen) return cfg.floor;
+            float now = Time.realtimeSinceStartup;
+            if (currentVersion != cfg.version || now - currentAt > 1f || now < currentAt)
+            {
+                currentFloor = cfg.Floor(template, map);
+                currentAt = now;
+                currentVersion = cfg.version;
+            }
+            return currentFloor;
+        }
+
+        private void Keep(TerrainDef current)
+        {
+            float now = Time.realtimeSinceStartup;
+            if (now - keptAt <= 1f && now >= keptAt && keptVersion == cfg.version && keptCurrent == current && keptOnly == onlyAffordable
+                && keptShowLocked == showLocked)
+                return;
+            keptAt = now;
+            keptVersion = cfg.version;
+            keptCurrent = current;
+            keptOnly = onlyAffordable;
+            keptShowLocked = showLocked;
+            lockedKept.Clear();
+            stuffKept.Clear();
+            affordableKept.Clear();
+            statsKept.Clear();
+            tipKept.Clear();
+            shownKept.Clear();
+            suggestedKept = template.FloorFor(cfg.style, map, cfg.theme) ?? template.ResolveFloor(map);
+        }
+
+        private ThingDef StuffFor(TerrainDef f)
+        {
+            if (f == null || !f.MadeFromStuff) return null;
+            if (!stuffKept.TryGetValue(f, out var stuff))
+                stuffKept[f] = stuff = f == cfg.Floor(template, map) ? cfg.FloorStuff(f, map, area) : MaterialPicker.Pick(f, map, area, MaterialUse.Floor);
+            return stuff;
+        }
+
+        private bool Locked(TerrainDef f)
+        {
+            if (!lockedKept.TryGetValue(f, out bool locked)) lockedKept[f] = locked = !Avail.CanBuild(f, map);
+            return locked;
+        }
+
+        private string StatsOf(TerrainDef f, ThingDef stuff)
+        {
+            if (!statsKept.TryGetValue((f, stuff), out var text)) statsKept[(f, stuff)] = text = Stats(f, stuff);
+            return text;
+        }
+
+        private string TipOf(TerrainDef f, ThingDef stuff)
+        {
+            if (!tipKept.TryGetValue((f, stuff), out var text)) tipKept[(f, stuff)] = text = Tip(f, stuff);
+            return text;
+        }
 
         /// <summary>Stored plus lying around, the same count the planner and the build menu use.</summary>
         private int Have(ThingDef d) => MaterialCounts.Have(map, d);
 
         private bool Affordable(TerrainDef f, ThingDef stuff)
         {
-            if (f.MadeFromStuff && stuff == null) return false;
-            foreach (var c in f.CostListAdjusted(stuff, false))
-                if (Have(c.thingDef) < c.count * area) return false;
-            return true;
+            if (affordableKept.TryGetValue((f, stuff), out bool ok)) return ok;
+            ok = true;
+            if (f.MadeFromStuff && stuff == null) ok = false;
+            else
+                foreach (var c in f.CostListAdjusted(stuff, false))
+                    if (Have(c.thingDef) < c.count * area)
+                    {
+                        ok = false;
+                        break;
+                    }
+            affordableKept[(f, stuff)] = ok;
+            return ok;
         }
 
         private bool Affordable(TerrainDef f) => Affordable(f, StuffFor(f));
@@ -103,7 +188,8 @@ namespace ColonyCouncil
 
         public override void DoWindowContents(Rect inRect)
         {
-            var current = cfg.Floor(template, map);
+            var current = CurrentFloor();
+            Keep(current);
             float y = inRect.y;
             Text.Font = GameFont.Medium;
             Widgets.Label(new Rect(inRect.x, y, inRect.width - 30f, 32f), "CC_Floor_Title".Translate(template.label));
@@ -113,7 +199,7 @@ namespace ColonyCouncil
             // Quick picks: none, and what the plan would use on its own.
             float bx = inRect.x;
             if (QuickButton(ref bx, y, "CC_Planner_NoFloor".Translate(), current == null)) Pick(null, true);
-            var suggested = template.FloorFor(cfg.style, map, cfg.theme) ?? template.ResolveFloor(map);
+            var suggested = suggestedKept;
             if (suggested != null && QuickButton(ref bx, y, "CC_Floor_Suggested".Translate(suggested.label), current == suggested)) Pick(suggested, !suggested.MadeFromStuff);
             y += 30f;
             Widgets.CheckboxLabeled(new Rect(inRect.x, y, inRect.width, 24f), "CC_Floor_OnlyAffordable".Translate(area), ref onlyAffordable);
@@ -133,7 +219,8 @@ namespace ColonyCouncil
             int hidden = 0;
             foreach (var fam in families)
             {
-                var shown = fam.members.Where(f => f == current || ((showLocked || !Locked(f)) && (!onlyAffordable || Locked(f) || Affordable(f)))).ToList();
+                if (!shownKept.TryGetValue(fam, out var shown))
+                    shownKept[fam] = shown = fam.members.Where(f => f == current || ((showLocked || !Locked(f)) && (!onlyAffordable || Locked(f) || Affordable(f)))).ToList();
                 if (shown.Count == 0)
                 {
                     hidden++;
@@ -163,19 +250,35 @@ namespace ColonyCouncil
         }
 
         /// <summary>The material row for a floor made of wood, stone or metal: every allowed material, stock first.</summary>
+        // The chosen floor's material row (its material, the choices in stock order and their chips), kept with the rest.
+        private TerrainDef materialsFor;
+        private ThingDef materialsChosen;
+        private List<ThingDef> materialsOptions;
+        private List<string> materialsLabels;
+        private float materialsAt = -1f;
+
         private float DrawMaterials(TerrainDef floor, float width, float y)
         {
-            var chosen = cfg.FloorStuff(floor, map, area);
             int need = floor.CostStuffCount * area;
-            var options = Avail.AllowedStuffs(floor)
-                .Where(s => MaterialPicker.Allowed(s, MaterialUse.Floor) && (s == chosen || !onlyAffordable || Have(s) >= need))
-                .OrderByDescending(s => Have(s))
-                .ThenBy(s => s.label)
-                .ToList();
+            if (materialsFor != floor || materialsOptions == null || materialsAt != keptAt)
+            {
+                materialsFor = floor;
+                materialsAt = keptAt;
+                materialsChosen = cfg.FloorStuff(floor, map, area);
+                var picked = materialsChosen;
+                materialsOptions = Avail.AllowedStuffs(floor)
+                    .Where(s => MaterialPicker.Allowed(s, MaterialUse.Floor) && (s == picked || !onlyAffordable || Have(s) >= need))
+                    .OrderByDescending(s => Have(s))
+                    .ThenBy(s => s.label)
+                    .ToList();
+                materialsLabels = materialsOptions.Select(s => "CC_Floor_MaterialChip".Translate(s.LabelAsStuff.CapitalizeFirst(), Have(s)).ToString()).ToList();
+            }
+            var chosen = materialsChosen;
+            var options = materialsOptions;
+            var labels = materialsLabels;
             const float iconSize = 36f;
             float textX = iconSize + 8f;
             float textW = width - textX;
-            var labels = options.Select(s => "CC_Floor_MaterialChip".Translate(s.LabelAsStuff.CapitalizeFirst(), Have(s)).ToString()).ToList();
             float chipsH = ChipsHeight(labels, textW);
             float h = 48f + chipsH;
             var row = new Rect(0f, y, width, h);
@@ -201,7 +304,7 @@ namespace ColonyCouncil
                 GUI.color = s == chosen ? Chosen : Have(s) >= need ? Color.white : Short;
                 if (Widgets.ButtonText(r, labels[i])) cfg.PickFloorStuff(s);
                 GUI.color = Color.white;
-                TooltipHandler.TipRegion(r, Tip(floor, s));
+                TooltipHandler.TipRegion(r, TipOf(floor, s));
                 cx += w + 4f;
             }
             return h;
@@ -230,7 +333,7 @@ namespace ColonyCouncil
             Widgets.Label(new Rect(textX, y + 2f, textW, 24f), title);
             GUI.color = Faint;
             Text.Font = GameFont.Tiny;
-            Widgets.Label(new Rect(textX, y + 22f, textW, 20f), Stats(rep, StuffFor(rep)));
+            Widgets.Label(new Rect(textX, y + 22f, textW, 20f), StatsOf(rep, StuffFor(rep)));
             Text.Font = GameFont.Small;
             GUI.color = Color.white;
 
@@ -252,7 +355,7 @@ namespace ColonyCouncil
                     GUI.color = f == current ? Chosen : locked ? LockedColor : Affordable(f) ? Color.white : Short;
                     if (Widgets.ButtonText(r, label, true, true, !locked) && !locked) Pick(f, !f.MadeFromStuff);
                     GUI.color = Color.white;
-                    TooltipHandler.TipRegion(r, Tip(f, StuffFor(f)));
+                    TooltipHandler.TipRegion(r, TipOf(f, StuffFor(f)));
                     cx += w + 4f;
                 }
             }
@@ -269,7 +372,7 @@ namespace ColonyCouncil
                     Text.Font = GameFont.Small;
                     GUI.color = Color.white;
                 }
-                TooltipHandler.TipRegion(row, Tip(f, StuffFor(f)));
+                TooltipHandler.TipRegion(row, TipOf(f, StuffFor(f)));
                 if (!locked && Widgets.ButtonInvisible(row)) Pick(f, !f.MadeFromStuff);
             }
             return h;

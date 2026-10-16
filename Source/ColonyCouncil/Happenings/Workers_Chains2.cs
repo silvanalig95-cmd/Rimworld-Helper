@@ -380,7 +380,7 @@ namespace ColonyCouncil
                 return;
             }
             // Not on top of another question, nor in the middle of a fight.
-            if (HappeningTracker.Waiting || GenHostility.AnyHostileActiveThreatToPlayer(map, false, false))
+            if (HappeningTracker.Waiting || MapFacts.ThreatOn(map))
             {
                 c.due = now + GenDate.TicksPerHour * 3;
                 return;

@@ -209,7 +209,7 @@ namespace ColonyCouncil
             var due = NextDue(today, year, now, out int occurrence);
             if (due == null) return;
             // A fight on the home map: the day waits (until the grace day runs out).
-            if (GenHostility.AnyHostileActiveThreatToPlayer(map, false, false)) return;
+            if (MapFacts.ThreatOn(map)) return;
             Safe("calendar day", () => ComeRound(due, occurrence, map));
         }
 

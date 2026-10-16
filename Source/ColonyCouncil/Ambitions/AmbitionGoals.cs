@@ -35,10 +35,10 @@ namespace ColonyCouncil
     {
         public float days = 30f;
 
-        public override float Progress(Map map, float baseline) => Ratio(AdvisorWorker_Food.DaysOfFood(map), days);
+        public override float Progress(Map map, float baseline) => Ratio(MapFacts.Of(map).FoodDays, days);
 
         public override string Describe(Map map, float baseline) =>
-            "CC_Goal_FoodDays".Translate(days.ToString("0"), AdvisorWorker_Food.DaysOfFood(map).ToString("0"));
+            "CC_Goal_FoodDays".Translate(days.ToString("0"), MapFacts.Of(map).FoodDays.ToString("0"));
     }
 
     public class Goal_AllOwnRooms : AmbitionGoal
@@ -253,7 +253,7 @@ namespace ColonyCouncil
                 case "firewood":
                     return Goal_Woodpile.Firewood(map);
                 case "medicine":
-                    return Avail.MedicineCount(map);
+                    return MapFacts.Of(map).Medicine;
                 case "meals":
                     return WishWorker_BetterFood.MealStock(map, FoodPreferability.MealSimple);
                 case "finemeals":

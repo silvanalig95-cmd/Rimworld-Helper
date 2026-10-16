@@ -134,7 +134,7 @@ namespace ColonyCouncil
             if (threat > 0 && Find.TickManager.TicksGame - threat < GenDate.TicksPerDay * 4) return true;
             try
             {
-                if (AdvisorWorker_Food.DaysOfFood(map) < 6f) return true;
+                if (MapFacts.Of(map).FoodDays < 6f) return true;
             }
             catch (System.Exception e)
             {

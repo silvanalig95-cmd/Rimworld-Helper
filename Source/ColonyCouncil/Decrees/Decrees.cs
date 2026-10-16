@@ -511,7 +511,7 @@ namespace ColonyCouncil
                     comp.standings.Change(r.pawn, -2f, "CC_Log_RepealIgnored".Translate(r.def.label));
             }
             if (!ColonyCouncilMod.Settings.decreeRequests || requests.Count >= 2 || now - lastRequestTick < GenDate.TicksPerDay * 3 || !Rand.Chance(0.35f)) return;
-            var map = Find.Maps.Where(m => m.IsPlayerHome).OrderByDescending(m => m.mapPawns.FreeColonistsSpawnedCount).FirstOrDefault();
+            var map = MapFacts.BusiestHome;
             if (map == null) return;
             var pawns = map.mapPawns.FreeColonistsSpawned.Where(p => !p.IsQuestLodger() && CouncilGameComponent.CanVoiceWishes(p)).ToList();
             if (pawns.Count == 0) return;
@@ -557,7 +557,7 @@ namespace ColonyCouncil
             switch (m)
             {
                 case DecreeMoment.FoodLow:
-                    return AdvisorWorker_Food.DaysOfFood(map) < 8f;
+                    return MapFacts.Of(map).FoodDays < 8f;
                 case DecreeMoment.RecentThreat:
                     int last = map.storyState.LastThreatBigTick;
                     return last > 0 && Find.TickManager.TicksGame - last < GenDate.TicksPerDay * 3;

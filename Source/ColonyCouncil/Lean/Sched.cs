@@ -22,7 +22,7 @@ namespace ColonyCouncil
         public const int Camp = 327;
         /// <summary>The council's day, first half: trust, standards, decrees, anniversaries, names, journals, offices.</summary>
         public const int CouncilDayFirst = 502;
-        /// <summary>Health stories: convalescence and healers.</summary>
+        /// <summary>Health stories, the colony's part: the cases of dangerous illness, and the day's pruning (each colonist's part runs in <see cref="RareHealth"/>'s slices).</summary>
         public const int Health = 677;
         /// <summary>The council's day, second half: the social web, life goals, secrets, vendettas, quirks, legacy, character.</summary>
         public const int CouncilDaySecond = 852;
@@ -42,7 +42,7 @@ namespace ColonyCouncil
         public const int Stories = 2089;
         /// <summary>The council: encounters and nuisances, Rimfolk's own events.</summary>
         public const int CouncilEvents = 2280;
-        /// <summary>Ailments.</summary>
+        /// <summary>Ailments, the colony's part: the catching ailments' clock and the day's pruning, inside the slice that lands here (each colonist's part runs in <see cref="RareAilments"/>'s slices).</summary>
         public const int Ailments = 2471;
 
         /// <summary>Every hourly pass above, for the tests and the self-check.</summary>
@@ -53,7 +53,7 @@ namespace ColonyCouncil
         };
 
         /// <summary>The hourly passes that run inside a 250-tick pass of their own system on purpose (same tick, same work).</summary>
-        public static readonly int[] HourlyInsideRare = { Camp, Stories };
+        public static readonly int[] HourlyInsideRare = { Camp, Stories, Ailments };
 
         // ---------------- Every 250 ticks, at this tick of the cycle ----------------
 
@@ -69,8 +69,20 @@ namespace ColonyCouncil
         public const int RareMissions = 89;
         /// <summary>The first-run welcome letter (nothing once it has been sent).</summary>
         public const int RareWelcome = 113;
+        /// <summary>One tenth of the colonists' ailments (see <see cref="SliceTurn"/>); the slice at tick 2471 also carries the colony's part (<see cref="Ailments"/>).</summary>
+        public const int RareAilments = 221;
+        /// <summary>One tenth of the colonists' health stories (see <see cref="SliceTurn"/>).</summary>
+        public const int RareHealth = 139;
 
-        public static readonly int[] RareOffsets = { RareWorldKeep, RarePlanQueue, RareHeart, RareCamp, RareMissions, RareWelcome };
+        /// <summary>How many slices the per-colonist passes spread the colony over: each colonist comes round once an hour.</summary>
+        public const int Slices = 10;
+
+        public static readonly int[] RareOffsets = { RareWorldKeep, RarePlanQueue, RareHeart, RareCamp, RareMissions, RareWelcome, RareAilments, RareHealth };
+
+        /// <summary>Passes on the 250-tick cycle that only run while something is waiting (the news of the evening, an answer playing out, the council window's memory).</summary>
+        public const int RareNews = 167;
+        public const int RarePlayOut = 113;
+        public const int RareWeekMemory = 199;
 
         // ---------------- Other rhythms ----------------
 

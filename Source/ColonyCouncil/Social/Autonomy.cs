@@ -20,6 +20,8 @@ namespace ColonyCouncil
     /// </summary>
     public class AutonomyTracker : IExposable
     {
+        private static readonly DefRef<WorkTypeDef> CleaningWork = new DefRef<WorkTypeDef>("Cleaning");
+
         private List<Pawn> pawns = new List<Pawn>();
         private List<int> lastActed = new List<int>();
         private List<Thing> plans = new List<Thing>();
@@ -35,7 +37,7 @@ namespace ColonyCouncil
             foreach (var map in Find.Maps.Where(m => m.IsPlayerHome))
             {
                 // Never while there's fighting to be done.
-                if (GenHostility.AnyHostileActiveThreatToPlayer(map, false, false)) continue;
+                if (MapFacts.ThreatOn(map)) continue;
                 foreach (var p in map.mapPawns.FreeColonistsSpawned.ToList())
                 {
                     try
@@ -126,7 +128,7 @@ namespace ColonyCouncil
             {
                 bool roomBothers = Has(d => Named(d, "SleptInBedroom") || Worker(d, "ThoughtWorker_NeedBeauty"));
                 var filth = roomBothers && free && Idle(p) ? room.ContainedAndAdjacentThings.OfType<Filth>().Where(f => f.Spawned && room.ContainsCell(f.Position)).Take(15).ToList() : null;
-                if (!filth.NullOrEmpty() && p.workSettings != null && !p.WorkTypeIsDisabled(DefDatabase<WorkTypeDef>.GetNamedSilentFail("Cleaning") ?? WorkTypeDefOf.Hauling))
+                if (!filth.NullOrEmpty() && p.workSettings != null && !p.WorkTypeIsDisabled(CleaningWork.Def ?? WorkTypeDefOf.Hauling))
                 {
                     var job = JobMaker.MakeJob(JobDefOf.Clean);
                     foreach (var f in filth) job.AddQueuedTarget(TargetIndex.A, f);
@@ -299,10 +301,20 @@ namespace ColonyCouncil
                 .FirstOrDefault(g => g is Building_Grave grave && grave.Corpse?.InnerPawn != null && mourned.Contains(grave.Corpse.InnerPawn));
         }
 
-        private static bool AnyFreeBed(Pawn p) =>
-            p.Map.listerBuildings.allBuildingsColonist.OfType<Building_Bed>()
-                .Any(b => !b.Medical && b.def.building.bed_humanlike && !b.ForPrisoners && b.OwnersForReading.Count < b.SleepingSlotsCount && !b.IsBurning()
-                          && !GuestBeds.IsGuestBed(b));
+        /// <summary>A free bed for a colonist (the map's beds as of this hour, from Lean/MapFacts; who owns them as of now).</summary>
+        private static bool AnyFreeBed(Pawn p)
+        {
+            var beds = MapFacts.Of(p.Map)?.Beds;
+            if (beds == null) return false;
+            for (int i = 0; i < beds.Count; i++)
+            {
+                var b = beds[i];
+                if (b.Spawned && b.Faction == Faction.OfPlayer && !b.Medical && b.def.building.bed_humanlike && !b.ForPrisoners
+                    && b.OwnersForReading.Count < b.SleepingSlotsCount && !b.IsBurning() && !GuestBeds.IsGuestBed(b))
+                    return true;
+            }
+            return false;
+        }
 
         /// <summary>A sheltered room to sleep in: indoors, in the home area, not a kitchen, hospital, prison or the like.</summary>
         private static Room Shelter(Pawn p)

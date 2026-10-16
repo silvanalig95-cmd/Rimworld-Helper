@@ -137,13 +137,16 @@ namespace ColonyCouncil
             if (map.threat && p.Spawned && p.Map == map.map && Steady(p)) sink.Add(3f, "CC_Heart_Cause_SteadyNerve".Translate());
         }
 
+        private static readonly DefRef<TraitDef> ToughTrait = new DefRef<TraitDef>("Tough");
+        private static readonly DefRef<TraitDef> NervesTrait = new DefRef<TraitDef>("Nerves");
+
         private static bool Steady(Pawn p)
         {
             var t = p.story?.traits;
             if (t == null) return false;
-            var tough = DefDatabase<TraitDef>.GetNamedSilentFail("Tough");
+            var tough = ToughTrait.Def;
             if (tough != null && t.HasTrait(tough)) return true;
-            var nerves = DefDatabase<TraitDef>.GetNamedSilentFail("Nerves");
+            var nerves = NervesTrait.Def;
             return nerves != null && t.HasTrait(nerves) && t.DegreeOfTrait(nerves) > 0;
         }
     }

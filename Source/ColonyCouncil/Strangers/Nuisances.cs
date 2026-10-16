@@ -114,7 +114,7 @@ namespace ColonyCouncil
             if (now < GenDate.TicksPerDay * 2) return;
             foreach (var map in Find.Maps)
             {
-                if (!map.IsPlayerHome || GenHostility.AnyHostileActiveThreatToPlayer(map, false, false)) continue;
+                if (!map.IsPlayerHome || MapFacts.ThreatOn(map)) continue;
                 var colonists = map.mapPawns.FreeColonistsSpawned
                     .Where(p => !p.IsQuestLodger() && People.HasInnerLife(p) && !p.Downed && !p.InMentalState && !p.Drafted && p.Awake() && !p.DevelopmentalStage.Baby())
                     .ToList();

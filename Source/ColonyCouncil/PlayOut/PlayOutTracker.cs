@@ -140,7 +140,7 @@ namespace ColonyCouncil
         {
             if (plays.Count == 0) return;
             int now = Find.TickManager.TicksGame;
-            if (now % 250 != 113) return;
+            if (!Sched.Every(now, Sched.RareTicks, Sched.RarePlayOut)) return;
             foreach (var p in plays.ToList())
             {
                 try
