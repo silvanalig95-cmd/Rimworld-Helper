@@ -73,13 +73,17 @@ public static class WallLampTests
                     if (area[x, z] == a) cells.Add((x, z));
             int max = LightMath.MaxWallLamps(cells.Count);
             check(lampsIn[a] <= max, $"{where}: {lampsIn[a]} wall lamps in an area of {cells.Count} cells (at most {max})");
+            var inArea = lamps.Where(l => area[l.minX, l.minZ] == a).ToList();
+            var spots = LightMath.WallSpots(t.w, t.h, t.DoorX, others.Where(p => !p.dropped).ToList(), area).Where(s => s.area == a).ToList();
+            int room = spots.Select(s => (s.x, s.z)).Distinct().Count();
+            int min = Math.Min(LightMath.MinWallLamps(cells.Count), room);
+            check(lampsIn[a] >= min, $"{where}: {lampsIn[a]} wall lamps in an area of {cells.Count} cells, though its walls have room for {min}");
             if (lampsIn[a] >= max) continue;
             // Fewer than the most it may have: then every cell is lit well, unless no free wall is left that would light more.
-            var inArea = lamps.Where(l => area[l.minX, l.minZ] == a).ToList();
             var dark = cells.Where(c => !inArea.Any(l => (l.minX - c.x) * (l.minX - c.x) + (l.minZ - c.z) * (l.minZ - c.z) <= reach * reach)).ToList();
             if (dark.Count == 0) continue;
-            var spots = LightMath.WallSpots(t.w, t.h, t.DoorX, others.Where(p => !p.dropped).ToList(), area).Where(s => s.area == a && !inArea.Any(l => l.minX == s.x && l.minZ == s.z));
-            check(!spots.Any(s => dark.Any(c => (s.x - c.x) * (s.x - c.x) + (s.z - c.z) * (s.z - c.z) <= reach * reach)),
+            var free = spots.Where(s => !inArea.Any(l => l.minX == s.x && l.minZ == s.z));
+            check(!free.Any(s => dark.Any(c => (s.x - c.x) * (s.x - c.x) + (s.z - c.z) * (s.z - c.z) <= reach * reach)),
                 $"{where}: part of an area is left dark although a free wall spot would light it");
         }
     }
@@ -99,7 +103,12 @@ public static class WallLampTests
         Check(LightMath.SizeOf(LightMath.MediumRoomMaxCells + 1) == LightMath.RoomSize.Large, "large rooms");
         Check(LightMath.MaxWallLamps(12) == LightMath.MaxLampsSmall && LightMath.MaxWallLamps(30) == LightMath.MaxLampsMedium && LightMath.MaxWallLamps(90) == LightMath.MaxLampsLarge
               && LightMath.MaxLampsSmall < LightMath.MaxLampsMedium && LightMath.MaxLampsMedium < LightMath.MaxLampsLarge, "bigger rooms may hang more lamps");
-        Check(Math.Abs(LightMath.Reach(12f) - 6f) < 1e-4f && LightMath.Reach(0f) == 0f, "a lamp lights half its glow radius well");
+        Check(Math.Abs(LightMath.Reach(12f) - 12f * LightMath.WellLitShare) < 1e-4f && LightMath.Reach(0f) == 0f
+              && LightMath.WellLitShare >= 0.4f && LightMath.WellLitShare <= 0.7f, "a lamp lights well a little over half its glow radius, inside where the game's light is still half bright");
+        Check(LightMath.MinWallLamps(12) == LightMath.MinLampsSmall && LightMath.MinWallLamps(30) == LightMath.MinLampsMedium && LightMath.MinWallLamps(90) == LightMath.MinLampsLarge
+              && LightMath.MinLampsSmall <= LightMath.MinLampsMedium && LightMath.MinLampsMedium <= LightMath.MinLampsLarge
+              && LightMath.MinLampsSmall <= LightMath.MaxLampsSmall && LightMath.MinLampsMedium <= LightMath.MaxLampsMedium && LightMath.MinLampsLarge <= LightMath.MaxLampsLarge,
+            "the fewest lamps grow with the room and never pass the most");
 
         // The size-based choice.
         Check(LightMath.UseWallLamps(16, true, true, LightMath.Auto) && LightMath.UseWallLamps(48, true, true, LightMath.Auto), "small and medium rooms hang wall lamps");
@@ -116,6 +125,14 @@ public static class WallLampTests
             Check(strong.chosen.Count == 1, $"a strong lamp lights a 5x4 room alone, got {strong.chosen.Count}");
             var s = strong.candidates[strong.chosen[0]];
             Check(s.z == 3 && s.facing == 0 && s.x == 2, $"the one lamp hangs in the middle of the back wall, facing it: got {s}");
+            var dining = LightMath.HangLamps(6, 5, 3, none, new[] { (2, 2) }, LightMath.Reach(12f));
+            Check(dining.chosen.Count == LightMath.MinLampsMedium, $"a medium room gets {LightMath.MinLampsMedium} lamps even when one would reach: got {dining.chosen.Count}");
+            if (dining.chosen.Count == 2)
+            {
+                var a = dining.candidates[dining.chosen[0]];
+                var b = dining.candidates[dining.chosen[1]];
+                Check((a.x - b.x) * (a.x - b.x) + (a.z - b.z) * (a.z - b.z) >= 16 && a.facing != b.facing, $"the two lamps light it from different walls: {a} and {b}");
+            }
             var weak = LightMath.HangLamps(5, 4, 2, none, new[] { (2, 2) }, LightMath.Reach(4f));
             Check(weak.chosen.Count == LightMath.MaxLampsSmall, $"a weak lamp needs more of them, up to {LightMath.MaxLampsSmall} in a small room: got {weak.chosen.Count}");
             var weakMid = LightMath.HangLamps(8, 6, 3, none, new[] { (3, 3) }, LightMath.Reach(4f));

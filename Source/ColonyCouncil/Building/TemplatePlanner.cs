@@ -493,6 +493,8 @@ namespace ColonyCouncil
                     pt.rect = CellRect.SingleCell(cell);
                     pt.state = LampState(plan, map, pt.def, pt.stuff, cell, rot, newWalls, waitingWalls, oldWalls, taken, out pt.reason);
                     plan.furniture.Add(pt);
+                    // Smoothing swaps the rock for a new wall, and what hangs on it could come down: that stretch stays rough.
+                    if (pt.state != PieceState.Blocked) plan.smoothWalls.Remove(cell + rot.FacingCell);
                     if (moved && cutPlants && cell.InBounds(map))
                     {
                         var plant = cell.GetPlant(map);
@@ -539,7 +541,8 @@ namespace ColonyCouncil
                     reason = "CC_Plan_Block_NoWallForLamp".Translate(def.label);
                     return PieceState.Blocked;
                 }
-                standing = true;
+                // Built, not just planned: only then can the game's own check judge the lamp now.
+                standing = wall.GetEdifice(map) is Building built && WallLights.Supports(built.def);
             }
             if (WallLights.SideTaken(cell, rot, map))
             {
@@ -729,7 +732,7 @@ namespace ColonyCouncil
             foreach (var f in plan.furniture)
                 if (f.state != PieceState.Blocked)
                     foreach (var c in f.rect) avoid.Add(c);
-            foreach (var (cell, rot) in WallLights.SpotsInRoom(room, map, lamp.def, lamp.stuff, LightMath.MaxWallLamps(room.CellCount), avoid))
+            foreach (var (cell, rot) in WallLights.SpotsInRoom(room, map, lamp.def, lamp.stuff, LightMath.MaxWallLamps(room.CellCount), avoid, LightMath.MinWallLamps(room.CellCount)))
             {
                 var rect = CellRect.SingleCell(cell);
                 var pt = new PlannedThing { def = lamp.def, stuff = lamp.stuff, cell = cell, rot = rot, rect = rect, group = lamp.group, source = lamp };

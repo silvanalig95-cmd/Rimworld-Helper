@@ -400,7 +400,12 @@ namespace ColonyCouncil
                     themed = themed
                 });
             }
-            if (lampPlan != null) AddWallLamps(list, pieces, lampPlan, lampDef, map, config, reserved);
+            if (lampPlan != null)
+            {
+                // The theme's own wall light (a wall torch for the tribal look) shows among what the theme put in.
+                bool lampThemed = asked != LightMath.AskWall && theme != null && theme.CandidatesFor("light").Contains(lampDef.defName);
+                AddWallLamps(list, pieces, lampPlan, lampDef, map, config, reserved, lampThemed);
+            }
             int decorFrom = theme?.DecorFrom ?? TemplateLayout.Lavish;
             if (missing.Count == 0 && ThemeMath.AddsDecor((int)style, decorFrom))
                 AddDecor(list, pieces.Where(p => !p.dropped).ToList(), map, config, door, reserved, ThemeMath.AddsRug((int)style));
@@ -484,7 +489,7 @@ namespace ColonyCouncil
         /// for the decor that follows, so no plant pot stands under a lamp.
         /// </summary>
         private void AddWallLamps(List<ResolvedThing> list, List<TemplateLayout.Piece> pieces, LightMath.WallLampPlan plan, ThingDef def, Map map,
-            RoomPlanConfig config, Dictionary<ThingDef, int> reserved)
+            RoomPlanConfig config, Dictionary<ThingDef, int> reserved, bool themed)
         {
             var lampThing = TemplateThing.AutoWallLamp;
             int n = plan.chosen.Count;
@@ -506,7 +511,8 @@ namespace ColonyCouncil
                     group = lampThing.GroupKey,
                     slot = -1,
                     lamps = plan,
-                    lamp = k
+                    lamp = k,
+                    themed = themed
                 });
                 pieces.Add(new TemplateLayout.Piece
                 {
@@ -525,18 +531,21 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// The planner picked <paramref name="d"/> for a group. A light picked for the room's lights replaces whatever was
-        /// picked for its other lights before, so a wall lamp and a standing lamp never pull against each other.
+        /// The planner picked <paramref name="d"/> for a group. A light picked for the room's plain lights (its wall lamps
+        /// or its standing lamps) is the choice for all of them: a wall lamp hangs them, a standing lamp puts them on the
+        /// floor, whatever the room's size (<see cref="LightAsk"/>). It replaces any earlier pick, so the two never pull
+        /// against each other.
         /// </summary>
         public void PickVariant(RoomPlanConfig cfg, string group, ThingDef d)
         {
             if (cfg == null || group == null) return;
             var tt = ThingInGroup(group);
-            if (tt != null && (tt == TemplateThing.AutoWallLamp || (tt.role == "light" && !tt.keepOnFloor)))
+            bool plainLight = tt != null && (tt == TemplateThing.AutoWallLamp || (tt.role == "light" && !tt.inWall && !tt.keepOnFloor));
+            if (plainLight && d != null && Avail.IsLight(d))
             {
-                cfg.variant.Remove(TemplateThing.AutoWallLamp.GroupKey);
                 foreach (var t in things)
-                    if (t.role == "light" && !t.keepOnFloor) cfg.variant.Remove(t.GroupKey);
+                    if (t.role == "light" && !t.inWall && !t.keepOnFloor) cfg.variant.Remove(t.GroupKey);
+                group = TemplateThing.AutoWallLamp.GroupKey;
             }
             cfg.variant[group] = d;
             cfg.Changed();

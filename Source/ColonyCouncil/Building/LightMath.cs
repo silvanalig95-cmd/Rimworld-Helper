@@ -22,7 +22,8 @@ namespace ColonyCouncil
     /// They hang wall lamps, several of them round the walls, only when no standing lamp can be built or the player picks
     /// a wall lamp in the planner.</item>
     /// <item>A lamp lights a cell well out to <see cref="WellLitShare"/> of its glow radius. Wall lamps go up, one at a
-    /// time where they light the most still-dark floor, until every cell is lit well, up to <see cref="MaxWallLamps"/>.</item>
+    /// time where they light the most still-dark floor, until every cell is lit well and the room has at least
+    /// <see cref="MinWallLamps"/> (so a dining room isn't lit from one side only), up to <see cref="MaxWallLamps"/>.</item>
     /// <item>A room split by partition walls or inner doors (a cell block, a suite with its own bathroom) is lit area by
     /// area: each area the plan gives a light gets its own lamps.</item>
     /// </list>
@@ -33,14 +34,20 @@ namespace ColonyCouncil
     {
         // ---------------- Thresholds ----------------
 
-        /// <summary>Up to this many floor cells a room is small (a bedroom, a one-person workshop, a cell).</summary>
-        public const int SmallRoomMaxCells = 20;
+        /// <summary>Up to this many floor cells a room is small (a 5 by 5 bedroom, a one-person workshop, a cell).</summary>
+        public const int SmallRoomMaxCells = 25;
 
-        /// <summary>Up to this many it is medium (a dining room for six, a barracks, a workshop). Above it, large.</summary>
+        /// <summary>Up to this many it is medium (a dining room for eight, a barracks, a 6 by 8 workshop). Above it, large.</summary>
         public const int MediumRoomMaxCells = 48;
 
-        /// <summary>A lamp lights a cell well enough to work and read by out to this share of its glow radius.</summary>
-        public const float WellLitShare = 0.5f;
+        /// <summary>
+        /// A lamp lights a cell well enough to work and read by out to this share of its glow radius. The game's light
+        /// fades with distance and is still about half bright at some 70% of the radius; this keeps a margin.
+        /// </summary>
+        public const float WellLitShare = 0.6f;
+
+        /// <summary>The fewest wall lamps an area of each size gets, where its walls have room for them.</summary>
+        public const int MinLampsSmall = 1, MinLampsMedium = 2, MinLampsLarge = 4;
 
         /// <summary>The most wall lamps an area of each size gets, however weak the lamp.</summary>
         public const int MaxLampsSmall = 2, MaxLampsMedium = 4, MaxLampsLarge = 8;
@@ -63,6 +70,17 @@ namespace ColonyCouncil
                 case RoomSize.Small: return MaxLampsSmall;
                 case RoomSize.Medium: return MaxLampsMedium;
                 default: return MaxLampsLarge;
+            }
+        }
+
+        /// <summary>The fewest wall lamps an area of this many cells gets (fewer only if its walls have no room).</summary>
+        public static int MinWallLamps(int cells)
+        {
+            switch (SizeOf(cells))
+            {
+                case RoomSize.Small: return MinLampsSmall;
+                case RoomSize.Medium: return MinLampsMedium;
+                default: return MinLampsLarge;
             }
         }
 
@@ -170,8 +188,8 @@ namespace ColonyCouncil
         /// <summary>
         /// Every place a wall lamp could hang in a laid-out room: a free floor cell (no piece on it, no work spot, not
         /// beside a door, and one people can walk to from the door) next to a wall it can hang on, facing that wall. The
-        /// walls are the room's own (never the door
-        /// or a piece set in the wall, like a cooler or vent) and its partition walls (never an inner door).
+        /// walls are the room's own (never the door or a piece set in the wall, like a cooler or vent) and its partition
+        /// walls (never an inner door).
         /// </summary>
         public static List<Spot> WallSpots(int w, int h, int doorX, List<TemplateLayout.Piece> pieces, int[,] area)
         {
@@ -277,65 +295,77 @@ namespace ColonyCouncil
         private static int D2((int x, int z) a, (int x, int z) b) => (a.x - b.x) * (a.x - b.x) + (a.z - b.z) * (a.z - b.z);
 
         /// <summary>
-        /// Picks lamp spots one at a time: each where it lights the most floor still dark (within <paramref name="reach"/>),
-        /// on a tie the farthest from the lamps already up, then the most central, then the first. Stops when every cell
-        /// is lit, at <paramref name="max"/> lamps, or when no spot is left. <paramref name="lit"/> are lights already in
-        /// the room. Never two lamps on one cell. Returns indices into <paramref name="candidates"/>.
+        /// Picks lamp spots one at a time: each where it lights the most floor still dark (within <paramref name="reach"/>);
+        /// on a tie, where the cell farthest from any lamp ends up nearest one (so the light is even), then the farthest
+        /// from the lamps already up, then the most central, then the first. Goes on until every cell is lit and there are
+        /// at least <paramref name="min"/> lights (counting <paramref name="lit"/>, the lights already there), stops at
+        /// <paramref name="max"/> lamps or when no spot is left. Never two lamps on one cell. Returns indices into
+        /// <paramref name="candidates"/>.
         /// </summary>
-        public static List<int> Spread(IList<(int x, int z)> candidates, IList<(int x, int z)> cells, float reach, int max, IList<(int x, int z)> lit = null)
+        public static List<int> Spread(IList<(int x, int z)> candidates, IList<(int x, int z)> cells, float reach, int max, IList<(int x, int z)> lit = null, int min = 1)
         {
             var chosen = new List<int>();
             if (candidates == null || cells == null || candidates.Count == 0 || cells.Count == 0 || max <= 0) return chosen;
+            int nc = candidates.Count, nk = cells.Count;
             float r2 = reach * reach;
-            var covered = new bool[cells.Count];
-            int dark = cells.Count;
+            var d2 = new int[nc, nk];
+            var central = new long[nc];
+            for (int i = 0; i < nc; i++)
+                for (int j = 0; j < nk; j++)
+                {
+                    d2[i, j] = D2(candidates[i], cells[j]);
+                    central[i] += d2[i, j];
+                }
+            // How far each cell is from its nearest light, squared.
+            var nearest = new int[nk];
+            for (int j = 0; j < nk; j++) nearest[j] = int.MaxValue;
             var lights = new List<(int x, int z)>();
             var used = new HashSet<(int, int)>();
-            void Light((int x, int z) at)
-            {
-                lights.Add(at);
-                used.Add(at);
-                for (int j = 0; j < cells.Count; j++)
-                {
-                    if (covered[j] || D2(at, cells[j]) > r2) continue;
-                    covered[j] = true;
-                    dark--;
-                }
-            }
+            int litCount = 0;
             if (lit != null)
                 foreach (var l in lit)
-                    Light(l);
-            while (chosen.Count < max && dark > 0)
-            {
-                int best = -1, bestGain = 0, bestApart = -1;
-                long bestCentral = long.MaxValue;
-                for (int i = 0; i < candidates.Count; i++)
                 {
-                    var c = candidates[i];
-                    if (used.Contains(c)) continue;
-                    int gain = 0;
-                    long central = 0;
-                    for (int j = 0; j < cells.Count; j++)
+                    lights.Add(l);
+                    used.Add(l);
+                    litCount++;
+                    for (int j = 0; j < nk; j++) nearest[j] = Math.Min(nearest[j], D2(l, cells[j]));
+                }
+            while (chosen.Count < max)
+            {
+                int dark = 0;
+                for (int j = 0; j < nk; j++)
+                    if (nearest[j] > r2) dark++;
+                bool enough = chosen.Count + litCount >= min;
+                if (dark == 0 && enough) break;
+                int best = -1, bestGain = -1, bestWorst = int.MaxValue, bestApart = -1;
+                for (int i = 0; i < nc; i++)
+                {
+                    if (used.Contains(candidates[i])) continue;
+                    int gain = 0, worst = 0;
+                    for (int j = 0; j < nk; j++)
                     {
-                        int d = D2(c, cells[j]);
-                        central += d;
-                        if (!covered[j] && d <= r2) gain++;
+                        if (nearest[j] > r2 && d2[i, j] <= r2) gain++;
+                        int n = Math.Min(nearest[j], d2[i, j]);
+                        if (n > worst) worst = n;
                     }
-                    if (gain == 0) continue;
                     int apart = int.MaxValue;
-                    foreach (var l in lights) apart = Math.Min(apart, D2(c, l));
+                    foreach (var l in lights) apart = Math.Min(apart, D2(candidates[i], l));
                     bool better = gain > bestGain
-                                  || (gain == bestGain && apart > bestApart)
-                                  || (gain == bestGain && apart == bestApart && central < bestCentral);
+                                  || (gain == bestGain && worst < bestWorst)
+                                  || (gain == bestGain && worst == bestWorst && apart > bestApart)
+                                  || (gain == bestGain && worst == bestWorst && apart == bestApart && central[i] < central[best]);
                     if (!better) continue;
                     best = i;
                     bestGain = gain;
+                    bestWorst = worst;
                     bestApart = apart;
-                    bestCentral = central;
                 }
-                if (best < 0) break;
+                // Nothing left that lights more: only go on to reach the fewest lamps the room should have.
+                if (best < 0 || (bestGain == 0 && enough)) break;
                 chosen.Add(best);
-                Light(candidates[best]);
+                lights.Add(candidates[best]);
+                used.Add(candidates[best]);
+                for (int j = 0; j < nk; j++) nearest[j] = Math.Min(nearest[j], d2[best, j]);
             }
             return chosen;
         }
@@ -372,7 +402,8 @@ namespace ColonyCouncil
                     idx.Add(i);
                     at.Add((plan.candidates[i].x, plan.candidates[i].z));
                 }
-                foreach (int k in Spread(at, plan.areas[a], reach, MaxWallLamps(plan.areas[a].Count)))
+                int n = plan.areas[a].Count;
+                foreach (int k in Spread(at, plan.areas[a], reach, MaxWallLamps(n), null, MinWallLamps(n)))
                     plan.chosen.Add(idx[k]);
             }
             foreach (int i in plan.chosen) plan.lit.Add(plan.candidates[i].area);
@@ -450,7 +481,8 @@ namespace ColonyCouncil
                     at.Add((s.x, s.z));
                 }
                 var cells = a < plan.areas.Count ? plan.areas[a] : new List<(int x, int z)>();
-                var picks = Spread(at, cells, plan.reach, bad.Count, kept);
+                // As many lamps as the area had, where the walls left allow, so the light stays as even as planned.
+                var picks = Spread(at, cells, plan.reach, bad.Count, kept, kept.Count + bad.Count);
                 // What the kept and moved lamps leave dark: a lamp that found no spot is only missed if there's some.
                 float r2 = plan.reach * plan.reach;
                 var lights = new List<(int x, int z)>(kept);

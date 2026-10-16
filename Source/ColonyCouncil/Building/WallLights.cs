@@ -142,7 +142,7 @@ namespace ColonyCouncil
         /// one at a time where they light the most floor the room's lights (built or planned) leave dark; none if those
         /// light it all already. At most <paramref name="max"/>. Cells in <paramref name="avoid"/> are left alone.
         /// </summary>
-        public static List<(IntVec3 cell, Rot4 rot)> SpotsInRoom(Room room, Map map, ThingDef def, ThingDef stuff, int max, ICollection<IntVec3> avoid = null)
+        public static List<(IntVec3 cell, Rot4 rot)> SpotsInRoom(Room room, Map map, ThingDef def, ThingDef stuff, int max, ICollection<IntVec3> avoid = null, int min = 1)
         {
             var result = new List<(IntVec3 cell, Rot4 rot)>();
             if (room == null || map == null || def == null || max <= 0 || room.PsychologicallyOutdoors || room.CellCount > MaxRoomCells) return result;
@@ -171,7 +171,7 @@ namespace ColonyCouncil
                         at.Add((c.x, c.z));
                     }
                 }
-                foreach (int i in LightMath.Spread(at, cells.Select(c => (c.x, c.z)).ToList(), Reach(def), max, lit))
+                foreach (int i in LightMath.Spread(at, cells.Select(c => (c.x, c.z)).ToList(), Reach(def), max, lit, min))
                     result.Add(spots[i]);
             }
             catch (Exception e)
