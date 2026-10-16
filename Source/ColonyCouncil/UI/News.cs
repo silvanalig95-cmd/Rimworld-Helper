@@ -277,7 +277,7 @@ namespace ColonyCouncil
         public override void GameComponentTick()
         {
             // A few times an hour is plenty for "around six".
-            if (Find.TickManager.TicksGame % 250 != 167) return;
+            if (!Sched.Every(Find.TickManager.TicksGame, Sched.RareTicks, Sched.RareNews)) return;
             try
             {
                 Check();

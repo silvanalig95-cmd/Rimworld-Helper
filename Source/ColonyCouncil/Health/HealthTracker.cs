@@ -230,11 +230,16 @@ namespace ColonyCouncil
         {
             if (later.Count > 0) RunLater();
             int now = Find.TickManager.TicksGame;
-            if (!Sched.Hourly(now, Sched.Health)) return;
+            // Each colonist's hour in a tenth of the colony every 250 ticks (Sched), so each comes round once an hour and no
+            // one tick carries the whole colony; the colony's part (the cases, the day's pruning) on its own tick of the hour.
+            int slice = Sched.SliceTurn(now, Sched.HourTicks, Sched.Slices, Sched.RareHealth);
+            bool colony = Sched.Hourly(now, Sched.Health);
+            if (slice < 0 && !colony) return;
             if (!ConvalescenceOn && !ReputationOn) return;
             try
             {
-                Hourly(now);
+                if (slice >= 0) Slice(slice, now);
+                if (colony) Colony(now);
             }
             catch (Exception e)
             {
@@ -266,11 +271,21 @@ namespace ColonyCouncil
 
         private static readonly int PawnErrorKey = "ColonyCouncilhealth of a colonist".GetHashCode();
 
-        private void Hourly(int now)
+        private readonly List<Pawn> sliceTmp = new List<Pawn>();
+
+        private void Slice(int slice, int now)
         {
-            var everyone = PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_Colonists.ToList();
-            foreach (var p in everyone)
+            // This slice's colonists, copied out of the game's shared list before anything is done to them.
+            sliceTmp.Clear();
+            var everyone = PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_Colonists;
+            for (int i = 0; i < everyone.Count; i++)
             {
+                var p = everyone[i];
+                if (p != null && Sched.SliceOf(p.thingIDNumber, Sched.Slices) == slice) sliceTmp.Add(p);
+            }
+            for (int i = 0; i < sliceTmp.Count; i++)
+            {
+                var p = sliceTmp[i];
                 if (!AilmentTracker.Eligible(p)) continue;
                 try
                 {
@@ -281,6 +296,11 @@ namespace ColonyCouncil
                     Log.ErrorOnce("[Rimfolk] health stories of " + p.LabelShort + ": " + e, PawnErrorKey);
                 }
             }
+            sliceTmp.Clear();
+        }
+
+        private void Colony(int now)
+        {
             Cases(now);
             if (now % GenDate.TicksPerDay < GenDate.TicksPerHour) Prune(now);
         }

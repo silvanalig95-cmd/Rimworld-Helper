@@ -90,7 +90,7 @@ namespace ColonyCouncil
         public const int MaxRecords = 60;
 
         /// <summary>The tick of the 250-tick cycle the watching runs on (clear of Sched's passes).</summary>
-        public const int WatchTick = 199;
+        public const int WatchTick = Sched.RareWeekMemory;
 
         public static List<DilemmaRecord> Records => WeekMemory.Instance?.dilemmas;
 
