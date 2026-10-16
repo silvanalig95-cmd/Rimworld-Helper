@@ -1,0 +1,777 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More words for answers that play out on the map (PlayOut/): the call to a walk, a vigil, a search, an errand or a
+    hunt, what's said along the way, the words and songs at a gathering, and the journal entry after. Short lines that
+    float up and fade, one sentence each where they're said aloud. Same tags as the pools they join: where it happens
+    (grave, gate, fields, water, beside, other), the work (clean, haul, repair, build, sow, harvest...), the weather.
+  -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Pool_PlayWalkInvite</defName>
+    <pool>Council_Pool_PlayWalkInvite</pool>
+    <lines>
+      <plain>
+        <li>Boots on, we're walking out.</li>
+        <li>Come on, nobody stays behind for this one.</li>
+        <li>[grave] They'd want us all there.</li>
+      </plain>
+      <warm>
+        <li>Take your time getting ready, we'll wait for you.</li>
+        <li>Give me your hand on the rough bits.</li>
+      </warm>
+      <blunt>
+        <li>Out. All of you.</li>
+        <li>Walking now, keep up.</li>
+      </blunt>
+      <cheerful>
+        <li>Out we go, it's a fine day for it.</li>
+        <li>Last one to the gate carries the water.</li>
+      </cheerful>
+      <gloomy>
+        <li>Come on, before I change my mind.</li>
+        <li>Let's go, it won't get easier waiting.</li>
+      </gloomy>
+      <cold>
+        <li>We leave now and we're back before dark.</li>
+        <li>Two lines, stay together.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Pool_PlayWalk</defName>
+    <pool>Council_Pool_PlayWalk</pool>
+    <lines>
+      <plain>
+        <li>Wait for the slow ones.</li>
+        <li>[fields] Smell that, it's the fields.</li>
+        <li>[water] The water's high this year.</li>
+      </plain>
+      <warm>
+        <li>Lean on me if your knee's bad.</li>
+        <li>It's nice, all of us out at once.</li>
+      </warm>
+      <blunt>
+        <li>Nearly there, stop dawdling.</li>
+        <li>Mind your feet.</li>
+      </blunt>
+      <cheerful>
+        <li>Someone start a song, it's a long way.</li>
+        <li>Look, a bird, there.</li>
+      </cheerful>
+      <gloomy>
+        <li>We used to be more, on walks like these.</li>
+        <li>My feet will hate me tomorrow.</li>
+      </gloomy>
+      <cold>
+        <li>Keep to the path.</li>
+        <li>Eyes on the tree line.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Pool_PlayVigilInvite</defName>
+    <pool>Council_Pool_PlayVigilInvite</pool>
+    <lines>
+      <plain>
+        <li>Bring something warm, we'll be out all night.</li>
+        <li>Take a turn when you're ready, there's room.</li>
+        <li>[grave] Nobody should be alone tonight, not even them.</li>
+      </plain>
+      <warm>
+        <li>I'll sit first, you come when you can.</li>
+        <li>We'll take turns, so everyone gets some rest.</li>
+      </warm>
+      <blunt>
+        <li>Night watch, you and me.</li>
+        <li>Grab a blanket, we're sitting up.</li>
+      </blunt>
+      <cheerful>
+        <li>A night up together, I'll bring the stories.</li>
+        <li>Who's for a long night and a big pot of tea?</li>
+      </cheerful>
+      <gloomy>
+        <li>Someone has to sit up, it may as well be us.</li>
+        <li>It'll be a long night, bring your patience.</li>
+      </gloomy>
+      <cold>
+        <li>Watches of two hours, I'll take the first.</li>
+        <li>Nobody sleeps on watch.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Pool_PlayVigil</defName>
+    <pool>Council_Pool_PlayVigil</pool>
+    <lines>
+      <plain>
+        <li>Pass the blanket along.</li>
+        <li>Is that dawn coming, or just hope?</li>
+        <li>[beside] Rest, {OTHER_nameDef}, we've got you.</li>
+      </plain>
+      <warm>
+        <li>Sleep a little, I'll wake you.</li>
+        <li>You're not alone out here.</li>
+      </warm>
+      <blunt>
+        <li>Stay awake.</li>
+        <li>Quiet, listen.</li>
+      </blunt>
+      <cheerful>
+        <li>Halfway through the night already.</li>
+        <li>I've counted every star, starting again.</li>
+      </cheerful>
+      <gloomy>
+        <li>The cold gets in no matter what you wear.</li>
+        <li>I keep thinking I hear something.</li>
+      </gloomy>
+      <cold>
+        <li>Your turn to watch.</li>
+        <li>Nothing yet, keep looking.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Pool_PlaySearchInvite</defName>
+    <pool>Council_Pool_PlaySearchInvite</pool>
+    <lines>
+      <plain>
+        <li>Everyone take a direction and call out if you find it.</li>
+        <li>Meet back here before dark.</li>
+      </plain>
+      <warm>
+        <li>Go in pairs, nobody gets lost looking.</li>
+        <li>Thank you for coming out to help.</li>
+      </warm>
+      <blunt>
+        <li>Spread out, start looking.</li>
+        <li>Move, it won't find itself.</li>
+      </blunt>
+      <cheerful>
+        <li>A search party, how exciting!</li>
+        <li>I'll find it, I've got sharp eyes.</li>
+      </cheerful>
+      <gloomy>
+        <li>Let's look, for all the good it'll do.</li>
+        <li>We'll try, at least.</li>
+      </gloomy>
+      <cold>
+        <li>Work outward from here, in a line.</li>
+        <li>Mark where you've looked.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Pool_PlaySearch</defName>
+    <pool>Council_Pool_PlaySearch</pool>
+    <lines>
+      <plain>
+        <li>Not under here either.</li>
+        <li>Has anyone looked by the rocks?</li>
+      </plain>
+      <warm>
+        <li>We'll find it, keep going.</li>
+        <li>Rest a minute, then we'll look again.</li>
+      </warm>
+      <blunt>
+        <li>Not here.</li>
+        <li>Keep looking.</li>
+      </blunt>
+      <cheerful>
+        <li>Warmer, I think, maybe.</li>
+        <li>I found a nice stone, does that count?</li>
+      </cheerful>
+      <gloomy>
+        <li>It's gone, I'm sure of it.</li>
+        <li>We'll be out here all day for nothing.</li>
+      </gloomy>
+      <cold>
+        <li>That ground's covered, next section.</li>
+        <li>Slower, you'll miss it at that pace.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Pool_PlayCarryInvite</defName>
+    <pool>Council_Pool_PlayCarryInvite</pool>
+    <lines>
+      <plain>
+        <li>I'll run this out and come straight back.</li>
+        <li>[other] Taking this to {OTHER_nameDef}.</li>
+      </plain>
+      <warm>
+        <li>It'll do them good, I'll take it now.</li>
+        <li>I'm happy to carry it, it's on my way.</li>
+      </warm>
+      <blunt>
+        <li>Carrying, out of the way.</li>
+        <li>Coming through.</li>
+      </blunt>
+      <cheerful>
+        <li>Special delivery, make way!</li>
+        <li>I'll be the fastest courier in the colony.</li>
+      </cheerful>
+      <gloomy>
+        <li>I'll take it, though we could use it ourselves.</li>
+        <li>Off it goes, then.</li>
+      </gloomy>
+      <cold>
+        <li>I'll see it handed over properly.</li>
+        <li>I'll make sure it gets there, and to the right hands.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Pool_PlayCarry</defName>
+    <pool>Council_Pool_PlayCarry</pool>
+    <lines>
+      <plain>
+        <li>This is from the colony.</li>
+        <li>[other] {OTHER_nameDef}, this is for you.</li>
+      </plain>
+      <warm>
+        <li>We thought of you, take it.</li>
+        <li>From all of us, with love.</li>
+      </warm>
+      <blunt>
+        <li>Here, yours.</li>
+        <li>Take it before I drop it.</li>
+      </blunt>
+      <cheerful>
+        <li>Surprise, it's for you!</li>
+        <li>Hope you like it, I carried it all the way.</li>
+      </cheerful>
+      <gloomy>
+        <li>It's not much, but here.</li>
+        <li>Here, for what it's worth.</li>
+      </gloomy>
+      <cold>
+        <li>Delivered as agreed.</li>
+        <li>That settles our part.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Pool_PlayHuntInvite</defName>
+    <pool>Council_Pool_PlayHuntInvite</pool>
+    <lines>
+      <plain>
+        <li>I'm going out for meat, back by dark.</li>
+        <li>[lowtech] Spear, bow, and a sharp knife.</li>
+      </plain>
+      <warm>
+        <li>Keep supper warm, I'll bring something back.</li>
+        <li>Don't worry, I'll be careful out there.</li>
+      </warm>
+      <blunt>
+        <li>Going hunting, don't follow.</li>
+        <li>Meat's low, I'm going out.</li>
+      </blunt>
+      <cheerful>
+        <li>Hunting day, my favorite!</li>
+        <li>Wish me luck, I'm feeling lucky.</li>
+      </cheerful>
+      <gloomy>
+        <li>Somebody has to do it.</li>
+        <li>I'll go, but I won't like it.</li>
+      </gloomy>
+      <cold>
+        <li>I'll take the safe one, nothing that bites back.</li>
+        <li>Back by sundown, with or without.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Pool_PlayHunt</defName>
+    <pool>Council_Pool_PlayHunt</pool>
+    <lines>
+      <plain>
+        <li>Still, still, wait for it.</li>
+        <li>It's seen me, no, it hasn't.</li>
+      </plain>
+      <warm>
+        <li>Thank you for the meal.</li>
+        <li>Easy, it's over now.</li>
+      </warm>
+      <blunt>
+        <li>Down.</li>
+        <li>Clean kill.</li>
+      </blunt>
+      <cheerful>
+        <li>That's supper sorted!</li>
+        <li>Wait till they see this.</li>
+      </cheerful>
+      <gloomy>
+        <li>Poor thing never saw it coming.</li>
+        <li>I don't enjoy this part.</li>
+      </gloomy>
+      <cold>
+        <li>Downwind, quiet, now.</li>
+        <li>One shot, as planned.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Pool_PlayWords</defName>
+    <pool>Council_Pool_PlayWords</pool>
+    <lines>
+      <plain>
+        <li>Let them finish.</li>
+        <li>I've never heard it told that way.</li>
+      </plain>
+      <warm>
+        <li>That was beautifully said.</li>
+        <li>We're all listening, take your time.</li>
+      </warm>
+      <blunt>
+        <li>Well said.</li>
+        <li>Louder, the back can't hear.</li>
+      </blunt>
+      <cheerful>
+        <li>Tell it again tomorrow!</li>
+        <li>I got goosebumps at the end.</li>
+      </cheerful>
+      <gloomy>
+        <li>I'll be thinking about that for a while.</li>
+        <li>True, every word of it, more's the pity.</li>
+      </gloomy>
+      <cold>
+        <li>Worth hearing.</li>
+        <li>I'll hold you to that.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Pool_PlaySong</defName>
+    <pool>Council_Pool_PlaySong</pool>
+    <lines>
+      <plain>
+        <li>Who knows the next verse?</li>
+        <li>[child] Sing the one with the fox in it.</li>
+      </plain>
+      <warm>
+        <li>Sing it again, slower this time.</li>
+        <li>That one always makes me think of home.</li>
+      </warm>
+      <blunt>
+        <li>Fine, I'll hum.</li>
+        <li>Wrong words, keep going.</li>
+      </blunt>
+      <cheerful>
+        <li>Louder, everyone!</li>
+        <li>One more, then one more after that.</li>
+      </cheerful>
+      <gloomy>
+        <li>We used to sing this with more voices.</li>
+        <li>I can't sing this one, not anymore.</li>
+      </gloomy>
+      <cold>
+        <li>The tune is right, the words are wrong.</li>
+        <li>Keep time, at least.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Pool_PlayRemembrance</defName>
+    <pool>Council_Pool_PlayRemembrance</pool>
+    <lines>
+      <plain>
+        <li>Someone say their name, out loud.</li>
+        <li>I brought their old cup.</li>
+      </plain>
+      <warm>
+        <li>They were the best of us.</li>
+        <li>I'm glad we all came.</li>
+      </warm>
+      <blunt>
+        <li>Gone too soon.</li>
+        <li>Still not fair.</li>
+      </blunt>
+      <cheerful>
+        <li>Remember when they fell in the pond?</li>
+        <li>They'd have laughed at all of us crying.</li>
+      </cheerful>
+      <gloomy>
+        <li>Another year without them.</li>
+        <li>I can't remember their voice anymore.</li>
+      </gloomy>
+      <cold>
+        <li>They did their part, and more.</li>
+        <li>We remember, that's what this is for.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Pool_PlayParty</defName>
+    <pool>Council_Pool_PlayParty</pool>
+    <lines>
+      <plain>
+        <li>Who's dealing?</li>
+        <li>Somebody find the dice.</li>
+      </plain>
+      <warm>
+        <li>I'm so glad we're all here.</li>
+        <li>Come on, join us, there's room.</li>
+      </warm>
+      <blunt>
+        <li>Your move.</li>
+        <li>Cheating, I saw that.</li>
+      </blunt>
+      <cheerful>
+        <li>Best night we've had in ages!</li>
+        <li>Dance, nobody's watching, everyone's watching.</li>
+      </cheerful>
+      <gloomy>
+        <li>It'll be back to work tomorrow.</li>
+        <li>Somebody's missing from this.</li>
+      </gloomy>
+      <cold>
+        <li>Good for spirits, I'll grant it.</li>
+        <li>An hour more, then bed.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Pool_PlayFire</defName>
+    <pool>Council_Pool_PlayFire</pool>
+    <lines>
+      <warm>
+        <li>Budge up, there's room by the fire.</li>
+        <li>Warm your hands, you're freezing.</li>
+      </warm>
+      <blunt>
+        <li>More wood.</li>
+        <li>Stop poking it.</li>
+      </blunt>
+      <cheerful>
+        <li>I could sit here forever.</li>
+        <li>Who wants to roast something on a stick?</li>
+      </cheerful>
+      <gloomy>
+        <li>It'll be ashes by morning.</li>
+        <li>The dark's right there, past the light.</li>
+      </gloomy>
+      <cold>
+        <li>Keep it small, we've wood for a week.</li>
+        <li>Mind the sparks near the stores.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Pool_PlayWorkInvite</defName>
+    <pool>Council_Pool_PlayWorkInvite</pool>
+    <lines>
+      <plain>
+        <li>Sleeves up, everyone, it won't take long with all of us.</li>
+        <li>[repair] Anything that's cracked, we fix today.</li>
+      </plain>
+      <blunt>
+        <li>Everyone, now, no excuses.</li>
+      </blunt>
+      <cheerful>
+        <li>Work party, I'll bring the songs!</li>
+      </cheerful>
+      <gloomy>
+        <li>Let's get it over with.</li>
+      </gloomy>
+      <cold>
+        <li>Pairs, and nobody stands idle.</li>
+        <li>I've split the jobs, find your name.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== The journal entries after ===================== -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Journal_PlayWalk</defName>
+    <pool>Council_Journal_PlayWalk</pool>
+    <lines>
+      <plain>
+        <li>We went out together and came back together, which is the whole point, I think.</li>
+        <li>Walked out with everyone today. Nobody hurried, and that was the best of it.</li>
+      </plain>
+      <warm>
+        <li>Somebody took my arm on the way back without being asked. I keep thinking about it.</li>
+      </warm>
+      <blunt>
+        <li>Long walk. Worth it, I suppose.</li>
+      </blunt>
+      <cheerful>
+        <li>We walked out together, and the little ones ran ahead the whole way.</li>
+      </cheerful>
+      <gloomy>
+        <li>We walked out and back. The colony looked small from out there, and far away.</li>
+      </gloomy>
+      <cold>
+        <li>The walk did what it was meant to do. People were quieter afterward, and kinder.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Journal_PlayWalkMissed</defName>
+    <pool>Council_Journal_PlayWalkMissed</pool>
+    <lines>
+      <plain>
+        <li>The walk for {NAME} never happened. Everyone was busy, or said they were.</li>
+        <li>I waited by the gate for the others. Nobody came, so I walked back in.</li>
+      </plain>
+      <warm>
+        <li>We meant to walk out together for {NAME}. Next time I'll go and fetch people myself.</li>
+      </warm>
+      <cheerful>
+        <li>The walk fell through. I went round the walls on my own and called it close enough.</li>
+      </cheerful>
+      <gloomy>
+        <li>Another plan that came to nothing.</li>
+      </gloomy>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Journal_PlayVigil</defName>
+    <pool>Council_Journal_PlayVigil</pool>
+    <lines>
+      <plain>
+        <li>Sat up all night with the others. The dawn came slow, and then all at once.</li>
+        <li>A long night's watch. We took turns sleeping against each other's shoulders.</li>
+      </plain>
+      <warm>
+        <li>We kept watch together. Nobody had to sit alone in the dark, and that mattered.</li>
+      </warm>
+      <blunt>
+        <li>Up all night. Tired. It was right to do.</li>
+      </blunt>
+      <cheerful>
+        <li>We saw the sun come up together after the vigil. I've never seen one so pretty.</li>
+      </cheerful>
+      <gloomy>
+        <li>A cold night of watching. I don't know what we were waiting for, only that we had to.</li>
+      </gloomy>
+      <cold>
+        <li>The vigil was kept. I'll be useless today, and so will the others.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Journal_PlayVigilMissed</defName>
+    <pool>Council_Journal_PlayVigilMissed</pool>
+    <lines>
+      <plain>
+        <li>We were meant to sit up together for {NAME}. In the end everyone just went to bed.</li>
+      </plain>
+      <warm>
+        <li>The vigil never came together. I lit a candle by my bed instead and kept it a little while.</li>
+      </warm>
+      <blunt>
+        <li>No vigil. Slept instead.</li>
+      </blunt>
+      <cheerful>
+        <li>No vigil this time, but I said a few words out loud on my own, and that felt good.</li>
+      </cheerful>
+      <gloomy>
+        <li>Nobody came to keep the watch. I sat up a while, then gave up.</li>
+      </gloomy>
+      <cold>
+        <li>The vigil wasn't kept. I'll mention it at the next meeting.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Journal_PlaySearch</defName>
+    <pool>Council_Journal_PlaySearch</pool>
+    <lines>
+      <plain>
+        <li>Searched half the day with the others. My legs ache from all the stooping.</li>
+        <li>We combed every field and ditch. I know this land better now, if nothing else.</li>
+      </plain>
+      <warm>
+        <li>Everyone turned out for the search. Nobody grumbled, not even once.</li>
+      </warm>
+      <blunt>
+        <li>Searched all day. Done now.</li>
+      </blunt>
+      <cheerful>
+        <li>Search party today! I found three things nobody had lost, and one thing somebody had.</li>
+      </cheerful>
+      <gloomy>
+        <li>We searched until the light went. I kept expecting the worst under every bush.</li>
+      </gloomy>
+      <cold>
+        <li>The search was thorough. I made sure of it.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Journal_PlaySearchMissed</defName>
+    <pool>Council_Journal_PlaySearchMissed</pool>
+    <lines>
+      <plain>
+        <li>The search for {NAME} never got going. Too much else to do, they said.</li>
+      </plain>
+      <warm>
+        <li>I wish we'd gone looking. I'll keep an eye out on my own.</li>
+      </warm>
+      <blunt>
+        <li>Nobody searched. Typical.</li>
+      </blunt>
+      <cheerful>
+        <li>We never searched, but I'll keep looking whenever I'm out that way.</li>
+      </cheerful>
+      <gloomy>
+        <li>We didn't even look. I don't know what that says about us.</li>
+      </gloomy>
+      <cold>
+        <li>The search was dropped. A waste of the chance.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Journal_PlayCarry</defName>
+    <pool>Council_Journal_PlayCarry</pool>
+    <lines>
+      <plain>
+        <li>Took what we'd promised out the gate today. It felt good to hand it over.</li>
+        <li>Carried our gift across the whole colony. My arms are still complaining.</li>
+      </plain>
+      <warm>
+        <li>Handed it over and saw their face. That's the best part of giving anything.</li>
+      </warm>
+      <blunt>
+        <li>Delivered. Heavy. Done.</li>
+      </blunt>
+      <cheerful>
+        <li>I was the one who carried it! I've decided that makes it partly my gift.</li>
+      </cheerful>
+      <gloomy>
+        <li>We gave it away. I hope we don't need it this winter.</li>
+      </gloomy>
+      <cold>
+        <li>Delivered as the council decided. Our side of the bargain is kept.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Journal_PlayCarryMissed</defName>
+    <pool>Council_Journal_PlayCarryMissed</pool>
+    <lines>
+      <plain>
+        <li>What we meant to send for {NAME} is still in the storeroom.</li>
+      </plain>
+      <warm>
+        <li>We never took it out to them. I feel bad about that.</li>
+      </warm>
+      <blunt>
+        <li>Never delivered. Still sitting here.</li>
+      </blunt>
+      <cheerful>
+        <li>The errand never happened, so at least the stores are full.</li>
+      </cheerful>
+      <gloomy>
+        <li>We said we'd give it and we didn't. People will remember that.</li>
+      </gloomy>
+      <cold>
+        <li>The delivery wasn't made. Someone will ask why, and I'll have no good answer.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Journal_PlayHunt</defName>
+    <pool>Council_Journal_PlayHunt</pool>
+    <lines>
+      <plain>
+        <li>Went out after game today. Came back with meat and wet boots.</li>
+        <li>A long stalk and a quick end. There'll be a good stew tomorrow.</li>
+      </plain>
+      <warm>
+        <li>Shared the best cuts with the ones who needed them most.</li>
+      </warm>
+      <blunt>
+        <li>Hunt went fine. Meat's in.</li>
+      </blunt>
+      <cheerful>
+        <li>I brought it down with the first shot, and nobody saw, so I'm writing it here.</li>
+      </cheerful>
+      <gloomy>
+        <li>Hunted today. I can still see its eyes.</li>
+      </gloomy>
+      <cold>
+        <li>Clean hunt. Nothing wasted.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Journal_PlayHuntMissed</defName>
+    <pool>Council_Journal_PlayHuntMissed</pool>
+    <lines>
+      <plain>
+        <li>The hunt for {NAME} never went out. The pot will be thin tonight.</li>
+      </plain>
+      <warm>
+        <li>We didn't hunt in the end. Maybe it's for the best.</li>
+      </warm>
+      <blunt>
+        <li>No hunt. No meat.</li>
+      </blunt>
+      <cheerful>
+        <li>No hunt today, so the animals get another day of sunshine.</li>
+      </cheerful>
+      <gloomy>
+        <li>Nobody went hunting. We'll feel it later.</li>
+      </gloomy>
+      <cold>
+        <li>The hunt was called off. Meat will be short.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Journal_PlayWorkMissed</defName>
+    <pool>Council_Journal_PlayWorkMissed</pool>
+    <lines>
+      <plain>
+        <li>The work party for {NAME} came to nothing. I did a little on my own.</li>
+      </plain>
+      <warm>
+        <li>We never got everyone together for the work. Next time I'll go round and ask each of them.</li>
+      </warm>
+      <blunt>
+        <li>Work party never happened. The work's still there.</li>
+      </blunt>
+      <cheerful>
+        <li>The work party fell through. It'll keep till tomorrow.</li>
+      </cheerful>
+      <gloomy>
+        <li>Nobody turned up to help. I'm not surprised.</li>
+      </gloomy>
+      <cold>
+        <li>The work party didn't form. Everyone had a reason, none of them good.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+</Defs>

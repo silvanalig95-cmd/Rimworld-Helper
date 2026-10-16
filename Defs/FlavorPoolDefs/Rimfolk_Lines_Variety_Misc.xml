@@ -1,0 +1,544 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More lines for the smaller pools that had one line a voice: a warm spell, an objection to mercy, the year's annals
+    closing, a tradition kept, a wish asked for again, the offices at work (chaplain, elder, peacemaker, reeve,
+    warden), a convalescent at a gathering, a feast with nothing fit to eat, and the words at a work party and a toast.
+    Same placeholders as the pools they join.
+  -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Pool_TouchWarmSpell</defName>
+    <pool>Council_Pool_TouchWarmSpell</pool>
+    <lines>
+      <plain>
+        <li>Shirtsleeves weather, out of nowhere.</li>
+        <li>[winter] Warm enough to melt the eaves, in the middle of winter.</li>
+      </plain>
+      <warm>
+        <li>Let's eat outside while it lasts.</li>
+        <li>Open the doors and let the warm in.</li>
+      </warm>
+      <blunt>
+        <li>Warm. Make the most of it.</li>
+        <li>Coats off, back to work.</li>
+      </blunt>
+      <cheerful>
+        <li>Summer's come to visit early!</li>
+        <li>I'm going to lie in the sun at lunch, don't stop me.</li>
+      </cheerful>
+      <gloomy>
+        <li>The cold will come back twice as hard.</li>
+        <li>Enjoy it, it's only borrowed.</li>
+      </gloomy>
+      <cold>
+        <li>Use the warm days for the outside work.</li>
+        <li>The wood pile lasts longer in weather like this.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Pool_ObjectMercy</defName>
+    <pool>Council_Pool_ObjectMercy</pool>
+    <lines>
+      <plain>
+        <li>{ABOUT_nameDef} has seen our walls from the inside. I'd rather {ABOUT_pronoun} didn't take that home.</li>
+        <li>Mercy is a fine thing, {OTHER_nameDef}. I'd like it pointed at someone who hasn't shot at us.</li>
+      </plain>
+      <warm>
+        <li>{OTHER_nameDef}, I understand the kindness. I'm afraid of what it'll cost the rest of us.</li>
+        <li>I don't want {ABOUT_nameDef} hurt. I don't want {ABOUT_objective} free, either. Not yet.</li>
+      </warm>
+      <blunt>
+        <li>Let {ABOUT_nameDef} go and we'll be fighting {ABOUT_objective} again by spring.</li>
+        <li>No. {ABOUT_nameDef} stays where {ABOUT_pronoun} is.</li>
+      </blunt>
+      <cheerful>
+        <li>I like {OTHER_nameDef}'s big heart, truly. I'd just like to keep my own heart beating too.</li>
+        <li>Can we at least wait until {ABOUT_nameDef} stops glaring at everyone?</li>
+      </cheerful>
+      <gloomy>
+        <li>We'll free {ABOUT_nameDef}, and one night we'll pay for it.</li>
+        <li>It never ends well, letting them go.</li>
+      </gloomy>
+      <cold>
+        <li>{ABOUT_nameDef} is worth more to us held, traded or recruited than simply released.</li>
+        <li>Releasing {ABOUT_nameDef} buys us nothing and risks a great deal.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Pool_AnnalsClose</defName>
+    <pool>Council_Pool_AnnalsClose</pool>
+    <lines>
+      <plain>
+        <li>That's the year written down. Somebody else can write the next one.</li>
+        <li>We're still here, and that's the best I can say of any year out here.</li>
+        <li>The year's done. The fields will need turning in spring, as ever.</li>
+      </plain>
+      <warm>
+        <li>Thank you, all of you, for another year.</li>
+        <li>We looked after each other this year. That's what I'll remember.</li>
+      </warm>
+      <blunt>
+        <li>Year's over. Back to work.</li>
+        <li>That's another one. Next.</li>
+      </blunt>
+      <cheerful>
+        <li>Here's to the year gone, and the one coming, may it have more feasts in it.</li>
+        <li>We made it through another one! I say that calls for a cake.</li>
+      </cheerful>
+      <gloomy>
+        <li>A year older, and a bit more tired.</li>
+        <li>I wonder who'll be writing this page next year.</li>
+      </gloomy>
+      <cold>
+        <li>Year recorded. The colony stands, and the record shows how.</li>
+        <li>The year is closed. I'll use it to plan the next.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Pool_TouchTradition</defName>
+    <pool>Council_Pool_TouchTradition</pool>
+    <lines>
+      <plain>
+        <li>{TRADITION} again, it comes round quicker every year.</li>
+        <li>It wouldn't be the year without {TRADITION}.</li>
+      </plain>
+      <warm>
+        <li>{TRADITION} is my favorite day, I think.</li>
+        <li>It's good to do the old things together.</li>
+      </warm>
+      <blunt>
+        <li>{TRADITION}, right, let's do it properly.</li>
+        <li>Tradition's tradition.</li>
+      </blunt>
+      <cheerful>
+        <li>{TRADITION}, my favorite!</li>
+        <li>I've been practicing for {TRADITION} all week.</li>
+      </cheerful>
+      <gloomy>
+        <li>We keep {TRADITION} for the ones who can't.</li>
+        <li>{TRADITION}, and fewer of us than last year.</li>
+      </gloomy>
+      <cold>
+        <li>Keeping {TRADITION} costs a day and buys a season of goodwill.</li>
+        <li>The colony is steadier for keeping {TRADITION}.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Pool_RenewedWish</defName>
+    <pool>Council_Pool_RenewedWish</pool>
+    <lines>
+      <plain>
+        <li>It was mine for a while. I'd like it to be mine again.</li>
+        <li>I got used to having it. Now I notice it gone every day.</li>
+      </plain>
+      <warm>
+        <li>I don't want to be ungrateful. I'd just love to have it back.</li>
+        <li>If there's any way to put it back, I'd be so glad.</li>
+      </warm>
+      <blunt>
+        <li>It was mine. Give it back.</li>
+        <li>Asking again. You know what for.</li>
+      </blunt>
+      <cheerful>
+        <li>Second time asking, and I'm just as hopeful as the first!</li>
+        <li>It was lovely while I had it. More of that, please.</li>
+      </cheerful>
+      <gloomy>
+        <li>I'll ask, though I know how it went last time.</li>
+        <li>Asking for it back feels worse than asking the first time.</li>
+      </gloomy>
+      <cold>
+        <li>I'd like it restored, and kept this time.</li>
+        <li>I'm asking again. How the council answers will tell me a lot.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== Offices and the systems talking to each other ===================== -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Pool_Interplay_ChaplainRite</defName>
+    <pool>Council_Pool_Interplay_ChaplainRite</pool>
+    <lines>
+      <plain>
+        <li>{NAME} came round again. I said the words, and the others said them back.</li>
+        <li>Kept {NAME} today. Fewer words than last year, and better ones.</li>
+      </plain>
+      <warm>
+        <li>{NAME}. Everyone came, even the ones who don't believe a word of it. That was a gift.</li>
+        <li>Led {NAME} and held a few hands afterward. That's as much a part of it as the words.</li>
+      </warm>
+      <blunt>
+        <li>{NAME}. Kept it. Good.</li>
+        <li>Said the words for {NAME}. Short and true.</li>
+      </blunt>
+      <cheerful>
+        <li>{NAME} today. Somebody sang, and everyone joined in, and that was the rite done better than I could.</li>
+        <li>A good {NAME}, with full bellies afterward and nobody in a hurry to leave.</li>
+      </cheerful>
+      <gloomy>
+        <li>{NAME}. I said the words, and I'll say them next year, and the year after.</li>
+        <li>Led {NAME} with a cold in my chest and a heavier heart.</li>
+      </gloomy>
+      <cold>
+        <li>{NAME} was observed correctly. People need the form as much as the feeling.</li>
+        <li>Conducted {NAME}. The colony is steadier for it, as always.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Pool_Interplay_ElderStories</defName>
+    <pool>Council_Pool_Interplay_ElderStories</pool>
+    <lines>
+      <plain>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} about the first winter {PAWN_pronoun} could remember, and how they got through it.</li>
+        <li>{PAWN_nameDef} and {OTHER_nameDef} sat with the old maps and talked about the places on them.</li>
+      </plain>
+      <warm>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} about someone {PAWN_pronoun} once loved, and {OTHER_nameDef} listened to every word.</li>
+        <li>{PAWN_nameDef} gave {OTHER_nameDef} some advice {PAWN_pronoun} wished someone had given {PAWN_objective} at that age.</li>
+      </warm>
+      <blunt>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} exactly where {PAWN_pronoun} had gone wrong in life, so {OTHER_nameDef} wouldn't.</li>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} a hard truth about the rim. {OTHER_nameDef} thanked {PAWN_objective} for it.</li>
+      </blunt>
+      <cheerful>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} about the most ridiculous thing {PAWN_pronoun} ever did when young, and they both laughed until they wheezed.</li>
+        <li>{PAWN_nameDef} taught {OTHER_nameDef} a song nobody else in the colony knew.</li>
+      </cheerful>
+      <gloomy>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} about a place that isn't there anymore.</li>
+      </gloomy>
+      <cold>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} what {PAWN_pronoun} had learned about people, which was mostly to watch their hands.</li>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} how the old settlements failed, so this one wouldn't.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Pool_Interplay_ChaplainComforts</defName>
+    <pool>Council_Pool_Interplay_ChaplainComforts</pool>
+    <lines>
+      <plain>
+        <li>{PAWN_nameDef}, the chaplain, asked {OTHER_nameDef} to tell {PAWN_objective} about the one {OTHER_pronoun} lost, and stayed for the whole story.</li>
+      </plain>
+      <warm>
+        <li>{PAWN_nameDef} held {OTHER_nameDef}'s hands and said nothing at all, and it helped.</li>
+        <li>{PAWN_nameDef} sat with {OTHER_nameDef} until {OTHER_pronoun} fell asleep.</li>
+      </warm>
+      <blunt>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} it was all right to be angry about it. {OTHER_nameDef} was, for a while.</li>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} to eat something first, then talk. Both helped.</li>
+      </blunt>
+      <cheerful>
+        <li>{PAWN_nameDef} got {OTHER_nameDef} to tell a funny story about the one {OTHER_pronoun} lost, and {OTHER_nameDef} smiled for the first time in days.</li>
+        <li>{PAWN_nameDef} walked {OTHER_nameDef} to the garden, where something new had come up.</li>
+      </cheerful>
+      <gloomy>
+        <li>{PAWN_nameDef} didn't pretend it would get better soon, and {OTHER_nameDef} seemed grateful for that.</li>
+        <li>{PAWN_nameDef} and {OTHER_nameDef} sat at the grave together until the light went.</li>
+      </gloomy>
+      <cold>
+        <li>{PAWN_nameDef} gave {OTHER_nameDef} a task to do with {OTHER_possessive} hands. Grief settles better with work in it.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Pool_PeacemakerMediates</defName>
+    <pool>Council_Pool_PeacemakerMediates</pool>
+    <lines>
+      <warm>
+        <li>{PAWN_nameDef} asked {A_nameDef} and {B_nameDef} what each of them liked about the other. It took a while, but they both came up with something.</li>
+      </warm>
+      <blunt>
+        <li>{PAWN_nameDef} told {A_nameDef} and {B_nameDef} the next one to start it would be hauling for a week. Nobody has started it.</li>
+      </blunt>
+      <cheerful>
+        <li>{PAWN_nameDef} made {A_nameDef} and {B_nameDef} cook supper together. It was terrible, and they laughed about it all evening.</li>
+      </cheerful>
+      <gloomy>
+        <li>{PAWN_nameDef} told {A_nameDef} and {B_nameDef} about a feud {PAWN_pronoun} once watched end badly. They listened.</li>
+      </gloomy>
+      <cold>
+        <li>{PAWN_nameDef} wrote down what {A_nameDef} and {B_nameDef} each wanted, read both lists aloud, and pointed out they were nearly the same.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Pool_Interplay_PeacemakerSays</defName>
+    <pool>Council_Pool_Interplay_PeacemakerSays</pool>
+    <lines>
+      <plain>
+        <li>One at a time, please.</li>
+        <li>Nobody leaves until this is sorted.</li>
+      </plain>
+      <warm>
+        <li>I know you both mean well, underneath.</li>
+        <li>Sit, both of you, I'll put the kettle on.</li>
+      </warm>
+      <blunt>
+        <li>Quiet, the pair of you.</li>
+        <li>Shake hands, or shovel snow together.</li>
+      </blunt>
+      <cheerful>
+        <li>Let's all take a deep breath and a biscuit.</li>
+        <li>Come on, you two used to be friends.</li>
+      </cheerful>
+      <gloomy>
+        <li>We can't afford to be at each other's throats.</li>
+        <li>There are too few of us for this.</li>
+      </gloomy>
+      <cold>
+        <li>State your grievance, then listen to theirs.</li>
+        <li>This feud has cost us enough already.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Pool_Interplay_ReeveDelivered</defName>
+    <pool>Council_Pool_Interplay_ReeveDelivered</pool>
+    <lines>
+      <plain>
+        <li>Loaded every sack bound for {PLACE} myself. I could tell you where each one sat on the cart.</li>
+      </plain>
+      <warm>
+        <li>The carts left for {PLACE} full. I hope it gets them through.</li>
+        <li>We had enough to share with {PLACE}, and we shared it. That's a good season.</li>
+      </warm>
+      <blunt>
+        <li>Delivered to {PLACE}. Every last sack.</li>
+        <li>{PLACE} got its order. Done.</li>
+      </blunt>
+      <cheerful>
+        <li>Off went the carts to {PLACE}, and I waved until they were out of sight.</li>
+        <li>Full order for {PLACE}, on time, and not one sack split.</li>
+      </cheerful>
+      <gloomy>
+        <li>The carts to {PLACE} were fuller than our own stores look now.</li>
+        <li>Sent it all to {PLACE}. I counted twice and still worried.</li>
+      </gloomy>
+      <cold>
+        <li>The {PLACE} order was filled exactly. Exactly is how trust gets built.</li>
+        <li>Delivered to {PLACE}. {FACTION} owes us a little for the speed.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Pool_Interplay_ConvalescentGathering</defName>
+    <pool>Council_Pool_Interplay_ConvalescentGathering</pool>
+    <lines>
+      <plain>
+        <li>Went to the gathering on someone's arm and left on my own feet. Slowly, but my own.</li>
+      </plain>
+      <warm>
+        <li>The others kept checking whether I was comfortable. I was, the whole evening.</li>
+        <li>Sat with friends at the gathering and forgot I was ill for an hour.</li>
+      </warm>
+      <blunt>
+        <li>Got out of bed for the gathering. Worth it.</li>
+        <li>Sore, but there. Good.</li>
+      </blunt>
+      <cheerful>
+        <li>I danced, sitting down, which counts.</li>
+        <li>Best evening since I got sick, and I ate two helpings.</li>
+      </cheerful>
+      <gloomy>
+        <li>Tired before it was halfway done, but I stayed.</li>
+        <li>I watched them dance and remembered when I could.</li>
+      </gloomy>
+      <cold>
+        <li>An evening among people did more for my recovery than another in bed would have.</li>
+        <li>I attended, briefly. It was worth the effort.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Pool_Interplay_ChaplainTendsJournal</defName>
+    <pool>Council_Pool_Interplay_ChaplainTendsJournal</pool>
+    <lines>
+      <plain>
+        <li>{OTHER_nameDef} asked me what I still believed, and waited while I worked it out.</li>
+      </plain>
+      <warm>
+        <li>{OTHER_nameDef} prayed with me tonight, and for once the words felt like mine.</li>
+        <li>{OTHER_nameDef} said doubt is part of faith. I'd never heard it put that way.</li>
+      </warm>
+      <blunt>
+        <li>{OTHER_nameDef} asked about my faith. I answered. Honestly, for once.</li>
+        <li>Good talk with {OTHER_nameDef}. Still doubting. Less.</li>
+      </blunt>
+      <cheerful>
+        <li>{OTHER_nameDef} and I argued about faith all the way round the walls, and I enjoyed every minute.</li>
+        <li>{OTHER_nameDef} made the old teachings sound like good news again.</li>
+      </cheerful>
+      <gloomy>
+        <li>{OTHER_nameDef} is patient with me. I don't know how long that lasts.</li>
+        <li>Talked about the faith with {OTHER_nameDef}. I wanted to believe more than I did.</li>
+      </gloomy>
+      <cold>
+        <li>{OTHER_nameDef} answered my objections one by one. I couldn't fault the reasoning.</li>
+        <li>A useful conversation with {OTHER_nameDef} about what we hold to.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Pool_Interplay_ElderCounselJournal</defName>
+    <pool>Council_Pool_Interplay_ElderCounselJournal</pool>
+    <lines>
+      <plain>
+        <li>{OTHER_nameDef} watched me work for a while and said one thing. It was the right thing.</li>
+      </plain>
+      <warm>
+        <li>{OTHER_nameDef} told me I was doing well. Coming from {OTHER_objective}, it meant a lot.</li>
+        <li>An afternoon with {OTHER_nameDef}. I hope I'm half as patient at that age.</li>
+      </warm>
+      <blunt>
+        <li>{OTHER_nameDef} set me straight. Needed it.</li>
+        <li>Learned from {OTHER_nameDef} today. More tomorrow.</li>
+      </blunt>
+      <cheerful>
+        <li>{OTHER_nameDef} told me about the old days, and some of it sounded made up, and I loved all of it.</li>
+        <li>{OTHER_nameDef} showed me a better way to do it, and now I can't stop doing it.</li>
+      </cheerful>
+      <gloomy>
+        <li>{OTHER_nameDef} has seen so much. Most of it hard, by the sound of it.</li>
+        <li>I'm writing down what {OTHER_nameDef} told me, before I forget it, or {OTHER_nameDef} is gone.</li>
+      </gloomy>
+      <cold>
+        <li>{OTHER_nameDef} gave me three pieces of advice. Two were good.</li>
+        <li>{OTHER_nameDef}'s experience is worth more than {OTHER_possessive} labor now. I made use of it.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Pool_Interplay_WardenCamp</defName>
+    <pool>Council_Pool_Interplay_WardenCamp</pool>
+    <lines>
+      <plain>
+        <li>{PAWN_nameDef}, the warden of guests, sat down at the camp's fire with the {PLACE} and asked what they needed before they had to ask.</li>
+      </plain>
+      <cheerful>
+        <li>{PAWN_nameDef} went over to the camp with a basket of bread and came back with three new songs from the {PLACE}.</li>
+        <li>{PAWN_nameDef} spent the evening at the camp, and the {PLACE} were laughing by the end of it.</li>
+      </cheerful>
+      <gloomy>
+        <li>{PAWN_nameDef} heard out the {PLACE}'s worries about the winter and didn't pretend they were small.</li>
+        <li>{PAWN_nameDef} sat with the {PLACE} for an hour. They'd had a hard road, and said so.</li>
+      </gloomy>
+      <warm>
+        <li>{PAWN_nameDef} made sure the {PLACE} had dry wood and a fair share of water.</li>
+      </warm>
+      <blunt>
+        <li>{PAWN_nameDef} told the {PLACE} where they could cut wood and where they couldn't. They thanked {PAWN_objective} for being plain.</li>
+      </blunt>
+      <cold>
+        <li>{PAWN_nameDef} walked the camp's edge with the {PLACE} and marked it out with stones.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== A feast with nothing fit to eat ===================== -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Journal_NothingFit</defName>
+    <pool>Council_Journal_NothingFit</pool>
+    <lines>
+      <plain>
+        <li>The whole colony ate at {GATHERING}. I held a cup and talked, which isn't the same.</li>
+        <li>[diet:vegetarian] Meat in the stew, meat in the pie. I ate bread at {GATHERING} and kept quiet.</li>
+        <li>[diet:vegan] Even the bread at {GATHERING} had butter in it. I ate a raw carrot afterward.</li>
+        <li>[diet:carnivore] All greens and grain at {GATHERING}. My stomach growled through the toasts.</li>
+        <li>[diet:fungusinsect] Ordinary food at {GATHERING}. My people don't eat like that, so I didn't.</li>
+        <li>[diet:fine] Plain stew at {GATHERING}. I have standards, even here, and I kept them.</li>
+      </plain>
+      <warm>
+        <li>Couldn't eat at {GATHERING}, but someone sat by me and shared their water. That was kind.</li>
+        <li>I didn't eat at {GATHERING}, and that's all right. I was there, and they were glad I came.</li>
+      </warm>
+      <blunt>
+        <li>Nothing to eat at {GATHERING}. Again. I'll say something next time.</li>
+        <li>Empty plate at {GATHERING}. Nobody asked.</li>
+      </blunt>
+      <cheerful>
+        <li>Nothing fit to eat at {GATHERING}, so I ate twice as much at breakfast.</li>
+        <li>I went to {GATHERING} for the company, and the company was excellent.</li>
+      </cheerful>
+      <gloomy>
+        <li>Everyone toasted the cook at {GATHERING}. I'd eaten nothing to toast.</li>
+        <li>I sat at {GATHERING} like a guest at someone else's table.</li>
+      </gloomy>
+      <cold>
+        <li>{GATHERING} made no provision for my diet. I'll raise it with whoever plans the next one.</li>
+        <li>Attended {GATHERING} without eating. Noted, for the next planning.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== The words at a work party and a toast ===================== -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Pool_PlayWork</defName>
+    <pool>Council_Pool_PlayWork</pool>
+    <lines>
+      <warm>
+        <li>Rest a minute, I'll take that.</li>
+      </warm>
+      <blunt>
+        <li>Faster, there's daylight left.</li>
+      </blunt>
+      <cheerful>
+        <li>Look how much we've done already!</li>
+      </cheerful>
+      <gloomy>
+        <li>My back will never forgive me.</li>
+        <li>We'll be doing this again next month.</li>
+      </gloomy>
+      <cold>
+        <li>Two more loads and we're done.</li>
+        <li>Not there, over here.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Pool_PlayToast</defName>
+    <pool>Council_Pool_PlayToast</pool>
+    <lines>
+      <warm>
+        <li>To all of you, every one.</li>
+      </warm>
+      <blunt>
+        <li>Drink up.</li>
+      </blunt>
+      <cheerful>
+        <li>To us, and to the next one!</li>
+      </cheerful>
+      <gloomy>
+        <li>To the ones who aren't here to drink it.</li>
+      </gloomy>
+      <cold>
+        <li>To the colony, and its continued survival.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+</Defs>
