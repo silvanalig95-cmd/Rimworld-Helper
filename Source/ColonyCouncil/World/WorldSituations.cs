@@ -439,8 +439,10 @@ namespace ColonyCouncil
             ctx.cause = "CC_WS_Cause".Translate(s.def.LabelCap).Resolve();
             if (beat.effects != null)
                 using (Causes.Push(ctx.cause))
+                using (PlayOuts.Collect())
                 {
-                    foreach (var e in beat.effects) HappeningTracker.Safe(e, ctx);
+                    // What the beat sets going on the map (PlayOut/) comes first, so it can hold the moods of those taking part.
+                    foreach (var e in PlayOuts.Ordered(beat.effects)) HappeningTracker.Safe(e, ctx);
                 }
             try
             {
@@ -496,10 +498,13 @@ namespace ColonyCouncil
                 ctx.map = ctx.map != null && Find.Maps.Contains(ctx.map) ? ctx.map : HappeningTracker.HomeMap();
                 ctx.cause = "CC_Cause_Event".Translate(s.def.LabelCap, ctx.Format(o.label)).Resolve();
                 using var _cause = Causes.Push(ctx.cause);
+                // What the answer sets going on the map (PlayOut/: an errand to the gate, a vigil, a work party) comes
+                // first, so it can hold the moods of those taking part.
+                using var _plays = PlayOuts.Collect();
                 bool risk = o.riskChance > 0f && Rand.Chance(worker.RiskChance(s, ctx, o));
                 if (!risk || !o.riskReplaces)
                 {
-                    foreach (var e in o.effects ?? new List<DilemmaEffect>())
+                    foreach (var e in PlayOuts.Ordered(o.effects))
                         if (!byDefault || !e.onlyIfChosen) HappeningTracker.Safe(e, ctx);
                     if (o.flags != null) foreach (var f in o.flags) s.Set(f);
                     if (o.clears != null) foreach (var f in o.clears) s.Clear(f);
@@ -518,7 +523,7 @@ namespace ColonyCouncil
                 if (risk)
                 {
                     if (o.riskEffects != null)
-                        foreach (var e in o.riskEffects)
+                        foreach (var e in PlayOuts.Ordered(o.riskEffects))
                             if (!byDefault || !e.onlyIfChosen) HappeningTracker.Safe(e, ctx);
                     if (o.riskFlags != null) foreach (var f in o.riskFlags) s.Set(f);
                     if (!o.riskNext.NullOrEmpty()) Call(s, o.riskNext, o.nextDays.RandomInRange);
@@ -575,9 +580,10 @@ namespace ColonyCouncil
                         string cause = "CC_WS_Cause".Translate(def.LabelCap).Resolve();
                         s.ctx.cause = cause;
                         using (Causes.Push(cause))
+                        using (PlayOuts.Collect())
                         {
                             if (ending.effects != null)
-                                foreach (var e in ending.effects) HappeningTracker.Safe(e, s.ctx);
+                                foreach (var e in PlayOuts.Ordered(ending.effects)) HappeningTracker.Safe(e, s.ctx);
                         }
                         string label = worker.Line(ending.titles, s) ?? s.Label;
                         string text = worker.Line(ending.texts, s) ?? "";

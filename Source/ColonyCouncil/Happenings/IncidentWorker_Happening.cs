@@ -287,8 +287,11 @@ namespace ColonyCouncil
             string extra = Extra(ctx);
             string body = ctx.text + (extra.NullOrEmpty() ? "" : "\n\n" + extra);
             using (Causes.Push("CC_Cause_EventHappened".Translate(label).Resolve()))
+            using (PlayOuts.Collect())
             {
-                foreach (var e in ext.effects) HappeningTracker.Safe(e, ctx);
+                // What the event sets going on the map (PlayOut/: the colony gathering to hear a storyteller) comes first,
+                // so it can hold the moods of those taking part.
+                foreach (var e in PlayOuts.Ordered(ext.effects)) HappeningTracker.Safe(e, ctx);
             }
             if (ext.options.NullOrEmpty())
             {

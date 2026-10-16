@@ -65,7 +65,7 @@
             <label>Send {COUNT} wood</label>
             <outcome>The wagon goes back to {PLACE} stacked high. Somebody there will sleep under a roof by the next rain.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>WoodLog</what></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the wood for {PLACE}</label><what>WoodLog</what><to>Gate</to></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>10</amount></li>
             </effects>
             <help>2</help>
@@ -76,7 +76,7 @@
             <label>Sell it at a fair price</label>
             <outcome>{FACTION} pay what timber is worth, and the wagon goes back loaded.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>WoodLog</what></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the wood for {PLACE}</label><what>WoodLog</what><to>Gate</to></li>
               <li Class="ColonyCouncil.WorldEffect_Silver"><factor>1.2</factor></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>3</amount></li>
             </effects>
@@ -115,7 +115,7 @@
             <label>Feed them and send them home</label>
             <outcome>They eat, sleep one night under a roof and go back to {PLACE} in the morning with a sack of food and a little more hope.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>20</count></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>a sack of food for the road home</label><what>rawfood</what><count>20</count><to>Gate</to></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>4</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>sheltered</kind><about>place</about></li>
             </effects>
@@ -290,7 +290,7 @@
             <label>Send him on, with food</label>
             <outcome>He is given bread and a water skin and pointed toward the hills. Whatever happens to him, it won't happen at the colony's gate.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>8</count></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>bread for the road</label><what>rawfood</what><count>8</count><to>Gate</to></li>
             </effects>
             <ways><mercy>1</mercy></ways>
           </li>
@@ -367,7 +367,7 @@
             <label>Pay the last {COUNT} silver</label>
             <outcome>The silver goes to {ENEMY}'s family with {A_nameDef}, and the elders of both families shake hands over it. It's done.</outcome>
             <effects>
-              <li Class="ColonyCouncil.WorldEffect_Pay" />
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the last of the blood price</label><what>silver</what><tens>true</tens><steward>false</steward><to>Gate</to></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>6</amount><who>Both</who></li>
               <li Class="ColonyCouncil.ArcEffect_Epithet"><epithet>Council_Epithet_Feudbreaker</epithet><chance>0.7</chance></li>
             </effects>

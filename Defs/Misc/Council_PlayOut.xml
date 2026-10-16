@@ -32,4 +32,50 @@
     <checkOverrideOnDamage>Always</checkOverrideOnDamage>
   </JobDef>
 
+  <!--
+    Work parties, walks together, vigils, searches and errands an answer called (PlayOut/PlayGroups.cs). Each person is
+    on a job of their own, never in a lord, so the game's own gatherings and rituals can always take them.
+  -->
+  <JobDef>
+    <defName>Council_PlayOutWalk</defName>
+    <driverClass>ColonyCouncil.JobDriver_PlayOutGroup</driverClass>
+    <reportString>walking with the others.</reportString>
+    <joyKind>Social</joyKind>
+    <joyGainRate>0.4</joyGainRate>
+    <casualInterruptible>false</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+  <JobDef>
+    <defName>Council_PlayOutVigil</defName>
+    <driverClass>ColonyCouncil.JobDriver_PlayOutGroup</driverClass>
+    <reportString>keeping watch.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+  <JobDef>
+    <defName>Council_PlayOutSearch</defName>
+    <driverClass>ColonyCouncil.JobDriver_PlayOutGroup</driverClass>
+    <reportString>searching.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+  <JobDef>
+    <defName>Council_PlayOutCarry</defName>
+    <driverClass>ColonyCouncil.JobDriver_PlayOutCarry</driverClass>
+    <reportString>carrying TargetA out.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+  <!-- The step between two of a work party's jobs: counts the last, queues the next. Takes no time. -->
+  <JobDef>
+    <defName>Council_PlayOutWorkNext</defName>
+    <driverClass>ColonyCouncil.JobDriver_PlayOutWorkNext</driverClass>
+    <reportString>looking for the next job.</reportString>
+    <casualInterruptible>true</casualInterruptible>
+  </JobDef>
+
 </Defs>

@@ -65,9 +65,63 @@ namespace ColonyCouncil
         {
             if (pawn == null) return null;
             foreach (var p in plays)
-                if (p.state == PlayState.Running && !p.IsGathering && p.visitor == pawn)
+                if (p.state == PlayState.Running && (p.kind == PlayKind.Visit || p.kind == PlayKind.Lesson) && p.visitor == pawn)
                     return p;
             return null;
+        }
+
+        /// <summary>The work party, walk, vigil, search, errand or hunt this colonist is on now, if any.</summary>
+        public PlayOut GroupFor(Pawn pawn)
+        {
+            if (pawn == null) return null;
+            foreach (var p in plays)
+            {
+                if (p.state != PlayState.Running || !p.IsGroup) continue;
+                var h = p.Hand(pawn);
+                if (h != null && !h.left) return p;
+            }
+            return null;
+        }
+
+        /// <summary>On some other plan of an answer's right now (a visit, a lesson, another group): not to be called to this one.</summary>
+        public bool BusyWith(Pawn pawn, PlayOut except)
+        {
+            var v = RunningFor(pawn);
+            if (v != null && v != except) return true;
+            var g = GroupFor(pawn);
+            return g != null && g != except;
+        }
+
+        /// <summary>Work parties, walks, vigils, searches, errands and hunts under way on a map.</summary>
+        public int GroupsRunning(Map map)
+        {
+            int n = 0;
+            foreach (var p in plays)
+                if (p.state == PlayState.Running && p.IsGroup && p.map == map)
+                    n++;
+            return n;
+        }
+
+        // ---------------- How they went, for the dilemmas page ----------------
+
+        /// <summary>The last few that are over: whether they took place, and a word on how.</summary>
+        public List<PlayResult> results = new List<PlayResult>();
+
+        public const int MaxResults = 30;
+
+        public PlayResult ResultOf(int id)
+        {
+            for (int i = results.Count - 1; i >= 0; i--)
+                if (results[i].id == id)
+                    return results[i];
+            return null;
+        }
+
+        internal void Remember(PlayOut p, bool took)
+        {
+            if (p == null || ResultOf(p.id) != null) return;
+            results.Add(new PlayResult { id = p.id, took = took, note = p.note });
+            if (results.Count > MaxResults) results.RemoveRange(0, results.Count - MaxResults);
         }
 
         public PlayOut Add(PlayOut p)
@@ -125,7 +179,14 @@ namespace ColonyCouncil
                 }
                 if (!PlayOutMath.InHours(GenLocalDate.HourOfDay(p.map), p.hourFrom, p.hourTo)) return;
                 if (p.IsGathering) TryStartGathering(p, now);
+                else if (p.IsGroup) PlayGroups.TryStart(this, p, now);
                 else TryStartVisit(p, now);
+                return;
+            }
+            // A work party, a walk, a vigil, a search, an errand or a hunt: its people are on jobs of their own.
+            if (p.IsGroup)
+            {
+                PlayGroups.Step(this, p, now);
                 return;
             }
             // Under way. A gathering ends through its lord; one whose lord has gone without a word is let go.
@@ -301,6 +362,24 @@ namespace ColonyCouncil
                     begin = "CC_Play_Begin_Walk".Translate(v.Named("PAWN")).Resolve();
                     break;
                 }
+                case PlaySpot.Fields:
+                case PlaySpot.Water:
+                case PlaySpot.Gate:
+                case PlaySpot.Outdoors:
+                case PlaySpot.Fire:
+                case PlaySpot.Place:
+                {
+                    // Somewhere on their own for a while: the field's edge, the water, the gate, a fire.
+                    var c = PlaySpots.FocusCell(p, p.to, v, out string where);
+                    if (!c.IsValid)
+                    {
+                        p.waitReason = "CC_Play_Why_Place".Translate();
+                        return;
+                    }
+                    target = c;
+                    begin = "CC_Play_Begin_Spot".Translate(v.Named("PAWN"), (where ?? "").Named("WHERE")).Resolve();
+                    break;
+                }
                 default:
                 {
                     var o = p.other;
@@ -388,10 +467,11 @@ namespace ColonyCouncil
         }
 
         /// <summary>It happened: the moods go to those who took part.</summary>
-        private void Done(PlayOut p, List<Pawn> took, bool gathering)
+        internal void Done(PlayOut p, List<Pawn> took, bool gathering)
         {
             if (p.state == PlayState.Done) return;
             p.state = PlayState.Done;
+            Remember(p, true);
             if (took == null)
             {
                 GiveAll(p);
@@ -419,7 +499,23 @@ namespace ColonyCouncil
         {
             if (p == null || p.state == PlayState.Done) return;
             p.state = PlayState.Done;
+            if (p.note.NullOrEmpty() && !why.NullOrEmpty()) p.note = why;
+            Remember(p, false);
             GiveAll(p);
+            // A work party, a walk, a vigil, a search, an errand or a hunt lets go of anyone still on it; an errand
+            // that never went takes its things from the stores all the same, as the answer always did.
+            if (p.IsGroup)
+            {
+                try
+                {
+                    PlayGroups.FellThrough(this, p, why, quiet);
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("play out fell through " + p.kind, e);
+                }
+                return;
+            }
             // A visit or a lesson that never came about passes quietly; a gathering the colony was waiting for gets a word.
             if (quiet || p.label.NullOrEmpty() || !p.IsGathering) return;
             string text = why.NullOrEmpty()
@@ -448,11 +544,29 @@ namespace ColonyCouncil
             base.ExposeData();
             Scribe_Collections.Look(ref plays, "plays", LookMode.Deep);
             Scribe_Values.Look(ref nextId, "nextId", 1);
+            Scribe_Collections.Look(ref results, "results", LookMode.Deep);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 if (plays == null) plays = new List<PlayOut>();
                 plays.RemoveAll(p => p == null || p.state == PlayState.Done);
+                if (results == null) results = new List<PlayResult>();
+                results.RemoveAll(r => r == null);
             }
+        }
+    }
+
+    /// <summary>How one plan ended (kept a while for the dilemmas page, which looks after the plan itself has gone).</summary>
+    public class PlayResult : IExposable
+    {
+        public int id;
+        public bool took;
+        public string note;
+
+        public void ExposeData()
+        {
+            Scribe_Values.Look(ref id, "id");
+            Scribe_Values.Look(ref took, "took");
+            Scribe_Values.Look(ref note, "note");
         }
     }
 }

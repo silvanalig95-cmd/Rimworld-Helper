@@ -22,7 +22,19 @@ namespace ColonyCouncil
         /// <summary>One colonist goes to someone (or to a grave, the camp, a walk) and spends a while there.</summary>
         Visit,
         /// <summary>A student works at a teacher's side and learns by watching.</summary>
-        Lesson
+        Lesson,
+        /// <summary>A few colonists clean, haul, mend, build, sow or bring in the harvest together, with the game's own jobs on the colony's own work.</summary>
+        WorkParty,
+        /// <summary>A walk together: the group gathers, walks out to a place (a grave, the fields, the gate), stays a while and comes back.</summary>
+        Procession,
+        /// <summary>People keep watch quietly at a spot (a grave, a sickbed, the gate) through the night, each until need sends them off.</summary>
+        Vigil,
+        /// <summary>A few colonists go out and look over places round the colony; whatever the answer promised is found at the end.</summary>
+        Search,
+        /// <summary>Someone carries real things from the stores out to a visitor, the gate or the camp.</summary>
+        Carry,
+        /// <summary>The hunters go out after game the answer marked, with the game's own hunting.</summary>
+        Hunt
     }
 
     /// <summary>Where a gathering is held, or where a visit goes.</summary>
@@ -51,7 +63,11 @@ namespace ColonyCouncil
         /// <summary>At the water: shallow water near the colony (a swim), when the weather allows.</summary>
         Water,
         /// <summary>In the fields: the colony's biggest growing zone.</summary>
-        Fields
+        Fields,
+        /// <summary>At the gate: the edge of the colony's home ground, on the side nearest the map's edge.</summary>
+        Gate,
+        /// <summary>The thing the event named (a grave, a cache, a fallen star), where it lies.</summary>
+        Place
     }
 
     /// <summary>One of the people of a dilemma or an event.</summary>
@@ -60,7 +76,67 @@ namespace ColonyCouncil
         None,
         A,
         B,
-        X
+        X,
+        /// <summary>The dilemma's animal (a pet).</summary>
+        Pet
+    }
+
+    /// <summary>What a work party does: the game's own work of each kind, on what the colony really has to do.</summary>
+    public enum WorkTask
+    {
+        /// <summary>Filth in the home area.</summary>
+        Clean,
+        /// <summary>Things lying about that belong in storage.</summary>
+        Haul,
+        /// <summary>Damaged buildings.</summary>
+        Repair,
+        /// <summary>Blueprints and frames: materials carried to them, and the building finished.</summary>
+        Build,
+        /// <summary>The dead carried to graves, or wherever the colony takes its corpses.</summary>
+        Corpses,
+        /// <summary>Snow (or sand) cleared where the colony clears it.</summary>
+        Snow,
+        /// <summary>Sowing the growing zones.</summary>
+        Sow,
+        /// <summary>Ripe crops brought in, and plants marked for harvest.</summary>
+        Harvest,
+        /// <summary>Plants and trees marked for cutting.</summary>
+        Cut
+    }
+
+    /// <summary>One person on a work party, a walk, a vigil, a search, an errand or a hunt: how long, how far, what they've done.</summary>
+    public class PlayHand : IExposable
+    {
+        public Pawn pawn;
+        /// <summary>Time spent on it (at the far end, for a walk).</summary>
+        public int ticks;
+        /// <summary>Jobs done at a work party; places looked over on a search.</summary>
+        public int done;
+        /// <summary>Where they're headed now, and for which stage of a walk.</summary>
+        public IntVec3 cell = IntVec3.Invalid;
+        public int phase = -1;
+        /// <summary>A searcher's places, in order.</summary>
+        public List<IntVec3> route = new List<IntVec3>();
+        /// <summary>Time spent at the current place on a search.</summary>
+        public int waited;
+        /// <summary>Gone off it (need, drafting, their own business): not sent back to it.</summary>
+        public bool left;
+        /// <summary>Counts as having taken part.</summary>
+        public bool counted;
+
+        public void ExposeData()
+        {
+            Scribe_References.Look(ref pawn, "pawn");
+            Scribe_Values.Look(ref ticks, "ticks");
+            Scribe_Values.Look(ref done, "done");
+            Scribe_Values.Look(ref cell, "cell", IntVec3.Invalid);
+            Scribe_Values.Look(ref phase, "phase", -1);
+            Scribe_Collections.Look(ref route, "route", LookMode.Value);
+            Scribe_Values.Look(ref waited, "waited");
+            Scribe_Values.Look(ref left, "left");
+            Scribe_Values.Look(ref counted, "counted");
+            if (Scribe.mode == LoadSaveMode.PostLoadInit && route == null) route = new List<IntVec3>();
+        }
     }
 
     public enum PlayState
@@ -140,13 +216,63 @@ namespace ColonyCouncil
         /// <summary>Why it's still waiting, for the message if it never happens.</summary>
         public string waitReason;
 
+        // ---- Work parties, walks, vigils, searches, errands and hunts ----
+
+        /// <summary>Those the answer names (A, B): the ones whose good moods wait for it. The rest of the colony's come at once.</summary>
+        public List<Pawn> named = new List<Pawn>();
+        /// <summary>Who went, and how it went for each.</summary>
+        public List<PlayHand> hands = new List<PlayHand>();
+        /// <summary>A work party's work, in the order it's looked for.</summary>
+        public List<WorkTask> tasks = new List<WorkTask>();
+        /// <summary>How many people go (none given: the kind's own number); for a hunt, how many hunters.</summary>
+        public int count;
+        /// <summary>An errand: what is carried ("silver", "rawfood", "medicine", "meals", "wood", or a thing's defName); empty: <see cref="thing"/>.</summary>
+        public string what;
+        /// <summary>An errand's thing (the event's goods); a search's find.</summary>
+        public ThingDef thing;
+        /// <summary>An errand: how many in all; a search: how many of the find.</summary>
+        public int amount;
+        /// <summary>A search: a find worth about this much silver, of the colony's own era.</summary>
+        public float findValue;
+        /// <summary>Where a walk goes, or where a vigil is kept (a vigil at someone's side follows <see cref="other"/>).</summary>
+        public IntVec3 cell = IntVec3.Invalid;
+        /// <summary>Where a walk gathers, and comes back to.</summary>
+        public IntVec3 home = IntVec3.Invalid;
+        /// <summary>A walk's stage (see <see cref="PlayOutMath.NextWalkPhase"/>), and since when.</summary>
+        public int phase;
+        public int phaseStarted;
+        /// <summary>A hunt's game.</summary>
+        public List<Pawn> game = new List<Pawn>();
+        /// <summary>Things handed over, game brought down, jobs done: in all.</summary>
+        public int tally;
+        /// <summary>A short word on how it went ("12 jobs done"), for the dilemmas page.</summary>
+        public string note;
+        /// <summary>Turns a search's fan of places (so two searches don't go the same way).</summary>
+        public int seed;
+
         public bool IsGathering => kind == PlayKind.Gathering || kind == PlayKind.Feast || kind == PlayKind.Bonfire || kind == PlayKind.Toast;
 
-        /// <summary>Takes part in it: invited to the gathering, or the one who goes and the one they go to.</summary>
+        /// <summary>A work party, a walk together, a vigil, a search, an errand or a hunt: people on jobs of their own, never in a lord.</summary>
+        public bool IsGroup => kind == PlayKind.WorkParty || kind == PlayKind.Procession || kind == PlayKind.Vigil || kind == PlayKind.Search
+                               || kind == PlayKind.Carry || kind == PlayKind.Hunt;
+
+        public PlayHand Hand(Pawn p)
+        {
+            if (p == null) return null;
+            foreach (var h in hands)
+                if (h.pawn == p) return h;
+            return null;
+        }
+
+        /// <summary>
+        /// Takes part in it: invited to the gathering; the one who goes and the one they go to; for the groups, those the
+        /// answer names (an errand or a hunt holds nobody's moods: who goes doesn't change what the answer meant).
+        /// </summary>
         public bool TakesPart(Pawn p)
         {
             if (p == null) return false;
             if (IsGathering) return p == organizer || invited.Contains(p);
+            if (IsGroup) return kind != PlayKind.Carry && kind != PlayKind.Hunt && named.Contains(p);
             return p == visitor || p == other;
         }
 
@@ -180,8 +306,31 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref firePaid, "firePaid");
             Scribe_Collections.Look(ref moods, "moods", LookMode.Deep);
             Scribe_Values.Look(ref waitReason, "waitReason");
+            Scribe_Collections.Look(ref named, "named", LookMode.Reference);
+            Scribe_Collections.Look(ref hands, "hands", LookMode.Deep);
+            Scribe_Collections.Look(ref tasks, "tasks", LookMode.Value);
+            Scribe_Values.Look(ref count, "count");
+            Scribe_Values.Look(ref what, "what");
+            Scribe_Defs.Look(ref thing, "thing");
+            Scribe_Values.Look(ref amount, "amount");
+            Scribe_Values.Look(ref findValue, "findValue");
+            Scribe_Values.Look(ref cell, "cell", IntVec3.Invalid);
+            Scribe_Values.Look(ref home, "home", IntVec3.Invalid);
+            Scribe_Values.Look(ref phase, "phase");
+            Scribe_Values.Look(ref phaseStarted, "phaseStarted");
+            Scribe_Collections.Look(ref game, "game", LookMode.Reference);
+            Scribe_Values.Look(ref tally, "tally");
+            Scribe_Values.Look(ref note, "note");
+            Scribe_Values.Look(ref seed, "seed");
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
+                if (named == null) named = new List<Pawn>();
+                named.RemoveAll(p => p == null);
+                if (hands == null) hands = new List<PlayHand>();
+                hands.RemoveAll(h => h == null || h.pawn == null);
+                if (tasks == null) tasks = new List<WorkTask>();
+                if (game == null) game = new List<Pawn>();
+                game.RemoveAll(p => p == null);
                 if (invited == null) invited = new List<Pawn>();
                 invited.RemoveAll(p => p == null);
                 if (spots == null) spots = new List<PlaySpot>();
@@ -234,7 +383,10 @@ namespace ColonyCouncil
             return new Collecting(scopes.Count);
         }
 
-        /// <summary>The answer's effects with those that play out first, so the moods after them can be held.</summary>
+        /// <summary>
+        /// The answer's effects with those that play out first, so the moods after them can be held; before them only
+        /// the choice of who is asked for (a helper picked for their skill, DilemmaEffect_Needs), so a plan can name them.
+        /// </summary>
         public static List<DilemmaEffect> Ordered(List<DilemmaEffect> effects)
         {
             if (effects == null) return new List<DilemmaEffect>();
@@ -246,7 +398,9 @@ namespace ColonyCouncil
                     break;
                 }
             if (!any) return effects;
-            return effects.Where(e => e is DilemmaEffect_PlayOut).Concat(effects.Where(e => !(e is DilemmaEffect_PlayOut))).ToList();
+            return effects.Where(e => e is DilemmaEffect_Needs)
+                .Concat(effects.Where(e => e is DilemmaEffect_PlayOut))
+                .Concat(effects.Where(e => !(e is DilemmaEffect_PlayOut) && !(e is DilemmaEffect_Needs))).ToList();
         }
 
         internal static void Register(PlayOut p)
@@ -336,6 +490,33 @@ namespace ColonyCouncil
             return true;
         }
 
+        /// <summary>
+        /// Doing nothing that matters more than an answer's errand: idle, wandering, at ordinary work or at leisure. Never
+        /// eating, sleeping, tending or rescuing someone, firefighting, or doing what the player ordered.
+        /// </summary>
+        public static bool Interruptible(Pawn p)
+        {
+            var job = p?.CurJob;
+            if (job == null) return true;
+            if (job.playerForced) return false;
+            var d = job.def;
+            if (d == null) return true;
+            if (d == JobDefOf.Ingest || d == JobDefOf.LayDown || d == JobDefOf.LayDownResting || d == JobDefOf.Lovin || d == JobDefOf.TendPatient
+                || d == JobDefOf.FeedPatient || d == JobDefOf.Rescue || d == JobDefOf.Capture || d == JobDefOf.Arrest) return false;
+            if (job.workGiverDef != null) return !job.workGiverDef.emergency;
+            if (d.joyKind != null) return true;
+            return d == JobDefOf.Wait_Wander || d == JobDefOf.GotoWander || d == JobDefOf.Wait;
+        }
+
+        /// <summary>Hungry or tired enough that a long errand (a vigil, a work party) should let them go and see to it.</summary>
+        public static bool NeedsPress(Pawn p)
+        {
+            var food = p?.needs?.food;
+            if (food != null && food.CurCategory >= HungerCategory.UrgentlyHungry) return true;
+            var rest = p?.needs?.rest;
+            return rest != null && rest.CurCategory >= RestCategory.VeryTired;
+        }
+
         /// <summary>In a sickbed, or ought to be.</summary>
         public static bool MedicalRest(Pawn p)
         {
@@ -364,6 +545,7 @@ namespace ColonyCouncil
                 case PlayWho.A: return ctx.a;
                 case PlayWho.B: return ctx.b;
                 case PlayWho.X: return ctx.stranger;
+                case PlayWho.Pet: return ctx.pet;
                 default: return null;
             }
         }

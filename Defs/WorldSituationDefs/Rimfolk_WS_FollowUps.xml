@@ -69,7 +69,7 @@
             <label>Send {COUNT} wood</label>
             <outcome>The cart goes back to {PLACE} stacked to the rails, and {FACTION}'s builders will have their bridge by the end of the month.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>WoodLog</what></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the timber for {PLACE}</label><what>WoodLog</what><to>Gate</to></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>8</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>rebuilt</kind><about>place</about></li>
             </effects>
@@ -81,7 +81,7 @@
             <label>Sell it to them</label>
             <outcome>{FACTION} pay a fair price for the timber, and are glad to have it at all.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>WoodLog</what></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the timber for {PLACE}</label><what>WoodLog</what><to>Gate</to></li>
               <li Class="ColonyCouncil.WorldEffect_Silver"><factor>1.1</factor></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>2</amount></li>
             </effects>
@@ -143,7 +143,7 @@
             <label>Feed them on their way</label>
             <outcome>The colony sets out bread and soup at the gate, and {FACTION}'s families eat standing up, the children first, then walk on toward {PLACE} with full bellies.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the food set out at the gate</label><what>rawfood</what><to>Gate</to></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>5</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>sheltered</kind><about>place</about></li>
             </effects>

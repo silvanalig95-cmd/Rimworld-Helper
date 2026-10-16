@@ -57,7 +57,7 @@
             <label>Send a gift ({COUNT} silver)</label>
             <outcome>The colony's gift goes to {PLACE} with good wishes for the new town.</outcome>
             <effects>
-              <li Class="ColonyCouncil.WorldEffect_Pay" />
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the gift for {PLACE}</label><what>silver</what><tens>true</tens><steward>false</steward><to>Gate</to></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>12</amount></li>
             </effects>
             <flags><li>gift</li></flags>
@@ -172,7 +172,7 @@
             <label>Feed them and send them on</label>
             <outcome>They eat, sleep a night and go on toward {ITEM} in the morning.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>15</count></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>food for the family from {PLACE}</label><what>rawfood</what><count>15</count><to>Gate</to></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>3</amount></li>
             </effects>
             <help>1</help>
@@ -311,7 +311,7 @@
             <label>Set up a rest stop (60 wood)</label>
             <outcome>A shelter goes up by the track, with a fire pit and a trough. The merchants notice.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>WoodLog</what><count>60</count></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the wood for the rest stop</label><what>WoodLog</what><count>60</count><to>Gate</to></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><who>Neighbors</who><amount>4</amount></li>
             </effects>
             <flags><li>reststop</li></flags>
@@ -534,7 +534,7 @@
             <label>Welcome them ({COUNT} food)</label>
             <outcome>The pilgrims camp by the water for three nights. The singing carries all the way to the colony after dark.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the food for the pilgrims</label><what>rawfood</what><to>Gate</to></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>10</amount></li>
               <li Class="ColonyCouncil.WorldEffect_Thought"><thought>Council_WS_PilgrimSongs</thought></li>
             </effects>

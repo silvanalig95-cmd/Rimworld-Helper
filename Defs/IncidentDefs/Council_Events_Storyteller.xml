@@ -63,6 +63,7 @@
             <riskEffects>
               <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.12</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_AdventurerTales</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Words"><label>{X_nameDef}'s stories</label><organizer>None</organizer><spots><li>Stranger</li><li>Fire</li><li>Rec</li></spots><hours>18~23</hours><duration>2~3</duration></li>
             </riskEffects>
             <ways><openness>2</openness></ways>
           </li>

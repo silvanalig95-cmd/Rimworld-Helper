@@ -245,6 +245,7 @@
             <outcome>The star is left in its hollow. People walk out to look at it in the evenings.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_FallenStar</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Procession"><label>the evening walk out to the fallen star</label><count>4</count><to>Place</to><hours>17~21</hours><duration>1~1.5</duration></li>
             </effects>
             <ways><tradition>1</tradition></ways>
           </li>
@@ -349,6 +350,7 @@
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Designate"><designation>Hunt</designation></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_SignHunted</thought><chance>0.5</chance><exceptTrait><li>Psychopath</li><li>Bloodlust</li></exceptTrait></li>
+              <li Class="ColonyCouncil.DilemmaEffect_HuntParty"><label>the hunt for the {BEAST}</label></li>
             </effects>
             <ways><tradition>-3</tradition></ways>
           </li>

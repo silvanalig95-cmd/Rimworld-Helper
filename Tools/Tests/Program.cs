@@ -400,6 +400,7 @@ Console.WriteLine($"Checked the calendar's dates over {CalendarTests.Run(Check)}
 Console.WriteLine($"Checked {LeanTests.Run(Check)} things about the clock's spread and the save caps.");
 Console.WriteLine($"Checked {MemoryTests.Run(Check)} things about what the peoples remember (fading, adding up, making way, tone).");
 Console.WriteLine($"Checked {PlayOutTests.Run(Check)} things about answers playing out on the map.");
+Console.WriteLine($"Checked {PlayOutGroupTests.Run(Check)} things about work parties, walks, vigils, searches, errands and hunts.");
 Console.WriteLine($"Checked {KeptTests.Run(Check)} things about granted wishes taken back (grace, timing, making it right).");
 Console.WriteLine($"Checked {HeartNeedTests.Run(Check)} things about the heart's needs (what follows from them, and a lack that lasts).");
 Console.WriteLine($"Checked {BeliefTests.Run(Check)} things about beliefs and diets (precepts, a shared bed, what may be served).");

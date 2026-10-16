@@ -257,6 +257,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Overruled</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>-3</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_FairsFair</thought><onlyTrait><li>Kind</li></onlyTrait></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Words"><label>the council's word at dinner</label><organizer>None</organizer><hours>17~22</hours></li>
         </effects>
         <riskChance>0.25</riskChance>
         <riskOutcome>The council stood behind {A_nameDef}'s dream, in public. {B_nameDef} took it as a personal insult, and has been telling anyone who'll listen that the council has gone soft.</riskOutcome>
@@ -371,6 +372,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_DlmGoal_SharedDream</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_Bonded</thought><chance>0.4</chance></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>AAndB</target><amount>2</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><who>B</who><whom>A</whom><hours>17~23</hours><duration>2~3</duration></li>
         </effects>
         <riskChance>0.35</riskChance>
         <riskReplaces>true</riskReplaces>
@@ -425,6 +427,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>6</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Inspiration"><target>A</target><chance>0.35</chance></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>FriendsOfA</target><thought>Council_DlmGoal_FriendStayed</thought><chance>0.6</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Gate</to><hours>14~19</hours><duration>0.75~1</duration></li>
         </effects>
       </li>
       <li>

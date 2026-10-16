@@ -56,11 +56,11 @@
             <riskOutcome>{B_nameDef} came back with full baskets, and the cook threw out half of them: a bitter kind that only looks like the good ones. What's left is good eating.</riskOutcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Needs"><target>Colony</target><skill>Plants</skill><minLevel>5</minLevel><asB>true</asB></li>
-              <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>RawFungus</thing><count>40</count></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Search"><label>{B_nameDef}'s mushroom picking</label><target>B</target><organizer>B</organizer><thing>RawFungus</thing><amount>40</amount><duration>2~3</duration></li>
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Plants</skill><xp>500</xp></li>
             </effects>
             <riskEffects>
-              <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>RawFungus</thing><count>18</count></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Search"><label>{B_nameDef}'s mushroom picking</label><target>B</target><organizer>B</organizer><thing>RawFungus</thing><amount>18</amount><duration>2~3</duration></li>
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Plants</skill><xp>700</xp></li>
             </riskEffects>
             <ways><toil>1</toil></ways>
@@ -77,6 +77,7 @@
               <li Class="ColonyCouncil.DilemmaEffect_Needs"><target>Colony</target><skill>Cooking</skill><minLevel>3</minLevel><asB>true</asB></li>
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Cooking</skill><xp>300</xp></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_MushroomSupper</thought><exceptTrait><li>Ascetic</li></exceptTrait></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>the mushroom supper</label><organizer>B</organizer><spots><li>Dining</li><li>Fire</li><li>Rec</li></spots><hours>16~21</hours><duration>1.5~2</duration><lines><li>Straight from the pan. Careful, it's hot.</li><li>Who found these? They're good.</li></lines></li>
             </effects>
             <ways><openness>1</openness></ways>
           </li>
@@ -240,12 +241,16 @@
               <li Class="ColonyCouncil.DilemmaEffect_Needs"><target>Colony</target><skill>Plants</skill><minLevel>4</minLevel><asB>true</asB></li>
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Plants</skill><xp>1000</xp></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Evt_DesertBloom</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Search"><label>{B_nameDef}'s seed gathering</label><target>B</target><organizer>B</organizer><duration>3~4</duration></li>
             </effects>
             <ways><toil>1</toil></ways>
           </li>
           <li>
             <label>Work goes on</label>
             <outcome>Work goes on. A few people walk out at dusk anyway, and come back quiet.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Procession"><label>the walk out to the bloom</label><count>3</count><to>Walk</to><hours>16~20</hours><duration>1~1.5</duration></li>
+            </effects>
           </li>
         </options>
       </li>
@@ -457,6 +462,7 @@
             </outcomes>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>Colony</target><skill>Plants</skill><xp>200</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>the planting</label><count>6</count><tasks><li>Sow</li></tasks><hours>6~14</hours><duration>3~4</duration></li>
             </effects>
             <ways><toil>2</toil><tradition>1</tradition></ways>
           </li>
@@ -529,7 +535,7 @@
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Shooting</skill><xp>700</xp></li>
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Animals</skill><xp>300</xp></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Evt_StalkedTheRut</thought></li>
-              <li Class="ColonyCouncil.DilemmaEffect_Hunt"><kinds>Elk|Deer|Caribou</kinds></li>
+              <li Class="ColonyCouncil.DilemmaEffect_HuntParty"><label>{B_nameDef}'s hunt</label><who>B</who><kinds>Elk|Deer|Caribou</kinds></li>
             </effects>
             <ways><toil>1</toil></ways>
           </li>
@@ -621,6 +627,9 @@
               <li>[colony:Easygoing] The paths get cleared, eventually, between snowball fights.</li>
             </outcomes>
             <ways><toil>1</toil></ways>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>clearing the paths</label><count>4</count><tasks><li>Snow</li><li>Haul</li></tasks><hours>7~18</hours><duration>1.5~2.5</duration></li>
+            </effects>
           </li>
         </options>
       </li>

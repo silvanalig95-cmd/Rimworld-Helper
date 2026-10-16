@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using RimWorld;
+using UnityEngine;
 using Verse;
 using Verse.AI;
 
@@ -148,9 +149,177 @@ namespace ColonyCouncil
                         where = "CC_Play_Where_Stranger".Translate(x.Named("OTHER")).Resolve();
                         return true;
                     }
+                    case PlaySpot.Gate:
+                    {
+                        var c = GateCell(map, organizer);
+                        if (!c.IsValid) break;
+                        spot = c;
+                        where = "CC_Play_Where_Gate".Translate();
+                        return true;
+                    }
+                    case PlaySpot.Place:
+                    {
+                        var t = p.place;
+                        if (t == null || !t.Spawned || t.Map != map) break;
+                        if (t is Building_Grave)
+                        {
+                            var g = FreeCellNear(t.Position, map, organizer);
+                            if (!g.IsValid) break;
+                            spot = g;
+                            where = GraveWords(t);
+                            return true;
+                        }
+                        var c = FreeCellNear(t.Position, map, organizer);
+                        if (!c.IsValid) break;
+                        spot = c;
+                        where = "CC_Play_Where_Place".Translate(t.LabelShort);
+                        return true;
+                    }
+                    case PlaySpot.Walk:
+                    {
+                        var c = WalkCell(map, organizer);
+                        if (!c.IsValid) break;
+                        spot = c;
+                        where = "CC_Play_Where_Walk".Translate();
+                        return true;
+                    }
                 }
             }
             return false;
+        }
+
+        // ---------------- Work parties, walks, vigils, searches ----------------
+
+        /// <summary>
+        /// Where a walk goes, or a vigil is kept: the first of <paramref name="spot"/>'s places that works (a grave, the
+        /// gate, the fields, the water, the camp, a fire, the open air, the event's own place, a long walk out), with the
+        /// words for it. Never lays a fire.
+        /// </summary>
+        public static IntVec3 FocusCell(PlayOut p, PlaySpot spot, Pawn pawn, out string where)
+        {
+            where = null;
+            if (p?.map == null || pawn == null) return IntVec3.Invalid;
+            var saved = p.spots;
+            bool fire = p.buildFire;
+            p.spots = new List<PlaySpot> { spot };
+            p.buildFire = false;
+            try
+            {
+                return TryFind(p, pawn, out var c, out where, out _, out _) ? c : IntVec3.Invalid;
+            }
+            finally
+            {
+                p.spots = saved;
+                p.buildFire = fire;
+            }
+        }
+
+        /// <summary>
+        /// The colony's gate: going out from the middle of the colony toward the nearest edge of the map, the last open
+        /// cell still on the home ground (a dozen steps out where there's none), that can be reached safely. The other
+        /// ways out are tried if that one is shut.
+        /// </summary>
+        public static IntVec3 GateCell(Map map, Pawn pawn)
+        {
+            if (map == null) return IntVec3.Invalid;
+            var center = TemplatePlanner.ColonyCenter(map);
+            var home = map.areaManager?.Home;
+            var ways = new List<(int dx, int dz, int dist)>
+            {
+                (-1, 0, center.x), (1, 0, map.Size.x - 1 - center.x), (0, -1, center.z), (0, 1, map.Size.z - 1 - center.z)
+            };
+            foreach (var w in ways.OrderBy(w => w.dist))
+            {
+                var open = new List<IntVec3>();
+                for (int step = 3; step <= 70; step++)
+                {
+                    var c = new IntVec3(center.x + w.dx * step, 0, center.z + w.dz * step);
+                    if (!c.InBounds(map)) break;
+                    bool ours = home != null && home[c];
+                    if (!ours && step > 12) break;
+                    if (!c.Roofed(map) && c.Standable(map) && c.GetEdifice(map) == null && !(c.GetTerrain(map)?.IsWater ?? false) && !c.Fogged(map)) open.Add(c);
+                }
+                // The farthest that can be reached safely.
+                for (int i = open.Count - 1; i >= 0 && i >= open.Count - 12; i--)
+                    if (Ok(open[i], map, pawn)) return open[i];
+            }
+            return IntVec3.Invalid;
+        }
+
+        /// <summary>
+        /// The <paramref name="i"/>th free place to stand round <paramref name="center"/> (see <see cref="PlayOutMath.RingOffset"/>),
+        /// skipping cells that are blocked or taken; a free cell near it if the ring is full.
+        /// </summary>
+        public static IntVec3 RingCell(Map map, IntVec3 center, int i, Pawn pawn, ICollection<IntVec3> taken)
+        {
+            if (map == null || !center.IsValid) return IntVec3.Invalid;
+            for (int k = 0; k < PlayOutMath.RingCount; k++)
+            {
+                PlayOutMath.RingOffset(i + k, out int dx, out int dz);
+                var c = new IntVec3(center.x + dx, 0, center.z + dz);
+                if (!c.InBounds(map) || c.GetEdifice(map) != null || (c.GetTerrain(map)?.IsWater ?? false)) continue;
+                if (taken != null && taken.Contains(c)) continue;
+                if (Ok(c, map, pawn)) return c;
+            }
+            return FreeCellNear(center, map, pawn);
+        }
+
+        /// <summary>
+        /// A searcher's places, out from the middle of the colony (or from the fields, or the water) along their own arc of
+        /// the compass: open ground they can reach without danger, never in water or the fog.
+        /// </summary>
+        public static List<IntVec3> SearchRoute(PlayOut p, Pawn pawn, int searcher, int searchers)
+        {
+            var route = new List<IntVec3>();
+            var map = p?.map;
+            if (map == null || pawn == null) return route;
+            IntVec3 from;
+            float near, far;
+            switch (p.to)
+            {
+                case PlaySpot.Fields:
+                    from = FieldCell(map, pawn);
+                    near = 3f;
+                    far = 12f;
+                    break;
+                case PlaySpot.Water:
+                    from = WaterCell(map, pawn);
+                    near = 4f;
+                    far = 14f;
+                    break;
+                default:
+                    from = IntVec3.Invalid;
+                    near = 16f;
+                    far = 34f;
+                    break;
+            }
+            if (!from.IsValid)
+            {
+                from = TemplatePlanner.ColonyCenter(map);
+                near = 16f;
+                far = 34f;
+            }
+            int stops = PlayOutMath.SearchStops(searchers);
+            for (int s = 0; s < stops; s++)
+            {
+                float bearing = PlayOutMath.SearchBearing(searcher, searchers, s, stops, p.seed) * Mathf.Deg2Rad;
+                float radius = PlayOutMath.SearchRadius(s, stops, near, far);
+                var aim = new IntVec3(from.x + Mathf.RoundToInt(Mathf.Cos(bearing) * radius), 0, from.z + Mathf.RoundToInt(Mathf.Sin(bearing) * radius));
+                aim = aim.ClampInsideMap(map);
+                if (CellFinder.TryFindRandomCellNear(aim, map, 6, c => c.Standable(map) && !c.Fogged(map) && !(c.GetTerrain(map)?.IsWater ?? false)
+                                                                     && c.GetEdifice(map) == null && Ok(c, map, pawn), out var cell))
+                    route.Add(cell);
+            }
+            return route;
+        }
+
+        /// <summary>Where a walk together gathers and comes back to: a gather spot, else the open air near the middle of the colony.</summary>
+        public static IntVec3 MeetCell(PlayOut p, Pawn pawn)
+        {
+            var c = FocusCell(p, PlaySpot.Gather, pawn, out _);
+            if (c.IsValid) return c;
+            c = OpenCell(p.map, pawn);
+            return c.IsValid ? c : FreeCellNear(TemplatePlanner.ColonyCenter(p.map), p.map, pawn);
         }
 
         /// <summary>Somewhere to stand: on the map, walkable, not a prison cell, not forbidden, and reachable without danger.</summary>

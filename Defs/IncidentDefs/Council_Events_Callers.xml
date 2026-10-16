@@ -231,10 +231,12 @@
               <li Class="ColonyCouncil.WorldEffect_Silver"><factor>1.25</factor></li>
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Social</skill><xp>300</xp></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_TouristWorked</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><who>B</who><to>Stranger</to><hours>7~16</hours><duration>2~3</duration></li>
             </effects>
             <riskEffects>
               <li Class="ColonyCouncil.WorldEffect_Silver"><factor>0.5</factor></li>
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Social</skill><xp>500</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><who>B</who><to>Stranger</to><hours>7~16</hours><duration>1~1.5</duration></li>
             </riskEffects>
             <ways><toil>1</toil></ways>
           </li>
@@ -557,6 +559,9 @@
           <li>
             <label>Thank {X_objective}, and let {X_objective} go on</label>
             <outcome>{X_nameDef} plays a little for the supper table anyway, and is gone in the morning.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>{X_nameDef}'s tunes at supper</label><music>true</music><organizer>None</organizer><spots><li>Dining</li><li>Stranger</li><li>Rec</li></spots><hours>17~22</hours><duration>1~1.5</duration></li>
+            </effects>
           </li>
         </options>
       </li>
@@ -614,6 +619,7 @@
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>8</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>Colony</target><amount>2</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_CouncilWatched</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><hours>8~18</hours><duration>1.5~2</duration></li>
             </effects>
             <ways><openness>2</openness></ways>
           </li>
@@ -707,6 +713,7 @@
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>AAndB</target><skill>Social</skill><xp>300</xp></li>
               <li Class="ColonyCouncil.DilemmaEffect_Tie"><withB>true</withB><kind>Friends</kind><amount>8</amount><chance>0.6</chance></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_ForcedTogether</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>the woodpile</label><target>AAndB</target><tasks><li>Haul</li><li>Build</li></tasks><hours>8~18</hours><duration>2~3</duration></li>
             </effects>
             <ways><toil>1</toil></ways>
           </li>

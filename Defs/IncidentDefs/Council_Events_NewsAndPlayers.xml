@@ -154,6 +154,10 @@
           <li>[lowtech] ...the false king falls!</li>
           <li>[!lowtech] ...and the ship never came back.</li>
         </lines>
+        <!-- The colony gathers to watch the play after dark (PlayOut/): those who come are near enough to see it. -->
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>{X_nameDef}'s play</label><organizer>None</organizer><spots><li>Stranger</li><li>Rec</li><li>Fire</li><li>Outdoors</li></spots><hours>18~23</hours><duration>2~3</duration></li>
+        </effects>
       </li>
     </modExtensions>
   </IncidentDef>

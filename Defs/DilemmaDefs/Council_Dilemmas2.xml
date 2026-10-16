@@ -190,6 +190,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-6</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_GoodLaugh</thought><onlyTrait><li>Abrasive</li><li>Psychopath</li><li>TooSmart</li></onlyTrait></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Harsh</thought><onlyTrait><li>Kind</li></onlyTrait></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Words"><label>the joke at dinner</label><organizer>None</organizer><hours>17~22</hours></li>
         </effects>
         <riskChance>0.25</riskChance>
         <riskOutcome>The council made a joke of it at dinner. {A_nameDef} left halfway through, walked out past the fields, and hasn't come back yet.</riskOutcome>
@@ -414,6 +415,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>5</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_FairsFair</thought><exceptTrait><li>Kind</li></exceptTrait></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Harsh</thought><onlyTrait><li>Kind</li></onlyTrait></li>
+          <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>{B_nameDef}'s extra shift</label><target>B</target><organizer>B</organizer><tasks><li>Haul</li><li>Clean</li></tasks><duration>2~3</duration></li>
         </effects>
         <riskChance>0.15</riskChance>
         <riskOutcome>{B_nameDef} took the punishment, then took a swing at {A_nameDef} for reporting it.</riskOutcome>
@@ -450,6 +452,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_BossedAround</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Grudge</thought><about>A</about></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_BossedAround</thought><onlyTrait><li>Abrasive</li><li>Jealous</li></onlyTrait></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Vigil"><label>the first night watch</label><target>AAndB</target><to>Gate</to><hours>21~3</hours><duration>4~6</duration></li>
         </effects>
       </li>
       <li>
@@ -499,6 +502,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Grudge</thought><about>B</about></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Vindicated</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>5</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>the sweeping up</label><target>B</target><organizer>B</organizer><tasks><li>Clean</li><li>Haul</li></tasks><duration>0.5~1</duration></li>
         </effects>
         <riskChance>0.2</riskChance>
         <riskOutcome>The council had the sculpture smashed. {A_nameDef} couldn't bear it and walked off, dazed, before the sweeping was done.</riskOutcome>
@@ -689,6 +693,7 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>AAndB</target><hediff>Council_Motivated</hediff><severity>0.8</severity></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_MadeUp</thought><chance>0.4</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>the hauling race</label><target>AAndB</target><tasks><li>Haul</li><li>Build</li></tasks><hours>11~18</hours><duration>2.5~3.5</duration><lines><li>That one's mine. Count it.</li><li>You dropped that one. It doesn't count.</li></lines></li>
         </effects>
         <riskChance>0.35</riskChance>
         <riskOutcome>{A_nameDef} and {B_nameDef} raced each other hauling stone. The loser accused the winner of cheating, and it came to blows.</riskOutcome>
@@ -842,6 +847,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_ForcedTogether</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>B</target><hediff>Council_Motivated</hediff><severity>0.5</severity></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>the first shift together</label><target>AAndB</target><tasks><li>Haul</li><li>Clean</li><li>Repair</li></tasks><duration>2~3</duration></li>
         </effects>
         <riskChance>0.4</riskChance>
         <riskReplaces>true</riskReplaces>

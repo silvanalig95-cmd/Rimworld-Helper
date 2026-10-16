@@ -215,4 +215,705 @@
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
+  <!--
+    Work parties, walks together, vigils, searches, errands and hunts (PlayOut/PlayGroups.cs). For each: the call to it
+    (said by whoever leads it as they set off), lines while it goes on, a journal entry afterwards, and one from whoever
+    was waiting for it when it never came about. Tags: the work ([clean], [haul], [repair], [build], [corpses], [snow],
+    [sow], [harvest], [cut]), the place ([grave], [gate], [fields], [water], [walkout], [beside]: at someone's side),
+    [other] when there's someone it's for ({OTHER}), and the usual season, hour, weather and era. {NAME} is what the
+    answer called it ("the hauling race"), lower case.
+  -->
+
+  <!-- ===================== A work party ===================== -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_PlayWorkInvite</defName>
+    <lines>
+      <plain>
+        <li>Right, everyone. Many hands.</li>
+        <li>Grab whatever's nearest and come on.</li>
+        <li>[clean] Buckets and brushes. Let's get this place clean.</li>
+        <li>[clean] Every corner, mind. Not just the middle of the floor.</li>
+        <li>[haul] Everything lying about goes where it belongs. Come on.</li>
+        <li>[repair] Bring your hammers. We're mending what got broken.</li>
+        <li>[build] Materials to the frames, then we build.</li>
+        <li>[corpses] Gloves on. Let's see to the dead.</li>
+        <li>[snow] Shovels, everyone. The paths won't clear themselves.</li>
+        <li>[sow] Seed baskets and hoes. Out to the fields.</li>
+        <li>[harvest] It's ripe. Let's bring it in before it spoils.</li>
+        <li>[cut] The marked ones come down today. Axes.</li>
+        <li>[lowtech,harvest] Sickles and baskets. Everyone who can walk.</li>
+      </plain>
+      <warm>
+        <li>If we all pitch in, we'll be done by supper.</li>
+        <li>Come on, it goes quicker together.</li>
+      </warm>
+      <blunt>
+        <li>Work. Now. All of you.</li>
+        <li>No sitting about. There's work.</li>
+      </blunt>
+      <cheerful>
+        <li>Last one finished washes the pots!</li>
+        <li>Come on, it'll be fun. Mostly.</li>
+      </cheerful>
+      <gloomy>
+        <li>It won't do itself, more's the pity.</li>
+        <li>[corpses] Nobody wants this job. So we all do it.</li>
+      </gloomy>
+      <cold>
+        <li>Split it up and we'll be done faster.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_PlayWork</defName>
+    <lines>
+      <plain>
+        <li>Pass me that.</li>
+        <li>Mind your feet.</li>
+        <li>Where do you want this?</li>
+        <li>[clean] There's more under here.</li>
+        <li>[clean] Who tracked mud all the way in here?</li>
+        <li>[haul] Heavier than it looks.</li>
+        <li>[haul] Where does this one go?</li>
+        <li>[repair] Hold it steady while I nail it.</li>
+        <li>[build] Hand me the next one.</li>
+        <li>[corpses] Lift on three. One, two...</li>
+        <li>[snow] My back's going to hate me tomorrow.</li>
+        <li>[sow] Two seeds to a hole. Two.</li>
+        <li>[harvest] Look at the size of this one.</li>
+        <li>[winter] Can't feel my fingers.</li>
+        <li>[hot] Somebody bring water.</li>
+        <li>[child] I'm helping! Look!</li>
+      </plain>
+      <warm>
+        <li>Nearly there. Good work, all of you.</li>
+        <li>Take a breather if you need one.</li>
+      </warm>
+      <blunt>
+        <li>Faster.</li>
+        <li>Less talk.</li>
+      </blunt>
+      <cheerful>
+        <li>Look how much we've done already!</li>
+        <li>[sow|harvest] I'll race you to the end of the row.</li>
+      </cheerful>
+      <gloomy>
+        <li>We'll only have to do it all again next week.</li>
+      </gloomy>
+      <cold>
+        <li>That corner's still not done.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_PlayWork</defName>
+    <lines>
+      <plain>
+        <li>Spent the afternoon on {NAME} with the others. My arms are sore and the place looks better for it.</li>
+        <li>[clean] We scrubbed half the colony today. You could eat off the floors, though nobody should.</li>
+        <li>[haul] Carried things from one end of the colony to the other all day. Everything has a place now, more or less.</li>
+        <li>[repair] We mended what was broken. The walls look like walls again.</li>
+        <li>[build] We worked on the building together today. It's coming along, and it feels like ours.</li>
+        <li>[corpses] We saw to the dead today. Nobody talked much. It needed doing.</li>
+        <li>[snow] Dug out the paths with the others. By the time we finished, it had started snowing again.</li>
+        <li>[sow] The seed is in the ground. Now we wait, and hope.</li>
+        <li>[harvest] We brought the harvest in together. My back aches and the stores are full.</li>
+      </plain>
+      <warm>
+        <li>Worked side by side with the others today. It's good to be part of something.</li>
+        <li>We got more done together in an afternoon than I'd have managed alone in a week.</li>
+      </warm>
+      <blunt>
+        <li>Work party. Work done. Bed.</li>
+        <li>Hard day. Good day.</li>
+      </blunt>
+      <cheerful>
+        <li>We made a game of it and still finished early. Best afternoon in a while.</li>
+      </cheerful>
+      <gloomy>
+        <li>Did the work. It'll need doing again before long. It always does.</li>
+      </gloomy>
+      <cold>
+        <li>The work was done. Some of the others were slower than they ought to have been.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_PlayWorkMissed</defName>
+    <lines>
+      <plain>
+        <li>We never got round to {NAME}. Something always came up.</li>
+        <li>We were all meant to pitch in on {NAME}. It never came to anything.</li>
+      </plain>
+      <warm>
+        <li>I'd been looking forward to working alongside everyone. Maybe next time.</li>
+      </warm>
+      <blunt>
+        <li>No work party after all. I did my own share anyway.</li>
+      </blunt>
+      <cheerful>
+        <li>The work party fell through. I'm not going to pretend I minded.</li>
+      </cheerful>
+      <gloomy>
+        <li>Nobody turned up for {NAME}. That says something.</li>
+      </gloomy>
+      <cold>
+        <li>We never got to {NAME}. Poorly organized.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== A walk together ===================== -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_PlayWalkInvite</defName>
+    <lines>
+      <plain>
+        <li>Everyone here? Then let's go.</li>
+        <li>Slowly. We'll stay together.</li>
+        <li>[grave] We'll walk out to the grave together.</li>
+        <li>[gate] Out to the gate, all of us.</li>
+        <li>[fields] Out to the fields, then. Together.</li>
+        <li>[water] Down to the water. Come on.</li>
+      </plain>
+      <warm>
+        <li>Walk with me. It's better together.</li>
+      </warm>
+      <blunt>
+        <li>Line up. We're going.</li>
+      </blunt>
+      <cheerful>
+        <li>Come on, a walk will do us all good!</li>
+      </cheerful>
+      <gloomy>
+        <li>[grave] Let's go and see them.</li>
+        <li>Let's get it done.</li>
+      </gloomy>
+      <cold>
+        <li>Keep pace. Don't straggle.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_PlayWalk</defName>
+    <lines>
+      <plain>
+        <li>Not far now.</li>
+        <li>Mind the ditch.</li>
+        <li>[grave] Here we are.</li>
+        <li>[grave] Somebody say something.</li>
+        <li>[fields] Look at it all. That's ours.</li>
+        <li>[gate] The road goes a long way from here.</li>
+        <li>[water] Listen to the water.</li>
+        <li>[walkout] You can see the whole colony from up here.</li>
+        <li>[winter] Watch the ice.</li>
+        <li>[rain] We'll be soaked through.</li>
+      </plain>
+      <warm>
+        <li>I'm glad we came out together.</li>
+        <li>Take my arm if you like.</li>
+      </warm>
+      <blunt>
+        <li>Keep walking.</li>
+      </blunt>
+      <cheerful>
+        <li>Lovely day for it!</li>
+      </cheerful>
+      <gloomy>
+        <li>Quiet out here. Too quiet.</li>
+      </gloomy>
+      <cold>
+        <li>We're behind time.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_PlayWalk</defName>
+    <lines>
+      <plain>
+        <li>We all walked out together today, and back again. It felt right to go together.</li>
+        <li>[grave] We walked out to the grave together. Stood there a while. Walked home without saying much.</li>
+        <li>[fields] We walked out to the fields and stood looking at them for a while. It all looks different from out there.</li>
+        <li>[gate] We walked to the gate together. The road looked very long from there.</li>
+        <li>[water] Walked down to the water with the others and back again. My boots are still wet.</li>
+      </plain>
+      <warm>
+        <li>Walking with the others today, I felt like we were one people.</li>
+      </warm>
+      <blunt>
+        <li>Walked out. Walked back. My feet hurt.</li>
+      </blunt>
+      <cheerful>
+        <li>A good walk with everyone today. Somebody started singing on the way back.</li>
+      </cheerful>
+      <gloomy>
+        <li>We walked out and back. All the way I kept thinking how few of us there are.</li>
+      </gloomy>
+      <cold>
+        <li>The walk took longer than it needed to.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_PlayWalkMissed</defName>
+    <lines>
+      <plain>
+        <li>We never did walk out together for {NAME}. The day got away from us.</li>
+      </plain>
+      <warm>
+        <li>I wish we'd walked out together. It would have meant something.</li>
+      </warm>
+      <blunt>
+        <li>The walk was called off. Saved my feet.</li>
+      </blunt>
+      <cheerful>
+        <li>We never went on the walk. We'll find another day.</li>
+      </cheerful>
+      <gloomy>
+        <li>Nobody came for {NAME}. Maybe it didn't matter to them.</li>
+      </gloomy>
+      <cold>
+        <li>The walk came to nothing.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== A vigil ===================== -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_PlayVigilInvite</defName>
+    <lines>
+      <plain>
+        <li>We'll keep watch tonight. Bring a blanket.</li>
+        <li>[grave] We'll sit with them tonight.</li>
+        <li>[gate] We'll watch the gate till morning.</li>
+        <li>[beside] Someone should sit up with {OTHER_nameDef}. I will.</li>
+        <li>[fields] We'll watch the fields tonight.</li>
+      </plain>
+      <warm>
+        <li>Come and sit. Nobody should keep watch alone.</li>
+      </warm>
+      <blunt>
+        <li>Watch starts now.</li>
+      </blunt>
+      <cheerful>
+        <li>I'll bring the tea. It'll be a long night.</li>
+      </cheerful>
+      <gloomy>
+        <li>It's going to be a long, cold night.</li>
+      </gloomy>
+      <cold>
+        <li>Take your places. Stay awake.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_PlayVigil</defName>
+    <lines>
+      <plain>
+        <li>Quiet now.</li>
+        <li>Still here.</li>
+        <li>[night] Look at the stars.</li>
+        <li>[grave] Rest easy.</li>
+        <li>[gate] Anything out there?</li>
+        <li>[gate] Nothing on the road yet.</li>
+        <li>[beside] Breathe easy, {OTHER_nameDef}.</li>
+        <li>[fields] Nothing stirring.</li>
+        <li>[winter] My breath's freezing.</li>
+        <li>[rain] Just the rain.</li>
+      </plain>
+      <warm>
+        <li>I'm here. I'm not going anywhere.</li>
+        <li>Lean on me if you're cold.</li>
+      </warm>
+      <blunt>
+        <li>Eyes open.</li>
+      </blunt>
+      <cheerful>
+        <li>Not long till dawn. We'll see it in.</li>
+      </cheerful>
+      <gloomy>
+        <li>The nights are longer than they used to be.</li>
+      </gloomy>
+      <cold>
+        <li>Stay alert.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_PlayVigil</defName>
+    <lines>
+      <plain>
+        <li>Kept watch most of the night. I can barely keep my eyes open, but I'm glad I did.</li>
+        <li>[grave] Sat up by the grave most of the night. It's strange how quiet it is out there.</li>
+        <li>[gate] Watched the gate through the night. Every shadow on the road looked like someone coming.</li>
+        <li>[beside] Sat up through the night at {OTHER_nameDef}'s side. {OTHER_nameDef} slept, mostly. I didn't.</li>
+        <li>[fields] Watched the fields through the dark. Nothing came, which is what we hoped.</li>
+      </plain>
+      <warm>
+        <li>We kept watch together. Nobody had to be alone with it.</li>
+      </warm>
+      <blunt>
+        <li>Up all night. Worth it.</li>
+      </blunt>
+      <cheerful>
+        <li>We saw the dawn come up from the watch. Beautiful, tired as I was.</li>
+      </cheerful>
+      <gloomy>
+        <li>A long night of waiting. I don't know what I expected.</li>
+      </gloomy>
+      <cold>
+        <li>The watch was kept. I'll sleep now.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_PlayVigilMissed</defName>
+    <lines>
+      <plain>
+        <li>We meant to keep watch, but it never came together.</li>
+        <li>[beside] I meant to sit up with {OTHER_nameDef}. It didn't happen. I hope {OTHER_pronoun} slept anyway.</li>
+      </plain>
+      <warm>
+        <li>Somebody should have kept watch. I'm sorry it wasn't me.</li>
+      </warm>
+      <blunt>
+        <li>No vigil. Slept instead.</li>
+      </blunt>
+      <cheerful>
+        <li>The vigil fell through and I got a full night's sleep. I feel guilty about how good that was.</li>
+      </cheerful>
+      <gloomy>
+        <li>Nobody kept watch in the end. Nobody ever does.</li>
+      </gloomy>
+      <cold>
+        <li>The watch wasn't kept. It should have been.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== A search ===================== -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_PlaySearchInvite</defName>
+    <lines>
+      <plain>
+        <li>I'll take this way. You take the other.</li>
+        <li>Spread out. Shout if you find anything.</li>
+        <li>[fields] I'll go through the fields.</li>
+        <li>[water] I'll go along the water.</li>
+      </plain>
+      <warm>
+        <li>Be careful out there. Come back safe.</li>
+      </warm>
+      <blunt>
+        <li>Let's go. Daylight's wasting.</li>
+      </blunt>
+      <cheerful>
+        <li>Whoever finds it first gets the best seat at supper!</li>
+      </cheerful>
+      <gloomy>
+        <li>We probably won't find anything, but let's look.</li>
+      </gloomy>
+      <cold>
+        <li>Search properly. Don't skip anything.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_PlaySearch</defName>
+    <lines>
+      <plain>
+        <li>Nothing here.</li>
+        <li>Was that something?</li>
+        <li>I'll check over there.</li>
+        <li>[fields] Not in these rows.</li>
+        <li>[water] Just reeds.</li>
+        <li>[winter] All buried under the snow.</li>
+        <li>[night] Can't see my own feet.</li>
+      </plain>
+      <warm>
+        <li>Don't give up yet.</li>
+      </warm>
+      <blunt>
+        <li>Nothing. Moving on.</li>
+      </blunt>
+      <cheerful>
+        <li>I've got a good feeling about this spot.</li>
+      </cheerful>
+      <gloomy>
+        <li>Waste of time, this.</li>
+      </gloomy>
+      <cold>
+        <li>Next place.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_PlaySearch</defName>
+    <lines>
+      <plain>
+        <li>Out searching most of the day. Walked further than I have in weeks.</li>
+        <li>[fields] Searched up and down the fields. I know every furrow by heart now.</li>
+        <li>[water] Walked the water's edge for hours. Wet to the knees.</li>
+      </plain>
+      <warm>
+        <li>We searched each our own way and came home together. That's what matters.</li>
+      </warm>
+      <blunt>
+        <li>Searched. Done. Tired.</li>
+      </blunt>
+      <cheerful>
+        <li>Spent the day searching, and saw a lot of country I hadn't seen before.</li>
+      </cheerful>
+      <gloomy>
+        <li>Searched until my feet gave out. The land is big, and we're very small.</li>
+      </gloomy>
+      <cold>
+        <li>The search was done in good order.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_PlaySearchMissed</defName>
+    <lines>
+      <plain>
+        <li>We meant to go out searching, but we never did.</li>
+      </plain>
+      <warm>
+        <li>I'd have gone out looking, if anyone had asked me.</li>
+      </warm>
+      <blunt>
+        <li>No search. Fine.</li>
+      </blunt>
+      <cheerful>
+        <li>The search never happened. Maybe it'll turn up on its own.</li>
+      </cheerful>
+      <gloomy>
+        <li>Nobody went looking. Some things stay lost.</li>
+      </gloomy>
+      <cold>
+        <li>The search was never carried out.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== An errand: something carried out ===================== -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_PlayCarryInvite</defName>
+    <lines>
+      <plain>
+        <li>I'll take it out.</li>
+        <li>Mind the door, my hands are full.</li>
+        <li>[other] This is for {OTHER_nameDef}.</li>
+        <li>[gate] Out to the gate with this.</li>
+      </plain>
+      <warm>
+        <li>It isn't much, but it's given gladly.</li>
+      </warm>
+      <blunt>
+        <li>Out of the way. Heavy.</li>
+      </blunt>
+      <cheerful>
+        <li>Delivery coming through!</li>
+      </cheerful>
+      <gloomy>
+        <li>There go our stores.</li>
+      </gloomy>
+      <cold>
+        <li>I'll see to it.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Said as it's handed over. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_PlayCarry</defName>
+    <lines>
+      <plain>
+        <li>Here. From all of us.</li>
+        <li>Take it, it's yours.</li>
+        <li>[other] For you, {OTHER_nameDef}.</li>
+        <li>[gate] Mind it on the road.</li>
+      </plain>
+      <warm>
+        <li>With our good wishes.</li>
+        <li>Safe journey.</li>
+      </warm>
+      <blunt>
+        <li>There. Done.</li>
+      </blunt>
+      <cheerful>
+        <li>Enjoy it!</li>
+      </cheerful>
+      <gloomy>
+        <li>I hope it does some good.</li>
+      </gloomy>
+      <cold>
+        <li>Count it, if you like.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_PlayCarry</defName>
+    <lines>
+      <plain>
+        <li>Carried the colony's gift out myself today. It was heavier than it looked.</li>
+        <li>[gate] Carried it out to the gate and handed it over. The rider didn't stay to talk.</li>
+        <li>[other] Handed it to {OTHER_nameDef} myself, and got a look of surprise, then thanks.</li>
+      </plain>
+      <warm>
+        <li>It felt good to hand it over. Somewhere it'll make a difference.</li>
+      </warm>
+      <blunt>
+        <li>Carried it out. Handed it over. Back to work.</li>
+      </blunt>
+      <cheerful>
+        <li>I got to be the one to hand it over. I like being the bearer of good things.</li>
+      </cheerful>
+      <gloomy>
+        <li>Watched our stores go out the gate. I hope we don't miss them come winter.</li>
+      </gloomy>
+      <cold>
+        <li>Delivered, as the council decided.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_PlayCarryMissed</defName>
+    <lines>
+      <plain>
+        <li>It went out of the stores without me in the end. I'd meant to take it myself.</li>
+      </plain>
+      <warm>
+        <li>I'd have liked to hand it over in person. It went all the same.</li>
+      </warm>
+      <blunt>
+        <li>Didn't carry it out. It went anyway.</li>
+      </blunt>
+      <cheerful>
+        <li>Someone else saw to it. Saved me the walk.</li>
+      </cheerful>
+      <gloomy>
+        <li>It left the stores while I was busy. I never even saw it go.</li>
+      </gloomy>
+      <cold>
+        <li>It was sent without me.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== A hunt ===================== -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_PlayHuntInvite</defName>
+    <lines>
+      <plain>
+        <li>I'll go after it. Keep the fire in.</li>
+        <li>Downwind, and quiet.</li>
+        <li>[lowtech] Fetch my bow.</li>
+      </plain>
+      <warm>
+        <li>I'll bring something back for the pot.</li>
+      </warm>
+      <blunt>
+        <li>Hunting. Back later.</li>
+      </blunt>
+      <cheerful>
+        <li>Fresh meat tonight, if I'm lucky!</li>
+      </cheerful>
+      <gloomy>
+        <li>It'll probably hear me coming.</li>
+      </gloomy>
+      <cold>
+        <li>One clean shot. No more.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_PlayHunt</defName>
+    <lines>
+      <plain>
+        <li>There. By the trees.</li>
+        <li>Easy now...</li>
+        <li>Fresh tracks.</li>
+      </plain>
+      <warm>
+        <li>Quick and clean, that's all I ask.</li>
+      </warm>
+      <blunt>
+        <li>Got you.</li>
+      </blunt>
+      <cheerful>
+        <li>Supper's that way!</li>
+      </cheerful>
+      <gloomy>
+        <li>Sorry, old thing.</li>
+      </gloomy>
+      <cold>
+        <li>Steady.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_PlayHunt</defName>
+    <lines>
+      <plain>
+        <li>Went out on the hunt today. We brought it down, and there's meat for the pot.</li>
+        <li>[lowtech] Tracked it half the afternoon. A clean kill, and I thanked it, the way I was taught.</li>
+      </plain>
+      <warm>
+        <li>Brought something home for everyone tonight. That's a good feeling.</li>
+      </warm>
+      <blunt>
+        <li>Hunted. Killed. Butchered.</li>
+      </blunt>
+      <cheerful>
+        <li>Good hunt today! Everyone will eat well.</li>
+      </cheerful>
+      <gloomy>
+        <li>We needed the meat. I keep telling myself that.</li>
+      </gloomy>
+      <cold>
+        <li>A successful hunt. Quick, too.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_PlayHuntMissed</defName>
+    <lines>
+      <plain>
+        <li>The game got away. We'll make do.</li>
+      </plain>
+      <warm>
+        <li>The animal got away. Part of me is glad.</li>
+      </warm>
+      <blunt>
+        <li>No kill. Wasted day.</li>
+      </blunt>
+      <cheerful>
+        <li>Didn't catch anything, but it was a nice walk.</li>
+      </cheerful>
+      <gloomy>
+        <li>Came home empty-handed. Story of my life.</li>
+      </gloomy>
+      <cold>
+        <li>The hunt failed.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
 </Defs>

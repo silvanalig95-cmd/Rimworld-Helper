@@ -6,8 +6,8 @@
   <!-- The setting -->
   <CC_SetSec_PlayOut>Answers on the map</CC_SetSec_PlayOut>
   <CC_Settings_AnswersPlayOut>Answers play out on the map</CC_Settings_AnswersPlayOut>
-  <CC_Settings_AnswersPlayOut_Tip>When the council's answer to a dilemma or an event describes something people do, they do it. A victory feast is eaten at the dining table from the colony's own cooked meals, a bonfire is lit and gathered round, a toast is raised, someone goes to sit with a friend, by a grave or at the camp's fire, a student works at a teacher's side, a worn-out doctor is sent to bed. The moods the answer gives come to those who took part, once it's over.\n\nNobody is pulled away from danger, sleep or a sickbed, and nothing starts while enemies are about. If it can't happen within a few hours, the moods come anyway, as they always did.\n\nOff: answers give their moods and messages only.</CC_Settings_AnswersPlayOut_Tip>
-  <CC_SetNote_AnswersPlayOut>Feasts are eaten, fires lit and visits paid on the map; the moods follow for those who took part.</CC_SetNote_AnswersPlayOut>
+  <CC_Settings_AnswersPlayOut_Tip>When the council's answer to a dilemma or an event describes something people do, they do it. A victory feast is eaten at the dining table from the colony's own cooked meals, a bonfire is lit and gathered round, a toast is raised, someone goes to sit with a friend, by a grave or at the camp's fire, a student works at a teacher's side, a worn-out doctor is sent to bed. A work party cleans, hauls, mends or sows together, mourners walk out to a grave and back, a watch is kept at the gate through the night, searchers go out over the land, medicine sent to a neighbor is carried out to the rider at the gate, the hunters go after the game. The moods the answer gives come to those who took part, once it's over.\n\nNobody is pulled away from danger, sleep, a meal or a sickbed, and nothing starts while enemies are about; anyone drafted, hungry or worn out is let go. If it can't happen within a few hours, the moods come anyway, as they always did, and what was to be carried out leaves the stores all the same.\n\nOff: answers give their moods and messages only.</CC_Settings_AnswersPlayOut_Tip>
+  <CC_SetNote_AnswersPlayOut>Feasts, visits, work parties, vigils and errands happen on the map; the moods follow for those there.</CC_SetNote_AnswersPlayOut>
 
   <!-- What it's called when the answer doesn't name it -->
   <CC_Play_Label_Gathering>the gathering</CC_Play_Label_Gathering>
@@ -79,5 +79,109 @@
   <CC_Play_Rest>The rest of today's work hours are free time for {0}.</CC_Play_Rest>
   <CC_Play_Sleep>Sent to bed for the rest of the day: {0}.</CC_Play_Sleep>
   <CC_Play_Hunt>Marked for the hunters: {0}.</CC_Play_Hunt>
+
+  <!-- A visit somewhere on their own: the field's edge, the gate, the water -->
+  <CC_Play_Begin_Spot>{PAWN_nameDef} goes to spend a while {WHERE}.</CC_Play_Begin_Spot>
+  <CC_Play_Report_Fields>out at the edge of the fields.</CC_Play_Report_Fields>
+  <CC_Play_Report_Gate>standing at the gate.</CC_Play_Report_Gate>
+  <CC_Play_Report_Water>down by the water.</CC_Play_Report_Water>
+  <CC_Play_Report_Alone>spending a while alone.</CC_Play_Report_Alone>
+  <CC_Play_Where_Gate>at the gate</CC_Play_Where_Gate>
+  <CC_Play_Where_Place>by the {0}</CC_Play_Where_Place>
+  <CC_Play_Where_Walk>out past the buildings</CC_Play_Where_Walk>
+  <CC_Play_Where_Beside>at {OTHER_nameDef}'s side</CC_Play_Where_Beside>
+  <CC_Play_To_Gate>the gate</CC_Play_To_Gate>
+  <CC_Play_To_Camp>the camp's fire</CC_Play_To_Camp>
+
+  <!-- Work parties, walks together, vigils, searches, errands and hunts: what they're called when the answer doesn't say -->
+  <CC_Play_Label_WorkParty>the work party</CC_Play_Label_WorkParty>
+  <CC_Play_Label_Procession>the walk</CC_Play_Label_Procession>
+  <CC_Play_Label_Vigil>the vigil</CC_Play_Label_Vigil>
+  <CC_Play_Label_Search>the search</CC_Play_Label_Search>
+  <CC_Play_Label_Carry>the errand</CC_Play_Label_Carry>
+  <CC_Play_Label_Hunt>the hunt</CC_Play_Label_Hunt>
+  <CC_Play_NamesAndMore>{0} and {1} others</CC_Play_NamesAndMore>
+  <CC_Play_Meals>cooked meals</CC_Play_Meals>
+
+  <!-- A work party's work, in words -->
+  <CC_Play_Task_Clean>cleaning</CC_Play_Task_Clean>
+  <CC_Play_Task_Haul>hauling</CC_Play_Task_Haul>
+  <CC_Play_Task_Repair>repairs</CC_Play_Task_Repair>
+  <CC_Play_Task_Build>building</CC_Play_Task_Build>
+  <CC_Play_Task_Corpses>carrying the dead</CC_Play_Task_Corpses>
+  <CC_Play_Task_Snow>clearing the snow</CC_Play_Task_Snow>
+  <CC_Play_Task_Sow>sowing</CC_Play_Task_Sow>
+  <CC_Play_Task_Harvest>bringing in the harvest</CC_Play_Task_Harvest>
+  <CC_Play_Task_Cut>cutting</CC_Play_Task_Cut>
+
+  <!-- When they begin -->
+  <CC_Play_Begin_WorkParty>{0}: {1} set to work together ({2}).</CC_Play_Begin_WorkParty>
+  <CC_Play_Begin_Procession>{0}: {1} gather and walk out together, to stand a while {2}.</CC_Play_Begin_Procession>
+  <CC_Play_Begin_Vigil>{0}: {1} keep watch {2}.</CC_Play_Begin_Vigil>
+  <CC_Play_Begin_Search>{0}: {1} set out to search.</CC_Play_Begin_Search>
+  <CC_Play_Begin_Carry>{0}: {1} takes the {2} from the stores, out to {3}.</CC_Play_Begin_Carry>
+  <CC_Play_Begin_HuntParty>{0}: {1} go out after {2}.</CC_Play_Begin_HuntParty>
+
+  <!-- When they're over -->
+  <CC_Play_End_WorkParty>{0} is over: {1} jobs done.</CC_Play_End_WorkParty>
+  <CC_Play_End_Procession>{0} is over: {1} walked out and back.</CC_Play_End_Procession>
+  <CC_Play_End_Vigil>{0} is over: {1} kept watch.</CC_Play_End_Vigil>
+  <CC_Play_End_Search>{0} is over: {1} looked everywhere they meant to.</CC_Play_End_Search>
+  <CC_Play_End_SearchFound>{0} is over: {1} found {2}.</CC_Play_End_SearchFound>
+  <CC_Play_End_Carry>{0} handed over the {1}.</CC_Play_End_Carry>
+  <CC_Play_End_CarryTo>{0} handed the {1} to {2}.</CC_Play_End_CarryTo>
+  <CC_Play_End_HuntParty>{0} is over: {1} brought down.</CC_Play_End_HuntParty>
+
+  <!-- A word on how it went, for the dilemmas page -->
+  <CC_Play_Note_Work>{0} jobs done</CC_Play_Note_Work>
+  <CC_Play_Note_Walk>{0} went</CC_Play_Note_Walk>
+  <CC_Play_Note_Vigil>{0} kept watch</CC_Play_Note_Vigil>
+  <CC_Play_Note_Searched>{0} searched</CC_Play_Note_Searched>
+  <CC_Play_Note_Found>found {0}</CC_Play_Note_Found>
+  <CC_Play_Note_Carry>{0} {1} handed over</CC_Play_Note_Carry>
+  <CC_Play_Note_Hunt>{0} brought down</CC_Play_Note_Hunt>
+
+  <!-- When they never happen -->
+  <CC_Play_FellThrough>{0} never came about ({1}).</CC_Play_FellThrough>
+  <CC_Play_FellThroughPlain>{0} never came about.</CC_Play_FellThroughPlain>
+  <CC_Play_FellThrough_Carry>The {1} went from the stores all the same.</CC_Play_FellThrough_Carry>
+  <CC_Play_Why_NoWork>there was nothing that needed doing</CC_Play_Why_NoWork>
+  <CC_Play_Why_NoOneAble>nobody was able for it</CC_Play_Why_NoOneAble>
+  <CC_Play_Why_NoHunter>nobody could hunt it</CC_Play_Why_NoHunter>
+  <CC_Play_Why_GameGone>the game was gone</CC_Play_Why_GameGone>
+  <CC_Play_Why_GotAway>the game got away</CC_Play_Why_GotAway>
+  <CC_Play_Why_NothingLeft>there was nothing left to carry</CC_Play_Why_NothingLeft>
+
+  <!-- What they're doing, in the inspect pane -->
+  <CC_Play_Report_WalkGather>waiting for the others, to walk out together.</CC_Play_Report_WalkGather>
+  <CC_Play_Report_WalkOut>walking out with the others.</CC_Play_Report_WalkOut>
+  <CC_Play_Report_WalkThere>standing with the others at the end of the walk.</CC_Play_Report_WalkThere>
+  <CC_Play_Report_WalkBack>walking back with the others.</CC_Play_Report_WalkBack>
+  <CC_Play_Report_Vigil>keeping watch.</CC_Play_Report_Vigil>
+  <CC_Play_Report_VigilBeside>keeping watch at {OTHER_nameDef}'s side.</CC_Play_Report_VigilBeside>
+  <CC_Play_Report_Search>searching.</CC_Play_Report_Search>
+  <CC_Play_Report_Carry>carrying the {0} out.</CC_Play_Report_Carry>
+  <CC_Play_Report_CarryTo>carrying the {0} out to {OTHER_nameDef}.</CC_Play_Report_CarryTo>
+
+  <!-- This week: gatherings and plans -->
+  <CC_Week_Play_WorkParty>A work party</CC_Week_Play_WorkParty>
+  <CC_Week_Play_Procession>A walk together</CC_Week_Play_Procession>
+  <CC_Week_Play_Vigil>A vigil</CC_Week_Play_Vigil>
+  <CC_Week_Play_Search>A search</CC_Week_Play_Search>
+  <CC_Week_Play_Carry>An errand</CC_Week_Play_Carry>
+  <CC_Week_Play_Hunt>A hunt</CC_Week_Play_Hunt>
+  <CC_Week_PlayWork>{0} people: {1}.</CC_Week_PlayWork>
+  <CC_Week_PlayWorkDone>{0} jobs done so far.</CC_Week_PlayWorkDone>
+  <CC_Week_PlayWalk>Up to {0} people walk out together and back.</CC_Week_PlayWalk>
+  <CC_Week_PlayWalk_0>{0} people gathering to set off.</CC_Week_PlayWalk_0>
+  <CC_Week_PlayWalk_1>{0} people walking out.</CC_Week_PlayWalk_1>
+  <CC_Week_PlayWalk_2>{0} people at the end of the walk.</CC_Week_PlayWalk_2>
+  <CC_Week_PlayWalk_3>{0} people walking back.</CC_Week_PlayWalk_3>
+  <CC_Week_PlayVigil>Up to {0} people keep watch.</CC_Week_PlayVigil>
+  <CC_Week_PlayVigilBeside>A watch kept at {0}'s side.</CC_Week_PlayVigilBeside>
+  <CC_Week_PlaySearch>Up to {0} people search.</CC_Week_PlaySearch>
+  <CC_Week_PlaySearchFind>Looking for {0}.</CC_Week_PlaySearchFind>
+  <CC_Week_PlayCarry>{0} {1}, carried out from the stores.</CC_Week_PlayCarry>
+  <CC_Week_PlayHunt>After {0}.</CC_Week_PlayHunt>
 
 </LanguageData>

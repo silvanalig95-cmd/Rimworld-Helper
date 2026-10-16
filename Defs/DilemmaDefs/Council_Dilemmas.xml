@@ -169,6 +169,7 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_ForcedTogether</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_MadeUp</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>the shared shift</label><target>AAndB</target><tasks><li>Haul</li><li>Clean</li><li>Repair</li></tasks><hours>7~17</hours><duration>2~3</duration></li>
         </effects>
         <riskChance>0.4</riskChance>
         <riskReplaces>true</riskReplaces>

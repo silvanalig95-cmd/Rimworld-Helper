@@ -14,6 +14,11 @@ namespace ColonyCouncil
     {
         public static GatheringDef Council_PlayOutGathering;
         public static JobDef Council_PlayOutVisit;
+        public static JobDef Council_PlayOutWalk;
+        public static JobDef Council_PlayOutVigil;
+        public static JobDef Council_PlayOutSearch;
+        public static JobDef Council_PlayOutCarry;
+        public static JobDef Council_PlayOutWorkNext;
 
         static PlayOutDefOf() => DefOfHelper.EnsureInitializedInCtor(typeof(PlayOutDefOf));
     }
@@ -227,7 +232,8 @@ namespace ColonyCouncil
             string line = null;
             if (!lines.NullOrEmpty() && Rand.Chance(0.5f)) line = lines.RandomElement();
             if (line.NullOrEmpty() && !pool.NullOrEmpty()) line = Flavor.FromPool(pool, speaker);
-            if (!line.NullOrEmpty()) CouncilGameComponent.Speak(speaker, line, SpeechColor);
+            // together: said at the gathering itself, by someone standing in its area with the others.
+            if (!line.NullOrEmpty()) Speech.Say(speaker, line, null, SpeechColor);
         }
 
         public override string GetReport(Pawn pawn) => words ? "CC_Play_Report_Words".Translate() : ("CC_Play_Report_" + kind).Translate();

@@ -99,7 +99,7 @@
             <outcome>The silver goes out with the rider. For now, {NAME} will ride elsewhere.</outcome>
             <hideIf><li>broken</li></hideIf>
             <effects>
-              <li Class="ColonyCouncil.WorldEffect_Pay" />
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the silver for {NAME}</label><what>silver</what><tens>true</tens><steward>false</steward><to>Gate</to></li>
             </effects>
             <flags><li>truce</li></flags>
             <deed>paid {X_nameDef} to stay away</deed>
@@ -125,7 +125,7 @@
             <outcome>The silver goes to {ENEMY} with the colony's good wishes. Their riders will be better fed and better mounted for the hunt.</outcome>
             <showIf><li>hunters</li></showIf>
             <effects>
-              <li Class="ColonyCouncil.WorldEffect_Pay"><factor>0.35</factor></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the silver for {ENEMY}</label><what>silver</what><factor>0.35</factor><tens>true</tens><steward>false</steward><to>Gate</to></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><who>Enemy</who><amount>8</amount></li>
             </effects>
             <flags><li>gifts</li></flags>
