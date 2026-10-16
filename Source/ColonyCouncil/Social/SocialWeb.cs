@@ -120,7 +120,7 @@ namespace ColonyCouncil
         public void Notify_ColonistFell(Pawn p, Map map)
         {
             if (p == null || map == null || !map.IsPlayerHome) return;
-            if (!battleActive && !GenHostility.AnyHostileActiveThreatToPlayer(map, false, false)) return;
+            if (!battleActive && !MapFacts.ThreatOn(map)) return;
             StartCount();
             if (battleFallen.Count < 20) battleFallen.Add(p.LabelShort);
         }
@@ -462,7 +462,7 @@ namespace ColonyCouncil
             if (!battleActive) battleFaction = null;
             foreach (var map in Find.Maps.Where(m => m.IsPlayerHome))
             {
-                if (!GenHostility.AnyHostileActiveThreatToPlayer(map, false, false)) continue;
+                if (!MapFacts.ThreatOn(map)) continue;
                 fighting = true;
                 battleMap = map;
                 // Who it's against: the faction with the most fighters here now (none for animals and empty mech clusters).

@@ -1236,7 +1236,7 @@ namespace ColonyCouncil
             Find.FactionManager.AllFactionsListForReading.Where(Fits).RandomElementByWeightWithFallback(f => Arrivals.TechWeight(f, Avail.EffectiveTech));
 
         protected override bool CanHappen(Map map, HappeningExtension ext) =>
-            Pick() != null && StorytellerEvents.Adults(map).Any() && !GenHostility.AnyHostileActiveThreatToPlayer(map, false, false)
+            Pick() != null && StorytellerEvents.Adults(map).Any() && !MapFacts.ThreatOn(map)
             && Now - map.storyState.LastThreatBigTick > GenDate.TicksPerDay * 3;
 
         protected override bool Cast(HappeningContext ctx, HappeningExtension ext)

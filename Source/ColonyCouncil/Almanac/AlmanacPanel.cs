@@ -563,6 +563,8 @@ namespace ColonyCouncil
             /// <summary>Each row's height (as a row of the table, or as a card), and for cards each line's.</summary>
             public float[] heights;
             public float[][] lines;
+            /// <summary>For cards without labels beside: each value as "Column: value", built with the layout, not every frame.</summary>
+            public string[][] inline;
         }
 
         private static readonly Dictionary<List<string>, TableLayout> tables = new Dictionary<List<string>, TableLayout>();
@@ -653,10 +655,12 @@ namespace ColonyCouncil
             float labelCol = t.label + AlmanacLayoutMath.LabelGap;
             var names = t.cells[0];
             t.lines = new float[t.cells.Length][];
+            t.inline = new string[t.cells.Length][];
             for (int i = 1; i < t.cells.Length; i++)
             {
                 var row = t.cells[i];
                 var lines = t.lines[i] = new float[t.cols];
+                var inline = t.inline[i] = new string[row.Length];
                 float h = CardPadY * 2f;
                 lines[0] = row.Length > 0 && !row[0].NullOrEmpty() ? Text.CalcHeight(row[0], inside) : 0f;
                 h += lines[0] > 0f ? lines[0] + 2f : 0f;
@@ -664,9 +668,10 @@ namespace ColonyCouncil
                 {
                     if (row[c].NullOrEmpty()) continue;
                     string name = c < names.Length ? names[c] : "";
+                    if (!t.beside) inline[c] = Inline(name, row[c]);
                     lines[c] = t.beside
                         ? Mathf.Max(name.NullOrEmpty() ? 0f : Text.CalcHeight(name, labelCol - AlmanacLayoutMath.LabelGap), Text.CalcHeight(row[c], inside - labelCol))
-                        : Text.CalcHeight(Inline(name, row[c]), inside);
+                        : Text.CalcHeight(inline[c], inside);
                     h += lines[c] + 1f;
                 }
                 t.heights[i] = h;
@@ -739,7 +744,7 @@ namespace ColonyCouncil
                     else
                     {
                         GUI.color = CardValue;
-                        Widgets.Label(new Rect(pad, cy, inside, lines[c]), Inline(name, row[c]));
+                        Widgets.Label(new Rect(pad, cy, inside, lines[c]), t.inline?[i]?[c] ?? Inline(name, row[c]));
                     }
                     GUI.color = Color.white;
                     cy += lines[c] + 1f;

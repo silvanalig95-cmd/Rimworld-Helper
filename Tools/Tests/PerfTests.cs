@@ -20,7 +20,53 @@ public static class PerfTests
         }
 
         Lines(root, C);
+        Kept(C);
         return n;
+    }
+
+    // ---------------- Answers kept for a while ----------------
+
+    private static void Kept(Action<bool, string> C)
+    {
+        // Stretches of time: the same answer within one, worked out again in the next, never across a step back.
+        C(Fresh.Bucket(0, 250) == 0 && Fresh.Bucket(249, 250) == 0 && Fresh.Bucket(250, 250) == 1, "250-tick stretches start at 0, 250, 500");
+        C(Fresh.Bucket(-1, 250) == -1 && Fresh.Bucket(-250, 250) == -1 && Fresh.Bucket(-251, 250) == -2, "stretches round down below zero");
+        C(Fresh.Bucket(7, 1) == 7 && Fresh.Bucket(7, 0) == 7, "a stretch of one tick is the tick");
+        C(!Fresh.Holds(Fresh.Never, 0, 2500), "never worked out never holds");
+        C(Fresh.Holds(2500, 4999, 2500) && !Fresh.Holds(2500, 5000, 2500), "an hour's answer holds to the end of the hour, not into the next");
+        C(Fresh.Holds(71, 249, 250) && !Fresh.Holds(71, 250, 250), "a 250-tick answer holds to the end of its stretch");
+        C(!Fresh.Holds(3000, 2600, 250) && Fresh.Holds(3000, 3100, 250), "the clock going back (an older save) means working it out again");
+        C(Fresh.Holds(100, 4, 200, 4, 250) && !Fresh.Holds(100, 4, 200, 5, 250), "a changed source means working it out again");
+
+        // The heart's map context and the map facts agree on the threat flag at the heart's own turns: every slice (71 + 250k)
+        // is in a stretch of its own, so the flag is worked out afresh at each, as the heart's rolling 250 ticks had it.
+        int lastAt = Fresh.Never, worked = 0;
+        for (int tick = 0; tick < Sched.HourTicks * 2; tick++)
+        {
+            if (Sched.SliceTurn(tick, Sched.HourTicks, Sched.Slices, Sched.RareHeart) < 0) continue;
+            if (!Fresh.Holds(lastAt, tick, 250))
+            {
+                worked++;
+                lastAt = tick;
+            }
+        }
+        C(worked == 20, $"the threat flag is worked out at every one of the heart's 20 turns in two hours ({worked})");
+
+        // Kept answers per colonist: within the stretch and the same version, the kept one; otherwise worked out again.
+        var kept = new KeptAnswers<int>(250);
+        C(!kept.TryGet(5, 100, 0, out _), "nothing kept at first");
+        kept.Set(5, 100, 0, 42);
+        C(kept.TryGet(5, 249, 0, out int v) && v == 42, "kept within its stretch");
+        C(!kept.TryGet(5, 250, 0, out _), "worked out again in the next stretch");
+        C(!kept.TryGet(5, 120, 1, out _), "worked out again when its source changed");
+        C(!kept.TryGet(6, 120, 0, out _), "another colonist's answer is their own");
+        C(kept.TryGet(5, 99, 0, out _) && !kept.TryGet(5, -1, 0, out _), "a step back within the stretch keeps it, out of the stretch doesn't");
+        kept.Set(5, 300, 1, 7);
+        C(kept.TryGet(5, 310, 1, out v) && v == 7, "set again, the new answer is kept");
+        for (int i = 0; i < KeptAnswers<int>.MaxKeys + 5; i++) kept.Set(1000 + i, 300, 1, i);
+        C(kept.Count <= KeptAnswers<int>.MaxKeys, $"never more than {KeptAnswers<int>.MaxKeys} kept ({kept.Count})");
+        kept.Clear();
+        C(kept.Count == 0 && !kept.TryGet(1001, 300, 1, out _), "cleared");
     }
 
     // ---------------- Lines taken apart once ----------------

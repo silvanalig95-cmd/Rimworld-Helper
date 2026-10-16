@@ -85,7 +85,7 @@ namespace ColonyCouncil
         /// <summary>Fights only when the player wants them and the storyteller sends them, and not on top of another.</summary>
         public static bool BattlesAllowed(Map map) =>
             FightsPossible
-            && !GenHostility.AnyHostileActiveThreatToPlayer(map, false, false)
+            && !MapFacts.ThreatOn(map)
             && Now - map.storyState.LastThreatBigTick > GenDate.TicksPerDay * 2
             && !(CouncilGameComponent.Instance?.happenings.raids.Any(r => r.map == map) ?? false);
 
@@ -138,7 +138,7 @@ namespace ColonyCouncil
 
         private static bool ScenarioBattlesAllowed(Map map) =>
             ScenarioFightsPossible
-            && !GenHostility.AnyHostileActiveThreatToPlayer(map, false, false)
+            && !MapFacts.ThreatOn(map)
             && Now - map.storyState.LastThreatBigTick > GenDate.TicksPerDay * 2;
 
         /// <summary>

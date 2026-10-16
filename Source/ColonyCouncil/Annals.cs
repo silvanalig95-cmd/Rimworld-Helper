@@ -71,7 +71,7 @@ namespace ColonyCouncil
         private static List<Pawn> Colonists() =>
             PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_FreeColonists_NoLodgers.Where(p => !p.IsQuestLodger()).ToList();
 
-        private static Map Home => Find.Maps.Where(m => m.IsPlayerHome).OrderByDescending(m => m.mapPawns.FreeColonistsSpawnedCount).FirstOrDefault();
+        private static Map Home => MapFacts.BusiestHome;
 
         public void Hourly(CouncilGameComponent comp)
         {

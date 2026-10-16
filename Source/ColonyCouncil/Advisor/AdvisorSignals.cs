@@ -111,7 +111,7 @@ namespace ColonyCouncil
 
         public override IEnumerable<AdvisorSignal> Evaluate(Map map)
         {
-            float days = DaysOfFood(map);
+            float days = MapFacts.Of(map).FoodDays;
             float until = -1f, length = 0f;
             bool inWinter = false;
             if (SeasonUtil.HasSeasons(map)) SeasonUtil.Winter(map, out until, out length, out inWinter);
@@ -263,7 +263,7 @@ namespace ColonyCouncil
             if (!anyDoctor)
                 yield return Signal(0.6f, "CC_Adv_NoDoctor_Title".Translate(), "CC_Adv_NoDoctor_Detail".Translate());
 
-            int meds = Avail.MedicineCount(map);
+            int meds = MapFacts.Of(map).Medicine;
             if (meds < colonists.Count * 2)
             {
                 var healroot = DefDatabase<ThingDef>.GetNamedSilentFail("Plant_Healroot");

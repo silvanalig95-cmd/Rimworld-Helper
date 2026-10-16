@@ -148,7 +148,7 @@ namespace ColonyCouncil
             if (!FactionMemory.On || !StorytellerEvents.Adults(map).Any()) return false;
             var r = R;
             if (r.want == "relief" && HardTime(map) == null) return false;
-            if (r.want == "oldEnemy" && (GenHostility.AnyHostileActiveThreatToPlayer(map, false, false) || Now - map.storyState.LastThreatBigTick < GenDate.TicksPerDay * 3)) return false;
+            if (r.want == "oldEnemy" && (MapFacts.ThreatOn(map) || Now - map.storyState.LastThreatBigTick < GenDate.TicksPerDay * 3)) return false;
             return Choices(map).Count > 0;
         }
 

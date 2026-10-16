@@ -29,7 +29,8 @@ namespace ColonyCouncil
         public static void Draw(Rect rect, CouncilGameComponent comp)
         {
             var tracker = comp.decrees;
-            var pawns = PawnsFinder.AllMaps_FreeColonistsSpawned.Where(p => !p.IsQuestLodger() && p.needs?.mood != null).ToList();
+            // Who is at home, worked out once a second rather than every frame (the cards are, too).
+            var pawns = UiCache.Get(comp, 72, () => PawnsFinder.AllMaps_FreeColonistsSpawned.Where(p => !p.IsQuestLodger() && p.needs?.mood != null).ToList());
             string state = null;
             if (pawns.Count > 0)
                 state = UiCache.Get(comp, 70, () => "CC_Decrees_State".Translate(pawns.Average(p => p.needs.mood.CurLevelPercentage).ToStringPercent(),
@@ -50,7 +51,7 @@ namespace ColonyCouncil
             cy += UiKit.Paragraph(0f, cy, w, "CC_Decrees_Sub".Translate(DecreeTracker.MaxActive), UiKit.Faint) + 10f;
             if (ColonyCouncilMod.Settings.offices) cy += DrawOffices(comp, w, cy) + 14f;
             cy += UiKit.SectionTitle(0f, cy, w, "CC_Decrees_Header".Translate(), Icons.Decree);
-            foreach (var def in DefDatabase<DecreeDef>.AllDefsListForReading.OrderBy(d => d.order))
+            foreach (var def in Ordered)
             {
                 var l = LayoutOf(def, comp, pawns, w);
                 if (cy + l.height >= scroll.y && cy <= scroll.y + outRect.height) DrawDecree(def, l, comp, pawns, w, cy);
@@ -60,6 +61,11 @@ namespace ColonyCouncil
             Widgets.EndScrollView();
         }
 
+        private static List<DecreeDef> ordered;
+
+        /// <summary>The decrees in their order on the page (the defs never change while playing, so sorted once).</summary>
+        private static List<DecreeDef> Ordered => ordered ??= DefDatabase<DecreeDef>.AllDefsListForReading.OrderBy(d => d.order).ToList();
+
         // ---------------- Decree cards ----------------
 
         /// <summary>A card's text, the people for each reaction, and its measurements; worked out about once a second.</summary>
@@ -68,6 +74,11 @@ namespace ColonyCouncil
             public float width = -1f, at, titleH, descH, effectsH, noteH, warnH, facesH, height;
             public string effects, note, warning;
             public List<Pawn>[] faces = new List<Pawn>[4];
+            /// <summary>Each reaction's pill and its tooltip ("Loves it: ...").</summary>
+            public string[] reactionLabels = new string[4], reactionTips = new string[4];
+            /// <summary>Why it can't be enacted (null if it can), whether it can be forced, and the buttons' texts.</summary>
+            public string why, enactLabel, forceTip, chance;
+            public bool forcible, active;
         }
 
         private static readonly Dictionary<DecreeDef, Layout> layouts = new Dictionary<DecreeDef, Layout>();
@@ -77,10 +88,11 @@ namespace ColonyCouncil
         private static Layout LayoutOf(DecreeDef def, CouncilGameComponent comp, List<Pawn> pawns, float width)
         {
             float now = Time.realtimeSinceStartup;
-            if (layouts.TryGetValue(def, out var l) && Mathf.Abs(l.width - width) < 0.5f && now - l.at < 1f) return l;
             var tracker = comp.decrees;
             var active = tracker.Get(def);
-            l = new Layout { width = width, at = now };
+            // Enacted or repealed since: the card is laid out again at once.
+            if (layouts.TryGetValue(def, out var l) && Mathf.Abs(l.width - width) < 0.5f && now - l.at < 1f && l.active == (active != null)) return l;
+            l = new Layout { width = width, at = now, active = active != null };
             l.effects = string.Join("\n", def.effects.Select(e => "- " + e));
             // Feelings and strain (Heart/): a hard decree wears on those who resent it.
             if (def.strainPerDay > 0f && Heart.On) l.effects += "\n- " + "CC_Heart_DecreeStrain".Translate(def.strainPerDay.ToString("0.#")).Resolve();
@@ -95,6 +107,22 @@ namespace ColonyCouncil
             {
                 var r = Reactions[i];
                 l.faces[i] = pawns.Where(p => def.ReactionOf(p) == r).ToList();
+                l.reactionLabels[i] = ("CC_UI_Reaction_" + r).Translate();
+                l.reactionTips[i] = l.faces[i].Count > 0 ? ReactionLine(r, l.faces[i]) : null;
+            }
+            if (active == null)
+            {
+                l.why = tracker.CannotEnact(def);
+                if (l.why == null) l.enactLabel = "CC_Decree_Enact".Translate(TextUtil.DaysString(Mathf.RoundToInt(def.durationDays * GenDate.TicksPerDay)));
+                else
+                {
+                    l.forcible = tracker.CannotEnact(def, true) == null;
+                    if (l.forcible)
+                    {
+                        l.chance = tracker.UnrestChance(def, true).ToStringPercent();
+                        l.forceTip = "CC_Decree_ForceTip".Translate(l.chance);
+                    }
+                }
             }
             float textW = TextWidth(width);
             Text.Font = GameFont.Small;
@@ -168,7 +196,7 @@ namespace ColonyCouncil
             }
             Faces(l, textX, cy, textW, true);
 
-            DrawButtons(def, comp, pawns, width, y);
+            DrawButtons(def, l, comp, pawns, width, y);
         }
 
         /// <summary>Who loves, likes, dislikes and hates it: a tag, then their portraits; wrapping. Returns the height used.</summary>
@@ -183,7 +211,7 @@ namespace ColonyCouncil
                 if (people == null || people.Count == 0) continue;
                 any = true;
                 var color = UiKit.ReactionColor(Reactions[i]);
-                string label = ("CC_UI_Reaction_" + Reactions[i]).Translate();
+                string label = l.reactionLabels[i] ?? ("CC_UI_Reaction_" + Reactions[i]).Translate();
                 float pw = UiKit.PillWidth(label);
                 if (cx > x && cx + pw + FaceSize > x + width)
                 {
@@ -192,7 +220,7 @@ namespace ColonyCouncil
                 }
                 if (draw)
                 {
-                    string tip = ReactionLine(Reactions[i], people);
+                    string tip = l.reactionTips[i] ?? ReactionLine(Reactions[i], people);
                     UiKit.Pill(cx, cy + (FaceSize - UiKit.PillHeight) / 2f, label, color, null, tip);
                 }
                 cx += pw + 4f;
@@ -217,7 +245,7 @@ namespace ColonyCouncil
             return key.Translate(string.Join(", ", people.Select(p => p.LabelShort)));
         }
 
-        private static void DrawButtons(DecreeDef def, CouncilGameComponent comp, List<Pawn> pawns, float width, float y)
+        private static void DrawButtons(DecreeDef def, Layout l, CouncilGameComponent comp, List<Pawn> pawns, float width, float y)
         {
             var tracker = comp.decrees;
             var active = tracker.Get(def);
@@ -227,15 +255,16 @@ namespace ColonyCouncil
                 if (Widgets.ButtonText(btn, "CC_Decree_Repeal".Translate())) tracker.Repeal(def, comp, true);
                 return;
             }
-            string why = tracker.CannotEnact(def);
+            // What stands in the way is worked out with the card, once a second (the card's layout); a click asks again.
+            string why = l.why;
             if (why == null)
             {
-                if (Widgets.ButtonText(btn, UiKit.Fit("CC_Decree_Enact".Translate(TextUtil.DaysString(Mathf.RoundToInt(def.durationDays * GenDate.TicksPerDay))), btn.width - 10f)))
+                if (Widgets.ButtonText(btn, UiKit.Fit(l.enactLabel ?? "CC_Decree_Enact".Translate(TextUtil.DaysString(Mathf.RoundToInt(def.durationDays * GenDate.TicksPerDay))), btn.width - 10f)))
                     tracker.Enact(def, comp);
                 return;
             }
             // Only the cooldown stands in the way: it can be forced through, at a price.
-            bool forcible = tracker.CannotEnact(def, true) == null;
+            bool forcible = l.forcible;
             var whyRect = forcible ? new Rect(btn.x, btn.y - 4f, btn.width, 24f) : btn;
             Text.Anchor = TextAnchor.MiddleCenter;
             GUI.color = UiKit.Faint;
@@ -247,8 +276,8 @@ namespace ColonyCouncil
             TooltipHandler.TipRegion(whyRect, why);
             if (!forcible) return;
             var forceBtn = new Rect(btn.x, btn.y + 22f, btn.width, 28f);
-            string chance = tracker.UnrestChance(def, true).ToStringPercent();
-            TooltipHandler.TipRegion(forceBtn, "CC_Decree_ForceTip".Translate(chance));
+            string chance = l.chance ?? tracker.UnrestChance(def, true).ToStringPercent();
+            TooltipHandler.TipRegion(forceBtn, l.forceTip ?? "CC_Decree_ForceTip".Translate(chance));
             if (Widgets.ButtonText(forceBtn, "CC_Decree_Force".Translate()))
             {
                 var against = pawns.Where(p => def.ReactionOf(p) <= DecreeReaction.Dislike).Select(p => p.LabelShort).ToList();

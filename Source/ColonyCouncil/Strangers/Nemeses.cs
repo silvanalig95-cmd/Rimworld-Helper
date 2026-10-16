@@ -302,7 +302,7 @@ namespace ColonyCouncil
                         return;
                     }
                     // The fight is over and it's still out there, calm again: it gets a name.
-                    if (!x.InMentalState && !comp.social.battleActive && !GenHostility.AnyHostileActiveThreatToPlayer(x.Map, false, false)) Escaped(comp, n, now);
+                    if (!x.InMentalState && !comp.social.battleActive && !MapFacts.ThreatOn(x.Map)) Escaped(comp, n, now);
                 }
                 // Off every map (fled, carried off, or the caravan's battlefield was left behind): they got away.
                 else if (!x.Spawned && now - n.tick < GenDate.TicksPerDay * 2) Escaped(comp, n, now);

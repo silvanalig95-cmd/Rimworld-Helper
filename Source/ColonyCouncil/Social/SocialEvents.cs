@@ -107,14 +107,14 @@ namespace ColonyCouncil
             if (map == null) return;
             int hour = GenLocalDate.HourOfDay(map);
             if (hour < 7 || hour > 21 || !Rand.Chance(0.3f)) return;
-            if (comp.social.battleActive || GenHostility.AnyHostileActiveThreatToPlayer(map, false, false)) return;
+            if (comp.social.battleActive || MapFacts.ThreatOn(map)) return;
             var pawns = Available(map).Where(p => p.Awake()).ToList();
             if (pawns.Count < 2) return;
             if (TryOne(comp, map, pawns, true)) pendingToday--;
         }
 
         private static Map HomeMap() =>
-            Find.Maps.Where(m => m.IsPlayerHome).OrderByDescending(m => m.mapPawns.FreeColonistsSpawnedCount).FirstOrDefault();
+            MapFacts.BusiestHome;
 
         private static List<Pawn> Available(Map map) =>
             map.mapPawns.FreeColonistsSpawned.Where(p => !p.IsQuestLodger() && !p.DevelopmentalStage.Baby() && !p.Downed && !p.InMentalState && !p.Drafted).ToList();

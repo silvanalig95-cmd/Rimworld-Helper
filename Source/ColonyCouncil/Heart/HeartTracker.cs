@@ -242,14 +242,8 @@ namespace ColonyCouncil
             if (now - c.threatTick >= 250 || now < c.threatTick)
             {
                 c.threatTick = now;
-                try
-                {
-                    c.threat = GenHostility.AnyHostileActiveThreatToPlayer(map, false, false);
-                }
-                catch
-                {
-                    c.threat = false;
-                }
+                // The map's shared facts (Lean/MapFacts): worked out once per 250 ticks for every pass that asks.
+                c.threat = MapFacts.Of(map).Threat;
             }
             if (now - c.tick >= GenDate.TicksPerHour || now < c.tick) c.Refresh(now);
             return c;
@@ -261,10 +255,11 @@ namespace ColonyCouncil
             home = map.IsPlayerHome;
             int last = map.storyState?.LastThreatBigTick ?? -1;
             ticksSinceBigThreat = last > 0 ? now - last : 999999;
-            colonists = map.mapPawns.FreeColonistsSpawnedCount;
+            var facts = MapFacts.Of(map);
+            colonists = facts.Colonists;
             season = GenLocalDate.Season(map);
-            foodDays = SafeFloat(() => AdvisorWorker_Food.DaysOfFood(map), 999f);
-            medicine = SafeInt(() => Avail.MedicineCount(map));
+            foodDays = facts.FoodDays;
+            medicine = facts.Medicine;
             filth = home ? SafeInt(() => WishWorker_Tidy.Filth(map)) : 0;
             defense = home ? SafeFloat(() => DefenseUtil.Assess(map).ratio, 1f) : 1f;
             comet = CouncilDefOf.Council_Comet != null && (map.gameConditionManager?.ConditionIsActive(CouncilDefOf.Council_Comet) ?? false);

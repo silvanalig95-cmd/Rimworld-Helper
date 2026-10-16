@@ -35,7 +35,7 @@ namespace ColonyCouncil
             foreach (var map in Find.Maps.Where(m => m.IsPlayerHome))
             {
                 // Never while there's fighting to be done.
-                if (GenHostility.AnyHostileActiveThreatToPlayer(map, false, false)) continue;
+                if (MapFacts.ThreatOn(map)) continue;
                 foreach (var p in map.mapPawns.FreeColonistsSpawned.ToList())
                 {
                     try
@@ -299,10 +299,20 @@ namespace ColonyCouncil
                 .FirstOrDefault(g => g is Building_Grave grave && grave.Corpse?.InnerPawn != null && mourned.Contains(grave.Corpse.InnerPawn));
         }
 
-        private static bool AnyFreeBed(Pawn p) =>
-            p.Map.listerBuildings.allBuildingsColonist.OfType<Building_Bed>()
-                .Any(b => !b.Medical && b.def.building.bed_humanlike && !b.ForPrisoners && b.OwnersForReading.Count < b.SleepingSlotsCount && !b.IsBurning()
-                          && !GuestBeds.IsGuestBed(b));
+        /// <summary>A free bed for a colonist (the map's beds as of this hour, from Lean/MapFacts; who owns them as of now).</summary>
+        private static bool AnyFreeBed(Pawn p)
+        {
+            var beds = MapFacts.Of(p.Map)?.Beds;
+            if (beds == null) return false;
+            for (int i = 0; i < beds.Count; i++)
+            {
+                var b = beds[i];
+                if (b.Spawned && b.Faction == Faction.OfPlayer && !b.Medical && b.def.building.bed_humanlike && !b.ForPrisoners
+                    && b.OwnersForReading.Count < b.SleepingSlotsCount && !b.IsBurning() && !GuestBeds.IsGuestBed(b))
+                    return true;
+            }
+            return false;
+        }
 
         /// <summary>A sheltered room to sleep in: indoors, in the home area, not a kitchen, hospital, prison or the like.</summary>
         private static Room Shelter(Pawn p)

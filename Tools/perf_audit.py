@@ -622,7 +622,7 @@ def gate_factor(cond, negated, consts, now_names=("now", "t", "tick", "ticks", "
         if bool(runs) != negated:
             f = min(f, 1.0 / TICKS_PER_HOUR)
             notes.append("hourly")
-    m = re.search(r"(!?)\s*Sched\.Every\s*\(\s*\w+\s*,\s*([^,]+),", c)
+    m = re.search(r"(!?)\s*Sched\.Every\s*\(\s*[^,]+,\s*([^,]+),", c)
     if m:
         p = period_value(m.group(2), consts)
         if p and (m.group(1) == "!") == negated:
@@ -1039,6 +1039,11 @@ class Analyzer:
             slices = period_value(sm.group(3), self.consts)
             if period and slices:
                 slice_vars[sm.group(1)] = max(1, period // slices)
+        gate_vars = {}
+        for gm in re.finditer(r"\bbool\s+(\w+)\s*=\s*([^;]+);", code[b:e]):
+            f, notes = gate_factor(gm.group(2), False, self.consts)
+            if f < 1.0:
+                gate_vars[gm.group(1)] = (f, notes)
         for im in IF_RX.finditer(code, b, e):
             if im.group(1) != "if":
                 continue
@@ -1048,15 +1053,43 @@ class Analyzer:
             k = q + 1
             then_end = statement_end(code, k, e)
             stmt = code[k:then_end + 1].strip()
-            sv = slice_vars.get(re.sub(r"[^\w]", "", cond.split("<")[0])) if re.search(r"\w+\s*<\s*0\s*$", cond.strip()) else None
-            if sv and re.fullmatch(r"return\b[^;]*;", stmt):
-                gates.append((then_end + 1, self.enclosing_block_end(code, im.start(), b, e), 1.0 / sv, [f"a slice every {sv} ticks"]))
+            # Gates kept in variables: int slice = Sched.SliceTurn(...); bool colony = Sched.Hourly(...).
+            def runs_when_false(part):
+                part = part.strip().strip("()").strip()
+                mm = re.fullmatch(r"(\w+)\s*<\s*0", part)
+                if mm and mm.group(1) in slice_vars:
+                    return 1.0 / slice_vars[mm.group(1)]
+                mm = re.fullmatch(r"!\s*(\w+)", part)
+                if mm and mm.group(1) in gate_vars:
+                    return gate_vars[mm.group(1)][0]
+                return None
+            if re.fullmatch(r"return\b[^;]*;", stmt):
+                parts = cond.split("&&")
+                fs = [runs_when_false(x) for x in parts]
+                if all(x is not None for x in fs):
+                    f = min(1.0, sum(fs))
+                    gates.append((then_end + 1, self.enclosing_block_end(code, im.start(), b, e), f, [f"a gate kept in a variable"]))
+                    continue
+            mm = re.fullmatch(r"\s*(\w+)\s*>=\s*0\s*", cond)
+            if mm and mm.group(1) in slice_vars:
+                gates.append((k, then_end, 1.0 / slice_vars[mm.group(1)], [f"a slice every {slice_vars[mm.group(1)]} ticks"]))
+                continue
+            mm = re.fullmatch(r"\s*(\w+)\s*", cond)
+            if mm and mm.group(1) in gate_vars:
+                gates.append((k, then_end, gate_vars[mm.group(1)][0], gate_vars[mm.group(1)][1]))
                 continue
             memo = None
             if re.fullmatch(r"return\b[^;]*;", stmt) and (MEMO_HIT_RX.search(cond) and "==" not in cond):
                 memo = (1e-3, ["built once"])
             nm = re.search(r"\b([\w\.]+)\s*==\s*null\b", cond)
             if nm and re.search(r"(?<![\w\.])" + re.escape(nm.group(1).split(".")[-1]) + r"\s*(=(?!=)|\?\?=)", stmt) and not stmt.startswith("return"):
+                memo = (1e-3, ["built once"])
+            if re.match(r"\s*!\s*[\w\.]+\s*\.\s*TryGetValue\s*\(", cond) and not stmt.startswith("return") and not stmt.startswith("continue"):
+                # if (!kept.TryGetValue(key, out v)) kept[key] = v = Work(): the work runs on a miss only.
+                gates.append((k, then_end, 1 / 30, ["cached"]))
+                continue
+            fm = re.fullmatch(r"\s*!\s*([\w\.]+)\s*", cond)
+            if fm and re.search(r"(?<![\w\.])" + re.escape(fm.group(1).split(".")[-1]) + r"\s*=\s*true\b", stmt):
                 memo = (1e-3, ["built once"])
             if memo:
                 if stmt.startswith("return"):
@@ -1080,6 +1113,39 @@ class Analyzer:
                 f, notes = gate_factor(cond, False, self.consts)
                 if f < 1.0:
                     gates.append((k, then_end, f, notes))
+        # A switch statement runs one of its sections (a page of a window, a kind of event): each gets its share.
+        for sm in re.finditer(r"\bswitch\s*\(", code[b:e]):
+            p0 = b + sm.end() - 1
+            q0 = match_close(code, p0, "(", ")")
+            k0 = q0 + 1
+            while k0 < e and code[k0].isspace():
+                k0 += 1
+            if k0 >= e or code[k0] != "{":
+                continue
+            end0 = match_close(code, k0, "{", "}")
+            labels = []
+            depth = 0
+            i = k0 + 1
+            while i < end0:
+                ch = code[i]
+                if ch in "({[":
+                    depth += 1
+                elif ch in ")}]":
+                    depth -= 1
+                elif depth == 0 and (code.startswith("case", i) or code.startswith("default", i)) and not (code[i - 1].isalnum() or code[i - 1] == "_"):
+                    colon = code.find(":", i)
+                    if colon > 0:
+                        labels.append((i, colon))
+                        i = colon
+                i += 1
+            sections = []
+            for idx, (st, colon) in enumerate(labels):
+                nxt = labels[idx + 1][0] if idx + 1 < len(labels) else end0
+                if code[colon + 1:nxt].strip():
+                    sections.append((colon + 1, nxt))
+            if len(sections) > 1:
+                for st, en in sections:
+                    gates.append((st, en, 1.0 / len(sections), [f"one of {len(sections)} cases"]))
         # catch blocks run on an error only.
         for cm in re.finditer(r"\bcatch\b\s*(\([^)]*\))?\s*(when\s*\([^)]*\)\s*)?\{", code[b:e]):
             k = b + cm.end() - 1

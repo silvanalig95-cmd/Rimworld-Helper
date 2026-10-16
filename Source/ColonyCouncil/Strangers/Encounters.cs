@@ -117,8 +117,8 @@ namespace ColonyCouncil
                 today = 0;
             }
             if (today >= Mathf.CeilToInt(MaxPerDay * Mathf.Max(1f, S.encounterFrequency)) || now - lastFired < GenDate.TicksPerHour * 3) return;
-            var map = Find.Maps.Where(m => m.IsPlayerHome).OrderByDescending(m => m.mapPawns.FreeColonistsSpawnedCount).FirstOrDefault();
-            if (map == null || comp.social.battleActive || GenHostility.AnyHostileActiveThreatToPlayer(map, false, false)) return;
+            var map = MapFacts.BusiestHome;
+            if (map == null || comp.social.battleActive || MapFacts.ThreatOn(map)) return;
             var present = Strangers.Present(map);
             if (present.Count == 0) return;
             // Strangers only pass through, so their questions can't wait for the council's usual rhythm.

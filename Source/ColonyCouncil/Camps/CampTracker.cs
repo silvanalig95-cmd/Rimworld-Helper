@@ -84,7 +84,7 @@ namespace ColonyCouncil
         {
             if (!Enabled || camp != null || map == null || !map.IsPlayerHome) return false;
             if (Now - lastEndedTick < GenDate.TicksPerDay * 15 || GenDate.DaysPassed < 20) return false;
-            if (GenHostility.AnyHostileActiveThreatToPlayer(map, false, false)) return false;
+            if (MapFacts.ThreatOn(map)) return false;
             float temp = map.mapTemperature.OutdoorTemp;
             if (temp < -8f || temp > 38f) return false;
             if (!DefDatabase<CampKindDef>.AllDefs.Any(k => k.FitsEra())) return false;

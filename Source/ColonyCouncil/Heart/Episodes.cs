@@ -33,7 +33,7 @@ namespace ColonyCouncil
             if (pawn == null || pawn.Dead || pawn.MentalState != this) return;
             if (!pawn.IsHashIntervalTick(250, delta) || !pawn.Spawned || pawn.Map == null) return;
             // A threat ends it: nobody sits in their room while the colony fights.
-            if (GenHostility.AnyHostileActiveThreatToPlayer(pawn.Map, false, false))
+            if (MapFacts.ThreatOn(pawn.Map))
             {
                 interrupted = true;
                 RecoverFromState();
@@ -113,7 +113,7 @@ namespace ColonyCouncil
             // A nursing mother: a baby may depend on her, so she carries on (Biotech's lactating; absent without it).
             if (Lactating != null && (p.health?.hediffSet?.HasHediff(Lactating) ?? false)) return "nursing";
             if (Busy(p)) return "busy";
-            if (m.threat || GenHostility.AnyHostileActiveThreatToPlayer(p.Map, false, false)) return "danger";
+            if (m.threat || MapFacts.ThreatOn(p.Map)) return "danger";
             if (now - h.lastEpisodeTick < PawnCooldown) return "pawn cooldown";
             var tracker = HeartTracker.Instance;
             if (tracker == null || now - tracker.lastColonyEpisodeTick < ColonyCooldown) return "colony cooldown";

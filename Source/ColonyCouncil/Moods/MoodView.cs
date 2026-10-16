@@ -27,6 +27,8 @@ namespace ColonyCouncil
             public MoodHintDef hint;
             public AdvisorSignal signal;
             public bool buttons;
+            /// <summary>The buttons' labels, worked out with the texts (not every frame); null where there is no such button.</summary>
+            public string advisorButton, goToButton, readMoreButton;
             public int tipId;
             public float width = -1f, th, mh, wh, ah, height;
         }
@@ -127,6 +129,10 @@ namespace ColonyCouncil
             if (!advice.NullOrEmpty()) t.advice = (t.bad ? "CC_Mood_Fix" : "CC_Mood_Keep").Translate(advice).Resolve();
             t.signal = t.bad ? ActiveSignal(t.hint, map) : null;
             t.buttons = t.bad && t.hint != null && (t.hint.article != null || !t.hint.councilTab.NullOrEmpty() || t.signal != null);
+            if (!t.buttons) return;
+            if (t.signal != null) t.advisorButton = "CC_Mood_Advisor".Translate(TextUtil.ShortSpeech(t.signal.title, 40)).Resolve();
+            if (!t.hint.councilTab.NullOrEmpty()) t.goToButton = "CC_Mood_GoTo".Translate(MainTabWindow_Council.TabName(t.hint.councilTab)).Resolve();
+            if (t.hint.article != null) t.readMoreButton = "CC_Mood_ReadMore".Translate(t.hint.article.label).Resolve();
         }
 
         private static AdvisorSignal ActiveSignal(MoodHintDef hint, Map map)
@@ -212,11 +218,11 @@ namespace ColonyCouncil
                 bx += bw + 6f;
                 return clicked;
             }
-            if (t.signal != null && Button("CC_Mood_Advisor".Translate(TextUtil.ShortSpeech(t.signal.title, 40)).Resolve()))
+            if (t.signal != null && Button(t.advisorButton ?? "CC_Mood_Advisor".Translate(TextUtil.ShortSpeech(t.signal.title, 40)).Resolve()))
                 MainTabWindow_Council.OpenTab("Priorities");
-            if (!t.hint.councilTab.NullOrEmpty() && Button("CC_Mood_GoTo".Translate(MainTabWindow_Council.TabName(t.hint.councilTab)).Resolve()))
+            if (!t.hint.councilTab.NullOrEmpty() && Button(t.goToButton ?? "CC_Mood_GoTo".Translate(MainTabWindow_Council.TabName(t.hint.councilTab)).Resolve()))
                 MainTabWindow_Council.OpenTab(t.hint.councilTab);
-            if (t.hint.article != null && Button("CC_Mood_ReadMore".Translate(t.hint.article.label).Resolve()))
+            if (t.hint.article != null && Button(t.readMoreButton ?? "CC_Mood_ReadMore".Translate(t.hint.article.label).Resolve()))
                 MainTabWindow_Council.OpenAlmanac(t.hint.article);
             Text.Font = GameFont.Small;
         }

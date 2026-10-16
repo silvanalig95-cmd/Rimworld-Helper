@@ -876,7 +876,7 @@ namespace ColonyCouncil
             foreach (var t in Traditions.ToList())
             {
                 if (lastTick.TryGetValue(t.defName, out int last) && now - last < GenDate.TicksPerDay * 30) continue;
-                var home = Find.Maps.Where(m => m.IsPlayerHome).OrderByDescending(m => m.mapPawns.FreeColonistsSpawnedCount).FirstOrDefault();
+                var home = MapFacts.BusiestHome;
                 if (home == null || !t.Worker.CanHappenNow(home)) continue;
                 if (TryFire(true, d => d == t)) return;
             }
@@ -897,7 +897,7 @@ namespace ColonyCouncil
 
         public bool TryFire(bool force, Func<DilemmaDef, bool> only = null)
         {
-            var map = Find.Maps.Where(m => m.IsPlayerHome).OrderByDescending(m => m.mapPawns.FreeColonistsSpawnedCount).FirstOrDefault();
+            var map = MapFacts.BusiestHome;
             if (map == null) return false;
             if (Find.LetterStack.LettersListForReading.Any(l => l is ChoiceLetter_Dilemma d && !d.resolved)) return false;
             if (!force && !LetterGap.Open) return false;
