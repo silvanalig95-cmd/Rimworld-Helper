@@ -361,14 +361,14 @@ grow, sour and end over time:
 - **Friends** and **rivals** form when two people keep liking (or loathing) each other, then drift with how
   they feel.
 - Everyone who fights in the same battle becomes **comrades**. That fades slowly between battles.
-- A skilled, passionate colonist may take a keen learner on as a **student**, teaching them every day until they
-  graduate at level 11.
+- A skilled, passionate colonist may take a keen learner on as a **student**, teaching them each day the two spend
+  some time side by side, until they graduate at level 11 (and the student goes to find the mentor to thank them).
 
-Most days something small happens between two people (79 kinds of social event): a late talk, a shared joke, a prank
-that lands badly, a snub at dinner, a squabble over chores, war stories, a lesson, a contest between rivals, a
-handmade gift, gossip that gets found out, an unexpected truce. Life brings its own: a vigil at a friend's sickbed,
-an evening at a camp on the map, a quarrel over what the council decided, fears confided in the night, grief carried
-together, a peace offering after a quarrel. Each one nudges their bond; most change how the two see each other
+Most days something small happens between two people who are together at the time (79 kinds of social event): a
+late talk, a shared joke, a prank that lands badly, a snub at dinner, a squabble over chores, war stories, a lesson,
+a contest between rivals, a handmade gift, gossip that gets found out, an unexpected truce. Life brings its own: a
+vigil at a friend's sickbed, an evening at a camp on the map, a quarrel over what the council decided, fears confided
+in the night, grief carried together, a peace offering after a quarrel. Each one nudges their bond; most change how the two see each other
 rather than anyone's mood (a shared joke is a little recreation, a lesson practice). In conversation they share smaller moments
 too (about a hundred kinds, 44 of them frictions), shaped by who they are (night owls keeping each other company,
 brawlers comparing scars, an iron-willed colonist steadying a nervous one) and by what's going on (visiting the sick,
@@ -802,7 +802,8 @@ Each of these switches itself on only when its mod is there, and only asks for w
   or midwife's standing, and a recovery bar fills as strength comes back. In RimHUD's settings, Content tab, use
   "Add third-party". To keep the panel short, put them in the column under the skills.
 - **Interaction Bubbles:** social events and encounters with visitors, traders and animals now go into the social
-  log too, so they show as bubbles like Rimfolk's moments and wish talk.
+  log too, so they show as bubbles like Rimfolk's moments and wish talk. Everything else Rimfolk's colonists say
+  shows as bubbles too (the setting **Colonists' speech shows as**), without filling the Log tab.
 
 ### People, beliefs and magic
 Rimfolk reads these mods by name while the game runs: with one missing, its part simply never comes up.
@@ -1374,7 +1375,27 @@ word from whoever leads it; at a **remembrance** by a grave, and whenever someon
 warm glow shows there like a candle; at a **feast**, those eating are the ones most often heard.
 
 All of this happens only on the map you're looking at and only on screen, a handful at a time, and one setting
-(**Visual and sound touches**) turns it off; the lines also need floating speech text on.
+(**Visual and sound touches**) turns it off; the lines show the way all speech does (below).
+
+**One way of speaking.** Everything Rimfolk's colonists say goes one way, set by **Colonists' speech shows as** (on
+the Interface page): a wish voiced, backed or granted, a word about the weather, how someone really is, a meeting's
+back and forth, the line of a moment between two people. **Bubbles if available** (the default) makes all of it speech
+bubbles with Interaction Bubbles, like the game's own chats, and floating text without it; **Floating text** always
+floats; **Off** shows nothing. A line one person says never goes into the Log tab; a moment between two (a social
+event, an encounter, a secret confided) is kept in both their logs whatever the setting, and shows over their heads
+once. The small "+ recreation" note over someone who got something other than a mood stays floating text.
+
+**Only when they're together.** Every moment Rimfolk makes between two colonists happens where they both are: on the
+same map, awake, not drafted, downed or in a mental break, and within talking range (about 10 steps, in the same room
+or in sight). Social events and encounters happen at an hour when two such people are together. Moments that can wait
+do, looked at again each hour for a day or two: a mentor's lesson for the day, thanks for an animal minded, a friend
+glad to see someone home, a friend's life goal talked over, the peacemaker sitting a feuding pair down (all three in
+one place), a secret let slip or confessed (with someone there to hear it). The ones that matter more aren't left to
+chance: a secret confided, a student's thanks, the physician's rounds, the herdmaster sitting with someone whose animal
+died, the marshal's word after a fight and a champion's contest send one of the two over to the other in their free
+time, only when it is safe and nothing is more pressing ("going to have a word with..."), and the moment comes when
+they get there. A camp's evening show is a gathering at the camp's fire when answers play out on the map. For modders,
+`Tools/interaction_audit.py` lists every place in the code where two people interact and how each is held to this.
 
 **Small habits** (a setting of its own, on the People & moods page): free time spent the way people really would. A
 **grieving** colonist visits the grave; a **homesick** one sits a while alone just outside the colony, looking out; a
@@ -1476,8 +1497,8 @@ The pages:
 - **Interface & integrations**: how chatty Rimfolk is: **Everything**, **Notable only** (default: messages for what
   changes something; small moments stay in the journals, the Story tab and History) or **Important only**; where the
   smaller news goes (**Colony news**: one letter each evening by default, as it happens, or off, to the History tab
-  only); a message for every dream, letters or messages for new and granted wishes, floating speech text, the visual and sound
-  touches; the two alerts; mood insight (and its hints in the Needs tab), the slow speed buttons (and putting them
+  only); a message for every dream, letters or messages for new and granted wishes, how colonists' speech shows
+  (bubbles with Interaction Bubbles, floating text, or off), the visual and sound touches; the two alerts; mood insight (and its hints in the Needs tab), the slow speed buttons (and putting them
   back), where the council button sits in the bottom bar, the rooms button, which page the council window opens on
   (**This week** by default, or the last page), the Almanac's text size; the deeper game hooks and the notes in the
   game's letters.
@@ -1493,7 +1514,8 @@ new setting needs a row there.
 ## Optional mods that go well with it
 
 - **Interaction Bubbles** by Jaxe (search the Steam Workshop): shows social-log conversations as speech
-  bubbles, so colonists grumbling about their wishes, Rimfolk's moments and social events appear above their heads.
+  bubbles, and with it everything Rimfolk's colonists say is a bubble too: wishes, moments, social events, a word
+  about the weather, a meeting's back and forth.
 - **RimHUD** by Jaxe: can show trust, the open wish, office, life goal, strain, feelings and the heart's needs in
   its pawn panel, with bars for strain and the heart's needs (see above).
 
@@ -1538,6 +1560,11 @@ clipboard" button) says most of what a bug report needs.
 - `Source/ColonyCouncil/Lean/`: on which tick of the hour each periodic pass runs (`Sched.cs`, so none share a tick)
   and how much history each part keeps in the save (`Caps.cs`). DESIGN.md lists them all under "Ticking" and
   "Save size"; a new hourly pass gets its own tick there.
+- People on the map: a moment between two colonists goes through `Together.When` (Social/Together.cs: now if they're
+  together, else waiting a day or two, optionally with a walk over for a word), and every line a colonist says through
+  `Speech.Say` (Immersion/Speech.cs), never `MoteMaker.ThrowText` or the play log directly; `Tools/Tests` checks the
+  latter. `python3 Tools/interaction_audit.py` (`--open`, `--summary`) lists every place two people interact and how
+  each is held to it; a place that rightly happens apart says so in a `// apart:` comment.
 - `Source/ColonyCouncil/UI/UiKit.cs`: the small interface kit every council page is drawn with (colors, spacing,
   page headers, cards, tags, meters, portraits). New pages should use it so they look like the rest.
 - `Tools/make_icons.py`: draws the interface icons into `Textures/ColonyCouncil/Icons/` and a contact sheet of

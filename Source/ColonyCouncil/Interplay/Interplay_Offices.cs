@@ -233,7 +233,7 @@ namespace ColonyCouncil
                     string text = Line("Council_Pool_Interplay_HerdmasterMinded", keptBy, null, who.Named("OTHER"), pet.Named("PET"));
                     if (text.NullOrEmpty()) return;
                     News.Post(text, new LookTargets(who, pet), NewsKind.People, MessageTypeDefOf.SilentInput, Importance.Flavor);
-                    SocialLog.Add(who, keptBy, text);
+                    SocialLog.Add(keptBy, who, text);
                 }, 48f);
             }
             if (hm == null || !hm.Spawned || hm.Map == null || !hm.Map.IsPlayerHome) return;

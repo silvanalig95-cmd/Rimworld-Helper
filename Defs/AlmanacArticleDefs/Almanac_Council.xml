@@ -146,7 +146,7 @@ The "Good times" line in a colonist's Mood tab says what these rules take off ri
           <li>The road's gifts | A little research from a traveler's star names or books, and a little goodwill after tea with a trader or water for a wounded raider.</li>
           <li>Only the journal | The smallest touches: lights over the marsh, a shape in the fog, a stolen dinner.</li>
         </table>
-        <after>These follow the reward strength setting and standards, like the moods they replace, and give nothing on "Advisor only". The heart still feels them at their old size, so feelings, belonging and the strain friends ease work as before. A small line over the colonist says what they got ("+ recreation"), under the speech text setting.</after>
+        <after>These follow the reward strength setting and standards, like the moods they replace, and give nothing on "Advisor only". The heart still feels them at their old size, so feelings, belonging and the strain friends ease work as before. A small line of floating text over the colonist says what they got ("+ recreation"), while colonists' speech shows at all.</after>
       </li>
       <li>
         <heading>Bringing them down</heading>
@@ -389,13 +389,13 @@ Days on the colony calendar grow into traditions the same way: keep one three ye
           <li>Friends | Two colonists' opinions of each other stay high enough. | It drifts with how they feel, and ends when it fades to nothing.</li>
           <li>Rivals | Their opinions of each other stay low enough. | The same way as a friendship.</li>
           <li>Comrades | Fighting in the same battle: drafted, manning a turret or attacking the enemy. Everyone who does becomes comrades. | It slowly fades between battles.</li>
-          <li>Mentor and student | A mentor (skill 12+, with a passion) teaches a student (skill 7 or less, with a passion) every day. | The student graduates at level 11, and both are proud.</li>
+          <li>Mentor and student | A mentor (skill 12+, with a passion) teaches a student (skill 7 or less, with a passion) each day the two spend some time side by side. | The student graduates at level 11 and goes to thank the mentor, and both are proud.</li>
         </table>
         <after>Bonds add opinion, more at each stage: new, solid, deep. To keep a skill in the colony after your best worker dies, look for a mentorship on the Bonds page, or have a learner with a passion work alongside them.</after>
       </li>
       <li>
         <heading>What moves a bond</heading>
-        <text>Small social events happen most days: late talks, pranks, snubs, squabbles, war stories, lessons, contests, gifts, gossip and the odd truce. Life brings its own: a friend keeping vigil at a sickbed, an evening at a camp on the map, a quarrel over what the council decided, fears confided in the night, grief carried together, homesickness shared, a peace offering after a quarrel. Each moves the bond a little. Keep rivals on different work shifts to avoid squabbles.
+        <text>Small social events happen most days, always between two who are together at the time: late talks, pranks, snubs, squabbles, war stories, lessons, contests, gifts, gossip and the odd truce. Life brings its own: a friend keeping vigil at a sickbed, an evening at a camp on the map, a quarrel over what the council decided, fears confided in the night, grief carried together, homesickness shared, a peace offering after a quarrel. Each moves the bond a little. Keep rivals on different work shifts to avoid squabbles.
 
 The council's decisions feed back too. Losing an election to someone, having your wish passed over for theirs, a fight, a grudge from a dilemma or arguing over a decree can start rivalries. Backing the same petition, making up or going through something together builds friendships.</text>
       </li>
@@ -512,7 +512,7 @@ Check the Roster page now and then. A colonist one level short of mastery is wor
     <sections>
       <li>
         <heading>Confiding and coming out</heading>
-        <text>Confiding brings relief and brings them closer. A confidant who later becomes their rival is likely to let it slip; a close friend rarely does. Someone at rock bottom may blurt it out themselves. So watch who confides in whom: if those two fall out, the secret will probably come out.
+        <text>Confiding brings relief and brings them closer; it is done face to face, and if the two don't cross paths, the one with the secret goes to find the friend for a quiet word. A confidant who later becomes their rival is likely to let it slip, to whoever they are with; a close friend rarely does. Someone at rock bottom may blurt it out themselves, with someone there to hear it. So watch who confides in whom: if those two fall out, the secret will probably come out.
 
 When a secret comes out, everyone reacts according to their nature: the kind forgive, the hard despise, the greedy envy, the abrasive mock. Betraying a confidence makes enemies. Some secrets put the council on the spot with a dilemma.
 

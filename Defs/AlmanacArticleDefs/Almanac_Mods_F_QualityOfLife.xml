@@ -561,7 +561,7 @@ Quality Colors colors items by quality in the trade window, and quality text in 
       <li>
         <heading>With Rimfolk</heading>
         <points>
-          <li>Rimfolk's conversations (wishes, ambitions, gossip about the council, decree gripes, dream talk) are social interactions, so they show up as bubbles. If Rimfolk's own floating lines feel like too much, switch off "Colonists speak (floating text)" in Rimfolk's settings.</li>
+          <li>Rimfolk's conversations (wishes, ambitions, gossip about the council, decree gripes, dream talk) are social interactions, so they show up as bubbles, and so does everything else its colonists say: with "Colonists' speech shows as" left at "Bubbles if available", a word about the weather, a wish voiced or a meeting's back and forth is a bubble too, never a line in the Log tab. Pick "Floating text" or "Off" in Rimfolk's settings for the other ways.</li>
           <li>A colonist who wishes for "something fine to wear" wants clothing of excellent quality or better, and Quality Colors makes those pieces easy to spot.</li>
           <li>Every mood Rimfolk gives says what caused it in its tooltip, so hover over the mood that a colored bar warns you about.</li>
           <li>RimHUD's panel can show Rimfolk's lines: trust, the open wish, office, life goal, strain, feelings and the heart's needs, and now ailments, convalescence (a line, and a bar that fills as strength comes back), the personal story under way and a doctor's or midwife's standing. Add them in RimHUD's layout editor among the third-party widgets.</li>
