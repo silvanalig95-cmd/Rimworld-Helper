@@ -270,7 +270,8 @@ namespace ColonyCouncil
 
         public void SendNow()
         {
-            var items = waiting.ToList();
+            // A busy colonist's lines come together as their day (Interplay/NewsDays.cs).
+            var items = NewsDays.Group(waiting.ToList());
             waiting.Clear();
             News.Send(items);
         }

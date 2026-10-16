@@ -126,6 +126,8 @@ namespace ColonyCouncil
         public float dreamFrequency = 1f;
         /// <summary>The colony's character: what its choices make it known for.</summary>
         public bool colonyCharacter = true;
+        /// <summary>Rimfolk's systems talk to each other (Interplay/): offices at work, the heart in choices, stories hearing the world...</summary>
+        public bool interplay = true;
         /// <summary>Feelings and strain (Heart/): a layer under mood that never changes it.</summary>
         public bool heart = true;
         /// <summary>A colonist at the end of their rope may take a day to themselves.</summary>
@@ -271,6 +273,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref socialEventFrequency, "socialEventFrequency", 1f);
             Scribe_Values.Look(ref dreamFrequency, "dreamFrequency", 1f);
             Scribe_Values.Look(ref colonyCharacter, "colonyCharacter", true);
+            Scribe_Values.Look(ref interplay, "interplay", true);
             Scribe_Values.Look(ref heart, "heart", true);
             Scribe_Values.Look(ref heartEpisodes, "heartEpisodes", true);
             Scribe_Values.Look(ref heartInspector, "heartInspector", true);

@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Lines for the ways Rimfolk's systems reach into each other (Source/ColonyCouncil/Interplay/). Journal pools are in the
+    colonist's own voice; news pools are third person. {PAWN_...} is always the one the line is about or by.
+  -->
+
+  <!-- ===================== Offices at work ===================== -->
+
+  <!-- The keeper of days organised a calendar day's feast or games (journal). {DAY}: the day's name. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_Interplay_KeeperOrganised</defName>
+    <lines>
+      <plain>
+        <li>I had {DAY} marked on the calendar for weeks. Today I got to watch it kept properly, every bench where it should be.</li>
+        <li>Organised {DAY} today. Counted the plates twice and still came up one short. Nobody noticed but me.</li>
+        <li>It's my job to remember what {DAY} means. Today I got to watch everyone else remember it too.</li>
+        <li>Up before dawn to get {DAY} ready. By supper it looked as if it had arranged itself, which is the idea.</li>
+        <li>[lowtech] Walked round the whole settlement this morning telling people it was {DAY}. Most of them knew already. I told them anyway.</li>
+      </plain>
+      <warm>
+        <li>Watching everyone sit down together for {DAY} was worth every hour I spent getting it ready.</li>
+      </warm>
+      <blunt>
+        <li>{DAY}. Organised it. Went well.</li>
+      </blunt>
+      <cheerful>
+        <li>{DAY}! I've been looking forward to it since the last one, and this one was better.</li>
+      </cheerful>
+      <gloomy>
+        <li>Kept {DAY} today. Someone always forgets what it's for. I don't.</li>
+      </gloomy>
+      <cold>
+        <li>{DAY} was kept as it should be. I saw to it.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The peacemaker stepped into a spat (news). {PAWN}: the peacemaker; {A} and {B}: the two. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_Interplay_PeacemakerSteps</defName>
+    <lines>
+      <plain>
+        <li>{PAWN_nameDef} stepped in between {A_nameDef} and {B_nameDef} before their words got any sharper, and sent them off to different ends of the colony.</li>
+        <li>{A_nameDef} and {B_nameDef} were at it again until {PAWN_nameDef} put a hand on each of their shoulders. It blew over sooner than usual.</li>
+        <li>{PAWN_nameDef} heard {A_nameDef} and {B_nameDef} raising their voices and came over with two cups of something hot. The argument didn't outlast the cups.</li>
+        <li>{PAWN_nameDef} made {A_nameDef} and {B_nameDef} each say what was really bothering them. It turned out to be smaller than the shouting.</li>
+      </plain>
+      <warm>
+        <li>{PAWN_nameDef} talked {A_nameDef} and {B_nameDef} down from a quarrel, gently, without taking either side.</li>
+      </warm>
+      <blunt>
+        <li>{PAWN_nameDef} told {A_nameDef} and {B_nameDef} to stop. They stopped.</li>
+      </blunt>
+      <cheerful>
+        <li>{PAWN_nameDef} broke up a spat between {A_nameDef} and {B_nameDef} by making them both laugh, which neither of them wanted to do.</li>
+      </cheerful>
+      <gloomy>
+        <li>{PAWN_nameDef} got between {A_nameDef} and {B_nameDef} again. A peacemaker's work is never done, {PAWN_pronoun} says.</li>
+      </gloomy>
+      <cold>
+        <li>{PAWN_nameDef} separated {A_nameDef} and {B_nameDef} and heard each of them out in turn.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- What the peacemaker says, over their head, as they step in. Short. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_Interplay_PeacemakerSays</defName>
+    <lines>
+      <plain>
+        <li>Enough. Both of you, sit down.</li>
+        <li>Say it to me first. Then decide if it's worth saying to each other.</li>
+        <li>This isn't worth a grudge.</li>
+        <li>Breathe. Then talk.</li>
+      </plain>
+      <warm>
+        <li>Come on, you two. You're better than this.</li>
+      </warm>
+      <blunt>
+        <li>Stop. Now.</li>
+      </blunt>
+      <cheerful>
+        <li>Who wants something hot to drink? Everyone does.</li>
+      </cheerful>
+      <gloomy>
+        <li>Again? Really?</li>
+      </gloomy>
+      <cold>
+        <li>This ends here.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- A convalescent after the physician's morning rounds (journal). {OTHER}: the physician. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_Interplay_PhysicianRounds</defName>
+    <lines>
+      <plain>
+        <li>{OTHER_nameDef} came by on the morning rounds, looked at the healing and said "better". I'll take it.</li>
+        <li>{OTHER_nameDef} asked how I was sleeping and wrote the answer down. It's a strange comfort, being written down.</li>
+        <li>{OTHER_nameDef} made me walk to the door and back while {OTHER_pronoun} watched. Further than yesterday.</li>
+        <li>{OTHER_nameDef} says another few days of taking it slowly. I asked about work. {OTHER_nameDef} pretended not to hear.</li>
+      </plain>
+      <warm>
+        <li>{OTHER_nameDef} sat with me a while on the rounds. I think I mend faster when someone is paying attention.</li>
+      </warm>
+      <blunt>
+        <li>Rounds. {OTHER_nameDef} says I'm mending.</li>
+      </blunt>
+      <cheerful>
+        <li>{OTHER_nameDef} says I'm the best patient on the rounds! I'm also the only one awake for them.</li>
+      </cheerful>
+      <gloomy>
+        <li>{OTHER_nameDef} keeps telling me I'm getting better. I keep waiting to feel it.</li>
+      </gloomy>
+      <cold>
+        <li>{OTHER_nameDef} examined me. Progress is adequate.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The reeve saw a neighbour's order through in full (journal). {PLACE}: their town; {FACTION}: their people. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_Interplay_ReeveDelivered</defName>
+    <lines>
+      <plain>
+        <li>Their carts came for everything on the list, and it was all there, counted and stacked. {PLACE} will be ready before the weather turns.</li>
+        <li>Saw the last of the load onto the carts from {PLACE} today. I knew where every sack was, because I put it there.</li>
+        <li>The goods went to {PLACE} today, all of them. The fields gave us enough to spare. That's the whole of the job.</li>
+      </plain>
+      <warm>
+        <li>I hope they sleep easier in {PLACE} tonight. We sent them everything they asked for.</li>
+      </warm>
+      <blunt>
+        <li>The order for {PLACE}. All of it. Done.</li>
+      </blunt>
+      <cheerful>
+        <li>Every last sack, on time! The drivers from {PLACE} were very impressed with my stacking.</li>
+      </cheerful>
+      <gloomy>
+        <li>Sent {PLACE} what they needed. I hope we don't need it ourselves come winter.</li>
+      </gloomy>
+      <cold>
+        <li>The order for {PLACE} was filled in full and on time. {FACTION} will remember who filled it.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The herdmaster sat with someone whose animal died (news). {PAWN}: the herdmaster; {OTHER}: the one who lost it; {PET}: the animal. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_Interplay_HerdmasterComforts</defName>
+    <lines>
+      <plain>
+        <li>{PAWN_nameDef}, who keeps the colony's animals, helped {OTHER_nameDef} bury {PET_nameDef}, and had a story about the animal that {OTHER_nameDef} had never heard.</li>
+        <li>{PAWN_nameDef} sat with {OTHER_nameDef} by the pens that evening. Neither of them said much. {PET_nameDef}'s place in the straw was still warm.</li>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} that {PET_nameDef} had as good a life as any animal could have here, and meant it.</li>
+      </plain>
+      <warm>
+        <li>{PAWN_nameDef} came to find {OTHER_nameDef} as soon as {PAWN_pronoun} heard about {PET_nameDef}, and stayed until it was dark.</li>
+      </warm>
+      <blunt>
+        <li>{PAWN_nameDef} dug the grave for {PET_nameDef} with {OTHER_nameDef}. Didn't need to be asked.</li>
+      </blunt>
+      <cold>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} plainly that nothing could have been done for {PET_nameDef}. It seemed to help.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Home again, someone hears the herdmaster looked after their animal while they were away (news). -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_Interplay_HerdmasterMinded</defName>
+    <lines>
+      <plain>
+        <li>{OTHER_nameDef} came home to find {PET_nameDef} fed, brushed and fatter than before. {PAWN_nameDef} had been looking after it.</li>
+        <li>{PAWN_nameDef} kept an eye on {PET_nameDef} while {OTHER_nameDef} was away, and handed it back with a list of everything it had got up to.</li>
+        <li>{PET_nameDef} ran to meet {OTHER_nameDef} at the edge of the colony. {PAWN_nameDef} says it waited by the door every evening.</li>
+      </plain>
+      <cheerful>
+        <li>{PAWN_nameDef} says {PET_nameDef} behaved perfectly while {OTHER_nameDef} was away. {PET_nameDef} looks as if that isn't the whole story.</li>
+      </cheerful>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- After a fight at home, the marshal has a word with everyone who fought beside them (news). -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_Interplay_MarshalWalks</defName>
+    <lines>
+      <plain>
+        <li>When the fighting was over, {PAWN_nameDef} walked the line and had a word with everyone who had stood in it.</li>
+        <li>{PAWN_nameDef} went round the defenders after the fight, a hand on each shoulder, asking who needed what.</li>
+        <li>The marshal, {PAWN_nameDef}, sat with the fighters after the battle until the shaking stopped, {PAWN_possessive} own included.</li>
+        <li>[lowtech] After the fight {PAWN_nameDef} passed a waterskin down the line and named each of them, one by one, for what they had done.</li>
+      </plain>
+      <blunt>
+        <li>{PAWN_nameDef} checked on every fighter after the battle. Short words. They helped.</li>
+      </blunt>
+      <cold>
+        <li>{PAWN_nameDef} went over the fight with each of those who stood in it: what went well, what to do next time.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== The heart ===================== -->
+
+  <!-- Someone grieving sat out a calendar day's feast or games (journal). {DAY}: the day's name. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_Interplay_SatOut</defName>
+    <lines>
+      <plain>
+        <li>They kept {DAY} today. I couldn't face it. I sat on my bed and listened to them through the wall.</li>
+        <li>Everyone went to {DAY}. Nobody made me go, and I was grateful for that.</li>
+        <li>I'm not ready for feasts. Maybe next year.</li>
+        <li>Someone brought me a plate from {DAY} and left it by the door without a word.</li>
+      </plain>
+      <warm>
+        <li>I told them to go and enjoy {DAY} without me. They should. I'll come next time.</li>
+      </warm>
+      <blunt>
+        <li>Skipped {DAY}. Not up to it.</li>
+      </blunt>
+      <cheerful>
+        <li>Even I didn't feel like a party today. That's how I know how bad it is.</li>
+      </cheerful>
+      <gloomy>
+        <li>They were singing for {DAY}. I don't know how anyone sings.</li>
+      </gloomy>
+      <cold>
+        <li>I did not go to {DAY}. It would have been a performance, and I had none in me.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Someone grieving spent time with their own animal (news). {PET}: the animal. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_Interplay_PetComfort</defName>
+    <lines>
+      <plain>
+        <li>{PET_nameDef} wouldn't leave {PAWN_nameDef}'s side all afternoon, and {PAWN_nameDef} didn't want it to.</li>
+        <li>{PAWN_nameDef} spent an hour with {PET_nameDef}, saying nothing at all, and came back a little steadier.</li>
+        <li>{PET_nameDef} found {PAWN_nameDef} sitting alone and lay down across {PAWN_possessive} feet.</li>
+        <li>Grief is quieter with an animal leaning against you, {PAWN_nameDef} says. {PET_nameDef} has been doing a lot of leaning.</li>
+      </plain>
+      <cold>
+        <li>{PAWN_nameDef} has been spending time with {PET_nameDef}, who asks no questions, which is the point.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- A convalescent who came to a gathering (journal). -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_Interplay_ConvalescentGathering</defName>
+    <lines>
+      <plain>
+        <li>Still not strong, but they found me a seat near the middle and I stayed to the end. Better medicine than the bed.</li>
+        <li>First gathering since I took ill. I sat the whole time and nobody minded.</li>
+        <li>They brought the food to me so I didn't have to stand. I laughed more than I have in weeks.</li>
+      </plain>
+      <warm>
+        <li>Everyone came over to my chair at some point. I felt like the guest of honour, which I suppose I was.</li>
+      </warm>
+      <blunt>
+        <li>Went to the gathering. Sat. Good.</li>
+      </blunt>
+      <cheerful>
+        <li>I wasn't going to miss that! Even if I did have to be helped to my seat.</li>
+      </cheerful>
+      <gloomy>
+        <li>Went, sat in a corner, watched everyone else enjoy themselves. Still, better than the ceiling.</li>
+      </gloomy>
+      <cold>
+        <li>I attended the gathering from a chair. The company did more good than the rest would have.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== Personal stories ===================== -->
+
+  <!--
+    A personal story moved on because of something outside it (journal). Every line is tagged with what did it: [day] a
+    calendar day kept ({DAY}), [favour] an old good turn repaid by a people ({FACTION}), [camp] a friend made at a camp
+    that has gone ({OTHER}, a name), [recovered] back to full strength after convalescing. {STORY}: the story's name.
+  -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_Interplay_StoryNudge</defName>
+    <lines>
+      <plain>
+        <li>[day] {DAY} helped more than I expected. For an evening the rest of it went quiet.</li>
+        <li>[day] We kept {DAY} together, and somewhere in the middle of it I stopped feeling so far from everyone.</li>
+        <li>[day] I almost didn't go to {DAY}. I'm glad I did.</li>
+        <li>[favour] {FACTION} came back to repay what we once did for them. Kindness comes round after all. I needed to see that.</li>
+        <li>[favour] An envoy from {FACTION}, to settle an old debt. It made me think the world isn't as cold as I'd decided.</li>
+        <li>[camp] {OTHER} has gone on with the camp. We talked most nights by their fire. I feel more like myself for it.</li>
+        <li>[camp] I'll miss {OTHER}. Strange, how a stranger can say exactly what you needed to hear.</li>
+        <li>[recovered] Back on my feet properly today. Lying in bed I had a lot of time to think. Now I can do something about it.</li>
+        <li>[recovered] Strong again. Being laid up made a few things clearer.</li>
+      </plain>
+      <warm>
+        <li>[day] Everyone together for {DAY}. I needed that more than I knew.</li>
+        <li>[recovered] Everyone was so kind while I was ill. I mean to pay it back, starting now.</li>
+        <li>[camp] I hope {OTHER}'s road is a kind one. {OTHER} was kind to me.</li>
+      </warm>
+      <blunt>
+        <li>[day] {DAY}. Helped.</li>
+        <li>[favour] {FACTION} paid back what they owed. Good.</li>
+        <li>[camp] Good talks with {OTHER}. Helped.</li>
+        <li>[recovered] Better. Moving on.</li>
+      </blunt>
+      <cheerful>
+        <li>[day] What a day! {DAY} always lifts me.</li>
+        <li>[recovered] Up and about! Watch out, everyone.</li>
+      </cheerful>
+      <gloomy>
+        <li>[day] {DAY} was a kind of relief. They don't come often.</li>
+        <li>[recovered] Well again. I suppose that's something.</li>
+      </gloomy>
+      <cold>
+        <li>[favour] {FACTION} honoured their debt. That is worth noting.</li>
+        <li>[camp] {OTHER} was good company. The conversations were useful.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== The council ===================== -->
+
+  <!-- At a council meeting, someone who was told a secret makes a pointed remark to the one who told them (speech). {OTHER}: the secret's owner. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_Interplay_MeetingSecret</defName>
+    <lines>
+      <plain>
+        <li>Some of us have more to answer for than others. Isn't that right, {OTHER_nameDef}?</li>
+        <li>I'd trust that idea more if everyone at this table were honest about where they come from.</li>
+        <li>{OTHER_nameDef} knows exactly what I mean.</li>
+        <li>Funny who talks loudest about trust.</li>
+      </plain>
+      <warm>
+        <li>I won't say it here, {OTHER_nameDef}. But you should.</li>
+      </warm>
+      <blunt>
+        <li>{OTHER_nameDef} should tell them. Not me.</li>
+      </blunt>
+      <cheerful>
+        <li>Shall we all say one true thing about ourselves? {OTHER_nameDef} can go first.</li>
+      </cheerful>
+      <gloomy>
+        <li>Everyone here has something they aren't saying. Some more than others.</li>
+      </gloomy>
+      <cold>
+        <li>Before we vote, perhaps {OTHER_nameDef} has something to tell the council.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

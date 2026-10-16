@@ -17,14 +17,17 @@ namespace ColonyCouncil
         /// <summary>Factions of the colony's own era are much likelier (a medieval colony meets medieval folk).</summary>
         public static float TechWeight(Faction f, TechLevel tech) => Mathf.Pow(0.35f, Mathf.Abs((int)f.def.techLevel - (int)tech));
 
-        /// <summary>A people that isn't hostile and sends visitors: settlers, villagers, traders, tribes.</summary>
-        public static Faction Friendly(Func<Faction, bool> pred = null)
+        /// <summary>
+        /// A people that isn't hostile and sends visitors: settlers, villagers, traders, tribes. <paramref name="factor"/>:
+        /// a further weight on each (what a people remembers of the colony, for camps).
+        /// </summary>
+        public static Faction Friendly(Func<Faction, bool> pred = null, Func<Faction, float> factor = null)
         {
             var tech = Avail.EffectiveTech;
             return Find.FactionManager.AllFactionsListForReading
                 .Where(f => !f.IsPlayer && !f.Hidden && !f.defeated && !f.temporary && f.def.humanlikeFaction && PersonKind(f) != null
                             && !f.HostileTo(Faction.OfPlayer) && (pred == null || pred(f)))
-                .RandomElementByWeightWithFallback(f => TechWeight(f, tech));
+                .RandomElementByWeightWithFallback(f => TechWeight(f, tech) * (factor == null ? 1f : Mathf.Max(0.01f, factor(f))));
         }
 
         /// <summary>

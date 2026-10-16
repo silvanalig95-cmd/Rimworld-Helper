@@ -138,7 +138,8 @@ namespace ColonyCouncil
                 foreach (var p in map.mapPawns.FreeColonistsSpawned.ToList())
                 {
                     if (p == ctx.a || p == ctx.b || p == ctx.stranger || !Eligible(p) || p.DevelopmentalStage.Juvenile() || UpsetJustNow(p)) continue;
-                    for (int i = 0; i < all.Length; i++) a[i] = CharacterTracker.Affinity(p, all[i]);
+                    // Their nature, and for an old hand a little of the colony's own name (Interplay/).
+                    for (int i = 0; i < all.Length; i++) a[i] = Interplay.WayAffinity(p, all[i], CharacterTracker.Affinity(p, all[i]));
                     float clash = SetbackMath.Clash(s, a);
                     if (SetbackMath.ToldSo(clash, risk))
                     {
@@ -206,7 +207,7 @@ namespace ColonyCouncil
                 if (play.organizer != null && !meant.Contains(play.organizer)) meant.Add(play.organizer);
                 foreach (var p in meant)
                 {
-                    if (p == null || attended.Contains(p) || !Eligible(p) || !(Tracker?.Ready(p, "missed", 1f) ?? false)) continue;
+                    if (p == null || attended.Contains(p) || !Eligible(p) || Interplay.Excused(p) || !(Tracker?.Ready(p, "missed", 1f) ?? false)) continue;
                     string why = p.MapHeld != map ? "CC_Setback_Cause_MissedAway" : p.Downed || PlayOuts.MedicalRest(p) ? "CC_Setback_Cause_MissedSick" : "CC_Setback_Cause_MissedBusy";
                     Give(p, SetbackDefOf.Council_Setback_MissedGathering, null, why.Translate(label).Resolve());
                 }

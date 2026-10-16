@@ -997,6 +997,7 @@ namespace ColonyCouncil
                     foreach (var p in colonists) CouncilGameComponent.GiveThought(p, CouncilDefOf.Council_TraditionKept);
                     comp.annals.Notify_Tradition(def.traditionLabel, true);
                     VisualTouches.Tradition(colonists, def.traditionLabel);
+                    Interplay.Notify_CouncilTradition(def.traditionLabel, 1);
                 }
                 else if (traditionCount[key] >= def.traditionAfter)
                 {
@@ -1007,6 +1008,7 @@ namespace ColonyCouncil
                         "CC_Tradition_BornText".Translate(def.traditionLabel).Resolve(), LetterDefOf.PositiveEvent);
                     comp.AddChronicle(new ChronicleEntry(ChronicleKind.Council, "CC_Chronicle_TraditionBorn".Translate(def.traditionLabel).Resolve(), null));
                     comp.annals.Notify_TraditionBorn(def.traditionLabel);
+                    Interplay.Notify_CouncilTradition(def.traditionLabel, 2);
                     foreach (var p in colonists.InRandomOrder().Take(2))
                         comp.journals.Write(p, "Council_Journal_TraditionBorn", null, def.traditionLabel.Named("TRADITION"));
                 }
@@ -1022,6 +1024,7 @@ namespace ColonyCouncil
                 comp.standings.Change(p, -2f, null);
             }
             comp.annals.Notify_Tradition(def.traditionLabel, false);
+            Interplay.Notify_CouncilTradition(def.traditionLabel, breaks >= 2 ? -2 : -1);
             if (breaks >= 2)
             {
                 traditions.Remove(key);
