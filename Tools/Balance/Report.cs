@@ -66,6 +66,46 @@ namespace Balance
             }
             sb.AppendLine();
 
+            // ---------------- Before and after ----------------
+            if (before != null)
+            {
+                sb.AppendLine("## Before and after the balance pass");
+                sb.AppendLine();
+                sb.AppendLine("The same simulator on the code and defs as they were before the pass, and as they are now (default settings).");
+                sb.AppendLine();
+                sb.AppendLine("| | 6 before | 6 after | 12 before | 12 after |");
+                sb.AppendLine("|---|---|---|---|---|");
+                void Row(string label, string style, Func<Summary, string> f)
+                {
+                    string Cell(int n, bool after)
+                    {
+                        string key = "default|" + style + "|" + n;
+                        if (after) return f(R("default", style, n).summary);
+                        return before.TryGetValue(key, out var b) ? f(b) : "-";
+                    }
+                    sb.AppendLine($"| {label} | {Cell(6, false)} | {Cell(6, true)} | {Cell(12, false)} | {Cell(12, true)} |");
+                }
+                foreach (var st in Rates.Styles)
+                {
+                    Row($"Rimfolk's mood, {st.name}", st.key, x => N(x.net));
+                    Row($"  good memories (raw), {st.name}", st.key, x => $"{N(x.good)} ({N(x.goodRaw)})");
+                    Row($"  bad memories and steady bad, {st.name}", st.key, x => N(x.bad + x.steadyBad));
+                }
+                Row("Rimfolk's good moods at a high point (P99), well run", "well", x => N(x.goodP99));
+                Row("Time with +12 or more from Rimfolk's good moods, well run", "well", x => P(x.goodHigh));
+                Row("Trust, year's average, average play", "avg", x => N(x.trustMean, "0"));
+                Row("Questions per day, average play", "avg", x => D(x.decisionsPerDay));
+                Row("Questions within 12 hours of another, average play", "avg", x => P(x.clustered));
+                Row("Days with two or more questions, average play", "avg", x => P(x.twoDecisionDays));
+                Row("Wishes voiced per day, average play", "avg", x => D(x.perYear.GetValueOrDefault("wishes made") / Colony.YearDays));
+                Row("Letters that only tell, per day, average play", "avg", x => D(x.lettersPerDay));
+                Row("News lines per day (one evening letter), average play", "avg", x => D(x.digestPerDay));
+                foreach (var st in Rates.Styles)
+                    Row($"Time with an everyday ailment, {st.name}", st.key, x => P(x.illShare));
+                Row("Ailment days per colonist per year, average play", "avg", x => x.ailmentDays.ToString("0.0"));
+                sb.AppendLine();
+            }
+
             // ---------------- Mood ----------------
             sb.AppendLine("## Rimfolk's mood per colonist");
             sb.AppendLine();
@@ -254,6 +294,12 @@ namespace Balance
             sb.AppendLine("Not modelled: quirks, heirlooms and the colony's trait pride (small steady moods either way), decrees' own moods");
             sb.AppendLine("(the player's choice), secrets, vendettas and nemeses' moods (rare), the base game's moods themselves (a fixed");
             sb.AppendLine("good and bad per play style, under the standards' share), battles from events, and other mods' content.");
+            sb.AppendLine("The links between systems (`Interplay/`: strain eased, bonds, wishes made likelier by a run of setbacks, stories");
+            sb.AppendLine("moved on) give no mood of their own and aren't modelled; the social events, encounters and dreams they brought");
+            sb.AppendLine("are read from the defs like any other.");
+            sb.AppendLine();
+            sb.AppendLine("The \"before\" column is the same simulator on the code and defs as they were before the balance pass (the");
+            sb.AppendLine("presets' rows always use the presets as they are now).");
             return sb.ToString();
         }
     }

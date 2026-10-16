@@ -267,7 +267,7 @@ namespace Balance
         /// <summary>Content for another mod: a Mods_ file, or an element that MayRequires anything but a DLC.</summary>
         private static bool ForMods(string file, XElement el)
         {
-            if (file.Contains("_Mods_") || file.StartsWith("Mods_") || file.Contains("Mods_")) return true;
+            if (file.Contains("_Mods_") || file.StartsWith("Mods_") || file.Contains("Mods_") || file.EndsWith("_Mods.xml")) return true;
             string req = (string)el.Attribute("MayRequire") ?? (string)el.Attribute("MayRequireAnyOf");
             return req != null && req.Split(',').Any(r => !r.Trim().StartsWith("Ludeon.", StringComparison.OrdinalIgnoreCase));
         }
@@ -554,7 +554,8 @@ namespace Balance
             if (comps == null) return;
             XElement Comp(string suffix) => comps.Elements("li").FirstOrDefault(c => ((string)c.Attribute("Class") ?? "").EndsWith(suffix));
             var main = Comp("HediffCompProperties_Ailment");
-            if (main == null) return;
+            // Ailments of other mods' lands (<biomes>) never come on a base-game map.
+            if (main == null || main.Element("biomes") != null) return;
             var a = new AilmentInfo
             {
                 name = Get(el, "defName"),

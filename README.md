@@ -1393,7 +1393,10 @@ letter brings it all, a line each under **people**, **health**, **the colony**, 
 together as that colonist's day ("Hector's day: ..."). A day with a single piece of news brings a message instead, and
 what's waiting is saved with the game. Letters and messages that ask you to decide something (dilemmas, wishes,
 petitions, decree requests, meetings) and serious news (a death and its remembrance, raids and battles, nemeses, a
-serious illness, a camp arriving) still come at once. The **Colony news** setting can bring back a message for each,
+serious illness, a camp arriving) still come at once. Rimfolk's questions keep a little distance from each other: a
+dilemma, an event that asks something or a world event's first question waits until twelve hours have passed since
+Rimfolk's last question (a calendar day, a meeting's vote or a camp at the gate comes when it comes), so they arrive
+about one every two days and seldom two at once. The **Colony news** setting can bring back a message for each,
 **as it happens**, or turn it **off**, so the smaller news goes only to the message log in the History tab; how much
 of it there is at all is still set by **How many messages**.
 
@@ -1528,6 +1531,10 @@ clipboard" button) says most of what a bug report needs.
   constant, Harmony target and by-name lookup it uses). `-p:RimRef=1.7` builds against the 1.7 references. See
   "Checking a new game version" in [DESIGN.md](DESIGN.md).
 - `Tools/Tests/`: tests for the room rotation and mirroring math (`dotnet run --project Tools/Tests`).
+- `Tools/Balance/`: a colony-year simulator for balance. It plays a settled colony of 6 and of 12 through one year,
+  well run, average and neglected, from the defs, the code's rates and the mod's own mood arithmetic, and writes
+  `docs/balance-report.md` (moods, trust, letters per day by system, ailments, the presets), against the targets in
+  DESIGN.md ("Balance targets"): `dotnet run -c Release --project Tools/Balance -- .`
 - `Source/ColonyCouncil/Lean/`: on which tick of the hour each periodic pass runs (`Sched.cs`, so none share a tick)
   and how much history each part keeps in the save (`Caps.cs`). DESIGN.md lists them all under "Ticking" and
   "Save size"; a new hourly pass gets its own tick there.

@@ -671,7 +671,7 @@
         <severityPerDayTended>-0.5</severityPerDayTended>
       </li>
       <li Class="ColonyCouncil.HediffCompProperties_AilmentRecovery">
-        <severityPerDay>-0.04</severityPerDay>
+        <severityPerDay>-0.05</severityPerDay>
       </li>
     </comps>
     <stages>
@@ -918,7 +918,7 @@
         <key>Insomnia</key>
         <causes>
           <li><trigger>Worry</trigger><hours>8</hours><chance>0.015</chance></li>
-          <li><trigger>NightWork</trigger><hours>3</hours><chance>0.02</chance></li>
+          <li><trigger>NightWork</trigger><hours>3</hours><chance>0.015</chance></li>
         </causes>
         <childFactor>0.5</childFactor>
         <oldFactor>1.3</oldFactor>

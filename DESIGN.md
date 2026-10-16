@@ -690,6 +690,50 @@ another and the colony reads as one life.
 | Calendar, kept, setbacks, health | Dreams | the memory those leave | 5 dreams (XML) |
 | News | News | the evening digest | three or more lines about one colonist come together as their day |
 
+## Balance targets
+
+What the player asked for, over and over: it shouldn't be easy to keep everyone happy, good moods shouldn't vanish,
+not everything should be a mood, and neglect should have real consequences, never flat penalties. The targets below
+put numbers on that. `Tools/Balance` measures them: a colony-year simulator that plays a settled colony through one
+60-day year without the game, from the def XML, Rimfolk's rates (read from the source where it can) and the mod's own
+mood arithmetic (`GoodTimesMath`, `PressureMath`, `SetbackMath`, `AilmentMath`, `ArcMath`, compiled in as they are).
+What it can't know (the storyteller, how a player plays) is one documented table, `Tools/Balance/Rates.cs`. It writes
+`docs/balance-report.md`; run it after any change to moods, rates or ailments.
+
+**Rimfolk's mood** is everything Rimfolk adds to a colonist's mood, averaged over the year: its good memories (after
+the shared budget and fading sooner), its bad memories, and its steady moods (trust, the colony's ways, pressures,
+ailments, waiting, strain). The game's own moods aren't in it.
+
+| | Target (default settings) |
+|---|---|
+| Rimfolk's mood, a well-run colony | about +3 to +6 |
+| Rimfolk's mood, an average colony | about 0 to +3 |
+| Rimfolk's mood, a neglectful colony | clearly negative, about -4 to -10 |
+| Rimfolk's good moods at a colonist's best moment | well short of carrying them to the top (P99 around +15) |
+| Questions (choice letters) | not more than about one every 2 to 3 days in a colony of six |
+| Two questions at once | rare: a question that can wait doesn't come within 12 hours of another (`LetterGap`) |
+| Minor news | in the evening's colony news (`UI/News.cs`), not a letter or message of its own |
+| Everyday ailments | a colonist carries one no more than about 10 to 15% of the time in a reasonable colony |
+
+**Levers, in order of preference.** Keep flavour; never add a flat penalty; tune values in XML and constants, not
+systems.
+1. How often things happen: event and dilemma rates and cooldowns, ailment chances, how often small good things come.
+2. How long and how big the biggest good moods are (the ones that can carry a colonist for weeks).
+3. How hard setbacks and pressures press when a colony is neglected.
+
+**What the first measured pass found and did** (the report has the numbers). The recent passes (the shared budget,
+standards over the game's comforts, setbacks, pressures, rewards instead of mood) had already brought Rimfolk's good
+side down to about +5 per colonist: rising standards halve the council's rewards in a happy colony, and many good
+moods need conditions that rarely hold. So good moods weren't cut across the board; only the very biggest (+10 and
+more) came down by about a fifth, with weddings and the council's feast a little. Everyday ailments filled a quarter of
+an average colonist's time: the catching clock went from 20 to 30 days and the commonest causes and after-effects
+came down. Questions came at a little more than one every two days, a fifth of them within half a day of another: the
+gap between questions, dilemmas every 10 days instead of 8, and fewer questions from passing visitors.
+
+**The presets** each aim at their own balance: Light touch about +5, +4 and 0 (well run, average, neglected) with
+fewer questions; Story-rich the default's moods with a question a little more often than every two days; Demanding
+about 0, -4 and -18. Each preset's tooltip says so.
+
 ## Building help: how far should the mod build things itself?
 
 Think of it as a ladder. Each rung is optional and builds on the one below:
