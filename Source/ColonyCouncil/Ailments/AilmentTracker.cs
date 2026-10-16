@@ -21,7 +21,10 @@ namespace ColonyCouncil
     {
         // ---------------- Saved ----------------
 
-        /// <summary>"ThingID|defName": when they last came down with that one; "ThingID|any": with any.</summary>
+        /// <summary>
+        /// "ThingID|defName": when they last came down with that one; "ThingID|any": with any. "ThingID|fight": the fight
+        /// they last had their roll for; "ThingID|horror": when the horror they last had their roll for happened.
+        /// </summary>
         private Dictionary<string, int> last = new Dictionary<string, int>();
         /// <summary>ThingID: the day (game day index) they last ate fruit or vegetables.</summary>
         private Dictionary<string, int> freshDay = new Dictionary<string, int>();
@@ -39,10 +42,14 @@ namespace ColonyCouncil
         private Dictionary<int, string> doctors = new Dictionary<int, string>();
         /// <summary>"ThingID|defName": they've had it before.</summary>
         private HashSet<string> had = new HashSet<string>();
+        /// <summary>"ThingID|illness|ailment": an illness they have, that an ailment may follow once it's gone (AfterIllness).</summary>
+        private HashSet<string> carrying = new HashSet<string>();
+        /// <summary>Injury load ID: "ThingID|ailment|part index", for an injury that an ailment may follow once it has healed.</summary>
+        private Dictionary<int, string> healing = new Dictionary<int, string>();
         public int lastSeriousTick = -9999999;
 
-        private List<string> tmpKeys1, tmpKeys2, tmpKeys3, tmpKeys4, tmpDoctors;
-        private List<int> tmpInts1, tmpInts2, tmpInts3, tmpIds;
+        private List<string> tmpKeys1, tmpKeys2, tmpKeys3, tmpKeys4, tmpDoctors, tmpHealing;
+        private List<int> tmpInts1, tmpInts2, tmpInts3, tmpIds, tmpHealingIds;
         private List<float> tmpFloats;
 
         // ---------------- Not saved ----------------
@@ -100,7 +107,7 @@ namespace ColonyCouncil
         private static float Freq => AilmentMath.Frequency(S?.ailmentFrequency ?? 1f);
 
         /// <summary>Mean days between catching everyday ailments on a map, and between catching serious illnesses, at 100%.</summary>
-        public const float EverydayCatchingDays = 30f;
+        public const float EverydayCatchingDays = 35f;
         public const float SeriousCatchingDays = 300f;
 
         /// <summary>No new serious illness starts within this many days of the last one.</summary>
@@ -119,6 +126,7 @@ namespace ColonyCouncil
             AilmentChecks.Reset();
             defs = null;
             incidents = null;
+            afters = null;
         }
 
         // ---------------- The defs ----------------
@@ -279,6 +287,7 @@ namespace ColonyCouncil
             // Lice go round with the everyday ailments; the serious ones only while they're on.
             if (!awake) Spread(p);
             Bites(p, d);
+            Afters(p, d, awake, now);
             if (!SeriousOn) return;
             if (!d.rolled.Contains("Wound")) Wounds(p, d);
             if (!d.rolled.Contains("AfterCold")) AfterCold(p, d);
@@ -606,7 +615,8 @@ namespace ColonyCouncil
             {
                 if (!(hs[i] is Hediff_Injury inj) || inj.Severity < 2f || inj.IsPermanent() || bitesRolled.Contains(inj.loadID)) continue;
                 var race = inj.sourceDef?.race;
-                if (race == null || !race.IsFlesh || race.Humanlike) continue;
+                // An entity's wounds are a horror of their own (Afters), never a bite that passes anything on.
+                if (race == null || !race.IsFlesh || race.Humanlike || Entity(race)) continue;
                 bool insect = race.FleshType == FleshTypeDefOf.Insectoid && StingWounds.Contains(inj.def.defName);
                 bool animal = !insect && race.Animal && race.FleshType == FleshTypeDefOf.Normal && BiteWounds.Contains(inj.def.defName);
                 if (!insect && !animal) continue;
@@ -637,6 +647,245 @@ namespace ColonyCouncil
                     return;
                 }
             }
+        }
+
+        // ---------------- What comes after ----------------
+
+        /// <summary>One cause that rolls after something (an illness gone, an injury healed, a fight, a horror), ready to roll.</summary>
+        private class AfterCause
+        {
+            public HediffDef def;
+            public HediffCompProperties_Ailment info;
+            public AilmentCause cause;
+            /// <summary>The illnesses or injuries it follows, those that are in the game.</summary>
+            public readonly List<HediffDef> watched = new List<HediffDef>();
+            public BodyPartGroupDef group;
+        }
+
+        private static List<AfterCause> afters;
+
+        /// <summary>Every cause that rolls after something, looked up once (a DLC's or a mod's illness that isn't there is left out).</summary>
+        private static List<AfterCause> AfterCauses()
+        {
+            if (afters != null) return afters;
+            afters = new List<AfterCause>();
+            foreach (var def in Defs)
+            {
+                var info = InfoOf(def);
+                if (info?.causes == null) continue;
+                foreach (var c in info.causes)
+                {
+                    if (c == null || c.trigger < AilmentTrigger.AfterIllness) continue;
+                    var a = new AfterCause { def = def, info = info, cause = c };
+                    if (c.trigger == AilmentTrigger.AfterIllness || c.trigger == AilmentTrigger.Healed)
+                    {
+                        foreach (var n in c.after ?? new List<string>())
+                        {
+                            var h = DefDatabase<HediffDef>.GetNamedSilentFail(n);
+                            if (h != null && h != def) a.watched.Add(h);
+                        }
+                        if (a.watched.Count == 0) continue;
+                    }
+                    if (!c.partGroup.NullOrEmpty())
+                    {
+                        a.group = DefDatabase<BodyPartGroupDef>.GetNamedSilentFail(c.partGroup);
+                        if (a.group == null) continue;
+                    }
+                    afters.Add(a);
+                }
+            }
+            return afters;
+        }
+
+        /// <summary>An Anomaly entity (false without Anomaly, or when the game can't say).</summary>
+        private static bool Entity(RaceProperties race)
+        {
+            try
+            {
+                return race != null && race.IsAnomalyEntity;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Once an hour: what the colonist has come through lately, and what may follow it. An illness they had and have
+        /// got over (a cough after the flu), an injury that has healed (a limp after a broken leg), a fight at home on the
+        /// first night's sleep after it (bad nights), and a horror seen or suffered (unease).
+        /// </summary>
+        private void Afters(Pawn p, PawnDay d, bool awake, int now)
+        {
+            var list = AfterCauses();
+            if (list.Count == 0) return;
+            bool fightChecked = false, horrorChecked = false, hurtInFight = false, fought = false, horror = false;
+            foreach (var a in list)
+            {
+                if (a.info.serious && !SeriousOn) continue;
+                switch (a.cause.trigger)
+                {
+                    case AilmentTrigger.AfterIllness:
+                        Illnesses(p, a);
+                        break;
+                    case AilmentTrigger.Healed:
+                        Injuries(p, a);
+                        break;
+                    case AilmentTrigger.AfterFight:
+                        if (awake) break;
+                        if (!fightChecked)
+                        {
+                            fightChecked = true;
+                            fought = FreshFight(p, now, out hurtInFight);
+                        }
+                        if (fought) Roll(p, a, hurtInFight ? a.cause.hurtFactor : 1f);
+                        break;
+                    case AilmentTrigger.Horror:
+                        if (!horrorChecked)
+                        {
+                            horrorChecked = true;
+                            horror = FreshHorror(p, d, now, a.cause.after);
+                        }
+                        if (horror) Roll(p, a, 1f);
+                        break;
+                }
+            }
+            Healed(p, d);
+        }
+
+        private void Roll(Pawn p, AfterCause a, float factor)
+        {
+            if (Rand.Chance(a.cause.chance * factor * Freq * PersonFactor(p, a.info)) && CanGet(p, a.def, a.info, false)) Give(p, a.def, a.info, false);
+        }
+
+        /// <summary>An illness they have now is noted once it's bad enough; once it's gone, whatever follows it gets its roll.</summary>
+        private void Illnesses(Pawn p, AfterCause a)
+        {
+            var set = p.health.hediffSet;
+            foreach (var w in a.watched)
+            {
+                string key = p.ThingID + "|" + w.defName + "|" + a.def.defName;
+                var h = set.GetFirstHediffOfDef(w);
+                if (h != null)
+                {
+                    if (h.Visible && h.Severity >= a.cause.minSeverity) carrying.Add(key);
+                    continue;
+                }
+                if (carrying.Remove(key)) Roll(p, a, 1f);
+            }
+        }
+
+        /// <summary>An injury that may leave something behind once it heals is noted (with its part, to know a lost limb from a healed one).</summary>
+        private void Injuries(Pawn p, AfterCause a)
+        {
+            var hs = p.health.hediffSet.hediffs;
+            for (int i = 0; i < hs.Count; i++)
+            {
+                if (!(hs[i] is Hediff_Injury inj) || inj.Part == null || !a.watched.Contains(inj.def) || inj.IsPermanent() || inj.Severity < a.cause.minSeverity) continue;
+                if (a.group != null && !InGroup(inj.Part, a.group)) continue;
+                if (!healing.ContainsKey(inj.loadID)) healing[inj.loadID] = p.ThingID + "|" + a.def.defName + "|" + inj.Part.Index;
+            }
+        }
+
+        private static bool InGroup(BodyPartRecord part, BodyPartGroupDef group)
+        {
+            for (var x = part; x != null; x = x.parent)
+                if (x.IsInGroup(group)) return true;
+            return false;
+        }
+
+        private readonly List<int> healedTmp = new List<int>();
+
+        /// <summary>
+        /// The injuries noted for this colonist that are gone: healed, unless the part itself was lost or replaced (no
+        /// limp after a leg is gone). One that became a scar stays, and is let go without a roll.
+        /// </summary>
+        private void Healed(Pawn p, PawnDay d)
+        {
+            if (healing.Count == 0) return;
+            string prefix = p.ThingID + "|";
+            healedTmp.Clear();
+            var set = p.health.hediffSet;
+            foreach (var kv in healing)
+            {
+                if (kv.Value == null || !kv.Value.StartsWith(prefix, StringComparison.Ordinal)) continue;
+                Hediff live = null;
+                for (int i = 0; i < set.hediffs.Count; i++)
+                    if (set.hediffs[i].loadID == kv.Key)
+                    {
+                        live = set.hediffs[i];
+                        break;
+                    }
+                if (live != null)
+                {
+                    if (live.IsPermanent()) healedTmp.Add(kv.Key);
+                    continue;
+                }
+                healedTmp.Add(kv.Key);
+                var parts = kv.Value.Split('|');
+                if (parts.Length < 3) continue;
+                var def = DefDatabase<HediffDef>.GetNamedSilentFail(parts[1]);
+                var info = InfoOf(def);
+                var cause = info?.Cause(AilmentTrigger.Healed);
+                if (cause == null || (info.serious && !SeriousOn) || !d.rolled.Add("Healed|" + def.defName)) continue;
+                BodyPartRecord part = null;
+                try
+                {
+                    if (int.TryParse(parts[2], out int index) && index >= 0) part = p.RaceProps.body.GetPartAtIndex(index);
+                }
+                catch
+                {
+                    part = null;
+                }
+                if (part != null && (set.PartIsMissing(part) || set.PartOrAnyAncestorHasDirectlyAddedParts(part))) continue;
+                if (Rand.Chance(cause.chance * Freq * PersonFactor(p, info)) && CanGet(p, def, info, false)) Give(p, def, info, false);
+            }
+            foreach (int id in healedTmp) healing.Remove(id);
+        }
+
+        /// <summary>
+        /// Within a day of a big threat at home (a raid), they fought in it or were hurt in it, and haven't had the roll
+        /// for this fight yet (once per fight).
+        /// </summary>
+        private bool FreshFight(Pawn p, int now, out bool hurt)
+        {
+            hurt = false;
+            var map = p.Map;
+            var ms = p.mindState;
+            if (!p.Spawned || map == null || !map.IsPlayerHome || ms == null) return false;
+            int threat = map.storyState?.LastThreatBigTick ?? -1;
+            if (threat <= 0 || threat > now || now - threat > GenDate.TicksPerDay) return false;
+            hurt = ms.lastHarmTick >= threat;
+            if (!hurt && ms.lastAttackTargetTick < threat) return false;
+            string key = p.ThingID + "|fight";
+            if (last.TryGetValue(key, out int seen) && seen == threat) return false;
+            last[key] = threat;
+            return true;
+        }
+
+        /// <summary>
+        /// A horror: a fresh wound from an entity (each wound counted once, one roll a day for them), or a fresh memory of
+        /// one of these thoughts (each memory counted once).
+        /// </summary>
+        private bool FreshHorror(Pawn p, PawnDay d, int now, List<string> thoughts)
+        {
+            bool wounded = false;
+            var hs = p.health.hediffSet.hediffs;
+            for (int i = 0; i < hs.Count; i++)
+            {
+                if (!(hs[i] is Hediff_Injury inj) || inj.Severity < 2f || bitesRolled.Contains(inj.loadID) || !Entity(inj.sourceDef?.race)) continue;
+                bitesRolled.Add(inj.loadID);
+                wounded = true;
+            }
+            if (wounded && d.rolled.Add("Horror")) return true;
+            if (thoughts.NullOrEmpty()) return false;
+            var m = LifeConditions.Remembered(p, thoughts, 1f);
+            if (m == null) return false;
+            int mark = now - m.age;
+            string key = p.ThingID + "|horror";
+            if (last.TryGetValue(key, out int seen) && Math.Abs(seen - mark) <= GenDate.TicksPerHour) return false;
+            last[key] = mark;
+            return true;
         }
 
         /// <summary>Colonies with modern medicine vaccinate: tetanus is much rarer there.</summary>
@@ -1011,6 +1260,17 @@ namespace ColonyCouncil
                 int i = k.IndexOf('|');
                 return i <= 0 || !ids.Contains(k.Substring(0, i));
             });
+            carrying.RemoveWhere(k =>
+            {
+                int i = k.IndexOf('|');
+                return i <= 0 || !ids.Contains(k.Substring(0, i));
+            });
+            foreach (var k in healing.Where(kv =>
+                     {
+                         int i = kv.Value?.IndexOf('|') ?? -1;
+                         return i <= 0 || !ids.Contains(kv.Value.Substring(0, i));
+                     }).Select(kv => kv.Key).ToList())
+                healing.Remove(k);
             // Hediffs that are gone: the colonists' current ones are all that matter.
             var live = new HashSet<int>();
             foreach (var p in PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_Colonists.ToList())
@@ -1049,6 +1309,8 @@ namespace ColonyCouncil
             Scribe_Collections.Look(ref bitesRolled, "bitesRolled", LookMode.Value);
             Scribe_Collections.Look(ref doctors, "doctors", LookMode.Value, LookMode.Value, ref tmpIds, ref tmpDoctors);
             Scribe_Collections.Look(ref had, "had", LookMode.Value);
+            Scribe_Collections.Look(ref carrying, "carrying", LookMode.Value);
+            Scribe_Collections.Look(ref healing, "healing", LookMode.Value, LookMode.Value, ref tmpHealingIds, ref tmpHealing);
             Scribe_Values.Look(ref lastSeriousTick, "lastSeriousTick", -9999999);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
@@ -1061,6 +1323,8 @@ namespace ColonyCouncil
                 bitesRolled ??= new HashSet<int>();
                 doctors ??= new Dictionary<int, string>();
                 had ??= new HashSet<string>();
+                carrying ??= new HashSet<string>();
+                healing ??= new Dictionary<int, string>();
             }
         }
     }

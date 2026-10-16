@@ -3,8 +3,8 @@
 
   <!--
     Serious illnesses (Source/ColonyCouncil/Ailments/): rare, behind their own setting, at most one kind running in the
-    colony at a time and none within 30 days of the last (AilmentTracker). Twelve are modeled on real diseases, two are
-    invented (glassblood, hive fever). Most lethal ones are the game's immunity race: fatal untreated, beaten by steady
+    colony at a time and none within 30 days of the last (AilmentTracker). Thirteen are modeled on real diseases, two are
+    invented (glassblood, hive fever); swamp fever only comes in swamps and bogs (<biomes>). Most lethal ones are the game's immunity race: fatal untreated, beaten by steady
     tending, with the medicine counted as the real disease would (HediffCompProperties_AilmentMedicine: basic is herbal
     medicine or none, industrial and ultra are industrial and glitterworld medicine). Rabies has no immunity race but a
     turning point (HediffCompProperties_AilmentCourse): treatable from the bite, fatal once the symptoms show.
@@ -1204,6 +1204,107 @@
           <li><capacity>Consciousness</capacity><offset>-0.4</offset></li>
           <li><capacity>Moving</capacity><offset>-0.35</offset></li>
           <li><capacity>Breathing</capacity><offset>-0.15</offset></li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <!-- ===================== Swamp fever ===================== -->
+
+  <HediffDef ParentName="Council_IllnessBase">
+    <defName>Council_Ail_SwampFever</defName>
+    <label>swamp fever</label>
+    <description>Leptospirosis, from bacteria that rats and other animals leave in still, warm water: it gets in through scratches and the soft skin of feet that wade the swamp day after day. A week or two later comes a sudden fever with aching calves and red eyes; in bad cases the skin yellows, the kidneys fail and the lungs bleed. Untreated it can kill. With steady tending most recover, and modern medicine (antibiotics) clears it fast. It never passes from one person to another. High boots, and keeping cuts out of the water, keep it away. Survivors are weak for a while.</description>
+    <tendable>true</tendable>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <serious>true</serious>
+        <key>SwampFever</key>
+        <biomes>
+          <li>TemperateSwamp</li>
+          <li>TropicalSwamp</li>
+          <li>ColdBog</li>
+        </biomes>
+        <causes><li><trigger>WetFeet</trigger><hours>3</hours><chance>0.006</chance></li></causes>
+        <cooldownDays>90</cooldownDays>
+        <afterEffects>
+          <li><hediff>Council_Ail_Convalescent</hediff><severity>0.5~0.7</severity></li>
+        </afterEffects>
+        <letterText>{PAWN_nameDef} has swamp fever. It came out of the water {PAWN_pronoun} has been wading through, through a scratch or the soles of the feet, and now there's a sudden fever, red eyes and calves that ache at every step.\n\nUntreated, swamp fever can turn the skin yellow and stop the kidneys, and it can kill. With steady tending most recover, and modern medicine clears it quickly. It doesn't pass from one person to another.</letterText>
+        <notes>
+          <li>Tend the fever often and keep them drinking. Nobody else can catch it from them, so they needn't be kept apart.</li>
+          <li>[lowtech] Cool cloths, willow bark, and broth every hour they can keep it down. Watch the color of their skin and their water.</li>
+          <li>[!lowtech] Antibiotics early make all the difference, so industrial medicine is the thing here. Fluids, and watch the kidneys.</li>
+        </notes>
+      </li>
+      <li Class="HediffCompProperties_TendDuration">
+        <baseTendDurationHours>12</baseTendDurationHours>
+        <severityPerDayTended>0</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentMedicine">
+        <severityPerDayTended>-0.12</severityPerDayTended>
+        <basic>0.6</basic>
+        <industrial>1.4</industrial>
+        <ultra>1.7</ultra>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentImmunizable">
+        <severityPerDayNotImmune>0.14</severityPerDayNotImmune>
+        <severityPerDayNotImmuneRandomFactor>0.85~1.15</severityPerDayNotImmuneRandomFactor>
+        <immunityPerDaySick>0.12</immunityPerDaySick>
+        <treatedImmunityPerDay>0.1</treatedImmunityPerDay>
+        <severityPerDayImmune>-0.2</severityPerDayImmune>
+        <immunityPerDayNotSick>-0.01</immunityPerDayNotSick>
+        <incubationDays>5~12</incubationDays>
+        <childFactor>0.8</childFactor>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>incubating</label>
+        <becomeVisible>false</becomeVisible>
+      </li>
+      <li>
+        <minSeverity>0.05</minSeverity>
+        <label>fever and aching calves</label>
+        <restFallFactor>1.2</restFallFactor>
+        <painOffset>0.08</painOffset>
+        <capMods>
+          <li><capacity>Consciousness</capacity><offset>-0.08</offset></li>
+          <li><capacity>Moving</capacity><offset>-0.08</offset></li>
+        </capMods>
+      </li>
+      <li>
+        <minSeverity>0.3</minSeverity>
+        <label>jaundice</label>
+        <restFallFactor>1.3</restFallFactor>
+        <painOffset>0.1</painOffset>
+        <capMods>
+          <li><capacity>Consciousness</capacity><offset>-0.15</offset></li>
+          <li><capacity>Moving</capacity><offset>-0.12</offset></li>
+        </capMods>
+      </li>
+      <li>
+        <minSeverity>0.55</minSeverity>
+        <label>failing kidneys</label>
+        <restFallFactor>1.4</restFallFactor>
+        <painOffset>0.12</painOffset>
+        <capMods>
+          <li><capacity>Consciousness</capacity><offset>-0.25</offset></li>
+          <li><capacity>Moving</capacity><offset>-0.2</offset></li>
+          <li><capacity>BloodFiltration</capacity><offset>-0.2</offset></li>
+        </capMods>
+      </li>
+      <li>
+        <minSeverity>0.8</minSeverity>
+        <label>bleeding lungs</label>
+        <lifeThreatening>true</lifeThreatening>
+        <restFallFactor>1.5</restFallFactor>
+        <painOffset>0.12</painOffset>
+        <capMods>
+          <li><capacity>Consciousness</capacity><offset>-0.35</offset></li>
+          <li><capacity>Moving</capacity><offset>-0.3</offset></li>
+          <li><capacity>Breathing</capacity><offset>-0.25</offset></li>
+          <li><capacity>BloodFiltration</capacity><offset>-0.3</offset></li>
         </capMods>
       </li>
     </stages>

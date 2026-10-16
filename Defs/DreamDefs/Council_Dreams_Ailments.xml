@@ -2,9 +2,9 @@
 <Defs>
 
   <!--
-    Dreams of the sick (Source/ColonyCouncil/Ailments/): dreamfever's vivid dreams, and the dreams of someone seriously
-    ill. Like the other dreams tied to a condition, they only come while the dreamer has it, and are much likelier
-    then than the usual ones.
+    Dreams of the sick (Source/ColonyCouncil/Ailments/): dreamfever's vivid dreams, the dreams of someone seriously
+    ill, and the nightmares of bad nights after a fight and of unease after a horror. Like the other dreams tied to a
+    condition, they only come while the dreamer has it, and are much likelier then than the usual ones.
   -->
 
   <ColonyCouncil.DreamDef>
@@ -45,6 +45,7 @@
       <li>Council_Ail_Rabies</li>
       <li>Council_Ail_Measles</li>
       <li>Council_Ail_HiveFever</li>
+      <li>Council_Ail_SwampFever</li>
     </hediffs>
     <lines>
       <plain>
@@ -55,6 +56,48 @@
       <warm><li>My mother was wiping my forehead with a cool cloth. I woke up and it was the doctor.</li></warm>
       <gloomy><li>I saw my own grave, neat and well kept.</li></gloomy>
       <cold><li>A dream about dying. Not useful.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf_BadNights</defName>
+    <label>a dream of the fight</label>
+    <kind>Nightmare</kind>
+    <weight>2</weight>
+    <children>true</children>
+    <hediffs><li>Council_Ail_BadNights</li></hediffs>
+    <lines>
+      <plain>
+        <li>The raid again. This time the gate wouldn't close, however hard I pushed.</li>
+        <li>I was on the wall and my hands were empty. I kept reaching for the rifle that wasn't there.</li>
+        <li>In the dream they came in quietly, one at a time, and sat down at our table as if they lived here.</li>
+        <li>[child] The bad men came back in my dream, but the big ones stood in front of me.</li>
+      </plain>
+      <warm><li>Dreamt of the fight, and then of someone pulling me back from it by the collar. I woke up holding the blanket.</li></warm>
+      <blunt><li>Dreamt the fight. Woke up swinging.</li></blunt>
+      <gloomy><li>The fight didn't end in the dream. It just went on until morning.</li></gloomy>
+      <cold><li>The engagement replayed itself. I noted two mistakes I made, and woke before I could fix them.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef MayRequire="Ludeon.RimWorld.Anomaly">
+    <defName>Council_DreamOf_Unease</defName>
+    <label>a dream of the thing in the dark</label>
+    <kind>Nightmare</kind>
+    <weight>2</weight>
+    <children>true</children>
+    <hediffs><li>Council_Ail_Unease</li></hediffs>
+    <lines>
+      <plain>
+        <li>Something stood at the end of my bed with too many joints in its arms. It didn't move. Neither did I.</li>
+        <li>Every room in the colony had one more door than it should, and behind each one something was breathing.</li>
+        <li>I dreamt I was awake, and the dark in the corner was paying attention to me.</li>
+        <li>[child] There was a thing in my dream with no face. I hid under the blanket and it went away.</li>
+      </plain>
+      <warm><li>The dark came for me in the dream, and someone lit a lamp, and it went back where it came from.</li></warm>
+      <blunt><li>That thing again. In my sleep this time.</li></blunt>
+      <gloomy><li>I dreamt the thing was still out there. I'm not sure that was a dream.</li></gloomy>
+      <cold><li>A dream about the entity. My mind is still filing what it saw.</li></cold>
     </lines>
   </ColonyCouncil.DreamDef>
 

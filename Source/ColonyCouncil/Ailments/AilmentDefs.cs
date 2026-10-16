@@ -6,7 +6,7 @@ namespace ColonyCouncil
 {
     /// <summary>
     /// What a colonist's day has to hold for an ailment to come on. Most are counted in hours over the day (an hour
-    /// counts when the hourly look finds them at it), from <see cref="HeavyWork"/> to <see cref="Worry"/>; the rest are
+    /// counts when the hourly look finds them at it), from <see cref="HeavyWork"/> to <see cref="InSpace"/>; the rest are
     /// checked on their own (a wound, a bite, a cold in someone frail, the diet, sweets, a meal or a drink). The numbers
     /// aren't saved anywhere, so new counted ones go before <see cref="Wound"/>.
     /// </summary>
@@ -61,6 +61,12 @@ namespace ColonyCouncil
         Hungry,
         /// <summary>Mood below 30%, or strained (the heart's strain at 30 or more).</summary>
         Worry,
+        /// <summary>Outdoors on polluted ground, or under the acid haze of a polluted world (Biotech).</summary>
+        Polluted,
+        /// <summary>Awake outdoors around midday on deep snow or ice, in bright sun, with nothing over the eyes.</summary>
+        SnowGlare,
+        /// <summary>Awake on a map in orbit (Odyssey).</summary>
+        InSpace,
         /// <summary>A deep wound (bite, scratch, stab, cut) left untended for hours.</summary>
         Wound,
         /// <summary>A bite from a warm-blooded animal (one roll per bite; a bite cleaned within hours halves it).</summary>
@@ -76,7 +82,27 @@ namespace ColonyCouncil
         /// <summary>A fine or lavish meal (rolled per meal, more often from 40 and again from 60).</summary>
         RichMeal,
         /// <summary>An alcoholic drink (rolled per drink).</summary>
-        Drink
+        Drink,
+        /// <summary>
+        /// Getting over one of the illnesses in <see cref="AilmentCause.after"/> (HediffDef names, the game's or a mod's):
+        /// rolled once, when it has gone, if it reached <see cref="AilmentCause.minSeverity"/>.
+        /// </summary>
+        AfterIllness,
+        /// <summary>
+        /// An injury of one of the kinds in <see cref="AilmentCause.after"/> (a crack, a burn) healed without a scar, on a
+        /// part in <see cref="AilmentCause.partGroup"/> when one is named: rolled once per injury, when it has gone.
+        /// </summary>
+        Healed,
+        /// <summary>
+        /// Fought in a big fight at home (a raid), or was hurt in it: rolled once per fight, on the first night's sleep
+        /// within a day of it; <see cref="AilmentCause.hurtFactor"/> times as likely for those who were hurt.
+        /// </summary>
+        AfterFight,
+        /// <summary>
+        /// Something that should not exist: a fresh memory of one of the thoughts in <see cref="AilmentCause.after"/>, or a
+        /// wound from an entity (Anomaly). Rolled once per memory, and once a day for wounds.
+        /// </summary>
+        Horror
     }
 
     /// <summary>One way an ailment can come on: what the day has to hold, how many hours of it, and the chance.</summary>
@@ -90,6 +116,17 @@ namespace ColonyCouncil
         /// <summary>Someone who has this already is likelier to get it this way (lice and typhus), by <see cref="boost"/>.</summary>
         public HediffDef boostHediff;
         public float boost = 1f;
+        /// <summary>
+        /// What it comes after: illnesses (AfterIllness), injuries (Healed) or memories (Horror), by def name, so another
+        /// mod's or a DLC's simply doesn't count when it isn't there.
+        /// </summary>
+        public List<string> after;
+        /// <summary>Healed: only an injury on a part in this body part group (or below one that is), e.g. Legs.</summary>
+        public string partGroup;
+        /// <summary>AfterIllness, Healed: only once the illness or injury has been at least this bad.</summary>
+        public float minSeverity;
+        /// <summary>AfterFight: the factor for those who were hurt in the fight.</summary>
+        public float hurtFactor = 3f;
     }
 
     /// <summary>
@@ -207,6 +244,10 @@ namespace ColonyCouncil
             if (notes.NullOrEmpty()) yield return "ailment has no doctor's notes";
             if (!serious && parentDef.lethalSeverity > 0f) yield return "an everyday ailment must never be lethal";
             if (serious && letterText.NullOrEmpty() && !(causes == null || causes.Count == 0)) yield return "a serious illness needs a letter";
+            if (causes != null)
+                foreach (var c in causes)
+                    if (c != null && (c.trigger == AilmentTrigger.AfterIllness || c.trigger == AilmentTrigger.Healed) && c.after.NullOrEmpty())
+                        yield return "a cause after an illness or an injury needs <after>";
         }
     }
 

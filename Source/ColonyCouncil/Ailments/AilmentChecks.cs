@@ -23,6 +23,8 @@ namespace ColonyCouncil
 
         private static NeedDef hygiene;
         private static TraitDef nightOwl;
+        private static GameConditionDef noxiousHaze;
+        private static TerrainDef ice;
         private static bool looked;
 
         private static void Look()
@@ -32,6 +34,9 @@ namespace ColonyCouncil
             // Dubs Bad Hygiene's need, when it's there.
             hygiene = DefDatabase<NeedDef>.GetNamedSilentFail("Hygiene");
             nightOwl = DefDatabase<TraitDef>.GetNamedSilentFail("NightOwl");
+            // Biotech's acid haze over a polluted world.
+            noxiousHaze = DefDatabase<GameConditionDef>.GetNamedSilentFail("NoxiousHaze");
+            ice = DefDatabase<TerrainDef>.GetNamedSilentFail("Ice");
         }
 
         public static void Reset()
@@ -41,6 +46,8 @@ namespace ColonyCouncil
             looked = false;
             hygiene = null;
             nightOwl = null;
+            noxiousHaze = null;
+            ice = null;
         }
 
         private static bool BiomeIs(BiomeDef b, string[] words, Dictionary<BiomeDef, bool> cache)
@@ -104,6 +111,7 @@ namespace ColonyCouncil
             }
             mask |= Inner(p);
             if (SmallHours(p, map)) mask |= Bit(AilmentTrigger.NightWork);
+            if (InSpace(map)) mask |= Bit(AilmentTrigger.InSpace);
             var job = p.CurJob;
             string work = job?.workGiverDef?.workType?.defName;
             bool working = work != null;
@@ -126,6 +134,8 @@ namespace ColonyCouncil
                 if (moving && RoughGround(p.Position, map)) mask |= Bit(AilmentTrigger.RoughGround);
                 if (AshBiome(map) || ConditionOn(map, GameConditionDefOf.VolcanicWinter)) mask |= Bit(AilmentTrigger.Ashfall);
                 if (temp >= 10f && (work == "Growing" || work == "PlantCutting")) mask |= Bit(AilmentTrigger.PlantWork);
+                if (Polluted(p, map)) mask |= Bit(AilmentTrigger.Polluted);
+                if (SnowGlare(p, map)) mask |= Bit(AilmentTrigger.SnowGlare);
             }
             if (job != null && (job.def == JobDefOf.BeatFire || job.def == JobDefOf.ExtinguishFiresNearby || work == "Firefighter"))
                 mask |= Bit(AilmentTrigger.Firefighting);
@@ -133,7 +143,60 @@ namespace ColonyCouncil
             return mask;
         }
 
-        public static bool Counted(AilmentTrigger t) => t >= AilmentTrigger.HeavyWork && t <= AilmentTrigger.Worry;
+        /// <summary>
+        /// Biotech: polluted ground underfoot, or the acid haze of a polluted world overhead, for someone without a gas
+        /// mask (or a gene, or anything else, that makes them half proof against a toxic world).
+        /// </summary>
+        private static bool Polluted(Pawn p, Map map)
+        {
+            if (!ModsConfig.BiotechActive) return false;
+            Look();
+            bool polluted;
+            try
+            {
+                polluted = (map.pollutionGrid != null && map.pollutionGrid.IsPolluted(p.Position)) || ConditionOn(map, noxiousHaze);
+                if (polluted && StatDefOf.ToxicEnvironmentResistance != null && p.GetStatValue(StatDefOf.ToxicEnvironmentResistance) >= 0.5f) return false;
+            }
+            catch
+            {
+                return false;
+            }
+            return polluted;
+        }
+
+        /// <summary>
+        /// The glare off snow and ice: around midday, under a bright sky with nothing falling, on deep snow or bare ice,
+        /// with nothing over the eyes.
+        /// </summary>
+        private static bool SnowGlare(Pawn p, Map map)
+        {
+            int hour = GenLocalDate.HourOfDay(map);
+            if (hour < 9 || hour > 16) return false;
+            if (map.skyManager == null || map.skyManager.CurSkyGlow < 0.7f) return false;
+            var weather = map.weatherManager?.curWeather;
+            if (weather != null && (weather.rainRate > 0.1f || weather.snowRate > 0.1f)) return false;
+            Look();
+            bool white = (map.snowGrid != null && map.snowGrid.GetDepth(p.Position) >= 0.4f) || (ice != null && p.Position.GetTerrain(map) == ice);
+            return white && !CoveredEyes(p);
+        }
+
+        /// <summary>Goggles, a visor, a full helmet: anything worn over the eyes.</summary>
+        public static bool CoveredEyes(Pawn p)
+        {
+            var worn = p.apparel?.WornApparel;
+            if (worn == null) return false;
+            foreach (var a in worn)
+            {
+                var groups = a.def.apparel?.bodyPartGroups;
+                if (groups != null && (groups.Contains(BodyPartGroupDefOf.Eyes) || groups.Contains(BodyPartGroupDefOf.FullHead))) return true;
+            }
+            return false;
+        }
+
+        /// <summary>Odyssey: a map in orbit, where the light never changes and the air comes out of the scrubbers.</summary>
+        private static bool InSpace(Map map) => ModsConfig.OdysseyActive && map?.Biome != null && map.Biome.inVacuum;
+
+        public static bool Counted(AilmentTrigger t) => t >= AilmentTrigger.HeavyWork && t < AilmentTrigger.Wound;
 
         /// <summary>What's going on inside them, wherever they are: hunger, and worry (low mood or strain).</summary>
         private static int Inner(Pawn p)
