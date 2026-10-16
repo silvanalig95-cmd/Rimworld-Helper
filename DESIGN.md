@@ -863,9 +863,9 @@ the 250-tick cycle or of the day.
 | Tick | Pass | Work |
 |---|---|---|
 | 0-30 | Visual touches, the hour's look (the first pulse of the hour; only with visual touches on) | the map in view: maybe one comet gazer, one ambient line or a hum |
-| 157 | Council: fights and losses, decrees, wish upkeep, rooms taken, event wishes, new wishes | per home map (a fight going on?), per open wish, per colonist given a room; a new wish rolls once, and only when it comes does it ask every wish of every colonist |
+| 157 | Council: fights and losses, decrees, wish upkeep, promises kept (every other hour), event wishes, new wishes | per home map (a fight going on?), per open wish, per granted wish still watched (its own check, and a look at plans being built only when something is missing); a new wish rolls once, and only when it comes does it ask every wish of every colonist |
 | 327 | A camp's hour (only while a camp is there) | the camp's members, trade, fees, its day's event |
-| 502 | Council's day, first half (first hour of the day only): trust, standards, decree trust and petitions, rooms taken, anniversaries, names, journals, offices | per colonist (their memories, for the journal) |
+| 502 | Council's day, first half (first hour of the day only): trust, standards, decree trust and petitions, anniversaries, names, journals, offices | per colonist (their memories, for the journal) |
 | 677 | Health stories (with convalescence or reputation on) | per colonist: limbs lost, bed rest, setbacks; the cases of dangerous illness; pruning in the first hour of the day |
 | 852 | Council's day, second half (first hour of the day only): the social web, social events, life goals, secrets, vendettas, quirks, legacy, the colony's ways, the day's history sample, trust effects, bitter colonists | per pair of colonists (opinions, ties, circles), per colonist and quirk def |
 | 1027 | Council: ambitions, personal touches, dilemmas, annals, dreams, quirks | the ambition's goals on its map; per colonist (asleep or waking; a dream weighs every dream def for the one waking) |
@@ -913,8 +913,8 @@ when the alert or the council tab reads it; the inspector's strain line is built
 and pages rebuild their models every half second to second while open (UiCache, the Mood and Story tabs' own caches).
 
 **Called by the game often (no clock of their own).** These must stay cheap:
-- *Situational moods* (asked for every colonist every few seconds): heart strain, the colony's ways, decrees, trust, a
-  room taken, quirks, vendettas, heirlooms, a goal within reach, the comet, everyday pressures, ailments and
+- *Situational moods* (asked for every colonist every few seconds): heart strain, the colony's ways, decrees, trust,
+  quirks, vendettas, heirlooms, a goal within reach, the comet, everyday pressures, ailments and
   convalescence. Each answers from data worked out on the hour (a dictionary or a short loop, no LINQ), and the
   convalescent moods look at the hediff before anything else.
 - *The social tie mood* (asked for every pair of colonists): one dictionary lookup in an index rebuilt only when ties
