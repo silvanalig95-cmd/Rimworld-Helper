@@ -98,7 +98,8 @@ namespace ColonyCouncil
                 string pool = Pool(p.kind, Invitation);
                 if (lead == null || pool == null) return;
                 string line = Flavor.FromPool(pool, lead, null, null, Tags(p, lead));
-                if (!line.NullOrEmpty()) CouncilGameComponent.Speak(lead, Fill(line, p, lead), SpeechColor);
+                // together: said by whoever leads it as it sets off, to no one in particular; the others are on their way to them.
+                if (!line.NullOrEmpty()) Speech.Say(lead, Fill(line, p, lead), null, SpeechColor);
             }
             catch (Exception e)
             {
@@ -119,7 +120,10 @@ namespace ColonyCouncil
                     string pool = !p.pool.NullOrEmpty() ? p.pool : Pool(p.kind, While);
                     if (pool != null) line = Flavor.FromPool(pool, speaker, null, null, Tags(p, speaker));
                 }
-                if (!line.NullOrEmpty()) CouncilGameComponent.Speak(speaker, Fill(line, p, speaker), SpeechColor);
+                // together: said at the work party, the walk, the vigil, the search or the hunt itself, by one of those on it;
+                // an errand's words go to whoever it's handed to, and only show when they're really together (Speech.Say checks).
+                var to = p.kind == PlayKind.Carry && p.other != null && p.other != speaker ? p.other : null;
+                if (!line.NullOrEmpty()) Speech.Say(speaker, Fill(line, p, speaker), to, SpeechColor);
             }
             catch (Exception e)
             {

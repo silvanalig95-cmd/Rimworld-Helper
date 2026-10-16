@@ -38,15 +38,32 @@ namespace ColonyCouncil
             return t.Spawned && !t.IsForbidden(Faction.OfPlayer) && t.IsInAnyStorage();
         }
 
+        /// <summary>Food few would thank you for (human meat, insect meat, or meals made with them): handed over last.</summary>
+        private static int Unwelcome(Thing t)
+        {
+            try
+            {
+                if (FoodUtility.IsHumanlikeCorpseOrHumanlikeMeatOrIngredient(t)) return 2;
+                if (FoodUtility.IsInsectCorpseOrInsectMeatIngredient(t)) return 1;
+            }
+            catch (System.Exception e)
+            {
+                CouncilLog.ErrorOnce("errand food", e);
+            }
+            return 0;
+        }
+
         /// <summary>What there is to take, in the order it's taken.</summary>
         public static IEnumerable<Thing> Stock(Map map, string what, ThingDef def)
         {
             if (map == null) return Enumerable.Empty<Thing>();
             switch (what)
             {
-                case "rawfood": return map.listerThings.ThingsInGroup(ThingRequestGroup.FoodSourceNotPlantOrTree).Where(IsRawFood);
+                // Food carried out to someone else: what nobody would mind being given first, human and insect meat last.
+                case "rawfood":
+                    return map.listerThings.ThingsInGroup(ThingRequestGroup.FoodSourceNotPlantOrTree).Where(IsRawFood).OrderBy(Unwelcome);
                 case "medicine": return DilemmaEffect_Consume.Medicine(map);
-                case "meals": return PlaySpots.Meals(map);
+                case "meals": return PlaySpots.Meals(map).OrderBy(Unwelcome);
             }
             def = def ?? DefOf(what, null);
             if (def == null) return Enumerable.Empty<Thing>();
@@ -143,10 +160,14 @@ namespace ColonyCouncil
             return result;
         }
 
-        /// <summary>Someone the game would send hunting: able to, with a hunting weapon, no brawler.</summary>
+        /// <summary>
+        /// Someone the game would send hunting: able to, with a hunting weapon, no brawler; and nobody whose beliefs
+        /// hold violence abhorrent or killing animals wrong (Wishes/Beliefs.cs).
+        /// </summary>
         public static bool CanHunt(Pawn x) =>
             x?.workSettings != null && !x.WorkTypeIsDisabled(WorkTypeDefOf.Hunting) && WorkGiver_HunterHunt.HasHuntingWeapon(x)
-            && !(x.story?.traits?.HasTrait(TraitDefOf.Brawler) ?? false);
+            && !(x.story?.traits?.HasTrait(TraitDefOf.Brawler) ?? false)
+            && !Beliefs.Forbids(x, Belief.NoHunting) && !Beliefs.Forbids(x, Belief.NoViolence);
 
         private static WorkGiverDef Giver
         {

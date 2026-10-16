@@ -40,6 +40,10 @@ namespace ColonyCouncil
         {
             if (x == null || x.Dead || x.health?.capacities == null) return false;
             if (!x.health.capacities.CapableOf(PawnCapacityDefOf.Moving)) return false;
+            // Out in the open (a walk, a search, an errand to the gate, a watch kept outside): never for those whose faith keeps them indoors.
+            bool outside = p.kind == PlayKind.Procession || p.kind == PlayKind.Search || p.kind == PlayKind.Hunt
+                           || (p.kind == PlayKind.Vigil && p.to != PlaySpot.Person) || (p.kind == PlayKind.Carry && p.other == null);
+            if (outside && Beliefs.Forbids(x, Belief.Indoors)) return false;
             switch (p.kind)
             {
                 case PlayKind.WorkParty: return PlayWork.CanDo(p, x);

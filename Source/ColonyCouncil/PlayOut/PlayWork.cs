@@ -66,15 +66,29 @@ namespace ColonyCouncil
             return givers.TryGetValue(t, out var l) ? l : new List<WorkGiverDef>();
         }
 
-        /// <summary>Able for at least one of the party's kinds of work.</summary>
+        /// <summary>Able for at least one of the party's kinds of work, and none their beliefs rule out.</summary>
         public static bool CanDo(PlayOut p, Pawn x)
         {
             if (x == null) return false;
             foreach (var t in p.tasks)
+            {
+                if (!Allowed(t, x)) continue;
                 foreach (var w in Givers(t))
                     if (!x.WorkTypeIsDisabled(w.workType) && w.Worker?.MissingRequiredCapacity(x) == null)
                         return true;
+            }
             return false;
+        }
+
+        /// <summary>
+        /// Work their beliefs allow (Wishes/Beliefs.cs): no felling trees for those who think it wrong, nothing out in the
+        /// open for those whose faith keeps them indoors.
+        /// </summary>
+        public static bool Allowed(WorkTask t, Pawn x)
+        {
+            if (t == WorkTask.Cut && Beliefs.Forbids(x, Belief.NoTreeCutting)) return false;
+            if ((t == WorkTask.Sow || t == WorkTask.Harvest || t == WorkTask.Cut || t == WorkTask.Snow) && Beliefs.Forbids(x, Belief.Indoors)) return false;
+            return true;
         }
 
         /// <summary>Where the work is looked for from: near the place the answer names (the dining room after a feast), else the middle of the colony.</summary>
@@ -108,6 +122,7 @@ namespace ColonyCouncil
             var center = TemplatePlanner.ColonyCenter(map);
             foreach (var t in p.tasks)
             {
+                if (!Allowed(t, x)) continue;
                 foreach (var wg in Givers(t))
                 {
                     if (x.WorkTypeIsDisabled(wg.workType) || !(wg.Worker is WorkGiver_Scanner sc)) continue;
