@@ -387,6 +387,7 @@ namespace ColonyCouncil
         /// <summary>Voted out of their seat (to <paramref name="to"/>).</summary>
         private static void LostOffice(CouncilGameComponent comp, OfficeDef office, Pawn who, Pawn to)
         {
+            // apart: an election's outcome, told in its letter (Hold).
             CouncilGameComponent.GiveThought(who, CouncilDefOf.Council_LostOffice, to);
             comp.journals.Write(who, "Council_Journal_LostOffice", null, office.label.Named("OFFICE"));
         }
@@ -394,6 +395,7 @@ namespace ColonyCouncil
         /// <summary>Stood and lost to <paramref name="to"/>, and minds it (the greedy, the jealous, the abrasive).</summary>
         private static void LostElection(CouncilGameComponent comp, OfficeDef office, Pawn who, Pawn to)
         {
+            // apart: an election's outcome, told in its letter (Hold).
             CouncilGameComponent.GiveThought(who, CouncilDefOf.Council_LostElection, to);
             comp.social.Bump(who, to, TieKind.Rivals, 10f, "CC_TieNote_Election".Translate(office.label));
         }
