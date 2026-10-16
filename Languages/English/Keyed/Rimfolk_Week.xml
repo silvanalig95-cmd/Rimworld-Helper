@@ -166,7 +166,7 @@
   <CC_Table_ClickMood>Right click for their Mood tab.</CC_Table_ClickMood>
   <CC_Table_ClickHealth>Their Health tab says more.</CC_Table_ClickHealth>
   <CC_Table_RowClick>Click to select them on the map. Right click for their page, their Mood tab and the pin.</CC_Table_RowClick>
-  <CC_Table_RimfolkSub>Rimfolk</CC_Table_RimfolkSub>
+  <CC_Table_RimfolkSub>×{0}</CC_Table_RimfolkSub>
   <CC_Table_RimfolkHead>Rimfolk's moods for {0}: {1}</CC_Table_RimfolkHead>
   <CC_Table_MoodHead>{0}'s mood: {1}</CC_Table_MoodHead>
   <CC_Table_Stage>{0} ({1} of {2})</CC_Table_Stage>

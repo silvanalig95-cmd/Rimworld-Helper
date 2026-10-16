@@ -209,7 +209,8 @@ namespace ColonyCouncil
                 right -= nw + 6f;
             }
             UiKit.LabelFit(new Rect(x, r.y, Mathf.Max(0f, right - x), r.height), row.text, row.color);
-            if (!row.tip.NullOrEmpty()) TooltipHandler.TipRegion(r, row.tip);
+            // The line's tooltip leaves the pin to its own.
+            if (!row.tip.NullOrEmpty()) TooltipHandler.TipRegion(pinnable ? new Rect(r.x, r.y, r.width - 22f, r.height) : r, row.tip);
             // A right click offers the pin and the colonist's page.
             if (over && Event.current.type == EventType.MouseDown && Event.current.button == 1 && pinnable)
             {

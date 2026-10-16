@@ -396,9 +396,13 @@ namespace ColonyCouncil
             }
             row.moodColor = WeekModel.MoodColor(p, row.mood);
             float rimfolk = 0f;
+            int ours = 0;
             foreach (var l in lines)
                 if (MoodInsight.SourceOf(l.def).kind == MoodSource.Rimfolk)
+                {
                     rimfolk += l.mood;
+                    ours++;
+                }
             c[(int)Col.Mood] = new Cell
             {
                 text = p.InMentalState ? "CC_Table_InBreak".Translate(row.mood.ToStringPercent()).Resolve() : row.mood.ToStringPercent(),
@@ -409,7 +413,8 @@ namespace ColonyCouncil
             {
                 text = Mathf.Abs(rimfolk) < 0.05f ? "0" : MoodView.Number(rimfolk),
                 color = rimfolk > 0.05f ? MoodView.GoodColor : rimfolk < -0.05f ? MoodView.BadColor : UiKit.Faint,
-                sub = "CC_Table_RimfolkSub".Translate(),
+                // How many of their moods are Rimfolk's, as "×3" under the sum.
+                sub = ours > 0 ? "CC_Table_RimfolkSub".Translate(ours).Resolve() : null,
                 subColor = UiKit.Dim,
                 tip = RimfolkTip(p, lines, rimfolk),
                 sort = rimfolk
