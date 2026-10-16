@@ -545,6 +545,7 @@
           <li>[known] On the roads, the colony is known as {ITEM}.</li>
           <li>[customs] Customs kept here: {ITEM}.</li>
           <li>[lastfounder] Of those who were here on the first day, only {ITEM} is left, and lights the fire.</li>
+          <li>[founder] {ITEM}, the Founder, has seen ten years of it and more, and tells the story of the first night again.</li>
           <li>[firstborn] The colony's first child, {ITEM}, is grown and sits with the adults tonight.</li>
         </extra>
       </li>

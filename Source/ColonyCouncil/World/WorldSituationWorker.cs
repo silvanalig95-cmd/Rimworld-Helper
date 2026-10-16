@@ -397,6 +397,11 @@ namespace ColonyCouncil
             // What the people remember of the colony and of single colonists: their:grateful, their:grudge, their:friend...
             Interplay.AddMemoryTags(tags, s.ctx.faction);
             KinMemory.AddTags(tags, s.ctx.faction, s.ctx.a);
+            // What the colony is known for, as letters' lines ask for it: colony:Merciful, colony:Hospitable (Character/).
+            var character = CouncilGameComponent.Instance?.character;
+            if (character != null)
+                foreach (var t in CharacterTracker.TagNames)
+                    if (character.Is(t)) tags.Add("colony:" + t);
             AddTags(s, tags);
             return tags;
         }

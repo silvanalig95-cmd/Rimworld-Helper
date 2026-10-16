@@ -103,10 +103,12 @@ namespace ColonyCouncil
                 var sd = days[i];
                 if (sd == null || sd.label.NullOrEmpty()) continue;
                 int day = CalendarMath.Wrap(today + Mathf.Max(1, sd.inDays));
+                // As if the colony had named it (it comes in its first year, and the player can rename or drop it), and a
+                // tradition already.
                 var d = new CalendarDay
                 {
                     id = "scenario|" + i, kind = CalendarKind.Holiday, way = sd.way == DayWay.Personal ? DayWay.Feast : sd.way, label = sd.label,
-                    day = day, sinceYear = year, tick = now, weight = CalendarMath.FoundingWeight, tradition = true,
+                    byPlayer = true, day = day, sinceYear = year, tick = now, weight = CalendarMath.FoundingWeight, tradition = true,
                     lastYear = CalendarMath.InitialLastYear(today, year, day, false)
                 };
                 if (cal.TryAdd(d, false) == null) continue;
@@ -164,7 +166,9 @@ namespace ColonyCouncil
             }
         }
 
-        public override string Summary(Scenario scen) => "CC_ScenPart_Goal".Translate(goal?.goal ?? "?");
+        public override string Summary(Scenario scen) =>
+            "CC_ScenPart_Goal".Translate(goal?.goal == null ? "?"
+                : goal.goal.Formatted((goal.skill?.label ?? "").Named("SKILL"), goal.amount.ToString("0").Named("COUNT")).Resolve());
 
         public override void ExposeData()
         {

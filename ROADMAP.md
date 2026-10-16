@@ -96,7 +96,12 @@ every era. Called world events until the world situations below took that name.
 - Done: gentler stakes (later, smaller and fewer attacks; smaller debts; a softer feud; a strength setting) and
   four small, gentle starts with one or two colonists (The Inheritance, Master and Apprentice, Runaway Hearts,
   The Lone Hunter), built from two new parts: a bond from the start, and an event around a set day.
-- Next: a tribal and a medieval scenario or two, once the parts have been played with.
+- Done: a tribal and a medieval scenario, and two more (The Elders' Fire, What the Ship Carried, The Orphanage with
+  Biotech, The Land Grant with a medieval player faction), built from six new parts: a council already formed, days
+  the colony keeps, a life goal from before, a people the colony is beholden to (a debt in the region's memory),
+  children in its care, and a world event set in motion; a secret can now be shared by the whole company, and a sworn
+  enemy can be a people of the old ways with a vendetta sworn against them.
+- Next: a nomad start, and scenarios for other mods' peoples.
 
 ## Phase H3: World events (first batch done)
 Rare happenings across the whole region that last a while and change what the colony meets, on Rimfolk's own slow
@@ -283,14 +288,14 @@ the content itself, not only to systems, alongside whatever else it does. Where 
 | Lines in the flavor pools (variety report) | about 25,200 in 3,640 pools | the pools at the top of the report |
 | Social events, moments, frictions, nuisances | 100 (21 from quirks, 6 for elders), 137 (45 frictions, 4 that follow something real, 6 that ask for a quirk), 22 | every trait pairing and home condition |
 | Links between Rimfolk's own systems | 32 (offices at work, the heart in choices, stories that hear the world, the peoples' memory at camps and in encounters, setbacks into wishes and stories, a colonist's day in the news) | links for each new system as it lands: the camps and world events into the council, the calendar into dreams and life goals |
-| Secrets | 61 (2 for scenarios only; 9 that only come during a world event or a camp, 5 of them good), each with its own confide and graveside lines | more good ones, dilemmas for the newer ones |
+| Secrets | 62 (3 for scenarios only, one of them shared by the whole company; 9 that only come during a world event or a camp, 5 of them good), each with its own confide and graveside lines | more good ones, dilemmas for the newer ones |
 | Ways a vendetta is sworn and settled | 3 sworn (a death, a kidnapping, a bonded animal), 8 settled (blood, captives, a homecoming, laid down, laid down in peace, the blood price, an apology, passed to an heir) | vendettas against nemeses, dilemmas when an heir takes one up |
 | Council offices | 12 (14 seats; 7 open as the colony grows: a chaplain with Ideology, a warden of guests, a council of elders of three) | offices for mods (a guild master with Medieval Overhaul), offices that hear petitions |
 | Customs that can become traditions | 25 (5 of the land, 3 of the faith, 4 children's) | more for the faith's memes and other mods' biomes |
-| Rimfolk scenarios | 13 (7 gentle, 6 with stakes) | a tribe's start, a spacer crash with a secret, an orphanage |
-| Names (epithets) | 54 (8 from Rimfolk's own records; 5 given for one deed beyond the walls) | names from offices, faith and the colony's years |
+| Rimfolk scenarios | 17 (8 gentle, 9 with stakes; 13 → 17: a tribe's fire, a ship's shared secret, an orphanage with Biotech, a medieval land grant), 14 scenario parts (8 → 14) | a nomad start that moves with the seasons, a scenario for a mod's people |
+| Names (epithets) | 63 (54 → 63; 14 from Rimfolk's own records; 5 given for one deed beyond the walls; 9 from years in a seat, in the faith and in the colony, each shown in play) | names from a mod's offices and peoples, names that pass to an heir |
 | Advisor checks | 43 | checks for the newer systems (missions, the world page), more for tribal colonies |
-| Colony character | 5 ways (10 names), 6 things a colony grows into | traits from hospitality, faith and the calendar |
+| Colony character | 5 ways (10 names), 9 things a colony grows into (6 → 9: good hosts, devout, long-memoried, from Rimfolk's own records, each changing what comes) | effects in play for the six work names, a name for a colony at war |
 | Pets and nemeses | 14 heroics, 32 farewells, 22 taunts and parting words, 4 endings told from pools (one new: let go from the cells) | pets in the calendar, nemeses in dreams and personal stories |
 | Feelings | 26 (4 deepened by a heart's need that runs low) | feelings that touch the camps and world events, each with more dreams and moments |
 | Seen and heard (touches, speech, small habits) | 24 touches (6 new: a camp arriving, the first snow's flakes, a dream told at breakfast, a council wedding, a guest's word, guests' cups at a toast); lines about 9 kinds of state (about 400), dreams, guests and 4 kinds of weather; 12 small habits (6 → 12: stars, plants, animals, the stores, company, old stories) | touches for the world events' beats and the calendar's ways, habits for children and elders |

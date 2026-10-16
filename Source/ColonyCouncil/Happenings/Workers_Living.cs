@@ -965,6 +965,8 @@ namespace ColonyCouncil
             var names = ColonyCouncilMod.Settings.epithets ? CouncilGameComponent.Instance?.epithets : null;
             var last = names?.HolderOf("Council_Epithet_LastOfTheFirst");
             if (last != null && last.Spawned && last.Map == ctx.map) parts.Add(Part(lines, ctx, "lastfounder", last.LabelShort));
+            var founder = names?.HolderOf("Council_Epithet_Founder");
+            if (founder != null && founder != last && founder.Spawned && founder.Map == ctx.map) parts.Add(Part(lines, ctx, "founder", founder.LabelShort));
             var firstborn = names?.HolderOf("Council_Epithet_Firstborn");
             if (firstborn != null && firstborn.Spawned && firstborn.Map == ctx.map) parts.Add(Part(lines, ctx, "firstborn", firstborn.LabelShort));
             int lost = Find.StoryWatcher?.statsRecord?.colonistsKilled ?? 0;

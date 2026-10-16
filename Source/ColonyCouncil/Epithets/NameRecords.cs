@@ -100,32 +100,32 @@ namespace ColonyCouncil
 
     /// <summary>
     /// A ritual's outcome was applied: counted for the names and the colony's character (NameRecords). Only counts; the
-    /// ritual and its outcome are the game's own. The speech's own override is hooked too, and each ritual counts once.
+    /// ritual and its outcome are the game's own. The speech's own override is hooked too (Patch_SpeechKept), and each
+    /// ritual counts once.
     /// </summary>
-    [HarmonyPatch]
+    [HarmonyPatch(typeof(LordJob_Ritual), nameof(LordJob_Ritual.ApplyOutcome))]
     public static class Patch_RitualKept
     {
-        public static IEnumerable<System.Reflection.MethodBase> TargetMethods()
-        {
-            var types = new[] { typeof(LordJob_Ritual), typeof(LordJob_Joinable_Speech) };
-            foreach (var t in types)
-            {
-                var m = AccessTools.DeclaredMethod(t, nameof(LordJob_Ritual.ApplyOutcome));
-                if (m != null) yield return m;
-            }
-        }
+        public static void Postfix(LordJob_Ritual __instance, bool cancelled) => Kept(__instance, cancelled);
 
-        public static void Postfix(LordJob_Ritual __instance, bool cancelled)
+        internal static void Kept(LordJob_Ritual job, bool cancelled)
         {
             if (!RimfolkPatches.On) return;
             try
             {
-                NameRecords.Notify_RitualKept(__instance, cancelled);
+                NameRecords.Notify_RitualKept(job, cancelled);
             }
             catch (Exception e)
             {
                 CouncilLog.ErrorOnce("ritual hook", e);
             }
         }
+    }
+
+    /// <summary>A leader's speech applies its own outcome: counted like any ritual (Patch_RitualKept).</summary>
+    [HarmonyPatch(typeof(LordJob_Joinable_Speech), nameof(LordJob_Joinable_Speech.ApplyOutcome))]
+    public static class Patch_SpeechKept
+    {
+        public static void Postfix(LordJob_Joinable_Speech __instance, bool cancelled) => Patch_RitualKept.Kept(__instance, cancelled);
     }
 }

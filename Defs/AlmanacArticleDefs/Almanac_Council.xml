@@ -305,11 +305,28 @@ Others are given once, for one deed, and stay with their holder: the builder len
         <text>Some names count years rather than deeds. The Old Hand has been here longest, two years at least. Homegrown spent the most of their childhood here. Jailbird spent longest in the cells before joining. Two have a condition: the Unshaken has lived here a year without a single mental break, and Lucky a year without taking any damage at all. Either name is lost the day that changes, and can't be earned back.</text>
       </li>
       <li>
+        <heading>Names from a seat, the faith and the colony's years</heading>
+        <text>Rimfolk counts a few more things in the Records tab, and names come of them. Each name shows somewhere in play.</text>
+        <table>
+          <li>Name | Earned by | Where it shows</li>
+          <li>Old Doc | two years in the physician's seat | sick travellers come asking for them by name</li>
+          <li>Old Iron | two years as marshal | villages that were raided come to ask how to hold out</li>
+          <li>The Unbeaten | three terms as speaker, and never a vote lost in any election | the election letter says so when they keep the chair</li>
+          <li>The Celebrant | leading six of the faith's rituals to their end (Ideology) | neighbours come asking for a blessing</li>
+          <li>The Shepherd | two years as the faith's moral guide (Ideology) | the doubting come to sit with them</li>
+          <li>The Founder | ten years here, as one of those who came in the first two days | the founding day's letter, their death letter</li>
+          <li>The Last of the First | being the only founder still here, of two or more, a year on | the founding day's letter, their death letter</li>
+          <li>The Firstborn | being the first child born here, now grown (Biotech) | the founding day's letter, their death letter</li>
+          <li>The Annalist | writing the annals three years running | they keep the pen, even if someone sharper arrives</li>
+        </table>
+        <after>Like every name, these count for a candidate in an election. A vote lost counts in an election for any single seat, so a speaker who once stood for marshal and lost is no longer unbeaten.</after>
+      </li>
+      <li>
         <heading>The annals</heading>
         <text>The annals cover who joined, died, left or walked out, raids, wealth, wishes, ambitions, decrees, dilemmas, friendships, feuds, trust and names. Past years can be reread from the Chronicle page.</text>
       </li>
     </sections>
-    <keywords><li>epithet</li><li>name</li><li>title</li><li>annals</li><li>anniversary</li><li>chronicle</li><li>Gatekeeper</li><li>Daykeeper</li><li>Good Neighbour</li><li>Road-Warden</li></keywords>
+    <keywords><li>epithet</li><li>name</li><li>title</li><li>annals</li><li>anniversary</li><li>chronicle</li><li>Gatekeeper</li><li>Daykeeper</li><li>Good Neighbour</li><li>Road-Warden</li><li>Old Doc</li><li>Unbeaten</li><li>Celebrant</li><li>Shepherd</li><li>Founder</li><li>Annalist</li><li>Firstborn</li></keywords>
     <seeAlso><li>Council_Alm_C_Wishes</li></seeAlso>
   </ColonyCouncil.AlmanacArticleDef>
 
@@ -754,8 +771,19 @@ Some encounters and dilemmas only come up for a colony with a certain name: refu
         </table>
         <after>The proud get a small lasting mood (+2) while the name holds. The "Our ways" page shows how close the colony is to each.</after>
       </li>
+      <li>
+        <heading>What the colony grows into beyond its work</heading>
+        <text>Three more names come from how the colony lives with others, with its faith and with its own years. They are counted for the colony as a whole from Rimfolk's own records, give nobody a mood, and change what comes to the colony instead.</text>
+        <table>
+          <li>Known as | Earned by | What changes</li>
+          <li>Good hosts | camps that stayed their time and left on good terms; visitors, refugees, feasts, guests of note and peace talks the region remembers; with Hospitality, guests staying the night | camps come a third sooner after the last; refugee families and exiles seek the colony out</li>
+          <li>Devout (Ideology) | the faith's rituals held to their end, a chaplain in the seat, a moral guide in the faith | pilgrims, processions and penitents come twice as often, and pilgrimages and holy years find the colony</li>
+          <li>Long-memoried | calendar days kept two years running or more, and traditions (three between them) | players, minstrels and mourners come twice as often, and a great death in the region is told to the colony first</li>
+        </table>
+        <after>Each has its own visitors on the road (a word about the colony's warm fire, a pilgrim's prayer that steadies someone's faith, a stranger asking about the old days who teaches the teller to tell it well), and lines in letters that know the colony's name. And each leans the colony's old hands, those here a year or more: in a colony of good hosts they mind an answer that turns people away, in a devout or long-memoried one an answer that sets the old ways aside. Like the work names, these fade if the colony stops living up to them.</after>
+      </li>
     </sections>
-    <keywords><li>reputation</li><li>character</li><li>ways</li><li>merciful</li><li>harsh</li><li>generous</li><li>thrifty</li><li>traditional</li><li>restless</li><li>open</li><li>guarded</li><li>hard-working</li><li>easygoing</li><li>green-fingered</li><li>builders</li><li>learned</li><li>craftsfolk</li><li>hunters</li><li>delvers</li></keywords>
+    <keywords><li>reputation</li><li>character</li><li>ways</li><li>merciful</li><li>harsh</li><li>generous</li><li>thrifty</li><li>traditional</li><li>restless</li><li>open</li><li>guarded</li><li>hard-working</li><li>easygoing</li><li>green-fingered</li><li>builders</li><li>learned</li><li>craftsfolk</li><li>hunters</li><li>delvers</li><li>hosts</li><li>hospitality</li><li>devout</li><li>long-memoried</li></keywords>
     <seeAlso><li>Council_Alm_C_Dilemmas</li><li>Council_Alm_C_Decrees</li><li>Council_Alm_C_Strangers</li></seeAlso>
   </ColonyCouncil.AlmanacArticleDef>
 
@@ -889,9 +917,9 @@ The peoples that think best of the colony ask for other things: guests at their 
     <label>scenarios with stakes</label>
     <category>Council</category>
     <order>17</order>
-    <summary>Rimfolk's scenarios start the game with something already in motion: a friend on the way, a mentorship, an enemy, a debt, a feud, a prisoner.</summary>
+    <summary>Rimfolk's scenarios start the game with something already in motion: a friend on the way, a mentorship, an enemy, a debt, a feud, a prisoner, a council, a secret, children to raise.</summary>
     <tip>Not every colony starts with a clean slate.</tip>
-    <description>Rimfolk adds thirteen scenarios, marked "(Rimfolk)" on the scenario page along with how hard they are. Seven are gentle starts with no attacks of their own: four small ones with one or two colonists (The Inheritance, Master and Apprentice, Runaway Hearts, The Lone Hunter) and three for a small company (The Players' Cart, The Quiet House, The Homestead). Six come with stakes (Hot Money, Marooned, Deserters, Bad Blood, Borrowed Time, The Fallen Tyrant). A few seconds into the game a letter says how things stand. Their pieces are scenario parts you can add to any scenario in the editor.</description>
+    <description>Rimfolk adds seventeen scenarios, marked "(Rimfolk)" on the scenario page along with how hard they are. Eight are gentle starts with no attacks of their own: four small ones with one or two colonists (The Inheritance, Master and Apprentice, Runaway Hearts, The Lone Hunter), three for a small company (The Players' Cart, The Quiet House, The Homestead) and The Orphanage (with Biotech). Nine come with stakes (Hot Money, Marooned, Deserters, Bad Blood, Borrowed Time, The Fallen Tyrant, The Elders' Fire, What the Ship Carried, The Land Grant). A few seconds into the game a letter says how things stand. Their pieces are scenario parts you can add to any scenario in the editor.</description>
     <sections>
       <li>
         <heading>Scenario by scenario</heading>
@@ -905,6 +933,10 @@ The peoples that think best of the colony ask for other things: guests at their 
           <li>The Players' Cart | Four players and a muffalo. Visiting performers come first, then a fair or a talent scout. One of the company isn't who they say they are.</li>
           <li>The Quiet House | Three of a quiet order, a mentor and a novice among them, known from the start as merciful, generous and traditional. Pilgrims and holy folk come soon after; one of the three broke a vow once.</li>
           <li>The Homestead | A married couple and an old friend, with cows, chickens and seed potatoes. Family visits or writes within the month, and a buyer or a fair comes after the first harvest.</li>
+          <li>The Elders' Fire | Five of a tribe. The eldest who can holds the elder's seat from the first day, and two of the tribe's days are traditions from the first year: keep them, or the colony feels it. A neighbouring people's war band comes twice for the old feud, and one of you has sworn vengeance on them (three of theirs to fall) with a life goal to match.</li>
+          <li>What the Ship Carried | Three survivors and one secret, carried by one and known by all three. It can only come out to people who join later, when one of the three lets it slip, so friendships with newcomers cut both ways. The wreck comes down as a world event two or three weeks in, with salvagers, cheap steel and maybe pirates.</li>
+          <li>The Orphanage | Biotech only; without it the scenario isn't there. Two carers and three or four children, all fond of each other from the start, and one carer has set their heart on seeing a child grown. Nobody comes to attack; a storyteller, players or a lost child come instead.</li>
+          <li>The Land Grant | A medieval holding: the colony counts as one of the old ways until it researches past them, and the lord's reeve comes asking for a tithe. The speaker, the marshal and the reeve are named in the charter and sit until the year turns. The lord's people remember the grant as a debt, and in time ask for it back as a favour: answer kindly and the debt is settled.</li>
         </table>
       </li>
       <li>
@@ -929,8 +961,21 @@ The "Fights in Rimfolk's scenarios" setting makes those attacks weaker or strong
 
 Someone from the past, a visiting scholar or a great beast arriving "around a set day" waits for a quiet moment. If they can't come yet (the wrong season, nobody fits), they try again the next day.</text>
       </li>
+      <li>
+        <heading>Councils, customs and debts from the start</heading>
+        <text>The newer parts set up more of the colony's life before it begins:</text>
+        <points>
+          <li>A council already formed: seats filled before anyone votes, by the eldest who can (an elder) or by whoever is best at the work. This year's election counts as held; empty seats still get their by-election.</li>
+          <li>Days the colony keeps: days brought from the old home, on the calendar as traditions from the first year. Kept here two years running, they help the colony become long-memoried.</li>
+          <li>A life goal from before: for whoever swore vengeance, keeps the secret, is eldest, or looks after the children.</li>
+          <li>Beholden to a people: the colony holds its land by their grant. They remember it as a debt (on the World page) and call it in as a favour some weeks later.</li>
+          <li>Children in the colony's care (Biotech): children who arrive with the colonists, with nobody else.</li>
+          <li>A world event set in motion: one starts around a set day if it can, and waits for a quiet moment. Not with world events switched off.</li>
+        </points>
+        <after>A secret can be shared: one carries it and every grown-up who came knows it, so only those who join later can hear it let slip. A sworn enemy can be a neighbouring people of the old ways, with a vendetta sworn against them.</after>
+      </li>
     </sections>
-    <keywords><li>scenario</li><li>start</li><li>debt</li><li>loan</li><li>heist</li><li>mutiny</li><li>deserter</li><li>family</li><li>feud</li><li>tyrant</li><li>prisoner</li><li>hunt</li><li>gentle</li><li>mentor</li><li>lovers</li><li>small start</li><li>players</li><li>monastery</li><li>homestead</li><li>farm</li></keywords>
+    <keywords><li>scenario</li><li>start</li><li>debt</li><li>loan</li><li>heist</li><li>mutiny</li><li>deserter</li><li>family</li><li>feud</li><li>tyrant</li><li>prisoner</li><li>hunt</li><li>gentle</li><li>mentor</li><li>lovers</li><li>small start</li><li>players</li><li>monastery</li><li>homestead</li><li>farm</li><li>tribe</li><li>elder</li><li>crash</li><li>orphanage</li><li>children</li><li>land grant</li><li>medieval</li><li>charter</li></keywords>
     <seeAlso><li>Council_Alm_C_WorldEvents</li><li>Council_Alm_C_Ways</li></seeAlso>
   </ColonyCouncil.AlmanacArticleDef>
 

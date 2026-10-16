@@ -351,6 +351,14 @@ A colony also grows into what its people keep doing. A season of steady work ear
 colonists' own records as a rolling average per head. Those with a passion for the work take a small, lasting pride
 in it (+2), and the name fades if the work stops for long (a winter alone won't undo a farming colony).
 
+Three more names grow out of how the colony lives, counted from Rimfolk's own records for the colony as a whole and
+worth no mood at all: **good hosts** (camps that stayed their time and left on good terms, people taken in, with
+Hospitality its guests' nights), **devout** (with Ideology: the faith's rituals held to their end, a chaplain, a moral
+guide) and **long-memoried** (calendar days kept two years running, and traditions). What they change is what comes:
+camps come sooner to good hosts, and refugees and exiles seek them out; pilgrims and processions find a devout colony;
+players, minstrels and mourners a long-memoried one. Each has its own visitors on the road and lines in letters, and
+each leans the colony's old hands when an answer goes against it.
+
 ### Dilemmas: hard choices
 Every week or so (sooner while everyone is content) the council has to settle something, and every answer costs
 someone. A thief caught in the stores: forgive, make them work it off, or make an example of them? Two colonists
@@ -796,7 +804,12 @@ lost the day they break or take a scratch. Four come from deeds Rimfolk counts i
 (quarrels mended), *the Haggler* (trade deals struck), *the Vault* (secrets kept) and *the Mourner* (eulogies
 given). Out in the world, a colonist can be *Friend of the Road* (evenings at the camps' fires), *the Gatekeeper*
 (camps met at the gate), *Daykeeper* (the colony's days kept) or *Good Neighbour* (world events' calls answered), and
-for one deed *Roof-Raiser*, *Feud-Breaker*, *Bridge-Builder*, *the Finder* or *Road-Warden*. 54 names in all. Each
+for one deed *Roof-Raiser*, *Feud-Breaker*, *Bridge-Builder*, *the Finder* or *Road-Warden*. Years in a seat, in
+the faith and in the colony bring more: *Old Doc* and *Old Iron* (two years as physician or marshal), *the Unbeaten*
+(three terms as speaker without ever losing a vote), *the Celebrant* and *the Shepherd* (rituals led and years as
+moral guide, with Ideology), *the Founder* (ten years since the first day), *the Last of the First*, *the Firstborn*
+and *the Annalist*, who keeps the pen. They show in play: travellers ask for Old Doc or the Celebrant by name, the
+founding day's letter names the last of the founders. 63 names in all. Each
 year since a colonist joined, they
 mark the anniversary in their own words, and their friends share it. And when the moment fits (food running low,
 right after a raid, while people grieve, when everyone has grown spoiled) a colonist may petition the council for
@@ -1254,7 +1267,7 @@ so ("They've asked for Ana by name"). The World page shows it with the deed: "Th
 keep their memories; those deeds just name nobody.
 
 ## Scenarios with stakes
-Thirteen scenarios, marked "(Rimfolk)" on the scenario page with how hard they are. Each starts the game with
+Seventeen scenarios, marked "(Rimfolk)" on the scenario page with how hard they are. Each starts the game with
 something already in motion, and a few seconds in, a letter says how things stand.
 
 **Small, gentle starts** (one or two colonists, no attacks of their own):
@@ -1276,6 +1289,9 @@ something already in motion, and a few seconds in, a letter says how things stan
   mourners. One of the three once broke a vow.
 - **The Homestead.** A married couple and an old friend, with two cows, chickens and seed potatoes. Family visits or
   writes within the month, and a buyer or a fair comes after the first harvest.
+- **The Orphanage** (Biotech). Two carers and the three or four children they got out of a burning town, all fond of
+  each other from the start; one carer has set their heart on seeing a child grown. A storyteller, players or a lost
+  child come before long. Without Biotech the scenario isn't offered.
 
 **With stakes** (fights come later, smaller and a limited number of times; your storyteller's difficulty scales them):
 - **Hot Money** (moderate). Four thieves with 2,500 silver that belongs to a pirate boss, who asks for it back in
@@ -1293,12 +1309,22 @@ something already in motion, and a few seconds in, a letter says how things stan
 - **The Fallen Tyrant** (challenging). Five servants who drugged their warlord at a feast. The warlord starts as your
   prisoner, out cold for a few hours (build a cell fast), and every colonist loathes them. Their loyalists come in
   a week or so, and twice more after that unless the warlord is dead or one of you by then.
+- **The Elders' Fire** (moderate). Five of a tribe: the eldest sits as the colony's elder from day one, two of the
+  tribe's days are traditions from the first year, and a neighbouring people's war band comes twice for an old feud.
+  One of you has sworn vengeance on them, and set their heart on it.
+- **What the Ship Carried** (moderate). Three survivors of a ship that broke up in orbit, sharing one secret only those
+  who join later can learn, and only if one of the three lets it slip. The wreck comes down as a world event two or
+  three weeks in.
+- **The Land Grant** (moderate). Five settlers of a medieval holding on land granted by a lord: a council named in
+  the charter, a reeve come for the tithe, and a debt the lord's people remember and later call in as a favour.
 
 The pieces are **scenario parts** you can add to any scenario in the scenario editor: *a sworn enemy* (who hunts,
 was robbed by, betrayed or held the colonists in chains, can start as your prisoner, and attacks a set number of
 times or until they fall), *a debt*, *deserters*, *two feuding families*, *a bond from the start* (a couple, old
 friends, or a master and apprentice), *an event around a set day* (someone from the past, a visitor, a great
-beast...), *a reputation* and *a secret*. Enemies are nemeses from the first day; debts and hunts show on the
+beast...), *a reputation*, *a secret* (one the whole company can share), *a council already formed*, *days the colony
+keeps*, *a life goal from before*, *beholden to a people*, *children in the colony's care* and *a world event set in
+motion*. Enemies are nemeses from the first day; debts and hunts show on the
 **World** page. A hunt ends when its attacks run out, or when the one leading it dies, joins you, is sold off, or
 their people make peace or are wiped out, and the colony gets to feel that. Settings → **Fights in Rimfolk's
 scenarios** makes those attacks weaker or stronger (25% to 200%). They come even with battles in Rimfolk events
