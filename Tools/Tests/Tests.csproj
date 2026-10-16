@@ -22,6 +22,7 @@
     <Compile Include="../../Source/ColonyCouncil/Arcs/ArcMath.cs" Link="ArcMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Calendar/CalendarMath.cs" Link="CalendarMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/PlayOut/PlayOutMath.cs" Link="PlayOutMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Setbacks/SetbackMath.cs" Link="SetbackMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Lean/Sched.cs" Link="Sched.cs" />
     <Compile Include="../../Source/ColonyCouncil/Lean/Caps.cs" Link="Caps.cs" />
     <Compile Include="../../Source/ColonyCouncil/World/MemoryMath.cs" Link="MemoryMath.cs" />

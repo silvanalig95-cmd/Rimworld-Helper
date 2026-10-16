@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More small irritations from the colony itself (see Council_Encounters_Home.xml), each with a check of its own
+    (checkClass, Source/ColonyCouncil/Setbacks/SetbackNuisances.cs): food gone rotten in the stores, noticed by someone
+    who cooks; work out in the rain with no coat when the colony knows how to make one; junk left lying in someone's
+    bedroom. A freezer, a duster or parka, and a tidy room are the cures. Texts: {A_...} the colonist, {THING} the
+    rotten food or the junk.
+  -->
+
+  <ColonyCouncil.NuisanceDef>
+    <defName>Council_Nuisance_SpoiltStores</defName>
+    <label>rot in the stores</label>
+    <checkClass>ColonyCouncil.NuisanceCheck_SpoiltStores</checkClass>
+    <weight>1</weight>
+    <cooldownDays>4</cooldownDays>
+    <thought>Council_Nuisance_SpoiltStores</thought>
+    <texts>
+      <li>{A_nameDef} found the {THING} in the stockpile gone soft and grey, and had to step outside for a breath.</li>
+      <li>{A_nameDef} went for {THING} to cook with and came back empty-handed. The whole stack had turned.</li>
+      <li>The smell of rotten {THING} met {A_nameDef} at the storeroom door.</li>
+      <li>{A_nameDef} counted what was left of the {THING} that hadn't spoiled. It didn't take long.</li>
+      <li>{A_nameDef} picked up some of the {THING}, sniffed it once, and threw it on the rot pile.</li>
+      <li>[summer|hot] Flies had found the {THING} in the stores before {A_nameDef} did.</li>
+      <li>{A_nameDef} said what everyone was thinking: the {THING} should have been eaten a week ago.</li>
+    </texts>
+  </ColonyCouncil.NuisanceDef>
+
+  <ColonyCouncil.NuisanceDef>
+    <defName>Council_Nuisance_NoCoat</defName>
+    <label>no coat in the rain</label>
+    <checkClass>ColonyCouncil.NuisanceCheck_NoCoat</checkClass>
+    <children>true</children>
+    <weight>1</weight>
+    <cooldownDays>3</cooldownDays>
+    <thought>Council_Nuisance_NoCoat</thought>
+    <texts>
+      <li>{A_nameDef} worked on in the rain, shirt stuck flat to {A_possessive} back.</li>
+      <li>Rain ran off {A_nameDef}'s hair and down inside {A_possessive} collar. Nobody had thought to make {A_objective} a coat.</li>
+      <li>{A_nameDef} wrung out {A_possessive} sleeves at the end of the job and got about a cup of water from each.</li>
+      <li>{A_nameDef} squelched with every step and gave up trying to stay dry.</li>
+      <li>{A_nameDef} watched someone go by in a good coat and kept working in the downpour.</li>
+      <li>[child] {A_nameDef} came in dripping and stood by the fire until the floor around {A_objective} was a puddle.</li>
+    </texts>
+  </ColonyCouncil.NuisanceDef>
+
+  <ColonyCouncil.NuisanceDef>
+    <defName>Council_Nuisance_UglyBedroom</defName>
+    <label>junk in the bedroom</label>
+    <checkClass>ColonyCouncil.NuisanceCheck_UglyBedroom</checkClass>
+    <children>true</children>
+    <weight>0.8</weight>
+    <cooldownDays>4</cooldownDays>
+    <thought>Council_Nuisance_UglyBedroom</thought>
+    <texts>
+      <li>{A_nameDef} woke up face to face with the {THING} someone had left in {A_possessive} room.</li>
+      <li>{A_nameDef} stubbed a toe on the {THING} by the bed, for the second time.</li>
+      <li>{A_nameDef} asked, not for the first time, who had dumped a {THING} in {A_possessive} bedroom.</li>
+      <li>{A_nameDef} lay in bed looking at the {THING} in the corner and wondered when it would be moved.</li>
+      <li>[morning] The first thing {A_nameDef} saw that morning was the {THING} on the floor.</li>
+      <li>[child] {A_nameDef} built a fort around the {THING} in {A_possessive} room, because nobody was taking it away.</li>
+    </texts>
+  </ColonyCouncil.NuisanceDef>
+
+</Defs>

@@ -1,0 +1,716 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    What colonists say and write when something goes wrong for them (Source/ColonyCouncil/Setbacks/): a line said over
+    their head as it happens (Council_Pool_Setback_...), and for the bigger ones a journal entry
+    (Council_Journal_Setback_...). {PAWN_...} is the one speaking or writing; the rest are named per pool. The smaller
+    setbacks come up as everyday journal days (the JournalDayDefs and Council_Journal_Day_Setback_ pools below).
+  -->
+
+  <!-- ===================== Said as it happens ===================== -->
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_Setback_Wrecked</defName>
+    <lines>
+      <plain>
+        <li>That was my {THING}.</li>
+        <li>Days of work on that {THING}, and look at it.</li>
+        <li>I'll build it again. Not today.</li>
+        <li>That took me the better part of a week.</li>
+        <li>I can still see where I fixed the joint.</li>
+        <li>[afterraid] They came all this way to break that?</li>
+      </plain>
+      <warm>
+        <li>At least nobody was standing next to it.</li>
+      </warm>
+      <blunt>
+        <li>Who's paying for my {THING}?</li>
+        <li>Gone. Just like that.</li>
+      </blunt>
+      <cheerful>
+        <li>Well. Now I know how to build a better one.</li>
+      </cheerful>
+      <gloomy>
+        <li>Everything we make here ends up like that.</li>
+        <li>I knew that {THING} wouldn't last.</li>
+      </gloomy>
+      <cold>
+        <li>Note the damage. I'll want the materials to rebuild.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_Setback_CropLost</defName>
+    <lines>
+      <plain>
+        <li>The {THING}. All those rows.</li>
+        <li>I sowed every one of those by hand.</li>
+        <li>There goes the {THING}.</li>
+        <li>I should have cut it sooner.</li>
+        <li>[winter] One frost, and that's the season gone.</li>
+        <li>Back to the seed sacks, then.</li>
+      </plain>
+      <warm>
+        <li>We'll sow again. The soil's still good.</li>
+      </warm>
+      <blunt>
+        <li>Lost the {THING}. Again.</li>
+      </blunt>
+      <cheerful>
+        <li>Next year's {THING} will be twice the size. You'll see.</li>
+      </cheerful>
+      <gloomy>
+        <li>We'll be hungry for this later.</li>
+        <li>Weeks of weeding, for nothing.</li>
+      </gloomy>
+      <cold>
+        <li>Count what's left. We'll need to buy food.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_Setback_Surgery</defName>
+    <lines>
+      <plain>
+        <li>I'm sorry. I'm so sorry.</li>
+        <li>My hand slipped. It shouldn't have.</li>
+        <li>Somebody else should look at {OTHER_nameDef} next time.</li>
+        <li>I need to sit down.</li>
+        <li>I did everything right. I thought I did.</li>
+        <li>Fetch someone steadier than me.</li>
+      </plain>
+      <warm>
+        <li>{OTHER_nameDef}, I'll make this right. I promise.</li>
+      </warm>
+      <blunt>
+        <li>That went wrong. My fault.</li>
+      </blunt>
+      <gloomy>
+        <li>I shouldn't be the one holding the knife.</li>
+      </gloomy>
+      <cold>
+        <li>A complication. It happens.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_Setback_IdeaPassed</defName>
+    <lines>
+      <plain>
+        <li>So it's {AMBITION}, then. Fine.</li>
+        <li>I still think {MINE} was the better plan.</li>
+        <li>Next meeting, I'm bringing it up again.</li>
+        <li>I thought I'd made my case.</li>
+        <li>Half of them weren't listening anyway.</li>
+        <li>We'll see how {AMBITION} goes.</li>
+      </plain>
+      <warm>
+        <li>{AMBITION} it is. I'll help, even so.</li>
+      </warm>
+      <blunt>
+        <li>Wrong choice. You'll see.</li>
+        <li>Why do I bother standing up at these things?</li>
+      </blunt>
+      <cheerful>
+        <li>Next time, {MINE}. I can wait!</li>
+      </cheerful>
+      <gloomy>
+        <li>Nobody ever listens to me at these meetings.</li>
+      </gloomy>
+      <cold>
+        <li>Noted. I won't forget who voted how.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_Setback_NoPlate</defName>
+    <lines>
+      <plain>
+        <li>Is there really nothing left?</li>
+        <li>Some feast. I got the smell of it.</li>
+        <li>Next time I'm going to the table first.</li>
+        <li>Someone ate two. I saw it.</li>
+        <li>I set the tables and got nothing.</li>
+        <li>Bread and water at a feast.</li>
+      </plain>
+      <blunt>
+        <li>Empty pot. Wonderful.</li>
+      </blunt>
+      <cheerful>
+        <li>I'll just eat the crumbs, then. Very festive.</li>
+      </cheerful>
+      <gloomy>
+        <li>Of course it ran out before I got there.</li>
+      </gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_Setback_Rained</defName>
+    <lines>
+      <plain>
+        <li>Who decided to hold it outside?</li>
+        <li>My shoes are full of water.</li>
+        <li>Can we move this under a roof?</li>
+        <li>The fire's out, and so is the fun.</li>
+        <li>Someone fetch a tarp.</li>
+        <li>[child] Can we go inside now?</li>
+      </plain>
+      <cheerful>
+        <li>Dancing in the rain! Well, standing in it.</li>
+      </cheerful>
+      <gloomy>
+        <li>Even the sky didn't want this to happen.</li>
+      </gloomy>
+      <blunt>
+        <li>Wet. Cold. Going inside.</li>
+      </blunt>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== Written down, for the bigger ones ===================== -->
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Setback_Wrecked</defName>
+    <lines>
+      <plain>
+        <li>The {THING} I built is gone. I went to look at the spot this evening. There isn't much left.</li>
+        <li>Somebody asked me if I'd rebuild the {THING}. I said yes. I didn't mean it yet.</li>
+        <li>Picked through what was left of my {THING}. Kept one piece.</li>
+        <li>All that work on the {THING}, and it came down in a morning.</li>
+      </plain>
+      <warm>
+        <li>Lost the {THING} today. Everyone's alive, so I'm trying to keep it in proportion.</li>
+      </warm>
+      <blunt>
+        <li>The {THING} is wrecked. I'm furious.</li>
+      </blunt>
+      <gloomy>
+        <li>I don't know why I build anything here. It all ends up as rubble.</li>
+        <li>The {THING} is gone. I keep looking at the empty place where it stood.</li>
+      </gloomy>
+      <cold>
+        <li>The {THING} is a loss. I've worked out what it will take to replace it.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Setback_CropLost</defName>
+    <lines>
+      <plain>
+        <li>The {SUBJECT} took the {THING}. {COUNT} plants, and I sowed most of them myself.</li>
+        <li>Walked the field this morning. The {THING} is finished.</li>
+        <li>Cut down what was left of the {THING} today. It went on the compost.</li>
+        <li>We'll have to sow the {THING} again. If there's still time.</li>
+      </plain>
+      <warm>
+        <li>Lost the {THING}. We'll manage. We always do.</li>
+      </warm>
+      <blunt>
+        <li>Lost the {THING} to {SUBJECT}. {COUNT} plants.</li>
+      </blunt>
+      <gloomy>
+        <li>The {THING} is gone and I keep thinking about the winter.</li>
+        <li>I sowed that field row by row. It took the {SUBJECT} less than a day.</li>
+      </gloomy>
+      <cold>
+        <li>{COUNT} plants of {THING} lost to {SUBJECT}. We'll need to trade for food.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Setback_Surgery</defName>
+    <lines>
+      <plain>
+        <li>The operation on {OTHER_nameDef} went wrong. I keep going over it.</li>
+        <li>Couldn't sleep. I keep seeing my hands during the operation on {OTHER_nameDef}.</li>
+        <li>Went to see {OTHER_nameDef} after. I didn't know what to say.</li>
+      </plain>
+      <warm>
+        <li>{OTHER_nameDef} told me it wasn't my fault. It was.</li>
+      </warm>
+      <blunt>
+        <li>Botched {OTHER_nameDef}'s operation. Need more practice.</li>
+      </blunt>
+      <gloomy>
+        <li>I should never have picked up the knife. {OTHER_nameDef} trusted me.</li>
+      </gloomy>
+      <cold>
+        <li>Operation on {OTHER_nameDef}: failed. Reviewing what went wrong.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Setback_IdeaPassed</defName>
+    <lines>
+      <plain>
+        <li>The council went with {AMBITION}. I argued for {MINE}. I still think I was right.</li>
+        <li>Lost at the meeting. {MINE} will have to wait.</li>
+        <li>They chose {AMBITION}. I'll do my share of it, but I won't pretend I'm pleased.</li>
+      </plain>
+      <warm>
+        <li>{AMBITION} won. It's a good idea too, I suppose. Mine was better.</li>
+      </warm>
+      <blunt>
+        <li>Turned down: {MINE}. Again.</li>
+      </blunt>
+      <gloomy>
+        <li>I don't know why I stand up at those meetings.</li>
+      </gloomy>
+      <cold>
+        <li>They turned down {MINE}. I'll bring it back when they've seen {AMBITION} fail.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Setback_FriendLetDown</defName>
+    <lines>
+      <plain>
+        <li>The council promised {OTHER_nameDef} "{WISH}", and never did it. I saw {OTHER_possessive} face.</li>
+        <li>{OTHER_nameDef} has stopped mentioning "{WISH}". That's worse than complaining.</li>
+        <li>They broke their word to {OTHER_nameDef}. I'll remember that the next time they promise me something.</li>
+      </plain>
+      <warm>
+        <li>Sat with {OTHER_nameDef} after the council let {OTHER_objective} down. We didn't say much.</li>
+      </warm>
+      <blunt>
+        <li>A promise to {OTHER_nameDef}, broken. Typical.</li>
+      </blunt>
+      <cold>
+        <li>The council's promises are worth nothing. {OTHER_nameDef} is the proof.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Setback_Outshone</defName>
+    <lines>
+      <plain>
+        <li>{OTHER_nameDef} is better at {SKILL} than I am now. Everyone noticed before I did.</li>
+        <li>I used to be the one they asked about {SKILL}. Now they ask {OTHER_nameDef}.</li>
+        <li>Watched {OTHER_nameDef} work today. It was good. I hated that it was good.</li>
+      </plain>
+      <warm>
+        <li>{OTHER_nameDef} has a real gift for {SKILL}. I should be glad. I'm working on it.</li>
+      </warm>
+      <blunt>
+        <li>{OTHER_nameDef}. Better at {SKILL}. Fine.</li>
+      </blunt>
+      <gloomy>
+        <li>I was the best at {SKILL} here. Not any more.</li>
+      </gloomy>
+      <cold>
+        <li>{OTHER_nameDef} has overtaken me at {SKILL}. I'll practise until that changes.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Setback_Drifted</defName>
+    <lines>
+      <plain>
+        <li>{OTHER_nameDef} and I don't talk the way we used to. I'm not sure when that started.</li>
+        <li>Ate across from {OTHER_nameDef} tonight. We talked about the weather.</li>
+        <li>I almost went to find {OTHER_nameDef} after work, like I used to. Then I didn't.</li>
+      </plain>
+      <warm>
+        <li>I miss {OTHER_nameDef}, and {OTHER_pronoun} lives a few rooms away.</li>
+      </warm>
+      <blunt>
+        <li>{OTHER_nameDef} and I are done being close, apparently.</li>
+      </blunt>
+      <gloomy>
+        <li>Friends drift. {OTHER_nameDef} has drifted a long way.</li>
+      </gloomy>
+      <cold>
+        <li>{OTHER_nameDef} and I no longer have much to say to each other. It's simpler.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Setback_Homesick</defName>
+    <lines>
+      <plain>
+        <li>Hard week. I keep thinking about the place I grew up.</li>
+        <li>Dreamt of the house I lived in as a child. Woke up here.</li>
+        <li>I wonder if anyone back home still talks about me.</li>
+        <li>Tried to remember the sound of my mother's voice tonight.</li>
+      </plain>
+      <warm>
+        <li>This place is home now. It just doesn't feel like it this week.</li>
+      </warm>
+      <blunt>
+        <li>Bad week. Missing home.</li>
+      </blunt>
+      <gloomy>
+        <li>Everyone I knew before is a long way off, or gone. This week I feel it.</li>
+      </gloomy>
+      <cold>
+        <li>I've been thinking about leaving. Not seriously. Not yet.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Setback_ArtSold</defName>
+    <lines>
+      <plain>
+        <li>They sold "{TITLE}" today. I made that for us.</li>
+        <li>"{TITLE}" went off with the trader. I didn't go out to watch.</li>
+        <li>I'd have liked to be asked before they sold "{TITLE}".</li>
+      </plain>
+      <blunt>
+        <li>"{TITLE}": sold. For silver.</li>
+      </blunt>
+      <gloomy>
+        <li>Somewhere out there a stranger has "{TITLE}" in their hall, and doesn't know my name.</li>
+      </gloomy>
+      <cold>
+        <li>"{TITLE}" fetched a price, I suppose. I'll make the next one less easy to sell.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== Everyday journal days for the smaller setbacks ===================== -->
+
+  <ColonyCouncil.JournalDayDef>
+    <defName>Council_JDay_Setback_Missed</defName>
+    <key>Setback_Missed</key>
+    <weight>0.8</weight>
+    <thoughts><li>Council_Setback_MissedGathering</li></thoughts>
+  </ColonyCouncil.JournalDayDef>
+
+  <ColonyCouncil.JournalDayDef>
+    <defName>Council_JDay_Setback_NoPlate</defName>
+    <key>Setback_NoPlate</key>
+    <weight>1</weight>
+    <thoughts><li>Council_Setback_NoPlate</li></thoughts>
+  </ColonyCouncil.JournalDayDef>
+
+  <ColonyCouncil.JournalDayDef>
+    <defName>Council_JDay_Setback_Rained</defName>
+    <key>Setback_Rained</key>
+    <weight>0.8</weight>
+    <thoughts><li>Council_Setback_RainedOut</li></thoughts>
+  </ColonyCouncil.JournalDayDef>
+
+  <ColonyCouncil.JournalDayDef>
+    <defName>Council_JDay_Setback_ColdMeal</defName>
+    <key>Setback_ColdMeal</key>
+    <weight>0.8</weight>
+    <thoughts><li>Council_Setback_ColdMeal</li></thoughts>
+  </ColonyCouncil.JournalDayDef>
+
+  <ColonyCouncil.JournalDayDef>
+    <defName>Council_JDay_Setback_Hauls</defName>
+    <key>Setback_Hauls</key>
+    <weight>0.7</weight>
+    <thoughts><li>Council_Setback_LongHauls</li></thoughts>
+  </ColonyCouncil.JournalDayDef>
+
+  <ColonyCouncil.JournalDayDef>
+    <defName>Council_JDay_Setback_Shoddy</defName>
+    <key>Setback_Shoddy</key>
+    <weight>1</weight>
+    <thoughts><li>Council_Setback_ShoddyWork</li><li>Council_Setback_BotchedBuild</li><li>Council_Setback_MakingDo</li></thoughts>
+  </ColonyCouncil.JournalDayDef>
+
+  <ColonyCouncil.JournalDayDef>
+    <defName>Council_JDay_Setback_TornDown</defName>
+    <key>Setback_TornDown</key>
+    <weight>1</weight>
+    <thoughts><li>Council_Setback_WorkTornDown</li></thoughts>
+  </ColonyCouncil.JournalDayDef>
+
+  <ColonyCouncil.JournalDayDef>
+    <defName>Council_JDay_Setback_Council</defName>
+    <key>Setback_Council</key>
+    <weight>1</weight>
+    <thoughts><li>Council_Setback_OutVoted</li><li>Council_Setback_NotAgreed</li><li>Council_Setback_ToldThemSo</li><li>Council_Setback_StillWaiting</li><li>Council_Setback_DecreeDrags</li></thoughts>
+  </ColonyCouncil.JournalDayDef>
+
+  <ColonyCouncil.JournalDayDef>
+    <defName>Council_JDay_Setback_Quiet</defName>
+    <key>Setback_Quiet</key>
+    <weight>0.8</weight>
+    <thoughts><li>Council_Setback_QuietDays</li><li>Council_Setback_ResearchIdle</li></thoughts>
+  </ColonyCouncil.JournalDayDef>
+
+  <ColonyCouncil.JournalDayDef>
+    <defName>Council_JDay_Setback_Worry</defName>
+    <key>Setback_Worry</key>
+    <weight>1.2</weight>
+    <thoughts><li>Council_Setback_SickFriend</li><li>Council_Setback_CaravanTrouble</li><li>Council_Setback_NemesisAtLarge</li></thoughts>
+  </ColonyCouncil.JournalDayDef>
+
+  <ColonyCouncil.JournalDayDef>
+    <defName>Council_JDay_Setback_Waiting</defName>
+    <key>Setback_LeftWaiting</key>
+    <weight>1</weight>
+    <thoughts><li>Council_Setback_LeftWaiting</li></thoughts>
+  </ColonyCouncil.JournalDayDef>
+
+  <ColonyCouncil.JournalDayDef>
+    <defName>Council_JDay_Setback_Noise</defName>
+    <key>Setback_Noise</key>
+    <weight>1</weight>
+    <social>true</social>
+    <thoughts><li>Council_Setback_NoisyNeighbour</li></thoughts>
+  </ColonyCouncil.JournalDayDef>
+
+  <ColonyCouncil.JournalDayDef>
+    <defName>Council_JDay_Setback_Slight</defName>
+    <key>Setback_Slight</key>
+    <weight>1.2</weight>
+    <social>true</social>
+    <thoughts><li>Council_Friction_CookingCriticised</li><li>Council_Friction_Mocked</li><li>Council_Friction_CreditTaken</li><li>Council_Friction_ReturnedBroken</li></thoughts>
+  </ColonyCouncil.JournalDayDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_Setback_Missed</defName>
+    <lines>
+      <plain>
+        <li>Missed the gathering. Everyone was talking about it at supper.</li>
+        <li>Heard the music from where I was. Wished I'd been there.</li>
+        <li>They saved me nothing from the gathering. I wasn't expecting them to.</li>
+      </plain>
+      <cheerful>
+        <li>Missed the gathering, so I'm making everyone tell me about it twice.</li>
+      </cheerful>
+      <gloomy>
+        <li>Another gathering I wasn't at. They'll have stopped noticing.</li>
+      </gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_Setback_NoPlate</defName>
+    <lines>
+      <plain>
+        <li>A feast, and I went to bed hungry. The meals ran out before I sat down.</li>
+        <li>Got to the table as the last plate went. I had bread.</li>
+        <li>Next feast, somebody should count the plates before we start.</li>
+      </plain>
+      <blunt>
+        <li>Feast. No food left for me. Great.</li>
+      </blunt>
+      <cheerful>
+        <li>Missed out at the feast, but the company was good. My stomach disagrees.</li>
+      </cheerful>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_Setback_Rained</defName>
+    <lines>
+      <plain>
+        <li>It rained on the gathering. We stayed out longer than we should have.</li>
+        <li>Everyone stood under the one bit of shelter, shoulder to shoulder, dripping.</li>
+        <li>Rain on the day we'd planned to be outside. My boots are still drying by the fire.</li>
+      </plain>
+      <cheerful>
+        <li>Rained the whole gathering long. Somebody started singing anyway, and it helped.</li>
+      </cheerful>
+      <gloomy>
+        <li>Of course it rained. It always rains when we try to have a nice time.</li>
+      </gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_Setback_ColdMeal</defName>
+    <lines>
+      <plain>
+        <li>Ate outside again. The food was cold before I'd finished.</li>
+        <li>Supper in the open. My fingers were too numb to hold the spoon properly.</li>
+        <li>We need somewhere under a roof to eat.</li>
+      </plain>
+      <blunt>
+        <li>Ate in the weather. Again.</li>
+      </blunt>
+      <gloomy>
+        <li>Hunched over my bowl outside while the weather did its worst.</li>
+      </gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_Setback_Hauls</defName>
+    <lines>
+      <plain>
+        <li>Carried things from one end of the colony to the other all day. My shoulders ache.</li>
+        <li>Somebody should put the stockpile where the work is.</li>
+        <li>I must have walked the length of the colony twenty times today.</li>
+      </plain>
+      <blunt>
+        <li>Hauling. Far. All day.</li>
+      </blunt>
+      <cheerful>
+        <li>All that hauling, and I've learned the name of every stone on the path.</li>
+      </cheerful>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_Setback_Shoddy</defName>
+    <lines>
+      <plain>
+        <li>Bad work today. I know better, and it still came out wrong.</li>
+        <li>Spent the evening looking at what I made and seeing every flaw.</li>
+        <li>Had to do it the slow way again. A proper bench would make all the difference.</li>
+      </plain>
+      <blunt>
+        <li>Poor work. Mine. No excuse.</li>
+      </blunt>
+      <gloomy>
+        <li>Maybe I'm not as good as I thought I was.</li>
+      </gloomy>
+      <cold>
+        <li>An off day at the bench. I've worked out where I went wrong.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_Setback_TornDown</defName>
+    <lines>
+      <plain>
+        <li>They took down something I built. Nobody asked me first.</li>
+        <li>Watched them pull apart what I put up. It came down a lot faster than it went up.</li>
+        <li>I suppose it wasn't needed any more. I still liked it.</li>
+      </plain>
+      <blunt>
+        <li>My work. Torn down. Fine.</li>
+      </blunt>
+      <cold>
+        <li>Something of mine was dismantled today. I'll remember the hours it cost.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_Setback_Council</defName>
+    <lines>
+      <plain>
+        <li>The council decided against me again. I said my piece. That's all I can do.</li>
+        <li>I don't agree with what the council's doing. I'm writing it down so I remember I said so.</li>
+        <li>Still waiting on the council. They seem to get round to everyone else.</li>
+        <li>Another day under that decree. Another day nobody asked us.</li>
+      </plain>
+      <warm>
+        <li>I don't agree with the council this time, but they're trying. I'll give them that.</li>
+      </warm>
+      <blunt>
+        <li>Council got it wrong. Again.</li>
+      </blunt>
+      <gloomy>
+        <li>The council doesn't hear people like me.</li>
+      </gloomy>
+      <cold>
+        <li>I've started keeping a list of the council's mistakes. It's getting long.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_Setback_Quiet</defName>
+    <lines>
+      <plain>
+        <li>Nothing happened today. Nothing happened yesterday either.</li>
+        <li>Work, food, bed. I'd give a lot for something new to do of an evening.</li>
+        <li>We haven't had a proper get-together in I don't know how long.</li>
+      </plain>
+      <cheerful>
+        <li>Made up a game with three stones and a cup. It's terrible. I've played it all evening.</li>
+      </cheerful>
+      <gloomy>
+        <li>The days here run together like water.</li>
+      </gloomy>
+      <blunt>
+        <li>Bored.</li>
+      </blunt>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_Setback_Worry</defName>
+    <lines>
+      <plain>
+        <li>Couldn't settle to anything today. I kept thinking about someone I care about.</li>
+        <li>Checked on them three times. Nothing's changed.</li>
+        <li>Worry is a tiring thing. I'm going to bed early.</li>
+      </plain>
+      <warm>
+        <li>I'll take them something warm tomorrow, and sit a while.</li>
+      </warm>
+      <gloomy>
+        <li>I keep imagining the worst. I can't seem to stop.</li>
+      </gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_Setback_LeftWaiting</defName>
+    <lines>
+      <plain>
+        <li>Lay in bed hurting for hours before anyone came. I counted the beams in the ceiling.</li>
+        <li>Somebody finally saw to my wounds. It took them long enough.</li>
+        <li>We need more than one person here who can doctor.</li>
+      </plain>
+      <blunt>
+        <li>Hurt. Waited. Nobody came.</li>
+      </blunt>
+      <gloomy>
+        <li>I wondered for a while if anyone would come at all.</li>
+      </gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_Setback_Noise</defName>
+    <lines>
+      <plain>
+        <li>{OTHER_nameDef} was working next door half the night. I heard every blow.</li>
+        <li>Asked {OTHER_nameDef} to keep it down after dark. We'll see.</li>
+        <li>No sleep. {OTHER_nameDef} and that racket through the wall.</li>
+      </plain>
+      <blunt>
+        <li>{OTHER_nameDef}. Noise. Night. Again.</li>
+      </blunt>
+      <cheerful>
+        <li>{OTHER_nameDef} kept me up all night working, so at least something got done.</li>
+      </cheerful>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_Setback_Slight</defName>
+    <lines>
+      <plain>
+        <li>{OTHER_nameDef} said something about me today that I won't repeat here.</li>
+        <li>Still annoyed with {OTHER_nameDef}. I'll get over it, probably by tomorrow.</li>
+        <li>{OTHER_nameDef} has a way of making things my fault.</li>
+      </plain>
+      <warm>
+        <li>{OTHER_nameDef} hurt my feelings today. I don't think {OTHER_pronoun} meant to.</li>
+      </warm>
+      <blunt>
+        <li>{OTHER_nameDef} needs to watch {OTHER_possessive} mouth.</li>
+      </blunt>
+      <cold>
+        <li>{OTHER_nameDef} has made an enemy, if {OTHER_pronoun} isn't careful.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

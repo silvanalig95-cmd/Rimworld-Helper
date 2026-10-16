@@ -241,6 +241,7 @@ namespace ColonyCouncil
                         comp.social.Bump(kv.Key, winner, TieKind.Rivals, 10f, "CC_TieNote_Election".Translate(office.label));
                     }
                 }
+                Setbacks.Notify_OfficeWon(winner, office, ranked.Where(kv => kv.Value > 0).Select(kv => kv.Key));
                 comp.AddChronicle(new ChronicleEntry(ChronicleKind.Council, ruler != null
                     ? "CC_PM_Chronicle_Named".Translate(ruler.LabelShort, winner.LabelShort, office.label).Resolve()
                     : "CC_Chronicle_Elected".Translate(winner.LabelShort, office.label).Resolve(), winner));
@@ -291,6 +292,7 @@ namespace ColonyCouncil
             CouncilGameComponent.GiveThought(p, CouncilDefOf.Council_ElectedToOffice);
             comp.journals.Write(p, "Council_Journal_Elected", null, office.label.Named("OFFICE"));
             comp.AddChronicle(new ChronicleEntry(ChronicleKind.Council, "CC_Chronicle_Appointed".Translate(p.LabelShort, office.label).Resolve(), p));
+            Setbacks.Notify_OfficeWon(p, office, current != null ? new[] { current } : null);
             SyncHediffs();
         }
 

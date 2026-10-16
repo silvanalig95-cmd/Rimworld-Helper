@@ -32,6 +32,8 @@ namespace ColonyCouncil
         public const int WorldSituations = 1203;
         /// <summary>The colony calendar.</summary>
         public const int Calendar = 1311;
+        /// <summary>Setbacks: the lasting ones, crops lost, noisy nights, long hauls, rain on gatherings; the day's in its first hour.</summary>
+        public const int Setbacks = 1427;
         /// <summary>The council: nemeses, pets, PokeWorld, autonomy, who is home, everyday pressures.</summary>
         public const int CouncilPeople = 1544;
         /// <summary>Personal stories.</summary>
@@ -46,7 +48,7 @@ namespace ColonyCouncil
         /// <summary>Every hourly pass above, for the tests and the self-check.</summary>
         public static readonly int[] HourlyOffsets =
         {
-            CouncilWishes, Camp, CouncilDayFirst, Health, CouncilDaySecond, CouncilLife, WorldSituations, Calendar, CouncilPeople,
+            CouncilWishes, Camp, CouncilDayFirst, Health, CouncilDaySecond, CouncilLife, WorldSituations, Calendar, Setbacks, CouncilPeople,
             Arcs, Stories, CouncilEvents, Ailments
         };
 

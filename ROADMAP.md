@@ -255,7 +255,7 @@ the content itself, not only to systems, alongside whatever else it does. Where 
 | Calendar days and ways to keep them | 9 kinds, 4 ways (about 440 lines) | more kinds of day, lines per biome and faith |
 | Answers that play out on the map | 168 answers (67 dilemmas, 53 events and stories), 3 calendar ways, 3 decrees, 7 ambitions; 9 kinds of real effect | world events' beats, new dilemmas and events from the start, drinks at a toast |
 | Lines in the flavor pools (variety report) | about 25,200 in 3,640 pools | the pools at the top of the report |
-| Social events, moments, frictions, nuisances | 67, 127 (40 frictions), 19 | every trait pairing and home condition |
+| Social events, moments, frictions, nuisances | 67, 131 (44 frictions, 4 that follow something real), 22 | every trait pairing and home condition |
 | Secrets | 52 (2 for scenarios only), each with its own confide and graveside lines | secrets tied to world events and camps, more good ones, dilemmas for the newer ones |
 | Ways a vendetta is sworn and settled | 3 sworn (a death, a kidnapping, a bonded animal), 5 settled (blood, captives, a homecoming, laid down, laid down in peace) | a ransom paid, an apology from the faction, a vendetta passed to an heir |
 | Council offices | 9 (4 open as the colony grows) | offices for faith, the camps and the calendar's rites, a council of elders for a large colony |
@@ -266,8 +266,9 @@ the content itself, not only to systems, alongside whatever else it does. Where 
 | Colony character | 5 ways (10 names), 6 things a colony grows into | traits from hospitality, faith and the calendar |
 | Pets and nemeses | 14 heroics, 32 farewells, 22 taunts and parting words, 4 endings told from pools (one new: let go from the cells) | pets in the calendar, nemeses in dreams and personal stories |
 | Feelings | 26 | feelings that touch the camps and world events, each with more dreams and moments |
-| Mood hints | 145 | hints for every new thought as it lands |
+| Mood hints | 172 | hints for every new thought as it lands |
 | Small good moments that give something other than mood | 248 of 474 (opinion, recreation, rest, comfort, practice, a feeling, an inspiration, trust, research, goodwill, the journal), 4 habits with a knack instead | a reward instead for each new small moment as it lands |
+| Negative moods | 589 thoughts with a bad side (548 → 589); 41 setbacks from play (8 council, 3 gatherings, 10 work, 7 home, 6 worries, 7 between people) | setbacks for camps, world events and the calendar, more from mod content (a mod's bench, crop or ritual gone wrong) |
 
 ### 5. Wider (integrations)
 - Done: deeper with the always-on mods. Hospitality guests are visitors with stories (eight encounters with

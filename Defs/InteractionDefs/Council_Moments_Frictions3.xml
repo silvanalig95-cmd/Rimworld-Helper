@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Frictions that follow something that really happened (see Council_Moments_Frictions.xml for how frictions work):
+    a bout of food poisoning blamed on the cook, a bad day turned into a joke, a council project someone talks about as
+    their own, a shared tool handed back damaged. Each needs its cause on someone's mind (MomentExtension's memories,
+    conditions and shared work), so they never come from nowhere. The moods are setbacks
+    (Defs/ThoughtDefs/Council_Thoughts_Setbacks2.xml). Era-neutral text.
+  -->
+
+  <InteractionDef ParentName="Council_FrictionMomentBase">
+    <defName>Council_Friction_CookGrumble</defName>
+    <label>grumbled about the cooking</label>
+    <recipientThought>Council_Friction_CookingCriticised</recipientThought>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef], still green from food poisoning, told the table that [RECIPIENT_nameDef]'s cooking had done it. [RECIPIENT_nameDef] was at the table.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [RECIPIENT_pronoun] [washthing].</li>
+        <li>r_logentry->[INITIATOR_nameDef] pushed [INITIATOR_possessive] bowl away and said loudly that [INITIATOR_pronoun] wasn't trusting [RECIPIENT_nameDef]'s cooking again.</li>
+        <li>r_logentry->[INITIATOR_nameDef] spent most of the morning telling anyone nearby what [RECIPIENT_nameDef]'s [dish] had done to [INITIATOR_objective].</li>
+        <li>r_logentry->[INITIATOR_nameDef] said [RECIPIENT_nameDef]'s kitchen was the reason [INITIATOR_pronoun] had been up all night. [RECIPIENT_nameDef] said [cookanswer].</li>
+        <li>r_logentry->[INITIATOR_nameDef] sniffed [INITIATOR_possessive] supper for a long time before eating it, and made sure [RECIPIENT_nameDef] saw.</li>
+        <li>r_logentry->[INITIATOR_nameDef] suggested someone other than [RECIPIENT_nameDef] might take a turn at the cooking for a while.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that the [dish] had tasted off, and that [INITIATOR_pronoun] had paid for it since.</li>
+        <li>washthing->ever washed [RECIPIENT_possessive] hands</li>
+        <li>washthing->had noticed the flies in the kitchen</li>
+        <li>washthing->checked the meat before it went in the pot</li>
+        <li>washthing->scrubbed the chopping board this season</li>
+        <li>dish->stew</li>
+        <li>dish->last batch of meals</li>
+        <li>dish->soup</li>
+        <li>dish->meat pie</li>
+        <li>cookanswer->everyone else had eaten it and was fine</li>
+        <li>cookanswer->[INITIATOR_pronoun] was welcome to cook for [INITIATOR_objective]self</li>
+        <li>cookanswer->it was probably something [INITIATOR_pronoun] ate on the side</li>
+        <li>cookanswer->nothing, and went very quiet</li>
+      </rulesStrings>
+    </logRulesInitiator>
+    <modExtensions>
+      <li Class="ColonyCouncil.MomentExtension">
+        <weight>0.08</weight>
+        <cooldownDays>4</cooldownDays>
+        <tone>friction</tone>
+        <soreHours>10</soreHours>
+        <initiatorTags>!child,!trait:Kind</initiatorTags>
+        <initiatorHediffs>
+          <li>FoodPoisoning</li>
+        </initiatorHediffs>
+        <recipientBestCook>true</recipientBestCook>
+        <maxOpinion>50</maxOpinion>
+      </li>
+    </modExtensions>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Council_FrictionMomentBase">
+    <defName>Council_Friction_MockedBreakdown</defName>
+    <label>joked about their bad day</label>
+    <recipientThought>Council_Friction_Mocked</recipientThought>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] did an impression of [RECIPIENT_nameDef]'s [breakdown] for the others. [RECIPIENT_nameDef] walked in halfway through.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [RECIPIENT_pronoun] was planning another [breakdown] soon, so everyone could get out of the way.</li>
+        <li>r_logentry->[INITIATOR_nameDef] brought up [RECIPIENT_nameDef]'s [breakdown] at supper, and laughed alone.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] to try not to [breakthing] this time.</li>
+        <li>r_logentry->[INITIATOR_nameDef] gave [RECIPIENT_nameDef]'s [breakdown] a name, and the name stuck for a day.</li>
+        <li>r_logentry->[INITIATOR_nameDef] kept tiptoeing around [RECIPIENT_nameDef] and saying it was for everyone's safety.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told the story of [RECIPIENT_nameDef]'s [breakdown] again, with more in it than happened.</li>
+        <li>breakdown->bad spell</li>
+        <li>breakdown->outburst</li>
+        <li>breakdown->bad day</li>
+        <li>breakdown->little episode</li>
+        <li>breakthing->wander off into the fields</li>
+        <li>breakthing->shout at the walls</li>
+        <li>breakthing->throw anything</li>
+        <li>breakthing->hide in the storeroom</li>
+      </rulesStrings>
+    </logRulesInitiator>
+    <modExtensions>
+      <li Class="ColonyCouncil.MomentExtension">
+        <weight>0.06</weight>
+        <cooldownDays>5</cooldownDays>
+        <tone>friction</tone>
+        <soreHours>12</soreHours>
+        <initiatorTags>!child,!trait:Kind</initiatorTags>
+        <recipientMemories>
+          <li>Catharsis</li>
+        </recipientMemories>
+        <memoryDays>3</memoryDays>
+        <maxOpinion>20</maxOpinion>
+      </li>
+    </modExtensions>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Council_FrictionMomentBase">
+    <defName>Council_Friction_TookTheCredit</defName>
+    <label>took the credit</label>
+    <recipientThought>Council_Friction_CreditTaken</recipientThought>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] talked about the council's project as though [INITIATOR_pronoun] had done it alone. [RECIPIENT_nameDef] had [didpart].</li>
+        <li>r_logentry->[INITIATOR_nameDef] accepted the colony's thanks for the project. [RECIPIENT_nameDef], who had [didpart], stood at the back.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told the story of the project with [INITIATOR_objective]self in every part of it. [RECIPIENT_nameDef] corrected [INITIATOR_objective] twice.</li>
+        <li>r_logentry->[INITIATOR_nameDef] said "my project" once too often in front of [RECIPIENT_nameDef].</li>
+        <li>r_logentry->[INITIATOR_nameDef] went on about how hard the project had been. [RECIPIENT_nameDef] reminded [INITIATOR_objective] who had [didpart].</li>
+        <li>r_logentry->[INITIATOR_nameDef] proposed the idea, and to hear [INITIATOR_objective] tell it, [INITIATOR_pronoun] had finished it too. [RECIPIENT_nameDef] had [didpart].</li>
+        <li>didpart->hauled most of the stone</li>
+        <li>didpart->worked through two nights on it</li>
+        <li>didpart->done the dull half of it</li>
+        <li>didpart->fixed what went wrong</li>
+        <li>didpart->carried the heavy end the whole way</li>
+      </rulesStrings>
+    </logRulesInitiator>
+    <modExtensions>
+      <li Class="ColonyCouncil.MomentExtension">
+        <weight>0.06</weight>
+        <cooldownDays>6</cooldownDays>
+        <tone>friction</tone>
+        <soreHours>12</soreHours>
+        <initiatorTags>!child,!trait:Kind</initiatorTags>
+        <recipientTags>!child</recipientTags>
+        <initiatorMemories>
+          <li>Council_MyAmbitionAchieved</li>
+        </initiatorMemories>
+        <recipientMemories>
+          <li>Council_AmbitionAchieved</li>
+        </recipientMemories>
+        <memoryDays>4</memoryDays>
+        <maxOpinion>60</maxOpinion>
+      </li>
+    </modExtensions>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Council_FrictionMomentBase">
+    <defName>Council_Friction_ReturnedBroken</defName>
+    <label>complained about a damaged tool</label>
+    <initiatorThought>Council_Friction_ReturnedBroken</initiatorThought>
+    <recipientThought>Council_Friction_Nagged</recipientThought>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] held up the [tool] [RECIPIENT_nameDef] had borrowed and pointed at the [damage].</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] how the [tool] had come by its [damage]. [RECIPIENT_nameDef] said [toolanswer].</li>
+        <li>r_logentry->[INITIATOR_nameDef] found the [tool] back on the bench with a [damage], and [RECIPIENT_nameDef] the last to use it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that the [tool] had been fine that morning.</li>
+        <li>r_logentry->[INITIATOR_nameDef] spent an hour mending the [tool] and made sure [RECIPIENT_nameDef] heard every minute of it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] stopped lending [RECIPIENT_nameDef] the good [tool], and said why.</li>
+        <li>tool->saw</li>
+        <li>tool->chisel</li>
+        <li>tool->trowel</li>
+        <li>tool->hoe</li>
+        <li>tool->knife</li>
+        <li>tool->hammer</li>
+        <li>tool->needle</li>
+        <li>damage->chipped edge</li>
+        <li>damage->split handle</li>
+        <li>damage->bent tip</li>
+        <li>damage->crack down the side</li>
+        <li>toolanswer->it had been like that already</li>
+        <li>toolanswer->tools wear out</li>
+        <li>toolanswer->[RECIPIENT_pronoun] would fix it, eventually</li>
+        <li>toolanswer->nothing that made it better</li>
+      </rulesStrings>
+    </logRulesInitiator>
+    <modExtensions>
+      <li Class="ColonyCouncil.MomentExtension">
+        <weight>0.025</weight>
+        <cooldownDays>5</cooldownDays>
+        <tone>friction</tone>
+        <soreHours>8</soreHours>
+        <initiatorTags>!child,!trait:Kind</initiatorTags>
+        <recipientTags>!child</recipientTags>
+        <shares>work</shares>
+        <maxOpinion>60</maxOpinion>
+      </li>
+    </modExtensions>
+  </InteractionDef>
+
+</Defs>

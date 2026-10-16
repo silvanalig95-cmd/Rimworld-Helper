@@ -123,6 +123,7 @@ namespace ColonyCouncil
             }
             comp.AddChronicle(new ChronicleEntry(ChronicleKind.Life, "CC_Chronicle_Epithet".Translate(p.LabelShort, def.label).Resolve(), p));
             comp.journals.Write(p, def.dubious ? "Council_Journal_EpithetDubious" : "Council_Journal_Epithet", null, def.label.Named("TITLE"));
+            Setbacks.Notify_Named(p, def);
         }
 
         public void ExposeData()
