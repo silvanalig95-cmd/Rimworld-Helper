@@ -197,7 +197,7 @@ namespace Balance
                 foreach (var r in results.Where(r => (r.preset ?? "default") == preset && r.colonists == 6))
                 {
                     var s = r.summary;
-                    sb.AppendLine($"| {preset} | {r.style.name} | {N(s.net)} | {N(s.good)} | {N(s.bad + s.steadyBad)} | {D(s.decisionsPerDay)} | {D(s.requestsPerDay)} | {P(s.illShare)} |");
+                    sb.AppendLine($"| {preset} | {r.style.name} | {N(s.net)} | {N(s.good)} | {N(s.bad + s.steadyBad)} | {D(s.decisionsPerDay)} | {D(s.perYear.GetValueOrDefault("wishes made") / Colony.YearDays)} | {P(s.illShare)} |");
                 }
             sb.AppendLine();
 

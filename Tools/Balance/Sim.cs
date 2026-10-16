@@ -764,8 +764,9 @@ namespace Balance
             var c = w.who;
             wishes.Remove(w);
             c.open = null;
+            // SetbackTracker.Waiting: only a wish voiced after theirs and granted first counts, and not for a promised one.
             foreach (var o in wishes)
-                if (o.created < hour)
+                if (o.created < w.created && !o.promised)
                     o.grantedSince++;
             Give(c, w.def.grantedThought);
             Trust(c, w.promised ? Code.TrustGrantPromised : Code.TrustGrant);
