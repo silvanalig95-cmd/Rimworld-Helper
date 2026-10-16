@@ -96,6 +96,11 @@ namespace ColonyCouncil
         public ThingDef suggestThing;
         /// <summary>A more specific almanac page than the def's (e.g. for the event actually happening).</summary>
         public AlmanacArticleDef article;
+        /// <summary>The council page that deals with it ("Decrees", "World", "Wishes", "Calendar"): a "Go to" button.</summary>
+        public string page;
+        /// <summary>Something the advice can do straight away (plan the lamps, open the letter), with its button's label.</summary>
+        public Action act;
+        public string actLabel;
         public string key = "";
 
         public float Score => severity * (0.5f + 0.5f * urgency) * (0.6f + 0.4f * confidence) * (def?.importance ?? 1f);

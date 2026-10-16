@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- The advisor's checks for the newer systems, the low-tech winter and everyday life (Advisor/AdvisorSignals5.cs),
+       and more room advice (Advisor/AdvisorSignals_Rooms2.cs). -->
+
+  <!-- Buttons on a piece of advice -->
+  <CC_Adv_Act_ShowQuest>Show the quest</CC_Adv_Act_ShowQuest>
+  <CC_Adv_Act_OpenLetter>Open the letter</CC_Adv_Act_OpenLetter>
+  <CC_Adv_Act_WorkTab>Open Work tab</CC_Adv_Act_WorkTab>
+  <CC_Adv_Act_PlanLamps>Plan the lamps</CC_Adv_Act_PlanLamps>
+  <CC_Adv_Act_PlanChairsLamps>Plan chairs, lamps</CC_Adv_Act_PlanChairsLamps>
+  <CC_Adv_PlannedLamps>Planned {0} lamp(s) where the rooms were dark.</CC_Adv_PlannedLamps>
+  <CC_Adv_PlannedLamps_None>No lamp was needed, or there was no free spot on the walls for one.</CC_Adv_PlannedLamps_None>
+  <CC_Adv_PlannedChairs>Planned {0} chair(s) at the benches.</CC_Adv_PlannedChairs>
+
+  <!-- A mission running out -->
+  <CC_Adv_MissionDue_Title>{0}: {1} left</CC_Adv_MissionDue_Title>
+  <CC_Adv_MissionDue_Goal>{0}, {1} of {2}</CC_Adv_MissionDue_Goal>
+  <CC_Adv_MissionDue_Detail>Still short: {0}. It's due in {1}, and whatever isn't ready then fails the mission and the goodwill it would have earned.</CC_Adv_MissionDue_Detail>
+  <CC_Adv_MissionDue_DetailNoGoods>It ends in {0}.</CC_Adv_MissionDue_DetailNoGoods>
+
+  <!-- Trouble in the region -->
+  <CC_Adv_World_Title>{0}</CC_Adv_World_Title>
+  <CC_Adv_World_SickDetail>Sickness is spreading through the region, and illness at home is likelier while it lasts. The colony is short of {0}. It has about {1} left to run.</CC_Adv_World_SickDetail>
+  <CC_Adv_World_Sick_Meds>medicine ({0} in store)</CC_Adv_World_Sick_Meds>
+  <CC_Adv_World_Sick_Bed>a bed kept for the sick</CC_Adv_World_Sick_Bed>
+  <CC_Adv_World_Sick_Doctor>anyone set to doctor</CC_Adv_World_Sick_Doctor>
+  <CC_Adv_World_HungerDetail>The region is going hungry, and the colony has food for about {0} days. Traders will have little to sell until it passes. {1}</CC_Adv_World_HungerDetail>
+  <CC_Adv_World_HungerHelp>Grow, hunt and gather what you can now, and preserve what won't be eaten soon.</CC_Adv_World_HungerHelp>
+  <CC_Adv_World_HungerLocusts>The swarm strips any open field it passes over: harvest what's ripe now. Roofed fields and greenhouses are safe.</CC_Adv_World_HungerLocusts>
+
+  <!-- The camp waiting on an answer -->
+  <CC_Adv_CampWaiting_Title>The camp ({0}) is waiting on an answer</CC_Adv_CampWaiting_Title>
+  <CC_Adv_CampWaiting_Closing>"{1}" has {2} left. Unanswered by then, the camp ({0}) takes the default answer.</CC_Adv_CampWaiting_Closing>
+  <CC_Adv_CampWaiting_Waited>"{1}" has waited more than a day, and the camp ({0}) is still waiting to hear.</CC_Adv_CampWaiting_Waited>
+
+  <!-- A decree that costs more than it gives -->
+  <CC_Adv_DecreeCost_Title>{0} costs more than it gives</CC_Adv_DecreeCost_Title>
+  <CC_Adv_DecreeCost_Detail>{0} against it and {1} for it: the moods it stirs add up to {2} across the colony. It runs another {3}. If what it does no longer matters more than that, lift it from the Decrees page.</CC_Adv_DecreeCost_Detail>
+  <CC_Adv_DecreeCost_Again>Enacted again so soon after the last time, it weighs on people more.</CC_Adv_DecreeCost_Again>
+
+  <!-- An office standing empty -->
+  <CC_Adv_Office_Title>No {0}</CC_Adv_Office_Title>
+  <CC_Adv_Office_Physician>Unwell or hurt: {0}. With a physician, everyone heals a little faster, and the wounded are tended more skilfully.</CC_Adv_Office_Physician>
+  <CC_Adv_Office_Reeve>The harvest is coming in, and nobody walks the fields as reeve. With one, every harvest brings in a little more.</CC_Adv_Office_Reeve>
+  <CC_Adv_Office_Keeper>{0} is close, and nobody keeps the colony's days.</CC_Adv_Office_Keeper>
+  <CC_Adv_Office_Best>{1} would make the best {0} of those here (competence {2}). Appoint them from the Decrees page, or wait for the election.</CC_Adv_Office_Best>
+
+  <!-- A calendar day with nothing laid by -->
+  <CC_Adv_CalPrep_Title>{0} tomorrow, and nothing laid by</CC_Adv_CalPrep_Title>
+  <CC_Adv_CalPrep_Detail>{0} is kept as {1}, and {2}. See to it today, keep the day another way, or let it pass from the Calendar page.</CC_Adv_CalPrep_Detail>
+  <CC_Adv_CalPrep_Feast>there aren't meals enough in store for everyone to sit down to</CC_Adv_CalPrep_Feast>
+  <CC_Adv_CalPrep_Hunt>nobody who hunts has a bow or a gun to hunt with</CC_Adv_CalPrep_Hunt>
+  <CC_Adv_CalPrep_Bonfire>there's no campfire, and too little wood to lay one</CC_Adv_CalPrep_Bonfire>
+
+  <!-- A promise about to break -->
+  <CC_Adv_PromiseBreaking_Title>{0} promise(s) about to break</CC_Adv_PromiseBreaking_Title>
+  <CC_Adv_PromiseBreaking_Detail>Less than a day left on what the council promised. Grant it now, or say honestly that it can't be done:</CC_Adv_PromiseBreaking_Detail>
+
+  <!-- Stores under the open sky -->
+  <CC_Adv_StorageRoof_Title>{0} stack(s) stored under the open sky</CC_Adv_StorageRoof_Title>
+  <CC_Adv_StorageRoof_Now>Winter is here</CC_Adv_StorageRoof_Now>
+  <CC_Adv_StorageRoof_Soon>Winter is about {0} day(s) away</CC_Adv_StorageRoof_Soon>
+  <CC_Adv_StorageRoof_Detail>{0}, and what's stored out in the weather loses its condition day by day: wood, cloth, leather, tools. A roof over the stockpile, or a storeroom, keeps it.</CC_Adv_StorageRoof_Detail>
+
+  <!-- Food that won't keep through winter -->
+  <CC_Adv_WinterStores_Title>The stores won't keep through the winter</CC_Adv_WinterStores_Title>
+  <CC_Adv_WinterStores_Detail>There's food for about {0} days that will spoil, and only {1} days' worth that keeps, for a winter of some {2} days too mild to freeze it. Before it turns: {3}.</CC_Adv_WinterStores_Detail>
+  <CC_Adv_WinterStores_Smoke>smoke the meat in the smokehouse</CC_Adv_WinterStores_Smoke>
+  <CC_Adv_WinterStores_Build>build {0} to cure the meat</CC_Adv_WinterStores_Build>
+  <CC_Adv_WinterStores_Pemmican>make {0}</CC_Adv_WinterStores_Pemmican>
+
+  <!-- Firewood for the winter -->
+  <CC_Adv_Firewood_Title>Not enough firewood for the winter</CC_Adv_Firewood_Title>
+  <CC_Adv_Firewood_Detail>The colony's {0} fire(s) and torch(es) will burn about {1} logs between now and spring, and there are {2}. Cut wood while the trees can still be reached.</CC_Adv_Firewood_Detail>
+
+  <!-- Only one doctor -->
+  <CC_Adv_DoctorBackup_Title>{0} is the only doctor</CC_Adv_DoctorBackup_Title>
+  <CC_Adv_DoctorBackup_Detail>If {0} is hurt or ill, nobody else is set to tend them, or anyone else. {1} could doctor (Medicine {2}): set them to it in the Work tab, even at a low priority.</CC_Adv_DoctorBackup_Detail>
+  <CC_Adv_DoctorBackup_DetailNobody>If {0} is hurt or ill, nobody else here can tend the wounded. Keep {0} out of the worst of the fighting, and look for a second doctor among newcomers.</CC_Adv_DoctorBackup_DetailNobody>
+
+  <!-- Beds in the dark -->
+  <CC_Adv_BedsDark_Title>{0} bedroom(s) where the beds lie in the dark</CC_Adv_BedsDark_Title>
+  <CC_Adv_BedsDark_DetailWall>No light reaches the beds there. {0} on the wall would light them without taking any floor.</CC_Adv_BedsDark_DetailWall>
+  <CC_Adv_BedsDark_Detail>No light reaches the beds there. {0} would light them.</CC_Adv_BedsDark_Detail>
+  <CC_Adv_BedsDark_Who>Sleeping there: {0}.</CC_Adv_BedsDark_Who>
+
+  <!-- Meals eaten without a table -->
+  <CC_Adv_NoSeat_Title>{0} people ate without a table today</CC_Adv_NoSeat_Title>
+  <CC_Adv_NoSeat_Detail>{0} ate standing or on the floor in the last day, though the dining rooms have {1} seats. The table was too far from where they were, or every seat was taken at the busy hour. A small table and chairs near the fields or the workshops, or a few more seats, would help.</CC_Adv_NoSeat_Detail>
+
+  <!-- A bedroom fit for a title -->
+  <CC_Adv_Noble_Title>{0}'s bedroom falls short of the title ({1})</CC_Adv_Noble_Title>
+  <CC_Adv_Noble_Detail>As {1}, {0} expects more of their bedroom: {2}.</CC_Adv_Noble_Detail>
+  <CC_Adv_Noble_Upgrade>Upgrading the room plans what's missing where it stands.</CC_Adv_Noble_Upgrade>
+  <CC_Adv_Noble_New>The room is too small to upgrade: {0} would give them the space.</CC_Adv_Noble_New>
+
+  <!-- Kitchen outgrown -->
+  <CC_Adv_KitchenOutgrown_Title>{0} stove(s) for {1} people</CC_Adv_KitchenOutgrown_Title>
+  <CC_Adv_KitchenOutgrown_Detail>{3} cooks share {0} stove(s), and only {2} meals are in store for {1} mouths: the cooks wait their turn while the food runs short.</CC_Adv_KitchenOutgrown_Detail>
+  <CC_Adv_KitchenOutgrown_Plan>{0} has room for the stoves the colony needs.</CC_Adv_KitchenOutgrown_Plan>
+  <CC_Adv_KitchenOutgrown_NoPlan>A second stove beside the first would let two cooks work at once.</CC_Adv_KitchenOutgrown_NoPlan>
+
+  <!-- Freezer too small -->
+  <CC_Adv_FreezerOutgrown_Title>The freezer is full</CC_Adv_FreezerOutgrown_Title>
+  <CC_Adv_FreezerOutgrown_Detail>{0} of its {1} storage spots are taken, and {2} pieces of food that spoils lie out in the warm.</CC_Adv_FreezerOutgrown_Detail>
+  <CC_Adv_FreezerOutgrown_Plan>{0} would hold it all.</CC_Adv_FreezerOutgrown_Plan>
+  <CC_Adv_FreezerOutgrown_NoPlan>A second cold room, or the freezer's walls moved out, would hold it all.</CC_Adv_FreezerOutgrown_NoPlan>
+
+  <!-- Dining room too cramped -->
+  <CC_Adv_DiningCramped_Title>The dining room is cramped for {0} people</CC_Adv_DiningCramped_Title>
+  <CC_Adv_DiningCramped_Detail>Its space is {0} for the {1} who eat there, and a cramped room weighs on everyone in it.</CC_Adv_DiningCramped_Detail>
+  <CC_Adv_DiningCramped_Plan>{0} would give them room.</CC_Adv_DiningCramped_Plan>
+  <CC_Adv_DiningCramped_NoPlan>Moving a statue or a spare table out, or knocking through a wall, would give them room.</CC_Adv_DiningCramped_NoPlan>
+
+  <!-- Workshop chairs and light -->
+  <CC_Adv_Workshop_Title>{0} workshop(s) could work better</CC_Adv_Workshop_Title>
+  <CC_Adv_Workshop_Detail>There are {0}. Work goes slower in the dark, and standing at a bench all day wears on comfort. Upgrading the room plans what's missing; "Plan chairs, lamps" puts a chair on each empty work spot and hangs lamps where it's dark.</CC_Adv_Workshop_Detail>
+  <CC_Adv_Workshop_Dark>{0} bench(es) in the dark</CC_Adv_Workshop_Dark>
+  <CC_Adv_Workshop_NoChair>{0} bench(es) with no chair at the work spot</CC_Adv_Workshop_NoChair>
+
+  <!-- A prison without comfort -->
+  <CC_Adv_Prison_Title>{0} prison cell(s) without comfort</CC_Adv_Prison_Title>
+  <CC_Adv_Prison_Detail>Missing: {0}. Unhappy prisoners break, fight and try to escape, and join less willingly. Upgrading the cell plans what's missing.</CC_Adv_Prison_Detail>
+  <CC_Adv_Prison_Light>a light</CC_Adv_Prison_Light>
+  <CC_Adv_Prison_Table>a table</CC_Adv_Prison_Table>
+  <CC_Adv_Prison_Seat>a seat</CC_Adv_Prison_Seat>
+  <CC_Adv_Prison_Bare>anything worth looking at</CC_Adv_Prison_Bare>
+
+</LanguageData>

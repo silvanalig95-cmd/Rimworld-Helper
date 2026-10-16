@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- More rooms the colony has outgrown, or could make better (Source/ColonyCouncil/Advisor/AdvisorSignals_Rooms2.cs,
+       thresholds in AdvisorMath.cs). Gentle advice like Council_Advisor_Rooms.xml: each offers the planner with the
+       next size up, or the room upgraded where it stands. -->
+
+  <ColonyCouncil.AdvisorSignalDef>
+    <defName>Council_Adv_NobleBedroom</defName>
+    <label>a bedroom fit for a title</label>
+    <workerClass>ColonyCouncil.AdvisorWorker_NobleBedroom</workerClass>
+    <article>Council_Alm_7_03_NobleBedrooms</article>
+    <category>Comfort</category>
+    <importance>0.9</importance>
+    <tips>
+      <li>A noble whose bedroom falls short of their title feels it every day, and higher titles ask for more: more space, more impressiveness, a bedside table and a dresser.</li>
+      <li>Space is the one thing upgrading can't add; a room too small has to be built anew.</li>
+      <li>Impressiveness comes cheapest from a good floor, a piece of art and furniture of good quality.</li>
+    </tips>
+  </ColonyCouncil.AdvisorSignalDef>
+
+  <ColonyCouncil.AdvisorSignalDef>
+    <defName>Council_Adv_KitchenOutgrown</defName>
+    <label>kitchen outgrown</label>
+    <workerClass>ColonyCouncil.AdvisorWorker_KitchenOutgrown</workerClass>
+    <article>Council_Alm_9_05_Kitchen</article>
+    <category>Food</category>
+    <importance>0.8</importance>
+    <tips>
+      <li>One stove means one cook at a time, however many the colony has. A second lets two work side by side.</li>
+      <li>Cooking in bulk saves time once there's a stove to spare: set one bill to make four meals at once.</li>
+      <li>Keep the stoves close to the freezer, so the cooks don't spend the day walking for ingredients.</li>
+    </tips>
+  </ColonyCouncil.AdvisorSignalDef>
+
+  <ColonyCouncil.AdvisorSignalDef>
+    <defName>Council_Adv_FreezerOutgrown</defName>
+    <label>freezer too small</label>
+    <workerClass>ColonyCouncil.AdvisorWorker_FreezerOutgrown</workerClass>
+    <article>Council_Alm_9_06_Freezer</article>
+    <category>Food</category>
+    <importance>0.9</importance>
+    <tips>
+      <li>Below freezing, food doesn't rot at all. Whatever doesn't fit in the freezer starts its clock again.</li>
+      <li>Things that keep on their own (rice, corn, cloth, medicine) can move out of the freezer to make room for meat and meals.</li>
+      <li>[!lowtech] A bigger freezer needs more cooling: count on another cooler for each step up in size.</li>
+      <li>A double door, or an airlock of two doors, keeps the cold in while people go in and out.</li>
+    </tips>
+  </ColonyCouncil.AdvisorSignalDef>
+
+  <ColonyCouncil.AdvisorSignalDef>
+    <defName>Council_Adv_DiningCramped</defName>
+    <label>dining room too cramped</label>
+    <workerClass>ColonyCouncil.AdvisorWorker_DiningCramped</workerClass>
+    <article>Council_Alm_9_03_DiningRoom</article>
+    <category>Comfort</category>
+    <importance>0.6</importance>
+    <tips>
+      <li>Space counts the floor nobody's furniture stands on. Tables, chairs and statues all eat into it.</li>
+      <li>A cramped room weighs on everyone who spends time in it, and the dining room is where everyone spends time.</li>
+      <li>The planner keeps the turn, the style and the materials when you switch to a larger size of the same room.</li>
+    </tips>
+  </ColonyCouncil.AdvisorSignalDef>
+
+  <ColonyCouncil.AdvisorSignalDef>
+    <defName>Council_Adv_WorkshopUpgrade</defName>
+    <label>workshop chairs and light</label>
+    <workerClass>ColonyCouncil.AdvisorWorker_WorkshopUpgrade</workerClass>
+    <article>Council_Alm_9_08_Workshop</article>
+    <category>Work</category>
+    <importance>0.7</importance>
+    <tips>
+      <li>Work goes slower in the dark, and a workshop works long after sunset.</li>
+      <li>A chair on a bench's work spot lets the crafter sit while they work, and keeps up their comfort through a long bill.</li>
+      <li>"Plan chairs and lamps" puts a chair on each empty work spot and hangs lamps where the benches are dark.</li>
+    </tips>
+  </ColonyCouncil.AdvisorSignalDef>
+
+  <ColonyCouncil.AdvisorSignalDef>
+    <defName>Council_Adv_PrisonComfort</defName>
+    <label>a prison without comfort</label>
+    <workerClass>ColonyCouncil.AdvisorWorker_PrisonComfort</workerClass>
+    <article>Council_Alm_9_13_PrisonCell</article>
+    <category>Comfort</category>
+    <importance>0.7</importance>
+    <tips>
+      <li>Prisoners mind eating off the floor and sitting in the dark like anyone else, and an unhappy prisoner is likelier to break or try to escape.</li>
+      <li>An impressive cell lifts a prisoner's mood. A floor, a light and a table go a long way.</li>
+      <li>Someone the colony hopes to recruit joins more willingly from a cell they can bear.</li>
+    </tips>
+  </ColonyCouncil.AdvisorSignalDef>
+
+</Defs>
