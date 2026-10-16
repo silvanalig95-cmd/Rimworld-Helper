@@ -19,7 +19,8 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>4</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>our story written down</label><description>The colony's story is written out fair and bound in leather. Someone will read it long after we're gone.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>our story written down</label><description>The colony's story is written out fair and bound in leather. Someone will read it long after we're gone.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><feelings><li>Pride</li></feelings><felt>3</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -101,7 +102,8 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>3</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>they came to see how we decide</label><description>Envoys came all the way from a neighbor's town to watch how our council works. We must be doing something right.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>they came to see how we decide</label><description>Envoys came all the way from a neighbor's town to watch how our council works. We must be doing something right.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><journal>true</journal><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
   <!-- ===================== Old lives and the camp ===================== -->

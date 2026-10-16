@@ -110,7 +110,8 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_Helped</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>helped someone through a bad time</label><description>I sat with one of the others through a bad stretch. I'm glad I could help.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>helped someone through a bad time</label><description>I sat with one of the others through a bad stretch. I'm glad I could help.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><feelings><li>Tenderness</li></feelings><felt>4</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -150,7 +151,8 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_Clean</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>the poison is gone</label><description>That stash would only have caused trouble. Good riddance.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>the poison is gone</label><description>That stash would only have caused trouble. Good riddance.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><feelings><li>Relief</li></feelings><felt>4</felt></li></modExtensions>
   </ThoughtDef>
 
 </Defs>

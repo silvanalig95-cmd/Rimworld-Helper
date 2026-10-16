@@ -176,7 +176,8 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmS_FedTheHungry</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>we fed the hungry</label><description>Hungry people came to the gate, and we fed them. I watched them eat.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>we fed the hungry</label><description>Hungry people came to the gate, and we fed them. I watched them eat.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><feelings><li>Pride</li></feelings><felt>4</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -225,7 +226,8 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmS_TheHunt</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>the hunt is on</label><description>There's a big predator denning nearby, and we're going after it. Finally, a reason to get up early.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>the hunt is on</label><description>There's a big predator denning nearby, and we're going after it. Finally, a reason to get up early.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><feelings><li>Resolve</li></feelings><felt>3</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">

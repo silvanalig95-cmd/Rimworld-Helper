@@ -376,7 +376,8 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmR_NoOneTurnedAway</defName>
     <durationDays>5</durationDays>
-    <stages><li><label>nobody turned away</label><description>Anyone who comes hungry to our gate gets fed. I'm proud of that, even when the larder runs low.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>nobody turned away</label><description>Anyone who comes hungry to our gate gets fed. I'm proud of that, even when the larder runs low.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><feelings><li>Pride</li></feelings><felt>4</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
