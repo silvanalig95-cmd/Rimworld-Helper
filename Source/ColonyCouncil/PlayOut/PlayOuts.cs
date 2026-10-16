@@ -383,7 +383,10 @@ namespace ColonyCouncil
             return new Collecting(scopes.Count);
         }
 
-        /// <summary>The answer's effects with those that play out first, so the moods after them can be held.</summary>
+        /// <summary>
+        /// The answer's effects with those that play out first, so the moods after them can be held; before them only
+        /// the choice of who is asked for (a helper picked for their skill, DilemmaEffect_Needs), so a plan can name them.
+        /// </summary>
         public static List<DilemmaEffect> Ordered(List<DilemmaEffect> effects)
         {
             if (effects == null) return new List<DilemmaEffect>();
@@ -395,7 +398,9 @@ namespace ColonyCouncil
                     break;
                 }
             if (!any) return effects;
-            return effects.Where(e => e is DilemmaEffect_PlayOut).Concat(effects.Where(e => !(e is DilemmaEffect_PlayOut))).ToList();
+            return effects.Where(e => e is DilemmaEffect_Needs)
+                .Concat(effects.Where(e => e is DilemmaEffect_PlayOut))
+                .Concat(effects.Where(e => !(e is DilemmaEffect_PlayOut) && !(e is DilemmaEffect_Needs))).ToList();
         }
 
         internal static void Register(PlayOut p)

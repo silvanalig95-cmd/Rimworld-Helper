@@ -642,7 +642,7 @@ namespace ColonyCouncil
             }
             t.Done(p, took, false);
             List<Thing> found = null;
-            if (p.kind == PlayKind.Search && !early) found = GiveFind(p, took);
+            if (p.kind == PlayKind.Search) found = GiveFind(p, early ? null : took);
             string text = PlayWords.EndText(p, early, took, found, to, carried);
             if (!text.NullOrEmpty())
             {
@@ -657,29 +657,45 @@ namespace ColonyCouncil
             PlayWords.After(p, took);
         }
 
-        /// <summary>A search's find, at the feet of whoever looked longest (the first of them): the thing promised, or things of the colony's own era.</summary>
+        /// <summary>
+        /// A search's find, at the feet of whoever looked longest (the first of them): the thing promised, or things of
+        /// the colony's own era. Broken off, or nobody to find it: it turns up anyway, where traders leave their goods.
+        /// </summary>
         private static List<Thing> GiveFind(PlayOut p, List<Pawn> took)
         {
-            var finder = took.FirstOrDefault(x => x.Spawned && x.Map == p.map);
-            if (finder == null) return null;
+            if (p.map == null || !Find.Maps.Contains(p.map)) return null;
+            var finder = took?.FirstOrDefault(x => x.Spawned && x.Map == p.map);
+            var at = finder != null ? finder.Position : DropCellFinder.TradeDropSpot(p.map);
+            var placed = Drop(p.map, p.thing, p.amount, p.findValue, at);
+            p.thing = null;
+            p.amount = 0;
+            p.findValue = 0f;
+            if (placed.Count > 0 && finder != null)
+                p.note = "CC_Play_Note_Found".Translate(TextUtil.JoinAnd(placed.Select(x => x.LabelCap.ToString()).ToList())).Resolve();
+            return finder != null ? placed : null;
+        }
+
+        /// <summary>Things found: so many of a thing, or things worth so much of the colony's own era, set down near a cell.</summary>
+        public static List<Thing> Drop(Map map, ThingDef thing, int amount, float value, IntVec3 at)
+        {
+            var placed = new List<Thing>();
+            if (map == null || !at.IsValid) return placed;
             var things = new List<Thing>();
-            if (p.thing != null && p.amount > 0)
+            if (thing != null && amount > 0)
             {
-                int left = p.amount;
+                int left = Math.Min(amount, 2000);
                 while (left > 0)
                 {
-                    var t = ThingMaker.MakeThing(p.thing, p.thing.MadeFromStuff ? GenStuff.DefaultStuffFor(p.thing) : null);
-                    t.stackCount = Math.Min(left, Math.Max(1, p.thing.stackLimit));
+                    var t = ThingMaker.MakeThing(thing, thing.MadeFromStuff ? GenStuff.DefaultStuffFor(thing) : null);
+                    t.stackCount = Math.Min(left, Math.Max(1, thing.stackLimit));
                     left -= t.stackCount;
                     things.Add(t);
                 }
             }
-            else if (p.findValue > 0f) things.AddRange(Loot.Make(p.findValue));
-            var placed = new List<Thing>();
+            else if (value > 0f) things.AddRange(Loot.Make(value));
             foreach (var t in things)
-                if (GenPlace.TryPlaceThing(t, finder.Position, p.map, ThingPlaceMode.Near, out var lying))
+                if (GenPlace.TryPlaceThing(t, at, map, ThingPlaceMode.Near, out var lying))
                     placed.Add(lying ?? t);
-            if (placed.Count > 0) p.note = "CC_Play_Note_Found".Translate(TextUtil.JoinAnd(placed.Select(x => x.LabelCap.ToString()).ToList())).Resolve();
             return placed;
         }
 
@@ -691,6 +707,8 @@ namespace ColonyCouncil
         {
             foreach (var h in p.hands) Stop(p, h.pawn, true);
             if (p.kind == PlayKind.Carry) PlayCarry.Settle(p);
+            // What the answer promised a search would find turns up all the same, as it always did.
+            if (p.kind == PlayKind.Search) GiveFind(p, null);
             if (quiet || p.label.NullOrEmpty()) return;
             string text = why.NullOrEmpty()
                 ? "CC_Play_FellThroughPlain".Translate(p.label.CapitalizeFirst()).Resolve()

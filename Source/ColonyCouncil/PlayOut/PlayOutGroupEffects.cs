@@ -179,6 +179,31 @@ namespace ColonyCouncil
 
         protected override int DefaultCount => 1;
 
+        private bool Era => thing == null || thing.techLevel == TechLevel.Undefined || thing.techLevel <= Avail.EffectiveTech;
+
+        public override void Apply(DilemmaContext ctx)
+        {
+            PlayOut p = null;
+            try
+            {
+                p = Create(ctx);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("play out search", e);
+            }
+            // Nothing set going (the setting off, nobody to send): what the answer promised is found all the same.
+            if (p != null || ctx?.map == null) return;
+            try
+            {
+                PlayGroups.Drop(ctx.map, Era ? thing : null, Math.Max(1, amount.RandomInRange), value.RandomInRange, DropCellFinder.TradeDropSpot(ctx.map));
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("play out search find", e);
+            }
+        }
+
         protected override bool Fill(PlayOut p, DilemmaContext ctx)
         {
             if (!base.Fill(p, ctx)) return false;
