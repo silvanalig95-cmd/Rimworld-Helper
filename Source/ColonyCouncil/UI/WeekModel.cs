@@ -216,7 +216,10 @@ namespace ColonyCouncil
                 noteColor = mood >= 0f ? MoodColor(p, mood) : UiKit.Faint,
                 click = Inspect(p, typeof(ITab_Pawn_Mood))
             };
-            row.tip = Tip(PeopleTable.Summary(p), "CC_Week_ClickMood".Translate(p.LabelShort).Resolve());
+            // The heart's need they lack most, if any: what follows from it and what would help.
+            string summary = PeopleTable.Summary(p), brief = h != null ? HeartView.NeedsBrief(p, h) : null;
+            if (!brief.NullOrEmpty()) summary = (summary.NullOrEmpty() ? "" : summary + "\n\n") + brief;
+            row.tip = Tip(summary, "CC_Week_ClickMood".Translate(p.LabelShort).Resolve());
             return row;
         }
 

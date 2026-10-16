@@ -418,6 +418,23 @@ namespace ColonyCouncil
             return sb.ToString();
         }
 
+        /// <summary>
+        /// The need they lack most in a few lines, for short tooltips (This week's pinned colonists): what's missing and
+        /// why, what follows from it and what would help. Null when nothing is missed.
+        /// </summary>
+        public static string NeedsBrief(Pawn p, PawnHeart h)
+        {
+            var lowest = Heart.LowestNeed(h, out _);
+            if (lowest == null) return null;
+            var sb = new StringBuilder();
+            sb.Append(NeedsSummary(h));
+            string follows = NeedFollows(p, h, lowest.need, true);
+            if (!follows.NullOrEmpty()) sb.Append(" ").Append(follows);
+            string help = NeedHelp(h, lowest.need, 2);
+            if (!help.NullOrEmpty()) sb.Append("\n").Append("CC_Heart_WouldHelp".Translate(help).Resolve().Colorize(MoodView.AdviceColor));
+            return sb.ToString();
+        }
+
         /// <summary>The inspector line's tooltip: strain, the feelings that stand out, and the heart's needs.</summary>
         public static string InspectTip(Pawn p, PawnHeart h)
         {

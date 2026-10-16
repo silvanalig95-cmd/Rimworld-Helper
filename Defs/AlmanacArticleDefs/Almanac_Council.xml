@@ -547,7 +547,9 @@ A vendetta ends in one of several ways:</text>
           <li>checking the gate every night, after a fight</li>
           <li>always cold, after a night spent freezing; watching the stars, after a night slept outside</li>
         </points>
-        <after>Most fade after a season or two. They're listed in the trust tooltip.</after>
+        <after>Most fade after a season or two. They're listed in the trust tooltip.
+
+A lucky thing says so: look at it on the map, open its info card or hover it in the gear tab, and it reads "Macy's lucky charm". It remembers, too. When the quirk fades or its owner dies, it becomes "Once Hector's lucky charm", for as long as the thing itself lasts, and a charm that has passed through several hands names them all.</after>
       </li>
       <li>
         <heading>Habits</heading>

@@ -342,6 +342,8 @@ var dynamic = new Dictionary<string, string[]>
     ["CC_Heart_Need_"] = new[] { "Belonging", "Purpose", "Safety", "Freedom", "Belonging_Desc", "Purpose_Desc", "Safety_Desc", "Freedom_Desc",
         "Belonging_Answers", "Purpose_Answers", "Safety_Answers", "Freedom_Answers", "Belonging_Help", "Purpose_Help", "Safety_Help", "Freedom_Help" },
     ["CC_Heart_NeedLevel_"] = new[] { "Lacking", "Missed", "Fair", "Met" },
+    // Lucky things (Quirks/LuckyItems.cs): how each past owner's time with it ended.
+    ["CC_Lucky_Desc_"] = new[] { "Faded", "Died", "Gone" },
 };
 // Each feeling's name, adjective, description and effects (FeelingDef key).
 foreach (var (file, doc) in docs)
