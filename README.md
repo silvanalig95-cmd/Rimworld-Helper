@@ -356,15 +356,21 @@ wants to be back at work, family who want a say before an operation, a squabble 
 put down the tools, a child's question, a broken promise, the same meal every day. Many answers call on whoever is
 best placed (the doctor, a forager, a tracker, the best talker), and their skill decides how it goes.
 
-**Answers play out on the map.** When an answer describes something people do, they do it (168 answers of 67
-dilemmas and 53 Rimfolk events and stories, plus calendar days, three decrees and seven ambitions). A victory feast is
-eaten at the dining table, each guest sent to eat a cooked meal from the stores, the finest first. The midsummer
-bonfire is lit (a campfire laid for the evening if the colony has none, burned down to ash after), a toast is raised,
-an apology or a reading is heard round the table, a friend sits with someone who is ill, a colonist sits by a grave
-or at the camp's fire, an apprentice works at the teacher's side, a worn-out doctor is sent to bed. Nobody is called
-from danger, sleep or a sickbed, and nothing starts with enemies about. The answer's good moods come to those who
-were there once it's over; if it never happens within a few hours, everyone gets them anyway, as before. A setting
-(Events & world) turns it off.
+**Answers play out on the map.** When an answer describes something people do, they do it (285 answers of 90
+dilemmas and 91 Rimfolk events, stories and world events, plus calendar days, three decrees and seven ambitions). A
+victory feast is eaten at the dining table, each guest sent to eat a cooked meal from the stores, the finest first
+they may eat. The midsummer bonfire is lit (a campfire laid for the evening if the colony has none, burned down to ash
+after), a toast is raised, an apology or a reading is heard round the table, a friend sits with someone who is ill, a
+colonist sits by a grave or at the camp's fire, an apprentice works at the teacher's side, a worn-out doctor is sent
+to bed. A work party cleans, hauls, mends, builds, sows or brings in the harvest with the game's own jobs, on work the
+colony really has; the colony walks out together to the graves or the gate and back; a few keep a vigil into the
+night; searchers fan out over the land and bring back what was promised; real medicine, food or silver is carried out
+of the stores to the visitor or the rider at the gate; the hunters go after the game an answer marked. None of them
+holds anyone in a gathering, so the game's own parties and rituals can always take them. Nobody is called from
+danger, sleep, a meal or a sickbed, nothing starts with enemies about, and danger, drafting, hunger or exhaustion ends
+it. The answer's good moods come to those who were there once it's over; if it never happens within a few hours,
+everyone gets them anyway, as before. This week lists what's coming, the dilemmas page says how each went, and those
+who took part write about it. A setting (Events & world) turns it off.
 
 ### Social: friends, rivals, comrades and mentors
 Colonists form lasting bonds out of how they feel about each other and what they live through, and those bonds
@@ -1512,7 +1518,7 @@ The pages:
   Quests tab, and whether the storyteller draws them (and how likely each is) or Rimfolk's own timer does (and how
   often); the strength of fights in Rimfolk's scenarios; **world events** on or off and how often (about one every
   45 days by default); whether the world's **peoples remember the colony**; the colony calendar's days; and whether
-  answers play out on the map (feasts eaten, fires lit, visits paid).
+  answers play out on the map (feasts eaten, fires lit, visits paid, work parties, vigils and errands).
 - **Building**: personal touches and how often; what the room planner does by default (plan the furniture, cut
   plants, mine rock, replace your own buildings, smooth stone; the planner shows the same switches); and **material
   counts in build menus** (the game's own material list shows what the colony has; one of the deeper game hooks).
