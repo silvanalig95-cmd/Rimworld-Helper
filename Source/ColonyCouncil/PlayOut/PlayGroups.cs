@@ -586,7 +586,7 @@ namespace ColonyCouncil
             if (!given) carrier.carryTracker.DestroyCarriedThing();
             p.tally += n;
             int rest = p.amount - p.tally;
-            if (rest > 0) PlayCarry.Take(p.map, p.what, p.thing, rest);
+            if (rest > 0) PlayCarry.Take(p.map, p.what, p.thing, rest, carrier);
             p.tally = Math.Max(p.tally, p.amount);
             var h = p.Hand(carrier);
             if (h != null) h.counted = true;

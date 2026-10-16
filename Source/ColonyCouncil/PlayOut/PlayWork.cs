@@ -20,8 +20,12 @@ namespace ColonyCouncil
     {
         private static Dictionary<WorkTask, List<WorkGiverDef>> givers;
 
-        /// <summary>The job each one was last given, and what it was on (not saved: after a load the party simply hands out fresh work).</summary>
-        private static readonly Dictionary<int, Job> issued = new Dictionary<int, Job>();
+        /// <summary>
+        /// The job each one was last given (with its id: the game hands a finished job's object out again for another
+        /// job, perhaps theirs, so the object alone doesn't say it's still ours), and what it was on (not saved: after a
+        /// load the party simply hands out fresh work).
+        /// </summary>
+        private static readonly Dictionary<int, (Job job, int id)> issued = new Dictionary<int, (Job, int)>();
         private static readonly Dictionary<int, (WorkTask task, Thing target, IntVec3 cell)> last = new Dictionary<int, (WorkTask, Thing, IntVec3)>();
         /// <summary>Guards against a job that ends the moment it starts: the next step runs at most a few times in one tick.</summary>
         private static readonly Dictionary<int, (int tick, int n)> steps = new Dictionary<int, (int, int)>();
@@ -183,12 +187,12 @@ namespace ColonyCouncil
             var job = x?.CurJob;
             if (job == null) return false;
             if (job.def == PlayOutDefOf.Council_PlayOutWorkNext) return true;
-            return issued.TryGetValue(x.thingIDNumber, out var j) && j == job;
+            return issued.TryGetValue(x.thingIDNumber, out var j) && j.job == job && j.id == job.loadID;
         }
 
         private static void Record(Pawn x, Job job, WorkTask task, Thing target, IntVec3 cell)
         {
-            issued[x.thingIDNumber] = job;
+            issued[x.thingIDNumber] = (job, job.loadID);
             last[x.thingIDNumber] = (task, target, cell);
         }
 
@@ -278,7 +282,7 @@ namespace ColonyCouncil
         {
             if (x == null) return;
             ClearQueued(x);
-            if (now && issued.TryGetValue(x.thingIDNumber, out var j) && x.CurJob == j && x.jobs != null)
+            if (now && issued.TryGetValue(x.thingIDNumber, out var j) && x.CurJob == j.job && j.job.loadID == j.id && x.jobs != null)
                 x.jobs.EndCurrentJob(JobCondition.InterruptForced);
             issued.Remove(x.thingIDNumber);
             last.Remove(x.thingIDNumber);

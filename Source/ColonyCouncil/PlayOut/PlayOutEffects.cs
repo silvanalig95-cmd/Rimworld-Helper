@@ -359,8 +359,10 @@ namespace ColonyCouncil
                 var dm = map.designationManager;
                 var wanted = kinds.NullOrEmpty() ? null : kinds.Split('|').Select(k => k.Trim()).Where(k => k.Length > 0).ToList();
                 var game = map.mapPawns.AllPawnsSpawned
-                    .Where(a => a.RaceProps.Animal && a.Faction == null && !a.Downed && !a.Dead && !a.RaceProps.predator && !a.InMentalState
-                                && dm.DesignationOn(a) == null && !a.Position.Fogged(map) && PawnUtility.GetManhunterOnDamageChance(a) <= 0.1f)
+                    // Only safe game (PlayHunt.Safe: no predator, insect or dryad, nothing thrumbo-sized or likely to turn,
+                    // nothing bonded or venerated); the one animal the answer is about may be hunted whatever it is.
+                    .Where(a => dm.DesignationOn(a) == null
+                                && (a == ctx.stranger ? a.RaceProps.Animal && a.Faction == null && !a.Downed && !a.Dead : PlayHunt.Safe(a, map)))
                     .OrderByDescending(a => a == ctx.stranger)
                     .ThenByDescending(a => wanted != null && wanted.Contains(a.def.defName))
                     .ThenByDescending(a => a.GetStatValue(StatDefOf.MeatAmount))

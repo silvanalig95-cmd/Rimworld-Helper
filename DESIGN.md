@@ -382,8 +382,9 @@ gives those taking part come once it's over (PlayOut/).
   (`_CarryOut`) takes exactly what the old taking took (same things, same amount, the steward's saving; human and
   insect meat last), but only when it's handed over: the carrier hauls a stack to the visitor's pack or to the gate
   (`JobDriver_PlayOutCarry`), the rest goes with it at the handover, and if it never happens it's taken at once as
-  before. A **hunt party** marks safe game (no predators, nothing likely to turn, nobody's animal) and gives the game's
-  own hunting job to those able to hunt. Only those capable of the work go; beliefs count (no tree cutting for those
+  before (never what another pawn has reserved or is picking up). A **hunt party** marks safe game (no predators or insects, nothing likely to turn by its kind whatever the
+  difficulty, nothing bigger than a muffalo, nobody's animal, nothing bonded or venerated) and gives the game's own
+  hunting job to those able to hunt. Only those capable of the work go; beliefs count (no tree cutting for those
   against it, nothing outdoors for those kept indoors, no hunt for those who hold violence or hunting wrong). Danger,
   drafting, downing, a mental state, a lord, hunger or exhaustion ends a member's part; danger ends the group (an
   errand goes back to waiting). At most eight on one, two groups at once, four hours (eight for a vigil); a plan never

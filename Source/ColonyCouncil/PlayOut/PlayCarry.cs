@@ -72,8 +72,12 @@ namespace ColonyCouncil
 
         public static int Have(Map map, string what, ThingDef def) => Stock(map, what, def).Sum(t => t.stackCount);
 
-        /// <summary>Takes so many from the stores (as many as there are, if fewer). How many were taken.</summary>
-        public static int Take(Map map, string what, ThingDef def, int n)
+        /// <summary>
+        /// Takes so many from the stores (as many as there are, if fewer). How many were taken. Never what someone else is
+        /// about to use (an ingredient a cook has claimed, the medicine a doctor is fetching, a stack being hauled);
+        /// <paramref name="carrier"/>'s own claim (the rest of the stack they took their load from) doesn't count.
+        /// </summary>
+        public static int Take(Map map, string what, ThingDef def, int n, Pawn carrier = null)
         {
             if (map == null || n <= 0) return 0;
             int left = n;
@@ -81,11 +85,30 @@ namespace ColonyCouncil
             {
                 if (left <= 0) break;
                 if (t == null || t.Destroyed || !t.Spawned) continue;
+                if (Claimed(t, map, carrier)) continue;
                 int take = Mathf.Min(left, t.stackCount);
                 t.SplitOff(take).Destroy();
                 left -= take;
             }
             return n - left;
+        }
+
+        private static readonly HashSet<Pawn> claimants = new HashSet<Pawn>();
+
+        /// <summary>Reserved for someone's job, or being picked up, by anyone but <paramref name="except"/>.</summary>
+        private static bool Claimed(Thing t, Map map, Pawn except)
+        {
+            claimants.Clear();
+            map.reservationManager.ReserversOf(t, claimants);
+            claimants.Remove(except);
+            bool claimed = claimants.Count > 0;
+            claimants.Clear();
+            if (claimed) return true;
+            map.physicalInteractionReservationManager.ReserversOf(t, claimants);
+            claimants.Remove(except);
+            claimed = claimants.Count > 0;
+            claimants.Clear();
+            return claimed;
         }
 
         /// <summary>The stack the carrier picks up: the first in the order things are taken that they may and can get to.</summary>
@@ -131,10 +154,40 @@ namespace ColonyCouncil
         private static WorkGiverDef giver;
         private static bool looked;
 
-        /// <summary>Wild game that won't turn on its hunters: no predator, nothing likely to go manhunter, nobody's animal.</summary>
+        /// <summary>
+        /// Wild game that won't turn on its hunters: no predator, no insect or dryad, nothing likely to go manhunter (by its
+        /// kind, whatever the difficulty makes of it), nothing the size of a thrumbo or an elephant, nobody's animal, no
+        /// animal bonded to someone, and none the colony's faith venerates.
+        /// </summary>
         public static bool Safe(Pawn a, Map map) =>
             a != null && !a.Dead && a.Spawned && a.Map == map && !a.Downed && a.RaceProps != null && a.RaceProps.Animal && a.Faction == null
-            && !a.RaceProps.predator && !a.InMentalState && !a.Position.Fogged(map) && PawnUtility.GetManhunterOnDamageChance(a) <= 0.1f;
+            && !a.RaceProps.predator && !a.RaceProps.Insect && !a.RaceProps.Dryad && a.RaceProps.baseBodySize <= MaxGameSize
+            && !a.InMentalState && !a.Position.Fogged(map)
+            && a.RaceProps.manhunterOnDamageChance <= 0.1f && PawnUtility.GetManhunterOnDamageChance(a) <= 0.1f
+            && !Bonded(a) && !Venerated(a);
+
+        /// <summary>The biggest kind of animal a hunt goes after (a muffalo or an elk, not a thrumbo, a rhino or an elephant).</summary>
+        public const float MaxGameSize = 2.5f;
+
+        private static bool Bonded(Pawn a)
+        {
+            var rels = a.relations?.DirectRelations;
+            if (rels == null) return false;
+            for (int i = 0; i < rels.Count; i++)
+                if (rels[i].def == PawnRelationDefOf.Bond) return true;
+            return false;
+        }
+
+        private static bool Venerated(Pawn a)
+        {
+            if (!ModsConfig.IdeologyActive) return false;
+            var ideos = Faction.OfPlayer?.ideos;
+            if (ideos == null) return false;
+            foreach (var ideo in ideos.AllIdeos)
+                if (ideo != null && ideo.IsVeneratedAnimal(a))
+                    return true;
+            return false;
+        }
 
         /// <summary>
         /// The game for a hunt: the event's own animal if it is one (and safe), else the kinds wanted first, else the best
