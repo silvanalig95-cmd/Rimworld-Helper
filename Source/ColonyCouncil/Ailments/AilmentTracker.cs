@@ -790,6 +790,15 @@ namespace ColonyCouncil
             return false;
         }
 
+        /// <summary>
+        /// They had fruit or vegetables today, though not in a meal the hook saw: the fruit and vegetables on a feast's
+        /// table (Interplay/).
+        /// </summary>
+        public void MarkFresh(Pawn p)
+        {
+            if (p != null) freshDay[p.ThingID] = Find.TickManager.TicksGame / GenDate.TicksPerDay;
+        }
+
         /// <summary>They've had fruit or vegetables within the last days (true when the diet isn't being watched).</summary>
         public bool AteFreshWithin(Pawn p, float daysBack)
         {

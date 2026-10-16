@@ -211,6 +211,7 @@ namespace ColonyCouncil
             Toggle("enableAdvisor", "CC_Settings_EnableAdvisor", "CC_SetNote_EnableAdvisor");
             Toggle("enableWishes", "CC_Settings_EnableWishes", "CC_SetNote_EnableWishes");
             Toggle("enableAmbitions", "CC_Settings_EnableAmbitions", "CC_SetNote_EnableAmbitions");
+            Toggle("interplay", "CC_Settings_Interplay", "CC_SetNote_Interplay");
             Section("CC_Settings_Stakes");
             Choice("stakes", "CC_Settings_Stakes", "CC_SetTip_Stakes", "CC_Stakes_", "CC_Stakes_Short_", new[] { "Gentle", "Balanced", "Demanding", "AdvisorOnly" });
             Slider("penaltyFactor", "CC_Settings_Penalty", "CC_SetNote_Penalty", 0.25f, 2f, 0.05f, "%", "stakes=Balanced|Demanding", "CC_SetWhy_Downsides");

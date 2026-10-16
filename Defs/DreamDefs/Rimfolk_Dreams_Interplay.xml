@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Dreams that grow out of what happened in the colony's other parts: a remembrance kept on the calendar, a feast or a
+    tradition kept, a granted wish taken back, work or a harvest lost, a sickbed visit or the relief of having lived.
+    Same format as Council_Dreams.xml; the mood is the usual one for the kind of dream.
+  -->
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamI_AfterRemembrance</defName>
+    <label>a dream after the remembrance</label>
+    <kind>Lost</kind>
+    <about>Lost</about>
+    <weight>2</weight>
+    <afterThoughts>
+      <li>Council_Cal_Remembered</li>
+    </afterThoughts>
+    <withinDays>2</withinDays>
+    <lines>
+      <plain>
+        <li>After the remembrance I dreamt of {LOST}, standing at the back of the crowd as if they'd come to their own day. Nobody else seemed to see them.</li>
+        <li>{LOST} came in the dream and asked what we'd said about them. I told them. They laughed at the parts we got wrong.</li>
+        <li>I dreamt we were all at the grave again, and {LOST} was the one saying the words.</li>
+      </plain>
+      <warm>
+        <li>{LOST} came the night after we remembered them, just to say thank you. That's all. It was enough.</li>
+      </warm>
+      <blunt><li>Dreamt of {LOST} after the remembrance. Expected it.</li></blunt>
+      <gloomy><li>We remember {LOST} once a year. In the dream, {LOST} asked why only once.</li></gloomy>
+      <cold><li>A dream of {LOST}, following the remembrance. The mind keeps its own calendar.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamI_FeastGoesOn</defName>
+    <label>a dream of the feast</label>
+    <kind>Sweet</kind>
+    <weight>1.2</weight>
+    <afterThoughts>
+      <li>Council_Cal_FeastDay</li>
+      <li>Council_TraditionKept</li>
+    </afterThoughts>
+    <withinDays>1</withinDays>
+    <lines>
+      <plain>
+        <li>The feast went on all night in my dream, and every time a plate emptied someone I loved filled it again.</li>
+        <li>Dreamt the whole colony sat at one long table that went on past the fields, and everyone could still hear everyone else.</li>
+        <li>In the dream we kept the day again, and then again, and nobody minded.</li>
+      </plain>
+      <warm><li>Dreamt of the table, full, and every chair taken. Woke up smiling.</li></warm>
+      <blunt><li>Dreamt about the feast. Good food. Good dream.</li></blunt>
+      <cheerful><li>The feast in my dream had seven kinds of pie. I'm going to mention this to the cook.</li></cheerful>
+      <cold><li>A pleasant dream about the colony's day. The seating was sensible.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamI_TakenBack</defName>
+    <label>a dream of what was taken</label>
+    <kind>Strange</kind>
+    <weight>1.5</weight>
+    <afterThoughts>
+      <li>Council_TakenBack</li>
+    </afterThoughts>
+    <withinDays>3</withinDays>
+    <lines>
+      <plain>
+        <li>I dreamt I went back to what the council gave me, and the door opened onto an empty field.</li>
+        <li>In the dream the council handed me a gift, wrapped, and every time I unwrapped it there was another wrapping inside.</li>
+        <li>Dreamt I was at the meeting asking for it back, and nobody could hear me over the vote.</li>
+      </plain>
+      <blunt><li>Dreamt about what they took back. Not surprised.</li></blunt>
+      <gloomy><li>Dreamt they gave it to me again, just to take it away again. Felt very real.</li></gloomy>
+      <cold><li>A dream about the broken promise. I am apparently not over it.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamI_BuildingAgain</defName>
+    <label>a dream of building it again</label>
+    <kind>Nightmare</kind>
+    <weight>1.2</weight>
+    <afterThoughts>
+      <li>Council_Setback_WorkWrecked</li>
+      <li>Council_Setback_CropLost</li>
+    </afterThoughts>
+    <withinDays>2</withinDays>
+    <lines>
+      <plain>
+        <li>I dreamt I was building it again, and every time I set the last piece the first one fell.</li>
+        <li>In the dream the fields came up green and turned black the moment I looked away.</li>
+        <li>Dreamt I was carrying the pieces home in my arms, and there were always more than I could hold.</li>
+      </plain>
+      <blunt><li>Dreamt it fell down again. Woke up tired.</li></blunt>
+      <cheerful><li>Dreamt it fell down again, but in the dream I'd built it out of bread, so at least there was breakfast.</li></cheerful>
+      <gloomy><li>Built it again in my sleep. Lost it again in my sleep.</li></gloomy>
+      <cold><li>A dream about the loss. The mind rehearses what it cannot change.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamI_Mending</defName>
+    <label>a dream of being well</label>
+    <kind>Sweet</kind>
+    <weight>1.2</weight>
+    <afterThoughts>
+      <li>Council_Moment_VisitedWhileIll</li>
+      <li>Council_Health_GladToBeAlive</li>
+    </afterThoughts>
+    <withinDays>2</withinDays>
+    <lines>
+      <plain>
+        <li>I dreamt I was running across the fields, and nothing hurt, and nobody told me to slow down.</li>
+        <li>In the dream I was well again and carrying everyone else's loads for them, for once.</li>
+        <li>Dreamt of the people who sat by my bed, all of them in one room, talking about anything but me.</li>
+      </plain>
+      <warm><li>Dreamt I thanked everyone who looked after me, one by one, and had time for all of them.</li></warm>
+      <blunt><li>Dreamt I was well. Soon.</li></blunt>
+      <cheerful><li>Dreamt I climbed the tallest thing in the colony without stopping for breath. Next week, maybe.</li></cheerful>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+</Defs>

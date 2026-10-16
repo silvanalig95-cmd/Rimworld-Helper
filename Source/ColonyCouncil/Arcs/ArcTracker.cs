@@ -730,6 +730,8 @@ namespace ColonyCouncil
                     float w = ArcMath.CandidateWeight(def.weight * c.weight, past.Any(r => r.pawnId == p.ThingID), seenLately);
                     // Someone already in another story as the other person: a little less likely.
                     if (c.other != null && (Of(c.other) != null || active.Any(a => a.other == c.other))) w *= 0.5f;
+                    // What keeps going wrong in their life makes the story that answers it likelier (Interplay/).
+                    w *= Interplay.ArcWeight(def, p);
                     if (w > 0f) options.Add((def, c, w));
                 }
             }
@@ -778,6 +780,17 @@ namespace ColonyCouncil
             var g = arc?.Gate;
             if (g == null || !(g.kind == ArcGateKind.Made || (g.or?.Any(x => x?.kind == ArcGateKind.Made) ?? false))) return;
             if (thing.TryGetQuality(out var q) && (int)q > arc.madeQuality) arc.madeQuality = (int)q;
+        }
+
+        /// <summary>
+        /// Something outside the story settled it (Interplay/: a fear faced in a fight with the enemy it was about): on to
+        /// its last stage, and the end, whatever stage it had reached.
+        /// </summary>
+        public void FinishNow(Arc arc)
+        {
+            if (arc?.def == null || !active.Contains(arc) || arc.stage >= arc.def.LastStage) return;
+            if (arc.stage < arc.def.LastStage - 1) arc.stage = arc.def.LastStage - 1;
+            Advance(arc);
         }
 
         // ---------------- For the debug actions ----------------

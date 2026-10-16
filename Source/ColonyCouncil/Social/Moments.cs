@@ -654,6 +654,7 @@ namespace ColonyCouncil
                 t.friction = now;
                 int until = now + Mathf.RoundToInt(soreHours * GenDate.TicksPerHour * (Temper(a) || Temper(b) ? 1.5f : 1f));
                 if (until > t.soreUntil) t.soreUntil = until;
+                Interplay.Notify_Spat(a, b, t);
             }
             else if (tone == "mend")
             {
@@ -681,6 +682,8 @@ namespace ColonyCouncil
                 bool hot = Temper(a) || Temper(b);
                 int until = now + Mathf.RoundToInt(x.soreHours * GenDate.TicksPerHour * (hot ? 1.5f : 1f));
                 if (until > t.soreUntil) t.soreUntil = until;
+                // The peacemaker may step in (Interplay/).
+                Interplay.Notify_Spat(a, b, t);
             }
             else if (x.Mend)
             {

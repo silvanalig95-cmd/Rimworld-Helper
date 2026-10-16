@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More lines for encounters with traders and visitors, for when their people remember the colony (Interplay's tags,
+    from World/FactionMemory.cs): [their:grateful], [their:rescued], [their:grudge], [their:owed]. Merged in at startup
+    (LetterVariantsDef); a tagged line only shows when it fits, and then wins over the plain ones.
+  -->
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_EncM_HaggleWin</defName>
+    <encounter>Council_EncP_HaggleWin</encounter>
+    <texts>
+      <li>[their:grateful] {X_nameDef} let {A_nameDef} talk the price down further than {X_pronoun} had to. "{FACTION} owe this place," {X_pronoun} said. "Call it a little of that back."</li>
+      <li>[their:rescued] {A_nameDef} haggled hard, and {X_nameDef} gave way with a smile: {X_pronoun} had heard what the colony did for {FACTION}, and wasn't going to argue over a few silver.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_EncM_HaggleLoss</defName>
+    <encounter>Council_EncP_HaggleLoss</encounter>
+    <texts>
+      <li>[their:grudge] {X_nameDef} wouldn't come down a single silver for {A_nameDef}, and made sure {A_nameDef} knew why: {FACTION} remember what this colony did.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_EncM_FreeSample</defName>
+    <encounter>Council_EncP_FreeSample</encounter>
+    <texts>
+      <li>[their:rescued] {X_nameDef} pressed a twist of something sweet into {A_nameDef}'s hand and wouldn't take anything for it. "{FACTION} haven't forgotten," was all {X_pronoun} said.</li>
+      <li>[their:grateful] {X_nameDef} opened the good jar for {A_nameDef}, the one {X_pronoun} keeps back for friends of {FACTION}.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_EncM_CaravanGossip</defName>
+    <encounter>Council_EncP_CaravanGossip</encounter>
+    <texts>
+      <li>[their:grateful] According to {X_nameDef}, they still talk in {FACTION} towns about what this colony did for them. {A_nameDef} pretended not to be pleased.</li>
+      <li>[their:grudge] {X_nameDef} let it slip to {A_nameDef} that this colony's name isn't a good one among {FACTION}, and that {X_pronoun} only came because the road runs past it.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_EncM_RoadNews</defName>
+    <encounter>Council_EncP_RoadNews</encounter>
+    <texts>
+      <li>[their:rescued] Before any news, {X_nameDef} asked {A_nameDef} to pass on the thanks of a family among {FACTION} who would not be alive without this colony.</li>
+      <li>[their:owed] Among the news from the road, {X_nameDef} mentioned that {FACTION} had a hard winter, and that they remember who they helped when times were better.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_EncM_StaringGuard</defName>
+    <encounter>Council_EncP_StaringGuard</encounter>
+    <texts>
+      <li>[their:grudge] {X_nameDef}, one of the {FACTION} guards, watched {A_nameDef} the whole visit and didn't trouble to hide it. Some things haven't been forgiven.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+</Defs>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- How Rimfolk's systems talk to each other (Source/ColonyCouncil/Interplay/). -->
+
+  <!-- The setting -->
+  <CC_Settings_Interplay>Systems talk to each other</CC_Settings_Interplay>
+  <CC_Settings_Interplay_Tip>Rimfolk's parts reach into each other: the offices do their jobs in the colony's life (the keeper of days organises the feasts, the peacemaker steps into spats, the physician does the rounds, the reeve deals with neighbours, the herdmaster minds the animals, the marshal and the steward look after people), grief and strain shape who comes to what and what people wish for, personal stories move on with what happens around them, what the world's peoples remember reaches the camps and strangers, setbacks that keep coming turn into wishes and stories, and the evening news tells a busy colonist's day as one. Each link is small, and also follows the settings of the parts it joins.</CC_Settings_Interplay_Tip>
+  <CC_SetNote_Interplay>Offices at work, grief in people's choices, stories that hear the world, a colonist's day in the news.</CC_SetNote_Interplay>
+
+  <!-- News -->
+  <CC_Interplay_NewsDay>{PAWN_nameDef}'s day:</CC_Interplay_NewsDay>
+  <CC_Interplay_PhysicianRounds>{PAWN_nameDef} did the rounds of those still convalescing ({NAMES}): a look at the healing, a fresh dressing, a word about taking it slowly.</CC_Interplay_PhysicianRounds>
+  <CC_Interplay_MeetingHint>At the council meeting {KNOWER_nameDef} said something meant for {OWNER_nameDef}, and {OWNER_nameDef} didn't say another word for the rest of it.</CC_Interplay_MeetingHint>
+
+  <!-- Bonds and the colony's ways -->
+  <CC_TieNote_Interplay_PetLost>sat with them after {0} died</CC_TieNote_Interplay_PetLost>
+  <CC_TieNote_Interplay_Minded>looked after {0} while they were away</CC_TieNote_Interplay_Minded>
+  <CC_TieNote_Interplay_MeetingHint>a pointed remark at the council meeting</CC_TieNote_Interplay_MeetingHint>
+  <CC_Interplay_Ways_Tradition>the tradition of {0}</CC_Interplay_Ways_Tradition>
+
+</LanguageData>

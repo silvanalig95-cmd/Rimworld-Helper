@@ -311,7 +311,23 @@ Rimfolk also counts a few deeds the game doesn't, and shows them in the Records 
 
 Votes follow skill, traits and friendship: friends and members of the same circle vote for each other, rivals against. Losing an election or a seat sours the loser on the winner, and can start a rivalry.
 
-Overrule the vote only when the difference matters. The colonist who won the election will remember it.</text>
+Overrule the vote only when the difference matters. The colonist who won the election will remember it.
+
+Two more things weigh on a ballot. Someone whose granted wish the council took back in the last year holds it against everyone sitting on the council (about a third of a vote's worth). And the names the colony gave a candidate count for them, a dubious one against.</text>
+      </li>
+      <li>
+        <heading>In the colony's life</heading>
+        <text>With "Systems talk to each other" on, the offices also do their jobs where you can see them:</text>
+        <table>
+          <li>Office | Also</li>
+          <li>Keeper of days | Organises the calendar's feasts and games days (not the days about one person, which belong to them).</li>
+          <li>Peacemaker | Steps into a spat nearby, now and then: the two are sore at each other half as long.</li>
+          <li>Physician | Does the rounds of everyone convalescing each morning, taking about two thirds of a day off each recovery, and the office counts for two patients pulled through toward a doctor's good name.</li>
+          <li>Reeve | Deals with neighbours who ask the colony for goods; an order filled in full under the reeve brings 3 more goodwill.</li>
+          <li>Herdmaster | Sits with anyone whose named animal dies, and minds the animals of those away two days or more (they come home grateful).</li>
+          <li>Marshal | After a fight at home, has a word with everyone who fought beside them, easing their strain.</li>
+          <li>Steward | At a gathering, eases the strain of everyone else there a little.</li>
+        </table>
       </li>
     </sections>
     <keywords><li>office</li><li>election</li><li>vote</li><li>speaker</li><li>marshal</li><li>quartermaster</li><li>physician</li><li>steward</li><li>reeve</li><li>peacemaker</li><li>keeper of days</li><li>herdmaster</li></keywords>

@@ -1093,6 +1093,7 @@ namespace ColonyCouncil
             {
                 Journal(friend, friendOf, "friend", outcome);
                 if (peaceful) CouncilGameComponent.GiveThought(friend, CampDefOf.Council_Camp_FriendLeft, friendOf);
+                if (peaceful) Interplay.Notify_CampFriend(friend, friendOf);
             }
             if (foe != null && foe != friend) Journal(foe, foeOf, "resent", outcome);
             if (peaceful && tension < 35f && (tradeDays > 0 || helps > 0 || gifts > 0))
