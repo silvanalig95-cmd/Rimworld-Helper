@@ -266,6 +266,7 @@ the content itself, not only to systems, alongside whatever else it does. Where 
 | Colony character | 5 ways (10 names), 6 things a colony grows into | traits from hospitality, faith and the calendar |
 | Pets and nemeses | 14 heroics, 32 farewells, 22 taunts and parting words, 4 endings told from pools (one new: let go from the cells) | pets in the calendar, nemeses in dreams and personal stories |
 | Feelings | 26 | feelings that touch the camps and world events, each with more dreams and moments |
+| Seen and heard (touches, speech, small habits) | 18 touches; lines about 9 kinds of state (about 400) and 4 kinds of weather; 6 small habits | touches for more of Rimfolk's events (a camp arriving, a dream told), habits for more feelings and quirks |
 | Mood hints | 172 | hints for every new thought as it lands |
 | Small good moments that give something other than mood | 248 of 474 (opinion, recreation, rest, comfort, practice, a feeling, an inspiration, trust, research, goodwill, the journal), 4 habits with a knack instead | a reward instead for each new small moment as it lands |
 | Negative moods | 589 thoughts with a bad side (548 → 589); 41 setbacks from play (8 council, 3 gatherings, 10 work, 7 home, 6 worries, 7 between people) | setbacks for camps, world events and the calendar, more from mod content (a mod's bench, crop or ritual gone wrong) |

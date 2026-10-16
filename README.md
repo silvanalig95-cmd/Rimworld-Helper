@@ -1265,10 +1265,34 @@ happening. Under a **comet** the night sky takes a faint cool cast, and a **warm
 green-gold blinks drift around colonists outside after dark; **hail** pings off open ground and the crops it hits; a
 **camp's fire** sends up a thin line of smoke, with sparks at night; a **warlord's band** raises dust as it marches
 in. A **wedding** gets hearts over the couple and the friends nearby, a kept **tradition** a few notes of song, a
-clean **victory** a word or two from those who fought, and a **council meeting** opens with a small bell. Now and
-then a content colonist hums at work, someone outside says something about the comet or the weather, and on a comet
-night an idle colonist in good spirits may lie down to watch the sky. All of it happens only on the map you're
-looking at and only on screen, a handful at a time, and one setting (**Visual and sound touches**) turns it off.
+clean **victory** a word or two from those who fought, a **council meeting** opens with a small bell, and so does a
+**calendar day** when its letter comes. Now and then a content colonist hums at work, someone outside says something
+about the comet or the weather, and on a comet night an idle colonist in good spirits may lie down to watch the sky.
+
+**What they say about themselves.** Now and then a colonist on screen says a short line about how they really are,
+from what Rimfolk knows of them: a **feeling** running strong ("I still look for Ana at supper"), an **ailment** ("Mind
+my back, it's still out"), **getting back on their feet**, the stage their **personal story** has reached, a
+**calendar day tomorrow**, a **setback** they've just had, a **promise** the council took back, a **nemesis** still out
+there, a **wish** still waiting. About 400 lines across nine kinds, in the speaker's own voice, each tagged for the
+particular feeling, ailment, story stage, setback or kind of day; one line an hour at most, and the same colonist about
+once a day at most. The **first snow** of a winter, a **heat wave**, a **cold snap** and a **storm** rolling in get a
+word from whoever is out in them, and now and then a line in someone's journal.
+
+**Gatherings that look alive.** Round a **bonfire** the fire smokes and, after dark, sparks; a song has its notes and a
+wedding its hearts; at a **toast**, a while in, the cups go up together (a small warm glint over each head) with a
+word from whoever leads it; at a **remembrance** by a grave, and whenever someone stands at a grave after dark, a low
+warm glow shows there like a candle; at a **feast**, those eating are the ones most often heard.
+
+All of this happens only on the map you're looking at and only on screen, a handful at a time, and one setting
+(**Visual and sound touches**) turns it off; the lines also need floating speech text on.
+
+**Small habits** (a setting of its own, on the People & moods page): free time spent the way people really would. A
+**grieving** colonist visits the grave; a **homesick** one sits a while alone just outside the colony, looking out; a
+**convalescent** takes slow walks; after a **hard fight**, those who fought sit round the colony's fire if one is lit;
+someone whose **friend left** finds a person at their leisure and talks about them; and in the two days after the
+**first snow**, children go out to build snowmen. Each is recreation the game's own joy system picks, so it only comes
+up in free time, after danger, sleep, food and medical care have had their turn; never while drafted, ill, exhausted
+or under orders; any order ends it, and each comes round at most about once a day for the same colonist. Six habits.
 
 ## Colony news
 Rimfolk's many systems each have small news to tell: a quirk picked up, a personal story moving on, a birthday, a
@@ -1305,7 +1329,8 @@ apply it. Each sets only the values listed here and leaves everything else as yo
   own timer), world events about every 75 days; important messages only, and new wishes as messages; no frictions,
   no colonist leaving or taking a day off, no serious illnesses, ailments at 50%, no fights from Rimfolk's events.
 - **Story-rich**: every system that tells a story switched on (the council's, the people systems but frictions,
-  the colony's memory, camps, wishes after events, wishes for others, petitions, speech and visual touches), frequent
+  the colony's memory, camps, wishes after events, wishes for others, petitions, speech and visual touches, small
+  habits), frequent
   personal stories, a dilemma about every 5 days, moments, social events, dreams and encounters at 150%, Rimfolk's
   events at 150% (every 3 days on its own timer), world events about every 30 days, and a message for everything.
   Moods, pressures and stakes are left alone.
@@ -1334,8 +1359,8 @@ The pages:
   half again as strong), rising standards (and whether they also cover the game's comforts), whether Rimfolk's good
   moods add up slowly, getting used to good times, everyday frictions; the social web and social events, secrets,
   vendettas; life goals, personal stories (off, rare, normal or frequent), quirks, heirlooms, coming of age,
-  colonists fixing what bothers them (and placing small plans), dreams and dream omens; moments between colonists
-  and the colony noticing what happens; journals, names, anniversaries, annals and eulogies; and how often moments,
+  colonists fixing what bothers them (and placing small plans), dreams and dream omens; moments between colonists,
+  the colony noticing what happens, and small habits in free time; journals, names, anniversaries, annals and eulogies; and how often moments,
   social events and dreams come (a quarter as often to three times as often).
 - **Heart & health**: feelings and strain, the day off at the end of one's rope, the inspector line, how quickly
   strain builds (50% to 150%); everyday ailments, the serious (possibly fatal) illnesses on their own switch, how
