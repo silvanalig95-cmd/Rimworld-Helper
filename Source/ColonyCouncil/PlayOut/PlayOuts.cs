@@ -270,7 +270,9 @@ namespace ColonyCouncil
             return true;
         }
 
-        public static bool Positive(ThoughtDef t) => t?.stages != null && t.stages.Count > 0 && t.stages[0] != null && t.stages[0].baseMoodEffect > 0f;
+        /// <summary>A good memory: a good mood, or a small moment that gives something else instead (RewardInstead).</summary>
+        public static bool Positive(ThoughtDef t) =>
+            t?.stages != null && t.stages.Count > 0 && t.stages[0] != null && (t.stages[0].baseMoodEffect > 0f || RewardInstead.On(t));
 
         /// <summary>
         /// Effects outside a dilemma or an event (a decree, an ambition, a calendar day), applied as an answer's are:

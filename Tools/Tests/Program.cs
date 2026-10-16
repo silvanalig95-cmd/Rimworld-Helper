@@ -285,13 +285,19 @@ Check(GoodTimesMath.Comfort(-6f, 0.7f) == -6f && GoodTimesMath.Comfort(0f, 0.7f)
     Check(rises, "a bigger comfort is always felt as more");
 }
 Check(GoodTimesMath.RankFactor(0) == 1f && GoodTimesMath.RankFactor(1) == 1f, "the two biggest good moods count in full");
-Check(GoodTimesMath.RankFactor(2) == 0.5f && GoodTimesMath.RankFactor(3) == 0.25f && GoodTimesMath.RankFactor(4) == 0.125f, "each one after that half the one before");
-Check(GoodTimesMath.RankFactor(100) == 0f && GoodTimesMath.RankFactor(-1) == 1f, "rank factor out of range");
+Check(GoodTimesMath.RankFactor(2) == 0.5f && GoodTimesMath.RankFactor(3) == 0.35f && GoodTimesMath.RankFactor(4) == 0.25f, "then a half, 35% and a quarter");
+Check(GoodTimesMath.RankFactor(5) == 0.2f && GoodTimesMath.RankFactor(40) == 0.2f && GoodTimesMath.RankFactor(1000) == 0.2f, "every one after that a fifth, however deep");
+Check(GoodTimesMath.RankFactor(-1) == 1f, "rank factor below range");
 {
-    // A dozen good moods of +3 lift a colonist about as much as three: never more than twice the biggest two.
+    bool never = true;
+    for (int r = 1; r < 60; r++) never &= GoodTimesMath.RankFactor(r) <= GoodTimesMath.RankFactor(r - 1) && GoodTimesMath.RankFactor(r) > 0f;
+    Check(never, "a later good mood never counts for more than an earlier one, and never for nothing");
+    // A +3 deep in the pile still shows on the Needs tab (whole numbers) as +1.
+    Check(Math.Round(3f * GoodTimesMath.RankFactor(30), MidpointRounding.AwayFromZero) == 1, "a +3 joy deep in the stack still shows as +1");
+    // A dozen good moods of +3 add up to half their sum: far less than the pile, more than the old curve's +9.
     float sum = 0f;
     for (int r = 0; r < 12; r++) sum += 3f * GoodTimesMath.RankFactor(r);
-    Check(sum > 8.5f && sum <= 9f, $"a dozen +3 joys count as {sum}");
+    Check(Math.Abs(sum - 13.5f) < 0.01f, $"a dozen +3 joys count as {sum}");
 }
 
 // ---------------- Room layouts (Building/TemplateLayout.cs) ----------------
@@ -374,6 +380,8 @@ for (int r = 0; r < 4; r++)
         Console.WriteLine($"Checked {ailments} ailments and illnesses.");
         int memories = ThoughtClassTests.Run(root, Check);
         Console.WriteLine($"Checked {memories} memories share the budget of good moods.");
+        int instead = RewardInsteadTests.Run(root, Check, out int converted, out int small);
+        Console.WriteLine($"Checked {instead} things about the {converted} of {small} small good moments that give something other than mood.");
         Console.WriteLine($"Checked {ArcTests.Run(root, Check)} things about personal stories (their pace, stages and lines).");
         Console.WriteLine($"Checked {HealthTests.Run(root, Check)} claims about convalescence and healers.");
         Console.WriteLine($"Checked {SettingsTests.Run(root, Check)} things about the settings window (every field on one page, presets, keys, sizes).");

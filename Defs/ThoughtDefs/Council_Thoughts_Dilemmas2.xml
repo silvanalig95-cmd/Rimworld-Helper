@@ -90,7 +90,8 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_GoodLaugh</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>a good laugh</label><description>One of the others made a complete fool of themselves at dinner. I laughed until I cried.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>a good laugh</label><description>One of the others made a complete fool of themselves at dinner. I laughed until I cried.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.1</joy><felt>3</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">

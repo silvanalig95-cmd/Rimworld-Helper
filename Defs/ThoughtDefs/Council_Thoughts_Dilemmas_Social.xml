@@ -43,7 +43,8 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmSoc_WatchTogether</defName>
     <durationDays>5</durationDays>
-    <stages><li><label>night watch with a friend</label><description>We stood night watch together. It was cold and dark and nothing happened, and we talked for hours.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>night watch with a friend</label><description>We stood night watch together. It was cold and dark and nothing happened, and we talked for hours.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><feelings><li>Fellowship</li></feelings><felt>4</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -140,7 +141,8 @@
     <durationDays>15</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>told the story of the fight together</label><description>We told the story of the fight together, the way it really happened. They know what that day was like.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>10</baseOpinionOffset></li></stages>
+    <stages><li><label>told the story of the fight together</label><description>We told the story of the fight together, the way it really happened. They know what that day was like.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>10</baseOpinionOffset></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">

@@ -50,6 +50,15 @@
   </HediffDef>
 
   <HediffDef ParentName="Council_QuirkKnackBase">
+    <defName>Council_Quirk_Humming</defName>
+    <label>hums while working (habit)</label>
+    <description>Hums the same tune at any work, mostly without noticing. The hours go by easier, and the work a little quicker.</description>
+    <stages>
+      <li><statOffsets><WorkSpeedGlobal>0.02</WorkSpeedGlobal></statOffsets></li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Council_QuirkKnackBase">
     <defName>Council_Quirk_Birthdays</defName>
     <label>remembers every birthday (habit)</label>
     <description>Knows everyone's birthday and never forgets one. People warm to that.</description>

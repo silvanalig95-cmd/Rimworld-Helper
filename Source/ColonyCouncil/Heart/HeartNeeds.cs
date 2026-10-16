@@ -123,7 +123,7 @@ namespace ColonyCouncil
                     if (mem?.def == null) continue;
                     var kind = SocialKindOf(mem.def);
                     if (kind == SocialMemory.LeftOut) leftOut = true;
-                    else if (kind == SocialMemory.Good && mem.age < GenDate.TicksPerDay * 2 && HeartLogic.SafeMood(mem) > 0f) good++;
+                    else if (kind == SocialMemory.Good && mem.age < GenDate.TicksPerDay * 2 && HeartLogic.FeltMood(mem) > 0f) good++;
                 }
             if (good > 0)
             {

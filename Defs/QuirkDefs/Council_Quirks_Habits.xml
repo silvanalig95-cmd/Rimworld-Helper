@@ -18,8 +18,8 @@
     <children>true</children>
     <chance>0.003</chance>
     <days>300</days>
-    <condition>Working</condition>
-    <thought>Council_Quirk_Hums</thought>
+    <!-- No mood any more: the knack carries it (the thought Council_Quirk_Hums stays defined for old saves). -->
+    <hediff>Council_Quirk_Humming</hediff>
     <gained>
       <plain>
         <li>Someone told me today that I hum while I work. I didn't know. Apparently it's the same tune every time.</li>
@@ -108,9 +108,7 @@
     <who><passion>Plants</passion></who>
     <chance>0.004</chance>
     <days>360</days>
-    <condition>WorkingAt</condition>
-    <workType>Growing</workType>
-    <thought>Council_Quirk_TalksToPlants</thought>
+    <!-- No mood any more: the knack carries it (the thought Council_Quirk_TalksToPlants stays defined for old saves). -->
     <hediff>Council_Quirk_GreenThumb</hediff>
     <gained>
       <plain>
@@ -172,9 +170,7 @@
     <children>true</children>
     <chance>0.004</chance>
     <days>360</days>
-    <condition>WorkingAt</condition>
-    <workType>Handling</workType>
-    <thought>Council_Quirk_NamesAnimals</thought>
+    <!-- No mood any more: the knack carries it (the thought Council_Quirk_NamesAnimals stays defined for old saves). -->
     <hediff>Council_Quirk_AnimalNames</hediff>
     <gained>
       <plain>
@@ -234,9 +230,7 @@
     <who><passion>Cooking</passion></who>
     <chance>0.004</chance>
     <days>360</days>
-    <condition>WorkingAt</condition>
-    <workType>Cooking</workType>
-    <thought>Council_Quirk_SingsAtStove</thought>
+    <!-- No mood any more: the knack carries it (the thought Council_Quirk_SingsAtStove stays defined for old saves). -->
     <hediff>Council_Quirk_StoveSongs</hediff>
     <gained>
       <plain>

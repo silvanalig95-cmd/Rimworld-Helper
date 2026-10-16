@@ -61,15 +61,22 @@ namespace ColonyCouncil
 
         // ---------------- Good moods add up slowly ----------------
 
+        /// <summary>What every good mood after the fifth still counts for: a +3 deep in the pile still shows as +1.</summary>
+        public const float RankFloor = 0.2f;
+
         /// <summary>
         /// How much a good mood counts by its place among the colonist's good moods, biggest first (0 is the biggest):
-        /// the first two in full, each one after that half as much as the one before.
+        /// the first two in full, then a half, 35% and a quarter, and every one after that a fifth.
         /// </summary>
         public static float RankFactor(int rank)
         {
-            if (rank < 2) return 1f;
-            if (rank > 40) return 0f;
-            return (float)Math.Pow(0.5, rank - 1);
+            switch (rank)
+            {
+                case 2: return 0.5f;
+                case 3: return 0.35f;
+                case 4: return 0.25f;
+                default: return rank < 2 ? 1f : RankFloor;
+            }
         }
     }
 }

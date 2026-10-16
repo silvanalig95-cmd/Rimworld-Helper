@@ -455,7 +455,7 @@ namespace ColonyCouncil
                 var r = rule.Value;
                 if (r.only != 0)
                 {
-                    float off = SafeMood(mem);
+                    float off = FeltMood(mem);
                     if (r.only > 0 && off >= 0f) continue;
                     if (r.only < 0 && off <= 0f) continue;
                 }
@@ -516,6 +516,16 @@ namespace ColonyCouncil
             {
                 return 0f;
             }
+        }
+
+        /// <summary>
+        /// A memory as the heart feels it: its mood, or for a small moment that gives something else instead of mood,
+        /// how big a good moment it was (RewardInstead.felt).
+        /// </summary>
+        internal static float FeltMood(Thought_Memory m)
+        {
+            float mood = SafeMood(m);
+            return mood != 0f ? mood : RewardInstead.Felt(m.def);
         }
 
         /// <summary>Strain changed from outside (a dilemma, an episode ending): kept within bounds and on the record.</summary>

@@ -2,7 +2,7 @@ using System.Xml.Linq;
 
 /// <summary>
 /// Every memory in Rimfolk's defs must use one of Rimfolk's memory classes, which share the budget of good moods
-/// (SmallJoys: the two biggest in full, each one after half the one before). A memory with the game's plain class would
+/// (SmallJoys: the two biggest in full, then a half, 35% and a quarter, and a fifth for every one after). A memory with the game's plain class would
 /// escape it. Situational moods (with a worker) aren't memories and may use any class.
 /// </summary>
 public static class ThoughtClassTests

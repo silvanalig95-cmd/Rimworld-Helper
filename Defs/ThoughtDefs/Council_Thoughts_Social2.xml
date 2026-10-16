@@ -11,7 +11,8 @@
     <durationDays>4</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>forgiven</label><description>I finally owned up. They let it go, just like that. I should have said something weeks ago.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>8</baseOpinionOffset></li></stages>
+    <stages><li><label>forgiven</label><description>I finally owned up. They let it go, just like that. I should have said something weeks ago.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>8</baseOpinionOffset></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>3</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -29,7 +30,8 @@
     <durationDays>6</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>trusted with a secret</label><description>They trusted me with their secret. It's safe with me.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>10</baseOpinionOffset></li></stages>
+    <stages><li><label>trusted with a secret</label><description>They trusted me with their secret. It's safe with me.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>10</baseOpinionOffset></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>3</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -38,7 +40,8 @@
     <durationDays>4</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>covered for me</label><description>I was dead on my feet. They took my shift without being asked.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>10</baseOpinionOffset></li></stages>
+    <stages><li><label>covered for me</label><description>I was dead on my feet. They took my shift without being asked.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>10</baseOpinionOffset></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><rest>0.2</rest><felt>3</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -131,7 +134,8 @@
     <durationDays>2</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>sparred together</label><description>We knocked each other around until we were both laughing. I'll be sore tomorrow.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>5</baseOpinionOffset></li></stages>
+    <stages><li><label>sparred together</label><description>We knocked each other around until we were both laughing. I'll be sore tomorrow.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>5</baseOpinionOffset></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -158,7 +162,8 @@
     <durationDays>4</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>patched me up</label><description>They stitched me up with a sewing needle and terrible jokes. The jokes hurt more.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>8</baseOpinionOffset></li></stages>
+    <stages><li><label>patched me up</label><description>They stitched me up with a sewing needle and terrible jokes. The jokes hurt more.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>8</baseOpinionOffset></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
   <!-- Mentors -->
@@ -196,7 +201,8 @@
     <durationDays>3</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>learned from my student</label><description>My student asked a question I couldn't answer, so I worked it out. I learned something too.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>6</baseOpinionOffset></li></stages>
+    <stages><li><label>learned from my student</label><description>My student asked a question I couldn't answer, so I worked it out. I learned something too.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>6</baseOpinionOffset></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>3</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -263,7 +269,8 @@
     <durationDays>3</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>a dare, done</label><description>We did the dare! We swore not to tell anyone, but I really want to.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>6</baseOpinionOffset></li></stages>
+    <stages><li><label>a dare, done</label><description>We did the dare! We swore not to tell anyone, but I really want to.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>6</baseOpinionOffset></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.12</joy><felt>3</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -272,7 +279,8 @@
     <durationDays>4</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>they had time for me</label><description>They answered every single question. Even the ones about the leg in the freezer.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>8</baseOpinionOffset></li></stages>
+    <stages><li><label>they had time for me</label><description>They answered every single question. Even the ones about the leg in the freezer.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>8</baseOpinionOffset></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>3</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -281,7 +289,8 @@
     <durationDays>3</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>endless questions</label><description>The kid asked me a hundred questions, and I knew the answers to about four. I liked it anyway.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>6</baseOpinionOffset></li></stages>
+    <stages><li><label>endless questions</label><description>The kid asked me a hundred questions, and I knew the answers to about four. I liked it anyway.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>6</baseOpinionOffset></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
   <!-- Natures -->
