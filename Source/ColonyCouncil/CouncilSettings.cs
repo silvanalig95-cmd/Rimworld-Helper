@@ -167,6 +167,10 @@ namespace ColonyCouncil
         public bool petitions = true;
         public bool wishLetters = true;
         public bool grantedLetters = false;
+        /// <summary>A letter after Rimfolk has been updated, with the newest round's highlights (UI/WhatsNew.cs).</summary>
+        public bool whatsNewLetter = true;
+        /// <summary>The Rimfolk version the player last saw, so the update letter comes once per update.</summary>
+        public string lastSeenVersion = "";
         /// <summary>The old "colonists speak" switch, kept in step with <see cref="speechShows"/> (off when it is Off) so older settings files load.</summary>
         public bool speechText = true;
         /// <summary>How colonists' speech shows: bubbles when Interaction Bubbles is loaded, floating text, or not at all (Immersion/Speech.cs).</summary>
@@ -311,6 +315,8 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref petitions, "petitions", true);
             Scribe_Values.Look(ref wishLetters, "wishLetters", true);
             Scribe_Values.Look(ref grantedLetters, "grantedLetters", false);
+            Scribe_Values.Look(ref whatsNewLetter, "whatsNewLetter", true);
+            Scribe_Values.Look(ref lastSeenVersion, "lastSeenVersion", "");
             // The old switch is written from the new choice, and an old settings file with it off reads as "off".
             if (Scribe.mode == LoadSaveMode.Saving) speechText = speechShows != SpeechMode.Off;
             Scribe_Values.Look(ref speechText, "speechText", true);
