@@ -28,5 +28,6 @@
     <Compile Include="../../Source/ColonyCouncil/UI/SettingsCatalog.cs" Link="SettingsCatalog.cs" />
     <Compile Include="../../Source/ColonyCouncil/UI/SettingsLayoutMath.cs" Link="SettingsLayoutMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/UI/AlmanacLayoutMath.cs" Link="AlmanacLayoutMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Wishes/KeptMath.cs" Link="KeptMath.cs" />
   </ItemGroup>
 </Project>
