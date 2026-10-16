@@ -452,18 +452,31 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>The curfew is over: each night hour still set to sleep goes back to what it was.</summary>
+        /// <summary>
+        /// The curfew is over: each night hour still set to sleep goes back to what it was. Someone of the colony's away
+        /// where its lists don't reach (carried off, say) keeps their note, and is put back when they come home (the hour
+        /// checks again); only the dead and those no longer the colony's are let go.
+        /// </summary>
         private static void RestoreNight(DecreeTracker t)
         {
+            List<string> away = null;
             try
             {
                 var sleep = TimeAssignmentDefOf.Sleep;
                 var people = PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_FreeColonists.ToList();
+                List<Pawn> everyone = null;
                 foreach (var kv in t.nightHours)
                 {
                     if (kv.Value.NullOrEmpty()) continue;
                     var p = people.FirstOrDefault(x => x.ThingID == kv.Key);
-                    if (p?.timetable == null) continue;
+                    if (p == null)
+                    {
+                        everyone ??= PawnsFinder.AllMapsWorldAndTemporary_AliveOrDead.ToList();
+                        var q = everyone.FirstOrDefault(x => x.ThingID == kv.Key);
+                        if (q == null || (!q.Dead && !q.Discarded && q.Faction == Faction.OfPlayer)) (away ??= new List<string>()).Add(kv.Key);
+                        continue;
+                    }
+                    if (p.timetable == null) continue;
                     foreach (var part in kv.Value.Split(';'))
                     {
                         int eq = part.IndexOf('=');
@@ -479,7 +492,10 @@ namespace ColonyCouncil
             }
             finally
             {
-                t.nightHours.Clear();
+                if (away == null) t.nightHours.Clear();
+                else
+                    foreach (var k in t.nightHours.Keys.Where(k => !away.Contains(k)).ToList())
+                        t.nightHours.Remove(k);
             }
         }
 

@@ -102,6 +102,7 @@ namespace ColonyCouncil
             var c = Dearest(a.pawn);
             if (c == null) return false;
             a.baseline = c.thingIDNumber;
+            a.pawnRef = c.thingIDNumber;
             a.target = 1f;
             a.sparkName = c.LabelShort;
             return true;
@@ -109,7 +110,7 @@ namespace ColonyCouncil
 
         public override float Progress(Aspiration a)
         {
-            var c = Child((int)a.baseline);
+            var c = Child(a.pawnRef >= 0 ? a.pawnRef : (int)a.baseline);
             if (c == null) return 0f;
             if (!c.DevelopmentalStage.Juvenile()) return 1f;
             var age = c.ageTracker;
@@ -118,13 +119,13 @@ namespace ColonyCouncil
 
         public override bool StillPossible(Aspiration a)
         {
-            var c = Child((int)a.baseline);
+            var c = Child(a.pawnRef >= 0 ? a.pawnRef : (int)a.baseline);
             return c != null && !c.Dead;
         }
 
         public override string ProgressText(Aspiration a)
         {
-            var c = Child((int)a.baseline);
+            var c = Child(a.pawnRef >= 0 ? a.pawnRef : (int)a.baseline);
             return c == null ? base.ProgressText(a) : "CC_Asp_SeeGrownProgress".Translate(c.LabelShort, (c.ageTracker?.AgeBiologicalYears ?? 0).ToString()).Resolve();
         }
     }

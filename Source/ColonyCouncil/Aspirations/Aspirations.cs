@@ -118,6 +118,8 @@ namespace ColonyCouncil
         public Pawn pawn;
         public SkillDef skill;
         public float baseline;
+        /// <summary>A pawn the goal is about, by id (a float baseline can't hold large ids exactly once saved).</summary>
+        public int pawnRef = -1;
         public float target;
         public int startedTick;
         public bool done;
@@ -145,6 +147,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref doneTick, "doneTick");
             Scribe_Values.Look(ref spark, "spark");
             Scribe_Values.Look(ref sparkName, "sparkName");
+            Scribe_Values.Look(ref pawnRef, "pawnRef", -1);
             Scribe_Values.Look(ref inherited, "inherited");
         }
 

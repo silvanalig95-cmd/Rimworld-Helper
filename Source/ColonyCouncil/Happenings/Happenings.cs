@@ -589,6 +589,8 @@ namespace ColonyCouncil
             // Newcomers follow the storyteller's sense of how big the colony should be.
             if (ext.addsPeople) w *= Mathf.Clamp(StorytellerUtilityPopulation.PopulationIntent + 0.35f, 0.05f, 1.5f);
             w *= WorldSituations.EventFactor(d, ext);
+            // A quarantine or open gates decree, as in the storyteller's own pools (StorytellerFactor).
+            if (ext.group == HappeningGroup.Visitors) w *= DecreeWork.VisitorFactor;
             return Mathf.Max(0.001f, w);
         }
 

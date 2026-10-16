@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -147,7 +148,7 @@ namespace ColonyCouncil
                 best = o;
                 bestScore = score;
             }
-            foreach (var o in map.mapPawns.FreeColonistsSpawned) Consider(o, 0f);
+            foreach (var o in map.mapPawns.FreeColonistsSpawned.ToList()) Consider(o, 0f);
             // A guest, now and then, if Hospitality is in: someone new to talk to.
             if (People.ModActive(Guests.Mod))
                 foreach (var o in Strangers.On(map, StrangerKind.Visitor))

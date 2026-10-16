@@ -303,6 +303,10 @@ namespace ColonyCouncil
                     foreach (var h in HoldersOf(office)) taken.Add(h);
             var winners = new HashSet<Pawn>();
             var filled = new HashSet<string>();
+            // On a bench (the elders' three seats) someone voted out of one seat may win the next: who lost their place,
+            // and who lost the vote, is only known once every seat is filled.
+            var benchLost = new List<(OfficeDef office, Pawn who, Pawn to)>();
+            var benchBeaten = new List<(OfficeDef office, Pawn who, Pawn to)>();
             // The seats few people can fill go first, so the colony's only doctor isn't spent on the speaker's chair.
             foreach (var office in open.OrderBy(o => voters.Count(p => o.CanHold(p))).ThenBy(o => o.order).ToList())
             for (int seat = 0; seat < office.Seats; seat++)
@@ -338,16 +342,16 @@ namespace ColonyCouncil
                 comp.journals.Write(winner, "Council_Journal_Elected", null, office.label.Named("OFFICE"));
                 if (previous != null && previous != winner && Valid(previous))
                 {
-                    CouncilGameComponent.GiveThought(previous, CouncilDefOf.Council_LostOffice, winner);
-                    comp.journals.Write(previous, "Council_Journal_LostOffice", null, office.label.Named("OFFICE"));
+                    if (office.Seats > 1) benchLost.Add((office, previous, winner));
+                    else LostOffice(comp, office, previous, winner);
                 }
                 foreach (var kv in ranked.Skip(1))
                 {
                     var t = kv.Key.story?.traits;
                     if (kv.Value > 0 && t != null && (t.HasTrait(TraitDefOf.Greedy) || t.HasTrait(TraitDefOf.Jealous) || t.HasTrait(TraitDefOf.Abrasive)))
                     {
-                        CouncilGameComponent.GiveThought(kv.Key, CouncilDefOf.Council_LostElection, winner);
-                        comp.social.Bump(kv.Key, winner, TieKind.Rivals, 10f, "CC_TieNote_Election".Translate(office.label));
+                        if (office.Seats > 1) benchBeaten.Add((office, kv.Key, winner));
+                        else LostElection(comp, office, kv.Key, winner);
                     }
                 }
                 Setbacks.Notify_OfficeWon(winner, office, ranked.Where(kv => kv.Value > 0).Select(kv => kv.Key));
@@ -367,10 +371,33 @@ namespace ColonyCouncil
                     holders.Remove(key);
                     elected.Remove(key);
                 }
+            // The bench's losers: only those left without a seat on it (each once).
+            var told = new HashSet<(OfficeDef, Pawn)>();
+            foreach (var (office, who, to) in benchLost)
+                if (!HoldersOf(office).Contains(who) && told.Add((office, who))) LostOffice(comp, office, who, to);
+            told.Clear();
+            foreach (var (office, who, to) in benchBeaten)
+                if (!HoldersOf(office).Contains(who) && told.Add((office, who))) LostElection(comp, office, who, to);
             SyncHediffs();
             string title = ruler != null ? (byElection ? "CC_PM_Appoint_ByTitle" : "CC_PM_Appoint_Title").Translate(year).Resolve()
                 : (byElection ? "CC_Election_ByTitle" : "CC_Election_Title").Translate(year).Resolve();
             Find.LetterStack.ReceiveLetter(title, text.ToString(), LetterDefOf.NeutralEvent);
+        }
+
+        /// <summary>Voted out of their seat (to <paramref name="to"/>).</summary>
+        private static void LostOffice(CouncilGameComponent comp, OfficeDef office, Pawn who, Pawn to)
+        {
+            // apart: an election's outcome, told in its letter (Hold).
+            CouncilGameComponent.GiveThought(who, CouncilDefOf.Council_LostOffice, to);
+            comp.journals.Write(who, "Council_Journal_LostOffice", null, office.label.Named("OFFICE"));
+        }
+
+        /// <summary>Stood and lost to <paramref name="to"/>, and minds it (the greedy, the jealous, the abrasive).</summary>
+        private static void LostElection(CouncilGameComponent comp, OfficeDef office, Pawn who, Pawn to)
+        {
+            // apart: an election's outcome, told in its letter (Hold).
+            CouncilGameComponent.GiveThought(who, CouncilDefOf.Council_LostElection, to);
+            comp.social.Bump(who, to, TieKind.Rivals, 10f, "CC_TieNote_Election".Translate(office.label));
         }
 
         /// <summary>How much this voter wants this candidate in this office.</summary>
