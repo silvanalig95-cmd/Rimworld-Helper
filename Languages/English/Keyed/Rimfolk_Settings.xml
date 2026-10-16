@@ -152,7 +152,7 @@
   <CC_SetNote_WishLetters>On: new wishes come as letters. Off: as short messages.</CC_SetNote_WishLetters>
   <CC_SetNote_GrantedLetters>On: a letter when a wish comes true. Off: a short message.</CC_SetNote_GrantedLetters>
   <CC_SetNote_SpeechText>A short line floats over a colonist who makes, backs or gets a wish.</CC_SetNote_SpeechText>
-  <CC_SetNote_VisualTouches>Fireflies, smoke over a camp, a bell for a meeting, a cooler sky under a comet.</CC_SetNote_VisualTouches>
+  <CC_SetNote_VisualTouches>Fireflies, smoke over a fire, a bell for a meeting, colonists saying how they are.</CC_SetNote_VisualTouches>
   <CC_SetNote_AdvisorAlert>The council's most urgent concern shows in the alerts on the right.</CC_SetNote_AdvisorAlert>
   <CC_SetNote_WishAlert>A reminder in the alerts while colonists wait on wishes.</CC_SetNote_WishAlert>
   <CC_SetNote_MoodInsight>A Mood tab on each colonist and a Moods page: every mood, why it's there, and what helps.</CC_SetNote_MoodInsight>

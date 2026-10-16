@@ -118,6 +118,9 @@ namespace ColonyCouncil
                 }
             }
             else if (job.targetB.IsValid) pawn.rotationTracker.FaceCell(job.targetB.Cell);
+            // At a grave after dark, a low glow there while they stay (Immersion/Glows.cs).
+            if (job.targetA.Thing is Building_Grave grave && play?.to == PlaySpot.Grave)
+                VisualTouches.Candle(pawn.Map, grave.Position, Find.TickManager.TicksGame + 300);
             if (pawn.needs?.joy != null && job.def.joyKind != null) JoyUtility.JoyTickCheckEnd(pawn, delta, JoyTickFullJoyAction.None);
         }
 

@@ -269,6 +269,7 @@ namespace ColonyCouncil
             Section("CC_SetSec_Moments");
             Toggle("colonistMoments", "CC_Settings_Moments", "CC_SetNote_Moments");
             Toggle("worldReactions", "CC_Settings_WorldReactions", "CC_SetNote_WorldReactions");
+            Toggle("smallHabits", "CC_Settings_SmallHabits", "CC_SetNote_SmallHabits");
             Section("CC_Settings_Memory");
             Toggle("journals", "CC_Settings_Journals", "CC_SetNote_Journals");
             Toggle("epithets", "CC_Settings_Epithets", "CC_SetNote_Epithets");
@@ -460,7 +461,7 @@ namespace ColonyCouncil
             story.values.AddRange(new[]
             {
                 V("enableWishes", "true"), V("enableAmbitions", "true"), V("camps", "true"), V("eventWishes", "true"), V("wishesForOthers", "true"),
-                V("petitions", "true"), V("speechText", "true"), V("visualTouches", "true"), V("messageLevel", "Everything"),
+                V("petitions", "true"), V("speechText", "true"), V("visualTouches", "true"), V("smallHabits", "true"), V("messageLevel", "Everything"),
                 V("arcFrequency", "Frequent"), V("daysBetweenDilemmas", "5"), V("encounterFrequency", "1.5"), V("momentFrequency", "1.5"),
                 V("socialEventFrequency", "1.5"), V("dreamFrequency", "1.5"), V("storytellerEventWeight", "1.5"), V("daysBetweenWorldEvents", "3"),
                 V("daysBetweenWorldSituations", "30")

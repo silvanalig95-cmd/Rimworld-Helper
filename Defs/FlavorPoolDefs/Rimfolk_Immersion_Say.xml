@@ -1,0 +1,609 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    What colonists say now and then about how they really are (Source/ColonyCouncil/Immersion/StateSpeech.cs, with the
+    "visual and sound touches" and speech settings on). Once an hour at most, someone on screen who has something on
+    their mind may say one of these over their head; the same colonist about once a day at most. Each pool is for one
+    kind of thing and its lines are tagged for the particular case, in the speaker's own voice. Spoken lines float up
+    with only their first sentence, so each is one sentence. {PAWN} is the speaker.
+  -->
+
+  <!--
+    A feeling running strong (the heart, Heart/). Tagged [feeling:Key] (Grief, Fear, Joy...), and [bright] or [hard];
+    [about] when the feeling has someone in it, who is {OTHER}. A feeling with no line here is never said.
+  -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_SayFeeling</defName>
+    <lines>
+      <plain>
+        <li>[feeling:Grief] Some mornings I forget, and then I remember.</li>
+        <li>[feeling:Grief] I keep turning round to say something to someone who isn't there.</li>
+        <li>[feeling:Grief,about] {OTHER_nameDef} would have laughed at that.</li>
+        <li>[feeling:Grief,about] I still look for {OTHER_nameDef} at supper.</li>
+        <li>[feeling:Grief,child] When is everyone going to stop being sad?</li>
+        <li>[feeling:Fear] I jump at every noise past the wall.</li>
+        <li>[feeling:Fear] I keep checking where the nearest door is.</li>
+        <li>[feeling:Fear,!lowtech] I've slept with my rifle in reach all week.</li>
+        <li>[feeling:Fear,lowtech] I sleep with a knife under the straw now.</li>
+        <li>[feeling:Fear,night] Leave a light burning tonight, would you?</li>
+        <li>[feeling:Dread] Something bad is coming, I can feel it in my teeth.</li>
+        <li>[feeling:Dread] It's too quiet out there.</li>
+        <li>[feeling:Dread] I keep waiting for the next thing to go wrong.</li>
+        <li>[feeling:Anger] Don't talk to me right now.</li>
+        <li>[feeling:Anger] I'm so angry my jaw hurts.</li>
+        <li>[feeling:Anger,about] If {OTHER_nameDef} says one more word to me, I'm walking out.</li>
+        <li>[feeling:Anger,about] I can't even look at {OTHER_nameDef} today.</li>
+        <li>[feeling:Shame] I can't look anyone in the eye today.</li>
+        <li>[feeling:Shame] I keep going over what I did.</li>
+        <li>[feeling:Shame] I'll eat on my own tonight.</li>
+        <li>[feeling:Envy] Must be nice, having what some people have.</li>
+        <li>[feeling:Envy] Some of us work just as hard and get half as much.</li>
+        <li>[feeling:Envy,about] {OTHER_nameDef} always seems to get the good end of things.</li>
+        <li>[feeling:Disgust] I can still smell it on my hands.</li>
+        <li>[feeling:Disgust] I couldn't eat a thing after seeing that.</li>
+        <li>[feeling:Disgust] This place needs scrubbing from top to bottom.</li>
+        <li>[feeling:Loneliness] Two words to me all day, that's all I've had.</li>
+        <li>[feeling:Loneliness] I could use someone to talk to.</li>
+        <li>[feeling:Loneliness] Everyone's always busy, all the time.</li>
+        <li>[feeling:Homesick] I keep thinking about the house I grew up in.</li>
+        <li>[feeling:Homesick] The bread here never tastes the way it should.</li>
+        <li>[feeling:Homesick] Back home the river would be up by now.</li>
+        <li>[feeling:Homesick,night] Same moon as at home, at least.</li>
+        <li>[feeling:Frustration] Nothing has gone right all day.</li>
+        <li>[feeling:Frustration] Third time I've had to start this over.</li>
+        <li>[feeling:Frustration] I asked for one thing, one single thing.</li>
+        <li>[feeling:Despair] What's the point of any of it?</li>
+        <li>[feeling:Despair] I'm so tired, and it isn't the work.</li>
+        <li>[feeling:Despair] I can't see how this gets any better.</li>
+        <li>[feeling:Joy] What a day.</li>
+        <li>[feeling:Joy] I could sing, I really could.</li>
+        <li>[feeling:Joy] Everything's going right for once.</li>
+        <li>[feeling:Joy,child] This is the best day ever.</li>
+        <li>[feeling:Pride] I did good work today, and I know it.</li>
+        <li>[feeling:Pride] They'll be talking about that for a while.</li>
+        <li>[feeling:Pride,working] Look at that, clean and straight, every bit of it.</li>
+        <li>[feeling:Love] There's someone I can't stop thinking about.</li>
+        <li>[feeling:Love,about] I'd walk through fire for {OTHER_nameDef}.</li>
+        <li>[feeling:Love,about] Have you seen {OTHER_nameDef} this morning?</li>
+        <li>[feeling:Love,about] {OTHER_nameDef} smiled at me over breakfast.</li>
+        <li>[feeling:Gratitude] I don't say it enough, but thank you, all of you.</li>
+        <li>[feeling:Gratitude] I'm lucky to be here with you lot.</li>
+        <li>[feeling:Gratitude,about] I owe {OTHER_nameDef} more than I can pay back.</li>
+        <li>[feeling:Hope] Things are turning around, I can feel it.</li>
+        <li>[feeling:Hope] Next season will be better.</li>
+        <li>[feeling:Hope,winter] Spring's not far off now.</li>
+        <li>[feeling:Hope] We might really make something of this place.</li>
+        <li>[feeling:Awe] I've never seen anything like it.</li>
+        <li>[feeling:Awe] Makes you feel small, doesn't it?</li>
+        <li>[feeling:Awe,night] Look at the size of the sky tonight.</li>
+        <li>[feeling:Contentment] A full belly and a dry bed, what more is there?</li>
+        <li>[feeling:Contentment] This is a good place.</li>
+        <li>[feeling:Contentment] I wouldn't change a thing about today.</li>
+        <li>[feeling:Curiosity] I wonder what's past those hills.</li>
+        <li>[feeling:Curiosity] How does that work, anyway?</li>
+        <li>[feeling:Curiosity] I want to take it apart and see what's inside.</li>
+        <li>[feeling:Curiosity,child] Why is the sky that color?</li>
+        <li>[feeling:Restless] I can't sit still today.</li>
+        <li>[feeling:Restless] Same walls, same faces, every day.</li>
+        <li>[feeling:Restless] I need to get out of here for a while.</li>
+        <li>[feeling:Nostalgia] Remember when this was all one room and a fire?</li>
+        <li>[feeling:Nostalgia] Those first days were hard, but they were good.</li>
+        <li>[feeling:Nostalgia,old] When I was young we sang on the way to the fields.</li>
+        <li>[feeling:Relief] I can breathe again.</li>
+        <li>[feeling:Relief] That was close, too close.</li>
+        <li>[feeling:Relief] All that worrying, and it came out fine.</li>
+        <li>[feeling:Tenderness] It's the little things, a warm cup, a kind word.</li>
+        <li>[feeling:Tenderness,about] I saved the best piece for {OTHER_nameDef}.</li>
+        <li>[feeling:Tenderness,about] Let {OTHER_nameDef} sleep a bit longer, I'll cover the work.</li>
+        <li>[feeling:Worry] I hope they're all right out there.</li>
+        <li>[feeling:Worry] We should check the stores again.</li>
+        <li>[feeling:Worry,about] Has anyone seen {OTHER_nameDef} today?</li>
+        <li>[feeling:Worry,about] I keep thinking about {OTHER_nameDef}.</li>
+        <li>[feeling:Fellowship] We're a good crew, aren't we?</li>
+        <li>[feeling:Fellowship] I'd trust any of you with my life.</li>
+        <li>[feeling:Fellowship] Whatever comes, we'll face it side by side.</li>
+        <li>[feeling:Resolve] We're not going anywhere.</li>
+        <li>[feeling:Resolve] Let them come.</li>
+        <li>[feeling:Resolve] I'm going to finish this, whatever it takes.</li>
+      </plain>
+      <warm>
+        <li>[feeling:Grief] Sit with me a minute, would you?</li>
+        <li>[feeling:Shame] I'm sorry, all of you, I mean it.</li>
+        <li>[feeling:Loneliness] Sit with me at supper tonight, if you like.</li>
+        <li>[feeling:Despair] I'm trying, I really am.</li>
+        <li>[feeling:Love,about] Make sure {OTHER_nameDef} eats something today.</li>
+        <li>[feeling:Fellowship] I'm glad it's you lot I ended up with.</li>
+      </warm>
+      <blunt>
+        <li>[feeling:Grief] Leave me be today.</li>
+        <li>[feeling:Fear] I'm not scared, just careful.</li>
+        <li>[feeling:Anger] Back off.</li>
+        <li>[feeling:Disgust] Filthy, every bit of it.</li>
+        <li>[feeling:Frustration] Useless, the whole lot of it.</li>
+        <li>[feeling:Pride] Told you I could do it.</li>
+        <li>[feeling:Resolve] Back to work, there's no time to waste.</li>
+      </blunt>
+      <cheerful>
+        <li>[feeling:Fear] My hands are shaking, but I'm still standing.</li>
+        <li>[feeling:Joy] I can't stop smiling!</li>
+        <li>[feeling:Pride] Best work I've ever done!</li>
+        <li>[feeling:Love,about] {OTHER_nameDef} is the best thing that ever happened to me!</li>
+        <li>[feeling:Fellowship] Best people on this whole rock!</li>
+        <li>[feeling:Hope] Good things are coming, I just know it.</li>
+      </cheerful>
+      <gloomy>
+        <li>[feeling:Grief] Everything here reminds me of what's gone.</li>
+        <li>[feeling:Dread] We've been lucky, and luck runs out.</li>
+        <li>[feeling:Envy] It's never my turn.</li>
+        <li>[feeling:Loneliness] I could vanish and it'd take them a week to notice.</li>
+        <li>[feeling:Contentment] I'm almost happy, don't tell anyone.</li>
+        <li>[feeling:Restless] Another day exactly like the last one.</li>
+      </gloomy>
+      <cold>
+        <li>[feeling:Grief] I'll be fine once I stop thinking about it.</li>
+        <li>[feeling:Anger] I'll remember this.</li>
+        <li>[feeling:Joy] A good day, by any measure.</li>
+        <li>[feeling:Gratitude] I'll repay it, I keep my debts.</li>
+        <li>[feeling:Curiosity] I want to understand how it was done.</li>
+        <li>[feeling:Worry] Something's off, and I intend to find out what.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!--
+    An ailment or illness they have now (Ailments/). Tagged [ail:Key] for one ailment and [everyday] or [serious];
+    the untagged-by-key lines fit any. {ILLNESS} is its name ("head cold").
+  -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_SayAilment</defName>
+    <lines>
+      <plain>
+        <li>[everyday] I'm not quite myself today.</li>
+        <li>[everyday] Feeling a bit rough, that's all.</li>
+        <li>[everyday] It's nothing, it'll pass.</li>
+        <li>[serious] Don't come too close, I'm not well.</li>
+        <li>[serious] I've never been this sick.</li>
+        <li>[child,everyday] I don't feel good.</li>
+        <li>[ail:HeadCold] My nose won't stop running.</li>
+        <li>[ail:HeadCold] I sound like a goose with this cold.</li>
+        <li>[ail:StomachBug] Don't talk to me about food.</li>
+        <li>[ail:ChestCold] Every cough feels like it's tearing something.</li>
+        <li>[ail:HayFever] It's those flowers again, my eyes are streaming.</li>
+        <li>[ail:Pinkeye] Don't touch my towel, I've got pinkeye.</li>
+        <li>[ail:Dreamfever] I'm not sure I'm properly awake right now.</li>
+        <li>[ail:StrainedBack] Mind my back, it's still out.</li>
+        <li>[ail:StrainedBack] I can't bend down to tie my own boots.</li>
+        <li>[ail:SoreHands] My hands won't close properly today.</li>
+        <li>[ail:Blisters] Every step on these blisters is a new one.</li>
+        <li>[ail:Chilblains] My toes itch something terrible.</li>
+        <li>[ail:Sunburn] Don't slap my shoulder, it's burned raw.</li>
+        <li>[ail:SmokeCough] I can still taste the smoke.</li>
+        <li>[ail:Toothache] This tooth is driving me out of my mind.</li>
+        <li>[ail:StiffNeck] I can't turn my head, so come round this side.</li>
+        <li>[ail:SprainedAnkle] Slow down, I've only got one good ankle.</li>
+        <li>[ail:EyeStrain] My eyes ache from all the squinting.</li>
+        <li>[ail:RimrotCough] It's that damp room, it's in my chest now.</li>
+        <li>[ail:AshLung] I'm still coughing up gray.</li>
+        <li>[ail:Insomnia] I haven't slept properly in three nights.</li>
+        <li>[ail:Migraine] Too bright, it's too bright in here.</li>
+        <li>[ail:Heartburn] I shouldn't have had seconds.</li>
+        <li>[ail:Nosebleed] Has anyone got a rag, my nose is bleeding again.</li>
+        <li>[ail:MotionSick] Is the ground still moving, or is it me?</li>
+        <li>[ail:Splinter] Who's got a needle, there's a splinter in my palm.</li>
+        <li>[ail:InsectBites] I'm one big itch from head to foot.</li>
+        <li>[ail:PlantRash] Whatever I pulled up in that row, it bit back.</li>
+        <li>[ail:Frostnip] I can't feel the tips of my fingers.</li>
+        <li>[ail:HeatRash] This heat rash is the worst part of summer.</li>
+        <li>[ail:ColdSore] Use your own cup, I've got a cold sore.</li>
+        <li>[ail:Lice] Stop looking at my hair.</li>
+        <li>[ail:AthletesFoot] My feet itch, and you don't want to know more.</li>
+        <li>[ail:Hiccups] Somebody scare me, I've had hiccups all morning.</li>
+        <li>[ail:LingeringCough] This cough just won't leave me alone.</li>
+        <li>[ail:NervePain] There's a burning down my arm where the wound was.</li>
+        <li>[ail:Tetanus] My jaw won't open properly.</li>
+        <li>[ail:Pneumonia] I can't get a full breath in.</li>
+        <li>[ail:Tuberculosis] Keep the little ones away from me.</li>
+        <li>[ail:Typhus] I'm burning up and I can't stop shaking.</li>
+        <li>[ail:Meningitis] My neck's stiff and the light hurts my eyes.</li>
+        <li>[ail:Scurvy] My gums are bleeding again.</li>
+        <li>[ail:Scurvy] What I'd give for a piece of fresh fruit.</li>
+        <li>[ail:Glassblood] I bruise if anyone so much as brushes past me.</li>
+        <li>[ail:Cholera] Water, please, I need water.</li>
+        <li>[ail:Appendicitis] Something's wrong in my side, low down on the right.</li>
+        <li>[ail:Rabies] I can't stand the sound of water.</li>
+        <li>[ail:Measles] I'm spotted all over and burning up.</li>
+        <li>[ail:KidneyStone] I'd rather break a leg than go through this again.</li>
+        <li>[ail:Shingles] It's like fire on my skin, all down one side.</li>
+        <li>[ail:HiveFever] My head's buzzing like a hive.</li>
+      </plain>
+      <warm>
+        <li>[everyday] I'll be fine, don't fuss over me.</li>
+        <li>[serious] Thank you for sitting with me.</li>
+      </warm>
+      <blunt>
+        <li>[everyday] I'm sick, that's all, leave it.</li>
+        <li>[serious] Just let me sleep.</li>
+      </blunt>
+      <cheerful>
+        <li>[everyday] I'll be right as rain tomorrow!</li>
+        <li>[serious] I've had worse, probably.</li>
+      </cheerful>
+      <gloomy>
+        <li>[everyday] Of course it had to be me.</li>
+        <li>[serious] I don't think I'm getting up from this one.</li>
+      </gloomy>
+      <cold>
+        <li>[everyday] Keep your distance until it passes.</li>
+        <li>[serious] Write down what the doctor gives me, in case it matters later.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!--
+    Getting back on their feet after a serious illness, an operation, a long stay in bed or a lost limb (Health/).
+    [walking] while out on a slow walk, [inbed] while still in bed.
+  -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_SayConvalescing</defName>
+    <lines>
+      <plain>
+        <li>I'm getting stronger every day.</li>
+        <li>Slow going, but I'm going.</li>
+        <li>My legs remember how to walk, mostly.</li>
+        <li>I'm sick of being careful.</li>
+        <li>Another week of taking it easy, they tell me.</li>
+        <li>[walking] Just to the end of the path and back.</li>
+        <li>[walking] One more lap, then I'll sit down.</li>
+        <li>[walking] The fresh air does more than any medicine.</li>
+        <li>[inbed] I've counted every crack in this ceiling.</li>
+        <li>[inbed] Let me up, I'm bored out of my mind.</li>
+        <li>[old] I don't mend the way I used to.</li>
+        <li>[child] Can I go out and play yet?</li>
+        <li>[trait:Industrious|trait:HardWorker] Give me something to do, anything at all.</li>
+        <li>[trait:Lazy] I could get used to all this lying about.</li>
+        <li>[winter] I'll be back on my feet before the thaw.</li>
+      </plain>
+      <warm>
+        <li>Thank you for putting up with me while I mend.</li>
+      </warm>
+      <blunt>
+        <li>I'm fine, stop asking.</li>
+      </blunt>
+      <cheerful>
+        <li>Look, I made it all the way here without stopping!</li>
+      </cheerful>
+      <gloomy>
+        <li>I'll never be quite what I was.</li>
+      </gloomy>
+      <cold>
+        <li>A few more days and I'll be back at full work.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!--
+    Their personal story (Arcs/): [story:Name] is the story's defName without Council_Arc_, [stage:N] the stage it has
+    reached (0 is the first). The story's own values work: {OTHER} the one it's about, {PET}, {SKILL}, {LOST}, {NAME},
+    {FACTION}, {GOAL}; its own tags too ([nemesis], [nightmare], [child]...). The untagged lines fit any story.
+  -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_SayStory</defName>
+    <lines>
+      <plain>
+        <li>I've a lot on my mind lately.</li>
+        <li>Things are changing for me, slowly.</li>
+        <li>[story:GrudgingRespect,stage:0] {OTHER_nameDef} again, showing off at {SKILL}.</li>
+        <li>[story:GrudgingRespect,stage:0] I don't care how good {OTHER_nameDef} is, I'm better.</li>
+        <li>[story:GrudgingRespect,stage:1] I worked next to {OTHER_nameDef} all morning and neither of us said a word.</li>
+        <li>[story:GrudgingRespect,stage:1] {OTHER_nameDef} does neat work, I'll give {OTHER_objective} that.</li>
+        <li>[story:GrudgingRespect,stage:2] {OTHER_nameDef} and I have mostly stopped needling each other.</li>
+        <li>[story:OldWounds,stage:0] I can't sit at the same table as {OTHER_nameDef}.</li>
+        <li>[story:OldWounds,stage:0] Some things don't heal, and {OTHER_nameDef} knows what I mean.</li>
+        <li>[story:OldWounds,stage:1] {OTHER_nameDef} spoke to me today, first time in ages.</li>
+        <li>[story:OldWounds,stage:2] {OTHER_nameDef} is trying, and I'm trying to let {OTHER_objective}.</li>
+        <li>[story:OldDebt,stage:0] I still owe {OTHER_nameDef}, and I haven't forgotten.</li>
+        <li>[story:OldDebt,stage:1] I'm making something for {OTHER_nameDef}, so keep it to yourself.</li>
+        <li>[story:OldDebt,stage:2] It's nearly ready, the thing for {OTHER_nameDef}.</li>
+        <li>[story:SecondChances,stage:0] The council never listens, why would it start now?</li>
+        <li>[story:SecondChances,stage:0] I've stopped asking the council for anything.</li>
+        <li>[story:SecondChances,stage:1] Maybe the council does hear us, now and then.</li>
+        <li>[story:Masterwork,stage:0] I watch {OTHER_nameDef} work and try to remember every move.</li>
+        <li>[story:Masterwork,stage:1] {OTHER_nameDef} looked over my work and only frowned once.</li>
+        <li>[story:Masterwork,stage:2] This piece has to be the best thing I've ever made.</li>
+        <li>[story:Calling,stage:0] I want to learn {SKILL} properly.</li>
+        <li>[story:Calling,stage:0,child] When I grow up I'm doing {SKILL}, like {OTHER_nameDef}.</li>
+        <li>[story:Calling,stage:1] I've been following {OTHER_nameDef} around all week.</li>
+        <li>[story:Calling,stage:2] Practice, and then more practice.</li>
+        <li>[story:PassingItOn,stage:0] All I know about {SKILL} goes with me if I don't pass it on.</li>
+        <li>[story:PassingItOn,stage:1] {OTHER_nameDef} learns fast, faster than I did.</li>
+        <li>[story:PassingItOn,stage:2] A few last things to show {OTHER_nameDef}, then it's all {OTHER_possessive}.</li>
+        <li>[story:LongGrief,stage:0] {LOST}'s chair is still empty.</li>
+        <li>[story:LongGrief,stage:0] I keep turning to tell {LOST} things.</li>
+        <li>[story:LongGrief,stage:1] I told a story about {LOST} today and got all the way through it.</li>
+        <li>[story:LongGrief,stage:2] I ate a whole meal today and tasted it.</li>
+        <li>[story:SecretTold,stage:0] There's something I've never said out loud.</li>
+        <li>[story:SecretTold,stage:1] I nearly told {OTHER_nameDef} today.</li>
+        <li>[story:SecretTold,stage:2] I'm going to say it soon, before I lose my nerve.</li>
+        <li>[story:FearFaced,stage:0] I don't want to talk about it.</li>
+        <li>[story:FearFaced,stage:0,nemesis] I still see {NAME} when I close my eyes.</li>
+        <li>[story:FearFaced,stage:1] I've been getting ready, bit by bit.</li>
+        <li>[story:FearFaced,stage:2] I'm not running this time.</li>
+        <li>[story:RecurringDream,stage:0] The same dream again last night.</li>
+        <li>[story:RecurringDream,stage:0,nightmare] Sorry if I woke you, I was shouting again.</li>
+        <li>[story:RecurringDream,stage:1] I told {OTHER_nameDef} about the dream, and {OTHER_pronoun} didn't laugh.</li>
+        <li>[story:RecurringDream,stage:2] I'm going to make something out of that dream.</li>
+        <li>[story:GrudgeLaidDown,stage:0] I won't forgive {FACTION} for {LOST}, not ever.</li>
+        <li>[story:GrudgeLaidDown,stage:1] {OTHER_nameDef} says the anger is eating me up.</li>
+        <li>[story:GrudgeLaidDown,stage:2] I thought about {FACTION} today and my hands stayed still.</li>
+        <li>[story:WithinReach,stage:0] I'll never manage to {GOAL}, will I?</li>
+        <li>[story:WithinReach,stage:1] Maybe I can {GOAL} after all.</li>
+        <li>[story:LongWayHome,stage:1] It's good to be home, I've so much to tell.</li>
+        <li>[story:LongWayHome,stage:1] My own bed, at last.</li>
+        <li>[story:FindingHome,stage:0] I still don't know where anything's kept around here.</li>
+        <li>[story:FindingHome,stage:0] Everyone here knows each other but me.</li>
+        <li>[story:FindingHome,stage:1] I've a corner that feels like mine now.</li>
+        <li>[story:FindingHome,stage:2] I'm starting to think of this place as home.</li>
+        <li>[story:Companion,stage:0] Everywhere I go, {PET_nameDef} comes too.</li>
+        <li>[story:Companion,stage:1] I'm still working out what {PET_nameDef} wants from me.</li>
+        <li>[story:Companion,stage:2] I can tell {PET_nameDef} trusts me now.</li>
+      </plain>
+      <warm>
+        <li>[story:OldWounds,stage:1] I'd like to put things right with {OTHER_nameDef}.</li>
+        <li>[story:FindingHome,stage:1] People here have been kinder than I expected.</li>
+      </warm>
+      <blunt>
+        <li>[story:GrudgingRespect,stage:0] {OTHER_nameDef}, of all people.</li>
+        <li>[story:SecondChances,stage:0] The council can keep its promises.</li>
+      </blunt>
+      <cheerful>
+        <li>[story:Calling,stage:1] I'm going to be good at {SKILL}, just watch!</li>
+        <li>[story:Companion,stage:1] Guess who learned a new trick today, {PET_nameDef} did!</li>
+      </cheerful>
+      <gloomy>
+        <li>[story:LongGrief,stage:0] It doesn't get easier, whatever they say.</li>
+        <li>[story:WithinReach,stage:0] Some things just aren't meant for me.</li>
+      </gloomy>
+      <cold>
+        <li>[story:OldDebt,stage:0] A debt is a debt, and I pay mine.</li>
+        <li>[story:Masterwork,stage:2] It will be done properly, or not at all.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!--
+    A day on the colony calendar tomorrow (Calendar/). [day:kind] (founding, harvest, battle, death, wedding, arrival,
+    birthday, holiday), [way:...] (feast, remembrance, rest, games, personal), [mine] when it's their own birthday,
+    arrival or wedding, [knew] when it remembers someone they knew. {NAME} is the day's name ("founding day", "Ana's
+    birthday"), {OTHER} the one whose birthday, arrival or wedding it is (when it isn't the speaker's own), {DEAD} the
+    one it remembers.
+  -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_SayTomorrow</defName>
+    <lines>
+      <plain>
+        <li>Tomorrow's {NAME}, don't forget.</li>
+        <li>Is it {NAME} tomorrow already?</li>
+        <li>[way:feast] Tomorrow's {NAME}, so save some room.</li>
+        <li>[way:feast] I hope someone's started on the cooking for tomorrow.</li>
+        <li>[way:games] Games tomorrow, and I plan to win.</li>
+        <li>[way:rest] No work tomorrow, it's {NAME}.</li>
+        <li>[way:remembrance] Tomorrow's {NAME}.</li>
+        <li>[way:remembrance] I'll be thinking of them tomorrow.</li>
+        <li>[day:death,knew] Tomorrow's the day we lost {DEAD}.</li>
+        <li>[day:death,knew] I'll go and stand by {DEAD}'s grave tomorrow.</li>
+        <li>[day:birthday,mine] Tomorrow I'm a year older, so don't make a fuss.</li>
+        <li>[day:birthday,!mine] It's {OTHER_nameDef}'s birthday tomorrow, keep it quiet.</li>
+        <li>[day:birthday,!mine] Has anyone got something for {OTHER_nameDef} for tomorrow?</li>
+        <li>[day:arrival,mine] Tomorrow it'll be another year since I walked in here.</li>
+        <li>[day:arrival,!mine] Tomorrow's the day {OTHER_nameDef} turned up here, remember?</li>
+        <li>[day:wedding,mine] Our wedding day comes round again tomorrow.</li>
+        <li>[day:founding] Founding day tomorrow, and we're still here.</li>
+        <li>[day:harvest] Harvest day tomorrow, we've earned it.</li>
+        <li>[day:battle] Tomorrow's {NAME}, and I still remember the noise.</li>
+        <li>[day:holiday] Tomorrow's our own day, the one we picked ourselves.</li>
+        <li>[child] How many sleeps until {NAME}, just one?</li>
+      </plain>
+      <warm>
+        <li>I'm glad we keep {NAME}, I'm looking forward to tomorrow.</li>
+        <li>[day:wedding,!mine] Tomorrow's {NAME}, let's make it nice for them.</li>
+      </warm>
+      <blunt>
+        <li>Tomorrow's {NAME}, so finish your work today.</li>
+      </blunt>
+      <cheerful>
+        <li>It's {NAME} tomorrow, I can hardly wait!</li>
+        <li>[day:wedding,!mine] Tomorrow's {NAME}, those two will be unbearable!</li>
+      </cheerful>
+      <gloomy>
+        <li>Another {NAME} tomorrow, another year gone.</li>
+      </gloomy>
+      <cold>
+        <li>Tomorrow's {NAME}, plan the work around it.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!--
+    A setback in the last half day (Setbacks/): [setback:Name] is the thought's defName without its prefix
+    (Council_Setback_, Council_Friction_, Council_Nuisance_). [about] when it has someone in it, who is {OTHER}.
+  -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_SaySetback</defName>
+    <lines>
+      <plain>
+        <li>Not my day.</li>
+        <li>That one stung.</li>
+        <li>[setback:WorkTornDown] Days of work, torn down in an afternoon.</li>
+        <li>[setback:WorkTornDown] They pulled down what I built, just like that.</li>
+        <li>[setback:WorkWrecked] Look at it, all that work wrecked.</li>
+        <li>[setback:CropLost] My crop's gone, rotted where it stood.</li>
+        <li>[setback:CropLost] I planted that field with my own hands.</li>
+        <li>[setback:BotchedBuild] I botched it, and everyone can see.</li>
+        <li>[setback:ShoddyWork] That's not my best work, and it bothers me.</li>
+        <li>[setback:MakingDo] Making do again, with whatever's lying about.</li>
+        <li>[setback:BotchedSurgery] I keep seeing my hands slip.</li>
+        <li>[setback:LongHauls] My arms are a foot longer from all that hauling.</li>
+        <li>[setback:LongHauls] Why is the stockpile always on the far side?</li>
+        <li>[setback:LeftWaiting] I waited half the day for someone to look at this.</li>
+        <li>[setback:ColdMeal] Cold supper, outside, in this weather.</li>
+        <li>[setback:ArtSold] They sold my piece to a trader without asking me.</li>
+        <li>[setback:AnimalSold] They sold my animal, and I never got to say goodbye.</li>
+        <li>[setback:Outshone,about] {OTHER_nameDef} is better at my own craft than I am now.</li>
+        <li>[setback:DriftedApart,about] {OTHER_nameDef} and I used to talk every night.</li>
+        <li>[setback:NoisyNeighbour,about] {OTHER_nameDef} snores like a rockslide.</li>
+        <li>[setback:NoisyNeighbour] I didn't sleep a wink for the noise next door.</li>
+        <li>[setback:CookingCriticised] Next time they can cook their own supper.</li>
+        <li>[setback:Mocked] Laugh it up, I know who was laughing.</li>
+        <li>[setback:CreditTaken,about] {OTHER_nameDef} took the credit for my work.</li>
+        <li>[setback:ReturnedBroken] Lent it out and got it back in pieces.</li>
+        <li>[setback:SpoiltStores] Rot in the stores again, what a waste.</li>
+        <li>[setback:NoCoat] Soaked to the skin, and not a coat to my name.</li>
+        <li>[setback:UglyBedroom] My room's full of junk and I can't stand it.</li>
+        <li>[setback:IdeaPassedOver] The council turned my idea down without a second look.</li>
+        <li>[setback:OutVoted] The vote went the other way, fine.</li>
+        <li>[setback:FriendLetDown,about] The council let {OTHER_nameDef} down, and that's on all of us.</li>
+        <li>[setback:RivalHonoured,about] Of course they'd honor {OTHER_nameDef}, of course they would.</li>
+        <li>[setback:NotAgreed] That wasn't what I wanted, and they knew it.</li>
+        <li>[setback:ToldThemSo] I said it would go wrong, didn't I?</li>
+        <li>[setback:MissedGathering] I missed the whole gathering, stuck at work.</li>
+        <li>[setback:NoPlate] The food ran out before it got to me.</li>
+        <li>[setback:RainedOut] The rain spoiled the whole thing.</li>
+        <li>[setback:Homesick] I dreamt of home and woke up here.</li>
+      </plain>
+      <warm>
+        <li>It's all right, I'll get over it.</li>
+        <li>[setback:CropLost] We'll plant again, it's not the end of the world.</li>
+      </warm>
+      <blunt>
+        <li>Don't ask.</li>
+        <li>[setback:WorkTornDown] Next time ask me before you tear it down.</li>
+      </blunt>
+      <cheerful>
+        <li>Bad luck, but tomorrow's another day.</li>
+      </cheerful>
+      <gloomy>
+        <li>Why does it always happen to me?</li>
+        <li>[setback:ShoddyWork] I'm losing my touch.</li>
+      </gloomy>
+      <cold>
+        <li>Noted, and it won't happen again.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!--
+    Something the council granted and took back, in the last three days (Wishes/Kept.cs). {WISH} is what it was, a
+    capitalized label: quote it. [kept:...] for one kind: ownroom, room, bed, thing, stock, assignment, pet, decree.
+  -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_SayTakenBack</defName>
+    <lines>
+      <plain>
+        <li>They gave me "{WISH}", then took it back.</li>
+        <li>I should have known "{WISH}" wouldn't last.</li>
+        <li>A promise is a promise, and they broke it.</li>
+        <li>[kept:ownroom] They put me back in with the others, after they promised.</li>
+        <li>[kept:room] My room's not what they said it would be any more.</li>
+        <li>[kept:bed] That bed was ours, and now it isn't.</li>
+        <li>[kept:thing] It was right there, and now it's gone.</li>
+        <li>[kept:stock] The shelves they filled for me are empty again.</li>
+        <li>[kept:assignment] They let me do the work I asked for, then changed it back.</li>
+        <li>[kept:pet] I'd only just learned all its little habits.</li>
+        <li>[kept:decree] They lifted the decree I asked for, before its time.</li>
+      </plain>
+      <warm>
+        <li>I'm sure they had their reasons, but it still hurts.</li>
+      </warm>
+      <blunt>
+        <li>Next time, don't promise.</li>
+      </blunt>
+      <cheerful>
+        <li>Well, it was nice while it lasted.</li>
+      </cheerful>
+      <gloomy>
+        <li>That's what a promise is worth around here.</li>
+      </gloomy>
+      <cold>
+        <li>I'll remember who gave their word.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!--
+    A nemesis who hurt them and is still out there (Strangers/Nemeses.cs). {ENEMY} is the nemesis's name. [beast] for an
+    animal; [deed:...] downed, maimed, hunts (has sworn to hunt them), robbed (was robbed by them), betrayed, enslaved.
+  -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_SayNemesis</defName>
+    <lines>
+      <plain>
+        <li>{ENEMY} is still out there somewhere.</li>
+        <li>I hear the name {ENEMY} and my hands go cold.</li>
+        <li>One day I'll meet {ENEMY} again.</li>
+        <li>[deed:maimed] Every time this scar aches, I think of {ENEMY}.</li>
+        <li>[deed:downed] {ENEMY} put me in the dirt and walked away.</li>
+        <li>[deed:hunts] {ENEMY} swore to hunt me down, and I believe it.</li>
+        <li>[deed:robbed] {ENEMY} won't forget what we took.</li>
+        <li>[deed:betrayed] I trusted {ENEMY} once.</li>
+        <li>[deed:enslaved] Some nights I still feel the chains {ENEMY} put on me.</li>
+        <li>[beast] That beast is still out in the hills, I know it.</li>
+        <li>[beast] I watch the tree line every time I go out.</li>
+      </plain>
+      <warm>
+        <li>I'm not afraid of {ENEMY}, not with all of you here.</li>
+      </warm>
+      <blunt>
+        <li>If {ENEMY} shows up again, I'm ready.</li>
+      </blunt>
+      <cheerful>
+        <li>Let {ENEMY} come back, I've been practicing!</li>
+      </cheerful>
+      <gloomy>
+        <li>{ENEMY} will be back, that kind always comes back.</li>
+      </gloomy>
+      <cold>
+        <li>Next time I see {ENEMY}, it ends.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!--
+    A wish of theirs still waiting on the council (Wishes/). {WISH} is the wish, a capitalized label: quote it. The
+    wish's own tags work: [promised], [petition] (others joined it), [forother] (it's for someone else), [repeat].
+    Said to nobody in particular, unlike the reminder they give the council.
+  -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_SayWish</defName>
+    <lines>
+      <plain>
+        <li>I keep picturing "{WISH}".</li>
+        <li>Still hoping for "{WISH}".</li>
+        <li>I wonder if anyone remembers "{WISH}".</li>
+        <li>One day, maybe, "{WISH}".</li>
+        <li>[promised] They promised me "{WISH}", and I'm counting on it.</li>
+        <li>[petition] A few of us are still waiting on "{WISH}".</li>
+        <li>[forother] I asked for "{WISH}", and it isn't even for me.</li>
+        <li>[repeat] I asked for "{WISH}" before, and I'll ask again.</li>
+        <li>[winter] This winter would be easier with "{WISH}".</li>
+        <li>[night] I lay awake thinking about "{WISH}" again.</li>
+      </plain>
+      <warm>
+        <li>Whenever there's time, "{WISH}" would mean the world to me.</li>
+      </warm>
+      <blunt>
+        <li>Still no "{WISH}".</li>
+      </blunt>
+      <cheerful>
+        <li>Any day now, "{WISH}", I can feel it!</li>
+      </cheerful>
+      <gloomy>
+        <li>So much for "{WISH}", it isn't going to happen.</li>
+      </gloomy>
+      <cold>
+        <li>I'm keeping count of the days on "{WISH}".</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

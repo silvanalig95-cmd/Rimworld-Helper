@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The weather noticed (Source/ColonyCouncil/Immersion/WeatherTalk.cs, with the "visual and sound touches" setting):
+    when the first snow of a winter falls, a heat wave or a cold snap sets in, or a storm rolls in on a home map, one or
+    two colonists in view say something (the Say pools, one sentence each), and now and then someone writes it down
+    (the Journal pools). Storms are tagged [thunder], [dust] or [otherstorm].
+  -->
+
+  <!-- ===================== Said ===================== -->
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_SayFirstSnow</defName>
+    <lines>
+      <plain>
+        <li>There's the first snow.</li>
+        <li>Snow already, look at it.</li>
+        <li>It's sticking, too.</li>
+        <li>[child] It's snowing, it's snowing!</li>
+        <li>[child] Can we go out in it?</li>
+        <li>[child] I'm going to catch one on my tongue.</li>
+        <li>[lowtech] Bring the wood in before it's buried.</li>
+        <li>[work:Growing] That's the end of the outdoor fields for this year.</li>
+        <li>[old] My knees told me this was coming.</li>
+        <li>[night] Everything's gone quiet with the snow.</li>
+      </plain>
+      <warm>
+        <li>Look at it coming down, so soft.</li>
+      </warm>
+      <blunt>
+        <li>Snow, great.</li>
+      </blunt>
+      <cheerful>
+        <li>Snow! Who's throwing the first one?</li>
+      </cheerful>
+      <gloomy>
+        <li>Here comes the long dark.</li>
+      </gloomy>
+      <cold>
+        <li>We'll be living on the stores from here on.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_SayHeatWave</defName>
+    <lines>
+      <plain>
+        <li>This heat is something else.</li>
+        <li>I can hardly breathe out here.</li>
+        <li>Drink some water, all of you, before you need it.</li>
+        <li>[work:Growing] The crops are wilting where they stand.</li>
+        <li>[lowtech] Wet a cloth and keep it on the back of your neck.</li>
+        <li>[child] It's too hot to play.</li>
+        <li>[old] I'm too old for heat like this.</li>
+      </plain>
+      <warm>
+        <li>Come in out of the sun for a bit.</li>
+      </warm>
+      <blunt>
+        <li>Too hot, I'm going inside.</li>
+      </blunt>
+      <cheerful>
+        <li>Perfect weather for a swim!</li>
+      </cheerful>
+      <gloomy>
+        <li>We're going to bake out here.</li>
+      </gloomy>
+      <cold>
+        <li>Work the fields at dawn and dusk until this breaks.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_SayColdSnap</defName>
+    <lines>
+      <plain>
+        <li>My breath's freezing on my scarf.</li>
+        <li>This cold goes right through you.</li>
+        <li>[work:Growing] The frost will take the crops if this lasts.</li>
+        <li>[lowtech] Keep the fires fed tonight.</li>
+        <li>[!lowtech] Someone check the heaters before dark.</li>
+        <li>[child] I can't feel my nose.</li>
+        <li>[old] My bones feel every bit of this cold.</li>
+      </plain>
+      <warm>
+        <li>Wrap up warm, all of you.</li>
+      </warm>
+      <blunt>
+        <li>Cold, so cold.</li>
+      </blunt>
+      <cheerful>
+        <li>Look, my breath makes clouds!</li>
+      </cheerful>
+      <gloomy>
+        <li>It's going to be a long, cold night.</li>
+      </gloomy>
+      <cold>
+        <li>Double the firewood, and no one goes out alone.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_SayStorm</defName>
+    <lines>
+      <plain>
+        <li>Storm's coming in.</li>
+        <li>Get the washing in before it hits.</li>
+        <li>[thunder] That one was close.</li>
+        <li>[thunder] Count the gap between the flash and the bang.</li>
+        <li>[thunder] Keep away from the tall trees.</li>
+        <li>[thunder,child] I'm not scared of thunder, I'm not.</li>
+        <li>[dust] I can't see my own hand in this dust.</li>
+        <li>[dust] Shut the doors, the dust gets into everything.</li>
+        <li>[dust] Cover your mouth and nose.</li>
+        <li>[otherstorm] Look at the sky, it's gone strange.</li>
+      </plain>
+      <warm>
+        <li>Everyone inside, come on.</li>
+      </warm>
+      <blunt>
+        <li>Storm, inside, now.</li>
+      </blunt>
+      <cheerful>
+        <li>I love a good storm!</li>
+      </cheerful>
+      <gloomy>
+        <li>Something's going to get hit tonight.</li>
+      </gloomy>
+      <cold>
+        <li>Tie down anything loose before it arrives.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== Written ===================== -->
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_FirstSnowSeason</defName>
+    <lines>
+      <plain>
+        <li>First snow today. The yard went white in an hour, and by evening the footprints had frozen hard.</li>
+        <li>Snow came in during the night. Everything sounds softer this morning.</li>
+        <li>The first snow of the winter. I stood out in it longer than I needed to.</li>
+        <li>[child] It snowed! I made a snow angel, got cold, and made another one.</li>
+        <li>[child] Snow today. I tried to catch every flake on my tongue and lost count.</li>
+        <li>[lowtech] First snow. We carried wood until dark and stacked it against the north wall.</li>
+        <li>[work:Growing] Snow on the fields this morning. Whatever is still out there won't last the week.</li>
+        <li>[old] Another winter starting. I've seen enough of them to know this one will be long.</li>
+      </plain>
+      <warm>
+        <li>The first snow, and someone had the kettle on before I was even up. Small kindnesses.</li>
+      </warm>
+      <blunt>
+        <li>Snow. Cleared the paths twice today.</li>
+      </blunt>
+      <cheerful>
+        <li>Snow! We had a snowball fight before breakfast and I won, more or less.</li>
+      </cheerful>
+      <gloomy>
+        <li>Snow again. The days are getting shorter and the stores aren't getting fuller.</li>
+      </gloomy>
+      <cold>
+        <li>First snowfall. Noted the date, checked the stores against the days until spring.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_HeatWave</defName>
+    <lines>
+      <plain>
+        <li>The heat won't break. We drank more water today than we cooked with.</li>
+        <li>Too hot to sleep. I lay on the floor where the stone was coolest.</li>
+        <li>[work:Growing] The leaves are curling in the fields. I watered twice and it wasn't enough.</li>
+        <li>[lowtech] Kept a wet cloth on the back of my neck all day, and wet it again every hour.</li>
+        <li>[child] It's so hot. We were allowed to splash water at each other.</li>
+      </plain>
+      <blunt>
+        <li>Hot. Slow work. Bad sleep.</li>
+      </blunt>
+      <gloomy>
+        <li>Another day of this heat. Even the flies have stopped moving.</li>
+      </gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_ColdSnap</defName>
+    <lines>
+      <plain>
+        <li>The cold came down overnight. The water bucket by the door froze solid.</li>
+        <li>Slept in every layer I own and still woke up shivering.</li>
+        <li>[lowtech] We kept the fires going all night, taking turns.</li>
+        <li>[work:Growing] Frost on everything this morning. I'm afraid to look at the fields.</li>
+        <li>[child] It was so cold my eyelashes had frost on them.</li>
+      </plain>
+      <warm>
+        <li>Bitter cold, so we all crowded into the warmest room and told stories until late.</li>
+      </warm>
+      <gloomy>
+        <li>The cold won't let up. I can't remember what it felt like to be warm.</li>
+      </gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Storm</defName>
+    <lines>
+      <plain>
+        <li>A storm today. We tied down what we could and waited it out.</li>
+        <li>[thunder] Thunder all night. I counted the seconds after each flash, like I was taught as a child.</li>
+        <li>[thunder] Lightning struck somewhere close. The whole room went white.</li>
+        <li>[dust] A dust storm today. There's grit in my teeth, my bed and my food.</li>
+        <li>[otherstorm] The sky went a color I've never seen before. We all stayed in.</li>
+        <li>[child] There was a big storm. I hid under the blanket, but only for a bit.</li>
+      </plain>
+      <gloomy>
+        <li>Storm all day. Felt like the sky had a grudge against us.</li>
+      </gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>
