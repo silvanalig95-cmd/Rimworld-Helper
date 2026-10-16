@@ -279,6 +279,14 @@ the content itself, not only to systems, alongside whatever else it does. Where 
 | Small good moments that give something other than mood | 248 of 474 (opinion, recreation, rest, comfort, practice, a feeling, an inspiration, trust, research, goodwill, the journal), 4 habits with a knack instead | a reward instead for each new small moment as it lands |
 | Negative moods | 589 thoughts with a bad side (548 → 589); 41 setbacks from play (8 council, 3 gatherings, 10 work, 7 home, 6 worries, 7 between people) | setbacks for camps, world events and the calendar, more from mod content (a mod's bench, crop or ritual gone wrong) |
 
+### Asked for by the player (queued after the current fixes)
+- A defense planner: what makes sense for this colony and its threats (raids, sieges, drop pods, mechanoids,
+  tribal waves), where to build it on this map (choke points, killboxes, cover and fallback lines, turret and trap
+  placement for the colony's tech level), templates to place like the room planner's, and the reasoning shown, the
+  way the advisor explains a room.
+- Animals and Pokémon deeper in Rimfolk: animals in wishes, dreams, personal stories, the calendar and the council
+  (a herd's year, a bonded animal's old age, a Pokémon's evolution as a colony event), with PokéWorld kept soft.
+
 ### 5. Wider (integrations)
 - Done: deeper with the always-on mods. Hospitality guests are visitors with stories (eight encounters with
   journals, a guest who wants to stay and is taken in Hospitality's own way, a guest's complaint, a guest room wish).
