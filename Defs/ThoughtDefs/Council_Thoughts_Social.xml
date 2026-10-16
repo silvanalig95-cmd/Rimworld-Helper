@@ -79,7 +79,8 @@
     <durationDays>2</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>2</stackLimitForSameOtherPawn>
-    <stages><li><label>a good talk</label><description>We talked half the night. I'd forgotten what that feels like.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>6</baseOpinionOffset></li></stages>
+    <stages><li><label>a good talk</label><description>We talked half the night. I'd forgotten what that feels like.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>6</baseOpinionOffset></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>3</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -88,7 +89,8 @@
     <durationDays>2</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>2</stackLimitForSameOtherPawn>
-    <stages><li><label>laughed together</label><description>We laughed until our sides hurt, over something I can't even remember now.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>5</baseOpinionOffset></li></stages>
+    <stages><li><label>laughed together</label><description>We laughed until our sides hurt, over something I can't even remember now.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>5</baseOpinionOffset></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.1</joy><felt>3</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -151,7 +153,8 @@
     <durationDays>2</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>a good lesson</label><description>It finally clicked today. All that patience paid off.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>5</baseOpinionOffset></li></stages>
+    <stages><li><label>a good lesson</label><description>It finally clicked today. All that patience paid off.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>5</baseOpinionOffset></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef>

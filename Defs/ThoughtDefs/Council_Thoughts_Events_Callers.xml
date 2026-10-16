@@ -35,7 +35,8 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>2</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>a glitterworlder's questions</label><description>A tourist from a glitterworld stayed with us and asked about everything. Where the water comes from. Why the beds are so hard. It was funny, mostly.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>a glitterworlder's questions</label><description>A tourist from a glitterworld stayed with us and asked about everything. Where the water comes from. Why the beds are so hard. It was funny, mostly.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.08</joy><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -43,7 +44,8 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>2</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>a glitterworlder in the barn</label><description>I watched a rich tourist from a glitterworld muck out the barn. I'll remember that for a long time.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>a glitterworlder in the barn</label><description>I watched a rich tourist from a glitterworld muck out the barn. I'll remember that for a long time.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.1</joy><felt>3</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef>

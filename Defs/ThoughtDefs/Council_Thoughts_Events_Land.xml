@@ -8,7 +8,8 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>2</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>wild mushrooms for supper</label><description>We had wild mushrooms for supper, fried with salt straight from the pan. I had seconds.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>wild mushrooms for supper</label><description>We had wild mushrooms for supper, fried with salt straight from the pan. I had seconds.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.08</joy><joyKind>Gluttonous</joyKind><felt>3</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -24,7 +25,8 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>1</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>slept late</label><description>The council let us sleep late after the bright night. I didn't get up until the sun was high.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>slept late</label><description>The council let us sleep late after the bright night. I didn't get up until the sun was high.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><rest>0.25</rest><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -40,7 +42,8 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>3</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>dry under the roof again</label><description>The roofs are patched and the drains run. It's still raining, but not on my bed.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>dry under the roof again</label><description>The roofs are patched and the drains run. It's still raining, but not on my bed.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><comfort>0.2</comfort><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -48,7 +51,8 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>2</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>games while it rained</label><description>We spent the wet evenings together playing games and telling stories. The rain was almost nice to listen to.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>games while it rained</label><description>We spent the wet evenings together playing games and telling stories. The rain was almost nice to listen to.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><journal>true</journal><felt>3</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -72,7 +76,8 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>2</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>the birds came back</label><description>We stopped work to watch the birds come back for the spring. Winter is properly over now.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>the birds came back</label><description>We stopped work to watch the birds come back for the spring. Winter is properly over now.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><journal>true</journal><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -128,7 +133,8 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>2</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>watched the eclipse</label><description>I looked at the sun through dark glass while it went out, and someone explained how it works. I almost understood.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>watched the eclipse</label><description>I looked at the sun through dark glass while it went out, and someone explained how it works. I almost understood.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><feelings><li>Awe</li></feelings><felt>4</felt></li></modExtensions>
   </ThoughtDef>
 
 </Defs>

@@ -40,7 +40,8 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>3</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>buried a stranger properly</label><description>We found an old grave and buried them again, with a stone at the head. Whoever they were, they deserved that.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>buried a stranger properly</label><description>We found an old grave and buried them again, with a stone at the head. Whoever they were, they deserved that.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><journal>true</journal><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -56,7 +57,8 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>2</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>an evening of old letters</label><description>We read old letters aloud after supper, two strangers writing to each other for years. I keep wondering how it ended.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>an evening of old letters</label><description>We read old letters aloud after supper, two strangers writing to each other for years. I keep wondering how it ended.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><journal>true</journal><felt>3</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef>

@@ -12,7 +12,8 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncR_KnownForMercy</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>a name for mercy</label><description>A traveler had heard that we spare the raiders we beat. Strange thing to be known for, but I'll take it.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>a name for mercy</label><description>A traveler had heard that we spare the raiders we beat. Strange thing to be known for, but I'll take it.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -24,7 +25,8 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncR_KindnessReturned</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>a kindness came back</label><description>We let a prisoner go once. Today a trader remembered it and paid us back in herbs and silver.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>a kindness came back</label><description>We let a prisoner go once. Today a trader remembered it and paid us back in herbs and silver.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><journal>true</journal><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
   <!-- ===================== Encounters: harsh ===================== -->
@@ -38,7 +40,8 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncR_FearedAndGlad</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>feared on the road</label><description>The visitors keep their children close when I walk by. Good. Let them.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>feared on the road</label><description>The visitors keep their children close when I walk by. Good. Let them.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -50,7 +53,8 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncR_FearfulPrice</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>a frightened trader's price</label><description>I didn't even have to haggle. The trader was afraid of us and kept lowering the price.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>a frightened trader's price</label><description>I didn't even have to haggle. The trader was afraid of us and kept lowering the price.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><journal>true</journal><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
   <!-- ===================== Encounters: generous ===================== -->
@@ -58,7 +62,8 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncR_FedATraveler</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>fed a traveler</label><description>A traveler went out of their way because they'd heard we'd feed them. We fed them twice.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>fed a traveler</label><description>A traveler went out of their way because they'd heard we'd feed them. We fed them twice.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -70,7 +75,8 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncR_SpokenWellOf</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>spoken well of</label><description>Folk on the road still talk about what we gave away. I like being that kind of place.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>spoken well of</label><description>Folk on the road still talk about what we gave away. I like being that kind of place.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><journal>true</journal><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
   <!-- ===================== Encounters: thrifty ===================== -->
@@ -78,7 +84,8 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncR_HardBargainers</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>known for hard bargains</label><description>The trader expected a fight over every piece of silver, and got one.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>known for hard bargains</label><description>The trader expected a fight over every piece of silver, and got one.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><journal>true</journal><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -90,7 +97,8 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncR_ProvedAPoint</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>proved a point</label><description>A guest brought their own bread because they'd heard we wouldn't share. I shared mine, mostly out of spite.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>proved a point</label><description>A guest brought their own bread because they'd heard we wouldn't share. I shared mine, mostly out of spite.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
   <!-- ===================== Encounters: traditional ===================== -->
@@ -104,7 +112,8 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncR_RespectedOurWays</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>a guest who knew our ways</label><description>The trader waited at the gate for bread and salt, the proper way. Hardly anyone remembers to anymore.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>a guest who knew our ways</label><description>The trader waited at the gate for bread and salt, the proper way. Hardly anyone remembers to anymore.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><journal>true</journal><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
   <!-- ===================== Encounters: restless ===================== -->
@@ -112,13 +121,15 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncR_ShowedOffNewWays</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>showed off our new ideas</label><description>A traveler came all this way to see what we're trying here. I could have talked about it all day.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>showed off our new ideas</label><description>A traveler came all this way to see what we're trying here. I could have talked about it all day.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><feelings><li>Pride</li></feelings><felt>3</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncR_AlwaysChanging</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>nothing where it was</label><description>The trader couldn't find the storeroom because we'd moved it again. That's what we're like, and I like it.</description><baseMoodEffect>1</baseMoodEffect></li></stages>
+    <stages><li><label>nothing where it was</label><description>The trader couldn't find the storeroom because we'd moved it again. That's what we're like, and I like it.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><journal>true</journal><felt>1</felt></li></modExtensions>
   </ThoughtDef>
 
   <!-- ===================== Encounters: open ===================== -->
@@ -126,13 +137,15 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncR_GuestsAtEase</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>guests at ease</label><description>The visitors took their boots off and sang with us half the night.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>guests at ease</label><description>The visitors took their boots off and sang with us half the night.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.1</joy><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncR_TrustedWithNews</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>trusted with the road's news</label><description>The trader told me news they don't share with just anyone, because we always let them in.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>trusted with the road's news</label><description>The trader told me news they don't share with just anyone, because we always let them in.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><journal>true</journal><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
   <!-- ===================== Encounters: guarded ===================== -->
@@ -146,13 +159,15 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncR_GuestsMindTheirManners</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>guests minding their manners</label><description>The visitors kept their hands where we could see them. That's how it should be.</description><baseMoodEffect>1</baseMoodEffect></li></stages>
+    <stages><li><label>guests minding their manners</label><description>The visitors kept their hands where we could see them. That's how it should be.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>1</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncR_OpenedTheGate</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>opened the gate a little</label><description>I let a trader in past the watch instead of haggling through the gate. The sky didn't fall.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>opened the gate a little</label><description>I let a trader in past the watch instead of haggling through the gate. The sky didn't fall.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><journal>true</journal><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
   <!-- ===================== Encounters: hard-working ===================== -->
@@ -160,13 +175,15 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncR_WorkNoticed</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>the work was noticed</label><description>A trader stopped to stare at our fields, without a weed in them. People on the road know how hard we work.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>the work was noticed</label><description>A trader stopped to stare at our fields, without a weed in them. People on the road know how hard we work.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><feelings><li>Pride</li></feelings><felt>3</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncR_StoleAnHour</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>an idle hour</label><description>A visitor made me sit down and rest for a while. I'd forgotten how. I might do it again next year.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>an idle hour</label><description>A visitor made me sit down and rest for a while. I'd forgotten how. I might do it again next year.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><rest>0.15</rest><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
   <!-- ===================== Encounters: easygoing ===================== -->
@@ -186,7 +203,8 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncR_NoHurry</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>no hurry</label><description>A trader had to wait on us for a while. We do things in our own time here.</description><baseMoodEffect>1</baseMoodEffect></li></stages>
+    <stages><li><label>no hurry</label><description>A trader had to wait on us for a while. We do things in our own time here.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><journal>true</journal><felt>1</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -382,7 +400,8 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmR_StoresSafe</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>no more handouts</label><description>The food we grow stays with the people who grow it. About time.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>no more handouts</label><description>The food we grow stays with the people who grow it. About time.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><journal>true</journal><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
   <!-- ===================== Dilemma: a joke at our expense ===================== -->
@@ -417,7 +436,8 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmR_ThriftyAndProud</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>thrifty and proud</label><description>Let them laugh. Our silver stays in our stores.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>thrifty and proud</label><description>Let them laugh. Our silver stays in our stores.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><journal>true</journal><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -478,13 +498,15 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmR_OldCustomNewTwist</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>an old custom, new again</label><description>We brought back the old evening, with a few new twists of our own.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>an old custom, new again</label><description>We brought back the old evening, with a few new twists of our own.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.08</joy><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmR_NotQuiteHowItWas</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>not quite how it was</label><description>They brought the old custom back, more or less. It's not the same, but it's better than nothing.</description><baseMoodEffect>1</baseMoodEffect></li></stages>
+    <stages><li><label>not quite how it was</label><description>They brought the old custom back, more or less. It's not the same, but it's better than nothing.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><journal>true</journal><felt>1</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -516,7 +538,8 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmR_GotMyBedBack</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>got my bed back</label><description>The guests were shown the road and I got my bed back. It smells of someone else, but it's mine.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>got my bed back</label><description>The guests were shown the road and I got my bed back. It smells of someone else, but it's mine.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><comfort>0.15</comfort><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -615,7 +638,8 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmR_AboutTime</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>about time</label><description>Finally, we're all pulling our weight. I might even get a full night's sleep.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>about time</label><description>Finally, we're all pulling our weight. I might even get a full night's sleep.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><trust>1</trust><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
