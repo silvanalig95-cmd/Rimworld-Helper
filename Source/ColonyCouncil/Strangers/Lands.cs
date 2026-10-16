@@ -8,9 +8,11 @@ namespace ColonyCouncil
 {
     /// <summary>
     /// What kind of land a map is, in words lines and encounters can ask for: desert, tundra, boreal, jungle, swamp,
-    /// forest, grassland, mountains, hills, coast, lake, river. Worked out from the biome's name (so other mods' biomes
-    /// fit too: an "AB_MiasmicMangrove" is a swamp) and the tile (hills, a coast, a river). As tags they read
-    /// "land:desert"; a map can be several at once (a tropical swamp on the coast).
+    /// forest, grassland, mountains, hills, coast, lake, river, and from the tile's landform valley, canyon, island,
+    /// caves, cliffs, oasis and crater. Worked out from the biome's name (so other mods' biomes fit too: an
+    /// "AB_MiasmicMangrove" is a swamp, a "ZBiome_DesertOasis" a desert with an oasis) and the tile (hills, a coast, a
+    /// river, and Geological Landforms' landforms, which are the tile's mutators: "GL_Canyon" is a canyon). As tags they
+    /// read "land:desert"; a map can be several at once (a tropical swamp on the coast).
     /// </summary>
     public static class Lands
     {
@@ -22,7 +24,9 @@ namespace ColonyCouncil
             ("jungle", new[] { "jungle", "rainforest", "tropical", "cloudforest" }),
             ("swamp", new[] { "swamp", "bog", "marsh", "wetland", "mangrove", "fen", "mire" }),
             ("forest", new[] { "forest", "wood", "grove" }),
-            ("grassland", new[] { "grass", "steppe", "savanna", "prairie", "meadow", "plain", "shrub" })
+            ("grassland", new[] { "grass", "steppe", "savanna", "prairie", "meadow", "plain", "shrub" }),
+            ("mountains", new[] { "crag", "alpine" }),
+            ("oasis", new[] { "oasis" })
         };
 
         private static readonly Dictionary<int, (int tick, HashSet<string> lands)> cache = new Dictionary<int, (int, HashSet<string>)>();
@@ -74,8 +78,16 @@ namespace ColonyCouncil
                 if (n == null) continue;
                 if (n.Contains("mountain")) lands.Add("mountains");
                 if (n.Contains("coast") || n.Contains("fjord") || n.Contains("bay") || n.Contains("peninsula") || n.Contains("archipelago")) lands.Add("coast");
-                if (n.Contains("lake")) lands.Add("lake");
+                if (n.Contains("lake") && !n.Contains("drylake")) lands.Add("lake");
                 if (n.Contains("river")) lands.Add("river");
+                // The land's shape (Geological Landforms' landforms, and the game's own where it has them).
+                if (n.Contains("valley") || n.Contains("cirque")) lands.Add("valley");
+                if (n.Contains("canyon") || n.Contains("gorge") || n.Contains("rift") || n.Contains("chasm")) lands.Add("canyon");
+                if (n == "gl_island" || n.Contains("atoll") || n.Contains("skerry") || n.Contains("archipelago")) lands.Add("island");
+                if (n.Contains("cave") || n.Contains("sinkhole")) lands.Add("caves");
+                if (n.Contains("cliff")) lands.Add("cliffs");
+                if (n.Contains("oasis")) lands.Add("oasis");
+                if (n.Contains("crater") || n.Contains("caldera")) lands.Add("crater");
             }
         }
 

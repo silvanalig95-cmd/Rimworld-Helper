@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Encounters for the shape of the land and the sky, from the player's land and weather mods.
+    The land: Geological Landforms' landforms (and the game's own tile features where it has them) read as valley,
+    canyon, island, caves, cliffs, oasis and crater (Source/ColonyCouncil/Strangers/Lands.cs). These go by the land
+    alone, so a valley is a valley whichever mod made it.
+    The sky: Seasonal Weather's double rainbow, windy days and dust (moment "weather:DefName", see Flavor.TagsFor).
+    As in Council_Encounters_Lands.xml: {A_...} the colonist, {X_...} the animal or stranger; never an {X_...}
+    placeholder at the start of a sentence, and animals are never named as a species. Nobody is hurt.
+  -->
+
+  <!-- ======================= The shape of the land (Geological Landforms) ======================= -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncL_CanyonEcho</defName>
+    <label>an echo in the canyon</label>
+    <stranger>
+      <kind>Wild</kind>
+      <notPredator>true</notPredator>
+    </stranger>
+    <lands><li>canyon</li></lands>
+    <dayOnly>true</dayOnly>
+    <children>true</children>
+    <weight>1.2</weight>
+    <cooldownDays>8</cooldownDays>
+    <texts>
+      <li>{A_nameDef} called a name across the canyon to see what would happen. The rock threw it back three times, and on a ledge across the gap {X_indefinite} lifted its head at each one.</li>
+      <li>At the bottom of the canyon the sky was a strip of blue far overhead. {A_nameDef} looked up and saw {X_indefinite} on a ledge halfway up the wall, looking down at {A_objective} with mild interest.</li>
+      <li>[morning] The sun reaches the canyon floor late. {A_nameDef} waited for it on a cold rock, and {X_indefinite} came down the scree to wait for it too, a little way off.</li>
+      <li>[child] {A_nameDef} shouted into the canyon and the canyon shouted back, and {X_indefinite} on the far side jumped every time. {A_nameDef} thought this was the best game there was.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncL_CanyonEcho</thought></li>
+    </effects>
+    <journal>Council_Journal_EncL_Shape</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncL_ValleyMist</defName>
+    <label>mist in the valley</label>
+    <stranger>
+      <kind>Wild</kind>
+      <notPredator>true</notPredator>
+      <minBodySize>0.5</minBodySize>
+    </stranger>
+    <lands><li>valley</li></lands>
+    <moment>morning</moment>
+    <weight>1.2</weight>
+    <cooldownDays>8</cooldownDays>
+    <texts>
+      <li>The valley was full of mist at dawn, white to the brim, with only the hilltops showing. {A_nameDef} watched {X_indefinite} come up out of it as if out of a lake, shaking off the wet.</li>
+      <li>From the slope above the colony, {A_nameDef} could see the whole valley floor, and {X_indefinite} crossing it, small as a seed, leaving a dark line through the dew.</li>
+      <li>[cold] Cold air sinks into the valley overnight and sits there. {A_nameDef} climbed up into the first of the sun and found {X_indefinite} already there, warming its back.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncL_ValleyMorning</thought></li>
+    </effects>
+    <journal>Council_Journal_EncL_Shape</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncL_ValleyTraveler</defName>
+    <label>the way out of the valley</label>
+    <stranger><kind>Visitor</kind><adult>true</adult></stranger>
+    <lands><li>valley</li><li>canyon</li></lands>
+    <weight>1</weight>
+    <cooldownDays>10</cooldownDays>
+    <texts>
+      <li>{X_nameDef} of {FACTION} had come in by the only easy way and told {A_nameDef} there were two more, one of them a goat track nobody uses twice. {A_nameDef} asked where it starts.</li>
+      <li>{X_nameDef} looked up at the walls around the colony and told {A_nameDef} it was a fine place to live and a terrible place to be found by raiders. Then {X_pronoun} showed {A_objective} where a lookout would see the whole approach.</li>
+      <li>[rain] The rain came down the valley sides in a hundred little streams. {X_nameDef} watched them with {A_nameDef} and said that in {FACTION}'s country they dig a ditch above every house for exactly this.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncL_KnowTheWays</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_GoodCompany</thought><chance>0.5</chance></li>
+      <li Class="ColonyCouncil.DilemmaEffect_LifeEvent"><target>A</target><counter>stranger</counter></li>
+    </effects>
+    <journal>Council_Journal_EncL_Shape</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncL_IslandShore</defName>
+    <label>the sea all round</label>
+    <stranger>
+      <kind>Wild</kind>
+      <maxBodySize>1.5</maxBodySize>
+    </stranger>
+    <lands><li>island</li></lands>
+    <dayOnly>true</dayOnly>
+    <children>true</children>
+    <weight>1.3</weight>
+    <cooldownDays>8</cooldownDays>
+    <texts>
+      <li>{A_nameDef} walked the whole way round the island before supper, and at every turn there was the sea. Halfway, {X_indefinite} fell in behind {A_objective} for a while, as if it was doing the same thing.</li>
+      <li>From the high point of the island {A_nameDef} could see water on every side and nothing else, and {X_indefinite} grazing at {A_possessive} feet as though that were perfectly ordinary.</li>
+      <li>[storm] Spray came right over the island in the storm. {A_nameDef} and {X_indefinite} both sheltered in the lee of the same rock, soaked and blinking.</li>
+      <li>[evening] The sun went down into the sea on one side of the island while the moon came up out of it on the other. {A_nameDef} sat between them with {X_indefinite} not far off.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncL_SeaAllRound</thought></li>
+    </effects>
+    <journal>Council_Journal_EncL_Water</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncL_CaveDusk</defName>
+    <label>the cave at dusk</label>
+    <stranger>
+      <kind>Wild</kind>
+      <notPredator>true</notPredator>
+      <maxBodySize>1</maxBodySize>
+    </stranger>
+    <lands><li>caves</li></lands>
+    <moment>evening|night</moment>
+    <weight>1.1</weight>
+    <cooldownDays>8</cooldownDays>
+    <texts>
+      <li>At dusk the cave breathes out cold air you can feel from twenty paces. {A_nameDef} stood in it to cool off, and {X_indefinite} came out of the dark behind {A_objective} and went off into the evening without a glance.</li>
+      <li>{A_nameDef} sat by the cave mouth as the light went and heard things moving inside: dripping water, a scrabble of claws. Then {X_indefinite} came out, saw {A_objective}, and thought better of it.</li>
+      <li>[summer] On the hottest day yet, {A_nameDef} found the coolest place in the colony: the mouth of the cave. {X_indefinite} had found it first.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncL_CaveBreath</thought></li>
+    </effects>
+    <journal>Council_Journal_EncL_Shape</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncL_CliffFoot</defName>
+    <label>under the cliffs</label>
+    <stranger>
+      <kind>Wild</kind>
+      <notPredator>true</notPredator>
+    </stranger>
+    <lands><li>cliffs</li></lands>
+    <dayOnly>true</dayOnly>
+    <children>true</children>
+    <weight>1.1</weight>
+    <cooldownDays>8</cooldownDays>
+    <texts>
+      <li>{A_nameDef} walked along the foot of the cliffs, where the stones that fall end up, and met {X_indefinite} picking its way the other way. They passed each other with the polite distance of strangers on a narrow street.</li>
+      <li>The cliff face turns gold in the late afternoon. {A_nameDef} stopped work to look at it, and noticed {X_indefinite} at the bottom of it, gold too.</li>
+      <li>[rain] After the rain, water ran down the cliff in thin silver lines. {A_nameDef} and {X_indefinite} both drank from the pool at the bottom, at opposite ends.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncL_CliffLight</thought></li>
+    </effects>
+    <journal>Council_Journal_EncL_Shape</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncL_OasisDrink</defName>
+    <label>water in the dry country</label>
+    <stranger>
+      <kind>Wild</kind>
+      <notPredator>true</notPredator>
+    </stranger>
+    <lands><li>oasis</li></lands>
+    <children>true</children>
+    <weight>1.3</weight>
+    <cooldownDays>8</cooldownDays>
+    <texts>
+      <li>Everything that lives for a day's walk around comes to the oasis to drink. {A_nameDef} sat in the shade of the palms and watched {X_indefinite} come down to the water, careful and thirsty.</li>
+      <li>{A_nameDef} filled the buckets at the green water and found {X_indefinite} drinking on the far side, so close across the pool that {A_pronoun} could hear it swallow.</li>
+      <li>[night] By moonlight the oasis was busy. {A_nameDef} counted the shapes that came to drink, and {X_indefinite} was the last and boldest of them.</li>
+      <li>[hot] In the worst of the heat, the only green for miles and the only cool. {A_nameDef} and {X_indefinite} shared it without fuss.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncL_OasisShade</thought></li>
+    </effects>
+    <journal>Council_Journal_EncL_Water</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncL_CraterTale</defName>
+    <label>how the crater came</label>
+    <stranger><kind>Visitor</kind><adult>true</adult></stranger>
+    <lands><li>crater</li></lands>
+    <weight>1.2</weight>
+    <cooldownDays>10</cooldownDays>
+    <texts>
+      <li>{X_nameDef} of {FACTION} stood on the rim with {A_nameDef} and told {A_objective} what {FACTION} say made the great bowl of land the colony sits in. {A_nameDef} has heard three stories about it now, and they don't agree.</li>
+      <li>{X_nameDef} said the crater was the only place for a week's walk where the wind didn't reach the ground, and that {FACTION}'s caravans used to winter in it. {A_nameDef} hadn't known anyone had lived here before.</li>
+      <li>[theirHightech] {X_nameDef} told {A_nameDef} the crater was made by something falling from orbit, long ago, and pointed out the ring of shattered rock that proves it.</li>
+      <li>[theirLowtech] {X_nameDef} told {A_nameDef}, very seriously, that a star fell here once and the ground still remembers it. {A_nameDef} looked at the rim differently afterwards.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncL_CraterStory</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_GoodCompany</thought><chance>0.5</chance></li>
+      <li Class="ColonyCouncil.DilemmaEffect_LifeEvent"><target>A</target><counter>stranger</counter></li>
+    </effects>
+    <journal>Council_Journal_EncL_Shape</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <!-- ======================= The sky (Seasonal Weather) ======================= -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncW_DoubleRainbow</defName>
+    <label>a double rainbow</label>
+    <stranger>
+      <kind>Wild</kind>
+      <notPredator>true</notPredator>
+    </stranger>
+    <mods><li>mlie.seasonalweather</li></mods>
+    <moment>weather:DoubleRainbow</moment>
+    <children>true</children>
+    <weight>2</weight>
+    <cooldownDays>6</cooldownDays>
+    <texts>
+      <li>Two rainbows stood over the colony at once, one inside the other, the inner one bright and the outer one faint and backwards. {A_nameDef} stopped dead to look, and so, for no reason anyone could give, did {X_indefinite}.</li>
+      <li>{A_nameDef} came out after the rain and found the sky crossed by a double rainbow, with {X_indefinite} grazing right under the near end of it as if that were nothing special.</li>
+      <li>[child] {A_nameDef} ran to tell everyone there were two rainbows, and then ran back in case they'd gone. They hadn't. {X_indefinite} was still standing under them.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncW_TwoRainbows</thought></li>
+    </effects>
+    <journal>Council_Journal_EncW_Sky</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncW_WindyDay</defName>
+    <label>a day of wind</label>
+    <stranger>
+      <kind>Wild</kind>
+      <notPredator>true</notPredator>
+      <maxBodySize>1.2</maxBodySize>
+    </stranger>
+    <mods><li>mlie.seasonalweather</li></mods>
+    <moment>weather:Windy</moment>
+    <dayOnly>true</dayOnly>
+    <children>true</children>
+    <weight>1.5</weight>
+    <cooldownDays>8</cooldownDays>
+    <texts>
+      <li>The wind blew all day without a break, flattening the grass in long silver waves. {A_nameDef} watched {X_indefinite} lean into it across the field with its fur blown the wrong way, looking thoroughly offended.</li>
+      <li>{A_nameDef} chased a hat across half the colony in the wind and finally caught it right under the nose of {X_indefinite}, which had been watching the whole chase.</li>
+      <li>[fall] The wind stripped the last leaves off everything at once. {A_nameDef} stood in the whirl of them while {X_indefinite} snapped at the ones that came too close.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncW_InTheWind</thought></li>
+    </effects>
+    <journal>Council_Journal_EncW_Sky</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncW_DustShelter</defName>
+    <label>sheltering from the dust</label>
+    <stranger>
+      <kind>Wild</kind>
+      <notPredator>true</notPredator>
+      <maxBodySize>1.5</maxBodySize>
+    </stranger>
+    <mods><li>mlie.seasonalweather</li></mods>
+    <moment>weather:Dust|weather:DryDuststorm</moment>
+    <dayOnly>true</dayOnly>
+    <weight>1.5</weight>
+    <cooldownDays>8</cooldownDays>
+    <texts>
+      <li>When the dust came over, {A_nameDef} pulled a cloth over {A_possessive} face and ducked into the lee of the wall. {X_indefinite} had had the same idea, and they waited it out side by side with their eyes shut.</li>
+      <li>The dust turned the sun into a dull orange coin. {A_nameDef} could just make out {X_indefinite} through it, standing head down and tail to the wind, waiting for it to pass like everyone else.</li>
+      <li>[hot] Hot wind and grit in everything. {A_nameDef} and {X_indefinite} both gave up and lay flat in the shade of the storehouse until the worst blew through.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncW_WaitedOutDust</thought></li>
+    </effects>
+    <journal>Council_Journal_EncW_Sky</journal>
+  </ColonyCouncil.EncounterDef>
+
+</Defs>
