@@ -3,9 +3,9 @@
 Variety audit: which lines will a player see again too soon?
 
 Lists every pool of lines in Defs/ (flavor pools and their extensions, toned lines on dreams, wishes, quirks and the
-like, plain text lists such as social events and nuisances, and grammar rules in interactions and rule packs), counts
-its lines, estimates how often it is drawn from in a year (60 days) of an eight-colonist colony, and ranks pools by
-how often each line comes round again.
+like, plain text lists such as social events and nuisances, and grammar rules in interactions and rule packs with the
+log lines other files add to them), counts its lines, estimates how often it is drawn from in a year (60 days) of an
+eight-colonist colony, and ranks pools by how often each line comes round again.
 
 "Effective lines" is what a typical speaker actually draws from. For toned pools it replays the pick in Tone.cs and
 Flavor.cs (tagged lines win 85% of the time, the speaker's tone first, era filter, plain fallback) over a few hundred
@@ -362,6 +362,7 @@ def toned_children(el):
 def parse_defs(root="."):
     pools = {}
     ext_targets = []
+    log_targets = []
     for f in sorted(glob.glob(f"{root}/Defs/**/*.xml", recursive=True)):
         try:
             tree = ET.parse(f)
@@ -376,6 +377,9 @@ def parse_defs(root="."):
             dname = d.findtext("defName") or d.get("Name") or "?"
             if dtype == "FlavorExtensionDef":
                 ext_targets.append((d, rel))
+                continue
+            if dtype == "LogLinesDef":
+                log_targets.append((d, rel))
                 continue
             walk_def(d, dtype, dname, rel, pools)
     # Extensions: lines merged into their targets at startup.
@@ -393,6 +397,20 @@ def parse_defs(root="."):
                     p = pools[key] = Pool(key, "toned", rel, None, child.tag)
                 for tone_el in child:
                     p.tones[tone_el.tag].extend(text_of(li) for li in tone_el.findall("li"))
+    # Log lines (Social/LogLines.cs): grammar rules joined to an interaction's or a rule pack's at startup.
+    for d, rel in log_targets:
+        target, sub = d.findtext("interaction"), "logRulesInitiator.rulesStrings"
+        if not target:
+            target, sub = d.findtext("pack"), "rulePack.rulesStrings"
+        p = pools.get(f"{target}.{sub}") if target else None
+        if p is None or p.kind != "grammar":
+            print(f"warn: {rel}: log lines for {target}, which has no grammar pool", file=sys.stderr)
+            continue
+        for li in d.findall("rulePack/rulesStrings/li"):
+            t = text_of(li)
+            if "->" in t:
+                k, out = t.split("->", 1)
+                p.rules[k.split("(")[0].strip()].append(out)
     return pools
 
 
