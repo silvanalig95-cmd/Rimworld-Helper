@@ -40,9 +40,9 @@ namespace ColonyCouncil
             else lead = null;
             p.invited = who;
             p.organizer = lead;
-            // The answer's own people hold their good moods until it's done; the rest of the colony has theirs at once.
+            // The answer's own people (A, B) hold their good moods until it's done; for a party of the colony, where
+            // only some go, everyone has theirs at once.
             if (target == DilemmaTarget.A || target == DilemmaTarget.B || target == DilemmaTarget.AAndB || target == DilemmaTarget.X) p.named = who.ToList();
-            else if (lead != null) p.named = new List<Pawn> { lead };
             p.count = Math.Min(PlayOutMath.MaxGroup, count > 0 ? count : DefaultCount);
             p.durationTicks = PlayOutMath.DurationTicks(PlayOutMath.CapHours(duration.RandomInRange, Long));
             p.pool = pool;

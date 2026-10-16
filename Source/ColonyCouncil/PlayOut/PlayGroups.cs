@@ -103,6 +103,20 @@ namespace ColonyCouncil
                 t.Fallback(p, (p.kind == PlayKind.Hunt ? "CC_Play_Why_NoHunter" : "CC_Play_Why_NoOneAble").Translate(), false);
                 return;
             }
+            // Someone the answer names who could never do it (no hands for the work, beliefs against it): their good
+            // moods come now rather than wait for something they can't take part in.
+            foreach (var m in p.moods.Where(m => m?.pawn != null && !capable.Contains(m.pawn)).ToList())
+            {
+                p.moods.Remove(m);
+                try
+                {
+                    m.Give();
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("play out mood", e);
+                }
+            }
             if (p.kind == PlayKind.Hunt)
                 capable = capable.OrderByDescending(x => x == p.organizer)
                     .ThenByDescending(x => x.workSettings != null && x.workSettings.WorkIsActive(WorkTypeDefOf.Hunting))
@@ -370,7 +384,8 @@ namespace ColonyCouncil
         {
             bool timeUp = elapsed >= p.durationTicks;
             int on = 0;
-            bool anyWork = false;
+            // Someone free was offered work and there was none left for them: the work is done.
+            bool noneLeft = false;
             foreach (var h in p.hands)
             {
                 if (h.left) continue;
@@ -379,21 +394,18 @@ namespace ColonyCouncil
                 {
                     on++;
                     h.ticks += 250;
-                    anyWork = true;
                     continue;
                 }
                 PlayWork.Settle(p, x, h);
                 if (timeUp || !Free(t, p, x)) continue;
                 // Back to it after seeing to something of their own (or after a load).
-                if (PlayWork.Give(p, x))
-                {
-                    on++;
-                    anyWork = true;
-                }
+                if (PlayWork.Give(p, x)) on++;
+                else noneLeft = true;
             }
             if (on > 0 && Rand.Chance(0.12f)) PlayWords.During(p, p.hands.Where(h => !h.left && OnIt(p, h.pawn)).Select(h => h.pawn).RandomElementWithFallback());
-            // Over when the time is up and the last jobs are done, or early when there's nothing more to do.
-            if (on == 0 && (timeUp || !anyWork && elapsed > PlayOutMath.TicksPerHour / 4)) Finish(t, p, false, null);
+            // Over when the time is up and the last jobs are done, or early when there's nothing more to do (those
+            // away eating or resting aren't waited for past the time).
+            if (on == 0 && (timeUp || noneLeft && elapsed > PlayOutMath.TicksPerHour / 4)) Finish(t, p, false, null);
         }
 
         private static void StepWalk(PlayOutTracker t, PlayOut p, int now)
@@ -644,9 +656,10 @@ namespace ColonyCouncil
                 t.Fallback(p, why ?? PlayWords.WhyNot(p), false);
                 return;
             }
-            t.Done(p, took, false);
+            // The find first, so the dilemmas page hears what was found.
             List<Thing> found = null;
             if (p.kind == PlayKind.Search) found = GiveFind(p, early ? null : took);
+            t.Done(p, took, false);
             string text = PlayWords.EndText(p, early, took, found, to, carried);
             if (!text.NullOrEmpty())
             {
