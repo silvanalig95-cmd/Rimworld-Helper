@@ -301,6 +301,8 @@ namespace ColonyCouncil
             if (byElection)
                 foreach (var office in open)
                     foreach (var h in HoldersOf(office)) taken.Add(h);
+            var winners = new HashSet<Pawn>();
+            var filled = new HashSet<string>();
             // The seats few people can fill go first, so the colony's only doctor isn't spent on the speaker's chair.
             foreach (var office in open.OrderBy(o => voters.Count(p => o.CanHold(p))).ThenBy(o => o.order).ToList())
             for (int seat = 0; seat < office.Seats; seat++)
@@ -325,6 +327,8 @@ namespace ColonyCouncil
                 holders[key] = winner;
                 elected[key] = winner;
                 taken.Add(winner);
+                winners.Add(winner);
+                filled.Add(key);
                 text.Append("\n\n").Append(ruler != null ? "CC_PM_Appoint_Line".Translate(office.LabelCap, winner.Named("PAWN")).Resolve()
                     : "CC_Election_Line".Translate(office.LabelCap, winner.Named("PAWN"), ranked[0].Value, voters.Count).Resolve());
                 var losers = ranked.Skip(1).Where(kv => kv.Value > 0).Select(kv => kv.Key.LabelShort + " (" + kv.Value + ")").ToList();
@@ -351,6 +355,18 @@ namespace ColonyCouncil
                     ? "CC_PM_Chronicle_Named".Translate(ruler.LabelShort, winner.LabelShort, office.label).Resolve()
                     : "CC_Chronicle_Elected".Translate(winner.LabelShort, office.label).Resolve(), winner));
             }
+            // A seat nobody could be voted into this time (more seats than people, or none left who can do its work)
+            // keeps its holder, unless they were just voted into another one: nobody holds two.
+            foreach (var office in open)
+                for (int seat = 0; seat < office.Seats; seat++)
+                {
+                    string key = Key(office, seat);
+                    if (filled.Contains(key)) continue;
+                    var holder = HolderOf(office, seat);
+                    if (holder == null || !winners.Contains(holder)) continue;
+                    holders.Remove(key);
+                    elected.Remove(key);
+                }
             SyncHediffs();
             string title = ruler != null ? (byElection ? "CC_PM_Appoint_ByTitle" : "CC_PM_Appoint_Title").Translate(year).Resolve()
                 : (byElection ? "CC_Election_ByTitle" : "CC_Election_Title").Translate(year).Resolve();

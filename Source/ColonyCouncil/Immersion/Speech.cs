@@ -157,9 +157,13 @@ namespace ColonyCouncil
                     bubblerAdd = null;
                 }
             }
-            if (Find.PlayLog == null) return false;
+            var entries = Find.PlayLog?.AllEntries;
+            if (entries == null) return false;
+            // The game trims a full log as it adds: an old entry pushed out for a line that isn't kept goes back in.
+            var oldest = entries.Count > 0 ? entries[entries.Count - 1] : null;
             Find.PlayLog.Add(entry);
-            Find.PlayLog.AllEntries.Remove(entry);
+            entries.Remove(entry);
+            if (oldest != null && !entries.Contains(oldest)) entries.Add(oldest);
             return true;
         }
 
