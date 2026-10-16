@@ -1366,12 +1366,17 @@ apply it. Each sets only the values listed here and leaves everything else as yo
   personal stories, a dilemma about every 5 days, moments, social events, dreams and encounters at 150%, Rimfolk's
   events at 150% (every 3 days on its own timer), world events about every 30 days, and a message for everything.
   Moods, pressures and stakes are left alone.
-- **Demanding**: harder moods, more frictions and pressures, rarer rewards. Demanding stakes, downsides at 125% and
-  rewards at 75%, wishes and ambitions with 75% of the time, demanding everyday pressures, frictions on and moments
+- **Demanding**: harder moods, more frictions and pressures, rarer rewards. Demanding stakes, downsides at 115% and
+  rewards at 80%, wishes and ambitions with 75% of the time, demanding everyday pressures, frictions on and moments
   between colonists (frictions among them) at 125%, jealousy, leaving, rising standards (also over the game's
   comforts), good moods adding up slowly and fading sooner in good times, feelings and strain with the day off, and
   strain building at 125%.
 - **Default**: everything the three presets above can change, back to how Rimfolk ships. Nothing else.
+
+Each preset aims at its own balance (DESIGN.md, "Balance targets"; `Tools/Balance` measures it, `docs/balance-report.md`
+has the numbers). What Rimfolk adds to a colonist's mood, in a well-run, an ordinary and a neglected colony: about +3,
+0 and -10 by default (and with Story-rich, which asks a little more often); about +5, +4 and 0 with Light touch; about
+0, -4 and -18 with Demanding. By default it asks about one question every two days, fewer with Light touch.
 
 The pages:
 - **Council & wishes**: a quick setup (*Everything on*, *Council only*, *Advisor only*, also with a list of what
