@@ -67,7 +67,7 @@ namespace ColonyCouncil
                 Messages.Message("No personal story fits " + p.LabelShort + " right now.", MessageTypeDefOf.RejectInput, false);
                 return;
             }
-            Find.WindowStack.Add(new FloatMenu(options.Select(o => new FloatMenuOption(o.def.label + (o.c.other != null ? " (" + o.c.other.LabelShort + ")" : ""),
+            Find.WindowStack.Add(new FloatMenu(options.Select(o => new FloatMenuOption(o.def.label + (o.c.other != null ? " (" + o.c.other.LabelShort + (o.c.third != null ? ", " + o.c.third.LabelShort : "") + ")" : ""),
                 () => tracker.Begin(o.def, o.c))).ToList()));
         }
 
@@ -94,7 +94,7 @@ namespace ColonyCouncil
             if (tracker == null) return;
             var options = tracker.Candidates(ArcTracker.HomeColonists(), Find.TickManager.TicksGame, true);
             string text = options.Count == 0 ? "No personal story fits anyone right now."
-                : string.Join("\n", options.Select(o => o.c.pawn.LabelShort + ": " + o.def.label + (o.c.other != null ? " with " + o.c.other.LabelShort : "") + " (" + o.weight.ToString("0.##") + ")"));
+                : string.Join("\n", options.Select(o => o.c.pawn.LabelShort + ": " + o.def.label + (o.c.other != null ? " with " + o.c.other.LabelShort : "") + (o.c.third != null ? " and " + o.c.third.LabelShort : "") + " (" + o.weight.ToString("0.##") + ")"));
             Log.Message("[Rimfolk] Personal stories that could begin:\n" + text);
             Messages.Message(options.Count + " personal stories could begin (listed in the log).", MessageTypeDefOf.NeutralEvent, false);
         }

@@ -1,0 +1,677 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Life goals through a life: a child's wishes that grow up with them, the young (13 to 19, in human years), an old
+    colonist's last wishes, faith (Ideology) and the heart. Workers in AspirationWorkers3.cs; the fields as in
+    Council_Aspirations.xml, plus:
+      growsInto / grownAge: once they are no longer a child (or reach grownAge), the goal becomes this one, if they could
+        want it; otherwise they have outgrown it (journal pools Council_Journal_GoalGrewUp and Council_Journal_GoalOutgrown).
+      lastWish: an old colonist's last wish. If they die before it, those who loved them feel it (Council_Asp_LastWishUnmet)
+        and someone is likelier to take it up, whatever their own age.
+      lostThought: a memory when they give the goal up (it became impossible, or four years went by).
+      feeling (LetGo), tie (TieStrength): what the worker looks at.
+  -->
+
+  <!-- ===================== A child's wishes, that grow up with them ===================== -->
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Council_Asp4_ChildLetters</defName>
+    <label>letters and numbers</label>
+    <workerClass>ColonyCouncil.AspirationWorker_Skill</workerClass>
+    <skill>Intellectual</skill>
+    <level>5</level>
+    <gain>2</gain>
+    <weight>0.9</weight>
+    <goal>learn letters and numbers properly</goal>
+    <who><child>true</child></who>
+    <growsInto>Council_Asp2_Scholar</growsInto>
+    <chosen>
+      <plain>
+        <li>I want to read every book in the colony. There are only four, but some of them are long.</li>
+        <li>I can write my name now. Next I'm going to write everybody's name, and then some long words.</li>
+        <li>[sparked] I saw the grown-ups reading and it looked like magic, so I'm going to learn the magic.</li>
+      </plain>
+      <cheerful><li>I can count to a hundred! Next I'm going to count to a thousand, and then read.</li></cheerful>
+      <gloomy><li>The letters keep moving about when I look at them. I'm going to make them stop.</li></gloomy>
+      <blunt><li>Going to learn to read. Properly.</li></blunt>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>I read a whole page today without asking anyone. It was about soil. I didn't care, I read it.</li>
+        <li>I can do sums faster than some grown-ups now. I'm not saying which ones.</li>
+      </plain>
+      <cheerful><li>I can read! Everything! Signs and labels and the backs of crates!</li></cheerful>
+      <cold><li>I can read and reckon now. It is extremely useful and I don't understand why everyone doesn't.</li></cold>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Council_Asp4_ChildGarden</defName>
+    <label>something growing of my own</label>
+    <workerClass>ColonyCouncil.AspirationWorker_Skill</workerClass>
+    <skill>Plants</skill>
+    <level>5</level>
+    <gain>2</gain>
+    <weight>0.9</weight>
+    <goal>grow something of their very own</goal>
+    <who><child>true</child></who>
+    <growsInto>Council_Asp3_Grower</growsInto>
+    <chosen>
+      <plain>
+        <li>I want to grow the biggest vegetable anyone has ever seen. I'm going to learn how, and then I'll do it.</li>
+        <li>I planted a seed in a cup and it came up. Now I want a whole row.</li>
+        <li>[spring] Everything's coming up green. I want some of it to be mine.</li>
+      </plain>
+      <cheerful><li>I'm going to have my own garden! With a fence! For keeping out the chickens!</li></cheerful>
+      <gloomy><li>My seed didn't come up. I'm going to find out why, and then it'll come up.</li></gloomy>
+      <warm><li>I want to grow something and give it to everyone at supper.</li></warm>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>The grown-ups let me have my own row, and everything in it came up. I check on it every morning.</li>
+        <li>I grew a vegetable and it was in the soup and everyone ate it. My vegetable.</li>
+      </plain>
+      <cheerful><li>My plants are growing taller than me! Well, nearly.</li></cheerful>
+      <warm><li>I grew something, and it fed people. That's the best thing I've ever done.</li></warm>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Council_Asp4_ChildBuilder</defName>
+    <label>a den of my own</label>
+    <workerClass>ColonyCouncil.AspirationWorker_Skill</workerClass>
+    <skill>Construction</skill>
+    <level>4</level>
+    <gain>2</gain>
+    <weight>0.8</weight>
+    <goal>learn to build a proper den</goal>
+    <who><child>true</child></who>
+    <growsInto>Council_Asp_Builder</growsInto>
+    <chosen>
+      <plain>
+        <li>I want to build a den. A real one, with a roof that doesn't fall on you. I've been watching how the builders do it.</li>
+        <li>My den fell down again. I'm going to learn how walls work, and then it won't.</li>
+      </plain>
+      <cheerful><li>I'm going to build a castle! A small one. For me and maybe one friend.</li></cheerful>
+      <blunt><li>Going to build things. Big things. Later. Small things first.</li></blunt>
+      <gloomy><li>Everything I build falls down. Not for long, though.</li></gloomy>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>My den has a roof that stays up and a door that shuts. I built it all myself. Mostly myself.</li>
+        <li>One of the builders said my wall was straight. I'm going to remember that forever.</li>
+      </plain>
+      <cheerful><li>My den is finished and it's the best den ever built!</li></cheerful>
+      <cold><li>My structure has remained standing for nine days. I consider the problem solved.</li></cold>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Council_Asp4_ChildPet</defName>
+    <label>an animal of my very own</label>
+    <workerClass>ColonyCouncil.AspirationWorker_OwnAnimal</workerClass>
+    <weight>1</weight>
+    <goal>have an animal of their very own</goal>
+    <who><child>true</child></who>
+    <growsInto>Council_Asp_Tamer</growsInto>
+    <chosen>
+      <plain>
+        <li>I want an animal that's mine. Not the colony's. Mine. That comes when I call.</li>
+        <li>I've been saving scraps from supper. When an animal picks me, I'll be ready.</li>
+        <li>[sparked] Someone's dog follows them everywhere. I want one that follows me everywhere.</li>
+      </plain>
+      <cheerful><li>I'm going to have a pet and name it something brilliant! I've got a list of names already.</li></cheerful>
+      <warm><li>I want to look after an animal. Feed it and keep it warm and be its friend.</li></warm>
+      <gloomy><li>The animals all like somebody else better. I'm going to change that.</li></gloomy>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>It comes when I call. It sleeps by my bed. It's mine, and I'm its.</li>
+        <li>I have my very own animal now, and I'm going to take care of it better than anyone has ever taken care of anything.</li>
+      </plain>
+      <cheerful><li>I have a best friend with four legs! Five if you count the tail. I count the tail.</li></cheerful>
+      <warm><li>My animal and I look after each other. It's the most important job I have.</li></warm>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Council_Asp4_ChildProud</defName>
+    <label>making them proud</label>
+    <workerClass>ColonyCouncil.AspirationWorker_Respect</workerClass>
+    <amount>30</amount>
+    <weight>0.9</weight>
+    <goal>make the grown-ups proud</goal>
+    <who><child>true</child></who>
+    <growsInto>Council_Asp_Name</growsInto>
+    <chosen>
+      <plain>
+        <li>I want the grown-ups to look at me the way they look at the best of them. Like I'm someone.</li>
+        <li>I'm going to be so good and so useful that everybody says my name at supper.</li>
+      </plain>
+      <cheerful><li>I'm going to make everyone proud of me! I've already started. I helped with the washing.</li></cheerful>
+      <gloomy><li>Nobody notices me. I'm going to make them notice.</li></gloomy>
+      <warm><li>I want the grown-ups to be glad I'm here.</li></warm>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>One of the grown-ups called me "a credit to the colony" today. I asked what it meant. It means good.</li>
+        <li>They talk about me at supper now. The nice kind of talking.</li>
+      </plain>
+      <cheerful><li>Everybody's proud of me! I'm proud of me too!</li></cheerful>
+      <warm><li>The grown-ups are glad I'm here. They told me so.</li></warm>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+  <!-- ===================== The young: 13 to 19 ===================== -->
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Council_Asp4_TeenTrusted</defName>
+    <label>a grown-up's work</label>
+    <workerClass>ColonyCouncil.AspirationWorker_Skill</workerClass>
+    <level>8</level>
+    <gain>3</gain>
+    <weight>1.2</weight>
+    <goal>be trusted with a grown-up's work in {SKILL}</goal>
+    <who><minAge>13</minAge><maxAge>19.9</maxAge></who>
+    <growsInto>Council_Asp_Mastery</growsInto>
+    <grownAge>20</grownAge>
+    <lostThought>Council_Asp_GaveUpGoal</lostThought>
+    <chosen>
+      <plain>
+        <li>I'm tired of being given the easy jobs. I'm going to get good enough at {SKILL} that they have to give me the hard ones.</li>
+        <li>I want to be the one they ask, not the one they ask to fetch the one they ask.</li>
+        <li>[sparked] They wouldn't let me near the real work today. Fine. I'll be so good they can't stop me.</li>
+      </plain>
+      <blunt><li>{SKILL}. I'm going to be good at it. Then they'll stop treating me like a child.</li></blunt>
+      <cheerful><li>One day I'll be the colony's best at {SKILL}! Starting with being decent at it.</li></cheerful>
+      <gloomy><li>Nobody trusts the young with anything that matters. I'll have to earn it twice over.</li></gloomy>
+      <cold><li>Competence is the only argument the grown-ups accept. I will make it in {SKILL}.</li></cold>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>They gave me a real job in {SKILL} today, the kind they give the grown-ups. Nobody checked my work afterwards.</li>
+        <li>Someone came to me with a {SKILL} problem today. To me. On purpose.</li>
+      </plain>
+      <blunt><li>They trust me with the real work now. About time.</li></blunt>
+      <cheerful><li>I'm trusted! With grown-up work! I'm trying very hard not to show off.</li></cheerful>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Council_Asp4_TeenSeriously</defName>
+    <label>taken seriously</label>
+    <workerClass>ColonyCouncil.AspirationWorker_Respect</workerClass>
+    <amount>25</amount>
+    <weight>1</weight>
+    <goal>be taken seriously by the grown-ups</goal>
+    <who><minAge>13</minAge><maxAge>19.9</maxAge></who>
+    <growsInto>Council_Asp3_Heard</growsInto>
+    <grownAge>20</grownAge>
+    <sparks><li>thought:Council_DecidedWithoutMe</li><li>thought:Council_Soc_LeftOut</li></sparks>
+    <lostThought>Council_Asp_GaveUpGoal</lostThought>
+    <chosen>
+      <plain>
+        <li>When I talk at supper, the grown-ups smile and carry on with what they were saying. I want them to stop and listen.</li>
+        <li>I've got ideas. Good ones. I want somebody to hear them without patting me on the head.</li>
+        <li>[sparked] They decided it all without asking me. Next time they'll ask. I'll make sure of it.</li>
+      </plain>
+      <blunt><li>I want the grown-ups to listen to me. Properly.</li></blunt>
+      <cheerful><li>I'm going to be so sensible that the grown-ups will ask ME for advice!</li></cheerful>
+      <gloomy><li>Nobody takes the young seriously. I'm going to be the first.</li></gloomy>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>One of the grown-ups asked what I thought, and then waited for the answer. Then did what I said.</li>
+        <li>They argue with me now, instead of humouring me. I count that as winning.</li>
+      </plain>
+      <cheerful><li>The grown-ups listen to me now! Even the grumpy ones!</li></cheerful>
+      <cold><li>My opinion is now weighed rather than tolerated. Satisfactory.</li></cold>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Council_Asp4_TeenRoad</defName>
+    <label>past the hills</label>
+    <workerClass>ColonyCouncil.AspirationWorker_Journey</workerClass>
+    <amount>5</amount>
+    <weight>0.8</weight>
+    <goal>see what lies past the hills</goal>
+    <who><minAge>13</minAge><maxAge>19.9</maxAge></who>
+    <growsInto>Council_Asp3_Freedom</growsInto>
+    <grownAge>20</grownAge>
+    <sparks><li>thought:Council_Granted_Travel</li></sparks>
+    <chosen>
+      <plain>
+        <li>I've never been further than the edge of the fields. I want to go with the next caravan and see something new.</li>
+        <li>There's a whole world past those hills and I've only ever heard about it. I want to see it.</li>
+      </plain>
+      <cheerful><li>I'm going to go on a journey! A real one! With a pack and everything!</li></cheerful>
+      <gloomy><li>I'll be old before they let me leave the walls. I'll go anyway, one day.</li></gloomy>
+      <blunt><li>Want to see the world. Or at least the next valley.</li></blunt>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>I've been past the hills. There's another valley, and then more hills. I want to see what's past those now.</li>
+        <li>Five days on the road. My feet are ruined and I've never been happier.</li>
+      </plain>
+      <cheerful><li>I've seen the world! A bit of it! The best bit, probably!</li></cheerful>
+      <gloomy><li>I went past the hills, and home looks smaller now. I don't know if that's good.</li></gloomy>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Council_Asp4_TeenLove</defName>
+    <label>first love</label>
+    <workerClass>ColonyCouncil.AspirationWorker_Lover</workerClass>
+    <weight>0.8</weight>
+    <goal>fall in love for the first time</goal>
+    <who><minAge>16</minAge><maxAge>19.9</maxAge><notTrait><li>Psychopath</li></notTrait></who>
+    <growsInto>Council_Asp_Marry</growsInto>
+    <grownAge>20</grownAge>
+    <sparks><li>thought:AttendedWedding</li></sparks>
+    <chosen>
+      <plain>
+        <li>Everyone in the songs falls in love. I'd like to know what it's like, before I'm old.</li>
+        <li>[sparked] At the wedding everyone was so happy. I want somebody to look at me the way they looked at each other.</li>
+      </plain>
+      <cheerful><li>I want to fall in love! Not with anyone in particular. Yet.</li></cheerful>
+      <gloomy><li>Nobody will ever look at me like that. I want them to anyway.</li></gloomy>
+      <warm><li>I'd like to love somebody, and be good to them, and have them be good to me.</li></warm>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>So this is what the songs are about. They didn't get it right. They didn't get it nearly right enough.</li>
+        <li>I'm in love, and they love me back, and I keep forgetting what I came into rooms for.</li>
+      </plain>
+      <cheerful><li>I'm in love! Everyone can tell! I don't care!</li></cheerful>
+      <gloomy><li>I'm in love. I'm terrified. I wouldn't change it.</li></gloomy>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+  <!-- ===================== Last wishes of the old ===================== -->
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Council_Asp4_ElderSeeGrown</defName>
+    <label>to see them grown</label>
+    <workerClass>ColonyCouncil.AspirationWorker_SeeGrown</workerClass>
+    <weight>1.4</weight>
+    <minAge>60</minAge>
+    <lastWish>true</lastWish>
+    <goal>see a child they love grown up</goal>
+    <sparks><li>birth</li><li>downed</li></sparks>
+    <chosen>
+      <plain>
+        <li>[!inherited] I'd like to see {NAME} grown. That's all. Just to see the grown-up {NAME} becomes.</li>
+        <li>[sparked,!inherited] I came close to the end this week. Now there's one thing I want before it: to see {NAME} grow up.</li>
+        <li>[inherited] {NAME} wanted to see the little one grown. I'll do the watching for both of us.</li>
+      </plain>
+      <warm><li>I won't see everything the young ones do. I'd like to see the start, at least.</li></warm>
+      <gloomy><li>I'm racing the years now. I'd like to win this one.</li></gloomy>
+      <cold><li>I would like to observe how the child turns out. It is a reasonable thing to want.</li></cold>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>The child I worried over is grown, and grown well. I can rest easy about that, at least.</li>
+        <li>I saw them come of age. They looked at me across the table like an equal. Worth every year.</li>
+      </plain>
+      <warm><li>They're grown, and kind, and capable. I had a little to do with that. I'll take it.</li></warm>
+      <gloomy><li>I lived to see it. I didn't think I would.</li></gloomy>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Council_Asp4_ElderLastPiece</defName>
+    <label>one last fine piece</label>
+    <workerClass>ColonyCouncil.AspirationWorker_Counter</workerClass>
+    <counter>madeFine</counter>
+    <amount>1</amount>
+    <weight>1.2</weight>
+    <minAge>60</minAge>
+    <lastWish>true</lastWish>
+    <goal>make one last thing worth keeping</goal>
+    <who><tags>skill:Crafting|skill:Artistic|skill:Construction</tags></who>
+    <sparks><li>downed</li><li>loss</li></sparks>
+    <chosen>
+      <plain>
+        <li>My hands aren't what they were. I'd like them to make one more fine thing before they stop, something the colony keeps.</li>
+        <li>[sparked] Lost someone this week, and all they left behind was a few tools. I want to leave something better.</li>
+        <li>[inherited] {NAME} never made that last fine piece. I'll make it, and put {NAME}'s mark on it next to mine.</li>
+      </plain>
+      <warm><li>Something to leave behind that people will use and think, someone made this with care.</li></warm>
+      <blunt><li>One more good piece. Then I'll rest.</li></blunt>
+      <gloomy><li>My hands shake. I'm going to make one fine thing anyway, while they still do as they're told.</li></gloomy>
+      <cold><li>I wish to leave one object of real quality. It is a practical form of memory.</li></cold>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>Finished it. The best thing I've made in years, maybe ever. It'll be here when I'm not.</li>
+        <li>I made something fine today. I sat and looked at it for a long while, and then I let them take it away to use.</li>
+      </plain>
+      <warm><li>Somebody will use it every day long after I'm gone, and that's exactly what I wanted.</li></warm>
+      <gloomy><li>My last fine piece. I knew it while I made it. It's good. That's enough.</li></gloomy>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Council_Asp4_ElderPeace</defName>
+    <label>no grudge to the grave</label>
+    <workerClass>ColonyCouncil.AspirationWorker_Counter</workerClass>
+    <counter>peace</counter>
+    <amount>1</amount>
+    <weight>1.4</weight>
+    <minAge>60</minAge>
+    <lastWish>true</lastWish>
+    <goal>make peace with an old rival before the end</goal>
+    <who><notTrait><li>Psychopath</li></notTrait></who>
+    <sparks><li>downed</li><li>loss</li></sparks>
+    <chosen>
+      <plain>
+        <li>I don't want to take a grudge into the ground with me. There's someone I need to make peace with, while there's time.</li>
+        <li>[sparked] Nearly died this week. Lying there, I wasn't thinking about my rival at all. That told me something.</li>
+        <li>[inherited] {NAME} wanted to die with no grudges. {NAME} didn't manage it. I'll settle mine instead, for both of us.</li>
+      </plain>
+      <warm><li>Life's too short for old quarrels, and mine is getting shorter. I want to put this one down.</li></warm>
+      <blunt><li>One old quarrel to settle. Then I'm square with everyone.</li></blunt>
+      <gloomy><li>I'm running out of time to say sorry. I'd better say it.</li></gloomy>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>We made our peace, the two of us. Neither of us could remember what the fight was about. It doesn't matter now.</li>
+        <li>No grudges left. I'm lighter than I've been in years.</li>
+      </plain>
+      <warm><li>We shook hands and meant it. I can go whenever I go, now, with nothing owing.</li></warm>
+      <blunt><li>Made peace. Done. Good.</li></blunt>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Council_Asp4_ElderFamily</defName>
+    <label>family set right</label>
+    <workerClass>ColonyCouncil.AspirationWorker_KinPeace</workerClass>
+    <weight>1.4</weight>
+    <minAge>55</minAge>
+    <lastWish>true</lastWish>
+    <goal>set things right with family</goal>
+    <who><notTrait><li>Psychopath</li></notTrait></who>
+    <sparks><li>downed</li><li>loss</li><li>birth</li></sparks>
+    <chosen>
+      <plain>
+        <li>There are things between me and my family that should have been mended years ago. I'd like to mend them while I can.</li>
+        <li>[sparked] A brush with the end makes you count who you'd want at your bedside. I want my family there, and glad to be.</li>
+        <li>[inherited] {NAME} wanted the family at peace. I'll see to it.</li>
+      </plain>
+      <warm><li>Family is family. I want us to be able to sit at one table, all of us, before I'm gone.</li></warm>
+      <blunt><li>Going to fix things with my family. Overdue.</li></blunt>
+      <gloomy><li>Too many years, too many hard words. I'll try anyway.</li></gloomy>
+      <cold><li>Unresolved family disputes are a poor legacy. I intend to resolve them.</li></cold>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>All of us at one table, and every one of them glad to be there. I didn't think I'd see it.</li>
+        <li>My family and I are at peace. Whatever comes, they'll remember me kindly. That was all I wanted.</li>
+      </plain>
+      <warm><li>We're a family again, properly. I cried at supper. They pretended not to notice.</li></warm>
+      <gloomy><li>We mended it. I wish I hadn't waited so long.</li></gloomy>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+  <!-- ===================== Faith (Ideology) ===================== -->
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Council_Asp4_FaithAgain</defName>
+    <label>faith found again</label>
+    <workerClass>ColonyCouncil.AspirationWorker_Certainty</workerClass>
+    <amount>0.9</amount>
+    <weight>1.2</weight>
+    <goal>find their faith again</goal>
+    <sparks><li>loss</li><li>omen</li></sparks>
+    <lostThought>Council_Asp_GaveUpGoal</lostThought>
+    <chosen>
+      <plain>
+        <li>I used to be sure of what I believed. Somewhere along the way I stopped being sure. I want it back.</li>
+        <li>[sparked] When I lost them, I lost my faith too. I'd like to find it again. It's the only thing that ever helped.</li>
+        <li>[spark:omen] My dream came true, and I don't know what to make of it except that I should start listening again.</li>
+      </plain>
+      <warm><li>I miss believing. I'm going to try to find my way back to it, slowly.</li></warm>
+      <gloomy><li>I don't know if there's anything to find. I'm going to look anyway.</li></gloomy>
+      <cold><li>My certainty has eroded. I would prefer it restored. I will examine the matter.</li></cold>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>I prayed tonight and meant every word. It's back, and it's stronger for having been lost.</li>
+        <li>My faith came back the way spring does: slowly, then all at once.</li>
+      </plain>
+      <warm><li>I believe again. It's like coming home after a long journey.</li></warm>
+      <gloomy><li>My doubts haven't gone. My faith is just bigger than them now.</li></gloomy>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Council_Asp4_FaithShared</defName>
+    <label>sharing the faith</label>
+    <workerClass>ColonyCouncil.AspirationWorker_FaithGrows</workerClass>
+    <weight>1</weight>
+    <goal>bring someone else to their faith</goal>
+    <sparks><li>omen</li><li>birth</li></sparks>
+    <chosen>
+      <plain>
+        <li>What I believe has carried me through everything. I'd like someone else here to have that too.</li>
+        <li>[sparked] My dream came true. It felt like a sign. I want to share what I believe with someone who needs it.</li>
+      </plain>
+      <warm><li>I'm not going to push anyone. I'm just going to live my faith openly and answer when they ask.</li></warm>
+      <blunt><li>Going to bring someone round to the faith. Somebody here needs it.</li></blunt>
+      <cold><li>Our faith is sound. It would serve the colony better if more of us held it.</li></cold>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>Someone came to the faith today, and I was part of the reason. I'll walk beside them as long as they need.</li>
+        <li>There's one more of us now. I didn't convince them. I just kept the door open.</li>
+      </plain>
+      <warm><li>Welcome, I told them. I meant it more than I've meant anything.</li></warm>
+      <cold><li>Another colonist shares the faith. The community is stronger for it.</li></cold>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+  <!-- ===================== The heart ===================== -->
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Council_Asp4_HeartLove</defName>
+    <label>someone to love</label>
+    <workerClass>ColonyCouncil.AspirationWorker_Lover</workerClass>
+    <weight>0.9</weight>
+    <minAge>20</minAge>
+    <goal>find someone to love</goal>
+    <who><notTrait><li>Psychopath</li></notTrait></who>
+    <sparks><li>thought:AttendedWedding</li><li>loss</li></sparks>
+    <lostThought>Council_Asp_GaveUpGoal</lostThought>
+    <chosen>
+      <plain>
+        <li>I'm tired of going to bed alone and waking up alone. I'd like someone to love. Is that so much?</li>
+        <li>[sparked] Watching them at the wedding, I realized I want that. Not the wedding. The way they looked at each other.</li>
+        <li>[spark:loss] We lose people here so fast. I don't want to go without having loved someone.</li>
+      </plain>
+      <warm><li>I have a lot of love to give and nobody to give it to. I'd like to change that.</li></warm>
+      <blunt><li>Want someone. Not anyone. Someone.</li></blunt>
+      <gloomy><li>Nobody here would have me. I want someone anyway.</li></gloomy>
+      <cold><li>Companionship would improve my life. I have decided to pursue it.</li></cold>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>I found someone. I didn't know I could feel like this, this late. I'm not complaining.</li>
+        <li>There's someone who saves me a seat now. That's all I wanted, and it's more than I expected.</li>
+      </plain>
+      <warm><li>I love someone, and they love me, and the whole colony looks brighter for it.</li></warm>
+      <gloomy><li>I'm loved. I keep waiting for the catch. There isn't one, so far.</li></gloomy>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Council_Asp4_HeartSafe</defName>
+    <label>safe again</label>
+    <workerClass>ColonyCouncil.AspirationWorker_HeartStreak</workerClass>
+    <heartNeed>Safety</heartNeed>
+    <level>70</level>
+    <amount>10</amount>
+    <weight>1</weight>
+    <goal>feel safe again</goal>
+    <sparks><li>battle</li><li>downed</li><li>nemesis</li></sparks>
+    <lostThought>Council_Asp_GaveUpGoal</lostThought>
+    <chosen>
+      <plain>
+        <li>I jump at every noise now. I'd like to sleep a whole night without listening for the walls being breached.</li>
+        <li>[sparked] Since the fighting, I don't feel safe anywhere. I want that back more than anything.</li>
+        <li>[spark:nemesis] As long as that one is out there, I'll never feel safe. But I want to.</li>
+      </plain>
+      <warm><li>I want to feel safe here, and I want everyone else to feel safe too.</li></warm>
+      <blunt><li>Want to stop looking over my shoulder.</li></blunt>
+      <gloomy><li>Nowhere is safe. I'd like to believe otherwise for a few days running.</li></gloomy>
+      <cold><li>My sense of security is impaired. I would like ten consecutive days without alarm.</li></cold>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>Ten days and nights without the old fear. I slept through a thunderstorm last night and woke up smiling.</li>
+        <li>I feel safe here again. The walls hold. The people hold. I hold.</li>
+      </plain>
+      <warm><li>I'm safe, and I know it, deep down where the fear used to live.</li></warm>
+      <gloomy><li>Safe, for now. I'll take it. I'll take every day of it.</li></gloomy>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Council_Asp4_HeartPurpose</defName>
+    <label>something worth doing</label>
+    <workerClass>ColonyCouncil.AspirationWorker_HeartStreak</workerClass>
+    <heartNeed>Purpose</heartNeed>
+    <level>70</level>
+    <amount>10</amount>
+    <weight>1</weight>
+    <goal>find something worth doing</goal>
+    <sparks><li>thought:Council_LostOffice</li><li>thought:Council_LostElection</li><li>loss</li></sparks>
+    <lostThought>Council_Asp_GaveUpGoal</lostThought>
+    <chosen>
+      <plain>
+        <li>I work all day and I don't know what any of it is for. I want to find something that matters, and do it.</li>
+        <li>[sparked] They took the seat from me, and I realized it was the only thing that made me feel useful. I need something else.</li>
+      </plain>
+      <warm><li>I want my days to mean something to someone. That's all.</li></warm>
+      <blunt><li>Need a reason to get up. A real one.</li></blunt>
+      <gloomy><li>Every day is the same as the last. I want one that isn't.</li></gloomy>
+      <cold><li>My work lacks direction. I intend to find a purpose and pursue it.</li></cold>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>I get up in the mornings now because I want to. I know what I'm for here.</li>
+        <li>Ten good days of work that mattered. I'd forgotten what that felt like.</li>
+      </plain>
+      <warm><li>I matter here, and the work matters. That's enough for anyone.</li></warm>
+      <cold><li>My activity now has purpose. The improvement is measurable.</li></cold>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Council_Asp4_HeartGrief</defName>
+    <label>letting the grief go</label>
+    <workerClass>ColonyCouncil.AspirationWorker_LetGo</workerClass>
+    <feeling>Grief</feeling>
+    <amount>12</amount>
+    <weight>1.3</weight>
+    <goal>let the grief go, without forgetting</goal>
+    <who><notTrait><li>Psychopath</li></notTrait></who>
+    <sparks><li>loss</li></sparks>
+    <chosen>
+      <plain>
+        <li>The grief sits on my chest every morning. I don't want to forget them. I just want to be able to breathe.</li>
+        <li>[sparked] Another loss. I can't carry them all like this. I need to learn to put the weight down.</li>
+      </plain>
+      <warm><li>They wouldn't want me like this. I'm going to try to live the way they'd want.</li></warm>
+      <blunt><li>Need to stop drowning in it. Somehow.</li></blunt>
+      <gloomy><li>I don't know how to stop grieving. I'm going to have to learn.</li></gloomy>
+      <cold><li>The grief is impairing my function. I will work through it, methodically.</li></cold>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>I thought about them today and smiled before I cried. That's new. That's what I wanted.</li>
+        <li>The grief has gone quiet. They haven't. I talk to them sometimes, and it doesn't hurt like it did.</li>
+      </plain>
+      <warm><li>I carry them with me now, gently, instead of being crushed under them.</li></warm>
+      <gloomy><li>It's eased. It'll never go. I can live with it now, which is different.</li></gloomy>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Council_Asp4_HeartShame</defName>
+    <label>forgiving myself</label>
+    <workerClass>ColonyCouncil.AspirationWorker_LetGo</workerClass>
+    <feeling>Shame</feeling>
+    <amount>10</amount>
+    <weight>1.1</weight>
+    <goal>forgive themselves</goal>
+    <who><notTrait><li>Psychopath</li></notTrait></who>
+    <chosen>
+      <plain>
+        <li>I can't stop going over what I did. Everyone else has moved on. I'd like to, too.</li>
+        <li>I keep apologizing to people who've already forgiven me. Maybe the one I need to hear it from is me.</li>
+      </plain>
+      <warm><li>I'd forgive anyone else for it. I'm going to try to give myself the same.</li></warm>
+      <blunt><li>Done beating myself up. Or trying to be.</li></blunt>
+      <gloomy><li>I don't deserve to be forgiven. I'd like to anyway.</li></gloomy>
+      <cold><li>My self-reproach has outlasted its usefulness. I will set it aside.</li></cold>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>I thought about it today and it didn't burn. It's just a thing I did, once, and learned from.</li>
+        <li>I've forgiven myself. It took longer than anyone else's forgiveness, and it was the one that mattered.</li>
+      </plain>
+      <warm><li>I'm kinder to myself now. I think it makes me kinder to everyone.</li></warm>
+      <gloomy><li>I've let it go. I still remember. That's probably right.</li></gloomy>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Council_Asp4_HeartFriend</defName>
+    <label>a friend for life</label>
+    <workerClass>ColonyCouncil.AspirationWorker_TieStrength</workerClass>
+    <tie>Friends</tie>
+    <amount>90</amount>
+    <weight>1</weight>
+    <goal>make a friend for life</goal>
+    <who><notTrait><li>Psychopath</li></notTrait></who>
+    <sparks><li>loss</li><li>thought:Council_Soc_LeftOut</li><li>fulfilled</li></sparks>
+    <lostThought>Council_Asp_GaveUpGoal</lostThought>
+    <chosen>
+      <plain>
+        <li>I have friends. I want one friend I'd trust with my life, and who'd trust me with theirs.</li>
+        <li>[sparked] I lost my closest friend. I want to have that again, someone who knows me all the way down.</li>
+      </plain>
+      <warm><li>I want a friend I can tell anything to. And be that friend back.</li></warm>
+      <blunt><li>Want one real friend. The kind you keep.</li></blunt>
+      <gloomy><li>Everyone here is friendly. Nobody here is my friend. I want that to change.</li></gloomy>
+      <cold><li>I would value a single relationship of complete trust. I intend to cultivate one.</li></cold>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>I have a friend for life now. We don't even need to talk most of the time. That's how I know.</li>
+        <li>There's someone here I'd walk into fire for, and who'd walk in after me. That's all I wanted.</li>
+      </plain>
+      <warm><li>My friend and I are like family now. Better, some days.</li></warm>
+      <cold><li>I have a friend I trust completely. It is worth more than I estimated.</li></cold>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+  <!-- ===================== The memories of goals lost ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Asp_GaveUpGoal</defName>
+    <durationDays>8</durationDays>
+    <stages><li><label>gave up on a dream</label><description>I set my heart on something and had to let it go. It's quieter in there now, and not in a good way.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Asp_LastWishUnmet</defName>
+    <durationDays>8</durationDays>
+    <stackLimit>2</stackLimit>
+    <stages><li><label>a last wish left undone</label><description>They had one last thing they wanted, and they died before it happened. We could have helped. Someone should still see it done.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+</Defs>

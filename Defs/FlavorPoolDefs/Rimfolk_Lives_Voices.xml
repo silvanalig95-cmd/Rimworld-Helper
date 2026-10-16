@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Words for people through their lives: the journal when a goal grows up with them or is outgrown, and when someone
+    old dies before their last wish; what colonists say aloud while one of the new personal stories is under way
+    ([story:Name,stage:N], see Rimfolk_Immersion_Say.xml); and how a few quirks change what someone says at the council
+    table and in their journal ([quirk:Proverbs], [quirk:KeepsRecords]...: a colonist's quirks are part of who they are).
+  -->
+
+  <!-- ===================== Life goals that change with age ===================== -->
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_GoalGrewUp</defName>
+    <lines>
+      <plain>
+        <li>When I was small I wanted to {OLDGOAL}. I still do, only bigger now: I want to {GOAL}.</li>
+        <li>I used to tell everyone I'd {OLDGOAL}. I'm grown now, and the wish grew with me. I want to {GOAL}.</li>
+        <li>[child] I'm not little any more, so I want a big person's thing now. I'm going to {GOAL}.</li>
+      </plain>
+      <warm><li>The child I was wanted to {OLDGOAL}. I'd like to make that child proud: I'm going to {GOAL}.</li></warm>
+      <blunt><li>Wanted to {OLDGOAL} as a kid. Now I want to {GOAL}. Same thing, grown up.</li></blunt>
+      <cheerful><li>Remember when I wanted to {OLDGOAL}? I still do! Except now it's to {GOAL}, which is the same but more.</li></cheerful>
+      <gloomy><li>I wanted to {OLDGOAL} when I was young. Now I want to {GOAL}. The world has a way of making wishes harder.</li></gloomy>
+      <cold><li>My childhood aim, to {OLDGOAL}, has matured into a more serious one: to {GOAL}.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_GoalOutgrown</defName>
+    <lines>
+      <plain>
+        <li>I wanted to {OLDGOAL} so badly when I was younger. I found the old wish today, like a toy in a box, and smiled at it.</li>
+        <li>I've outgrown wanting to {OLDGOAL}. I don't know what I want instead yet. I'll know it when I see it.</li>
+      </plain>
+      <warm><li>I used to want to {OLDGOAL}. I'm keeping the memory of wanting it. It was a good wish for a young person.</li></warm>
+      <blunt><li>Used to want to {OLDGOAL}. Not any more. Moving on.</li></blunt>
+      <cheerful><li>I've outgrown wanting to {OLDGOAL}! Now I get to pick a brand new dream.</li></cheerful>
+      <gloomy><li>I wanted to {OLDGOAL} once. Growing up seems to be mostly letting go of things.</li></gloomy>
+      <cold><li>My youthful aim, to {OLDGOAL}, no longer applies. I will choose another.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_LastWishUnmet</defName>
+    <lines>
+      <plain>
+        <li>{OTHER_nameDef}'s last wish was to {GOAL}. {OTHER_nameDef} told me so, more than once. It didn't happen in time.</li>
+        <li>{OTHER_nameDef} only wanted one more thing: to {GOAL}. I keep thinking we could have helped.</li>
+        <li>Someone should still {GOAL}, for {OTHER_nameDef}. I think it might have to be me.</li>
+      </plain>
+      <warm><li>{OTHER_nameDef} wanted to {GOAL} before the end. I'm sorry we didn't get there together. I'll try to get there for {OTHER_objective}.</li></warm>
+      <blunt><li>{OTHER_nameDef} wanted to {GOAL}. Ran out of time. It's not right.</li></blunt>
+      <cheerful><li>{OTHER_nameDef} had one last wish, to {GOAL}. I'm going to see it done. It'll be a good thing to do.</li></cheerful>
+      <gloomy><li>{OTHER_nameDef} died still wishing to {GOAL}. The old always run out of time. So will we.</li></gloomy>
+      <cold><li>{OTHER_nameDef}'s last wish, to {GOAL}, went unmet. It remains possible for someone else.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== What they say while a story is under way ===================== -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lives_SayStory</defName>
+    <pool>Council_Pool_SayStory</pool>
+    <lines>
+      <plain>
+        <li>[story:Suitors,stage:0] {OTHER_nameDef} laughed at my joke, did you see?</li>
+        <li>[story:Suitors,stage:0] I've run out of reasons to walk past {OTHER_nameDef}'s workbench.</li>
+        <li>[story:Suitors,stage:1] {THIRD_nameDef} again, carrying {OTHER_nameDef}'s basket.</li>
+        <li>[story:Suitors,stage:2] Whatever {OTHER_nameDef} decides, I'll shake {THIRD_nameDef}'s hand.</li>
+        <li>[story:TwoStudents] Two students and only one of me.</li>
+        <li>[story:TwoStudents,stage:2] Those two are going to have to sort it out themselves.</li>
+        <li>[story:TwoStudents,stage:3] {OTHER_nameDef} and {THIRD_nameDef} are helping each other now.</li>
+        <li>[story:Siblings] If those two could just get through one meal.</li>
+        <li>[story:Siblings,stage:2] Three days and not a cross word between my children.</li>
+        <li>[story:Between] I'm not taking sides, I've told them both.</li>
+        <li>[story:Between,stage:2] No more messages, they can talk to each other.</li>
+        <li>[story:RoadCalls] The camp's fire is lit again tonight.</li>
+        <li>[story:RoadCalls,stage:1] There's a bag under my bed I keep looking at.</li>
+        <li>[story:WeightOfOffice] Being {NAME} is harder than it looks.</li>
+        <li>[story:WeightOfOffice,stage:2] I made the call, and I'd make it again.</li>
+        <li>[story:FarNews] Any news from the road about {FACTION}?</li>
+        <li>[story:FarNews,stage:1] I wonder if {LOST} got my letter.</li>
+        <li>[story:BadNights] I don't like the dark much.</li>
+        <li>[story:BadNights,stage:1] I've got a light by my bed now.</li>
+        <li>[story:NotAChild] I'm not a child, whatever anyone says.</li>
+        <li>[story:NotAChild,stage:1] Look at this, and tell me it's not good work.</li>
+        <li>[story:NewParent] Has anyone seen my sleep, because I had some once?</li>
+        <li>[story:NewParent,stage:2] {NAME} slept four whole hours last night.</li>
+        <li>[story:OneMoreSpring] My knees know the weather better than I do.</li>
+        <li>[story:OneMoreSpring,stage:2] One more good piece of work, while my hands still listen.</li>
+        <li>[story:OneMoreSpring,stage:3] Pull up a seat, the sun's warm here.</li>
+        <li>[story:LastTwo] {OTHER_nameDef} is in my chair again.</li>
+        <li>[story:LastTwo,stage:2] {OTHER_nameDef} remembers the first winter all wrong, but remembers it.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== How a quirk changes what someone says ===================== -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lives_Quirks_MeetingSupport</defName>
+    <pool>Council_Pool_MeetingSupport</pool>
+    <lines>
+      <plain>
+        <li>[quirk:Proverbs] Many hands make light work. Yes to "{AMBITION}".</li>
+        <li>[quirk:Proverbs] A tree is best planted twenty years ago, and second best today.</li>
+        <li>[quirk:Volunteers] Put me down for "{AMBITION}". First shift, whatever it is.</li>
+        <li>[quirk:KeepsRecords] I'll keep the tally for "{AMBITION}". Someone has to.</li>
+        <li>[quirk:Worrier] Yes, as long as someone checks it twice. I'll check it three times.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lives_Quirks_MeetingDoubt</defName>
+    <pool>Council_Pool_MeetingDoubt</pool>
+    <lines>
+      <plain>
+        <li>[quirk:Proverbs] Don't build the barn before you've bought the cow.</li>
+        <li>[quirk:Proverbs] Measure twice, cut once. We haven't measured once.</li>
+        <li>[quirk:KeepsRecords] I've written down the last three plans like this. Shall I read you how they ended?</li>
+        <li>[quirk:Worrier] What if it rains? What if we're raided halfway through? What if it falls down?</li>
+        <li>[quirk:WrongLaugh] Sorry. I'm not laughing at the idea. I'm laughing at how much work it is.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lives_Quirks_Objection</defName>
+    <pool>Council_Pool_Objection</pool>
+    <lines>
+      <plain>
+        <li>[quirk:Proverbs] A hungry belly has no ears. Food first, "{WISH}" after.</li>
+        <li>[quirk:KeepsRecords] By my notes this is the third thing {OTHER_nameDef} has asked for this season.</li>
+        <li>[quirk:Worrier] What happens if we give {OTHER_nameDef} "{WISH}" and then the winter's a hard one?</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lives_Quirks_JournalOptimism</defName>
+    <pool>Council_Journal_Day_Optimism</pool>
+    <lines>
+      <plain>
+        <li>[quirk:Proverbs] A good day. Make hay while the sun shines, my mother said, and today the sun shone.</li>
+        <li>[quirk:KeepsRecords] Good day. Noted in the book: weather fair, eggs eleven, nobody shouted.</li>
+        <li>[quirk:Storyteller] The children made me tell the one about the bear twice tonight. I added a second bear.</li>
+        <li>[quirk:SoftSpot] My stray ate out of my hand today. It's taken all season.</li>
+        <li>[quirk:Volunteers] I volunteered for the worst job of the day and finished it before lunch. Felt grand.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lives_Quirks_JournalBadNight</defName>
+    <pool>Council_Journal_Day_BadNight</pool>
+    <lines>
+      <plain>
+        <li>[quirk:Proverbs] Bad night. Things look better in the morning, my mother always said. We'll see.</li>
+        <li>[quirk:Worrier] Lay awake sure something terrible would happen. Nothing did. I'm exhausted anyway.</li>
+        <li>[quirk:NightLight] My light went out in the night and I woke up in the dark and didn't sleep again.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lives_Quirks_JournalTeased</defName>
+    <pool>Council_Journal_Day_Teased</pool>
+    <lines>
+      <plain>
+        <li>[quirk:WrongLaugh] {OTHER_nameDef} teased me and I laughed, which only made {OTHER_objective} do it more. I wasn't laughing inside.</li>
+        <li>[quirk:Proverbs] {OTHER_nameDef} made fun of my sayings again. He who laughs last, I said. That didn't help.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+</Defs>

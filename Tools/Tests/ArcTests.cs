@@ -4,9 +4,9 @@ using ColonyCouncil;
 
 /// <summary>
 /// Personal stories: the pace (ArcMath: how many a year at each setting, the budget, the gap, how many at once, how a
-/// held condition counts up) and every story def (three or four stages, lines in several voices, a gate on every stage
-/// but the last, talks, thoughts, quirks and names that exist, a plain fizzle line to fall back on, and lines that
-/// follow STYLE.md's mechanics).
+/// held condition counts up, who is favoured and who is at odds in a story of three) and every story def (three to five
+/// stages, lines in several voices, a gate on every stage but the last, talks, thoughts, quirks and names that exist, a
+/// plain fizzle line to fall back on, a third person only in a story of three, and lines that follow STYLE.md's mechanics).
 /// </summary>
 public static class ArcTests
 {
@@ -14,6 +14,7 @@ public static class ArcTests
     {
         int cases = Pace(check);
         cases += Holding(check);
+        cases += OfThree(check);
         cases += Defs(root, check);
         return cases;
     }
@@ -117,6 +118,25 @@ public static class ArcTests
         return 10;
     }
 
+    // ---------------- Stories of three ----------------
+
+    private static int OfThree(Action<bool, string> check)
+    {
+        check(ArcMath.Favoured(60, 20, 15) == 1 && ArcMath.Favoured(20, 60, 15) == -1, "the clearly favoured one is chosen, either way round");
+        check(ArcMath.Favoured(40, 35, 15) == 0 && ArcMath.Favoured(35, 40, 15) == 0, "too close to call is neither");
+        check(ArcMath.Favoured(30, 30, 0) == 0, "a tie is neither, even with no margin");
+        check(ArcMath.Favoured(1500, 900, 400) == 1 && ArcMath.Favoured(900, 1500, 400) == -1, "a student well ahead is ahead");
+        check(ArcMath.AtOdds(40, 40, true, false) && ArcMath.AtOdds(40, 40, false, true), "rivals, or a sharp word lately, are at odds");
+        check(ArcMath.AtOdds(3, 50, false, false) && ArcMath.AtOdds(50, -20, false, false), "either thinking little of the other is at odds");
+        check(!ArcMath.AtOdds(30, 25, false, false), "two who like each other are not at odds");
+        check(ArcMath.TriangleWeight(15, 60, -30) == 0f && ArcMath.TriangleWeight(60, 60, 20) == 0f, "not close to both, or the two not at odds: no story");
+        check(ArcMath.TriangleWeight(70, 70, -40) > ArcMath.TriangleWeight(30, 30, -40), "closer to both, likelier");
+        check(ArcMath.TriangleWeight(50, 50, -60) > ArcMath.TriangleWeight(50, 50, 0), "the further apart the two, likelier");
+        check(ArcMath.TriangleWeight(100, 100, -100) <= 3f && ArcMath.TriangleWeight(20, 20, 5) >= 0.2f, "within a third and three times as likely");
+        check(ArcMath.Both(0.4f, 0.9f) == 0.4f && ArcMath.Both(1.5f, 2f) == 1f && ArcMath.Both(-1f, 0.5f) == 0f, "both: the one further behind, 0 to 1");
+        return 12;
+    }
+
     // ---------------- The defs ----------------
 
     private static readonly string[] Tones = { "plain", "warm", "blunt", "cheerful", "gloomy", "cold" };
@@ -127,7 +147,10 @@ public static class ArcTests
         "timeout", "otherdead", "otherleft", "gone", "fight", "cameout", "settled", "anger", "goalgone",
         "partner", "kin", "friend", "animal", "ex", "betrayed", "comrades", "young", "teen", "elder", "oldhand", "goodsecret",
         "nemesis", "quirk", "fear", "nightmare", "lostdream", "strange", "taken", "doubtful", "bitter",
-        "child", "night", "snow", "rain", "storm", "winter", "summer"
+        "child", "night", "snow", "rain", "storm", "winter", "summer",
+        // Stories of people's lives (ArcWorkers_Lives.cs): how a story of three went, and why one ended early.
+        "won", "lost", "neither", "elsewhere", "otherahead", "thirdahead", "even", "mentor", "grown",
+        "thirddead", "thirdleft", "campfight", "officegone", "kindead", "babygone", "old"
     };
 
     private static readonly Regex LowerStart = new Regex(@"(^(\[[^\]]*\]\s*)?|[.!?]\s+)\{[A-Z]+_(pronoun|possessive|objective|definite|indefinite)\}");
@@ -149,7 +172,11 @@ public static class ArcTests
         {
             string name = arc.Element("defName")?.Value ?? "?";
             var stages = arc.Element("stages")?.Elements("li").ToList() ?? new List<XElement>();
-            check(stages.Count >= 3 && stages.Count <= 4, $"{name}: 3 or 4 stages, has {stages.Count}");
+            check(stages.Count >= 3 && stages.Count <= 5, $"{name}: 3 to 5 stages, has {stages.Count}");
+            bool withThird = arc.Element("withThird")?.Value == "true";
+            bool mentionsThird = arc.Descendants("li").Any(l => !l.HasElements && l.Value.Contains("{THIRD"));
+            check(withThird || !mentionsThird, $"{name}: {{THIRD}} only in a story of three (withThird)");
+            if (withThird) check(mentionsThird && arc.Descendants("thirdJournal").Any(), $"{name}: a story of three names its third, and gives them a voice");
             check(!string.IsNullOrEmpty(arc.Element("summary")?.Value), $"{name}: a summary");
             for (int i = 0; i < stages.Count; i++)
             {

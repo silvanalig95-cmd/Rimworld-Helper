@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Quirks of people's lives. Each reaches into another system through its tag (quirk:Proverbs, quirk:Storyteller...:
+    Interplay adds a colonist's quirks to who they are): how they answer in a dilemma's outcome
+    (Rimfolk_Dilemmas_Lives_Variants.xml), what they say at council and in the journal (Rimfolk_Lives_Voices.xml),
+    social events and moments that ask for them (Rimfolk_SocialEvents_Lives.xml, Rimfolk_Moments_Lives.xml), and dreams
+    (Rimfolk_Dreams_Lives.xml). Two come from personal stories (a light by the bed after bad nights, stories for the
+    little ones after an old colonist made their peace) and from the answers that give them.
+  -->
+
+  <ColonyCouncil.QuirkDef>
+    <defName>Council_Quirk_Proverbs</defName>
+    <label>speaks in proverbs</label>
+    <byNature>true</byNature>
+    <who><minAge>45</minAge><notTrait><li>Psychopath</li></notTrait></who>
+    <chance>0.003</chance>
+    <days>400</days>
+    <gained>
+      <plain>
+        <li>Somebody complained about the rain and I said "rain today, bread tomorrow" before I could stop myself. I sound like my grandmother.</li>
+        <li>I've started answering questions with sayings. The young ones roll their eyes. Half of them have started using the sayings.</li>
+      </plain>
+      <warm><li>I find the old sayings say things more kindly than I can. So I let them.</li></warm>
+      <blunt><li>A slow ox ploughs deep. That's all I'm saying. Work it out.</li></blunt>
+      <cheerful><li>I've got a proverb for everything now! Some of them I made up this week.</li></cheerful>
+      <gloomy><li>Every old saying I remember is about something going wrong. I say them anyway.</li></gloomy>
+      <cold><li>The proverbs are compressed experience. I use them because they are efficient.</li></cold>
+    </gained>
+    <faded>
+      <plain><li>Someone asked me for one of my sayings today and I couldn't think of a single one. Maybe I've said them all.</li></plain>
+      <warm><li>I've let the sayings rest. The young ones say them now, back to me, and get them slightly wrong.</li></warm>
+      <blunt><li>Out of proverbs. Plain talk from now on.</li></blunt>
+      <cheerful><li>I've retired my proverbs! A word to the wise is enough, after all.</li></cheerful>
+      <gloomy><li>The old sayings don't come any more. I think they belonged to someone else.</li></gloomy>
+      <cold><li>I no longer use the proverbs. People understood them less than I assumed.</li></cold>
+    </faded>
+  </ColonyCouncil.QuirkDef>
+
+  <ColonyCouncil.QuirkDef>
+    <defName>Council_Quirk_Storyteller</defName>
+    <label>tells the little ones stories</label>
+    <afterThoughts><li>Council_Arc_AtPeace</li><li>Council_DlmLv_EldersTale</li></afterThoughts>
+    <chance>0</chance>
+    <days>360</days>
+    <gained>
+      <plain>
+        <li>The children found out I know stories. Now there's a small crowd at my feet every evening and I'm running out of the true ones.</li>
+        <li>Told the little ones about the first winter here. They wanted it again. I told it again, with more snow.</li>
+        <li>[child] I tell the littler ones stories at bedtime now. I do all the voices.</li>
+      </plain>
+      <warm><li>Every evening the children come for a story. It's the best hour of my day, and I think of it all morning.</li></warm>
+      <blunt><li>The children want stories. Fine. One. Then bed.</li></blunt>
+      <cheerful><li>I'm the colony's official storyteller! The pay is in sticky hands and questions.</li></cheerful>
+      <gloomy><li>I tell the children stories so somebody remembers them after I'm gone.</li></gloomy>
+      <cold><li>The children learn more from my stories than from instruction. I have adjusted my methods.</li></cold>
+    </gained>
+    <faded>
+      <plain><li>The children are too old for my stories now, or they think they are. They come back sometimes, when nobody's looking.</li></plain>
+      <warm><li>One of the children told my story to the younger ones tonight. I listened from the door and didn't correct a word.</li></warm>
+      <blunt><li>No more story time. They've heard them all.</li></blunt>
+      <cheerful><li>My stories have gone out into the world! Or at least to the other end of the colony.</li></cheerful>
+      <gloomy><li>Nobody asks for stories any more. The children grow up fast here.</li></gloomy>
+      <cold><li>Story time has ended. The children have absorbed the material.</li></cold>
+    </faded>
+  </ColonyCouncil.QuirkDef>
+
+  <ColonyCouncil.QuirkDef>
+    <defName>Council_Quirk_NightLight</defName>
+    <label>sleeps with a light burning</label>
+    <afterThoughts><li>Council_Dream_Nightmare</li></afterThoughts>
+    <withinDays>1</withinDays>
+    <who><child>true</child></who>
+    <children>true</children>
+    <chance>0.03</chance>
+    <days>240</days>
+    <condition>InOwnRoom</condition>
+    <thought>Council_Quirk_NightLight</thought>
+    <gained>
+      <plain>
+        <li>I keep a little light burning by my bed now. The dark doesn't get in when the light's on. Everybody knows that.</li>
+        <li>[child] I'm allowed a candle by my bed. It's the rule now. My rule.</li>
+        <li>I sleep with a light now. I'm not scared of the dark. I just like to see what's there.</li>
+      </plain>
+      <warm><li>Someone left me a little lamp after the bad dreams. I keep it lit every night and think of them.</li></warm>
+      <blunt><li>Light stays on. Don't touch it.</li></blunt>
+      <cheerful><li>My night light makes shadows on the wall. I've named them all.</li></cheerful>
+      <gloomy><li>If the light goes out, I wake up. I always wake up.</li></gloomy>
+      <cold><li>A light by the bed prevents the nightmares. I have tested this.</li></cold>
+    </gained>
+    <faded>
+      <plain><li>I forgot to light the candle last night, and I slept anyway. I didn't even notice until morning.</li></plain>
+      <warm><li>I gave my little lamp to someone younger who has bad dreams. It works for anyone.</li></warm>
+      <blunt><li>Don't need the light any more.</li></blunt>
+      <cheerful><li>I sleep in the dark now, like a grown-up! A very brave grown-up.</li></cheerful>
+      <gloomy><li>The light's gone out for good. I'll find out if I still need it.</li></gloomy>
+      <cold><li>The light has proved unnecessary. I have stopped using it.</li></cold>
+    </faded>
+  </ColonyCouncil.QuirkDef>
+
+  <ColonyCouncil.QuirkDef>
+    <defName>Council_Quirk_WrongLaugh</defName>
+    <label>laughs at the wrong moments</label>
+    <byNature>true</byNature>
+    <who><notTrait><li>Psychopath</li></notTrait></who>
+    <children>true</children>
+    <chance>0.002</chance>
+    <days>300</days>
+    <gained>
+      <plain>
+        <li>I laughed at a funeral today. Not because it was funny. It just came out. Everyone looked at me.</li>
+        <li>When I'm nervous, I laugh. When things are serious, I'm nervous. You see the problem.</li>
+        <li>[child] I giggled when I got told off. Now I'm in more trouble.</li>
+      </plain>
+      <warm><li>I laughed when someone told me bad news, and I've been apologizing all day. I didn't mean it. I never mean it.</li></warm>
+      <blunt><li>I laugh at the wrong times. Can't help it. Deal with it.</li></blunt>
+      <cheerful><li>Everything's a little bit funny, even the sad things. Especially the sad things. Is that bad?</li></cheerful>
+      <gloomy><li>I laugh when I want to cry. People think I don't care. I care too much, that's what it is.</li></gloomy>
+      <cold><li>My laughter appears at inappropriate moments. I have not found a way to suppress it.</li></cold>
+    </gained>
+    <faded>
+      <plain><li>Sat through a whole hard conversation today without laughing once. I think I've grown out of it.</li></plain>
+      <warm><li>Somebody told me something sad today and I just held their hand. No laughing. I was proud of that.</li></warm>
+      <blunt><li>Stopped laughing at the wrong things. Mostly.</li></blunt>
+      <cheerful><li>I only laugh at the funny things now! There are still plenty.</li></cheerful>
+      <gloomy><li>I don't laugh at the wrong things any more. I don't laugh much at all.</li></gloomy>
+      <cold><li>The inappropriate laughter has ceased.</li></cold>
+    </faded>
+  </ColonyCouncil.QuirkDef>
+
+  <ColonyCouncil.QuirkDef>
+    <defName>Council_Quirk_Worrier</defName>
+    <label>a worrier</label>
+    <afterThoughts>
+      <li>Council_Arc_KinDiedFarAway</li>
+      <li>KnowColonistDied</li>
+      <li>ColonistLost</li>
+    </afterThoughts>
+    <withinDays>3</withinDays>
+    <who><notTrait><li>Psychopath</li></notTrait></who>
+    <chance>0.03</chance>
+    <days>240</days>
+    <condition>LateNight</condition>
+    <thought>Council_Quirk_Worrier</thought>
+    <gained>
+      <plain>
+        <li>I've started counting everyone at supper, and if somebody's late I can't eat until they're through the door.</li>
+        <li>I lie awake making lists of everything that could go wrong tomorrow. It's a long list. I add to it every night.</li>
+      </plain>
+      <warm><li>I worry about everyone now. I can't seem to stop. I suppose it means I care what happens to them.</li></warm>
+      <blunt><li>I worry. A lot. Someone has to.</li></blunt>
+      <cheerful><li>I've become a worrier! I worry about whether I worry too much. It's very thorough.</li></cheerful>
+      <gloomy><li>Every night I lie awake and think of the next thing that'll go wrong. It always comes.</li></gloomy>
+      <cold><li>I have become preoccupied with contingencies. It keeps me awake.</li></cold>
+    </gained>
+    <faded>
+      <plain><li>Went to bed last night and fell straight asleep. Didn't count anybody. Everyone was fine.</li></plain>
+      <warm><li>I've stopped lying awake over everyone. They're all right. They can look after themselves.</li></warm>
+      <blunt><li>Stopped worrying. Sleeping better.</li></blunt>
+      <cheerful><li>I haven't worried about anything in a week! Well, nothing important.</li></cheerful>
+      <gloomy><li>The worrying has gone quiet. It'll be back.</li></gloomy>
+      <cold><li>The preoccupation has passed. My sleep has improved.</li></cold>
+    </faded>
+  </ColonyCouncil.QuirkDef>
+
+  <ColonyCouncil.QuirkDef>
+    <defName>Council_Quirk_KeepsRecords</defName>
+    <label>writes everything down</label>
+    <byNature>true</byNature>
+    <who><passion>Intellectual</passion></who>
+    <chance>0.003</chance>
+    <days>360</days>
+    <gained>
+      <plain>
+        <li>I've started writing everything down. Who said what at the council, what the weather did, how many eggs. Somebody should know.</li>
+        <li>Somebody said I misremembered something today. I showed them the page. They went quiet.</li>
+      </plain>
+      <warm><li>I write down the good things people do, so they don't get forgotten when the bad things crowd in.</li></warm>
+      <blunt><li>I keep notes. On everything. On you.</li></blunt>
+      <cheerful><li>I have a book of everything now! It's mostly eggs and weather, but there are some juicy bits.</li></cheerful>
+      <gloomy><li>I write everything down. One day someone will want to know what happened here, and nobody else will remember.</li></gloomy>
+      <cold><li>I have begun keeping a record. Memory is unreliable. Ink is less so.</li></cold>
+    </gained>
+    <faded>
+      <plain><li>Haven't written in the book for days. I don't think the colony will forget anything important without me.</li></plain>
+      <warm><li>I gave my notebook to the youngest who can read. It's theirs to fill now.</li></warm>
+      <blunt><li>Stopped keeping notes. Nobody read them.</li></blunt>
+      <cheerful><li>My great record is finished! Well, abandoned. Same thing.</li></cheerful>
+      <gloomy><li>Nobody ever asked to read my notes. I've stopped writing them.</li></gloomy>
+      <cold><li>The record keeping has lapsed. The effort was not proportionate to its use.</li></cold>
+    </faded>
+  </ColonyCouncil.QuirkDef>
+
+  <ColonyCouncil.QuirkDef>
+    <defName>Council_Quirk_Volunteers</defName>
+    <label>first to volunteer</label>
+    <byNature>true</byNature>
+    <who><tags>trait:Kind|trait:Industrious|trait:HardWorker</tags></who>
+    <chance>0.003</chance>
+    <days>300</days>
+    <gained>
+      <plain>
+        <li>Someone asked who'd take the night watch and my hand was up before I'd heard the end of the question.</li>
+        <li>I volunteered for the cesspit again. I don't know why I keep doing that. Somebody has to, I suppose.</li>
+      </plain>
+      <warm><li>If something needs doing, I'd rather it was me than someone who's already tired.</li></warm>
+      <blunt><li>Need someone? Me. Done.</li></blunt>
+      <cheerful><li>I volunteered for three jobs today! I've no idea when I'll do them all.</li></cheerful>
+      <gloomy><li>I always volunteer. Nobody thanks the one who always volunteers.</li></gloomy>
+      <cold><li>I volunteer because it ends discussions more quickly.</li></cold>
+    </gained>
+    <faded>
+      <plain><li>Someone asked for a volunteer today and I kept my hand down. Someone else went. The world didn't end.</li></plain>
+      <warm><li>I've learned to let other people volunteer sometimes. They need the chance too.</li></warm>
+      <blunt><li>Not volunteering for everything any more. Learned my lesson.</li></blunt>
+      <cheerful><li>I've retired from volunteering! I'm volunteering to rest instead.</li></cheerful>
+      <gloomy><li>I've stopped putting my hand up. Nobody noticed that either.</li></gloomy>
+      <cold><li>I no longer volunteer by reflex. My time is better allocated.</li></cold>
+    </faded>
+  </ColonyCouncil.QuirkDef>
+
+  <ColonyCouncil.QuirkDef>
+    <defName>Council_Quirk_SoftSpot</defName>
+    <label>a soft spot for strays</label>
+    <byNature>true</byNature>
+    <who><passion>Animals</passion><notTrait><li>Psychopath</li></notTrait></who>
+    <children>true</children>
+    <chance>0.003</chance>
+    <days>300</days>
+    <gained>
+      <plain>
+        <li>Fed a half-starved dog at the edge of the fields today. It followed me home. I knew it would. I fed it again.</li>
+        <li>Every hungry creature that wanders near the walls, I've got a scrap for it. The cook has started hiding the scraps.</li>
+        <li>[child] I found a bird with a hurt wing and I'm keeping it in a box until it gets better. Its name is Pip.</li>
+      </plain>
+      <warm><li>I can't walk past anything hungry or hurt. Animal or person. I don't see why anyone would want to.</li></warm>
+      <blunt><li>Strays get fed. My rule.</li></blunt>
+      <cheerful><li>Three cats, a lame goat and a crow have adopted me this week! I'm very popular with the unpopular.</li></cheerful>
+      <gloomy><li>Every stray I feed reminds me of something I couldn't save. I feed them anyway.</li></gloomy>
+      <cold><li>I have begun feeding stray animals. The practical benefit is unclear. I continue.</li></cold>
+    </gained>
+    <faded>
+      <plain><li>The strays have stopped coming round. Or I've stopped noticing them. Either way, there's less in my pockets.</li></plain>
+      <warm><li>The last of my strays found a proper home with the herd. I miss them following me.</li></warm>
+      <blunt><li>No more feeding strays. Cook won.</li></blunt>
+      <cheerful><li>All my strays are fat and happy now! My work here is done.</li></cheerful>
+      <gloomy><li>The strays don't come any more. I don't know what happened to them.</li></gloomy>
+      <cold><li>I no longer feed stray animals. The habit has lapsed.</li></cold>
+    </faded>
+  </ColonyCouncil.QuirkDef>
+
+  <!-- The two quirks with a mood at the right moment. -->
+
+  <ThoughtDef ParentName="Council_QuirkBase">
+    <defName>Council_Quirk_NightLight</defName>
+    <stages><li><label>a light by the bed</label><description>There's a little light burning by my bed. Nothing can get in while it's lit.</description><baseMoodEffect>1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_QuirkBase">
+    <defName>Council_Quirk_Worrier</defName>
+    <stages><li><label>lying awake worrying</label><description>It's late and I'm still going over everything that could go wrong tomorrow. Nobody else seems to.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+</Defs>

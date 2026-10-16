@@ -44,8 +44,8 @@ namespace ColonyCouncil
 
     /// <summary>
     /// Something with a quality was made (a crafted piece, a sculpture, a building): a personal story waiting for its
-    /// colonist to make something good hears of it. Without this hook (deeper game hooks off, or the method changed),
-    /// enough work in the story's skill counts instead.
+    /// colonist to make something good hears of it, and a fine piece counts for a life goal that wants one. Without this
+    /// hook (deeper game hooks off, or the method changed), enough work in the story's skill counts instead.
     /// </summary>
     [HarmonyPatch(typeof(QualityUtility), nameof(QualityUtility.SendCraftNotification))]
     public static class Patch_ArcMade
@@ -58,6 +58,8 @@ namespace ColonyCouncil
             try
             {
                 ArcTracker.Instance?.Notify_Made(worker, thing);
+                // Something fine made: counted for the life goals that want one (an elder's last good piece).
+                if (thing.TryGetQuality(out var q) && q >= QualityCategory.Excellent) CouncilGameComponent.Instance?.aspirations?.Notify(worker, "madeFine");
             }
             catch (Exception e)
             {

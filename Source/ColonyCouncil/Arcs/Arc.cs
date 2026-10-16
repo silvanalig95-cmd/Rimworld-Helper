@@ -24,6 +24,12 @@ namespace ColonyCouncil
         /// <summary>The other person in it (a rival, a teacher, a friend), or the animal; may be null.</summary>
         public Pawn other;
         public string otherName;
+        /// <summary>
+        /// A third person, in a story of three (a rival for the same affection, a second student, a brother or sister);
+        /// null in most stories.
+        /// </summary>
+        public Pawn third;
+        public string thirdName;
         public SkillDef skill;
         public int stage;
         public int startedTick;
@@ -52,8 +58,10 @@ namespace ColonyCouncil
         public bool sawBattle;
         public int baseLevel;
         public int baseOtherLevel;
+        public int baseThirdLevel;
         public float baseXp;
         public float baseOtherXp;
+        public float baseThirdXp;
         public float baseRecord;
         public int baseGranted;
         public float baseDamage;
@@ -75,6 +83,8 @@ namespace ColonyCouncil
         public string quirk;
         /// <summary>{DAYS}: how long they were away (the long way home).</summary>
         public int awayDays;
+        /// <summary>What the worker keeps to know its story by (a camp's or a world event's id).</summary>
+        public string key;
 
         /// <summary>Its def was missing when the game loaded (a mod removed): dropped without a word.</summary>
         [Unsaved] public bool lost;
@@ -84,6 +94,9 @@ namespace ColonyCouncil
         public ArcGate Gate => Stage?.gate;
 
         public bool OtherIsAnimal => other != null && other.RaceProps != null && other.RaceProps.Animal;
+
+        /// <summary>A story of three, with its third person still in it.</summary>
+        public bool HasThird => third != null;
 
         /// <summary>
         /// Whom the story's lines and effects are about: the other person, or, in a story that only leans on a friend,
@@ -101,6 +114,8 @@ namespace ColonyCouncil
             Scribe_References.Look(ref pawn, "pawn");
             Scribe_References.Look(ref other, "other");
             Scribe_Values.Look(ref otherName, "otherName");
+            Scribe_References.Look(ref third, "third");
+            Scribe_Values.Look(ref thirdName, "thirdName");
             CouncilScribe.LookDef(ref skill, "skill");
             Scribe_Values.Look(ref stage, "stage");
             Scribe_Values.Look(ref startedTick, "startedTick");
@@ -116,8 +131,10 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref sawBattle, "sawBattle");
             Scribe_Values.Look(ref baseLevel, "baseLevel");
             Scribe_Values.Look(ref baseOtherLevel, "baseOtherLevel");
+            Scribe_Values.Look(ref baseThirdLevel, "baseThirdLevel");
             Scribe_Values.Look(ref baseXp, "baseXp");
             Scribe_Values.Look(ref baseOtherXp, "baseOtherXp");
+            Scribe_Values.Look(ref baseThirdXp, "baseThirdXp");
             Scribe_Values.Look(ref baseRecord, "baseRecord");
             Scribe_Values.Look(ref baseGranted, "baseGranted");
             Scribe_Values.Look(ref baseDamage, "baseDamage");
@@ -130,6 +147,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref factionName, "factionName");
             Scribe_Values.Look(ref quirk, "quirk");
             Scribe_Values.Look(ref awayDays, "awayDays");
+            Scribe_Values.Look(ref key, "key");
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 if (heldOr == null) heldOr = new List<float>();
@@ -146,6 +164,8 @@ namespace ColonyCouncil
         public string pawnId;
         public string pawnName;
         public string otherName;
+        /// <summary>The third person, in a story of three.</summary>
+        public string thirdName;
         public int startTick;
         public int endTick;
         public ArcOutcome outcome;
@@ -159,6 +179,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref pawnId, "pawnId");
             Scribe_Values.Look(ref pawnName, "pawnName");
             Scribe_Values.Look(ref otherName, "otherName");
+            Scribe_Values.Look(ref thirdName, "thirdName");
             Scribe_Values.Look(ref startTick, "startTick");
             Scribe_Values.Look(ref endTick, "endTick");
             Scribe_Values.Look(ref outcome, "outcome");

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using RimWorld;
 using Verse;
 
@@ -76,6 +77,17 @@ namespace ColonyCouncil
     }
 
     /// <summary>
+    /// Whom a gate is about in a story of three: the colonist and the other person (the usual), the colonist and the
+    /// third person, or the other two between themselves (two students making up, two brothers at peace).
+    /// </summary>
+    public enum ArcPair
+    {
+        Other,
+        Third,
+        OtherAndThird
+    }
+
+    /// <summary>
     /// What a stage waits for before the story moves on. Every gate waits at least <see cref="minDays"/>; after
     /// <see cref="timeoutDays"/> the story either moves on anyway (<see cref="timeoutPasses"/>: time did it) or fizzles.
     /// Any gate in <see cref="or"/> opens it too.
@@ -92,6 +104,15 @@ namespace ColonyCouncil
         public float hours = 24f;
         /// <summary>Skill, Practice: the other person's skill instead (a student's).</summary>
         public bool onOther;
+        /// <summary>Skill, Practice: the third person's instead (the second student).</summary>
+        public bool onThird;
+        /// <summary>Skill, Practice: the other person's and the third's, each of them (two students, both coming on).</summary>
+        public bool onBoth;
+        /// <summary>
+        /// Talk, Hold (Opinion, NoFriction, Near, SameMap) and Tie: between whom, in a story of three (see
+        /// <see cref="ArcPair"/>). Talk with OtherAndThird is a conversation between the other two.
+        /// </summary>
+        public ArcPair pair = ArcPair.Other;
         /// <summary>Skill: levels above where they were when the stage began...</summary>
         public int gain = 1;
         /// <summary>...or at least this level, whichever is higher.</summary>
@@ -129,6 +150,8 @@ namespace ColonyCouncil
             if (kind == ArcGateKind.Hold && hold == ArcHold.None) yield return where + ": a Hold gate needs a hold condition";
             if (kind == ArcGateKind.Record && record.NullOrEmpty()) yield return where + ": a Record gate needs a record";
             if (minDays < 0f) yield return where + ": minDays below zero";
+            if ((onOther ? 1 : 0) + (onThird ? 1 : 0) + (onBoth ? 1 : 0) > 1) yield return where + ": onOther, onThird and onBoth are one or the other";
+            if (kind == ArcGateKind.Talk && anyone && pair != ArcPair.Other) yield return where + ": a talk with anyone is the colonist's own";
             if (or != null)
                 foreach (var g in or)
                 {
@@ -152,6 +175,8 @@ namespace ColonyCouncil
         [MustTranslate] public string waiting;
         public ToneLines journal = new ToneLines();
         public ToneLines otherJournal;
+        /// <summary>In a story of three: the third person's line, as {PAWN}, about the colonist as {OTHER} and the other as {THIRD}.</summary>
+        public ToneLines thirdJournal;
         /// <summary>Third person, for the chronicle; one is picked.</summary>
         [MustTranslate] public List<string> chronicle;
         public List<DilemmaEffect> effects;
@@ -163,8 +188,9 @@ namespace ColonyCouncil
     /// already knows about them (their losses, rivals, secrets, skills, feelings...) and move on as things happen in
     /// play. The worker finds who it could be about; the stages say what happens. Texts may use {PAWN_...} (the
     /// colonist), {OTHER_...} (the other person, or the animal), {PET_...} (the animal), {SKILL}, {LOST} (someone they
-    /// lost), {NAME} (an enemy's name), {FACTION}, {GOAL}, {QUIRK} and {DAYS}; lines may carry the usual tags plus the
-    /// story's own ([ex], [kin], [betrayed], [nemesis], [quirk], [child], [timeout], [otherdead]...).
+    /// lost), {NAME} (an enemy's name), {FACTION}, {GOAL}, {QUIRK}, {DAYS} and, in a story of three, {THIRD_...} (the one
+    /// of the three who is neither speaking nor spoken to); lines may carry the usual tags plus the story's own ([ex],
+    /// [kin], [betrayed], [nemesis], [quirk], [child], [timeout], [otherdead], [thirddead]...).
     /// </summary>
     public class ArcDef : Def
     {
@@ -184,6 +210,11 @@ namespace ColonyCouncil
         /// story that only leans on a friend to talk to, which goes on without them.
         /// </summary>
         public bool needsOther = true;
+        /// <summary>
+        /// A story of three: its worker finds a third person ({THIRD_...}), and if they die or leave it fizzles
+        /// ([thirddead], [thirdleft]).
+        /// </summary>
+        public bool withThird;
 
         // ---- What the workers look for (each worker reads the ones it needs) ----
 
@@ -226,6 +257,8 @@ namespace ColonyCouncil
             }
         }
 
+        private static bool AboutThird(ArcGate g) => g != null && (g.pair != ArcPair.Other || g.onThird || g.onBoth);
+
         public ArcStage Stage(int i) => stages != null && i >= 0 && i < stages.Count ? stages[i] : null;
 
         public int LastStage => (stages?.Count ?? 0) - 1;
@@ -234,7 +267,7 @@ namespace ColonyCouncil
         {
             foreach (var e in base.ConfigErrors()) yield return e;
             if (workerClass == null || !typeof(ArcWorker).IsAssignableFrom(workerClass)) yield return "workerClass must be an ArcWorker";
-            if (stages == null || stages.Count < 3 || stages.Count > 4) yield return "a personal story has 3 or 4 stages";
+            if (stages == null || stages.Count < 3 || stages.Count > 5) yield return "a personal story has 3 to 5 stages";
             if (summary.NullOrEmpty()) yield return "no summary";
             if (stages == null) yield break;
             for (int i = 0; i < stages.Count; i++)
@@ -252,7 +285,12 @@ namespace ColonyCouncil
                 if (!last && s.gate == null) yield return "stage " + i + " has no gate";
                 if (last && s.gate != null) yield return "the last stage ends the story and has no gate";
                 if (s.gate != null)
+                {
                     foreach (var e in s.gate.ConfigErrors("stage " + i)) yield return e;
+                    if (!withThird && (AboutThird(s.gate) || (s.gate.or?.Any(AboutThird) ?? false)))
+                        yield return "stage " + i + ": a gate about a third person in a story without one (withThird)";
+                }
+                if (!withThird && s.thirdJournal != null) yield return "stage " + i + ": the third person's lines in a story without one (withThird)";
             }
             if (fizzle == null || !fizzle.Any) yield return "no fizzle lines";
         }

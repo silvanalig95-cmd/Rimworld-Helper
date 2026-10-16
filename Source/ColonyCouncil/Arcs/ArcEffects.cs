@@ -12,6 +12,67 @@ namespace ColonyCouncil
     public class ArcEffectContext : DilemmaContext
     {
         public Arc arc;
+        /// <summary>The third person, in a story of three (see <see cref="ArcEffect_Cast"/>).</summary>
+        public Pawn third;
+    }
+
+    /// <summary>One of a story's people.</summary>
+    public enum ArcPerson
+    {
+        Colonist,
+        Other,
+        Third
+    }
+
+    /// <summary>
+    /// Effects with the story's people cast anew: A and B as any two of the colonist, the other person and the third (a
+    /// mood for the third, a bond between the other two, a mentorship for a second student), and only if the story went
+    /// this way (<see cref="ifTag"/>, the story's tag: "won", "lost|neither"). Any dilemma effect works inside it.
+    /// </summary>
+    public class ArcEffect_Cast : DilemmaEffect
+    {
+        public ArcPerson a = ArcPerson.Colonist;
+        public ArcPerson b = ArcPerson.Other;
+        public string ifTag;
+        public List<DilemmaEffect> effects;
+
+        public static Pawn Who(Arc arc, ArcPerson p) => arc == null ? null : p == ArcPerson.Third ? arc.third : p == ArcPerson.Other ? (arc.OtherIsAnimal ? null : arc.other) : arc.pawn;
+
+        /// <summary>Whether the story's tag is one of these ("won|lost"); none asked for, always.</summary>
+        public static bool TagIs(Arc arc, string tags) => tags.NullOrEmpty() || (!(arc?.tag).NullOrEmpty() && tags.Split('|').Any(t => t.Trim() == arc.tag));
+
+        public override void Apply(DilemmaContext ctx)
+        {
+            var arc = (ctx as ArcEffectContext)?.arc;
+            if (arc == null || effects.NullOrEmpty() || !TagIs(arc, ifTag)) return;
+            if (chance < 1f && !Rand.Chance(chance)) return;
+            var c = new ArcEffectContext
+            {
+                arc = arc,
+                map = ctx.map,
+                a = Who(arc, a),
+                b = Who(arc, b),
+                third = arc.third,
+                pet = ctx.pet,
+                skill = ctx.skill,
+                faction = ctx.faction,
+                why = ctx.why,
+                cause = ctx.cause
+            };
+            if (c.a == null || c.a.Dead) return;
+            if (c.b == c.a || (c.b != null && c.b.Dead)) c.b = null;
+            foreach (var e in effects)
+            {
+                try
+                {
+                    e?.Apply(c);
+                }
+                catch (System.Exception ex)
+                {
+                    CouncilLog.ErrorOnce("personal story effect " + arc.def?.defName + " " + e?.GetType().Name, ex);
+                }
+            }
+        }
     }
 
     /// <summary>A bond between A and B grows (or, with a negative amount, fades, and may end).</summary>

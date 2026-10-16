@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- ===================== People through their lives: life goals ===================== -->
+  <CC_Asp_Spark_grewup>a childhood wish to {0}, grown up</CC_Asp_Spark_grewup>
+  <CC_Asp_RespectProgress>the grown-ups think {0} of them, {1} wanted</CC_Asp_RespectProgress>
+  <CC_Asp_SeeGrownProgress>{0} is {1}</CC_Asp_SeeGrownProgress>
+  <CC_Asp_TieProgress>closest bond {0} of {1}</CC_Asp_TieProgress>
+  <CC_Asp_JourneyProgress>{0} of {1} days on the road</CC_Asp_JourneyProgress>
+  <CC_Asp_CertaintyProgress>certainty {0} of {1}</CC_Asp_CertaintyProgress>
+  <CC_Cause_GoalGivenUp>{0} gave up a life goal: {1}.</CC_Cause_GoalGivenUp>
+  <CC_Cause_LastWish>{0} died before their last wish: {1}.</CC_Cause_LastWish>
+
+</LanguageData>
