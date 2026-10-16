@@ -392,11 +392,24 @@ namespace ColonyCouncil
             return producible;
         }
 
-        private bool FindProducible(Map map) =>
-            DefDatabase<RecipeDef>.AllDefsListForReading.Any(r => r.ProducedThingDef != null && Defs.Contains(r.ProducedThingDef) && r.AvailableNow
+        private bool FindProducible(Map map) => FindProducible(map, Defs);
+
+        private static bool FindProducible(Map map, ICollection<ThingDef> defs) =>
+            DefDatabase<RecipeDef>.AllDefsListForReading.Any(r => r.ProducedThingDef != null && defs.Contains(r.ProducedThingDef) && r.AvailableNow
                                                                   && Avail.RecipeUsers(r).Any(u => map.listerBuildings.ColonistsHaveBuilding(u) || Avail.CanBuild(u, map)))
-            || DefDatabase<ThingDef>.AllDefsListForReading.Any(p => p.plant?.harvestedThingDef != null && Defs.Contains(p.plant.harvestedThingDef)
+            || DefDatabase<ThingDef>.AllDefsListForReading.Any(p => p.plant?.harvestedThingDef != null && defs.Contains(p.plant.harvestedThingDef)
                                                                     && p.plant.Sowable && (p.plant.sowResearchPrerequisites == null || p.plant.sowResearchPrerequisites.All(rp => rp.IsFinished)));
+
+        /// <summary>
+        /// Can the colony make or grow some of what this colonist may have: fungus, for someone whose faith wants only
+        /// fungus or insect, not just any crop (Wishes/Beliefs.cs).
+        /// </summary>
+        private bool ProducibleFor(Map map, Pawn pawn)
+        {
+            if (!Consumable) return Producible(map);
+            var mine = Defs.Where(d => Beliefs.FitForStock(pawn, d)).ToList();
+            return mine.Count == Defs.Count ? Producible(map) : mine.Count > 0 && FindProducible(map, mine);
+        }
 
         public override IEnumerable<WishCandidate> CandidatesFor(Pawn pawn)
         {
@@ -404,8 +417,8 @@ namespace ColonyCouncil
             if (map == null || Defs.Count == 0 || !P.Who(pawn) || !AnyFor(pawn)) yield break;
             int have = Count(map, pawn);
             if (have >= P.count) yield break;
-            if (!P.anySource && !Producible(map)) yield break;
-            if (P.anySource && have == 0 && !Producible(map)) yield break;
+            if (!P.anySource && !ProducibleFor(map, pawn)) yield break;
+            if (P.anySource && have == 0 && !ProducibleFor(map, pawn)) yield break;
             var c = Make(pawn, 1f);
             c.targetValue = P.count;
             c.subjectKey = "colony";
