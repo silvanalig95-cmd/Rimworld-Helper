@@ -106,6 +106,9 @@
       <li>water</li>
       <li>drought</li>
       <li>weather</li>
+      <li>fire</li>
+      <li>exile</li>
+      <li>rebuild</li>
     </situationKinds>
     <structures>
       <li><role>fire</role><defs><li>Campfire</li></defs></li>

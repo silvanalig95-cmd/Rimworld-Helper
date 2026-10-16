@@ -86,6 +86,7 @@ namespace ColonyCouncil
             else if (k.chopsPerDay > 0f) parts.Add(c.Text("CC_Camp_Facts_Wood"));
             else if (k.huntsPerDay > 0f) parts.Add(c.Text("CC_Camp_Facts_Game"));
             if (c.trader != null) parts.Add(c.Text("CC_Camp_Facts_Trader", c.trader));
+            if (!k.asks.NullOrEmpty()) parts.Add(c.Text("CC_CampAsk_Facts"));
             parts.Add(c.Text("CC_Camp_Facts_Talk"));
             return string.Join(" ", parts);
         }

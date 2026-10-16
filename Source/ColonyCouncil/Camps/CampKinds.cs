@@ -45,6 +45,41 @@ namespace ColonyCouncil
             }
         }
 
+        /// <summary>A people's faith holds one of these memes (MemeDef names). Never without Ideology.</summary>
+        public static bool HasMeme(Faction f, List<string> memes)
+        {
+            if (!ModsConfig.IdeologyActive || f == null || memes.NullOrEmpty()) return false;
+            try
+            {
+                var ideo = f.ideos?.PrimaryIdeo;
+                return ideo?.memes != null && ideo.memes.Any(m => m != null && memes.Contains(m.defName));
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("camp memes", e);
+                return false;
+            }
+        }
+
+        /// <summary>The memes of a people's faith, as tags (meme:NaturePrimacy, meme:Guilty...), and otherFaith when it isn't the colony's.</summary>
+        private static void AddFaithTags(HashSet<string> tags, Faction f)
+        {
+            if (!ModsConfig.IdeologyActive || f == null) return;
+            try
+            {
+                var ideo = f.ideos?.PrimaryIdeo;
+                if (ideo == null) return;
+                if (ideo.memes != null)
+                    foreach (var m in ideo.memes)
+                        if (m != null) tags.Add("meme:" + m.defName);
+                if (ideo != Faction.OfPlayer?.ideos?.PrimaryIdeo) tags.Add("otherFaith");
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("camp faith tags", e);
+            }
+        }
+
         /// <summary>The running world event that brings this kind of camp (the first listed kind that runs), or null.</summary>
         public static WorldSituation Situation(CampKindDef kind)
         {
@@ -72,6 +107,7 @@ namespace ColonyCouncil
             if (tags == null) return;
             if (!Ideo(f).NullOrEmpty()) tags.Add("ideology");
             if (SameFaith(f)) tags.Add("sameFaith");
+            AddFaithTags(tags, f);
             // What their people remember: their:grateful, their:grudge, their:friend ({FRIEND})...
             Interplay.AddMemoryTags(tags, f);
             KinMemory.AddTags(tags, f, null);
@@ -174,6 +210,52 @@ namespace ColonyCouncil
                     foreach (var c in colonists.Where(c => !(c.story?.traits?.HasTrait(TraitDefOf.Psychopath) ?? false)))
                         CouncilGameComponent.GiveThought(c, blessed);
                     Tell(Text("CC_Camp_HelpTitle"), HelpText("blessing", elder, colonists.RandomElement()), LetterDefOf.PositiveEvent, false);
+                    return true;
+                }
+                case "song":
+                {
+                    // Minstrels: an evening's music at their fire carries to everyone at home who's awake.
+                    int hour = GenLocalDate.HourOfDay(map);
+                    if (hour < 17 || hour > 22) return false;
+                    var player = here.OrderByDescending(p => p.skills?.GetSkill(SkillDefOf.Artistic)?.Level ?? 0).First();
+                    var heard = DefDatabase<ThoughtDef>.GetNamedSilentFail("Council_Camp_SongHeard");
+                    foreach (var c in colonists.Where(c => !c.Downed && !c.InMentalState && c.Awake()))
+                        CouncilGameComponent.GiveThought(c, heard);
+                    if (!(kind?.lines).NullOrEmpty()) Arrivals.Say(player, Pick(kind.lines, player));
+                    Tell(Text("CC_Camp_HelpTitle"), HelpText("song", player, colonists.RandomElement()), LetterDefOf.PositiveEvent, false);
+                    return true;
+                }
+                case "milk":
+                {
+                    // Drovers: milk, wool or a hide from the herd beyond the ridge, left where the colony can fetch it.
+                    var def = new[] { "Milk", "WoolSheep", "WoolAlpaca", "Leather_Plain" }.Select(n => DefDatabase<ThingDef>.GetNamedSilentFail(n))
+                        .Where(d => d != null).RandomElementWithFallback();
+                    if (def == null) return false;
+                    int n = Rand.RangeInclusive(12, 28);
+                    var t = ThingMaker.MakeThing(def);
+                    t.stackCount = Mathf.Min(n, def.stackLimit);
+                    if (!GenPlace.TryPlaceThing(t, share, map, ThingPlaceMode.Near)) return false;
+                    Tell(Text("CC_Camp_HelpTitle"), HelpText("milk", here.RandomElement(), colonists.RandomElement(), t.stackCount, def.label), LetterDefOf.PositiveEvent, false);
+                    return true;
+                }
+                case "goods":
+                {
+                    // Caravaners: something from their packs for the colony's hospitality.
+                    var things = Loot.Make(Rand.Range(60f, 140f) * LivingEvents.WealthFactor(map));
+                    if (things.NullOrEmpty()) return false;
+                    Loot.Deliver(things, map, share, false);
+                    Tell(Text("CC_Camp_HelpTitle"), HelpText("goods", leader != null && here.Contains(leader) ? leader : here.RandomElement(), colonists.RandomElement(), 0, Loot.Describe(things)),
+                        LetterDefOf.PositiveEvent, false);
+                    return true;
+                }
+                case "tales":
+                {
+                    // News from the road: whoever sits with them most hears it, and learns a little of how to listen.
+                    var listener = colonists.Where(c => !c.Downed && warmth.ContainsKey(c)).OrderByDescending(c => warmth[c]).FirstOrDefault() ?? colonists.RandomElement();
+                    listener.skills?.Learn(SkillDefOf.Social, 300f);
+                    listener.needs?.joy?.GainJoy(0.12f, JoyKindDefOf.Social);
+                    Warm(listener, 1);
+                    Tell(Text("CC_Camp_HelpTitle"), HelpText("tales", here.RandomElement(), listener), LetterDefOf.PositiveEvent, false);
                     return true;
                 }
                 case "survey":

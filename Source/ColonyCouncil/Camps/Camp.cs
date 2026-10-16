@@ -422,8 +422,10 @@ namespace ColonyCouncil
             Scribe_Collections.Look(ref owned, "owned", LookMode.Value);
             Scribe_Values.Look(ref ending, "ending");
             Scribe_Values.Look(ref told, "told");
+            Scribe_Collections.Look(ref asksMade, "asksMade", LookMode.Value);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
+                asksMade ??= new List<string>();
                 members ??= new List<Pawn>();
                 plans ??= new List<CampPlan>();
                 willing ??= new List<Pawn>();

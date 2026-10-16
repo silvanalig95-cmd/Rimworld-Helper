@@ -30,4 +30,21 @@
   <CC_Memory_Deed_apologised>came to say they were sorry for a life they took</CC_Memory_Deed_apologised>
   <CC_Memory_Deed_apologised_Name>came to say they were sorry for {NAME}</CC_Memory_Deed_apologised_Name>
 
+  <!-- ===================== Camps: what the colony can ask of them (Source/ColonyCouncil/Camps/CampAsks.cs) ===================== -->
+  <CC_CampAsk_Section>Ask of them</CC_CampAsk_Section>
+  <CC_CampAsk_Facts>They can be asked for things of their own from the World page.</CC_CampAsk_Facts>
+  <CC_CampAsk_NotNow>They aren't here to ask.</CC_CampAsk_NotNow>
+  <CC_CampAsk_Done>Already asked of them.</CC_CampAsk_Done>
+  <CC_CampAsk_Today>Already asked of them today.</CC_CampAsk_Today>
+  <CC_CampAsk_TooSoon>Give them a little longer to settle first.</CC_CampAsk_TooSoon>
+  <CC_CampAsk_Nobody>Nobody at the colony is free to go.</CC_CampAsk_Nobody>
+  <CC_CampAsk_NobodySick>Nobody at the colony is ill or ailing.</CC_CampAsk_NobodySick>
+  <CC_CampAsk_Evening>Only in the evening (from the afternoon on).</CC_CampAsk_Evening>
+  <CC_CampAsk_NoBeast>None of their beasts would do well in this weather.</CC_CampAsk_NoBeast>
+  <!-- Their good turns, when the kind has no line of its own -->
+  <CC_Camp_Help_song>The people camped {PLACE} played music at their fire this evening, and it carried all over the colony.</CC_Camp_Help_song>
+  <CC_Camp_Help_milk>{X_nameDef} from the camp {PLACE} left {COUNT} of {THING} at the colony's gate.</CC_Camp_Help_milk>
+  <CC_Camp_Help_goods>{X_nameDef} from the camp {PLACE} sent a few things up to the colony, for its hospitality: {THING}.</CC_Camp_Help_goods>
+  <CC_Camp_Help_tales>{A_nameDef} sat at the camp's fire {PLACE} and heard the news of the road from {X_nameDef}.</CC_Camp_Help_tales>
+
 </LanguageData>
