@@ -127,7 +127,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>15</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>the famous healer mended me</label><description>I'd stopped expecting anyone to fix it. Then the healer came, and now I keep testing it to make sure it's real.</description><baseMoodEffect>10</baseMoodEffect></li></stages>
+    <stages><li><label>the famous healer mended me</label><description>I'd stopped expecting anyone to fix it. Then the healer came, and now I keep testing it to make sure it's real.</description><baseMoodEffect>8</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>

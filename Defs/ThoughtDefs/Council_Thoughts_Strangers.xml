@@ -58,7 +58,7 @@
       <li>
         <label>I had my revenge</label>
         <description>I killed the one who hurt me, with my own hands. I feel lighter than I have in years.</description>
-        <baseMoodEffect>14</baseMoodEffect>
+        <baseMoodEffect>11</baseMoodEffect>
       </li>
     </stages>
   </ThoughtDef>

@@ -11,7 +11,7 @@
     <durationDays>10</durationDays>
     <stackLimit>2</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>reunited with family</label><description>After all these years, we've found each other again. I still can't quite believe it.</description><baseMoodEffect>10</baseMoodEffect><baseOpinionOffset>20</baseOpinionOffset></li></stages>
+    <stages><li><label>reunited with family</label><description>After all these years, we've found each other again. I still can't quite believe it.</description><baseMoodEffect>8</baseMoodEffect><baseOpinionOffset>20</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -86,7 +86,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>10</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>the colony stood by me</label><description>They came for me, for what I used to be, and the colony said no. I owe these people everything now.</description><baseMoodEffect>10</baseMoodEffect></li></stages>
+    <stages><li><label>the colony stood by me</label><description>They came for me, for what I used to be, and the colony said no. I owe these people everything now.</description><baseMoodEffect>8</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>

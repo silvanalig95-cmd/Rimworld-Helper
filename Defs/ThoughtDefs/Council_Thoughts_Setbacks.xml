@@ -50,7 +50,7 @@
       <li>
         <label>my idea turned down</label>
         <description>I stood up at the meeting and made my case. The council went with something else.</description>
-        <baseMoodEffect>-3</baseMoodEffect>
+        <baseMoodEffect>-2</baseMoodEffect>
       </li>
       <li>
         <label>the vote was for my idea</label>

@@ -267,7 +267,7 @@ Meals are noted through one of the deeper game hooks. The Almanac's *everyday pr
 play, each naming its cause in its tooltip and, in the Mood tab, what helps. Most are -1 to -4 for a day or a few; the
 few bigger ones (-5 to -6) are for real losses.
 - **The council**: a wish still waiting while wishes voiced after it come true (-1 to -2), an idea turned down at a
-  meeting (-3, -4 if the meeting backed it) or a vote lost (-1), a disliked decree dragging on past two days (-1 to
+  meeting (-2, -4 if the meeting backed it) or a vote lost (-1), a disliked decree dragging on past two days (-1 to
   -2), a promise broken to a close friend or someone they love (-3 to -5), a rival given a name or a council seat
   (-2), and answers that go against someone's nature: "not my choice" (-1 to -2), or "I said it would go wrong" (-2)
   when the answer's gamble failed. These follow the stakes' downsides.
@@ -1260,7 +1260,7 @@ illness.
 
 - **Going round** (the game's own disease events, so immunity, genes and the medical tab work as usual; never babies):
   a head cold, a stomach bug, a chest cold in cold weather, hay fever in spring and summer (back to the same people
-  each year), pinkeye, and dreamfever, an invented rim fever of vivid dreams. About one every 20 days, more where the
+  each year), pinkeye, and dreamfever, an invented rim fever of vivid dreams. About one every 30 days, more where the
   game's diseases are common, less on gentle storyteller settings.
 - **From the day's work**, once a colonist's day holds enough hours of the cause: a strained back after long hauling,
   mining or building, sore hands after long bench work, blisters after a day's walking or a caravan trip, chilblains

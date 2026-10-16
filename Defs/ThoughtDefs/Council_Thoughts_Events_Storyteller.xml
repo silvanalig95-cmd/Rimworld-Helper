@@ -35,7 +35,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>12</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>fitted with a new limb</label><description>The limb-maker fitted me with a new one. It isn't the one I lost, but it works, and I keep finding things I can do again.</description><baseMoodEffect>10</baseMoodEffect></li></stages>
+    <stages><li><label>fitted with a new limb</label><description>The limb-maker fitted me with a new one. It isn't the one I lost, but it works, and I keep finding things I can do again.</description><baseMoodEffect>8</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>

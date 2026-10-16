@@ -556,7 +556,7 @@
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Granted_Wedding</defName>
-    <durationDays>10</durationDays>
+    <durationDays>8</durationDays>
     <stages>
       <li>
         <label>we got married</label>
