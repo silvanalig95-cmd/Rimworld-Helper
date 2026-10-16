@@ -86,6 +86,7 @@ namespace ColonyCouncil
             if (cacheGame != Current.Game)
             {
                 cache.Clear();
+                failed.Clear();
                 cacheGame = Current.Game;
             }
             int now = Find.TickManager.TicksGame;
@@ -97,24 +98,50 @@ namespace ColonyCouncil
                 bool changed = Mathf.Abs(count - s.buildings) >= Mathf.Max(6, s.buildings / 30);
                 if (age >= 0 && age < GenDate.TicksPerDay && !changed) return s;
             }
+            // A map the survey couldn't read isn't tried again for an hour (the page asks every second).
+            if (s == null && !force && failed.TryGetValue(map, out int failedAt) && now - failedAt >= 0 && now - failedAt < GenDate.TicksPerHour) return null;
+            // Maps that have gone (a camp left, a site abandoned) are let go.
+            if (cache.Count > 0) Prune(cache);
             try
             {
                 s = Survey(map);
+                failed.Remove(map);
             }
             catch (Exception e)
             {
                 CouncilLog.ErrorOnce("defense survey", e);
-                if (s == null) return null;
+                if (s == null)
+                {
+                    failed[map] = now;
+                    return null;
+                }
                 s.tick = now;
             }
             cache[map] = s;
             return s;
         }
 
+        private static readonly Dictionary<Map, int> failed = new Dictionary<Map, int>();
+
+        private static void Prune(Dictionary<Map, DefenseSurvey> kept)
+        {
+            var maps = Find.Maps;
+            if (maps == null) return;
+            List<Map> gone = null;
+            foreach (var m in kept.Keys)
+                if (!maps.Contains(m)) (gone ??= new List<Map>()).Add(m);
+            if (gone != null)
+                foreach (var m in gone) kept.Remove(m);
+        }
+
         /// <summary>The survey kept for a map, without working one out.</summary>
         public static DefenseSurvey Kept(Map map) => map != null && cacheGame == Current.Game && cache.TryGetValue(map, out var s) ? s : null;
 
-        public static void Forget() => cache.Clear();
+        public static void Forget()
+        {
+            cache.Clear();
+            failed.Clear();
+        }
 
         private static DefenseSurvey Survey(Map map)
         {
