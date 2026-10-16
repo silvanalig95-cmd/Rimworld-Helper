@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Dreams of getting better and of healing (Source/ColonyCouncil/Health/): the convalescent's dreams, while they're
+    still weak (the impatient kind dream of work they can't do yet), and the healer's, after what really happened at a
+    bedside: a patient pulled through or lost, a hard case taken on, a baby delivered. Fields as in Council_Dreams.xml;
+    like the other dreams of what happened, they're much likelier than the everyday ones while they hold.
+  -->
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf_Convalescent_Running</defName>
+    <label>a dream of running</label>
+    <kind>Sweet</kind>
+    <children>true</children>
+    <hediffs><li>Council_Ail_Convalescent</li></hediffs>
+    <lines>
+      <plain>
+        <li>In the dream I was running across the fields, and my legs did everything I asked of them.</li>
+        <li>Dreamt I carried a whole load of stone up the hill and wasn't even out of breath. I woke up and checked my arms.</li>
+        <li>I dreamt it was the first warm day of spring and I walked all the way to the river and back.</li>
+        <li>[child] I dreamt I could run faster than anyone, even the dogs.</li>
+      </plain>
+      <warm><li>Dreamt I was well again, and everyone who'd brought me soup was sitting at one table, and I served them.</li></warm>
+      <blunt><li>Dreamt I was strong again. Soon.</li></blunt>
+      <cheerful><li>In the dream I climbed onto the roof just because I could. Can't wait to do it awake.</li></cheerful>
+      <gloomy><li>Dreamt I was well. Woke up and I'm not, yet. That's a hard way to start a morning.</li></gloomy>
+      <cold><li>A dream of full strength. A reasonable forecast, given the rate of recovery.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf_Convalescent_LongBed</defName>
+    <label>a dream of the long bed</label>
+    <kind>Strange</kind>
+    <children>true</children>
+    <hediffs><li>Council_Ail_Convalescent</li></hediffs>
+    <lines>
+      <plain>
+        <li>In the dream my bed was in the middle of the yard, and the whole colony went about its day around me.</li>
+        <li>Dreamt the bed went on and on, longer every time I tried to reach the end of it.</li>
+        <li>I dreamt the seasons changed outside the window while I lay there, spring, summer, snow, and nobody seemed to mind.</li>
+        <li>[child] I dreamt my bed was a boat and I could steer it anywhere I liked.</li>
+      </plain>
+      <warm><li>Dreamt that everyone took turns sitting by my bed, all night, and none of them were tired.</li></warm>
+      <blunt><li>Dreamt about the bed. Strange. Done with the bed.</li></blunt>
+      <gloomy><li>In the dream they forgot I was there, and went on without me.</li></gloomy>
+      <cold><li>A dream about convalescence. My mind is bored.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf_Convalescent_Impatient</defName>
+    <label>a dream of work waiting</label>
+    <kind>Strange</kind>
+    <hediffs><li>Council_Ail_Convalescent</li></hediffs>
+    <dreamer><thoughts><li>Council_Health_WeakFrustrated</li></thoughts></dreamer>
+    <lines>
+      <plain>
+        <li>In the dream the work piled up at the foot of my bed, higher every hour, and nobody would let me touch it.</li>
+        <li>I dreamt I was at my bench and my hands wouldn't close round the tools. I woke up with them clenched.</li>
+        <li>Dreamt everyone else was doing my work, badly, and smiling at me about it.</li>
+      </plain>
+      <blunt><li>Dreamt about work. Can't do it yet. Hate that.</li></blunt>
+      <gloomy><li>Dreamt the colony managed perfectly well without me. Worst dream I've had all year.</li></gloomy>
+      <cold><li>A dream about the backlog. Accurate, unfortunately.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf_Healer_PulledThrough</defName>
+    <label>a dream of the patient walking</label>
+    <kind>Sweet</kind>
+    <afterThoughts><li>Council_Ail_PulledThrough</li></afterThoughts>
+    <withinDays>3</withinDays>
+    <lines>
+      <plain>
+        <li>Dreamt my patient got up from the bed, folded the blanket and walked out into the sun. I stood in the doorway and watched.</li>
+        <li>In the dream every bed in the sickroom was empty and made up, and I could finally sit down.</li>
+        <li>I dreamt the fever broke in my own hands, like a stick snapping, and the room went cool.</li>
+      </plain>
+      <warm><li>Dreamt everyone I've ever pulled through came to supper, and nobody said a word about being ill.</li></warm>
+      <blunt><li>Dreamt the patient lived. Did. Good dream.</li></blunt>
+      <cheerful><li>Best dream in ages: my patient challenged me to a race, and won.</li></cheerful>
+      <gloomy><li>Dreamt my patient lived. I keep waiting for the other kind of dream.</li></gloomy>
+      <cold><li>A dream reviewing the case. The treatment was correct.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf_Healer_Lost</defName>
+    <label>a dream of the empty bed</label>
+    <kind>Nightmare</kind>
+    <afterThoughts>
+      <li>Council_Health_LostPatient</li>
+      <li>Council_Health_LostRun</li>
+    </afterThoughts>
+    <withinDays>4</withinDays>
+    <lines>
+      <plain>
+        <li>In the dream I was still tending them, and they kept asking for something I couldn't find on any shelf.</li>
+        <li>Dreamt I could see what I should have done, all of it, clear as day. Then I woke up and it was gone again.</li>
+        <li>I dreamt the bed was empty and still warm, and I kept laying out the medicine anyway.</li>
+      </plain>
+      <warm><li>Dreamt they told me it wasn't my fault. I wanted to believe them more than anything.</li></warm>
+      <blunt><li>Dreamt about the one I lost. Again.</li></blunt>
+      <gloomy><li>Every patient I've lost was in the dream, waiting quietly in a line.</li></gloomy>
+      <cold><li>The dream went through every step of the treatment. I still can't find the mistake. Perhaps there wasn't one.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf_Healer_HardCase</defName>
+    <label>a dream of counting medicine</label>
+    <kind>Strange</kind>
+    <afterThoughts><li>Council_Ail_HardCase</li></afterThoughts>
+    <withinDays>4</withinDays>
+    <lines>
+      <plain>
+        <li>All night in the dream I counted the medicine on the shelf, and the number came out different every time.</li>
+        <li>Dreamt I was reading a book that explained exactly how to cure it, and the pages were blank when I turned them.</li>
+        <li>In the dream my patient's fever was a fire in the hearth, and I kept carrying water to it.</li>
+      </plain>
+      <warm><li>Dreamt my old teacher stood behind me at the bedside and said nothing, which meant I was doing it right.</li></warm>
+      <blunt><li>Dreamt about the case. Woke up thinking about the case.</li></blunt>
+      <gloomy><li>Dreamt I ran out of medicine. Woke up and went to check the shelf.</li></gloomy>
+      <cold><li>A dream about the dosing. It suggested nothing useful.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf_Midwife</defName>
+    <label>a dream of the first cry</label>
+    <kind>Sweet</kind>
+    <afterThoughts><li>Council_Health_DeliveredBaby</li></afterThoughts>
+    <withinDays>3</withinDays>
+    <lines>
+      <plain>
+        <li>Dreamt of the first cry again, the one that means everything is all right. I heard it right through the night.</li>
+        <li>In the dream the baby looked straight at me, as if it knew who I was.</li>
+        <li>I dreamt of all the babies I've delivered, grown up, walking past me in the yard, and none of them knew.</li>
+      </plain>
+      <warm><li>Dreamt I held the baby while the mother slept, and the whole colony was quiet so as not to wake them.</li></warm>
+      <blunt><li>Dreamt about the birth. Went well, both times.</li></blunt>
+      <cheerful><li>Dreamt the baby grew up to be a doctor and told me I was doing it all wrong. Wonderful dream.</li></cheerful>
+      <gloomy><li>Dreamt of the birth, and was afraid all the way through, until the cry.</li></gloomy>
+      <cold><li>A dream about the delivery. Uncomplicated, as it was.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+</Defs>

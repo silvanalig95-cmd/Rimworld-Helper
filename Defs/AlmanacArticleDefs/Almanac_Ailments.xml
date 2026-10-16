@@ -111,7 +111,7 @@ Bed rest helps the body build immunity, as with any disease, and also speeds a s
       </li>
       <li>
         <heading>Recovery</heading>
-        <text>Getting better isn't the end of it. After a dangerous illness or infection that got serious (the game's own, like flu, plague or a wound infection, as well as Rimfolk's), a major operation (an organ, a limb or the brain; not a finger or an eye), four days or more laid up in bed, or losing an arm or a leg, a colonist is convalescing: a little slower at work (5%, or 12% while still weak) and on their feet, for a few days to two weeks. Rest in bed shortens it by a third. Two causes at once don't add up; the longer one counts.
+        <text>Getting better isn't the end of it. After a dangerous illness or infection that got serious (the game's own, like flu, plague or a wound infection, as well as Rimfolk's, whether a doctor tended it or not), a major operation (an organ, a limb or the brain; not a finger or an eye), four days or more laid up in bed, losing an arm or a leg, hunger that went as far as moderate malnutrition, or serious hypothermia or heatstroke, a colonist is convalescing: a little slower at work (5%, or 12% while still weak) and on their feet, for a few days to two weeks. Rest in bed shortens it by a third. Two causes at once don't add up; the longer one counts.
 
 Most are glad to be alive, a good mood that fades over six days. The industrious and hard workers are weak and frustrated instead, for as long as it lasts. A friend who visits the sickbed (the game's own visit) lifts the patient's mood and their own, and a colonist laid up in bed may ask the council for a visit from a particular friend; promising it sends the friend over. Back at work while still weak, a full day's work has about an 8% chance of setting the recovery back two days, at most twice and never two days running; a setback only ever makes it last longer.</text>
         <table>
@@ -120,12 +120,16 @@ Most are glad to be alive, a good mood that fades over six days. The industrious
           <li>A major operation | 5 to 7 days, 3 to 4.5</li>
           <li>Losing an arm or a leg | 7 to 10 days, 4.5 to 7</li>
           <li>A dangerous illness pulled through | 5 to 12 days, 3.5 to 8</li>
+          <li>Going hungry (moderate malnutrition or worse) | 3 to 7.5 days, 2 to 5</li>
+          <li>Serious hypothermia or heatstroke | 2.5 to 6.5 days, 1.5 to 4.5</li>
           <li>One of Rimfolk's serious illnesses | 5 to 15 days, 3.5 to 10</li>
         </table>
       </li>
       <li>
         <heading>Doctors and midwives</heading>
         <text>Rimfolk keeps each doctor's record: patients pulled through (a dangerous illness or infection they tended through the worst of it, or a major operation done well) and patients lost (dying of a condition within a day of their care, or on the table). Both show on the doctor's Story tab, and patients pulled through also in the game's Records. At 3 saved, and at least twice as many saved as lost, the colony trusts the doctor: a patient in bed they tend rests easier (in good hands, a small good mood), and others write about them in their journals. At 8 saved and three times as many as lost, the whole colony would choose them. One loss weighs on a doctor for days; a second within ten days weighs more, feeds the heart's grief and shame, and can bring a dilemma about a day away. Losses can cost the trust, and more patients pulled through win it back. The colonist with the most patients pulled through (5 at least) is called Goodhands.
+
+The hospital has a name of its own, beside its doctors' and midwives': everyone it pulled through, operated on well or delivered, and the sick from outside it saw, against the patients it lost. At 6, and at least three times as many as lost, it is well spoken of: a patient tended in a medical bed in the hospital rests easier there (a little comfort and rest, not a mood), and now and then someone unwell comes to ask for its doctor, from a camp on the map or from the road. At 15, and four times as many as lost, it is known across the region, and they come twice as often. Seeing them costs a dose of medicine; their people remember the doctor by name, the doctor learns a little, and the hospital's name grows. Losses take the name down quietly, and it has to be earned again. It shows on the Story tab of the colony's doctors and midwives, and of a patient lying in it; before industrial medicine it is the sickroom.
 
 With Biotech, whoever attends a birth as the doctor delivers the baby: a good mood, a line in their journal, the mother's lasting good opinion, and a count of babies delivered. The one with the most (3 at least) is called the Midwife. Two life goals come from these records (pull ten patients through, deliver five babies), and a few dilemmas: a doctor after a loss, someone back at work too soon, family who want a say in an operation, a midwife looking for an apprentice.</text>
       </li>
@@ -169,6 +173,7 @@ With Biotech, whoever attends a birth as the doctor delivers the baby: a good mo
       <li>splinter</li>
       <li>insect bites</li>
       <li>frostnip</li>
+      <li>hospital</li>
       <li>post-flu cough</li>
       <li>plague swellings</li>
       <li>limp</li>

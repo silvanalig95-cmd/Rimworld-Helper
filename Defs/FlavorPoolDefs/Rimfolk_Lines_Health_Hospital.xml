@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Journal lines for the hospital's name and the newer ways into convalescence (Source/ColonyCouncil/Health/):
+    the doctor who saw a patient from outside ({OTHER} is the patient), the doctor when the hospital's name grows
+    ([known], [renowned]), the doctor's answer to a sick traveller or camp member ([opt0] saw them, [opt1] medicine for
+    the road, [opt2] advice only; [camp]; {X} the patient, {TALE} what ailed them), and convalescing after hunger
+    ([hunger]) or cold and heat ([exposure]).
+  -->
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Health_Outsider</defName>
+    <lines>
+      <plain>
+        <li>Saw to {OTHER_nameDef} today, who isn't one of ours and walked a long way to be seen. I hope it was worth the walk.</li>
+        <li>Treated a stranger, {OTHER_nameDef}. Same body as anyone's, same complaints.</li>
+        <li>{OTHER_nameDef} came for the hospital and found me. I did what I'd do for any of ours.</li>
+        <li>[lowtech] {OTHER_nameDef} had heard of our sickroom three valleys away. I don't know whether to be proud or worried.</li>
+      </plain>
+      <warm><li>{OTHER_nameDef} held my hand a moment longer than needed when I'd finished. People out there don't get much care.</li></warm>
+      <blunt><li>Treated {OTHER_nameDef}, a stranger. Fine now.</li></blunt>
+      <cheerful><li>A patient from outside the walls! {OTHER_nameDef} says they talk about us on the road. Good things, apparently.</li></cheerful>
+      <gloomy><li>{OTHER_nameDef} walked days to get here. It makes me think about everyone who couldn't.</li></gloomy>
+      <cold><li>Treated an outside patient, {OTHER_nameDef}. Good for our standing with their people.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Health_Hospital</defName>
+    <lines>
+      <plain>
+        <li>[known] A trader told me they speak well of our hospital on the road. I went and swept it out, for some reason.</li>
+        <li>[known] People out there know about our sickroom now. Every bed in it has a story, and most of them end well.</li>
+        <li>[renowned] They say the sick come a long way to us now. I counted the beds again tonight. We'll need more.</li>
+        <li>[renowned] Our hospital has a name across the region. I remember when it was one cot and a bucket.</li>
+      </plain>
+      <warm><li>[known] Everyone who has lain in those beds and walked out again: that's what the name is made of.</li></warm>
+      <blunt><li>The hospital has a name now. Good. More work.</li></blunt>
+      <gloomy><li>A good name means more patients, and more of the ones nobody else could help.</li></gloomy>
+      <cold><li>Our hospital's reputation is an asset. I intend to keep it.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Evt_HospitalPatient</defName>
+    <lines>
+      <plain>
+        <li>[opt0] A stranger came with {TALE} and asked for me by name. I saw to {X_objective}. Word gets about, it seems.</li>
+        <li>[opt0,camp] One of the camp people came up with {TALE}. Treated {X_objective} by their fire, with an audience.</li>
+        <li>[opt1] Gave {X_nameDef} a dose for the road and what advice I could. I'd have liked to do more.</li>
+        <li>[opt2] Sent {X_nameDef} on with a few words and no medicine. We need what we have. I keep telling myself that.</li>
+      </plain>
+      <warm><li>[opt0] {X_nameDef} thanked me three times on the way out. Once would have been plenty.</li></warm>
+      <blunt><li>[opt0] Treated a traveller's {TALE}. Done.</li></blunt>
+      <cheerful><li>[opt0] Somebody walked days to see me! I tried to be worth it.</li></cheerful>
+      <gloomy><li>[opt2] {X_nameDef} came all this way and got a few words from me. That will stay with me.</li></gloomy>
+      <cold><li>[opt0] Treated an outsider. Their people will remember it; that is worth one dose.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Journal_Health_Convalescing_More</defName>
+    <pool>Council_Journal_Health_Convalescing</pool>
+    <lines>
+      <plain>
+        <li>[hunger] Eating properly again. My body can't believe it, and keeps asking for more, then falling asleep.</li>
+        <li>[hunger] The hungry days are over. My legs haven't heard yet; I sit down after every flight of steps.</li>
+        <li>[exposure] Warm again, and I can feel my fingers. The rest of me is tired in a way I've never been tired before.</li>
+        <li>[exposure] They brought me in just in time, they say. I don't remember most of it. I remember the blanket.</li>
+        <li>[exposure,summer] The heat nearly had me. Now I drink a cup of water every hour whether I want it or not.</li>
+      </plain>
+      <blunt>
+        <li>[hunger] Fed. Weak. Better.</li>
+        <li>[exposure] Nearly froze. Didn't. Tired.</li>
+      </blunt>
+      <gloomy><li>[hunger] We went hungry, and it took something out of me that a few good meals won't put back straight away.</li></gloomy>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+</Defs>

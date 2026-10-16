@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The hospital's name draws the sick (Source/ColonyCouncil/Health/HospitalPatient.cs): once the colony's hospital is
+    well spoken of (HealthTracker.HospitalLevel), someone unwell comes to ask for its doctor, from the camp on the map
+    ([camp]) or from the road, twice as often once it is known across the region ([renowned], else [known]). {A} is the
+    colony's best doctor, {X} the patient, {TALE} what ails them (a cold, a sprain: never anything that could kill).
+    Seeing them counts toward the hospital's name, and their people remember the doctor by name.
+  -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_HospitalPatient</defName>
+    <label>a patient for the hospital</label>
+    <workerClass>ColonyCouncil.HappeningWorker_HospitalPatient</workerClass>
+    <baseChance>0.8</baseChance>
+    <minRefireDays>25</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>16~70</ages>
+        <stayHours>18~30</stayHours>
+        <answerDays>0.5</answerDays>
+        <journal>Council_Journal_Evt_HospitalPatient</journal>
+        <titles>
+          <li>[camp] Sick at the camp</li>
+          <li>[!camp,lowtech] A patient for the sickroom</li>
+          <li>[!camp,!lowtech] A patient for the hospital</li>
+        </titles>
+        <texts>
+          <li>[camp] {X_nameDef} of {FACTION}, from the camp, came up to the gate this morning with {TALE} and asked for the colony's doctor. The camp has been watching {A_nameDef} at work, {X_nameDef} says, and nobody among them knows half as much.</li>
+          <li>[camp] The camp's people have been talking about the colony's doctor. This morning {X_nameDef} of {FACTION} walked over with {TALE}, cap in hand, and asked whether {A_nameDef} would take a look.</li>
+          <li>[!camp,known,lowtech] {X_nameDef} of {FACTION} has walked a long way with {TALE}, because people on the road say the colony's sickroom turns nobody away. {X_nameDef} asks whether {A_nameDef} would see to it.</li>
+          <li>[!camp,known,!lowtech] {X_nameDef} of {FACTION} has come to the gate with {TALE}. Travellers say the colony's hospital is a good one, {X_nameDef} explains, and the nearest doctor on {X_possessive} road is days away.</li>
+          <li>[!camp,renowned] {X_nameDef} of {FACTION} has come a long way with {TALE}, on the strength of the colony's name: across the region they say there's no better place to fall ill. {X_nameDef} would like to see {A_nameDef}, if there's time.</li>
+          <li>[!camp] {X_nameDef}, a traveller of {FACTION}, stopped at the colony with {TALE} and asked for its doctor by name: {A_nameDef}. Someone on the road had told {X_objective} to.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>{A_nameDef} sees to {X_objective} (1 medicine)</label>
+            <outcome>{A_nameDef} sat {X_nameDef} down, looked at the {TALE} properly and treated it. {X_nameDef} went away with instructions and a lighter step, and {FACTION} will hear where the help came from.</outcome>
+            <outcomes>
+              <li>[camp] {A_nameDef} went over to the camp with a bag and treated {X_nameDef}'s {TALE} by their fire, with half the camp watching. They've been calling {A_objective} "the doctor" ever since, as if there were no other.</li>
+              <li>[lowtech] {A_nameDef} ground something bitter, wrapped something warm, and sent {X_nameDef} off with instructions for the {TALE} and a pouch of herbs for the road.</li>
+              <li>[!lowtech] {A_nameDef} examined {X_nameDef}, treated the {TALE} and wrote out what to do for the next few days in a clear hand. {X_nameDef} folded the paper as if it were money.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>medicine</what><count>1</count></li>
+              <li Class="ColonyCouncil.DilemmaEffect_HospitalPatient" />
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Medicine</skill><xp>300</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>6</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>tended</kind><about>x</about></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><hours>7~20</hours><duration>1~1.5</duration></li>
+            </effects>
+            <ways><mercy>1</mercy><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Medicine for the road (1)</label>
+            <outcome>{A_nameDef} handed over a dose of medicine and some advice about the {TALE}, and {X_nameDef} went on {X_possessive} way grateful.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>medicine</what><count>1</count></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>3</amount></li>
+            </effects>
+            <ways><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>A word of advice, nothing more</label>
+            <outcome>{A_nameDef} told {X_nameDef} what would help with the {TALE} and wished {X_objective} well. The medicine stays on the shelf.</outcome>
+            <ways><mercy>-1</mercy></ways>
+          </li>
+        </options>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>

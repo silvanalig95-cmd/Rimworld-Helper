@@ -84,6 +84,38 @@ namespace ColonyCouncil
     }
 
     /// <summary>
+    /// The colony's hospital (or, before the colony has one, its sickroom), as the colony and its neighbours know it:
+    /// everyone its doctors pulled through, operated on well, delivered, or saw from outside (a sick traveller, someone
+    /// from a camp), against the patients it lost. Kept beside the doctors' and midwives' own records.
+    /// </summary>
+    public class HospitalRecord : IExposable
+    {
+        public int pulledThrough;
+        public int surgeries;
+        public int births;
+        /// <summary>Patients from outside the colony: travellers and camp people who came for its doctor.</summary>
+        public int outsiders;
+        public int lost;
+        /// <summary>The standing last told to the colony (HealthMath.HospitalLevel).</summary>
+        public int level;
+
+        /// <summary>Everyone it did right by.</summary>
+        public int Good => pulledThrough + surgeries + births + outsiders;
+
+        public int Level => HealthMath.HospitalLevel(Good, lost);
+
+        public void ExposeData()
+        {
+            Scribe_Values.Look(ref pulledThrough, "pulledThrough");
+            Scribe_Values.Look(ref surgeries, "surgeries");
+            Scribe_Values.Look(ref births, "births");
+            Scribe_Values.Look(ref outsiders, "outsiders");
+            Scribe_Values.Look(ref lost, "lost");
+            Scribe_Values.Look(ref level, "level");
+        }
+    }
+
+    /// <summary>
     /// Health's human side, in a game component of its own (the game finds it by itself):
     /// <list type="bullet">
     /// <item>Convalescence: after a serious illness, a major operation, a long stay in bed or losing a limb, a colonist
@@ -92,7 +124,9 @@ namespace ColonyCouncil
     /// lift both their moods. Working while still weak can set it back, which only makes it last longer.</item>
     /// <item>Reputation: each doctor's patients pulled through (dangerous illnesses, major operations) and lost, and each
     /// midwife's births. Doctors and midwives earn names and the colony's trust (patients in bed rest easier under a
-    /// trusted doctor); a run of losses weighs on the doctor.</item>
+    /// trusted doctor); a run of losses weighs on the doctor. The hospital has a name of its own, from all of them
+    /// together and the sick from outside it saw: a good one eases its patients and draws the sick from camps and the
+    /// road (Council_Evt_HospitalPatient).</item>
     /// </list>
     /// The game's events reach it through Patches/HealthPatches.cs; it looks at the colony once an hour. Each half has
     /// its own switch, and off, it does nothing new.
@@ -121,8 +155,16 @@ namespace ColonyCouncil
         private Dictionary<string, int> visits = new Dictionary<string, int>();
         /// <summary>Patient ThingID: when they last wrote about trusting their doctor.</summary>
         private Dictionary<string, int> lastTrustLine = new Dictionary<string, int>();
+        /// <summary>The colony's hospital and its name.</summary>
+        private HospitalRecord hospital = new HospitalRecord();
+        /// <summary>
+        /// "ThingID|condition": the worst a condition got that may leave them convalescing once it's gone: hunger
+        /// (Malnutrition), cold or heat (Hypothermia, Heatstroke), or a dangerous illness nobody tended ("#" and its load ID).
+        /// </summary>
+        private Dictionary<string, float> worst = new Dictionary<string, float>();
 
-        private List<string> tk1, tk2, tk3, tk4, tk5, tk6, tk7;
+        private List<string> tk1, tk2, tk3, tk4, tk5, tk6, tk7, tk9;
+        private List<float> tv9;
         private List<HealerRecord> tv1;
         private List<string> tv2;
         private List<int> tv3, tv4, tv5, tv6, tv7, tk8, tv8;
@@ -314,6 +356,7 @@ namespace ColonyCouncil
                 Limbs(p, firstLook);
                 BedRest(p, id);
                 Setback(p, id, now);
+                Watch(p, id);
             }
             else if (firstLook) Limbs(p, true);
             var conv = ConvalescenceOf(p);
@@ -395,6 +438,81 @@ namespace ColonyCouncil
             float days = hours / 24f;
             float severity = HealthMath.AfterBedRest(days);
             if (severity > 0f) Convalesce(p, severity, "Bed");
+        }
+
+        private static HediffDef malnutrition, hypothermia, heatstroke;
+        private static bool lookedConditions;
+
+        private static void LookConditions()
+        {
+            if (lookedConditions) return;
+            lookedConditions = true;
+            malnutrition = DefDatabase<HediffDef>.GetNamedSilentFail("Malnutrition");
+            hypothermia = DefDatabase<HediffDef>.GetNamedSilentFail("Hypothermia");
+            heatstroke = DefDatabase<HediffDef>.GetNamedSilentFail("Heatstroke");
+        }
+
+        private readonly List<string> watchTmp = new List<string>();
+
+        /// <summary>
+        /// Hard times that leave a colonist weak once they're over: hunger that went as far as malnutrition, cold or heat
+        /// that went as far as serious hypothermia or heatstroke, and a dangerous illness nobody tended (a tended one is
+        /// the doctor's case, and convalescence comes with it). Each is noted at its worst; once it's gone, they convalesce.
+        /// </summary>
+        private void Watch(Pawn p, string id)
+        {
+            LookConditions();
+            var hs = p.health.hediffSet.hediffs;
+            for (int i = 0; i < hs.Count; i++)
+            {
+                var h = hs[i];
+                if (h?.def == null || !h.Visible) continue;
+                string key;
+                if (h.def == malnutrition || h.def == hypothermia || h.def == heatstroke) key = id + "|" + h.def.defName;
+                else if (Dangerous(h))
+                {
+                    key = id + "|#" + h.loadID;
+                    if (HasCase(p, h))
+                    {
+                        worst.Remove(key);
+                        continue;
+                    }
+                }
+                else continue;
+                worst[key] = worst.TryGetValue(key, out float w) ? Mathf.Max(w, h.Severity) : h.Severity;
+            }
+            if (worst.Count == 0) return;
+            string prefix = id + "|";
+            watchTmp.Clear();
+            foreach (var k in worst.Keys)
+                if (k.StartsWith(prefix, StringComparison.Ordinal)) watchTmp.Add(k);
+            foreach (var key in watchTmp)
+            {
+                string what = key.Substring(prefix.Length);
+                bool gone;
+                if (what.StartsWith("#", StringComparison.Ordinal))
+                {
+                    gone = !int.TryParse(what.Substring(1), out int loadId) || !hs.Any(h => h.loadID == loadId);
+                }
+                else
+                {
+                    var def = DefDatabase<HediffDef>.GetNamedSilentFail(what);
+                    gone = def == null || p.health.hediffSet.GetFirstHediffOfDef(def) == null;
+                }
+                if (!gone) continue;
+                float peak = worst[key];
+                worst.Remove(key);
+                if (what.StartsWith("#", StringComparison.Ordinal)) Convalesce(p, HealthMath.AfterIllness(peak), "Illness");
+                else if (what == "Malnutrition") Convalesce(p, HealthMath.AfterHunger(peak), "Hunger");
+                else Convalesce(p, HealthMath.AfterExposure(peak), "Exposure");
+            }
+        }
+
+        private bool HasCase(Pawn p, Hediff h)
+        {
+            for (int i = 0; i < cases.Count; i++)
+                if (cases[i].hediffId == h.loadID && cases[i].patient == p) return true;
+            return false;
         }
 
         /// <summary>A limb (or another large outer part) newly lost. Missing parts they had when first looked at aren't news.</summary>
@@ -495,6 +613,7 @@ namespace ColonyCouncil
                 c.peak = Mathf.Max(c.peak, h.Severity);
             }
             var rec = ReputationOn ? RecordOf(doctor) : null;
+            if (ReputationOn) EaseInHospital(patient);
             // The physician's office counts toward the doctor's standing (Interplay/).
             int level = Interplay.DoctorLevel(doctor, rec);
             if (level <= 0 || !(patient.InBed() || patient.Downed)) return;
@@ -571,6 +690,7 @@ namespace ColonyCouncil
             if (!ReputationOn || !doctor.RaceProps.Humanlike) return;
             var rec = RecordOf(doctor, true);
             rec.pulledThrough++;
+            hospital.pulledThrough++;
             doctor.records?.Increment(HealthDefOf.Council_PatientsPulledThrough);
             if (!rimfolk && People.HasInnerLife(doctor))
             {
@@ -579,6 +699,7 @@ namespace ColonyCouncil
                     (illness ?? "").Named("ILLNESS"), patient.Named("OTHER"));
             }
             CheckLevel(doctor, rec);
+            CheckHospital(doctor);
         }
 
         /// <summary>An operation finished on one of the colony's people (Recipe_Surgery's own check said how it went).</summary>
@@ -602,12 +723,14 @@ namespace ColonyCouncil
                 if (!ReputationOn) return;
                 var rec = RecordOf(surgeon, true);
                 rec.surgeries++;
+                hospital.surgeries++;
                 surgeon.records?.Increment(HealthDefOf.Council_PatientsPulledThrough);
                 if (People.HasInnerLife(surgeon) && Rand.Chance(0.5f))
                     JournalTagged(surgeon, "Council_Journal_Health_Surgery", brain ? new[] { "brain" } : null, patient);
                 if (Ours(patient) && Rand.Chance(0.35f))
                     JournalTagged(patient, "Council_Journal_Health_TrustDoctor", new[] { "surgery", rec.Level >= 1 ? "trusted" : "first" }, surgeon);
                 CheckLevel(surgeon, rec);
+                CheckHospital(surgeon);
             });
         }
 
@@ -650,6 +773,7 @@ namespace ColonyCouncil
             int now = Find.TickManager.TicksGame;
             var rec = RecordOf(doctor, true);
             rec.lost++;
+            hospital.lost++;
             rec.losses.Add(now);
             rec.lastLost = patient;
             rec.lastLostTick = now;
@@ -670,6 +794,8 @@ namespace ColonyCouncil
             }
             int level = rec.Level;
             if (level < rec.level) rec.level = level;
+            // The hospital's name drops with it, quietly; it has to be earned again.
+            if (hospital.Level < hospital.level) hospital.level = hospital.Level;
         }
 
         /// <summary>The colony's trust in a doctor grew: a message, the doctor's own line, and a line or two from others.</summary>
@@ -710,6 +836,7 @@ namespace ColonyCouncil
             var child = (Pawn)baby;
             var rec = RecordOf(doctor, true);
             rec.births++;
+            hospital.births++;
             doctor.records?.Increment(HealthDefOf.Council_BirthsAttended);
             CouncilGameComponent.GiveThought(doctor, HealthDefOf.Council_Health_DeliveredBaby, null, -1f, "CC_Cause_About".Translate(child.LabelShort).ToString());
             if (Ours(mother))
@@ -727,6 +854,84 @@ namespace ColonyCouncil
                 News.Post("CC_Health_Midwife".Translate(doctor.Named("PAWN"), rec.births.Named("COUNT")).Resolve(), new LookTargets(doctor),
                     NewsKind.Health, MessageTypeDefOf.PositiveEvent, Importance.Notable);
             }
+            CheckHospital(doctor);
+        }
+
+        // ---------------- The hospital ----------------
+
+        /// <summary>The hospital's name: 0 not known yet, 1 well spoken of, 2 known across the region (0 with reputations off).</summary>
+        public int HospitalLevel => ReputationOn ? hospital.Level : 0;
+
+        public HospitalRecord Hospital => hospital;
+
+        /// <summary>"hospital", or "sickroom" for a colony before medicine has an industry behind it.</summary>
+        public static string HospitalWord => (Avail.IsPreIndustrial ? "CC_Health_Hospital_WordLowTech" : "CC_Health_Hospital_Word").Translate();
+
+        /// <summary>In a medical bed in a room the colony uses as its hospital.</summary>
+        public static bool InHospital(Pawn p)
+        {
+            if (p == null || !p.Spawned || !p.InBed()) return false;
+            var bed = RestUtility.CurrentBed(p);
+            if (bed == null || !bed.Medical) return false;
+            var room = bed.GetRoom();
+            return room != null && room.Role == RoomRoleDefOf.Hospital;
+        }
+
+        /// <summary>
+        /// A patient tended in the hospital, once it has a name: they rest easier there (comfort and rest rather than a
+        /// mood, RewardInstead), at most once a day.
+        /// </summary>
+        private void EaseInHospital(Pawn patient)
+        {
+            if (hospital.Level < 1 || !InHospital(patient) || !People.HasInnerLife(patient)) return;
+            var memories = patient.needs?.mood?.thoughts?.memories;
+            if (memories == null || memories.GetFirstMemoryOfDef(HealthDefOf.Council_Health_GoodHospital) != null) return;
+            CouncilGameComponent.GiveThought(patient, HealthDefOf.Council_Health_GoodHospital, null, -1f, HospitalWord);
+        }
+
+        /// <summary>
+        /// A doctor saw someone from outside the colony who came for the hospital (a traveller, someone from a camp): their
+        /// illness is tended there and then, their people will remember the doctor by name, and the hospital's name grows.
+        /// </summary>
+        public void Notify_OutsidePatient(Pawn doctor, Pawn patient)
+        {
+            if (patient == null || patient.Dead) return;
+            float quality = 0.6f;
+            try
+            {
+                if (doctor != null) quality = Mathf.Clamp(doctor.GetStatValue(StatDefOf.MedicalTendQuality), 0.2f, 1f);
+                var hs = patient.health?.hediffSet?.hediffs;
+                if (hs != null)
+                    foreach (var h in hs.ToList())
+                        if (h.TendableNow()) h.Tended(quality, 1f);
+                if (doctor != null) KinMemory.Notify_Tended(doctor, patient);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("hospital: a patient from outside", e);
+            }
+            if (!ReputationOn) return;
+            hospital.outsiders++;
+            if (doctor != null && People.HasInnerLife(doctor) && Rand.Chance(0.6f)) JournalTagged(doctor, "Council_Journal_Health_Outsider", null, patient);
+            CheckHospital(doctor);
+        }
+
+        /// <summary>The hospital's name grew: the news, the chronicle at its best, and the doctor's line.</summary>
+        private void CheckHospital(Pawn doctor)
+        {
+            if (!ReputationOn) return;
+            int level = hospital.Level;
+            if (level <= hospital.level)
+            {
+                hospital.level = Math.Min(hospital.level, level);
+                return;
+            }
+            hospital.level = level;
+            string key = level >= 2 ? "CC_Health_Hospital_Renowned" : "CC_Health_Hospital_Known";
+            string text = key.Translate(HospitalWord.Named("HOSPITAL"), hospital.Good.Named("COUNT")).Resolve();
+            News.Post(text, doctor != null && doctor.Spawned ? new LookTargets(doctor) : LookTargets.Invalid, NewsKind.Health, MessageTypeDefOf.PositiveEvent, Importance.Notable);
+            if (level >= 2) CouncilGameComponent.Instance?.AddChronicle(new ChronicleEntry(ChronicleKind.Life, text, doctor));
+            if (doctor != null && People.HasInnerLife(doctor) && Ours(doctor)) JournalTagged(doctor, "Council_Journal_Health_Hospital", new[] { level >= 2 ? "renowned" : "known" });
         }
 
         // ---------------- Showing it ----------------
@@ -744,6 +949,14 @@ namespace ColonyCouncil
                 if (level > 0) yield return (level >= 2 ? "CC_Health_Story_Renowned" : "CC_Health_Story_Trusted").Translate(p.Named("PAWN")).Resolve();
             }
             if (rec != null && rec.births > 0) yield return "CC_Health_Story_Midwife".Translate(rec.births.Named("COUNT")).Resolve();
+            // The hospital's name, for those who work in it and those lying in it.
+            var hosp = ReputationOn ? t.hospital : null;
+            if (hosp != null && hosp.Good + hosp.lost > 0 && ((rec != null && rec.Saved + rec.lost + rec.births > 0) || InHospital(p)))
+            {
+                string standing = ("CC_Health_Hospital_Level_" + hosp.Level).Translate();
+                yield return "CC_Health_Story_Hospital".Translate(HospitalWord.Named("HOSPITAL"), standing.Named("STANDING"), hosp.Good.Named("GOOD"),
+                    hosp.outsiders.Named("OUTSIDE"), hosp.lost.Named("LOST")).Resolve();
+            }
             var h = ConvalescenceOn ? ConvalescenceOf(p) : null;
             if (h != null)
             {
@@ -809,6 +1022,12 @@ namespace ColonyCouncil
                     foreach (var h in hs) live.Add(h.loadID);
                 }
                 partsSeen.RemoveWhere(id => !live.Contains(id));
+                foreach (var k in worst.Keys.Where(k =>
+                         {
+                             int i = k.IndexOf('|');
+                             return i <= 0 || !ids.Contains(k.Substring(0, i));
+                         }).ToList())
+                    worst.Remove(k);
                 foreach (var k in setbacks.Keys.Where(k => !live.Contains(k)).ToList()) setbacks.Remove(k);
                 cases.RemoveAll(c => c.patient == null || c.patient.Dead || c.patient.Destroyed);
             }
@@ -834,6 +1053,8 @@ namespace ColonyCouncil
             Scribe_Collections.Look(ref convalescing, "convalescing", LookMode.Value);
             Scribe_Collections.Look(ref visits, "visits", LookMode.Value, LookMode.Value, ref tk6, ref tv6);
             Scribe_Collections.Look(ref lastTrustLine, "lastTrustLine", LookMode.Value, LookMode.Value, ref tk7, ref tv7);
+            Scribe_Deep.Look(ref hospital, "hospital");
+            Scribe_Collections.Look(ref worst, "worst", LookMode.Value, LookMode.Value, ref tk9, ref tv9);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 healers ??= new Dictionary<string, HealerRecord>();
@@ -849,6 +1070,8 @@ namespace ColonyCouncil
                 convalescing ??= new HashSet<string>();
                 visits ??= new Dictionary<string, int>();
                 lastTrustLine ??= new Dictionary<string, int>();
+                hospital ??= new HospitalRecord();
+                worst ??= new Dictionary<string, float>();
             }
         }
     }
@@ -865,6 +1088,7 @@ namespace ColonyCouncil
         public static ThoughtDef Council_Health_DeliveredBaby;
         public static ThoughtDef Council_Health_MyMidwife;
         public static ThoughtDef Council_Moment_VisitedWhileIll;
+        public static ThoughtDef Council_Health_GoodHospital;
         public static RecordDef Council_PatientsPulledThrough;
         public static RecordDef Council_BirthsAttended;
 

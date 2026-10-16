@@ -247,4 +247,15 @@
     <stages><li><label>allowed to watch</label><description>I'll be at the next birth, watching and fetching water. It's a start.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
+  <!-- The hospital's name (HealthTracker.EaseInHospital): tended in a hospital people speak well of. -->
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Health_GoodHospital</defName>
+    <durationDays>1</durationDays>
+    <stackLimit>1</stackLimit>
+    <modExtensions>
+      <li Class="ColonyCouncil.RewardInstead"><comfort>0.08</comfort><rest>0.04</rest><felt>2</felt><feelings><li>Relief</li></feelings></li>
+    </modExtensions>
+    <stages><li><label>a good hospital</label><description>People come from all over to be tended here. Lying in this bed, I can see why.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
 </Defs>

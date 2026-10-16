@@ -82,6 +82,26 @@ public static class HealthTests
         C(HealthMath.DoctorLevel(3, 2) == 0, "a run of losses takes the trust away");
         C(HealthMath.DoctorLevel(8, 2) == 2 && HealthMath.DoctorLevel(8, 3) == 1, "eight saved and few lost: renowned");
         C(HealthMath.MidwifeLevel(1) == 0 && HealthMath.MidwifeLevel(2) == 1 && HealthMath.MidwifeLevel(5) == 2, "midwife levels");
+
+        // Hunger, cold and heat: only once they went far, a few days to a week, never the longest.
+        foreach (var (what, s) in new[]
+                 {
+                     ("moderate malnutrition", HealthMath.AfterHunger(HealthMath.HungerFrom)), ("starving", HealthMath.AfterHunger(0.95f)),
+                     ("serious hypothermia", HealthMath.AfterExposure(HealthMath.ExposureFrom)), ("extreme heatstroke", HealthMath.AfterExposure(0.95f))
+                 })
+        {
+            float d = HealthMath.DaysUp(s);
+            C(d >= 2f && d <= 8f, $"after {what}: {d:0.0} days out of bed");
+        }
+        C(HealthMath.AfterHunger(0.39f) == 0f && HealthMath.AfterExposure(0.34f) == 0f, "a little hunger or a chill leaves nothing");
+        C(HealthMath.AfterHunger(0.8f) > HealthMath.AfterHunger(0.5f), "the hungrier, the longer");
+
+        // The hospital's name: earned from many patients, a level above any one doctor's, and lost to losses.
+        C(HealthMath.HospitalLevel(5, 0) == 0 && HealthMath.HospitalLevel(6, 0) == 1 && HealthMath.HospitalLevel(6, 2) == 1, "six patients and few lost: well spoken of");
+        C(HealthMath.HospitalLevel(6, 3) == 0, "a run of losses keeps its name down");
+        C(HealthMath.HospitalLevel(15, 3) == 2 && HealthMath.HospitalLevel(15, 4) == 1 && HealthMath.HospitalLevel(14, 0) == 1, "fifteen and four times as many as lost: known across the region");
+        C(HealthMath.HospitalLevel(8, 0) < HealthMath.DoctorLevel(8, 0), "a hospital's name takes more than one renowned doctor's record");
+        C(HealthMath.PatientWeight(0) == 0f && HealthMath.PatientWeight(1) > 0f && HealthMath.PatientWeight(2) > HealthMath.PatientWeight(1), "the sick come only to a hospital with a name, more to a bigger one");
         return n;
     }
 }
