@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Moments between colonists about the colony's animals (ColonyCouncil.InteractionWorker_Moment, see
+    Source/ColonyCouncil/Social/Moments.cs). The tags keeper, herder, bondedanimal and trainer come from
+    Source/ColonyCouncil/Animals/AnimalFacts.cs; trainer only exists with PokéWorld, so the sparring and the questions
+    about Pokémon never come up without it. The spar is friendly: Pokémon pull their moves, nobody is hurt.
+  -->
+
+  <!-- ===================== Talking animals: two who love them ===================== -->
+  <InteractionDef ParentName="Council_MomentBase">
+    <defName>Council_MomentA_HerdTalk</defName>
+    <label>talked animals</label>
+    <initiatorThought>Council_MomentA_HerdTips</initiatorThought>
+    <recipientThought>Council_MomentA_HerdTips</recipientThought>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] leaned on the fence and talked about the herd until the light went.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] [trick], and [RECIPIENT_nameDef] said [RECIPIENT_pronoun] would try it in the morning.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] argued, cheerfully, about which of the animals was the cleverest.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] about a lame one in the pens, and they went to look at it together.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] traded stories of the worst animal either of them had ever handled.</li>
+        <li>trick->how to come up on a nervous animal from the side, talking all the while</li>
+        <li>trick->the old trick with a handful of salt and a lot of patience</li>
+        <li>trick->how to tell from the ears what an animal is about to do</li>
+        <li>trick->why you never stand behind one that's eating</li>
+      </rulesStrings>
+    </logRulesInitiator>
+    <modExtensions>
+      <li Class="ColonyCouncil.MomentExtension">
+        <weight>0.04</weight>
+        <cooldownDays>4</cooldownDays>
+        <initiatorTags>keeper|herder,!child</initiatorTags>
+        <recipientTags>skill:Animals|keeper</recipientTags>
+        <minOpinion>-10</minOpinion>
+        <bumpTie>Friends</bumpTie>
+        <bumpAmount>2</bumpAmount>
+      </li>
+    </modExtensions>
+  </InteractionDef>
+
+  <!-- ===================== Two who have animals of their own swap stories ===================== -->
+  <InteractionDef ParentName="Council_MomentBase">
+    <defName>Council_MomentA_PetStories</defName>
+    <label>swapped animal stories</label>
+    <symbol>ColonyCouncil/Symbols/Heart</symbol>
+    <initiatorThought>Council_MomentA_PetStories</initiatorThought>
+    <recipientThought>Council_MomentA_PetStories</recipientThought>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] compared what their animals had been up to this week, and each privately decided theirs was cleverer.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] how [INITIATOR_possessive] animal had learned to open the storeroom door, and [RECIPIENT_nameDef] laughed until [RECIPIENT_pronoun] had to sit down.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] sat on the step while their animals sniffed each other over, and agreed they'd get along.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] how [RECIPIENT_pronoun] taught [RECIPIENT_possessive] animal to come to a whistle.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+    <modExtensions>
+      <li Class="ColonyCouncil.MomentExtension">
+        <weight>0.04</weight>
+        <cooldownDays>5</cooldownDays>
+        <bondedPet>true</bondedPet>
+        <recipientTags>bondedanimal</recipientTags>
+        <minOpinion>0</minOpinion>
+        <bumpTie>Friends</bumpTie>
+        <bumpAmount>2</bumpAmount>
+      </li>
+    </modExtensions>
+  </InteractionDef>
+
+  <!-- ===================== A child asks about the animals ===================== -->
+  <InteractionDef ParentName="Council_MomentBase">
+    <defName>Council_MomentA_ChildAsks</defName>
+    <label>asked about the animals</label>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] [question], and listened to the whole answer.</li>
+        <li>r_logentry->[INITIATOR_nameDef] followed [RECIPIENT_nameDef] to the pens and asked a question about every single animal.</li>
+        <li>r_logentry->[INITIATOR_nameDef] wanted to know from [RECIPIENT_nameDef] whether animals have names for us. [RECIPIENT_nameDef] said probably, and none of them flattering.</li>
+        <li>question->why the goats climb on everything</li>
+        <li>question->where the young ones come from, and got a careful answer</li>
+        <li>question->whether the animals know they belong to us</li>
+        <li>question->how you can tell when an animal is happy</li>
+      </rulesStrings>
+    </logRulesInitiator>
+    <modExtensions>
+      <li Class="ColonyCouncil.MomentExtension">
+        <weight>0.05</weight>
+        <cooldownDays>4</cooldownDays>
+        <initiatorTags>child</initiatorTags>
+        <recipientTags>keeper|herder|skill:Animals,!child</recipientTags>
+        <minOpinion>-5</minOpinion>
+        <bumpTie>Friends</bumpTie>
+        <bumpAmount>2</bumpAmount>
+      </li>
+    </modExtensions>
+  </InteractionDef>
+
+  <!-- ===================== PokéWorld: a friendly spar between two trainers' Pokémon ===================== -->
+  <InteractionDef ParentName="Council_MomentBase">
+    <defName>Council_MomentA_PW_Spar</defName>
+    <label>sparred with their Pokémon</label>
+    <symbol>ColonyCouncil/Symbols/Star</symbol>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] challenged [RECIPIENT_nameDef] to a friendly spar, Pokémon against Pokémon, out in the yard, moves pulled and nobody hurt.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] let their Pokémon spar in the yard while half the colony leaned on the fence and called out advice.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] set their Pokémon to a gentle practice bout, three exchanges each, and argued about it all through supper.</li>
+        <li>r_logentry->[RECIPIENT_nameDef] said [RECIPIENT_possessive] Pokémon was the quicker, and [INITIATOR_nameDef] said there was one way to find out.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+    <modExtensions>
+      <li Class="ColonyCouncil.MomentExtension">
+        <weight>0.05</weight>
+        <cooldownDays>5</cooldownDays>
+        <initiatorTags>trainer,!hurt,!child</initiatorTags>
+        <recipientTags>trainer,!hurt</recipientTags>
+        <minOpinion>-10</minOpinion>
+        <contestSkill>Animals</contestSkill>
+        <winnerThought>Council_PW_SparWon</winnerThought>
+        <loserThought>Council_PW_SparLost</loserThought>
+        <initiatorWonPack>Council_Sent_PW_InitiatorWon</initiatorWonPack>
+        <recipientWonPack>Council_Sent_PW_RecipientWon</recipientWonPack>
+        <bumpTie>Friends</bumpTie>
+        <bumpAmount>2</bumpAmount>
+      </li>
+    </modExtensions>
+  </InteractionDef>
+
+  <RulePackDef>
+    <defName>Council_Sent_PW_InitiatorWon</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>sent->[INITIATOR_nameDef]'s Pokémon came out on top, and both of them strutted about it all afternoon.</li>
+        <li>sent->[INITIATOR_nameDef]'s Pokémon won, and [RECIPIENT_nameDef] is already planning the rematch.</li>
+        <li>sent->[INITIATOR_nameDef]'s Pokémon took it, by a whisker.</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Council_Sent_PW_RecipientWon</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>sent->[RECIPIENT_nameDef]'s Pokémon won, and [INITIATOR_nameDef] took it gracefully, mostly.</li>
+        <li>sent->[RECIPIENT_nameDef]'s Pokémon had the better of it, and [INITIATOR_nameDef] went off to train.</li>
+        <li>sent->[RECIPIENT_nameDef]'s Pokémon won the spar, and then the two Pokémon shared a bowl of berries as if nothing had happened.</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <!-- ===================== PokéWorld: a child asks a trainer about their Pokémon ===================== -->
+  <InteractionDef ParentName="Council_MomentBase">
+    <defName>Council_MomentA_PW_ChildAsks</defName>
+    <label>asked about Pokémon</label>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [RECIPIENT_possessive] Pokémon could do a move, and [RECIPIENT_nameDef] had it show off a little.</li>
+        <li>r_logentry->[INITIATOR_nameDef] wanted to know from [RECIPIENT_nameDef] what it's like inside a Poké Ball. [RECIPIENT_nameDef] admitted [RECIPIENT_pronoun] didn't know either.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] how to become a trainer, and got a long answer about patience that wasn't the one [INITIATOR_pronoun] wanted.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+    <modExtensions>
+      <li Class="ColonyCouncil.MomentExtension">
+        <weight>0.05</weight>
+        <cooldownDays>4</cooldownDays>
+        <initiatorTags>child</initiatorTags>
+        <recipientTags>trainer,!child</recipientTags>
+        <minOpinion>-5</minOpinion>
+        <bumpTie>Friends</bumpTie>
+        <bumpAmount>2</bumpAmount>
+      </li>
+    </modExtensions>
+  </InteractionDef>
+
+</Defs>

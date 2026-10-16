@@ -222,9 +222,6 @@ namespace ColonyCouncil
         public static bool RideableKind(ThingDef race) =>
             race?.race != null && race.race.Animal && race.race.baseBodySize >= 1.2f && !race.race.predator && race.race.trainability != null;
 
-        /// <summary>A pack animal, for the road (without Giddy-Up, what someone who travels wants).</summary>
-        public static bool PackAnimal(Pawn a) => Ours(a) && !Young(a) && a.RaceProps.packAnimal;
-
         // ---------------- Health ----------------
 
         /// <summary>The illness troubling it most (an infection, a plague, a flu), or null.</summary>

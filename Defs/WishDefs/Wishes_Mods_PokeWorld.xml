@@ -66,4 +66,90 @@
     </reminder>
   </ColonyCouncil.WishDef>
 
+  <!--
+    A Pokémon of one's own (WishWorker_OwnPokemon, Integrations/PokeWorldLife.cs): a colonist with no Pokémon of their
+    own wants one, one of the colony's without a trainer (given at once when promised) or a wild one caught for them.
+    {SUBJECT} is the species, so lines say "the {SUBJECT}" or "that {SUBJECT}".
+  -->
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_PW_OwnPokemon</defName>
+    <label>a Pokémon of my own</label>
+    <description>A colonist who has no Pokémon of their own wants one: one of the colony's that has no trainer yet, or a wild one caught for them.</description>
+    <workerClass>ColonyCouncil.WishWorker_OwnPokemon</workerClass>
+    <forbiddenBy><li>NoPets</li></forbiddenBy>
+    <lasting>true</lasting>
+    <lostText>{FOR_nameDef}'s Pokémon has another trainer now.</lostText>
+    <category>Social</category>
+    <weight>0.9</weight>
+    <expiryDays>8</expiryDays>
+    <cooldownDays>25</cooldownDays>
+    <grantedThought>Council_Granted_PW_OwnPokemon</grantedThought>
+    <envy>0.2</envy>
+    <meToo>true</meToo>
+    <talkInteraction>Council_Talk_Animals</talkInteraction>
+    <fulfilledWhen>{FOR_nameDef} is the trainer of a Pokémon: its master in the Animals tab. The {SUBJECT} would do.</fulfilledWhen>
+    <request>
+      <plain>
+        <li>Everyone with a belt has a Pokémon at their heels. I'd like one too. The {SUBJECT} has nobody.</li>
+        <li>I've been watching how the trainers do it. I think I could. Let me start with the {SUBJECT}.</li>
+        <li>[child] Can the {SUBJECT} be mine? I'll train it every single day.</li>
+        <li>[lowmood] I need something that's on my side. A Pokémon of my own would be a start.</li>
+      </plain>
+      <warm><li>That {SUBJECT} needs someone to look after it properly. I'd like to be the one.</li></warm>
+      <blunt><li>Give me the {SUBJECT}. I'll make something of it.</li></blunt>
+      <cheerful><li>A Pokémon of my very own! The {SUBJECT}! We'll be the best team in the colony!</li></cheerful>
+      <gloomy><li>Even the Pokémon have someone. I'd settle for the {SUBJECT}, if it would have me.</li></gloomy>
+      <cold><li>A Pokémon without a trainer gains nothing in a fight. Assign the {SUBJECT} to me.</li></cold>
+    </request>
+    <thanks>
+      <plain><li>It looks at me before it does anything now. I think that means something.</li></plain>
+      <warm><li>We'll look after each other, the two of us.</li></warm>
+      <cheerful><li>Watch this! Well, it'll do it next time.</li></cheerful>
+      <cold><li>Training begins at dawn.</li></cold>
+    </thanks>
+    <expired>
+      <plain><li>Never mind. Maybe a Pokémon has to pick its trainer, not the other way round.</li></plain>
+      <gloomy><li>No Pokémon for me, then.</li></gloomy>
+    </expired>
+  </ColonyCouncil.WishDef>
+
+  <!--
+    A supply of ball belts (WishWorker_BallSupply): wild Pokémon about and at most one belt in the colony, while one can
+    be made. Fulfilled when two more are there. {THING} is the belt that can be made now.
+  -->
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_PW_BallSupply</defName>
+    <label>ball belts on the rack</label>
+    <description>A trainer, or someone who loves animals, wants the colony to keep a few ball belts on hand while there are wild Pokémon about.</description>
+    <workerClass>ColonyCouncil.WishWorker_BallSupply</workerClass>
+    <category>Gear</category>
+    <weight>0.7</weight>
+    <expiryDays>10</expiryDays>
+    <cooldownDays>30</cooldownDays>
+    <grantedThought>Council_Granted_PW_BallSupply</grantedThought>
+    <allowPetition>true</allowPetition>
+    <envy>0</envy>
+    <talkInteraction>Council_Talk_Animals</talkInteraction>
+    <fulfilledWhen>{TARGET} ball belts in the colony, worn or on the shelf. The colony can make {THING} now.</fulfilledWhen>
+    <request>
+      <plain>
+        <li>There are wild Pokémon all over the land, and we have one belt between us. Let's make a few.</li>
+        <li>Every time something rare wanders past, someone has to run back for the belt. Keep a few on the rack.</li>
+        <li>[skill:Crafting] I'll make the belts myself if someone fetches the materials.</li>
+      </plain>
+      <warm><li>A few spare belts, so whoever sees something first can go after it.</li></warm>
+      <blunt><li>One belt isn't enough. Make more.</li></blunt>
+      <cheerful><li>Belts for everyone! Then we can all go catching!</li></cheerful>
+      <gloomy><li>We'll miss the next rare one too, with one belt. We always do.</li></gloomy>
+      <cold><li>Each missed catch is a species we may not see again. Belts are cheap by comparison.</li></cold>
+    </request>
+    <thanks>
+      <plain><li>Belts on the rack. Next time something wanders past, we're ready.</li></plain>
+      <cheerful><li>I've already picked mine!</li></cheerful>
+    </thanks>
+    <expired>
+      <plain><li>One belt, then. We'll take turns.</li></plain>
+    </expired>
+  </ColonyCouncil.WishDef>
+
 </Defs>

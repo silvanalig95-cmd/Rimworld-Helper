@@ -1,0 +1,490 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Dilemmas about the colony's animals (Source/ColonyCouncil/Animals/AnimalDilemmas.cs), and the customs of the herd's
+    year. {PET_...} is the animal the dilemma is about (one of the herd, a sick one, a bonded one); {X_...} a wild animal.
+    Answers play out on the map: the handlers slaughter what's culled, the hunters go out, a watch is kept at the pens or
+    in the fields. Setbacks are real: a cull, crops eaten, an animal carried off.
+  -->
+
+  <!-- ===================== The herd in a famine ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Council_DlmA_FamineCull</defName>
+    <label>the herd or the stores</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_Famine</workerClass>
+    <weight>1.2</weight>
+    <cooldownDays>30</cooldownDays>
+    <roleA>
+      <bestAt>Animals</bestAt>
+    </roleA>
+    <roleB>
+      <minOpinionOfA>-100</minOpinionOfA>
+    </roleB>
+    <texts>
+      <li>The stores won't last the week, and the herd eats from them every day. {B_nameDef} has done the sums out loud at supper: cull {COUNT} head and the rest of us eat. {A_nameDef}, who has raised most of them, has gone very quiet.\n\nThe council has to decide what the herd is for.</li>
+      <li>{A_nameDef} found {B_nameDef} at the pens with a knife and a list. The colony is going hungry, and {B_nameDef} says {COUNT} of the herd are eating food that people need.\n\n{A_nameDef} says a herd killed in a bad winter is a herd you never get back. Both are right, and both want the council's word.</li>
+      <li>[winter] Snow on the fields and the stores nearly bare. The herd is eating hay the colony may need to trade for bread. {B_nameDef} wants {COUNT} head culled. {A_nameDef} wants the council to think about spring.</li>
+    </texts>
+    <defaultOption>1</defaultOption>
+    <options>
+      <li>
+        <label>Cull {COUNT} head</label>
+        <outcome>The council chose the stores. {A_nameDef} marked the {COUNT} head {A_pronoun} could best spare, and did the job properly, and didn't come in for supper.</outcome>
+        <outcomes>
+          <li>[lowtech] {A_nameDef} said the old words over each of them before the knife, as {A_possessive} people do. The colony will eat. {A_nameDef} won't, tonight.</li>
+        </outcomes>
+        <ways><mercy>-2</mercy><toil>2</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Cull" />
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmA_CulledHerd</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_FairsFair</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Harsh</thought><onlyTrait><li>Kind</li></onlyTrait><chance>0.5</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Words"><label>a word for the herd</label><organizer>A</organizer><spots><li>Fields</li><li>Outdoors</li></spots><hours>17~21</hours><duration>0.5~0.75</duration></li>
+        </effects>
+      </li>
+      <li>
+        <label>Tighten everyone's belts</label>
+        <outcome>The herd stays. Everyone eats a little less until the stores come back, {B_nameDef} loudest about it, and {A_nameDef} quietly thanking each of them.</outcome>
+        <ways><mercy>3</mercy><generosity>1</generosity></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmA_HerdSpared</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmA_LeanDays</thought><exceptTrait><li>Ascetic</li></exceptTrait><chance>0.7</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>-2</amount></li>
+        </effects>
+        <riskChance>0.25</riskChance>
+        <riskOutcome>The herd was spared and the belts were tightened, and {B_nameDef} has been counting every mouthful the animals take, out loud, to {A_nameDef}'s face.</riskOutcome>
+        <riskEffects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Grudge</thought><about>B</about></li>
+        </riskEffects>
+      </li>
+      <li>
+        <label>Turn the weakest out to forage</label>
+        <outcome>The {COUNT} weakest of the herd were walked out past the fields and left to fend for themselves. {A_nameDef} watched them go over the hill.</outcome>
+        <ways><mercy>-1</mercy><toil>1</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_TurnOut" />
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmA_TurnedOutHerd</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Compromise</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Procession"><label>turning the herd out</label><target>A</target><count>2</count><to>Gate</to><hours>7~17</hours></li>
+        </effects>
+      </li>
+      <li>
+        <label>Let {A_nameDef} decide</label>
+        <outcome>{A_nameDef} went down to the pens alone and came back an hour later. One of the herd, the oldest, and no more. "The rest are the spring," {A_pronoun} said, and that was the end of it.</outcome>
+        <ways><mercy>1</mercy></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Cull"><count>1</count></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_InCharge</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Ignored</thought><chance>0.5</chance></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== A wild animal in the crops ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Council_DlmA_CropRaider</defName>
+    <label>a raider in the crops</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_CropRaider</workerClass>
+    <weight>1</weight>
+    <cooldownDays>25</cooldownDays>
+    <minColonists>2</minColonists>
+    <answerDays>1</answerDays>
+    <seasons><li>Spring</li><li>Summer</li><li>Fall</li><li>PermanentSummer</li></seasons>
+    <roleA>
+      <bestAt>Plants</bestAt>
+    </roleA>
+    <roleB>
+      <bestAt>Animals</bestAt>
+    </roleB>
+    <stranger>
+      <kind>Wild</kind>
+      <notPredator>true</notPredator>
+      <maxBodySize>3</maxBodySize>
+    </stranger>
+    <texts>
+      <li>Something has found the colony's fields, {X_indefinite}, and it likes them. {A_nameDef} came in this morning with a handful of chewed stalks and a face like thunder.\n\n{A_nameDef} wants it dealt with. {B_nameDef} thinks an animal that bold might be worth taming.</li>
+      <li>Every night something gets into the crops, and this morning {A_nameDef} caught it at it: {X_indefinite}, standing in the middle of the field with its mouth full, not in the least sorry.\n\nThe hunters could have it in the pot by supper. Or someone could sit out in the fields at night and drive it off.</li>
+      <li>[skill:Plants] {A_nameDef} has been nursing that field since the thaw. Now {X_indefinite} is eating it a row at a time, and {A_nameDef} has asked the council, very politely, for permission to do something drastic.</li>
+    </texts>
+    <defaultOption>3</defaultOption>
+    <options>
+      <li>
+        <label>Send the hunters</label>
+        <outcome>The hunters went out after the raider in the crops. {B_nameDef} called it a waste of a bold animal and was outvoted.</outcome>
+        <ways><mercy>-3</mercy></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_HuntParty" />
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Vindicated</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_DlmS_WastedBeauty</thought></li>
+        </effects>
+      </li>
+      <li>
+        <label>Watch the fields at night</label>
+        <outcome>{A_nameDef} and {B_nameDef} take turns sitting out by the crops with a lantern and a pot to bang, until the raider learns.</outcome>
+        <ways><mercy>2</mercy><toil>2</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Vigil"><label>the watch over the fields</label><target>AAndB</target><to>Fields</to><hours>20~2</hours></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_DlmA_FieldWatch</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>A</target><hediff>Council_Dlm_NightWatch</hediff></li>
+        </effects>
+        <riskChance>0.3</riskChance>
+        <riskOutcome>They watched the fields all night, and the raider came in at dawn on the far side, while the watch was walking home.</riskOutcome>
+        <riskEffects>
+          <li Class="ColonyCouncil.DilemmaEffect_CropsEaten"><count>4</count></li>
+        </riskEffects>
+      </li>
+      <li>
+        <label>Let {B_nameDef} try to tame it</label>
+        <outcome>The raider is on the handlers' list, and {B_nameDef} has been out in the field with a bucket of feed, talking to it like an old friend.</outcome>
+        <ways><mercy>3</mercy><openness>1</openness></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Designate"><designation>Tame</designation></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_DlmS_WorthTaming</thought></li>
+        </effects>
+        <riskChance>0.4</riskChance>
+        <riskOutcome>{B_nameDef} is working on taming the raider, and the raider is working on the crops in the meantime.</riskOutcome>
+        <riskEffects>
+          <li Class="ColonyCouncil.DilemmaEffect_CropsEaten"><count>4</count></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmA_LetItGraze</thought></li>
+        </riskEffects>
+      </li>
+      <li>
+        <label>Let it eat</label>
+        <outcome>The council let the raider be. It ate its fill and wandered off at noon, and {A_nameDef} went out to see what was left.</outcome>
+        <ways><mercy>3</mercy><toil>-2</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CropsEaten"><count>8</count></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmA_LetItGraze</thought></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== A sick animal and the medicine it would take ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Council_DlmA_SickAnimal</defName>
+    <label>medicine for an animal</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_SickAnimal</workerClass>
+    <weight>1</weight>
+    <cooldownDays>25</cooldownDays>
+    <minMedicine>1</minMedicine>
+    <maxMedicine>15</maxMedicine>
+    <roleB>
+      <bestAt>Medicine</bestAt>
+    </roleB>
+    <texts>
+      <li>{PET_nameDef} is sick, {X_possessive} breathing short and hot: {THEIRILLNESS}. {A_nameDef} has been sitting with {X_objective} since dawn.\n\n{B_nameDef} says the good medicine might pull {PET_nameDef} through, but there isn't much of it, and nobody knows who'll need it next.</li>
+      <li>{A_nameDef} asked {B_nameDef} to look at {PET_nameDef}, and {B_nameDef} came back grave: {THEIRILLNESS}. "I can treat it," {B_nameDef} told the council, "if you'll let me use what's left in the cupboard on an animal."</li>
+      <li>[winter] {PET_nameDef} has {THEIRILLNESS}, and the cold isn't helping. {A_nameDef} wants the doctors to use the good medicine. The doctors want to know if the council agrees, with winter still to come.</li>
+    </texts>
+    <defaultOption>1</defaultOption>
+    <options>
+      <li>
+        <label>The good medicine for {PET_nameDef}</label>
+        <outcome>The doctors will treat {PET_nameDef} with the best the colony has. {A_nameDef} thanked {B_nameDef} three times and the council twice.</outcome>
+        <ways><mercy>3</mercy><generosity>2</generosity></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_AnimalCare"><care>Best</care></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmA_BestCareForAnimal</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmA_MedicineOnAnimal</thought><onlyTrait><li>Greedy</li><li>Psychopath</li></onlyTrait></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><who>B</who><whom>Pet</whom><duration>0.75~1</duration></li>
+        </effects>
+      </li>
+      <li>
+        <label>Herbs, not the good medicine</label>
+        <outcome>{PET_nameDef} will be tended with herbs and simple remedies, and the good medicine stays in the cupboard for people.</outcome>
+        <ways><generosity>-1</generosity></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_AnimalCare"><care>HerbalOrWorse</care></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Compromise</thought></li>
+        </effects>
+      </li>
+      <li>
+        <label>{A_nameDef} nurses {PET_nameDef} through</label>
+        <outcome>No medicine, but {A_nameDef} will sit up with {PET_nameDef} at night, keep {X_objective} warm and get water into {X_objective}, and see.</outcome>
+        <ways><mercy>2</mercy></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_AnimalCare"><care>NoMeds</care></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_PetNursed</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>A</target><hediff>Council_Dlm_NightWatch</hediff></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Vigil"><label>a night with {PET_nameDef}</label><target>A</target><to>Person</to><whom>Pet</whom><hours>21~2</hours></li>
+        </effects>
+        <riskChance>0.35</riskChance>
+        <riskReplaces>true</riskReplaces>
+        <riskOutcome>{A_nameDef} sat up three nights running with {PET_nameDef}, and {PET_nameDef} is no better. {A_nameDef} is a good deal worse.</riskOutcome>
+        <riskEffects>
+          <li Class="ColonyCouncil.DilemmaEffect_AnimalCare"><care>NoMeds</care></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_PetFading</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>A</target><hediff>Council_Dlm_Sleepless</hediff></li>
+        </riskEffects>
+      </li>
+      <li>
+        <label>Let nature take its course</label>
+        <outcome>No treatment for {PET_nameDef}. Whatever happens, happens. {A_nameDef} took {A_possessive} blanket out to the straw.</outcome>
+        <ways><mercy>-4</mercy><generosity>-2</generosity></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_AnimalCare"><care>NoCare</care></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmA_AnimalLeftToFate</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-4</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Harsh</thought><onlyTrait><li>Kind</li></onlyTrait><chance>0.6</chance></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== A predator stalking the pens ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Council_DlmA_PenStalker</defName>
+    <label>something at the pens</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_PenStalker</workerClass>
+    <weight>1</weight>
+    <cooldownDays>30</cooldownDays>
+    <minColonists>2</minColonists>
+    <answerDays>1</answerDays>
+    <roleA>
+      <bestAt>Animals</bestAt>
+    </roleA>
+    <roleB>
+      <canFight>true</canFight>
+      <bestAt>Shooting</bestAt>
+    </roleB>
+    <stranger>
+      <kind>Wild</kind>
+      <predator>true</predator>
+      <maxBodySize>2.6</maxBodySize>
+    </stranger>
+    <texts>
+      <li>The herd was restless all night, and this morning {A_nameDef} found the tracks: {X_indefinite} has been circling the pens, close enough to put its nose to the fence. {PET_nameDef} won't eat.\n\n{B_nameDef} wants to go out after it. {A_nameDef} wants a watch kept at the pens. The council has a day before it tries the fence for real.</li>
+      <li>{A_nameDef} saw it at dusk: {X_indefinite}, lying in the long grass downwind of the pens, watching the herd. It didn't run when {A_nameDef} shouted.\n\nSomething that patient will be back tonight.</li>
+      <li>[night] {B_nameDef} woke the colony at midnight: {X_indefinite} at the pens, pacing the fence. It slunk off when the lanterns came out. It hasn't gone far.</li>
+    </texts>
+    <defaultOption>3</defaultOption>
+    <options>
+      <li>
+        <label>Hunt it down</label>
+        <outcome>The hunters have marked {X_definite}, and {B_nameDef} has gone out with them. {A_nameDef} is staying with the herd until it's done.</outcome>
+        <ways><mercy>-2</mercy></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Designate"><designation>Hunt</designation></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_DlmS_TheHunt</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Vindicated</thought></li>
+        </effects>
+      </li>
+      <li>
+        <label>Keep watch at the pens</label>
+        <outcome>{A_nameDef} and {B_nameDef} will sit up at the pens tonight with lanterns and something to bang. Predators don't like a fuss.</outcome>
+        <ways><mercy>2</mercy><toil>2</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Vigil"><label>the watch at the pens</label><target>AAndB</target><to>Person</to><whom>Pet</whom><hours>20~4</hours></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_DlmA_WatchAtThePens</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>AAndB</target><hediff>Council_Dlm_NightWatch</hediff></li>
+        </effects>
+      </li>
+      <li>
+        <label>Bring the herd in close</label>
+        <outcome>The herd is brought in close to the houses for a few nights, and everyone sleeps with one ear open.</outcome>
+        <ways><toil>1</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Compromise</thought></li>
+        </effects>
+        <riskChance>0.25</riskChance>
+        <riskOutcome>The herd was brought in close, and {X_definite} came in after it. By morning the fence was flat and one of the herd was gone.</riskOutcome>
+        <riskEffects>
+          <li Class="ColonyCouncil.DilemmaEffect_LoseAnimal" />
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Setback_PenBroken</thought></li>
+        </riskEffects>
+      </li>
+      <li>
+        <label>Leave it be</label>
+        <outcome>The council decided {X_definite} has its own living to make. {A_nameDef} has started sleeping by the pens anyway.</outcome>
+        <ways><mercy>2</mercy></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Ignored</thought></li>
+        </effects>
+        <riskChance>0.45</riskChance>
+        <riskOutcome>The council left {X_definite} alone. It didn't return the favour: the pen was broken into in the night, and one of the herd is gone.</riskOutcome>
+        <riskEffects>
+          <li Class="ColonyCouncil.DilemmaEffect_LoseAnimal" />
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Setback_AnimalLost</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Setback_PenBroken</thought></li>
+        </riskEffects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== A bond the faith frowns on (Ideology) ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Council_DlmA_BondFaith</defName>
+    <label>a bond against the faith</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_BondFaith</workerClass>
+    <weight>0.8</weight>
+    <cooldownDays>45</cooldownDays>
+    <roleA>
+      <notTrait><li>Psychopath</li></notTrait>
+    </roleA>
+    <texts>
+      <li>{B_nameDef}'s faith holds that a bond between a person and an animal is a wrong done to both of them, and {A_nameDef} and {PET_nameDef} are never apart. {B_nameDef} has asked the council to say something.\n\n{A_nameDef} has asked the council, very quietly, not to.</li>
+      <li>{B_nameDef} found {PET_nameDef} asleep on {A_nameDef}'s bed and said a prayer over it, loudly, the kind you say over something unclean. {A_nameDef} hasn't spoken to {B_nameDef} since.\n\nThe council is asked to settle it.</li>
+    </texts>
+    <defaultOption>1</defaultOption>
+    <options>
+      <li>
+        <label>{A_nameDef} keeps {PET_nameDef}, and that's the end of it</label>
+        <outcome>The council stood by {A_nameDef}. {PET_nameDef} sleeps where {PET_pronoun} likes, and {B_nameDef} prays a little louder in the mornings.</outcome>
+        <ways><openness>3</openness><tradition>-2</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Vindicated</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_DlmA_FaithBrushedAside</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>-3</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>{PET_nameDef} keeps out of {B_nameDef}'s way</label>
+        <outcome>{PET_nameDef} stays out of {B_nameDef}'s rooms and off the dining table, and {B_nameDef} says {B_possessive} prayers more quietly. Nobody is happy. Nobody is shouting.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_Compromise</thought></li>
+        </effects>
+      </li>
+      <li>
+        <label>{PET_nameDef} goes to someone else</label>
+        <outcome>{PET_nameDef} answers to someone else now. {A_nameDef} still sees {PET_objective} every day, across the yard, and {B_nameDef} has thanked the council for honouring the faith.</outcome>
+        <ways><tradition>3</tradition><mercy>-2</mercy></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_PassAnimal" />
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmA_GaveUpMyAnimal</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_DlmA_FaithRespected</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-5</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Ask {B_nameDef} to bless {PET_nameDef}</label>
+        <outcome>{B_nameDef}, after a long silence, agreed to say a blessing over {PET_nameDef}, as one of the faith's creatures. {A_nameDef} held {PET_objective} still for it, and everyone watched.</outcome>
+        <ways><openness>2</openness><tradition>1</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmA_FaithRespected</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_DlmA_FaithRespected</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Words"><label>{B_nameDef}'s blessing over {PET_nameDef}</label><organizer>B</organizer><hours>8~19</hours><duration>0.5~0.75</duration></li>
+        </effects>
+        <riskChance>0.4</riskChance>
+        <riskReplaces>true</riskReplaces>
+        <riskOutcome>{B_nameDef} refused, in front of everyone: a blessing for that bond would be a lie. {A_nameDef} walked out with {PET_nameDef} at {A_possessive} heels.</riskOutcome>
+        <riskEffects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmA_BondShamed</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Grudge</thought><about>B</about></li>
+        </riskEffects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== The herd's year: customs that can become traditions ===================== -->
+
+  <!-- The lambing watch (spring, an animal of the herd in lamb or calf). -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Council_Dilemma_LambingWatch</defName>
+    <label>the lambing watch</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_HerdCustom</workerClass>
+    <weight>0.8</weight>
+    <cooldownDays>50</cooldownDays>
+    <seasons><li>Spring</li><li>PermanentSummer</li></seasons>
+    <roleA>
+      <bestAt>Animals</bestAt>
+    </roleA>
+    <texts>
+      <li>{PET_nameDef} is heavy with young, and so are others of the herd. {A_nameDef} wants a watch kept in the pens these nights, the whole colony taking turns with a lantern, the way it was done where {A_pronoun} grew up.\n\nIt would cost a few nights' sleep.</li>
+      <li>"Spring's the herd's year turning," {A_nameDef} says. The young are coming any night now, and {A_nameDef} has asked the council for a lambing watch: everyone in turn, in the straw, so nothing is born alone in the dark.</li>
+      <li>[colony:Traditional] Spring again, and the herd is near its time. {A_nameDef} asks for the lambing watch, the whole colony in turn at the pens through the night.</li>
+    </texts>
+    <traditionOption>0</traditionOption>
+    <traditionLabel>the lambing watch</traditionLabel>
+    <defaultOption>1</defaultOption>
+    <options>
+      <li>
+        <label>Keep the lambing watch together</label>
+        <outcome>The colony takes turns at the pens through the night, lanterns low, voices lower. The young ones come in the small hours, one after another.</outcome>
+        <ways><tradition>4</tradition><toil>-1</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Vigil"><label>the lambing watch</label><target>Colony</target><count>3</count><to>Person</to><whom>Pet</whom><hours>20~4</hours></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Trad_LambingWatch</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>3</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>Colony</target><skill>Animals</skill><xp>200</xp><chance>0.5</chance></li>
+        </effects>
+      </li>
+      <li>
+        <label>{A_nameDef} sits up alone</label>
+        <outcome>{A_nameDef} will keep the watch alone, with a lantern and a flask of something hot, the way most years go.</outcome>
+        <ways><tradition>1</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><whom>Pet</whom><hours>21~2</hours><duration>2~3</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Trad_LambingWatch</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>A</target><hediff>Council_Dlm_NightWatch</hediff></li>
+        </effects>
+      </li>
+      <li>
+        <label>The herd can manage</label>
+        <outcome>The herd has managed for thousands of years without lanterns. {A_nameDef} said nothing, and went down to the pens anyway after dark.</outcome>
+        <ways><tradition>-3</tradition><toil>2</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_NoCelebration</thought></li>
+        </effects>
+      </li>
+    </options>
+    <modExtensions>
+      <li Class="ColonyCouncil.HerdConditions"><minHerd>2</minHerd><pregnant>true</pregnant></li>
+    </modExtensions>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- Shearing day (late spring and summer, animals to shear or milk). -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Council_Dilemma_ShearingDay</defName>
+    <label>shearing day</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_HerdCustom</workerClass>
+    <weight>0.8</weight>
+    <cooldownDays>50</cooldownDays>
+    <seasons><li>Spring</li><li>Summer</li><li>PermanentSummer</li></seasons>
+    <roleA>
+      <bestAt>Animals</bestAt>
+    </roleA>
+    <texts>
+      <li>The herd's coats are heavy and the days are warm. {A_nameDef} wants to make a day of the shearing and the milking: everyone out at the pens, the work done together, and something to eat in the sun afterwards.</li>
+      <li>{A_nameDef} remembers shearing days from long ago: a whole village in a yard, laughing at the ones that got away. {A_nameDef} would like one here.</li>
+      <li>[colony:Traditional] It's the time of year for the shearing day. {A_nameDef} has the shears out already, and an eye on the weather.</li>
+    </texts>
+    <traditionOption>0</traditionOption>
+    <traditionLabel>shearing day</traditionLabel>
+    <defaultOption>1</defaultOption>
+    <options>
+      <li>
+        <label>Make a day of it</label>
+        <outcome>The whole colony at the pens, wool everywhere, the animals indignant, and bread and milk in the sun when it was done.</outcome>
+        <ways><tradition>4</tradition><toil>-2</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>5</count></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>shearing day</label><spots><li>Outdoors</li><li>Gather</li></spots><hours>9~16</hours></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Trad_Shearing</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>3</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Just get it done</label>
+        <outcome>{A_nameDef} did the shearing with whoever could be spared, quickly and well, and had the wool in by noon.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Animals</skill><xp>300</xp></li>
+        </effects>
+      </li>
+      <li>
+        <label>No time this year</label>
+        <outcome>No shearing day this year. The work will get done in between other work, the way it usually does.</outcome>
+        <ways><tradition>-3</tradition><toil>3</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_NoCelebration</thought></li>
+        </effects>
+      </li>
+    </options>
+    <modExtensions>
+      <li Class="ColonyCouncil.HerdConditions"><minHerd>2</minHerd><shearOrMilk>true</shearOrMilk></li>
+    </modExtensions>
+  </ColonyCouncil.DilemmaDef>
+
+</Defs>

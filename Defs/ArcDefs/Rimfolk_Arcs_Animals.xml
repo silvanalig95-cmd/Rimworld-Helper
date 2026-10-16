@@ -1,0 +1,646 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Personal stories with the colony's animals (Source/ColonyCouncil/Animals/AnimalArcs.cs): an old companion's last
+    years, an orphan raised by hand, a stray that keeps coming back, a feud with the colony's dog (or whatever it is),
+    and with PokéWorld a trainer and their partner. {PET_...} is the animal throughout; never start a sentence with a
+    {PET_pronoun} placeholder.
+  -->
+
+  <!-- ===================================================================================================== -->
+  <!-- An old companion: a bonded animal grown old; slower days, one more good one; the end, or every day kept. -->
+  <!-- ===================================================================================================== -->
+
+  <ColonyCouncil.ArcDef>
+    <defName>Council_Arc_OldCompanion</defName>
+    <label>an old companion</label>
+    <summary>A bonded animal has grown old. Its person notices the grey at its muzzle, gives it slow afternoons and one more good day, and keeps every morning it gets up. Its death, when it comes, is the story's end.</summary>
+    <workerClass>ColonyCouncil.ArcWorker_OldCompanion</workerClass>
+    <children>true</children>
+    <weight>1.2</weight>
+    <maxDays>50</maxDays>
+    <otherDeathEnds>true</otherDeathEnds>
+    <stages>
+      <li>
+        <label>grey at the muzzle</label>
+        <waiting>Next: some quiet hours together, {PAWN_nameDef} and {PET_nameDef}.</waiting>
+        <journal>
+          <plain>
+            <li>{PET_nameDef} took three goes at the step this morning. When did {PET_possessive} muzzle go grey? I didn't see it happen.</li>
+            <li>{PET_nameDef} sleeps most of the afternoon now, in the one patch of sun that reaches the door.</li>
+            <li>[winter] The cold gets into {PET_nameDef}'s joints now. I've moved the blanket closer to the fire.</li>
+            <li>[child] {PET_nameDef} is old now. Older than me, in animal years. I didn't know animals could get old so fast.</li>
+          </plain>
+          <warm><li>{PET_nameDef} still comes to meet me at the door. Slower, but every time.</li></warm>
+          <blunt><li>{PET_nameDef}'s getting old. Nothing to be done about that.</li></blunt>
+          <cheerful><li>{PET_nameDef} is a distinguished old thing now, with a grey beard and opinions about drafts.</li></cheerful>
+          <gloomy><li>Animals don't get the years we do. I knew that when I took {PET_objective} on. It doesn't help.</li></gloomy>
+          <cold><li>{PET_nameDef} is past four fifths of a normal span. I've adjusted {PET_possessive} rations.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef}'s {PET_nameDef} has grown old.</li>
+          <li>{PAWN_nameDef} has noticed how grey {PET_nameDef} has grown.</li>
+        </chronicle>
+        <gate><kind>Hold</kind><hold>Near</hold><hours>12</hours><minDays>2</minDays><timeoutDays>20</timeoutDays><timeoutPasses>true</timeoutPasses></gate>
+      </li>
+      <li>
+        <label>slow afternoons</label>
+        <waiting>Next: a few more days of slow afternoons.</waiting>
+        <journal>
+          <plain>
+            <li>I took my lunch out to where {PET_nameDef} was lying and ate it there. {PET_nameDef} thumped the ground twice and went back to sleep.</li>
+            <li>We don't go to the far fields any more. We go to the near ones, slowly, and that's fine.</li>
+          </plain>
+          <warm><li>{PET_nameDef} put {PET_possessive} head on my knee for the whole afternoon. I didn't get anything done. I didn't want to.</li></warm>
+          <blunt><li>Sat with {PET_nameDef}. Good afternoon.</li></blunt>
+          <cheerful><li>{PET_nameDef} chased a leaf today! Three steps, then sat down, very pleased with the whole business. I clapped.</li></cheerful>
+          <gloomy><li>Every afternoon I sit with {PET_nameDef} I wonder how many are left.</li></gloomy>
+          <cold><li>{PET_nameDef} needs less exercise and more warmth now. I've arranged both.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef} spends the afternoons with old {PET_nameDef} these days.</li>
+        </chronicle>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><whom>Pet</whom><hours>13~17</hours><duration>1.5~2</duration></li>
+        </effects>
+        <gate><kind>Time</kind><days>5</days><minDays>3</minDays></gate>
+      </li>
+      <li>
+        <label>one more good day</label>
+        <waiting>Next: time.</waiting>
+        <journal>
+          <plain>
+            <li>I took the day off and took {PET_nameDef} everywhere {PET_pronoun} used to like going. We were slow. We got there.</li>
+            <li>[summer] One more long warm day, the two of us out by the water. {PET_nameDef} even swam a little.</li>
+            <li>[winter] One more good day: the fire, a blanket, and {PET_nameDef}'s old head in my lap until dark.</li>
+          </plain>
+          <warm><li>I wanted {PET_nameDef} to have one more perfect day. I think {PET_pronoun} did. I know I did.</li></warm>
+          <blunt><li>Day off with {PET_nameDef}. Worth it.</li></blunt>
+          <cheerful><li>The best day! {PET_nameDef} found a stick {PET_pronoun} liked and carried it all the way home.</li></cheerful>
+          <gloomy><li>A good day. I kept thinking it might be the last, and that spoiled it a little, and then it didn't.</li></gloomy>
+          <cold><li>I gave {PET_nameDef} a day of everything {PET_pronoun} once enjoyed. It seemed the least I could do.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef} took a day off to give old {PET_nameDef} one more good day.</li>
+        </chronicle>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Rest" />
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><whom>Pet</whom><hours>9~15</hours><duration>2~3</duration></li>
+        </effects>
+        <gate><kind>Time</kind><days>8</days><minDays>5</minDays></gate>
+      </li>
+      <li>
+        <label>every morning a gift</label>
+        <journal>
+          <plain>
+            <li>{PET_nameDef} is still here. Slower every week, and still here. I've stopped counting the days and started keeping them.</li>
+            <li>Every morning {PET_nameDef} gets up is a morning I'm grateful for. That's how I live now.</li>
+            <li>[child] {PET_nameDef} is still my best friend. Old friends are the best kind, grandmother says.</li>
+          </plain>
+          <warm><li>However long we have, {PET_nameDef} won't spend a day of it alone.</li></warm>
+          <blunt><li>{PET_nameDef}'s still here. Good.</li></blunt>
+          <cheerful><li>Still going! The oldest, toughest, greyest animal in the colony, and mine.</li></cheerful>
+          <gloomy><li>I know how this ends. I've decided to love the middle anyway.</li></gloomy>
+          <cold><li>{PET_nameDef} remains in reasonable health for {PET_possessive} age. I find I'm glad of it.</li></cold>
+        </journal>
+        <chronicle>
+          <li>Old {PET_nameDef} is still with {PAWN_nameDef}, and {PAWN_nameDef} keeps every day of it.</li>
+        </chronicle>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Arc_EveryDayAGift</thought></li>
+        </effects>
+      </li>
+    </stages>
+    <fizzle>
+      <plain>
+        <li>[otherdead] {PET_nameDef} died in the night, in the warm spot by my bed, and not alone. I made sure of that.</li>
+        <li>[otherdead] I buried {PET_nameDef} under the tree {PET_pronoun} used to sleep under. It was a long life, for one of {PET_possessive} kind. I keep telling myself that.</li>
+        <li>[otherleft] {PET_nameDef} is gone, and I don't know where. I hope wherever it is, it's warm.</li>
+        <li>[timeout] {PET_nameDef} is old and slow and still here. We'll take it a day at a time.</li>
+      </plain>
+      <warm><li>[otherdead] {PET_nameDef} went quietly, with my hand on {PET_possessive} side. Thank you for every day, old friend.</li></warm>
+      <blunt><li>[otherdead] {PET_nameDef}'s gone. Old age. Buried {PET_objective} myself.</li></blunt>
+      <cheerful><li>[otherdead] {PET_nameDef} is gone. I'm going to tell everyone the funniest {PET_nameDef} stories at supper, because {PET_pronoun} deserves laughing, not crying. Then I'll cry.</li></cheerful>
+      <gloomy><li>[otherdead] {PET_nameDef} is dead. I knew it was coming. Knowing didn't help at all.</li></gloomy>
+      <cold><li>[otherdead] {PET_nameDef} died of old age this morning. A good span. I'm finding it harder than I expected.</li></cold>
+    </fizzle>
+    <fizzleChronicle>
+      <li>[otherdead] Old {PET_nameDef} died, with {PAWN_nameDef} beside {PET_objective} to the end.</li>
+      <li>{PAWN_nameDef} and old {PET_nameDef} took their days one at a time.</li>
+    </fizzleChronicle>
+    <eulogy>
+      <plain>
+        <li>{OTHER_nameDef}'s old animal still waits by the door. I've been sitting with it in the afternoons, the way {OTHER_nameDef} did.</li>
+      </plain>
+    </eulogy>
+  </ColonyCouncil.ArcDef>
+
+  <!-- ===================================================================================================== -->
+  <!-- An orphan: a young animal whose mother is gone, raised by hand until it's grown.                        -->
+  <!-- ===================================================================================================== -->
+
+  <ColonyCouncil.ArcDef>
+    <defName>Council_Arc_Orphan</defName>
+    <label>raised by hand</label>
+    <summary>A young animal of the colony's has lost its mother, and someone takes it on: fed by hand, kept warm at night, taught to follow. When it's grown, the two may bond.</summary>
+    <workerClass>ColonyCouncil.ArcWorker_Orphan</workerClass>
+    <children>true</children>
+    <weight>1.2</weight>
+    <maxDays>90</maxDays>
+    <stages>
+      <li>
+        <label>small enough to hold</label>
+        <waiting>Next: hours at its side, {PAWN_nameDef} and {PET_nameDef}.</waiting>
+        <journal>
+          <plain>
+            <li>{PET_nameDef}'s mother is gone. I've made {PET_objective} a nest of sacking by my bed, and I'm up every few hours with the milk.</li>
+            <li>So small. {PET_nameDef} fits in my two hands and shivers all the time. I'm keeping {PET_objective} under my coat.</li>
+            <li>[child] {PET_nameDef} doesn't have a mother any more, so I'm going to be {PET_possessive} mother. Somebody has to.</li>
+          </plain>
+          <warm><li>{PET_nameDef} sleeps against my neck. Every time {PET_pronoun} stirs, so do I.</li></warm>
+          <blunt><li>Orphan. Mine now. Feeding every three hours.</li></blunt>
+          <cheerful><li>I've adopted {PET_nameDef}! Who needs sleep anyway?</li></cheerful>
+          <gloomy><li>Orphans don't always make it. I'm going to do everything I can, and I'm still scared.</li></gloomy>
+          <cold><li>Without its mother, {PET_nameDef} will need feeding by hand for some weeks. I've set a schedule.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef} has taken on {PET_nameDef}, a young animal whose mother is gone.</li>
+          <li>{PAWN_nameDef} is raising the orphaned {PET_nameDef} by hand.</li>
+        </chronicle>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Hediff"><hediff>Council_Dlm_NightWatch</hediff></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><whom>Pet</whom><hours>21~1</hours><duration>1~1.5</duration></li>
+        </effects>
+        <gate><kind>Hold</kind><hold>Near</hold><hours>12</hours><minDays>2</minDays><timeoutDays>20</timeoutDays><timeoutPasses>true</timeoutPasses></gate>
+      </li>
+      <li>
+        <label>on its own legs</label>
+        <waiting>Next: more handling, or some days' growing.</waiting>
+        <journal>
+          <plain>
+            <li>{PET_nameDef} follows me everywhere now, falling over {PET_possessive} own feet. The others call {PET_objective} my shadow.</li>
+            <li>{PET_nameDef} took food from a bowl today, not from my fingers. I was ridiculously proud.</li>
+          </plain>
+          <warm><li>{PET_nameDef} cries if I'm out of sight. I've started leaving my old shirt in {PET_possessive} nest.</li></warm>
+          <blunt><li>{PET_nameDef}'s eating on {PET_possessive} own. Good.</li></blunt>
+          <cheerful><li>{PET_nameDef} ran! Badly, sideways, into a bucket! But ran!</li></cheerful>
+          <gloomy><li>{PET_nameDef} is stronger. I can almost stop holding my breath every morning.</li></gloomy>
+          <cold><li>{PET_nameDef} is gaining weight on schedule. The hand-feeding can be reduced.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef}'s orphan {PET_nameDef} is up on its own legs.</li>
+        </chronicle>
+        <gate>
+          <kind>Practice</kind>
+          <amount>1500</amount>
+          <minDays>2</minDays>
+          <timeoutDays>20</timeoutDays>
+          <timeoutPasses>true</timeoutPasses>
+          <or>
+            <li><kind>Time</kind><days>7</days></li>
+          </or>
+        </gate>
+      </li>
+      <li>
+        <label>growing</label>
+        <waiting>Next: {PET_nameDef} grown.</waiting>
+        <journal>
+          <plain>
+            <li>{PET_nameDef} doesn't fit in my lap any more and hasn't noticed. I haven't told {PET_objective}.</li>
+            <li>The others in the herd let {PET_nameDef} in among them now, and still {PET_nameDef} comes back to me at night.</li>
+          </plain>
+          <warm><li>Growing up, and still mine. I'm going to miss the small days.</li></warm>
+          <blunt><li>{PET_nameDef}'s nearly grown.</li></blunt>
+          <cheerful><li>Look how big {PET_nameDef} is! I did that! Well, the milk did. And me!</li></cheerful>
+          <gloomy><li>Soon {PET_nameDef} won't need me. That's the point, I know.</li></gloomy>
+          <cold><li>{PET_nameDef} is approaching adult size. A satisfactory outcome.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef}'s orphan {PET_nameDef} is nearly grown.</li>
+        </chronicle>
+        <gate><kind>Custom</kind><minDays>3</minDays><timeoutDays>45</timeoutDays><timeoutPasses>true</timeoutPasses></gate>
+      </li>
+      <li>
+        <label>grown</label>
+        <journal>
+          <plain>
+            <li>{PET_nameDef} is grown. I fed {PET_objective} from a rag when {PET_pronoun} was small enough to hold in one hand. Look at {PET_objective} now.</li>
+            <li>{PET_nameDef} is a grown animal and still runs to me when I come through the gate. Some things you don't grow out of.</li>
+            <li>[child] I raised {PET_nameDef} all by myself. Well, mostly. {PET_nameDef} is grown up now and so am I, nearly.</li>
+          </plain>
+          <warm><li>{PET_nameDef} made it. We both did. I'll never forget those nights.</li></warm>
+          <blunt><li>Raised {PET_objective}. Done. Good animal.</li></blunt>
+          <cheerful><li>My orphan is all grown up! The best animal in the colony, and I'll fight anyone who says otherwise!</li></cheerful>
+          <gloomy><li>I was so sure {PET_nameDef} wouldn't make it. I've never been happier to be wrong.</li></gloomy>
+          <cold><li>{PET_nameDef} reached adulthood in good health. I'm more attached than I planned to be.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef} raised the orphaned {PET_nameDef} by hand, and {PET_nameDef} is grown.</li>
+        </chronicle>
+        <effects>
+          <li Class="ColonyCouncil.ArcEffect_AnimalBond" />
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Arc_RaisedByHand</thought></li>
+        </effects>
+      </li>
+    </stages>
+    <fizzle>
+      <plain>
+        <li>[otherdead] {PET_nameDef} didn't make it. I did everything I knew, and some things I made up. It wasn't enough.</li>
+        <li>[otherleft] {PET_nameDef} is gone. Somebody else's, now. I hope they know how {PET_pronoun} likes the milk warmed.</li>
+        <li>[timeout] {PET_nameDef} has taken up with the herd and doesn't need me as much. That's how it should be, I suppose.</li>
+      </plain>
+      <warm><li>[otherdead] I held {PET_nameDef} at the end, still warm. I'll remember that.</li></warm>
+      <blunt><li>[otherdead] The orphan died. Tried my best.</li></blunt>
+      <gloomy><li>[otherdead] I knew {PET_nameDef} was too small. I let myself hope anyway.</li></gloomy>
+      <cold><li>[otherdead] {PET_nameDef} failed to thrive. Orphans often don't. I'm unaccountably upset.</li></cold>
+    </fizzle>
+    <fizzleChronicle>
+      <li>[otherdead] {PAWN_nameDef}'s orphan {PET_nameDef} died young, for all {PAWN_nameDef}'s care.</li>
+      <li>{PAWN_nameDef}'s orphan {PET_nameDef} found its own way in the herd.</li>
+    </fizzleChronicle>
+    <eulogy>
+      <plain>
+        <li>{OTHER_nameDef} raised that animal by hand, up every night with the milk. It still waits at {OTHER_possessive} door.</li>
+      </plain>
+    </eulogy>
+  </ColonyCouncil.ArcDef>
+
+  <!-- ===================================================================================================== -->
+  <!-- A stray: a calm wild animal that hangs about the colony; scraps at the door; marked for taming; home.   -->
+  <!-- ===================================================================================================== -->
+
+  <ColonyCouncil.ArcDef>
+    <defName>Council_Arc_Stray</defName>
+    <label>the stray</label>
+    <summary>A wild animal keeps coming to the edge of the colony, and someone starts leaving scraps out. If it stays, they ask the handlers to try it, and the stray comes home. If it leaves the land, it's over.</summary>
+    <workerClass>ColonyCouncil.ArcWorker_Stray</workerClass>
+    <children>true</children>
+    <weight>0.9</weight>
+    <maxDays>30</maxDays>
+    <stages>
+      <li>
+        <label>a visitor at the edge</label>
+        <waiting>Next: a few days. Will it stay?</waiting>
+        <journal>
+          <plain>
+            <li>There's {PET_indefinite} that keeps coming to the edge of the colony at dusk. It watches us. I watch it back.</li>
+            <li>Same {PET_label} again by the woodpile, third evening running. I think it's hungry.</li>
+            <li>[child] There's an animal that comes to see us every evening! Nobody else has noticed. It's my secret.</li>
+          </plain>
+          <warm><li>It looks so thin. I wonder whose it was, or if it was ever anyone's.</li></warm>
+          <blunt><li>Stray's back. Skinny thing.</li></blunt>
+          <cheerful><li>We have a visitor! It sits by the gate like it's waiting to be invited in!</li></cheerful>
+          <gloomy><li>Another hungry thing out there in the cold. I know how it feels.</li></gloomy>
+          <cold><li>A wild animal has been loitering at the colony's edge. It shows no aggression.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef} has noticed a stray hanging about the edge of the colony.</li>
+        </chronicle>
+        <gate><kind>Time</kind><days>2</days><minDays>1.5</minDays></gate>
+      </li>
+      <li>
+        <label>scraps at the door</label>
+        <waiting>Next: a few more days of scraps.</waiting>
+        <journal>
+          <plain>
+            <li>I've started leaving scraps by the back door. They're gone by morning. Tonight I'm going to sit and watch.</li>
+            <li>It came within a few steps of me tonight before it lost its nerve. Close enough to see the burrs in its coat.</li>
+          </plain>
+          <warm><li>It took the bread from the step while I sat still in the doorway. Didn't take its eyes off me once.</li></warm>
+          <blunt><li>Feeding the stray. Don't tell the cook.</li></blunt>
+          <cheerful><li>It ate the whole bowl and looked at me like I was the best person in the world!</li></cheerful>
+          <gloomy><li>It keeps coming back. I hope I'm not just teaching it to trust something that'll let it down.</li></gloomy>
+          <cold><li>A little food each evening keeps the stray close. I'm curious how close it will come.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef} has been leaving scraps out for the stray.</li>
+        </chronicle>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>4</count></li>
+        </effects>
+        <gate><kind>Time</kind><days>3</days><minDays>2</minDays></gate>
+      </li>
+      <li>
+        <label>closer every day</label>
+        <waiting>Next: the stray, tamed.</waiting>
+        <journal>
+          <plain>
+            <li>I asked the handlers to try the stray. It knows me now. It might let them close.</li>
+            <li>It let me touch its head tonight. Just for a moment. Then it bolted, and came back.</li>
+          </plain>
+          <warm><li>It's ready to come in, I think. It just needs someone to open the door.</li></warm>
+          <blunt><li>Told the handlers to tame it. It's practically ours already.</li></blunt>
+          <cheerful><li>Today's the day! I've asked the handlers to bring it in!</li></cheerful>
+          <gloomy><li>If they scare it off now, I'll never forgive myself for asking.</li></gloomy>
+          <cold><li>The stray is habituated. I've had it marked for taming.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef} has asked the handlers to bring in the stray.</li>
+        </chronicle>
+        <effects>
+          <li Class="ColonyCouncil.ArcEffect_TameStray" />
+        </effects>
+        <gate><kind>Custom</kind><minDays>0.25</minDays><timeoutDays>12</timeoutDays></gate>
+      </li>
+      <li>
+        <label>home</label>
+        <journal>
+          <plain>
+            <li>The stray is ours. It still sleeps by the back door where the scraps used to be, as if it isn't sure.</li>
+            <li>It came for the scraps, and it stayed for us. That's how most of us got here, really.</li>
+            <li>[child] My secret animal lives here now! It isn't a secret any more. Everyone loves it.</li>
+          </plain>
+          <warm><li>Welcome home, you scruffy thing.</li></warm>
+          <blunt><li>Stray's ours. Good.</li></blunt>
+          <cheerful><li>It's ours, it's ours! I've already given it three names and it ignores all of them!</li></cheerful>
+          <gloomy><li>It found a home. I hope we're good enough for it.</li></gloomy>
+          <cold><li>The stray has joined the colony. It cost us a few scraps. A good trade.</li></cold>
+        </journal>
+        <chronicle>
+          <li>The stray {PAWN_nameDef} fed at the back door is the colony's now.</li>
+        </chronicle>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Arc_StrayHome</thought></li>
+        </effects>
+      </li>
+    </stages>
+    <fizzle>
+      <plain>
+        <li>[gone] The stray's gone. It didn't come for the scraps last night, or the night before. I'm still putting them out.</li>
+        <li>[otherdead] Found the stray this morning, out past the fields. Something got it before we could bring it in.</li>
+        <li>[timeout] The stray never would come all the way in. It still visits, now and then. Maybe that's enough for it.</li>
+      </plain>
+      <warm><li>[gone] I hope it found somewhere warm. I hope somebody else is leaving out scraps.</li></warm>
+      <blunt><li>[gone] Stray left. Its choice.</li></blunt>
+      <gloomy><li>[gone] Of course it left. Things do.</li></gloomy>
+      <cold><li>[gone] The stray has moved on. The scraps can go back to the stores.</li></cold>
+    </fizzle>
+    <fizzleChronicle>
+      <li>[gone] The stray {PAWN_nameDef} fed has gone back to the wild.</li>
+      <li>The stray never quite came in.</li>
+    </fizzleChronicle>
+  </ColonyCouncil.ArcDef>
+
+  <!-- ===================================================================================================== -->
+  <!-- A feud with an animal: the colony's dog (or goat, or goose) and a colonist at war; a truce; friends.    -->
+  <!-- ===================================================================================================== -->
+
+  <ColonyCouncil.ArcDef>
+    <defName>Council_Arc_AnimalRivalry</defName>
+    <label>a feud with an animal</label>
+    <summary>One of the colony's animals and one colonist have taken against each other: an ambush in the doorway, a stolen lunch, open war. In time, a grudging truce, and a friendship neither will admit to.</summary>
+    <workerClass>ColonyCouncil.ArcWorker_AnimalRivalry</workerClass>
+    <children>true</children>
+    <weight>0.9</weight>
+    <maxDays>40</maxDays>
+    <stages>
+      <li>
+        <label>the first ambush</label>
+        <waiting>Next: a few days of this.</waiting>
+        <journal>
+          <plain>
+            <li>{PET_nameDef} was waiting in the doorway again this morning, and walked straight across my feet. On purpose. I saw {PET_possessive} face.</li>
+            <li>[robbed] {PET_nameDef} stole my lunch. Not someone's lunch. Mine. {PET_nameDef} walked past three other plates to get it.</li>
+            <li>[child] {PET_nameDef} took my sock and won't give it back. I think we're enemies now.</li>
+          </plain>
+          <warm><li>I don't know what I did to {PET_nameDef}, but I'd like to make it right. With fewer bites.</li></warm>
+          <blunt><li>That animal has it in for me.</li></blunt>
+          <cheerful><li>{PET_nameDef} has declared war on me! I accept!</li></cheerful>
+          <gloomy><li>Even the animals don't like me.</li></gloomy>
+          <cold><li>{PET_nameDef} has singled me out for petty harassment. I'm keeping notes.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{PET_nameDef} has taken against {PAWN_nameDef}, for reasons of {PET_possessive} own.</li>
+          <li>{PAWN_nameDef} and {PET_nameDef} have fallen out.</li>
+        </chronicle>
+        <gate><kind>Time</kind><days>2</days><minDays>2</minDays></gate>
+      </li>
+      <li>
+        <label>open war</label>
+        <waiting>Next: a few more days of open war.</waiting>
+        <journal>
+          <plain>
+            <li>{PET_nameDef} slept on my bed. In mud. While I was in it.</li>
+            <li>I hid my boots on the top shelf. {PET_nameDef} knocked the shelf over. The others thought it was very funny.</li>
+          </plain>
+          <warm><li>I tried offering {PET_nameDef} a treat. It was taken, and then my foot was sat on.</li></warm>
+          <blunt><li>War. I'm winning. Probably.</li></blunt>
+          <cheerful><li>Score so far: {PET_nameDef} four, me one. I'm catching up!</li></cheerful>
+          <gloomy><li>Everyone laughs. Nobody takes my side. Not even {PET_nameDef}'s owner.</li></gloomy>
+          <cold><li>I've moved my things to where {PET_nameDef} cannot reach them. {PET_nameDef} has adapted.</li></cold>
+        </journal>
+        <chronicle>
+          <li>The feud between {PAWN_nameDef} and {PET_nameDef} is the colony's favourite entertainment.</li>
+        </chronicle>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Arc_FeudWithAnimal</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_GoodLaugh</thought><chance>0.3</chance><exceptTrait><li>Kind</li></exceptTrait></li>
+        </effects>
+        <gate><kind>Time</kind><days>3</days><minDays>2</minDays></gate>
+      </li>
+      <li>
+        <label>an uneasy truce</label>
+        <waiting>Next: some time near each other without incident.</waiting>
+        <journal>
+          <plain>
+            <li>{PET_nameDef} and I ate supper on the same step tonight, an arm's length apart. Neither of us started anything.</li>
+            <li>I gave {PET_nameDef} the crust off my bread. {PET_nameDef} accepted it with great dignity.</li>
+          </plain>
+          <warm><li>I think we're both tired of fighting, {PET_nameDef} and me.</li></warm>
+          <blunt><li>Truce with {PET_nameDef}. For now.</li></blunt>
+          <cheerful><li>Peace talks are going well! {PET_nameDef} only bit me once!</li></cheerful>
+          <gloomy><li>A truce. {PET_nameDef} is just waiting for me to let my guard down.</li></gloomy>
+          <cold><li>{PET_nameDef} and I have reached an understanding. I'll observe whether it holds.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef} and {PET_nameDef} have called a truce.</li>
+        </chronicle>
+        <gate><kind>Hold</kind><hold>Near</hold><hours>8</hours><minDays>2</minDays><timeoutDays>15</timeoutDays><timeoutPasses>true</timeoutPasses></gate>
+      </li>
+      <li>
+        <label>grudging friends</label>
+        <journal>
+          <plain>
+            <li>{PET_nameDef} fell asleep against my leg tonight. I didn't move. Don't tell anyone.</li>
+            <li>Someone shouted at {PET_nameDef} today and I told them to leave {PET_objective} alone. I don't know who was more surprised.</li>
+            <li>[child] {PET_nameDef} and me are friends now. We still fight sometimes. That's what friends do.</li>
+          </plain>
+          <warm><li>Turns out {PET_nameDef} just wanted to be noticed. I notice {PET_objective} now.</li></warm>
+          <blunt><li>{PET_nameDef}'s all right.</li></blunt>
+          <cheerful><li>Best of enemies, best of friends! {PET_nameDef} saved me a place by the fire!</li></cheerful>
+          <gloomy><li>I suppose I'll miss the war a little. Don't tell {PET_nameDef}.</li></gloomy>
+          <cold><li>{PET_nameDef} and I have concluded hostilities. I find I enjoy {PET_possessive} company.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef} and {PET_nameDef} made their peace, and now they're never apart.</li>
+        </chronicle>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Arc_GrudgingFriends</thought></li>
+        </effects>
+      </li>
+    </stages>
+    <fizzle>
+      <plain>
+        <li>[otherdead] {PET_nameDef} is dead. We never did settle it. I'd give a lot for one more stolen lunch.</li>
+        <li>[otherleft] {PET_nameDef} is gone. I won, I suppose. It doesn't feel like it.</li>
+        <li>[timeout] {PET_nameDef} and I have agreed to stay out of each other's way. Mostly.</li>
+      </plain>
+      <warm><li>[otherdead] I never told {PET_nameDef} I liked {PET_objective}. You'd think I'd have learned.</li></warm>
+      <blunt><li>[otherdead] {PET_nameDef}'s dead. Wasn't that bad, really.</li></blunt>
+      <gloomy><li>[otherdead] Even my enemy's gone now.</li></gloomy>
+    </fizzle>
+    <fizzleChronicle>
+      <li>[otherdead] {PET_nameDef} died before {PAWN_nameDef} and {PET_objective} made their peace.</li>
+      <li>{PAWN_nameDef} and {PET_nameDef} settled into a wary distance.</li>
+    </fizzleChronicle>
+  </ColonyCouncil.ArcDef>
+
+  <!-- ===================================================================================================== -->
+  <!-- PokéWorld: a trainer and their partner. Time together, its moves, a fight side by side, friends.       -->
+  <!-- ===================================================================================================== -->
+
+  <ColonyCouncil.ArcDef>
+    <defName>Council_Arc_PW_Partner</defName>
+    <label>a trainer and a partner</label>
+    <summary>A trainer and a Pokémon that isn't their friend yet: time together, learning its moves, a fight side by side, and its friendship (PokéWorld's own) growing until they're partners. Only with PokéWorld.</summary>
+    <workerClass>ColonyCouncil.ArcWorker_PokemonPartner</workerClass>
+    <children>true</children>
+    <weight>1.1</weight>
+    <maxDays>70</maxDays>
+    <stages>
+      <li>
+        <label>a ball at my belt</label>
+        <waiting>Next: hours together, {PAWN_nameDef} and {PET_nameDef}.</waiting>
+        <journal>
+          <plain>
+            <li>{PET_nameDef} is mine to train, and {PET_pronoun} doesn't think much of me yet. Fair enough. I don't know much about {PET_objective} either.</li>
+            <li>{PET_nameDef} turns away whenever I call. Every trainer starts somewhere, I'm told.</li>
+            <li>[child] {PET_nameDef} is my Pokémon now! {PET_nameDef} doesn't know that yet.</li>
+          </plain>
+          <warm><li>I sat with {PET_nameDef} all evening and didn't ask anything of {PET_objective}. Tomorrow I'll ask a little.</li></warm>
+          <blunt><li>New Pokémon. Doesn't listen. Yet.</li></blunt>
+          <cheerful><li>{PET_nameDef} and me, a team from today! {PET_nameDef} just has to agree.</li></cheerful>
+          <gloomy><li>{PET_nameDef} would rather be back in the wild. I can't say I blame {PET_objective}.</li></gloomy>
+          <cold><li>{PET_nameDef}'s friendship is low. That will change with time and good handling.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef} has a new Pokémon to train: {PET_nameDef}, who isn't sure about it.</li>
+        </chronicle>
+        <gate><kind>Hold</kind><hold>Near</hold><hours>12</hours><minDays>1</minDays><timeoutDays>20</timeoutDays><timeoutPasses>true</timeoutPasses></gate>
+      </li>
+      <li>
+        <label>learning its moves</label>
+        <waiting>Next: more handling, or some days of training.</waiting>
+        <journal>
+          <plain>
+            <li>Worked through {PET_nameDef}'s moves today, one by one. {PET_nameDef} knows more than I thought. I know less than I thought.</li>
+            <li>{PET_nameDef} did exactly what I asked, then looked back at me as if to check. That's new.</li>
+          </plain>
+          <warm><li>We're learning each other's signals. Mine are clumsier.</li></warm>
+          <blunt><li>Training. Getting there.</li></blunt>
+          <cheerful><li>{PET_nameDef} did a move on command! Mostly in the right direction!</li></cheerful>
+          <gloomy><li>Some days {PET_nameDef} still won't listen. I hope that's {PET_objective}, not me.</li></gloomy>
+          <cold><li>{PET_nameDef} responds to commands more reliably. Progress is measurable.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef} has been training hard with {PET_nameDef}.</li>
+        </chronicle>
+        <gate>
+          <kind>Practice</kind>
+          <amount>1500</amount>
+          <minDays>2</minDays>
+          <timeoutDays>20</timeoutDays>
+          <timeoutPasses>true</timeoutPasses>
+          <or>
+            <li><kind>Time</kind><days>6</days></li>
+          </or>
+        </gate>
+      </li>
+      <li>
+        <label>side by side</label>
+        <waiting>Next: a fight at home, side by side (or friendship enough without one).</waiting>
+        <journal>
+          <plain>
+            <li>We're ready, I think, {PET_nameDef} and me. Whatever comes over the wall next, we'll meet it together.</li>
+            <li>{PET_nameDef} stands between me and the gate now when strangers come. Nobody taught {PET_objective} that.</li>
+          </plain>
+          <warm><li>I hope we never need to fight. If we do, I know {PET_nameDef} will be there.</li></warm>
+          <blunt><li>Ready for a fight. Both of us.</li></blunt>
+          <cheerful><li>Let the raiders come! Actually, don't. But if they do!</li></cheerful>
+          <gloomy><li>I've trained {PET_nameDef} to fight. Now I'm afraid of the day {PET_pronoun} has to.</li></gloomy>
+          <cold><li>{PET_nameDef} is combat-ready. Only a real fight will tell us how ready.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef} and {PET_nameDef} are ready to stand together.</li>
+        </chronicle>
+        <gate>
+          <kind>Battle</kind>
+          <minDays>1</minDays>
+          <timeoutDays>30</timeoutDays>
+          <timeoutPasses>true</timeoutPasses>
+          <or>
+            <li><kind>Custom</kind></li>
+          </or>
+        </gate>
+      </li>
+      <li>
+        <label>friends</label>
+        <waiting>Next: {PET_nameDef}'s friendship, grown.</waiting>
+        <journal>
+          <plain>
+            <li>{PET_nameDef} came out of {PET_possessive} ball on {PET_possessive} own this morning, just to sit next to me.</li>
+            <li>After the fight, {PET_nameDef} wouldn't leave my side until I'd been bandaged. Then {PET_pronoun} slept against my bed.</li>
+          </plain>
+          <warm><li>Something's changed between us. You can feel it, like a door opening.</li></warm>
+          <blunt><li>{PET_nameDef} likes me now. I like {PET_objective}.</li></blunt>
+          <cheerful><li>{PET_nameDef} is happy to see me! Every time! Every single time!</li></cheerful>
+          <gloomy><li>I didn't think {PET_nameDef} would ever trust me. I'm trying not to ruin it.</li></gloomy>
+          <cold><li>{PET_nameDef}'s friendship has risen sharply. The fight seems to have settled something.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{PET_nameDef} has come round to {PAWN_nameDef} at last.</li>
+        </chronicle>
+        <gate><kind>Custom</kind><minDays>1</minDays><timeoutDays>30</timeoutDays><timeoutPasses>true</timeoutPasses></gate>
+      </li>
+      <li>
+        <label>partners</label>
+        <journal>
+          <plain>
+            <li>{PET_nameDef} and I are partners now. A trainer and a Pokémon, the way the old stories tell it.</li>
+            <li>People say {PET_nameDef} is my Pokémon. I'd say we belong to each other.</li>
+            <li>[child] {PET_nameDef} is my partner! The best partner in the whole world!</li>
+          </plain>
+          <warm><li>Everything I know about trust, I learned from {PET_nameDef}.</li></warm>
+          <blunt><li>Partners. Me and {PET_nameDef}.</li></blunt>
+          <cheerful><li>We did it! A real team! Nobody can beat us now!</li></cheerful>
+          <gloomy><li>I've found my partner. I'd better keep {PET_objective} safe.</li></gloomy>
+          <cold><li>{PET_nameDef} and I work as one. It took longer than I expected, and was worth it.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef} and {PET_nameDef} are partners: a trainer and a Pokémon who trust each other completely.</li>
+        </chronicle>
+        <effects>
+          <li Class="ColonyCouncil.ArcEffect_AnimalBond" />
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Arc_PokemonPartners</thought></li>
+        </effects>
+      </li>
+    </stages>
+    <fizzle>
+      <plain>
+        <li>[otherdead] {PET_nameDef} fainted and never got up. We were just starting to understand each other.</li>
+        <li>[otherleft] {PET_nameDef} has another trainer now. I hope {PET_pronoun} listens to them better than to me.</li>
+        <li>[timeout] {PET_nameDef} and I are getting along. Not partners, maybe. Not yet.</li>
+        <li>[gone] {PET_nameDef} is just an animal now, the way the world goes. I still remember how {PET_pronoun} used to look at me.</li>
+      </plain>
+      <warm><li>[otherdead] I'll keep {PET_nameDef}'s ball. I can't bring myself to use it for another.</li></warm>
+      <blunt><li>[otherdead] Lost {PET_nameDef}. Bad day.</li></blunt>
+      <gloomy><li>[otherdead] I trained {PET_nameDef} to fight, and {PET_pronoun} died fighting. I can't stop thinking about that.</li></gloomy>
+    </fizzle>
+    <fizzleChronicle>
+      <li>[otherdead] {PAWN_nameDef}'s {PET_nameDef} died before the two of them became partners.</li>
+      <li>{PAWN_nameDef} and {PET_nameDef} never quite became partners.</li>
+    </fizzleChronicle>
+  </ColonyCouncil.ArcDef>
+
+</Defs>

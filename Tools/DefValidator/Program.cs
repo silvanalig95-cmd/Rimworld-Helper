@@ -396,6 +396,9 @@ var wishPh = new HashSet<string> { "SUBJECT", "THING", "THINGBARE", "TARGET", "W
 wishPh.UnionWith(new[] { "IDEO", "SITUATION" });
 // Beliefs: the feast someone sat through with nothing fit to eat (Beliefs.NoteNothingFit).
 wishPh.Add("GATHERING");
+// Animals and PokéWorld (Animals/, Integrations/PokeWorldLife.cs): an animal's kind, a species, and an evolution's
+// species before and after, and the level a Pokémon reached.
+wishPh.UnionWith(new[] { "KIND", "SPECIES", "OLD", "NEW", "LEVEL" });
 var pawnPrefixes = new HashSet<string> { "PAWN", "FOR", "OTHER", "ENVIED", "ABOUT", "A", "B", "PET", "LEAKER", "TELLER", "X", "SLAYER", "BABY", "THIRD" };
 // The colonist a people remembers by name (World/KinMemory.cs: events, world events, camps).
 pawnPrefixes.Add("FRIEND");

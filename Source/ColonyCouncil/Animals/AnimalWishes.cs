@@ -6,8 +6,8 @@ using Verse;
 
 namespace ColonyCouncil
 {
-    // The animals' wishes (Defs/WishDefs/Rimfolk_Wishes_Animals.xml): an animal of one's own, a barn for the herd, a
-    // particular kind one has always loved, and something to ride (Giddy-Up 2) or a pack animal for the road.
+    // The animals' wishes (Defs/WishDefs/Rimfolk_Wishes_Animals.xml): an animal of one's own, a barn for the herd, and
+    // something to ride (Giddy-Up 2).
 
     /// <summary>
     /// A grown colonist who loves animals (a passion, an animal lover from a trait mod, a kind soul, or a lonely one) and
@@ -155,114 +155,27 @@ namespace ColonyCouncil
     }
 
     /// <summary>
-    /// A colonist who loves animals has always loved one kind in particular (picked once for them from the wild animals
-    /// of this land, with PokéWorld's spawn rules), and one of them is out on the map now. The colony has none: they want
-    /// one, tamed (or caught) or bought. Fulfilled when the colony has one.
-    /// </summary>
-    public class WishWorker_LovedKind : WishWorker
-    {
-        /// <summary>Their kind: the same for them every time they're asked, among the calm kinds of this land.</summary>
-        public static PawnKindDef LovedKind(Pawn p, Map map)
-        {
-            if (p == null || map?.Biome == null) return null;
-            var kinds = PokeWorldLink.WildKinds(map.Biome.AllWildAnimals.Where(k => k?.RaceProps != null && !k.RaceProps.predator && k.RaceProps.trainability != null
-                                                                                    && k.RaceProps.baseBodySize <= 2.5f))
-                ?.OrderBy(k => k.defName).ToList();
-            if (kinds == null || kinds.Count == 0) return null;
-            Rand.PushState(p.thingIDNumber ^ 0x3d7a1);
-            try
-            {
-                return kinds.RandomElement();
-            }
-            finally
-            {
-                Rand.PopState();
-            }
-        }
-
-        private static bool Has(Map map, ThingDef race) =>
-            map != null && race != null && (map.mapPawns.SpawnedColonyAnimals.Any(a => a.def == race) || PokeWorldLink.OwnedSpecies(map).Contains(race));
-
-        public override IEnumerable<WishCandidate> CandidatesFor(Pawn pawn)
-        {
-            var map = HomeMap(pawn);
-            var animals = pawn.skills?.GetSkill(SkillDefOf.Animals);
-            if (map == null || animals == null || animals.TotallyDisabled) yield break;
-            if (!People.Passionate(animals) && !PeopleTags.Has(pawn, "animallover") && !pawn.DevelopmentalStage.Child()) yield break;
-            var kind = LovedKind(pawn, map);
-            if (kind == null || Has(map, kind.race)) yield break;
-            var wild = map.mapPawns.AllPawnsSpawned.FirstOrDefault(a => a.def == kind.race && a.Faction == null && !a.Dead && !map.fogGrid.IsFogged(a.Position));
-            if (wild == null) yield break;
-            bool pokemon = PokeWorldLink.IsPokemon(kind.race);
-            if (pokemon ? !PokeWorldLink.CanCatch(map) : !TameUtility.CanTame(wild)) yield break;
-            var c = Candidate(People.Burning(animals) ? 1.2f : 0.7f, "CC_Reason_LovedKind".Translate(pawn.Named("PAWN"), kind.GetLabelPlural().Named("ANIMALS")));
-            c.subjectLabel = kind.label;
-            c.subjectKey = kind.race.defName;
-            c.thingDef = kind.race;
-            yield return c;
-        }
-
-        public override bool IsFulfilled(Wish wish) => Has(wish.Beneficiary?.MapHeld, wish.thingDef);
-
-        public override bool StillValid(Wish wish) => wish.thingDef != null;
-
-        public override InspirationDef InspirationFor(Wish wish) => PokeWorldLink.IsPokemon(wish.thingDef) ? null : InspirationDefOf.Inspired_Taming;
-
-        /// <summary>Out of patience: they mark the nearest one of their kind for taming (a Pokémon needs a ball, so not that).</summary>
-        public override string TrySelfHelp(Wish wish)
-        {
-            var p = wish.Beneficiary;
-            var map = p?.MapHeld;
-            if (map == null || wish.thingDef == null || PokeWorldLink.IsPokemon(wish.thingDef)) return null;
-            var a = map.mapPawns.AllPawnsSpawned.Where(x => x.def == wish.thingDef && x.Faction == null && !x.Dead && !x.Downed && map.designationManager.DesignationOn(x) == null
-                                                            && TameUtility.CanTame(x))
-                .OrderBy(x => x.Position.DistanceTo(p.Position)).FirstOrDefault();
-            if (a == null) return null;
-            map.designationManager.AddDesignation(new Designation(a, DesignationDefOf.Tame));
-            return "CC_SelfHelp_Tame";
-        }
-
-        public override void OnGranted(Wish wish)
-        {
-            var map = wish.Beneficiary?.MapHeld;
-            wish.other = map?.mapPawns.SpawnedColonyAnimals.Where(a => a.def == wish.thingDef).OrderByDescending(a => a.thingIDNumber).FirstOrDefault();
-        }
-
-        public override KeptCheck Holds(Wish wish) => PetKept(wish.other);
-
-        public override IEnumerable<Thing> KeptThings(Wish wish)
-        {
-            yield break;
-        }
-
-        public override string KeptKind(Wish wish) => "pet";
-    }
-
-    /// <summary>
-    /// Something to ride (with Giddy-Up 2) or a pack animal for the road (without it): someone who hunts, travels, or
-    /// chafes at staying in one place wants an animal of their own they can ride (or load). One of the colony's without
-    /// a master is made theirs when promised; otherwise one is tamed for them. Fulfilled when one is theirs.
+    /// Giddy-Up 2: something to ride. Someone who hunts, travels, or chafes at staying in one place wants an animal of
+    /// their own they can ride. One of the colony's without a master is made theirs when promised; otherwise one is tamed
+    /// for them. Fulfilled when one is theirs. Never without Giddy-Up, where riding isn't a thing.
     /// </summary>
     public class WishWorker_Mount : WishWorker
     {
-        /// <summary>With Giddy-Up: something to ride. Without it (the other def): a pack animal.</summary>
-        protected virtual bool Riding => true;
+        private static bool Fits(Pawn a) => AnimalFacts.Rideable(a);
 
-        private bool Fits(Pawn a) => Riding ? AnimalFacts.Rideable(a) : AnimalFacts.PackAnimal(a);
+        private static bool HasOne(Pawn p) => AnimalFacts.AnimalsOf(p).Any(Fits);
 
-        private bool HasOne(Pawn p) => AnimalFacts.AnimalsOf(p).Any(Fits);
-
-        private Pawn Unclaimed(Map map) =>
+        private static Pawn Unclaimed(Map map) =>
             map?.mapPawns.SpawnedColonyAnimals.Where(a => AnimalFacts.Ours(a) && Fits(a) && a.playerSettings?.Master == null
                                                         && (a.relations == null || !a.relations.DirectRelations.Any(r => r.def == PawnRelationDefOf.Bond)))
                 .OrderByDescending(a => a.GetStatValue(StatDefOf.MoveSpeed)).FirstOrDefault();
 
-        private Pawn WildOne(Map map) =>
-            map?.mapPawns.AllPawnsSpawned.FirstOrDefault(a => AnimalFacts.GentleWild(a, map) && (Riding ? AnimalFacts.RideableKind(a.def) : a.RaceProps.packAnimal));
+        private static Pawn WildOne(Map map) =>
+            map?.mapPawns.AllPawnsSpawned.FirstOrDefault(a => AnimalFacts.GentleWild(a, map) && AnimalFacts.RideableKind(a.def));
 
         public override IEnumerable<WishCandidate> CandidatesFor(Pawn pawn)
         {
-            if (Riding != AnimalFacts.GiddyUp) yield break;
+            if (!AnimalFacts.GiddyUp) yield break;
             var map = HomeMap(pawn);
             if (map == null || pawn.DevelopmentalStage.Juvenile() || pawn.WorkTypeIsDisabled(WorkTypeDefOf.Handling) || HasOne(pawn)) yield break;
             bool hunter = pawn.workSettings != null && pawn.workSettings.WorkIsActive(WorkTypeDefOf.Hunting);
@@ -274,16 +187,18 @@ namespace ColonyCouncil
             var free = Unclaimed(map);
             var example = free ?? WildOne(map);
             if (example == null) yield break;
-            var c = Candidate(free != null ? 1f : 0.6f, (Riding ? "CC_Reason_Mount" : "CC_Reason_PackAnimal").Translate(pawn.Named("PAWN"), AnimalFacts.KindLabel(example).Named("KIND")));
-            c.subjectLabel = AnimalFacts.KindLabel(example);
-            c.subjectKey = Riding ? "mount" : "pack";
+            // {SUBJECT} is the kind with its article ("a horse", "an elephant"): the lines never put one before it.
+            string kind = Find.ActiveLanguageWorker.WithIndefiniteArticle(AnimalFacts.KindLabel(example));
+            var c = Candidate(free != null ? 1f : 0.6f, "CC_Reason_Mount".Translate(pawn.Named("PAWN"), kind.Named("KIND")));
+            c.subjectLabel = kind;
+            c.subjectKey = "mount";
             if (free != null) c.other = free;
             yield return c;
         }
 
         public override bool IsFulfilled(Wish wish) => HasOne(wish.Beneficiary);
 
-        public override bool StillValid(Wish wish) => Riding == AnimalFacts.GiddyUp;
+        public override bool StillValid(Wish wish) => AnimalFacts.GiddyUp;
 
         public override string OnPromised(Wish wish)
         {
@@ -326,11 +241,5 @@ namespace ColonyCouncil
         }
 
         public override string KeptKind(Wish wish) => "pet";
-    }
-
-    /// <summary>Without Giddy-Up: a pack animal of their own, for the road.</summary>
-    public class WishWorker_PackAnimal : WishWorker_Mount
-    {
-        protected override bool Riding => false;
     }
 }

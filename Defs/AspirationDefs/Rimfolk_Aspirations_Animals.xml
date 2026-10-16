@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Life goals with the colony's animals (Source/ColonyCouncil/Animals/AnimalGoals.cs), and with PokéWorld's Pokémon
+    (Integrations/PokeWorldLife.cs: never without the mod). {GOAL} in the lines is the goal as written below.
+  -->
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Council_Asp_Champion</defName>
+    <label>a champion at my side</label>
+    <workerClass>ColonyCouncil.AspirationWorker_Champion</workerClass>
+    <amount>3</amount>
+    <weight>0.8</weight>
+    <goal>see an animal of their own fight at their side three times</goal>
+    <forbiddenBy><li>NoPets</li><li>NoViolence</li></forbiddenBy>
+    <sparks><li>battle</li></sparks>
+    <chosen>
+      <plain>
+        <li>[inherited] {NAME} always said an animal that stands with you in a fight is worth ten that don't. I'll {GOAL}, for {NAME}.</li>
+        <li>When the raiders come, I want something with teeth beside me that's there because it wants to be.</li>
+        <li>[sparked] I saw someone's animal go for a raider's throat yesterday to save its person. I want that kind of loyalty.</li>
+      </plain>
+      <warm><li>Not a weapon. A friend who'll stand with me when it's bad. I'll earn that.</li></warm>
+      <blunt><li>I want an animal that bites the right people.</li></blunt>
+      <cheerful><li>Me and a great big animal, side by side, in every story they tell about the raids!</li></cheerful>
+      <gloomy><li>Everyone dies alone out there. Unless something's got your back. I'd like that something.</li></gloomy>
+      <cold><li>A trained animal at one's side changes the arithmetic of a fight. I intend to have one.</li></cold>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>Three fights, side by side. It knows where I'll be before I move. I've stopped being afraid of the raids.</li>
+        <li>Three times now it's stood with me when it could have run. I owe it more than I can say.</li>
+      </plain>
+      <warm><li>It's not a weapon. It's the bravest friend I have.</li></warm>
+      <blunt><li>Three fights. It held. So did I.</li></blunt>
+      <cheerful><li>We're a team! The raiders should be afraid of us!</li></cheerful>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Council_Asp_GreatBeast</defName>
+    <label>a great beast tamed</label>
+    <workerClass>ColonyCouncil.AspirationWorker_GreatBeast</workerClass>
+    <weight>0.6</weight>
+    <goal>tame one of the great beasts of this land</goal>
+    <who><passion>Animals</passion></who>
+    <forbiddenBy><li>NoPets</li></forbiddenBy>
+    <chosen>
+      <plain>
+        <li>[inherited] {NAME} used to watch the big ones from the ridge and say "one day". I'll {GOAL} for {NAME}.</li>
+        <li>There's a kind of animal out there so big the ground shakes. I want one that knows my name.</li>
+        <li>Anyone can tame a goat. I want to stand next to something the size of a house and have it lean on me.</li>
+      </plain>
+      <warm><li>Something that huge and that wild, choosing to trust me. Imagine it.</li></warm>
+      <blunt><li>The biggest one out there. Tamed. By me.</li></blunt>
+      <cheerful><li>The biggest animal anyone's ever seen, and it'll eat out of my hand!</li></cheerful>
+      <cold><li>The great beasts can be won over with enough patience. I have the patience.</li></cold>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>It lowers its great head when I come into the pen, and waits for me to scratch behind its ear. I can't tell you how that feels.</li>
+        <li>Children come from all over the colony to watch it eat from my hand.</li>
+      </plain>
+      <warm><li>Something that size could crush me without noticing, and it's careful where it puts its feet when I'm near.</li></warm>
+      <blunt><li>Tamed it. Biggest thing on the land, and it answers to me.</li></blunt>
+      <cheerful><li>I rode on its back! Well, I sat on it. It walked. That counts!</li></cheerful>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Council_Asp_Herd</defName>
+    <label>a herd worth the name</label>
+    <workerClass>ColonyCouncil.AspirationWorker_Herd</workerClass>
+    <amount>8</amount>
+    <weight>0.8</weight>
+    <goal>see the colony's herd grow to {COUNT} head</goal>
+    <forbiddenBy><li>NoRanching</li></forbiddenBy>
+    <chosen>
+      <plain>
+        <li>[inherited] {NAME} kept the herd going through the worst winters. I'll {GOAL}, and keep it going after.</li>
+        <li>A few animals in a pen isn't a herd. I want to see them come down off the hill in a line, too many to count at a glance.</li>
+        <li>[spring] The young ones are coming. If we keep them all, in two years we'll have a real herd.</li>
+      </plain>
+      <warm><li>A big herd means milk for the children and wool for the winter. I'd like to give the colony that.</li></warm>
+      <blunt><li>More animals. A proper herd. That's the goal.</li></blunt>
+      <cheerful><li>A whole herd! I'll know every one of them by name!</li></cheerful>
+      <cold><li>A herd of sufficient size feeds itself and the colony. I'll get us there.</li></cold>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>I stood at the gate this evening and counted them in. It took a while. That's the whole point.</li>
+        <li>A herd worth the name, and every one of them healthy. My grandmother would have been proud.</li>
+      </plain>
+      <warm><li>Milk enough for everyone, and the pens full of noise. This is what I wanted.</li></warm>
+      <blunt><li>Real herd now. Done.</li></blunt>
+      <cheerful><li>So many! I've run out of names and had to start on the colonists' middle names!</li></cheerful>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Council_Asp_TrainFully</defName>
+    <label>an animal that knows everything</label>
+    <workerClass>ColonyCouncil.AspirationWorker_TrainFully</workerClass>
+    <weight>0.8</weight>
+    <goal>teach an animal of their own everything it can learn</goal>
+    <forbiddenBy><li>NoPets</li></forbiddenBy>
+    <chosen>
+      <plain>
+        <li>[inherited] {NAME} could make an animal do anything with a look. I'll {GOAL}, the way {NAME} would have.</li>
+        <li>Half-trained animals are worse than wild ones. I want one that knows every command there is.</li>
+        <li>[child] I'm going to teach my animal everything. Even the hard ones. Even the ones the grown-ups can't.</li>
+      </plain>
+      <warm><li>Training isn't bossing it about. It's learning to talk to each other. I'd like to learn all of it.</li></warm>
+      <blunt><li>Every command. No half measures.</li></blunt>
+      <cheerful><li>Fetch, guard, rescue, haul! It'll be able to do everything!</li></cheerful>
+      <cold><li>A fully trained animal is a reliable tool. I'll produce one.</li></cold>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>It knows everything I can teach it. Now it's teaching me things: when it wants to go out, when something's wrong.</li>
+        <li>I gave the last command today and it did it before I'd finished saying it.</li>
+      </plain>
+      <warm><li>We understand each other completely now. It's a strange, quiet feeling.</li></warm>
+      <blunt><li>Fully trained. Best in the colony.</li></blunt>
+      <cheerful><li>Everything! It can do everything! Ask it something! Go on!</li></cheerful>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+  <!-- ===================== PokéWorld (never without the mod) ===================== -->
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Council_Asp_PW_Pokedex</defName>
+    <label>catch them all</label>
+    <workerClass>ColonyCouncil.AspirationWorker_Pokedex</workerClass>
+    <amount>10</amount>
+    <weight>1</weight>
+    <goal>add ten species to the colony's Pokédex</goal>
+    <forbiddenBy><li>NoPets</li></forbiddenBy>
+    <chosen>
+      <plain>
+        <li>[inherited] {NAME} kept the Pokédex like a diary. I'll {GOAL} and write {NAME}'s name in the margin.</li>
+        <li>Every empty line in the Pokédex is something out there nobody here has seen up close. I want to fill ten of them.</li>
+        <li>[child] I'm going to catch them all. Well, ten. Then all.</li>
+      </plain>
+      <warm><li>Every species is different, the way it moves, what it eats, how it looks at you. I want to know ten more.</li></warm>
+      <blunt><li>Ten more in the Pokédex. Then ten more after that.</li></blunt>
+      <cheerful><li>Ten new kinds! I've already started a list of the ones I want most!</li></cheerful>
+      <gloomy><li>There are so many we'll never see. I'd like to see ten of them before I'm done.</li></gloomy>
+      <cold><li>The Pokédex is incomplete. I intend to correct that, ten species at a time.</li></cold>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>Ten new species in the Pokédex, and I was there for every one. I've worn the corners off the pages.</li>
+        <li>Ten. I remember the throw that caught each of them.</li>
+      </plain>
+      <warm><li>Ten more kinds of creature that we know now, and that know us.</li></warm>
+      <blunt><li>Ten. Next ten starts tomorrow.</li></blunt>
+      <cheerful><li>Ten! Ten! Who wants to see the Pokédex?</li></cheerful>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Council_Asp_PW_Level</defName>
+    <label>a Pokémon at its best</label>
+    <workerClass>ColonyCouncil.AspirationWorker_PokemonLevel</workerClass>
+    <amount>50</amount>
+    <weight>0.9</weight>
+    <goal>raise a Pokémon of their own to level {COUNT}</goal>
+    <forbiddenBy><li>NoPets</li></forbiddenBy>
+    <sparks><li>battle</li></sparks>
+    <chosen>
+      <plain>
+        <li>[inherited] {NAME}'s Pokémon still looks for {NAME} at the gate. I'll {GOAL}, so {NAME}'s work wasn't wasted.</li>
+        <li>Mine's still learning. I want to see it at its full strength, every move it can learn.</li>
+        <li>[sparked] It took a hit for me in that fight. I'm going to make sure next time it hits back harder.</li>
+      </plain>
+      <warm><li>It tries so hard. I want to help it become everything it could be.</li></warm>
+      <blunt><li>Level {COUNT}. Then nobody touches us.</li></blunt>
+      <cheerful><li>Level {COUNT}! It'll be the strongest Pokémon in the whole colony!</li></cheerful>
+      <cold><li>A Pokémon at level {COUNT} is a different animal. I'll raise one.</li></cold>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>Level {COUNT}. It moves differently now, like it knows it doesn't have to hurry.</li>
+        <li>All those fights and all that training, and here it is. I'm so proud of it I could burst.</li>
+      </plain>
+      <warm><li>We did it together. Every level of it.</li></warm>
+      <blunt><li>Level {COUNT}. Strongest here.</li></blunt>
+      <cheerful><li>Level {COUNT}! Did you see? Did everyone see?</li></cheerful>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+</Defs>

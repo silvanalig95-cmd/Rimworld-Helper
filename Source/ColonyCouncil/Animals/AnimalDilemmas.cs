@@ -8,7 +8,7 @@ namespace ColonyCouncil
 {
     // The animals' dilemmas and customs (Defs/DilemmaDefs/Rimfolk_Dilemmas_Animals.xml): the herd in a famine, a wild
     // animal in the crops, a sick animal and the medicine it would take, a predator stalking the pens, a bond the faith
-    // frowns on, and the herd's year (the lambing watch, the shearing, bringing the herd home). Their answers play out
+    // frowns on, and the herd's year (the lambing watch and the shearing). Their answers play out
     // on the map: the handlers slaughter what the council culls, the hunters go out, a watch is kept at the pens.
 
     // ===================== Who and what =====================
@@ -303,6 +303,33 @@ namespace ColonyCouncil
             catch (Exception e)
             {
                 CouncilLog.ErrorOnce("crops eaten", e);
+            }
+        }
+    }
+
+    /// <summary>
+    /// The dilemma's animal ({PET}) goes to someone else: the herdmaster, else whoever is best with animals (not A or B).
+    /// Its bond to A, if any, stays (the game's own), but it answers to its new master.
+    /// </summary>
+    public class DilemmaEffect_PassAnimal : DilemmaEffect
+    {
+        public override void Apply(DilemmaContext ctx)
+        {
+            var a = ctx?.pet;
+            if (!AnimalFacts.Ours(a) || a.playerSettings == null || ctx.map == null) return;
+            try
+            {
+                var hm = AnimalFacts.Herdmaster;
+                var to = hm != null && hm != ctx.a && hm != ctx.b && hm.Spawned && hm.Map == ctx.map ? hm
+                    : ctx.Colonists.Where(p => p != ctx.a && p != ctx.b && !p.WorkTypeIsDisabled(WorkTypeDefOf.Handling) && !p.DevelopmentalStage.Juvenile())
+                        .OrderByDescending(p => p.skills?.GetSkill(SkillDefOf.Animals)?.Level ?? 0).FirstOrDefault();
+                if (to == null) return;
+                a.playerSettings.Master = to;
+                Messages.Message("CC_Dlm_AnimalPassed".Translate(a.Named("PET"), to.LabelShort.Named("NEW")).Resolve(), new LookTargets(a), MessageTypeDefOf.NeutralEvent, false);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("an animal passed on", e);
             }
         }
     }
