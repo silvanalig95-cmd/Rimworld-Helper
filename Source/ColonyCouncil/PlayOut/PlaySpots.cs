@@ -228,7 +228,8 @@ namespace ColonyCouncil
             float bestDist = float.MaxValue;
             foreach (var t in map.listerBuildings.allBuildingsColonist)
             {
-                if (t == null || !t.Spawned) continue;
+                // A campfire still being built is a frame, not a fire.
+                if (t == null || !t.Spawned || t is Frame) continue;
                 string n = t.def.defName;
                 if (n.IndexOf("Campfire", System.StringComparison.OrdinalIgnoreCase) < 0 && n.IndexOf("Bonfire", System.StringComparison.OrdinalIgnoreCase) < 0
                     && n.IndexOf("FirePit", System.StringComparison.OrdinalIgnoreCase) < 0) continue;

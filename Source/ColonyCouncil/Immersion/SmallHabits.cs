@@ -196,7 +196,7 @@ namespace ColonyCouncil
             if (big <= 0 || now - big > GenDate.TicksPerDay * 3 / 5 || now - big < GenDate.TicksPerHour) return null;
             if (p.mindState == null || p.mindState.lastAttackTargetTick < big) return null;
             var fire = PlaySpots.ColonyFire(map, p);
-            if (fire == null || !fire.Position.InHorDistOf(p.Position, 80f)) return null;
+            if (fire == null || fire.IsForbidden(p) || !fire.Position.InHorDistOf(p.Position, 80f)) return null;
             return fire;
         }
 
@@ -217,6 +217,23 @@ namespace ColonyCouncil
         private static bool Left(Pawn o, Pawn p) =>
             o != null && !o.Dead && !o.Destroyed && o.RaceProps != null && o.RaceProps.Humanlike && !o.IsColonist && o.Faction != Faction.OfPlayer
             && !o.IsPrisonerOfColony && !o.IsSlaveOfColony && !(o.Spawned && o.Map == p.Map);
+
+        /// <summary>
+        /// A cell by the grave or the fire for this colonist to stand on: free, and nobody else standing there or on their
+        /// way to it, so those who come together stand side by side rather than on one spot. Invalid when there's none.
+        /// </summary>
+        public static IntVec3 SpotNear(IntVec3 c, Map map, Pawn p)
+        {
+            var dest = map.pawnDestinationReservationManager;
+            foreach (var x in GenRadial.RadialCellsAround(c, 3.9f, true))
+            {
+                if (!x.InBounds(map) || x.GetEdifice(map) != null || !dest.CanReserve(x, p)) continue;
+                var there = x.GetFirstPawn(map);
+                if (there != null && there != p) continue;
+                if (PlaySpots.Ok(x, map, p)) return x;
+            }
+            return IntVec3.Invalid;
+        }
 
         /// <summary>Someone nearby with time to listen: at their leisure or idle, awake and able to talk; one who knew the friend first.</summary>
         public static Pawn ListenerFor(Pawn p, Pawn friend)
@@ -326,7 +343,7 @@ namespace ColonyCouncil
         {
             if (SmallHabits.GriefFor(p, out var grave) == null || grave == null) return null;
             if (!grave.Position.Roofed(p.Map) && !JoyUtility.EnjoyableOutsideNow(p)) return null;
-            var cell = PlaySpots.FreeCellNear(grave.Position, p.Map, p);
+            var cell = SmallHabits.SpotNear(grave.Position, p.Map, p);
             return cell.IsValid ? Make(cell, grave, new IntRange(1500, 2400)) : null;
         }
     }
@@ -362,7 +379,7 @@ namespace ColonyCouncil
         {
             var fire = SmallHabits.FireAfterFight(p);
             if (fire == null || !p.CanReach(fire, PathEndMode.Touch, Danger.None)) return null;
-            var cell = PlaySpots.FreeCellNear(fire.Position, p.Map, p);
+            var cell = SmallHabits.SpotNear(fire.Position, p.Map, p);
             return cell.IsValid ? Make(cell, fire, new IntRange(1000, 1800)) : null;
         }
     }
@@ -438,7 +455,13 @@ namespace ColonyCouncil
 
         private Pawn Listener => job.targetA.Thing as Pawn;
 
-        public override bool TryMakePreToilReservations(bool errorOnFailed) => true;
+        public override bool TryMakePreToilReservations(bool errorOnFailed)
+        {
+            // The spot by the grave or the fire is theirs while they stay, so whoever comes next stands beside them.
+            if (!job.targetA.HasThing && job.targetA.IsValid && pawn.Map != null)
+                pawn.Map.pawnDestinationReservationManager.Reserve(pawn, job, job.targetA.Cell);
+            return true;
+        }
 
         public override void Notify_Starting()
         {
