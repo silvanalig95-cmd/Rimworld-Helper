@@ -28,8 +28,11 @@ namespace ColonyCouncil
         {
             if (!ColonyCouncilMod.Settings.offices || offices.NullOrEmpty()) return;
             var seated = new List<string>();
+            int grown = ctx.Adults.Count;
             foreach (var office in offices.Where(o => o != null && o.Available))
             {
+                // A seat for a bigger colony waits for one (but the eldest's place at the fire is the custom's, not the vote's).
+                if (how != "eldest" && office.minColonists > grown) continue;
                 var able = ctx.Adults.Where(p => p.Spawned && office.CanHold(p) && ctx.comp.offices.OfficeOf(p) == null);
                 var pick = how == "eldest"
                     ? able.OrderByDescending(p => p.ageTracker.AgeBiologicalYearsFloat).FirstOrDefault()
