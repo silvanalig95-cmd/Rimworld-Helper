@@ -547,7 +547,9 @@ A vendetta ends in one of several ways:</text>
           <li>checking the gate every night, after a fight</li>
           <li>always cold, after a night spent freezing; watching the stars, after a night slept outside</li>
         </points>
-        <after>Most fade after a season or two. They're listed in the trust tooltip.</after>
+        <after>Most fade after a season or two. They're listed in the trust tooltip.
+
+A lucky thing says so: look at it on the map, open its info card or hover it in the gear tab, and it reads "Macy's lucky charm". It remembers, too. When the quirk fades or its owner dies, it becomes "Once Hector's lucky charm", for as long as the thing itself lasts, and a charm that has passed through several hands names them all.</after>
       </li>
       <li>
         <heading>Habits</heading>
@@ -866,6 +868,7 @@ None of this changes how the game decides on mental breaks. Vanilla mood stays t
           <li>A dark home (under a roof, not the night sky), hunger, very low mood | up to 2, 4 and 6 a day</li>
           <li>Hard council decisions | decrees they resent (1 to 3 a day) and dilemma outcomes that hurt (4 a day at most)</li>
           <li>Fear, grief, worry and despair | up to 2 or 3 a day while they last</li>
+          <li>A need of the heart badly lacking (below 25) for about three days | 1 to 2 a day for each such need (3 a day at most)</li>
         </table>
         <after>Everything together adds at most about 25 a day. Iron-willed colonists take 40% less and steadfast ones 20% less; nervous ones take 25% more and volatile ones 40% more. Psychopaths take nothing from deaths, the bloodthirsty little from fighting, masochists nothing from pain. The strength setting makes all of it build from 50% to 150% as fast.</after>
       </li>
@@ -933,11 +936,24 @@ To head it off, use days of rest: a decree that slows everyone's work by 10% for
           <li>Safety | no danger, food, medicine, defenses, their health | defenses, armor, an infirmary; goals of a fighter</li>
           <li>Freedom | time outdoors, free time, varied work, travel, few restrictions | time outside, travel, a hunt; goals of discovery</li>
         </table>
-        <after>Each runs from 0 to 100 and is worked out every hour; none gives mood. The one a colonist lacks most (below 45) makes what answers it up to 35% likelier, and when all four are at 60 or more, strain drains 20% faster.</after>
+        <after>Each runs from 0 to 100 and is worked out every hour from what their life has now; none gives mood. What each one does is in the next section.</after>
+      </li>
+      <li>
+        <heading>What the heart's needs do</heading>
+        <text>The heart's needs never add or take mood. They change what a colonist wants, what they feel and, if a lack goes on for days, how worn down they get. Hover any of them (the inspector line, the Mood tab, RimHUD, the council's tables) to see the value, what raises it and holds it down right now, what follows from it and what would help.</text>
+        <table>
+          <li>Value | What it means | What follows</li>
+          <li>60 or more | Well met | With all four here, strain drains 20% faster</li>
+          <li>45 to 59 | Fair | Nothing yet</li>
+          <li>Below 45 | Missed | The one they lack most makes the wishes that answer it up to 35% likelier and life goals up to half again as likely</li>
+          <li>Below 35 | Low | It deepens its feeling: little belonging makes them lonelier, little freedom more restless, little safety more uneasy, little purpose more frustrated (by up to 3, about half of what makes a feeling felt)</li>
+          <li>Below 25 | Badly lacking | After about three days, it adds 1 to 2 strain a day (3 a day at most for all of them) until it rises again</li>
+        </table>
+        <after>The three days are counted by the hour: an hour below 25 adds one, a better hour takes two away, so one good evening in a lonely week only pauses it, and a few good days undo it. A slave's freedom never adds strain this way; that is what being a slave is, and the game weighs it already. Purpose never falls below 25 (a life always has some), so it nudges and colors feelings but never wears. Most often it's belonging that runs that low, for a newcomer with no friends yet or someone left out, and freedom, for someone kept indoors with no free time.</after>
       </li>
       <li>
         <heading>Where to see it</heading>
-        <text>The Mood tab has a Heart section: the strain meter with its band, what built it lately, what would help, every feeling and the four needs. The council's Moods page lists who is worn down. A short line in the inspector reads like "Strain: worn down · restless, proud", and RimHUD can show strain, feelings and needs. Hover the strain mood in the Needs tab to see what built it up.
+        <text>The Mood tab has a Heart section: the strain meter with its band, what built it lately, what would help, every feeling and the four needs (hover each for what it means). The council's Moods page lists who is worn down. A short line in the inspector reads like "Strain: worn down · restless, proud · lacks belonging" (the need shows while one is missed); hover it for the whole story. RimHUD can show strain, feelings and needs. Hover the strain mood in the Needs tab to see what built it up.
 
 Settings, on the Heart &amp; health page: feelings and strain on or off, the day off, the inspector line, and how quickly strain builds.</text>
       </li>

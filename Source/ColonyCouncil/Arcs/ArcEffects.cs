@@ -70,7 +70,7 @@ namespace ColonyCouncil
             var comp = CouncilGameComponent.Instance;
             if (comp == null || quirks.NullOrEmpty()) return;
             foreach (var p in Targets(ctx).ToList())
-                comp.quirks.quirks.RemoveAll(q => q.pawn == p && quirks.Contains(q.def));
+                comp.quirks.Remove(q => q.pawn == p && quirks.Contains(q.def));
         }
     }
 

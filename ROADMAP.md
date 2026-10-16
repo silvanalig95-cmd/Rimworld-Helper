@@ -252,7 +252,7 @@ the content itself, not only to systems, alongside whatever else it does. Where 
 | Dilemmas | 132 | more for children, elders and the camps; dilemmas for each new system as it lands |
 | Encounters | 172 (5 new for what a stranger's people remember, 8 for the land's shape, 3 for Seasonal Weather's skies) | more lands (lakes, rivers), more mods' creatures, peoples and biomes, rarer night and weather moments |
 | Decrees | 19 | decrees tied to world situations, faith and mods (tithes, curfews, alms) |
-| Quirks | 32 (13 now touch others, through 12 social events) | quirks in moments and dilemmas, more from events and dreams |
+| Quirks | 32 (13 now touch others, through 12 social events; a lucky thing says whose it is, and whose it was) | quirks in moments and dilemmas, more from events and dreams |
 | Personal stories | 17 (65 stages; 1 for A RimWorld of Magic's classes) | stories from camps, offices and world events, more for children and elders, stories of three |
 | Dreams | 128 (5 new from other systems' moments) | dreams for more feelings, quirks, life goals and mod content |
 | World events | 32 | more regional situations, and more follow-ups (relief from old friends and refugees to see through follow plagues, famines, floods and hard winters) |
@@ -273,7 +273,7 @@ the content itself, not only to systems, alongside whatever else it does. Where 
 | Advisor checks | 43 | checks for the newer systems (missions, the world page), more for tribal colonies |
 | Colony character | 5 ways (10 names), 6 things a colony grows into | traits from hospitality, faith and the calendar |
 | Pets and nemeses | 14 heroics, 32 farewells, 22 taunts and parting words, 4 endings told from pools (one new: let go from the cells) | pets in the calendar, nemeses in dreams and personal stories |
-| Feelings | 26 | feelings that touch the camps and world events, each with more dreams and moments |
+| Feelings | 26 (4 deepened by a heart's need that runs low) | feelings that touch the camps and world events, each with more dreams and moments |
 | Seen and heard (touches, speech, small habits) | 18 touches; lines about 9 kinds of state (about 400) and 4 kinds of weather; 6 small habits | touches for more of Rimfolk's events (a camp arriving, a dream told), habits for more feelings and quirks |
 | Mood hints | 173 | hints for every new thought as it lands |
 | Small good moments that give something other than mood | 248 of 474 (opinion, recreation, rest, comfort, practice, a feeling, an inspiration, trust, research, goodwill, the journal), 4 habits with a knack instead | a reward instead for each new small moment as it lands |

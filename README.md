@@ -457,7 +457,9 @@ Colonists pick up beliefs and habits from what they live through: a **lucky helm
 (happy wearing it, uneasy without), a dread of storms after a death, a ritual before every fight, prayers at night
 after a dream came true, a fear of the dark after lying downed in the dirt, grief that comes back every winter, and
 harmless habits like knocking on wood, counting steps or talking to the dead. Small moods at the right moments; most
-fade after a season or two.
+fade after a season or two. A lucky thing says so: the helmet itself reads "Macy's lucky charm" in the inspector, its
+info card and its tooltip in the gear tab, and once the quirk fades or Macy dies it remembers her: "Once Macy's lucky
+charm", with how long and how it ended, for as long as the helmet lasts.
 
 Others simply grow out of who someone is: a grower who talks to the plants, a handler who names every animal, a cook
 who sings at the stove, an early riser, someone who hums at work, collects pretty stones, can't stand a mess, feeds
@@ -1272,12 +1274,15 @@ fear, grief and despair add a little strain, and joy, pride and hope help it dra
 **The heart's needs.** Four values from 0 to 100: **belonging** (friends, a partner, family, good moments, not being
 left out), **purpose** (work they love, a life goal, a seat, learning), **safety** (no danger, food, medicine,
 defenses, their own health) and **freedom** (time outdoors, free time, varied work, travel, few restrictions). They
-give no mood. The one a colonist lacks most makes the wishes and life goals that answer it up to 35% likelier, and
-when all four are at 60 or more, strain drains 20% faster.
+give no mood. The one a colonist lacks most makes the wishes and life goals that answer it up to 35% likelier (goals
+up to half again); below 35 a need deepens its feeling (little belonging makes them lonelier, little freedom more
+restless); below 25 for about three days it adds 1 to 2 strain a day (3 at most) until it recovers; and when all four
+are at 60 or more, strain drains 20% faster. Hover a need anywhere it shows for what its value means, what raised it
+and held it down, what follows and what would help.
 
 **Where to see it:** the Heart section of the Mood tab (strain and its band, what built it, what would help, every
 feeling with its causes, the four needs), the strain list on the council's Moods page, a line in the inspector
-("Strain: worn down · restless, proud"), the strain mood's tooltip and RimHUD. Settings (Heart & health page): feelings and
+("Strain: worn down · restless, proud · lacks belonging", with a tooltip), the strain mood's tooltip and RimHUD. Settings (Heart & health page): feelings and
 strain on or off, the day off, the inspector line, and how quickly strain builds (50% to 150%). Switched off,
 everything stops and the strain mood and slowdown are gone.
 
