@@ -639,12 +639,14 @@ follows the mouse, and a planner panel lets you:
 - build it in a **theme**: *rustic* (wood, benches and stools, straw matting or planks), *stately* (marble or
   granite, polished stone or fine carpet, armchairs, candlelight), *spartan* (steel, simple beds, concrete), *cozy*
   (carpet, standing lamps, soft seats, plant pots from the comfortable style on), *tribal* (fur beds or hide
-  bedrolls, cushions, torchlight, straw matting, wood and sandstone) or *spacer* (steel, sterile tiles, an autodoor,
-  the most advanced furniture you've researched). The style decides how much goes in, the theme what it looks
-  like; the layout stays the same, since a piece is only swapped for one of the same purpose, size and work spot.
-  A theme uses only what the colony can build and has enough of, and the furniture of Vanilla Furniture Expanded
-  (with its Spacer, Art and Architect modules), Vanilla Factions Expanded Medieval 2 and Empire, Dubs Bad Hygiene
-  and Alpha Prefabs when they're there
+  bedrolls, cushions, torchlight, straw matting, wood and sandstone), *spacer* (steel, sterile tiles, an autodoor,
+  the most advanced furniture you've researched), *hall* (Medieval Overhaul's rustic beds, carved chairs, timber
+  tables and candle stands on its own floors) or *garden* (lawn underfoot, plants along the walls, garden lamps). The
+  style decides how much goes in, the theme what it looks like; the layout stays the same, since a piece is only
+  swapped for one of the same purpose, size and work spot. A theme uses only what the colony can build and has
+  enough of, and the furniture of Vanilla Furniture Expanded (with its Spacer, Art and Architect modules), Vanilla
+  Factions Expanded Medieval 2 and Empire, Medieval Overhaul (its royal furniture in the stately theme too), Alpha
+  Props: Parks and Gardens, Dubs Bad Hygiene and Alpha Prefabs when they're there
 - **turn** the room (Q / E or buttons), **mirror** it and **move the door**
 - choose **materials**, or let the planner do it: it picks from what you have, stored or lying around, something
   there's enough of with a little to spare. Stone blocks come first, then wood, bone (anything but walls) and
@@ -874,6 +876,36 @@ modlist too, each by name and only when the mod is there:
 - **Peoples:** Stoneborn, elves, merfolk, Det's venators, boglegs and avaloi, and Alpha Genes' nereids, efreet and
   drakonori have wishes, decree likes and a pull on the colony's ways of their own.
 - **RimHUD:** four more lines (ailments, recovery, the personal story, a healer's standing) and a recovery bar.
+
+### Your mods in the colony's everyday life
+Twenty-three more ways the player's other mods show up, each only when the mod is there and each checked against
+the mod's own def names (the tests hold the list):
+- **Outland's peoples:** an Eastborn visitor makes tea and won't let it be drunk unlooked-at, a Motz sits with a
+  colonist just past the lamplight, a goblin of the Redburn Pact haggles over a skull, a Vathun noble asks
+  everyone's caste. **Medieval Total Rim's nations** visit in their own words (a knight on the road from France, the
+  Empire, Poland, Iberia, Muscovy or Byzantium; a rider of the Mongol steppe; a learned traveller from the Ottomans,
+  Byzantium or Iberia). Rimfolk knows Medieval Total Rim's nations by their mod (its def names aren't published), so
+  every nation pack counts.
+- **Two world events for them:** a lord's progress (a Vathun, Eastborn or Medieval Total Rim lord passes by: host the
+  retinue for a night or send a gift, for their goodwill), and the clans gather (the Redburn Pact's moot or the
+  khaganate's gathering: pay the envoy's token, refuse, or warn the neighbours, and watch the warbands go by).
+- **Alpha Genes and Alpha Memes:** seven moments between colonists (a nereid talks of the deep, the warm-blooded warm
+  frozen hands, a lapis reads the stone; an artist sketches a neighbour, a blessing with water, ranch talk, a
+  monastic's silence), each giving practice, comfort, rest or a feeling instead of mood and coming back in the
+  journal; and six social events (a helixan's smell, a wretch seen past the face, a mind devourer's stare, an
+  iconoclast and a carved figure, a gladiator's scorn for a bow, a bulwark walking the walls).
+- **Room themes:** a hall theme of Medieval Overhaul's rustic furniture and floors, its royal furniture in the
+  stately theme, and a garden theme with Alpha Props: Parks and Gardens' lawns and street lights. The layout tests
+  check every room in both.
+- **Tents for camps:** camps pitch Vanilla Factions Expanded - Classical's one-person tents instead of bedrolls, and
+  hunters, traders, healers and players raise a tent of Medieval Overhaul's hide or cloth walls (with Outland's tent
+  flap for a door); refugees put up a cloth windbreak.
+- **Hospitality's guests in the newer systems:** a lonely colonist may keep a guest company (a small habit), guests
+  near a toast raise their cups, a guest on screen now and then says a word about their stay, and This week lists who
+  is staying and how it's going. Guests always stay in Hospitality's own lord: only colonists go to them.
+- **People who change mid-game** (Big & Small, Character Editor, Pawn Editor, a xenogerm): who they are is read again
+  at once, wishes their new body can't use are set aside without blame, someone left without an inner life has theirs
+  set aside, and a new race, xenotype or body size gets a line in their own journal. Their records carry over.
 
 ## Why am I feeling this?
 Every mood Rimfolk gives says what caused it, under the description in its tooltip: whose wish came true (or
@@ -1356,7 +1388,11 @@ green-gold blinks drift around colonists outside after dark; **hail** pings off 
 **camp's fire** sends up a thin line of smoke, with sparks at night; a **warlord's band** raises dust as it marches
 in. A **wedding** gets hearts over the couple and the friends nearby, a kept **tradition** a few notes of song, a
 clean **victory** a word or two from those who fought, a **council meeting** opens with a small bell, and so does a
-**calendar day** when its letter comes. Now and then a content colonist hums at work, someone outside says something
+**calendar day** when its letter comes. A **camp arriving** raises a little dust on the road and gets a word from
+whoever sees them come; in the first hours of the **first snow** a few flakes catch on the colonists out in it; the
+morning after a **dream**, the dreamer tells it at breakfast, over the bowl; a **wedding the council promised** (or of
+one of its officers) is rung in with the council's bell, a few notes over the guests and a word from a councillor;
+and with Hospitality, a **guest** now and then says something about their stay. Now and then a content colonist hums at work, someone outside says something
 about the comet or the weather, and on a comet night an idle colonist in good spirits may lie down to watch the sky.
 
 **What they say about themselves.** Now and then a colonist on screen says a short line about how they really are,
@@ -1380,9 +1416,14 @@ All of this happens only on the map you're looking at and only on screen, a hand
 **grieving** colonist visits the grave; a **homesick** one sits a while alone just outside the colony, looking out; a
 **convalescent** takes slow walks; after a **hard fight**, those who fought sit round the colony's fire if one is lit;
 someone whose **friend left** finds a person at their leisure and talks about them; and in the two days after the
-**first snow**, children go out to build snowmen. Each is recreation the game's own joy system picks, so it only comes
-up in free time, after danger, sleep, food and medical care have had their turn; never while drafted, ill, exhausted
-or under orders; any order ends it, and each comes round at most about once a day for the same colonist. Six habits.
+**first snow**, children go out to build snowmen. Six more come from the heart's feelings and from quirks: the
+**awed**, or one who watches the stars, goes out under a clear night sky; one who **talks to the plants** stands by the
+crops doing just that; the **tender**, or one who names every animal, sits a while with one of the colony's animals;
+the **worried**, or one who counts everything, goes over the food stores; the **lonely** keep someone company, a
+Hospitality guest among them; and the **nostalgic** tell old stories by the evening fire. Each is recreation the game's
+own joy system picks, so it only comes up in free time, after danger, sleep, food and medical care have had their
+turn; never while drafted, ill, exhausted or under orders; any order ends it, each claims a spot of its own beside
+what it's about, and each comes round at most about once a day for the same colonist. Twelve habits.
 
 ## Colony news
 Rimfolk's many systems each have small news to tell: a quirk picked up, a personal story moving on, a birthday, a

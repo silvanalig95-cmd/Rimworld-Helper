@@ -543,7 +543,7 @@ namespace ColonyCouncil
             }
             if (job.targetB.HasThing) this.FailOnDespawnedOrNull(TargetIndex.B);
             if (ext?.kind == HabitKind.Fire || ext?.kind == HabitKind.Stories) this.FailOn(() => !Lit(job.targetB.Thing));
-            if (ext?.kind == HabitKind.Company) this.FailOn(() => !MoreHabits.AtLeisure(Partner));
+            if (ext?.kind == HabitKind.Company) this.FailOn(() => !MoreHabits.StillCompany(Partner));
             if (ext?.kind == HabitKind.Animals) this.FailOn(() => !MoreHabits.Calm(Partner));
             if (job.targetA.HasThing) yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.Touch);
             else yield return Toils_Goto.GotoCell(TargetIndex.A, PathEndMode.OnCell);

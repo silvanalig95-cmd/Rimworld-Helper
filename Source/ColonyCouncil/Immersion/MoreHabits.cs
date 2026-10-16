@@ -108,17 +108,28 @@ namespace ColonyCouncil
 
         /// <summary>
         /// Someone to keep company: a colonist at their leisure (as for <see cref="SmallHabits.CanListen"/>), or a
-        /// Hospitality guest taking it easy. Nobody is asked to move: the lonely one goes to them.
+        /// Hospitality guest taking it easy (standing about, not at work or a meal). Nobody is asked to move: the lonely
+        /// one goes to them.
         /// </summary>
         public static bool AtLeisure(Pawn o)
         {
-            if (o == null) return false;
-            if (SmallHabits.CanListen(o)) return true;
-            if (!o.Spawned || o.Dead || o.Downed || o.Drafted || o.InMentalState || !o.Awake() || !Strangers.IsHospitalityGuest(o)) return false;
-            if (o.RaceProps?.Humanlike != true || o.DevelopmentalStage.Baby() || o.health?.capacities == null || !o.health.capacities.CapableOf(PawnCapacityDefOf.Talking)) return false;
+            if (!StillGuest(o)) return SmallHabits.CanListen(o);
             if (o.pather != null && o.pather.Moving) return false;
             var job = o.CurJob;
             return job == null || (job.workGiverDef == null && job.def != JobDefOf.Ingest);
+        }
+
+        /// <summary>
+        /// While they keep someone company: a colonist still at their leisure, or a guest still about and awake (a guest
+        /// wanders as they please; if they wander off, the company simply ends).
+        /// </summary>
+        public static bool StillCompany(Pawn o) => StillGuest(o) || SmallHabits.CanListen(o);
+
+        /// <summary>A Hospitality guest up and about, awake and able to talk.</summary>
+        private static bool StillGuest(Pawn o)
+        {
+            if (o == null || !o.Spawned || o.Dead || o.Downed || o.Drafted || o.InMentalState || !o.Awake() || !Strangers.IsHospitalityGuest(o)) return false;
+            return o.RaceProps?.Humanlike == true && !o.DevelopmentalStage.Baby() && o.health?.capacities != null && o.health.capacities.CapableOf(PawnCapacityDefOf.Talking);
         }
 
         /// <summary>Whom a lonely colonist keeps company: someone near, at their leisure, the ones they like best first.</summary>
