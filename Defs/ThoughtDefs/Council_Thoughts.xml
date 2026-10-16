@@ -109,7 +109,7 @@
         <baseMoodEffect>0</baseMoodEffect>
       </li>
     </stages>
-    <modExtensions><li Class="ColonyCouncil.RewardInstead"><trust>1.5</trust><felt>2</felt></li></modExtensions>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><feelings><li>Fellowship</li></feelings><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
 

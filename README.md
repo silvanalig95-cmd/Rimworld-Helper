@@ -175,10 +175,10 @@ About half of its small good moments (248 of the 474 worth +3 or less) give some
 - **rest or comfort** (17): a sweet dream, sleeping late, a friend covering a shift, a dry roof, a trick against the cold;
 - **practice** (9): talking shop in a passion they share, a child learning from a grown-up, sparring forms, calming an
   animal in a storm;
-- **a feeling** (34, with the heart on): awe at the lightning tree, pride in pilgrims fed, relief at the thaw,
-  fellowship on a night watch;
+- **a feeling** (37, with the heart on): awe at the lightning tree, pride in pilgrims fed, relief at the thaw,
+  fellowship after having their say at a meeting, gratitude for a decree they asked for;
 - **a rare inspiration** (5): a strange dream, a great beast at the tree line, a falling star, a little magic;
-- **trust in the council** (8): having their say at a meeting, a decree they asked for, a dilemma handled fairly;
+- **trust in the council** (5): a dilemma handled fairly, spoils shared out evenly, the council's precautions;
 - **the road's gifts** (6): a little research from a traveler's star names or books, a little goodwill after tea
   with a trader or water for a wounded raider;
 - **only the journal** (67): the smallest touches (lights over the marsh, a shape in the fog), and moments whose

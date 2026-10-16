@@ -79,7 +79,7 @@
     <defName>Council_DecreeHeeded</defName>
     <durationDays>4</durationDays>
     <stages><li><label>the council heeded me</label><description>I asked for a decree, and the council actually declared it.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
-    <modExtensions><li Class="ColonyCouncil.RewardInstead"><trust>3</trust><felt>3</felt></li></modExtensions>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><feelings><li>Gratitude</li></feelings><felt>3</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef>
