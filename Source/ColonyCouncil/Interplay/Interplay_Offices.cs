@@ -237,7 +237,8 @@ namespace ColonyCouncil
             if (social == null) return;
             if (social.battleActive)
             {
-                if (battleStart < 0) battleStart = Now;
+                // Seen on the hour: the fight may have begun up to an hour before.
+                if (battleStart < 0) battleStart = Now - GenDate.TicksPerHour;
                 return;
             }
             if (battleStart < 0) return;
