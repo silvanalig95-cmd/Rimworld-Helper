@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Memories from the newer world events, their follow-ups and the newer camps and missions. Small good moments give
+       something other than mood (ColonyCouncil.RewardInstead); the few bad ones have mood hints
+       (Defs/MoodHintDefs/Rimfolk_MoodHints_WorldBeyond.xml). -->
+
+  <ThoughtDef>
+    <defName>Council_WS_GoodNeighbours</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>4</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>good neighbours</label><description>When things went wrong down the road, the colony did its part. That's the kind of place I want to live in.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><trust>1</trust><felt>3</felt><feelings><li>Pride</li></feelings></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_WS_CometWatch</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>watched the comet</label><description>We sat up on the hill and watched the comet cross the dark, with its long tail like a torn sheet. Nobody said much. Nobody had to.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.1</joy><joyKind>Meditative</joyKind><felt>3</felt><feelings><li>Awe</li></feelings></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_WS_OurSong</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>4</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>a song about us</label><description>They're singing about the colony in towns I'll never see. Some of the verses are even true.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.06</joy><felt>2</felt><feelings><li>Pride</li></feelings></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_WS_StoodWithMourners</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>stood with the mourners</label><description>We stood by the road with our heads bare while they carried their dead past. I didn't know the one they mourned. It still felt right to be there.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt><journal>true</journal><feelings><li>Fellowship</li></feelings></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_WS_RebuiltTogether</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>4</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>helped them rebuild</label><description>I put up beams in a town that isn't mine, for people who lost everything. My back hurts. I'd do it again.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><skill>Construction</skill><xp>300</xp><felt>3</felt><feelings><li>Pride</li></feelings></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_After_Thanked</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>thanked for the hard year</label><description>They came all this way to say thank you for what we did when it was bad for them. It's good to know it mattered.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><trust>1</trust><felt>3</felt><feelings><li>Gratitude</li></feelings></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_After_Reckoning</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>told what we didn't do</label><description>Their envoy stood in our yard and told us, very calmly, what it cost them when we kept our gate shut. I couldn't look at them.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><feelings><li>Shame</li></feelings></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Camp_SongHeard</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>2</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>music from the camp</label><description>The minstrels camped nearby played half the night. I fell asleep to it and woke up humming.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.12</joy><rest>0.05</rest><felt>3</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Camp_SatVigil</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>sat vigil with strangers</label><description>I sat up with the mourners at their fire and listened to them talk about someone I'll never meet. They thanked me for it. I'm not sure what I did.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt><journal>true</journal><feelings><li>Tenderness</li></feelings></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Camp_PilgrimBlessing</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>a stranger's blessing</label><description>The pilgrims prayed over the colony in their own way, with words I didn't know. It was kindly meant, and I took it that way.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.06</joy><joyKind>Meditative</joyKind><felt>2</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Mission_ChildHome</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>5</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>the lost child went home</label><description>We found the neighbours' child out in the hills, cold and frightened, and their mother came to take them home. I keep seeing her face when she saw them.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Mission_HarvestHands</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>brought in their harvest</label><description>Days of cutting and stacking in somebody else's fields, and a harvest supper at the end of it with half the town at the table.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><skill>Plants</skill><xp>400</xp><joy>0.08</joy><felt>3</felt><feelings><li>Fellowship</li></feelings></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Mission_Escorted</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>saw a pilgrim home</label><description>We walked the old pilgrim all the way to their holy place. They talked the whole road. I know more about their faith than I ever meant to, and I liked them.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.08</joy><joyKind>Meditative</joyKind><felt>3</felt></li></modExtensions>
+  </ThoughtDef>
+
+</Defs>

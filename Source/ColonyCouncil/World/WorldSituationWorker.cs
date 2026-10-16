@@ -37,7 +37,51 @@ namespace ColonyCouncil
             if (colonists.Count < Mathf.Max(1, def.minColonists)) return false;
             if (def.colonist != null && !colonists.Any(p => def.colonist.Allows(p, null))) return false;
             if (def.faction != null && !Candidates(def.faction, null, map).Any()) return false;
+            if (!def.after.NullOrEmpty() && AfterRecord(map) == null) return false;
             return CanHappen(map);
+        }
+
+        // ---------------- Follow-ups ----------------
+
+        /// <summary>
+        /// For a follow-up (<see cref="WorldSituationDef.after"/>): the world event it follows, newest first, ended the
+        /// right way at the right time and not followed up by this one yet. Its people must still fit, if it has any.
+        /// </summary>
+        public SituationRecord AfterRecord(Map map)
+        {
+            var history = WorldSituations.Instance?.history;
+            if (history == null || def.after.NullOrEmpty()) return null;
+            int now = Now;
+            for (int i = history.Count - 1; i >= 0; i--)
+            {
+                var r = history[i];
+                if (r == null || r.defName == null || !def.after.Contains(r.defName) || r.Followed(def.defName)) continue;
+                if (r.ending == null || r.ending == WorldSituations.Quietly) continue;
+                if (!def.afterEndings.NullOrEmpty() && !def.afterEndings.Contains(r.ending)) continue;
+                float days = (now - r.endTick) / (float)GenDate.TicksPerDay;
+                if (days < def.afterDays.min || days > def.afterDays.max) continue;
+                if (def.faction != null && !def.faction.optional && (r.faction == null || !Candidates(def.faction, null, map).Contains(r.faction))) continue;
+                return r;
+            }
+            return null;
+        }
+
+        /// <summary>A follow-up takes over from what came before: its people (when they fit), {TALE}, and tags to read it by.</summary>
+        protected void TakeOver(WorldSituation s, Map map)
+        {
+            if (def.after.NullOrEmpty()) return;
+            var r = AfterRecord(map);
+            if (r == null) return;
+            r.Follow(def.defName);
+            s.ctx.tale = r.Called;
+            s.Set("after:" + r.defName);
+            if (!r.ending.NullOrEmpty()) s.Set("afterEnd:" + r.ending);
+            if (r.helped) s.Set("afterHelped");
+            if (def.faction != null && r.faction != null && Candidates(def.faction, null, map).Contains(r.faction))
+            {
+                s.ctx.faction = r.faction;
+                s.ctx.placeName = NearestTown(r.faction, map)?.Name ?? r.faction.Name;
+            }
         }
 
         /// <summary>Anything else this one needs (a river, a free tile, a leader).</summary>
@@ -161,6 +205,8 @@ namespace ColonyCouncil
                 if (ctx.faction == null) return false;
                 ctx.placeName = NearestTown(ctx.faction, map)?.Name ?? ctx.faction.Name;
             }
+            // A follow-up: the people of what came before, and what to call it ({TALE}).
+            TakeOver(s, map);
             if (def.second != null)
             {
                 ctx.enemy = PickFaction(def.second, ctx.faction, map);

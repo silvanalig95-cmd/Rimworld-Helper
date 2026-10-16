@@ -181,6 +181,7 @@ namespace ColonyCouncil
                 CouncilLog.ErrorOnce("camp visit", e);
             }
             Warm(c, 1);
+            CouncilRecords.Add(c, CouncilRecords.CampEvenings);
         }
 
         public void Warm(Pawn colonist, int amount)

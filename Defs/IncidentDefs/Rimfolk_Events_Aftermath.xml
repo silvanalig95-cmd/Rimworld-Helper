@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Rimfolk events that follow from how a world event ended (Source/ColonyCouncil/World/Workers_Aftermath.cs,
+    AftermathEvent): each comes once for a world event, some days to weeks after it ended, with that world event's
+    people ({FACTION}, {PLACE}) and its name ({TALE}: "the gray cough", "the long cold"); old friends' relief comes from a
+    people that remembers the colony's good turns instead. Lines can ask what it was ([plague], [famine], [flood],
+    [winter], [locusts], [drought], [fire], [war]), how it ended ([end:helped], [end:profiteer], [end:ignored]...),
+    whether the colony helped ([helped], [ignored]), its flags ([flag:struck], [flag:sheltered]) and what the people
+    remember ([their:grateful], [their:friend] with {FRIEND}). The visitor asks for the colonist their people remember by
+    name, if any (A). None ends in a fight.
+  -->
+
+  <!-- ===================== Thanks after the plague ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_After_PlagueThanks</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>survivors give thanks</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Aftermath</workerClass>
+    <baseChance>1.2</baseChance>
+    <minRefireDays>20</minRefireDays>
+    <earliestDay>30</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>25~65</ages>
+        <count>2~3</count>
+        <stayHours>14~22</stayHours>
+        <value>200~380</value>
+        <answerDays>1</answerDays>
+        <titles>
+          <li>Thanks from {PLACE}</li>
+          <li>After {TALE}</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef} has come from {PLACE} with two others, all of them thin and a little unsteady, all of them alive. {TALE} is over there, and {FACTION} have sent the first of their well to the colony: to say thank you for the medicine, and to bring a gift worth about {COUNT} silver.\n\nThey would also like, if the colony will allow it, to say the names of their dead somewhere other than at home.</li>
+          <li>[theirHightech] {X_nameDef} of {FACTION} has driven up from {PLACE} with a box of supplies and a list. The box is a gift, worth about {COUNT} silver. The list is the names of everyone at {PLACE} who lived through {TALE}, and {X_nameDef} says the colony's medicine is the reason some of them are on it.</li>
+          <li>[their:friend] {X_nameDef} of {FACTION} has come from {PLACE}, where {TALE} is finally over, asking for {FRIEND_nameDef} by name. {FACTION} want to give thanks properly for what the colony did, with a gift worth about {COUNT} silver, and words said aloud.</li>
+          <li>[end:someHelp] {X_nameDef} has come from {PLACE} now that {TALE} is over. The colony didn't do much, {X_pronoun} says frankly, but it did something when most didn't, and {FACTION} want it known that they noticed. {X_nameDef} has brought a gift worth about {COUNT} silver.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>Accept the gift with thanks</label>
+            <outcome>{X_nameDef} sets the gift down by the gate and clasps {A_nameDef}'s hands for a long moment. {FACTION} will tell it at {PLACE} that the colony took their thanks gladly.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Gift" />
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_After_Thanked</thought></li>
+            </effects>
+          </li>
+          <li>
+            <label>Say the names of their dead together</label>
+            <outcome>The colony gathers at dusk with the visitors from {PLACE}, and {X_nameDef} says the names of their dead one by one. It takes a long time. Nobody leaves.</outcome>
+            <outcomes>
+              <li>[trait:Kind] {A_nameDef} stands beside {X_nameDef} while the names are said, and when {X_pronoun} falters, says the last few with {X_objective}.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Words"><label>the names of {PLACE}'s dead</label><organizer>X</organizer><spots><li>Outdoors</li><li>Gather</li></spots><hours>17~21</hours></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Gift" />
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>8</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>mourned</kind><about>place</about></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_WS_StoodWithMourners</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
+            </effects>
+            <ways><tradition>1</tradition><mercy>1</mercy></ways>
+          </li>
+          <li>
+            <label>Ask them to keep it for {PLACE}</label>
+            <outcome>{A_nameDef} tells {X_nameDef} that {PLACE} needs the gift more than the colony does. {X_nameDef} doesn't argue; {X_pronoun} only nods and says {FACTION} will remember that too.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>12</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>forgave</kind><about>none</about></li>
+            </effects>
+            <ways><generosity>3</generosity></ways>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.AftermathEvent">
+        <after><li>Council_WS_Plague</li></after>
+        <helped>true</helped>
+        <days>6~40</days>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The first harvest after the famine ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_After_FirstHarvest</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the first harvest shared</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Aftermath</workerClass>
+    <baseChance>1.2</baseChance>
+    <minRefireDays>20</minRefireDays>
+    <earliestDay>30</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>20~60</ages>
+        <count>1~2</count>
+        <stayHours>12~18</stayHours>
+        <answerDays>1</answerDays>
+        <titles>
+          <li>The first harvest</li>
+          <li>Grain from {PLACE}</li>
+        </titles>
+        <texts>
+          <li>[theirLowtech] A cart has come up from {PLACE} behind two oxen that are much fatter than the last ones the colony saw. {TALE} is over: the first harvest is in, and {FACTION} keep a custom of sending the first of it to whoever fed them in the hungry year.\n\n{X_nameDef} has brought {COUNT} measures of {THING}, and won't take no for an answer.</li>
+          <li>[theirHightech] A truck from {PLACE}, running on real fuel this time, has pulled up at the gate. {FACTION}'s first harvest since {TALE} is in, and {X_nameDef} has brought {COUNT} measures of {THING} to the colony: a share of it, as thanks for the food that got them through.</li>
+          <li>[their:friend] {X_nameDef} of {FACTION} has come up from {PLACE} with {COUNT} measures of {THING} from the first harvest after {TALE}, and asks for {FRIEND_nameDef}: the custom is to put the first grain in the hands of whoever helped most.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>Accept the grain</label>
+            <outcome>The grain goes into the colony's stores, and {X_nameDef} goes home with the empty cart and a lighter heart.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Goods" />
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_After_Thanked</thought></li>
+            </effects>
+          </li>
+          <li>
+            <label>Bake it into a harvest supper, with them</label>
+            <outcome>The colony keeps the grain and sets the long table tonight, with {X_nameDef} at the head of it. It's the first full meal {X_nameDef} has eaten away from home in a year, {X_pronoun} says.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Goods" />
+              <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>the supper of the first harvest</label><hours>17~21</hours></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>6</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>welcomed</kind><about>x</about></li>
+            </effects>
+            <ways><tradition>1</tradition><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Send it on to someone hungrier</label>
+            <outcome>{A_nameDef} asks {X_nameDef} to take the grain to the next village down the road, where the harvest failed again. {X_nameDef} looks at {A_objective} for a moment, then turns the cart round.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>10</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>forgave</kind><about>none</about></li>
+            </effects>
+            <ways><generosity>3</generosity></ways>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.AftermathEvent">
+        <after><li>Council_WS_Famine</li></after>
+        <helped>true</helped>
+        <days>10~50</days>
+        <goods><li>RawCorn</li><li>RawRice</li><li>RawPotatoes</li></goods>
+        <goodsCount>60~110</goodsCount>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== What the river took ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_After_FloodBell</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>what the river took</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Aftermath</workerClass>
+    <baseChance>1</baseChance>
+    <minRefireDays>20</minRefireDays>
+    <earliestDay>30</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>30~70</ages>
+        <count>2~3</count>
+        <stayHours>10~16</stayHours>
+        <value>150~300</value>
+        <answerDays>1</answerDays>
+        <titles>
+          <li>What the river took</li>
+          <li>People from {PLACE}</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef} and two others of {FACTION} have walked up the river path from {PLACE}. {TALE} carried off the bell from their meeting hall, they say, the one that rang for every wedding and every fire for a hundred years, and they're searching every bank and sandbar for it.\n\nThe colony's people did pull something heavy and green out of the shallows a few weeks ago. It's in the barn.</li>
+          <li>[theirHightech] {X_nameDef} of {FACTION} has come up the river looking for what {TALE} took from {PLACE}: the town's founding plaque, bronze, the size of a door. {X_nameDef} doesn't expect to find it.\n\nIt's leaning against the wall of the colony's barn, where someone left it after dragging it out of the mud.</li>
+          <li>[ignored] {X_nameDef} of {FACTION} has come up from {PLACE} hunting along the banks for what {TALE} carried off. {X_nameDef} doesn't ask the colony for anything. {FACTION} have stopped expecting it to give.\n\nBut there is a waterlogged bell in the colony's barn that came out of the river last month.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>Give it back to them</label>
+            <outcome>{X_nameDef} stares at it for a long time, then sits down on the barn floor and laughs until {X_pronoun} cries. {FACTION} will carry it home on a pole between four people, singing.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>12</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>favorDone</kind><about>place</about></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>A</target><amount>0.12</amount></li>
+            </effects>
+            <ways><generosity>2</generosity></ways>
+          </li>
+          <li>
+            <label>Let them buy it back</label>
+            <outcome>{FACTION} pay what the bronze is worth, which is a lot, and carry it home. They paid. They also noticed that the colony asked.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Gift" />
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>2</amount></li>
+            </effects>
+            <ways><generosity>-1</generosity></ways>
+          </li>
+          <li>
+            <label>Help them carry it home</label>
+            <outcome>{A_nameDef} and a couple of strong backs carry it down to {PLACE} themselves, and stay for the ringing. {FACTION} feed them until they can hardly walk.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>15</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>favorDone</kind><weight>10</weight><about>place</about></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Social</skill><xp>300</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Walk</to><duration>3~4</duration></li>
+            </effects>
+            <ways><generosity>2</generosity><openness>1</openness></ways>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.AftermathEvent">
+        <after><li>Council_WS_Flood</li></after>
+        <days>8~45</days>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The snowbound come back in spring ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_After_SpringReturn</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>guests of the winter return</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Aftermath</workerClass>
+    <baseChance>1</baseChance>
+    <minRefireDays>20</minRefireDays>
+    <earliestDay>30</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>20~55</ages>
+        <count>2</count>
+        <stayHours>16~24</stayHours>
+        <answerDays>1</answerDays>
+        <titles>
+          <li>Guests of the winter</li>
+          <li>Back with the thaw</li>
+        </titles>
+        <texts>
+          <li>[flag:sheltered] The two travellers of {FACTION} who sat out {TALE} by the colony's hearth have come back up the road, with the mud of the thaw on their boots and a cart behind them. They promised to repay it when the roads opened, they remind {A_nameDef}, and here they are: {COUNT} measures of {THING} for planting, the best in {PLACE}.\n\n{X_nameDef} also says they'd like to help put it in the ground.</li>
+          <li>[helped] {X_nameDef} of {FACTION} has come from {PLACE} now that {TALE} is over and the roads are open. The colony's wood kept {PLACE} warm through the worst of it, and {FACTION} have sent {COUNT} measures of {THING} for the spring planting, by way of thanks.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>Accept the seed with thanks</label>
+            <outcome>The seed goes into the colony's stores, and the visitors eat a hot meal by the same hearth they sat at all winter, which they say tastes better with the door open.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Goods" />
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>4</amount></li>
+            </effects>
+          </li>
+          <li>
+            <label>Plant it together, out in the fields</label>
+            <outcome>The visitors roll up their sleeves, and the colony goes out to the fields with them to work the first of the seed into the ground.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Goods" />
+              <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>the planting with {FACTION}</label><spots><li>Fields</li><li>Outdoors</li></spots><hours>8~15</hours><duration>2~3</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>Colony</target><skill>Plants</skill><xp>200</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>6</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>welcomed</kind><about>x</about></li>
+            </effects>
+            <ways><openness>1</openness><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>Tell them the debt is long paid</label>
+            <outcome>{A_nameDef} sends the seed back with them for their own fields. They argue, then laugh, then go.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>10</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>forgave</kind><about>none</about></li>
+            </effects>
+            <ways><generosity>2</generosity></ways>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.AftermathEvent">
+        <after><li>Council_WS_HardWinter</li></after>
+        <days>5~40</days>
+        <flags><li>sheltered</li></flags>
+        <goods><li>RawPotatoes</li><li>RawCorn</li><li>RawRice</li></goods>
+        <goodsCount>40~80</goodsCount>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== Old friends send seed grain ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_After_OldFriends</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>old friends send seed</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Aftermath</workerClass>
+    <baseChance>1.2</baseChance>
+    <minRefireDays>25</minRefireDays>
+    <earliestDay>30</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>25~65</ages>
+        <count>1~2</count>
+        <stayHours>12~20</stayHours>
+        <answerDays>1</answerDays>
+        <titles>
+          <li>Old friends</li>
+          <li>Seed from {PLACE}</li>
+        </titles>
+        <texts>
+          <li>[locusts] News of what {TALE} did to the colony's fields has reached {PLACE}, and {FACTION} have not forgotten the colony's good turns. {X_nameDef} has come with a cart: {COUNT} measures of {THING}, enough to sow again, as a gift between old friends.</li>
+          <li>[famine|drought] It has been a lean year since {TALE}, for the colony as much as anyone. {FACTION} remember who stood by them once, and {X_nameDef} has come from {PLACE} with {COUNT} measures of {THING}: no payment, no promises, just old friends.</li>
+          <li>[their:friend] {X_nameDef} of {FACTION} has come from {PLACE} with {COUNT} measures of {THING} for the colony, after {TALE}. It was {FRIEND_nameDef} who did their people a good turn once, {X_nameDef} says; this is the turn coming back.</li>
+          <li>[their:rescued] {FACTION} haven't forgotten what the colony did for their people, and they know what {TALE} cost it. {X_nameDef} has brought {COUNT} measures of {THING} from {PLACE}, and a message: friends don't wait to be asked.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>Accept, with thanks</label>
+            <outcome>The seed goes into the stores, and {X_nameDef} goes home pleased to have been able to give something back.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Goods" />
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_After_Thanked</thought></li>
+            </effects>
+          </li>
+          <li>
+            <label>Accept, and feast their messenger</label>
+            <outcome>The seed goes into the stores and {X_nameDef} goes to the head of the table. It's a thin feast, in a thin year, and nobody minds.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Goods" />
+              <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>the supper for {X_nameDef}</label><hours>17~21</hours></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>6</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>welcomed</kind><about>x</about></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Ask them to give it to {PLACE}'s own hungry</label>
+            <outcome>{A_nameDef} tells {X_nameDef} the colony will manage, and that {PLACE} surely has hungry people of its own. {X_nameDef} goes home with the cart full and a story to tell.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>10</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>forgave</kind><about>none</about></li>
+            </effects>
+            <ways><generosity>2</generosity></ways>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.AftermathEvent">
+        <after><li>Council_WS_Locusts</li><li>Council_WS_Famine</li><li>Council_WS_Drought</li></after>
+        <days>3~35</days>
+        <fromFriends>true</fromFriends>
+        <goods><li>RawCorn</li><li>RawRice</li><li>RawPotatoes</li></goods>
+        <goodsCount>50~100</goodsCount>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== A reckoning ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_After_Reckoning</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a reckoning</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Aftermath</workerClass>
+    <baseChance>0.8</baseChance>
+    <minRefireDays>40</minRefireDays>
+    <earliestDay>30</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>40~75</ages>
+        <count>1</count>
+        <stayHours>6~10</stayHours>
+        <value>150~280</value>
+        <answerDays>1</answerDays>
+        <titles>
+          <li>A reckoning</li>
+          <li>An elder from {PLACE}</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, an elder of {FACTION}, has walked from {PLACE} to say something to the colony's face. {X_pronoun} doesn't raise {X_possessive} voice. {X_pronoun} only lists, one by one, the people {PLACE} buried during {TALE}, and the day the colony's gate stayed shut.\n\nThen {X_pronoun} waits, to see what the colony will say.</li>
+          <li>[end:profiteer] {X_nameDef}, an elder of {FACTION}, has come from {PLACE} with an account book. In it, in neat columns, is what {FACTION} paid the colony for food during {TALE}, and what that food was worth.\n\n{X_nameDef} doesn't ask for anything. {X_pronoun} only reads the figures out, and waits.</li>
+          <li>[their:grudge] {X_nameDef} of {FACTION} has come to the gate, and {FACTION} haven't forgiven the colony much lately. {TALE} is over, {X_pronoun} says, and {PLACE} remembers who looked away. {X_pronoun} has come to hear the colony say something about it.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Make amends ({COUNT} silver for {PLACE})</label>
+            <outcome>{A_nameDef} puts {COUNT} silver into {X_nameDef}'s hands for {PLACE}'s widows, and says the colony was wrong. {X_nameDef} weighs the purse, and then the words, and nods once.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>10</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>madePeace</kind><about>place</about></li>
+            </effects>
+            <ways><generosity>2</generosity><mercy>1</mercy></ways>
+          </li>
+          <li>
+            <label>Hear them out, and say sorry in front of everyone</label>
+            <outcome>The colony gathers to hear {X_nameDef}, and {A_nameDef} answers in front of all of them: the colony was wrong, and will do better. It costs nothing but pride. Some of the colony find that harder to pay than silver.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Words"><label>{X_nameDef}'s reckoning</label><organizer>A</organizer><spots><li>Gather</li><li>Outdoors</li><li>Dining</li></spots></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>5</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Social</skill><xp>300</xp></li>
+            </effects>
+            <ways><mercy>1</mercy><tradition>-1</tradition></ways>
+          </li>
+          <li>
+            <label>The colony owes {PLACE} nothing</label>
+            <outcome>{A_nameDef} tells {X_nameDef} the colony looked after its own, as anyone would. {X_nameDef} says {FACTION} will remember that answer, and walks home.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_After_Reckoning</thought><chance>0.4</chance><exceptTrait><li>Psychopath</li><li>Greedy</li></exceptTrait></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>refused</kind><about>place</about></li>
+            </effects>
+            <ways><generosity>-1</generosity><openness>-1</openness></ways>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.AftermathEvent">
+        <after><li>Council_WS_Plague</li><li>Council_WS_Famine</li><li>Council_WS_Flood</li><li>Council_WS_HardWinter</li><li>Council_WS_GreatFire</li></after>
+        <ignored>true</ignored>
+        <days>10~60</days>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>

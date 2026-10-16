@@ -290,6 +290,7 @@ namespace ColonyCouncil
             talkDate = DateKey(map);
             talksLeft = Rand.RangeInclusive(2, 3);
             var keeper = Keeper(d, home);
+            if (!quiet && keeper != null) CouncilRecords.Add(keeper, CouncilRecords.DaysKept);
             comp?.AddChronicle(new ChronicleEntry(ChronicleKind.Life, "CC_Cal_Chronicle_Kept".Translate(d.label).Resolve(), keeper));
             if (!told && !quiet && d.way != DayWay.Remembrance)
                 News.Post("CC_Cal_Kept".Translate(d.label.CapitalizeFirst(), WayLabel(d.way)).Resolve(), new LookTargets(home), NewsKind.Colony, MessageTypeDefOf.PositiveEvent,

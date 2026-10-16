@@ -199,6 +199,25 @@ namespace ColonyCouncil
         public int help;
         public int startTick;
         public int endTick;
+        /// <summary>Its own name ("the gray cough", "the Ashen Banner"), or null (older saves, or it had none).</summary>
+        public string name;
+        /// <summary>The flags it ended with (the swarm struck, the colony sold food dear), for what follows from it.</summary>
+        public List<string> flags = new List<string>();
+        /// <summary>What has followed from it already (world events and Rimfolk events, by defName): each only once.</summary>
+        public List<string> followUps = new List<string>();
+
+        public bool Followed(string defName) => followUps != null && followUps.Contains(defName);
+
+        public void Follow(string defName)
+        {
+            if (followUps == null) followUps = new List<string>();
+            if (!followUps.Contains(defName)) followUps.Add(defName);
+        }
+
+        public bool Has(string flag) => flags != null && flags.Contains(flag);
+
+        /// <summary>What the texts call it: its own name, or what it was.</summary>
+        public string Called => !name.NullOrEmpty() ? name : DefDatabase<WorldSituationDef>.GetNamedSilentFail(defName ?? "")?.label ?? label ?? "";
 
         public void ExposeData()
         {
@@ -210,6 +229,14 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref help, "help");
             Scribe_Values.Look(ref startTick, "startTick");
             Scribe_Values.Look(ref endTick, "endTick");
+            Scribe_Values.Look(ref name, "name");
+            Scribe_Collections.Look(ref flags, "flags", LookMode.Value);
+            Scribe_Collections.Look(ref followUps, "followUps", LookMode.Value);
+            if (Scribe.mode == LoadSaveMode.PostLoadInit)
+            {
+                if (flags == null) flags = new List<string>();
+                if (followUps == null) followUps = new List<string>();
+            }
         }
     }
 

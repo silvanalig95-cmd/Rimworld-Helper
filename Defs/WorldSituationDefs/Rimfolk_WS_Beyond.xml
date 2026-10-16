@@ -1,0 +1,879 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- World events of the region, a further batch (same format as Council_WS_Hardship.xml): a great fire in a
+       neighbour's town, a blood feud between two peoples' families, a comet over the region, a bumper harvest, and the
+       drove roads full of herds. Lines can also ask what the people remember of the colony ([their:grateful],
+       [their:grudge], [their:friend] with {FRIEND}: World/KinMemory.cs). None brings a fight. -->
+
+  <!-- ===================== A great fire ===================== -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Council_WS_GreatFire</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>great fire</label>
+    <weight>0.8</weight>
+    <earliestDay>25</earliestDay>
+    <cooldownDays>160</cooldownDays>
+    <durationDays>12~18</durationDays>
+    <kind>fire</kind>
+    <bad>true</bad>
+    <seasons>
+      <li>Spring</li>
+      <li>Summer</li>
+      <li>Fall</li>
+      <li>PermanentSummer</li>
+    </seasons>
+    <faction>
+      <friendly>true</friendly>
+    </faction>
+    <titles>
+      <li>Fire in {PLACE}</li>
+      <li>{PLACE} burns</li>
+    </titles>
+    <texts>
+      <li>[theirLowtech] A spark from a bakehouse oven caught a thatched roof in {PLACE}, and the wind did the rest. By morning half the town was ash: houses, the granary, the meeting hall where {FACTION} kept their records.\n\nNobody died, which the people of {PLACE} are calling a miracle. They are sleeping in the fields now, and they will need timber, roofs and patience.</li>
+      <li>[theirHightech] A fuel store went up in {PLACE} two nights ago, and the fire jumped from building to building faster than {FACTION}'s pumps could follow. The whole east side of the town is gone.\n\n{FACTION} got almost everyone out. What they couldn't get out was everything else. They'll be rebuilding all season.</li>
+      <li>[summer] It has been a dry summer, and in {PLACE} a single dropped lamp was enough. The fire burned for a day and a night and took most of the town with it before the wind turned.\n\n{FACTION} are counting what's left. It isn't much.</li>
+      <li>[their:grateful] The smoke from {PLACE} could be seen from the colony's walls yesterday: a great fire, the worst {FACTION} have known. They remember the colony as a friend, and there's a rider on the road already, by the look of it.\n\nThey will need timber and roofs, and a lot of both.</li>
+      <li>[their:friend] Fire has gutted {PLACE}. {FACTION} have sent word to every neighbour, and to the colony they've added a line: they hope {FRIEND_nameDef} is well, and that the colony can spare a little of what they need.</li>
+    </texts>
+    <summaries>
+      <li>{FACTION} will ask for timber and hands to raise new roofs, and families burned out of {PLACE} may come to the gate. Whatever is given now will be remembered when {PLACE} is rebuilt.</li>
+    </summaries>
+    <modifiers>
+      <li><incident>WandererJoin</incident><factor>1.3</factor></li>
+      <li><incident>TraderCaravanArrival</incident><factor>0.8</factor></li>
+      <li><rimfolk>Council_Evt_Camp</rimfolk><factor>1.4</factor></li>
+    </modifiers>
+    <beats>
+      <li>
+        <key>timber</key>
+        <day>1~3</day>
+        <count>70~130</count>
+        <titles>
+          <li>{FACTION} need timber</li>
+        </titles>
+        <texts>
+          <li>[theirLowtech] A wagon from {PLACE} has come to the gate with an empty bed and a tired driver. {FACTION} need timber for roofs before the weather turns: {COUNT} logs would see a dozen families under cover.\n\nThey can't pay much this year. They will remember who helped.</li>
+          <li>[theirHightech] {FACTION}'s rebuilding crews have run through every stick of lumber in the region. Their courier asks for {COUNT} logs, sent by cart, and offers what they can pay, which isn't much.</li>
+          <li>[their:grateful] The carter from {PLACE} hardly had to ask: {A_nameDef} knew what {FACTION} needed before the wagon stopped. {COUNT} logs for the roofs of {PLACE}, if the colony can spare them, and {FACTION} will not forget it.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Send {COUNT} wood</label>
+            <outcome>The wagon goes back to {PLACE} stacked high. Somebody there will sleep under a roof by the next rain.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>WoodLog</what></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>10</amount></li>
+            </effects>
+            <help>2</help>
+            <deed>sent timber to {PLACE}</deed>
+            <ways><generosity>2</generosity></ways>
+          </li>
+          <li>
+            <label>Sell it at a fair price</label>
+            <outcome>{FACTION} pay what timber is worth, and the wagon goes back loaded.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>WoodLog</what></li>
+              <li Class="ColonyCouncil.WorldEffect_Silver"><factor>1.2</factor></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>3</amount></li>
+            </effects>
+            <help>1</help>
+            <deed>sold timber to {PLACE}</deed>
+          </li>
+          <li>
+            <label>The colony needs its wood</label>
+            <outcome>The wagon goes back to {PLACE} empty. Somebody else will have to find the roofs.</outcome>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>burned</key>
+        <day>3~7</day>
+        <titles>
+          <li>Burned out of {PLACE}</li>
+        </titles>
+        <texts>
+          <li>A family from {PLACE} has walked to the colony with a handcart and the smell of smoke still in their clothes. Their house is gone, and the fields where everyone is sleeping are no place for the children.\n\nThey ask whether the colony has room, for a while or for good.</li>
+          <li>[winter] A family burned out of {PLACE} has come to the gate with nothing to sleep under. The nights are cold, and the fields outside {PLACE} are full of people with nowhere else to go.\n\nThey ask for a roof. They don't mind whose.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Take them in</label>
+            <outcome>The family is given a corner and a place at the table. The youngest has already found the colony's dog.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Join"><count>1~2</count></li>
+            </effects>
+            <help>1</help>
+            <deed>took in a family burned out of {PLACE}</deed>
+            <ways><openness>2</openness><mercy>1</mercy></ways>
+          </li>
+          <li>
+            <label>Feed them and send them home</label>
+            <outcome>They eat, sleep one night under a roof and go back to {PLACE} in the morning with a sack of food and a little more hope.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>20</count></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>4</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>sheltered</kind><about>place</about></li>
+            </effects>
+            <help>1</help>
+            <deed>fed a burned-out family from {PLACE}</deed>
+            <ways><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>Turn them away</label>
+            <outcome>The family stands at the gate a while, then turns the handcart round.</outcome>
+            <ways><openness>-1</openness><mercy>-1</mercy></ways>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>roofs</key>
+        <day>6~11</day>
+        <skill>Construction</skill>
+        <minLevel>6</minLevel>
+        <titles>
+          <li>{FACTION} ask for {A_nameDef}</li>
+        </titles>
+        <texts>
+          <li>Word has reached {PLACE} that {A_nameDef} builds well. {FACTION} have timber now, and willing hands, and nobody who knows how to raise a roof that won't come down in the first storm.\n\nThey ask whether {A_nameDef} could come for a few days and show them. It would be noticed.</li>
+          <li>[their:friend] {FACTION} have asked for {A_nameDef} by name to help raise the new roofs at {PLACE}. They add, almost shyly, that {FRIEND_nameDef} would be welcome to come along and eat with them.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Send {A_nameDef} to {PLACE}</label>
+            <outcome>{A_nameDef} goes to {PLACE} with a bag of tools, and comes back four days later with a sunburnt neck and a dozen new roofs behind {A_objective}.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Learn"><skill>Construction</skill><xp>1500</xp></li>
+              <li Class="ColonyCouncil.WorldEffect_ThoughtFor"><thought>Council_WS_RebuiltTogether</thought></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>8</amount></li>
+              <li Class="ColonyCouncil.ArcEffect_Epithet"><epithet>Council_Epithet_RoofRaiser</epithet><chance>0.6</chance></li>
+            </effects>
+            <help>2</help>
+            <deed>lent {A_nameDef} to raise the roofs of {PLACE}</deed>
+            <ways><generosity>2</generosity><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>Send drawings instead</label>
+            <outcome>{A_nameDef} spends an evening drawing out how a good roof is framed, and the rider takes the drawings back to {PLACE}.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Learn"><skill>Construction</skill><xp>500</xp></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>4</amount></li>
+            </effects>
+            <help>1</help>
+            <deed>sent {A_nameDef}'s drawings to {PLACE}</deed>
+          </li>
+          <li>
+            <label>{A_nameDef} is needed here</label>
+            <outcome>The rider is told the colony can't spare {A_nameDef}. {A_nameDef} looks toward {PLACE} once or twice that evening.</outcome>
+          </li>
+        </options>
+      </li>
+    </beats>
+    <endings>
+      <li>
+        <key>helped</key>
+        <minHelp>3</minHelp>
+        <helped>true</helped>
+        <titles>
+          <li>{PLACE} under new roofs</li>
+        </titles>
+        <texts>
+          <li>The last of the new roofs is on in {PLACE}. The town smells of fresh-cut timber instead of smoke, and the people sleeping in the fields have gone home.\n\n{FACTION} know how much of that timber came from the colony. They will build it into the story of the fire.</li>
+          <li>[theirHightech] {PLACE} is open again: a new block where the old one burned, with the colony's timber in its frames. {FACTION} have said so in public, more than once.</li>
+        </texts>
+        <chronicle>{PLACE} was rebuilt after the great fire, partly with the colony's help.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>8</amount></li>
+          <li Class="ColonyCouncil.WorldEffect_Thought"><thought>Council_WS_GoodNeighbours</thought></li>
+        </effects>
+      </li>
+      <li>
+        <key>someHelp</key>
+        <minHelp>1</minHelp>
+        <helped>true</helped>
+        <titles>
+          <li>After the fire</li>
+        </titles>
+        <texts>
+          <li>{PLACE} is slowly coming back: a roof here, a wall there. The colony did something to help, and {FACTION} haven't forgotten it.</li>
+        </texts>
+        <chronicle>{PLACE} began to rebuild after the fire; the colony did its part.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>3</amount></li>
+        </effects>
+      </li>
+      <li>
+        <key>ignored</key>
+        <titles>
+          <li>After the fire</li>
+        </titles>
+        <texts>
+          <li>{PLACE} is rebuilding, slowly, with what {FACTION} could beg and borrow. The colony gave nothing, and the people of {PLACE} have noticed which neighbours did.</li>
+        </texts>
+        <chronicle>{PLACE} rebuilt after the great fire without the colony's help.</chronicle>
+      </li>
+    </endings>
+  </ColonyCouncil.WorldSituationDef>
+
+  <!-- ===================== A blood feud ===================== -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Council_WS_Feud</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>blood feud</label>
+    <weight>0.7</weight>
+    <earliestDay>40</earliestDay>
+    <cooldownDays>180</cooldownDays>
+    <durationDays>14~22</durationDays>
+    <kind>feud</kind>
+    <faction>
+      <friendly>true</friendly>
+    </faction>
+    <second>
+      <friendly>true</friendly>
+      <friendlyToFirst>true</friendlyToFirst>
+    </second>
+    <names>
+      <li>the well quarrel</li>
+      <li>the boundary feud</li>
+      <li>the bride-price feud</li>
+      <li>[lowtech] the matter of the mill</li>
+      <li>[!lowtech] the water-rights feud</li>
+    </names>
+    <titles>
+      <li>A blood feud</li>
+      <li>Bad blood between {FACTION} and {ENEMY}</li>
+    </titles>
+    <texts>
+      <li>It began as {NAME}, an argument between two families, one of {FACTION} and one of {ENEMY}, the kind neighbours have every few years. Then someone drew a knife at a market, and now a young man of {ENEMY} is dead and a young man of {FACTION} is running.\n\nThe two peoples are not at war. Their families are, and families have long memories.</li>
+      <li>[theirLowtech] Two families have been feuding over {NAME} for three generations, one of {FACTION} and one of {ENEMY}. Last week it came to blood at a wedding, of all places. Now both families are sharpening their grudges, and their elders are asking the neighbours to take sides.\n\nThe colony is one of the neighbours.</li>
+      <li>[their:friend] There is bad blood between a family of {FACTION} and one of {ENEMY}, over {NAME}. {FACTION} have sent word to the colony, and to {FRIEND_nameDef} in particular: they may need a friend who can speak to both sides.</li>
+    </texts>
+    <summaries>
+      <li>A family feud between {FACTION} and {ENEMY} may wash up at the colony's gate: someone running from it, and both sides asking the colony to take theirs. A good talker could sit between them; taking a side will be remembered by both.</li>
+    </summaries>
+    <modifiers>
+      <li><rimfolk>Council_Evt_Quarrel</rimfolk><factor>0.3</factor></li>
+      <li><rimfolk>Council_Evt_Peacemaker</rimfolk><factor>2</factor></li>
+    </modifiers>
+    <beats>
+      <li>
+        <key>fugitive</key>
+        <day>2~5</day>
+        <titles>
+          <li>Someone running from the feud</li>
+        </titles>
+        <texts>
+          <li>A young man of {FACTION} has come to the colony's gate at dusk, out of breath. He is the one who drew the knife, he says, and {ENEMY}'s family has sworn to have his life for the one he took. He begs for somewhere to hide until it cools.\n\nHe doesn't look like a killer. He looks nineteen and terrified.</li>
+          <li>[theirLowtech] A boy of {FACTION}, hardly old enough to shave, is hammering on the colony's gate. He killed a man of {ENEMY} in the {NAME} brawl, by accident he says, and their family is hunting him. He asks the colony to hide him.\n\nAn hour later a rider of {ENEMY} passes the gate slowly, looking at the walls.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Hide him</label>
+            <outcome>The boy is given a cot in a back room and told to stay out of sight. {FACTION} will hear of it with gratitude, and {ENEMY} with anger.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>sheltered</kind><about>none</about></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>tookSides</kind><enemy>true</enemy><about>other</about></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>5</amount></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-5</amount><who>Enemy</who></li>
+            </effects>
+            <flags><li>hid</li></flags>
+            <ways><mercy>2</mercy></ways>
+          </li>
+          <li>
+            <label>Send him on, with food</label>
+            <outcome>He is given bread and a water skin and pointed toward the hills. Whatever happens to him, it won't happen at the colony's gate.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>8</count></li>
+            </effects>
+            <ways><mercy>1</mercy></ways>
+          </li>
+          <li>
+            <label>Hand him to {ENEMY}'s kin</label>
+            <outcome>The boy is held at the gate until the riders of {ENEMY} come back for him. He doesn't fight. He doesn't need to: the look on his face is enough.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>sidedWith</kind><enemy>true</enemy><about>other</about></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>tookSides</kind><about>other</about></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>6</amount><who>Enemy</who></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-8</amount></li>
+            </effects>
+            <flags><li>handed</li></flags>
+            <ways><mercy>-3</mercy></ways>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>mediate</key>
+        <day>6~10</day>
+        <skill>Social</skill>
+        <minLevel>6</minLevel>
+        <forbids><li>handed</li></forbids>
+        <titles>
+          <li>Talk between the families</li>
+        </titles>
+        <texts>
+          <li>The elders of both families are tired of burying people over {NAME}. They have agreed to sit down together, on neutral ground, if someone they both trust sits between them.\n\nBoth of them have named the colony, and the colony's best talker is {A_nameDef}.</li>
+          <li>[hid] {ENEMY}'s family knows the colony hid the boy, and {FACTION}'s knows it too. Oddly, that has made both sides willing to talk at the colony's table, with {A_nameDef} between them, since nobody else will have them in the same room.</li>
+          <li>[their:dearfriend] Both families have asked for talks, and {FACTION} have asked that {FRIEND_nameDef} be there: their people trust {FRIEND_objective}. {A_nameDef} would do the talking.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>{A_nameDef} sits between them</label>
+            <outcome>{A_nameDef} spends a long day at a long table with two families who won't look at each other. By evening they are arguing about the blood price instead of about blood, which {A_nameDef} counts as progress.</outcome>
+            <riskChance>0.3</riskChance>
+            <riskSkill>Social</riskSkill>
+            <riskOutcome>The talks went wrong in the second hour, when an uncle of {ENEMY}'s family said something about a grandmother. {A_nameDef} got everyone out before it came to blows, but the feud is worse than before.</riskOutcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Learn"><skill>Social</skill><xp>900</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>mediated</kind><about>other</about></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>mediated</kind><enemy>true</enemy><about>other</about></li>
+            </effects>
+            <flags><li>talks</li></flags>
+            <riskFlags><li>worse</li></riskFlags>
+            <help>2</help>
+            <deed>sat {A_nameDef} between the feuding families</deed>
+            <next>price</next>
+            <nextDays>1~2</nextDays>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>It isn't the colony's quarrel</label>
+            <outcome>Both families are told the colony won't sit between them. They'll have to find someone else, or no one.</outcome>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>price</key>
+        <called>true</called>
+        <forbids><li>worse</li></forbids>
+        <count>120~220</count>
+        <wealthScaled>true</wealthScaled>
+        <titles>
+          <li>The blood price</li>
+        </titles>
+        <texts>
+          <li>The families have agreed on a blood price for the life taken over {NAME}: so much silver, paid by {FACTION}'s family to {ENEMY}'s, and the matter closed for good. {FACTION}'s family can't raise the last {COUNT}.\n\n{A_nameDef} thinks the colony could make up the difference, and that it would be the cheapest peace anyone ever bought.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Pay the last {COUNT} silver</label>
+            <outcome>The silver goes to {ENEMY}'s family with {A_nameDef}, and the elders of both families shake hands over it. It's done.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Pay" />
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>6</amount><who>Both</who></li>
+              <li Class="ColonyCouncil.ArcEffect_Epithet"><epithet>Council_Epithet_Feudbreaker</epithet><chance>0.7</chance></li>
+            </effects>
+            <flags><li>paid</li></flags>
+            <help>2</help>
+            <deed>paid the last of the blood price that ended {NAME}</deed>
+            <end>peace</end>
+            <endDays>0.5~1</endDays>
+            <ways><generosity>2</generosity></ways>
+          </li>
+          <li>
+            <label>They'll have to find it themselves</label>
+            <outcome>{A_nameDef} tells them the colony has done what it can. The families go back to counting coins, and to glaring at each other.</outcome>
+          </li>
+        </options>
+      </li>
+    </beats>
+    <endings>
+      <li>
+        <key>peace</key>
+        <requires><li>paid</li></requires>
+        <timeout>false</timeout>
+        <helped>true</helped>
+        <titles>
+          <li>The end of {NAME}</li>
+        </titles>
+        <texts>
+          <li>{NAME} is over. The blood price has been paid, the families have eaten at one table, and the young man who ran has gone home to his mother.\n\nBoth {FACTION} and {ENEMY} say the colony made it possible. That's a rare thing to have two peoples agree on.</li>
+        </texts>
+        <chronicle>{NAME} ended in peace, with the colony between the families.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>5</amount><who>Both</who></li>
+          <li Class="ColonyCouncil.WorldEffect_Thought"><thought>Council_WS_GoodNeighbours</thought></li>
+        </effects>
+      </li>
+      <li>
+        <key>worse</key>
+        <requires><li>worse</li></requires>
+        <titles>
+          <li>{NAME} goes on</li>
+        </titles>
+        <texts>
+          <li>{NAME} has gone underground: no more blood for now, but the families of {FACTION} and {ENEMY} cross the street to avoid each other, and every wedding is a risk.\n\nThe talks at the colony's table are remembered as the day it got worse. Not fairly, but that's how it's remembered.</li>
+        </texts>
+        <chronicle>{NAME} smouldered on after talks at the colony went wrong.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-3</amount><who>Both</who></li>
+        </effects>
+      </li>
+      <li>
+        <key>talks</key>
+        <requires><li>talks</li></requires>
+        <helped>true</helped>
+        <titles>
+          <li>{NAME} cools</li>
+        </titles>
+        <texts>
+          <li>The families never agreed on the price, but they haven't drawn blood since they sat at the colony's table. {NAME} has cooled into the kind of grudge that people complain about instead of act on.\n\nThat is something, and both peoples know who started the talking.</li>
+        </texts>
+        <chronicle>{NAME} cooled after the families talked at the colony.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>3</amount><who>Both</who></li>
+        </effects>
+      </li>
+      <li>
+        <key>handed</key>
+        <requires><li>handed</li></requires>
+        <titles>
+          <li>{NAME} settled, after a fashion</li>
+        </titles>
+        <texts>
+          <li>{NAME} is over, the way such things end when one side gets what it wanted. {ENEMY}'s family has had its satisfaction. {FACTION}'s family has a grave to visit and the colony's name to curse.</li>
+        </texts>
+        <chronicle>{NAME} ended when the colony handed over the fugitive.</chronicle>
+      </li>
+      <li>
+        <key>burnedOut</key>
+        <titles>
+          <li>{NAME} burns out</li>
+        </titles>
+        <texts>
+          <li>{NAME} has burned itself out, as feuds sometimes do when everyone gets too tired to keep it up. Nobody has forgiven anybody. Nobody has killed anybody either, lately.</li>
+          <li>[hid] {NAME} has burned itself out. The boy the colony hid went home last week, quietly, by the back roads. {FACTION}'s family haven't stopped thanking the colony; {ENEMY}'s haven't stopped muttering about it.</li>
+        </texts>
+        <chronicle>{NAME} burned itself out.</chronicle>
+      </li>
+    </endings>
+  </ColonyCouncil.WorldSituationDef>
+
+  <!-- ===================== A comet ===================== -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Council_WS_Comet</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>comet</label>
+    <weight>0.6</weight>
+    <earliestDay>30</earliestDay>
+    <cooldownDays>300</cooldownDays>
+    <durationDays>10~16</durationDays>
+    <kind>comet</kind>
+    <faction>
+      <friendly>true</friendly>
+      <optional>true</optional>
+    </faction>
+    <names>
+      <li>the bearded star</li>
+      <li>the long-tail</li>
+      <li>the white rider</li>
+      <li>[!lowtech] Comet Harrow</li>
+      <li>[lowtech] the sky-sword</li>
+    </names>
+    <titles>
+      <li>A comet</li>
+      <li>{NAME}</li>
+    </titles>
+    <texts>
+      <li>[lowtech] A new star has appeared low in the east with a tail behind it like a horse's mane. The old people call it {NAME}, and every village for a hundred miles has an opinion about what it means: war, plague, a good harvest, the end of the world.\n\nIt will be in the sky for a couple of weeks. Then it will be gone, and everyone will remember it differently.</li>
+      <li>[!lowtech] A comet has come into view over the region: {NAME}, the astronomers are calling it, and they say it won't pass this close again for three hundred years. It's bright enough to cast shadows on a clear night.\n\nThe roads are full of people who want to see it from somewhere dark, and of people who think it's a sign.</li>
+      <li>{NAME} hangs over the hills every night now, a smear of light with a long pale tail. People who never look up are looking up. People who never pray are thinking about it.</li>
+    </texts>
+    <summaries>
+      <li>Fortune tellers, pilgrims and scholars come more often while {NAME} is in the sky. The colony's people will want to watch it, and someone may ask to watch from the colony's hill.</li>
+    </summaries>
+    <modifiers>
+      <li><rimfolk>Council_Evt_FortuneTeller</rimfolk><factor>3</factor></li>
+      <li><rimfolk>Council_Evt_Pilgrims</rimfolk><factor>2</factor></li>
+      <li><rimfolk>Council_Evt_Scholar</rimfolk><factor>2.5</factor></li>
+      <li><rimfolk>Council_Evt_Starfall</rimfolk><factor>3</factor></li>
+      <li><rimfolk>Council_Evt_Comet</rimfolk><factor>0.1</factor></li>
+    </modifiers>
+    <beats>
+      <li>
+        <key>watch</key>
+        <day>0.5~2</day>
+        <titles>
+          <li>Watching {NAME}</li>
+        </titles>
+        <texts>
+          <li>Half the colony stayed up last night to look at {NAME}, and the other half complained about being kept awake. {A_nameDef} suggests doing it properly: a fire on the hill, blankets, something hot to drink, and the whole sky to look at.\n\nNot everyone thinks a comet is good news. {A_nameDef} says that's all the more reason to look at it together.</li>
+          <li>[winter] {NAME} is at its brightest in the long winter nights. {A_nameDef} wants to build a fire on the hill and watch it together, cold or not.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>A night watch on the hill</label>
+            <outcome>A fire is laid on the hill for tonight. Anyone who wants to watch {NAME} can come and sit by it.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Bonfire"><label>the night watch for {NAME}</label><hours>20~23</hours><duration>3~4</duration><target>Colony</target></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_WS_CometWatch</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
+            </effects>
+            <flags><li>watched</li></flags>
+            <ways><tradition>1</tradition></ways>
+          </li>
+          <li>
+            <label>Everyone to bed: there's work tomorrow</label>
+            <outcome>The colony goes to bed at the usual hour. {NAME} will be there tomorrow night, for anyone who wants to lose sleep over it.</outcome>
+            <ways><toil>1</toil></ways>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>scholar</key>
+        <day>3~7</day>
+        <titles>
+          <li>A watcher of the sky</li>
+        </titles>
+        <texts>
+          <li>[theirLowtech] An old star-reader of {FACTION} has come with a bundle of notched sticks and a great deal of patience. The colony's hill has the clearest sky in the valley, {PLACE}'s elders told her, and she asks to sit on it for a few nights and count {NAME}'s steps across the stars.\n\nShe offers to teach anyone who sits with her.</li>
+          <li>[theirHightech] An astronomer of {FACTION} has turned up with a telescope in a padded case and a notebook already half full. The colony's hill is above the valley haze, and she asks to set up there for a few nights.\n\nShe offers to share what she finds.</li>
+          <li>[noenemy] A sky-watcher from the towns has come asking for the colony's hill, the darkest and highest for miles, to watch {NAME} from for a few nights. She offers to teach whoever sits up with her.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Welcome her, and sit up with her</label>
+            <outcome>{A_nameDef} sits up with the stargazer every night she's here, and comes away full of names for things {A_pronoun} had never noticed.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Learn"><skill>Intellectual</skill><xp>900</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Research"><share>0.15</share><max>800</max><onlyIfChosen>true</onlyIfChosen></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>4</amount></li>
+            </effects>
+            <flags><li>studied</li></flags>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>She can watch from the road</label>
+            <outcome>The stargazer is told the hill isn't open to visitors. She sets up by the road instead and is gone in a few days.</outcome>
+            <ways><openness>-1</openness></ways>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>fragment</key>
+        <day>6~11</day>
+        <chance>0.4</chance>
+        <titles>
+          <li>Something fell</li>
+        </titles>
+        <texts>
+          <li>A streak of fire crossed the sky before dawn and ended in a thump somewhere in the hills beyond the fields. {A_nameDef} heard it and has been itching to go and look ever since.\n\nIt may be a piece of {NAME}. It may be nothing.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Send {A_nameDef} to look</label>
+            <outcome>{A_nameDef} comes back at dusk with a lump of black, pitted stone that's heavier than it should be, and a story about a crater as wide as a cart.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Loot"><value>180~360</value><fancy>true</fancy></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Walk</to><duration>2~3</duration></li>
+            </effects>
+            <flags><li>fragment</li></flags>
+          </li>
+          <li>
+            <label>Leave it in the hills</label>
+            <outcome>Whatever fell stays where it fell. {A_nameDef} is visibly disappointed.</outcome>
+          </li>
+        </options>
+      </li>
+    </beats>
+    <endings>
+      <li>
+        <key>gone</key>
+        <titles>
+          <li>{NAME} fades</li>
+        </titles>
+        <texts>
+          <li>[theirLowtech|theirHightech] {NAME} is fading, a little dimmer every night, and soon it will be gone. The war it foretold didn't come, nor the plague, nor the end of the world. A child was born in {PLACE} on the night it was brightest, and they've named her after it.</li>
+          <li>[watched] {NAME} has gone back into the dark. The colony will remember the night on the hill with the fire and the blankets, when everyone looked up at once.</li>
+          <li>[noenemy] {NAME} is gone from the sky. The fortune tellers are already explaining what it meant, now that it can't argue.</li>
+        </texts>
+        <chronicle>{NAME} crossed the sky and was gone.</chronicle>
+      </li>
+    </endings>
+  </ColonyCouncil.WorldSituationDef>
+
+  <!-- ===================== A bumper harvest ===================== -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Council_WS_Bumper</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>bumper harvest</label>
+    <weight>0.8</weight>
+    <earliestDay>20</earliestDay>
+    <cooldownDays>150</cooldownDays>
+    <durationDays>10~16</durationDays>
+    <kind>harvest</kind>
+    <seasons>
+      <li>Summer</li>
+      <li>Fall</li>
+      <li>PermanentSummer</li>
+    </seasons>
+    <faction>
+      <friendly>true</friendly>
+    </faction>
+    <titles>
+      <li>A bumper harvest</li>
+      <li>A year of plenty</li>
+    </titles>
+    <texts>
+      <li>The rains came when they should and stopped when they should, and the fields of {FACTION} are heavier than anyone at {PLACE} can remember. The granaries are full and the threshing floors are busy from dawn to dark.\n\nGrain will be cheap for a while, and {FACTION} will be short of hands to bring it all in.</li>
+      <li>[theirHightech] {FACTION}'s harvest has come in at twice the usual yield, and {PLACE} doesn't have the storage for it. Prices across the region have dropped, and every truck in {PLACE} is out on the roads looking for buyers.\n\nThey need hands, and they need people who'll buy.</li>
+      <li>[their:grateful] It's a year of plenty for {FACTION}, and they haven't forgotten the years when the colony was kind to them. Word has come that the colony is welcome at their threshing floors, and their prices.</li>
+    </texts>
+    <summaries>
+      <li>Traders come more often and food is cheap. {FACTION} will offer grain at a good price and ask for hands at harvest, and their harvest supper is open to anyone who helped.</li>
+    </summaries>
+    <modifiers>
+      <li><incident>TraderCaravanArrival</incident><factor>1.4</factor></li>
+      <li><rimfolk>Council_Mission_Harvest</rimfolk><factor>3</factor></li>
+      <li><rimfolk>Council_Evt_HarvestFair</rimfolk><factor>2</factor></li>
+      <li><rimfolk>Council_Evt_Pilgrims</rimfolk><factor>0.6</factor></li>
+    </modifiers>
+    <beats>
+      <li>
+        <key>grain</key>
+        <day>1~4</day>
+        <count>120~220</count>
+        <wealthScaled>true</wealthScaled>
+        <titles>
+          <li>Cheap grain from {PLACE}</li>
+        </titles>
+        <texts>
+          <li>A cart from {PLACE} has come round with more grain than {FACTION} can store: {COUNT} measures of it, for about a third of what it would fetch in an ordinary year.\n\nThe carter would rather sell it here than watch it spoil there.</li>
+          <li>[winter] Winter is coming, and {FACTION} have more grain than they can keep. Their carter offers {COUNT} measures for a third of the usual price, before the roads close.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Buy it (a third of the price)</label>
+            <outcome>The grain is unloaded into the colony's stores, and the carter goes home lighter and pleased.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Pay"><factor>0.35</factor></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>RawCorn</thing></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>2</amount></li>
+            </effects>
+          </li>
+          <li>
+            <label>The colony has enough</label>
+            <outcome>The carter thanks the colony for its time and goes on down the road, still heavy.</outcome>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>hands</key>
+        <day>3~7</day>
+        <skill>Plants</skill>
+        <minLevel>4</minLevel>
+        <titles>
+          <li>Hands for the harvest</li>
+        </titles>
+        <texts>
+          <li>{FACTION} can't bring their harvest in fast enough, and rain is coming. They ask whether {A_nameDef} and anyone else the colony can spare could come to {PLACE} for a few days with sickles.\n\nThey will pay in grain, and with a seat at the harvest supper.</li>
+          <li>[their:friend] {FACTION} need hands at {PLACE} before the rain, and they've asked particularly whether {FRIEND_nameDef} might come. {A_nameDef} would go too.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Send {A_nameDef} with a sickle</label>
+            <outcome>{A_nameDef} spends four days in {FACTION}'s fields and comes back brown, aching and full of harvest supper, with a cart of grain to follow.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Learn"><skill>Plants</skill><xp>1200</xp></li>
+              <li Class="ColonyCouncil.WorldEffect_ThoughtFor"><thought>Council_Mission_HarvestHands</thought></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>6</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>harvestHelp</kind><about>place</about></li>
+              <li Class="ColonyCouncil.WorldEffect_Owe"><amount>120~220</amount></li>
+            </effects>
+            <help>2</help>
+            <flags><li>hands</li></flags>
+            <deed>sent {A_nameDef} to help with the harvest at {PLACE}</deed>
+            <ways><generosity>1</generosity><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>The colony has its own fields</label>
+            <outcome>{FACTION} are told the colony can't spare anyone. Their grain will have to wait for the weather.</outcome>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>supper</key>
+        <day>8~13</day>
+        <titles>
+          <li>A harvest supper</li>
+        </titles>
+        <texts>
+          <li>The harvest is in all over the region, and every village is holding its supper. {A_nameDef} thinks the colony ought to hold its own: the long table, the good food, a toast to a year when the land was kind.\n\nIt would cost a feast's worth of food. In a year like this, the colony can afford it.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Hold a harvest supper</label>
+            <outcome>The colony sets the long table for a harvest supper tonight.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>the harvest supper</label><hours>17~21</hours></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.08</amount></li>
+            </effects>
+            <flags><li>supper</li></flags>
+            <ways><tradition>1</tradition></ways>
+          </li>
+          <li>
+            <label>Not this year</label>
+            <outcome>The colony eats its supper like any other night.</outcome>
+            <ways><toil>1</toil></ways>
+          </li>
+        </options>
+      </li>
+    </beats>
+    <endings>
+      <li>
+        <key>plenty</key>
+        <titles>
+          <li>The year of plenty ends</li>
+        </titles>
+        <texts>
+          <li>The last of the harvest is in, the prices are climbing back, and {FACTION}'s granaries at {PLACE} are full to the rafters. It was a good year. Everyone will be talking about it in the next bad one.</li>
+          <li>[hands] {FACTION}'s harvest is in, and the cart of grain they promised for the colony's help has come up the road: the colony's share of a good year, worth about {COUNT} silver.</li>
+          <li>[supper,!hands] The harvest is in all over the region. The colony's own supper is still being talked about, mostly the pie.</li>
+        </texts>
+        <chronicle>A year of plenty for {FACTION}.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>3</amount><requires>hands</requires></li>
+        </effects>
+      </li>
+    </endings>
+  </ColonyCouncil.WorldSituationDef>
+
+  <!-- ===================== The drove roads ===================== -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Council_WS_Drovers</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>drove season</label>
+    <weight>0.7</weight>
+    <earliestDay>25</earliestDay>
+    <cooldownDays>160</cooldownDays>
+    <durationDays>12~18</durationDays>
+    <kind>drove</kind>
+    <seasons>
+      <li>Spring</li>
+      <li>Summer</li>
+      <li>Fall</li>
+      <li>PermanentSummer</li>
+    </seasons>
+    <faction>
+      <friendly>true</friendly>
+    </faction>
+    <titles>
+      <li>The drove roads</li>
+      <li>Herds on the road</li>
+    </titles>
+    <texts>
+      <li>It's droving season. {FACTION} are walking their herds to the great market beyond {PLACE}, and the old drove roads are full of dust, dogs, bells and bellowing. Some of those roads pass close to the colony.\n\nDrovers are hard people and fair ones, mostly. They'll want grass, water and a place to stop.</li>
+      <li>[theirHightech] {FACTION} are moving stock to market the old way this year, on the hoof, since fuel is dear. The drove roads past {PLACE} are busy for the first time in a generation, and the colony is on one of them.</li>
+    </texts>
+    <summaries>
+      <li>Drovers camp near the colony more often, and may ask to graze their herds on its land. A stray or two may wander in, and the drovers' dogs and stories come with them.</li>
+    </summaries>
+    <modifiers>
+      <li><rimfolk>Council_Evt_Camp</rimfolk><factor>1.6</factor></li>
+      <li><incident>HerdMigration</incident><factor>1.5</factor></li>
+      <li><rimfolk>Council_Evt_Stray</rimfolk><factor>2</factor></li>
+    </modifiers>
+    <beats>
+      <li>
+        <key>graze</key>
+        <day>1~4</day>
+        <count>60~120</count>
+        <wealthScaled>true</wealthScaled>
+        <titles>
+          <li>Drovers ask for grass</li>
+        </titles>
+        <texts>
+          <li>A drover of {FACTION}, sunburnt and dusty, has ridden up to the gate ahead of a long herd. The road's grazing is eaten bare, he says, and he asks to let his beasts graze the colony's far meadow for a night. He offers {COUNT} silver for it.\n\nThe herd can be heard from the gate already.</li>
+          <li>[their:grateful] The drovers of {FACTION} know the colony's name. Their headman asks, politely, for a night's grazing on the far meadow, and offers {COUNT} silver, or nothing at all if the colony would rather call it friendship.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Graze them, for {COUNT} silver</label>
+            <outcome>The herd spends the night on the far meadow under the drovers' eyes, and the silver is left at the gate in the morning.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Silver" />
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>2</amount></li>
+            </effects>
+          </li>
+          <li>
+            <label>Graze them, as friends</label>
+            <outcome>The herd spends the night on the far meadow, and the drovers spend the evening at the colony's fire, telling stories about every road from here to the sea.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>6</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>welcomed</kind><about>none</about></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Bonfire"><label>the drovers' evening</label><target>Colony</target><chance>0.7</chance></li>
+            </effects>
+            <help>1</help>
+            <ways><generosity>2</generosity><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Keep them off the meadow</label>
+            <outcome>The drover nods, says nothing, and turns his herd down the long way round.</outcome>
+            <ways><openness>-1</openness></ways>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>dispute</key>
+        <day>5~10</day>
+        <skill>Animals</skill>
+        <minLevel>5</minLevel>
+        <titles>
+          <li>A question of beasts</li>
+        </titles>
+        <texts>
+          <li>Two drovers of {FACTION} have fallen out over a heifer that one says is his and the other says is his, and they've come to the colony to settle it, since neither trusts the other's people. They've heard {A_nameDef} knows beasts.\n\nIt is, {A_nameDef} admits, an unusually good heifer.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>{A_nameDef} judges it</label>
+            <outcome>{A_nameDef} spends an hour looking at the heifer, the two drovers and a great many brands, and finally rules by which of the two herds the heifer walks back to when let loose. Both drovers accept it, grumbling, which is the best anyone could hope for.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Learn"><skill>Animals</skill><xp>700</xp></li>
+              <li Class="ColonyCouncil.WorldEffect_Learn"><skill>Social</skill><xp>300</xp></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>4</amount></li>
+            </effects>
+            <help>1</help>
+            <deed>settled a drovers' quarrel</deed>
+          </li>
+          <li>
+            <label>Send them on to {PLACE}</label>
+            <outcome>The drovers are told it's for {FACTION}'s own elders to judge. They go off arguing, and the heifer looks back once.</outcome>
+          </li>
+        </options>
+      </li>
+    </beats>
+    <endings>
+      <li>
+        <key>sold</key>
+        <titles>
+          <li>The herds go by</li>
+        </titles>
+        <texts>
+          <li>The last of the droves has gone through, and the market beyond {PLACE} is over for the year. The dust has settled on the roads. Somewhere a dog is still barking at nothing.</li>
+          <li>[helped] The droves have gone by. The drovers of {FACTION} will remember the colony's meadow and its fire next year, and the year after, the way drovers remember every good stop on a long road.</li>
+        </texts>
+        <chronicle>The droves of {FACTION} passed by on the way to market.</chronicle>
+      </li>
+    </endings>
+  </ColonyCouncil.WorldSituationDef>
+
+</Defs>

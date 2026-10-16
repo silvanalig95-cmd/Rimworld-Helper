@@ -64,6 +64,7 @@ namespace ColonyCouncil
             ctx.text = ctx.Format(CampWords.Fill(Pick(kind.texts, ctx), kind, camp.faction));
             // The colonist who met them first.
             camp.Warm(ctx.a, 1);
+            CouncilRecords.Add(ctx.a, CouncilRecords.CampsGreeted);
             ctx.why = label;
             ctx.cause = label;
             string body = ctx.text + "\n\n" + Facts(camp);

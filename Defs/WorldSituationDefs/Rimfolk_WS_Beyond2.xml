@@ -1,0 +1,712 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- World events of the region, continued (see Rimfolk_WS_Beyond.xml): a people in mourning, a season of songs, a
+       toll on the roads, iron gone scarce, and exiles on the roads. -->
+
+  <!-- ===================== A people in mourning ===================== -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Council_WS_Mourning</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a people in mourning</label>
+    <weight>0.7</weight>
+    <earliestDay>30</earliestDay>
+    <cooldownDays>180</cooldownDays>
+    <durationDays>10~15</durationDays>
+    <kind>mourning</kind>
+    <faction>
+      <friendly>true</friendly>
+    </faction>
+    <names>
+      <li>old Maren</li>
+      <li>Grandfather Tobin</li>
+      <li>the healer Ysolde</li>
+      <li>Hesk the bridge-builder</li>
+      <li>Mother Aldry</li>
+      <li>the singer Corwen</li>
+      <li>[!lowtech] Doctor Ilse Varga</li>
+      <li>[!lowtech] old Captain Brandt</li>
+    </names>
+    <titles>
+      <li>{FACTION} mourn {NAME}</li>
+      <li>A death at {PLACE}</li>
+    </titles>
+    <texts>
+      <li>{NAME} of {PLACE} has died, at a great age and in {FACTION}'s own bed, as people say. Half the region knew {NAME}, and the other half knew someone {NAME} had helped.\n\n{FACTION} have gone into mourning. Their mourners will carry the news, and the dead, along the roads for a while.</li>
+      <li>[theirLowtech] The bells of {PLACE} have been ringing since yesterday: {NAME} is dead. {FACTION} wear grey for their beloved dead, and the whole town is grey this week.\n\nThe custom is that neighbours send something for the burial, or stand by the road when the mourners pass. Not everyone does.</li>
+      <li>[theirHightech] {FACTION} have lowered their flags at {PLACE}: {NAME} died two nights ago. There was a notice on every board in the region by morning, and a long list of the people {NAME} had taught, mended or fed.\n\n{FACTION} will hold their memorial in a few days. Neighbours are welcome to send words.</li>
+      <li>[their:friend] {FACTION} have sent word that {NAME} is dead. The rider added something for {FRIEND_nameDef}: {NAME} had heard what {FRIEND_pronoun} once did for their people, and spoke of it near the end.</li>
+    </texts>
+    <summaries>
+      <li>{FACTION} will welcome a gift for {NAME}'s burial and neighbours by the road when their mourners pass. Mourners may camp near the colony on their way.</li>
+    </summaries>
+    <modifiers>
+      <li><rimfolk>Council_Evt_Mourners</rimfolk><factor>2</factor></li>
+      <li><rimfolk>Council_Evt_Camp</rimfolk><factor>1.4</factor></li>
+      <li><incident>TraderCaravanArrival</incident><factor>0.8</factor></li>
+    </modifiers>
+    <beats>
+      <li>
+        <key>gift</key>
+        <day>1~3</day>
+        <count>60~120</count>
+        <wealthScaled>true</wealthScaled>
+        <titles>
+          <li>A gift for the burial</li>
+        </titles>
+        <texts>
+          <li>It is the custom among {FACTION} for neighbours to send something toward a burial: cloth for the shroud, food for the wake, silver for the stone. {A_nameDef} thinks {COUNT} silver would be a proper gift for {NAME}.\n\nNobody would say anything if the colony sent nothing. They would notice.</li>
+          <li>[trait:Kind] {A_nameDef} has been asking around about {NAME}, and has decided the colony should send something for the burial: {COUNT} silver, {A_pronoun} suggests, for the stone.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Send {COUNT} silver for the stone</label>
+            <outcome>The silver goes to {PLACE} with a few words from {A_nameDef}. {FACTION} will carve the colony's name with the others on the back of {NAME}'s stone.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Pay" />
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>8</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>mourned</kind><about>none</about></li>
+            </effects>
+            <help>2</help>
+            <deed>sent silver for {NAME}'s stone</deed>
+            <ways><generosity>1</generosity><tradition>1</tradition></ways>
+          </li>
+          <li>
+            <label>Send words only</label>
+            <outcome>{A_nameDef} writes a few lines about {NAME} for {FACTION} to read at the wake. It's something.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>3</amount></li>
+              <li Class="ColonyCouncil.WorldEffect_Learn"><skill>Social</skill><xp>200</xp></li>
+            </effects>
+            <help>1</help>
+            <deed>sent words for {NAME}'s wake</deed>
+          </li>
+          <li>
+            <label>Send nothing</label>
+            <outcome>The colony sends nothing to {PLACE}. It didn't know {NAME}.</outcome>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>road</key>
+        <day>4~8</day>
+        <titles>
+          <li>The mourners pass</li>
+        </titles>
+        <texts>
+          <li>{FACTION}'s mourners are carrying {NAME} along the old road to be buried with {NAME}'s people, and they will pass the colony this afternoon: a slow line of grey, a cart, a drum beaten once every ten steps.\n\nAmong {FACTION} it is a kindness to stand by the road bareheaded while the dead go by.</li>
+          <li>[winter] The mourners of {FACTION} are carrying {NAME} through the snow to the old burial ground, and will pass the colony at dusk. Among {FACTION}, neighbours stand by the road with a lantern while the dead go by.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Stand by the road with them</label>
+            <outcome>The colony goes out to the road to stand while {NAME} passes.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Toast"><label>standing by the road for {NAME}</label><spots><li>Outdoors</li></spots><target>Colony</target><hours>14~19</hours></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_WS_StoodWithMourners</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>5</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>mourned</kind><weight>4</weight><about>none</about></li>
+            </effects>
+            <help>1</help>
+            <flags><li>stood</li></flags>
+            <deed>stood by the road as {NAME} was carried past</deed>
+            <ways><tradition>2</tradition></ways>
+          </li>
+          <li>
+            <label>Let them pass</label>
+            <outcome>The mourners pass the colony's gate in silence. Some of the colonists watch from the fields.</outcome>
+          </li>
+        </options>
+      </li>
+    </beats>
+    <endings>
+      <li>
+        <key>honoured</key>
+        <minHelp>2</minHelp>
+        <helped>true</helped>
+        <titles>
+          <li>{NAME} at rest</li>
+        </titles>
+        <texts>
+          <li>{NAME} is buried, and {FACTION} have put away their grey. The colony's part has been noticed: when the elders of {PLACE} list the neighbours who honoured {NAME}, the colony is on the list.</li>
+          <li>[stood] {NAME} is buried. {FACTION} say the colony stood by the road bareheaded when the mourners passed, and that {NAME} would have liked that, being someone who always stopped to talk.</li>
+        </texts>
+        <chronicle>{FACTION} buried {NAME}; the colony honoured the dead.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>4</amount></li>
+        </effects>
+      </li>
+      <li>
+        <key>buried</key>
+        <titles>
+          <li>{NAME} at rest</li>
+        </titles>
+        <texts>
+          <li>{NAME} is buried, and {FACTION} have gone back to their days. Grief goes on in its own time, but the mourning is over.</li>
+        </texts>
+        <chronicle>{FACTION} buried {NAME}.</chronicle>
+      </li>
+    </endings>
+  </ColonyCouncil.WorldSituationDef>
+
+  <!-- ===================== A season of songs ===================== -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Council_WS_Songs</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>season of songs</label>
+    <weight>0.6</weight>
+    <earliestDay>30</earliestDay>
+    <cooldownDays>200</cooldownDays>
+    <durationDays>12~18</durationDays>
+    <kind>songs</kind>
+    <faction>
+      <friendly>true</friendly>
+    </faction>
+    <names>
+      <li>Lark Tamsin</li>
+      <li>Old Harrow</li>
+      <li>the blind fiddler Eddo</li>
+      <li>Merrin of the Seven Roads</li>
+      <li>[!lowtech] Juno Vale</li>
+      <li>[!lowtech] the Dusk Quartet</li>
+    </names>
+    <titles>
+      <li>{NAME} is on the road</li>
+      <li>A season of songs</li>
+    </titles>
+    <texts>
+      <li>[theirLowtech] {NAME}, the most famous singer in the region, is on the road this season, walking from town to town with a lute and a donkey. Every hall {NAME} sings in is full, and every tavern after is full of people trying to remember the words.\n\nThe songs are about the region, about who did what and to whom. Some of them are about places like the colony.</li>
+      <li>[theirHightech] {NAME} is touring the region: one night in each town, the halls packed, the songs passed round on scraps of paper and sung badly in every kitchen afterwards.\n\n{NAME} writes songs about the places on the road. People say the colony is on the road.</li>
+      <li>[their:grateful] {NAME}, the singer of {FACTION}, is on the road this season, and {FACTION} have been feeding {NAME} stories. Some of those stories, word has it, are about the colony, and they are kind ones.</li>
+    </texts>
+    <summaries>
+      <li>Minstrels and players camp near the colony more often. A song about the colony is going round, for better or worse, and the singer may pass near enough to be asked in.</li>
+    </summaries>
+    <modifiers>
+      <li><rimfolk>Council_Evt_Music</rimfolk><factor>2</factor></li>
+      <li><rimfolk>Council_Evt_Players</rimfolk><factor>2</factor></li>
+      <li><rimfolk>Council_Evt_Fiddler</rimfolk><factor>2</factor></li>
+      <li><rimfolk>Council_Evt_Camp</rimfolk><factor>1.3</factor></li>
+    </modifiers>
+    <beats>
+      <li>
+        <key>song</key>
+        <day>2~5</day>
+        <titles>
+          <li>A song about the colony</li>
+        </titles>
+        <texts>
+          <li>A trader brought it: {NAME} has a new song, and it's about the colony. Everyone at {PLACE} is singing it.\n\nIt isn't quite true, {A_nameDef} reports, having heard it twice. It isn't quite untrue either.</li>
+          <li>[colony:Merciful] {NAME}'s new song is about the colony: a place on the hill where nobody is turned away and nobody is hanged. {A_nameDef} has heard it three times on the road and has started to believe it.</li>
+          <li>[colony:Harsh] {NAME} has made a song about the colony, and it isn't kind: a hard place on the hill where strangers think twice before knocking. People sing it with a shiver. {A_nameDef} heard it at {PLACE} and didn't stay for the last verse.</li>
+          <li>[colony:Generous] {NAME}'s new song is about the colony's table, which in the song is about a mile long. Everyone on the road knows it. Strangers have started arriving hungry and hopeful.</li>
+          <li>[colony:Industrious] {NAME} has a song about the colony now: the place where the lamps never go out and the hammers never stop. It's a work song, and the colony's own people have started singing it at work, which nobody expected.</li>
+          <li>[their:friend] {NAME}'s new song names {FRIEND_nameDef}, of all people, and what {FRIEND_pronoun} once did for {FACTION}. {FRIEND_nameDef} heard it from a trader and went quite red.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Send {NAME} a gift, for the next verse</label>
+            <outcome>A small purse goes to {PLACE} for {NAME}, with the colony's thanks and a story or two for the next verse.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>40</count></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_WS_OurSong</thought></li>
+            </effects>
+            <flags><li>sung</li></flags>
+          </li>
+          <li>
+            <label>Let them sing</label>
+            <outcome>The colony lets the song go where songs go. {A_nameDef} has been humming it all afternoon.</outcome>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>visit</key>
+        <day>6~11</day>
+        <titles>
+          <li>{NAME} passes near</li>
+        </titles>
+        <texts>
+          <li>{NAME} is on the road below the colony, on the way to the next town, and would sing for a supper and a bed. {A_nameDef} has already started clearing the hall.\n\nNo town turns {NAME} away. Not many get asked twice.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Ask {NAME} in to sing (feed them well)</label>
+            <outcome>{NAME} is asked in for the night. There will be music round the fire this evening.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>12</count></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Bonfire"><label>{NAME}'s evening</label><music>true</music><target>Colony</target></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.12</amount></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>4</amount></li>
+            </effects>
+            <flags><li>sang</li></flags>
+            <help>1</help>
+            <deed>gave {NAME} a supper and a bed</deed>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>The colony has work to do</label>
+            <outcome>{NAME} goes by on the road below. Someone at the gate hears a snatch of a song on the wind, and nothing more.</outcome>
+          </li>
+        </options>
+      </li>
+    </beats>
+    <endings>
+      <li>
+        <key>sung</key>
+        <titles>
+          <li>The songs go on</li>
+        </titles>
+        <texts>
+          <li>[sung] {NAME} has moved on to the far towns, but the songs have stayed. People sing them at work, at weddings, at the well, and the colony's verse is in all of them now. Travellers have started to ask for it by name.</li>
+          <li>[sang] {NAME} has gone on. The night {NAME} sang at the colony has turned into a verse of its own, and the colony's children can sing every word of it.</li>
+          <li>{NAME} has gone on to the far towns. The tavern-singers will be murdering the songs until next year.</li>
+        </texts>
+        <chronicle>{NAME} sang through the region.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>2</amount><who>Neighbors</who><requires>sung</requires></li>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>2</amount><who>Neighbors</who><requires>sang</requires></li>
+        </effects>
+      </li>
+    </endings>
+  </ColonyCouncil.WorldSituationDef>
+
+  <!-- ===================== A toll on the roads ===================== -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Council_WS_Toll</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>toll on the roads</label>
+    <weight>0.7</weight>
+    <earliestDay>35</earliestDay>
+    <cooldownDays>180</cooldownDays>
+    <durationDays>14~20</durationDays>
+    <kind>toll</kind>
+    <minTech>Medieval</minTech>
+    <faction>
+      <friendly>true</friendly>
+      <minSettlements>2</minSettlements>
+    </faction>
+    <titles>
+      <li>A toll on the roads</li>
+      <li>{FACTION} close the road</li>
+    </titles>
+    <texts>
+      <li>[theirLowtech] {FACTION} have put a chain across the road at {PLACE} and a man with a box beside it. Every cart, every pack animal and every traveller pays to pass, and the price has doubled twice since the spring.\n\nTraders are going the long way round, or not at all.</li>
+      <li>[theirHightech] {FACTION} have set up a checkpoint on the highway at {PLACE}: papers, inspections, and a fee for every vehicle. The fee, they say, is for the roads. The roads, everyone else says, look the same as before.\n\nTraders are going round, or staying home.</li>
+      <li>[their:grudge] {FACTION} have set a toll on the road at {PLACE}, and their tollmen have been told to look very hard at anyone from the colony. {FACTION} have long memories, and this is what they look like.</li>
+    </texts>
+    <summaries>
+      <li>Fewer traders and visitors get through while the toll stands. The colony can pay its way, petition against it with the other villages, or wait it out.</li>
+    </summaries>
+    <modifiers>
+      <li><incident>TraderCaravanArrival</incident><factor>0.5</factor><unlessFlag>paid</unlessFlag></li>
+      <li><incident>VisitorGroup</incident><factor>0.7</factor></li>
+      <li><rimfolk>Council_Evt_Camp</rimfolk><factor>0.7</factor></li>
+    </modifiers>
+    <beats>
+      <li>
+        <key>pay</key>
+        <day>2~5</day>
+        <count>150~280</count>
+        <wealthScaled>true</wealthScaled>
+        <titles>
+          <li>Paying the toll</li>
+        </titles>
+        <texts>
+          <li>{FACTION}'s toll-keeper has sent word: for {COUNT} silver, paid now, the colony's traders and the caravans bound for it may pass the chain for the rest of the season without paying again.\n\nIt's a lot of silver. It's less than the colony would lose without traders.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Pay {COUNT} silver</label>
+            <outcome>The silver goes to {PLACE}, and the toll-keeper sends back a painted token for the colony's carts. Traders bound for the colony will be waved through.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Pay" />
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>3</amount></li>
+            </effects>
+            <flags><li>paid</li></flags>
+          </li>
+          <li>
+            <label>Not a single coin</label>
+            <outcome>The colony won't pay. The traders who come will be the ones willing to go the long way round.</outcome>
+            <flags><li>refused</li></flags>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>petition</key>
+        <day>5~10</day>
+        <skill>Social</skill>
+        <minLevel>5</minLevel>
+        <titles>
+          <li>A petition against the toll</li>
+        </titles>
+        <texts>
+          <li>The villages along the road have had enough of {FACTION}'s chain. They are sending a petition to {FACTION}'s {TITLE}, with a spokesman from every village, and they ask whether the colony will send {A_nameDef}.\n\nIf enough of them stand together, the chain may come down. If not, {FACTION} will remember who signed.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Send {A_nameDef} with the petition</label>
+            <outcome>{A_nameDef} goes to {PLACE} with the villages' spokesmen, and speaks first, and longest.</outcome>
+            <riskChance>0.35</riskChance>
+            <riskSkill>Social</riskSkill>
+            <riskOutcome>{A_nameDef} spoke well, but {FACTION}'s {TITLE} wasn't in a listening mood. The petition was refused, and the colony's name was written down.</riskOutcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Learn"><skill>Social</skill><xp>700</xp></li>
+            </effects>
+            <flags><li>petition</li></flags>
+            <riskFlags><li>noted</li></riskFlags>
+            <riskEffects>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-4</amount></li>
+            </riskEffects>
+            <help>2</help>
+            <deed>stood with the villages against the toll at {PLACE}</deed>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Stay out of it</label>
+            <outcome>The villages go to {PLACE} without the colony.</outcome>
+          </li>
+        </options>
+      </li>
+    </beats>
+    <endings>
+      <li>
+        <key>lifted</key>
+        <requires><li>petition</li></requires>
+        <forbids><li>noted</li></forbids>
+        <helped>true</helped>
+        <titles>
+          <li>The chain comes down</li>
+        </titles>
+        <texts>
+          <li>{FACTION} have taken the chain off the road at {PLACE}. They say it was always meant to be for a season. Everyone knows it was the petition, and everyone knows {A_nameDef} spoke first.\n\nThe traders are already coming back.</li>
+        </texts>
+        <chronicle>The toll at {PLACE} was lifted after the villages' petition.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>4</amount><who>Neighbors</who></li>
+        </effects>
+      </li>
+      <li>
+        <key>expires</key>
+        <titles>
+          <li>The toll lapses</li>
+        </titles>
+        <texts>
+          <li>The toll at {PLACE} has lapsed for the winter, as tolls do when there's nobody left on the road to pay them. {FACTION} have made their money. The traders will come back slowly.</li>
+          <li>[paid] The toll at {PLACE} is over for the season. The colony's painted token is nailed over the gate now, as a souvenir of the most expensive piece of wood it owns.</li>
+        </texts>
+        <chronicle>The toll on the road at {PLACE} lapsed.</chronicle>
+      </li>
+    </endings>
+  </ColonyCouncil.WorldSituationDef>
+
+  <!-- ===================== Iron gone scarce ===================== -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Council_WS_IronScarce</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>iron gone scarce</label>
+    <weight>0.6</weight>
+    <earliestDay>30</earliestDay>
+    <cooldownDays>200</cooldownDays>
+    <durationDays>12~18</durationDays>
+    <kind>scarcity</kind>
+    <minTech>Medieval</minTech>
+    <faction>
+      <friendly>true</friendly>
+    </faction>
+    <titles>
+      <li>Iron gone scarce</li>
+      <li>Short of steel</li>
+    </titles>
+    <texts>
+      <li>[lowtech] The mines in the hills beyond {PLACE} have flooded, and the iron that came out of them has stopped coming. Smiths across the region are melting down old ploughshares to make new nails, and {FACTION} are paying whatever they must for anything with iron in it.\n\nThe colony has steel. People know that.</li>
+      <li>[!lowtech] A smelter has gone down upriver, and steel has vanished from the region's markets almost overnight. {FACTION} are rationing it in {PLACE}, and every trader on the road is asking the same question: who has any to sell?\n\nThe colony has steel. People know that.</li>
+    </texts>
+    <summaries>
+      <li>{FACTION} will pay well for steel. Smiths and prospectors come by more often; a colony with iron to spare can do well, or do good.</li>
+    </summaries>
+    <modifiers>
+      <li><rimfolk>Council_Evt_Camp</rimfolk><factor>1.3</factor></li>
+      <li><rimfolk>Council_Evt_Tinker</rimfolk><factor>2</factor></li>
+    </modifiers>
+    <beats>
+      <li>
+        <key>buy</key>
+        <day>1~4</day>
+        <count>30~60</count>
+        <titles>
+          <li>{FACTION} want steel</li>
+        </titles>
+        <texts>
+          <li>{FACTION}'s smith has come up from {PLACE} with a purse and a list. {FACTION} need {COUNT} steel for nails, hinges and ploughshares before the season ends, and will pay twice what it's worth.\n\nIt's a good price. It's also the colony's steel.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Sell {COUNT} steel at twice its worth</label>
+            <outcome>The steel goes down to {PLACE} in a cart, and the smith's purse stays at the colony.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Sell"><thing>Steel</thing><price>2</price></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>3</amount></li>
+            </effects>
+            <help>1</help>
+            <deed>sold steel to {PLACE}</deed>
+          </li>
+          <li>
+            <label>Sell it at its plain worth</label>
+            <outcome>The smith blinks at the price, pays it before the colony can change its mind, and promises {FACTION} will hear about it.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Sell"><thing>Steel</thing><price>1</price></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>7</amount></li>
+            </effects>
+            <help>2</help>
+            <deed>sold steel to {PLACE} at its plain worth</deed>
+            <ways><generosity>2</generosity></ways>
+          </li>
+          <li>
+            <label>Keep the steel</label>
+            <outcome>The smith goes back to {PLACE} with the purse still full and the list still long.</outcome>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>mend</key>
+        <day>5~10</day>
+        <skill>Crafting</skill>
+        <minLevel>6</minLevel>
+        <titles>
+          <li>Making do</li>
+        </titles>
+        <texts>
+          <li>{FACTION}'s smiths have heard that {A_nameDef} knows how to make old iron go further: how to mend instead of replace, weld instead of melt. They ask whether {A_nameDef} would spend a few days at {PLACE} teaching them.\n\nIt would cost {A_nameDef}'s time. It would save {FACTION} a great deal of iron.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Send {A_nameDef} to teach</label>
+            <outcome>{A_nameDef} spends three days in {FACTION}'s forges and comes back covered in soot, with a few tricks of theirs as well.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Learn"><skill>Crafting</skill><xp>1100</xp></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>6</amount></li>
+            </effects>
+            <help>2</help>
+            <deed>sent {A_nameDef} to teach the smiths of {PLACE}</deed>
+          </li>
+          <li>
+            <label>{A_nameDef} is needed here</label>
+            <outcome>{FACTION}'s smiths will have to work it out for themselves.</outcome>
+          </li>
+        </options>
+      </li>
+    </beats>
+    <endings>
+      <li>
+        <key>helped</key>
+        <minHelp>2</minHelp>
+        <helped>true</helped>
+        <titles>
+          <li>Iron on the roads again</li>
+        </titles>
+        <texts>
+          <li>The mines are pumped out and iron is moving on the roads again. {FACTION} got through the lean weeks partly on the colony's steel and the colony's know-how, and their smiths say so.</li>
+        </texts>
+        <chronicle>Iron came back to the region; {FACTION} remember the colony's help.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>4</amount></li>
+        </effects>
+      </li>
+      <li>
+        <key>over</key>
+        <titles>
+          <li>Iron on the roads again</li>
+        </titles>
+        <texts>
+          <li>Steel is back on the region's markets, and the prices are coming down. Everyone has a new respect for nails.</li>
+        </texts>
+        <chronicle>Iron came back to the region.</chronicle>
+      </li>
+    </endings>
+  </ColonyCouncil.WorldSituationDef>
+
+  <!-- ===================== Exiles on the roads ===================== -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Council_WS_Exiles</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>exiles on the roads</label>
+    <weight>0.6</weight>
+    <earliestDay>40</earliestDay>
+    <cooldownDays>200</cooldownDays>
+    <durationDays>14~20</durationDays>
+    <kind>exile</kind>
+    <faction>
+      <friendly>true</friendly>
+    </faction>
+    <titles>
+      <li>Exiles from {PLACE}</li>
+      <li>{FACTION} cast out their own</li>
+    </titles>
+    <texts>
+      <li>{FACTION} have cast out a whole household from {PLACE}: a family that sided with the wrong cousin in a quarrel over the leadership, or spoke too loudly against the {TITLE}, depending on who tells it. They have a day to leave {FACTION}'s lands and may not come back.\n\nThey are on the roads now, with everything they could carry. Some of them will come this way.</li>
+      <li>[theirLowtech] By the old law of {FACTION}, a household that breaks faith with the {TITLE} is driven out with nothing but its clothes and its name. That law has been used at {PLACE} for the first time in living memory.\n\nThe exiles are walking. The colony is on their road.</li>
+    </texts>
+    <summaries>
+      <li>Exiles from {PLACE} will ask the colony for shelter. {FACTION} will not thank anyone who gives it.</li>
+    </summaries>
+    <modifiers>
+      <li><incident>WandererJoin</incident><factor>1.5</factor></li>
+      <li><rimfolk>Council_Evt_Camp</rimfolk><factor>1.2</factor></li>
+    </modifiers>
+    <beats>
+      <li>
+        <key>ask</key>
+        <day>1~4</day>
+        <titles>
+          <li>Exiles at the gate</li>
+        </titles>
+        <texts>
+          <li>A man and a woman from {PLACE}, the exiles everyone has heard about, have come to the colony's gate. They ask for nothing much: a few nights' shelter, or a place to stay for good if the colony will have them.\n\n{FACTION} will hear of whatever the colony does.</li>
+          <li>[their:grudge] Exiles from {PLACE} are at the gate. They chose the colony on purpose, they say: {FACTION} don't love it either, so they hope it might love them a little.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Take them in</label>
+            <outcome>The exiles are given beds and a place at the table. {FACTION} will know by the end of the week.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Join"><count>1~2</count></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-6</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>tookSides</kind><about>none</about></li>
+            </effects>
+            <flags><li>harboured</li></flags>
+            <ways><openness>2</openness><mercy>2</mercy></ways>
+          </li>
+          <li>
+            <label>Feed them and send them on</label>
+            <outcome>The exiles eat, sleep one night in the barn and go on in the morning with what the colony could spare.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>15</count></li>
+            </effects>
+            <ways><mercy>1</mercy></ways>
+          </li>
+          <li>
+            <label>Turn them away</label>
+            <outcome>The gate stays shut. The exiles walk on toward the next village.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>3</amount></li>
+            </effects>
+            <flags><li>refused</li></flags>
+            <ways><openness>-2</openness></ways>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>envoy</key>
+        <day>6~10</day>
+        <titles>
+          <li>{FACTION} warn the neighbours</li>
+        </titles>
+        <texts>
+          <li>An envoy of {FACTION} has come to every village on the road, the colony included, with the same message from the {TITLE}: whoever shelters the exiles of {PLACE} shelters {FACTION}'s enemies.\n\nThe envoy waits for an answer, not unkindly.</li>
+          <li>[harboured] {FACTION}'s envoy has come to the colony in particular, and knows exactly who is sleeping under its roof. The {TITLE} asks the colony to send them away. The envoy asks, quietly, whether they are well.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Say the colony shelters whom it likes</label>
+            <outcome>The envoy writes it down without comment, and leaves. The {TITLE} will hear it word for word.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-4</amount></li>
+            </effects>
+            <flags><li>defied</li></flags>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Promise to keep out of it</label>
+            <outcome>The envoy thanks the colony and goes on to the next village. Whatever the colony has already done is done.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>2</amount></li>
+            </effects>
+            <flags><li>promised</li></flags>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>plea</key>
+        <day>9~14</day>
+        <skill>Social</skill>
+        <minLevel>7</minLevel>
+        <requires><li>harboured</li></requires>
+        <titles>
+          <li>A word for the exiles</li>
+        </titles>
+        <texts>
+          <li>The exiles the colony took in have asked {A_nameDef} for something they can't ask for themselves: someone to go to {PLACE} and speak for them, so that one day their children might go home.\n\n{FACTION}'s {TITLE} may listen, or may not.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>{A_nameDef} goes to speak for them</label>
+            <outcome>{A_nameDef} goes to {PLACE} and speaks for the exiles in front of the {TITLE}.</outcome>
+            <riskChance>0.45</riskChance>
+            <riskSkill>Social</riskSkill>
+            <riskOutcome>The {TITLE} heard {A_nameDef} out in silence and then had {A_objective} shown to the road. The exiles stay exiles.</riskOutcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Learn"><skill>Social</skill><xp>800</xp></li>
+            </effects>
+            <flags><li>pardon</li></flags>
+            <riskFlags><li>spurned</li></riskFlags>
+            <help>2</help>
+            <deed>spoke for the exiles before {FACTION}'s {TITLE}</deed>
+            <ways><mercy>1</mercy></ways>
+          </li>
+          <li>
+            <label>Let it lie</label>
+            <outcome>{A_nameDef} tells the exiles it's too soon. They understand. They had hoped anyway.</outcome>
+          </li>
+        </options>
+      </li>
+    </beats>
+    <endings>
+      <li>
+        <key>pardoned</key>
+        <requires><li>pardon</li></requires>
+        <forbids><li>spurned</li></forbids>
+        <helped>true</helped>
+        <titles>
+          <li>The exiles pardoned</li>
+        </titles>
+        <texts>
+          <li>{FACTION}'s {TITLE} has lifted the sentence: the exiles of {PLACE} may go home, if they want to. Some will. The ones who have found a place at the colony may not.\n\nEveryone at {PLACE} knows who spoke for them. Not everyone at {PLACE} is pleased about it, but the {TITLE} is, which matters more.</li>
+        </texts>
+        <chronicle>The exiles of {PLACE} were pardoned after the colony spoke for them.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>8</amount></li>
+          <li Class="ColonyCouncil.WorldEffect_Thought"><thought>Council_WS_GoodNeighbours</thought></li>
+        </effects>
+      </li>
+      <li>
+        <key>settled</key>
+        <titles>
+          <li>The exiles settle</li>
+        </titles>
+        <texts>
+          <li>The exiles of {PLACE} have scattered: some to far towns, some to cousins, some nobody knows where. {FACTION} have stopped talking about them, which is how such things end.</li>
+          <li>[harboured] The exiles of {PLACE} are still exiles, and some of them are the colony's people now. {FACTION} have not forgotten that, and the exiles have not forgotten either.</li>
+          <li>[refused] The exiles of {PLACE} found shelter elsewhere, or didn't. The colony's gate was shut to them, and {FACTION} counted that in its favour.</li>
+        </texts>
+        <chronicle>The exiles of {PLACE} went their ways.</chronicle>
+      </li>
+    </endings>
+  </ColonyCouncil.WorldSituationDef>
+
+</Defs>

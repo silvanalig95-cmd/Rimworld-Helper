@@ -504,6 +504,8 @@ namespace ColonyCouncil
                     if (o.flags != null) foreach (var f in o.flags) s.Set(f);
                     if (o.clears != null) foreach (var f in o.clears) s.Clear(f);
                     s.help += o.help;
+                    // Answering a neighbour's call counts for the one who went (a name: the Good Neighbour).
+                    if (o.help > 0 && !byDefault && ctx.a != null && ctx.a.IsColonist) CouncilRecords.Add(ctx.a, CouncilRecords.WorldCallsAnswered);
                     if (!o.deed.NullOrEmpty()) s.deeds.Add(ctx.Format(o.deed));
                     if (!o.next.NullOrEmpty() && !(risk && !o.riskNext.NullOrEmpty())) Call(s, o.next, o.nextDays.RandomInRange);
                     if (!o.end.NullOrEmpty())
@@ -621,7 +623,8 @@ namespace ColonyCouncil
                 history.Add(new SituationRecord
                 {
                     defName = def.defName, label = s.Label, faction = s.ctx.faction, ending = key, help = s.help,
-                    helped = ending != null && ending.helped, startTick = s.startTick, endTick = Now
+                    helped = ending != null && ending.helped, startTick = s.startTick, endTick = Now,
+                    name = s.ctx.name, flags = s.flags.ToList()
                 });
                 while (history.Count > 40) history.RemoveAt(0);
             }
