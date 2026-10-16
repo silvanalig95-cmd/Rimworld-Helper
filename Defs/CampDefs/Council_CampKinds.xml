@@ -3,7 +3,12 @@
 
   <!-- Kinds of camp (ColonyCouncil.CampKindDef): who makes camp on the colony's map, how long they stay, what they build,
        what they take from the land, and what they say. The arrival event is Council_Evt_Camp
-       (Defs/IncidentDefs/Council_Events_Camps.xml). Buildings are found by defName at runtime, the first that exists. -->
+       (Defs/IncidentDefs/Council_Events_Camps.xml). Buildings are found by defName at runtime, the first that exists.
+       Tents from the tent mods come first where they fit and stand in only while their mod is loaded: Vanilla Factions
+       Expanded - Classical's one-person tent (VFEC_Tent, a bed) for those who sleep in bedrolls, and a tent of Medieval
+       Overhaul's hide or cloth walls (DankPyon_TentWall, which holds a roof) as the hut of a hunting party, traders,
+       healers and players, with Outland's tent flap (Outland_TentDoor) for its door where Outland is loaded; refugees
+       put up a windbreak of cloth. Without the mods, the bedrolls, the plain wooden windbreak and no hut. -->
 
   <!-- ===================== A hunting party ===================== -->
 
@@ -32,7 +37,8 @@
     <extendChance>0.4</extendChance>
     <structures>
       <li><role>fire</role><defs><li>Campfire</li></defs></li>
-      <li><role>bed</role><defs><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Leather_Plain</li><li>Cloth</li></stuff></li>
+      <li><role>hut</role><defs><li>DankPyon_TentWall</li></defs><stuff><li>Leather_Plain</li><li>Cloth</li></stuff><doors><li>Outland_TentDoor</li></doors></li>
+      <li><role>bed</role><defs><li>VFEC_Tent</li><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Leather_Plain</li><li>Cloth</li></stuff></li>
       <li><role>butcher</role><defs><li>ButcherSpot</li></defs></li>
     </structures>
     <titles>
@@ -110,7 +116,7 @@
     <structures>
       <li><role>fire</role><defs><li>Campfire</li></defs></li>
       <li><role>bed</role><defs><li>SleepingSpot</li><li>Bedroll</li></defs><stuff><li>Cloth</li></stuff></li>
-      <li><role>wall</role><defs><li>Wall</li></defs><stuff><li>WoodLog</li></stuff><count>4</count></li>
+      <li><role>wall</role><defs><li>DankPyon_TentWall</li><li>Wall</li></defs><stuff><li>Cloth</li><li>WoodLog</li></stuff><count>4</count></li>
     </structures>
     <titles>
       <li>A family makes camp</li>
@@ -184,7 +190,7 @@
     <extendChance>0.5</extendChance>
     <structures>
       <li><role>fire</role><defs><li>Campfire</li></defs></li>
-      <li><role>bed</role><defs><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff></li>
+      <li><role>bed</role><defs><li>VFEC_Tent</li><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff></li>
       <li><role>wall</role><defs><li>Wall</li></defs><stuff><li>WoodLog</li></stuff><count>5</count></li>
       <li><role>light</role><defs><li>TorchLamp</li></defs></li>
     </structures>
@@ -319,7 +325,8 @@
     <extendChance>0.3</extendChance>
     <structures>
       <li><role>fire</role><defs><li>Campfire</li></defs></li>
-      <li><role>bed</role><defs><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff></li>
+      <li><role>hut</role><defs><li>DankPyon_TentWall</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff><doors><li>Outland_TentDoor</li></doors></li>
+      <li><role>bed</role><defs><li>VFEC_Tent</li><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff></li>
       <li><role>stall</role><defs><li>Table1x2c</li></defs><stuff><li>WoodLog</li></stuff></li>
       <li><role>light</role><defs><li>TorchLamp</li></defs></li>
     </structures>
@@ -396,7 +403,7 @@
     <extendChance>0.3</extendChance>
     <structures>
       <li><role>fire</role><defs><li>Campfire</li></defs></li>
-      <li><role>bed</role><defs><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Leather_Plain</li><li>Cloth</li></stuff></li>
+      <li><role>bed</role><defs><li>VFEC_Tent</li><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Leather_Plain</li><li>Cloth</li></stuff></li>
       <li><role>spot</role><defs><li>CraftingSpot</li></defs></li>
       <li><role>stall</role><defs><li>Table1x2c</li></defs><stuff><li>WoodLog</li></stuff></li>
     </structures>

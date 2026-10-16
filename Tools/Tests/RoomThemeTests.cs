@@ -70,7 +70,7 @@ public static class RoomThemeTests
         ShapeRules(check);
 
         var themes = Load(root);
-        check(themes.Count >= 6, $"expected at least 6 room themes, found {themes.Count}");
+        check(themes.Count >= 8, $"expected at least 8 room themes, found {themes.Count}");
         var roleKeys = RoomTemplateTests.RoleKeys(root);
         foreach (var theme in themes)
         {
