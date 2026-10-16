@@ -97,6 +97,12 @@ namespace ColonyCouncil
                 case CalendarKind.FirstTrade:
                     return home.FirstOrDefault(p => p.ThingID == d.pawnId)
                            ?? adults.OrderByDescending(p => p.skills?.GetSkill(SkillDefOf.Social)?.Level ?? 0).First();
+                case CalendarKind.Foal:
+                    return home.FirstOrDefault(p => p.ThingID == d.pawnId && !p.DevelopmentalStage.Juvenile())
+                           ?? adults.OrderByDescending(p => p.skills?.GetSkill(SkillDefOf.Animals)?.Level ?? 0).First();
+                case CalendarKind.Companion:
+                    return home.FirstOrDefault(p => p.ThingID == d.otherId) ?? adults.Where(p => d.knew.Contains(p.ThingID)).FirstOrDefault()
+                           ?? adults.OrderByDescending(YearsWithUs).First();
                 default:
                     return adults.OrderByDescending(YearsWithUs).First();
             }
@@ -133,7 +139,7 @@ namespace ColonyCouncil
         /// </summary>
         private static List<NamedArgument> Args(CalendarDay d, int years, Map map)
         {
-            string dead = d.kind == CalendarKind.Death ? d.pawnName : d.kind == CalendarKind.Battle ? TextUtil.JoinAnd(d.fallen) : "";
+            string dead = d.kind == CalendarKind.Death || d.kind == CalendarKind.Companion ? d.pawnName : d.kind == CalendarKind.Battle ? TextUtil.JoinAnd(d.fallen) : "";
             return new List<NamedArgument>
             {
                 (d.label ?? "").Named("NAME"), years.Named("YEARS"), (dead ?? "").Named("DEAD"), (d.enemy ?? "").Named("ENEMY"),
@@ -372,13 +378,13 @@ namespace ColonyCouncil
                     Hunt(d, map, home);
                     return false;
                 case DayWay.Remembrance:
-                    string subject = d.kind == CalendarKind.Death ? d.pawnName
+                    string subject = d.kind == CalendarKind.Death || d.kind == CalendarKind.Companion ? d.pawnName
                         : d.kind == CalendarKind.Battle ? "CC_Cal_Subject_Battle".Translate(d.enemy ?? "?").Resolve()
                         : d.label;
                     string cause = "CC_Cal_Cause_Remembered".Translate(subject ?? "?").Resolve();
                     var mourners = Mourners(d, home);
                     // With answers playing out, those who knew them stand a while at the grave, if there is one here.
-                    var grave = d.kind == CalendarKind.Death ? PlaySpots.GraveOf(map, d.pawnId) : null;
+                    var grave = d.kind == CalendarKind.Death || d.kind == CalendarKind.Companion ? PlaySpots.GraveOf(map, d.pawnId) : null;
                     if (grave != null && PlayDay(d, map, mourners, PlayKind.Toast, CalendarDefOf.Council_Cal_Remembered, cause,
                             new List<PlaySpot> { PlaySpot.Grave }, grave))
                         return false;
@@ -752,7 +758,12 @@ namespace ColonyCouncil
                 case CalendarKind.Walls:
                 case CalendarKind.NewCrop:
                 case CalendarKind.FirstTrade:
+                case CalendarKind.Foal:
                     list.AddRange(home.Where(p => p.ThingID == d.pawnId && !p.DevelopmentalStage.Juvenile()));
+                    break;
+                case CalendarKind.Companion:
+                    list.AddRange(home.Where(p => p.ThingID == d.otherId));
+                    list.AddRange(home.Where(p => p.ThingID != d.otherId && d.knew.Contains(p.ThingID)).InRandomOrder().Take(1));
                     break;
             }
             foreach (var p in home.InRandomOrder())
@@ -827,7 +838,11 @@ namespace ColonyCouncil
                     a = home.Where(p => d.knew.Contains(p.ThingID)).RandomElementWithFallback();
                     break;
                 case CalendarKind.FirstChild:
+                case CalendarKind.Companion:
                     a = home.FirstOrDefault(p => p.ThingID == d.otherId);
+                    break;
+                case CalendarKind.Foal:
+                    a = home.FirstOrDefault(p => p.ThingID == d.pawnId);
                     break;
                 case CalendarKind.Birthday:
                 case CalendarKind.Arrival:

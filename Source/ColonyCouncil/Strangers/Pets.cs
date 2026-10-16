@@ -79,14 +79,20 @@ namespace ColonyCouncil
             // Killed by raiders: the one it was bonded to may swear on them.
             if (bonded && hero) comp.vendettas?.Notify_PetKilled(comp, pet, person);
             float years = (pet.records?.GetValue(RecordDefOf.TimeAsColonistOrColonyAnimal) ?? 0f) / GenDate.TicksPerYear;
+            // A Pokémon (PokéWorld) is mourned like any pet, with lines of its own; an old one went at the end of a long life.
+            string kind = PokeWorldLink.IsPokemon(pet) ? "pokemon" : null;
+            string old = AnimalFacts.Old(pet) && !hero ? "oldage" : null;
             string line = Flavor.FromPool("Council_Pool_PetFarewell", person, null, null, hero ? "hero" : "quiet",
                 pet.RaceProps.baseBodySize >= 1.5f ? "big" : pet.RaceProps.baseBodySize <= 0.5f ? "small" : "midsize",
-                years >= 2f ? "longtime" : years < 0.25f ? "newpet" : null, bonded ? "bonded" : "master");
+                years >= 2f ? "longtime" : years < 0.25f ? "newpet" : null, bonded ? "bonded" : "master", kind, old);
             if (line.NullOrEmpty()) return;
             string text = line.Formatted(person.Named("PAWN"), pet.Named("PET")).Resolve();
-            Notify.Message(text, person.Spawned ? new LookTargets(person) : LookTargets.Invalid, MessageTypeDefOf.NeutralEvent, bonded || hero ? Importance.Notable : Importance.Flavor);
+            // In the colony's news (the evening's, or at once, as the news setting says).
+            News.Post(text, person.Spawned ? new LookTargets(person) : null, NewsKind.Land, MessageTypeDefOf.NeutralEvent, bonded || hero ? Importance.Notable : Importance.Flavor);
             if (bonded || hero || pet.Name != null) comp.AddChronicle(new ChronicleEntry(ChronicleKind.Stranger, text, person));
-            comp.journals.Write(person, "Council_Journal_PetFarewell", null, pet.Named("PET"));
+            comp.journals.WriteTagged(person, "Council_Journal_PetFarewell", new[] { kind, old }.Where(t => t != null).ToArray(), null, pet.Named("PET"));
+            // A beloved animal's day on the calendar (Animals/AnimalLife.cs).
+            AnimalLife.Notify_PetDied(pet, person, bonded, hero, years);
             // The herdmaster comes to sit with them (Interplay/).
             Interplay.Notify_PetLost(comp, pet, person);
             // Bonded animals already bring their own grief; a master who wasn't bonded still misses them.
@@ -122,6 +128,8 @@ namespace ColonyCouncil
                 var person = PersonOf(pet);
                 if (person == null) continue;
                 bool defended = person.Downed || (person.mindState != null && person.mindState.lastHarmTick >= battleStart);
+                // A champion at their side: a life goal counts the fights (Animals/AnimalGoals.cs).
+                AnimalLife.Notify_PetFought(pet, person);
                 string line = Flavor.FromPool("Council_Pool_PetHeroics", person, null, null, defended ? "defended" : "fought",
                     pet.RaceProps.baseBodySize >= 1.5f ? "big" : pet.RaceProps.baseBodySize <= 0.5f ? "small" : "midsize");
                 string text = !line.NullOrEmpty()

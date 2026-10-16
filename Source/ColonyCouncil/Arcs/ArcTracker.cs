@@ -201,7 +201,8 @@ namespace ColonyCouncil
             if (arc.other != null)
             {
                 bool dead = arc.other.Dead;
-                bool left = !dead && (arc.other.Discarded || arc.other.Faction != Faction.OfPlayer || arc.other.IsPrisoner || People.Kidnapped(arc.other));
+                bool wild = arc.other.Faction == null && arc.def.Worker.OtherMayBeWild;
+                bool left = !dead && (arc.other.Discarded || (arc.other.Faction != Faction.OfPlayer && !wild) || arc.other.IsPrisoner || People.Kidnapped(arc.other));
                 // Someone the story only leans on (a friend to talk to) can be gone without ending it.
                 if ((dead || left) && !arc.def.needsOther) arc.other = null;
                 else if (dead)
@@ -664,10 +665,12 @@ namespace ColonyCouncil
             if (!otherGone) Apply(arc, arc.def.fizzleEffects);
             string line = ArcText.Line(arc.def.fizzle, arc.pawn, arc, arc.Partner ?? arc.other, reason);
             if (!line.NullOrEmpty()) comp.journals.WriteText(arc.pawn, line);
+            // A story about someone's last days (an old companion) ends with their death: told as an ending, not as nothing.
+            bool farewell = reason == "otherdead" && arc.def.otherDeathEnds;
             string told = ArcText.Chronicle(arc.def.fizzleChronicle, arc, reason)
-                          ?? "CC_Arc_FizzledChronicle".Translate(arc.pawn.Named("PAWN"), arc.def.label.Named("STORY")).Resolve();
+                          ?? (farewell ? "CC_Arc_FarewellChronicle" : "CC_Arc_FizzledChronicle").Translate(arc.pawn.Named("PAWN"), arc.def.label.Named("STORY")).Resolve();
             comp.AddChronicle(new ChronicleEntry(ChronicleKind.Life, told, arc.pawn));
-            News.Post("CC_Arc_Fizzled".Translate(arc.pawn.Named("PAWN"), arc.def.label.Named("STORY")).Resolve() + (line.NullOrEmpty() ? "" : " \"" + line + "\""),
+            News.Post((farewell ? "CC_Arc_Farewell" : "CC_Arc_Fizzled").Translate(arc.pawn.Named("PAWN"), arc.def.label.Named("STORY")).Resolve() + (line.NullOrEmpty() ? "" : " \"" + line + "\""),
                 Look(arc), NewsKind.People, MessageTypeDefOf.SilentInput, Importance.Notable);
         }
 

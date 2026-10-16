@@ -59,6 +59,8 @@ namespace ColonyCouncil
                 case CalendarKind.NewCrop: return Icons.CatFood;
                 case CalendarKind.FirstTrade: return Icons.Trader;
                 case CalendarKind.GreatHunt: return Icons.CatLowTech;
+                case CalendarKind.Foal: return Icons.Birth;
+                case CalendarKind.Companion: return Icons.Death;
                 default: return Icon ?? Icons.Chronicle;
             }
         }
@@ -265,6 +267,8 @@ namespace ColonyCouncil
                 case CalendarKind.NewCrop: return "CC_Cal_Origin_NewCrop".Translate(d.subject ?? "?", d.sinceYear).Resolve();
                 case CalendarKind.FirstTrade: return "CC_Cal_Origin_FirstTrade".Translate(d.sinceYear).Resolve();
                 case CalendarKind.GreatHunt: return "CC_Cal_Origin_GreatHunt".Translate(d.sinceYear, d.kills, d.subject ?? "?").Resolve();
+                case CalendarKind.Foal: return "CC_Cal_Origin_Foal".Translate(d.subject ?? "?", d.sinceYear, d.pawnName ?? "?").Resolve();
+                case CalendarKind.Companion: return "CC_Cal_Origin_Companion".Translate(d.pawnName ?? "?", d.sinceYear, d.otherName ?? "?", d.subject ?? "?").Resolve();
                 default: return "CC_Cal_Origin_Holiday".Translate(d.sinceYear).Resolve();
             }
         }

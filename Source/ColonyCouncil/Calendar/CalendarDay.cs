@@ -34,7 +34,11 @@ namespace ColonyCouncil
         /// <summary>The colony's first trade.</summary>
         FirstTrade,
         /// <summary>A great hunt: a day the hunters brought down a good many animals, with no raid to thank for it.</summary>
-        GreatHunt
+        GreatHunt,
+        /// <summary>The first foal: the first animal born to the colony's own herd (Calendar/CalendarAnimals.cs).</summary>
+        Foal,
+        /// <summary>A beloved animal's day: the death of a bonded animal that was long with the colony, or fought for its person.</summary>
+        Companion
     }
 
     /// <summary>How the colony keeps a day.</summary>
