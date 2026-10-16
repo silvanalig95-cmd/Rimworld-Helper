@@ -338,6 +338,9 @@ namespace ColonyCouncil
                 var losers = ranked.Skip(1).Where(kv => kv.Value > 0).Select(kv => kv.Key.LabelShort + " (" + kv.Value + ")").ToList();
                 if (losers.Count > 0) text.Append(" ").Append("CC_Election_Others".Translate(string.Join(", ", losers)).Resolve());
                 if (!office.elected.NullOrEmpty()) text.Append(" ").Append(Flavor.PickText(office.elected).Formatted(winner.Named("PAWN")).Resolve());
+                // A speaker the colony has never once voted against (a name: Epithets/NameRecords.cs).
+                if (ruler == null && S.epithets && office.defName == "Council_Office_Speaker" && previous == winner && comp.epithets.HolderOf("Council_Epithet_Unbeaten") == winner)
+                    text.Append(" ").Append("CC_Election_Unbeaten".Translate(winner.Named("PAWN")).Resolve());
                 CouncilGameComponent.GiveThought(winner, CouncilDefOf.Council_ElectedToOffice);
                 comp.journals.Write(winner, "Council_Journal_Elected", null, office.label.Named("OFFICE"));
                 if (previous != null && previous != winner && Valid(previous))
@@ -355,6 +358,10 @@ namespace ColonyCouncil
                     }
                 }
                 Setbacks.Notify_OfficeWon(winner, office, ranked.Where(kv => kv.Value > 0).Select(kv => kv.Key));
+                // Terms won and votes lost, for the names that count them (Epithets/NameRecords.cs); a bench's seats are shared, so single seats only.
+                if (office.Seats == 1)
+                    NameRecords.Notify_Election(office, winner, ranked.Skip(1).Where(kv => kv.Value > 0).Select(kv => kv.Key)
+                        .Concat(previous != null && previous != winner && Valid(previous) ? new[] { previous } : new Pawn[0]), ruler != null);
                 comp.AddChronicle(new ChronicleEntry(ChronicleKind.Council, ruler != null
                     ? "CC_PM_Chronicle_Named".Translate(ruler.LabelShort, winner.LabelShort, office.label).Resolve()
                     : "CC_Chronicle_Elected".Translate(winner.LabelShort, office.label).Resolve(), winner));
@@ -446,6 +453,27 @@ namespace ColonyCouncil
             comp.AddChronicle(new ChronicleEntry(ChronicleKind.Council, "CC_Chronicle_Appointed".Translate(p.LabelShort, office.label).Resolve(), p));
             Setbacks.Notify_OfficeWon(p, office, current != null ? new[] { current } : null);
             SyncHediffs();
+        }
+
+        /// <summary>
+        /// A council already formed when the game starts (a scenario's: Scenarios/ScenarioParts.cs): someone takes an empty
+        /// seat quietly, before anyone has voted, and this year's election counts as held (an empty seat still has its
+        /// by-election). False if the seat is taken, they hold one already, or they can't do the work.
+        /// </summary>
+        public bool Seat(OfficeDef office, Pawn p, int seat = 0)
+        {
+            if (office == null || p == null || !Valid(p) || !office.CanHold(p) || OfficeOf(p) != null) return false;
+            seat = Mathf.Clamp(seat, 0, office.Seats - 1);
+            if (HolderOf(office, seat) != null) return false;
+            holders[Key(office, seat)] = p;
+            var map = Find.AnyPlayerHomeMap;
+            if (map != null)
+            {
+                lastElectionYear = GenLocalDate.Year(map);
+                lastElectionTick = Find.TickManager.TicksGame;
+            }
+            SyncHediffs();
+            return true;
         }
 
         public void Dismiss(OfficeDef office, CouncilGameComponent comp, int seat = 0)

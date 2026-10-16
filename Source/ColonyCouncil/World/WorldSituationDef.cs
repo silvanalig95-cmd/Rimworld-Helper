@@ -60,6 +60,11 @@ namespace ColonyCouncil
         /// <summary>Only for a colony known this way (Merciful, Generous, Open...).</summary>
         public List<string> colonyIs;
         public List<string> colonyIsNot;
+        /// <summary>
+        /// Likelier (twice the weight) for a colony known for one of these: a pilgrimage finds its way to a devout colony,
+        /// exiles to one known for its hospitality.
+        /// </summary>
+        public List<string> drawnBy;
         /// <summary>Two situations of the same kind never run together (a famine and a locust year are both "hunger").</summary>
         public string kind;
         /// <summary>Brings fights of its own: only with world-event battles on and a storyteller that sends threats.</summary>

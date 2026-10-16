@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More of Rimfolk's scenario parts (see Council_ScenParts.xml; Source/ColonyCouncil/Scenarios/ScenarioParts.cs): a
+    council already formed, days the colony brings with it, a life goal from before, a people the colony holds its
+    land of, children in its care (Biotech), and a world event set in motion. Never added to random scenarios.
+  -->
+
+  <ScenPartDef>
+    <defName>Council_ScenSeats</defName>
+    <label>Rimfolk: a council already formed</label>
+    <category>Misc</category>
+    <scenPartClass>ColonyCouncil.ScenPart_CouncilSeats</scenPartClass>
+    <selectionWeight>0</selectionWeight>
+    <canBeRandomlyAdded>false</canBeRandomlyAdded>
+    <maxUses>1</maxUses>
+    <summaryPriority>444</summaryPriority>
+  </ScenPartDef>
+
+  <ScenPartDef>
+    <defName>Council_ScenDays</defName>
+    <label>Rimfolk: days the colony keeps</label>
+    <category>Misc</category>
+    <scenPartClass>ColonyCouncil.ScenPart_CouncilDays</scenPartClass>
+    <selectionWeight>0</selectionWeight>
+    <canBeRandomlyAdded>false</canBeRandomlyAdded>
+    <maxUses>1</maxUses>
+    <summaryPriority>443</summaryPriority>
+  </ScenPartDef>
+
+  <ScenPartDef>
+    <defName>Council_ScenGoal</defName>
+    <label>Rimfolk: a life goal from before</label>
+    <category>Misc</category>
+    <scenPartClass>ColonyCouncil.ScenPart_CouncilGoal</scenPartClass>
+    <selectionWeight>0</selectionWeight>
+    <canBeRandomlyAdded>false</canBeRandomlyAdded>
+    <maxUses>2</maxUses>
+    <summaryPriority>442</summaryPriority>
+  </ScenPartDef>
+
+  <ScenPartDef>
+    <defName>Council_ScenBeholden</defName>
+    <label>Rimfolk: beholden to a people</label>
+    <category>Misc</category>
+    <scenPartClass>ColonyCouncil.ScenPart_CouncilBeholden</scenPartClass>
+    <selectionWeight>0</selectionWeight>
+    <canBeRandomlyAdded>false</canBeRandomlyAdded>
+    <maxUses>1</maxUses>
+    <summaryPriority>485</summaryPriority>
+  </ScenPartDef>
+
+  <ScenPartDef>
+    <defName>Council_ScenWards</defName>
+    <label>Rimfolk: children in the colony's care</label>
+    <category>Misc</category>
+    <scenPartClass>ColonyCouncil.ScenPart_CouncilWards</scenPartClass>
+    <selectionWeight>0</selectionWeight>
+    <canBeRandomlyAdded>false</canBeRandomlyAdded>
+    <maxUses>1</maxUses>
+    <summaryPriority>465</summaryPriority>
+  </ScenPartDef>
+
+  <ScenPartDef>
+    <defName>Council_ScenSituation</defName>
+    <label>Rimfolk: a world event set in motion</label>
+    <category>Misc</category>
+    <scenPartClass>ColonyCouncil.ScenPart_CouncilSituation</scenPartClass>
+    <selectionWeight>0</selectionWeight>
+    <canBeRandomlyAdded>false</canBeRandomlyAdded>
+    <maxUses>1</maxUses>
+    <summaryPriority>446</summaryPriority>
+  </ScenPartDef>
+
+</Defs>

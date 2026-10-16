@@ -29,6 +29,11 @@ namespace ColonyCouncil
         public List<string> lines = new List<string>();
         public List<Pawn> look = new List<Pawn>();
         public bool threat;
+        /// <summary>Who keeps the scenario's secret (a secret part), for the parts after it (a goal for the one who carries it).</summary>
+        public Pawn keeper;
+        /// <summary>The children in the colony's care (a wards part), and those who look after them.</summary>
+        public List<Pawn> wards = new List<Pawn>();
+        public List<Pawn> carers = new List<Pawn>();
 
         public List<Pawn> Adults => colonists.Where(p => !p.DevelopmentalStage.Juvenile()).ToList();
     }
@@ -71,6 +76,32 @@ namespace ColonyCouncil
         /// <summary>A hostile people that can send fighters; pirates and their like first, if asked.</summary>
         public static Faction Enemy(bool outlaws) =>
             (outlaws ? Raids.Enemy(f => f.def.permanentEnemy) : null) ?? Raids.Enemy();
+
+        /// <summary>A hostile people of the old ways (tribal or medieval, not pirates): the neighbours of a tribe's feud.</summary>
+        public static Faction OldWaysEnemy() =>
+            Raids.Enemy(f => !f.def.permanentEnemy && f.def.techLevel <= TechLevel.Medieval) ?? Raids.Enemy(f => f.def.techLevel <= TechLevel.Medieval);
+
+        /// <summary>
+        /// Someone swore vengeance on a people before the colony began, for a kinsman of theirs they killed (a vendetta: see
+        /// Secrets/Vendettas.cs). The line for the letter, or null when vendettas are off.
+        /// </summary>
+        public static string SwearVendetta(CouncilGameComponent comp, Pawn avenger, Faction faction)
+        {
+            // apart: the start of a game, a grief the colonist brings with them from before.
+            if (comp == null || avenger == null || faction == null || !ColonyCouncilMod.Settings.vendettas || Vendetta.KillRecord(faction) == null) return null;
+            string kin = null;
+            try
+            {
+                kin = PawnBioAndNameGenerator.GeneratePawnName(avenger)?.ToStringShort;
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("scenario vendetta name", e);
+            }
+            if (kin.NullOrEmpty()) kin = "CC_Scen_Kinsman".Translate().ToString();
+            comp.vendettas.vendettas.Add(new Vendetta { avenger = avenger, faction = faction, victim = kin, tick = Find.TickManager.TicksGame });
+            return "CC_Scen_Foe_Vendetta".Translate(avenger.Named("VICTIM"), kin.Named("KIN"), faction.Name.Named("FACTION")).Resolve();
+        }
 
         /// <summary>A hostile people with an army to desert from: not pirates, and of the colony's own age if there is one.</summary>
         public static Faction Army() =>
@@ -136,15 +167,24 @@ namespace ColonyCouncil
         /// <summary>How many attacks in all (0: until the one leading them falls).</summary>
         public int times;
         private string timesBuffer;
-        /// <summary>How the attacks are told: hunt, mutiny, heist, tyrant.</summary>
+        /// <summary>How the attacks are told: hunt, mutiny, heist, tyrant, feud.</summary>
         public string story = "hunt";
+        /// <summary>A people of the old ways (tribal or medieval, not pirates) if there is one: a neighbouring tribe's feud.</summary>
+        public bool lowtech;
+        /// <summary>How the letter tells it, if not by the deed (CC_Scen_Foe_feud): the deed itself stays the nemesis's.</summary>
+        public string tell;
+        /// <summary>
+        /// The one they have a quarrel with also swore vengeance on their people, for a kinsman they killed before the
+        /// colony began (a vendetta: three of theirs to fall, or it laid down in time).
+        /// </summary>
+        public bool vendetta;
 
         private static readonly string[] Deeds = { "hunts", "robbed", "betrayed", "enslaved" };
 
         public override void Setup(ScenarioSetupContext ctx)
         {
             // apart: the start of a game, what the colonists bring with them from before.
-            var faction = ScenarioSetup.Enemy(outlaws);
+            var faction = (lowtech ? ScenarioSetup.OldWaysEnemy() : null) ?? ScenarioSetup.Enemy(outlaws);
             if (faction == null)
             {
                 ctx.lines.Add("CC_Scen_NoEnemy".Translate());
@@ -191,16 +231,23 @@ namespace ColonyCouncil
                 m.left = everyDays.max > 0f ? (times > 0 ? times : -1) : 1;
                 ctx.threat = true;
             }
-            string line = ("CC_Scen_Foe_" + deed).Translate(foe.Named("FOE"), faction.Name.Named("FACTION"), victim.Named("VICTIM")).Resolve();
+            string tellKey = !tell.NullOrEmpty() && ("CC_Scen_Foe_" + tell).CanTranslate() ? "CC_Scen_Foe_" + tell : "CC_Scen_Foe_" + deed;
+            string line = tellKey.Translate(foe.Named("FOE"), faction.Name.Named("FACTION"), victim.Named("VICTIM")).Resolve();
             if (captive) line += " " + "CC_Scen_Foe_Prisoner".Translate(foe.Named("FOE"), faction.Name.Named("FACTION")).Resolve();
             string again = everyDays.max <= 0f ? "CC_Scen_Foe_Once" : times > 0 ? "CC_Scen_Foe_Again" : "CC_Scen_Foe_Always";
             if (comes) line += " " + again.Translate(foe.Named("FOE"), faction.Name.Named("FACTION")).Resolve();
+            if (vendetta)
+            {
+                string sworn = ScenarioSetup.SwearVendetta(ctx.comp, victim, faction);
+                if (sworn != null) line += " " + sworn;
+            }
             ctx.lines.Add(line);
             ctx.comp.AddChronicle(new ChronicleEntry(ChronicleKind.World, line, victim));
         }
 
         public override string Summary(Scenario scen) =>
-            ("CC_ScenPart_Foe_" + deed).Translate().ToString() + (captive ? " " + "CC_ScenPart_Foe_Captive".Translate() : "")
+            (!tell.NullOrEmpty() && ("CC_ScenPart_Foe_" + tell).CanTranslate() ? "CC_ScenPart_Foe_" + tell : "CC_ScenPart_Foe_" + deed).Translate().ToString()
+            + (captive ? " " + "CC_ScenPart_Foe_Captive".Translate() : "")
             + (firstDays.max > 0f ? " " + (everyDays.max > 0f ? "CC_ScenPart_Foe_Again" : "CC_ScenPart_Foe_Once").Translate() : "");
 
         public override void DoEditInterface(Listing_ScenEdit listing)
@@ -224,6 +271,9 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref everyDays, "everyDays");
             Scribe_Values.Look(ref story, "story", "hunt");
             Scribe_Values.Look(ref times, "times");
+            Scribe_Values.Look(ref lowtech, "lowtech");
+            Scribe_Values.Look(ref tell, "tell");
+            Scribe_Values.Look(ref vendetta, "vendetta");
         }
     }
 
@@ -454,6 +504,11 @@ namespace ColonyCouncil
     {
         public SecretDef secret;
         public int count = 1;
+        /// <summary>
+        /// One of them carries it and every other grown-up who came knows it too, and swore to keep it: it can only get
+        /// out to those who come later, if one of them lets it slip.
+        /// </summary>
+        public bool shared;
         private string buffer;
 
         public override void Setup(ScenarioSetupContext ctx)
@@ -461,13 +516,28 @@ namespace ColonyCouncil
             if (secret == null) return;
             int given = 0;
             var adults = ctx.Adults;
-            if (adults.Count > count) adults.Remove(ctx.victim);
+            if (adults.Count > count && !shared) adults.Remove(ctx.victim);
             foreach (var p in adults.OrderByDescending(p => secret.Fits(p, out bool match) ? (match ? 2 : 1) : 0).ThenBy(_ => Rand.Value))
             {
-                if (given >= count) break;
-                if (ctx.comp.secrets.Give(p, secret)) given++;
+                if (given >= (shared ? 1 : count)) break;
+                if (!ctx.comp.secrets.Give(p, secret)) continue;
+                given++;
+                ctx.keeper ??= p;
             }
-            if (given > 0) ctx.lines.Add("CC_Scen_SecretHint".Translate());
+            if (given == 0) return;
+            if (!shared)
+            {
+                ctx.lines.Add("CC_Scen_SecretHint".Translate());
+                return;
+            }
+            // apart: the start of a game, a secret the survivors came down with between them.
+            var s = ctx.comp.secrets.Of(ctx.keeper);
+            var others = adults.Where(p => p != ctx.keeper).ToList();
+            if (s == null || others.Count == 0) return;
+            foreach (var p in others)
+                if (!s.knowers.Contains(p)) s.knowers.Add(p);
+            ctx.lines.Add("CC_Scen_SecretShared".Translate(ScenarioSetup.Names(adults).Named("NAMES"), ctx.keeper.Named("KEEPER")).Resolve());
+            ctx.look.Add(ctx.keeper);
         }
 
         public override string Summary(Scenario scen) => "CC_ScenPart_Secret".Translate(secret?.label ?? "?");
@@ -490,6 +560,7 @@ namespace ColonyCouncil
             base.ExposeData();
             Scribe_Defs.Look(ref secret, "secret");
             Scribe_Values.Look(ref count, "count", 1);
+            Scribe_Values.Look(ref shared, "shared");
         }
     }
 
@@ -499,7 +570,7 @@ namespace ColonyCouncil
     public static class ScenarioStakes
     {
         /// <summary>A scenario's memo stays until it's settled (never pruned for age or crowded out).</summary>
-        public static bool Lasting(Memo m) => m != null && !m.used && (m.kind == "hunt" || m.kind == "debt" || m.kind == "event" || (m.kind == "deserter" && m.due > 0));
+        public static bool Lasting(Memo m) => m != null && !m.used && (m.kind == "hunt" || m.kind == "debt" || m.kind == "event" || m.kind == "situation" || (m.kind == "deserter" && m.due > 0));
 
         public static void Hourly(HappeningTracker t, CouncilGameComponent comp, int now)
         {
@@ -517,6 +588,9 @@ namespace ColonyCouncil
                             break;
                         case "event":
                             if (now >= m.due) Happen(t, m, map, now);
+                            break;
+                        case "situation":
+                            if (now >= m.due) ScenPart_CouncilSituation.Begin(t, m, map, now);
                             break;
                     }
                 }

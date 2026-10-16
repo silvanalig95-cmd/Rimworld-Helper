@@ -368,6 +368,7 @@
     <label>a great fair</label>
     <workerClass>ColonyCouncil.SituationWorker_Fair</workerClass>
     <weight>1</weight>
+    <drawnBy><li>Hospitable</li></drawnBy>
     <earliestDay>20</earliestDay>
     <cooldownDays>100</cooldownDays>
     <durationDays>8~12</durationDays>
@@ -491,6 +492,7 @@
     <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a great pilgrimage</label>
     <weight>0.9</weight>
+    <drawnBy><li>Devout</li></drawnBy>
     <earliestDay>20</earliestDay>
     <cooldownDays>150</cooldownDays>
     <durationDays>10~16</durationDays>
@@ -505,6 +507,7 @@
     <texts>
       <li>Once in a generation, the faithful of {FACTION} walk to the old shrine at {PLACE}, and this is that year. They are on every road, in twos and threes and in long singing columns, and many of them pass the colony.\n\nMost carry little and ask for less. All of them will remember where they were welcomed.</li>
       <li>[theirHightech] Once in a generation, the faithful of {FACTION} go to the old shrine at {PLACE}, some walking, some packed into the backs of trucks, all of them singing. This is that year, and the colony sits on one of their roads.\n\nMost carry little and ask for less. All of them will remember where they were welcomed.</li>
+      <li>[colony:Devout] Once in a generation, the faithful of {FACTION} walk to the old shrine at {PLACE}, and this is that year. Word on the roads is that the colony keeps its own faith well, and more than a few of them mean to stop there on the way.\n\nMost carry little, and will ask for less.</li>
     </texts>
     <summaries>
       <li>Pilgrims and travelers pass the colony far more often, hungry ones among them. Hosting them costs food and earns lasting goodwill with {FACTION}.</li>

@@ -154,6 +154,7 @@
           <li>[deed:aid] When the colony called for help, {FACTION} sent their fighters and asked nothing at the time. Now {X_nameDef} has come from {PLACE} to ask something back: {COUNT} silver toward the town's walls, or whatever help the colony can give.</li>
           <li>[deed:relief] Not long ago {FACTION} {TALE}. Now it's {PLACE} that's struggling, after a fire in their granary, and {X_nameDef} has come to ask for {COUNT} silver, or whatever help the colony can give.</li>
           <li>[deed:taught] {FACTION} {TALE}, and asked nothing for it. Now {X_nameDef} has come from {PLACE} with a favor to ask in return: {COUNT} silver toward a new well, or whatever help the colony can give.</li>
+          <li>[deed:granted] {X_nameDef} has ridden from {PLACE} with {FACTION}'s seal on a letter, and a reminder nobody at the colony needed: {FACTION} {TALE}. Now the lord asks {COUNT} silver toward the year's levy, or whatever help the colony can give.</li>
           <li>[winter] {X_nameDef} came up the frozen road from {PLACE} with a list. {FACTION} {TALE}, and they've come to call in the favor: {COUNT} silver to see the town through the cold, or whatever help the colony can give.</li>
           <li>[theirHightech] A courier from {PLACE}, {X_nameDef}, has brought a formal request from {FACTION}. Their records note that they {TALE}. They now ask the colony for {COUNT} silver toward repairs after a storm, or help of another kind.</li>
         </texts>

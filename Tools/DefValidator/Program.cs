@@ -226,7 +226,7 @@ void ValidateValue(XElement el, Type ft, string file)
 }
 
 // Abstract defs from the base game that the mod's defs may inherit from.
-var vanillaParents = new HashSet<string> { "ScenarioBase" };
+var vanillaParents = new HashSet<string> { "ScenarioBase", "PlayerFactionBase" };
 foreach (var (file, doc) in docs)
 {
     foreach (var el in doc.Root!.Elements())
@@ -367,8 +367,12 @@ foreach (var (prefix, suffixes) in dynamic)
 
 // Colony character tags (CharacterTracker.TagMap)
 var wayTags = new HashSet<string> { "Merciful", "Harsh", "Generous", "Thrifty", "Traditional", "Restless", "Open", "Guarded", "Hardworking", "Easygoing" };
+// ...and what a colony grows into (ColonyTraitDef's tag: GreenFingered, Hospitable, Devout...).
 foreach (var (file, doc) in docs)
-    foreach (var e in doc.Descendants().Where(x => x.Name.LocalName == "li" && x.Parent?.Name.LocalName is "colonyIs" or "colonyIsNot"))
+    foreach (var e in doc.Descendants().Where(x => x.Name.LocalName == "tag" && x.Parent?.Name.LocalName == "ColonyCouncil.ColonyTraitDef"))
+        wayTags.Add(e.Value.Trim());
+foreach (var (file, doc) in docs)
+    foreach (var e in doc.Descendants().Where(x => x.Name.LocalName == "li" && x.Parent?.Name.LocalName is "colonyIs" or "colonyIsNot" or "drawnBy"))
         if (!wayTags.Contains(e.Value.Trim())) errors.Add($"{Rel(file)}:{Line(e)}: unknown colony way '{e.Value.Trim()}'");
 // Way shifts stay small: one choice is a nudge, not a reputation.
 foreach (var (file, doc) in docs)
