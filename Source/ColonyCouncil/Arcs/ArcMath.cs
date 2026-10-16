@@ -5,7 +5,8 @@ namespace ColonyCouncil
     /// <summary>
     /// The arithmetic of personal stories (Arcs/), free of game types so the tests can cover it (Tools/Tests): how many
     /// stories a colony sees in a year at each setting, how many may run at once, the chance a new one begins on a given
-    /// day, how a held condition counts up, and how candidates are weighed.
+    /// day, how a held condition counts up, how candidates are weighed, and for stories of three, who is favoured, who is
+    /// at odds and how likely being caught between two people is.
     /// </summary>
     public static class ArcMath
     {
@@ -90,6 +91,42 @@ namespace ColonyCouncil
             if (target <= start) return now >= target ? 1f : 0f;
             return Clamp01((now - start) / (target - start));
         }
+
+        // ---------------- Stories of three ----------------
+
+        /// <summary>
+        /// Which of two the third leans toward: +1 the first, -1 the second, 0 neither clearly (closer than the margin).
+        /// The one both suitors are fond of, or a teacher weighing two students' progress.
+        /// </summary>
+        public static int Favoured(float toFirst, float toSecond, float margin)
+        {
+            float m = Math.Max(0f, margin);
+            if (toFirst >= toSecond + m && toFirst > toSecond) return 1;
+            if (toSecond >= toFirst + m && toSecond > toFirst) return -1;
+            return 0;
+        }
+
+        /// <summary>
+        /// Two people at odds: either thinks little of the other (5 or less), they are rivals, or there was a sharp word
+        /// between them lately.
+        /// </summary>
+        public static bool AtOdds(int ab, int ba, bool rivals, bool recentFriction) => rivals || recentFriction || ab <= 5 || ba <= 5;
+
+        /// <summary>
+        /// How likely a story of someone caught between two others is: nothing unless they are close to both (20 or
+        /// more each) and the two are at odds (5 or less, the worse of their opinions of each other); likelier the
+        /// closer they are to both and the further apart the two are, never more than three times as likely.
+        /// </summary>
+        public static float TriangleWeight(int toOther, int toThird, int betweenWorst)
+        {
+            int closest = Math.Min(toOther, toThird);
+            if (closest < 20 || betweenWorst > 5) return 0f;
+            float w = (closest / 50f) * (1f + Math.Max(0, -betweenWorst) / 40f);
+            return w < 0.2f ? 0.2f : w > 3f ? 3f : w;
+        }
+
+        /// <summary>Both of two have come far enough: the share of the way of the one further behind (0 to 1).</summary>
+        public static float Both(float shareA, float shareB) => Clamp01(Math.Min(shareA, shareB));
 
         private static float Clamp01(float v) => v < 0f ? 0f : v > 1f ? 1f : v;
     }

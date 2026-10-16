@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The moods of the stories of people's lives (Rimfolk_Arcs_Three.xml, Rimfolk_Arcs_World.xml, Rimfolk_Arcs_Ages.xml).
+    Most good endings give something other than mood (RewardInstead: a feeling, trust, rest, a little practice, a line
+    in the journal), and a memory about someone keeps its opinion either way. Only the old one at peace keeps a small
+    real mood. The ones that cost something are setbacks: a love lost to a rival, family still at odds, caught in the
+    middle, a seat lost too soon, family dying far away, still treated like a child. Their hints are in
+    Defs/MoodHintDefs/Rimfolk_MoodHints_Lives.xml.
+  -->
+
+  <!-- ===================== A rival in love ===================== -->
+
+  <ThoughtDef>
+    <defName>Council_Arc_ChoseMe</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>12</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>chose me</label><description>There were two of us, and of the two, they chose me. I still can't quite believe it.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>15</baseOpinionOffset></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>4</felt><feelings><li>Love</li><li>Joy</li></feelings><journal>true</journal></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Arc_LostInLove</defName>
+    <durationDays>8</durationDays>
+    <stages><li><label>they chose someone else</label><description>I hoped, and they chose someone else. I'll be civil about it. I'll be civil about it tomorrow.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Arc_FairRival</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>8</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>a fair rival</label><description>We wanted the same thing and only one of us could have it. They never played dirty. I can respect that, mostly.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>6</baseOpinionOffset></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>1</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <!-- ===================== Torn between two students ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Arc_BothMyStudents</defName>
+    <durationDays>10</durationDays>
+    <stages><li><label>both my students</label><description>Two students, and both of them standing on their own feet. I didn't have to choose between them after all.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>3</felt><feelings><li>Pride</li></feelings><journal>true</journal></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Arc_FellowStudent</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>10</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>my fellow student</label><description>We learned at the same bench and fought for the same nod of approval. Somewhere along the way we started helping each other instead.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>10</baseOpinionOffset></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>1</felt><skillFrom>shared</skillFrom><xp>300</xp></li></modExtensions>
+  </ThoughtDef>
+
+  <!-- ===================== Brothers and sisters ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Arc_FamilyMended</defName>
+    <durationDays>10</durationDays>
+    <stages><li><label>my children at peace</label><description>My children sat at the same table tonight and nobody left it angry. It's a small thing. It isn't small to me.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>3</felt><feelings><li>Tenderness</li></feelings><journal>true</journal></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Arc_SiblingsAgain</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>10</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>family again</label><description>We fought like cats in a sack. We're still family. Turns out both of those can be true.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>12</baseOpinionOffset></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Arc_FamilyStillAtOdds</defName>
+    <durationDays>6</durationDays>
+    <stages><li><label>my children at odds</label><description>I tried to make peace between my children and it didn't take. Every meal is a held breath.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== Caught in the middle ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Arc_OutOfTheMiddle</defName>
+    <durationDays>8</durationDays>
+    <stages><li><label>out of the middle</label><description>My two friends are talking to each other again, not just through me. I can stop carrying messages.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>3</felt><feelings><li>Relief</li><li>Fellowship</li></feelings></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Arc_CaughtBetween</defName>
+    <durationDays>6</durationDays>
+    <stages><li><label>caught between friends</label><description>Two people I care about can't stand each other, and every kind word I give one of them, the other counts.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== The road calls ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Arc_StayedHome</defName>
+    <durationDays>8</durationDays>
+    <stages><li><label>stayed</label><description>The camp packed up and went, and I watched them go from the gate. I'm still here. I chose it, which is not the same as being stuck.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt><feelings><li>Contentment</li></feelings><journal>true</journal></li></modExtensions>
+  </ThoughtDef>
+
+  <!-- ===================== The weight of office ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Arc_GrewIntoOffice</defName>
+    <durationDays>10</durationDays>
+    <stages><li><label>grew into the office</label><description>The seat on the council doesn't sit so heavy now. I know what I'm doing, most days.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>3</felt><trust>3</trust><feelings><li>Pride</li></feelings></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Arc_LostSeatEarly</defName>
+    <durationDays>8</durationDays>
+    <stages><li><label>lost the seat too soon</label><description>I was only just learning to carry the office, and now it's gone. Nobody will remember I was getting better at it.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== Word from far away ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Arc_FamilySafe</defName>
+    <durationDays>8</durationDays>
+    <stages><li><label>word they're safe</label><description>The hard times out there have passed, and as far as anyone can tell, my family came through them. I can breathe again.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>4</felt><rest>0.15</rest><feelings><li>Relief</li></feelings><journal>true</journal></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Arc_KinDiedFarAway</defName>
+    <durationDays>12</durationDays>
+    <stages><li><label>died far away</label><description>Someone of mine died out there in the hard times, and I was here, too far away to do anything. I didn't even know until it was over.</description><baseMoodEffect>-6</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== Bad nights ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Arc_QuietNights</defName>
+    <durationDays>6</durationDays>
+    <stages><li><label>quiet nights</label><description>I sleep the whole night now. The dark is just the dark.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt><rest>0.2</rest></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Arc_SatUpWithMe</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>12</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>sat up with me</label><description>When the bad dreams came, they sat up with me until I slept. Every night, as long as it took.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>12</baseOpinionOffset></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>1</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <!-- ===================== Not a child any more ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Arc_TreatedAsGrown</defName>
+    <durationDays>10</durationDays>
+    <stages><li><label>treated as grown</label><description>They talked to me today the way they talk to each other. Like my word counts. It does.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>3</felt><trust>3</trust><feelings><li>Pride</li></feelings><journal>true</journal></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Arc_SawThemGrowUp</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>10</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>saw them grow up</label><description>I looked away for a season and they grew up on me. They're good at what they do. I should have said so sooner.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>8</baseOpinionOffset></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Arc_StillAChildToThem</defName>
+    <durationDays>5</durationDays>
+    <stages><li><label>still a child to them</label><description>Whatever I do, I'm still the child who knocked the pot over. I'm done trying to prove anything.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== A new parent ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Arc_FoundOurFeet</defName>
+    <durationDays>8</durationDays>
+    <stages><li><label>finding my feet as a parent</label><description>The baby sleeps most of the night now, and so do I. I think we're going to be all right, the two of us.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>3</felt><rest>0.2</rest><feelings><li>Tenderness</li></feelings></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Arc_HelpedWithBaby</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>10</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>helped with the baby</label><description>In the worst of the sleepless nights, they took the baby so I could close my eyes. I won't forget it.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>10</baseOpinionOffset></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>1</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <!-- ===================== One more spring ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Arc_AtPeace</defName>
+    <durationDays>10</durationDays>
+    <stages><li><label>at peace</label><description>My things are in order and the people who matter know what I want. Whatever comes now, I'm ready for it, and in no hurry.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Arc_HeardTheirWishes</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>12</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>heard their wishes</label><description>Of everyone here, they chose me to tell what they want done when the time comes. I'll see it done.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>10</baseOpinionOffset></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>1</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <!-- ===================== The last two of us ===================== -->
+
+  <ThoughtDef>
+    <defName>Council_Arc_OldFriendsAfterAll</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>12</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>old friends after all</label><description>We wasted years glaring at each other across the yard. We're the last two who remember the old days. That counts for more.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>15</baseOpinionOffset></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>3</felt><feelings><li>Fellowship</li><li>Nostalgia</li></feelings><journal>true</journal></li></modExtensions>
+  </ThoughtDef>
+
+</Defs>

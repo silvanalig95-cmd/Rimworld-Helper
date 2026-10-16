@@ -12,6 +12,10 @@ namespace ColonyCouncil
     {
         public Pawn pawn;
         public Pawn other;
+        /// <summary>The third person, in a story of three.</summary>
+        public Pawn third;
+        /// <summary>What the worker keeps to know its story by (a camp's or a world event's id).</summary>
+        public string key;
         public SkillDef skill;
         public float weight = 1f;
         public string tag;
@@ -46,6 +50,14 @@ namespace ColonyCouncil
 
         /// <summary>A gate of kind Custom.</summary>
         public virtual bool CustomGate(Arc arc, ArcGate gate) => false;
+
+        /// <summary>
+        /// Just before the story moves to its next stage: settles how it went, usually by setting <see cref="Arc.tag"/>
+        /// for the lines and effects to come (who was chosen, which student came on further).
+        /// </summary>
+        public virtual void Settle(Arc arc)
+        {
+        }
     }
 
     /// <summary>Helpers the workers and the tracker share.</summary>

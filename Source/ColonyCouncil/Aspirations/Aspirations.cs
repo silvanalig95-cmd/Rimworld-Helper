@@ -46,6 +46,25 @@ namespace ColonyCouncil
         /// </summary>
         public List<string> sparks;
         public float sparkDays = 4f;
+        /// <summary>
+        /// A goal that grows up with them: once they are no longer a child (or, with <see cref="grownAge"/>, once they
+        /// reach that age), it becomes this one, if they could want it at all: a child learning their letters wants to
+        /// be a scholar, a youngster who wants to be taken seriously wants a say in the council. Otherwise they have
+        /// simply outgrown it, and choose something else in time.
+        /// </summary>
+        public AspirationDef growsInto;
+        public float grownAge;
+        /// <summary>
+        /// An old colonist's last wish: if they die before it, those who loved them feel it (a memory), and someone is
+        /// likelier to take it up and finish it for them.
+        /// </summary>
+        public bool lastWish;
+        /// <summary>A memory for them when they give the goal up (it became impossible, or years went by without it).</summary>
+        public ThoughtDef lostThought;
+        /// <summary>Feeling workers: the feeling it is about (a FeelingDef key: Grief, Shame...).</summary>
+        public string feeling;
+        /// <summary>Tie workers: the kind of bond.</summary>
+        public TieKind tie = TieKind.Friends;
         /// <summary>Beliefs that rule it out (Wishes/Beliefs.cs): no hunter's legend for one whose faith forbids killing animals.</summary>
         public List<Belief> forbiddenBy;
 
@@ -88,6 +107,8 @@ namespace ColonyCouncil
             if (goal.NullOrEmpty()) yield return "life goal has no goal text";
             if (workerClass == null || !typeof(AspirationWorker).IsAssignableFrom(workerClass)) yield return "workerClass must be an AspirationWorker";
             if (achieved == null || !achieved.Any) yield return "life goal has no achieved lines";
+            if (growsInto == this) yield return "a goal can't grow into itself";
+            if (grownAge > 0f && growsInto == null) yield return "grownAge without growsInto";
         }
     }
 
@@ -523,6 +544,7 @@ namespace ColonyCouncil
                 }
                 try
                 {
+                    if (TryGrowUp(comp, p, a)) continue;
                     if (TryChangeOfHeart(comp, p, a)) continue;
                     a.def.Worker.Daily(a);
                     if (a.def.Worker.Done(a)) Fulfil(comp, a);
@@ -531,6 +553,10 @@ namespace ColonyCouncil
                     {
                         all.Remove(a);
                         comp.journals.Write(p, "Council_Journal_GoalLost", null, a.Goal.Named("GOAL"));
+                        // Some goals cost something to give up (a love never found, a friend for life never made).
+                        if (a.def.lostThought != null)
+                            using (Causes.Push("CC_Cause_GoalGivenUp".Translate(p.LabelShort, a.Goal).Resolve()))
+                                CouncilGameComponent.GiveThought(p, a.def.lostThought);
                     }
                 }
                 catch (Exception e)
@@ -576,7 +602,7 @@ namespace ColonyCouncil
         }
 
         /// <summary>Sets their heart on it: journal line (tagged by what sparked it), a message, the chronicle.</summary>
-        private Aspiration Begin(CouncilGameComponent comp, Pawn p, AspirationDef def, string spark, string inheritedFrom)
+        private Aspiration Begin(CouncilGameComponent comp, Pawn p, AspirationDef def, string spark, string inheritedFrom, string sparkName = null)
         {
             var a = new Aspiration { def = def, pawn = p, startedTick = Find.TickManager.TicksGame, spark = spark };
             if (!def.Worker.Init(a)) return null;
@@ -585,6 +611,7 @@ namespace ColonyCouncil
                 a.inherited = true;
                 a.sparkName = inheritedFrom;
             }
+            else if (sparkName != null) a.sparkName = sparkName;
             else if (spark == "fulfilled" && inspiredBy.TryGetValue(p.ThingID + "|" + def.defName, out string by)) a.sparkName = by;
             all.Add(a);
             var tags = new List<string>();
@@ -602,6 +629,27 @@ namespace ColonyCouncil
             comp.AddChronicle(new ChronicleEntry(ChronicleKind.Life, text, p));
             return a;
         }
+
+        /// <summary>
+        /// A goal that grows up with them (<see cref="AspirationDef.growsInto"/>): once they are grown, the child's (or the
+        /// youngster's) goal becomes the grown-up one, if they could want it; otherwise they have outgrown it.
+        /// </summary>
+        private bool TryGrowUp(CouncilGameComponent comp, Pawn p, Aspiration a)
+        {
+            var next = a.def.growsInto;
+            if (next == null || !GrownOutOf(a.def, p)) return false;
+            string old = a.Goal;
+            all.Remove(a);
+            Aspiration b = null;
+            if (!Fulfilled(p).Any(x => x.def == next) && OldEnough(next, p) && !next.AgainstBeliefsOf(p) && SafeCanHave(next, p)) b = Begin(comp, p, next, "grewup", null, old);
+            if (b == null) comp.journals.Write(p, "Council_Journal_GoalOutgrown", null, old.Named("OLDGOAL"));
+            else comp.journals.Write(p, "Council_Journal_GoalGrewUp", null, old.Named("OLDGOAL"), b.Goal.Named("GOAL"));
+            return true;
+        }
+
+        /// <summary>Old enough now for a goal that grows up with them: no longer a child, or the goal's own age.</summary>
+        public static bool GrownOutOf(AspirationDef d, Pawn p) =>
+            d != null && p != null && (d.grownAge > 0f ? Flavor.HumanAge(p) >= d.grownAge : !p.DevelopmentalStage.Juvenile());
 
         /// <summary>
         /// Something big happened and points to a different goal than the one they've barely started: sometimes
@@ -693,16 +741,26 @@ namespace ColonyCouncil
             var p = a.pawn;
             string text = "CC_Asp_DiedBefore".Translate(p.Named("PAWN"), a.Goal.Named("GOAL")).Resolve();
             comp.AddChronicle(new ChronicleEntry(ChronicleKind.Life, text, null));
+            // A last wish left undone weighs on those who loved them (a memory, a small one beside the grief itself).
+            // apart: a memory of someone dead, felt wherever the friend is.
+            var unmet = a.def.lastWish ? DefDatabase<ThoughtDef>.GetNamedSilentFail("Council_Asp_LastWishUnmet") : null;
             foreach (var f in PawnsFinder.AllMaps_FreeColonists.ToList().Where(f => f != p && f.relations != null && (f.relations.OpinionOf(p) >= 30 || comp.social.Warmth(f, p) >= 35f)).Take(4))
-                comp.journals.Write(f, "Council_Journal_DiedDreaming", null, p.Named("OTHER"), a.Goal.Named("GOAL"));
+            {
+                comp.journals.Write(f, a.def.lastWish ? "Council_Journal_LastWishUnmet" : "Council_Journal_DiedDreaming", null, p.Named("OTHER"), a.Goal.Named("GOAL"));
+                if (unmet != null)
+                    using (Causes.Push("CC_Cause_LastWish".Translate(p.LabelShort, a.Goal).Resolve()))
+                        CouncilGameComponent.GiveThought(f, unmet, p);
+            }
             lastMourned[p] = a.Goal;
             // Someone who loved them may take it up and finish it for them.
             var heir = PawnsFinder.AllMaps_FreeColonists.Where(Eligible)
                 .Where(f => f != p && f.relations != null && !f.DevelopmentalStage.Juvenile() && (f.relations.OpinionOf(p) >= 50 || comp.social.Warmth(f, p) >= 50f))
                 .Where(f => Active(f) == null || (Active(f).Progress < 0.35f && !Active(f).inherited))
-                .Where(f => DilemmaRole.Fits(a.def.who, f, a.def.children) && OldEnough(a.def, f) && SafeCanHave(a.def, f) && !Fulfilled(f).Any(x => x.def == a.def))
+                // Anyone may finish a last wish for the old one who made it, whatever their own age.
+                .Where(f => (a.def.lastWish || (DilemmaRole.Fits(a.def.who, f, a.def.children) && OldEnough(a.def, f))) && !a.def.AgainstBeliefsOf(f) && SafeCanHave(a.def, f) && !Fulfilled(f).Any(x => x.def == a.def))
                 .OrderByDescending(f => f.relations.OpinionOf(p) + comp.social.Warmth(f, p)).FirstOrDefault();
-            if (heir == null || !Rand.Chance(0.5f)) return;
+            // A last wish is likelier to be taken up.
+            if (heir == null || !Rand.Chance(a.def.lastWish ? 0.8f : 0.5f)) return;
             var old = Active(heir);
             if (old != null) all.Remove(old);
             if (Begin(comp, heir, a.def, null, p.LabelShort) != null) comp.journals.Write(heir, "Council_Journal_GoalInherited", null, p.Named("OTHER"), a.Goal.Named("GOAL"));

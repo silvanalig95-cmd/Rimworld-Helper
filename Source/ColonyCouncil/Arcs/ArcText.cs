@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using RimWorld;
@@ -68,18 +69,21 @@ namespace ColonyCouncil
 
         /// <summary>
         /// The named values: {PAWN} the one speaking (or the story's colonist), {OTHER} whom it's about, {PET} the animal,
-        /// {SKILL}, {LOST}, {NAME}, {FACTION}, {GOAL}, {QUIRK} and {DAYS}.
+        /// {SKILL}, {LOST}, {NAME}, {FACTION}, {GOAL}, {QUIRK} and {DAYS}; in a story of three, {THIRD} the one of the three
+        /// who is neither speaking nor spoken of (the third person in the colonist's lines, the colonist's other in theirs).
         /// </summary>
         public static NamedArgument[] Args(Arc arc, Pawn speaker, Pawn about)
         {
             var other = about ?? arc?.talkedWith ?? speaker;
             var pet = arc != null && arc.OtherIsAnimal ? arc.other : other;
+            var third = Third(arc, speaker, other) ?? speaker;
             string quirk = arc?.quirk != null ? DefDatabase<QuirkDef>.GetNamedSilentFail(arc.quirk)?.label : null;
             return new[]
             {
                 speaker.Named("PAWN"),
                 other.Named("OTHER"),
                 pet.Named("PET"),
+                third.Named("THIRD"),
                 SkillNoun(arc?.skill).Named("SKILL"),
                 (arc?.lostName ?? "").Named("LOST"),
                 (arc?.name ?? "").Named("NAME"),
@@ -88,6 +92,15 @@ namespace ColonyCouncil
                 (quirk ?? "").Named("QUIRK"),
                 (arc?.awayDays ?? 0).Named("DAYS")
             };
+        }
+
+        /// <summary>Of the story's three people, the one who is neither of these two (null in a story of two).</summary>
+        public static Pawn Third(Arc arc, Pawn a, Pawn b)
+        {
+            if (arc?.third == null) return null;
+            foreach (var x in new[] { arc.third, arc.other, arc.pawn })
+                if (x != null && x != a && x != b) return x;
+            return arc.third;
         }
 
         /// <summary>A skill as the work it names ("building", "art", "healing"), as Rimfolk's events say it.</summary>
@@ -117,7 +130,8 @@ namespace ColonyCouncil
                 case ArcGateKind.Hold:
                     return "CC_Arc_Progress_Hours".Translate(((int)arc.held).ToString(), g.hours.ToString("0")).Resolve();
                 case ArcGateKind.Skill:
-                    return "CC_Arc_Progress_Level".Translate(ArcUtil.Level(g.onOther ? arc.other : arc.pawn, arc.skill), ArcTracker.SkillTarget(arc, g)).Resolve();
+                    if (g.onBoth) return "CC_Arc_Progress_Level".Translate(Math.Min(ArcUtil.Level(arc.other, arc.skill), ArcUtil.Level(arc.third, arc.skill)), ArcTracker.SkillTarget(arc, g)).Resolve();
+                    return "CC_Arc_Progress_Level".Translate(ArcUtil.Level(ArcTracker.SkillPawn(arc, g), arc.skill), ArcTracker.SkillTarget(arc, g)).Resolve();
                 case ArcGateKind.Practice:
                     return ((ArcTracker.PracticeDone(arc, g) / g.amount).ToStringPercent()).ToString();
                 case ArcGateKind.Time:

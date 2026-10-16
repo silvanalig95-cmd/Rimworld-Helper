@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The conversations the stories of people's lives wait on (Council_ArcTalkBase, ColonyCouncil.InteractionWorker_ArcTalk).
+    In a story of three a talk may be between the colonist and the third person, or between the other two (two students
+    making up, two brothers at last). Either of the two may start it, so each line works whoever speaks first.
+  -->
+
+  <InteractionDef ParentName="Council_ArcTalkBase">
+    <defName>Council_Arc_Talk_Court</defName>
+    <label>walked out together</label>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] took the long way back from the fields, and neither of them hurried.</li>
+        <li>r_logentry->[INITIATOR_nameDef] saved [RECIPIENT_nameDef] the warm seat by the fire, and [RECIPIENT_nameDef] noticed.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about [topic] until the others had gone to bed.</li>
+        <li>topic->nothing in particular</li>
+        <li>topic->where they'd each like to be in ten years</li>
+        <li>topic->the stars, badly</li>
+        <li>topic->the best meal either of them had ever eaten</li>
+        <li>r_logentry->[INITIATOR_nameDef] brought [RECIPIENT_nameDef] [gift], and pretended it was nothing.</li>
+        <li>gift->a sprig of something that smelled sweet</li>
+        <li>gift->the last of the good bread</li>
+        <li>gift->a smooth stone from the river</li>
+        <li>r_logentry->[INITIATOR_nameDef] made [RECIPIENT_nameDef] laugh twice at supper, and looked pleased with [INITIATOR_objective]self both times.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] did the washing up together, slowly.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Council_ArcTalkBase">
+    <defName>Council_Arc_Talk_RivalsInLove</defName>
+    <label>had words about it</label>
+    <symbol>ColonyCouncil/Symbols/Star</symbol>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] both turned up to help with the same small job, and stared at each other over it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef], quite politely, to keep [RECIPIENT_possessive] distance. [RECIPIENT_nameDef] said the same back.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] agreed, stiffly, that whoever was chosen, they'd shake hands on it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] straight out what [RECIPIENT_possessive] intentions were. [RECIPIENT_nameDef] asked the same thing back.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] had a short, careful conversation about nothing, while both of them watched the same door.</li>
+        <li>r_logentry->[INITIATOR_nameDef] admitted to [RECIPIENT_nameDef] that this was ridiculous. [RECIPIENT_nameDef] agreed, and neither of them backed down.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] found they had a great deal in common, which made it worse.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Council_ArcTalkBase">
+    <defName>Council_Arc_Talk_Fair</defName>
+    <label>was fair to them both</label>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] went over the day's work, the teacher and the student, every piece of it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether the other student got more attention. The answer was long and honest.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about what each of them was best at, and it turned out to be different things.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that a teacher doesn't have favourites. It was nearly true.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] sat over a spoiled piece of work and worked out where it went wrong, without blame.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] agreed on what the student would practise next, and why.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Council_ArcTalkBase">
+    <defName>Council_Arc_Talk_Students</defName>
+    <label>compared notes</label>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef], who learn at the same bench, compared what the teacher had told each of them. It wasn't the same thing.</li>
+        <li>r_logentry->[INITIATOR_nameDef] showed [RECIPIENT_nameDef] a trick the teacher hadn't. [RECIPIENT_nameDef] showed one back.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] stopped competing for a whole afternoon and got twice as much done.</li>
+        <li>r_logentry->[INITIATOR_nameDef] admitted to [RECIPIENT_nameDef] that [RECIPIENT_pronoun] had the steadier hand. [RECIPIENT_nameDef] admitted [INITIATOR_nameDef] had the better eye.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] laughed together about the teacher's sayings, fondly.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] fixed each other's mistakes before the teacher could see them.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Council_ArcTalkBase">
+    <defName>Council_Arc_Talk_ParentWord</defName>
+    <label>had a quiet word</label>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef], parent and child, sat on the step and talked about the quarrel in the family.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] to tell [INITIATOR_possessive] side of it, all of it, without being interrupted. Nobody interrupted.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about brothers and sisters, and what they owe each other.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] went for a walk to the edge of the fields and came back calmer.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] a story about the family from long ago, with a quarrel in it that ended well.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked it through over a shared job, which is easier than talking it through over nothing.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Council_ArcTalkBase">
+    <defName>Council_Arc_Talk_Middle</defName>
+    <label>talked about the quarrel</label>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about the falling-out, and the one in the middle mostly listened.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] not to make anyone choose sides. [RECIPIENT_nameDef] said that was fair.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] agreed that it had gone on long enough, and couldn't agree on who should say so first.</li>
+        <li>r_logentry->[INITIATOR_nameDef] carried a word from one friend to another and told [RECIPIENT_nameDef] it faithfully, with the sharp bits left out.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about the old days, when the three of them got on.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] how tiring it was to be in the middle. [RECIPIENT_nameDef] hadn't thought of that.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Council_ArcTalkBase">
+    <defName>Council_Arc_Talk_Wander</defName>
+    <label>talked about the road ahead</label>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about the travelers at the camp, and where they were going next.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [RECIPIENT_pronoun] ever thought about just leaving one morning. [RECIPIENT_nameDef] said everyone does.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] sat on the wall and looked at the camp's smoke, and talked about roads.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] what the camp's people had said about the lands to the south. [RECIPIENT_nameDef] said it sounded like a lot of walking.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about what keeps a person in one place, and listed it, and the list was longer than either expected.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked late about the road, and about home, and which was which.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Council_ArcTalkBase">
+    <defName>Council_Arc_Talk_Office</defName>
+    <label>gave some advice on the office</label>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about the council: who listens, who only talks, and how to tell.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] how you make a hard call and sleep afterwards. The answer was "badly, at first".</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] went over the office's duties together, one by one, over a pot of something hot.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that nobody is ready for a seat on the council, and everybody has to pretend.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about the first mistake each of them made in charge of something.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] worked out who to ask about what, and wrote it on the back of a tally.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Council_ArcTalkBase">
+    <defName>Council_Arc_Talk_Worry</defName>
+    <label>shared a worry</label>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about family far away, and the news from out there.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about someone [INITIATOR_pronoun] hasn't seen in years, and couldn't stop.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] went over every scrap of news from the road, looking for good in it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] how you stop worrying about people you can't reach. [RECIPIENT_nameDef] didn't know either, and said so.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] sat up late with the worry between them, which made it lighter, a little.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] wrote out a letter together, to be sent with the next trader who would take it.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Council_ArcTalkBase">
+    <defName>Council_Arc_Talk_SitUp</defName>
+    <label>sat up after a bad dream</label>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] sat up together after a bad dream, until the shaking stopped.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about what lives in the dark, and decided together that nothing much does.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] made up a story about a brave mouse, which went on for some time.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] checked under the bed, and behind the door, and agreed it was all clear.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] counted the sounds of the colony at night until one of them fell asleep.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] left a small light burning, and talked about the morning instead.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Council_ArcTalkBase">
+    <defName>Council_Arc_Talk_GrownUp</defName>
+    <label>talked as equals</label>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] argued about the work, and for once it was an argument between equals.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] for [RECIPIENT_possessive] opinion, and then actually listened to it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about what [INITIATOR_nameDef] had made, plainly, without "for your age" anywhere in it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] both said sorry for the shouting, at the same moment, and then laughed.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked late, the young one and the old one, about what each wanted from the other.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] worked out a fair share of the work between them, like two grown people.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Council_ArcTalkBase">
+    <defName>Council_Arc_Talk_Help</defName>
+    <label>took the baby for a while</label>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] took turns walking the baby up and down until it slept.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] everything [INITIATOR_pronoun] knew about babies, which was less than [INITIATOR_pronoun] thought.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked in whispers by the cradle, about nothing, for an hour.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] agreed that the baby looks like everyone in the family and no one at all.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] shared a cold supper while the baby slept, and called it a feast.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] worked out who would take the baby which nights, and wrote it down so nobody could argue.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Council_ArcTalkBase">
+    <defName>Council_Arc_Talk_LastWishes</defName>
+    <label>talked about what comes after</label>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about what should happen to the old one's things, when the time comes. It wasn't sad, mostly.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] walked to the place by the graves where the old one would like to lie, and agreed it had a good view.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] went through a box of old things, one at a time, and the stories came out with them.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about who should have the tools, and who would only lose them.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] sat quietly together for a long while, and then talked about the weather.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about what the old one wanted said, and what they'd rather was left out.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Council_ArcTalkBase">
+    <defName>Council_Arc_Talk_OldDays</defName>
+    <label>remembered the old days</label>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] remembered the first winter here, and argued about which of them was colder.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] named the people who were here when they came, one by one, and who was left.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] complained about how the young ones do everything, and enjoyed it very much.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] remembered the same raid differently, and agreed to disagree on the details.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] sat in the sun and said very little, which was the point.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about an old quarrel between them and couldn't remember what it had been about.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+  </InteractionDef>
+
+</Defs>

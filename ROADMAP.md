@@ -256,13 +256,13 @@ the content itself, not only to systems, alongside whatever else it does. Where 
 | Rimfolk events, story stages and missions | 182 (13 mission kinds, 9 → 13: a pilgrim to escort, word to carry, a lost child, hands for a harvest; 6 aftermath events after world events, 2 vendetta endings) | more everyday events per group, more chains, more mission kinds |
 | Wishes | 107 | more seasonal and biome wishes, more for the always-on mods (Alpha mods, Vanilla Expanded furniture) |
 | Council projects (ambitions) | 64 (8 in stages, 3 season-long; 2 tribal, 2 spacer, 1 for Hospitality) | projects from the calendar and the faith, more for children and elders |
-| Life goals | 63 | goals for teenagers, more for faith and the heart, goals that change with age |
-| Dilemmas | 132 | more for children, elders and the camps; dilemmas for each new system as it lands |
+| Life goals | 84 (children's dreams that grow into grown-up goals, teenagers' goals, elders' last wishes a friend may finish, faith and the heart; goals a faith forbids never come up) | goals for each mod's content, goals two people share |
+| Dilemmas | 158 (14 new for children, teenagers and elders, two asking for a quirk; 8 new customs) | more for the camps; dilemmas for each new system as it lands |
 | Encounters | 183 (7 for Outland's peoples and Medieval Total Rim's nations, 4 for the one colonist a people remembers by name, 5 for what a stranger's people remember, 8 for the land's shape, 3 for Seasonal Weather's skies) | more lands (lakes, rivers), more mods' creatures, peoples and biomes, rarer night and weather moments |
 | Decrees | 30 (11 new: 2 for world events, 1 for the faith; gated by era, research, faith, world events and mods) | decrees for mods (Medieval Overhaul, Hospitality), more for the faith's memes, decrees children petition for |
-| Quirks | 32 (13 now touch others, through 12 social events; a lucky thing says whose it is, and whose it was) | quirks in moments and dilemmas, more from events and dreams |
-| Personal stories | 17 (65 stages; 1 for A RimWorld of Magic's classes) | stories from camps, offices and world events, more for children and elders, stories of three |
-| Dreams | 128 (5 new from other systems' moments) | dreams for more feelings, quirks, life goals and mod content |
+| Quirks | 40 (21 now touch others, through 21 social events and moments; 8 new ones change how someone speaks and answers, in letters, council and journal; a lucky thing says whose it is, and whose it was) | more from events and dreams |
+| Personal stories | 29 (113 stages of three to five; 4 stories of three, whose talks need the two together; from camps, offices and the world's troubles; 5 for children and elders; 1 for A RimWorld of Magic's classes) | stories for more mods, stories that pass between generations |
+| Dreams | 155 (every feeling has dreams; 27 new for quirks, life goals and personal stories) | dreams for the rest of the quirks, goals and stories, and for mod content |
 | World events | 44 (32 → 44: 10 regional, 2 that follow another's end), and 6 aftermath events when one ends | world events for more peoples and mods, follow-ups for the newer ones, more beats per event |
 | Camp kinds | 19 (11 → 19: caravans, merchants, drovers, penitents, tree-singers, a healer, minstrels, mourners), with 19 things the colony can ask of them | camps for more eras and mods, asks for the older kinds |
 | Ailments | 34 everyday (2 for Alpha Biomes' lands), 14 serious; convalescence from 4 causes, 2 healers' names | ailments for every biome and DLC, more after-effects |
@@ -270,12 +270,12 @@ the content itself, not only to systems, alongside whatever else it does. Where 
 | Calendar days and ways to keep them | 15 kinds, 7 ways (about 710 lines, with lines per land and faith) | days from the camps and world events, days for a faith's own holidays |
 | Answers that play out on the map | 168 answers (67 dilemmas, 53 events and stories), 5 calendar ways, 5 decrees, 9 ambitions; 9 kinds of real effect | world events' beats, new dilemmas and events from the start (done: a drink from the stores at a toast) |
 | Lines in the flavor pools (variety report) | about 25,200 in 3,640 pools | the pools at the top of the report |
-| Social events, moments, frictions, nuisances | 79 (12 from quirks), 131 (44 frictions, 4 that follow something real), 22 | every trait pairing and home condition, moments that ask for a quirk |
+| Social events, moments, frictions, nuisances | 100 (21 from quirks, 6 for elders), 137 (45 frictions, 4 that follow something real, 6 that ask for a quirk), 22 | every trait pairing and home condition |
 | Links between Rimfolk's own systems | 32 (offices at work, the heart in choices, stories that hear the world, the peoples' memory at camps and in encounters, setbacks into wishes and stories, a colonist's day in the news) | links for each new system as it lands: the camps and world events into the council, the calendar into dreams and life goals |
 | Secrets | 61 (2 for scenarios only; 9 that only come during a world event or a camp, 5 of them good), each with its own confide and graveside lines | more good ones, dilemmas for the newer ones |
 | Ways a vendetta is sworn and settled | 3 sworn (a death, a kidnapping, a bonded animal), 8 settled (blood, captives, a homecoming, laid down, laid down in peace, the blood price, an apology, passed to an heir) | vendettas against nemeses, dilemmas when an heir takes one up |
 | Council offices | 12 (14 seats; 7 open as the colony grows: a chaplain with Ideology, a warden of guests, a council of elders of three) | offices for mods (a guild master with Medieval Overhaul), offices that hear petitions |
-| Customs that can become traditions | 21 (5 of the land, 3 of the faith) | children's customs, more for the faith's memes and other mods' biomes |
+| Customs that can become traditions | 25 (5 of the land, 3 of the faith, 4 children's) | more for the faith's memes and other mods' biomes |
 | Rimfolk scenarios | 13 (7 gentle, 6 with stakes) | a tribe's start, a spacer crash with a secret, an orphanage |
 | Names (epithets) | 54 (8 from Rimfolk's own records; 5 given for one deed beyond the walls) | names from offices, faith and the colony's years |
 | Advisor checks | 43 | checks for the newer systems (missions, the world page), more for tribal colonies |

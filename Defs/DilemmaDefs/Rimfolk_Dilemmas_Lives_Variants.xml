@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    How a quirk changes the way someone answers in older dilemmas about the young and the old: more ways to tell an
+    outcome, picked when A has the quirk ([quirk:Proverbs]) or B does ([b:quirk:Storyteller]). Merged into the dilemma
+    at startup (LetterVariantsDef). The answer's own effects are unchanged.
+  -->
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Lives_Variants_ChildQuestion</defName>
+    <dilemma>Council_DlmL_ChildQuestion</dilemma>
+    <texts>
+      <li>[quirk:KeepsRecords] {A_nameDef} has written the question down in a little book, with the date, and brought the book to the council so the answer can go in it too.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>[quirk:KeepsRecords] The council answered {A_nameDef} straight, and {A_nameDef} wrote down every word, then read it back to check. The council had to correct itself twice.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>[b:quirk:Storyteller] The council handed the question to {B_nameDef}, who answered it with a story, a long one with a wise old tortoise in it. {A_nameDef} has decided the tortoise was right.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>[b:quirk:Proverbs] {B_nameDef} answered the question properly, and then summed it up in one old saying. {A_nameDef} has been repeating the saying ever since, to everyone, at every chance.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Lives_Variants_ElderRest</defName>
+    <dilemma>Council_DlmL_ElderRest</dilemma>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>[quirk:Proverbs] {A_nameDef} has put down the heavy work with a proverb for the occasion: "an old horse knows the way home." {A_nameDef} sits in the sun now and supplies proverbs on request, and often without.</li>
+          <li>[quirk:Storyteller] {A_nameDef} has put down the heavy work, and the children have found {A_objective}. There's a story hour at {A_possessive} bench every afternoon now.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>[quirk:KeepsRecords] {A_nameDef} is teaching {B_nameDef} from a notebook of everything {A_pronoun} has learned in forty years, every trick and every mistake, indexed. {B_nameDef} is on page three.</li>
+        </lines>
+      </li>
+      <li>
+        <option>3</option>
+        <lines>
+          <li>[quirk:Worrier] The council asked {A_nameDef} to keep going. {A_nameDef} went back to work, slower, and now lies awake worrying about what happens when {A_pronoun} can't.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Lives_Variants_ChildAtTheBench</defName>
+    <dilemma>Council_DlmL_ChildAtTheBench</dilemma>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>[b:quirk:Proverbs] {A_nameDef} is {B_nameDef}'s apprentice now. The first lesson was "measure twice, cut once". So was the second. {A_nameDef} has measured everything in the workshop twice.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>[quirk:WrongLaugh] {A_nameDef} made a stool, start to finish, and laughed so hard when it wobbled that {B_nameDef} started laughing too. They made a second one together. It wobbles less.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+</Defs>

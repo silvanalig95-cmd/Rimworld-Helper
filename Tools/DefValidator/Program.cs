@@ -396,7 +396,7 @@ var wishPh = new HashSet<string> { "SUBJECT", "THING", "THINGBARE", "TARGET", "W
 wishPh.UnionWith(new[] { "IDEO", "SITUATION" });
 // Beliefs: the feast someone sat through with nothing fit to eat (Beliefs.NoteNothingFit).
 wishPh.Add("GATHERING");
-var pawnPrefixes = new HashSet<string> { "PAWN", "FOR", "OTHER", "ENVIED", "ABOUT", "A", "B", "PET", "LEAKER", "TELLER", "X", "SLAYER", "BABY" };
+var pawnPrefixes = new HashSet<string> { "PAWN", "FOR", "OTHER", "ENVIED", "ABOUT", "A", "B", "PET", "LEAKER", "TELLER", "X", "SLAYER", "BABY", "THIRD" };
 // The colonist a people remembers by name (World/KinMemory.cs: events, world events, camps).
 pawnPrefixes.Add("FRIEND");
 var pawnSuffixes = new HashSet<string> { "nameDef", "nameFull", "labelShort", "pronoun", "possessive", "objective", "label", "definite", "indefinite", "gender" };

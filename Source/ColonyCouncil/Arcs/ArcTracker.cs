@@ -118,8 +118,8 @@ namespace ColonyCouncil
             return byPawn.TryGetValue(p, out var a) ? a : null;
         }
 
-        /// <summary>Stories under way that this colonist is part of as the other person.</summary>
-        public IEnumerable<Arc> PartOf(Pawn p) => p == null ? Enumerable.Empty<Arc>() : active.Where(a => a.other == p);
+        /// <summary>Stories under way that this colonist is part of as the other person (or the third, in a story of three).</summary>
+        public IEnumerable<Arc> PartOf(Pawn p) => p == null ? Enumerable.Empty<Arc>() : active.Where(a => a.other == p || a.third == p);
 
         /// <summary>Stories this colonist has had, newest first.</summary>
         public IEnumerable<ArcRecord> PastOf(Pawn p) => p == null ? Enumerable.Empty<ArcRecord>() : past.Where(r => r.pawnId == p.ThingID).Reverse();
@@ -215,6 +215,16 @@ namespace ColonyCouncil
                     return;
                 }
             }
+            if (arc.third != null)
+            {
+                bool dead = arc.third.Dead;
+                bool left = !dead && (arc.third.Discarded || arc.third.Faction != Faction.OfPlayer || arc.third.IsPrisoner || People.Kidnapped(arc.third));
+                if (dead || left)
+                {
+                    Fizzle(arc, dead ? "thirddead" : "thirdleft");
+                    return;
+                }
+            }
             string broken;
             try
             {
@@ -273,7 +283,8 @@ namespace ColonyCouncil
         private static bool Paused(Arc arc)
         {
             if (arc.def.Worker.PausesAway && !ArcUtil.AtHome(arc.pawn)) return true;
-            // The other person is off on a journey. (The long way home's first stage waits on its traveler, not on them.)
+            // The other person (or the third) is off on a journey. (The long way home's first stage waits on its traveler, not on them.)
+            if (arc.third != null && !ArcUtil.AtHome(arc.third) && ArcUtil.AtHome(arc.pawn)) return true;
             return arc.def.needsOther && arc.other != null && !arc.OtherIsAnimal && !ArcUtil.AtHome(arc.other) && ArcUtil.AtHome(arc.pawn);
         }
 
@@ -318,7 +329,8 @@ namespace ColonyCouncil
                 case ArcGateKind.Hold:
                     return HeldHours(arc, index) >= g.hours;
                 case ArcGateKind.Skill:
-                    return ArcUtil.Level(g.onOther ? arc.other : p, arc.skill) >= SkillTarget(arc, g);
+                    if (g.onBoth) return ArcUtil.Level(arc.other, arc.skill) >= Math.Max(g.level, arc.baseOtherLevel + g.gain) && ArcUtil.Level(arc.third, arc.skill) >= Math.Max(g.level, arc.baseThirdLevel + g.gain);
+                    return ArcUtil.Level(SkillPawn(arc, g), arc.skill) >= SkillTarget(arc, g);
                 case ArcGateKind.Practice:
                     return PracticeDone(arc, g) >= g.amount;
                 case ArcGateKind.Record:
@@ -327,10 +339,13 @@ namespace ColonyCouncil
                     return rec != null && p.records != null && p.records.GetValue(rec) - arc.baseRecord >= g.amount;
                 }
                 case ArcGateKind.Talk:
+                {
                     if (arc.talkedTick >= arc.stageTick) return true;
                     if (g.quietAfterDays <= 0f || days < g.quietAfterDays) return false;
-                    return g.anyone ? p.MapHeld != null && p.MapHeld.mapPawns.FreeColonistsSpawned.Any(o => o != p && ArcUtil.Opinion(o, p) >= 15)
-                        : arc.other != null && arc.other.MapHeld != null && arc.other.MapHeld == p.MapHeld;
+                    if (g.anyone) return p.MapHeld != null && p.MapHeld.mapPawns.FreeColonistsSpawned.Any(o => o != p && ArcUtil.Opinion(o, p) >= 15);
+                    var (x, y) = PairOf(arc, g);
+                    return x != null && y != null && y.MapHeld != null && y.MapHeld == x.MapHeld;
+                }
                 case ArcGateKind.Made:
                     if (arc.madeQuality >= (int)g.quality) return true;
                     // Without the game hook, enough work at it counts instead.
@@ -353,7 +368,10 @@ namespace ColonyCouncil
                 case ArcGateKind.Goal:
                     return comp != null && !arc.goal.NullOrEmpty() && comp.aspirations.Fulfilled(p).Any(a => a.def?.defName == arc.goal && a.doneTick >= arc.startedTick);
                 case ArcGateKind.Tie:
-                    return comp != null && arc.other != null && comp.social.Strength(p, arc.other, g.tie) >= g.amount;
+                {
+                    var (x, y) = PairOf(arc, g);
+                    return comp != null && x != null && y != null && comp.social.Strength(x, y, g.tie) >= g.amount;
+                }
                 case ArcGateKind.Custom:
                     return arc.def.Worker.CustomGate(arc, g);
             }
@@ -362,32 +380,57 @@ namespace ColonyCouncil
 
         private static float HeldHours(Arc arc, int index) => index < 0 ? arc.held : index < arc.heldOr.Count ? arc.heldOr[index] : 0f;
 
-        public static int SkillTarget(Arc arc, ArcGate g) => Math.Max(g.level, (g.onOther ? arc.baseOtherLevel : arc.baseLevel) + g.gain);
+        /// <summary>Whose skill a Skill or Practice gate looks at (the colonist, the other person or the third).</summary>
+        public static Pawn SkillPawn(Arc arc, ArcGate g) => g.onThird ? arc.third : g.onOther ? arc.other : arc.pawn;
 
-        public static float PracticeDone(Arc arc, ArcGate g) =>
-            g.onOther ? ArcUtil.Xp(arc.other, arc.skill) - arc.baseOtherXp : ArcUtil.Xp(arc.pawn, arc.skill) - arc.baseXp;
+        public static int SkillTarget(Arc arc, ArcGate g) =>
+            Math.Max(g.level, (g.onThird ? arc.baseThirdLevel : g.onOther || g.onBoth ? arc.baseOtherLevel : arc.baseLevel) + g.gain);
+
+        /// <summary>Work done in the story's skill this stage; with onBoth, the lesser of the two students' (both must get there).</summary>
+        public static float PracticeDone(Arc arc, ArcGate g)
+        {
+            float other = ArcUtil.Xp(arc.other, arc.skill) - arc.baseOtherXp;
+            float third = ArcUtil.Xp(arc.third, arc.skill) - arc.baseThirdXp;
+            if (g.onBoth) return Math.Min(other, third);
+            if (g.onThird) return third;
+            return g.onOther ? other : ArcUtil.Xp(arc.pawn, arc.skill) - arc.baseXp;
+        }
+
+        /// <summary>The two a gate is about (see <see cref="ArcPair"/>): the colonist and the other, the colonist and the third, or the other two.</summary>
+        public static (Pawn, Pawn) PairOf(Arc arc, ArcGate g)
+        {
+            switch (g?.pair ?? ArcPair.Other)
+            {
+                case ArcPair.Third: return (arc.pawn, arc.third);
+                case ArcPair.OtherAndThird: return (arc.other, arc.third);
+                default: return (arc.pawn, arc.other);
+            }
+        }
+
+        private static bool Person(Pawn x) => x != null && x.RaceProps != null && x.RaceProps.Humanlike;
 
         /// <summary>Whether a Hold gate's condition holds this hour.</summary>
         public static bool Holds(Arc arc, ArcGate g)
         {
             var p = arc.pawn;
-            var o = arc.other;
+            // Between the colonist and the other person, unless the gate is about the third (a story of three).
+            var (x, o) = PairOf(arc, g);
             switch (g.hold)
             {
                 case ArcHold.Mood:
                     return p.needs?.mood != null && p.needs.mood.CurLevelPercentage >= g.value;
                 case ArcHold.Opinion:
-                    return o != null && !arc.OtherIsAnimal && ArcUtil.Opinion(p, o) >= g.value && ArcUtil.Opinion(o, p) >= g.value;
+                    return Person(x) && Person(o) && ArcUtil.Opinion(x, o) >= g.value && ArcUtil.Opinion(o, x) >= g.value;
                 case ArcHold.NoFriction:
                 {
-                    if (o == null) return true;
+                    if (x == null || o == null) return true;
                     int since = Now - Day * 2;
-                    return !ArcUtil.RemembersSince(p, o, ArcUtil.Frictions, since) && !ArcUtil.RemembersSince(o, p, ArcUtil.Frictions, since);
+                    return !ArcUtil.RemembersSince(x, o, ArcUtil.Frictions, since) && !ArcUtil.RemembersSince(o, x, ArcUtil.Frictions, since);
                 }
                 case ArcHold.Near:
-                    return Near(p, o);
+                    return x != null && Near(x, o);
                 case ArcHold.SameMap:
-                    return o != null && o.MapHeld != null && o.MapHeld == p.MapHeld;
+                    return x != null && o != null && o.MapHeld != null && o.MapHeld == x.MapHeld;
                 case ArcHold.OwnRoom:
                     return RoomUtil.PrivateRoom(p) != null;
                 case ArcHold.Belonging:
@@ -430,6 +473,8 @@ namespace ColonyCouncil
             arc.baseOtherLevel = arc.OtherIsAnimal ? 0 : ArcUtil.Level(arc.other, arc.skill);
             arc.baseXp = ArcUtil.Xp(arc.pawn, arc.skill);
             arc.baseOtherXp = arc.OtherIsAnimal ? 0f : ArcUtil.Xp(arc.other, arc.skill);
+            arc.baseThirdLevel = ArcUtil.Level(arc.third, arc.skill);
+            arc.baseThirdXp = ArcUtil.Xp(arc.third, arc.skill);
             arc.baseGranted = CouncilGameComponent.Instance?.standings.For(arc.pawn, false)?.granted ?? 0;
             arc.baseDamage = arc.pawn.records?.GetValue(RecordDefOf.DamageDealt) ?? 0f;
             var gate = arc.Gate;
@@ -440,6 +485,15 @@ namespace ColonyCouncil
 
         private void Advance(Arc arc)
         {
+            // The worker may settle how it went before the next stage is told (who was chosen, who came on further).
+            try
+            {
+                arc.def.Worker.Settle(arc);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("personal story settle " + arc.def.defName, e);
+            }
             arc.stage++;
             ResetStage(arc);
             Enter(arc, false);
@@ -456,6 +510,9 @@ namespace ColonyCouncil
                 pawn = c.pawn,
                 other = c.other,
                 otherName = c.other?.LabelShort,
+                third = c.third,
+                thirdName = c.third?.LabelShort,
+                key = c.key,
                 skill = c.skill,
                 tag = c.tag,
                 lostName = c.lostName,
@@ -492,6 +549,11 @@ namespace ColonyCouncil
                 string theirs = ArcText.Line(st.otherJournal, arc.other, arc, arc.pawn);
                 if (!theirs.NullOrEmpty()) comp.journals.WriteText(arc.other, theirs);
             }
+            if (st.thirdJournal != null && arc.third != null && !arc.third.Dead && People.HasInnerLife(arc.third) && arc.third.IsColonist)
+            {
+                string thirds = ArcText.Line(st.thirdJournal, arc.third, arc, arc.pawn);
+                if (!thirds.NullOrEmpty()) comp.journals.WriteText(arc.third, thirds);
+            }
             string told = ArcText.Chronicle(st.chronicle, arc);
             if (!told.NullOrEmpty())
             {
@@ -516,6 +578,7 @@ namespace ColonyCouncil
             var targets = new List<Pawn>();
             if (arc.pawn != null && arc.pawn.Spawned) targets.Add(arc.pawn);
             if (arc.other != null && arc.other.Spawned) targets.Add(arc.other);
+            if (arc.third != null && arc.third.Spawned) targets.Add(arc.third);
             return targets.Count == 0 ? LookTargets.Invalid : new LookTargets(targets);
         }
 
@@ -542,6 +605,7 @@ namespace ColonyCouncil
             map = arc.pawn?.MapHeld ?? Find.AnyPlayerHomeMap,
             a = arc.pawn,
             b = arc.OtherIsAnimal ? null : arc.Partner,
+            third = arc.third,
             pet = arc.OtherIsAnimal ? arc.other : null,
             skill = arc.skill,
             faction = arc.faction,
@@ -563,6 +627,7 @@ namespace ColonyCouncil
                 pawnId = arc.pawn?.ThingID,
                 pawnName = arc.pawn?.LabelShort,
                 otherName = arc.other?.LabelShort ?? arc.otherName,
+                thirdName = arc.third?.LabelShort ?? arc.thirdName,
                 startTick = arc.startedTick,
                 endTick = Now,
                 outcome = outcome,
@@ -747,28 +812,47 @@ namespace ColonyCouncil
         public float TalkWeight(InteractionDef talk, Pawn a, Pawn b)
         {
             if (!On || talk == null || a == null || b == null) return 0f;
-            return Math.Max(TalkWeightFor(Of(a), talk, b), TalkWeightFor(Of(b), talk, a));
+            float w = Math.Max(TalkWeightFor(Of(a), talk, a, b), TalkWeightFor(Of(b), talk, b, a));
+            if (w > 0f) return w;
+            // A story of three waiting on the other two to talk between themselves.
+            for (int i = 0; i < active.Count; i++)
+            {
+                var arc = active[i];
+                if (arc?.third == null || arc.other == null || arc.pawn == a || arc.pawn == b) continue;
+                if ((arc.other == a && arc.third == b) || (arc.other == b && arc.third == a)) w = Math.Max(w, TalkWeightFor(arc, talk, a, b));
+            }
+            return w;
         }
 
-        private static float TalkWeightFor(Arc arc, InteractionDef talk, Pawn with)
+        /// <summary>
+        /// How likely this talk is between <paramref name="a"/> and <paramref name="b"/> for this story: only when its
+        /// stage waits for this very talk between these two (the colonist and the other person, the colonist and the
+        /// third, or the other two), a day or more into it.
+        /// </summary>
+        private static float TalkWeightFor(Arc arc, InteractionDef talk, Pawn a, Pawn b)
         {
             var g = arc?.Gate;
             if (g == null || arc.talkedTick >= arc.stageTick) return 0f;
             var t = g.kind == ArcGateKind.Talk && g.talk == talk ? g : g.or?.FirstOrDefault(x => x?.kind == ArcGateKind.Talk && x.talk == talk);
             if (t == null || DaysInStage(arc) < t.minDays) return 0f;
-            bool partner = with == arc.other || (t.anyone && ArcUtil.Opinion(with, arc.pawn) >= 15 && with.IsColonist);
+            var (x, y) = PairOf(arc, t);
+            bool pair = (a == x && b == y) || (a == y && b == x);
+            bool partner = pair || (t.anyone && t.pair == ArcPair.Other && (a == arc.pawn || b == arc.pawn)
+                                    && ArcUtil.Opinion(a == arc.pawn ? b : a, arc.pawn) >= 15 && (a == arc.pawn ? b : a).IsColonist);
             if (!partner) return 0f;
-            if (ArcUtil.Opinion(arc.pawn, with) < t.minOpinion || ArcUtil.Opinion(with, arc.pawn) < t.minOpinion) return 0f;
+            if (ArcUtil.Opinion(a, b) < t.minOpinion || ArcUtil.Opinion(b, a) < t.minOpinion) return 0f;
             return 0.8f;
         }
 
         public void Notify_Talked(InteractionDef talk, Pawn a, Pawn b)
         {
-            foreach (var (arc, with) in new[] { (Of(a), b), (Of(b), a) })
+            foreach (var arc in active.ToList())
             {
-                if (TalkWeightFor(arc, talk, with) <= 0f) continue;
+                if (arc?.pawn == null || (arc.pawn != a && arc.pawn != b && arc.other != a && arc.other != b)) continue;
+                if (TalkWeightFor(arc, talk, a, b) <= 0f) continue;
                 arc.talkedTick = Now;
-                arc.talkedWith = with;
+                // Who the colonist talked it over with (the other two talking between themselves leave it as it was).
+                if (arc.pawn == a || arc.pawn == b) arc.talkedWith = arc.pawn == a ? b : a;
             }
         }
 

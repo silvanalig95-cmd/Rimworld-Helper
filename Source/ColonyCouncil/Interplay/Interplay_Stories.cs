@@ -41,7 +41,9 @@ namespace ColonyCouncil
             if (talkedWith != null && arc.talkedTick < arc.stageTick)
             {
                 var t = g.kind == ArcGateKind.Talk ? g : g.or?.FirstOrDefault(x => x?.kind == ArcGateKind.Talk);
-                if (t != null && (talkedWith == arc.other || (t.anyone && ArcUtil.Opinion(talkedWith, arc.pawn) >= 15))
+                // The colonist's own word with whoever the stage waits on (the third person, in a story of three).
+                var waitsOn = t?.pair == ArcPair.Third ? arc.third : t?.pair == ArcPair.OtherAndThird ? null : arc.other;
+                if (t != null && ((waitsOn != null && talkedWith == waitsOn) || (t.anyone && ArcUtil.Opinion(talkedWith, arc.pawn) >= 15))
                     && ArcUtil.Opinion(arc.pawn, talkedWith) >= t.minOpinion && ArcUtil.Opinion(talkedWith, arc.pawn) >= t.minOpinion)
                 {
                     arc.talkedTick = Now;

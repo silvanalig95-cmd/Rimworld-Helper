@@ -38,7 +38,12 @@ namespace ColonyCouncil
         /// <summary>Their bonded animal: {PET}.</summary>
         Pet,
         /// <summary>Their life goal: {GOAL}.</summary>
-        Goal
+        Goal,
+        /// <summary>
+        /// The personal story they're in the middle of: {OTHER} is its other person (or its third). Pair it with the
+        /// dreamer's tags (story:Suitors, story:Grief...) for a dream about one story in particular.
+        /// </summary>
+        Story
     }
 
     /// <summary>A dream that comes true: the incident happens a few days later.</summary>
@@ -420,6 +425,13 @@ namespace ColonyCouncil
                     return c.lost != null;
                 case DreamAbout.Goal:
                     return ColonyCouncilMod.Settings.aspirations && comp.aspirations.Active(p) != null;
+                case DreamAbout.Story:
+                {
+                    var arc = ArcTracker.On ? ArcTracker.Instance?.Of(p) : null;
+                    if (arc?.def == null) return false;
+                    c.other = Alive(arc.other) ? arc.other : Alive(arc.third) ? arc.third : null;
+                    break;
+                }
                 case DreamAbout.Pet:
                     c.pet = p.relations?.DirectRelations.Where(r => r.def == PawnRelationDefOf.Bond && r.otherPawn != null && !r.otherPawn.Dead).Select(r => r.otherPawn).RandomElementWithFallback();
                     return c.pet != null;

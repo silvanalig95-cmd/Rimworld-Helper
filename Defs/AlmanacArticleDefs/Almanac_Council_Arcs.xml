@@ -6,9 +6,9 @@
     <label>personal stories</label>
     <category>Council</category>
     <order>11</order>
-    <summary>A few times a year, one colonist's own story, in three or four stages over days to a season.</summary>
+    <summary>A few times a year, one colonist's own story, in three to five stages over days to a season; some are stories of three.</summary>
     <tip>Read the journals now and then. That's where most of these get told.</tip>
-    <description>A few times a year, one colonist's own story begins: a journey home, a quarrel mended, an apprenticeship that ends in a fine piece of work, a grief that slowly eases. Each grows out of what Rimfolk already knows about that colonist (their losses, rivals, secrets, life goals, feelings, skills, animals and the council's dealings with them), never from a roll alone, and moves on through three or four stages over days to a season as things happen in play. A colonist has at most one story at a time.
+    <description>A few times a year, one colonist's own story begins: a journey home, a quarrel mended, an apprenticeship that ends in a fine piece of work, a grief that slowly eases. Each grows out of what Rimfolk already knows about that colonist (their losses, rivals, secrets, life goals, feelings, skills, animals and the council's dealings with them), never from a roll alone, and moves on through three to five stages over days to a season as things happen in play. Some are stories of three: two rivals for one person's affection, a teacher with two students, a parent and two children at odds, a friend caught between two friends. A colonist has at most one story at a time.
 
 The Story tab shows where a colonist's story stands, what it waits for next and how close it is, and the stories they've lived through.</description>
     <sections>
@@ -40,21 +40,37 @@ What happens around them can move a waiting story on too (with "Systems talk to 
           <li>The recurring dream | The same strange dream 2 or more times in 12 days | Another dream; telling someone; making something of it | Strain lifted, sometimes an inspiration</li>
           <li>A grudge laid down | A vendetta 15 days old or more, and someone tired of carrying it | Days; talking it over; calmer days | The vendetta laid down, strain lifted</li>
           <li>Within reach | Halfway or more to a life goal, 10 days or more in | A push from a friend; the goal reached | A friend's good opinion</li>
+          <li>A rival in love | Two colonists, neither attached, are both fond of the same unattached person | Time together; a word between the rivals; the choice, a romance or, after weeks, how the one they're fond of feels | Love for one, a setback for the other, sometimes respect between the rivals</li>
+          <li>Torn between two students | A teacher with two mentorships in one craft, or two keen learners of what they do best | A fair word for each; the two making up between themselves; both coming on | Two mentorships, the students friends</li>
+          <li>Brothers and sisters | A parent with two children at home (Biotech's children or grown) at odds with each other | A quiet word with each; days without a sharp word between them; thinking better of each other | The two friends again, strain lifted</li>
+          <li>Caught in the middle | Two of their friends have fallen out (at odds, rivals or a sharp word lately) | A talk with each; the two talking it out, or getting on | The two friends again, strain lifted</li>
+          <li>The road calls | A camp on the land whose fire they've sat at, and a restless heart | A talk about the road; the camp packing up and going | They stay; strain lifted, a friend, sometimes a quirk</li>
+          <li>The weight of office | Seated on the council at the last election, 12 days ago or less | Advice from the speaker or a friend; steady days; a hard call | Trust, a little practice in talking</li>
+          <li>Word from far away | Hard times out in the world (plague, famine, war, flood...) and family of theirs out there in it | Sharing the worry; the trouble ending | Relief, or, if the relative dies first, a real loss</li>
+          <li>Bad nights (Biotech) | A child with nightmares or a fright that won't let go, and a parent or fond grown-up | Sitting up with them; good days or a better dream | Rest, a friendship, sometimes a light by the bed</li>
+          <li>Not a child any more | A young person (13 to 19) at odds with a parent or an older colonist | Hard work at what they love; a talk as equals; days of getting on | Trust, a friendship, the rivalry ended, rarely a passion</li>
+          <li>A new parent (Biotech) | A baby of theirs born in the last few days | Days; a pair of hands from someone; good days | Rest, a friendship, strain lifted</li>
+          <li>One more spring | Someone 65 or older whose body has begun to fail (a lasting condition or poor health) | Telling someone their wishes; one last piece of work; good days | A small mood, strain lifted, sometimes stories for the little ones</li>
+          <li>The last two of us | Two colonists of 55 or more, long at odds | Hours near each other; the old days remembered; getting on | Friends at last, strain lifted</li>
           <li>The long discipline (A RimWorld of Magic) | A mage or a fighter has someone 5 class levels further along in the same art, or is frustrated with themselves and has a close friend | A talk about the art; a class level gained; a few quiet days | Strain lifted, a friendship</li>
         </table>
       </li>
       <li>
+        <heading>Stories of three</heading>
+        <text>In a story of three, a stage can wait on the colonist and the third person, or on the other two between themselves: two students making up, two brothers at peace, two friends talking again. What passes between two of the three at the end (a memory of each other, a bond) waits until those two are really together, and after a few hours one of them goes to find the other. If the third dies or leaves, the story ends there. A rival in love ends one of three ways: chosen, not chosen (a real setback, for a week or so), or neither, when the rivals often end up respecting each other.</text>
+      </li>
+      <li>
         <heading>Endings, good and otherwise</heading>
-        <text>The good moods come at the end, not along the way, and they're modest: Rimfolk memories, sharing the budget of good moods with everything else Rimfolk gives. Some stories leave something lasting: a friendship, a mentorship, a rivalry ended, trust in the council, strain lifted, an inspiration, a quirk (tells stories of the road, marks every piece, sets a place for the lost) or a name the colony gives (the Wanderer, Steadyhand, the Unafraid). Very rarely a calling or a masterwork deepens a passion.
+        <text>The good moods come at the end, not along the way, and they're modest: Rimfolk memories, sharing the budget of good moods with everything else Rimfolk gives. Most of the newer endings give something other than mood: a feeling, rest, trust, a little practice. Some stories leave something lasting: a friendship, a mentorship, a rivalry ended, trust in the council, strain lifted, an inspiration, a quirk (tells stories of the road, marks every piece, sets a place for the lost, sleeps with a light burning, tells the little ones stories) or a name the colony gives (the Wanderer, Steadyhand, the Unafraid). Very rarely a calling or a masterwork deepens a passion.
 
-A story can also fizzle: a stage that waits too long, a fight that reopens the quarrel, a secret that comes out before it could be told, the enemy's banners at the walls again. That gets a journal line and a chronicle line too, and usually nothing worse. If the other person in it dies or leaves, the story ends there (unless they were only a friend to talk to). If the colonist dies before it ends, the chronicle says so, and a day later the other person in it, or whoever was closest, writes about what was left unfinished.</text>
+A story can also fizzle: a stage that waits too long, a fight that reopens the quarrel, a secret that comes out before it could be told, the enemy's banners at the walls again. That gets a journal line and a chronicle line too, and sometimes a real setback: children still at odds, a friend still caught in the middle, a seat on the council lost too soon, a young one still treated like a child, family dead far away. If the other person in it dies or leaves, the story ends there (unless they were only a friend to talk to). If the colonist dies before it ends, the chronicle says so, and a day later the other person in it, or whoever was closest, writes about what was left unfinished.</text>
       </li>
       <li>
         <heading>How often</heading>
         <text>Set it under Options, Mod options, Rimfolk, People &amp; moods: off, rare (about 2 a year in a colony of 6), normal (about 4) or frequent (about 7). One to three colonists see three quarters as many, and from 12 up to half again as many. One story runs at a time on rare, 2 on normal and 3 on frequent, one more from 9 colonists. Off: none begin, and any under way wait where they are.</text>
       </li>
     </sections>
-    <keywords><li>story</li><li>arc</li><li>homecoming</li><li>reconciliation</li><li>apprentice</li><li>masterwork</li><li>grief</li><li>debt</li><li>calling</li><li>fear</li><li>secret</li><li>companion</li></keywords>
+    <keywords><li>story</li><li>arc</li><li>rival</li><li>siblings</li><li>elder</li><li>parent</li><li>homecoming</li><li>reconciliation</li><li>apprentice</li><li>masterwork</li><li>grief</li><li>debt</li><li>calling</li><li>fear</li><li>secret</li><li>companion</li></keywords>
     <seeAlso><li>Council_Alm_C_Goals</li><li>Council_Alm_C_Secrets</li><li>Council_Alm_C_Social</li><li>Council_Alm_C_Heart</li></seeAlso>
   </ColonyCouncil.AlmanacArticleDef>
 
