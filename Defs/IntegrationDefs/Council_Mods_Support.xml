@@ -52,7 +52,7 @@
     <code>true</code>
     <live>hospitality</live>
     <packageIds><li>orion.hospitality</li></packageIds>
-    <what>Guests are visitors with stories: eight encounters with journals, a guest who wants to stay (taken in Hospitality's own way) and a guest's complaint, a guest room wish and room plan, and a guest of note among the events. Guest beds never count as free beds.</what>
+    <what>Guests are visitors with stories: eight encounters with journals, a guest who wants to stay (taken in Hospitality's own way) and a guest's complaint, a guest room wish and room plan, and a guest of note among the events. Guest beds never count as free beds. Its peoples remember a delighting or a disappointing visit.</what>
   </ColonyCouncil.ModSupportDef>
 
   <ColonyCouncil.ModSupportDef>
@@ -61,7 +61,7 @@
     <order>11</order>
     <code>true</code>
     <packageIds><li>dubwise.dubsbadhygiene</li></packageIds>
-    <what>Bathroom, bathhouse, sauna and laundry room plans; wishes for a latrine, a wash, a bath and hot water; advisor checks; journal days and moments about washing.</what>
+    <what>Bathroom, bathhouse, sauna and laundry room plans; wishes for a latrine, a wash, a bath and hot water; advisor checks; journal days and moments about washing. Its moods feed the feelings, a hot bath eases strain and shortens a convalescence.</what>
   </ColonyCouncil.ModSupportDef>
 
   <ColonyCouncil.ModSupportDef>
@@ -71,7 +71,7 @@
     <code>true</code>
     <live>vsie</live>
     <packageIds><li>vanillaexpanded.vanillasocialinteractionsexpanded</li></packageIds>
-    <what>Its lessons, venting, rescues and best friends feed Rimfolk's bonds and journals; Rimfolk's own versions step back so nothing doubles up.</what>
+    <what>Its lessons, venting, rescues and best friends feed Rimfolk's bonds and journals; Rimfolk's own versions step back so nothing doubles up. Its moods feed the feelings, and sharing the burden eases strain.</what>
   </ColonyCouncil.ModSupportDef>
 
   <ColonyCouncil.ModSupportDef>
@@ -80,7 +80,7 @@
     <order>13</order>
     <code>true</code>
     <packageIds><li>torann.arimworldofmagic</li></packageIds>
-    <what>Classes as tags in offices, decrees and wishes; magic moments between colonists (a mage and a fighter talk shop), journal days, six life goals, traveling mages, starfall and a season of wild magic.</what>
+    <what>Classes as tags in offices, decrees and wishes; magic moments between colonists (a mage and a fighter talk shop), journal days, six life goals, traveling mages, starfall and a season of wild magic. Its moods feed the feelings, spent magic builds strain, healing magic shortens a convalescence, and a personal story for the classes.</what>
   </ColonyCouncil.ModSupportDef>
 
   <ColonyCouncil.ModSupportDef>
@@ -89,15 +89,16 @@
     <order>14</order>
     <code>true</code>
     <packageIds><li>sarg.alphaanimals</li></packageIds>
-    <what>Encounters that name its creatures (aves, mits, sky eels, a gallatross passing), a strange creature to win over, strange herds as a world event; its dangerous beasts are never offered as game.</what>
+    <what>Encounters that name its creatures (aves, mits, sky eels, a gallatross passing), a strange creature to win over, strange herds as a world event; its dangerous beasts are never offered as game. Its creatures' moods feed the feelings.</what>
   </ColonyCouncil.ModSupportDef>
 
   <ColonyCouncil.ModSupportDef>
     <defName>Council_Support_AlphaBiomes</defName>
     <label>Alpha Biomes</label>
     <order>15</order>
+    <code>true</code>
     <packageIds><li>sarg.alphabiomes</li></packageIds>
-    <what>Encounters on its lands (the gallatross graveyard, idyllic meadows, the mycotic jungle, the ocular forest), and its biomes read as deserts, swamps and jungles for land lines.</what>
+    <what>Encounters on its lands (the gallatross graveyard, idyllic meadows, the mycotic jungle, the ocular forest), and its biomes read as deserts, swamps and jungles for land lines. Its weathers and waters feed the feelings, the healing spring eases strain, and two of its lands have an ailment of their own.</what>
   </ColonyCouncil.ModSupportDef>
 
   <ColonyCouncil.ModSupportDef>
@@ -131,7 +132,7 @@
     <label>Vanilla Ideology Expanded - Memes, Alpha Memes</label>
     <order>19</order>
     <packageIds><li>vanillaexpanded.vmemese</li><li>sarg.alphamemes</li></packageIds>
-    <what>Their memes react to decrees and the colony's ways; aristocratic, royal and god-emperor creeds let the leader name the council.</what>
+    <what>Their memes react to decrees and the colony's ways; aristocratic, royal and god-emperor creeds let the leader name the council. Calendar days suggest their rites (tea ceremony, trading fair, wicker man).</what>
   </ColonyCouncil.ModSupportDef>
 
   <ColonyCouncil.ModSupportDef>
@@ -140,7 +141,7 @@
     <order>20</order>
     <code>true</code>
     <packageIds><li>vanillaexpanded.vcooke</li></packageIds>
-    <what>Grills and gourmet dishes count as fine or lavish meals for feasts, wishes and journals; grills ruined by the cold don't count.</what>
+    <what>Grills and gourmet dishes count as fine or lavish meals for feasts, wishes and journals; grills ruined by the cold don't count. A feast never serves a spoiled grill.</what>
   </ColonyCouncil.ModSupportDef>
 
   <ColonyCouncil.ModSupportDef>
@@ -148,7 +149,7 @@
     <label>Vanilla Brewing Expanded</label>
     <order>21</order>
     <packageIds><li>vanillaexpanded.vbrewe</li></packageIds>
-    <what>Its barrels count for brewing wishes; tea, coffee and soda aren't "something to drink" for the brewer; tea has a journal day.</what>
+    <what>Its barrels count for brewing wishes; tea, coffee and soda aren't "something to drink" for the brewer; tea has a journal day. A toast is raised with its wines, or its tea for teetotalers.</what>
   </ColonyCouncil.ModSupportDef>
 
   <ColonyCouncil.ModSupportDef>
@@ -166,7 +167,7 @@
     <order>23</order>
     <code>true</code>
     <packageIds><li>jaxe.rimhud</li></packageIds>
-    <what>Seven lines and five bars for its pawn panel: trust, open wish, office, life goal, strain, feelings and the heart's needs.</what>
+    <what>Eleven lines and six bars for its pawn panel: trust, open wish, office, life goal, strain, feelings, the heart's needs, ailments, recovery, the personal story and a healer's standing.</what>
   </ColonyCouncil.ModSupportDef>
 
   <ColonyCouncil.ModSupportDef>
@@ -184,15 +185,16 @@
     <label>Vanilla Factions Expanded - Empire</label>
     <order>30</order>
     <packageIds><li>oskarpotocki.vfe.empire</li></packageIds>
-    <what>Deserters on the roads: a world event where a deserter from the Empire asks the colony for shelter.</what>
+    <what>Deserters on the roads: a world event where a deserter from the Empire asks the colony for shelter. Its balls, exhibits, honours and titles' wants feed the feelings.</what>
   </ColonyCouncil.ModSupportDef>
 
   <ColonyCouncil.ModSupportDef>
     <defName>Council_Support_VFEClassical</defName>
     <label>Vanilla Factions Expanded - Classical</label>
     <order>31</order>
+    <code>true</code>
     <packageIds><li>oskarpotocki.vfe.classical</li></packageIds>
-    <what>The republic votes: a world event about the consular election; visitors from the republics talk of the senate and of masonry.</what>
+    <what>The republic votes: a world event about the consular election; visitors from the republics talk of the senate and of masonry. A republic remembers the colony winning over its senate.</what>
   </ColonyCouncil.ModSupportDef>
 
   <ColonyCouncil.ModSupportDef>
@@ -208,7 +210,7 @@
     <label>Vanilla Events Expanded</label>
     <order>33</order>
     <packageIds><li>vanillaexpanded.vee</li></packageIds>
-    <what>The advisor explains its world conditions and what to do about them.</what>
+    <what>The advisor explains its world conditions and what to do about them. Its aurora is awe and the superbloom's drone dread in the feelings.</what>
   </ColonyCouncil.ModSupportDef>
 
   <ColonyCouncil.ModSupportDef>
@@ -261,7 +263,7 @@
     <label>Alpha Genes</label>
     <order>51</order>
     <packageIds><li>sarg.alphagenes</li></packageIds>
-    <what>Its xenotypes' needs are respected (no meal wishes for those who don't eat); sunfed people have their own tag.</what>
+    <what>Its xenotypes' needs are respected (no meal wishes for those who don't eat); sunfed people have their own tag. Nereids, efreet and drakonori have wishes of their own.</what>
   </ColonyCouncil.ModSupportDef>
 
   <ColonyCouncil.ModSupportDef>
@@ -288,6 +290,75 @@
     <live>pokeworld</live>
     <packageIds><li>gargamiel.pokeworld</li><li>eth0net.pokeworld</li></packageIds>
     <what>Animal events follow its wild Pokémon settings, a caught Pokémon counts as tamed, animal lovers ask to catch new species, and four Almanac pages explain it.</what>
+  </ColonyCouncil.ModSupportDef>
+
+  <!-- ===================== The newer systems: the heart, health, lands and the sky ===================== -->
+
+  <ColonyCouncil.ModSupportDef>
+    <defName>Council_Support_Therapy</defName>
+    <label>Therapy</label>
+    <order>25</order>
+    <code>true</code>
+    <packageIds><li>orion.therapy</li></packageIds>
+    <what>A session on the couch is relief in the feelings and eases strain like a talk with a friend.</what>
+  </ColonyCouncil.ModSupportDef>
+
+  <ColonyCouncil.ModSupportDef>
+    <defName>Council_Support_Gastronomy</defName>
+    <label>Gastronomy</label>
+    <order>26</order>
+    <packageIds><li>orion.gastronomy</li></packageIds>
+    <what>Good service at the restaurant is contentment in the feelings, a long wait frustration.</what>
+  </ColonyCouncil.ModSupportDef>
+
+  <ColonyCouncil.ModSupportDef>
+    <defName>Council_Support_SnapOut</defName>
+    <label>Snap Out!</label>
+    <order>27</order>
+    <packageIds><li>weilbyte.snapout</li></packageIds>
+    <what>Talking someone down from a breakdown is tenderness in the feelings of the one who did it.</what>
+  </ColonyCouncil.ModSupportDef>
+
+  <ColonyCouncil.ModSupportDef>
+    <defName>Council_Support_ReGrowth</defName>
+    <label>ReGrowth</label>
+    <order>35</order>
+    <code>true</code>
+    <packageIds><li>regrowth.botr.core</li></packageIds>
+    <what>A hot spring eases strain and shortens a convalescence; bathing, waste and being soaked or sandy feed the feelings.</what>
+  </ColonyCouncil.ModSupportDef>
+
+  <ColonyCouncil.ModSupportDef>
+    <defName>Council_Support_GeoLandforms</defName>
+    <label>Geological Landforms</label>
+    <order>36</order>
+    <code>true</code>
+    <packageIds><li>m00nl1ght.geologicallandforms</li></packageIds>
+    <what>Its landforms are read as valleys, canyons, islands, caves, cliffs, oases and craters, with encounters for each.</what>
+  </ColonyCouncil.ModSupportDef>
+
+  <ColonyCouncil.ModSupportDef>
+    <defName>Council_Support_MVB</defName>
+    <label>More Vanilla Biomes</label>
+    <order>37</order>
+    <packageIds><li>zylle.morevanillabiomes</li></packageIds>
+    <what>Its alpine meadows and crags read as mountains and its oasis as an oasis for the land's encounters and lines.</what>
+  </ColonyCouncil.ModSupportDef>
+
+  <ColonyCouncil.ModSupportDef>
+    <defName>Council_Support_SeasonalWeather</defName>
+    <label>Seasonal Weather</label>
+    <order>38</order>
+    <packageIds><li>mlie.seasonalweather</li></packageIds>
+    <what>The double rainbow, windy days and dust storms each bring an encounter; lines can ask for its weathers by name.</what>
+  </ColonyCouncil.ModSupportDef>
+
+  <ColonyCouncil.ModSupportDef>
+    <defName>Council_Support_RaceXenotypes</defName>
+    <label>Stoneborn, Elves, Merfolk and Det's xenotypes</label>
+    <order>54</order>
+    <packageIds><li>det.stoneborn</li><li>devdesigner.elves.continued</li><li>arquebus.stagzmerfolk</li><li>det.venators</li><li>det.boglegs</li><li>det.avaloi</li></packageIds>
+    <what>Each people has wishes, decree likes and a pull on the colony's ways of its own: stone for the Stoneborn, flowers and books for elves, water for merfolk, a nest egg for boglegs.</what>
   </ColonyCouncil.ModSupportDef>
 
 </Defs>

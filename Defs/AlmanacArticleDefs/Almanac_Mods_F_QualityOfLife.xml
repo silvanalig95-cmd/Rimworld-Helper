@@ -496,7 +496,9 @@ With Snap Out!, a colonist on warden work walks up to someone in a mental break 
         <heading>With Rimfolk</heading>
         <text>On Demanding stakes a bitter colonist may storm off on a sad wander or go on an insulting spree. Snap Out! can talk them down like any other break.
 
-The room planner compares its cost only with what is in storage, so it can show you short of materials that I Clearly Have Enough finds elsewhere on the map.</text>
+The room planner compares its cost only with what is in storage, so it can show you short of materials that I Clearly Have Enough finds elsewhere on the map.
+
+With Snap Out!, talking someone down from a breakdown is tenderness in the feelings of the one who did it. With Therapy, a session on the couch is relief and eases strain like a talk with a friend.</text>
       </li>
     </sections>
     <keywords>
@@ -562,6 +564,7 @@ Quality Colors colors items by quality in the trade window, and quality text in 
           <li>Rimfolk's conversations (wishes, ambitions, gossip about the council, decree gripes, dream talk) are social interactions, so they show up as bubbles. If Rimfolk's own floating lines feel like too much, switch off "Colonists speak (floating text)" in Rimfolk's settings.</li>
           <li>A colonist who wishes for "something fine to wear" wants clothing of excellent quality or better, and Quality Colors makes those pieces easy to spot.</li>
           <li>Every mood Rimfolk gives says what caused it in its tooltip, so hover over the mood that a colored bar warns you about.</li>
+          <li>RimHUD's panel can show Rimfolk's lines: trust, the open wish, office, life goal, strain, feelings and the heart's needs, and now ailments, convalescence (a line, and a bar that fills as strength comes back), the personal story under way and a doctor's or midwife's standing. Add them in RimHUD's layout editor among the third-party widgets.</li>
         </points>
       </li>
     </sections>

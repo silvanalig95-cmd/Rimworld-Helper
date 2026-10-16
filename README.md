@@ -402,7 +402,8 @@ friend who let a secret slip), an old debt (a rescue or a kindness repaid with s
 (a colonist who gave up on the council), the apprentice's masterwork, a calling (a child or teenager taken with what a
 grown-up does well), passing it on (an elder's craft handed down), a long grief, a secret told (to a friend first, then
 everyone), a fear faced (an enemy who got away, a dread of the dark or of storms), the recurring dream, a grudge laid
-down, and within reach (halfway to a life goal and doubting it). Each starts from what Rimfolk already knows about the
+down, and within reach (halfway to a life goal and doubting it). With A RimWorld of Magic there's a 17th, the long
+discipline (a mage or a fighter hits a wall in their art and works through it). Each starts from what Rimfolk already knows about the
 colonist (their losses, rivals, secrets, life goal, feelings, skills, animals, trust) and moves on only when something
 happens in play: a skill reached, a talk between the two of them in the social log, a piece of excellent quality made,
 a fight at home come through, days with a good mood or a room of their own. Every stage is written in their journal in
@@ -767,8 +768,10 @@ Each of these switches itself on only when its mod is there, and only asks for w
 - **RimHUD:** seven lines for its pawn panel (trust, open wish, office, life goal, strain, feelings, the heart's
   needs), with strain in its band's colour, each feeling in its own and the heart's needs green when all is well, plus
   five bars: strain (filling and reddening as it builds, marked where it becomes strained, worn down and near
-  breaking) and belonging, purpose, safety and freedom (marked where each starts to be missed). In RimHUD's settings,
-  Content tab, use "Add third-party". To keep the panel short, put them in the column under the skills.
+  breaking) and belonging, purpose, safety and freedom (marked where each starts to be missed). Four more lines show
+  Rimfolk's ailments (the doctor's notes in the tooltip), convalescence, the personal story under way and a doctor's
+  or midwife's standing, and a recovery bar fills as strength comes back. In RimHUD's settings, Content tab, use
+  "Add third-party". To keep the panel short, put them in the column under the skills.
 - **Interaction Bubbles:** social events and encounters with visitors, traders and animals now go into the social
   log too, so they show as bubbles like Rimfolk's moments and wish talk.
 
@@ -813,6 +816,35 @@ Rimfolk reads these mods by name while the game runs: with one missing, its part
 - **PokéWorld (any version):** Rimfolk's animal events follow its wild Pokémon slider and generation switches, a
   Pokémon caught with a ball (or kept in the PC) counts as tamed, animal lovers may ask to catch a new species, and
   the first catch of a species goes in the catcher's journal. Four Almanac pages explain the mod.
+
+### Your mods in Rimfolk's newer systems
+The heart, health, personal stories, the world's memory, the lands and the calendar read the mods in the current
+modlist too, each by name and only when the mod is there:
+- **Feelings:** the moods of Dubs Bad Hygiene, A RimWorld of Magic, Vanilla Social Interactions Expanded, Vanilla
+  Factions Expanded - Empire, Alpha Biomes, Alpha Animals, ReGrowth, Vanilla Events Expanded, Therapy, Gastronomy
+  and Snap Out! feed Rimfolk's feelings: a best friend lost is grief, being walked in on in the bath shame, a ball
+  fellowship, an art exhibit or the psychic aurora awe, a forsaken storm dread, a therapy session relief.
+- **Strain and recovery:** a hot bath, shower or heated pool (Dubs Bad Hygiene), a hot spring (ReGrowth) or the
+  healing spring (Alpha Biomes) eases strain a little and takes half a day off a convalescence, once a day; a
+  therapy session or sharing the burden with a friend eases strain like a talk with a friend; A RimWorld of Magic's
+  arcane weakness and mana sickness build strain like exhaustion, and its healing magic takes a day off a
+  convalescence.
+- **A personal story:** the long discipline, for A RimWorld of Magic's mages and fighters: a wall in the art, a talk
+  with someone further along, practice until a class level comes.
+- **The world's memory:** Hospitality's visits are remembered by the guests' people (a delighting one well, a
+  disappointing one badly, and a raid letter can name a poor welcome), and a republic remembers the colony winning
+  over its senate (Vanilla Factions Expanded - Classical).
+- **Lands, sky and ailments:** Geological Landforms' landforms read as valleys, canyons, islands, caves, cliffs,
+  oases and craters, with eight encounters for them; More Vanilla Biomes' crags, alpine meadows and oasis read as
+  mountains and an oasis; Seasonal Weather's double rainbow, windy days and dust bring three encounters. Alpha
+  Biomes' mycotic jungle and miasmic mangrove bring a spore cough, its tar pits and propane lakes a fume headache.
+- **Feasts, toasts and the calendar:** a toast an answer calls is raised with a drink from the stores (beer and
+  Vanilla Brewing Expanded's wines for those who may drink, its tea and coffee for teetotalers and the young); a
+  feast never serves Vanilla Cooking Expanded's spoiled grills; a calendar feast or games day suggests Alpha Memes'
+  and Vanilla Ideology Expanded - Memes' rites (tea ceremony, trading fair, wicker man, star-gazing).
+- **Peoples:** Stoneborn, elves, merfolk, Det's venators, boglegs and avaloi, and Alpha Genes' nereids, efreet and
+  drakonori have wishes, decree likes and a pull on the colony's ways of their own.
+- **RimHUD:** four more lines (ailments, recovery, the personal story, a healer's standing) and a recovery bar.
 
 ## Why am I feeling this?
 Every mood Rimfolk gives says what caused it, under the description in its tooltip: whose wish came true (or
@@ -1198,7 +1230,7 @@ Rimfolk's own save data. The only trace in a save is a colonist in the middle of
 the game can't load that mental state, logs it once and lets them go back to work.
 
 ## Ailments and illnesses
-Colony life wears on the body too. **Everyday ailments** (32 of them) are small and temporary: they never kill, never
+Colony life wears on the body too. **Everyday ailments** (34 of them) are small and temporary: they never kill, never
 leave a mark, last from a night to two weeks, and say in their description what helps. Doctors tend them like any
 illness.
 
@@ -1214,8 +1246,10 @@ illness.
   a fire. Also a splinter from felling trees, a rash from a plant's sap, insect bites in swamps and jungles, heat rash
   in sticky weather, frostnip and nosebleeds in bitter cold, athlete's foot from wading, motion sickness on a caravan,
   lice in dirty crowded rooms (they go round, and make typhus likelier), insomnia from worry or late nights, migraines
-  after missed meals or worry, cold sores, and heartburn and hiccups after a rich meal or a drink. Never more than two
-  at once, never the same one again within days, and never on guests, prisoners or babies.
+  after missed meals or worry, cold sores, and heartburn and hiccups after a rich meal or a drink. With Alpha Biomes,
+  two of its lands have their own: a spore cough in the mycotic jungle and the miasmic mangrove, a fume headache at
+  the tar pits and the propane lakes. Never more than two at once, never the same one again within days, and never
+  on guests, prisoners or babies.
 
 **Serious illnesses** (14 of them) are rare, behind their own switch, and most can kill: tetanus from a wound left
 untended, pneumonia after a cold in someone old, frail or starving, tuberculosis, typhus in dirty crowded quarters,

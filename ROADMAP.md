@@ -243,17 +243,17 @@ the content itself, not only to systems, alongside whatever else it does. Where 
 | Council projects (ambitions) | 54 (3 in stages) | more staged and season-long projects, more for tribal and spacer colonies |
 | Life goals | 63 | goals for teenagers, more for faith and the heart, goals that change with age |
 | Dilemmas | 132 | more for children, elders and the camps; dilemmas for each new system as it lands |
-| Encounters | 156 | more lands (lakes, rivers), more mods' creatures, peoples and biomes, rarer night and weather moments |
+| Encounters | 167 (8 for the land's shape, 3 for Seasonal Weather's skies) | more lands (lakes, rivers), more mods' creatures, peoples and biomes, rarer night and weather moments |
 | Decrees | 19 | decrees tied to world situations, faith and mods (tithes, curfews, alms) |
 | Quirks | 32 | quirks that touch others (a hummer and a light sleeper), more from events and dreams |
-| Personal stories | 16 (61 stages) | stories from camps, offices and world events, more for children and elders, stories of three |
+| Personal stories | 17 (65 stages; 1 for A RimWorld of Magic's classes) | stories from camps, offices and world events, more for children and elders, stories of three |
 | Dreams | 123 | dreams for more feelings, quirks, life goals and mod content |
 | World events | 32 | more regional situations, and more follow-ups (relief from old friends and refugees to see through follow plagues, famines, floods and hard winters) |
 | Camp kinds | 11 | caravans of every kind, pilgrims of every faith |
-| Ailments | 32 everyday, 14 serious; convalescence from 4 causes, 2 healers' names | ailments for every biome and DLC, more after-effects |
+| Ailments | 34 everyday (2 for Alpha Biomes' lands), 14 serious; convalescence from 4 causes, 2 healers' names | ailments for every biome and DLC, more after-effects |
 | Room types | 28 (108 layouts, 6 themes) | odd shapes beyond partitions, more spacer and mod-furniture sizes, themes for more furniture mods |
 | Calendar days and ways to keep them | 9 kinds, 4 ways (about 440 lines) | more kinds of day, lines per biome and faith |
-| Answers that play out on the map | 168 answers (67 dilemmas, 53 events and stories), 3 calendar ways, 3 decrees, 7 ambitions; 9 kinds of real effect | world events' beats, new dilemmas and events from the start, drinks at a toast |
+| Answers that play out on the map | 168 answers (67 dilemmas, 53 events and stories), 3 calendar ways, 3 decrees, 7 ambitions; 9 kinds of real effect | world events' beats, new dilemmas and events from the start (done: a drink from the stores at a toast) |
 | Lines in the flavor pools (variety report) | about 25,200 in 3,640 pools | the pools at the top of the report |
 | Social events, moments, frictions, nuisances | 67, 131 (44 frictions, 4 that follow something real), 22 | every trait pairing and home condition |
 | Secrets | 52 (2 for scenarios only), each with its own confide and graveside lines | secrets tied to world events and camps, more good ones, dilemmas for the newer ones |
@@ -266,7 +266,7 @@ the content itself, not only to systems, alongside whatever else it does. Where 
 | Colony character | 5 ways (10 names), 6 things a colony grows into | traits from hospitality, faith and the calendar |
 | Pets and nemeses | 14 heroics, 32 farewells, 22 taunts and parting words, 4 endings told from pools (one new: let go from the cells) | pets in the calendar, nemeses in dreams and personal stories |
 | Feelings | 26 | feelings that touch the camps and world events, each with more dreams and moments |
-| Mood hints | 172 | hints for every new thought as it lands |
+| Mood hints | 173 | hints for every new thought as it lands |
 | Small good moments that give something other than mood | 248 of 474 (opinion, recreation, rest, comfort, practice, a feeling, an inspiration, trust, research, goodwill, the journal), 4 habits with a knack instead | a reward instead for each new small moment as it lands |
 | Negative moods | 589 thoughts with a bad side (548 → 589); 41 setbacks from play (8 council, 3 gatherings, 10 work, 7 home, 6 worries, 7 between people) | setbacks for camps, world events and the calendar, more from mod content (a mod's bench, crop or ritual gone wrong) |
 
@@ -282,6 +282,12 @@ the content itself, not only to systems, alongside whatever else it does. Where 
 - Done, as tools for more: encounters and dilemmas can ask for a Hospitality guest, a people, a creature or a class
   by name, need a mod, something the colony has or a biome; world events can pick their people by name; everyday
   journal days can come from other mods' memories in XML.
+- Done: the player's mods in the newer systems. Eleven mods' moods feed the feelings; warm water, therapy and a
+  shared burden ease strain and shorten a convalescence, spent magic builds strain and healing magic speeds recovery;
+  a personal story for A RimWorld of Magic's classes; Hospitality's visits and the Classical senate in the world's
+  memory; Geological Landforms' landforms, More Vanilla Biomes' lands and Seasonal Weather's skies in encounters;
+  Alpha Biomes' lands with ailments of their own; a drink at a toast, no spoiled grills at a feast, the meme mods'
+  rites on calendar days; the race mods' xenotypes in wishes and the colony's ways; four more RimHUD lines.
 - Still open: Vanilla Factions Expanded Medieval and Tribals (not in the current modlists), Outland and Medieval Total
   Rim's peoples in world events, more Hospitality (a renowned-hosts council project), Alpha Genes and Alpha Memes in
   moments.
