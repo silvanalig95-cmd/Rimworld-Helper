@@ -101,9 +101,37 @@ None of this takes anything away. A colony that lives well still feels it; it ju
         <heading>When life is good</heading>
         <text>Someone whose life is already good gets used to good things faster. When a colonist's mood is above 75%, a new good memory from Rimfolk fades sooner, smoothly down to half its usual time from 90% mood. It feels just as good while it lasts, and in hard times good things last their full length, so a lift after a bad stretch stays with them. A good memory about someone keeps its effect on opinion for the full time; only the mood ends sooner.
 
-Everything good Rimfolk gives also shares one budget, from a wish granted to a laugh at dinner: the two biggest good moods on a colonist's mind count in full, each one after that half as much as the one before, so a dozen of them lift a colonist about as much as three. Bad moods, and the good moods of the game and other mods, aren't part of it.
-
 The "Good times" line in a colonist's Mood tab says what these rules take off right now. Each has its own setting.</text>
+      </li>
+      <li>
+        <heading>Good moods add up slowly</heading>
+        <text>Every good mood Rimfolk gives shares one budget, from a wish granted to a reunion: the biggest count in full and the rest for less, by their place among the good moods on the colonist's mind.</text>
+        <table>
+          <li>Place, biggest first | Counts for</li>
+          <li>First and second | In full</li>
+          <li>Third | Half</li>
+          <li>Fourth | 35%</li>
+          <li>Fifth | A quarter</li>
+          <li>Sixth and after | A fifth</li>
+        </table>
+        <after>Nothing is hidden: every good mood stays on the Needs tab at what it counts for now, so a +3 deep in the pile still shows as +1, and its tooltip says "+0.6 instead of +3". Bad moods, and the good moods of the game and other mods, aren't part of it. The "Good moods add up slowly" setting turns this off.</after>
+      </li>
+      <li>
+        <heading>Good moments that aren't moods</heading>
+        <text>Not every good moment lifts a mood. Rimfolk keeps mood for the moments that matter: weddings, wishes granted, reunions, victories, recoveries, life goals reached, the end of a personal story, real celebrations and grief shared. About half of its small good moments (248 of 474) give something that fits instead, and still show as a speech bubble, a line in the social log or the news, or a line in the journal.</text>
+        <table>
+          <li>Instead of mood | For example</li>
+          <li>Opinion only | A good talk, a friendly disagreement, a wound patched up: they think better of each other, and nobody's mood moves.</li>
+          <li>Recreation | A joke at work, dice with a traveler, snow falling, birdsong, a herd going by, music in the air.</li>
+          <li>Rest or comfort | A sweet dream, sleeping late, a friend covering a shift; a dry roof, a trick against the cold, a proper wash.</li>
+          <li>Practice | Talking shop in a passion they share, a child learning from a grown-up, sparring forms, calming an animal in a storm.</li>
+          <li>A rare inspiration | A strange dream, a great beast at the tree line, a falling star, a little magic.</li>
+          <li>A feeling | Awe at the lightning tree, pride in the pilgrims fed, relief at the thaw, fellowship on a night watch.</li>
+          <li>Trust in the council | Having their say at a meeting, a decree they asked for, seeing a dilemma handled fairly.</li>
+          <li>The road's gifts | A little research from a traveler's star names or books, and a little goodwill after tea with a trader or water for a wounded raider.</li>
+          <li>Only the journal | The smallest touches: lights over the marsh, a shape in the fog, a stolen dinner.</li>
+        </table>
+        <after>These follow the reward strength setting and standards, like the moods they replace, and give nothing on "Advisor only". The heart still feels them at their old size, so feelings, belonging and the strain friends ease work as before. A small line over the colonist says what they got ("+ recreation"), under the speech text setting.</after>
       </li>
       <li>
         <heading>Bringing them down</heading>
@@ -344,7 +372,9 @@ The council's decisions feed back too. Losing an election to someone, having you
         <heading>Moments and frictions</heading>
         <text>Smaller still are the moments colonists share in conversation, picked among the game's own chats: grieving together, talking shop, a story by the fire, a friendly contest. Who they are shapes them: night owls keep each other company in the small hours, undergrounders praise the rock overhead, brawlers compare scars, an iron-willed colonist steadies a nervous one, two gourmands plan a feast. So does what is going on: someone visits a sick friend or swears by an old remedy, two who spoke at the council talk it over afterward, the colony watches a camp's fires from the wall, and with the heart on a frightened colonist confides in a friend or a grateful one says thanks again. Frictions are the other side: chores, snoring, a borrowed knife, an annoying voice, a pyromaniac near the tinder, a nudist at the supper table, someone keeping their distance from the sick, a spat about the camp, a temper running high. The home has its own nuisances, each read from the real map, so fixing the cause is the cure: a sticking door, a leaking roof, a cramped or smoky room, a generator by the bed, a filthy room, a cold or stifling one, an animal in the bed, building work next to it, vermin indoors, a bare earth floor.
 
-Moments, frictions and social events tell one story between the same two people. After a spat nothing warm passes between them until it wears off (usually half a day to a day, half as long again with an abrasive or volatile one of them, a day and a half after a falling-out) or one of them makes up, and a spat right after a warm moment is unlikely. A peace offering only comes after a quarrel.</text>
+Moments, frictions and social events tell one story between the same two people. After a spat nothing warm passes between them until it wears off (usually half a day to a day, half as long again with an abrasive or volatile one of them, a day and a half after a falling-out) or one of them makes up, and a spat right after a warm moment is unlikely. A peace offering only comes after a quarrel.
+
+Most warm moments change how the two see each other rather than anyone's mood: a joke or a story by the fire gives a little recreation, talking shop a little practice in a passion they share, and a child shown how to do something learns a bit of what the grown-up knows. Grief shared, a friend steadying someone in a bad hour or cheering them up when they're low still lifts the mood (see "Rising standards").</text>
       </li>
       <li>
         <heading>Circles</heading>
@@ -368,7 +398,7 @@ Let someone's wish lapse and their close friends trust the council a little less
     <order>10</order>
     <summary>What colonists dream about, and the rare dream that changes something or comes true.</summary>
     <tip>What a colonist dreams about is usually what's been bothering them.</tip>
-    <description>A colonist who sleeps (or lies unconscious) for four hours or more may wake from a dream. Dreams grow out of their life: the battle two days ago, the friend they lost, the rival who insulted them, the wish the council ignored, the leg they no longer have, the skill they're learning. Most dreams are just a passing mood and a line in their journal. Hover over the mood in their Needs tab to read the dream itself.</description>
+    <description>A colonist who sleeps (or lies unconscious) for four hours or more may wake from a dream. Dreams grow out of their life: the battle two days ago, the friend they lost, the rival who insulted them, the wish the council ignored, the leg they no longer have, the skill they're learning. Most dreams leave a line in their journal and little else: a sweet dream a bit of rest, a strange one now and then an inspiration, a nightmare or a visit from the dead a passing mood. Hover over that mood in their Needs tab to read the dream itself.</description>
     <sections>
       <li>
         <heading>What they dream about</heading>
@@ -490,7 +520,7 @@ A vendetta ends in one of several ways:</text>
       </li>
       <li>
         <heading>Habits</heading>
-        <text>Other quirks simply grow out of who someone is, now and then: a grower who talks to the plants (glad while growing, plant work 3% faster), a handler who names every animal (glad while handling, taming and training 3% likelier), a cook who sings at the stove (glad while cooking, 15% fewer food poisonings), an early riser (glad in the morning, sorry when kept up late), someone who hums at work, collects pretty stones for their room, can't stand a mess (unhappy in a dirty room, cleans 10% faster), feeds the birds, remembers every birthday (social impact up 3%), is always whittling (bored more slowly), talks in their sleep or saves the best bite for last. A habit's knack lasts as long as the habit, which fades after most of a year.</text>
+        <text>Other quirks simply grow out of who someone is, now and then: a grower who talks to the plants (plant work 3% faster), a handler who names every animal (taming and training 3% likelier), a cook who sings at the stove (15% fewer food poisonings), an early riser (glad in the morning, sorry when kept up late), someone who hums at work (work 2% quicker), collects pretty stones for their room, can't stand a mess (unhappy in a dirty room, cleans 10% faster), feeds the birds, remembers every birthday (social impact up 3%), is always whittling (bored more slowly), talks in their sleep or saves the best bite for last. A habit's knack lasts as long as the habit, which fades after most of a year.</text>
       </li>
       <li>
         <heading>Coming of age</heading>
@@ -514,7 +544,7 @@ A dead colonist's weapon or hat passes to the person who loved them most. Carryi
     <order>13</order>
     <summary>Visitors, traders, prisoners, fallen enemies, nemeses, wild animals and the colony's own animals.</summary>
     <tip>A raider who gets away may come back with the next raid.</tip>
-    <description>Colonists don't only deal with each other. While visitors, a trade caravan, guests or prisoners are around, and every day among the colony's animals and the wildlife, small moments happen: news from the road, haggling, words through a cell door, a fallen raider's plea, a pet's mischief, a stag at dawn. Some put a hard choice to the council. And an enemy who badly hurts one of yours and gets away becomes that colonist's nemesis.</description>
+    <description>Colonists don't only deal with each other. While visitors, a trade caravan, guests or prisoners are around, and every day among the colony's animals and the wildlife, small moments happen: news from the road, haggling, words through a cell door, a fallen raider's plea, a pet's mischief, a stag at dawn. Most of these give something other than mood: a herd going by or a clear night is a little recreation, a traveler's trick against the cold some comfort, an animal calmed in a storm practice, a traveler's star names a little research, a great beast awe and sometimes an inspiration, and the smallest only a line in the journal. Some put a hard choice to the council. And an enemy who badly hurts one of yours and gets away becomes that colonist's nemesis.</description>
     <sections>
       <li>
         <heading>Visitors and prisoners</heading>
