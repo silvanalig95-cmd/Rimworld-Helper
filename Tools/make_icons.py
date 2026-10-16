@@ -664,6 +664,17 @@ def g_cat_defense():
     return m
 
 
+def g_defenses():
+    """Defenses: a stretch of castle wall with battlements and an arched gate."""
+    m = new()
+    rect(m, 24, 100, 232, 236, r=6)
+    for x0 in (24, 106, 188):
+        rect(m, x0, 52, x0 + 44, 108, r=4)
+    rect(m, 100, 156, 156, 240, fill=OFF)
+    circle(m, 128, 158, 28, OFF)
+    return m
+
+
 def g_cat_health():
     m = new()
     rect(m, 92, 24, 164, 232, r=16)
@@ -780,7 +791,7 @@ GLYPHS = [
     ("Overview", g_overview), ("Priorities", g_priorities), ("Moods", g_moods), ("World", g_world), ("Rooms", g_rooms),
     ("Roster", g_roster), ("Bonds", g_bonds), ("Wishes", g_wishes), ("Decrees", g_decrees), ("Ambition", g_ambition),
     ("Ways", g_ways), ("Chronicle", g_chronicle), ("Calendar", g_calendar), ("Dreams", g_dreams), ("Journals", g_journals),
-    ("Week", g_week), ("Table", g_table), ("Dilemmas", g_dilemmas), ("Pin", g_pin),
+    ("Week", g_week), ("Table", g_table), ("Dilemmas", g_dilemmas), ("Pin", g_pin), ("Defenses", g_defenses),
     # markers
     ("Trust", g_trust), ("Office", g_office), ("LifeGoal", g_lifegoal), ("Secret", g_secret), ("Vendetta", g_vendetta),
     ("Nemesis", g_nemesis), ("Dream", g_dream), ("Journal", g_journal), ("WorldEvent", g_worldevent), ("Raid", g_raid),

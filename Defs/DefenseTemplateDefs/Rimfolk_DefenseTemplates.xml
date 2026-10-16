@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Defense plans for the Defenses page (Colony → Defenses) and the defense planner. The layout is written from the top
+    row down; the top row faces the threat. W wall, G gate, E embrasure, S cover, T trap, F something that slows raiders,
+    U turret (its block marked u), M mortar (its block marked m), H shelf, f firing position, . open ground kept clear,
+    _ ground left alone. See Source/ColonyCouncil/Defense/DefenseLayout.cs; Tools/Tests checks every plan in every turn.
+  -->
+
+  <ColonyCouncil.DefenseTemplateDef>
+    <defName>Rimfolk_Defense_Gate</defName>
+    <label>gate with sandbag lines</label>
+    <description>A wall across the gap with one gate in it, open ground behind, and two short lines of sandbags facing the gate with room for four shooters behind them.</description>
+    <purpose>Whatever comes through the gate stands in the open, a few steps from people behind cover. The wall carries on to the rock on either side when you close the gap.</purpose>
+    <kind>gate</kind>
+    <order>10</order>
+    <line>1</line>
+    <placeAt>choke</placeAt>
+    <iconDefs><li>Sandbags</li><li>Barricade</li></iconDefs>
+    <layout>
+      <li>.........</li>
+      <li>WWWWGWWWW</li>
+      <li>.........</li>
+      <li>.........</li>
+      <li>.SSS.SSS.</li>
+      <li>.fff.fff.</li>
+    </layout>
+    <tips>
+      <li>When raiders come, set the gate to stay open. With a way in they walk into your guns; with none, they hack at the wall wherever they like.</li>
+      <li>Keep the two rows behind the gate empty: anything standing there is cover for them, not for you.</li>
+      <li>Stone walls and a stone gate: wood burns, and raiders like to set fires.</li>
+      <li>[lowtech]Archers behind sandbags, and someone with a spear or an axe beside the gate to meet whoever gets through first.</li>
+    </tips>
+  </ColonyCouncil.DefenseTemplateDef>
+
+  <ColonyCouncil.DefenseTemplateDef>
+    <defName>Rimfolk_Defense_Wall</defName>
+    <label>perimeter wall with a gate</label>
+    <description>Fifteen cells of wall two thick, a double gate through the middle, and sandbags on the inside either side of it.</description>
+    <purpose>Closes a wide gap or a stretch of open ground, so the gate becomes the only easy way in. Two thick, it holds a breacher's axe and a sapper's pick a good while longer.</purpose>
+    <kind>wall</kind>
+    <order>20</order>
+    <line>1</line>
+    <placeAt>choke</placeAt>
+    <iconDefs><li>Wall</li></iconDefs>
+    <layout>
+      <li>_______________</li>
+      <li>WWWWWWWGWWWWWWW</li>
+      <li>WWWWWWWGWWWWWWW</li>
+      <li>_____....._____</li>
+      <li>_____SS.SS_____</li>
+      <li>_____ff.ff_____</li>
+    </layout>
+    <tips>
+      <li>Close the gap: the wall carries on to rock, water or another wall on both sides, so there's no easy way round.</li>
+      <li>Sappers dig for the beds and breachers smash the wall in their way: two thick buys the time to get there.</li>
+      <li>A door every fifteen to twenty-five cells lets your people out to chase off a breacher or take a shot.</li>
+    </tips>
+  </ColonyCouncil.DefenseTemplateDef>
+
+  <ColonyCouncil.DefenseTemplateDef>
+    <defName>Rimfolk_Defense_Killbox</defName>
+    <label>killbox</label>
+    <description>A wall with a single opening, a narrow entrance with two turns in it, an open box with a trap in the middle, and a line of cover with turrets and shooters at the far end.</description>
+    <purpose>Raiders take the easiest way in, and this is it: they come round the turns one at a time into open ground under every gun the colony has. The way through stays open, so they keep coming rather than breaking walls elsewhere.</purpose>
+    <kind>killbox</kind>
+    <order>30</order>
+    <line>0</line>
+    <placeAt>choke</placeAt>
+    <iconDefs><li>Turret_MiniTurret</li><li>Sandbags</li></iconDefs>
+    <pieces>
+      <li><role>turret</role><optional>true</optional></li>
+      <li><role>trap</role><optional>true</optional></li>
+    </pieces>
+    <layout>
+      <li>WWWWWW.WWWWWW</li>
+      <li>_____W.W_____</li>
+      <li>_____W.WWW___</li>
+      <li>_____W...W___</li>
+      <li>_____WWW.W___</li>
+      <li>_WWWWWWW.WWW_</li>
+      <li>_W.........W_</li>
+      <li>_W.........W_</li>
+      <li>_W....T....W_</li>
+      <li>_W.........W_</li>
+      <li>_WSSSS.SSSSW_</li>
+      <li>_Wuuff.ffuuW_</li>
+      <li>_WUu.....UuW_</li>
+      <li>_W.........W_</li>
+    </layout>
+    <tips>
+      <li>The turns in the entrance stop raiders lying in the doorway and shooting from its cover: they have to come out.</li>
+      <li>One cell wide, the entrance is where a good melee fighter can hold them one at a time.</li>
+      <li>Sappers, breachers and drop pods ignore a killbox. Keep weapons by the beds and a second line inside.</li>
+      <li>[!lowtech]Mini-turrets close in, autocannons further back: an autocannon can't hit what's right in front of it.</li>
+      <li>[lowtech]Without turrets, put archers where the turrets would stand; the box is just as deadly with bows.</li>
+      <li>Hold fire until they're in the box: every gun on the first one through is a waste.</li>
+    </tips>
+  </ColonyCouncil.DefenseTemplateDef>
+
+  <ColonyCouncil.DefenseTemplateDef>
+    <defName>Rimfolk_Defense_TrapCorridor</defName>
+    <label>trap corridor</label>
+    <description>A walled lane two wide on the approach: one side has a trap every other cell, the other something that slows a raider down.</description>
+    <purpose>Raiders don't see traps, so the clear side looks fastest to them and they walk straight down it. Your own people see the traps and take the slow side.</purpose>
+    <kind>traps</kind>
+    <order>40</order>
+    <placeAt>front</placeAt>
+    <iconDefs><li>TrapSpike</li></iconDefs>
+    <pieces>
+      <li><role>slow</role><optional>true</optional></li>
+    </pieces>
+    <layout>
+      <li>W..W</li>
+      <li>WT.W</li>
+      <li>W.FW</li>
+      <li>WT.W</li>
+      <li>W.FW</li>
+      <li>WT.W</li>
+      <li>W.FW</li>
+      <li>WT.W</li>
+      <li>W..W</li>
+    </layout>
+    <tips>
+      <li>Traps can't stand next to each other; a gap between them also keeps one blast from setting off the next.</li>
+      <li>Your own people spring a trap about one time in two hundred, more when hauling or drafted onto it. Keep haulers out with an allowed area.</li>
+      <li>Rearm spike traps after every raid: a sprung trap does nothing.</li>
+    </tips>
+  </ColonyCouncil.DefenseTemplateDef>
+
+  <ColonyCouncil.DefenseTemplateDef>
+    <defName>Rimfolk_Defense_TurretNest</defName>
+    <label>turret nest</label>
+    <description>Two turrets three cells apart, sandbags in front of each, walls on the flanks, and a sandbag for someone who repairs them.</description>
+    <purpose>Turrets are a second pair of guns that never sleep, as long as they have power and someone repairs them. Behind cover they last much longer.</purpose>
+    <kind>nest</kind>
+    <order>50</order>
+    <placeAt>behind</placeAt>
+    <behind>6</behind>
+    <iconDefs><li>Turret_MiniTurret</li><li>DankPyon_Turret_Scorpio</li></iconDefs>
+    <layout>
+      <li>.SS.S.SS.</li>
+      <li>Wuu.f.uuW</li>
+      <li>WUu...UuW</li>
+      <li>W.......W</li>
+    </layout>
+    <tips>
+      <li>A badly damaged turret can explode: three cells apart, and the next one survives it.</li>
+      <li>A solar flare silences every powered turret. Arm your people as if the turrets weren't there.</li>
+      <li>EMP stuns a turret and, unlike a mechanoid, a turret never gets used to it.</li>
+      <li>Every turret is wealth, and wealth makes the next raid bigger. Build the ones you'll use.</li>
+    </tips>
+  </ColonyCouncil.DefenseTemplateDef>
+
+  <ColonyCouncil.DefenseTemplateDef>
+    <defName>Rimfolk_Defense_Post</defName>
+    <label>sniper's post</label>
+    <labelLowTech>archers' post</labelLowTech>
+    <description>Three firing positions behind a line of cover, with walls on both flanks so nobody shoots them from the side.</description>
+    <purpose>For your longest guns or bows: far enough back to shoot at raiders before they reach the gate, and covered from the front and the sides.</purpose>
+    <kind>post</kind>
+    <order>60</order>
+    <placeAt>behind</placeAt>
+    <behind>10</behind>
+    <iconDefs><li>Barricade</li><li>Sandbags</li></iconDefs>
+    <layout>
+      <li>.SSS.</li>
+      <li>WfffW</li>
+      <li>W...W</li>
+    </layout>
+    <tips>
+      <li>Cover counts in full only when the shot comes straight at it. Face the post toward where they'll stand.</li>
+      <li>Haul stone chunks and cut trees out of the field in front: a chunk gives a raider half cover.</li>
+      <li>[lowtech]Bows fire in long arcs but miss a lot at range. Several archers on one target beat one on each.</li>
+      <li>[!lowtech]A sniper rifle outranges almost everything raiders carry: shoot them while they gather.</li>
+    </tips>
+  </ColonyCouncil.DefenseTemplateDef>
+
+  <ColonyCouncil.DefenseTemplateDef>
+    <defName>Rimfolk_Defense_Fallback</defName>
+    <label>fallback line</label>
+    <description>A wall with a door between the outer defenses and the beds, open ground behind it, cover either side, and a shelf for weapons and medicine.</description>
+    <purpose>When the outer line breaks, people fall back here instead of running for the bedrooms with raiders behind them. Medicine on the shelf means the wounded are seen to where they fall.</purpose>
+    <kind>fallback</kind>
+    <order>70</order>
+    <line>1</line>
+    <placeAt>between</placeAt>
+    <iconDefs><li>Door</li></iconDefs>
+    <pieces>
+      <li><role>shelf</role><optional>true</optional></li>
+    </pieces>
+    <layout>
+      <li>...........</li>
+      <li>WWWWWGWWWWW</li>
+      <li>...........</li>
+      <li>..SS...SS..</li>
+      <li>..ff.H.ff..</li>
+      <li>...........</li>
+    </layout>
+    <tips>
+      <li>Say in advance who falls back and when: a line people only find in the middle of a raid is no line.</li>
+      <li>Keep the shelf stocked with medicine and spare weapons; set it to take only those.</li>
+      <li>A second line also stops a drop pod raid that lands on the far side of it from reaching the beds.</li>
+    </tips>
+  </ColonyCouncil.DefenseTemplateDef>
+
+  <ColonyCouncil.DefenseTemplateDef>
+    <defName>Rimfolk_Defense_Keep</defName>
+    <label>keep</label>
+    <description>A small, closed room with one door, two firing positions behind cover facing it, and shelves for weapons and medicine.</description>
+    <purpose>The last place to hold. When pods land among the beds or the walls fall, the people who matter most hold out here until it's over. Thick walls and one door are all it needs.</purpose>
+    <kind>keep</kind>
+    <order>80</order>
+    <placeAt>core</placeAt>
+    <iconDefs><li>Shelf</li></iconDefs>
+    <pieces>
+      <li><role>shelf</role><optional>true</optional></li>
+    </pieces>
+    <layout>
+      <li>WWWWGWWWW</li>
+      <li>W.......W</li>
+      <li>W.S...S.W</li>
+      <li>W.f...f.W</li>
+      <li>WH.....HW</li>
+      <li>WWWWWWWWW</li>
+    </layout>
+    <tips>
+      <li>Food for a day or two, medicine and something to pass the time: a keep people break down in is no keep.</li>
+      <li>Under overhead mountain, nothing falls on it: no mortar shell and no drop pod.</li>
+      <li>Raiders go for the door. Give it your best builder to repair it from inside.</li>
+    </tips>
+  </ColonyCouncil.DefenseTemplateDef>
+
+  <ColonyCouncil.DefenseTemplateDef>
+    <defName>Rimfolk_Defense_MortarPit</defName>
+    <label>mortar pit</label>
+    <description>Two mortars with a wall between them, sandbags in front for the gunners, and a shelf for the shells well away from both.</description>
+    <purpose>A siege digs in out of reach and shells you; a mortar answers from anywhere on the map. Two make their misses overlap. The wall and the distance keep one explosion from setting off the rest.</purpose>
+    <kind>mortar</kind>
+    <order>90</order>
+    <placeAt>core</placeAt>
+    <iconDefs><li>Turret_Mortar</li></iconDefs>
+    <pieces>
+      <li><role>shelf</role><optional>true</optional></li>
+    </pieces>
+    <layout>
+      <li>.SS...SS.....</li>
+      <li>.mm.W.mm.....</li>
+      <li>.Mm.W.Mm...H.</li>
+      <li>.............</li>
+    </layout>
+    <tips>
+      <li>Mortars can't fire from under a roof, and can't hit anything closer than about thirty cells: put them deep inside.</li>
+      <li>Incendiary shells set a siege's own shells off; high-explosive for people, EMP for mechanoids.</li>
+      <li>Unassign the gunners when the fight is over, or they'll stand there until they drop.</li>
+    </tips>
+  </ColonyCouncil.DefenseTemplateDef>
+
+  <ColonyCouncil.DefenseTemplateDef>
+    <defName>Rimfolk_Defense_PalisadeGatehouse</defName>
+    <label>palisade with a gatehouse</label>
+    <description>A palisade across the gap with embrasures for archers either side, a log gate, and a walled gatehouse behind it with a second gate.</description>
+    <purpose>Raiders through the first gate find themselves in a small walled yard with a second gate in front of them, while archers shoot through the embrasures. The old way of holding a gap.</purpose>
+    <kind>palisade</kind>
+    <order>100</order>
+    <line>1</line>
+    <placeAt>choke</placeAt>
+    <iconDefs><li>DankPyon_Palisade</li><li>DankPyon_EmbPalisade</li></iconDefs>
+    <needs><li>DankPyon_Palisade</li></needs>
+    <pieces>
+      <li><role>wall</role><defs><li>DankPyon_Palisade</li></defs></li>
+      <li><role>embrasure</role><defs><li>DankPyon_EmbPalisade</li></defs></li>
+      <li><role>gate</role><defs><li>DankPyon_ReinfocedLogGate</li><li>DankPyon_LogGate</li><li>DankPyon_Gate</li></defs></li>
+    </pieces>
+    <layout>
+      <li>...........</li>
+      <li>WEEWWGWWEEW</li>
+      <li>_ffW...Wff_</li>
+      <li>_..W...W.._</li>
+      <li>_..WWGWW.._</li>
+      <li>...........</li>
+    </layout>
+    <tips>
+      <li>A palisade burns. Keep a firebreak in front of it, and don't let fires start in the gatehouse.</li>
+      <li>Embrasures let archers shoot over the wall while it covers most of them.</li>
+      <li>The yard between the gates is where raiders bunch up: that's where the arrows go.</li>
+    </tips>
+  </ColonyCouncil.DefenseTemplateDef>
+
+  <ColonyCouncil.DefenseTemplateDef>
+    <defName>Rimfolk_Defense_CastleGate</defName>
+    <label>castle gate</label>
+    <description>A stone castle wall across the gap with embrasures either side of the gate, and a gatehouse yard behind with a second gate.</description>
+    <purpose>The palisade's design in stone: it doesn't burn, and it stands up to a breacher's axe far longer.</purpose>
+    <kind>palisade</kind>
+    <order>110</order>
+    <line>1</line>
+    <placeAt>choke</placeAt>
+    <iconDefs><li>DankPyon_CastleWall</li><li>DankPyon_CastleWallEmbrasures</li></iconDefs>
+    <needs><li>DankPyon_CastleWall</li></needs>
+    <pieces>
+      <li><role>wall</role><defs><li>DankPyon_CastleWall</li></defs></li>
+      <li><role>embrasure</role><defs><li>DankPyon_CastleWallEmbrasures</li></defs></li>
+      <li><role>gate</role><defs><li>DankPyon_Gate</li><li>DankPyon_SlabDoor</li></defs></li>
+    </pieces>
+    <layout>
+      <li>...........</li>
+      <li>WEEWWGWWEEW</li>
+      <li>_ffW...Wff_</li>
+      <li>_..W...W.._</li>
+      <li>_..WWGWW.._</li>
+      <li>...........</li>
+    </layout>
+    <tips>
+      <li>Stone takes long to raise. Build the gate first and the wall outward from it.</li>
+      <li>Embrasures let archers shoot over the wall while it covers most of them.</li>
+    </tips>
+  </ColonyCouncil.DefenseTemplateDef>
+
+</Defs>

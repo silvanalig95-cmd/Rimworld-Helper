@@ -12,6 +12,7 @@ namespace ColonyCouncil
         Rooms,
         Mood,
         Defense,
+        Defending,
         Health,
         Management,
         LowTech,

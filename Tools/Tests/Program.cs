@@ -392,6 +392,7 @@ for (int r = 0; r < 4; r++)
         Console.WriteLine($"Checked {CouncilUiTests.Run(root, Check)} things about the council window (This week, the tables, page links, shortcuts).");
         Console.WriteLine($"Checked {ModsTests.Run(root, Check)} things about the player's other mods (their names, people who change).");
         Console.WriteLine($"Checked {PerfTests.Run(root, Check)} things about the caches that keep Rimfolk light (lines, facts, slices).");
+        Console.WriteLine($"Checked {DefenseTests.Run(root, Check)} things about the defense planner (its plans in every turn, reading a map's ways in).");
     }
 }
 
