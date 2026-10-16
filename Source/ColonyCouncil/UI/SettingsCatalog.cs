@@ -137,7 +137,8 @@ namespace ColonyCouncil
             ["lastCouncilPage"] = "the council window's page when it was last closed",
             ["lastAlmanacPage"] = "the Almanac's page when it was last closed",
             ["almanacFolded"] = "whether the Almanac's categories and page list are folded away, switched in the Almanac itself",
-            ["councilPageState"] = "the filters and sort orders the council's pages remember, set on the pages themselves"
+            ["councilPageState"] = "the filters and sort orders the council's pages remember, set on the pages themselves",
+            ["speechText"] = "the old switch for colonists speaking, kept in step with speechShows (the row \"Colonists' speech shows as\") so older settings files load"
         };
 
         public static IReadOnlyList<SettingEntry> All => all;
@@ -348,7 +349,8 @@ namespace ColonyCouncil
             Toggle("allDreamMessages", "CC_Settings_AllDreamMessages", "CC_SetNote_AllDreamMessages", "dreams");
             Toggle("wishLetters", "CC_Settings_WishLetters", "CC_SetNote_WishLetters");
             Toggle("grantedLetters", "CC_Settings_GrantedLetters", "CC_SetNote_GrantedLetters");
-            Toggle("speechText", "CC_Settings_SpeechText", "CC_SetNote_SpeechText");
+            Choice("speechShows", "CC_SetLabel_SpeechShows", "CC_SetTip_SpeechShows", "CC_SpeechShows_", "CC_SetNote_SpeechShows_",
+                new[] { "Bubbles", "Floating", "Off" });
             Toggle("visualTouches", "CC_Settings_VisualTouches", "CC_SetNote_VisualTouches");
             Section("CC_Settings_Alerts");
             Toggle("advisorAlert", "CC_Settings_AdvisorAlert", "CC_SetNote_AdvisorAlert", "enableAdvisor");
@@ -467,7 +469,7 @@ namespace ColonyCouncil
             story.values.AddRange(new[]
             {
                 V("enableWishes", "true"), V("enableAmbitions", "true"), V("camps", "true"), V("eventWishes", "true"), V("wishesForOthers", "true"),
-                V("petitions", "true"), V("speechText", "true"), V("visualTouches", "true"), V("smallHabits", "true"), V("messageLevel", "Everything"),
+                V("petitions", "true"), V("speechShows", "Bubbles", "Off"), V("visualTouches", "true"), V("smallHabits", "true"), V("messageLevel", "Everything"),
                 V("arcFrequency", "Frequent"), V("daysBetweenDilemmas", "5"), V("encounterFrequency", "1.5"), V("momentFrequency", "1.5"),
                 V("socialEventFrequency", "1.5"), V("dreamFrequency", "1.5"), V("storytellerEventWeight", "1.5"), V("daysBetweenWorldEvents", "3"),
                 V("daysBetweenWorldSituations", "30")

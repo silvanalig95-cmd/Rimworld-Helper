@@ -9,10 +9,12 @@
 
     Medieval Overhaul (dankpyon.medieval.overhaul, defNames checked against its 1.6 defs): its rustic beds, wicker and
     straw beds, carved chairs and round stools, rustic tables, end tables and dressers, candle stands and oil lamps, and
-    its own wooden and stone floors. Its royal furniture is in the stately theme.
+    its own wooden and stone floors. Its oil wall lamp and wall torch hang on the walls of small and medium rooms (the
+    room's size decides, as for every theme: Building/LightMath.cs), its candle stands and oil lamps stand in large
+    ones. Its royal furniture is in the stately theme.
 
     Alpha Props: Parks and Gardens (sarg.alphapropsparks, defNames checked against its 1.6 defs): its lawns and its
-    working street lights, for a garden room.
+    working street lights, for a garden room. It has no wall lights, so small rooms hang the game's own.
   -->
 
   <ColonyCouncil.RoomThemeDef>
@@ -34,7 +36,7 @@
       <li><role>table</role><defs><li>DankPyon_RusticTable1x2c</li><li>DankPyon_RusticTable2x2c</li><li>DankPyon_Table2x4c</li></defs></li>
       <li><role>endtable</role><defs><li>DankPyon_RusticEndTable</li></defs></li>
       <li><role>dresser</role><defs><li>DankPyon_RusticDresser</li></defs></li>
-      <li><role>light</role><defs><li>DankPyon_CandleStand</li><li>DankPyon_RusticLamp</li><li>TorchLamp</li></defs></li>
+      <li><role>light</role><defs><li>DankPyon_WallLamp</li><li>DankPyon_WallTorch</li><li>DankPyon_CandleStand</li><li>DankPyon_RusticLamp</li><li>TorchLamp</li></defs></li>
     </swaps>
   </ColonyCouncil.RoomThemeDef>
 

@@ -254,7 +254,7 @@ the content itself, not only to systems, alongside whatever else it does. Where 
 | Dilemmas | 132 | more for children, elders and the camps; dilemmas for each new system as it lands |
 | Encounters | 172 (5 new for what a stranger's people remember, 8 for the land's shape, 3 for Seasonal Weather's skies) | more lands (lakes, rivers), more mods' creatures, peoples and biomes, rarer night and weather moments |
 | Decrees | 19 | decrees tied to world situations, faith and mods (tithes, curfews, alms) |
-| Quirks | 32 (13 now touch others, through 12 social events) | quirks in moments and dilemmas, more from events and dreams |
+| Quirks | 32 (13 now touch others, through 12 social events; a lucky thing says whose it is, and whose it was) | quirks in moments and dilemmas, more from events and dreams |
 | Personal stories | 17 (65 stages; 1 for A RimWorld of Magic's classes) | stories from camps, offices and world events, more for children and elders, stories of three |
 | Dreams | 128 (5 new from other systems' moments) | dreams for more feelings, quirks, life goals and mod content |
 | World events | 32 | more regional situations, and more follow-ups (relief from old friends and refugees to see through follow plagues, famines, floods and hard winters) |
@@ -275,11 +275,19 @@ the content itself, not only to systems, alongside whatever else it does. Where 
 | Advisor checks | 43 | checks for the newer systems (missions, the world page), more for tribal colonies |
 | Colony character | 5 ways (10 names), 6 things a colony grows into | traits from hospitality, faith and the calendar |
 | Pets and nemeses | 14 heroics, 32 farewells, 22 taunts and parting words, 4 endings told from pools (one new: let go from the cells) | pets in the calendar, nemeses in dreams and personal stories |
-| Feelings | 26 | feelings that touch the camps and world events, each with more dreams and moments |
+| Feelings | 26 (4 deepened by a heart's need that runs low) | feelings that touch the camps and world events, each with more dreams and moments |
 | Seen and heard (touches, speech, small habits) | 24 touches (6 new: a camp arriving, the first snow's flakes, a dream told at breakfast, a council wedding, a guest's word, guests' cups at a toast); lines about 9 kinds of state (about 400), dreams, guests and 4 kinds of weather; 12 small habits (6 → 12: stars, plants, animals, the stores, company, old stories) | touches for the world events' beats and the calendar's ways, habits for children and elders |
 | Mood hints | 173 | hints for every new thought as it lands |
 | Small good moments that give something other than mood | 248 of 474 (opinion, recreation, rest, comfort, practice, a feeling, an inspiration, trust, research, goodwill, the journal), 4 habits with a knack instead | a reward instead for each new small moment as it lands |
 | Negative moods | 589 thoughts with a bad side (548 → 589); 41 setbacks from play (8 council, 3 gatherings, 10 work, 7 home, 6 worries, 7 between people) | setbacks for camps, world events and the calendar, more from mod content (a mod's bench, crop or ritual gone wrong) |
+
+### Asked for by the player (queued after the current fixes)
+- A defense planner: what makes sense for this colony and its threats (raids, sieges, drop pods, mechanoids,
+  tribal waves), where to build it on this map (choke points, killboxes, cover and fallback lines, turret and trap
+  placement for the colony's tech level), templates to place like the room planner's, and the reasoning shown, the
+  way the advisor explains a room.
+- Animals and Pokémon deeper in Rimfolk: animals in wishes, dreams, personal stories, the calendar and the council
+  (a herd's year, a bonded animal's old age, a Pokémon's evolution as a colony event), with PokéWorld kept soft.
 
 ### 5. Wider (integrations)
 - Done: deeper with the always-on mods. Hospitality guests are visitors with stories (eight encounters with
@@ -299,6 +307,10 @@ the content itself, not only to systems, alongside whatever else it does. Where 
   memory; Geological Landforms' landforms, More Vanilla Biomes' lands and Seasonal Weather's skies in encounters;
   Alpha Biomes' lands with ailments of their own; a drink at a toast, no spoiled grills at a feast, the meme mods'
   rites on calendar days; the race mods' xenotypes in wishes and the colony's ways; four more RimHUD lines.
+- Done: beliefs and diets. Wishes, life goals and council projects never ask for what a colonist's faith or traits
+  forbid (the game's Ideology, Vanilla Ideology Expanded - Memes, Alpha Memes, More Precepts, read by name and by what
+  a precept frowns on); feasts and toasts serve only what fits each colonist's policies and diet, and never what
+  Alpha Memes would make them sick for.
 - Done (October 2026): the player's other mods in the colony's everyday life, 23 integrations, each checked against the
   mod's own def names (Tools/Tests/ModDefNames.txt). Outland's four peoples (seven encounters with Medieval Total
   Rim's nations: 172 → 179) and two world events for them (a lord's progress, the clans gather: 32 → 34); Medieval

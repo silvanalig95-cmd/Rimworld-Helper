@@ -11,8 +11,10 @@ namespace ColonyCouncil
     /// The heart's four long-term needs, each 0 to 100, worked out once an hour from what the colonist has: belonging
     /// (friends, a partner, family, good moments, not being left out), purpose (work they love, a life goal, a seat,
     /// learning), safety (no danger, food, medicine, defenses, their own health) and freedom (time outside, varied work,
-    /// travel, few restrictions). Never saved and no mood of their own: they show what a life is missing, nudge wishes
-    /// and life goals toward it, and when all four are well met, strain drains a little faster.
+    /// travel, few restrictions). The values are never saved and give no mood of their own: they show what a life is
+    /// missing, nudge wishes and life goals toward the one lacked most, deepen the feeling that goes with a low one,
+    /// and when all four are well met, strain drains a little faster. Only how long each has been badly lacking is
+    /// saved (PawnHeart.needLack): after about three days below 25, it adds a little strain (HeartNeedMath).
     /// </summary>
     public static class HeartNeeds
     {
@@ -61,13 +63,29 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>Picks the reason that matters most: the biggest shortfall if it's low, else the biggest help.</summary>
-        private struct Why
+        /// <summary>
+        /// Gathers what moved a need this hour (for the tooltips: what raised it, what held it down, what would help) and
+        /// picks the reason that matters most: the biggest shortfall if it's low, else the biggest help.
+        /// </summary>
+        private sealed class Why
         {
             public string low, high;
             public float lowAmount, highAmount;
+            private readonly List<NeedPart> parts = new List<NeedPart>(8);
 
-            public void Add(float amount, string text)
+            public Why Start()
+            {
+                low = high = null;
+                lowAmount = highAmount = 0f;
+                parts.Clear();
+                return this;
+            }
+
+            /// <summary>
+            /// One thing that moved the need (or, with <paramref name="counted"/> false, a note on what's missing that only
+            /// explains a low value). <paramref name="help"/>: a Keyed string saying what would help, when it holds it down.
+            /// </summary>
+            public void Add(float amount, string text, string help = null, bool counted = true, string helpArg = null)
             {
                 if (amount < 0f && -amount > lowAmount)
                 {
@@ -79,18 +97,26 @@ namespace ColonyCouncil
                     highAmount = amount;
                     high = text;
                 }
+                if (text.NullOrEmpty() || Mathf.Abs(amount) < 0.5f) return;
+                parts.Add(new NeedPart { amount = amount, text = text, counted = counted, help = amount < 0f ? help : null, helpArg = helpArg });
             }
 
-            public NeedNow Result(float v) => new NeedNow { value = v, why = v < 50f ? low ?? high : high ?? low };
+            public NeedNow Result(float v)
+            {
+                parts.Sort((a, b) => Mathf.Abs(b.amount).CompareTo(Mathf.Abs(a.amount)));
+                return new NeedNow { value = v, why = v < 50f ? low ?? high : high ?? low, parts = parts.ToArray() };
+            }
         }
+
+        private static readonly Why why = new Why();
 
         private static NeedNow Belonging(Pawn p, PawnHeart h)
         {
-            var why = new Why();
+            var why = HeartNeeds.why.Start();
             float v = 15f;
             int friends = FriendsHere(p, out int others);
-            if (others == 0) why.Add(-30f, "CC_Heart_Why_Alone".Translate());
-            else if (friends == 0) why.Add(-20f, "CC_Heart_Why_NoFriends".Translate());
+            if (others == 0) why.Add(-30f, "CC_Heart_Why_Alone".Translate(), "CC_Heart_NeedHelp_Company", false);
+            else if (friends == 0) why.Add(-20f, "CC_Heart_Why_NoFriends".Translate(), "CC_Heart_NeedHelp_Company", false);
             float f = Mathf.Min(3, friends) * 15f;
             v += f;
             if (friends > 0) why.Add(f, friends == 1 ? "CC_Heart_Why_OneFriend".Translate() : "CC_Heart_Why_Friends".Translate(friends));
@@ -133,7 +159,7 @@ namespace ColonyCouncil
             if (leftOut)
             {
                 v -= 15f;
-                why.Add(-15f, "CC_Heart_Why_LeftOut".Translate());
+                why.Add(-15f, "CC_Heart_Why_LeftOut".Translate(), "CC_Heart_NeedHelp_Included");
             }
             return why.Result(v);
         }
@@ -190,7 +216,7 @@ namespace ColonyCouncil
 
         private static NeedNow Purpose(Pawn p, PawnHeart h)
         {
-            var why = new Why();
+            var why = HeartNeeds.why.Start();
             float v = 25f;
             bool passions = false, passionOn = false, passionNow = false;
             var job = p.CurJob?.workGiverDef?.workType;
@@ -212,7 +238,7 @@ namespace ColonyCouncil
                 v += 20f;
                 why.Add(20f, "CC_Heart_Why_PassionWork".Translate());
             }
-            else if (passions) why.Add(-15f, "CC_Heart_Why_PassionOff".Translate());
+            else if (passions) why.Add(-15f, "CC_Heart_Why_PassionOff".Translate(), "CC_Heart_NeedHelp_Passion", false);
             if (passionNow)
             {
                 v += 10f;
@@ -228,7 +254,7 @@ namespace ColonyCouncil
                     v += g;
                     why.Add(g, "CC_Heart_Why_Goal".Translate());
                 }
-                else why.Add(-5f, "CC_Heart_Why_NoGoal".Translate());
+                else if (ColonyCouncilMod.Settings.aspirations) why.Add(-5f, "CC_Heart_Why_NoGoal".Translate(), "CC_Heart_NeedHelp_Goal", false);
                 if (ColonyCouncilMod.Settings.offices && comp.offices.OfficeOf(p) != null)
                 {
                     v += 15f;
@@ -249,7 +275,7 @@ namespace ColonyCouncil
 
         private static NeedNow Safety(Pawn p, HeartMapContext m)
         {
-            var why = new Why();
+            var why = HeartNeeds.why.Start();
             float v = 55f;
             if (m.map == null)
             {
@@ -259,29 +285,29 @@ namespace ColonyCouncil
             if (m.threat)
             {
                 v -= 35f;
-                why.Add(-35f, "CC_Heart_Why_Raiders".Translate());
+                why.Add(-35f, "CC_Heart_Why_Raiders".Translate(), "CC_Heart_Help_Peace");
             }
             else if (m.ticksSinceBigThreat < GenDate.TicksPerDay * 3)
             {
                 v -= 15f;
-                why.Add(-15f, "CC_Heart_Why_RaidedLately".Translate());
+                why.Add(-15f, "CC_Heart_Why_RaidedLately".Translate(), "CC_Heart_Help_Peace");
             }
             if ((p.health?.summaryHealth?.SummaryHealthPercent ?? 1f) < 0.75f)
             {
                 v -= 15f;
-                why.Add(-15f, "CC_Heart_Why_Hurt".Translate());
+                why.Add(-15f, "CC_Heart_Why_Hurt".Translate(), "CC_Heart_Help_Healing");
             }
             if (m.home)
             {
                 if (m.foodDays < 4f)
                 {
                     v -= 20f;
-                    why.Add(-20f, "CC_Heart_Why_FoodLow".Translate());
+                    why.Add(-20f, "CC_Heart_Why_FoodLow".Translate(), "CC_Heart_NeedHelp_Food");
                 }
                 else if (m.foodDays < 10f)
                 {
                     v -= 8f;
-                    why.Add(-8f, "CC_Heart_Why_FoodShort".Translate());
+                    why.Add(-8f, "CC_Heart_Why_FoodShort".Translate(), "CC_Heart_NeedHelp_Food");
                 }
                 else if (m.foodDays >= 30f)
                 {
@@ -291,7 +317,7 @@ namespace ColonyCouncil
                 if (m.medicine == 0)
                 {
                     v -= 10f;
-                    why.Add(-10f, "CC_Heart_Why_NoMedicine".Translate());
+                    why.Add(-10f, "CC_Heart_Why_NoMedicine".Translate(), "CC_Heart_NeedHelp_Medicine");
                 }
                 else if (m.medicine >= m.colonists)
                 {
@@ -306,7 +332,7 @@ namespace ColonyCouncil
                 else if (m.defense < 0.5f && m.colonyDays > 10)
                 {
                     v -= 10f;
-                    why.Add(-10f, "CC_Heart_Why_Undefended".Translate());
+                    why.Add(-10f, "CC_Heart_Why_Undefended".Translate(), "CC_Heart_NeedHelp_Defenses");
                 }
             }
             return why.Result(v);
@@ -314,20 +340,20 @@ namespace ColonyCouncil
 
         private static NeedNow Freedom(Pawn p, PawnHeart h)
         {
-            var why = new Why();
+            var why = HeartNeeds.why.Start();
             float v = 40f;
             var needs = p.needs;
             if (needs?.outdoors != null)
             {
                 float o = (needs.outdoors.CurLevelPercentage - 0.5f) * 30f;
                 v += o;
-                why.Add(o, o >= 0f ? "CC_Heart_Why_Outdoors".Translate() : "CC_Heart_Why_Indoors".Translate());
+                why.Add(o, o >= 0f ? "CC_Heart_Why_Outdoors".Translate() : "CC_Heart_Why_Indoors".Translate(), "CC_Heart_NeedHelp_Outdoors");
             }
             if (needs?.joy != null)
             {
                 float j = (needs.joy.CurLevelPercentage - 0.5f) * 30f;
                 v += j;
-                why.Add(j, j >= 0f ? "CC_Heart_Why_FreeTime".Translate() : "CC_Heart_Why_NoFreeTime".Translate());
+                why.Add(j, j >= 0f ? "CC_Heart_Why_FreeTime".Translate() : "CC_Heart_Why_NoFreeTime".Translate(), "CC_Heart_Help_Recreation");
             }
             int variety = HeartLogic.WorkVariety(h, out int working);
             if (working >= 4 && variety >= 3)
@@ -338,7 +364,7 @@ namespace ColonyCouncil
             else if (working >= 6 && variety <= 1)
             {
                 v -= 10f;
-                why.Add(-10f, "CC_Heart_Why_SameWork".Translate());
+                why.Add(-10f, "CC_Heart_Why_SameWork".Translate(), "CC_Heart_NeedHelp_Variety");
             }
             if (p.GetCaravan() != null)
             {
@@ -351,17 +377,17 @@ namespace ColonyCouncil
                 {
                     if (a?.def == null || a.def.ReactionOf(p) > DecreeReaction.Dislike) continue;
                     v -= 10f;
-                    why.Add(-10f, "CC_Heart_Why_Decree".Translate(a.def.label));
+                    why.Add(-10f, "CC_Heart_Why_Decree".Translate(a.def.label), "CC_Heart_NeedHelp_Decree", true, a.def.label);
                 }
             if (p.Spawned && p.playerSettings?.AreaRestrictionInPawnCurrentMap != null)
             {
                 v -= 8f;
-                why.Add(-8f, "CC_Heart_Why_Restricted".Translate());
+                why.Add(-8f, "CC_Heart_Why_Restricted".Translate(), "CC_Heart_NeedHelp_Area");
             }
             if (p.IsSlave)
             {
                 v -= 30f;
-                why.Add(-30f, "CC_Heart_Why_Slave".Translate());
+                why.Add(-30f, "CC_Heart_Why_Slave".Translate(), "CC_Heart_NeedHelp_Slave");
             }
             return why.Result(v);
         }

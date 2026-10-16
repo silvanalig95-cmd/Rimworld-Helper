@@ -70,6 +70,8 @@ DankPyon_StrawBed
 DankPyon_StrawBedDouble
 DankPyon_Table2x4c
 DankPyon_TentWall
+DankPyon_WallLamp
+DankPyon_WallTorch
 DankPyon_Wine
 DankPyon_Wine_Griffon
 DankPyon_Wine_Ice

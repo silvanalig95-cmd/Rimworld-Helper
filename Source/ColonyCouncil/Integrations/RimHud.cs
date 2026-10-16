@@ -90,10 +90,13 @@ namespace ColonyCouncil
         }
     }
 
-    /// <summary>One of the heart's four needs as a bar (fuller is better), marked where it starts to be missed (45) and is well met (60).</summary>
+    /// <summary>
+    /// One of the heart's four needs as a bar (fuller is better), marked where it starts to be missed (45) and is well
+    /// met (60). The tooltip says what the value means, what moved it, what follows from it and what would help.
+    /// </summary>
     public static class RimHud_NeedBar
     {
-        private static readonly float[] Marks = { 0.45f, 0.60f };
+        private static readonly float[] Marks = { HeartNeedMath.MissedBelow / 100f, HeartNeedMath.WellMet / 100f };
 
         public static (string label, string value, float fill, float[] thresholds, Func<string> tooltip, Action onHover, Action onClick) For(Pawn pawn, HeartNeed need)
         {
@@ -102,8 +105,7 @@ namespace ColonyCouncil
             if (h?.needs == null || h.needs.Length != 4) return (null, null, -1f, null, null, null, null);
             var n = h.needs[i];
             string label = HeartView.NeedLabel(need).CapitalizeFirst();
-            return (label, n.value.ToString("0"), Mathf.Clamp01(n.value / 100f), Marks,
-                () => n.why.NullOrEmpty() ? HeartView.NeedsTip(h) : label + ": " + n.why + "\n\n" + HeartView.NeedsTip(h), null, null);
+            return (label, n.value.ToString("0"), Mathf.Clamp01(n.value / 100f), Marks, () => HeartView.NeedTip(pawn, h, need), null, null);
         }
     }
 
@@ -143,14 +145,17 @@ namespace ColonyCouncil
         }
     }
 
-    /// <summary>The heart's need they lack most, or that all are met; the tooltip shows all four.</summary>
+    /// <summary>
+    /// The heart's need they lack most, or that all are met ("lacks belonging (15)"); the tooltip shows all four, what
+    /// each value means, what follows from the one they lack most and what would help.
+    /// </summary>
     public static class RimHud_Needs
     {
         public static (string label, string value, Func<string> tooltip, Action onHover, Action onClick) GetParameters(Pawn pawn)
         {
             var h = RimHudUtil.HeartOf(pawn);
             if (h?.needs == null || h.needs.Length != 4 || h.hudNeeds == null) return (null, null, null, null, null);
-            return ("CC_Hud_Needs".Translate(), h.hudNeeds, () => HeartView.NeedsTip(h), null, null);
+            return ("CC_Hud_Needs".Translate(), h.hudNeeds, () => HeartView.NeedsTip(pawn, h), null, null);
         }
     }
 

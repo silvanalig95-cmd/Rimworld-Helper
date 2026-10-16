@@ -232,7 +232,8 @@ namespace ColonyCouncil
                 bestDist = d;
             }
             if (best != null) return best;
-            foreach (var b in map.listerBuildings.allBuildingsColonist)
+            // Built pots only (a pot still going up is a frame, and holds nothing).
+            foreach (var b in Avail.ColonyBuildings(map, d => d.thingClass != null && typeof(Building_PlantGrower).IsAssignableFrom(d.thingClass)))
             {
                 if (!(b is Building_PlantGrower pot) || !b.Spawned) continue;
                 foreach (var plant in pot.PlantsOnMe)

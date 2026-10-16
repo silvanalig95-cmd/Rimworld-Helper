@@ -29,6 +29,7 @@
   <CC_Heart_Source_Grief>grief</CC_Heart_Source_Grief>
   <CC_Heart_Source_Dread>worry about what's coming</CC_Heart_Source_Dread>
   <CC_Heart_Source_Despair>despair</CC_Heart_Source_Despair>
+  <CC_Heart_Source_Unmet>a need of the heart missing for days</CC_Heart_Source_Unmet>
 
   <!-- What drains it -->
   <CC_Heart_Relief_Quiet>quiet hours</CC_Heart_Relief_Quiet>
@@ -56,6 +57,7 @@
   <CC_Heart_Help_Sleep>quiet nights in a warm bed</CC_Heart_Help_Sleep>
   <CC_Heart_Help_Party>a party, a concert or a feast</CC_Heart_Help_Party>
   <CC_Heart_Help_RestDecree>days of rest (a decree)</CC_Heart_Help_RestDecree>
+  <CC_Heart_Help_Needs>what their heart has gone without for days</CC_Heart_Help_Needs>
 
   <!-- The heart's needs -->
   <CC_Heart_Need_Belonging>belonging</CC_Heart_Need_Belonging>
@@ -66,12 +68,54 @@
   <CC_Heart_Need_Purpose_Desc>Doing work they love, a life goal, a seat on the council, learning something new.</CC_Heart_Need_Purpose_Desc>
   <CC_Heart_Need_Safety_Desc>No danger at the door, food and medicine in store, decent defenses, and their own health.</CC_Heart_Need_Safety_Desc>
   <CC_Heart_Need_Freedom_Desc>Time outdoors and time of their own, varied work, getting out into the world, and few restrictions.</CC_Heart_Need_Freedom_Desc>
+  <CC_Heart_Need_Belonging_Answers>a party, a companion, a wedding, music; life goals about friends and family</CC_Heart_Need_Belonging_Answers>
+  <CC_Heart_Need_Purpose_Answers>a space for their craft, lessons, books; life goals of mastery and of making a name</CC_Heart_Need_Purpose_Answers>
+  <CC_Heart_Need_Safety_Answers>defenses, armor, an infirmary, stores laid in; life goals of a fighter</CC_Heart_Need_Safety_Answers>
+  <CC_Heart_Need_Freedom_Answers>time outside, travel, a hunt, a day off; life goals of discovery</CC_Heart_Need_Freedom_Answers>
+  <CC_Heart_Need_Belonging_Help>time with people they like, a partner close by, meals at one table and a party now and then</CC_Heart_Need_Belonging_Help>
+  <CC_Heart_Need_Purpose_Help>the work they love switched on, a life goal within reach, a seat on the council or something new to learn</CC_Heart_Need_Purpose_Help>
+  <CC_Heart_Need_Safety_Help>full stores, medicine on the shelf, sound defenses and a few quiet days</CC_Heart_Need_Safety_Help>
+  <CC_Heart_Need_Freedom_Help>time outside, free time, a mix of work and fewer restrictions</CC_Heart_Need_Freedom_Help>
   <CC_Heart_NeedsAllMet>All four are well met, so strain drains 20% faster.</CC_Heart_NeedsAllMet>
   <CC_Heart_NeedsFine>Nothing is badly missing.</CC_Heart_NeedsFine>
   <CC_Heart_NeedsMissing>Missing most: {0}.</CC_Heart_NeedsMissing>
   <CC_Heart_NeedsMissingWhy>Missing most: {0} ({1}).</CC_Heart_NeedsMissingWhy>
-  <CC_Heart_NeedMostly>Mostly: {0}</CC_Heart_NeedMostly>
-  <CC_Heart_NeedsExplain>The heart's needs give no mood of their own. The one a colonist lacks most makes the wishes and life goals that answer it up to 35% likelier, and when all four are 60 or more, strain drains 20% faster.</CC_Heart_NeedsExplain>
+  <CC_Heart_NeedsExplain>Each need runs from 0 to 100 and is worked out every hour from what their life has now. From 60 it is well met; below 45 it is missed, and the one they lack most makes the wishes and life goals that answer it likelier (wishes by up to 35%, goals by up to half). Below 35 it deepens the feeling that goes with it: lonely, frustrated, uneasy or restless. Below 25 for about three days, it adds 1 to 2 strain a day until it recovers. With all four at 60 or more, strain drains 20% faster. The needs give no mood of their own.</CC_Heart_NeedsExplain>
+  <CC_Heart_NeedsExplainShort>From 0 to 100, worked out every hour. 60 or more: well met. Below 45: missed. Below 35: it deepens a feeling. Below 25 for about three days: 1 to 2 strain a day. No mood of its own.</CC_Heart_NeedsExplainShort>
+  <CC_Heart_NeedsShortAllMet>all four well met</CC_Heart_NeedsShortAllMet>
+
+  <!-- The heart's needs explained (tooltips) -->
+  <CC_Heart_NeedLevel_Lacking>badly lacking</CC_Heart_NeedLevel_Lacking>
+  <CC_Heart_NeedLevel_Missed>missed</CC_Heart_NeedLevel_Missed>
+  <CC_Heart_NeedLevel_Fair>fair</CC_Heart_NeedLevel_Fair>
+  <CC_Heart_NeedLevel_Met>well met</CC_Heart_NeedLevel_Met>
+  <CC_Heart_NeedTipHead>{0}: {1} of 100, {2}</CC_Heart_NeedTipHead>
+  <CC_Heart_NeedRow>{0}: {1}, {2}</CC_Heart_NeedRow>
+  <CC_Heart_NeedRaising>Raising it: {0}.</CC_Heart_NeedRaising>
+  <CC_Heart_NeedLowering>Holding it down: {0}.</CC_Heart_NeedLowering>
+  <CC_Heart_NeedFollows_Lacked>It is what they lack most, so wishes that answer it are {0} likelier and life goals {1}: {2}.</CC_Heart_NeedFollows_Lacked>
+  <CC_Heart_NeedFollows_LackedShort>It is what they lack most, so wishes that answer it are {0} likelier and life goals {1}.</CC_Heart_NeedFollows_LackedShort>
+  <CC_Heart_NeedFollows_NotMost>They lack {0} more, and only the need they lack most makes its wishes likelier.</CC_Heart_NeedFollows_NotMost>
+  <CC_Heart_NeedFollows_Feeling>It deepens their {0}.</CC_Heart_NeedFollows_Feeling>
+  <CC_Heart_NeedFollows_Wearing>Badly lacking for days now, it adds about {0} strain a day until it rises above 25.</CC_Heart_NeedFollows_Wearing>
+  <CC_Heart_NeedFollows_WillWear>If it stays below 25 for about {0} more, it will start to add 1 to 2 strain a day.</CC_Heart_NeedFollows_WillWear>
+  <CC_Heart_NeedFollows_Fair>Fine for now: nothing follows from it.</CC_Heart_NeedFollows_Fair>
+  <CC_Heart_NeedFollows_Met>Well met. Once all four are at 60 or more, strain drains 20% faster.</CC_Heart_NeedFollows_Met>
+  <CC_Heart_NeedAlso>{0} is low too. {1}</CC_Heart_NeedAlso>
+
+  <!-- What would help a need, from what holds it down -->
+  <CC_Heart_NeedHelp_Company>time with others they could come to like, over meals, at a party or working side by side</CC_Heart_NeedHelp_Company>
+  <CC_Heart_NeedHelp_Included>being included at parties, talks and meals</CC_Heart_NeedHelp_Included>
+  <CC_Heart_NeedHelp_Passion>switching on the work they love</CC_Heart_NeedHelp_Passion>
+  <CC_Heart_NeedHelp_Goal>a life goal of their own, which comes in time</CC_Heart_NeedHelp_Goal>
+  <CC_Heart_NeedHelp_Food>more food laid in</CC_Heart_NeedHelp_Food>
+  <CC_Heart_NeedHelp_Medicine>medicine in store</CC_Heart_NeedHelp_Medicine>
+  <CC_Heart_NeedHelp_Defenses>walls and cover at the approaches</CC_Heart_NeedHelp_Defenses>
+  <CC_Heart_NeedHelp_Outdoors>time outside, in the fields, on a walk or at a meal under the sky</CC_Heart_NeedHelp_Outdoors>
+  <CC_Heart_NeedHelp_Variety>a mix of work instead of one job all day</CC_Heart_NeedHelp_Variety>
+  <CC_Heart_NeedHelp_Decree>lifting {0}</CC_Heart_NeedHelp_Decree>
+  <CC_Heart_NeedHelp_Area>a wider area to move in</CC_Heart_NeedHelp_Area>
+  <CC_Heart_NeedHelp_Slave>nothing short of freedom</CC_Heart_NeedHelp_Slave>
 
   <!-- Why a need is high or low -->
   <CC_Heart_Why_Alone>nobody else here</CC_Heart_Why_Alone>
@@ -133,6 +177,7 @@
   <CC_Heart_Cause_Break>after the {0}</CC_Heart_Cause_Break>
   <CC_Heart_Cause_Filth>filth everywhere</CC_Heart_Cause_Filth>
   <CC_Heart_Cause_Alone>nobody else here</CC_Heart_Cause_Alone>
+  <CC_Heart_Cause_NeedLow>little {0} in their life</CC_Heart_Cause_NeedLow>
   <CC_Heart_Cause_NoFriends>no friends here</CC_Heart_Cause_NoFriends>
   <CC_Heart_Cause_NewHere>new here</CC_Heart_Cause_NewHere>
   <CC_Heart_Cause_FamilyAway>family far away</CC_Heart_Cause_FamilyAway>
@@ -275,6 +320,9 @@
   <!-- Inspector, tooltips, the Mood tab and the Moods page -->
   <CC_Heart_Inspect>Strain: {0}</CC_Heart_Inspect>
   <CC_Heart_InspectFeelings>Strain: {0} · {1}</CC_Heart_InspectFeelings>
+  <CC_Heart_InspectLacks>{0} · lacks {1}</CC_Heart_InspectLacks>
+  <CC_Heart_InspectMore>The Mood tab's Heart section has more: every feeling, and each need on its own.</CC_Heart_InspectMore>
+  <CC_Table_SummaryNeeds>Heart's needs: {0}</CC_Table_SummaryNeeds>
   <CC_Heart_Section>Heart</CC_Heart_Section>
   <CC_Heart_NotYet>Their heart is looked at once an hour. Check back soon.</CC_Heart_NotYet>
   <CC_Heart_StrainLabel>Strain</CC_Heart_StrainLabel>
@@ -319,11 +367,11 @@
   <!-- Settings -->
   <CC_Settings_HeartHeader>Feelings and strain</CC_Settings_HeartHeader>
   <CC_Settings_Heart>Feelings and strain</CC_Settings_Heart>
-  <CC_Settings_Heart_Tip>A layer under mood that never changes how the game decides on mental breaks. Each colonist builds strain from fighting, pain, losses and bad nights and drains it with rest and good times; from 30 it costs 3 to 8 mood, from 55 also 5 to 10% of their work speed. They also have one or two feelings at a time (grief, fear, pride, joy and more) that nudge their wishes, dreams and how they get on with others, and four long-term needs that show what their life is missing. Turned off, all of it stops, and the strain mood and slowdown are gone.</CC_Settings_Heart_Tip>
+  <CC_Settings_Heart_Tip>A layer under mood that never changes how the game decides on mental breaks. Each colonist builds strain from fighting, pain, losses and bad nights and drains it with rest and good times; from 30 it costs 3 to 8 mood, from 55 also 5 to 10% of their work speed. They also have one or two feelings at a time (grief, fear, pride, joy and more) that nudge their wishes, dreams and how they get on with others, and four long-term needs that show what their life is missing: the one they lack most makes fitting wishes and life goals likelier, and one badly lacking for days adds 1 to 2 strain a day. Turned off, all of it stops, and the strain mood and slowdown are gone.</CC_Settings_Heart_Tip>
   <CC_Settings_HeartEpisodes>A colonist at the end of their rope takes a day off</CC_Settings_HeartEpisodes>
   <CC_Settings_HeartEpisodes_Tip>At strain 85 or more, a colonist may stop working for six to twelve hours and keep to their room. Never in danger, never with fewer than two others able to work, at most once in 2 days in the colony and once in 10 days for each colonist. Afterwards their strain drops by about 40. Turned off, strain still builds and drains, but nobody takes a day.</CC_Settings_HeartEpisodes_Tip>
   <CC_Settings_HeartInspector>Strain and feelings in the inspector</CC_Settings_HeartInspector>
-  <CC_Settings_HeartInspector_Tip>One short line in a colonist's details, such as "Strain: worn down · restless, proud". Needs the deeper game hooks.</CC_Settings_HeartInspector_Tip>
+  <CC_Settings_HeartInspector_Tip>One short line in a colonist's details, such as "Strain: worn down · restless, proud · lacks belonging". Hover it to see what it means and what would help. Needs the deeper game hooks.</CC_Settings_HeartInspector_Tip>
   <CC_Settings_StrainSpeed>How quickly strain builds: {0}</CC_Settings_StrainSpeed>
   <CC_Settings_StrainSpeed_Tip>50% for a gentler game, 150% for a harder one. The daily limits scale with it; how fast strain drains stays the same.</CC_Settings_StrainSpeed_Tip>
 

@@ -53,6 +53,7 @@ namespace ColonyCouncil
             p.needs.mood.thoughts.GetDistinctMoodThoughtGroups(groups);
             Feelings.Compute(p, h, m, groups, now, traits);
             HeartNeeds.Compute(p, h, m);
+            CountLack(h, hours);
             Strain(p, h, m, groups, since, now, hours, traits);
             groups.Clear();
 
@@ -158,6 +159,33 @@ namespace ColonyCouncil
             }
         }
 
+        // ---------------- Needs over days ----------------
+
+        /// <summary>How long each need of the heart has been badly lacking (below 25), net of the better hours.</summary>
+        private static void CountLack(PawnHeart h, float hours)
+        {
+            if (h.needs == null || h.needs.Length != PawnHeart.NeedCount || h.needLack == null) return;
+            for (int i = 0; i < PawnHeart.NeedCount && i < h.needLack.Count; i++)
+                h.needLack[i] = HeartNeedMath.LackHours(h.needLack[i], h.needs[i].value, hours);
+        }
+
+        /// <summary>
+        /// Strain an hour from the needs of the heart that have been badly lacking for days. Not a slave's freedom: that
+        /// is what being a slave means, and the game has its own weight for it.
+        /// </summary>
+        public static float UnmetPerHour(Pawn p, PawnHeart h, HeartNeed only = (HeartNeed)(-1))
+        {
+            if (h?.needs == null || h.needs.Length != PawnHeart.NeedCount) return 0f;
+            float sum = 0f;
+            for (int i = 0; i < PawnHeart.NeedCount; i++)
+            {
+                if ((int)only >= 0 && i != (int)only) continue;
+                if (i == (int)HeartNeed.Freedom && p != null && p.IsSlave) continue;
+                sum += HeartNeedMath.StrainPerHour(h.LackHours((HeartNeed)i), h.needs[i].value);
+            }
+            return sum;
+        }
+
         // ---------------- Strain ----------------
 
         private static void Strain(Pawn p, PawnHeart h, HeartMapContext m, List<Thought> moodGroups, int since, int now, float hours, StrainTraits traits)
@@ -218,6 +246,9 @@ namespace ColonyCouncil
                     if (reaction > DecreeReaction.Dislike) continue;
                     Build(StrainSource.Council, a.def.strainPerDay / 24f * (reaction == DecreeReaction.Hate ? 1.5f : 1f) * hours);
                 }
+            // Needs of the heart badly lacking for days: a little each hour, within its own daily cap.
+            float unmet = UnmetPerHour(p, h);
+            if (unmet > 0f) Build(StrainSource.Unmet, unmet * hours);
             // Feelings that wear on them (fear, grief, dread, despair).
             for (int i = 0; i < h.feelings.Count; i++)
             {
@@ -238,8 +269,8 @@ namespace ColonyCouncil
             else if (p.CurJobDef?.joyKind != null) rec = 0.5f;
             float factor = mood >= 0.85f ? 1.5f : mood >= 0.7f ? 1.25f : mood < 0.3f ? 0.7f : 1f;
             factor *= Heart.FeelingRelief(h) * HeartMath.ReliefTraitFactor(traits);
-            if (h.needs != null && h.needs.Length == 4 && h.needs[0].value >= 60f && h.needs[1].value >= 60f && h.needs[2].value >= 60f && h.needs[3].value >= 60f)
-                factor *= 1.2f;
+            if (h.needs != null && h.needs.Length == 4 && HeartNeedMath.AllWellMet(h.needs[0].value, h.needs[1].value, h.needs[2].value, h.needs[3].value))
+                factor *= HeartNeedMath.AllMetRelief;
             float decree = Heart.DecreeRelief();
             factor *= decree;
             float council = decree > 1f && calm && p.IsFreeColonist ? 0.25f * hours : 0f;

@@ -25,8 +25,8 @@
     </tips>
     <things>
       <li><defs><li>Throne</li><li>GrandThrone</li></defs><role>throne</role><pos>(2,5)</pos><rot>South</rot><optional>false</optional></li>
-      <li><defs><li>Brazier</li><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(0,5)</pos></li>
-      <li><defs><li>Brazier</li><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(4,5)</pos></li>
+      <li><defs><li>Brazier</li><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><keepOnFloor>true</keepOnFloor><pos>(0,5)</pos></li>
+      <li><defs><li>Brazier</li><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><keepOnFloor>true</keepOnFloor><pos>(4,5)</pos></li>
       <li><defs><li>Harp</li></defs><role>music</role><pos>(4,2)</pos><rot>East</rot><tier>decor</tier></li>
       <li><defs><li>Drape</li></defs><role>drape</role><pos>(0,3)</pos><rot>East</rot><tier>lavish</tier></li>
       <li><defs><li>PlantPot</li></defs><role>plantpot</role><pos>(0,0)</pos></li>
@@ -52,10 +52,10 @@
     </tips>
     <things>
       <li><defs><li>GrandThrone</li><li>Throne</li></defs><role>throne</role><pos>(5,8)</pos><rot>South</rot><optional>false</optional></li>
-      <li><defs><li>Brazier</li><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(2,8)</pos></li>
-      <li><defs><li>Brazier</li><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(7,8)</pos></li>
-      <li><defs><li>Brazier</li><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(0,0)</pos></li>
-      <li><defs><li>Brazier</li><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(9,0)</pos></li>
+      <li><defs><li>Brazier</li><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><keepOnFloor>true</keepOnFloor><pos>(2,8)</pos></li>
+      <li><defs><li>Brazier</li><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><keepOnFloor>true</keepOnFloor><pos>(7,8)</pos></li>
+      <li><defs><li>Brazier</li><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><keepOnFloor>true</keepOnFloor><pos>(0,0)</pos></li>
+      <li><defs><li>Brazier</li><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><keepOnFloor>true</keepOnFloor><pos>(9,0)</pos></li>
       <li><defs><li>Harpsichord</li><li>Harp</li></defs><role>music</role><pos>(8,4)</pos><rot>East</rot></li>
       <li><defs><li>Column</li></defs><role>column</role><pos>(2,1)</pos><tier>decor</tier></li>
       <li><defs><li>Column</li></defs><role>column</role><pos>(7,1)</pos><tier>decor</tier></li>
@@ -89,8 +89,8 @@
       <li><defs><li>Altar_Small</li></defs><role>altar</role><pos>(2,4)</pos><optional>false</optional></li>
       <li><defs><li>Lectern</li></defs><role>lectern</role><pos>(2,2)</pos><rot>South</rot></li>
       <li><defs><li>Pew</li><li>DiningChair</li><li>Stool</li></defs><role>pew</role><pos>(2,1)</pos></li>
-      <li><defs><li>Brazier</li><li>DarklightBrazier</li><li>TorchLamp</li><li>StandingLamp</li></defs><role>light</role><pos>(0,4)</pos></li>
-      <li><defs><li>Brazier</li><li>DarklightBrazier</li><li>TorchLamp</li><li>StandingLamp</li></defs><role>light</role><pos>(4,4)</pos></li>
+      <li><defs><li>Brazier</li><li>DarklightBrazier</li><li>TorchLamp</li><li>StandingLamp</li></defs><role>light</role><keepOnFloor>true</keepOnFloor><pos>(0,4)</pos></li>
+      <li><defs><li>Brazier</li><li>DarklightBrazier</li><li>TorchLamp</li><li>StandingLamp</li></defs><role>light</role><keepOnFloor>true</keepOnFloor><pos>(4,4)</pos></li>
       <li><defs><li>Drape</li></defs><role>drape</role><pos>(0,2)</pos><rot>East</rot><tier>lavish</tier></li>
       <li><defs><li>Drape</li></defs><role>drape</role><pos>(4,2)</pos><rot>West</rot><tier>lavish</tier></li>
     </things>
@@ -121,8 +121,8 @@
       <li><defs><li>Pew</li><li>DiningChair</li><li>Stool</li></defs><role>pew</role><pos>(6,2)</pos></li>
       <li><defs><li>Pew</li><li>DiningChair</li><li>Stool</li></defs><role>pew</role><pos>(2,0)</pos></li>
       <li><defs><li>Pew</li><li>DiningChair</li><li>Stool</li></defs><role>pew</role><pos>(6,0)</pos></li>
-      <li><defs><li>Brazier</li><li>DarklightBrazier</li><li>TorchLamp</li><li>StandingLamp</li></defs><role>light</role><pos>(2,7)</pos></li>
-      <li><defs><li>Brazier</li><li>DarklightBrazier</li><li>TorchLamp</li><li>StandingLamp</li></defs><role>light</role><pos>(6,7)</pos></li>
+      <li><defs><li>Brazier</li><li>DarklightBrazier</li><li>TorchLamp</li><li>StandingLamp</li></defs><role>light</role><keepOnFloor>true</keepOnFloor><pos>(2,7)</pos></li>
+      <li><defs><li>Brazier</li><li>DarklightBrazier</li><li>TorchLamp</li><li>StandingLamp</li></defs><role>light</role><keepOnFloor>true</keepOnFloor><pos>(6,7)</pos></li>
       <li><defs><li>Column</li></defs><role>column</role><pos>(0,4)</pos></li>
       <li><defs><li>Column</li></defs><role>column</role><pos>(8,4)</pos></li>
       <li><defs><li>Drape</li></defs><role>drape</role><pos>(0,6)</pos><rot>East</rot><tier>lavish</tier></li>

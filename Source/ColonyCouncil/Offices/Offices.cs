@@ -31,6 +31,38 @@ namespace ColonyCouncil
 
         public bool OpenFor(int voters) => voters >= minColonists;
 
+        /// <summary>
+        /// Whether they could do this office's work at all: not when every skill it needs is one they can't use (a
+        /// colonist incapable of medicine is never the physician), nor when every kind of work those skills are for is
+        /// closed to them. The vote still decides among those who can.
+        /// </summary>
+        public bool CanHold(Pawn p)
+        {
+            if (p?.skills == null) return false;
+            if (skills.Count == 0) return true;
+            foreach (var sk in skills)
+            {
+                var r = p.skills.GetSkill(sk);
+                if (r == null || r.TotallyDisabled) continue;
+                bool anyWork = false, anyOpen = false;
+                foreach (var wt in DefDatabase<WorkTypeDef>.AllDefsListForReading)
+                {
+                    if (wt.relevantSkills == null || !wt.relevantSkills.Contains(sk)) continue;
+                    anyWork = true;
+                    if (!p.WorkTypeIsDisabled(wt))
+                    {
+                        anyOpen = true;
+                        break;
+                    }
+                }
+                if (!anyWork || anyOpen) return true;
+            }
+            return false;
+        }
+
+        /// <summary>The least competence the seat asks for, unless nobody who can hold it has more.</summary>
+        public const float MinCompetence = 4f;
+
         public float Competence(Pawn p)
         {
             if (p?.skills == null || skills.Count == 0) return 0f;
@@ -105,7 +137,10 @@ namespace ColonyCouncil
 
         public void Daily(CouncilGameComponent comp)
         {
-            foreach (var k in holders.Where(kv => !Valid(kv.Value)).Select(kv => kv.Key).ToList())
+            // A holder who can no longer do the seat's work (an injury, a new incapability) steps down with the dead and
+            // the departed.
+            foreach (var k in holders.Where(kv => !Valid(kv.Value) || !(DefDatabase<OfficeDef>.GetNamedSilentFail(kv.Key)?.CanHold(kv.Value) ?? true))
+                         .Select(kv => kv.Key).ToList())
             {
                 var gone = holders[k];
                 holders.Remove(k);
@@ -126,7 +161,7 @@ namespace ColonyCouncil
             bool newYear = year > lastElectionYear;
             // An open seat with nobody in it, and someone free to fill it (a small colony doesn't vote every few days for seats it can't fill).
             var eligible = Eligible();
-            bool vacancy = Offices.Any(o => o.OpenFor(eligible.Count) && HolderOf(o) == null) && eligible.Any(p => OfficeOf(p) == null)
+            bool vacancy = Offices.Any(o => o.OpenFor(eligible.Count) && HolderOf(o) == null && eligible.Any(p => OfficeOf(p) == null && o.CanHold(p)))
                            && Find.TickManager.TicksGame - lastElectionTick > GenDate.TicksPerDay * 3;
             if (firstEver || newYear) Hold(comp, year, false);
             else if (vacancy) Hold(comp, year, true);
@@ -144,7 +179,8 @@ namespace ColonyCouncil
 
         /// <summary>
         /// The peacemaker's day: every rivalry between colonists cools a little, and now and then the peacemaker sits the
-        /// worst-feuding pair down together (counted as a quarrel mended).
+        /// worst-feuding pair down together (counted as a quarrel mended): when the three of them are in one place
+        /// (a meal, an evening in the rec room), within two days (Together).
         /// </summary>
         private void Peacemaking(CouncilGameComponent comp)
         {
@@ -157,13 +193,24 @@ namespace ColonyCouncil
             var pair = rivalries.Where(t => comp.social.ties.Contains(t) && t.a.Spawned && t.b.Spawned && t.a.Map == peacemaker.Map && t.b.Map == peacemaker.Map)
                 .OrderByDescending(t => t.strength).FirstOrDefault();
             if (pair == null) return;
+            var (a, b) = (pair.a, pair.b);
+            Together.When("mediate|" + a.thingIDNumber + "|" + b.thingIDNumber, peacemaker, a, () => Mediate(comp, peacemaker, pair), 48f, -1f,
+                () => Together.Can(peacemaker, b) && Together.Can(a, b));
+        }
+
+        /// <summary>The peacemaker with the feuding pair, all three together: they're sat down and talked round.</summary>
+        private void Mediate(CouncilGameComponent comp, Pawn peacemaker, SocialTie pair)
+        {
+            // together: called once the peacemaker and both of the pair are together (Peacemaking, through Together.When).
+            if (Peacemaker != peacemaker || !comp.social.ties.Contains(pair)) return;
             using var _cause = Causes.Push("CC_Cause_Peacemaker".Translate(peacemaker.LabelShort).Resolve());
             comp.social.Weaken(pair.a, pair.b, TieKind.Rivals, 6f, "CC_TieNote_Peacemaker".Translate(peacemaker.LabelShort));
             CouncilRecords.Add(peacemaker, CouncilRecords.QuarrelsMended);
             string line = Flavor.FromPool("Council_Pool_PeacemakerMediates", peacemaker);
             if (line.NullOrEmpty()) return;
-            News.Post(line.Formatted(peacemaker.Named("PAWN"), pair.a.Named("A"), pair.b.Named("B")).Resolve(), new LookTargets(peacemaker, pair.a, pair.b),
-                NewsKind.People, MessageTypeDefOf.NeutralEvent, Importance.Flavor);
+            string text = line.Formatted(peacemaker.Named("PAWN"), pair.a.Named("A"), pair.b.Named("B")).Resolve();
+            News.Post(text, new LookTargets(peacemaker, pair.a, pair.b), NewsKind.People, MessageTypeDefOf.NeutralEvent, Importance.Flavor);
+            SocialLog.Add(peacemaker, pair.a, text);
         }
 
         /// <summary>
@@ -185,6 +232,7 @@ namespace ColonyCouncil
         public void Hold(CouncilGameComponent comp, int year, bool byElection)
         {
             using var _cause = Causes.Push("CC_Cause_Election".Translate().Resolve());
+            // apart: an election, told in its letter.
             var voters = Eligible();
             if (voters.Count < 2) return;
             // Beliefs that put a ruler above the vote (aristocratic, royal): the leader names the officers.
@@ -199,15 +247,20 @@ namespace ColonyCouncil
             var text = new StringBuilder();
             text.Append(ruler != null ? (byElection ? "CC_PM_Appoint_ByText" : "CC_PM_Appoint_Text").Translate(ruler.Named("PAWN")).Resolve()
                 : (byElection ? "CC_Election_ByText" : "CC_Election_Text").Translate(year).Resolve());
-            foreach (var office in Offices.Where(o => o.OpenFor(voters.Count)))
+            var open = Offices.Where(o => o.OpenFor(voters.Count)).ToList();
+            if (byElection)
+                foreach (var office in open)
+                    if (HolderOf(office) != null) taken.Add(HolderOf(office));
+            // The seats few people can fill go first, so the colony's only doctor isn't spent on the speaker's chair.
+            foreach (var office in open.OrderBy(o => voters.Count(p => o.CanHold(p))).ThenBy(o => o.order).ToList())
             {
-                if (byElection && HolderOf(office) != null)
-                {
-                    taken.Add(HolderOf(office));
-                    continue;
-                }
-                var candidates = voters.Where(p => !taken.Contains(p)).ToList();
-                if (candidates.Count == 0) break;
+                if (byElection && HolderOf(office) != null) continue;
+                // Only those who can do the work stand, and only those competent enough unless nobody who can is.
+                var able = voters.Where(p => !taken.Contains(p) && office.CanHold(p)).ToList();
+                if (able.Count == 0) continue;
+                float bestAble = able.Max(p => office.Competence(p));
+                var candidates = able.Where(p => office.Competence(p) >= Mathf.Min(OfficeDef.MinCompetence, bestAble)).ToList();
+                if (candidates.Count == 0) continue;
                 var tally = new Dictionary<Pawn, int>();
                 foreach (var voter in ballots)
                 {
@@ -273,7 +326,8 @@ namespace ColonyCouncil
         public void Appoint(OfficeDef office, Pawn p, CouncilGameComponent comp)
         {
             using var _cause = Causes.Push("CC_Cause_Appointed".Translate(p.LabelShort, office.label).Resolve());
-            if (office == null || p == null) return;
+            if (office == null || p == null || !office.CanHold(p)) return;
+            // apart: the council names an officer (a message).
             var current = HolderOf(office);
             if (current == p) return;
             foreach (var other in Offices.Where(o => HolderOf(o) == p).ToList()) holders.Remove(other.defName);

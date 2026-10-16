@@ -2,10 +2,11 @@
 <Defs>
 
   <!--
-    Lines said over a head (one sentence each, 90 characters at most; floating speech keeps only the first sentence)
+    Lines said over a head (one sentence each, 90 characters at most; a bubble or floating text keeps only the first sentence)
     for the six newer small habits (Source/ColonyCouncil/Immersion/MoreHabits.cs) and the newer touches
-    (Source/ColonyCouncil/Immersion/EventTouches.cs). Said only with the visual and sound touches and floating speech
-    on, by someone in view who hasn't said anything lately.
+    (Source/ColonyCouncil/Immersion/EventTouches.cs). Said only with the visual and sound touches on and speech showing
+    (Immersion/Speech.cs), by someone in view who hasn't said anything lately; a line said to someone (to whom a lonely
+    colonist keeps company, a dream told at breakfast) shows only when the two are really together.
 
     Habits: {OTHER} is whom it's about (the animal, the one kept company); [animal], [bonded], [named] (an animal with a
     name of its own), [guest] (a Hospitality guest), [partner], [kin], [young].

@@ -102,8 +102,8 @@ namespace ColonyCouncil
         {
             var t = comp.happenings;
             var m = new Model { coming = Coming(t), outThere = OutThere(comp), lately = Lately(comp) };
-            if (ColonyCouncilMod.Settings.worldEvents && t.nextTick > 0)
-                m.next = "CC_World_NextEvent".Translate(TextUtil.DaysString(Mathf.Max(0, t.nextTick - Find.TickManager.TicksGame))).Resolve();
+            // Events come unannounced: no countdown to the next one (with the storyteller in charge of them, Rimfolk's
+            // own timer doesn't run at all, so a countdown would only ever show a time long past).
             return m;
         }
 

@@ -290,7 +290,7 @@ namespace ColonyCouncil
         /// <summary>A line on arriving, in view, from someone who hasn't said anything lately (it shares the touches' once-a-day rate).</summary>
         public static void Say(Pawn p, HabitExtension ext, Pawn about)
         {
-            if (ext == null || ext.pool.NullOrEmpty() || !VisualTouches.On || ColonyCouncilMod.Settings?.speechText != true) return;
+            if (ext == null || ext.pool.NullOrEmpty() || !VisualTouches.On || !Speech.On) return;
             var vt = VisualTouches.Instance;
             if (vt == null || !VisualTouches.InView(out var map, out var view) || map != p.Map) return;
             int now = Find.TickManager.TicksGame;
@@ -312,8 +312,11 @@ namespace ColonyCouncil
             string line = Flavor.FromPool(ext.pool, p, null, null, tags.ToArray());
             if (line.NullOrEmpty()) return;
             line = line.Formatted(p.Named("PAWN"), (about ?? p).Named("OTHER")).Resolve();
-            CouncilGameComponent.Speak(p, line, SpeechColor);
-            vt.Spoke(p, now + GenDate.TicksPerDay / 2);
+            // together: keeping someone company, the line is said to them through Speech.Say, which shows it only when
+            // the two are really together; the other habits' lines are about someone absent (the dead, a friend gone) or
+            // said to an animal or to nobody.
+            bool said = ext.kind == HabitKind.Company && about != null ? Speech.Say(p, line, about, SpeechColor) : Speech.Say(p, line, null, SpeechColor);
+            if (said) vt.Spoke(p, now + GenDate.TicksPerDay / 2);
         }
     }
 
@@ -571,9 +574,9 @@ namespace ColonyCouncil
                 if (ext == null) return;
                 SmallHabits.Done(pawn, ext.kind, Find.TickManager.TicksGame);
                 var subject = Subject();
-                if (ext.kind == HabitKind.Remember && Listener != null && Listener.Awake())
+                if (ext.kind == HabitKind.Remember && Listener != null && Together.Can(pawn, Listener))
                     pawn.interactions?.TryInteractWith(Listener, InteractionDefOf.DeepTalk);
-                if (ext.kind == HabitKind.Company && Partner != null && Partner.Awake())
+                if (ext.kind == HabitKind.Company && Partner != null && Together.Can(pawn, Partner))
                     pawn.interactions?.TryInteractWith(Partner, InteractionDefOf.Chitchat);
                 SmallHabits.Say(pawn, ext, subject);
             }

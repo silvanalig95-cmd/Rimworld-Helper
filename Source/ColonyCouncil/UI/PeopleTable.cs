@@ -445,7 +445,7 @@ namespace ColonyCouncil
                     color = HeartView.BandColor(h.Band),
                     sub = HeartView.DominantText(h),
                     subColor = UiKit.Faint,
-                    tip = HeartView.StrainTip(p, h) + (h.feelings.Count > 0 ? "\n\n" + HeartView.FeelingsTip(h) : ""),
+                    tip = HeartView.StrainTip(p, h) + (h.feelings.Count > 0 ? "\n\n" + HeartView.FeelingsTip(h) : "") + NeedsPart(p, h),
                     sort = h.strain
                 };
             else c[(int)Col.Strain] = new Cell { sort = -1f };
@@ -657,6 +657,13 @@ namespace ColonyCouncil
             return tip;
         }
 
+        /// <summary>The heart's needs, explained, after a blank line (for the strain cell's tooltip); empty without them.</summary>
+        private static string NeedsPart(Pawn p, PawnHeart h)
+        {
+            string needs = HeartView.NeedsTip(p, h);
+            return needs.NullOrEmpty() ? "" : "\n\n" + needs;
+        }
+
         /// <summary>
         /// Everything at a glance about one colonist, for the table's name cell and This week's pinned lines: mood,
         /// trust, strain, wish, story, health, quirks, office and names.
@@ -678,6 +685,8 @@ namespace ColonyCouncil
                 sb.Append("\n").Append("CC_Table_SummaryStrain".Translate(HeartView.BandLabel(h.Band), h.strain.ToString("0")).Resolve());
                 string feel = HeartView.DominantText(h);
                 if (!feel.NullOrEmpty()) sb.Append(" · ").Append(feel);
+                string needs = HeartView.NeedsShort(h);
+                if (!needs.NullOrEmpty()) sb.Append("\n").Append("CC_Table_SummaryNeeds".Translate(needs).Resolve());
             }
             var wish = comp.OpenWishes.FirstOrDefault(w => w.pawn == p);
             if (wish != null) sb.Append("\n").Append("CC_Table_SummaryWish".Translate(wish.Label, UiKit.Duration(wish.TicksLeft)).Resolve());

@@ -387,6 +387,7 @@
     <defName>Council_Amb_CoatsForWinter</defName>
     <label>coats for winter</label>
     <description>Real cold is coming. Dress everyone warmly enough to stay comfortable at -10°C: parkas, cloaks, hats, whatever the colony can make.</description>
+    <forbiddenBy><li>Nudity</li></forbiddenBy>
     <days>20</days>
     <relevantCategories><li>Temperature</li></relevantCategories>
     <proposerSkills><li>Crafting</li></proposerSkills>
@@ -703,6 +704,7 @@
     <defName>Council_Amb_WholeAgain</defName>
     <label>whole again</label>
     <description>Give back what the colony's people have lost: a replacement for every missing limb or eye the colony can make or has in stock. Proposed when someone is missing a part that can be replaced.</description>
+    <forbiddenBy><li>NoProsthetics</li></forbiddenBy>
     <days>30</days>
     <relevantCategories><li>Health</li></relevantCategories>
     <proposerSkills><li>Medicine</li><li>Crafting</li></proposerSkills>

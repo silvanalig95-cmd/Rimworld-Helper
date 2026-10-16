@@ -18,8 +18,9 @@ namespace ColonyCouncil
     /// </summary>
     /// <remarks>
     /// Run by <see cref="VisualTouches"/>' clock, so only with its setting on, only on the map being looked at and only in
-    /// view; lines also need floating speech text, and share the touches' rate (one ambient line a colonist a day or
-    /// so). At most two puffs or flakes a pulse. Nobody is moved or changed, a guest least of all. Nothing is saved.
+    /// view; lines go through <see cref="Speech.Say"/> (shown as the speech setting says; a dream is told only to someone
+    /// really there to hear it), and share the touches' rate (one ambient line a colonist a day or so). At most two
+    /// puffs or flakes a pulse. Nobody is moved or changed, a guest least of all. Nothing is saved.
     /// </remarks>
     internal sealed class EventTouches
     {
@@ -46,7 +47,7 @@ namespace ColonyCouncil
             music = DefDatabase<FleckDef>.GetNamedSilentFail("Music");
         }
 
-        private static bool Speech => ColonyCouncilMod.Settings?.speechText == true;
+        private static bool Speaks => Speech.On;
 
         // ---------------- Every pulse ----------------
 
@@ -78,7 +79,7 @@ namespace ColonyCouncil
                 FleckMaker.ThrowDustPuffThick(p.DrawPos + new Vector3(0f, 0f, -0.3f), map, Rand.Range(0.8f, 1.2f), DustColor);
                 made++;
             }
-            if (!seen || campSeen == camp.id || !Speech) return;
+            if (!seen || campSeen == camp.id || !Speaks) return;
             campSeen = camp.id;
             var who = Someone(vt, map, view, now, p => !camp.Has(p));
             if (who == null) return;
@@ -86,8 +87,8 @@ namespace ColonyCouncil
             if (kind.StartsWith("Council_Camp_", StringComparison.Ordinal)) kind = kind.Substring("Council_Camp_".Length);
             string line = Flavor.FromPool("Council_Pool_TouchCampComing", who, null, null, "camp:" + kind);
             if (line.NullOrEmpty()) return;
-            CouncilGameComponent.Speak(who, line.Formatted(who.Named("PAWN")).Resolve(), SpeechColor);
-            vt.Spoke(who, now + GenDate.TicksPerDay);
+            // apart: one person's remark about the strangers on the road, said to nobody in particular.
+            if (Speech.Say(who, line.Formatted(who.Named("PAWN")).Resolve(), null, SpeechColor)) vt.Spoke(who, now + GenDate.TicksPerDay);
         }
 
         // ---------------- The first snow ----------------
@@ -123,7 +124,7 @@ namespace ColonyCouncil
         /// </summary>
         private void Breakfast(VisualTouches vt, Map map, CellRect view, int now)
         {
-            if (!Speech || ColonyCouncilMod.Settings?.dreams != true) return;
+            if (!Speaks || ColonyCouncilMod.Settings?.dreams != true) return;
             var untold = CouncilGameComponent.Instance?.dreams?.untold;
             if (untold == null || untold.Count == 0) return;
             int hour = GenLocalDate.HourOfDay(map);
@@ -136,24 +137,17 @@ namespace ColonyCouncil
                 if (p == null || memo == null || p.Map != map || now - memo.tick > GenDate.TicksPerHour * 12) continue;
                 if (dreamsTold.TryGetValue(p.thingIDNumber, out int told) && told == memo.tick) continue;
                 if (p.CurJobDef != JobDefOf.Ingest || !vt.Free(p, map, view, now)) continue;
-                var listener = Near(p, map);
+                // Told to someone at the table: only with someone really there to hear it.
+                var listener = Together.Company(p);
                 if (listener == null) continue;
                 string line = Flavor.FromPool("Council_Pool_SayDream", p, null, null, "dream:" + memo.kind);
                 if (line.NullOrEmpty()) continue;
-                var other = memo.other ?? listener;
-                CouncilGameComponent.Speak(p, line.Formatted(p.Named("PAWN"), other.Named("OTHER")).Resolve(), SpeechColor);
+                var about = memo.other ?? listener;
+                if (!Speech.Say(p, line.Formatted(p.Named("PAWN"), about.Named("OTHER")).Resolve(), listener, SpeechColor)) continue;
                 vt.Spoke(p, now + GenDate.TicksPerDay / 2);
                 dreamsTold[p.thingIDNumber] = memo.tick;
                 return;
             }
-        }
-
-        /// <summary>Someone awake within a few steps to tell it to.</summary>
-        private static Pawn Near(Pawn p, Map map)
-        {
-            foreach (var o in map.mapPawns.FreeColonistsSpawned)
-                if (o != p && o.Awake() && !o.Downed && o.Position.InHorDistOf(p.Position, 5f) && People.HasInnerLife(o)) return o;
-            return null;
         }
 
         // ---------------- A wedding of the council ----------------
@@ -179,7 +173,8 @@ namespace ColonyCouncil
             int singers = 0;
             foreach (var o in map.mapPawns.FreeColonistsSpawned.InRandomOrder())
             {
-                if (o == a || o == b || !o.Position.InHorDistOf(at.Position, 12f) || !VisualTouches.CanSpeak(o, map, view)) continue;
+                // Only those at the ceremony, within earshot of the couple.
+                if (o == a || o == b || !Together.Hears(at, o, 12f) || !VisualTouches.CanSpeak(o, map, view)) continue;
                 if (music != null && singers < 3)
                 {
                     vt.QueueFleck(o, music, 2, Rand.RangeInclusive(1, 4));
@@ -188,12 +183,12 @@ namespace ColonyCouncil
                 bool councillor = offices && comp.offices.OfficeOf(o) != null;
                 if (speaker == null || (councillor && !(offices && comp.offices.OfficeOf(speaker) != null))) speaker = o;
             }
-            if (speaker == null || !Speech) return;
+            if (speaker == null || !Speaks) return;
             bool speakerHolds = offices && comp.offices.OfficeOf(speaker) != null;
             string line = Flavor.FromPool("Council_Pool_TouchCouncilWedding", speaker, null, null, speakerHolds ? "councillor" : "friend", promised ? "promised" : "officer");
             if (line.NullOrEmpty()) return;
-            CouncilGameComponent.Speak(speaker, line.Formatted(speaker.Named("PAWN"), a.Named("A"), b.Named("B")).Resolve(), SpeechColor);
-            vt.Spoke(speaker, now + GenDate.TicksPerDay / 2);
+            if (Speech.Say(speaker, line.Formatted(speaker.Named("PAWN"), a.Named("A"), b.Named("B")).Resolve(), null, SpeechColor))
+                vt.Spoke(speaker, now + GenDate.TicksPerDay / 2);
         }
 
         // ---------------- A guest's word ----------------
@@ -204,7 +199,7 @@ namespace ColonyCouncil
         /// </summary>
         public bool Hourly(Map map, CellRect view, int now)
         {
-            if (!Speech || !People.ModActive(Guests.Mod) || !Rand.Chance(0.35f)) return false;
+            if (!Speaks || !People.ModActive(Guests.Mod) || !Rand.Chance(0.35f)) return false;
             if (guestUntil.Count > 0)
             {
                 List<int> gone = null;
@@ -232,7 +227,8 @@ namespace ColonyCouncil
                 string line = Flavor.FromPool("Council_Pool_GuestSays", g, null, null, tags.ToArray());
                 if (line.NullOrEmpty()) continue;
                 var faction = Strangers.FactionOf(g);
-                CouncilGameComponent.Speak(g, line.Formatted(g.Named("PAWN"), (faction?.Name ?? "").Named("FACTION")).Resolve(), GuestColor);
+                // apart: a guest's own remark about their stay, said to nobody in particular.
+                if (!Speech.Say(g, line.Formatted(g.Named("PAWN"), (faction?.Name ?? "").Named("FACTION")).Resolve(), null, GuestColor)) continue;
                 guestUntil[g.thingIDNumber] = now + GenDate.TicksPerDay;
                 return true;
             }

@@ -68,7 +68,8 @@ namespace ColonyCouncil
 
         /// <summary>
         /// A calendar day was kept (CalendarKeeping.KeepDay): everyone at home whose story is waiting moves on a day,
-        /// and a word they were waiting to have with someone else at home counts as had (they spent the day together).
+        /// and a word they were waiting to have with someone else at home counts as had if the two are together then
+        /// (Together.Can: at the day's feast or games, side by side).
         /// </summary>
         public static void Notify_DayKept(CalendarDay d, List<Pawn> home)
         {
@@ -80,7 +81,7 @@ namespace ColonyCouncil
                 {
                     var arc = tracker?.Of(p);
                     if (arc == null) continue;
-                    var with = arc.other != null && home.Contains(arc.other) ? arc.other : null;
+                    var with = arc.other != null && home.Contains(arc.other) && Together.Can(p, arc.other) ? arc.other : null;
                     NudgeAndTell(p, 1f, "day", with, (d.label ?? "").Named("NAME"));
                 }
             });
@@ -108,6 +109,7 @@ namespace ColonyCouncil
         /// </summary>
         public static void Notify_CampFriend(Pawn friend, Pawn them)
         {
+            // apart: the camp has gone; the friendship was made face to face at their fire.
             if (!On || !Ours(friend)) return;
             Safe("interplay: camp friend", () =>
             {

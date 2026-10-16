@@ -72,6 +72,29 @@ namespace ColonyCouncil
 
         /// <summary>For the XML-driven workers (WishWorker_Have, _Stock, _Wear...): what is wanted and by whom.</summary>
         public WishParams wants;
+        /// <summary>
+        /// Beliefs that rule this wish out (Wishes/Beliefs.cs): a smokehouse for meat isn't asked for by a vegetarian,
+        /// a party by one whose faith frowns on fun. Never raised for someone who holds one, and let go quietly if they
+        /// come to hold one while it's open.
+        /// </summary>
+        public List<Belief> forbiddenBy;
+
+        [Unsaved] private ulong forbiddenMask;
+        [Unsaved] private bool forbiddenMaskSet;
+
+        /// <summary><see cref="forbiddenBy"/> as one mask.</summary>
+        public ulong ForbiddenMask
+        {
+            get
+            {
+                if (!forbiddenMaskSet)
+                {
+                    forbiddenMask = BeliefMath.Mask(forbiddenBy);
+                    forbiddenMaskSet = true;
+                }
+                return forbiddenMask;
+            }
+        }
         /// <summary>How granting it shapes the colony's character (an execution, a party, letting a prisoner go).</summary>
         public WayShift ways;
 

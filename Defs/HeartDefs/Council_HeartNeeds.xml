@@ -5,12 +5,15 @@
     The heart's four needs (Source/ColonyCouncil/Heart/HeartNeeds.cs works out their values, 0 to 100, every hour; they
     are never saved and give no mood). Here: which wishes and life goals answer each one. For the need a colonist lacks
     most (below 45), these become up to 35% likelier, together with what their feelings ask for capped at half again.
-    Names and descriptions are in Keyed/Rimfolk_Heart.xml (CC_Heart_Need_{need}).
+    feeling: the feeling a low value (below 35) deepens, by up to feelingAmount at 0 (a feeling is felt from about 5).
+    Names, descriptions, what each makes likelier and what helps are in Keyed/Rimfolk_Heart.xml
+    (CC_Heart_Need_{need}, _Desc, _Answers, _Help).
   -->
 
   <ColonyCouncil.HeartNeedDef>
     <defName>Council_Need_Belonging</defName>
     <need>Belonging</need>
+    <feeling>Council_Feeling_Loneliness</feeling>
     <wishes>
       <li>Council_Wish_Party</li>
       <li>Council_Wish_Companion</li>
@@ -39,6 +42,7 @@
   <ColonyCouncil.HeartNeedDef>
     <defName>Council_Need_Purpose</defName>
     <need>Purpose</need>
+    <feeling>Council_Feeling_Frustration</feeling>
     <wishes>
       <li>Council_Wish_PassionSpace</li>
       <li>Council_Wish_LetMeWork</li>
@@ -72,6 +76,7 @@
   <ColonyCouncil.HeartNeedDef>
     <defName>Council_Need_Safety</defName>
     <need>Safety</need>
+    <feeling>Council_Feeling_Dread</feeling>
     <wishes>
       <li>Council_Wish_Defenses</li>
       <li>Council_Wish_Armor</li>
@@ -100,6 +105,7 @@
   <ColonyCouncil.HeartNeedDef>
     <defName>Council_Need_Freedom</defName>
     <need>Freedom</need>
+    <feeling>Council_Feeling_Restless</feeling>
     <wishes>
       <li>Council_Wish_Outside</li>
       <li>Council_Wish_Travel</li>
