@@ -40,6 +40,16 @@ namespace ColonyCouncil
         /// <summary>Only ever given by a scenario (the take someone skimmed, a mutiny someone joined), never at random.</summary>
         public bool scenario;
         /// <summary>
+        /// Born of something going on beyond the walls: only ever given while one of these is (ws:sickness, ws:hunger...: a
+        /// world event of that kind; camp: any camp settled on the colony's land; camp:defName: that kind of camp), to a
+        /// colonist it fits who has no secret yet, by <see cref="duringChance"/> a day. Never at random otherwise.
+        /// </summary>
+        public List<string> during;
+        public float duringChance = 0.04f;
+
+        /// <summary>Given only at a certain time (a scenario's, or while something is going on): never at random.</summary>
+        public bool Special => scenario || !during.NullOrEmpty();
+        /// <summary>
         /// The news when they confide it, hinting at it without telling it ({A_...} the owner, {B_...} the friend).
         /// Optional: without it the news only says something was confided.
         /// </summary>
@@ -139,6 +149,8 @@ namespace ColonyCouncil
                 rolled.Add(p.ThingID);
                 TryGive(p);
             }
+            // Secrets born of what's going on beyond the walls: a world event, a camp (SecretsBeyond.cs).
+            SecretsBeyond.Daily(this);
             foreach (var s in secrets.ToList())
             {
                 try
@@ -158,7 +170,7 @@ namespace ColonyCouncil
             if (!S.secrets || p == null || Of(p) != null) return false;
             var options = new List<(SecretDef def, float w)>();
             foreach (var d in DefDatabase<SecretDef>.AllDefsListForReading)
-                if (!d.scenario && d.Fits(p, out bool match)) options.Add((d, d.weight * (match ? 6f : 1f)));
+                if (!d.Special && d.Fits(p, out bool match)) options.Add((d, d.weight * (match ? 6f : 1f)));
             if (options.Count == 0) return false;
             rolled.Add(p.ThingID);
             secrets.Add(new Secret { def = options.RandomElementByWeight(o => o.w).def, owner = p });
@@ -179,7 +191,7 @@ namespace ColonyCouncil
             var options = new List<(SecretDef def, float w)>();
             foreach (var d in DefDatabase<SecretDef>.AllDefsListForReading)
             {
-                if (d.scenario || !d.Fits(p, out bool match)) continue;
+                if (d.Special || !d.Fits(p, out bool match)) continue;
                 options.Add((d, d.weight * (match ? 6f : 1f)));
             }
             // A backstory that fits a secret makes one much likelier.

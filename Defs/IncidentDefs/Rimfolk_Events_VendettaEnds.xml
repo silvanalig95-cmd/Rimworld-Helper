@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Rimfolk events that can end a vendetta (Source/ColonyCouncil/Secrets/VendettaEnds.cs): the people a colonist swore
+    vengeance on send the blood price for the one lost (at war but ready for peace, or not at war), or come to say they
+    are sorry once there is peace. A is the avenger, {DEAD} the one lost, {FACTION} the people, {COUNT} the blood price.
+    Lines can ask for [taken] (the lost one was carried off rather than killed), [pet], [heir] (the vendetta was
+    passed down to A) and [atwar] (the envoy waits at the edge of the colony's land). Only with vendettas switched on.
+  -->
+
+  <!-- ===================== The blood price ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_VendettaRansom</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the blood price</label>
+    <workerClass>ColonyCouncil.HappeningWorker_VendettaEnd</workerClass>
+    <baseChance>0.6</baseChance>
+    <minRefireDays>40</minRefireDays>
+    <earliestDay>30</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Past</group>
+        <ages>40~70</ages>
+        <count>1</count>
+        <stayHours>8~14</stayHours>
+        <value>300~600</value>
+        <answerDays>1</answerDays>
+        <titles>
+          <li>The blood price</li>
+          <li>An envoy about {DEAD}</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, an envoy of {FACTION}, has come about {DEAD}. {FACTION} know {A_nameDef} has sworn on them for it, and they would rather pay than bleed: {COUNT} silver, the old blood price, laid down for {DEAD}'s life, and the matter closed for good.\n\n{A_nameDef} has heard. {A_pronoun} hasn't said anything yet.</li>
+          <li>[atwar] An envoy of {FACTION} is waiting at the edge of the colony's land under a white cloth. {FACTION} are still at war with the colony, but they want this one thing settled: they offer {COUNT} silver as the blood price for {DEAD}, if {A_nameDef} will lay down {A_possessive} oath.</li>
+          <li>[taken] {X_nameDef} of {FACTION} has come about {DEAD}, who {FACTION} carried off. They can't give {DEAD} back, {X_pronoun} says, and won't pretend otherwise. But they will pay {COUNT} silver as the price of what they did, if {A_nameDef} will let the matter rest.</li>
+          <li>[heir] {X_nameDef} of {FACTION} has come about {DEAD}, and about the oath {A_nameDef} took up when the one who swore it died. {FACTION} offer {COUNT} silver, the blood price, to end it before it outlives anyone else.</li>
+          <li>[pet] {X_nameDef} of {FACTION} has come, a little awkwardly, about {DEAD}, {A_nameDef}'s animal. {FACTION} have heard {A_nameDef} swore on them for it, and would rather pay {COUNT} silver than find out how seriously.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Take the blood price</label>
+            <outcome>The silver is counted out on a blanket, and {A_nameDef} stands over it a long time before saying the words that end it. {X_nameDef} bows, and goes.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Gift"><factor>1</factor></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EndVendetta"><how>ransom</how><deed>amends</deed></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>15</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Words"><label>the blood price for {DEAD}</label><organizer>A</organizer><spots><li>Gather</li><li>Outdoors</li></spots></li>
+            </effects>
+            <ways><mercy>1</mercy><tradition>1</tradition></ways>
+          </li>
+          <li>
+            <label>Let {A_nameDef} decide</label>
+            <outcome>The council leaves it to {A_nameDef}: it was {A_possessive} oath. {A_nameDef} goes out to hear {X_nameDef} alone.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_EndVendetta"><how>ransom</how><deed>amends</deed><byAvenger>true</byAvenger></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>3</amount></li>
+            </effects>
+          </li>
+          <li>
+            <label>Some things aren't for sale</label>
+            <outcome>{X_nameDef} is told the colony doesn't sell its dead. {X_pronoun} takes the silver home, and {FACTION} will have to live with {A_nameDef}'s oath.</outcome>
+            <outcomes>
+              <li>[taken] {X_nameDef} is told the colony wants {DEAD} back, not silver. {X_pronoun} has no answer to that, and goes home with the purse.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Vendetta_NotForSale</thought></li>
+            </effects>
+            <ways><mercy>-1</mercy></ways>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.VendettaEndEvent">
+        <want>ransom</want>
+        <minDays>20</minDays>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== An apology ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_VendettaApology</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>an apology</label>
+    <workerClass>ColonyCouncil.HappeningWorker_VendettaEnd</workerClass>
+    <baseChance>0.6</baseChance>
+    <minRefireDays>40</minRefireDays>
+    <earliestDay>30</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Past</group>
+        <ages>40~75</ages>
+        <count>1~2</count>
+        <stayHours>10~16</stayHours>
+        <answerDays>1</answerDays>
+        <titles>
+          <li>An apology</li>
+          <li>{FACTION} come about {DEAD}</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, an elder of {FACTION}, has come to the colony now that there's peace, and asked to speak to {A_nameDef}. {X_pronoun} has come to say what {FACTION} never said while they were at war: that they are sorry for {DEAD}. Not for the war. For {DEAD}.\n\n{X_pronoun} doesn't ask {A_nameDef} to forgive anything. {X_pronoun} only asks to be heard.</li>
+          <li>[taken] {X_nameDef} of {FACTION} has come to say it plainly to {A_nameDef}: carrying off {DEAD} was wrong, and {FACTION} are sorry for it. {X_pronoun} doesn't know where {DEAD} is now. {X_pronoun} wishes {X_pronoun} did.</li>
+          <li>[heir] {X_nameDef} of {FACTION} has come to {A_nameDef}, who took up the oath for {DEAD} when its first keeper died. {FACTION} are sorry, {X_pronoun} says, for {DEAD} and for everything that came after.</li>
+          <li>[pet] {X_nameDef} of {FACTION} has come to say sorry about {DEAD}. It was only an animal, some among {FACTION} say. {X_nameDef} has come anyway, because {X_pronoun} heard what {DEAD} was to {A_nameDef}.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>{A_nameDef} hears them, and accepts</label>
+            <outcome>{A_nameDef} and {X_nameDef} sit together for an hour. When they stand, {A_nameDef} says it's over, and {X_nameDef} weeps, which nobody expected.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_EndVendetta"><how>apology</how><deed>apologised</deed></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><duration>1~1.5</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>10</amount></li>
+            </effects>
+            <ways><mercy>2</mercy></ways>
+          </li>
+          <li>
+            <label>Let them say it in front of everyone</label>
+            <outcome>The colony gathers, and {X_nameDef} says it in front of all of them: {FACTION} are sorry for {DEAD}. Then everyone looks at {A_nameDef}.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Words"><label>{FACTION}'s apology for {DEAD}</label><organizer>A</organizer><spots><li>Gather</li><li>Outdoors</li><li>Dining</li></spots></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EndVendetta"><how>apology</how><deed>apologised</deed><byAvenger>true</byAvenger></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>12</amount></li>
+            </effects>
+            <ways><tradition>1</tradition><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Sorry changes nothing</label>
+            <outcome>{X_nameDef} is told that {DEAD} is still gone, and that sorry doesn't change it. {X_pronoun} nods as if {X_pronoun} expected nothing else, and goes.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>-4</amount></li>
+            </effects>
+            <ways><mercy>-1</mercy></ways>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.VendettaEndEvent">
+        <want>apology</want>
+        <minDays>15</minDays>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>

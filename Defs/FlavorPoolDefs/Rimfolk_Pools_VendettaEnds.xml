@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The newer endings of a vendetta (Source/ColonyCouncil/Secrets/VendettaEnds.cs): the blood price accepted (ransom),
+    an apology accepted (apology), and a vendetta passed to an heir. Settled lines: {PAWN_...} the avenger, {LOST} the one
+    lost, {FACTION} who did it; tags [ransom] or [apology] on every line, plus [pet], [taken]. Heir lines: {PAWN_...} the
+    heir, {OTHER_...} the one who swore it first and died, {LOST}, {FACTION}; tags [kin], [partner] or [friend], [pet],
+    [taken]. Journals: written by the avenger or the heir, with the same names.
+  -->
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_VendettaEnds</defName>
+    <lines>
+      <plain>
+        <li>[ransom] {FACTION} paid the blood price for {LOST}, and {PAWN_nameDef} took it. The oath is laid down.</li>
+        <li>[ransom] {PAWN_nameDef} has taken {FACTION}'s silver for {LOST}. It isn't vengeance. {PAWN_pronoun} says it's an ending, which is better.</li>
+        <li>[ransom,taken] {FACTION} paid for what they did to {LOST}, and {PAWN_nameDef} has let the matter rest. {LOST} is still out there somewhere.</li>
+        <li>[ransom,pet] {FACTION} paid for {LOST}, and {PAWN_nameDef} spent the silver on something {LOST} would have liked. The quarrel is over.</li>
+        <li>[apology] {FACTION} came to say they were sorry for {LOST}, and {PAWN_nameDef} heard them out. The vendetta is over.</li>
+        <li>[apology] {PAWN_nameDef} has accepted {FACTION}'s apology for {LOST}. It took a long time to say yes. It's said.</li>
+        <li>[apology,taken] {FACTION} said they were sorry for carrying off {LOST}. {PAWN_nameDef} has decided that will have to do.</li>
+        <li>[apology,pet] Someone of {FACTION} came all this way to say sorry about {LOST}. {PAWN_nameDef} found that was enough.</li>
+      </plain>
+      <warm>
+        <li>[apology] {PAWN_nameDef} shook hands with {FACTION}'s envoy over {LOST}'s memory, and let the anger go with it.</li>
+        <li>[ransom] {PAWN_nameDef} took {FACTION}'s blood price for {LOST} and gave half of it to the colony's poorest. The oath is laid down.</li>
+      </warm>
+      <blunt>
+        <li>[ransom] {FACTION} paid for {LOST}. {PAWN_nameDef} counted it and said that's that.</li>
+        <li>[apology] {FACTION} said sorry for {LOST}. {PAWN_nameDef} said fine. It's over.</li>
+      </blunt>
+      <gloomy>
+        <li>[ransom] {PAWN_nameDef} has taken silver for {LOST}, and doesn't feel any lighter for it. But the oath is laid down.</li>
+        <li>[apology] {FACTION} are sorry for {LOST}. {PAWN_nameDef} believes them. {LOST} is still gone.</li>
+      </gloomy>
+      <cold>
+        <li>[ransom] {PAWN_nameDef} has accepted fair payment from {FACTION} for {LOST}. The account is closed.</li>
+        <li>[apology] {PAWN_nameDef} has judged {FACTION}'s apology for {LOST} sufficient, and dropped the matter.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_VendettaHeir</defName>
+    <lines>
+      <plain>
+        <li>{OTHER_nameDef} died with an oath against {FACTION} still open for {LOST}, and {PAWN_nameDef} has taken it up.</li>
+        <li>[kin] {PAWN_nameDef} stood over {OTHER_nameDef}'s grave and took up the family's oath: {FACTION} still owe for {LOST}.</li>
+        <li>[partner] {OTHER_nameDef} swore {FACTION} would pay for {LOST}, and died before they did. {PAWN_nameDef} has sworn to finish it.</li>
+        <li>[friend] {PAWN_nameDef} has taken up {OTHER_nameDef}'s vendetta against {FACTION} for {LOST}, because somebody has to and {OTHER_nameDef} would have wanted it to be a friend.</li>
+        <li>[taken] {OTHER_nameDef} never got {LOST} back from {FACTION}. {PAWN_nameDef} has sworn to keep trying.</li>
+        <li>[pet] {OTHER_nameDef} died still owed for {LOST}. {PAWN_nameDef} has taken up the oath, animal or not.</li>
+      </plain>
+      <cold>
+        <li>{PAWN_nameDef} has inherited {OTHER_nameDef}'s account with {FACTION} for {LOST}, and means to collect.</li>
+      </cold>
+      <gloomy>
+        <li>{PAWN_nameDef} buried {OTHER_nameDef} and picked up {OTHER_possessive} oath against {FACTION} for {LOST}. It's heavier than it looked.</li>
+      </gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_VendettaEnds</defName>
+    <lines>
+      <plain>
+        <li>[ransom] They paid for {LOST}. I took it. I keep looking at the purse as if it ought to look different.</li>
+        <li>[ransom] I've laid down the oath against {FACTION}. The silver is in the stores. {LOST} would have told me to buy something warm with it.</li>
+        <li>[apology] Someone of {FACTION} looked me in the eye and said they were sorry for {LOST}. I didn't know I'd been waiting for that until it came.</li>
+        <li>[apology] I accepted {FACTION}'s apology for {LOST} today. I went to bed early and slept the whole night for the first time in a long time.</li>
+      </plain>
+      <cold><li>[ransom] The blood price for {LOST} was fair. The matter with {FACTION} is closed.</li></cold>
+      <gloomy><li>[apology] They're sorry about {LOST}. So am I. That doesn't bring anyone back.</li></gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_VendettaHeir</defName>
+    <lines>
+      <plain>
+        <li>{OTHER_nameDef} carried this oath against {FACTION} for {LOST} until the end. Now I carry it.</li>
+        <li>I didn't ask for {OTHER_nameDef}'s vendetta. I took it anyway, at the grave, because the alternative was letting it die twice.</li>
+        <li>[kin] It's a family debt now: {FACTION}, {LOST}, and {OTHER_nameDef}. I'll see it paid.</li>
+        <li>[friend] {OTHER_nameDef} would have done the same for me. That's the only reason I need.</li>
+      </plain>
+      <gloomy><li>Another name to carry against {FACTION}. I wish it were lighter.</li></gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

@@ -29,8 +29,10 @@ namespace ColonyCouncil
         public int captives;
         public bool settled;
         public bool peaceNoticed;
-        /// <summary>How it ended: blood, captive, home, forgiven or peace (null while open, or when it simply lapsed).</summary>
+        /// <summary>How it ended: blood, captive, home, forgiven, peace, ransom (the blood price paid), apology or heir (null while open, or when it simply lapsed).</summary>
         public string how;
+        /// <summary>Taken up from someone who died with it still open (their name), or null.</summary>
+        public string heirOf;
 
         public const int KillsToSettle = 3;
 
@@ -70,6 +72,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref pet, "pet");
             Scribe_Values.Look(ref captives, "captives");
             Scribe_Values.Look(ref how, "how");
+            Scribe_Values.Look(ref heirOf, "heirOf");
         }
     }
 
@@ -365,16 +368,18 @@ namespace ColonyCouncil
             if (quietly) return;
             v.how = how;
             bool paid = how == "blood" || how == "captive";
+            // The newer endings (a blood price, an apology) have their own lines (Secrets/VendettaEnds.cs).
+            bool newer = VendettaEnds.Newer(how);
             var tags = new List<string> { how };
             if (v.pet) tags.Add("pet");
             if (v.kidnapped) tags.Add("taken");
-            string line = Flavor.FromPool("Council_Pool_VendettaSettled", v.avenger, null, null, tags.ToArray());
+            string line = Flavor.FromPool(newer ? VendettaEnds.SettledPool : "Council_Pool_VendettaSettled", v.avenger, null, null, tags.ToArray());
             string text = !line.NullOrEmpty()
                 ? line.Formatted(v.avenger.Named("PAWN"), (v.victim ?? "?").Named("LOST"), v.faction.Name.Named("FACTION")).Resolve()
                 : "CC_Vendetta_Avenged".Translate(v.avenger.Named("PAWN"), v.victim.Named("LOST"), v.faction.Name.Named("FACTION")).Resolve();
             Notify.Message(text, v.avenger, MessageTypeDefOf.PositiveEvent, Importance.Notable);
             comp.AddChronicle(new ChronicleEntry(ChronicleKind.Loss, text, v.avenger));
-            string journal = paid ? "Council_Journal_Avenged" : how == "home" ? "Council_Journal_VendettaHome" : "Council_Journal_VendettaForgiven";
+            string journal = paid ? "Council_Journal_Avenged" : how == "home" ? "Council_Journal_VendettaHome" : newer ? VendettaEnds.JournalPool : "Council_Journal_VendettaForgiven";
             comp.journals.WriteTagged(v.avenger, journal, tags.ToArray(), null, v.victim.Named("LOST"), v.faction.Name.Named("FACTION"));
             if (paid)
             {
@@ -384,6 +389,13 @@ namespace ColonyCouncil
             }
             var thought = DefDatabase<ThoughtDef>.GetNamedSilentFail(how == "home" ? "Council_Vendetta_Home" : "Council_Vendetta_LetGo");
             if (thought != null) CouncilGameComponent.GiveThought(v.avenger, thought);
+        }
+
+        /// <summary>It's over by another way than the tracker's own (a blood price accepted, an apology): told like the rest.</summary>
+        public void SettleBy(CouncilGameComponent comp, Vendetta v, string how)
+        {
+            if (v == null || v.settled) return;
+            Settle(comp, v, false, how);
         }
 
         /// <summary>
@@ -411,6 +423,8 @@ namespace ColonyCouncil
 
         public void Daily(CouncilGameComponent comp)
         {
+            // Someone who died with a vendetta open may leave it to their kin or a close friend (Secrets/VendettaEnds.cs).
+            if (S.vendettas) VendettaEnds.PassToHeirs(comp, this);
             vendettas.RemoveAll(v => v.avenger == null || v.avenger.Dead || v.avenger.Discarded || v.faction == null);
             foreach (var v in vendettas.Where(v => !v.settled).ToList())
             {

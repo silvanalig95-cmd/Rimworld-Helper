@@ -58,4 +58,12 @@
   <CC_Mission_Harvest_Go>At least {0} of the colony's people who can work the fields, at {1} by caravan (about {2} away).</CC_Mission_Harvest_Go>
   <CC_Mission_Harvest_There>The colony's hands are in the fields at {0}: {1} of {2} hours.</CC_Mission_Harvest_There>
 
+  <!-- ===================== Vendettas: the newer endings (Source/ColonyCouncil/Secrets/VendettaEnds.cs) ===================== -->
+  <CC_Vendetta_Heir>{OTHER_nameDef} died with an oath against {FACTION} still open for {LOST}, and {PAWN_nameDef} has taken it up.</CC_Vendetta_Heir>
+  <CC_VendettaEnd_Gone>The vendetta this was about is already over.</CC_VendettaEnd_Gone>
+  <CC_VendettaEnd_Refused>{PAWN_nameDef} heard {FACTION}'s envoy out, and refused. The oath for {LOST} stands.</CC_VendettaEnd_Refused>
+  <CC_Social_VendettaSettled_ransom>{0} took {1}'s blood price for {2}, and laid down the oath.</CC_Social_VendettaSettled_ransom>
+  <CC_Social_VendettaSettled_apology>{0} accepted {1}'s apology for {2}.</CC_Social_VendettaSettled_apology>
+  <CC_Social_VendettaSettled_heir>{0} died with the oath against {1} for {2} still open.</CC_Social_VendettaSettled_heir>
+
 </LanguageData>
