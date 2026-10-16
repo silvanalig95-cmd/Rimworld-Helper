@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- What the world's peoples remember (World/FactionMemory.cs) of the colony's doings in other mods
+       (Source/ColonyCouncil/Integrations/ModMemory.cs): Hospitality's visits, the republic's senate (Vanilla Factions
+       Expanded - Classical). As the memory's own deeds: what the colony did, without "the colony". -->
+  <CC_Memory_Deed_visitDelighted>made their visitors welcome, and sent them home delighted</CC_Memory_Deed_visitDelighted>
+  <CC_Memory_Deed_visitDelighted_Many>made their visitors welcome, {COUNT} visits running</CC_Memory_Deed_visitDelighted_Many>
+  <CC_Memory_Deed_visitDisappointed>gave their visitors a poor welcome</CC_Memory_Deed_visitDisappointed>
+  <CC_Memory_Deed_visitDisappointed_Many>gave their visitors a poor welcome, {COUNT} visits running</CC_Memory_Deed_visitDisappointed_Many>
+  <CC_Memory_Deed_senateWon>won over every senator of their republic</CC_Memory_Deed_senateWon>
+  <CC_Memory_Raid_visitDisappointed>{FACTION} have not forgotten the poor welcome their visitors had at the colony, {WHEN}. They aren't coming as guests this time.</CC_Memory_Raid_visitDisappointed>
+</LanguageData>
