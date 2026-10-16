@@ -1,0 +1,849 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More everyday journal lines for the moments written most often (Council_Journal_Everyday.xml), so the same entry
+    comes round about once a year at most (Tools/variety_report.py). Same placeholders and tags: [good] / [bad] for
+    how the moment felt, {OTHER_...} for the one talked with. Most new plain lines are for one season each, a few
+    for each season, because a season tag is what every entry has: tagged lines are picked first, and thin seasons
+    were what made a few lines come round again and again. Entries are written at the same hour each day, so no
+    time-of-day tags.
+  -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Journal_Day_Tired</defName>
+    <pool>Council_Journal_Day_Tired</pool>
+    <lines>
+      <plain>
+        <li>[spring] Planting from first light to last. My back gave out before the light did.</li>
+        <li>[spring] The days are getting longer, and somehow so is the work.</li>
+        <li>[spring] Mud on everything and tired to the bone. Spring is hard on the legs.</li>
+        <li>[summer] Up at dawn to beat the heat, and still working when it came. Asleep on my feet by supper.</li>
+        <li>[summer] The long light makes you think you can do more. You can't.</li>
+        <li>[summer] Too hot to sleep last night, and too much to do today to make up for it.</li>
+        <li>[fall] Harvest. I carried more baskets today than I could count, and I tried.</li>
+        <li>[fall] Brought in the last of the field before the frost. I could sleep for a week.</li>
+        <li>[fall] Everyone's racing the cold. I'm racing on nothing.</li>
+        <li>[winter] Hauled firewood until dark. My arms are still shaking.</li>
+        <li>[winter] The cold wears you out even sitting still.</li>
+        <li>[winter] Dark at both ends of the day, and I worked through both.</li>
+        <li>[lowmood] Tired, and it isn't the kind of tired that sleep fixes.</li>
+        <li>[trait:Nervous] Lay awake worrying, then worked all day on no sleep. Tomorrow will be worse.</li>
+      </plain>
+      <warm>
+        <li>Tired out. I'd do it all again to see that wall finished, though.</li>
+      </warm>
+      <blunt>
+        <li>Slept four hours. Worked twelve. Bad sums.</li>
+      </blunt>
+      <cheerful>
+        <li>Tired enough to sleep standing up, and proud of every bit of today.</li>
+      </cheerful>
+      <gloomy>
+        <li>Tired again. It's the one thing I can count on.</li>
+      </gloomy>
+      <cold>
+        <li>Fatigue is a resource like any other, and we're spending ours too fast.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Journal_Day_Pain</defName>
+    <pool>Council_Journal_Day_Pain</pool>
+    <lines>
+      <plain>
+        <li>[spring] Damp spring air, and the wound aches every time the weather turns.</li>
+        <li>[spring] Watched the others plant from the doorway. Walking that far still hurts.</li>
+        <li>[spring] The rain set it throbbing all night.</li>
+        <li>[summer] Sweat gets under the dressing and stings. I changed it twice today.</li>
+        <li>[summer] Too hot to lie still and too sore to move. I did a bit of both.</li>
+        <li>[summer] Sat in the shade all day nursing it. The others brought me water.</li>
+        <li>[fall] Harvest time, and I can barely carry a bowl. I counted the baskets instead.</li>
+        <li>[fall] The cold mornings set it aching before I'm out of bed.</li>
+        <li>[fall] Tried to help in the fields and had to stop before noon.</li>
+        <li>[winter] The cold gets into the wound and settles there.</li>
+        <li>[winter] Lay close to the fire all evening. It helped, a little.</li>
+        <li>[winter] Every step on the frozen ground jars it.</li>
+        <li>[hurt] The doctor says it's healing. It doesn't feel like it.</li>
+        <li>[old] Pain takes longer to leave at my age. This one has settled in for the season.</li>
+      </plain>
+      <warm>
+        <li>The others keep finding reasons to sit with me. I know what they're doing, and I'm grateful.</li>
+      </warm>
+      <blunt>
+        <li>Still hurts. Still working.</li>
+      </blunt>
+      <cheerful>
+        <li>Took ten steps without wincing today. Celebrating with a lie-down.</li>
+      </cheerful>
+      <gloomy>
+        <li>I measure the days by how much they hurt. Today was a bad one.</li>
+      </gloomy>
+      <cold>
+        <li>Pain is information. Today it said rest, so I rested.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Journal_Day_Barracks</defName>
+    <pool>Council_Journal_Day_Barracks</pool>
+    <lines>
+      <plain>
+        <li>[spring] The barracks windows are open again. Fresh air, and everyone snoring at once.</li>
+        <li>[spring] Mud on every boot in the barracks. Someone needs to sweep, and it won't be me.</li>
+        <li>[spring] Woke to birdsong and somebody's elbow.</li>
+        <li>[summer] The barracks are stifling. Everyone breathing the same hot air all night.</li>
+        <li>[summer] Someone left the barracks door open for the breeze and let the insects in.</li>
+        <li>[summer] Slept on top of the blanket in the barracks, and so did everyone else.</li>
+        <li>[fall] The barracks smell of wet coats now. They'll smell of wet coats until spring.</li>
+        <li>[fall] One cough has gone round the whole barracks.</li>
+        <li>[fall] Fought over the bed by the warm wall again. Lost.</li>
+        <li>[winter] Packed into the barracks for the warmth. I can feel someone breathing on my neck.</li>
+        <li>[winter] Someone's cold feet found their way into my bed in the night.</li>
+        <li>[winter] The barracks are the warmest room in the colony, and the least private.</li>
+        <li>[lowmood] In the barracks I can't even be miserable in private.</li>
+      </plain>
+      <warm>
+        <li>Lent my spare blanket to the bed next to mine. The barracks are like that.</li>
+      </warm>
+      <blunt>
+        <li>Barracks. Again. Still no door.</li>
+      </blunt>
+      <cheerful>
+        <li>Another night of the barracks choir. I'm sure two of them snore in tune.</li>
+      </cheerful>
+      <gloomy>
+        <li>Lay awake in the barracks listening to everyone else sleep.</li>
+      </gloomy>
+      <cold>
+        <li>I know everyone's habits now: who snores, who talks, who takes blankets. Useful, if not restful.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Journal_Day_Dark</defName>
+    <pool>Council_Journal_Day_Dark</pool>
+    <lines>
+      <plain>
+        <li>[spring] Bright day outside and a dark workshop inside. I kept stepping out to rest my eyes.</li>
+        <li>[spring] Worked in the dim storeroom while the sun was out. Like being shut in a box.</li>
+        <li>[spring] The rainy days are dark enough without a dark room on top of them.</li>
+        <li>[summer] Even on a summer day the back rooms are like a cave.</li>
+        <li>[summer] Came in from the bright fields and couldn't see a thing for a minute.</li>
+        <li>[summer] Long days outside, and the storeroom is still black as night.</li>
+        <li>[fall] The days are getting shorter, and the rooms aren't getting any lighter.</li>
+        <li>[fall] Dark by supper now, and the hall darker still.</li>
+        <li>[fall] Spent the afternoon sorting the harvest by feel.</li>
+        <li>[winter] We go easy on the light in winter. My eyes ache by evening.</li>
+        <li>[winter] Dark all day in the workshop and dark all night outside it.</li>
+        <li>[winter] Snow over the windows. It's been dusk indoors since morning.</li>
+        <li>[lowtech] One torch for the whole storeroom. I worked in the half of the room it reached.</li>
+        <li>[!lowtech] The light in the corridor flickers. I counted the flickers instead of working.</li>
+      </plain>
+      <warm>
+        <li>Lit the lamp in the back room before the others came in, so nobody would trip.</li>
+      </warm>
+      <blunt>
+        <li>Dark again. I want a window.</li>
+      </blunt>
+      <cheerful>
+        <li>Worked in the dark so long I'm sure I can see like a cat now.</li>
+      </cheerful>
+      <gloomy>
+        <li>It was dark when I came in this morning, and it stayed dark.</li>
+      </gloomy>
+      <cold>
+        <li>Every room without light costs us an hour a day. I've done the sum.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Journal_Day_Ragged</defName>
+    <pool>Council_Journal_Day_Ragged</pool>
+    <lines>
+      <plain>
+        <li>[spring] Wore through both knees of my pants planting.</li>
+        <li>[spring] Spring rain and a coat full of holes. I'm wetter inside it than out.</li>
+        <li>[spring] Thorns took a strip out of my sleeve clearing the brush.</li>
+        <li>[summer] Too hot for a coat anyway, which is just as well, since mine is in pieces.</li>
+        <li>[summer] My hat has a hole in the brim exactly where the sun comes through.</li>
+        <li>[summer] Sweat has rotted the collar off my shirt.</li>
+        <li>[fall] Patched my coat with an old sack before the cold comes. It'll do. It'll have to.</li>
+        <li>[fall] The wind's picking up and my clothes are giving up.</li>
+        <li>[fall] Snagged my shirt on the fence and lost half the back of it.</li>
+        <li>[winter] My coat is more holes than coat, and it's winter.</li>
+        <li>[winter] Stuffed straw into my boots to fill the holes. It helps a little.</li>
+        <li>[winter] I'm wearing two worn shirts to make one whole one.</li>
+        <li>[poor] Everyone here is in rags. Mine are only a little worse.</li>
+      </plain>
+      <warm>
+        <li>Gave my last good shirt to the newcomer. I've got patches; they had nothing.</li>
+      </warm>
+      <blunt>
+        <li>Holes everywhere. Need cloth.</li>
+      </blunt>
+      <cheerful>
+        <li>Lost a sleeve today. Now I've got one cool arm and one warm one.</li>
+      </cheerful>
+      <gloomy>
+        <li>My clothes look the way I feel.</li>
+      </gloomy>
+      <cold>
+        <li>Traders will judge the colony by these rags. So will raiders.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Journal_Day_NoTable</defName>
+    <pool>Council_Journal_Day_NoTable</pool>
+    <lines>
+      <plain>
+        <li>[spring] Ate on the doorstep in the spring sun. Better than the floor, at least.</li>
+        <li>[spring] Muddy floor, no table, bowl on my knees.</li>
+        <li>[spring] We ate sitting on the woodpile. It has nails in it.</li>
+        <li>[summer] Ate outside on the grass, because there's nowhere better inside.</li>
+        <li>[summer] Ate standing up in the shade. The ants found my bowl before I did.</li>
+        <li>[summer] Supper on a stump in the yard. Too hot to mind much.</li>
+        <li>[fall] Ate sitting on a sack of the harvest. At least it was soft.</li>
+        <li>[fall] The wind blew leaves into my bowl while I ate on the step.</li>
+        <li>[fall] We sat on the floor around the harvest baskets and ate from our laps.</li>
+        <li>[winter] Ate crouched by the fire with the bowl on my knees. My legs went numb.</li>
+        <li>[winter] Too cold for the step, so we ate on the floor, jammed together.</li>
+        <li>[winter] Spilled hot soup in my lap. Warm for a moment, wet for an hour.</li>
+        <li>[afterraid] No table and no chairs since the fight. We ate wherever we sat down.</li>
+      </plain>
+      <warm>
+        <li>We ate shoulder to shoulder on the floor tonight. Nobody minded the crowding.</li>
+      </warm>
+      <blunt>
+        <li>A table. Planks. Legs. Do it.</li>
+      </blunt>
+      <cheerful>
+        <li>Floor supper again. I've named my favorite floorboard.</li>
+      </cheerful>
+      <gloomy>
+        <li>Another meal off my knees. It's the small indignities that wear you down.</li>
+      </gloomy>
+      <cold>
+        <li>We have the wood for a table. We don't have the will, which tells me something.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Journal_Day_Dining</defName>
+    <pool>Council_Journal_Day_Dining</pool>
+    <lines>
+      <plain>
+        <li>[spring] Flowers on the dining table tonight. Someone picked them on the way in.</li>
+        <li>[spring] Supper in the dining room with the windows open. You could smell the fields.</li>
+        <li>[spring] Long table, fresh greens, and the first warm evening of the year.</li>
+        <li>[summer] The dining room stays cool when the rest of the colony bakes. Lingered over supper.</li>
+        <li>[summer] Ate late in the dining room, with the door open to the evening.</li>
+        <li>[summer] Supper at the long table, and someone had put out a bowl of berries.</li>
+        <li>[fall] Harvest supper in the dining room. Every seat full, and every plate too.</li>
+        <li>[fall] Rain on the windows and a warm meal at a good table.</li>
+        <li>[fall] The dining room smells of woodsmoke and bread this time of year.</li>
+        <li>[winter] Snow outside, and inside the long table, warm and full.</li>
+        <li>[winter] Stayed in the dining room long after supper. Nobody wanted to go out into the cold.</li>
+        <li>[winter] The dining room was the brightest place in the colony tonight.</li>
+        <li>[highmood] Good supper, good room, good people. That's a good day.</li>
+      </plain>
+      <warm>
+        <li>Passed the bread down the long table and it came back empty. That's how supper should be.</li>
+      </warm>
+      <blunt>
+        <li>Good table. Good chairs. More of this.</li>
+      </blunt>
+      <cheerful>
+        <li>Supper in the dining room again. I could get used to being civilized.</li>
+      </cheerful>
+      <gloomy>
+        <li>A fine room to eat in. I keep waiting for something to spoil it.</li>
+      </gloomy>
+      <cold>
+        <li>A proper dining room keeps people talking at the table. I learn a great deal there.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Journal_Day_Bored</defName>
+    <pool>Council_Journal_Day_Bored</pool>
+    <lines>
+      <plain>
+        <li>[spring] Rain all week, and nothing to do inside but wait for it to stop.</li>
+        <li>[spring] Everyone's busy with the planting but me. I've swept the same floor three times.</li>
+        <li>[spring] Watched the clouds for an hour. One looked like a muffalo. That was the best part of the day.</li>
+        <li>[summer] Too hot to work and nothing to do instead. Lay in the shade counting flies.</li>
+        <li>[summer] Sat outside after supper with nothing to do until the insects drove me in.</li>
+        <li>[summer] Skipped stones on the water by myself until the light went.</li>
+        <li>[fall] Rainy evening. I've cleaned every tool I own.</li>
+        <li>[fall] The harvest's in and suddenly there's nothing to do. I miss it.</li>
+        <li>[fall] Sat and watched the leaves come down. It took all evening.</li>
+        <li>[winter] Snowed in. I've read the labels on every jar in the kitchen.</li>
+        <li>[winter] Long winter night. I tied knots in a rope and untied them again.</li>
+        <li>[winter] Too cold to go out, nothing to do in. I talked to the fire.</li>
+        <li>[lowtech] No one has played a tune in days. I tried humming one and lost interest halfway.</li>
+      </plain>
+      <warm>
+        <li>Bored, so I helped the cook peel roots. We talked the whole time, and it stopped being boring.</li>
+      </warm>
+      <blunt>
+        <li>Nothing to do. Again.</li>
+      </blunt>
+      <cheerful>
+        <li>Nothing to do, so I invented a game with pebbles. Nobody else understands the rules yet.</li>
+      </cheerful>
+      <gloomy>
+        <li>The days are all the same shape. I keep waiting for one that isn't.</li>
+      </gloomy>
+      <cold>
+        <li>Idle hours breed trouble. I've seen it before.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Journal_Day_Wet</defName>
+    <pool>Council_Journal_Day_Wet</pool>
+    <lines>
+      <plain>
+        <li>[spring] Spring rain all day. Planted in it, hauled in it, ate in it.</li>
+        <li>[spring] The fields are mud to the ankle, and I'm mud to the knee.</li>
+        <li>[spring] Every path is a stream this time of year. I gave up on dry feet by noon.</li>
+        <li>[summer] A summer storm caught us in the field. Warm rain, at least.</li>
+        <li>[summer] Got soaked, dried off in the sun, got soaked again.</li>
+        <li>[summer] Fell in the river cooling off. On purpose, the first time.</li>
+        <li>[fall] Cold rain. My coat has been wet for three days.</li>
+        <li>[fall] Hauled the harvest in through the rain. The baskets doubled in weight.</li>
+        <li>[fall] Wet leaves, wet boots, wet everything.</li>
+        <li>[winter] Sleet all afternoon. It finds the gap at your collar every time.</li>
+        <li>[winter] Melting snow dripped through the roof onto my bed.</li>
+        <li>[winter] Wet clothes freeze stiff out here. My sleeves crackle when I bend my arms.</li>
+        <li>[rain] The rain stopped for an hour this afternoon. I didn't trust it.</li>
+      </plain>
+      <warm>
+        <li>Came in soaked, and someone had kept the fire going for whoever came in last.</li>
+      </warm>
+      <blunt>
+        <li>Wet again. Put a roof over the path.</li>
+      </blunt>
+      <cheerful>
+        <li>Fell in a puddle so big I could have swum in it.</li>
+      </cheerful>
+      <gloomy>
+        <li>Wet and cold to the bone. I'll be sick by morning, I'd bet on it.</li>
+      </gloomy>
+      <cold>
+        <li>Our boots and coats don't keep the water out. That's a supply problem, not a weather problem.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Journal_Day_Disturbed</defName>
+    <pool>Council_Journal_Day_Disturbed</pool>
+    <lines>
+      <plain>
+        <li>[spring] Rain on the roof, then someone up to check it, then the rain again.</li>
+        <li>[spring] The birds start at dawn now, and so does someone's hammering.</li>
+        <li>[spring] Someone came in muddy at midnight, then swore at the mud.</li>
+        <li>[summer] Too hot with the door shut, too loud with it open. I got neither sleep nor air.</li>
+        <li>[summer] Insects buzzing all night, and someone up hunting them with a shoe.</li>
+        <li>[summer] Woke at dawn to people heading out early to beat the heat.</li>
+        <li>[fall] The wind banged the shutters half the night, and someone kept getting up to fix them.</li>
+        <li>[fall] Somebody came back late from the fields and tripped over every bed on the way in.</li>
+        <li>[fall] The roof leaks now, and someone moved a bucket under it, loudly, in the middle of the night.</li>
+        <li>[winter] People kept getting up to feed the fire. Every time: the door, the cold, the door.</li>
+        <li>[winter] Someone's cough kept the whole room up.</li>
+        <li>[winter] Snow slid off the roof in the night and woke everyone at once.</li>
+        <li>[storm] Thunder rattled the walls, and someone counted the seconds out loud.</li>
+      </plain>
+      <warm>
+        <li>Got up in the night to calm whoever was crying. I didn't sleep much, but they did.</li>
+      </warm>
+      <blunt>
+        <li>Woken again. Moving my bed to the storeroom.</li>
+      </blunt>
+      <cheerful>
+        <li>Woke up four times. At least I remember all my dreams now.</li>
+      </cheerful>
+      <gloomy>
+        <li>I don't really sleep anymore. I just lie there between interruptions.</li>
+      </gloomy>
+      <cold>
+        <li>Night traffic past my bed: six times. I've spoken to the one responsible.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Journal_Day_KindWords</defName>
+    <pool>Council_Journal_Day_KindWords</pool>
+    <lines>
+      <plain>
+        <li>[spring] {OTHER_nameDef} said my rows were the straightest in the field. I looked, and they were.</li>
+        <li>[spring] Out planting, {OTHER_nameDef} said it was good to have me alongside. I worked harder all afternoon.</li>
+        <li>[spring] {OTHER_nameDef} brought me the first wild berries of the year, because I'd worked hardest that week.</li>
+        <li>[summer] {OTHER_nameDef} said I looked well today. It's the sun, mostly, but I'll take it.</li>
+        <li>[summer] In the heat of the afternoon, {OTHER_nameDef} told me I'd done the work of two. I needed that.</li>
+        <li>[summer] {OTHER_nameDef} saved me a cup of cool water and said I'd earned it.</li>
+        <li>[fall] {OTHER_nameDef} said the harvest wouldn't have come in without me. It would have, but I liked hearing it.</li>
+        <li>[fall] {OTHER_nameDef} thanked me for the stores I'd laid by. I didn't think anyone had noticed.</li>
+        <li>[fall] {OTHER_nameDef} said I'd carried the colony through the hard part of the year. I'm keeping that one.</li>
+        <li>[winter] On a cold night, {OTHER_nameDef} said I make the place feel warmer. It did, a little.</li>
+        <li>[winter] {OTHER_nameDef} told me my stew was the best thing about winter.</li>
+        <li>[winter] {OTHER_nameDef} stopped by the fire to say I'd been a great help all week.</li>
+        <li>[grieving] {OTHER_nameDef} said something gentle about the one we lost, and about me. I needed both.</li>
+      </plain>
+      <warm>
+        <li>{OTHER_nameDef} said something kind, I said something kind back, and we both stood there smiling.</li>
+      </warm>
+      <blunt>
+        <li>{OTHER_nameDef} thanked me. Good. I earned it.</li>
+      </blunt>
+      <cheerful>
+        <li>{OTHER_nameDef} called me the best part of the colony. I'm going to be unbearable tomorrow.</li>
+      </cheerful>
+      <gloomy>
+        <li>{OTHER_nameDef} said I matter here. I'd like to believe it.</li>
+      </gloomy>
+      <cold>
+        <li>{OTHER_nameDef} praised my work where others could hear. Useful.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Journal_Day_RecRoom</defName>
+    <pool>Council_Journal_Day_RecRoom</pool>
+    <lines>
+      <plain>
+        <li>[spring] Rainy evening in the games room. Everyone came in out of the wet.</li>
+        <li>[spring] Played cards by the open window. You could hear the frogs.</li>
+        <li>[spring] An evening in the rec room after a day of planting. My back was grateful.</li>
+        <li>[summer] The rec room was cooler than outside, so it was packed.</li>
+        <li>[summer] Long light evening. We played until we couldn't see the board.</li>
+        <li>[summer] Played games until midnight, since it was too warm to sleep anyway.</li>
+        <li>[fall] The harvest's in. We celebrated in the games room until late.</li>
+        <li>[fall] Wet evening. Half the colony in the rec room, and the other half wishing they were.</li>
+        <li>[fall] Played dice with the old hands and lost a week's worth of bragging rights.</li>
+        <li>[winter] Snow outside, games inside. The rec room is the place to be in winter.</li>
+        <li>[winter] Long winter evening in the games room. Nobody wanted to go to bed.</li>
+        <li>[winter] Played cards by the fire until the fire went out.</li>
+        <li>[highmood] Good games and good company. I'm in a good mood and I plan to stay in it.</li>
+      </plain>
+      <warm>
+        <li>Let the young one win at cards tonight. They knew, I think. They didn't mind.</li>
+      </warm>
+      <blunt>
+        <li>Games room. Won. Bed.</li>
+      </blunt>
+      <cheerful>
+        <li>Finally beat the colony's best chess player. I'm keeping the board just as it was.</li>
+      </cheerful>
+      <gloomy>
+        <li>The games room was loud tonight. I sat in the corner and let it be loud around me.</li>
+      </gloomy>
+      <cold>
+        <li>Watched who cheats at cards. Two of them. I'll remember.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Journal_Day_Hungry</defName>
+    <pool>Council_Journal_Day_Hungry</pool>
+    <lines>
+      <plain>
+        <li>[spring] Last year's stores are nearly gone and this year's crop isn't in. The hungry season.</li>
+        <li>[spring] Ate wild greens off the riverbank. Bitter, but something.</li>
+        <li>[spring] Planting all day on a thin breakfast. My stomach complained the whole time.</li>
+        <li>[summer] The garden's growing, but nothing's ripe yet. I keep checking.</li>
+        <li>[summer] Too hot to eat at noon, then hungry all night.</li>
+        <li>[summer] Picked a few berries on the way back. Ate them before I reached the door.</li>
+        <li>[fall] Hauling the harvest all day, and none of it ready to eat. Torture.</li>
+        <li>[fall] Missed supper bringing in the last field. The cook kept nothing back.</li>
+        <li>[fall] Smelled bread baking all afternoon and didn't get any.</li>
+        <li>[winter] The stew is thin and getting thinner.</li>
+        <li>[winter] I dream about food now. Last night it was a whole roast.</li>
+        <li>[winter] Everyone's hungry and nobody's saying so.</li>
+        <li>[lowmood] Hungry and miserable, and I can't tell which is causing which.</li>
+      </plain>
+      <warm>
+        <li>Split my supper with someone hungrier. Neither of us full, both of us fed.</li>
+      </warm>
+      <blunt>
+        <li>More food. Less talk.</li>
+      </blunt>
+      <cheerful>
+        <li>My stomach growled so loudly at supper that the whole table laughed, me too.</li>
+      </cheerful>
+      <gloomy>
+        <li>Hungry again. I've stopped mentioning it.</li>
+      </gloomy>
+      <cold>
+        <li>Less food in, the same work out. Something will give, and it won't be the work.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Journal_Day_Cold</defName>
+    <pool>Council_Journal_Day_Cold</pool>
+    <lines>
+      <plain>
+        <li>[spring] Spring by the calendar, winter in the bedroom. Frost on the floor again.</li>
+        <li>[spring] Warm days, cold nights. Nobody told the nights it was spring.</li>
+        <li>[spring] Woke shivering. The fire was out and the window was open.</li>
+        <li>[summer] Even now the room goes cold after midnight, and I'd put the blanket away.</li>
+        <li>[summer] Slept with the window open for the heat and woke up frozen.</li>
+        <li>[summer] A cold snap in summer, and nobody had their winter things out.</li>
+        <li>[fall] First frost on the inside of the window. Winter's coming.</li>
+        <li>[fall] Brought out the winter blankets. They're already not enough.</li>
+        <li>[fall] The wind has turned northerly, and my blanket is no match for it.</li>
+        <li>[winter] Woke with frost in my hair where my breath froze on the pillow.</li>
+        <li>[winter] Slept with my boots in the bed so they wouldn't freeze.</li>
+        <li>[winter] Cold so deep the walls creaked all night.</li>
+        <li>[snow] Snow sifted through the roof onto the blanket. I shook it off twice.</li>
+      </plain>
+      <warm>
+        <li>Shared a blanket with the one next to me. We both slept better.</li>
+      </warm>
+      <blunt>
+        <li>Cold room. Cold bed. Cold me.</li>
+      </blunt>
+      <cheerful>
+        <li>So cold I slept in my hat and mittens. Very dignified.</li>
+      </cheerful>
+      <gloomy>
+        <li>Cold all night. My bones still remember it.</li>
+      </gloomy>
+      <cold>
+        <li>The room loses its heat through the north wall. I can show anyone exactly where.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Journal_Day_Heat</defName>
+    <pool>Council_Journal_Day_Heat</pool>
+    <lines>
+      <plain>
+        <li>[spring] A hot spell already, and the room holds it all night.</li>
+        <li>[spring] Too warm to sleep, and too early in the year to have seen it coming.</li>
+        <li>[spring] Spring heat and nowhere for it to go. The windows don't open.</li>
+        <li>[summer] Slept with the door open for air, and something walked in during the night.</li>
+        <li>[summer] The walls give back the day's heat all night long.</li>
+        <li>[summer] I'm sleeping in the yard from now on.</li>
+        <li>[fall] Late heat this year. The room was an oven again.</li>
+        <li>[fall] A warm night after we'd packed the summer things away. Sweated through the winter blanket.</li>
+        <li>[fall] Too hot to sleep, even this late in the year.</li>
+        <li>[winter] Someone built the fire up too high and the room was stifling. Then it went out and we froze.</li>
+        <li>[winter] Too hot by the hearth, too cold by the door. I slept in the middle and got both.</li>
+        <li>[winter] Winter outside and the room baking inside. Someone needs to learn about fires.</li>
+        <li>[hot] Too hot for work today and too hot for sleep tonight.</li>
+      </plain>
+      <warm>
+        <li>Fanned the youngest to sleep with a plate. Slept a little myself after.</li>
+      </warm>
+      <blunt>
+        <li>Hot room. Again.</li>
+      </blunt>
+      <cheerful>
+        <li>Slept on the roof to catch a breeze. Best night in a week.</li>
+      </cheerful>
+      <gloomy>
+        <li>Lay in my own sweat all night. I'm too tired to be angry about it.</li>
+      </gloomy>
+      <cold>
+        <li>The room has no draught through it. A window at each end would fix it. Nobody asks me.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Journal_Day_Optimism</defName>
+    <pool>Council_Journal_Day_Optimism</pool>
+    <lines>
+      <plain>
+        <li>[spring] Watered the first rows this morning. I can't wait to see what comes up.</li>
+        <li>[spring] Our first spring here. Everything feels possible.</li>
+        <li>[summer] Built a bench outside the door today. We sat on it in the evening as if we'd always lived here.</li>
+        <li>[summer] Swam in the river after work. This place has good water.</li>
+        <li>[fall] Stacked the first firewood for winter. It looked like more than it was, but it's a start.</li>
+        <li>[fall] The first harvest is small, but it's ours.</li>
+        <li>[winter] Snow on our own roof. That's new.</li>
+        <li>[winter] We kept the fire going all night between us. I think we can do this.</li>
+        <li>[highmood] Good day, good people. I'm hopeful, and I'm not used to that.</li>
+      </plain>
+      <warm>
+        <li>Taught the others a song from home tonight. It felt like making the place ours.</li>
+      </warm>
+      <blunt>
+        <li>Good land. Good people. Work to do.</li>
+      </blunt>
+      <cheerful>
+        <li>I love it here already. Even the mud.</li>
+      </cheerful>
+      <gloomy>
+        <li>Things are going well. I'm trying not to count on it.</li>
+      </gloomy>
+      <cold>
+        <li>Early hope is cheap. The first winter will tell us who we have.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Journal_Day_FineMeal</defName>
+    <pool>Council_Journal_Day_FineMeal</pool>
+    <lines>
+      <plain>
+        <li>[spring] Fresh eggs and wild greens for breakfast. A good start to a long day.</li>
+        <li>[spring] Fresh meat and the first herbs of spring tonight. The cook was proud of it, and rightly.</li>
+        <li>[spring] Ate supper outside for the first time this year. It tasted better for it.</li>
+        <li>[summer] Fresh berries after supper. I could have eaten twice as many.</li>
+        <li>[summer] A cold supper on a hot evening: fruit, bread and cheese. Just right.</li>
+        <li>[summer] Roast corn straight from the fire, with butter running down my chin.</li>
+        <li>[fall] Harvest stew, thick enough to stand a spoon in.</li>
+        <li>[fall] Baked squash and fresh bread tonight. The kitchen smelled of it all afternoon.</li>
+        <li>[fall] We ate the first of the new potatoes, and someone made a little speech about them.</li>
+        <li>[winter] Hot stew after a day in the snow. I held the bowl just for the warmth.</li>
+        <li>[winter] The cook opened a jar of the summer preserves tonight. It tasted of summer.</li>
+        <li>[winter] Meat pie on a cold night. Nothing better.</li>
+        <li>[clear] Ate on the step under a clear sky, with a full bowl and nowhere to be.</li>
+        <li>[highmood] Good food, and I was in the mood to enjoy every bite.</li>
+      </plain>
+      <warm>
+        <li>Saved the best piece for the one who cooked it. They tried to give it back.</li>
+      </warm>
+      <blunt>
+        <li>Ate well. Wanted more. Got more.</li>
+      </blunt>
+      <cheerful>
+        <li>Best meal in weeks. I licked my fingers like a child.</li>
+      </cheerful>
+      <gloomy>
+        <li>A good meal. I made it last, the way you do when you don't know when the next one is coming.</li>
+      </gloomy>
+      <cold>
+        <li>The cook has improved. I've said so, which should keep it up.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Journal_Day_DeepTalk</defName>
+    <pool>Council_Journal_Day_DeepTalk</pool>
+    <lines>
+      <plain>
+        <li>[spring] {OTHER_nameDef} and I talked through a whole morning of planting and hardly noticed the work.</li>
+        <li>[spring] Walked the fence line with {OTHER_nameDef} after supper. We talked about the people we used to be.</li>
+        <li>[spring] Sat out in the spring evening with {OTHER_nameDef} until the frogs drowned us out.</li>
+        <li>[summer] {OTHER_nameDef} and I sat in the shade at noon and told each other things we'd never told anyone.</li>
+        <li>[summer] Swam in the river with {OTHER_nameDef} and talked on the bank until dark.</li>
+        <li>[summer] {OTHER_nameDef} and I watched the sun go down and talked about where we'd go if we could go anywhere.</li>
+        <li>[fall] Husking corn with {OTHER_nameDef}, and somewhere in the middle of the pile we started talking about home.</li>
+        <li>[fall] {OTHER_nameDef} told me about someone {OTHER_pronoun} lost long ago. We sat with that for a while.</li>
+        <li>[fall] Rainy evening by the fire with {OTHER_nameDef}. We talked until the fire was coals.</li>
+        <li>[winter] Snowed in with {OTHER_nameDef}. We talked about everything, then about nothing, then slept.</li>
+        <li>[winter] {OTHER_nameDef} and I shared a blanket by the fire and talked about what we're afraid of.</li>
+        <li>[winter] Long night with {OTHER_nameDef}, talking about the ones we've buried.</li>
+        <li>[clear] Lay on the grass with {OTHER_nameDef} under a clear sky and talked about the stars and whatever is past them.</li>
+      </plain>
+      <warm>
+        <li>I told {OTHER_nameDef} I was glad {OTHER_pronoun} came here, and {OTHER_nameDef} said the same, and meant it.</li>
+      </warm>
+      <blunt>
+        <li>Talked with {OTHER_nameDef}. Real talk. Rare.</li>
+      </blunt>
+      <cheerful>
+        <li>{OTHER_nameDef} and I stayed up talking so late we watched the sun come up.</li>
+      </cheerful>
+      <gloomy>
+        <li>{OTHER_nameDef} asked me what I'm afraid of, and I told the truth. I feel lighter and more exposed at once.</li>
+      </gloomy>
+      <cold>
+        <li>{OTHER_nameDef} trusts me now. I'll be worthy of it, or careful with it.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- Beauty and the bedroom can go either way: every voice gets more of both. -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Journal_Day_Beauty</defName>
+    <pool>Council_Journal_Day_Beauty</pool>
+    <lines>
+      <plain>
+        <li>[good,spring] Wildflowers along every path this week. Somebody's been planting them on purpose.</li>
+        <li>[good,summer] The garden is at its best, and so is the colony, for once.</li>
+        <li>[good,winter] Snow on the roofs and a clean, swept hall. The colony looked like a picture tonight.</li>
+        <li>[bad,spring] The thaw has turned the yard to mud, and the mud has got everywhere.</li>
+        <li>[bad,summer] Flies over the refuse heap. You can smell it from the kitchen door.</li>
+        <li>[bad,fall] Dead leaves in every corner of the hall, and nobody sweeping them.</li>
+      </plain>
+      <warm>
+        <li>[good] Someone has been sweeping the paths every morning. I'd like to know who, to thank them.</li>
+        <li>[good] The new carving by the door makes people smile on their way in. I've watched.</li>
+        <li>[good] Sat on the bench outside after supper and just looked at the place for a while.</li>
+        <li>[good] Someone put flowers in a cup on every table. It's a small thing, and it made the whole day.</li>
+        <li>[good] The colony looks cared for, and it's because everyone cares a bit. I'm proud of that.</li>
+        <li>[good] The hall is clean and bright tonight. I said so to the cook, who did most of it.</li>
+        <li>[bad] Carried the rubble out of the hall myself. Nobody asked me to, and nobody had to.</li>
+        <li>[bad] The yard's a mess. I'll ask if a few of us can spend a morning on it together.</li>
+        <li>[bad] It's grim around here lately. I put the one nice thing I own where everyone can see it.</li>
+        <li>[bad] The place is worn down, like the rest of us. We'll mend it when we're mended.</li>
+        <li>[bad] Scrubbed a stain off the hall floor tonight. One down.</li>
+        <li>[bad] The walls are bare and the floor is dirt. I keep thinking of ways to make it nicer.</li>
+      </warm>
+      <blunt>
+        <li>[good] Clean hall. Who did it? Do it again.</li>
+        <li>[good] Pretty place lately. Don't spoil it.</li>
+        <li>[good] Good-looking colony. Took long enough.</li>
+        <li>[good] Flowers, rugs, a statue. Fine. I like it.</li>
+        <li>[good] The place looks right for once.</li>
+        <li>[good] Someone swept. Noticed.</li>
+        <li>[bad] Mud in the hall. Wipe your boots.</li>
+        <li>[bad] The yard stinks. Clear it.</li>
+        <li>[bad] Ugly as sin around here.</li>
+        <li>[bad] Rubbish by the door for three days. Three.</li>
+        <li>[bad] Bare walls, dirty floors. Do better.</li>
+        <li>[bad] This place looks like we're about to leave it.</li>
+      </blunt>
+      <cheerful>
+        <li>[good] The hall looks so nice now that I keep finding excuses to walk through it.</li>
+        <li>[good] Somebody hung a painting by the stairs. I said good morning to it.</li>
+        <li>[good] Flowers in the window, sun on the floor. I sat down in the middle of it for a minute.</li>
+        <li>[good] The colony's never looked better. I want to show it off to someone.</li>
+        <li>[good] The new rug is so soft I took my boots off just to walk across it.</li>
+        <li>[good] Clean paths and blooming beds. I think the place is happy, if places can be happy.</li>
+        <li>[bad] The hall's a mess, so I've started a game: everyone carries one thing out on their way past.</li>
+        <li>[bad] Ugly old wall, so I drew a sun on it in charcoal. Much better.</li>
+        <li>[bad] Mud everywhere. I've decided it's a very large garden that hasn't started yet.</li>
+        <li>[bad] It's dreary around here, so I picked flowers for the table. Weeds, mostly, but pretty ones.</li>
+        <li>[bad] Dirty floors today. Tomorrow I'm going to scrub one room and see who copies me.</li>
+        <li>[bad] Grim week for the look of the place. Next week will be better, I've decided.</li>
+      </cheerful>
+      <gloomy>
+        <li>[good] The colony looks fine. Fine things get noticed by the wrong people.</li>
+        <li>[good] Someone's made the hall lovely. I sat in it and felt a bit less heavy.</li>
+        <li>[good] The flowers by the door are out. I looked at them and thought of someone who isn't here.</li>
+        <li>[good] Clean and pretty for once. I almost forgot what's out past the walls.</li>
+        <li>[good] It's a nice place now. I'm not sure I've earned living in it.</li>
+        <li>[good] The garden's blooming. Everything here is, except me.</li>
+        <li>[bad] Grime and rubble. Nobody has the heart to clear it, me least of all.</li>
+        <li>[bad] Ugly walls, ugly floors, ugly weather. It all runs together.</li>
+        <li>[bad] There's a stain on the hall floor that's been there since the fight. Nobody talks about it.</li>
+        <li>[bad] The place is falling apart a little at a time, the way places do.</li>
+        <li>[bad] Mud and refuse. It's hard to feel like a person in a place like this.</li>
+        <li>[bad] Everything here is gray, and getting grayer.</li>
+      </gloomy>
+      <cold>
+        <li>[good] The colony's looks are improving. Our trading position will follow.</li>
+        <li>[good] Clean halls, decent art. People behave better in pleasant rooms. I've seen it.</li>
+        <li>[good] The place looks prosperous. That's worth something, and it costs something.</li>
+        <li>[good] A good-looking colony keeps its people. That's the practical case for flowers.</li>
+        <li>[good] The hall looks well kept. I know who keeps it, and I've made a note of it.</li>
+        <li>[good] Pleasant surroundings today. I worked faster in them.</li>
+        <li>[bad] The yard is a disgrace. Anyone visiting would think we're failing.</li>
+        <li>[bad] Filth slows people down and makes them sick. We have plenty of both.</li>
+        <li>[bad] Ugly rooms make for short tempers. I've counted three arguments this week.</li>
+        <li>[bad] Rubble left where it fell. Somebody decided it wasn't their job.</li>
+        <li>[bad] The colony looks neglected, and neglect invites trouble.</li>
+        <li>[bad] Dirt in the hall for days. A small thing that says a great deal.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Journal_Day_Bedroom</defName>
+    <pool>Council_Journal_Day_Bedroom</pool>
+    <lines>
+      <plain>
+        <li>[good,spring] Opened the window in my room for the first time this year. Slept with the smell of rain.</li>
+        <li>[good,fall] My room is warm and dry while the wind tries the shutters. I fell asleep listening to it fail.</li>
+        <li>[bad,spring] Water came under the wall of my room in the night. My boots were floating.</li>
+        <li>[bad,fall] Leaves blew in under my door again. My room's half outside.</li>
+      </plain>
+      <warm>
+        <li>[good] My room is starting to feel like mine. I put the little carving from a friend on the shelf.</li>
+        <li>[good] Woke up rested in my own room, with the light coming in just right.</li>
+        <li>[good] Someone fixed the draught in my room while I was out. I'll find out who.</li>
+        <li>[good] Lay in bed a few minutes longer than I should have, just because I could.</li>
+        <li>[good] My room's quiet and warm. I said a small thank-you before I slept.</li>
+        <li>[good] Put a blanket from home on the bed. Now the room smells right.</li>
+        <li>[bad] My room's cold and plain, but it's a start. I'll make something of it.</li>
+        <li>[bad] Slept badly in that room again. I won't complain, but I did notice.</li>
+        <li>[bad] The roof drips over my bed, so I moved the bed. Small room, small problem.</li>
+        <li>[bad] It isn't much of a room. Someone offered to help me fix the walls, which helped already.</li>
+        <li>[bad] My room's dark and damp. I left the door open to share the hall's warmth.</li>
+        <li>[bad] Ugly room. I hung up a drawing the youngest made me, and it's a little less ugly.</li>
+      </warm>
+      <blunt>
+        <li>[good] Good bed. Slept straight through.</li>
+        <li>[good] My room. My door. Good.</li>
+        <li>[good] Room's warm. Nothing to add.</li>
+        <li>[good] Slept well. Room's right.</li>
+        <li>[good] Finally a room worth the name.</li>
+        <li>[good] Quiet room. Best thing here.</li>
+        <li>[bad] Room's cold. Fix the wall.</li>
+        <li>[bad] Damp bed again.</li>
+        <li>[bad] My room's a box. A bad one.</li>
+        <li>[bad] Leaky roof. Over my head. Literally.</li>
+        <li>[bad] Can't sleep in that room. Moving out.</li>
+        <li>[bad] Bare walls, cold floor, no sleep.</li>
+      </blunt>
+      <cheerful>
+        <li>[good] Woke up in my lovely room and lay there grinning at the ceiling.</li>
+        <li>[good] My room's so cozy I've started going to bed early on purpose.</li>
+        <li>[good] I rearranged my room again. It's even better now, which I didn't think was possible.</li>
+        <li>[good] Slept so well I woke up singing.</li>
+        <li>[good] My room is my favorite place in the world, and I've been to a few places.</li>
+        <li>[good] There's a bird that sits on my windowsill every morning. I think it likes my room too.</li>
+        <li>[bad] My room's drafty, so I sleep in my coat. It's like camping, but with a roof.</li>
+        <li>[bad] Tiny room. I can touch both walls at once, which is a good trick for parties.</li>
+        <li>[bad] The roof leaks right over my bed, so now I have a water clock.</li>
+        <li>[bad] My room is ugly, so I've given every crack in the wall a name.</li>
+        <li>[bad] Cold room, warm blankets. Two out of three isn't bad.</li>
+        <li>[bad] My room smells of damp, so I filled it with pine branches. Now it smells of damp pine.</li>
+      </cheerful>
+      <gloomy>
+        <li>[good] Slept well. I'm not used to it, and I don't trust it yet.</li>
+        <li>[good] A good room. It's the one thing here I'd be sorry to lose.</li>
+        <li>[good] Quiet night in my room. For a few hours I wasn't afraid of anything.</li>
+        <li>[good] My room is warm. Somehow that made me think of everyone who's cold tonight.</li>
+        <li>[good] Woke rested for once. I lay there waiting for something to go wrong.</li>
+        <li>[good] The room is nice. I keep it tidy as if someone might come and take it.</li>
+        <li>[bad] Cold room, damp blanket, long night.</li>
+        <li>[bad] My room smells of mildew. So do I, now.</li>
+        <li>[bad] Lay awake in that bare room thinking about every room I've lost.</li>
+        <li>[bad] The walls of my room are too close. I dream about them.</li>
+        <li>[bad] Woke up cold again. I've stopped expecting otherwise.</li>
+        <li>[bad] This room is where I go to be tired.</li>
+      </gloomy>
+      <cold>
+        <li>[good] My room is in order. A person who sleeps well makes fewer mistakes.</li>
+        <li>[good] The door locks and the walls hold heat. That's all I ask of a room.</li>
+        <li>[good] Good rest in a good room. The council got this one right.</li>
+        <li>[good] I've arranged my room exactly to my liking. Nobody is to move anything.</li>
+        <li>[good] My room is better than most. I'm aware of it, and so is everyone else.</li>
+        <li>[good] Slept seven hours without a sound. A well-built room.</li>
+        <li>[bad] My room is substandard. I've measured it against the others.</li>
+        <li>[bad] Cold and damp. Whoever built this room should sleep in it.</li>
+        <li>[bad] A room like this costs the colony my best work.</li>
+        <li>[bad] Poor room again. I'm keeping count of the nights.</li>
+        <li>[bad] The walls let in the wind. I've shown three people the gaps.</li>
+        <li>[bad] I was given this room. I'll remember who gave it to me.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+</Defs>

@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Company for lonely tags in the journals. A tagged line is picked first whenever it fits, so a common tag (a season,
+    clear weather, a good mood, trust, the night) carried by one line alone in a voice made that line come round for
+    everyone it fits. These give each such tag at least two more lines in the same voice.
+  -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Company_Journal_Day_Tired</defName>
+    <pool>Council_Journal_Day_Tired</pool>
+    <lines>
+      <plain>
+        <li>[lowmood] Tired of the work, tired of the cold, tired of myself.</li>
+        <li>[lowmood] Slept ten hours and woke up wanting ten more.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Company_Journal_Day_Barracks</defName>
+    <pool>Council_Journal_Day_Barracks</pool>
+    <lines>
+      <plain>
+        <li>[lowmood] Cried a little after the lights went out. Quietly, in a room full of ears.</li>
+        <li>[lowmood] A bad day, and the barracks give you nowhere to put a bad day.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Company_Journal_Day_Bored</defName>
+    <pool>Council_Journal_Day_Bored</pool>
+    <lines>
+      <plain>
+        <li>[rain] Rain on the roof all evening. I listened to it the way you'd listen to music, for want of any.</li>
+        <li>[rain] Too wet to go out, too dull to stay in. I went to bed at sundown.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Company_Journal_Day_Cold</defName>
+    <pool>Council_Journal_Day_Cold</pool>
+    <lines>
+      <plain>
+        <li>[snow] Snow piled against the door in the night. The room never stood a chance.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Company_Journal_Day_DeepTalk</defName>
+    <pool>Council_Journal_Day_DeepTalk</pool>
+    <lines>
+      <plain>
+        <li>[clear] Walked out past the fields with {OTHER_nameDef} on a clear evening and talked about what we'd lost to get here.</li>
+        <li>[clear] {OTHER_nameDef} and I sat on the wall in the last of the light and talked until the stars came out.</li>
+        <li>[rain] Stuck indoors by the rain with {OTHER_nameDef}, and we talked about everything we'd been putting off saying.</li>
+        <li>[lowmood] I was having a bad day, and {OTHER_nameDef} noticed, and sat down, and let me talk.</li>
+        <li>[lowmood] Told {OTHER_nameDef} how low I've been. Saying it out loud made it smaller.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Company_Journal_Day_Dining</defName>
+    <pool>Council_Journal_Day_Dining</pool>
+    <lines>
+      <plain>
+        <li>[highmood] Laughed so much at supper my face hurt. The dining room does that to people.</li>
+        <li>[highmood] In a good mood all through supper. The room helped, and the company more.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Company_Journal_Day_Disturbed</defName>
+    <pool>Council_Journal_Day_Disturbed</pool>
+    <lines>
+      <plain>
+        <li>[clear] Fine night, so half the colony was up late outside, and the other half was kept awake by them.</li>
+        <li>[clear] Not a cloud, not a breath of wind, and somehow still no sleep. Doors, all night.</li>
+        <li>[lowmood] Broken sleep on top of a bad week. I'm running on very little.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Company_Journal_Day_FineMeal</defName>
+    <pool>Council_Journal_Day_FineMeal</pool>
+    <lines>
+      <plain>
+        <li>[clear] Supper outside on a fine evening. Everything tastes better with a clear sky over it.</li>
+        <li>[clear] We carried the table out into the sun at lunch. Good food, good light.</li>
+        <li>[highmood] Laughed through the whole meal. The food was good and so was everything else.</li>
+        <li>[highmood] A fine supper on a fine day. I couldn't ask for more, so I asked for seconds.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Company_Journal_Day_Heat</defName>
+    <pool>Council_Journal_Day_Heat</pool>
+    <lines>
+      <plain>
+        <li>[hot] The heat outside came in at dusk and never left.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Company_Journal_Day_Hungry</defName>
+    <pool>Council_Journal_Day_Hungry</pool>
+    <lines>
+      <plain>
+        <li>[lowmood] Hungry and low. Hard to say which came first today.</li>
+        <li>[lowmood] Didn't have the heart to go and ask for more. Went to bed hungry.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Company_Journal_Day_KindWords</defName>
+    <pool>Council_Journal_Day_KindWords</pool>
+    <lines>
+      <plain>
+        <li>[lowmood] I've been low all week, and today {OTHER_nameDef} said one kind thing. It went a long way.</li>
+        <li>[lowmood] {OTHER_nameDef} told me I'm doing better than I think. Maybe I am.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Company_Journal_Day_NoTable</defName>
+    <pool>Council_Journal_Day_NoTable</pool>
+    <lines>
+      <plain>
+        <li>[rain] Ate in the doorway to keep out of the rain. Half of me got wet anyway.</li>
+        <li>[rain] Rain dripping into the bowl on my knees. It made the soup go further, at least.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Company_Journal_Day_Optimism</defName>
+    <pool>Council_Journal_Day_Optimism</pool>
+    <lines>
+      <plain>
+        <li>[highmood] Whistled all day. It's a good feeling, building something from the ground up.</li>
+        <li>[highmood] Everything went right today. Small things, but all of them.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Company_Journal_Day_Ragged</defName>
+    <pool>Council_Journal_Day_Ragged</pool>
+    <lines>
+      <plain>
+        <li>[rain] Soaked through my coat in a minute. There isn't enough coat left to stop the rain.</li>
+        <li>[rain] My boots let the rain in and keep it there.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Company_Journal_Day_RecRoom</defName>
+    <pool>Council_Journal_Day_RecRoom</pool>
+    <lines>
+      <plain>
+        <li>[highmood] Played until late and laughed most of the way through.</li>
+        <li>[highmood] A good mood and a good evening in the rec room. Those two go together.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== The council's journals ===================== -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Company_Journal_Granted</defName>
+    <pool>Council_Journal_Granted</pool>
+    <lines>
+      <plain>
+        <li>[clear] Fine weather, and "{WISH}" done. I went and stood in the sun next to it.</li>
+        <li>[clear] Not a cloud in the sky, and the council came through. Good day.</li>
+        <li>[highmood] I was already in a good mood, and then "{WISH}" happened. Now I'm unbearable.</li>
+        <li>[highmood] Everything's going well, and "{WISH}" is part of it.</li>
+        <li>[promised] They promised "{WISH}", and here it is. I'll trust the next promise sooner.</li>
+        <li>[promised] A promise kept, and on time. I'm writing that down twice.</li>
+        <li>[petition] We asked together, and together we got it. Everyone who signed came to look.</li>
+        <li>[petition] The others who asked for "{WISH}" with me are as pleased as I am. More, maybe.</li>
+        <li>[forother] Someone asked for this on my behalf. I'll find them and thank them properly.</li>
+        <li>[forother] I didn't ask for it myself. Somebody else spoke up for me, and the council listened.</li>
+        <li>[repeat] Asked more than once, and this time it happened. Persistence, I suppose.</li>
+        <li>[repeat] I'd asked before and been passed over. Not this time.</li>
+      </plain>
+      <blunt>
+        <li>[repeat] Third time lucky. Done.</li>
+        <li>[repeat] Should have happened the first time I asked. Still, done.</li>
+      </blunt>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Company_Journal_Grief</defName>
+    <pool>Council_Journal_Grief</pool>
+    <lines>
+      <plain>
+        <li>[night] Couldn't sleep. Sat up with a candle and thought about {OTHER_nameDef}.</li>
+        <li>[night] The nights are the worst. That's when I remember {OTHER_nameDef} is gone.</li>
+      </plain>
+      <warm>
+        <li>[spring] The first flowers are out. I picked some for {OTHER_nameDef}'s grave.</li>
+        <li>[spring] {OTHER_nameDef} loved this time of year. I planted something where {OTHER_pronoun} used to sit.</li>
+      </warm>
+      <cheerful>
+        <li>[rain] Rain all day. {OTHER_nameDef} used to say it washed the colony clean. I'm trying to believe it.</li>
+        <li>[rain] Listened to the rain and remembered {OTHER_nameDef} dancing in it once. I smiled, then I didn't.</li>
+      </cheerful>
+      <gloomy>
+        <li>[lowmood] {OTHER_nameDef} is gone, and the dark I've been in got darker.</li>
+        <li>[lowmood] I don't know how to carry this on top of everything else.</li>
+      </gloomy>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Company_Journal_Lapsed</defName>
+    <pool>Council_Journal_Lapsed</pool>
+    <lines>
+      <plain>
+        <li>[repeat] Asked again and heard nothing again. It's getting to be a habit, theirs and mine.</li>
+        <li>[winter] Winter's half gone and so is my patience. Nothing came of "{WISH}".</li>
+        <li>[winter] Cold days, and no answer. I'll stop hoping until the thaw.</li>
+        <li>[trusting] I was sure they'd get to it. They're usually good about these things.</li>
+        <li>[trusting] I'll give them the benefit of the doubt. They must have had a reason.</li>
+        <li>[forother] I asked on someone else's behalf, and now I have to tell them it came to nothing.</li>
+        <li>[forother] It wasn't my wish to begin with. Still, I'd asked, and I feel foolish now.</li>
+      </plain>
+      <blunt>
+        <li>[doubtful] Knew it. Nothing.</li>
+        <li>[doubtful] Didn't expect anything. Got it.</li>
+      </blunt>
+      <cheerful>
+        <li>[fall] Nothing came of it, but there are apples, so I'm not complaining.</li>
+        <li>[fall] Didn't happen. The harvest's good, though, and I'm counting that instead.</li>
+      </cheerful>
+      <gloomy>
+        <li>[lowmood] Of course nothing came of it. Nothing has, lately.</li>
+        <li>[lowmood] I can't even be angry. I'm too tired for it.</li>
+      </gloomy>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Company_Journal_PromiseBroken</defName>
+    <pool>Council_Journal_PromiseBroken</pool>
+    <lines>
+      <plain>
+        <li>[trusting] I took them at their word. I won't be the first to do that again.</li>
+        <li>[trusting] I've always trusted the council. Tonight I'm not sure why.</li>
+        <li>[night] Can't sleep for thinking about it. They promised.</li>
+        <li>[night] Lay awake counting the days they had, and how many they used.</li>
+        <li>[doubtful] I had my doubts, and I let them talk me out of them.</li>
+        <li>[doubtful] I knew it, and I still hoped. That's on me.</li>
+        <li>[winter] They promised before the snows. The snows came and the promise didn't.</li>
+        <li>[winter] Cold outside, and colder in here since they broke their word.</li>
+      </plain>
+      <gloomy>
+        <li>[winter] A promise broken in the dark half of the year. It fits.</li>
+        <li>[winter] Long cold nights to think about how they let me down.</li>
+      </gloomy>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Company_Journal_PromiseKept</defName>
+    <pool>Council_Journal_PromiseKept</pool>
+    <lines>
+      <plain>
+        <li>[doubtful] I didn't think they'd do it. I've been wrong before, and I'm glad to be wrong now.</li>
+        <li>[doubtful] Maybe I've been too hard on the council.</li>
+        <li>[trusting] They said they would, and they did. That's the council I know.</li>
+        <li>[trusting] I never doubted it. Well, once. Briefly.</li>
+      </plain>
+      <warm>
+        <li>[winter] Even with the snow up to the door, they kept their promise. I won't forget it.</li>
+        <li>[winter] A cold season, and a warm thing done. Thank you, whoever did the work.</li>
+      </warm>
+      <gloomy>
+        <li>[rain] Rain again. Promise kept, though, which is more than I can say for the weather.</li>
+        <li>[rain] Wet and dull. They kept their word, and that's the bright spot.</li>
+      </gloomy>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Company_Journal_Raid</defName>
+    <pool>Council_Journal_Raid</pool>
+    <lines>
+      <plain>
+        <li>[clear] Clear day, so we saw them coming a long way off. It didn't make the waiting easier.</li>
+        <li>[clear] Not a cloud all day. Strange to fight under a sky that pretty.</li>
+        <li>[clear] Good light for it, at least. We could see every one of them.</li>
+        <li>[spring] The raid came with the thaw. The ground was so soft we left deep prints all the way to the wall.</li>
+        <li>[summer] Fought in the long grass. I'm still pulling seeds out of my clothes.</li>
+        <li>[fall] They came at harvest, when every hand was in the fields. Half of us ran back with sickles.</li>
+        <li>[winter] Fought until the snow was trampled to slush. The stars were out by the time we stopped.</li>
+      </plain>
+      <cheerful>
+        <li>[highmood] We beat them! I was in a good mood this morning and I refuse to let a raid change that.</li>
+        <li>[highmood] Raid's done, everyone's whole, and I'm still grinning.</li>
+      </cheerful>
+      <gloomy>
+        <li>[lowmood] Another raid. I fought, and then I sat down and couldn't get up for a while.</li>
+        <li>[lowmood] They came, and I didn't care much whether I came back. I did.</li>
+      </gloomy>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Company_Journal_Refused</defName>
+    <pool>Council_Journal_Refused</pool>
+    <lines>
+      <plain>
+        <li>[repeat] Asked again, and no again. I'll find another way.</li>
+        <li>[repeat] They've said no to "{WISH}" twice now. I'm starting to take the hint.</li>
+        <li>[forother] I asked on someone else's behalf, and they said no. I'll be the one to break it to them.</li>
+        <li>[forother] Not even for me, and still refused. I hope they had a good reason.</li>
+        <li>[trusting] If the council says no, I'll accept it. They've earned that from me.</li>
+        <li>[trusting] Refused, but I trust they weighed it fairly.</li>
+      </plain>
+      <warm>
+        <li>[trusting] They've been good to me before. One no won't change that.</li>
+        <li>[trusting] I'm sure they had their reasons. I'll ask what they were, kindly.</li>
+      </warm>
+      <cheerful>
+        <li>[clear] Refused, but it's a lovely clear evening, and I'm going to enjoy it anyway.</li>
+        <li>[clear] They said no. The sky said yes. I'll go with the sky.</li>
+      </cheerful>
+      <gloomy>
+        <li>[night] Awake again, turning it over. No is such a short word.</li>
+        <li>[night] Couldn't sleep. Kept hearing them say no.</li>
+      </gloomy>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Company_Journal_SelfHelp</defName>
+    <pool>Council_Journal_SelfHelp</pool>
+    <lines>
+      <plain>
+        <li>[night] Did it by lamplight, after everyone else had gone to bed. Nobody will know until morning.</li>
+        <li>[night] Couldn't sleep, so I got up and saw to it myself.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+</Defs>
