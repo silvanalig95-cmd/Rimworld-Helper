@@ -243,10 +243,20 @@ namespace ColonyCouncil
                 if (!(thing is Building b) || !seen.Add(b) || b.def == null) continue;
                 var def = b.def;
                 if (!def.BuildableByPlayer || def.IsWall || def.IsFrame || def.IsBlueprint || player == null || b.Faction != player) continue;
+                var occ = b.OccupiedRect();
+                // A wall lamp is kept as one of the room's lights, listing that lamp: the plan hangs its lamps on the walls
+                // again (LightMath), wherever they fit the new spot, so where this one hung doesn't matter.
+                if (WallLights.IsWallLight(def))
+                {
+                    if (!rect.Contains(occ.Min)) continue;
+                    TemplateMath.InverseRotateRect(occ.minX - full.minX, occ.minZ - full.minZ, 1, 1, tw, th, turn, out int lx, out int lz, out _, out _);
+                    data.pieces.Add(new CustomRoomPiece { def = def.defName, stuff = b.Stuff?.defName, role = "light", x = lx - 1, z = lz - 1 });
+                    if (data.pieces.Count >= CustomRoomData.MaxPieces) break;
+                    continue;
+                }
                 // Conduits, pipes, rugs and things hung on a wall share their cell with a wall or a piece of furniture: as a
                 // piece of the plan they'd take the wall's place or push the furniture aside.
                 if (!EdificeUtility.IsEdifice(def)) continue;
-                var occ = b.OccupiedRect();
                 bool inside = rect.Contains(occ.Min) && rect.Contains(occ.Max);
                 bool inWall = !inside && occ.Width == 1 && occ.Height == 1 && full.EdgeCells.Contains(occ.Min);
                 if (!inside && !inWall) continue;

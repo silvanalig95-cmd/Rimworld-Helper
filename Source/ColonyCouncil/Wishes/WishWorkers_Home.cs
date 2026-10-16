@@ -449,9 +449,10 @@ namespace ColonyCouncil
             var nightOwl = DefDatabase<TraitDef>.GetNamedSilentFail("NightOwl");
             bool dark = RoomUtil.HasActiveThought(pawn, "EnvironmentDark");
             if (!dark && !HasTrait(pawn, nightOwl) && RoomUtil.ExpectationOrder(pawn) < 3) yield break;
-            // A faith that prefers darklight wants a darklight lamp (a dark torch), or none at all.
+            // A faith that prefers darklight wants a darklight lamp (a dark torch), or none at all. Otherwise a wall lamp
+            // unless the bedroom is large (or the colony can't build one); the lamp then hangs on a wall (FindCell).
             bool darklight = Beliefs.Forbids(pawn, Belief.Darklight);
-            var light = darklight ? Avail.BestBuildable(map, IsDarklight, "DarkTorch", "DarkTorchFungus") : Avail.BestBuildable(map, Avail.IsLight, "StandingLamp", "TorchLamp");
+            var light = darklight ? Avail.BestBuildable(map, IsDarklight, "DarkTorch", "DarkTorchFungus") : WallLights.ForRoom(map, room.CellCount);
             if (light == null) yield break;
             var c = Candidate(dark ? 1.4f : 0.7f, HasTrait(pawn, nightOwl)
                 ? "CC_Reason_NightOwl".Translate(pawn.Named("PAWN"))

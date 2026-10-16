@@ -47,7 +47,7 @@ public static class RoomThemeTests
     private static readonly HashSet<string> Medical = new() { "HospitalBed" };
 
     public static ThemeMath.Shape ShapeOf(RoomTemplateTests.Fact f) =>
-        new ThemeMath.Shape { sizeX = f.sx, sizeZ = f.sz, rotatable = f.rotatable, passable = f.pass != "", spots = f.spots };
+        new ThemeMath.Shape { sizeX = f.sx, sizeZ = f.sz, rotatable = f.rotatable, passable = f.pass != "", attached = f.attached, spots = f.spots };
 
     /// <summary>The theme's piece for a slot, as the game picks it, or the plan's own when the theme has nothing that fits.</summary>
     public static string ThemedPick(Theme theme, RoomTemplateTests.Thing th, string basePick, Func<string, bool> present)
@@ -113,17 +113,23 @@ public static class RoomThemeTests
                         if (p != b) swapsSeen++;
                         return p;
                     }
-                    for (int style = 0; style <= 2; style++)
+                    // The theme's own wall lamp where it names one (a wall torch for the tribal look), else the plain one.
+                    string lamp = ThemeMath.Candidates("light", theme.swaps).FirstOrDefault(c => facts.TryGetValue(c, out var lf) && lf.attached && present(c)) ?? "WallLamp";
+                    foreach (float reach in WallLampTests.Reaches)
                     {
-                        var (pieces, notes) = RoomTemplateTests.Arrange(t, Themed, style, decorFrom);
-                        string where = $"{t.file}: {t.defName} in {theme.defName} ({label}, style {style})";
-                        foreach (var n in notes) check(false, $"{where}: layout had to change: {n}");
-                        for (int mirror = 0; mirror < 2; mirror++)
-                            for (int turn = 0; turn < 4; turn++)
-                            {
-                                RoomTemplateTests.CheckWorld(t, pieces, mirror == 1, turn, $"{where} turn {turn}{(mirror == 1 ? " mirrored" : "")}", check);
-                                count++;
-                            }
+                        for (int style = 0; style <= 2; style++)
+                        {
+                            var (pieces, notes) = RoomTemplateTests.Arrange(t, Themed, style, decorFrom, reach, lamp);
+                            string where = $"{t.file}: {t.defName} in {theme.defName} ({label}, style {style}{WallLampTests.Label(reach)})";
+                            foreach (var n in notes) check(false, $"{where}: layout had to change: {n}");
+                            WallLampTests.CheckLamps(t, pieces, Themed, style, reach, where, check);
+                            for (int mirror = 0; mirror < 2; mirror++)
+                                for (int turn = 0; turn < 4; turn++)
+                                {
+                                    RoomTemplateTests.CheckWorld(t, pieces, mirror == 1, turn, $"{where} turn {turn}{(mirror == 1 ? " mirrored" : "")}", check);
+                                    count++;
+                                }
+                        }
                     }
                 }
             }
@@ -142,6 +148,8 @@ public static class RoomThemeTests
         check(!Keeps("Bedroll", "Bed"), "a bedroll people step over may not become a bed that blocks");
         check(!Keeps("Bed", "DoubleBed"), "a single bed may not become a double");
         check(Keeps("DiningChair", "Armchair") && Keeps("StandingLamp", "TorchLamp") && Keeps("StandingLamp", "VFE_FloorLamp"), "chairs and lamps swap freely");
+        check(!Keeps("StandingLamp", "WallLamp") && !Keeps("TorchLamp", "TorchWallLamp") && !Keeps("WallLamp", "StandingLamp") && Keeps("WallLamp", "TorchWallLamp"),
+            "a wall lamp never takes a floor lamp's place: it hangs where the room's walls are");
         check(!Keeps("VFE_FloorLamp", "StandingLamp"), "a lamp people walk over may not become one that blocks");
         check(Keeps("BasinStuff", "WashBucket") && !Keeps("WashBucket", "BasinStuff"), "a piece may lose its work spot, never gain one");
         check(!Keeps("Table2x2c", "Table1x2c") && Keeps("Table2x2c", "Table_Royal2x2c"), "tables only swap for the same size");

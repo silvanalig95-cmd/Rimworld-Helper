@@ -264,10 +264,11 @@ namespace ColonyCouncil
                 dark.Add(room);
             }
             if (dark.Count == 0) yield break;
-            var light = Avail.BestBuildable(map, Avail.IsLight, "StandingLamp", "TorchLamp");
+            // Wall lamps when most of the dark rooms aren't large and the colony can build one; else a standing lamp or torch.
+            var light = WallLights.ForRooms(map, dark);
             if (light == null) yield break;
             var s = Signal(0.25f + Mathf.Min(0.2f, dark.Count * 0.05f), "CC_Adv_Dark_Title".Translate(dark.Count),
-                "CC_Adv_Dark_Detail".Translate(Avail.Indefinite(light)), 0.4f);
+                (WallLights.IsAttached(light) ? "CC_Adv_Dark_DetailWall" : "CC_Adv_Dark_Detail").Translate(Avail.Indefinite(light)), 0.4f);
             s.look = new LookTargets(dark.Take(5).Select(r => new TargetInfo(r.Cells.First(), map)));
             s.suggestThing = light;
             yield return s;
