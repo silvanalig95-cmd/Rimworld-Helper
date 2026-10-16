@@ -304,7 +304,9 @@ namespace ColonyCouncil
         {
             var map = HomeMap(pawn);
             if (map == null || !pawn.DevelopmentalStage.Adult() || pawn.relations == null) yield break;
-            var doubleBed = Avail.BestBuildable(map, Avail.IsDoubleBed, "DoubleBed", "BedrollDouble");
+            // A faith that prefers slab beds would rather share a slab (the game's slab double bed), if one can be built.
+            var doubleBed = (Beliefs.Forbids(pawn, Belief.SlabBeds) ? Avail.BestBuildable(map, IsSlabDoubleBed, "SlabDoubleBed") : null)
+                            ?? Avail.BestBuildable(map, Avail.IsDoubleBed, "DoubleBed", "BedrollDouble");
             if (doubleBed == null) yield break;
 
             foreach (var rel in pawn.relations.DirectRelations)
@@ -312,6 +314,8 @@ namespace ColonyCouncil
                 if (rel.def != PawnRelationDefOf.Lover && rel.def != PawnRelationDefOf.Spouse && rel.def != PawnRelationDefOf.Fiance) continue;
                 var partner = rel.otherPawn;
                 if (partner == null || partner.Dead || !partner.IsFreeColonist || partner.MapHeld != map) continue;
+                // Not before the wedding if either faith keeps lovin to the married, and not at all if one forbids it.
+                if (Beliefs.SharingBedClashes(pawn, partner)) continue;
                 var myBed = pawn.ownership?.OwnedBed;
                 var theirBed = partner.ownership?.OwnedBed;
                 if (myBed != null && myBed == theirBed) continue;
@@ -325,6 +329,12 @@ namespace ColonyCouncil
 
         public static string PairKey(Pawn a, Pawn b) =>
             string.CompareOrdinal(a.ThingID, b.ThingID) < 0 ? a.ThingID + "+" + b.ThingID : b.ThingID + "+" + a.ThingID;
+
+        private static bool IsSlabDoubleBed(ThingDef d) => Avail.IsDoubleBed(d) && d.defName.IndexOf("Slab", System.StringComparison.OrdinalIgnoreCase) >= 0;
+
+        /// <summary>Also when either of them has come to a faith that keeps the bed for the married, or forbids lovin.</summary>
+        public override bool AgainstBeliefs(Pawn pawn, Pawn other, ThingDef thing) =>
+            base.AgainstBeliefs(pawn, other, thing) || Beliefs.SharingBedClashes(pawn, other);
 
         public override bool IsFulfilled(Wish wish)
         {
@@ -439,7 +449,9 @@ namespace ColonyCouncil
             var nightOwl = DefDatabase<TraitDef>.GetNamedSilentFail("NightOwl");
             bool dark = RoomUtil.HasActiveThought(pawn, "EnvironmentDark");
             if (!dark && !HasTrait(pawn, nightOwl) && RoomUtil.ExpectationOrder(pawn) < 3) yield break;
-            var light = Avail.BestBuildable(map, Avail.IsLight, "StandingLamp", "TorchLamp");
+            // A faith that prefers darklight wants a darklight lamp (a dark torch), or none at all.
+            bool darklight = Beliefs.Forbids(pawn, Belief.Darklight);
+            var light = darklight ? Avail.BestBuildable(map, IsDarklight, "DarkTorch", "DarkTorchFungus") : Avail.BestBuildable(map, Avail.IsLight, "StandingLamp", "TorchLamp");
             if (light == null) yield break;
             var c = Candidate(dark ? 1.4f : 0.7f, HasTrait(pawn, nightOwl)
                 ? "CC_Reason_NightOwl".Translate(pawn.Named("PAWN"))
@@ -448,7 +460,14 @@ namespace ColonyCouncil
             yield return c;
         }
 
-        public override bool IsFulfilled(Wish wish) => RoomUtil.RoomContains(RoomUtil.PrivateRoom(wish.Beneficiary), Avail.IsLight);
+        public override bool IsFulfilled(Wish wish) => RoomUtil.RoomContains(RoomUtil.PrivateRoom(wish.Beneficiary), IsDarklight(wish.thingDef) ? (System.Func<ThingDef, bool>)IsDarklight : Avail.IsLight);
+
+        /// <summary>A light whose glow is darklight (the game's dark torches, a mod's darklight lamp).</summary>
+        public static bool IsDarklight(ThingDef d) => Avail.IsLight(d) && d.defName.IndexOf("Dark", System.StringComparison.OrdinalIgnoreCase) >= 0;
+
+        /// <summary>A plain lamp for someone whose faith has come to prefer darklight is no longer wanted.</summary>
+        public override bool AgainstBeliefs(Pawn pawn, Pawn other, ThingDef thing) =>
+            base.AgainstBeliefs(pawn, other, thing) || (thing != null && !IsDarklight(thing) && Beliefs.Forbids(pawn, Belief.Darklight));
 
         public override bool StillValid(Wish wish) => RoomUtil.PrivateRoom(wish.Beneficiary) != null;
 

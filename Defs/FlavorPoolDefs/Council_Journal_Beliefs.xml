@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    A feast with nothing in the stores fit for the colonist to eat (Source/ColonyCouncil/Wishes/Beliefs.cs,
+    PlayOut/PlayOutLord.cs): they sat with everyone and ate nothing. {GATHERING} is the feast ("the victory feast").
+    Lines tagged [diet:...] fit the diet that kept them from the plates: fungusinsect (Alpha Memes' fungus and insect
+    meat, both required), vegan, vegetarian, carnivore, fungus (fungus preferred, other plants despised), nofungus,
+    fine (good food expected). Untagged lines fit any of them, and a food policy too.
+  -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_NothingFit</defName>
+    <lines>
+      <plain>
+        <li>Sat through {GATHERING} with an empty plate. Nothing on the table was anything I could eat.</li>
+        <li>Everyone ate well at {GATHERING}. I had water and the company, and the company was most of it.</li>
+        <li>I went to {GATHERING} and ate nothing. I'll find something in the stores tomorrow.</li>
+        <li>[diet:fungusinsect] Not one dish at {GATHERING} had fungus or insect meat in it. I sat and listened, and ate later.</li>
+        <li>[diet:fungusinsect] The cooks made a good spread for {GATHERING}. None of it would have stayed down, so I left it.</li>
+        <li>[diet:vegetarian] Every plate at {GATHERING} had meat in it. I passed them along and stayed for the talk.</li>
+        <li>[diet:vegan] Meat, eggs or milk in everything at {GATHERING}. I kept my hands in my lap.</li>
+        <li>[diet:carnivore] Nothing at {GATHERING} but grain and greens. I'll find some meat tomorrow.</li>
+        <li>[diet:fungus] Plates full of greens at {GATHERING}, and not a cap of fungus among them. I didn't touch them.</li>
+        <li>[diet:nofungus] Fungus in every pot at {GATHERING}. I said I'd eaten already.</li>
+        <li>[diet:fine] Simple meals at {GATHERING}. I'd rather go without than eat like that at a feast.</li>
+      </plain>
+      <warm>
+        <li>Nothing at {GATHERING} was for me, but they kept a seat for me all the same. That mattered more.</li>
+        <li>[diet:vegetarian] Someone noticed my empty plate at {GATHERING} and said next time there'd be something without meat. I believe them.</li>
+        <li>[diet:fungusinsect] I couldn't eat a thing at {GATHERING}, but I wouldn't have missed the stories.</li>
+      </warm>
+      <blunt>
+        <li>A feast, and not one thing I could eat. Next time, ask.</li>
+        <li>[diet:fungusinsect] Not a single dish at {GATHERING} I could keep down. Somebody should have thought of that.</li>
+        <li>[diet:carnivore] They call that a feast? Not a scrap of meat on the table.</li>
+      </blunt>
+      <cheerful>
+        <li>Ate nothing at {GATHERING} and still had the best evening in weeks. Good company fills you up too.</li>
+      </cheerful>
+      <gloomy>
+        <li>Everyone ate at {GATHERING} but me. I watched the plates go round.</li>
+        <li>[diet:fungusinsect] The others ate at {GATHERING}. I sat with an empty bowl and felt a long way from them.</li>
+      </gloomy>
+      <cold>
+        <li>Attended {GATHERING}. No suitable food. Ate later.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

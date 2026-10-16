@@ -216,7 +216,8 @@ namespace ColonyCouncil
                 foreach (var p in attended)
                 {
                     if (p == null || fed.Contains(p) || !p.Spawned || p.Map != map || !Eligible(p)) continue;
-                    if (PlaySpots.BestMeal(p, map, spot) != null) continue;
+                    // A meal left for them, or none fit for them (their beliefs, their food policy): not the council's lapse.
+                    if (PlaySpots.BestMeal(p, map, spot, out bool noneFit) != null || noneFit) continue;
                     if (!Give(p, SetbackDefOf.Council_Setback_NoPlate, null, "CC_Setback_Cause_NoPlate".Translate(label).Resolve())) continue;
                     if (Rand.Chance(0.5f)) Say(p, "Council_Pool_Setback_NoPlate");
                 }

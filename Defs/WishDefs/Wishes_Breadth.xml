@@ -495,6 +495,7 @@
     <label>food that keeps</label>
     <description>Winter is coming, and someone wants food put by that won't spoil: pemmican in a tribe, packaged meals or canned goods later on, whatever the colony can make now.</description>
     <workerClass>ColonyCouncil.WishWorker_Stock</workerClass>
+    <forbiddenBy><li>NoMeat</li><li>MeatOnly</li><li>FungusOrInsectOnly</li></forbiddenBy>
     <category>Safety</category>
     <weight>0.6</weight>
     <expiryDays>15</expiryDays>
@@ -572,6 +573,7 @@
     <label>a fishing spot</label>
     <description>Odyssey: there are fish in the water on the map and nobody is catching them. Someone who'd like an afternoon at the water's edge, and fish for supper, wants a fishing zone marked out.</description>
     <workerClass>ColonyCouncil.WishWorker_Fishing</workerClass>
+    <forbiddenBy><li>NoFishing</li><li>NoMeat</li></forbiddenBy>
     <lasting>true</lasting>
     <lostText>The fishing spot {FOR_nameDef} asked for is gone.</lostText>
     <category>Work</category>
@@ -1034,6 +1036,7 @@
     <label>a soft chair to rest in</label>
     <description>An old colonist finds the stools hard on their back and wants an armchair to rest in at the end of the day.</description>
     <workerClass>ColonyCouncil.WishWorker_Have</workerClass>
+    <forbiddenBy><li>Discomfort</li></forbiddenBy>
     <lasting>true</lasting>
     <category>Comfort</category>
     <weight>0.7</weight>
@@ -1228,6 +1231,7 @@
     <label>a pet to look after</label>
     <description>A child has been watching a small animal near the colony and wants one to look after. Any new animal the colony takes in will do.</description>
     <workerClass>ColonyCouncil.WishWorker_ChildPet</workerClass>
+    <forbiddenBy><li>NoPets</li></forbiddenBy>
     <lasting>true</lasting>
     <lostText>{OTHER_nameDef}, the pet {FOR_nameDef} was given to look after, is no longer the colony's.</lostText>
     <category>Childhood</category>
@@ -1287,6 +1291,7 @@
     <label>new stories to read</label>
     <description>A child has read every book in the colony at least twice and wants something new.</description>
     <workerClass>ColonyCouncil.WishWorker_Stock</workerClass>
+    <forbiddenBy><li>NoBooks</li></forbiddenBy>
     <lasting>true</lasting>
     <keepShare>0.5</keepShare>
     <lostText>The stories {FOR_nameDef} was given to read are gone from the shelves.</lostText>

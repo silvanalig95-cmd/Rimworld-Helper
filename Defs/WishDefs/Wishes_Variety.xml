@@ -17,6 +17,7 @@
     <label>{THING} in {FOR_possessive} room</label>
     <description>The nights are turning cold, and this colonist would like a fire of their own to sleep beside.</description>
     <workerClass>ColonyCouncil.WishWorker_Have</workerClass>
+    <forbiddenBy><li>NoFire</li></forbiddenBy>
     <lasting>true</lasting>
     <category>Comfort</category>
     <weight>0.8</weight>
@@ -98,6 +99,7 @@
     <label>{THING} for the colony</label>
     <description>A reader or an artist wants somewhere proper to keep the colony's books.</description>
     <workerClass>ColonyCouncil.WishWorker_Have</workerClass>
+    <forbiddenBy><li>NoBooks</li></forbiddenBy>
     <lasting>true</lasting>
     <category>Comfort</category>
     <weight>0.8</weight>
@@ -170,6 +172,7 @@
     <label>more books to read</label>
     <description>The colony is short on books, and someone who loves to read has finished every one of them.</description>
     <workerClass>ColonyCouncil.WishWorker_Stock</workerClass>
+    <forbiddenBy><li>NoBooks</li></forbiddenBy>
     <lasting>true</lasting>
     <keepShare>0.5</keepShare>
     <lostText>Most of the books {FOR_nameDef} asked for are gone from the colony.</lostText>
@@ -242,6 +245,7 @@
     <label>somewhere to train</label>
     <description>A fighter wants a training dummy or practice target to keep sharp between raids.</description>
     <workerClass>ColonyCouncil.WishWorker_Have</workerClass>
+    <forbiddenBy><li>NoViolence</li></forbiddenBy>
     <lasting>true</lasting>
     <category>Safety</category>
     <weight>0.8</weight>
@@ -526,6 +530,7 @@
     <label>honey in the larder</label>
     <description>A gourmand with a sweet tooth wants a proper stock of honey kept in storage.</description>
     <workerClass>ColonyCouncil.WishWorker_Stock</workerClass>
+    <forbiddenBy><li>NoAnimalProducts</li><li>FungusOrInsectOnly</li></forbiddenBy>
     <category>Comfort</category>
     <weight>0.6</weight>
     <expiryDays>12</expiryDays>
@@ -668,6 +673,7 @@
     <label>something warm to wear</label>
     <description>The cold is here or coming, and this colonist owns nothing that actually keeps it out.</description>
     <workerClass>ColonyCouncil.WishWorker_Wear</workerClass>
+    <forbiddenBy><li>Nudity</li></forbiddenBy>
     <category>Gear</category>
     <weight>1</weight>
     <expiryDays>8</expiryDays>
@@ -734,6 +740,7 @@
     <label>a hat of {FOR_possessive} own</label>
     <description>This colonist has been going bareheaded and would like something to wear on their head.</description>
     <workerClass>ColonyCouncil.WishWorker_Wear</workerClass>
+    <forbiddenBy><li>Nudity</li></forbiddenBy>
     <category>Gear</category>
     <weight>0.5</weight>
     <expiryDays>12</expiryDays>
@@ -797,6 +804,7 @@
     <label>something fine to wear</label>
     <description>A greedy or jealous colonist wants clothes of excellent quality or better, the kind people notice.</description>
     <workerClass>ColonyCouncil.WishWorker_Wear</workerClass>
+    <forbiddenBy><li>Nudity</li></forbiddenBy>
     <category>Status</category>
     <weight>0.7</weight>
     <expiryDays>15</expiryDays>
@@ -930,6 +938,7 @@
     <label>to see something of the world</label>
     <description>After a month or more inside the same walls, this colonist wants to go out with a caravan and see somewhere else.</description>
     <workerClass>ColonyCouncil.WishWorker_Travel</workerClass>
+    <forbiddenBy><li>NoTravel</li></forbiddenBy>
     <category>Social</category>
     <weight>0.8</weight>
     <expiryDays>20</expiryDays>
@@ -1064,6 +1073,7 @@
     <label>{OTHER_definite} hunted down</label>
     <description>A wild animal that mauled one of the colonists still prowls the map, and someone wants it dead.</description>
     <workerClass>ColonyCouncil.WishWorker_Beast</workerClass>
+    <forbiddenBy><li>NoViolence</li></forbiddenBy>
     <category>Safety</category>
     <weight>1.5</weight>
     <expiryDays>8</expiryDays>
@@ -1259,6 +1269,7 @@
     <label>a place to pray</label>
     <description>Someone wants an altar or shrine in the colony, a quiet place set aside for prayer.</description>
     <workerClass>ColonyCouncil.WishWorker_Have</workerClass>
+    <forbiddenBy><li>NoReligion</li></forbiddenBy>
     <lasting>true</lasting>
     <lostText>The place to pray that {FOR_nameDef} asked for is gone.</lostText>
     <category>Status</category>
@@ -1401,6 +1412,7 @@
     <label>{THING} to keep meat through winter</label>
     <description>A cook wants a smokehouse or drying rack, so meat can be cured instead of rotting.</description>
     <workerClass>ColonyCouncil.WishWorker_Have</workerClass>
+    <forbiddenBy><li>NoMeat</li></forbiddenBy>
     <lasting>true</lasting>
     <category>Work</category>
     <weight>0.7</weight>
@@ -1672,6 +1684,7 @@
     <label>{THING} for the armory</label>
     <description>A fighter wants a proper weapon or armor rack, so the colony's arms can be grabbed in a hurry.</description>
     <workerClass>ColonyCouncil.WishWorker_Have</workerClass>
+    <forbiddenBy><li>NoViolence</li></forbiddenBy>
     <lasting>true</lasting>
     <category>Safety</category>
     <weight>0.6</weight>

@@ -392,6 +392,8 @@ namespace ColonyCouncil
                     }
                     foreach (var tr in pitch.def.proposerTraits)
                         if (voter.story?.traits?.HasTrait(tr) ?? false) score += 1f;
+                    // Nobody votes for what their faith forbids (a brewery in a dry colony).
+                    if (pitch.def.AgainstBeliefsOf(voter)) score -= 4f;
                     score += advice.Where(s => pitch.def.relevantCategories.Contains(s.def.category)).Sum(s => s.Score) * 0.8f;
                     if (score > bestScore)
                     {

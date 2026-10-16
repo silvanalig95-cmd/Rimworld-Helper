@@ -96,7 +96,9 @@ namespace ColonyCouncil
                 if (t.Destroyed || !t.Spawned) continue;
                 var drug = t.def.GetCompProperties<CompProperties_Drug>();
                 if (teetotaler && (drug == null || !drug.teetotalerCanConsume)) continue;
-                if (!Allowed(p, t.def)) continue;
+                // Their faith and policies (Wishes/Beliefs.cs): no drink a precept frowns on (beer for one who abstains),
+                // nothing that would leave a bad memory.
+                if (!Allowed(p, t.def) || Beliefs.MindsEating(p, t)) continue;
                 float value = t.def.BaseMarketValue;
                 float dist = t.Position.DistanceToSquared(spot);
                 if (value < bestValue || (value == bestValue && dist >= bestDist)) continue;
@@ -108,15 +110,13 @@ namespace ColonyCouncil
             return best;
         }
 
-        /// <summary>Their drug policy lets them have it for joy, and their beliefs let them have it at all.</summary>
+        /// <summary>
+        /// Their drug policy lets them have it for joy, and their beliefs let them have it at all: not unwilling, and no
+        /// precept that frowns on it (a faith that keeps drugs to medicine makes beer a bad memory, not a refusal).
+        /// </summary>
         private static bool Allowed(Pawn p, ThingDef d)
         {
-            var policy = p.drugs?.CurrentPolicy;
-            if (policy != null)
-            {
-                var entry = policy[d];
-                if (entry != null && !entry.allowedForJoy) return false;
-            }
+            if (Beliefs.MindsDrug(p, d)) return false;
             if (!ModsConfig.IdeologyActive) return true;
             if (!IdeoUtility.DoerWillingToDo(HistoryEventDefOf.IngestedDrug, p)) return false;
             return !d.IsNonMedicalDrug || IdeoUtility.DoerWillingToDo(HistoryEventDefOf.IngestedRecreationalDrug, p);

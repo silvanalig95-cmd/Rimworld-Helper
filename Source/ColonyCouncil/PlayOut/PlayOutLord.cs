@@ -39,6 +39,8 @@ namespace ColonyCouncil
         public List<string> lines = new List<string>();
         private List<Pawn> served = new List<Pawn>();
         private List<Pawn> fed = new List<Pawn>();
+        /// <summary>At the feast, but nothing in the stores was fit for them to eat (their beliefs, their food policy): they sit with the rest and eat nothing.</summary>
+        private List<Pawn> abstained = new List<Pawn>();
         private bool ended;
 
         [Unsaved] private LordToil_Party party;
@@ -161,17 +163,29 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>A plate for everyone at the feast who hasn't had one: an order to go and eat the best meal they may have.</summary>
+        /// <summary>
+        /// A plate for everyone at the feast who hasn't had one: an order to go and eat the best meal they may have. Only
+        /// what their beliefs and food policy let them eat (Wishes/Beliefs.cs); with nothing fit for them in the stores,
+        /// they stay at the table without eating, and their journal may say so.
+        /// </summary>
         private void Serve()
         {
             var map = Map;
             if (map == null) return;
             foreach (var p in lord.ownedPawns.ToList())
             {
-                if (p == null || served.Contains(p) || fed.Contains(p) || !p.Spawned || p.Map != map || !p.Awake()) continue;
+                if (p == null || served.Contains(p) || fed.Contains(p) || abstained.Contains(p) || !p.Spawned || p.Map != map || !p.Awake()) continue;
                 if (!PlayOuts.CanJoin(p) || p.CurJobDef == JobDefOf.Ingest) continue;
-                var meal = PlaySpots.BestMeal(p, map, spot);
-                if (meal == null) continue;
+                var meal = PlaySpots.BestMeal(p, map, spot, out bool noneFit);
+                if (meal == null)
+                {
+                    if (noneFit)
+                    {
+                        abstained.Add(p);
+                        Beliefs.NoteNothingFit(p, label);
+                    }
+                    continue;
+                }
                 var job = JobMaker.MakeJob(JobDefOf.Ingest, meal);
                 job.count = 1;
                 served.Add(p);
@@ -292,14 +306,17 @@ namespace ColonyCouncil
             Scribe_Collections.Look(ref lines, "lines", LookMode.Value);
             Scribe_Collections.Look(ref served, "served", LookMode.Reference);
             Scribe_Collections.Look(ref fed, "fed", LookMode.Reference);
+            Scribe_Collections.Look(ref abstained, "abstained", LookMode.Reference);
             Scribe_Values.Look(ref ended, "ended");
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 if (lines == null) lines = new List<string>();
                 if (served == null) served = new List<Pawn>();
                 if (fed == null) fed = new List<Pawn>();
+                if (abstained == null) abstained = new List<Pawn>();
                 served.RemoveAll(p => p == null);
                 fed.RemoveAll(p => p == null);
+                abstained.RemoveAll(p => p == null);
                 if (gatheringDef == null) gatheringDef = PlayOutDefOf.Council_PlayOutGathering;
             }
         }

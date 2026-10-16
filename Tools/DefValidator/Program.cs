@@ -390,6 +390,8 @@ foreach (var (k, text) in keyed)
 var wishPh = new HashSet<string> { "SUBJECT", "THING", "THINGBARE", "TARGET", "WISH", "MINE", "AMBITION", "VENUE", "COUNT", "FACTION", "TITLE", "DECREE", "YEARS", "DILEMMA", "TRADITION", "OFFICE", "SKILL", "LOST", "DREAM", "GOAL", "SECRET", "LEAKER", "TELLER", "SPEECH", "ITEM", "QUIRK", "OLDGOAL", "NAME", "VICTIM", "DEED", "DAYS", "RELATION", "DEAD", "BEAST", "ENEMY", "TALE", "PLACE", "FOOD", "FOODS", "WORK", "ROOM", "ILLNESS", "THEIRILLNESS" };
 // Camps: the faith a procession follows, the world event refugees fled (CampWords.Fill).
 wishPh.UnionWith(new[] { "IDEO", "SITUATION" });
+// Beliefs: the feast someone sat through with nothing fit to eat (Beliefs.NoteNothingFit).
+wishPh.Add("GATHERING");
 var pawnPrefixes = new HashSet<string> { "PAWN", "FOR", "OTHER", "ENVIED", "ABOUT", "A", "B", "PET", "LEAKER", "TELLER", "X", "SLAYER", "BABY" };
 var pawnSuffixes = new HashSet<string> { "nameDef", "nameFull", "labelShort", "pronoun", "possessive", "objective", "label", "definite", "indefinite", "gender" };
 foreach (var (file, doc) in docs)

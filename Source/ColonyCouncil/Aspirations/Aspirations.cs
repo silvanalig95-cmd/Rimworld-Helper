@@ -229,6 +229,16 @@ namespace ColonyCouncil
             return !Married(p) && (asexual == null || p.story?.traits?.HasTrait(asexual) != true);
         }
 
+        /// <summary>
+        /// A partner they can't share a bed with until they're married (a faith that keeps lovin to the married): the
+        /// wedding becomes what they set their heart on, far more often (Wishes/Beliefs.cs).
+        /// </summary>
+        public static float FaithFactor(Pawn p)
+        {
+            var partner = LovePartnerRelationUtility.ExistingLovePartner(p, false);
+            return partner != null && Beliefs.WaitingForMarriage(p, partner) ? 4f : 1f;
+        }
+
         public override float Progress(Aspiration a)
         {
             if (Married(a.pawn)) return 1f;
@@ -243,7 +253,8 @@ namespace ColonyCouncil
     {
         private static int Children(Pawn p) => p.relations?.Children.Count(c => !c.Dead) ?? 0;
 
-        public override bool CanHave(Pawn p) => ModsConfig.BiotechActive && p.ageTracker != null && Flavor.HumanAge(p) < 45f;
+        /// <summary>Not for someone whose faith forbids lovin altogether (Wishes/Beliefs.cs).</summary>
+        public override bool CanHave(Pawn p) => ModsConfig.BiotechActive && p.ageTracker != null && Flavor.HumanAge(p) < 45f && !Beliefs.Forbids(p, Belief.NoLovin);
 
         public override bool Init(Aspiration a)
         {
@@ -535,7 +546,8 @@ namespace ColonyCouncil
             {
                 if (done.Contains(d) || !DilemmaRole.Fits(d.who, p, d.children) || !OldEnough(d, p) || !SafeCanHave(d, p)) continue;
                 // The heart's need they lack most makes the goals that answer it a little likelier (Heart/).
-                result.Add((d, Sparked(d, p), d.weight * (d.who?.passion != null || d.who?.anyTrait != null ? 2f : 1f) * Heart.GoalFactor(p, d)));
+                result.Add((d, Sparked(d, p), d.weight * (d.who?.passion != null || d.who?.anyTrait != null ? 2f : 1f) * Heart.GoalFactor(p, d)
+                                              * (d.Worker is AspirationWorker_Spouse ? AspirationWorker_Spouse.FaithFactor(p) : 1f)));
             }
             return result;
         }

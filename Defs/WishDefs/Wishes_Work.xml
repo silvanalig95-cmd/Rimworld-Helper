@@ -225,6 +225,7 @@
     <label>a decent {SUBJECT}</label>
     <description>A colonist who lives to fight wants a weapon worth carrying, or a brawler stuck holding a gun wants something to swing.</description>
     <workerClass>ColonyCouncil.WishWorker_BetterWeapon</workerClass>
+    <forbiddenBy><li>NoViolence</li></forbiddenBy>
     <envy>0.5</envy>
     <meToo>true</meToo>
     <triggers>
@@ -296,6 +297,7 @@
     <label>a brewery</label>
     <description>A colonist with a chemical interest wants the colony to brew its own beer.</description>
     <workerClass>ColonyCouncil.WishWorker_Brewery</workerClass>
+    <forbiddenBy><li>NoAlcohol</li></forbiddenBy>
     <lasting>true</lasting>
     <lostText>The colony has no brewing barrel any more.</lostText>
     <envy>0</envy>
