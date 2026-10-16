@@ -392,8 +392,8 @@ namespace ColonyCouncil
             ("HadCatharticFight", RuleKind.Catharsis, 0, 8f, 0)
         };
 
-        private const float GatheringCap = 12f;
-        private const float FriendsCap = 6f;
+        internal const float GatheringCap = 12f;
+        internal const float FriendsCap = 6f;
         /// <summary>The same kind of bad night counts again only this long after the last (once a night).</summary>
         private const int NightTicks = GenDate.TicksPerHour * 14;
 

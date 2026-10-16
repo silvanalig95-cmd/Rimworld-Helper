@@ -108,7 +108,7 @@ namespace ColonyCouncil
             if (steward == null || !attended.Contains(steward) || !Heart.On) return;
             foreach (var p in attended)
                 if (p != null && p != steward && Heart.Eligible(p))
-                    HeartLogic.Change(p, -StewardRelief, StrainRelief.Gathering);
+                    Ease(p, StewardRelief, StrainRelief.Gathering);
         }
 
         // ---------------- Pets and grief ----------------
@@ -132,7 +132,7 @@ namespace ColonyCouncil
                     var person = PetTracker.PersonOf(a);
                     if (person == null || !person.Spawned || person.Map != map || !person.Awake() || !Near(a, person, 6f)) continue;
                     if (!Heart.Eligible(person) || !Grieving(person) || !Ready("petcomfort|" + person.thingIDNumber, 1f)) continue;
-                    HeartLogic.Change(person, -PetComfort, StrainRelief.Friends);
+                    Ease(person, PetComfort, StrainRelief.Friends);
                     if (!Rand.Chance(0.5f)) continue;
                     string text = Line("Council_Pool_Interplay_PetComfort", person, null, a.Named("PET"));
                     if (!text.NullOrEmpty()) News.Post(text, new LookTargets(person, a), NewsKind.People, MessageTypeDefOf.SilentInput, Importance.Flavor);

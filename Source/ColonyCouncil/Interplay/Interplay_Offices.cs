@@ -174,7 +174,7 @@ namespace ColonyCouncil
                 var hm = Officer(Herdmaster);
                 if (hm == null || hm == person || !Able(hm) || !person.Spawned || hm.Map != person.Map) return;
                 if (S.socialWeb) comp.social.Bump(person, hm, TieKind.Friends, 4f, "CC_TieNote_Interplay_PetLost".Translate(pet.LabelShort), true);
-                if (Heart.Eligible(person)) HeartLogic.Change(person, -HerdmasterComfort, StrainRelief.Friends);
+                if (Heart.Eligible(person)) Ease(person, HerdmasterComfort, StrainRelief.Friends);
                 string text = Line("Council_Pool_Interplay_HerdmasterComforts", hm, null, person.Named("OTHER"), pet.Named("PET"));
                 if (!text.NullOrEmpty()) News.Post(text, new LookTargets(hm, person), NewsKind.People, MessageTypeDefOf.SilentInput, Importance.Flavor);
             }
@@ -251,7 +251,7 @@ namespace ColonyCouncil
             var fought = marshal.Map.mapPawns.FreeColonistsSpawned
                 .Where(p => p != marshal && Ours(p) && !p.Downed && (p.mindState?.lastAttackTargetTick ?? -1) >= start && Heart.Eligible(p)).ToList();
             if (fought.Count == 0) return;
-            foreach (var p in fought) HeartLogic.Change(p, -MarshalRelief, StrainRelief.Friends);
+            foreach (var p in fought) Ease(p, MarshalRelief, StrainRelief.Friends);
             string text = Line("Council_Pool_Interplay_MarshalWalks", marshal, null);
             if (!text.NullOrEmpty()) News.Post(text, new LookTargets(marshal), NewsKind.People, MessageTypeDefOf.SilentInput, Importance.Flavor);
         }
