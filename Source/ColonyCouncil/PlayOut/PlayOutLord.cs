@@ -174,11 +174,14 @@ namespace ColonyCouncil
         {
             var map = Map;
             if (map == null) return;
+            // The meals, in the order they're offered, found and sorted once for everyone served now.
+            List<Thing> meals = null;
             foreach (var p in lord.ownedPawns.ToList())
             {
                 if (p == null || served.Contains(p) || fed.Contains(p) || abstained.Contains(p) || !p.Spawned || p.Map != map || !p.Awake()) continue;
                 if (!PlayOuts.CanJoin(p) || p.CurJobDef == JobDefOf.Ingest) continue;
-                var meal = PlaySpots.BestMeal(p, map, spot, out bool noneFit);
+                meals ??= PlaySpots.SortedMeals(map, spot);
+                var meal = PlaySpots.BestMeal(p, meals, out bool noneFit);
                 if (meal == null)
                 {
                     if (noneFit)

@@ -232,19 +232,35 @@ namespace ColonyCouncil
         }
 
         /// <summary>The material row for a floor made of wood, stone or metal: every allowed material, stock first.</summary>
+        // The chosen floor's material row (its material, the choices in stock order and their chips), kept with the rest.
+        private TerrainDef materialsFor;
+        private ThingDef materialsChosen;
+        private List<ThingDef> materialsOptions;
+        private List<string> materialsLabels;
+        private float materialsAt = -1f;
+
         private float DrawMaterials(TerrainDef floor, float width, float y)
         {
-            var chosen = cfg.FloorStuff(floor, map, area);
             int need = floor.CostStuffCount * area;
-            var options = Avail.AllowedStuffs(floor)
-                .Where(s => MaterialPicker.Allowed(s, MaterialUse.Floor) && (s == chosen || !onlyAffordable || Have(s) >= need))
-                .OrderByDescending(s => Have(s))
-                .ThenBy(s => s.label)
-                .ToList();
+            if (materialsFor != floor || materialsOptions == null || materialsAt != keptAt)
+            {
+                materialsFor = floor;
+                materialsAt = keptAt;
+                materialsChosen = cfg.FloorStuff(floor, map, area);
+                var picked = materialsChosen;
+                materialsOptions = Avail.AllowedStuffs(floor)
+                    .Where(s => MaterialPicker.Allowed(s, MaterialUse.Floor) && (s == picked || !onlyAffordable || Have(s) >= need))
+                    .OrderByDescending(s => Have(s))
+                    .ThenBy(s => s.label)
+                    .ToList();
+                materialsLabels = materialsOptions.Select(s => "CC_Floor_MaterialChip".Translate(s.LabelAsStuff.CapitalizeFirst(), Have(s)).ToString()).ToList();
+            }
+            var chosen = materialsChosen;
+            var options = materialsOptions;
+            var labels = materialsLabels;
             const float iconSize = 36f;
             float textX = iconSize + 8f;
             float textW = width - textX;
-            var labels = options.Select(s => "CC_Floor_MaterialChip".Translate(s.LabelAsStuff.CapitalizeFirst(), Have(s)).ToString()).ToList();
             float chipsH = ChipsHeight(labels, textW);
             float h = 48f + chipsH;
             var row = new Rect(0f, y, width, h);

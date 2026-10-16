@@ -433,22 +433,39 @@ namespace ColonyCouncil
         {
             noneFit = false;
             if (p == null || map == null) return null;
-            bool any = false;
-            var fit = new List<Thing>();
-            foreach (var t in Meals(map))
+            return BestMeal(p, SortedMeals(map, spot), out noneFit);
+        }
+
+        /// <summary>
+        /// The colony's meals in the order a colonist is offered them: the finest kind first, then the nearest to the
+        /// spot (a stable sort, ties as the game lists them). Worked out once for everyone a feast serves at a time.
+        /// </summary>
+        public static List<Thing> SortedMeals(Map map, IntVec3 spot)
+        {
+            if (map == null) return new List<Thing>();
+            return Meals(map).OrderByDescending(t => (int)t.def.ingestible.preferability).ThenBy(t => t.Position.DistanceToSquared(spot)).ToList();
+        }
+
+        /// <summary>
+        /// <see cref="BestMeal(Pawn, Map, IntVec3, out bool)"/> from meals already sorted: the first, in that order, that
+        /// they may eat and can reserve and reach (so the meals after it needn't be asked what eating them would do);
+        /// <paramref name="noneFit"/> when there are meals and none of them is fit for them. The same meal and the same
+        /// answer as sorting the fit ones for each colonist, without asking every meal of every colonist.
+        /// </summary>
+        public static Thing BestMeal(Pawn p, List<Thing> sorted, out bool noneFit)
+        {
+            noneFit = false;
+            if (p == null || sorted == null) return null;
+            bool anyFit = false;
+            for (int i = 0; i < sorted.Count; i++)
             {
-                any = true;
-                if (!t.IsForbidden(p) && !Beliefs.MindsEating(p, t)) fit.Add(t);
+                var t = sorted[i];
+                if (t.IsForbidden(p) || Beliefs.MindsEating(p, t)) continue;
+                anyFit = true;
+                if (p.CanReserve(t, 10, 1) && p.CanReach(t, PathEndMode.ClosestTouch, Danger.Some)) return t;
             }
-            if (any && fit.Count == 0)
-            {
-                noneFit = true;
-                return null;
-            }
-            return fit
-                .OrderByDescending(t => (int)t.def.ingestible.preferability)
-                .ThenBy(t => t.Position.DistanceToSquared(spot))
-                .FirstOrDefault(t => p.CanReserve(t, 10, 1) && p.CanReach(t, PathEndMode.ClosestTouch, Danger.Some));
+            noneFit = sorted.Count > 0 && !anyFit;
+            return null;
         }
     }
 }

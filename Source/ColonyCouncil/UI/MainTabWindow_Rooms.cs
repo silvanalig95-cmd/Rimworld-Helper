@@ -70,7 +70,8 @@ namespace ColonyCouncil
             Widgets.CheckboxLabeled(new Rect(inRect.xMax - 250f, inRect.y + 4f, 250f, 24f), "CC_Build_OnlyAvailable".Translate(), ref onlyAvailable);
             if (before != onlyAvailable) SetInitialSizeAndPosition();
 
-            var suggested = SuggestedRooms(map);
+            // The advisor's suggestions and the group headings, worked out once a second rather than every frame.
+            var suggested = UiCache.Get(map, 6101, () => SuggestedRooms(map));
             var heights = Layout(map, out var columns);
             var outRect = new Rect(inRect.x, inRect.y + TopH, inRect.width, inRect.height - TopH - BottomH);
             var viewRect = new Rect(0f, 0f, outRect.width - (heights.Max() > outRect.height ? 16f : 0f), heights.Max());
@@ -81,9 +82,8 @@ namespace ColonyCouncil
                 float y = 0f;
                 foreach (var block in columns[c])
                 {
-                    string key = "CC_BuildGroup_" + block.group;
                     GUI.color = Faint;
-                    Widgets.Label(new Rect(x, y, ColW, HeaderH), key.CanTranslate() ? key.Translate().ToString() : block.group ?? "");
+                    Widgets.Label(new Rect(x, y, ColW, HeaderH), GroupLabel(block.group));
                     GUI.color = Color.white;
                     Widgets.DrawLineHorizontal(x, y + HeaderH - 3f, ColW);
                     y += HeaderH;
@@ -163,6 +163,20 @@ namespace ColonyCouncil
             string tip = Flavor.PickTip(t.tips, 0);
             if (!tip.NullOrEmpty()) lines.Add("\n" + tip);
             return string.Join("\n", lines);
+        }
+
+        private static readonly Dictionary<string, string> groupLabels = new Dictionary<string, string>();
+
+        /// <summary>A group's heading ("CC_BuildGroup_Living"), translated once.</summary>
+        private static string GroupLabel(string group)
+        {
+            string g = group ?? "";
+            if (!groupLabels.TryGetValue(g, out var label))
+            {
+                string key = "CC_BuildGroup_" + group;
+                groupLabels[g] = label = key.CanTranslate() ? key.Translate().ToString() : group ?? "";
+            }
+            return label;
         }
 
         /// <summary>Rooms the advisor's current warnings point at, with the warning that asks for them.</summary>

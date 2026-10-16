@@ -96,12 +96,13 @@ namespace ColonyCouncil
                 if (t.Destroyed || !t.Spawned) continue;
                 var drug = t.def.GetCompProperties<CompProperties_Drug>();
                 if (teetotaler && (drug == null || !drug.teetotalerCanConsume)) continue;
-                // Their faith and policies (Wishes/Beliefs.cs): no drink a precept frowns on (beer for one who abstains),
-                // nothing that would leave a bad memory.
-                if (!Allowed(p, t.def) || Beliefs.MindsEating(p, t)) continue;
+                // Only a drink that would beat the best so far is asked about further (the same pick, fewer questions).
                 float value = t.def.BaseMarketValue;
                 float dist = t.Position.DistanceToSquared(spot);
                 if (value < bestValue || (value == bestValue && dist >= bestDist)) continue;
+                // Their faith and policies (Wishes/Beliefs.cs): no drink a precept frowns on (beer for one who abstains),
+                // nothing that would leave a bad memory.
+                if (!Allowed(p, t.def) || Beliefs.MindsEating(p, t)) continue;
                 if (t.IsForbidden(p) || !p.CanReserve(t, 10, 1) || !p.CanReach(t, PathEndMode.ClosestTouch, Danger.Some)) continue;
                 best = t;
                 bestValue = value;

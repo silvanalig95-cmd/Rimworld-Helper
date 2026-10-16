@@ -52,6 +52,8 @@ DOMAINS = [
     (r"(?i)entries|chronicle|lines|log\b|records|history|samples|journal", 40, "history"),
 ]
 DEFAULT_DOMAIN = (12, "list")
+# A line's tags and their alternatives, a word's parts: a handful (checked before the domains above).
+SMALL_DOMAIN = (r"(?i)^\s*(\w+\.)?(alts|era|tags|parts|words|args|pair|pieces|stages|sides|faces)\s*$", 3, "few")
 
 # Costly things, weighted in rough units of work (a LINQ iterator with its delegate is about 1).
 # (category, weight, regex on the masked code). The regexes run on code with comments and string contents blanked.
@@ -111,6 +113,9 @@ HARMONY_FREQ = {
     "GenRecipe.PostProcessProduct": 30, "GenRecipe.MakeRecipeProducts": 30, "Frame.CompleteConstruction": 30,
     "Frame.FailConstruction": 3, "FloatMenu..ctor": 5, "LetterStack.ReceiveLetter": 2,
     "MentalStateHandler.TryStartMentalState": 2, "Pawn.Kill": 3, "Faction.TryAffectGoodwillWith": 2,
+    "ThingWithComps.GetInspectString": FRAMES_PER_HOUR, "Thing.DescriptionDetailed": FRAMES_PER_HOUR / 10,
+    "Thing.DescriptionFlavor": FRAMES_PER_HOUR / 10, "ThingWithComps.DescriptionFlavor": FRAMES_PER_HOUR / 10,
+    "TendUtility.DoTend": 20, "JobDriver_VisitSickPawn.MakeNewToils": 5,
 }
 HARMONY_DEFAULT = 2  # a game event (a death, a raid, a trade, a letter)
 
@@ -137,6 +142,7 @@ ROOTS = {
     "DrawGUIOverlay": (GUI_PER_HOUR, "every GUI event per thing on screen", "frame"),
     "GizmoOnGUI": (GUI_PER_HOUR, "every GUI event while selected", "frame"),
     "DoCell": (GUI_PER_HOUR * 20, "every GUI event per row", "frame"),
+    "LordJobTick": (TICKS_PER_HOUR, "every tick while the gathering lasts", "tick"),
     "CurrentStateInternal": (TICKS_PER_HOUR / 100 * COLONISTS, "every 100 ticks per colonist (vanilla)", "mood"),
     "CurrentSocialStateInternal": (TICKS_PER_HOUR / 100 * COLONISTS * (COLONISTS - 1) / 4, "every 100 ticks per pair asked about", "mood"),
     "MoodOffset": (TICKS_PER_HOUR / 150 * COLONISTS * 2, "each mood update per colonist", "mood"),
@@ -571,6 +577,8 @@ def domain_of(expr):
     for _ in range(4):
         flat = re.sub(r"\([^()]*\)", "()", flat)
     expr = flat
+    if re.search(SMALL_DOMAIN[0], expr):
+        return SMALL_DOMAIN[1], SMALL_DOMAIN[2]
     for rx, n, what in DOMAINS:
         if re.search(rx, expr):
             return n, what
@@ -1081,6 +1089,9 @@ class Analyzer:
             memo = None
             if re.fullmatch(r"return\b[^;]*;", stmt) and (MEMO_HIT_RX.search(cond) and "==" not in cond):
                 memo = (1e-3, ["built once"])
+            elif re.fullmatch(r"return\b[^;]*;", stmt) and "TryGetValue" in cond:
+                # if (kept.TryGetValue(key, out v) && still fresh) return v: what follows runs on a miss.
+                memo = (1 / 30, ["cached"])
             nm = re.search(r"\b([\w\.]+)\s*==\s*null\b", cond)
             if nm and re.search(r"(?<![\w\.])" + re.escape(nm.group(1).split(".")[-1]) + r"\s*(=(?!=)|\?\?=)", stmt) and not stmt.startswith("return"):
                 memo = (1e-3, ["built once"])
