@@ -292,6 +292,7 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_DlmLv_SharedIt</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Tie"><withB>true</withB><kind>Friends</kind><amount>6</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><who>A</who><to>Person</to><whom>B</whom><hours>9~17</hours><label>playing in the den together</label></li>
         </effects>
         <riskChance>0.3</riskChance>
         <riskOutcome>The council said they'd share it. {A_nameDef} and {B_nameDef} took turns for exactly one day, and then the shouting started again. The den is now a pile of sticks.</riskOutcome>

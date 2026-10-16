@@ -35,6 +35,11 @@ namespace ColonyCouncil
         public ArcPerson b = ArcPerson.Other;
         public string ifTag;
         public List<DilemmaEffect> effects;
+        /// <summary>
+        /// What passes between A and B here (a memory of each other, a bond) waits until the two are together
+        /// (Together.When; after a few hours one goes to find the other), for up to two days.
+        /// </summary>
+        public bool together;
 
         public static Pawn Who(Arc arc, ArcPerson p) => arc == null ? null : p == ArcPerson.Third ? arc.third : p == ArcPerson.Other ? (arc.OtherIsAnimal ? null : arc.other) : arc.pawn;
 
@@ -61,6 +66,20 @@ namespace ColonyCouncil
             };
             if (c.a == null || c.a.Dead) return;
             if (c.b == c.a || (c.b != null && c.b.Dead)) c.b = null;
+            // together: with `together`, what passes between the two waits until they are really together, and after a
+            // few hours one walks over to the other.
+            if (together && c.b != null)
+            {
+                string key = "arccast|" + arc.def?.defName + "|" + c.a.thingIDNumber + "|" + c.b.thingIDNumber + "|" + a + b;
+                Together.When(key, c.a, c.b, () => Run(c, arc), 48f, 4f);
+                return;
+            }
+            Run(c, arc);
+        }
+
+        private void Run(ArcEffectContext c, Arc arc)
+        {
+            if (c.a == null || c.a.Dead || (c.b != null && c.b.Dead)) return;
             foreach (var e in effects)
             {
                 try

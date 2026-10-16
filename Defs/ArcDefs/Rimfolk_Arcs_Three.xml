@@ -195,12 +195,12 @@
         <effects>
           <li Class="ColonyCouncil.ArcEffect_Cast">
             <ifTag>won</ifTag>
-            <a>Colonist</a><b>Other</b>
+            <a>Colonist</a><b>Other</b><together>true</together>
             <effects><li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Arc_ChoseMe</thought></li></effects>
           </li>
           <li Class="ColonyCouncil.ArcEffect_Cast">
             <ifTag>won</ifTag>
-            <a>Third</a><b>Colonist</b>
+            <a>Third</a><b>Colonist</b><together>true</together>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Arc_LostInLove</thought></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Arc_FairRival</thought><chance>0.5</chance></li>
@@ -208,7 +208,7 @@
           </li>
           <li Class="ColonyCouncil.ArcEffect_Cast">
             <ifTag>lost</ifTag>
-            <a>Colonist</a><b>Third</b>
+            <a>Colonist</a><b>Third</b><together>true</together>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Arc_LostInLove</thought></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Arc_FairRival</thought><chance>0.5</chance></li>
@@ -216,12 +216,12 @@
           </li>
           <li Class="ColonyCouncil.ArcEffect_Cast">
             <ifTag>lost</ifTag>
-            <a>Third</a><b>Other</b>
+            <a>Third</a><b>Other</b><together>true</together>
             <effects><li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Arc_ChoseMe</thought></li></effects>
           </li>
           <li Class="ColonyCouncil.ArcEffect_Cast">
             <ifTag>neither</ifTag>
-            <a>Colonist</a><b>Third</b>
+            <a>Colonist</a><b>Third</b><together>true</together>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Arc_FairRival</thought></li>
               <li Class="ColonyCouncil.ArcEffect_Tie"><kind>Rivals</kind><amount>-20</amount></li>
@@ -436,11 +436,11 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Arc_BothMyStudents</thought></li>
           <li Class="ColonyCouncil.ArcEffect_Mentorship"><aTeaches>true</aTeaches></li>
           <li Class="ColonyCouncil.ArcEffect_Cast">
-            <a>Colonist</a><b>Third</b>
+            <a>Colonist</a><b>Third</b><together>true</together>
             <effects><li Class="ColonyCouncil.ArcEffect_Mentorship"><aTeaches>true</aTeaches></li></effects>
           </li>
           <li Class="ColonyCouncil.ArcEffect_Cast">
-            <a>Other</a><b>Third</b>
+            <a>Other</a><b>Third</b><together>true</together>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Arc_FellowStudent</thought></li>
               <li Class="ColonyCouncil.ArcEffect_Tie"><kind>Friends</kind><amount>12</amount></li>
@@ -648,7 +648,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Arc_FamilyMended</thought></li>
           <li Class="ColonyCouncil.ArcEffect_Strain"><amount>-8</amount></li>
           <li Class="ColonyCouncil.ArcEffect_Cast">
-            <a>Other</a><b>Third</b>
+            <a>Other</a><b>Third</b><together>true</together>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Arc_SiblingsAgain</thought></li>
               <li Class="ColonyCouncil.ArcEffect_Tie"><kind>Rivals</kind><amount>-100</amount></li>
@@ -821,7 +821,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Arc_OutOfTheMiddle</thought></li>
           <li Class="ColonyCouncil.ArcEffect_Strain"><amount>-6</amount></li>
           <li Class="ColonyCouncil.ArcEffect_Cast">
-            <a>Other</a><b>Third</b>
+            <a>Other</a><b>Third</b><together>true</together>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Arc_HeardMeOut</thought></li>
               <li Class="ColonyCouncil.ArcEffect_Tie"><kind>Rivals</kind><amount>-100</amount></li>

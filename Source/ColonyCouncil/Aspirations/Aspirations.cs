@@ -641,7 +641,7 @@ namespace ColonyCouncil
             string old = a.Goal;
             all.Remove(a);
             Aspiration b = null;
-            if (!Fulfilled(p).Any(x => x.def == next) && OldEnough(next, p) && SafeCanHave(next, p)) b = Begin(comp, p, next, "grewup", null, old);
+            if (!Fulfilled(p).Any(x => x.def == next) && OldEnough(next, p) && !next.AgainstBeliefsOf(p) && SafeCanHave(next, p)) b = Begin(comp, p, next, "grewup", null, old);
             if (b == null) comp.journals.Write(p, "Council_Journal_GoalOutgrown", null, old.Named("OLDGOAL"));
             else comp.journals.Write(p, "Council_Journal_GoalGrewUp", null, old.Named("OLDGOAL"), b.Goal.Named("GOAL"));
             return true;
@@ -742,6 +742,7 @@ namespace ColonyCouncil
             string text = "CC_Asp_DiedBefore".Translate(p.Named("PAWN"), a.Goal.Named("GOAL")).Resolve();
             comp.AddChronicle(new ChronicleEntry(ChronicleKind.Life, text, null));
             // A last wish left undone weighs on those who loved them (a memory, a small one beside the grief itself).
+            // apart: a memory of someone dead, felt wherever the friend is.
             var unmet = a.def.lastWish ? DefDatabase<ThoughtDef>.GetNamedSilentFail("Council_Asp_LastWishUnmet") : null;
             foreach (var f in PawnsFinder.AllMaps_FreeColonists.ToList().Where(f => f != p && f.relations != null && (f.relations.OpinionOf(p) >= 30 || comp.social.Warmth(f, p) >= 35f)).Take(4))
             {
@@ -756,7 +757,7 @@ namespace ColonyCouncil
                 .Where(f => f != p && f.relations != null && !f.DevelopmentalStage.Juvenile() && (f.relations.OpinionOf(p) >= 50 || comp.social.Warmth(f, p) >= 50f))
                 .Where(f => Active(f) == null || (Active(f).Progress < 0.35f && !Active(f).inherited))
                 // Anyone may finish a last wish for the old one who made it, whatever their own age.
-                .Where(f => (a.def.lastWish || (DilemmaRole.Fits(a.def.who, f, a.def.children) && OldEnough(a.def, f))) && SafeCanHave(a.def, f) && !Fulfilled(f).Any(x => x.def == a.def))
+                .Where(f => (a.def.lastWish || (DilemmaRole.Fits(a.def.who, f, a.def.children) && OldEnough(a.def, f))) && !a.def.AgainstBeliefsOf(f) && SafeCanHave(a.def, f) && !Fulfilled(f).Any(x => x.def == a.def))
                 .OrderByDescending(f => f.relations.OpinionOf(p) + comp.social.Warmth(f, p)).FirstOrDefault();
             // A last wish is likelier to be taken up.
             if (heir == null || !Rand.Chance(a.def.lastWish ? 0.8f : 0.5f)) return;

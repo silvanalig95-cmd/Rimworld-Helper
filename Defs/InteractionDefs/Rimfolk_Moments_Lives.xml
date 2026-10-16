@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Moments that ask for a quirk (initiatorTags or recipientTags quirk:Name; a colonist's quirks are part of who they
+    are). Ordinary conversations, picked by the game among the others when two colonists are face to face.
+  -->
+
+  <InteractionDef ParentName="Council_MomentBase">
+    <defName>Council_Moment_QuirkProverb</defName>
+    <label>offered an old saying</label>
+    <recipientThought>Council_SocLv_WiseWord</recipientThought>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[RECIPIENT_nameDef] was grumbling about [trouble], and [INITIATOR_nameDef] answered with [saying].</li>
+        <li>trouble->the weather</li>
+        <li>trouble->a job gone wrong</li>
+        <li>trouble->the state of the stores</li>
+        <li>trouble->somebody else's temper</li>
+        <li>saying->"rain today, bread tomorrow"</li>
+        <li>saying->"the best ploughman still turns a crooked furrow"</li>
+        <li>saying->"a slow ox ploughs deep"</li>
+        <li>saying->"you can't hurry the harvest"</li>
+        <li>saying->"every cloud has a silver lining", which helped less</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] an old saying about patience. [RECIPIENT_nameDef] thought about it longer than [RECIPIENT_pronoun] wanted to.</li>
+        <li>r_logentry->[INITIATOR_nameDef] had a proverb for [RECIPIENT_nameDef]'s problem. It was annoyingly to the point.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+    <modExtensions>
+      <li Class="ColonyCouncil.MomentExtension">
+        <weight>0.06</weight>
+        <cooldownDays>3</cooldownDays>
+        <tone>warm</tone>
+        <initiatorTags>quirk:Proverbs</initiatorTags>
+        <minOpinion>-5</minOpinion>
+      </li>
+    </modExtensions>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Council_FrictionMomentBase">
+    <defName>Council_Friction_NightLight</defName>
+    <label>complained about the light at night</label>
+    <initiatorThought>Council_Friction_KeptUpByLight</initiatorThought>
+    <recipientThought>Council_Friction_LightMocked</recipientThought>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether the candle really had to burn all night. [RECIPIENT_nameDef] said yes.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] [RECIPIENT_possessive] night light had kept [INITIATOR_objective] awake [when].</li>
+        <li>when->until the small hours</li>
+        <li>when->through two whole dreams</li>
+        <li>when->most of the night</li>
+        <li>r_logentry->[INITIATOR_nameDef] blew out [RECIPIENT_nameDef]'s candle in the night, and [RECIPIENT_nameDef] lit it again, and they had words about it at breakfast.</li>
+        <li>r_logentry->[INITIATOR_nameDef] offered [RECIPIENT_nameDef] a blindfold, for [INITIATOR_objective]self, and made a point of it.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+    <modExtensions>
+      <li Class="ColonyCouncil.MomentExtension">
+        <weight>0.05</weight>
+        <cooldownDays>3</cooldownDays>
+        <tone>friction</tone>
+        <soreHours>8</soreHours>
+        <shares>bedroom</shares>
+        <initiatorTags>!trait:Kind,morning|day</initiatorTags>
+        <recipientTags>quirk:NightLight</recipientTags>
+      </li>
+    </modExtensions>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Council_MomentBase">
+    <defName>Council_Moment_WorrierChecks</defName>
+    <label>checked it together</label>
+    <initiatorThought>Council_SocLv_WorryEased</initiatorThought>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] to check [thing] with [INITIATOR_objective], just once more. [RECIPIENT_nameDef] did, patiently.</li>
+        <li>thing->the bolts on the gate</li>
+        <li>thing->the fire was really out</li>
+        <li>thing->how much food was left</li>
+        <li>thing->the roof over the storeroom</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] everything that could go wrong tomorrow. [RECIPIENT_nameDef] told [INITIATOR_objective] what they'd do about each one.</li>
+        <li>r_logentry->[RECIPIENT_nameDef] sat with [INITIATOR_nameDef] until the worrying ran out of things to worry about.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+    <modExtensions>
+      <li Class="ColonyCouncil.MomentExtension">
+        <weight>0.05</weight>
+        <cooldownDays>3</cooldownDays>
+        <tone>warm</tone>
+        <initiatorTags>quirk:Worrier</initiatorTags>
+        <minOpinion>10</minOpinion>
+      </li>
+    </modExtensions>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Council_MomentBase">
+    <defName>Council_Moment_ShownTheStars</defName>
+    <label>pointed out the stars</label>
+    <recipientThought>Council_Moment_ShownTheStars</recipientThought>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] showed [RECIPIENT_nameDef] [stars], and [RECIPIENT_nameDef] couldn't see it until suddenly [RECIPIENT_pronoun] could.</li>
+        <li>stars->the shape [INITIATOR_pronoun] calls the Plough</li>
+        <li>stars->the star that never moves</li>
+        <li>stars->a red star [INITIATOR_pronoun] says is a whole other sun</li>
+        <li>stars->the long smear of light across the sky</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] lay on their backs and [INITIATOR_nameDef] named the stars. Some of the names were made up.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] how to find the way home by the stars, if [RECIPIENT_pronoun] ever needed to.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+    <modExtensions>
+      <li Class="ColonyCouncil.MomentExtension">
+        <weight>0.06</weight>
+        <cooldownDays>3</cooldownDays>
+        <tone>warm</tone>
+        <initiatorTags>quirk:Stargazer,night|evening,outside</initiatorTags>
+        <minOpinion>0</minOpinion>
+      </li>
+    </modExtensions>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Council_MomentBase">
+    <defName>Council_Moment_StoryForTheLittleOne</defName>
+    <label>told a little one a story</label>
+    <recipientThought>Council_SocLv_StoryHour</recipientThought>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] the story of [tale], with all the voices.</li>
+        <li>tale->the clever fox and the farmer's hens</li>
+        <li>tale->the mouse who wasn't afraid of the dark</li>
+        <li>tale->the first winter, with a bear in it this time</li>
+        <li>tale->the three brothers and the talking well</li>
+        <li>r_logentry->[RECIPIENT_nameDef] asked [INITIATOR_nameDef] for a story, and got two, and asked for a third.</li>
+        <li>r_logentry->[INITIATOR_nameDef] started a story for [RECIPIENT_nameDef] and stopped at the best part, on purpose, until tomorrow.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+    <modExtensions>
+      <li Class="ColonyCouncil.MomentExtension">
+        <weight>0.07</weight>
+        <cooldownDays>2</cooldownDays>
+        <tone>warm</tone>
+        <initiatorTags>quirk:Storyteller</initiatorTags>
+        <recipientTags>child</recipientTags>
+        <minOpinion>0</minOpinion>
+      </li>
+    </modExtensions>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Council_MomentBase">
+    <defName>Council_Moment_CountedTogether</defName>
+    <label>counted something</label>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] counted the steps to the well out loud, and [RECIPIENT_nameDef] found [RECIPIENT_objective]self counting along.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] how many [things] there were in the colony. [RECIPIENT_nameDef] hadn't asked.</li>
+        <li>things->fence posts</li>
+        <li>things->roof beams in the hall</li>
+        <li>things->chickens, as of this morning</li>
+        <li>things->stones in the path</li>
+        <li>r_logentry->[RECIPIENT_nameDef] bet [INITIATOR_nameDef] couldn't say how many windows the colony has. [INITIATOR_nameDef] could, and did.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+    <modExtensions>
+      <li Class="ColonyCouncil.MomentExtension">
+        <weight>0.04</weight>
+        <cooldownDays>4</cooldownDays>
+        <tone>neutral</tone>
+        <initiatorTags>quirk:CountsThings</initiatorTags>
+        <minOpinion>-20</minOpinion>
+      </li>
+    </modExtensions>
+  </InteractionDef>
+
+</Defs>

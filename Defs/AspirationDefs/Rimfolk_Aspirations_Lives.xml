@@ -24,6 +24,7 @@
     <gain>2</gain>
     <weight>0.9</weight>
     <goal>learn letters and numbers properly</goal>
+    <forbiddenBy><li>NoBooks</li></forbiddenBy>
     <who><child>true</child></who>
     <growsInto>Council_Asp2_Scholar</growsInto>
     <chosen>
@@ -113,6 +114,7 @@
     <workerClass>ColonyCouncil.AspirationWorker_OwnAnimal</workerClass>
     <weight>1</weight>
     <goal>have an animal of their very own</goal>
+    <forbiddenBy><li>NoPets</li></forbiddenBy>
     <who><child>true</child></who>
     <growsInto>Council_Asp_Tamer</growsInto>
     <chosen>
@@ -237,6 +239,7 @@
     <amount>5</amount>
     <weight>0.8</weight>
     <goal>see what lies past the hills</goal>
+    <forbiddenBy><li>NoTravel</li></forbiddenBy>
     <who><minAge>13</minAge><maxAge>19.9</maxAge></who>
     <growsInto>Council_Asp3_Freedom</growsInto>
     <grownAge>20</grownAge>
@@ -266,6 +269,7 @@
     <workerClass>ColonyCouncil.AspirationWorker_Lover</workerClass>
     <weight>0.8</weight>
     <goal>fall in love for the first time</goal>
+    <forbiddenBy><li>NoLovin</li></forbiddenBy>
     <who><minAge>16</minAge><maxAge>19.9</maxAge><notTrait><li>Psychopath</li></notTrait></who>
     <growsInto>Council_Asp_Marry</growsInto>
     <grownAge>20</grownAge>
@@ -425,6 +429,7 @@
     <amount>0.9</amount>
     <weight>1.2</weight>
     <goal>find their faith again</goal>
+    <forbiddenBy><li>NoReligion</li></forbiddenBy>
     <sparks><li>loss</li><li>omen</li></sparks>
     <lostThought>Council_Asp_GaveUpGoal</lostThought>
     <chosen>
@@ -453,6 +458,7 @@
     <workerClass>ColonyCouncil.AspirationWorker_FaithGrows</workerClass>
     <weight>1</weight>
     <goal>bring someone else to their faith</goal>
+    <forbiddenBy><li>NoReligion</li></forbiddenBy>
     <sparks><li>omen</li><li>birth</li></sparks>
     <chosen>
       <plain>
@@ -482,6 +488,7 @@
     <weight>0.9</weight>
     <minAge>20</minAge>
     <goal>find someone to love</goal>
+    <forbiddenBy><li>NoLovin</li></forbiddenBy>
     <who><notTrait><li>Psychopath</li></notTrait></who>
     <sparks><li>thought:AttendedWedding</li><li>loss</li></sparks>
     <lostThought>Council_Asp_GaveUpGoal</lostThought>
