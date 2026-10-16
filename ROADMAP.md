@@ -245,18 +245,18 @@ the content itself, not only to systems, alongside whatever else it does. Where 
 
 | Content | Count | Grow toward |
 |---|---|---|
-| Rimfolk events, story stages and missions | 170 (9 mission kinds, 5 → 9) | more everyday events per group, more chains, more mission kinds |
+| Rimfolk events, story stages and missions | 182 (13 mission kinds, 9 → 13: a pilgrim to escort, word to carry, a lost child, hands for a harvest; 6 aftermath events after world events, 2 vendetta endings) | more everyday events per group, more chains, more mission kinds |
 | Wishes | 107 | more seasonal and biome wishes, more for the always-on mods (Alpha mods, Vanilla Expanded furniture) |
 | Council projects (ambitions) | 54 (3 in stages) | more staged and season-long projects, more for tribal and spacer colonies |
 | Life goals | 63 | goals for teenagers, more for faith and the heart, goals that change with age |
 | Dilemmas | 132 | more for children, elders and the camps; dilemmas for each new system as it lands |
-| Encounters | 172 (5 new for what a stranger's people remember, 8 for the land's shape, 3 for Seasonal Weather's skies) | more lands (lakes, rivers), more mods' creatures, peoples and biomes, rarer night and weather moments |
+| Encounters | 176 (4 new for the one colonist a people remembers by name, 5 for what a stranger's people remember, 8 for the land's shape, 3 for Seasonal Weather's skies) | more lands (lakes, rivers), more mods' creatures, peoples and biomes, rarer night and weather moments |
 | Decrees | 19 | decrees tied to world situations, faith and mods (tithes, curfews, alms) |
 | Quirks | 32 (13 now touch others, through 12 social events; a lucky thing says whose it is, and whose it was) | quirks in moments and dilemmas, more from events and dreams |
 | Personal stories | 17 (65 stages; 1 for A RimWorld of Magic's classes) | stories from camps, offices and world events, more for children and elders, stories of three |
 | Dreams | 128 (5 new from other systems' moments) | dreams for more feelings, quirks, life goals and mod content |
-| World events | 32 | more regional situations, and more follow-ups (relief from old friends and refugees to see through follow plagues, famines, floods and hard winters) |
-| Camp kinds | 11 | caravans of every kind, pilgrims of every faith |
+| World events | 44 (32 → 44: 10 regional, 2 that follow another's end), and 6 aftermath events when one ends | world events for more peoples and mods, follow-ups for the newer ones, more beats per event |
+| Camp kinds | 19 (11 → 19: caravans, merchants, drovers, penitents, tree-singers, a healer, minstrels, mourners), with 19 things the colony can ask of them | camps for more eras and mods, asks for the older kinds |
 | Ailments | 34 everyday (2 for Alpha Biomes' lands), 14 serious; convalescence from 4 causes, 2 healers' names | ailments for every biome and DLC, more after-effects |
 | Room types | 28 (108 layouts, 6 themes) | odd shapes beyond partitions, more spacer and mod-furniture sizes, themes for more furniture mods |
 | Calendar days and ways to keep them | 9 kinds, 4 ways (about 440 lines) | more kinds of day, lines per biome and faith |
@@ -264,12 +264,12 @@ the content itself, not only to systems, alongside whatever else it does. Where 
 | Lines in the flavor pools (variety report) | about 25,200 in 3,640 pools | the pools at the top of the report |
 | Social events, moments, frictions, nuisances | 79 (12 from quirks), 131 (44 frictions, 4 that follow something real), 22 | every trait pairing and home condition, moments that ask for a quirk |
 | Links between Rimfolk's own systems | 32 (offices at work, the heart in choices, stories that hear the world, the peoples' memory at camps and in encounters, setbacks into wishes and stories, a colonist's day in the news) | links for each new system as it lands: the camps and world events into the council, the calendar into dreams and life goals |
-| Secrets | 52 (2 for scenarios only), each with its own confide and graveside lines | secrets tied to world events and camps, more good ones, dilemmas for the newer ones |
-| Ways a vendetta is sworn and settled | 3 sworn (a death, a kidnapping, a bonded animal), 5 settled (blood, captives, a homecoming, laid down, laid down in peace) | a ransom paid, an apology from the faction, a vendetta passed to an heir |
+| Secrets | 61 (2 for scenarios only; 9 that only come during a world event or a camp, 5 of them good), each with its own confide and graveside lines | more good ones, dilemmas for the newer ones |
+| Ways a vendetta is sworn and settled | 3 sworn (a death, a kidnapping, a bonded animal), 8 settled (blood, captives, a homecoming, laid down, laid down in peace, the blood price, an apology, passed to an heir) | vendettas against nemeses, dilemmas when an heir takes one up |
 | Council offices | 9 (4 open as the colony grows) | offices for faith, the camps and the calendar's rites, a council of elders for a large colony |
 | Customs that can become traditions | 13 (6 new seasonal ones this round) | customs for each biome and faith, children's customs |
 | Rimfolk scenarios | 13 (7 gentle, 6 with stakes) | a tribe's start, a spacer crash with a secret, an orphanage |
-| Names (epithets) | 45 (4 from Rimfolk's own records) | names from the camps, the calendar and world events |
+| Names (epithets) | 54 (8 from Rimfolk's own records; 5 given for one deed beyond the walls) | names from offices, faith and the colony's years |
 | Advisor checks | 43 | checks for the newer systems (missions, the world page), more for tribal colonies |
 | Colony character | 5 ways (10 names), 6 things a colony grows into | traits from hospitality, faith and the calendar |
 | Pets and nemeses | 14 heroics, 32 farewells, 22 taunts and parting words, 4 endings told from pools (one new: let go from the cells) | pets in the calendar, nemeses in dreams and personal stories |

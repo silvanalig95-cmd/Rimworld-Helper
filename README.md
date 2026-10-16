@@ -440,19 +440,23 @@ remembered by the one who shared it. At most one per colonist; how often is a se
 The Almanac page "personal stories" lists them all.
 
 ### Secrets, vendettas and eulogies
-Some colonists carry a **secret** (52 of them), often from the life their backstory hints at: a raider's past, noble
+Some colonists carry a **secret** (61 of them), often from the life their backstory hints at: a raider's past, noble
 blood, a deserter's shame, a doctor's fatal mistake, a child left behind, a borrowed name, a pirate's debt, an old
 illness, a lost caravan, a childhood in the camps, a broken vow, a banishment by vote, a hidden kindness. You don't
 get told. You only see when they confide in a close friend, and the news of it hints without telling. A confidant who
 later falls out with them is likely to let it slip; at rock bottom some blurt it out themselves. When it comes out,
 everyone reacts according to their nature, betrayed confidences make enemies, and sometimes the council has to decide
-what to do about it. A secret someone knew comes out at the graveside, each in its own way.
+what to do about it. A secret someone knew comes out at the graveside, each in its own way. A few are born of what
+goes on beyond the walls and only come while it does: medicine slipped to a neighbor's sick in a plague year, a verse
+given to the minstrels, bread left out for exiles, a debt at a caravan's dice.
 
 When raiders kill or carry off someone, or kill a bonded animal in a fight, the people who loved them swear a
 **vendetta** on that faction: a weight they carry, fury when those colours show up again, outrage if the council
 makes peace with the killers. It ends when enough of them fall or are taken alive in the fights that come anyway,
-when the one carried off comes home, or when the avenger lays it down in time (sooner if kind, likelier once there's
-peace, never if bloodthirsty).
+when the one carried off comes home, when the avenger lays it down in time (sooner if kind, likelier once there's
+peace, never if bloodthirsty), or when the killers send the **blood price** or, once there's peace, come to
+**apologise** (the council can take it, refuse it, or leave it to the avenger). An avenger who dies with the oath
+still open while the war goes on may pass it to an **heir**: their kin, their partner or a close friend.
 
 When someone dies, the person closest to them speaks a **eulogy** at the grave, about who the dead really were:
 the years they gave, the name they earned, the goal they never reached, who killed them.
@@ -514,7 +518,8 @@ Colonists meet everyone else on the map, too:
   from the biome and the tile, so other mods' biomes count too.
 - **What their people remember:** a visitor whose people the colony once rescued thanks them, a trader of a grateful
   people gives a friend's price, one whose people hold a grudge charges double or won't haggle, and a visitor whose
-  people helped the colony mentions it. 161 kinds of encounter in all. Most of these small
+  people helped the colony mentions it, and one whose people remember a colonist by name stops them to say thank
+  you. 176 kinds of encounter in all. Most of these small
   moments give something other than mood: recreation for a herd going by or a clear night, comfort for a trick
   against the cold, practice, a little research, awe, and for the smallest only a line in the journal.
 - **The council decides** when it gets harder: a visitor who wants to stay, a rude guest, a trader who wants an
@@ -725,7 +730,10 @@ less flattering ones (*the Broom*, *the Mule*, *the Kindling* for whoever keeps 
 *Patchwork*, *the Bottomless*). Some come with time: *the Old Hand*, *Homegrown*, and *the Unshaken* and *Lucky*,
 lost the day they break or take a scratch. Four come from deeds Rimfolk counts in the Records tab: *the Mender*
 (quarrels mended), *the Haggler* (trade deals struck), *the Vault* (secrets kept) and *the Mourner* (eulogies
-given). 45 names in all. Each year since a colonist joined, they
+given). Out in the world, a colonist can be *Friend of the Road* (evenings at the camps' fires), *the Gatekeeper*
+(camps met at the gate), *Daykeeper* (the colony's days kept) or *Good Neighbour* (world events' calls answered), and
+for one deed *Roof-Raiser*, *Feud-Breaker*, *Bridge-Builder*, *the Finder* or *Road-Warden*. 54 names in all. Each
+year since a colonist joined, they
 mark the anniversary in their own words, and their friends share it. And when the moment fits (food running low,
 right after a raid, while people grieve, when everyone has grown spoiled) a colonist may petition the council for
 the decree they'd like.
@@ -982,9 +990,14 @@ medieval things). Many ask the council what to do, with a day or so to answer.
   season: a **hunting party** following a herd, a **refugee family**, **prospectors**, **pilgrims** at rest,
   **traders** with a stall, a **traveling smith**, a **hermit** who builds a hut, **traveling healers** who ease an
   ailment, a **procession of the faithful** who bless the colony (naming their creed with Ideology), **traveling
-  players** who put on a show, and **surveyors** who may show you a seam of ore. Refugees come more often while a
-  famine, plague, war, flood, drought or hard winter runs in the region, and say what they fled; pilgrims follow a
-  holy year, surveyors a new road or a rush. They build the camp themselves,
+  players** who put on a show, **surveyors** who may show you a seam of ore, a **salt caravan** or **merchants from
+  afar** with a stall, **drovers** with a herd, barefoot **penitents**, **tree-singers** (Ideology, of a faith that
+  holds trees sacred), a **travelling healer**, a band of **minstrels** whose music the colony walks over to hear, and
+  **mourners** carrying their dead home. Refugees come more often while a famine, plague, war, flood, drought, hard
+  winter or great fire runs in the region, and say what they fled; pilgrims follow a holy year, surveyors a new road
+  or a rush, minstrels a season of songs, mourners a people's mourning. The newer camps can be asked for something
+  from their page: an evening at their fire, a beast from the herd, the healer's care, a lesson at their side, a song
+  about the colony, a vigil with the mourners. They build the camp themselves,
   cook at their fire, hunt and fell trees around it (never near your home area), trade, sometimes help, and may ask
   to join. Let them stay, set terms (a fee, a share of their meat, keeping to their side, a time limit), hire some of
   them, ask them to move on (a gift helps), or drive them off. Tension grows the longer they stay and the more they
@@ -1025,7 +1038,10 @@ wedding or midwinter (send at least two of your people there by caravan, and com
 **apprenticeship** with one of their masters (a colonist stays at their town for a day and a half and comes back about
 two levels better at the craft), a **dignitary** to host for a few days (a bedroom of a set impressiveness with one
 bed nobody else uses, checked every hour of the stay), and **refugees** to see through (two meals each a day and a
-roof for a few days; they come from a fire, or from whatever runs in the region). Each shows up in the game's
+roof for a few days; they come from a fire, or from whatever runs in the region). Friendly peoples also ask the
+colony to **walk an old pilgrim home** by caravan, to **carry word** to a far town of another people, to **find a lost
+child** of theirs somewhere on the colony's land, or to send **hands for their harvest**; each remembers the colonist
+who did it, by name. Each shows up in the game's
 **Quests** tab to accept or let expire (or as a letter, if you switch that off), runs against a deadline once
 accepted, and pays a reward, or costs goodwill if it fails. One mission at a time.
 
@@ -1094,11 +1110,23 @@ the colony half.
   herds** (Alpha Animals) and a **season of wild magic** (A RimWorld of Magic). In an industrial or spacer world, a
   **ship comes down** in the hills: salvage going cheap, survivors, scavengers, and pirates who may come for the
   wreck.
+- **Beyond the walls:** a **great fire** in a neighbor's town (timber, a builder for the roofs, a burned-out family
+  to take in), a **blood feud** between two families of two peoples (hide the one who ran, sit a talker between them,
+  pay the last of the blood price), a **comet** (a night watch, a stargazer), a **bumper harvest**, the **drove
+  roads**, a people **in mourning**, a **season of songs** with a song about the colony going round, a **toll** on the
+  roads, **iron gone scarce**, and **exiles** cast out by a neighbor. Two follow another's end with its people:
+  **rebuilding** after a war, a fire or a flood, and **the road reopening** once the bandits, the snow or the toll are
+  gone.
 - **Particular peoples** (with their DLC or mod): **the Empire's levy** (Royalty: pay in full and be named in the
   dispatches, pay half, or decline), **deserters on the roads** (Vanilla Factions Expanded - Empire: shelter a
   deserter, hand them over for the reward, or feed them and send them on), **the republic votes** (Classical: back
   the old families or the reformers with silver) and **gold fever** (Settlers: prospectors on every road, one who
   wants to work the colony's stream for a share).
+
+Some days or weeks after a world event ends, its people may come back about it, depending on how it ended: survivors
+of a plague the colony helped with come to give thanks, the first harvest after a famine is shared, a flooded town
+looks for what the water took, those sheltered through a hard winter bring seed in spring, old friends send seed grain
+after locusts or a drought, and after a hard year the colony looked away from, an elder comes to say what it cost.
 
 The **World** page shows what's going on at the top, under "In the world": each world event with the people it's
 about, what it means for the colony, what the colony has done so far, and how long it may last (hover for what it
@@ -1124,6 +1152,12 @@ ask weregild for a colonist they killed), and two peoples ask the colony to **se
 letters say what they remember ("Some of these raiders lost kin on the colony's land, last year."). The **World**
 page shows what each people remembers, how it stands with the colony (grateful, owed, wary, holding a grudge), and
 its biggest memories; hover for everything. Settings → **Peoples remember the colony** turns it off.
+
+A people remembers **who**, too: the warden who let one of theirs go, the doctor who tended their wounded, the one
+who found their lost child or walked their pilgrim home. Their visitors stop that colonist to thank them, their
+traders give them a friend's price, their envoys and camps ask for them by name at the gate, and their letters say
+so ("They've asked for Ana by name"). The World page shows it with the deed: "They remember Ana for it." Older saves
+keep their memories; those deeds just name nobody.
 
 ## Scenarios with stakes
 Thirteen scenarios, marked "(Rimfolk)" on the scenario page with how hard they are. Each starts the game with
