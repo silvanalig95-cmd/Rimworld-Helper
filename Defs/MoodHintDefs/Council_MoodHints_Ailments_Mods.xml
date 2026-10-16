@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- What to do about the moods of the ailments of other mods' lands (Defs/ThoughtDefs/Council_Thoughts_Ailments_Mods.xml). -->
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_AilLands</defName>
+    <thoughts>
+      <li>Council_Ail_SporeCough_Mood</li>
+      <li>Council_Ail_FumeHeadache_Mood</li>
+    </thoughts>
+    <fix>The land itself: dry, well-roofed bedrooms and a cloth over the face in the fields keep the spores out; heavy work upwind of the seeps and a rest in the hottest hours keep the fumes off. Both pass in a few days.</fix>
+    <article>Council_Alm_4_25_Ailments</article>
+  </ColonyCouncil.MoodHintDef>
+
+</Defs>

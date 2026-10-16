@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Journal lines for the ailments of other mods' lands (Defs/HediffDefs/Council_Hediffs_Ailments_Mods.xml), added to
+    the ailments' own pools (Council_Journal_Ailments.xml): coming down with one, and getting over it.
+  -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Journal_Ail_Start_Lands</defName>
+    <pool>Council_Journal_Ail_Start</pool>
+    <lines>
+      <plain>
+        <li>[ail:SporeCough] Spent the afternoon among the fungus and came in coughing. Everything out there sheds something.</li>
+        <li>[ail:SporeCough] Woke up with a dry tickle in my throat. The bedroom smells of mushrooms when it rains.</li>
+        <li>[ail:FumeHeadache] Hauled stone all morning downwind of the seeps. My head has been pounding since noon.</li>
+        <li>[ail:FumeHeadache] The air shimmers over the pits in the heat. I stood in it too long, and now my head aches.</li>
+      </plain>
+      <blunt>
+        <li>[ail:SporeCough] Spores. Coughing.</li>
+        <li>[ail:FumeHeadache] Fumes. Headache.</li>
+      </blunt>
+      <gloomy>
+        <li>[ail:SporeCough] Even the air here wants to grow in us.</li>
+      </gloomy>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Journal_Ail_Better_Lands</defName>
+    <pool>Council_Journal_Ail_Better</pool>
+    <lines>
+      <plain>
+        <li>[ail:SporeCough] The cough has finally let go. I'm keeping a cloth over my face in the fields from now on.</li>
+        <li>[ail:FumeHeadache] My head is clear again. I'll do the heavy work upwind of the seeps next time.</li>
+      </plain>
+      <cheerful>
+        <li>[ail:SporeCough] Took a deep breath this morning without coughing, then another one just to be sure!</li>
+      </cheerful>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+</Defs>

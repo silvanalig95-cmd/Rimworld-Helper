@@ -152,6 +152,11 @@ namespace ColonyCouncil
         public List<AilmentRisk> risks;
         /// <summary>Only children get it (measles: the grown-ups had it long ago).</summary>
         public bool childrenOnly;
+        /// <summary>
+        /// Only on a map of one of these biomes (BiomeDef names): an ailment of another mod's land, like the spores of
+        /// Alpha Biomes' mycotic jungle. A biome that isn't in the game never matches, so without the mod it never comes.
+        /// </summary>
+        public List<string> biomes;
         /// <summary>Never twice in one person (an appendix, measles).</summary>
         public bool once;
         /// <summary>The severity it starts at when it comes on by circumstance (or by an incident, for those without immunity).</summary>

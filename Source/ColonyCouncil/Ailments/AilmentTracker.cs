@@ -337,6 +337,7 @@ namespace ColonyCouncil
             if (p.health.hediffSet.HasHediff(def)) return false;
             if (p.DevelopmentalStage.Juvenile() && info.childFactor <= 0f) return false;
             if (info.childrenOnly && !p.DevelopmentalStage.Juvenile()) return false;
+            if (!info.biomes.NullOrEmpty() && (p.MapHeld?.Biome == null || !info.biomes.Contains(p.MapHeld.Biome.defName))) return false;
             if (info.once && HadBefore(p, def)) return false;
             int now = Find.TickManager.TicksGame;
             if (last.TryGetValue(p.ThingID + "|" + def.defName, out int t) && t <= now && now - t < info.cooldownDays * GenDate.TicksPerDay) return false;
