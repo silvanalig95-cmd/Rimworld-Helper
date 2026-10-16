@@ -349,7 +349,7 @@ grow, sour and end over time:
 - A skilled, passionate colonist may take a keen learner on as a **student**, teaching them every day until they
   graduate at level 11.
 
-Most days something small happens between two people (67 kinds of social event): a late talk, a shared joke, a prank
+Most days something small happens between two people (79 kinds of social event): a late talk, a shared joke, a prank
 that lands badly, a snub at dinner, a squabble over chores, war stories, a lesson, a contest between rivals, a
 handmade gift, gossip that gets found out, an unexpected truce. Life brings its own: a vigil at a friend's sickbed,
 an evening at a camp on the map, a quarrel over what the council decided, fears confided in the night, grief carried
@@ -448,16 +448,20 @@ who sings at the stove, an early riser, someone who hums at work, collects prett
 the birds or remembers every birthday, and after a night in the cold or under the stars, someone who is always cold
 or goes out to watch the stars. Some bring a small knack while they last instead of a mood (slightly faster plant work,
 fewer food poisonings from that cook, animals tamed and trained more easily, a hummer's work a little quicker). 29 quirks in all. Picking one up and letting it
-fade are written in the journal in the colonist's own voice.
+fade are written in the journal in the colonist's own voice. Quirks show up between people too: a hummer grates on a
+nervous neighbour or gets a duet, a sleep talker's words are repeated at breakfast, an early riser wakes a night owl,
+the singing cook wins over the gourmand, a whittler carves a gift, two superstitious colonists compare precautions
+(12 social events, which change the bond between the two rather than anyone's mood).
 
 ### Dreams
-Colonists who sleep (or lie unconscious) for a few hours sometimes wake from a dream (there are 123), and tell each
+Colonists who sleep (or lie unconscious) for a few hours sometimes wake from a dream (there are 128), and tell each
 other about it. Dreams grow out of their lives: the raid two days ago, the friend they buried, the rival who insulted
 them, the wish the council ignored, the leg they lost, the skill they're learning, the dead they miss, their partner,
 their dog. They grow out of what they feel, too (an argument all night with the one they're angry at, a debt repaid
 to the one they're grateful to, dreams of fear, shame, loneliness, pride or hope), out of what ails them (loose teeth
 with a toothache, breathing underwater with a cold), and out of what's around them: a camp on the map, a council
-meeting, sickness, famine, fighting or a fair in the region, and the seasons. Most leave a line in their journal and
+meeting, sickness, famine, fighting or a fair in the region, and the seasons, and out of the colony's own days: the
+dead visiting after a remembrance, a feast that goes on all night, a wish taken back, work lost. Most leave a line in their journal and
 little else: a sweet dream a bit of rest, a strange one now and then an inspiration, a nightmare or a visit from the
 dead a passing mood (hover it to read the dream). Now and then one changes something: an inspiration, a lesson, a
 good night's rest, a nightmare that leaves them shaken, a dream of victory that steadies their aim, a softened
@@ -478,7 +482,10 @@ Colonists meet everyone else on the map, too:
   snow, eyes in the jungle undergrowth, lights over the marsh, an animal on the mountain ridge, the tide line on the
   coast; a traveler's trick against the sand or the cold, the first green of spring, rain waited out with a pet, a
   shape in the fog, a pet frightened by thunder, other names for the stars on a clear night. Rimfolk reads the land
-  from the biome and the tile, so other mods' biomes count too. 156 kinds of encounter in all. Most of these small
+  from the biome and the tile, so other mods' biomes count too.
+- **What their people remember:** a visitor whose people the colony once rescued thanks them, a trader of a grateful
+  people gives a friend's price, one whose people hold a grudge charges double or won't haggle, and a visitor whose
+  people helped the colony mentions it. 161 kinds of encounter in all. Most of these small
   moments give something other than mood: recreation for a herd going by or a clear night, comfort for a trick
   against the cold, practice, a little research, awe, and for the smallest only a line in the journal.
 - **The council decides** when it gets harder: a visitor who wants to stay, a rude guest, a trader who wants an
@@ -506,7 +513,14 @@ together, from five), the **keeper of days** (every kept custom and calendar day
 the **herdmaster** (more from the animals, from six). Colonists elect them every year, voting for the skilled, the
 suited and the liked, friends and circles voting together, and the election letter has a word about each new
 holder. You can appoint and dismiss from the Decrees tab, but whoever the colony actually voted for will remember
-being overruled.
+being overruled. A wish the council took back counts against those sitting on it at the next election, and the
+names the colony gave someone count for them.
+
+The offices also do their jobs in the colony's life: the keeper of days organises the calendar's feasts and games,
+the peacemaker steps into spats nearby (they're over in half the time), the physician does the rounds of the
+convalescents every morning and counts as a trusted doctor sooner, the reeve deals with neighbours who need goods
+(and they remember it), the herdmaster sits with those whose animal died and minds the animals of those away, the
+marshal has a word with everyone who fought beside them, and the steward's company at a gathering eases strain.
 
 ### Traditions
 Choose the same answer to a seasonal dilemma two years running (a midsummer feast, a harvest celebration, a vigil
@@ -1112,6 +1126,31 @@ nothing, a promise broken, a decree they hate, trust long gone. A death letter e
 the colony, the life goal they never reached, and the council seat or name they held. A setting under "Deeper game
 hooks" turns these notes off.
 
+## How the systems talk to each other
+Rimfolk's parts reach into each other, so the colony reads as one life rather than a dozen separate mechanics. Each
+link is small, rides on something that already happens, and follows the settings of both parts it joins (and its own
+switch, **Systems talk to each other**, on the first settings page):
+- **Offices at work**: the keeper of days, the peacemaker, the physician, the reeve, the herdmaster, the marshal and
+  the steward do their jobs in the colony's life (see *Offices and elections*).
+- **Grief and strain in people's choices**: someone deep in grief sits out a feast or games day without minding,
+  and isn't hurt to have missed a gathering; their own animal keeps them calmer company; the worn out wish for rest,
+  a bath or a day off.
+- **Personal stories hear the world**: a day kept on the calendar, an old favour repaid by a people, a friend made
+  at a camp, being back on their feet after convalescing all move a waiting story on; a fear of a nemesis ends when
+  they go for that very enemy in a fight.
+- **The world remembers**: peoples the colony did good turns for camp nearby more often, those with a grudge less;
+  their traders and visitors greet the colony accordingly (a friend's price, a rescue thanked, a cold shoulder).
+- **Setbacks that keep coming** turn into wishes and stories: work wrecked twice makes a workshop wish likelier and
+  a story of mastering the craft; kept awake twice, a room of their own.
+- **Health and gatherings**: convalescents who come to a gathering mend a little faster; a feast table with fruit or
+  vegetables in the stores counts against scurvy.
+- **Traditions and the ways**: keeping, founding or breaking a council tradition makes the colony more traditional or
+  restless, a feast tradition more generous; an old hand of a merciful colony minds a harsh answer more.
+- **Secrets at the council table**: someone who was told a secret and has turned against its owner may say
+  something pointed at the meeting, and a rival may say too much.
+- **Quirks** count as who someone is, for social events, dilemma roles and lines.
+- **The news**: when three or more of the day's lines are about one colonist, the evening news tells them as their day.
+
 ## Colonists who help themselves
 Now and then a colonist fixes a small thing that hurts their mood, on their own and in their own time:
 - tidies their own room when it's filthy, or visits a grave while they grieve
@@ -1275,7 +1314,8 @@ Rimfolk's many systems each have small news to tell: a quirk picked up, a person
 doctor's good name, a tradition broken, a dream, a day at the camp, an encounter, a name earned. Rather than a
 message in the corner for each, the day's smaller news waits for the evening: around six a quiet **Colony news**
 letter brings it all, a line each under **people**, **health**, **the colony**, **the world** and **the land**, with a
-**Go there** button on every line that has a place. A day with a single piece of news brings a message instead, and
+**Go there** button on every line that has a place. When three or more lines are about the same colonist, they come
+together as that colonist's day ("Hector's day: ..."). A day with a single piece of news brings a message instead, and
 what's waiting is saved with the game. Letters and messages that ask you to decide something (dilemmas, wishes,
 petitions, decree requests, meetings) and serious news (a death and its remembrance, raids and battles, nemeses, a
 serious illness, a camp arriving) still come at once. The **Colony news** setting can bring back a message for each,
@@ -1324,7 +1364,7 @@ The pages:
   - **Demanding**: downsides 50% stronger; bitter colonists may sulk
   - **Advisor only**: no mood effects at all
 
-  with the strength of downsides and of rewards; wish frequency, how many can be open at once and how long they
+  whether Rimfolk's systems talk to each other (see below); with the strength of downsides and of rewards; wish frequency, how many can be open at once and how long they
   last, jealousy and favoritism, wishes after events, reminders, self-help, granted wishes taken back (and the grace
   before they mind), leaving, wishes for others and
   petitions; dilemmas (and how often), decree requests, the colony's character and offices; the meeting interval,

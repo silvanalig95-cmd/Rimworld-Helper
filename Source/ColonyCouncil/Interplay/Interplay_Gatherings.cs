@@ -83,7 +83,7 @@ namespace ColonyCouncil
         private static void FeastFresh(List<Pawn> fed, Map map)
         {
             var ailments = AilmentTracker.Instance;
-            if (ailments == null || map == null || !AilmentTracker.DietKnown) return;
+            if (ailments == null || map == null || !AilmentTracker.On || !AilmentTracker.DietKnown) return;
             int fresh = 0;
             foreach (var kv in map.resourceCounter.AllCountedAmounts)
             {

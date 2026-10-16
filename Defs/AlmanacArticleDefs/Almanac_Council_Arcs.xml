@@ -16,7 +16,9 @@ The Story tab shows where a colonist's story stands, what it waits for next and 
         <heading>How a story moves</heading>
         <text>Each stage waits for something to happen: days to pass, a skill level reached, hours of work at a skill, a conversation between the two people in it (it shows in the social log), something made of good enough quality, a fight at home come through on their feet, a bond with an animal, another dream, a wish granted, a life goal reached, or a stretch of days with something holding (a good mood, a room of their own, getting along). Each hour it holds counts; each hour it doesn't takes half an hour back, so a bad evening costs a little and a bad week costs the lot.
 
-Every stage writes a line in the colonist's journal in their own voice (a kind colonist and an abrasive one tell it differently), often one in the other person's journal too, and a line in the chronicle. When a story ends well, a letter retells it from the start. While a colonist is away on a journey, their story waits, and so does its clock.</text>
+Every stage writes a line in the colonist's journal in their own voice (a kind colonist and an abrasive one tell it differently), often one in the other person's journal too, and a line in the chronicle. When a story ends well, a letter retells it from the start. While a colonist is away on a journey, their story waits, and so does its clock.
+
+What happens around them can move a waiting story on too (with "Systems talk to each other" on): a calendar day kept counts as a day, and as the word they were waiting to have with someone who kept it with them; a people repaying an old good turn, a friend made at a camp, or getting back to full strength after convalescing move it on a day or two. Colonists whose work keeps going wrong, whom the council keeps letting down, or who keep missing the colony's company are twice as likely to begin the story that answers it.</text>
       </li>
       <li>
         <heading>The stories</heading>
@@ -34,7 +36,7 @@ Every stage writes a line in the colonist's journal in their own voice (a kind c
           <li>Passing it on | An elder (55 or older) or an old hand (3 years here) with a skill of 12 or better | An offer to teach; the student gains 2 levels; the last lessons | A mentorship, lessons</li>
           <li>A long grief | Someone close died in the last few weeks | Days; talking about them or dreaming of them; better days | Strain lifted, a quirk</li>
           <li>A secret told | Someone with a secret has a close friend | Days; confiding in the friend; steady days; telling everyone | The secret out, strain lifted</li>
-          <li>A fear faced | An enemy who hurt them got away, or they dread the dark, storms or the eclipse | Days; training; a fight at home come through, or the enemy gone for good | The dread gone, strain lifted, a name (the Unafraid)</li>
+          <li>A fear faced | An enemy who hurt them got away, or they dread the dark, storms or the eclipse | Days; training; a fight at home come through, or the enemy gone for good (going for that very enemy in a fight ends it at once) | The dread gone, strain lifted, a name (the Unafraid)</li>
           <li>The recurring dream | The same strange dream 2 or more times in 12 days | Another dream; telling someone; making something of it | Strain lifted, sometimes an inspiration</li>
           <li>A grudge laid down | A vendetta 15 days old or more, and someone tired of carrying it | Days; talking it over; calmer days | The vendetta laid down, strain lifted</li>
           <li>Within reach | Halfway or more to a life goal, 10 days or more in | A push from a friend; the goal reached | A friend's good opinion</li>
