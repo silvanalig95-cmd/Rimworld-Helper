@@ -587,7 +587,10 @@ namespace ColonyCouncil
 
             // The mood: larger the sooner it was taken, scaled by the stakes and by their standards (it's a letdown).
             float pen = S.PenaltyScale;
-            if (pen > 0f && KeptDefOf.Council_TakenBack != null)
+            // A pet sold from under them already has its own mood ("they sold my animal"): the trust and the journal say the rest.
+            var sold = w.Kind == "pet" ? DefDatabase<ThoughtDef>.GetNamedSilentFail("Council_Setback_AnimalSold") : null;
+            bool saidAlready = sold != null && p.needs?.mood?.thoughts?.memories?.GetFirstMemoryOfDef(sold) != null;
+            if (pen > 0f && !saidAlready && KeptDefOf.Council_TakenBack != null)
                 CouncilGameComponent.GiveThought(p, KeptDefOf.Council_TakenBack, null, pen * KeptMath.MoodShare(w.grantedTick, now, w.watchUntil - w.grantedTick), w.cause);
 
             // Whoever spoke up for them or backed the wish, and their partner and close friends, mind a little.
