@@ -30,7 +30,7 @@
   <CC_Dlm_TurnedOut>{0} of the herd turned out to fend for themselves.</CC_Dlm_TurnedOut>
   <CC_Dlm_AnimalLost>{ANIMAL} is gone from the pens, carried off in the night.</CC_Dlm_AnimalLost>
   <CC_Dlm_AnimalPassed>{PET_nameDef} answers to {NEW} now.</CC_Dlm_AnimalPassed>
-  <CC_Dlm_CropsEaten>{X_definite} grazed through the field: {0} plants eaten to the ground.</CC_Dlm_CropsEaten>
+  <CC_Dlm_CropsEaten>The field has been grazed by {X_definite}: {0} plants eaten to the ground.</CC_Dlm_CropsEaten>
 
   <!-- ===================== Births, and the herdmaster (Animals/AnimalLife.cs, Animals/AnimalHerdmaster.cs) ===================== -->
 

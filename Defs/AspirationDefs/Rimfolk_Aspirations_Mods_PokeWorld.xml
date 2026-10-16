@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    PokéWorld: a trainer's life goals (Source/ColonyCouncil/Integrations/PokeWorldLife.cs): catch them all, as far as one
+    life goes, counted from PokéWorld's own Pokédex; and a Pokémon of their own raised to its best. Never without the mod.
+  -->
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Council_Asp_PW_Pokedex</defName>
+    <label>catch them all</label>
+    <workerClass>ColonyCouncil.AspirationWorker_Pokedex</workerClass>
+    <amount>10</amount>
+    <weight>1</weight>
+    <goal>add ten species to the colony's Pokédex</goal>
+    <forbiddenBy><li>NoPets</li></forbiddenBy>
+    <chosen>
+      <plain>
+        <li>[inherited] {NAME} kept the Pokédex like a diary. I'll {GOAL} and write {NAME}'s name in the margin.</li>
+        <li>Every empty line in the Pokédex is something out there nobody here has seen up close. I want to fill ten of them.</li>
+        <li>[child] I'm going to catch them all. Well, ten. Then all.</li>
+      </plain>
+      <warm><li>Every species is different, the way it moves, what it eats, how it looks at you. I want to know ten more.</li></warm>
+      <blunt><li>Ten more in the Pokédex. Then ten more after that.</li></blunt>
+      <cheerful><li>Ten new kinds. I've already started a list of the ones I want most!</li></cheerful>
+      <gloomy><li>There are so many we'll never see. I'd like to see ten of them before I'm done.</li></gloomy>
+      <cold><li>The Pokédex is incomplete. I intend to correct that, ten species at a time.</li></cold>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>Ten new species in the Pokédex, and I was there for every one. I've worn the corners off the pages.</li>
+        <li>Ten. I remember the throw that caught each of them.</li>
+      </plain>
+      <warm><li>Ten more kinds of creature that we know now, and that know us.</li></warm>
+      <blunt><li>Ten. Next ten starts tomorrow.</li></blunt>
+      <cheerful><li>Ten of them! Who wants to see the Pokédex?</li></cheerful>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Council_Asp_PW_Level</defName>
+    <label>a Pokémon at its best</label>
+    <workerClass>ColonyCouncil.AspirationWorker_PokemonLevel</workerClass>
+    <amount>50</amount>
+    <weight>0.9</weight>
+    <goal>raise a Pokémon of their own to level {COUNT}</goal>
+    <forbiddenBy><li>NoPets</li></forbiddenBy>
+    <sparks><li>battle</li></sparks>
+    <chosen>
+      <plain>
+        <li>[inherited] {NAME}'s Pokémon still looks for {NAME} at the gate. I'll {GOAL}, so {NAME}'s work wasn't wasted.</li>
+        <li>Mine's still learning. I want to see it at its full strength, every move it can learn.</li>
+        <li>[sparked] It took a hit for me in that fight. I'm going to make sure next time it hits back harder.</li>
+      </plain>
+      <warm><li>It tries so hard. I want to help it become everything it could be.</li></warm>
+      <blunt><li>Level {COUNT}. Then nobody touches us.</li></blunt>
+      <cheerful><li>Level {COUNT}. It'll be the strongest Pokémon in the whole colony!</li></cheerful>
+      <cold><li>A Pokémon at level {COUNT} is a different animal. I'll raise one.</li></cold>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>Level {COUNT}. It moves differently now, like it knows it doesn't have to hurry.</li>
+        <li>All those fights and all that training, and here it is. I'm so proud of it I could burst.</li>
+      </plain>
+      <warm><li>We did it together. Every level of it.</li></warm>
+      <blunt><li>Level {COUNT}. Strongest here.</li></blunt>
+      <cheerful><li>Level {COUNT}! Did you see? Did everyone see?</li></cheerful>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+</Defs>

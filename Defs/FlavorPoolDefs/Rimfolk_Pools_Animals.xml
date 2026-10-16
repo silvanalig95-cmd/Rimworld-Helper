@@ -61,7 +61,7 @@
       </blunt>
       <cheerful>
         <li>Who's a clever one? You're a clever one!</li>
-        <li>[job:shear] Look at you! All fluffy and then not!</li>
+        <li>[job:shear] Look at you. All fluffy, and then not!</li>
       </cheerful>
       <gloomy>
         <li>At least you don't complain about the food.</li>
@@ -155,7 +155,7 @@
         <li>[nonamed] Already on your feet. Good.</li>
       </plain>
       <warm><li>[named] Hello, {PET_nameDef}. We're all very glad you're here.</li></warm>
-      <cheerful><li>[named] {PET_nameDef}! Best name I've thought of all year!</li></cheerful>
+      <cheerful><li>[named] {PET_nameDef}. Best name I've thought of all year!</li></cheerful>
       <cold><li>[named] {PET_nameDef}. Healthy, by the look of you.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -171,7 +171,7 @@
       </plain>
       <warm><li>[named] {PET_nameDef}, the newest of us. I sat in the straw a long time just watching it breathe.</li></warm>
       <blunt><li>[named] New one. Called it {PET_nameDef}. Healthy.</li></blunt>
-      <cheerful><li>[named] Welcome, {PET_nameDef}! The herd keeps growing and I keep running out of names!</li></cheerful>
+      <cheerful><li>[named] Welcome, {PET_nameDef}. The herd keeps growing and I keep running out of names!</li></cheerful>
       <cold><li>[named] One birth in the herd, a young {KIND}, named {PET_nameDef}. Mother and young both well.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -224,7 +224,7 @@
       </plain>
       <warm><li>[new] I held it while it found its legs. I'll remember that for the rest of my life.</li></warm>
       <blunt><li>[new] First foal. Healthy. Good day.</li></blunt>
-      <cheerful><li>[new] Our first baby animal! I want to name it everything!</li></cheerful>
+      <cheerful><li>[new] Our first baby animal. I want to name it everything!</li></cheerful>
       <gloomy><li>[new] A new life in the pens. I hope this place is kind to it.</li></gloomy>
       <cold><li>[new] The herd has bred for the first time. The colony's food is a little more secure.</li></cold>
     </lines>

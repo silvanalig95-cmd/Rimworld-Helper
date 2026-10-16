@@ -97,7 +97,7 @@
       </plain>
       <warm><li>That {SUBJECT} needs someone to look after it properly. I'd like to be the one.</li></warm>
       <blunt><li>Give me the {SUBJECT}. I'll make something of it.</li></blunt>
-      <cheerful><li>A Pokémon of my very own! The {SUBJECT}! We'll be the best team in the colony!</li></cheerful>
+      <cheerful><li>A Pokémon of my very own, the {SUBJECT}. We'll be the best team in the colony!</li></cheerful>
       <gloomy><li>Even the Pokémon have someone. I'd settle for the {SUBJECT}, if it would have me.</li></gloomy>
       <cold><li>A Pokémon without a trainer gains nothing in a fight. Assign the {SUBJECT} to me.</li></cold>
     </request>
@@ -139,7 +139,7 @@
       </plain>
       <warm><li>A few spare belts, so whoever sees something first can go after it.</li></warm>
       <blunt><li>One belt isn't enough. Make more.</li></blunt>
-      <cheerful><li>Belts for everyone! Then we can all go catching!</li></cheerful>
+      <cheerful><li>Belts for everyone, and then we can all go catching!</li></cheerful>
       <gloomy><li>We'll miss the next rare one too, with one belt. We always do.</li></gloomy>
       <cold><li>Each missed catch is a species we may not see again. Belts are cheap by comparison.</li></cold>
     </request>

@@ -2,8 +2,8 @@
 <Defs>
 
   <!--
-    Life goals with the colony's animals (Source/ColonyCouncil/Animals/AnimalGoals.cs), and with PokéWorld's Pokémon
-    (Integrations/PokeWorldLife.cs: never without the mod). {GOAL} in the lines is the goal as written below.
+    Life goals with the colony's animals (Source/ColonyCouncil/Animals/AnimalGoals.cs); PokéWorld's are in
+    Rimfolk_Aspirations_Mods_PokeWorld.xml. {GOAL} in the lines is the goal as written below.
   -->
 
   <ColonyCouncil.AspirationDef>
@@ -34,7 +34,7 @@
       </plain>
       <warm><li>It's not a weapon. It's the bravest friend I have.</li></warm>
       <blunt><li>Three fights. It held. So did I.</li></blunt>
-      <cheerful><li>We're a team! The raiders should be afraid of us!</li></cheerful>
+      <cheerful><li>We're a team now. The raiders should be afraid of us!</li></cheerful>
     </achieved>
   </ColonyCouncil.AspirationDef>
 
@@ -64,7 +64,7 @@
       </plain>
       <warm><li>Something that size could crush me without noticing, and it's careful where it puts its feet when I'm near.</li></warm>
       <blunt><li>Tamed it. Biggest thing on the land, and it answers to me.</li></blunt>
-      <cheerful><li>I rode on its back! Well, I sat on it. It walked. That counts!</li></cheerful>
+      <cheerful><li>I rode on its back. Well, I sat on it. It walked. That counts!</li></cheerful>
     </achieved>
   </ColonyCouncil.AspirationDef>
 
@@ -84,7 +84,7 @@
       </plain>
       <warm><li>A big herd means milk for the children and wool for the winter. I'd like to give the colony that.</li></warm>
       <blunt><li>More animals. A proper herd. That's the goal.</li></blunt>
-      <cheerful><li>A whole herd! I'll know every one of them by name!</li></cheerful>
+      <cheerful><li>A whole herd, and I'll know every one of them by name!</li></cheerful>
       <cold><li>A herd of sufficient size feeds itself and the colony. I'll get us there.</li></cold>
     </chosen>
     <achieved>
@@ -94,7 +94,7 @@
       </plain>
       <warm><li>Milk enough for everyone, and the pens full of noise. This is what I wanted.</li></warm>
       <blunt><li>Real herd now. Done.</li></blunt>
-      <cheerful><li>So many! I've run out of names and had to start on the colonists' middle names!</li></cheerful>
+      <cheerful><li>So many of them. I've run out of names and had to start on the colonists' middle names!</li></cheerful>
     </achieved>
   </ColonyCouncil.AspirationDef>
 
@@ -113,7 +113,7 @@
       </plain>
       <warm><li>Training isn't bossing it about. It's learning to talk to each other. I'd like to learn all of it.</li></warm>
       <blunt><li>Every command. No half measures.</li></blunt>
-      <cheerful><li>Fetch, guard, rescue, haul! It'll be able to do everything!</li></cheerful>
+      <cheerful><li>Fetch, guard, rescue, haul. It'll be able to do everything!</li></cheerful>
       <cold><li>A fully trained animal is a reliable tool. I'll produce one.</li></cold>
     </chosen>
     <achieved>
@@ -123,71 +123,7 @@
       </plain>
       <warm><li>We understand each other completely now. It's a strange, quiet feeling.</li></warm>
       <blunt><li>Fully trained. Best in the colony.</li></blunt>
-      <cheerful><li>Everything! It can do everything! Ask it something! Go on!</li></cheerful>
-    </achieved>
-  </ColonyCouncil.AspirationDef>
-
-  <!-- ===================== PokéWorld (never without the mod) ===================== -->
-
-  <ColonyCouncil.AspirationDef>
-    <defName>Council_Asp_PW_Pokedex</defName>
-    <label>catch them all</label>
-    <workerClass>ColonyCouncil.AspirationWorker_Pokedex</workerClass>
-    <amount>10</amount>
-    <weight>1</weight>
-    <goal>add ten species to the colony's Pokédex</goal>
-    <forbiddenBy><li>NoPets</li></forbiddenBy>
-    <chosen>
-      <plain>
-        <li>[inherited] {NAME} kept the Pokédex like a diary. I'll {GOAL} and write {NAME}'s name in the margin.</li>
-        <li>Every empty line in the Pokédex is something out there nobody here has seen up close. I want to fill ten of them.</li>
-        <li>[child] I'm going to catch them all. Well, ten. Then all.</li>
-      </plain>
-      <warm><li>Every species is different, the way it moves, what it eats, how it looks at you. I want to know ten more.</li></warm>
-      <blunt><li>Ten more in the Pokédex. Then ten more after that.</li></blunt>
-      <cheerful><li>Ten new kinds! I've already started a list of the ones I want most!</li></cheerful>
-      <gloomy><li>There are so many we'll never see. I'd like to see ten of them before I'm done.</li></gloomy>
-      <cold><li>The Pokédex is incomplete. I intend to correct that, ten species at a time.</li></cold>
-    </chosen>
-    <achieved>
-      <plain>
-        <li>Ten new species in the Pokédex, and I was there for every one. I've worn the corners off the pages.</li>
-        <li>Ten. I remember the throw that caught each of them.</li>
-      </plain>
-      <warm><li>Ten more kinds of creature that we know now, and that know us.</li></warm>
-      <blunt><li>Ten. Next ten starts tomorrow.</li></blunt>
-      <cheerful><li>Ten! Ten! Who wants to see the Pokédex?</li></cheerful>
-    </achieved>
-  </ColonyCouncil.AspirationDef>
-
-  <ColonyCouncil.AspirationDef>
-    <defName>Council_Asp_PW_Level</defName>
-    <label>a Pokémon at its best</label>
-    <workerClass>ColonyCouncil.AspirationWorker_PokemonLevel</workerClass>
-    <amount>50</amount>
-    <weight>0.9</weight>
-    <goal>raise a Pokémon of their own to level {COUNT}</goal>
-    <forbiddenBy><li>NoPets</li></forbiddenBy>
-    <sparks><li>battle</li></sparks>
-    <chosen>
-      <plain>
-        <li>[inherited] {NAME}'s Pokémon still looks for {NAME} at the gate. I'll {GOAL}, so {NAME}'s work wasn't wasted.</li>
-        <li>Mine's still learning. I want to see it at its full strength, every move it can learn.</li>
-        <li>[sparked] It took a hit for me in that fight. I'm going to make sure next time it hits back harder.</li>
-      </plain>
-      <warm><li>It tries so hard. I want to help it become everything it could be.</li></warm>
-      <blunt><li>Level {COUNT}. Then nobody touches us.</li></blunt>
-      <cheerful><li>Level {COUNT}! It'll be the strongest Pokémon in the whole colony!</li></cheerful>
-      <cold><li>A Pokémon at level {COUNT} is a different animal. I'll raise one.</li></cold>
-    </chosen>
-    <achieved>
-      <plain>
-        <li>Level {COUNT}. It moves differently now, like it knows it doesn't have to hurry.</li>
-        <li>All those fights and all that training, and here it is. I'm so proud of it I could burst.</li>
-      </plain>
-      <warm><li>We did it together. Every level of it.</li></warm>
-      <blunt><li>Level {COUNT}. Strongest here.</li></blunt>
-      <cheerful><li>Level {COUNT}! Did you see? Did everyone see?</li></cheerful>
+      <cheerful><li>It can do everything. Ask it something. Go on!</li></cheerful>
     </achieved>
   </ColonyCouncil.AspirationDef>
 

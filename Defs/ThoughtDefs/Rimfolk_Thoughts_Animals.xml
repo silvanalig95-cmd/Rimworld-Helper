@@ -18,8 +18,8 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Granted_Barn</defName>
     <durationDays>5</durationDays>
-    <stages><li><label>a barn for the herd</label><description>The herd sleeps under a roof now. I went out last night just to hear them breathing in the dark.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
-    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>3</felt><journal>true</journal><feelings><li>Contentment</li></feelings></li></modExtensions>
+    <stages><li><label>a barn for the herd</label><description>The herd sleeps under a roof now. I went out last night just to hear them breathing in the dark.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.HeartTags"><feelings><li>Contentment</li></feelings><weight>0.3</weight></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -81,14 +81,14 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmA_HerdSpared</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>the herd was spared</label><description>The council could have taken the herd for the pot. It didn't. I won't forget that when the lambs come.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
-    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt><trust>2</trust><feelings><li>Gratitude</li></feelings></li></modExtensions>
+    <stages><li><label>the herd was spared</label><description>The council could have taken the herd for the pot. It didn't. I won't forget that when the lambs come.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.HeartTags"><feelings><li>Gratitude</li></feelings><weight>0.3</weight></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmA_LeanDays</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>lean days for the herd's sake</label><description>Smaller portions, so the animals can eat too. I understand it. My stomach doesn't.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>lean days for the herd's sake</label><description>Smaller portions, so the animals can eat too. I understand it. My stomach doesn't.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -117,8 +117,8 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmA_BestCareForAnimal</defName>
     <durationDays>5</durationDays>
-    <stages><li><label>the good medicine for my animal</label><description>The doctors treated my animal with the same medicine they'd use on me. Nobody asked them to make a fuss. They did anyway.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
-    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>3</felt><trust>2</trust><feelings><li>Gratitude</li></feelings></li></modExtensions>
+    <stages><li><label>the good medicine for my animal</label><description>The doctors treated my animal with the same medicine they'd use on me. Nobody asked them to make a fuss. They did anyway.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.HeartTags"><feelings><li>Gratitude</li></feelings><weight>0.3</weight></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -225,7 +225,7 @@
     <defName>Council_MomentA_HerdTips</defName>
     <durationDays>2</durationDays>
     <stages><li><label>talked animals</label><description>Swapped what we know about the herd. I learned a trick with a stubborn ewe I'll try tomorrow.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
-    <modExtensions><li Class="ColonyCouncil.RewardInstead"><skillFrom>shared</skillFrom><xp>120</xp></li></modExtensions>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>1</felt><skillFrom>shared</skillFrom><xp>120</xp></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">

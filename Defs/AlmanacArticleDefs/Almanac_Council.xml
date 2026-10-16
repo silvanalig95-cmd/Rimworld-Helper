@@ -360,7 +360,7 @@ Two more things weigh on a ballot. Someone whose granted wish the council took b
           <li>Peacemaker | Steps into a spat nearby, now and then: the two are sore at each other half as long.</li>
           <li>Physician | Does the rounds of everyone convalescing each morning, taking about two thirds of a day off each recovery, and the office counts for two patients pulled through toward a doctor's good name.</li>
           <li>Reeve | Deals with neighbours who ask the colony for goods; an order filled in full under the reeve brings 3 more goodwill.</li>
-          <li>Herdmaster | Sits with anyone whose named animal dies, and minds the animals of those away two days or more (they come home grateful).</li>
+          <li>Herdmaster | Sits with anyone whose named animal dies, and minds the animals of those away two days or more (they come home grateful). Goes down to name each newborn in the herd, brings word face to face to anyone whose animal is sick or hurt (their strain eases), and about once a week takes someone keen on animals, four levels or more behind, along for the day's work.</li>
           <li>Marshal | After a fight at home, has a word with everyone who fought beside them, easing their strain.</li>
           <li>Steward | At a gathering, eases the strain of everyone else there a little.</li>
           <li>Chaplain | Most days sits with someone grieving (their strain eases) or has a word with the believer least sure of the faith (6% surer); leads the calendar's remembrances.</li>
@@ -690,7 +690,9 @@ A raider who gets away often has a parting word, and one who comes back usually 
       </li>
       <li>
         <heading>The colony's animals</heading>
-        <text>An animal that fights beside its person in a battle is remembered for it, the more so if its person was hurt and it stood over them. A named animal that dies gets a farewell from the one who loved it, shaped by how long it was here, how big it was and whether it died fighting. A bonded animal killed by raiders is a reason for its person to swear a vendetta on them.</text>
+        <text>An animal that fights beside its person in a battle is remembered for it, the more so if its person was hurt and it stood over them. A named animal that dies gets a farewell from the one who loved it, shaped by how long it was here, how big it was and whether it died fighting. A bonded animal killed by raiders is a reason for its person to swear a vendetta on them.
+
+What colonists want for their animals, the stories and dilemmas that come of them, the herdmaster's part and the herd's year are on the page "the colony's animals".</text>
       </li>
       <li>
         <heading>The land, the seasons and the weather</heading>

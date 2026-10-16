@@ -22,7 +22,7 @@
         <li>[named] {PET_nameDef} has evolved into {NEW}. I had to sit down afterwards.</li>
         <li>[shiny] It kept its strange colours through the change, and shines brighter than ever. People came from the far end of the colony to see.</li>
         <li>[night] It evolved in the night, by the fire. Lit up the whole room. Half the colony thought it was a raid.</li>
-        <li>[child] My {OLD} turned into {NEW}! It was all glowy and then it was bigger! It still likes me.</li>
+        <li>[child] My {OLD} turned into {NEW}! It was all glowy and then it was bigger. It still likes me.</li>
       </plain>
       <warm>
         <li>My {OLD} has evolved into {NEW}. I told it I was proud of it, and I think it understood.</li>
@@ -56,7 +56,7 @@
       </plain>
       <warm><li>I'm so proud of you. So proud.</li></warm>
       <blunt><li>Finally.</li></blunt>
-      <cheerful><li>Yes! Yes! Look at you!</li></cheerful>
+      <cheerful><li>Yes, yes, look at you!</li></cheerful>
       <gloomy><li>You'll still let me carry you sometimes, won't you?</li></gloomy>
       <cold><li>Good. Now we train harder.</li></cold>
     </lines>
@@ -75,7 +75,7 @@
       </plain>
       <warm><li>You've done well with it. Anyone can see it.</li></warm>
       <blunt><li>Bigger. Good.</li></blunt>
-      <cheerful><li>That was amazing! Do it again!</li></cheerful>
+      <cheerful><li>That was amazing. Do it again!</li></cheerful>
       <gloomy><li>Don't let it get too big for the barracks.</li></gloomy>
       <cold><li>Useful. It'll fight better now.</li></cold>
     </lines>
@@ -124,7 +124,7 @@
       </plain>
       <warm><li>[named] {PET_nameDef} and I belong to each other now. I didn't know it could feel like this.</li></warm>
       <blunt><li>It follows me everywhere now. Fine by me.</li></blunt>
-      <cheerful><li>It loves me! It actually loves me! I'm not sharing it with anybody.</li></cheerful>
+      <cheerful><li>It loves me. It actually loves me! I'm not sharing it with anybody.</li></cheerful>
       <gloomy><li>It trusts me completely now. I hope I'm worth it.</li></gloomy>
       <cold><li>The bond has formed. It'll fight harder for me now, and I for it.</li></cold>
     </lines>
@@ -159,7 +159,7 @@
       </plain>
       <warm><li>The {SPECIES} is ours now, and I promised it a good life. I mean to keep that promise.</li></warm>
       <blunt><li>Got the {SPECIES}. Told you I would.</li></blunt>
-      <cheerful><li>The {SPECIES}! I caught the {SPECIES}! I'm going to write it again. The {SPECIES}!</li></cheerful>
+      <cheerful><li>I caught the {SPECIES}. I'm going to write it again: the {SPECIES}!</li></cheerful>
       <gloomy><li>Caught the {SPECIES}. It was so free out there. I hope it forgives me.</li></gloomy>
       <cold><li>The {SPECIES} is caught. A rare one, and worth the trouble.</li></cold>
     </lines>
@@ -191,7 +191,7 @@
       </plain>
       <warm><li>Saw a shining one today. I'll never forget it, and I don't want to.</li></warm>
       <blunt><li>Saw a shiny. Couldn't catch it. Still saw it.</li></blunt>
-      <cheerful><li>A shiny! A real one! I'll be telling this one forever!</li></cheerful>
+      <cheerful><li>A shiny, a real one! I'll be telling this one forever.</li></cheerful>
       <gloomy><li>A shining one, and I had nothing to throw. Of course I didn't.</li></gloomy>
       <cold><li>A shiny was seen near the colony today. Rare enough to note.</li></cold>
     </lines>
@@ -206,7 +206,7 @@
       </plain>
       <warm><li>A rare one came through today. It looked at me once, and I felt honoured.</li></warm>
       <blunt><li>Rare one went by. Gone now.</li></blunt>
-      <cheerful><li>I saw a rare one! Close enough to see its eyes!</li></cheerful>
+      <cheerful><li>I saw a rare one, close enough to see its eyes!</li></cheerful>
       <gloomy><li>A rare one passed by today. Things like that don't stay anywhere long.</li></gloomy>
       <cold><li>A rare species was seen today. Its range must reach this far.</li></cold>
     </lines>
@@ -253,7 +253,7 @@
       </plain>
       <warm><li>[opt0] We all went to see it together. That's the bit I'll keep: all of us in the grass, holding our breath.</li></warm>
       <blunt><li>[opt2] Let the rare one pass. Plenty to do here.</li></blunt>
-      <cheerful><li>[opt1] I'm on the trail of a rare one! Me! Wish me luck, journal.</li></cheerful>
+      <cheerful><li>[opt1] I'm on the trail of a rare one. Me! Wish me luck, journal.</li></cheerful>
       <gloomy><li>[opt2] The rare one went over the ridge and that was that. We'll never see one again.</li></gloomy>
       <cold><li>[opt1] Tracked the rare one. Its habits are noted, for next time.</li></cold>
     </lines>

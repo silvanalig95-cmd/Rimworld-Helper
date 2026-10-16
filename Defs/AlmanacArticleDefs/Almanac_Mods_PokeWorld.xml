@@ -2,9 +2,11 @@
 <Defs>
 
   <!--
-    Almanac: PokéWorld. Written from the original mod's code (RimWorld 1.4); the player runs the unofficial 1.6 port,
-    "PokéWorld Updated [1.6]", whose package id isn't known here. The pages list the known ids, and at startup Rimfolk
-    adds the id of whichever mod actually adds the Pokémon (Integrations/PokeWorld.cs), so they show with any version.
+    Almanac: PokéWorld. Written from the original mod's code (RimWorld 1.4), checked against eth0net's 1.5 update
+    (eth0net.PokeWorld, eight generations); the player runs the unofficial 1.6 port, "PokéWorld Updated [1.6]", whose
+    package id isn't known here. The pages list the known ids, and at startup Rimfolk adds the id of whichever mod
+    actually adds the Pokémon (Integrations/PokeWorld.cs), so they show with any version. The last page is what Rimfolk
+    does with the colony's Pokémon (Integrations/PokeWorldLife.cs).
   -->
 
   <ColonyCouncil.AlmanacArticleDef>
@@ -23,7 +25,7 @@
     <sections>
       <li>
         <heading>The version in your list</heading>
-        <text>The original PokéWorld was made for RimWorld 1.4 and stopped there. eth0net's "PokéWorld Updated" carried it to 1.5, and "PokéWorld Updated [1.6]", an unofficial alpha by another author, to 1.6. These pages follow the original mod's code, so a number, a button or a research project may be different in the port. The port's own description warns that fishing for Pokémon is broken for now and that Pokémon spawn rates in Odyssey's new biomes are placeholders.
+        <text>The original PokéWorld was made for RimWorld 1.4 and stopped there. eth0net's "PokéWorld Updated" carried it to 1.5 and added the Pokémon of generations five to eight, and "PokéWorld Updated [1.6]", an unofficial alpha by another author, to 1.6. These pages follow the original mod's code, so a number, a button or a research project may be different in the port. The port's own description warns that fishing for Pokémon is broken for now and that Pokémon spawn rates in Odyssey's new biomes are placeholders.
 
 Rimfolk finds the mod by its Pokémon rather than by its name, so it works with any of the three.</text>
       </li>
@@ -42,6 +44,7 @@ If you've had enough of Pokémon, set the wild Pokémon frequency slider in the 
           <li>Catching counts as taming. A Pokémon caught with a ball joins the colony like a tamed animal, so it counts for the wish for a new animal and for the ambition to tame new animals, also while it waits in its ball or sits in the PC. That ambition only counts on a wild Pokémon when the colony has a ball belt or can make one.</li>
           <li>The game won't let anyone tame a Pokémon by hand, so the wish to tame a companion never names one. Instead, a colonist with a passion for animals may ask to catch a species the colony doesn't have yet, when one is on the map and the colony has a belt or can make one. Granted, it's worth +4 mood for 5 days.</li>
           <li>Whoever catches the colony's first of a species writes about it in their journal and gets +3 mood for 3 days.</li>
+          <li>Evolutions, levels, friendship, the Pokédex, rare sightings and the wishes, goals and stories of trainers: see "Pokémon in the colony's life".</li>
         </points>
       </li>
     </sections>
@@ -236,7 +239,7 @@ As the Pokédex fills, quests open up that lead to legendary Pokémon. The one f
       </li>
       <li>
         <heading>With Rimfolk</heading>
-        <text>A Pokémon that evolves becomes a new animal of the next species. Rimfolk counts the colony's species by what it has now, so an evolution into a species the colony never had also answers a colonist's wish for a new species.</text>
+        <text>A Pokémon that evolves becomes a new animal of the next species. Rimfolk counts the colony's species by what it has now, so an evolution into a species the colony never had also answers a colonist's wish for a new species. What an evolution, a level milestone or a friendship grown strong means to the trainer is on the page "Pokémon in the colony's life".</text>
       </li>
     </sections>
     <keywords>
@@ -255,6 +258,78 @@ As the Pokédex fills, quests open up that lead to legendary Pokémon. The one f
       <li>Council_AlmMod_D_PokeWorld</li>
       <li>Council_AlmMod_D_PokeWorldCatching</li>
       <li>Council_Alm_C_Strangers</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_AlmMod_D_PokeWorldLife</defName>
+    <label>Pokémon in the colony's life</label>
+    <category>Mods</category>
+    <order>484</order>
+    <mods>
+      <li>gargamiel.pokeworld</li>
+      <li>eth0net.pokeworld</li>
+    </mods>
+    <approximate>true</approximate>
+    <summary>Evolutions, levels and friendship as the colony sees them, the Pokédex as a goal, and a rare one on the land</summary>
+    <tip>The whole colony came out to see the Charmeleon. It sulked for a day about the fuss.</tip>
+    <description>Rimfolk treats the colony's Pokémon as its animals everywhere, and with PokéWorld it also follows what only Pokémon do: they evolve, gain levels and grow fond of their trainer. Each is someone's: its trainer is the colonist it's bonded to, or else its master in the Animals tab. Rimfolk only reads PokéWorld and changes nothing in it.</description>
+    <sections>
+      <li>
+        <heading>What the colony notices</heading>
+        <table>
+          <li>What happens | What follows</li>
+          <li>An evolution | News (in the chronicle for a named one). The trainer is proud (practice, no mood), writes about it, says something to it if you're watching, and whoever is beside them says so too, face to face.</li>
+          <li>Level 25, 50, 75 or 100 | News, a journal line and a little practice for the trainer. Level 100 goes into the chronicle.</li>
+          <li>Friendship of 220 (of 255) | Its master may bond with it, the game's own bond, unless they're bonded to another of the colony's animals already.</li>
+          <li>It faints in a fight | The trainer worries (-2 mood for a day), and writes about it once the fight is over, if it lived.</li>
+          <li>It dies | It's mourned like any pet, with farewell lines of its own.</li>
+        </table>
+        <after>Rimfolk looks once an hour, so news of an evolution comes within the hour. Nothing of this is saved: after loading a game, the first hour only looks.</after>
+      </li>
+      <li>
+        <heading>Trainers</heading>
+        <text>A colonist with a Pokémon of their own counts as a trainer. Two trainers may spar with their Pokémon (a contest of handling, nobody hurt: the winner enjoys it, both learn something) or sit up talking moves; a child may ask a trainer about Pokémon. A trainer and a Pokémon that isn't their friend yet may have a story of their own: time together, learning its moves, a fight side by side, until its friendship grows and they're partners, and may bond. Trainers dream of evolutions, of legends and, now and then, of an empty ball.</text>
+      </li>
+      <li>
+        <heading>Wishes, life goals and the council's project</heading>
+        <table>
+          <li>What | Who, or when | Done</li>
+          <li>Wish: a Pokémon of my own | Someone who loves animals (a passion, a child, a lonely one) with none, when one of the colony's Pokémon has no trainer, or a wild one is about and there's a belt to throw | Made its master when promised; +4 mood for 6 days</li>
+          <li>Wish: ball belts on the rack | A trainer or someone with a passion for animals, with wild Pokémon about, at most one belt in the colony, and one that can be made | 2 more belts; a little hope and trust, no mood</li>
+          <li>Life goal: catch them all | A trainer or someone with a passion for animals | 10 more species in the Pokédex than when they set out, or as many as are left</li>
+          <li>Life goal: a Pokémon at its best | A trainer whose best Pokémon is below level 90 | One of theirs reaches level 50, or 15 above where it was, at most 100</li>
+          <li>Council project: pages of the Pokédex | Wild Pokémon on the map, and a belt or one that can be made | 5 new species in 25 days</li>
+        </table>
+        <after>The Pokédex is counted from PokéWorld's own. Pokémon never count toward the herd.</after>
+      </li>
+      <li>
+        <heading>Wild Pokémon</heading>
+        <text>A wild Pokémon may watch someone at work, come and play with a child at the fence, or cross the land as a rare one passing; one shining in the wrong colours is a moment of its own. The colony's own may come and sit with their trainer.
+
+A rare Pokémon sighted is a Rimfolk event: one of PokéWorld's rare species (rarity 6 to 9, never a legendary or a fossil) of a generation you have switched on, one the colony hasn't caught first, comes onto the land and stays 2 or 3 days. Not before day 8, at most once in 30 days, and never with the slider at "No Pokémon". The council can send everyone out to see it, send its best trainer out to follow it and learn its ways (practice in handling), or let it pass (-1 for 2 days for the one who saw it). Catching it is yours to do with a ball belt; it's news when it's caught, or when it leaves.</text>
+      </li>
+      <li>
+        <heading>The version you run</heading>
+        <text>Rimfolk reads the level, the friendship, whether it's shiny and the Pokédex by their names in the mod's code. The original mod, eth0net's update for 1.5 and the 1.6 port share those names; if a version doesn't, that part is skipped and one line goes into the log.</text>
+      </li>
+    </sections>
+    <keywords>
+      <li>pokemon</li>
+      <li>evolution</li>
+      <li>level</li>
+      <li>friendship</li>
+      <li>trainer</li>
+      <li>pokedex</li>
+      <li>shiny</li>
+      <li>rare</li>
+      <li>spar</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_AlmMod_D_PokeWorld</li>
+      <li>Council_AlmMod_D_PokeWorldRaising</li>
+      <li>Council_Alm_C_Animals</li>
+      <li>Council_Alm_C_Goals</li>
     </seeAlso>
   </ColonyCouncil.AlmanacArticleDef>
 

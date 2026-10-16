@@ -39,5 +39,6 @@
     <Compile Include="../../Source/ColonyCouncil/Social/TogetherMath.cs" Link="TogetherMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Immersion/SpeechMath.cs" Link="SpeechMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Integrations/ChangeMath.cs" Link="ChangeMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Animals/AnimalMath.cs" Link="AnimalMath.cs" />
   </ItemGroup>
 </Project>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Giddy-Up 2: something to ride (ColonyCouncil.WishWorker_Mount, Source/ColonyCouncil/Animals/AnimalWishes.cs). Only with
+    the mod, which is read by name; a hunter, a restless soul or someone who loves animals asks for a mount of their own.
+  -->
+
+  <!-- ===================== Something to ride (Giddy-Up 2) ===================== -->
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_Mount</defName>
+    <label>something to ride</label>
+    <description>A colonist who hunts, travels or can't keep still wants an animal of their own they can ride. Only with Giddy-Up 2, which decides what can be ridden.</description>
+    <workerClass>ColonyCouncil.WishWorker_Mount</workerClass>
+    <forbiddenBy><li>NoPets</li></forbiddenBy>
+    <lasting>true</lasting>
+    <lostText>{FOR_nameDef}'s mount answers to someone else now.</lostText>
+    <category>Gear</category>
+    <weight>0.8</weight>
+    <expiryDays>10</expiryDays>
+    <cooldownDays>30</cooldownDays>
+    <grantedThought>Council_Granted_Mount</grantedThought>
+    <envy>0.2</envy>
+    <meToo>true</meToo>
+    <talkInteraction>Council_Talk_Animals</talkInteraction>
+    <fulfilledWhen>{FOR_nameDef} is master of an animal that can be ridden (Giddy-Up says which). Something like {SUBJECT} would do.</fulfilledWhen>
+    <request>
+      <plain>
+        <li>I walk to the edge of the map and back twice a day. Something with four legs could do it in half the time.</li>
+        <li>Give me {SUBJECT} to ride and I'll bring the game home before it spoils.</li>
+        <li>[skill:Shooting] A rider sees the herd before the herd sees the rider. I'd hunt better from a saddle.</li>
+        <li>I need to get out past the hills sometimes. On foot it's a day there and back.</li>
+      </plain>
+      <warm><li>I'd look after it well. Brush it every evening, the lot.</li></warm>
+      <blunt><li>I want something to ride: {SUBJECT}, or anything with a broad back.</li></blunt>
+      <cheerful><li>Imagine riding in at the gate at a gallop! Everyone would stop and look.</li></cheerful>
+      <gloomy><li>My knees won't last forever. I'd like to see the far hills once more while they do.</li></gloomy>
+      <cold><li>A mounted colonist covers three times the ground. It's a sound investment.</li></cold>
+    </request>
+    <thanks>
+      <plain><li>Rode out to the river and back before breakfast. My legs are going to hate me.</li></plain>
+      <cheerful><li>Did you see us? Did everyone see us?</li></cheerful>
+      <cold><li>Good. Faster patrols from tomorrow.</li></cold>
+    </thanks>
+    <expired>
+      <plain><li>On foot again, then.</li></plain>
+    </expired>
+  </ColonyCouncil.WishDef>
+
+</Defs>

@@ -422,6 +422,7 @@ namespace Balance
             if (seasons != null) d.seasons = seasons.Elements("li").Select(x => x.Value).ToList();
             ReadOptions(d, el);
             d.gate = Gate(el);
+            if (d.worker != null && Rates.WorkerGates.TryGetValue(d.worker, out float wg)) d.gate *= wg;
             // A custom of the land or the faith (DilemmaWorker_Custom's CustomConditions): only where the land fits, it
             // rains, or the colony's faith holds the right memes.
             var custom = el.Element("modExtensions")?.Elements("li").FirstOrDefault(x => ((string)x.Attribute("Class") ?? "").EndsWith("CustomConditions"));

@@ -42,7 +42,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RF_PenBroken</defName>
     <thoughts><li>Council_Setback_AnimalLost</li><li>Council_Setback_PenBroken</li></thoughts>
-    <fix>A predator got into the pens, or one of the herd was lost on the grazing. It passes in a few days. Pens close to the houses, a barn with a door, and a hunt or a watch when something stalks the herd keep it from happening again.</fix>
+    <fix>A predator got into the pens and took one of the herd. It passes in a few days. Pens close to the houses, a barn with a door, and a hunt or a watch when something stalks the herd keep it from happening again.</fix>
     <article>Council_Alm_C_Animals</article>
   </ColonyCouncil.MoodHintDef>
 

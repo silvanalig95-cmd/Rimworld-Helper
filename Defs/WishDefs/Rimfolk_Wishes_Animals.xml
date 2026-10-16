@@ -2,10 +2,10 @@
 <Defs>
 
   <!--
-    The animals' wishes (Source/ColonyCouncil/Animals/AnimalWishes.cs): an animal of one's own, a barn for the herd, and
-    something to ride (only with Giddy-Up 2). Each points at something the game rewards: a master and a bond, a herd kept
-    out of the cold, a mount for the long walks. None is asked by someone whose faith abhors bonding with animals; the
-    barn not by one whose faith frowns on ranching.
+    The animals' wishes (Source/ColonyCouncil/Animals/AnimalWishes.cs): an animal of one's own and a barn for the herd
+    (with Giddy-Up 2, something to ride: Rimfolk_Wishes_Mods_GiddyUp.xml). Each points at something the game rewards: a
+    master and a bond, a herd kept out of the cold. None is asked by someone whose faith abhors bonding with animals;
+    the barn not by one whose faith frowns on ranching.
   -->
 
   <!-- ===================== An animal of my own ===================== -->
@@ -42,7 +42,7 @@
     <thanks>
       <plain><li>{OTHER_nameDef} came when I called. Well, {OTHER_pronoun} came eventually.</li></plain>
       <warm><li>{OTHER_nameDef} slept by my door last night. I think {OTHER_pronoun} knows.</li></warm>
-      <cheerful><li>Mine! Well, ours. Mostly mine!</li></cheerful>
+      <cheerful><li>Mine. Well, ours. Mostly mine!</li></cheerful>
       <cold><li>Good. Training starts tomorrow.</li></cold>
     </thanks>
     <expired>
@@ -80,7 +80,7 @@
       </plain>
       <warm><li>They work for us all day. The least we can do is keep the rain off them at night.</li></warm>
       <blunt><li>Build the herd a barn before we lose one to the cold.</li></blunt>
-      <cheerful><li>A barn! With straw, and stalls, and a name over every one!</li></cheerful>
+      <cheerful><li>A barn, with straw, and stalls, and a name over every one!</li></cheerful>
       <gloomy><li>One cold night and we'll be burying one of them. Then we'll build the barn.</li></gloomy>
       <cold><li>Livestock kept in the open loses weight and falls sick. A barn is the cheaper choice.</li></cold>
     </request>
@@ -93,47 +93,6 @@
     <expired>
       <plain><li>Out in the weather again tonight, all of them. I'll go and check on them later.</li></plain>
       <blunt><li>No barn. Fine. Don't blame me when one dies of cold.</li></blunt>
-    </expired>
-  </ColonyCouncil.WishDef>
-
-  <!-- ===================== Something to ride (Giddy-Up 2) ===================== -->
-  <ColonyCouncil.WishDef>
-    <defName>Council_Wish_Mount</defName>
-    <label>something to ride</label>
-    <description>A colonist who hunts, travels or can't keep still wants an animal of their own they can ride. Only with Giddy-Up 2, which decides what can be ridden.</description>
-    <workerClass>ColonyCouncil.WishWorker_Mount</workerClass>
-    <forbiddenBy><li>NoPets</li></forbiddenBy>
-    <lasting>true</lasting>
-    <lostText>{FOR_nameDef}'s mount answers to someone else now.</lostText>
-    <category>Gear</category>
-    <weight>0.8</weight>
-    <expiryDays>10</expiryDays>
-    <cooldownDays>30</cooldownDays>
-    <grantedThought>Council_Granted_Mount</grantedThought>
-    <envy>0.2</envy>
-    <meToo>true</meToo>
-    <talkInteraction>Council_Talk_Animals</talkInteraction>
-    <fulfilledWhen>{FOR_nameDef} is master of an animal that can be ridden (Giddy-Up says which). Something like {SUBJECT} would do.</fulfilledWhen>
-    <request>
-      <plain>
-        <li>I walk to the edge of the map and back twice a day. Something with four legs could do it in half the time.</li>
-        <li>Give me {SUBJECT} to ride and I'll bring the game home before it spoils.</li>
-        <li>[skill:Shooting] A rider sees the herd before the herd sees the rider. I'd hunt better from a saddle.</li>
-        <li>I need to get out past the hills sometimes. On foot it's a day there and back.</li>
-      </plain>
-      <warm><li>I'd look after it well. Brush it every evening, the lot.</li></warm>
-      <blunt><li>I want something to ride: {SUBJECT}, or anything with a broad back.</li></blunt>
-      <cheerful><li>Imagine riding in at the gate at a gallop! Everyone would stop and look.</li></cheerful>
-      <gloomy><li>My knees won't last forever. I'd like to see the far hills once more while they do.</li></gloomy>
-      <cold><li>A mounted colonist covers three times the ground. It's a sound investment.</li></cold>
-    </request>
-    <thanks>
-      <plain><li>Rode out to the river and back before breakfast. My legs are going to hate me.</li></plain>
-      <cheerful><li>Did you see us? Did everyone see us?</li></cheerful>
-      <cold><li>Good. Faster patrols from tomorrow.</li></cold>
-    </thanks>
-    <expired>
-      <plain><li>On foot again, then.</li></plain>
     </expired>
   </ColonyCouncil.WishDef>
 

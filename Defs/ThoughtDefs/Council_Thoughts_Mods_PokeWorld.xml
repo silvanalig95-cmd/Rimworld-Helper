@@ -91,14 +91,14 @@
     <defName>Council_PW_SparWon</defName>
     <durationDays>2</durationDays>
     <stages><li><label>won a friendly spar</label><description>Our Pokémon sparred in the yard, nobody hurt, and mine came out on top. I'll be insufferable about it until supper.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
-    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.06</joy><skill>Animals</skill><xp>100</xp></li></modExtensions>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>1</felt><joy>0.06</joy><skill>Animals</skill><xp>100</xp></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_PW_SparLost</defName>
     <durationDays>2</durationDays>
     <stages><li><label>lost a friendly spar</label><description>Mine lost the spar. I saw exactly where it went wrong, and we'll practise that tomorrow.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
-    <modExtensions><li Class="ColonyCouncil.RewardInstead"><skill>Animals</skill><xp>160</xp></li></modExtensions>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>1</felt><skill>Animals</skill><xp>160</xp></li></modExtensions>
   </ThoughtDef>
 
   <!-- The personal story of a trainer and their partner (Rimfolk_Arcs_Animals.xml): partners at last. -->
