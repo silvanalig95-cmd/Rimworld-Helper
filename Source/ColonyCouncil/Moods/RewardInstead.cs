@@ -254,10 +254,13 @@ namespace ColonyCouncil
             return raw.Formatted(t.pawn.Named("PAWN")).Resolve();
         }
 
-        /// <summary>A small line over their head saying what they got, like the speech text (and under the same setting).</summary>
+        /// <summary>
+        /// A small line over their head saying what they got: always floating text, since it isn't something they say,
+        /// and shown while speech shows at all (Immersion/Speech.cs).
+        /// </summary>
         private static void Show(Pawn p, List<string> parts)
         {
-            if (parts.Count == 0 || !ColonyCouncilMod.Settings.speechText || !p.Spawned || p.Map != Find.CurrentMap) return;
+            if (parts.Count == 0 || !Speech.On || !p.Spawned || p.Map != Find.CurrentMap) return;
             MoteMaker.ThrowText(p.DrawPos + new Vector3(0f, 0f, 0.6f), p.Map, "CC_Instead_Mote".Translate(string.Join(", ", parts)), MoteColor, 3.5f);
         }
 

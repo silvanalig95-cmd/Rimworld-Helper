@@ -135,6 +135,7 @@ namespace ColonyCouncil
         private void ComingOfAge(CouncilGameComponent comp, Pawn p)
         {
             using var _cause = Causes.Push("CC_Cause_ComingOfAge".Translate(p.LabelShort).Resolve());
+            // apart: news of someone grown up; family and friends are proud.
             if (!S.comingOfAge) return;
             string text = "CC_ComingOfAge_Text".Translate(p.Named("PAWN")).Resolve();
             Find.LetterStack.ReceiveLetter("CC_ComingOfAge_Label".Translate(p.LabelShort), text, LetterDefOf.PositiveEvent, p);

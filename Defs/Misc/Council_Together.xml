@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    A colonist going to have a word with someone (Source/ColonyCouncil/Social/Together.cs): a moment between two
+    people that waited for them to be together, and didn't come by chance (a secret confided, thanks for a lesson, the
+    herdmaster sitting with someone whose animal died). Only in free time and when it is safe; the moment happens when
+    they get there.
+  -->
+  <JobDef>
+    <defName>Council_TalkTo</defName>
+    <driverClass>ColonyCouncil.JobDriver_CouncilTalk</driverClass>
+    <reportString>going to have a word with TargetA.</reportString>
+    <casualInterruptible>true</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+  <!--
+    A line one colonist says, as Interaction Bubbles draws it (Source/ColonyCouncil/Immersion/Speech.cs). Its text is
+    the line itself (ColonyCouncil.PlayLogEntry_CouncilSpeech), so the rule below is only a fallback. Never picked as a
+    conversation, and never kept in the log.
+  -->
+  <InteractionDef>
+    <defName>Council_Speech</defName>
+    <label>a few words</label>
+    <workerClass>ColonyCouncil.InteractionWorker_LogOnly</workerClass>
+    <symbol>ColonyCouncil/Symbols/Moment</symbol>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] said a few words.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+  </InteractionDef>
+
+</Defs>

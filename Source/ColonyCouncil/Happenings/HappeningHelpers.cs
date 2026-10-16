@@ -154,12 +154,8 @@ namespace ColonyCouncil
             return true;
         }
 
-        /// <summary>Text above someone's head for a few seconds.</summary>
-        public static void Say(Pawn p, string text)
-        {
-            if (p == null || !p.Spawned || text.NullOrEmpty() || !ColonyCouncilMod.Settings.speechText) return;
-            MoteMaker.ThrowText(p.DrawPos + new Vector3(0f, 0f, 0.6f), p.Map, text, 4f);
-        }
+        /// <summary>A line over someone's head, the way all of Rimfolk's speech shows (Immersion/Speech.cs).</summary>
+        public static void Say(Pawn p, string text) => Speech.Say(p, text);
     }
 
     /// <summary>Fights the events bring, sent through the game's own raid incident.</summary>

@@ -635,13 +635,20 @@ namespace ColonyCouncil
                 var idef = inspiration.GetRandomAvailableInspirationDef();
                 if (idef != null) inspiration.TryStartInspiration(idef, null, true);
             }
-            // The people who love them are glad.
+            // The people who love them are glad (they hear the news, wherever they are).
             foreach (var f in PawnsFinder.AllMaps_FreeColonists.ToList().Where(f => f != p && f.relations != null && (f.relations.OpinionOf(p) >= 40 || comp.social.Warmth(f, p) >= 40f)))
             {
                 CouncilGameComponent.GiveThought(f, CouncilDefOf.Council_HappyForThem, p);
-                // Seeing someone they love do it can make them want it too.
-                Notify_Event(f, "fulfilled:" + a.def.defName);
-                inspiredBy[f.ThingID + "|" + a.def.defName] = p.LabelShort;
+                // Hearing about it from them, face to face, can make someone want it too: when the two are next together,
+                // within two days (Together).
+                var friend = f;
+                string goal = a.Goal, defName = a.def.defName;
+                Together.When("goalspark|" + p.thingIDNumber + "|" + friend.thingIDNumber, friend, p, () =>
+                {
+                    Notify_Event(friend, "fulfilled:" + defName);
+                    inspiredBy[friend.ThingID + "|" + defName] = p.LabelShort;
+                    SocialLog.Add(p, friend, "CC_Together_GoalShared".Translate(friend.Named("PAWN"), p.Named("OTHER"), goal.Named("GOAL")).Resolve());
+                }, 48f);
             }
         }
 

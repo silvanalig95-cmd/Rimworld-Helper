@@ -127,6 +127,7 @@ namespace ColonyCouncil
         /// </summary>
         private void MaybeObject(Wish w)
         {
+            // apart: an objection is put to the council; the line is said aloud about the one who asked, not to them.
             var map = w.pawn.MapHeld;
             if (map == null || !Rand.Chance(w.def.objectionChance)) return;
             var objectors = w.def.objectorTraits;
@@ -176,6 +177,7 @@ namespace ColonyCouncil
         private void ResolveObjection(Wish w, bool granted)
         {
             using var _cause = Causes.Push(w.objector != null ? "CC_Cause_WishObjection".Translate(w.objector.LabelShort, w.pawn.LabelShort, w.Label).Resolve() : WishCause(w, "CC_Cause_Wish"));
+            // apart: the council's decision on an objection; nobody talks to anyone.
             var o = w.objector;
             if (o == null || o.Dead || !o.IsColonist) return;
             if (granted)
@@ -276,6 +278,7 @@ namespace ColonyCouncil
         public void Grant(Wish w)
         {
             using var _cause = Causes.Push(WishCause(w, "CC_Cause_WishGranted"));
+            // apart: the council grants a wish; those who backed it are glad, as news.
             character.Shift(w.def.ways, WishCause(w, "CC_Cause_WishGranted"));
             var s = Settings;
             var who = w.Beneficiary;
@@ -409,6 +412,7 @@ namespace ColonyCouncil
         private void GrantRipples(Wish w)
         {
             using var _cause = Causes.Push(WishCause(w, "CC_Cause_WishGranted"));
+            // apart: word of a wish granted gets round the colony; grumbles are said aloud, to nobody in particular.
             var who = w.Beneficiary;
             var map = who.MapHeld;
             if (map == null) return;
@@ -745,6 +749,7 @@ namespace ColonyCouncil
         private void Quit(Pawn p, PawnStanding st)
         {
             using var _cause = Causes.Push("CC_Cause_Quit".Translate(p.LabelShort).Resolve());
+            // apart: someone leaves the colony; friends miss them (news and a letter).
             // Not while they're hurt, mid-tantrum, away or in a fight: they leave when they can walk out.
             if (!p.Spawned || p.Downed || p.InMentalState || p.Drafted || p.Map == null || !p.Map.IsPlayerHome)
             {
@@ -858,6 +863,7 @@ namespace ColonyCouncil
             foreach (var p in PawnsFinder.AllMaps_FreeColonistsSpawned.ToList())
             {
                 if (p.records == null || p.IsQuestLodger() || p.DevelopmentalStage.Baby()) continue;
+                // apart: a year since someone joined, marked by the colony (news); friends are glad for them.
                 var st = standings.For(p);
                 int years = (int)(p.records.GetValue(RecordDefOf.TimeAsColonistOrColonyAnimal) / GenDate.TicksPerYear);
                 if (st.yearsMarked < 0)

@@ -300,10 +300,13 @@ namespace ColonyCouncil
             // Now and then a confided secret sits too close to the surface (Interplay/).
             if (Interplay.MeetingSecret(this, here)) return;
 
-            // And then everyone has opinions.
-            if (pitches.Count == 0) return;
+            // And then everyone has opinions, about the ideas that have been put to the meeting (made in person or read
+            // out): mostly ones whose proposer is sitting there to hear it.
+            var put = pitches.Where(p => p.spoken || p.readOut).ToList();
+            if (put.Count == 0) return;
+            var present = put.Where(p => here.Contains(p.proposer)).ToList();
             // Someone responds to an idea that isn't their own (a proposer backing themselves would read oddly).
-            var target = pitches.RandomElement();
+            var target = present.Count > 0 && (present.Count == put.Count || Rand.Chance(0.75f)) ? present.RandomElement() : put.RandomElement();
             var speaker = here.Where(p => p != target.proposer).RandomElementWithFallback();
             if (speaker == null) return;
             int opinion = speaker.relations != null && target.proposer != null ? speaker.relations.OpinionOf(target.proposer) : 0;

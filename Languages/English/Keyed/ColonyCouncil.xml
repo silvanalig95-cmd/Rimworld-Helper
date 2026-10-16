@@ -673,8 +673,6 @@
   <CC_Settings_WishLetters_Tip>Off: new wishes appear as short messages instead.</CC_Settings_WishLetters_Tip>
   <CC_Settings_GrantedLetters>Granted wishes arrive as letters</CC_Settings_GrantedLetters>
   <CC_Settings_GrantedLetters_Tip>Off (default): a short message when a wish comes true.</CC_Settings_GrantedLetters_Tip>
-  <CC_Settings_SpeechText>Colonists speak (floating text)</CC_Settings_SpeechText>
-  <CC_Settings_SpeechText_Tip>Shows a short line above a colonist when they make, back or get a wish, or pitch an ambition.</CC_Settings_SpeechText_Tip>
   <CC_Settings_Meetings>Council meetings</CC_Settings_Meetings>
   <CC_Settings_DaysBetweenMeetings>Days between council meetings: {0}</CC_Settings_DaysBetweenMeetings>
   <CC_Settings_AmbitionDeadline>Time allowed for ambitions: {0}</CC_Settings_AmbitionDeadline>

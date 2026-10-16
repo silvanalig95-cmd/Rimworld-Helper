@@ -23,6 +23,7 @@ namespace ColonyCouncil
         public override void Apply(DilemmaContext ctx)
         {
             var social = CouncilGameComponent.Instance?.social;
+            // apart: a personal story's stage moving their bond; the talk it waited for was a game conversation, face to face.
             if (social == null || ctx.a == null || ctx.b == null || amount == 0f) return;
             if (chance < 1f && !Rand.Chance(chance)) return;
             if (amount > 0f) social.Bump(ctx.a, ctx.b, kind, amount, ctx.why);
@@ -140,7 +141,8 @@ namespace ColonyCouncil
             var comp = CouncilGameComponent.Instance;
             var s = comp?.secrets.Of(ctx.a);
             if (s == null || s.revealed || ctx.b == null || s.knowers.Contains(ctx.b)) return;
-            comp.secrets.Confide(comp, s, ctx.b);
+            // Face to face: now if they're together, else when they are (or A goes to find B).
+            comp.secrets.ConfideWhenTogether(comp, s, ctx.b);
         }
     }
 
@@ -152,7 +154,8 @@ namespace ColonyCouncil
             var comp = CouncilGameComponent.Instance;
             var s = comp?.secrets.Of(ctx.a);
             if (s == null || s.revealed) return;
-            comp.secrets.Reveal(comp, s, ctx.a);
+            // Said out loud to whoever is there: now if anyone is, else when someone is (within a day).
+            comp.secrets.ConfessInCompany(comp, s);
         }
     }
 

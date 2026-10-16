@@ -147,6 +147,7 @@ namespace ColonyCouncil
 
         public override string Resolved(HappeningContext ctx, int option, bool risk, bool byDefault, string outcome)
         {
+            // apart: the answer to an event, told in its letter.
             // An ex moving in doesn't sit well with the current partner.
             if (ctx.stranger != null && ctx.stranger.Faction == Faction.OfPlayer && ctx.a != null)
             {
@@ -303,6 +304,7 @@ namespace ColonyCouncil
             var comp = CouncilGameComponent.Instance;
             var d = comp?.happenings.departed.FirstOrDefault(e => e.pawn == x);
             if (d != null) comp.happenings.Forget(d);
+            // apart: someone come home after years away, told in the event's letter.
             if (x != null && x.Faction == Faction.OfPlayer && ctx.map != null)
             {
                 foreach (var p in Colonists(ctx.map).Where(p => p != x && p.relations != null))
