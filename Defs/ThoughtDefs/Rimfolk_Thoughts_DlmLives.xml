@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The moods of the dilemmas about the young and the old (Rimfolk_Dilemmas_Lives.xml) and of the children's customs
+    (Rimfolk_Dilemmas_Lives_Customs.xml). The good ones give something other than mood (RewardInstead: practice, play,
+    rest, warmth, trust, a feeling, a line in the journal); the bad ones are small setbacks with hints of their own
+    (Rimfolk_MoodHints_Lives.xml).
+  -->
+
+  <!-- ===================== The young ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmLv_MadeItRight</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>made it right</label><description>I broke it, and then I mended it myself. It's the best mending in the whole colony.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>1</felt><skillFrom>theirs</skillFrom><xp>200</xp><journal>true</journal></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmLv_ApologizedAtSupper</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>said sorry in front of everyone</label><description>I had to stand up at supper and say sorry to everybody. My ears are still hot.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmLv_ScoldedByCouncil</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>told off by the whole council</label><description>The whole council told me off at once. All of them. For one window.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmLv_StoryByFire</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>stories round the fire</label><description>We sat round the fire while the stories were told, and for a while nobody thought about the fighting.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>1</felt><joy>0.1</joy><feelings><li>Fellowship</li></feelings></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmLv_ShownTheWalls</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>shown the walls</label><description>I've seen the walls and the gate and where the watch stands. They're strong. I checked.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt><feelings><li>Hope</li></feelings></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmLv_NobodyCame</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>nobody came</label><description>I was frightened and they said I'd get over it. I'm still frightened. Now I'm frightened on my own.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_DlmLv_UnderTheirWing</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>10</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>looked after me</label><description>When everything was awful, they didn't leave me alone with it. They're my person now.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>12</baseOpinionOffset></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt><feelings><li>Tenderness</li></feelings></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmLv_SaidGoodbye</defName>
+    <durationDays>5</durationDays>
+    <stages><li><label>said goodbye</label><description>We went to the grave and I said goodbye properly. I left a stone. It's still sad, but it's a different kind of sad now.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt><feelings><li>Relief</li></feelings><journal>true</journal></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmLv_NotAllowedToGrieve</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>too busy to be sad</label><description>They keep me so busy I don't have time to be sad. The sad is still there. It waits until bedtime.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmLv_LeftAloneWithIt</defName>
+    <durationDays>5</durationDays>
+    <stages><li><label>left alone with it</label><description>Everyone says time will help. Nobody says what to do with the time in the meantime.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmLv_MorningLessons</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>morning lessons</label><description>Lessons every morning now. I pretend to hate them. I know four new words, and one of them is "pretend".</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>1</felt><skill>Intellectual</skill><xp>300</xp></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmLv_LearnByWorking</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>learning by working</label><description>I followed the grown-ups about all day and did what they did. My arms ache. I can do a thing I couldn't do yesterday.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>1</felt><skillFrom>mine</skillFrom><xp>250</xp></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmLv_RunFree</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>allowed to run free</label><description>No lessons, no chores. I spent the whole day up a tree and it was the best day.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>1</felt><joy>0.15</joy></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmLv_SharedIt</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>we sorted it out</label><description>We had a fight about it and then we didn't. It's better now.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>1</felt><joy>0.08</joy></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmLv_AllowedToGo</defName>
+    <durationDays>6</durationDays>
+    <stages><li><label>allowed to see the world</label><description>The council said yes. Next time anyone goes out, I'm going with them. I've been packed for two days.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>3</felt><trust>2</trust><feelings><li>Hope</li></feelings></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmLv_WorriedForThem</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>worried for my young one</label><description>They're going out into the world, and I agreed to it. I'll worry until they're back. That's what I'm for.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmLv_KeptHome</defName>
+    <durationDays>5</durationDays>
+    <stages><li><label>kept at home</label><description>Not this year, they said. They said that last year. I'll be old before they let me past the fields.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmLv_TasteOfTheRoad</defName>
+    <durationDays>5</durationDays>
+    <stages><li><label>a taste of the road</label><description>We walked out past the fields, further than I've ever been, and came back at dusk. I want to go further next time.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt><joy>0.08</joy><feelings><li>Curiosity</li></feelings></li></modExtensions>
+  </ThoughtDef>
+
+  <!-- ===================== The old ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmLv_TheLongWalk</defName>
+    <durationDays>6</durationDays>
+    <stages><li><label>one more look at the hills</label><description>I walked to the hills and looked back at everything we built. My legs will complain for a week. Worth it.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>3</felt><feelings><li>Nostalgia</li><li>Contentment</li></feelings><journal>true</journal></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_DlmLv_WalkedWithThem</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>8</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>walked to the hills with them</label><description>I walked them out to the hills and heard how this place began. Nobody else knows half of it.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>8</baseOpinionOffset></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>1</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmLv_TooFarTooOld</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>too far for old legs</label><description>I set out for the hills and my knees turned me back halfway. Sat on a rock until someone came. Humbling.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmLv_KeptIn</defName>
+    <durationDays>5</durationDays>
+    <stages><li><label>kept in like an invalid</label><description>I asked to see the hills once more and they said it was too far. I'm old, not made of paper.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmLv_FussedOver</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>fussed over</label><description>The council made me sit for the doctor like a child at bath time. I feel better. I'm not saying so.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmLv_LetMeBe</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>trusted with my own body</label><description>The council let me decide for myself. I know my own body. It's good to be treated as if I do.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>1</felt><trust>2</trust></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmLv_StruckABargain</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>drove a hard bargain</label><description>I let the doctor look, and got a week off the worst chore for it. Best trade I've made in years.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>1</felt><journal>true</journal></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmLv_EldersTale</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>heard the colony's story</label><description>The old one told us how this place began: who came first, the hard winters, the people who aren't here any more. I know where I live now.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>1</felt><feelings><li>Nostalgia</li><li>Fellowship</li></feelings></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmLv_ToldMyStory</defName>
+    <durationDays>8</durationDays>
+    <stages><li><label>told the colony's story</label><description>I told them all of it, the way it really was, and they listened to the end. It won't be forgotten now.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>3</felt><feelings><li>Pride</li><li>Nostalgia</li></feelings><journal>true</journal></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmLv_WrittenDown</defName>
+    <durationDays>6</durationDays>
+    <stages><li><label>my story written down</label><description>Every name and every winter, written down where it'll last. I've read it twice. I corrected it four times.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt><journal>true</journal><feelings><li>Pride</li></feelings></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmLv_NobodyListened</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>nobody wanted the story</label><description>I offered them the whole story of this place and they said another time. There won't be many other times.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmLv_PassedToTheYoung</defName>
+    <durationDays>8</durationDays>
+    <stages><li><label>a pupil at last</label><description>I have a pupil. A small, patient one who asks good questions. What I know won't die with me.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>3</felt><feelings><li>Tenderness</li></feelings></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_DlmLv_OldOnesPupil</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>8</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>the old one's pupil</label><description>The old one is teaching me everything. Slowly, with a lot of sitting down. I like the sitting down.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>10</baseOpinionOffset></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>1</felt><skillFrom>theirs</skillFrom><xp>200</xp></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmLv_PushedAside</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>pushed aside</label><description>Children belong with children, they said. And the old belong where, exactly? On the shelf?</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmLv_WarmAtLast</defName>
+    <durationDays>6</durationDays>
+    <stages><li><label>warm at last</label><description>I slept warm last night for the first time in weeks. I'd forgotten what my hands feel like when they work.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt><comfort>0.25</comfort><rest>0.1</rest></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmLv_GaveUpMyRoom</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>gave up my warm room</label><description>I gave the old one my room by the stove. It was right. My new room is cold and I'm allowed to grumble.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_DlmLv_FireCompany</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>8</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>company by the fire</label><description>They sit with me by the fire in the evenings and keep it fed. The nights are just as cold. They're a lot shorter.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>10</baseOpinionOffset></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>1</felt><comfort>0.15</comfort></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmLv_ColdInTheBones</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>cold in the bones</label><description>There's no wood to spare for an old one, apparently. I understand. I'm still cold.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmLv_TheOldWay</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>the old way stands</label><description>The council backed the way I've always done it. Thirty years count for something.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt><trust>1</trust><feelings><li>Pride</li></feelings></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmLv_TheNewWay</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>a chance to try my way</label><description>The council's letting me try it my way for a season. Now I just have to be right.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt><trust>1</trust><feelings><li>Hope</li></feelings></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmLv_Overruled</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>overruled</label><description>The council took the other side. I'll do it their way. I'll do it with my mouth shut, mostly.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_DlmLv_WorkedItOut</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>6</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>worked it out together</label><description>We argued it out and found a way that's half each of ours. It's better than either. I won't be telling them that.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>6</baseOpinionOffset></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>1</felt><skillFrom>theirs</skillFrom><xp>200</xp></li></modExtensions>
+  </ThoughtDef>
+
+  <!-- ===================== From a quirk ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmLv_WatchSet</defName>
+    <durationDays>5</durationDays>
+    <stages><li><label>someone's keeping watch</label><description>There's a watch on the walls at night now. I slept through till morning for the first time in a week.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt><rest>0.2</rest><feelings><li>Relief</li></feelings></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmLv_NightWatch</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>standing the night watch</label><description>I've been on the walls half the night, watching for nothing. It's someone's peace of mind, I suppose. Not mine.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_DlmLv_Reassured</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>6</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>talked me down</label><description>They went through every one of my worries with me, and what we'd do about each. Some of them look silly now. Not all.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>8</baseOpinionOffset></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>1</felt><rest>0.1</rest></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmLv_WorriesIgnored</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>my worries waved away</label><description>The council said the walls are fine. They would. They sleep at night.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmLv_RecordKeeper</defName>
+    <durationDays>8</durationDays>
+    <stages><li><label>keeper of the record</label><description>I'm the colony's record keeper, by the council's word. Everything I write down matters now. I'd better write neatly.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt><trust>2</trust><feelings><li>Pride</li></feelings><journal>true</journal></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmLv_RecordsPrivate</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>my notes kept private</label><description>I can keep my record, as long as nobody has to read it. That's not what a record is for.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmLv_KindPages</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>the kind pages read out</label><description>They read out the kind things from the colony's record at supper. There were more than I'd have guessed, and one of them was about me.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>1</felt><feelings><li>Fellowship</li></feelings></li></modExtensions>
+  </ThoughtDef>
+
+  <!-- ===================== The children's customs ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmLv_SnowDay</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>the snow day</label><description>A whole day in the snow: the snowman, the battle, the slope. My hands were frozen and I didn't care.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>1</felt><joy>0.15</joy><joyKind>Social</joyKind></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmLv_ChildrensRace</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>the children's race</label><description>We cheered the children round the fields until we were hoarse. Somebody won. Everybody argued about who.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>1</felt><joy>0.1</joy></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmLv_Gleaning</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>the gleanings shared</label><description>The children gleaned the fields and served us supper from it, very seriously. It tasted better for it.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>1</felt><feelings><li>Fellowship</li></feelings></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmLv_TreesPlanted</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>the children's trees</label><description>Every child planted a tree this spring, with a stone beside it. One day there'll be a grove there, and we'll have planted it.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>1</felt><feelings><li>Hope</li></feelings><journal>true</journal></li></modExtensions>
+  </ThoughtDef>
+
+</Defs>

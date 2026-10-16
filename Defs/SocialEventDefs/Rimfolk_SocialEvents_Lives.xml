@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Social events of the old (roles by age, in human years), and of the newer quirks (asked for by name through the role's
+    tags: quirk:Proverbs, quirk:Storyteller...). They happen between two colonists who are near each other, change the
+    bond between them, and give small rewards rather than moods (Rimfolk_Thoughts_SocLives.xml).
+  -->
+
+  <!-- ===================== The old ===================== -->
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Council_SocLv_OldStories</defName>
+    <label>stories of the old days</label>
+    <tone>warm</tone>
+    <minOpinion>-5</minOpinion>
+    <roleA><minAge>60</minAge></roleA>
+    <roleB><maxAge>30</maxAge></roleB>
+    <texts>
+      <li>{A_nameDef} told {B_nameDef} about the colony's first winter while they worked, the version with the bear in it. {B_nameDef} has heard there was no bear. {B_nameDef} enjoyed it anyway.</li>
+      <li>{B_nameDef} asked {A_nameDef} what the place looked like before the walls went up, and got the whole afternoon's answer, with names.</li>
+      <li>{A_nameDef} pointed out to {B_nameDef} where the first well was dug, where the first grave is and where somebody once fell in the river in front of everyone. It was {A_nameDef}.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_SocLv_HeardTheOldDays</thought></li>
+    </effects>
+    <changeTie>Friends</changeTie>
+    <change>3</change>
+    <note>stories of the old days</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Council_SocLv_CorrectsTheGrip</defName>
+    <label>an old hand's correction</label>
+    <tone>neutral</tone>
+    <roleA><minAge>55</minAge></roleA>
+    <roleB><maxAge>35</maxAge></roleB>
+    <texts>
+      <li>{A_nameDef} watched {B_nameDef} work for a full minute without speaking, then took the tool out of {B_possessive} hands and showed {B_objective} the grip. It was a better grip. {B_nameDef} said thank you through {B_possessive} teeth.</li>
+      <li>"Not like that," {A_nameDef} said, and showed {B_nameDef} how {A_pronoun} was taught forty years ago. It worked. {B_nameDef} hates that it worked.</li>
+      <li>{A_nameDef} told {B_nameDef} the trick of the job that nobody had thought to mention. {B_nameDef} will be doing it that way from now on, and pretending it was {B_possessive} own idea.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Crafting</skill><xp>150</xp><chance>0.5</chance></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Construction</skill><xp>150</xp><chance>0.5</chance></li>
+    </effects>
+    <changeTie>Mentor</changeTie>
+    <change>3</change>
+    <note>shown the old way of it</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Council_SocLv_TwoOldTimers</defName>
+    <label>two old-timers</label>
+    <tone>warm</tone>
+    <minOpinion>0</minOpinion>
+    <roleA><minAge>55</minAge></roleA>
+    <roleB><minAge>55</minAge></roleB>
+    <texts>
+      <li>{A_nameDef} and {B_nameDef} sat on the bench by the wall and agreed that everything was better in their day, including the weather and the knees.</li>
+      <li>{A_nameDef} and {B_nameDef} compared aches over breakfast like traders comparing goods. {A_nameDef}'s back won. {B_nameDef}'s hip came a close second.</li>
+      <li>{A_nameDef} and {B_nameDef} spent the afternoon remembering people nobody else here ever met, and laughing at things nobody else would understand.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_SocLv_Reminisced</thought></li>
+    </effects>
+    <changeTie>Friends</changeTie>
+    <change>4</change>
+    <note>remembered the old days together</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Council_SocLv_NapAtSupper</defName>
+    <label>asleep at the table</label>
+    <tone>warm</tone>
+    <minOpinion>0</minOpinion>
+    <roleA><minAge>65</minAge></roleA>
+    <texts>
+      <li>{A_nameDef} fell asleep at the supper table halfway through a sentence. {B_nameDef} put a blanket round {A_possessive} shoulders and finished the sentence for {A_objective}, roughly.</li>
+      <li>{A_nameDef} dozed off in the sun with {A_possessive} work in {A_possessive} lap. {B_nameDef} quietly finished it and put it back. {A_nameDef} woke up and said it had gone faster than expected.</li>
+    </texts>
+    <changeTie>Friends</changeTie>
+    <change>2</change>
+    <note>a blanket over the shoulders</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Council_SocLv_OldGame</defName>
+    <label>an old game</label>
+    <tone>warm</tone>
+    <children>true</children>
+    <roleA><minAge>55</minAge></roleA>
+    <roleB><child>true</child></roleB>
+    <texts>
+      <li>{A_nameDef} taught {B_nameDef} a game {A_pronoun} played as a child, with stones and lines scratched in the dirt. {B_nameDef} won the third game and has been unbearable since.</li>
+      <li>{A_nameDef} showed {B_nameDef} how to make a whistle out of a blade of grass. {B_nameDef} has been whistling at everyone. {A_nameDef} pretends to regret it.</li>
+      <li>{A_nameDef} and {B_nameDef} spent the afternoon at an old counting game with pebbles. {A_nameDef} let {B_nameDef} win, then stopped letting {B_objective}, and still lost.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_SocLv_OldGame</thought></li>
+    </effects>
+    <changeTie>Friends</changeTie>
+    <change>4</change>
+    <note>an old game in the dirt</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Council_SocLv_SharpTongue</defName>
+    <label>young people today</label>
+    <tone>friction</tone>
+    <maxOpinion>30</maxOpinion>
+    <roleA><minAge>60</minAge></roleA>
+    <roleB><maxAge>25</maxAge></roleB>
+    <texts>
+      <li>{A_nameDef} told {B_nameDef}, at length, everything wrong with young people today, using {B_nameDef} as the example throughout.</li>
+      <li>{A_nameDef} watched {B_nameDef} work and said "in my day we did it properly", and then didn't explain what properly was.</li>
+      <li>{B_nameDef} asked {A_nameDef} a simple question and got a lecture about patience, respect and the state of the colony's boots.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Soc_Snubbed</thought></li>
+    </effects>
+    <changeTie>Rivals</changeTie>
+    <change>3</change>
+    <note>a lecture about young people</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <!-- ===================== The newer quirks ===================== -->
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Council_SocQ_ProverbHelps</defName>
+    <label>a saying that helped</label>
+    <tone>warm</tone>
+    <minOpinion>0</minOpinion>
+    <roleA><tags>quirk:Proverbs</tags></roleA>
+    <texts>
+      <li>{B_nameDef} was fretting over a job gone wrong, and {A_nameDef} said "the best ploughman still turns a crooked furrow". {B_nameDef} laughed, and went back to it.</li>
+      <li>{A_nameDef} answered {B_nameDef}'s long complaint with one old saying. {B_nameDef} thought about it all afternoon, and admitted at supper it was right.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_SocLv_WiseWord</thought></li>
+    </effects>
+    <changeTie>Friends</changeTie>
+    <change>3</change>
+    <note>a saying at the right moment</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Council_SocQ_ProverbGrates</defName>
+    <label>one saying too many</label>
+    <tone>friction</tone>
+    <maxOpinion>25</maxOpinion>
+    <roleA><tags>quirk:Proverbs</tags></roleA>
+    <roleB><tags>trait:Abrasive|trait:TooSmart|trait:Volatile|trait:Nervous</tags></roleB>
+    <texts>
+      <li>{B_nameDef} asked {A_nameDef} a straight question and got "every cloud has a silver lining" in reply. {B_nameDef} asked again. {A_nameDef} said "patience is a virtue". {B_nameDef} walked off.</li>
+      <li>{A_nameDef} said "many hands make light work" while watching {B_nameDef} do all of it. {B_nameDef} has had enough of the sayings.</li>
+    </texts>
+    <changeTie>Rivals</changeTie>
+    <change>2</change>
+    <note>one proverb too many</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Council_SocQ_StoryHour</defName>
+    <label>story hour</label>
+    <tone>warm</tone>
+    <children>true</children>
+    <roleA><tags>quirk:Storyteller</tags></roleA>
+    <roleB><child>true</child></roleB>
+    <texts>
+      <li>{B_nameDef} sat at {A_nameDef}'s feet for an hour while {A_nameDef} told the one about the clever fox and the farmer's daughter. {B_nameDef} wants it again tomorrow, with the fox winning.</li>
+      <li>{A_nameDef} told {B_nameDef} a bedtime story with three dragons in it and no ending yet. {B_nameDef} has been following {A_nameDef} round all day asking for the ending.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_SocLv_StoryHour</thought></li>
+    </effects>
+    <changeTie>Friends</changeTie>
+    <change>4</change>
+    <note>a story at bedtime</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Council_SocQ_WrongLaugh</defName>
+    <label>a laugh at the wrong moment</label>
+    <tone>friction</tone>
+    <maxOpinion>40</maxOpinion>
+    <roleA><tags>quirk:WrongLaugh</tags></roleA>
+    <bMemories>
+      <li>KnowColonistDied</li><li>PawnWithGoodOpinionDied</li><li>MyFriendDied</li><li>BondedAnimalDied</li>
+      <li>MyFatherDied</li><li>MyMotherDied</li><li>MyBrotherDied</li><li>MySisterDied</li>
+    </bMemories>
+    <memoryDays>6</memoryDays>
+    <texts>
+      <li>{B_nameDef} was talking about the one {B_pronoun} lost, and {A_nameDef} laughed. Not at it. {A_nameDef} just laughed, the way {A_pronoun} does when things are hard. {B_nameDef} got up and left.</li>
+      <li>{A_nameDef} laughed at the graveside, quietly, into {A_possessive} sleeve. {B_nameDef} heard it, and hasn't spoken to {A_objective} since.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Soc_Snubbed</thought></li>
+    </effects>
+    <changeTie>Rivals</changeTie>
+    <change>4</change>
+    <note>a laugh at a sad time</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Council_SocQ_ReadBack</defName>
+    <label>the notebook again</label>
+    <tone>friction</tone>
+    <maxOpinion>30</maxOpinion>
+    <roleA><tags>quirk:KeepsRecords</tags></roleA>
+    <texts>
+      <li>{B_nameDef} said {B_pronoun} had never promised to fix the fence. {A_nameDef} took out the notebook and read {B_objective} the date, the hour and the exact words. {B_nameDef} is fixing the fence.</li>
+      <li>{A_nameDef} corrected {B_nameDef}'s story at supper from the notebook, page and line. Everyone laughed except {B_nameDef}.</li>
+    </texts>
+    <changeTie>Rivals</changeTie>
+    <change>3</change>
+    <note>read back what was said</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Council_SocQ_Reassured</defName>
+    <label>a worry eased</label>
+    <tone>warm</tone>
+    <minOpinion>10</minOpinion>
+    <roleA><tags>quirk:Worrier</tags></roleA>
+    <texts>
+      <li>{A_nameDef} was certain the roof would come down in the next storm. {B_nameDef} climbed up and checked every beam with {A_objective} watching from below. It won't. {A_nameDef} slept that night.</li>
+      <li>{B_nameDef} sat with {A_nameDef} and counted the stores out loud, sack by sack, until {A_nameDef} believed there was enough to last the winter.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_SocLv_WorryEased</thought></li>
+    </effects>
+    <changeTie>Friends</changeTie>
+    <change>4</change>
+    <note>talked through a worry</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Council_SocQ_Volunteered</defName>
+    <label>volunteered in their place</label>
+    <tone>warm</tone>
+    <minOpinion>-10</minOpinion>
+    <roleA><tags>quirk:Volunteers</tags></roleA>
+    <texts>
+      <li>{B_nameDef} was dreading the cesspit duty. {A_nameDef} took it before {B_nameDef} could finish complaining, and whistled the whole time.</li>
+      <li>{A_nameDef} volunteered for {B_nameDef}'s night watch when {B_nameDef} was tired. {B_nameDef} slept like a stone and woke up owing a favour.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_SocLv_TookMyTurn</thought></li>
+    </effects>
+    <changeTie>Friends</changeTie>
+    <change>4</change>
+    <note>took a turn at the worst job</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Council_SocQ_Strays</defName>
+    <label>the strays' admirer</label>
+    <tone>warm</tone>
+    <minOpinion>0</minOpinion>
+    <roleA><tags>quirk:SoftSpot</tags></roleA>
+    <roleB><tags>skill:Animals|trait:Kind</tags></roleB>
+    <texts>
+      <li>{A_nameDef} showed {B_nameDef} the half-wild cat {A_pronoun} has been feeding behind the storehouse. {B_nameDef} brought it a scrap too. The cat now has two people.</li>
+      <li>{A_nameDef} and {B_nameDef} spent an hour coaxing a frightened stray out from under the wagon. It bit them both. They were delighted.</li>
+    </texts>
+    <changeTie>Friends</changeTie>
+    <change>4</change>
+    <note>fed a stray together</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Council_SocQ_NightLight</defName>
+    <label>the light left burning</label>
+    <tone>friction</tone>
+    <maxOpinion>30</maxOpinion>
+    <children>true</children>
+    <roleA><tags>quirk:NightLight</tags></roleA>
+    <texts>
+      <li>{B_nameDef} blew out {A_nameDef}'s candle to save it, and {A_nameDef} lit it again, and {B_nameDef} blew it out, and so on until someone shouted at both of them.</li>
+      <li>{B_nameDef} complained that {A_nameDef}'s light keeps half the colony awake. {A_nameDef} said the dark keeps {A_objective} awake, and which was worse?</li>
+    </texts>
+    <changeTie>Rivals</changeTie>
+    <change>2</change>
+    <note>the candle left burning</note>
+  </ColonyCouncil.SocialEventDef>
+
+</Defs>
