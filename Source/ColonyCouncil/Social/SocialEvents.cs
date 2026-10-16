@@ -79,21 +79,48 @@ namespace ColonyCouncil
 
     public static class SocialEvents
     {
-        /// <summary>A social event or two most days, more in bigger colonies.</summary>
+        /// <summary>Social events still to happen today (worked out each morning, spent through the waking hours).</summary>
+        private static int pendingToday;
+
+        /// <summary>
+        /// A social event or two most days, more in bigger colonies. Worked out once a day; each one then happens at
+        /// some waking hour between two people who are near each other at the time (<see cref="Hourly"/>), so nobody
+        /// "talks" across the map.
+        /// </summary>
         public static void Daily(CouncilGameComponent comp)
         {
+            pendingToday = 0;
             if (!ColonyCouncilMod.Settings.socialWeb || !ColonyCouncilMod.Settings.socialEvents) return;
-            var map = Find.Maps.Where(m => m.IsPlayerHome).OrderByDescending(m => m.mapPawns.FreeColonistsSpawnedCount).FirstOrDefault();
+            var map = HomeMap();
             if (map == null) return;
-            if (comp.social.battleActive || GenHostility.AnyHostileActiveThreatToPlayer(map, false, false)) return;
-            var pawns = map.mapPawns.FreeColonistsSpawned.Where(p => !p.IsQuestLodger() && !p.DevelopmentalStage.Baby() && !p.Downed && !p.InMentalState && !p.Drafted).ToList();
+            var pawns = Available(map);
             if (pawns.Count < 2) return;
             float expected = UnityEngine.Mathf.Clamp(pawns.Count / 5f, 0.4f, 2f) * ColonyCouncilMod.Settings.socialEventFrequency;
-            int count = (int)expected + (Rand.Chance(expected - (int)expected) ? 1 : 0);
-            for (int i = 0; i < count; i++) TryOne(comp, map, pawns);
+            pendingToday = (int)expected + (Rand.Chance(expected - (int)expected) ? 1 : 0);
         }
 
-        public static bool TryOne(CouncilGameComponent comp, Map map, List<Pawn> pawns)
+        /// <summary>Each waking hour, now and then: one of today's social events, between two people who are together.</summary>
+        public static void Hourly(CouncilGameComponent comp)
+        {
+            if (pendingToday <= 0 || !ColonyCouncilMod.Settings.socialWeb || !ColonyCouncilMod.Settings.socialEvents) return;
+            var map = HomeMap();
+            if (map == null) return;
+            int hour = GenLocalDate.HourOfDay(map);
+            if (hour < 7 || hour > 21 || !Rand.Chance(0.3f)) return;
+            if (comp.social.battleActive || GenHostility.AnyHostileActiveThreatToPlayer(map, false, false)) return;
+            var pawns = Available(map).Where(p => p.Awake()).ToList();
+            if (pawns.Count < 2) return;
+            if (TryOne(comp, map, pawns, true)) pendingToday--;
+        }
+
+        private static Map HomeMap() =>
+            Find.Maps.Where(m => m.IsPlayerHome).OrderByDescending(m => m.mapPawns.FreeColonistsSpawnedCount).FirstOrDefault();
+
+        private static List<Pawn> Available(Map map) =>
+            map.mapPawns.FreeColonistsSpawned.Where(p => !p.IsQuestLodger() && !p.DevelopmentalStage.Baby() && !p.Downed && !p.InMentalState && !p.Drafted).ToList();
+
+        /// <summary>One social event now; <paramref name="near"/>: only between two who are near each other (see SocialLog.Near).</summary>
+        public static bool TryOne(CouncilGameComponent comp, Map map, List<Pawn> pawns, bool near = false)
         {
             foreach (var def in DefDatabase<SocialEventDef>.AllDefsListForReading.InRandomOrder().OrderByDescending(d => d.weight * Rand.Value))
             {
@@ -101,7 +128,7 @@ namespace ColonyCouncil
                 SocialTie tie = null;
                 try
                 {
-                    if (!Cast(def, comp, pawns, out a, out b, out tie)) continue;
+                    if (!Cast(def, comp, pawns, near, out a, out b, out tie)) continue;
                 }
                 catch (Exception e)
                 {
@@ -114,13 +141,13 @@ namespace ColonyCouncil
             return false;
         }
 
-        private static bool Cast(SocialEventDef def, CouncilGameComponent comp, List<Pawn> pawns, out Pawn a, out Pawn b, out SocialTie chosen)
+        private static bool Cast(SocialEventDef def, CouncilGameComponent comp, List<Pawn> pawns, bool near, out Pawn a, out Pawn b, out SocialTie chosen)
         {
             a = b = null;
             chosen = null;
             if (def.tie != TieKind.None)
             {
-                var tie = comp.social.ties.Where(t => t.kind == def.tie && t.announced && t.strength >= def.minStrength && pawns.Contains(t.a) && pawns.Contains(t.b))
+                var tie = comp.social.ties.Where(t => t.kind == def.tie && t.announced && t.strength >= def.minStrength && pawns.Contains(t.a) && pawns.Contains(t.b) && (!near || SocialLog.Near(t.a, t.b)))
                     .InRandomOrder().FirstOrDefault(t => Fits(def, t.a, t.b) || (def.tie != TieKind.Mentor && Fits(def, t.b, t.a)));
                 if (tie == null) return false;
                 chosen = tie;
@@ -133,6 +160,7 @@ namespace ColonyCouncil
                 foreach (var y in pawns.InRandomOrder())
                 {
                     if (x == y || x.relations == null || y.relations == null) continue;
+                    if (near && !SocialLog.Near(x, y)) continue;
                     int xy = x.relations.OpinionOf(y), yx = y.relations.OpinionOf(x);
                     if (xy < def.minOpinion || yx < def.minOpinion || xy > def.maxOpinion || yx > def.maxOpinion) continue;
                     if (!Fits(def, x, y)) continue;

@@ -317,7 +317,7 @@ namespace ColonyCouncil
             if (remarks.Count < 4 && Rand.Chance(0.5f))
                 remarks.Add("CC_Meeting_Remark".Translate(speaker.LabelShort, line).Resolve());
             // Arguing about it brings people closer, or not.
-            if (target.proposer != null && target.proposer != speaker && target.proposer.Spawned && Rand.Chance(0.25f))
+            if (target.proposer != null && target.proposer != speaker && SocialLog.Near(speaker, target.proposer) && Rand.Chance(0.25f))
             {
                 bool abrasive = speaker.story?.traits?.HasTrait(TraitDefOf.Abrasive) ?? false;
                 var interaction = pool == "Council_Pool_MeetingDoubt" && abrasive ? DefDatabase<InteractionDef>.GetNamedSilentFail("Insult") : InteractionDefOf.Chitchat;

@@ -174,7 +174,7 @@ namespace ColonyCouncil
             var m = Here.Where(x => x.Awake() && !x.Downed && !x.InMentalState).OrderBy(x => x.Position.DistanceToSquared(c.Position)).FirstOrDefault();
             try
             {
-                if (m != null && c.interactions != null) c.interactions.TryInteractWith(m, InteractionDefOf.Chitchat);
+                if (m != null && c.interactions != null && m.Position.InHorDistOf(c.Position, SocialLog.TalkRange)) c.interactions.TryInteractWith(m, InteractionDefOf.Chitchat);
             }
             catch (Exception e)
             {

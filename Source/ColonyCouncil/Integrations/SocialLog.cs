@@ -41,10 +41,37 @@ namespace ColonyCouncil
 
     public static class SocialLog
     {
-        /// <summary>Puts a social event or encounter into the social log, when both are here on the same map.</summary>
+        /// <summary>How far apart two people can be and still be talking to each other (a little more than the game's own chats).</summary>
+        public const float TalkRange = 10f;
+
+        /// <summary>
+        /// Two people close enough to be talking: on the same map, within <see cref="TalkRange"/>, and in the same room
+        /// or within sight of each other (not through a wall).
+        /// </summary>
+        public static bool Near(Pawn a, Pawn b)
+        {
+            if (a == null || b == null || a == b || !a.Spawned || !b.Spawned || a.Map != b.Map) return false;
+            if (!a.Position.InHorDistOf(b.Position, TalkRange)) return false;
+            try
+            {
+                var room = a.GetRoom();
+                if (room != null && room == b.GetRoom()) return true;
+                return GenSight.LineOfSight(a.Position, b.Position, a.Map, true);
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Puts a social event or encounter into the social log, when the two are near each other. Interaction Bubbles
+        /// draws a bubble over both for each entry, so two people at opposite ends of the map are left out (the event
+        /// still happened; it is in the news, the journals and the chronicle).
+        /// </summary>
         public static void Add(Pawn a, Pawn b, string text)
         {
-            if (a == null || b == null || a == b || text.NullOrEmpty() || !a.Spawned || !b.Spawned || a.Map != b.Map) return;
+            if (text.NullOrEmpty() || !Near(a, b)) return;
             var def = DefDatabase<InteractionDef>.GetNamedSilentFail("Council_SocialEvent");
             if (def == null || Find.PlayLog == null) return;
             try

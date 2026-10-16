@@ -704,7 +704,7 @@ namespace ColonyCouncil
             }
             if (a == null) a = home.RandomElement();
             if (b == null || b == a)
-                b = home.Where(p => p != a).OrderByDescending(p => d.knew.Contains(p.ThingID) ? 1f : 0f).ThenBy(_ => Rand.Value).FirstOrDefault();
+                b = home.Where(p => p != a).OrderByDescending(p => SocialLog.Near(a, p) ? 2f : 0f).ThenByDescending(p => d.knew.Contains(p.ThingID) ? 1f : 0f).ThenBy(_ => Rand.Value).FirstOrDefault();
             if (b == null) return false;
             string line = Flavor.FromPool(pool, a, null, null, tags.ToArray());
             if (line.NullOrEmpty()) return false;
