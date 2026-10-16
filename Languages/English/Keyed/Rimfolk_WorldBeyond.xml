@@ -47,4 +47,15 @@
   <CC_Camp_Help_goods>{X_nameDef} from the camp {PLACE} sent a few things up to the colony, for its hospitality: {THING}.</CC_Camp_Help_goods>
   <CC_Camp_Help_tales>{A_nameDef} sat at the camp's fire {PLACE} and heard the news of the road from {X_nameDef}.</CC_Camp_Help_tales>
 
+  <!-- ===================== Missions of the road (Source/ColonyCouncil/Missions/Workers_MissionRoad.cs) ===================== -->
+  <CC_Mission_Escort_Set>{NAME} has set off for {PLACE} with the colony's caravan, at {A_nameDef}'s side.</CC_Mission_Escort_Set>
+  <CC_Mission_Escort_Coming>{0} comes to the colony in {1}.</CC_Mission_Escort_Coming>
+  <CC_Mission_Escort_Waiting>{0} is waiting at the colony: send a caravan with one of the colony's people to {1} (about {2} away).</CC_Mission_Escort_Waiting>
+  <CC_Mission_Escort_OnRoad>{0} is on the road to {2} with {1}'s caravan.</CC_Mission_Escort_OnRoad>
+  <CC_Mission_Word_Go>Carry the word to {PLACE} ({FACTION}), about {TALE} away by caravan.</CC_Mission_Word_Go>
+  <CC_Mission_LostChild_Search>{0} is lost somewhere on the colony's land. Anyone who comes within a few steps finds them. Time left: {1}.</CC_Mission_LostChild_Search>
+  <CC_Mission_LostChild_Found>{1} found {0}, who is waiting at the colony for their family.</CC_Mission_LostChild_Found>
+  <CC_Mission_Harvest_Go>At least {0} of the colony's people who can work the fields, at {1} by caravan (about {2} away).</CC_Mission_Harvest_Go>
+  <CC_Mission_Harvest_There>The colony's hands are in the fields at {0}: {1} of {2} hours.</CC_Mission_Harvest_There>
+
 </LanguageData>
