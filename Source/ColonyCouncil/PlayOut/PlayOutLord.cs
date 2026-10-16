@@ -14,6 +14,11 @@ namespace ColonyCouncil
     {
         public static GatheringDef Council_PlayOutGathering;
         public static JobDef Council_PlayOutVisit;
+        public static JobDef Council_PlayOutWalk;
+        public static JobDef Council_PlayOutVigil;
+        public static JobDef Council_PlayOutSearch;
+        public static JobDef Council_PlayOutCarry;
+        public static JobDef Council_PlayOutWorkNext;
 
         static PlayOutDefOf() => DefOfHelper.EnsureInitializedInCtor(typeof(PlayOutDefOf));
     }

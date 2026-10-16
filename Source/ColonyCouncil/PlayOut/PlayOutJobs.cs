@@ -33,6 +33,13 @@ namespace ColonyCouncil
             {
                 case PlaySpot.Grave: return "CC_Play_Report_Grave".Translate();
                 case PlaySpot.Camp: return "CC_Play_Report_Camp".Translate();
+                case PlaySpot.Fields: return "CC_Play_Report_Fields".Translate();
+                case PlaySpot.Gate: return "CC_Play_Report_Gate".Translate();
+                case PlaySpot.Water: return "CC_Play_Report_Water".Translate();
+                case PlaySpot.Walk: return "CC_Play_Report_Walk".Translate();
+                case PlaySpot.Outdoors:
+                case PlaySpot.Fire:
+                case PlaySpot.Place: return "CC_Play_Report_Alone".Translate();
                 default: return "CC_Play_Report_Walk".Translate();
             }
         }

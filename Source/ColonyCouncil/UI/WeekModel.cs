@@ -423,19 +423,18 @@ namespace ColonyCouncil
                 foreach (var p in plays)
                 {
                     if (p == null || p.state == PlayState.Done) continue;
-                    var who = p.IsGathering ? p.organizer : p.visitor;
+                    // Who it's about, what it is and how far it has got (UI/PlayOutText.cs: gatherings, visits, work parties, walks, vigils, searches, errands, hunts).
+                    var who = PlayOutText.Who(p);
                     string label = p.label.NullOrEmpty() ? ("CC_Week_Play_" + p.kind).Translate().ToString() : p.label.CapitalizeFirst();
                     bool running = p.state == PlayState.Running;
                     int left = p.deadline - now;
                     var target = who != null && who.Spawned ? new GlobalTargetInfo(who) : GlobalTargetInfo.Invalid;
-                    string body = p.IsGathering
-                        ? "CC_Week_PlayGathering".Translate(p.invited.Count + (p.organizer != null ? 1 : 0)).Resolve()
-                        : who != null && p.other != null ? "CC_Week_PlayVisit".Translate(who.LabelShort, p.other.LabelShort).Resolve() : null;
+                    string body = PlayOutText.Body(p);
                     if (!running && !p.waitReason.NullOrEmpty()) body = (body == null ? "" : body + "\n") + "CC_Week_PlayWaitingWhy".Translate(p.waitReason).Resolve();
                     c.rows.Add(new WeekRow
                     {
                         pawn = who,
-                        icon = Icons.Wedding,
+                        icon = PlayOutText.Icon(p),
                         color = running ? UiKit.Good : Color.white,
                         text = label,
                         note = running ? "CC_Week_UnderWay".Translate().ToString() : left > 0 ? "CC_Week_Within".Translate(UiKit.Duration(left)).Resolve() : "CC_Week_Waiting".Translate().ToString(),

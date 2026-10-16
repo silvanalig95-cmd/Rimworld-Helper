@@ -43,6 +43,8 @@ namespace ColonyCouncil
         public int fellThrough;
         /// <summary>The first thing it set going, for the column ("the victory feast").</summary>
         public string playLabel;
+        /// <summary>A word on how that went, once it's over ("14 jobs done", "found 6 healroot").</summary>
+        public string playNote;
 
         public DilemmaWent Went
         {
@@ -71,6 +73,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref tookPlace, "tookPlace");
             Scribe_Values.Look(ref fellThrough, "fellThrough");
             Scribe_Values.Look(ref playLabel, "playLabel");
+            Scribe_Values.Look(ref playNote, "playNote");
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 plays ??= new List<int>();
@@ -155,9 +158,13 @@ namespace ColonyCouncil
                     bool running = p != null && (p.state == PlayState.Running || p.started >= 0);
                     if (running && !r.started.Contains(id)) r.started.Add(id);
                     if (p != null && p.state != PlayState.Done) continue;
-                    // Gone or done: it took place if it was ever seen under way.
-                    if (r.started.Remove(id) || running) r.tookPlace++;
+                    // Gone or done: as the tracker remembers it ended (a work party with nothing done, a hunt whose game got
+                    // away, fell through), else it took place if it was ever seen under way.
+                    var res = tracker?.ResultOf(id);
+                    bool seen = r.started.Remove(id) || running;
+                    if (res != null ? res.took : seen) r.tookPlace++;
                     else r.fellThrough++;
+                    if (r.playNote == null && !(res?.note).NullOrEmpty()) r.playNote = res.note;
                     r.plays.RemoveAt(j);
                 }
             }

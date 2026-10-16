@@ -243,6 +243,8 @@ namespace ColonyCouncil
                 case DilemmaWent.TookPlace:
                 case DilemmaWent.FellThrough:
                     wentSub = r.playLabel?.CapitalizeFirst();
+                    // How it went, in a word: "14 jobs done", "found 6 healroot", "the game got away".
+                    if (!r.playNote.NullOrEmpty()) wentSub = wentSub.NullOrEmpty() ? r.playNote.CapitalizeFirst() : wentSub + ": " + r.playNote;
                     break;
                 default:
                     wentSub = Short(r.outcome);

@@ -29,14 +29,17 @@ namespace ColonyCouncil
         /// <summary>Who takes part and where; false when it can't happen at all (nobody to do it).</summary>
         protected abstract bool Fill(PlayOut p, DilemmaContext ctx);
 
-        public override void Apply(DilemmaContext ctx)
+        public override void Apply(DilemmaContext ctx) => Create(ctx);
+
+        /// <summary>Sets it going: the plan, or null when nothing was set going (the setting off, its chance not met, nobody to do it).</summary>
+        protected PlayOut Create(DilemmaContext ctx)
         {
-            if (!PlayOuts.On || ctx?.map == null) return;
-            if (chance < 1f && !Rand.Chance(chance)) return;
+            if (!PlayOuts.On || ctx?.map == null) return null;
+            if (chance < 1f && !Rand.Chance(chance)) return null;
             try
             {
                 var tracker = PlayOutTracker.Instance;
-                if (tracker == null) return;
+                if (tracker == null) return null;
                 int now = Find.TickManager.TicksGame;
                 var p = new PlayOut
                 {
@@ -48,14 +51,16 @@ namespace ColonyCouncil
                     durationTicks = PlayOutMath.DurationTicks(duration.RandomInRange)
                 };
                 p.label = !label.NullOrEmpty() ? ctx.Format(label) : DefaultLabel(ctx);
-                if (!Fill(p, ctx)) return;
+                if (!Fill(p, ctx)) return null;
                 p.deadline = PlayOutMath.Deadline(now, GenLocalDate.HourOfDay(ctx.map), p.hourFrom, p.hourTo, waitHours);
                 tracker.Add(p);
                 PlayOuts.Register(p);
+                return p;
             }
             catch (Exception e)
             {
                 CouncilLog.ErrorOnce("play out " + GetType().Name, e);
+                return null;
             }
         }
 

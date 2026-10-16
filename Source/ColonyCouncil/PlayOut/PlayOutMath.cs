@@ -83,5 +83,127 @@ namespace ColonyCouncil
 
         /// <summary>Enough people for it to be a gathering: two, or everyone invited when fewer were.</summary>
         public static bool EnoughToGather(int able, int invited) => able >= Math.Min(2, Math.Max(1, invited));
+
+        // ---------------- Groups: a work party, a walk together, a vigil, a search, an errand, a hunt ----------------
+
+        /// <summary>The most people any one of them takes along, whatever the answer asks.</summary>
+        public const int MaxGroup = 8;
+
+        /// <summary>How many of them may be under way at once on a map; more wait their turn (they share the same people).</summary>
+        public const int MaxGroupsRunning = 2;
+
+        /// <summary>The longest a vigil lasts (a night), and the longest anything else of the kind does.</summary>
+        public const float MaxVigilHours = 8f;
+        public const float MaxGroupHours = 4f;
+
+        /// <summary>A length in hours, held to a kind's longest.</summary>
+        public static float CapHours(float hours, bool vigil) => Math.Max(0.25f, Math.Min(hours, vigil ? MaxVigilHours : MaxGroupHours));
+
+        /// <summary>How many go: those free, never more than the answer asks for (none given: the cap) and never more than the cap.</summary>
+        public static int GroupSize(int able, int wanted, int cap)
+        {
+            cap = Math.Max(1, Math.Min(cap, MaxGroup));
+            int want = wanted <= 0 ? cap : Math.Min(wanted, cap);
+            return Math.Max(0, Math.Min(able, want));
+        }
+
+        /// <summary>Enough free to set out: one for an errand of one, both of a pair, and two for anything bigger.</summary>
+        public static bool GroupReady(int able, int wanted) => wanted > 0 && able >= Math.Min(wanted, 2);
+
+        /// <summary>Kept a vigil: there a third of it, at least a few minutes and at most two hours.</summary>
+        public static bool VigilCounts(int stayedTicks, int durationTicks) =>
+            stayedTicks >= Math.Max(250, Math.Min(TicksPerHour * 2, durationTicks / 3));
+
+        /// <summary>Pitched in at a work party: a job done, or a quarter of it spent at work (at most an hour).</summary>
+        public static bool WorkCounts(int jobsDone, int presentTicks, int durationTicks) =>
+            jobsDone > 0 || presentTicks >= Math.Max(250, Math.Min(TicksPerHour, durationTicks / 4));
+
+        /// <summary>Went the whole way on a walk together: at the far end for half the stay.</summary>
+        public static bool WalkCounts(int stayedThere, int stayTicks) => stayedThere >= Math.Max(250, stayTicks / 2);
+
+        /// <summary>Searched: half the places on the way looked over (rounded up).</summary>
+        public static bool SearchCounts(int stopsDone, int stops) => stops > 0 && stopsDone * 2 >= stops;
+
+        /// <summary>
+        /// The stages of a walk together: gathering (0), walking out (1), at the far end (2), walking back (3), over (4).
+        /// Each moves on when everyone has come, or when most have and they've waited a while, or after a long wait
+        /// whoever has come; the stay at the far end lasts its time.
+        /// </summary>
+        public static int NextWalkPhase(int phase, int arrived, int going, int ticksInPhase, int stayTicks)
+        {
+            if (going <= 0) return 4;
+            bool all = arrived >= going;
+            bool most = arrived * 2 > going;
+            switch (phase)
+            {
+                case 0: return all || (most && ticksInPhase >= TicksPerHour / 4) || ticksInPhase >= TicksPerHour / 2 ? 1 : 0;
+                case 1: return all || (most && ticksInPhase >= TicksPerHour / 2) || ticksInPhase >= TicksPerHour * 2 ? 2 : 1;
+                case 2: return ticksInPhase >= stayTicks ? 3 : 2;
+                case 3: return all || ticksInPhase >= TicksPerHour ? 4 : 3;
+                default: return 4;
+            }
+        }
+
+        /// <summary>How long a walk together stays at the far end: what's left of its length after the walking, at least half an hour.</summary>
+        public static int WalkStay(int durationTicks) => Math.Max(TicksPerHour / 2, durationTicks / 2);
+
+        /// <summary>The places each searcher looks over: three for one alone, two each for more.</summary>
+        public static int SearchStops(int searchers) => searchers <= 1 ? 3 : 2;
+
+        /// <summary>
+        /// Which way a searcher heads for one of their places, in degrees: the searchers fan out, each over their own arc
+        /// of the compass (turned by <paramref name="seed"/>), and their places step along it.
+        /// </summary>
+        public static float SearchBearing(int searcher, int searchers, int stop, int stops, int seed)
+        {
+            searchers = Math.Max(1, searchers);
+            float arc = 360f / searchers;
+            float start = ((seed % 360) + 360) % 360;
+            float within = stops <= 1 ? arc * 0.5f : arc * (0.15f + 0.7f * stop / (stops - 1));
+            float b = (start + arc * searcher + within) % 360f;
+            return b < 0f ? b + 360f : b;
+        }
+
+        /// <summary>How far out a searcher's place is: the first close in, the last farthest out.</summary>
+        public static float SearchRadius(int stop, int stops, float near, float far) =>
+            stops <= 1 ? (near + far) * 0.5f : near + (far - near) * stop / (stops - 1);
+
+        /// <summary>How long a searcher looks about at each place: a little over a quarter of an hour, more with more time to spare.</summary>
+        public static int SearchWait(int durationTicks, int stops) => Math.Max(400, Math.Min(TicksPerHour / 2, durationTicks / Math.Max(1, stops * 3)));
+
+        // Places to stand round something (a grave, a sickbed, the gate), in the order they're taken: the four sides,
+        // then the corners, then the ring beyond; nobody on the thing itself.
+        private static readonly int[] RingX = { 0, 0, 2, -2, 2, -2, -2, 2, 1, -1, 2, -2, -1, 1, -2, 2, 0, 0, 3, -3 };
+        private static readonly int[] RingZ = { 2, -2, 0, 0, 2, -2, 2, -2, 2, -2, -1, 1, 2, -2, -1, 1, 3, -3, 0, 0 };
+
+        public static int RingCount => RingX.Length;
+
+        /// <summary>The <paramref name="i"/>th place round a spot (wrapping round once they're all taken).</summary>
+        public static void RingOffset(int i, out int dx, out int dz)
+        {
+            int k = ((i % RingX.Length) + RingX.Length) % RingX.Length;
+            dx = RingX[k];
+            dz = RingZ[k];
+        }
+
+        /// <summary>
+        /// How much an errand takes from the stores: the answer's own number, or the letter's ({COUNT}), times its share,
+        /// less the quartermaster's saving; a sum named in the letter is rounded to tens, at least ten.
+        /// </summary>
+        public static int CarryAmount(int count, int letterCount, float factor, float costFactor, bool tens)
+        {
+            int n = count > 0 ? count : letterCount;
+            if (tens) return Math.Max(10, (int)Math.Round(n * factor / 10f) * 10);
+            return Math.Max(1, (int)Math.Round(n * factor * costFactor));
+        }
+
+        /// <summary>What one carrier takes in hand: the amount, as much as the stack holds and as much as they can carry.</summary>
+        public static int CarryCount(int amount, int stack, int space) => Math.Max(0, Math.Min(amount, Math.Min(stack, space)));
+
+        /// <summary>A hunt is over when the game is down, or its time has run out.</summary>
+        public static bool HuntOver(int alive, int elapsedTicks, int durationTicks) => alive <= 0 || elapsedTicks >= durationTicks;
+
+        /// <summary>How long one of them may run past its length before it's let go, whatever is still going on.</summary>
+        public static int RunCap(int durationTicks) => durationTicks + TicksPerHour * 3;
     }
 }
