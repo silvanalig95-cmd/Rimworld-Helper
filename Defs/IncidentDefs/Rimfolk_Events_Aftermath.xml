@@ -390,7 +390,7 @@
             <label>Make amends ({COUNT} silver for {PLACE})</label>
             <outcome>{A_nameDef} puts {COUNT} silver into {X_nameDef}'s hands for {PLACE}'s widows, and says the colony was wrong. {X_nameDef} weighs the purse, and then the words, and nods once.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the amends for {PLACE}</label><what>silver</what></li>
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>10</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>madePeace</kind><about>place</about></li>
             </effects>

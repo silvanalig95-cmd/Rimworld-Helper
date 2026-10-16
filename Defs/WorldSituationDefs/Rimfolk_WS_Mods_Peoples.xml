@@ -81,6 +81,7 @@
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Pay" />
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>12</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>the sweeping of the yard</label><count>4</count><tasks><li>Clean</li><li>Haul</li></tasks><hours>7~18</hours><duration>1.5~2</duration></li>
             </effects>
             <flags><li>hosted</li></flags>
             <help>2</help>
@@ -93,7 +94,7 @@
             <label>Send a gift to meet them on the road</label>
             <outcome>{A_nameDef} rode out with the colony's gift and handed it up to a steward, who looked at it carefully, smiled carefully, and had it carried to the lord.</outcome>
             <effects>
-              <li Class="ColonyCouncil.WorldEffect_Pay"><factor>0.4</factor></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the gift for the lord</label><what>silver</what><factor>0.4</factor><tens>true</tens><steward>false</steward><to>Gate</to></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>5</amount></li>
             </effects>
             <flags><li>gift</li></flags>
@@ -235,7 +236,7 @@
             <label>Pay the token ({COUNT} silver)</label>
             <outcome>The envoy weighed the silver in one hand, nodded, and rode off without a backward glance. Word will go round the gathering that this colony knows its manners.</outcome>
             <effects>
-              <li Class="ColonyCouncil.WorldEffect_Pay" />
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the token for the gathering</label><what>silver</what><tens>true</tens><steward>false</steward><to>Gate</to></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>12</amount></li>
             </effects>
             <flags><li>paid</li></flags>

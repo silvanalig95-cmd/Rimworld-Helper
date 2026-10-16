@@ -65,7 +65,7 @@
             <label>Send {COUNT} silver for the stone</label>
             <outcome>The silver goes to {PLACE} with a few words from {A_nameDef}. {FACTION} will carve the colony's name with the others on the back of {NAME}'s stone.</outcome>
             <effects>
-              <li Class="ColonyCouncil.WorldEffect_Pay" />
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the silver for the stone</label><what>silver</what><tens>true</tens><steward>false</steward><to>Gate</to></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>8</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>mourned</kind><about>none</about></li>
             </effects>
@@ -213,7 +213,7 @@
             <label>Send {NAME} a gift, for the next verse</label>
             <outcome>A small purse goes to {PLACE} for {NAME}, with the colony's thanks and a story or two for the next verse.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>40</count></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the purse for {NAME}</label><what>silver</what><count>40</count><to>Gate</to></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_WS_OurSong</thought></li>
             </effects>
             <flags><li>sung</li></flags>
@@ -327,7 +327,7 @@
             <label>Pay {COUNT} silver</label>
             <outcome>The silver goes to {PLACE}, and the toll-keeper sends back a painted token for the colony's carts. Traders bound for the colony will be waved through.</outcome>
             <effects>
-              <li Class="ColonyCouncil.WorldEffect_Pay" />
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the toll</label><what>silver</what><tens>true</tens><steward>false</steward><to>Gate</to></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>3</amount></li>
             </effects>
             <flags><li>paid</li></flags>
@@ -594,7 +594,7 @@
             <label>Feed them and send them on</label>
             <outcome>The exiles eat, sleep one night in the barn and go on in the morning with what the colony could spare.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>15</count></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>food for the exiles</label><what>rawfood</what><count>15</count><to>Gate</to></li>
             </effects>
             <ways><mercy>1</mercy></ways>
           </li>

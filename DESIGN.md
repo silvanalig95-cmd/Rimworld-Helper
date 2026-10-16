@@ -473,6 +473,17 @@ words describe something done without it). These now play out (A and B are the d
 - **first-frost soup** (`Council_Dilemma_FirstFrostSoup`): "One big pot for everyone": feast from the stores ("the first frost soup").
 - **lantern night** (`Council_Dilemma_LanternNight`): "A lantern in every window": gathering ("the lantern night") · "One lantern at the gate": a walk together to the gate and back ("the walk out to the lantern").
 
+**Council_Dilemmas_Customs2**
+
+- **the sun's return** (`Council_Dilemma_SunsReturn`): "Everyone up to greet the sun": bonfire ("the sun's return").
+- **the rain welcome** (`Council_Dilemma_RainWelcome`): "Everyone out in the rain": gathering ("the rain welcome").
+- **the blessing of the waters** (`Council_Dilemma_WaterBlessing`): "Everyone to the water's edge": gathering to hear it, A speaks ("the blessing of the waters").
+- **the marsh lights** (`Council_Dilemma_MarshLights`): "Everyone out with the torches": gathering ("the marsh lights").
+- **the high watch** (`Council_Dilemma_HighWatch`): "Everyone up to the high ground": gathering to hear it, A speaks ("the high watch").
+- **the night vigil** (`Council_Dilemma_NightVigil`): "Keep the vigil together": gathering to hear it, A speaks ("the night vigil").
+- **the tree-singing** (`Council_Dilemma_TreeSinging`): "Everyone out to sing": gathering with music ("the tree-singing").
+- **the ancestors' supper** (`Council_Dilemma_AncestorsSupper`): "A place at the table for every one of them": feast from the stores ("the ancestors' supper").
+
 **Council_Dilemmas_Goals**
 
 - **a teacher for a dream** (`Council_Dilemma_Goal_Mentor`): "Ask B to make the time": A learns at B's side, also when it goes wrong · "Free up B's evenings": A learns at B's side.
@@ -683,6 +694,20 @@ words describe something done without it). These now play out (A and B are the d
 - **lost child** (`Council_Evt_LostChild`): "Take X home": A spends time with X.
 - **stray** (`Council_Evt_Stray`): "Let it go": A spends time with X.
 
+**Rimfolk_Events_Aftermath**
+
+- **survivors give thanks** (`Council_Evt_After_PlagueThanks`): "Say the names of their dead together": gathering to hear it, X speaks ("the names of the town's dead").
+- **the first harvest shared** (`Council_Evt_After_FirstHarvest`): "Bake it into a harvest supper, with them": feast from the stores ("the supper of the first harvest").
+- **what the river took** (`Council_Evt_After_FloodBell`): "Help them carry it home": A goes for a long walk.
+- **guests of the winter return** (`Council_Evt_After_SpringReturn`): "Plant it together, out in the fields": gathering in the fields ("the planting with their people").
+- **old friends send seed** (`Council_Evt_After_OldFriends`): "Accept, and feast their messenger": feast from the stores ("the supper for X").
+- **a reckoning** (`Council_Evt_After_Reckoning`): "Make amends (n silver for the town)": silver carried out to X ("the amends for the town") · "Hear them out, and say sorry in front of everyone": gathering to hear it, A speaks ("X's reckoning").
+
+**Rimfolk_Events_VendettaEnds**
+
+- **the blood price** (`Council_Evt_VendettaRansom`): "Take the blood price": gathering to hear it, A speaks ("the blood price for the dead").
+- **an apology** (`Council_Evt_VendettaApology`): "A hears them, and accepts": A spends time with X · "Let them say it in front of everyone": gathering to hear it, A speaks ("their apology for the dead").
+
 **World events**, by file (a beat's answers and its endings, A the colonist a beat names, X its rider or visitor):
 
 **Council_WS_Hardship**
@@ -726,6 +751,30 @@ words describe something done without it). These now play out (A and B are the d
 **Council_WS_Warlord**
 
 - **a warlord rises** (`Council_WS_Warlord`): "Pay X off (n silver)": silver carried out to the gate ("the silver for the warlord") · "Send silver to his enemies (n silver)": silver carried out to the gate ("the silver for his enemies").
+
+**Rimfolk_WS_Beyond**
+
+- **great fire** (`Council_WS_GreatFire`): "Send n wood": wood carried out to the gate ("the wood for the town") · "Sell it at a fair price": wood carried out to the gate ("the wood for the town") · "Feed them and send them home": food carried out to the gate ("a sack of food for the road home").
+- **blood feud** (`Council_WS_Feud`): "Send him on, with food": food carried out to the gate ("bread for the road") · "Pay the last n silver": silver carried out to the gate ("the last of the blood price").
+- **comet** (`Council_WS_Comet`): "A night watch on the hill": bonfire ("the night watch for the comet") · "Send A to look": A goes for a long walk.
+- **bumper harvest** (`Council_WS_Bumper`): "Hold a harvest supper": feast from the stores ("the harvest supper").
+- **drove season** (`Council_WS_Drovers`): "Graze them, as friends": bonfire ("the drovers' evening").
+
+**Rimfolk_WS_Beyond2**
+
+- **a people in mourning** (`Council_WS_Mourning`): "Send n silver for the stone": silver carried out to the gate ("the silver for the stone") · "Stand by the road with them": a toast ("standing by the road for the dead").
+- **season of songs** (`Council_WS_Songs`): "Send the singer a gift, for the next verse": silver carried out to the gate ("the purse for the singer") · "Ask the singer in to sing (feed them well)": bonfire with music ("the singer's evening").
+- **toll on the roads** (`Council_WS_Toll`): "Pay n silver": silver carried out to the gate ("the toll").
+- **exiles on the roads** (`Council_WS_Exiles`): "Feed them and send them on": food carried out to the gate ("food for the exiles").
+
+**Rimfolk_WS_FollowUps**
+
+- **rebuilding** (`Council_WS_Rebuilding`): "Send n wood": wood carried out to the gate ("the timber for the town") · "Sell it to them": wood carried out to the gate ("the timber for the town") · "Feed them on their way": food carried out to the gate ("the food set out at the gate").
+
+**Rimfolk_WS_Mods_Peoples**
+
+- **a lord's progress** (`Council_WS_LordsProgress`): "Host the retinue for a night (n silver)": a work party up to 4 (clean, haul) ("the sweeping of the yard") · "Send a gift to meet them on the road": silver carried out to the gate ("the gift for the lord").
+- **the clans gather** (`Council_WS_ClansGather`): "Pay the token (n silver)": silver carried out to the gate ("the token for the gathering").
 
 ### What stays a mood, and why
 
