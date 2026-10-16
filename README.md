@@ -48,17 +48,32 @@ window, organized in five sections:
 
 | Section | Sub-tabs | What's there |
 |---|---|---|
-| **Colony** | Overview · Priorities · Moods · World · Room plans | the colony at a glance (numbers, how they moved this week, graphs of mood, trust, wealth and people over the last weeks); the advisor's ranked list of what the colony needs; every mood added up; what's coming and who's out there; ready-made rooms |
-| **People** | Roster · Bonds · Wishes | every colonist at a glance with their full story; friendships, rivalries, circles, vendettas, secrets; open wishes and trust |
-| **Council** | Decrees · Ambition | decrees, petitions and the council's offices (five, nine in a bigger colony); the current ambition and meetings |
-| **History** | Chronicle · Dreams · Journals | everything that happened (filter by wishes, council, people, strangers, world events, dreams, losses), recent dreams, every colonist's journal |
+| **Colony** | This week · Overview · Priorities · Moods · World · Room plans | what needs you, what's coming and how people are; the colony at a glance (numbers, how they moved this week, graphs of mood, trust, wealth and people over the last weeks); the advisor's ranked list of what the colony needs; every mood added up; what's coming and who's out there; ready-made rooms |
+| **People** | Roster · Everyone · Bonds · Wishes | every colonist at a glance with their full story; all colonists in one sortable table; friendships, rivalries, circles, vendettas, secrets; open wishes, promises kept and trust |
+| **Council** | Decrees · Ambition · Our ways · Dilemmas | decrees, petitions and the council's offices (five, nine in a bigger colony); the current ambition and meetings; what the colony is known for; questions waiting and how the answers went |
+| **History** | Chronicle · Calendar · Dreams · Journals | everything that happened (filter by wishes, council, people, strangers, world events, dreams, losses), the colony calendar, recent dreams, every colonist's journal |
 | **Almanac** | | the knowledge base |
 
 Section names show a count when something there wants your attention (urgent advice, open wishes, petitions).
 Each colonist also has a **Story** tab in their inspect panel, and clicking a colonist's name in the council window
 opens their page in the roster.
 
-The window opens on the page you last looked at, also after a restart (it's kept with the mod settings). A colony's
+**This week** is the first page: one place for everything that wants you. Wishes and petitions (oldest first),
+dilemmas and other letters waiting for an answer, and promises at risk (granted wishes gone missing, with the time
+left before it's held against the council); gatherings and play-outs planned, the council meeting, calendar days,
+fights, missions with their deadlines and a camp on the map; colonists under strain or near a break, serious illness
+and convalescence, trust that moved this week, and the balance of Rimfolk's own good and bad moods. Each line opens its
+page or goes to the colonist or the place on the map. Pin a colonist or a wish to keep it at the top (the pin shows on
+hover there, in Everyone, on a wish card and on a colonist's roster page), and "Mark all read" puts the evenings'
+colony news away from the letter stack. **Everyone** is the people overview: a table of every colonist with mood and
+Rimfolk's share of it, trust and its week, strain and the feeling on top, the setbacks and pressures weighing on them
+with what helps, their open wish, personal story, health and quirks, office and epithet; sort by any column, hover for
+details, click to select. **Dilemmas** keeps every answer the council gives, with a "how it went" column (as answered,
+went wrong, still to happen, took place, never came about). The pages remember their filters and sort orders, and
+Options → Keyboard has optional shortcuts for the council's pages under "Rimfolk" (none set until you pick a key).
+
+The window opens on This week; the "Council window opens on" setting makes it open on the page you last looked at
+instead, also after a restart (it's kept with the mod settings). A colony's
 first session with Rimfolk brings one quiet **welcome letter**: what Rimfolk does, where the council button is, and a
 button to the Almanac's **Start here** page. Saves that already had Rimfolk never get it, and it needs no setting.
 The **Mood** and **Story** tabs fit the room above the inspect pane: on a small screen, at a big interface scale or
@@ -1132,6 +1147,8 @@ where they eat"). The mood bar shows where they are, where they're heading and t
 The council window's **Moods** page (Colony section) adds it up for the whole colony: what weighs on everyone,
 who feels it, who is closest to breaking, and how much comes from the base game, Rimfolk and each of your mods.
 Buttons lead straight to the advisor's matching warning, the council page that deals with it, or an Almanac page.
+Every "Go to" button leads to a real page, and to the one its hint names (dilemmas and traditions to Dilemmas, names
+to the roster, strangers and world events to World, a missed gathering to This week); the game checks this on load.
 Hints cover the base game, the DLCs and Rimfolk (172 groups of them, down to the calendar's days, convalescence and
 personal stories); moods from other mods get general advice and their mod's name.
 The game's own **Needs** tab gets the same hints: hover a mood and its usual tooltip ends with which mod it comes
@@ -1354,8 +1371,9 @@ The pages:
   smaller news goes (**Colony news**: one letter each evening by default, as it happens, or off, to the History tab
   only); a message for every dream, letters or messages for new and granted wishes, floating speech text, the visual and sound
   touches; the two alerts; mood insight (and its hints in the Needs tab), the slow speed buttons (and putting them
-  back), where the council button sits in the bottom bar, the rooms button, the Almanac's text size; the deeper game
-  hooks and the notes in the game's letters.
+  back), where the council button sits in the bottom bar, the rooms button, which page the council window opens on
+  (**This week** by default, or the last page), the Almanac's text size; the deeper game hooks and the notes in the
+  game's letters.
 - **Advanced**: this colony's era (detected, pre-industrial or industrial; set per colony, so it needs a loaded game),
   **Check what's on and working** (the same report as the dev action "Rimfolk: check myself"), and a full reset to
   the defaults (with the list of what changes; saved rooms are kept).

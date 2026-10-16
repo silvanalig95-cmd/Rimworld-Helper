@@ -202,6 +202,10 @@ namespace ColonyCouncil
         /// <summary>How large the Almanac's pages are written (its "Aa" buttons), and whether its lists are folded away.</summary>
         public AlmanacTextSize almanacTextSize = AlmanacTextSize.Normal;
         public bool almanacFolded = false;
+        /// <summary>Where the council window opens: This week (UI/WeekPanel.cs), or the page last looked at.</summary>
+        public CouncilOpensOn councilOpensOn = CouncilOpensOn.ThisWeek;
+        /// <summary>The filters and sort orders the council's pages remember, as "page.key=value" (UI/PageMemory.cs).</summary>
+        public System.Collections.Generic.List<string> councilPageState = new System.Collections.Generic.List<string>();
 
         public override void ExposeData()
         {
@@ -327,6 +331,10 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref lastAlmanacPage, "lastAlmanacPage", "");
             Scribe_Values.Look(ref almanacTextSize, "almanacTextSize", AlmanacTextSize.Normal);
             Scribe_Values.Look(ref almanacFolded, "almanacFolded", false);
+            Scribe_Values.Look(ref councilOpensOn, "councilOpensOn", CouncilOpensOn.ThisWeek);
+            Scribe_Collections.Look(ref councilPageState, "councilPageState", LookMode.Value);
+            if (Scribe.mode == LoadSaveMode.PostLoadInit || Scribe.mode == LoadSaveMode.LoadingVars)
+                councilPageState ??= new System.Collections.Generic.List<string>();
         }
 
         /// <summary>Saves the settings file right away (used by the planner's checkboxes).</summary>

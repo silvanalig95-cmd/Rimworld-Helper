@@ -28,7 +28,18 @@ namespace ColonyCouncil
         }
 
         private static readonly ChronicleFilter[] Filters = (ChronicleFilter[])System.Enum.GetValues(typeof(ChronicleFilter));
-        private static ChronicleFilter chronicleFilter = ChronicleFilter.All;
+        private static ChronicleFilter? filterMemo;
+
+        /// <summary>The filter, remembered between sessions (UI/PageMemory.cs).</summary>
+        private static ChronicleFilter chronicleFilter
+        {
+            get => filterMemo ??= PageMemory.GetEnum("chronicle.filter", ChronicleFilter.All);
+            set
+            {
+                filterMemo = value;
+                PageMemory.SetEnum("chronicle.filter", value);
+            }
+        }
         private static readonly Dictionary<ChronicleEntry, float> chronicleHeights = new Dictionary<ChronicleEntry, float>();
         private static float chronicleWidth;
 

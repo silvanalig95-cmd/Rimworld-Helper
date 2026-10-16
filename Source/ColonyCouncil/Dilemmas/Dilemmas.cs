@@ -969,6 +969,8 @@ namespace ColonyCouncil
             comp?.character.Shift(byDefault ? option.ways?.Scaled(0.5f) : option.ways, "CC_Ways_Why_Dilemma".Translate(ctx.def.label, ctx.Format(option.label)).Resolve());
             Setbacks.Notify_Answer(ctx, option.ways, byDefault, risk, ctx.def.label, ctx.Format(option.label));
             string told = ctx.Format(outcome);
+            // Written down for Council → Dilemmas, with what it set going on the map (UI/DilemmaLog.cs).
+            DilemmaLog.Record(ctx, option, told, risk, byDefault);
             if (byDefault) told = "CC_Dilemma_NoAnswer".Translate() + " " + told;
             if (!told.NullOrEmpty())
                 Messages.Message(told, new LookTargets(new[] { ctx.a, ctx.b, ctx.stranger }.Where(p => p != null && p.Spawned)), MessageTypeDefOf.NeutralEvent, false);
