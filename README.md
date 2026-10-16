@@ -82,8 +82,10 @@ section's heading (the heart, what weighs on them, their bonds...) folds it away
 session.
 
 ### Priorities: what the colony needs
-A ranked list of concerns, each with a short explanation, a rotating **"why it matters"** tip, and buttons to
-jump to the problem, plan a fitting room, or read more in the Almanac. It watches:
+A ranked list of concerns (62 kinds of check), each with a short explanation, a rotating **"why it matters"** tip,
+and buttons to jump to the problem, plan a fitting room, open the council page that deals with it, or read more in
+the Almanac. Some take the first step for you: open the camp's letter or the mission's quest, open the Work tab, or
+plan wall lamps and chairs where a room lacks them. It watches:
 - food vs. the coming winter (forecast from your map's actual climate), spoiling food, blight, ripe crops before frost
 - kitchen hygiene (butchering next to the stove, dirty kitchens), nobody cleaning, dirty hospitals
 - cold or hot months ahead, and what to do during heat waves, cold snaps, toxic fallout, solar flares,
@@ -94,8 +96,18 @@ jump to the problem, plan a fitting room, or read more in the Almanac. It watche
   expectations about to rise with your wealth
 - rooms the colony has outgrown, gently: a dining room with fewer seats than people, a barracks that could become
   bedrooms now there's enough wall material in store, a hospital without the vitals monitor, hospital beds or sterile
-  tile you've researched (with "Upgrade the room"), a rec room with too little to do for everyone
-- doctor, medicine and medical beds; prisoners without a warden, food or bed
+  tile you've researched (with "Upgrade the room"), a rec room with too little to do for everyone; and rooms it
+  could make better: a noble's bedroom short of the title (Royalty), a kitchen with one stove for too many, a full
+  freezer with food spoiling outside, a dining room too cramped, a workshop with dark benches or no chairs at them,
+  a prison cell without comfort
+- doctor, medicine and medical beds, the only doctor with nobody to tend them; prisoners without a warden, food or
+  bed; beds no light reaches; meals eaten without a table
+- Rimfolk's own systems: a mission near its deadline with its goods not all there, a plague or famine in the region
+  while the colony is short of what helps, a camp's question left waiting, a decree still costing moods after its
+  reason has passed, an office empty when it matters (no physician with the sick in bed), a calendar day tomorrow
+  with nothing laid by, a promise about to break
+- a tribal or medieval colony before the cold: stores under the open sky, food that won't keep through a mild
+  winter (smoke it, or make pemmican), firewood short of what the fires will burn by spring
 - power shortages, jobs nobody is assigned to, items rotting outside, an idle research bench, ideas for what's next
 - the quieter things, gently: a week without fruit or vegetables (before scurvy), someone with no friend here, a
   camp going hungry or growing tense, a calendar day coming round, graves left dirty or outside the home area,

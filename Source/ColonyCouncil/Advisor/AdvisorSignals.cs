@@ -169,8 +169,9 @@ namespace ColonyCouncil
                 s.suggestThing = cooler;
                 yield return s;
             }
-            else
+            else if (!AdvisorWorker_WinterStores.Applies(map))
             {
+                // With winter coming, the winter stores advice says this and more (AdvisorSignals5.cs).
                 var pemmican = DefDatabase<ThingDef>.GetNamedSilentFail("Pemmican");
                 bool canPreserve = pemmican != null && DefDatabase<RecipeDef>.AllDefsListForReading.Any(r => r.ProducedThingDef == pemmican && r.AvailableNow);
                 yield return Signal(0.25f, "CC_Adv_Spoil_Title".Translate(),

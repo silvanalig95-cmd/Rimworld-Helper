@@ -92,6 +92,8 @@ namespace ColonyCouncil
             if (s.look != null && s.look.IsValid) l.buttons++;
             if (s.template != null && map != null && s.template.UnavailableReason(map) == null) l.buttons++;
             if ((s.article ?? s.def.article) != null) l.buttons++;
+            if (s.act != null && !s.actLabel.NullOrEmpty()) l.buttons++;
+            if (MainTabWindow_Council.IsPage(s.page)) l.buttons++;
             // Tall enough for the text, the level badge, and the column of buttons.
             l.height = Mathf.Max(68f, l.titleH + l.detailH + l.tipH + 16f, l.buttons * 30f + 10f);
             layouts[s] = l;
@@ -152,6 +154,27 @@ namespace ColonyCouncil
                     if (s.upgrade) Designator_PlanRoom.Begin(s.template, false, true);
                     else MainTabWindow_Council.StartPlanning(s.template, true);
                 }
+                by += 30f;
+            }
+            // Something the advice can do now (plan the lamps, open the letter), and the council page that deals with it.
+            if (s.act != null && !s.actLabel.NullOrEmpty())
+            {
+                if (Widgets.ButtonText(new Rect(bx, by, bw, 26f), s.actLabel))
+                {
+                    try
+                    {
+                        s.act();
+                    }
+                    catch (System.Exception e)
+                    {
+                        CouncilLog.ErrorOnce("advisor action " + s.def?.defName, e);
+                    }
+                }
+                by += 30f;
+            }
+            if (MainTabWindow_Council.IsPage(s.page))
+            {
+                if (Widgets.ButtonText(new Rect(bx, by, bw, 26f), "CC_Mood_GoTo".Translate(MainTabWindow_Council.TabName(s.page)).Resolve())) MainTabWindow_Council.OpenTab(s.page);
                 by += 30f;
             }
             var article = s.article ?? s.def.article;
