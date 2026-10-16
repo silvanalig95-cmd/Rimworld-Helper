@@ -43,6 +43,8 @@ namespace ColonyCouncil
 
         [Unsaved] private LordToil_Party party;
         [Unsaved] private int nextLook;
+        /// <summary>A toast's cups have gone up (Immersion/GatheringTouches.cs).</summary>
+        [Unsaved] private bool raised;
 
         private static FleckDef musicFleck;
         private static bool looked;
@@ -189,6 +191,8 @@ namespace ColonyCouncil
             if (map == null || Find.CurrentMap != map) return;
             var here = lord.ownedPawns.Where(p => p != null && p.Spawned && p.Awake() && GatheringsUtility.InGatheringArea(p.Position, spot, map)).ToList();
             if (here.Count == 0) return;
+            // The fire's smoke, a grave's glow after dark, the toast's raised cups.
+            GatheringTouches.Look(this, Play, here, map, spot, durationTicks, ref raised);
             if (music && VisualTouches.On)
             {
                 if (!looked)
@@ -201,7 +205,7 @@ namespace ColonyCouncil
                         FleckMaker.ThrowMetaIcon(p.Position, map, musicFleck);
             }
             if (!Rand.Chance(0.3f)) return;
-            var speaker = here.RandomElement();
+            var speaker = GatheringTouches.Speaker(kind, here);
             string line = null;
             if (!lines.NullOrEmpty() && Rand.Chance(0.5f)) line = lines.RandomElement();
             if (line.NullOrEmpty() && !pool.NullOrEmpty()) line = Flavor.FromPool(pool, speaker);
