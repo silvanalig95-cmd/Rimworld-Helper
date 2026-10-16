@@ -145,7 +145,7 @@ three days later unless you win them back. The Wishes tab shows everyone's trust
 
 **Rising standards.** Comfort breeds expectations. While a colonist is happy, their standards creep up from
 *modest* to *comfortable*, *particular* and finally *spoiled*. The council's mood rewards shrink for them, letdowns
-sting more (and so do the colony's own frictions and everyday pressures, up to 40% more), their patience runs shorter, and their wishes come more often and ask for more: the next impressiveness
+sting more (and so do the colony's own frictions, everyday pressures and setbacks, up to 40% more), their patience runs shorter, and their wishes come more often and ask for more: the next impressiveness
 level after that, fine meals instead of simple ones, luxuries. Hard times bring standards back down, and so does the
 austerity decree.
 
