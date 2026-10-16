@@ -25,7 +25,7 @@ A rare serious tier sits on top, behind its own setting: twelve illnesses modele
           <li>Pinkeye | Conjunctivitis | Any time | About a week, 3 to 4 days with tending | Clean hands and towels; industrial medicine clears it fastest</li>
           <li>Dreamfever | Invented | Any time | About a week | Rest and quiet; it brings vivid dreams</li>
         </table>
-        <after>At 100%, one of these goes round about every 20 days on an average map, more often where the game's own diseases are common and less on gentler storyteller settings, and the same one at most once in 20 to 40 days. They hit a share of the colony the way the game's diseases do, never babies, and immunity, genes and the medical tab work as usual.</after>
+        <after>At 100%, one of these goes round about every 30 days on an average map, more often where the game's own diseases are common and less on gentler storyteller settings, and the same one at most once in 20 to 40 days. They hit a share of the colony the way the game's diseases do, never babies, and immunity, genes and the medical tab work as usual.</after>
       </li>
       <li>
         <heading>From the day's work</heading>
@@ -38,7 +38,7 @@ A rare serious tier sits on top, behind its own setting: twelve illnesses modele
           <li>Chilblains | 5 hours of outdoor work between -10 and 6 °C | About a week | Warmth, warm clothes</li>
           <li>Sunburn | 4 hours outdoors around midday above 30 °C or in a heat wave, with nothing on the head | 2 to 4 days | A hat; tending</li>
           <li>Smoke cough | 4 hours in a closed room of 60 cells or fewer with a wood fire burning | 1 to 2 days | Clean air, a bigger room</li>
-          <li>Toothache | Sweets and age (more from 40, more again from 60) | Weeks, or a day or two after tending | One good treatment</li>
+          <li>Toothache | Sweets and age (more from 40, more again from 60) | One to two weeks, or a day or two after tending | One good treatment</li>
           <li>Stiff neck | A night on the ground, a bedroll or a hard bed | 1 to 2 days | A proper bed</li>
           <li>Sprained ankle | 2 hours on the move over marsh, mud, sand, shallow water or deep snow | 5 to 10 days | Bed rest at first, strapping</li>
           <li>Eye strain | 4 hours of research or bench work in the dark | A night's sleep | A light at the bench</li>
@@ -53,7 +53,7 @@ A rare serious tier sits on top, behind its own setting: twelve illnesses modele
           <li>Athlete's foot | 3 hours on the move through water, marsh or mud | 5 to 8 days | Dry feet; tending, industrial best</li>
           <li>Motion sickness | 3 hours with a caravan on the move (more in children, less in the old) | Under a day | Tending; it ends when the caravan does</li>
           <li>Lice | Nights in a dirty room of 4 or more beds, or unwashed in a shared room; they pass to roommates in dirty rooms | 10 to 17 days, a day or two with tending | Tending and a clean room; while someone has lice, typhus is 3 times as likely</li>
-          <li>Insomnia | 8 hours of worry in a day (mood under 30%, or strain of 30 or more), or 3 hours awake between midnight and five (never night owls) | About a week | A regular bedtime and fewer late nights; tending</li>
+          <li>Insomnia | 8 hours of worry in a day (mood under 30%, or strain of 30 or more), or 3 hours awake between midnight and five (never night owls) | 4 to 7 days | A regular bedtime and fewer late nights; tending</li>
           <li>Migraine | 6 hours hungry or 6 hours of worry in a day (rarely in children) | About a day, half that in bed | A dark room and rest; tending, industrial best</li>
           <li>Cold sore | 8 hours of worry or 4 hours in the midday heat; 1 in 10 colds leave one | 4 to 7 days | Tending, industrial best (an antiviral)</li>
           <li>Heartburn | A fine or lavish meal: 4% each, half again from 40 and double from 60 | 6 to 10 hours | Smaller helpings</li>
@@ -86,7 +86,7 @@ A rare serious tier sits on top, behind its own setting: twelve illnesses modele
         <heading>Medicine, rest and recovery</heading>
         <text>Tending works as it does for any illness: the doctor's skill and the medicine set the quality, and the illness eases while the treatment lasts, 8 hours for meningitis up to 3 days for a strapped ankle. On top of that, the kind of medicine counts the way it would against the real illness. For colds, coughs and strains it barely matters. For the illnesses real doctors treat with antibiotics, an antitoxin or a vaccine it matters a great deal: industrial medicine works 1.3 to 1.4 times as well as usual against tetanus, pneumonia, typhus, meningitis, appendicitis, rabies and hive fever, herbal medicine (or none) only 0.6 to 0.8 times (0.85 against rabies), and against tuberculosis herbs do half as much. Cholera is the exception: what saves a patient is fluids, so herbs do nearly as well (0.9 against 1.2). Rabies only responds to treatment before its symptoms show; after that, nothing slows it. A patient's tooltip says which medicine was used last and how well it works on that illness.
 
-Bed rest helps the body build immunity, as with any disease, and also speeds a strained back, a sprained ankle and the weakness after an illness. Many illnesses end with an after-effect: a lingering cough for a week or so after a cold, a chest cold, pneumonia or tuberculosis, now and then a cold sore after a cold, nerve pain for a week or two after shingles, and some days of weakness (convalescing, with slower work) after a serious illness or the operation for appendicitis. Nothing is permanent.</text>
+Bed rest helps the body build immunity, as with any disease, and also speeds a strained back, a sprained ankle and the weakness after an illness. Many illnesses end with an after-effect: a lingering cough for some days after a cold, a chest cold, pneumonia or tuberculosis, now and then a cold sore after a cold, nerve pain for a week or two after shingles, and some days of weakness (convalescing, with slower work) after a serious illness or the operation for appendicitis. Nothing is permanent.</text>
       </li>
       <li>
         <heading>Recovery</heading>
