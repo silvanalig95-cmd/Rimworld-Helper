@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Setbacks (Source/ColonyCouncil/Setbacks/): bad moods from what actually happens in play, so the colony's many small
+    rewards have something to weigh against. This file: the council's decisions, gatherings, and the worries that last
+    while their cause does. Defs/ThoughtDefs/Council_Thoughts_Setbacks2.xml has work, home and the people around them.
+
+    Each names its cause in the tooltip (the memories through Causes, the lasting ones through their worker), and what
+    helps is in Defs/MoodHintDefs/Council_MoodHints_Setbacks.xml. SetbackExtension says which setting a setback answers
+    to: Council (the stakes' downsides, scaled like the council's own), Life ("Life's ups and downs" and the colonist's
+    standards, never less than a whole point) or Friction (the everyday frictions setting, felt with standards).
+    Lasting setbacks (workers, Thought_Setback) may name {OTHER_nameDef} and what they're about ({WISH}, {DECREE}, {ILLNESS}, {NAME}, {FACTION}) in their texts. HeartTags feed the
+    heart's feelings.
+  -->
+
+  <!-- ===================== The council ===================== -->
+
+  <ThoughtDef>
+    <defName>Council_Setback_StillWaiting</defName>
+    <workerClass>ColonyCouncil.ThoughtWorker_SetbackWaiting</workerClass>
+    <thoughtClass>ColonyCouncil.Thought_Setback</thoughtClass>
+    <validWhileDespawned>true</validWhileDespawned>
+    <modExtensions>
+      <li Class="ColonyCouncil.SetbackExtension"><group>Council</group></li>
+      <li Class="ColonyCouncil.HeartTags"><feelings><li>Frustration</li></feelings><weight>0.6</weight></li>
+    </modExtensions>
+    <stages>
+      <li>
+        <label>still waiting</label>
+        <description>I asked the council before they did. They've had their answer, and I'm still waiting on {WISH}.</description>
+        <baseMoodEffect>-1</baseMoodEffect>
+      </li>
+      <li>
+        <label>passed over again</label>
+        <description>Wish after wish comes true around me, and {WISH} sits there. I've stopped looking at the list.</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Setback_IdeaPassedOver</defName>
+    <durationDays>3</durationDays>
+    <modExtensions>
+      <li Class="ColonyCouncil.SetbackExtension"><group>Council</group></li>
+      <li Class="ColonyCouncil.HeartTags"><feelings><li>Frustration</li></feelings><weight>0.7</weight></li>
+    </modExtensions>
+    <stages>
+      <li>
+        <label>my idea turned down</label>
+        <description>I stood up at the meeting and made my case. The council went with something else.</description>
+        <baseMoodEffect>-3</baseMoodEffect>
+      </li>
+      <li>
+        <label>the vote was for my idea</label>
+        <description>Most of the meeting backed my idea. The council chose another one anyway. What was the vote for, then?</description>
+        <baseMoodEffect>-4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Setback_OutVoted</defName>
+    <durationDays>1.5</durationDays>
+    <modExtensions>
+      <li Class="ColonyCouncil.SetbackExtension"><group>Council</group></li>
+    </modExtensions>
+    <stages>
+      <li>
+        <label>the vote went the other way</label>
+        <description>I backed a different idea at the meeting. It didn't win. I'll live.</description>
+        <baseMoodEffect>-1</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Setback_DecreeDrags</defName>
+    <workerClass>ColonyCouncil.ThoughtWorker_SetbackDecree</workerClass>
+    <thoughtClass>ColonyCouncil.Thought_Setback</thoughtClass>
+    <validWhileDespawned>true</validWhileDespawned>
+    <modExtensions>
+      <li Class="ColonyCouncil.SetbackExtension"><group>Council</group></li>
+      <li Class="ColonyCouncil.HeartTags"><feelings><li>Frustration</li></feelings><weight>0.6</weight></li>
+    </modExtensions>
+    <stages>
+      <li>
+        <label>a decree that drags on</label>
+        <description>The {DECREE} was meant to be for a few days. It feels like it's been in force forever.</description>
+        <baseMoodEffect>-1</baseMoodEffect>
+      </li>
+      <li>
+        <label>sick of this decree</label>
+        <description>Every day under the {DECREE} is a day I'd rather have had back. Nobody seems to be listening.</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Setback_FriendLetDown</defName>
+    <durationDays>5</durationDays>
+    <stackLimit>2</stackLimit>
+    <modExtensions>
+      <li Class="ColonyCouncil.SetbackExtension"><group>Council</group></li>
+      <li Class="ColonyCouncil.HeartTags"><feelings><li>Anger</li></feelings><weight>0.7</weight></li>
+    </modExtensions>
+    <stages>
+      <li>
+        <label>they let my friend down</label>
+        <description>The council promised my friend, and then let it lapse. If they'll do that to a friend of mine, they'll do it to me.</description>
+        <baseMoodEffect>-3</baseMoodEffect>
+      </li>
+      <li>
+        <label>they let down someone I love</label>
+        <description>They promised someone I love, face to face. I watched the waiting every day until it was clear nothing was coming.</description>
+        <baseMoodEffect>-5</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Setback_RivalHonoured</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>4</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <modExtensions>
+      <li Class="ColonyCouncil.SetbackExtension"><group>Council</group><envy>true</envy></li>
+      <li Class="ColonyCouncil.HeartTags"><feelings><li>Envy</li></feelings><weight>0.8</weight></li>
+    </modExtensions>
+    <stages>
+      <li>
+        <label>my rival honoured</label>
+        <description>Of all the people here, they had to honour that one. I could list what they've done wrong, and it's not short.</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+        <baseOpinionOffset>-4</baseOpinionOffset>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Setback_NotAgreed</defName>
+    <durationDays>2</durationDays>
+    <stackLimit>2</stackLimit>
+    <modExtensions>
+      <li Class="ColonyCouncil.SetbackExtension"><group>Council</group></li>
+      <li Class="ColonyCouncil.HeartTags"><feelings><li>Frustration</li></feelings><weight>0.5</weight></li>
+    </modExtensions>
+    <stages>
+      <li>
+        <label>not my choice</label>
+        <description>The council decided, and not the way I would have. It's done now.</description>
+        <baseMoodEffect>-1</baseMoodEffect>
+      </li>
+      <li>
+        <label>the council chose wrong</label>
+        <description>That answer goes against everything I think is right. I said so, and they did it anyway.</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Setback_ToldThemSo</defName>
+    <durationDays>3</durationDays>
+    <modExtensions>
+      <li Class="ColonyCouncil.SetbackExtension"><group>Council</group></li>
+      <li Class="ColonyCouncil.HeartTags"><feelings><li>Anger</li></feelings><weight>0.5</weight></li>
+    </modExtensions>
+    <stages>
+      <li>
+        <label>I said it would go wrong</label>
+        <description>I never liked that decision, and it went wrong just the way I thought it would. Being right doesn't help much.</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- ===================== Gatherings ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Setback_MissedGathering</defName>
+    <durationDays>1</durationDays>
+    <modExtensions>
+      <li Class="ColonyCouncil.SetbackExtension"><group>Life</group></li>
+      <li Class="ColonyCouncil.HeartTags"><feelings><li>Loneliness</li></feelings><weight>0.4</weight></li>
+    </modExtensions>
+    <stages>
+      <li>
+        <label>missed the gathering</label>
+        <description>Everyone else was there. I heard about it afterwards.</description>
+        <baseMoodEffect>-1</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Setback_NoPlate</defName>
+    <durationDays>1</durationDays>
+    <modExtensions>
+      <li Class="ColonyCouncil.SetbackExtension"><group>Life</group></li>
+      <li Class="ColonyCouncil.HeartTags"><feelings><li>Frustration</li></feelings><weight>0.5</weight></li>
+    </modExtensions>
+    <stages>
+      <li>
+        <label>the feast ran out</label>
+        <description>A feast, they said. By the time I got to the table, the plates were empty and the pot was scraped.</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Setback_RainedOut</defName>
+    <durationDays>1</durationDays>
+    <modExtensions>
+      <li Class="ColonyCouncil.SetbackExtension"><group>Life</group></li>
+    </modExtensions>
+    <stages>
+      <li>
+        <label>rain on the gathering</label>
+        <description>We stood about in the rain pretending it was still fun. My shoes are still wet.</description>
+        <baseMoodEffect>-1</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- ===================== Worries that last while their cause does ===================== -->
+
+  <ThoughtDef>
+    <defName>Council_Setback_SickFriend</defName>
+    <workerClass>ColonyCouncil.ThoughtWorker_SetbackSickFriend</workerClass>
+    <thoughtClass>ColonyCouncil.Thought_Setback</thoughtClass>
+    <validWhileDespawned>true</validWhileDespawned>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <modExtensions>
+      <li Class="ColonyCouncil.SetbackExtension"><group>Life</group></li>
+      <li Class="ColonyCouncil.HeartTags"><feelings><li>Worry</li></feelings></li>
+    </modExtensions>
+    <stages>
+      <li>
+        <label>worried about {OTHER_nameDef}</label>
+        <description>{OTHER_nameDef} is down with {ILLNESS}. I keep finding reasons to walk past the sickroom.</description>
+        <baseMoodEffect>-1</baseMoodEffect>
+      </li>
+      <li>
+        <label>afraid for {OTHER_nameDef}</label>
+        <description>{OTHER_nameDef} has {ILLNESS}, and it's bad. I can't think about much else.</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Setback_CaravanTrouble</defName>
+    <workerClass>ColonyCouncil.ThoughtWorker_SetbackCaravan</workerClass>
+    <thoughtClass>ColonyCouncil.Thought_Setback</thoughtClass>
+    <validWhileDespawned>true</validWhileDespawned>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <modExtensions>
+      <li Class="ColonyCouncil.SetbackExtension"><group>Life</group></li>
+      <li Class="ColonyCouncil.HeartTags"><feelings><li>Worry</li></feelings></li>
+    </modExtensions>
+    <stages>
+      <li>
+        <label>worried about the caravan</label>
+        <description>{OTHER_nameDef} is out there with the caravan, and things aren't going well for them. There's nothing I can do from here.</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Setback_NemesisAtLarge</defName>
+    <workerClass>ColonyCouncil.ThoughtWorker_SetbackNemesis</workerClass>
+    <thoughtClass>ColonyCouncil.Thought_Setback</thoughtClass>
+    <validWhileDespawned>true</validWhileDespawned>
+    <modExtensions>
+      <li Class="ColonyCouncil.SetbackExtension"><group>Life</group></li>
+      <li Class="ColonyCouncil.HeartTags"><feelings><li>Dread</li></feelings><weight>0.6</weight></li>
+    </modExtensions>
+    <stages>
+      <li>
+        <label>still out there</label>
+        <description>{NAME} is still out there somewhere. Some nights I check the door twice.</description>
+        <baseMoodEffect>-1</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Setback_Debt</defName>
+    <workerClass>ColonyCouncil.ThoughtWorker_SetbackDebt</workerClass>
+    <thoughtClass>ColonyCouncil.Thought_Setback</thoughtClass>
+    <validWhileDespawned>true</validWhileDespawned>
+    <modExtensions>
+      <li Class="ColonyCouncil.SetbackExtension"><group>Life</group></li>
+      <li Class="ColonyCouncil.HeartTags"><feelings><li>Shame</li></feelings><weight>0.4</weight></li>
+    </modExtensions>
+    <stages>
+      <li>
+        <label>a debt unpaid</label>
+        <description>{FACTION} helped us when we needed it, and we've done nothing for them since. It doesn't sit right with me.</description>
+        <baseMoodEffect>-1</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Setback_BedroomEnvy</defName>
+    <workerClass>ColonyCouncil.ThoughtWorker_SetbackEnvy</workerClass>
+    <thoughtClass>ColonyCouncil.Thought_Setback</thoughtClass>
+    <modExtensions>
+      <li Class="ColonyCouncil.SetbackExtension"><group>Life</group><envy>true</envy></li>
+      <li Class="ColonyCouncil.HeartTags"><feelings><li>Envy</li></feelings><weight>0.6</weight></li>
+    </modExtensions>
+    <stages>
+      <li>
+        <label>envy of a better room</label>
+        <description>I've seen {OTHER_nameDef}'s room. Then I come back to mine.</description>
+        <baseMoodEffect>-1</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Setback_QuietDays</defName>
+    <workerClass>ColonyCouncil.ThoughtWorker_SetbackQuiet</workerClass>
+    <thoughtClass>ColonyCouncil.Thought_Setback</thoughtClass>
+    <modExtensions>
+      <li Class="ColonyCouncil.SetbackExtension"><group>Life</group></li>
+      <li Class="ColonyCouncil.HeartTags"><feelings><li>Restless</li></feelings><weight>0.7</weight></li>
+    </modExtensions>
+    <stages>
+      <li>
+        <label>long quiet days</label>
+        <description>Work, eat, sleep, and the same thing to do in between. One day is much like the last.</description>
+        <baseMoodEffect>-1</baseMoodEffect>
+      </li>
+      <li>
+        <label>nothing to do here</label>
+        <description>There's nothing to do when the work is done. I've counted the planks in the ceiling twice.</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Setback_ResearchIdle</defName>
+    <workerClass>ColonyCouncil.ThoughtWorker_SetbackResearch</workerClass>
+    <thoughtClass>ColonyCouncil.Thought_Setback</thoughtClass>
+    <modExtensions>
+      <li Class="ColonyCouncil.SetbackExtension"><group>Life</group><notGentle>true</notGentle></li>
+      <li Class="ColonyCouncil.HeartTags"><feelings><li>Restless</li></feelings><weight>0.5</weight></li>
+    </modExtensions>
+    <stages>
+      <li>
+        <label>no research under way</label>
+        <description>The research bench sits there and nobody has picked anything to work on. There's so much we don't know yet.</description>
+        <baseMoodEffect>-1</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Setback_Homesick</defName>
+    <durationDays>2</durationDays>
+    <modExtensions>
+      <li Class="ColonyCouncil.SetbackExtension"><group>Life</group></li>
+      <li Class="ColonyCouncil.HeartTags"><feelings><li>Homesick</li></feelings></li>
+    </modExtensions>
+    <stages>
+      <li>
+        <label>thinking of home</label>
+        <description>It's been a hard week. I keep thinking about where I came from, and the people there.</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+</Defs>
