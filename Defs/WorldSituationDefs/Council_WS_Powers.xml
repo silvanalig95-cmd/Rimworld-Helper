@@ -59,7 +59,7 @@
             <label>Send a gift ({COUNT} silver)</label>
             <outcome>The colony's gift goes to {PLACE} with a note for the new {TITLE}. It will arrive in time for the funeral.</outcome>
             <effects>
-              <li Class="ColonyCouncil.WorldEffect_Pay" />
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the gift for the funeral</label><what>silver</what><tens>true</tens><steward>false</steward><to>Gate</to></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>10</amount></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>5</amount><requires>greedy</requires></li>
             </effects>
@@ -606,7 +606,7 @@
             <label>Hire them ({COUNT} silver)</label>
             <outcome>The silver changes hands, and {NAME} breaks camp the same afternoon. {X_nameDef} says to expect news within the week.</outcome>
             <effects>
-              <li Class="ColonyCouncil.WorldEffect_Pay" />
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the company's pay</label><what>silver</what><tens>true</tens><steward>false</steward></li>
             </effects>
             <flags><li>hired</li></flags>
             <deed>hired {NAME} against {ENEMY}</deed>
@@ -618,7 +618,7 @@
             <label>Feed the company (30 food)</label>
             <outcome>The company eats well, thanks the colony, and moves on in the morning looking for work elsewhere.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>30</count></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>food for the company</label><what>rawfood</what><count>30</count></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>5</amount></li>
             </effects>
             <flags><li>fed</li></flags>
@@ -734,7 +734,7 @@
             <label>Pay for guards ({COUNT} silver)</label>
             <outcome>The colony's silver goes to {PLACE}. The guards will be on the road within days.</outcome>
             <effects>
-              <li Class="ColonyCouncil.WorldEffect_Pay" />
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the silver for the guards</label><what>silver</what><tens>true</tens><steward>false</steward><to>Gate</to></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>6</amount></li>
             </effects>
             <flags><li>paid</li></flags>

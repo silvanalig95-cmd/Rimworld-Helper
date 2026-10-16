@@ -563,6 +563,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>2</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmR_RulesBent</thought><onlyTrait><li>Abrasive</li></onlyTrait></li>
           <li Class="ColonyCouncil.DilemmaEffect_LifeEvent"><target>A</target><counter>stranger</counter></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><hours>17~23</hours><duration>2~3</duration></li>
         </effects>
       </li>
       <li>

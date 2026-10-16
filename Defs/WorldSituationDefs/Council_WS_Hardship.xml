@@ -71,7 +71,7 @@
             <label>Send {COUNT} medicine</label>
             <outcome>The medicine goes out with the rider before dark. In {PLACE}, it will be counted out one dose at a time.</outcome>
             <effects>
-              <li Class="ColonyCouncil.WorldEffect_Medicine" />
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the medicine for {PLACE}</label><what>medicine</what><steward>false</steward><to>Gate</to></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>12</amount></li>
             </effects>
             <help>2</help>
@@ -82,7 +82,7 @@
             <label>Sell it to them</label>
             <outcome>{FACTION} pay what they can, and the medicine goes out with the rider.</outcome>
             <effects>
-              <li Class="ColonyCouncil.WorldEffect_Medicine" />
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the medicine for {PLACE}</label><what>medicine</what><steward>false</steward><to>Gate</to></li>
               <li Class="ColonyCouncil.WorldEffect_Silver"><factor>10</factor></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>4</amount></li>
             </effects>
@@ -126,7 +126,7 @@
             <label>Feed them and send them on</label>
             <outcome>They eat their fill, sleep one night under a roof and go on in the morning with a sack of food.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>20</count></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>food for the family from {PLACE}</label><what>rawfood</what><count>20</count><to>Gate</to></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>4</amount></li>
             </effects>
             <help>1</help>
@@ -159,7 +159,7 @@
             <label>Help them ({COUNT} medicine)</label>
             <outcome>{A_nameDef} spends the evening writing out what {A_pronoun} knows, and the rider leaves with the notes and the medicine.</outcome>
             <effects>
-              <li Class="ColonyCouncil.WorldEffect_Medicine" />
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the medicine and the notes for {PLACE}</label><what>medicine</what><steward>false</steward><to>Gate</to></li>
               <li Class="ColonyCouncil.WorldEffect_Learn"><skill>Medicine</skill><xp>1500</xp></li>
               <li Class="ColonyCouncil.WorldEffect_ThoughtFor"><thought>Council_WS_DoctorHelped</thought></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>10</amount></li>
@@ -297,7 +297,7 @@
             <label>Send {COUNT} food</label>
             <outcome>The cart goes back to {PLACE} loaded. Somebody there will eat tonight who wouldn't have.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the food for {PLACE}</label><what>rawfood</what><to>Gate</to></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>12</amount></li>
             </effects>
             <help>2</help>
@@ -308,7 +308,7 @@
             <label>Sell it at a fair price</label>
             <outcome>{FACTION} pay the usual price and take the food. It's more than most are offering them this year.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the food for {PLACE}</label><what>rawfood</what><to>Gate</to></li>
               <li Class="ColonyCouncil.WorldEffect_Silver"><factor>1.5</factor></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>4</amount></li>
             </effects>
@@ -319,7 +319,7 @@
             <label>Sell it dear</label>
             <outcome>{FACTION} pay four times what the food is worth, because they have to. They don't say anything about it. They don't need to.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the food for {PLACE}</label><what>rawfood</what><to>Gate</to></li>
               <li Class="ColonyCouncil.WorldEffect_Silver"><factor>5</factor></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-6</amount></li>
             </effects>
@@ -359,7 +359,7 @@
             <label>Feed them and send them on</label>
             <outcome>They eat, rest a night and go on in the morning with what the colony could spare.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>15</count></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>food for the hungry on the road</label><what>rawfood</what><count>15</count><to>Gate</to></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>3</amount></li>
             </effects>
             <help>1</help>
@@ -509,7 +509,7 @@
             <label>Send {COUNT} wood</label>
             <outcome>The sledge goes back to {PLACE} stacked high. Somebody there will sleep warm tonight.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>WoodLog</what></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the wood for {PLACE}</label><what>WoodLog</what><to>Gate</to></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>10</amount></li>
             </effects>
             <help>2</help>
@@ -520,7 +520,7 @@
             <label>Sell it to them</label>
             <outcome>{FACTION} pay a fair price for the wood, and the sledge goes back loaded.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>WoodLog</what></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the wood for {PLACE}</label><what>WoodLog</what><to>Gate</to></li>
               <li Class="ColonyCouncil.WorldEffect_Silver"><factor>1.5</factor></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>3</amount></li>
             </effects>
@@ -648,6 +648,7 @@
             <outcome>Smoke hangs over the fields day and night. It smells terrible. Whether it works, nobody can say yet.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>WoodLog</what></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Vigil"><label>the watch over the smudge fires</label><target>Colony</target><count>2</count><to>Fields</to><hours>18~1</hours><duration>4~6</duration></li>
             </effects>
             <flags><li>smoke</li></flags>
           </li>
@@ -656,6 +657,7 @@
             <outcome>Everything ripe in the open fields is marked for harvest. The rest will have to take its chances.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Harvest" />
+              <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>the early harvest</label><count>5</count><tasks><li>Harvest</li></tasks><hours>6~18</hours><duration>3~4</duration></li>
             </effects>
             <flags><li>harvested</li></flags>
           </li>
@@ -665,6 +667,7 @@
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>WoodLog</what></li>
               <li Class="ColonyCouncil.WorldEffect_Harvest" />
+              <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>the early harvest</label><count>5</count><tasks><li>Harvest</li></tasks><hours>6~18</hours><duration>3~4</duration></li>
             </effects>
             <flags><li>smoke</li><li>harvested</li></flags>
             <ways><toil>1</toil></ways>
@@ -806,7 +809,7 @@
             <label>Feed them and send them on</label>
             <outcome>They are fed and dried out, and they go on toward the hills where the rest of {FACTION} are camped.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>15</count></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>food for the family from {PLACE}</label><what>rawfood</what><count>15</count><to>Gate</to></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>4</amount></li>
             </effects>
             <help>1</help>
@@ -836,7 +839,7 @@
             <label>Send {COUNT} wood</label>
             <outcome>Carts of the colony's timber go down the river road. There will be colony wood in the new roofs of {PLACE}.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>WoodLog</what></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the timber for {PLACE}</label><what>WoodLog</what><to>Gate</to></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>10</amount></li>
             </effects>
             <help>2</help>
@@ -847,7 +850,7 @@
             <label>Sell it to them</label>
             <outcome>{FACTION} pay what they can for the timber, and the carts go down the river road.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>WoodLog</what></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the timber for {PLACE}</label><what>WoodLog</what><to>Gate</to></li>
               <li Class="ColonyCouncil.WorldEffect_Silver"><factor>1.3</factor></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>3</amount></li>
             </effects>

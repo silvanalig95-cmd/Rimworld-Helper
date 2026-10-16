@@ -125,6 +125,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_Bonded</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>AAndB</target><amount>4</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmSoc_Favorites</thought><onlyTrait><li>Jealous</li><li>Abrasive</li></onlyTrait></li>
+          <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>the first shift together</label><target>AAndB</target><tasks><li>Haul</li><li>Clean</li><li>Repair</li></tasks><duration>2~3</duration></li>
         </effects>
         <riskChance>0.3</riskChance>
         <riskOutcome>{A_nameDef} and {B_nameDef} now work every shift together, and get about half as much done, because most of every shift is talking.</riskOutcome>
@@ -143,6 +144,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_Bonded</thought><chance>0.6</chance></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>AAndB</target><amount>2</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_FairsFair</thought><exceptTrait><li>Jealous</li></exceptTrait><chance>0.4</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Vigil"><label>the night watch</label><target>AAndB</target><to>Gate</to><hours>21~3</hours><duration>5~6</duration></li>
         </effects>
       </li>
       <li>
@@ -212,6 +214,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_Bonded</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_FairsFair</thought><exceptTrait><li>Kind</li></exceptTrait></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Harsh</thought><onlyTrait><li>Kind</li></onlyTrait></li>
+          <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>the punishment</label><target>AAndB</target><tasks><li>Clean</li><li>Haul</li></tasks><duration>2~3</duration></li>
         </effects>
       </li>
       <li>
@@ -495,6 +498,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Bonded</thought><about>A</about></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>3</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>FriendsOfA</target><thought>Council_DlmSoc_Tagalong</thought><about>B</about><chance>0.5</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><who>B</who><whom>A</whom><hours>17~23</hours><duration>2~3</duration></li>
         </effects>
         <riskChance>0.3</riskChance>
         <riskReplaces>true</riskReplaces>
@@ -503,6 +507,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Soc_LeftOut</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_DlmSoc_Abandoned</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>FriendsOfA</target><thought>Council_DlmSoc_Tagalong</thought><about>B</about></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><who>B</who><whom>A</whom><hours>17~23</hours><duration>2~3</duration></li>
         </riskEffects>
       </li>
       <li>
@@ -774,6 +779,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_DlmSoc_PleaHeard</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>AAndB</target><amount>2</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_FairsFair</thought><exceptTrait><li>Jealous</li></exceptTrait><chance>0.5</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>the shared punishment</label><target>AAndB</target><tasks><li>Haul</li><li>Clean</li></tasks><duration>2~3</duration></li>
         </effects>
       </li>
       <li>

@@ -67,6 +67,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmH_ComeBackLater</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_DlmH_ComeBackLater_Guest</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>2</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><duration>0.5~1</duration></li>
         </effects>
       </li>
       <li>

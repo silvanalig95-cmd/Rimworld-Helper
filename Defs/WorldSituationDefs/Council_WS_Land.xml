@@ -49,7 +49,7 @@
             <label>Invite {X_objective} ({COUNT} silver)</label>
             <outcome>The silver goes to {PLACE} with a rider. {X_nameDef} will come within a few days.</outcome>
             <effects>
-              <li Class="ColonyCouncil.WorldEffect_Pay" />
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the healer's fee</label><what>silver</what><tens>true</tens><steward>false</steward><to>Gate</to></li>
             </effects>
             <flags><li>invited</li></flags>
             <deed>invited {X_nameDef} to treat {A_nameDef}</deed>

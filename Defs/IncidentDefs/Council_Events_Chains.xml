@@ -140,13 +140,14 @@
             </outcomes>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>6</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>supper with {X_nameDef}</label><organizer>None</organizer><spots><li>Dining</li><li>Stranger</li></spots><hours>16~22</hours><duration>1.5~2</duration></li>
             </effects>
           </li>
           <li>
             <label>Send {X_objective} home with gifts for the family (40 silver)</label>
             <outcome>{X_nameDef} leaves in the morning with a full pack and gifts for the family that once searched the hills for {X_objective}. {FACTION} will hear about the colony's kindness twice over.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>40</count></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the gifts for {X_nameDef}'s family</label><what>silver</what><count>40</count></li>
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>12</amount></li>
             </effects>
             <ways><generosity>3</generosity></ways>
@@ -163,6 +164,7 @@
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Evt_TaughtYoungGuest</thought></li>
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Social</skill><xp>200</xp></li>
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>8</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><who>B</who><to>Stranger</to><hours>7~16</hours><duration>3~4</duration></li>
             </effects>
             <ways><openness>1</openness><toil>1</toil></ways>
           </li>

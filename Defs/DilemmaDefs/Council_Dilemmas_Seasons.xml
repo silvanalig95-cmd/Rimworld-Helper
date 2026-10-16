@@ -192,6 +192,7 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_YearOfTheDead</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-2</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Procession"><label>the names said at the graves</label><to>Grave</to><pool>Council_Pool_PlayRemembrance</pool><hours>15~20</hours><duration>1~1.5</duration></li>
         </effects>
       </li>
       <li>
@@ -251,6 +252,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_FairShares</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_SpoilsUnfair</thought><onlyTrait><li>Wimp</li><li>Kind</li></onlyTrait></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>3</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>the cleanup</label><target>Others</target><count>3</count><tasks><li>Clean</li><li>Corpses</li><li>Haul</li></tasks><duration>1.5~2.5</duration></li>
         </effects>
       </li>
       <li>
@@ -301,6 +303,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_DecentBurial</thought><onlyTrait><li>Kind</li></onlyTrait></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Unfair</thought><onlyTrait><li>Bloodlust</li><li>Abrasive</li></onlyTrait></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>3</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>the burying of the raiders</label><count>4</count><tasks><li>Corpses</li><li>Clean</li></tasks><duration>3~4</duration></li>
         </effects>
       </li>
       <li>
@@ -331,6 +334,7 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_DecentBurial</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>the trench outside the wall</label><count>3</count><tasks><li>Corpses</li><li>Clean</li></tasks><hours>7~18</hours><duration>2~3</duration></li>
         </effects>
       </li>
     </options>
@@ -371,6 +375,7 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_NoCelebration</thought><exceptTrait><li>Ascetic</li></exceptTrait></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_FairsFair</thought><degreeTrait>Industriousness</degreeTrait><minDegree>1</minDegree></li>
+          <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>the repairs after the battle</label><count>6</count><tasks><li>Repair</li><li>Build</li><li>Corpses</li><li>Clean</li></tasks><duration>3~4</duration></li>
         </effects>
       </li>
       <li>

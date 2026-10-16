@@ -1055,6 +1055,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmS_HealerSawMe</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Medicine</skill><xp>800</xp></li>
           <li Class="ColonyCouncil.DilemmaEffect_LifeEvent"><target>A</target><counter>stranger</counter></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>X</teacher><student>B</student><skill>Medicine</skill><xpPerHour>50</xpPerHour><hours>11~17</hours><duration>2~3</duration></li>
         </effects>
         <riskChance>0.3</riskChance>
         <riskReplaces>true</riskReplaces>
@@ -1063,6 +1064,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>80</count></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmS_QuackHealer</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Medicine</skill><xp>300</xp></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>X</teacher><student>B</student><skill>Medicine</skill><xpPerHour>50</xpPerHour><hours>11~17</hours><duration>1~1.5</duration></li>
         </riskEffects>
       </li>
       <li>
@@ -1105,11 +1107,13 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Choice_TreatedAtHome</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Choice_TreatedWell</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Medicine</skill><xp>500</xp></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><who>B</who><whom>A</whom><hours>11~18</hours><duration>2~3</duration></li>
         </effects>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>medicine</what><count>2</count></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmS_StillAches</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Medicine</skill><xp>200</xp></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><who>B</who><whom>A</whom><hours>11~18</hours><duration>2~3</duration></li>
         </riskEffects>
       </li>
     </options>

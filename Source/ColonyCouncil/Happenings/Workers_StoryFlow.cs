@@ -241,9 +241,11 @@ namespace ColonyCouncil
             try
             {
                 using (Causes.Push(LivingEvents.Cause(home)))
+                using (PlayOuts.Collect())
                 {
+                    // What the ending sets going on the map (PlayOut/) comes first, so it can hold the moods of those taking part.
                     if (e.effects != null)
-                        foreach (var fx in e.effects)
+                        foreach (var fx in PlayOuts.Ordered(e.effects))
                             HappeningTracker.Safe(fx, ctx);
                 }
                 if (e.goodwill != 0) StoryChains.Goodwill(c.faction, e.goodwill);

@@ -336,11 +336,13 @@
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>6</amount><enemy>true</enemy></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_SettledQuarrel</thought></li>
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><skill>Social</skill><xp>600</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><hours>8~16</hours><duration>2.5~3.5</duration></li>
             </effects>
             <riskEffects>
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>-3</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>-3</amount><enemy>true</enemy></li>
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><skill>Social</skill><xp>300</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><hours>8~16</hours><duration>1.5~2</duration></li>
             </riskEffects>
             <ways><openness>2</openness></ways>
           </li>
@@ -576,6 +578,7 @@
             <outcome>{A_nameDef} walks them back to the road home, and the two of them don't say a word the whole way. {FACTION} send their thanks.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>6</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><duration>0.5~1</duration></li>
             </effects>
             <ways><tradition>3</tradition><mercy>-2</mercy></ways>
           </li>

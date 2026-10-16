@@ -181,9 +181,11 @@
               <li Class="ColonyCouncil.DilemmaEffect_Needs"><skill>Social</skill><minLevel>10</minLevel></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_GoodPress</thought></li>
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>5</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><hours>8~18</hours><duration>1.5~2</duration></li>
             </effects>
             <riskEffects>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_BadPress</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><hours>8~18</hours><duration>1.5~2</duration></li>
             </riskEffects>
             <ways><openness>2</openness></ways>
           </li>

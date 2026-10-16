@@ -43,6 +43,10 @@
           <li>[lowtech] ...the old king's crown...</li>
           <li>[lowtech] ...a knight with no name...</li>
         </lines>
+        <!-- The colony gathers round to hear the tales (PlayOut/): those who come are near enough to be told them. -->
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Words"><label>{X_nameDef}'s tales</label><organizer>None</organizer><spots><li>Stranger</li><li>Fire</li><li>Rec</li></spots><hours>17~23</hours><duration>2~3</duration></li>
+        </effects>
       </li>
     </modExtensions>
   </IncidentDef>
@@ -79,6 +83,10 @@
           <li>We never forgot you.</li>
           <li>Thank you for looking after them.</li>
         </lines>
+        <!-- The one who knew the dead best goes to stand at the grave with them (PlayOut/). -->
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Grave</to><hours>7~20</hours><waitHours>8</waitHours><duration>1~1.5</duration></li>
+        </effects>
       </li>
     </modExtensions>
   </IncidentDef>
@@ -113,7 +121,7 @@
             <label>Feed them</label>
             <outcome>The pilgrims eat everything they're given and thank their hosts twice over. They'll speak well of the colony to everyone they meet on the road.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the food for the pilgrims</label><what>rawfood</what></li>
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>8</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_FedPilgrims</thought><exceptTrait><li>Greedy</li><li>Psychopath</li></exceptTrait></li>
               <li Class="ColonyCouncil.DilemmaEffect_Inspiration"><chance>0.25</chance></li>
@@ -137,7 +145,7 @@
               <li>[colony:Thrifty] Bread for the road and nothing more, as the colony's habit is. The pilgrims take it gratefully all the same.</li>
             </outcomes>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><factor>0.4</factor></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>bread for the road</label><what>rawfood</what><factor>0.4</factor><to>Gate</to></li>
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>4</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
             </effects>
@@ -361,6 +369,7 @@
               <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>12</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_ReturnedChild</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><duration>0.25~0.5</duration></li>
             </effects>
             <ways><mercy>4</mercy></ways>
           </li>
@@ -417,6 +426,7 @@
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_ReleasePet" />
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_StrayLetGo</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><duration>0.25~0.5</duration></li>
             </effects>
           </li>
         </options>

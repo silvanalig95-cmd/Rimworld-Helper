@@ -258,6 +258,7 @@
               <li Class="ColonyCouncil.DilemmaEffect_Goods" />
               <li Class="ColonyCouncil.DilemmaEffect_Remember"><settle>true</settle><kind>relief</kind><about>thing</about></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Mem_ReliefCame</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Toast"><label>a drink with the carters</label><organizer>None</organizer><spots><li>Stranger</li><li>Gather</li><li>Dining</li></spots><hours>0~0</hours><waitHours>3</waitHours><duration>0.75~1</duration></li>
             </effects>
             <ways><openness>1</openness></ways>
           </li>

@@ -71,6 +71,7 @@
               <li Class="ColonyCouncil.DilemmaEffect_Contest" />
               <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.15</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>5</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>the food for the onlookers</label><organizer>None</organizer><spots><li>Outdoors</li><li>Dining</li><li>Gather</li></spots><hours>9~18</hours><duration>2~3</duration></li>
             </effects>
             <ways><generosity>2</generosity><openness>2</openness></ways>
           </li>

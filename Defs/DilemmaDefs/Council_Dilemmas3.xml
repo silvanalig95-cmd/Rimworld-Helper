@@ -57,6 +57,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Babysat</thought><exceptTrait><li>Kind</li></exceptTrait></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>-2</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_HuntParty"><label>{B_nameDef}'s hunt</label><who>B</who><mark>false</mark></li>
         </effects>
       </li>
       <li>
@@ -307,6 +308,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-4</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Vindicated</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>3</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><whom>Pet</whom><duration>1~1.5</duration></li>
         </effects>
         <riskChance>0.25</riskChance>
         <riskOutcome>{PET_nameDef} was penned, dug out by morning, and went straight to {B_nameDef}'s room to chew up {B_possessive} boots.</riskOutcome>
@@ -376,6 +378,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>5</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>B</target><hediff>Council_Dlm_NightWatch</hediff></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Helped</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><who>B</who><whom>Pet</whom><hours>20~2</hours><duration>3~4</duration></li>
         </effects>
         <riskChance>0.4</riskChance>
         <riskReplaces>true</riskReplaces>
@@ -386,6 +389,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>A</target><hediff>Council_Dlm_Sleepless</hediff></li>
           <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>B</target><hediff>Council_Dlm_NightWatch</hediff></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><who>B</who><whom>Pet</whom><hours>20~2</hours><duration>3~4</duration></li>
         </riskEffects>
       </li>
       <li>
@@ -572,6 +576,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Vindicated</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>4</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Harsh</thought><onlyTrait><li>Abrasive</li></onlyTrait></li>
+          <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>{B_nameDef}'s worst chores</label><target>B</target><organizer>B</organizer><tasks><li>Clean</li><li>Haul</li><li>Corpses</li></tasks><duration>2~3</duration></li>
         </effects>
       </li>
       <li>
@@ -736,6 +741,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Understood</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>3</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_MadeUp</thought><chance>0.5</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><who>B</who><whom>A</whom><hours>21~2</hours><duration>3~4</duration></li>
         </effects>
         <riskChance>0.3</riskChance>
         <riskReplaces>true</riskReplaces>
