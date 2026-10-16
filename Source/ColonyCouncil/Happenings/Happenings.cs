@@ -147,6 +147,8 @@ namespace ColonyCouncil
             args.Add((enemy?.Name ?? "").Named("ENEMY"));
             args.Add((tale ?? "").Named("TALE"));
             args.Add((placeName ?? "").Named("PLACE"));
+            // The colonist their people remember by name (World/KinMemory.cs), for lines tagged [their:friend].
+            args.Add(KinMemory.FriendArg(faction ?? (stranger != null && stranger.RaceProps.Humanlike ? stranger.Faction : null)));
         }
 
         public override void ExposeData()
@@ -470,6 +472,8 @@ namespace ColonyCouncil
             if (ext != null && ext.addsPeople) f *= Mathf.Clamp(StorytellerUtilityPopulation.PopulationIntent + 0.35f, 0.05f, 1.5f);
             // A world event running in the region (a plague, a warlord) makes some likelier and others rarer.
             f *= WorldSituations.EventFactor(def, ext);
+            // A quarantine decree shuts the gates to visitors (DecreeWork.VisitorFactor).
+            if (ext != null && ext.group == HappeningGroup.Visitors) f *= DecreeWork.VisitorFactor;
             return f;
         }
 

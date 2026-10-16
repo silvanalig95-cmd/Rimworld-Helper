@@ -40,6 +40,8 @@
           <li>An envoy from {PLACE}</li>
         </titles>
         <texts>
+          <li>[their:freedbyA] {X_nameDef} of {FACTION} has come from {PLACE} and asked for {A_nameDef} at the gate, by name. The colony {TALE}, and among {FACTION} it's {A_nameDef}'s face they picture when they tell it.\n\n{X_nameDef} has brought a gift worth about {COUNT} silver to settle the debt, and would like to put it in {A_nameDef}'s own hands.</li>
+          <li>[their:tendedbyA] {X_nameDef} of {FACTION} has come from {PLACE} with a gift worth about {COUNT} silver and one question at the gate: is {A_nameDef} here? The colony {TALE}, and it was {A_nameDef}'s hands that did the stitching. {FACTION} want to pay what they owe to the right person.</li>
           <li>[theirLowtech] {X_nameDef} has walked from {PLACE} beside a laden pack animal, with a speech {X_pronoun} rehearsed the whole way. {FACTION} have not forgotten that the colony {TALE}, and their elders sent {X_nameDef} to settle the debt.\n\nThe gift is worth about {COUNT} silver. {X_nameDef} has been told not to bring it home again.</li>
           <li>[theirHightech] {X_nameDef}, an envoy of {FACTION}, has driven up from {PLACE} with a crate in the back. {FACTION} keep accounts, {X_nameDef} says, and one of them has stood open since the colony {TALE}.\n\nThe crate holds goods worth about {COUNT} silver, and {X_nameDef} would like to close the account today.</li>
           <li>[deed:released,named] {X_nameDef} of {FACTION} has come from {PLACE} on behalf of a family there. The colony {TALE}, and that family has talked about little else since.\n\nThey have sent a gift worth about {COUNT} silver, with their thanks, and {X_nameDef} to see it delivered.</li>
@@ -236,6 +238,8 @@
           <li>[medicine] Medicine from {PLACE}</li>
         </titles>
         <texts>
+          <li>[food,their:friend] A cart from {PLACE} has come up the road with {X_nameDef} of {FACTION} beside it. Word reached them that times are hard here, and that {FRIEND_nameDef} might be going hungry, and that was enough: the colony {TALE}, and {FACTION} have sent {COUNT} {THING}.\n\n{X_nameDef} won't hear of a price.</li>
+          <li>[medicine,their:friend] {X_nameDef} of {FACTION} has ridden from {PLACE} with medicine in the saddlebags and a question for {FRIEND_nameDef}: are you well? The colony {TALE}, and {FACTION} have sent {COUNT} {THING}, no payment wanted.</li>
           <li>[food] A cart from {PLACE} has come up the road with {X_nameDef} of {FACTION} walking beside it. Word reached them that times are hard here. {FACTION} remember that the colony {TALE}, and they've sent {COUNT} {THING} to help.\n\n{X_nameDef} says there's no price, and won't hear of one.</li>
           <li>[medicine,sick] {X_nameDef} of {FACTION} has ridden from {PLACE} with saddlebags full of medicine. They heard people here were sick. {FACTION} remember that the colony {TALE}, and they've sent {COUNT} {THING}, no payment wanted.</li>
           <li>[medicine,plague] With the plague moving through the region, every healer is counting doses. {FACTION} counted theirs and found {COUNT} {THING} to spare for the colony, which once {TALE}. {X_nameDef} has brought it from {PLACE}, and won't take silver for it.</li>

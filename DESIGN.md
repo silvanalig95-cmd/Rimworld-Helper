@@ -1118,11 +1118,11 @@ the 250-tick cycle or of the day.
 |---|---|---|
 | every tick | Ailments and health: queued work (an ailment that ended, a tend) | only when something is queued |
 | every 30 ticks, tick 0 | Council: wishes after building (only after something was built) | per open wish |
-| every 30 ticks, tick 11 | Visual touches pulse (at most every 0.4 s of real time; only with them on) | the map in view: flecks due, a warlord's band, fireflies, hail, camp smoke |
+| every 30 ticks, tick 11 | Visual touches pulse (at most every 0.4 s of real time; only with them on) | the map in view: flecks due, a warlord's band, fireflies, hail, camp smoke, a camp walking in, the first snow's flakes, a dream told at breakfast (the untold dreams only) |
 | every 60 ticks, tick 23 | Council meeting upkeep (only while one is called) | the attendees |
 | every 60 ticks | Rimfolk scenario parts set their stakes (only until done) | one check |
 | every 300 ticks | A council meeting in session talks (its lord job) | the attendees |
-| every 1000 ticks, tick 433 | Other mods' people: new play-log lines and tales | the new entries only |
+| every 1000 ticks, tick 433 | Other mods' people: new play-log lines and tales; who changed (Big & Small, an editor, a xenogerm) | the new entries only; a few fields per free colonist |
 | every 30 ticks of a camp's toil | A camp's lord: hunters' jobs; every 2,500 a camp without a record leaves | per camp member |
 | every 200 ticks per hediff | Ailment comps: incubation and treatment course (immunizable); severity per day (medicine, course, recovery, diet), read by the game | the colonist with the ailment |
 | every 250 ticks per pawn | The heart's worn-out episode (a mental state): ends on danger, a wound, cold or heat | the colonist in it |

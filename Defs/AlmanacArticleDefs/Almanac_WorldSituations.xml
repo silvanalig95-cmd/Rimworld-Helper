@@ -56,8 +56,20 @@ While it lasts, Rimfolk events that fit it come more or less often, and so do so
           <li>Deserters on the roads (Vanilla Factions Expanded - Empire) | Imperial patrols hunt deserters; one asks the colony for shelter | Take them in, hand them over for the reward, or feed them and send them on</li>
           <li>The republic votes (Vanilla Factions Expanded - Classical) | A republic elects its consuls, old families against reformers | Back a side with silver, or stay out of it</li>
           <li>Gold fever (Vanilla Factions Expanded - Settlers) | Prospectors on every road, more travelers and traders | Let a prospector work the stream for a share</li>
+          <li>A great fire | A neighbor's town burns; burned-out families on the roads | Timber for the roofs, shelter for a family, a builder to raise the roofs</li>
+          <li>A blood feud | Two families of two friendly peoples at each other's throats | Hide the young man who ran, or hand him over; a good talker between the families; the last of the blood price</li>
+          <li>A comet | Fortune tellers, pilgrims and scholars come more often | A night watch on the hill, a stargazer on it, a fragment fetched from the hills</li>
+          <li>A bumper harvest (summer, fall) | More traders, cheap grain, harvest missions likelier | Buy grain cheap, send hands for their harvest, hold a harvest supper</li>
+          <li>The drove roads | Drovers camp more often, strays wander in | Grazing for a fee or as friends, a drovers' quarrel to judge</li>
+          <li>A people in mourning | Mourners on the roads and at the colony's gate | Silver for the stone or words for the wake; stand by the road as the dead go by</li>
+          <li>A season of songs | Minstrels and players come more often; a song about the colony goes round | A gift for the next verse, a supper and a bed for the singer</li>
+          <li>A toll on the roads (medieval and later) | Far fewer caravans unless the colony pays its way | Pay the toll, or join the villages' petition against it</li>
+          <li>Iron gone scarce (medieval and later) | Smiths and tinkers come more often | Steel at twice its worth or its plain worth, a crafter to teach their smiths</li>
+          <li>Exiles on the roads | A neighbor casts out a household; exiles ask for shelter | Take them in against the neighbor's wishes, feed them and send them on, or turn them away; later, speak for them</li>
+          <li>Rebuilding (follows a war, a fire or a flood) | The people it hit rebuild; their homeless pass the colony on the way back | Timber, a builder for the bridge, food for the families going home</li>
+          <li>The road reopens (follows a bandit road, a hard winter, a flood, a plague, a toll, a war or a drought) | Many more caravans and visitors for a while | Trade with the first caravan, a standing order of meals, a stop for caravans at the colony's well</li>
         </table>
-        <after>Questions come with a deadline, like Rimfolk events, and an unanswered one falls to its default, which is usually doing nothing. Some world events can lead to another when they end: a drought or sickness in the herds that nobody eased can turn into a famine, a new road into a trading season, a bandit lord's fall into a warlord's rise or a company of sellswords looking for work.</after>
+        <after>Questions come with a deadline, like Rimfolk events, and an unanswered one falls to its default, which is usually doing nothing. Some world events can lead to another when they end: a drought or sickness in the herds that nobody eased can turn into a famine, a new road into a trading season, a bandit lord's fall into a warlord's rise or a company of sellswords looking for work. Two come only after another has ended, with that one's people: rebuilding after a war, a fire or a flood, and the road reopening once the bandits, the snow, the water, the sickness or the toll are gone.</after>
       </li>
       <li>
         <heading>The warlord</heading>
@@ -76,6 +88,12 @@ Not every answer is kind, and that's remembered too. Famine prices fill the stor
 The people the colony stood by keep it in their memory for years, with what the colony did for them and against them besides (see what the world remembers): old friends may send food or medicine when the colony's own hard year comes, and refugees from a world event may ask to be seen through.</text>
       </li>
       <li>
+        <heading>What follows</heading>
+        <text>Some days or weeks after a world event ends, its people may come back about it, once for each world event, depending on how it ended. After a plague the colony helped with, its survivors come to give thanks (accept the gift, say their dead's names with them, or tell them to keep it). After a famine the colony helped with, the first harvest is shared. After a flood, the people of the drowned town come up the river looking for what the water took, and the colony may have it in the barn. After a hard winter in which the colony sheltered the snowbound, they come back in spring with seed and offer to help plant it. After locusts, a famine or a drought, old friends of the colony (a people that remembers its good turns) send seed grain. And after a plague, a famine, a flood, a hard winter or a great fire the colony looked away from, an elder of the people comes to say, very calmly, what it cost them.
+
+Refugees to see through come not only while a plague, a famine, a flood, a hard winter, a fire or a war runs, but for some weeks after it has ended too. What a people remembers of the colony colours the letters of world events about them: an old friend's first rider asks for the colonist they remember by name.</text>
+      </li>
+      <li>
         <heading>What you'll see</heading>
         <text>With "Answers play out on the map" on, what a world event's answer sends really goes out. Medicine, food, firewood or silver for the rider is carried out of the stores to the gate, where the rider or the cart waits, and only then is it gone; a work party brings the harvest in early before the locusts come, and a few keep watch over the smudge fires in the fields by night. The goodwill and the moods come as always; the moods wait for those who went. Answers on the map says how it works.</text>
       </li>
@@ -84,7 +102,7 @@ The people the colony stood by keep it in their memory for years, with what the 
         <text>Some world events change the world for good. A new town is a real settlement, founded a few days' travel from the colony on open land, and it stays. An abandoned town is gone from the map when the world event ends, with an abandoned settlement in its place, unless the colony has a caravan on its way there or a quest about it then; in that case a few families stay on and the town remains. A neighbor's new leader is the one the game itself chooses. Peace made at the colony's table is real peace between the two peoples. With Factional War running, which has wars and peace of its own, peace talks never come.</text>
       </li>
     </sections>
-    <keywords><li>world event</li><li>region</li><li>situation</li><li>warlord</li><li>warband</li><li>bounty</li><li>truce</li><li>ransom</li><li>plague</li><li>famine</li><li>winter</li><li>locusts</li><li>flood</li><li>leader</li><li>succession</li><li>claimant</li><li>creed</li><li>peace</li><li>mercenaries</li><li>bandits</li><li>town</li><li>abandoned</li><li>trade</li><li>fair</li><li>pilgrimage</li><li>silver rush</li><li>healer</li><li>herds</li><li>migration</li><li>magic</li></keywords>
+    <keywords><li>world event</li><li>region</li><li>situation</li><li>warlord</li><li>warband</li><li>bounty</li><li>truce</li><li>ransom</li><li>plague</li><li>famine</li><li>winter</li><li>locusts</li><li>flood</li><li>leader</li><li>succession</li><li>claimant</li><li>creed</li><li>peace</li><li>mercenaries</li><li>bandits</li><li>town</li><li>abandoned</li><li>trade</li><li>fair</li><li>pilgrimage</li><li>silver rush</li><li>healer</li><li>herds</li><li>migration</li><li>magic</li><li>fire</li><li>feud</li><li>comet</li><li>harvest</li><li>drovers</li><li>mourning</li><li>songs</li><li>toll</li><li>iron</li><li>exiles</li><li>rebuilding</li><li>road</li><li>aftermath</li></keywords>
     <seeAlso><li>Council_Alm_C_WorldEvents</li><li>Council_Alm_C_Strangers</li><li>Council_Alm_C_Ways</li></seeAlso>
   </ColonyCouncil.AlmanacArticleDef>
 

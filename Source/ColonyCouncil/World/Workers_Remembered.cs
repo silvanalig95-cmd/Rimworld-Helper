@@ -193,6 +193,8 @@ namespace ColonyCouncil
             var deed = pick.deed;
             if (deed != null) ctx.note = NotePrefix + deed.id;
             ctx.a = ext.colonist?.bestAt != null ? VarietyUtil.Best(map, ext.colonist.bestAt) : null;
+            // A grateful people's envoy asks for the colonist they remember by name (World/KinMemory.cs).
+            if (ctx.a == null && (r.want == "grateful" || r.want == "relief" || r.want == "quarrel")) ctx.a = KinMemory.Greeter(ctx.faction, map);
             ctx.a = ctx.a ?? StorytellerEvents.BestOrAny(map, SkillDefOf.Social);
             if (ctx.a == null) return false;
             MakeGroup(ctx, ext, Mathf.Max(1, ext.count.RandomInRange), ext.ages);

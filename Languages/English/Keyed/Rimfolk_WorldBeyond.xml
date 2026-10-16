@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- The world beyond the walls: a people's memory of single colonists (Source/ColonyCouncil/World/KinMemory.cs), the
+       deeds of the newer missions, world events and camps, follow-ups to world events, the camps' own requests, the
+       newer missions, vendetta endings and secrets born of world events and camps. -->
+
+  <!-- ===================== A people's memory of single colonists ===================== -->
+  <CC_Kin_By>They remember {NAME} for it.</CC_Kin_By>
+  <CC_Kin_ByGone>They remember {NAME} for it, though {NAME} is gone.</CC_Kin_ByGone>
+
+  <!-- ===================== Deeds (see Rimfolk_FactionMemory.xml) ===================== -->
+  <CC_Memory_Deed_escorted>walked one of their pilgrims safely home</CC_Memory_Deed_escorted>
+  <CC_Memory_Deed_escorted_Name>walked {NAME} safely home</CC_Memory_Deed_escorted_Name>
+  <CC_Memory_Deed_carriedWord>carried their word to a far town</CC_Memory_Deed_carriedWord>
+  <CC_Memory_Deed_carriedWord_Name>carried their word to {NAME}</CC_Memory_Deed_carriedWord_Name>
+  <CC_Memory_Deed_foundChild>found one of their children lost in the hills</CC_Memory_Deed_foundChild>
+  <CC_Memory_Deed_foundChild_Name>found little {NAME} lost in the hills and brought them home</CC_Memory_Deed_foundChild_Name>
+  <CC_Memory_Deed_harvestHelp>helped bring in their harvest</CC_Memory_Deed_harvestHelp>
+  <CC_Memory_Deed_harvestHelp_Name>helped bring in the harvest at {NAME}</CC_Memory_Deed_harvestHelp_Name>
+  <CC_Memory_Deed_mourned>mourned their dead with them</CC_Memory_Deed_mourned>
+  <CC_Memory_Deed_mourned_Name>mourned {NAME} with them</CC_Memory_Deed_mourned_Name>
+  <CC_Memory_Deed_rebuilt>helped them rebuild after the war</CC_Memory_Deed_rebuilt>
+  <CC_Memory_Deed_rebuilt_Name>helped them rebuild {NAME}</CC_Memory_Deed_rebuilt_Name>
+  <CC_Memory_Deed_sheltered>sheltered their people on the road</CC_Memory_Deed_sheltered>
+  <CC_Memory_Deed_sheltered_Name>sheltered {NAME} on the road</CC_Memory_Deed_sheltered_Name>
+  <CC_Memory_Deed_campHealed>sent for their healer and paid them well</CC_Memory_Deed_campHealed>
+  <CC_Memory_Deed_campHealed_Name>sent for their healer {NAME} and paid well</CC_Memory_Deed_campHealed_Name>
+  <CC_Memory_Deed_amends>paid the blood price for a life they took</CC_Memory_Deed_amends>
+  <CC_Memory_Deed_amends_Name>paid the blood price for {NAME}</CC_Memory_Deed_amends_Name>
+  <CC_Memory_Deed_apologised>came to say they were sorry for a life they took</CC_Memory_Deed_apologised>
+  <CC_Memory_Deed_apologised_Name>came to say they were sorry for {NAME}</CC_Memory_Deed_apologised_Name>
+
+  <!-- ===================== Camps: what the colony can ask of them (Source/ColonyCouncil/Camps/CampAsks.cs) ===================== -->
+  <CC_CampAsk_Section>Ask of them</CC_CampAsk_Section>
+  <CC_CampAsk_Facts>They can be asked for things of their own from the World page.</CC_CampAsk_Facts>
+  <CC_CampAsk_NotNow>They aren't here to ask.</CC_CampAsk_NotNow>
+  <CC_CampAsk_Done>Already asked of them.</CC_CampAsk_Done>
+  <CC_CampAsk_Today>Already asked of them today.</CC_CampAsk_Today>
+  <CC_CampAsk_TooSoon>Give them a little longer to settle first.</CC_CampAsk_TooSoon>
+  <CC_CampAsk_Nobody>Nobody at the colony is free to go.</CC_CampAsk_Nobody>
+  <CC_CampAsk_NobodySick>Nobody at the colony is ill or ailing.</CC_CampAsk_NobodySick>
+  <CC_CampAsk_Evening>Only in the evening (from the afternoon on).</CC_CampAsk_Evening>
+  <CC_Camp_SongLabel>the music at the camp</CC_Camp_SongLabel>
+  <CC_CampAsk_NoBeast>None of their beasts would do well in this weather.</CC_CampAsk_NoBeast>
+  <!-- Their good turns, when the kind has no line of its own -->
+  <CC_Camp_Help_song>The people camped {PLACE} played music at their fire this evening, and it carried all over the colony.</CC_Camp_Help_song>
+  <CC_Camp_Help_milk>{X_nameDef} from the camp {PLACE} left {COUNT} of {THING} at the colony's gate.</CC_Camp_Help_milk>
+  <CC_Camp_Help_goods>{X_nameDef} from the camp {PLACE} sent a few things up to the colony, for its hospitality: {THING}.</CC_Camp_Help_goods>
+  <CC_Camp_Help_tales>{A_nameDef} sat at the camp's fire {PLACE} and heard the news of the road from {X_nameDef}.</CC_Camp_Help_tales>
+
+  <!-- ===================== Missions of the road (Source/ColonyCouncil/Missions/Workers_MissionRoad.cs) ===================== -->
+  <CC_Mission_Escort_Set>{NAME} has set off for {PLACE} with the colony's caravan, at {A_nameDef}'s side.</CC_Mission_Escort_Set>
+  <CC_Mission_Escort_Coming>{0} comes to the colony in {1}.</CC_Mission_Escort_Coming>
+  <CC_Mission_Escort_Waiting>{0} is waiting at the colony: send a caravan with one of the colony's people to {1} (about {2} away).</CC_Mission_Escort_Waiting>
+  <CC_Mission_Escort_OnRoad>{0} is on the road to {2} with {1}'s caravan.</CC_Mission_Escort_OnRoad>
+  <CC_Mission_Word_Go>Carry the word to {PLACE} ({FACTION}), about {TALE} away by caravan.</CC_Mission_Word_Go>
+  <CC_Mission_LostChild_Search>{0} is lost somewhere on the colony's land. Anyone who comes within a few steps finds them. Time left: {1}.</CC_Mission_LostChild_Search>
+  <CC_Mission_LostChild_Found>{1} found {0}, who is waiting at the colony for their family.</CC_Mission_LostChild_Found>
+  <CC_Mission_Harvest_Go>At least {0} of the colony's people who can work the fields, at {1} by caravan (about {2} away).</CC_Mission_Harvest_Go>
+  <CC_Mission_Harvest_There>The colony's hands are in the fields at {0}: {1} of {2} hours.</CC_Mission_Harvest_There>
+
+  <!-- ===================== Vendettas: the newer endings (Source/ColonyCouncil/Secrets/VendettaEnds.cs) ===================== -->
+  <CC_Vendetta_Heir>{OTHER_nameDef} died with an oath against {FACTION} still open for {LOST}, and {PAWN_nameDef} has taken it up.</CC_Vendetta_Heir>
+  <CC_VendettaEnd_Gone>The vendetta this was about is already over.</CC_VendettaEnd_Gone>
+  <CC_VendettaEnd_Refused>{PAWN_nameDef} heard {FACTION}'s envoy out, and refused. The oath for {LOST} stands.</CC_VendettaEnd_Refused>
+  <CC_Social_VendettaSettled_ransom>{0} took {1}'s blood price for {2}, and laid down the oath.</CC_Social_VendettaSettled_ransom>
+  <CC_Social_VendettaSettled_apology>{0} accepted {1}'s apology for {2}.</CC_Social_VendettaSettled_apology>
+  <CC_Social_VendettaSettled_heir>{0} died with the oath against {1} for {2} still open.</CC_Social_VendettaSettled_heir>
+
+</LanguageData>

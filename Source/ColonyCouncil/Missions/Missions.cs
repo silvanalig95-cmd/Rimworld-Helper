@@ -204,6 +204,8 @@ namespace ColonyCouncil
             ctx.dead = m.name;
             ctx.thing = m.x?.def;
             ctx.tale = m.tale ?? GoodsText(m);
+            // Someone the mission is about (a pilgrim, a lost child, a dignitary): {X} in its later lines too.
+            if (m.x != null && !m.x.Discarded && m.x.RaceProps.Humanlike) ctx.stranger = m.x;
             return ctx;
         }
 

@@ -1,0 +1,120 @@
+# The defNames of other mods that Rimfolk's defs use, each found in that mod's own defs (the mod and version it was
+# read from heads each group). Tools/Tests/ModsTests.cs checks every such name in Rimfolk's defs against this list:
+# a new one must be looked up in the mod's defs and added here.
+# Medieval Overhaul 1.6 (dankpyon.medieval.overhaul)
+DankPyon_Apiary
+DankPyon_AteApplePie
+DankPyon_AteBoiledBeansAndOnion
+DankPyon_AteBreadSoup
+DankPyon_AteCarrotCake
+DankPyon_AteCheese
+DankPyon_AteCheeseSoup
+DankPyon_AteDriedMeat
+DankPyon_AteGriffonBerryPie
+DankPyon_AteGrilledCheese
+DankPyon_AteGrilledSausages
+DankPyon_AteGrilledSkewers
+DankPyon_AteHeartyStew
+DankPyon_AteHuntersStew
+DankPyon_AteLemonCake
+DankPyon_AteMushroomSoup
+DankPyon_AtePumpkinPie
+DankPyon_AtePumpkinSoup
+DankPyon_AteSlopMeal
+DankPyon_AteSmokedMeat
+DankPyon_AteSteakWithWine
+DankPyon_AteSweetPancakes
+DankPyon_AteVegetablePot
+DankPyon_AteWeakStew
+DankPyon_AteWinterLentilSoup
+DankPyon_BedWicker
+DankPyon_BedWickerDouble
+DankPyon_Bed_RusticDouble_Red
+DankPyon_Bed_Rustic_Red
+DankPyon_Book_ScribeTable
+DankPyon_Candelabra
+DankPyon_CandleStand
+DankPyon_DarkWoodPlankFloor
+DankPyon_DrankAle
+DankPyon_DrankMead
+DankPyon_DrankWine
+DankPyon_Floor_Herringbone_Granite
+DankPyon_Floor_Herringbone_Sandstone
+DankPyon_Floor_RusticWoodFloor_DarkWood
+DankPyon_Floor_RusticWoodFloor_Wood
+DankPyon_Grill
+DankPyon_MealCheese
+DankPyon_MealGoatCheese
+DankPyon_MealSheepCheese
+DankPyon_Pedestal
+DankPyon_RawWood
+DankPyon_ReadInLibrary
+DankPyon_RoyalArmchair
+DankPyon_RoyalDresser
+DankPyon_RoyalEndTable
+DankPyon_RoyalTudorBed
+DankPyon_RusticBookshelf
+DankPyon_RusticChair
+DankPyon_RusticDresser
+DankPyon_RusticEndTable
+DankPyon_RusticFermentingBarrel
+DankPyon_RusticHearth
+DankPyon_RusticLamp
+DankPyon_RusticStool
+DankPyon_RusticTable1x2c
+DankPyon_RusticTable2x2c
+DankPyon_ScribeTable
+DankPyon_StoneOven
+DankPyon_StoneOvenLarge
+DankPyon_StrawBed
+DankPyon_StrawBedDouble
+DankPyon_Table2x4c
+DankPyon_TentWall
+DankPyon_WallLamp
+DankPyon_WallTorch
+DankPyon_Wine
+DankPyon_Wine_Griffon
+DankPyon_Wine_Ice
+DankPyon_Wine_Mulberry
+# Alpha Genes 1.6 (sarg.alphagenes)
+AG_Drakonori
+AG_Efreet
+AG_Helixien
+AG_Lapis
+AG_LightSustenance
+AG_MindDevourer
+AG_Nereid
+AG_Wretch
+# Alpha Memes 1.6 (sarg.alphamemes)
+AM_Artist
+AM_Bulwark
+AM_Cowboys
+AM_Gladiator
+AM_Iconoclast
+AM_Monastic
+AM_Sadist
+AM_Sharpshooter
+AM_WaterPrimacy
+# Alpha Props: Parks and Gardens 1.6 (sarg.alphapropsparks)
+AP_CheckeredLawn
+AP_Lawn
+VFEPD_AP_LamplightA_Functional
+VFEPD_AP_LamplightC_Functional
+# Vanilla Factions Expanded - Classical 1.6 (oskarpotocki.vfe.classical)
+VFEC_CentralRepublic
+VFEC_EasternRepublic
+VFEC_Tent
+VFEC_WesternRepublic
+# Alpha Prefabs 1.6 (sarg.alphaprefabs)
+# Outland 1.5 (Outland-Core)
+Outland_TentDoor
+# Outland 1.5 (Outland-Eastborn-Empire)
+Outland_Empire
+# Outland 1.5 (Outland-Motz-Coalition)
+Outland_MotzCoalition
+# Outland 1.5 (Outland-Redburn-Pact)
+Outland_RedburnPact
+# Outland 1.5 (Outland-Vathun-Nobles)
+Outland_VathunNobles
+# Outland 1.5 (Outland-Genetics)
+# Outland 1.5 (Outland-Furniture-Decor)

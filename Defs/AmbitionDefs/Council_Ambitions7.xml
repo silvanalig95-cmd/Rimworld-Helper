@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Council projects of a settled people's year: walls raised in stages, seasons kept (hot meals every day, plenty in
+    store, the calendar's days kept as they come), projects for a tribe (the winter cache, the hunters' year) and for a
+    spacer colony (the starlight archive, a hospital of the stars), a market town in stages, and renowned hosts for a
+    colony with Hospitality (never pitched without it).
+    New goals (Ambitions/AmbitionGoals3.cs): Goal_Record (so many more of something the game counts: animals hunted,
+    plants harvested, trades made; only what the colony's own people do while the project runs), Goal_StockStreak (so
+    many days in a row with this much in store; falling short starts the count again), Goal_DaysKept (the calendar's
+    days kept as they come round), Goal_GuestBeds and Goal_GuestRoom (Hospitality).
+    Pitch lines may be tagged; achieved lines can't. Only {PAWN_...}.
+  -->
+
+  <!-- ===================== Raise the walls (in stages) ===================== -->
+
+  <ColonyCouncil.AmbitionDef>
+    <defName>Council_Amb_RaiseTheWalls</defName>
+    <label>raise the walls</label>
+    <description>A real wall round the colony, in stages: sixty new sections of wall first, then most of the colony's walls of stone or metal that won't burn, then defenses strong enough for the raids the colony draws.</description>
+    <days>45</days>
+    <weight>0.8</weight>
+    <staged>true</staged>
+    <relevantCategories><li>Defense</li></relevantCategories>
+    <proposerSkills><li>Construction</li><li>Mining</li></proposerSkills>
+    <goals>
+      <li Class="ColonyCouncil.Goal_Build">
+        <thingRole>wall</thingRole>
+        <count>60</count>
+      </li>
+      <li Class="ColonyCouncil.Goal_SafeWalls">
+        <share>0.75</share>
+      </li>
+      <li Class="ColonyCouncil.Goal_DefenseRatio">
+        <ratio>1.1</ratio>
+      </li>
+    </goals>
+    <pitch>
+      <plain>
+        <li>Half a wall is a door for raiders. Let's finish the ring, then make it stone, then make it hold.</li>
+        <li>Wood burns. Stone doesn't. One stage at a time, but let's build a wall we don't have to worry about.</li>
+        <li>[afterraid] They walked straight through the gap. Next time there won't be one.</li>
+        <li>[medieval] Every town worth the name has walls. Let's raise ours properly.</li>
+        <li>[tribal] A palisade first, then stone where the palisade is weakest. My people's camps were never caught open.</li>
+      </plain>
+      <warm><li>I want everyone inside something strong when the bad nights come.</li></warm>
+      <blunt><li>Walls. Stone walls. Then guards on them.</li></blunt>
+      <cheerful><li>A great big ring of stone round all of us! I'll carry the first block.</li></cheerful>
+      <gloomy><li>They'll come again. They always do. Let them find stone.</li></gloomy>
+      <cold><li>A finished, fireproof perimeter halves the cost of every raid. Build it in order.</li></cold>
+    </pitch>
+    <achieved>
+      <plain><li>Stone all the way round, and people on it who know what they're doing. Let them come.</li></plain>
+      <warm><li>I slept through the night for the first time in a long while. The walls did that.</li></warm>
+      <cheerful><li>Look at it! You could hold off an army behind that.</li></cheerful>
+      <gloomy><li>It's done. Now we'll find out how good it is.</li></gloomy>
+      <cold><li>Perimeter complete and fireproof. Defenses adequate to the threat.</li></cold>
+    </achieved>
+    <!-- With "Answers play out on the map": a fire lit by the new walls. -->
+    <achievedEffects>
+      <li Class="ColonyCouncil.DilemmaEffect_Bonfire"><label>the walls' fire</label><music>true</music><hours>17~23</hours><duration>2~3</duration></li>
+    </achievedEffects>
+  </ColonyCouncil.AmbitionDef>
+
+  <!-- ===================== A season of hot meals (season-long) ===================== -->
+
+  <ColonyCouncil.AmbitionDef>
+    <defName>Council_Amb_HotMeals</defName>
+    <label>a season of hot meals</label>
+    <description>A whole season, fifteen days running, with two cooked meals in store for every colonist every day. Falling short starts the count again, so the cooks have to keep ahead of the colony's appetite.</description>
+    <days>30</days>
+    <minColonists>3</minColonists>
+    <relevantCategories><li>Food</li><li>Comfort</li></relevantCategories>
+    <proposerSkills><li>Cooking</li></proposerSkills>
+    <proposerTraits><li>Gourmand</li></proposerTraits>
+    <goals>
+      <li Class="ColonyCouncil.Goal_StockStreak">
+        <kind>meals</kind>
+        <count>8</count>
+        <perColonist>2</perColonist>
+        <days>15</days>
+      </li>
+    </goals>
+    <pitch>
+      <plain>
+        <li>Half the time someone comes in from the fields and there's nothing cooked. A hot meal waiting, every day, for a whole season.</li>
+        <li>Two meals a head in store, every day. That's all. For fifteen days.</li>
+        <li>[winter] Nobody should come in out of the snow to raw potatoes. Let's keep the pots full.</li>
+        <li>[lowtech] A full cooking pot over the fire, all season long. That's what a home smells like.</li>
+      </plain>
+      <warm><li>I'd like everyone to know there's a hot meal waiting, whatever kind of day they've had.</li></warm>
+      <blunt><li>Cook more. Keep cooking. Fifteen days.</li></blunt>
+      <cheerful><li>Something hot in the pot every day! I'll be the happiest cook alive.</li></cheerful>
+      <gloomy><li>The day we run out of cooked food is always the day everything goes wrong. Let's not run out.</li></gloomy>
+      <cold><li>Raw food costs us health and time. A buffer of cooked meals pays for itself.</li></cold>
+    </pitch>
+    <achieved>
+      <plain><li>A whole season and never a cold supper. The kitchen earned its keep.</li></plain>
+      <warm><li>Every day this season, there was something hot waiting. Thank you, cooks.</li></warm>
+      <cheerful><li>Fifteen days of hot food! I'm rounder and happier.</li></cheerful>
+      <cold><li>Meal buffer maintained for a full season.</li></cold>
+    </achieved>
+  </ColonyCouncil.AmbitionDef>
+
+  <!-- ===================== A season of plenty (season-long) ===================== -->
+
+  <ColonyCouncil.AmbitionDef>
+    <defName>Council_Amb_SeasonOfPlenty</defName>
+    <label>a season of plenty</label>
+    <description>Fifteen days running with food for twenty days or more in store the whole time. A lean day starts the count again: it's not enough to fill the stores once, they have to stay full.</description>
+    <days>35</days>
+    <weight>0.8</weight>
+    <relevantCategories><li>Food</li></relevantCategories>
+    <proposerSkills><li>Plants</li><li>Animals</li></proposerSkills>
+    <goals>
+      <li Class="ColonyCouncil.Goal_StockStreak">
+        <kind>fooddays</kind>
+        <count>20</count>
+        <days>15</days>
+      </li>
+    </goals>
+    <pitch>
+      <plain>
+        <li>We fill the stores and then eat them down to nothing, every time. Let's keep them full for a whole season.</li>
+        <li>Twenty days of food in store, every day, for fifteen days. Then we'll know we've got the measure of this place.</li>
+        <li>[poor] We've never had a season where nobody worried about food. I'd like one.</li>
+        <li>[lowtech] My grandmother said a full granary is the only wealth that matters. Let's be rich.</li>
+      </plain>
+      <warm><li>I want a season where nobody lies awake counting sacks.</li></warm>
+      <blunt><li>Full stores. Keep them full.</li></blunt>
+      <cheerful><li>A whole season of full bellies and full barns! It's like a story.</li></cheerful>
+      <gloomy><li>Hunger always comes back. Let's be ready when it does.</li></gloomy>
+      <cold><li>A twenty-day reserve held steady means the next blight is an inconvenience, not a disaster.</li></cold>
+    </pitch>
+    <achieved>
+      <plain><li>A whole season of plenty. The granary has never looked so good.</li></plain>
+      <warm><li>Nobody went to bed worried about food this season. That's the best thing we've made.</li></warm>
+      <cheerful><li>Full barns all season! I keep going in just to look at them.</li></cheerful>
+      <cold><li>Food security maintained for a full season.</li></cold>
+    </achieved>
+  </ColonyCouncil.AmbitionDef>
+
+  <!-- ===================== Keep the year's days (the calendar) ===================== -->
+
+  <ColonyCouncil.AmbitionDef>
+    <defName>Council_Amb_KeepTheDays</defName>
+    <label>keep the year's days</label>
+    <description>The colony's own days are coming round: keep two of them properly as they come (a feast, games, a bonfire, a remembrance). Only proposed when the calendar is on and two of its days fall within the next forty days. Kept three years running, a day becomes a tradition.</description>
+    <days>40</days>
+    <weight>0.7</weight>
+    <minColonists>4</minColonists>
+    <relevantCategories><li>Comfort</li></relevantCategories>
+    <proposerSkills><li>Social</li><li>Artistic</li></proposerSkills>
+    <goals>
+      <li Class="ColonyCouncil.Goal_DaysKept">
+        <count>2</count>
+      </li>
+    </goals>
+    <pitch>
+      <plain>
+        <li>We let the last day go by without marking it. Let's keep the next ones properly, all of us.</li>
+        <li>Two of our days are coming round. A colony that keeps its days is a colony that means to stay.</li>
+        <li>Keep a day three years running and it's a tradition. Let's start counting, and not lose count.</li>
+        <li>[lowtech] The old villages kept their days whatever the year brought. So can we.</li>
+      </plain>
+      <warm><li>Those days are ours. Nobody else in the world keeps them. I'd hate to lose them.</li></warm>
+      <blunt><li>Mark the days. Properly.</li></blunt>
+      <cheerful><li>Two feast days coming! I'm already planning the menu.</li></cheerful>
+      <gloomy><li>If we stop keeping our days, we'll forget why we're here.</li></gloomy>
+      <cold><li>Shared days hold a colony together for very little cost. Keep them.</li></cold>
+    </pitch>
+    <achieved>
+      <plain><li>Two of our days kept, and kept well. The calendar means something here.</li></plain>
+      <warm><li>We kept our days together. That's what makes a place home.</li></warm>
+      <cheerful><li>Two days, two celebrations! Next year we'll do even better.</li></cheerful>
+      <cold><li>Days observed as planned.</li></cold>
+    </achieved>
+  </ColonyCouncil.AmbitionDef>
+
+  <!-- ===================== The winter cache (tribal; in stages) ===================== -->
+
+  <ColonyCouncil.AmbitionDef>
+    <defName>Council_Amb_WinterCache</defName>
+    <label>the winter cache</label>
+    <description>The tribe's winter cache, in two stages: a hundred and twenty plants gathered or harvested by the colony's people, then sixty pemmican made and stored, food that keeps when nothing else does. Only for a tribe that knows how to make pemmican.</description>
+    <days>40</days>
+    <weight>1.2</weight>
+    <staged>true</staged>
+    <eras><li>tribal</li></eras>
+    <forbiddenBy><li>NoMeat</li><li>MeatOnly</li><li>NoAnimalProducts</li><li>FungusOnly</li><li>FungusOrInsectOnly</li></forbiddenBy>
+    <relevantCategories><li>Food</li></relevantCategories>
+    <proposerSkills><li>Plants</li><li>Cooking</li></proposerSkills>
+    <goals>
+      <li Class="ColonyCouncil.Goal_Record">
+        <record>PlantsHarvested</record>
+        <count>120</count>
+      </li>
+      <li Class="ColonyCouncil.Goal_Stock">
+        <kind>Pemmican</kind>
+        <count>60</count>
+        <needsRecipe>true</needsRecipe>
+      </li>
+    </goals>
+    <pitch>
+      <plain>
+        <li>The old way: gather everything the land gives before the cold, then pound it into pemmican that keeps all winter.</li>
+        <li>Berries, roots, grain, all of it, and then the cache. My people never went hungry in the snow.</li>
+        <li>[fall] The land is giving now. In a month it won't be. Let's take what it gives.</li>
+        <li>[winter] We were hungry last winter. A proper cache, and we never will be again.</li>
+      </plain>
+      <warm><li>I want the little ones fed all winter, whatever the hunters bring home.</li></warm>
+      <blunt><li>Gather. Pound. Store. Eat in winter.</li></blunt>
+      <cheerful><li>A cache full of pemmican! It tastes terrible and I love it.</li></cheerful>
+      <gloomy><li>The snow will come whether we're ready or not.</li></gloomy>
+      <cold><li>Pemmican keeps without cold. It's the most reliable store we can make.</li></cold>
+    </pitch>
+    <achieved>
+      <plain><li>The cache is full. Let the snow come.</li></plain>
+      <warm><li>Everyone will eat this winter. That's what we worked for.</li></warm>
+      <cheerful><li>Sixty pemmican, all stacked up! I counted them twice.</li></cheerful>
+      <cold><li>Winter stores complete.</li></cold>
+    </achieved>
+  </ColonyCouncil.AmbitionDef>
+
+  <!-- ===================== The hunters' year (tribal) ===================== -->
+
+  <ColonyCouncil.AmbitionDef>
+    <defName>Council_Amb_HuntersYear</defName>
+    <label>the hunters' year</label>
+    <description>Make the tribe's hunters into a band to be proud of: twelve animals brought down by the colony's people, and two hunters good with a bow or a spear-thrower (Shooting 7 or better). Only for a tribe with game on its land and someone who hunts.</description>
+    <days>35</days>
+    <eras><li>tribal</li></eras>
+    <forbiddenBy><li>NoHunting</li><li>NoViolence</li></forbiddenBy>
+    <relevantCategories><li>Food</li><li>Defense</li></relevantCategories>
+    <proposerSkills><li>Shooting</li><li>Animals</li></proposerSkills>
+    <goals>
+      <li Class="ColonyCouncil.Goal_Record">
+        <record>KillsAnimals</record>
+        <count>12</count>
+        <needsWork>Hunting</needsWork>
+        <needsGame>true</needsGame>
+      </li>
+      <li Class="ColonyCouncil.Goal_SkillDepth">
+        <skill>Shooting</skill>
+        <count>2</count>
+        <level>7</level>
+      </li>
+    </goals>
+    <pitch>
+      <plain>
+        <li>The herds are out there and we're eating roots. Let's train real hunters and bring the meat home.</li>
+        <li>Twelve animals and two hunters worth the name. Then nobody goes hungry when the crops fail.</li>
+        <li>[spring] The herds are fat from the new grass. It's the hunters' season.</li>
+        <li>[afterraid] A band that can hunt can fight. We need both.</li>
+      </plain>
+      <warm><li>I want the young ones to learn to hunt properly, the way I was taught.</li></warm>
+      <blunt><li>Hunt more. Shoot better.</li></blunt>
+      <cheerful><li>Meat at every meal and hunting stories round the fire! Count me in.</li></cheerful>
+      <gloomy><li>A bad hunting year ends tribes. Let's not have one.</li></gloomy>
+      <cold><li>Game is free food. Skilled hunters turn it into a reliable supply.</li></cold>
+    </pitch>
+    <achieved>
+      <plain><li>A hunters' year to tell the young about: meat in the smokehouse and hunters to be proud of.</li></plain>
+      <warm><li>Our hunters came home every time. That's the best of it.</li></warm>
+      <cheerful><li>Twelve! And I got three of them!</li></cheerful>
+      <cold><li>Hunting capacity established.</li></cold>
+    </achieved>
+    <!-- With "Answers play out on the map": the meat roasted round a fire. -->
+    <achievedEffects>
+      <li Class="ColonyCouncil.DilemmaEffect_Bonfire"><label>the hunters' fire</label><music>true</music><hours>17~23</hours><duration>2~3</duration></li>
+    </achievedEffects>
+  </ColonyCouncil.AmbitionDef>
+
+  <!-- ===================== The starlight archive (spacer; in stages) ===================== -->
+
+  <ColonyCouncil.AmbitionDef>
+    <defName>Council_Amb_StarlightArchive</defName>
+    <label>the starlight archive</label>
+    <description>Keep the knowledge of the stars alive out here, in stages: finish three research projects, then make sure three of the colony's people can think at that level (Intellectual 10 or better), so the knowledge doesn't die with one mind. Only for a colony that has reached the spacer age.</description>
+    <days>50</days>
+    <weight>0.8</weight>
+    <staged>true</staged>
+    <eras><li>spacer</li></eras>
+    <minColonists>4</minColonists>
+    <relevantCategories><li>Progress</li></relevantCategories>
+    <proposerSkills><li>Intellectual</li></proposerSkills>
+    <proposerTraits><li>TooSmart</li></proposerTraits>
+    <goals>
+      <li Class="ColonyCouncil.Goal_Research">
+        <count>3</count>
+      </li>
+      <li Class="ColonyCouncil.Goal_SkillDepth">
+        <skill>Intellectual</skill>
+        <count>3</count>
+        <level>10</level>
+      </li>
+    </goals>
+    <pitch>
+      <plain>
+        <li>Everything our ancestors knew about the stars is in a few heads and a few databanks. Let's make it more than a few.</li>
+        <li>Three projects finished, three minds that understand them. Then it can't be lost.</li>
+        <li>[small] With so few of us, losing one scholar would set us back a century. Let's train more.</li>
+      </plain>
+      <warm><li>I'd like to teach what I know before it's too late to.</li></warm>
+      <blunt><li>Research more. Teach more people to research.</li></blunt>
+      <cheerful><li>A whole archive of starlight! We'll be the cleverest colony on the rim.</li></cheerful>
+      <gloomy><li>Knowledge out here is fragile. One raid, one fever, and it's gone.</li></gloomy>
+      <cold><li>Redundancy in expertise is as important as redundancy in power.</li></cold>
+    </pitch>
+    <achieved>
+      <plain><li>Three new discoveries and three minds that hold them. The archive is safe.</li></plain>
+      <warm><li>What we know will outlast any one of us now.</li></warm>
+      <cheerful><li>We did it! Everyone's so clever now it's slightly annoying.</li></cheerful>
+      <cold><li>Knowledge redundancy achieved.</li></cold>
+    </achieved>
+  </ColonyCouncil.AmbitionDef>
+
+  <!-- ===================== A hospital of the stars (spacer) ===================== -->
+
+  <ColonyCouncil.AmbitionDef>
+    <defName>Council_Amb_StarHospital</defName>
+    <label>a hospital of the stars</label>
+    <description>The kind of hospital a spacer colony ought to have: two hospital beds in a room kept spotless (cleanliness 0.9 or better), and a dozen doses of industrial medicine made and on the shelf. Only for a colony that has reached the spacer age and can make medicine.</description>
+    <days>35</days>
+    <eras><li>spacer</li></eras>
+    <relevantCategories><li>Health</li></relevantCategories>
+    <proposerSkills><li>Medicine</li><li>Intellectual</li></proposerSkills>
+    <template>Council_Hospital_Infirmary</template>
+    <goals>
+      <li Class="ColonyCouncil.Goal_Room">
+        <role>Hospital</role>
+        <thingRole>medical</thingRole>
+        <thingCount>2</thingCount>
+      </li>
+      <li Class="ColonyCouncil.Goal_RoomStat">
+        <role>Hospital</role>
+        <stat>Cleanliness</stat>
+        <min>0.9</min>
+      </li>
+      <li Class="ColonyCouncil.Goal_Stock">
+        <kind>MedicineIndustrial</kind>
+        <count>12</count>
+        <needsRecipe>true</needsRecipe>
+      </li>
+    </goals>
+    <pitch>
+      <plain>
+        <li>We know how to heal people properly. Let's have a hospital that shows it.</li>
+        <li>Proper beds, a clean room, medicine we made ourselves. Then nobody dies of something we could have fixed.</li>
+        <li>[hurt] I've been patched up on a dirty table. I'd rather the next person wasn't.</li>
+      </plain>
+      <warm><li>When one of us is hurt, I want them to wake up somewhere that feels safe.</li></warm>
+      <blunt><li>Clean room. Good beds. Medicine. Done.</li></blunt>
+      <cheerful><li>A gleaming hospital! I'll polish the beds myself.</li></cheerful>
+      <gloomy><li>Somebody will need it badly, one day. Let it be ready.</li></gloomy>
+      <cold><li>Our survival odds after a raid depend more on the hospital than on the walls.</li></cold>
+    </pitch>
+    <achieved>
+      <plain><li>Clean beds, good light and medicine on the shelf. A hospital we can be proud of.</li></plain>
+      <warm><li>Whoever needs it next will be in good hands.</li></warm>
+      <cheerful><li>It sparkles! I hope nobody needs it, but it sparkles.</li></cheerful>
+      <cold><li>Medical facility up to standard.</li></cold>
+    </achieved>
+  </ColonyCouncil.AmbitionDef>
+
+  <!-- ===================== Renowned hosts (Hospitality; in stages) ===================== -->
+
+  <ColonyCouncil.AmbitionDef>
+    <defName>Council_Amb_RenownedHosts</defName>
+    <label>renowned hosts</label>
+    <description>Become the colony every traveller hopes to stop at, in stages: three guest beds in rooms indoors, then a guest room worth sleeping in (impressiveness 50 or more), then two peoples abroad who think well of the colony (goodwill 50 or more). Only with Hospitality.</description>
+    <days>50</days>
+    <weight>1.2</weight>
+    <staged>true</staged>
+    <relevantCategories><li>Comfort</li><li>Progress</li></relevantCategories>
+    <proposerSkills><li>Social</li></proposerSkills>
+    <proposerTraits><li>Kind</li></proposerTraits>
+    <goals>
+      <li Class="ColonyCouncil.Goal_GuestBeds">
+        <count>3</count>
+      </li>
+      <li Class="ColonyCouncil.Goal_GuestRoom">
+        <impressiveness>50</impressiveness>
+      </li>
+      <li Class="ColonyCouncil.Goal_Goodwill">
+        <goodwill>50</goodwill>
+        <count>2</count>
+      </li>
+    </goals>
+    <pitch>
+      <plain>
+        <li>Travellers pass us by because there's nowhere to sleep. Beds first, then a room worth the walk, and the roads will learn our name.</li>
+        <li>I'd like guests to leave here telling everyone about us. Let's give them something to tell.</li>
+        <li>[medieval] Every road needs a good inn. Let's be it.</li>
+        <li>[large] With this many of us, there's always someone to look after guests. Let's do it properly.</li>
+      </plain>
+      <warm><li>I want every stranger who comes through our gate to feel like they've come home.</li></warm>
+      <blunt><li>Guest beds. A good guest room. Then they'll come back with silver.</li></blunt>
+      <cheerful><li>The best guest house on the rim! I'll fold the blankets into swans.</li></cheerful>
+      <gloomy><li>If people don't like us, they'll stop coming. Then we're alone out here.</li></gloomy>
+      <cold><li>Well-treated guests bring trade, recruits and goodwill. It's a sound investment.</li></cold>
+    </pitch>
+    <achieved>
+      <plain><li>Travellers talk about us on the roads now. We're the place to stop.</li></plain>
+      <warm><li>Every guest who stayed went away a friend.</li></warm>
+      <cheerful><li>We're famous! Well, famous among travellers.</li></cheerful>
+      <cold><li>Hospitality reputation established.</li></cold>
+    </achieved>
+  </ColonyCouncil.AmbitionDef>
+
+  <!-- ===================== A market town (medieval and industrial; in stages) ===================== -->
+
+  <ColonyCouncil.AmbitionDef>
+    <defName>Council_Amb_MarketTown</defName>
+    <label>a market town</label>
+    <description>Make the colony a market town, in stages: three trades struck with visiting traders, then eight hundred silver in the strongbox, then three peoples abroad who think well enough of the colony to come back (goodwill 40 or more).</description>
+    <days>50</days>
+    <weight>0.9</weight>
+    <staged>true</staged>
+    <eras><li>medieval</li><li>industrial</li></eras>
+    <minColonists>4</minColonists>
+    <relevantCategories><li>Progress</li></relevantCategories>
+    <proposerSkills><li>Social</li></proposerSkills>
+    <proposerTraits><li>Greedy</li></proposerTraits>
+    <goals>
+      <li Class="ColonyCouncil.Goal_Record">
+        <record>Council_TradesMade</record>
+        <count>3</count>
+      </li>
+      <li Class="ColonyCouncil.Goal_Stock">
+        <kind>silver</kind>
+        <count>800</count>
+      </li>
+      <li Class="ColonyCouncil.Goal_Goodwill">
+        <goodwill>40</goodwill>
+        <count>3</count>
+      </li>
+    </goals>
+    <pitch>
+      <plain>
+        <li>We make more than we need and we're on a good road. Let's become a market town: trade, silver, and friends who come back.</li>
+        <li>Three good trades, a full strongbox, and three peoples who think of us first. That's a town.</li>
+        <li>[medieval] A charter, a market cross, a fair once a year. Well, the market first.</li>
+      </plain>
+      <warm><li>I'd like our gate to be somewhere people are glad to arrive at.</li></warm>
+      <blunt><li>Trade more. Save more. Make friends who buy.</li></blunt>
+      <cheerful><li>A market town! Stalls and coins and gossip from everywhere!</li></cheerful>
+      <gloomy><li>Silver doesn't stop raiders, but it buys the people who do.</li></gloomy>
+      <cold><li>Trade turns our surplus into security. Let's build the habit and the reputation.</li></cold>
+    </pitch>
+    <achieved>
+      <plain><li>Traders know our name, the strongbox is full, and three peoples count us friends. A market town.</li></plain>
+      <warm><li>People come here because they want to. That means something.</li></warm>
+      <cheerful><li>A real market town! I'm going to start charging for directions.</li></cheerful>
+      <cold><li>Trade network established. Reserves adequate.</li></cold>
+    </achieved>
+  </ColonyCouncil.AmbitionDef>
+
+</Defs>

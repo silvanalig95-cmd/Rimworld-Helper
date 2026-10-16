@@ -42,7 +42,11 @@ The messenger table and a linked bird post work as the medieval comms console: t
       </li>
       <li>
         <heading>With Rimfolk</heading>
-        <text>The council detects a medieval colony automatically and doesn't count the watermill's river gauge as electricity. It recognizes this mod's buildings by what they do: rustic torches and oil lamps count as lights, log and straw beds as beds, and the smoker, drying racks, apiary, banners, fountains and weapon rack fulfill the matching wishes.</text>
+        <text>The council detects a medieval colony automatically and doesn't count the watermill's river gauge as electricity. It recognizes this mod's buildings by what they do: rustic torches and oil lamps count as lights, log and straw beds as beds, and the smoker, drying racks, apiary, banners, fountains and weapon rack fulfill the matching wishes.
+
+The room planner has a hall theme made of this mod's furniture: rustic beds, carved chairs and round stools, rustic tables, end tables and dressers, candle stands and oil lamps, on its own wooden or herringbone floors. The stately theme uses its royal armchair, tudor bed, end table, dresser and candelabra where Vanilla Furniture Expanded's aren't there. Only what the colony has researched and has the materials for is used.
+
+Camps on your land put up tents of its hide or cloth walls: a hunting party, traders, healers and players each raise one, roofed, with a bed inside, and refugees a cloth windbreak.</text>
       </li>
     </sections>
     <keywords>
@@ -486,7 +490,11 @@ Every pack adds new unit types, backstories, a culture, an ideology and scenario
       </li>
       <li>
         <heading>With Rimfolk</heading>
-        <text>Their visitors and traders meet your colonists like any others, and a nation whose raiders kill one of yours can earn a vendetta.</text>
+        <text>Their visitors and traders meet your colonists like any others, and a nation whose raiders kill one of yours can earn a vendetta.
+
+Some of their visitors bring encounters of their own: a knight on the road from one of the Christian kingdoms (each tells of home in its own words: the winged horsemen of Poland, the seven electors of the Empire, the great city of Byzantium), a rider of the Mongol steppe who shows an animal handler how to calm a frightened beast, and a learned traveller from the Ottomans, Byzantium or Iberia who teaches the stars and a quicker way to count. A count, governor or prince of a nation may make a lord's progress past the colony, a world event where hosting the retinue or sending a gift earns their goodwill; and the khaganate may gather its clans, sending an envoy for a token of respect.
+
+Rimfolk knows these nations by their mod rather than their def names, so every nation pack counts.</text>
       </li>
     </sections>
     <keywords>

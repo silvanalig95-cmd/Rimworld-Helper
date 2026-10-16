@@ -159,11 +159,32 @@ public static class RoomTemplateTests
         F("BathtubStuff", 1, 2);
         F("HotTub", 2, 2);
         F("KitchenSink", 3, 1, spots: "0,-1");
+        // Medieval Overhaul's furniture in the hall and stately themes (its 1.6 defs: sizes as given there, the rest from
+        // the game's bases they build on).
+        F("DankPyon_Bed_Rustic_Red DankPyon_BedWicker DankPyon_StrawBed", 1, 2, kind: "bed");
+        F("DankPyon_Bed_RusticDouble_Red DankPyon_BedWickerDouble DankPyon_StrawBedDouble DankPyon_RoyalTudorBed", 2, 2, kind: "bed");
+        F("DankPyon_RusticChair DankPyon_RusticStool DankPyon_RoyalArmchair", 1, 1, "sit", kind: "chair");
+        F("DankPyon_RusticTable1x2c", 1, 2, kind: "table");
+        F("DankPyon_RusticTable2x2c", 2, 2, kind: "table");
+        F("DankPyon_Table2x4c", 2, 4, kind: "table");
+        F("DankPyon_RusticEndTable DankPyon_RoyalEndTable", 1, 1);
+        F("DankPyon_RusticDresser DankPyon_RoyalDresser", 2, 1);
+        // Its candle stands and lamps turn, unlike the game's own lights; its oil wall lamp and wall torch hang on a wall.
+        F("DankPyon_CandleStand DankPyon_RusticLamp DankPyon_Candelabra", 1, 1);
+        F("DankPyon_WallLamp DankPyon_WallTorch", 1, 1, "stand wall", kind: "walllight");
+        // Alpha Props: Parks and Gardens' working street lights can be walked past, like a floor lamp.
+        F("VFEPD_AP_LamplightA_Functional VFEPD_AP_LamplightC_Functional", 1, 1, "stand norot");
 
         From("Ludeon.RimWorld.Royalty", "Throne GrandThrone RoyalBed Harp Harpsichord Brazier MeditationSpot");
         From("Ludeon.RimWorld.Ideology", "Altar_Small Altar_Medium Altar_Large Lectern Pew Drape DarklightBrazier");
         From("Ludeon.RimWorld.Biotech", "Crib SchoolDesk Blackboard ToyBox MechGestator BasicRecharger StandardRecharger GeneAssembler GeneBank GeneProcessor");
         From("Ludeon.RimWorld.Anomaly", "HoldingPlatform ShardInhibitor ElectricInhibitor");
+        From("dankpyon.medieval.overhaul", "DankPyon_Bed_Rustic_Red DankPyon_BedWicker DankPyon_StrawBed DankPyon_Bed_RusticDouble_Red DankPyon_BedWickerDouble "
+                                          + "DankPyon_StrawBedDouble DankPyon_RoyalTudorBed DankPyon_RusticChair DankPyon_RusticStool DankPyon_RoyalArmchair "
+                                          + "DankPyon_RusticTable1x2c DankPyon_RusticTable2x2c DankPyon_Table2x4c DankPyon_RusticEndTable DankPyon_RoyalEndTable "
+                                          + "DankPyon_RusticDresser DankPyon_RoyalDresser DankPyon_CandleStand DankPyon_RusticLamp DankPyon_Candelabra "
+                                          + "DankPyon_WallLamp DankPyon_WallTorch");
+        From("sarg.alphapropsparks", "VFEPD_AP_LamplightA_Functional VFEPD_AP_LamplightC_Functional");
         From("dubwise.dubsbadhygiene", "ToiletStuff ToiletAdvStuff PitLatrine WashBucket ShowerStuff ShowerSimple ShowerAdvStuff BasinStuff BathtubStuff HotTub KitchenSink "
                                        + "ToiletStallDoor DBHSaunaHeaterLog DBHSaunaHeaterElec DBHSaunaSeating WashingMachine PetWaterBowl LitterBox");
     }

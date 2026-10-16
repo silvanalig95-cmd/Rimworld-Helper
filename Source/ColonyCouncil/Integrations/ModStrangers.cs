@@ -32,7 +32,7 @@ namespace ColonyCouncil
                 if (!r.factions.NullOrEmpty())
                 {
                     var f = Strangers.FactionOf(x) ?? x.Faction;
-                    if (f?.def == null || !r.factions.Contains(f.def.defName)) return false;
+                    if (f?.def == null || !PeoplesByMod.Matches(f.def, r.factions)) return false;
                 }
                 if (!r.races.NullOrEmpty() && !r.races.Contains(x.def.defName) && (x.kindDef == null || !r.races.Contains(x.kindDef.defName))) return false;
                 if (!r.tags.NullOrEmpty() && !PeopleTags.Matches(x, r.tags)) return false;
@@ -47,7 +47,8 @@ namespace ColonyCouncil
 
         /// <summary>
         /// Tags for lines about X: x:guest (with x:roomgood, x:roompoor or x:nobed for the guest bed they were given,
-        /// x:happyguest or x:unhappyguest for how the visit is going), x:faction:DefName, x:royal, x:race:DefName and
+        /// x:happyguest or x:unhappyguest for how the visit is going), x:faction:DefName, x:factionmod:packageid (the mod
+        /// the people comes from, for nations named by their mod: <see cref="PeoplesByMod"/>), x:royal, x:race:DefName and
         /// X's one-word tag groups as x:mage, x:fighter, x:healer.
         /// </summary>
         public static void AddTags(HashSet<string> tags, Pawn x)
@@ -58,7 +59,12 @@ namespace ColonyCouncil
                 tags.Add("x:race:" + x.def.defName);
                 if (!x.RaceProps.Humanlike) return;
                 var f = Strangers.FactionOf(x) ?? x.Faction;
-                if (f?.def != null && !f.IsPlayer) tags.Add("x:faction:" + f.def.defName);
+                if (f?.def != null && !f.IsPlayer)
+                {
+                    tags.Add("x:faction:" + f.def.defName);
+                    string pkg = PeoplesByMod.PackageOf(f.def);
+                    if (pkg.Length > 0) tags.Add("x:factionmod:" + pkg);
+                }
                 if (ModsConfig.RoyaltyActive && x.royalty?.MostSeniorTitle != null) tags.Add("x:royal");
                 foreach (var t in PeopleTags.Identity(x))
                     if (t.IndexOf(':') < 0) tags.Add("x:" + t);

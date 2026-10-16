@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    World events for the medieval modlist's peoples: Outland's (FactionDef names from its own defs) and Medieval Total
+    Rim's nations (named by their mod: "mod:athelas.medievaltotalrim" is any of them; their def names aren't
+    published). Each needs one of the mods (<mods>) and picks its people by name (ColonyCouncil.ModFactionsExtension), so
+    without them it never starts. Lines are tagged faction:DefName for Outland's peoples and
+    factionmod:athelas.medievaltotalrim.<nation> for Medieval Total Rim's. Nobody turns hostile unless the colony chooses
+    it, and nobody is hurt.
+  -->
+
+  <!-- ===================== A lord's progress (Outland's Vathun and Eastborn, Medieval Total Rim's nations) ===================== -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Council_WS_LordsProgress</defName>
+    <label>a lord's progress</label>
+    <workerClass>ColonyCouncil.WorldSituationWorker_ModFaction</workerClass>
+    <weight>0.8</weight>
+    <earliestDay>25</earliestDay>
+    <cooldownDays>160</cooldownDays>
+    <durationDays>8~12</durationDays>
+    <kind>court</kind>
+    <mods>
+      <li>neronix17.outland.vathunnobles</li>
+      <li>neronix17.outland.eastbornempire</li>
+      <li>athelas.medievaltotalrim.core</li>
+    </mods>
+    <faction>
+      <friendly>true</friendly>
+    </faction>
+    <names>
+      <li>the lord's progress</li>
+    </names>
+    <titles>
+      <li>A lord's progress</li>
+      <li>A progress from {PLACE}</li>
+    </titles>
+    <texts>
+      <li>A great lord of {FACTION} is making a progress through the region, from town to town, with a retinue of fifty and a cart just for the banners. Every settlement on the road is expected to be seen at its best.\n\nThe road from {PLACE} passes within a morning's walk of the colony.</li>
+      <li>[faction:Outland_VathunNobles] The lord of {FACTION}'s forest court is travelling the country, as the Vathun's lords do every few summers, to be seen and to see. Servants walk ahead to sweep the road; poets walk behind to describe it.\n\nThe progress will pass near the colony on its way from {PLACE}.</li>
+      <li>[faction:Outland_Empire] A magistrate of the Eastborn Empire is touring the borderlands in a lacquered palanquin, with a long line of bearers, scribes and a tea-master. {FACTION} say the magistrate has held the post for three hundred years and has never once hurried.\n\nThe tour passes near the colony on its way from {PLACE}.</li>
+      <li>[factionmod:athelas.medievaltotalrim.france|factionmod:athelas.medievaltotalrim.hre|factionmod:athelas.medievaltotalrim.poland|factionmod:athelas.medievaltotalrim.russia] A count of {FACTION} is riding through the region with his household knights, his falcons and his confessor, holding court in every town that will have him.\n\nHis road from {PLACE} passes close to the colony.</li>
+      <li>[factionmod:athelas.medievaltotalrim.byzantium|factionmod:athelas.medievaltotalrim.turks|factionmod:athelas.medievaltotalrim.iberia] A governor of {FACTION} is travelling the region with clerks, guards and a string of camels, counting everything and admiring nothing out loud.\n\nThe road from {PLACE} passes close to the colony.</li>
+      <li>[factionmod:athelas.medievaltotalrim.mongols] A prince of {FACTION} is riding the region's roads with his guard, his hawks and more horses than men, visiting the towns that pay the khaganate its due.\n\nHis road from {PLACE} passes close to the colony.</li>
+    </texts>
+    <summaries>
+      <li>{FACTION}'s lord will pass near the colony. Hosting the retinue for a night or sending a gift to meet it earns their goodwill; keeping to ourselves costs nothing.</li>
+      <li>[hosted] The colony hosted the lord's retinue for a night. {FACTION} will remember it.</li>
+      <li>[gift] The colony sent a gift to meet the progress on the road.</li>
+    </summaries>
+    <modExtensions>
+      <li Class="ColonyCouncil.ModFactionsExtension">
+        <factions>
+          <li>Outland_VathunNobles</li>
+          <li>Outland_Empire</li>
+          <li>mod:athelas.medievaltotalrim</li>
+        </factions>
+      </li>
+    </modExtensions>
+    <beats>
+      <li>
+        <key>herald</key>
+        <day>1~3</day>
+        <count>200~400</count>
+        <wealthScaled>true</wealthScaled>
+        <answerDays>2</answerDays>
+        <titles>
+          <li>The lord's herald</li>
+        </titles>
+        <texts>
+          <li>A herald in {FACTION}'s colours rode up to the colony this morning, very upright, and asked {A_nameDef} whether the colony means to receive the progress. A night's rest for the retinue would be a fine thing, he said. A gift sent to meet them on the road would also be noticed.\n\nA proper night's hosting would cost the colony about {COUNT} silver in food, drink and fodder.</li>
+          <li>[faction:Outland_VathunNobles] A Vathun herald, horns freshly polished, presented himself to {A_nameDef} and asked, in the forest court's long way of asking, whether the colony would offer its lord a night under its roof. A gift on the road would also do, he allowed, for a settlement of no particular caste.\n\nA proper night's hosting would cost about {COUNT} silver.</li>
+          <li>[faction:Outland_Empire] An Eastborn scribe arrived ahead of the palanquin with a letter, a brush and a great deal of patience. The magistrate, the letter said, would honour the colony by resting there one night; or the colony might honour the magistrate with a gift on the road.\n\nA proper night's hosting would cost about {COUNT} silver.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Host the retinue for a night ({COUNT} silver)</label>
+            <outcome>The colony swept its yard, laid every table it had and fed the retinue until they sang. The lord thanked {A_nameDef} by name and left at dawn, slowly, as lords do.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Pay" />
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>12</amount></li>
+            </effects>
+            <flags><li>hosted</li></flags>
+            <help>2</help>
+            <deed>hosted their lord's progress</deed>
+            <ways><openness>2</openness><generosity>1</generosity></ways>
+            <next>stayed</next>
+            <nextDays>1~2</nextDays>
+          </li>
+          <li>
+            <label>Send a gift to meet them on the road</label>
+            <outcome>{A_nameDef} rode out with the colony's gift and handed it up to a steward, who looked at it carefully, smiled carefully, and had it carried to the lord.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Pay"><factor>0.4</factor></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>5</amount></li>
+            </effects>
+            <flags><li>gift</li></flags>
+            <help>1</help>
+            <deed>sent a gift to their lord's progress</deed>
+            <ways><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>Keep to ourselves</label>
+            <outcome>The herald was thanked for his trouble and given a cup of water. The progress will go by on the high road, banners and all, and the colony will watch it from the wall.</outcome>
+            <flags><li>kept</li></flags>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>stayed</key>
+        <called>true</called>
+        <message>true</message>
+        <texts>
+          <li>The lord's retinue stayed the night at the colony. Someone taught the children a marching song, someone else lost a boot, and the lord's cook asked for the colony's bread recipe before they left.</li>
+          <li>[faction:Outland_VathunNobles] The Vathun lord's retinue stayed the night. The servants slept in the barn, the guards by the gate and the poets wherever they fell; the lord, it turned out, snores.</li>
+          <li>[faction:Outland_Empire] The Eastborn magistrate stayed the night and took tea with the colony at dawn: a long, quiet, beautiful hour that nobody quite knew how to end.</li>
+        </texts>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Thought"><thought>Council_WS_ProgressHosted</thought></li>
+        </effects>
+      </li>
+      <li>
+        <key>passing</key>
+        <day>5~8</day>
+        <forbids><li>hosted</li></forbids>
+        <message>true</message>
+        <texts>
+          <li>The lord's progress passed by on the high road this morning: banners, horses, a long dust cloud and a good deal of trumpeting. Half the colony watched from the wall.</li>
+          <li>[gift] The progress passed by on the high road. As it went, a rider broke off and brought the colony a sealed letter of thanks from the lord.</li>
+        </texts>
+      </li>
+    </beats>
+    <endings>
+      <li>
+        <key>hosted</key>
+        <requires><li>hosted</li></requires>
+        <helped>true</helped>
+        <titles>
+          <li>The progress moves on</li>
+        </titles>
+        <texts>
+          <li>{FACTION}'s lord has gone on towards {PLACE} and home. In the towns along the way, the story of the night at the colony has already grown in the telling, and the colony comes out of it well.</li>
+        </texts>
+        <chronicle>The colony hosted a lord of {FACTION} on his progress.</chronicle>
+      </li>
+      <li>
+        <key>gift</key>
+        <requires><li>gift</li></requires>
+        <helped>true</helped>
+        <titles>
+          <li>The progress moves on</li>
+        </titles>
+        <texts>
+          <li>{FACTION}'s lord has gone on towards {PLACE}. The colony's gift is mentioned, now and then, in the right company.</li>
+        </texts>
+        <chronicle>The colony sent a gift to a lord of {FACTION} on his progress.</chronicle>
+      </li>
+      <li>
+        <key>over</key>
+        <titles>
+          <li>The progress moves on</li>
+        </titles>
+        <texts>
+          <li>{FACTION}'s lord and his retinue have gone on their way, and the road past the colony is quiet again.</li>
+        </texts>
+        <chronicle>A lord of {FACTION} passed by the colony on his progress.</chronicle>
+      </li>
+    </endings>
+  </ColonyCouncil.WorldSituationDef>
+
+  <!-- ===================== The clans gather (Outland's Redburn Pact, Medieval Total Rim's Mongols) ===================== -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Council_WS_ClansGather</defName>
+    <label>the clans gather</label>
+    <workerClass>ColonyCouncil.WorldSituationWorker_ModFaction</workerClass>
+    <weight>0.7</weight>
+    <earliestDay>40</earliestDay>
+    <cooldownDays>200</cooldownDays>
+    <durationDays>10~14</durationDays>
+    <kind>war</kind>
+    <bad>true</bad>
+    <mods>
+      <li>neronix17.outland.redburnpact</li>
+      <li>athelas.medievaltotalrim.mongols</li>
+    </mods>
+    <faction>
+      <canRaid>true</canRaid>
+    </faction>
+    <names>
+      <li>the gathering of the clans</li>
+    </names>
+    <titles>
+      <li>The clans gather</li>
+      <li>Warbands on the roads</li>
+    </titles>
+    <texts>
+      <li>{FACTION} are holding a great gathering of their clans near {PLACE}. Warbands from every corner of their lands are on the roads, and every settlement within reach is watching its walls.</li>
+      <li>[faction:Outland_RedburnPact] The Redburn Pact is holding its moot near {PLACE}: every goblin chief, hobgoblin captain and orc warlord within a month's march, gathered to boast, feast and decide who to rob next. The roads are thick with their bands, all going the same way.</li>
+      <li>[factionmod:athelas.medievaltotalrim.mongols] The khans of {FACTION} have called a great gathering on the grass near {PLACE}, to feast, race horses and choose where the riders go next. Every road for days around is full of horsemen, all going the same way.</li>
+    </texts>
+    <summaries>
+      <li>{FACTION}'s bands are on the roads. An envoy may come asking for a token of respect: paying earns their goodwill, warning the neighbours earns theirs, and refusing costs only nerves.</li>
+      <li>[paid] The colony paid {FACTION}'s token of respect.</li>
+      <li>[warned] The colony sent word of the gathering to its neighbours.</li>
+    </summaries>
+    <modExtensions>
+      <li Class="ColonyCouncil.ModFactionsExtension">
+        <factions>
+          <li>Outland_RedburnPact</li>
+          <li>mod:athelas.medievaltotalrim.mongols</li>
+        </factions>
+      </li>
+    </modExtensions>
+    <beats>
+      <li>
+        <key>envoy</key>
+        <day>2~4</day>
+        <count>150~300</count>
+        <wealthScaled>true</wealthScaled>
+        <answerDays>2</answerDays>
+        <titles>
+          <li>An envoy from the gathering</li>
+        </titles>
+        <texts>
+          <li>An envoy of {FACTION} rode up to the gate and asked {A_nameDef} for a token of respect for the gathering: {COUNT} silver, to show the colony knows whose roads these are this season.\n\nIt isn't a threat, the envoy said. It's an opportunity to be remembered kindly.</li>
+          <li>[faction:Outland_RedburnPact] A hobgoblin envoy in a coat of many stolen colours stood at the gate and asked {A_nameDef}, almost politely, for {COUNT} silver "for the moot's fire". The two orcs behind him said nothing at all, very loudly.</li>
+          <li>[factionmod:athelas.medievaltotalrim.mongols] A rider of {FACTION} reined in at the gate, unhurried, and asked {A_nameDef} for {COUNT} silver as the colony's gift to the gathering. He looked at the walls while he waited for the answer, and at the horses.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Pay the token ({COUNT} silver)</label>
+            <outcome>The envoy weighed the silver in one hand, nodded, and rode off without a backward glance. Word will go round the gathering that this colony knows its manners.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Pay" />
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>12</amount></li>
+            </effects>
+            <flags><li>paid</li></flags>
+            <deed>paid a token to their gathering</deed>
+            <ways><tradition>1</tradition></ways>
+          </li>
+          <li>
+            <label>Refuse, and send word to the neighbours</label>
+            <outcome>The envoy was refused, politely, and before he was out of sight {A_nameDef} had riders going to every friendly town within reach with word of how many bands were on the roads, and which way.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>4</amount><who>Neighbors</who></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-5</amount></li>
+            </effects>
+            <flags><li>warned</li><li>refused</li></flags>
+            <deed>warned the region of their gathering</deed>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Refuse, politely</label>
+            <outcome>The envoy heard the colony's answer, shrugged as if it made no difference to him, and rode off. Everyone on the wall watched him go.</outcome>
+            <flags><li>refused</li></flags>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>passing</key>
+        <day>6~9</day>
+        <forbids><li>refused</li></forbids>
+        <message>true</message>
+        <texts>
+          <li>A band of {FACTION} went by on the road today, close enough to count. They looked the colony over and kept going.</li>
+          <li>[paid] A band of {FACTION} went by on the road today. One of them raised a spear to the colony's wall as they passed, which the lookout decided to take as a greeting.</li>
+        </texts>
+      </li>
+      <li>
+        <key>watched</key>
+        <day>6~9</day>
+        <requires><li>refused</li></requires>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Thought"><thought>Council_WS_WarbandWatched</thought></li>
+        </effects>
+        <message>true</message>
+        <texts>
+          <li>A band of {FACTION} went by on the road today, slowly, looking hard at the walls. The colony is keeping its gate shut and its lamps low, and nobody slept well.</li>
+          <li>[warned] A band of {FACTION} went by on the road today, slowly, looking hard at the walls. Somewhere along the road, the colony's warning is being cursed, and the colony knows it.</li>
+        </texts>
+      </li>
+    </beats>
+    <endings>
+      <li>
+        <key>paid</key>
+        <requires><li>paid</li></requires>
+        <titles>
+          <li>The gathering breaks up</li>
+        </titles>
+        <texts>
+          <li>{FACTION}'s gathering near {PLACE} is over and the bands have gone home with their plans. The colony's token, it seems, was remembered: none of them came near.</li>
+        </texts>
+        <chronicle>The colony paid a token to the gathering of {FACTION}.</chronicle>
+      </li>
+      <li>
+        <key>warned</key>
+        <requires><li>warned</li></requires>
+        <titles>
+          <li>The gathering breaks up</li>
+        </titles>
+        <texts>
+          <li>{FACTION}'s gathering near {PLACE} is over. The neighbours the colony warned had their walls manned when the bands went by, and they haven't forgotten who sent word.</li>
+        </texts>
+        <chronicle>The colony warned its neighbours of the gathering of {FACTION}.</chronicle>
+      </li>
+      <li>
+        <key>over</key>
+        <titles>
+          <li>The gathering breaks up</li>
+        </titles>
+        <texts>
+          <li>{FACTION}'s gathering near {PLACE} is over, and the roads are emptying. Whatever they decided, they kept to themselves.</li>
+        </texts>
+        <chronicle>The clans of {FACTION} gathered near {PLACE}.</chronicle>
+      </li>
+    </endings>
+  </ColonyCouncil.WorldSituationDef>
+
+</Defs>

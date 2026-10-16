@@ -190,6 +190,17 @@ The "Good times" line in a colonist's Mood tab says what these rules take off ri
           <li>Banked fires | Fires, torches and fueled heaters burn 25% less fuel; work 4% slower.</li>
           <li>Apprenticeships | Everyone practices construction, crafting, cooking and growing every hour; work 8% slower.</li>
           <li>A feast day | One day: hunger 40% faster, work 15% slower, standards rise slightly.</li>
+          <li>Tithes | Each morning a tenth of the silver (5 to 40) goes to a people of the colony's faith, or the nearest village: 1 goodwill a day, and with Ideology the faithful grow surer. Not for a tribe.</li>
+          <li>A curfew | Night hours (10 at night to 5) become sleep in everyone's schedule, put back after; night owls keep the watch. Far fewer social fights.</li>
+          <li>Militia drills | Twelve days of light practice at shooting and melee for everyone who can fight; work 3% slower. Not for a spacer colony.</li>
+          <li>Alms for the poor | Each morning a little raw food (5 to 20) goes out at the gate: 1 goodwill a day with the nearest friendly people.</li>
+          <li>Holy days | Ideology, a colony with a faith: three days, the faithful 3% surer each day (half again with a chaplain) and a little steadier; work 8% slower.</li>
+          <li>A market day | A trade caravan of a friendly people comes the day it's declared; trade prices 4% better and work 5% slower for two days.</li>
+          <li>A fast | Two days: hunger 50% slower, learning 10% faster, work 6% slower.</li>
+          <li>A work song | Work 3% faster, and recreation every hour for those at work who don't mind it; research 10% and learning 5% slower.</li>
+          <li>Quarantine | Only while sickness goes round the region, or someone at home is ill: illness passes between roommates a fifth as often, visitor events come a third as often, immunity 6% faster; social impact down, work 4% slower.</li>
+          <li>Famine bread | Only while a famine, a drought or locusts lie over the region: hunger 15% slower at home, and a share of the raw food (6 to 24) goes each day to the hungry people of the famine, 2 goodwill a day.</li>
+          <li>Open gates | Visitor events come half again as often; social impact and negotiation up 5%.</li>
         </table>
         <after>Each decree also says something about the colony: long hours make it more hard-working, festivals more easygoing and traditional, being on guard more guarded.</after>
       </li>
@@ -198,6 +209,16 @@ The "Good times" line in a colonist's Mood tab says what these rules take off ri
         <text>The six newest decrees trade a few percent of work for something the colony needs, and their good moods are deliberately small. Quiet hours suit a tired or quarrelsome colony, but night owls hate them and the sociable mind losing their evenings. Shared meals help a colony full of newcomers get to know each other. Rest when ill pays off when several people are sick or hurt at once. Banked fires stretch the woodpile through a hard winter: the fuel is handed back to fires, torches and fueled heaters each hour, never to generators, to stoves while they cook, or to anything switched off. Apprenticeships spread the colony's trades so one fever can't leave it without a cook; they help the unskilled most, since practice counts for more at low levels. A feast day costs food and half a day's work for one day of good cheer.
 
 Colonists petition for these when the moment fits: when someone is ill, in winter, or when someone new has joined.</text>
+      </li>
+      <li>
+        <heading>Decrees of a settled people</heading>
+        <text>The eleven newest decrees come from a village's own year, and do something no stat can: they give away silver and food and earn goodwill for it, send people to bed, call traders in, shut the gate or open it. Most of their good moods are small; the point is what they do.
+
+Tithes and alms give a share of what's in store each morning (a quartermaster stretches it), and the news says where it went. A curfew turns everyone's night hours to sleep and puts them back exactly as they were when it ends (an hour you changed meanwhile is left as you set it); night owls keep the watch, and the sleepless are left alone. A market day only comes when a friendly people who send caravans is near enough; if none can come, the news says so. A work song's recreation only goes to those who don't mind the singing.
+
+Some decrees only exist in the right colony: tithes are for a village, not a tribe, militia drills not for a spacer colony, holy days only with Ideology and a faith of the colony's own. A decree that can never apply isn't listed at all. Two answer the region's hard times and can only be declared while one lasts: a quarantine while a sickness goes round (or someone at home is ill), famine bread while a famine, a drought or locusts lie over the region. Colonists petition for them when the moment fits: when the stores are full and the colony content, or when the world event they answer begins.
+
+Who minds what goes by their nature, as with every decree, and with Ideology by their faith too: the devout love holy days and approve of tithes, alms and a fast; those of another faith mind holy days.</text>
       </li>
       <li>
         <heading>When to call one</heading>
@@ -214,7 +235,7 @@ Each repeat can also make someone snap: a 20% chance per recent time, 15% more w
 So space out the decrees people hate. If you must repeat one, the tab shows how many times it was used this month and the chance someone snaps. Force a decree through only in an emergency, and keep the hot-tempered busy and away from the stores while it lasts.</text>
       </li>
     </sections>
-    <keywords><li>decree</li><li>rationing</li><li>long hours</li><li>drills</li><li>festival</li><li>austerity</li><li>petition</li><li>cooldown</li><li>force</li><li>fatigue</li><li>unrest</li></keywords>
+    <keywords><li>decree</li><li>rationing</li><li>long hours</li><li>drills</li><li>festival</li><li>austerity</li><li>petition</li><li>cooldown</li><li>force</li><li>fatigue</li><li>unrest</li><li>tithes</li><li>curfew</li><li>militia</li><li>alms</li><li>holy days</li><li>market day</li><li>fast</li><li>work song</li><li>quarantine</li><li>famine</li><li>open gates</li></keywords>
     <seeAlso><li>Council_Alm_C_Standards</li><li>Council_Alm_C_Trust</li><li>Council_Alm_C_Ways</li></seeAlso>
   </ColonyCouncil.AlmanacArticleDef>
 
@@ -274,6 +295,12 @@ What each colonist is served fits what they believe and eat. It's only what thei
 Rimfolk also counts a few deeds the game doesn't, and shows them in the Records tab: quarrels mended (the Mender), trade deals struck as negotiator (the Haggler), secrets other colonists trusted them with (the Vault) and eulogies given (the Mourner).</text>
       </li>
       <li>
+        <heading>Names from beyond the walls</heading>
+        <text>Some names are earned out in the world. Four more records count what a colonist does beyond the colony's own work: evenings spent at the fires of camps on the colony's land (Friend of the Road, from 10), camps met at the gate (the Gatekeeper, from 3), the colony's days kept by them on the calendar (Daykeeper, from 4) and world events' calls answered by them in person (Good Neighbour, from 3).
+
+Others are given once, for one deed, and stay with their holder: the builder lent to raise the roofs of a burned town may be called Roof-Raiser, the one who carried the last of the blood price that ended a feud Feud-Breaker, the one who built the bridge after a war Bridge-Builder, the one who found a neighbour's lost child the Finder, and the one who walked an old pilgrim home Road-Warden.</text>
+      </li>
+      <li>
         <heading>Names that come with time</heading>
         <text>Some names count years rather than deeds. The Old Hand has been here longest, two years at least. Homegrown spent the most of their childhood here. Jailbird spent longest in the cells before joining. Two have a condition: the Unshaken has lived here a year without a single mental break, and Lucky a year without taking any damage at all. Either name is lost the day that changes, and can't be earned back.</text>
       </li>
@@ -282,7 +309,7 @@ Rimfolk also counts a few deeds the game doesn't, and shows them in the Records 
         <text>The annals cover who joined, died, left or walked out, raids, wealth, wishes, ambitions, decrees, dilemmas, friendships, feuds, trust and names. Past years can be reread from the Chronicle page.</text>
       </li>
     </sections>
-    <keywords><li>epithet</li><li>name</li><li>title</li><li>annals</li><li>anniversary</li><li>chronicle</li></keywords>
+    <keywords><li>epithet</li><li>name</li><li>title</li><li>annals</li><li>anniversary</li><li>chronicle</li><li>Gatekeeper</li><li>Daykeeper</li><li>Good Neighbour</li><li>Road-Warden</li></keywords>
     <seeAlso><li>Council_Alm_C_Wishes</li></seeAlso>
   </ColonyCouncil.AlmanacArticleDef>
 
@@ -291,9 +318,9 @@ Rimfolk also counts a few deeds the game doesn't, and shows them in the Records 
     <label>offices and elections</label>
     <category>Council</category>
     <order>7</order>
-    <summary>Speaker, marshal, quartermaster, physician, steward, and for a bigger colony reeve, peacemaker, keeper of days and herdmaster.</summary>
+    <summary>Speaker, marshal, quartermaster, physician, steward, and for a bigger colony reeve, peacemaker, keeper of days, herdmaster, chaplain, warden of guests and a council of elders.</summary>
     <tip>The colony votes for the people it likes, not always the ones who are best at the job.</tip>
-    <description>The council has five seats from the start, and four more that open as the colony grows. Each gives its holder a bonus and helps the whole colony in some way. Colonists elect them once a year, voting for whoever is good at the job, has the right nature for it, and is liked. The council can appoint or dismiss anyone from the Decrees page, but overruling the vote has a cost.</description>
+    <description>The council has five seats from the start, and more that open as the colony grows: seven more offices, one of them (the council of elders) with three seats. Each gives its holder a bonus and helps the whole colony in some way. Colonists elect them once a year, voting for whoever is good at the job, has the right nature for it, and is liked. The council can appoint or dismiss anyone from the Decrees page, but overruling the vote has a cost.</description>
     <sections>
       <li>
         <heading>The seats</heading>
@@ -308,8 +335,11 @@ Rimfolk also counts a few deeds the game doesn't, and shows them in the Records 
           <li>Peacemaker (5 voters) | Rivalries between colonists cool a little every day, and now and then the peacemaker sits the worst-feuding pair down, which eases their rivalry a good deal.</li>
           <li>Keeper of days (6 voters) | Every council custom or calendar day the colony keeps leaves everyone there a small good memory (+2 for two days).</li>
           <li>Herdmaster (6 voters) | Everyone gets a little more from milking, shearing and eggs, and the herdmaster tames and trains more easily.</li>
+          <li>Chaplain (5 voters, Ideology) | Keeps the colony's faith: the faith's decrees and customs strengthen belief half again as much, and the chaplain is persuasive and steady. Only with Ideology and a faith of the colony's own; those of the faith count for a candidate, those of another against.</li>
+          <li>Warden of guests (5 voters) | Looks after visitors and the strangers camped on the colony's land; negotiates better and talks easily with strangers.</li>
+          <li>Elder (10 voters, three seats) | The council of elders. While any elder sits, the whole colony keeps a slightly steadier head. Age counts for a candidate.</li>
         </table>
-        <after>A seat opens once the colony has that many people who can vote; until then it simply isn't contested. The election letter says a word about each new holder.</after>
+        <after>A seat opens once the colony has that many people who can vote; until then it simply isn't contested. The election letter says a word about each new holder. The three elders' seats are elected one after another; the Decrees page lists each.</after>
       </li>
       <li>
         <heading>Elections</heading>
@@ -333,10 +363,13 @@ Two more things weigh on a ballot. Someone whose granted wish the council took b
           <li>Herdmaster | Sits with anyone whose named animal dies, and minds the animals of those away two days or more (they come home grateful).</li>
           <li>Marshal | After a fight at home, has a word with everyone who fought beside them, easing their strain.</li>
           <li>Steward | At a gathering, eases the strain of everyone else there a little.</li>
+          <li>Chaplain | Most days sits with someone grieving (their strain eases) or has a word with the believer least sure of the faith (6% surer); leads the calendar's remembrances.</li>
+          <li>Warden of guests | Spends an hour a day at the fire of any camp on the colony's land (its tension eases by 4, and the campers come to know the warden), and sees visitors welcomed: their people's goodwill rises by 2, once every few days for each people.</li>
+          <li>Elders | Every couple of days, each elder sits with someone ten years younger or more and passes on what they know best (an afternoon's practice in it), and the two grow a little closer.</li>
         </table>
       </li>
     </sections>
-    <keywords><li>office</li><li>election</li><li>vote</li><li>speaker</li><li>marshal</li><li>quartermaster</li><li>physician</li><li>steward</li><li>reeve</li><li>peacemaker</li><li>keeper of days</li><li>herdmaster</li></keywords>
+    <keywords><li>office</li><li>election</li><li>vote</li><li>speaker</li><li>marshal</li><li>quartermaster</li><li>physician</li><li>steward</li><li>reeve</li><li>peacemaker</li><li>keeper of days</li><li>herdmaster</li><li>chaplain</li><li>warden</li><li>guests</li><li>elders</li></keywords>
     <seeAlso><li>Council_Alm_C_Trust</li><li>Council_Alm_C_Social</li></seeAlso>
   </ColonyCouncil.AlmanacArticleDef>
 
@@ -368,6 +401,22 @@ Two more things weigh on a ballot. Someone whose granted wish the council took b
         </table>
       </li>
       <li>
+        <heading>Customs of the land and the faith</heading>
+        <text>Some customs only come where the land asks for them, and some only to a colony whose faith keeps them (Ideology). Other mods' biomes count by their names: a mangrove is a swamp, a salt flat a desert. Nobody asks for a custom their own beliefs rule out: no fire customs from those whose faith despises fire, no blessing from those who despise religion, and the ancestors' supper is served by the feast's own rules, each to what they may eat.</text>
+        <table>
+          <li>Season | Custom | What it needs</li>
+          <li>Spring | The sun's return: everyone round a fire on the high ground at dawn to see the sun come back | the tundra or the boreal forest, firewood</li>
+          <li>Spring or summer | The rain welcome: the whole colony out in the rain together (recreation, no mood) | a desert, and rain falling</li>
+          <li>Spring | The blessing of the waters: a loaf given to the water at the start of the year (trust, no mood) | the coast, a lake or a river, and open water</li>
+          <li>Summer | The marsh lights: the bounds walked after dark with smoking torches | a swamp or a jungle, a warm day, firewood</li>
+          <li>Fall | The high watch: the colony climbs the high ground to see all it has made (recreation and awe, no mood) | mountains or hills</li>
+          <li>Winter | The night vigil: the faith's vigil through the longest night | Ideology: a faith that worships (a theist or old faith), someone devout to ask</li>
+          <li>Spring or summer | The tree-singing: the colony sings to the oldest tree (recreation and awe, no mood) | Ideology: an animist faith, nature first, or tree connection</li>
+          <li>Fall or winter | The ancestors' supper: a place laid at the table for each of the colony's dead | Ideology: a faith of the colony's own, graves of its dead, raw food</li>
+        </table>
+        <after>The faith's customs strengthen the faithful's belief, half again with a chaplain in office.</after>
+      </li>
+      <li>
         <text>The letter says when a choice is a tradition, and when choosing it again will make one. Keeping a tradition gives everyone a good memory; breaking one gives a bad one and resets the count. New, kept and broken traditions are written into the chronicle and the year's annals, and someone usually writes about a new tradition in their journal.
 
 Traditions cost something every year, so only start the ones you can afford in a bad year too.
@@ -375,7 +424,7 @@ Traditions cost something every year, so only start the ones you can afford in a
 Days on the colony calendar grow into traditions the same way: keep one three years running (founding day, harvest day, a day you named) and the colony expects it. See "the colony calendar".</text>
       </li>
     </sections>
-    <keywords><li>tradition</li><li>festival</li><li>season</li><li>feast</li><li>custom</li></keywords>
+    <keywords><li>tradition</li><li>festival</li><li>season</li><li>feast</li><li>custom</li><li>vigil</li><li>rain</li><li>biome</li><li>faith</li></keywords>
     <seeAlso><li>Council_Alm_C_Dilemmas</li><li>Council_Alm_C_Names</li></seeAlso>
   </ColonyCouncil.AlmanacArticleDef>
 
@@ -514,7 +563,7 @@ Check the Roster page now and then. A colonist one level short of mastery is wor
     <order>12</order>
     <summary>What colonists hide, who they can't forgive, and how they say goodbye.</summary>
     <tip>Not everyone talks about where they came from.</tip>
-    <description>Some colonists carry a secret, often from the life their backstory hints at: a raider's past, noble blood, a deserter's shame, a child left behind, a borrowed name, an old illness, a debt to a trading house, a childhood in the camps, a broken vow, a hidden kindness. There are over fifty. You won't know what it is; the Bonds page only shows when they confide in a close friend, and the news of it gives a hint and no more.</description>
+    <description>Some colonists carry a secret, often from the life their backstory hints at: a raider's past, noble blood, a deserter's shame, a child left behind, a borrowed name, an old illness, a debt to a trading house, a childhood in the camps, a broken vow, a hidden kindness. There are over sixty. You won't know what it is; the Bonds page only shows when they confide in a close friend, and the news of it gives a hint and no more.</description>
     <sections>
       <li>
         <heading>Confiding and coming out</heading>
@@ -523,6 +572,10 @@ Check the Roster page now and then. A colonist one level short of mastery is wor
 When a secret comes out, everyone reacts according to their nature: the kind forgive, the hard despise, the greedy envy, the abrasive mock. Betraying a confidence makes enemies. Some secrets put the council on the spot with a dilemma.
 
 A secret the colonist never told anyone dies with them. If they told someone, it comes out at the graveside, each secret in its own way: a lamp left burning, a card in the grave, a name said aloud.</text>
+      </li>
+      <li>
+        <heading>Secrets from beyond the walls</heading>
+        <text>A few secrets are born of what goes on out in the world, and only come while it does: medicine slipped to a neighbour's sick in a plague year, a verse given to the minstrels, bread left out for the exiles, a vow made under the comet, a letter given to the mourners for someone they'll pass, grain hidden under the floor in a famine or a drought, something seen at the market during a blood feud, a debt run up at a caravan's dice, letters sent off with a camp. While such a world event runs or such a camp is settled, one may come to a colonist it fits who keeps no secret yet, at most one a day. More than half of them are kindnesses, and come out as such.</text>
       </li>
       <li>
         <heading>Vendettas</heading>
@@ -534,9 +587,13 @@ A vendetta ends in one of several ways:</text>
           <li>some of them are taken alive in those fights instead: a captive counts as much as a death;</li>
           <li>the one who was carried off comes home, by rescue, ransom or escape;</li>
           <li>the avenger lays it down, after a month at least and not while the fighting is fresh. The kind do it sooner, the bloodthirsty and the cold never, and peace with the killers makes it much likelier;</li>
+          <li>the killers send the blood price (300 to 600 silver, more for a richer colony), 20 days or more after the oath, when no fight is on: the council can take it, leave it to the avenger (the bloodthirsty and the cold refuse, the kind accept, most others too) or refuse it;</li>
+          <li>once there's peace, an elder of the killers' people comes to say they are sorry: the avenger can accept it alone, the colony can hear it said in front of everyone and leave it to the avenger, or sorry changes nothing;</li>
           <li>it lapses after two years, or when the faction is gone.</li>
         </points>
-        <after>Those who swore vengeance take peace with the killers as a betrayal at first, though peace is also what lets most of them lay it down. Think twice before making peace with a faction that killed someone well loved, and give it time.</after>
+        <after>An avenger who dies with the oath still open, while the colony is still at war with the killers, may leave it to an heir: blood kin first, then a partner, then a close friend, never one already sworn on the same people. The kind take it up less often, the bloodthirsty more. Otherwise it ends with them.
+
+Those who swore vengeance take peace with the killers as a betrayal at first, though peace is also what lets most of them lay it down. Think twice before making peace with a faction that killed someone well loved, and give it time.</after>
       </li>
       <li>
         <heading>Quirks</heading>
@@ -559,7 +616,9 @@ A lucky thing says so: look at it on the map, open its info card or hover it in 
       </li>
       <li>
         <heading>Habits</heading>
-        <text>Other quirks simply grow out of who someone is, now and then: a grower who talks to the plants (plant work 3% faster), a handler who names every animal (taming and training 3% likelier), a cook who sings at the stove (15% fewer food poisonings), an early riser (glad in the morning, sorry when kept up late), someone who hums at work (work 2% quicker), collects pretty stones for their room, can't stand a mess (unhappy in a dirty room, cleans 10% faster), feeds the birds, remembers every birthday (social impact up 3%), is always whittling (bored more slowly), talks in their sleep or saves the best bite for last. A habit's knack lasts as long as the habit, which fades after most of a year.</text>
+        <text>Other quirks simply grow out of who someone is, now and then: a grower who talks to the plants (plant work 3% faster), a handler who names every animal (taming and training 3% likelier), a cook who sings at the stove (15% fewer food poisonings), an early riser (glad in the morning, sorry when kept up late), someone who hums at work (work 2% quicker), collects pretty stones for their room, can't stand a mess (unhappy in a dirty room, cleans 10% faster), feeds the birds, remembers every birthday (social impact up 3%), is always whittling (bored more slowly), talks in their sleep or saves the best bite for last. A habit's knack lasts as long as the habit, which fades after most of a year.
+
+Some show in how they spend their free time, with the small habits setting on: one who watches the stars goes out under the night sky, one who talks to the plants stands by the crops doing exactly that, one who names every animal sits a while with the colony's animals, and one who counts everything goes over the food stores.</text>
       </li>
       <li>
         <heading>Coming of age</heading>
@@ -572,7 +631,7 @@ A lucky thing says so: look at it on the map, open its info card or hover it in 
 A dead colonist's weapon or hat passes to the person who loved them most. Carrying it is a comfort (to anyone, more to the heir), and losing it hurts.</text>
       </li>
     </sections>
-    <keywords><li>secret</li><li>confide</li><li>vendetta</li><li>revenge</li><li>eulogy</li><li>funeral</li><li>grave</li></keywords>
+    <keywords><li>secret</li><li>confide</li><li>vendetta</li><li>revenge</li><li>blood price</li><li>apology</li><li>heir</li><li>eulogy</li><li>funeral</li><li>grave</li></keywords>
     <seeAlso><li>Council_Alm_C_Social</li><li>Council_Alm_C_Goals</li></seeAlso>
   </ColonyCouncil.AlmanacArticleDef>
 
@@ -758,7 +817,9 @@ Keep some silver in the stores. Debts, bounties, tribute and treasure maps all a
       </li>
       <li>
         <heading>Events that remember</heading>
-        <text>Some events follow from earlier ones: a deserter's old unit, a lost child come back grown, a rematch with a champion, the great beast's young, grateful pilgrims. A neighbor whose order you filled may come back to buy again, the runaway lovers' family may come asking after them, a relative who visited may write (and can be invited to stay), and neighbors remember how you judged their quarrel. The colony's founding day comes once a year.</text>
+        <text>Some events follow from earlier ones: a deserter's old unit, a lost child come back grown, a rematch with a champion, the great beast's young, grateful pilgrims. A neighbor whose order you filled may come back to buy again, the runaway lovers' family may come asking after them, a relative who visited may write (and can be invited to stay), and neighbors remember how you judged their quarrel. The colony's founding day comes once a year.
+
+The end of a world event can bring its people back about it, depending on how it ended and what the colony did: thanks after a plague, the first harvest shared after a famine, a flooded town's search for what the water took, spring seed and hands from those the colony sheltered through a hard winter, seed grain from old friends after locusts or a drought, and a reckoning after a hard year the colony looked away from. A people some colonist swore vengeance on may send the blood price, or, once there's peace, an apology. And a people that remembers one of the colony by name asks for that colonist: their visitors stop that colonist to say thank you, their traders may give them a friend's price, their envoys ask for them at the gate, and their letters say so.</text>
       </li>
       <li>
         <heading>The land, the season and the era</heading>
@@ -778,7 +839,7 @@ Many answers call on someone with the right skill or trait: a good cook, a heale
         <heading>Missions</heading>
         <text>Now and then a neighbor asks for something done by a deadline: tame a runaway prize animal, raise a shrine for pilgrims, supply a funeral or a wedding, help a town rebuild after a fire, a storm or a flood (wood, stone blocks or more wood, cloth, and steel or components for an industrial town), or send provisions for a hard winter, a dry year or a sickhouse (raw food or pemmican, meals, medicine, cloth, firewood). Only goods in your stockpiles count. All of it pays well over its worth; at least half pays its plain worth; less, and they go elsewhere and think less of the colony.
 
-The peoples that think best of the colony ask for other things: guests at their feast or a wedding (a caravan to their town), an apprentice for one of their masters, a bedroom fit for a guest of rank, or food and a roof for refugees for a few days. The page on what the world remembers has the details.</text>
+The peoples that think best of the colony ask for other things: guests at their feast or a wedding (a caravan to their town), an apprentice for one of their masters, a bedroom fit for a guest of rank, or food and a roof for refugees for a few days. Friendly peoples also ask the colony to walk an old pilgrim home by caravan, to carry word to a far town of another people, to find a child of theirs lost on the colony's land before nightfall of the second day, or to send hands for their harvest in summer or fall. Each remembers the colonist who did it, by name. The page on what the world remembers has the details.</text>
       </li>
       <li>
         <heading>With other mods</heading>
@@ -796,8 +857,8 @@ The peoples that think best of the colony ask for other things: guests at their 
         <text>With "Answers play out on the map" on, many answers happen on the map too: the colony gathers round a fire for the spirit singer, at the camp's fire when the camp holds a feast, out in the open for the photograph, the drumming at an eclipse or the birds coming back, round the table for the founding feast or a letter read aloud; a colonist sits with a visitor or a stranger who asked for them, sits by a grave, or works at a traveling teacher's side for the afternoon; the colony gathers for the players' play or a storyteller's tales, walks out in the evening to a fallen star, sets a quarreling pair to rebuild the woodpile together, sends a picker out for mushrooms, carries bread out for travelers on the road, and the hunters go after a beast. Answers on the map says how it works and when it waits.</text>
       </li>
     </sections>
-    <keywords><li>event</li><li>incident</li><li>comrade</li><li>family</li><li>bounty</li><li>debt</li><li>champion</li><li>contest</li><li>beast</li><li>tribute</li><li>revenge</li><li>deserter</li><li>comet</li><li>fireflies</li><li>hail</li><li>vermin</li><li>cache</li><li>treasure</li><li>storyteller</li><li>pilgrims</li><li>scholar</li><li>apprentice</li><li>stray</li><li>mourners</li><li>cargo</li><li>scout</li><li>journalist</li><li>doctor</li><li>herbalist</li><li>music</li><li>celebrity</li><li>order</li><li>tinker</li><li>merchants</li><li>quarrel</li><li>grave</li><li>letters</li><li>lovers</li><li>fortune</li><li>warm spell</li><li>buyer</li><li>letter</li><li>market</li><li>fair</li><li>founding</li><li>anniversary</li><li>thaw</li><li>winter</li><li>vengeance</li><li>guest</li></keywords>
-    <seeAlso><li>Council_Alm_C_Strangers</li><li>Council_Alm_C_Ways</li><li>Council_Alm_C_Dilemmas</li><li>Council_Alm_C_WorldSituations</li></seeAlso>
+    <keywords><li>event</li><li>incident</li><li>comrade</li><li>family</li><li>bounty</li><li>debt</li><li>champion</li><li>contest</li><li>beast</li><li>tribute</li><li>revenge</li><li>deserter</li><li>comet</li><li>fireflies</li><li>hail</li><li>vermin</li><li>cache</li><li>treasure</li><li>storyteller</li><li>pilgrims</li><li>scholar</li><li>apprentice</li><li>stray</li><li>mourners</li><li>cargo</li><li>scout</li><li>journalist</li><li>doctor</li><li>herbalist</li><li>music</li><li>celebrity</li><li>order</li><li>tinker</li><li>merchants</li><li>quarrel</li><li>grave</li><li>letters</li><li>lovers</li><li>fortune</li><li>warm spell</li><li>buyer</li><li>letter</li><li>market</li><li>fair</li><li>founding</li><li>anniversary</li><li>thaw</li><li>winter</li><li>vengeance</li><li>guest</li><li>escort</li><li>lost child</li><li>harvest</li><li>blood price</li><li>apology</li><li>aftermath</li></keywords>
+    <seeAlso><li>Council_Alm_C_Strangers</li><li>Council_Alm_C_Ways</li><li>Council_Alm_C_Dilemmas</li><li>Council_Alm_C_WorldSituations</li><li>Council_Alm_C_WorldMemory</li></seeAlso>
   </ColonyCouncil.AlmanacArticleDef>
 
   <ColonyCouncil.AlmanacArticleDef>

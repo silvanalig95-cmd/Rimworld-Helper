@@ -23,7 +23,8 @@ namespace ColonyCouncil
             if (tracker == null) return false;
             setup = tracker.Prepare(ctx.map);
             if (setup == null) return false;
-            ctx.a = Colonists(ctx.map).Where(p => !p.DevelopmentalStage.Juvenile())
+            // Their people remember one of the colony's by name (who set theirs free, who tended them): they ask for them.
+            ctx.a = KinMemory.Greeter(setup.faction, ctx.map) ?? Colonists(ctx.map).Where(p => !p.DevelopmentalStage.Juvenile())
                 .RandomElementByWeightWithFallback(p => 1f + (p.skills?.GetSkill(SkillDefOf.Social)?.Level ?? 0) * 0.2f);
             if (ctx.a == null) return false;
             ctx.faction = setup.faction;
@@ -63,6 +64,7 @@ namespace ColonyCouncil
             ctx.text = ctx.Format(CampWords.Fill(Pick(kind.texts, ctx), kind, camp.faction));
             // The colonist who met them first.
             camp.Warm(ctx.a, 1);
+            CouncilRecords.Add(ctx.a, CouncilRecords.CampsGreeted);
             ctx.why = label;
             ctx.cause = label;
             string body = ctx.text + "\n\n" + Facts(camp);
@@ -84,6 +86,7 @@ namespace ColonyCouncil
             else if (k.chopsPerDay > 0f) parts.Add(c.Text("CC_Camp_Facts_Wood"));
             else if (k.huntsPerDay > 0f) parts.Add(c.Text("CC_Camp_Facts_Game"));
             if (c.trader != null) parts.Add(c.Text("CC_Camp_Facts_Trader", c.trader));
+            if (!k.asks.NullOrEmpty()) parts.Add(c.Text("CC_CampAsk_Facts"));
             parts.Add(c.Text("CC_Camp_Facts_Talk"));
             return string.Join(" ", parts);
         }

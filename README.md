@@ -50,7 +50,7 @@ window, organized in five sections:
 |---|---|---|
 | **Colony** | This week · Overview · Priorities · Moods · World · Room plans | what needs you, what's coming and how people are; the colony at a glance (numbers, how they moved this week, graphs of mood, trust, wealth and people over the last weeks); the advisor's ranked list of what the colony needs; every mood added up; what's coming and who's out there; ready-made rooms |
 | **People** | Roster · Everyone · Bonds · Wishes | every colonist at a glance with their full story; all colonists in one sortable table; friendships, rivalries, circles, vendettas, secrets; open wishes, promises kept and trust |
-| **Council** | Decrees · Ambition · Our ways · Dilemmas | decrees, petitions and the council's offices (five, nine in a bigger colony); the current ambition and meetings; what the colony is known for; questions waiting and how the answers went |
+| **Council** | Decrees · Ambition · Our ways · Dilemmas | decrees, petitions and the council's offices (five, up to fourteen seats in a bigger colony); the current ambition and meetings; what the colony is known for; questions waiting and how the answers went |
 | **History** | Chronicle · Calendar · Dreams · Journals | everything that happened (filter by wishes, council, people, strangers, world events, dreams, losses), the colony calendar, recent dreams, every colonist's journal |
 | **Almanac** | | the knowledge base |
 
@@ -312,12 +312,23 @@ living under a decree you hate wears down your trust in the council. With feelin
 (long hours, drills, on guard...) also build a little strain in those who resent them, and **days of rest** lets the
 colony recover: 10% slower work for three days, while strain drains about twice as fast.
 
-Nineteen decrees in all. The everyday ones each trade a little work for something else: **quiet hours** (deeper
+The everyday ones each trade a little work for something else: **quiet hours** (deeper
 sleep, far fewer quarrels; night owls hate it), **shared meals** (talk and goodwill at one table), **rest when ill**
 (wounds and illnesses mend faster while the well cover for the sick), **banked fires** (fires, torches and fueled
 heaters burn a quarter less fuel, in colder, darker rooms), **apprenticeships** (everyone practices building,
 crafting, cooking and growing every hour) and **a feast day** (one day of eating well and working half). Colonists
 petition for them when someone is ill, in winter, or when a newcomer joins.
+
+Thirty decrees in all. The newest come from a village's own year and do something no stat can: **tithes** (a tenth
+of the silver each morning to a people of the colony's faith or the nearest village, for goodwill and, with Ideology,
+the faithful's certainty), **a curfew** (everyone's night hours turned to sleep and put back after; night owls keep
+the watch), **militia drills** (twelve days of light practice for everyone who can fight), **alms for the poor** (a
+little food at the gate each morning, and the neighbours remember it), **holy days** (with Ideology: three days for
+the faith), **a market day** (a trade caravan comes that day), **a fast**, **a work song** (recreation while working,
+slower research), and **open gates** (more visitors). Two answer the region's hard times and can only be declared
+while they last: a **quarantine** while sickness goes round (illness passes between roommates a fifth as often, and
+visitors are turned away) and **famine bread** while a famine lies over the region (the colony eats a little less
+and sends bread to the hungry people). A decree for another era or faith isn't listed at all.
 
 There's no hard limit on repeating a decree, but there is a price. Enact the same one again within a month, or
 **force it through** before its cooldown is over, and those against it lose more trust and resent it more each
@@ -446,19 +457,23 @@ remembered by the one who shared it. At most one per colonist; how often is a se
 The Almanac page "personal stories" lists them all.
 
 ### Secrets, vendettas and eulogies
-Some colonists carry a **secret** (52 of them), often from the life their backstory hints at: a raider's past, noble
+Some colonists carry a **secret** (61 of them), often from the life their backstory hints at: a raider's past, noble
 blood, a deserter's shame, a doctor's fatal mistake, a child left behind, a borrowed name, a pirate's debt, an old
 illness, a lost caravan, a childhood in the camps, a broken vow, a banishment by vote, a hidden kindness. You don't
 get told. You only see when they confide in a close friend, and the news of it hints without telling. A confidant who
 later falls out with them is likely to let it slip; at rock bottom some blurt it out themselves. When it comes out,
 everyone reacts according to their nature, betrayed confidences make enemies, and sometimes the council has to decide
-what to do about it. A secret someone knew comes out at the graveside, each in its own way.
+what to do about it. A secret someone knew comes out at the graveside, each in its own way. A few are born of what
+goes on beyond the walls and only come while it does: medicine slipped to a neighbor's sick in a plague year, a verse
+given to the minstrels, bread left out for exiles, a debt at a caravan's dice.
 
 When raiders kill or carry off someone, or kill a bonded animal in a fight, the people who loved them swear a
 **vendetta** on that faction: a weight they carry, fury when those colours show up again, outrage if the council
 makes peace with the killers. It ends when enough of them fall or are taken alive in the fights that come anyway,
-when the one carried off comes home, or when the avenger lays it down in time (sooner if kind, likelier once there's
-peace, never if bloodthirsty).
+when the one carried off comes home, when the avenger lays it down in time (sooner if kind, likelier once there's
+peace, never if bloodthirsty), or when the killers send the **blood price** or, once there's peace, come to
+**apologise** (the council can take it, refuse it, or leave it to the avenger). An avenger who dies with the oath
+still open while the war goes on may pass it to an **heir**: their kin, their partner or a close friend.
 
 When someone dies, the person closest to them speaks a **eulogy** at the grave, about who the dead really were:
 the years they gave, the name they earned, the goal they never reached, who killed them.
@@ -520,7 +535,8 @@ Colonists meet everyone else on the map, too:
   from the biome and the tile, so other mods' biomes count too.
 - **What their people remember:** a visitor whose people the colony once rescued thanks them, a trader of a grateful
   people gives a friend's price, one whose people hold a grudge charges double or won't haggle, and a visitor whose
-  people helped the colony mentions it. 161 kinds of encounter in all. Most of these small
+  people helped the colony mentions it, and one whose people remember a colonist by name stops them to say thank
+  you. 176 kinds of encounter in all. Most of these small
   moments give something other than mood: recreation for a herd going by or a clear night, comfort for a trick
   against the cold, practice, a little research, awe, and for the smallest only a line in the journal.
 - **The council decides** when it gets harder: a visitor who wants to stay, a rude guest, a trader who wants an
@@ -542,10 +558,12 @@ Colonists meet everyone else on the map, too:
 ### Offices and elections
 Five council seats: **speaker** (chairs meetings, everyone's trust rises a little each day), **marshal** (drills
 count for more, better aim), **quartermaster** (dilemmas cost less, better trade), **physician** (faster healing)
-and **steward** (standards rise more slowly). Four more open as the colony grows: the **reeve** (fuller harvests,
-from four voters), the **peacemaker** (rivalries cool, and now and then the worst-feuding pair is sat down
-together, from five), the **keeper of days** (every kept custom and calendar day a small occasion, from six) and
-the **herdmaster** (more from the animals, from six). Colonists elect them every year, voting for the skilled, the
+and **steward** (standards rise more slowly). Seven more offices open as the colony grows: the **reeve** (fuller
+harvests, from four voters), the **peacemaker** (rivalries cool, and now and then the worst-feuding pair is sat down
+together, from five), the **chaplain** (with Ideology: keeps the colony's faith, from five), the **warden of guests**
+(looks after visitors and the camp on the colony's land, from five), the **keeper of days** (every kept custom and
+calendar day a small occasion, from six), the **herdmaster** (more from the animals, from six) and, for a colony of
+ten, a **council of elders** (three seats, where age counts, and a steadier colony while they sit). Colonists elect them every year, voting for the skilled, the
 suited and the liked, friends and circles voting together, and the election letter has a word about each new
 holder. You can appoint and dismiss from the Decrees tab, but whoever the colony actually voted for will remember
 being overruled. A wish the council took back counts against those sitting on it at the next election, and the
@@ -555,27 +573,37 @@ The offices also do their jobs in the colony's life: the keeper of days organise
 the peacemaker steps into spats nearby (they're over in half the time), the physician does the rounds of the
 convalescents every morning and counts as a trusted doctor sooner, the reeve deals with neighbours who need goods
 (and they remember it), the herdmaster sits with those whose animal died and minds the animals of those away, the
-marshal has a word with everyone who fought beside them, and the steward's company at a gathering eases strain.
+marshal has a word with everyone who fought beside them, and the steward's company at a gathering eases strain. The
+chaplain sits with the grieving, has a word with whoever is losing faith (their certainty rises) and leads the
+calendar's remembrances; the warden of guests spends an hour at the camp's fire (its tension eases) and sees visitors
+welcomed (their people's goodwill rises); the elders sit with the young and pass on what they know best.
 
 ### Traditions
 Choose the same answer to a seasonal dilemma two years running (a midsummer feast, a harvest celebration, a vigil
 on the longest night) and it becomes a tradition. From then on it comes up first every year: keeping it pleases
-everyone, breaking it disappoints them. Thirteen customs can become traditions, among them the **planting blessing**
+everyone, breaking it disappoints them. Twenty-one customs can become traditions, among them the **planting blessing**
 and the **remembrance walk** to the colony's graves in spring, the **midsummer swim** on a hot day by the water,
-the **harvest dance**, **first-frost soup** on the first freezing day, and **lantern night** in winter.
+the **harvest dance**, **first-frost soup** on the first freezing day, and **lantern night** in winter. Some belong
+to the land: **the sun's return** in the tundra, **the rain welcome** in the desert, **the blessing of the waters** by
+the sea or a river, **the marsh lights** in a swamp or jungle, **the high watch** in the hills. Some to the faith,
+with Ideology: **the night vigil**, **the tree-singing** and **the ancestors' supper**.
 
 ### The colony calendar
 The days that matter to this colony, written down as its history happens: its **founding day**, its **first good
 harvest**, **the first snow** (which comes with the first snow of each winter, not on a date), **a battle it
 remembers** (a big raid seen off, ours who fell, a nemesis brought down), **the death of someone it loved**,
-**weddings**, the **arrivals** of its first members and the **birthdays** of its long-serving colonists, up to a dozen
-of the most meaningful. On the **Calendar** page under History you can also **name days of your own** (up to 8) as a
-feast, a day of remembrance, a rest day or a day of games, rename any day, or change how it's kept.
+**weddings**, the **arrivals** of its first members and the **birthdays** of its long-serving colonists, the **first
+child** born here, **the day the walls went up**, a caravan's **homecoming** after a long journey, the first harvest of
+a **new crop**, the **first trade** and a **great hunt**, up to a dozen of the most meaningful. On the **Calendar**
+page under History you can also **name days of your own** (up to 8) as a feast, a day of remembrance, a rest day, a
+day of games, a **bonfire**, a **day of gifts** or a **hunt**, rename any day, or change how it's kept. What people say
+about a day knows the land and the faith: founding day in the desert is a jar of sand from where the first tent stood.
 
 When a day comes round, a letter asks whether to keep it this year: a **feast** is a party at the gathering spot,
 **games** an afternoon of recreation, a **rest day** turns the rest of the day's work hours to recreation (the
-schedule goes back the next day); a **remembrance** is kept with a quiet, bittersweet mood for those who knew the
-person. A birthday comes as a message and a small lift for the colonist. People write about the day in their
+schedule goes back the next day), a **bonfire** is built at nightfall with music, a **day of gifts** warms every
+friendship round the circle, and a **hunt** sends the hunters out after the day's game; a **remembrance** is kept with
+a quiet, bittersweet mood for those who knew the person. A birthday comes as a message and a small lift for the colonist. People write about the day in their
 journals, talk about it in the social log, and mention it the evening before; the World page shows the days coming
 up. All the moods are small and share the budget of good moods. Kept **three years running**, a day becomes a
 **tradition**, with the same letter, moods, chronicle and annals as the council's seasonal traditions, and letting it
@@ -620,15 +648,19 @@ why. Going with the room's favorite pleases its backers; overruling a clear majo
 - With only one colonist, the council "meets" in passing. The setting *Meetings call people from their work*
   (on by default) can be turned off; then colonists come only when they're free, and attendance is still kept.
 
-54 ambitions, from *a full larder* and *hold the line* to *clean hands*, *law and order*, *the brewmasters*,
+64 ambitions, from *a full larder* and *hold the line* to *clean hands*, *law and order*, *the brewmasters*,
 *stone and mortar*, *a master healer*, *a seat of power* and *school days*. Achieving one lifts everyone's mood
 and trust; one that was already more than half done when the colony chose it counts for less (down to 60%).
 Only those the colony can achieve now are pitched, and some fit a colony's size or era: *a home, not a camp* and
 *nobody is the only one* for a small band, *the great feast* for a crowd, *the healing garden* before electricity,
 *word from outside* after it. Some answer the newer systems (*a calm season*, *a healthy season*, *a proper
-infirmary*, *friends at the camp*, *a table for everyone*). A few come in stages (*a home, not a camp*, *a proper
-infirmary*, *ready for every season*): only the current stage counts, and a message says what comes next. Some take
-seasons (*ready for every season*, *a year of steady nerves*). The Almanac page "council projects" lists them all.
+infirmary*, *friends at the camp*, *a table for everyone*). Eight come in stages (*a home, not a camp*, *a proper
+infirmary*, *ready for every season*, *raise the walls*, *a market town*, *the winter cache*, *the starlight
+archive*, *renowned hosts*): only the current stage counts, and a message says what comes next. Some take a season
+(*a season of hot meals* and *a season of plenty*, where one lean day starts the count again, *keep the year's days*,
+*a year of steady nerves*). A tribe has *the winter cache* and *the hunters' year*, a spacer colony *the starlight
+archive* and *a hospital of the stars*, and with Hospitality the colony can set out to become *renowned hosts*. The
+Almanac page "council projects" lists them all.
 
 ### Build: room plans
 108 ready-made rooms, grouped by purpose. 28 kinds of room come in several sizes and kinds, picked in the
@@ -658,12 +690,14 @@ follows the mouse, and a planner panel lets you:
 - build it in a **theme**: *rustic* (wood, benches and stools, straw matting or planks), *stately* (marble or
   granite, polished stone or fine carpet, armchairs, candlelight), *spartan* (steel, simple beds, concrete), *cozy*
   (carpet, lamplight, soft seats, plant pots from the comfortable style on), *tribal* (fur beds or hide
-  bedrolls, cushions, torchlight, straw matting, wood and sandstone) or *spacer* (steel, sterile tiles, an autodoor,
-  the most advanced furniture you've researched). The style decides how much goes in, the theme what it looks
-  like; the layout stays the same, since a piece is only swapped for one of the same purpose, size and work spot.
-  A theme uses only what the colony can build and has enough of, and the furniture of Vanilla Furniture Expanded
-  (with its Spacer, Art and Architect modules), Vanilla Factions Expanded Medieval 2 and Empire, Dubs Bad Hygiene
-  and Alpha Prefabs when they're there
+  bedrolls, cushions, torchlight, straw matting, wood and sandstone), *spacer* (steel, sterile tiles, an autodoor,
+  the most advanced furniture you've researched), *hall* (Medieval Overhaul's rustic beds, carved chairs, timber
+  tables and candle stands on its own floors) or *garden* (lawn underfoot, plants along the walls, garden lamps). The
+  style decides how much goes in, the theme what it looks like; the layout stays the same, since a piece is only
+  swapped for one of the same purpose, size and work spot. A theme uses only what the colony can build and has
+  enough of, and the furniture of Vanilla Furniture Expanded (with its Spacer, Art and Architect modules), Vanilla
+  Factions Expanded Medieval 2 and Empire, Medieval Overhaul (its royal furniture in the stately theme too), Alpha
+  Props: Parks and Gardens, Dubs Bad Hygiene and Alpha Prefabs when they're there
 - **turn** the room (Q / E or buttons), **mirror** it and **move the door**
 - choose **materials**, or let the planner do it: it picks from what you have, stored or lying around, something
   there's enough of with a little to spare. Stone blocks come first, then wood, bone (anything but walls) and
@@ -731,7 +765,10 @@ less flattering ones (*the Broom*, *the Mule*, *the Kindling* for whoever keeps 
 *Patchwork*, *the Bottomless*). Some come with time: *the Old Hand*, *Homegrown*, and *the Unshaken* and *Lucky*,
 lost the day they break or take a scratch. Four come from deeds Rimfolk counts in the Records tab: *the Mender*
 (quarrels mended), *the Haggler* (trade deals struck), *the Vault* (secrets kept) and *the Mourner* (eulogies
-given). 45 names in all. Each year since a colonist joined, they
+given). Out in the world, a colonist can be *Friend of the Road* (evenings at the camps' fires), *the Gatekeeper*
+(camps met at the gate), *Daykeeper* (the colony's days kept) or *Good Neighbour* (world events' calls answered), and
+for one deed *Roof-Raiser*, *Feud-Breaker*, *Bridge-Builder*, *the Finder* or *Road-Warden*. 54 names in all. Each
+year since a colonist joined, they
 mark the anniversary in their own words, and their friends share it. And when the moment fits (food running low,
 right after a raid, while people grieve, when everyone has grown spoiled) a colonist may petition the council for
 the decree they'd like.
@@ -901,6 +938,36 @@ modlist too, each by name and only when the mod is there:
   drakonori have wishes, decree likes and a pull on the colony's ways of their own.
 - **RimHUD:** four more lines (ailments, recovery, the personal story, a healer's standing) and a recovery bar.
 
+### Your mods in the colony's everyday life
+Twenty-three more ways the player's other mods show up, each only when the mod is there and each checked against
+the mod's own def names (the tests hold the list):
+- **Outland's peoples:** an Eastborn visitor makes tea and won't let it be drunk unlooked-at, a Motz sits with a
+  colonist just past the lamplight, a goblin of the Redburn Pact haggles over a skull, a Vathun noble asks
+  everyone's caste. **Medieval Total Rim's nations** visit in their own words (a knight on the road from France, the
+  Empire, Poland, Iberia, Muscovy or Byzantium; a rider of the Mongol steppe; a learned traveller from the Ottomans,
+  Byzantium or Iberia). Rimfolk knows Medieval Total Rim's nations by their mod (its def names aren't published), so
+  every nation pack counts.
+- **Two world events for them:** a lord's progress (a Vathun, Eastborn or Medieval Total Rim lord passes by: host the
+  retinue for a night or send a gift, for their goodwill), and the clans gather (the Redburn Pact's moot or the
+  khaganate's gathering: pay the envoy's token, refuse, or warn the neighbours, and watch the warbands go by).
+- **Alpha Genes and Alpha Memes:** seven moments between colonists (a nereid talks of the deep, the warm-blooded warm
+  frozen hands, a lapis reads the stone; an artist sketches a neighbour, a blessing with water, ranch talk, a
+  monastic's silence), each giving practice, comfort, rest or a feeling instead of mood and coming back in the
+  journal; and six social events (a helixan's smell, a wretch seen past the face, a mind devourer's stare, an
+  iconoclast and a carved figure, a gladiator's scorn for a bow, a bulwark walking the walls).
+- **Room themes:** a hall theme of Medieval Overhaul's rustic furniture and floors, its royal furniture in the
+  stately theme, and a garden theme with Alpha Props: Parks and Gardens' lawns and street lights. The layout tests
+  check every room in both.
+- **Tents for camps:** camps pitch Vanilla Factions Expanded - Classical's one-person tents instead of bedrolls, and
+  hunters, traders, healers and players raise a tent of Medieval Overhaul's hide or cloth walls (with Outland's tent
+  flap for a door); refugees put up a cloth windbreak.
+- **Hospitality's guests in the newer systems:** a lonely colonist may keep a guest company (a small habit), guests
+  near a toast raise their cups, a guest on screen now and then says a word about their stay, and This week lists who
+  is staying and how it's going. Guests always stay in Hospitality's own lord: only colonists go to them.
+- **People who change mid-game** (Big & Small, Character Editor, Pawn Editor, a xenogerm): who they are is read again
+  at once, wishes their new body can't use are set aside without blame, someone left without an inner life has theirs
+  set aside, and a new race, xenotype or body size gets a line in their own journal. Their records carry over.
+
 ## Why am I feeling this?
 Every mood Rimfolk gives says what caused it, under the description in its tooltip: whose wish came true (or
 didn't), which council decision, which decree and how long it has left, which visitor, secret, nemesis or
@@ -988,9 +1055,14 @@ medieval things). Many ask the council what to do, with a day or so to answer.
   season: a **hunting party** following a herd, a **refugee family**, **prospectors**, **pilgrims** at rest,
   **traders** with a stall, a **traveling smith**, a **hermit** who builds a hut, **traveling healers** who ease an
   ailment, a **procession of the faithful** who bless the colony (naming their creed with Ideology), **traveling
-  players** who put on a show, and **surveyors** who may show you a seam of ore. Refugees come more often while a
-  famine, plague, war, flood, drought or hard winter runs in the region, and say what they fled; pilgrims follow a
-  holy year, surveyors a new road or a rush. They build the camp themselves,
+  players** who put on a show, **surveyors** who may show you a seam of ore, a **salt caravan** or **merchants from
+  afar** with a stall, **drovers** with a herd, barefoot **penitents**, **tree-singers** (Ideology, of a faith that
+  holds trees sacred), a **travelling healer**, a band of **minstrels** whose music the colony walks over to hear, and
+  **mourners** carrying their dead home. Refugees come more often while a famine, plague, war, flood, drought, hard
+  winter or great fire runs in the region, and say what they fled; pilgrims follow a holy year, surveyors a new road
+  or a rush, minstrels a season of songs, mourners a people's mourning. The newer camps can be asked for something
+  from their page: an evening at their fire, a beast from the herd, the healer's care, a lesson at their side, a song
+  about the colony, a vigil with the mourners. They build the camp themselves,
   cook at their fire, hunt and fell trees around it (never near your home area), trade, sometimes help, and may ask
   to join. Let them stay, set terms (a fee, a share of their meat, keeping to their side, a time limit), hire some of
   them, ask them to move on (a gift helps), or drive them off. Tension grows the longer they stay and the more they
@@ -1031,7 +1103,10 @@ wedding or midwinter (send at least two of your people there by caravan, and com
 **apprenticeship** with one of their masters (a colonist stays at their town for a day and a half and comes back about
 two levels better at the craft), a **dignitary** to host for a few days (a bedroom of a set impressiveness with one
 bed nobody else uses, checked every hour of the stay), and **refugees** to see through (two meals each a day and a
-roof for a few days; they come from a fire, or from whatever runs in the region). Each shows up in the game's
+roof for a few days; they come from a fire, or from whatever runs in the region). Friendly peoples also ask the
+colony to **walk an old pilgrim home** by caravan, to **carry word** to a far town of another people, to **find a lost
+child** of theirs somewhere on the colony's land, or to send **hands for their harvest**; each remembers the colonist
+who did it, by name. Each shows up in the game's
 **Quests** tab to accept or let expire (or as a letter, if you switch that off), runs against a deadline once
 accepted, and pays a reward, or costs goodwill if it fails. One mission at a time.
 
@@ -1100,11 +1175,23 @@ the colony half.
   herds** (Alpha Animals) and a **season of wild magic** (A RimWorld of Magic). In an industrial or spacer world, a
   **ship comes down** in the hills: salvage going cheap, survivors, scavengers, and pirates who may come for the
   wreck.
+- **Beyond the walls:** a **great fire** in a neighbor's town (timber, a builder for the roofs, a burned-out family
+  to take in), a **blood feud** between two families of two peoples (hide the one who ran, sit a talker between them,
+  pay the last of the blood price), a **comet** (a night watch, a stargazer), a **bumper harvest**, the **drove
+  roads**, a people **in mourning**, a **season of songs** with a song about the colony going round, a **toll** on the
+  roads, **iron gone scarce**, and **exiles** cast out by a neighbor. Two follow another's end with its people:
+  **rebuilding** after a war, a fire or a flood, and **the road reopening** once the bandits, the snow or the toll are
+  gone.
 - **Particular peoples** (with their DLC or mod): **the Empire's levy** (Royalty: pay in full and be named in the
   dispatches, pay half, or decline), **deserters on the roads** (Vanilla Factions Expanded - Empire: shelter a
   deserter, hand them over for the reward, or feed them and send them on), **the republic votes** (Classical: back
   the old families or the reformers with silver) and **gold fever** (Settlers: prospectors on every road, one who
   wants to work the colony's stream for a share).
+
+Some days or weeks after a world event ends, its people may come back about it, depending on how it ended: survivors
+of a plague the colony helped with come to give thanks, the first harvest after a famine is shared, a flooded town
+looks for what the water took, those sheltered through a hard winter bring seed in spring, old friends send seed grain
+after locusts or a drought, and after a hard year the colony looked away from, an elder comes to say what it cost.
 
 The **World** page shows what's going on at the top, under "In the world": each world event with the people it's
 about, what it means for the colony, what the colony has done so far, and how long it may last (hover for what it
@@ -1130,6 +1217,12 @@ ask weregild for a colonist they killed), and two peoples ask the colony to **se
 letters say what they remember ("Some of these raiders lost kin on the colony's land, last year."). The **World**
 page shows what each people remembers, how it stands with the colony (grateful, owed, wary, holding a grudge), and
 its biggest memories; hover for everything. Settings → **Peoples remember the colony** turns it off.
+
+A people remembers **who**, too: the warden who let one of theirs go, the doctor who tended their wounded, the one
+who found their lost child or walked their pilgrim home. Their visitors stop that colonist to thank them, their
+traders give them a friend's price, their envoys and camps ask for them by name at the gate, and their letters say
+so ("They've asked for Ana by name"). The World page shows it with the deed: "They remember Ana for it." Older saves
+keep their memories; those deeds just name nobody.
 
 ## Scenarios with stakes
 Thirteen scenarios, marked "(Rimfolk)" on the scenario page with how hard they are. Each starts the game with
@@ -1385,7 +1478,11 @@ green-gold blinks drift around colonists outside after dark; **hail** pings off 
 **camp's fire** sends up a thin line of smoke, with sparks at night; a **warlord's band** raises dust as it marches
 in. A **wedding** gets hearts over the couple and the friends nearby, a kept **tradition** a few notes of song, a
 clean **victory** a word or two from those who fought, a **council meeting** opens with a small bell, and so does a
-**calendar day** when its letter comes. Now and then a content colonist hums at work, someone outside says something
+**calendar day** when its letter comes. A **camp arriving** raises a little dust on the road and gets a word from
+whoever sees them come; in the first hours of the **first snow** a few flakes catch on the colonists out in it; the
+morning after a **dream**, the dreamer tells it at breakfast, over the bowl; a **wedding the council promised** (or of
+one of its officers) is rung in with the council's bell, a few notes over the guests and a word from a councillor;
+and with Hospitality, a **guest** now and then says something about their stay. Now and then a content colonist hums at work, someone outside says something
 about the comet or the weather, and on a comet night an idle colonist in good spirits may lie down to watch the sky.
 
 **What they say about themselves.** Now and then a colonist on screen says a short line about how they really are,
@@ -1429,9 +1526,14 @@ they get there. A camp's evening show is a gathering at the camp's fire when ans
 **grieving** colonist visits the grave; a **homesick** one sits a while alone just outside the colony, looking out; a
 **convalescent** takes slow walks; after a **hard fight**, those who fought sit round the colony's fire if one is lit;
 someone whose **friend left** finds a person at their leisure and talks about them; and in the two days after the
-**first snow**, children go out to build snowmen. Each is recreation the game's own joy system picks, so it only comes
-up in free time, after danger, sleep, food and medical care have had their turn; never while drafted, ill, exhausted
-or under orders; any order ends it, and each comes round at most about once a day for the same colonist. Six habits.
+**first snow**, children go out to build snowmen. Six more come from the heart's feelings and from quirks: the
+**awed**, or one who watches the stars, goes out under a clear night sky; one who **talks to the plants** stands by the
+crops doing just that; the **tender**, or one who names every animal, sits a while with one of the colony's animals;
+the **worried**, or one who counts everything, goes over the food stores; the **lonely** keep someone company, a
+Hospitality guest among them; and the **nostalgic** tell old stories by the evening fire. Each is recreation the game's
+own joy system picks, so it only comes up in free time, after danger, sleep, food and medical care have had their
+turn; never while drafted, ill, exhausted or under orders; any order ends it, each claims a spot of its own beside
+what it's about, and each comes round at most about once a day for the same colonist. Twelve habits.
 
 ## Colony news
 Rimfolk's many systems each have small news to tell: a quirk picked up, a personal story moving on, a birthday, a

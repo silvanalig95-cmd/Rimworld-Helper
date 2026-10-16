@@ -35,7 +35,8 @@
     </situationKinds>
     <structures>
       <li><role>fire</role><defs><li>Campfire</li></defs></li>
-      <li><role>bed</role><defs><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff></li>
+      <li><role>hut</role><defs><li>DankPyon_TentWall</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff><doors><li>Outland_TentDoor</li></doors></li>
+      <li><role>bed</role><defs><li>VFEC_Tent</li><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff></li>
       <li><role>stall</role><defs><li>Table1x2c</li></defs><stuff><li>WoodLog</li></stuff></li>
       <li><role>light</role><defs><li>TorchLamp</li></defs></li>
     </structures>
@@ -188,7 +189,8 @@
     <extendChance>0.4</extendChance>
     <structures>
       <li><role>fire</role><defs><li>Campfire</li></defs></li>
-      <li><role>bed</role><defs><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff></li>
+      <li><role>hut</role><defs><li>DankPyon_TentWall</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff><doors><li>Outland_TentDoor</li></doors></li>
+      <li><role>bed</role><defs><li>VFEC_Tent</li><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff></li>
       <li><role>spot</role><defs><li>PartySpot</li></defs></li>
       <li><role>light</role><defs><li>TorchLamp</li></defs></li>
     </structures>
@@ -276,7 +278,7 @@
     </situationKinds>
     <structures>
       <li><role>fire</role><defs><li>Campfire</li></defs></li>
-      <li><role>bed</role><defs><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff></li>
+      <li><role>bed</role><defs><li>VFEC_Tent</li><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff></li>
       <li><role>wall</role><defs><li>Wall</li></defs><stuff><li>WoodLog</li></stuff><count>3</count></li>
       <li><role>light</role><defs><li>TorchLamp</li></defs></li>
     </structures>

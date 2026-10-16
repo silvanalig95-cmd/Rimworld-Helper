@@ -599,6 +599,7 @@
           <li>A long way to market</li>
         </titles>
         <texts>
+          <li>[their:grateful] A trading caravan of {FACTION} has stopped on its way to the market at {PLACE}, and the caravan master, who knows the colony's name, has an offer for friends: send {TALE} along, and they'll trade it at {PLACE} for {THING}, which the colony is running short of.\n\nThey'll be back this way in a week or so.</li>
           <li>[lowtech] A trading caravan of {FACTION} has stopped on its way to the market at {PLACE}, a long way off. The caravan master has room on the wagons and an offer: send {TALE} along, and they'll trade it at {PLACE} for {THING}, which the colony is running short of.\n\nThey'll be back this way in a week or so.</li>
           <li>[!lowtech] {FACTION}'s caravan is passing through on its way to the market at {PLACE}, with room to spare. They'll take {TALE} along, trade it there for {THING}, which the colony is short of, and bring the proceeds back in a week or so.</li>
           <li>[winter] {FACTION}'s last caravan of the winter is heading for the market at {PLACE}. The caravan master offers to take {TALE} from the colony's stores and trade it there for {THING}, since the colony is low on it.\n\nThey expect to be back in a week or so, snow permitting.</li>
@@ -661,6 +662,7 @@
           <li>Fair days at {PLACE}</li>
         </titles>
         <texts>
+          <li>[their:grateful] {FACTION} hold their harvest fair at {PLACE} this week, and their crier came to the colony first: {FACTION} want their friends there. The colony could send a cart of {TALE}. {A_nameDef}, who grew most of it, thinks the best of it might take a prize.</li>
           <li>[lowtech] {FACTION} hold their harvest fair at {PLACE} this week: stalls, music, a judging for the best of the harvest, and buyers from three valleys. Their crier came by to invite the colony.\n\nThe colony could send a cart of {TALE}. {A_nameDef}, who grew most of it, thinks the best of it might take a prize.</li>
           <li>[!lowtech] {FACTION} have invited the colony to their harvest fair at {PLACE}. There'll be buyers from all over, a few too many speeches, and a judging for the best produce.\n\nA cartload of {TALE} would sell well there, and {A_nameDef} wants to enter the best of it for the judging.</li>
           <li>[harvesthome] Harvest home is close, and {FACTION} have sent word of their own harvest fair at {PLACE}. The colony could send a cart of {TALE}, and {A_nameDef} is already sorting out the best of the crop for the judging.</li>

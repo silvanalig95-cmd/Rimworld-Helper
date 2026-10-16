@@ -52,6 +52,8 @@ namespace ColonyCouncil
             cy += UiKit.SectionTitle(0f, cy, w, "CC_Decrees_Header".Translate(), Icons.Decree);
             foreach (var def in DefDatabase<DecreeDef>.AllDefsListForReading.OrderBy(d => d.order))
             {
+                // Another era's, another faith's, or a missing mod's decree isn't listed (unless it's somehow in force).
+                if (def.Hidden && !tracker.IsActive(def)) continue;
                 var l = LayoutOf(def, comp, pawns, w);
                 if (cy + l.height >= scroll.y && cy <= scroll.y + outRect.height) DrawDecree(def, l, comp, pawns, w, cy);
                 cy += l.height + 8f;
@@ -275,12 +277,17 @@ namespace ColonyCouncil
             y += UiKit.Paragraph(0f, y, width, "CC_Offices_Sub".Translate(), UiKit.Faint) + 4f;
             int i = 0;
             foreach (var office in OfficeTracker.Offices)
+            for (int seat = 0; seat < office.Seats; seat++)
             {
-                var holder = comp.offices.HolderOf(office);
+                var holder = comp.offices.HolderOf(office, seat);
+                // A seat this game can't have (the chaplain without a faith) isn't listed, unless someone still holds it.
+                if (!office.Available && holder == null) continue;
+                int seatNow = seat;
                 var row = new Rect(0f, y, width, 32f);
                 UiKit.Zebra(row, i++);
                 UiKit.Icon(new Rect(6f, y + 7f, 18f, 18f), Icons.Office, holder != null ? UiKit.Gold : UiKit.Dim);
-                UiKit.LabelFit(new Rect(30f, y, 150f, 32f), office.LabelCap, Color.white);
+                string name = office.Seats > 1 ? "CC_Office_Seat".Translate(office.LabelCap, seat + 1).Resolve() : office.LabelCap.ToString();
+                UiKit.LabelFit(new Rect(30f, y, 150f, 32f), name, Color.white);
                 if (holder != null)
                 {
                     UiKit.PawnChip(186f, y + 3f, holder, 26f, true, 180f);
@@ -296,13 +303,13 @@ namespace ColonyCouncil
                         .OrderByDescending(p => office.CanHold(p))
                         .ThenByDescending(p => office.Competence(p))
                         .Select(p => office.CanHold(p)
-                            ? new FloatMenuOption(p.LabelShort + " (" + "CC_Office_Competence".Translate(office.Competence(p).ToString("0")) + ")", () => comp.offices.Appoint(office, p, comp))
+                            ? new FloatMenuOption(p.LabelShort + " (" + "CC_Office_Competence".Translate(office.Competence(p).ToString("0")) + ")", () => comp.offices.Appoint(office, p, comp, seatNow))
                             : new FloatMenuOption(p.LabelShort + " (" + "CC_Office_CantHold".Translate() + ")", null))
                         .ToList();
                     if (options.Count > 0) Find.WindowStack.Add(new FloatMenu(options));
                 }
                 if (holder != null && Widgets.ButtonText(new Rect(width - 105f, y + 3f, 100f, 26f), "CC_Office_Dismiss".Translate()))
-                    comp.offices.Dismiss(office, comp);
+                    comp.offices.Dismiss(office, comp, seatNow);
                 y += 32f;
             }
             return y - start;

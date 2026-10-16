@@ -14,6 +14,11 @@ namespace ColonyCouncil
         public const string TradesMade = "Council_TradesMade";
         public const string SecretsKept = "Council_SecretsKept";
         public const string EulogiesGiven = "Council_EulogiesGiven";
+        // Beyond the walls (Defs/Misc/Rimfolk_Records_World.xml).
+        public const string CampEvenings = "Council_CampEvenings";
+        public const string CampsGreeted = "Council_CampsGreeted";
+        public const string DaysKept = "Council_DaysKept";
+        public const string WorldCallsAnswered = "Council_WorldCallsAnswered";
 
         /// <summary>One more of this deed for a colonist (quietly nothing if the record or the colonist isn't there).</summary>
         public static void Add(Pawn p, string record)

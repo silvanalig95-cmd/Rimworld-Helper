@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Visitors of the medieval modlist's peoples. Outland's four (neronix17.outland.*; FactionDef names from its own
+    defs: Outland_Empire, the Eastborn Empire's long-lived elves; Outland_MotzCoalition, moth-folk who keep out of the
+    light; Outland_RedburnPact, goblins, hobgoblins and orcs; Outland_VathunNobles, fauns of a strict caste). And
+    Medieval Total Rim's nations (athelas.medievaltotalrim.*), named by their mod ("mod:" and the package id: its
+    def names aren't published), with lines for each nation tagged x:factionmod:athelas.medievaltotalrim.<nation>.
+    Each lists its mod in <mods>, and its people by name in the stranger's <factions>, so without the mod nobody fits.
+    Talk and a small lesson; nobody is hurt.
+  -->
+
+  <!-- ===================== Outland: the Eastborn Empire ===================== -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncO_EastbornTea</defName>
+    <label>tea with the Eastborn</label>
+    <mods><li>neronix17.outland.eastbornempire</li></mods>
+    <weight>1.0</weight>
+    <cooldownDays>8</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult><factions><li>Outland_Empire</li></factions></stranger>
+    <texts>
+      <li>{X_nameDef} of {FACTION} made tea for {A_nameDef} in a little iron pot, slowly, and would not let {A_objective} drink until it had been looked at properly.</li>
+      <li>{X_nameDef} told {A_nameDef} that among the Eastborn a guest bows once at the gate and once at the table, and that the second bow is the one that counts.</li>
+      <li>{A_nameDef} asked {X_nameDef} how old {X_pronoun} was. {X_nameDef} said, politely, that the Eastborn stop counting after the second hundred.</li>
+      <li>[night] Under the lanterns, {X_nameDef} recited a poem for {A_nameDef} about a single maple leaf, and then explained it for an hour.</li>
+      <li>[colony:Open] {X_nameDef} said the colony's open council would be thought very strange at the emperor's court, and rather admirable.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncO_EastbornTea</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_GoodCompany</thought></li>
+    </effects>
+    <journal>Council_Journal_EncO_Outland</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <!-- ===================== Outland: the Motz Coalition ===================== -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncO_MotzDusk</defName>
+    <label>a Motz at dusk</label>
+    <mods><li>neronix17.outland.motzcoalition</li></mods>
+    <weight>0.9</weight>
+    <cooldownDays>9</cooldownDays>
+    <nightOnly>true</nightOnly>
+    <stranger><kind>Visitor</kind><adult>true</adult><factions><li>Outland_MotzCoalition</li></factions></stranger>
+    <texts>
+      <li>{X_nameDef} of {FACTION} came out once the sun was down and sat with {A_nameDef} just past the reach of the lamps, where {X_pronoun} said the night was kindest.</li>
+      <li>{A_nameDef} dimmed the lamp by the door without being asked. {X_nameDef} noticed, folded {X_possessive} soft wings with a little shiver of thanks, and stayed to talk.</li>
+      <li>{X_nameDef} told {A_nameDef} how the Motz find their way by the smell of rain and the hum of the ground, and laughed at the idea of needing a lantern.</li>
+      <li>{X_nameDef} showed {A_nameDef} how the coalition's councillors vote: every Motz hums, and the louder side wins. {A_nameDef} said the colony's council could use that.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncO_MotzDusk</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_GoodCompany</thought></li>
+    </effects>
+    <journal>Council_Journal_EncO_Outland</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <!-- ===================== Outland: the Redburn Pact ===================== -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncO_PactHaggle</defName>
+    <label>haggling with the Pact</label>
+    <mods><li>neronix17.outland.redburnpact</li></mods>
+    <weight>0.9</weight>
+    <cooldownDays>8</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult><factions><li>Outland_RedburnPact</li></factions></stranger>
+    <texts>
+      <li>{X_nameDef} of {FACTION} tried to sell {A_nameDef} a skull "from a very important orc". {A_nameDef} talked {X_objective} down to a handshake, and both of them seemed pleased.</li>
+      <li>{X_nameDef} told {A_nameDef} that in the Pact a deal is sealed by spitting, and the farther the spit, the better the deal. {A_nameDef} declined to find out.</li>
+      <li>{A_nameDef} asked {X_nameDef} what the Pact actually wants. {X_nameDef} thought about it for a long time and said: more, mostly, and fewer humans telling them no.</li>
+      <li>{X_nameDef} looked at the colony's walls, nodded slowly, and told {A_nameDef} that the Pact respects a place that has bothered to build them.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncO_PactHaggle</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>1</amount><chance>0.4</chance></li>
+    </effects>
+    <journal>Council_Journal_EncO_Outland</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <!-- ===================== Outland: the Vathun Nobles ===================== -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncO_VathunCaste</defName>
+    <label>a Vathun's place</label>
+    <mods><li>neronix17.outland.vathunnobles</li></mods>
+    <weight>0.9</weight>
+    <cooldownDays>9</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult><factions><li>Outland_VathunNobles</li></factions></stranger>
+    <texts>
+      <li>{X_nameDef} of {FACTION} asked {A_nameDef} which caste {A_pronoun} belonged to, and was puzzled for the rest of the afternoon by the answer.</li>
+      <li>{X_nameDef} told {A_nameDef} that among the Vathun a noble's horns are polished by a servant, a servant's by nobody, and a lord's by a poet.</li>
+      <li>{A_nameDef} explained the council to {X_nameDef}: everyone speaks, and the votes are counted. {X_nameDef} asked who counts them, and whether they are of good family.</li>
+      <li>[colony:Open] {X_nameDef} said the colony would be thought shockingly loose in the forest courts, then admitted, quietly, that {X_pronoun} rather liked it.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncO_VathunCaste</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_GoodCompany</thought></li>
+    </effects>
+    <journal>Council_Journal_EncO_Outland</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <!-- ===================== Medieval Total Rim: a knight on the road ===================== -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncM_KnightOnTheRoad</defName>
+    <label>a knight on the road</label>
+    <mods><li>athelas.medievaltotalrim.core</li></mods>
+    <weight>1.0</weight>
+    <cooldownDays>8</cooldownDays>
+    <stranger>
+      <kind>Visitor</kind>
+      <adult>true</adult>
+      <factions>
+        <li>mod:athelas.medievaltotalrim.france</li>
+        <li>mod:athelas.medievaltotalrim.hre</li>
+        <li>mod:athelas.medievaltotalrim.poland</li>
+        <li>mod:athelas.medievaltotalrim.iberia</li>
+        <li>mod:athelas.medievaltotalrim.russia</li>
+        <li>mod:athelas.medievaltotalrim.byzantium</li>
+      </factions>
+    </stranger>
+    <texts>
+      <li>{X_nameDef} of {FACTION} told {A_nameDef} about the vow {X_pronoun} rode out under, and the shrine at the end of the road, and how many years the road had taken so far.</li>
+      <li>{X_nameDef} showed {A_nameDef} how to care for mail so it doesn't rust: sand, a barrel and a great deal of patience.</li>
+      <li>[x:factionmod:athelas.medievaltotalrim.france] {X_nameDef} sang {A_nameDef} a song from the south of {X_possessive} kingdom, all about a lady in a tower, and then admitted {X_pronoun} had never met a lady in a tower.</li>
+      <li>[x:factionmod:athelas.medievaltotalrim.hre] {X_nameDef} tried to explain to {A_nameDef} how the Empire chooses its emperor. It involved seven electors, two arguments and a sigh.</li>
+      <li>[x:factionmod:athelas.medievaltotalrim.poland] {X_nameDef} told {A_nameDef} about the winged horsemen of {X_possessive} country, and swore the feathers really do make a sound when they charge.</li>
+      <li>[x:factionmod:athelas.medievaltotalrim.iberia] {X_nameDef} told {A_nameDef} about a city where three faiths share one market, and argue about everything except the price of oranges.</li>
+      <li>[x:factionmod:athelas.medievaltotalrim.russia] {X_nameDef} told {A_nameDef} about winters so long that a whole town will spend them in one great hall, telling the same stories in order.</li>
+      <li>[x:factionmod:athelas.medievaltotalrim.byzantium] {X_nameDef} described the great city to {A_nameDef}: its walls, its domes, its chariot races and its tax collectors, in that order.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncM_KnightOnTheRoad</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_GoodCompany</thought></li>
+    </effects>
+    <journal>Council_Journal_EncM_Nations</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <!-- ===================== Medieval Total Rim: a rider of the steppe ===================== -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncM_SteppeRider</defName>
+    <label>a rider of the steppe</label>
+    <mods><li>athelas.medievaltotalrim.mongols</li></mods>
+    <weight>0.9</weight>
+    <cooldownDays>10</cooldownDays>
+    <dayOnly>true</dayOnly>
+    <stranger><kind>Visitor</kind><adult>true</adult><factions><li>mod:athelas.medievaltotalrim.mongols</li></factions></stranger>
+    <colonist><passion>Animals</passion></colonist>
+    <texts>
+      <li>{X_nameDef} of {FACTION} watched {A_nameDef} with the colony's animals for a while, then showed {A_objective} how the steppe folk calm a frightened beast: a low song, and never a hurried hand.</li>
+      <li>{X_nameDef} told {A_nameDef} that a rider of the khaganate takes five horses on a long ride and changes mounts without touching the ground. {A_nameDef} has been eyeing the colony's animals since.</li>
+      <li>{X_nameDef} shared a skin of fermented mare's milk with {A_nameDef}, who said it was the strangest thing {A_pronoun} had ever drunk, and asked for another.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Animals</skill><xp>400</xp></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncM_SteppeRider</thought></li>
+    </effects>
+    <journal>Council_Journal_EncM_Nations</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <!-- ===================== Medieval Total Rim: a learned traveller ===================== -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncM_Scholar</defName>
+    <label>a learned traveller</label>
+    <mods><li>athelas.medievaltotalrim.core</li></mods>
+    <weight>0.8</weight>
+    <cooldownDays>10</cooldownDays>
+    <stranger>
+      <kind>Visitor</kind>
+      <adult>true</adult>
+      <factions>
+        <li>mod:athelas.medievaltotalrim.turks</li>
+        <li>mod:athelas.medievaltotalrim.byzantium</li>
+        <li>mod:athelas.medievaltotalrim.iberia</li>
+      </factions>
+    </stranger>
+    <colonist><passion>Intellectual</passion></colonist>
+    <texts>
+      <li>{X_nameDef} of {FACTION} drew the stars for {A_nameDef} on a flat stone and showed {A_objective} how to tell the hour of the night by them.</li>
+      <li>{X_nameDef} taught {A_nameDef} a way of doing sums with nine signs and a nought that made the colony's tally of the stores twice as quick.</li>
+      <li>{A_nameDef} and {X_nameDef} talked medicine late into the evening: humours, herbs, and the one book {X_nameDef} had carried halfway across the world.</li>
+      <li>[x:factionmod:athelas.medievaltotalrim.turks] {X_nameDef} told {A_nameDef} about the great library at home, where a scholar may copy any book if he can find a quiet corner.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Intellectual</skill><xp>400</xp></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncM_Scholar</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_GoodCompany</thought></li>
+    </effects>
+    <journal>Council_Journal_EncM_Nations</journal>
+  </ColonyCouncil.EncounterDef>
+
+</Defs>

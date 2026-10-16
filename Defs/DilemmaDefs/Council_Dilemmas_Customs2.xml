@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Customs of the land and of the faith: seasonal dilemmas with an answer the colony can make its own, like the
+    planting blessing and lantern night (Council_Dilemmas_Customs.xml). Choose the custom two years running and it
+    becomes a tradition that comes round every year in its season.
+    ColonyCouncil.DilemmaWorker_Custom reads a CustomConditions extension: lands (any of them, as Strangers/Lands.cs
+    names them: desert, tundra, boreal, coast, lake, river, swamp, jungle, mountains, hills...), raining, faith (a faith
+    of the colony's own, Ideology) and memes (its faith holds one of them), besides the weather, water, graves and food.
+    Faith customs give the faithful certainty (DilemmaEffect_Faith, half again with a chaplain). Moods in
+    Council_Thoughts_Customs2.xml: half of them give something other than mood.
+  -->
+
+  <!-- ===================== The sun's return (spring, in the cold lands) ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Council_Dilemma_SunsReturn</defName>
+    <label>the sun's return</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_Custom</workerClass>
+    <weight>0.8</weight>
+    <cooldownDays>50</cooldownDays>
+    <seasons><li>Spring</li></seasons>
+    <roleA>
+      <notTrait><li>Psychopath</li></notTrait>
+    </roleA>
+    <texts>
+      <li>The days are lengthening at last. {A_nameDef} wants the whole colony up before dawn tomorrow, on the highest ground near the walls, with a fire going, to watch the sun come back over the {PLACE} after the long dark.</li>
+      <li>{A_nameDef} has been counting the minutes of daylight on a notched stick all winter, and says tomorrow the sun will clear the far ridge for the first time. {A_nameDef} wants everyone out to see it, with a fire to stand round.</li>
+      <li>[lowtech] Where {A_nameDef} grew up, the first sunrise of spring was greeted with a fire and every voice in the village. {A_nameDef} would like to do the same here.</li>
+      <li>[devout] {A_nameDef} wants the colony to greet the returning sun with a fire and the faith's morning words, the way the faithful of the cold lands always have.</li>
+    </texts>
+    <traditionOption>0</traditionOption>
+    <traditionLabel>the sun's return</traditionLabel>
+    <defaultOption>1</defaultOption>
+    <options>
+      <li>
+        <label>Everyone up to greet the sun</label>
+        <outcome>The colony stood round a fire on the high ground in the blue before dawn, stamping their feet, until the sun cleared the ridge and turned the snow gold. Nobody said anything for a while.</outcome>
+        <outcomes>
+          <li>[snow] It was snowing when they climbed up and clear when the sun came, which {A_nameDef} declared the best possible sign.</li>
+        </outcomes>
+        <ways><tradition>4</tradition><toil>-2</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>WoodLog</what><count>15</count></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Trad_SunsReturn</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_StrainRelief"><target>Colony</target><amount>4</amount><onlyStrained>true</onlyStrained></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>4</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Bonfire"><label>the sun's return</label><woodPaid>true</woodPaid><hours>4~8</hours><duration>1.5~2</duration></li>
+        </effects>
+      </li>
+      <li>
+        <label>Whoever's awake can watch it</label>
+        <outcome>{A_nameDef} and a handful of early risers watched the sun come up from the wall. The rest saw it through the window, and that was something.</outcome>
+        <ways><tradition>1</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Trad_SunsReturn</thought><chance>0.35</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>1</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>The sun comes back without our help</label>
+        <outcome>The sun came up the way it always does, over a colony already at work. {A_nameDef} watched it alone from the woodpile.</outcome>
+        <ways><tradition>-3</tradition><toil>3</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_NoCelebration</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-2</amount></li>
+        </effects>
+      </li>
+    </options>
+    <modExtensions>
+      <li Class="ColonyCouncil.CustomConditions">
+        <lands><li>tundra</li><li>boreal</li></lands>
+        <forbiddenBy><li>NoFire</li></forbiddenBy>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== The rain welcome (spring or summer, in the desert, when it rains) ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Council_Dilemma_RainWelcome</defName>
+    <label>the rain welcome</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_Custom</workerClass>
+    <weight>1</weight>
+    <cooldownDays>50</cooldownDays>
+    <seasons><li>Spring</li><li>Summer</li><li>PermanentSummer</li></seasons>
+    <texts>
+      <li>It's raining, really raining, for the first time in weeks. {A_nameDef} is standing in the middle of the yard with {A_possessive} face turned up, and asks if everyone could put down their tools and come out into it.</li>
+      <li>Rain on the {PLACE}. {A_nameDef} has already put every pot and bucket the colony owns out under the eaves, and wants the colony out in the rain together to welcome it, as desert people do.</li>
+      <li>[tribal] Among {A_nameDef}'s people, the first rain was danced in, the whole camp together, so that it would come back. {A_nameDef} would like the colony to dance it in.</li>
+      <li>[devout] {A_nameDef} says the rain is a gift, and gifts are given thanks for, out loud and together.</li>
+    </texts>
+    <traditionOption>0</traditionOption>
+    <traditionLabel>the rain welcome</traditionLabel>
+    <defaultOption>1</defaultOption>
+    <options>
+      <li>
+        <label>Everyone out in the rain</label>
+        <outcome>The whole colony stood out in the rain until they were soaked through, laughing, catching it in their hands, and {A_nameDef} started a dance that nobody knew the steps to. It didn't matter.</outcome>
+        <outcomes>
+          <li>[tribal] {A_nameDef} led the rain dance round the yard, and one by one the colony joined in, splashing, until the rain eased off as if it had been satisfied.</li>
+        </outcomes>
+        <ways><tradition>4</tradition><toil>-3</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Trad_RainWelcome</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>4</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>the rain welcome</label><spots><li>Outdoors</li><li>Gather</li><li>Fields</li></spots><hours>6~20</hours><duration>1~1.5</duration></li>
+        </effects>
+      </li>
+      <li>
+        <label>Catch it in every pot, then back to work</label>
+        <outcome>Every pot, bucket and trough in the colony went out under the eaves, and everyone went back to work listening to it drum.</outcome>
+        <ways><tradition>1</tradition><toil>2</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.08</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>1</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>It's only rain</label>
+        <outcome>Work went on indoors. {A_nameDef} stood in the doorway a long time, watching it fall.</outcome>
+        <ways><tradition>-2</tradition><toil>3</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_NoCelebration</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-2</amount></li>
+        </effects>
+      </li>
+    </options>
+    <modExtensions>
+      <li Class="ColonyCouncil.CustomConditions">
+        <lands><li>desert</li><li>oasis</li></lands>
+        <raining>true</raining>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== The blessing of the waters (spring, by the sea, a lake or a river) ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Council_Dilemma_WaterBlessing</defName>
+    <label>the blessing of the waters</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_Custom</workerClass>
+    <weight>0.7</weight>
+    <cooldownDays>50</cooldownDays>
+    <seasons><li>Spring</li><li>PermanentSummer</li></seasons>
+    <roleA>
+      <notTrait><li>Psychopath</li></notTrait>
+    </roleA>
+    <texts>
+      <li>The ice is off the water and the spring flood has gone down. {A_nameDef} wants the colony to walk down to the water together in the morning, say a few words over it and give it a loaf, for the fish and the crossings and the drinking water of the year.</li>
+      <li>{A_nameDef} has baked a small round loaf with a mark on top and asks the council for one morning: everyone at the water's edge, the loaf given to the water, and a word for a kind year from it.</li>
+      <li>[lowtech] In {A_nameDef}'s village, the boats weren't put out in spring until the water had been blessed and given its bread. {A_nameDef} would like the colony to do the same.</li>
+      <li>[devout] {A_nameDef} wants the faith's blessing said over the water at the start of the year, with everyone there to hear it.</li>
+    </texts>
+    <traditionOption>0</traditionOption>
+    <traditionLabel>the blessing of the waters</traditionLabel>
+    <defaultOption>1</defaultOption>
+    <options>
+      <li>
+        <label>Everyone to the water's edge</label>
+        <outcome>The colony stood at the water's edge in the cold morning while {A_nameDef} said the words and set the loaf on the water. It floated a long way before it went under, which everyone agreed was a good sign.</outcome>
+        <ways><tradition>4</tradition><toil>-2</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>4</count></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Trad_WaterBlessing</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Faith"><amount>0.04</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>4</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Words"><label>the blessing of the waters</label><spots><li>Water</li><li>Outdoors</li></spots><hours>6~11</hours><duration>0.75~1</duration></li>
+        </effects>
+      </li>
+      <li>
+        <label>{A_nameDef} can bless it alone</label>
+        <outcome>{A_nameDef} went down alone at dawn and gave the water its loaf, and came back with wet sleeves and a quiet face.</outcome>
+        <ways><tradition>1</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Trad_WaterBlessing</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>1</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Bread is for eating</label>
+        <outcome>The loaf went on the supper table. {A_nameDef} ate a piece of it, but not as if it tasted of much.</outcome>
+        <ways><tradition>-3</tradition><generosity>-1</generosity></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_NoCelebration</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-2</amount></li>
+        </effects>
+      </li>
+    </options>
+    <modExtensions>
+      <li Class="ColonyCouncil.CustomConditions">
+        <lands><li>coast</li><li>lake</li><li>river</li></lands>
+        <forbiddenBy><li>NoReligion</li></forbiddenBy>
+        <water>true</water>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== The marsh lights (summer, in the swamp or the jungle) ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Council_Dilemma_MarshLights</defName>
+    <label>the marsh lights</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_Custom</workerClass>
+    <weight>0.7</weight>
+    <cooldownDays>50</cooldownDays>
+    <seasons><li>Summer</li><li>PermanentSummer</li></seasons>
+    <texts>
+      <li>The fever season is here, the air thick with insects every evening. {A_nameDef} wants the colony to walk the bounds after dark with torches of green wood, the smoke driving the biting things back into the {PLACE}, and the lights telling whatever lives out there that this ground is taken.</li>
+      <li>{A_nameDef} has been tying bundles of wet wood and reeds all week. Lit, they smoke like anything. {A_nameDef} wants everyone out one evening to carry them round the colony's edge.</li>
+      <li>[lowtech] Where {A_nameDef} comes from, the marsh villages walk their bounds with smoking torches on the longest evening of the fever season. {A_nameDef} would like the colony to keep the custom.</li>
+    </texts>
+    <traditionOption>0</traditionOption>
+    <traditionLabel>the marsh lights</traditionLabel>
+    <defaultOption>1</defaultOption>
+    <options>
+      <li>
+        <label>Everyone out with the torches</label>
+        <outcome>A long line of smoking torches wound round the colony's edge after dark, the whole colony coughing and laughing. The insects stayed away for a night, and the lights could be seen far out over the water.</outcome>
+        <ways><tradition>4</tradition><toil>-2</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>WoodLog</what><count>20</count></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Trad_MarshLights</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>4</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>the marsh lights</label><spots><li>Outdoors</li><li>Gather</li></spots><hours>18~22</hours><duration>1~1.5</duration></li>
+        </effects>
+      </li>
+      <li>
+        <label>One torch at each door</label>
+        <outcome>A smoking torch went up at every door. The insects were thinner that night, a little.</outcome>
+        <ways><tradition>1</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>WoodLog</what><count>6</count></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Trad_MarshLights</thought><chance>0.4</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>1</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Keep the wood for the fires</label>
+        <outcome>No torches. {A_nameDef} sat up late slapping at the insects and muttering.</outcome>
+        <ways><tradition>-3</tradition><generosity>-1</generosity></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_NoCelebration</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-2</amount></li>
+        </effects>
+      </li>
+    </options>
+    <modExtensions>
+      <li Class="ColonyCouncil.CustomConditions">
+        <lands><li>swamp</li><li>jungle</li></lands>
+        <forbiddenBy><li>NoFire</li></forbiddenBy>
+        <minTemp>15</minTemp>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== The high watch (fall, in the mountains or hills) ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Council_Dilemma_HighWatch</defName>
+    <label>the high watch</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_Custom</workerClass>
+    <weight>0.7</weight>
+    <cooldownDays>50</cooldownDays>
+    <seasons><li>Fall</li></seasons>
+    <roleA>
+      <notTrait><li>Wimp</li></notTrait>
+    </roleA>
+    <texts>
+      <li>The harvest is in and the air is clear enough to see for miles. {A_nameDef} wants the colony to climb to the high ground one evening, all of them, and look out over everything the colony has made and everything around it, before the winter closes the view.</li>
+      <li>{A_nameDef} found a ledge above the colony where you can see every field and wall at once, and the far hills beyond. {A_nameDef} says everyone should see it, together, once a year.</li>
+      <li>[lowtech] Hill people, {A_nameDef} says, climb to the high stones every autumn to see their land whole and count what they have. {A_nameDef} would like the colony to keep that custom.</li>
+    </texts>
+    <traditionOption>0</traditionOption>
+    <traditionLabel>the high watch</traditionLabel>
+    <defaultOption>1</defaultOption>
+    <options>
+      <li>
+        <label>Everyone up to the high ground</label>
+        <outcome>The colony climbed up in the late light and sat in a row on the ledge, pointing out their own roofs and fields to each other. From up there it looked like a place someone had meant to make.</outcome>
+        <ways><tradition>4</tradition><toil>-2</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Trad_HighWatch</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>Colony</target><amount>1</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>3</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Words"><label>the high watch</label><spots><li>Outdoors</li></spots><hours>15~19</hours><duration>1~1.5</duration></li>
+        </effects>
+      </li>
+      <li>
+        <label>Those who want to can climb</label>
+        <outcome>{A_nameDef} and a few others went up at sunset and came back after dark, talking quietly.</outcome>
+        <ways><tradition>1</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Trad_HighWatch</thought><chance>0.4</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>1</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>We can see enough from here</label>
+        <outcome>Nobody climbed. {A_nameDef} looked up at the high ground now and then all evening.</outcome>
+        <ways><tradition>-2</tradition><toil>2</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_NoCelebration</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-2</amount></li>
+        </effects>
+      </li>
+    </options>
+    <modExtensions>
+      <li Class="ColonyCouncil.CustomConditions">
+        <lands><li>mountains</li><li>hills</li></lands>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== The night vigil (winter, a faith that worships) ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Council_Dilemma_NightVigil</defName>
+    <label>the night vigil</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_Custom</workerClass>
+    <weight>0.8</weight>
+    <cooldownDays>50</cooldownDays>
+    <seasons><li>Winter</li><li>PermanentWinter</li></seasons>
+    <roleA>
+      <tags>devout</tags>
+    </roleA>
+    <texts>
+      <li>The longest nights are here. {A_nameDef} asks that the faithful keep a vigil, as the faith has always kept one in the dark of the year: a lamp lit at dusk, the old words said through the night, and the colony gathered until the first light.</li>
+      <li>{A_nameDef} has trimmed every lamp in the colony and asks the council for one night: a vigil of the faith, from dusk till dawn, so the colony begins the turn of the year awake and together.</li>
+      <li>[lowtech] {A_nameDef} remembers the vigils of {A_possessive} childhood: candles, the words said and answered, the cold creeping in and nobody minding. {A_nameDef} would like to keep one here.</li>
+    </texts>
+    <traditionOption>0</traditionOption>
+    <traditionLabel>the night vigil</traditionLabel>
+    <defaultOption>1</defaultOption>
+    <options>
+      <li>
+        <label>Keep the vigil together</label>
+        <outcome>The colony gathered as the light went and kept the vigil, the words said and answered, the lamps trimmed through the dark hours. Some slept sitting up. At first light {A_nameDef} said the last words, and everyone went to bed lighter than they'd been in weeks.</outcome>
+        <ways><tradition>5</tradition><toil>-2</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Trad_NightVigil</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Faith"><amount>0.08</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_StrainRelief"><target>Colony</target><amount>4</amount><onlyStrained>true</onlyStrained></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>4</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Words"><label>the night vigil</label><spots><li>Gather</li><li>Dining</li></spots><hours>18~22</hours><duration>2~3</duration></li>
+        </effects>
+      </li>
+      <li>
+        <label>A short vigil, then bed</label>
+        <outcome>The words were said at dusk with the lamps lit, and the colony went to bed at the usual hour. {A_nameDef} kept the rest of the night alone.</outcome>
+        <ways><tradition>2</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Faith"><amount>0.03</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Trad_NightVigil</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>1</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Everyone needs their sleep</label>
+        <outcome>No vigil. {A_nameDef} lit one lamp by {A_possessive} bed and kept it burning till morning.</outcome>
+        <ways><tradition>-3</tradition><toil>2</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_NoCelebration</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-3</amount></li>
+        </effects>
+      </li>
+    </options>
+    <modExtensions>
+      <li Class="ColonyCouncil.CustomConditions">
+        <memes>
+          <li>Structure_TheistEmbodied</li>
+          <li>Structure_TheistAbstract</li>
+          <li>Structure_OriginChristian</li>
+          <li>Structure_OriginIslamic</li>
+          <li>Structure_OriginHindu</li>
+          <li>Structure_OriginBuddhist</li>
+        </memes>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== The tree-singing (spring or summer, a faith of the wild) ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Council_Dilemma_TreeSinging</defName>
+    <label>the tree-singing</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_Custom</workerClass>
+    <weight>0.8</weight>
+    <cooldownDays>50</cooldownDays>
+    <seasons><li>Spring</li><li>Summer</li><li>PermanentSummer</li></seasons>
+    <roleA>
+      <tags>meme:Structure_Animist|meme:NaturePrimacy|meme:TreeConnection</tags>
+    </roleA>
+    <texts>
+      <li>The trees are in full leaf. {A_nameDef} asks that the colony go out to the oldest tree near the walls one afternoon and sing to it, all together, as the faith teaches: the land was here first, and it should hear that the colony knows it.</li>
+      <li>{A_nameDef} has been sitting under the big tree every evening this week, humming. {A_nameDef} wants everyone there once a year, singing properly, to give thanks to the living things the colony takes from.</li>
+      <li>[tribal] {A_nameDef}'s people sang to the trees each spring, so that the forest would go on feeding them. {A_nameDef} would like the colony to sing too.</li>
+    </texts>
+    <traditionOption>0</traditionOption>
+    <traditionLabel>the tree-singing</traditionLabel>
+    <defaultOption>1</defaultOption>
+    <options>
+      <li>
+        <label>Everyone out to sing</label>
+        <outcome>The colony sat in a ring round the old tree all afternoon, singing the songs {A_nameDef} taught them, badly at first and then well. The leaves moved overhead the whole time, though there wasn't any wind.</outcome>
+        <ways><tradition>4</tradition><toil>-3</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Trad_TreeSinging</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Faith"><amount>0.06</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>4</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>the tree-singing</label><music>true</music><spots><li>Outdoors</li><li>Fields</li></spots><hours>12~18</hours><duration>1.5~2</duration></li>
+        </effects>
+      </li>
+      <li>
+        <label>A song at dusk, before supper</label>
+        <outcome>One song, at dusk, everyone standing at the edge of the trees. {A_nameDef} sang the last verse alone.</outcome>
+        <ways><tradition>2</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Faith"><amount>0.02</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Trad_TreeSinging</thought><chance>0.4</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>1</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Trees don't listen</label>
+        <outcome>No singing. {A_nameDef} went out alone after dark and sat a long while with {A_possessive} back to the old tree.</outcome>
+        <ways><tradition>-3</tradition><toil>3</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_NoCelebration</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-3</amount></li>
+        </effects>
+      </li>
+    </options>
+    <modExtensions>
+      <li Class="ColonyCouncil.CustomConditions">
+        <memes><li>Structure_Animist</li><li>NaturePrimacy</li><li>TreeConnection</li></memes>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== The ancestors' supper (fall or winter, a faith of the colony's own, with graves) ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Council_Dilemma_AncestorsSupper</defName>
+    <label>the ancestors' supper</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_Custom</workerClass>
+    <weight>0.7</weight>
+    <cooldownDays>50</cooldownDays>
+    <seasons><li>Fall</li><li>Winter</li><li>PermanentWinter</li></seasons>
+    <thingCount>12</thingCount>
+    <roleA>
+      <notTrait><li>Psychopath</li></notTrait>
+    </roleA>
+    <texts>
+      <li>The year is turning. {A_nameDef} asks for a supper with a place laid for each of the colony's dead: their bowl filled, their names said at the start, and the faith's words for those who went before. It would take about {COUNT} raw food.</li>
+      <li>{A_nameDef} has been carving little name-boards for the colony's dead and asks the council for one evening: a long table with a place for every one of them, so they eat with the living once a year. About {COUNT} raw food, {A_nameDef} reckons.</li>
+      <li>[lowtech] In {A_nameDef}'s village, the dead were fed once a year, a full bowl at the head of the table, and the door left open. {A_nameDef} would like the colony to do the same. It would take about {COUNT} raw food.</li>
+    </texts>
+    <traditionOption>0</traditionOption>
+    <traditionLabel>the ancestors' supper</traditionLabel>
+    <defaultOption>1</defaultOption>
+    <options>
+      <li>
+        <label>A place at the table for every one of them</label>
+        <outcome>The long table was laid with a place for each of the colony's dead, a full bowl at each, and {A_nameDef} said every name before anyone ate. Stories came out that nobody had told in years. The door stood open the whole evening.</outcome>
+        <ways><tradition>5</tradition><generosity>2</generosity></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Trad_AncestorsSupper</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Faith"><amount>0.05</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_StrainRelief"><target>Colony</target><amount>5</amount><onlyStrained>true</onlyStrained></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>4</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>the ancestors' supper</label><hours>16~21</hours><duration>1.5~2</duration></li>
+        </effects>
+      </li>
+      <li>
+        <label>Say their names at supper</label>
+        <outcome>No extra places, but {A_nameDef} said every name before the meal, and people raised their cups to each.</outcome>
+        <ways><tradition>2</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Trad_AncestorsSupper</thought><exceptTrait><li>Psychopath</li></exceptTrait><chance>0.4</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>1</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>The dead don't need feeding</label>
+        <outcome>Supper as usual. {A_nameDef} set one small bowl on the windowsill afterwards, and left it there all night.</outcome>
+        <ways><tradition>-4</tradition><generosity>-1</generosity></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_NoCelebration</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-3</amount></li>
+        </effects>
+      </li>
+    </options>
+    <modExtensions>
+      <li Class="ColonyCouncil.CustomConditions">
+        <faith>true</faith>
+        <graves>true</graves>
+        <foodFactor>2</foodFactor>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.DilemmaDef>
+
+</Defs>

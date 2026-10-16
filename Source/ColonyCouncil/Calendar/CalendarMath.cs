@@ -99,6 +99,27 @@ namespace ColonyCouncil
         /// <summary>A long-serving colonist's birthday, more for each year with the colony.</summary>
         public static float BirthdayWeight(float years) => 14f + 3f * Math.Min(Math.Max(years, 0f), 6f);
 
+        public const float FirstChildWeight = 45f;
+        public const float WallsWeight = 32f;
+        public const float NewCropWeight = 20f;
+        public const float FirstTradeWeight = 24f;
+
+        /// <summary>A caravan home safe: more for a longer journey (counted to twenty days) and for more of ours on it.</summary>
+        public static float HomecomingWeight(float days, int travellers) =>
+            18f + 0.8f * Math.Min(Math.Max(days, 0f), 20f) + 2f * Math.Min(Math.Max(travellers, 0), 5);
+
+        /// <summary>A great hunt: more for a bigger bag (counted to fifteen).</summary>
+        public static float HuntWeight(int kills) => 18f + 1.2f * Math.Min(Math.Max(kills, 0), 15);
+
+        /// <summary>A caravan counts as a journey once its people are away this many days.</summary>
+        public const float HomecomingMinDays = 5f;
+
+        /// <summary>A great hunt: this many animals brought down in a day.</summary>
+        public const int GreatHuntKills = 5;
+
+        /// <summary>The walls are up once the colony has this many wall sections.</summary>
+        public const int WallsUp = 80;
+
         /// <summary>What a day means now: a tradition, and every year it was kept, count for more.</summary>
         public static float Standing(float weight, bool tradition, int keptYears) => weight + (tradition ? 40f : 0f) + 4f * Math.Min(Math.Max(keptYears, 0), 5);
 

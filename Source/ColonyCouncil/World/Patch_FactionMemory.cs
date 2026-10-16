@@ -30,6 +30,8 @@ namespace ColonyCouncil
             return null;
         }
 
+        private static Pawn LookPawn(GlobalTargetInfo? look) => look.HasValue && look.Value.HasThing ? look.Value.Thing as Pawn : null;
+
         /// <summary>A trader of theirs: in a caravan come to trade, or carrying their goods.</summary>
         private static bool Trader(Pawn p)
         {
@@ -47,10 +49,11 @@ namespace ColonyCouncil
             switch (reason.defName)
             {
                 case "MemberExitedMapHealthy":
-                    FactionMemory.Note(f, "released", exiting?.LabelShort ?? name);
+                    // Who set them free (or, failing that, who tended them) is the colonist their people remember (KinMemory.cs).
+                    KinMemory.Credit(FactionMemory.Note(f, "released", exiting?.LabelShort ?? name), exiting ?? LookPawn(look), "free", "tend");
                     break;
                 case "FriendlyExitedMapTended":
-                    FactionMemory.Note(f, "tended", exiting?.LabelShort ?? name);
+                    KinMemory.Credit(FactionMemory.Note(f, "tended", exiting?.LabelShort ?? name), exiting ?? LookPawn(look), "tend");
                     break;
                 case "GaveGift":
                     FactionMemory.Note(f, "gift", null, UnityEngine.Mathf.Clamp(change, 3, 25));

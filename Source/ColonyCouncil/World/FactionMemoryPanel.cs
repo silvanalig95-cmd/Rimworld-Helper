@@ -97,8 +97,13 @@ namespace ColonyCouncil
         }
 
         /// <summary>"The colony set Ana free." / "They raided the colony twice."</summary>
-        public static string LineText(FactionDeed d) =>
-            (d.Theirs ? "CC_Memory_Line_Theirs" : "CC_Memory_Line_Ours").Translate(FactionMemory.Text(d).Named("DEED")).Resolve().CapitalizeFirst();
+        public static string LineText(FactionDeed d)
+        {
+            string line = (d.Theirs ? "CC_Memory_Line_Theirs" : "CC_Memory_Line_Ours").Translate(FactionMemory.Text(d).Named("DEED")).Resolve().CapitalizeFirst();
+            // The colonist they remember for it (World/KinMemory.cs).
+            string by = KinMemory.ByLine(d);
+            return by.NullOrEmpty() ? line : line + " " + by;
+        }
 
         private static string Tip(Faction f, List<FactionDeed> all, int now)
         {

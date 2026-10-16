@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Moods for the fourth set of decrees (Council_Decrees4.xml). Stages: hate, dislike, like, love. Small on the good
+    side: these decrees give the colony something real (goodwill, faith, practice, rest, a market), so the mood is a
+    seasoning, not the point. The bad side follows the stakes setting and the penalty slider like every decree's.
+  -->
+
+  <ThoughtDef>
+    <defName>Council_Decree_Tithes</defName>
+    <workerClass>ColonyCouncil.ThoughtWorker_Decree</workerClass>
+    <thoughtClass>ColonyCouncil.Thought_Decree</thoughtClass>
+    <stages>
+      <li><label>a tenth of everything</label><description>Every morning a tenth of the silver walks out of the gate. I watched it go, coin by coin.</description><baseMoodEffect>-5</baseMoodEffect></li>
+      <li><label>tithes</label><description>A tenth of the silver given away each morning. I suppose it's for a good cause.</description><baseMoodEffect>-2</baseMoodEffect></li>
+      <li><label>giving our tenth</label><description>We give a tenth, the way decent people do. It sits well with me.</description><baseMoodEffect>2</baseMoodEffect></li>
+      <li><label>an honest tithe</label><description>We give back from what we've been given. It feels like the colony is right with the world.</description><baseMoodEffect>3</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Decree_Curfew</defName>
+    <workerClass>ColonyCouncil.ThoughtWorker_Decree</workerClass>
+    <thoughtClass>ColonyCouncil.Thought_Decree</thoughtClass>
+    <stages>
+      <li><label>locked in at night</label><description>Barred in my own home at ten like a prisoner. The best hours of the day, gone.</description><baseMoodEffect>-6</baseMoodEffect></li>
+      <li><label>a curfew</label><description>In by ten, gate barred, lights out. The evenings are very short.</description><baseMoodEffect>-2</baseMoodEffect></li>
+      <li><label>safe at night</label><description>Everyone in, the gate barred, the watch on the wall. I sleep easier.</description><baseMoodEffect>2</baseMoodEffect></li>
+      <li><label>the gate barred</label><description>Nobody out in the dark, nothing coming in. For the first time in weeks I'm not listening for footsteps.</description><baseMoodEffect>4</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Decree_Militia</defName>
+    <workerClass>ColonyCouncil.ThoughtWorker_Decree</workerClass>
+    <thoughtClass>ColonyCouncil.Thought_Decree</thoughtClass>
+    <stages>
+      <li><label>drilled every evening</label><description>Every evening, spear drill until dark. I came here to get away from this.</description><baseMoodEffect>-4</baseMoodEffect></li>
+      <li><label>militia drills</label><description>An hour of drill most evenings. I'm sore and I'm not getting any better.</description><baseMoodEffect>-1</baseMoodEffect></li>
+      <li><label>the evening muster</label><description>An hour on the green with everyone, getting a little better each time.</description><baseMoodEffect>2</baseMoodEffect></li>
+      <li><label>a proper militia</label><description>We're starting to look like people who could hold a gate. I'm proud of us.</description><baseMoodEffect>3</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Decree_Alms</defName>
+    <workerClass>ColonyCouncil.ThoughtWorker_Decree</workerClass>
+    <thoughtClass>ColonyCouncil.Thought_Decree</thoughtClass>
+    <stages>
+      <li><label>food given away</label><description>Our food, handed out at the gate to people who never lifted a finger for it.</description><baseMoodEffect>-4</baseMoodEffect></li>
+      <li><label>alms at the gate</label><description>Food goes out at the gate every morning. I hope we don't need it ourselves.</description><baseMoodEffect>-1</baseMoodEffect></li>
+      <li><label>bread at the gate</label><description>Nobody leaves our gate hungry this week. That's a good thing to be able to say.</description><baseMoodEffect>2</baseMoodEffect></li>
+      <li><label>feeding the hungry</label><description>A child came back to the gate today just to say thank you. I had to go inside for a while.</description><baseMoodEffect>3</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Decree_HolyDays</defName>
+    <workerClass>ColonyCouncil.ThoughtWorker_Decree</workerClass>
+    <thoughtClass>ColonyCouncil.Thought_Decree</thoughtClass>
+    <stages>
+      <li><label>someone else's holy days</label><description>Three days of prayers that aren't mine, and work stopped for every one of them.</description><baseMoodEffect>-4</baseMoodEffect></li>
+      <li><label>holy days</label><description>Prayers at dawn and dusk, and work set down for them. It's not my way.</description><baseMoodEffect>-1</baseMoodEffect></li>
+      <li><label>keeping the holy days</label><description>We set down our work for the faith, together. It steadies me.</description><baseMoodEffect>2</baseMoodEffect></li>
+      <li><label>the faith kept well</label><description>Three days given to the faith, the whole colony at prayer. I feel closer to what matters than I have in a long time.</description><baseMoodEffect>4</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Decree_MarketDay</defName>
+    <workerClass>ColonyCouncil.ThoughtWorker_Decree</workerClass>
+    <thoughtClass>ColonyCouncil.Thought_Decree</thoughtClass>
+    <stages>
+      <li><label>strangers everywhere</label><description>Strangers wandering through the colony, handling everything. I can't wait for them to leave.</description><baseMoodEffect>-4</baseMoodEffect></li>
+      <li><label>market crowds</label><description>Too many people, too much noise, and somebody always wanting to sell me something.</description><baseMoodEffect>-2</baseMoodEffect></li>
+      <li><label>market day</label><description>Stalls by the gate, haggling, news from the road. It's good to see new faces.</description><baseMoodEffect>2</baseMoodEffect></li>
+      <li><label>a good market</label><description>I got the better of a trader today, and I'm going to be talking about it for a week.</description><baseMoodEffect>3</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Decree_Fast</defName>
+    <workerClass>ColonyCouncil.ThoughtWorker_Decree</workerClass>
+    <thoughtClass>ColonyCouncil.Thought_Decree</thoughtClass>
+    <stages>
+      <li><label>made to fast</label><description>Two days without a proper meal, by order. I can't think about anything but food.</description><baseMoodEffect>-6</baseMoodEffect></li>
+      <li><label>fasting</label><description>Water and a little bread at sundown. My stomach has opinions about this.</description><baseMoodEffect>-3</baseMoodEffect></li>
+      <li><label>a clean fast</label><description>Two days of going without. My head is clear in a way it hasn't been in weeks.</description><baseMoodEffect>2</baseMoodEffect></li>
+      <li><label>the fast</label><description>Hungry and light-headed and perfectly calm. I'd forgotten how little I need.</description><baseMoodEffect>4</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Decree_WorkSong</defName>
+    <workerClass>ColonyCouncil.ThoughtWorker_Decree</workerClass>
+    <thoughtClass>ColonyCouncil.Thought_Decree</thoughtClass>
+    <stages>
+      <li><label>that song again</label><description>The same four lines from dawn to dusk. I hear them in my sleep.</description><baseMoodEffect>-4</baseMoodEffect></li>
+      <li><label>singing at work</label><description>Everyone singing while they work. I can't hear myself think.</description><baseMoodEffect>-1</baseMoodEffect></li>
+      <li><label>a work song</label><description>We sang the whole afternoon through, and the work was done before I noticed.</description><baseMoodEffect>2</baseMoodEffect></li>
+      <li><label>singing together</label><description>The whole field singing in time, every hand keeping the beat. I'll remember this.</description><baseMoodEffect>3</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Decree_Quarantine</defName>
+    <workerClass>ColonyCouncil.ThoughtWorker_Decree</workerClass>
+    <thoughtClass>ColonyCouncil.Thought_Decree</thoughtClass>
+    <stages>
+      <li><label>kept apart</label><description>Everyone at arm's length, the gate shut, nobody to talk to. It's worse than being ill.</description><baseMoodEffect>-5</baseMoodEffect></li>
+      <li><label>quarantine</label><description>Keeping our distance, sleeping apart, nobody in or out. It's lonely.</description><baseMoodEffect>-2</baseMoodEffect></li>
+      <li><label>keeping it out</label><description>The sick apart, the gate shut. Whatever is going round, it isn't getting in here.</description><baseMoodEffect>2</baseMoodEffect></li>
+      <li><label>safe behind the gate</label><description>I've seen what a fever does to a town. Here, at least, we're doing it right.</description><baseMoodEffect>3</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Decree_FamineBread</defName>
+    <workerClass>ColonyCouncil.ThoughtWorker_Decree</workerClass>
+    <thoughtClass>ColonyCouncil.Thought_Decree</thoughtClass>
+    <stages>
+      <li><label>hungry for strangers</label><description>Half portions for us so strangers can eat. I'm hungry, and I didn't choose this.</description><baseMoodEffect>-5</baseMoodEffect></li>
+      <li><label>famine bread</label><description>Smaller bowls, and the rest sent down the road to the hungry. I mind it more than I'd like to.</description><baseMoodEffect>-2</baseMoodEffect></li>
+      <li><label>sharing the lean times</label><description>We eat a little less so others can eat at all. It's the right thing.</description><baseMoodEffect>2</baseMoodEffect></li>
+      <li><label>bread for the hungry</label><description>Every sack that goes down the road is someone who lives through the winter. I'd give more.</description><baseMoodEffect>4</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Decree_OpenGates</defName>
+    <workerClass>ColonyCouncil.ThoughtWorker_Decree</workerClass>
+    <thoughtClass>ColonyCouncil.Thought_Decree</thoughtClass>
+    <stages>
+      <li><label>the gates left open</label><description>Anyone could walk in. Anyone at all. I keep a knife under my pillow now.</description><baseMoodEffect>-6</baseMoodEffect></li>
+      <li><label>open gates</label><description>Strangers coming and going all week. I don't like not knowing who's about.</description><baseMoodEffect>-2</baseMoodEffect></li>
+      <li><label>a welcoming place</label><description>New faces at the gate, news from the road. It feels like we're part of the world again.</description><baseMoodEffect>2</baseMoodEffect></li>
+      <li><label>open to the world</label><description>Travellers at supper and stories from far away. This is how a colony should live.</description><baseMoodEffect>3</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+</Defs>

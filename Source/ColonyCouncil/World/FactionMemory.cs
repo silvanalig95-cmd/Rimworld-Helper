@@ -40,6 +40,13 @@ namespace ColonyCouncil
         public string name;
         /// <summary>Repaid, called in or put right since (an envoy came about it): it is still remembered, but asks nothing more.</summary>
         public bool settled;
+        /// <summary>
+        /// The colonist they remember for it: the one who set theirs free, the one who tended their wounded. Null in older
+        /// saves and for deeds that were the whole colony's.
+        /// </summary>
+        public Pawn by;
+        /// <summary>That colonist's name, kept for when they're gone.</summary>
+        public string byName;
 
         public float StrengthAt(int now) => MemoryMath.Strength(weight, now - tick);
 
@@ -61,6 +68,37 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref count, "count", 1);
             Scribe_Values.Look(ref name, "name");
             Scribe_Values.Look(ref settled, "settled");
+            if (Scribe.mode == LoadSaveMode.Saving && by != null && by.Discarded) by = null;
+            Scribe_References.Look(ref by, "by");
+            Scribe_Values.Look(ref byName, "byName");
+        }
+    }
+
+    /// <summary>
+    /// Who of the colony tended one of a people's own (or set them free), kept until they go home: then the deed the
+    /// game reports names that colonist (<see cref="FactionDeed.by"/>).
+    /// </summary>
+    public class KinNote : IExposable
+    {
+        public Pawn stranger;
+        public Pawn colonist;
+        /// <summary>"tend" or "free".</summary>
+        public string kind;
+        public int tick;
+        public int count = 1;
+
+        public void ExposeData()
+        {
+            if (Scribe.mode == LoadSaveMode.Saving)
+            {
+                if (stranger != null && stranger.Discarded) stranger = null;
+                if (colonist != null && colonist.Discarded) colonist = null;
+            }
+            Scribe_References.Look(ref stranger, "stranger");
+            Scribe_References.Look(ref colonist, "colonist");
+            Scribe_Values.Look(ref kind, "kind");
+            Scribe_Values.Look(ref tick, "tick");
+            Scribe_Values.Look(ref count, "count", 1);
         }
     }
 
@@ -91,6 +129,8 @@ namespace ColonyCouncil
         public int nextId = 1;
         /// <summary>World events that ended up to this tick have been read for the peoples the colony helped.</summary>
         public int situationsRead = -1;
+        /// <summary>Who of the colony tended or freed whom, until they go home (see <see cref="KinNote"/>).</summary>
+        public List<KinNote> notes = new List<KinNote>();
 
         private static FactionMemory cachedInstance;
         private static Game cachedGame;
@@ -158,6 +198,15 @@ namespace ColonyCouncil
             ["welcomed"] = K(DeedSide.Favor, 5),
             ["favorDone"] = K(DeedSide.Favor, 6),
             ["forgave"] = K(DeedSide.Favor, 10),
+            // The world beyond the walls: missions, world events and camps.
+            ["escorted"] = K(DeedSide.Favor, 10),
+            ["carriedWord"] = K(DeedSide.Favor, 8),
+            ["foundChild"] = K(DeedSide.Favor, 18),
+            ["harvestHelp"] = K(DeedSide.Favor, 10),
+            ["mourned"] = K(DeedSide.Favor, 6),
+            ["rebuilt"] = K(DeedSide.Favor, 12),
+            ["sheltered"] = K(DeedSide.Favor, 8),
+            ["campHealed"] = K(DeedSide.Favor, 6),
             // The colony's wrongs.
             ["robbed"] = K(DeedSide.Wrong, 20, 2f),
             ["attacked"] = K(DeedSide.Wrong, 6, 2f, 30),
@@ -187,6 +236,8 @@ namespace ColonyCouncil
             ["aid"] = K(DeedSide.TheirFavor, 12, 2f),
             ["relief"] = K(DeedSide.TheirFavor, 10),
             ["taught"] = K(DeedSide.TheirFavor, 8),
+            ["amends"] = K(DeedSide.TheirFavor, 8),
+            ["apologised"] = K(DeedSide.TheirFavor, 6),
             // Their wrongs.
             ["raided"] = K(DeedSide.TheirWrong, 6, 1f, 20),
             ["killedOurs"] = K(DeedSide.TheirWrong, 15, 2f)
@@ -267,6 +318,9 @@ namespace ColonyCouncil
 
         public FactionDeed ById(int id) => deeds.FirstOrDefault(d => d.id == id);
 
+        /// <summary>Something about a deed changed outside this class (the colonist it names): the World page redraws.</summary>
+        public static void Touch() => Version++;
+
         // ---------------- Once a day ----------------
 
         /// <summary>The faded are forgotten, the gone peoples with them, and world events that ended are read for who was helped.</summary>
@@ -277,6 +331,7 @@ namespace ColonyCouncil
             int before = mem.deeds.Count;
             mem.deeds.RemoveAll(d => d == null || d.faction == null || d.faction.defeated || d.kind == null || d.StrengthAt(now) < MemoryMath.Forgotten);
             if (mem.deeds.Count != before) Version++;
+            mem.notes.RemoveAll(n => n == null || n.stranger == null || n.colonist == null || n.stranger.Dead || !MemoryMath.KeepNote(now - n.tick));
             if (On) mem.ReadSituations();
         }
 
@@ -434,10 +489,14 @@ namespace ColonyCouncil
             Scribe_Collections.Look(ref deeds, "deeds", LookMode.Deep);
             Scribe_Values.Look(ref nextId, "nextId", 1);
             Scribe_Values.Look(ref situationsRead, "situationsRead", -1);
+            if (Scribe.mode == LoadSaveMode.Saving) notes.RemoveAll(n => n == null || n.stranger == null || n.stranger.Discarded || n.colonist == null || n.colonist.Discarded);
+            Scribe_Collections.Look(ref notes, "kinNotes", LookMode.Deep);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 if (deeds == null) deeds = new List<FactionDeed>();
                 deeds.RemoveAll(d => d == null || d.faction == null || d.kind == null);
+                if (notes == null) notes = new List<KinNote>();
+                notes.RemoveAll(n => n == null || n.stranger == null || n.colonist == null || n.kind == null);
                 Version++;
             }
         }

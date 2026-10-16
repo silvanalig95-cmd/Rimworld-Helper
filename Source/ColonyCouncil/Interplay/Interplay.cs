@@ -45,6 +45,9 @@ namespace ColonyCouncil
             if (!On || comp == null) return;
             Safe("interplay: physician's rounds", () => PhysicianRounds(comp));
             Safe("interplay: herdmaster", () => HerdmasterDay(comp));
+            Safe("interplay: chaplain", () => ChaplainDay(comp));
+            Safe("interplay: warden of guests", () => WardenDay(comp));
+            Safe("interplay: elders", () => EldersDay(comp));
             Safe("interplay: setbacks counted", () => CountSetbacks());
             PruneCooldowns();
         }

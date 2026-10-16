@@ -113,6 +113,12 @@ namespace ColonyCouncil
         /// <summary>Forget the last game's people (a new game or a load).</summary>
         public static void Reset() => cache.Clear();
 
+        /// <summary>Forget who this one person was (they changed: <see cref="PeopleChanges"/>), so the next ask reads them afresh.</summary>
+        public static void Forget(Pawn p)
+        {
+            if (p != null) cache.Remove(p.thingIDNumber);
+        }
+
         /// <summary>Who this person is, as tags. Never null.</summary>
         public static HashSet<string> Identity(Pawn p)
         {

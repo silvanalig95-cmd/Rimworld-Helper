@@ -11,7 +11,7 @@
     <order>5</order>
     <summary>Sizes, styles and themes, lights on the walls, materials from your stock, rooms of your own, and furnishing a room you've built</summary>
     <tip>Let the planner choose the materials first, then change only what bothers you.</tip>
-    <description>A room plan lays down walls, a door, a floor and the furniture in one go, as ordinary blueprints for your builders. Pick a room from the "rooms" button in the bottom bar or the council's Room plans page; a preview follows the mouse and a panel opens beside it. Most rooms come in several sizes, and every room in three styles and six themes.</description>
+    <description>A room plan lays down walls, a door, a floor and the furniture in one go, as ordinary blueprints for your builders. Pick a room from the "rooms" button in the bottom bar or the council's Room plans page; a preview follows the mouse and a panel opens beside it. Most rooms come in several sizes, and every room in three styles and eight themes.</description>
     <sections>
       <li>
         <heading>Sizes and styles</heading>
@@ -30,13 +30,15 @@
         <table>
           <li>Theme | What it looks like</li>
           <li>Rustic | wooden walls and furniture, benches and stools, straw matting or planks</li>
-          <li>Stately | marble or granite walls, polished stone or fine carpet, armchairs; candlelight and royal tables, dressers and beds with the Vanilla Expanded mods</li>
+          <li>Stately | marble or granite walls, polished stone or fine carpet, armchairs; candlelight and royal tables, dressers and beds with the Vanilla Expanded mods, or Medieval Overhaul's royal armchair, tudor bed, dresser and candelabra</li>
           <li>Spartan | steel walls and furniture, simple beds, stools and concrete</li>
           <li>Cozy | carpet, warm lamplight, the softest seats there are, and plant pots along the walls from the comfortable style on</li>
           <li>Tribal | fur beds or hide bedrolls, cushions or stools, torchlight (wall torches where the room hangs its lights), straw matting and walls of wood or sandstone; pit latrines and wash buckets with Dubs Bad Hygiene</li>
           <li>Spacer | steel, sterile tiles and an autodoor, for industrial colonies and later; spacer and ergonomic beds and chairs, illuminated end tables and dressers, and the best toilets and showers where mods provide them</li>
+          <li>Hall | a room from an old manor: Medieval Overhaul's rustic, wicker or straw beds, carved chairs and round stools, rustic tables, end tables and dressers, candle stands and oil lamps, on its wooden or herringbone floors; timber and stone walls</li>
+          <li>Garden | the outdoors brought in: lawn underfoot (Alpha Props: Parks and Gardens) or green carpet, plants along the walls from the comfortable style on, its street lights where there's power, benches and wooden furniture</li>
         </table>
-        <after>Rooms that must stay clean keep their sterile tiles in every theme, a room without a floor (a greenhouse, a crypt) stays bare, and the spartan style lays no floor in any theme. The mod furniture comes from Vanilla Furniture Expanded and its Spacer, Art and Architect modules, Vanilla Factions Expanded Medieval 2 and Empire, Dubs Bad Hygiene and Alpha Prefabs; without them a theme uses the base game's pieces. Every theme is checked on every room, in every turn, mirrored and not, with and without that furniture.</after>
+        <after>Rooms that must stay clean keep their sterile tiles in every theme, a room without a floor (a greenhouse, a crypt) stays bare, and the spartan style lays no floor in any theme. The mod furniture comes from Vanilla Furniture Expanded and its Spacer, Art and Architect modules, Vanilla Factions Expanded Medieval 2 and Empire, Medieval Overhaul, Alpha Props: Parks and Gardens, Dubs Bad Hygiene and Alpha Prefabs; without them a theme uses the base game's pieces. Every theme is checked on every room, in every turn, mirrored and not, with and without that furniture.</after>
       </li>
       <li>
         <heading>Lights on the walls</heading>

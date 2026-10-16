@@ -32,6 +32,8 @@
       <li>Sickness among {FACTION}</li>
     </titles>
     <texts>
+      <li>[their:friend] {NAME} has come to {PLACE}, and it is spreading. The first rider {FACTION} sent out came to the colony, and asked for {FRIEND_nameDef} by name: {FACTION} have not forgotten what {FRIEND_pronoun} once did for their people, and they need friends now.\n\nTheir caravans have stopped. The roads will fill with people trying to get away from it.</li>
+      <li>[their:grudge] {NAME} is spreading through {PLACE}. {FACTION} have asked every neighbour for medicine, the colony included, though they don't sound as if they expect much from it.\n\nTheir caravans have stopped. The sick and the frightened will be on the roads soon.</li>
       <li>[theirLowtech,!winter] It started with one family by the river in {PLACE}, and now there are smoke fires burning outside the walls day and night. They call it {NAME}. Nobody knows where it came from.\n\n{FACTION} have shut their gates to strangers and are sending to every neighbor they have for herbs and medicine. Their caravans have stopped running. Before long, the sick and the frightened will be on the roads.</li>
       <li>[theirHightech,!winter] {PLACE} has gone into quarantine. {NAME} came in with a trader a few weeks ago and has spread through {FACTION}'s towns faster than their doctors can count the sick.\n\nTheir caravans have stopped running, and their couriers ask every settlement they can reach the same thing: medicine, anything at all. Before long, the sick and the frightened will be on the roads.</li>
       <li>[winter] {NAME} is moving through the towns of {FACTION} with the cold. In {PLACE}, half the houses have someone sick in them, and the other half have nobody well enough to help.\n\n{FACTION} are asking anyone who will listen for medicine. Their traders are staying home, and the roads belong to people leaving.</li>
@@ -263,6 +265,7 @@
       <li>The hungry year</li>
     </titles>
     <texts>
+      <li>[their:friend] The harvest has failed across {FACTION}'s lands, and the granaries in {PLACE} are empty. Their messenger asked after {FRIEND_nameDef} before anything else, as friends do, and only then said what they need.\n\nPeople are on the roads looking for food, and some of them will come this way.</li>
       <li>[fall] The harvest has failed across {FACTION}'s lands. Rain came at the wrong time, then didn't come at all, and the granaries in {PLACE} are emptier going into winter than anyone there remembers.\n\nPeople are eating their seed grain. The ones who can are leaving to look for food elsewhere, and some of them will come this way.</li>
       <li>[winter] Winter has found {FACTION} with nothing in the stores. The harvest was poor and the autumn was worse, and in {PLACE} they are boiling leather and counting the days to spring.\n\nPeople are leaving to find food wherever they can, and some of them will come this way.</li>
       <li>[spring] The hungry weeks before the first crops are always hard. This year they are cruel: {FACTION} ran out of grain in late winter, and {PLACE} has been living on roots and hope.\n\nPeople are on the roads looking for anything to eat, and some of them will come this way.</li>
@@ -475,6 +478,7 @@
       <li>The long cold</li>
     </titles>
     <texts>
+      <li>[their:grateful] The snow has closed the passes and {FACTION} are burning their furniture in {PLACE}. They remember the colony as a friend, and their first sledge out of {PLACE} is already pointed this way.\n\nIt will be a long winter for everyone in the region.</li>
       <li>[theirLowtech] The old people in {PLACE} say they have never seen snow like it. The passes are closed, the river is frozen to the bottom at the shallows, and {FACTION} are burning their furniture.\n\nIt will be a long winter for everyone in the region, and longer for anyone without a full woodpile.</li>
       <li>[theirHightech] The news from {PLACE} gets worse every day. Roads are closed, fuel lines have frozen, and {FACTION} are rationing heat by the hour.\n\nIt will be a long winter for everyone in the region, and longer for anyone without fuel stored.</li>
       <li>[fall] Winter has come early, and hard. The first snow fell on the harvest in {PLACE} before half of it was in, and it hasn't stopped since.\n\n{FACTION} are worried, and they are not the only ones.</li>
@@ -772,6 +776,7 @@
       <li>The river rises</li>
     </titles>
     <texts>
+      <li>[their:friend] The river burst its banks in the night and took the lower half of {PLACE}. {FACTION} are camped on the hills above the town, and they've sent a boy up the river path to ask whether {FRIEND_nameDef} and the colony can help.\n\nThe colony's own stretch of the river is high and brown, but holding.</li>
       <li>The river has been rising for a week, and last night it broke its banks downstream. {PLACE} sits on the low ground by the water, and most of it is under water now.\n\n{FACTION} are moving to higher ground with whatever they could carry. The colony's own stretch of the river is high and brown, but holding.</li>
       <li>[spring] The snowmelt came in a single week this year. The river burst its banks below the colony in the night and took the lower half of {PLACE} with it: houses, mills, the bridge.\n\n{FACTION} are camped on the hills above the town, waiting for the water to go down.</li>
     </texts>

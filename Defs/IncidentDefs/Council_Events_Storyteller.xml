@@ -627,6 +627,7 @@
           <li>{FACTION} want their due</li>
         </titles>
         <texts>
+          <li>[their:grudge] {X_nameDef}, reeve to a lord of {FACTION}, rode in this morning with a ledger and a cold look. {FACTION} haven't forgotten what they hold against the colony, and the tithe they want has grown to match: {COUNT} silver, or {TALE} in kind, to be carried to {PLACE}.\n\n{A_nameDef} doubts the colony's land was ever in anyone's ledger, and would like to say so.</li>
           <li>{X_nameDef}, reeve to a lord of {FACTION}, rode in this morning with a ledger under {X_possessive} arm. By {X_nameDef}'s reckoning the colony's fields lie inside the lord's lands, and the lord's lands owe a tithe: {COUNT} silver, or {TALE} in kind, to be carried to {PLACE}.\n\n{A_nameDef} doubts the colony's land was ever in anyone's ledger, and would like to say so.</li>
           <li>[fall] The harvest is in, and with it comes {X_nameDef}, reeve to a lord of {FACTION}, to collect the tithe. The colony owes {COUNT} silver, {X_nameDef} says, or {TALE} from its stores, for land the lord's grandfather once rode across.\n\n{A_nameDef} would very much like to see the deed.</li>
           <li>A reeve of {FACTION}, {X_nameDef}, has come with two men-at-arms and a wax seal to collect a tithe for the lord at {PLACE}: {COUNT} silver, or {TALE} in kind. The colony has never paid anyone a tithe before.\n\n{A_nameDef} thinks it shouldn't start now, and is ready to argue the point.</li>

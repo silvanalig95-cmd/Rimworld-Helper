@@ -11,7 +11,9 @@ namespace ColonyCouncil
     /// The colony calendar, in a game component of its own: the days that matter to this colony, and what happens when
     /// one comes round. Days are written down from the colony's history as it happens (the founding, the first good
     /// harvest, the first snow, a battle it remembers, the death of someone loved, a wedding, the arrival of one of its
-    /// first members, a long-serving colonist's birthday) and the player can name days of their own. Once an hour it
+    /// first members, a long-serving colonist's birthday, and in CalendarWatch.cs the first child born here, the walls
+    /// going up, a caravan home safe, a new crop's first harvest, the first trade and a great hunt) and the player can
+    /// name days of their own. Once an hour it
     /// looks at the date; a day that is due comes round with a letter or a message, a feast, games, a rest day or a quiet
     /// hour, journal lines and talk, and a day kept three years running becomes a tradition (CalendarKeeping.cs). With
     /// the "colony calendar" setting off, days are still written down but nothing happens when they come round.
@@ -117,6 +119,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref talkDate, "talkDate", -1);
             Scribe_Values.Look(ref talksLeft, "talksLeft");
             Scribe_Values.Look(ref eveTalkDate, "eveTalkDate", -1);
+            ExposeWatch();
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 if (days == null) days = new List<CalendarDay>();
@@ -250,6 +253,7 @@ namespace ColonyCouncil
             Safe("calendar people", () => ScanPeople(map, known, today, year));
             Safe("calendar harvest", () => WatchHarvest(map, known, today, year));
             Safe("calendar nemeses", () => WatchNemeses(map, known, today, year));
+            WatchMore(map, known, today, year);
             Prune(known);
             MarkMissed(today, year);
             if (snowPendingTick >= 0 && Find.TickManager.TicksGame - snowPendingTick > GenDate.TicksPerDay) snowPendingTick = -1;
@@ -330,6 +334,8 @@ namespace ColonyCouncil
                 case CalendarKind.Wedding: return 3;
                 case CalendarKind.Arrival: return 3;
                 case CalendarKind.Birthday: return 4;
+                case CalendarKind.NewCrop: return 2;
+                case CalendarKind.GreatHunt: return 2;
                 default: return 1;
             }
         }
@@ -386,6 +392,12 @@ namespace ColonyCouncil
                 case CalendarKind.Wedding: return "CC_Cal_Name_Wedding".Translate(d.pawnName ?? "?", d.otherName ?? "?");
                 case CalendarKind.Arrival: return "CC_Cal_Name_Arrival".Translate(d.pawnName ?? "?");
                 case CalendarKind.Birthday: return "CC_Cal_Name_Birthday".Translate(d.pawnName ?? "?");
+                case CalendarKind.FirstChild: return "CC_Cal_Name_FirstChild".Translate(d.pawnName ?? "?");
+                case CalendarKind.Walls: return "CC_Cal_Name_Walls".Translate();
+                case CalendarKind.Homecoming: return "CC_Cal_Name_Homecoming".Translate();
+                case CalendarKind.NewCrop: return "CC_Cal_Name_NewCrop".Translate(d.subject ?? "?");
+                case CalendarKind.FirstTrade: return "CC_Cal_Name_FirstTrade".Translate();
+                case CalendarKind.GreatHunt: return "CC_Cal_Name_GreatHunt".Translate();
                 default: return "CC_Cal_Name_Holiday".Translate();
             }
         }
@@ -400,6 +412,10 @@ namespace ColonyCouncil
                 case CalendarKind.Death: return DayWay.Remembrance;
                 case CalendarKind.Arrival:
                 case CalendarKind.Birthday: return DayWay.Personal;
+                case CalendarKind.FirstChild:
+                case CalendarKind.FirstTrade: return DayWay.Gifts;
+                case CalendarKind.Walls: return DayWay.Bonfire;
+                case CalendarKind.GreatHunt: return DayWay.Hunt;
                 default: return DayWay.Feast;
             }
         }
@@ -769,6 +785,8 @@ namespace ColonyCouncil
                         else if (!d.tradition && d.knew.Count > 0 && !d.knew.Any(k => Living(k, known) != null)) days.Remove(d);
                         break;
                     case CalendarKind.Battle:
+                    case CalendarKind.Homecoming:
+                    case CalendarKind.GreatHunt:
                         if (!d.tradition && d.knew.Count > 0 && !d.knew.Any(k => Living(k, known) != null)) days.Remove(d);
                         break;
                 }

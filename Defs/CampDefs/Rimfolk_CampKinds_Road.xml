@@ -1,0 +1,899 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- More kinds of camp (ColonyCouncil.CampKindDef, see Council_CampKinds.xml): a salt caravan, merchants from afar,
+       drovers with a herd, penitents walking a vow, tree-singers (Ideology only: a people whose faith is rooted in the
+       land), a travelling healer, a band of minstrels, and mourners carrying their dead home. Each has its own work at
+       the camp, its own good turns (Camps/CampKinds.cs: goods, tales, milk, song, blessing, heal) told in helpTexts, and
+       its own requests the colony can make of it (asks: Camps/CampAsks.cs), shown on the camp's page. Lines can also
+       ask for the people's faith ([ideology], [sameFaith], [otherFaith], [meme:Guilty]...) and what they remember of
+       the colony ([their:grateful], [their:friend] with {FRIEND}). -->
+
+  <!-- ===================== Their work ===================== -->
+
+  <JobDef ParentName="Council_CampJobBase">
+    <defName>Council_CampVigil</defName>
+    <reportString>keeping vigil.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.CampJobExtension"><ticks>3000</ticks></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef ParentName="Council_CampJobBase">
+    <defName>Council_CampHerd</defName>
+    <reportString>seeing to the herd.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.CampJobExtension"><ticks>2500</ticks></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef ParentName="Council_CampJobBase">
+    <defName>Council_CampPlayMusic</defName>
+    <reportString>playing music.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.CampJobExtension"><ticks>2500</ticks><social>true</social></li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- ===================== A salt caravan ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Council_Camp_SaltCaravan</defName>
+    <label>salt caravan</label>
+    <minTech>Neolithic</minTech>
+    <weight>0.7</weight>
+    <people>4~7</people>
+    <days>2~4</days>
+    <ages>18~60</ages>
+    <chopsPerDay>0.5</chopsPerDay>
+    <trader>true</trader>
+    <traderKind>Bulk</traderKind>
+    <task>Council_CampKeepStall</task>
+    <taskAt>stall</taskAt>
+    <hireChance>0.2</hireChance>
+    <joinChance>0.03</joinChance>
+    <helpChance>0.25</helpChance>
+    <help>
+      <li>goods</li>
+      <li>tales</li>
+    </help>
+    <pride>0.25</pride>
+    <breakTerms>0.08</breakTerms>
+    <tensionPerDay>0.8</tensionPerDay>
+    <extendChance>0.25</extendChance>
+    <situationKinds>
+      <li>trade</li>
+      <li>road</li>
+      <li>toll</li>
+    </situationKinds>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+      <li><role>bed</role><defs><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff></li>
+      <li><role>stall</role><defs><li>Table1x2c</li></defs><stuff><li>WoodLog</li></stuff></li>
+      <li><role>light</role><defs><li>TorchLamp</li></defs></li>
+    </structures>
+    <titles>
+      <li>A caravan stops</li>
+      <li>[lowtech] The salt caravan</li>
+      <li>[!lowtech] A long-haul convoy</li>
+    </titles>
+    <texts>
+      <li>[lowtech] A caravan of {FACTION} has come down the long road with a dozen laden beasts, carrying salt, dried fish and rope from the coast to the hill towns. {X_nameDef}, the caravan master, told {A_nameDef} their animals need a rest and their water barrels need filling, and asked whether they might camp {PLACE} for a few days.</li>
+      <li>[!lowtech] A convoy of {FACTION}'s long-haul traders has pulled off the road near the colony: a few battered vehicles, a lot of canvas and a lot of crates. {X_nameDef}, who runs it, told {A_nameDef} they're waiting on a part and would like to camp {PLACE} for a few days. They'll trade while they wait.</li>
+      <li>[ws:toll] The toll has sent {FACTION}'s caravan the long way round, and the long way round goes past the colony. {X_nameDef}, the caravan master, asked {A_nameDef} for a few days' camp {PLACE} to rest the animals before the hills.</li>
+      <li>[their:friend] A caravan of {FACTION} has stopped by the colony, and {X_nameDef}, its master, asked for {A_nameDef} by name: {FACTION} tell the story of what {A_pronoun} once did for them on every road they travel. They'd like to camp {PLACE} for a few days.</li>
+      <li>[winter] A caravan of {FACTION}, caught by the weather between towns, has turned off the road toward the colony's smoke. {X_nameDef} asked {A_nameDef} for leave to camp {PLACE} until the beasts are rested and the road is clear.</li>
+    </texts>
+    <settled>
+      <li>The caravan from {FACTION} has made camp {PLACE}: bales stacked in a wall against the wind, the animals hobbled in a ring, a fire with a kettle on it that never seems to come off.</li>
+      <li>The caravan's camp is up {PLACE}, with its goods laid out on a table for anyone who wants to look, and a guard on the bales who doesn't seem to sleep.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef}, one of the caravan's drivers, says {X_pronoun} has walked the long road for eleven years and would like, for once, to stop somewhere. {X_pronoun} asks whether the colony might be that somewhere.</li>
+      <li>{X_nameDef} from the caravan {PLACE} has been looking at the colony's fields with an expression the others recognise. Tonight {X_pronoun} asked whether there was a place for {X_objective} here.</li>
+    </joinTexts>
+    <farewell>
+      <li>The caravan from {FACTION} loaded up before dawn and went on toward the hills, bells ringing on the lead animal. {X_nameDef} promised to stop again next year.</li>
+      <li>The salt caravan's camp {PLACE} is empty, and the dust of its going hangs over the road for an hour after.</li>
+      <li>[!lowtech] The convoy from {FACTION} got its part and its engines running, and was gone by mid-morning in a cloud of exhaust and goodwill.</li>
+    </farewell>
+    <lines>
+      <li>Water the beasts first.</li>
+      <li>Salt keeps. Salt always keeps.</li>
+      <li>Three days to the hills.</li>
+      <li>Who's on watch tonight?</li>
+      <li>Tighten that strap.</li>
+      <li>Count the bales again.</li>
+      <li>[!lowtech] Has anyone seen the spanner?</li>
+      <li>Best price this side of the coast.</li>
+    </lines>
+    <helpTexts>
+      <li>[goods] {X_nameDef}, the caravan master, sent a few things from the packs up to the colony, by way of thanks for the water and the quiet: {THING}.</li>
+      <li>[goods] The caravan {PLACE} had more than it could carry over the hills, and {X_nameDef} left the colony some of it rather than throw it away: {THING}.</li>
+      <li>[tales] {A_nameDef} sat up half the night at the caravan's fire while {X_nameDef} told the news of every town between here and the sea. {A_nameDef} came back with a head full of names and roads.</li>
+      <li>[tales] The caravan's drivers had stories from the far roads, and {A_nameDef} heard most of them, twice. Some of them may even have been true.</li>
+    </helpTexts>
+    <asks>
+      <li>
+        <key>evening</key>
+        <label>Spend an evening at their fire</label>
+        <tip>The colony goes over to the caravan's fire this evening to swap stories and news from the road. Recreation for whoever comes; the caravan warms to the colony.</tip>
+        <needs>evening</needs>
+        <tension>-6</tension>
+        <outcomes>
+          <li>The colony is going over to the caravan's fire this evening. {X_nameDef} has promised the long version of every story.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>an evening at the caravan's fire</label><spots><li>Camp</li><li>Outdoors</li></spots><hours>17~22</hours><duration>2~3</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.08</amount></li>
+        </effects>
+      </li>
+      <li>
+        <key>stores</key>
+        <label>Buy preserved fare for the stores ({COUNT} silver)</label>
+        <tip>A share of the caravan's dried and salted fare, at the caravan's price: good for a long winter or a long trip.</tip>
+        <silver>90</silver>
+        <outcomes>
+          <li>{X_nameDef} counts out sacks of preserved fare for the colony's stores and the silver into the caravan's chest, and both sides seem pleased with the bargain.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>Pemmican</thing><count>50</count></li>
+        </effects>
+      </li>
+      <li>
+        <key>road</key>
+        <label>Ask about the roads ahead</label>
+        <tip>{A_nameDef} asks the caravan master what the roads are like: who's safe, who's dear, who's hiring. Practice at listening, and the caravan's people think better of the colony for asking.</tip>
+        <minDays>0.5</minDays>
+        <outcomes>
+          <li>{A_nameDef} spent an hour with {X_nameDef} and a stick drawing roads in the dirt, and came back knowing more about the region than anyone in the colony.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><duration>1~1.5</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Social</skill><xp>350</xp></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>2</amount></li>
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+  <!-- ===================== Merchants from afar ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Council_Camp_FarMerchants</defName>
+    <label>merchants from afar</label>
+    <weight>0.5</weight>
+    <people>3~5</people>
+    <days>2~5</days>
+    <ages>22~65</ages>
+    <chopsPerDay>0.3</chopsPerDay>
+    <trader>true</trader>
+    <traderKind>Exotic</traderKind>
+    <task>Council_CampKeepStall</task>
+    <taskAt>stall</taskAt>
+    <hireChance>0.1</hireChance>
+    <joinChance>0.02</joinChance>
+    <helpChance>0.2</helpChance>
+    <help>
+      <li>tales</li>
+      <li>goods</li>
+    </help>
+    <pride>0.35</pride>
+    <breakTerms>0.06</breakTerms>
+    <tensionPerDay>0.8</tensionPerDay>
+    <extendChance>0.3</extendChance>
+    <situationKinds>
+      <li>trade</li>
+      <li>fair</li>
+      <li>road</li>
+    </situationKinds>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+      <li><role>bed</role><defs><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff></li>
+      <li><role>stall</role><defs><li>Table1x2c</li></defs><stuff><li>WoodLog</li></stuff></li>
+      <li><role>light</role><defs><li>TorchLamp</li></defs></li>
+    </structures>
+    <titles>
+      <li>Merchants from afar</li>
+      <li>Strange goods on the road</li>
+    </titles>
+    <texts>
+      <li>[lowtech] Merchants of {FACTION} have come from much further than {FACTION}'s own lands: their clothes are cut strangely, their animals are strange, and their packs smell of spices nobody at the colony can name. {X_nameDef}, who speaks for them, asked {A_nameDef} whether they might camp {PLACE} for a few days and show their wares.</li>
+      <li>[!lowtech] A small trading party of {FACTION} has turned up with crates stamped in three alphabets and goods nobody at the colony has seen outside a picture. {X_nameDef} told {A_nameDef} they're on the way to the far markets and would like to camp {PLACE} for a few days, and trade if anyone's interested.</li>
+      <li>[ws:fair|ws:trade] With {SITUATION} on, merchants of {FACTION} from the far south have come up the road with rare goods. {X_nameDef} asked {A_nameDef} for a few days' camp {PLACE}, to rest and trade on the way.</li>
+    </texts>
+    <settled>
+      <li>The merchants from {FACTION} have laid their wares out on a cloth {PLACE}: little jars, bright cloth, things that tick and things that shine. They've hung a lamp so customers can come after dark.</li>
+      <li>The merchants' camp {PLACE} has a striped awning over the stall and a smell of strange spices over everything.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef}, the youngest of the merchants {PLACE}, says {X_pronoun} is tired of roads that go nowhere {X_pronoun} wants to be, and asks whether {X_pronoun} might stay with the colony.</li>
+    </joinTexts>
+    <farewell>
+      <li>The merchants from {FACTION} packed their strange goods and went on toward the far markets, leaving a smell of spice behind for days.</li>
+      <li>The merchants' camp {PLACE} is gone. {X_nameDef} bowed to the colony's gate before leaving, in some custom of their own.</li>
+    </farewell>
+    <lines>
+      <li>Very rare. Very old.</li>
+      <li>For you, a special price.</li>
+      <li>From beyond the mountains.</li>
+      <li>Careful, it bites.</li>
+      <li>We have a saying about that.</li>
+      <li>Only three of these left in the world.</li>
+    </lines>
+    <helpTexts>
+      <li>[tales] {A_nameDef} spent an evening with {X_nameDef} and came back talking about cities that float, rivers of salt and a king who keeps bees. {A_nameDef} believes about half of it.</li>
+      <li>[tales] The merchants {PLACE} told the colony stories of the far south over a pot of something very spicy, and {A_nameDef} hasn't stopped talking about it since.</li>
+      <li>[goods] {X_nameDef} sent a small gift from the merchants' packs to the colony, wrapped in coloured cloth, as is their custom with hosts: {THING}.</li>
+    </helpTexts>
+    <asks>
+      <li>
+        <key>charts</key>
+        <label>Buy their charts and almanacs ({COUNT} silver)</label>
+        <tip>The merchants carry charts, tables and notes from places nobody here has seen. They will help whoever is studying for the colony.</tip>
+        <silver>120</silver>
+        <outcomes>
+          <li>{X_nameDef} sells the colony a bundle of charts and notebooks from the far south, some of them very old. The colony's scholars fall on them.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Research"><share>0.15</share><max>900</max></li>
+        </effects>
+      </li>
+      <li>
+        <key>supper</key>
+        <label>Invite them to supper</label>
+        <tip>A meal at the colony's table with the merchants as guests: they cook one dish from home, the colony the rest. Recreation, and the merchants warm to the colony.</tip>
+        <tension>-8</tension>
+        <deed>welcomed</deed>
+        <outcomes>
+          <li>The merchants are coming to supper tonight, and {X_nameDef} insists on cooking one dish from home. Nobody has asked what's in it.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>supper with the merchants</label><hours>17~21</hours></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>Colony</target><skill>Cooking</skill><xp>120</xp></li>
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+  <!-- ===================== Drovers ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Council_Camp_Drovers</defName>
+    <label>drovers</label>
+    <minTech>Neolithic</minTech>
+    <weight>0.7</weight>
+    <people>3~5</people>
+    <days>2~4</days>
+    <ages>16~60</ages>
+    <chopsPerDay>0.4</chopsPerDay>
+    <task>Council_CampHerd</task>
+    <hireChance>0.25</hireChance>
+    <joinChance>0.04</joinChance>
+    <helpChance>0.3</helpChance>
+    <help>
+      <li>milk</li>
+      <li>tales</li>
+    </help>
+    <pride>0.3</pride>
+    <breakTerms>0.12</breakTerms>
+    <tensionPerDay>1.2</tensionPerDay>
+    <extendChance>0.2</extendChance>
+    <situationKinds>
+      <li>drove</li>
+      <li>harvest</li>
+    </situationKinds>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+      <li><role>bed</role><defs><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Leather_Plain</li><li>Cloth</li></stuff></li>
+      <li><role>wall</role><defs><li>Wall</li></defs><stuff><li>WoodLog</li></stuff><count>3</count></li>
+      <li><role>light</role><defs><li>TorchLamp</li></defs></li>
+    </structures>
+    <titles>
+      <li>Drovers make camp</li>
+      <li>A herd on the road</li>
+    </titles>
+    <texts>
+      <li>Drovers of {FACTION} are walking a herd to market, and the herd is resting in the long grass beyond the ridge while the drovers ask for a camp. {X_nameDef}, a lean old drover with a dog that never takes its eyes off {A_nameDef}, asked for leave to camp {PLACE} for a few days.</li>
+      <li>[ws:drove] {SITUATION} has brought another herd past the colony. {X_nameDef}, its head drover, asked {A_nameDef} whether {FACTION}'s drovers might camp {PLACE} a few days while the beasts graze beyond the ridge.</li>
+      <li>[their:grateful] The drovers of {FACTION} know the colony as a friendly stop on the drove road. {X_nameDef} asked {A_nameDef}, with a nod as if to an old friend, for a few days' camp {PLACE}.</li>
+      <li>[winter] Drovers of {FACTION}, bringing a late herd down from the high pastures, have asked to camp {PLACE} out of the wind. {X_nameDef} promised {A_nameDef} the herd won't come near the colony's fields.</li>
+    </texts>
+    <settled>
+      <li>The drovers from {FACTION} have made camp {PLACE}, with a rough fence for the dogs and a fire that smells of dung smoke. The herd can be heard beyond the ridge, lowing.</li>
+      <li>The drovers' camp is up {PLACE}: a fire, a fence, three dogs and not much else. Drovers travel light.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef}, the youngest of the drovers {PLACE}, says {X_pronoun} has had enough of walking behind cows, and asks whether the colony could use someone who knows animals.</li>
+      <li>{X_nameDef} from the drovers' camp has been helping in the colony's barn every evening, unasked. Tonight {X_pronoun} asked whether {X_pronoun} might stay and do it for good.</li>
+    </joinTexts>
+    <farewell>
+      <li>The drovers from {FACTION} moved the herd on at first light. The colony could hear the bells and the dogs long after they'd gone over the ridge.</li>
+      <li>The drovers' camp {PLACE} is empty, and the grass beyond the ridge is cropped short. {X_nameDef} left a cheese on the gatepost.</li>
+    </farewell>
+    <lines>
+      <li>Easy, easy.</li>
+      <li>Get round them, girl!</li>
+      <li>Count them again.</li>
+      <li>Rain's coming. They know.</li>
+      <li>Four days to market.</li>
+      <li>That one's trouble.</li>
+      <li>Mind the bull.</li>
+    </lines>
+    <helpTexts>
+      <li>[milk] The drovers {PLACE} milked more than they could carry, and {X_nameDef} brought the rest up to the colony: {COUNT} of {THING}.</li>
+      <li>[milk] {X_nameDef} from the drovers' camp left {COUNT} of {THING} at the colony's gate, from the herd beyond the ridge, with no word except a nod.</li>
+      <li>[tales] {A_nameDef} sat with the drovers at their dung-smoke fire and heard about every road, river and bad-tempered bull between here and the market. {A_nameDef} came back smelling of cows and full of stories.</li>
+    </helpTexts>
+    <asks>
+      <li>
+        <key>beast</key>
+        <label>Buy a beast from the herd ({COUNT} silver)</label>
+        <tip>One of the drovers' animals, at the drovers' price: young, sound and used to people. It suits the weather here.</tip>
+        <silver>180</silver>
+        <deed>traded</deed>
+        <outcomes>
+          <li>{X_nameDef} walks a young beast over the ridge on a rope and hands the rope to {A_nameDef}, along with a long list of what it likes and what it doesn't.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_SpawnAnimal"><kinds><li>Cow</li><li>Goat</li><li>Sheep</li><li>Muffalo</li><li>Yak</li><li>Alpaca</li><li>Dromedary</li><li>Donkey</li><li>Horse</li></kinds></li>
+        </effects>
+      </li>
+      <li>
+        <key>herding</key>
+        <label>Have {A_nameDef} learn herding from them</label>
+        <tip>{A_nameDef} spends some hours at the drovers' side, learning how they read a herd. Practice with animals.</tip>
+        <skill>Animals</skill>
+        <warm>2</warm>
+        <outcomes>
+          <li>{A_nameDef} is going out to the herd with {X_nameDef} for a while, to watch how the drovers do it.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>X</teacher><student>A</student><skill>Animals</skill><duration>2~3</duration></li>
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+  <!-- ===================== Penitents ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Council_Camp_Penitents</defName>
+    <label>penitents</label>
+    <weight>0.5</weight>
+    <people>3~6</people>
+    <days>2~4</days>
+    <ages>18~70</ages>
+    <chopsPerDay>0.2</chopsPerDay>
+    <task>Council_CampPray</task>
+    <taskAt>spot</taskAt>
+    <hireChance>0.03</hireChance>
+    <joinChance>0.04</joinChance>
+    <helpChance>0.25</helpChance>
+    <help>
+      <li>blessing</li>
+      <li>tales</li>
+    </help>
+    <pride>0.15</pride>
+    <breakTerms>0.02</breakTerms>
+    <tensionPerDay>0.3</tensionPerDay>
+    <canPay>false</canPay>
+    <extendChance>0.15</extendChance>
+    <situationKinds>
+      <li>faith</li>
+      <li>sickness</li>
+      <li>comet</li>
+    </situationKinds>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+      <li><role>bed</role><defs><li>SleepingSpot</li></defs></li>
+      <li><role>spot</role><defs><li>MeditationSpot</li><li>PartySpot</li></defs></li>
+    </structures>
+    <titles>
+      <li>Penitents on the road</li>
+      <li>[ideology] Penitents of {IDEO}</li>
+    </titles>
+    <texts>
+      <li>A line of penitents of {FACTION} has come up the road barefoot, in plain grey, walking a vow to a shrine far beyond the colony. {X_nameDef}, who leads them, asked {A_nameDef} very quietly whether they might sleep {PLACE} for a few nights. They ask for nothing else.</li>
+      <li>[ideology,otherFaith] Penitents of {IDEO}, from {FACTION}, have stopped by the colony on a long walk of atonement. Their faith isn't the colony's, and {X_nameDef}, who leads them, said so at once, and asked all the same for leave to camp {PLACE}.</li>
+      <li>[ideology,sameFaith] Penitents of {IDEO}, the colony's own faith, have come up the road walking a vow. {X_nameDef} asked {A_nameDef} for a few nights' rest {PLACE}, among people who will understand why they walk.</li>
+      <li>[meme:Guilty] Penitents of {FACTION} have come barefoot to the colony's gate, carrying stones in their packs for the wrongs they mean to set down at the end of the road. {X_nameDef} asked to camp {PLACE} for a few nights, and promised they would be no trouble to anyone but themselves.</li>
+      <li>[meme:PainIsVirtue] Penitents of {IDEO} have come up the road with their feet bound in rags and their backs straight. The road is the point, {X_nameDef} told {A_nameDef}; the shrine is only where it ends. They ask to camp {PLACE} a few nights.</li>
+      <li>[meme:Proselytizer] Penitents of {IDEO} have stopped by the colony on their walk. {X_nameDef} asked for leave to camp {PLACE}, and warned {A_nameDef}, with a smile, that they will talk about their faith to anyone who stands still long enough.</li>
+      <li>[ws:sickness] Penitents of {FACTION} are walking to the shrine to pray for the end of {SITUATION}. {X_nameDef} asked {A_nameDef} whether they might rest {PLACE} a few nights, well apart from the colony.</li>
+    </texts>
+    <settled>
+      <li>The penitents from {FACTION} have made the barest camp the colony has ever seen {PLACE}: a fire, a cleared place for prayer, and the ground to sleep on.</li>
+      <li>[ideology] The penitents of {IDEO} have set out their few holy things on a cloth {PLACE}, and sit before them morning and evening in silence.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef}, one of the penitents {PLACE}, says {X_possessive} vow ends wherever {X_pronoun} finds a place to make amends with work. {X_pronoun} asks whether that might be the colony.</li>
+      <li>[sameFaith] {X_nameDef} from the penitents' camp says the colony keeps the faith better than the shrine at the end of the road, and asks to stay.</li>
+    </joinTexts>
+    <farewell>
+      <li>The penitents from {FACTION} went on at dawn, barefoot, without a word. Their camp {PLACE} is swept so clean it's hard to tell anyone was there.</li>
+      <li>The penitents left before sunrise. {X_nameDef} stopped at the gate to bow, and then they were gone up the road.</li>
+    </farewell>
+    <lines>
+      <li>Forgive me.</li>
+      <li>One more mile.</li>
+      <li>The road is the prayer.</li>
+      <li>We carry what we did.</li>
+      <li>Silence, now.</li>
+      <li>[ideology] {IDEO} keep us.</li>
+      <li>[meme:Proselytizer] Have you heard the word?</li>
+    </lines>
+    <helpTexts>
+      <li>[blessing] {X_nameDef} and the penitents walked once round the colony at dusk, barefoot, praying for it in low voices. They didn't ask anyone's leave, and nobody minded.</li>
+      <li>[blessing,otherFaith] The penitents prayed for the colony in the way of {IDEO}, at its gate, at dusk. It isn't the colony's faith. It was kindly meant, all the same.</li>
+      <li>[blessing,sameFaith] The penitents prayed with the colony this evening, as people of one faith, and {X_nameDef} asked forgiveness for the world in words the colony knows by heart.</li>
+      <li>[tales] {A_nameDef} sat with {X_nameDef} at the penitents' fire and asked what they had done to walk so far. {X_nameDef} told {A_objective}. {A_nameDef} has been quiet since.</li>
+    </helpTexts>
+    <asks>
+      <li>
+        <key>prayer</key>
+        <label>Join their evening prayer</label>
+        <tip>Whoever wants to goes to the penitents' fire at dusk and sits with them while they pray. Quiet, and something like peace; the penitents are touched.</tip>
+        <needs>evening</needs>
+        <tension>-6</tension>
+        <outcomes>
+          <li>Some of the colony are going to sit with the penitents at their evening prayer. {X_nameDef} has made room at the fire.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>evening prayer with the penitents</label><spots><li>Camp</li><li>Outdoors</li></spots><hours>17~21</hours><duration>1.5~2.5</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Camp_PilgrimBlessing</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
+        </effects>
+      </li>
+      <li>
+        <key>bread</key>
+        <label>Give them bread for the road (15 raw food)</label>
+        <tip>Food for the rest of their walk. They won't ask for it.</tip>
+        <tension>-8</tension>
+        <deed>welcomed</deed>
+        <outcomes>
+          <li>{A_nameDef} takes bread and dried fruit to the penitents' camp. {X_nameDef} accepts it with both hands and a bow, and says they will pray for whoever grew it.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Camp</to><duration>0.75~1.25</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>15</count></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>3</amount></li>
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+  <!-- ===================== Tree-singers (Ideology) ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Council_Camp_TreeSingers</defName>
+    <label>tree-singers</label>
+    <weight>0.6</weight>
+    <memes>
+      <li>TreeConnection</li>
+      <li>NaturePrimacy</li>
+      <li>Structure_Animist</li>
+    </memes>
+    <people>2~5</people>
+    <days>2~5</days>
+    <ages>16~75</ages>
+    <task>Council_CampPray</task>
+    <taskAt>spot</taskAt>
+    <hireChance>0.05</hireChance>
+    <joinChance>0.04</joinChance>
+    <helpChance>0.3</helpChance>
+    <help>
+      <li>blessing</li>
+      <li>heal</li>
+    </help>
+    <pride>0.25</pride>
+    <breakTerms>0.03</breakTerms>
+    <tensionPerDay>0.4</tensionPerDay>
+    <canPay>false</canPay>
+    <extendChance>0.25</extendChance>
+    <situationKinds>
+      <li>faith</li>
+      <li>comet</li>
+      <li>drought</li>
+    </situationKinds>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+      <li><role>bed</role><defs><li>SleepingSpot</li></defs></li>
+      <li><role>spot</role><defs><li>MeditationSpot</li><li>PartySpot</li></defs></li>
+    </structures>
+    <titles>
+      <li>Tree-singers</li>
+      <li>Pilgrims of the green</li>
+    </titles>
+    <texts>
+      <li>Pilgrims of {IDEO}, from {FACTION}, have come to the colony's woods. They walk from grove to grove, {X_nameDef} told {A_nameDef}, singing to the old trees and listening for what the land wants. They ask to camp {PLACE} for a few days, and promise not to cut a single branch.</li>
+      <li>[meme:TreeConnection] Tree-singers of {IDEO} have come up the road with their hands stained green and seeds in every pocket. {X_nameDef} told {A_nameDef} there is a tree near the colony they have come a long way to hear, and asked to camp {PLACE} near it.</li>
+      <li>[meme:Structure_Animist] Pilgrims of {FACTION}, who believe everything that grows has a spirit, have come to greet the spirits of the colony's woods. {X_nameDef} asked {A_nameDef}, very politely, for leave to camp {PLACE} and greet them properly.</li>
+      <li>[sameFaith] Pilgrims of {IDEO}, the colony's own faith, have come to sing to the colony's trees. {X_nameDef} told {A_nameDef} they had heard the colony's woods were well kept, and asked to camp {PLACE} a few days.</li>
+    </texts>
+    <settled>
+      <li>The tree-singers from {FACTION} have made camp {PLACE} without cutting so much as a twig: their beds are on moss, their fire is in a ring of old stones, and their prayers are under the biggest tree.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef}, one of the tree-singers {PLACE}, says the land here has asked {X_objective} to stay. {X_pronoun} would like the colony to ask too.</li>
+    </joinTexts>
+    <farewell>
+      <li>The tree-singers left at dawn, singing, and stopped at the edge of the woods to bow to the trees. They left a ring of planted seeds where their fire had been.</li>
+      <li>The tree-singers from {FACTION} have gone on to the next grove. {X_nameDef} told the colony its trees are content, which is apparently a compliment.</li>
+    </farewell>
+    <lines>
+      <li>Listen. It's answering.</li>
+      <li>Old, old, old.</li>
+      <li>Thank you, tree.</li>
+      <li>Walk softly here.</li>
+      <li>[ideology] {IDEO} is in the roots.</li>
+      <li>Sing it slower.</li>
+    </lines>
+    <helpTexts>
+      <li>[blessing] The tree-singers went through the colony's fields at dusk, singing to the crops one row at a time. {X_nameDef} says they will grow better for it. The colony's farmers are prepared to believe it.</li>
+      <li>[blessing,sameFaith] The tree-singers sang with the colony at the old tree this evening, and {A_nameDef} sang the loudest.</li>
+      <li>[heal] {X_nameDef}, the eldest of the tree-singers, looked at {A_nameDef}'s {THING}, went into the woods, and came back with a leaf to chew and a moss to bind it with. It worked better than anyone expected.</li>
+      <li>[herbs] The tree-singers {PLACE} gathered more herbs than they need, and left {COUNT} bundles of medicine at the colony's gate, tied with grass.</li>
+    </helpTexts>
+    <asks>
+      <li>
+        <key>woods</key>
+        <label>Walk the woods with them</label>
+        <tip>{A_nameDef} goes walking with the tree-singers for a few hours, listening. Quiet and calm for {A_objective}; the tree-singers warm to the colony.</tip>
+        <warm>2</warm>
+        <tension>-5</tension>
+        <outcomes>
+          <li>{A_nameDef} has gone walking in the woods with the tree-singers, to listen to whatever it is they listen to.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><duration>2~3</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Camp_PilgrimBlessing</thought></li>
+        </effects>
+      </li>
+      <li>
+        <key>fields</key>
+        <label>Ask them to sing to the fields</label>
+        <tip>The tree-singers sing over the colony's growing fields. Practice for the colony's growers, who go along to listen.</tip>
+        <minDays>1</minDays>
+        <deed>welcomed</deed>
+        <outcomes>
+          <li>The tree-singers are going out to the colony's fields to sing to the crops, and the growers are going with them.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>the singing in the fields</label><spots><li>Fields</li><li>Outdoors</li></spots><hours>7~18</hours><duration>1.5~2</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>Colony</target><skill>Plants</skill><xp>150</xp></li>
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+  <!-- ===================== A travelling healer ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Council_Camp_LoneHealer</defName>
+    <label>travelling healer</label>
+    <weight>0.6</weight>
+    <people>1~2</people>
+    <days>3~6</days>
+    <ages>35~75</ages>
+    <chopsPerDay>0.2</chopsPerDay>
+    <task>Council_CampHeal</task>
+    <taskAt>stall</taskAt>
+    <hireChance>0.1</hireChance>
+    <joinChance>0.04</joinChance>
+    <helpChance>0.3</helpChance>
+    <help>
+      <li>heal</li>
+    </help>
+    <pride>0.2</pride>
+    <breakTerms>0.02</breakTerms>
+    <tensionPerDay>0.3</tensionPerDay>
+    <extendChance>0.35</extendChance>
+    <situationKinds>
+      <li>sickness</li>
+      <li>healer</li>
+    </situationKinds>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+      <li><role>bed</role><defs><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff></li>
+      <li><role>stall</role><defs><li>Table1x2c</li></defs><stuff><li>WoodLog</li></stuff></li>
+    </structures>
+    <titles>
+      <li>A travelling healer</li>
+      <li>[lowtech] A wise-woman on the road</li>
+      <li>[!lowtech] A country doctor</li>
+    </titles>
+    <texts>
+      <li>[lowtech] An old healer of {FACTION} has come down the road with a staff, a bag of herbs and an apprentice carrying the rest. {X_nameDef} told {A_nameDef} {X_pronoun} goes where {X_pronoun} is needed, and asked to camp {PLACE} a few days in case the colony needs {X_objective}.</li>
+      <li>[!lowtech] A country doctor of {FACTION} has stopped at the colony on a long round of the outlying farms: one tired medic, a battered bag and a notebook full of other people's coughs. {X_nameDef} asked to camp {PLACE} for a few days.</li>
+      <li>[ws:sickness] {SITUATION} has every healer in the region on the road, and {X_nameDef} of {FACTION} has stopped at the colony on the way between the worst of it. {X_pronoun} asked to camp {PLACE} a few days, to rest and to see anyone who's ailing.</li>
+      <li>[their:rescued] {X_nameDef}, a healer of {FACTION}, has come to the colony on purpose: {X_pronoun} wanted to meet the people who tended {FACTION}'s wounded when nobody else would. {X_pronoun} asked to camp {PLACE} a few days.</li>
+    </texts>
+    <settled>
+      <li>The healer from {FACTION} has set up {PLACE}: a fire, a folding table with jars and bundles in rows, and a bench for anyone who needs looking at.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef}, the healer's apprentice, says {X_pronoun} has learned all the road can teach, and that the colony needs a healer more than the road does. {X_pronoun} asks to stay.</li>
+      <li>{X_nameDef}, the healer {PLACE}, says {X_possessive} knees are tired of roads. If the colony would have an old healer, {X_pronoun} would stay.</li>
+    </joinTexts>
+    <farewell>
+      <li>The healer from {FACTION} went on to the next village, leaving instructions for half the colony and a jar of salve on the gatepost.</li>
+      <li>{X_nameDef}, the travelling healer, has gone. {X_pronoun} looked in on everyone {X_pronoun} had treated before leaving, one by one.</li>
+    </farewell>
+    <lines>
+      <li>Open wide.</li>
+      <li>That's not as bad as it looks.</li>
+      <li>Chew this. Don't swallow.</li>
+      <li>Rest, and plenty of water.</li>
+      <li>Who's next?</li>
+      <li>[lowtech] Feverfew for that.</li>
+      <li>[!lowtech] Keep it clean and dry.</li>
+    </lines>
+    <helpTexts>
+      <li>[heal] {X_nameDef}, the travelling healer, sat {A_nameDef} down on the bench and dealt with {A_possessive} {THING} in a quarter of an hour, with a lot of tutting. {A_nameDef} is already feeling better.</li>
+      <li>[heal,lowtech] {X_nameDef} saw {A_nameDef}'s {THING} from across the yard, came straight over and dealt with it on the spot with a poultice and a bitter tea.</li>
+      <li>[herbs] {X_nameDef} had more remedies than {X_pronoun} could carry, and left {COUNT} of them for the colony's stores, with instructions written on each one.</li>
+    </helpTexts>
+    <asks>
+      <li>
+        <key>sick</key>
+        <label>Ask the healer to see {A_nameDef}</label>
+        <tip>The travelling healer looks at whoever in the colony is ill or ailing, and does what can be done. It eases it; it doesn't work miracles.</tip>
+        <needs>sick</needs>
+        <once>false</once>
+        <tension>-3</tension>
+        <outcomes>
+          <li>{X_nameDef} spends an hour with {A_nameDef}, prodding, listening and muttering, and leaves {A_objective} with a remedy and very firm instructions.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><duration>1~1.5</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_EaseIllness"><severity>0.12</severity></li>
+          <li Class="ColonyCouncil.DilemmaEffect_EaseAilment"><factor>0.5</factor></li>
+        </effects>
+      </li>
+      <li>
+        <key>teach</key>
+        <label>Pay the healer to teach {A_nameDef} ({COUNT} silver)</label>
+        <tip>The healer takes the colony's best doctor along on the rounds for a few hours. Practice in medicine, at the healer's side.</tip>
+        <skill>Medicine</skill>
+        <silver>70</silver>
+        <deed>campHealed</deed>
+        <outcomes>
+          <li>{A_nameDef} is going to follow {X_nameDef} about for a few hours and learn what {X_pronoun} can show.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>X</teacher><student>A</student><skill>Medicine</skill><xpPerHour>220</xpPerHour><duration>2~3</duration></li>
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+  <!-- ===================== A band of minstrels ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Council_Camp_Minstrels</defName>
+    <label>band of minstrels</label>
+    <weight>0.6</weight>
+    <people>3~5</people>
+    <days>2~5</days>
+    <ages>16~60</ages>
+    <chopsPerDay>0.4</chopsPerDay>
+    <task>Council_CampPlayMusic</task>
+    <taskAt>spot</taskAt>
+    <hireChance>0.12</hireChance>
+    <joinChance>0.04</joinChance>
+    <helpChance>0.45</helpChance>
+    <help>
+      <li>song</li>
+      <li>tales</li>
+    </help>
+    <pride>0.35</pride>
+    <breakTerms>0.1</breakTerms>
+    <tensionPerDay>0.6</tensionPerDay>
+    <extendChance>0.35</extendChance>
+    <situationKinds>
+      <li>songs</li>
+      <li>fair</li>
+    </situationKinds>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+      <li><role>bed</role><defs><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff></li>
+      <li><role>spot</role><defs><li>PartySpot</li></defs></li>
+      <li><role>light</role><defs><li>TorchLamp</li></defs></li>
+    </structures>
+    <titles>
+      <li>Minstrels make camp</li>
+      <li>Music on the road</li>
+    </titles>
+    <texts>
+      <li>[lowtech] A band of minstrels of {FACTION} has come up the road with a fiddle, a drum, a hurdy-gurdy and a boy who sings like a bird. {X_nameDef}, who plays the fiddle and does the talking, asked {A_nameDef} whether they might camp {PLACE} a few nights. They play for their supper, and play well.</li>
+      <li>[!lowtech] A little band of {FACTION}'s musicians has pulled up by the colony in a van painted with stars: guitars, an accordion, and a singer with a voice like gravel and honey. {X_nameDef} asked {A_nameDef} for a few nights' camp {PLACE}. They'll play every evening.</li>
+      <li>[ws:songs] With {SITUATION} going round the region, every minstrel is on the road, and a band of {FACTION}'s has stopped at the colony. {X_nameDef} asked {A_nameDef} to camp {PLACE} a few nights, and promised they know all the new songs.</li>
+      <li>[their:friend] Minstrels of {FACTION} have come to the colony, and {X_nameDef}, their fiddler, asked for {A_nameDef} by name: there's a song about {A_objective} going round {FACTION}'s towns, and they'd like to play it for {A_objective}. They ask to camp {PLACE} a few nights.</li>
+    </texts>
+    <settled>
+      <li>The minstrels from {FACTION} have their camp up {PLACE}, with a cleared space before the fire for dancing and their instruments hung from the branches to keep them dry.</li>
+      <li>The minstrels' camp {PLACE} is never quiet: someone is always tuning, practising or arguing about a chord.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef}, the youngest of the minstrels, says {X_pronoun} has played in every town on the road and wants, just once, to play in the same place two nights running. {X_pronoun} asks to stay.</li>
+    </joinTexts>
+    <farewell>
+      <li>The minstrels from {FACTION} went on toward the next town, playing as they walked. The colony could hear the fiddle long after they were out of sight.</li>
+      <li>The minstrels' camp {PLACE} is empty. Someone at the colony is still humming the last song they played.</li>
+    </farewell>
+    <lines>
+      <li>From the top, again.</li>
+      <li>You're flat.</li>
+      <li>I'm not flat, the fiddle's sharp.</li>
+      <li>One more, for the road.</li>
+      <li>Who wrote this one?</li>
+      <li>[lowtech] Mind the drum.</li>
+      <li>[!lowtech] Plug it in somewhere.</li>
+    </lines>
+    <helpTexts>
+      <li>[song] The minstrels {PLACE} played until late tonight, and the music carried all over the colony. {X_nameDef}'s fiddle could be heard from every bed.</li>
+      <li>[song] The minstrels played the old songs at their fire this evening, the ones everyone knows, and the colony sang along from its windows.</li>
+      <li>[song,winter] The minstrels played round their fire in the cold tonight, and half the colony went out with blankets to listen.</li>
+      <li>[tales] {A_nameDef} sat with the minstrels after they'd played and heard a dozen songs that were really news: who married whom, who fought whom, and who was singing about it.</li>
+    </helpTexts>
+    <asks>
+      <li>
+        <key>feast</key>
+        <label>Hire them to play at a feast ({COUNT} silver)</label>
+        <tip>A meal from the colony's stores with the minstrels playing. Recreation for everyone who comes.</tip>
+        <silver>80</silver>
+        <deed>welcomed</deed>
+        <outcomes>
+          <li>The minstrels are coming to play at the colony's table tonight. {X_nameDef} has already started tuning.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>the minstrels' feast</label><music>true</music><hours>17~21</hours></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.1</amount></li>
+        </effects>
+      </li>
+      <li>
+        <key>song</key>
+        <label>Ask for a song about the colony</label>
+        <tip>The minstrels make a song about the colony and sing it at their fire. It will travel with them, and other peoples will hear it.</tip>
+        <minDays>1</minDays>
+        <tension>-4</tension>
+        <outcomes>
+          <li>The minstrels have been asking questions about the colony all day, and tonight they'll sing what they've made of it at their fire.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Words"><label>the colony's song</label><organizer>A</organizer><spots><li>Camp</li><li>Outdoors</li></spots><music>true</music><hours>18~22</hours></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_WS_OurSong</thought></li>
+        </effects>
+      </li>
+      <li>
+        <key>tune</key>
+        <label>Have {A_nameDef} learn a tune from them</label>
+        <tip>{A_nameDef} sits with the band's best player for a few hours. Practice in the arts.</tip>
+        <skill>Artistic</skill>
+        <warm>2</warm>
+        <outcomes>
+          <li>{A_nameDef} is going over to the minstrels' camp to learn a tune or two from {X_nameDef}.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>X</teacher><student>A</student><skill>Artistic</skill><duration>2~3</duration></li>
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+  <!-- ===================== Mourners passing through ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Council_Camp_Mourners</defName>
+    <label>mourners passing through</label>
+    <weight>0.5</weight>
+    <people>3~6</people>
+    <days>1~3</days>
+    <ages>16~75</ages>
+    <chopsPerDay>0.3</chopsPerDay>
+    <task>Council_CampVigil</task>
+    <hireChance>0.02</hireChance>
+    <joinChance>0.02</joinChance>
+    <helpChance>0.1</helpChance>
+    <help>
+      <li>tales</li>
+    </help>
+    <pride>0.1</pride>
+    <breakTerms>0.02</breakTerms>
+    <tensionPerDay>0.2</tensionPerDay>
+    <canPay>false</canPay>
+    <extendChance>0.1</extendChance>
+    <situationKinds>
+      <li>mourning</li>
+      <li>sickness</li>
+      <li>war</li>
+    </situationKinds>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+      <li><role>bed</role><defs><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li></stuff></li>
+      <li><role>light</role><defs><li>TorchLamp</li></defs></li>
+    </structures>
+    <titles>
+      <li>Mourners on the road</li>
+      <li>Carrying their dead home</li>
+    </titles>
+    <texts>
+      <li>A slow party of {FACTION} has come up the road with a covered cart: mourners, carrying one of their own home to be buried with their people. {X_nameDef}, who leads them, asked {A_nameDef} whether they might stop {PLACE} for a night or two. They will keep to themselves.</li>
+      <li>[ws:mourning] {SITUATION} has its mourners on every road, and a party of them has stopped near the colony. {X_nameDef} asked {A_nameDef}, in a voice worn thin, for a night or two's camp {PLACE}.</li>
+      <li>[ws:sickness] Mourners of {FACTION} are carrying one of {SITUATION}'s dead home, well wrapped and well apart. {X_nameDef} asked {A_nameDef} for leave to stop {PLACE} a night or two, and swore none of the living are sick.</li>
+      <li>[their:friend] Mourners of {FACTION} have stopped by the colony with their dead. {X_nameDef} asked for {A_nameDef} by name, and said the one they carry spoke of {A_objective} often. They would like to rest {PLACE} a night or two.</li>
+      <li>[winter] Mourners of {FACTION} have come through the snow with a covered sledge. {X_nameDef} asked {A_nameDef} for a sheltered place {PLACE} to stop a night or two before the last of the road.</li>
+    </texts>
+    <settled>
+      <li>The mourners from {FACTION} have made a small camp {PLACE}, with the cart drawn up beside the fire and a lamp lit beside it that nobody lets go out.</li>
+      <li>The mourners' camp is up {PLACE}. Someone sits by the covered cart at every hour, day and night.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef}, one of the mourners {PLACE}, says there's nothing left at home now but the grave they're carrying their dead to. {X_pronoun} asks, after the burial, whether there might be a place for {X_objective} here.</li>
+    </joinTexts>
+    <farewell>
+      <li>The mourners from {FACTION} went on at first light with their cart, walking slowly, the lamp still lit beside it.</li>
+      <li>The mourners' camp {PLACE} is empty. {X_nameDef} left a sprig of green on the colony's gatepost, as {FACTION} do for those who let the dead rest a while.</li>
+    </farewell>
+    <lines>
+      <li>Rest a while.</li>
+      <li>Not far now.</li>
+      <li>Keep the lamp lit.</li>
+      <li>She'd have liked this place.</li>
+      <li>He always took the long way.</li>
+      <li>We'll sing for him at home.</li>
+    </lines>
+    <helpTexts>
+      <li>[tales] {A_nameDef} sat a while at the mourners' fire, and {X_nameDef} told {A_objective} about the one they're carrying home: who they were, what they loved, what they used to say. {A_nameDef} came back very quiet.</li>
+      <li>[tales] The mourners told {A_nameDef} the story of the one in the cart, start to finish, over a long evening. By the end {A_nameDef} felt {A_pronoun} had known them.</li>
+    </helpTexts>
+    <asks>
+      <li>
+        <key>vigil</key>
+        <label>Sit vigil with them tonight</label>
+        <tip>{A_nameDef} goes to sit with the mourners at their fire through the night hours. A kindness they will remember.</tip>
+        <tension>-8</tension>
+        <warm>2</warm>
+        <deed>mourned</deed>
+        <outcomes>
+          <li>{A_nameDef} will go and sit vigil with the mourners tonight. {X_nameDef} said they'd keep a place by the lamp.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Camp</to><hours>20~23</hours><duration>2.5~3.5</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Camp_SatVigil</thought></li>
+        </effects>
+      </li>
+      <li>
+        <key>road</key>
+        <label>Stand by the road when they go</label>
+        <tip>The colony stands bareheaded by the road while the mourners carry their dead past. Among many peoples, that is a great kindness.</tip>
+        <minDays>0.3</minDays>
+        <tension>-4</tension>
+        <deed>mourned</deed>
+        <outcomes>
+          <li>The colony will stand by the road when the mourners go on. {X_nameDef} thanked {A_nameDef} without words.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Toast"><label>standing by the road for the mourners</label><spots><li>Outdoors</li></spots><target>Colony</target></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_WS_StoodWithMourners</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>3</amount></li>
+        </effects>
+      </li>
+      <li>
+        <key>food</key>
+        <label>Give them food for the road (15 raw food)</label>
+        <tip>Food for the rest of their journey home.</tip>
+        <tension>-6</tension>
+        <deed>sheltered</deed>
+        <outcomes>
+          <li>{A_nameDef} takes food to the mourners' camp. {X_nameDef} takes it with a nod and says the one in the cart would have thanked the colony with a song.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Camp</to><duration>0.75~1.25</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>15</count></li>
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+</Defs>
