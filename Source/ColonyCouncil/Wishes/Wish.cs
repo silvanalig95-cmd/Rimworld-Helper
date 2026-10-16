@@ -120,7 +120,8 @@ namespace ColonyCouncil
         public void ExposeData()
         {
             Scribe_Values.Look(ref id, "id");
-            Scribe_Defs.Look(ref def, "def");
+            // Quietly, so a wish from a removed mod doesn't log an error; it's dropped after loading (def null).
+            CouncilScribe.LookDef(ref def, "def");
             Scribe_References.Look(ref pawn, "pawn");
             Scribe_References.Look(ref beneficiary, "beneficiary");
             Scribe_References.Look(ref other, "other");

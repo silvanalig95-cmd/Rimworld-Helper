@@ -293,6 +293,8 @@ namespace ColonyCouncil
                 {
                     comp.standings.Change(req.pawn, 5f, "CC_Log_DecreeHeeded".Translate(def.label));
                     CouncilGameComponent.GiveThought(req.pawn, CouncilDefOf.Council_DecreeHeeded);
+                    // Lifting it early is going back on the council's word to them (Wishes/Kept.cs).
+                    if (!req.repeal) comp.kept?.Notify_DecreeHeeded(req.pawn, def, Get(def)?.endTick ?? 0);
                 }
             }
             if (!def.onEnact.NullOrEmpty() && PlayOuts.On)
@@ -346,6 +348,7 @@ namespace ColonyCouncil
             readyAt[def.defName] = Find.TickManager.TicksGame + Mathf.RoundToInt(def.cooldownDays * GenDate.TicksPerDay);
             SyncHediffs();
             comp.Notify_DecreeEnded(def, early);
+            comp.kept?.Notify_DecreeEnded(def, early);
             var req = RequestFor(def);
             if (req != null && req.repeal)
             {

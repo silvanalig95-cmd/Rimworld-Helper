@@ -259,6 +259,8 @@
     <label>an animal companion</label>
     <description>An animal lover has spotted a creature out on the map and wants to bring it home.</description>
     <workerClass>ColonyCouncil.WishWorker_Companion</workerClass>
+    <lasting>true</lasting>
+    <lostText>{OTHER_nameDef}, the companion {FOR_nameDef} wanted, is no longer the colony's.</lostText>
     <envy>0.2</envy>
     <category>Social</category>
     <weight>0.8</weight>
@@ -452,6 +454,8 @@
     <label>{THING} to learn and play at</label>
     <description>A child wants somewhere of their own to learn and play.</description>
     <workerClass>ColonyCouncil.WishWorker_ChildPlay</workerClass>
+    <lasting>true</lasting>
+    <lostText>The {THINGBARE} {FOR_nameDef} learned and played at is gone.</lostText>
     <envy>0</envy>
     <category>Childhood</category>
     <weight>1.3</weight>

@@ -13,6 +13,9 @@
     <label>a guest room worth the name</label>
     <description>Someone who cares how the colony treats its guests wants a guest bed in a room the colony can be proud of.</description>
     <workerClass>ColonyCouncil.WishWorker_GuestRoom</workerClass>
+    <lasting>true</lasting>
+    <watchDays>90</watchDays>
+    <lostText>The guest room {FOR_nameDef} asked for isn't {SUBJECT} any more.</lostText>
     <category>Social</category>
     <weight>0.8</weight>
     <expiryDays>12</expiryDays>

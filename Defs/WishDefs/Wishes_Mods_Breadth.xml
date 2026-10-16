@@ -86,6 +86,7 @@
     <label>{THING} for the cold months</label>
     <description>Dubs Bad Hygiene: someone cold to the bone wants a sauna, hot stones and steam to sweat the winter out.</description>
     <workerClass>ColonyCouncil.WishWorker_Have</workerClass>
+    <lasting>true</lasting>
     <category>Comfort</category>
     <weight>0.6</weight>
     <expiryDays>15</expiryDays>
@@ -153,6 +154,7 @@
     <label>{THING} for summer evenings</label>
     <description>Vanilla Cooking Expanded: a cook has been thinking about meat over hot coals all week and wants a grill.</description>
     <workerClass>ColonyCouncil.WishWorker_Have</workerClass>
+    <lasting>true</lasting>
     <category>Comfort</category>
     <weight>0.6</weight>
     <expiryDays>15</expiryDays>
@@ -217,6 +219,8 @@
     <label>a bed kept for guests</label>
     <description>Hospitality: visitors have come and the colony has no bed set aside for guests. A kind or sociable colonist would like one, so nobody who comes in peace sleeps on the floor.</description>
     <workerClass>ColonyCouncil.WishWorker_GuestBed</workerClass>
+    <lasting>true</lasting>
+    <lostText>{FOR_nameDef}'s guest bed is no longer kept for guests.</lostText>
     <category>Social</category>
     <weight>0.8</weight>
     <expiryDays>10</expiryDays>
@@ -279,6 +283,7 @@
     <label>{THING} for the fields</label>
     <description>Vanilla Furniture Expanded - Farming: a grower tired of watching wild animals eat the crops wants a scarecrow.</description>
     <workerClass>ColonyCouncil.WishWorker_Have</workerClass>
+    <lasting>true</lasting>
     <category>Work</category>
     <weight>0.6</weight>
     <expiryDays>12</expiryDays>

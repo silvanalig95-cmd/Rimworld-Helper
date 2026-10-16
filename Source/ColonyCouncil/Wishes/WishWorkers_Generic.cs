@@ -247,6 +247,15 @@ namespace ColonyCouncil
         protected WishParams P => def.wants ?? (def.wants = new WishParams());
 
         protected WishCandidate Make(Pawn pawn, float weight) => Candidate(weight * P.weight * P.Favor(pawn), P.Reason(pawn));
+
+        /// <summary>Grown past it (Wishes/Kept.cs): a child's wish once they're grown, a crib once the baby isn't one.</summary>
+        protected bool Outgrown(Wish wish)
+        {
+            var p = wish.Beneficiary;
+            if (p == null) return true;
+            if (P.child && !p.DevelopmentalStage.Child()) return true;
+            return P.parentOfLittleOne && !(p.relations?.Children.Any(c => !c.Dead && c.DevelopmentalStage.Baby()) ?? false);
+        }
     }
 
     /// <summary>A building in the colony (or in their own room): a hearth, a bookcase, a training dummy, a crib.</summary>
@@ -298,6 +307,22 @@ namespace ColonyCouncil
         public override string OnPromised(Wish wish) => P.inBedroom && PlanInOwnRoom(wish.Beneficiary, wish.thingDef) ? "CC_Promise_Planned" : null;
 
         public override string TrySelfHelp(Wish wish) => P.inBedroom && PlanInOwnRoom(wish.Beneficiary, wish.thingDef) ? "CC_SelfHelp_Plan" : null;
+
+        // Promises kept: the building stays, in their room or in the colony; with their room gone, the room's own watch speaks.
+        public override bool InTheirRoom => P.inBedroom;
+
+        public override bool Concerns(Wish wish, BuildableDef d) => d is ThingDef td && P.Matches(td);
+
+        public override KeptCheck Holds(Wish wish)
+        {
+            if (Outgrown(wish)) return KeptCheck.Over;
+            if (P.inBedroom && RoomUtil.PrivateRoom(wish.Beneficiary) == null) return KeptCheck.Unclear;
+            return IsFulfilled(wish) ? KeptCheck.Holds : KeptCheck.Gone;
+        }
+
+        public override string LostText(Wish wish) => !def.lostText.NullOrEmpty()
+            ? base.LostText(wish)
+            : (P.inBedroom ? "CC_Kept_Lost_HaveRoom" : "CC_Kept_Lost_Have").Translate(wish.Beneficiary.Named("PAWN"), (wish.thingDef?.label ?? wish.Label).Named("THING")).Resolve();
     }
 
     /// <summary>A stock of something: firewood before winter, books, honey, hay for the animals, a nest egg of silver.</summary>
@@ -383,6 +408,15 @@ namespace ColonyCouncil
         public override string ProgressText(Wish wish) => "CC_Progress_Stock".Translate(Count(wish.Beneficiary.MapHeld), wish.targetValue.ToString("0")).ToString();
 
         public override float Progress(Wish wish) => Mathf.Clamp01(Count(wish.Beneficiary.MapHeld) / Mathf.Max(1f, wish.targetValue));
+
+        /// <summary>Promises kept: enough of it stays in store (a share of it, for what's meant to be used or spent: keepShare).</summary>
+        public override KeptCheck Holds(Wish wish)
+        {
+            if (Outgrown(wish)) return KeptCheck.Over;
+            return Count(wish.Beneficiary.MapHeld) >= KeptMath.Needed(wish.targetValue, def.keepShare) ? KeptCheck.Holds : KeptCheck.Gone;
+        }
+
+        public override string KeptKind(Wish wish) => "stock";
     }
 
     /// <summary>Something to wear: a warm cloak for winter, a hat, something fine.</summary>

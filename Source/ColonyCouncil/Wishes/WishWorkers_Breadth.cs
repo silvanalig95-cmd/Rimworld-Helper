@@ -72,6 +72,18 @@ namespace ColonyCouncil
 
         /// <summary>Well again before anyone saw to it: there's nothing left to ask for.</summary>
         public override bool StillValid(Wish wish) => Ailing(wish.Beneficiary) || HasSickbed(wish.Beneficiary.MapHeld);
+
+        /// <summary>Promises kept: the beds set aside for the sick, so one being moved still counts.</summary>
+        public override IEnumerable<Thing> KeptThings(Wish wish)
+        {
+            var map = wish.Beneficiary?.MapHeld;
+            if (map == null) yield break;
+            foreach (var b in map.listerBuildings.allBuildingsColonist)
+                if (b is Building_Bed bed && bed.Spawned && bed.Medical && !bed.ForPrisoners && bed.def.building != null && bed.def.building.bed_humanlike)
+                    yield return bed;
+        }
+
+        public override string KeptKind(Wish wish) => "bed";
     }
 
     /// <summary>
@@ -167,6 +179,11 @@ namespace ColonyCouncil
 
         /// <summary>Hospitality was removed: a guest bed can't be had any more.</summary>
         public override bool StillObtainable(Wish wish) => base.StillObtainable(wish) && People.ModActive(Mod);
+
+        /// <summary>Promises kept: a guest bed (Hospitality makes each its own kind of bed), and the beds kept for guests.</summary>
+        public override bool Concerns(Wish wish, BuildableDef d) => d is ThingDef td && td.thingClass != null && td.thingClass.Name == "Building_GuestBed";
+
+        public override string KeptKind(Wish wish) => "bed";
 
         public override InspirationDef InspirationFor(Wish wish) => InspirationDefOf.Inspired_Recruitment;
     }
@@ -293,6 +310,9 @@ namespace ColonyCouncil
         }
 
         public override bool IsFulfilled(Wish wish) => Seats(wish.Beneficiary.MapHeld) >= wish.targetValue;
+
+        /// <summary>Promises kept: the chairs and tables, so moving the dining room isn't taking it away.</summary>
+        public override bool Concerns(Wish wish, BuildableDef d) => d is ThingDef td && (Avail.IsChair(td) || Avail.IsEatingTable(td));
 
         public override float Progress(Wish wish) => Mathf.Clamp01(Seats(wish.Beneficiary.MapHeld) / Mathf.Max(1f, wish.targetValue));
 
@@ -463,6 +483,18 @@ namespace ColonyCouncil
         }
 
         public override bool IsFulfilled(Wish wish) => PokeWorldLink.OwnedAnimalCount(wish.Beneficiary.MapHeld) > wish.baseline;
+
+        // Promises kept: the pet they were given stays the colony's (until they grow up). Dead isn't taken back.
+        public override void OnGranted(Wish wish) => wish.other = NewAnimalFor(wish.Beneficiary);
+
+        public override KeptCheck Holds(Wish wish) => !wish.Beneficiary.DevelopmentalStage.Child() ? KeptCheck.Over : PetKept(wish.other);
+
+        public override IEnumerable<Thing> KeptThings(Wish wish)
+        {
+            yield break;
+        }
+
+        public override string KeptKind(Wish wish) => "pet";
     }
 
     /// <summary>
@@ -550,5 +582,19 @@ namespace ColonyCouncil
         public override string OnPromised(Wish wish) => PlanFloor(wish.Beneficiary) ? "CC_Promise_Floor" : null;
 
         public override string TrySelfHelp(Wish wish) => PlanFloor(wish.Beneficiary) ? "CC_SelfHelp_Floor" : null;
+
+        /// <summary>Promises kept: most of their floor stays laid; a floor planned or being laid in the room counts for a while.</summary>
+        public const float KeptBare = 0.25f;
+
+        public override bool InTheirRoom => true;
+
+        public override bool Concerns(Wish wish, BuildableDef d) => d is TerrainDef;
+
+        public override KeptCheck Holds(Wish wish)
+        {
+            var room = RoomUtil.PrivateRoom(wish.Beneficiary);
+            if (room == null) return KeptCheck.Unclear;
+            return BareShare(room, wish.Beneficiary.MapHeld) <= KeptBare ? KeptCheck.Holds : KeptCheck.Gone;
+        }
     }
 }

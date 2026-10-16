@@ -170,6 +170,7 @@ namespace ColonyCouncil
             Scribe_Deep.Look(ref autonomy, "autonomy");
             Scribe_Deep.Look(ref happenings, "happenings");
             Scribe_Deep.Look(ref pressures, "pressures");
+            Scribe_Deep.Look(ref kept, "kept");
             Scribe_Values.Look(ref scenarioSetUp, "scenarioSetUp");
             ExposeWelcome();
             Scribe_Collections.Look(ref history, "history", LookMode.Deep);
@@ -217,6 +218,7 @@ namespace ColonyCouncil
                 if (autonomy == null) autonomy = new AutonomyTracker();
                 if (happenings == null) happenings = new HappeningTracker();
                 if (pressures == null) pressures = new PressureTracker();
+                if (kept == null) kept = new KeptTracker();
                 if (history == null) history = new List<DaySample>();
                 history.RemoveAll(h => h == null);
                 if (lastAtHome == null) lastAtHome = new Dictionary<Pawn, int>();
@@ -311,7 +313,7 @@ namespace ColonyCouncil
             Safe("losses", () => vendettas.Hourly(this));
             Safe("decrees", () => decrees.Hourly(this));
             Safe("wish upkeep", UpdateWishes);
-            if (Settings.enableWishes) Safe("own room taken", () => RoomTaken.Hourly(this));
+            if (Settings.enableWishes) Safe("promises kept", () => kept.Hourly(this));
             if (Settings.enableWishes) Safe("event wishes", CheckTriggers);
             if (Settings.enableWishes) Safe("wish generation", () => TryGenerateWish(false));
         }
@@ -422,7 +424,8 @@ namespace ColonyCouncil
 
         private bool OnCooldown(Pawn p, WishDef def)
         {
-            return cooldowns.TryGetValue(CooldownKey(p, def), out int until) && until > Find.TickManager.TicksGame;
+            // While something they were given is missing (the grace period), they don't ask for it again (Wishes/Kept.cs).
+            return (cooldowns.TryGetValue(CooldownKey(p, def), out int until) && until > Find.TickManager.TicksGame) || kept.Blocks(p, def);
         }
 
         private void SetCooldown(Pawn p, WishDef def, float factor = 1f)
@@ -484,7 +487,7 @@ namespace ColonyCouncil
                     if (OnCooldown(requester, def)) continue;
                     if (!novelty.TryGetValue(def, out float fresh)) novelty[def] = fresh = Novelty(def);
                     // Feelings and the heart's needs nudge toward what answers them (at most half again; Heart/).
-                    float defFactor = def.weight * personal * CategoryFactor(requester, def) * fresh * Heart.WishFactor(requester, def);
+                    float defFactor = def.weight * personal * CategoryFactor(requester, def) * kept.Fresh(requester, def, fresh) * Heart.WishFactor(requester, def);
                     if (defFactor <= 0f) continue;
                     foreach (var c in Candidates(def, requester))
                     {
@@ -676,6 +679,7 @@ namespace ColonyCouncil
             }
             if (w.ForSomeoneElse && !def.requestForOther.Any)
                 w.quote = "CC_ForOtherFallback".Translate(beneficiary.Named("FOR"), w.Label.Named("WISH")).Resolve();
+            NoteRenewed(w);
             wishes.Add(w);
 
             AnnounceNewWish(w);

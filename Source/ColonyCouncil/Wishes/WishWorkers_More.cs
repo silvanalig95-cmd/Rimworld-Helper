@@ -163,6 +163,27 @@ namespace ColonyCouncil
 
         public override string ProgressText(Wish wish) => "CC_Progress_Separate".Translate(wish.Beneficiary.Named("PAWN"), wish.other.Named("OTHER"));
 
+        /// <summary>
+        /// Promises kept: they still sleep apart. Gone, or on good terms again, there's nothing left to keep; without a bed
+        /// of their own just now, it can't be told.
+        /// </summary>
+        public override KeptCheck Holds(Wish wish)
+        {
+            var o = wish.other;
+            var me = wish.Beneficiary;
+            if (o == null || o.Dead || !o.IsColonist || me.relations == null || me.relations.OpinionOf(o) > 0) return KeptCheck.Over;
+            var mine = BedRoom(me);
+            if (mine == null || mine.PsychologicallyOutdoors) return KeptCheck.Unclear;
+            return BedRoom(o) != mine ? KeptCheck.Holds : KeptCheck.Gone;
+        }
+
+        public override IEnumerable<Thing> KeptThings(Wish wish)
+        {
+            yield break;
+        }
+
+        public override string KeptKind(Wish wish) => "assignment";
+
         public override LookTargets LookAt(Wish wish) => wish.Beneficiary.ownership?.OwnedBed is Building_Bed b ? new LookTargets(b) : base.LookAt(wish);
     }
 
@@ -197,5 +218,11 @@ namespace ColonyCouncil
         public override string ProgressText(Wish wish) => "CC_Progress_Infirmary".Translate(MedicineAt(wish), wish.targetValue.ToString("0"));
 
         public override InspirationDef InspirationFor(Wish wish) => DefDatabase<InspirationDef>.GetNamedSilentFail("Inspired_Surgery");
+
+        /// <summary>Promises kept: enough medicine stays in store; a share of it, since medicine is there to be used (keepShare).</summary>
+        public override KeptCheck Holds(Wish wish) =>
+            MedicineAt(wish) >= KeptMath.Needed(wish.targetValue, def.keepShare) ? KeptCheck.Holds : KeptCheck.Gone;
+
+        public override string KeptKind(Wish wish) => "stock";
     }
 }

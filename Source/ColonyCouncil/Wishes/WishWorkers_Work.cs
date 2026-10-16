@@ -21,6 +21,8 @@ namespace ColonyCouncil
             public string inspiration;
             /// <summary>Extra condition for the wish to make sense at all (e.g. a greenhouse only with frost ahead).</summary>
             public Func<Map, bool> needed;
+            /// <summary>What the room is made of (Wishes/Kept.cs): one of these being moved or rebuilt isn't taking it away.</summary>
+            public Func<ThingDef, bool> kept;
         }
 
         /// <summary>
@@ -51,7 +53,8 @@ namespace ColonyCouncil
                         satisfied = m => StationInRole(m, SkillDefOf.Crafting, RoomUtil.Workshop),
                         suggest = m => Avail.BestBuildable(m, d => Avail.IsWorkstationFor(d, SkillDefOf.Crafting), "ElectricTailoringBench", "HandTailoringBench", "FueledSmithy", "CraftingSpot"),
                         templateDefName = "Council_Workshop",
-                        inspiration = "Inspired_Creativity"
+                        inspiration = "Inspired_Creativity",
+                        kept = d => Avail.IsWorkstationFor(d, SkillDefOf.Crafting)
                     },
                     new Spec
                     {
@@ -59,7 +62,8 @@ namespace ColonyCouncil
                         satisfied = m => StationInRole(m, SkillDefOf.Artistic, RoomUtil.Workshop),
                         suggest = m => Avail.BestBuildable(m, d => Avail.IsWorkstationFor(d, SkillDefOf.Artistic), "TableSculpting"),
                         templateDefName = "Council_Workshop",
-                        inspiration = "Inspired_Creativity"
+                        inspiration = "Inspired_Creativity",
+                        kept = d => Avail.IsWorkstationFor(d, SkillDefOf.Artistic)
                     },
                     new Spec
                     {
@@ -67,7 +71,8 @@ namespace ColonyCouncil
                         satisfied = m => RoomUtil.RoomsWithRole(m, RoomUtil.Kitchen).Any(r => RoomUtil.RoomContains(r, Avail.IsCookingStation)),
                         suggest = m => Avail.BestBuildable(m, Avail.IsCookingStation, "ElectricStove", "FueledStove"),
                         templateDefName = "Council_Kitchen",
-                        inspiration = null
+                        inspiration = null,
+                        kept = Avail.IsCookingStation
                     },
                     new Spec
                     {
@@ -75,7 +80,8 @@ namespace ColonyCouncil
                         satisfied = m => RoomUtil.RoomsWithRole(m, RoomUtil.Laboratory).Any(r => RoomUtil.RoomContains(r, Avail.IsResearchBench)),
                         suggest = m => Avail.BestBuildable(m, Avail.IsResearchBench, "HiTechResearchBench", "SimpleResearchBench"),
                         templateDefName = "Council_Laboratory",
-                        inspiration = null
+                        inspiration = null,
+                        kept = Avail.IsResearchBench
                     },
                     new Spec
                     {
@@ -83,7 +89,8 @@ namespace ColonyCouncil
                         satisfied = m => RoomUtil.RoomsWithRole(m, RoomUtil.Hospital).Any(),
                         suggest = m => Avail.BestBuildable(m, Avail.IsSingleBed, "HospitalBed", "Bed"),
                         templateDefName = "Council_Hospital",
-                        inspiration = "Inspired_Surgery"
+                        inspiration = "Inspired_Surgery",
+                        kept = Avail.IsHumanBed
                     },
                     new Spec
                     {
@@ -92,7 +99,8 @@ namespace ColonyCouncil
                         suggest = m => Avail.BestBuildable(m, Avail.IsHydroponics, "HydroponicsBasin") ?? Avail.BestBuildable(m, Avail.IsSunLamp, "SunLamp"),
                         templateDefName = "Council_Greenhouse",
                         inspiration = null,
-                        needed = GreenhouseSeason
+                        needed = GreenhouseSeason,
+                        kept = d => Avail.IsHydroponics(d) || Avail.IsSunLamp(d)
                     },
                     new Spec
                     {
@@ -100,7 +108,8 @@ namespace ColonyCouncil
                         satisfied = m => RoomUtil.RoomsWithRole(m, RoomUtil.Barn).Any(),
                         suggest = m => Avail.BestBuildable(m, Avail.IsAnimalBed, "AnimalBed", "AnimalSleepingBox", "AnimalSleepingSpot"),
                         templateDefName = "Council_Barn",
-                        inspiration = "Inspired_Taming"
+                        inspiration = "Inspired_Taming",
+                        kept = Avail.IsAnimalBed
                     },
                 };
                 return specs;
@@ -175,6 +184,52 @@ namespace ColonyCouncil
         public override string FulfilledWhen(Wish wish) => ("CC_When_Passion_" + wish.subjectKey).CanTranslate()
             ? ("CC_When_Passion_" + wish.subjectKey).Translate().Resolve()
             : base.FulfilledWhen(wish);
+
+        // ---- Promises kept: the room for their work stays (out of season, a greenhouse isn't asked after) ----
+
+        public override KeptCheck Holds(Wish wish)
+        {
+            var spec = SpecFor(wish);
+            var map = wish.Beneficiary.MapHeld;
+            if (spec == null) return KeptCheck.Over;
+            if (spec.needed != null && !spec.needed(map)) return KeptCheck.Unclear;
+            return spec.satisfied(map) ? KeptCheck.Holds : KeptCheck.Gone;
+        }
+
+        public override bool Concerns(Wish wish, BuildableDef d)
+        {
+            var spec = SpecFor(wish);
+            return d is ThingDef td && spec?.kept != null && spec.kept(td);
+        }
+
+        /// <summary>The room a passion's work is done in (a greenhouse has no role of its own: any room indoors).</summary>
+        private static RoomRoleDef RoleOf(SkillDef s) =>
+            s == SkillDefOf.Crafting || s == SkillDefOf.Artistic ? RoomUtil.Workshop
+            : s == SkillDefOf.Cooking ? RoomUtil.Kitchen
+            : s == SkillDefOf.Intellectual ? RoomUtil.Laboratory
+            : s == SkillDefOf.Medicine ? RoomUtil.Hospital
+            : s == SkillDefOf.Animals ? RoomUtil.Barn
+            : null;
+
+        /// <summary>The work room's own stations (or beds, or sun lamps): the ones standing in a room of the right kind.</summary>
+        public override IEnumerable<Thing> KeptThings(Wish wish)
+        {
+            var spec = SpecFor(wish);
+            var map = wish.Beneficiary?.MapHeld;
+            if (spec?.kept == null || map == null) yield break;
+            var role = RoleOf(spec.skill);
+            foreach (var b in Avail.ColonyBuildings(map, spec.kept))
+            {
+                var room = b.GetRoom();
+                if (room != null && !room.PsychologicallyOutdoors && (role == null || room.Role == role)) yield return b;
+            }
+        }
+
+        public override string KeptKind(Wish wish) => "room";
+
+        public override string LostText(Wish wish) => !def.lostText.NullOrEmpty()
+            ? base.LostText(wish)
+            : "CC_Kept_Lost_PassionSpace".Translate(wish.Beneficiary.Named("PAWN"), (wish.subjectLabel ?? wish.Label).Named("SPACE")).Resolve();
     }
 
     /// <summary>Passion for a skill whose work is switched off for them.</summary>
@@ -222,6 +277,17 @@ namespace ColonyCouncil
             return wt != null && !wish.Beneficiary.WorkTypeIsDisabled(wt);
         }
 
+        /// <summary>Promises kept: the work stays switched on for them. If they can't do it any more, there's nothing to keep.</summary>
+        public override KeptCheck Holds(Wish wish)
+        {
+            var wt = DefDatabase<WorkTypeDef>.GetNamedSilentFail(wish.subjectKey);
+            var ws = wish.Beneficiary.workSettings;
+            if (wt == null || ws == null || !ws.EverWork || wish.Beneficiary.WorkTypeIsDisabled(wt)) return KeptCheck.Over;
+            return ws.GetPriority(wt) > 0 ? KeptCheck.Holds : KeptCheck.Gone;
+        }
+
+        public override string KeptKind(Wish wish) => "assignment";
+
         /// <summary>They just start doing it. You can switch it off again, if you dare.</summary>
         public override string TrySelfHelp(Wish wish)
         {
@@ -268,6 +334,22 @@ namespace ColonyCouncil
         }
 
         public override bool IsFulfilled(Wish wish) => SharedArtCount(wish.Beneficiary.MapHeld) > wish.baseline;
+
+        /// <summary>Promises kept: the art in the dining and rec rooms.</summary>
+        public override bool Concerns(Wish wish, BuildableDef d) => d is ThingDef td && td.IsArt;
+
+        public override IEnumerable<Thing> KeptThings(Wish wish)
+        {
+            var map = wish.Beneficiary?.MapHeld;
+            if (map == null) yield break;
+            foreach (var room in RoomUtil.ColonyRooms(map))
+            {
+                if (room.Role != RoomUtil.DiningRoom && room.Role != RoomUtil.RecRoom) continue;
+                foreach (var t in room.ContainedAndAdjacentThings)
+                    if (t.def.category == ThingCategory.Building && t.def.IsArt && room.ContainsCell(t.Position))
+                        yield return t;
+            }
+        }
 
         public override InspirationDef InspirationFor(Wish wish) => InspirationDefOf.Inspired_Creativity;
     }
@@ -346,6 +428,13 @@ namespace ColonyCouncil
             // Or a stockroom with something to drink: beer, mead, wine, whatever this colony's mods brew.
             return WishWorker_LittleSomething.Stock(map) >= 5;
         }
+
+        // Promises kept: a brewing barrel, when that's what came of it (a stockroom of beer is drunk, as it should be).
+        public override bool Lasting(Wish wish) => base.Lasting(wish) && Avail.ColonyHas(wish.Beneficiary.MapHeld, Avail.IsFermenter);
+
+        public override KeptCheck Holds(Wish wish) => Avail.ColonyHas(wish.Beneficiary.MapHeld, Avail.IsFermenter) ? KeptCheck.Holds : KeptCheck.Gone;
+
+        public override bool Concerns(Wish wish, BuildableDef d) => d is ThingDef td && Avail.IsFermenter(td);
     }
 
     /// <summary>A gourmand (or anyone sick of raw food) wants proper meals.</summary>
@@ -430,5 +519,8 @@ namespace ColonyCouncil
         }
 
         public override bool IsFulfilled(Wish wish) => RoomUtil.HasFreezer(wish.Beneficiary.MapHeld);
+
+        /// <summary>Promises kept: the coolers (or a mod's fridges) that keep the cold room cold.</summary>
+        public override bool Concerns(Wish wish, BuildableDef d) => d is ThingDef td && (Avail.IsFridge(td) || (td.thingClass != null && typeof(Building_Cooler).IsAssignableFrom(td.thingClass)));
     }
 }

@@ -106,6 +106,13 @@ namespace ColonyCouncil
         public override bool IsFulfilled(Wish wish) => RoomUtil.RoomContains(RoomUtil.PrivateRoom(wish.Beneficiary), d => d.IsArt);
 
         public override bool StillValid(Wish wish) => RoomUtil.PrivateRoom(wish.Beneficiary) != null;
+
+        // Promises kept: the art stays in their room.
+        public override bool InTheirRoom => true;
+
+        public override bool Concerns(Wish wish, BuildableDef d) => d is ThingDef td && td.IsArt;
+
+        public override KeptCheck Holds(Wish wish) => RoomUtil.PrivateRoom(wish.Beneficiary) == null ? KeptCheck.Unclear : base.Holds(wish);
     }
 
     /// <summary>Worn out, bored, or simply lazy: a bit more recreation in their schedule.</summary>
@@ -137,6 +144,9 @@ namespace ColonyCouncil
 
         public override string ProgressText(Wish wish) =>
             "CC_Progress_JoyHours".Translate(wish.Beneficiary.timetable?.times.Count(t => t == TimeAssignmentDefOf.Joy) ?? 0, wish.targetValue.ToString("0"));
+
+        /// <summary>Promises kept: the hours of rest stay in their schedule.</summary>
+        public override string KeptKind(Wish wish) => "assignment";
     }
 
     /// <summary>Those with a taste for chemicals want something in stock: beer, smokeleaf, whatever the colony makes.</summary>
@@ -249,6 +259,9 @@ namespace ColonyCouncil
     public class WishWorker_Music : WishWorker
     {
         private static bool IsInstrument(ThingDef d) => d.thingClass != null && typeof(Building_MusicalInstrument).IsAssignableFrom(d.thingClass);
+
+        /// <summary>Promises kept: an instrument stays in the colony.</summary>
+        public override bool Concerns(Wish wish, BuildableDef d) => d is ThingDef td && IsInstrument(td);
 
         public override IEnumerable<WishCandidate> CandidatesFor(Pawn pawn)
         {

@@ -17,6 +17,8 @@
     <label>{THING}</label>
     <description>Someone wants a latrine or toilet within reach, so nobody has to use the bushes or wait in line.</description>
     <workerClass>ColonyCouncil.WishWorker_Toilets</workerClass>
+    <lasting>true</lasting>
+    <lostText>There are fewer toilets again than {FOR_nameDef} asked for.</lostText>
     <category>Comfort</category>
     <weight>1</weight>
     <expiryDays>8</expiryDays>
@@ -92,6 +94,8 @@
     <label>{THING}</label>
     <description>A colonist who has gone grimy wants anywhere at all to wash.</description>
     <workerClass>ColonyCouncil.WishWorker_WashPlace</workerClass>
+    <lasting>true</lasting>
+    <lostText>There's nowhere to wash any more, after {FOR_nameDef} asked for somewhere.</lostText>
     <category>Comfort</category>
     <weight>1</weight>
     <expiryDays>8</expiryDays>
@@ -142,6 +146,8 @@
     <label>hot water</label>
     <description>A bath or shower that should have been warm came out cold, and the colony knows how to heat water.</description>
     <workerClass>ColonyCouncil.WishWorker_HotWater</workerClass>
+    <lasting>true</lasting>
+    <lostText>The colony has no hot water any more.</lostText>
     <category>Comfort</category>
     <weight>0.8</weight>
     <expiryDays>12</expiryDays>

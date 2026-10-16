@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Promises kept: a lasting wish granted, then taken away again (Source/ColonyCouncil/Wishes/Kept.cs, UI/KeptPanel.cs) -->
+
+  <!-- What's gone, in a sentence (the wish defs' own lostText comes first) -->
+  <CC_Kept_Lost_Generic>What the council gave {PAWN_nameDef} is gone again: "{WISH}".</CC_Kept_Lost_Generic>
+  <CC_Kept_Lost_Have>The {THING} {PAWN_nameDef} asked for is gone.</CC_Kept_Lost_Have>
+  <CC_Kept_Lost_HaveRoom>The {THING} is gone from {PAWN_nameDef}'s room.</CC_Kept_Lost_HaveRoom>
+  <CC_Kept_Lost_RoomShared>{PAWN_nameDef} is sharing a bedroom with {OTHER_nameDef} again, after the council gave {PAWN_objective} a room of {PAWN_possessive} own.</CC_Kept_Lost_RoomShared>
+  <CC_Kept_Lost_RoomBarracks>{PAWN_nameDef} is sleeping in shared quarters again, after the council gave {PAWN_objective} a room of {PAWN_possessive} own.</CC_Kept_Lost_RoomBarracks>
+  <CC_Kept_Lost_RoomNoBed>{PAWN_nameDef} has no bed of {PAWN_possessive} own any more, after the council gave {PAWN_objective} a room of {PAWN_possessive} own.</CC_Kept_Lost_RoomNoBed>
+  <CC_Kept_Lost_RoomOutside>{PAWN_nameDef}'s bed stands out in the open now, after the council gave {PAWN_objective} a room of {PAWN_possessive} own.</CC_Kept_Lost_RoomOutside>
+  <CC_Kept_Lost_PassionSpace>{PAWN_nameDef} no longer has {SPACE}, the room the council gave {PAWN_objective} for the work {PAWN_pronoun} loves.</CC_Kept_Lost_PassionSpace>
+  <CC_Kept_Lost_Decree>The council lifted {DECREE} early, after {PAWN_nameDef} asked for it.</CC_Kept_Lost_Decree>
+  <CC_Kept_DecreeLabel>the decree of {0}</CC_Kept_DecreeLabel>
+
+  <!-- What happens -->
+  <CC_Kept_Missing>{LOST} If it isn't back within {TIME}, {PAWN_pronoun} will take it as the council going back on its word.</CC_Kept_Missing>
+  <CC_Kept_HalfDay>half a day</CC_Kept_HalfDay>
+  <CC_Kept_OneDay>a day</CC_Kept_OneDay>
+  <CC_Kept_BackInTime>Back in time for {PAWN_nameDef}: "{WISH}".</CC_Kept_BackInTime>
+  <CC_Kept_TakenBack>{PAWN_nameDef} takes it as the council going back on its word: "{WISH}" was taken away and not put back. Put it back within a few days and {PAWN_pronoun} may still let it go.</CC_Kept_TakenBack>
+  <CC_Kept_MadeRight>The council made it right with {PAWN_nameDef}: "{WISH}" is back.</CC_Kept_MadeRight>
+  <CC_Cause_TakenBack>the council gave {0} this, then took it away: {1}.</CC_Cause_TakenBack>
+  <CC_Log_TakenBack>taken back: {0}</CC_Log_TakenBack>
+  <CC_Log_MadeRight>made right: {0}</CC_Log_MadeRight>
+  <CC_Log_BackedTakenBack>{0}'s wish was taken back</CC_Log_BackedTakenBack>
+  <CC_Log_FriendTakenBack>{0} lost what the council gave</CC_Log_FriendTakenBack>
+  <CC_Chronicle_TakenBack>{0} lost what the council had given: {1}.</CC_Chronicle_TakenBack>
+  <CC_Chronicle_MadeRight>The council made it right with {0}: {1}.</CC_Chronicle_MadeRight>
+
+  <!-- The Wishes page -->
+  <CC_Kept_Header>Promises kept</CC_Kept_Header>
+  <CC_Kept_Sub>What the council granted that could still be taken away. Moving, storing or rebuilding it is fine; if it stays gone past the grace period, they'll take it as the council going back on its word.</CC_Kept_Sub>
+  <CC_Kept_State_Kept>kept</CC_Kept_State_Kept>
+  <CC_Kept_State_Missing>missing, {0} left</CC_Kept_State_Missing>
+  <CC_Kept_State_TakenBack>taken back</CC_Kept_State_TakenBack>
+  <CC_Kept_Tip_Kept>Granted {AGO} ago. Watched for {LEFT} more: if it's taken away before then, {PAWN_nameDef} will mind. Moving or rebuilding it is fine. After that, the colony has lived with it, and changing it is just life.</CC_Kept_Tip_Kept>
+  <CC_Kept_Tip_Missing>Put it back within {LEFT} and nothing comes of it.</CC_Kept_Tip_Missing>
+  <CC_Kept_Tip_TakenBack>{PAWN_nameDef} took it as the council going back on its word. Put it back within {LEFT} to make it right: the bad mood ends early and half the lost trust comes back. Meanwhile {PAWN_pronoun} may ask for it again.</CC_Kept_Tip_TakenBack>
+
+  <!-- Settings -->
+  <CC_Settings_TakenBack>Granted wishes can be taken back</CC_Settings_TakenBack>
+  <CC_Settings_TakenBack_Tip>A wish that stays (a bed kept for guests, a room of their own, a telescope, the work they love) is watched for about 60 days after it's granted, longer for rooms. If what was given is taken away and not put back within the grace period, the colonist who asked takes it as the council going back on its word: a bad mood, the trust a broken promise costs, and a line in their journal. Moving, storing or rebuilding it doesn't count, and neither does a fire or a raid.</CC_Settings_TakenBack_Tip>
+  <CC_SetNote_TakenBack>Taking away what a wish gave (a bed, a room, a workbench) upsets the one who asked.</CC_SetNote_TakenBack>
+  <CC_Settings_KeptGrace>Grace before they mind</CC_Settings_KeptGrace>
+  <CC_SetTip_KeptGrace>How long something granted may be gone (moved, reassigned, rebuilt) before the colonist who asked for it minds. You're told the moment it goes missing.</CC_SetTip_KeptGrace>
+  <CC_KeptGrace_Off>Off</CC_KeptGrace_Off>
+  <CC_KeptGrace_Short>Short</CC_KeptGrace_Short>
+  <CC_KeptGrace_Normal>Normal</CC_KeptGrace_Normal>
+  <CC_KeptGrace_Long>Long</CC_KeptGrace_Long>
+  <CC_SetNote_KeptGrace_Off>No grace: they mind the next time the council looks, within two hours.</CC_SetNote_KeptGrace_Off>
+  <CC_SetNote_KeptGrace_Short>Half a day to move it or put it back before they mind.</CC_SetNote_KeptGrace_Short>
+  <CC_SetNote_KeptGrace_Normal>A day to move it or put it back before they mind.</CC_SetNote_KeptGrace_Normal>
+  <CC_SetNote_KeptGrace_Long>Three days to move it or put it back before they mind.</CC_SetNote_KeptGrace_Long>
+
+</LanguageData>

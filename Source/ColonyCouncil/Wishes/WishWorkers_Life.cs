@@ -190,6 +190,18 @@ namespace ColonyCouncil
 
         public override bool IsFulfilled(Wish wish) => PokeWorldLink.OwnedAnimalCount(wish.Beneficiary.MapHeld) > wish.baseline;
 
+        // Promises kept: the companion they got stays the colony's. Dead isn't taken back; sold or released is.
+        public override void OnGranted(Wish wish) => wish.other = NewAnimalFor(wish.Beneficiary);
+
+        public override KeptCheck Holds(Wish wish) => PetKept(wish.other);
+
+        public override IEnumerable<Thing> KeptThings(Wish wish)
+        {
+            yield break;
+        }
+
+        public override string KeptKind(Wish wish) => "pet";
+
         /// <summary>
         /// Safe to go after without anyone's say-so: not too wild, not a predator, not huge, and unlikely to turn on a
         /// tamer who fails. Animal mods add plenty of beasts that look tameable and aren't safe to try, and some that
@@ -334,5 +346,8 @@ namespace ColonyCouncil
         }
 
         public override bool IsFulfilled(Wish wish) => wish.thingDef != null && wish.Beneficiary.MapHeld.listerBuildings.ColonistsHaveBuilding(wish.thingDef);
+
+        /// <summary>Promises kept: it stays while they're a child.</summary>
+        public override KeptCheck Holds(Wish wish) => !wish.Beneficiary.DevelopmentalStage.Child() ? KeptCheck.Over : base.Holds(wish);
     }
 }

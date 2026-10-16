@@ -53,6 +53,97 @@ namespace ColonyCouncil
             if (room == null) return "CC_Progress_NoBed".Translate();
             return "CC_Progress_SleepsIn".Translate(room.GetRoomRoleLabel());
         }
+
+        // ---- Promises kept: the room stays theirs (this was once its own "room taken" mood) ----
+
+        public enum Sleeping
+        {
+            /// <summary>Away, or their bed is somewhere that says nothing (alone in a room that isn't a bedroom).</summary>
+            Unknown,
+            /// <summary>A room of their own, alone or with their partners.</summary>
+            Own,
+            /// <summary>A barracks, or a bedroom shared with someone who isn't their partner.</summary>
+            Shared,
+            /// <summary>At home with no bed of their own at all.</summary>
+            NoBed,
+            /// <summary>Their bed stands outdoors.</summary>
+            Outside
+        }
+
+        /// <summary>Where they sleep now. <paramref name="with"/> is someone they share with who isn't their partner.</summary>
+        public static Sleeping Where(Pawn p, out Pawn with)
+        {
+            with = null;
+            var ownership = p?.ownership;
+            if (ownership == null) return Sleeping.Unknown;
+            var bed = ownership.OwnedBed;
+            if (bed == null) return p.Spawned && p.Map != null && p.Map.IsPlayerHome ? Sleeping.NoBed : Sleeping.Unknown;
+            if (!bed.Spawned || bed.Map == null || !bed.Map.IsPlayerHome) return Sleeping.Unknown;
+            if (ownership.OwnedRoom != null) return Sleeping.Own;
+            var room = bed.GetRoom();
+            if (room == null || room.PsychologicallyOutdoors) return Sleeping.Outside;
+            bool others = false;
+            foreach (var b in room.ContainedBeds)
+            {
+                if (b?.def?.building == null || !b.def.building.bed_humanlike) continue;
+                var owners = b.OwnersForReading;
+                for (int i = 0; i < owners.Count; i++)
+                {
+                    var o = owners[i];
+                    if (o == null || o == p) continue;
+                    others = true;
+                    if (with == null && !LovePartnerRelationUtility.LovePartnerRelationExists(p, o)) with = o;
+                }
+            }
+            if (with != null) return Sleeping.Shared;
+            // Only their partners in here: that's their own room. Alone among empty bunks is still the barracks.
+            if (others) return Sleeping.Own;
+            return room.Role == RoomRoleDefOf.Barracks ? Sleeping.Shared : Sleeping.Unknown;
+        }
+
+        public override bool InTheirRoom => true;
+
+        /// <summary>Where their bed stands (a plan for a new bed there counts while it's built).</summary>
+        public override Room TheirRoom(Wish wish) => RoomUtil.BedRoom(wish.Beneficiary);
+
+        public override bool Concerns(Wish wish, BuildableDef d) => d is ThingDef td && Avail.IsHumanBed(td);
+
+        /// <summary>Their bed: packed up to be moved, or lent to a patient, the room is still theirs.</summary>
+        public override IEnumerable<Thing> KeptThings(Wish wish)
+        {
+            var bed = wish.Beneficiary?.ownership?.OwnedBed;
+            if (bed != null && bed.Spawned) yield return bed;
+        }
+
+        public override KeptCheck Holds(Wish wish)
+        {
+            var p = wish.Beneficiary;
+            // Children and ascetics don't mind sharing.
+            if (!p.DevelopmentalStage.Adult() || HasTrait(p, TraitDefOf.Ascetic)) return KeptCheck.Unclear;
+            switch (Where(p, out _))
+            {
+                case Sleeping.Own: return KeptCheck.Holds;
+                case Sleeping.Unknown: return KeptCheck.Unclear;
+                default: return KeptCheck.Gone;
+            }
+        }
+
+        public override string KeptKind(Wish wish) => "ownroom";
+
+        public override string LostText(Wish wish)
+        {
+            var p = wish.Beneficiary;
+            switch (Where(p, out var with))
+            {
+                case Sleeping.Shared:
+                    return with != null
+                        ? "CC_Kept_Lost_RoomShared".Translate(p.Named("PAWN"), with.Named("OTHER")).Resolve()
+                        : "CC_Kept_Lost_RoomBarracks".Translate(p.Named("PAWN")).Resolve();
+                case Sleeping.NoBed: return "CC_Kept_Lost_RoomNoBed".Translate(p.Named("PAWN")).Resolve();
+                case Sleeping.Outside: return "CC_Kept_Lost_RoomOutside".Translate(p.Named("PAWN")).Resolve();
+                default: return base.LostText(wish);
+            }
+        }
     }
 
     /// <summary>A more impressive bedroom. Greedy, jealous, or colonists with high expectations.</summary>
@@ -138,6 +229,20 @@ namespace ColonyCouncil
             if (wish.targetValue <= wish.baseline) return imp >= wish.targetValue ? 1f : 0f;
             return UnityEngine.Mathf.Clamp01((imp - wish.baseline) / (wish.targetValue - wish.baseline));
         }
+
+        // Promises kept: the room stays about as impressive as asked (a little dirt or a chair moved doesn't count).
+        public override bool InTheirRoom => true;
+
+        public override bool Concerns(Wish wish, BuildableDef d) => d is ThingDef td && td.category == ThingCategory.Building && td.Minifiable;
+
+        public override KeptCheck Holds(Wish wish)
+        {
+            var room = RoomUtil.PrivateRoom(wish.Beneficiary);
+            if (room == null) return KeptCheck.Unclear;
+            return KeptMath.RoomHolds(RoomUtil.Impressiveness(room), wish.targetValue) ? KeptCheck.Holds : KeptCheck.Gone;
+        }
+
+        public override string KeptKind(Wish wish) => "room";
     }
 
     /// <summary>A bigger room for colonists stuck in a cramped one.</summary>
@@ -171,6 +276,25 @@ namespace ColonyCouncil
 
         public override string ProgressText(Wish wish) =>
             "CC_Progress_Space".Translate(RoomUtil.Space(RoomUtil.PrivateRoom(wish.Beneficiary)).ToString("0"), wish.targetValue.ToString("0"));
+
+        // Promises kept: the room stays about as roomy as asked; walls or furniture being rebuilt in it count for a while.
+        public override bool InTheirRoom => true;
+
+        public override bool Concerns(Wish wish, BuildableDef d) => d is ThingDef td && td.category == ThingCategory.Building;
+
+        public override IEnumerable<Thing> KeptThings(Wish wish)
+        {
+            yield break;
+        }
+
+        public override KeptCheck Holds(Wish wish)
+        {
+            var room = RoomUtil.PrivateRoom(wish.Beneficiary);
+            if (room == null) return KeptCheck.Unclear;
+            return KeptMath.RoomHolds(RoomUtil.Space(room), wish.targetValue) ? KeptCheck.Holds : KeptCheck.Gone;
+        }
+
+        public override string KeptKind(Wish wish) => "room";
     }
 
     /// <summary>Partners who sleep apart want to share a bed.</summary>
@@ -225,6 +349,30 @@ namespace ColonyCouncil
             me.ownership.ClaimBedIfNonMedical(bed);
             return me.ownership.OwnedBed == bed ? "CC_SelfHelp_ShareBed" : null;
         }
+
+        // Promises kept: they still share a bed. Apart now, or the partner gone, there's nothing left to keep.
+        public override bool InTheirRoom => true;
+
+        public override Room TheirRoom(Wish wish) => RoomUtil.BedRoom(wish.Beneficiary);
+
+        public override bool Concerns(Wish wish, BuildableDef d) => d is ThingDef td && Avail.IsDoubleBed(td);
+
+        public override IEnumerable<Thing> KeptThings(Wish wish)
+        {
+            var bed = wish.Beneficiary?.ownership?.OwnedBed;
+            if (bed != null && bed.Spawned) yield return bed;
+        }
+
+        public override KeptCheck Holds(Wish wish)
+        {
+            if (!StillValid(wish)) return KeptCheck.Over;
+            var me = wish.Beneficiary;
+            var o = wish.other;
+            if (!me.Spawned || !o.Spawned || o.Map != me.Map) return KeptCheck.Unclear;
+            return IsFulfilled(wish) ? KeptCheck.Holds : KeptCheck.Gone;
+        }
+
+        public override string KeptKind(Wish wish) => "bed";
     }
 
     /// <summary>Small furniture for a private bedroom: an end table, a dresser.</summary>
@@ -271,6 +419,12 @@ namespace ColonyCouncil
         public override bool StillValid(Wish wish) => RoomUtil.PrivateRoom(wish.Beneficiary) != null;
 
         public override string TrySelfHelp(Wish wish) => PlanInOwnRoom(wish.Beneficiary, wish.thingDef) ? "CC_SelfHelp_Plan" : null;
+
+        public override bool InTheirRoom => true;
+
+        public override bool Concerns(Wish wish, BuildableDef d) => d is ThingDef td && (wish.subjectKey == "dresser" ? Avail.IsDresser(td) : Avail.IsEndTable(td));
+
+        public override KeptCheck Holds(Wish wish) => RoomUtil.PrivateRoom(wish.Beneficiary) == null ? KeptCheck.Unclear : base.Holds(wish);
     }
 
     /// <summary>Light in the bedroom: night owls, and colonists who've been stuck in the dark.</summary>
@@ -299,6 +453,12 @@ namespace ColonyCouncil
         public override bool StillValid(Wish wish) => RoomUtil.PrivateRoom(wish.Beneficiary) != null;
 
         public override string TrySelfHelp(Wish wish) => PlanInOwnRoom(wish.Beneficiary, wish.thingDef) ? "CC_SelfHelp_Plan" : null;
+
+        public override bool InTheirRoom => true;
+
+        public override bool Concerns(Wish wish, BuildableDef d) => d is ThingDef td && Avail.IsLight(td);
+
+        public override KeptCheck Holds(Wish wish) => RoomUtil.PrivateRoom(wish.Beneficiary) == null ? KeptCheck.Unclear : base.Holds(wish);
     }
 
     /// <summary>Slept in the cold or the heat: a heat source (or cooler) in the bedroom.</summary>
@@ -355,6 +515,22 @@ namespace ColonyCouncil
     public partial class WishWorker_ComfortTemperature
     {
         public override string TrySelfHelp(Wish wish) => PlanInRoom(RoomUtil.BedRoom(wish.Beneficiary), wish.Beneficiary, wish.thingDef) ? "CC_SelfHelp_Plan" : null;
+
+        // Promises kept: the heater (or cooler) stays in their bedroom; out of season, a comfortable room is enough.
+        public override bool InTheirRoom => true;
+
+        public override Room TheirRoom(Wish wish) => RoomUtil.BedRoom(wish.Beneficiary);
+
+        public override bool Concerns(Wish wish, BuildableDef d) => d is ThingDef td && (wish.subjectKey == "hot" ? Avail.IsCooler(td) : Avail.IsHeater(td));
+
+        public override KeptCheck Holds(Wish wish)
+        {
+            var room = RoomUtil.BedRoom(wish.Beneficiary);
+            if (room == null || room.PsychologicallyOutdoors) return KeptCheck.Unclear;
+            if (RoomUtil.RoomContains(room, wish.subjectKey == "hot" ? (System.Func<ThingDef, bool>)Avail.IsCooler : Avail.IsHeater)) return KeptCheck.Holds;
+            var range = wish.Beneficiary.ComfortableTemperatureRange();
+            return room.Temperature >= range.min && room.Temperature <= range.max ? KeptCheck.Holds : KeptCheck.Gone;
+        }
     }
 
     /// <summary>Somewhere proper to eat.</summary>
@@ -384,6 +560,8 @@ namespace ColonyCouncil
         }
 
         public override bool IsFulfilled(Wish wish) => HasDiningSpot(wish.Beneficiary.MapHeld);
+
+        public override bool Concerns(Wish wish, BuildableDef d) => d is ThingDef td && Avail.IsEatingTable(td);
     }
 
     /// <summary>Recreation variety: something new to do.</summary>
@@ -412,6 +590,19 @@ namespace ColonyCouncil
 
         public override string ProgressText(Wish wish) =>
             "CC_Progress_JoyKinds".Translate(Avail.JoyKindsOnMap(wish.Beneficiary.MapHeld), (wish.baseline + 1).ToString("0"));
+
+        public override bool Concerns(Wish wish, BuildableDef d) => d is ThingDef td && Avail.IsJoyGiver(td);
+
+        /// <summary>One building for each way to pass the time, so moving any of them is noticed as moving.</summary>
+        public override IEnumerable<Thing> KeptThings(Wish wish)
+        {
+            var map = wish.Beneficiary?.MapHeld;
+            if (map == null) yield break;
+            var seen = new HashSet<JoyKindDef>();
+            foreach (var b in Avail.ColonyBuildings(map, Avail.IsJoyGiver))
+                if (seen.Add(b.def.building.joyKind))
+                    yield return b;
+        }
     }
 
     /// <summary>Something green: a potted plant in the bedroom.</summary>
@@ -437,5 +628,11 @@ namespace ColonyCouncil
         public override bool StillValid(Wish wish) => RoomUtil.PrivateRoom(wish.Beneficiary) != null;
 
         public override string TrySelfHelp(Wish wish) => PlanInOwnRoom(wish.Beneficiary, wish.thingDef) ? "CC_SelfHelp_Plan" : null;
+
+        public override bool InTheirRoom => true;
+
+        public override bool Concerns(Wish wish, BuildableDef d) => d is ThingDef td && Avail.IsPlantPot(td);
+
+        public override KeptCheck Holds(Wish wish) => RoomUtil.PrivateRoom(wish.Beneficiary) == null ? KeptCheck.Unclear : base.Holds(wish);
     }
 }

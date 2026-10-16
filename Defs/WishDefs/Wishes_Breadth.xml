@@ -24,6 +24,8 @@
     <label>a bed for the sick</label>
     <description>Someone who is ill wants a bed set aside for the sick, where they can be looked after. Any bed marked for medical use will do.</description>
     <workerClass>ColonyCouncil.WishWorker_Sickbed</workerClass>
+    <lasting>true</lasting>
+    <lostText>There's no bed set aside for the sick any more.</lostText>
     <category>Health</category>
     <weight>0.9</weight>
     <expiryDays>5</expiryDays>
@@ -101,6 +103,9 @@
     <label>healroot put by</label>
     <description>A healer or grower in a colony without industrial medicine wants a store of healroot, grown and dried before the next fever.</description>
     <workerClass>ColonyCouncil.WishWorker_Stock</workerClass>
+    <lasting>true</lasting>
+    <keepShare>0.33</keepShare>
+    <lostText>The healroot {FOR_nameDef} wanted put by is nearly all gone.</lostText>
     <category>Health</category>
     <weight>0.8</weight>
     <expiryDays>15</expiryDays>
@@ -364,6 +369,8 @@
     <label>a table where everyone fits</label>
     <description>The colony eats in shifts or on its feet. Someone wants chairs at the tables for everyone who eats, so everyone can sit down to a meal together.</description>
     <workerClass>ColonyCouncil.WishWorker_SeatsForAll</workerClass>
+    <lasting>true</lasting>
+    <lostText>There are fewer seats at the table than people again, after {FOR_nameDef} asked for room for everyone.</lostText>
     <category>Social</category>
     <weight>0.8</weight>
     <expiryDays>12</expiryDays>
@@ -565,6 +572,8 @@
     <label>a fishing spot</label>
     <description>Odyssey: there are fish in the water on the map and nobody is catching them. Someone who'd like an afternoon at the water's edge, and fish for supper, wants a fishing zone marked out.</description>
     <workerClass>ColonyCouncil.WishWorker_Fishing</workerClass>
+    <lasting>true</lasting>
+    <lostText>The fishing spot {FOR_nameDef} asked for is gone.</lostText>
     <category>Work</category>
     <weight>0.7</weight>
     <expiryDays>12</expiryDays>
@@ -626,6 +635,7 @@
     <label>{THING} to look at the stars</label>
     <description>A curious mind wants a telescope, to see what's up there.</description>
     <workerClass>ColonyCouncil.WishWorker_Have</workerClass>
+    <lasting>true</lasting>
     <category>Comfort</category>
     <weight>0.5</weight>
     <expiryDays>15</expiryDays>
@@ -694,6 +704,7 @@
     <label>{THING} by the workbench</label>
     <description>A crafter tired of hunting for the right tool wants a tool cabinet by the bench.</description>
     <workerClass>ColonyCouncil.WishWorker_Have</workerClass>
+    <lasting>true</lasting>
     <category>Work</category>
     <weight>0.7</weight>
     <expiryDays>15</expiryDays>
@@ -890,6 +901,7 @@
     <label>{THING} to call beyond the hills</label>
     <description>A sociable colonist wants to hear voices from beyond the colony, and to call traders and friends when they're needed.</description>
     <workerClass>ColonyCouncil.WishWorker_Have</workerClass>
+    <lasting>true</lasting>
     <category>Social</category>
     <weight>0.5</weight>
     <expiryDays>15</expiryDays>
@@ -956,6 +968,7 @@
     <label>{THING} to turn back the years</label>
     <description>An older colonist feels the years in every joint and has heard a biosculpter pod can turn some of them back.</description>
     <workerClass>ColonyCouncil.WishWorker_Have</workerClass>
+    <lasting>true</lasting>
     <category>Health</category>
     <weight>0.6</weight>
     <expiryDays>20</expiryDays>
@@ -1021,6 +1034,7 @@
     <label>a soft chair to rest in</label>
     <description>An old colonist finds the stools hard on their back and wants an armchair to rest in at the end of the day.</description>
     <workerClass>ColonyCouncil.WishWorker_Have</workerClass>
+    <lasting>true</lasting>
     <category>Comfort</category>
     <weight>0.7</weight>
     <expiryDays>15</expiryDays>
@@ -1085,6 +1099,7 @@
     <label>{THING} for when the time comes</label>
     <description>One of the colony's oldest would rather not leave it to chance where they end up, and wants a proper resting place ready.</description>
     <workerClass>ColonyCouncil.WishWorker_Have</workerClass>
+    <lasting>true</lasting>
     <category>Status</category>
     <weight>0.4</weight>
     <expiryDays>20</expiryDays>
@@ -1213,6 +1228,8 @@
     <label>a pet to look after</label>
     <description>A child has been watching a small animal near the colony and wants one to look after. Any new animal the colony takes in will do.</description>
     <workerClass>ColonyCouncil.WishWorker_ChildPet</workerClass>
+    <lasting>true</lasting>
+    <lostText>{OTHER_nameDef}, the pet {FOR_nameDef} was given to look after, is no longer the colony's.</lostText>
     <category>Childhood</category>
     <weight>1</weight>
     <expiryDays>10</expiryDays>
@@ -1270,6 +1287,9 @@
     <label>new stories to read</label>
     <description>A child has read every book in the colony at least twice and wants something new.</description>
     <workerClass>ColonyCouncil.WishWorker_Stock</workerClass>
+    <lasting>true</lasting>
+    <keepShare>0.5</keepShare>
+    <lostText>The stories {FOR_nameDef} was given to read are gone from the shelves.</lostText>
     <category>Childhood</category>
     <weight>0.8</weight>
     <expiryDays>12</expiryDays>
@@ -1336,6 +1356,7 @@
     <label>{THING} for the hottest days</label>
     <description>It's sweltering outside and nowhere in the colony is cool. Someone wants a cooler, a passive one in a tribe, an electric one later.</description>
     <workerClass>ColonyCouncil.WishWorker_Have</workerClass>
+    <lasting>true</lasting>
     <category>Comfort</category>
     <weight>0.8</weight>
     <expiryDays>8</expiryDays>
@@ -1410,6 +1431,8 @@
     <label>a proper pen for the animals</label>
     <description>A keeper tired of chasing animals out of the fields wants a fenced pen for them.</description>
     <workerClass>ColonyCouncil.WishWorker_Have</workerClass>
+    <lasting>true</lasting>
+    <lostText>The pen {FOR_nameDef} asked for, to keep the animals in, is gone.</lostText>
     <category>Work</category>
     <weight>0.7</weight>
     <expiryDays>12</expiryDays>
@@ -1477,6 +1500,8 @@
     <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <description>Someone's own room still has a floor of bare earth, sand or mud. They want a real floor, any the colony can lay. Promising it plans the floor; out of patience, they may plan it themselves.</description>
     <workerClass>ColonyCouncil.WishWorker_Floor</workerClass>
+    <lasting>true</lasting>
+    <lostText>{FOR_nameDef}'s room has a floor of bare ground again.</lostText>
     <category>Comfort</category>
     <weight>0.8</weight>
     <expiryDays>12</expiryDays>

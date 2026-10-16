@@ -16,11 +16,11 @@ namespace ColonyCouncil
 
         // ---------------- Once an hour, at this tick of the hour ----------------
 
-        /// <summary>The council: fights and losses, decrees, wish upkeep, rooms taken, event wishes, new wishes.</summary>
+        /// <summary>The council: fights and losses, decrees, wish upkeep, promises kept, event wishes, new wishes.</summary>
         public const int CouncilWishes = 157;
         /// <summary>A camp's hour (only while one is there), inside the camp's own 250-tick pass.</summary>
         public const int Camp = 327;
-        /// <summary>The council's day, first half: trust, standards, decrees, rooms, anniversaries, names, journals, offices.</summary>
+        /// <summary>The council's day, first half: trust, standards, decrees, anniversaries, names, journals, offices.</summary>
         public const int CouncilDayFirst = 502;
         /// <summary>Health stories: convalescence and healers.</summary>
         public const int Health = 677;

@@ -309,6 +309,11 @@ namespace ColonyCouncil
             return map == null || IsFulfilled(wish) || Avail.CanBuild(wish.thingDef, map) || Avail.AnyBuildable(map, Hygiene.IsToilet);
         }
 
+        /// <summary>Promises kept: the toilets stay (without the hygiene mod there's nothing to keep).</summary>
+        public override KeptCheck Holds(Wish wish) => Hygiene.BladderNeed == null ? KeptCheck.Over : base.Holds(wish);
+
+        public override bool Concerns(Wish wish, BuildableDef d) => d is ThingDef td && Hygiene.IsToilet(td);
+
         public override string ProgressText(Wish wish) =>
             "CC_Progress_Count".Translate(Hygiene.Toilets(wish.Beneficiary.MapHeld), wish.targetValue.ToString("0")).ToString();
     }
@@ -343,6 +348,11 @@ namespace ColonyCouncil
             var map = wish.Beneficiary.MapHeld;
             return map == null || IsFulfilled(wish) || Avail.CanBuild(wish.thingDef, map) || Avail.AnyBuildable(map, Hygiene.IsWashPlace);
         }
+
+        /// <summary>Promises kept: somewhere to wash stays.</summary>
+        public override KeptCheck Holds(Wish wish) => Hygiene.HygieneNeed == null ? KeptCheck.Over : base.Holds(wish);
+
+        public override bool Concerns(Wish wish, BuildableDef d) => d is ThingDef td && Hygiene.IsWashPlace(td);
     }
 
     /// <summary>Hot water, once the colony knows how to heat it: after a cold bath or shower that should have been warm.</summary>
@@ -371,5 +381,10 @@ namespace ColonyCouncil
             var map = wish.Beneficiary.MapHeld;
             return map == null || IsFulfilled(wish) || Avail.CanBuild(wish.thingDef, map) || Avail.AnyBuildable(map, Hygiene.IsHotWaterTank);
         }
+
+        /// <summary>Promises kept: the tank and the boiler that heats it stay.</summary>
+        public override KeptCheck Holds(Wish wish) => Hygiene.HygieneNeed == null ? KeptCheck.Over : base.Holds(wish);
+
+        public override bool Concerns(Wish wish, BuildableDef d) => d is ThingDef td && (Hygiene.IsHotWaterTank(td) || Hygiene.IsBoiler(td));
     }
 }

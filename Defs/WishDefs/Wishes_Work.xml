@@ -7,6 +7,8 @@
     <label>{SUBJECT}</label>
     <description>A colonist passionate about a skill wants a proper space for it: a workshop, kitchen, laboratory, hospital, greenhouse or barn.</description>
     <workerClass>ColonyCouncil.WishWorker_PassionSpace</workerClass>
+    <lasting>true</lasting>
+    <watchDays>90</watchDays>
     <envy>0.3</envy>
     <grantEffects>
       <li Class="ColonyCouncil.WishEffect_SkillXp">
@@ -95,6 +97,8 @@
     <label>to do some {SUBJECT}</label>
     <description>A colonist passionate about a kind of work that's switched off for them wants to be allowed to do it.</description>
     <workerClass>ColonyCouncil.WishWorker_LetMeWork</workerClass>
+    <lasting>true</lasting>
+    <lostText>{FOR_nameDef}'s {SUBJECT} has been switched off again.</lostText>
     <envy>0</envy>
     <grantEffects>
       <li Class="ColonyCouncil.WishEffect_Hediff">
@@ -161,6 +165,8 @@
     <label>art where people gather</label>
     <description>Artists, and anyone with taste, want sculptures in the dining room or rec room.</description>
     <workerClass>ColonyCouncil.WishWorker_Artwork</workerClass>
+    <lasting>true</lasting>
+    <lostText>The art where people gather is gone again, after {FOR_nameDef} asked for it.</lostText>
     <envy>0</envy>
     <category>Comfort</category>
     <weight>0.7</weight>
@@ -290,6 +296,8 @@
     <label>a brewery</label>
     <description>A colonist with a chemical interest wants the colony to brew its own beer.</description>
     <workerClass>ColonyCouncil.WishWorker_Brewery</workerClass>
+    <lasting>true</lasting>
+    <lostText>The colony has no brewing barrel any more.</lostText>
     <envy>0</envy>
     <category>Comfort</category>
     <weight>1</weight>
@@ -425,6 +433,8 @@
     <label>a freezer for the food</label>
     <description>A cook, or someone who just ate something rotten, wants cold storage so food stops spoiling.</description>
     <workerClass>ColonyCouncil.WishWorker_Freezer</workerClass>
+    <lasting>true</lasting>
+    <lostText>The colony has no freezer any more, after {FOR_nameDef} asked for one.</lostText>
     <envy>0</envy>
     <category>Work</category>
     <weight>1.1</weight>

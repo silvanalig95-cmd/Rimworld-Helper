@@ -688,24 +688,6 @@
     </stages>
   </ThoughtDef>
 
-  <!--
-    The room of their own the council gave them, taken away again (Source/ColonyCouncil/Wishes/RoomTaken.cs): while they
-    sleep in a barracks or share a bedroom with someone who isn't their partner. Sized like a council letdown (stakes and
-    standards); ends when they have their own room again, and for good after about 30 days in shared quarters.
-    {DAYS} is how long ago the room was given ("23 days").
-  -->
-  <ThoughtDef>
-    <defName>Council_RoomTaken</defName>
-    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
-    <workerClass>ColonyCouncil.ThoughtWorker_RoomTaken</workerClass>
-    <thoughtClass>ColonyCouncil.Thought_RoomTaken</thoughtClass>
-    <stages>
-      <li>
-        <label>my room was taken from me</label>
-        <description>The council gave me a room of my own {DAYS} ago. Now I'm back to sleeping next to other people.</description>
-        <baseMoodEffect>-3</baseMoodEffect>
-      </li>
-    </stages>
-  </ThoughtDef>
+  <!-- A room of their own taken away again is one of the granted wishes watched by "promises kept": Council_Thoughts_Kept.xml. -->
 
 </Defs>

@@ -45,8 +45,8 @@ namespace ColonyCouncil
         /// <summary>Short history for the tooltip, newest last.</summary>
         public List<string> log = new List<string>();
         /// <summary>
-        /// When the council last gave them a room of their own (0 = never, or they've made their peace with losing it),
-        /// the hours they've spent back in shared quarters since (see <see cref="RoomTaken"/>), and whether they've said so.
+        /// Older saves only: when the council gave them a room of their own, for the old "room taken" mood. Read once and
+        /// turned into a watched wish (see <see cref="KeptTracker"/>), then cleared.
         /// </summary>
         public int ownRoomGranted;
         public int ownRoomLostHours;

@@ -17,6 +17,7 @@
     <label>{THING} in {FOR_possessive} room</label>
     <description>The nights are turning cold, and this colonist would like a fire of their own to sleep beside.</description>
     <workerClass>ColonyCouncil.WishWorker_Have</workerClass>
+    <lasting>true</lasting>
     <category>Comfort</category>
     <weight>0.8</weight>
     <expiryDays>8</expiryDays>
@@ -97,6 +98,7 @@
     <label>{THING} for the colony</label>
     <description>A reader or an artist wants somewhere proper to keep the colony's books.</description>
     <workerClass>ColonyCouncil.WishWorker_Have</workerClass>
+    <lasting>true</lasting>
     <category>Comfort</category>
     <weight>0.8</weight>
     <expiryDays>12</expiryDays>
@@ -168,6 +170,9 @@
     <label>more books to read</label>
     <description>The colony is short on books, and someone who loves to read has finished every one of them.</description>
     <workerClass>ColonyCouncil.WishWorker_Stock</workerClass>
+    <lasting>true</lasting>
+    <keepShare>0.5</keepShare>
+    <lostText>Most of the books {FOR_nameDef} asked for are gone from the colony.</lostText>
     <category>Comfort</category>
     <weight>0.9</weight>
     <expiryDays>12</expiryDays>
@@ -237,6 +242,7 @@
     <label>somewhere to train</label>
     <description>A fighter wants a training dummy or practice target to keep sharp between raids.</description>
     <workerClass>ColonyCouncil.WishWorker_Have</workerClass>
+    <lasting>true</lasting>
     <category>Safety</category>
     <weight>0.8</weight>
     <expiryDays>12</expiryDays>
@@ -303,6 +309,8 @@
     <label>a crib for the little one</label>
     <description>A parent wants a proper crib for their baby, instead of whatever the baby is sleeping in now.</description>
     <workerClass>ColonyCouncil.WishWorker_Have</workerClass>
+    <lasting>true</lasting>
+    <lostText>The crib for {FOR_nameDef}'s little one is gone.</lostText>
     <category>Childhood</category>
     <weight>1.2</weight>
     <expiryDays>6</expiryDays>
@@ -588,6 +596,9 @@
     <label>a proper treasury</label>
     <description>A greedy colonist wants the colony's silver piled up into a real fortune, just in case.</description>
     <workerClass>ColonyCouncil.WishWorker_Stock</workerClass>
+    <lasting>true</lasting>
+    <keepShare>0.5</keepShare>
+    <lostText>The colony's treasury, which {FOR_nameDef} wanted kept full, has been spent down to less than half.</lostText>
     <category>Status</category>
     <weight>0.7</weight>
     <expiryDays>20</expiryDays>
@@ -1248,6 +1259,8 @@
     <label>a place to pray</label>
     <description>Someone wants an altar or shrine in the colony, a quiet place set aside for prayer.</description>
     <workerClass>ColonyCouncil.WishWorker_Have</workerClass>
+    <lasting>true</lasting>
+    <lostText>The place to pray that {FOR_nameDef} asked for is gone.</lostText>
     <category>Status</category>
     <weight>0.6</weight>
     <expiryDays>15</expiryDays>
@@ -1314,6 +1327,7 @@
     <label>{THING}</label>
     <description>Someone wants a real bath in the colony, somewhere to get properly clean and warm.</description>
     <workerClass>ColonyCouncil.WishWorker_Have</workerClass>
+    <lasting>true</lasting>
     <category>Comfort</category>
     <weight>0.8</weight>
     <expiryDays>15</expiryDays>
@@ -1387,6 +1401,7 @@
     <label>{THING} to keep meat through winter</label>
     <description>A cook wants a smokehouse or drying rack, so meat can be cured instead of rotting.</description>
     <workerClass>ColonyCouncil.WishWorker_Have</workerClass>
+    <lasting>true</lasting>
     <category>Work</category>
     <weight>0.7</weight>
     <expiryDays>12</expiryDays>
@@ -1453,6 +1468,7 @@
     <label>{THING}</label>
     <description>A grower or animal lover wants bees in the colony, for the honey and for the crops.</description>
     <workerClass>ColonyCouncil.WishWorker_Have</workerClass>
+    <lasting>true</lasting>
     <category>Work</category>
     <weight>0.6</weight>
     <expiryDays>15</expiryDays>
@@ -1519,6 +1535,7 @@
     <label>{THING} in the colony</label>
     <description>An artistic colonist wants a fountain, something beautiful and useless among all the work of staying alive.</description>
     <workerClass>ColonyCouncil.WishWorker_Have</workerClass>
+    <lasting>true</lasting>
     <category>Comfort</category>
     <weight>0.5</weight>
     <expiryDays>20</expiryDays>
@@ -1587,6 +1604,8 @@
     <label>a banner for the colony</label>
     <description>Someone wants a banner raised over the colony, so raiders and traders alike know people live here.</description>
     <workerClass>ColonyCouncil.WishWorker_Have</workerClass>
+    <lasting>true</lasting>
+    <lostText>The colony's banner, which {FOR_nameDef} asked for, has come down.</lostText>
     <category>Status</category>
     <weight>0.6</weight>
     <expiryDays>15</expiryDays>
@@ -1653,6 +1672,7 @@
     <label>{THING} for the armory</label>
     <description>A fighter wants a proper weapon or armor rack, so the colony's arms can be grabbed in a hurry.</description>
     <workerClass>ColonyCouncil.WishWorker_Have</workerClass>
+    <lasting>true</lasting>
     <category>Safety</category>
     <weight>0.6</weight>
     <expiryDays>15</expiryDays>
@@ -1788,6 +1808,7 @@
     <label>{THING} to sit on outside</label>
     <description>Someone would like a bench out in the open air, somewhere to sit and watch the sky for a moment.</description>
     <workerClass>ColonyCouncil.WishWorker_Have</workerClass>
+    <lasting>true</lasting>
     <category>Comfort</category>
     <weight>0.5</weight>
     <expiryDays>12</expiryDays>
