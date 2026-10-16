@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using RimWorld;
 using Verse;
@@ -7,7 +8,8 @@ namespace ColonyCouncil
     /// <summary>
     /// What a seasonal custom needs beyond its season, on a dilemma def with <see cref="DilemmaWorker_Custom"/>: the
     /// weather outside (a swim wants a warm day, a frost soup the first cold one), water on the map, the colony's own
-    /// graves, or enough raw food for a feast.
+    /// graves, enough raw food for a feast, the land the colony stands on (a desert's rain welcome, a tundra's sun's
+    /// return), rain falling, or a faith of the colony's own with one of a few memes (Ideology).
     /// </summary>
     public class CustomConditions : DefModExtension
     {
@@ -20,6 +22,14 @@ namespace ColonyCouncil
         public bool graves;
         /// <summary>Raw food in storage, at least this many times the dilemma's thingCount (0 = no need).</summary>
         public float foodFactor;
+        /// <summary>The land, as Lands names it (desert, tundra, boreal, coast, river, lake, swamp, jungle, mountains, hills...): any one.</summary>
+        public List<string> lands;
+        /// <summary>Rain falling now (not snow).</summary>
+        public bool raining;
+        /// <summary>Ideology: the colony has a faith of its own.</summary>
+        public bool faith;
+        /// <summary>Ideology: the colony's faith holds one of these memes (defNames).</summary>
+        public List<string> memes;
     }
 
     /// <summary>A seasonal custom: the usual season and roles, plus whatever its <see cref="CustomConditions"/> ask.</summary>
@@ -34,7 +44,18 @@ namespace ColonyCouncil
             if (temp < c.minTemp || temp > c.maxTemp) return false;
             if (c.water && !HasWater(map)) return false;
             if (c.graves && !HasOurGraves(map)) return false;
+            if (!c.lands.NullOrEmpty() && !Lands.Fits(map, c.lands)) return false;
+            if (c.raining && !Raining(map)) return false;
+            if ((c.faith || !c.memes.NullOrEmpty()) && DecreeWork.ColonyFaith == null) return false;
+            if (!c.memes.NullOrEmpty() && !DecreeWork.FaithHas(c.memes)) return false;
             return true;
+        }
+
+        /// <summary>Rain falling on the map now (snow doesn't count).</summary>
+        public static bool Raining(Map map)
+        {
+            var w = map?.weatherManager?.curWeather;
+            return w != null && w.rainRate > 0.1f && w.snowRate <= 0.01f;
         }
 
         protected override bool Extra(DilemmaContext ctx)
@@ -70,5 +91,28 @@ namespace ColonyCouncil
         public static bool HasOurGraves(Map map) =>
             map.listerBuildings.allBuildingsColonist.OfType<Building_Grave>()
                 .Any(g => g.HasCorpse && g.Corpse?.InnerPawn != null && g.Corpse.InnerPawn.RaceProps.Humanlike && g.Corpse.InnerPawn.Faction == Faction.OfPlayer);
+    }
+
+    /// <summary>
+    /// Ideology: certainty in the colony's faith for those of it among the effect's targets (the colony unless given),
+    /// half again as much with a chaplain at home. Does nothing without Ideology or a faith of the colony's own.
+    /// </summary>
+    public class DilemmaEffect_Faith : DilemmaEffect
+    {
+        /// <summary>Certainty, as a share (0.05 = 5%).</summary>
+        public float amount = 0.05f;
+
+        public DilemmaEffect_Faith()
+        {
+            target = DilemmaTarget.Colony;
+        }
+
+        public override void Apply(DilemmaContext ctx)
+        {
+            if (DecreeWork.ColonyFaith == null || amount == 0f) return;
+            float a = amount * Interplay.FaithFactor;
+            foreach (var p in Targets(ctx).Distinct().ToList())
+                if (DecreeWork.Believer(p)) p.ideo?.OffsetCertainty(a);
+        }
     }
 }

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The chaplain, the warden of guests and the elders (Defs/OfficeDefs/Council_Offices3.xml): the holder's edge, and the colony's while elders sit. -->
+
+  <HediffDef>
+    <defName>Council_Office_Chaplain</defName>
+    <label>chaplain</label>
+    <description>Holds the chaplain's seat: keeps the colony's faith.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.85, 0.75, 0.5)</defaultLabelColor>
+    <isBad>false</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <stages>
+      <li><statOffsets><SocialImpact>0.08</SocialImpact><MentalBreakThreshold>-0.03</MentalBreakThreshold></statOffsets></li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef>
+    <defName>Council_Office_Warden</defName>
+    <label>warden of guests</label>
+    <description>Holds the warden's seat: looks after the colony's guests and the strangers on its land.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.85, 0.75, 0.5)</defaultLabelColor>
+    <isBad>false</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <stages>
+      <li><statOffsets><NegotiationAbility>0.1</NegotiationAbility><SocialImpact>0.05</SocialImpact></statOffsets></li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef>
+    <defName>Council_Office_Elder</defName>
+    <label>elder of the colony</label>
+    <description>Sits on the council of elders.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.85, 0.75, 0.5)</defaultLabelColor>
+    <isBad>false</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <stages>
+      <li><statOffsets><SocialImpact>0.05</SocialImpact><MentalBreakThreshold>-0.02</MentalBreakThreshold></statOffsets></li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef>
+    <defName>Council_Office_EldersColony</defName>
+    <label>a council of elders</label>
+    <description>The colony's elders sit together and are listened to. People keep a slightly steadier head for it.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.85, 0.75, 0.5)</defaultLabelColor>
+    <isBad>false</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <stages>
+      <li><statOffsets><MentalBreakThreshold>-0.01</MentalBreakThreshold></statOffsets></li>
+    </stages>
+  </HediffDef>
+
+</Defs>

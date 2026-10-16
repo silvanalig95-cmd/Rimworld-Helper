@@ -28,6 +28,8 @@ namespace ColonyCouncil
         public static Pawn CalendarOrganizer(CalendarDay d, List<Pawn> who)
         {
             if (!On || d == null || who == null) return null;
+            // A remembrance is the chaplain's to lead, when there is one (Interplay_Offices2.cs).
+            if (d.way == DayWay.Remembrance) return RiteLeader(d, who);
             switch (d.kind)
             {
                 case CalendarKind.Death:

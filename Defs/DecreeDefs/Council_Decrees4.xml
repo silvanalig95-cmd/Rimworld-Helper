@@ -1,0 +1,521 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Decrees of a settled people, from a village's own year: tithes, a curfew, the militia's drills, alms at the gate,
+    the faith's holy days (Ideology), a market day, a fast, a work song; decrees for hard times in the region (a
+    quarantine while sickness goes round, famine bread while the neighbours go hungry); and open gates.
+
+    What they do that a hediff can't is read from their fields by Decrees/DecreeWork.cs: when they can be declared at
+    all (eras, research, needsIdeology, memes, situationKinds or orWhen, mods, minColonists; a decree for another era or
+    faith isn't listed), what they take from the stores each morning (take) and the goodwill it earns (goodwillPerDay,
+    goodwillTo), the faith's certainty (certaintyPerDay), a curfew's night hours (nightSleep), a work song's recreation
+    (joyWhileWorking), a quarantine's closed doors (contagionFactor, visitorFactor) and a market day's traders
+    (callsTraders). Moods in Council_Thoughts_Decrees4.xml; effects in Council_Hediffs_Decrees4.xml.
+    Reactions may name people by tag (tags: devout, meme:..., a mod's trait) and by faith (sameFaith, otherFaith).
+  -->
+
+  <!-- ============ Tithes ============ -->
+  <ColonyCouncil.DecreeDef>
+    <defName>Council_Decree_Tithes</defName>
+    <label>tithes</label>
+    <description>A tenth of the silver in the stores is set aside each morning and given away: to the shrine of a people who share the colony's faith if there is one near, otherwise to the nearest friendly village. Goodwill grows with every day's tithe, and with Ideology the faithful grow surer of their faith. The greedy hate it; the devout and ascetics approve. A village's custom: not for a tribe.</description>
+    <eras><li>medieval</li><li>industrial</li><li>spacer</li></eras>
+    <requestWhen><li>Plenty</li></requestWhen>
+    <order>20</order>
+    <durationDays>10</durationDays>
+    <cooldownDays>15</cooldownDays>
+    <ways><generosity>3</generosity><tradition>2</tradition></ways>
+    <thought>Council_Decree_Tithes</thought>
+    <defaultReaction>Neutral</defaultReaction>
+    <take><what>silver</what><share>0.1</share><min>5</min><max>40</max></take>
+    <goodwillPerDay>1</goodwillPerDay>
+    <goodwillTo>Faith</goodwillTo>
+    <certaintyPerDay>0.01</certaintyPerDay>
+    <reactions>
+      <li><trait>Greedy</trait><reaction>Hate</reaction></li>
+      <li><trait>Jealous</trait><reaction>Dislike</reaction></li>
+      <li><tags>devout</tags><reaction>Love</reaction></li>
+      <li><trait>Ascetic</trait><reaction>Like</reaction></li>
+      <li><trait>Kind</trait><reaction>Like</reaction></li>
+    </reactions>
+    <effects>
+      <li>Each morning a tenth of the silver in store (5 to 40) is given away, and the people it goes to like the colony a little better for it (1 goodwill a day).</li>
+      <li>With Ideology, it goes to the nearest people of the colony's faith, and those of the faith grow a little surer of it each day.</li>
+      <li>The devout love it and ascetics and the kind approve; the greedy hate it, and the jealous mind it.</li>
+    </effects>
+    <support>
+      <plain>
+        <li>We have more than we need this season. A tenth of it should go somewhere it does some good.</li>
+        <li>[devout] Every proper village gives its tenth. We should too.</li>
+        <li>[medieval] My father paid his tithe every harvest, even the bad ones. I'd like us to be that sort of place.</li>
+      </plain>
+      <warm><li>Somebody out there needs this silver more than our strongbox does.</li></warm>
+      <cold><li>Goodwill costs silver one way or another. This way we choose who gets it.</li></cold>
+      <cheerful><li>A tithe! It feels good to be the ones giving, for once.</li></cheerful>
+    </support>
+    <oppose>
+      <plain>
+        <li>A tenth of everything, every morning. It adds up faster than anyone admits.</li>
+        <li>We worked for that silver. Somebody else is going to spend it.</li>
+      </plain>
+      <blunt><li>Let them earn their own silver.</li></blunt>
+      <gloomy><li>We'll need that silver the day the raiders come. We always do.</li></gloomy>
+    </oppose>
+  </ColonyCouncil.DecreeDef>
+
+  <!-- ============ Curfew ============ -->
+  <ColonyCouncil.DecreeDef>
+    <defName>Council_Decree_Curfew</defName>
+    <label>a curfew</label>
+    <description>Everyone indoors and abed by ten, the gate barred until dawn, and only the watch about. The night hours of everyone's schedule are turned to sleep (put back as they were when the curfew ends), so nothing gets done after dark and there are no brawls by the fire at midnight. Night owls keep the watch instead and are left to their hours. The nervous feel safer; the industrious resent the lost hours, and most people mind being sent to bed.</description>
+    <requestWhen><li>RecentThreat</li><li>Prisoners</li></requestWhen>
+    <order>21</order>
+    <durationDays>5</durationDays>
+    <cooldownDays>8</cooldownDays>
+    <ways><openness>-3</openness><tradition>1</tradition></ways>
+    <hediff>Council_Decree_Curfew</hediff>
+    <thought>Council_Decree_Curfew</thought>
+    <defaultReaction>Dislike</defaultReaction>
+    <nightSleep>true</nightSleep>
+    <reactions>
+      <li><trait>NightOwl</trait><reaction>Neutral</reaction></li>
+      <li><trait>Nerves</trait><degree>-2</degree><reaction>Love</reaction></li>
+      <li><trait>Nerves</trait><degree>-1</degree><reaction>Like</reaction></li>
+      <li><trait>Ascetic</trait><reaction>Neutral</reaction></li>
+      <li><trait>Industriousness</trait><degree>2</degree><reaction>Hate</reaction></li>
+      <li><trait>Abrasive</trait><reaction>Hate</reaction></li>
+    </reactions>
+    <effects>
+      <li>The hours from ten at night to five in the morning become sleep in everyone's schedule (night owls keep the watch and keep their hours); the schedule goes back when it ends.</li>
+      <li>Social fights are much rarer.</li>
+      <li>The nervous welcome it; the industrious and the abrasive hate it, and most people mind being sent to bed.</li>
+    </effects>
+    <support>
+      <plain>
+        <li>After what happened, I want everyone inside with the gate barred by dark.</li>
+        <li>Too many people wandering about at night. Something's going to go wrong.</li>
+        <li>[medieval|tribal] Cover the fires, bar the gate. That's how villages lasted.</li>
+      </plain>
+      <gloomy><li>Things come out of the dark. Let's not be out in it.</li></gloomy>
+      <cold><li>Fewer people out at night means fewer things to go wrong at night.</li></cold>
+    </support>
+    <oppose>
+      <plain>
+        <li>I'm a grown adult. I'll go to bed when I'm tired.</li>
+        <li>The night's the only time it's cool enough to work.</li>
+      </plain>
+      <blunt><li>Bed at ten. Like children.</li></blunt>
+      <cheerful><li>A curfew? Then I'll tell my best stories at nine, quickly.</li></cheerful>
+    </oppose>
+  </ColonyCouncil.DecreeDef>
+
+  <!-- ============ Militia drills ============ -->
+  <ColonyCouncil.DecreeDef>
+    <defName>Council_Decree_Militia</defName>
+    <label>militia drills</label>
+    <description>Not the all-day drilling of a colony expecting war, but the muster of a village: an hour with spear and bow most evenings, for everyone who can fight, for twelve days. Slow, steady practice at shooting and melee, and only a little lost from other work. Gentler than the drills decree, and less resented: only the kind and wimps mind it much.</description>
+    <eras><li>tribal</li><li>medieval</li><li>industrial</li></eras>
+    <requestWhen><li>RecentThreat</li><li>Newcomer</li></requestWhen>
+    <order>22</order>
+    <strainPerDay>0.5</strainPerDay>
+    <durationDays>12</durationDays>
+    <cooldownDays>20</cooldownDays>
+    <ways><openness>-2</openness><toil>1</toil></ways>
+    <hediff>Council_Decree_Militia</hediff>
+    <thought>Council_Decree_Militia</thought>
+    <defaultReaction>Neutral</defaultReaction>
+    <practiceSkills><li>Shooting</li><li>Melee</li></practiceSkills>
+    <practiceXpPerHour>12</practiceXpPerHour>
+    <practiceNeedsViolence>true</practiceNeedsViolence>
+    <reactions>
+      <li><nonViolent>true</nonViolent><reaction>Neutral</reaction></li>
+      <li><trait>Bloodlust</trait><reaction>Like</reaction></li>
+      <li><trait>Tough</trait><reaction>Like</reaction></li>
+      <li><trait>Brawler</trait><reaction>Like</reaction></li>
+      <li><passion>Shooting</passion><reaction>Like</reaction></li>
+      <li><trait>Wimp</trait><reaction>Dislike</reaction></li>
+      <li><trait>Kind</trait><reaction>Dislike</reaction></li>
+    </reactions>
+    <effects>
+      <li>Everyone who can fight practices shooting and melee a little every waking hour, for twelve days.</li>
+      <li>Everyone works 3% slower.</li>
+      <li>Fighters and the bloodthirsty like it; wimps and the kind mind it; most people don't mind.</li>
+    </effects>
+    <support>
+      <plain>
+        <li>Not a war camp. Just an hour in the evenings, so everyone knows which end of the spear to hold.</li>
+        <li>[tribal] Every hunter of my people was a warrior when the camp needed one. We should be the same.</li>
+        <li>[medieval] The village muster, on the green, every evening. It's how ordinary folk held off the bandits.</li>
+        <li>[newcomer] We've new faces who've never held a weapon. A few evenings of drill would fix that.</li>
+      </plain>
+      <blunt><li>An hour a day. Nobody dies of an hour a day.</li></blunt>
+      <cheerful><li>Drill on the green! I'll bring the targets.</li></cheerful>
+    </support>
+    <oppose>
+      <plain><li>Every evening, the same thrusts and the same shouting. I'd rather be fishing.</li></plain>
+      <warm><li>I'll learn. I just don't like how easy it's getting.</li></warm>
+      <gloomy><li>Practising for the day it all goes wrong.</li></gloomy>
+    </oppose>
+    <!-- With "Answers play out on the map": the first evening, the muster on the green. -->
+    <onEnact>
+      <li Class="ColonyCouncil.DilemmaEffect_Words"><label>the first muster</label><spots><li>Outdoors</li><li>Gather</li></spots><hours>16~20</hours><duration>0.75~1</duration>
+        <lines>
+          <li>Two lines, the long weapons in front. Again. And again.</li>
+          <li>Nobody is good at this yet. That's what the evenings are for.</li>
+        </lines>
+      </li>
+    </onEnact>
+  </ColonyCouncil.DecreeDef>
+
+  <!-- ============ Alms for the poor ============ -->
+  <ColonyCouncil.DecreeDef>
+    <defName>Council_Decree_Alms</defName>
+    <label>alms for the poor</label>
+    <description>Bread and a bowl at the gate each morning for anyone who comes: a share of the raw food in store goes out to the poor of the nearest friendly village, and their people remember the colony for it. The kind love it and ascetics approve; the greedy hate seeing food walk out of the gate.</description>
+    <requestWhen><li>Plenty</li><li>Winter</li></requestWhen>
+    <order>23</order>
+    <durationDays>7</durationDays>
+    <cooldownDays>12</cooldownDays>
+    <ways><generosity>5</generosity><mercy>3</mercy></ways>
+    <thought>Council_Decree_Alms</thought>
+    <defaultReaction>Neutral</defaultReaction>
+    <take><what>rawfood</what><share>0.03</share><min>5</min><max>20</max></take>
+    <goodwillPerDay>1</goodwillPerDay>
+    <goodwillTo>Neighbour</goodwillTo>
+    <reactions>
+      <li><trait>Kind</trait><reaction>Love</reaction></li>
+      <li><trait>Greedy</trait><reaction>Hate</reaction></li>
+      <li><trait>Psychopath</trait><reaction>Neutral</reaction></li>
+      <li><trait>Ascetic</trait><reaction>Like</reaction></li>
+      <li><tags>devout</tags><reaction>Like</reaction></li>
+    </reactions>
+    <effects>
+      <li>Each morning a little of the raw food in store (5 to 20) goes out at the gate, and the nearest friendly people's goodwill rises by 1.</li>
+      <li>The kind love it, and ascetics and the devout approve; the greedy hate it.</li>
+    </effects>
+    <support>
+      <plain>
+        <li>The stores are full and there are people at the gate with nothing. That's not right.</li>
+        <li>[winter] It's a hard winter for the villages. A bowl at the gate costs us very little.</li>
+        <li>[devout] The faith asks it of us, and so do I.</li>
+      </plain>
+      <warm><li>I've been the one at somebody else's gate. Let's be the gate that opens.</li></warm>
+      <cold><li>Hungry neighbours become dangerous neighbours. Bread is cheaper than walls.</li></cold>
+    </support>
+    <oppose>
+      <plain><li>We had a lean year too, not long ago. Nobody fed us.</li></plain>
+      <blunt><li>Feed them once and they'll be back with their cousins.</li></blunt>
+      <gloomy><li>We'll miss every bowl of it in the spring.</li></gloomy>
+    </oppose>
+  </ColonyCouncil.DecreeDef>
+
+  <!-- ============ Holy days (Ideology) ============ -->
+  <ColonyCouncil.DecreeDef>
+    <defName>Council_Decree_HolyDays</defName>
+    <label>holy days</label>
+    <description>Three days kept for the colony's faith: prayers at dawn and dusk, work set down at the hours of the faith, a gathering on the first evening. The faithful grow surer of their faith each day (half again as much with a chaplain), and work slows. The devout love it; those of another faith mind it, and the industrious think it time wasted. Only with Ideology, for a colony with a faith of its own.</description>
+    <needsIdeology>true</needsIdeology>
+    <requestWhen><li>ColonyMiserable</li><li>Grief</li><li>Strained</li></requestWhen>
+    <order>24</order>
+    <durationDays>3</durationDays>
+    <cooldownDays>15</cooldownDays>
+    <ways><tradition>5</tradition><toil>-2</toil></ways>
+    <hediff>Council_Decree_HolyDays</hediff>
+    <thought>Council_Decree_HolyDays</thought>
+    <defaultReaction>Neutral</defaultReaction>
+    <certaintyPerDay>0.03</certaintyPerDay>
+    <reactions>
+      <li><tags>devout</tags><reaction>Love</reaction></li>
+      <li><otherFaith>true</otherFaith><reaction>Dislike</reaction></li>
+      <li><trait>Industriousness</trait><degree>2</degree><reaction>Dislike</reaction></li>
+      <li><sameFaith>true</sameFaith><reaction>Like</reaction></li>
+    </reactions>
+    <effects>
+      <li>Those of the colony's faith grow 3% surer of it each day (half again with a chaplain), and keep a little steadier.</li>
+      <li>Everyone works 8% slower.</li>
+      <li>The devout love it and the faithful like it; those of another faith and the industrious mind it.</li>
+    </effects>
+    <support>
+      <plain>
+        <li>We've been working so hard we've forgotten what we work for. Three days for the faith.</li>
+        <li>[grieving] Let us pray for them properly, all of us, the way it should be done.</li>
+        <li>[lowmood] People are lost lately. The faith can give them something to hold.</li>
+      </plain>
+      <warm><li>Three days together, in the faith. I think we all need it.</li></warm>
+      <cold><li>Shared belief is the cheapest glue a colony has. Use it.</li></cold>
+    </support>
+    <oppose>
+      <plain><li>It isn't my faith, and now it's my three days.</li></plain>
+      <blunt><li>The walls don't build themselves while we pray.</li></blunt>
+      <gloomy><li>Praying hasn't fixed the roof yet.</li></gloomy>
+    </oppose>
+    <!-- With "Answers play out on the map": the first evening, the colony gathers for the faith's words. -->
+    <onEnact>
+      <li Class="ColonyCouncil.DilemmaEffect_Words"><label>the prayers at dusk</label><spots><li>Gather</li><li>Dining</li><li>Outdoors</li></spots><hours>17~21</hours><duration>1~1.5</duration></li>
+    </onEnact>
+  </ColonyCouncil.DecreeDef>
+
+  <!-- ============ Market day ============ -->
+  <ColonyCouncil.DecreeDef>
+    <defName>Council_Decree_MarketDay</defName>
+    <label>a market day</label>
+    <description>Word goes out to the friendly peoples nearby: the colony holds a market. A trade caravan comes that day, and for two days everyone haggles a little harder and works a little less. Only when a friendly people who send caravans is near enough to come. The sociable and the greedy love it; the abrasive and the nervous would rather the strangers stayed away.</description>
+    <callsTraders>true</callsTraders>
+    <requestWhen><li>Plenty</li><li>ColonyHappy</li></requestWhen>
+    <order>25</order>
+    <durationDays>2</durationDays>
+    <cooldownDays>20</cooldownDays>
+    <ways><openness>5</openness></ways>
+    <hediff>Council_Decree_MarketDay</hediff>
+    <thought>Council_Decree_MarketDay</thought>
+    <defaultReaction>Neutral</defaultReaction>
+    <reactions>
+      <li><trait>Greedy</trait><reaction>Love</reaction></li>
+      <li><passion>Social</passion><reaction>Like</reaction></li>
+      <li><trait>Abrasive</trait><reaction>Dislike</reaction></li>
+      <li><trait>Nerves</trait><degree>-2</degree><reaction>Dislike</reaction></li>
+      <li><trait>Undergrounder</trait><reaction>Dislike</reaction></li>
+    </reactions>
+    <effects>
+      <li>A trade caravan from a friendly people comes the day it's declared.</li>
+      <li>Trade prices 4% better for everyone, and everyone works 5% slower.</li>
+      <li>The greedy love it and the sociable like it; the abrasive, the nervous and undergrounders mind it.</li>
+    </effects>
+    <support>
+      <plain>
+        <li>We've more than we can use and nothing we want. Let's call the traders in.</li>
+        <li>[medieval] A market day! Stalls by the gate and everyone out in their best.</li>
+        <li>[tribal] Send word to the other camps. We'll trade at the fire.</li>
+      </plain>
+      <cheerful><li>A market! I've been saving my silver for weeks.</li></cheerful>
+      <cold><li>Surplus rots. Trade it while it's worth something.</li></cold>
+    </support>
+    <oppose>
+      <plain><li>Strangers all over the place, poking at everything we own.</li></plain>
+      <blunt><li>They'll rob us blind and smile while they do it.</li></blunt>
+      <gloomy><li>I always end up selling the thing I needed.</li></gloomy>
+    </oppose>
+  </ColonyCouncil.DecreeDef>
+
+  <!-- ============ A fast ============ -->
+  <ColonyCouncil.DecreeDef>
+    <defName>Council_Decree_Fast</defName>
+    <label>a fast</label>
+    <description>Two days of fasting: water, a little bread at sundown, and nothing else. Everyone gets hungry half as fast, the stores last, and heads feel strangely clear; the work goes slowly on an empty stomach. Ascetics love it and the devout welcome it; gourmands hate it and most people mind it.</description>
+    <requestWhen><li>FoodLow</li><li>Spoiled</li></requestWhen>
+    <order>26</order>
+    <strainPerDay>1</strainPerDay>
+    <durationDays>2</durationDays>
+    <cooldownDays>15</cooldownDays>
+    <ways><tradition>3</tradition><generosity>-1</generosity></ways>
+    <hediff>Council_Decree_Fast</hediff>
+    <thought>Council_Decree_Fast</thought>
+    <defaultReaction>Dislike</defaultReaction>
+    <standardsPerDay>-0.02</standardsPerDay>
+    <reactions>
+      <li><trait>Ascetic</trait><reaction>Love</reaction></li>
+      <li><tags>devout</tags><reaction>Like</reaction></li>
+      <li><trait>Gourmand</trait><reaction>Hate</reaction></li>
+      <li><trait>Greedy</trait><reaction>Hate</reaction></li>
+      <li><trait>Tough</trait><reaction>Neutral</reaction></li>
+    </reactions>
+    <effects>
+      <li>Two days: everyone gets hungry 50% more slowly, and learns 10% faster.</li>
+      <li>Everyone works 6% slower, and standards ease down a little.</li>
+      <li>Ascetics love it and the devout like it; gourmands and the greedy hate it, and most people mind it.</li>
+    </effects>
+    <support>
+      <plain>
+        <li>We eat too well and think too little. Two days of fasting would do us good.</li>
+        <li>[devout] The faith keeps its fasts. So should we.</li>
+        <li>The stores are low. Better a fast we choose than a famine we don't.</li>
+      </plain>
+      <warm><li>Two days of plain living. We'll appreciate supper all the more after.</li></warm>
+      <cold><li>Two days at half rations costs nothing permanent and saves a great deal.</li></cold>
+    </support>
+    <oppose>
+      <plain><li>I can't think about anything but bread.</li></plain>
+      <blunt><li>I'm not fasting. I'm starving, politely.</li></blunt>
+      <cheerful><li>Two days! I'll dream about the feast after.</li></cheerful>
+      <gloomy><li>My stomach has been talking to me since dawn and it has nothing nice to say.</li></gloomy>
+    </oppose>
+  </ColonyCouncil.DecreeDef>
+
+  <!-- ============ A work song ============ -->
+  <ColonyCouncil.DecreeDef>
+    <defName>Council_Decree_WorkSong</defName>
+    <label>a work song</label>
+    <description>The fields, the quarry and the workshop sing: the old songs with a beat to work to, the new verses somebody makes up about the cook. Hands keep time and the hours go faster, so work picks up and the singers get some recreation at it; but nobody can think over the noise, and research and study suffer. The sociable love it; the nervous and the abrasive can't stand it.</description>
+    <requestWhen><li>ColonyHappy</li><li>Autumn</li></requestWhen>
+    <order>27</order>
+    <durationDays>5</durationDays>
+    <cooldownDays>10</cooldownDays>
+    <ways><toil>2</toil><tradition>2</tradition></ways>
+    <hediff>Council_Decree_WorkSong</hediff>
+    <thought>Council_Decree_WorkSong</thought>
+    <defaultReaction>Neutral</defaultReaction>
+    <joyWhileWorking>0.02</joyWhileWorking>
+    <reactions>
+      <li><passion>Social</passion><reaction>Like</reaction></li>
+      <li><passion>Artistic</passion><reaction>Like</reaction></li>
+      <li><trait>Nerves</trait><degree>-2</degree><reaction>Dislike</reaction></li>
+      <li><trait>Abrasive</trait><reaction>Dislike</reaction></li>
+      <li><trait>TooSmart</trait><reaction>Dislike</reaction></li>
+      <li><trait>Psychopath</trait><reaction>Neutral</reaction></li>
+    </reactions>
+    <effects>
+      <li>Everyone works 3% faster, and those who don't mind the singing get a little recreation every hour they work.</li>
+      <li>Research 10% slower and learning 5% slower: nobody can think over the noise.</li>
+      <li>The sociable and the artistic like it; the nervous, the abrasive and the too-clever mind it.</li>
+    </effects>
+    <support>
+      <plain>
+        <li>The work goes faster with a song. Everyone knows that, and nobody sings any more.</li>
+        <li>[lowtech] My grandmother had a song for everything: sowing, reaping, hauling nets. Let's have some here.</li>
+        <li>[fall] Harvest songs, for the harvest. It's the oldest custom there is.</li>
+      </plain>
+      <cheerful><li>I've written a new verse about the cook. Everyone's going to love it except the cook.</li></cheerful>
+      <warm><li>When we sing together I forget my back hurts.</li></warm>
+    </support>
+    <oppose>
+      <plain><li>The same four lines since breakfast. I'm going to scream.</li></plain>
+      <cold><li>I can't hold a calculation in my head with that racket.</li></cold>
+      <blunt><li>Sing all you like. Somewhere else.</li></blunt>
+    </oppose>
+  </ColonyCouncil.DecreeDef>
+
+  <!-- ============ Quarantine (a sickness in the region, or someone ill at home) ============ -->
+  <ColonyCouncil.DecreeDef>
+    <defName>Council_Decree_Quarantine</defName>
+    <label>quarantine</label>
+    <description>The sick sleep apart, the gate is closed to strangers, and everyone keeps their distance. Illnesses hardly pass between people sharing a bedroom, visitors and travellers are turned away (Rimfolk's visitor events come far less often), bodies fight off illness a little better, and everyone is a little lonelier for it. Only while a sickness goes round the region, or someone at home is ill. The sickly and doctors approve; the sociable hate keeping their distance.</description>
+    <situationKinds><li>sickness</li></situationKinds>
+    <orWhen><li>Illness</li></orWhen>
+    <requestWhen><li>Situation</li><li>Illness</li></requestWhen>
+    <order>28</order>
+    <strainPerDay>1</strainPerDay>
+    <durationDays>7</durationDays>
+    <cooldownDays>12</cooldownDays>
+    <ways><openness>-5</openness><mercy>1</mercy></ways>
+    <hediff>Council_Decree_Quarantine</hediff>
+    <thought>Council_Decree_Quarantine</thought>
+    <defaultReaction>Neutral</defaultReaction>
+    <contagionFactor>0.2</contagionFactor>
+    <visitorFactor>0.3</visitorFactor>
+    <reactions>
+      <li><trait>Immunity</trait><degree>-1</degree><reaction>Love</reaction></li>
+      <li><passion>Medicine</passion><reaction>Like</reaction></li>
+      <li><trait>Nerves</trait><degree>-2</degree><reaction>Like</reaction></li>
+      <li><passion>Social</passion><reaction>Dislike</reaction></li>
+      <li><trait>Kind</trait><reaction>Dislike</reaction></li>
+    </reactions>
+    <effects>
+      <li>Illnesses pass between people sharing a bedroom a fifth as often, and immunity builds 6% faster.</li>
+      <li>Visitors and travellers are turned away: Rimfolk's visitor events come about a third as often.</li>
+      <li>Social impact down 10% and work 4% slower. The sickly and doctors approve; the sociable and the kind mind it.</li>
+    </effects>
+    <support>
+      <plain>
+        <li>It's in the villages already. Close the gate before it's in here.</li>
+        <li>Keep the sick apart until this passes. One cough in a shared room and we'll all have it.</li>
+        <li>[lowtech] The old way: smoke at the gate, the sick in their own hut, nobody in or out.</li>
+      </plain>
+      <cold><li>Isolation is the only medicine that works on everyone.</li></cold>
+      <gloomy><li>I watched a fever go through a whole town once. I won't watch it here.</li></gloomy>
+    </support>
+    <oppose>
+      <plain><li>Eating alone, sleeping alone. It's like being in prison.</li></plain>
+      <warm><li>Turning people away at the gate when they're sick and frightened? That's not who we are.</li></warm>
+      <blunt><li>I'm not sick. Stop treating me like I am.</li></blunt>
+    </oppose>
+  </ColonyCouncil.DecreeDef>
+
+  <!-- ============ Famine bread (a famine or drought in the region) ============ -->
+  <ColonyCouncil.DecreeDef>
+    <defName>Council_Decree_FamineBread</defName>
+    <label>famine bread</label>
+    <description>The region is hungry, and the colony tightens its belt to share: smaller portions at home, and each morning a share of the raw food in store goes to the people the famine hits hardest. They will remember it (2 goodwill a day). Only while a famine, a drought or a plague of locusts lies over the region. The kind love it; the greedy and gourmands hate it, and most people mind going a little hungry for strangers.</description>
+    <situationKinds><li>hunger</li><li>drought</li></situationKinds>
+    <requestWhen><li>Situation</li></requestWhen>
+    <order>29</order>
+    <strainPerDay>1</strainPerDay>
+    <durationDays>7</durationDays>
+    <cooldownDays>15</cooldownDays>
+    <ways><generosity>6</generosity><mercy>3</mercy></ways>
+    <hediff>Council_Decree_FamineBread</hediff>
+    <thought>Council_Decree_FamineBread</thought>
+    <defaultReaction>Dislike</defaultReaction>
+    <take><what>rawfood</what><share>0.04</share><min>6</min><max>24</max></take>
+    <goodwillPerDay>2</goodwillPerDay>
+    <goodwillTo>Situation</goodwillTo>
+    <reactions>
+      <li><trait>Kind</trait><reaction>Love</reaction></li>
+      <li><trait>Ascetic</trait><reaction>Like</reaction></li>
+      <li><tags>devout</tags><reaction>Like</reaction></li>
+      <li><trait>Greedy</trait><reaction>Hate</reaction></li>
+      <li><trait>Gourmand</trait><reaction>Hate</reaction></li>
+      <li><trait>Psychopath</trait><reaction>Neutral</reaction></li>
+    </reactions>
+    <effects>
+      <li>Everyone gets hungry 15% more slowly: smaller portions at home.</li>
+      <li>Each morning a share of the raw food in store (6 to 24) goes to the hungry people of the famine, whose goodwill rises by 2.</li>
+      <li>The kind love it, and ascetics and the devout approve; the greedy and gourmands hate it, and most people mind it.</li>
+    </effects>
+    <support>
+      <plain>
+        <li>They're boiling bark in the villages. We can spare a sack a day if we all eat a little less.</li>
+        <li>[winter] A famine winter. If we don't share now, who will they remember helped them?</li>
+      </plain>
+      <warm><li>Half a bowl for me, and the other half to a child down the road. That's a fair trade.</li></warm>
+      <cold><li>Bread now buys friends for every lean year after. It's a sound investment.</li></cold>
+    </support>
+    <oppose>
+      <plain><li>We're not rich either. Our own children come first.</li></plain>
+      <blunt><li>I'm hungry. Let them be hungry somewhere else.</li></blunt>
+      <gloomy><li>We'll give it all away and then the famine will come for us.</li></gloomy>
+    </oppose>
+  </ColonyCouncil.DecreeDef>
+
+  <!-- ============ Open gates ============ -->
+  <ColonyCouncil.DecreeDef>
+    <defName>Council_Decree_OpenGates</defName>
+    <label>open gates</label>
+    <description>The gate stands open and the road is welcome in: travellers, traders and anyone passing are invited to stop. Rimfolk's visitor events come about half again as often, and everyone talks to strangers a little more easily. The opposite of a quarantine. The sociable and the kind love it; the nervous hate it.</description>
+    <requestWhen><li>ColonyHappy</li><li>Newcomer</li></requestWhen>
+    <order>30</order>
+    <durationDays>7</durationDays>
+    <cooldownDays>12</cooldownDays>
+    <ways><openness>6</openness><generosity>1</generosity></ways>
+    <hediff>Council_Decree_OpenGates</hediff>
+    <thought>Council_Decree_OpenGates</thought>
+    <defaultReaction>Neutral</defaultReaction>
+    <visitorFactor>1.5</visitorFactor>
+    <reactions>
+      <li><passion>Social</passion><reaction>Like</reaction></li>
+      <li><trait>Kind</trait><reaction>Like</reaction></li>
+      <li><trait>Nerves</trait><degree>-2</degree><reaction>Hate</reaction></li>
+      <li><trait>Nerves</trait><degree>-1</degree><reaction>Dislike</reaction></li>
+      <li><trait>Abrasive</trait><reaction>Dislike</reaction></li>
+    </reactions>
+    <effects>
+      <li>Rimfolk's visitor events come about half again as often while it holds.</li>
+      <li>Social impact and negotiation up 5%.</li>
+      <li>The sociable and the kind like it; the nervous hate it, and the abrasive mind it.</li>
+    </effects>
+    <support>
+      <plain>
+        <li>Nobody comes by any more. Let's let the road know we're friendly.</li>
+        <li>[newcomer] The last stranger who came through the gate is one of us now. There'll be others.</li>
+      </plain>
+      <cheerful><li>Open the gates! I want new faces at supper.</li></cheerful>
+      <cold><li>Travellers bring news, trade and recruits. We've been missing all three.</li></cold>
+    </support>
+    <oppose>
+      <plain><li>Anyone could walk in. Anyone at all.</li></plain>
+      <gloomy><li>The next stranger through that gate will have a knife.</li></gloomy>
+      <blunt><li>We've got enough mouths.</li></blunt>
+    </oppose>
+  </ColonyCouncil.DecreeDef>
+
+</Defs>

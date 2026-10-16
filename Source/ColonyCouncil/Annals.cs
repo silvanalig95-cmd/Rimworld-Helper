@@ -230,7 +230,7 @@ namespace ColonyCouncil
             var bitter = now.Where(p => comp.standings.TrustOf(p) <= -15f).OrderBy(p => comp.standings.TrustOf(p)).FirstOrDefault();
             if (devoted != null) Para("CC_Annals_Devoted".Translate(devoted.Named("PAWN")).Resolve());
             if (bitter != null) Para("CC_Annals_Bitter".Translate(bitter.Named("PAWN")).Resolve());
-            var seats = OfficeTracker.Offices.Select(o => (o, h: comp.offices.HolderOf(o))).Where(x => x.h != null).Select(x => x.h.LabelShort + " (" + x.o.label + ")").ToList();
+            var seats = OfficeTracker.Offices.SelectMany(o => comp.offices.HoldersOf(o).Select(h => (o, h))).Select(x => x.h.LabelShort + " (" + x.o.label + ")").ToList();
             if (seats.Count > 0) Para("CC_Annals_Offices".Translate(TextUtil.JoinAnd(seats)).Resolve());
             var titled = now.Select(p => (p, titles: comp.epithets.TitlesOf(p))).Where(x => !x.titles.NullOrEmpty())
                 .Select(x => x.p.LabelShort + " " + x.titles).ToList();

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Effects of the fourth set of decrees (Council_Decrees4.xml), applied to every colonist while each holds. Tithes and alms have none: what they do is daily (DecreeWork.cs). -->
+
+  <HediffDef>
+    <defName>Council_Decree_Curfew</defName>
+    <label>curfew (decree)</label>
+    <description>In by ten and the gate barred until dawn, by order of the council.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.6, 0.8, 0.95)</defaultLabelColor>
+    <isBad>false</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <stages>
+      <li><socialFightChanceFactor>0.4</socialFightChanceFactor></li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef>
+    <defName>Council_Decree_Militia</defName>
+    <label>militia drills (decree)</label>
+    <description>An hour of drill most evenings with the colony's militia, by order of the council.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.9, 0.75, 0.45)</defaultLabelColor>
+    <isBad>false</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <stages>
+      <li><statOffsets><WorkSpeedGlobal>-0.03</WorkSpeedGlobal></statOffsets></li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef>
+    <defName>Council_Decree_HolyDays</defName>
+    <label>holy days (decree)</label>
+    <description>Keeping the faith's holy days, by order of the council: prayers at dawn and dusk, and work set down for them.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.6, 0.8, 0.95)</defaultLabelColor>
+    <isBad>false</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <stages>
+      <li><statOffsets><WorkSpeedGlobal>-0.08</WorkSpeedGlobal><MentalBreakThreshold>-0.02</MentalBreakThreshold></statOffsets></li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef>
+    <defName>Council_Decree_MarketDay</defName>
+    <label>market day (decree)</label>
+    <description>A market day declared by the council: haggling at the gate, and not much else getting done.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.6, 0.8, 0.95)</defaultLabelColor>
+    <isBad>false</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <stages>
+      <li><statOffsets><TradePriceImprovement>0.04</TradePriceImprovement><WorkSpeedGlobal>-0.05</WorkSpeedGlobal></statOffsets></li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef>
+    <defName>Council_Decree_Fast</defName>
+    <label>fasting (decree)</label>
+    <description>Fasting by order of the council: water, a little bread at sundown, and a clear, light head.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.9, 0.75, 0.45)</defaultLabelColor>
+    <isBad>false</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <stages>
+      <li>
+        <hungerRateFactor>0.5</hungerRateFactor>
+        <statOffsets><WorkSpeedGlobal>-0.06</WorkSpeedGlobal><GlobalLearningFactor>0.1</GlobalLearningFactor></statOffsets>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef>
+    <defName>Council_Decree_WorkSong</defName>
+    <label>work song (decree)</label>
+    <description>Singing at work, by order of the council. The hours go faster, and nobody can think.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.6, 0.8, 0.95)</defaultLabelColor>
+    <isBad>false</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <stages>
+      <li><statOffsets><WorkSpeedGlobal>0.03</WorkSpeedGlobal><ResearchSpeed>-0.1</ResearchSpeed><GlobalLearningFactor>-0.05</GlobalLearningFactor></statOffsets></li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef>
+    <defName>Council_Decree_Quarantine</defName>
+    <label>quarantine (decree)</label>
+    <description>Keeping apart from the sick and from strangers, by order of the council.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.6, 0.8, 0.95)</defaultLabelColor>
+    <isBad>false</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <stages>
+      <li><statOffsets><ImmunityGainSpeed>0.06</ImmunityGainSpeed><SocialImpact>-0.1</SocialImpact><WorkSpeedGlobal>-0.04</WorkSpeedGlobal></statOffsets></li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef>
+    <defName>Council_Decree_FamineBread</defName>
+    <label>famine bread (decree)</label>
+    <description>Smaller portions, so there's bread to send to the hungry, by order of the council.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.9, 0.75, 0.45)</defaultLabelColor>
+    <isBad>false</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <stages>
+      <li><hungerRateFactor>0.85</hungerRateFactor></li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef>
+    <defName>Council_Decree_OpenGates</defName>
+    <label>open gates (decree)</label>
+    <description>The gate stands open to travellers, by order of the council.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.6, 0.8, 0.95)</defaultLabelColor>
+    <isBad>false</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <stages>
+      <li><statOffsets><SocialImpact>0.05</SocialImpact><NegotiationAbility>0.05</NegotiationAbility></statOffsets></li>
+    </stages>
+  </HediffDef>
+
+</Defs>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Seats for a faith, for the colony's guests, and for a large colony's elders. Each does its job in the colony's life
+    (Source/ColonyCouncil/Interplay/Interplay_Offices2.cs) with "Systems talk to each other" on, and gives its holder a
+    small edge (Defs/HediffDefs/Council_Hediffs_Offices3.xml).
+    needsIdeology: the seat exists only with Ideology and a faith of the colony's own. faithWeight: competence for being
+    of that faith (and as much against for another). seats: how many hold it at once. ageWeight: competence for each ten
+    years of age over thirty.
+  -->
+
+  <ColonyCouncil.OfficeDef>
+    <defName>Council_Office_Chaplain</defName>
+    <label>chaplain</label>
+    <description>Keeps the colony's faith: leads its prayers and its remembrances, sits with the grieving, and has a word with anyone whose belief is wearing thin.</description>
+    <order>10</order>
+    <minColonists>5</minColonists>
+    <needsIdeology>true</needsIdeology>
+    <faithWeight>4</faithWeight>
+    <skills><li>Social</li></skills>
+    <goodTraits><li>Kind</li></goodTraits>
+    <badTraits><li>Psychopath</li><li>Abrasive</li></badTraits>
+    <hediff>Council_Office_Chaplain</hediff>
+    <duties>
+      <li>Most days, sits with someone grieving (their strain eases), or else has a word with the believer least sure of the faith (their certainty rises).</li>
+      <li>Leads the colony's days of remembrance.</li>
+      <li>The faith's decrees and customs strengthen belief half again as much while the chaplain is at home.</li>
+      <li>Only with Ideology, for a colony with a faith of its own. Opens once the colony has five people who can vote.</li>
+    </duties>
+    <elected>
+      <li>{PAWN_nameDef} spent the evening at the altar, and came back looking younger.</li>
+      <li>{PAWN_nameDef} has already asked after everyone who lost someone this year, by name.</li>
+      <li>{PAWN_nameDef} says the faith is a lamp, not a whip, and means to keep it that way.</li>
+    </elected>
+  </ColonyCouncil.OfficeDef>
+
+  <ColonyCouncil.OfficeDef>
+    <defName>Council_Office_Warden</defName>
+    <label>warden of guests</label>
+    <description>Looks after whoever is not one of the colony but is on its land: visitors at the gate, travellers passing, the strangers camped by the woods. Sees them welcomed, settles their grievances and keeps the peace between them and the colony.</description>
+    <order>11</order>
+    <minColonists>5</minColonists>
+    <skills><li>Social</li></skills>
+    <goodTraits><li>Kind</li></goodTraits>
+    <badTraits><li>Abrasive</li><li>Psychopath</li></badTraits>
+    <hediff>Council_Office_Warden</hediff>
+    <duties>
+      <li>Spends an hour each day at the fire of any camp on the colony's land: tension there eases, and the campers come to know the warden.</li>
+      <li>Sees any visitors properly welcomed: their people's goodwill rises a little (once every few days for each people).</li>
+      <li>The warden negotiates better, and talks more easily with strangers.</li>
+      <li>Opens once the colony has five people who can vote.</li>
+    </duties>
+    <elected>
+      <li>{PAWN_nameDef} went straight out to the gate to see who was there. Nobody was, but {PAWN_nameDef} waited a while anyway.</li>
+      <li>{PAWN_nameDef} has swept out a corner for guests to sit, and put a pot of water on.</li>
+      <li>{PAWN_nameDef} says a stranger is only a stranger until supper.</li>
+    </elected>
+  </ColonyCouncil.OfficeDef>
+
+  <ColonyCouncil.OfficeDef>
+    <defName>Council_Office_Elder</defName>
+    <label>elder</label>
+    <description>One of the council of elders that a large colony keeps: the old heads, who have seen enough to be listened to, sit with the young and pass on what they know.</description>
+    <order>12</order>
+    <seats>3</seats>
+    <minColonists>10</minColonists>
+    <ageWeight>1.5</ageWeight>
+    <skills><li>Social</li><li>Intellectual</li></skills>
+    <goodTraits><li>Kind</li></goodTraits>
+    <badTraits><li>Abrasive</li></badTraits>
+    <hediff>Council_Office_Elder</hediff>
+    <colonyHediff>Council_Office_EldersColony</colonyHediff>
+    <duties>
+      <li>Three seats. Every couple of days, each elder sits with someone ten years younger or more and passes on what they know best (an afternoon's practice in it), and the two grow closer.</li>
+      <li>While any elder sits, the whole colony keeps a slightly steadier head.</li>
+      <li>The colony votes for its older members here: age counts for a candidate.</li>
+      <li>Opens once the colony has ten people who can vote.</li>
+    </duties>
+    <elected>
+      <li>{PAWN_nameDef} said only that it was about time somebody asked.</li>
+      <li>{PAWN_nameDef} has already told the young ones the story about the winter of the wolves. Twice.</li>
+      <li>{PAWN_nameDef} took the seat by the fire, which everyone agrees was always {PAWN_possessive} seat anyway.</li>
+    </elected>
+  </ColonyCouncil.OfficeDef>
+
+</Defs>
