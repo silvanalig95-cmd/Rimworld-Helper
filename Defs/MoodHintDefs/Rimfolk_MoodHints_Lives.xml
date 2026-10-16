@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- What helps with the setbacks of people's lives: stories that went wrong, goals given up, and the council's answers
+       about the young and the old. -->
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_Lv_LostInLove</defName>
+    <thoughts><li>Council_Arc_LostInLove</li></thoughts>
+    <fix>The one they were fond of chose someone else. It passes in a week or so. Keep them busy beside people they like, and keep them away from the happy couple's table for a few days.</fix>
+    <article>Council_Alm_C_Arcs</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_Lv_FamilyAtOdds</defName>
+    <thoughts>
+      <li>Council_Arc_FamilyStillAtOdds</li>
+      <li>Council_Arc_CaughtBetween</li>
+    </thoughts>
+    <fix>Two people they love still can't get along. Give the two a reason to work side by side, keep them out of the same small room, and a peacemaker on the council will step into their spats. It eases once the two are on speaking terms.</fix>
+    <article>Council_Alm_C_Arcs</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_Lv_LostSeat</defName>
+    <thoughts><li>Council_Arc_LostSeatEarly</li></thoughts>
+    <fix>They lost a seat on the council before they'd grown into it. It fades in a week. A word from the council, a wish granted or a seat at the next election helps.</fix>
+    <article>Council_Alm_C_Offices</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_Lv_KinFarAway</defName>
+    <thoughts><li>Council_Arc_KinDiedFarAway</li></thoughts>
+    <fix>Family of theirs died out in the world's hard times, far away. Nothing brings that back; company, a friend's ear, time off and a good meal make it lighter. It fades in about twelve days.</fix>
+    <article>Council_Alm_C_Arcs</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_Lv_Young</defName>
+    <thoughts>
+      <li>Council_Arc_StillAChildToThem</li>
+      <li>Council_DlmLv_KeptHome</li>
+      <li>Council_DlmLv_ApologizedAtSupper</li>
+      <li>Council_DlmLv_ScoldedByCouncil</li>
+    </thoughts>
+    <fix>A young one who feels small. Give them real work they're good at and let the grown-ups see it; the next time the council is asked about them, let them have a say. It passes in a few days.</fix>
+    <article>Council_Alm_C_Dilemmas</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_Lv_ChildAlone</defName>
+    <thoughts>
+      <li>Council_DlmLv_NobodyCame</li>
+      <li>Council_DlmLv_NotAllowedToGrieve</li>
+      <li>Council_DlmLv_LeftAloneWithIt</li>
+    </thoughts>
+    <fix>A frightened or grieving child left to cope alone. A grown-up's company helps most: a parent or a friend to sit with them, a story by the fire, a visit to the grave. It fades in four or five days.</fix>
+    <article>Council_Alm_C_Dilemmas</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_Lv_Old</defName>
+    <thoughts>
+      <li>Council_DlmLv_TooFarTooOld</li>
+      <li>Council_DlmLv_KeptIn</li>
+      <li>Council_DlmLv_FussedOver</li>
+      <li>Council_DlmLv_NobodyListened</li>
+      <li>Council_DlmLv_PushedAside</li>
+      <li>Council_DlmLv_ColdInTheBones</li>
+    </thoughts>
+    <fix>An old colonist who feels put out to pasture, or cold. Keep their room warm, give them someone young to teach or to tell the colony's story to, and let them decide for themselves where they can. It passes in a few days.</fix>
+    <article>Council_Alm_C_Dilemmas</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_Lv_Answers</defName>
+    <thoughts>
+      <li>Council_DlmLv_WorriedForThem</li>
+      <li>Council_DlmLv_GaveUpMyRoom</li>
+      <li>Council_DlmLv_Overruled</li>
+      <li>Council_DlmLv_NightWatch</li>
+      <li>Council_DlmLv_WorriesIgnored</li>
+      <li>Council_DlmLv_RecordsPrivate</li>
+    </thoughts>
+    <fix>The cost of one of the council's answers, small and short. Nothing to do but let it pass; a kind word or a granted wish makes it shorter.</fix>
+    <article>Council_Alm_C_Dilemmas</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_Lv_Goals</defName>
+    <thoughts>
+      <li>Council_Asp_GaveUpGoal</li>
+      <li>Council_Asp_LastWishUnmet</li>
+    </thoughts>
+    <fix>A life goal let go, or an old friend's last wish left undone. It fades in about a week. Help them toward the next goal they choose; someone may take up the last wish and finish it, which eases it for everyone.</fix>
+    <article>Council_Alm_C_Goals</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_Lv_Quirks</defName>
+    <thoughts>
+      <li>Council_Quirk_Worrier</li>
+      <li>Council_Friction_KeptUpByLight</li>
+    </thoughts>
+    <fix>A quirk at work: a worrier lying awake, or a night light keeping a roommate up. A room of their own helps both; a worrier's worries ease when someone goes through them with them, and the quirk fades in time.</fix>
+    <article>Council_Alm_C_Secrets</article>
+  </ColonyCouncil.MoodHintDef>
+
+</Defs>
