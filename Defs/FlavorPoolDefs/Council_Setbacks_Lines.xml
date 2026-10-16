@@ -17,6 +17,9 @@
         <li>That was my {THING}.</li>
         <li>Days of work on that {THING}, and look at it.</li>
         <li>I'll build it again. Not today.</li>
+        <li>That took me the better part of a week.</li>
+        <li>I can still see where I fixed the joint.</li>
+        <li>[afterraid] They came all this way to break that?</li>
       </plain>
       <warm>
         <li>At least nobody was standing next to it.</li>
@@ -45,6 +48,9 @@
         <li>The {THING}. All those rows.</li>
         <li>I sowed every one of those by hand.</li>
         <li>There goes the {THING}.</li>
+        <li>I should have cut it sooner.</li>
+        <li>[winter] One frost, and that's the season gone.</li>
+        <li>Back to the seed sacks, then.</li>
       </plain>
       <warm>
         <li>We'll sow again. The soil's still good.</li>
@@ -72,6 +78,9 @@
         <li>I'm sorry. I'm so sorry.</li>
         <li>My hand slipped. It shouldn't have.</li>
         <li>Somebody else should look at {OTHER_nameDef} next time.</li>
+        <li>I need to sit down.</li>
+        <li>I did everything right. I thought I did.</li>
+        <li>Fetch someone steadier than me.</li>
       </plain>
       <warm>
         <li>{OTHER_nameDef}, I'll make this right. I promise.</li>
@@ -95,6 +104,9 @@
         <li>So it's {AMBITION}, then. Fine.</li>
         <li>I still think {MINE} was the better plan.</li>
         <li>Next meeting, I'm bringing it up again.</li>
+        <li>I thought I'd made my case.</li>
+        <li>Half of them weren't listening anyway.</li>
+        <li>We'll see how {AMBITION} goes.</li>
       </plain>
       <warm>
         <li>{AMBITION} it is. I'll help, even so.</li>
@@ -122,6 +134,9 @@
         <li>Is there really nothing left?</li>
         <li>Some feast. I got the smell of it.</li>
         <li>Next time I'm going to the table first.</li>
+        <li>Someone ate two. I saw it.</li>
+        <li>I set the tables and got nothing.</li>
+        <li>Bread and water at a feast.</li>
       </plain>
       <blunt>
         <li>Empty pot. Wonderful.</li>
@@ -142,6 +157,9 @@
         <li>Who decided to hold it outside?</li>
         <li>My shoes are full of water.</li>
         <li>Can we move this under a roof?</li>
+        <li>The fire's out, and so is the fun.</li>
+        <li>Someone fetch a tarp.</li>
+        <li>[child] Can we go inside now?</li>
       </plain>
       <cheerful>
         <li>Dancing in the rain! Well, standing in it.</li>
