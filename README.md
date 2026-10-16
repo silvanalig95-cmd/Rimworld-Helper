@@ -146,6 +146,17 @@ industrial colony about a deep drill or a comms console. The Almanac page "what 
 **Others are watching.** Friends are happy for the one who got their wish. The jealous, rivals and anyone who
 has been waiting longer can feel passed over, and some will want the same thing.
 
+**Beliefs and diets.** Nobody asks for what their faith or their own nature forbids, read from the game's Ideology,
+Vanilla Ideology Expanded - Memes and Alpha Memes (all optional): no shared bed before the wedding under a faith that
+keeps lovin for the married (an engaged couple asks for the wedding instead), no smokehouse or hunt for a vegetarian,
+no beer or brewery for a teetotaler, a faith that keeps drugs to medicine or an addict being weaned off, no clothes
+for a nudist, a dark torch rather than a lamp for a faith that prefers darklight, and so on. Food wishes count only
+what the colonist may eat, and a wish that comes to clash with a changed faith is let go quietly. Feasts and toasts
+serve each colonist only what their food or drug policy allows, what leaves no bad "ate ..." memory, and nothing
+Alpha Memes would make them sick for (only fungus or insect for its two required diets together, no forbidden
+paste); with nothing fit in the stores they sit at the table without eating. Life goals and council projects
+follow the same rules.
+
 **Promises kept.** 61 kinds of wish give something that stays, and the council is watched on it for about 60 days
 after granting it (90 for rooms): a bed kept for guests, a room of their own, a nicer or roomier bedroom, a bed shared,
 a workshop, kitchen or other room for their passion, a telescope, a sauna, a pen for the animals, a real floor, a
@@ -361,14 +372,14 @@ grow, sour and end over time:
 - **Friends** and **rivals** form when two people keep liking (or loathing) each other, then drift with how
   they feel.
 - Everyone who fights in the same battle becomes **comrades**. That fades slowly between battles.
-- A skilled, passionate colonist may take a keen learner on as a **student**, teaching them every day until they
-  graduate at level 11.
+- A skilled, passionate colonist may take a keen learner on as a **student**, teaching them each day the two spend
+  some time side by side, until they graduate at level 11 (and the student goes to find the mentor to thank them).
 
-Most days something small happens between two people (79 kinds of social event): a late talk, a shared joke, a prank
-that lands badly, a snub at dinner, a squabble over chores, war stories, a lesson, a contest between rivals, a
-handmade gift, gossip that gets found out, an unexpected truce. Life brings its own: a vigil at a friend's sickbed,
-an evening at a camp on the map, a quarrel over what the council decided, fears confided in the night, grief carried
-together, a peace offering after a quarrel. Each one nudges their bond; most change how the two see each other
+Most days something small happens between two people who are together at the time (79 kinds of social event): a
+late talk, a shared joke, a prank that lands badly, a snub at dinner, a squabble over chores, war stories, a lesson,
+a contest between rivals, a handmade gift, gossip that gets found out, an unexpected truce. Life brings its own: a
+vigil at a friend's sickbed, an evening at a camp on the map, a quarrel over what the council decided, fears confided
+in the night, grief carried together, a peace offering after a quarrel. Each one nudges their bond; most change how the two see each other
 rather than anyone's mood (a shared joke is a little recreation, a lesson practice). In conversation they share smaller moments
 too (about a hundred kinds, 44 of them frictions), shaped by who they are (night owls keeping each other company,
 brawlers comparing scars, an iron-willed colonist steadying a nervous one) and by what's going on (visiting the sick,
@@ -457,7 +468,9 @@ Colonists pick up beliefs and habits from what they live through: a **lucky helm
 (happy wearing it, uneasy without), a dread of storms after a death, a ritual before every fight, prayers at night
 after a dream came true, a fear of the dark after lying downed in the dirt, grief that comes back every winter, and
 harmless habits like knocking on wood, counting steps or talking to the dead. Small moods at the right moments; most
-fade after a season or two.
+fade after a season or two. A lucky thing says so: the helmet itself reads "Macy's lucky charm" in the inspector, its
+info card and its tooltip in the gear tab, and once the quirk fades or Macy dies it remembers her: "Once Macy's lucky
+charm", with how long and how it ended, for as long as the helmet lasts.
 
 Others simply grow out of who someone is: a grower who talks to the plants, a handler who names every animal, a cook
 who sings at the stove, an early riser, someone who hums at work, collects pretty stones, can't stand a mess, feeds
@@ -638,7 +651,7 @@ follows the mouse, and a planner panel lets you:
   or fine stone tiles; hospitals and kitchens keep their sterile floor)
 - build it in a **theme**: *rustic* (wood, benches and stools, straw matting or planks), *stately* (marble or
   granite, polished stone or fine carpet, armchairs, candlelight), *spartan* (steel, simple beds, concrete), *cozy*
-  (carpet, standing lamps, soft seats, plant pots from the comfortable style on), *tribal* (fur beds or hide
+  (carpet, lamplight, soft seats, plant pots from the comfortable style on), *tribal* (fur beds or hide
   bedrolls, cushions, torchlight, straw matting, wood and sandstone) or *spacer* (steel, sterile tiles, an autodoor,
   the most advanced furniture you've researched). The style decides how much goes in, the theme what it looks
   like; the layout stays the same, since a piece is only swapped for one of the same purpose, size and work spot.
@@ -655,6 +668,11 @@ follows the mouse, and a planner panel lets you:
   the room.
 - **swap** furniture for another piece the colony can build; the **cost** of the whole room is shown against what's
   stored and lying around, in green or red
+- **lights by size**: a small or medium room (up to 48 floor cells) hangs **wall lamps**, or wall torches before
+  electricity, in place of standing lamps. Each stands on the floor cell in front of its wall and faces it, never on
+  or beside a door, on a cooler or vent, or where other furniture is planned, and there are as many as the room
+  needs to be lit, spread round its walls. A large room keeps its standing lamps out in the middle. Click the lamps
+  to swap them for a standing lamp, or the other way round
 - **clear the site**: cut plants and trees, mine rock (inside, in the doorway and just outside the door),
   replace your own buildings in the way, smooth natural stone. Pieces blocked by rock go down by themselves
   once it's mined.
@@ -673,7 +691,8 @@ your own, with its furniture, wall material and floor. Saved rooms are kept with
 there in every game, and you can delete them from the same list.
 
 Every layout is checked in all four turns, mirrored and not: beds have their heads against a wall, chairs face
-their table, every bench has its work spot free, and nothing blocks the door. It's checked again in each of the six
+their table, every bench has its work spot free, nothing blocks the door, and every wall lamp hangs on a wall and
+faces it, off any door. It's checked again in each of the six
 themes, and without the DLC and mod furniture it doesn't need: a missing piece is left out, or the next one on the list is used, and a room
 whose main piece is missing says what it waits for. If a modded bench is bigger or its work spot ends up in a
 wall, the planner turns that piece or leaves it out and says so.
@@ -684,7 +703,7 @@ It places ordinary blueprints, so your builders handle the rest. Every plan come
 each one reads like "Steel wall    420 (+85 lying around), enough for 84". You can switch this off in the settings.
 
 Colonists also sometimes add **personal touches**: a plant pot, an end table or a lamp planned for their own
-bedroom.
+bedroom (a wall lamp on a wall, where the colony can build one and the room isn't large).
 
 ### Almanac
 An in-game knowledge base: good practice and the numbers behind it, by topic, searchable, linked from the
@@ -802,7 +821,8 @@ Each of these switches itself on only when its mod is there, and only asks for w
   or midwife's standing, and a recovery bar fills as strength comes back. In RimHUD's settings, Content tab, use
   "Add third-party". To keep the panel short, put them in the column under the skills.
 - **Interaction Bubbles:** social events and encounters with visitors, traders and animals now go into the social
-  log too, so they show as bubbles like Rimfolk's moments and wish talk.
+  log too, so they show as bubbles like Rimfolk's moments and wish talk. Everything else Rimfolk's colonists say
+  shows as bubbles too (the setting **Colonists' speech shows as**), without filling the Log tab.
 
 ### People, beliefs and magic
 Rimfolk reads these mods by name while the game runs: with one missing, its part simply never comes up.
@@ -1272,12 +1292,15 @@ fear, grief and despair add a little strain, and joy, pride and hope help it dra
 **The heart's needs.** Four values from 0 to 100: **belonging** (friends, a partner, family, good moments, not being
 left out), **purpose** (work they love, a life goal, a seat, learning), **safety** (no danger, food, medicine,
 defenses, their own health) and **freedom** (time outdoors, free time, varied work, travel, few restrictions). They
-give no mood. The one a colonist lacks most makes the wishes and life goals that answer it up to 35% likelier, and
-when all four are at 60 or more, strain drains 20% faster.
+give no mood. The one a colonist lacks most makes the wishes and life goals that answer it up to 35% likelier (goals
+up to half again); below 35 a need deepens its feeling (little belonging makes them lonelier, little freedom more
+restless); below 25 for about three days it adds 1 to 2 strain a day (3 at most) until it recovers; and when all four
+are at 60 or more, strain drains 20% faster. Hover a need anywhere it shows for what its value means, what raised it
+and held it down, what follows and what would help.
 
 **Where to see it:** the Heart section of the Mood tab (strain and its band, what built it, what would help, every
 feeling with its causes, the four needs), the strain list on the council's Moods page, a line in the inspector
-("Strain: worn down · restless, proud"), the strain mood's tooltip and RimHUD. Settings (Heart & health page): feelings and
+("Strain: worn down · restless, proud · lacks belonging", with a tooltip), the strain mood's tooltip and RimHUD. Settings (Heart & health page): feelings and
 strain on or off, the day off, the inspector line, and how quickly strain builds (50% to 150%). Switched off,
 everything stops and the strain mood and slowdown are gone.
 
@@ -1374,7 +1397,27 @@ word from whoever leads it; at a **remembrance** by a grave, and whenever someon
 warm glow shows there like a candle; at a **feast**, those eating are the ones most often heard.
 
 All of this happens only on the map you're looking at and only on screen, a handful at a time, and one setting
-(**Visual and sound touches**) turns it off; the lines also need floating speech text on.
+(**Visual and sound touches**) turns it off; the lines show the way all speech does (below).
+
+**One way of speaking.** Everything Rimfolk's colonists say goes one way, set by **Colonists' speech shows as** (on
+the Interface page): a wish voiced, backed or granted, a word about the weather, how someone really is, a meeting's
+back and forth, the line of a moment between two people. **Bubbles if available** (the default) makes all of it speech
+bubbles with Interaction Bubbles, like the game's own chats, and floating text without it; **Floating text** always
+floats; **Off** shows nothing. A line one person says never goes into the Log tab; a moment between two (a social
+event, an encounter, a secret confided) is kept in both their logs whatever the setting, and shows over their heads
+once. The small "+ recreation" note over someone who got something other than a mood stays floating text.
+
+**Only when they're together.** Every moment Rimfolk makes between two colonists happens where they both are: on the
+same map, awake, not drafted, downed or in a mental break, and within talking range (about 10 steps, in the same room
+or in sight). Social events and encounters happen at an hour when two such people are together. Moments that can wait
+do, looked at again each hour for a day or two: a mentor's lesson for the day, thanks for an animal minded, a friend
+glad to see someone home, a friend's life goal talked over, the peacemaker sitting a feuding pair down (all three in
+one place), a secret let slip or confessed (with someone there to hear it). The ones that matter more aren't left to
+chance: a secret confided, a student's thanks, the physician's rounds, the herdmaster sitting with someone whose animal
+died, the marshal's word after a fight and a champion's contest send one of the two over to the other in their free
+time, only when it is safe and nothing is more pressing ("going to have a word with..."), and the moment comes when
+they get there. A camp's evening show is a gathering at the camp's fire when answers play out on the map. For modders,
+`Tools/interaction_audit.py` lists every place in the code where two people interact and how each is held to this.
 
 **Small habits** (a setting of its own, on the People & moods page): free time spent the way people really would. A
 **grieving** colonist visits the grave; a **homesick** one sits a while alone just outside the colony, looking out; a
@@ -1476,8 +1519,8 @@ The pages:
 - **Interface & integrations**: how chatty Rimfolk is: **Everything**, **Notable only** (default: messages for what
   changes something; small moments stay in the journals, the Story tab and History) or **Important only**; where the
   smaller news goes (**Colony news**: one letter each evening by default, as it happens, or off, to the History tab
-  only); a message for every dream, letters or messages for new and granted wishes, floating speech text, the visual and sound
-  touches; the two alerts; mood insight (and its hints in the Needs tab), the slow speed buttons (and putting them
+  only); a message for every dream, letters or messages for new and granted wishes, how colonists' speech shows
+  (bubbles with Interaction Bubbles, floating text, or off), the visual and sound touches; the two alerts; mood insight (and its hints in the Needs tab), the slow speed buttons (and putting them
   back), where the council button sits in the bottom bar, the rooms button, which page the council window opens on
   (**This week** by default, or the last page), the Almanac's text size; the deeper game hooks and the notes in the
   game's letters.
@@ -1493,7 +1536,8 @@ new setting needs a row there.
 ## Optional mods that go well with it
 
 - **Interaction Bubbles** by Jaxe (search the Steam Workshop): shows social-log conversations as speech
-  bubbles, so colonists grumbling about their wishes, Rimfolk's moments and social events appear above their heads.
+  bubbles, and with it everything Rimfolk's colonists say is a bubble too: wishes, moments, social events, a word
+  about the weather, a meeting's back and forth.
 - **RimHUD** by Jaxe: can show trust, the open wish, office, life goal, strain, feelings and the heart's needs in
   its pawn panel, with bars for strain and the heart's needs (see above).
 
@@ -1538,6 +1582,11 @@ clipboard" button) says most of what a bug report needs.
 - `Source/ColonyCouncil/Lean/`: on which tick of the hour each periodic pass runs (`Sched.cs`, so none share a tick)
   and how much history each part keeps in the save (`Caps.cs`). DESIGN.md lists them all under "Ticking" and
   "Save size"; a new hourly pass gets its own tick there.
+- People on the map: a moment between two colonists goes through `Together.When` (Social/Together.cs: now if they're
+  together, else waiting a day or two, optionally with a walk over for a word), and every line a colonist says through
+  `Speech.Say` (Immersion/Speech.cs), never `MoteMaker.ThrowText` or the play log directly; `Tools/Tests` checks the
+  latter. `python3 Tools/interaction_audit.py` (`--open`, `--summary`) lists every place two people interact and how
+  each is held to it; a place that rightly happens apart says so in a `// apart:` comment.
 - `Source/ColonyCouncil/UI/UiKit.cs`: the small interface kit every council page is drawn with (colors, spacing,
   page headers, cards, tags, meters, portraits). New pages should use it so they look like the rest.
 - `Tools/make_icons.py`: draws the interface icons into `Textures/ColonyCouncil/Icons/` and a contact sheet of

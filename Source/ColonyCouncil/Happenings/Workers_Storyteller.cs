@@ -331,6 +331,7 @@ namespace ColonyCouncil
         /// <summary>A mood for someone of the colony, caused by the event.</summary>
         public static void Give(Pawn p, string thought, IncidentDef def, Pawn about = null)
         {
+            // apart: the helper events give their memories through.
             if (p == null || p.Dead || !p.IsColonist) return;
             using (Causes.Push(LivingEvents.Cause(def)))
                 CouncilGameComponent.GiveThought(p, Thought(thought), about);

@@ -62,7 +62,7 @@ namespace ColonyCouncil
             watches.RemoveAll(w => w.map == null || w.map.Disposed || !Find.Maps.Contains(w.map));
             Map viewMap = null;
             CellRect view = CellRect.Empty;
-            bool speech = touches && ColonyCouncilMod.Settings?.speechText == true && VisualTouches.InView(out viewMap, out view);
+            bool speech = touches && Speech.On && VisualTouches.InView(out viewMap, out view);
             bool spoke = false;
             foreach (var map in Find.Maps)
             {

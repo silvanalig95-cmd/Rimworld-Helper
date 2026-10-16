@@ -205,6 +205,7 @@ namespace ColonyCouncil
         private static void Vented(GameComponent_PeopleMods state, Pawn venter, Pawn friend)
         {
             var comp = CouncilGameComponent.Instance;
+            // together: follows the other mod's own talk (a game conversation, face to face).
             if (comp?.social == null) return;
             comp.social.Bump(venter, friend, TieKind.Friends, 3f, "CC_PM_TieNote_Vent".Translate().Resolve(), true);
             // A bad day talked through goes in the journal now and then (not every time).
@@ -220,6 +221,7 @@ namespace ColonyCouncil
         /// <summary>New tales since the last look: who saved whom, friends since childhood, a fight between two of ours.</summary>
         public static void ScanTales(GameComponent_PeopleMods state)
         {
+            // apart: follows what happened between them on the map (a rescue, a fight), read from the game's tales.
             if (!Active || (savedFromRaiders == null && savedFromWounds == null && childhoodFriends == null && socialFight == null)) return;
             var tales = Find.TaleManager?.AllTalesListForReading;
             if (tales == null) return;
@@ -276,6 +278,7 @@ namespace ColonyCouncil
         /// </summary>
         public static void BestFriends(GameComponent_PeopleMods state)
         {
+            // apart: a bond the other mod saw grow; news of it.
             if (!Active || bestFriend == null) return;
             var comp = CouncilGameComponent.Instance;
             if (comp == null) return;

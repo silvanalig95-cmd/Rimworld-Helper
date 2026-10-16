@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    What you see and hear of Rimfolk's people on the map: moments between two colonists only where they really are
+    (Source/ColonyCouncil/Social/Together.cs), and one way of showing speech (Source/ColonyCouncil/Immersion/Speech.cs).
+  -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_C_SeeAndHear</defName>
+    <label>what you see and hear</label>
+    <category>Council</category>
+    <order>21</order>
+    <summary>Moments between colonists happen where they really are, and everything they say shows one way: bubbles, floating text or nothing.</summary>
+    <tip>If the colony news says two people talked, they were standing side by side when they did.</tip>
+    <description>Rimfolk tells a lot of small stories between people: a secret confided, a lesson, a word of thanks, the peacemaker stepping into a quarrel. Each of them happens on the map, between two people who are really there together, and the line about it shows over their heads the way the rest of their speech does. Nothing is said across the map, to someone asleep, or to someone in the middle of a fight.</description>
+    <sections>
+      <li>
+        <heading>Only when they're together</heading>
+        <text>Two people count as together when both are on the same map, awake, not drafted, downed or in a mental break, and within talking range of each other: about 10 steps, in the same room or in sight (not through a wall).
+
+Social events and encounters with visitors, traders, prisoners and animals happen at an hour when two such people are together. When the hour's chance for an encounter comes up and nobody is with a stranger, it is tried again each hour for up to 6 hours. Rimfolk's moments and frictions, wish talk, gossip about the council, decree gripes, dream talk and the talks a personal story waits for are the game's own conversations, which already need the two face to face. At a council meeting only those who have reached the table speak, and they argue only about ideas that have been put to the meeting (by their proposer, or read out for them).</text>
+      </li>
+      <li>
+        <heading>Waiting for them to meet</heading>
+        <text>Some moments can wait for the two to cross paths. A mentor's lesson for the day happens when teacher and student are side by side; a friend who stayed at home is glad to see someone back from a journey when they next meet; whoever looked after an animal while its person was away hears their thanks; hearing how a friend reached their life goal can give someone the same wish, once they have talked about it; the peacemaker sits a feuding pair down when all three are in one place. A secret let slip, or confessed, needs someone there to hear it.
+
+Each waiting moment is looked at again every hour, for a day or two. If the two never meet, it doesn't happen, and the part of Rimfolk that wanted it can come round to it again (tomorrow's lesson, the next slip of the tongue).</text>
+      </li>
+      <li>
+        <heading>Going over for a word</heading>
+        <text>The moments that matter more aren't left to chance. If the two haven't met by then, one of them walks over to the other in their free time and has a word.</text>
+        <points>
+          <li>A secret confided in a close friend: after 6 hours of waiting.</li>
+          <li>A student's thanks when a mentorship is done: after 4 hours.</li>
+          <li>The physician's rounds of everyone convalescing: after an hour.</li>
+          <li>The herdmaster sitting with someone whose animal has died, the marshal's word with each of those who fought beside them, and a champion meeting the challenger for their contest: at once.</li>
+        </points>
+        <after>They only go in their own free time (idle, or at their recreation), when it is safe, and when nothing is more pressing: not hungry, exhausted, hurt, drafted or under orders, and not while the other is at a party, a feast, a ritual or the council meeting. Their inspect pane says "going to have a word with" the other. The moment, and the line about it, comes when they get there. A camp's evening show, with answers playing out on the map, is a gathering at the camp's fire, and those who come remember it.</after>
+      </li>
+      <li>
+        <heading>How speech shows</heading>
+        <text>One setting, "Colonists' speech shows as" on the Interface page, decides how everything Rimfolk's colonists say shows: a wish voiced, backed or granted, a word about the weather, how someone really is, a meeting's back and forth, the line of a moment between two people.</text>
+        <points>
+          <li>Bubbles if available (the default): with Interaction Bubbles, all of it is speech bubbles, like the game's own chats. Without it, floating text.</li>
+          <li>Floating text: short lines floating up over the speaker, even with Interaction Bubbles loaded (its bubbles still show the game's own chats).</li>
+          <li>Off: nothing from Rimfolk over anyone's head.</li>
+        </points>
+        <after>A line one person says never goes into the Log tab, so the log isn't filled with remarks about the weather. A moment between two people (a social event, an encounter, a secret confided, thanks for a lesson) is kept in both their logs whatever the setting, and shows only once over their heads. Interaction Bubbles' own toggle among the play settings hides its bubbles, Rimfolk's with them. The small "+ recreation" note over someone who got something other than a mood isn't speech: it stays floating text, while speech shows at all.</after>
+      </li>
+      <li>
+        <heading>What is news, not talk</heading>
+        <text>Some things reach people wherever they are, because they hear of them rather than live them side by side: the council's decisions and elections, a petition or an objection put to the council, a name the colony gives someone, someone leaving or coming of age, a eulogy (a letter). Those still come at once.
+
+What is waiting for two people to meet isn't saved with the game: after a load it is simply gone, and comes round again in its own time.</text>
+      </li>
+    </sections>
+    <keywords><li>bubbles</li><li>interaction bubbles</li><li>speech</li><li>floating text</li><li>together</li><li>talking range</li><li>log</li><li>a word</li><li>on the map</li></keywords>
+    <seeAlso><li>Council_Alm_C_Interplay</li><li>Council_Alm_C_Social</li><li>Council_Alm_C_Secrets</li><li>Council_Alm_C_Meetings</li><li>Council_Alm_Checklist</li></seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+</Defs>

@@ -590,10 +590,31 @@ namespace ColonyCouncil
         /// The best meal this colonist may have: the finest kind first, then the nearest to the feast; one they'd eat,
         /// their food policy allows, nobody else has claimed and they can get to.
         /// </summary>
-        public static Thing BestMeal(Pawn p, Map map, IntVec3 spot)
+        public static Thing BestMeal(Pawn p, Map map, IntVec3 spot) => BestMeal(p, map, spot, out _);
+
+        /// <summary>
+        /// The best meal this colonist may have (see above), and only one their beliefs let them eat (Wishes/Beliefs.cs):
+        /// nothing that would leave them a bad "ate ..." memory (meat for a vegetarian, paste for one who finds it
+        /// disgusting), nothing Alpha Memes would make them sick for, nothing their food policy rules out.
+        /// <paramref name="noneFit"/>: there are meals, but none of them is fit for them, so they come without eating.
+        /// </summary>
+        public static Thing BestMeal(Pawn p, Map map, IntVec3 spot, out bool noneFit)
         {
-            return Meals(map)
-                .Where(t => !t.IsForbidden(p) && FoodUtility.WillEat(p, t) && (p.foodRestriction?.CurrentFoodPolicy?.Allows(t) ?? true))
+            noneFit = false;
+            if (p == null || map == null) return null;
+            bool any = false;
+            var fit = new List<Thing>();
+            foreach (var t in Meals(map))
+            {
+                any = true;
+                if (!t.IsForbidden(p) && !Beliefs.MindsEating(p, t)) fit.Add(t);
+            }
+            if (any && fit.Count == 0)
+            {
+                noneFit = true;
+                return null;
+            }
+            return fit
                 .OrderByDescending(t => (int)t.def.ingestible.preferability)
                 .ThenBy(t => t.Position.DistanceToSquared(spot))
                 .FirstOrDefault(t => p.CanReserve(t, 10, 1) && p.CanReach(t, PathEndMode.ClosestTouch, Danger.Some));

@@ -81,6 +81,7 @@
     <defName>Council_Asp3_Blademaster</defName>
     <label>a fighter up close</label>
     <workerClass>ColonyCouncil.AspirationWorker_Skill</workerClass>
+    <forbiddenBy><li>NoViolence</li></forbiddenBy>
     <skill>Melee</skill>
     <level>14</level>
     <gain>4</gain>

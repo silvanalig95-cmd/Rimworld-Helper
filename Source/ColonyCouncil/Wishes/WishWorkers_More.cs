@@ -85,6 +85,33 @@ namespace ColonyCouncil
 
         private static ChemicalDef Chem(Wish wish) => DefDatabase<ChemicalDef>.GetNamedSilentFail(wish.subjectKey);
 
+        /// <summary>
+        /// Not when their faith forbids the drug (they'd rather be rid of it), nor when their drug policy shuts it out
+        /// altogether, for fun and for the craving alike: the colony is getting them off it.
+        /// </summary>
+        public override bool AgainstBeliefs(Pawn pawn, Pawn other, ThingDef thing)
+        {
+            if (Beliefs.AgainstWish(def, pawn, null)) return true;
+            var chem = Addiction(pawn)?.Chemical;
+            var drugs = chem != null ? DrugsFor(chem) : thing != null ? new List<ThingDef> { thing } : null;
+            if (drugs == null || drugs.Count == 0) return false;
+            return drugs.All(d => Beliefs.FaithForbidsDrug(pawn, d) || ShutOut(pawn, d));
+        }
+
+        /// <summary>Their drug policy allows it neither for fun nor for the craving, nor on a schedule.</summary>
+        private static bool ShutOut(Pawn p, ThingDef d)
+        {
+            try
+            {
+                var entry = p.drugs?.CurrentPolicy?[d];
+                return entry != null && !entry.allowedForJoy && !entry.allowedForAddiction && !entry.allowScheduled;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         public override bool IsFulfilled(Wish wish) => Stock(wish.Beneficiary.MapHeld, Chem(wish)) >= wish.targetValue;
 
         /// <summary>Clean now, or the craving is gone: nothing to ask for.</summary>

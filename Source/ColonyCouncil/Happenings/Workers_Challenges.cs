@@ -84,9 +84,14 @@ namespace ColonyCouncil
             return "CC_Evt_ChampionOdds".Translate(ctx.a.Named("A"), ctx.stranger.Named("X"), ours, theirs, ctx.SkillText).Resolve();
         }
 
-        /// <summary>The contest, a couple of hours after the colony accepted (if both are still around).</summary>
+        /// <summary>
+        /// The contest, a couple of hours after the colony accepted (if both are still around), held where the two meet:
+        /// at once if our champion is with the challenger, else when the champion walks over in their free time
+        /// (Together), and it happens when they get there.
+        /// </summary>
         public static bool Hour(Visit v, CouncilGameComponent comp, int now)
         {
+            if (v.done) return false;
             if (now < v.due) return true;
             var a = v.a;
             var x = v.x;
@@ -103,6 +108,30 @@ namespace ColonyCouncil
                 News.Post("CC_Evt_ContestOff".Translate().Resolve(), null, NewsKind.World, MessageTypeDefOf.NeutralEvent);
                 return false;
             }
+            string key = "contest|" + x.thingIDNumber;
+            if (Together.When(key, a, x, () =>
+                {
+                    if (!v.done) Contest(v, comp);
+                }, 8f, 0f))
+                return false;
+            // Still waiting for the two to meet; past the challenger's stay and the hours after it, it's off.
+            if (now > v.until + GenDate.TicksPerHour * 8)
+            {
+                Together.Forget(key);
+                News.Post("CC_Evt_ContestOff".Translate().Resolve(), null, NewsKind.World, MessageTypeDefOf.NeutralEvent);
+                return false;
+            }
+            return true;
+        }
+
+        /// <summary>The contest itself, with the champion and the challenger together.</summary>
+        private static void Contest(Visit v, CouncilGameComponent comp)
+        {
+            // together: called once the champion and the challenger are together (Hour, through Together.When).
+            var a = v.a;
+            var x = v.x;
+            if (a == null || x == null || a.Dead || x.Dead || v.skill == null) return;
+            v.done = true;
             int al = a.skills.GetSkill(v.skill)?.Level ?? 0;
             int xl = x.skills?.GetSkill(v.skill)?.Level ?? 0;
             bool won = Rand.Chance(Mathf.Clamp(0.5f + (al - xl) * 0.07f, 0.1f, 0.9f));
@@ -143,7 +172,6 @@ namespace ColonyCouncil
             if (x.Faction != null && x.RaceProps.Humanlike && !(v.incident?.Worker is HappeningWorker_Rematch))
                 comp.happenings.Remember("challenger", x, x.Faction, v.skill.defName, null, won, a);
             Arrivals.SendAway(new[] { x });
-            return false;
         }
     }
 
@@ -273,6 +301,7 @@ namespace ColonyCouncil
                 comp.AddChronicle(new ChronicleEntry(ChronicleKind.World, "CC_Evt_BeastDied".Translate(name).Resolve()));
                 return;
             }
+            // apart: a great beast felled; the colony hears of it.
             using var _cause = Causes.Push("CC_Cause_Beast".Translate(name).Resolve());
             CouncilGameComponent.GiveThought(killer, CouncilDefOf.Council_Evt_FelledBeast);
             var map = beast.MapHeld ?? killer.MapHeld;

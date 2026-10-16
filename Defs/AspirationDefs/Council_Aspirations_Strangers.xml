@@ -6,6 +6,7 @@
     <defName>Council_Asp_Nemesis</defName>
     <label>settle the score</label>
     <workerClass>ColonyCouncil.AspirationWorker_Counter</workerClass>
+    <forbiddenBy><li>NoViolence</li></forbiddenBy>
     <counter>nemesis</counter>
     <amount>1</amount>
     <weight>3</weight>

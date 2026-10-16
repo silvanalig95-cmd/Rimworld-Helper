@@ -92,6 +92,7 @@ namespace ColonyCouncil
         private void Talk(PlayOut play)
         {
             var other = OtherPawn;
+            // together: the visit job, once they are a few steps apart at most.
             if (talked || other == null || !other.RaceProps.Humanlike || !other.Awake() || !pawn.Position.InHorDistOf(other.Position, 3f)) return;
             talked = true;
             var def = play?.kind == PlayKind.Lesson ? InteractionDefOf.Chitchat : InteractionDefOf.DeepTalk;

@@ -37,6 +37,22 @@ namespace ColonyCouncil
         public int maxColonists = 9999;
         /// <summary>Only in these eras, named as the line tags name them (tribal, medieval, industrial, spacer, lowtech, !lowtech).</summary>
         public List<string> eras;
+        /// <summary>Beliefs that rule it out (Wishes/Beliefs.cs): nobody whose faith forbids drink pitches a brewery.</summary>
+        public List<Belief> forbiddenBy;
+
+        [Unsaved] private ulong forbiddenMask;
+        [Unsaved] private bool forbiddenMaskSet;
+
+        /// <summary>This colonist's beliefs rule it out, so they won't pitch it.</summary>
+        public bool AgainstBeliefsOf(Pawn p)
+        {
+            if (!forbiddenMaskSet)
+            {
+                forbiddenMask = BeliefMath.Mask(forbiddenBy);
+                forbiddenMaskSet = true;
+            }
+            return Beliefs.ForbidsAny(p, forbiddenMask);
+        }
 
         public bool Possible(Map map)
         {
@@ -727,6 +743,8 @@ namespace ColonyCouncil
             float bestScore = -1f;
             foreach (var p in speakers)
             {
+                // Nobody pitches what their own faith forbids; with nobody else to pitch it, it isn't pitched.
+                if (def.AgainstBeliefsOf(p)) continue;
                 float score = Rand.Range(0f, 1f);
                 if (used.Contains(p)) score -= 3f;
                 foreach (var sk in def.proposerSkills)

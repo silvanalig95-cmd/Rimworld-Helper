@@ -216,7 +216,10 @@ namespace ColonyCouncil
                 noteColor = mood >= 0f ? MoodColor(p, mood) : UiKit.Faint,
                 click = Inspect(p, typeof(ITab_Pawn_Mood))
             };
-            row.tip = Tip(PeopleTable.Summary(p), "CC_Week_ClickMood".Translate(p.LabelShort).Resolve());
+            // The heart's need they lack most, if any: what follows from it and what would help.
+            string summary = PeopleTable.Summary(p), brief = h != null ? HeartView.NeedsBrief(p, h) : null;
+            if (!brief.NullOrEmpty()) summary = (summary.NullOrEmpty() ? "" : summary + "\n\n") + brief;
+            row.tip = Tip(summary, "CC_Week_ClickMood".Translate(p.LabelShort).Resolve());
             return row;
         }
 
@@ -611,6 +614,9 @@ namespace ColonyCouncil
                 float order = inBreak ? -3f : mood < major ? -2f + mood : band == StrainBand.Breaking ? -1f : mood - minor;
                 string body = PeopleTable.MoodLines(p);
                 if (h != null && band >= StrainBand.Strained) body = (body.NullOrEmpty() ? "" : body + "\n\n") + HeartView.StrainTip(p, h);
+                // The heart's needs too: what is missing, what follows from it and what would help.
+                string needs = h != null ? HeartView.NeedsTip(p, h) : null;
+                if (!needs.NullOrEmpty()) body = (body.NullOrEmpty() ? "" : body + "\n\n") + needs;
                 c.rows.Add(new WeekRow
                 {
                     pawn = p,

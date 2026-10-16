@@ -187,6 +187,7 @@ namespace ColonyCouncil
 
         protected override void Apply(Wish w, Pawn p, float scale)
         {
+            // apart: a wish granted that several backed; they're glad of each other.
             if (thought == null) return;
             foreach (var other in w.Supporters)
             {

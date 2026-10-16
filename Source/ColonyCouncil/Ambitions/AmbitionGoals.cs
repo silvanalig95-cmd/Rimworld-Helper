@@ -450,13 +450,13 @@ namespace ColonyCouncil
 
         private static float Share(Map map)
         {
-            var walls = map.listerBuildings.allBuildingsColonist.Where(b => b.def.IsWall).ToList();
+            var walls = map.listerBuildings.allBuildingsColonist.Where(b => b.def.IsWall && !b.def.IsFrame).ToList();
             if (walls.Count == 0) return 0f;
             return walls.Count(b => b.GetStatValue(StatDefOf.Flammability) <= 0.2f) / (float)walls.Count;
         }
 
         public override bool Possible(Map map) =>
-            map.listerBuildings.allBuildingsColonist.Count(b => b.def.IsWall) >= 20
+            map.listerBuildings.allBuildingsColonist.Count(b => b.def.IsWall && !b.def.IsFrame) >= 20
             && DefDatabase<ThingDef>.AllDefsListForReading.Any(d => d.IsStuff && d.stuffProps?.categories != null && d.stuffProps.categories.Contains(StuffCategoryDefOf.Stony) && map.resourceCounter.GetCount(d) > 0);
 
         public override float Progress(Map map, float baseline) => Ratio(Share(map), share);

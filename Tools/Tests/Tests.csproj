@@ -11,7 +11,9 @@
     <Compile Include="../../Source/ColonyCouncil/Building/TemplateMath.cs" Link="TemplateMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Building/TemplateLayout.cs" Link="TemplateLayout.cs" />
     <Compile Include="../../Source/ColonyCouncil/Building/ThemeMath.cs" Link="ThemeMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Building/LightMath.cs" Link="LightMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Heart/HeartMath.cs" Link="HeartMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Heart/HeartNeedMath.cs" Link="HeartNeedMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Ambitions/MeetingMath.cs" Link="MeetingMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Pressures/PressureMath.cs" Link="PressureMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Ailments/AilmentMath.cs" Link="AilmentMath.cs" />
@@ -30,6 +32,9 @@
     <Compile Include="../../Source/ColonyCouncil/UI/SettingsLayoutMath.cs" Link="SettingsLayoutMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/UI/AlmanacLayoutMath.cs" Link="AlmanacLayoutMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Wishes/KeptMath.cs" Link="KeptMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Wishes/BeliefMath.cs" Link="BeliefMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/UI/CouncilLayoutMath.cs" Link="CouncilLayoutMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Social/TogetherMath.cs" Link="TogetherMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Immersion/SpeechMath.cs" Link="SpeechMath.cs" />
   </ItemGroup>
 </Project>

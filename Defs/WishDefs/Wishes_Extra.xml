@@ -172,6 +172,7 @@
     <label>more time to rest</label>
     <description>This colonist wants more recreation hours in their schedule, set in the Schedule tab.</description>
     <workerClass>ColonyCouncil.WishWorker_DayOff</workerClass>
+    <forbiddenBy><li>NoRecreation</li></forbiddenBy>
     <lasting>true</lasting>
     <lostText>{FOR_nameDef}'s hours of rest have been taken off the schedule again.</lostText>
     <category>Comfort</category>
@@ -228,6 +229,7 @@
     <label>something to drink or smoke</label>
     <description>A colonist with a taste for chemicals wants beer, smokeleaf or a similar social drug kept in stock.</description>
     <workerClass>ColonyCouncil.WishWorker_LittleSomething</workerClass>
+    <forbiddenBy><li>NoSocialDrugs</li><li>NoAlcohol</li></forbiddenBy>
     <category>Comfort</category>
     <weight>0.8</weight>
     <expiryDays>10</expiryDays>

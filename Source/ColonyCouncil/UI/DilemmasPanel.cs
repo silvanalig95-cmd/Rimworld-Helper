@@ -214,8 +214,7 @@ namespace ColonyCouncil
                 m.waiting.Add((l, l.Label.ToString(), left > 0 ? "CC_Week_Left".Translate(UiKit.Duration(left)).Resolve() : null));
             }
             var tracker = comp.dilemmas;
-            if (ColonyCouncilMod.Settings.enableDilemmas && tracker.nextTick > now)
-                m.next = "CC_Dil_Next".Translate(TextUtil.DaysString(tracker.nextTick - now)).Resolve();
+            // Questions come unannounced, like events: no countdown to the next one.
             foreach (var d in tracker.Traditions)
                 m.traditions.Add(((d.traditionLabel ?? d.label).CapitalizeFirst(), "CC_Dil_TraditionTip".Translate(d.LabelCap).Resolve()));
             var records = DilemmaLog.Records ?? new List<DilemmaRecord>();
