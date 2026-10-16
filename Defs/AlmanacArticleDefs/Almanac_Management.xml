@@ -112,6 +112,10 @@ Crops grow only about 13 hours a day, so real growth takes about 1.82 times the 
     <description>This mod gives your colony a council: an advisor that points out problems, colonists who ask for things, and meetings where the colony chooses a goal. Everything it shows you is advice or a request. You can follow it, ignore it, or switch parts of it off.</description>
     <sections>
       <li>
+        <heading>This week</heading>
+        <text>The council window's first page gathers what needs you from every other page: wishes and petitions, oldest first; letters waiting for an answer; promises at risk, with the time left; gatherings, calendar days, fights, missions and camps coming up; who is under strain or near a break, who is seriously ill or recovering, whose trust moved this week; and how Rimfolk's good and bad moods balance out. Each line opens its page or goes to the colonist or the place on the map.</text>
+      </li>
+      <li>
         <heading>Priorities</heading>
         <text>The problems your colony faces right now, worst first, so start at the top of the list. Each one says why it matters and offers to show you the problem, plan a room for it, or open the matching page here. Use "Read more" on any concern you don't understand.</text>
       </li>

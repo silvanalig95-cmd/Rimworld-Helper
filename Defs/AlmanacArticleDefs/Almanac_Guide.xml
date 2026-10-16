@@ -15,16 +15,27 @@
     <tip>You don't need all of it on the first day. Answer the wishes and see what the colonists do.</tip>
     <description>Rimfolk turns your colonists into a small society. They ask for things and remember what you did about it, make friends and rivals, keep journals, dream, and wear down under hard times. A council helps you keep up: an advisor that points out what the colony needs, and meetings where the colony picks a goal to work toward.
 
-All of it lives in the council window. Open it with the council button in the bottom bar; it comes back to the page you were on.</description>
+All of it lives in the council window. Open it with the council button in the bottom bar; it opens on This week, the page of what needs you (the mod settings can make it come back to the page you were on instead).</description>
     <sections>
       <li>
         <heading>Your first days</heading>
         <points>
+          <li>Start each day on This week (the first page of the Colony section). It lists what waits on you (wishes and petitions, oldest first, letters that want an answer, promises at risk), what's coming (gatherings, days on the calendar, fights, missions, a camp) and how people are (strain, serious illness, trust, the balance of Rimfolk's moods). Click a line to go where it leads.</li>
           <li>Look at Priorities (in the Colony section) now and then. It lists what the colony needs, worst first.</li>
           <li>Answer wishes as they come. Grant one by making it happen, promise it to buy time, or refuse it. A refusal costs less than a wish left to lapse.</li>
           <li>Select a colonist and open their Mood tab to see what weighs on them and what would help, or their Story tab for everything Rimfolk knows about them.</li>
           <li>About once a quadrum the council meets in the evening. Keep people at home that day if their say matters to you.</li>
           <li>The smaller news (new friends, quirks, birthdays, ailments, a story moving on) comes together in one Colony news letter each evening, with a button to go where each happened. Letters that ask you to decide, and serious news, still come at once; the Colony news setting can show it all as it happens instead, or send it only to the History tab.</li>
+        </points>
+      </li>
+      <li>
+        <heading>Finding your way around the council window</heading>
+        <points>
+          <li>People, then Everyone: every colonist in one table, with mood and Rimfolk's share of it, trust and how it moved this week, strain, the setbacks weighing on them and what helps, their wish, their personal story, health and quirks. Click a heading to sort; hover a cell for more; click a row to select the colonist.</li>
+          <li>Council, then Dilemmas: the questions waiting for an answer, the traditions the answers founded, and every answer since with how it went.</li>
+          <li>Pin a colonist or a wish to keep it at the top of This week: the pin shows when you hover a line there, a row in Everyone, a wish card, or a colonist's page in the roster.</li>
+          <li>"Mark all read" on This week (or "Put all news away" in a news letter) clears the evenings' colony news from the letter stack; it stays in the History tab.</li>
+          <li>Each page remembers its filter and sort order. Options, then Keyboard, has optional shortcuts for the council's pages under "Rimfolk"; none is set until you pick a key.</li>
         </points>
       </li>
       <li>

@@ -189,6 +189,13 @@ play deep. In order:
   setting) and a "Start here" Almanac page; the council window remembers its page, across sessions too.
 - Done (October 2026): Rimfolk's pawn tabs fit the space above RimHUD and other tall inspect panes (checked by tests for
   768 to 2160 pixel screens and interface scales up to 2x), scroll when short, and their sections fold away.
+- Done (October 2026): "This week", the council window's first page: what needs you (wishes and petitions oldest
+  first, letters waiting, promises at risk), what's coming (gatherings, the meeting, calendar days, fights, missions,
+  camps) and how people are (strain and breaks, serious illness and recovery, trust this week, Rimfolk's mood
+  balance), each line leading to its page or the map, with colonists and wishes pinned on top. People → Everyone, a
+  sortable table of every colonist with what helps for their setbacks; Council → Dilemmas, with how each answer went;
+  "Mark all read" for the colony news; pages that remember their filters and sort orders; optional page shortcuts;
+  and a setting for the page the window opens on. Layout and page links are checked by tests.
 - A small visual pass with the game's own effects: the comet tints the sky, fireflies glow, camps smoke, a warlord's
   raid comes with banners of dust.
 - Translation-ready: every string keyed and a guide for translators.
