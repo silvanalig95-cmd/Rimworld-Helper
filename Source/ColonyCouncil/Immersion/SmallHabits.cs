@@ -269,7 +269,7 @@ namespace ColonyCouncil
         /// <summary>A line on arriving, in view, from someone who hasn't said anything lately (it shares the touches' once-a-day rate).</summary>
         public static void Say(Pawn p, HabitExtension ext, Pawn about)
         {
-            if (ext == null || ext.pool.NullOrEmpty() || !VisualTouches.On || ColonyCouncilMod.Settings?.speechText != true) return;
+            if (ext == null || ext.pool.NullOrEmpty() || !VisualTouches.On || !Speech.On) return;
             var vt = VisualTouches.Instance;
             if (vt == null || !VisualTouches.InView(out var map, out var view) || map != p.Map) return;
             int now = Find.TickManager.TicksGame;
@@ -537,7 +537,7 @@ namespace ColonyCouncil
                 if (ext == null) return;
                 SmallHabits.Done(pawn, ext.kind, Find.TickManager.TicksGame);
                 var subject = Subject();
-                if (ext.kind == HabitKind.Remember && Listener != null && Listener.Awake())
+                if (ext.kind == HabitKind.Remember && Listener != null && Together.Can(pawn, Listener))
                     pawn.interactions?.TryInteractWith(Listener, InteractionDefOf.DeepTalk);
                 SmallHabits.Say(pawn, ext, subject);
             }

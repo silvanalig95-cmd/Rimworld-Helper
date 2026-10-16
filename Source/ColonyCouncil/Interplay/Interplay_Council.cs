@@ -254,6 +254,7 @@ namespace ColonyCouncil
         /// </summary>
         public static bool MeetingSecret(CouncilMeeting m, List<Pawn> here)
         {
+            // together: only those at the meeting's gathering (CouncilMeeting.Talk passes who is there).
             if (!On || m == null || here == null || here.Count < 3 || !S.secrets) return false;
             if (meetingsHinted.Contains(m.calledTick) || !Rand.Chance(0.04f)) return false;
             var comp = Comp;

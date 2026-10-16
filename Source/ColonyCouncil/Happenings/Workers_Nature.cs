@@ -282,6 +282,7 @@ namespace ColonyCouncil
 
         protected override bool Begin(HappeningContext ctx, HappeningExtension ext)
         {
+            // apart: an animal's good turn, credited to its person.
             // Only the animal's own person takes the credit.
             if (ctx.variant == 1 && ctx.a != null && PetTracker.PersonOf(ctx.pet) == ctx.a) CouncilGameComponent.GiveThought(ctx.a, CouncilDefOf.Council_Evt_PetCaughtVermin, ctx.pet);
             return true;

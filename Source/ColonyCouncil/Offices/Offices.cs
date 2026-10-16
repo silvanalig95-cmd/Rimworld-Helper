@@ -179,7 +179,8 @@ namespace ColonyCouncil
 
         /// <summary>
         /// The peacemaker's day: every rivalry between colonists cools a little, and now and then the peacemaker sits the
-        /// worst-feuding pair down together (counted as a quarrel mended).
+        /// worst-feuding pair down together (counted as a quarrel mended): when the three of them are in one place
+        /// (a meal, an evening in the rec room), within two days (Together).
         /// </summary>
         private void Peacemaking(CouncilGameComponent comp)
         {
@@ -192,13 +193,24 @@ namespace ColonyCouncil
             var pair = rivalries.Where(t => comp.social.ties.Contains(t) && t.a.Spawned && t.b.Spawned && t.a.Map == peacemaker.Map && t.b.Map == peacemaker.Map)
                 .OrderByDescending(t => t.strength).FirstOrDefault();
             if (pair == null) return;
+            var (a, b) = (pair.a, pair.b);
+            Together.When("mediate|" + a.thingIDNumber + "|" + b.thingIDNumber, peacemaker, a, () => Mediate(comp, peacemaker, pair), 48f, -1f,
+                () => Together.Can(peacemaker, b) && Together.Can(a, b));
+        }
+
+        /// <summary>The peacemaker with the feuding pair, all three together: they're sat down and talked round.</summary>
+        private void Mediate(CouncilGameComponent comp, Pawn peacemaker, SocialTie pair)
+        {
+            // together: called once the peacemaker and both of the pair are together (Peacemaking, through Together.When).
+            if (Peacemaker != peacemaker || !comp.social.ties.Contains(pair)) return;
             using var _cause = Causes.Push("CC_Cause_Peacemaker".Translate(peacemaker.LabelShort).Resolve());
             comp.social.Weaken(pair.a, pair.b, TieKind.Rivals, 6f, "CC_TieNote_Peacemaker".Translate(peacemaker.LabelShort));
             CouncilRecords.Add(peacemaker, CouncilRecords.QuarrelsMended);
             string line = Flavor.FromPool("Council_Pool_PeacemakerMediates", peacemaker);
             if (line.NullOrEmpty()) return;
-            News.Post(line.Formatted(peacemaker.Named("PAWN"), pair.a.Named("A"), pair.b.Named("B")).Resolve(), new LookTargets(peacemaker, pair.a, pair.b),
-                NewsKind.People, MessageTypeDefOf.NeutralEvent, Importance.Flavor);
+            string text = line.Formatted(peacemaker.Named("PAWN"), pair.a.Named("A"), pair.b.Named("B")).Resolve();
+            News.Post(text, new LookTargets(peacemaker, pair.a, pair.b), NewsKind.People, MessageTypeDefOf.NeutralEvent, Importance.Flavor);
+            SocialLog.Add(peacemaker, pair.a, text);
         }
 
         /// <summary>
@@ -220,6 +232,7 @@ namespace ColonyCouncil
         public void Hold(CouncilGameComponent comp, int year, bool byElection)
         {
             using var _cause = Causes.Push("CC_Cause_Election".Translate().Resolve());
+            // apart: an election, told in its letter.
             var voters = Eligible();
             if (voters.Count < 2) return;
             // Beliefs that put a ruler above the vote (aristocratic, royal): the leader names the officers.
@@ -314,6 +327,7 @@ namespace ColonyCouncil
         {
             using var _cause = Causes.Push("CC_Cause_Appointed".Translate(p.LabelShort, office.label).Resolve());
             if (office == null || p == null || !office.CanHold(p)) return;
+            // apart: the council names an officer (a message).
             var current = HolderOf(office);
             if (current == p) return;
             foreach (var other in Offices.Where(o => HolderOf(o) == p).ToList()) holders.Remove(other.defName);

@@ -88,10 +88,17 @@ namespace ColonyCouncil
                 CouncilGameComponent.GiveThought(p, CouncilDefOf.Council_HomeAgain, null, -1f, "CC_Cause_HomeAgain".Translate(days).Resolve());
                 comp.journals.Write(p, "Council_Journal_Homecoming", null, days.Named("DAYS"));
             }
-            // Those who stayed and missed them.
+            // Those who stayed and missed them: glad when they see them again, within the day (Together).
             foreach (var p in back)
                 foreach (var f in FriendsOf(p, 40).Where(f => !back.Contains(f)).Take(3))
-                    CouncilGameComponent.GiveThought(f, CouncilDefOf.Council_GladTheyreBack, p, -1f, "CC_Cause_GladBack".Translate(p.LabelShort).Resolve());
+                {
+                    var (friend, them) = (f, p);
+                    Together.When("gladback|" + them.thingIDNumber + "|" + friend.thingIDNumber, friend, them, () =>
+                    {
+                        CouncilGameComponent.GiveThought(friend, CouncilDefOf.Council_GladTheyreBack, them, -1f, "CC_Cause_GladBack".Translate(them.LabelShort).Resolve());
+                        SocialLog.Add(friend, them, "CC_Together_GladBack".Translate(friend.Named("PAWN"), them.Named("OTHER")).Resolve());
+                    }, 24f);
+                }
             string names = TextUtil.JoinAnd(back.Select(p => p.LabelShort).ToList());
             string text = "CC_World_Homecoming".Translate(names, days).Resolve();
             News.Post(text, new LookTargets(back), NewsKind.People, MessageTypeDefOf.PositiveEvent, Importance.Flavor);
