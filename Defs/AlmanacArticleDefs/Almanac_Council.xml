@@ -239,7 +239,7 @@ Check the trust list first: a colonist who is already doubtful takes being overr
       </li>
       <li>
         <heading>Everyday life</heading>
-        <text>Many dilemmas grow out of what is happening to people right now. Someone ill when the medicine is down to a few doses; a fever that could spread through a shared room; a cook with a cold; an old family remedy, or a visitor's strange cure. A group camped on the colony's land asking for medicine, food or searchers for a lost child: how the colony answers changes how tense things are at their camp and what their people think of you. A council meeting someone missed while they were out working. A worn-out colonist (with feelings and strain on) asking for days off just when the harvest is in or the walls are broken. A squabble that grew into a feud, an elder who wants to put down the tools, a child with a question, a broken promise, the same meal or the same work every day, too many people in too little room.
+        <text>Many dilemmas grow out of what is happening to people right now. Someone ill when the medicine is down to a few doses; a fever that could spread through a shared room; a cook with a cold; an old family remedy, or a visitor's strange cure. A group camped on the colony's land asking for medicine, food or searchers for a lost child: how the colony answers changes how tense things are at their camp and what their people think of you. A council meeting someone missed while they were out working. A worn-out colonist (with feelings and strain on) asking for days off just when the harvest is in or the walls are broken. A squabble that grew into a feud, an elder who wants to put down the tools, a child with a question, a broken window, a child frightened after a raid or grieving, lessons for the children, two children fighting over a den, a youngster who wants to see the world, an old one who wants one last look at the hills, won't see the doctor, can't get warm, wants to tell the colony's story or to teach a little one, the old way against the new, a broken promise, the same meal or the same work every day, too many people in too little room.
 
 Many answers call on whoever is best placed: the doctor, a forager, a tracker, a scholar, the best talker. They are grayed out when nobody fits, their skill makes a gamble less likely to go wrong, and the outcome names them. Medicine spent on someone eases their illness but never cures it outright, and no answer makes anyone sicker.
 
@@ -365,6 +365,10 @@ Two more things weigh on a ballot. Someone whose granted wish the council took b
           <li>Winter | Lantern night: a lantern in every window | firewood</li>
           <li>After a raid | Burying the enemy dead, the victory feast | a raid</li>
           <li>Any time | The remembrance night, for a fight two comrades want marked | comrades, raw food</li>
+          <li>Spring | A tree for every child, planted at the edge of the fields | a child (Biotech), a mild day</li>
+          <li>Summer | The children's race, with the colony cheering them round the fields | a child, a fine day</li>
+          <li>Fall | The children's gleaning: what's left in the stubble is theirs, shared at supper | a child</li>
+          <li>Winter | The snow day: no chores, everyone out in the snow | a child, a freezing day</li>
         </table>
       </li>
       <li>
@@ -445,7 +449,9 @@ Unhappy colonists have more nightmares, and volatile ones more still. Recurring 
       </li>
       <li>
         <heading>What they feel, and what's around them</heading>
-        <text>With the heart turned on, feelings bring dreams of their own, likelier the stronger the feeling. A colonist angry at someone argues with them all night (and the rivalry grows a little); one grateful to someone repays the debt in a dream (and likes them a little more); envy dreams of someone else's life. Fear, dread, shame, loneliness, homesickness, despair, pride, hope, curiosity, restlessness, contentment and joy each have their dreams too.
+        <text>With the heart turned on, feelings bring dreams of their own, likelier the stronger the feeling. A colonist angry at someone argues with them all night (and the rivalry grows a little); one grateful to someone repays the debt in a dream (and likes them a little more); envy dreams of someone else's life. Every one of the feelings has dreams of its own, grief and disgust among them.
+
+Quirks bring dreams (a storm-dreader's storm, the dark for someone who sleeps with a light, the stars for a stargazer, the plants answering back), and so do life goals (a wedding for someone who wants to marry, the far road for a youngster who wants to travel, the last fine piece for an old maker) and personal stories (two doors for a rival in love, a rope pulled both ways for someone caught between two people, one more spring).
 
 Ailments color dreams: a toothache brings dreams of loose teeth, a cold or a cough dreams of breathing underwater, insomnia dreams of lying awake, bites and rashes dreams of itching, a bad back or a kidney stone dreams of carrying a millstone, and getting over an illness dreams of being strong again. So does the world around them: a camp on the map, a council meeting they spoke at or missed, sickness, famine, fighting or a fair in the region (world events), and the time of year.</text>
       </li>
@@ -484,7 +490,7 @@ You can turn omens off with "Dreams that come true" in the settings.</text>
     <order>11</order>
     <summary>What each colonist has set their heart on doing before they die.</summary>
     <tip>A wish takes a few days to grant. A life goal can take years.</tip>
-    <description>A few days after settling in, each colonist sets their heart on something: master a craft, marry for love, have a child, find three true friends, train a student, make peace with a rival, earn a seat on the council or a name the colony remembers, a bedroom fit for a noble, a warrior's or a builder's record, or simply to live three more years. Children have goals of their own (a best friend, a skill, growing up), the old may want a grandchild or one more year, believers a role in their faith, and some only want to feel at home. The Roster page shows everyone's goal and how close they are; the page "every life goal" lists them all.</description>
+    <description>A few days after settling in, each colonist sets their heart on something: master a craft, marry for love, have a child, find three true friends, train a student, make peace with a rival, earn a seat on the council or a name the colony remembers, a bedroom fit for a noble, a warrior's or a builder's record, or simply to live three more years. Children have goals of their own (a best friend, a skill, their letters, an animal of their own, growing up) that grow into a grown-up's goal when they come of age, the young want to be taken seriously or to see past the hills, the old may want a grandchild, one more year or a last wish (a fine last piece, family set right), believers a role in their faith or their faith found again, and some only want to feel at home, safe, loved or free of a grief. The Roster page shows everyone's goal and how close they are; the page "every life goal" lists them all.</description>
     <sections>
       <li>
         <heading>How a goal is chosen</heading>
@@ -500,7 +506,9 @@ Check the Roster page now and then. A colonist one level short of mastery is wor
       </li>
       <li>
         <heading>Goals left unfinished</heading>
-        <text>A colonist who dies before reaching their goal is remembered for it: the chronicle notes what they never got to do, and their friends write about it. The person who loved them most may take the goal up and finish it for them.</text>
+        <text>A colonist who dies before reaching their goal is remembered for it: the chronicle notes what they never got to do, and their friends write about it. The person who loved them most may take the goal up and finish it for them. An old colonist's last wish left undone weighs on those who loved them for a week or so, and is likelier to be taken up, by anyone of any age.
+
+Some goals cost something to give up: someone who never found love, a friend for life or their faith again feels it for a week when they let it go. A goal that belongs to an age grows up with them, or is outgrown.</text>
       </li>
     </sections>
     <keywords><li>goal</li><li>aspiration</li><li>dream</li><li>ambition</li><li>mastery</li><li>marriage</li><li>legacy</li></keywords>
@@ -560,6 +568,21 @@ A lucky thing says so: look at it on the map, open its info card or hover it in 
       <li>
         <heading>Habits</heading>
         <text>Other quirks simply grow out of who someone is, now and then: a grower who talks to the plants (plant work 3% faster), a handler who names every animal (taming and training 3% likelier), a cook who sings at the stove (15% fewer food poisonings), an early riser (glad in the morning, sorry when kept up late), someone who hums at work (work 2% quicker), collects pretty stones for their room, can't stand a mess (unhappy in a dirty room, cleans 10% faster), feeds the birds, remembers every birthday (social impact up 3%), is always whittling (bored more slowly), talks in their sleep or saves the best bite for last. A habit's knack lasts as long as the habit, which fades after most of a year.</text>
+      </li>
+      <li>
+        <heading>Quirks in people's lives</heading>
+        <text>Some quirks change how someone answers and speaks, and ask for moments of their own:</text>
+        <points>
+          <li>speaks in proverbs (the old): a saying at council meetings, in the answers to dilemmas and in the journal; it helps some people and grates on others</li>
+          <li>tells the little ones stories (from making peace in one more spring, or telling the colony's story): story hours with the children</li>
+          <li>sleeps with a light burning (a child after nightmares or bad nights): a small comfort in their own room, and a roommate kept awake</li>
+          <li>laughs at the wrong moments: at supper apologies, at sad stories, and at a graveside, which a grieving friend won't forgive quickly</li>
+          <li>a worrier (after a death in the colony or far away): lies awake late, checks the bolts with a friend, may ask the council for a night watch</li>
+          <li>writes everything down (scholars): reads back what was said, may ask to keep the colony's record</li>
+          <li>first to volunteer (kind or hard-working): takes someone else's turn at the worst job</li>
+          <li>a soft spot for strays (animal lovers): feeds every stray, with another animal lover</li>
+        </points>
+        <after>Each of these, and several older quirks, has dreams of its own (a storm-dreader's storm, the stargazer's stars).</after>
       </li>
       <li>
         <heading>Coming of age</heading>

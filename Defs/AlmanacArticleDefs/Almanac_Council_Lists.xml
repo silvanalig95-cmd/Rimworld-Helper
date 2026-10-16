@@ -269,8 +269,8 @@ A few are done in stages, one after another: only the current stage counts, each
     <label>every life goal</label>
     <category>Council</category>
     <order>11</order>
-    <summary>All 63 life goals, who sets their heart on each, and what can spark it.</summary>
-    <tip>A child's goal can be to grow up. When they do, a grown-up's goal follows.</tip>
+    <summary>All 84 life goals, who sets their heart on each, and what can spark it.</summary>
+    <tip>A child's wish to learn their letters becomes a scholar's goal when they grow up. Help the little ones with their wishes.</tip>
     <description>A colonist sets their heart on one life goal at a time, from what fits them: passions, traits, age, faith and what has happened to them lately. What sparks a goal (a battle, a brush with death, a loss, a birth, a dream that came true, a friend reaching the same goal, a recent memory) makes it far likelier, and can change their mind about a goal they've barely started. Children have goals of their own (Biotech), and a few goals are only for the old (ages in human years).</description>
     <sections>
       <li>
@@ -319,6 +319,9 @@ A few are done in stages, one after another: only the current stage counts, each
           <li>have a bedroom fit for a noble | Anyone but ascetics; a night in a barracks or outside.</li>
           <li>feel at home here | Anyone whose belonging is below 70, until it stays at 70 or more for 10 days in a row; being left out, a shared table, a loss.</li>
           <li>feel free again | Anyone whose freedom is below 70, until it stays at 70 or more for 10 days in a row; a journey, an evening at the strangers' camp.</li>
+          <li>feel safe again, find something worth doing | Anyone whose safety (or purpose) is below 70, until it stays at 70 or more for 10 days in a row; a battle, a brush with death, a nemesis (safety); a lost seat or election, a loss (purpose).</li>
+          <li>let the grief go, forgive themselves | Anyone grieving (or ashamed) strongly now, until the feeling stays faint for 12 (or 10) days in a row; a loss.</li>
+          <li>find someone to love, make a friend for life | Anyone 20 or more with no lover; a bond of friendship of 90 or more; a wedding, a loss, being left out.</li>
         </table>
         <after>The heart's goals need feelings and strain switched on, and are looked at once a day.</after>
       </li>
@@ -335,11 +338,40 @@ A few are done in stages, one after another: only the current stage counts, each
         </table>
       </li>
       <li>
+        <heading>Goals that grow up with them</heading>
+        <text>Some goals belong to an age and grow up with the one who has them. When a child comes of age (or a youngster turns 20), the goal becomes a grown-up's, if they could want it at all; otherwise they have simply outgrown it, write about it, and choose something else in time.</text>
+        <table>
+          <li>Goal | Who, and what it grows into</li>
+          <li>learn letters and numbers properly | Children (Intellectual to 5). Grows into becoming a true scholar.</li>
+          <li>grow something of their very own | Children (Plants to 5). Grows into four hundred harvests.</li>
+          <li>learn to build a proper den | Children (Construction to 4). Grows into raising a hundred and fifty structures.</li>
+          <li>have an animal of their very own | Children: an animal bonded to them (answering to them is halfway). Grows into taming five animals.</li>
+          <li>make the grown-ups proud | Children: the grown-ups' opinion of them, on average, 30 or more. Grows into earning a name the colony remembers.</li>
+          <li>be trusted with a grown-up's work in a skill | 13 to 19, with a passion (to 8, or 3 levels more). Grows into mastering it.</li>
+          <li>be taken seriously by the grown-ups | 13 to 19: the grown-ups' opinion of them 25 or more; being left out of a decision. Grows into having an idea chosen by the council.</li>
+          <li>see what lies past the hills | 13 to 19: five days away from home on journeys. Grows into feeling free again.</li>
+          <li>fall in love for the first time | 16 to 19; a wedding. Grows into marrying for love.</li>
+        </table>
+      </li>
+      <li>
+        <heading>Last wishes</heading>
+        <text>An old colonist's last wish weighs on those who loved them if they die before it (a memory, for a week or so), and someone is likelier to take it up and finish it for them, whatever their own age.</text>
+        <table>
+          <li>Goal | Who, and what sparks it</li>
+          <li>see a child they love grown up | 60 or more, with a child they're fond of or related to (Biotech); a birth, a brush with death.</li>
+          <li>make one last thing worth keeping | 60 or more, crafters, artists and builders: something of excellent quality or better; a brush with death, a loss.</li>
+          <li>make peace with an old rival before the end | 60 or more, with a rival; a brush with death, a loss.</li>
+          <li>set things right with family | 55 or more, with family in the colony they're at odds with: everyone in the family at 20 or more both ways; a brush with death, a loss, a birth.</li>
+        </table>
+      </li>
+      <li>
         <heading>Faith and other mods</heading>
         <table>
           <li>Goal | Who, and what sparks it</li>
           <li>take on a role in the faith | Believers with some certainty, when their faith has a role open (Ideology); an omen.</li>
           <li>see the whole colony share one faith | Devout believers in a colony of 3 or more (Ideology); a loss, an omen.</li>
+          <li>find their faith again | Believers whose certainty has fallen below 60% (Ideology), until it's back at 90% in the same faith; a loss, an omen.</li>
+          <li>bring someone else to their faith | Believers in a colony where some don't share it (Ideology); an omen, a birth.</li>
           <li>reach a level as a mage or a fighter | A RimWorld of Magic's classes; a battle.</li>
           <li>learn or deepen six workings | A RimWorld of Magic's mages; a battle, comparing workings with another mage.</li>
           <li>learn or sharpen six techniques | A RimWorld of Magic's fighters; a battle, a brush with death, comparing forms.</li>

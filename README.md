@@ -348,12 +348,15 @@ stash of beer, a cook who wants to spend the stores on one magnificent feast, a 
 can't cope. Kind, greedy, industrious and teetotal colonists all react differently. Leave a dilemma unanswered and
 the council's silence decides for you.
 
-There are 132 of them, and many grow out of everyday life: a sick colonist when the medicine is nearly gone,
+There are 150 of them, and many grow out of everyday life: a sick colonist when the medicine is nearly gone,
 whether to keep someone with a fever apart, a cook with a cold, an old family remedy, a visitor's strange cure, the
 camp on the colony's land asking for medicine, food or searchers for a lost child, a council meeting someone missed,
 a worn-out colonist asking for days off at the worst time, a doctor who just lost a patient, someone convalescing who
 wants to be back at work, family who want a say before an operation, a squabble that turned into a feud, an elder who wants to
-put down the tools, a child's question, a broken promise, the same meal every day. Many answers call on whoever is
+put down the tools, a child's question, a broken promise, the same meal every day. The young and the old have their
+own: a broken window and nobody owning up, a child frightened after a fight or grieving a parent, lessons or play,
+a youngster who wants to see the world, an elder who wants one last walk in the hills, won't see the doctor, has a
+tale to tell or feels the cold in their bones. Many answers call on whoever is
 best placed (the doctor, a forager, a tracker, the best talker), and their skill decides how it goes.
 
 **Answers play out on the map.** When an answer describes something people do, they do it (168 answers of 67
@@ -410,7 +413,13 @@ three more years. Children have goals of their own (Biotech): a best friend, get
 for older children growing up, which comes true when they come of age, so a grown-up's goal follows. The old may
 want a grandchild, one more year or two students who can stand alone; believers a role in their faith or the whole
 colony sharing it (Ideology); some only want to feel at home or free again, the heart's need well met for ten days
-in a row. 63 in all, listed on the Almanac page "every life goal". Goals fit the
+in a row. Goals grow up with them: a child's dream of letters and numbers, a den of their own or an animal of their
+very own becomes a grown-up's goal (a scholar's, a builder's, a tamer's) when they come of age, and a teenager wants
+a grown-up's work, to be taken seriously, to see past the hills or a first love. The old have last wishes (to see a
+young one grown, one last fine piece, no grudge to the grave, family set right) that a friend may finish after
+them; the faithful want their faith found again or shared; a troubled heart wants to feel safe again, to let a grief
+go, to forgive itself or to find a friend for life. Goals respect belief: nobody whose faith forbids books, pets,
+travel or love sets their heart on them. 84 in all, listed on the Almanac page "every life goal". Goals fit the
 person (their passions, traits and situation) and grow out of what happens to them: a battle makes a warrior, a
 brush with death a healer, a wedding someone who wants to marry, a birth someone who wants a child, a lost election
 someone who wants a seat, loneliness someone who wants friends, and seeing a friend reach their goal can make them
@@ -420,16 +429,25 @@ moment: a letter, a long good mood, trust, often an inspiration, friends who are
 remembered: the chronicle notes what they never got to do, and their friends write about it.
 
 ### Personal stories
-A few times a year, one colonist's own story begins, and plays out in three or four stages over days to a season.
-There are 16 of them: the long way home (away for days, missing someone; home; the road told), somewhere to belong (a
+A few times a year, one colonist's own story begins, and plays out in three to five stages over days to a season.
+There are 28 of them: the long way home (away for days, missing someone; home; the road told), somewhere to belong (a
 homesick newcomer finds a friendly face, a room, roots), a companion (an animal that follows its master about, until
 they bond), grudging respect (rivals who are good at the same thing), old wounds (former lovers, family at odds, a
 friend who let a secret slip), an old debt (a rescue or a kindness repaid with something made by hand), second chances
 (a colonist who gave up on the council), the apprentice's masterwork, a calling (a child or teenager taken with what a
 grown-up does well), passing it on (an elder's craft handed down), a long grief, a secret told (to a friend first, then
 everyone), a fear faced (an enemy who got away, a dread of the dark or of storms), the recurring dream, a grudge laid
-down, and within reach (halfway to a life goal and doubting it). With A RimWorld of Magic there's a 17th, the long
-discipline (a mage or a fighter hits a wall in their art and works through it). Each starts from what Rimfolk already knows about the
+down, and within reach (halfway to a life goal and doubting it). Others grow out of the world and the colony's
+offices: the road calls (a friend made at a camp, and the itch to go with them), the weight of office (a new seat on
+the council that sits heavy) and word from far away (family out in the world when sickness, famine or war comes
+there). The young and the old have their own: bad nights (a child's nightmares), not a child any more (a teenager
+and a grown-up who won't see it), a new parent (Biotech), one more spring (an elder in poor health) and the last two
+of us (two old rivals, the last of their generation). Four are **stories of three**: a rival in love (two people
+fond of the same one, who chooses, or doesn't), torn between two students (a mentor with two learners), brothers and
+sisters (a parent and two children at odds) and caught in the middle (someone between two friends who can't stand
+each other). Their talks need the two people together, they can end with either one ahead, and the third keeps a
+journal of it too. With A RimWorld of Magic there's a 29th, the long discipline (a mage or a fighter hits a wall in
+their art and works through it). Each starts from what Rimfolk already knows about the
 colonist (their losses, rivals, secrets, life goal, feelings, skills, animals, trust) and moves on only when something
 happens in play: a skill reached, a talk between the two of them in the social log, a piece of excellent quality made,
 a fight at home come through, days with a good mood or a room of their own. Every stage is written in their journal in
@@ -476,21 +494,30 @@ Others simply grow out of who someone is: a grower who talks to the plants, a ha
 who sings at the stove, an early riser, someone who hums at work, collects pretty stones, can't stand a mess, feeds
 the birds or remembers every birthday, and after a night in the cold or under the stars, someone who is always cold
 or goes out to watch the stars. Some bring a small knack while they last instead of a mood (slightly faster plant work,
-fewer food poisonings from that cook, animals tamed and trained more easily, a hummer's work a little quicker). 29 quirks in all. Picking one up and letting it
+fewer food poisonings from that cook, animals tamed and trained more easily, a hummer's work a little quicker). Some change how someone speaks and answers: one speaks in proverbs, one laughs
+at the wrong moments, a worrier frets aloud at the council table and asks to keep watch, someone who writes
+everything down reads back what was said; others tell the little ones stories, are first to volunteer, have a soft
+spot for strays or sleep with a light burning after bad nights. Dilemmas and letters ask for them too: a worrier's
+watch, the colony's record kept by the one who writes everything down. 37 quirks in all. Picking one up and letting it
 fade are written in the journal in the colonist's own voice. Quirks show up between people too: a hummer grates on a
 nervous neighbour or gets a duet, a sleep talker's words are repeated at breakfast, an early riser wakes a night owl,
-the singing cook wins over the gourmand, a whittler carves a gift, two superstitious colonists compare precautions
-(12 social events, which change the bond between the two rather than anyone's mood).
+the singing cook wins over the gourmand, a whittler carves a gift, two superstitious colonists compare precautions,
+a proverb helps or grates, the storyteller gathers the children, a worrier is reassured, a night light keeps a
+roommate up (21 social events and a handful of moments, which change the bond between the two rather than anyone's
+mood).
 
 ### Dreams
-Colonists who sleep (or lie unconscious) for a few hours sometimes wake from a dream (there are 128), and tell each
+Colonists who sleep (or lie unconscious) for a few hours sometimes wake from a dream (there are 155), and tell each
 other about it. Dreams grow out of their lives: the raid two days ago, the friend they buried, the rival who insulted
 them, the wish the council ignored, the leg they lost, the skill they're learning, the dead they miss, their partner,
 their dog. They grow out of what they feel, too (an argument all night with the one they're angry at, a debt repaid
 to the one they're grateful to, dreams of fear, shame, loneliness, pride or hope), out of what ails them (loose teeth
 with a toothache, breathing underwater with a cold), and out of what's around them: a camp on the map, a council
 meeting, sickness, famine, fighting or a fair in the region, and the seasons, and out of the colony's own days: the
-dead visiting after a remembrance, a feast that goes on all night, a wish taken back, work lost. Most leave a line in their journal and
+dead visiting after a remembrance, a feast that goes on all night, a wish taken back, work lost. Every feeling has
+dreams of its own, and so do many quirks, life goals and personal stories: the worrier dreams of checking one gate after
+another, someone set on marrying dreams of a wedding, someone caught between two friends of a rope pulled both ways.
+Most leave a line in their journal and
 little else: a sweet dream a bit of rest, a strange one now and then an inspiration, a nightmare or a visit from the
 dead a passing mood (hover it to read the dream). Now and then one changes something: an inspiration, a lesson, a
 good night's rest, a nightmare that leaves them shaken, a dream of victory that steadies their aim, a softened
@@ -554,9 +581,11 @@ marshal has a word with everyone who fought beside them, and the steward's compa
 ### Traditions
 Choose the same answer to a seasonal dilemma two years running (a midsummer feast, a harvest celebration, a vigil
 on the longest night) and it becomes a tradition. From then on it comes up first every year: keeping it pleases
-everyone, breaking it disappoints them. Thirteen customs can become traditions, among them the **planting blessing**
+everyone, breaking it disappoints them. Seventeen customs can become traditions, among them the **planting blessing**
 and the **remembrance walk** to the colony's graves in spring, the **midsummer swim** on a hot day by the water,
-the **harvest dance**, **first-frost soup** on the first freezing day, and **lantern night** in winter.
+the **harvest dance**, **first-frost soup** on the first freezing day, and **lantern night** in winter. Four are the
+children's (Biotech): a **snow day** off when the snow comes, the **children's race** in summer, the children's
+**gleaning** after the harvest, and **a tree for every child** planted in spring.
 
 ### The colony calendar
 The days that matter to this colony, written down as its history happens: its **founding day**, its **first good
