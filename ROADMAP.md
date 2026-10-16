@@ -258,9 +258,12 @@ play deep. In order:
   touches, reminders and last calls, journals, quirks, wishes' own lines, the calendar, personal stories, health,
   camps, the newest events and the room advice cards).
 
-### Always: breadth grows with every round
-Variety means more than more lines: more things that can happen and be wished for. Every round of work adds to
-the content itself, not only to systems, alongside whatever else it does. Where things stood on 14 October 2026:
+### Breadth, where it fits the game
+Content grows only where it fits the game's goals (the player, October 2026: "I'd rather not have further wishes etc
+be added just for the sake of variety, if they don't fit naturally into the game's goals"). A new wish, goal,
+project, dilemma, ailment, day or trait must point at something a player would want to pursue or deal with in a run
+and make for a real choice; deepening how existing things play out comes before adding new things to want, and the
+"grow toward" column below is a list of possibilities, not a quota. Where things stand:
 
 | Content | Count | Grow toward |
 |---|---|---|
