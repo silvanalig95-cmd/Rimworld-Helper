@@ -265,7 +265,8 @@ namespace ColonyCouncil
                 bool vain = t != null && (t.HasTrait(TraitDefOf.Greedy) || t.HasTrait(TraitDefOf.Abrasive) || t.HasTrait(TraitDefOf.Psychopath));
                 s += vain ? 6f : 1.5f;
             }
-            return s + Rand.Range(0f, 2.5f);
+            // A promise taken back counts against those in office; the names the colony gave count for them (Interplay/).
+            return s + Interplay.VoteLean(voter, candidate) + Rand.Range(0f, 2.5f);
         }
 
         /// <summary>The council puts someone else in the seat. Overruling the vote costs the trust of those who wanted the winner.</summary>

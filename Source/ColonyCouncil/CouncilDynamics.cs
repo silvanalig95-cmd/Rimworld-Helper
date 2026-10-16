@@ -659,6 +659,7 @@ namespace ColonyCouncil
             Safe("quirks", () => quirks.Daily(this));
             Safe("legacy", () => legacy.Daily(this));
             Safe("character", () => character.Daily(this));
+            Safe("interplay", () => Interplay.Daily(this));
             Safe("history", RecordDay);
             if (Settings.offices && offices.Speaker != null)
                 Safe("speaker", () =>

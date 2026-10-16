@@ -136,7 +136,8 @@ namespace ColonyCouncil
             ["planMaterials"] = "the materials last picked in the room planner",
             ["lastCouncilPage"] = "the council window's page when it was last closed",
             ["lastAlmanacPage"] = "the Almanac's page when it was last closed",
-            ["almanacFolded"] = "whether the Almanac's categories and page list are folded away, switched in the Almanac itself"
+            ["almanacFolded"] = "whether the Almanac's categories and page list are folded away, switched in the Almanac itself",
+            ["councilPageState"] = "the filters and sort orders the council's pages remember, set on the pages themselves"
         };
 
         public static IReadOnlyList<SettingEntry> All => all;
@@ -210,6 +211,7 @@ namespace ColonyCouncil
             Toggle("enableAdvisor", "CC_Settings_EnableAdvisor", "CC_SetNote_EnableAdvisor");
             Toggle("enableWishes", "CC_Settings_EnableWishes", "CC_SetNote_EnableWishes");
             Toggle("enableAmbitions", "CC_Settings_EnableAmbitions", "CC_SetNote_EnableAmbitions");
+            Toggle("interplay", "CC_Settings_Interplay", "CC_SetNote_Interplay");
             Section("CC_Settings_Stakes");
             Choice("stakes", "CC_Settings_Stakes", "CC_SetTip_Stakes", "CC_Stakes_", "CC_Stakes_Short_", new[] { "Gentle", "Balanced", "Demanding", "AdvisorOnly" });
             Slider("penaltyFactor", "CC_Settings_Penalty", "CC_SetNote_Penalty", 0.25f, 2f, 0.05f, "%", "stakes=Balanced|Demanding", "CC_SetWhy_Downsides");
@@ -359,6 +361,8 @@ namespace ColonyCouncil
             Dropdown("buttonPosition", "CC_Settings_ButtonPosition", "CC_SetTip_ButtonPosition", "CC_SetNote_ButtonPosition", "CC_ButtonPos_",
                 new[] { "BeforeMenu", "AfterResearch", "AfterHistory", "AfterWork" });
             Toggle("roomsButton", "CC_Settings_RoomsButton", "CC_SetNote_RoomsButton");
+            Choice("councilOpensOn", "CC_SetLabel_CouncilOpensOn", "CC_SetTip_CouncilOpensOn", "CC_CouncilOpens_", "CC_SetNote_CouncilOpens_",
+                new[] { "ThisWeek", "LastPage" });
             Choice("almanacTextSize", "CC_SetLabel_AlmanacTextSize", "CC_SetTip_AlmanacTextSize", "CC_TextSize_", "CC_SetNote_TextSize_",
                 new[] { "Small", "Normal", "Large", "Larger" });
             Section("CC_SetSec_Hooks");

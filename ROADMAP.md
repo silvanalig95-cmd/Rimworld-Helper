@@ -189,6 +189,13 @@ play deep. In order:
   setting) and a "Start here" Almanac page; the council window remembers its page, across sessions too.
 - Done (October 2026): Rimfolk's pawn tabs fit the space above RimHUD and other tall inspect panes (checked by tests for
   768 to 2160 pixel screens and interface scales up to 2x), scroll when short, and their sections fold away.
+- Done (October 2026): "This week", the council window's first page: what needs you (wishes and petitions oldest
+  first, letters waiting, promises at risk), what's coming (gatherings, the meeting, calendar days, fights, missions,
+  camps) and how people are (strain and breaks, serious illness and recovery, trust this week, Rimfolk's mood
+  balance), each line leading to its page or the map, with colonists and wishes pinned on top. People → Everyone, a
+  sortable table of every colonist with what helps for their setbacks; Council → Dilemmas, with how each answer went;
+  "Mark all read" for the colony news; pages that remember their filters and sort orders; optional page shortcuts;
+  and a setting for the page the window opens on. Layout and page links are checked by tests.
 - A small visual pass with the game's own effects: the comet tints the sky, fireflies glow, camps smoke, a warlord's
   raid comes with banners of dust.
 - Translation-ready: every string keyed and a guide for translators.
@@ -243,11 +250,11 @@ the content itself, not only to systems, alongside whatever else it does. Where 
 | Council projects (ambitions) | 54 (3 in stages) | more staged and season-long projects, more for tribal and spacer colonies |
 | Life goals | 63 | goals for teenagers, more for faith and the heart, goals that change with age |
 | Dilemmas | 132 | more for children, elders and the camps; dilemmas for each new system as it lands |
-| Encounters | 156 | more lands (lakes, rivers), more mods' creatures, peoples and biomes, rarer night and weather moments |
+| Encounters | 161 (5 new for what a stranger's people remember) | more lands (lakes, rivers), more mods' creatures, peoples and biomes, rarer night and weather moments |
 | Decrees | 19 | decrees tied to world situations, faith and mods (tithes, curfews, alms) |
-| Quirks | 32 | quirks that touch others (a hummer and a light sleeper), more from events and dreams |
+| Quirks | 32 (13 now touch others, through 12 social events) | quirks in moments and dilemmas, more from events and dreams |
 | Personal stories | 16 (61 stages) | stories from camps, offices and world events, more for children and elders, stories of three |
-| Dreams | 123 | dreams for more feelings, quirks, life goals and mod content |
+| Dreams | 128 (5 new from other systems' moments) | dreams for more feelings, quirks, life goals and mod content |
 | World events | 32 | more regional situations, and more follow-ups (relief from old friends and refugees to see through follow plagues, famines, floods and hard winters) |
 | Camp kinds | 11 | caravans of every kind, pilgrims of every faith |
 | Ailments | 32 everyday, 14 serious; convalescence from 4 causes, 2 healers' names | ailments for every biome and DLC, more after-effects |
@@ -255,7 +262,8 @@ the content itself, not only to systems, alongside whatever else it does. Where 
 | Calendar days and ways to keep them | 9 kinds, 4 ways (about 440 lines) | more kinds of day, lines per biome and faith |
 | Answers that play out on the map | 168 answers (67 dilemmas, 53 events and stories), 3 calendar ways, 3 decrees, 7 ambitions; 9 kinds of real effect | world events' beats, new dilemmas and events from the start, drinks at a toast |
 | Lines in the flavor pools (variety report) | about 25,200 in 3,640 pools | the pools at the top of the report |
-| Social events, moments, frictions, nuisances | 67, 131 (44 frictions, 4 that follow something real), 22 | every trait pairing and home condition |
+| Social events, moments, frictions, nuisances | 79 (12 from quirks), 131 (44 frictions, 4 that follow something real), 22 | every trait pairing and home condition, moments that ask for a quirk |
+| Links between Rimfolk's own systems | 32 (offices at work, the heart in choices, stories that hear the world, the peoples' memory at camps and in encounters, setbacks into wishes and stories, a colonist's day in the news) | links for each new system as it lands: the camps and world events into the council, the calendar into dreams and life goals |
 | Secrets | 52 (2 for scenarios only), each with its own confide and graveside lines | secrets tied to world events and camps, more good ones, dilemmas for the newer ones |
 | Ways a vendetta is sworn and settled | 3 sworn (a death, a kidnapping, a bonded animal), 5 settled (blood, captives, a homecoming, laid down, laid down in peace) | a ransom paid, an apology from the faction, a vendetta passed to an heir |
 | Council offices | 9 (4 open as the colony grows) | offices for faith, the camps and the calendar's rites, a council of elders for a large colony |

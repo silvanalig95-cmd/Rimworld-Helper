@@ -167,6 +167,8 @@ namespace ColonyCouncil
                 }
                 var f = faction ?? (x != null && x.RaceProps.Humanlike ? x.Faction : null);
                 if (f != null && !f.IsPlayer) tags.Add(f.def.techLevel <= TechLevel.Medieval ? "theirLowtech" : "theirHightech");
+                // What their people remember of the colony: their:grateful, their:rescued, their:grudge, their:owed (Interplay/).
+                Interplay.AddMemoryTags(tags, f);
                 var character = CouncilGameComponent.Instance?.character;
                 if (character != null)
                     foreach (var t in CharacterTracker.TagNames)

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- How Rimfolk's systems talk to each other (Source/ColonyCouncil/Interplay/). -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_C_Interplay</defName>
+    <label>how it fits together</label>
+    <category>Council</category>
+    <order>20</order>
+    <summary>How Rimfolk's parts reach into each other: the offices at work, grief and strain in people's choices, stories that hear the world, and a people's long memory.</summary>
+    <tip>None of this needs managing. It is there so that what happens in one corner of the colony turns up in another.</tip>
+    <description>Rimfolk has a lot of parts: wishes and the council, dilemmas and events, the calendar, the heart, setbacks, health, personal stories, quirks, secrets, the peoples of the world and their memory. Each works on its own, and many already read each other: a grieving colonist dreams of the dead and wishes for a memorial, a broken promise sours a friendship, an answer that goes against someone's nature leaves them grumbling. On top of that, the parts pass small things to each other, so the colony reads as one life rather than a dozen mechanics side by side.
+
+Every one of these links is small. Most give something other than a good mood: strain eased, a bond a little warmer or cooler, a story moved on, a wish more likely, a recovery a day shorter, a better price. Each follows the settings of both parts it joins, and all of them follow "Systems talk to each other" on the first settings page.</description>
+    <sections>
+      <li>
+        <heading>An ordinary week</heading>
+        <text>Take Hector, a carpenter. A raid wrecks the cabinet he spent a week on, and a few days later a wall he is raising fails in his hands. Two setbacks of one kind make a run: the next wish he voices is likelier to be a proper workshop or a tool cabinet, and a story of mastering his craft is likelier to begin for him.
+
+On the weekend the colony keeps its founding day. The keeper of days organises the feast. Ana, who buried her husband last week, stays in her room; nobody minds, she isn't counted as having missed it, and her dog lies across her feet all afternoon, which eases her more than the feast would have. Sam, still weak after an operation, comes and sits near the middle, and mends a little faster for the company. There are apples in the stores, so the feast table has them on it, and everyone who ate counts as having had fresh food. Hector's personal story was waiting for a word with the old carpenter who teaches him; they kept the day together, so it counts.
+
+That evening the colony news has three lines about Hector, and tells them together, as Hector's day.</text>
+      </li>
+      <li>
+        <heading>The offices at work</heading>
+        <text>A seat on the council is more than a bonus. The keeper of days organises the calendar's feasts and games. The peacemaker, hearing two colonists bickering nearby, steps in now and then, and the spat is over in half the time. The physician does the rounds of everyone convalescing each morning, which takes a little off each recovery, and the office counts toward a doctor's good name. The reeve deals with neighbours who ask the colony for goods, and they remember who saw the order through. The herdmaster sits with anyone whose animal has died, and looks after the animals of those away on a journey. After a fight, the marshal has a word with everyone who fought alongside, and the steward's company at a gathering eases everyone a little.
+
+The elections remember too. A colonist whose granted wish was taken back in the last year holds it against everyone sitting on the council, and the names the colony has given someone count for them at the ballot.</text>
+      </li>
+      <li>
+        <heading>Feelings in people's choices</heading>
+        <text>Someone deep in grief sits out a feast or a games day, unless the day is about them, and isn't hurt to have missed a gathering. Their own animal, close by, is calmer company than most people manage. Someone worn out by strain is likelier to wish for rest: a day off, a bath, a quiet seat in the garden. A colony that keeps letting someone down, or keeps leaving them out, makes the story that answers it likelier: second chances, or finding a place.</text>
+      </li>
+      <li>
+        <heading>Stories that hear the world</heading>
+        <text>A personal story waits for something to happen, and now it hears what happens around it. A calendar day kept moves every waiting story at home on a day. An envoy from a people the colony once helped, come to repay the debt, moves on the stories of those who met them. A friend made at a camp that has moved on, or getting back to full strength after weeks of convalescing, moves a story on a day or two. And someone haunted by the enemy who hurt them, who goes for that very enemy in a fight, has faced it: the story ends there, well.</text>
+      </li>
+      <li>
+        <heading>What the world remembers</heading>
+        <text>The peoples of the world remember what the colony did for them and against them, and it shows at the colony's door. A people whose prisoners the colony freed, or whose sick it tended, camps by the colony up to twice as often; a people with a grudge less often, and hardly at all soon after the colony drove off or harmed their camp. Their traders and visitors say so: a friend's price from one, a long memory and a doubled price from another, a stranger who shakes a colonist's hand because a cousin owes the colony a life, a visitor who wonders aloud whether anyone here remembers what their people once did for the colony.</text>
+      </li>
+      <li>
+        <heading>The council and the colony's ways</heading>
+        <text>A council tradition kept year after year makes the colony more traditional; breaking it, or letting it lapse, makes it more restless. A tradition of feasting makes it a little more generous, one of resting a little more easygoing. And the colony's name rubs off on those who have lived under it a year or more: in a colony known for mercy, an old hand minds a harsh answer even if mercy isn't in their nature.
+
+At the council meeting, someone who was once told a secret, and has since turned against the one who told them, may say something pointed across the table. The other remembers it, and a rival may say too much.</text>
+      </li>
+      <li>
+        <heading>Quirks among people</heading>
+        <text>A colonist's quirks count as part of who they are, like a trait: social events, dilemmas and lines can ask for them. A hummer may grate on a nervous neighbour, or find someone humming along. A sleep talker's words get repeated at breakfast. An early riser wakes the night owl, the singing cook wins over the gourmand, the whittler carves a gift for a friend, two superstitious colonists discover each other. These change the bond between the two, not anyone's mood.</text>
+      </li>
+      <li>
+        <heading>Dreams</heading>
+        <text>Dreams grow out of the colony's own days as well: the dead come to visit after a remembrance, a feast goes on all night, a wish taken back is still being argued over in sleep, and a wrecked building keeps falling down however often it is rebuilt.</text>
+      </li>
+    </sections>
+    <keywords><li>interplay</li><li>systems</li><li>links</li><li>together</li><li>keeper of days</li><li>peacemaker</li><li>herdmaster</li><li>grief</li><li>news</li></keywords>
+    <seeAlso><li>Council_Alm_C_Offices</li><li>Council_Alm_C_Heart</li><li>Council_Alm_C_Arcs</li><li>Council_Alm_C_Setbacks</li><li>Council_Alm_C_WorldMemory</li></seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+</Defs>

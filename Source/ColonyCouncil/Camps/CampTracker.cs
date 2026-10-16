@@ -101,7 +101,8 @@ namespace ColonyCouncil
             for (int tries = 0; tries < 6; tries++)
             {
                 var kind = kinds.RandomElementByWeight(k => k.WeightNow());
-                var f = Arrivals.Friendly(x => kind.FitsFaction(x));
+                // Peoples the colony did good turns for camp here more often, those with grudges less (Interplay/).
+                var f = Arrivals.Friendly(x => kind.FitsFaction(x), Interplay.CampWeight);
                 if (f == null) continue;
                 int n = Mathf.Clamp(kind.people.RandomInRange, 1, 8);
                 var plans = CampSite.Layout(map, center, kind, n, colony, out var stash, out var share);

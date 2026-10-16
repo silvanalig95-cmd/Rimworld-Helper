@@ -132,6 +132,7 @@ namespace ColonyCouncil
             StoryView.Reset();
             UiCache.Clear();
             InteractionWorker_Moment.Reset();
+            Interplay.Reset();
             cachedInstance = this;
             cachedGame = Current.Game;
         }
@@ -332,6 +333,7 @@ namespace ColonyCouncil
         {
             Safe("nemeses", () => nemeses.Hourly(this));
             Safe("pets", () => pets.Hourly(this));
+            Safe("interplay", () => Interplay.Hourly(this));
             if (PokeWorldLink.Active) Safe("pokeworld", () => PokeWorldLink.Hourly(this));
             Safe("autonomy", () => autonomy.Hourly(this));
             Safe("who is home", NoteWhoIsHome);
@@ -487,7 +489,8 @@ namespace ColonyCouncil
                     if (OnCooldown(requester, def)) continue;
                     if (!novelty.TryGetValue(def, out float fresh)) novelty[def] = fresh = Novelty(def);
                     // Feelings and the heart's needs nudge toward what answers them (at most half again; Heart/).
-                    float defFactor = def.weight * personal * CategoryFactor(requester, def) * kept.Fresh(requester, def, fresh) * Heart.WishFactor(requester, def);
+                    float defFactor = def.weight * personal * CategoryFactor(requester, def) * kept.Fresh(requester, def, fresh) * Heart.WishFactor(requester, def)
+                                      * Interplay.WishFactor(requester, def);
                     if (defFactor <= 0f) continue;
                     foreach (var c in Candidates(def, requester))
                     {

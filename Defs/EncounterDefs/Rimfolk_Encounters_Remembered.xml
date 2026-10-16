@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Strangers whose people remember the colony (World/FactionMemory.cs, through Interplay's tags on every letter line):
+    moment their:grateful (the colony did their people good turns), their:rescued (one of them a rescue: a prisoner set
+    free, someone tended, refugees taken in), their:grudge (the colony wronged them and it isn't forgotten) or their:owed
+    (they did the colony a good turn it hasn't returned). Same format as Council_Encounters_People.xml: A is a colonist,
+    X the stranger, {FACTION} X's people. More lines for the older encounters are in Rimfolk_Encounters_Remembered_Lines.xml.
+  -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncM_RescueThanks</defName>
+    <label>a rescue remembered</label>
+    <weight>1.4</weight>
+    <cooldownDays>15</cooldownDays>
+    <moment>their:rescued</moment>
+    <stranger><kind>Visitor</kind><adult>true</adult></stranger>
+    <texts>
+      <li>{X_nameDef} asked {A_nameDef} whether this was the colony that helped {FACTION} folk when they had nowhere else to turn. When {A_nameDef} said it was, {X_nameDef} shook {A_possessive} hand for a long time and didn't let go.</li>
+      <li>{X_nameDef} told {A_nameDef} that a cousin of {X_possessive} owes this colony a life, and that the whole family knows the colony's name because of it.</li>
+      <li>Over supper {X_nameDef} told the table, and {A_nameDef} in particular, what {FACTION} say about this place: that it took in their people when it didn't have to.</li>
+    </texts>
+    <ways><openness>1</openness></ways>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>1</amount></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncM_GratefulTrader</defName>
+    <label>a friend's price</label>
+    <weight>1.2</weight>
+    <cooldownDays>10</cooldownDays>
+    <moment>their:grateful</moment>
+    <stranger><kind>Trader</kind></stranger>
+    <texts>
+      <li>{X_nameDef} knocked a good part off the price before {A_nameDef} had even started to haggle. "{FACTION} remember their friends," {X_pronoun} said, and wouldn't hear another word about it.</li>
+      <li>{X_nameDef} set aside the best of the goods for {A_nameDef} and threw in a little extra, for what the colony once did for {FACTION}.</li>
+      <li>{A_nameDef} went to haggle with {X_nameDef} and found there was nothing to haggle over: the price was already fair, and then some.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>Silver</thing><count>15</count></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Social</skill><xp>150</xp></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncM_GrudgingTrader</defName>
+    <label>a long memory</label>
+    <weight>1.1</weight>
+    <cooldownDays>10</cooldownDays>
+    <moment>their:grudge</moment>
+    <stranger><kind>Trader</kind></stranger>
+    <texts>
+      <li>{X_nameDef} served {A_nameDef} last, after everyone else, and named a price twice what it should have been. "{FACTION} have long memories," was all {X_pronoun} said.</li>
+      <li>{X_nameDef} wouldn't haggle with {A_nameDef} at all, and put the goods away the moment {A_nameDef} said where {A_pronoun} was from.</li>
+      <li>{A_nameDef} spent an afternoon talking {X_nameDef} round to an ordinary price. It took everything {A_pronoun} had. {FACTION} haven't forgotten what this colony did.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Social</skill><xp>250</xp></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncM_ColdShoulder</defName>
+    <label>a cold shoulder</label>
+    <weight>1.0</weight>
+    <cooldownDays>12</cooldownDays>
+    <moment>their:grudge</moment>
+    <stranger><kind>Visitor</kind><adult>true</adult></stranger>
+    <texts>
+      <li>{X_nameDef} wouldn't sit at the same table as {A_nameDef} and took {X_possessive} supper outside. Something about what this colony did to {FACTION}, someone said.</li>
+      <li>{A_nameDef} offered {X_nameDef} a cup of water at the gate. {X_nameDef} looked at it, then at {A_nameDef}, and walked past.</li>
+      <li>{X_nameDef} asked {A_nameDef}, quite politely, whether the colony still does the kind of thing it did to {FACTION}. {A_nameDef} didn't know what to answer.</li>
+    </texts>
+    <ways><openness>-1</openness></ways>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncM_DebtMentioned</defName>
+    <label>an old debt mentioned</label>
+    <weight>1.0</weight>
+    <cooldownDays>15</cooldownDays>
+    <moment>their:owed</moment>
+    <stranger><kind>Visitor</kind><adult>true</adult></stranger>
+    <texts>
+      <li>{X_nameDef} mentioned, lightly, that {FACTION} once helped this colony when it needed it, and wondered aloud whether anyone here remembered.</li>
+      <li>{X_nameDef} told {A_nameDef} that {FACTION} don't keep accounts of what they give their neighbours, and then told {A_objective} exactly what they had given this colony.</li>
+    </texts>
+    <ways><generosity>-1</generosity></ways>
+  </ColonyCouncil.EncounterDef>
+
+</Defs>

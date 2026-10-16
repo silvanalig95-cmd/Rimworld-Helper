@@ -167,6 +167,9 @@ namespace ColonyCouncil
             var accent = w.stage >= 2 ? UiKit.Bad : w.promised ? UiKit.Gold : UiKit.WithAlpha(UiKit.Faint, 0.5f);
             var card = new Rect(x, y, width, l.height);
             UiKit.Card(card, accent, false, false);
+            // The pin to This week, in the corner: always when pinned, else when the card is under the mouse.
+            var memory = WeekMemory.Instance;
+            if (memory != null && WeekPanel.PinButton(new Rect(x + 4f, y + 3f, 16f, 16f), memory.IsPinned(w), Mouse.IsOver(card))) memory.TogglePin(w);
 
             // Who asks (and for whom).
             var portrait = new Rect(x + 14f, y + 10f, PortraitSize, PortraitSize);

@@ -331,7 +331,13 @@ namespace ColonyCouncil
         {
             if (chance < 1f && !Rand.Chance(chance)) return;
             var h = ctx as HappeningContext;
-            if (settle) FactionMemory.Settle(HappeningWorker_Remembered.DeedOf(ctx));
+            if (settle)
+            {
+                var deed = HappeningWorker_Remembered.DeedOf(ctx);
+                FactionMemory.Settle(deed);
+                // A good turn come home moves the stories of those who met the envoy (Interplay/).
+                Interplay.Notify_DeedSettled(ctx, deed);
+            }
             if (kind.NullOrEmpty()) return;
             var f = enemy ? h?.enemy : ctx.faction;
             var other = enemy ? ctx.faction : h?.enemy;

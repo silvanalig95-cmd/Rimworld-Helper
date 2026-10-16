@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!--
+    The council window's newer pages and helpers (Source/ColonyCouncil/UI): Colony → This week (WeekPanel, WeekModel),
+    People → Everyone (PeopleTable), Council → Dilemmas (DilemmasPanel, DilemmaLog), the pin, the page shortcuts
+    (CouncilKeys) and the "Council window opens on" setting.
+  -->
+
+  <!-- Page names and subtitles -->
+  <CC_Tab_Week>This week</CC_Tab_Week>
+  <CC_Tab_WeekCount>This week ({0})</CC_Tab_WeekCount>
+  <CC_Tab_Everyone>Everyone</CC_Tab_Everyone>
+  <CC_Tab_Dilemmas>Dilemmas</CC_Tab_Dilemmas>
+  <CC_UI_Sub_Week>What needs you, what's coming, and how people are.</CC_UI_Sub_Week>
+  <CC_UI_Sub_Everyone>Every colonist in one table: mood, trust, strain, wishes, stories and health.</CC_UI_Sub_Everyone>
+  <CC_UI_Sub_Dilemmas>Questions waiting for the council, and how its answers went.</CC_UI_Sub_Dilemmas>
+  <CC_Keys_TabTip>{0}. Shortcut: {1}</CC_Keys_TabTip>
+
+  <!-- This week: the page -->
+  <CC_Week_Header>This week</CC_Week_Header>
+  <CC_Week_HeaderTip>Everything that wants your attention, in one place. Each line opens its page or goes to the colonist or the place on the map; a click on a card's heading opens the whole page.\n\nPin a colonist or a wish to keep it at the top: the pin shows when you hover a line, a row in Everyone, a wish card or a colonist's page in the roster. A right click on a line offers it too.</CC_Week_HeaderTip>
+  <CC_Week_StatNeeds>{0} waiting on you</CC_Week_StatNeeds>
+  <CC_Week_StatCalm>Nothing waiting on you</CC_Week_StatCalm>
+  <CC_Week_More>and {0} more</CC_Week_More>
+  <CC_Week_ClickPage>Click to open {0}.</CC_Week_ClickPage>
+  <CC_Week_ClickLetter>Click to read the letter.</CC_Week_ClickLetter>
+  <CC_Week_ClickPlace>Click to go there on the map.</CC_Week_ClickPlace>
+  <CC_Week_ClickMap>Click to go to {0} on the map.</CC_Week_ClickMap>
+  <CC_Week_ClickMood>Click to select {0} and open their Mood tab.</CC_Week_ClickMood>
+  <CC_Week_ClickHealth>Click to select {0} and open their Health tab.</CC_Week_ClickHealth>
+  <CC_Week_ClickPerson>Click to open {0}'s page in the roster.</CC_Week_ClickPerson>
+  <CC_Week_Pin>Pin to This week</CC_Week_Pin>
+  <CC_Week_Unpin>Unpin from This week</CC_Week_Unpin>
+  <CC_Week_OpenPage>Open {0}'s page</CC_Week_OpenPage>
+  <CC_Week_Left>{0} left</CC_Week_Left>
+  <CC_Week_In>in {0}</CC_Week_In>
+  <CC_Week_Within>within {0}</CC_Week_Within>
+  <CC_Week_UnderWay>under way</CC_Week_UnderWay>
+  <CC_Week_Waiting>waiting</CC_Week_Waiting>
+  <CC_Week_MoodNote>mood {0}</CC_Week_MoodNote>
+
+  <!-- This week: pinned -->
+  <CC_Week_Pinned>Pinned</CC_Week_Pinned>
+  <CC_Week_Empty_Pinned>Pin a colonist or a wish to keep it here.</CC_Week_Empty_Pinned>
+  <CC_Week_PinnedWish>wishes for {0}</CC_Week_PinnedWish>
+
+  <!-- This week: wishes and petitions -->
+  <CC_Week_Wishes>Wishes and petitions</CC_Week_Wishes>
+  <CC_Week_Empty_Wishes>No wishes or petitions are open.</CC_Week_Empty_Wishes>
+  <CC_Week_Wish>{0}: {1}</CC_Week_Wish>
+  <CC_Week_WishFor>{0}, for {2}: {1}</CC_Week_WishFor>
+  <CC_Week_WishBacked>(backed by {0} more)</CC_Week_WishBacked>
+  <CC_Week_Petition>{0} asks for a decree: {1}</CC_Week_Petition>
+  <CC_Week_PetitionLift>{0} asks to lift a decree: {1}</CC_Week_PetitionLift>
+
+  <!-- This week: letters waiting for an answer -->
+  <CC_Week_Answers>Waiting for an answer</CC_Week_Answers>
+  <CC_Week_Empty_Answers>No letters are waiting for an answer.</CC_Week_Empty_Answers>
+  <CC_Week_LetterDilemma>{0}</CC_Week_LetterDilemma>
+  <CC_Week_LetterQuestion>{0}</CC_Week_LetterQuestion>
+  <CC_Week_LetterDay>{0}: keep the day, or let it pass</CC_Week_LetterDay>
+  <CC_Week_LetterMeeting>{0}: waiting for your choice</CC_Week_LetterMeeting>
+  <CC_Week_News>Colony news letters not yet read: {0}</CC_Week_News>
+  <CC_Week_NewsTip>The evenings' colony news, still on the letter stack. Click to read the newest; "Mark all read" puts them all away.</CC_Week_NewsTip>
+  <CC_Week_MarkRead>Mark all read</CC_Week_MarkRead>
+  <CC_Week_MarkRead_Tip>Puts every colony news letter away from the letter stack. They stay in the History tab.</CC_Week_MarkRead_Tip>
+  <CC_Week_MarkedRead>Colony news put away: {0} letters.</CC_Week_MarkedRead>
+  <CC_News_PutAllAway>Put all news away ({0})</CC_News_PutAllAway>
+
+  <!-- This week: promises at risk -->
+  <CC_Week_Promises>Promises at risk</CC_Week_Promises>
+  <CC_Week_Empty_Promises>Everything the council granted is where it should be.</CC_Week_Empty_Promises>
+  <CC_Week_MissingLeft>missing, {0} left</CC_Week_MissingLeft>
+  <CC_Week_TakenBackLeft>taken back, {0} to make it right</CC_Week_TakenBackLeft>
+
+  <!-- This week: gatherings and plans -->
+  <CC_Week_Planned>Gatherings and plans</CC_Week_Planned>
+  <CC_Week_Empty_Planned>Nothing planned.</CC_Week_Empty_Planned>
+  <CC_Week_Play_Gathering>A gathering</CC_Week_Play_Gathering>
+  <CC_Week_Play_Feast>A shared meal</CC_Week_Play_Feast>
+  <CC_Week_Play_Bonfire>A gathering by the fire</CC_Week_Play_Bonfire>
+  <CC_Week_Play_Toast>A few words together</CC_Week_Play_Toast>
+  <CC_Week_Play_Visit>A visit</CC_Week_Play_Visit>
+  <CC_Week_Play_Lesson>A lesson</CC_Week_Play_Lesson>
+  <CC_Week_PlayGathering>For {0} people.</CC_Week_PlayGathering>
+  <CC_Week_PlayVisit>{0} goes to {1}.</CC_Week_PlayVisit>
+  <CC_Week_PlayWaitingWhy>Waiting: {0}</CC_Week_PlayWaitingWhy>
+  <CC_Week_Meeting>Council meeting</CC_Week_Meeting>
+
+  <!-- This week: coming days -->
+  <CC_Week_Coming>Coming days</CC_Week_Coming>
+  <CC_Week_Empty_Coming>No days or fights in sight.</CC_Week_Empty_Coming>
+  <CC_Week_Fight>{0} coming to fight</CC_Week_Fight>
+
+  <!-- This week: missions and camps -->
+  <CC_Week_Missions>Missions and camps</CC_Week_Missions>
+  <CC_Week_Empty_Missions>No missions, and no camp on the map.</CC_Week_Empty_Missions>
+  <CC_Week_ToAccept>{0} to accept</CC_Week_ToAccept>
+  <CC_Week_Offered>offered</CC_Week_Offered>
+  <CC_Week_Camp>{0} camped on the map</CC_Week_Camp>
+  <CC_Week_Tension>tension: {0}</CC_Week_Tension>
+
+  <!-- This week: under strain -->
+  <CC_Week_Strain>Under strain</CC_Week_Strain>
+  <CC_Week_Empty_Strain>Nobody is near a break or worn down.</CC_Week_Empty_Strain>
+  <CC_Week_InBreak>in a break ({0})</CC_Week_InBreak>
+  <CC_Week_BelowMajor>below the major break line</CC_Week_BelowMajor>
+  <CC_Week_BelowMinor>below the minor break line</CC_Week_BelowMinor>
+  <CC_Week_NearMinor>close to the break line</CC_Week_NearMinor>
+
+  <!-- This week: illness and recovery -->
+  <CC_Week_Health>Illness and recovery</CC_Week_Health>
+  <CC_Week_Empty_Health>Nobody is seriously ill or recovering.</CC_Week_Empty_Health>
+  <CC_Week_NeedsTending>needs tending</CC_Week_NeedsTending>
+  <CC_Week_Recovering>recovering</CC_Week_Recovering>
+
+  <!-- This week: trust -->
+  <CC_Week_Trust>Trust this week</CC_Week_Trust>
+  <CC_Week_Empty_Trust>Trust has held steady.</CC_Week_Empty_Trust>
+  <CC_Week_ColonyTrend>colony {0} this week</CC_Week_ColonyTrend>
+  <CC_Week_TrustMoved>{0} this week</CC_Week_TrustMoved>
+
+  <!-- This week: the mood balance -->
+  <CC_Week_Balance>Mood balance</CC_Week_Balance>
+  <CC_Week_Empty_Balance>No colonists to weigh, or the mood insight is switched off.</CC_Week_Empty_Balance>
+  <CC_Week_BalanceNet>Rimfolk's net {0}</CC_Week_BalanceNet>
+  <CC_Week_BalanceGood>lifts {0}</CC_Week_BalanceGood>
+  <CC_Week_BalanceBad>weighs {0}</CC_Week_BalanceBad>
+  <CC_Week_BalanceTip>Rimfolk's own moods, added up and shared out per colonist: {0} from the good ones, {1} from the bad ones.\n\nAll moods together, from the game, its DLCs, Rimfolk and other mods: {2} good and {3} bad per colonist.\n\nThe lines below are the Rimfolk moods that weigh and lift most across the colony.</CC_Week_BalanceTip>
+  <CC_Week_BalanceLineTip>One of Rimfolk's moods, added up across everyone who has it. The Moods page says why it's there and what to do about it.</CC_Week_BalanceLineTip>
+
+  <!-- People → Everyone -->
+  <CC_Table_Header>Everyone</CC_Table_Header>
+  <CC_Table_HeaderTip>Click a heading to sort by it, and again to sort the other way. Hover a cell to see more. Click a row to select the colonist on the map; right click for their page, their Mood tab and the pin. A mark on the left of a row means it wants attention.</CC_Table_HeaderTip>
+  <CC_Table_NoneShown>Nobody fits this filter right now.</CC_Table_NoneShown>
+  <CC_Table_Filter_All>All</CC_Table_Filter_All>
+  <CC_Table_Filter_All_Tip>Every colonist.</CC_Table_Filter_All_Tip>
+  <CC_Table_Filter_Attention>Needs attention</CC_Table_Filter_Attention>
+  <CC_Table_Filter_Attention_Tip>Colonists in a break or close to one, worn down by strain, about to leave, seriously ill, or with a wish about to run out.</CC_Table_Filter_Attention_Tip>
+  <CC_Table_Filter_Pinned>Pinned</CC_Table_Filter_Pinned>
+  <CC_Table_Filter_Pinned_Tip>The colonists pinned to This week.</CC_Table_Filter_Pinned_Tip>
+  <CC_Table_SortTip>Click to sort by this; again for the other way.</CC_Table_SortTip>
+  <CC_Table_Col_Name>Colonist</CC_Table_Col_Name>
+  <CC_Table_Col_Name_Tip>Their name, with their office and the names they've earned under it.</CC_Table_Col_Name_Tip>
+  <CC_Table_Col_Mood>Mood</CC_Table_Col_Mood>
+  <CC_Table_Col_Mood_Tip>Their mood now, with the minor break line marked on the bar.</CC_Table_Col_Mood_Tip>
+  <CC_Table_Col_Rimfolk>Rimfolk</CC_Table_Col_Rimfolk>
+  <CC_Table_Col_Rimfolk_Tip>What Rimfolk's own moods add to theirs, good and bad together.</CC_Table_Col_Rimfolk_Tip>
+  <CC_Table_Col_Trust>Trust</CC_Table_Col_Trust>
+  <CC_Table_Col_Trust_Tip>Their trust in the council, and how it moved over the last week.</CC_Table_Col_Trust_Tip>
+  <CC_Table_Col_Strain>Strain</CC_Table_Col_Strain>
+  <CC_Table_Col_Strain_Tip>How worn down they are, and the feeling on top of it.</CC_Table_Col_Strain_Tip>
+  <CC_Table_Col_Weighing>Setbacks</CC_Table_Col_Weighing>
+  <CC_Table_Col_Weighing_Tip>The setbacks and everyday pressures weighing on them, worst first. Hover for what helps with each.</CC_Table_Col_Weighing_Tip>
+  <CC_Table_Col_Wish>Wish</CC_Table_Col_Wish>
+  <CC_Table_Col_Wish_Tip>Their open wish, and how long it has left.</CC_Table_Col_Wish_Tip>
+  <CC_Table_Col_Story>Story</CC_Table_Col_Story>
+  <CC_Table_Col_Story_Tip>Their personal story, and the stage it has reached.</CC_Table_Col_Story_Tip>
+  <CC_Table_Col_Health>Health</CC_Table_Col_Health>
+  <CC_Table_Col_Health_Tip>Everyday ailments, serious illness and convalescence.</CC_Table_Col_Health_Tip>
+  <CC_Table_Col_Quirks>Quirks</CC_Table_Col_Quirks>
+  <CC_Table_Col_Quirks_Tip>Their quirks and habits.</CC_Table_Col_Quirks_Tip>
+  <CC_Table_MoodTab>Open their Mood tab</CC_Table_MoodTab>
+  <CC_Table_InBreak>{0}, in a break</CC_Table_InBreak>
+  <CC_Table_ClickMood>Right click for their Mood tab.</CC_Table_ClickMood>
+  <CC_Table_ClickHealth>Their Health tab says more.</CC_Table_ClickHealth>
+  <CC_Table_RowClick>Click to select them on the map. Right click for their page, their Mood tab and the pin.</CC_Table_RowClick>
+  <CC_Table_RimfolkSub>×{0}</CC_Table_RimfolkSub>
+  <CC_Table_RimfolkHead>Rimfolk's moods for {0}: {1}</CC_Table_RimfolkHead>
+  <CC_Table_MoodHead>{0}'s mood: {1}</CC_Table_MoodHead>
+  <CC_Table_Stage>{0} ({1} of {2})</CC_Table_Stage>
+  <CC_Table_More>and {0} more</CC_Table_More>
+  <CC_Table_WeighingMore>and {0} more, {1} in all</CC_Table_WeighingMore>
+  <CC_Table_WeighingHead>Setbacks and pressures</CC_Table_WeighingHead>
+  <CC_Table_WhatHelps>What helps: {0}</CC_Table_WhatHelps>
+  <CC_Table_NoTrustYet>{0} hasn't made up their mind about the council yet.</CC_Table_NoTrustYet>
+  <CC_Table_SummaryMood>Mood: {0}</CC_Table_SummaryMood>
+  <CC_Table_SummaryStrain>Strain: {0} ({1})</CC_Table_SummaryStrain>
+  <CC_Table_SummaryWish>Wishes for {0} ({1} left)</CC_Table_SummaryWish>
+  <CC_Table_SummaryStory>Personal story: {0}, {1}</CC_Table_SummaryStory>
+
+  <!-- Council → Dilemmas -->
+  <CC_Dil_Header>Dilemmas</CC_Dil_Header>
+  <CC_Dil_Off>Dilemmas are switched off in the mod settings. The answers given before are still here.</CC_Dil_Off>
+  <CC_Dil_Stat>Waiting: {0}</CC_Dil_Stat>
+  <CC_Dil_Waiting>Waiting for an answer</CC_Dil_Waiting>
+  <CC_Dil_NoneWaiting>No question is waiting for the council.</CC_Dil_NoneWaiting>
+  <CC_Dil_Next>the next in about {0}</CC_Dil_Next>
+  <CC_Dil_Traditions>Traditions the answers founded</CC_Dil_Traditions>
+  <CC_Dil_TraditionTip>Founded by answering "{0}" the same way, time after time. People now expect it; breaking it upsets them.</CC_Dil_TraditionTip>
+  <CC_Dil_History>How the answers went</CC_Dil_History>
+  <CC_Dil_HistoryCount>answers kept: {0}</CC_Dil_HistoryCount>
+  <CC_Dil_NoHistory>No answers yet. Each one the council gives from now on is kept here, with how it went.</CC_Dil_NoHistory>
+  <CC_Dil_NoneMatch>No answers fit this filter.</CC_Dil_NoneMatch>
+  <CC_Dil_Filter_All>All</CC_Dil_Filter_All>
+  <CC_Dil_Filter_WentWrong>Went wrong</CC_Dil_Filter_WentWrong>
+  <CC_Dil_Filter_Unanswered>Unanswered</CC_Dil_Filter_Unanswered>
+  <CC_Dil_Col_Day>Day</CC_Dil_Col_Day>
+  <CC_Dil_Col_Question>Question</CC_Dil_Col_Question>
+  <CC_Dil_Col_Answer>Answer</CC_Dil_Col_Answer>
+  <CC_Dil_Col_Who>About</CC_Dil_Col_Who>
+  <CC_Dil_Col_Went>How it went</CC_Dil_Col_Went>
+  <CC_Dil_NoAnswer>no answer came: the default</CC_Dil_NoAnswer>
+  <CC_Dil_TipAnswer>The answer: {0}</CC_Dil_TipAnswer>
+  <CC_Dil_TipDefault>No answer came in time, so the default happened. An answer nobody gave shapes the colony's ways only half as much.</CC_Dil_TipDefault>
+  <CC_Dil_Went_AsAnswered>As answered</CC_Dil_Went_AsAnswered>
+  <CC_Dil_Went_AsAnswered_Tip>It happened as the answer said.</CC_Dil_Went_AsAnswered_Tip>
+  <CC_Dil_Went_WentWrong>Went wrong</CC_Dil_Went_WentWrong>
+  <CC_Dil_Went_WentWrong_Tip>The answer was a gamble, and the risk came true.</CC_Dil_Went_WentWrong_Tip>
+  <CC_Dil_Went_Waiting>Still to happen</CC_Dil_Went_Waiting>
+  <CC_Dil_Went_Waiting_Tip>What the answer set going ({0}) is waiting for its moment: the right hour, people free, no danger about.</CC_Dil_Went_Waiting_Tip>
+  <CC_Dil_Went_UnderWay>Happening now</CC_Dil_Went_UnderWay>
+  <CC_Dil_Went_UnderWay_Tip>What the answer set going ({0}) is happening right now.</CC_Dil_Went_UnderWay_Tip>
+  <CC_Dil_Went_TookPlace>Took place</CC_Dil_Went_TookPlace>
+  <CC_Dil_Went_TookPlace_Tip>What the answer set going ({0}) took place, and those who were there have the moods it promised.</CC_Dil_Went_TookPlace_Tip>
+  <CC_Dil_Went_FellThrough>Never came about</CC_Dil_Went_FellThrough>
+  <CC_Dil_Went_FellThrough_Tip>What the answer set going ({0}) never came about in its time. Everyone it was meant for got its moods anyway.</CC_Dil_Went_FellThrough_Tip>
+
+  <!-- Settings: where the council window opens -->
+  <CC_SetLabel_CouncilOpensOn>Council window opens on</CC_SetLabel_CouncilOpensOn>
+  <CC_SetTip_CouncilOpensOn>Which page the council window shows when you open it with its button. A button that leads to a page (a colonist's name, "Go to Wishes") always opens that page.</CC_SetTip_CouncilOpensOn>
+  <CC_CouncilOpens_ThisWeek>This week</CC_CouncilOpens_ThisWeek>
+  <CC_CouncilOpens_ThisWeek_Tip>Always This week: what needs you, what's coming and how people are.</CC_CouncilOpens_ThisWeek_Tip>
+  <CC_CouncilOpens_LastPage>Last page</CC_CouncilOpens_LastPage>
+  <CC_CouncilOpens_LastPage_Tip>The page you last looked at, also after a restart.</CC_CouncilOpens_LastPage_Tip>
+  <CC_SetNote_CouncilOpens_ThisWeek>The council window opens on This week, the page of what needs you.</CC_SetNote_CouncilOpens_ThisWeek>
+  <CC_SetNote_CouncilOpens_LastPage>The council window opens where you left it, also after a restart.</CC_SetNote_CouncilOpens_LastPage>
+
+</LanguageData>
