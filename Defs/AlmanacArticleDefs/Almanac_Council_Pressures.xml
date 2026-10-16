@@ -12,7 +12,9 @@
     <tip>Two or three kinds of meal in the cooking bills keep the most common pressure away.</tip>
     <description>A colony that has everything still has its everyday wear: the same stew every night, the same job every day, someone dear off on a long trip. Rimfolk adds five such pressures. Each is small, 1 to 3 mood, lasts only while its cause does, and says in its tooltip what caused it. The Mood tab says what helps. One has a good side: a varied table lifts the mood a little.
 
-None of them is a flat penalty. A well-kept colony hardly feels them, and fixing them is ordinary colony work: a second meal bill, a second job in the Work tab, a bigger dining room.</description>
+None of them is a flat penalty. A well-kept colony hardly feels them, and fixing them is ordinary colony work: a second meal bill, a second job in the Work tab, a bigger dining room.
+
+Pressures wear on a colony that runs without care. Setbacks are what goes wrong even in one that doesn't: work wrecked in a raid, a field lost to blight, an operation gone wrong, a friend fallen ill. They follow the same setting and the same standards, and have a page of their own.</description>
     <sections>
       <li>
         <heading>The pressures</heading>
@@ -41,7 +43,7 @@ Half-built frames count in full and untouched plans a fifth each: 3 waiting fram
         <heading>Life's ups and downs</heading>
         <table>
           <li>Setting | Pressures | Also</li>
-          <li>Gentle | Half strength, never less than 1 | Half-built work isn't minded; standards don't make frictions sting more</li>
+          <li>Gentle | Half strength, never less than 1 | Half-built work and the fussiest setbacks aren't minded; standards don't make frictions sting more</li>
           <li>Normal | As in the table above | Spoiled colonists feel pressures and frictions up to 40% more</li>
           <li>Demanding | Half again as strong | As normal</li>
         </table>

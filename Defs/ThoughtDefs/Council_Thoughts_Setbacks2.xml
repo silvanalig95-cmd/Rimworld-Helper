@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Setbacks, second part (see Council_Thoughts_Setbacks.xml for the rules): work that went wrong, the home, and the
+    people around them. The four "Council_Friction_" thoughts at the end belong to frictions that follow something real
+    (Defs/InteractionDefs/Council_Moments_Frictions3.xml); the three "Council_Nuisance_" ones to the nuisances in
+    Defs/EncounterDefs/Council_Encounters_Home3.xml.
+  -->
+
+  <!-- ===================== Work ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Setback_WorkTornDown</defName>
+    <durationDays>2</durationDays>
+    <modExtensions>
+      <li Class="ColonyCouncil.SetbackExtension"><group>Life</group></li>
+      <li Class="ColonyCouncil.HeartTags"><feelings><li>Frustration</li></feelings><weight>0.6</weight></li>
+    </modExtensions>
+    <stages>
+      <li>
+        <label>my work torn down</label>
+        <description>I put that up with my own hands, and now it's gone, pulled apart on somebody's order.</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Setback_WorkWrecked</defName>
+    <durationDays>5</durationDays>
+    <modExtensions>
+      <li Class="ColonyCouncil.SetbackExtension"><group>Life</group></li>
+      <li Class="ColonyCouncil.HeartTags"><feelings><li>Despair</li><li>Anger</li></feelings><weight>0.6</weight></li>
+    </modExtensions>
+    <stages>
+      <li>
+        <label>my work wrecked</label>
+        <description>Days of work, and it's rubble. I walked past where it stood and couldn't look.</description>
+        <baseMoodEffect>-4</baseMoodEffect>
+      </li>
+      <li>
+        <label>my best work destroyed</label>
+        <description>That was the best thing I ever made here. Now it's broken pieces on the floor.</description>
+        <baseMoodEffect>-6</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Setback_CropLost</defName>
+    <durationDays>4</durationDays>
+    <modExtensions>
+      <li Class="ColonyCouncil.SetbackExtension"><group>Life</group></li>
+      <li Class="ColonyCouncil.HeartTags"><feelings><li>Despair</li></feelings><weight>0.5</weight></li>
+    </modExtensions>
+    <stages>
+      <li>
+        <label>blight in my crop</label>
+        <description>I sowed those rows myself. Now the leaves are spotted and curling, and there's nothing to do but cut them.</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+      </li>
+      <li>
+        <label>frost took my crop</label>
+        <description>One cold night, and the plants I sowed are black and limp. All that weeding for nothing.</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+      </li>
+      <li>
+        <label>a whole field lost</label>
+        <description>A whole field I sowed, gone. I keep working out how long that food would have lasted us.</description>
+        <baseMoodEffect>-4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Setback_BotchedBuild</defName>
+    <durationDays>1</durationDays>
+    <modExtensions>
+      <li Class="ColonyCouncil.SetbackExtension"><group>Life</group><notGentle>true</notGentle></li>
+      <li Class="ColonyCouncil.HeartTags"><feelings><li>Shame</li></feelings><weight>0.4</weight></li>
+    </modExtensions>
+    <stages>
+      <li>
+        <label>botched a build</label>
+        <description>It came apart in my hands, and the materials with it. Somebody will have to haul more.</description>
+        <baseMoodEffect>-1</baseMoodEffect>
+      </li>
+      <li>
+        <label>botched a build</label>
+        <description>Building is what I'm good at, and I still ruined it. I'll be thinking about that joint all night.</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Setback_ShoddyWork</defName>
+    <durationDays>1.5</durationDays>
+    <modExtensions>
+      <li Class="ColonyCouncil.SetbackExtension"><group>Life</group></li>
+      <li Class="ColonyCouncil.HeartTags"><feelings><li>Shame</li></feelings><weight>0.5</weight></li>
+    </modExtensions>
+    <stages>
+      <li>
+        <label>poor work</label>
+        <description>I know how to do better than that. My hands just didn't listen today.</description>
+        <baseMoodEffect>-1</baseMoodEffect>
+      </li>
+      <li>
+        <label>awful work</label>
+        <description>I made something truly bad, in the one craft I care about. I'd melt it down if I could.</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Setback_MakingDo</defName>
+    <durationDays>1</durationDays>
+    <modExtensions>
+      <li Class="ColonyCouncil.SetbackExtension"><group>Life</group><notGentle>true</notGentle></li>
+      <li Class="ColonyCouncil.HeartTags"><feelings><li>Frustration</li></feelings><weight>0.4</weight></li>
+    </modExtensions>
+    <stages>
+      <li>
+        <label>making do</label>
+        <description>We know how to build a proper bench for this. Instead I'm hunched over a makeshift spot, doing it the slow way.</description>
+        <baseMoodEffect>-1</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Setback_BotchedSurgery</defName>
+    <durationDays>4</durationDays>
+    <modExtensions>
+      <li Class="ColonyCouncil.SetbackExtension"><group>Life</group></li>
+      <li Class="ColonyCouncil.HeartTags"><feelings><li>Shame</li></feelings></li>
+    </modExtensions>
+    <stages>
+      <li>
+        <label>an operation went wrong</label>
+        <description>My hand slipped during the operation. I keep seeing it.</description>
+        <baseMoodEffect>-3</baseMoodEffect>
+      </li>
+      <li>
+        <label>I failed my patient</label>
+        <description>Healing is what I'm for, and I made things worse. They trusted me with the knife.</description>
+        <baseMoodEffect>-4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Setback_LongHauls</defName>
+    <durationDays>1</durationDays>
+    <modExtensions>
+      <li Class="ColonyCouncil.SetbackExtension"><group>Life</group><notGentle>true</notGentle></li>
+      <li Class="ColonyCouncil.HeartTags"><feelings><li>Frustration</li></feelings><weight>0.4</weight></li>
+    </modExtensions>
+    <stages>
+      <li>
+        <label>hauling halfway across the map</label>
+        <description>Load after load carried from one end of the colony to the other. My arms will remember today.</description>
+        <baseMoodEffect>-1</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Setback_LeftWaiting</defName>
+    <durationDays>1.5</durationDays>
+    <modExtensions>
+      <li Class="ColonyCouncil.SetbackExtension"><group>Life</group></li>
+      <li Class="ColonyCouncil.HeartTags"><feelings><li>Anger</li></feelings><weight>0.4</weight></li>
+    </modExtensions>
+    <stages>
+      <li>
+        <label>left waiting for a doctor</label>
+        <description>I lay there hurting for hours while people walked past. Nobody came to see to me.</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- ===================== Home ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Setback_ColdMeal</defName>
+    <durationDays>0.5</durationDays>
+    <modExtensions>
+      <li Class="ColonyCouncil.SetbackExtension"><group>Life</group></li>
+    </modExtensions>
+    <stages>
+      <li>
+        <label>a cold meal outside</label>
+        <description>I ate out in the weather, hunched over the bowl. It was cold before I was halfway through.</description>
+        <baseMoodEffect>-1</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Setback_ArtSold</defName>
+    <durationDays>4</durationDays>
+    <modExtensions>
+      <li Class="ColonyCouncil.SetbackExtension"><group>Life</group></li>
+      <li Class="ColonyCouncil.HeartTags"><feelings><li>Frustration</li></feelings><weight>0.5</weight></li>
+    </modExtensions>
+    <stages>
+      <li>
+        <label>my art sold off</label>
+        <description>I made that piece for us, for this place. It went out with the trader for a handful of silver.</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Setback_AnimalSold</defName>
+    <durationDays>3</durationDays>
+    <modExtensions>
+      <li Class="ColonyCouncil.SetbackExtension"><group>Life</group></li>
+      <li Class="ColonyCouncil.HeartTags"><feelings><li>Grief</li></feelings><weight>0.3</weight></li>
+    </modExtensions>
+    <stages>
+      <li>
+        <label>they sold my animal</label>
+        <description>I trained that animal and fed it every day. Now it's walking off behind a trader's wagon.</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- ===================== The people around them ===================== -->
+
+  <ThoughtDef>
+    <defName>Council_Setback_Outshone</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <modExtensions>
+      <li Class="ColonyCouncil.SetbackExtension"><group>Friction</group><envy>true</envy></li>
+      <li Class="ColonyCouncil.HeartTags"><feelings><li>Envy</li></feelings></li>
+    </modExtensions>
+    <stages>
+      <li>
+        <label>outshone at my own craft</label>
+        <description>That was my work, the thing I was best at here. Now there's someone better at it, and everyone knows.</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+        <baseOpinionOffset>-3</baseOpinionOffset>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Setback_DriftedApart</defName>
+    <durationDays>3</durationDays>
+    <stackLimit>2</stackLimit>
+    <modExtensions>
+      <li Class="ColonyCouncil.SetbackExtension"><group>Friction</group></li>
+      <li Class="ColonyCouncil.HeartTags"><feelings><li>Loneliness</li></feelings></li>
+    </modExtensions>
+    <stages>
+      <li>
+        <label>a friendship gone cold</label>
+        <description>We used to sit together every evening. I can't remember the last real talk we had.</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Setback_NoisyNeighbour</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>0.5</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <modExtensions>
+      <li Class="ColonyCouncil.SetbackExtension"><group>Friction</group></li>
+      <li Class="ColonyCouncil.HeartTags"><feelings><li>Frustration</li></feelings><weight>0.5</weight></li>
+    </modExtensions>
+    <stages>
+      <li>
+        <label>kept up by the noise next door</label>
+        <description>Banging and scraping through the wall half the night. Some of us sleep at night.</description>
+        <baseMoodEffect>-1</baseMoodEffect>
+        <baseOpinionOffset>-2</baseOpinionOffset>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- Frictions that follow something real (Council_Moments_Frictions3.xml): as short as the other frictions. -->
+
+  <ThoughtDef ParentName="Council_FrictionThoughtBase">
+    <defName>Council_Friction_CookingCriticised</defName>
+    <stages><li><label>they ran down my cooking</label><description>I heard them grumbling about my cooking to anyone who'd listen. I'd like to see them try it.</description><baseMoodEffect>-2</baseMoodEffect><baseOpinionOffset>-5</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_FrictionThoughtBase">
+    <defName>Council_Friction_Mocked</defName>
+    <stages><li><label>laughed at my bad day</label><description>I wasn't myself for a while, and they've turned it into a joke. Everyone heard it.</description><baseMoodEffect>-2</baseMoodEffect><baseOpinionOffset>-6</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_FrictionThoughtBase">
+    <defName>Council_Friction_CreditTaken</defName>
+    <durationDays>1.5</durationDays>
+    <stages><li><label>took the credit</label><description>To hear them tell it, they did the whole thing themselves. I was there. I carried half of it.</description><baseMoodEffect>-2</baseMoodEffect><baseOpinionOffset>-5</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_FrictionThoughtBase">
+    <defName>Council_Friction_ReturnedBroken</defName>
+    <stages><li><label>came back broken</label><description>I lent them my tool in good shape. It came back chipped, and not a word about it.</description><baseMoodEffect>-2</baseMoodEffect><baseOpinionOffset>-4</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <!-- Nuisances (Council_Encounters_Home3.xml): small and short, like the others. -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Nuisance_SpoiltStores</defName>
+    <durationDays>0.5</durationDays>
+    <stages><li><label>rot in the stores</label><description>Good food going bad on the shelves. The smell hits you at the door.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Nuisance_NoCoat</defName>
+    <durationDays>0.5</durationDays>
+    <stages><li><label>soaked through, no coat</label><description>Rain down the back of my neck all morning. A coat would have made all the difference.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Nuisance_UglyBedroom</defName>
+    <durationDays>0.5</durationDays>
+    <stages><li><label>junk in my room</label><description>The first thing I see when I wake up is a heap of junk somebody left in my room.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+</Defs>

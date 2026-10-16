@@ -882,6 +882,7 @@ namespace ColonyCouncil
                         comp.standings.Change(v, -2f, "CC_Log_Overruled".Translate(letter.options[favorite].label));
                 }
                 DecidedWithoutThem(letter, proposer);
+                Setbacks.Notify_AmbitionChosen(letter, def, proposer);
             }
             if (proposer != null) comp.standings.Change(proposer, 5f, "CC_Log_IdeaChosen".Translate(def.label));
             // A life goal may count it: seeing the council take up their idea.

@@ -1672,7 +1672,7 @@ Those against it ({WHO}) will trust the council less and resent it more than usu
   <CC_Settings_Frictions_Tip>The small irritations of living close together, like dishes left in the basin, a snoring bunkmate or advice nobody asked for. A messy or cramped home brings its own, like a leaking roof, a sticking door or a smoky room. Each costs a point or two of mood for half a day to a day and a half. A tidy, roomy colony has far fewer of them.</CC_Settings_Frictions_Tip>
   <!-- Everyday pressures (Source/ColonyCouncil/Pressures/) -->
   <CC_Settings_Life>Life's ups and downs</CC_Settings_Life>
-  <CC_Settings_Life_Tip>Everyday pressures a well-run colony has to keep up with, like the same meal again and again, the same work for days, someone dear away for long, a packed dining or rec room, or half-built work left standing. Each is small, says what causes it and what helps, and goes away once that's dealt with. A varied table gives a small lift.</CC_Settings_Life_Tip>
+  <CC_Settings_Life_Tip>Everyday pressures a well-run colony has to keep up with, like the same meal again and again, the same work for days, someone dear away for long, a packed dining or rec room, or half-built work left standing. Each is small, says what causes it and what helps, and goes away once that's dealt with. A varied table gives a small lift. The same setting covers setbacks in the colony's life: work wrecked or torn down, a crop lost, a friend fallen ill, a feast that ran out.</CC_Settings_Life_Tip>
   <CC_Life_Gentle>Gentle</CC_Life_Gentle>
   <CC_Life_Gentle_Tip>Pressures at half strength, never less than 1. Half-built work isn't minded, and high standards don't make the colony's small frictions sting more.</CC_Life_Gentle_Tip>
   <CC_Life_Normal>Normal</CC_Life_Normal>

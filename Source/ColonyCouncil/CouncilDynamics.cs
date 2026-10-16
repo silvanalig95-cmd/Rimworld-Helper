@@ -336,6 +336,7 @@ namespace ColonyCouncil
             foreach (var p in w.Supporters) SetCooldown(p, w.def);
             SetCooldown(who, w.def);
             w.state = WishState.Granted;
+            Setbacks.Tracker?.Notify_Granted(w);
             // A lasting wish (a bed, a room, a telescope) is watched for a while: taking it away again is noticed.
             Safe("promises kept", () => kept.Notify_Granted(this, w));
             ambitions.Notify_WishGranted(w);
@@ -516,6 +517,7 @@ namespace ColonyCouncil
                 }
             }
             RunEffects(w, w.def.ignoreEffects);
+            if (w.promised && pen > 0f) Setbacks.Notify_PromiseBroken(w);
 
             Tone tone = ToneUtility.ToneFor(w.pawn);
             var tags = Flavor.TagsFor(w.pawn, w);

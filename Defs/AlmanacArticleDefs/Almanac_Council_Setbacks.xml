@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Setbacks (Source/ColonyCouncil/Setbacks/, Defs/ThoughtDefs/Council_Thoughts_Setbacks*.xml). -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_C_Setbacks</defName>
+    <label>setbacks</label>
+    <category>Council</category>
+    <order>16</order>
+    <summary>The bad moods that come from what happens in play: work wrecked, a crop lost, an idea turned down, a friend who is ill.</summary>
+    <tip>Most setbacks say in their tooltip what caused them, and the Mood tab says what helps.</tip>
+    <description>Rimfolk gives colonists a lot of small good moods. Setbacks are the other side: bad moods that come from something that really happened to them, so a well-run colony still has ups and downs. A building they put up is wrecked in a raid, blight gets into a field they sowed, an operation goes wrong in their hands, the council chooses another idea over theirs, a promise to their friend is broken, a feast runs out of food before they reach the table.
+
+None of them comes from nowhere, and none is a flat penalty. Each names its cause in its tooltip, most are 1 to 4 points for a day or a few, and the few bigger ones (5 to 6) are for real losses: their best work destroyed, a broken promise to someone they love. Many can be avoided or ended: answer a waiting wish, lift a disliked decree, build a proper bench, put a stockpile near the work, care for the sick.</description>
+    <sections>
+      <li>
+        <heading>From the council</heading>
+        <text>These follow the stakes' downsides, like the council's own letdowns: off on Gentle stakes, half again as strong on Demanding.</text>
+        <table>
+          <li>Setback | When | Mood | What helps</li>
+          <li>Still waiting | Their wish has waited 3 days while wishes voiced after it came true; more after two | -1 to -2, while it lasts | Grant, promise or refuse it</li>
+          <li>My idea turned down | They proposed an idea at the meeting (and were there) and another was chosen; more if theirs had the clear majority | -3 to -4, 3 days | Choose what the meeting backed</li>
+          <li>The vote went the other way | They voted for another idea | -1, 1.5 days | -</li>
+          <li>A decree that drags on | A decree they dislike, 2 days in; hate, or a request to lift it ignored for a day, for more | -1 to -2, while it lasts | Lift it, or let it run out</li>
+          <li>They broke their word | A promised wish of a close friend lapsed; a partner's or family member's for more | -3 to -5, 5 days | Keep promises</li>
+          <li>My rival honoured | A rival was given a name or took a seat on the council | -2, opinion -4, 4 days | Mend the rivalry</li>
+          <li>Not my choice | An answer went against their nature (a harsh answer for the kind, a generous one for the greedy) | -1 to -2, 2 days | -</li>
+          <li>I said it would go wrong | An answer they were against was a gamble, and it went wrong | -2, 3 days | -</li>
+        </table>
+        <after>"Not my choice" uses the same likes and dislikes as the colony's ways. It skips the people the answer was about and anyone the answer already upset, and an answer nobody gave counts half.</after>
+      </li>
+      <li>
+        <heading>Work and home</heading>
+        <text>These follow "Life's ups and downs" and the colonist's standards, like the everyday pressures: half strength on gentle (never less than a whole point), half again on demanding. Gentle leaves out the fussiest ones (a botched build, making do, long hauls, no research).</text>
+        <table>
+          <li>Setback | When | Mood | What helps</li>
+          <li>My work torn down | Something they built in the last 60 days was deconstructed (not to build something better in its place, and not by them) | -2, 2 days | -</li>
+          <li>My work wrecked | Something they built was destroyed; their best work (a big build or a work of art) for more | -4 to -6, 5 days | Defend it</li>
+          <li>A crop lost | 4 or more plants lost to blight or frost in a field they sowed; a whole field (30, or 15 for a keen grower) for more | -2 to -4, 4 days | Cut blight early; a greenhouse</li>
+          <li>Botched a build | A construction failed in their hands; more for a keen builder | -1 to -2, 1 day | A better builder</li>
+          <li>Poor work | Something they made in their passion came out poor (skill 8 or more) or awful (skill 4 or more) | -1 to -2, 1.5 days | -</li>
+          <li>Making do | Work at a crafting or butcher spot or a campfire, when a proper bench can be built | -1, 1 day | Build the bench</li>
+          <li>An operation went wrong | A surgery failed in their hands; more for a keen doctor | -3 to -4, 4 days | Better doctors and medicine</li>
+          <li>Hauling across the map | Long hauls (60 cells or more) twice in a day | -1, 1 day | Stockpiles near the work</li>
+          <li>Left waiting for a doctor | 3 hours hurt in bed, untended, with a doctor at home | -2, 1.5 days | More doctors</li>
+          <li>No research under way | A burning passion for research, a bench at home, and no project picked for a day | -1, while it lasts | Pick a project</li>
+          <li>A cold meal outside | A meal eaten in the open in freezing cold, rain or snow | -1, half a day | A dining room</li>
+          <li>My art sold off | A work of art they made was sold to a trader (not the greedy) | -2, 4 days | -</li>
+          <li>They sold my animal | An animal they were master of was sold (a bonded one is the game's own grief) | -2, 3 days | -</li>
+          <li>Envy of a better room | Their bedroom is 3 grades of impressiveness below the best one at home (not the jealous, who have the game's own mood, or ascetics) | -1, while it lasts | A better bedroom</li>
+        </table>
+      </li>
+      <li>
+        <heading>Gatherings and worries</heading>
+        <table>
+          <li>Setback | When | Mood | What helps</li>
+          <li>Missed the gathering | A gathering an answer called (a feast, a bonfire, a toast) went ahead without them | -1, 1 day | -</li>
+          <li>The feast ran out | They came to a feast and the meals ran out before they got one | -2, 1 day | Meals in the stores first</li>
+          <li>Rain on the gathering | A party, wedding or gathering held in the open, in the rain | -1, 1 day | Hold it under a roof</li>
+          <li>Worried about someone | A partner, family member or close friend has a serious illness; more for family or a deadly case | -1 to -2, while it lasts | Care for them</li>
+          <li>Worried about the caravan | Someone close is with a caravan short of food or with someone down | -2, while it lasts | Food, rest, home</li>
+          <li>Still out there | Their nemesis is free, from 8 to 60 days after what they did | -1, while it lasts | Capture or kill them</li>
+          <li>A debt unpaid | The colony owes a people a good turn and hasn't returned it (kind colonists) | -1, while it lasts | A gift, help</li>
+          <li>Thinking of home | Three hard blows (-5 or worse) in a week, for someone who came from elsewhere | -2, 2 days | Something good</li>
+          <li>Long quiet days | No party or gathering for 10 days, and fewer kinds of recreation at home than they expect (expectations rise with the colony's wealth); 2 fewer for more | -1 to -2, while it lasts | A new kind of recreation, a party</li>
+        </table>
+        <after>Gatherings follow "Life's ups and downs" too.</after>
+      </li>
+      <li>
+        <heading>Between people</heading>
+        <text>These follow the everyday frictions setting; outshone, a rival honoured and envy of a better room also follow the jealousy setting. Someone who was the colony's best at their passion (level 6 or more) and is overtaken by a newcomer or a quicker learner minds it for 3 days (-2), unless it's their own student or they're kind. A friendship that cools stings both for 3 days (-2). Loud work through the wall at night costs a sleeper a point and a little opinion of whoever was at it.
+
+Four frictions follow something real: grumbling about the cook while sick with food poisoning, joking about someone's bad day after a mental break, taking the credit for a council project just finished, and a shared tool handed back damaged. Three home nuisances read the map: food gone rotten in the stores (for cooks), work in the rain without a coat when the colony can make one, and junk left lying in a bedroom.</text>
+      </li>
+      <li>
+        <heading>Standards and the heart</heading>
+        <text>Like the colony's other frictions and pressures, setbacks sting up to 40% more for spoiled colonists. They feed the heart's feelings too: wrecked work and lost crops feed despair, an operation gone wrong or poor work shame, a sick friend worry, a cooled friendship loneliness, a rival honoured envy.</text>
+      </li>
+    </sections>
+    <keywords>
+      <li>setback</li>
+      <li>bad mood</li>
+      <li>wrecked</li>
+      <li>torn down</li>
+      <li>blight</li>
+      <li>frost</li>
+      <li>crop lost</li>
+      <li>poor quality</li>
+      <li>surgery failed</li>
+      <li>outshone</li>
+      <li>outvoted</li>
+      <li>broken promise</li>
+      <li>homesick</li>
+      <li>boredom</li>
+      <li>feast</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_C_Pressures</li>
+      <li>Council_Alm_C_Social</li>
+      <li>Council_Alm_C_Standards</li>
+      <li>Council_Alm_C_Moods</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+</Defs>

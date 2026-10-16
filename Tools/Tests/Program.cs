@@ -386,6 +386,7 @@ for (int r = 0; r < 4; r++)
         Console.WriteLine($"Checked {HealthTests.Run(root, Check)} claims about convalescence and healers.");
         Console.WriteLine($"Checked {SettingsTests.Run(root, Check)} things about the settings window (every field on one page, presets, keys, sizes).");
         Console.WriteLine($"Checked {AlmanacLayoutTests.Run(root, Check)} things about the Almanac's layout (columns, tables, text sizes).");
+        Console.WriteLine($"Checked {SetbackTests.Run(root, Check)} things about setbacks (when they come, how big, their settings and hints).");
     }
 }
 
@@ -397,5 +398,5 @@ Console.WriteLine($"Checked {MemoryTests.Run(Check)} things about what the peopl
 Console.WriteLine($"Checked {PlayOutTests.Run(Check)} things about answers playing out on the map.");
 Console.WriteLine($"Checked {KeptTests.Run(Check)} things about granted wishes taken back (grace, timing, making it right).");
 
-Console.WriteLine(failures == 0 ? "All tests passed (template math, layout, strain, meetings, pressures, ailments, line memory, good times, tab sizes, calendar, personal stories, clock and caps, faction memory, answers on the map, promises kept)." : failures + " failure(s).");
+Console.WriteLine(failures == 0 ? "All tests passed (template math, layout, strain, meetings, pressures, ailments, line memory, good times, tab sizes, calendar, personal stories, clock and caps, faction memory, answers on the map, setbacks, promises kept)." : failures + " failure(s).");
 return failures == 0 ? 0 : 1;

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Setbacks (Source/ColonyCouncil/Setbacks/): what caused each one, shown as "Why: ..." in its tooltip. -->
+
+  <!-- The council -->
+  <CC_Setback_Why_Waiting>their wish ({0}) has waited {1}, while {2} voiced after it came true for others.</CC_Setback_Why_Waiting>
+  <CC_Setback_Why_Decree>the decree "{0}", in force for {1} now, with {2} to go.</CC_Setback_Why_Decree>
+  <CC_Setback_Cause_IdeaPassed>their idea ({0}) was turned down at the meeting; the council chose {1}.</CC_Setback_Cause_IdeaPassed>
+  <CC_Setback_Cause_OutVoted>they voted for {0} at the meeting; the council chose {1}.</CC_Setback_Cause_OutVoted>
+  <CC_Setback_Cause_FriendLetDown>the council promised {0} "{1}" and let it lapse.</CC_Setback_Cause_FriendLetDown>
+  <CC_Setback_Cause_RivalNamed>{0}, a rival, is now called "{1}".</CC_Setback_Cause_RivalNamed>
+  <CC_Setback_Cause_RivalSeat>{0}, a rival, took the council's seat of {1}.</CC_Setback_Cause_RivalSeat>
+  <CC_Setback_Cause_NotAgreed>the council's answer to "{0}" ({1}) was too {2} for them.</CC_Setback_Cause_NotAgreed>
+  <CC_Setback_Cause_ToldSo>the council's answer to "{0}" ({1}) went wrong, as they feared it would.</CC_Setback_Cause_ToldSo>
+
+  <!-- Gatherings -->
+  <CC_Setback_TheGathering>the gathering</CC_Setback_TheGathering>
+  <CC_Setback_TheParty>the party</CC_Setback_TheParty>
+  <CC_Setback_TheWedding>the wedding</CC_Setback_TheWedding>
+  <CC_Setback_Cause_MissedAway>{0} was held while they were away.</CC_Setback_Cause_MissedAway>
+  <CC_Setback_Cause_MissedSick>{0} was held while they were laid up.</CC_Setback_Cause_MissedSick>
+  <CC_Setback_Cause_MissedBusy>{0} came and went without them.</CC_Setback_Cause_MissedBusy>
+  <CC_Setback_Cause_NoPlate>the meals ran out at {0} before they got one.</CC_Setback_Cause_NoPlate>
+  <CC_Setback_Cause_Rained>rain on {0}, held out in the open.</CC_Setback_Cause_Rained>
+
+  <!-- Work -->
+  <CC_Setback_Cause_TornDown>the {0} they built was taken down.</CC_Setback_Cause_TornDown>
+  <CC_Setback_Cause_Wrecked>the {0} they built was destroyed.</CC_Setback_Cause_Wrecked>
+  <CC_Setback_Cause_Blight>blight in a field they sowed ({0}): {1} plants lost.</CC_Setback_Cause_Blight>
+  <CC_Setback_Cause_Frost>frost in a field they sowed ({0}): {1} plants killed.</CC_Setback_Cause_Frost>
+  <CC_Setback_Blight>blight</CC_Setback_Blight>
+  <CC_Setback_Frost>frost</CC_Setback_Frost>
+  <CC_Setback_Cause_BotchedBuild>building the {0} failed, and the materials were wasted.</CC_Setback_Cause_BotchedBuild>
+  <CC_Setback_Cause_Shoddy>their {0} came out {1}.</CC_Setback_Cause_Shoddy>
+  <CC_Setback_Cause_MakingDo>they worked at the {0}, when the colony could build a proper {1}.</CC_Setback_Cause_MakingDo>
+  <CC_Setback_Cause_Surgery>an operation on {0} failed in their hands.</CC_Setback_Cause_Surgery>
+  <CC_Setback_Cause_Hauls>long hauls across the map today: the stockpile is far from where things are made or found.</CC_Setback_Cause_Hauls>
+  <CC_Setback_Cause_Tend>{0} hours hurt in bed before anyone tended them, with a doctor at home.</CC_Setback_Cause_Tend>
+  <CC_Setback_Why_Research>no research project picked for {0}, with a research bench at home.</CC_Setback_Why_Research>
+
+  <!-- Home -->
+  <CC_Setback_Cause_ColdMeal>they ate their {0} outside in the freezing cold.</CC_Setback_Cause_ColdMeal>
+  <CC_Setback_Cause_WetMeal>they ate their {0} outside in the rain.</CC_Setback_Cause_WetMeal>
+  <CC_Setback_ATrader>a trader</CC_Setback_ATrader>
+  <CC_Setback_Cause_ArtSold>their work "{0}" was sold to {1}.</CC_Setback_Cause_ArtSold>
+  <CC_Setback_Cause_AnimalSold>{0}, an animal in their care, was sold to {1}.</CC_Setback_Cause_AnimalSold>
+  <CC_Setback_Why_Envy>their room is {MINE}; {OTHER_nameDef}'s is {BEST}.</CC_Setback_Why_Envy>
+
+  <!-- The people around them -->
+  <CC_Setback_Cause_Outshone>{0} is now the colony's best at {1} (level {2}, theirs is {3}).</CC_Setback_Cause_Outshone>
+  <CC_Setback_Cause_Drifted>their friendship with {0} has cooled.</CC_Setback_Cause_Drifted>
+  <CC_Setback_Cause_Noise>{0} was {1} on the other side of the wall while they slept.</CC_Setback_Cause_Noise>
+
+  <!-- Worries -->
+  <CC_Setback_Why_Sick>{OTHER_nameDef} has {WHAT}.</CC_Setback_Why_Sick>
+  <CC_Setback_Why_Caravan>{OTHER_nameDef} is away with a caravan: {WHY}</CC_Setback_Why_Caravan>
+  <CC_Setback_Why_CaravanFood>food for {0} days left.</CC_Setback_Why_CaravanFood>
+  <CC_Setback_Why_CaravanDown>{OTHER_nameDef} is down and can't walk.</CC_Setback_Why_CaravanDown>
+  <CC_Setback_Why_Nemesis>{0}, who hurt them, got away {1} ago and is still out there.</CC_Setback_Why_Nemesis>
+  <CC_Setback_Why_Debt>{0} {1}, and the colony has done nothing for them since.</CC_Setback_Why_Debt>
+  <CC_Setback_Cause_Homesick>a hard week: {0} hard blows in seven days.</CC_Setback_Cause_Homesick>
+  <CC_Setback_Why_Quiet>{0} kinds of recreation at home where they expect {2}, and no party or gathering for {1}.</CC_Setback_Why_Quiet>
+
+</LanguageData>
