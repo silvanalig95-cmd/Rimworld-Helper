@@ -323,13 +323,18 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>A hut: a ring of wall around a 3x3 floor with one bed, a door facing the fire, and (once built) a roof.</summary>
+        /// <summary>
+        /// A hut: a ring of wall around a 3x3 floor with one bed, a door facing the fire, and (once built) a roof. With a
+        /// tent mod's walls (hide or cloth that holds a roof), a tent.
+        /// </summary>
         private static void PlaceHut(List<CampPlan> plans, HashSet<IntVec3> taken, CampStructure s, ThingDef wallDef, Map map, IntVec3 fire, IntVec3 away, IntVec3 side, CampKindDef kind)
         {
             var mid = fire + away * 5;
             var rect = CellRect.CenteredOn(mid, 2);
             var stuff = s.StuffFor(wallDef);
-            var doorDef = ThingDefOf.Door;
+            var doorDef = s.DoorDef;
+            // A tent's hide walls with a wooden door, if the door can't be made of hide.
+            var doorStuff = !doorDef.MadeFromStuff ? null : stuff != null && GenStuff.AllowedStuffsFor(doorDef).Contains(stuff) ? stuff : s.StuffFor(doorDef);
             var doorCell = mid - away * 2;
             foreach (var c in rect)
                 if (!OpenGround(c, map) || taken.Contains(c)) return;
@@ -338,8 +343,8 @@ namespace ColonyCouncil
             {
                 if (c == doorCell)
                 {
-                    if (!Fits(doorDef, stuff, c, Rot4.North, map, taken)) return;
-                    hut.Add(new CampPlan { role = "door", def = doorDef, stuff = stuff, cell = c, rot = Rot4.North });
+                    if (!Fits(doorDef, doorStuff, c, Rot4.North, map, taken)) return;
+                    hut.Add(new CampPlan { role = "door", def = doorDef, stuff = doorStuff, cell = c, rot = Rot4.North });
                     continue;
                 }
                 if (!Fits(wallDef, stuff, c, Rot4.North, map, taken)) return;

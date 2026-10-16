@@ -40,6 +40,20 @@ namespace ColonyCouncil
         private readonly List<Watch> watches = new List<Watch>();
         private int lastLook = int.MinValue / 2;
 
+        /// <summary>The first snow of the winter fell within these few hours, and it's still snowing (its flakes: <see cref="EventTouches"/>).</summary>
+        private const int FreshTicks = GenDate.TicksPerHour * 6;
+
+        /// <summary>The first snow of the winter began within the last few hours on this map, and is still falling.</summary>
+        public static bool FreshSnow(Map map)
+        {
+            var self = VisualTouches.Instance?.weather;
+            if (self == null || map?.weatherManager == null || map.weatherManager.SnowRate < SnowRate) return false;
+            int now = Find.TickManager.TicksGame;
+            foreach (var w in self.watches)
+                if (w.map == map) return w.snowPlayUntil > now && now - (w.snowPlayUntil - SnowPlayTicks) < FreshTicks;
+            return false;
+        }
+
         /// <summary>Children may go out and play in the snow on this map (the first snow fell within two days).</summary>
         public static bool SnowPlay(Map map)
         {

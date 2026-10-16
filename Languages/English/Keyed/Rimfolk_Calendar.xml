@@ -71,7 +71,7 @@
   <CC_UI_Sub_Calendar>Days that matter to this colony, and how it keeps them.</CC_UI_Sub_Calendar>
   <CC_Cal_Title>The colony calendar</CC_Cal_Title>
   <CC_Cal_Today>Today: {0}</CC_Cal_Today>
-  <CC_Cal_Intro>The days that matter to this colony, written down as its history happens: its founding, its first good harvest, the first snow, battles it remembers, people it lost, weddings, the arrivals of its first members and the birthdays of its long-serving colonists. When a day comes round, the colony can keep it with a feast, games, a rest day or a quiet hour. Kept {0} years running, a day becomes a tradition, and the colony expects it from then on.</CC_Cal_Intro>
+  <CC_Cal_Intro>The days that matter to this colony, written down as its history happens: its founding, its first good harvest, the first snow, battles it remembers, people it lost, weddings, the arrivals of its first members and the birthdays of its long-serving colonists, the first child born here, the day the walls went up, a caravan home safe, the first harvest of a new crop, the first trade and a great hunt. When a day comes round, the colony can keep it with a feast, games, a rest day, a bonfire, a day of gifts, a hunt or a quiet hour. Kept {0} years running, a day becomes a tradition, and the colony expects it from then on.</CC_Cal_Intro>
   <CC_Cal_Off>The calendar's events are switched off in the settings. Days are still written down here, but nothing happens when they come round.</CC_Cal_Off>
   <CC_Cal_Days>The colony's days</CC_Cal_Days>
   <CC_Cal_DaysCount>{0} days</CC_Cal_DaysCount>
@@ -87,7 +87,7 @@
   <CC_Cal_Pill_Kept_Tip>Years still to keep it before it becomes a tradition: {0}.</CC_Cal_Pill_Kept_Tip>
   <CC_Cal_Pill_Named>named</CC_Cal_Pill_Named>
   <CC_Cal_NameDay>Name a day</CC_Cal_NameDay>
-  <CC_Cal_NameDay_Tip>Name a day of the colony's own, on a date you choose: a feast, a day of remembrance, a rest day or a day of games.</CC_Cal_NameDay_Tip>
+  <CC_Cal_NameDay_Tip>Name a day of the colony's own, on a date you choose: a feast, a day of remembrance, a rest day, a day of games, a bonfire, a day of gifts or a hunt.</CC_Cal_NameDay_Tip>
   <CC_Cal_NameDay_Full>The calendar already has {0} named days. Remove one to name another.</CC_Cal_NameDay_Full>
   <CC_Cal_Menu_Tip>Rename this day, change how it's kept, or take it off the calendar.</CC_Cal_Menu_Tip>
   <CC_Cal_Menu_Change>Rename, or change how it's kept</CC_Cal_Menu_Change>

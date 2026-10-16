@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Almanac: mods of the current modlist that Rimfolk works with in the colony's everyday life and that had no page yet:
+    Alpha Props: Parks and Gardens (its garden room theme), and the mods that change people in the middle of a game
+    (Big & Small, Character Editor, Pawn Editor). Each article shows only when one of its mods is active.
+  -->
+
+  <!-- ===================== Alpha Props: Parks and Gardens ===================== -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_AlmMod_H_AlphaPropsParks</defName>
+    <label>Alpha Props: Parks and Gardens</label>
+    <category>Mods</category>
+    <order>800</order>
+    <mods><li>sarg.alphapropsparks</li></mods>
+    <summary>Fountains, hedges, planters, benches, street lights and lawns for parks and gardens</summary>
+    <tip>Most of its pieces are decorative props; the benches and street lights marked "functional" work like the game's own.</tip>
+    <description>A large set of park and garden pieces: fountains, hedges and arches, trellises, planters and potted plants, flowers, topiary, ponds with lilies and reeds, picnic mats and baskets, park benches and street lights. Most of them are props, built through the props menu for looks alone. A few are real furniture: the "functional" park and stone benches seat a colonist like a stool, and the "functional" street lights light a room or a path like a standing lamp, on power. Its lawns and zen sand are buildable floors.</description>
+    <sections>
+      <li>
+        <heading>Using it</heading>
+        <text>A garden is recreation for the meditative and beauty for everyone who walks through it. Put the functional benches where people already pass, and the street lights along the paths they use at night. Lawns are purely for looks; they don't grow anything.</text>
+      </li>
+      <li>
+        <heading>With Rimfolk</heading>
+        <text>The room planner has a garden theme: lawn underfoot (or green carpet without this mod), plants along the walls from the comfortable style on, the functional street lights where there's power, and wooden furniture. As with every theme, only what the colony has researched and has the materials for is used, and the layout never changes.</text>
+      </li>
+    </sections>
+    <keywords>
+      <li>park</li>
+      <li>garden</li>
+      <li>lawn</li>
+      <li>street light</li>
+      <li>bench</li>
+      <li>fountain</li>
+      <li>props</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_Mods_Compatibility</li>
+      <li>Council_AlmMod_E_VFEArchitect</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <!-- ===================== People who change: Big & Small, character editors ===================== -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_AlmMod_H_PeopleWhoChange</defName>
+    <label>Big &amp; Small and character editors</label>
+    <category>Mods</category>
+    <order>801</order>
+    <approximate>true</approximate>
+    <mods>
+      <li>redmattis.bigsmall.core</li>
+      <li>redmattis.bigsmall</li>
+      <li>redmattis.bigsmall.simplesize</li>
+      <li>void.charactereditor</li>
+      <li>isorex.pawneditor</li>
+    </mods>
+    <summary>Mods that change someone in the middle of a game: their race, body, xenotype, traits, name or age</summary>
+    <tip>Rimfolk keeps up with the change within the hour.</tip>
+    <description>Big &amp; Small is a framework for genes and races that can change a body's size or make a colonist something else entirely. Character Editor and Pawn Editor let the player change anyone at any time: name, gender, age, traits, skills, xenotype, apparel. Both change the person in place, so everything the game and other mods know about them stays with them.</description>
+    <sections>
+      <li>
+        <heading>With Rimfolk</heading>
+        <text>Rimfolk keeps its records on the person, so their journal, feelings, quirks, life goal, wishes, standing and story carry over through any change. Every so often it looks at each colonist afresh, and when someone has changed:</text>
+        <points>
+          <li>who they are (their traits, xenotype, beliefs and kind, as decrees, offices, wishes and lines see them) is read again at once, not at the next hour;</li>
+          <li>their open wishes are asked whether they still make sense for the new body: a meal for someone who no longer eats, a bed for someone who no longer sleeps. Those that don't are set aside, with no blame on anyone and no mood lost;</li>
+          <li>someone left without an inner life (a ghoul, the raised dead) has the wishes they put to the council set aside, and their seat on the council falls empty as it always has;</li>
+          <li>a new race, a new xenotype or a much bigger or smaller body gets a line in their own journal. A new name, a trait or a birthday from the editor doesn't: nobody in the colony would have noticed.</li>
+        </points>
+        <after>The same goes for the game's own changes: a xenogerm implanted, a child growing up.</after>
+      </li>
+    </sections>
+    <keywords>
+      <li>big and small</li>
+      <li>character editor</li>
+      <li>pawn editor</li>
+      <li>race</li>
+      <li>xenotype</li>
+      <li>body size</li>
+      <li>edit</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_Mods_Compatibility</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+</Defs>

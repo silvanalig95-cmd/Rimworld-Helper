@@ -23,7 +23,9 @@ namespace ColonyCouncil
     /// <para>The same clock runs the parts in Immersion/: a colonist now and then saying something about how they really
     /// are (<see cref="StateSpeech"/>), the first snow, heat waves, cold snaps and storms remarked on and written down
     /// (<see cref="WeatherTalk"/>), a gathering's fire, a grave's low glow and a toast's raised cups (<see cref="Glows"/>),
-    /// and a small bell when a calendar day comes round (<see cref="Chimes"/>).</para>
+    /// a small bell when a calendar day comes round (<see cref="Chimes"/>), and a camp's dust on the road, the first
+    /// snow's flakes, a dream told at breakfast, the council's bell at a wedding it had a hand in, and a guest's word about
+    /// their stay (<see cref="EventTouches"/>).</para>
     /// <para>Cost: one modulo per tick. Twice a second of game time (and never more often than about twice a second of
     /// real time, whatever the speed), on the map being looked at only, a few cheap checks and at most a handful of
     /// flecks, each only on cells in view. Once an in-game hour, one ambient line or hum at most. No textures, materials,
@@ -76,6 +78,8 @@ namespace ColonyCouncil
         internal readonly WeatherTalk weather = new WeatherTalk();
         /// <summary>A small bell when a calendar day comes round (Immersion/Chimes.cs).</summary>
         private readonly Chimes chimes = new Chimes();
+        /// <summary>A camp arriving, the first snow's flakes, a dream at breakfast, a council wedding, a guest's word (Immersion/EventTouches.cs).</summary>
+        internal readonly EventTouches events = new EventTouches();
 
         private sealed class Pending
         {
@@ -178,6 +182,7 @@ namespace ColonyCouncil
             // From that far out, a firefly or a bit of ice is a pixel at best.
             if (Find.CameraDriver.CurrentZoom >= CameraZoomRange.Furthest) return;
             if (glows.Any) glows.Pulse(map, view, now, pulses);
+            events.Pulse(this, map, view, now, pulses);
             var conditions = map.gameConditionManager;
             if (conditions == null) return;
             if (conditions.GetActiveCondition<GameCondition_Fireflies>() != null) Fireflies(map, view);
@@ -352,9 +357,9 @@ namespace ColonyCouncil
             }
         }
 
-        private static bool Wet(Map map) => map.weatherManager != null && (map.weatherManager.RainRate > 0.1f || map.weatherManager.SnowRate > 0.1f);
+        internal static bool Wet(Map map) => map.weatherManager != null && (map.weatherManager.RainRate > 0.1f || map.weatherManager.SnowRate > 0.1f);
 
-        private static bool Dusty(Map map, IntVec3 c) =>
+        internal static bool Dusty(Map map, IntVec3 c) =>
             c.InBounds(map) && c.GetTerrain(map)?.IsWater != true && (map.snowGrid == null || map.snowGrid.GetDepth(c) < 0.2f);
 
         // ---------------- Celebrations ----------------
@@ -379,6 +384,8 @@ namespace ColonyCouncil
                     self.Queue(o, FleckDefOf.Heart, 1, Rand.RangeInclusive(2, 5));
                     guests++;
                 }
+                // A wedding the council promised, or of one of its officers: its bell, and a word from a councillor.
+                EventTouches.CouncilWedding(self, a, b);
             }
             catch (Exception e)
             {
@@ -459,6 +466,9 @@ namespace ColonyCouncil
             }
         }
 
+        /// <summary>A few of this fleck over their head, one every other pulse after <paramref name="wait"/> (Immersion/).</summary>
+        internal void QueueFleck(Pawn p, FleckDef def, int count, int wait) => Queue(p, def, count, wait);
+
         private void Queue(Pawn p, FleckDef def, int count, int wait)
         {
             if (p == null || def == null || !p.Spawned || pending.Count >= MaxPending) return;
@@ -505,6 +515,7 @@ namespace ColonyCouncil
             bool speech = Speech.On;
             if (speech && AmbientLine(map, view, now, comet, conditions)) return;
             if (speech && StateSpeech.TrySay(this, map, view, now)) return;
+            if (speech && events.Hourly(map, view, now)) return;
             Hum(map, view, now);
         }
 

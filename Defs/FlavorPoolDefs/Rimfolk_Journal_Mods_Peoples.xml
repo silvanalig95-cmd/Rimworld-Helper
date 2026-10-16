@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The medieval modlist's peoples and the Alpha mods' people in the journals. Encounters with Outland's and Medieval
+    Total Rim's visitors write here ({X_...} is the visitor; Rimfolk_Encounters_Mods_Peoples.xml), and the everyday
+    journal picks up the memories of Alpha Genes' and Alpha Memes' moments as days of their own ({OTHER_...} is the other
+    one; Rimfolk_Moments_Mods_Alpha.xml). Without the mods none of these happen.
+  -->
+
+  <!-- ===================== Encounters ===================== -->
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_EncO_Outland</defName>
+    <lines>
+      <plain>
+        <li>{X_nameDef} told me things about the far country I'll be turning over for days.</li>
+        <li>Talked half the evening with {X_nameDef}. Their people do everything differently, and some of it better.</li>
+        <li>[x:faction:Outland_Empire] Tea with {X_nameDef}. I was told to look at it before drinking. I looked. It was still tea, but I see the point now.</li>
+        <li>[x:faction:Outland_MotzCoalition] {X_nameDef} sat just past the lamplight all evening. I turned the lamp down and the talk got better.</li>
+        <li>[x:faction:Outland_RedburnPact] Haggled with a goblin. Came out even. I'm told that's a compliment.</li>
+        <li>[x:faction:Outland_VathunNobles] {X_nameDef} asked my caste. I'm still not sure what I should have said.</li>
+      </plain>
+      <warm><li>{X_nameDef} was kind to me in a way I didn't expect from a stranger. I hope the road is kind to {X_objective}.</li></warm>
+      <blunt><li>Visitor. Odd customs. Fair enough.</li></blunt>
+      <cheerful><li>Every visitor from out there is stranger than the last, and I love it!</li></cheerful>
+      <gloomy><li>{X_nameDef}'s people seem to have it all worked out. We're still guessing.</li></gloomy>
+      <cold><li>Learned how {X_nameDef}'s people do business. Worth knowing.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_EncM_Nations</defName>
+    <lines>
+      <plain>
+        <li>{X_nameDef} has come further than anyone I've met, and is going further still.</li>
+        <li>A knight told me about a shrine at the end of a road that has taken years to walk. I don't think I could do it. I'd like to be the sort who could.</li>
+        <li>[skill:Animals] {X_nameDef} calmed our most nervous animal with a song I'd never heard. I've been humming it at the pens since.</li>
+        <li>[skill:Intellectual] {X_nameDef} showed me how to tell the hour by the stars. I stayed up to try it, and it works.</li>
+        <li>[x:factionmod:athelas.medievaltotalrim.mongols] Drank mare's milk with a rider from the steppe. Strangest thing I've ever tasted. I had a second cup.</li>
+      </plain>
+      <warm><li>{X_nameDef} said our colony would be a good stop on any road. I hope they come back this way.</li></warm>
+      <blunt><li>Foreign visitor. Good stories. Bad singing.</li></blunt>
+      <cheerful><li>There's a whole world of kingdoms out there, and every one of them argues about something different!</li></cheerful>
+      <gloomy><li>{X_nameDef} talks about their kingdom like it'll last forever. They always do.</li></gloomy>
+      <cold><li>The kingdoms beyond the hills are bigger than I thought. We should know more about them.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== Alpha Genes and Alpha Memes moments, as days in the everyday journal ===================== -->
+
+  <ColonyCouncil.JournalDayDef>
+    <defName>Council_JDay_Alpha_Deep</defName>
+    <key>Alpha_Deep</key>
+    <weight>1.2</weight>
+    <social>true</social>
+    <thoughts><li>Council_Moment_TalkOfTheDeep</li></thoughts>
+  </ColonyCouncil.JournalDayDef>
+
+  <ColonyCouncil.JournalDayDef>
+    <defName>Council_JDay_Alpha_Warmth</defName>
+    <key>Alpha_Warmth</key>
+    <weight>1.2</weight>
+    <social>true</social>
+    <thoughts><li>Council_Moment_WarmedHands</li></thoughts>
+  </ColonyCouncil.JournalDayDef>
+
+  <ColonyCouncil.JournalDayDef>
+    <defName>Council_JDay_Alpha_Stone</defName>
+    <key>Alpha_Stone</key>
+    <weight>1.2</weight>
+    <social>true</social>
+    <thoughts><li>Council_Moment_ReadTheStone</li></thoughts>
+  </ColonyCouncil.JournalDayDef>
+
+  <ColonyCouncil.JournalDayDef>
+    <defName>Council_JDay_Alpha_Art</defName>
+    <key>Alpha_Art</key>
+    <weight>1.2</weight>
+    <social>true</social>
+    <thoughts><li>Council_Moment_SketchedSomeone</li><li>Council_Moment_SatForSketch</li></thoughts>
+  </ColonyCouncil.JournalDayDef>
+
+  <ColonyCouncil.JournalDayDef>
+    <defName>Council_JDay_Alpha_Faith</defName>
+    <key>Alpha_Faith</key>
+    <weight>1.2</weight>
+    <social>true</social>
+    <thoughts><li>Council_Moment_WaterBlessed</li><li>Council_Moment_SharedSilence</li></thoughts>
+  </ColonyCouncil.JournalDayDef>
+
+  <ColonyCouncil.JournalDayDef>
+    <defName>Council_JDay_Alpha_Ranch</defName>
+    <key>Alpha_Ranch</key>
+    <weight>1.2</weight>
+    <social>true</social>
+    <thoughts><li>Council_Moment_RanchTalk</li></thoughts>
+  </ColonyCouncil.JournalDayDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_Alpha_Deep</defName>
+    <lines>
+      <plain>
+        <li>[xeno:AG_Nereid] Told {OTHER_nameDef} about the deep today, and {OTHER_nameDef} listened like a child at a fire. I didn't know how much I'd been wanting to tell someone.</li>
+        <li>[!xeno:AG_Nereid] {OTHER_nameDef} held {OTHER_possessive} breath while I counted. I gave up at three hundred.</li>
+        <li>[!xeno:AG_Nereid] {OTHER_nameDef} says the sea floor is like a forest at night, only slower. I keep thinking about it.</li>
+      </plain>
+      <warm><li>[xeno:AG_Nereid] {OTHER_nameDef} asked whether I miss the water. Every morning, I said, and {OTHER_pronoun} said {OTHER_pronoun}'d help me dig the pond deeper.</li></warm>
+      <cheerful><li>[!xeno:AG_Nereid] I am going to learn to swim properly, and {OTHER_nameDef} is going to teach me!</li></cheerful>
+      <gloomy><li>[xeno:AG_Nereid] Talking about the deep only made me miss it more.</li></gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_Alpha_Warmth</defName>
+    <lines>
+      <plain>
+        <li>Came in half frozen and {OTHER_nameDef} took my hands in {OTHER_possessive} until I could feel my fingers again. Hotter than the stove, that one.</li>
+        <li>Sat next to {OTHER_nameDef} on the coldest night yet. Better than any blanket. I didn't say so, but I think {OTHER_pronoun} knew.</li>
+      </plain>
+      <warm><li>{OTHER_nameDef} warmed my hands without being asked. Small thing. I won't forget it.</li></warm>
+      <blunt><li>Cold. {OTHER_nameDef} is warm. Sat close. Done.</li></blunt>
+      <cheerful><li>{OTHER_nameDef} breathed on my fingers and the frost went off them in a puff of steam!</li></cheerful>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_Alpha_Stone</defName>
+    <lines>
+      <plain>
+        <li>[xeno:AG_Lapis] Showed {OTHER_nameDef} where the seam runs today, and {OTHER_nameDef} marked it in chalk. Most people just nod.</li>
+        <li>[!xeno:AG_Lapis] {OTHER_nameDef} put a hand on the rock and told me where the ore was. Three hands left of where I'd have dug, and right, too.</li>
+        <li>[!xeno:AG_Lapis] {OTHER_nameDef} licked a lump of ore to tell what it was. I'm not going to try that.</li>
+      </plain>
+      <cold><li>Learned to hear a fault in the rock by tapping. Useful.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_Alpha_Art</defName>
+    <lines>
+      <plain>
+        <li>[meme:AM_Artist] Drew {OTHER_nameDef} today in a dozen lines on the back of a feed sack. Got the nose right, I think.</li>
+        <li>[!meme:AM_Artist] {OTHER_nameDef} drew me today. I didn't know I looked like that. I think I like it.</li>
+        <li>[!meme:AM_Artist] {OTHER_nameDef} says my face has a lot of weather in it. I'm choosing to take that well.</li>
+      </plain>
+      <cheerful><li>[!meme:AM_Artist] {OTHER_nameDef} drew me! I'm going to pin it up by my bed.</li></cheerful>
+      <gloomy><li>[meme:AM_Artist] Drew {OTHER_nameDef}. It came out sadder than {OTHER_pronoun} looks. Or maybe not.</li></gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_Alpha_Faith</defName>
+    <lines>
+      <plain>
+        <li>[!meme:AM_WaterPrimacy] {OTHER_nameDef} touched water to my brow and said the old words. I felt washed through, which is not something I expected to write.</li>
+        <li>[!meme:AM_Monastic] {OTHER_nameDef} sat with me without a word until I could breathe again. Ten breaths, and start over. It works.</li>
+        <li>[meme:AM_Monastic] Sat in silence with {OTHER_nameDef}, who needed it. Silence is the only thing I have to give, and it was enough.</li>
+        <li>[meme:AM_WaterPrimacy] Blessed {OTHER_nameDef} with water today. {OTHER_nameDef} stood very still for it.</li>
+      </plain>
+      <warm><li>Someone was there for me today without needing me to explain anything. I'll try to be that for someone else.</li></warm>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_Alpha_Ranch</defName>
+    <lines>
+      <plain>
+        <li>[meme:AM_Cowboys] Leaned on the fence with {OTHER_nameDef} and talked herds until dark. There's the makings of a rancher in {OTHER_objective}.</li>
+        <li>[!meme:AM_Cowboys] {OTHER_nameDef} showed me how to throw a loop over a post. I caught the post eventually, and {OTHER_nameDef} twice.</li>
+      </plain>
+      <cheerful><li>Out at the pens with {OTHER_nameDef} counting the animals. We agree the goat is the cleverest. The goat agrees too.</li></cheerful>
+      <blunt><li>Fence. Herds. Good talk.</li></blunt>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

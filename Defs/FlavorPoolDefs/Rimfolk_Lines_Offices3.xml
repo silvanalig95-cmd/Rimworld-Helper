@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The chaplain, the warden of guests and the elders at work (Source/ColonyCouncil/Interplay/Interplay_Offices2.cs).
+    News lines are in the colony's voice, picked in the officer's tone: {PAWN_...} the officer, {OTHER_...} the one they
+    sit with or welcome. Journal lines are written by the one named in the pool's comment, in the first person.
+  -->
+
+  <!-- Journal, the chaplain, after leading a remembrance. {NAME}: the day. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_Interplay_ChaplainRite</defName>
+    <lines>
+      <plain>
+        <li>Said the words for {NAME} today. My voice held until the last line, which is further than last year.</li>
+        <li>Led {NAME}. I keep the words short. The dead don't need speeches, and the living need to get back indoors.</li>
+        <li>[devout] Spoke for {NAME} at the graveside. I asked for them to be kept, and I believe they are.</li>
+        <li>[winter] {NAME} in the cold. I kept it brief and nobody's hands were steady by the end, mine included.</li>
+      </plain>
+      <warm><li>Led {NAME} today. Afterwards half the colony stayed by the graves talking, which is how I knew it was done right.</li></warm>
+      <blunt><li>{NAME}. Said the words. Meant them.</li></blunt>
+      <gloomy><li>{NAME} again. Every year I wonder who I'll be saying the words for next.</li></gloomy>
+      <cold><li>{NAME}. A rite done properly gives grief somewhere to go. That is the whole of my job.</li></cold>
+      <cheerful><li>{NAME}. Not a happy day, but a good one: we laughed at the old stories, and I think they'd have liked that.</li></cheerful>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- News: the chaplain sits with someone grieving. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_Interplay_ChaplainComforts</defName>
+    <lines>
+      <plain>
+        <li>{PAWN_nameDef}, the chaplain, sat with {OTHER_nameDef} for an hour after supper. They didn't say much, but {OTHER_nameDef} went to bed earlier than {OTHER_pronoun} has in days.</li>
+        <li>{PAWN_nameDef} found {OTHER_nameDef} alone and walked with {OTHER_objective} round the walls, talking about the one {OTHER_pronoun} lost.</li>
+        <li>[devout] {PAWN_nameDef} prayed with {OTHER_nameDef} for the one {OTHER_pronoun} lost. Afterwards {OTHER_nameDef} said it was the first time {OTHER_pronoun} had cried properly.</li>
+      </plain>
+      <warm><li>{PAWN_nameDef} brought {OTHER_nameDef} a cup of something hot and simply stayed, which turned out to be what was needed.</li></warm>
+      <blunt><li>{PAWN_nameDef} told {OTHER_nameDef} that grief is the price of having loved someone, and that it was worth paying. {OTHER_nameDef} didn't argue.</li></blunt>
+      <cold><li>{PAWN_nameDef} sat with {OTHER_nameDef} and let {OTHER_objective} talk. Grief wants a listener more than an answer.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- News: the chaplain has a word with the believer least sure of the faith. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_Interplay_ChaplainTends</defName>
+    <lines>
+      <plain>
+        <li>{PAWN_nameDef}, the chaplain, found {OTHER_nameDef} at work and asked how the faith was sitting with {OTHER_objective} these days. They talked until the light went.</li>
+        <li>{PAWN_nameDef} and {OTHER_nameDef} argued about the faith over supper, at length and in good humour. {OTHER_nameDef} went away surer of it than {OTHER_pronoun} came.</li>
+        <li>{PAWN_nameDef} lent {OTHER_nameDef} the old words to read, and came back the next day to hear what {OTHER_pronoun} thought of them.</li>
+      </plain>
+      <warm><li>{PAWN_nameDef} told {OTHER_nameDef} that doubt is part of believing, not the end of it. {OTHER_nameDef} looked lighter for it.</li></warm>
+      <blunt><li>{PAWN_nameDef} asked {OTHER_nameDef} straight out what was troubling {OTHER_objective} about the faith, and answered every point.</li></blunt>
+      <cold><li>{PAWN_nameDef} walked {OTHER_nameDef} through the faith's teaching point by point, patiently, until the holes closed.</li></cold>
+      <cheerful><li>{PAWN_nameDef} and {OTHER_nameDef} sang the old hymns on the way back from the fields. Badly, and with conviction.</li></cheerful>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Journal, the believer the chaplain talked with. {OTHER_...}: the chaplain. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_Interplay_ChaplainTendsJournal</defName>
+    <lines>
+      <plain>
+        <li>{OTHER_nameDef} asked me how my faith was holding up. I said "fine", and then talked for an hour.</li>
+        <li>I've been drifting from the faith. {OTHER_nameDef} noticed before I did.</li>
+        <li>{OTHER_nameDef} didn't tell me I was wrong to doubt. That's probably why I listened.</li>
+      </plain>
+      <warm><li>{OTHER_nameDef} sat with me tonight and talked about what we believe. I feel steadier than I have in weeks.</li></warm>
+      <blunt><li>Talked with {OTHER_nameDef} about the faith. Fair answers. I'll think about them.</li></blunt>
+      <gloomy><li>{OTHER_nameDef} tried to talk me round. It half worked, which is more than I expected.</li></gloomy>
+      <cold><li>{OTHER_nameDef} made a reasonable case for the faith. I'm less sure of my doubts than I was this morning.</li></cold>
+      <cheerful><li>{OTHER_nameDef} and I sang half the old hymns on the walk back. I'd forgotten I knew them!</li></cheerful>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- News: the warden of guests spends an hour at the camp's fire. {PLACE}: who is camped there (the pilgrims, the hunting party). -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_Interplay_WardenCamp</defName>
+    <lines>
+      <plain>
+        <li>{PAWN_nameDef}, the warden of guests, spent the evening at the camp's fire with the {PLACE}, hearing out their complaints about the boundary. Things are calmer there tonight.</li>
+        <li>{PAWN_nameDef} walked over to the camp with a pot of something warm and stayed to eat it with the {PLACE}.</li>
+        <li>{PAWN_nameDef} settled an argument between the {PLACE} and the colony's woodcutters before anyone raised their voice.</li>
+        <li>[rain] {PAWN_nameDef} spent the wet afternoon under the camp's awning with the {PLACE}, swapping stories about the road.</li>
+      </plain>
+      <warm><li>{PAWN_nameDef} went over to the camp and learned every name there, and used each one before leaving.</li></warm>
+      <blunt><li>{PAWN_nameDef} went to the camp, said the colony's piece and listened to the {PLACE}. Nobody shouted.</li></blunt>
+      <cold><li>{PAWN_nameDef} went over the terms with the {PLACE} again. Clear terms make good neighbours.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- News: the warden welcomes visitors. {OTHER_...}: one of them; {FACTION}: their people. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_Interplay_WardenGuests</defName>
+    <lines>
+      <plain>
+        <li>{PAWN_nameDef}, the warden of guests, met {OTHER_nameDef} and the others from {FACTION} at the gate, saw them fed and watered, and asked after their road. {FACTION} will hear of it.</li>
+        <li>{PAWN_nameDef} found {OTHER_nameDef} of {FACTION} a seat out of the wind and a cup of something hot.</li>
+        <li>{PAWN_nameDef} showed the visitors from {FACTION} round, and made sure {OTHER_nameDef} left with a full waterskin.</li>
+      </plain>
+      <warm><li>{PAWN_nameDef} greeted {OTHER_nameDef} of {FACTION} like an old friend, and by the evening {OTHER_pronoun} nearly was.</li></warm>
+      <blunt><li>{PAWN_nameDef} welcomed the visitors from {FACTION}. Food, water, a place to sit. Simple.</li></blunt>
+      <cheerful><li>{PAWN_nameDef} had {OTHER_nameDef} of {FACTION} laughing within the hour, and the rest of the visitors soon after.</li></cheerful>
+      <cold><li>{PAWN_nameDef} saw the visitors from {FACTION} properly received. Courtesy costs little and {FACTION} remembers it.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- News: an elder passes on what they know best. {SKILL}: the skill. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_Interplay_ElderCounsel</defName>
+    <lines>
+      <plain>
+        <li>{PAWN_nameDef}, one of the colony's elders, spent the afternoon showing {OTHER_nameDef} what {PAWN_pronoun} knows about {SKILL}, the slow way, by doing it together.</li>
+        <li>{PAWN_nameDef} watched {OTHER_nameDef} at work for a while, said nothing, then showed {OTHER_objective} the trick of it. A lifetime of {SKILL} in one movement.</li>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} how {PAWN_pronoun} learned {SKILL}, mistakes and all, and then made {OTHER_objective} make the same ones on purpose.</li>
+        <li>[lowtech] {PAWN_nameDef} taught {OTHER_nameDef} the old way of {SKILL}, the way {PAWN_pronoun} was taught it as a child.</li>
+      </plain>
+      <warm><li>{PAWN_nameDef} took {OTHER_nameDef} under {PAWN_possessive} wing for the afternoon. {SKILL}, patiently, with a lot of "again".</li></warm>
+      <blunt><li>{PAWN_nameDef} showed {OTHER_nameDef} how {SKILL} is actually done. Twice. Then left {OTHER_objective} to it.</li></blunt>
+      <cold><li>{PAWN_nameDef} corrected {OTHER_nameDef}'s {SKILL} for an hour without once raising {PAWN_possessive} voice. {OTHER_nameDef} is noticeably better.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- News: an elder sits with someone younger, with nothing in particular to teach. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_Interplay_ElderStories</defName>
+    <lines>
+      <plain>
+        <li>{PAWN_nameDef}, one of the colony's elders, spent the evening telling {OTHER_nameDef} stories from before the colony. Some of them were even true.</li>
+        <li>{PAWN_nameDef} sat with {OTHER_nameDef} on the step and talked about how things were, and how they might be.</li>
+      </plain>
+      <warm><li>{PAWN_nameDef} asked {OTHER_nameDef} what {OTHER_pronoun} wanted from life, and listened to all of it.</li></warm>
+      <gloomy><li>{PAWN_nameDef} told {OTHER_nameDef} about the people {PAWN_pronoun} has outlived. {OTHER_nameDef} listened to every name.</li></gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Journal, the younger colonist an elder sat with. {OTHER_...}: the elder. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_Interplay_ElderCounselJournal</defName>
+    <lines>
+      <plain>
+        <li>{OTHER_nameDef} spent the afternoon with me. I learned more watching {OTHER_objective} for an hour than in a month of trying alone.</li>
+        <li>{OTHER_nameDef} told me I was doing it wrong, then showed me why. I don't mind being told, from {OTHER_objective}.</li>
+        <li>Sat with {OTHER_nameDef} by the fire. Some of the stories I'd heard before. I didn't say so.</li>
+      </plain>
+      <warm><li>{OTHER_nameDef} said I reminded {OTHER_objective} of someone {OTHER_pronoun} used to know. I think it was a compliment.</li></warm>
+      <blunt><li>Lesson from {OTHER_nameDef}. Useful.</li></blunt>
+      <cheerful><li>{OTHER_nameDef} taught me a trick today and I've done it eleven times since!</li></cheerful>
+      <gloomy><li>{OTHER_nameDef} won't be with us forever. I'm trying to learn everything while I can.</li></gloomy>
+      <cold><li>{OTHER_nameDef} has forgotten more than most of us know. Worth an afternoon.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

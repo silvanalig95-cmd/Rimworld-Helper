@@ -390,6 +390,7 @@ for (int r = 0; r < 4; r++)
         Console.WriteLine($"Checked {ImmersionTests.Run(root, Check)} things about what colonists say and their small habits.");
         Console.WriteLine($"Checked {TogetherTests.Run(root, Check)} things about moments that need people together, and how speech shows.");
         Console.WriteLine($"Checked {CouncilUiTests.Run(root, Check)} things about the council window (This week, the tables, page links, shortcuts).");
+        Console.WriteLine($"Checked {ModsTests.Run(root, Check)} things about the player's other mods (their names, people who change).");
     }
 }
 
@@ -403,5 +404,5 @@ Console.WriteLine($"Checked {KeptTests.Run(Check)} things about granted wishes t
 Console.WriteLine($"Checked {HeartNeedTests.Run(Check)} things about the heart's needs (what follows from them, and a lack that lasts).");
 Console.WriteLine($"Checked {BeliefTests.Run(Check)} things about beliefs and diets (precepts, a shared bed, what may be served).");
 
-Console.WriteLine(failures == 0 ? "All tests passed (template math, layout, strain, meetings, pressures, ailments, line memory, good times, tab sizes, calendar, personal stories, clock and caps, faction memory, answers on the map, setbacks, promises kept, what colonists say, the heart's needs, beliefs and diets)." : failures + " failure(s).");
+Console.WriteLine(failures == 0 ? "All tests passed (template math, layout, strain, meetings, pressures, ailments, line memory, good times, tab sizes, calendar, personal stories, clock and caps, faction memory, answers on the map, setbacks, promises kept, what colonists say, the heart's needs, beliefs and diets, other mods)." : failures + " failure(s).");
 return failures == 0 ? 0 : 1;

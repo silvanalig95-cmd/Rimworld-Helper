@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- How the colony governs itself and keeps its year: the newer decrees, offices, calendar days and ways, and projects. -->
+
+  <!-- Decrees (Decrees/DecreeWork.cs). -->
+  <CC_Decree_NotForUs>Not for this colony</CC_Decree_NotForUs>
+  <CC_Decree_NeedsResearch>Needs {0} researched</CC_Decree_NeedsResearch>
+  <CC_Decree_NeedsPeople>Needs a colony of {0} or more</CC_Decree_NeedsPeople>
+  <CC_Decree_NeedsSituation>Only in the hard times it was made for</CC_Decree_NeedsSituation>
+  <CC_Decree_NoTraders>No friendly people near who send traders</CC_Decree_NoTraders>
+  <CC_Decree_NothingToGive>Nothing to give: no {0} in store</CC_Decree_NothingToGive>
+  <CC_Decree_Gave>{0}: {1} {2} went out today.</CC_Decree_Gave>
+  <CC_Decree_GaveTo>{0}: {1} {2} went out today, to {3}.</CC_Decree_GaveTo>
+  <CC_Decree_MarketNobody>Word went out for {0}, but no traders could come this time.</CC_Decree_MarketNobody>
+
+  <!-- Offices (Offices/Offices.cs, Interplay/Interplay_Offices2.cs). -->
+  <CC_Office_Seat>{0} ({1})</CC_Office_Seat>
+  <CC_TieNote_Interplay_Elder>an afternoon with an elder</CC_TieNote_Interplay_Elder>
+
+  <!-- The colony calendar's newer days and ways (Calendar/CalendarWatch.cs, CalendarKeeping.cs). -->
+  <CC_Cal_Name_FirstChild>the day {0} was born</CC_Cal_Name_FirstChild>
+  <CC_Cal_Name_Walls>the day the walls went up</CC_Cal_Name_Walls>
+  <CC_Cal_Name_Homecoming>the homecoming</CC_Cal_Name_Homecoming>
+  <CC_Cal_Name_NewCrop>the first {0}</CC_Cal_Name_NewCrop>
+  <CC_Cal_Name_FirstTrade>the first trade</CC_Cal_Name_FirstTrade>
+  <CC_Cal_Name_GreatHunt>the great hunt</CC_Cal_Name_GreatHunt>
+  <CC_Cal_Game>game</CC_Cal_Game>
+  <CC_Cal_Way_Bonfire>bonfire</CC_Cal_Way_Bonfire>
+  <CC_Cal_Way_Gifts>gifts</CC_Cal_Way_Gifts>
+  <CC_Cal_Way_Hunt>hunt</CC_Cal_Way_Hunt>
+  <CC_Cal_Way_Bonfire_Desc>a fire at nightfall with music round it (one is laid in the open if there's no campfire), or a little recreation and a small lift.</CC_Cal_Way_Bonfire_Desc>
+  <CC_Cal_Way_Gifts_Desc>small gifts given round the colony: each friendship a little warmer, a little recreation, and no mood to it.</CC_Cal_Way_Gifts_Desc>
+  <CC_Cal_Way_Hunt_Desc>the hunters go out for the day's game (three head marked for hunting) and get a day's practice; the rest get something good in the pot.</CC_Cal_Way_Hunt_Desc>
+  <CC_Cal_Way_Bonfire_Letter>If the council keeps it, the colony builds a fire at nightfall and gathers round it with music. If there's no campfire, one is laid in the open and burns down to ash after.</CC_Cal_Way_Bonfire_Letter>
+  <CC_Cal_Way_Gifts_Letter>If the council keeps it, the colony gives small gifts round the circle: everyone gives one and gets one, and friendships are the warmer for it.</CC_Cal_Way_Gifts_Letter>
+  <CC_Cal_Way_Hunt_Letter>If the council keeps it, the hunters go out for the day's game, and everyone else gets something good in the pot tonight.</CC_Cal_Way_Hunt_Letter>
+  <CC_Cal_Keep_Bonfire>Light the bonfire</CC_Cal_Keep_Bonfire>
+  <CC_Cal_Keep_Gifts>A day of gifts</CC_Cal_Keep_Gifts>
+  <CC_Cal_Keep_Hunt>Send out the hunters</CC_Cal_Keep_Hunt>
+  <CC_Cal_Origin_FirstChild>{0} was born on this day in {1}, the first child born into the colony.</CC_Cal_Origin_FirstChild>
+  <CC_Cal_Origin_Walls>The colony had a wall round it for the first time on this day in {0}.</CC_Cal_Origin_Walls>
+  <CC_Cal_Origin_Homecoming>{0} came home safe on this day in {1}, after {2} days on the road.</CC_Cal_Origin_Homecoming>
+  <CC_Cal_Origin_NewCrop>The colony brought in its first {0} on this day in {1}.</CC_Cal_Origin_NewCrop>
+  <CC_Cal_Origin_FirstTrade>The colony struck its first trade on this day in {0}.</CC_Cal_Origin_FirstTrade>
+  <CC_Cal_Origin_GreatHunt>The hunters brought down {1} head of game on this day in {0}, mostly {2}.</CC_Cal_Origin_GreatHunt>
+  <CC_TieNote_Cal_Gift>gifts on {0}</CC_TieNote_Cal_Gift>
+  <CC_Cal_GiftGiven>{PAWN_nameDef} gave {OTHER_nameDef} a small gift for {DAY}, wrapped as well as could be managed.</CC_Cal_GiftGiven>
+
+  <!-- Council projects' newer goals (Ambitions/AmbitionGoals3.cs). -->
+  <CC_Goal_Record>{0} more {1} ({2} so far)</CC_Goal_Record>
+  <CC_Goal_Record_KillsAnimals>animals hunted</CC_Goal_Record_KillsAnimals>
+  <CC_Goal_Record_PlantsHarvested>plants harvested</CC_Goal_Record_PlantsHarvested>
+  <CC_Goal_Record_MealsCooked>meals cooked</CC_Goal_Record_MealsCooked>
+  <CC_Goal_Record_Council_TradesMade>trades made</CC_Goal_Record_Council_TradesMade>
+  <CC_Goal_StockStreak>{0} days in a row with at least {1} {2} in store ({3} days so far; {4} now)</CC_Goal_StockStreak>
+  <CC_Stock_fooddays>days of food</CC_Stock_fooddays>
+  <CC_Goal_DaysKept>Keep {0} of the colony's days as they come round ({1} so far)</CC_Goal_DaysKept>
+  <CC_Goal_GuestBeds>{0} guest beds in rooms indoors ({1} now)</CC_Goal_GuestBeds>
+  <CC_Goal_GuestRoom>A guest room of impressiveness {0} or more (best now: {1})</CC_Goal_GuestRoom>
+  <CC_Role_medical>hospital beds</CC_Role_medical>
+
+</LanguageData>

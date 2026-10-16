@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Room themes made of other mods' furniture (see Council_RoomThemes.xml for how a theme works). Every piece is named
+    by its defName and looked up silently, so with the mod missing the theme falls back on the next piece on its list
+    and in the end on the plan's own. Each piece keeps the shape of the piece it replaces (Tools/Tests checks every
+    layout with them, in every turn and mirrored, with and without the mod).
+
+    Medieval Overhaul (dankpyon.medieval.overhaul, defNames checked against its 1.6 defs): its rustic beds, wicker and
+    straw beds, carved chairs and round stools, rustic tables, end tables and dressers, candle stands and oil lamps, and
+    its own wooden and stone floors. Its oil wall lamp and wall torch hang on the walls of small and medium rooms (the
+    room's size decides, as for every theme: Building/LightMath.cs), its candle stands and oil lamps stand in large
+    ones. Its royal furniture is in the stately theme.
+
+    Alpha Props: Parks and Gardens (sarg.alphapropsparks, defNames checked against its 1.6 defs): its lawns and its
+    working street lights, for a garden room. It has no wall lights, so small rooms hang the game's own.
+  -->
+
+  <ColonyCouncil.RoomThemeDef>
+    <defName>Council_Theme_Hall</defName>
+    <label>hall</label>
+    <description>A room from an old manor: rustic beds under wool covers, carved chairs and round stools, heavy timber tables, candle stands and an oil lamp by the bed, and wide planks or cobbles underfoot. Built with Medieval Overhaul's own furniture where the colony has learned to make it, and plain wood and stone where it hasn't.</description>
+    <order>45</order>
+    <iconDefs><li>DankPyon_RusticChair</li><li>DiningChair</li></iconDefs>
+    <wallStuff><li>WoodLog</li><li>BlocksGranite</li><li>BlocksSandstone</li></wallStuff>
+    <wallStuffCategories><li>Woody</li><li>Stony</li></wallStuffCategories>
+    <furnitureStuff><li>WoodLog</li></furnitureStuff>
+    <furnitureStuffCategories><li>Woody</li></furnitureStuffCategories>
+    <floors><li>DankPyon_Floor_RusticWoodFloor_Wood</li><li>DankPyon_DarkWoodPlankFloor</li><li>WoodPlankFloor</li></floors>
+    <lavishFloors><li>DankPyon_Floor_RusticWoodFloor_DarkWood</li><li>DankPyon_Floor_Herringbone_Sandstone</li><li>DankPyon_Floor_Herringbone_Granite</li><li>WoodPlankFloor</li></lavishFloors>
+    <swaps>
+      <li><role>bed</role><defs><li>DankPyon_Bed_Rustic_Red</li><li>DankPyon_BedWicker</li><li>DankPyon_StrawBed</li></defs></li>
+      <li><role>doublebed</role><defs><li>DankPyon_Bed_RusticDouble_Red</li><li>DankPyon_BedWickerDouble</li><li>DankPyon_StrawBedDouble</li></defs></li>
+      <li><role>chair</role><defs><li>DankPyon_RusticChair</li><li>DankPyon_RusticStool</li></defs></li>
+      <li><role>table</role><defs><li>DankPyon_RusticTable1x2c</li><li>DankPyon_RusticTable2x2c</li><li>DankPyon_Table2x4c</li></defs></li>
+      <li><role>endtable</role><defs><li>DankPyon_RusticEndTable</li></defs></li>
+      <li><role>dresser</role><defs><li>DankPyon_RusticDresser</li></defs></li>
+      <li><role>light</role><defs><li>DankPyon_WallLamp</li><li>DankPyon_WallTorch</li><li>DankPyon_CandleStand</li><li>DankPyon_RusticLamp</li><li>TorchLamp</li></defs></li>
+    </swaps>
+  </ColonyCouncil.RoomThemeDef>
+
+  <ColonyCouncil.RoomThemeDef>
+    <defName>Council_Theme_Garden</defName>
+    <label>garden</label>
+    <description>The outdoors brought in: lawn underfoot, plants along the walls from the comfortable style on, garden lamps where there's power, and wooden furniture. With Alpha Props: Parks and Gardens, its lawns and street lights; without it, green carpet and the colony's own plant pots and lamps.</description>
+    <order>70</order>
+    <iconDefs><li>VFEPD_AP_LamplightA_Functional</li><li>PlantPot</li></iconDefs>
+    <furnitureStuff><li>WoodLog</li></furnitureStuff>
+    <furnitureStuffCategories><li>Woody</li></furnitureStuffCategories>
+    <floors><li>AP_Lawn</li><li>AP_CheckeredLawn</li><li>CarpetGreen</li></floors>
+    <swaps>
+      <li><role>light</role><defs><li>VFEPD_AP_LamplightA_Functional</li><li>VFEPD_AP_LamplightC_Functional</li><li>StandingLamp</li></defs></li>
+      <li><role>plantpot</role><defs><li>VFE_DecorativePlantPot</li><li>PlantPot</li></defs></li>
+      <li><role>chair</role><defs><li>Seat_Bench</li><li>Stool</li></defs></li>
+    </swaps>
+    <pots><li>VFE_DecorativePlantPot</li></pots>
+    <decorFrom>comfortable</decorFrom>
+  </ColonyCouncil.RoomThemeDef>
+
+</Defs>

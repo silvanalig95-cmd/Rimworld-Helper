@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- The player's other mods in the colony's everyday life: Hospitality's guests on This week, people who change in the
+       middle of a game (Integrations/GuestsWeek.cs, Integrations/PeopleChanges.cs). -->
+
+  <CC_Week_Guests>{COUNT} guests from {FROM}</CC_Week_Guests>
+  <CC_Week_GuestOne>A guest from {FROM}</CC_Week_GuestOne>
+  <CC_Week_GuestsWell>enjoying it</CC_Week_GuestsWell>
+  <CC_Week_GuestsSo>getting by</CC_Week_GuestsSo>
+  <CC_Week_GuestsPoorly>not happy</CC_Week_GuestsPoorly>
+  <CC_Week_GuestsTip>Staying as Hospitality's guests: {0}. How the visit goes is up to their beds, food and company. A lonely colonist may keep one company, and they raise their cups at the council's toasts.</CC_Week_GuestsTip>
+
+  <CC_Changed_SetAside>{PAWN_nameDef} isn't who {PAWN_pronoun} was. The council has set aside what {PAWN_pronoun} had asked of it ({COUNT}).</CC_Changed_SetAside>
+  <CC_Changed_WishSetAside>{PAWN_nameDef} has changed, and no longer needs {WISH}. The wish is set aside, with no blame on anyone.</CC_Changed_WishSetAside>
+
+  <!-- What a small habit looks like in the colonist's inspect pane (the newer six). -->
+  <CC_Habit_Report_Stars>watching the stars.</CC_Habit_Report_Stars>
+  <CC_Habit_Report_Plants>talking to the plants.</CC_Habit_Report_Plants>
+  <CC_Habit_Report_Animals>spending a while with {OTHER}.</CC_Habit_Report_Animals>
+  <CC_Habit_Report_Stores>going over the stores.</CC_Habit_Report_Stores>
+  <CC_Habit_Report_Company>keeping {OTHER} company.</CC_Habit_Report_Company>
+  <CC_Habit_Report_Stories>telling old stories by the fire.</CC_Habit_Report_Stories>
+
+</LanguageData>

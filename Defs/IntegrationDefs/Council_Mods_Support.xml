@@ -52,7 +52,7 @@
     <code>true</code>
     <live>hospitality</live>
     <packageIds><li>orion.hospitality</li></packageIds>
-    <what>Guests are visitors with stories: eight encounters with journals, a guest who wants to stay (taken in Hospitality's own way) and a guest's complaint, a guest room wish and room plan, and a guest of note among the events. Guest beds never count as free beds. Its peoples remember a delighting or a disappointing visit.</what>
+    <what>Guests are visitors with stories: eight encounters with journals, a guest who wants to stay (taken in Hospitality's own way) and a guest's complaint, a guest room wish and room plan, and a guest of note among the events. Guest beds never count as free beds. Its peoples remember a delighting or a disappointing visit. A lonely colonist may keep a guest company, guests raise their cups at the council's toasts and say a word about their stay, and This week lists who is staying and how it's going; guests always stay in Hospitality's own hands.</what>
   </ColonyCouncil.ModSupportDef>
 
   <ColonyCouncil.ModSupportDef>
@@ -132,7 +132,7 @@
     <label>Vanilla Ideology Expanded - Memes, Alpha Memes</label>
     <order>19</order>
     <packageIds><li>vanillaexpanded.vmemese</li><li>sarg.alphamemes</li></packageIds>
-    <what>Their memes react to decrees and the colony's ways; aristocratic, royal and god-emperor creeds let the leader name the council. Calendar days suggest their rites (tea ceremony, trading fair, wicker man).</what>
+    <what>Their memes react to decrees and the colony's ways; aristocratic, royal and god-emperor creeds let the leader name the council. Calendar days suggest their rites (tea ceremony, trading fair, wicker man). Alpha Memes' artists, water-blessers, ranchers and monastics have moments of their own, and its iconoclasts, gladiators and bulwarks social events.</what>
   </ColonyCouncil.ModSupportDef>
 
   <ColonyCouncil.ModSupportDef>
@@ -194,7 +194,7 @@
     <order>31</order>
     <code>true</code>
     <packageIds><li>oskarpotocki.vfe.classical</li></packageIds>
-    <what>The republic votes: a world event about the consular election; visitors from the republics talk of the senate and of masonry. A republic remembers the colony winning over its senate.</what>
+    <what>The republic votes: a world event about the consular election; visitors from the republics talk of the senate and of masonry. A republic remembers the colony winning over its senate. Its one-person tents are what camps sleep in.</what>
   </ColonyCouncil.ModSupportDef>
 
   <ColonyCouncil.ModSupportDef>
@@ -229,7 +229,7 @@
     <order>40</order>
     <code>true</code>
     <packageIds><li>dankpyon.medieval.overhaul</li></packageIds>
-    <what>Its pies, stews, cheese, wine, ale and library have journal days; visitors meet the colony's cheese, wine, hearth, oven, hives and books; its watermill isn't electricity, its firewood, rings and hearth fulfil wishes.</what>
+    <what>Its pies, stews, cheese, wine, ale and library have journal days; visitors meet the colony's cheese, wine, hearth, oven, hives and books; its watermill isn't electricity, its firewood, rings and hearth fulfil wishes. A hall room theme of its rustic furniture and floors, its royal furniture in the stately theme, and its hide and cloth tents in camps.</what>
   </ColonyCouncil.ModSupportDef>
 
   <ColonyCouncil.ModSupportDef>
@@ -248,6 +248,32 @@
     <what>Its fermenting barrels count for brewing wishes and room plans.</what>
   </ColonyCouncil.ModSupportDef>
 
+  <ColonyCouncil.ModSupportDef>
+    <defName>Council_Support_Outland</defName>
+    <label>Outland</label>
+    <order>43</order>
+    <code>true</code>
+    <packageIds><li>neronix17.outland.core</li><li>neronix17.outland.eastbornempire</li><li>neronix17.outland.motzcoalition</li><li>neronix17.outland.redburnpact</li><li>neronix17.outland.vathunnobles</li></packageIds>
+    <what>Its four peoples visit (tea with the Eastborn, a Motz at dusk, haggling with the Redburn Pact, a Vathun's questions about caste); the Vathun and the Eastborn make a lord's progress past the colony, and the Pact gathers its clans. Its tent flap is a camp tent's door.</what>
+  </ColonyCouncil.ModSupportDef>
+
+  <ColonyCouncil.ModSupportDef>
+    <defName>Council_Support_MedievalTotalRim</defName>
+    <label>Medieval Total Rim</label>
+    <order>44</order>
+    <code>true</code>
+    <packageIds><li>athelas.medievaltotalrim.core</li><li>athelas.medievaltotalrim.france</li><li>athelas.medievaltotalrim.hre</li><li>athelas.medievaltotalrim.poland</li><li>athelas.medievaltotalrim.russia</li><li>athelas.medievaltotalrim.byzantium</li><li>athelas.medievaltotalrim.turks</li><li>athelas.medievaltotalrim.mongols</li><li>athelas.medievaltotalrim.iberia</li></packageIds>
+    <what>Its nations visit in their own words (a knight on the road, a rider of the steppe, a learned traveller), make a lord's progress past the colony, and the khaganate gathers its clans. They are known by their mod, so every nation pack counts.</what>
+  </ColonyCouncil.ModSupportDef>
+
+  <ColonyCouncil.ModSupportDef>
+    <defName>Council_Support_AlphaPropsParks</defName>
+    <label>Alpha Props: Parks and Gardens</label>
+    <order>45</order>
+    <packageIds><li>sarg.alphapropsparks</li></packageIds>
+    <what>A garden room theme: its lawns underfoot and its working street lights.</what>
+  </ColonyCouncil.ModSupportDef>
+
   <!-- ===================== People and frameworks ===================== -->
 
   <ColonyCouncil.ModSupportDef>
@@ -263,7 +289,7 @@
     <label>Alpha Genes</label>
     <order>51</order>
     <packageIds><li>sarg.alphagenes</li></packageIds>
-    <what>Its xenotypes' needs are respected (no meal wishes for those who don't eat); sunfed people have their own tag. Nereids, efreet and drakonori have wishes of their own.</what>
+    <what>Its xenotypes' needs are respected (no meal wishes for those who don't eat); sunfed people have their own tag. Nereids, efreet and drakonori have wishes of their own. Nereids talk of the deep, the warm-blooded warm cold hands, the lapis read the stone; helixans, wretches and mind devourers have social events of their own.</what>
   </ColonyCouncil.ModSupportDef>
 
   <ColonyCouncil.ModSupportDef>
@@ -280,6 +306,24 @@
     <order>53</order>
     <packageIds><li>smashphil.vehicleframework</li></packageIds>
     <what>Someone aboard a vehicle or in flight is still one of the colony: no grief, no "gone" in the annals.</what>
+  </ColonyCouncil.ModSupportDef>
+
+  <ColonyCouncil.ModSupportDef>
+    <defName>Council_Support_BigAndSmall</defName>
+    <label>Big &amp; Small</label>
+    <order>55</order>
+    <code>true</code>
+    <packageIds><li>redmattis.bigsmall.core</li><li>redmattis.bigsmall</li><li>redmattis.bigsmall.simplesize</li></packageIds>
+    <what>Someone it gives a new race or a new body is looked at afresh: who they are is read again at once, wishes the new body can't use are set aside without blame, and the change gets a line in their own journal. Their records carry over.</what>
+  </ColonyCouncil.ModSupportDef>
+
+  <ColonyCouncil.ModSupportDef>
+    <defName>Council_Support_CharacterEditors</defName>
+    <label>Character Editor, Pawn Editor</label>
+    <order>56</order>
+    <code>true</code>
+    <packageIds><li>void.charactereditor</li><li>isorex.pawneditor</li></packageIds>
+    <what>A name, trait, age, gender or xenotype changed in the middle of a game is read again at once; wishes that no longer fit are set aside without blame, and someone left without an inner life has theirs set aside. Nobody's records are lost.</what>
   </ColonyCouncil.ModSupportDef>
 
   <ColonyCouncil.ModSupportDef>
