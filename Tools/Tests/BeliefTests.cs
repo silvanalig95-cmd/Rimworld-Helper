@@ -71,6 +71,10 @@ public static class BeliefTests
         Check(!BeliefMath.Has(BeliefMath.FromPrecepts(new[] { P(BeliefMath.InsectMeatRequired) }), Belief.FungusOrInsectOnly), "nor does insect meat required alone");
         Check(BeliefMath.Has(BeliefMath.FromPrecepts(new[] { P(BeliefMath.InsectMeatRequired), P(BeliefMath.FungusRequired) }), Belief.FungusOrInsectOnly),
             "both together: only fungus or insect");
+        Check(BeliefMath.Has(BeliefMath.FromPrecepts(new[] { P("Biosculpting_Despised", "Biosculpting") }), Belief.NoBiosculpter)
+              && BeliefMath.Has(BeliefMath.FromPrecepts(new[] { P("SomeMod_Biosculpting_Despised", "Biosculpting") }), Belief.NoBiosculpter)
+              && !BeliefMath.Has(BeliefMath.FromPrecepts(new[] { P("Biosculpting_Accelerated", "Biosculpting") }), Belief.NoBiosculpter),
+            "biosculpting despised (by any name in its issue) rules out a pod; accelerated doesn't");
         ulong violence = BeliefMath.FromPrecepts(new[] { P("VME_Violence_Abhorrent") });
         Check(BeliefMath.Has(violence, Belief.NoHunting) && BeliefMath.Has(violence, Belief.NoExecution), "violence abhorrent: no hunts, no executions");
         Check((BeliefMath.Diet & BeliefMath.Bit(Belief.NoMeat)) != 0 && (BeliefMath.Diet & BeliefMath.Bit(Belief.FungusOrInsectOnly)) != 0

@@ -22,7 +22,9 @@ namespace ColonyCouncil
     /// A gathering an answer called (a feast, a party, a bonfire, a toast): the game's own party at its heart, joined by
     /// those it was meant for when they're free (never the sleeping, the sick, the drafted or anyone busy with someone's
     /// care), and called off by any danger. At a feast, everyone who comes is served a cooked meal from the stores, the
-    /// finest first, and eats it at a table. When it's over, the moods the answer held go to those who were there.
+    /// finest first of those their beliefs and food policy let them eat (Wishes/Beliefs.cs), and eats it at a table; with
+    /// none fit for them, they sit with the rest and eat nothing. When it's over, the moods the answer held go to those
+    /// who were there.
     /// </summary>
     public class LordJob_PlayOut : LordJob_Joinable_Gathering
     {

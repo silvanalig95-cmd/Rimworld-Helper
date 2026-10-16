@@ -111,6 +111,7 @@ namespace ColonyCouncil
                     if (Disapproves(p, ideo, HistoryEventDefOf.IngestedHardDrug)) m |= BeliefMath.Bit(Belief.NoHardDrugs);
                     if (Disapproves(p, ideo, HistoryEventDefOf.InstalledProsthetic)) m |= BeliefMath.Bit(Belief.NoProsthetics);
                     if (Disapproves(p, ideo, HistoryEventDefOf.KilledInnocentAnimal)) m |= BeliefMath.Bit(Belief.NoHunting);
+                    if (Disapproves(p, ideo, HistoryEventDefOf.CutTree)) m |= BeliefMath.Bit(Belief.NoTreeCutting);
                     if (Disapproves(p, ideo, HistoryEventDefOf.ExecutedPrisoner, true)) m |= BeliefMath.Bit(Belief.NoExecution);
                     if (ideo.IdeoPrefersDarkness()) m |= BeliefMath.Bit(Belief.Darkness);
                     if (ideo.IdeoPrefersNudityForGender(p.gender)) m |= BeliefMath.Bit(Belief.Nudity);
@@ -370,7 +371,9 @@ namespace ColonyCouncil
             if (p == null || t?.def?.ingestible == null) return "inedible";
             try
             {
-                if (!FoodUtility.WillEat(p, t)) return "wont";
+                // Food: would they eat it at all (their race, their genes, their title, their food policy)? A drink or a
+                // drug answers to the drug policy instead (below).
+                if (!t.def.IsDrug && !FoodUtility.WillEat(p, t)) return "wont";
             }
             catch (Exception e)
             {
@@ -389,12 +392,13 @@ namespace ColonyCouncil
 
         /// <summary>
         /// A thing in store they'd count toward a wish for food (no memories asked for: raw food would always give one
-        /// to someone who isn't going to eat it raw). Only their beliefs, by what it is and what went into it.
+        /// to someone who isn't going to eat it raw). Only their beliefs, by what it is and what went into it, and for a
+        /// drink or a drug their drug policy too.
         /// </summary>
         public static bool FitForStock(Pawn p, Thing t)
         {
             if (p == null || t?.def?.ingestible == null) return true;
-            if (t.def.IsDrug) return !MindsDrug(p, t.def, false);
+            if (t.def.IsDrug) return !MindsDrug(p, t.def);
             ulong m = Mask(p);
             if ((m & BeliefMath.Diet) == 0) return true;
             return BeliefMath.FitToEat(m, Facts(t));
@@ -404,7 +408,7 @@ namespace ColonyCouncil
         public static bool FitForStock(Pawn p, ThingDef d)
         {
             if (p == null || d?.ingestible == null) return true;
-            if (d.IsDrug) return !MindsDrug(p, d, false);
+            if (d.IsDrug) return !MindsDrug(p, d);
             ulong m = Mask(p);
             if ((m & BeliefMath.Diet) == 0) return true;
             return BeliefMath.FitToEat(m, Facts(d));

@@ -46,6 +46,22 @@ namespace ColonyCouncil
         /// </summary>
         public List<string> sparks;
         public float sparkDays = 4f;
+        /// <summary>Beliefs that rule it out (Wishes/Beliefs.cs): no hunter's legend for one whose faith forbids killing animals.</summary>
+        public List<Belief> forbiddenBy;
+
+        [Unsaved] private ulong forbiddenMask;
+        [Unsaved] private bool forbiddenMaskSet;
+
+        /// <summary>This colonist's beliefs rule the goal out.</summary>
+        public bool AgainstBeliefsOf(Pawn p)
+        {
+            if (!forbiddenMaskSet)
+            {
+                forbiddenMask = BeliefMath.Mask(forbiddenBy);
+                forbiddenMaskSet = true;
+            }
+            return Beliefs.ForbidsAny(p, forbiddenMask);
+        }
         /// <summary>Journal, when they set their heart on it ({GOAL}).</summary>
         public ToneLines chosen = new ToneLines();
         /// <summary>Journal and the letter, when they achieve it ({GOAL}).</summary>
@@ -544,7 +560,7 @@ namespace ColonyCouncil
             var result = new List<(AspirationDef, string, float)>();
             foreach (var d in DefDatabase<AspirationDef>.AllDefsListForReading)
             {
-                if (done.Contains(d) || !DilemmaRole.Fits(d.who, p, d.children) || !OldEnough(d, p) || !SafeCanHave(d, p)) continue;
+                if (done.Contains(d) || !DilemmaRole.Fits(d.who, p, d.children) || !OldEnough(d, p) || d.AgainstBeliefsOf(p) || !SafeCanHave(d, p)) continue;
                 // The heart's need they lack most makes the goals that answer it a little likelier (Heart/).
                 result.Add((d, Sparked(d, p), d.weight * (d.who?.passion != null || d.who?.anyTrait != null ? 2f : 1f) * Heart.GoalFactor(p, d)
                                               * (d.Worker is AspirationWorker_Spouse ? AspirationWorker_Spouse.FaithFactor(p) : 1f)));

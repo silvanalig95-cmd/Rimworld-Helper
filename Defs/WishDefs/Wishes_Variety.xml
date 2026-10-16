@@ -384,6 +384,7 @@
     <label>firewood for the winter</label>
     <description>The cold months are here or coming, the woodpile looks thin, and someone wants it stocked before the snow.</description>
     <workerClass>ColonyCouncil.WishWorker_Stock</workerClass>
+    <forbiddenBy><li>NoTreeCutting</li></forbiddenBy>
     <category>Safety</category>
     <weight>0.9</weight>
     <expiryDays>10</expiryDays>

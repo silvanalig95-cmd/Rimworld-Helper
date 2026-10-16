@@ -87,7 +87,11 @@ namespace ColonyCouncil
         /// <summary>Ranching disliked.</summary>
         NoRanching,
         /// <summary>Leather clothes disliked.</summary>
-        NoLeather
+        NoLeather,
+        /// <summary>Biosculpting despised: no biosculpter pod.</summary>
+        NoBiosculpter,
+        /// <summary>Cutting trees disapproved: no great woodpile.</summary>
+        NoTreeCutting
     }
 
     /// <summary>What's known about one thing to eat or drink, for <see cref="BeliefMath.WhyNotEat"/>.</summary>
@@ -143,6 +147,7 @@ namespace ColonyCouncil
         public const string PasteForbidden = "AM_NutrientPasteEating_Forbidden";
         public const string MealsQualityDesired = "AM_Meals_QualityDesired";
         public const string LovinIssue = "Lovin";
+        public const string BiosculptingIssue = "Biosculpting";
 
         /// <summary>
         /// Precepts by name, and what each rules out: the game's Ideology, Vanilla Ideology Expanded - Memes, Alpha Memes
@@ -219,6 +224,10 @@ namespace ColonyCouncil
             { "AM_Religion_Disliked", new[] { Belief.NoReligion } },
             { "SlabBed_Preferred", new[] { Belief.SlabBeds } },
             { "VME_Ranching_Disliked", new[] { Belief.NoRanching } },
+            { "Biosculpting_Despised", new[] { Belief.NoBiosculpter } },
+            { "TreeCutting_Disapproved", new[] { Belief.NoTreeCutting } },
+            { "TreeCutting_Horrible", new[] { Belief.NoTreeCutting } },
+            { "TreeCutting_Prohibited", new[] { Belief.NoTreeCutting } },
         };
 
         /// <summary>What one precept rules out on its own (empty for one that rules nothing out).</summary>
@@ -256,6 +265,8 @@ namespace ColonyCouncil
                 if (name == null) continue;
                 foreach (var b in Of(name)) m |= Bit(b);
                 if (kv.Value == LovinIssue && !FreeLovin(name) && !Has(m, Belief.NoLovin)) m |= Bit(Belief.LovinInMarriage);
+                // Biosculpting despised, whatever the precept is called.
+                if (kv.Value == BiosculptingIssue && name.IndexOf("Despised", StringComparison.Ordinal) >= 0) m |= Bit(Belief.NoBiosculpter);
                 if (name == FungusRequired) fungus = true;
                 else if (name == InsectMeatRequired) insect = true;
             }

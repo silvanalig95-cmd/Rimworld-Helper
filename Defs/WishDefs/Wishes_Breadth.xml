@@ -970,6 +970,7 @@
     <label>{THING} to turn back the years</label>
     <description>An older colonist feels the years in every joint and has heard a biosculpter pod can turn some of them back.</description>
     <workerClass>ColonyCouncil.WishWorker_Have</workerClass>
+    <forbiddenBy><li>NoBiosculpter</li></forbiddenBy>
     <lasting>true</lasting>
     <category>Health</category>
     <weight>0.6</weight>

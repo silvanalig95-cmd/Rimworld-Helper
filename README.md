@@ -146,6 +146,17 @@ industrial colony about a deep drill or a comms console. The Almanac page "what 
 **Others are watching.** Friends are happy for the one who got their wish. The jealous, rivals and anyone who
 has been waiting longer can feel passed over, and some will want the same thing.
 
+**Beliefs and diets.** Nobody asks for what their faith or their own nature forbids, read from the game's Ideology,
+Vanilla Ideology Expanded - Memes and Alpha Memes (all optional): no shared bed before the wedding under a faith that
+keeps lovin for the married (an engaged couple asks for the wedding instead), no smokehouse or hunt for a vegetarian,
+no beer or brewery for a teetotaler, a faith that keeps drugs to medicine or an addict being weaned off, no clothes
+for a nudist, a dark torch rather than a lamp for a faith that prefers darklight, and so on. Food wishes count only
+what the colonist may eat, and a wish that comes to clash with a changed faith is let go quietly. Feasts and toasts
+serve each colonist only what their food or drug policy allows, what leaves no bad "ate ..." memory, and nothing
+Alpha Memes would make them sick for (only fungus or insect for its two required diets together, no forbidden
+paste); with nothing fit in the stores they sit at the table without eating. Life goals and council projects
+follow the same rules.
+
 **Promises kept.** 61 kinds of wish give something that stays, and the council is watched on it for about 60 days
 after granting it (90 for rooms): a bed kept for guests, a room of their own, a nicer or roomier bedroom, a bed shared,
 a workshop, kitchen or other room for their passion, a telescope, a sauna, a pen for the animals, a real floor, a
