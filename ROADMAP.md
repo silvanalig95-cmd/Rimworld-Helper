@@ -265,7 +265,7 @@ the content itself, not only to systems, alongside whatever else it does. Where 
 | Content | Count | Grow toward |
 |---|---|---|
 | Rimfolk events, story stages and missions | 182 (13 mission kinds, 9 → 13: a pilgrim to escort, word to carry, a lost child, hands for a harvest; 6 aftermath events after world events, 2 vendetta endings) | more everyday events per group, more chains, more mission kinds |
-| Wishes | 107 | more seasonal and biome wishes, more for the always-on mods (Alpha mods, Vanilla Expanded furniture) |
+| Wishes | 107 (none added for variety's sake: a new wish must point at what the colony really needs and make a real choice; the player is reviewing the existing ones for filler) | only wishes that serve the colony's own goals (survival, defence, health, comfort that matters, its people and their bonds) |
 | Council projects (ambitions) | 64 (8 in stages, 3 season-long; 2 tribal, 2 spacer, 1 for Hospitality) | projects from the calendar and the faith, more for children and elders |
 | Life goals | 84 (children's dreams that grow into grown-up goals, teenagers' goals, elders' last wishes a friend may finish, faith and the heart; goals a faith forbids never come up) | goals for each mod's content, goals two people share |
 | Dilemmas | 158 (14 new for children, teenagers and elders, two asking for a quirk; 8 new customs) | more for the camps; dilemmas for each new system as it lands |
@@ -289,7 +289,7 @@ the content itself, not only to systems, alongside whatever else it does. Where 
 | Customs that can become traditions | 25 (5 of the land, 3 of the faith, 4 children's) | more for the faith's memes and other mods' biomes |
 | Rimfolk scenarios | 13 (7 gentle, 6 with stakes) | a tribe's start, a spacer crash with a secret, an orphanage |
 | Names (epithets) | 54 (8 from Rimfolk's own records; 5 given for one deed beyond the walls) | names from offices, faith and the colony's years |
-| Advisor checks | 43 | checks for the newer systems (missions, the world page), more for tribal colonies |
+| Advisor checks | 62 (43 → 62: 7 for Rimfolk's systems (missions, world events, camps, decrees, offices, the calendar, promises), 3 for a low-tech winter, 3 everyday, 6 rooms to make better; advice can now open its council page or take the first step, like planning lamps) | checks for the dilemmas and ambitions, more for spacer colonies, actions for more of the older advice |
 | Colony character | 5 ways (10 names), 6 things a colony grows into | traits from hospitality, faith and the calendar |
 | Pets and nemeses | 14 heroics, 32 farewells, 22 taunts and parting words, 4 endings told from pools (one new: let go from the cells) | pets in the calendar, nemeses in dreams and personal stories |
 | Feelings | 26 (4 deepened by a heart's need that runs low) | feelings that touch the camps and world events, each with more dreams and moments |
