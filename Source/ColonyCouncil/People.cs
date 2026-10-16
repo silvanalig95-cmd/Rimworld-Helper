@@ -158,8 +158,18 @@ namespace ColonyCouncil
 
         public static bool ModActive(string packageId) => ActiveMod(packageId) != null;
 
-        public static bool Kidnapped(Pawn p) =>
-            p != null && Find.FactionManager.AllFactionsListForReading.Any(f => f.kidnapped != null && f.kidnapped.KidnappedPawnsListForReading.Contains(p));
+        /// <summary>Held by another faction as a kidnapped pawn. Asked for many people at a time: a plain loop, no allocation.</summary>
+        public static bool Kidnapped(Pawn p)
+        {
+            if (p == null) return false;
+            var factions = Find.FactionManager.AllFactionsListForReading;
+            for (int i = 0; i < factions.Count; i++)
+            {
+                var list = factions[i].kidnapped?.KidnappedPawnsListForReading;
+                if (list != null && list.Contains(p)) return true;
+            }
+            return false;
+        }
 
         private static readonly Dictionary<int, int> modPassions = new Dictionary<int, int>();
 
