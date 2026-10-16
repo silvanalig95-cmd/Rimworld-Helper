@@ -783,8 +783,8 @@
     </tips>
     <things>
       <li><defs><li>Sarcophagus</li><li>Grave</li></defs><role>grave</role><pos>(1,2)</pos><optional>false</optional></li>
-      <li><defs><li>Brazier</li><li>TorchLamp</li><li>StandingLamp</li></defs><role>light</role><pos>(0,3)</pos></li>
-      <li><defs><li>Brazier</li><li>TorchLamp</li><li>StandingLamp</li></defs><role>light</role><pos>(2,3)</pos></li>
+      <li><defs><li>Brazier</li><li>TorchLamp</li><li>StandingLamp</li></defs><role>light</role><keepOnFloor>true</keepOnFloor><pos>(0,3)</pos></li>
+      <li><defs><li>Brazier</li><li>TorchLamp</li><li>StandingLamp</li></defs><role>light</role><keepOnFloor>true</keepOnFloor><pos>(2,3)</pos></li>
       <li><defs><li>PlantPot</li></defs><role>plantpot</role><pos>(0,0)</pos></li>
     </things>
   </ColonyCouncil.RoomTemplateDef>
@@ -814,9 +814,9 @@
       <li><defs><li>Sarcophagus</li><li>Grave</li></defs><role>grave</role><pos>(6,2)</pos></li>
       <li><defs><li>Sarcophagus</li><li>Grave</li></defs><role>grave</role><pos>(0,0)</pos></li>
       <li><defs><li>Sarcophagus</li><li>Grave</li></defs><role>grave</role><pos>(6,0)</pos></li>
-      <li><defs><li>Brazier</li><li>TorchLamp</li><li>StandingLamp</li></defs><role>light</role><pos>(1,5)</pos></li>
-      <li><defs><li>Brazier</li><li>TorchLamp</li><li>StandingLamp</li></defs><role>light</role><pos>(5,5)</pos></li>
-      <li><defs><li>Brazier</li><li>TorchLamp</li><li>StandingLamp</li></defs><role>light</role><pos>(3,5)</pos><tier>decor</tier></li>
+      <li><defs><li>Brazier</li><li>TorchLamp</li><li>StandingLamp</li></defs><role>light</role><keepOnFloor>true</keepOnFloor><pos>(1,5)</pos></li>
+      <li><defs><li>Brazier</li><li>TorchLamp</li><li>StandingLamp</li></defs><role>light</role><keepOnFloor>true</keepOnFloor><pos>(5,5)</pos></li>
+      <li><defs><li>Brazier</li><li>TorchLamp</li><li>StandingLamp</li></defs><role>light</role><keepOnFloor>true</keepOnFloor><pos>(3,5)</pos><tier>decor</tier></li>
     </things>
   </ColonyCouncil.RoomTemplateDef>
 

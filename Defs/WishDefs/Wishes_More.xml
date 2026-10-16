@@ -7,6 +7,7 @@
     <label>time outside</label>
     <description>A colonist has been cooped up indoors for too long, in a mountain base or through a long winter, and is going stir-crazy. Outdoor work, a walk, or recreation under the open sky will do.</description>
     <workerClass>ColonyCouncil.WishWorker_Outside</workerClass>
+    <forbiddenBy><li>Indoors</li></forbiddenBy>
     <category>Comfort</category>
     <weight>1</weight>
     <expiryDays>4</expiryDays>

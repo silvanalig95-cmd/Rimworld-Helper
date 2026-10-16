@@ -8,6 +8,7 @@
     <label>a bed for {OTHER_nameDef} in {PAWN_possessive} room</label>
     <description>A colonist bonded to a small animal wants it sleeping in their room, not out with the herd.</description>
     <workerClass>ColonyCouncil.WishWorker_PetBed</workerClass>
+    <forbiddenBy><li>NoPets</li></forbiddenBy>
     <lasting>true</lasting>
     <lostText>The bed for {OTHER_nameDef} is gone from {FOR_nameDef}'s room.</lostText>
     <category>Comfort</category>

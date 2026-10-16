@@ -89,7 +89,8 @@ namespace ColonyCouncil
             if (!lines.NullOrEmpty()) Arrivals.Say(x, Flavor.PickText(lines));
             foreach (var p in v.map.mapPawns.FreeColonistsSpawned)
             {
-                if (v.touched.Contains(p) || !p.Awake() || p.Drafted || p.InMentalState || p.Downed || p.Position.DistanceTo(x.Position) > 16f) continue;
+                // Only those who can hear the tales: up and about, a few steps off, in the same room or in sight.
+                if (v.touched.Contains(p) || !Together.Hears(p, x, 16f)) continue;
                 v.touched.Add(p);
                 using var _cause = Causes.Push("CC_Cause_Tales".Translate(x.LabelShort).Resolve());
                 CouncilGameComponent.GiveThought(p, v.Ext?.thought ?? CouncilDefOf.Council_Evt_HeardTales, x);

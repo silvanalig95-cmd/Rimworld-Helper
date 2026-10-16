@@ -389,7 +389,7 @@ namespace ColonyCouncil
         /// <summary>A real fight won without losses: one or two of those who fought say so, if they're in view.</summary>
         public static void Victory(List<Pawn> fighters)
         {
-            if (!On || fighters == null || ColonyCouncilMod.Settings?.speechText != true) return;
+            if (!On || fighters == null || !Speech.On) return;
             try
             {
                 if (!Looking(out var map, out var view)) return;
@@ -420,7 +420,7 @@ namespace ColonyCouncil
                 if (self == null || !Looking(out var map, out var view)) return;
                 Look();
                 int singers = 0;
-                bool spoke = ColonyCouncilMod.Settings?.speechText != true;
+                bool spoke = !Speech.On;
                 foreach (var p in colonists.InRandomOrder())
                 {
                     if (singers >= 3) break;
@@ -502,7 +502,7 @@ namespace ColonyCouncil
             bool comet = conditions.GetActiveCondition<GameCondition_Comet>() != null;
             if (comet) CometGazer(map, now);
             if (spoke) return;
-            bool speech = ColonyCouncilMod.Settings?.speechText == true;
+            bool speech = Speech.On;
             if (speech && AmbientLine(map, view, now, comet, conditions)) return;
             if (speech && StateSpeech.TrySay(this, map, view, now)) return;
             Hum(map, view, now);

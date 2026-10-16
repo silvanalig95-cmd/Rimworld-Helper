@@ -13,6 +13,7 @@
     <label>a room of their own</label>
     <description>Sleeping in the barracks, sharing a room or without a bed at all, this colonist wants a private bedroom.</description>
     <workerClass>ColonyCouncil.WishWorker_OwnRoom</workerClass>
+    <forbiddenBy><li>Barracks</li></forbiddenBy>
     <lasting>true</lasting>
     <watchDays>90</watchDays>
     <lostText>{FOR_nameDef} no longer has the room of {FOR_possessive} own the council gave {FOR_objective}.</lostText>
@@ -219,6 +220,7 @@
     <label>a roomier bedroom</label>
     <description>This colonist's bedroom is cramped and they'd like room to breathe.</description>
     <workerClass>ColonyCouncil.WishWorker_Spacious</workerClass>
+    <forbiddenBy><li>SmallRooms</li></forbiddenBy>
     <lasting>true</lasting>
     <watchDays>90</watchDays>
     <lostText>{FOR_nameDef}'s bedroom isn't {SUBJECT} any more, as the council made it.</lostText>
@@ -429,6 +431,7 @@
     <label>light in {FOR_possessive} bedroom</label>
     <description>Night owls and colonists who've been left in the dark want a light in their room.</description>
     <workerClass>ColonyCouncil.WishWorker_Light</workerClass>
+    <forbiddenBy><li>Darkness</li></forbiddenBy>
     <lasting>true</lasting>
     <lostText>{FOR_nameDef}'s bedroom has no light any more.</lostText>
     <envy>0.1</envy>
@@ -657,6 +660,7 @@
     <label>something new to do for fun</label>
     <description>Bored colonists want a new kind of recreation.</description>
     <workerClass>ColonyCouncil.WishWorker_RecreationVariety</workerClass>
+    <forbiddenBy><li>NoRecreation</li></forbiddenBy>
     <lasting>true</lasting>
     <lostText>The new way to pass the time that {FOR_nameDef} asked for is gone.</lostText>
     <envy>0</envy>

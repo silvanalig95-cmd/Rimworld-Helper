@@ -57,6 +57,12 @@ namespace ColonyCouncil
         public string tier;
         /// <summary>A material to prefer (a saved room remembers what it was built of), used when the colony has enough.</summary>
         public string stuff;
+        /// <summary>
+        /// A light that is part of the room's look (a brazier by a throne or an altar): while the colony can build the first
+        /// of its <see cref="defs"/>, it stays on the floor where the plan puts it. Otherwise it is an ordinary light, and
+        /// the room may hang wall lamps in its place (<see cref="LightMath"/>).
+        /// </summary>
+        public bool keepOnFloor;
 
         public string Tier => TemplateLayout.TierOf(tier, role);
 
@@ -65,6 +71,16 @@ namespace ColonyCouncil
 
         /// <summary>Things that share the same spec are configured together in the planner (all the beds, all the chairs).</summary>
         public string GroupKey => (role ?? "") + "|" + (defs == null ? "" : string.Join(",", defs));
+
+        /// <summary>A light the room may hang on its walls instead (a plain lamp, not part of the room's look).</summary>
+        public bool MayHang(ThingDef pick) =>
+            role == "light" && !inWall && !(keepOnFloor && pick != null && defs != null && defs.Count > 0 && pick.defName == defs[0]);
+
+        /// <summary>
+        /// The wall lamps a room hangs in place of its floor lights: one group in the planner, whatever the template's
+        /// light slots are. Its variants are every light, so the player can also swap them back for a standing lamp.
+        /// </summary>
+        public static readonly TemplateThing AutoWallLamp = new TemplateThing { defs = new List<string>(), role = "walllight", tier = "core" };
 
         /// <summary>The plant pots the lavish style adds along the walls.</summary>
         public static readonly TemplateThing AutoDecor = new TemplateThing { defs = new List<string> { "PlantPot" }, role = "plantpot", tier = "lavish" };
@@ -133,6 +149,7 @@ namespace ColonyCouncil
             {
                 if ((t.defs == null || t.defs.Count == 0) && t.role.NullOrEmpty()) yield return "a template thing has neither defs nor role";
                 if (!t.tier.NullOrEmpty() && t.tier != "core" && t.tier != "decor" && t.tier != "lavish") yield return "tier must be core, decor or lavish";
+                if (t.keepOnFloor && t.role != "light") yield return "keepOnFloor is for lights";
                 if (t.inWall)
                 {
                     bool onRing = t.pos.x == 0 || t.pos.z == 0 || t.pos.x == FullWidth - 1 || t.pos.z == FullHeight - 1;
@@ -164,6 +181,8 @@ namespace ColonyCouncil
                 case "bed": return Avail.IsSingleBed;
                 case "doublebed": return Avail.IsDoubleBed;
                 case "light": return Avail.IsLight;
+                // The wall lamps a room hangs (TemplateThing.AutoWallLamp): any light, so they can be swapped back too.
+                case "walllight": return Avail.IsLight;
                 case "heater": return Avail.IsHeater;
                 case "cooler": return d => d.thingClass != null && typeof(Building_Cooler).IsAssignableFrom(d.thingClass);
                 case "table": return Avail.IsEatingTable;
@@ -237,9 +256,11 @@ namespace ColonyCouncil
         /// the same purpose and footprint. Missing optional pieces are dropped, and so are pieces the chosen style leaves
         /// out. A theme then swaps pieces for its own furniture of the same shape, where the colony can build it. Then the
         /// layout is checked as a whole (<see cref="TemplateLayout.Arrange"/>): a piece whose work spot would face a wall is
-        /// turned, one that fits nowhere is left out. The lavish style adds plant pots along free stretches of wall and a
-        /// rug (a theme that wants plants adds the pots from the comfortable style on). The planner's choices (another
-        /// variant, another material, the style, the theme, the door) are applied when <paramref name="config"/> is given.
+        /// turned, one that fits nowhere is left out. Then the lights: a small or medium room hangs wall lamps in place of
+        /// its floor lights, as many as it needs and spread round its walls; a large one keeps its standing lamps
+        /// (<see cref="LightMath"/>). The lavish style adds plant pots along free stretches of wall and a rug (a theme that
+        /// wants plants adds the pots from the comfortable style on). The planner's choices (another variant, another
+        /// material, the style, the theme, the door) are applied when <paramref name="config"/> is given.
         /// </summary>
         public List<ResolvedThing> Resolve(Map map, out List<string> missing, RoomPlanConfig config = null)
         {
@@ -254,7 +275,10 @@ namespace ColonyCouncil
                 groupCounts.TryGetValue(t.GroupKey, out int n);
                 groupCounts[t.GroupKey] = n + 1;
             }
+            var (asked, askedLight) = LightAsk(map, config);
             var picked = new List<(TemplateThing t, ThingDef def, int slot, bool themed)>();
+            // The lights that may move to the walls: the slot, and where the plan puts it.
+            var hangable = new List<(TemplateThing t, int slot)>();
             for (int i = 0; i < things.Count; i++)
             {
                 var t = things[i];
@@ -267,6 +291,8 @@ namespace ColonyCouncil
                         var known = t.Defs.FirstOrDefault();
                         missing.Add(known != null ? known.label : ("CC_Role_" + t.role).Translate().Resolve());
                     }
+                    // No standing light the colony can build: a wall lamp may still light the spot.
+                    if (t.MayHang(null)) hangable.Add((t, i));
                     continue;
                 }
                 bool themed = false;
@@ -279,18 +305,56 @@ namespace ColonyCouncil
                         themed = true;
                     }
                 }
-                if (config != null && config.variant.TryGetValue(t.GroupKey, out var chosen) && chosen != pick
+                // A wall lamp picked for a light is the room's call to hang its lamps (LightAsk), not a floor piece.
+                if (config != null && config.variant.TryGetValue(t.GroupKey, out var chosen) && chosen != pick && !WallLights.IsAttached(chosen)
                     && Avail.CanBuild(chosen, map) && Fits(t, chosen))
                 {
                     pick = chosen;
                     themed = false;
                 }
+                bool hangs = t.MayHang(pick);
+                // A standing lamp picked for the room's wall lamps: all its plain lights stand on the floor, as that lamp.
+                if (hangs && asked == LightMath.AskFloor && askedLight != pick && Fits(t, askedLight))
+                {
+                    pick = askedLight;
+                    themed = false;
+                }
                 picked.Add((t, pick, i, themed));
+                if (hangs) hangable.Add((t, i));
             }
 
             int door = config != null ? config.DoorX(this) : DoorX;
             var pieces = picked.Select(p => PieceFor(p.t, p.def, p.slot)).ToList();
             layoutNotes = TemplateLayout.Arrange(size.x, size.z, door, pieces);
+
+            // The lights: wall lamps in place of the floor lights of a small or medium room (or when asked for), the plan's
+            // standing lamps in a large one.
+            LightMath.WallLampPlan lampPlan = null;
+            ThingDef lampDef = null;
+            if (hangable.Count > 0)
+            {
+                try
+                {
+                    lampDef = asked == LightMath.AskWall ? askedLight : WallLampFor(map, theme, hangable.Select(h => h.t));
+                    var lights = hangable.Select(h =>
+                    {
+                        int k = picked.FindIndex(p => p.slot == h.slot);
+                        return (k >= 0 ? pieces[k] : null, h.t.pos.x, h.t.pos.z);
+                    }).ToList();
+                    bool floorPlaced = lights.Any(l => l.Item1 != null && !l.Item1.dropped);
+                    if (lampDef != null && WallLights.PlannedWallsHoldLamps
+                        && LightMath.UseWallLamps(size.x * size.z, true, floorPlaced, asked))
+                    {
+                        lampPlan = LightMath.LightWithWallLamps(size.x, size.z, door, pieces, lights, WallLights.Reach(lampDef));
+                        if (lampPlan.chosen.Count == 0) lampPlan = null;
+                    }
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("room plan lights " + defName, e);
+                    lampPlan = null;
+                }
+            }
 
             // What the walls, door and floor of this plan use comes off the stock first, and each group of furniture
             // takes its share in turn, so no two parts of the room count on the same blocks.
@@ -336,6 +400,12 @@ namespace ColonyCouncil
                     themed = themed
                 });
             }
+            if (lampPlan != null)
+            {
+                // The theme's own wall light (a wall torch for the tribal look) shows among what the theme put in.
+                bool lampThemed = asked != LightMath.AskWall && theme != null && theme.CandidatesFor("light").Contains(lampDef.defName);
+                AddWallLamps(list, pieces, lampPlan, lampDef, map, config, reserved, lampThemed);
+            }
             int decorFrom = theme?.DecorFrom ?? TemplateLayout.Lavish;
             if (missing.Count == 0 && ThemeMath.AddsDecor((int)style, decorFrom))
                 AddDecor(list, pieces.Where(p => !p.dropped).ToList(), map, config, door, reserved, ThemeMath.AddsRug((int)style));
@@ -378,6 +448,109 @@ namespace ColonyCouncil
             return null;
         }
 
+        /// <summary>
+        /// What the planner was told about the room's lights: a light picked for the room's wall lamps (a wall lamp, or a
+        /// standing lamp to put them back on the floor), or a wall lamp picked for one of its lights. Else nothing, and the
+        /// room's size decides.
+        /// </summary>
+        private (int asked, ThingDef def) LightAsk(Map map, RoomPlanConfig config)
+        {
+            if (config == null) return (LightMath.Auto, null);
+            try
+            {
+                if (config.variant.TryGetValue(TemplateThing.AutoWallLamp.GroupKey, out var d) && d != null && Avail.CanBuild(d, map))
+                {
+                    if (WallLights.IsWallLight(d)) return (LightMath.AskWall, d);
+                    if (WallLights.IsFloorLight(d)) return (LightMath.AskFloor, d);
+                }
+                foreach (var t in things)
+                    if (t.MayHang(null) && !t.keepOnFloor && config.variant.TryGetValue(t.GroupKey, out var v) && WallLights.IsWallLight(v) && Avail.CanBuild(v, map))
+                        return (LightMath.AskWall, v);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("room plan light choice " + defName, e);
+            }
+            return (LightMath.Auto, null);
+        }
+
+        /// <summary>The wall lamp for this room: the theme's first, then one the plan lists, then the colony's best.</summary>
+        private static ThingDef WallLampFor(Map map, RoomThemeDef theme, IEnumerable<TemplateThing> lights)
+        {
+            var first = new List<string>();
+            if (theme != null) first.AddRange(theme.CandidatesFor("light"));
+            foreach (var t in lights)
+                if (t.defs != null) first.AddRange(t.defs);
+            return WallLights.Best(map, first);
+        }
+
+        /// <summary>
+        /// The wall lamps, each on the floor cell in front of its wall and facing it (<see cref="LightMath"/>), and as pieces
+        /// for the decor that follows, so no plant pot stands under a lamp.
+        /// </summary>
+        private void AddWallLamps(List<ResolvedThing> list, List<TemplateLayout.Piece> pieces, LightMath.WallLampPlan plan, ThingDef def, Map map,
+            RoomPlanConfig config, Dictionary<ThingDef, int> reserved, bool themed)
+        {
+            var lampThing = TemplateThing.AutoWallLamp;
+            int n = plan.chosen.Count;
+            ThingDef stuff = null;
+            if (def.MadeFromStuff)
+            {
+                stuff = StuffFor(lampThing, def, map, config, n, reserved);
+                MaterialPicker.Reserve(reserved, def, stuff, n);
+            }
+            for (int k = 0; k < n; k++)
+            {
+                var s = plan.candidates[plan.chosen[k]];
+                list.Add(new ResolvedThing
+                {
+                    def = def,
+                    stuff = stuff,
+                    rect = new CellRect(s.x, s.z, 1, 1),
+                    rot = new Rot4(s.facing),
+                    group = lampThing.GroupKey,
+                    slot = -1,
+                    lamps = plan,
+                    lamp = k,
+                    themed = themed
+                });
+                pieces.Add(new TemplateLayout.Piece
+                {
+                    x = s.x,
+                    z = s.z,
+                    minX = s.x,
+                    minZ = s.z,
+                    w = 1,
+                    h = 1,
+                    rot = s.facing,
+                    facing = s.facing,
+                    passable = true,
+                    role = lampThing.role
+                });
+            }
+        }
+
+        /// <summary>
+        /// The planner picked <paramref name="d"/> for a group. A light picked for the room's plain lights (its wall lamps
+        /// or its standing lamps) is the choice for all of them: a wall lamp hangs them, a standing lamp puts them on the
+        /// floor, whatever the room's size (<see cref="LightAsk"/>). It replaces any earlier pick, so the two never pull
+        /// against each other.
+        /// </summary>
+        public void PickVariant(RoomPlanConfig cfg, string group, ThingDef d)
+        {
+            if (cfg == null || group == null) return;
+            var tt = ThingInGroup(group);
+            bool plainLight = tt != null && (tt == TemplateThing.AutoWallLamp || (tt.role == "light" && !tt.inWall && !tt.keepOnFloor));
+            if (plainLight && d != null && Avail.IsLight(d))
+            {
+                foreach (var t in things)
+                    if (t.role == "light" && !t.inWall && !t.keepOnFloor) cfg.variant.Remove(t.GroupKey);
+                group = TemplateThing.AutoWallLamp.GroupKey;
+            }
+            cfg.variant[group] = d;
+            cfg.Changed();
+        }
+
         /// <summary>The layout rules' view of a piece: its size, facing rules and work spots.</summary>
         public static TemplateLayout.Piece PieceFor(TemplateThing t, ThingDef d, int slot)
         {
@@ -394,6 +567,7 @@ namespace ColonyCouncil
                 optional = t.optional,
                 inWall = t.inWall,
                 isDoor = d.IsDoor,
+                isWall = d.IsWall,
                 role = t.role
             };
             if (d.hasInteractionCell) p.spots.Add((d.interactionCellOffset.x, d.interactionCellOffset.z));
@@ -503,38 +677,46 @@ namespace ColonyCouncil
         {
             var known = t.Defs.ToList();
             IntVec2 wantedSize = known.Count > 0 ? known[0].size : new IntVec2(1, 1);
+            // Something hung on a wall never stands where the plan puts floor furniture: wall lamps hang where LightMath
+            // says, and other wall pieces (a wall heater, a radiator, a wall television) aren't planned.
             foreach (var d in known)
             {
-                if (Avail.CanBuild(d, map) && Fits(t, d)) return d;
+                if (!WallLights.IsAttached(d) && Avail.CanBuild(d, map) && Fits(t, d)) return d;
             }
             if (!t.role.NullOrEmpty())
             {
                 var pred = RolePredicate(t.role);
                 if (pred != null)
                 {
-                    var d = Avail.BestBuildable(map, x => pred(x) && x.size == wantedSize);
+                    var d = Avail.BestBuildable(map, x => pred(x) && x.size == wantedSize && !WallLights.IsAttached(x));
                     if (d != null && Fits(t, d)) return d;
                 }
             }
             return null;
         }
 
-        /// <summary>Everything the colony could build in this spot instead: the preferred defs and anything with the same purpose and footprint.</summary>
+        /// <summary>
+        /// Everything the colony could build in this spot instead: the preferred defs and anything with the same purpose and
+        /// footprint. Wall lamps are offered for the room's plain lights (picking one hangs all its lamps on the walls), and
+        /// every light for its wall lamps; nothing else that hangs on a wall is offered for the floor.
+        /// </summary>
         public List<ThingDef> VariantsFor(TemplateThing t, Map map)
         {
             var result = new List<ThingDef>();
             var known = t.Defs.ToList();
             IntVec2 wantedSize = known.Count > 0 ? known[0].size : new IntVec2(1, 1);
+            bool lamps = t == TemplateThing.AutoWallLamp || (t.MayHang(null) && !t.keepOnFloor);
+            bool Allowed(ThingDef d) => !WallLights.IsAttached(d) || (lamps && WallLights.IsWallLight(d));
             foreach (var d in known)
             {
-                if (!result.Contains(d) && Avail.CanBuild(d, map) && Fits(t, d)) result.Add(d);
+                if (!result.Contains(d) && Allowed(d) && Avail.CanBuild(d, map) && Fits(t, d)) result.Add(d);
             }
             var pred = t.role.NullOrEmpty() ? null : RolePredicate(t.role);
             if (pred != null)
             {
                 foreach (var d in Avail.AllBuildings)
                 {
-                    if (result.Contains(d) || d.size != wantedSize || !pred(d)) continue;
+                    if (result.Contains(d) || d.size != wantedSize || !pred(d) || !Allowed(d)) continue;
                     if (Avail.CanBuild(d, map) && Fits(t, d)) result.Add(d);
                 }
             }
@@ -543,7 +725,10 @@ namespace ColonyCouncil
 
         public TemplateThing ThingInGroup(string group) =>
             things.FirstOrDefault(t => t.GroupKey == group)
-            ?? (group == TemplateThing.AutoDecor.GroupKey ? TemplateThing.AutoDecor : group == TemplateThing.AutoRug.GroupKey ? TemplateThing.AutoRug : RoomThemeDef.DecorThingFor(group));
+            ?? (group == TemplateThing.AutoDecor.GroupKey ? TemplateThing.AutoDecor
+                : group == TemplateThing.AutoRug.GroupKey ? TemplateThing.AutoRug
+                : group == TemplateThing.AutoWallLamp.GroupKey ? TemplateThing.AutoWallLamp
+                : RoomThemeDef.DecorThingFor(group));
 
         [Unsaved] private Texture2D cachedIcon;
         [Unsaved] private bool iconResolved;
@@ -731,5 +916,10 @@ namespace ColonyCouncil
         public int slot;
         /// <summary>The room's theme put this piece in instead of the plan's own.</summary>
         public bool themed;
+        /// <summary>A lamp hung on the wall: the room's lamp plan (to find it another wall on the map if need be) and which lamp this is.</summary>
+        public LightMath.WallLampPlan lamps;
+        public int lamp = -1;
+
+        public bool OnWall => lamps != null && lamp >= 0;
     }
 }

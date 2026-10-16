@@ -55,11 +55,29 @@ namespace ColonyCouncil
         }
     }
 
-    /// <summary>One need of the heart as it is now, with the main reason it's high or low.</summary>
+    /// <summary>
+    /// One thing that raises or holds down a need of the heart this hour: how much (0 for something missing that only
+    /// explains a low value, such as "no friends here"), what it is, and what would help when it holds the need down.
+    /// </summary>
+    public struct NeedPart
+    {
+        public float amount;
+        public string text;
+        /// <summary>Whether <see cref="amount"/> really moved the value (false: a note on what's missing).</summary>
+        public bool counted;
+        /// <summary>A Keyed string saying what would help, for what holds it down; else null.</summary>
+        public string help;
+        /// <summary>An argument for <see cref="help"/> (a decree's name), or null.</summary>
+        public string helpArg;
+    }
+
+    /// <summary>One need of the heart as it is now, with the main reason it's high or low and everything that moved it.</summary>
     public struct NeedNow
     {
         public float value;
         public string why;
+        /// <summary>What raised it and what held it down this hour, biggest first (worked out hourly, not saved).</summary>
+        public NeedPart[] parts;
     }
 
     /// <summary>
@@ -95,6 +113,11 @@ namespace ColonyCouncil
         /// <summary>Since when each feeling has been felt (defName and tick, in two lists).</summary>
         public List<string> feelingSinceKeys = new List<string>();
         public List<int> feelingSinceTicks = new List<int>();
+        /// <summary>
+        /// For each need of the heart, the hours it has been badly lacking lately (HeartNeedMath.LackHours): after
+        /// about three days, it adds a little strain.
+        /// </summary>
+        public List<float> needLack = new List<float>();
 
         // ---------------- Worked out each hour, not saved ----------------
 
@@ -124,6 +147,8 @@ namespace ColonyCouncil
             Pad(recentBuild, HeartMath.SourceCount);
             Pad(recentRelief, HeartMath.ReliefCount);
             Pad(today, HeartMath.SourceCount);
+            if (needLack == null) needLack = new List<float>();
+            Pad(needLack, NeedCount);
             if (feelingSinceKeys == null || feelingSinceTicks == null || feelingSinceKeys.Count != feelingSinceTicks.Count)
             {
                 feelingSinceKeys = new List<string>();
@@ -138,6 +163,12 @@ namespace ColonyCouncil
             while (list.Count < n) list.Add(0f);
             while (list.Count > n) list.RemoveAt(list.Count - 1);
         }
+
+        /// <summary>The four needs of the heart (HeartNeed).</summary>
+        public const int NeedCount = 4;
+
+        /// <summary>Hours this need has been badly lacking lately (see <see cref="needLack"/>).</summary>
+        public float LackHours(HeartNeed n) => needLack != null && (int)n < needLack.Count ? needLack[(int)n] : 0f;
 
         public float Recent(StrainSource s) => (int)s < recentBuild.Count ? recentBuild[(int)s] : 0f;
 
@@ -196,8 +227,11 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref lastTrustTick, "lastTrustTick", -999999);
             Scribe_Collections.Look(ref feelingSinceKeys, "feelingSinceKeys", LookMode.Value);
             Scribe_Collections.Look(ref feelingSinceTicks, "feelingSinceTicks", LookMode.Value);
+            Scribe_Collections.Look(ref needLack, "needLack", LookMode.Value);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
+                // Saves from before the needs could wear on anyone have none: nobody has been lacking anything yet.
+                if (needLack == null) needLack = new List<float>();
                 if (recentBuild == null) recentBuild = new List<float>();
                 if (recentRelief == null) recentRelief = new List<float>();
                 if (today == null) today = new List<float>();

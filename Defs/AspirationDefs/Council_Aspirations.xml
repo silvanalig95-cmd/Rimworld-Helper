@@ -338,6 +338,7 @@
     <defName>Council_Asp_Warrior</defName>
     <label>a warrior's record</label>
     <workerClass>ColonyCouncil.AspirationWorker_Record</workerClass>
+    <forbiddenBy><li>NoViolence</li></forbiddenBy>
     <record>KillsHumanlikes</record>
     <amount>25</amount>
     <goal>bring down twenty-five enemies</goal>
@@ -528,6 +529,7 @@
     <defName>Council_Asp_Avenge</defName>
     <label>vengeance</label>
     <workerClass>ColonyCouncil.AspirationWorker_Counter</workerClass>
+    <forbiddenBy><li>NoViolence</li></forbiddenBy>
     <counter>avenged</counter>
     <amount>1</amount>
     <weight>3</weight>

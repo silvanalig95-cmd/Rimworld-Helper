@@ -6,6 +6,7 @@
     <label>new clothes</label>
     <description>Tattered rags, a dead raider's shirt, or nothing at all: this colonist wants something decent to wear.</description>
     <workerClass>ColonyCouncil.WishWorker_NewClothes</workerClass>
+    <forbiddenBy><li>Nudity</li></forbiddenBy>
     <envy>0.5</envy>
     <meToo>true</meToo>
     <triggers>
@@ -182,6 +183,7 @@
     <label>a replacement for {FOR_possessive} {SUBJECT}</label>
     <description>A colonist missing a body part wants it replaced, and the colony can get or make something that fits.</description>
     <workerClass>ColonyCouncil.WishWorker_Prosthetic</workerClass>
+    <forbiddenBy><li>NoProsthetics</li></forbiddenBy>
     <envy>0.3</envy>
     <triggers>
       <li>
@@ -259,6 +261,7 @@
     <label>an animal companion</label>
     <description>An animal lover has spotted a creature out on the map and wants to bring it home.</description>
     <workerClass>ColonyCouncil.WishWorker_Companion</workerClass>
+    <forbiddenBy><li>NoPets</li></forbiddenBy>
     <lasting>true</lasting>
     <lostText>{OTHER_nameDef}, the companion {FOR_nameDef} wanted, is no longer the colony's.</lostText>
     <envy>0.2</envy>

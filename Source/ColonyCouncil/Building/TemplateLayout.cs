@@ -158,6 +158,8 @@ namespace ColonyCouncil
             public bool optional = true;
             public bool inWall;
             public bool isDoor;
+            /// <summary>A wall inside the room (a partition): it splits the room's light, and a wall lamp can hang on it.</summary>
+            public bool isWall;
             /// <summary>Its work spots (interaction cells) for a north facing, relative to the root.</summary>
             public List<(int x, int z)> spots = new List<(int x, int z)>();
             public string role;

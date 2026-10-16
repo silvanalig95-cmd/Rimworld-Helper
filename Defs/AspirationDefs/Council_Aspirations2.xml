@@ -12,6 +12,7 @@
     <defName>Council_Asp2_Mechbane</defName>
     <label>a mechanoid breaker</label>
     <workerClass>ColonyCouncil.AspirationWorker_Record</workerClass>
+    <forbiddenBy><li>NoViolence</li></forbiddenBy>
     <record>KillsMechanoids</record>
     <amount>10</amount>
     <weight>0.6</weight>
@@ -187,6 +188,7 @@
     <defName>Council_Asp2_Hunter</defName>
     <label>a hunter's legend</label>
     <workerClass>ColonyCouncil.AspirationWorker_Record</workerClass>
+    <forbiddenBy><li>NoHunting</li></forbiddenBy>
     <record>KillsAnimals</record>
     <amount>40</amount>
     <weight>0.7</weight>
@@ -245,6 +247,7 @@
     <defName>Council_Asp2_Sharpshooter</defName>
     <label>a crack shot</label>
     <workerClass>ColonyCouncil.AspirationWorker_Skill</workerClass>
+    <forbiddenBy><li>NoViolence</li></forbiddenBy>
     <skill>Shooting</skill>
     <level>14</level>
     <gain>4</gain>

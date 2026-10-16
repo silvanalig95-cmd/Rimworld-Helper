@@ -218,14 +218,15 @@ namespace ColonyCouncil
             if (s.revealed || !owner.IsColonist) return;
             var social = comp.social;
 
-            // Confiding: in a close friend who doesn't know yet.
+            // Confiding: in a close friend who doesn't know yet, face to face (Together: when they're together, or the
+            // owner goes and finds them in their free time).
             if (Rand.Chance(0.04f))
             {
                 var friend = social.ties.Where(t => t.kind == TieKind.Friends && t.announced && t.strength >= 50f && t.Involves(owner))
                     .Select(t => t.Other(owner)).Where(f => f != null && f.IsColonist && !f.Dead && !s.knowers.Contains(f)).RandomElementWithFallback();
-                if (friend != null) Confide(comp, s, friend);
+                if (friend != null) ConfideWhenTogether(comp, s, friend);
             }
-            // Someone who knows lets it slip; much likelier if they've fallen out since.
+            // Someone who knows lets it slip, to whoever they're with; much likelier if they've fallen out since.
             foreach (var k in s.knowers.ToList())
             {
                 if (!k.IsColonist) continue;
@@ -237,17 +238,55 @@ namespace ColonyCouncil
                 if (traits != null && traits.HasTrait(TraitDefOf.Kind)) chance *= 0.4f;
                 if (Rand.Chance(chance))
                 {
-                    Reveal(comp, s, k);
+                    SayInCompany(comp, s, k);
                     return;
                 }
             }
-            // At the bottom, some people just say it out loud.
-            if ((owner.needs?.mood?.CurLevelPercentage ?? 1f) < 0.15f && Rand.Chance(0.05f)) Reveal(comp, s, owner);
+            // At the bottom, some people just say it out loud (to whoever is there).
+            if ((owner.needs?.mood?.CurLevelPercentage ?? 1f) < 0.15f && Rand.Chance(0.05f)) SayInCompany(comp, s, owner);
+        }
+
+        /// <summary>
+        /// A secret confided needs the two of them together: done when they are, else it waits a day and a half, and
+        /// after a few hours the owner goes to find the friend in their free time for a quiet word.
+        /// </summary>
+        public void ConfideWhenTogether(CouncilGameComponent comp, Secret s, Pawn friend)
+        {
+            var owner = s?.owner;
+            if (owner == null || friend == null || owner == friend) return;
+            Together.When("confide|" + owner.thingIDNumber + "|" + friend.thingIDNumber, owner, friend, () =>
+            {
+                if (!secrets.Contains(s) || s.revealed || friend.Dead || s.knowers.Contains(friend)) return;
+                Confide(comp, s, friend);
+            }, 36f, 6f);
+        }
+
+        /// <summary>
+        /// A secret said out loud (let slip by someone who knows it, or confessed by its owner) needs someone to hear it:
+        /// done when the speaker is in company (not the owner, for a slip), else it waits up to a day for some.
+        /// </summary>
+        public void ConfessInCompany(CouncilGameComponent comp, Secret s) => SayInCompany(comp, s, s?.owner);
+
+        private void SayInCompany(CouncilGameComponent comp, Secret s, Pawn speaker)
+        {
+            var owner = s?.owner;
+            if (owner == null || speaker == null) return;
+            bool confession = speaker == owner;
+            Together.WhenInCompany("secretout|" + owner.thingIDNumber, speaker, heard =>
+            {
+                if (!secrets.Contains(s) || s.revealed || owner.Dead || speaker.Dead) return;
+                string line = confession
+                    ? "CC_Together_SecretConfessed".Translate(owner.Named("PAWN"), heard.Named("OTHER")).Resolve()
+                    : "CC_Together_SecretSlipped".Translate(speaker.Named("LEAKER"), heard.Named("OTHER"), owner.Named("PAWN")).Resolve();
+                SocialLog.Add(speaker, heard, line);
+                Reveal(comp, s, speaker);
+            }, 24f, confession ? null : owner);
         }
 
         public void Confide(CouncilGameComponent comp, Secret s, Pawn friend)
         {
             using var _cause = Causes.Push("CC_Cause_Confided".Translate(s.owner?.LabelShort ?? "?", friend?.LabelShort ?? "?").Resolve());
+            // together: called once the two are together (ConfideWhenTogether, the meeting).
             var owner = s.owner;
             s.knowers.Add(friend);
             CouncilRecords.Add(friend, CouncilRecords.SecretsKept);
@@ -260,6 +299,8 @@ namespace ColonyCouncil
                 ? "CC_Secret_Confided".Translate(owner.Named("A"), friend.Named("B")).Resolve()
                 : s.def.confide.Formatted(owner.Named("A"), friend.Named("B")).Resolve();
             News.Post(news, new LookTargets(owner, friend), NewsKind.People, MessageTypeDefOf.SilentInput, Importance.Flavor);
+            // Said face to face (ConfideWhenTogether): it shows between them, as speech does.
+            SocialLog.Add(owner, friend, news);
         }
 
         /// <summary>It comes out. <paramref name="leaker"/> is the owner when they confess it themselves.</summary>
@@ -267,6 +308,7 @@ namespace ColonyCouncil
         {
             using var _cause = Causes.Push("CC_Cause_SecretOut".Translate(s.owner?.LabelShort ?? "?", s.def.label).Resolve());
             var owner = s.owner;
+            // together: said out loud in company (SayInCompany) or at the meeting; the owner hears of it as news.
             bool confessed = leaker == null || leaker == owner;
             s.revealed = true;
             s.revealedTick = Find.TickManager.TicksGame;

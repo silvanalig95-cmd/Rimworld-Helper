@@ -9,7 +9,7 @@
     <label>planning a room</label>
     <category>RoomDesign</category>
     <order>5</order>
-    <summary>Sizes, styles and themes, materials from your stock, rooms of your own, and furnishing a room you've built</summary>
+    <summary>Sizes, styles and themes, lights on the walls, materials from your stock, rooms of your own, and furnishing a room you've built</summary>
     <tip>Let the planner choose the materials first, then change only what bothers you.</tip>
     <description>A room plan lays down walls, a door, a floor and the furniture in one go, as ordinary blueprints for your builders. Pick a room from the "rooms" button in the bottom bar or the council's Room plans page; a preview follows the mouse and a panel opens beside it. Most rooms come in several sizes, and every room in three styles and six themes.</description>
     <sections>
@@ -32,11 +32,22 @@
           <li>Rustic | wooden walls and furniture, benches and stools, straw matting or planks</li>
           <li>Stately | marble or granite walls, polished stone or fine carpet, armchairs; candlelight and royal tables, dressers and beds with the Vanilla Expanded mods</li>
           <li>Spartan | steel walls and furniture, simple beds, stools and concrete</li>
-          <li>Cozy | carpet, standing lamps, the softest seats there are, and plant pots along the walls from the comfortable style on</li>
-          <li>Tribal | fur beds or hide bedrolls, cushions or stools, torchlight, straw matting and walls of wood or sandstone; pit latrines and wash buckets with Dubs Bad Hygiene</li>
+          <li>Cozy | carpet, warm lamplight, the softest seats there are, and plant pots along the walls from the comfortable style on</li>
+          <li>Tribal | fur beds or hide bedrolls, cushions or stools, torchlight (wall torches where the room hangs its lights), straw matting and walls of wood or sandstone; pit latrines and wash buckets with Dubs Bad Hygiene</li>
           <li>Spacer | steel, sterile tiles and an autodoor, for industrial colonies and later; spacer and ergonomic beds and chairs, illuminated end tables and dressers, and the best toilets and showers where mods provide them</li>
         </table>
         <after>Rooms that must stay clean keep their sterile tiles in every theme, a room without a floor (a greenhouse, a crypt) stays bare, and the spartan style lays no floor in any theme. The mod furniture comes from Vanilla Furniture Expanded and its Spacer, Art and Architect modules, Vanilla Factions Expanded Medieval 2 and Empire, Dubs Bad Hygiene and Alpha Prefabs; without them a theme uses the base game's pieces. Every theme is checked on every room, in every turn, mirrored and not, with and without that furniture.</after>
+      </li>
+      <li>
+        <heading>Lights on the walls</heading>
+        <text>A room that isn't large hangs its lights on the walls once the colony can build a wall lamp: the electric one, or a wall torch before there's power. Each stands on the floor cell in front of its wall and faces that wall, so it hangs there and lights the room. It never goes on the door, beside a door, on a cooler or vent set in the wall, or on a spot where other furniture is planned. There are as many as it takes to light the whole room well, spread round its walls, and a room split by inner walls (a cell block, a suite with its own bathroom) gets its own in each part that has a light in the plan.</text>
+        <table>
+          <li>Room | Floor cells | Its lights</li>
+          <li>Small | up to 25, a 5 by 5 bedroom | wall lamps, one or two</li>
+          <li>Medium | up to 48, a 6 by 8 workshop | wall lamps, two to four, on different walls</li>
+          <li>Large | more than 48 | the plan's standing lamps out in the room, where the walls' light doesn't reach; wall lamps round the walls (four to eight) only when no standing lamp can be built</li>
+        </table>
+        <after>A brazier by a throne or an altar stays where the plan has it. To choose for yourself, click the lamps in the furniture list: a standing lamp puts them back on the floor, and a wall lamp picked for a standing lamp hangs them, whatever the room's size. A theme's own lights are used for whichever it is. If the map leaves a planned wall open (over water, say) or an old wall won't hold a lamp, the lamp moves to another stretch of wall; one with nowhere left is left out and says why. A lamp whose wall is still a blueprint goes down as soon as the game will take it.</after>
       </li>
       <li>
         <heading>When the colony outgrows a room</heading>

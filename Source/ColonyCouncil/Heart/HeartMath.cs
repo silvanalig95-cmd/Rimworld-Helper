@@ -28,7 +28,9 @@ namespace ColonyCouncil
         Fear,
         Grief,
         Dread,
-        Despair
+        Despair,
+        /// <summary>A need of the heart badly lacking for days (HeartNeedMath).</summary>
+        Unmet
     }
 
     /// <summary>What drains strain. Saved by position in lists, so new kinds go at the end.</summary>
@@ -168,6 +170,7 @@ namespace ColonyCouncil
                 case StrainSource.Grief: return 3f;
                 case StrainSource.Dread: return 2f;
                 case StrainSource.Despair: return 2f;
+                case StrainSource.Unmet: return 3f;
                 default: return 3f;
             }
         }

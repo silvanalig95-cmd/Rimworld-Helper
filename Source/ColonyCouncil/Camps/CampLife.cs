@@ -174,7 +174,7 @@ namespace ColonyCouncil
             var m = Here.Where(x => x.Awake() && !x.Downed && !x.InMentalState).OrderBy(x => x.Position.DistanceToSquared(c.Position)).FirstOrDefault();
             try
             {
-                if (m != null && c.interactions != null && m.Position.InHorDistOf(c.Position, SocialLog.TalkRange)) c.interactions.TryInteractWith(m, InteractionDefOf.Chitchat);
+                if (m != null && c.interactions != null && Together.Can(c, m)) c.interactions.TryInteractWith(m, InteractionDefOf.Chitchat);
             }
             catch (Exception e)
             {
@@ -201,7 +201,7 @@ namespace ColonyCouncil
             foreach (var c in IncidentWorker_Happening.Colonists(map))
             {
                 if (c.Drafted || c.Downed || c.InMentalState || !c.Awake() || c.interactions == null || !c.Position.InHorDistOf(FireCell, 14f)) continue;
-                var m = here.Where(x => x.Position.InHorDistOf(c.Position, 8f)).OrderBy(x => x.Position.DistanceToSquared(c.Position)).FirstOrDefault();
+                var m = here.Where(x => x.Position.InHorDistOf(c.Position, 8f) && Together.Can(c, x)).OrderBy(x => x.Position.DistanceToSquared(c.Position)).FirstOrDefault();
                 if (m == null || !Rand.Chance(0.6f)) continue;
                 try
                 {
@@ -691,6 +691,7 @@ namespace ColonyCouncil
         /// <summary>Their healer tended a colonist lying hurt nearby.</summary>
         public void Tended(Pawn healer, Pawn patient)
         {
+// together: the camp healer's tend job, at the patient's side (CampWork).
             helps++;
             AddTension(-4f);
             Warm(patient, 3);
@@ -1055,6 +1056,7 @@ namespace ColonyCouncil
             if (map == null) return;
             var comp = CouncilGameComponent.Instance;
             var colonists = IncidentWorker_Happening.Colonists(map);
+            // apart: the camp has gone; the friendship was made face to face at their fire (Visited, Visitors need them together).
             bool peaceful = ending == "time" || ending == "asked" || ending == "weather" || ending == "raid" || ending == "hunger" || ending == "crowded";
             string outcome = peaceful ? "left" : ending == "forced" ? "forced" : ending == "fight" ? "fight" : ending == "fallout" ? "fallout" : "fled";
             var them = members.Where(m => m != null && !m.Dead && !joined.Contains(m)).ToList();

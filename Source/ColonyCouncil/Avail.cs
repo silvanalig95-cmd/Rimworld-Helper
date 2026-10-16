@@ -597,12 +597,13 @@ namespace ColonyCouncil
             }
         }
 
+        // A building still going up (its frame) isn't there yet: a half-built fountain doesn't answer a wish for one.
         public static bool ColonyHas(Map map, Func<ThingDef, bool> pred)
         {
             var list = map.listerBuildings.allBuildingsColonist;
             for (int i = 0; i < list.Count; i++)
             {
-                if (pred(list[i].def)) return true;
+                if (!list[i].def.IsFrame && pred(list[i].def)) return true;
             }
             return false;
         }
@@ -613,7 +614,7 @@ namespace ColonyCouncil
             var list = map.listerBuildings.allBuildingsColonist;
             for (int i = 0; i < list.Count; i++)
             {
-                if (pred(list[i].def)) n++;
+                if (!list[i].def.IsFrame && pred(list[i].def)) n++;
             }
             return n;
         }
@@ -623,7 +624,7 @@ namespace ColonyCouncil
             var list = map.listerBuildings.allBuildingsColonist;
             for (int i = 0; i < list.Count; i++)
             {
-                if (pred(list[i].def)) yield return list[i];
+                if (!list[i].def.IsFrame && pred(list[i].def)) yield return list[i];
             }
         }
 
