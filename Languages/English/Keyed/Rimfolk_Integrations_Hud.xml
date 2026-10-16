@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- More RimHUD lines (Defs/Misc/Council_RimHUD_More.xml, Source/ColonyCouncil/Integrations/RimHudMore.cs). -->
+  <CC_Hud_Ailments>Ailments</CC_Hud_Ailments>
+  <CC_Hud_Recovery>Recovery</CC_Hud_Recovery>
+  <CC_Hud_Recovery_Full>full strength</CC_Hud_Recovery_Full>
+  <CC_Hud_Recovery_Days>convalescing, about {0} days</CC_Hud_Recovery_Days>
+  <CC_Hud_Recovery_Short>{0} days</CC_Hud_Recovery_Short>
+  <CC_Hud_Story>Story</CC_Hud_Story>
+  <CC_Hud_Healer>Healer</CC_Hud_Healer>
+  <CC_Hud_Healer_Trusted>a trusted doctor</CC_Hud_Healer_Trusted>
+  <CC_Hud_Healer_Renowned>a renowned doctor</CC_Hud_Healer_Renowned>
+  <CC_Hud_Healer_Saved>{0} pulled through</CC_Hud_Healer_Saved>
+  <CC_Hud_Healer_Midwife>a midwife</CC_Hud_Healer_Midwife>
+  <CC_Hud_Healer_MidwifeRenowned>a renowned midwife</CC_Hud_Healer_MidwifeRenowned>
+</LanguageData>
