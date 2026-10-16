@@ -50,7 +50,7 @@ namespace ColonyCouncil
                         else if (weather.rainRate > 0.01f) tags.Add("rain");
                         if (weather.defName.Contains("Fog")) tags.Add("fog");
                         // The weather by name, for lines and encounters written for one (Seasonal Weather's double rainbow).
-                        tags.Add("weather:" + weather.defName);
+                        tags.Add(DefTag("weather:", weather));
                         if (IsStorm(weather)) tags.Add("storm");
                         if (!weather.isBad && weather.rainRate <= 0.01f && weather.snowRate <= 0.01f) tags.Add("clear");
                     }
@@ -82,12 +82,12 @@ namespace ColonyCouncil
                     {
                         foreach (var t in p.story.traits.allTraits)
                         {
-                            tags.Add("trait:" + t.def.defName);
+                            tags.Add(DefTag("trait:", t.def));
                             // Degree traits also get their degree's name: trait:Lazy, trait:Teetotaler, trait:IronWilled.
                             if (t.def.degreeDatas != null && t.def.degreeDatas.Count > 1)
                             {
-                                string name = DegreeTag(t.CurrentData);
-                                if (name != null) tags.Add("trait:" + name);
+                                string name = DegreeTraitTag(t.CurrentData);
+                                if (name != null) tags.Add(name);
                             }
                         }
                     }
@@ -95,7 +95,7 @@ namespace ColonyCouncil
                     {
                         foreach (var s in p.skills.skills)
                         {
-                            if (People.Passionate(s) && !s.TotallyDisabled) tags.Add("skill:" + s.def.defName);
+                            if (People.Passionate(s) && !s.TotallyDisabled) tags.Add(DefTag("skill:", s.def));
                         }
                     }
                     // Memes, xenotype, mods' classes and traits by group (mage, fighter...), needs (nosleep): see PeopleTags.
@@ -113,7 +113,7 @@ namespace ColonyCouncil
                         else if (job.workGiverDef?.workType != null)
                         {
                             tags.Add("working");
-                            tags.Add("work:" + job.workGiverDef.workType.defName);
+                            tags.Add(DefTag("work:", job.workGiverDef.workType));
                         }
                     }
                     if (p.Spawned && p.Map != null)
@@ -160,6 +160,41 @@ namespace ColonyCouncil
             "MyLoverDied", "MyBrotherDied", "MySisterDied", "MyFatherDied", "MyMotherDied", "MyFriendDied"
         };
 
+        private static readonly HashSet<string> griefSet = new HashSet<string>(GriefThoughts);
+
+        /// <summary>A grief memory (one of <see cref="GriefThoughts"/>), by a set rather than a search of the list.</summary>
+        public static bool IsGriefThought(string defName) => defName != null && griefSet.Contains(defName);
+
+        // Tags made of a def's name ("trait:Kind", "skill:Cooking"), each built once instead of on every line picked.
+        private static readonly Dictionary<(string, Def), string> defTags = new Dictionary<(string, Def), string>();
+        private static readonly Dictionary<TraitDegreeData, string> degreeTags = new Dictionary<TraitDegreeData, string>();
+
+        /// <summary>prefix + the def's name, the same string each time.</summary>
+        public static string DefTag(string prefix, Def def)
+        {
+            if (def == null) return prefix;
+            var key = (prefix, def);
+            if (!defTags.TryGetValue(key, out var tag))
+            {
+                tag = prefix + def.defName;
+                if (defTags.Count < 20000) defTags[key] = tag;
+            }
+            return tag;
+        }
+
+        /// <summary>"trait:" + the degree's name (<see cref="DegreeTag"/>), or null; built once per degree.</summary>
+        internal static string DegreeTraitTag(TraitDegreeData d)
+        {
+            if (d == null) return null;
+            if (!degreeTags.TryGetValue(d, out var tag))
+            {
+                string name = DegreeTag(d);
+                tag = name != null ? "trait:" + name : null;
+                if (degreeTags.Count < 20000) degreeTags[d] = tag;
+            }
+            return tag;
+        }
+
         /// <summary>"hard worker" -> "HardWorker", "iron-willed" -> "IronWilled", from the untranslated label so tags work in any language.</summary>
         internal static string DegreeTag(TraitDegreeData d)
         {
@@ -184,24 +219,21 @@ namespace ColonyCouncil
         {
             var mem = p?.needs?.mood?.thoughts?.memories;
             if (mem == null) return false;
-            foreach (var m in mem.Memories)
-            {
-                if (GriefThoughts.Contains(m.def.defName)) return true;
-            }
+            var list = mem.Memories;
+            for (int i = 0; i < list.Count; i++)
+                if (IsGriefThought(list[i].def.defName)) return true;
             return false;
         }
 
-        /// <summary>Splits "[a,b] text" into its tags and the text.</summary>
+        /// <summary>
+        /// Splits "[a,b] text" into its tags and the text. Each line is taken apart once (<see cref="LineTags"/>): the
+        /// tags array is shared, so callers only read it.
+        /// </summary>
         public static string Strip(string line, out string[] tags)
         {
-            tags = null;
-            if (line == null) return null;
-            string trimmed = line.TrimStart();
-            if (!trimmed.StartsWith("[")) return line;
-            int end = trimmed.IndexOf(']');
-            if (end < 0) return line;
-            tags = trimmed.Substring(1, end - 1).Split(',').Select(t => t.Trim()).Where(t => t.Length > 0).ToArray();
-            return trimmed.Substring(end + 1).TrimStart();
+            var p = LineTags.Of(line);
+            tags = p?.tags;
+            return p?.text;
         }
 
         public static string Strip(string line) => Strip(line, out _);
@@ -212,48 +244,13 @@ namespace ColonyCouncil
         /// decide whether a line fits: they don't count, so a [lowtech] line doesn't take most of a tribal colony's picks
         /// for years the way a [winter] line takes the picks of a winter.
         /// </summary>
-        public static int Match(string line, HashSet<string> context)
-        {
-            Strip(line, out var tags);
-            if (tags == null || tags.Length == 0) return 0;
-            int matched = 0;
-            foreach (var tag in tags)
-            {
-                bool ok = false;
-                foreach (var alt in tag.Split('|'))
-                {
-                    string a = alt.Trim();
-                    bool neg = a.StartsWith("!");
-                    if (neg) a = a.Substring(1);
-                    bool has = context != null && context.Contains(a);
-                    if (has != neg)
-                    {
-                        ok = true;
-                        break;
-                    }
-                }
-                if (!ok) return -1;
-                if (!OnlyStanding(tag)) matched++;
-            }
-            return matched;
-        }
+        public static int Match(string line, HashSet<string> context) => LineTags.Match(LineTags.Of(line), context);
 
-        /// <summary>Tags that hold for most of a game rather than a moment: the era, the colony's wealth and its size.</summary>
-        public static readonly HashSet<string> StandingTags = new HashSet<string>
-        {
-            "tribal", "medieval", "industrial", "spacer", "lowtech", "poor", "rich", "small", "large"
-        };
-
-        private static bool OnlyStanding(string tag)
-        {
-            foreach (var alt in tag.Split('|'))
-            {
-                string t = alt.Trim().TrimStart('!');
-                // The land (land:desert, land:coast) holds for the whole game, like the era.
-                if (!StandingTags.Contains(t) && !t.StartsWith("land:")) return false;
-            }
-            return true;
-        }
+        /// <summary>
+        /// Tags that hold for most of a game rather than a moment: the era, the colony's wealth and its size (and the
+        /// land, land:desert, land:coast). See <see cref="LineTags.Parse"/>.
+        /// </summary>
+        public static readonly HashSet<string> StandingTags = LineTags.Standing;
 
         /// <summary>The lines each pool gave out lately (see <see cref="LineMemory"/>).</summary>
         public static readonly LineMemory Memory = new LineMemory();
@@ -268,7 +265,6 @@ namespace ColonyCouncil
             + @"|hydroponics?|sun ?lamps?|hospital beds?|vitals monitors?|hi-?tech|high-tech|multi-?analy[sz]ers?|components?|glitterworlds?|urbworlds?|sterile (tiles?|floors?))\b",
             System.Text.RegularExpressions.RegexOptions.IgnoreCase | System.Text.RegularExpressions.RegexOptions.Compiled);
 
-        private static readonly HashSet<string> EraTagNames = new HashSet<string> { "tribal", "medieval", "industrial", "spacer", "lowtech" };
 
         /// <summary>The colony's era as tags: tribal, medieval, industrial or spacer, plus lowtech before electricity.</summary>
         public static void AddEraTags(HashSet<string> tags)
@@ -285,23 +281,17 @@ namespace ColonyCouncil
         /// False when the line is tagged for another era (<c>[lowtech]</c>, <c>[!lowtech]</c>, <c>[medieval|tribal]</c>...).
         /// Other tags (the weather, the speaker) are left to <see cref="Match"/>.
         /// </summary>
-        public static bool EraTagsFit(string line)
+        public static bool EraTagsFit(string line) => EraFits(LineTags.Of(line));
+
+        /// <summary>The colony's era tags, filled afresh for each line that has era tags (the era can change with research).</summary>
+        private static readonly HashSet<string> eraNow = new HashSet<string>();
+
+        private static bool EraFits(LineTags.Parsed p)
         {
-            Strip(line, out var tags);
-            if (tags == null || tags.Length == 0) return true;
-            HashSet<string> era = null;
-            foreach (var tag in tags)
-            {
-                var alts = tag.Split('|').Select(a => a.Trim()).ToArray();
-                if (!alts.All(a => EraTagNames.Contains(a.TrimStart('!')))) continue;
-                if (era == null)
-                {
-                    era = new HashSet<string>();
-                    AddEraTags(era);
-                }
-                if (!alts.Any(a => a.StartsWith("!") ? !era.Contains(a.Substring(1)) : era.Contains(a))) return false;
-            }
-            return true;
+            if (p?.era == null) return true;
+            eraNow.Clear();
+            AddEraTags(eraNow);
+            return LineTags.EraFits(p, eraNow);
         }
 
         /// <summary>
@@ -365,9 +355,12 @@ namespace ColonyCouncil
         public static bool TechFits(string line)
         {
             if (line.NullOrEmpty()) return true;
-            if (!EraTagsFit(line)) return false;
+            var p = LineTags.Of(line);
+            if (!EraFits(p)) return false;
             if (!Avail.IsPreIndustrial) return true;
-            return !HighTech.IsMatch(Strip(line));
+            // The text never changes: whether it talks of guns or power is worked out once.
+            if (p.highTech < 0) p.highTech = (sbyte)(HighTech.IsMatch(p.text) ? 1 : 0);
+            return p.highTech == 0;
         }
 
         /// <summary>
