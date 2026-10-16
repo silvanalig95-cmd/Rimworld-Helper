@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The animals' wishes (Source/ColonyCouncil/Animals/AnimalWishes.cs): an animal of one's own and a barn for the herd
+    (with Giddy-Up 2, something to ride: Rimfolk_Wishes_Mods_GiddyUp.xml). Each points at something the game rewards: a
+    master and a bond, a herd kept out of the cold. None is asked by someone whose faith abhors bonding with animals;
+    the barn not by one whose faith frowns on ranching.
+  -->
+
+  <!-- ===================== An animal of my own ===================== -->
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_OwnAnimal</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>{OTHER_nameDef} to answer to {PAWN_objective}</label>
+    <description>A colonist who loves animals and has none of their own wants one of the colony's animals that answers to nobody yet.</description>
+    <workerClass>ColonyCouncil.WishWorker_OwnAnimal</workerClass>
+    <forbiddenBy><li>NoPets</li></forbiddenBy>
+    <lasting>true</lasting>
+    <lostText>{OTHER_nameDef} doesn't answer to {FOR_nameDef} any more.</lostText>
+    <category>Social</category>
+    <weight>0.9</weight>
+    <expiryDays>8</expiryDays>
+    <cooldownDays>25</cooldownDays>
+    <grantedThought>Council_Granted_OwnAnimal</grantedThought>
+    <envy>0.15</envy>
+    <talkInteraction>Council_Talk_Animals</talkInteraction>
+    <fulfilledWhen>{FOR_nameDef} is master of an animal, or bonded to one. Set {OTHER_nameDef}'s master in the Animals tab, or promise it.</fulfilledWhen>
+    <request>
+      <plain>
+        <li>Nobody gives {OTHER_nameDef} orders. Let me. I'll take {OTHER_objective} out every morning.</li>
+        <li>I've been feeding {OTHER_nameDef} scraps for a week. I think we've already decided, the two of us.</li>
+        <li>[winter] Long cold days with nothing to do but chores. I'd like an animal to teach, and {OTHER_nameDef} needs somebody.</li>
+        <li>[lowmood] I'd like something that's glad to see me. {OTHER_nameDef} would do.</li>
+      </plain>
+      <warm><li>{OTHER_nameDef} follows whoever has food. I'd like to be the one {OTHER_pronoun} follows for no reason at all.</li></warm>
+      <blunt><li>Make me {OTHER_nameDef}'s master. Nobody else is using {OTHER_objective}.</li></blunt>
+      <cheerful><li>{OTHER_nameDef} and me, a team! I'll teach {OTHER_objective} everything.</li></cheerful>
+      <gloomy><li>Everyone here has someone. I'd settle for {OTHER_nameDef}.</li></gloomy>
+      <cold><li>An animal without a master learns nothing. Assign {OTHER_nameDef} to me and I'll train {OTHER_objective} properly.</li></cold>
+    </request>
+    <thanks>
+      <plain><li>{OTHER_nameDef} came when I called. Well, {OTHER_pronoun} came eventually.</li></plain>
+      <warm><li>{OTHER_nameDef} slept by my door last night. I think {OTHER_pronoun} knows.</li></warm>
+      <cheerful><li>Mine. Well, ours. Mostly mine!</li></cheerful>
+      <cold><li>Good. Training starts tomorrow.</li></cold>
+    </thanks>
+    <expired>
+      <plain><li>Never mind. {OTHER_nameDef} seems happy enough with the herd.</li></plain>
+      <gloomy><li>Even the animals answer to somebody else.</li></gloomy>
+    </expired>
+  </ColonyCouncil.WishDef>
+
+  <!-- ===================== A barn for the herd ===================== -->
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_Barn</defName>
+    <label>a barn for the herd</label>
+    <description>The colony's herd sleeps out in the weather. Someone who looks after the animals wants a barn: a room with beds or sleeping spots for them.</description>
+    <workerClass>ColonyCouncil.WishWorker_Barn</workerClass>
+    <forbiddenBy><li>NoRanching</li></forbiddenBy>
+    <template>Council_Barn</template>
+    <lasting>true</lasting>
+    <lostText>The herd's barn is gone, and the animals sleep out in the weather again.</lostText>
+    <category>Work</category>
+    <weight>0.9</weight>
+    <expiryDays>12</expiryDays>
+    <cooldownDays>30</cooldownDays>
+    <grantedThought>Council_Granted_Barn</grantedThought>
+    <allowPetition>true</allowPetition>
+    <envy>0</envy>
+    <talkInteraction>Council_Talk_Animals</talkInteraction>
+    <fulfilledWhen>A barn (a room for animals) with beds or sleeping spots for {TARGET} of the herd. Plan one from the barn layout.</fulfilledWhen>
+    <request>
+      <plain>
+        <li>The herd sleeps in the rain. A roof, some straw and a door that shuts. That's all a barn is.</li>
+        <li>I counted the herd last night by lantern, standing in the mud. I'd like to count them dry next time.</li>
+        <li>[winter] The animals huddle up against the wall in the snow. We lose condition on every one of them like that.</li>
+        <li>[rain] Listen to it. The herd's out in that, all night.</li>
+        <li>[skill:Animals] Animals that sleep dry give more and fall ill less. A barn pays for itself.</li>
+      </plain>
+      <warm><li>They work for us all day. The least we can do is keep the rain off them at night.</li></warm>
+      <blunt><li>Build the herd a barn before we lose one to the cold.</li></blunt>
+      <cheerful><li>A barn, with straw, and stalls, and a name over every one!</li></cheerful>
+      <gloomy><li>One cold night and we'll be burying one of them. Then we'll build the barn.</li></gloomy>
+      <cold><li>Livestock kept in the open loses weight and falls sick. A barn is the cheaper choice.</li></cold>
+    </request>
+    <thanks>
+      <plain><li>The whole herd under one roof. I stood in the doorway and listened to them settle.</li></plain>
+      <warm><li>Warm and dry. They know it, too. You can tell by how they sleep.</li></warm>
+      <cheerful><li>I've named every stall. Don't change them.</li></cheerful>
+      <cold><li>The herd is housed. Expect better yields.</li></cold>
+    </thanks>
+    <expired>
+      <plain><li>Out in the weather again tonight, all of them. I'll go and check on them later.</li></plain>
+      <blunt><li>No barn. Fine. Don't blame me when one dies of cold.</li></blunt>
+    </expired>
+  </ColonyCouncil.WishDef>
+
+</Defs>

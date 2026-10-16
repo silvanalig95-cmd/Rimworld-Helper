@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Dreams of animals (the dreamers' tags come from Source/ColonyCouncil/Animals/AnimalFacts.cs; PokéWorld's trainers
+    dream in Rimfolk_Dreams_Mods_PokeWorld.xml). {PET_...} is the dreamer's bonded animal where the dream is about it.
+  -->
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamA_Herd</defName>
+    <label>a dream of the herd</label>
+    <kind>Sweet</kind>
+    <weight>0.7</weight>
+    <dreamer><tags>herder</tags></dreamer>
+    <lines>
+      <plain>
+        <li>Dreamt the whole herd came down off the hill at dusk, more of them than we've ever had, and I knew every one by name.</li>
+        <li>I dreamt I was lying in long grass in the middle of the herd, and they grazed around me as if I were one of them.</li>
+        <li>[winter] Dreamt it was spring and the pens were full of young ones, all legs, falling over each other.</li>
+      </plain>
+      <warm><li>Dreamt I walked among the herd at night and every one of them was warm and well. I woke up smiling.</li></warm>
+      <cheerful><li>I dreamt the herd could count, and they counted me in at the gate for a change!</li></cheerful>
+      <cold><li>Dreamt of the herd at twice its size. I woke up working out the feed.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamA_TalkingBeasts</defName>
+    <label>a dream of talking animals</label>
+    <kind>Strange</kind>
+    <weight>0.5</weight>
+    <children>true</children>
+    <dreamer><passion>Animals</passion></dreamer>
+    <lines>
+      <plain>
+        <li>In my dream the animals could talk, and they'd been talking about us all along. They weren't impressed.</li>
+        <li>Dreamt an old muffalo sat me down and explained, very slowly, everything I'd been doing wrong with the herd.</li>
+        <li>[child] I dreamt the animals had a council too, and the goat was in charge, and nobody could vote against the goat.</li>
+      </plain>
+      <blunt><li>Dreamt the animals talked. Mostly complaints.</li></blunt>
+      <gloomy><li>The animals could talk in my dream. They asked why we keep them. I didn't have an answer.</li></gloomy>
+      <cold><li>Dreamt the herd discussed its own management. Some of the points were valid.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamA_WolvesAtThePen</defName>
+    <label>a dream of something at the pens</label>
+    <kind>Nightmare</kind>
+    <weight>0.5</weight>
+    <dreamer><tags>herder|keeper</tags></dreamer>
+    <lines>
+      <plain>
+        <li>Dreamt something was moving around the pens in the dark, and I couldn't find the lantern, and the herd was screaming.</li>
+        <li>In the dream the fence was down and the pens were empty, and there were tracks I didn't recognise leading away into the snow.</li>
+        <li>[afterraid] Dreamt the raiders came back for the animals. I could hear them and I couldn't move.</li>
+      </plain>
+      <warm><li>I dreamt I couldn't get to the animals in time. I went out to the pens before breakfast just to count them.</li></warm>
+      <blunt><li>Dreamt something got into the pens. Checked. Nothing did.</li></blunt>
+      <gloomy><li>Dreamt we lost the whole herd in one night. It felt like a warning.</li></gloomy>
+      <cold><li>A dream about the pen's weak corner. I'll reinforce it today.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamA_OldFriendReturns</defName>
+    <label>a dream of an animal that's gone</label>
+    <kind>Lost</kind>
+    <weight>1</weight>
+    <children>true</children>
+    <afterThoughts><li>BondedAnimalDied</li></afterThoughts>
+    <withinDays>12</withinDays>
+    <lines>
+      <plain>
+        <li>My old companion came back in my dream, young again, and ran ahead of me all the way to the river and waited for me there.</li>
+        <li>I dreamt I heard the old familiar scratching at the door, and opened it, and there was nothing but moonlight. I left it open.</li>
+        <li>[child] My animal came to visit me in my dream. It said it was fine where it is, and there are lots of sticks.</li>
+      </plain>
+      <warm><li>Dreamt my old friend was curled at the foot of my bed, heavy and warm, like always. I woke up with my feet cold.</li></warm>
+      <blunt><li>Dreamt about my animal. Good dream. Bad waking up.</li></blunt>
+      <gloomy><li>It was there in the dream, waiting by the gate. Then the gate was empty, and so was I.</li></gloomy>
+      <cold><li>A dream about the animal I lost. I seem to be taking it harder than I let on.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamA_Riding</defName>
+    <label>a dream of riding</label>
+    <kind>Sweet</kind>
+    <weight>0.6</weight>
+    <children>true</children>
+    <dreamer><child>true</child></dreamer>
+    <lines>
+      <plain>
+        <li>I dreamt I rode on the back of the biggest animal in the world, so high I could see over the walls and all the way to the sea.</li>
+        <li>Dreamt I had a horse that could run faster than the wind, and it was mine, and we went everywhere.</li>
+        <li>[winter] I dreamt I rode through the snow on a great shaggy animal, and I wasn't cold at all.</li>
+      </plain>
+      <cheerful><li>I rode a thrumbo in my dream. It was soft and it smelled of hay and it let me hold its horn!</li></cheerful>
+      <gloomy><li>Dreamt I was riding, and then I fell off and the animal kept going without me.</li></gloomy>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamA_OldPet</defName>
+    <label>a dream of a young animal grown old</label>
+    <kind>Sweet</kind>
+    <weight>0.8</weight>
+    <about>Pet</about>
+    <children>true</children>
+    <dreamer><tags>oldcompanion</tags></dreamer>
+    <lines>
+      <plain>
+        <li>Dreamt {PET_nameDef} was young again, all legs and noise, tearing round the yard like the day we met.</li>
+        <li>In the dream {PET_nameDef} and I walked all the way to the far hills without stopping, and neither of us was tired.</li>
+      </plain>
+      <warm><li>{PET_nameDef} was a youngster again in my dream, and I got to have all those years over. I woke up grateful for them.</li></warm>
+      <gloomy><li>Dreamt {PET_nameDef} was young. Then I woke up and heard the old slow breathing by the bed, and was glad of it anyway.</li></gloomy>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+</Defs>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    PokéWorld: what trainers dream of (the tag trainer, Source/ColonyCouncil/Animals/AnimalFacts.cs, only exists with the
+    mod): an evolution, a legend, and an empty ball.
+  -->
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamA_PW_Evolution</defName>
+    <label>a dream of an evolution</label>
+    <kind>Sweet</kind>
+    <weight>0.8</weight>
+    <children>true</children>
+    <dreamer><tags>trainer</tags></dreamer>
+    <lines>
+      <plain>
+        <li>Dreamt my Pokémon started to glow, brighter and brighter, and when the light faded it was something I'd never seen, and it still knew me.</li>
+        <li>I dreamt my Pokémon evolved three times in one night, and each time it turned round to check I was still watching.</li>
+        <li>[child] I dreamt my Pokémon got so big it could carry me to the moon. We went. It was nice.</li>
+      </plain>
+      <warm><li>In my dream my Pokémon evolved, and the first thing it did was come and lean against me, the way it always does.</li></warm>
+      <cheerful><li>My Pokémon evolved in my dream and learned a move that made flowers grow everywhere!</li></cheerful>
+      <cold><li>A dream about evolution. I woke up with three new ideas for its training.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamA_PW_Legend</defName>
+    <label>a dream of a legendary Pokémon</label>
+    <kind>Strange</kind>
+    <weight>0.5</weight>
+    <dreamer><tags>trainer</tags></dreamer>
+    <lines>
+      <plain>
+        <li>Dreamt a great bird of ice flew over the colony so low its wings frosted the roofs, and it looked straight at me.</li>
+        <li>In the dream something huge moved under the earth, and every Pokémon in the colony turned to face the same way.</li>
+        <li>I dreamt of the old legends: a Pokémon made of lightning, standing on the ridge in a storm, waiting for someone worthy.</li>
+      </plain>
+      <blunt><li>Dreamt of a legendary. Big. Watching. Gone at dawn.</li></blunt>
+      <gloomy><li>Something ancient was looking for me in the dream. I don't know if I want it to find me.</li></gloomy>
+      <cold><li>A dream about a legendary Pokémon. The stories say they reward a full Pokédex. I'll look into it.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamA_PW_EmptyBall</defName>
+    <label>a dream of an empty ball</label>
+    <kind>Nightmare</kind>
+    <weight>0.5</weight>
+    <dreamer><tags>trainer</tags></dreamer>
+    <lines>
+      <plain>
+        <li>Dreamt I threw my ball to let my Pokémon out, and it opened empty, and kept opening empty however many times I threw it.</li>
+        <li>In the dream my Pokémon wouldn't come when I called. It just watched me from across the field like a stranger.</li>
+        <li>[afterraid] I dreamt my Pokémon fainted in the fight and I couldn't reach it through the smoke.</li>
+      </plain>
+      <warm><li>Dreamt I lost my Pokémon. I went and sat with it for an hour after I woke, until my hands stopped shaking.</li></warm>
+      <blunt><li>Bad dream. Empty ball. Checked. It's fine.</li></blunt>
+      <gloomy><li>My Pokémon had forgotten me in the dream. I'm afraid that one day it will.</li></gloomy>
+      <cold><li>An anxious dream about my Pokémon. I'll spend more time with it today.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+</Defs>

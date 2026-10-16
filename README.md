@@ -382,8 +382,8 @@ a youngster who wants to see the world, an elder who wants one last walk in the 
 tale to tell or feels the cold in their bones. Many answers call on whoever is
 best placed (the doctor, a forager, a tracker, the best talker), and their skill decides how it goes.
 
-**Answers play out on the map.** When an answer describes something people do, they do it (324 answers of 98
-dilemmas and 111 Rimfolk events, stories and world events, plus calendar days, five decrees and nine ambitions). A
+**Answers play out on the map.** When an answer describes something people do, they do it (337 answers of 105
+dilemmas and 112 Rimfolk events, stories and world events, plus calendar days, five decrees and nine ambitions). A
 victory feast is eaten at the dining table, each guest sent to eat a cooked meal from the stores, the finest first
 they may eat. The midsummer bonfire is lit (a campfire laid for the evening if the colony has none, burned down to ash
 after), a toast is raised, an apology or a reading is heard round the table, a friend sits with someone who is ill, a
@@ -589,10 +589,33 @@ Colonists meet everyone else on the map, too:
   tamed, let go from the cells, dying out in the world or vanishing.
 - **Pets as companions:** an animal that fights beside its person is remembered for it, the more so if it stood
   over them when they fell, and a named animal that dies gets a farewell shaped by its years here, its size and how
-  it died.
+  it died (an old animal and a Pokémon have farewells of their own).
 - **From your other mods:** Hospitality's guests, visitors of the Empire and the Vanilla Expanded peoples, traveling
   mages of A RimWorld of Magic and Alpha Animals' creatures each have moments of their own, and with Medieval
   Overhaul visitors notice the colony's cheese, wine and hearth (see "Playing with other mods").
+
+### The colony's animals
+The herd and the pets are part of the colony's life, not only its larder and its guard:
+- **Every day:** someone milking, shearing, taming or tending an animal in view talks to it, a child talks to the
+  animal beside them, and a bonded animal with nothing to do follows its person about. A birth in the herd is news;
+  the herdmaster goes down to name the newborn, brings word face to face to anyone whose animal is sick or hurt, and
+  takes someone keen along for a day's work now and then. Keepers talk shop, two with bonded animals swap stories, a
+  child asks about the animals, someone shows a child the pens or lends a hand with the herd. Two small habits: sitting
+  out with the herd, and brushing down a horse.
+- **Wishes and life goals:** an animal of one's own, a barn for a herd that sleeps out (with Giddy-Up 2, something to
+  ride); a champion that fights at one's side, a great beast tamed, a herd worth the name, an animal that knows
+  everything it can be taught.
+- **Personal stories:** an old companion's last good days (its death ends the story with a farewell), an orphan raised
+  by hand until the two may bond, a stray that comes in from the edge of the colony, a feud with an animal that ends in
+  a grudging truce.
+- **Hard choices:** the herd or the stores in a hungry week (a real cull, or lean days for everyone), a grazer in the
+  crops, the good medicine for a sick animal, a predator at the pens (left alone, it may break in and take one), a bond
+  the faith frowns on. Nobody's own animal, nothing bonded or named, is ever culled or lost.
+- **The herd's year:** the lambing watch and shearing day can become traditions; the colony's first foal and a beloved
+  animal's day are on the calendar.
+- **Dreams** of the herd, of talking animals, of riding, of an old pet young again, and of a lost one coming back.
+
+The Almanac page "the colony's animals" has the numbers.
 
 ### Offices and elections
 Five council seats: **speaker** (chairs meetings, everyone's trust rises a little each day), **marshal** (drills
@@ -635,7 +658,9 @@ harvest**, **the first snow** (which comes with the first snow of each winter, n
 remembers** (a big raid seen off, ours who fell, a nemesis brought down), **the death of someone it loved**,
 **weddings**, the **arrivals** of its first members and the **birthdays** of its long-serving colonists, the **first
 child** born here, **the day the walls went up**, a caravan's **homecoming** after a long journey, the first harvest of
-a **new crop**, the **first trade** and a **great hunt**, up to a dozen of the most meaningful. On the **Calendar**
+a **new crop**, the **first trade**, a **great hunt**, the herd's **first foal** and a **beloved animal's day** (a
+bonded animal long with the colony, or killed fighting for its person, kept as a remembrance by those who loved it), up
+to a dozen of the most meaningful. On the **Calendar**
 page under History you can also **name days of your own** (up to 8) as a feast, a day of remembrance, a rest day, a
 day of games, a **bonfire**, a **day of gifts** or a **hunt**, rename any day, or change how it's kept. What people say
 about a day knows the land and the faith: founding day in the desert is a jar of sand from where the first tent stood.
@@ -989,7 +1014,14 @@ Rimfolk reads these mods by name while the game runs: with one missing, its part
   what Rimfolk does with it. The self-check in the debug actions uses the same list.
 - **PokéWorld (any version):** Rimfolk's animal events follow its wild Pokémon slider and generation switches, a
   Pokémon caught with a ball (or kept in the PC) counts as tamed, animal lovers may ask to catch a new species, and
-  the first catch of a species goes in the catcher's journal. Four Almanac pages explain the mod.
+  the first catch of a species goes in the catcher's journal. An evolution is a colony moment (news, the trainer's
+  pride and journal, a word from whoever is beside them), and so are levels 25 to 100 and a friendship grown into a
+  bond; a Pokémon that faints worries its trainer, and one that dies is mourned. Trainers spar (nobody hurt), talk
+  moves and have a story with a new partner; colonists wish for a Pokémon of their own or ball belts on the rack, set
+  out to catch them all or raise one to its best, and the council can make filling the Pokédex its project. Wild
+  Pokémon watch, play with children and shine; a rare one may come onto the land for a couple of days. Rimfolk only
+  reads the mod (by name, quietly skipping what a version lacks). Five Almanac pages explain it.
+- **Giddy-Up 2:** a hunter, a restless soul or an animal lover may wish for a mount of their own.
 
 ### Your mods in Rimfolk's newer systems
 The heart, health, personal stories, the world's memory, the lands and the calendar read the mods in the current
@@ -1612,10 +1644,12 @@ someone whose **friend left** finds a person at their leisure and talks about th
 **awed**, or one who watches the stars, goes out under a clear night sky; one who **talks to the plants** stands by the
 crops doing just that; the **tender**, or one who names every animal, sits a while with one of the colony's animals;
 the **worried**, or one who counts everything, goes over the food stores; the **lonely** keep someone company, a
-Hospitality guest among them; and the **nostalgic** tell old stories by the evening fire. Each is recreation the game's
+Hospitality guest among them; and the **nostalgic** tell old stories by the evening fire. Two more are about the
+animals: someone who loves animals, or a child, **sits out with the herd** for a while by day, and one who loves animals
+or is bonded to a big one **brushes down a horse** (a little handling practice). Each is recreation the game's
 own joy system picks, so it only comes up in free time, after danger, sleep, food and medical care have had their
 turn; never while drafted, ill, exhausted or under orders; any order ends it, each claims a spot of its own beside
-what it's about, and each comes round at most about once a day for the same colonist. Twelve habits.
+what it's about, and each comes round at most about once a day for the same colonist. Fourteen habits.
 
 ## Colony news
 Rimfolk's many systems each have small news to tell: a quirk picked up, a personal story moving on, a birthday, a

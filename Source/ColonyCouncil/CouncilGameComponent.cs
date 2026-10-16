@@ -339,6 +339,7 @@ namespace ColonyCouncil
             Safe("pets", () => pets.Hourly(this));
             Safe("interplay", () => Interplay.Hourly(this));
             if (PokeWorldLink.Active) Safe("pokeworld", () => PokeWorldLink.Hourly(this));
+            Safe("animal life", () => AnimalLife.Hourly(this));
             Safe("autonomy", () => autonomy.Hourly(this));
             Safe("who is home", NoteWhoIsHome);
             Safe("everyday pressures", () => pressures.Hourly(this));

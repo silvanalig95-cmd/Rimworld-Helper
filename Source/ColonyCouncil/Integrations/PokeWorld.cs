@@ -47,6 +47,8 @@ namespace ColonyCouncil
             public int generation;
             /// <summary>A legendary or fossil Pokémon: never picked for one of Rimfolk's events.</summary>
             public bool rare;
+            /// <summary>PokéWorld's own rarity, 1 (common) to 10 (legendary); 0 when unread.</summary>
+            public int rarity;
         }
 
         private static readonly Dictionary<ThingDef, Species> species = new Dictionary<ThingDef, Species>();
@@ -85,7 +87,7 @@ namespace ColonyCouncil
                 foreach (var c in d.comps)
                 {
                     if (c?.compClass == null || !NamedIn(c.compClass, "CompPokemon")) continue;
-                    species[d] = new Species { generation = ReadInt(c, "generation"), rare = HasAttribute(c, "Legendary") || HasAttribute(c, "Fossil") };
+                    species[d] = new Species { generation = ReadInt(c, "generation"), rarity = ReadInt(c, "rarity"), rare = HasAttribute(c, "Legendary") || HasAttribute(c, "Fossil") };
                     if (first == null)
                     {
                         first = d;
@@ -281,6 +283,49 @@ namespace ColonyCouncil
 
         public static bool IsPokemon(Pawn p) => IsPokemon(p?.def);
 
+        /// <summary>How many species PokéWorld has (its Pokédex), legendaries and fossils included.</summary>
+        public static int SpeciesCount => Active ? species.Count : 0;
+
+        /// <summary>A species rare enough to be talked about (PokéWorld's rarity 6 to 9), but not a legendary or a fossil.</summary>
+        public static bool Rare(ThingDef race) => Active && race != null && species.TryGetValue(race, out var s) && !s.rare && AnimalMath.RareSighting(s.rarity);
+
+        /// <summary>
+        /// The species that may turn up wild for Rimfolk now: not a legendary or a fossil, of a generation switched on,
+        /// and only while the spawn slider lets any Pokémon in at all.
+        /// </summary>
+        public static IEnumerable<ThingDef> Roaming()
+        {
+            if (!Active || PokemonShare() == 0f) yield break;
+            var allowed = AllowedGenerations();
+            foreach (var kv in species)
+                if (!kv.Value.rare && (kv.Value.generation < 0 || kv.Value.generation >= allowed.Length || allowed[kv.Value.generation])) yield return kv.Key;
+        }
+
+        /// <summary>Ball belts on this map, kept or worn.</summary>
+        public static int BeltCount(Map map)
+        {
+            if (!Active || map == null || beltDefs.Count == 0) return 0;
+            int n = 0;
+            foreach (var belt in beltDefs) n += map.listerThings.ThingsOfDef(belt).Count;
+            foreach (var p in map.mapPawns.FreeColonistsSpawned)
+            {
+                var worn = p.apparel?.WornApparel;
+                if (worn == null) continue;
+                for (int i = 0; i < worn.Count; i++)
+                    if (beltDefs.Contains(worn[i].def)) n++;
+            }
+            return n;
+        }
+
+        /// <summary>A ball belt can be made here now: its research done, and its bench built or buildable. The cheapest one, or null.</summary>
+        public static ThingDef MakeableBelt(Map map)
+        {
+            if (!Active || map == null) return null;
+            foreach (var r in beltRecipes.OrderBy(x => x.ProducedThingDef?.BaseMarketValue ?? 0f))
+                if (r.AvailableNow && Avail.RecipeUsers(r).Any(u => map.listerBuildings.ColonistsHaveBuilding(u) || Avail.CanBuild(u, map))) return r.ProducedThingDef;
+            return null;
+        }
+
         // ===================== Rimfolk's animal picks =====================
 
         /// <summary>
@@ -458,6 +503,15 @@ namespace ColonyCouncil
                 if (fresh != null) Celebrate(comp, fresh);
             }
             NoteTamed();
+            // The colony's Pokémon growing up: evolutions, levels, friendship, fainting (Integrations/PokeWorldLife.cs).
+            try
+            {
+                PokeWorldLife.Hourly(comp);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("PokéWorld: the colony's Pokémon", e);
+            }
         }
 
         /// <summary>Species PokéWorld's Pokédex marks as caught (its private "pokedex" dictionary); skipped quietly if unreadable.</summary>

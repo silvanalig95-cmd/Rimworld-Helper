@@ -407,6 +407,7 @@ Console.WriteLine($"Checked {KeptTests.Run(Check)} things about granted wishes t
 Console.WriteLine($"Checked {HeartNeedTests.Run(Check)} things about the heart's needs (what follows from them, and a lack that lasts).");
 Console.WriteLine($"Checked {BeliefTests.Run(Check)} things about beliefs and diets (precepts, a shared bed, what may be served).");
 Console.WriteLine($"Checked {AdvisorTests.Run(Check)} things about the advisor's newer checks (missions, decrees, winter stores, rooms outgrown, light).");
+Console.WriteLine($"Checked {AnimalTests.Run(Check)} things about the colony's animals (age, the herd, a cull, the calendar, PokéWorld's levels and Pokédex).");
 
-Console.WriteLine(failures == 0 ? "All tests passed (template math, layout, strain, meetings, pressures, ailments, line memory, good times, tab sizes, calendar, personal stories, clock and caps, faction memory, answers on the map, setbacks, promises kept, what colonists say, the heart's needs, beliefs and diets, other mods)." : failures + " failure(s).");
+Console.WriteLine(failures == 0 ? "All tests passed (template math, layout, strain, meetings, pressures, ailments, line memory, good times, tab sizes, calendar, personal stories, clock and caps, faction memory, answers on the map, setbacks, promises kept, what colonists say, the heart's needs, beliefs and diets, animals, other mods)." : failures + " failure(s).");
 return failures == 0 ? 0 : 1;

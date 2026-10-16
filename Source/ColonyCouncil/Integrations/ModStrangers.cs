@@ -57,6 +57,8 @@ namespace ColonyCouncil
             try
             {
                 tags.Add("x:race:" + x.def.defName);
+                // An animal: x:pokemon, x:shiny, x:livestock, x:young... (Animals/AnimalFacts.cs).
+                AnimalTags.AddX(tags, x);
                 if (!x.RaceProps.Humanlike) return;
                 var f = Strangers.FactionOf(x) ?? x.Faction;
                 if (f?.def != null && !f.IsPlayer)

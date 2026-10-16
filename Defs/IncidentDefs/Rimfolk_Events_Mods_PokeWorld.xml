@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    PokéWorld: a rare Pokémon seen on the colony's land (ColonyCouncil.HappeningWorker_PokemonSighting,
+    Source/ColonyCouncil/Integrations/PokeWorldLife.cs). It only happens with the mod's Pokémon loaded and its spawn
+    slider above "No Pokémon"; the species is one of PokéWorld's rare ones (rarity 6 to 9, no legendaries or fossils) of a
+    generation switched on, one the colony hasn't caught first. It stays a couple of days. Catching it is the player's
+    own, with a ball belt; it's news when it happens. Tags: [new] (a species the colony doesn't have), [known], [trainer]
+    (A trains a Pokémon), [shiny].
+  -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_PW_RareSighting</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a rare Pokémon sighted</label>
+    <workerClass>ColonyCouncil.HappeningWorker_PokemonSighting</workerClass>
+    <minRefireDays>30</minRefireDays>
+    <earliestDay>8</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <days>2~3</days>
+        <answerDays>0.5</answerDays>
+        <journal>Council_Journal_Evt_PW_RareSighting</journal>
+        <titles>
+          <li>A rare sighting</li>
+          <li>{X_label} on the colony's land</li>
+          <li>Something rare in the grass</li>
+        </titles>
+        <texts>
+          <li>[new] {A_nameDef} came running in from the fields: there's {X_indefinite} on the colony's land, a rare one, the kind trainers spend years looking for. Nobody here has ever caught one. It's grazing along the ridge as if it has all the time in the world, and it won't stay more than a day or two.</li>
+          <li>[known] There's {X_indefinite} on the colony's land, a rare one, and a fine one too. The colony has caught its kind before, but never one like this. {A_nameDef} has been watching it from the ridge since dawn. It will be gone in a day or two.</li>
+          <li>[trainer] {A_nameDef}'s Pokémon noticed it first, ears up, quivering: {X_indefinite}, a rare one, out past the fields. {A_nameDef} has a hand on {A_possessive} belt already. It won't stay long.</li>
+          <li>[shiny] {A_nameDef} couldn't believe it at first: {X_indefinite}, rare enough already, and this one shining in the wrong colours, catching the light like a coin. It's on the colony's land for a day or two, no more.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Everyone out to see it</label>
+            <outcome>Half the colony crept up the ridge together and lay in the grass to watch the rare one go about its business. Nobody spoke above a whisper.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Procession"><label>a look at the rare one</label><to>Stranger</to><count>5</count><hours>8~18</hours></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_PW_SawRareOne</thought><chance>0.6</chance></li>
+            </effects>
+          </li>
+          <li>
+            <label>{A_nameDef} goes after it</label>
+            <outcome>{A_nameDef} has gone out to follow the rare one and learn its ways, and to try for it, if the colony has a belt to throw.</outcome>
+            <ways><openness>1</openness></ways>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><duration>2~3</duration><hours>6~18</hours></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_PW_SawRareOne</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Animals</skill><xp>300</xp></li>
+            </effects>
+          </li>
+          <li>
+            <label>Let it pass</label>
+            <outcome>The colony lets the rare one be. It grazed along the ridge for a while, looked down at the walls once, and went on its way.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_PW_RareOneMissed</thought></li>
+            </effects>
+          </li>
+        </options>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>

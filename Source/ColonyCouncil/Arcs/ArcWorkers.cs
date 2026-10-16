@@ -45,6 +45,12 @@ namespace ColonyCouncil
         /// <summary>Whether its gates wait while the colonist is away (most do; a homecoming doesn't).</summary>
         public virtual bool PausesAway => true;
 
+        /// <summary>
+        /// Its other may be a wild animal, not yet anyone's (a stray): being nobody's isn't leaving. The worker's
+        /// <see cref="Broken"/> says when it has gone.
+        /// </summary>
+        public virtual bool OtherMayBeWild => false;
+
         /// <summary>Why it can't go on (a tag for its fizzle lines), or null.</summary>
         public virtual string Broken(Arc arc) => null;
 

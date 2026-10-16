@@ -42,5 +42,6 @@
     <Compile Include="../../Source/ColonyCouncil/Defense/DefenseLayout.cs" Link="DefenseLayout.cs" />
     <Compile Include="../../Source/ColonyCouncil/Defense/DefenseMath.cs" Link="DefenseMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Advisor/AdvisorMath.cs" Link="AdvisorMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Animals/AnimalMath.cs" Link="AnimalMath.cs" />
   </ItemGroup>
 </Project>

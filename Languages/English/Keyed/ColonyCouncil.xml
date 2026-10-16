@@ -1433,7 +1433,7 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_Settings_NemesisReturns>Nemeses may return</CC_Settings_NemesisReturns>
   <CC_Settings_NemesisReturns_Tip>A raider who got away sometimes rides with their people's next raid (at most three times).</CC_Settings_NemesisReturns_Tip>
   <CC_Settings_PetMoments>Pets as companions</CC_Settings_PetMoments>
-  <CC_Settings_PetMoments_Tip>An animal that fights beside its person in a battle is remembered for it, and a named animal that dies gets a farewell from the one who loved it.</CC_Settings_PetMoments_Tip>
+  <CC_Settings_PetMoments_Tip>An animal that fights beside its person in a battle is remembered for it, and a named animal that dies gets a farewell from the one who loved it. People talk to the animals they work with, a bonded animal follows its person about, births in the herd are news, and the herdmaster names the newborns.</CC_Settings_PetMoments_Tip>
   <CC_ChronicleFilter_Strangers>Strangers</CC_ChronicleFilter_Strangers>
   <CC_Stranger_Gone>{0} is no longer here.</CC_Stranger_Gone>
   <CC_Stranger_NoPrisonBed>{PAWN_nameDef} can't take {X_nameDef} prisoner: there's no free prisoner bed.</CC_Stranger_NoPrisonBed>

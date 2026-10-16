@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- ===================== The animals' wishes (Animals/AnimalWishes.cs) ===================== -->
+
+  <CC_Reason_OwnAnimal>{PAWN_nameDef} has a way with animals and none of {PAWN_possessive} own, and {OTHER_nameDef} answers to nobody yet.</CC_Reason_OwnAnimal>
+  <CC_Promise_OwnAnimal>{OTHER_nameDef} answers to {FOR_nameDef} now.</CC_Promise_OwnAnimal>
+  <CC_Reason_Barn>The colony's herd ({COUNT} head) sleeps out in the weather, and {PAWN_nameDef} lies awake thinking about it.</CC_Reason_Barn>
+  <CC_Progress_Barn>{0} of {1} animal beds in a barn</CC_Progress_Barn>
+  <CC_Reason_Mount>{PAWN_nameDef} is tired of going everywhere on foot, and {KIND} could carry {PAWN_objective}.</CC_Reason_Mount>
+
+  <!-- ===================== The animals' life goals (Animals/AnimalGoals.cs) ===================== -->
+
+  <CC_Asp_Beast_Done>a great beast answers to them</CC_Asp_Beast_Done>
+  <CC_Asp_Beast_Near>a great beast is out on the land</CC_Asp_Beast_Near>
+  <CC_Asp_Beast_None>waiting for a great beast to come by</CC_Asp_Beast_None>
+  <CC_Asp_HerdProgress>{0} head of {1}</CC_Asp_HerdProgress>
+  <CC_Asp_TrainProgress>{0} of everything it can learn</CC_Asp_TrainProgress>
+
+  <!-- ===================== Personal stories (Animals/AnimalArcs.cs, Arcs/ArcTracker.cs) ===================== -->
+
+  <CC_Arc_StrayMarked>{PAWN} has asked the handlers to try {PET_definite}: it's been coming to the door for days.</CC_Arc_StrayMarked>
+  <!-- A story about an animal's last days, ended by its death. -->
+  <CC_Arc_Farewell>{PAWN_nameDef}'s story ({STORY}) has come to its end.</CC_Arc_Farewell>
+  <CC_Arc_FarewellChronicle>{PAWN_nameDef}'s story ({STORY}) came to its end.</CC_Arc_FarewellChronicle>
+
+  <!-- ===================== Dilemmas (Animals/AnimalDilemmas.cs) ===================== -->
+
+  <CC_Dlm_Culled>Marked for slaughter, {0} of the herd: {1}. The handlers will see to it.</CC_Dlm_Culled>
+  <CC_Dlm_TurnedOut>{0} of the herd turned out to fend for themselves.</CC_Dlm_TurnedOut>
+  <CC_Dlm_AnimalLost>{ANIMAL} is gone from the pens, carried off in the night.</CC_Dlm_AnimalLost>
+  <CC_Dlm_AnimalPassed>{PET_nameDef} answers to {NEW} now.</CC_Dlm_AnimalPassed>
+  <CC_Dlm_CropsEaten>The field has been grazed by {X_definite}: {0} plants eaten to the ground.</CC_Dlm_CropsEaten>
+
+  <!-- ===================== Births, and the herdmaster (Animals/AnimalLife.cs, Animals/AnimalHerdmaster.cs) ===================== -->
+
+  <CC_Animal_Born>A young {KIND} was born to {MOTHER_nameDef} in the herd.</CC_Animal_Born>
+  <CC_Animal_BornTo>A young {KIND} was born to {MOTHER_nameDef}, {PAWN_nameDef}'s animal.</CC_Animal_BornTo>
+  <CC_Herd_Named>{PAWN_nameDef}, the herdmaster, went down to the pens and named the new {KIND} {PET_nameDef}.</CC_Herd_Named>
+  <CC_TieNote_Herd_Rounds>came by about {0}</CC_TieNote_Herd_Rounds>
+  <CC_Herd_LessonLabel>a day at the herdmaster's side</CC_Herd_LessonLabel>
+
+  <!-- ===================== Small habits (Animals/AnimalHabits.cs) ===================== -->
+
+  <CC_Habit_Report_Herd>sitting out with the herd.</CC_Habit_Report_Herd>
+  <CC_Habit_Report_Groom>brushing down {OTHER}.</CC_Habit_Report_Groom>
+
+  <!-- ===================== The calendar (Calendar/CalendarAnimals.cs) ===================== -->
+
+  <CC_Cal_Name_Foal>the first {0}</CC_Cal_Name_Foal>
+  <CC_Cal_Name_Companion>{0}'s day</CC_Cal_Name_Companion>
+  <CC_Cal_Origin_Foal>The colony's first young {0} was born on this day in {1}. {2} was there.</CC_Cal_Origin_Foal>
+  <CC_Cal_Origin_Companion>{0} died on this day in {1}: {2}'s {3}, and a friend to the colony.</CC_Cal_Origin_Companion>
+
+  <!-- ===================== PokéWorld: the colony's Pokémon (Integrations/PokeWorldLife.cs) ===================== -->
+
+  <!-- {PET}: the Pokémon (as it is now), {OLD} and {NEW}: what it was and what it became ("Eevee", "Vaporeon"). -->
+  <CC_PW_Evolved>{PET_nameDef}, {PAWN_nameDef}'s {OLD}, has evolved into {NEW}.</CC_PW_Evolved>
+  <CC_PW_EvolvedNobody>The colony's {OLD} has evolved into {NEW}.</CC_PW_EvolvedNobody>
+  <CC_PW_Cause_Evolved>{OLD} evolved into {NEW}.</CC_PW_Cause_Evolved>
+  <CC_PW_Level>{PET_nameDef}, {PAWN_nameDef}'s Pokémon, has reached level {LEVEL}.</CC_PW_Level>
+  <CC_PW_Cause_Level>{PET_nameDef} reached level {LEVEL}.</CC_PW_Cause_Level>
+  <CC_PW_Bonded>{PET_nameDef} and {PAWN_nameDef} are inseparable now: a trainer and a partner.</CC_PW_Bonded>
+  <CC_PW_Cause_Bond>{PET_nameDef}'s friendship.</CC_PW_Cause_Bond>
+  <CC_PW_Cause_Fainted>{PET_nameDef} fainted in the fight.</CC_PW_Cause_Fainted>
+  <CC_PW_RareCaught>{PAWN_nameDef} caught the rare {SPECIES} that was seen on the colony's land.</CC_PW_RareCaught>
+  <CC_PW_RareCaughtNobody>The rare {SPECIES} seen on the colony's land is the colony's now.</CC_PW_RareCaughtNobody>
+  <CC_PW_RareGone>The rare {SPECIES} has gone on its way.</CC_PW_RareGone>
+
+  <!-- The wishes for a Pokémon of one's own and a supply of ball belts. -->
+  <CC_PW_Reason_OwnFree>{PAWN_nameDef} has no Pokémon of {PAWN_possessive} own, and the colony's {SPECIES} has no trainer.</CC_PW_Reason_OwnFree>
+  <CC_PW_Reason_OwnWild>{PAWN_nameDef} has no Pokémon of {PAWN_possessive} own, and there's a wild {SPECIES} out there.</CC_PW_Reason_OwnWild>
+  <CC_PW_Promise_Own>{OTHER_nameDef} has a trainer now: {FOR_nameDef}.</CC_PW_Promise_Own>
+  <CC_PW_Reason_Balls>{PAWN_nameDef} has seen wild Pokémon about and counted the colony's ball belts. It didn't take long.</CC_PW_Reason_Balls>
+
+  <!-- Life goals and the council's project. -->
+  <CC_PW_Asp_Level>best level {0} of {1}</CC_PW_Asp_Level>
+  <CC_PW_Goal_Pokedex>Catch {0} species new to the Pokédex ({1} so far)</CC_PW_Goal_Pokedex>
+
+</LanguageData>

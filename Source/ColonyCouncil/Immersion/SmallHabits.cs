@@ -34,7 +34,11 @@ namespace ColonyCouncil
         /// <summary>Lonely: they seek out someone at their leisure (a Hospitality guest too) and keep them company.</summary>
         Company,
         /// <summary>Nostalgic, of an evening: a while by the colony's fire, telling old stories.</summary>
-        Stories
+        Stories,
+        /// <summary>One who loves animals, with a herd, or a child: a while sitting out with the herd (Animals/AnimalHabits.cs).</summary>
+        Herd,
+        /// <summary>One who loves animals, or is bonded to a big one: a while brushing down a horse or another big animal.</summary>
+        Groom
     }
 
     /// <summary>On a small habit's JobDef: which habit it is, what's said on arriving, and whether they chat with whoever is near.</summary>
@@ -101,6 +105,8 @@ namespace ColonyCouncil
                 case HabitKind.Walk: return GenDate.TicksPerDay * 2 / 5;
                 case HabitKind.Snow:
                 case HabitKind.Animals:
+                case HabitKind.Herd:
+                case HabitKind.Groom:
                 case HabitKind.Company: return GenDate.TicksPerDay / 2;
                 case HabitKind.Fire:
                 case HabitKind.Plants:
@@ -517,6 +523,7 @@ namespace ColonyCouncil
                 case HabitKind.Grave: return (job.targetB.Thing as Building_Grave)?.Corpse?.InnerPawn;
                 case HabitKind.Remember: return SmallHabits.FriendWhoLeft(pawn);
                 case HabitKind.Animals:
+                case HabitKind.Groom:
                 case HabitKind.Company: return Partner;
                 default: return null;
             }
@@ -526,7 +533,8 @@ namespace ColonyCouncil
         {
             var ext = Ext;
             // Whom it's about may be unknown (a grave whose body was moved): then the job's own words.
-            bool needsName = ext?.kind == HabitKind.Grave || ext?.kind == HabitKind.Remember || ext?.kind == HabitKind.Animals || ext?.kind == HabitKind.Company;
+            bool needsName = ext?.kind == HabitKind.Grave || ext?.kind == HabitKind.Remember || ext?.kind == HabitKind.Animals || ext?.kind == HabitKind.Company
+                             || ext?.kind == HabitKind.Groom;
             if (ext != null && !(needsName && about.NullOrEmpty()))
             {
                 string key = "CC_Habit_Report_" + ext.kind;
@@ -547,7 +555,7 @@ namespace ColonyCouncil
             if (job.targetB.HasThing) this.FailOnDespawnedOrNull(TargetIndex.B);
             if (ext?.kind == HabitKind.Fire || ext?.kind == HabitKind.Stories) this.FailOn(() => !Lit(job.targetB.Thing));
             if (ext?.kind == HabitKind.Company) this.FailOn(() => !MoreHabits.StillCompany(Partner));
-            if (ext?.kind == HabitKind.Animals) this.FailOn(() => !MoreHabits.Calm(Partner));
+            if (ext?.kind == HabitKind.Animals || ext?.kind == HabitKind.Groom) this.FailOn(() => !MoreHabits.Calm(Partner));
             if (job.targetA.HasThing) yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.Touch);
             else yield return Toils_Goto.GotoCell(TargetIndex.A, PathEndMode.OnCell);
             var stay = ToilMaker.MakeToil("SmallHabit");
@@ -613,6 +621,8 @@ namespace ColonyCouncil
             else if (job.targetB.IsValid) pawn.rotationTracker.FaceCell(job.targetB.Cell);
             if (Ext?.kind == HabitKind.Grave && job.targetB.HasThing)
                 VisualTouches.Candle(pawn.Map, job.targetB.Thing.Position, Find.TickManager.TicksGame + 300);
+            // Brushing an animal down is handling practice too, a little.
+            if (Ext?.kind == HabitKind.Groom) AnimalHabits.Practice(pawn, Partner, delta);
             if (pawn.needs?.joy != null) JoyUtility.JoyTickCheckEnd(pawn, delta, JoyTickFullJoyAction.EndJob);
         }
 
