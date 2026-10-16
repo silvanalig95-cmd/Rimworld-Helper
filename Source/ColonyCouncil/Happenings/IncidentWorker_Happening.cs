@@ -55,6 +55,8 @@ namespace ColonyCouncil
             var map = parms.target as Map;
             var ext = Ext;
             if (map == null || ext == null || !map.IsPlayerHome) return false;
+            // An event that asks something waits out the gap after Rimfolk's last question (the storyteller sends another).
+            if (!ext.options.NullOrEmpty() && !LetterGap.Open) return false;
             try
             {
                 return Gates(map, ext) && CanHappen(map, ext);
