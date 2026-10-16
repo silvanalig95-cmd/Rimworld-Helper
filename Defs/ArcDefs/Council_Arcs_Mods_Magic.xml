@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    A personal story for A RimWorld of Magic (Source/ColonyCouncil/Integrations/ModStory.cs): a mage or a fighter of
+    a class who hits a wall in their art. The worker finds someone further along in the same art (a mage for a mage,
+    a fighter for a fighter: {OTHER}), or, for someone frustrated with themselves, a close friend ([friend]). Without
+    the mod nobody has a class and the story never begins. The lines are written for both kinds of art: "the art",
+    "the working", "the forms". See Council_Arcs_Home.xml for how a story is written.
+  -->
+
+  <ColonyCouncil.ArcDef>
+    <defName>Council_Arc_PM_Discipline</defName>
+    <label>the long discipline</label>
+    <summary>A mage or a fighter of the old arts hits a wall in their training, talks it through with someone who has been there, works at it day after day, and comes out the other side a level stronger.</summary>
+    <workerClass>ColonyCouncil.ArcWorker_MagicDiscipline</workerClass>
+    <weight>1.1</weight>
+    <maxDays>70</maxDays>
+    <stages>
+      <li>
+        <label>the wall</label>
+        <waiting>Next: {PAWN_nameDef} talks it over with {OTHER_nameDef}.</waiting>
+        <journal>
+          <plain>
+            <li>Tried the same working nine times today. Nine times it slipped away from me at the same place, like a fish off the hook.</li>
+            <li>I've stopped getting better. I can feel it. The art used to come a little easier every week, and now it doesn't come at all.</li>
+            <li>Everything I know how to do, I can do. Everything past that is a wall, and I keep walking into it.</li>
+            <li>{OTHER_nameDef} has been where I am now. I should ask how {OTHER_pronoun} got past it. I keep not asking.</li>
+            <li>[friend] I haven't told anyone how stuck I am. {OTHER_nameDef} would listen, I think, even without understanding a word of the art.</li>
+            <li>[night] Lay awake going over the forms in my head. In my head they're perfect. In my hands they fall apart.</li>
+          </plain>
+          <warm><li>I don't want to burden {OTHER_nameDef} with it. But I think {OTHER_pronoun} would want to know.</li></warm>
+          <blunt><li>Stuck. Same place, every day. Need help.</li></blunt>
+          <cheerful><li>Well, I've found the edge of what I can do! Now I just need to find a way over it.</li></cheerful>
+          <gloomy><li>Maybe this is as far as I go. Some people simply stop, and nobody tells them why.</li></gloomy>
+          <cold><li>My progress has halted. Someone further along will have an answer. I intend to get it.</li></cold>
+        </journal>
+        <otherJournal>
+          <plain><li>{OTHER_nameDef} has had a face like thunder all week, practising the same thing over and over. I know that look. I wore it for a year.</li></plain>
+        </otherJournal>
+        <chronicle>
+          <li>{PAWN_nameDef} has come up against a wall in {PAWN_possessive} art.</li>
+          <li>{PAWN_nameDef} has stopped getting better at {PAWN_possessive} art, and knows it.</li>
+        </chronicle>
+        <gate>
+          <kind>Talk</kind>
+          <talk>Council_Arc_Talk_PM_Art</talk>
+          <minDays>1</minDays>
+          <quietAfterDays>5</quietAfterDays>
+          <timeoutDays>15</timeoutDays>
+          <timeoutPasses>true</timeoutPasses>
+        </gate>
+      </li>
+      <li>
+        <label>the long practice</label>
+        <waiting>Next: {PAWN_nameDef} grows a level stronger in {PAWN_possessive} art.</waiting>
+        <journal>
+          <plain>
+            <li>{OTHER_nameDef} said the wall isn't in my hands, it's in my breathing. Practised with that in mind until supper, and something shifted.</li>
+            <li>Up before the others to practise. Again after supper. The forms are starting to feel like mine instead of borrowed.</li>
+            <li>{OTHER_nameDef} told me to stop trying so hard. I didn't understand it until today, when I stopped, and it worked once.</li>
+            <li>[friend] {OTHER_nameDef} didn't understand half of what I told {OTHER_objective}, and still said the one thing I needed: keep going.</li>
+            <li>[winter] Practised out in the cold until my fingers wouldn't bend. Back indoors, with feeling in my fingers again, the working came easier than it has in weeks.</li>
+          </plain>
+          <warm><li>{OTHER_nameDef} checks on my practice every evening. I'd hate to disappoint {OTHER_objective}, so I don't skip it.</li></warm>
+          <blunt><li>Practising. Every day. It's working, slowly.</li></blunt>
+          <cheerful><li>It moved. Only a hair, but the wall moved!</li></cheerful>
+          <gloomy><li>Every day the same forms. Some days I think I'm only getting better at being tired.</li></gloomy>
+          <cold><li>Twice daily, without exception. Results are small but measurable.</li></cold>
+        </journal>
+        <otherJournal>
+          <plain><li>{OTHER_nameDef} has been out practising before dawn every day since we talked. I didn't tell {OTHER_objective} to do that. I'm glad of it.</li></plain>
+        </otherJournal>
+        <chronicle>
+          <li>{PAWN_nameDef} has been practising {PAWN_possessive} art every day, early and late.</li>
+          <li>Since talking with {OTHER_nameDef}, {PAWN_nameDef} has thrown {PAWN_objective}self into training.</li>
+        </chronicle>
+        <gate><kind>Custom</kind><gain>1</gain><minDays>2</minDays><timeoutDays>30</timeoutDays></gate>
+      </li>
+      <li>
+        <label>the breakthrough</label>
+        <waiting>Next: a few quiet days for {PAWN_nameDef} to make the new strength {PAWN_possessive} own.</waiting>
+        <journal>
+          <plain>
+            <li>It happened in the middle of an ordinary morning. The working I've failed a hundred times simply went right, as if it had never been hard.</li>
+            <li>I'm past it. The wall is behind me, and I can't even remember now why it was so high.</li>
+            <li>Went to tell {OTHER_nameDef} and found I couldn't stop smiling long enough to say it properly.</li>
+            <li>[friend] I told {OTHER_nameDef} first. It meant nothing to {OTHER_objective}, and {OTHER_pronoun} was happy for me anyway.</li>
+          </plain>
+          <warm><li>I owe some of this to {OTHER_nameDef}. Most of it, maybe. I'll tell {OTHER_objective} so when the shaking stops.</li></warm>
+          <blunt><li>Broke through. Stronger now.</li></blunt>
+          <cheerful><li>I did it, I really did it, and I want to do it again straight away.</li></cheerful>
+          <gloomy><li>Past the wall at last. There'll be another one further on. There always is.</li></gloomy>
+          <cold><li>The barrier is behind me. I'll consolidate before I push further.</li></cold>
+        </journal>
+        <otherJournal>
+          <plain><li>{OTHER_nameDef} came to find me grinning like a child. Didn't need to say a word. I remember the day it happened to me.</li></plain>
+        </otherJournal>
+        <chronicle>
+          <li>{PAWN_nameDef} has broken through the wall in {PAWN_possessive} art.</li>
+          <li>{PAWN_nameDef} is a level stronger in {PAWN_possessive} art after weeks of practice.</li>
+        </chronicle>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Arc_PM_Breakthrough</thought></li>
+          <li Class="ColonyCouncil.ArcEffect_Strain"><amount>-8</amount></li>
+        </effects>
+        <gate><kind>Time</kind><days>3</days><minDays>1</minDays><timeoutDays>10</timeoutDays><timeoutPasses>true</timeoutPasses></gate>
+      </li>
+      <li>
+        <label>an art of one's own</label>
+        <journal>
+          <plain>
+            <li>The forms aren't something I'm trying to remember any more. They're simply how I move now.</li>
+            <li>I've stopped measuring myself against {OTHER_nameDef}. I measure myself against last month, and I win.</li>
+            <li>Showed {OTHER_nameDef} what I can do now and got a single nod. From {OTHER_nameDef}, that's a speech.</li>
+            <li>[friend] Sat with {OTHER_nameDef} in the evening and tried to explain what changed. Couldn't. {OTHER_nameDef} said it showed anyway.</li>
+          </plain>
+          <warm><li>Whatever comes next in the art, I know I won't face it alone. That's the thing I learned, more than any working.</li></warm>
+          <blunt><li>Stronger. Steadier. Ready for the next wall.</li></blunt>
+          <cheerful><li>I'm good at this! I mean properly good, the way I always hoped I would be.</li></cheerful>
+          <gloomy><li>It's mine now. I suppose I'll have to work just as hard to keep it.</li></gloomy>
+          <cold><li>The discipline holds. I have what I came here to build.</li></cold>
+        </journal>
+        <otherJournal>
+          <plain>
+            <li>{OTHER_nameDef} doesn't need me to watch over the practice any more. I'll miss those cold mornings.</li>
+            <li>{OTHER_nameDef} has found {OTHER_possessive} own way through the art. It's not my way, and it's better for that.</li>
+          </plain>
+        </otherJournal>
+        <chronicle>
+          <li>{PAWN_nameDef} has made {PAWN_possessive} art {PAWN_possessive} own.</li>
+          <li>{PAWN_nameDef} came through a long stretch of training stronger, with {OTHER_nameDef} beside {PAWN_objective}.</li>
+        </chronicle>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Arc_PM_OwnArt</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Arc_PM_SawThemThrough</thought><target>B</target></li>
+          <li Class="ColonyCouncil.ArcEffect_Tie"><kind>Friends</kind><amount>12</amount></li>
+        </effects>
+      </li>
+    </stages>
+    <fizzle>
+      <plain>
+        <li>[timeout] Weeks of practice, and I'm still on this side of the wall. I'm putting it down for a while before it breaks me.</li>
+        <li>[otherdead] {OTHER_nameDef} is dead. I'd been saving up the day I broke through to show {OTHER_objective}. I don't know who to show now.</li>
+        <li>[otherleft] {OTHER_nameDef} has gone. I'll have to find the way past the wall on my own.</li>
+        <li>[taken] The art is gone from me. There's nothing left to practise, and I don't know what to do with my hands.</li>
+        <li>I've let the practice slide. The wall can wait. Maybe I'll be ready for it another year.</li>
+      </plain>
+      <warm><li>[timeout] Not yet. {OTHER_nameDef} says some walls take a season. I'll try again in the spring.</li></warm>
+      <blunt><li>[timeout] Still stuck. Stopping for now.</li></blunt>
+      <cheerful><li>[timeout] The wall won this round! There'll be another round.</li></cheerful>
+      <gloomy><li>[timeout] I knew it. Some people go further, and some people stop here.</li></gloomy>
+      <cold><li>[timeout] The method failed. I will find a different one.</li></cold>
+    </fizzle>
+    <fizzleChronicle>
+      <li>[otherdead] {OTHER_nameDef} died before {PAWN_nameDef} could get past the wall in {PAWN_possessive} art.</li>
+      <li>{PAWN_nameDef} has put {PAWN_possessive} training aside for now.</li>
+    </fizzleChronicle>
+    <eulogy>
+      <plain>
+        <li>{OTHER_nameDef} was working so hard at the art, out before dawn every day, and was nearly there.</li>
+        <li>I keep finding {OTHER_nameDef}'s practice things where {OTHER_pronoun} left them. I haven't the heart to move them.</li>
+      </plain>
+    </eulogy>
+  </ColonyCouncil.ArcDef>
+
+  <!-- The talk the story waits on (ColonyCouncil.InteractionWorker_ArcTalk; either may start it). -->
+  <InteractionDef ParentName="Council_ArcTalkBase">
+    <defName>Council_Arc_Talk_PM_Art</defName>
+    <label>talked through the art</label>
+    <symbol>ColonyCouncil/Symbols/Star</symbol>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] went over the same working again and again, until they found where it slipped.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about the wall, and [RECIPIENT_nameDef] said [advice].</li>
+        <li>advice->it was only ever a matter of breathing</li>
+        <li>advice->every teacher hits one, and every teacher gets past it</li>
+        <li>advice->to stop trying so hard for a day</li>
+        <li>advice->the answer is usually in the part that feels easiest</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] practised side by side until supper, saying very little.</li>
+        <li>r_logentry->[INITIATOR_nameDef] watched [RECIPIENT_nameDef] go through the forms and pointed out one small thing that changed everything.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] sat up late talking about how each of them first came to the art.</li>
+        <li>r_logentry->[INITIATOR_nameDef] admitted to [RECIPIENT_nameDef] how stuck [INITIATOR_pronoun] had been, and felt lighter for it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] argued over the right way to [task], and both learned something.</li>
+        <li>task->begin a working</li>
+        <li>task->hold the stance</li>
+        <li>task->know when to stop</li>
+      </rulesStrings>
+    </logRulesInitiator>
+  </InteractionDef>
+
+  <!-- Memories the story leaves. -->
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Arc_PM_Breakthrough</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>broke through the wall</label><description>Weeks of the same working failing at the same place, and then this morning it simply went right.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Arc_PM_OwnArt</defName>
+    <durationDays>10</durationDays>
+    <stages><li><label>my art is my own</label><description>The forms aren't something I'm trying to remember any more. They're how I move.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Arc_PM_SawThemThrough</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>12</durationDays>
+    <stackLimit>3</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>saw them through it</label><description>I watched them hit the wall and climb over it, and I had a hand in it.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>10</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+</Defs>
