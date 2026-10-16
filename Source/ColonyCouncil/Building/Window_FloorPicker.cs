@@ -99,6 +99,24 @@ namespace ColonyCouncil
         private readonly Dictionary<Family, List<TerrainDef>> shownKept = new Dictionary<Family, List<TerrainDef>>();
         private TerrainDef suggestedKept;
 
+        private float currentAt = -1f;
+        private int currentVersion = int.MinValue;
+        private TerrainDef currentFloor;
+
+        /// <summary>The floor the plan would use now: the player's pick, else the plan's own (worked out once a second, or at once after a change).</summary>
+        private TerrainDef CurrentFloor()
+        {
+            if (cfg.floorChosen) return cfg.floor;
+            float now = Time.realtimeSinceStartup;
+            if (currentVersion != cfg.version || now - currentAt > 1f || now < currentAt)
+            {
+                currentFloor = cfg.Floor(template, map);
+                currentAt = now;
+                currentVersion = cfg.version;
+            }
+            return currentFloor;
+        }
+
         private void Keep(TerrainDef current)
         {
             float now = Time.realtimeSinceStartup;
@@ -170,7 +188,7 @@ namespace ColonyCouncil
 
         public override void DoWindowContents(Rect inRect)
         {
-            var current = cfg.Floor(template, map);
+            var current = CurrentFloor();
             Keep(current);
             float y = inRect.y;
             Text.Font = GameFont.Medium;

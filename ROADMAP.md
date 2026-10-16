@@ -169,8 +169,19 @@ play deep. In order:
   workers, interaction weights, alerts and the slow-time buttons lost their LINQ, by-name lookups and per-frame string
   building. Every saved list has a cap or pruning rule (DESIGN.md, "Save size"): the chronicle keeps its milestones
   longest, departed journals and annals are capped, and records of pawns the game has discarded are let go while
-  playing. Still open: one shared clock and per-map snapshot, ailments and health spread across the hour, a profiler
-  pass and the five-year measurement.
+  playing.
+- Done (October 2026): a static hot-spot audit (`Tools/perf_audit.py`, `docs/perf-audit.md`) ranks every entry point
+  (tick passes, windows and tabs, thought workers, patches on hot game methods) by how often it runs times what it
+  does in loops; its estimate for the whole mod fell from about 246 to 17 million units an hour, mostly per-frame
+  windows. Ailments and health stories are spread over the hour like the heart (a tenth of the colony every 250
+  ticks). One shared per-map snapshot (`Lean/MapFacts.cs`: threat, busiest home map, colonists, food, medicine, beds)
+  read by 25 threat checks and the passes that worked the rest out for themselves. Every tagged line is taken apart
+  once (`Lean/LineTags.cs`, checked against the old code on every line of the mod). A missing part's prosthetic no
+  longer walks every recipe twice over; a feast serves from one sorted list; the floor picker, decree page, Mood tab,
+  Rooms tab and Almanac draw from kept models; defs by name are kept (`Lean/DefRef.cs`). Caches have tested rules
+  (`Lean/Fresh.cs`). A five-year save estimate (`Tools/save_estimate.py`, `docs/save-size.md`): about 1.3 MB,
+  nothing without a bound. Behaviour is unchanged (the tests and the balance simulator's numbers are the same).
+  Still open: one shared clock for the remaining hourly passes, and a profiler pass in a long save.
 
 ### 3. Clear (UI/UX)
 - Done (October 2026): the settings window on seven pages (council and wishes, people and moods, heart and health,

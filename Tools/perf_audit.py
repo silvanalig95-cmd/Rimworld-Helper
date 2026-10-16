@@ -1047,6 +1047,8 @@ class Analyzer:
             slices = period_value(sm.group(3), self.consts)
             if period and slices:
                 slice_vars[sm.group(1)] = max(1, period // slices)
+        # A variable holding the real time (float now = Time.realtimeSinceStartup) makes its comparisons a cache's.
+        rt_vars = set(rm.group(1) for rm in re.finditer(r"\b(?:float|var)\s+(\w+)\s*=\s*(?:UnityEngine\.)?Time\.realtimeSinceStartup\s*;", code[b:e]))
         gate_vars = {}
         for gm in re.finditer(r"\bbool\s+(\w+)\s*=\s*([^;]+);", code[b:e]):
             f, notes = gate_factor(gm.group(2), False, self.consts)
@@ -1058,6 +1060,8 @@ class Analyzer:
             p = code.index("(", im.start())
             q = match_close(code, p, "(", ")")
             cond = code[p + 1:q]
+            for rv in rt_vars:
+                cond = re.sub(r"\b" + re.escape(rv) + r"\b", "realtimeSinceStartup", cond)
             k = q + 1
             then_end = statement_end(code, k, e)
             stmt = code[k:then_end + 1].strip()
@@ -1542,6 +1546,7 @@ def main():
     ap.add_argument("--out", default=os.path.join(ROOT, "docs", "perf-audit.md"))
     ap.add_argument("--json", default=None)
     ap.add_argument("--compare", default=None, help="a --json file from an earlier run, for a before/after column")
+    ap.add_argument("--compare-label", default="an earlier run", help="what the earlier run was (for the page)")
     ap.add_argument("--top", type=int, default=40)
     ap.add_argument("--quiet", action="store_true")
     ap.add_argument("--src", default=SRC, help="the source folder to read (default: Source/ColonyCouncil)")
@@ -1630,6 +1635,9 @@ def main():
     L.append("")
     L.append(f"Entry points found: {len(out_rows)}. Estimated total: {fmt_cost(total_cost)} units an hour"
              + (f" (before: {fmt_cost(before['total'])})" if before else "") + ".")
+    if before:
+        L.append("")
+        L.append(f"\"Before\" is {args.compare_label}, read by this same script. An entry point that is gone or new shows \"–\".")
     L.append("")
     L.append("| Kind | Units an hour | Share |" + (" Before |" if before else ""))
     L.append("|---|---|---|" + ("---|" if before else ""))

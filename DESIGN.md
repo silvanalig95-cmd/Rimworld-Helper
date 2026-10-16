@@ -872,6 +872,8 @@ Tools/DefValidator/    # offline XML checker against the real game types
 Tools/ApiDiff/         # will the built DLL still run on another game version?
 Tools/Tests/           # tests for the room rotation math
 Tools/make_icons.py    # draws the interface icons (Textures/ColonyCouncil/Icons) and their contact sheet
+Tools/perf_audit.py    # ranks the code's hot spots without the game (docs/perf-audit.md)
+Tools/save_estimate.py # how each saved collection grows over five years (docs/save-size.md)
 ```
 
 Core types:
@@ -952,8 +954,18 @@ Every system keeps its own clock; nothing is merged into one scheduler. What the
 `Source/ColonyCouncil/Lean/Sched.cs`: each hourly pass has a tick of the hour to itself, at least 90 ticks from the
 next, and none lands on a tick of the short 250-tick passes (Tools/Tests checks both). The council's hour, which used to
 run twenty-odd systems on one tick, runs in four parts in its old order, and its day in two halves, so the first hour of
-a day (where most daily work happens) is spread over the hour too. "Tick" below is the tick of the hour (0 to 2499), of
-the 250-tick cycle or of the day.
+a day (where most daily work happens) is spread over the hour too. The per-colonist passes (the heart, ailments, health
+stories) take a tenth of the colony every 250 ticks (`Sched.Slices`, by ID), so each colonist still comes round once
+an hour and no tick carries the whole colony. "Tick" below is the tick of the hour (0 to 2499), of the 250-tick cycle
+or of the day.
+
+What many passes ask about a map is worked out once and shared (`Lean/MapFacts.cs`): whether a threat is on the map (as
+of this 250-tick stretch), the busiest home map (the same), and for the hour the colonists at home, the days of food,
+the medicine and the colony's beds. The first pass to ask in its stretch works it out; the rest read it. The heart's map
+context, decrees, the life checks behind dilemmas, the advisor, ambition goals, autonomy, encounters, social events,
+nuisances, the calendar, Rimfolk's events, world situations, scenarios, story chains, nemeses, camps, play-outs, the
+fights pass and the worn-out episode read from it. (A downed victim after a fight is still judged at that moment.)
+`Lean/Fresh.cs` holds the rules for how long such an answer holds; Tools/Tests checks them.
 
 **Every hour** (2,500 ticks), in the order they come in the hour:
 
@@ -963,17 +975,18 @@ the 250-tick cycle or of the day.
 | 157 | Council: fights and losses, decrees, wish upkeep, promises kept (every other hour), event wishes, new wishes | per home map (a fight going on?), per open wish, per granted wish still watched (its own check, and a look at plans being built only when something is missing); a new wish rolls once, and only when it comes does it ask every wish of every colonist |
 | 327 | A camp's hour (only while a camp is there) | the camp's members, trade, fees, its day's event |
 | 502 | Council's day, first half (first hour of the day only): trust, standards, decree trust and petitions, anniversaries, names, journals, offices | per colonist (their memories, for the journal) |
-| 677 | Health stories (with convalescence or reputation on) | per colonist: limbs lost, bed rest, setbacks; the cases of dangerous illness; pruning in the first hour of the day |
+| 677 | Health stories, the colony's part (with convalescence or reputation on): the cases of dangerous illness; pruning in the first hour of the day | per case (each colonist's part runs in its slice, below) |
 | 852 | Council's day, second half (first hour of the day only): the social web, social events, life goals, secrets, vendettas, quirks, legacy, the colony's ways, the links between systems (the physician's rounds, the herdmaster, setbacks counted), the day's history sample, trust effects, bitter colonists | per pair of colonists (opinions, ties, circles), per colonist and quirk def |
+| 917 | Links with other mods (only with one there): water and mending for strain and recovery | per colonist |
 | 1027 | Council: ambitions, personal touches, dilemmas, annals, dreams, quirks | the ambition's goals on its map; per colonist (asleep or waking; a dream weighs every dream def for the one waking) |
 | 1203 | World situations | per running situation (at most two); a new one rolls now and then |
 | 1311 | Colony calendar | the home map: snow, the day's first look (harvest, deaths, rest day), talk, a day coming round |
 | 1427 | Setbacks: the lasting ones (a wish still waiting, a decree dragging on, a sick friend, quiet days...), crops lost, rain on gatherings, noisy nights, long hauls, waiting for a doctor; outshone, cooled friendships and hard weeks in the first hour of the day | per colonist (their wish, decrees, those close to them who are ill or away), per home map (gatherings, sleepers and who is at loud work nearby, hauls, beds), per skill once a day |
-| 1544 | Council: nemeses, pets, the links between systems (pets and grief, the marshal after a fight, a fear faced), PokeWorld, autonomy, who is home, everyday pressures | per colony animal on home maps, per spawned colonist (a plan or a job now and then), per colonist (meals, work), per home map (crowded rooms, half-built frames) |
+| 1544 | Council: nemeses, pets, the links between systems (pets and grief, the marshal after a fight, a fear faced), moments waiting for two to be together, PokeWorld, autonomy, who is home, everyday pressures | per colony animal on home maps, per spawned colonist (a plan or a job now and then), per colonist (meals, work), per home map (crowded rooms, half-built frames) |
 | 1777 | Personal stories | per story under way; new stories in the first hour of the day |
 | 2089 | Story chains and missions; the peoples' memory fades (first hour of the day only) | per running chain, per mission; per remembered deed |
 | 2280 | Council: encounters and nuisances, Rimfolk's own events | one roll each; event memory pruned in the first hour of the day |
-| 2471 | Ailments | the colony's serious illnesses counted (every colonist's hediffs), then per colonist: circumstances sampled, each ailment's counted causes rolled; diet and sweets on the first look of the day |
+| 2471 | Ailments, the colony's part (on the slice that lands here): the catching ailments' clock; pruning on the first look of the day | per home map |
 
 **Every 250 ticks**, by tick of the cycle:
 
@@ -984,7 +997,11 @@ the 250-tick cycle or of the day.
 | 71 | The heart: one tenth of the colonists (by ID), so each colonist once an hour | per colonist in the slice: moods, feelings, needs, strain; each map's context (food, medicine, filth, defences, dread) at most once an hour, its threat flag every 250 ticks; the dead pruned on slice 0 |
 | 77 | A camp's phase, hunts and trees (only while a camp is there) | per camp member, prey and tree |
 | 89 | Missions: an accepted quest starts, a goal met is noticed (with a map) | per open mission |
-| 113 | The welcome letter (only until it's sent) | one check |
+| 113 | The welcome letter (only until it's sent); answers playing out on the map (only while one waits or runs) | one check; per play-out |
+| 139 | Health stories: one tenth of the colonists (by ID), each once an hour (with convalescence or reputation on) | per colonist in the slice: limbs lost, bed rest, setbacks |
+| 167 | The colony news: what waits goes out (as the evening's digest, around six) | the waiting news |
+| 199 | The council window's memory: the day's trust sample, the dilemmas it watches | per colonist once a day |
+| 221 | Ailments: one tenth of the colonists (by ID), each once an hour; the slice at tick 2471 also carries the colony's part | the colony's serious illnesses counted (every colonist's hediffs, as before every hour's rolls), then per colonist in the slice: circumstances sampled, each ailment's counted causes rolled; diet and sweets on the first look of the day |
 
 **Other rhythms**
 
@@ -996,6 +1013,7 @@ the 250-tick cycle or of the day.
 | every 60 ticks, tick 23 | Council meeting upkeep (only while one is called) | the attendees |
 | every 60 ticks | Rimfolk scenario parts set their stakes (only until done) | one check |
 | every 300 ticks | A council meeting in session talks (its lord job) | the attendees |
+| every 250 ticks of a gathering | An answer playing out: a feast's plates, a toast's cups, its touches | those not yet served: the meals, found and sorted once for all of them, each colonist asked in that order only until one fits |
 | every 1000 ticks, tick 433 | Other mods' people: new play-log lines and tales | the new entries only |
 | every 30 ticks of a camp's toil | A camp's lord: hunters' jobs; every 2,500 a camp without a record leaves | per camp member |
 | every 200 ticks per hediff | Ailment comps: incubation and treatment course (immunizable); severity per day (medicine, course, recovery, diet), read by the game | the colonist with the ailment |
@@ -1014,7 +1032,8 @@ and pages rebuild their models every half second to second while open (UiCache, 
 - *Situational moods* (asked for every colonist every few seconds): heart strain, the colony's ways, decrees, trust,
   quirks, vendettas, heirlooms, a goal within reach, the comet, everyday pressures, ailments and
   convalescence. Each answers from data worked out on the hour (a dictionary or a short loop, no LINQ), and the
-  convalescent moods look at the hediff before anything else.
+  convalescent moods look at the hediff before anything else. The colony's ways keep each colonist's approval until
+  the ways move (or 250 ticks, `Lean/Fresh.cs`).
 - *The social tie mood* (asked for every pair of colonists): one dictionary lookup in an index rebuilt only when ties
   change.
 - *Mood totals*: Rimfolk's memories scale themselves (SmallJoys ranks one colonist's good memories once per tick), and
@@ -1024,13 +1043,27 @@ and pages rebuild their models every half second to second while open (UiCache, 
 - *Conversation weights*: each Rimfolk interaction is weighed every time two colonists talk; def-name endings, a
   moment's tie kind and need are read once.
 - *Per frame*: the inspector line (a string join), the Needs tab's extra tooltip lines (cached half a second), alert
-  labels (rebuilt only when they change), the slow-time buttons (labels translated once, tooltips only on hover).
+  labels (rebuilt only when they change), the slow-time buttons (labels translated once, tooltips only on hover), a
+  lucky thing's inspect line and description (a lookup by thing id, nothing while no thing is lucky). Windows and tabs
+  keep a model and draw from it: the floor picker keeps each floor's research, cost, material, stats and tooltip for a
+  second (at once again after a pick), the decree page lays out its cards with what stands in a decree's way once a
+  second, the Mood tab builds its headings and hint buttons with its half-second model, the Almanac's cards their
+  "Column: value" lines with their layout.
+- *Picking a line*: every line Rimfolk says goes through Flavor, which takes each tagged line apart once
+  (`Lean/LineTags.cs`) and only compares after that; the moment's tags (trait:, skill:, weather:) are built once per def.
+- *Defs by name*: looked up once and kept (`Lean/DefRef.cs`), misses too; caches keyed by defs start over each game.
 - *Harmony patches on the game's own events* (a memory gained, a meal eaten, a death, a letter, a raid, a goodwill
-  change, a trade, a quest's end): run when the event happens. None patches a tick method.
+  change, a trade, a quest's end): run when the event happens. Only the wind guard patches a tick method
+  (`WindManager.WindManagerTick`, a few checks).
 
-What was left alone: ailments and health stories still look at every colonist on one tick of the hour. Splitting them
-across the hour like the heart would change when a colony-wide count is taken (ailments count the colony's serious
-illnesses at the start of the pass, then give at most one), and that can't be checked without the game.
+Ailments and health stories, once on one tick of the hour each, are spread like the heart. Ailments count the colony's
+serious illnesses before every slice (as they did before every hour's rolls) and give at most one new one in the
+colony's room for it, so a colonist's rolls see the colony as it is; the catching clock still runs once an hour on its
+old tick.
+
+**Where to look.** `Tools/perf_audit.py` reads the code and ranks every entry point by estimated cost (how often it
+runs times what it does, loops weighed by what they go over): `docs/perf-audit.md`, with the ranking before this pass
+beside it. Estimates, not measurements; a profiler pass in a long save is still to come.
 
 ## Save size
 
@@ -1071,6 +1104,11 @@ on a map, in the world or in a caravan), so such a record is let go when the gam
 | Faction memory | 12 deeds per people (the settled and the faintest make way); a deed is dropped once it fades below 1, and with its people when they're gone |
 | Other mods' people | best-friend pairs of known pawns, 200 at most |
 | Advisor (per map) | 60 days of wealth samples |
+
+How big it gets: `Tools/save_estimate.py` models every saved collection (226) with its rule and plays five in-game
+years in a colony of 20 (`docs/save-size.md`). Nothing grows without end; Rimfolk's part of a five-year save comes to
+about 1.3 MB, nearly half of it the journals. `--strict` fails on a saved collection with no model, so a new one needs
+its rule written down.
 
 Pawn references: a saved reference to a pawn the game has discarded is written as nothing, so every such record was
 already dropped on the next load. The trackers above now drop or forget them while playing too, so a long session
