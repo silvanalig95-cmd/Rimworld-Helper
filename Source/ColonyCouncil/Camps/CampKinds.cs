@@ -236,14 +236,32 @@ namespace ColonyCouncil
                 }
                 case "song":
                 {
-                    // Minstrels: an evening's music at their fire carries to everyone at home who's awake.
+                    // Minstrels: an evening's music at their fire. With answers playing out, the colony walks over to
+                    // listen (a gathering at the camp) and those who came remember it; otherwise it carries to everyone awake.
                     int hour = GenLocalDate.HourOfDay(map);
                     if (hour < 17 || hour > 22) return false;
                     var player = here.OrderByDescending(p => p.skills?.GetSkill(SkillDefOf.Artistic)?.Level ?? 0).First();
                     var heard = DefDatabase<ThoughtDef>.GetNamedSilentFail("Council_Camp_SongHeard");
-                    foreach (var c in colonists.Where(c => !c.Downed && !c.InMentalState && c.Awake()))
-                        CouncilGameComponent.GiveThought(c, heard);
-                    if (!(kind?.lines).NullOrEmpty()) Arrivals.Say(player, Pick(kind.lines, player));
+                    if (PlayOuts.On)
+                    {
+                        var effects = new List<DilemmaEffect>
+                        {
+                            new DilemmaEffect_Gathering
+                            {
+                                music = true, organizer = PlayWho.None, spots = new List<PlaySpot> { PlaySpot.Camp, PlaySpot.Stranger, PlaySpot.Outdoors },
+                                label = "CC_Camp_SongLabel".Translate().Resolve(), hours = new IntRange(hour, 23), waitHours = 2f,
+                                duration = new FloatRange(1.5f, 2.5f)
+                            }
+                        };
+                        if (heard != null) effects.Add(new DilemmaEffect_Thought { thought = heard, target = DilemmaTarget.Colony });
+                        PlayOuts.Run(effects, new DilemmaContext { map = map, stranger = player, why = Label }, "camp song");
+                    }
+                    else
+                    {
+                        foreach (var c in colonists.Where(c => !c.Downed && !c.InMentalState && c.Awake()))
+                            CouncilGameComponent.GiveThought(c, heard);
+                        if (!(kind?.lines).NullOrEmpty()) Arrivals.Say(player, Pick(kind.lines, player));
+                    }
                     Tell(Text("CC_Camp_HelpTitle"), HelpText("song", player, colonists.RandomElement()), LetterDefOf.PositiveEvent, false);
                     return true;
                 }
@@ -272,12 +290,15 @@ namespace ColonyCouncil
                 }
                 case "tales":
                 {
-                    // News from the road: whoever sits with them most hears it, and learns a little of how to listen.
-                    var listener = colonists.Where(c => !c.Downed && warmth.ContainsKey(c)).OrderByDescending(c => warmth[c]).FirstOrDefault() ?? colonists.RandomElement();
+                    // News from the road: a colonist sitting with one of them right now hears it (Together), the one who
+                    // has spent the most time at their fire first, and learns a little of how to listen.
+                    var listener = colonists.Where(c => here.Any(h => Together.Can(h, c))).OrderByDescending(c => warmth.TryGetValue(c, out int w) ? w : 0).FirstOrDefault();
+                    if (listener == null) return false;
+                    var teller = here.Where(h => Together.Can(h, listener)).RandomElement();
                     listener.skills?.Learn(SkillDefOf.Social, 300f);
                     listener.needs?.joy?.GainJoy(0.12f, JoyKindDefOf.Social);
                     Warm(listener, 1);
-                    Tell(Text("CC_Camp_HelpTitle"), HelpText("tales", here.RandomElement(), listener), LetterDefOf.PositiveEvent, false);
+                    Tell(Text("CC_Camp_HelpTitle"), HelpText("tales", teller, listener), LetterDefOf.PositiveEvent, false);
                     return true;
                 }
                 case "survey":

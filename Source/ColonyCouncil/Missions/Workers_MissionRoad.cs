@@ -103,7 +103,7 @@ namespace ColonyCouncil
                 if (now < m.due) return;
                 // The pilgrim comes to the colony and waits there for the road.
                 IntVec3? spot = null;
-                var gather = map.listerBuildings.allBuildingsColonist.FirstOrDefault(b => b.def.defName == "PartySpot" || b.def.defName == "Campfire");
+                var gather = Avail.ColonyBuildings(map, d => d.defName == "PartySpot" || d.defName == "Campfire").FirstOrDefault();
                 if (gather != null) spot = gather.Position;
                 if (Arrivals.Visit(new List<Pawn> { x }, map, m.faction, spot, Mathf.Max(6f, (m.deadline - now) / (float)GenDate.TicksPerHour)) == null)
                 {
@@ -438,7 +438,7 @@ namespace ColonyCouncil
                     m.due = now + Mathf.RoundToInt(Rand.Range(0.3f, 0.6f) * GenDate.TicksPerDay);
                     // They follow their finder back to the colony and wait there for their family.
                     x.GetLord()?.RemovePawn(x);
-                    var spot = map.listerBuildings.allBuildingsColonist.FirstOrDefault(b => b.def.defName == "PartySpot" || b.def.defName == "Campfire")?.Position ?? finder.Position;
+                    var spot = Avail.ColonyBuildings(map, d => d.defName == "PartySpot" || d.defName == "Campfire").FirstOrDefault()?.Position ?? finder.Position;
                     LordMaker.MakeNewLord(m.faction, new LordJob_VisitColony(m.faction, spot, GenDate.TicksPerDay * 2), map, new List<Pawn> { x });
                     string line = Line(More?.ready, m, map, null, TextUtil.DaysString(m.due - now));
                     if (!line.NullOrEmpty()) Messages.Message(line, new LookTargets(x, finder), MessageTypeDefOf.PositiveEvent, false);

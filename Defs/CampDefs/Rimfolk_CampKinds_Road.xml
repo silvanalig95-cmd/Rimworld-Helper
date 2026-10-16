@@ -149,6 +149,7 @@
           <li>{A_nameDef} spent an hour with {X_nameDef} and a stick drawing roads in the dirt, and came back knowing more about the region than anyone in the colony.</li>
         </outcomes>
         <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><duration>1~1.5</duration></li>
           <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Social</skill><xp>350</xp></li>
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>2</amount></li>
         </effects>
@@ -453,6 +454,7 @@
           <li>{A_nameDef} takes bread and dried fruit to the penitents' camp. {X_nameDef} accepts it with both hands and a bow, and says they will pray for whoever grew it.</li>
         </outcomes>
         <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Camp</to><duration>0.75~1.25</duration></li>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>15</count></li>
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>3</amount></li>
         </effects>
@@ -543,7 +545,7 @@
           <li>{A_nameDef} has gone walking in the woods with the tree-singers, to listen to whatever it is they listen to.</li>
         </outcomes>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Walk</to><duration>2~3</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><duration>2~3</duration></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Camp_PilgrimBlessing</thought></li>
         </effects>
       </li>
@@ -643,6 +645,7 @@
           <li>{X_nameDef} spends an hour with {A_nameDef}, prodding, listening and muttering, and leaves {A_objective} with a remedy and very firm instructions.</li>
         </outcomes>
         <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><duration>1~1.5</duration></li>
           <li Class="ColonyCouncil.DilemmaEffect_EaseIllness"><severity>0.12</severity></li>
           <li Class="ColonyCouncil.DilemmaEffect_EaseAilment"><factor>0.5</factor></li>
         </effects>
@@ -886,6 +889,7 @@
           <li>{A_nameDef} takes food to the mourners' camp. {X_nameDef} takes it with a nod and says the one in the cart would have thanked the colony with a song.</li>
         </outcomes>
         <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Camp</to><duration>0.75~1.25</duration></li>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>15</count></li>
         </effects>
       </li>

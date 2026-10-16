@@ -40,6 +40,7 @@
   <CC_CampAsk_Nobody>Nobody at the colony is free to go.</CC_CampAsk_Nobody>
   <CC_CampAsk_NobodySick>Nobody at the colony is ill or ailing.</CC_CampAsk_NobodySick>
   <CC_CampAsk_Evening>Only in the evening (from the afternoon on).</CC_CampAsk_Evening>
+  <CC_Camp_SongLabel>the music at the camp</CC_Camp_SongLabel>
   <CC_CampAsk_NoBeast>None of their beasts would do well in this weather.</CC_CampAsk_NoBeast>
   <!-- Their good turns, when the kind has no line of its own -->
   <CC_Camp_Help_song>The people camped {PLACE} played music at their fire this evening, and it carried all over the colony.</CC_Camp_Help_song>

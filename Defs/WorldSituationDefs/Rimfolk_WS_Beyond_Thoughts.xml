@@ -65,7 +65,6 @@
     <durationDays>3</durationDays>
     <stackLimit>1</stackLimit>
     <stages><li><label>told what we didn't do</label><description>Their envoy stood in our yard and told us, very calmly, what it cost them when we kept our gate shut. I couldn't look at them.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
-    <modExtensions><li Class="ColonyCouncil.RewardInstead"><feelings><li>Shame</li></feelings></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef>

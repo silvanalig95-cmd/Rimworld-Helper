@@ -114,11 +114,8 @@ namespace ColonyCouncil
                 line = Format(raw, ctx.stranger, ctx.a, cost);
                 ctx.why = a.label;
                 ctx.cause = line;
-                using (Causes.Push(line))
-                using (PlayOuts.Collect())
-                {
-                    foreach (var e in PlayOuts.Ordered(a.effects)) HappeningTracker.Safe(e, ctx);
-                }
+                // What people do plays out on the map (a gathering at the camp's fire, a lesson, a visit), the rest at once.
+                using (Causes.Push(line)) PlayOuts.Run(a.effects, ctx, "camp ask " + a.key);
                 if (a.tension != 0f) AddTension(a.tension);
                 if (a.warm > 0) Warm(ctx.a, a.warm);
                 if (!a.deed.NullOrEmpty()) KinMemory.Note(faction, a.deed, ctx.a, place);
