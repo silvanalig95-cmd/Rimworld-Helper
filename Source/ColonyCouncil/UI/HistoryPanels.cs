@@ -16,7 +16,29 @@ namespace ColonyCouncil
         private static Vector2 dreamScroll;
         private static float dreamHeight = 400f;
         private static string dreamFilter;
-        private static DreamKind? kindFilter;
+        private static bool kindLoaded;
+        private static DreamKind? kindMemo;
+
+        /// <summary>The kind of dream shown (null: every kind), remembered between sessions (UI/PageMemory.cs).</summary>
+        private static DreamKind? kindFilter
+        {
+            get
+            {
+                if (!kindLoaded)
+                {
+                    kindLoaded = true;
+                    string saved = PageMemory.Get("dreams.kind");
+                    kindMemo = saved != null && System.Enum.TryParse(saved, out DreamKind k) ? k : (DreamKind?)null;
+                }
+                return kindMemo;
+            }
+            set
+            {
+                kindLoaded = true;
+                kindMemo = value;
+                PageMemory.Set("dreams.kind", value?.ToString());
+            }
+        }
 
         // The filtered dreams, rebuilt when a filter or the list of dreams changes.
         private static readonly List<DreamRecord> dreams = new List<DreamRecord>();
