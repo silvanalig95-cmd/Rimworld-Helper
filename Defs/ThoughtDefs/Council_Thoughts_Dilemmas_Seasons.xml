@@ -76,7 +76,8 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_FairShares</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>fair shares</label><description>The spoils were split evenly between us. That's fair.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>fair shares</label><description>The spoils were split evenly between us. That's fair.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><trust>1</trust><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">

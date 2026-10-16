@@ -127,7 +127,8 @@ namespace ColonyCouncil
 
     /// <summary>
     /// A dream memory that carries the dream itself, shown in its tooltip. A good dream shares the budget of Rimfolk's
-    /// good moods (SmallJoys); dreams aren't scaled by reward strength or standards.
+    /// good moods (SmallJoys); dreams aren't scaled by reward strength or standards. A dream that gives something else
+    /// instead of mood (a sweet one rests, a strange one may inspire) does so as it's gained (RewardInstead).
     /// </summary>
     public class Thought_Dream : Thought_Memory, ICouncilMood
     {
@@ -149,7 +150,11 @@ namespace ColonyCouncil
         public override string Description =>
             GoodTimes.FadeNote(this, SmallJoys.Note(this, dream.NullOrEmpty() ? base.Description : base.Description + "\n\n\"" + dream + "\""));
 
-        public override bool VisibleInNeedsTab => base.VisibleInNeedsTab && !SmallJoys.Faded(this);
+        public override bool TryMergeWithExistingMemory(out bool showBubble)
+        {
+            RewardInstead.Gained(this);
+            return base.TryMergeWithExistingMemory(out showBubble);
+        }
 
         public override void ExposeData()
         {

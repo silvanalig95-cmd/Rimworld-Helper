@@ -8,13 +8,15 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_Greeted</defName>
     <durationDays>1</durationDays>
-    <stages><li><label>my animal was glad to see me</label><description>I came home filthy and worn out, and my animal acted like I'd hung the moon.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>my animal was glad to see me</label><description>I came home filthy and worn out, and my animal acted like I'd hung the moon.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><feelings><li>Contentment</li></feelings><felt>4</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_WarmFeet</defName>
     <durationDays>1.5</durationDays>
-    <stages><li><label>warm feet</label><description>My animal sleeps across my feet at night. It snores, but my feet stay warm.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>warm feet</label><description>My animal sleeps across my feet at night. It snores, but my feet stay warm.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><rest>0.1</rest><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -32,13 +34,15 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_SmallRobbery</defName>
     <durationDays>1</durationDays>
-    <stages><li><label>robbed, adorably</label><description>An animal stole my dinner right off the plate and looked so pleased about it that I couldn't be angry.</description><baseMoodEffect>1</baseMoodEffect></li></stages>
+    <stages><li><label>robbed, adorably</label><description>An animal stole my dinner right off the plate and looked so pleased about it that I couldn't be angry.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><journal>true</journal><felt>1</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_GrimGift</defName>
     <durationDays>1</durationDays>
-    <stages><li><label>a gift from my animal</label><description>My animal dropped a dead rat at my feet and looked very proud of itself.</description><baseMoodEffect>1</baseMoodEffect></li></stages>
+    <stages><li><label>a gift from my animal</label><description>My animal dropped a dead rat at my feet and looked very proud of itself.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>1</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -68,7 +72,8 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_Playmate</defName>
     <durationDays>1.5</durationDays>
-    <stages><li><label>played with an animal all day</label><description>We ran around until we both fell over, and then we lay in the grass. That was the best part.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>played with an animal all day</label><description>We ran around until we both fell over, and then we lay in the grass. That was the best part.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.15</joy><felt>3</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -80,7 +85,8 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_ToldItEverything</defName>
     <durationDays>1</durationDays>
-    <stages><li><label>told my troubles to an animal</label><description>I told one of the animals everything that's been bothering me. It won't repeat a word of it.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>told my troubles to an animal</label><description>I told one of the animals everything that's been bothering me. It won't repeat a word of it.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><feelings><li>Relief</li></feelings><felt>3</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -92,7 +98,8 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_WorkCompanion</defName>
     <durationDays>1</durationDays>
-    <stages><li><label>company at work</label><description>My animal lay nearby while I worked all day, watching me like I was wonderful.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>company at work</label><description>My animal lay nearby while I worked all day, watching me like I was wonderful.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><feelings><li>Contentment</li></feelings><felt>3</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -104,13 +111,15 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_NewLitter</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>new life in the barn</label><description>There are newborns in the barn, tiny and loud and wobbling around in the straw.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>new life in the barn</label><description>There are newborns in the barn, tiny and loud and wobbling around in the straw.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.06</joy><joyKind>Meditative</joyKind><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_HerdGrows</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>the herd is growing</label><description>There are more animals in the barn now. That's more meat and leather later on.</description><baseMoodEffect>1</baseMoodEffect></li></stages>
+    <stages><li><label>the herd is growing</label><description>There are more animals in the barn now. That's more meat and leather later on.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><journal>true</journal><felt>1</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -142,13 +151,15 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_HuntersBlood</defName>
     <durationDays>1</durationDays>
-    <stages><li><label>something worth hunting</label><description>There's a big, dangerous animal out there. My hand keeps going to my blade.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>something worth hunting</label><description>There's a big, dangerous animal out there. My hand keeps going to my blade.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><feelings><li>Resolve</li></feelings><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_GreatBeast</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>saw a great beast</label><description>A huge animal crossed the meadow, slow and calm, paying us no mind. I've been smiling at nothing all day.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>saw a great beast</label><description>A huge animal crossed the meadow, slow and calm, paying us no mind. I've been smiling at nothing all day.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><inspiration>0.04</inspiration><feelings><li>Awe</li></feelings><felt>4</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -160,19 +171,22 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_QuietMorning</defName>
     <durationDays>1</durationDays>
-    <stages><li><label>a quiet morning</label><description>I was up before the others and saw an animal standing in the morning mist. It was beautiful.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>a quiet morning</label><description>I was up before the others and saw an animal standing in the morning mist. It was beautiful.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.06</joy><joyKind>Meditative</joyKind><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_HerdPassed</defName>
     <durationDays>1</durationDays>
-    <stages><li><label>watched a herd go by</label><description>A herd went past, taking its time, and I stopped to watch it go by.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>watched a herd go by</label><description>A herd went past, taking its time, and I stopped to watch it go by.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.06</joy><joyKind>Meditative</joyKind><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_Birdsong</defName>
     <durationDays>1</durationDays>
-    <stages><li><label>birdsong</label><description>Birds sang in the bushes all morning. For a few hours I forgot to listen for raiders.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>birdsong</label><description>Birds sang in the bushes all morning. For a few hours I forgot to listen for raiders.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.05</joy><joyKind>Meditative</joyKind><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -196,7 +210,8 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_FedWild</defName>
     <durationDays>1.5</durationDays>
-    <stages><li><label>fed a wild creature</label><description>A wild animal ate out of my hand today. It was more hungry than scared.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>fed a wild creature</label><description>A wild animal ate out of my hand today. It was more hungry than scared.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><skill>Animals</skill><xp>120</xp><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -244,13 +259,15 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_Moonlit</defName>
     <durationDays>1.5</durationDays>
-    <stages><li><label>night-time company</label><description>I was out walking in the dark, and a wild animal crossed my path without running off. We keep the same hours, it and I.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>night-time company</label><description>I was out walking in the dark, and a wild animal crossed my path without running off. We keep the same hours, it and I.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.08</joy><joyKind>Meditative</joyKind><felt>3</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_RutFight</defName>
     <durationDays>1</durationDays>
-    <stages><li><label>watched a fight in the meadow</label><description>Two big males crashed heads in the meadow for most of the afternoon. Best entertainment we've had all season.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>watched a fight in the meadow</label><description>Two big males crashed heads in the meadow for most of the afternoon. Best entertainment we've had all season.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.1</joy><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
 </Defs>

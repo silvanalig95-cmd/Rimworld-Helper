@@ -110,11 +110,10 @@ namespace ColonyCouncil
 
         public override string Description => GoodTimes.FadeNote(this, SmallJoys.Note(this, Causes.Append(base.Description, cause)));
 
-        public override bool VisibleInNeedsTab => base.VisibleInNeedsTab && !SmallJoys.Faded(this);
-
         public override bool TryMergeWithExistingMemory(out bool showBubble)
         {
             Causes.CarryOver(this, cause);
+            RewardInstead.Gained(this);
             return base.TryMergeWithExistingMemory(out showBubble);
         }
 
@@ -173,11 +172,12 @@ namespace ColonyCouncil
 
         public override string Description => GoodTimes.FadeNote(this, SmallJoys.Note(this, Causes.Append(base.Description, cause)));
 
-        public override bool VisibleInNeedsTab => base.VisibleInNeedsTab && !MoodOver && !SmallJoys.Faded(this);
+        public override bool VisibleInNeedsTab => base.VisibleInNeedsTab && !MoodOver;
 
         public override bool TryMergeWithExistingMemory(out bool showBubble)
         {
             Causes.CarryOver(this, cause);
+            RewardInstead.Gained(this);
             return base.TryMergeWithExistingMemory(out showBubble);
         }
 

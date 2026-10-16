@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- ===================== Small moments that give something other than mood (Source/ColonyCouncil/Moods/RewardInstead.cs) ===================== -->
+
+  <!-- The small line over a colonist's head, like the speech text: "+ recreation, Cooking". -->
+  <CC_Instead_Mote>+ {0}</CC_Instead_Mote>
+  <CC_Instead_Joy>recreation</CC_Instead_Joy>
+  <CC_Instead_Rest>rest</CC_Instead_Rest>
+  <CC_Instead_Comfort>comfort</CC_Instead_Comfort>
+  <CC_Instead_Trust>trust in the council</CC_Instead_Trust>
+  <CC_Instead_Research>research</CC_Instead_Research>
+  <!-- Put before the game's inspiration letter. MOMENT is the memory's label: "watched the eclipse". -->
+  <CC_Instead_Inspired>{PAWN_nameDef} hasn't stopped thinking about it since: {MOMENT}.</CC_Instead_Inspired>
+
+</LanguageData>

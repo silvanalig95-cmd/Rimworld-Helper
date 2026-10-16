@@ -325,13 +325,19 @@ namespace ColonyCouncil
     public class ThoughtWorker_Quirk : ThoughtWorker
     {
         private QuirkDef quirk;
+        /// <summary>Looked for its quirk already (a habit whose mood became a knack has none any more).</summary>
+        private bool looked;
 
         protected override ThoughtState CurrentStateInternal(Pawn p)
         {
             var comp = CouncilGameComponent.Instance;
             var s = ColonyCouncilMod.Settings;
             if (comp?.quirks == null || !s.quirks || !s.MoodEffects) return ThoughtState.Inactive;
-            if (quirk == null) quirk = DefDatabase<QuirkDef>.AllDefsListForReading.FirstOrDefault(q => q.thought == def);
+            if (!looked)
+            {
+                quirk = DefDatabase<QuirkDef>.AllDefsListForReading.FirstOrDefault(q => q.thought == def);
+                looked = true;
+            }
             if (quirk == null) return ThoughtState.Inactive;
             var q = comp.quirks.Get(p, quirk);
             if (q == null) return ThoughtState.Inactive;

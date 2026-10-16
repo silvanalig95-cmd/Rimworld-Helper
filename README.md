@@ -157,14 +157,39 @@ follow standards, so they aren't shrunk twice. Hover a good mood in the Needs ta
 standards. This works through one of the deeper game hooks, and the *standards cover the game's comforts* setting
 turns it off.
 
-**Good moods add up slowly.** Everything good Rimfolk gives a colonist shares one budget: a wish granted, a wedding,
-a dilemma that went their way, a laugh, a good talk, a contest won, an animal asleep on someone's feet, a sweet dream.
-The two biggest on a colonist's mind count in full, and each one after that half as much as the one before, so a
-dozen good moments lift a colonist about as much as three, and a small joy adds little on top of a wish just granted.
-Bad moods aren't part of it, and neither is anything the game and other mods give (high standards take their own
-share of those, see above). The reward strength setting and rising standards apply to Rimfolk's good moods too. Hover one in
-the Needs tab to see when it counts for less; one that counts for less than half a point is left off the list (its
-little bit still counts). The *good moods add up slowly* setting turns this off.
+**Good moods add up slowly.** Every good mood Rimfolk gives a colonist shares one budget: a wish granted, a wedding,
+a dilemma that went their way, a reunion, a feast. The two biggest on a colonist's mind count in full, the third
+half, the fourth 35%, the fifth a quarter and every one after that a fifth, so a small joy adds little on top of a
+wish just granted, but it never disappears: every good mood stays on the Needs tab at what it counts for now (a +3
+deep in the pile shows as +1), and its tooltip says so ("+0.6 instead of +3"). Bad moods aren't part of it, and
+neither is anything the game and other mods give (high standards take their own share of those, see above). The
+reward strength setting and rising standards apply to Rimfolk's good moods too. The *good moods add up slowly*
+setting turns this off.
+
+**Not every good moment is a good mood.** Rimfolk keeps mood for the moments that matter: weddings, wishes granted,
+reunions, victories, recoveries, life goals reached, the end of a personal story, real celebrations and grief shared.
+About half of its small good moments (248 of the 474 worth +3 or less) give something that fits instead:
+- **opinion only** (58): a good talk, a friendly disagreement, a wound patched up. They think better of each other, and
+  nobody's mood moves;
+- **recreation** (44): a joke at work, dice with a traveler, snow falling, birdsong, music in the air;
+- **rest or comfort** (17): a sweet dream, sleeping late, a friend covering a shift, a dry roof, a trick against the cold;
+- **practice** (9): talking shop in a passion they share, a child learning from a grown-up, sparring forms, calming an
+  animal in a storm;
+- **a feeling** (37, with the heart on): awe at the lightning tree, pride in pilgrims fed, relief at the thaw,
+  fellowship after having their say at a meeting, gratitude for a decree they asked for;
+- **a rare inspiration** (5): a strange dream, a great beast at the tree line, a falling star, a little magic;
+- **trust in the council** (5): a dilemma handled fairly, spoils shared out evenly, the council's precautions;
+- **the road's gifts** (6): a little research from a traveler's star names or books, a little goodwill after tea
+  with a trader or water for a wounded raider;
+- **only the journal** (67): the smallest touches (lights over the marsh, a shape in the fog), and moments whose
+  outcome already pays out in silver, skill or goodwill.
+
+The moment itself still shows (a speech bubble, the social log, the news or the journal), and a small line over the
+colonist says what they got ("+ recreation"). These follow reward strength and standards like the moods they replace,
+and give nothing on *Advisor only*. The heart still feels them at their old size, so feelings, belonging and the
+strain friends ease work as before. Four habits trade their mood for their knack, too (see Quirks). A settled
+colonist now carries about 4 of Rimfolk's good moods instead of about 10, and their total from Rimfolk comes out a
+little lower than before (roughly +10 instead of +11), lower still when nothing big has happened lately.
 
 **Getting used to good times.** Someone whose life is already good gets used to good things faster. When a colonist's
 mood is above 75%, a new good memory from Rimfolk (a wish granted, a good talk, a contest won, a dilemma that went
@@ -288,7 +313,8 @@ Most days something small happens between two people (67 kinds of social event):
 that lands badly, a snub at dinner, a squabble over chores, war stories, a lesson, a contest between rivals, a
 handmade gift, gossip that gets found out, an unexpected truce. Life brings its own: a vigil at a friend's sickbed,
 an evening at a camp on the map, a quarrel over what the council decided, fears confided in the night, grief carried
-together, a peace offering after a quarrel. Each one nudges their bond. In conversation they share smaller moments
+together, a peace offering after a quarrel. Each one nudges their bond; most change how the two see each other
+rather than anyone's mood (a shared joke is a little recreation, a lesson practice). In conversation they share smaller moments
 too (about a hundred kinds, 40 of them frictions), shaped by who they are (night owls keeping each other company,
 brawlers comparing scars, an iron-willed colonist steadying a nervous one) and by what's going on (visiting the sick,
 talking over a council meeting, watching a camp's fires, confiding a worry). Moments, frictions and events keep to
@@ -380,8 +406,8 @@ fade after a season or two.
 Others simply grow out of who someone is: a grower who talks to the plants, a handler who names every animal, a cook
 who sings at the stove, an early riser, someone who hums at work, collects pretty stones, can't stand a mess, feeds
 the birds or remembers every birthday, and after a night in the cold or under the stars, someone who is always cold
-or goes out to watch the stars. Some bring a small knack while they last (slightly faster plant work, fewer food
-poisonings from that cook, animals tamed and trained more easily). 29 quirks in all. Picking one up and letting it
+or goes out to watch the stars. Some bring a small knack while they last instead of a mood (slightly faster plant work,
+fewer food poisonings from that cook, animals tamed and trained more easily, a hummer's work a little quicker). 29 quirks in all. Picking one up and letting it
 fade are written in the journal in the colonist's own voice.
 
 ### Dreams
@@ -391,8 +417,9 @@ them, the wish the council ignored, the leg they lost, the skill they're learnin
 their dog. They grow out of what they feel, too (an argument all night with the one they're angry at, a debt repaid
 to the one they're grateful to, dreams of fear, shame, loneliness, pride or hope), out of what ails them (loose teeth
 with a toothache, breathing underwater with a cold), and out of what's around them: a camp on the map, a council
-meeting, sickness, famine, fighting or a fair in the region, and the seasons. Most are just a passing mood and a line
-in their journal (hover the mood to read the dream). Now and then one changes something: an inspiration, a lesson, a
+meeting, sickness, famine, fighting or a fair in the region, and the seasons. Most leave a line in their journal and
+little else: a sweet dream a bit of rest, a strange one now and then an inspiration, a nightmare or a visit from the
+dead a passing mood (hover it to read the dream). Now and then one changes something: an inspiration, a lesson, a
 good night's rest, a nightmare that leaves them shaken, a dream of victory that steadies their aim, a softened
 rivalry, a sudden wish. And rarely a dream is an **omen**: a few days after someone wakes up talking about bells and
 pack animals on the hill, a caravan arrives; after torches in the dark, a raid. Recent dreams are listed in the
@@ -411,7 +438,9 @@ Colonists meet everyone else on the map, too:
   snow, eyes in the jungle undergrowth, lights over the marsh, an animal on the mountain ridge, the tide line on the
   coast; a traveler's trick against the sand or the cold, the first green of spring, rain waited out with a pet, a
   shape in the fog, a pet frightened by thunder, other names for the stars on a clear night. Rimfolk reads the land
-  from the biome and the tile, so other mods' biomes count too. 156 kinds of encounter in all.
+  from the biome and the tile, so other mods' biomes count too. 156 kinds of encounter in all. Most of these small
+  moments give something other than mood: recreation for a herd going by or a clear night, comfort for a trick
+  against the cold, practice, a little research, awe, and for the smallest only a line in the journal.
 - **The council decides** when it gets harder: a visitor who wants to stay, a rude guest, a trader who wants an
   heirloom, beggars at the gate, a wounded raider who's still breathing, a predator's den, a child who wants to
   keep a wild animal, an old acquaintance who knows a secret.
