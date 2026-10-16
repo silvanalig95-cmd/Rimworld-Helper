@@ -7,7 +7,11 @@
     setting is on, the colonist is free (no danger, not drafted, not in a sickbed or in need of one, not starving,
     exhausted, bleeding, caring for someone or under orders, not at a gathering, not in their sleep hours), the habit
     is off its cooldown, and it fits them. The game only looks for recreation in free time, after danger, sleep, food
-    and medical care, so a habit never takes anyone from those, and any order from the player ends it.
+    and medical care, so a habit never takes anyone from those, and any order from the player ends it. Each claims a
+    cell of its own beside what it's about. Twelve habits: six from what happened to someone (grief, homesickness, a
+    hard fight, a friend gone, convalescence, the first snow), six from the heart's feelings and quirks (awe or the
+    stargazer, the one who talks to plants, tenderness or the one who names every animal, worry or the one who counts
+    everything, loneliness, nostalgia).
   -->
 
   <!-- ===================== The jobs ===================== -->
@@ -85,6 +89,104 @@
     <checkOverrideOnDamage>Always</checkOverrideOnDamage>
   </JobDef>
 
+  <!-- ===================== Six more: feelings and quirks (Immersion/MoreHabits.cs) ===================== -->
+
+  <!-- Awed, or one who watches the stars: a while out under the night sky. -->
+  <JobDef>
+    <defName>Council_Habit_Stars</defName>
+    <driverClass>ColonyCouncil.JobDriver_SmallHabit</driverClass>
+    <reportString>watching the stars.</reportString>
+    <joyKind>Meditative</joyKind>
+    <joyGainRate>0.9</joyGainRate>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+    <modExtensions>
+      <li Class="ColonyCouncil.HabitExtension">
+        <kind>Stars</kind>
+        <pool>Council_Pool_HabitStars</pool>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- One who talks to the plants: a while by a crop or a potted plant. -->
+  <JobDef>
+    <defName>Council_Habit_Plants</defName>
+    <driverClass>ColonyCouncil.JobDriver_SmallHabit</driverClass>
+    <reportString>talking to the plants.</reportString>
+    <joyKind>Meditative</joyKind>
+    <joyGainRate>0.8</joyGainRate>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+    <modExtensions>
+      <li Class="ColonyCouncil.HabitExtension">
+        <kind>Plants</kind>
+        <pool>Council_Pool_HabitPlants</pool>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- Tender, or one who names every animal: a while beside one of the colony's animals. -->
+  <JobDef>
+    <defName>Council_Habit_Animals</defName>
+    <driverClass>ColonyCouncil.JobDriver_SmallHabit</driverClass>
+    <reportString>sitting with an animal.</reportString>
+    <joyKind>Meditative</joyKind>
+    <joyGainRate>0.9</joyGainRate>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+    <modExtensions>
+      <li Class="ColonyCouncil.HabitExtension">
+        <kind>Animals</kind>
+        <pool>Council_Pool_HabitAnimals</pool>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- Worried, or one who counts everything: a while going over the food stores. -->
+  <JobDef>
+    <defName>Council_Habit_Stores</defName>
+    <driverClass>ColonyCouncil.JobDriver_SmallHabit</driverClass>
+    <reportString>going over the stores.</reportString>
+    <joyKind>Meditative</joyKind>
+    <joyGainRate>0.6</joyGainRate>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+    <modExtensions>
+      <li Class="ColonyCouncil.HabitExtension">
+        <kind>Stores</kind>
+        <pool>Council_Pool_HabitStores</pool>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- Lonely: keeping someone company, a Hospitality guest among them, beside them where they are. -->
+  <JobDef>
+    <defName>Council_Habit_Company</defName>
+    <driverClass>ColonyCouncil.JobDriver_SmallHabit</driverClass>
+    <reportString>keeping someone company.</reportString>
+    <joyKind>Social</joyKind>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+    <modExtensions>
+      <li Class="ColonyCouncil.HabitExtension">
+        <kind>Company</kind>
+        <pool>Council_Pool_HabitCompany</pool>
+        <social>true</social>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- Nostalgic, of an evening: old stories by the colony's fire. -->
+  <JobDef>
+    <defName>Council_Habit_Stories</defName>
+    <driverClass>ColonyCouncil.JobDriver_SmallHabit</driverClass>
+    <reportString>telling old stories by the fire.</reportString>
+    <joyKind>Social</joyKind>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+    <modExtensions>
+      <li Class="ColonyCouncil.HabitExtension">
+        <kind>Stories</kind>
+        <pool>Council_Pool_HabitStories</pool>
+        <social>true</social>
+      </li>
+    </modExtensions>
+  </JobDef>
+
   <!-- ===================== The joy givers ===================== -->
 
   <JoyGiverDef>
@@ -153,6 +255,77 @@
     <joyKind>Meditative</joyKind>
     <requiredCapacities>
       <li>Manipulation</li>
+    </requiredCapacities>
+  </JoyGiverDef>
+
+  <JoyGiverDef>
+    <defName>Council_HabitGiver_Stars</defName>
+    <giverClass>ColonyCouncil.JoyGiver_HabitStars</giverClass>
+    <baseChance>5</baseChance>
+    <jobDef>Council_Habit_Stars</jobDef>
+    <joyKind>Meditative</joyKind>
+    <requiredCapacities>
+      <li>Moving</li>
+      <li>Sight</li>
+    </requiredCapacities>
+  </JoyGiverDef>
+
+  <JoyGiverDef>
+    <defName>Council_HabitGiver_Plants</defName>
+    <giverClass>ColonyCouncil.JoyGiver_HabitPlants</giverClass>
+    <baseChance>4</baseChance>
+    <jobDef>Council_Habit_Plants</jobDef>
+    <joyKind>Meditative</joyKind>
+    <requiredCapacities>
+      <li>Moving</li>
+      <li>Talking</li>
+    </requiredCapacities>
+  </JoyGiverDef>
+
+  <JoyGiverDef>
+    <defName>Council_HabitGiver_Animals</defName>
+    <giverClass>ColonyCouncil.JoyGiver_HabitAnimals</giverClass>
+    <baseChance>4</baseChance>
+    <jobDef>Council_Habit_Animals</jobDef>
+    <joyKind>Meditative</joyKind>
+    <requiredCapacities>
+      <li>Moving</li>
+    </requiredCapacities>
+  </JoyGiverDef>
+
+  <JoyGiverDef>
+    <defName>Council_HabitGiver_Stores</defName>
+    <giverClass>ColonyCouncil.JoyGiver_HabitStores</giverClass>
+    <baseChance>3</baseChance>
+    <jobDef>Council_Habit_Stores</jobDef>
+    <joyKind>Meditative</joyKind>
+    <requiredCapacities>
+      <li>Moving</li>
+      <li>Sight</li>
+    </requiredCapacities>
+  </JoyGiverDef>
+
+  <JoyGiverDef>
+    <defName>Council_HabitGiver_Company</defName>
+    <giverClass>ColonyCouncil.JoyGiver_HabitCompany</giverClass>
+    <baseChance>5</baseChance>
+    <jobDef>Council_Habit_Company</jobDef>
+    <joyKind>Social</joyKind>
+    <requiredCapacities>
+      <li>Moving</li>
+      <li>Talking</li>
+    </requiredCapacities>
+  </JoyGiverDef>
+
+  <JoyGiverDef>
+    <defName>Council_HabitGiver_Stories</defName>
+    <giverClass>ColonyCouncil.JoyGiver_HabitStories</giverClass>
+    <baseChance>5</baseChance>
+    <jobDef>Council_Habit_Stories</jobDef>
+    <joyKind>Social</joyKind>
+    <requiredCapacities>
+      <li>Moving</li>
+      <li>Talking</li>
     </requiredCapacities>
   </JoyGiverDef>
 

@@ -9,8 +9,8 @@ namespace ColonyCouncil
     /// <summary>
     /// What a gathering an answer called looks like on the map, beyond the game's own party (PlayOut/PlayOutLord.cs): the
     /// fire at a bonfire smokes and, after dark, sparks; at a remembrance by a grave, a low warm glow there once night
-    /// falls; at a toast, once, a while in, cups go up together with a word from whoever leads it; and at a feast, those
-    /// eating are the ones most often heard. Called with the gathering's own look every 250 ticks, only for the map
+    /// falls; at a toast, once, a while in, cups go up together with a word from whoever leads it (Hospitality's guests
+    /// standing near raise theirs too); and at a feast, those eating are the ones most often heard. Called with the gathering's own look every 250 ticks, only for the map
     /// being looked at; everything drawn goes through <see cref="VisualTouches"/> (its setting, its view and its caps).
     /// </summary>
     internal static class GatheringTouches
@@ -33,7 +33,9 @@ namespace ColonyCouncil
             if (job.kind == PlayKind.Toast && !job.words && !remembrance && !raised && here.Count >= 2 && job.lord.ticksInToil >= duration * 0.3f)
             {
                 raised = true;
-                VisualTouches.RaiseCups(here);
+                // Hospitality's guests standing near raise theirs too, from where they are (they stay in their own lord).
+                var guests = EventTouches.GuestsNear(map, spot, 8f).ToList();
+                VisualTouches.RaiseCups(guests.Count == 0 ? here : here.Concat(guests).ToList());
                 var lead = here.Contains(play?.organizer) ? play.organizer : here.RandomElement();
                 string line = Flavor.FromPool(job.pool.NullOrEmpty() ? "Council_Pool_PlayToast" : job.pool, lead, null, null, "raise");
                 if (!line.NullOrEmpty()) CouncilGameComponent.Speak(lead, line, SpeechColor);

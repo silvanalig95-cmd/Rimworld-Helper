@@ -31,5 +31,6 @@
     <Compile Include="../../Source/ColonyCouncil/UI/AlmanacLayoutMath.cs" Link="AlmanacLayoutMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Wishes/KeptMath.cs" Link="KeptMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/UI/CouncilLayoutMath.cs" Link="CouncilLayoutMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Integrations/ChangeMath.cs" Link="ChangeMath.cs" />
   </ItemGroup>
 </Project>

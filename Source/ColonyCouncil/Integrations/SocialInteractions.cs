@@ -314,7 +314,8 @@ namespace ColonyCouncil
 
     /// <summary>
     /// Rimfolk's bookkeeping for other mods' people (one per game): how far it has read the play log and the tales,
-    /// recent lessons, and best friends already noted. Also forgets the last game's cached tags.
+    /// recent lessons, and best friends already noted; and a look now and then at who changed (<see cref="PeopleChanges"/>).
+    /// Also forgets the last game's cached tags.
     /// </summary>
     public class GameComponent_PeopleMods : GameComponent
     {
@@ -341,11 +342,16 @@ namespace ColonyCouncil
         {
             int t = Find.TickManager.TicksGame;
             // Often enough that the play log (which keeps only the last 150 or so entries) never runs past us.
-            if (Sched.Every(t, Sched.PeopleLogPeriod, Sched.PeopleLog)) Safe("social interactions", () =>
+            if (Sched.Every(t, Sched.PeopleLogPeriod, Sched.PeopleLog))
             {
-                SocialInteractions.ScanLog(this);
-                SocialInteractions.ScanTales(this);
-            });
+                Safe("social interactions", () =>
+                {
+                    SocialInteractions.ScanLog(this);
+                    SocialInteractions.ScanTales(this);
+                });
+                // People changed by Big & Small, a xenogerm or a character editor (Integrations/PeopleChanges.cs).
+                Safe("people changes", PeopleChanges.Check);
+            }
             if (Sched.Every(t, Sched.DayTicks, Sched.DailyBestFriends)) Safe("best friends", () => SocialInteractions.BestFriends(this));
         }
 

@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Lines said over a head (one sentence each, 90 characters at most; floating speech keeps only the first sentence)
+    for the six newer small habits (Source/ColonyCouncil/Immersion/MoreHabits.cs) and the newer touches
+    (Source/ColonyCouncil/Immersion/EventTouches.cs). Said only with the visual and sound touches and floating speech
+    on, by someone in view who hasn't said anything lately.
+
+    Habits: {OTHER} is whom it's about (the animal, the one kept company); [animal], [bonded], [named] (an animal with a
+    name of its own), [guest] (a Hospitality guest), [partner], [kin], [young].
+  -->
+
+  <!-- ===================== Small habits ===================== -->
+
+  <!-- Awed, or one who watches the stars: out under the night sky. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_HabitStars</defName>
+    <lines>
+      <plain>
+        <li>There's the one that looks like a plough.</li>
+        <li>I could stay out here half the night.</li>
+        <li>You forget how many there are until you look up.</li>
+        <li>That bright one wasn't there last week, was it?</li>
+        <li>[winter] Cold enough to freeze my ears, and worth it.</li>
+        <li>[lowtech] My grandmother had a name for every one of these.</li>
+        <li>[!lowtech] Somebody up there is flying between them right now.</li>
+      </plain>
+      <warm>
+        <li>Come and look, if you're still awake.</li>
+      </warm>
+      <blunt>
+        <li>Clear night, good, nobody talk.</li>
+      </blunt>
+      <cheerful>
+        <li>I counted forty before I lost my place, and started over!</li>
+      </cheerful>
+      <gloomy>
+        <li>They'll still be up there long after we're gone.</li>
+      </gloomy>
+      <cold>
+        <li>Clear sky, no moon; good for reckoning the season.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- One who talks to the plants, by a crop or a pot. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_HabitPlants</defName>
+    <lines>
+      <plain>
+        <li>Come on, you can do better than that.</li>
+        <li>You're coming along nicely, aren't you?</li>
+        <li>Drink up, there's a dry week coming.</li>
+        <li>Don't mind the beetles, I'll see to them.</li>
+        <li>Look at you, standing up straight at last.</li>
+        <li>[winter] Hold on, it isn't long till spring.</li>
+        <li>[spring] Up you come, the frost is done with.</li>
+      </plain>
+      <warm>
+        <li>There you are, my lovelies.</li>
+      </warm>
+      <blunt>
+        <li>Grow, or you're compost.</li>
+      </blunt>
+      <cheerful>
+        <li>Every one of you is doing beautifully!</li>
+      </cheerful>
+      <gloomy>
+        <li>Don't die on me like the last lot.</li>
+      </gloomy>
+      <cold>
+        <li>Yellow at the tips; more water, less sun.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Tender, or one who names every animal, beside one of the colony's animals. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_HabitAnimals</defName>
+    <lines>
+      <plain>
+        <li>Easy now, it's only me.</li>
+        <li>There, that's the spot, isn't it?</li>
+        <li>Somebody's been rolling in the mud again.</li>
+        <li>Did they remember to feed you, or shall I ask?</li>
+        <li>[named] Hello, {OTHER_nameDef}, how's your day been?</li>
+        <li>[named] Who's the best of the lot, {OTHER_nameDef}?</li>
+        <li>[bonded] You and me, same as always.</li>
+        <li>[young] Look how big you've got already.</li>
+      </plain>
+      <warm>
+        <li>You're the best of us, and you know it.</li>
+      </warm>
+      <blunt>
+        <li>Sit still, I'm checking your feet.</li>
+      </blunt>
+      <cheerful>
+        <li>Look at those ears!</li>
+      </cheerful>
+      <gloomy>
+        <li>At least you don't mind my company.</li>
+      </gloomy>
+      <cold>
+        <li>Coat's good, eyes are clear; you'll do.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Worried, or one who counts everything, going over the food stores. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_HabitStores</defName>
+    <lines>
+      <plain>
+        <li>Enough for a while, I think, if nobody gets greedy.</li>
+        <li>I'll count it again tomorrow, just to be sure.</li>
+        <li>Who keeps moving things about in here?</li>
+        <li>Forty-two, forty-three, and one gone soft.</li>
+        <li>[winter] It'll last till the thaw, if the thaw comes on time.</li>
+        <li>[!lowtech] Somebody ought to write all this down properly.</li>
+        <li>[lowtech] Notches on the post, one for every sack, and two missing.</li>
+      </plain>
+      <warm>
+        <li>We'll be all right, there's enough here.</li>
+      </warm>
+      <blunt>
+        <li>Not enough, never enough.</li>
+      </blunt>
+      <cheerful>
+        <li>More than last month, and that's something!</li>
+      </cheerful>
+      <gloomy>
+        <li>One bad harvest and this is all gone.</li>
+      </gloomy>
+      <cold>
+        <li>Three weeks at this rate, less in a cold snap.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Lonely, keeping someone company (a colonist at their leisure, or a Hospitality guest). -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_HabitCompany</defName>
+    <lines>
+      <plain>
+        <li>Mind if I sit with you a while?</li>
+        <li>Quiet day, isn't it?</li>
+        <li>I didn't fancy sitting on my own again.</li>
+        <li>Tell me something, anything, it's been a long week.</li>
+        <li>[partner] Stay a bit, I've hardly seen you all week.</li>
+        <li>[kin] Sit with me, like we used to.</li>
+        <li>[guest] Where is it you've come from, if you don't mind me asking?</li>
+        <li>[guest] How are you finding it here?</li>
+      </plain>
+      <warm>
+        <li>It's good to have someone to talk to.</li>
+      </warm>
+      <blunt>
+        <li>Budge up.</li>
+      </blunt>
+      <cheerful>
+        <li>There you are, I was hoping I'd find you!</li>
+      </cheerful>
+      <gloomy>
+        <li>Sorry, I just didn't want to be on my own.</li>
+      </gloomy>
+      <cold>
+        <li>I find a little talk helps; you needn't say much.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Nostalgic, of an evening, old stories by the colony's fire. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_HabitStories</defName>
+    <lines>
+      <plain>
+        <li>Did I ever tell you about the winter the river froze?</li>
+        <li>Back home we'd sit just like this, every night.</li>
+        <li>There was a woman in my village who could whistle down a hawk.</li>
+        <li>When I was young, a night like this would have been a feast.</li>
+        <li>[lowtech] My father told this one by the fire, so I will too.</li>
+        <li>[!lowtech] We had a radio once, and nobody ever listened to it.</li>
+      </plain>
+      <warm>
+        <li>Come closer, this one's a good one.</li>
+      </warm>
+      <blunt>
+        <li>Old story, sit down and listen.</li>
+      </blunt>
+      <cheerful>
+        <li>Oh, you'll like this one, it's got a goat in it!</li>
+      </cheerful>
+      <gloomy>
+        <li>Most of the people in this story are gone now.</li>
+      </gloomy>
+      <cold>
+        <li>I'll tell it the way it happened, not the way it's told.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== Touches ===================== -->
+
+  <!-- A dream told at breakfast, the morning after, tagged by the kind of dream. {OTHER}: whom it was about, else the one listening. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_SayDream</defName>
+    <lines>
+      <plain>
+        <li>I had the oddest dream last night, let me tell you.</li>
+        <li>Pass the salt, and let me tell you what I dreamt.</li>
+        <li>[dream:Sweet] I dreamt we had a whole orchard, and all of it ripe.</li>
+        <li>[dream:Sweet] I dreamt about home last night, only the good parts.</li>
+        <li>[dream:Strange] I dreamt the river ran uphill, and nobody minded.</li>
+        <li>[dream:Strange] I dreamt I was a door, of all things.</li>
+        <li>[dream:Nightmare] Bad dream last night, I won't tell it over breakfast.</li>
+        <li>[dream:Nightmare] I dreamt the walls were gone and something was out there.</li>
+        <li>[dream:Omen] I dreamt of a black bird on the roof, and I didn't like it.</li>
+        <li>[dream:Omen] I had a dream I think means something, so don't laugh.</li>
+        <li>[dream:Lost] I saw them again last night, in the dream, just as they were.</li>
+        <li>[dream:Lost] They were sitting at this table in my dream, laughing.</li>
+      </plain>
+      <warm>
+        <li>[dream:Sweet] Such a lovely dream, I didn't want to wake up.</li>
+      </warm>
+      <blunt>
+        <li>Dreamt something, forget it, eat your porridge.</li>
+      </blunt>
+      <cheerful>
+        <li>You'll never guess what I dreamt last night!</li>
+      </cheerful>
+      <gloomy>
+        <li>Same dream again, the one I never tell.</li>
+      </gloomy>
+      <cold>
+        <li>Dreams are the day sorting itself out, but this one was odd.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- A camp coming in sight, from a colonist who sees them; tagged camp:Hunters, camp:Market and so on. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_TouchCampComing</defName>
+    <lines>
+      <plain>
+        <li>Someone's coming up the road with packs on.</li>
+        <li>Looks like we'll have neighbours for a while.</li>
+        <li>Strangers on the track, and they're not hurrying.</li>
+        <li>[camp:Hunters] Hunters, by the look of them, and hungry ones.</li>
+        <li>[camp:Refugees] They've got everything they own on their backs.</li>
+        <li>[camp:Market] Traders, and a cart that wants a new wheel.</li>
+        <li>[camp:Players] Is that a drum I can hear?</li>
+        <li>[camp:Healers] Healers, I think, there's a red cloth on the cart.</li>
+        <li>[camp:Pilgrims|camp:Procession] Pilgrims, singing as they walk.</li>
+        <li>[camp:Prospectors|camp:Surveyors] They've brought picks and a great deal of rope.</li>
+        <li>[camp:Hermit] Just the one of them, walking slow.</li>
+        <li>[camp:Smith] A smith, by the anvil on that cart.</li>
+      </plain>
+      <warm>
+        <li>Visitors, let's make them welcome.</li>
+      </warm>
+      <blunt>
+        <li>Company coming, keep an eye on them.</li>
+      </blunt>
+      <cheerful>
+        <li>New faces, at last!</li>
+      </cheerful>
+      <gloomy>
+        <li>More mouths near our stores, that's all.</li>
+      </gloomy>
+      <cold>
+        <li>A small group, coming in slow; not a raid.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- A wedding the council promised or of one of its officers: a word from a councillor (or a friend) after the bell. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_TouchCouncilWedding</defName>
+    <lines>
+      <plain>
+        <li>To {A_nameDef} and {B_nameDef}, with the council's blessing.</li>
+        <li>[councillor] The council wishes you both a long life together.</li>
+        <li>[councillor] Ring it again, it isn't every day.</li>
+        <li>[councillor,promised] We said there'd be a wedding, and here it is.</li>
+        <li>[friend] Even the council came out for this one.</li>
+        <li>[promised] The council kept its word, and here they are.</li>
+        <li>[officer] One of the council married, who'd have thought it.</li>
+      </plain>
+      <warm>
+        <li>Look at the two of them, I could cry.</li>
+      </warm>
+      <blunt>
+        <li>About time.</li>
+      </blunt>
+      <cheerful>
+        <li>Ring the bell, ring it again!</li>
+      </cheerful>
+      <gloomy>
+        <li>Enjoy it, both of you, while it's quiet.</li>
+      </gloomy>
+      <cold>
+        <li>Witnessed and written down; it's done.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- A Hospitality guest on their stay: [happy], [unhappy], [roomgood], [roompoor], [nobed], [gathering]. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_GuestSays</defName>
+    <lines>
+      <plain>
+        <li>Nice place, smaller than I expected.</li>
+        <li>Everyone here seems to know what they're doing.</li>
+        <li>[happy] I could get used to this place.</li>
+        <li>[happy] Good food, and nobody's tried to rob me yet.</li>
+        <li>[unhappy] I've had warmer welcomes in a bandit camp.</li>
+        <li>[unhappy] I'll be glad to be back on the road.</li>
+        <li>[roomgood] They gave me a proper room, lamp and all.</li>
+        <li>[roompoor] My bed's in a corner with a draught through it.</li>
+        <li>[nobed] Nobody's said where I'm to sleep tonight.</li>
+        <li>[gathering] Your people know how to keep a feast.</li>
+        <li>[gathering] Is this for anything, or do you just like a party?</li>
+      </plain>
+      <warm>
+        <li>Thank you for having us, truly.</li>
+      </warm>
+      <blunt>
+        <li>Food's fine, beds are fine.</li>
+      </blunt>
+      <cheerful>
+        <li>Wait till I tell them back home about this!</li>
+      </cheerful>
+      <gloomy>
+        <li>Just passing through, don't mind me.</li>
+      </gloomy>
+      <cold>
+        <li>A well-run place; I'll say as much when I'm home.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== The journal ===================== -->
+
+  <!--
+    Someone who changed in the middle of the game (Integrations/PeopleChanges.cs): a new race or body (Big & Small),
+    a new xenotype (a xenogerm, a gene mod), grown or shrunk. Their own words, in their journal.
+  -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Changed</defName>
+    <lines>
+      <plain>
+        <li>[race] I'm not what I was. I keep catching sight of myself in the water and stopping to look.</li>
+        <li>[race] Everything fits differently now: the doorways, the chairs, my own hands. The others are being kind about it.</li>
+        <li>[xeno] The change has taken. I feel it in my blood, or I think I do. I'm still me underneath, mostly.</li>
+        <li>[xeno] I woke up a different kind of person today. Breakfast tasted the same, which was a relief.</li>
+        <li>[bigger] I've grown. I hit my head on the lintel twice this morning, and the second time everyone laughed.</li>
+        <li>[smaller] I'm smaller than I was. The table comes up higher and the walk to the fields takes longer.</li>
+      </plain>
+      <warm>
+        <li>[race] The others keep asking how I am. Different, I tell them, and still glad to be here.</li>
+        <li>[xeno] Someone made me a cup of tea and sat with me while I got used to it. That helped more than anything.</li>
+      </warm>
+      <blunt>
+        <li>[race] New body. Takes getting used to. Getting used to it.</li>
+        <li>[xeno] Different blood now. Same work to do.</li>
+      </blunt>
+      <cheerful>
+        <li>[race] A whole new me! I keep finding things this body can do that the old one couldn't.</li>
+        <li>[bigger] I can reach the top shelf now, and I've been asked to reach a great many things.</li>
+      </cheerful>
+      <gloomy>
+        <li>[race] I don't recognise myself. I don't know if the others do either.</li>
+        <li>[xeno] They say I'll get used to it. I'm not sure I want to.</li>
+      </gloomy>
+      <cold>
+        <li>[xeno] The change is complete. I'll learn what it's good for.</li>
+        <li>[smaller] Smaller frame, less food, same work. It's a fair trade.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

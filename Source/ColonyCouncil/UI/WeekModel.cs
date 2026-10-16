@@ -569,6 +569,8 @@ namespace ColonyCouncil
                     order = -1
                 });
             }
+            // Hospitality's guests staying now (Integrations/GuestsWeek.cs).
+            GuestsWeek.AddRows(c);
             return c;
         }
 

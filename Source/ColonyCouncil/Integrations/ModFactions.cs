@@ -8,8 +8,10 @@ namespace ColonyCouncil
 {
     /// <summary>
     /// Which peoples a world event written for a faction mod (or Royalty's Empire) is about, by FactionDef name: the
-    /// Empire, Vanilla Factions Expanded's republics, its settlers. The event's own needs (friendly, a town nearby)
-    /// still apply. Names that aren't in the game never match, so without the mod the event can't start.
+    /// Empire, Vanilla Factions Expanded's republics, its settlers, Outland's peoples; or by mod, "mod:" and the start of
+    /// the package id, for nations whose def names a mod keeps to itself (<see cref="PeoplesByMod"/>). The event's own
+    /// needs (friendly, a town nearby) still apply. Names that aren't in the game never match, so without the mod the
+    /// event can't start.
     /// </summary>
     public class ModFactionsExtension : DefModExtension
     {
@@ -21,15 +23,16 @@ namespace ColonyCouncil
 
     /// <summary>
     /// A world event about a particular people (see <see cref="ModFactionsExtension"/>). Its lines can be tagged
-    /// faction:DefName and enemy:DefName for the people it picked, so one event can speak of the Empire's high stewards
-    /// and a republic's senators in their own words.
+    /// faction:DefName and enemy:DefName for the people it picked (factionmod:packageid and enemymod:packageid for the
+    /// mod it comes from), so one event can speak of the Empire's high stewards and a republic's senators in their own
+    /// words.
     /// </summary>
     public class WorldSituationWorker_ModFaction : WorldSituationWorker
     {
         private ModFactionsExtension Ext => def.GetModExtension<ModFactionsExtension>();
 
         private static IEnumerable<Faction> Named(IEnumerable<Faction> from, List<string> names) =>
-            names.NullOrEmpty() ? from : from.Where(f => f?.def != null && names.Contains(f.def.defName));
+            names.NullOrEmpty() ? from : from.Where(f => f?.def != null && PeoplesByMod.Matches(f.def, names));
 
         protected override bool CanHappen(Map map)
         {
@@ -74,8 +77,18 @@ namespace ColonyCouncil
 
         protected override void AddTags(WorldSituation s, HashSet<string> tags)
         {
-            if (s.ctx.faction?.def != null) tags.Add("faction:" + s.ctx.faction.def.defName);
-            if (s.ctx.enemy?.def != null) tags.Add("enemy:" + s.ctx.enemy.def.defName);
+            if (s.ctx.faction?.def != null)
+            {
+                tags.Add("faction:" + s.ctx.faction.def.defName);
+                string pkg = PeoplesByMod.PackageOf(s.ctx.faction.def);
+                if (pkg.Length > 0) tags.Add("factionmod:" + pkg);
+            }
+            if (s.ctx.enemy?.def != null)
+            {
+                tags.Add("enemy:" + s.ctx.enemy.def.defName);
+                string pkg = PeoplesByMod.PackageOf(s.ctx.enemy.def);
+                if (pkg.Length > 0) tags.Add("enemymod:" + pkg);
+            }
             if (ModsConfig.RoyaltyActive)
             {
                 // A colonist who holds the Empire's title: the Empire speaks to the colony differently.
