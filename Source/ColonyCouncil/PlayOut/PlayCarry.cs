@@ -72,8 +72,12 @@ namespace ColonyCouncil
 
         public static int Have(Map map, string what, ThingDef def) => Stock(map, what, def).Sum(t => t.stackCount);
 
-        /// <summary>Takes so many from the stores (as many as there are, if fewer). How many were taken.</summary>
-        public static int Take(Map map, string what, ThingDef def, int n)
+        /// <summary>
+        /// Takes so many from the stores (as many as there are, if fewer). How many were taken. Never what someone else is
+        /// about to use (an ingredient a cook has claimed, the medicine a doctor is fetching, a stack being hauled);
+        /// <paramref name="carrier"/>'s own claim (the rest of the stack they took their load from) doesn't count.
+        /// </summary>
+        public static int Take(Map map, string what, ThingDef def, int n, Pawn carrier = null)
         {
             if (map == null || n <= 0) return 0;
             int left = n;
@@ -81,11 +85,30 @@ namespace ColonyCouncil
             {
                 if (left <= 0) break;
                 if (t == null || t.Destroyed || !t.Spawned) continue;
+                if (Claimed(t, map, carrier)) continue;
                 int take = Mathf.Min(left, t.stackCount);
                 t.SplitOff(take).Destroy();
                 left -= take;
             }
             return n - left;
+        }
+
+        private static readonly HashSet<Pawn> claimants = new HashSet<Pawn>();
+
+        /// <summary>Reserved for someone's job, or being picked up, by anyone but <paramref name="except"/>.</summary>
+        private static bool Claimed(Thing t, Map map, Pawn except)
+        {
+            claimants.Clear();
+            map.reservationManager.ReserversOf(t, claimants);
+            claimants.Remove(except);
+            bool claimed = claimants.Count > 0;
+            claimants.Clear();
+            if (claimed) return true;
+            map.physicalInteractionReservationManager.ReserversOf(t, claimants);
+            claimants.Remove(except);
+            claimed = claimants.Count > 0;
+            claimants.Clear();
+            return claimed;
         }
 
         /// <summary>The stack the carrier picks up: the first in the order things are taken that they may and can get to.</summary>
