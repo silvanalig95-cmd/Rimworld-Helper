@@ -131,10 +131,40 @@ namespace ColonyCouncil
         private static WorkGiverDef giver;
         private static bool looked;
 
-        /// <summary>Wild game that won't turn on its hunters: no predator, nothing likely to go manhunter, nobody's animal.</summary>
+        /// <summary>
+        /// Wild game that won't turn on its hunters: no predator, no insect or dryad, nothing likely to go manhunter (by its
+        /// kind, whatever the difficulty makes of it), nothing the size of a thrumbo or an elephant, nobody's animal, no
+        /// animal bonded to someone, and none the colony's faith venerates.
+        /// </summary>
         public static bool Safe(Pawn a, Map map) =>
             a != null && !a.Dead && a.Spawned && a.Map == map && !a.Downed && a.RaceProps != null && a.RaceProps.Animal && a.Faction == null
-            && !a.RaceProps.predator && !a.InMentalState && !a.Position.Fogged(map) && PawnUtility.GetManhunterOnDamageChance(a) <= 0.1f;
+            && !a.RaceProps.predator && !a.RaceProps.Insect && !a.RaceProps.Dryad && a.RaceProps.baseBodySize <= MaxGameSize
+            && !a.InMentalState && !a.Position.Fogged(map)
+            && a.RaceProps.manhunterOnDamageChance <= 0.1f && PawnUtility.GetManhunterOnDamageChance(a) <= 0.1f
+            && !Bonded(a) && !Venerated(a);
+
+        /// <summary>The biggest kind of animal a hunt goes after (a muffalo or an elk, not a thrumbo, a rhino or an elephant).</summary>
+        public const float MaxGameSize = 2.5f;
+
+        private static bool Bonded(Pawn a)
+        {
+            var rels = a.relations?.DirectRelations;
+            if (rels == null) return false;
+            for (int i = 0; i < rels.Count; i++)
+                if (rels[i].def == PawnRelationDefOf.Bond) return true;
+            return false;
+        }
+
+        private static bool Venerated(Pawn a)
+        {
+            if (!ModsConfig.IdeologyActive) return false;
+            var ideos = Faction.OfPlayer?.ideos;
+            if (ideos == null) return false;
+            foreach (var ideo in ideos.AllIdeos)
+                if (ideo != null && ideo.IsVeneratedAnimal(a))
+                    return true;
+            return false;
+        }
 
         /// <summary>
         /// The game for a hunt: the event's own animal if it is one (and safe), else the kinds wanted first, else the best
