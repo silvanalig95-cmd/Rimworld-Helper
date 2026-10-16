@@ -638,7 +638,7 @@ follows the mouse, and a planner panel lets you:
   or fine stone tiles; hospitals and kitchens keep their sterile floor)
 - build it in a **theme**: *rustic* (wood, benches and stools, straw matting or planks), *stately* (marble or
   granite, polished stone or fine carpet, armchairs, candlelight), *spartan* (steel, simple beds, concrete), *cozy*
-  (carpet, standing lamps, soft seats, plant pots from the comfortable style on), *tribal* (fur beds or hide
+  (carpet, lamplight, soft seats, plant pots from the comfortable style on), *tribal* (fur beds or hide
   bedrolls, cushions, torchlight, straw matting, wood and sandstone) or *spacer* (steel, sterile tiles, an autodoor,
   the most advanced furniture you've researched). The style decides how much goes in, the theme what it looks
   like; the layout stays the same, since a piece is only swapped for one of the same purpose, size and work spot.
@@ -655,6 +655,11 @@ follows the mouse, and a planner panel lets you:
   the room.
 - **swap** furniture for another piece the colony can build; the **cost** of the whole room is shown against what's
   stored and lying around, in green or red
+- **lights by size**: a small or medium room (up to 48 floor cells) hangs **wall lamps**, or wall torches before
+  electricity, in place of standing lamps. Each stands on the floor cell in front of its wall and faces it, never on
+  or beside a door, on a cooler or vent, or where other furniture is planned, and there are as many as the room
+  needs to be lit, spread round its walls. A large room keeps its standing lamps out in the middle. Click the lamps
+  to swap them for a standing lamp, or the other way round
 - **clear the site**: cut plants and trees, mine rock (inside, in the doorway and just outside the door),
   replace your own buildings in the way, smooth natural stone. Pieces blocked by rock go down by themselves
   once it's mined.
@@ -673,7 +678,8 @@ your own, with its furniture, wall material and floor. Saved rooms are kept with
 there in every game, and you can delete them from the same list.
 
 Every layout is checked in all four turns, mirrored and not: beds have their heads against a wall, chairs face
-their table, every bench has its work spot free, and nothing blocks the door. It's checked again in each of the six
+their table, every bench has its work spot free, nothing blocks the door, and every wall lamp hangs on a wall and
+faces it, off any door. It's checked again in each of the six
 themes, and without the DLC and mod furniture it doesn't need: a missing piece is left out, or the next one on the list is used, and a room
 whose main piece is missing says what it waits for. If a modded bench is bigger or its work spot ends up in a
 wall, the planner turns that piece or leaves it out and says so.
@@ -684,7 +690,7 @@ It places ordinary blueprints, so your builders handle the rest. Every plan come
 each one reads like "Steel wall    420 (+85 lying around), enough for 84". You can switch this off in the settings.
 
 Colonists also sometimes add **personal touches**: a plant pot, an end table or a lamp planned for their own
-bedroom.
+bedroom (a wall lamp on a wall, where the colony can build one and the room isn't large).
 
 ### Almanac
 An in-game knowledge base: good practice and the numbers behind it, by topic, searchable, linked from the

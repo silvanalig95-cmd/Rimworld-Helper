@@ -11,6 +11,7 @@
     <Compile Include="../../Source/ColonyCouncil/Building/TemplateMath.cs" Link="TemplateMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Building/TemplateLayout.cs" Link="TemplateLayout.cs" />
     <Compile Include="../../Source/ColonyCouncil/Building/ThemeMath.cs" Link="ThemeMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Building/LightMath.cs" Link="LightMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Heart/HeartMath.cs" Link="HeartMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Ambitions/MeetingMath.cs" Link="MeetingMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Pressures/PressureMath.cs" Link="PressureMath.cs" />

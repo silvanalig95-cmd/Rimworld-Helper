@@ -374,11 +374,19 @@ namespace ColonyCouncil
             }
             plan.floorCells = floorCount;
 
+            var lamps = new List<PlannedThing>();
             foreach (var pt in placed)
             {
+                // Wall lamps last: they need to know which walls go up and where everything else stands.
+                if (pt.source != null && pt.source.OnWall)
+                {
+                    lamps.Add(pt);
+                    continue;
+                }
                 if (pt.state != PieceState.Blocked) pt.state = FurnitureState(plan, map, pt.source, pt.rect, pt.cell, pt.rot, out pt.reason, out pt.ground);
                 plan.furniture.Add(pt);
             }
+            if (lamps.Count > 0) HangLamps(plan, map, lamps, cutPlants && !quick);
 
             if (!quick) AddWarnings(plan, map);
             return plan;
@@ -413,6 +421,142 @@ namespace ColonyCouncil
                 pt.reason = "CC_Plan_Block_CantTurn".Translate(f.def.label);
             }
             return pt;
+        }
+
+        // ---------------- Wall lamps ----------------
+
+        /// <summary>
+        /// The wall lamps on the map: each on the floor cell in front of its wall, facing it (the game looks for the wall at
+        /// cell + rot.FacingCell). A lamp whose wall won't be there or won't take it (a gap left over water, a door, a
+        /// cooler, rock that holds no lamp), or whose cell is taken, moves to the best other spot on the same area's walls
+        /// (<see cref="LightMath.Relocate"/>); one the other lamps make unneeded is dropped, and one with nowhere left to
+        /// hang is left out and says why. The same in the preview and in the blueprints.
+        /// </summary>
+        private static void HangLamps(PlacementPlan plan, Map map, List<PlannedThing> lamps, bool cutPlants)
+        {
+            var t = plan.template;
+            int w = t.FullWidth, h = t.FullHeight;
+            var newWalls = new HashSet<IntVec3>(plan.wallNew);
+            var waitingWalls = new HashSet<IntVec3>(plan.wallWaiting);
+            var oldWalls = new HashSet<IntVec3>(plan.wallReuse);
+            var taken = new HashSet<IntVec3>(plan.interiorBlocked);
+            taken.UnionWith(plan.interiorSkipped);
+            foreach (var f in plan.furniture)
+            {
+                if (f.state == PieceState.Blocked) continue;
+                foreach (var c in f.rect) taken.Add(c);
+                // A partition wall the plan builds holds a lamp like the room's own walls.
+                if (f.def != null && f.def.IsWall && WallLights.Supports(f.def)) (f.state == PieceState.Waiting ? waitingWalls : newWalls).Add(f.cell);
+            }
+            foreach (var group in lamps.GroupBy(l => l.source.lamps))
+            {
+                var lp = group.Key;
+                var first = group.First();
+                (IntVec3 cell, Rot4 rot) World(int i)
+                {
+                    var s = lp.candidates[i];
+                    var cell = ToWorld(plan.anchor, s.x + 1, s.z + 1, w, h, plan.mirror, plan.rotation);
+                    return (cell, new Rot4(TemplateMath.TransformFacing(s.facing, plan.mirror, plan.rotation)));
+                }
+                bool Usable(int i)
+                {
+                    var (cell, rot) = World(i);
+                    return LampState(plan, map, first.def, first.stuff, cell, rot, newWalls, waitingWalls, oldWalls, taken, out _) != PieceState.Blocked;
+                }
+                List<int> spots;
+                try
+                {
+                    spots = LightMath.Relocate(lp, Usable);
+                }
+                catch (System.Exception e)
+                {
+                    CouncilLog.ErrorOnce("room plan wall lamps", e);
+                    spots = new List<int>(lp.chosen);
+                }
+                foreach (var pt in group)
+                {
+                    int k = pt.source.lamp;
+                    int i = k >= 0 && k < spots.Count ? spots[k] : LightMath.Nowhere;
+                    // The other lamps light its part of the room.
+                    if (i == LightMath.NotNeeded) continue;
+                    if (i < 0)
+                    {
+                        pt.state = PieceState.Blocked;
+                        pt.reason = "CC_Plan_Block_NoWallForLamp".Translate(pt.def.label);
+                        plan.furniture.Add(pt);
+                        continue;
+                    }
+                    var (cell, rot) = World(i);
+                    bool moved = cell != pt.cell;
+                    pt.cell = cell;
+                    pt.rot = rot;
+                    pt.rect = CellRect.SingleCell(cell);
+                    pt.state = LampState(plan, map, pt.def, pt.stuff, cell, rot, newWalls, waitingWalls, oldWalls, taken, out pt.reason);
+                    plan.furniture.Add(pt);
+                    if (moved && cutPlants && cell.InBounds(map))
+                    {
+                        var plant = cell.GetPlant(map);
+                        if (plant != null && !plan.cut.Contains(plant)) plan.cut.Add(plant);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Whether a wall lamp can go on this cell facing this way: a free floor cell (or one the plan clears first) in
+        /// front of a wall that takes lamps: one this plan builds, or one already there that the plan keeps. It waits while
+        /// its wall or its cell waits on mining or something being taken down. Where the wall is already standing, the
+        /// game's own placement check (its wall-attachment rule included) has the last word.
+        /// </summary>
+        private static PieceState LampState(PlacementPlan plan, Map map, ThingDef def, ThingDef stuff, IntVec3 cell, Rot4 rot,
+            HashSet<IntVec3> newWalls, HashSet<IntVec3> waitingWalls, HashSet<IntVec3> oldWalls, HashSet<IntVec3> taken, out string reason)
+        {
+            reason = null;
+            if (!cell.InBounds(map) || cell.Fogged(map))
+            {
+                reason = "CC_Plan_Block_Edge".Translate();
+                return PieceState.Blocked;
+            }
+            if (taken.Contains(cell) || WallLights.PlannedHere(cell, map))
+            {
+                reason = "CC_Plan_Block_LampCell".Translate(def.label);
+                return PieceState.Blocked;
+            }
+            bool waiting = plan.mineSet.Contains(cell) || plan.deconstructCells.Contains(cell);
+            var ed = cell.GetEdifice(map);
+            if (ed != null && !waiting)
+            {
+                reason = "CC_Plan_Block_Thing".Translate(ed.LabelShort);
+                return PieceState.Blocked;
+            }
+            var wall = cell + rot.FacingCell;
+            bool standing = false;
+            if (waitingWalls.Contains(wall)) waiting = true;
+            else if (!newWalls.Contains(wall))
+            {
+                if (!oldWalls.Contains(wall) || !WallLights.Holds(wall, map))
+                {
+                    reason = "CC_Plan_Block_NoWallForLamp".Translate(def.label);
+                    return PieceState.Blocked;
+                }
+                standing = true;
+            }
+            if (WallLights.SideTaken(cell, rot, map))
+            {
+                reason = "CC_Plan_Block_LampTaken".Translate(def.label);
+                return PieceState.Blocked;
+            }
+            if (waiting) return PieceState.Waiting;
+            if (standing)
+            {
+                var report = GenConstruct.CanPlaceBlueprintAt(def, cell, rot, map, false, null, null, stuff);
+                if (!report.Accepted)
+                {
+                    reason = report.Reason;
+                    return PieceState.Blocked;
+                }
+            }
+            return PieceState.Ready;
         }
 
         // ---------------- Upgrading a built room ----------------
@@ -520,8 +664,8 @@ namespace ColonyCouncil
                 foreach (var f in furniture)
                 {
                     // Walls and doors are the room's own business: a plan's partition or second door would split a room
-                    // that's already laid out.
-                    if (f.def == null || f.def.IsWall || f.def.IsDoor) continue;
+                    // that's already laid out. Wall lamps go on its walls below.
+                    if (f.def == null || f.def.IsWall || f.def.IsDoor || f.OnWall) continue;
                     var pt = Piece(f, t, anchor, cfg.mirror, rot, out var worldRect);
                     pt.rect = worldRect;
                     var match = existing.FirstOrDefault(e => !claimed.Contains(e.thing) && SameKind(e.def, f, t));
@@ -548,12 +692,50 @@ namespace ColonyCouncil
                     }
                     plan.furniture.Add(pt);
                 }
+                var lamp = furniture.FirstOrDefault(f => f.OnWall);
+                if (lamp != null) HangLampsInRoom(plan, map, room, lamp, existing, claimed);
             }
             int groundFurniture = plan.GroundFurniture;
             if (groundFurniture > 0) plan.warnings.Add("CC_Plan_Warn_FurnitureGround".Translate(groundFurniture));
             int blocked = plan.furniture.Count(p => p.state == PieceState.Blocked) - groundFurniture;
             if (blocked > 0) plan.warnings.Add("CC_Plan_Warn_FurnitureBlocked".Translate(blocked));
             return plan;
+        }
+
+        /// <summary>
+        /// Wall lamps for a room that's already built: on its own walls, wherever they light what its lights (built or
+        /// planned) leave dark, as many as it needs (<see cref="WallLights.SpotsInRoom"/>). The room may be bigger than the
+        /// plan, so the spots come from the room, not from the plan's walls. Lights it already has count as there.
+        /// </summary>
+        private static void HangLampsInRoom(PlacementPlan plan, Map map, Room room, ResolvedThing lamp, List<(Thing thing, ThingDef def)> existing, HashSet<Thing> claimed)
+        {
+            foreach (var e in existing)
+            {
+                if (claimed.Contains(e.thing) || !Avail.IsLight(e.def)) continue;
+                claimed.Add(e.thing);
+                plan.furniture.Add(new PlannedThing
+                {
+                    def = e.def,
+                    stuff = e.thing.Stuff,
+                    cell = e.thing.Position,
+                    rot = e.thing.Rotation,
+                    rect = e.thing.OccupiedRect(),
+                    state = PieceState.Present,
+                    group = lamp.group,
+                    source = lamp
+                });
+            }
+            var avoid = new HashSet<IntVec3>();
+            foreach (var f in plan.furniture)
+                if (f.state != PieceState.Blocked)
+                    foreach (var c in f.rect) avoid.Add(c);
+            foreach (var (cell, rot) in WallLights.SpotsInRoom(room, map, lamp.def, lamp.stuff, LightMath.MaxWallLamps(room.CellCount), avoid))
+            {
+                var rect = CellRect.SingleCell(cell);
+                var pt = new PlannedThing { def = lamp.def, stuff = lamp.stuff, cell = cell, rot = rot, rect = rect, group = lamp.group, source = lamp };
+                pt.state = FurnitureState(plan, map, lamp, rect, cell, rot, out pt.reason, out pt.ground);
+                plan.furniture.Add(pt);
+            }
         }
 
         private static HashSet<TerrainDef> smoothedFloors;
@@ -818,6 +1000,12 @@ namespace ColonyCouncil
             {
                 if (f.state == PieceState.Present) present++;
                 else if (f.state == PieceState.Ready && TryPlace(f.def, f.cell, f.rot, f.stuff, map)) furniture++;
+                else if (f.state == PieceState.Ready && f.source != null && f.source.OnWall)
+                {
+                    // Its wall is only a blueprint yet: the lamp follows once the wall is up.
+                    queue?.Add(f.def, f.stuff, f.cell, f.rot, label);
+                    queued++;
+                }
                 else if (f.state == PieceState.Waiting)
                 {
                     queue?.Add(f.def, f.stuff, f.cell, f.rot, label);
