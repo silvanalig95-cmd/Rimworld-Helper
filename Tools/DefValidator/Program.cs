@@ -308,7 +308,7 @@ var dynamic = new Dictionary<string, string[]>
     ["CC_TieKind_"] = new[] { "Friends", "Rivals", "Comrades", "Mentor" },
     ["CC_DreamKind_"] = new[] { "Sweet", "Strange", "Nightmare", "Omen", "Lost" },
     ["CC_Section_"] = new[] { "Colony", "People", "Council", "History", "Almanac" },
-    ["CC_Tab_"] = new[] { "Priorities", "Build", "Roster", "Bonds", "Ambition", "Chronicle", "Dreams", "Journals", "Almanac", "Ways", "Moods", "World", "Overview" },
+    ["CC_Tab_"] = new[] { "Priorities", "Build", "Roster", "Bonds", "Ambition", "Chronicle", "Dreams", "Journals", "Almanac", "Ways", "Moods", "World", "Overview", "Defenses" },
     ["CC_ChronicleFilter_"] = new[] { "All", "Wishes", "Council", "People", "Strangers", "World", "Dreams", "Losses" },
     ["CC_Nemesis_Deed_"] = new[] { "downed", "maimed", "killed" },
     ["CC_Way_"] = new[] { "Mercy_Pos", "Mercy_Neg", "Generosity_Pos", "Generosity_Neg", "Tradition_Pos", "Tradition_Neg", "Openness_Pos", "Openness_Neg", "Toil_Pos", "Toil_Neg" },
@@ -333,7 +333,7 @@ var dynamic = new Dictionary<string, string[]>
     ["CC_DefKind_"] = new[] { "turret", "trap", "cover" },
     ["CC_ButtonPos_"] = new[] { "BeforeMenu", "AfterResearch", "AfterHistory", "AfterWork" },
     ["CC_BuildGroup_"] = new[] { "Living", "Food", "Work", "Care", "Leisure", "Security" },
-    ["CC_AlmanacCat_"] = new[] { "Basics", "Food", "Rooms", "Mood", "Defense", "Health", "Management", "LowTech", "RoomDesign", "Mistakes", "Royalty", "Ideology", "Biotech", "Anomaly", "Odyssey", "Numbers", "Mods" },
+    ["CC_AlmanacCat_"] = new[] { "Basics", "Food", "Rooms", "Mood", "Defense", "Defending", "Health", "Management", "LowTech", "RoomDesign", "Mistakes", "Royalty", "Ideology", "Biotech", "Anomaly", "Odyssey", "Numbers", "Mods" },
     ["CC_UI_Reaction_"] = new[] { "Love", "Like", "Dislike", "Hate" },
     // Feelings and strain (Heart/): enum names.
     ["CC_Heart_Band_"] = new[] { "Steady", "Strained", "Worn", "Breaking", "Steady_Desc", "Strained_Desc", "Worn_Desc", "Breaking_Desc" },

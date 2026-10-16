@@ -40,7 +40,8 @@ namespace ColonyCouncil
             Almanac,
             Calendar,
             Everyone,
-            Dilemmas
+            Dilemmas,
+            Defenses
         }
 
         private static Tab tab = Tab.Week;
@@ -64,7 +65,8 @@ namespace ColonyCouncil
                 case Tab.Priorities:
                 case Tab.Moods:
                 case Tab.World:
-                case Tab.Build: return Section.Colony;
+                case Tab.Build:
+                case Tab.Defenses: return Section.Colony;
                 case Tab.Roster:
                 case Tab.Everyone:
                 case Tab.Bonds:
@@ -94,7 +96,7 @@ namespace ColonyCouncil
         }
 
         // Each section's pages, made once (asked every frame).
-        private static readonly Tab[] ColonyTabs = { Tab.Week, Tab.Overview, Tab.Priorities, Tab.Moods, Tab.World, Tab.Build };
+        private static readonly Tab[] ColonyTabs = { Tab.Week, Tab.Overview, Tab.Priorities, Tab.Moods, Tab.World, Tab.Build, Tab.Defenses };
         private static readonly Tab[] PeopleTabs = { Tab.Roster, Tab.Everyone, Tab.Bonds, Tab.Wishes };
         private static readonly Tab[] CouncilTabs = { Tab.Decrees, Tab.Ambition, Tab.Ways, Tab.Dilemmas };
         private static readonly Tab[] HistoryTabs = { Tab.Chronicle, Tab.Calendar, Tab.Dreams, Tab.Journals };
@@ -264,6 +266,7 @@ namespace ColonyCouncil
                 case Tab.Dilemmas: DilemmasPanel.Draw(content, comp); break;
                 case Tab.Priorities: PrioritiesPanel.Draw(content, map); break;
                 case Tab.Build: BuildPanel.Draw(content, map); break;
+                case Tab.Defenses: DefensePanel.Draw(content, map); break;
                 case Tab.Roster: PeoplePanel.Draw(content, comp); break;
                 case Tab.Bonds: SocialPanel.Draw(content, comp); break;
                 case Tab.Wishes: WishesPanel.Draw(content, comp); break;
@@ -370,6 +373,7 @@ namespace ColonyCouncil
                 case Tab.Moods: return Icons.Moods;
                 case Tab.World: return Icons.World;
                 case Tab.Build: return Icons.Rooms;
+                case Tab.Defenses: return Icons.Defenses ?? Icons.CatDefense;
                 case Tab.Roster: return Icons.Roster;
                 case Tab.Bonds: return Icons.Bonds;
                 case Tab.Wishes: return Icons.Wishes;

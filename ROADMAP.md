@@ -269,7 +269,7 @@ and make for a real choice; deepening how existing things play out comes before 
 |---|---|---|
 | Rimfolk events, story stages and missions | 182 (13 mission kinds, 9 → 13: a pilgrim to escort, word to carry, a lost child, hands for a harvest; 6 aftermath events after world events, 2 vendetta endings) | more everyday events per group, more chains, more mission kinds |
 | Wishes | 107 | more seasonal and biome wishes, more for the always-on mods (Alpha mods, Vanilla Expanded furniture) |
-| Council projects (ambitions) | 64 (8 in stages, 3 season-long; 2 tribal, 2 spacer, 1 for Hospitality) | projects from the calendar and the faith, more for children and elders |
+| Council projects (ambitions) | 65 (8 in stages, 3 season-long; 2 tribal, 2 spacer, 1 for Hospitality; 1 from the defense planner) | projects from the calendar and the faith, more for children and elders |
 | Life goals | 84 (children's dreams that grow into grown-up goals, teenagers' goals, elders' last wishes a friend may finish, faith and the heart; goals a faith forbids never come up) | goals for each mod's content, goals two people share |
 | Dilemmas | 158 (14 new for children, teenagers and elders, two asking for a quirk; 8 new customs) | more for the camps; dilemmas for each new system as it lands |
 | Encounters | 183 (7 for Outland's peoples and Medieval Total Rim's nations, 4 for the one colonist a people remembers by name, 5 for what a stranger's people remember, 8 for the land's shape, 3 for Seasonal Weather's skies) | more lands (lakes, rivers), more mods' creatures, peoples and biomes, rarer night and weather moments |
@@ -293,6 +293,7 @@ and make for a real choice; deepening how existing things play out comes before 
 | Rimfolk scenarios | 13 (7 gentle, 6 with stakes) | a tribe's start, a spacer crash with a secret, an orphanage |
 | Names (epithets) | 54 (8 from Rimfolk's own records; 5 given for one deed beyond the walls) | names from offices, faith and the colony's years |
 | Advisor checks | 43 | checks for the newer systems (missions, the world page), more for tribal colonies |
+| Defense plans and advice | 11 plans (2 with Medieval Overhaul), 21 kinds of defense advice, 15 Almanac pages | plans for more mods (Vanilla Furniture Expanded - Security's trenches and barbed wire), a bunker, a moat |
 | Colony character | 5 ways (10 names), 6 things a colony grows into | traits from hospitality, faith and the calendar |
 | Pets and nemeses | 14 heroics, 32 farewells, 22 taunts and parting words, 4 endings told from pools (one new: let go from the cells) | pets in the calendar, nemeses in dreams and personal stories |
 | Feelings | 26 (4 deepened by a heart's need that runs low) | feelings that touch the camps and world events, each with more dreams and moments |
@@ -302,10 +303,20 @@ and make for a real choice; deepening how existing things play out comes before 
 | Negative moods | 589 thoughts with a bad side (548 → 589); 41 setbacks from play (8 council, 3 gatherings, 10 work, 7 home, 6 worries, 7 between people) | setbacks for camps, world events and the calendar, more from mod content (a mod's bench, crop or ritual gone wrong) |
 
 ### Asked for by the player (queued after the current fixes)
-- A defense planner: what makes sense for this colony and its threats (raids, sieges, drop pods, mechanoids,
-  tribal waves), where to build it on this map (choke points, killboxes, cover and fallback lines, turret and trap
-  placement for the colony's tech level), templates to place like the room planner's, and the reasoning shown, the
-  way the advisor explains a room.
+- Done: a defense planner (Colony → Defenses). The council reads the map: the edges raiders can reach home from
+  and the ways they walk (the easiest path from a sample of edge cells, doors costing extra), the narrow places on
+  them (passes, gaps between rock and water, bridges, the colony's own gates) with their width and the share of raids
+  passing, whether the home is walled in, how much of the outer wall is two thick, and the doors between the gate and
+  the beds. It weighs what stands (walls, gates, turrets, traps, cover, embrasures, mortars, weapons by the beds), who
+  fights, what can be built, and the threats: raid points, hostile peoples and whether they drop pods, besiege or
+  breach, mechanoids and their clusters, insects under the mountain, Anomaly and Biotech. Ranked advice with its
+  reasons and what's done, a map of the ways in, a short "how it's commonly done", and an overlay on the map.
+  Eleven defense plans place like room plans (every turn and mirror, materials, obstacles, closing a gap to the
+  rock) and go down at the spot the advice is about, turned to face the raiders: a gate with sandbag lines, a
+  perimeter wall, a killbox, a trap corridor, a turret nest, a sniper's or archers' post, a fallback line, a keep, a
+  mortar pit, and with Medieval Overhaul a palisade with a gatehouse and a castle gate. The Almanac's new section
+  "Defending the colony" (15 pages), a council project to hold the way in, and the marshal's word on the page.
+  Next: the overlay as a toggle in the game's own map settings; raids remembered by where they really came in.
 - Animals and Pokémon deeper in Rimfolk: animals in wishes, dreams, personal stories, the calendar and the council
   (a herd's year, a bonded animal's old age, a Pokémon's evolution as a colony event), with PokéWorld kept soft.
 

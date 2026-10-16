@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- ===================== Colony → Defenses (Source/ColonyCouncil/UI/DefensePanel.cs) ===================== -->
+
+  <CC_Tab_Defenses>Defenses</CC_Tab_Defenses>
+  <CC_AlmanacCat_Defending>Defending the colony</CC_AlmanacCat_Defending>
+  <CC_Def_Header>Defenses</CC_Def_Header>
+  <CC_Def_Sub>Where raiders come from, where to meet them, and what to build</CC_Def_Sub>
+  <CC_Def_Stat>Raids now: about {0} points</CC_Def_Stat>
+  <CC_Def_SurveyAgain>Look again</CC_Def_SurveyAgain>
+  <CC_Def_SurveyAgain_Tip>Read the map again now: the ways in, the gaps, what stands. The page does this by itself once the colony's buildings have changed, at most once an hour.</CC_Def_SurveyAgain_Tip>
+  <CC_Def_ShowOnMap>Show on the map</CC_Def_ShowOnMap>
+  <CC_Def_ShowOnMap_Tip>Draw the ways raiders walk in (red), the narrow places on them (yellow, blue where a gate holds one) and where a gate's wall would cross (gold), also with this window closed. They're always drawn while this page is open or a defense is being planned.</CC_Def_ShowOnMap_Tip>
+  <CC_Def_NoSurvey>The council couldn't read this map just now. Try again in a moment.</CC_Def_NoSurvey>
+
+  <CC_Def_Card_From>Where they come from</CC_Def_Card_From>
+  <CC_Def_Card_Face>What you face</CC_Def_Card_Face>
+  <CC_Def_Card_Fight>Who fights</CC_Def_Card_Fight>
+  <CC_Def_Card_Stand>What stands already</CC_Def_Card_Stand>
+  <CC_Def_Card_How>How it's commonly done</CC_Def_Card_How>
+  <CC_Def_ReadAlmanac>Defending the colony, in the Almanac</CC_Def_ReadAlmanac>
+  <CC_Def_Legend_Ways>ways in</CC_Def_Legend_Ways>
+  <CC_Def_Legend_Gaps>gaps</CC_Def_Legend_Gaps>
+  <CC_Def_Legend_Gates>gates</CC_Def_Legend_Gates>
+  <CC_Def_Legend_Home>home</CC_Def_Legend_Home>
+  <CC_Def_MapTip>The map as the council reads it: rock, water, your walls and your home, the ways raiders walk in (red, deeper where more of them pass), the narrow places on them (yellow) and the gates that hold them (blue). Click to go there.</CC_Def_MapTip>
+
+  <CC_Def_Cell>1 cell</CC_Def_Cell>
+  <CC_Def_Cells>{0} cells</CC_Def_Cells>
+  <CC_Def_Dir_0>north</CC_Def_Dir_0>
+  <CC_Def_Dir_1>north-east</CC_Def_Dir_1>
+  <CC_Def_Dir_2>east</CC_Def_Dir_2>
+  <CC_Def_Dir_3>south-east</CC_Def_Dir_3>
+  <CC_Def_Dir_4>south</CC_Def_Dir_4>
+  <CC_Def_Dir_5>south-west</CC_Def_Dir_5>
+  <CC_Def_Dir_6>west</CC_Def_Dir_6>
+  <CC_Def_Dir_7>north-west</CC_Def_Dir_7>
+
+  <!-- Where they come from -->
+  <CC_Def_From_None>No way from the map's edge reaches your home: raiders on foot can't get to you. Drop pods, diggers and whatever comes up from below still can.</CC_Def_From_None>
+  <CC_Def_From_All>Raiders can reach you from every edge of the map.</CC_Def_From_All>
+  <CC_Def_From_One>Raiders can reach you only from the {0} edge.</CC_Def_From_One>
+  <CC_Def_From_Many>Raiders can reach you from the {0} edges.</CC_Def_From_Many>
+  <CC_Def_From_Mostly>Most of the open edge lies to the {0}, so most raids will come from there.</CC_Def_From_Mostly>
+  <CC_Def_Enclosed>Your home is walled in: the only ways in on foot are through doors.</CC_Def_Enclosed>
+  <CC_Def_Openings>Your home is open: raiders can walk in at {0} place(s) without passing a door.</CC_Def_Openings>
+  <CC_Def_GapSummary>To the {0}: {1}, {2} wide. About {3} in 10 raids would pass it.</CC_Def_GapSummary>
+  <CC_Def_NoGaps>No narrow place on the way in, only open country. A wall with one gate makes a choke point of your own.</CC_Def_NoGaps>
+  <CC_Def_Gap_Pass>a pass through the mountain</CC_Def_Gap_Pass>
+  <CC_Def_Gap_RockRock>a gap between two rock faces</CC_Def_Gap_RockRock>
+  <CC_Def_Gap_RockWater>a gap between the rock and the water</CC_Def_Gap_RockWater>
+  <CC_Def_Gap_WaterWater>a crossing between stretches of water</CC_Def_Gap_WaterWater>
+  <CC_Def_Gap_Walls>a gap between your own walls</CC_Def_Gap_Walls>
+  <CC_Def_Gap_WallRock>a gap between your wall and the rock</CC_Def_Gap_WallRock>
+  <CC_Def_Gap_WallWater>a gap between your wall and the water</CC_Def_Gap_WallWater>
+  <CC_Def_Gap_WallOther>a gap by your wall</CC_Def_Gap_WallOther>
+  <CC_Def_Gap_WaterOther>a gap by the water</CC_Def_Gap_WaterOther>
+  <CC_Def_Gap_RockOther>a gap by the rock</CC_Def_Gap_RockOther>
+  <CC_Def_Gap_Other>a narrow place</CC_Def_Gap_Other>
+  <CC_Def_Gap_Bridge>the bridge</CC_Def_Gap_Bridge>
+  <CC_Def_Gap_Gate>your gate</CC_Def_Gap_Gate>
+
+  <!-- What you face -->
+  <CC_Def_Face_Points>Raids are priced at about {0} points now, from the colony's wealth and its people.</CC_Def_Face_Points>
+  <CC_Def_Face_Hostile>Hostile: {0}.</CC_Def_Face_Hostile>
+  <CC_Def_Face_NoHostile>No hostile people around for now. Animals, insects and mechanoids still come.</CC_Def_Face_NoHostile>
+  <CC_Def_Face_Pods>Some of them can drop pods among your buildings, past every wall.</CC_Def_Face_Pods>
+  <CC_Def_Face_Siege>Some of them can besiege you: dig in out of reach and shell you.</CC_Def_Face_Siege>
+  <CC_Def_Face_Breach>Sappers and breachers can come: they go through the walls, not the gate.</CC_Def_Face_Breach>
+  <CC_Def_Face_Mechs>Mechanoids can raid you. They don't burn, they don't give up, and EMP stuns them.</CC_Def_Face_Mechs>
+  <CC_Def_Face_MechsLater>Mechanoids will raid too, once the colony has been here a while longer.</CC_Def_Face_MechsLater>
+  <CC_Def_Face_Cluster>A mechanoid cluster can land nearby and wait, asleep.</CC_Def_Face_Cluster>
+  <CC_Def_Face_Insects>{0} cells of the home area lie under overhead mountain, where insects can come up.</CC_Def_Face_Insects>
+  <CC_Def_Face_Anomaly>The dark is stirring: some of what it sends comes up inside the walls or walks in unseen.</CC_Def_Face_Anomaly>
+  <CC_Def_Face_Waste>{0} toxic wastepacks lie on the map.</CC_Def_Face_Waste>
+
+  <!-- Who fights, what stands -->
+  <CC_Def_Fight_Count>{0} who can fight: {1} with ranged weapons, {2} with melee.</CC_Def_Fight_Count>
+  <CC_Def_Fight_Unarmed>{0} have no weapon.</CC_Def_Fight_Unarmed>
+  <CC_Def_Fight_Shooter>Best shot: {PAWN_nameDef} (shooting {1}, {2}).</CC_Def_Fight_Shooter>
+  <CC_Def_Fight_Melee>Best in close: {PAWN_nameDef} (melee {1}, {2}).</CC_Def_Fight_Melee>
+  <CC_Def_Fight_Reach>The longest reach: {0} cells.</CC_Def_Fight_Reach>
+  <CC_Def_Stand_Walls>{0} walls and {1} doors.</CC_Def_Stand_Walls>
+  <CC_Def_Stand_Enclosed>The home is walled in.</CC_Def_Stand_Enclosed>
+  <CC_Def_Stand_Open>The home isn't walled in.</CC_Def_Stand_Open>
+  <CC_Def_Stand_Turrets>{0} turret(s).</CC_Def_Stand_Turrets>
+  <CC_Def_Stand_Cover>{0} pieces of cover, {1} traps.</CC_Def_Stand_Cover>
+  <CC_Def_Stand_Embrasures>{0} embrasure(s).</CC_Def_Stand_Embrasures>
+  <CC_Def_Stand_Mortars>{0} mortar(s).</CC_Def_Stand_Mortars>
+  <CC_Def_Stand_Double>{0}% of the outer wall is two thick or has rock behind it.</CC_Def_Stand_Double>
+
+  <!-- How it's commonly done -->
+  <CC_Def_How_Mountain>In a mountain base the rock is your wall: hold the few ways in, and wall off the tunnels you don't use, against insects.</CC_Def_How_Mountain>
+  <CC_Def_How_Pass>You have a natural gap most raids pass: close it with a wall and one gate, and fight there.</CC_Def_How_Pass>
+  <CC_Def_How_Open>On open ground, make your own way in: a wall round the colony, with one gate left open when raiders come.</CC_Def_How_Open>
+  <CC_Def_How_High_0>One way in: raiders take the easiest path, so give them a single gate and make it yours.</CC_Def_How_High_0>
+  <CC_Def_How_High_1>A killbox behind it: a turn in the entrance, open ground, then cover and guns at the far end.</CC_Def_How_High_1>
+  <CC_Def_How_High_2>Stone, not wood, for everything near the fighting: raiders set fires, and a wooden killbox burns your own people.</CC_Def_How_High_2>
+  <CC_Def_How_High_3>Weapons by the beds and walls two thick, for drop pods, sappers and breachers, who never use the gate.</CC_Def_How_High_3>
+  <CC_Def_How_High_4>Mortars deep inside for sieges, EMP for mechanoids, and a hospital close behind the line.</CC_Def_How_High_4>
+  <CC_Def_How_Low_0>Hold a gap: a palisade or a wall across the narrowest place on the way in, with one gate.</CC_Def_How_Low_0>
+  <CC_Def_How_Low_1>Archers behind sandbags, barricades or embrasures, and a spear or an axe beside the gate for whoever gets through.</CC_Def_How_Low_1>
+  <CC_Def_How_Low_2>Spike traps on the raiders' way, a cell apart, never where your own people walk.</CC_Def_How_Low_2>
+  <CC_Def_How_Low_3>Firebreaks in front of anything wooden: raiders bring torches, and a palisade burns.</CC_Def_How_Low_3>
+  <CC_Def_How_Low_4>A keep among the beds, with food and medicine, for when the line breaks.</CC_Def_How_Low_4>
+
+  <!-- The advice -->
+  <CC_Def_Advice>What to do</CC_Def_Advice>
+  <CC_Def_AdviceOpen>{0} to do</CC_Def_AdviceOpen>
+  <CC_Def_AdviceNone>nothing pressing</CC_Def_AdviceNone>
+  <CC_Def_Marshal>{PAWN_nameDef}, your marshal, would start with the first of these.</CC_Def_Marshal>
+  <CC_Def_Done_Pill>Done</CC_Def_Done_Pill>
+  <CC_Def_Standing_Pill>Keep in mind</CC_Def_Standing_Pill>
+  <CC_Def_PlanHere>Plan it here</CC_Def_PlanHere>
+  <CC_Def_PlanHere_Tip>Opens the planner with the {0} at the place this is about, turned to face the raiders. Nothing is built until you click to place it.</CC_Def_PlanHere_Tip>
+  <CC_Def_Plans>Defense plans</CC_Def_Plans>
+  <CC_Def_PlansSub>placed like room plans</CC_Def_PlansSub>
+  <CC_Def_AtSpot>At the suggested spot</CC_Def_AtSpot>
+  <CC_Def_Others>others</CC_Def_Others>
+
+  <CC_Def_Came_All>Every raid that walks in comes this way.</CC_Def_Came_All>
+  <CC_Def_Came_Most>Raiders mostly come from the {0}: about {1} in 10 of their ways in pass here.</CC_Def_Came_Most>
+  <CC_Def_Came_Some>About {0} in 10 raids would come this way, from the {1}.</CC_Def_Came_Some>
+  <CC_Def_Gap_Line>The way in there is {0}, {1} wide.</CC_Def_Gap_Line>
+  <CC_Def_Plan_Gate>A gate there with sandbags behind it holds them. Close the gap, and the wall carries on to the rock or water on either side.</CC_Def_Plan_Gate>
+  <CC_Def_Plan_Wall>At that width a gate alone won't do: a stretch of wall two thick, with one gate in it, makes it yours.</CC_Def_Plan_Wall>
+  <CC_Def_Plan_Palisade>A palisade across it with a gatehouse holds them, with archers at the embrasures.</CC_Def_Plan_Palisade>
+  <CC_Def_Plan_Bridge>Whoever holds this end of the bridge holds the crossing: a gate at this end, with sandbags behind it.</CC_Def_Plan_Bridge>
+
+  <CC_Def_Adv_Gap_Title>Hold the way in to the {0}</CC_Def_Adv_Gap_Title>
+  <CC_Def_Adv_Cover_Title>Cover behind the gate to the {0}</CC_Def_Adv_Cover_Title>
+  <CC_Def_Adv_Cover>There's a gate to the {0}, but only {1} piece(s) of cover behind it. Sandbags a few cells back give your people cover and leave raiders in the open when they come through.</CC_Def_Adv_Cover>
+  <CC_Def_Adv_Wood_Title>A gate of wood burns</CC_Def_Adv_Wood_Title>
+  <CC_Def_Adv_Wood>The walls by the gate to the {0} are wood. Raiders set fires, and fire in a narrow place is a trap for your own people. Rebuild them in stone when there's stone to spare.</CC_Def_Adv_Wood>
+  <CC_Def_Adv_Wall_Title>A way in of your own</CC_Def_Adv_Wall_Title>
+  <CC_Def_Adv_Wall>Your home is open to raiders from {0} side(s), and they can walk in at {1} place(s) without passing a door. A wall round it with one gate makes a choke point of your own, and you choose where the fight is.</CC_Def_Adv_Wall>
+  <CC_Def_Adv_WallDone>Your home is walled in: raiders on foot come through a door or not at all.</CC_Def_Adv_WallDone>
+  <CC_Def_Adv_Killbox_Title>Turn the way in into a killbox</CC_Def_Adv_Killbox_Title>
+  <CC_Def_Adv_Killbox>Raids are about {0} points now, more than a gate holds for long. A killbox behind it brings them round a turn, one at a time, into open ground under every gun the colony has.</CC_Def_Adv_Killbox>
+  <CC_Def_Adv_Traps_Title>Traps on the way in</CC_Def_Adv_Traps_Title>
+  <CC_Def_Adv_Traps>Raiders don't see traps. A corridor of them ({1}) in front of the way in to the {0} softens raiders before the fight, while your own people take the slow side.</CC_Def_Adv_Traps>
+  <CC_Def_Adv_Turrets_Title>Turrets behind the gate</CC_Def_Adv_Turrets_Title>
+  <CC_Def_Adv_Turrets>Two turrets behind cover near the way in to the {0} are guns that never sleep, as long as they have power and someone repairs them. A solar flare silences them, so arm your people as if they weren't there.</CC_Def_Adv_Turrets>
+  <CC_Def_Adv_Post_Title>An archers' post</CC_Def_Adv_Post_Title>
+  <CC_Def_Adv_Post>{1} of your fighters shoot. Behind cover a few cells back from the way in to the {0}, they hit raiders before the gate gives, and walls on the flanks keep arrows off them.</CC_Def_Adv_Post>
+  <CC_Def_Adv_Sappers_Title>Sappers and breachers go round</CC_Def_Adv_Sappers_Title>
+  <CC_Def_Adv_Sappers>Sappers dig toward the beds and breachers smash any wall in their way: a killbox or a gate does nothing against them. Walls at least two thick, or a second ring round the beds, give you time to meet them. Now {0}% of the outer wall is two thick.</CC_Def_Adv_Sappers>
+  <CC_Def_Adv_SappersTribal>Tribes breach with axes.</CC_Def_Adv_SappersTribal>
+  <CC_Def_Adv_Fallback_Title>A line to fall back to</CC_Def_Adv_Fallback_Title>
+  <CC_Def_Adv_Fallback>Between the way in and the beds there's nothing to stop raiders who get through. A wall with a door and cover behind it, closer in, is where people fall back when the first line breaks.</CC_Def_Adv_Fallback>
+  <CC_Def_Adv_NoWay_Title>No way in on foot</CC_Def_Adv_NoWay_Title>
+  <CC_Def_Adv_NoWay>Rock and water close your home off from every edge of the map. Raids still come by drop pod, by digging and from below: keep weapons by the beds.</CC_Def_Adv_NoWay>
+  <CC_Def_Adv_Pods_Title>Drop pods land inside</CC_Def_Adv_Pods_Title>
+  <CC_Def_Adv_Pods>{0} can drop pods among your buildings, past every wall and gate. Keep weapons near the beds and a core you can hold. Now {1} weapon(s) are stored near the beds.</CC_Def_Adv_Pods>
+  <CC_Def_Adv_Insects_Title>Insects under the mountain</CC_Def_Adv_Insects_Title>
+  <CC_Def_Adv_Insects>Your base sits under overhead mountain ({0} cells of it): infestations are possible. {1} of those cells are dark and warm, the way insects like them. Keep the deep rooms lit and cold, wall off the rock you don't use, and keep a fallback.</CC_Def_Adv_Insects>
+  <CC_Def_Adv_Siege_Title>Something to answer a siege</CC_Def_Adv_Siege_Title>
+  <CC_Def_Adv_Siege>{0} can besiege you: they dig in out of reach, build mortars and shell you until you come out.</CC_Def_Adv_Siege>
+  <CC_Def_Adv_Siege_Mortar>A mortar pit deep inside answers them from anywhere on the map.</CC_Def_Adv_Siege_Mortar>
+  <CC_Def_Adv_Siege_NoMortar>The colony can't build a mortar yet ({0}). Until then, your longest guns or bows can goad them into attacking early.</CC_Def_Adv_Siege_NoMortar>
+  <CC_Def_Adv_Mechs_Title>Mechanoids: EMP, not fire</CC_Def_Adv_Mechs_Title>
+  <CC_Def_Adv_Mechs>Mechanoids don't burn and don't feel the cold, and they never give up and leave. EMP stuns them, and for a while after a stun they shrug off the next one. Keep EMP grenades, a launcher or EMP shells where your fighters can reach them.</CC_Def_Adv_Mechs>
+  <CC_Def_Adv_MechsLow>Mechanoids don't burn and never give up and leave. Without EMP, meet them at a doorway with several fighters close in, where only one of them can reach you at a time, and keep the archers behind cover.</CC_Def_Adv_MechsLow>
+  <CC_Def_Adv_Cluster_Title>A cluster can land asleep</CC_Def_Adv_Cluster_Title>
+  <CC_Def_Adv_Cluster>A mechanoid cluster can drop near the colony and wait, asleep. Leave it until you're ready, keep people and blueprints well away, and shell it from out of its reach.</CC_Def_Adv_Cluster>
+  <CC_Def_Adv_Anomaly_Title>What walls don't stop</CC_Def_Adv_Anomaly_Title>
+  <CC_Def_Adv_Anomaly>Some of what the dark sends comes up through the ground or walks in unseen, and a killbox never sees it. Keep the base well lit, weapons spread among the rooms, and people within reach of each other.</CC_Def_Adv_Anomaly>
+  <CC_Def_Adv_Waste_Title>Wastepacks breed trouble</CC_Def_Adv_Waste_Title>
+  <CC_Def_Adv_Waste>{0} toxic wastepacks lie on the map. Destroyed, they pollute the ground, and insect cocoons can come of them. Store them well away from the base.</CC_Def_Adv_Waste>
+  <CC_Def_Adv_Fighters_Title>Too few to hold against raids this size</CC_Def_Adv_Fighters_Title>
+  <CC_Def_Adv_Fighters>Raids are about {0} points now; your {1} fighters and defenses count for about {2}. Arm everyone who can fight, and let walls, cover and traps do some of the work.</CC_Def_Adv_Fighters>
+  <CC_Def_Adv_Medical_Title>Somewhere for the wounded</CC_Def_Adv_Medical_Title>
+  <CC_Def_Adv_Medical>After a fight the wounded need beds and medicine close by: {0} medicine in stock.</CC_Def_Adv_Medical>
+  <CC_Def_Adv_NoHospital>There's no hospital yet.</CC_Def_Adv_NoHospital>
+  <CC_Def_Adv_TrapHome_Title>Traps where your people walk</CC_Def_Adv_TrapHome_Title>
+  <CC_Def_Adv_TrapHome>{0} trap(s) stand inside the home area. Your own people spring one about one time in two hundred, more often when hauling over it or drafted onto it. An allowed area that keeps haulers off them helps.</CC_Def_Adv_TrapHome>
+
+  <!-- ===================== The defense planner (Source/ColonyCouncil/Defense/) ===================== -->
+
+  <CC_Def_Size>{0} × {1} cells</CC_Def_Size>
+  <CC_Def_Another>Another defense plan...</CC_Def_Another>
+  <CC_Def_CloseGap>Close the gap</CC_Def_CloseGap>
+  <CC_Def_CloseGap_Tip>Carry the wall line on to the rock, a wall or deep water on both sides, up to {0} cells each way, so there's no easy way round it.</CC_Def_CloseGap_Tip>
+  <CC_Def_FindSpot>Find the spot</CC_Def_FindSpot>
+  <CC_Def_FindSpot_Tip>Puts the plan where the council's reading of the map suggests (on the gap most raids pass, in front of it, behind it, or among the beds, as the plan needs), turned to face the raiders.</CC_Def_FindSpot_Tip>
+  <CC_Def_Parts>WHAT IT'S BUILT OF</CC_Def_Parts>
+  <CC_Def_LeftOut>none the colony can build; left out</CC_Def_LeftOut>
+  <CC_Def_CantBuild>none the colony can build yet</CC_Def_CantBuild>
+  <CC_Def_SpotFound>A spot for the {0}, facing {1}. Click "Place it there", or place it yourself.</CC_Def_SpotFound>
+  <CC_Def_NoSpot>No good spot for the {0} where the council would put it. Place it by hand.</CC_Def_NoSpot>
+  <CC_Def_Faces>faces {0}</CC_Def_Faces>
+  <CC_Def_Mouse_Gap>The wall carries on {0} cell(s) to close the gap.</CC_Def_Mouse_Gap>
+  <CC_Def_AllThere>Everything this plan would build stands here already.</CC_Def_AllThere>
+  <CC_Def_Done>Planned the {0}: {1}.</CC_Def_Done>
+  <CC_Def_DoneGap>The wall carries on {0} cell(s) to close the gap.</CC_Def_DoneGap>
+  <CC_Def_Nothing>nothing new</CC_Def_Nothing>
+  <CC_Def_Skipped>{0} piece(s) couldn't go down and were left out.</CC_Def_Skipped>
+  <CC_Def_Warn_GapWater>The wall stops at water or marsh it can't stand in: raiders can wade round that end.</CC_Def_Warn_GapWater>
+  <CC_Def_Warn_GapWide>On one side the gap is wider than {0} cells: the wall stops short, and raiders can walk round its end.</CC_Def_Warn_GapWide>
+  <CC_Def_Warn_GapBlocked>Something stands in the wall's way at one end: raiders may get round there.</CC_Def_Warn_GapBlocked>
+  <CC_Def_Warn_Ground>{0} piece(s) are left out: the ground can't hold them.</CC_Def_Warn_Ground>
+  <CC_Def_Warn_Blocked>{0} piece(s) are left out: something is in the way.</CC_Def_Warn_Blocked>
+  <CC_Def_Warn_MortarRoof>A mortar here would stand under a roof, and it can't fire through one.</CC_Def_Warn_MortarRoof>
+  <CC_Def_Warn_Wood>The walls would be of {0}, which burns. Stone is better near the fighting.</CC_Def_Warn_Wood>
+  <CC_Def_Warn_TrapsHome>Traps inside the home area: your own people walk there.</CC_Def_Warn_TrapsHome>
+  <CC_Def_InRock>The rock is there already.</CC_Def_InRock>
+  <CC_Def_Warn_InRock>{0} piece(s) would stand in the rock at the sides and are left out: a gap's own rock is the wall there.</CC_Def_Warn_InRock>
+  <CC_Def_Warn_ClearBlocked>{0} cell(s) meant to stay open have something built on them: move it, or raiders and your own people have to go round.</CC_Def_Warn_ClearBlocked>
+  <CC_Def_Warn_Chunks>{0} stone chunk(s) lie in the field of fire: haul them away, or raiders shelter behind them.</CC_Def_Warn_Chunks>
+  <CC_Def_MapLabel>{0} wide · {1}/10 of raids</CC_Def_MapLabel>
+  <CC_Def_MapOpen>open ground: most raids</CC_Def_MapOpen>
+  <CC_Def_Missing>Missing: {0}</CC_Def_Missing>
+  <CC_Def_MissingResearch>{0} (research: {1})</CC_Def_MissingResearch>
+  <CC_Def_NeedsMod>Needs Medieval Overhaul, which adds it.</CC_Def_NeedsMod>
+  <CC_Def_Broken>This plan couldn't be worked out in this game.</CC_Def_Broken>
+  <CC_Def_Off_Traps>traps are switched off in this game's difficulty settings</CC_Def_Off_Traps>
+  <CC_Def_Off_Turrets>turrets are switched off in this game's difficulty settings</CC_Def_Off_Turrets>
+  <CC_Def_Off_Mortars>mortars are switched off in this game's difficulty settings</CC_Def_Off_Mortars>
+
+  <!-- The council project "hold the way in" (Source/ColonyCouncil/Defense/DefenseGoals.cs) -->
+  <CC_Goal_HoldWayIn>A gate across the way in to the {0}: {1}. Cover behind it: {2} of {3}.</CC_Goal_HoldWayIn>
+  <CC_Goal_WallIn>The home walled in, with one gate: {0}.</CC_Goal_WallIn>
+  <CC_Goal_HoldWayIn_Done>done</CC_Goal_HoldWayIn_Done>
+  <CC_Goal_HoldWayIn_NotYet>not yet</CC_Goal_HoldWayIn_NotYet>
+  <CC_Goal_HoldWayIn_None>The council can't find a way in on foot to hold.</CC_Goal_HoldWayIn_None>
+
+  <CC_DefRole_wall>walls</CC_DefRole_wall>
+  <CC_DefRole_gate>gate</CC_DefRole_gate>
+  <CC_DefRole_embrasure>embrasures</CC_DefRole_embrasure>
+  <CC_DefRole_cover>cover</CC_DefRole_cover>
+  <CC_DefRole_slow>slowing</CC_DefRole_slow>
+  <CC_DefRole_trap>traps</CC_DefRole_trap>
+  <CC_DefRole_turret>turrets</CC_DefRole_turret>
+  <CC_DefRole_mortar>mortars</CC_DefRole_mortar>
+  <CC_DefRole_shelf>shelf</CC_DefRole_shelf>
+
+</LanguageData>

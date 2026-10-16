@@ -48,7 +48,7 @@ window, organized in five sections:
 
 | Section | Sub-tabs | What's there |
 |---|---|---|
-| **Colony** | This week · Overview · Priorities · Moods · World · Room plans | what needs you, what's coming and how people are; the colony at a glance (numbers, how they moved this week, graphs of mood, trust, wealth and people over the last weeks); the advisor's ranked list of what the colony needs; every mood added up; what's coming and who's out there; ready-made rooms |
+| **Colony** | This week · Overview · Priorities · Moods · World · Room plans · Defenses | what needs you, what's coming and how people are; the colony at a glance (numbers, how they moved this week, graphs of mood, trust, wealth and people over the last weeks); the advisor's ranked list of what the colony needs; every mood added up; what's coming and who's out there; ready-made rooms; where raiders come from and what to build against them |
 | **People** | Roster · Everyone · Bonds · Wishes | every colonist at a glance with their full story; all colonists in one sortable table; friendships, rivalries, circles, vendettas, secrets; open wishes, promises kept and trust |
 | **Council** | Decrees · Ambition · Our ways · Dilemmas | decrees, petitions and the council's offices (five, up to fourteen seats in a bigger colony); the current ambition and meetings; what the colony is known for; questions waiting and how the answers went |
 | **History** | Chronicle · Calendar · Dreams · Journals | everything that happened (filter by wishes, council, people, strangers, world events, dreams, losses), the colony calendar, recent dreams, every colonist's journal |
@@ -677,7 +677,7 @@ why. Going with the room's favorite pleases its backers; overruling a clear majo
 - With only one colonist, the council "meets" in passing. The setting *Meetings call people from their work*
   (on by default) can be turned off; then colonists come only when they're free, and attendance is still kept.
 
-64 ambitions, from *a full larder* and *hold the line* to *clean hands*, *law and order*, *the brewmasters*,
+65 ambitions, from *a full larder*, *hold the line* and *hold the way in* to *clean hands*, *law and order*, *the brewmasters*,
 *stone and mortar*, *a master healer*, *a seat of power* and *school days*. Achieving one lifts everyone's mood
 and trust; one that was already more than half done when the colony chose it counts for less (down to 60%).
 Only those the colony can achieve now are pitched, and some fit a colony's size or era: *a home, not a camp* and
@@ -773,6 +773,47 @@ each one reads like "Steel wall    420 (+85 lying around), enough for 84". You c
 
 Colonists also sometimes add **personal touches**: a plant pot, an end table or a lamp planned for their own
 bedroom (a wall lamp on a wall, where the colony can build one and the room isn't large).
+
+### Defenses: where to meet them
+**Colony → Defenses** reads the colony's defense from its map. It works out which map edges raiders can reach home
+from and the ways they'd walk (from a sample of edge cells, along the easiest path, doors costing extra as raiders
+would have to break them), the narrow places on those ways (a pass through the mountain, a gap between rock and
+water, a bridge, the colony's own gate) with their width and the share of raids that would pass each, and whether the
+home is walled in. It counts what stands already (walls and doors, how much of the outer wall is two thick, turrets,
+traps, cover, embrasures, mortars, weapons kept by the beds), who fights (shooters and melee fighters, the best of
+each, the longest reach), what the colony can build, and what it faces: the raid points its wealth buys, the hostile
+peoples around and whether they can drop pods, lay sieges or send sappers and breachers, mechanoids, mechanoid
+clusters (Royalty), insects under overhead mountain, Anomaly's threats and Biotech's wastepacks. The reading is made
+when the page opens and kept until the colony's buildings change a lot (at most once a game hour, never per frame);
+**Look again** makes it now.
+
+The page shows the map in a few colors with the ways in and the gaps, the facts in short cards, a short **how it's
+commonly done** for the colony's era and land, and **advice ranked by what matters most now**, each with its reasons:
+"Raiders mostly come from the north: about 7 in 10 of their ways in pass here. The way in there is a gap between two
+rock faces, 5 cells wide. A gate there with sandbags behind it holds them." Done advice is marked and moves to the
+end. **Plan it here** opens the plan at the place the advice is about, turned to face the raiders; nothing is built
+until you click. **Show on the map** draws the ways in (red), the gaps (yellow, blue where a gate holds one) and where a
+gate's wall would cross (gold), also with the window closed.
+
+**Eleven defense plans**, placed like room plans with every turn and mirror, material choices from what you have,
+rock mined and plants cut where you allow it, and a preview that shows what's ready, waiting or in the way: a gate
+with sandbag lines, a perimeter wall two thick with a double gate, a killbox (a narrow entrance with two turns, an
+open box with a trap, cover with turrets or archers at the far end), a trap corridor (traps on one side, something to
+slow raiders on the other, for your people), a turret nest, a sniper's or archers' post, a fallback line, a keep, a
+mortar pit, and with Medieval Overhaul a palisade with a gatehouse and a castle gate (embrasures for the archers, a
+walled yard between two gates). Each uses what the colony can build: barricades and log gates in a medieval colony,
+sandbags, mini-turrets and autocannons once researched, and the defenses of Medieval Overhaul and Vanilla Furniture
+Expanded - Security where they're there. A plan the colony can't build yet is greyed with what it lacks, research
+included. A plan with a wall line can **close the gap**: the wall carries on to the rock, a wall or deep water on both
+sides (up to 12 cells each way), and says where it had to stop. Plans that close a natural gap never dig into its
+rock. **Find the spot** puts a plan on the gap most raids pass, in front of it, behind it, between it and the beds or
+deep inside, as the plan needs. Every plan is checked in every turn and mirrored: no pieces on top of each other,
+gates in wall lines with a way through, every firing position covered toward the threat with open ground in front,
+traps on the raiders' way and never side by side or by a gate, turrets three cells apart.
+
+The marshal, when there is one, points at the first piece of advice, and the council can take up **hold the way in**
+as a project: a gate across the way most raids take with cover behind it, or the home walled in. The Almanac's
+**Defending the colony** section explains it all (15 pages).
 
 ### Almanac
 An in-game knowledge base: good practice and the numbers behind it, by topic, searchable, linked from the
