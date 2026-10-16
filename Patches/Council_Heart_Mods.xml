@@ -117,7 +117,7 @@
   <Operation Class="PatchOperationAdd">
     <xpath>Defs/ColonyCouncil.FeelingDef[defName="Council_Feeling_Disgust"]/feeds</xpath>
     <value>
-      <!-- Alpha Biomes: mould everywhere; Dubs Bad Hygiene: an awful bathroom of one's own -->
+      <!-- Alpha Biomes: mold everywhere; Dubs Bad Hygiene: an awful bathroom of one's own -->
       <li><thought>AB_MoldyEnvironment</thought><weight>0.5</weight></li>
       <li><thought>UsedPrivateBathroom</thought><weight>0.5</weight></li>
     </value>
@@ -172,7 +172,7 @@
   <Operation Class="PatchOperationAdd">
     <xpath>Defs/ColonyCouncil.FeelingDef[defName="Council_Feeling_Pride"]/thoughts</xpath>
     <value>
-      <!-- Vanilla Factions Expanded - Empire: honours -->
+      <!-- Vanilla Factions Expanded - Empire: honors -->
       <li>VFEE_TheGreat</li>
       <li>VFEE_FirstOfName</li>
       <li>VFEE_Chosen</li>

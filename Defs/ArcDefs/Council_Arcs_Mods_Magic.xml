@@ -23,7 +23,7 @@
         <journal>
           <plain>
             <li>Tried the same working nine times today. Nine times it slipped away from me at the same place, like a fish off the hook.</li>
-            <li>I've stopped getting better. I can feel it. The art used to come a little easier every week, and now it doesn't come at all.</li>
+            <li>I've stopped getting better. I can feel it. The art used to come easier every week, and now it doesn't come at all.</li>
             <li>Everything I know how to do, I can do. Everything past that is a wall, and I keep walking into it.</li>
             <li>{OTHER_nameDef} has been where I am now. I should ask how {OTHER_pronoun} got past it. I keep not asking.</li>
             <li>[friend] I haven't told anyone how stuck I am. {OTHER_nameDef} would listen, I think, even without understanding a word of the art.</li>
@@ -36,7 +36,7 @@
           <cold><li>My progress has halted. Someone further along will have an answer. I intend to get it.</li></cold>
         </journal>
         <otherJournal>
-          <plain><li>{OTHER_nameDef} has had a face like thunder all week, practising the same thing over and over. I know that look. I wore it for a year.</li></plain>
+          <plain><li>{OTHER_nameDef} has had a face like thunder all week, practicing the same thing over and over. I know that look. I wore it for a year.</li></plain>
         </otherJournal>
         <chronicle>
           <li>{PAWN_nameDef} has come up against a wall in {PAWN_possessive} art.</li>
@@ -56,23 +56,23 @@
         <waiting>Next: {PAWN_nameDef} grows a level stronger in {PAWN_possessive} art.</waiting>
         <journal>
           <plain>
-            <li>{OTHER_nameDef} said the wall isn't in my hands, it's in my breathing. Practised with that in mind until supper, and something shifted.</li>
-            <li>Up before the others to practise. Again after supper. The forms are starting to feel like mine instead of borrowed.</li>
+            <li>{OTHER_nameDef} said the wall isn't in my hands, it's in my breathing. Practiced with that in mind until supper, and something shifted.</li>
+            <li>Up before the others to practice. Again after supper. The forms are starting to feel like mine instead of borrowed.</li>
             <li>{OTHER_nameDef} told me to stop trying so hard. I didn't understand it until today, when I stopped, and it worked once.</li>
             <li>[friend] {OTHER_nameDef} didn't understand half of what I told {OTHER_objective}, and still said the one thing I needed: keep going.</li>
-            <li>[winter] Practised out in the cold until my fingers wouldn't bend. Back indoors, with feeling in my fingers again, the working came easier than it has in weeks.</li>
+            <li>[winter] Practiced out in the cold until my fingers wouldn't bend. Back indoors, with feeling in my fingers again, the working came easier than it has in weeks.</li>
           </plain>
           <warm><li>{OTHER_nameDef} checks on my practice every evening. I'd hate to disappoint {OTHER_objective}, so I don't skip it.</li></warm>
-          <blunt><li>Practising. Every day. It's working, slowly.</li></blunt>
+          <blunt><li>Practicing. Every day. It's working, slowly.</li></blunt>
           <cheerful><li>It moved. Only a hair, but the wall moved!</li></cheerful>
           <gloomy><li>Every day the same forms. Some days I think I'm only getting better at being tired.</li></gloomy>
           <cold><li>Twice daily, without exception. Results are small but measurable.</li></cold>
         </journal>
         <otherJournal>
-          <plain><li>{OTHER_nameDef} has been out practising before dawn every day since we talked. I didn't tell {OTHER_objective} to do that. I'm glad of it.</li></plain>
+          <plain><li>{OTHER_nameDef} has been out practicing before dawn every day since we talked. I didn't tell {OTHER_objective} to do that. I'm glad of it.</li></plain>
         </otherJournal>
         <chronicle>
-          <li>{PAWN_nameDef} has been practising {PAWN_possessive} art every day, early and late.</li>
+          <li>{PAWN_nameDef} has been practicing {PAWN_possessive} art every day, early and late.</li>
           <li>Since talking with {OTHER_nameDef}, {PAWN_nameDef} has thrown {PAWN_objective}self into training.</li>
         </chronicle>
         <gate><kind>Custom</kind><gain>1</gain><minDays>2</minDays><timeoutDays>30</timeoutDays></gate>
@@ -143,7 +143,7 @@
         <li>[timeout] Weeks of practice, and I'm still on this side of the wall. I'm putting it down for a while before it breaks me.</li>
         <li>[otherdead] {OTHER_nameDef} is dead. I'd been saving up the day I broke through to show {OTHER_objective}. I don't know who to show now.</li>
         <li>[otherleft] {OTHER_nameDef} has gone. I'll have to find the way past the wall on my own.</li>
-        <li>[taken] The art is gone from me. There's nothing left to practise, and I don't know what to do with my hands.</li>
+        <li>[taken] The art is gone from me. There's nothing left to practice, and I don't know what to do with my hands.</li>
         <li>I've let the practice slide. The wall can wait. Maybe I'll be ready for it another year.</li>
       </plain>
       <warm><li>[timeout] Not yet. {OTHER_nameDef} says some walls take a season. I'll try again in the spring.</li></warm>
@@ -177,7 +177,7 @@
         <li>advice->every teacher hits one, and every teacher gets past it</li>
         <li>advice->to stop trying so hard for a day</li>
         <li>advice->the answer is usually in the part that feels easiest</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] practised side by side until supper, saying very little.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] practiced side by side until supper, saying very little.</li>
         <li>r_logentry->[INITIATOR_nameDef] watched [RECIPIENT_nameDef] go through the forms and pointed out one small thing that changed everything.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] sat up late talking about how each of them first came to the art.</li>
         <li>r_logentry->[INITIATOR_nameDef] admitted to [RECIPIENT_nameDef] how stuck [INITIATOR_pronoun] had been, and felt lighter for it.</li>

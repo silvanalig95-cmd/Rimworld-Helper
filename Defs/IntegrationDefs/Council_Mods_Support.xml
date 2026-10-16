@@ -185,7 +185,7 @@
     <label>Vanilla Factions Expanded - Empire</label>
     <order>30</order>
     <packageIds><li>oskarpotocki.vfe.empire</li></packageIds>
-    <what>Deserters on the roads: a world event where a deserter from the Empire asks the colony for shelter. Its balls, exhibits, honours and titles' wants feed the feelings.</what>
+    <what>Deserters on the roads: a world event where a deserter from the Empire asks the colony for shelter. Its balls, exhibits, honors and titles' wants feed the feelings.</what>
   </ColonyCouncil.ModSupportDef>
 
   <ColonyCouncil.ModSupportDef>

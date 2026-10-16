@@ -28,7 +28,7 @@
     <texts>
       <li>{A_nameDef} called a name across the canyon to see what would happen. The rock threw it back three times, and on a ledge across the gap {X_indefinite} lifted its head at each one.</li>
       <li>At the bottom of the canyon the sky was a strip of blue far overhead. {A_nameDef} looked up and saw {X_indefinite} on a ledge halfway up the wall, looking down at {A_objective} with mild interest.</li>
-      <li>[morning] The sun reaches the canyon floor late. {A_nameDef} waited for it on a cold rock, and {X_indefinite} came down the scree to wait for it too, a little way off.</li>
+      <li>[morning] The sun reaches the canyon floor late. {A_nameDef} waited for it on a cold rock, and {X_indefinite} came down the scree to wait for it too, a few paces off.</li>
       <li>[child] {A_nameDef} shouted into the canyon and the canyon shouted back, and {X_indefinite} on the far side jumped every time. {A_nameDef} thought this was the best game there was.</li>
     </texts>
     <effects>
@@ -119,7 +119,7 @@
     <texts>
       <li>At dusk the cave breathes out cold air you can feel from twenty paces. {A_nameDef} stood in it to cool off, and {X_indefinite} came out of the dark behind {A_objective} and went off into the evening without a glance.</li>
       <li>{A_nameDef} sat by the cave mouth as the light went and heard things moving inside: dripping water, a scrabble of claws. Then {X_indefinite} came out, saw {A_objective}, and thought better of it.</li>
-      <li>[summer] On the hottest day yet, {A_nameDef} found the coolest place in the colony: the mouth of the cave. {X_indefinite} had found it first.</li>
+      <li>[summer] On the hottest day yet, {A_nameDef} found the coolest place in the colony, the mouth of the cave, with {X_indefinite} already lying in it.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncL_CaveBreath</thought></li>
@@ -209,9 +209,9 @@
     <weight>2</weight>
     <cooldownDays>6</cooldownDays>
     <texts>
-      <li>Two rainbows stood over the colony at once, one inside the other, the inner one bright and the outer one faint and backwards. {A_nameDef} stopped dead to look, and so, for no reason anyone could give, did {X_indefinite}.</li>
+      <li>Two rainbows stood over the colony together, one inside the other, the inner one bright and the outer one faint and backwards. {A_nameDef} stopped dead to look, and so, for no reason anyone could give, did {X_indefinite}.</li>
       <li>{A_nameDef} came out after the rain and found the sky crossed by a double rainbow, with {X_indefinite} grazing right under the near end of it as if that were nothing special.</li>
-      <li>[child] {A_nameDef} ran to tell everyone there were two rainbows, and then ran back in case they'd gone. They hadn't. {X_indefinite} was still standing under them.</li>
+      <li>[child] {A_nameDef} ran to tell everyone there were two rainbows, and then ran back in case they'd gone. They hadn't, and {X_indefinite} was still standing under them.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncW_TwoRainbows</thought></li>
@@ -235,8 +235,8 @@
     <cooldownDays>8</cooldownDays>
     <texts>
       <li>The wind blew all day without a break, flattening the grass in long silver waves. {A_nameDef} watched {X_indefinite} lean into it across the field with its fur blown the wrong way, looking thoroughly offended.</li>
-      <li>{A_nameDef} chased a hat across half the colony in the wind and finally caught it right under the nose of {X_indefinite}, which had been watching the whole chase.</li>
-      <li>[fall] The wind stripped the last leaves off everything at once. {A_nameDef} stood in the whirl of them while {X_indefinite} snapped at the ones that came too close.</li>
+      <li>{A_nameDef} chased a hat from the storehouse to the far fence in the wind and finally caught it right under the nose of {X_indefinite}, which had been watching the whole chase.</li>
+      <li>[fall] The wind stripped the last leaves off everything in an afternoon. {A_nameDef} stood in the whirl of them while {X_indefinite} snapped at the ones that came too close.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncW_InTheWind</thought></li>
@@ -258,7 +258,7 @@
     <weight>1.5</weight>
     <cooldownDays>8</cooldownDays>
     <texts>
-      <li>When the dust came over, {A_nameDef} pulled a cloth over {A_possessive} face and ducked into the lee of the wall. {X_indefinite} had had the same idea, and they waited it out side by side with their eyes shut.</li>
+      <li>When the dust came over, {A_nameDef} pulled a cloth over {A_possessive} face and ducked into the lee of the wall, where {X_indefinite} had had the same idea. They waited it out side by side with their eyes shut.</li>
       <li>The dust turned the sun into a dull orange coin. {A_nameDef} could just make out {X_indefinite} through it, standing head down and tail to the wind, waiting for it to pass like everyone else.</li>
       <li>[hot] Hot wind and grit in everything. {A_nameDef} and {X_indefinite} both gave up and lay flat in the shade of the storehouse until the worst blew through.</li>
     </texts>

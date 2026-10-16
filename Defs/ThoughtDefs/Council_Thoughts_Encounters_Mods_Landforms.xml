@@ -66,7 +66,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncW_TwoRainbows</defName>
     <durationDays>1</durationDays>
-    <stages><li><label>saw a double rainbow</label><description>Two rainbows at once, one inside the other. I stopped what I was doing to look, and so did an animal in the field.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>saw a double rainbow</label><description>Two rainbows together, one inside the other. I stopped what I was doing to look, and so did an animal in the field.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><feelings><li>Awe</li><li>Joy</li></feelings><inspiration>0.02</inspiration><felt>3</felt></li></modExtensions>
   </ThoughtDef>
 
