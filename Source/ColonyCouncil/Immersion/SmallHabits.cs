@@ -196,7 +196,7 @@ namespace ColonyCouncil
             if (big <= 0 || now - big > GenDate.TicksPerDay * 3 / 5 || now - big < GenDate.TicksPerHour) return null;
             if (p.mindState == null || p.mindState.lastAttackTargetTick < big) return null;
             var fire = PlaySpots.ColonyFire(map, p);
-            if (fire == null || !fire.Position.InHorDistOf(p.Position, 80f)) return null;
+            if (fire == null || fire.IsForbidden(p) || !fire.Position.InHorDistOf(p.Position, 80f)) return null;
             return fire;
         }
 

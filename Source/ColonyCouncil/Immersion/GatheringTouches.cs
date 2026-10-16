@@ -56,7 +56,7 @@ namespace ColonyCouncil
         {
             foreach (var t in GenRadial.RadialDistinctThingsAround(spot, map, 4.9f, true))
             {
-                if (!(t is Building) || t.def?.defName == null) continue;
+                if (!(t is Building) || t is Frame || t.def?.defName == null) continue;
                 string n = t.def.defName;
                 if (n.IndexOf("Campfire", System.StringComparison.OrdinalIgnoreCase) < 0 && n.IndexOf("Bonfire", System.StringComparison.OrdinalIgnoreCase) < 0
                     && n.IndexOf("FirePit", System.StringComparison.OrdinalIgnoreCase) < 0) continue;
