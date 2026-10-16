@@ -346,8 +346,8 @@
     </tips>
     <things>
       <li><defs><li>GrandThrone</li><li>Throne</li></defs><role>throne</role><pos>(3,6)</pos><rot>South</rot><optional>false</optional></li>
-      <li><defs><li>Brazier</li><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(1,6)</pos></li>
-      <li><defs><li>Brazier</li><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(5,6)</pos></li>
+      <li><defs><li>Brazier</li><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><keepOnFloor>true</keepOnFloor><pos>(1,6)</pos></li>
+      <li><defs><li>Brazier</li><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><keepOnFloor>true</keepOnFloor><pos>(5,6)</pos></li>
       <li><defs><li>Harpsichord</li><li>Harp</li></defs><role>music</role><pos>(1,3)</pos><rot>West</rot></li>
       <li><defs><li>PlantPot</li></defs><role>plantpot</role><pos>(6,3)</pos></li>
       <li><defs><li>PlantPot</li></defs><role>plantpot</role><pos>(0,0)</pos></li>

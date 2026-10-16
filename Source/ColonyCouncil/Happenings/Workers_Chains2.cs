@@ -1633,6 +1633,7 @@ namespace ColonyCouncil
             {
                 case "prophet":
                     return StoryChains.Visit(ctx.group.Prepend(ctx.stranger), map, ctx.faction, null, Rand.Range(18f, 26f));
+                // apart: a story event splitting the colony, told in its letter.
                 case "prophetschism":
                     CouncilGameComponent.Instance?.social.Bump(ctx.a, ctx.b, TieKind.Rivals, 10f, def.label);
                     foreach (var p in StorytellerEvents.Adults(map).Where(p => p != ctx.a && p != ctx.b && Rand.Chance(0.5f)).ToList())
@@ -1741,6 +1742,7 @@ namespace ColonyCouncil
 
                 case "prophetschism":
                 {
+                    // apart: the colony's answer to a story event, told in its letter.
                     int social = ctx.a?.skills?.GetSkill(SkillDefOf.Social)?.Level ?? 0;
                     float heal = option == 0 ? Mathf.Clamp(0.4f + social * 0.03f, 0.3f, 0.9f) : 0.35f;
                     if (Rand.Chance(heal))

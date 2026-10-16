@@ -171,6 +171,20 @@ namespace ColonyCouncil
             }
             sink.now = null;
 
+            // A need of the heart that has run low deepens the feeling that goes with it (little belonging: lonelier).
+            // Last hour's needs: they are worked out after the feelings.
+            if (h.needs != null && h.needs.Length == PawnHeart.NeedCount)
+                for (int i = 0; i < h.needs.Length; i++)
+                {
+                    var need = Heart.NeedDef((HeartNeed)i);
+                    if (need?.feeling == null) continue;
+                    float add = HeartNeedMath.FeelingAmount(h.needs[i].value, need.feelingAmount);
+                    int fi = add > 0f ? all.IndexOf(need.feeling) : -1;
+                    if (fi < 0) continue;
+                    work[fi].intensity += add;
+                    work[fi].AddCause("CC_Heart_Cause_NeedLow".Translate(need.Label).Resolve(), add);
+                }
+
             // Who they are, and how worn down.
             for (int i = 0; i < n; i++)
             {

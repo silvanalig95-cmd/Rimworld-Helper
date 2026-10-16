@@ -145,6 +145,7 @@ namespace ColonyCouncil
                 sizeZ = d.size.z,
                 rotatable = d.rotatable,
                 passable = RoomTemplateDef.IsPassable(d),
+                attached = WallLights.IsAttached(d),
                 spots = new List<(int x, int z)>()
             };
             if (d.hasInteractionCell) shape.spots.Add((d.interactionCellOffset.x, d.interactionCellOffset.z));

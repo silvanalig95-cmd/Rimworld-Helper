@@ -66,6 +66,12 @@ namespace ColonyCouncil
         public NuisanceTracker nuisances = new NuisanceTracker();
         private int day = -1;
         private int today;
+        /// <summary>
+        /// An encounter is due (the hour's chance came up) but nobody was with a stranger then: tried again each hour
+        /// for a few hours, so encounters stay as frequent while happening only between people who meet. Not saved.
+        /// </summary>
+        private int dueSince = -1;
+        private const int DueHours = 6;
 
         /// <summary>How likely an encounter is each hour while someone of this kind is around.</summary>
         private static readonly Dictionary<StrangerKind, float> HourlyChance = new Dictionary<StrangerKind, float>
@@ -131,12 +137,17 @@ namespace ColonyCouncil
                     && comp.dilemmas.TryFire(false, d => d.Worker is DilemmaWorker_Stranger && d.stranger != null && present.Contains(d.stranger.kind)))
                     return;
             }
-            float none = 1f;
-            float freq = Mathf.Clamp(S.encounterFrequency, 0.1f, 4f);
-            foreach (var k in present)
-                if (HourlyChance.TryGetValue(k, out float c)) none *= 1f - Mathf.Min(0.9f, c * freq);
-            if (!Rand.Chance(1f - none)) return;
-            TryOne(comp, map, present);
+            if (dueSince >= 0 && now - dueSince >= GenDate.TicksPerHour * DueHours) dueSince = -1;
+            if (dueSince < 0)
+            {
+                float none = 1f;
+                float freq = Mathf.Clamp(S.encounterFrequency, 0.1f, 4f);
+                foreach (var k in present)
+                    if (HourlyChance.TryGetValue(k, out float c)) none *= 1f - Mathf.Min(0.9f, c * freq);
+                if (!Rand.Chance(1f - none)) return;
+                dueSince = now;
+            }
+            if (TryOne(comp, map, present)) dueSince = -1;
         }
 
         public bool TryOne(CouncilGameComponent comp, Map map, HashSet<StrangerKind> present, Func<EncounterDef, bool> only = null)
@@ -188,7 +199,10 @@ namespace ColonyCouncil
             foreach (var p in colonists.InRandomOrder())
             {
                 if (def.colonist != null ? !def.colonist.Allows(p, null) : !def.children && p.DevelopmentalStage.Juvenile()) continue;
-                var s = Strangers.Pick(map, def.stranger, p, strangers);
+                // Only a stranger they are really with: within talking range for people, in sight not far off for animals.
+                var met = strangers.Where(x => Meets(p, x)).ToList();
+                if (met.Count == 0) continue;
+                var s = Strangers.Pick(map, def.stranger, p, met);
                 if (s == null) continue;
                 if (!def.moment.NullOrEmpty() && Flavor.Match("[" + def.moment + "]", LetterTags.For(new DilemmaContext { map = map, a = p, stranger = s })) < 0) continue;
                 a = p;
@@ -198,8 +212,16 @@ namespace ColonyCouncil
             return false;
         }
 
+        /// <summary>A colonist and a stranger together: people within talking range (SocialLog.Near), animals in sight a little way off.</summary>
+        private static bool Meets(Pawn p, Pawn x)
+        {
+            if (!Together.Able(p) || x == null || !x.Spawned || x.Map != p.Map) return false;
+            return x.RaceProps != null && x.RaceProps.Humanlike ? SocialLog.Near(p, x) : Together.Hears(p, x, 16f);
+        }
+
         private static void Fire(EncounterDef def, CouncilGameComponent comp, Map map, Pawn a, Pawn x)
         {
+            // together: Cast picks a colonist who is with the stranger (Meets).
             var ctx = new DilemmaContext { map = map, a = a, stranger = x, faction = Strangers.FactionOf(x), why = def.label };
             // Tagged lines ([rain], [winter], [trait:Kind], [x:child]) only when they fit the moment and the people.
             string text = ctx.Format(Flavor.Pick(def.texts, LetterTags.For(ctx)) ?? Flavor.PickText(def.texts));

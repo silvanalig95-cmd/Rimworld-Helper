@@ -90,6 +90,7 @@ namespace ColonyCouncil
         public static void Notify_SurgeryFailed(Pawn surgeon, Pawn patient)
         {
             if (!Live || surgeon == null || patient == null || !Eligible(surgeon)) return;
+            // together: the surgeon at the patient's bedside, right after the operation.
             if (HasTrait(surgeon, "Psychopath") || !(Tracker?.Ready(surgeon, "surgery", 0.5f) ?? false)) return;
             var sk = surgeon.skills?.GetSkill(SkillDefOf.Medicine);
             int stage = sk != null && People.Passionate(sk) ? 1 : 0;

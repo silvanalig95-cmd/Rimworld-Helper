@@ -47,15 +47,21 @@ namespace ColonyCouncil
 
         private static readonly List<FeelingNow> dominantTmp = new List<FeelingNow>(2);
 
-        /// <summary>"Strain: worn · restless, proud" (built hourly and kept on the heart).</summary>
+        /// <summary>
+        /// "Strain: worn · restless, proud · lacks belonging" (built hourly and kept on the heart): the need comes in only
+        /// while one is missed (below 45), the one they lack most.
+        /// </summary>
         public static string InspectLine(PawnHeart h)
         {
             Heart.Dominant(h, dominantTmp);
             string band = BandLabel(h.Band);
-            if (dominantTmp.Count == 0) return "CC_Heart_Inspect".Translate(band).Resolve();
-            string feelings = string.Join(", ", dominantTmp.Select(f => f.def.Adjective));
+            string line;
+            if (dominantTmp.Count == 0) line = "CC_Heart_Inspect".Translate(band).Resolve();
+            else line = "CC_Heart_InspectFeelings".Translate(band, string.Join(", ", dominantTmp.Select(f => f.def.Adjective))).Resolve();
             dominantTmp.Clear();
-            return "CC_Heart_InspectFeelings".Translate(band, feelings).Resolve();
+            var lack = Heart.LowestNeed(h, out _);
+            if (lack != null) line = "CC_Heart_InspectLacks".Translate(line, NeedLabel(lack.need)).Resolve();
+            return line;
         }
 
         /// <summary>The heart changed: its inspector line and RimHUD values are built again (hourly, not per frame).</summary>
@@ -150,6 +156,7 @@ namespace ColonyCouncil
                 case StrainSource.Council: return "CC_Heart_Help_Decree";
                 case StrainSource.Dread: return "CC_Heart_Help_Prepare";
                 case StrainSource.Despair: return "CC_Heart_Help_Friends";
+                case StrainSource.Unmet: return "CC_Heart_Help_Needs";
                 default: return "CC_Heart_Help_Sleep";
             }
         }
@@ -158,10 +165,13 @@ namespace ColonyCouncil
         public static string HelpText(Pawn p, PawnHeart h, int n)
         {
             var keys = new List<string>();
+            string unmet = null;
             foreach (var (source, _) in TopSources(h, 3))
             {
                 string k = HelpFor(source);
                 if (!keys.Contains(k)) keys.Add(k);
+                // Strain from a need lacked for days: what that need asks for, in place of the general hint.
+                if (source == StrainSource.Unmet) unmet = UnmetHelp(p, h);
             }
             foreach (var k in new[] { "CC_Heart_Help_Sleep", "CC_Heart_Help_Party", "CC_Heart_Help_Friends" })
                 if (!keys.Contains(k)) keys.Add(k);
@@ -169,7 +179,7 @@ namespace ColonyCouncil
             var comp = CouncilGameComponent.Instance;
             if (rest != null && comp != null && h.strain >= 30f && !comp.decrees.IsActive(rest) && comp.decrees.CannotEnact(rest) == null)
                 keys.Insert(Mathf.Min(2, keys.Count), "CC_Heart_Help_RestDecree");
-            return TextUtil.JoinAnd(keys.Take(n).Select(k => k.Translate().ToString()).ToList());
+            return TextUtil.JoinAnd(keys.Take(n).Select(k => k == "CC_Heart_Help_Needs" && unmet != null ? unmet : k.Translate().ToString()).ToList());
         }
 
         /// <summary>"For 2 days", "for 5 hours", "since just now".</summary>
@@ -201,19 +211,148 @@ namespace ColonyCouncil
             int low = 0;
             for (int i = 1; i < 4; i++)
                 if (h.needs[i].value < h.needs[low].value) low = i;
-            if (h.needs.All(n => n.value >= 60f)) return "CC_Heart_NeedsAllMet".Translate();
+            if (AllMet(h)) return "CC_Heart_NeedsAllMet".Translate();
             var need = h.needs[low];
-            if (need.value >= 45f) return "CC_Heart_NeedsFine".Translate();
+            if (need.value >= HeartNeedMath.MissedBelow) return "CC_Heart_NeedsFine".Translate();
             string label = NeedLabel((HeartNeed)low);
             return need.why.NullOrEmpty() ? "CC_Heart_NeedsMissing".Translate(label).Resolve() : "CC_Heart_NeedsMissingWhy".Translate(label, need.why).Resolve();
         }
 
-        public static string NeedTip(PawnHeart h, HeartNeed n)
+        private static bool AllMet(PawnHeart h) =>
+            h.needs != null && h.needs.Length == 4 && HeartNeedMath.AllWellMet(h.needs[0].value, h.needs[1].value, h.needs[2].value, h.needs[3].value);
+
+        /// <summary>"badly lacking", "missed", "fair", "well met".</summary>
+        public static string LevelLabel(float value) => ("CC_Heart_NeedLevel_" + HeartNeedMath.LevelOf(value)).Translate();
+
+        /// <summary>The heart's needs in a few words, for one-line summaries: "lacks belonging (15)", "nothing missing".</summary>
+        public static string NeedsShort(PawnHeart h)
         {
+            if (h?.needs == null || h.needs.Length != 4) return null;
+            if (AllMet(h)) return "CC_Heart_NeedsShortAllMet".Translate();
+            var lack = Heart.LowestNeed(h, out float v);
+            return lack == null ? "CC_Hud_NeedsMet".Translate().ToString() : "CC_Hud_NeedsLacking".Translate(NeedLabel(lack.need), v.ToString("0")).Resolve();
+        }
+
+        /// <summary>
+        /// What would help a need, for the player: the hints for what holds it down now ("time outside", "medicine in
+        /// store"), else the need's own ("friends close by, a partner..."). Null when nothing holds it down and it's met.
+        /// </summary>
+        public static string NeedHelp(PawnHeart h, HeartNeed need, int n = 3)
+        {
+            if (h?.needs == null || (int)need >= h.needs.Length) return null;
+            var v = h.needs[(int)need];
+            var list = new List<string>();
+            if (v.parts != null)
+                foreach (var part in v.parts)
+                {
+                    if (part.help.NullOrEmpty() || part.amount >= 0f) continue;
+                    string text = part.helpArg != null ? part.help.Translate(part.helpArg).Resolve() : part.help.Translate().ToString();
+                    if (!text.NullOrEmpty() && !list.Contains(text)) list.Add(text);
+                }
+            if (list.Count == 0 && v.value < HeartNeedMath.WellMet)
+            {
+                string general = Heart.NeedDef(need)?.Help;
+                if (!general.NullOrEmpty()) list.Add(general);
+            }
+            return list.Count == 0 ? null : string.Join("; ", list.Take(n));
+        }
+
+        /// <summary>What would help the need that wears on them most (for strain built that way).</summary>
+        private static string UnmetHelp(Pawn p, PawnHeart h)
+        {
+            if (h?.needs == null || h.needs.Length != 4) return null;
+            int worst = -1;
+            float most = 0f;
+            for (int i = 0; i < 4; i++)
+            {
+                float per = HeartLogic.UnmetPerHour(p, h, (HeartNeed)i);
+                if (per > most)
+                {
+                    most = per;
+                    worst = i;
+                }
+            }
+            return worst < 0 ? null : NeedHelp(h, (HeartNeed)worst, 2);
+        }
+
+        /// <summary>
+        /// What follows from one need as it is now, in plain sentences: the wishes and life goals it makes likelier (if
+        /// it's the one they lack most), the feeling it deepens, the strain it adds after days, or that it's well met.
+        /// In the overview, the line about another need being lacked more is left out.
+        /// </summary>
+        public static string NeedFollows(Pawn p, PawnHeart h, HeartNeed need, bool overview = false)
+        {
+            if (h?.needs == null || h.needs.Length != 4) return null;
+            float v = h.needs[(int)need].value;
+            var def = Heart.NeedDef(need);
+            var parts = new List<string>(4);
+            if (v < HeartNeedMath.MissedBelow)
+            {
+                var lowest = Heart.LowestNeed(h, out _);
+                if (lowest != null && lowest.need == need)
+                {
+                    string answers = def?.Answers;
+                    string wish = (HeartNeedMath.WishFactor(v) - 1f).ToStringPercent(), goal = (HeartNeedMath.GoalFactor(v) - 1f).ToStringPercent();
+                    parts.Add(answers.NullOrEmpty() ? "CC_Heart_NeedFollows_LackedShort".Translate(wish, goal).Resolve()
+                        : "CC_Heart_NeedFollows_Lacked".Translate(wish, goal, answers).Resolve());
+                }
+                else if (lowest != null && !overview) parts.Add("CC_Heart_NeedFollows_NotMost".Translate(NeedLabel(lowest.need)).Resolve());
+            }
+            if (def?.feeling != null && HeartNeedMath.FeelingAmount(v, def.feelingAmount) > 0f)
+                parts.Add("CC_Heart_NeedFollows_Feeling".Translate(def.feeling.Label).Resolve());
+            bool slaveFreedom = need == HeartNeed.Freedom && p != null && p.IsSlave;
+            float per = HeartLogic.UnmetPerHour(p, h, need);
+            if (per > 0f) parts.Add("CC_Heart_NeedFollows_Wearing".Translate((per * 24f).ToString("0.#")).Resolve());
+            else if (v < HeartNeedMath.LackingBelow && !slaveFreedom)
+            {
+                float hoursLeft = Mathf.Max(1f, HeartNeedMath.HoursBeforeStrain - h.LackHours(need));
+                parts.Add("CC_Heart_NeedFollows_WillWear".Translate(TextUtil.DaysString(Mathf.RoundToInt(hoursLeft * GenDate.TicksPerHour))).Resolve());
+            }
+            if (!overview)
+            {
+                if (v >= HeartNeedMath.WellMet) parts.Add(AllMet(h) ? "CC_Heart_NeedsAllMet".Translate().ToString() : "CC_Heart_NeedFollows_Met".Translate().ToString());
+                else if (v >= HeartNeedMath.MissedBelow) parts.Add("CC_Heart_NeedFollows_Fair".Translate());
+            }
+            return parts.Count == 0 ? null : string.Join(" ", parts);
+        }
+
+        /// <summary>"Raising it: a friend here (+15)." and "Holding it down: no friends here, left out lately (-15)."</summary>
+        private static void AppendParts(StringBuilder sb, NeedNow n)
+        {
+            if (n.parts == null || n.parts.Length == 0) return;
+            var up = new List<string>();
+            var down = new List<string>();
+            foreach (var part in n.parts)
+            {
+                string t = part.counted ? part.text + " (" + part.amount.ToString("+0;-0") + ")" : part.text;
+                (part.amount > 0f ? up : down).Add(t);
+            }
+            if (up.Count > 0) sb.Append("\n").Append("CC_Heart_NeedRaising".Translate(string.Join(", ", up)).Resolve());
+            if (down.Count > 0) sb.Append("\n").Append("CC_Heart_NeedLowering".Translate(string.Join(", ", down)).Resolve());
+        }
+
+        /// <summary>
+        /// One need in full: its value and what that means, what it's made of, what raised it and what held it down this
+        /// hour, what follows from it, and what would help.
+        /// </summary>
+        public static string NeedTip(Pawn p, PawnHeart h, HeartNeed n)
+        {
+            if (h?.needs == null || (int)n >= h.needs.Length) return null;
             var v = h.needs[(int)n];
-            string tip = NeedLabel(n).CapitalizeFirst() + ": " + v.value.ToString("0") + "\n\n" + ("CC_Heart_Need_" + n + "_Desc").Translate();
-            if (!v.why.NullOrEmpty()) tip += "\n\n" + "CC_Heart_NeedMostly".Translate(v.why).Resolve();
-            return tip;
+            var sb = new StringBuilder();
+            sb.Append("CC_Heart_NeedTipHead".Translate(NeedLabel(n).CapitalizeFirst(), v.value.ToString("0"), LevelLabel(v.value)).Resolve().Colorize(NeedColor(v.value / 100f)));
+            sb.Append("\n").Append(("CC_Heart_Need_" + n + "_Desc").Translate());
+            if (v.parts != null && v.parts.Length > 0)
+            {
+                sb.Append("\n");
+                AppendParts(sb, v);
+            }
+            string follows = NeedFollows(p, h, n);
+            if (!follows.NullOrEmpty()) sb.Append("\n\n").Append(follows);
+            string help = v.value < HeartNeedMath.WellMet ? NeedHelp(h, n) : null;
+            if (!help.NullOrEmpty()) sb.Append("\n\n").Append("CC_Heart_WouldHelp".Translate(help).Resolve().Colorize(MoodView.AdviceColor));
+            sb.Append("\n\n").Append("CC_Heart_NeedsExplainShort".Translate().ToString().Colorize(ColoredText.SubtleGrayColor));
+            return sb.ToString();
         }
 
         public static string StrainTip(Pawn p, PawnHeart h)
@@ -240,18 +379,75 @@ namespace ColonyCouncil
             return string.Join("\n\n", h.feelings.Select(FeelingTip));
         }
 
-        public static string NeedsTip(PawnHeart h)
+        /// <summary>
+        /// All four needs at a glance (RimHUD's line, the Mood tab, the inspector, the colony's tables): each value with
+        /// what it means and its main reason, the one they lack most and what follows from it, what would help, and how
+        /// the values work.
+        /// </summary>
+        public static string NeedsTip(Pawn p, PawnHeart h)
         {
-            if (h.needs == null || h.needs.Length != 4) return null;
+            if (h?.needs == null || h.needs.Length != 4) return null;
             var sb = new StringBuilder();
+            sb.Append("CC_Heart_NeedsHeader".Translate().ToString().Colorize(ColoredText.TipSectionTitleColor));
             for (int i = 0; i < 4; i++)
             {
                 var n = h.needs[i];
-                sb.Append(NeedLabel((HeartNeed)i).CapitalizeFirst()).Append(": ").Append(n.value.ToString("0"));
+                string row = "CC_Heart_NeedRow".Translate(NeedLabel((HeartNeed)i).CapitalizeFirst(), n.value.ToString("0"), LevelLabel(n.value)).Resolve();
+                sb.Append("\n").Append(row.Colorize(NeedColor(n.value / 100f)));
                 if (!n.why.NullOrEmpty()) sb.Append("  (").Append(n.why).Append(")");
-                sb.Append("\n");
             }
-            sb.Append("\n").Append(NeedsSummary(h)).Append("\n\n").Append("CC_Heart_NeedsExplain".Translate().ToString().Colorize(ColoredText.SubtleGrayColor));
+            sb.Append("\n\n").Append(NeedsSummary(h));
+            // What follows: for the one they lack most first, then any other that deepens a feeling or wears on them.
+            var order = new List<int> { 0, 1, 2, 3 };
+            order.Sort((a, b) => h.needs[a].value.CompareTo(h.needs[b].value));
+            var lowest = Heart.LowestNeed(h, out _);
+            foreach (int i in order)
+            {
+                if (h.needs[i].value >= HeartNeedMath.MissedBelow) continue;
+                string follows = NeedFollows(p, h, (HeartNeed)i, true);
+                if (follows.NullOrEmpty()) continue;
+                bool most = lowest != null && (int)lowest.need == i;
+                sb.Append("\n").Append(most ? follows : "CC_Heart_NeedAlso".Translate(NeedLabel((HeartNeed)i).CapitalizeFirst(), follows).Resolve());
+            }
+            if (lowest != null)
+            {
+                string help = NeedHelp(h, lowest.need);
+                if (!help.NullOrEmpty()) sb.Append("\n\n").Append("CC_Heart_WouldHelp".Translate(help).Resolve().Colorize(MoodView.AdviceColor));
+            }
+            sb.Append("\n\n").Append("CC_Heart_NeedsExplain".Translate().ToString().Colorize(ColoredText.SubtleGrayColor));
+            return sb.ToString();
+        }
+
+        /// <summary>
+        /// The need they lack most in a few lines, for short tooltips (This week's pinned colonists): what's missing and
+        /// why, what follows from it and what would help. Null when nothing is missed.
+        /// </summary>
+        public static string NeedsBrief(Pawn p, PawnHeart h)
+        {
+            var lowest = Heart.LowestNeed(h, out _);
+            if (lowest == null) return null;
+            var sb = new StringBuilder();
+            sb.Append(NeedsSummary(h));
+            string follows = NeedFollows(p, h, lowest.need, true);
+            if (!follows.NullOrEmpty()) sb.Append(" ").Append(follows);
+            string help = NeedHelp(h, lowest.need, 2);
+            if (!help.NullOrEmpty()) sb.Append("\n").Append("CC_Heart_WouldHelp".Translate(help).Resolve().Colorize(MoodView.AdviceColor));
+            return sb.ToString();
+        }
+
+        /// <summary>The inspector line's tooltip: strain, the feelings that stand out, and the heart's needs.</summary>
+        public static string InspectTip(Pawn p, PawnHeart h)
+        {
+            if (p == null || h == null) return null;
+            var sb = new StringBuilder();
+            sb.Append(StrainTip(p, h));
+            Heart.Dominant(h, dominantTmp);
+            var standing = dominantTmp.ToList();
+            dominantTmp.Clear();
+            if (standing.Count > 0) sb.Append("\n\n").Append(string.Join("\n\n", standing.Select(FeelingTip)));
+            string needs = NeedsTip(p, h);
+            if (!needs.NullOrEmpty()) sb.Append("\n\n").Append(needs);
+            sb.Append("\n\n").Append("CC_Heart_InspectMore".Translate().ToString().Colorize(ColoredText.SubtleGrayColor));
             return sb.ToString();
         }
 
@@ -261,7 +457,7 @@ namespace ColonyCouncil
         {
             public float builtAt = -1f;
             public int version;
-            public string strainLabel, strainValue, strainTip, bandDesc, built, help, needsSummary;
+            public string strainLabel, strainValue, strainTip, bandDesc, built, help, needsSummary, needsTip;
             public Color bandColor;
             public float fill;
             public List<(string label, string value, string causes, string tip, Color color, float share)> feelings = new List<(string, string, string, string, Color, float)>();
@@ -314,9 +510,10 @@ namespace ColonyCouncil
                 for (int i = 0; i < 4; i++)
                 {
                     var n = h.needs[i];
-                    m.needs[i] = (NeedLabel((HeartNeed)i).CapitalizeFirst(), n.value.ToString("0"), n.why, NeedTip(h, (HeartNeed)i), n.value / 100f);
+                    m.needs[i] = (NeedLabel((HeartNeed)i).CapitalizeFirst(), n.value.ToString("0"), n.why, NeedTip(p, h, (HeartNeed)i), n.value / 100f);
                 }
                 m.needsSummary = NeedsSummary(h);
+                m.needsTip = NeedsTip(p, h);
             }
             return m;
         }
@@ -363,7 +560,14 @@ namespace ColonyCouncil
 
             if (m.needs != null)
             {
-                UiKit.LabelFit(new Rect(0f, y, w, 22f), "CC_Heart_NeedsHeader".Translate(), UiKit.HeaderColor);
+                // The heading and the summary explain all four; each meter (with its reason) explains its own need.
+                var head = new Rect(0f, y, w, 22f);
+                UiKit.LabelFit(head, "CC_Heart_NeedsHeader".Translate(), UiKit.HeaderColor);
+                if (!m.needsTip.NullOrEmpty())
+                {
+                    Widgets.DrawHighlightIfMouseover(head);
+                    TooltipHandler.TipRegion(head, m.needsTip);
+                }
                 y += 22f;
                 float colW = (w - 12f) / 2f;
                 for (int i = 0; i < 4; i++)
@@ -371,11 +575,19 @@ namespace ColonyCouncil
                     var n = m.needs[i];
                     float x = (i % 2) * (colW + 12f);
                     float ry = y + (i / 2) * (UiKit.MeterHeight + 16f);
-                    UiKit.Meter(new Rect(x, ry, colW, UiKit.MeterHeight), n.fill, NeedColor(n.fill), n.label, n.value, null, n.tip);
+                    UiKit.Meter(new Rect(x, ry, colW, UiKit.MeterHeight), n.fill, NeedColor(n.fill), n.label, n.value);
                     if (!n.why.NullOrEmpty()) UiKit.LabelFit(new Rect(x, ry + UiKit.MeterHeight - 2f, colW, 16f), n.why, MoodView.Faint, GameFont.Tiny);
+                    var cell = new Rect(x, ry, colW, UiKit.MeterHeight + 14f);
+                    Widgets.DrawHighlightIfMouseover(cell);
+                    if (!n.tip.NullOrEmpty()) TooltipHandler.TipRegion(cell, n.tip);
                 }
                 y += 2 * (UiKit.MeterHeight + 16f);
-                if (!m.needsSummary.NullOrEmpty()) y += UiKit.Paragraph(0f, y, w, m.needsSummary, Color.white, GameFont.Tiny) + 2f;
+                if (!m.needsSummary.NullOrEmpty())
+                {
+                    float sh = UiKit.Paragraph(0f, y, w, m.needsSummary, Color.white, GameFont.Tiny);
+                    if (!m.needsTip.NullOrEmpty()) TooltipHandler.TipRegion(new Rect(0f, y, w, sh), m.needsTip);
+                    y += sh + 2f;
+                }
             }
             return y + 8f;
         }

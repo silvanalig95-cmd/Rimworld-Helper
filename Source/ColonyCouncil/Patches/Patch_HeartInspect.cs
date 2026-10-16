@@ -4,9 +4,10 @@ using Verse;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// One short line under a colonist's inspect string: "Strain: worn · restless, proud". Only for the colony's own
-    /// people with a heart (Heart/), with the feature and its inspector setting on. The line is built when the heart
-    /// changes (hourly), so this adds nothing per frame but a string join.
+    /// One short line under a colonist's inspect string: "Strain: worn · restless, proud · lacks belonging". Only for
+    /// the colony's own people with a heart (Heart/), with the feature and its inspector setting on. The line is built
+    /// when the heart changes (hourly), so this adds nothing per frame but a string join. Its tooltip comes from
+    /// Patch_HeartInspectTip.
     /// </summary>
     [HarmonyPatch(typeof(Pawn), nameof(Pawn.GetInspectString))]
     public static class Patch_HeartInspect

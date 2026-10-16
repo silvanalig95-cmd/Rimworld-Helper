@@ -505,6 +505,7 @@ namespace ColonyCouncil
 
         public override void Apply(DilemmaContext ctx)
         {
+            // apart: an answer to the council; what it says people do together plays out on the map through its play-out effects.
             using var _cause = Causes.Push(ctx.cause ?? (ctx.def != null ? "CC_Cause_Dilemma".Translate(ctx.def.label).Resolve() : ctx.why));
             var pairs = new HashSet<(Pawn, Pawn)>();
             foreach (var p in Targets(ctx))
@@ -648,6 +649,7 @@ namespace ColonyCouncil
 
         public override void Apply(DilemmaContext ctx)
         {
+            // together: the game's own social fight, which brings the two to blows on the map.
             var b = withStranger ? ctx.stranger : ctx.b;
             if (ctx.a == null || b == null || !b.RaceProps.Humanlike || !ctx.a.Spawned || !b.Spawned || ctx.a.Downed || b.Downed || ctx.a.Map != b.Map) return;
             if (ctx.a.WorkTagIsDisabled(WorkTags.Violent) && b.WorkTagIsDisabled(WorkTags.Violent)) return;

@@ -128,9 +128,11 @@ namespace ColonyCouncil
             {
                 case "heal":
                 {
-                    // A colonist with an everyday ailment is seen to; failing that, herbs left for the colony's stores.
-                    var healer = here.OrderByDescending(p => p.skills?.GetSkill(SkillDefOf.Medicine)?.Level ?? 0).First();
-                    var patient = colonists.Where(p => HappeningWorker_Setting.Ailment(p) != null).RandomElementWithFallback();
+                    // A colonist with an everyday ailment who has come by the camp is seen to, by the best healer of
+                    // those beside them (Together); failing that, herbs left for the colony's stores.
+                    int Medicine(Pawn p) => p.skills?.GetSkill(SkillDefOf.Medicine)?.Level ?? 0;
+                    var patient = colonists.Where(p => HappeningWorker_Setting.Ailment(p) != null && here.Any(h => Together.Can(h, p))).RandomElementWithFallback();
+                    var healer = patient != null ? here.Where(h => Together.Can(h, patient)).OrderByDescending(Medicine).First() : here.OrderByDescending(Medicine).First();
                     if (patient != null)
                     {
                         var ail = HappeningWorker_Setting.Ailment(patient);
@@ -155,12 +157,32 @@ namespace ColonyCouncil
                     if (hour < 16 || hour > 21) return false;
                     var star = here.OrderByDescending(p => p.skills?.GetSkill(SkillDefOf.Artistic)?.Level ?? 0).First();
                     var show = DefDatabase<ThoughtDef>.GetNamedSilentFail("Council_Camp_Show");
-                    foreach (var c in colonists.Where(c => !c.Downed && !c.InMentalState))
+                    if (PlayOuts.On)
                     {
-                        c.needs?.joy?.GainJoy(0.2f, JoyKindDefOf.Social);
-                        CouncilGameComponent.GiveThought(c, show);
+                        // The colony walks over to their fire for it: a gathering at the camp (answers on the map), and
+                        // the evening is remembered by those who came. With nobody free tonight, everyone it was for
+                        // still has the memory, as answers that can't play out always do.
+                        var effects = new List<DilemmaEffect>
+                        {
+                            new DilemmaEffect_Gathering
+                            {
+                                music = true, organizer = PlayWho.None, spots = new List<PlaySpot> { PlaySpot.Camp, PlaySpot.Stranger, PlaySpot.Outdoors },
+                                label = "CC_Together_CampShowLabel".Translate().Resolve(), hours = new IntRange(hour, 23), waitHours = 2f,
+                                duration = new FloatRange(1.5f, 2.5f)
+                            }
+                        };
+                        if (show != null) effects.Add(new DilemmaEffect_Thought { thought = show, target = DilemmaTarget.Colony });
+                        PlayOuts.Run(effects, new DilemmaContext { map = map, stranger = star, why = Label }, "camp show");
                     }
-                    if (!(kind?.lines).NullOrEmpty()) Arrivals.Say(star, Pick(kind.lines, star));
+                    else
+                    {
+                        foreach (var c in colonists.Where(c => !c.Downed && !c.InMentalState))
+                        {
+                            c.needs?.joy?.GainJoy(0.2f, JoyKindDefOf.Social);
+                            CouncilGameComponent.GiveThought(c, show);
+                        }
+                        if (!(kind?.lines).NullOrEmpty()) Arrivals.Say(star, Pick(kind.lines, star));
+                    }
                     Tell(Text("CC_Camp_HelpTitle"), HelpText("show", star, colonists.RandomElement()), LetterDefOf.PositiveEvent, false);
                     return true;
                 }

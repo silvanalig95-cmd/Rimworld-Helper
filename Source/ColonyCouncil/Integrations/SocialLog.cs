@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using RimWorld;
 using Verse;
@@ -7,9 +6,9 @@ namespace ColonyCouncil
 {
     /// <summary>
     /// A social event (Social/SocialEvents.cs) or an encounter with a stranger (Strangers/Encounters.cs) written into
-    /// the game's social log, between the two it was about. The log is what Interaction Bubbles reads, so the line also
-    /// shows above their heads. The text is already written, so it is kept as it is instead of being generated from
-    /// grammar rules.
+    /// the game's social log, between the two it was about, and shown over the first of them as the speech setting
+    /// says (Immersion/Speech.cs: a bubble with Interaction Bubbles, floating text, or nothing). The text is already
+    /// written, so it is kept as it is instead of being generated from grammar rules.
     /// </summary>
     public class PlayLogEntry_CouncilEvent : PlayLogEntry_Interaction
     {
@@ -65,25 +64,16 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// Puts a social event or encounter into the social log, when the two are near each other. Interaction Bubbles
-        /// draws a bubble over both for each entry, so two people at opposite ends of the map are left out (the event
-        /// still happened; it is in the news, the journals and the chronicle).
+        /// Puts a social event or encounter into the social log, when the two are near each other: two people at
+        /// opposite ends of the map are left out (the event still happened; it is in the news, the journals and the
+        /// chronicle). How it shows over their heads (a bubble, floating text or nothing) is the speech setting's
+        /// (Immersion/Speech.cs); <paramref name="show"/> false keeps it in the log only, for a moment a line was
+        /// already said for.
         /// </summary>
-        private static readonly DefRef<InteractionDef> SocialEventDef = new DefRef<InteractionDef>("Council_SocialEvent");
-
-        public static void Add(Pawn a, Pawn b, string text)
+        public static void Add(Pawn a, Pawn b, string text, bool show = true)
         {
             if (text.NullOrEmpty() || !Near(a, b)) return;
-            var def = SocialEventDef.Def;
-            if (def == null || Find.PlayLog == null) return;
-            try
-            {
-                Find.PlayLog.Add(new PlayLogEntry_CouncilEvent(def, a, b, text));
-            }
-            catch (Exception e)
-            {
-                CouncilLog.ErrorOnce("social log", e);
-            }
+            Speech.Logged(a, b, text, show);
         }
     }
 }

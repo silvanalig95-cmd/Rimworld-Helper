@@ -435,6 +435,17 @@ namespace ColonyCouncil
         public override KeptCheck Holds(Wish wish) => Avail.ColonyHas(wish.Beneficiary.MapHeld, Avail.IsFermenter) ? KeptCheck.Holds : KeptCheck.Gone;
 
         public override bool Concerns(Wish wish, BuildableDef d) => d is ThingDef td && Avail.IsFermenter(td);
+
+        /// <summary>
+        /// Not for someone who may not drink what it makes: their faith, their drug policy (no beer for fun), or an
+        /// addiction they're getting off.
+        /// </summary>
+        public override bool AgainstBeliefs(Pawn pawn, Pawn other, ThingDef thing)
+        {
+            if (Beliefs.AgainstWish(def, pawn, null)) return true;
+            var beer = DefDatabase<ThingDef>.GetNamedSilentFail("Beer");
+            return beer != null && Beliefs.MindsDrug(pawn, beer);
+        }
     }
 
     /// <summary>A gourmand (or anyone sick of raw food) wants proper meals.</summary>
@@ -451,9 +462,11 @@ namespace ColonyCouncil
             bool ateRaw = HasMemory(pawn, ThoughtDefOf.AteRawFood) || HasMemory(pawn, "AteNutrientPasteMeal");
             bool particular = Standards.Of(pawn) >= 0.6f && !HasTrait(pawn, TraitDefOf.Ascetic);
             if (!isGourmand && !ateRaw && !particular) yield break;
-            var want = ateRaw && !isGourmand && !particular ? FoodPreferability.MealSimple : FoodPreferability.MealFine;
+            // Alpha Memes' "good food expected": a simple meal is no answer to them.
+            var want = ateRaw && !isGourmand && !particular && !Beliefs.Forbids(pawn, Belief.FineMealsOnly) ? FoodPreferability.MealSimple : FoodPreferability.MealFine;
             if (!CanCook(map, want)) yield break;
-            if (MealStock(map, want) >= RoomUtil.ColonistCount(map) * 2) yield break;
+            // Only meals they may eat count (no meat for a vegetarian, fungus or insect for Alpha Memes' rule).
+            if (MealStock(map, want, pawn) >= RoomUtil.ColonistCount(map) * 2) yield break;
             var c = Candidate(isGourmand ? 1.4f : 1.1f, isGourmand ? (trueGourmand ? "CC_Reason_Gourmand" : "CC_PM_Reason_Gourmet").Translate(pawn.Named("PAWN"))
                 : ateRaw ? "CC_Reason_AteRaw".Translate(pawn.Named("PAWN")) : "CC_Reason_StandardsFood".Translate(pawn.Named("PAWN")));
             c.subjectKey = want.ToString();
@@ -473,13 +486,15 @@ namespace ColonyCouncil
             return false;
         }
 
-        public static int MealStock(Map map, FoodPreferability atLeast)
+        /// <summary>Meals of this grade or better in the colony; with <paramref name="forPawn"/>, only those their beliefs let them eat.</summary>
+        public static int MealStock(Map map, FoodPreferability atLeast, Pawn forPawn = null)
         {
             int n = 0;
+            if (map == null) return n;
             foreach (var t in map.listerThings.ThingsInGroup(ThingRequestGroup.FoodSourceNotPlantOrTree))
             {
                 if (t.def.ingestible != null && t.def.ingestible.preferability >= atLeast && t.def.ingestible.preferability <= FoodPreferability.MealLavish
-                    && !t.IsForbidden(Faction.OfPlayer) && !Cuisine.IsSpoiledMeal(t.def)) n += t.stackCount;
+                    && !t.IsForbidden(Faction.OfPlayer) && !Cuisine.IsSpoiledMeal(t.def) && (forPawn == null || Beliefs.FitForStock(forPawn, t))) n += t.stackCount;
             }
             return n;
         }
@@ -487,7 +502,7 @@ namespace ColonyCouncil
         public override bool IsFulfilled(Wish wish)
         {
             var pref = wish.subjectKey == FoodPreferability.MealSimple.ToString() ? FoodPreferability.MealSimple : FoodPreferability.MealFine;
-            return MealStock(wish.Beneficiary.MapHeld, pref) >= wish.targetValue
+            return MealStock(wish.Beneficiary.MapHeld, pref, wish.Beneficiary) >= wish.targetValue
                    || (pref == FoodPreferability.MealFine && Cuisine.FineMealThoughts.Any(t => HasMemory(wish.Beneficiary, t)))
                    || Cuisine.LavishMealThoughts.Any(t => HasMemory(wish.Beneficiary, t));
         }
@@ -495,7 +510,7 @@ namespace ColonyCouncil
         public override string ProgressText(Wish wish)
         {
             var pref = wish.subjectKey == FoodPreferability.MealSimple.ToString() ? FoodPreferability.MealSimple : FoodPreferability.MealFine;
-            return "CC_Progress_Meals".Translate(MealStock(wish.Beneficiary.MapHeld, pref), wish.targetValue.ToString("0"));
+            return "CC_Progress_Meals".Translate(MealStock(wish.Beneficiary.MapHeld, pref, wish.Beneficiary), wish.targetValue.ToString("0"));
         }
     }
 

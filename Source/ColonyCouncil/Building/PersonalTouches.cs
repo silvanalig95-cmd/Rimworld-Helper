@@ -142,7 +142,12 @@ namespace ColonyCouncil
             Add(Avail.IsDresser, 1f, "Dresser");
             var nightOwl = DefDatabase<TraitDef>.GetNamedSilentFail("NightOwl");
             bool owl = nightOwl != null && (pawn.story?.traits?.HasTrait(nightOwl) ?? false);
-            Add(Avail.IsLight, owl ? 3f : 0.8f, "StandingLamp", "TorchLamp");
+            // A wall lamp for a bedroom that isn't large, if the colony can build one; else a standing lamp or a torch.
+            if (!RoomUtil.RoomContains(room, Avail.IsLight))
+            {
+                var light = WallLights.ForRoom(map, room.CellCount);
+                if (light != null) options.Add((light, owl ? 3f : 0.8f));
+            }
             while (options.Count > 0)
             {
                 var pick = options.RandomElementByWeight(o => o.w);
@@ -151,11 +156,23 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>A free cell along a wall, away from the door, that doesn't block anything.</summary>
+        /// <summary>
+        /// A free cell along a wall, away from the door, that doesn't block anything. Something that hangs on a wall (a wall
+        /// lamp) goes on the floor cell in front of a wall that takes it, facing that wall, where it lights the most of
+        /// the room (<see cref="WallLights.SpotsInRoom"/>).
+        /// </summary>
         public static bool FindCell(Room room, Map map, ThingDef def, ThingDef stuff, out IntVec3 cell, out Rot4 rot)
         {
             cell = IntVec3.Invalid;
             rot = Rot4.North;
+            if (room == null || map == null || def == null) return false;
+            if (WallLights.IsAttached(def))
+            {
+                var spots = WallLights.SpotsInRoom(room, map, def, stuff, 1);
+                if (spots.Count == 0) return false;
+                (cell, rot) = spots[0];
+                return true;
+            }
             var cells = room.Cells.InRandomOrder().ToList();
             foreach (var c in cells)
             {

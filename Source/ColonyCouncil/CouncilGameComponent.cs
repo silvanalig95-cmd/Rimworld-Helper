@@ -133,6 +133,7 @@ namespace ColonyCouncil
             UiCache.Clear();
             InteractionWorker_Moment.Reset();
             Interplay.Reset();
+            Together.Reset();
             // Lean/: the map facts and every def kept by name are worked out again for this game.
             MapFacts.Clear();
             DefRefs.ResetAll();
@@ -342,6 +343,8 @@ namespace ColonyCouncil
             Safe("who is home", NoteWhoIsHome);
             Safe("everyday pressures", () => pressures.Hourly(this));
             Safe("social events", () => SocialEvents.Hourly(this));
+            // Moments waiting for two people to be together (Social/Together.cs).
+            Safe("together", () => Together.Hourly(this));
         }
 
         private void HourlyEvents()
@@ -583,10 +586,12 @@ namespace ColonyCouncil
         {
             // A bed for someone whose genes never let them sleep, a meal for someone who never eats (ModPeopleDef).
             if (!ModPeople.WishFits(def, pawn)) yield break;
+            // Nothing their beliefs rule out: a shared bed before the wedding, meat for a vegetarian (Wishes/Beliefs.cs).
+            if (Beliefs.ForbidsAny(pawn, def.ForbiddenMask)) yield break;
             List<WishCandidate> list;
             try
             {
-                list = def.Worker.CandidatesFor(pawn)?.Where(c => c != null).ToList();
+                list = def.Worker.CandidatesFor(pawn)?.Where(c => c != null && !def.Worker.AgainstBeliefs(pawn, c.other, c.thingDef)).ToList();
             }
             catch (Exception e)
             {
@@ -785,7 +790,8 @@ namespace ColonyCouncil
                 bool valid, fulfilled;
                 try
                 {
-                    valid = w.Worker.StillValid(w);
+                    // Their beliefs have come to rule it out (a new faith, a precept changed): let go quietly, no blame.
+                    valid = w.Worker.StillValid(w) && !w.Worker.AgainstBeliefs(w);
                     fulfilled = valid && w.Worker.IsFulfilled(w);
                 }
                 catch (Exception e)
@@ -810,6 +816,7 @@ namespace ColonyCouncil
 
         private void CoSign(Wish w, Pawn p)
         {
+            // apart: a petition is put to the council; the line is said aloud about the one who asked, not to them.
             if (w.Involves(p)) return;
             w.coSigners.Add(p);
             social.Bump(p, w.pawn, TieKind.Friends, 4f, "CC_TieNote_Petition".Translate(w.Label));
@@ -837,6 +844,7 @@ namespace ColonyCouncil
 
         public static void GiveThought(Pawn p, ThoughtDef def, Pawn otherPawn = null, float scale = -1f, string cause = null)
         {
+            // apart: the helper every memory goes through; its callers are what the audit looks at.
             if (def == null || p?.needs?.mood?.thoughts?.memories == null) return;
             if (!ColonyCouncilMod.Settings.MoodEffects) return;
             if (def.IsSocial && (otherPawn == null || otherPawn == p)) return;
@@ -852,12 +860,7 @@ namespace ColonyCouncil
             p.needs.mood.thoughts.memories.TryGainMemory(thought, otherPawn);
         }
 
-        /// <summary>Floating speech text above a colonist (vanilla mote, no dependencies).</summary>
-        public static void Speak(Pawn p, string line, Color color)
-        {
-            if (!ColonyCouncilMod.Settings.speechText || p == null || !p.Spawned || line.NullOrEmpty()) return;
-            if (Find.CurrentMap != p.Map) return;
-            MoteMaker.ThrowText(p.DrawPos + new Vector3(0f, 0f, 0.8f), p.Map, TextUtil.ShortSpeech(line), color, 5f);
-        }
+        /// <summary>A short line over a colonist's head, the way all of Rimfolk's speech shows (Immersion/Speech.cs).</summary>
+        public static void Speak(Pawn p, string line, Color color) => Speech.Say(p, line, null, color);
     }
 }

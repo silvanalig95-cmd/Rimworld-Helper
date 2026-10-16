@@ -228,11 +228,7 @@ namespace ColonyCouncil
                     y = PickRow(y, w, null, name, first.stuff != null ? StuffLabel(first.stuff, map) : null, () =>
                     {
                         if (tt == null) return;
-                        var opts = t.VariantsFor(tt, map).Select(d => new FloatMenuOption(d.LabelCap, () =>
-                        {
-                            cfg.variant[groupKey] = d;
-                            cfg.Changed();
-                        }, d)).ToList();
+                        var opts = t.VariantsFor(tt, map).Select(d => new FloatMenuOption(d.LabelCap, () => t.PickVariant(cfg, groupKey, d), d)).ToList();
                         if (opts.Count > 1) Find.WindowStack.Add(new FloatMenu(opts));
                         else Messages.Message("CC_Planner_NoVariants".Translate(), MessageTypeDefOf.RejectInput, false);
                     }, first.stuff == null ? (System.Action)null : () => StuffMenu(first.def, first.stuff, map, RoomTemplateDef.UseOf(tt), count, x => cfg.PickStuff(groupKey, x)),

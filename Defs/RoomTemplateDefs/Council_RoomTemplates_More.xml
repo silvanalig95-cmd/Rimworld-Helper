@@ -297,10 +297,10 @@
       <li><defs><li>DiningChair</li><li>Stool</li></defs><role>chair</role><pos>(8,3)</pos><rot>West</rot></li>
       <li><defs><li>DiningChair</li><li>Stool</li></defs><role>chair</role><pos>(8,4)</pos><rot>West</rot></li>
       <li><defs><li>DiningChair</li><li>Stool</li></defs><role>chair</role><pos>(8,5)</pos><rot>West</rot></li>
-      <li><defs><li>Brazier</li><li>TorchLamp</li><li>StandingLamp</li></defs><role>light</role><pos>(0,6)</pos></li>
-      <li><defs><li>Brazier</li><li>TorchLamp</li><li>StandingLamp</li></defs><role>light</role><pos>(9,6)</pos></li>
-      <li><defs><li>Brazier</li><li>TorchLamp</li><li>StandingLamp</li></defs><role>light</role><pos>(0,0)</pos></li>
-      <li><defs><li>Brazier</li><li>TorchLamp</li><li>StandingLamp</li></defs><role>light</role><pos>(9,0)</pos></li>
+      <li><defs><li>Brazier</li><li>TorchLamp</li><li>StandingLamp</li></defs><role>light</role><keepOnFloor>true</keepOnFloor><pos>(0,6)</pos></li>
+      <li><defs><li>Brazier</li><li>TorchLamp</li><li>StandingLamp</li></defs><role>light</role><keepOnFloor>true</keepOnFloor><pos>(9,6)</pos></li>
+      <li><defs><li>Brazier</li><li>TorchLamp</li><li>StandingLamp</li></defs><role>light</role><keepOnFloor>true</keepOnFloor><pos>(0,0)</pos></li>
+      <li><defs><li>Brazier</li><li>TorchLamp</li><li>StandingLamp</li></defs><role>light</role><keepOnFloor>true</keepOnFloor><pos>(9,0)</pos></li>
       <li><defs><li>Drape</li></defs><role>drape</role><pos>(5,6)</pos><rot>South</rot><tier>lavish</tier></li>
     </things>
   </ColonyCouncil.RoomTemplateDef>

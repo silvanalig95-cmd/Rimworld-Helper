@@ -334,8 +334,11 @@ namespace ColonyCouncil
                 {
                     var options = PawnsFinder.AllMaps_FreeColonistsSpawned
                         .Where(p => !p.IsQuestLodger() && !p.DevelopmentalStage.Juvenile() && !p.IsSlave)
-                        .OrderByDescending(p => office.Competence(p))
-                        .Select(p => new FloatMenuOption(p.LabelShort + " (" + "CC_Office_Competence".Translate(office.Competence(p).ToString("0")) + ")", () => comp.offices.Appoint(office, p, comp)))
+                        .OrderByDescending(p => office.CanHold(p))
+                        .ThenByDescending(p => office.Competence(p))
+                        .Select(p => office.CanHold(p)
+                            ? new FloatMenuOption(p.LabelShort + " (" + "CC_Office_Competence".Translate(office.Competence(p).ToString("0")) + ")", () => comp.offices.Appoint(office, p, comp))
+                            : new FloatMenuOption(p.LabelShort + " (" + "CC_Office_CantHold".Translate() + ")", null))
                         .ToList();
                     if (options.Count > 0) Find.WindowStack.Add(new FloatMenu(options));
                 }

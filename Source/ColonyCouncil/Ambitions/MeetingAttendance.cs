@@ -512,6 +512,7 @@ namespace ColonyCouncil
             // The gathering is gone (the meeting is ending): nobody is woken for it.
             var lord = m.Lord;
             if (lord == null) return;
+            // together: the wake job walks the waker to the bedside; the line and the log entry check they are near.
             bool asleep = !p.Awake();
             // Only from ordinary sleep: not if they've since gone to a sickbed, into deathrest or a mental state.
             if (asleep && !CanBeWoken(p, out string why))
@@ -537,10 +538,11 @@ namespace ColonyCouncil
             if (comp != null && p.needs?.mood != null)
                 CouncilGameComponent.GiveThought(p, CouncilDefOf.Council_WokenForMeeting, null, WokenFactor(p, comp) * Settings.PenaltyScale);
             if (waker == null) return;
+            // The waker is at the bedside (the wake job walked them there): one line said to the sleeper, and the moment
+            // kept in the social log (shown only if nothing was said).
             string line = Flavor.FromPool("Council_Pool_MeetingWake", waker);
-            if (!line.NullOrEmpty())
-                CouncilGameComponent.Speak(waker, line.Formatted(waker.Named("PAWN"), p.Named("OTHER")).Resolve(), new Color(0.7f, 0.85f, 1f));
-            SocialLog.Add(waker, p, "CC_Meeting_WokeLog".Translate(waker.Named("PAWN"), p.Named("OTHER")).Resolve());
+            bool spoke = !line.NullOrEmpty() && Speech.Say(waker, line.Formatted(waker.Named("PAWN"), p.Named("OTHER")).Resolve(), p, new Color(0.7f, 0.85f, 1f));
+            SocialLog.Add(waker, p, "CC_Meeting_WokeLog".Translate(waker.Named("PAWN"), p.Named("OTHER")).Resolve(), !spoke);
         }
 
         /// <summary>

@@ -303,6 +303,7 @@ namespace ColonyCouncil
 
         private void End(SocialTie t, bool graduated, bool quiet = false)
         {
+            // apart: news of a bond ending; a mentorship's end comes with its word of thanks, face to face (Mentor).
             if (ties.Remove(t)) TiesChanged();
             if (!t.announced || t.a == null || t.b == null || t.a.Dead || t.b.Dead) return;
             // Comradeship fades without ceremony; so do bonds with people who left.
@@ -570,18 +571,28 @@ namespace ColonyCouncil
                 End(t, false);
                 return;
             }
+            string pair = mentor.thingIDNumber + "|" + student.thingIDNumber;
             if (rec.Level >= 11)
             {
-                CouncilGameComponent.GiveThought(mentor, CouncilDefOf.Council_ProudMentor, student);
-                CouncilGameComponent.GiveThought(student, CouncilDefOf.Council_GratefulStudent, mentor);
-                End(t, true);
+                // Graduation is a word of thanks, face to face: when they're together, or the student goes to find the
+                // mentor in their free time. Until then the mentorship stands (asked again each day).
+                Together.When("graduate|" + pair, student, mentor, () =>
+                {
+                    if (!ties.Contains(t)) return;
+                    CouncilGameComponent.GiveThought(mentor, CouncilDefOf.Council_ProudMentor, student);
+                    CouncilGameComponent.GiveThought(student, CouncilDefOf.Council_GratefulStudent, mentor);
+                    SocialLog.Add(student, mentor, "CC_Together_Graduated".Translate(mentor.Named("A"), student.Named("B"), (sk?.label ?? "").Named("SKILL")).Resolve());
+                    End(t, true);
+                }, 48f, 4f);
                 return;
             }
-            if (mentor.MapHeld != null && mentor.MapHeld == student.MapHeld && !mentor.Downed && !student.Downed)
+            // The day's lesson happens when they're together (working side by side, a meal, an evening): within the day.
+            Together.When("lesson|" + pair, mentor, student, () =>
             {
+                if (!ties.Contains(t) || rec.TotallyDisabled) return;
                 rec.Learn(400f);
                 t.strength = Mathf.Min(100f, t.strength + 2f);
-            }
+            }, 24f);
         }
 
         /// <summary>Starts a mentorship directly (the council arranged it), unless one already exists between them.</summary>
