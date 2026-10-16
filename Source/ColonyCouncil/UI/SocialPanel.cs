@@ -19,7 +19,18 @@ namespace ColonyCouncil
             List
         }
 
-        private static Mode mode = Mode.Web;
+        private static Mode? modeMemo;
+
+        /// <summary>Web or list, remembered between sessions (UI/PageMemory.cs).</summary>
+        private static Mode mode
+        {
+            get => modeMemo ??= PageMemory.GetEnum("bonds.view", Mode.Web);
+            set
+            {
+                modeMemo = value;
+                PageMemory.SetEnum("bonds.view", value);
+            }
+        }
         private static Vector2 scroll;
         private static float height = 600f;
         private static Pawn focus;

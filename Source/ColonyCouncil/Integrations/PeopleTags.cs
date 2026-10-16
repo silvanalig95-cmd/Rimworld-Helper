@@ -173,6 +173,8 @@ namespace ColonyCouncil
                 if (p.needs.food == null) tags.Add("nofood");
             }
             if (ModsConfig.RoyaltyActive && p.HasPsylink) tags.Add("psycaster");
+            // Rimfolk's quirks, like traits: quirk:Hums, quirk:SleepTalker (Interplay/).
+            Interplay.AddQuirkTags(p, tags);
             foreach (var g in Groups)
             {
                 if (g.tag.NullOrEmpty() || tags.Contains(g.tag)) continue;

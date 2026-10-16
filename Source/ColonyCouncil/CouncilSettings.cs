@@ -126,6 +126,8 @@ namespace ColonyCouncil
         public float dreamFrequency = 1f;
         /// <summary>The colony's character: what its choices make it known for.</summary>
         public bool colonyCharacter = true;
+        /// <summary>Rimfolk's systems talk to each other (Interplay/): offices at work, the heart in choices, stories hearing the world...</summary>
+        public bool interplay = true;
         /// <summary>Feelings and strain (Heart/): a layer under mood that never changes it.</summary>
         public bool heart = true;
         /// <summary>A colonist at the end of their rope may take a day to themselves.</summary>
@@ -204,6 +206,10 @@ namespace ColonyCouncil
         /// <summary>How large the Almanac's pages are written (its "Aa" buttons), and whether its lists are folded away.</summary>
         public AlmanacTextSize almanacTextSize = AlmanacTextSize.Normal;
         public bool almanacFolded = false;
+        /// <summary>Where the council window opens: This week (UI/WeekPanel.cs), or the page last looked at.</summary>
+        public CouncilOpensOn councilOpensOn = CouncilOpensOn.ThisWeek;
+        /// <summary>The filters and sort orders the council's pages remember, as "page.key=value" (UI/PageMemory.cs).</summary>
+        public System.Collections.Generic.List<string> councilPageState = new System.Collections.Generic.List<string>();
 
         public override void ExposeData()
         {
@@ -273,6 +279,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref socialEventFrequency, "socialEventFrequency", 1f);
             Scribe_Values.Look(ref dreamFrequency, "dreamFrequency", 1f);
             Scribe_Values.Look(ref colonyCharacter, "colonyCharacter", true);
+            Scribe_Values.Look(ref interplay, "interplay", true);
             Scribe_Values.Look(ref heart, "heart", true);
             Scribe_Values.Look(ref heartEpisodes, "heartEpisodes", true);
             Scribe_Values.Look(ref heartInspector, "heartInspector", true);
@@ -330,6 +337,10 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref lastAlmanacPage, "lastAlmanacPage", "");
             Scribe_Values.Look(ref almanacTextSize, "almanacTextSize", AlmanacTextSize.Normal);
             Scribe_Values.Look(ref almanacFolded, "almanacFolded", false);
+            Scribe_Values.Look(ref councilOpensOn, "councilOpensOn", CouncilOpensOn.ThisWeek);
+            Scribe_Collections.Look(ref councilPageState, "councilPageState", LookMode.Value);
+            if (Scribe.mode == LoadSaveMode.PostLoadInit || Scribe.mode == LoadSaveMode.LoadingVars)
+                councilPageState ??= new System.Collections.Generic.List<string>();
         }
 
         /// <summary>Saves the settings file right away (used by the planner's checkboxes).</summary>

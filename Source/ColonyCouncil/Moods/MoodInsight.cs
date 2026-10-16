@@ -68,6 +68,8 @@ namespace ColonyCouncil
             if (thoughts.NullOrEmpty() && workers.NullOrEmpty() && thoughtClasses.NullOrEmpty() && nameContains.NullOrEmpty() && mods.NullOrEmpty())
                 yield return "mood hint matches nothing";
             if (nameContains != null && nameContains.Any(c => c != c.ToLowerInvariant())) yield return "nameContains must be lowercase";
+            // The "Go to ..." button under the hint must lead somewhere.
+            if (!councilTab.NullOrEmpty() && !MainTabWindow_Council.IsPage(councilTab)) yield return "councilTab " + councilTab + " is not a page of the council window";
         }
     }
 

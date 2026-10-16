@@ -297,6 +297,9 @@ namespace ColonyCouncil
                 }
             }
 
+            // Now and then a confided secret sits too close to the surface (Interplay/).
+            if (Interplay.MeetingSecret(this, here)) return;
+
             // And then everyone has opinions.
             if (pitches.Count == 0) return;
             // Someone responds to an idea that isn't their own (a proposer backing themselves would read oddly).

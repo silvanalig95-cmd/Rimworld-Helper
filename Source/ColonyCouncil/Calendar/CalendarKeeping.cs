@@ -279,6 +279,7 @@ namespace ColonyCouncil
             Tradition(d, result, home, comp);
             if (!quiet) comp?.offices.Notify_CustomKept(home);
             if (!quiet) Journals(d, map, home, years);
+            if (!quiet) Interplay.Notify_DayKept(d, home);
             talkDayId = d.id;
             talkDate = DateKey(map);
             talksLeft = Rand.RangeInclusive(2, 3);
@@ -297,7 +298,7 @@ namespace ColonyCouncil
                 case DayWay.Feast:
                     // With answers playing out: a meal from the stores eaten together, then the evening; its lift comes after.
                     if (PlayDay(d, map, home, PlayKind.Feast, CalendarDefOf.Council_Cal_FeastDay, null, null, null)) return true;
-                    if (StartParty(map, Keeper(d, home))) return true;
+                    if (StartParty(map, Interplay.CalendarOrganizer(d, home) ?? Keeper(d, home))) return true;
                     // No gathering possible (nowhere to gather, everyone busy): a better supper, and a little lift.
                     foreach (var p in home) CouncilGameComponent.GiveThought(p, CalendarDefOf.Council_Cal_FeastDay);
                     return false;
@@ -344,14 +345,15 @@ namespace ColonyCouncil
             try
             {
                 int now = Find.TickManager.TicksGame;
-                var keeper = Keeper(d, who);
+                // The keeper of days organises the colony's own days; those deep in grief sit out a feast or games (Interplay/).
+                var keeper = Interplay.CalendarOrganizer(d, who) ?? Keeper(d, who);
                 var p = new PlayOut
                 {
                     kind = kind,
                     map = map,
                     created = now,
                     label = d.label,
-                    invited = who.Where(PlayOuts.OurPerson).ToList(),
+                    invited = Interplay.WithoutMourners(d, kind, grave != null, who.Where(PlayOuts.OurPerson).ToList()),
                     organizer = keeper != null && who.Contains(keeper) ? keeper : null,
                     spots = spots ?? new List<PlaySpot> { PlaySpot.Dining, PlaySpot.Rec, PlaySpot.Gather, PlaySpot.Outdoors },
                     place = grave,
@@ -537,6 +539,7 @@ namespace ColonyCouncil
             {
                 comp?.annals.Notify_Tradition(d.label, true);
                 comp?.character?.Shift(new WayShift { tradition = 1f }, "CC_Cal_Way_Why".Translate(d.label).Resolve());
+                Interplay.Notify_DayTradition(d, false);
                 return;
             }
             Find.LetterStack.ReceiveLetter("CC_Tradition_BornTitle".Translate(d.label.CapitalizeFirst()).Resolve(), "CC_Tradition_BornText".Translate(d.label).Resolve(),
@@ -544,6 +547,7 @@ namespace ColonyCouncil
             comp?.AddChronicle(new ChronicleEntry(ChronicleKind.Council, "CC_Chronicle_TraditionBorn".Translate(d.label).Resolve(), null));
             comp?.annals.Notify_TraditionBorn(d.label);
             comp?.character?.Shift(new WayShift { tradition = 2f }, "CC_Cal_Way_Why".Translate(d.label).Resolve());
+            Interplay.Notify_DayTradition(d, true);
             foreach (var p in home.Where(p => !p.DevelopmentalStage.Juvenile()).InRandomOrder().Take(2))
                 comp?.journals.Write(p, "Council_Journal_TraditionBorn", null, d.label.Named("TRADITION"));
         }

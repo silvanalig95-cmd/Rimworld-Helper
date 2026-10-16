@@ -22,7 +22,18 @@ namespace ColonyCouncil
         }
 
         private static Pawn selected;
-        private static Sort sort = Sort.Name;
+        private static Sort? sortMemo;
+
+        /// <summary>The sort order, remembered between sessions (UI/PageMemory.cs).</summary>
+        private static Sort sort
+        {
+            get => sortMemo ??= PageMemory.GetEnum("roster.sort", Sort.Name);
+            set
+            {
+                sortMemo = value;
+                PageMemory.SetEnum("roster.sort", value);
+            }
+        }
         private static Vector2 listScroll;
         private static Vector2 storyScroll;
         private static float storyHeight = 400f;
@@ -133,7 +144,11 @@ namespace ColonyCouncil
             float buttonsW = hasJournal ? 228f : 114f;
             string titles = UiCache.Get(selected, 41, () => comp.epithets.TitlesOf(selected));
             string name = selected.LabelShortCap + (titles.NullOrEmpty() ? "" : ", " + titles);
-            UiKit.LabelFit(new Rect(tx, inner.y, Mathf.Max(0f, inner.xMax - tx - buttonsW - 6f), 32f), name, Color.white, GameFont.Medium);
+            UiKit.LabelFit(new Rect(tx, inner.y, Mathf.Max(0f, inner.xMax - tx - buttonsW - 32f), 32f), name, Color.white, GameFont.Medium);
+            // The pin to This week, beside the buttons.
+            var memory = WeekMemory.Instance;
+            if (memory != null && WeekPanel.PinButton(new Rect(inner.xMax - buttonsW - 24f, inner.y + 4f, 20f, 20f), memory.IsPinned(selected), true))
+                memory.TogglePin(selected);
             if (Widgets.ButtonText(new Rect(inner.xMax - 110f, inner.y, 110f, 28f), "CC_People_Jump".Translate()) && selected.Spawned)
             {
                 CameraJumper.TryJumpAndSelect(selected);

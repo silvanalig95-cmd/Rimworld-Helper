@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Optional keyboard shortcuts for the council window's pages (Source/ColonyCouncil/UI/CouncilKeys.cs). None has a key
+    until the player picks one in Options, Keyboard, under "Rimfolk", so they never clash with the game's own keys or
+    another mod's. A page's key opens the council window on that page, or closes it when that page is already showing;
+    the next and previous page keys step through the pages while the window is open.
+  -->
+
+  <KeyBindingCategoryDef>
+    <defName>Rimfolk</defName>
+    <label>Rimfolk</label>
+    <description>Shortcuts for the pages of Rimfolk's council window. None is set until you pick a key.</description>
+  </KeyBindingCategoryDef>
+
+  <KeyBindingDef Name="Council_KeyBase" Abstract="True">
+    <category>Rimfolk</category>
+  </KeyBindingDef>
+
+  <KeyBindingDef ParentName="Council_KeyBase">
+    <defName>Council_Key_Week</defName>
+    <label>council: this week</label>
+  </KeyBindingDef>
+
+  <KeyBindingDef ParentName="Council_KeyBase">
+    <defName>Council_Key_Everyone</defName>
+    <label>council: everyone (the people table)</label>
+  </KeyBindingDef>
+
+  <KeyBindingDef ParentName="Council_KeyBase">
+    <defName>Council_Key_Wishes</defName>
+    <label>council: wishes</label>
+  </KeyBindingDef>
+
+  <KeyBindingDef ParentName="Council_KeyBase">
+    <defName>Council_Key_Moods</defName>
+    <label>council: moods</label>
+  </KeyBindingDef>
+
+  <KeyBindingDef ParentName="Council_KeyBase">
+    <defName>Council_Key_World</defName>
+    <label>council: world</label>
+  </KeyBindingDef>
+
+  <KeyBindingDef ParentName="Council_KeyBase">
+    <defName>Council_Key_Calendar</defName>
+    <label>council: calendar</label>
+  </KeyBindingDef>
+
+  <KeyBindingDef ParentName="Council_KeyBase">
+    <defName>Council_Key_Dilemmas</defName>
+    <label>council: dilemmas</label>
+  </KeyBindingDef>
+
+  <KeyBindingDef ParentName="Council_KeyBase">
+    <defName>Council_Key_Almanac</defName>
+    <label>council: almanac</label>
+  </KeyBindingDef>
+
+  <KeyBindingDef ParentName="Council_KeyBase">
+    <defName>Council_Key_NextPage</defName>
+    <label>council: next page</label>
+  </KeyBindingDef>
+
+  <KeyBindingDef ParentName="Council_KeyBase">
+    <defName>Council_Key_PreviousPage</defName>
+    <label>council: previous page</label>
+  </KeyBindingDef>
+
+</Defs>
