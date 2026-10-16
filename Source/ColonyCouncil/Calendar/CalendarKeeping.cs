@@ -15,12 +15,15 @@ namespace ColonyCouncil
         public static ThoughtDef Council_Cal_FeastDay;
         public static ThoughtDef Council_Cal_GamesDay;
         public static ThoughtDef Council_Cal_RestDay;
+        public static ThoughtDef Council_Cal_BonfireNight;
+        public static ThoughtDef Council_Cal_GiftDay;
+        public static ThoughtDef Council_Cal_HuntDay;
 
         static CalendarDefOf() => DefOfHelper.EnsureInitializedInCtor(typeof(CalendarDefOf));
     }
 
     /// <summary>
-    /// What happens when a day comes round. A feast, games or a rest day comes as a letter the council answers (keep it,
+    /// What happens when a day comes round. A feast, games, a rest day, a bonfire, a day of gifts or a hunt comes as a letter the council answers (keep it,
     /// keep it with the faith's own rite where Ideology has one, or let it pass this year); a remembrance comes as a
     /// letter and is kept; a birthday or a founding member's arrival comes as a message. Keeping a day does the thing (a
     /// vanilla party for a feast, recreation and a lift for games, work hours turned to recreation for a rest day, a quiet
@@ -78,7 +81,22 @@ namespace ColonyCouncil
                 case CalendarKind.Arrival:
                     return home.FirstOrDefault(p => p.ThingID == d.pawnId) ?? home.FirstOrDefault(p => p.ThingID == d.otherId) ?? adults.RandomElement();
                 case CalendarKind.Harvest:
-                    return adults.OrderByDescending(p => p.skills?.GetSkill(SkillDefOf.Plants)?.Level ?? 0).First();
+                case CalendarKind.NewCrop:
+                    return home.FirstOrDefault(p => p.ThingID == d.pawnId && !p.DevelopmentalStage.Juvenile())
+                           ?? adults.OrderByDescending(p => p.skills?.GetSkill(SkillDefOf.Plants)?.Level ?? 0).First();
+                case CalendarKind.FirstChild:
+                    // The child's parent stands for the day (the child is too young to), else whoever has been here longest.
+                    return home.FirstOrDefault(p => p.ThingID == d.otherId) ?? adults.OrderByDescending(YearsWithUs).First();
+                case CalendarKind.Walls:
+                    return home.FirstOrDefault(p => p.ThingID == d.pawnId)
+                           ?? adults.OrderByDescending(p => p.skills?.GetSkill(SkillDefOf.Construction)?.Level ?? 0).First();
+                case CalendarKind.Homecoming:
+                case CalendarKind.GreatHunt:
+                    return home.FirstOrDefault(p => p.ThingID == d.pawnId) ?? adults.Where(p => d.knew.Contains(p.ThingID)).FirstOrDefault()
+                           ?? adults.OrderByDescending(YearsWithUs).First();
+                case CalendarKind.FirstTrade:
+                    return home.FirstOrDefault(p => p.ThingID == d.pawnId)
+                           ?? adults.OrderByDescending(p => p.skills?.GetSkill(SkillDefOf.Social)?.Level ?? 0).First();
                 default:
                     return adults.OrderByDescending(YearsWithUs).First();
             }
@@ -95,17 +113,31 @@ namespace ColonyCouncil
                 if (d.fallen.Count > 0) t.Add("fallen");
                 else t.Add(d.id.StartsWith("nemesis|") ? "nemesis" : "clean");
             }
+            // The land the colony stands on (land:desert, land:coast...) and, with Ideology, whether it has a faith of its
+            // own ([faith]); the speaker's own beliefs come with them ([meme:...], [devout]).
+            try
+            {
+                foreach (var l in Lands.Of(Home)) t.Add("land:" + l);
+                if (DecreeWork.ColonyFaith != null) t.Add("faith");
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("calendar land tags", e);
+            }
             return t;
         }
 
-        /// <summary>The values a day's lines may use: {NAME}, {YEARS}, {DEAD}, {ENEMY}, {COUNT}, {PLACE}.</summary>
+        /// <summary>
+        /// The values a day's lines may use: {NAME}, {YEARS}, {DEAD}, {ENEMY}, {COUNT}, {PLACE}, and {SUBJECT} (a new crop,
+        /// the game of a great hunt, the travellers home, the first child's name).
+        /// </summary>
         private static List<NamedArgument> Args(CalendarDay d, int years, Map map)
         {
             string dead = d.kind == CalendarKind.Death ? d.pawnName : d.kind == CalendarKind.Battle ? TextUtil.JoinAnd(d.fallen) : "";
             return new List<NamedArgument>
             {
                 (d.label ?? "").Named("NAME"), years.Named("YEARS"), (dead ?? "").Named("DEAD"), (d.enemy ?? "").Named("ENEMY"),
-                d.kills.Named("COUNT"), (map?.Biome?.label ?? "").Named("PLACE")
+                d.kills.Named("COUNT"), (map?.Biome?.label ?? "").Named("PLACE"), (d.subject ?? "").Named("SUBJECT")
             };
         }
 
@@ -322,6 +354,19 @@ namespace ColonyCouncil
                     GiveRest(map, home);
                     foreach (var p in home.Where(p => !Industrious(p))) CouncilGameComponent.GiveThought(p, CalendarDefOf.Council_Cal_RestDay);
                     return false;
+                case DayWay.Bonfire:
+                    // With answers playing out: a fire built at nightfall (laid from the colony's wood if it has no campfire), music round it.
+                    if (PlayDay(d, map, home, PlayKind.Bonfire, CalendarDefOf.Council_Cal_BonfireNight, null,
+                            new List<PlaySpot> { PlaySpot.Fire, PlaySpot.Outdoors, PlaySpot.Gather }, null))
+                        return true;
+                    foreach (var p in home) CouncilGameComponent.GiveThought(p, CalendarDefOf.Council_Cal_BonfireNight);
+                    return false;
+                case DayWay.Gifts:
+                    GiveGifts(d, home);
+                    return false;
+                case DayWay.Hunt:
+                    Hunt(d, map, home);
+                    return false;
                 case DayWay.Remembrance:
                     string subject = d.kind == CalendarKind.Death ? d.pawnName
                         : d.kind == CalendarKind.Battle ? "CC_Cal_Subject_Battle".Translate(d.enemy ?? "?").Resolve()
@@ -364,8 +409,17 @@ namespace ColonyCouncil
                     spots = spots ?? new List<PlaySpot> { PlaySpot.Dining, PlaySpot.Rec, PlaySpot.Gather, PlaySpot.Outdoors },
                     place = grave,
                     durationTicks = PlayOutMath.DurationTicks(kind == PlayKind.Toast ? 1f : 3f),
-                    pool = kind == PlayKind.Feast ? "Council_Pool_PlayFeast" : grave != null ? "Council_Pool_PlayRemembrance" : "Council_Pool_PlayParty"
+                    pool = kind == PlayKind.Feast ? "Council_Pool_PlayFeast" : grave != null ? "Council_Pool_PlayRemembrance"
+                        : kind == PlayKind.Bonfire ? "Council_Pool_PlaySong" : "Council_Pool_PlayParty"
                 };
+                if (kind == PlayKind.Bonfire)
+                {
+                    // A fire at nightfall, with music; one is laid in the open if the colony has none.
+                    p.hourFrom = 17;
+                    p.hourTo = 23;
+                    p.buildFire = true;
+                    p.music = true;
+                }
                 if (p.invited.Count == 0) return false;
                 p.deadline = PlayOutMath.Deadline(now, GenLocalDate.HourOfDay(map), p.hourFrom, p.hourTo, PlayOutMath.DefaultWaitHours);
                 if (thought != null)
@@ -395,6 +449,48 @@ namespace ColonyCouncil
             {
                 CouncilLog.ErrorOnce("calendar feast", e);
                 return false;
+            }
+        }
+
+        // ---------------- A day of gifts ----------------
+
+        /// <summary>
+        /// Small gifts given and taken: the colony's people pair off (each gives to the next, round the circle), and each
+        /// pair's friendship grows a little (the social web). Nobody's mood moves: the day is its own reward (a little
+        /// recreation and a good memory, Council_Cal_GiftDay).
+        /// </summary>
+        private static void GiveGifts(CalendarDay d, List<Pawn> home)
+        {
+            var comp = CouncilGameComponent.Instance;
+            var people = home.Where(p => !p.DevelopmentalStage.Baby() && !IsPsychopath(p)).InRandomOrder().ToList();
+            for (int i = 0; i < people.Count; i++)
+            {
+                var giver = people[i];
+                var taker = people.Count > 1 ? people[(i + 1) % people.Count] : null;
+                if (taker != null && taker != giver && S.socialWeb && comp?.social != null)
+                    comp.social.Bump(giver, taker, TieKind.Friends, GiftTie, "CC_TieNote_Cal_Gift".Translate(d.label), true);
+                CouncilGameComponent.GiveThought(giver, CalendarDefOf.Council_Cal_GiftDay);
+            }
+        }
+
+        /// <summary>How much a gift given on a day of gifts does for a friendship.</summary>
+        public const float GiftTie = 3f;
+
+        // ---------------- A hunting day ----------------
+
+        /// <summary>
+        /// The hunters go out: with answers playing out, three head of good game on the map are marked for hunting (never a
+        /// predator, nothing likely to turn on them); those who can hunt get a day's practice and the fun of it
+        /// (Council_Cal_HuntDay, no mood), and the rest something better than usual in the pot that evening.
+        /// </summary>
+        private static void Hunt(CalendarDay d, Map map, List<Pawn> home)
+        {
+            new DilemmaEffect_Hunt { count = 3 }.Apply(new DilemmaContext { map = map });
+            foreach (var p in home)
+            {
+                bool hunter = !p.DevelopmentalStage.Juvenile() && p.workSettings != null && WorkTypeDefOf.Hunting != null && p.workSettings.WorkIsActive(WorkTypeDefOf.Hunting)
+                              && !p.WorkTagIsDisabled(WorkTags.Violent);
+                CouncilGameComponent.GiveThought(p, hunter ? CalendarDefOf.Council_Cal_HuntDay : CalendarDefOf.Council_Cal_FeastDay);
             }
         }
 
@@ -624,6 +720,18 @@ namespace ColonyCouncil
                     var grower = adults.OrderByDescending(p => p.skills?.GetSkill(SkillDefOf.Plants)?.Level ?? 0).FirstOrDefault();
                     if (grower != null) list.Add(grower);
                     break;
+                case CalendarKind.Homecoming:
+                case CalendarKind.GreatHunt:
+                    list.AddRange(home.Where(p => d.knew.Contains(p.ThingID) && !p.DevelopmentalStage.Juvenile()).InRandomOrder().Take(2));
+                    break;
+                case CalendarKind.FirstChild:
+                    list.AddRange(home.Where(p => p.ThingID == d.otherId));
+                    break;
+                case CalendarKind.Walls:
+                case CalendarKind.NewCrop:
+                case CalendarKind.FirstTrade:
+                    list.AddRange(home.Where(p => p.ThingID == d.pawnId && !p.DevelopmentalStage.Juvenile()));
+                    break;
             }
             foreach (var p in home.InRandomOrder())
             {
@@ -692,7 +800,12 @@ namespace ColonyCouncil
             {
                 case CalendarKind.Death:
                 case CalendarKind.Battle:
+                case CalendarKind.Homecoming:
+                case CalendarKind.GreatHunt:
                     a = home.Where(p => d.knew.Contains(p.ThingID)).RandomElementWithFallback();
+                    break;
+                case CalendarKind.FirstChild:
+                    a = home.FirstOrDefault(p => p.ThingID == d.otherId);
                     break;
                 case CalendarKind.Birthday:
                 case CalendarKind.Arrival:
@@ -765,7 +878,7 @@ namespace ColonyCouncil
         /// </summary>
         public static Precept_Ritual RitualFor(DayWay way)
         {
-            if (!ModsConfig.IdeologyActive || way == DayWay.Personal || way == DayWay.Rest) return null;
+            if (!ModsConfig.IdeologyActive || way == DayWay.Personal || way == DayWay.Rest || way == DayWay.Gifts || way == DayWay.Hunt) return null;
             try
             {
                 var ideo = Faction.OfPlayer?.ideos?.PrimaryIdeo;

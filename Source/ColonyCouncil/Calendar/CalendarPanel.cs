@@ -22,6 +22,9 @@ namespace ColonyCouncil
         private static readonly Color FeastColor = new Color(1f, 0.83f, 0.47f);
         private static readonly Color RestColor = new Color(0.56f, 0.73f, 0.96f);
         private static readonly Color GamesColor = new Color(0.52f, 0.85f, 0.5f);
+        private static readonly Color BonfireColor = new Color(1f, 0.6f, 0.35f);
+        private static readonly Color GiftsColor = new Color(0.9f, 0.62f, 0.85f);
+        private static readonly Color HuntColor = new Color(0.72f, 0.66f, 0.45f);
 
         public static Color WayColor(DayWay way)
         {
@@ -31,6 +34,9 @@ namespace ColonyCouncil
                 case DayWay.Remembrance: return UiKit.LossColor;
                 case DayWay.Rest: return RestColor;
                 case DayWay.Games: return GamesColor;
+                case DayWay.Bonfire: return BonfireColor;
+                case DayWay.Gifts: return GiftsColor;
+                case DayWay.Hunt: return HuntColor;
                 default: return UiKit.Faint;
             }
         }
@@ -47,6 +53,12 @@ namespace ColonyCouncil
                 case CalendarKind.Wedding: return Icons.Wedding;
                 case CalendarKind.Arrival: return Icons.Visitor;
                 case CalendarKind.Birthday: return Icons.Birth;
+                case CalendarKind.FirstChild: return Icons.Birth;
+                case CalendarKind.Walls: return Icons.CatDefense;
+                case CalendarKind.Homecoming: return Icons.WorldEvent;
+                case CalendarKind.NewCrop: return Icons.CatFood;
+                case CalendarKind.FirstTrade: return Icons.Trader;
+                case CalendarKind.GreatHunt: return Icons.CatLowTech;
                 default: return Icon ?? Icons.Chronicle;
             }
         }
@@ -247,6 +259,12 @@ namespace ColonyCouncil
                 case CalendarKind.Wedding: return "CC_Cal_Origin_Wedding".Translate(d.pawnName ?? "?", d.otherName ?? "?", d.sinceYear).Resolve();
                 case CalendarKind.Arrival: return "CC_Cal_Origin_Arrival".Translate(d.pawnName ?? "?", d.sinceYear).Resolve();
                 case CalendarKind.Birthday: return "CC_Cal_Origin_Birthday".Translate(d.pawnName ?? "?").Resolve();
+                case CalendarKind.FirstChild: return "CC_Cal_Origin_FirstChild".Translate(d.pawnName ?? "?", d.sinceYear).Resolve();
+                case CalendarKind.Walls: return "CC_Cal_Origin_Walls".Translate(d.sinceYear).Resolve();
+                case CalendarKind.Homecoming: return "CC_Cal_Origin_Homecoming".Translate(d.subject ?? d.pawnName ?? "?", d.sinceYear, d.kills).Resolve();
+                case CalendarKind.NewCrop: return "CC_Cal_Origin_NewCrop".Translate(d.subject ?? "?", d.sinceYear).Resolve();
+                case CalendarKind.FirstTrade: return "CC_Cal_Origin_FirstTrade".Translate(d.sinceYear).Resolve();
+                case CalendarKind.GreatHunt: return "CC_Cal_Origin_GreatHunt".Translate(d.sinceYear, d.kills, d.subject ?? "?").Resolve();
                 default: return "CC_Cal_Origin_Holiday".Translate(d.sinceYear).Resolve();
             }
         }
@@ -254,7 +272,8 @@ namespace ColonyCouncil
 
     /// <summary>
     /// Naming a day, or changing one: its name, how the colony keeps it, and (for the player's own days) its date. A
-    /// birthday or an arrival keeps its own way; any other day can be kept as a feast, a remembrance, a rest day or games.
+    /// birthday or an arrival keeps its own way; any other day can be kept as a feast, a remembrance, a rest day, games, a
+    /// bonfire, a day of gifts or a hunt.
     /// </summary>
     public class Dialog_CalendarDay : Window
     {
@@ -268,7 +287,7 @@ namespace ColonyCouncil
         private bool focused;
         private bool finished;
 
-        private static readonly DayWay[] Ways = { DayWay.Feast, DayWay.Remembrance, DayWay.Rest, DayWay.Games };
+        private static readonly DayWay[] Ways = { DayWay.Feast, DayWay.Remembrance, DayWay.Rest, DayWay.Games, DayWay.Bonfire, DayWay.Gifts, DayWay.Hunt };
 
         public Dialog_CalendarDay(CalendarDay editing)
         {
@@ -289,7 +308,7 @@ namespace ColonyCouncil
 
         private bool WayEditable => editing == null || !editing.Personal;
 
-        public override Vector2 InitialSize => new Vector2(520f, 470f);
+        public override Vector2 InitialSize => new Vector2(560f, 560f);
 
         public override void DoWindowContents(Rect inRect)
         {
