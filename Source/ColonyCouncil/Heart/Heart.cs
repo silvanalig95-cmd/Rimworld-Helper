@@ -285,7 +285,7 @@ namespace ColonyCouncil
         {
             var set = p?.story?.traits;
             if (set == null || name.NullOrEmpty()) return false;
-            var def = DefDatabase<TraitDef>.GetNamedSilentFail(name);
+            var def = DefRefs.Named<TraitDef>(name);
             if (def == null || !set.HasTrait(def)) return false;
             return degree == int.MinValue || set.DegreeOfTrait(def) == degree;
         }

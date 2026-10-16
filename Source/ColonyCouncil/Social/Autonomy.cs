@@ -20,6 +20,8 @@ namespace ColonyCouncil
     /// </summary>
     public class AutonomyTracker : IExposable
     {
+        private static readonly DefRef<WorkTypeDef> CleaningWork = new DefRef<WorkTypeDef>("Cleaning");
+
         private List<Pawn> pawns = new List<Pawn>();
         private List<int> lastActed = new List<int>();
         private List<Thing> plans = new List<Thing>();
@@ -126,7 +128,7 @@ namespace ColonyCouncil
             {
                 bool roomBothers = Has(d => Named(d, "SleptInBedroom") || Worker(d, "ThoughtWorker_NeedBeauty"));
                 var filth = roomBothers && free && Idle(p) ? room.ContainedAndAdjacentThings.OfType<Filth>().Where(f => f.Spawned && room.ContainsCell(f.Position)).Take(15).ToList() : null;
-                if (!filth.NullOrEmpty() && p.workSettings != null && !p.WorkTypeIsDisabled(DefDatabase<WorkTypeDef>.GetNamedSilentFail("Cleaning") ?? WorkTypeDefOf.Hauling))
+                if (!filth.NullOrEmpty() && p.workSettings != null && !p.WorkTypeIsDisabled(CleaningWork.Def ?? WorkTypeDefOf.Hauling))
                 {
                     var job = JobMaker.MakeJob(JobDefOf.Clean);
                     foreach (var f in filth) job.AddQueuedTarget(TargetIndex.A, f);

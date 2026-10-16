@@ -165,10 +165,13 @@ namespace ColonyCouncil
         // has thousands of recipes, and this used to walk them all, twice over, for every missing part of every colonist.
         private static Dictionary<BodyPartDef, List<(RecipeDef recipe, ThingDef item)>> installs;
         private static Dictionary<ThingDef, List<RecipeDef>> producers;
+        private static int installsGeneration = -1;
 
         private static void BuildInstalls()
         {
-            if (installs != null) return;
+            // Built again for each game (DefRefs' generation), in case the defs were reloaded in between.
+            if (installs != null && installsGeneration == DefRefs.Generation) return;
+            installsGeneration = DefRefs.Generation;
             var byPart = new Dictionary<BodyPartDef, List<(RecipeDef, ThingDef)>>();
             var items = new HashSet<ThingDef>();
             var recipes = DefDatabase<RecipeDef>.AllDefsListForReading;

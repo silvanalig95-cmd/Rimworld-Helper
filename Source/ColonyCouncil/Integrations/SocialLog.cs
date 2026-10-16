@@ -69,10 +69,12 @@ namespace ColonyCouncil
         /// draws a bubble over both for each entry, so two people at opposite ends of the map are left out (the event
         /// still happened; it is in the news, the journals and the chronicle).
         /// </summary>
+        private static readonly DefRef<InteractionDef> SocialEventDef = new DefRef<InteractionDef>("Council_SocialEvent");
+
         public static void Add(Pawn a, Pawn b, string text)
         {
             if (text.NullOrEmpty() || !Near(a, b)) return;
-            var def = DefDatabase<InteractionDef>.GetNamedSilentFail("Council_SocialEvent");
+            var def = SocialEventDef.Def;
             if (def == null || Find.PlayLog == null) return;
             try
             {

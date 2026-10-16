@@ -168,11 +168,18 @@ namespace ColonyCouncil
         // Tags made of a def's name ("trait:Kind", "skill:Cooking"), each built once instead of on every line picked.
         private static readonly Dictionary<(string, Def), string> defTags = new Dictionary<(string, Def), string>();
         private static readonly Dictionary<TraitDegreeData, string> degreeTags = new Dictionary<TraitDegreeData, string>();
+        private static int tagsGeneration = -1;
 
         /// <summary>prefix + the def's name, the same string each time.</summary>
         public static string DefTag(string prefix, Def def)
         {
             if (def == null) return prefix;
+            if (tagsGeneration != DefRefs.Generation)
+            {
+                tagsGeneration = DefRefs.Generation;
+                defTags.Clear();
+                degreeTags.Clear();
+            }
             var key = (prefix, def);
             if (!defTags.TryGetValue(key, out var tag))
             {

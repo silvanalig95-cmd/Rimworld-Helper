@@ -62,9 +62,21 @@ namespace ColonyCouncil
         }
 
         private static List<DecreeDef> ordered;
+        private static int orderedGeneration = -1;
 
-        /// <summary>The decrees in their order on the page (the defs never change while playing, so sorted once).</summary>
-        private static List<DecreeDef> Ordered => ordered ??= DefDatabase<DecreeDef>.AllDefsListForReading.OrderBy(d => d.order).ToList();
+        /// <summary>The decrees in their order on the page (the defs never change while playing, so sorted once a game).</summary>
+        private static List<DecreeDef> Ordered
+        {
+            get
+            {
+                if (ordered == null || orderedGeneration != DefRefs.Generation)
+                {
+                    ordered = DefDatabase<DecreeDef>.AllDefsListForReading.OrderBy(d => d.order).ToList();
+                    orderedGeneration = DefRefs.Generation;
+                }
+                return ordered;
+            }
+        }
 
         // ---------------- Decree cards ----------------
 

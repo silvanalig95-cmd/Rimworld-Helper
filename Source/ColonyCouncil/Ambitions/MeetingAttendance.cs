@@ -547,6 +547,8 @@ namespace ColonyCouncil
         /// How much being woken stings: little for the devoted, more for the bitter, more again for the tired and for
         /// night owls. (The very tired aren't woken at all.)
         /// </summary>
+        private static readonly DefRef<TraitDef> NightOwl = new DefRef<TraitDef>("NightOwl");
+
         private static float WokenFactor(Pawn p, CouncilGameComponent comp)
         {
             float f;
@@ -560,7 +562,7 @@ namespace ColonyCouncil
             }
             var rest = p.needs?.rest;
             if (rest != null && rest.CurCategory >= RestCategory.Tired) f *= 1.4f;
-            var owl = DefDatabase<TraitDef>.GetNamedSilentFail("NightOwl");
+            var owl = NightOwl.Def;
             if (owl != null && (p.story?.traits?.HasTrait(owl) ?? false)) f *= 1.3f;
             return Mathf.Clamp(f, 0.5f, 1.25f);
         }

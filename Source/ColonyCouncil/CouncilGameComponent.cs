@@ -133,6 +133,9 @@ namespace ColonyCouncil
             UiCache.Clear();
             InteractionWorker_Moment.Reset();
             Interplay.Reset();
+            // Lean/: the map facts and every def kept by name are worked out again for this game.
+            MapFacts.Clear();
+            DefRefs.ResetAll();
             cachedInstance = this;
             cachedGame = Current.Game;
         }
