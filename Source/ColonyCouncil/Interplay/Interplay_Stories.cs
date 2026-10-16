@@ -112,7 +112,7 @@ namespace ColonyCouncil
             Safe("interplay: camp friend", () =>
             {
                 NudgeAndTell(friend, 1f, "camp", null, (them?.LabelShort ?? "?").Named("NAME"));
-                if (Heart.Eligible(friend)) HeartLogic.Change(friend, -2f, StrainRelief.Friends);
+                if (Heart.Eligible(friend)) Ease(friend, 2f, StrainRelief.Friends);
             });
         }
 

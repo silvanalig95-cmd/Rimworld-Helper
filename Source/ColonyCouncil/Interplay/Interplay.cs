@@ -106,6 +106,25 @@ namespace ColonyCouncil
             return room != null && !room.PsychologicallyOutdoors && room == b.GetRoom();
         }
 
+        /// <summary>
+        /// Strain eased by company (a gathering, a friend, the herdmaster, the marshal), counted in the heart's own daily
+        /// cap for that kind of relief, beside what the memories of the day already eased. The count is saved with the
+        /// heart, so links that fire again after a reload, or several in one day, never ease more than the cap.
+        /// </summary>
+        internal static void Ease(Pawn p, float amount, StrainRelief kind)
+        {
+            var h = Heart.Of(p);
+            if (h == null || amount <= 0f || h.strain <= 0f) return;
+            bool gathering = kind == StrainRelief.Gathering;
+            float used = gathering ? h.todayGathering : h.todayFriends;
+            float cap = gathering ? HeartLogic.GatheringCap : HeartLogic.FriendsCap;
+            float eased = Mathf.Min(Mathf.Min(amount, h.strain), Mathf.Max(0f, cap - used));
+            if (eased <= 0f) return;
+            if (gathering) h.todayGathering += eased;
+            else h.todayFriends += eased;
+            HeartLogic.Change(p, -eased, kind);
+        }
+
         // ---------------- Cooldowns (not saved: a load only gives a second chance) ----------------
 
         private static readonly Dictionary<string, int> cooldowns = new Dictionary<string, int>();
