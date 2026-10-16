@@ -334,6 +334,7 @@ namespace ColonyCouncil
             Safe("autonomy", () => autonomy.Hourly(this));
             Safe("who is home", NoteWhoIsHome);
             Safe("everyday pressures", () => pressures.Hourly(this));
+            Safe("social events", () => SocialEvents.Hourly(this));
         }
 
         private void HourlyEvents()
