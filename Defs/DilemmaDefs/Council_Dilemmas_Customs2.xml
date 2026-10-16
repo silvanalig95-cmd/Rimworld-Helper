@@ -70,6 +70,7 @@
     <modExtensions>
       <li Class="ColonyCouncil.CustomConditions">
         <lands><li>tundra</li><li>boreal</li></lands>
+        <forbiddenBy><li>NoFire</li></forbiddenBy>
       </li>
     </modExtensions>
   </ColonyCouncil.DilemmaDef>
@@ -187,6 +188,7 @@
     <modExtensions>
       <li Class="ColonyCouncil.CustomConditions">
         <lands><li>coast</li><li>lake</li><li>river</li></lands>
+        <forbiddenBy><li>NoReligion</li></forbiddenBy>
         <water>true</water>
       </li>
     </modExtensions>
@@ -243,6 +245,7 @@
     <modExtensions>
       <li Class="ColonyCouncil.CustomConditions">
         <lands><li>swamp</li><li>jungle</li></lands>
+        <forbiddenBy><li>NoFire</li></forbiddenBy>
         <minTemp>15</minTemp>
       </li>
     </modExtensions>

@@ -356,10 +356,13 @@ namespace ColonyCouncil
                     return false;
                 case DayWay.Bonfire:
                     // With answers playing out: a fire built at nightfall (laid from the colony's wood if it has no campfire), music round it.
-                    if (PlayDay(d, map, home, PlayKind.Bonfire, CalendarDefOf.Council_Cal_BonfireNight, null,
+                    // Those whose faith despises fire stay away from it (Wishes/Beliefs.cs).
+                    var round = home.Where(p => !Beliefs.Forbids(p, Belief.NoFire)).ToList();
+                    if (round.Count == 0) return false;
+                    if (PlayDay(d, map, round, PlayKind.Bonfire, CalendarDefOf.Council_Cal_BonfireNight, null,
                             new List<PlaySpot> { PlaySpot.Fire, PlaySpot.Outdoors, PlaySpot.Gather }, null))
                         return true;
-                    foreach (var p in home) CouncilGameComponent.GiveThought(p, CalendarDefOf.Council_Cal_BonfireNight);
+                    foreach (var p in round) CouncilGameComponent.GiveThought(p, CalendarDefOf.Council_Cal_BonfireNight);
                     return false;
                 case DayWay.Gifts:
                     GiveGifts(d, home);
@@ -456,20 +459,29 @@ namespace ColonyCouncil
 
         /// <summary>
         /// Small gifts given and taken: the colony's people pair off (each gives to the next, round the circle), and each
-        /// pair's friendship grows a little (the social web). Nobody's mood moves: the day is its own reward (a little
-        /// recreation and a good memory, Council_Cal_GiftDay).
+        /// gift is handed over face to face (Together: when the two meet that day, or the giver walking over in their free
+        /// time), when the pair's friendship grows a little (the social web). Nobody's mood moves: the day is its own
+        /// reward (a little recreation and a good memory, Council_Cal_GiftDay, for each who has a gift to give).
         /// </summary>
         private static void GiveGifts(CalendarDay d, List<Pawn> home)
         {
             var comp = CouncilGameComponent.Instance;
             var people = home.Where(p => !p.DevelopmentalStage.Baby() && !IsPsychopath(p)).InRandomOrder().ToList();
+            string day = d.label ?? "";
             for (int i = 0; i < people.Count; i++)
             {
                 var giver = people[i];
-                var taker = people.Count > 1 ? people[(i + 1) % people.Count] : null;
-                if (taker != null && taker != giver && S.socialWeb && comp?.social != null)
-                    comp.social.Bump(giver, taker, TieKind.Friends, GiftTie, "CC_TieNote_Cal_Gift".Translate(d.label), true);
+                // apart: making a gift for someone is its own small pleasure, whoever it's for.
                 CouncilGameComponent.GiveThought(giver, CalendarDefOf.Council_Cal_GiftDay);
+                var taker = people.Count > 1 ? people[(i + 1) % people.Count] : null;
+                if (taker == null || taker == giver) continue;
+                Together.When("calgift|" + d.id + "|" + giver.thingIDNumber, giver, taker, () =>
+                {
+                    // together: the giver is beside the one the gift is for.
+                    if (S.socialWeb && comp?.social != null)
+                        comp.social.Bump(giver, taker, TieKind.Friends, GiftTie, "CC_TieNote_Cal_Gift".Translate(day), true);
+                    SocialLog.Add(giver, taker, "CC_Cal_GiftGiven".Translate(giver.Named("PAWN"), taker.Named("OTHER"), day.Named("DAY")).Resolve());
+                }, 16f, 1f);
             }
         }
 
@@ -481,18 +493,27 @@ namespace ColonyCouncil
         /// <summary>
         /// The hunters go out: with answers playing out, three head of good game on the map are marked for hunting (never a
         /// predator, nothing likely to turn on them); those who can hunt get a day's practice and the fun of it
-        /// (Council_Cal_HuntDay, no mood), and the rest something better than usual in the pot that evening.
+        /// (Council_Cal_HuntDay, no mood), and the rest something better than usual in the pot that evening. Nobody
+        /// whose faith forbids the hunt is glad of it, and nobody who eats no meat is glad of the stew (Wishes/Beliefs.cs).
         /// </summary>
         private static void Hunt(CalendarDay d, Map map, List<Pawn> home)
         {
             new DilemmaEffect_Hunt { count = 3 }.Apply(new DilemmaContext { map = map });
             foreach (var p in home)
             {
+                if (Beliefs.ForbidsAny(p, NoHuntMask)) continue;
                 bool hunter = !p.DevelopmentalStage.Juvenile() && p.workSettings != null && WorkTypeDefOf.Hunting != null && p.workSettings.WorkIsActive(WorkTypeDefOf.Hunting)
                               && !p.WorkTagIsDisabled(WorkTags.Violent);
-                CouncilGameComponent.GiveThought(p, hunter ? CalendarDefOf.Council_Cal_HuntDay : CalendarDefOf.Council_Cal_FeastDay);
+                if (hunter) CouncilGameComponent.GiveThought(p, CalendarDefOf.Council_Cal_HuntDay);
+                else if (!Beliefs.ForbidsAny(p, NoMeatMask)) CouncilGameComponent.GiveThought(p, CalendarDefOf.Council_Cal_FeastDay);
             }
         }
+
+        /// <summary>Beliefs that make a hunting day nothing to be glad of.</summary>
+        private static readonly ulong NoHuntMask = BeliefMath.Mask(new[] { Belief.NoHunting, Belief.NoViolence });
+
+        /// <summary>Diets with no place for the game in the pot.</summary>
+        private static readonly ulong NoMeatMask = BeliefMath.Mask(new[] { Belief.NoMeat, Belief.NoAnimalProducts, Belief.FungusOnly, Belief.FungusOrInsectOnly });
 
         // ---------------- A rest day ----------------
 

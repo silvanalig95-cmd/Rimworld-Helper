@@ -9,7 +9,8 @@ namespace ColonyCouncil
     /// What a seasonal custom needs beyond its season, on a dilemma def with <see cref="DilemmaWorker_Custom"/>: the
     /// weather outside (a swim wants a warm day, a frost soup the first cold one), water on the map, the colony's own
     /// graves, enough raw food for a feast, the land the colony stands on (a desert's rain welcome, a tundra's sun's
-    /// return), rain falling, or a faith of the colony's own with one of a few memes (Ideology).
+    /// return), rain falling, or a faith of the colony's own with one of a few memes (Ideology); and someone to ask for
+    /// it whose beliefs don't rule it out.
     /// </summary>
     public class CustomConditions : DefModExtension
     {
@@ -30,6 +31,23 @@ namespace ColonyCouncil
         public bool faith;
         /// <summary>Ideology: the colony's faith holds one of these memes (defNames).</summary>
         public List<string> memes;
+        /// <summary>Beliefs that rule it out (Wishes/Beliefs.cs): nobody whose faith despises fire asks for a bonfire.</summary>
+        public List<Belief> forbiddenBy;
+
+        [Unsaved] private ulong forbiddenMask;
+        [Unsaved] private bool forbiddenMaskSet;
+
+        /// <summary>This colonist's beliefs rule the custom out, so they won't ask for it.</summary>
+        public bool AgainstBeliefsOf(Pawn p)
+        {
+            if (forbiddenBy.NullOrEmpty() || p == null) return false;
+            if (!forbiddenMaskSet)
+            {
+                forbiddenMask = BeliefMath.Mask(forbiddenBy);
+                forbiddenMaskSet = true;
+            }
+            return Beliefs.ForbidsAny(p, forbiddenMask);
+        }
     }
 
     /// <summary>A seasonal custom: the usual season and roles, plus whatever its <see cref="CustomConditions"/> ask.</summary>
@@ -62,7 +80,9 @@ namespace ColonyCouncil
         {
             if (!base.Extra(ctx)) return false;
             var c = def.GetModExtension<CustomConditions>();
-            return c == null || c.foodFactor <= 0f || DilemmaEffect_Consume.RawFood(ctx.map) >= ctx.count * c.foodFactor;
+            if (c == null) return true;
+            if (c.AgainstBeliefsOf(ctx.a)) return false;
+            return c.foodFactor <= 0f || DilemmaEffect_Consume.RawFood(ctx.map) >= ctx.count * c.foodFactor;
         }
 
         /// <summary>A river or coast on the world tile, or open water somewhere on the map (sampled, so it stays cheap).</summary>

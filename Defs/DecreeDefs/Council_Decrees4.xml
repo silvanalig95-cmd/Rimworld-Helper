@@ -130,6 +130,7 @@
     <practiceNeedsViolence>true</practiceNeedsViolence>
     <reactions>
       <li><nonViolent>true</nonViolent><reaction>Neutral</reaction></li>
+      <li><beliefs><li>NoViolence</li></beliefs><reaction>Dislike</reaction></li>
       <li><trait>Bloodlust</trait><reaction>Like</reaction></li>
       <li><trait>Tough</trait><reaction>Like</reaction></li>
       <li><trait>Brawler</trait><reaction>Like</reaction></li>
@@ -140,7 +141,7 @@
     <effects>
       <li>Everyone who can fight practices shooting and melee a little every waking hour, for twelve days.</li>
       <li>Everyone works 3% slower.</li>
-      <li>Fighters and the bloodthirsty like it; wimps and the kind mind it; most people don't mind.</li>
+      <li>Fighters and the bloodthirsty like it; wimps, the kind and those whose faith abhors violence mind it; most people don't mind.</li>
     </effects>
     <support>
       <plain>
@@ -226,6 +227,7 @@
     <defaultReaction>Neutral</defaultReaction>
     <certaintyPerDay>0.03</certaintyPerDay>
     <reactions>
+      <li><beliefs><li>NoReligion</li></beliefs><reaction>Dislike</reaction></li>
       <li><tags>devout</tags><reaction>Love</reaction></li>
       <li><otherFaith>true</otherFaith><reaction>Dislike</reaction></li>
       <li><trait>Industriousness</trait><degree>2</degree><reaction>Dislike</reaction></li>
@@ -234,7 +236,7 @@
     <effects>
       <li>Those of the colony's faith grow 3% surer of it each day (half again with a chaplain), and keep a little steadier.</li>
       <li>Everyone works 8% slower.</li>
-      <li>The devout love it and the faithful like it; those of another faith and the industrious mind it.</li>
+      <li>The devout love it and the faithful like it; those of another faith, those who despise religion and the industrious mind it.</li>
     </effects>
     <support>
       <plain>
@@ -357,6 +359,7 @@
     <defaultReaction>Neutral</defaultReaction>
     <joyWhileWorking>0.02</joyWhileWorking>
     <reactions>
+      <li><beliefs><li>NoRecreation</li></beliefs><reaction>Dislike</reaction></li>
       <li><passion>Social</passion><reaction>Like</reaction></li>
       <li><passion>Artistic</passion><reaction>Like</reaction></li>
       <li><trait>Nerves</trait><degree>-2</degree><reaction>Dislike</reaction></li>
@@ -367,7 +370,7 @@
     <effects>
       <li>Everyone works 3% faster, and those who don't mind the singing get a little recreation every hour they work.</li>
       <li>Research 10% slower and learning 5% slower: nobody can think over the noise.</li>
-      <li>The sociable and the artistic like it; the nervous, the abrasive and the too-clever mind it.</li>
+      <li>The sociable and the artistic like it; the nervous, the abrasive, the too-clever and those whose faith frowns on fun at work mind it.</li>
     </effects>
     <support>
       <plain>

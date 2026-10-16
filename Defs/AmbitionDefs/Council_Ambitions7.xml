@@ -188,6 +188,7 @@
     <weight>1.2</weight>
     <staged>true</staged>
     <eras><li>tribal</li></eras>
+    <forbiddenBy><li>NoMeat</li><li>MeatOnly</li><li>NoAnimalProducts</li><li>FungusOnly</li><li>FungusOrInsectOnly</li></forbiddenBy>
     <relevantCategories><li>Food</li></relevantCategories>
     <proposerSkills><li>Plants</li><li>Cooking</li></proposerSkills>
     <goals>
@@ -230,6 +231,7 @@
     <description>Make the tribe's hunters into a band to be proud of: twelve animals brought down by the colony's people, and two hunters good with a bow or a spear-thrower (Shooting 7 or better). Only for a tribe with game on its land and someone who hunts.</description>
     <days>35</days>
     <eras><li>tribal</li></eras>
+    <forbiddenBy><li>NoHunting</li><li>NoViolence</li></forbiddenBy>
     <relevantCategories><li>Food</li><li>Defense</li></relevantCategories>
     <proposerSkills><li>Shooting</li><li>Animals</li></proposerSkills>
     <goals>

@@ -61,10 +61,24 @@ namespace ColonyCouncil
         /// <summary>Of the colony's own faith (Ideology), or of another one.</summary>
         public bool sameFaith;
         public bool otherFaith;
+        /// <summary>Whose faith, traits or habits rule out any of these (Wishes/Beliefs.cs): NoViolence, NoRecreation, NoReligion.</summary>
+        public List<Belief> beliefs;
         public DecreeReaction reaction = DecreeReaction.Neutral;
+
+        [Unsaved] private ulong beliefMask;
+        [Unsaved] private bool beliefMaskSet;
 
         public bool Matches(Pawn p)
         {
+            if (!beliefs.NullOrEmpty())
+            {
+                if (!beliefMaskSet)
+                {
+                    beliefMask = BeliefMath.Mask(beliefs);
+                    beliefMaskSet = true;
+                }
+                return Beliefs.ForbidsAny(p, beliefMask);
+            }
             if (trait != null)
             {
                 var traits = p.story?.traits;

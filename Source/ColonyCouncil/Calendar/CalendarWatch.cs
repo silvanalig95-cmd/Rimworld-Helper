@@ -196,7 +196,7 @@ namespace ColonyCouncil
             }
             foreach (var z in map.zoneManager.AllZones)
                 if (z is Zone_Growing g) Add(g.GetPlantDefToGrow());
-            foreach (var b in map.listerBuildings.allBuildingsColonist)
+            foreach (var b in Avail.ColonyBuildings(map, d => typeof(Building_PlantGrower).IsAssignableFrom(d.thingClass)))
                 if (b is Building_PlantGrower pg) Add(pg.GetPlantDefToGrow());
             return set;
         }

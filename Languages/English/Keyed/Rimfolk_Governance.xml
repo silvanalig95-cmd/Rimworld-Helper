@@ -45,6 +45,7 @@
   <CC_Cal_Origin_FirstTrade>The colony struck its first trade on this day in {0}.</CC_Cal_Origin_FirstTrade>
   <CC_Cal_Origin_GreatHunt>The hunters brought down {1} head of game on this day in {0}, mostly {2}.</CC_Cal_Origin_GreatHunt>
   <CC_TieNote_Cal_Gift>gifts on {0}</CC_TieNote_Cal_Gift>
+  <CC_Cal_GiftGiven>{PAWN_nameDef} gave {OTHER_nameDef} a small gift for {DAY}, wrapped as well as could be managed.</CC_Cal_GiftGiven>
 
   <!-- Council projects' newer goals (Ambitions/AmbitionGoals3.cs). -->
   <CC_Goal_Record>{0} more {1} ({2} so far)</CC_Goal_Record>
