@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The xenotypes of the player's race mods in wishes, decrees and the colony's ways (see the header of
+    Council_People_Mods.xml for the fields). Wish leanings only reach the XML-driven wishes (WishWorker_Have, _Stock,
+    _Wear, _TraderGoods, _Flowers), so these name only those. Matched by xenotype name (xeno:DefName) while the game runs: with the mod
+    missing, nobody fits, and each entry only nudges what the people already are in their own mod.
+    Mods: Stoneborn (det.stoneborn), Elves (devdesigner.elves.continued), Merfolk (arquebus.stagzmerfolk), Det's
+    Venators, Boglegs and Avaloi (det.venators, det.boglegs, det.avaloi), Alpha Genes (sarg.alphagenes).
+  -->
+
+  <ColonyCouncil.ModPeopleDef>
+    <defName>Council_ModPeople_Xenotypes</defName>
+    <label>xenotypes of the race mods (Stoneborn, Elves, Merfolk, Det's xenotypes, Alpha Genes)</label>
+    <wishes>
+      <!-- Stoneborn: miners and builders with a passion for stone, and a hearth to come home to. -->
+      <li>
+        <wish>Council_Wish_StoneBlocks</wish>
+        <alsoWho>xeno:Stoneborn</alsoWho>
+        <alsoReason>{PAWN_nameDef} says a wooden wall is a promise to rebuild it, and stone is a promise kept.</alsoReason>
+      </li>
+      <li>
+        <wish>Council_Wish_DeepDrill</wish>
+        <alsoWho>xeno:Stoneborn</alsoWho>
+        <alsoReason>{PAWN_nameDef} can't stop thinking about what lies under the colony's feet.</alsoReason>
+      </li>
+      <li><wish>Council_Wish_Hearth</wish><favoredBy>xeno:Stoneborn</favoredBy><favorFactor>1.5</favorFactor></li>
+      <!-- Elves: green growing things, herb lore, and the old books. -->
+      <li><wish>Council_Wish_Flowers</wish><favoredBy>xeno:DevDesigner_XenotypeWoodElves|xeno:DevDesigner_XenotypeHighElves</favoredBy><favorFactor>2.5</favorFactor></li>
+      <li><wish>Council_Wish_GardenSeat</wish><favoredBy>xeno:DevDesigner_XenotypeWoodElves</favoredBy><favorFactor>2</favorFactor></li>
+      <li><wish>Council_Wish_Healroot</wish><favoredBy>xeno:DevDesigner_XenotypeWoodElves</favoredBy><favorFactor>2</favorFactor></li>
+      <li><wish>Council_Wish_Books</wish><favoredBy>xeno:DevDesigner_XenotypeHighElves</favoredBy><favorFactor>2</favorFactor></li>
+      <li><wish>Council_Wish_Telescope</wish><favoredBy>xeno:DevDesigner_XenotypeHighElves|xeno:DV_Venator</favoredBy><favorFactor>1.5</favorFactor></li>
+      <li><wish>Council_Wish_WeaponRack</wish><favoredBy>xeno:DevDesigner_XenotypeDarkElves|xeno:DV_Venator</favoredBy><favorFactor>1.5</favorFactor></li>
+      <!-- Merfolk and the Nereids: born to the water. -->
+      <li><wish>Council_Wish_Bath</wish><favoredBy>xeno:Stagz_Merfolk_Coastal|xeno:Stagz_Merfolk_Abyssal|xeno:AG_Nereid</favoredBy><favorFactor>2.5</favorFactor></li>
+      <li><wish>Council_Wish_Fountain</wish><favoredBy>xeno:Stagz_Merfolk_Coastal|xeno:AG_Nereid</favoredBy><favorFactor>2</favorFactor></li>
+      <!-- Boglegs: greed, by their own design, and a nose for a deal. -->
+      <li><wish>Council_Wish_NestEgg</wish><favoredBy>xeno:DV_Bogleg</favoredBy><favorFactor>2.5</favorFactor></li>
+      <li><wish>Council_Wish_TraderGoods</wish><favoredBy>xeno:DV_Bogleg</favoredBy><favorFactor>2</favorFactor></li>
+      <li><wish>Council_Wish_Jewelry</wish><favoredBy>xeno:DV_Bogleg|xeno:DV_Avaloi</favoredBy><favorFactor>1.5</favorFactor></li>
+      <!-- Avaloi: glitterworlders, delicate, missing home's finery. -->
+      <li><wish>Council_Wish_FineClothes</wish><favoredBy>xeno:DV_Avaloi</favoredBy><favorFactor>2</favorFactor></li>
+      <li><wish>Council_Wish_Armchair</wish><favoredBy>xeno:DV_Avaloi</favoredBy><favorFactor>1.5</favorFactor></li>
+      <!-- Alpha Genes: efreet and drakonori like their warmth. -->
+      <li><wish>Council_Wish_Hearth</wish><favoredBy>xeno:AG_Efreet|xeno:AG_Drakonori</favoredBy><favorFactor>2</favorFactor></li>
+      <li><wish>Council_Wish_Sauna</wish><favoredBy>xeno:AG_Efreet|xeno:AG_Drakonori</favoredBy><favorFactor>2</favorFactor></li>
+    </wishes>
+    <decrees>
+      <li><decree>Council_Decree_LongHours</decree><who>xeno:Stoneborn</who><reaction>Like</reaction></li>
+      <li><decree>Council_Decree_Building</decree><who>xeno:Stoneborn</who><reaction>Like</reaction></li>
+      <li><decree>Council_Decree_Austerity</decree><who>xeno:DV_Bogleg|xeno:DV_Avaloi</who><reaction>Dislike</reaction></li>
+      <li><decree>Council_Decree_Harvest</decree><who>xeno:DevDesigner_XenotypeWoodElves</who><reaction>Like</reaction></li>
+      <li><decree>Council_Decree_Study</decree><who>xeno:DevDesigner_XenotypeHighElves</who><reaction>Like</reaction></li>
+      <li><decree>Council_Decree_Festival</decree><who>xeno:Stagz_Merfolk_Coastal</who><reaction>Like</reaction></li>
+    </decrees>
+    <character>
+      <li><who>xeno:Stoneborn</who><affinity><toil>0.5</toil><tradition>0.4</tradition></affinity></li>
+      <li><who>xeno:DevDesigner_XenotypeWoodElves</who><affinity><tradition>0.4</tradition><mercy>0.2</mercy></affinity></li>
+      <li><who>xeno:DevDesigner_XenotypeHighElves</who><affinity><tradition>0.5</tradition></affinity></li>
+      <li><who>xeno:DevDesigner_XenotypeDarkElves</who><affinity><openness>-0.3</openness></affinity></li>
+      <li><who>xeno:Stagz_Merfolk_Coastal</who><affinity><openness>0.5</openness><mercy>0.2</mercy></affinity></li>
+      <li><who>xeno:Stagz_Merfolk_Abyssal</who><affinity><tradition>0.4</tradition><openness>-0.4</openness></affinity></li>
+      <li><who>xeno:DV_Bogleg</who><affinity><generosity>-0.5</generosity><openness>0.3</openness></affinity></li>
+      <li><who>xeno:DV_Avaloi</who><affinity><mercy>0.4</mercy></affinity></li>
+      <li><who>xeno:DV_Venator</who><affinity><toil>0.3</toil></affinity></li>
+    </character>
+  </ColonyCouncil.ModPeopleDef>
+
+</Defs>
