@@ -183,10 +183,13 @@ now, for example "Good times: Rimfolk's good moods +11 of +18, 2 fading sooner Â
 complain about a bunkmate's snoring, take the last good meal, keep a borrowed knife, correct each other at the table
 and give each other the cold shoulder after a spat. Some natures grate: an annoying voice, creepy breathing, a
 pyromaniac near the tinder, a nudist at supper, an ascetic lecturing a greedy one. So do the times: someone keeps
-away from a sick colonist, two argue about a camp, a temper snaps. A messy or cramped home adds its own (19
-nuisances): a door that sticks, a leaking roof, smoke in a small room, a generator droning next to someone's bed, a
-filthy room, a cold or stifling one, the dog asleep on the bed, building work right outside, vermin in the stores, a
-bare earth floor. Each costs a point or two of mood for half a day to a day and a half. In an ordinary colony they
+away from a sick colonist, two argue about a camp, a temper snaps. Some follow something that really happened: a cook
+blamed by someone down with food poisoning, a bad day after a mental break turned into a joke, the proposer of a
+finished council project taking all the credit, a shared tool handed back chipped. A messy or cramped home adds its
+own (22 nuisances): a door that sticks, a leaking roof, smoke in a small room, a generator droning next to someone's
+bed, a filthy room, a cold or stifling one, the dog asleep on the bed, building work right outside, vermin in the
+stores, a bare earth floor, rotten food in the stockpile, work in the rain with no coat when the colony could make
+one, junk left in a bedroom. Each costs a point or two of mood for half a day to a day and a half. In an ordinary colony they
 come about as often as the warm moments; less in a happy, roomy one, more in barracks or between people who dislike
 each other. Abrasive, volatile and jealous colonists start more of them, kind ones none. After a spat the two share
 no warm moments until it wears off or they clear the air. A setting turns them off.
@@ -209,6 +212,33 @@ None of them is a flat penalty: a second meal bill, a second job in the Work tab
 away. They feed the heart's feelings (loneliness, restlessness, frustration, contentment). The **Life's ups and
 downs** setting makes them gentle (half strength, no half-built work), normal or demanding (half again as strong).
 Meals are noted through one of the deeper game hooks. The Almanac's *everyday pressures* page has the details.
+
+**Setbacks.** The other side of all the small rewards: about forty bad moods that come from what actually happens in
+play, each naming its cause in its tooltip and, in the Mood tab, what helps. Most are -1 to -4 for a day or a few; the
+few bigger ones (-5 to -6) are for real losses.
+- **The council**: a wish still waiting while wishes voiced after it come true (-1 to -2), an idea turned down at a
+  meeting (-3, -4 if the meeting backed it) or a vote lost (-1), a disliked decree dragging on past two days (-1 to
+  -2), a promise broken to a close friend or someone they love (-3 to -5), a rival given a name or a council seat
+  (-2), and answers that go against someone's nature: "not my choice" (-1 to -2), or "I said it would go wrong" (-2)
+  when the answer's gamble failed. These follow the stakes' downsides.
+- **Gatherings**: a gathering an answer called that went ahead without them (-1), a feast that ran out of meals before
+  they ate (-2), a party or wedding rained on in the open (-1).
+- **Work**: something they built torn down (-2) or wrecked (-4, -6 for their best work), a crop they sowed lost to
+  blight or frost (-2, -4 for a whole field), a botched build, poor or awful work in their own passion, making do at a
+  spot or campfire when a proper bench can be built, an operation that failed in their hands (-3 to -4), long hauls
+  across the map, hours left hurt waiting for a doctor, and for keen researchers no research under way.
+- **Home**: a meal eaten outside in the freezing cold or rain, their art or an animal they trained sold to a trader,
+  envy of a room three grades better than theirs.
+- **Between people and worries**: overtaken as the colony's best at their passion, a friendship gone cold, loud work
+  through the wall at night, a partner, family member or close friend seriously ill, a loved one's caravan short of
+  food, a nemesis still at large, a debt to a people unpaid (kind colonists), homesickness after a hard week, and long
+  quiet days with less to do than they expect.
+
+None comes from nowhere, and most can be ended or avoided: answer the wish, lift the decree, build the bench, put a
+stockpile near the work, defend what matters. The colony's life follows "Life's ups and downs" (never less than a
+whole point), what happens between people follows the frictions setting (and envy the jealousy setting), and all of
+them sting up to 40% more for spoiled colonists. Events are noticed where they already happen, through the deeper game
+hooks; the lasting ones are worked out once an hour. The Almanac's *setbacks* page has the full table.
 
 ### Decrees: spend the good mood
 When the colony is doing well, put that goodwill to work. The Decrees tab lets you declare up to two policies at a
@@ -289,7 +319,7 @@ that lands badly, a snub at dinner, a squabble over chores, war stories, a lesso
 handmade gift, gossip that gets found out, an unexpected truce. Life brings its own: a vigil at a friend's sickbed,
 an evening at a camp on the map, a quarrel over what the council decided, fears confided in the night, grief carried
 together, a peace offering after a quarrel. Each one nudges their bond. In conversation they share smaller moments
-too (about a hundred kinds, 40 of them frictions), shaped by who they are (night owls keeping each other company,
+too (about a hundred kinds, 44 of them frictions), shaped by who they are (night owls keeping each other company,
 brawlers comparing scars, an iron-willed colonist steadying a nervous one) and by what's going on (visiting the sick,
 talking over a council meeting, watching a camp's fires, confiding a worry). Moments, frictions and events keep to
 one story between the same two: no compliment right after an insult, no warm evening the day after a falling-out.
@@ -748,7 +778,8 @@ Rimfolk reads these mods by name while the game runs: with one missing, its part
 ## Why am I feeling this?
 Every mood Rimfolk gives says what caused it, under the description in its tooltip: whose wish came true (or
 didn't), which council decision, which decree and how long it has left, which visitor, secret, nemesis or
-moment. The trust mood lists what moved it lately.
+moment, which setback (the building wrecked, the field lost, the friend who is ill). The trust mood lists what moved
+it lately.
 
 ## Rimfolk events
 Every few days, something happens to the colony from outside: Rimfolk's own events. They join your storyteller's own
@@ -1062,7 +1093,7 @@ where they eat"). The mood bar shows where they are, where they're heading and t
 The council window's **Moods** page (Colony section) adds it up for the whole colony: what weighs on everyone,
 who feels it, who is closest to breaking, and how much comes from the base game, Rimfolk and each of your mods.
 Buttons lead straight to the advisor's matching warning, the council page that deals with it, or an Almanac page.
-Hints cover the base game, the DLCs and Rimfolk (145 groups of them, down to the calendar's days, convalescence and
+Hints cover the base game, the DLCs and Rimfolk (172 groups of them, down to the calendar's days, convalescence and
 personal stories); moods from other mods get general advice and their mod's name.
 The game's own **Needs** tab gets the same hints: hover a mood and its usual tooltip ends with which mod it comes
 from and what to do about it (a setting turns this off).
@@ -1258,8 +1289,8 @@ The pages:
   last, jealousy and favoritism, wishes after events, reminders, self-help, leaving, wishes for others and
   petitions; dilemmas (and how often), decree requests, the colony's character and offices; the meeting interval,
   ambition deadlines, and whether meetings call people from their work.
-- **People & moods**: **life's ups and downs** (how hard the everyday pressures press: **gentle**, half strength, no
-  half-built work, and high standards don't make frictions sting more; **normal**, the default; or **demanding**,
+- **People & moods**: **life's ups and downs** (how hard the everyday pressures and setbacks press: **gentle**, half
+  strength, no half-built work or the fussiest setbacks, and high standards don't make frictions sting more; **normal**, the default; or **demanding**,
   half again as strong), rising standards (and whether they also cover the game's comforts), whether Rimfolk's good
   moods add up slowly, getting used to good times, everyday frictions; the social web and social events, secrets,
   vendettas; life goals, personal stories (off, rare, normal or frequent), quirks, heirlooms, coming of age,
