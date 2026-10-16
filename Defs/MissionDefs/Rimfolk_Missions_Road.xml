@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Missions of the road (Source/ColonyCouncil/Missions/Workers_MissionRoad.cs): escort an old pilgrim to the
+       people's town, carry word to a far settlement of another people, find a neighbour's child lost on the colony's
+       land, and send hands to bring in a neighbour's harvest. Each tells the people's memory who did it
+       (World/KinMemory.cs), and their people greet that colonist by name afterwards.
+       Texts may use {A} (who dealt with the neighbour; for the lost child, whoever found them), {FACTION}, {PLACE} (the
+       town: their town, or the far town the word goes to), {DEAD} (the pilgrim, the one the word is for, the lost child)
+       and {TALE} (how far the town is by caravan). In the offer, {X} is the pilgrim or the child and {ENEMY} the far
+       town's people. {COUNT} is the reward. In terms, reminders and accepted lines, {DAYS} is the time; in endings,
+       {ITEM} is what was paid. Lines are tagged with the mission (escort, word, lostchild, harvest), its variant (vow,
+       home; death, betrothal, warning, peace; child, youth; sickles, machines) and, for endings, how it ended. -->
+
+  <!-- ===================== Escort a pilgrim ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Mission_Escort</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a pilgrim to escort</label>
+    <workerClass>ColonyCouncil.HappeningWorker_MissionEscort</workerClass>
+    <baseChance>0.5</baseChance>
+    <minRefireDays>75</minRefireDays>
+    <earliestDay>30</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <answerDays>3</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>A pilgrim to see home</li>
+          <li>{DEAD}'s last pilgrimage</li>
+          <li>An escort to {PLACE}</li>
+        </titles>
+        <texts>
+          <li>[vow] {DEAD}, an old pilgrim of {FACTION}, has vowed to walk to the shrine at {PLACE} one last time before {X_pronoun} dies. {FACTION} have sent word: the roads aren't what they were, and they would be grateful if the colony would see {DEAD} there safely.\n\n{DEAD} will come to the colony first, and wait for whoever goes.</li>
+          <li>[home] {DEAD} of {FACTION} has been on the pilgrim roads for most of {X_possessive} life and wants to die at home, at {PLACE}. {FACTION} ask the colony to walk with {X_objective} the last of the way, since they've heard the colony's people can handle themselves on the road.</li>
+          <li>[their:friend] {FACTION} have a favour to ask, and they've asked for {FRIEND_nameDef} by name: an old pilgrim, {DEAD}, needs to get to {PLACE} safely, and {FACTION} trust the colony with {X_objective}.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Take the pilgrim to {PLACE}</label>
+            <outcome>The colony will see {DEAD} to {PLACE}.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>{FACTION} will find someone else to walk with {DEAD}.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.MissionText">
+        <terms>
+          <li>What they ask: when {DEAD} comes to the colony, send a caravan with at least one of the colony's people to {PLACE} (about {TALE} away); {DEAD} walks with it. Within {DAYS} of the colony agreeing.\n\nWhen {DEAD} reaches {PLACE}, {FACTION} pay {COUNT} silver into the caravan's packs, and remember who walked with {DEAD}.</li>
+        </terms>
+        <accepted>
+          <li>The colony will see {DEAD} to {PLACE}. {DEAD} will come to the colony first.</li>
+        </accepted>
+        <ready>
+          <li>{DEAD} has come to the colony and is waiting by the fire with a staff and a small bag. Send a caravan with at least one of the colony's people to {PLACE} within {DAYS}, and {DEAD} will go with it.</li>
+        </ready>
+        <reminder>
+          <li>{DEAD} is still waiting for the road to {PLACE}. There's {DAYS} left.</li>
+        </reminder>
+        <doneTitles>
+          <li>[arrived] {DEAD} reaches {PLACE}</li>
+        </doneTitles>
+        <done>
+          <li>[arrived,vow] {DEAD} reached the shrine at {PLACE}, knelt, and stayed kneeling a long time. {FACTION} paid the caravan {ITEM} silver, and {A_nameDef}'s name will be said at {PLACE} with {DEAD}'s for a while.</li>
+          <li>[arrived,home] {DEAD} is home at {PLACE}, in {X_possessive} own chair by {X_possessive} own fire, and talked the whole last mile. {FACTION} paid the caravan {ITEM} silver, and won't forget who walked with {DEAD}.</li>
+          <li>[arrived] {DEAD} reached {PLACE} safely with the colony's caravan. {FACTION} paid {ITEM} silver and thanked {A_nameDef} in front of half the town.</li>
+        </done>
+        <failTitles>
+          <li>[alone] {DEAD} goes alone</li>
+          <li>[turned] {DEAD} walks on alone</li>
+          <li>[late] {DEAD} on the road</li>
+          <li>[harmed] {DEAD}</li>
+        </failTitles>
+        <fail>
+          <li>[alone] Nobody from the colony set out for {PLACE}, and {DEAD} has gone on alone with {X_possessive} staff. {FACTION} noticed.</li>
+          <li>[turned] The colony's caravan turned back before {PLACE}, and {DEAD} walked the rest of the way alone. {X_pronoun} got there. {FACTION} won't say it was thanks to the colony.</li>
+          <li>[late] The caravan took so long that {DEAD} went ahead without it. {FACTION} are not pleased.</li>
+          <li>[harmed] Something happened to {DEAD} in the colony's care. {FACTION} will want to know what.</li>
+        </fail>
+        <cancelled>
+          <li>{FACTION} want nothing more to do with the colony, and {DEAD} has gone with someone else.</li>
+          <li>The town of {PLACE} is gone, and {DEAD} has nowhere left to go to.</li>
+        </cancelled>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== Carry word to a far settlement ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Mission_Word</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>word to carry</label>
+    <workerClass>ColonyCouncil.HappeningWorker_MissionWord</workerClass>
+    <baseChance>0.5</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>25</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <answerDays>3</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>Word for {PLACE}</li>
+          <li>A message to carry</li>
+        </titles>
+        <texts>
+          <li>[death] {FACTION} have word that must reach {DEAD} at {PLACE}, a town of {ENEMY} far beyond their own riders' roads: a sister of {DEAD}'s has died, and the family wants {DEAD} to hear it from someone, not from rumour.\n\nThey ask whether the colony's next caravan might carry it.</li>
+          <li>[betrothal] {FACTION} have a betrothal to announce to {DEAD} at {PLACE}, among {ENEMY}: a son of theirs to a daughter of {DEAD}'s house, arranged by letter years ago. Someone has to carry the word and the token, and {FACTION}'s riders don't go that far.</li>
+          <li>[warning] {FACTION} have heard something on the roads that {DEAD} at {PLACE}, among {ENEMY}, needs to know before the season turns: a warning about raiders, or the river, or a debt coming due. They won't say which. They ask the colony to carry it, sealed.</li>
+          <li>[peace] {FACTION} and {ENEMY} have been cool with each other for years. {FACTION} want to send {DEAD} at {PLACE} an offer to talk, but a rider of their own might not be received. A messenger from a neighbour would be.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Carry the word to {PLACE}</label>
+            <outcome>The colony will carry {FACTION}'s word to {PLACE}.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>{FACTION} will find another way.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.MissionText">
+        <terms>
+          <li>What they ask: any caravan with at least one of the colony's people at {PLACE} (about {TALE} away) within {DAYS} of the colony agreeing, to give the word to {DEAD}.\n\nThe town that receives it pays the messengers {COUNT} silver, as is the custom, and both peoples will remember who carried it.</li>
+        </terms>
+        <accepted>
+          <li>The colony will carry {FACTION}'s word to {DEAD} at {PLACE}. Send a caravan there within {DAYS}.</li>
+          <li>[warning] The colony has {FACTION}'s sealed warning for {DEAD} at {PLACE}. A caravan must get it there within {DAYS}.</li>
+        </accepted>
+        <reminder>
+          <li>{FACTION}'s word still hasn't reached {PLACE}. There's {DAYS} left.</li>
+        </reminder>
+        <doneTitles>
+          <li>[delivered] Word reaches {PLACE}</li>
+        </doneTitles>
+        <done>
+          <li>[delivered,death] The colony's caravan brought the news to {DEAD} at {PLACE}. {DEAD} took it quietly, thanked the messengers, and paid them {ITEM} silver, as is the custom for bringing hard news gently.</li>
+          <li>[delivered,betrothal] The betrothal token reached {DEAD} at {PLACE}, and there was a great deal of crying and then a great deal of drinking. The messengers came away with {ITEM} silver and headaches.</li>
+          <li>[delivered,warning] The sealed warning reached {DEAD} at {PLACE}. {DEAD} read it twice, went pale, then paid the messengers {ITEM} silver and sent them off with thanks.</li>
+          <li>[delivered,peace] {DEAD} at {PLACE} read {FACTION}'s offer twice, then wrote an answer on the back of it. The colony's caravan carries the answer, {ITEM} silver, and the thanks of both peoples.</li>
+        </done>
+        <failTitles>
+          <li>[late] The word comes too late</li>
+        </failTitles>
+        <fail>
+          <li>[late] {FACTION}'s word never reached {PLACE}, or reached it by someone else's mouth first. {FACTION} are disappointed in the colony.</li>
+          <li>[late,death] {DEAD} heard of the death at {PLACE} from a stranger in a tavern. {FACTION} had asked the colony to spare {DEAD} that.</li>
+        </fail>
+        <cancelled>
+          <li>The word for {PLACE} can't be carried any more: the town, or the peace with its people, is gone.</li>
+        </cancelled>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== A neighbour's lost child ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Mission_LostChild</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a neighbour's lost child</label>
+    <workerClass>ColonyCouncil.HappeningWorker_MissionLostChild</workerClass>
+    <baseChance>0.4</baseChance>
+    <minRefireDays>90</minRefireDays>
+    <earliestDay>30</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <answerDays>0.25</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>A lost child</li>
+          <li>{DEAD} is missing</li>
+        </titles>
+        <texts>
+          <li>[child] A rider from {PLACE} came to the gate white-faced: {DEAD}, a child of {FACTION}, wandered off from a family picnic yesterday and hasn't come back. Their tracks lead onto the colony's land.\n\n{FACTION} are searching the hills to the south. They beg the colony to search its own.</li>
+          <li>[youth] A rider from {PLACE} is at the gate: {DEAD}, a youngster of {FACTION}, went after a strayed goat two days ago and never came home. The goat came home. The tracks go onto the colony's land.\n\n{FACTION} beg the colony to look.</li>
+          <li>[their:friend] {FACTION}'s rider asked for {FRIEND_nameDef} by name: {DEAD}, one of their children, is lost somewhere on the colony's land, and {FACTION} trust no one more to find {X_objective}.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>Search for {DEAD}</label>
+            <outcome>The colony will look for {DEAD}.</outcome>
+          </li>
+          <li>
+            <label>The colony can't spare anyone</label>
+            <outcome>The rider goes back to the search without the colony.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.MissionText">
+        <terms>
+          <li>What they ask: find {DEAD} somewhere on the colony's land within {DAYS}. Anyone of the colony who comes within a few steps of {X_objective} will find {X_objective}; then {DEAD} will follow them back, and {FACTION} will come for {X_objective}.\n\n{FACTION} will pay {COUNT} silver, and never forget who found their child.</li>
+        </terms>
+        <accepted>
+          <li>The colony is searching for {DEAD}. Someone has to come within a few steps of {X_objective} within {DAYS}.</li>
+        </accepted>
+        <ready>
+          <li>{A_nameDef} found {DEAD} curled up under a bush, cold and frightened but unhurt. {DEAD} is coming back to the colony, holding {A_nameDef}'s hand, and {FACTION} will be here for {X_objective} within {DAYS}.</li>
+          <li>[youth] {A_nameDef} found {DEAD} sitting on a rock, pretending not to have been crying. {DEAD} is coming back to the colony with {A_objective}, and {FACTION} will come for {X_objective} within {DAYS}.</li>
+        </ready>
+        <reminder>
+          <li>{DEAD} is still out there somewhere. It will be dark in {DAYS}.</li>
+        </reminder>
+        <doneTitles>
+          <li>[found] {DEAD} goes home</li>
+        </doneTitles>
+        <done>
+          <li>[found] {DEAD}'s mother came running the last few yards and didn't let go of {X_objective} for a long time. {FACTION} left {ITEM} silver at the gate, and the whole of {PLACE} knows that {A_nameDef} found their child.</li>
+          <li>[found,youth] {DEAD}'s family came for {X_objective}, scolded {X_objective} the whole way back to the gate, and hugged {X_objective} the whole time. {FACTION} left {ITEM} silver and their thanks, and asked {A_nameDef}'s name twice so they'd get it right.</li>
+        </done>
+        <failTitles>
+          <li>[searchers] {DEAD} found by others</li>
+          <li>[harmed] {DEAD}</li>
+        </failTitles>
+        <fail>
+          <li>[searchers] {FACTION}'s own searchers found {DEAD} in the end, tired and hungry, on the far side of the colony's land. They're glad. They're not glad about the colony.</li>
+          <li>[harmed] {DEAD} didn't make it home. {FACTION} will grieve, and they will remember that it happened on the colony's land.</li>
+        </fail>
+        <cancelled>
+          <li>{FACTION} want nothing more to do with the colony, and have taken over the search themselves.</li>
+        </cancelled>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== Help with a harvest ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Mission_Harvest</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>hands for a harvest</label>
+    <workerClass>ColonyCouncil.HappeningWorker_MissionHarvest</workerClass>
+    <baseChance>0.5</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>25</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <answerDays>2</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>Hands for the harvest</li>
+          <li>The harvest at {PLACE}</li>
+        </titles>
+        <texts>
+          <li>[sickles] {FACTION} have the best crop in years standing in the fields at {PLACE}, and not enough hands to bring it in before the rain. They ask whether the colony could send some of its people with sickles for a day or two.\n\nThey'll pay in grain, and in silver, and with a seat at the harvest supper.</li>
+          <li>[machines] {FACTION}'s harvester has broken down at {PLACE} with half the fields still standing and rain coming. They need hands, the old-fashioned way, for a day or two, and they're asking the colony.</li>
+          <li>[their:friend] {FACTION} need hands to bring in the harvest at {PLACE}, and they've written that they hope {FRIEND_nameDef} will be among them: their children ask after {FRIEND_objective}.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Send hands to {PLACE}</label>
+            <outcome>The colony will send people for the harvest.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>{FACTION} will have to manage with what hands they have.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.MissionText">
+        <terms>
+          <li>What they ask: at least two of the colony's people who can work the fields at {PLACE} by caravan (about {TALE} away) within {DAYS}, staying about a day and a half while the harvest comes in. The caravan only needs to reach the town and wait there.\n\nThey'll go home with a share of the harvest and about {COUNT} silver, and {FACTION} will remember who came. Half the time, half the share.</li>
+        </terms>
+        <accepted>
+          <li>The colony will send hands to {PLACE}. Form a caravan of at least two who can work the fields, and send it there within {DAYS}.</li>
+        </accepted>
+        <ready>
+          <li>The colony's people have reached {PLACE} and gone straight out to the fields. Keep the caravan there for {DAYS} while the harvest comes in.</li>
+        </ready>
+        <reminder>
+          <li>The harvest at {PLACE} is waiting, and the colony's hands haven't come. There's {DAYS} left.</li>
+        </reminder>
+        <doneTitles>
+          <li>[harvested] The harvest is in at {PLACE}</li>
+          <li>[partial] Part of the harvest</li>
+        </doneTitles>
+        <done>
+          <li>[harvested] The last sheaf is in at {PLACE}, and the colony's people sat at the head of the harvest supper. They're coming home with a share of the grain, a purse of silver, and blisters.</li>
+          <li>[partial] The colony's people helped with part of the harvest at {PLACE} before they had to go. {FACTION} sent them home with a smaller share and honest thanks.</li>
+        </done>
+        <failTitles>
+          <li>[missed] The harvest at {PLACE}</li>
+        </failTitles>
+        <fail>
+          <li>[missed] Nobody from the colony came to {PLACE}, and the rain came first. {FACTION} lost part of their best crop in years, and they know who said they'd come.</li>
+        </fail>
+        <cancelled>
+          <li>The harvest at {PLACE} no longer needs the colony: the town, or the friendship, is gone.</li>
+        </cancelled>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>

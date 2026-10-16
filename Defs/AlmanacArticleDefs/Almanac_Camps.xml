@@ -8,7 +8,7 @@
     <label>camps on the map</label>
     <category>Council</category>
     <order>16</order>
-    <summary>Groups who aren't hostile make camp on the colony's map for a few days: hunters, refugees, prospectors, pilgrims, traders, healers, players and more.</summary>
+    <summary>Groups who aren't hostile make camp on the colony's map for a few days: hunters, refugees, prospectors, pilgrims, traders, healers, players, drovers, minstrels, mourners and more.</summary>
     <tip>A camp is a neighbor for a week. Terms keep the peace, but every term you add makes them warier.</tip>
     <description>Now and then a group of travelers makes camp somewhere on the colony's map. They walk in, build a fire, beds and whatever their kind needs (a stall, a forge, a prayer spot, a stage), and stay from a few days to about two weeks. A letter asks what the colony makes of them: let them stay, set terms, ask them to move on with a gift or without, or drive them off. Once they're settled, the council window's World page has their camp: trade, terms, gifts, hiring, and asking them to go.
 
@@ -29,14 +29,40 @@ Camps come with world events switched on and the camps setting on. Only one camp
           <li>A procession of the faithful | 4 to 7, for a few days | Pray at their camp and bless the colony</li>
           <li>Traveling players | 3 to 6 | Rehearse, and put on a show the colony is invited to</li>
           <li>Surveyors (medieval and later) | 2 to 4 | Take sightings in the hills; once per camp, show the colony a seam of ore in its own rock</li>
+          <li>Salt caravan (tribal and later) | 4 to 7, for 2 to 4 days | A bulk trader's stall; leave goods from their packs, tell news from the road</li>
+          <li>Merchants from afar | 3 to 5, for 2 to 5 days | An exotic trader's stall; tell news of far places</li>
+          <li>Drovers (tribal and later) | 3 to 5, for 2 to 4 days | Graze a herd beyond the camp; leave milk, wool or a hide</li>
+          <li>Penitents | 3 to 6, for 2 to 4 days | Pray at their camp, walk round the colony praying for it</li>
+          <li>Tree-singers (Ideology: only of a faith that holds trees or nature sacred) | 2 to 5, for 2 to 5 days | Sing to the trees, bless the fields, tend an ailment with a leaf and a moss</li>
+          <li>A travelling healer | 1 or 2, for 3 to 6 days | Ease a colonist's ailment or illness, leave herbal medicine</li>
+          <li>A band of minstrels | 3 to 5, for 2 to 5 days | Play at their fire in the evening: the colony walks over to listen</li>
+          <li>Mourners passing through | 3 to 6, for a night to three | Keep a vigil by their cart; tell the story of the one they carry</li>
         </table>
-        <after>A good turn comes now and then while things are going well between the camp and the colony. A healer's care, a show and a blessing each leave a small good mood.</after>
+        <after>A good turn comes now and then while things are going well between the camp and the colony. A healer's care, a show, a song and a blessing each leave a small good mood. News from the road is told to a colonist sitting with one of them at the time.</after>
       </li>
       <li>
         <heading>Camps and the world</heading>
-        <text>Camps follow what happens in the region. While a famine, a plague, a war, a flood, a drought or a hard winter runs, refugees come about three times as often, and their letters say what they fled. Pilgrims and the procession come more often in a holy year or a great pilgrimage, healers in a plague, surveyors along a new road or in a silver rush, traders in a trading season or along a new road.
+        <text>Camps follow what happens in the region. While a famine, a plague, a war, a flood, a drought, a hard winter, a great fire, exiles on the roads or a rebuilding runs, refugees come about three times as often, and their letters say what they fled. Pilgrims, penitents, tree-singers and the procession come more often in a holy year, a great pilgrimage or under a comet, healers in a plague, surveyors along a new road or in a silver rush, traders and caravans in a trading season, a fair or along a new road, drovers on the drove roads and at harvest, minstrels in a season of songs, mourners in a people's mourning, a plague or a war.
 
-With Ideology, pilgrims and the procession follow one of the world's creeds and name it in their letters, and say so when the colony shares it. Without Ideology, their faith goes unnamed.</text>
+With Ideology, pilgrims, penitents and the procession follow one of the world's creeds and name it in their letters, and say so when the colony shares it; penitents of a guilty, a pain-is-virtue or a preaching faith say that too. Tree-singers come only from a people whose faith holds trees, nature or spirits sacred. Without Ideology, their faith goes unnamed.
+
+A camp of a people that remembers one of the colony by name asks for that colonist when it comes, and that colonist goes out to meet them.</text>
+      </li>
+      <li>
+        <heading>What the colony can ask of them</heading>
+        <text>Most of the newer camps can be asked for something beyond trade, terms and hiring, from their camp's page on the World page, while they're settled. Who goes is the colonist best at what's asked, else the one who has spent most time at their fire. What people do happens on the map: an evening at their fire is a gathering there, a lesson is the colonist at their teacher's side, bread for the road is carried over to their camp. Each is asked once per camp (the healer's care once a day), some only after a day or so, some only in the evening (4pm to 10pm), and what costs silver costs more for a richer colony.</text>
+        <table>
+          <li>Camp | What the colony can ask</li>
+          <li>Salt caravan | An evening at their fire (recreation); preserved fare for the stores (90 silver); news of the roads ahead (Social practice for the one who asks, a little goodwill)</li>
+          <li>Merchants from afar | Their charts and almanacs (120 silver: research); supper with the merchants as guests (cooking practice for the colony)</li>
+          <li>Drovers | A beast from the herd that suits the weather (180 silver); a few hours learning herding at their side (Animals)</li>
+          <li>Penitents | Joining their evening prayer (a small good mood); bread for the road (15 raw food, carried over: goodwill)</li>
+          <li>Tree-singers | A walk in the woods with them (a small good mood); singing to the fields, with the growers along (Plants practice)</li>
+          <li>A travelling healer | Seeing a colonist who is ill or ailing (eases it); teaching the colony's best doctor at their side on the rounds (70 silver: Medicine)</li>
+          <li>A band of minstrels | Playing at a feast (80 silver); a song about the colony, sung at their fire (a good mood: the song travels); a tune taught (Artistic)</li>
+          <li>Mourners | Sitting vigil with them tonight; standing by the road when they go (goodwill); food for the road (15 raw food)</li>
+        </table>
+        <after>Each eases the camp's tension and warms them to the colonist who went, and their people remember the kinder ones: a vigil, the road, a supper, a feast, food given, a beast bought, a healer paid to teach.</after>
       </li>
       <li>
         <heading>Terms, trouble and parting</heading>
@@ -45,8 +71,8 @@ With Ideology, pilgrims and the procession follow one of the world's creeds and 
 Many in a camp will work for the colony for silver, and now and then one asks to join. When their time is up, a camp that's on good terms may ask to stay a little longer. Driving a camp off works, but costs goodwill with their people.</text>
       </li>
     </sections>
-    <keywords><li>camp</li><li>campers</li><li>hunters</li><li>refugees</li><li>prospectors</li><li>pilgrims</li><li>traders</li><li>smith</li><li>hermit</li><li>healers</li><li>procession</li><li>players</li><li>circus</li><li>surveyors</li><li>terms</li></keywords>
-    <seeAlso><li>Council_Alm_C_WorldEvents</li><li>Council_Alm_C_WorldSituations</li><li>Council_Alm_C_Strangers</li></seeAlso>
+    <keywords><li>camp</li><li>campers</li><li>hunters</li><li>refugees</li><li>prospectors</li><li>pilgrims</li><li>traders</li><li>smith</li><li>hermit</li><li>healers</li><li>procession</li><li>players</li><li>circus</li><li>surveyors</li><li>caravan</li><li>salt</li><li>merchants</li><li>drovers</li><li>penitents</li><li>tree-singers</li><li>minstrels</li><li>mourners</li><li>vigil</li><li>ask</li><li>terms</li></keywords>
+    <seeAlso><li>Council_Alm_C_WorldEvents</li><li>Council_Alm_C_WorldSituations</li><li>Council_Alm_C_Strangers</li><li>Council_Alm_C_WorldMemory</li></seeAlso>
   </ColonyCouncil.AlmanacArticleDef>
 
 </Defs>

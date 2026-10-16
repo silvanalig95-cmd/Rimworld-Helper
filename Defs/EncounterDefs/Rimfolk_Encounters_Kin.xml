@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    How a colonist is greeted by strangers whose people remember them by name (Source/ColonyCouncil/World/KinMemory.cs):
+    the one who set one of theirs free (moment their:freedbyA), the one who tended their wounded (their:tendedbyA), the
+    one who found their lost child or walked their pilgrim home (their:helpedbyA); their:dearA when the debt is a big
+    one. The encounter picks that colonist as A. Same format as Rimfolk_Encounters_Remembered.xml. None of them is a
+    mood: a greeting gives trust, a little recreation, practice or a small gift.
+  -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncK_FreedGreeted</defName>
+    <label>the one who set them free</label>
+    <weight>1.8</weight>
+    <cooldownDays>8</cooldownDays>
+    <moment>their:freedbyA</moment>
+    <stranger><kind>Visitor</kind><adult>true</adult></stranger>
+    <texts>
+      <li>{X_nameDef} stopped short when {X_pronoun} saw {A_nameDef}, then crossed the yard and took both {A_possessive} hands. "You're the one who opened the door," {X_pronoun} said. "{FACTION} know your name."</li>
+      <li>{X_nameDef} had been told what {A_nameDef} looks like, and found {A_objective} without asking anyone. {X_pronoun} only wanted to say thank you, for a cousin who walked home from this colony instead of rotting in it.</li>
+      <li>"So you're {A_nameDef}," said {X_nameDef}, looking {A_objective} up and down. "I thought you'd be taller. My brother talks about you as if you were." {X_pronoun} laughed, and then didn't, and shook {A_possessive} hand.</li>
+      <li>[their:dearA] {X_nameDef} embraced {A_nameDef} at the gate as if they'd known each other for years. Among {FACTION}, {X_pronoun} said, there are children named after the colonist who let their people go home.</li>
+      <li>[theirLowtech] {X_nameDef} pressed a knot of braided cord into {A_nameDef}'s hand: among {FACTION} it's what you give to someone who freed one of your own. {A_nameDef} has tied it to {A_possessive} belt.</li>
+      <li>[theirHightech] {X_nameDef} showed {A_nameDef} a photo of a family around a table, and pointed to one face. "Home for two winters now, because of you," {X_pronoun} said.</li>
+      <li>[trait:Kind] {X_nameDef} thanked {A_nameDef} for letting {X_possessive} kinsman go. {A_nameDef} said it was only right. {X_nameDef} said that was exactly why it mattered.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>A</target><amount>0.12</amount></li>
+      <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>1</amount></li>
+    </effects>
+    <journal>Council_Journal_KinGreeted</journal>
+    <notable>true</notable>
+    <ways><mercy>1</mercy></ways>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncK_TendedGreeted</defName>
+    <label>the one who tended them</label>
+    <weight>1.8</weight>
+    <cooldownDays>8</cooldownDays>
+    <moment>their:tendedbyA</moment>
+    <stranger><kind>Visitor</kind><adult>true</adult></stranger>
+    <texts>
+      <li>{X_nameDef} asked to see the colony's doctor, and when {A_nameDef} came, {X_pronoun} rolled up a sleeve to show a long, neat scar. "Your stitches," {X_pronoun} said. "They held. I wanted you to see."</li>
+      <li>{X_nameDef} brought word to {A_nameDef} from someone {A_pronoun} once patched up on a bad day: they walk without a stick now, and they send their thanks to the steady hands.</li>
+      <li>{X_nameDef} of {FACTION} found {A_nameDef} and asked a dozen questions about wounds and fevers, writing down every answer. Their own healer, {X_pronoun} explained, wants to know how the colony's doctor does it.</li>
+      <li>[their:dearA] {X_nameDef} told {A_nameDef} that among {FACTION} they still tell the story of the stranger who stitched their people back together, and that in the story {A_nameDef} is nearly a saint. {A_nameDef} went quite red.</li>
+      <li>[theirLowtech] {X_nameDef} left a bundle of dried healing herbs by {A_nameDef}'s bed, with a message from {FACTION}'s wise-woman: from one healer to another.</li>
+      <li>[skill:Medicine] {X_nameDef} and {A_nameDef} ended up comparing scars and treatments on the porch until late. Two people who know what a bad wound looks like, and how good it is when one closes.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Medicine</skill><xp>250</xp></li>
+      <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>1</amount></li>
+    </effects>
+    <journal>Council_Journal_KinGreeted</journal>
+    <notable>true</notable>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncK_HelpedGreeted</defName>
+    <label>a name they remember</label>
+    <weight>1.5</weight>
+    <cooldownDays>8</cooldownDays>
+    <moment>their:helpedbyA</moment>
+    <stranger><kind>Visitor</kind><adult>true</adult></stranger>
+    <texts>
+      <li>{X_nameDef} had a message for {A_nameDef} from {FACTION}: what {A_pronoun} did for them hasn't been forgotten, and if {A_pronoun} ever comes their way, there's a bed and a meal for {A_objective} in any house of theirs.</li>
+      <li>{X_nameDef} recognised {A_nameDef} from the description and came straight over. "You're the one they talk about," {X_pronoun} said, and wouldn't say any more, only smiled.</li>
+      <li>[their:dearA] {X_nameDef} had walked a long way partly to see {A_nameDef}, {X_pronoun} admitted: {FACTION} owe {A_objective} a debt they talk about at weddings.</li>
+      <li>{X_nameDef} asked {A_nameDef} to come and sit with the visitors for supper, and made a point of serving {A_objective} first.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>A</target><amount>0.1</amount></li>
+    </effects>
+    <journal>Council_Journal_KinGreeted</journal>
+    <notable>true</notable>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncK_TraderRemembers</defName>
+    <label>a friend's price, by name</label>
+    <weight>1.4</weight>
+    <cooldownDays>10</cooldownDays>
+    <moment>their:freedbyA|their:tendedbyA|their:helpedbyA</moment>
+    <stranger><kind>Trader</kind></stranger>
+    <texts>
+      <li>{X_nameDef} wouldn't let {A_nameDef} pay for the first thing {A_pronoun} picked up. "Not you," {X_pronoun} said. "{FACTION} know who you are." There was a little silver left on the counter when {A_nameDef} went.</li>
+      <li>{X_nameDef} asked for {A_nameDef} by name before opening a single crate, and set a small gift aside for {A_objective} before anyone else could haggle.</li>
+      <li>[their:freedbyA] {X_nameDef} told {A_nameDef} the cousin {A_pronoun} once let go is running {X_possessive} family's stall now, and sent this along for {A_objective}: a purse, not heavy, but full.</li>
+      <li>[their:tendedbyA] {X_nameDef} put a purse in {A_nameDef}'s hands from someone whose wounds {A_pronoun} once dressed. "For the bandages," {X_pronoun} said. "And the rest."</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>Silver</thing><count>25</count></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Social</skill><xp>150</xp></li>
+    </effects>
+    <journal>Council_Journal_KinGreeted</journal>
+  </ColonyCouncil.EncounterDef>
+
+</Defs>

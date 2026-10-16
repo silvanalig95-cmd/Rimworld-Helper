@@ -64,6 +64,15 @@ namespace ColonyCouncil
         public string kind;
         /// <summary>Brings fights of its own: only with world-event battles on and a storyteller that sends threats.</summary>
         public bool battle;
+        /// <summary>
+        /// A follow-up: only after one of these world events ended (defNames), between <see cref="afterDays"/> ago, and
+        /// only once for each. Its people are that one's people when they fit its <see cref="faction"/> need; {TALE} names
+        /// what came before, and its lines can ask for [after:defName] and [afterEnd:key].
+        /// </summary>
+        public List<string> after;
+        public FloatRange afterDays = new FloatRange(1f, 60f);
+        /// <summary>Only after it ended one of these ways (ending keys); empty: any way but quietly.</summary>
+        public List<string> afterEndings;
 
         // ---------------- Who it's about ----------------
 

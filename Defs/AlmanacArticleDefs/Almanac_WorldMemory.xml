@@ -36,11 +36,27 @@ Memories fade over the years, the big ones slowest, and a people keeps a dozen a
           <li>Their people killed in a raid on the colony (3 each) or on their own ground (4 each), up to 30 | 3 to 30 | 1 to 3.25 years</li>
           <li>One of their towns attacked, or destroyed | 25, 45 | 2.8, 4.5 years</li>
           <li>Their land fouled with the colony's waste (Biotech) | 6 | 1.25 years</li>
+          <li>An old pilgrim of theirs walked home | 10 | 1.6 years</li>
+          <li>Word carried for them to a far town | 8 | 1.4 years</li>
+          <li>A lost child of theirs found | 18 | 2.25 years</li>
+          <li>Hands sent for their harvest (half the time, half the size) | 5 or 10 | 1.2 to 1.6 years</li>
+          <li>Mourning with them (words or silver for a wake, standing by the road as their dead pass, food for their mourners) | 4 to 6 | 1.1 to 1.25 years</li>
+          <li>Helping them rebuild after a war, a fire or a flood | 12 | 1.75 years</li>
+          <li>A family of theirs sheltered (burned out, cast out, or running from a feud) | 8 | 1.4 years</li>
+          <li>Their travelling healer paid to teach | 6 | 1.25 years</li>
           <li>Fighters they sent when the colony called | 12 | 1.75 years</li>
           <li>A raid of theirs on the colony | 6 | 1.25 years</li>
           <li>A colonist they killed | 15 | 2 years</li>
+          <li>A blood price they paid to end a vendetta, or an apology they made for it | 8, 6 | 1.4, 1.25 years</li>
         </table>
         <after>A deed is forgotten once it fades below 1: a small gift after about three years, a prisoner set free after about six, a town destroyed after more than twenty.</after>
+      </li>
+      <li>
+        <heading>The one who did it</heading>
+        <text>A people remembers not only what the colony did but who. When a colonist carries out a prisoner's release, or a colony doctor tends one of a people's own (a guest, a wounded visitor, a prisoner), it is noted; when that person goes home and the deed is remembered, the deed names the colonist. A pilgrim walked home, word carried to a far town, a lost child found and hands sent for a harvest name the colonist who did it too. A deed that already names someone keeps them: a people never forgets the first who helped.
+
+A colonist named in deeds worth 6 or more (adding up everything they did for that people, as it fades) is remembered by name. Their people's travellers stop that colonist to thank them; their envoys, the riders of their world events and their camps ask for that colonist at the gate and send them to meet the visitors; and their letters can name them ("they've asked for Ana by name"). At 20 or more, the colonist is a dear friend of that people, and the letters say so. Names are only remembered while the colonist is still with the colony, and fade with the deed.</text>
+        <after>The World page shows the colonist with each deed that names them ("They remember Ana for it"). Saves from before keep their deeds; they just name nobody.</after>
       </li>
       <li>
         <heading>What comes of it</heading>
@@ -53,6 +69,7 @@ Memories fade over the years, the big ones slowest, and a people keeps a dozen a
           <li>An old enemy offers peace | A people at war with the colony, with a grievance on either side still at 3 or more, and nothing between them for 90 days | Make peace; make peace and ask weregild for a colonist they killed (Social 6, a gamble); make peace over a meal (25 raw food); or send the envoy away</li>
           <li>A quarrel between neighbors | A people grateful at 6 or more (or with 40 goodwill), and another friendly people not at war with it | Side with either (8 goodwill with one, 8 less with the other), judge fairly (Social 6, a gamble: 6 goodwill with both if it works), or stay out</li>
         </table>
+        <after>The envoy of an old debt, of help from old friends, or of a quarrel asks for the colonist that people remembers by name, when they're at home. A world event's own aftermath (thanks after a plague, the first harvest after a famine, old friends' seed after locusts or a drought, a reckoning after a hard year the colony looked away from) is described on the world events page.</after>
         <after>Raid letters say what the raiders remember: an old wrong of the colony's (traders robbed, kin killed on its land, a camp driven off), how often they have raided before, or a colonist they killed. The prisoners, guests and envoys of an event are never harmed by it, and none of these events ends in a fight.</after>
       </li>
       <li>
@@ -65,14 +82,26 @@ Memories fade over the years, the big ones slowest, and a people keeps a dozen a
           <li>A guest of rank | A bedroom with one bed nobody else uses (not a prisoner's or a sickbed), at least slightly, somewhat or very impressive (by the colony's wealth), ready when they come and kept for 2 to 3 days | Checked every hour: never missing, a gift of 250 to 450 silver (more for a richer colony) and 14 goodwill; missing a quarter of the hours or less, half the goodwill; no room at all, they leave the next morning slighted</li>
           <li>Refugees to see through | 3 to 5 people fed (two meals each a day; raw food will do, ten for a meal) and sheltered (free beds or sleeping spots under a roof, enough for all) for 3 to 4 days | Every day fed and sheltered: 15 goodwill and a deed of 20; more good days than bad: 5 goodwill and a deed of 8; mostly short: they go hungry and remember it</li>
         </table>
-        <after>Guests never starve or go hungry for staying days instead of hours: a day the colony can't feed its refugees, they eat what little they carried. Refugees come from whatever runs in the region (a plague, a famine, a flood, a hard winter, a town abandoned, a warlord or bandits), or from a fire at home.</after>
+        <after>Guests never starve or go hungry for staying days instead of hours: a day the colony can't feed its refugees, they eat what little they carried. Refugees come from whatever runs in the region (a plague, a famine, a flood, a hard winter, a great fire, exiles, a town abandoned, a warlord or bandits), for some weeks after it ends too, or from a fire at home.</after>
+      </li>
+      <li>
+        <heading>Missions of the road</heading>
+        <text>Four more missions come from friendly peoples, the grateful likelier to ask. Each remembers the colonist who did it, by name.</text>
+        <table>
+          <li>Mission | What it asks | What comes of it</li>
+          <li>A pilgrim to escort | An old pilgrim comes to the colony and waits; a caravan with at least one of the colony's people takes them along to the people's town (up to about 4 days away) before the day | 160 to 300 silver (more for a richer colony) in the caravan's packs, and a deed of 10 naming the escort; a caravan that turns back leaves the pilgrim to walk on alone</li>
+          <li>Word to carry | A caravan with at least one of the colony's people at a far town of another friendly people (1.5 to 6 days away) before the day, to give it a letter: a death, a betrothal, a warning or an offer of peace | 150 to 280 silver and more for the distance, paid by the town that receives it; a deed of 8 with the sender, a small one with the receiver</li>
+          <li>A neighbour's lost child | A child of a neighbouring people is lost somewhere on the colony's land, by day, in fair weather; anyone of the colony who comes within a few steps of them finds them before nightfall of the second day | The child follows the finder back, the family comes to take them home and leaves 120 to 240 silver, and the people remember the finder (a deed of 18)</li>
+          <li>Hands for a harvest (summer, fall) | At least two of the colony's people who can work the fields at a friendly town by caravan, staying about a day and a half | A share of the harvest (90 to 160 grain) and 100 to 200 silver, practice in plants for the hands, and a deed of 10; half the time, half of it</li>
+        </table>
+        <after>The pilgrim, the messengers and the child are never in danger from the mission itself. A child nobody finds by then is found by their own people's searchers in the end, tired and hungry; their people are glad, and a little less fond of the colony.</after>
       </li>
       <li>
         <heading>Reading the World page</heading>
         <text>The council window's World page has a "What they remember" section: a card for each people that remembers the colony for something, with how it stands (well disposed, in the colony's debt, the colony owes them, wary, holding a grudge, or grateful and aggrieved at once) and its biggest memories with how long ago they were. Green is what the colony did for them, red what it did to them, gold what they did for the colony, orange what they did to it; a faded line has been settled. Hover over a card for everything the people remembers.</text>
       </li>
     </sections>
-    <keywords><li>memory</li><li>remember</li><li>faction</li><li>people</li><li>goodwill</li><li>debt</li><li>favor</li><li>grudge</li><li>envoy</li><li>relief</li><li>peace</li><li>quarrel</li><li>invitation</li><li>apprentice</li><li>dignitary</li><li>refugees</li><li>raid letter</li></keywords>
+    <keywords><li>memory</li><li>remember</li><li>faction</li><li>people</li><li>goodwill</li><li>debt</li><li>favor</li><li>grudge</li><li>envoy</li><li>relief</li><li>peace</li><li>quarrel</li><li>invitation</li><li>apprentice</li><li>dignitary</li><li>refugees</li><li>raid letter</li><li>colonist</li><li>by name</li><li>friend</li><li>pilgrim</li><li>escort</li><li>word</li><li>lost child</li><li>harvest</li></keywords>
     <seeAlso><li>Council_Alm_C_WorldSituations</li><li>Council_Alm_C_WorldEvents</li><li>Council_Alm_C_Camps</li></seeAlso>
   </ColonyCouncil.AlmanacArticleDef>
 

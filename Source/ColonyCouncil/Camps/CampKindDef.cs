@@ -70,6 +70,13 @@ namespace ColonyCouncil
         public float situationWeight = 3f;
         /// <summary>The good turns they do, told their own way: lines tagged with the help ([heal], [show]...).</summary>
         [MustTranslate] public List<string> helpTexts;
+        /// <summary>What the colony can ask of this kind of camp, beyond terms and gifts (see <see cref="CampAsk"/>): on the camp's page.</summary>
+        public List<CampAsk> asks;
+        /// <summary>
+        /// Only from a people whose faith holds one of these memes (MemeDef names), and so only with Ideology: pilgrims of
+        /// one kind of faith. Empty: any people.
+        /// </summary>
+        public List<string> memes;
 
         /// <summary>How likely this kind is to be the one that comes now.</summary>
         public float WeightNow() => CampWords.Situation(this) != null ? weight * situationWeight : weight;
@@ -94,7 +101,10 @@ namespace ColonyCouncil
         }
 
         public bool FitsFaction(Faction f) =>
-            f != null && f.def.techLevel >= minTech && f.def.techLevel <= maxTech;
+            f != null && f.def.techLevel >= minTech && f.def.techLevel <= maxTech && (memes.NullOrEmpty() || CampWords.HasMeme(f, memes));
+
+        /// <summary>Only when it could come at all: a kind for one kind of faith needs Ideology.</summary>
+        public bool Possible => memes.NullOrEmpty() || ModsConfig.IdeologyActive;
 
         public override IEnumerable<string> ConfigErrors()
         {

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Deeds beyond the walls that Rimfolk counts (see Council_Records.xml): they show in the game's Records tab, and
+    names (Defs/EpithetDefs/Rimfolk_Epithets_World.xml) are built on them.
+  -->
+
+  <RecordDef>
+    <defName>Council_CampEvenings</defName>
+    <label>evenings at a camp's fire</label>
+    <description>Times this colonist went over to sit at the fire of people camped on the colony's land.</description>
+    <type>Int</type>
+    <displayOrder>1616</displayOrder>
+  </RecordDef>
+
+  <RecordDef>
+    <defName>Council_CampsGreeted</defName>
+    <label>camps met at the gate</label>
+    <description>Times this colonist was the first to meet strangers who came to make camp on the colony's land.</description>
+    <type>Int</type>
+    <displayOrder>1617</displayOrder>
+  </RecordDef>
+
+  <RecordDef>
+    <defName>Council_DaysKept</defName>
+    <label>days kept for the colony</label>
+    <description>Days on the colony's calendar this colonist saw kept: a founding day, a remembrance, a feast.</description>
+    <type>Int</type>
+    <displayOrder>1618</displayOrder>
+  </RecordDef>
+
+  <RecordDef>
+    <defName>Council_WorldCallsAnswered</defName>
+    <label>neighbours' calls answered</label>
+    <description>Times this colonist answered a neighbour's call for help during a world event: a plague, a fire, a feud, a hard winter.</description>
+    <type>Int</type>
+    <displayOrder>1619</displayOrder>
+  </RecordDef>
+
+</Defs>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- A vendetta's newer endings (Source/ColonyCouncil/Secrets/VendettaEnds.cs). Refusing the blood price is a
+       resolve, not a mood. -->
+
+  <ThoughtDef>
+    <defName>Council_Vendetta_NotForSale</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>4</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>not for sale</label><description>They offered silver for the one I lost. As if there were a price. I sent them away, and I'd do it again.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt><journal>true</journal><feelings><li>Resolve</li></feelings></li></modExtensions>
+  </ThoughtDef>
+
+</Defs>

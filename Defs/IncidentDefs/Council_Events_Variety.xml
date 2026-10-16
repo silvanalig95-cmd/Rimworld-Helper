@@ -30,6 +30,7 @@
           <li>[!lowtech] Stranded merchants</li>
         </titles>
         <texts>
+          <li>[their:friend] A trading party of {FACTION} has broken down below the colony, and the first thing they asked was whether {FRIEND_nameDef} still lives here: {FACTION} trust the colony's people. They'd welcome a skilled pair of hands, and {A_nameDef} is the best the colony has. Failing that, they'll pay {COUNT} silver for {TALE} to mend it themselves.</li>
           <li>[tribal] A trading party of {FACTION} has stopped below the colony with a broken sledge. One of its runners split on a rock, and their pack animals can't drag it lopsided.\n\nThey'd welcome a skilled pair of hands, and {A_nameDef} is the best the colony has. Failing that, they'll pay {COUNT} silver for {TALE} to cut a new runner themselves.</li>
           <li>[lowtech,!tribal] A merchant wagon of {FACTION} broke its axle on the track past the colony's fields. The merchants have unloaded half their goods into the mud and are arguing about what to do.\n\nThey'd welcome a skilled pair of hands, and {A_nameDef} is the best the colony has. Failing that, they'll pay {COUNT} silver for {TALE} to make a new axle themselves.</li>
           <li>[!lowtech] A trade caravan of {FACTION} has pulled up on the road outside the colony. The hub of their cart's rear wheel cracked on the rocks further back, and they've come this far on a splint and a lot of rope.\n\nThey'd welcome a skilled pair of hands, and {A_nameDef} is the best the colony has. Failing that, they'll pay {COUNT} silver for {TALE} to patch it themselves.</li>
@@ -96,6 +97,8 @@
           <li>{FACTION} are buying</li>
         </titles>
         <texts>
+          <li>[their:grateful] A rider from {FACTION} has come with an order, and with a message: {FACTION} would rather buy from friends. They want {TALE}, and will pay {COUNT} silver for it, more than any trader would.\n\nThey'll send for it in five days, and they want the whole order or none of it.</li>
+          <li>[their:grudge] A rider from {FACTION} has come with an order, and looks as if {X_pronoun} would rather be anywhere else: {FACTION} have no love for the colony, but they are short and nobody else has it. They want {TALE}, and will pay {COUNT} silver.\n\nThey'll send for it in five days, and they want the whole order or none of it.</li>
           <li>[lowtech] A rider from {FACTION} has come with an order. Their people are running short, and they've heard the colony keeps what they need. They want {TALE}, and will pay {COUNT} silver for it, more than any trader would.\n\nThey'll send for it in five days, and they want the whole order or none of it.</li>
           <li>[!lowtech] {FACTION} sent word over the comms. They're running short, they've heard the colony keeps what they need, and they'd like to buy {TALE} for {COUNT} silver, well above a trader's price.\n\nThey'll send for it in five days, and they want the whole order or none of it.</li>
           <li>[winter] {FACTION} are running short this winter, and have asked whether the colony can sell them {TALE}. They offer {COUNT} silver, more than a trader would.\n\nThey'll send for it in five days, and they want the whole order or none of it.</li>
@@ -164,6 +167,7 @@
           <li>[!lowtech] A traveling mender</li>
         </titles>
         <texts>
+          <li>[their:grateful] {X_nameDef}, a tinker of {FACTION}, has pulled a handcart up to the colony. {FACTION} speak well of this place, so {X_nameDef} names a friend's price: {COUNT} silver to mend every worn coat and battered weapon the colony has before moving on in the morning.</li>
           <li>[lowtech] {X_nameDef}, a tinker of {FACTION}, has pulled a handcart up to the colony, loaded with awls, whetstones, patches and pots of glue. For {COUNT} silver, {X_nameDef} will mend every worn coat and battered weapon the colony has, and move on in the morning.</li>
           <li>[!lowtech] {X_nameDef} of {FACTION} goes from settlement to settlement with a heavy pack of needles, rivets, patches and a hand-cranked grinder, mending what people can't. For {COUNT} silver, {X_nameDef} will go through every worn coat and battered weapon in the colony before moving on.</li>
         </texts>
@@ -227,6 +231,8 @@
           <li>{FACTION} ask for help</li>
         </titles>
         <texts>
+          <li>[their:grateful] A runner of {FACTION} came in at dawn: a fever is going through their settlement and their healers are out of everything. They came to the colony first, the runner says, because {FACTION} remember who stood by them before. They ask for {TALE}, and can pay {COUNT} silver if they must.</li>
+          <li>[their:friend] {FACTION} have sent word, and asked for {FRIEND_nameDef} by name: a fever is going through their settlement and their medicine is gone. They ask the colony for {TALE}, and can pay {COUNT} silver for it if they must.</li>
           <li>[lowtech] A runner of {FACTION} came in at dawn, out of breath. A fever is going through their settlement, worst among the old and the very young, and their healer has used up every last herb. They ask the colony for {TALE}, and can pay {COUNT} silver for it if they must.</li>
           <li>[!lowtech] {FACTION} have sent an urgent message. A fever has gone through their settlement and their medicine ran out days ago. They ask the colony for {TALE}, and can pay {COUNT} silver for it if they must.</li>
           <li>[winter] Word has come from {FACTION}. A winter cough is going through their settlement, and their medicine is gone. They ask for {TALE} and offer {COUNT} silver, though they would clearly rather not part with it.</li>

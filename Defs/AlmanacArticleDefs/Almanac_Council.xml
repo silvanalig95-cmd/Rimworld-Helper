@@ -295,6 +295,12 @@ What each colonist is served fits what they believe and eat. It's only what thei
 Rimfolk also counts a few deeds the game doesn't, and shows them in the Records tab: quarrels mended (the Mender), trade deals struck as negotiator (the Haggler), secrets other colonists trusted them with (the Vault) and eulogies given (the Mourner).</text>
       </li>
       <li>
+        <heading>Names from beyond the walls</heading>
+        <text>Some names are earned out in the world. Four more records count what a colonist does beyond the colony's own work: evenings spent at the fires of camps on the colony's land (Friend of the Road, from 10), camps met at the gate (the Gatekeeper, from 3), the colony's days kept by them on the calendar (Daykeeper, from 4) and world events' calls answered by them in person (Good Neighbour, from 3).
+
+Others are given once, for one deed, and stay with their holder: the builder lent to raise the roofs of a burned town may be called Roof-Raiser, the one who carried the last of the blood price that ended a feud Feud-Breaker, the one who built the bridge after a war Bridge-Builder, the one who found a neighbour's lost child the Finder, and the one who walked an old pilgrim home Road-Warden.</text>
+      </li>
+      <li>
         <heading>Names that come with time</heading>
         <text>Some names count years rather than deeds. The Old Hand has been here longest, two years at least. Homegrown spent the most of their childhood here. Jailbird spent longest in the cells before joining. Two have a condition: the Unshaken has lived here a year without a single mental break, and Lucky a year without taking any damage at all. Either name is lost the day that changes, and can't be earned back.</text>
       </li>
@@ -303,7 +309,7 @@ Rimfolk also counts a few deeds the game doesn't, and shows them in the Records 
         <text>The annals cover who joined, died, left or walked out, raids, wealth, wishes, ambitions, decrees, dilemmas, friendships, feuds, trust and names. Past years can be reread from the Chronicle page.</text>
       </li>
     </sections>
-    <keywords><li>epithet</li><li>name</li><li>title</li><li>annals</li><li>anniversary</li><li>chronicle</li></keywords>
+    <keywords><li>epithet</li><li>name</li><li>title</li><li>annals</li><li>anniversary</li><li>chronicle</li><li>Gatekeeper</li><li>Daykeeper</li><li>Good Neighbour</li><li>Road-Warden</li></keywords>
     <seeAlso><li>Council_Alm_C_Wishes</li></seeAlso>
   </ColonyCouncil.AlmanacArticleDef>
 
@@ -557,7 +563,7 @@ Check the Roster page now and then. A colonist one level short of mastery is wor
     <order>12</order>
     <summary>What colonists hide, who they can't forgive, and how they say goodbye.</summary>
     <tip>Not everyone talks about where they came from.</tip>
-    <description>Some colonists carry a secret, often from the life their backstory hints at: a raider's past, noble blood, a deserter's shame, a child left behind, a borrowed name, an old illness, a debt to a trading house, a childhood in the camps, a broken vow, a hidden kindness. There are over fifty. You won't know what it is; the Bonds page only shows when they confide in a close friend, and the news of it gives a hint and no more.</description>
+    <description>Some colonists carry a secret, often from the life their backstory hints at: a raider's past, noble blood, a deserter's shame, a child left behind, a borrowed name, an old illness, a debt to a trading house, a childhood in the camps, a broken vow, a hidden kindness. There are over sixty. You won't know what it is; the Bonds page only shows when they confide in a close friend, and the news of it gives a hint and no more.</description>
     <sections>
       <li>
         <heading>Confiding and coming out</heading>
@@ -566,6 +572,10 @@ Check the Roster page now and then. A colonist one level short of mastery is wor
 When a secret comes out, everyone reacts according to their nature: the kind forgive, the hard despise, the greedy envy, the abrasive mock. Betraying a confidence makes enemies. Some secrets put the council on the spot with a dilemma.
 
 A secret the colonist never told anyone dies with them. If they told someone, it comes out at the graveside, each secret in its own way: a lamp left burning, a card in the grave, a name said aloud.</text>
+      </li>
+      <li>
+        <heading>Secrets from beyond the walls</heading>
+        <text>A few secrets are born of what goes on out in the world, and only come while it does: medicine slipped to a neighbour's sick in a plague year, a verse given to the minstrels, bread left out for the exiles, a vow made under the comet, a letter given to the mourners for someone they'll pass, grain hidden under the floor in a famine or a drought, something seen at the market during a blood feud, a debt run up at a caravan's dice, letters sent off with a camp. While such a world event runs or such a camp is settled, one may come to a colonist it fits who keeps no secret yet, at most one a day. More than half of them are kindnesses, and come out as such.</text>
       </li>
       <li>
         <heading>Vendettas</heading>
@@ -577,9 +587,13 @@ A vendetta ends in one of several ways:</text>
           <li>some of them are taken alive in those fights instead: a captive counts as much as a death;</li>
           <li>the one who was carried off comes home, by rescue, ransom or escape;</li>
           <li>the avenger lays it down, after a month at least and not while the fighting is fresh. The kind do it sooner, the bloodthirsty and the cold never, and peace with the killers makes it much likelier;</li>
+          <li>the killers send the blood price (300 to 600 silver, more for a richer colony), 20 days or more after the oath, when no fight is on: the council can take it, leave it to the avenger (the bloodthirsty and the cold refuse, the kind accept, most others too) or refuse it;</li>
+          <li>once there's peace, an elder of the killers' people comes to say they are sorry: the avenger can accept it alone, the colony can hear it said in front of everyone and leave it to the avenger, or sorry changes nothing;</li>
           <li>it lapses after two years, or when the faction is gone.</li>
         </points>
-        <after>Those who swore vengeance take peace with the killers as a betrayal at first, though peace is also what lets most of them lay it down. Think twice before making peace with a faction that killed someone well loved, and give it time.</after>
+        <after>An avenger who dies with the oath still open, while the colony is still at war with the killers, may leave it to an heir: blood kin first, then a partner, then a close friend, never one already sworn on the same people. The kind take it up less often, the bloodthirsty more. Otherwise it ends with them.
+
+Those who swore vengeance take peace with the killers as a betrayal at first, though peace is also what lets most of them lay it down. Think twice before making peace with a faction that killed someone well loved, and give it time.</after>
       </li>
       <li>
         <heading>Quirks</heading>
@@ -617,7 +631,7 @@ Some show in how they spend their free time, with the small habits setting on: o
 A dead colonist's weapon or hat passes to the person who loved them most. Carrying it is a comfort (to anyone, more to the heir), and losing it hurts.</text>
       </li>
     </sections>
-    <keywords><li>secret</li><li>confide</li><li>vendetta</li><li>revenge</li><li>eulogy</li><li>funeral</li><li>grave</li></keywords>
+    <keywords><li>secret</li><li>confide</li><li>vendetta</li><li>revenge</li><li>blood price</li><li>apology</li><li>heir</li><li>eulogy</li><li>funeral</li><li>grave</li></keywords>
     <seeAlso><li>Council_Alm_C_Social</li><li>Council_Alm_C_Goals</li></seeAlso>
   </ColonyCouncil.AlmanacArticleDef>
 
@@ -803,7 +817,9 @@ Keep some silver in the stores. Debts, bounties, tribute and treasure maps all a
       </li>
       <li>
         <heading>Events that remember</heading>
-        <text>Some events follow from earlier ones: a deserter's old unit, a lost child come back grown, a rematch with a champion, the great beast's young, grateful pilgrims. A neighbor whose order you filled may come back to buy again, the runaway lovers' family may come asking after them, a relative who visited may write (and can be invited to stay), and neighbors remember how you judged their quarrel. The colony's founding day comes once a year.</text>
+        <text>Some events follow from earlier ones: a deserter's old unit, a lost child come back grown, a rematch with a champion, the great beast's young, grateful pilgrims. A neighbor whose order you filled may come back to buy again, the runaway lovers' family may come asking after them, a relative who visited may write (and can be invited to stay), and neighbors remember how you judged their quarrel. The colony's founding day comes once a year.
+
+The end of a world event can bring its people back about it, depending on how it ended and what the colony did: thanks after a plague, the first harvest shared after a famine, a flooded town's search for what the water took, spring seed and hands from those the colony sheltered through a hard winter, seed grain from old friends after locusts or a drought, and a reckoning after a hard year the colony looked away from. A people some colonist swore vengeance on may send the blood price, or, once there's peace, an apology. And a people that remembers one of the colony by name asks for that colonist: their visitors stop that colonist to say thank you, their traders may give them a friend's price, their envoys ask for them at the gate, and their letters say so.</text>
       </li>
       <li>
         <heading>The land, the season and the era</heading>
@@ -823,7 +839,7 @@ Many answers call on someone with the right skill or trait: a good cook, a heale
         <heading>Missions</heading>
         <text>Now and then a neighbor asks for something done by a deadline: tame a runaway prize animal, raise a shrine for pilgrims, supply a funeral or a wedding, help a town rebuild after a fire, a storm or a flood (wood, stone blocks or more wood, cloth, and steel or components for an industrial town), or send provisions for a hard winter, a dry year or a sickhouse (raw food or pemmican, meals, medicine, cloth, firewood). Only goods in your stockpiles count. All of it pays well over its worth; at least half pays its plain worth; less, and they go elsewhere and think less of the colony.
 
-The peoples that think best of the colony ask for other things: guests at their feast or a wedding (a caravan to their town), an apprentice for one of their masters, a bedroom fit for a guest of rank, or food and a roof for refugees for a few days. The page on what the world remembers has the details.</text>
+The peoples that think best of the colony ask for other things: guests at their feast or a wedding (a caravan to their town), an apprentice for one of their masters, a bedroom fit for a guest of rank, or food and a roof for refugees for a few days. Friendly peoples also ask the colony to walk an old pilgrim home by caravan, to carry word to a far town of another people, to find a child of theirs lost on the colony's land before nightfall of the second day, or to send hands for their harvest in summer or fall. Each remembers the colonist who did it, by name. The page on what the world remembers has the details.</text>
       </li>
       <li>
         <heading>With other mods</heading>
@@ -841,8 +857,8 @@ The peoples that think best of the colony ask for other things: guests at their 
         <text>With "Answers play out on the map" on, many answers happen on the map too: the colony gathers round a fire for the spirit singer, at the camp's fire when the camp holds a feast, out in the open for the photograph, the drumming at an eclipse or the birds coming back, round the table for the founding feast or a letter read aloud; a colonist sits with a visitor or a stranger who asked for them, sits by a grave, or works at a traveling teacher's side for the afternoon. The dilemmas page says how it works and when it waits.</text>
       </li>
     </sections>
-    <keywords><li>event</li><li>incident</li><li>comrade</li><li>family</li><li>bounty</li><li>debt</li><li>champion</li><li>contest</li><li>beast</li><li>tribute</li><li>revenge</li><li>deserter</li><li>comet</li><li>fireflies</li><li>hail</li><li>vermin</li><li>cache</li><li>treasure</li><li>storyteller</li><li>pilgrims</li><li>scholar</li><li>apprentice</li><li>stray</li><li>mourners</li><li>cargo</li><li>scout</li><li>journalist</li><li>doctor</li><li>herbalist</li><li>music</li><li>celebrity</li><li>order</li><li>tinker</li><li>merchants</li><li>quarrel</li><li>grave</li><li>letters</li><li>lovers</li><li>fortune</li><li>warm spell</li><li>buyer</li><li>letter</li><li>market</li><li>fair</li><li>founding</li><li>anniversary</li><li>thaw</li><li>winter</li><li>vengeance</li><li>guest</li></keywords>
-    <seeAlso><li>Council_Alm_C_Strangers</li><li>Council_Alm_C_Ways</li><li>Council_Alm_C_Dilemmas</li><li>Council_Alm_C_WorldSituations</li></seeAlso>
+    <keywords><li>event</li><li>incident</li><li>comrade</li><li>family</li><li>bounty</li><li>debt</li><li>champion</li><li>contest</li><li>beast</li><li>tribute</li><li>revenge</li><li>deserter</li><li>comet</li><li>fireflies</li><li>hail</li><li>vermin</li><li>cache</li><li>treasure</li><li>storyteller</li><li>pilgrims</li><li>scholar</li><li>apprentice</li><li>stray</li><li>mourners</li><li>cargo</li><li>scout</li><li>journalist</li><li>doctor</li><li>herbalist</li><li>music</li><li>celebrity</li><li>order</li><li>tinker</li><li>merchants</li><li>quarrel</li><li>grave</li><li>letters</li><li>lovers</li><li>fortune</li><li>warm spell</li><li>buyer</li><li>letter</li><li>market</li><li>fair</li><li>founding</li><li>anniversary</li><li>thaw</li><li>winter</li><li>vengeance</li><li>guest</li><li>escort</li><li>lost child</li><li>harvest</li><li>blood price</li><li>apology</li><li>aftermath</li></keywords>
+    <seeAlso><li>Council_Alm_C_Strangers</li><li>Council_Alm_C_Ways</li><li>Council_Alm_C_Dilemmas</li><li>Council_Alm_C_WorldSituations</li><li>Council_Alm_C_WorldMemory</li></seeAlso>
   </ColonyCouncil.AlmanacArticleDef>
 
   <ColonyCouncil.AlmanacArticleDef>

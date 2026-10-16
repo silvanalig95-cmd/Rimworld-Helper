@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- World events that follow from earlier ones (WorldSituationDef.after: they come only after one of these ended,
+       within afterDays, once for each, with that one's people; {TALE} names what came before, and lines can ask for
+       [after:defName], [afterEnd:key] and [afterHelped]): a people rebuilding after a war or a fire, and a trade route
+       reopening once the bandits, the snow, the water, the sickness or the toll are gone. Rimfolk events that follow
+       how a world event ended are in Defs/IncidentDefs/Rimfolk_Events_Aftermath.xml. -->
+
+  <!-- ===================== Rebuilding after a war ===================== -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Council_WS_Rebuilding</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>rebuilding</label>
+    <weight>3</weight>
+    <earliestDay>30</earliestDay>
+    <cooldownDays>90</cooldownDays>
+    <durationDays>14~20</durationDays>
+    <kind>rebuild</kind>
+    <after>
+      <li>Council_WS_Warlord</li>
+      <li>Council_WS_HolyWar</li>
+      <li>Council_WS_BanditLordFalls</li>
+      <li>Council_WS_Claimants</li>
+      <li>Council_WS_GreatFire</li>
+      <li>Council_WS_Flood</li>
+      <li>Council_WS_Mercenaries</li>
+    </after>
+    <afterDays>2~50</afterDays>
+    <faction>
+      <friendly>true</friendly>
+    </faction>
+    <titles>
+      <li>{FACTION} rebuild</li>
+      <li>After {TALE}</li>
+    </titles>
+    <texts>
+      <li>{TALE} is over, and {FACTION} are counting what it cost them. Burned barns, broken bridges, fields trampled to mud, and at {PLACE} a wall with a hole in it the size of a house.\n\nThey are starting again. They will need timber, stone, skilled hands and a great deal of soup.</li>
+      <li>[theirLowtech] The fighting of {TALE} has moved on, and {FACTION} are coming back to their villages around {PLACE}: what's left of them. The old people say it will take a generation. The young people have already started on the bridge.</li>
+      <li>[theirHightech] {FACTION} have published a rebuilding plan for {PLACE} after {TALE}: a long list of everything that was broken, and a shorter list of everything they have to mend it with. They are asking every neighbour for help with the difference.</li>
+      <li>[afterHelped] {TALE} is over, and {FACTION} have not forgotten that the colony stood by them in it. Now they are rebuilding, and they have sent to the colony first, as friends do.</li>
+      <li>[their:friend] {FACTION} are rebuilding after {TALE}. Their message to the colony ends with a line for {FRIEND_nameDef}: there's a new house going up at {PLACE}, and they'd like {FRIEND_objective} to see it finished.</li>
+    </texts>
+    <summaries>
+      <li>{FACTION} will ask for timber and skilled hands, and their homeless will pass the colony on the way back to what's left. Help given now will be built into {PLACE}, and remembered there.</li>
+    </summaries>
+    <modifiers>
+      <li><rimfolk>Council_Mission_Rebuild</rimfolk><factor>3</factor></li>
+      <li><rimfolk>Council_Mission_Refugees</rimfolk><factor>1.5</factor></li>
+      <li><rimfolk>Council_Evt_BridgeWork</rimfolk><factor>2</factor></li>
+      <li><incident>TraderCaravanArrival</incident><factor>0.8</factor></li>
+    </modifiers>
+    <beats>
+      <li>
+        <key>timber</key>
+        <day>1~4</day>
+        <count>80~150</count>
+        <titles>
+          <li>Timber for {PLACE}</li>
+        </titles>
+        <texts>
+          <li>{FACTION} have sent a carter to ask for timber: {COUNT} logs for the bridge and the barns at {PLACE}. They'll pay what they can, which isn't much after {TALE}.</li>
+          <li>[afterHelped] {FACTION}'s carter has come with a list and an apology: they hate to ask again, after all the colony did during {TALE}, but {PLACE} needs {COUNT} logs to get its roofs back.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Send {COUNT} wood</label>
+            <outcome>The cart goes back to {PLACE} stacked to the rails, and {FACTION}'s builders will have their bridge by the end of the month.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>WoodLog</what></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>8</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>rebuilt</kind><about>place</about></li>
+            </effects>
+            <help>2</help>
+            <deed>sent timber to rebuild {PLACE}</deed>
+            <ways><generosity>2</generosity></ways>
+          </li>
+          <li>
+            <label>Sell it to them</label>
+            <outcome>{FACTION} pay a fair price for the timber, and are glad to have it at all.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>WoodLog</what></li>
+              <li Class="ColonyCouncil.WorldEffect_Silver"><factor>1.1</factor></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>2</amount></li>
+            </effects>
+            <help>1</help>
+            <deed>sold timber to {PLACE}</deed>
+          </li>
+          <li>
+            <label>The colony can't spare it</label>
+            <outcome>The carter goes back to {PLACE} empty. Someone else will have to find the bridge.</outcome>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>builder</key>
+        <day>4~9</day>
+        <skill>Construction</skill>
+        <minLevel>7</minLevel>
+        <titles>
+          <li>A builder for {PLACE}</li>
+        </titles>
+        <texts>
+          <li>{FACTION} have the timber now and the willing hands, but nobody who knows how to raise a bridge that will take a laden cart. They've heard of {A_nameDef}.\n\nThey ask for a week of {A_nameDef}'s time. They promise to feed {A_objective} better than {A_pronoun} has ever been fed.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Send {A_nameDef} to build</label>
+            <outcome>{A_nameDef} goes to {PLACE} with a mallet and a plumb-line and comes back a week later, thinner than promised, with a bridge behind {A_objective} that {FACTION} have already named after the colony.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Learn"><skill>Construction</skill><xp>1800</xp></li>
+              <li Class="ColonyCouncil.WorldEffect_ThoughtFor"><thought>Council_WS_RebuiltTogether</thought></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>8</amount></li>
+              <li Class="ColonyCouncil.ArcEffect_Epithet"><epithet>Council_Epithet_BridgeBuilder</epithet><chance>0.7</chance></li>
+            </effects>
+            <help>2</help>
+            <flags><li>bridge</li></flags>
+            <deed>lent {A_nameDef} to build the bridge at {PLACE}</deed>
+            <ways><generosity>1</generosity><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>{A_nameDef} is needed here</label>
+            <outcome>{FACTION} are told the colony can't spare {A_nameDef} for a week. They'll build the bridge some other way.</outcome>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>homecoming</key>
+        <day>7~12</day>
+        <count>20~35</count>
+        <titles>
+          <li>Going home</li>
+        </titles>
+        <texts>
+          <li>A line of {FACTION}'s homeless is passing the colony on the way back to {PLACE}: families who sat out {TALE} in the hills or at their cousins', walking home to see what's left. They're thin, and they still have two days to walk.\n\n{COUNT} measures of food would see them home.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Feed them on their way</label>
+            <outcome>The colony sets out bread and soup at the gate, and {FACTION}'s families eat standing up, the children first, then walk on toward {PLACE} with full bellies.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>5</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>sheltered</kind><about>place</about></li>
+            </effects>
+            <help>1</help>
+            <deed>fed {FACTION}'s families on their way home</deed>
+            <ways><generosity>2</generosity><mercy>1</mercy></ways>
+          </li>
+          <li>
+            <label>Let them pass</label>
+            <outcome>The families walk past the colony's gate and on toward {PLACE}.</outcome>
+          </li>
+        </options>
+      </li>
+    </beats>
+    <endings>
+      <li>
+        <key>rebuilt</key>
+        <minHelp>3</minHelp>
+        <helped>true</helped>
+        <titles>
+          <li>{PLACE} stands again</li>
+        </titles>
+        <texts>
+          <li>{PLACE} stands again: new roofs, a mended wall, and a bridge that takes laden carts. {FACTION} held a feast when the last beam went up, and the colony's name was spoken in the toasts.\n\nThey will remember who helped them stand back up long after they've forgotten {TALE}.</li>
+          <li>[bridge] The new bridge at {PLACE} is finished, and {FACTION} have carved a little sign on it with the colony's name. Children run across it to hear their feet drum on the boards.</li>
+        </texts>
+        <chronicle>{FACTION} rebuilt {PLACE} after {TALE}, with the colony's help.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>8</amount></li>
+          <li Class="ColonyCouncil.WorldEffect_Loot"><value>250~450</value></li>
+          <li Class="ColonyCouncil.WorldEffect_Thought"><thought>Council_WS_GoodNeighbours</thought></li>
+        </effects>
+      </li>
+      <li>
+        <key>slow</key>
+        <titles>
+          <li>{PLACE} rebuilds</li>
+        </titles>
+        <texts>
+          <li>{FACTION} are rebuilding {PLACE} a house at a time. It will take years. They'll manage; people always do.</li>
+          <li>[helped] {FACTION} are rebuilding {PLACE} slowly, with the colony's timber in some of the new walls. They know where it came from.</li>
+        </texts>
+        <chronicle>{FACTION} began rebuilding {PLACE} after {TALE}.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>3</amount></li>
+        </effects>
+      </li>
+    </endings>
+  </ColonyCouncil.WorldSituationDef>
+
+  <!-- ===================== A trade route reopens ===================== -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Council_WS_RouteReopens</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the road reopens</label>
+    <weight>3</weight>
+    <earliestDay>25</earliestDay>
+    <cooldownDays>90</cooldownDays>
+    <durationDays>12~18</durationDays>
+    <kind>road</kind>
+    <after>
+      <li>Council_WS_BanditRoad</li>
+      <li>Council_WS_HardWinter</li>
+      <li>Council_WS_Flood</li>
+      <li>Council_WS_Plague</li>
+      <li>Council_WS_Toll</li>
+      <li>Council_WS_Warlord</li>
+      <li>Council_WS_BanditLordFalls</li>
+      <li>Council_WS_Drought</li>
+    </after>
+    <afterDays>1~40</afterDays>
+    <faction>
+      <friendly>true</friendly>
+      <optional>true</optional>
+    </faction>
+    <titles>
+      <li>The old road reopens</li>
+      <li>Traders on the road again</li>
+    </titles>
+    <texts>
+      <li>With {TALE} behind them, the merchants of the region are back on the old road. The first caravans are already on it, and every one of them is in a hurry to make up for lost time.\n\nFor a few weeks, the colony will be on the busiest road in the region.</li>
+      <li>[after:Council_WS_HardWinter] The snow has gone from the passes, and the road that {TALE} closed is open again. Traders who sat out the winter in the far towns are on the move, all at once, with everything they couldn't sell.</li>
+      <li>[after:Council_WS_Flood] The water has gone down and the fords are passable again after {TALE}. The river road is open, muddy and crowded with every trader who waited it out.</li>
+      <li>[after:Council_WS_Plague] The quarantine is over. {TALE} has burned out, the gates of the towns are open again, and the traders who were shut out for weeks are hurrying back to their old routes.</li>
+      <li>[after:Council_WS_BanditRoad|after:Council_WS_BanditLordFalls|after:Council_WS_Warlord] The road is safe again after {TALE}. The first caravan through didn't believe it and came with twice the usual guards. The second came with its music playing.</li>
+      <li>[after:Council_WS_Toll] The toll chain is off the road, and the traders who went the long way round are coming back the short way, all of them, at once.</li>
+    </texts>
+    <summaries>
+      <li>Trader caravans and visitors come much more often for a while. Merchants may want a place to rest, or a standing order from the colony.</li>
+    </summaries>
+    <modifiers>
+      <li><incident>TraderCaravanArrival</incident><factor>2</factor></li>
+      <li><incident>VisitorGroup</incident><factor>1.4</factor></li>
+      <li><incident>TravelerGroup</incident><factor>1.4</factor></li>
+      <li><rimfolk>Council_Evt_Camp</rimfolk><factor>1.5</factor></li>
+      <li><rimfolk>Council_Mission_Word</rimfolk><factor>2</factor></li>
+      <li><rimfolk>Council_Evt_FarMarket</rimfolk><factor>2</factor></li>
+    </modifiers>
+    <beats>
+      <li>
+        <key>first</key>
+        <day>0.5~2</day>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Incident"><incident>TraderCaravanArrival</incident><withFaction>true</withFaction><anyFaction>true</anyFaction></li>
+        </effects>
+        <titles>
+          <li>The first caravan</li>
+        </titles>
+        <texts>
+          <li>The first caravan of the reopened road is coming up to the colony, flying a ribbon from the lead pack-saddle, as caravans do on the first trip of the year. It's good luck to be the first to trade with it.</li>
+        </texts>
+        <message>true</message>
+      </li>
+      <li>
+        <key>contract</key>
+        <day>3~7</day>
+        <count>20~35</count>
+        <titles>
+          <li>A standing order</li>
+        </titles>
+        <texts>
+          <li>A merchant house that uses the reopened road has sent an agent to the colony. They want a regular supplier along the way: {COUNT} cooked meals now, for the next caravan's journey, at half again what they're worth, and the same again next season if the meals are good.\n\nIt would make the colony a stop on the road, in more ways than one.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Sell {COUNT} meals (half again their worth)</label>
+            <outcome>The meals go out with the agent, and the colony's name goes into the merchant house's book of good stops.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Sell"><thing>MealSimple</thing><price>1.5</price></li>
+            </effects>
+            <flags><li>contract</li></flags>
+          </li>
+          <li>
+            <label>The colony isn't a kitchen</label>
+            <outcome>The agent thanks the colony politely and rides on to the next village.</outcome>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>rest</key>
+        <day>6~11</day>
+        <titles>
+          <li>A rest on the road</li>
+        </titles>
+        <texts>
+          <li>The caravans on the reopened road need somewhere to stop between the towns: water, grass and a fire, nothing more. The colony is about the right distance from everything.\n\nIf it lets them, caravans will camp nearby, trade, and talk. Some of what they talk about will be the colony.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Welcome them to stop</label>
+            <outcome>Word goes down the road that the colony welcomes caravans at its well. The next one will stop.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>3</amount><who>Neighbors</who></li>
+            </effects>
+            <flags><li>waystop</li></flags>
+            <ways><openness>2</openness></ways>
+          </li>
+          <li>
+            <label>Keep the road at a distance</label>
+            <outcome>The colony keeps to itself. The caravans will stop somewhere else.</outcome>
+            <ways><openness>-1</openness></ways>
+          </li>
+        </options>
+      </li>
+    </beats>
+    <endings>
+      <li>
+        <key>busy</key>
+        <titles>
+          <li>The road settles</li>
+        </titles>
+        <texts>
+          <li>The first rush on the reopened road is over. Caravans still come, but at their usual pace again, and the dust has settled.</li>
+          <li>[waystop] The rush is over, but the colony's well has become a known stop on the road. Caravans stop to water their animals and trade a little, and the colony hears the news of the region before anyone else.</li>
+          <li>[contract] The rush is over. The merchant house has written to say the colony's meals were the best of the journey, and that its caravans will be stopping again.</li>
+        </texts>
+        <chronicle>The road reopened after {TALE}.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>2</amount><who>Neighbors</who><requires>waystop</requires></li>
+          <li Class="ColonyCouncil.WorldEffect_Silver"><count>120</count><requires>contract</requires></li>
+        </effects>
+      </li>
+    </endings>
+  </ColonyCouncil.WorldSituationDef>
+
+</Defs>

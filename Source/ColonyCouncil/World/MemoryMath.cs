@@ -102,6 +102,49 @@ namespace ColonyCouncil
             return years <= 1 ? Ago.LastYear : Ago.Years;
         }
 
+        // ---------------- Single colonists ----------------
+
+        /// <summary>Days a note of who tended (or set free) one of a people's own is kept, waiting for them to go home.</summary>
+        public const int NoteDays = 30;
+
+        /// <summary>The most such notes kept at once (a big fight's wounded, a full prison).</summary>
+        public const int MaxNotes = 60;
+
+        /// <summary>A people names the colonist it remembers only while the deed is at least this strong (a release is 12 when new).</summary>
+        public const float NamedFriend = 6f;
+
+        /// <summary>A deed this strong, done by one colonist, is a debt of the heart: they're greeted like family.</summary>
+        public const float DearFriend = 20f;
+
+        /// <summary>Whether a note of who tended or freed a stranger is still worth keeping (not from the future, not past <see cref="NoteDays"/>).</summary>
+        public static bool KeepNote(int ageTicks) => ageTicks >= 0 && ageTicks <= NoteDays * TicksPerDay;
+
+        /// <summary>
+        /// Which of a people's good turns names the colonist they remember best: the strongest of those whose colonist is
+        /// still with the colony, at least <see cref="NamedFriend"/>. Returns its index, or -1.
+        /// </summary>
+        public static int BestFriend(IList<float> strengths, IList<bool> present)
+        {
+            int best = -1;
+            float bestS = NamedFriend;
+            for (int i = 0; i < strengths.Count; i++)
+            {
+                if (present == null || i >= present.Count || !present[i]) continue;
+                if (strengths[i] >= bestS)
+                {
+                    best = i;
+                    bestS = strengths[i];
+                }
+            }
+            return best;
+        }
+
+        /// <summary>
+        /// How warmly one of that people greets the colonist they remember: 0 not at all (faded, or never named), 1 by name,
+        /// 2 like family (a big debt, or several good turns).
+        /// </summary>
+        public static int Greeting(float strength) => strength >= DearFriend ? 2 : strength >= NamedFriend ? 1 : 0;
+
         /// <summary>
         /// How a people stands with the colony, from what it remembers: how grateful it is (the colony's good deeds), how
         /// much it holds against the colony, and how much the colony owes it. 0: nothing to speak of; 1: well disposed;

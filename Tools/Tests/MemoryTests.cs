@@ -67,6 +67,40 @@ public static class MemoryTests
             check(t >= 0 && t <= 6, $"tone in range ({g},{b})");
             if (b > g && b >= 15f && g < 15f) check(t == 4, $"a big grudge outweighing gratitude reads as a grudge ({g},{b})");
         }
+
+        // Single colonists: the one who set theirs free, the one who tended their wounded.
+        cases++;
+        check(MemoryMath.KeepNote(0) && MemoryMath.KeepNote(MemoryMath.NoteDays * day), "a note of who tended them is kept until they go home");
+        check(!MemoryMath.KeepNote(MemoryMath.NoteDays * day + 1), "a note is let go after a month");
+        check(!MemoryMath.KeepNote(-day), "a note from the future (another game's) is let go");
+        check(MemoryMath.BestFriend(new List<float>(), new List<bool>()) == -1, "nobody to remember");
+        check(MemoryMath.BestFriend(new List<float> { 12f, 20f }, new List<bool> { true, true }) == 1, "the bigger debt names its colonist");
+        check(MemoryMath.BestFriend(new List<float> { 12f, 20f }, new List<bool> { true, false }) == 0, "someone no longer with the colony isn't asked for");
+        check(MemoryMath.BestFriend(new List<float> { 5f }, new List<bool> { true }) == -1, "a faded good turn names nobody");
+        check(MemoryMath.BestFriend(new List<float> { MemoryMath.NamedFriend }, new List<bool> { true }) == 0, "just strong enough still names them");
+        check(MemoryMath.BestFriend(new List<float> { 12f }, null) == -1, "without knowing who's here, nobody");
+        check(MemoryMath.BestFriend(new List<float> { 12f, 9f }, new List<bool> { true }) == 0, "a short list of who's here only reads what it has");
+        check(MemoryMath.Greeting(0f) == 0 && MemoryMath.Greeting(MemoryMath.NamedFriend - 0.1f) == 0, "faded: no greeting");
+        check(MemoryMath.Greeting(MemoryMath.NamedFriend) == 1 && MemoryMath.Greeting(12f) == 1, "greeted by name");
+        check(MemoryMath.Greeting(MemoryMath.DearFriend) == 2 && MemoryMath.Greeting(45f) == 2, "a big debt: greeted like family");
+        // A release (12) names its colonist for a while, then fades below a name, before it's forgotten altogether.
+        float namedYears = 0f;
+        for (int y = 0; y <= 40; y++)
+            if (MemoryMath.Strength(12, y * year / 4) >= MemoryMath.NamedFriend) namedYears = y / 4f;
+        check(namedYears >= 1.5f && namedYears < MemoryMath.YearsRemembered(12), $"a freed prisoner's people name the colonist for about {namedYears:0.0} years, less than they remember the deed");
+        check(MemoryMath.Strength(10, 0) >= MemoryMath.NamedFriend, "a wounded guest tended is named from the start");
+        check(MemoryMath.Strength(18, 3 * year) >= MemoryMath.NamedFriend, "a lost child found is named for years");
+        for (int w = 1; w <= 60; w += 7)
+        {
+            cases++;
+            int last = 3;
+            for (int age = 0; age <= 10 * year; age += year / 2)
+            {
+                int g = MemoryMath.Greeting(MemoryMath.Strength(w, age));
+                check(g <= last, $"a greeting never warms as a deed of {w} fades");
+                last = g;
+            }
+        }
         return cases;
     }
 }

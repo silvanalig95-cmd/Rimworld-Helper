@@ -23,6 +23,7 @@
           <li>[!lowtech] A traveling storyteller</li>
         </titles>
         <texts>
+          <li>[their:friend,tale] {X_nameDef}, a wandering bard of {FACTION}, would like supper and a bed for the night, and will pay in songs. Among {FACTION} there's a song about {FRIEND_nameDef}, {X_nameDef} says, and {X_pronoun} would very much like to meet the one it's about. On the road, the story of the colony goes like this: "{TALE}"</li>
           <li>[lowtech,tale] {X_nameDef}, a wandering bard of {FACTION}, would like supper and a bed for the night, and will pay in songs and tales, as bards do. {X_nameDef} has already heard of this colony. On the road, the story goes like this: "{TALE}"</li>
           <li>[lowtech,notale] {X_nameDef}, a wandering bard of {FACTION}, has come to spend an evening at the colony, trading tales and songs for supper and a bed, as bards always have.</li>
           <li>[!lowtech,tale] {X_nameDef} of {FACTION}, a traveling storyteller with a battered instrument and a hundred stories, is stopping for the night. {X_nameDef} already knows a story about this colony, and tells it like this: "{TALE}"</li>
@@ -70,6 +71,7 @@
           <li>They knew {DEAD}</li>
         </titles>
         <texts>
+          <li>[their:grateful] Travelers from {FACTION} are on their way to the colony to visit the grave of {DEAD}. They knew {DEAD} before the colony did, and they say they are glad {DEAD} ended among people who did right by {FACTION}. They'll stand at the grave for a while, and then go.</li>
           <li>Travelers from {FACTION} are on their way to the colony to visit the grave of {DEAD}. They knew {DEAD} long before the colony did, as family or close to it. They'll stand at the grave for a while, and then go.</li>
           <li>[lowtech] Word of {DEAD}'s death traveled farther than anyone thought. Kin from {FACTION} are walking in to pay their respects at the grave, as their custom is.</li>
           <li>[!lowtech] Someone from {FACTION} found {DEAD}'s name in a settlement record and has come all this way with family to see the grave. They won't stay long.</li>
@@ -102,6 +104,8 @@
           <li>Pilgrims at the gate</li>
         </titles>
         <texts>
+          <li>[their:grateful] Pilgrims of {FACTION} are walking up to the colony, footsore and thin. They came this way on purpose, their leader says: among {FACTION}, the colony is spoken of as a place that does right by people on the road. They ask for a meal before they go on.</li>
+          <li>[their:grudge] A small band of pilgrims of {FACTION} has stopped outside the colony, hungry enough to swallow their pride. {FACTION} don't speak well of this place, and the pilgrims know it. They ask for a meal anyway.</li>
           <li>[lowtech] A small band of pilgrims of {FACTION}, footsore and thin, is walking up to the colony. Their road is long and their bags are empty, and they ask, very politely, for a meal before they go on.</li>
           <li>[!lowtech] A handful of pilgrims of {FACTION} have stopped outside the colony on their way somewhere they hope will be better. Their rations ran out three days ago, and they'd be grateful for a meal.</li>
           <li>On the long walk to a place holy to them, pilgrims of {FACTION} have stopped by the colony. They carry very little and have eaten less, and ask if the colony can spare a meal. They'll pray for the colony in return.</li>
@@ -169,6 +173,7 @@
           <li>[!lowtech] A traveling engineer</li>
         </titles>
         <texts>
+          <li>[their:friend] {X_nameDef}, a scholar of {FACTION}, asks for a bed for the night, and mentions that {FACTION} speak of {FRIEND_nameDef} with great respect. On hearing that the colony is working on {TALE}, {X_nameDef} starts asking questions, and offers what {X_pronoun} knows.</li>
           <li>[tribal] {X_nameDef}, a lore-keeper of {FACTION} who carries a whole people's history in {X_possessive} head, asks for a place to sleep tonight. When {X_nameDef} hears the colony is working on {TALE}, {X_pronoun} smiles. There's an old story about that, and it might help.</li>
           <li>[lowtech,!tribal] {X_nameDef}, a wandering scholar of {FACTION} with ink-stained fingers and a satchel of books, asks for a bed for the night. On hearing that the colony is working on {TALE}, {X_nameDef} starts asking questions, and doesn't stop until supper is cleared away.</li>
           <li>[!lowtech] {X_nameDef}, a traveling engineer of {FACTION}, asks for a bunk for the night. Someone mentions the colony's work on {TALE}, and {X_nameDef} immediately asks to see the notes. "Oh, no, no, no," {X_nameDef} says, smiling. "Let me show you."</li>

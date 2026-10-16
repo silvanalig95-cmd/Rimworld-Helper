@@ -95,7 +95,7 @@ namespace ColonyCouncil
         /// <summary>Picks the kind of camp, its people and its spot; makes the people (not on the map yet). Null if none fits.</summary>
         public CampSetup Prepare(Map map)
         {
-            var kinds = DefDatabase<CampKindDef>.AllDefs.Where(k => k.FitsEra()).ToList();
+            var kinds = DefDatabase<CampKindDef>.AllDefs.Where(k => k.FitsEra() && k.Possible).ToList();
             if (kinds.Count == 0 || !CampSite.TryFind(map, out var center)) return null;
             var colony = CampSite.ColonyCenter(map);
             for (int tries = 0; tries < 6; tries++)

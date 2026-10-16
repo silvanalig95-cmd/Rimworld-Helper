@@ -189,6 +189,20 @@ namespace ColonyCouncil
                 }
                 y += 6f;
 
+                // What the colony can ask of this kind of camp (CampAsks.cs): play at a feast, sit vigil, teach, sell a beast.
+                if (!camp.kind.asks.NullOrEmpty())
+                {
+                    y += UiKit.SectionTitle(0f, y, w, "CC_CampAsk_Section".Translate(), Icons.Visitor, UiKit.StrangerColor);
+                    foreach (var a in camp.kind.asks)
+                    {
+                        int cost = camp.AskCost(a);
+                        string why = camp.AskBlocked(a);
+                        string tip = a.tip.NullOrEmpty() ? null : camp.Format(a.tip, null, camp.AskColonist(a), cost);
+                        if (Button(ref y, camp.Format(a.label, null, camp.AskColonist(a), cost), why == null, why, null, tip)) reply = camp.DoAsk(a);
+                    }
+                    y += 6f;
+                }
+
                 // Ending it
                 y += UiKit.SectionTitle(0f, y, w, "CC_Camp_Dlg_Leave".Translate(), Icons.Warning, UiKit.Warn);
                 bool canAsk = camp.phase != CampPhase.Leaving && camp.phase != CampPhase.Fighting;

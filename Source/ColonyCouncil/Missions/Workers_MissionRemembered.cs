@@ -661,12 +661,27 @@ namespace ColonyCouncil
                     case "Council_WS_Flood": tag = "flood"; break;
                     case "Council_WS_HardWinter": tag = "winter"; break;
                     case "Council_WS_Abandoned": tag = "abandoned"; break;
+                    case "Council_WS_GreatFire": tag = "fire"; break;
                     case "Council_WS_Warlord":
                     case "Council_WS_BanditRoad": tag = "war"; break;
                 }
                 if (tag == null) continue;
                 var who = s.ctx?.faction;
                 if (who != null && LivingEvents.Friendly(who) && Arrivals.PersonKind(who) != null && FactionMemory.Remembers(who)) f = who;
+                return tag;
+            }
+            // Some weeks after a plague, a famine, a flood, a hard winter or a war has ended, its homeless are still on the roads.
+            int now = Find.TickManager.TicksGame;
+            for (int i = ws.history.Count - 1; i >= 0; i--)
+            {
+                var r = ws.history[i];
+                if (r == null || r.ending == null || r.ending == WorldSituations.Quietly || now - r.endTick > GenDate.TicksPerDay * 30) continue;
+                string tag = r.defName == "Council_WS_Murrain" ? null : HappeningWorker_Aftermath.KindTag(r.defName);
+                if (tag == null || tag == "locusts") continue;
+                if (tag == "drought") tag = "famine";
+                var who = r.faction;
+                if (who == null || who.defeated || !LivingEvents.Friendly(who) || Arrivals.PersonKind(who) == null || !FactionMemory.Remembers(who)) continue;
+                f = who;
                 return tag;
             }
             return null;
