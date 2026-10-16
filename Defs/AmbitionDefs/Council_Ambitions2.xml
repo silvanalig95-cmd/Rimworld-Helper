@@ -91,6 +91,8 @@
     <template>Council_Brewery</template>
     <relevantCategories><li>Comfort</li></relevantCategories>
     <proposerSkills><li>Cooking</li><li>Plants</li></proposerSkills>
+    <!-- Nobody whose faith forbids drink pitches it, or votes for it (Wishes/Beliefs.cs). -->
+    <forbiddenBy><li>NoAlcohol</li></forbiddenBy>
     <goals>
       <li Class="ColonyCouncil.Goal_Build">
         <thingRole>fermenter</thingRole>
@@ -176,6 +178,7 @@
     <defName>Council_Amb_NoDarkCorners</defName>
     <label>no dark corners</label>
     <description>Put a light in every room where people work, eat or sleep. People work slower and feel worse in the dark.</description>
+    <forbiddenBy><li>Darkness</li></forbiddenBy>
     <days>10</days>
     <relevantCategories><li>Comfort</li></relevantCategories>
     <proposerTraits><li>NightOwl</li></proposerTraits>
@@ -299,6 +302,8 @@
     <days>20</days>
     <relevantCategories><li>Food</li></relevantCategories>
     <proposerSkills><li>Cooking</li></proposerSkills>
+    <!-- Pemmican is meat and plants together: not pitched by those whose faith rules out either. -->
+    <forbiddenBy><li>NoMeat</li><li>MeatOnly</li><li>FungusOrInsectOnly</li></forbiddenBy>
     <goals>
       <li Class="ColonyCouncil.Goal_Stock">
         <kind>Pemmican</kind>

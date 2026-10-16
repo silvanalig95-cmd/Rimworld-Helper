@@ -472,6 +472,7 @@ namespace ColonyCouncil
         private void Have(CouncilGameComponent comp, Pawn p, Cast c, bool fever)
         {
             var def = c.def;
+            // apart: a dream about someone; the telling of it is a game conversation (InteractionWorker_DreamTalk).
             string key = Key(p, def);
             seen.TryGetValue(key, out int times);
             seen[key] = times + 1;

@@ -65,6 +65,22 @@ namespace ColonyCouncil
         public string feeling;
         /// <summary>Tie workers: the kind of bond.</summary>
         public TieKind tie = TieKind.Friends;
+        /// <summary>Beliefs that rule it out (Wishes/Beliefs.cs): no hunter's legend for one whose faith forbids killing animals.</summary>
+        public List<Belief> forbiddenBy;
+
+        [Unsaved] private ulong forbiddenMask;
+        [Unsaved] private bool forbiddenMaskSet;
+
+        /// <summary>This colonist's beliefs rule the goal out.</summary>
+        public bool AgainstBeliefsOf(Pawn p)
+        {
+            if (!forbiddenMaskSet)
+            {
+                forbiddenMask = BeliefMath.Mask(forbiddenBy);
+                forbiddenMaskSet = true;
+            }
+            return Beliefs.ForbidsAny(p, forbiddenMask);
+        }
         /// <summary>Journal, when they set their heart on it ({GOAL}).</summary>
         public ToneLines chosen = new ToneLines();
         /// <summary>Journal and the letter, when they achieve it ({GOAL}).</summary>
@@ -139,6 +155,13 @@ namespace ColonyCouncil
             {
                 if (inherited) return "CC_Asp_Spark_Inherited".Translate(sparkName ?? "?").Resolve();
                 if (spark.NullOrEmpty()) return null;
+                // A memory that sparked it: say which ("after \"idea turned down\""), not just "after what happened".
+                if (spark.StartsWith("thought:"))
+                {
+                    var td = DefDatabase<ThoughtDef>.GetNamedSilentFail(spark.Substring(8));
+                    string what = td?.stages?.FirstOrDefault(st => st != null && !st.label.NullOrEmpty())?.label ?? td?.label;
+                    if (!what.NullOrEmpty() && what.IndexOf('{') < 0) return "CC_Asp_Spark_thoughtNamed".Translate(what.UncapitalizeFirst()).Resolve();
+                }
                 string key = "CC_Asp_Spark_" + (spark.StartsWith("thought:") ? "thought" : spark);
                 return key.CanTranslate() ? key.Translate(sparkName ?? "").Resolve() : null;
             }
@@ -250,6 +273,16 @@ namespace ColonyCouncil
             return !Married(p) && (asexual == null || p.story?.traits?.HasTrait(asexual) != true);
         }
 
+        /// <summary>
+        /// A partner they can't share a bed with until they're married (a faith that keeps lovin to the married): the
+        /// wedding becomes what they set their heart on, far more often (Wishes/Beliefs.cs).
+        /// </summary>
+        public static float FaithFactor(Pawn p)
+        {
+            var partner = LovePartnerRelationUtility.ExistingLovePartner(p, false);
+            return partner != null && Beliefs.WaitingForMarriage(p, partner) ? 4f : 1f;
+        }
+
         public override float Progress(Aspiration a)
         {
             if (Married(a.pawn)) return 1f;
@@ -264,7 +297,8 @@ namespace ColonyCouncil
     {
         private static int Children(Pawn p) => p.relations?.Children.Count(c => !c.Dead) ?? 0;
 
-        public override bool CanHave(Pawn p) => ModsConfig.BiotechActive && p.ageTracker != null && Flavor.HumanAge(p) < 45f;
+        /// <summary>Not for someone whose faith forbids lovin altogether (Wishes/Beliefs.cs).</summary>
+        public override bool CanHave(Pawn p) => ModsConfig.BiotechActive && p.ageTracker != null && Flavor.HumanAge(p) < 45f && !Beliefs.Forbids(p, Belief.NoLovin);
 
         public override bool Init(Aspiration a)
         {
@@ -559,9 +593,10 @@ namespace ColonyCouncil
             var result = new List<(AspirationDef, string, float)>();
             foreach (var d in DefDatabase<AspirationDef>.AllDefsListForReading)
             {
-                if (done.Contains(d) || !DilemmaRole.Fits(d.who, p, d.children) || !OldEnough(d, p) || !SafeCanHave(d, p)) continue;
+                if (done.Contains(d) || !DilemmaRole.Fits(d.who, p, d.children) || !OldEnough(d, p) || d.AgainstBeliefsOf(p) || !SafeCanHave(d, p)) continue;
                 // The heart's need they lack most makes the goals that answer it a little likelier (Heart/).
-                result.Add((d, Sparked(d, p), d.weight * (d.who?.passion != null || d.who?.anyTrait != null ? 2f : 1f) * Heart.GoalFactor(p, d)));
+                result.Add((d, Sparked(d, p), d.weight * (d.who?.passion != null || d.who?.anyTrait != null ? 2f : 1f) * Heart.GoalFactor(p, d)
+                                              * (d.Worker is AspirationWorker_Spouse ? AspirationWorker_Spouse.FaithFactor(p) : 1f)));
             }
             return result;
         }
@@ -683,13 +718,20 @@ namespace ColonyCouncil
                 var idef = inspiration.GetRandomAvailableInspirationDef();
                 if (idef != null) inspiration.TryStartInspiration(idef, null, true);
             }
-            // The people who love them are glad.
+            // The people who love them are glad (they hear the news, wherever they are).
             foreach (var f in PawnsFinder.AllMaps_FreeColonists.ToList().Where(f => f != p && f.relations != null && (f.relations.OpinionOf(p) >= 40 || comp.social.Warmth(f, p) >= 40f)))
             {
                 CouncilGameComponent.GiveThought(f, CouncilDefOf.Council_HappyForThem, p);
-                // Seeing someone they love do it can make them want it too.
-                Notify_Event(f, "fulfilled:" + a.def.defName);
-                inspiredBy[f.ThingID + "|" + a.def.defName] = p.LabelShort;
+                // Hearing about it from them, face to face, can make someone want it too: when the two are next together,
+                // within two days (Together).
+                var friend = f;
+                string goal = a.Goal, defName = a.def.defName;
+                Together.When("goalspark|" + p.thingIDNumber + "|" + friend.thingIDNumber, friend, p, () =>
+                {
+                    Notify_Event(friend, "fulfilled:" + defName);
+                    inspiredBy[friend.ThingID + "|" + defName] = p.LabelShort;
+                    SocialLog.Add(p, friend, "CC_Together_GoalShared".Translate(friend.Named("PAWN"), p.Named("OTHER"), goal.Named("GOAL")).Resolve());
+                }, 48f);
             }
         }
 

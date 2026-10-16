@@ -434,6 +434,7 @@ namespace ColonyCouncil
         /// </summary>
         public void Notify_VisitEnded(Pawn visitor, Pawn patient, int ticks)
         {
+            // together: the game's own sickbed visit (JobDriver_VisitSickPawn), at the bedside.
             if (!ConvalescenceOn || ticks < 900 || !Ours(visitor) || !Ours(patient) || visitor == patient) return;
             int now = Find.TickManager.TicksGame;
             string key = visitor.ThingID + "|" + patient.ThingID;
@@ -678,6 +679,7 @@ namespace ColonyCouncil
         /// <summary>A child was born (Biotech): the colonist who attended the birth counts it, and the mother remembers who.</summary>
         public void Notify_Birth(Thing baby, Pawn mother, Pawn doctor)
         {
+            // together: the doctor delivering the baby, at the mother's side (the game's own birth).
             if (!ReputationOn || doctor == null || mother == null || doctor == mother || !Ours(doctor)) return;
             bool alive = baby is Pawn b && !b.Dead;
             if (!alive)

@@ -138,8 +138,8 @@ namespace ColonyCouncil
             }
             var lack = LowestNeed(h, out float value);
             if (lack != null && ((lack.wishes != null && lack.wishes.Contains(def)) || (lack.wishCategories != null && lack.wishCategories.Contains(def.category))))
-                f *= NeedNudge(value);
-            return Mathf.Clamp(f, 1f, 1.5f);
+                f *= HeartNeedMath.WishFactor(value);
+            return Mathf.Clamp(f, 1f, HeartNeedMath.MaxFactor);
         }
 
         /// <summary>How much likelier a life goal is for someone lacking the need it answers (at most half again).</summary>
@@ -149,11 +149,8 @@ namespace ColonyCouncil
             if (h == null || def == null) return 1f;
             var lack = LowestNeed(h, out float value);
             if (lack?.goals == null || !lack.goals.Contains(def)) return 1f;
-            return Mathf.Clamp(NeedNudge(value) * 1.15f, 1f, 1.5f);
+            return HeartNeedMath.GoalFactor(value);
         }
-
-        /// <summary>A need below 45 makes what answers it up to 35% likelier.</summary>
-        private static float NeedNudge(float value) => value >= 45f ? 1f : 1f + 0.35f * (45f - value) / 45f;
 
         /// <summary>The need of the heart they lack most, if any is below 45.</summary>
         public static HeartNeedDef LowestNeed(PawnHeart h, out float value)
@@ -167,7 +164,7 @@ namespace ColonyCouncil
                     value = h.needs[i].value;
                     best = i;
                 }
-            if (best < 0 || value >= 45f) return null;
+            if (best < 0 || value >= HeartNeedMath.MissedBelow) return null;
             return NeedDef((HeartNeed)best);
         }
 

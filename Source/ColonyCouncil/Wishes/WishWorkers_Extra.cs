@@ -16,7 +16,9 @@ namespace ColonyCouncil
                 if (rel.def != PawnRelationDefOf.Fiance) continue;
                 var other = rel.otherPawn;
                 if (other == null || other.Dead || !other.IsFreeColonist || other.MapHeld != pawn.MapHeld) continue;
-                var c = Candidate(2.5f, "CC_Reason_Wedding".Translate(pawn.Named("PAWN"), other.Named("OTHER")));
+                // A faith that keeps lovin and a shared bed to the married makes the wedding the thing they ask for.
+                bool waiting = Beliefs.WaitingForMarriage(pawn, other);
+                var c = Candidate(waiting ? 5f : 2.5f, (waiting ? "CC_Reason_WeddingFaith" : "CC_Reason_Wedding").Translate(pawn.Named("PAWN"), other.Named("OTHER")));
                 c.other = other;
                 c.subjectKey = WishWorker_ShareBed.PairKey(pawn, other);
                 c.thingDef = DefDatabase<ThingDef>.GetNamedSilentFail("MarriageSpot");
@@ -184,6 +186,13 @@ namespace ColonyCouncil
         }
 
         public override bool IsFulfilled(Wish wish) => Stock(wish.Beneficiary.MapHeld) >= wish.targetValue;
+
+        /// <summary>
+        /// Not when nothing of the kind is theirs to have: their faith forbids it, their drug policy allows none of it
+        /// for fun, or they're getting off an addiction.
+        /// </summary>
+        public override bool AgainstBeliefs(Pawn pawn, Pawn other, ThingDef thing) =>
+            base.AgainstBeliefs(pawn, other, thing) || !SocialDrugs.Any(d => !Beliefs.MindsDrug(pawn, d));
 
         public override string ProgressText(Wish wish) => "CC_Progress_Stock".Translate(Stock(wish.Beneficiary.MapHeld), wish.targetValue.ToString("0"));
     }

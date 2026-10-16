@@ -15,6 +15,11 @@ using ColonyCouncil;
 /// a bed's head is its root cell (it extends toward its facing); workbenches face the wall with the work spot behind
 /// them (0,0,-1); mech gestators and rechargers put their back to the wall and work on their facing side; DBH toilets
 /// face the wall behind them.
+///
+/// Every layout is checked twice more with wall lamps (LightMath): a strong lamp and a weak one. A small or medium room
+/// hangs them in place of its plain lights; each stands on a free floor cell in front of a wall, facing that wall, in
+/// every turn and mirrored: never on or beside a door, never on a cooler or vent in the wall, never on a cell where
+/// something else is planned (WallLampTests).
 /// </summary>
 public static class RoomTemplateTests
 {
@@ -25,8 +30,10 @@ public static class RoomTemplateTests
         /// <summary>"" blocks, "stand" walkable, "sit" a seat, "door".</summary>
         public string pass = "";
         public List<(int x, int z)> spots = new();
-        /// <summary>bed (head at the root), chair, table, wall, door.</summary>
+        /// <summary>bed (head at the root), chair, table, wall, door, walllight.</summary>
         public string kind = "";
+        /// <summary>Hung on a wall (a wall lamp): it stands in front of its wall, facing it.</summary>
+        public bool attached;
     }
 
     internal static readonly Dictionary<string, Fact> facts = new();
@@ -56,6 +63,7 @@ public static class RoomTemplateTests
             foreach (var flag in flags.Split(' ', StringSplitOptions.RemoveEmptyEntries))
             {
                 if (flag == "norot") f.rotatable = false;
+                else if (flag == "wall") f.attached = true;
                 else f.pass = flag;
             }
             foreach (var s in spots.Split(';', StringSplitOptions.RemoveEmptyEntries))
@@ -129,6 +137,8 @@ public static class RoomTemplateTests
         F("Dresser Table_RoyalDresser Table_Wardrobe VFE_RoyalWardrobe Table_IlluminatedDresser VFES_Table_IlluminatedWardrobe", 2, 1);
         F("PlantPot VFE_DecorativePlantPot", 1, 1, "norot");
         F("StandingLamp TorchLamp SunLamp Heater PassiveCooler VFE_RoyalLamp VFEE_Candelabra", 1, 1, "norot");
+        // 1.6 wall lamps: on the floor cell in front of a wall, facing it, walked under.
+        F("WallLamp TorchWallLamp", 1, 1, "stand wall", kind: "walllight");
         // Vanilla Furniture Expanded's floor lamp can be walked over.
         F("VFE_FloorLamp", 1, 1, "stand norot");
         F("MeditationSpot", 1, 1, "stand norot");
@@ -163,7 +173,11 @@ public static class RoomTemplateTests
         public List<string> defs = new();
         public string role, tier;
         public int x, z, rot;
-        public bool optional = true, inWall;
+        public bool optional = true, inWall, keepOnFloor;
+
+        /// <summary>A light the room may hang on its walls instead, as the game decides it (TemplateThing.MayHang).</summary>
+        public bool MayHang(string pick) =>
+            role == "light" && !inWall && !(keepOnFloor && pick != null && defs.Count > 0 && pick == defs[0]);
     }
 
     public class Template
@@ -229,7 +243,8 @@ public static class RoomTemplateTests
                         tier = li.Element("tier")?.Value,
                         rot = Rot(li.Element("rot")?.Value),
                         optional = li.Element("optional")?.Value != "false",
-                        inWall = li.Element("inWall")?.Value == "true"
+                        inWall = li.Element("inWall")?.Value == "true",
+                        keepOnFloor = li.Element("keepOnFloor")?.Value == "true"
                     };
                     var pm = Vec.Match(li.Element("pos")?.Value ?? "(0,0)");
                     th.x = int.Parse(pm.Groups[1].Value);
@@ -290,17 +305,22 @@ public static class RoomTemplateTests
             }
             foreach (bool fallback in new[] { false, true })
             {
-                for (int style = 0; style <= 2; style++)
+                // No wall lamp the colony can build (the plan's floor lights), then a strong wall lamp and a weak one.
+                foreach (float reach in WallLampTests.Reaches)
                 {
-                    var (pieces, notes) = Arrange(t, fallback, style);
-                    string where = $"{t.file}: {t.defName} ({(fallback ? "fallback" : "best")} furniture, style {style})";
-                    foreach (var n in notes) check(false, $"{where}: layout had to change: {n}");
-                    for (int mirror = 0; mirror < 2; mirror++)
-                        for (int turn = 0; turn < 4; turn++)
-                        {
-                            CheckWorld(t, pieces, mirror == 1, turn, $"{where} turn {turn}{(mirror == 1 ? " mirrored" : "")}", check);
-                            checkedLayouts++;
-                        }
+                    for (int style = 0; style <= 2; style++)
+                    {
+                        var (pieces, notes) = Arrange(t, th => Pick(th, fallback), style, TemplateLayout.Lavish, reach);
+                        string where = $"{t.file}: {t.defName} ({(fallback ? "fallback" : "best")} furniture, style {style}{WallLampTests.Label(reach)})";
+                        foreach (var n in notes) check(false, $"{where}: layout had to change: {n}");
+                        WallLampTests.CheckLamps(t, pieces, th => Pick(th, fallback), style, reach, where, check);
+                        for (int mirror = 0; mirror < 2; mirror++)
+                            for (int turn = 0; turn < 4; turn++)
+                            {
+                                CheckWorld(t, pieces, mirror == 1, turn, $"{where} turn {turn}{(mirror == 1 ? " mirrored" : "")}", check);
+                                checkedLayouts++;
+                            }
+                    }
                 }
             }
         }
@@ -320,22 +340,27 @@ public static class RoomTemplateTests
                         $"{t.file}: {t.defName} slot ({th.x},{th.z}) can be missing its furniture, and has no role to name it by");
                 continue;
             }
-            for (int style = 0; style <= 2; style++)
+            foreach (float reach in WallLampTests.Reaches)
             {
-                var (pieces, notes) = Arrange(t, Present, style);
-                string where = $"{t.file}: {t.defName} (without the furniture of unrequired DLCs and mods, style {style})";
-                foreach (var n in notes) check(false, $"{where}: layout had to change: {n}");
-                for (int mirror = 0; mirror < 2; mirror++)
-                    for (int turn = 0; turn < 4; turn++)
-                    {
-                        CheckWorld(t, pieces, mirror == 1, turn, $"{where} turn {turn}{(mirror == 1 ? " mirrored" : "")}", check);
-                        baseLayouts++;
-                    }
+                for (int style = 0; style <= 2; style++)
+                {
+                    var (pieces, notes) = Arrange(t, Present, style, TemplateLayout.Lavish, reach);
+                    string where = $"{t.file}: {t.defName} (without the furniture of unrequired DLCs and mods, style {style}{WallLampTests.Label(reach)})";
+                    foreach (var n in notes) check(false, $"{where}: layout had to change: {n}");
+                    WallLampTests.CheckLamps(t, pieces, Present, style, reach, where, check);
+                    for (int mirror = 0; mirror < 2; mirror++)
+                        for (int turn = 0; turn < 4; turn++)
+                        {
+                            CheckWorld(t, pieces, mirror == 1, turn, $"{where} turn {turn}{(mirror == 1 ? " mirrored" : "")}", check);
+                            baseLayouts++;
+                        }
+                }
             }
         }
         Console.WriteLine($"Checked {baseLayouts} room layouts with missing DLC and mod furniture left out ({unavailable} rooms wait for their key piece).");
         int themed = RoomThemeTests.Run(root, templates, check);
         Console.WriteLine($"Checked {themed} room layouts in a theme, with and without the DLC and mod furniture.");
+        Console.WriteLine($"Checked {WallLampTests.Run(templates, check)} things about wall lamps (which light for which room, how many, obstacles).");
         return checkedLayouts;
     }
 
@@ -352,16 +377,28 @@ public static class RoomTemplateTests
     public static (List<(TemplateLayout.Piece piece, Fact fact)> pieces, List<string> notes) Arrange(Template t, bool fallback, int style) =>
         Arrange(t, th => Pick(th, fallback), style);
 
-    /// <summary>Lays out a template with the def <paramref name="pick"/> chooses for each piece (null: left out).</summary>
-    public static (List<(TemplateLayout.Piece piece, Fact fact)> pieces, List<string> notes) Arrange(Template t, Func<Thing, string> pick, int style, int decorFrom = TemplateLayout.Lavish)
+    /// <summary>
+    /// Lays out a template with the def <paramref name="pick"/> chooses for each piece (null: left out), as the game's
+    /// Resolve does: arranged, then (when the colony can build a wall lamp lighting <paramref name="lampReach"/> cells) its
+    /// plain lights hung on the walls by the room's size, then the decor.
+    /// </summary>
+    public static (List<(TemplateLayout.Piece piece, Fact fact)> pieces, List<string> notes) Arrange(Template t, Func<Thing, string> pick, int style,
+        int decorFrom = TemplateLayout.Lavish, float lampReach = 0f, string lampName = "WallLamp")
     {
         var list = new List<(TemplateLayout.Piece, Fact)>();
+        var hangable = new List<(Thing th, TemplateLayout.Piece piece)>();
         for (int i = 0; i < t.things.Count; i++)
         {
             var th = t.things[i];
             if (!TemplateLayout.InStyle(th.tier, th.role, th.optional, style)) continue;
             var name = pick(th);
-            if (name == null) continue;
+            // Wall lamps never stand where the plan puts floor furniture.
+            if (name != null && facts[name].attached) name = null;
+            if (name == null)
+            {
+                if (th.MayHang(null)) hangable.Add((th, null));
+                continue;
+            }
             var f = facts[name];
             var p = new TemplateLayout.Piece
             {
@@ -376,17 +413,39 @@ public static class RoomTemplateTests
                 optional = th.optional,
                 inWall = th.inWall,
                 isDoor = f.kind == "door",
+                isWall = f.kind == "wall",
                 role = name
             };
             p.spots.AddRange(f.spots);
             list.Add((p, f));
+            if (th.MayHang(name)) hangable.Add((th, p));
         }
         var notes = TemplateLayout.Arrange(t.w, t.h, t.DoorX, list.Select(x => x.Item1).ToList());
+        if (lampReach > 0f && hangable.Count > 0)
+        {
+            var lights = hangable.Select(h => (h.piece, h.th.x, h.th.z)).ToList();
+            bool floorPlaced = lights.Any(l => l.piece != null && !l.piece.dropped);
+            if (LightMath.UseWallLamps(t.w * t.h, true, floorPlaced, LightMath.Auto))
+            {
+                var plan = LightMath.LightWithWallLamps(t.w, t.h, t.DoorX, list.Select(x => x.Item1).ToList(), lights, lampReach);
+                foreach (var s in plan.Lamps)
+                {
+                    var lamp = new TemplateLayout.Piece
+                    {
+                        x = s.x, z = s.z, minX = s.x, minZ = s.z, w = 1, h = 1, rot = s.facing, facing = s.facing,
+                        passable = true, role = lampName + " (on the wall)"
+                    };
+                    list.Add((lamp, facts[lampName]));
+                }
+            }
+        }
         if (ThemeMath.AddsDecor(style, decorFrom))
         {
             // The plant pots the lavish style (or a theme that wants plants) adds must leave everything reachable.
             var live = list.Select(x => x.Item1).Where(p => !p.dropped).ToList();
             var spots = TemplateLayout.DecorSpots(t.w, t.h, t.DoorX, live, 4);
+            foreach (var (x, z) in spots)
+                if (live.Any(p => p.role.EndsWith("(on the wall)") && p.Contains(x, z))) notes.Add($"a plant pot stands under a wall lamp at ({x},{z})");
             foreach (var (x, z) in spots)
             {
                 var pot = new TemplateLayout.Piece { x = x, z = z, minX = x, minZ = z, w = 1, h = 1, role = "PlantPot (decor)" };
@@ -507,6 +566,32 @@ public static class RoomTemplateTests
                         if (headRow && !WallAt(x + bx, z + bz)) against = false;
                     }
                 check(against, $"{where}: {a.p.role} at ({a.minX},{a.minZ}) facing {a.facing} has its head away from the wall");
+            }
+            // A wall lamp stands in front of a wall and faces it (the game looks for its wall at cell + facing): a wall of the
+            // ring or a partition, never the door, an inner door or a piece set in the wall, never a corner; and it is not
+            // beside a door.
+            if (a.f.kind == "walllight")
+            {
+                TemplateLayout.Step(a.facing, out int sx, out int sz);
+                int wx = a.rx + sx, wz = a.rz + sz;
+                bool ring = !Interior(wx, wz);
+                bool partition = Covered(wx, wz, out var on) && on.f.kind == "wall";
+                check(Interior(a.rx, a.rz), $"{where}: {a.p.role} at ({a.rx},{a.rz}) isn't on the floor");
+                check(ring || partition, $"{where}: {a.p.role} at ({a.rx},{a.rz}) faces {a.facing}, away from any wall");
+                check(!(wx == dx && wz == dz), $"{where}: {a.p.role} at ({a.rx},{a.rz}) hangs on the door");
+                bool corner = (wx == 0 || wx == rw - 1) && (wz == 0 || wz == rh - 1);
+                check(!corner && wx >= 0 && wz >= 0 && wx < rw && wz < rh, $"{where}: {a.p.role} at ({a.rx},{a.rz}) hangs on a corner");
+                foreach (var q in placed)
+                {
+                    bool inQ = wx >= q.minX && wx < q.minX + q.w && wz >= q.minZ && wz < q.minZ + q.h;
+                    if (inQ && (q.p.inWall || q.f.kind == "door")) check(false, $"{where}: {a.p.role} at ({a.rx},{a.rz}) hangs on {q.p.role}");
+                }
+                for (int f = 0; f < 4; f++)
+                {
+                    TemplateLayout.Step(f, out int nx, out int nz);
+                    bool door = (a.rx + nx == dx && a.rz + nz == dz) || (Covered(a.rx + nx, a.rz + nz, out var n) && n.f.kind == "door");
+                    check(!door, $"{where}: {a.p.role} at ({a.rx},{a.rz}) is beside a door");
+                }
             }
             // A door in a partition faces the way of its wall.
             if (a.f.kind == "door")

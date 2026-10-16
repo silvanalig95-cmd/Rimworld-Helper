@@ -337,9 +337,13 @@ var dynamic = new Dictionary<string, string[]>
     ["CC_UI_Reaction_"] = new[] { "Love", "Like", "Dislike", "Hate" },
     // Feelings and strain (Heart/): enum names.
     ["CC_Heart_Band_"] = new[] { "Steady", "Strained", "Worn", "Breaking", "Steady_Desc", "Strained_Desc", "Worn_Desc", "Breaking_Desc" },
-    ["CC_Heart_Source_"] = new[] { "Combat", "Pain", "Downed", "Loss", "Exhaustion", "Joyless", "BadSleep", "Dark", "Hunger", "LowMood", "Council", "Fear", "Grief", "Dread", "Despair" },
+    ["CC_Heart_Source_"] = new[] { "Combat", "Pain", "Downed", "Loss", "Exhaustion", "Joyless", "BadSleep", "Dark", "Hunger", "LowMood", "Council", "Fear", "Grief", "Dread", "Despair", "Unmet" },
     ["CC_Heart_Relief_"] = new[] { "Quiet", "Sleep", "Recreation", "Gathering", "Friends", "Catharsis", "Episode", "Council" },
-    ["CC_Heart_Need_"] = new[] { "Belonging", "Purpose", "Safety", "Freedom", "Belonging_Desc", "Purpose_Desc", "Safety_Desc", "Freedom_Desc" },
+    ["CC_Heart_Need_"] = new[] { "Belonging", "Purpose", "Safety", "Freedom", "Belonging_Desc", "Purpose_Desc", "Safety_Desc", "Freedom_Desc",
+        "Belonging_Answers", "Purpose_Answers", "Safety_Answers", "Freedom_Answers", "Belonging_Help", "Purpose_Help", "Safety_Help", "Freedom_Help" },
+    ["CC_Heart_NeedLevel_"] = new[] { "Lacking", "Missed", "Fair", "Met" },
+    // Lucky things (Quirks/LuckyItems.cs): how each past owner's time with it ended.
+    ["CC_Lucky_Desc_"] = new[] { "Faded", "Died", "Gone" },
 };
 // Each feeling's name, adjective, description and effects (FeelingDef key).
 foreach (var (file, doc) in docs)
@@ -390,6 +394,8 @@ foreach (var (k, text) in keyed)
 var wishPh = new HashSet<string> { "SUBJECT", "THING", "THINGBARE", "TARGET", "WISH", "MINE", "AMBITION", "VENUE", "COUNT", "FACTION", "TITLE", "DECREE", "YEARS", "DILEMMA", "TRADITION", "OFFICE", "SKILL", "LOST", "DREAM", "GOAL", "SECRET", "LEAKER", "TELLER", "SPEECH", "ITEM", "QUIRK", "OLDGOAL", "NAME", "VICTIM", "DEED", "DAYS", "RELATION", "DEAD", "BEAST", "ENEMY", "TALE", "PLACE", "FOOD", "FOODS", "WORK", "ROOM", "ILLNESS", "THEIRILLNESS" };
 // Camps: the faith a procession follows, the world event refugees fled (CampWords.Fill).
 wishPh.UnionWith(new[] { "IDEO", "SITUATION" });
+// Beliefs: the feast someone sat through with nothing fit to eat (Beliefs.NoteNothingFit).
+wishPh.Add("GATHERING");
 var pawnPrefixes = new HashSet<string> { "PAWN", "FOR", "OTHER", "ENVIED", "ABOUT", "A", "B", "PET", "LEAKER", "TELLER", "X", "SLAYER", "BABY", "THIRD" };
 var pawnSuffixes = new HashSet<string> { "nameDef", "nameFull", "labelShort", "pronoun", "possessive", "objective", "label", "definite", "indefinite", "gender" };
 foreach (var (file, doc) in docs)

@@ -58,6 +58,7 @@
     <label>music in the colony</label>
     <description>An artist or born entertainer wants an instrument: music for the evenings.</description>
     <workerClass>ColonyCouncil.WishWorker_Music</workerClass>
+    <forbiddenBy><li>NoRecreation</li></forbiddenBy>
     <lasting>true</lasting>
     <lostText>The colony has no instrument any more, after {FOR_nameDef} asked for music.</lostText>
     <category>Comfort</category>
@@ -108,6 +109,7 @@
     <label>proper armor</label>
     <description>A fighter going into every raid in ordinary clothes wants armor the colony can make.</description>
     <workerClass>ColonyCouncil.WishWorker_Armor</workerClass>
+    <forbiddenBy><li>NoArmor</li><li>NoViolence</li></forbiddenBy>
     <category>Safety</category>
     <weight>0.8</weight>
     <expiryDays>12</expiryDays>

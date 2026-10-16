@@ -210,6 +210,7 @@ namespace ColonyCouncil
 
         private static void Fire(SocialEventDef def, CouncilGameComponent comp, Map map, Pawn a, Pawn b, SocialTie tie)
         {
+            // together: TryOne casts only two who are together (Hourly: awake, not drafted, downed or in a mental state, and near).
             var ctx = new DilemmaContext { map = map, a = a, b = b, skill = tie?.skill, why = def.label };
             string text = ctx.Format(Flavor.PickText(def.texts));
             ctx.cause = text;

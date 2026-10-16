@@ -141,6 +141,7 @@ namespace ColonyCouncil
         public override void Apply(DilemmaContext ctx)
         {
             var comp = CouncilGameComponent.Instance;
+            // apart: the answer to a stranger's question, told in its letter.
             var s = comp?.secrets.Of(ctx.a);
             if (s == null || s.revealed) return;
             if (chance < 1f && !Rand.Chance(chance)) return;

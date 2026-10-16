@@ -15,6 +15,8 @@ namespace ColonyCouncil
         {
             public int sizeX, sizeZ;
             public bool rotatable, passable;
+            /// <summary>Hung on a wall (a wall lamp): it stands in front of its wall, not where the plan puts floor furniture.</summary>
+            public bool attached;
             /// <summary>Work spots for a north facing, relative to the root.</summary>
             public List<(int x, int z)> spots;
         }
@@ -29,6 +31,9 @@ namespace ColonyCouncil
         public static bool KeepsShape(Shape a, Shape b)
         {
             if (a.sizeX != b.sizeX || a.sizeZ != b.sizeZ) return false;
+            // Something hung on a wall never takes a floor piece's place, nor the other way round: wall lamps hang where
+            // LightMath puts them.
+            if (a.attached != b.attached) return false;
             // A walk-through piece (a bedroll, a chair) can't become one that blocks the way.
             if (a.passable && !b.passable) return false;
             var aSpots = a.spots ?? NoSpots;
