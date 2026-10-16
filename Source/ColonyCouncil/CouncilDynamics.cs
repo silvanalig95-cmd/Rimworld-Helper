@@ -337,6 +337,7 @@ namespace ColonyCouncil
             foreach (var p in w.Supporters) SetCooldown(p, w.def);
             SetCooldown(who, w.def);
             w.state = WishState.Granted;
+            Setbacks.Tracker?.Notify_Granted(w);
             ambitions.Notify_WishGranted(w);
             Safe("ripples", () => GrantRipples(w));
             Safe("objection", () => ResolveObjection(w, true));
@@ -515,6 +516,7 @@ namespace ColonyCouncil
                 }
             }
             RunEffects(w, w.def.ignoreEffects);
+            if (w.promised && pen > 0f) Setbacks.Notify_PromiseBroken(w);
 
             Tone tone = ToneUtility.ToneFor(w.pawn);
             var tags = Flavor.TagsFor(w.pawn, w);

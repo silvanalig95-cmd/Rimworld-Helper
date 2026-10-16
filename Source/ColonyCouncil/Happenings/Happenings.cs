@@ -629,6 +629,7 @@ namespace ColonyCouncil
                 string outcome = DilemmaChoices.Outcome(option, risk, worker.TextTags(ctx));
                 outcome = worker.Resolved(ctx, i, risk, byDefault, outcome);
                 comp?.character.Shift(byDefault ? option.ways?.Scaled(0.5f) : option.ways, "CC_Ways_Why_Event".Translate(ctx.incident.label, ctx.Format(option.label)).Resolve());
+                Setbacks.Notify_Answer(ctx, option.ways, byDefault, risk, ctx.incident.label, ctx.Format(option.label));
                 string told = ctx.Format(outcome);
                 if (byDefault) told = "CC_Evt_NoAnswer".Translate() + " " + told;
                 if (!told.NullOrEmpty())

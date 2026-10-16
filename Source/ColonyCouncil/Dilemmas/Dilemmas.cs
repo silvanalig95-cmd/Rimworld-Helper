@@ -967,6 +967,7 @@ namespace ColonyCouncil
             string outcome = DilemmaChoices.Outcome(option, risk, LetterTags.For(ctx));
             // An answer nobody gave says less about the colony than one the council chose.
             comp?.character.Shift(byDefault ? option.ways?.Scaled(0.5f) : option.ways, "CC_Ways_Why_Dilemma".Translate(ctx.def.label, ctx.Format(option.label)).Resolve());
+            Setbacks.Notify_Answer(ctx, option.ways, byDefault, risk, ctx.def.label, ctx.Format(option.label));
             string told = ctx.Format(outcome);
             if (byDefault) told = "CC_Dilemma_NoAnswer".Translate() + " " + told;
             if (!told.NullOrEmpty())

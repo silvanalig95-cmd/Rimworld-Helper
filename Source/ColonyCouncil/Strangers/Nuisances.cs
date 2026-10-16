@@ -60,6 +60,8 @@ namespace ColonyCouncil
     public class NuisanceDef : Def
     {
         public NuisanceCheck check;
+        /// <summary>A check of its own (a <see cref="NuisanceCheckWorker"/>), used instead of <see cref="check"/>.</summary>
+        public Type checkClass;
         /// <summary>Who it can happen to, and when, as flavor tags: "morning|evening", "!trait:Ascetic".</summary>
         public string who;
         public bool children;
@@ -70,13 +72,24 @@ namespace ColonyCouncil
         [MustTranslate] public List<string> texts = new List<string>();
 
         [Unsaved] private string whoExpr;
+        [Unsaved] private NuisanceCheckWorker worker;
 
         public string WhoExpr => whoExpr ??= "[" + who + "]";
+
+        public NuisanceCheckWorker Worker
+        {
+            get
+            {
+                if (worker == null && checkClass != null) worker = (NuisanceCheckWorker)Activator.CreateInstance(checkClass);
+                return worker;
+            }
+        }
 
         public override IEnumerable<string> ConfigErrors()
         {
             foreach (var e in base.ConfigErrors()) yield return e;
             if (thought == null) yield return "nuisance has no thought";
+            if (checkClass != null && !typeof(NuisanceCheckWorker).IsAssignableFrom(checkClass)) yield return "checkClass must be a NuisanceCheckWorker";
             if (texts.NullOrEmpty()) yield return "nuisance has no texts";
             else if (texts.All(t => Flavor.Strip(t, out var tags) != null && tags != null && tags.Length > 0)) yield return "nuisance needs at least one untagged text";
         }
@@ -128,7 +141,7 @@ namespace ColonyCouncil
                 string thing;
                 try
                 {
-                    thing = Check(def.check, p, map);
+                    thing = def.checkClass != null ? def.Worker.Check(p, map) : Check(def.check, p, map);
                 }
                 catch (Exception e)
                 {
