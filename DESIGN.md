@@ -906,6 +906,14 @@ an average colonist's time: the catching clock went from 20 to 30 days and the c
 came down. Questions came at a little more than one every two days, a fifth of them within half a day of another: the
 gap between questions, dilemmas every 10 days instead of 8, and fewer questions from passing visitors.
 
+**Ailments that follow what happened** (October 2026) added ten everyday ailments that come after something real (the
+flu or the plague got over, a break or a burn healed, a fight at home, a horror) or from the place (polluted ground,
+snow glare, swamps, orbit). The simulator models their causes as shares of days (`Rates.cs`); to keep the time with an
+ailment where it was, the catching clock went from 30 to 35 days, a few of the commonest small ones came down a little
+(insomnia, heartburn, the cough after a cold, weakness after a stomach bug), and the new ones are short and mild. Over
+480 runs an average colony of six went from 16.8% to about 17% of its time with an ailment, with Rimfolk's mood within
+a tenth or two of a point.
+
 **The presets** each aim at their own balance: Light touch about +5, +4 and 0 (well run, average, neglected) with
 fewer questions; Story-rich the default's moods with a question a little more often than every two days; Demanding
 about 0, -4 and -18. Each preset's tooltip says so.

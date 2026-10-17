@@ -537,8 +537,8 @@
     <defName>Council_Ail_BadNights_Mood</defName>
     <hediff>Council_Ail_BadNights</hediff>
     <stages>
-      <li><label>restless sleep</label><description>I keep waking up at small sounds since the fight. Then I lie there listening.</description><baseMoodEffect>-2</baseMoodEffect></li>
-      <li><label>nightmares about the fight</label><description>Every time I close my eyes the raid starts again.</description><baseMoodEffect>-3</baseMoodEffect></li>
+      <li><label>restless sleep</label><description>I keep waking up at small sounds since the fight. Then I lie there listening.</description><baseMoodEffect>-1</baseMoodEffect></li>
+      <li><label>nightmares about the fight</label><description>Every time I close my eyes the raid starts again.</description><baseMoodEffect>-2</baseMoodEffect></li>
     </stages>
     <modExtensions Inherit="False">
       <li Class="ColonyCouncil.HeartTags"><feelings><li>Fear</li></feelings><weight>0.6</weight></li>
@@ -549,8 +549,8 @@
     <defName>Council_Ail_Unease_Mood</defName>
     <hediff>Council_Ail_Unease</hediff>
     <stages>
-      <li><label>jumpy</label><description>I keep looking at the corners of rooms. There's nothing there. I keep looking.</description><baseMoodEffect>-2</baseMoodEffect></li>
-      <li><label>haunted</label><description>I saw something that shouldn't exist, and now I can't stop seeing it.</description><baseMoodEffect>-3</baseMoodEffect></li>
+      <li><label>jumpy</label><description>I keep looking at the corners of rooms. There's nothing there. I keep looking.</description><baseMoodEffect>-1</baseMoodEffect></li>
+      <li><label>haunted</label><description>I saw something that shouldn't exist, and now I can't stop seeing it.</description><baseMoodEffect>-2</baseMoodEffect></li>
     </stages>
     <modExtensions Inherit="False">
       <li Class="ColonyCouncil.HeartTags"><feelings><li>Fear</li></feelings><weight>0.6</weight></li>
@@ -571,7 +571,7 @@
     <hediff>Council_Ail_SnowBlind</hediff>
     <stages>
       <li><label>gritty eyes</label><description>My eyes feel full of sand after a day on the snow.</description><baseMoodEffect>-1</baseMoodEffect></li>
-      <li><label>snow-blind</label><description>The light hurts and everything is a blur. I have to keep my eyes shut.</description><baseMoodEffect>-3</baseMoodEffect></li>
+      <li><label>snow-blind</label><description>The light hurts and everything is a blur. I have to keep my eyes shut.</description><baseMoodEffect>-2</baseMoodEffect></li>
     </stages>
   </ThoughtDef>
 
@@ -588,7 +588,7 @@
     <hediff>Council_Ail_OrbitSick</hediff>
     <stages>
       <li><label>queasy in orbit</label><description>My stomach hasn't worked out where we are yet.</description><baseMoodEffect>-1</baseMoodEffect></li>
-      <li><label>orbit-sick</label><description>My head aches, food tastes of the scrubbers and the stars won't keep still.</description><baseMoodEffect>-3</baseMoodEffect></li>
+      <li><label>orbit-sick</label><description>My head aches, food tastes of the scrubbers and the stars won't keep still.</description><baseMoodEffect>-2</baseMoodEffect></li>
     </stages>
   </ThoughtDef>
 

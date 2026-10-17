@@ -73,11 +73,11 @@ A rare serious tier sits on top, behind its own setting: thirteen illnesses mode
         <table>
           <li>Ailment | Comes after | Chance | Lasts | What helps</li>
           <li>Post-flu cough | Getting over the flu (the game's own) | 1 in 5, more in the old | 6 to 10 days | Warm drinks and a warm room at night; tending a little</li>
-          <li>Plague swellings | Getting over the plague | 2 in 5 | 6 to 10 days, less in bed | Clean dressings and rest; tending. The weakness after plague is the convalescence below</li>
-          <li>Limp | A broken leg bone healing without a scar (not a leg lost or replaced) | About 1 in 3: more in the old, less for the tough, half as often in children | 5 to 9 days | Walking on it, a doctor's strapping; bed rest doesn't help</li>
+          <li>Plague swellings | Getting over the plague | About 1 in 3 | 6 to 10 days, less in bed | Clean dressings and rest; tending. The weakness after plague is the convalescence below</li>
+          <li>Limp | A broken leg bone healing without a scar (not a leg lost or replaced) | 3 in 10: more in the old, less for the tough, half as often in children | 5 to 9 days | Walking on it, a doctor's strapping; bed rest doesn't help</li>
           <li>Itching burn | A bad burn healing without a scar | 1 in 4 | 4 to 7 days | A salve, loose clothes; tending</li>
-          <li>Bad nights | A fight at home they fought in, on the first night's sleep within a day of it | 2.5%, three times that if they were hurt; half as often again in children, never in psychopaths, less in the tough and the bloodthirsty | 1.5 to 3 days | Company in the evening and an ordinary day; it can't be tended</li>
-          <li>Unease (Anomaly) | A horror: a wound from an entity, seeing a chimera, inhuman rambling, the labyrinth, a psychic ritual, someone turned ghoul, the unnatural darkness lifting | 1 in 5, never in psychopaths | 3 to 5 days, less in bed | Company and ordinary days; it can't be tended</li>
+          <li>Bad nights | A fight at home they fought in, on the first night's sleep within a day of it | 2%, three times that if they were hurt; half as often again in children, never in psychopaths, less in the tough and the bloodthirsty | 1.5 to 3 days | Company in the evening and an ordinary day; it can't be tended</li>
+          <li>Unease (Anomaly) | A horror: a wound from an entity, seeing a chimera, inhuman rambling, the labyrinth, a psychic ritual, someone turned ghoul, the unnatural darkness lifting | About 1 in 7, never in psychopaths | 3 to 5 days, less in bed | Company and ordinary days; it can't be tended</li>
         </table>
         <after>Bad nights and unease feed the heart's fear rather than its frustration, and each brings nightmares of its own.</after>
       </li>

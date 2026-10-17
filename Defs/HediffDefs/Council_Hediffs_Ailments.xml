@@ -1554,7 +1554,7 @@
     <comps>
       <li Class="ColonyCouncil.HediffCompProperties_Ailment">
         <key>PlagueSwellings</key>
-        <causes><li><trigger>AfterIllness</trigger><after><li>Plague</li></after><minSeverity>0.2</minSeverity><chance>0.4</chance></li></causes>
+        <causes><li><trigger>AfterIllness</trigger><after><li>Plague</li></after><minSeverity>0.2</minSeverity><chance>0.35</chance></li></causes>
         <cooldownDays>30</cooldownDays>
         <startSeverity>0.3~0.5</startSeverity>
         <gotText>{PAWN_nameDef} has beaten the plague, but the swellings it left are slow to go down.</gotText>
@@ -1602,7 +1602,7 @@
     <comps>
       <li Class="ColonyCouncil.HediffCompProperties_Ailment">
         <key>Limp</key>
-        <causes><li><trigger>Healed</trigger><after><li>Crack</li></after><partGroup>Legs</partGroup><chance>0.35</chance></li></causes>
+        <causes><li><trigger>Healed</trigger><after><li>Crack</li></after><partGroup>Legs</partGroup><chance>0.3</chance></li></causes>
         <risks>
           <li><trait>Tough</trait><factor>0.6</factor></li>
         </risks>
@@ -1688,7 +1688,7 @@
     <comps>
       <li Class="ColonyCouncil.HediffCompProperties_Ailment">
         <key>BadNights</key>
-        <causes><li><trigger>AfterFight</trigger><chance>0.025</chance><hurtFactor>3</hurtFactor></li></causes>
+        <causes><li><trigger>AfterFight</trigger><chance>0.02</chance><hurtFactor>3</hurtFactor></li></causes>
         <risks>
           <li><trait>Psychopath</trait><factor>0</factor></li>
           <li><trait>Bloodlust</trait><factor>0.3</factor></li>
@@ -1740,7 +1740,7 @@
               <li>BecameGhoul</li>
               <li>DarknessLifted</li>
             </after>
-            <chance>0.2</chance>
+            <chance>0.15</chance>
           </li>
         </causes>
         <risks>
