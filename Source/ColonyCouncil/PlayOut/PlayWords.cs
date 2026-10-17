@@ -183,6 +183,34 @@ namespace ColonyCouncil
             journals.WriteTagged(x, pool, Tags(p, x), null, other.Named("OTHER"), (p.label ?? "").Named("NAME"));
         }
 
+        /// <summary>
+        /// What an answer set going, and when ("The harvest dance is planned for this evening."): said when the answer is
+        /// given, while its outcome waits for the end (<see cref="PlayOuts.TellWhenDone"/>).
+        /// </summary>
+        public static string Planned(PlayOut p)
+        {
+            string label = (p.label ?? "").CapitalizeFirst();
+            if (label.NullOrEmpty()) return null;
+            var map = p.map ?? Find.CurrentMap;
+            int hour = map != null ? GenLocalDate.HourOfDay(map) : 12;
+            int now = Find.TickManager.TicksGame;
+            // Still within today's hours for it: today; else the next day it can.
+            bool today = hour < p.hourTo - 1 && p.deadline - now > 0;
+            string part = p.hourFrom >= 17 ? "Evening" : p.hourFrom >= 12 ? "Afternoon" : "Day";
+            string when = ("CC_Play_When_" + (today ? "Today" : "Tomorrow") + part).Translate();
+            return "CC_Play_Planned".Translate(label, when).Resolve();
+        }
+
+        /// <summary>
+        /// The words at the end: the answer's own outcome when it waited for this (with how it went in brackets), else the
+        /// kind's own end text.
+        /// </summary>
+        public static string EndWords(PlayOut p, string plain, string how = null)
+        {
+            if (p.outcome.NullOrEmpty()) return plain;
+            return how.NullOrEmpty() ? p.outcome : p.outcome + " (" + how + ")";
+        }
+
         public static string EndText(PlayOut p, bool early, List<Pawn> took, List<Thing> found, Pawn to, string carried)
         {
             string label = (p.label ?? "").CapitalizeFirst();

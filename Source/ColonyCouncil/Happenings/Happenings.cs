@@ -623,6 +623,7 @@ namespace ColonyCouncil
                 DilemmaChoices.PickHelpers(option, ctx);
                 bool risk = option.riskChance > 0f && Rand.Chance(worker.RiskChance(ctx, i, option.riskChance));
                 // What the answer sets going on the map comes first, so it can hold the moods of those taking part.
+                List<PlayOut> plays;
                 using (PlayOuts.Collect())
                 {
                     if (!risk || !option.riskReplaces)
@@ -631,15 +632,19 @@ namespace ColonyCouncil
                     if (risk && option.riskEffects != null)
                         foreach (var e in PlayOuts.Ordered(option.riskEffects))
                             if (!byDefault || !e.onlyIfChosen) Safe(e, ctx);
+                    plays = PlayOuts.Collected();
                 }
                 string outcome = DilemmaChoices.Outcome(option, risk, worker.TextTags(ctx));
                 outcome = worker.Resolved(ctx, i, risk, byDefault, outcome);
                 comp?.character.Shift(byDefault ? option.ways?.Scaled(0.5f) : option.ways, "CC_Ways_Why_Event".Translate(ctx.incident.label, ctx.Format(option.label)).Resolve());
                 Setbacks.Notify_Answer(ctx, option.ways, byDefault, risk, ctx.incident.label, ctx.Format(option.label));
                 string told = ctx.Format(outcome);
-                if (byDefault) told = "CC_Evt_NoAnswer".Translate() + " " + told;
-                if (!told.NullOrEmpty())
+                // What the answer set going on the map tells its outcome when it's over; until then, only when it will be.
+                if (!told.NullOrEmpty() && !PlayOuts.TellWhenDone(plays, told, byDefault ? "CC_Evt_NoAnswer".Translate().ToString() : null))
+                {
+                    if (byDefault) told = "CC_Evt_NoAnswer".Translate() + " " + told;
                     Messages.Message(told, new LookTargets(new[] { ctx.a, ctx.b, ctx.stranger }.Where(p => p != null && p.Spawned)), MessageTypeDefOf.NeutralEvent, false);
+                }
                 if (ext.notable)
                     comp?.AddChronicle(new ChronicleEntry(ChronicleKind.World, "CC_Chronicle_EventChoice".Translate(ctx.incident.LabelCap, ctx.Format(option.label)).Resolve(), ctx.a));
             }

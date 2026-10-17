@@ -56,6 +56,14 @@
 
   <!-- When it ends -->
   <CC_Play_End>{0} is over.</CC_Play_End>
+  <CC_Play_End_Ate>{0} meals eaten</CC_Play_End_Ate>
+  <CC_Play_Planned>{0} is planned for {1}.</CC_Play_Planned>
+  <CC_Play_When_TodayEvening>this evening</CC_Play_When_TodayEvening>
+  <CC_Play_When_TodayAfternoon>this afternoon</CC_Play_When_TodayAfternoon>
+  <CC_Play_When_TodayDay>today</CC_Play_When_TodayDay>
+  <CC_Play_When_TomorrowEvening>tomorrow evening</CC_Play_When_TomorrowEvening>
+  <CC_Play_When_TomorrowAfternoon>tomorrow afternoon</CC_Play_When_TomorrowAfternoon>
+  <CC_Play_When_TomorrowDay>tomorrow</CC_Play_When_TomorrowDay>
   <CC_Play_End_Feast>{0} is over: {1} ate at the table.</CC_Play_End_Feast>
   <CC_Play_End_Early>{0} broke up early.</CC_Play_End_Early>
   <CC_Play_End_Fire>The fire has burned down to ash.</CC_Play_End_Fire>

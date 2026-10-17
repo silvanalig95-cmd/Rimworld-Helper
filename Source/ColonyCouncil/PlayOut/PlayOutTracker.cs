@@ -462,6 +462,8 @@ namespace ColonyCouncil
             string text = early ? "CC_Play_End_Early".Translate(name).Resolve()
                 : ate >= 0 ? "CC_Play_End_Feast".Translate(name, ate).Resolve()
                 : "CC_Play_End".Translate(name).Resolve();
+            // The answer's own words for it, now that it has happened (a feast says how many meals in brackets).
+            if (!early) text = PlayWords.EndWords(p, text, ate >= 0 ? "CC_Play_End_Ate".Translate(ate).Resolve() : null);
             if (fire) text += " " + "CC_Play_End_Fire".Translate().Resolve();
             News.Post(text, new LookTargets(attended.Where(x => x != null && x.Spawned)), NewsKind.Colony, MessageTypeDefOf.PositiveEvent, Importance.Flavor);
         }
@@ -472,6 +474,13 @@ namespace ColonyCouncil
             if (p.state == PlayState.Done) return;
             p.state = PlayState.Done;
             Remember(p, true);
+            // A visit, a lesson or a day of rest says the answer's outcome now it has happened; gatherings and groups
+            // say it in their own end message.
+            if (!gathering && !p.IsGroup && !p.outcome.NullOrEmpty())
+            {
+                var look = (took ?? new List<Pawn> { p.visitor, p.other }).Where(x => x != null && x.Spawned).ToList();
+                News.Post(p.outcome, look.Count > 0 ? new LookTargets(look) : LookTargets.Invalid, NewsKind.Colony, MessageTypeDefOf.PositiveEvent, Importance.Notable);
+            }
             if (took == null)
             {
                 GiveAll(p);

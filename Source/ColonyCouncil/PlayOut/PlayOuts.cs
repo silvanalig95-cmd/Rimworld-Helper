@@ -217,6 +217,11 @@ namespace ColonyCouncil
         public List<HeldMood> moods = new List<HeldMood>();
         /// <summary>Why it's still waiting, for the message if it never happens.</summary>
         public string waitReason;
+        /// <summary>
+        /// The answer's outcome as the letter tells it ("They danced until the fire was embers..."): said when this is
+        /// over, not when the answer is given, so the story comes after what it tells of (<see cref="PlayOuts.TellWhenDone"/>).
+        /// </summary>
+        public string outcome;
 
         // ---- Work parties, walks, vigils, searches, errands and hunts ----
 
@@ -308,6 +313,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref firePaid, "firePaid");
             Scribe_Collections.Look(ref moods, "moods", LookMode.Deep);
             Scribe_Values.Look(ref waitReason, "waitReason");
+            Scribe_Values.Look(ref outcome, "outcome");
             Scribe_Collections.Look(ref named, "named", LookMode.Reference);
             Scribe_Collections.Look(ref hands, "hands", LookMode.Deep);
             Scribe_Collections.Look(ref tasks, "tasks", LookMode.Value);
@@ -403,6 +409,29 @@ namespace ColonyCouncil
             return effects.Where(e => e is DilemmaEffect_Needs)
                 .Concat(effects.Where(e => e is DilemmaEffect_PlayOut))
                 .Concat(effects.Where(e => !(e is DilemmaEffect_PlayOut) && !(e is DilemmaEffect_Needs))).ToList();
+        }
+
+        /// <summary>The plans the answer being given has set going so far (the innermost <see cref="Collect"/>).</summary>
+        public static List<PlayOut> Collected() => scopes.Count == 0 ? new List<PlayOut>() : scopes[scopes.Count - 1].plays.ToList();
+
+        /// <summary>
+        /// An answer's outcome, kept until what the answer set going on the map is over: the gathering, then the work
+        /// party or walk, then whatever else is still to come. A short word says now when it will be; the outcome itself
+        /// is told at the end (<see cref="PlayOutTracker"/>), and never if it falls through. False when nothing is still
+        /// to come (it all fell through at once, or the setting is off): tell it now.
+        /// </summary>
+        public static bool TellWhenDone(List<PlayOut> plays, string told, string prefix = null)
+        {
+            if (told.NullOrEmpty() || plays == null || plays.Count == 0) return false;
+            var main = plays.FirstOrDefault(p => p != null && p.state != PlayState.Done && p.IsGathering)
+                       ?? plays.FirstOrDefault(p => p != null && p.state != PlayState.Done && p.IsGroup)
+                       ?? plays.FirstOrDefault(p => p != null && p.state != PlayState.Done);
+            if (main == null) return false;
+            main.outcome = told;
+            string planned = PlayWords.Planned(main);
+            if (!planned.NullOrEmpty())
+                Messages.Message((prefix.NullOrEmpty() ? "" : prefix + " ") + planned, LookTargets.Invalid, MessageTypeDefOf.NeutralEvent, false);
+            return true;
         }
 
         internal static void Register(PlayOut p)
