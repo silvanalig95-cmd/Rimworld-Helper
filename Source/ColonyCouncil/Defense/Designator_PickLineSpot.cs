@@ -48,17 +48,27 @@ namespace ColonyCouncil
             return true;
         }
 
+        private DefenseLine made;
+
         public override void DesignateSingleCell(IntVec3 c)
         {
             var comp = DefenseLines.Of(Map);
-            var line = comp?.AtCell(c);
-            if (line == null)
+            made = comp?.AtCell(c);
+            if (made == null)
             {
                 Messages.Message("CC_Def_NoSurvey".Translate(), MessageTypeDefOf.RejectInput, false);
                 return;
             }
+            Messages.Message("CC_DefLine_Made".Translate(DefenseLineReview.NameOf(made, Map)).Resolve(), new LookTargets(made.gate, Map), MessageTypeDefOf.TaskCompletion, false);
+        }
+
+        /// <summary>One line per pick: once it's made, the picking ends and the Defenses page opens on it.</summary>
+        protected override void FinalizeDesignationSucceeded()
+        {
+            base.FinalizeDesignationSucceeded();
+            if (made == null) return;
+            made = null;
             Find.DesignatorManager.Deselect();
-            Messages.Message("CC_DefLine_Made".Translate(DefenseLineReview.NameOf(line, Map)).Resolve(), new LookTargets(line.gate, Map), MessageTypeDefOf.TaskCompletion, false);
             MainTabWindow_Council.OpenTab("Defenses");
         }
 

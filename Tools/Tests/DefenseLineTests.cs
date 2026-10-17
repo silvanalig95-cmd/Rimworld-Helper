@@ -5,7 +5,7 @@ using ColonyCouncil;
 /// <summary>
 /// Defense lines (Source/ColonyCouncil/Defense/DefenseLineMath.cs and the step ladder in Defs/DefenseStepDefs): which way
 /// a line faces and what lies left and right of its gate; whether raiders can walk round a line to the beds when its gate
-/// is shut, and where (a wall that stops short of the rock, open country, a long way round that doesn't count); the doors
+/// is shut, and where (a wall that stops short of the rock, open country, a long way round taken only then); the doors
 /// between a gate and the beds; how far back the cover goes; which step comes next; the strength and its parts; the
 /// lessons a raid leaves; and that every step def is complete and points at pages and plans that exist.
 /// </summary>
@@ -124,6 +124,7 @@ public static class DefenseLineTests
             });
             var leak = DefenseLineMath.FindLeak(m, 21, 40, 0);
             Check(leak.detour > 0 && !leak.found, $"long way round: the detour by the other pass ({leak.detour} against {leak.direct}) is too long to be this line's leak");
+            Check(leak.longWay && leak.path.Count > 0 && leak.cross >= 0, "long way round: still the way they take with the gate shut, and where it crosses the line is known");
             Check(DefenseLineMath.LeakSlack(130) == 35 * DefenseMath.Ortho && DefenseLineMath.LeakSlack(3000) == 1500, "the slack is 35 cells, or half the way on when that's longer");
         }
 

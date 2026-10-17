@@ -77,6 +77,8 @@ namespace ColonyCouncil
         public int ranged;
         /// <summary>Shooters whose belief prefers combat in darkness (they aim better at targets in the dark), and the share of the kill zone left dark at night.</summary>
         public int darkBetter;
+        /// <summary>Firing positions that see the gate and have no lamp on them at night.</summary>
+        public int firingDark;
         public float darkShare;
         public bool zoneRoofed;
         private readonly List<Pawn> shooters = new List<Pawn>();
@@ -549,6 +551,8 @@ namespace ColonyCouncil
         /// </summary>
         private static void Dark(DefenseLineFacts f)
         {
+            foreach (var p in f.firing)
+                if (p.sees && f.map.glowGrid.GroundGlowAt(p.cell, false, true) < 0.3f) f.firingDark++;
             if (!ModsConfig.IdeologyActive || f.zone.Count == 0) return;
             var stat = f.zoneRoofed ? StatDefOf.ShootingAccuracyIndoorsDarkOffset : StatDefOf.ShootingAccuracyOutdoorsDarkOffset;
             if (stat == null) return;

@@ -160,6 +160,8 @@ namespace ColonyCouncil
             public int direct = -1, detour = -1;
             /// <summary>A way round that's cheap enough that raiders would take it.</summary>
             public bool found;
+            /// <summary>A way round that's too long to matter while the gate is open, but the one they take when it's shut.</summary>
+            public bool longWay;
             /// <summary>It's even cheaper than through the open gate: they'd go round with the gate open too.</summary>
             public bool evenOpen;
             /// <summary>The way round passes a door of the colony's (another gate), not open ground.</summary>
@@ -233,8 +235,8 @@ namespace ColonyCouncil
                 }
                 int slack = LeakSlack(System.Math.Max(0, leak.direct));
                 leak.found = leak.direct < 0 || leak.detour - leak.direct <= slack;
+                leak.longWay = !leak.found;
                 leak.evenOpen = leak.direct >= 0 && leak.detour <= leak.direct;
-                if (!leak.found) return leak;
                 int budget = m.w * m.h;
                 var way = DefenseMath.Walk(m, shut, leak.front, ref budget);
                 if (way != null) leak.path = way.cells;

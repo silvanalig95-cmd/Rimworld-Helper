@@ -63,6 +63,7 @@
   <CC_DefLine_State_NotYet>not yet</CC_DefLine_State_NotYet>
   <CC_DefLine_State_NotApplicable>not for this game</CC_DefLine_State_NotApplicable>
   <CC_DefLine_State_Skipped>set aside</CC_DefLine_State_Skipped>
+  <CC_DefLine_FromRaid>The last raid showed this is missing, so it comes first.</CC_DefLine_FromRaid>
   <CC_DefLine_WhyNow>Why now: {0}</CC_DefLine_WhyNow>
   <CC_DefLine_LeftLine>Left to do: {0}</CC_DefLine_LeftLine>
   <CC_DefLine_NotYet>Not yet: {0}</CC_DefLine_NotYet>
@@ -173,6 +174,7 @@
   <CC_DefLine_Leak_Far>With the gate shut, raiders walk round {0} to the {1} of the gate.</CC_DefLine_Leak_Far>
   <CC_DefLine_Leak_Door>With the gate shut, the easiest way on is through your door to the {0}: hold one gate, and keep the other shut and strong.</CC_DefLine_Leak_Door>
   <CC_DefLine_Leak_EvenOpen>That way is easier than the gate itself, so they'd go round even with it open.</CC_DefLine_Leak_EvenOpen>
+  <CC_DefLine_Leak_Long>With the gate shut, raiders still have a way on: the long way round, about {0} cells further, crossing the line's row to the {1}. Hold the gate open in a raid, or close that way too.</CC_DefLine_Leak_Long>
   <CC_DefLine_Leak_Planned>Walls are planned there; it's closed once they're built.</CC_DefLine_Leak_Planned>
   <CC_DefLine_Leak_Sealed>No way round: with the gate shut, raiders would have to break in.</CC_DefLine_Leak_Sealed>
   <CC_DefLine_Leak_NoWayOn>From in front of this gate there's no way on to the beds, even with it open, so raiders have no reason to come this way. Check that the line is where they cross.</CC_DefLine_Leak_NoWayOn>
@@ -201,6 +203,7 @@
   <CC_DefLine_Gate_Shut>The gate ({0}) isn't held open. When raiders come, set it to stay open, or with no way in they break the wall wherever they like.</CC_DefLine_Gate_Shut>
   <CC_DefLine_SelectGate>Select the gate</CC_DefLine_SelectGate>
   <CC_DefLine_SelectGate_Tip>Takes you to the gate and selects it, so you can set it to stay open.</CC_DefLine_SelectGate_Tip>
+  <CC_DefLine_Dark_Posts>At night {0} of the {1} firing positions that see the gate are dark. The dark doesn't spoil anyone's aim, but people there move and work more slowly and it wears on them: a lamp behind the cover helps.</CC_DefLine_Dark_Posts>
   <CC_DefLine_Dark_Lit>{0} of your shooters hold to fighting in the dark: they aim 25% better at raiders in darkness and 20% worse at lit ones. At night {1}% of the kill zone is lit, which takes that edge away there.</CC_DefLine_Dark_Lit>
   <CC_DefLine_Dark_Good>At night the kill zone is dark, where the {0} shooters who hold to fighting in the dark aim 25% better.</CC_DefLine_Dark_Good>
   <CC_DefLine_Upkeep_Damaged>{0} piece(s) of the line are damaged.</CC_DefLine_Upkeep_Damaged>

@@ -130,11 +130,42 @@ namespace ColonyCouncil
                 r.steps.Add(step);
             }
             r.current = DefenseLineMath.Current(r.steps.Select(x => x.state).ToList());
+            FromLastRaid(r, line);
             r.where = WhereOf(line, map, s);
             Checks(r);
             Strength(r);
             r.notes = r.notes.OrderBy(n => n.good ? 1 : 0).ThenByDescending(n => n.weight).ToList();
             return r;
+        }
+
+        /// <summary>The step the last raid showed missing comes first, whatever its number (for twenty days after it).</summary>
+        private static void FromLastRaid(DefenseLineReview r, DefenseLine line)
+        {
+            var raid = line.LastRaid;
+            if (raid == null || Find.TickManager.TicksGame - raid.tick > GenDate.TicksPerDay * 20) return;
+            foreach (var lesson in raid.lessons)
+            {
+                int i = r.steps.FindIndex(s => Teaches(lesson, s.def.Worker));
+                if (i < 0) continue;
+                var st = r.steps[i].state;
+                if (st != StepState.Open && st != StepState.Partly && st != StepState.NotYet) continue;
+                r.current = i;
+                r.steps[i].notes.Insert(0, "CC_DefLine_FromRaid".Translate());
+                return;
+            }
+        }
+
+        private static bool Teaches(string lesson, DefenseStepWorker w)
+        {
+            switch (lesson)
+            {
+                case nameof(DefenseLineMath.Lesson.Leak): return w is StepWorker_CloseGap;
+                case nameof(DefenseLineMath.Lesson.Harden): return w is StepWorker_Harden;
+                case nameof(DefenseLineMath.Lesson.CoverLeft):
+                case nameof(DefenseLineMath.Lesson.CoverRight): return w is StepWorker_Cover;
+                case nameof(DefenseLineMath.Lesson.Fallback): return w is StepWorker_Fallback;
+                default: return false;
+            }
         }
 
         private static AlmanacArticleDef A(params string[] names) =>
@@ -414,7 +445,15 @@ namespace ColonyCouncil
                 var n = Note(r, "leak", LeakWords(f), "CC_DefLine_How_LeakDoor".Translate(), 4f, page);
                 n.actions.Add(ShowAction(r, door));
             }
-            else if (leak.sealedShut) Note(r, "leak", "CC_DefLine_Leak_Sealed".Translate(), "CC_DefLine_How_Leak".Translate(), 1f, page, true);
+            else if (leak.longWay && !leak.viaDoor)
+            {
+                // Too long to matter while the gate is open; the way they take when it's shut.
+                var cross = f.Cell(leak.cross);
+                int extra = Mathf.Max(1, (leak.detour - Mathf.Max(0, leak.direct)) / DefenseMath.Ortho);
+                var n = Note(r, "leak", "CC_DefLine_Leak_Long".Translate(extra, f.SideWord(leak.lateral < 0 ? -1 : 1)).Resolve(), "CC_DefLine_How_Leak".Translate(), 3f, page);
+                n.actions.Add(ShowAction(r, cross.IsValid ? cross : f.gate));
+            }
+            else if (leak.sealedShut || leak.longWay) Note(r, "leak", "CC_DefLine_Leak_Sealed".Translate(), "CC_DefLine_How_Leak".Translate(), 1f, page, true);
             else if (leak.noWayOn) Note(r, "leak", "CC_DefLine_Leak_NoWayOn".Translate(), "CC_DefLine_How_NoWayOn".Translate(), 3f, A("Rimfolk_AlmDef_KillboxWhere", "Rimfolk_AlmDef_ChokePoints"));
         }
 
@@ -548,8 +587,14 @@ namespace ColonyCouncil
         /// </summary>
         private static void Dark(DefenseLineReview r, DefenseLineFacts f)
         {
-            if (f.darkBetter <= 0) return;
             var page = A("Rimfolk_AlmDef_FieldOfFire", "Rimfolk_AlmDef_Cover");
+            if (f.darkBetter <= 0)
+            {
+                // Nobody's aim depends on it; the dark still slows people at their posts and wears on them.
+                if (f.firingDark > 0 && f.firingDark * 2 >= f.seeing)
+                    Note(r, "dark", "CC_DefLine_Dark_Posts".Translate(f.firingDark, f.seeing).Resolve(), "CC_DefLine_How_Dark".Translate(), 2f, page);
+                return;
+            }
             if (f.darkShare < 0.5f)
                 Note(r, "dark", "CC_DefLine_Dark_Lit".Translate(f.darkBetter, Mathf.RoundToInt((1f - f.darkShare) * 100f)).Resolve(), "CC_DefLine_How_Dark".Translate(), 3f, page);
             else
