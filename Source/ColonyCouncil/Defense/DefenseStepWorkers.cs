@@ -97,7 +97,8 @@ namespace ColonyCouncil
         {
             var r = Start(f);
             r.placeAt = "behind";
-            r.distance = f.coverDist;
+            // The plan's own cover row, not its front edge, goes the distance back.
+            r.distance = Mathf.Max(1, f.coverDist - DefensePlanner.CoverRow(r.template));
             r.look = f.inner;
             int need = Need(f);
             if (f.seeing >= need)
@@ -180,7 +181,7 @@ namespace ColonyCouncil
             }
             r.template = T("Rimfolk_Defense_Post") ?? r.template;
             if (!f.pre) r.label = "CC_DefLine_Guns_PostLabel".Translate();
-            r.distance = Mathf.Clamp(f.coverDist + 3, 8, 13);
+            r.distance = Mathf.Max(1, Mathf.Clamp(f.coverDist + 3, 8, 13) - DefensePlanner.CoverRow(r.template));
             if (!f.pre && off != null) r.notes.Add("CC_DefLine_Guns_TurretsOff".Translate(off).Resolve());
             else if (!f.pre && turret == null && f.line.aim != "archers") r.notes.Add("CC_DefLine_Guns_TurretResearch".Translate(DefenseLineReview.ResearchFor("Turret_MiniTurret")).Resolve());
             int far = f.firing.Count(p => p.sees && Mathf.Abs(f.line.Ahead(p.cell)) >= f.coverDist + 2);
@@ -240,13 +241,13 @@ namespace ColonyCouncil
             r.distance = 0;
             r.look = f.inner - f.outward * 4;
             r.template = KillboxFor(f);
+            Explain(r, f);
             if (f.raidPoints < def.minRaidPoints && !(def.nowFor?.Contains(f.line.aim) ?? false) && !Built(f))
             {
                 r.left = "CC_DefLine_Later".Translate(f.raidPoints.ToString("0"), def.minRaidPoints.ToString("0")).Resolve();
                 r.state = StepState.Later;
                 return r;
             }
-            Explain(r, f);
             if (Built(f))
             {
                 r.state = StepState.Done;
@@ -354,14 +355,22 @@ namespace ColonyCouncil
             var r = Start(f);
             r.placeAt = "line";
             r.distance = Mathf.Max(1, def.distance);
-            int n = f.parts.Count;
-            if (n == 0 || !f.Closed)
+            // Embrasures have their firing positions behind them: they're never doubled.
+            int n = f.parts.Count - f.embrasures;
+            if (n <= 0 || !f.Closed)
             {
                 r.state = StepState.NotYet;
                 r.left = "CC_DefLine_Harden_NoWall".Translate();
                 return r;
             }
-            float thick = f.thick / (float)n, wood = f.wood / (float)n;
+            // Behind a palisade or a castle gate, a second wall would close the embrasures' firing positions.
+            bool gatehouse = f.embrasures > 0 || f.plans.Any(p => p.def != null && p.def.kind == "palisade");
+            if (gatehouse)
+            {
+                r.template = null;
+                r.notes.Add("CC_DefLine_Harden_Gatehouse".Translate());
+            }
+            float thick = Mathf.Min(1f, f.thick / (float)n), wood = Mathf.Min(1f, f.wood / (float)f.parts.Count);
             if (thick >= 0.8f && wood <= 0.2f) r.state = StepState.Done;
             else
             {
@@ -373,7 +382,7 @@ namespace ColonyCouncil
             var emb = Avail.BestBuildable(f.map, d => d.defName.IndexOf("Embrasure", System.StringComparison.OrdinalIgnoreCase) >= 0 || d.defName == "DankPyon_EmbPalisade",
                 "DankPyon_CastleWallEmbrasures", "DankPyon_EmbPalisade");
             if (emb != null && f.embrasures == 0) r.notes.Add("CC_DefLine_Harden_Embrasures".Translate(emb.label).Resolve());
-            if (r.template == null && r.state != StepState.Done) r.notes.Add("CC_DefLine_Harden_ByHand".Translate());
+            if (r.template == null && !gatehouse && r.state != StepState.Done) r.notes.Add("CC_DefLine_Harden_ByHand".Translate());
             return r;
         }
     }

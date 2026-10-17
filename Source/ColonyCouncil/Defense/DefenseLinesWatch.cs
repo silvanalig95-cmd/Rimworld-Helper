@@ -233,8 +233,10 @@ namespace ColonyCouncil
             {
                 var door = l.gate.InBounds(map) ? l.gate.GetEdifice(map) as Building_Door : null;
                 if (door == null || door.HoldOpen || door.Faction != Faction.OfPlayer) continue;
-                var review = DefenseLineReview.For(map, l);
-                if (review == null || !review.f.Closed || review.f.Leaks) continue;
+                // The review kept from the page, if there is one (nothing is worked out on the tick): a gate in a line
+                // with a way round, or a gap still open, isn't what holds them anyway.
+                var review = DefenseLineReview.Kept(map, l);
+                if (review != null && (!review.f.Closed || review.f.Leaks)) continue;
                 shut.Add((l, door));
             }
             if (shut.Count == 0) return;

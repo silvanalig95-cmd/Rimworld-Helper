@@ -230,7 +230,8 @@ namespace ColonyCouncil
                 if (Widgets.ButtonInvisible(nameRect))
                 {
                     DefenseLines.Select(map, line);
-                    if (Event.current.button == 1 || Event.current.clickCount >= 2) Rename(line, map);
+                    DefenseOverlay.Show = true;
+                    SoundDefOf.Click.PlayOneShotOnCamera();
                 }
                 TooltipHandler.TipRegion(nameRect, "CC_DefLine_Name_Tip".Translate());
                 var aimRect = new Rect(x + w - aimW, y, aimW, ButtonH);
@@ -357,8 +358,8 @@ namespace ColonyCouncil
                         if (s.state == StepState.Partly) UiKit.DiscFill(rect.ContractedBy(6f), UiKit.WithAlpha(color, 0.9f));
                     }
                     if (s == shown && !now) Widgets.DrawBox(rect.ExpandedBy(2f));
-                    string tip = "CC_DefLine_DiscTip".Translate(i + 1, s.Label, StateWord(s.state)).Resolve() + (s.left.NullOrEmpty() ? "" : "\n\n" + s.left);
-                    TooltipHandler.TipRegion(rect, tip);
+                    s.tip ??= "CC_DefLine_DiscTip".Translate(i + 1, s.Label, StateWord(s.state)).Resolve() + (s.left.NullOrEmpty() ? "" : "\n\n" + s.left);
+                    TooltipHandler.TipRegion(rect, s.tip);
                     if (Widgets.ButtonInvisible(rect))
                     {
                         if (now) focus.Remove(r.line.id);

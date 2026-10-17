@@ -88,11 +88,11 @@
     <placeAt>front</placeAt>
     <distance>2</distance>
     <whyNow>Traps wear raiders down before they reach the gate, and cost nobody's time during the fight.</whyNow>
-    <howItWorks>Raiders don't see traps, so they walk the open lane straight into them, while your own people know where they are and step round. A spike trap is spent once it springs and has to be rebuilt. Keep traps a cell apart and away from the gate, where your own people walk.</howItWorks>
+    <howItWorks>Raiders don't see traps, so they walk the open lane straight into them, while your own people know where they are and step round. A spike trap breaks when it springs; with its auto-rearm on, a blueprint goes back in its place for your builders. Keep traps a cell apart and away from the gate, where your own people walk.</howItWorks>
     <mistakes>
       <li>Traps in the gateway or the kill zone, where your own haulers and fighters pass.</li>
       <li>Traps side by side, so one blast sets off the next.</li>
-      <li>Forgetting to rebuild the sprung ones after a raid.</li>
+      <li>Auto-rearm switched off and forgotten: a sprung trap is gone, and nothing puts it back.</li>
     </mistakes>
     <articles>
       <li>Rimfolk_AlmDef_Traps</li>

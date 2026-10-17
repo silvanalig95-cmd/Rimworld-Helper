@@ -128,6 +128,8 @@ namespace ColonyCouncil
         public string fixLabel, fixTip;
         /// <summary>Where "Show" looks.</summary>
         public IntVec3 look = IntVec3.Invalid;
+        /// <summary>Its disc's tooltip, made once per review.</summary>
+        public string tip;
 
         public bool Counts => state != StepState.Skipped && state != StepState.NotApplicable;
 

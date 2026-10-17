@@ -32,17 +32,27 @@ namespace ColonyCouncil
         public int chunks;
         public List<string> warnings = new List<string>();
         public bool edgeBlocked;
+        /// <summary>
+        /// Cells of the plan in unexplored ground. Nothing is read of what's there (the player can't see it either): its
+        /// rock is marked for mining and dug out as the colonists reach it, its pieces wait in the plan queue, and a wall
+        /// there is the rock that stays or a wall once the ground comes to light.
+        /// </summary>
+        public List<IntVec3> fog = new List<IntVec3>();
+        /// <summary>Part of it lies in unexplored ground that the plan may not dig ("mine rock" off), or all of it does.</summary>
+        public bool fogBlocked, allFog;
+        public int seen;
 
         public int Count(PieceState s) => pieces.Count(p => p.state == s);
 
-        /// <summary>Something can go down, and no part of the plan is off the map or in unexplored ground.</summary>
-        public bool CanPlace => !edgeBlocked && pieces.Any(p => p.state == PieceState.Ready || p.state == PieceState.Waiting);
+        /// <summary>Something can go down, no part of the plan is off the map, and some of it is on ground the colony knows.</summary>
+        public bool CanPlace => !edgeBlocked && !allFog && pieces.Any(p => p.state == PieceState.Ready || p.state == PieceState.Waiting);
 
         public string FailReason
         {
             get
             {
                 if (edgeBlocked) return "CC_Plan_Block_Edge".Translate();
+                if (allFog) return "CC_Plan_Block_AllFog".Translate();
                 if (!pieces.Any(p => p.state == PieceState.Ready || p.state == PieceState.Waiting))
                     return pieces.Count > 0 && pieces.All(p => p.state == PieceState.Present) ? "CC_Def_AllThere".Translate().ToString() : "CC_Plan_Blocked".Translate().ToString();
                 return null;
@@ -163,7 +173,19 @@ namespace ColonyCouncil
                     char ch = g.cells[x, z];
                     if (ch != DefenseLayout.Open && ch != DefenseLayout.Firing) continue;
                     var c = ToWorld(t, anchor, x, z, mirror, rot);
-                    if (!c.InBounds(map) || c.Fogged(map)) continue;
+                    if (!c.InBounds(map)) continue;
+                    if (c.Fogged(map))
+                    {
+                        // Unexplored: dug out as the colonists reach it, when the plan may dig; a gap's plan leaves it be.
+                        if (!plan.fog.Contains(c)) plan.fog.Add(c);
+                        if (mineRock)
+                        {
+                            if (plan.mineSet.Add(c)) plan.mine.Add(c);
+                        }
+                        else if (!closes) plan.fogBlocked = true;
+                        continue;
+                    }
+                    plan.seen++;
                     (ch == DefenseLayout.Firing ? plan.firing : plan.clear).Add(c);
                     // Open ground must be open: rock is dug out (raiders and defenders have to get through), anything
                     // else built there is the player's to move.
@@ -179,6 +201,8 @@ namespace ColonyCouncil
             }
 
             if (t.line >= 0 && cfg.closeGap) CloseGap(plan, map, t, anchor, mirror, rot, taken);
+            // Digging in from ground the colony knows: a plan wholly in the dark has nowhere to start from.
+            if (plan.seen == 0 && !plan.edgeBlocked && plan.fog.Count > 0) plan.allFog = true;
 
             if (!quick)
             {
@@ -189,7 +213,7 @@ namespace ColonyCouncil
                         if (p.state == PieceState.Blocked || p.state == PieceState.Present) continue;
                         foreach (var c in p.rect)
                         {
-                            var plant = c.InBounds(map) ? c.GetPlant(map) : null;
+                            var plant = c.InBounds(map) && !c.Fogged(map) ? c.GetPlant(map) : null;
                             if (plant != null && !plan.cut.Contains(plant)) plan.cut.Add(plant);
                         }
                     }
@@ -209,23 +233,42 @@ namespace ColonyCouncil
 
         /// <summary>
         /// Whether a piece can go down: Present when it (or the same plan) is already there, or the rock already closes a
-        /// wall cell; Waiting when rock has to be mined or one of the colony's buildings taken down; else Ready or Blocked
-        /// with the reason (off the map or in unexplored ground blocks the whole plan).
+        /// wall cell; Waiting when rock has to be mined, one of the colony's buildings taken down or unexplored ground
+        /// dug into; else Ready or Blocked with the reason (off the map blocks the whole plan).
         /// </summary>
         private static PieceState PieceStateAt(DefensePlan plan, Map map, PlannedThing pt, string role, bool mineRock, bool replace, out string reason, out bool ground)
         {
             reason = null;
             ground = false;
-            bool waiting = false;
+            bool waiting = false, fogged = false;
             foreach (var c in pt.rect)
             {
-                if (!c.InBounds(map) || c.Fogged(map))
+                if (!c.InBounds(map))
                 {
                     reason = "CC_Plan_Block_Edge".Translate();
                     plan.edgeBlocked = true;
                     return PieceState.Blocked;
                 }
+                if (c.Fogged(map)) fogged = true;
             }
+            if (fogged)
+            {
+                // Unexplored ground: nothing about what's there is read. A wall waits (rock that stays as the wall, or a
+                // wall once the ground comes to light); anything else is dug out first, when the plan may dig.
+                foreach (var c in pt.rect)
+                    if (c.Fogged(map) && !plan.fog.Contains(c)) plan.fog.Add(c);
+                if (role == "wall" && pt.rect.Area == 1) return PieceState.Waiting;
+                if (!mineRock)
+                {
+                    reason = "CC_Plan_Block_Fog".Translate();
+                    plan.fogBlocked = true;
+                    return PieceState.Blocked;
+                }
+                foreach (var c in pt.rect)
+                    if (c.Fogged(map) && plan.mineSet.Add(c)) plan.mine.Add(c);
+                return PieceState.Waiting;
+            }
+            plan.seen++;
             // Already there: the same building or its blueprint, a door where a gate goes, rock or a wall where a wall goes.
             var root = pt.cell.GetEdifice(map);
             if (root != null && (root.def == pt.def || (role == "gate" && root.def.IsDoor) || (role == "wall" && TemplatePlanner.IsWallLike(root.def))))
@@ -305,7 +348,9 @@ namespace ColonyCouncil
                 {
                     var c = ToWorld(t, anchor, start + dir * i, g.line, mirror, rot);
                     cells.Add(c);
-                    if (!c.InBounds(map) || c.Fogged(map) || c.InNoBuildEdgeArea(map)) return DefenseLayout.GapBlocked;
+                    if (!c.InBounds(map) || c.InNoBuildEdgeArea(map)) return DefenseLayout.GapBlocked;
+                    // Unexplored ground closes the line as the survey reads it (most often the hill's rock); nothing in it is looked at.
+                    if (c.Fogged(map)) return DefenseLayout.GapClosed;
                     if (taken.Contains(c)) return DefenseLayout.GapClosed;
                     var ed = c.GetEdifice(map);
                     if (ed != null)
@@ -356,6 +401,8 @@ namespace ColonyCouncil
             int blocked = plan.pieces.Count(p => p.state == PieceState.Blocked && !p.ground && !plan.inRock.Contains(p));
             if (blocked > 0) plan.warnings.Add("CC_Def_Warn_Blocked".Translate(blocked));
             if (plan.inRock.Count > 0) plan.warnings.Add("CC_Def_Warn_InRock".Translate(plan.inRock.Count));
+            if (plan.fog.Count > 0) plan.warnings.Add("CC_Plan_Warn_Fog".Translate(plan.fog.Count));
+            if (plan.fogBlocked) plan.warnings.Add("CC_Plan_Block_Fog".Translate());
             if (plan.mine.Count > 0) plan.warnings.Add("CC_Plan_Warn_Mine".Translate(plan.mine.Count));
             if (plan.deconstruct.Count > 0) plan.warnings.Add("CC_Plan_Warn_Deconstruct".Translate(plan.deconstruct.Count));
             int waiting = plan.Count(PieceState.Waiting);
@@ -629,10 +676,25 @@ namespace ColonyCouncil
                     break;
                 }
                 default:
-                    list.Add((gate - outward * Mathf.Max(0, distance), facing, midX, Mathf.Max(0, g.line), 1));
+                    // A second skin of wall goes exactly behind the line, never on it or in front of it.
+                    list.Add((gate - outward * Mathf.Max(0, distance), facing, midX, Mathf.Max(0, g.line), distance > 0 ? 0 : 1));
                     break;
             }
             return list;
+        }
+
+        /// <summary>How many rows down from a template's front its first cover (or turret) stands: where it goes behind a line is measured to that row.</summary>
+        public static int CoverRow(DefenseTemplateDef t)
+        {
+            var g = t?.Grid;
+            if (g == null) return 0;
+            for (int z = g.H - 1; z >= 0; z--)
+                for (int x = 0; x < g.W; x++)
+                {
+                    char c = g.cells[x, z];
+                    if (c == DefenseLayout.Cover || c == DefenseLayout.Embrasure || c == DefenseLayout.Turret || c == DefenseLayout.TurretRoom) return g.H - 1 - z;
+                }
+            return 0;
         }
 
         /// <summary>The cells the template's anchor cell (cx, cz) could land on, the side to face, and how far to look round each.</summary>

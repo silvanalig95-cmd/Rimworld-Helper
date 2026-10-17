@@ -384,11 +384,13 @@ namespace ColonyCouncil
             var page = A("Rimfolk_AlmDef_Lines", "Rimfolk_AlmDef_ChokePoints");
             if (leak.found && !leak.viaDoor)
             {
-                var n = Note(r, "leak", LeakWords(f), "CC_DefLine_How_Leak".Translate(), 10f, page);
-                n.cells.AddRange(leak.path.Select(f.Cell));
                 int sign = leak.lateral < 0 ? -1 : 1;
                 var gap = GapCells(f, sign);
-                if (gap.Count > 0 && Mathf.Abs(leak.lateral) <= (sign < 0 ? f.rowLeft : f.rowRight).built + gap.Count + 3)
+                // Walls planned there already: it's closed once they're built.
+                bool planned = gap.Count > 0 && gap.All(c => DefenseLineFacts.PlannedWallOrDoor(c, f.map));
+                var n = Note(r, "leak", LeakWords(f) + (planned ? " " + "CC_DefLine_Leak_Planned".Translate().Resolve() : ""), "CC_DefLine_How_Leak".Translate(), planned ? 4f : 10f, page);
+                n.cells.AddRange(leak.path.Select(f.Cell));
+                if (!planned && gap.Count > 0 && Mathf.Abs(leak.lateral) <= (sign < 0 ? f.rowLeft : f.rowRight).built + gap.Count + 3)
                     n.actions.Add(new LineAction
                     {
                         label = "CC_DefLine_WallOff".Translate(),
@@ -539,13 +541,19 @@ namespace ColonyCouncil
             });
         }
 
+        /// <summary>
+        /// Darkness spoils nobody's aim by itself in 1.6 (it slows movement and work); only a belief that prefers combat
+        /// in darkness changes shooting, better at targets in the dark and worse at lit ones. So this speaks only when
+        /// some of the colony's shooters hold it: whether the kill zone is dark at night, where they'd have the edge.
+        /// </summary>
         private static void Dark(DefenseLineReview r, DefenseLineFacts f)
         {
+            if (f.darkBetter <= 0) return;
             var page = A("Rimfolk_AlmDef_FieldOfFire", "Rimfolk_AlmDef_Cover");
-            if (f.darkWorse > 0 && f.darkShare >= 0.5f)
-                Note(r, "dark", "CC_DefLine_Dark_Worse".Translate(f.darkWorse, Mathf.RoundToInt(f.darkShare * 100f)).Resolve(), "CC_DefLine_How_Dark".Translate(), 4f, page);
-            else if (f.darkBetter > 0 && f.darkShare < 0.5f)
-                Note(r, "dark", "CC_DefLine_Dark_Better".Translate(f.darkBetter).Resolve(), "CC_DefLine_How_Dark".Translate(), 2f, page);
+            if (f.darkShare < 0.5f)
+                Note(r, "dark", "CC_DefLine_Dark_Lit".Translate(f.darkBetter, Mathf.RoundToInt((1f - f.darkShare) * 100f)).Resolve(), "CC_DefLine_How_Dark".Translate(), 3f, page);
+            else
+                Note(r, "dark", "CC_DefLine_Dark_Good".Translate(f.darkBetter).Resolve(), "CC_DefLine_How_Dark".Translate(), 0.5f, page, true);
         }
 
         private static void Upkeep(DefenseLineReview r, DefenseLineFacts f)
@@ -614,7 +622,14 @@ namespace ColonyCouncil
             r.verdict = DefenseLineMath.Verdict(r.strength.total, f.raidPoints);
         }
 
-        public string StrengthText()
+        private string strengthText, strengthTip;
+
+        public string StrengthText() => strengthText ??= MakeStrengthText();
+
+        /// <summary>The strength's parts, for its tooltip: so the number can be checked.</summary>
+        public string StrengthTip() => strengthTip ??= MakeStrengthTip();
+
+        private string MakeStrengthText()
         {
             string raids = DefenseLineMath.Rounded(f.raidPoints).ToString("N0");
             string pts = points.ToString("N0");
@@ -627,8 +642,7 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>The strength's parts, for its tooltip: so the number can be checked.</summary>
-        public string StrengthTip()
+        private string MakeStrengthTip()
         {
             var s = strength;
             if (s == null) return "";

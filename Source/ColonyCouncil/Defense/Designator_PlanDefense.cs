@@ -102,6 +102,7 @@ namespace ColonyCouncil
             TemplateMath.RotatedSize(t.Width, t.Height, cfg.rotation, out int rw, out int rh);
             CameraJumper.TryJump(new IntVec3(anchor.x + rw / 2, 0, anchor.z + rh / 2), map);
             var line = DefenseLines.Of(map)?.Get(lineId);
+            if (line != null) DefenseLines.Select(map, line);
             string name = line != null ? DefenseLineReview.NameOf(line, map) : "";
             Messages.Message((fits ? "CC_DefLine_PlanReady" : "CC_DefLine_PlanTight").Translate(t.LabelNow, name).Resolve(),
                 fits ? MessageTypeDefOf.SilentInput : MessageTypeDefOf.CautionInput, false);

@@ -26,7 +26,7 @@
   <CC_DefLine_Name_Bridge>the {0} bridge</CC_DefLine_Name_Bridge>
   <CC_DefLine_Name_Line>the {0} line</CC_DefLine_Name_Line>
   <CC_DefLine_Name_Nth>{0} ({1})</CC_DefLine_Name_Nth>
-  <CC_DefLine_Name_Tip>Click to draw this line on the map. Right-click or double-click to rename it.</CC_DefLine_Name_Tip>
+  <CC_DefLine_Name_Tip>Click to draw this line on the map: its span and gate, the kill zone, who sees the gate, the way round and what raiders would shelter behind.</CC_DefLine_Name_Tip>
   <CC_DefLine_Place_Open>open ground</CC_DefLine_Place_Open>
   <CC_DefLine_Where>To the {0}: {1}, {2} wide. Raiders come at it from the {3}.</CC_DefLine_Where>
   <CC_DefLine_Rename>Rename</CC_DefLine_Rename>
@@ -144,7 +144,7 @@
   <CC_DefLine_Killbox_Tunnel>In a pass through the mountain the killbox can be dug out of the rock: the rock is its walls, and nothing falls on it from above.</CC_DefLine_Killbox_Tunnel>
   <CC_DefLine_Killbox_Fits>The {0} fits behind this gate ({1} × {2} cells) without mining or taking anything down.</CC_DefLine_Killbox_Fits>
   <CC_DefLine_Killbox_FitsIf>The {0} fits behind this gate if {1}.</CC_DefLine_Killbox_FitsIf>
-  <CC_DefLine_Killbox_Mine>{0} cells of rock are mined</CC_DefLine_Killbox_Mine>
+  <CC_DefLine_Killbox_Mine>{0} cells are mined out</CC_DefLine_Killbox_Mine>
   <CC_DefLine_Killbox_Remove>{0} of your buildings are taken down</CC_DefLine_Killbox_Remove>
   <CC_DefLine_Killbox_NoRoom>there's no room for the {0} behind this gate: it needs {1} × {2} cells of open or mineable ground.</CC_DefLine_Killbox_NoRoom>
   <CC_DefLine_Killbox_Nowhere>Clear the ground behind the gate, or let the planner mine rock (its "mine rock" switch).</CC_DefLine_Killbox_Nowhere>
@@ -156,6 +156,7 @@
   <CC_DefLine_Harden_Thin>{0} of the line's {1} cells are one wall thick.</CC_DefLine_Harden_Thin>
   <CC_DefLine_Harden_Wood>{0} of them are wood, which burns.</CC_DefLine_Harden_Wood>
   <CC_DefLine_Harden_Embrasures>With {0} you could let archers and shooters fire through the line itself.</CC_DefLine_Harden_Embrasures>
+  <CC_DefLine_Harden_Gatehouse>Behind a palisade or a castle gate, a second wall would close off the embrasures' firing positions. Thicken the plain walls beside them by hand, and let the gatehouse be the second line.</CC_DefLine_Harden_Gatehouse>
   <CC_DefLine_Harden_ByHand>There's no plan for a second skin of wall in this game: build one right behind the line by hand, wall against wall.</CC_DefLine_Harden_ByHand>
 
   <!-- Step: fall back -->
@@ -172,6 +173,7 @@
   <CC_DefLine_Leak_Far>With the gate shut, raiders walk round {0} to the {1} of the gate.</CC_DefLine_Leak_Far>
   <CC_DefLine_Leak_Door>With the gate shut, the easiest way on is through your door to the {0}: hold one gate, and keep the other shut and strong.</CC_DefLine_Leak_Door>
   <CC_DefLine_Leak_EvenOpen>That way is easier than the gate itself, so they'd go round even with it open.</CC_DefLine_Leak_EvenOpen>
+  <CC_DefLine_Leak_Planned>Walls are planned there; it's closed once they're built.</CC_DefLine_Leak_Planned>
   <CC_DefLine_Leak_Sealed>No way round: with the gate shut, raiders would have to break in.</CC_DefLine_Leak_Sealed>
   <CC_DefLine_Leak_NoWayOn>From in front of this gate there's no way on to the beds, even with it open, so raiders have no reason to come this way. Check that the line is where they cross.</CC_DefLine_Leak_NoWayOn>
   <CC_DefLine_End_Rock>the rock</CC_DefLine_End_Rock>
@@ -199,8 +201,8 @@
   <CC_DefLine_Gate_Shut>The gate ({0}) isn't held open. When raiders come, set it to stay open, or with no way in they break the wall wherever they like.</CC_DefLine_Gate_Shut>
   <CC_DefLine_SelectGate>Select the gate</CC_DefLine_SelectGate>
   <CC_DefLine_SelectGate_Tip>Takes you to the gate and selects it, so you can set it to stay open.</CC_DefLine_SelectGate_Tip>
-  <CC_DefLine_Dark_Worse>At night {1}% of the kill zone is dark, and {0} of your shooters aim worse in the dark. A few lamps behind the cover would light it.</CC_DefLine_Dark_Worse>
-  <CC_DefLine_Dark_Better>{0} of your shooters aim better in the dark, and the kill zone is lit at night. Left dark, it would be theirs.</CC_DefLine_Dark_Better>
+  <CC_DefLine_Dark_Lit>{0} of your shooters hold to fighting in the dark: they aim 25% better at raiders in darkness and 20% worse at lit ones. At night {1}% of the kill zone is lit, which takes that edge away there.</CC_DefLine_Dark_Lit>
+  <CC_DefLine_Dark_Good>At night the kill zone is dark, where the {0} shooters who hold to fighting in the dark aim 25% better.</CC_DefLine_Dark_Good>
   <CC_DefLine_Upkeep_Damaged>{0} piece(s) of the line are damaged.</CC_DefLine_Upkeep_Damaged>
   <CC_DefLine_Upkeep_OutsideHome>{0} of them stand outside the home area, where nobody repairs them.</CC_DefLine_Upkeep_OutsideHome>
   <CC_DefLine_Upkeep_Traps>{0} sprung trap(s) wait to be rebuilt.</CC_DefLine_Upkeep_Traps>
@@ -222,7 +224,7 @@
   <CC_DefLine_How_Turrets>A badly damaged turret can explode, and its blast reaches the turrets and people near it. A turret without power, fuel or repairs is just cover for raiders.</CC_DefLine_How_Turrets>
   <CC_DefLine_How_Wood>Raiders bring torches and incendiaries. Stone doesn't burn, and holds longer against a breacher's axe.</CC_DefLine_How_Wood>
   <CC_DefLine_How_Gate>Raiders who have a way to your people take it. A gate held open during a raid brings them into your guns; a shut one leaves them to break the wall anywhere.</CC_DefLine_How_Gate>
-  <CC_DefLine_How_Dark>Some beliefs change how well people shoot in the dark. At night only lamps light the kill zone.</CC_DefLine_How_Dark>
+  <CC_DefLine_How_Dark>Darkness doesn't spoil anyone's aim by itself: it slows movement and work, and wears on the mood. Only a belief that prefers combat in darkness changes shooting, 25% better at targets in the dark and 20% worse at lit ones.</CC_DefLine_How_Dark>
   <CC_DefLine_How_Upkeep>Damaged walls fall sooner in the next raid, and sprung traps do nothing until they're rebuilt. Your builders repair only what's inside the home area.</CC_DefLine_How_Upkeep>
 
   <!-- Strength -->
@@ -285,6 +287,7 @@
 
   <!-- Settings -->
   <CC_Settings_DefenseGateReminder>Remind me of a shut gate when raiders come</CC_Settings_DefenseGateReminder>
-  <CC_SetNote_DefenseGateReminder>When raiders arrive, say once if a defense line's gate is shut. With no way in, raiders break the wall wherever they like.</CC_SetNote_DefenseGateReminder>
+  <CC_Settings_DefenseGateReminder_Tip>When raiders arrive, says once if a defense line's gate is shut. With no way in, raiders break the wall wherever they like; a gate held open brings them into your guns.</CC_Settings_DefenseGateReminder_Tip>
+  <CC_SetNote_DefenseGateReminder>Once a raid, a word if a defense line's gate is shut when raiders come.</CC_SetNote_DefenseGateReminder>
 
 </LanguageData>

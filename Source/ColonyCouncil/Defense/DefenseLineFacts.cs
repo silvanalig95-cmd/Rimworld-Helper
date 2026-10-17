@@ -75,8 +75,8 @@ namespace ColonyCouncil
         public float raidPoints;
         public List<float> fighters = new List<float>();
         public int ranged;
-        /// <summary>Fighters who shoot worse in the dark (a belief's), and better; the share of the kill zone left dark at night.</summary>
-        public int darkWorse, darkBetter;
+        /// <summary>Shooters whose belief prefers combat in darkness (they aim better at targets in the dark), and the share of the kill zone left dark at night.</summary>
+        public int darkBetter;
         public float darkShare;
         public bool zoneRoofed;
         private readonly List<Pawn> shooters = new List<Pawn>();
@@ -158,7 +158,8 @@ namespace ColonyCouncil
 
         private static bool Built(Thing t) => t != null && !(t is Blueprint) && !(t is Frame);
 
-        private static bool PlannedWallOrDoor(IntVec3 c, Map map)
+        /// <summary>A wall or door is planned or going up on the cell (a blueprint or a frame).</summary>
+        public static bool PlannedWallOrDoor(IntVec3 c, Map map)
         {
             foreach (var t in c.GetThingList(map))
                 if ((t is Blueprint_Build || t is Frame) && t.def.entityDefToBuild is ThingDef td && (TemplatePlanner.IsWallLike(td) || td.IsDoor || td.passability == Traversability.Impassable))
@@ -294,10 +295,9 @@ namespace ColonyCouncil
                 if (ahead > 0 || ahead < -18 || Mathf.Abs(lat) > 14) continue;
                 f.cover.Add(b);
                 if (b.def.useHitPoints && b.HitPoints < b.MaxHitPoints * 0.6f) f.damaged.Add(b);
-                // The shooter stands on the far side of the cover from the gate.
-                var away = c - f.gate;
-                var step = Mathf.Abs(away.x) >= Mathf.Abs(away.z) ? new IntVec3(Math.Sign(away.x), 0, 0) : new IntVec3(0, 0, Math.Sign(away.z));
-                if (step == IntVec3.Zero) step = -f.outward;
+                // The shooter stands on the far side of the cover from the gate: behind it, or beside it for cover that
+                // faces the gate from the flank.
+                var step = Mathf.Abs(lat) > Mathf.Abs(ahead) + 2 ? f.right * Math.Sign(lat) : -f.outward;
                 var at = c + step;
                 if (!at.InBounds(map) || !at.Standable(map) || taken.Contains(at) || Avail.IsCover(at.GetEdifice(map)?.def)) continue;
                 taken.Add(at);
@@ -543,8 +543,9 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// Who shoots worse in the dark, or better (a belief's darkness precepts: outdoors or indoors, as the kill zone
-        /// is roofed or not), and at night the share of the kill zone with no lamp on it.
+        /// Who aims better at targets in the dark (a belief that prefers combat in darkness: outdoors or indoors, as the
+        /// kill zone is roofed or not), and at night the share of the kill zone with no lamp on it. Darkness by itself
+        /// doesn't change anyone's aim.
         /// </summary>
         private static void Dark(DefenseLineFacts f)
         {
@@ -555,9 +556,7 @@ namespace ColonyCouncil
             {
                 foreach (var p in f.shooters)
                 {
-                    float off = p.GetStatValue(stat);
-                    if (off < -0.001f) f.darkWorse++;
-                    else if (off > 0.001f) f.darkBetter++;
+                    if (p.GetStatValue(stat) > 0.001f) f.darkBetter++;
                 }
             }
             catch (Exception e)
@@ -565,7 +564,7 @@ namespace ColonyCouncil
                 CouncilLog.ErrorOnce("defense line: darkness", e);
                 return;
             }
-            if (f.darkWorse == 0 && f.darkBetter == 0) return;
+            if (f.darkBetter == 0) return;
             int dark = 0;
             foreach (var c in f.zone)
                 if (f.map.glowGrid.GroundGlowAt(c, false, true) < 0.3f) dark++;
