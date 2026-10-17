@@ -514,28 +514,125 @@ namespace ColonyCouncil
         }
     }
 
-    /// <summary>A cook wants cold storage so the harvest doesn't rot.</summary>
+    /// <summary>
+    /// Cold storage for the food: a cook, or someone who just ate something rotten, and on hot land (hot most of the year,
+    /// or a hot summer) anyone who watches the food turn while it's there to turn, when no room in the colony keeps food
+    /// below freezing. Only what the colony can build now is asked for: an electric cooler, a fridge from a mod, or a
+    /// cooler that can freeze without power from a mod (Vanilla Factions Expanded - Classical's large passive cooler).
+    /// The base game's passive cooler can't get a room below 17 °C, so before electricity, with nothing else, the hot
+    /// country's wish doesn't come. Fulfilled when such a room (or a working fridge) holds food.
+    /// </summary>
     public class WishWorker_Freezer : WishWorker
     {
+        /// <summary>
+        /// Something that keeps food frozen: a cooler (the electric kind and its mod variants), a fridge, or a cooler that
+        /// can take a room below freezing on its own (not the base game's passive cooler, which stops at 17 °C).
+        /// </summary>
+        public static bool KeepsFoodCold(ThingDef d)
+        {
+            if (d == null) return false;
+            if (d.thingClass != null && typeof(Building_Cooler).IsAssignableFrom(d.thingClass)) return true;
+            if (Avail.IsFridge(d)) return true;
+            var hp = d.GetCompProperties<CompProperties_HeatPusher>();
+            return hp != null && hp.heatPerSecond < 0f && hp.heatPushMinTemperature > -500f && hp.heatPushMinTemperature <= 0f;
+        }
+
+        /// <summary>The best of them the colony can build here now, or null.</summary>
+        public static ThingDef BestCold(Map map) => Avail.BestBuildable(map, KeepsFoodCold, "Cooler");
+
+        /// <summary>Hot country (SeasonWishMath.HotLand): hot most of the year, or summer on a map whose summers are hot.</summary>
+        public static bool HotLand(Map map)
+        {
+            if (map == null || !SeasonUtil.HasSeasons(map)) return false;
+            var s = GenLocalDate.Season(map);
+            return SeasonWishMath.HotLand(WishWorker_SeasonClothes.Averages(map), s == Season.Summer || s == Season.PermanentSummer);
+        }
+
+        /// <summary>Food on the map to keep: a few days' worth for someone, at least.</summary>
+        private static bool FoodToKeep(Map map) => map?.resourceCounter != null && map.resourceCounter.TotalHumanEdibleNutrition >= 10f;
+
+        private static bool IsFood(Thing t) =>
+            t?.def != null && t.def.category == ThingCategory.Item && t.def.IsIngestible && t.def.ingestible.HumanEdible && t.def.GetCompProperties<CompProperties_Rottable>() != null;
+
+        /// <summary>A freezer that holds food: a room below 0 °C with something rottable stored in it, or a working fridge with food in it.</summary>
+        public static bool FreezerHoldsFood(Map map)
+        {
+            if (map == null) return false;
+            foreach (var b in map.listerBuildings.allBuildingsColonist)
+            {
+                if (!Avail.IsFridge(b.def) || !b.Spawned) continue;
+                var power = b.TryGetComp<CompPowerTrader>();
+                if (power != null && !power.PowerOn) continue;
+                foreach (var c in b.OccupiedRect())
+                {
+                    var list = c.GetThingList(map);
+                    for (int i = 0; i < list.Count; i++)
+                        if (IsFood(list[i])) return true;
+                }
+            }
+            var seen = new HashSet<Room>();
+            foreach (var zone in map.zoneManager.AllZones)
+            {
+                if (!(zone is Zone_Stockpile) || zone.Cells.Count == 0) continue;
+                var room = zone.Cells[0].GetRoom(map);
+                if (room != null && seen.Add(room) && ColdRoomWithFood(room)) return true;
+            }
+            foreach (var b in map.listerBuildings.allBuildingsColonist)
+            {
+                if (!(b is Building_Storage)) continue;
+                var room = b.GetRoom();
+                if (room != null && seen.Add(room) && ColdRoomWithFood(room)) return true;
+            }
+            return false;
+        }
+
+        private static bool ColdRoomWithFood(Room room)
+        {
+            if (room.PsychologicallyOutdoors || room.Temperature >= 0f) return false;
+            var things = room.ContainedAndAdjacentThings;
+            for (int i = 0; i < things.Count; i++)
+                if (IsFood(things[i]) && room.ContainsCell(things[i].Position)) return true;
+            return false;
+        }
+
         public override IEnumerable<WishCandidate> CandidatesFor(Pawn pawn)
         {
             var map = HomeMap(pawn);
-            if (map == null || RoomUtil.HasFreezer(map)) yield break;
+            if (map == null || pawn.DevelopmentalStage.Juvenile() || RoomUtil.HasFreezer(map)) yield break;
             var cook = pawn.skills?.GetSkill(SkillDefOf.Cooking);
             bool cookPassion = cook != null && !cook.TotallyDisabled && People.Passionate(cook);
             bool ateRotten = HasMemory(pawn, ThoughtDefOf.AteRottenFood);
-            if (!cookPassion && !ateRotten) yield break;
-            var cooler = Avail.BestBuildable(map, d => d.thingClass != null && typeof(Building_Cooler).IsAssignableFrom(d.thingClass), "Cooler");
+            bool hot = HotLand(map) && FoodToKeep(map);
+            if (!cookPassion && !ateRotten && !hot) yield break;
+            var cooler = BestCold(map);
             if (cooler == null) yield break;
-            var c = Candidate(ateRotten ? 1.6f : 1f, ateRotten ? "CC_Reason_AteRotten".Translate(pawn.Named("PAWN")) : "CC_Reason_CookFreezer".Translate(pawn.Named("PAWN")));
+            var grow = pawn.skills?.GetSkill(SkillDefOf.Plants);
+            bool grower = grow != null && !grow.TotallyDisabled && People.Passionate(grow);
+            float weight = ateRotten ? 1.6f : cookPassion ? 1f : 0f;
+            // In hot country anyone may ask; the cooks and growers, who see the waste first, most.
+            if (hot) weight = Math.Max(weight, cookPassion || grower ? 1.3f : 0.6f);
+            string reason = ateRotten ? "CC_Reason_AteRotten".Translate(pawn.Named("PAWN")).Resolve()
+                : hot ? "CC_Reason_HotFreezer".Translate(pawn.Named("PAWN")).Resolve()
+                : "CC_Reason_CookFreezer".Translate(pawn.Named("PAWN")).Resolve();
+            var c = Candidate(weight, reason);
             c.thingDef = cooler;
             c.subjectKey = "colony";
             yield return c;
         }
 
-        public override bool IsFulfilled(Wish wish) => RoomUtil.HasFreezer(wish.Beneficiary.MapHeld);
+        public override bool IsFulfilled(Wish wish) => FreezerHoldsFood(wish.Beneficiary.MapHeld);
+
+        /// <summary>Promises kept: the cold room stands (empty for now or not: the food goes in and out).</summary>
+        public override KeptCheck Holds(Wish wish) => RoomUtil.HasFreezer(wish.Beneficiary.MapHeld) ? KeptCheck.Holds : KeptCheck.Gone;
+
+        public override bool StillObtainable(Wish wish)
+        {
+            if (!base.StillObtainable(wish)) return false;
+            var map = wish.Beneficiary?.MapHeld;
+            return map == null || RoomUtil.HasFreezer(map) || BestCold(map) != null;
+        }
 
         /// <summary>Promises kept: the coolers (or a mod's fridges) that keep the cold room cold.</summary>
-        public override bool Concerns(Wish wish, BuildableDef d) => d is ThingDef td && (Avail.IsFridge(td) || (td.thingClass != null && typeof(Building_Cooler).IsAssignableFrom(td.thingClass)));
+        public override bool Concerns(Wish wish, BuildableDef d) => d is ThingDef td && KeepsFoodCold(td);
     }
 }

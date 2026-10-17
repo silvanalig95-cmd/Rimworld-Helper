@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Jobs for the land's year: walking one of the herd home on a rope (a work party's job when the colony brings the herd
+    home: Source/ColonyCouncil/Animals/HerdHome.cs), and the sauna's small habit (Wishes/WishWorkers_Seasons.cs), under the
+    same rules as the others in Rimfolk_SmallHabits.xml: only with "Small habits" on, in free time, off its cooldown, on a
+    cold day, when the colony has a sauna. Sitting in the heat a while, they chat with whoever else is in there.
+  -->
+
+  <JobDef>
+    <defName>Council_PlayOutHerd</defName>
+    <driverClass>ColonyCouncil.JobDriver_PlayOutHerd</driverClass>
+    <reportString>bringing TargetA home.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+  <JobDef>
+    <defName>Council_Habit_Sauna</defName>
+    <driverClass>ColonyCouncil.JobDriver_SmallHabit</driverClass>
+    <reportString>sitting in the sauna.</reportString>
+    <joyKind>Meditative</joyKind>
+    <joyGainRate>1</joyGainRate>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+    <modExtensions>
+      <li Class="ColonyCouncil.HabitExtension">
+        <kind>Sauna</kind>
+        <pool>Council_Pool_HabitSauna</pool>
+        <social>true</social>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <JoyGiverDef>
+    <defName>Council_HabitGiver_Sauna</defName>
+    <giverClass>ColonyCouncil.JoyGiver_HabitSauna</giverClass>
+    <baseChance>4</baseChance>
+    <jobDef>Council_Habit_Sauna</jobDef>
+    <joyKind>Meditative</joyKind>
+    <requiredCapacities>
+      <li>Moving</li>
+    </requiredCapacities>
+  </JoyGiverDef>
+
+</Defs>

@@ -8,7 +8,9 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>4</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>the fields blessed</label><description>We walked the rows together before the planting and said the words. Whatever comes up this year, we started it right.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>the planting day</label><description>We sowed the fields together the day they opened, and said a few words at the edge when it was done. Whatever comes up this year, we started it right.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <!-- The planting day gives hope, practice and a journal line rather than mood. -->
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>3</felt><skill>Plants</skill><xp>200</xp><journal>true</journal><feelings><li>Hope</li></feelings></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef>

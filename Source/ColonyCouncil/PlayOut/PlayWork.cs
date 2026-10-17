@@ -77,6 +77,12 @@ namespace ColonyCouncil
             foreach (var t in p.tasks)
             {
                 if (!Allowed(t, x)) continue;
+                // The herd isn't the game's work: it's walked home on a rope, by anyone who can handle animals.
+                if (t == WorkTask.Herd)
+                {
+                    if (HerdHome.CanHerd(x)) return true;
+                    continue;
+                }
                 foreach (var w in Givers(t))
                     if (!x.WorkTypeIsDisabled(w.workType) && w.Worker?.MissingRequiredCapacity(x) == null)
                         return true;
@@ -91,7 +97,8 @@ namespace ColonyCouncil
         public static bool Allowed(WorkTask t, Pawn x)
         {
             if (t == WorkTask.Cut && Beliefs.Forbids(x, Belief.NoTreeCutting)) return false;
-            if ((t == WorkTask.Sow || t == WorkTask.Harvest || t == WorkTask.Cut || t == WorkTask.Snow) && Beliefs.Forbids(x, Belief.Indoors)) return false;
+            if ((t == WorkTask.Sow || t == WorkTask.Harvest || t == WorkTask.Cut || t == WorkTask.Snow || t == WorkTask.Herd) && Beliefs.Forbids(x, Belief.Indoors)) return false;
+            if (t == WorkTask.Herd && Beliefs.Forbids(x, Belief.NoRanching)) return false;
             return true;
         }
 
@@ -127,6 +134,22 @@ namespace ColonyCouncil
             foreach (var t in p.tasks)
             {
                 if (!Allowed(t, x)) continue;
+                if (t == WorkTask.Herd)
+                {
+                    if (!HerdHome.CanHerd(x)) continue;
+                    Job herd = null;
+                    try
+                    {
+                        herd = HerdHome.NextJob(x, out target);
+                    }
+                    catch (Exception e)
+                    {
+                        CouncilLog.ErrorOnce("work party: the herd", e);
+                    }
+                    if (herd == null) continue;
+                    task = t;
+                    return herd;
+                }
                 foreach (var wg in Givers(t))
                 {
                     if (x.WorkTypeIsDisabled(wg.workType) || !(wg.Worker is WorkGiver_Scanner sc)) continue;
@@ -260,6 +283,8 @@ namespace ColonyCouncil
                     return map != null && cell.IsValid && cell.InBounds(map) && cell.GetPlant(map) != null;
                 case WorkTask.Snow:
                     return cell.IsValid;
+                case WorkTask.Herd:
+                    return target is Pawn a && (a.Destroyed || a.Dead || HerdHome.Home(a));
                 default:
                     return target != null && (target.Destroyed || !target.Spawned);
             }

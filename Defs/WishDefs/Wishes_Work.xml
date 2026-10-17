@@ -433,7 +433,7 @@
   <ColonyCouncil.WishDef>
     <defName>Council_Wish_Freezer</defName>
     <label>a freezer for the food</label>
-    <description>A cook, or someone who just ate something rotten, wants cold storage so food stops spoiling.</description>
+    <description>Cold storage, so food stops spoiling: a cook asks, or someone who just ate something rotten, and in hot country anyone who watches the food turn in the heat. Only what the colony can build is asked for: an electric cooler, a fridge from a mod, or a cooler that freezes without power from a mod. Before electricity in the base game a passive cooler can't keep food, so hot country doesn't ask.</description>
     <workerClass>ColonyCouncil.WishWorker_Freezer</workerClass>
     <lasting>true</lasting>
     <lostText>The colony has no freezer any more, after {FOR_nameDef} asked for one.</lostText>
@@ -446,44 +446,61 @@
     <allowPetition>true</allowPetition>
     <template>Council_Freezer</template>
     <talkInteraction>Council_Talk_Food</talkInteraction>
-    <fulfilledWhen>There's a stockpile in a room kept below 0°C.</fulfilledWhen>
+    <fulfilledWhen>A room kept below 0°C (with {THING} or anything like it) holds food, or a working fridge does.</fulfilledWhen>
     <request>
       <plain>
         <li>Half the harvest is turning to mush. We need a freezer, with {THING} keeping it cold.</li>
         <li>I can't cook with ingredients that are already rotting. A freezer, please.</li>
         <li>[summer] The meat went green again, in two days this time. We need cold storage.</li>
         <li>[hot] It's hot enough to cook the food in the storeroom, and not in a good way.</li>
+        <li>[hot] Everything we bring in starts to turn by the next morning. In heat like this, food needs a cold room.</li>
+        <li>[day] I opened the storeroom at noon and had to step back from the smell.</li>
+        <li>[skill:Plants] I grow it, and then I watch it rot in the store. A freezer would keep the harvest a harvest.</li>
+        <li>[skill:Cooking] A cook is only as good as what's in the larder, and ours is going off.</li>
       </plain>
       <warm>
         <li>All that hard work in the fields, wasted. A freezer would save so much.</li>
+        <li>Nobody should have to pick the mould off their supper. A cold room would fix it for all of us.</li>
       </warm>
       <blunt>
         <li>I just ate something green that wasn't supposed to be green. Build a freezer.</li>
+        <li>Food rots in this heat. Build somewhere cold to keep it.</li>
       </blunt>
       <cheerful>
         <li>A cold room full of food that doesn't smell! I can't wait.</li>
+        <li>Imagine walking into a room where your breath fogs up, in this heat. Let's build one.</li>
       </cheerful>
       <gloomy>
-        <li>Every week I throw out another pile of rotten meat. One bad winter and we'll starve.</li>
+        <li>Every week I throw out another pile of rotten meat. One bad season and we'll starve.</li>
+        <li>[hot] We work all day in this heat to bring the food in, and the heat takes it anyway.</li>
       </gloomy>
       <cold>
         <li>Food spoilage is waste. A freezer eliminates it.</li>
+        <li>In this climate, every day without cold storage costs us food we've already paid for.</li>
       </cold>
     </request>
     <thanks>
       <plain>
         <li>Cold storage. Nothing has to go to waste now.</li>
         <li>Cold air, fresh food, no flies. Beautiful.</li>
+        <li>[hot] I stood in the freezer for a whole minute. For the food, obviously.</li>
       </plain>
-      <cheerful>
-        <li>I walked in and my breath fogged up. I love it.</li>
-      </cheerful>
+      <warm><li>The harvest keeps now. All that work counts for something.</li></warm>
+      <blunt><li>Good. Keep the door shut.</li></blunt>
+      <cheerful><li>I walked in and my breath fogged up. I love it.</li></cheerful>
+      <gloomy><li>Fresh food that stays fresh. I didn't think I'd see it.</li></gloomy>
+      <cold><li>Spoilage stopped.</li></cold>
     </thanks>
     <expired>
-      <plain>
-        <li>We'll keep eating fast and hoping for the best.</li>
-      </plain>
+      <plain><li>We'll keep eating fast and hoping for the best.</li></plain>
+      <blunt><li>Enjoy the smell of the storeroom.</li></blunt>
+      <gloomy><li>Another pile for the dump, then.</li></gloomy>
     </expired>
+    <reminder>
+      <plain><li>The food's still turning before we can eat it.</li></plain>
+      <cold><li>Still no cold storage. Still losing food.</li></cold>
+    </reminder>
   </ColonyCouncil.WishDef>
+
 
 </Defs>

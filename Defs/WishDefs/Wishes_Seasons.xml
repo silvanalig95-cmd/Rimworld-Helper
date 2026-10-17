@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Wishes of the land's year (Source/ColonyCouncil/Wishes/WishWorkers_Seasons.cs):
+    - clothes warm enough for the coming cold, and on hot land clothes cool enough for its summer: what someone wears has
+      to keep them comfortable in the season's usual weather (the game's own comfortable range, from what they wear), as
+      near as one new piece the colony has or can make takes them. Never a coat for the stores. Only what their apparel
+      policy, beliefs and body allow; let go quietly when the season has passed.
+    - a sauna for the cold months, on cold land: Dubs Bad Hygiene's sauna heater first, else a sauna of the colony's own
+      (a small closed room with a seat and a heater, or a fire before electricity, kept hot). Colonists sit in it on cold
+      days (a small habit: Defs/Misc/Rimfolk_LandYear_Jobs.xml).
+  -->
+
+  <!-- ===================== Clothes warm enough for the season ===================== -->
+
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_WarmCloak</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>clothes warm enough for {SUBJECT}</label>
+    <description>The coming season will be colder than this colonist's clothes let them bear. They want something to wear that keeps them comfortable through it: not a coat for the stores, but clothes warm enough for them, worn.</description>
+    <workerClass>ColonyCouncil.WishWorker_SeasonWarm</workerClass>
+    <forbiddenBy><li>Nudity</li></forbiddenBy>
+    <category>Gear</category>
+    <weight>1</weight>
+    <expiryDays>10</expiryDays>
+    <cooldownDays>20</cooldownDays>
+    <grantedThought>Council_Granted_WarmCloak</grantedThought>
+    <envy>0.1</envy>
+    <talkInteraction>Council_Talk_Comfort</talkInteraction>
+    <fulfilledWhen>What {FOR_nameDef} wears keeps {FOR_objective} comfortable down to {TARGET}°C, the season's usual cold. Something like {THING} would do it, or anything as warm {FOR_pronoun} may wear. Promised, {FOR_pronoun} goes and puts on the warmest thing in store that would do.</fulfilledWhen>
+    <request>
+      <plain>
+        <li>These clothes were fine in summer. They won't be fine for {SUBJECT}.</li>
+        <li>I've worked out what I'll need for {SUBJECT}, and it isn't what I'm wearing. Something like {THING} would do it.</li>
+        <li>My clothes were made for somewhere warmer than this. I need clothes made for here.</li>
+        <li>[fall,morning] The mornings have teeth already. I'd like to be dressed for {SUBJECT} before it bites properly.</li>
+        <li>[winter,evening] My fingers went white out there today, and it took ages to feel them again.</li>
+        <li>[snow] I came back from the fields with snow down my collar and up my sleeves.</li>
+        <li>[old] The cold gets into my bones these days. Something warm for {SUBJECT}, before I'm stiff all through.</li>
+        <li>[tribal] Skins sewn double, fur on the inside. That's what my people wore through the dark months.</li>
+        <li>[medieval] A good wool cloak and something thick under it. That's all I'm asking for {SUBJECT}.</li>
+        <li>[child] My coat's too thin. My hands go red and then they stop hurting, and I think that's bad.</li>
+      </plain>
+      <warm>
+        <li>Nothing fancy. Something warm enough that I'm not shivering by midday. I'll mend it myself when it tears.</li>
+        <li>I don't need a pile of coats in the stores. I'd just like to be warm in what I'm wearing.</li>
+      </warm>
+      <blunt>
+        <li>My clothes won't get me through {SUBJECT}. Make me some that will.</li>
+        <li>I'm cold already, and it's going to get worse. Fix it.</li>
+      </blunt>
+      <cheerful>
+        <li>Something warm and fluffy, maybe with a hood! I don't mind if I look like a haystack.</li>
+        <li>I've picked out the warmest thing I can think of. It's {THING}. Please?</li>
+      </cheerful>
+      <gloomy>
+        <li>[cold] I lose the feeling in my hands every time I go out. One day it won't come back.</li>
+        <li>I've been cold since the leaves fell, and the worst of it hasn't even started.</li>
+      </gloomy>
+      <cold>
+        <li>Cold slows the hands and dulls the mind. Dress me for {SUBJECT} and you'll get a full day's work out of me.</li>
+        <li>What I wear is fit for milder weather than we'll have. That's a problem with a simple answer.</li>
+      </cold>
+    </request>
+    <thanks>
+      <plain>
+        <li>Warm all the way through, for once.</li>
+        <li>Let it snow. I'm dressed for it now.</li>
+      </plain>
+      <warm><li>Thank you. Whoever stitched this, I owe them a favour.</li></warm>
+      <blunt><li>Now the cold can go and bother someone else.</li></blunt>
+      <cheerful><li>I look like a walking haystack and I've never been happier!</li></cheerful>
+      <gloomy><li>I can feel my fingers again. Mixed blessing. They hurt.</li></gloomy>
+      <cold><li>Dressed for the season. Good.</li></cold>
+    </thanks>
+    <expired>
+      <plain><li>More shirts, then, one on top of the other.</li></plain>
+      <blunt><li>If I lose a toe, I'm leaving it on the council's table.</li></blunt>
+      <gloomy><li>It'll be frostbite by midwinter.</li></gloomy>
+      <cold><li>Expect less from me until spring.</li></cold>
+    </expired>
+    <reminder>
+      <plain>
+        <li>It's getting colder, and I'm still dressed for the weather we had.</li>
+        <li>Still nothing warm enough to wear, and {SUBJECT} isn't waiting.</li>
+      </plain>
+      <gloomy><li>I've stopped feeling my ears. That's probably fine.</li></gloomy>
+    </reminder>
+  </ColonyCouncil.WishDef>
+
+  <!-- ===================== Clothes cool enough for the hot season ===================== -->
+
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_CoolClothes</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>clothes cool enough for {SUBJECT}</label>
+    <description>On hot land, the coming season will be hotter than this colonist's clothes let them bear. They want something to wear that keeps them comfortable in it: a wide hat, a duster, something light, whatever the colony has or can make.</description>
+    <workerClass>ColonyCouncil.WishWorker_SeasonCool</workerClass>
+    <forbiddenBy><li>Nudity</li></forbiddenBy>
+    <category>Gear</category>
+    <weight>0.9</weight>
+    <expiryDays>10</expiryDays>
+    <cooldownDays>20</cooldownDays>
+    <grantedThought>Council_Granted_CoolClothes</grantedThought>
+    <envy>0.1</envy>
+    <talkInteraction>Council_Talk_Comfort</talkInteraction>
+    <fulfilledWhen>What {FOR_nameDef} wears keeps {FOR_objective} comfortable up to {TARGET}°C, the season's usual heat. Something like {THING} would do it. Promised, {FOR_pronoun} goes and puts on the best thing in store that would do.</fulfilledWhen>
+    <request>
+      <plain>
+        <li>I'm dressed for somewhere milder. These clothes will cook me in {SUBJECT}.</li>
+        <li>Something with a brim, something light. I can't spend {SUBJECT} squinting and sweating.</li>
+        <li>[summer] By noon my shirt's soaked through and stuck to my back. There must be something better to wear.</li>
+        <li>[hot] The sun's like a hand pressing down on my head. A hat, a duster, anything that keeps it off.</li>
+        <li>[lowtech] Where I'm from, people wore loose cloth against the sun, head to foot. I'd like the same here.</li>
+        <li>[old] Heat like this is hard on me. Something cooler to wear would help more than you'd think.</li>
+        <li>[day] Midday, and I'm wearing the wrong clothes for it again.</li>
+      </plain>
+      <warm>
+        <li>Nothing fancy. Just something that lets the air through.</li>
+        <li>Something for my head, mostly. The rest of me can cope.</li>
+      </warm>
+      <blunt>
+        <li>These clothes are too hot for this place. Find me some that aren't.</li>
+      </blunt>
+      <cheerful>
+        <li>A big floppy hat! Please. I've always wanted to be a big floppy hat person.</li>
+      </cheerful>
+      <gloomy>
+        <li>I'll be lying in the shade like a dog by midsummer, in these.</li>
+      </gloomy>
+      <cold>
+        <li>Heat costs work hours. The right clothes give them back.</li>
+      </cold>
+    </request>
+    <thanks>
+      <plain><li>Shade on my head and air on my arms. Much better.</li></plain>
+      <blunt><li>Better. Thanks.</li></blunt>
+      <cheerful><li>Look at the brim on this!</li></cheerful>
+      <gloomy><li>Still hot. Less hot.</li></gloomy>
+      <cold><li>I can work through noon now.</li></cold>
+    </thanks>
+    <expired>
+      <plain><li>I'll keep to the shade, then.</li></plain>
+      <blunt><li>Don't ask why I'm slow at noon.</li></blunt>
+      <gloomy><li>A long hot season in the wrong clothes.</li></gloomy>
+    </expired>
+    <reminder>
+      <plain><li>Still sweating through the same clothes.</li></plain>
+    </reminder>
+  </ColonyCouncil.WishDef>
+
+  <!-- ===================== A sauna for the cold months ===================== -->
+
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_Sauna</defName>
+    <label>a sauna for the cold months</label>
+    <description>On cold land, someone chilled to the bone, getting on in years or fond of company wants a small, hot room to warm up in. With Dubs Bad Hygiene, a sauna heater and its room; without it, a sauna of the colony's own: a small closed room with a seat and a heater kept hot (a fire, before electricity).</description>
+    <workerClass>ColonyCouncil.WishWorker_Sauna</workerClass>
+    <forbiddenBy><li>NoRecreation</li><li>Discomfort</li></forbiddenBy>
+    <lasting>true</lasting>
+    <category>Comfort</category>
+    <weight>0.7</weight>
+    <expiryDays>15</expiryDays>
+    <cooldownDays>40</cooldownDays>
+    <grantedThought>Council_Granted_Sauna</grantedThought>
+    <luxury>true</luxury>
+    <allowPetition>true</allowPetition>
+    <envy>0</envy>
+    <template>Council_Sauna</template>
+    <talkInteraction>Council_Talk_Comfort</talkInteraction>
+    <fulfilledWhen>The colony has a sauna.</fulfilledWhen>
+    <request>
+      <plain>
+        <li>A sauna. Hot stones, steam, and nothing to do but sweat out the cold. That's my wish.</li>
+        <li>My bones are frozen through. An evening in a sauna would thaw them.</li>
+        <li>One small room, kept hot, with somewhere to sit. That's all a sauna is, and it would change the winter.</li>
+        <li>[snow] It's snowing again. Picture coming in from that to a hot sauna.</li>
+        <li>[old] My joints ache all winter. Heat is the only thing that helps.</li>
+        <li>[lowtech] Hot stones and a ladle of water. People have done it since before anyone wrote things down.</li>
+        <li>[lowtech] A little hut with a fire, sealed up tight, and a bench to sweat on. My people built one wherever they wintered.</li>
+        <li>[evening] I'd like to end a cold day somewhere hot, just once, before bed.</li>
+      </plain>
+      <warm>
+        <li>We could all sit in there together, talking and sweating. It brings people close.</li>
+        <li>Somewhere warm to go when the cold wears everyone down. It would do us all good.</li>
+      </warm>
+      <blunt>
+        <li>Build a sauna. I'm frozen.</li>
+        <li>A hot room and a bench. It's not much to ask in a place like this.</li>
+      </blunt>
+      <cheerful>
+        <li>Steam, heat, and a roll in the snow afterwards! I'll go first.</li>
+        <li>Imagine it: sweating like a pig in midwinter. I can't wait.</li>
+      </cheerful>
+      <gloomy>
+        <li>It's going to be a long, cold winter. A sauna would make it bearable.</li>
+        <li>The cold has been in me since autumn. Nothing gets it out.</li>
+      </gloomy>
+      <cold>
+        <li>Heat eases sore muscles and lifts spirits in a cold climate.</li>
+        <li>A small heated room costs little to run and keeps people working through the winter.</li>
+      </cold>
+    </request>
+    <thanks>
+      <plain>
+        <li>I sat in the heat until my head swam. Best evening this winter.</li>
+        <li>I went in frozen and came out pink. Thank you.</li>
+      </plain>
+      <warm><li>Come and sit. There's room for everyone.</li></warm>
+      <blunt><li>Good. Close the door, you're letting the heat out.</li></blunt>
+      <cheerful><li>I ran out into the snow afterwards and shouted, then ran straight back in.</li></cheerful>
+      <gloomy><li>Warm at last. I'll be cold again tomorrow, but I know where to go now.</li></gloomy>
+      <cold><li>Recovery improved.</li></cold>
+    </thanks>
+    <expired>
+      <plain><li>I'll stay frozen, then.</li></plain>
+      <blunt><li>Enjoy your cold winter.</li></blunt>
+      <gloomy><li>Winter wins again.</li></gloomy>
+    </expired>
+    <reminder>
+      <plain>
+        <li>Still dreaming of a sauna.</li>
+        <li>Another cold day, and nowhere hot to sit at the end of it.</li>
+      </plain>
+    </reminder>
+  </ColonyCouncil.WishDef>
+
+</Defs>

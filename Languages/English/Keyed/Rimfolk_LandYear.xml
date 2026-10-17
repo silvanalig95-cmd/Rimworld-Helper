@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- ===================== A freezer in hot country (Wishes/WishWorkers_Work.cs) ===================== -->
+
+  <CC_Reason_HotFreezer>{PAWN_nameDef} watches the food turn in the heat, and nothing in the colony keeps it cold.</CC_Reason_HotFreezer>
+
+  <!-- ===================== Clothes for the season (Wishes/WishWorkers_Seasons.cs) ===================== -->
+
+  <CC_Reason_SeasonWarm>What {PAWN_nameDef} wears keeps {PAWN_objective} comfortable down to {COMFY}, and {SEASON} will bring days around {TEMP}.</CC_Reason_SeasonWarm>
+  <CC_Reason_SeasonCool>What {PAWN_nameDef} wears keeps {PAWN_objective} comfortable up to {COMFY}, and {SEASON} will bring afternoons around {TEMP}.</CC_Reason_SeasonCool>
+  <CC_Season_Winter>the winter</CC_Season_Winter>
+  <CC_Season_WinterAhead>the winter ahead</CC_Season_WinterAhead>
+  <CC_Season_Cold>the cold months</CC_Season_Cold>
+  <CC_Season_Summer>the summer</CC_Season_Summer>
+  <CC_Season_SummerAhead>the summer ahead</CC_Season_SummerAhead>
+  <CC_Season_Hot>the hot months</CC_Season_Hot>
+  <CC_Progress_SeasonClothes>Comfortable to {0} now, {1} wanted</CC_Progress_SeasonClothes>
+  <CC_Promise_SeasonClothes>{FOR_nameDef} is fetching {ITEM} from the stores to put on.</CC_Promise_SeasonClothes>
+
+  <!-- ===================== A sauna (Wishes/WishWorkers_Seasons.cs) ===================== -->
+
+  <CC_Reason_SaunaCold>{PAWN_nameDef} is cold to the bone and dreams of a hot sauna.</CC_Reason_SaunaCold>
+  <CC_Reason_Sauna>The winter here is long, and {PAWN_nameDef} would like somewhere hot to sit at the end of a cold day.</CC_Reason_Sauna>
+  <CC_Fulfilled_SaunaModded>The colony has a sauna: {THING} in a small closed room, or another sauna heater.</CC_Fulfilled_SaunaModded>
+  <CC_Fulfilled_SaunaOwn>The colony has a sauna: a small closed room (30 cells at most, no bed or workbench in it) with a seat and {THING} or another heat source, kept at {HEAT} or more. A fire can only warm a room so far: with only a fire, as warm as it can make it does.</CC_Fulfilled_SaunaOwn>
+  <CC_Kept_Lost_Sauna>The sauna {FOR_nameDef} asked for is gone, or has gone cold.</CC_Kept_Lost_Sauna>
+  <CC_TieNote_Sauna>talked in the sauna</CC_TieNote_Sauna>
+  <CC_Habit_Report_Sauna>sitting in the sauna.</CC_Habit_Report_Sauna>
+
+  <!-- ===================== A fishing spot (Wishes/WishWorkers_Breadth.cs) ===================== -->
+
+  <CC_Reason_FishingIdle>There's a fishing spot marked out by the water, and nobody goes near it. {PAWN_nameDef} would.</CC_Reason_FishingIdle>
+
+  <!-- ===================== A favourite animal, a pack animal (Animals/AnimalWishes2.cs) ===================== -->
+
+  <CC_Reason_Favourite>{PAWN_nameDef} has always loved {KINDS}, and they live on this land.</CC_Reason_Favourite>
+  <CC_Reason_FavouriteHere>{PAWN_nameDef} has always loved {KINDS}, and there's one out on the land right now.</CC_Reason_FavouriteHere>
+  <CC_PW_Reason_Favourite>{KIND} has always been {PAWN_nameDef}'s favourite Pokémon, and they live round here.</CC_PW_Reason_Favourite>
+  <CC_PW_Reason_FavouriteHere>{KIND} has always been {PAWN_nameDef}'s favourite Pokémon, and there's a wild one out there now.</CC_PW_Reason_FavouriteHere>
+  <CC_Promise_FavouriteTame>The council marks {OTHER_definite} for taming, for {FOR_nameDef}'s sake.</CC_Promise_FavouriteTame>
+  <CC_SelfHelp_Favourite>{PAWN_nameDef} picked out {OTHER_definite} and marked it for taming. If {PAWN_pronoun} isn't allowed to handle animals, someone else will have to.</CC_SelfHelp_Favourite>
+  <CC_Favourite_Bonded>{ANIMAL_nameDef} has bonded with {PAWN_nameDef}: the very kind {PAWN_pronoun} always loved, and it chose {PAWN_objective}.</CC_Favourite_Bonded>
+  <CC_Reason_PackHauler>{PAWN_nameDef} hauls more than anyone here, and {KIND} could carry the load.</CC_Reason_PackHauler>
+  <CC_Reason_PackTrader>{PAWN_nameDef} has a trader's tongue and nothing to carry the goods: {KIND} would do.</CC_Reason_PackTrader>
+  <CC_Reason_PackRoads>{PAWN_nameDef} would rather be on the road, and {KIND} of {PAWN_possessive} own would make it easier.</CC_Reason_PackRoads>
+
+  <!-- ===================== Bringing the herd home (Animals/HerdHome.cs) ===================== -->
+
+  <CC_Herd_Report>bringing {ANIMAL} home.</CC_Herd_Report>
+  <CC_Play_Task_Herd>bringing the herd home</CC_Play_Task_Herd>
+
+  <!-- ===================== The planting day (Dilemmas/PlantingDay.cs, Calendar/CalendarPlanting.cs) ===================== -->
+
+  <CC_Planting_AllSown>The fields are all in: every row sown on the planting day.</CC_Planting_AllSown>
+  <CC_Planting_Chronicle>The fields were all sown on the planting day.</CC_Planting_Chronicle>
+  <CC_Planting_GoodStart>The crop sown on the planting day stands ripe, row after row. The growers call it a good start.</CC_Planting_GoodStart>
+  <CC_Planting_WordsLabel>a word at the field's edge</CC_Planting_WordsLabel>
+  <CC_Cal_Way_Planting>planting day</CC_Cal_Way_Planting>
+  <CC_Cal_Way_Planting_Desc>the colony sows the fields together and its grower says a few words at the field's edge in the evening (with nothing to sow, a walk out to the fields); hope and a little practice, no mood.</CC_Cal_Way_Planting_Desc>
+  <CC_Cal_Way_Planting_Letter>If the council keeps it, everyone who can be spared goes out to the fields with the seed, and the grower says a few words at the edge when it's done.</CC_Cal_Way_Planting_Letter>
+  <CC_Cal_Keep_Planting>Out to the fields together</CC_Cal_Keep_Planting>
+
+</LanguageData>
