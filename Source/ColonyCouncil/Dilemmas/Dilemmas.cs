@@ -56,6 +56,11 @@ namespace ColonyCouncil
         public int minMedicine;
         /// <summary>Only at a bad time to be short of hands (see <see cref="LifeChecks.BusyTime"/>).</summary>
         public bool busyTime;
+        /// <summary>
+        /// Asked in its moment rather than when the schedule comes round: the planting day as the fields open, bringing the
+        /// herd home as the cold comes. Its worker's window decides; the gap after the last question and the cooldown still hold.
+        /// </summary>
+        public bool timely;
 
         [Unsaved] private DilemmaWorker worker;
 
@@ -882,6 +887,9 @@ namespace ColonyCouncil
                 if (home == null || !t.Worker.CanHappenNow(home)) continue;
                 if (TryFire(true, d => d == t)) return;
             }
+            // A question tied to a moment of the land's year comes in that moment, after the usual gap, once an
+            // hour at most (its worker's window is short: a few days as the fields open, a cold snap).
+            if (LetterGap.Open && now - lastFiredTick > GenDate.TicksPerDay && TryFire(false, d => d.timely)) return;
             // A dilemma that's due waits out the gap after Rimfolk's last question, then comes the next hour it can.
             if (now < nextTick || !LetterGap.Open) return;
             if (TryFire(false)) nextTick = now + Interval();

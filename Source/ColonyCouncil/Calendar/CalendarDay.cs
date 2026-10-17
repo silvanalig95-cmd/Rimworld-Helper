@@ -55,7 +55,9 @@ namespace ColonyCouncil
         /// <summary>Small gifts given and taken, and friendships the better for it.</summary>
         Gifts,
         /// <summary>The hunters go out for the day's game, and come back with something for the pot.</summary>
-        Hunt
+        Hunt,
+        /// <summary>The colony sows the fields together, and its grower says a few words at the field's edge (Calendar/CalendarPlanting.cs).</summary>
+        Planting
     }
 
     /// <summary>

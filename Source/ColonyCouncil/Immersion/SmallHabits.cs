@@ -38,7 +38,9 @@ namespace ColonyCouncil
         /// <summary>One who loves animals, with a herd, or a child: a while sitting out with the herd (Animals/AnimalHabits.cs).</summary>
         Herd,
         /// <summary>One who loves animals, or is bonded to a big one: a while brushing down a horse or another big animal.</summary>
-        Groom
+        Groom,
+        /// <summary>On a cold day: a while in the colony's sauna, warming through (Wishes/WishWorkers_Seasons.cs).</summary>
+        Sauna
     }
 
     /// <summary>On a small habit's JobDef: which habit it is, what's said on arriving, and whether they chat with whoever is near.</summary>
@@ -110,6 +112,7 @@ namespace ColonyCouncil
                 case HabitKind.Company: return GenDate.TicksPerDay / 2;
                 case HabitKind.Fire:
                 case HabitKind.Plants:
+                case HabitKind.Sauna:
                 case HabitKind.Stories: return GenDate.TicksPerDay * 3 / 5;
                 default: return GenDate.TicksPerDay;
             }
@@ -586,6 +589,8 @@ namespace ColonyCouncil
                     pawn.interactions?.TryInteractWith(Listener, InteractionDefOf.DeepTalk);
                 if (ext.kind == HabitKind.Company && Partner != null && Together.Can(pawn, Partner))
                     pawn.interactions?.TryInteractWith(Partner, InteractionDefOf.Chitchat);
+                // In the sauna: warmed through, and a word with whoever else is in there.
+                if (ext.kind == HabitKind.Sauna) Sauna.Arrived(pawn);
                 SmallHabits.Say(pawn, ext, subject);
             }
             catch (Exception e)

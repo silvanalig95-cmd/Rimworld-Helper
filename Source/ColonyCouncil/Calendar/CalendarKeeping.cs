@@ -377,6 +377,9 @@ namespace ColonyCouncil
                 case DayWay.Hunt:
                     Hunt(d, map, home);
                     return false;
+                case DayWay.Planting:
+                    Planting(d, map, home);
+                    return false;
                 case DayWay.Remembrance:
                     string subject = d.kind == CalendarKind.Death || d.kind == CalendarKind.Companion ? d.pawnName
                         : d.kind == CalendarKind.Battle ? "CC_Cal_Subject_Battle".Translate(d.enemy ?? "?").Resolve()
@@ -916,7 +919,7 @@ namespace ColonyCouncil
         /// </summary>
         public static Precept_Ritual RitualFor(DayWay way)
         {
-            if (!ModsConfig.IdeologyActive || way == DayWay.Personal || way == DayWay.Rest || way == DayWay.Gifts || way == DayWay.Hunt) return null;
+            if (!ModsConfig.IdeologyActive || way == DayWay.Personal || way == DayWay.Rest || way == DayWay.Gifts || way == DayWay.Hunt || way == DayWay.Planting) return null;
             try
             {
                 var ideo = Faction.OfPlayer?.ideos?.PrimaryIdeo;

@@ -380,19 +380,64 @@ namespace ColonyCouncil
     }
 
     /// <summary>
-    /// Odyssey: fish in the water on the map, fishing open to the colony, and no fishing spot marked yet. Someone who'd
-    /// like an afternoon at the water's edge (and fish for supper) wants one. Comes true once there's a fishing zone.
+    /// Fishing open to the colony and fish (or fishable water) on the map, and no fishing spot in use: someone who'd like
+    /// an afternoon at the water's edge (and fish for supper) wants one. With Odyssey, its fishing zones, on water that
+    /// holds fish; with Vanilla Fishing Expanded on its own (no Odyssey), that mod's fishing zone on open water. Comes true
+    /// once a fishing zone is marked, allowed, and someone at home has the fishing work switched on.
     /// </summary>
     public class WishWorker_Fishing : WishWorker
     {
-        public static bool HasFishingZone(Map map) => map?.zoneManager != null && map.zoneManager.AllZones.Any(z => z != null && z.GetType().Name == "Zone_Fishing");
+        /// <summary>A fishing zone of the game's (Odyssey) or a mod's, by its class name, so a missing mod costs nothing.</summary>
+        private static bool IsFishingZone(Zone z) => z != null && (z is Zone_Fishing || z.GetType().Name.IndexOf("Fishing", StringComparison.Ordinal) >= 0);
 
-        private static WorkTypeDef FishingWork => DefDatabase<WorkTypeDef>.GetNamedSilentFail("Fishing");
+        public static bool HasFishingZone(Map map) => map?.zoneManager != null && map.zoneManager.AllZones.Any(IsFishingZone);
+
+        /// <summary>The fishing work: Odyssey's, or a fishing mod's own (any work type named for fishing).</summary>
+        private static WorkTypeDef FishingWork
+        {
+            get
+            {
+                if (fishingWorkLooked) return fishingWork;
+                fishingWorkLooked = true;
+                fishingWork = DefDatabase<WorkTypeDef>.GetNamedSilentFail("Fishing")
+                              ?? DefDatabase<WorkTypeDef>.AllDefsListForReading.FirstOrDefault(w => w.defName.IndexOf("Fishing", StringComparison.OrdinalIgnoreCase) >= 0);
+                return fishingWork;
+            }
+        }
+
+        private static WorkTypeDef fishingWork;
+        private static bool fishingWorkLooked;
+
+        /// <summary>Vanilla Fishing Expanded on its own: without Odyssey it brings its own zones and work.</summary>
+        private static bool FishingMod => !ModsConfig.OdysseyActive && ModsConfig.IsActive("VanillaExpanded.VCEF");
+
+        /// <summary>
+        /// A fishing spot in use: a fishing zone the colony allows fishing in (Odyssey's toggle, with water left to fish)
+        /// and someone at home with the fishing work switched on.
+        /// </summary>
+        public static bool InUse(Map map)
+        {
+            if (map?.zoneManager == null) return false;
+            bool zone = false;
+            foreach (var z in map.zoneManager.AllZones)
+            {
+                if (!IsFishingZone(z)) continue;
+                if (z is Zone_Fishing f && (!f.Allowed || !f.HasAnyFishableCells)) continue;
+                zone = true;
+                break;
+            }
+            if (!zone) return false;
+            var work = FishingWork;
+            if (work == null) return true;
+            foreach (var p in map.mapPawns.FreeColonistsSpawned)
+                if (p.workSettings != null && !p.WorkTypeIsDisabled(work) && p.workSettings.WorkIsActive(work)) return true;
+            return false;
+        }
 
         private static Designator fishingDesignator;
         private static bool designatorLooked;
 
-        /// <summary>The game's own fishing-zone tool, if it offers one (it knows the research and the DLC).</summary>
+        /// <summary>The fishing-zone tool, the game's or the mod's, if one is offered (it knows the research and the DLC).</summary>
         private static Designator FishingDesignator
         {
             get
@@ -403,7 +448,8 @@ namespace ColonyCouncil
                 {
                     foreach (var cat in DefDatabase<DesignationCategoryDef>.AllDefsListForReading)
                     {
-                        fishingDesignator = cat.AllResolvedDesignators.FirstOrDefault(d => d != null && d.GetType().Name == "Designator_ZoneAdd_Fishing");
+                        fishingDesignator = cat.AllResolvedDesignators.FirstOrDefault(d => d != null && d.GetType().Name.StartsWith("Designator_ZoneAdd", StringComparison.Ordinal)
+                                                                                                 && d.GetType().Name.IndexOf("Fishing", StringComparison.Ordinal) >= 0);
                         if (fishingDesignator != null) break;
                     }
                 }
@@ -415,16 +461,20 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>Fishing is open to the colony (Odyssey, and its research if it needs one) and there are fish here.</summary>
+        /// <summary>Fishing is open to the colony (Odyssey and its research, or the fishing mod) and there's water here to fish.</summary>
         public static bool CanFish(Map map)
         {
-            if (!ModsConfig.OdysseyActive || map == null || FishingWork == null) return false;
+            if (map == null || FishingWork == null || (!ModsConfig.OdysseyActive && !FishingMod)) return false;
             try
             {
                 var d = FishingDesignator;
                 if (d != null && !d.Visible) return false;
-                if (d == null && !Avail.ResearchDone("Fishing") && DefDatabase<ResearchProjectDef>.GetNamedSilentFail("Fishing") != null) return false;
-                return map.waterBodyTracker != null && map.waterBodyTracker.AnyBodyContainsFish;
+                if (ModsConfig.OdysseyActive)
+                {
+                    if (d == null && !Avail.ResearchDone("Fishing") && DefDatabase<ResearchProjectDef>.GetNamedSilentFail("Fishing") != null) return false;
+                    return map.waterBodyTracker != null && map.waterBodyTracker.AnyBodyContainsFish;
+                }
+                return DilemmaWorker_Custom.HasWater(map);
             }
             catch (Exception e)
             {
@@ -437,17 +487,20 @@ namespace ColonyCouncil
         {
             var map = HomeMap(pawn);
             var work = FishingWork;
-            if (map == null || work == null || pawn.DevelopmentalStage.Juvenile() || pawn.WorkTypeIsDisabled(work) || HasFishingZone(map) || !CanFish(map)) yield break;
+            if (map == null || work == null || pawn.DevelopmentalStage.Juvenile() || pawn.WorkTypeIsDisabled(work) || InUse(map) || !CanFish(map)) yield break;
             bool passion = work.relevantSkills != null && work.relevantSkills.Any(s => People.Passionate(pawn.skills?.GetSkill(s)));
             bool gourmand = HasTrait(pawn, DefDatabase<TraitDef>.GetNamedSilentFail("Gourmand")) || PeopleTags.Has(pawn, "gourmet");
             bool restless = WishWorker_CampEvening.Lacks(pawn, HeartNeed.Freedom);
             if (!passion && !gourmand && !restless) yield break;
-            var c = Candidate(passion || restless ? 1.2f : 0.7f, "CC_Reason_Fishing".Translate(pawn.Named("PAWN")));
+            var c = Candidate(passion || restless ? 1.2f : 0.7f, (HasFishingZone(map) ? "CC_Reason_FishingIdle" : "CC_Reason_Fishing").Translate(pawn.Named("PAWN")).Resolve());
             c.subjectKey = "colony";
             yield return c;
         }
 
-        public override bool IsFulfilled(Wish wish) => HasFishingZone(wish.Beneficiary.MapHeld);
+        public override bool IsFulfilled(Wish wish) => InUse(wish.Beneficiary.MapHeld);
+
+        /// <summary>Promises kept: the fishing spot stays (marked, even on a day nobody goes).</summary>
+        public override KeptCheck Holds(Wish wish) => HasFishingZone(wish.Beneficiary.MapHeld) ? KeptCheck.Holds : KeptCheck.Gone;
 
         public override bool StillObtainable(Wish wish) => base.StillObtainable(wish) && (HasFishingZone(wish.Beneficiary.MapHeld) || CanFish(wish.Beneficiary.MapHeld));
     }

@@ -101,7 +101,9 @@ namespace ColonyCouncil
         /// <summary>Ripe crops brought in, and plants marked for harvest.</summary>
         Harvest,
         /// <summary>Plants and trees marked for cutting.</summary>
-        Cut
+        Cut,
+        /// <summary>The herd walked home on a rope, into the barn or the pen (Animals/HerdHome.cs).</summary>
+        Herd
     }
 
     /// <summary>One person on a work party, a walk, a vigil, a search, an errand or a hunt: how long, how far, what they've done.</summary>

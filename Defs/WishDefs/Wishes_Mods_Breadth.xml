@@ -7,7 +7,8 @@
     Only what the colony can build or make now is asked for.
     - Vanilla Brewing Expanded (VanillaExpanded.VBrewE): tea (VBE_Tea, brewed at a campfire or stove once Brewing is
       researched) for someone who is ill.
-    - Dubs Bad Hygiene (Dubwise.DubsBadHygiene): a sauna heater (DBHSaunaHeaterLog, DBHSaunaHeaterElec) for the cold months.
+    - The sauna for the cold months moved to Wishes_Seasons.xml: Dubs Bad Hygiene's sauna heater first, else a sauna of
+      the colony's own.
     - Vanilla Cooking Expanded (VanillaExpanded.VCookE): a grill (VCE_Grill, research VCE_Grilling) for summer evenings;
       Medieval Overhaul's grill (DankPyon_Grill) counts too.
     - Hospitality (Orion.Hospitality): a bed kept for guests (any bed switched to a guest bed), WishWorker_GuestBed.
@@ -75,74 +76,6 @@
     </expired>
     <reminder>
       <plain><li>Still coughing. Still no tea.</li></plain>
-    </reminder>
-  </ColonyCouncil.WishDef>
-
-  <!-- ===================== A sauna (Dubs Bad Hygiene) ===================== -->
-
-  <ColonyCouncil.WishDef>
-    <defName>Council_Wish_Sauna</defName>
-    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
-    <label>{THING} for the cold months</label>
-    <description>Dubs Bad Hygiene: someone cold to the bone wants a sauna, hot stones and steam to sweat the winter out.</description>
-    <workerClass>ColonyCouncil.WishWorker_Have</workerClass>
-    <lasting>true</lasting>
-    <category>Comfort</category>
-    <weight>0.6</weight>
-    <expiryDays>15</expiryDays>
-    <cooldownDays>40</cooldownDays>
-    <grantedThought>Council_Granted_Sauna</grantedThought>
-    <luxury>true</luxury>
-    <allowPetition>true</allowPetition>
-    <envy>0</envy>
-    <template>Council_Sauna</template>
-    <talkInteraction>Council_Talk_Hygiene</talkInteraction>
-    <fulfilledWhen>The colony has {THING}, or another sauna heater.</fulfilledWhen>
-    <wants>
-      <defNames><li>DBHSaunaHeaterLog</li><li>DBHSaunaHeaterElec</li></defNames>
-      <nameContains><li>saunaheater</li><li>sauna heater</li></nameContains>
-      <seasons><li>Fall</li><li>Winter</li><li>PermanentWinter</li></seasons>
-      <reason>{PAWN_nameDef} is cold to the bone and dreams of a hot sauna.</reason>
-    </wants>
-    <request>
-      <plain>
-        <li>A sauna. Hot stones, steam, and nothing to do but sweat out the cold. That's my wish.</li>
-        <li>My bones are frozen through. A sauna would thaw them by the end of an evening.</li>
-        <li>[snow] It's snowing again. Picture coming in from that to a hot sauna.</li>
-        <li>[old] My joints ache all winter. A sauna is the only thing that helps.</li>
-        <li>[lowtech] Hot stones and a ladle of water. People have done it since before anyone wrote things down.</li>
-      </plain>
-      <warm>
-        <li>We could all sit in there together, talking and sweating. It brings people close.</li>
-      </warm>
-      <blunt>
-        <li>Build {THING}. I'm frozen.</li>
-      </blunt>
-      <cheerful>
-        <li>Steam, heat, and a roll in the snow afterwards! I'll go first.</li>
-      </cheerful>
-      <gloomy>
-        <li>It's going to be a long, cold winter. A sauna would make it bearable.</li>
-      </gloomy>
-      <cold>
-        <li>Heat eases sore muscles and lifts spirits in a cold climate.</li>
-      </cold>
-    </request>
-    <thanks>
-      <plain><li>I sat in the heat until my head swam. Best evening this winter.</li></plain>
-      <warm><li>Come and sit. There's room for everyone.</li></warm>
-      <blunt><li>Good. Close the door, you're letting the steam out.</li></blunt>
-      <cheerful><li>I ran out into the snow afterwards and shouted, then ran straight back in.</li></cheerful>
-      <gloomy><li>Warm at last. I'll be cold again tomorrow.</li></gloomy>
-      <cold><li>Recovery improved.</li></cold>
-    </thanks>
-    <expired>
-      <plain><li>I'll stay frozen, then.</li></plain>
-      <blunt><li>Enjoy your cold winter.</li></blunt>
-      <gloomy><li>Winter wins again.</li></gloomy>
-    </expired>
-    <reminder>
-      <plain><li>Still dreaming of a sauna.</li></plain>
     </reminder>
   </ColonyCouncil.WishDef>
 

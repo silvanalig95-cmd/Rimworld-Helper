@@ -407,6 +407,7 @@ Console.WriteLine($"Checked {MemoryTests.Run(Check)} things about what the peopl
 Console.WriteLine($"Checked {PlayOutTests.Run(Check)} things about answers playing out on the map.");
 Console.WriteLine($"Checked {PlayOutGroupTests.Run(Check)} things about work parties, walks, vigils, searches, errands and hunts.");
 Console.WriteLine($"Checked {KeptTests.Run(Check)} things about granted wishes taken back (grace, timing, making it right).");
+Console.WriteLine($"Checked {SeasonWishTests.Run(Check)} things about the wishes of the land's year (clothes for the season, a sauna, hot country, the fields opening).");
 Console.WriteLine($"Checked {HeartNeedTests.Run(Check)} things about the heart's needs (what follows from them, and a lack that lasts).");
 Console.WriteLine($"Checked {BeliefTests.Run(Check)} things about beliefs and diets (precepts, a shared bed, what may be served).");
 Console.WriteLine($"Checked {AdvisorTests.Run(Check)} things about the advisor's newer checks (missions, decrees, winter stores, rooms outgrown, light).");

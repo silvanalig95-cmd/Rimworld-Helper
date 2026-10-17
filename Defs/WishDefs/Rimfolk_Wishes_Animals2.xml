@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Two more of the animals' wishes (Source/ColonyCouncil/Animals/AnimalWishes2.cs):
+    - a favourite kind of animal: one kind someone fond of animals has always loved, from those this land has (its wild
+      animals, and those roaming the map) that the colony could tame; with PokéWorld, a favourite Pokémon the same way,
+      caught in a ball. Fulfilled when the colony has one; bonded to them, a second moment later.
+    - a pack animal of one's own, for a hauler, someone with a trader's gift for talk, or a restless soul: only where the
+      colony has one going spare or the land has pack animals it could tame.
+    Nobody whose faith abhors bonding with animals asks for either.
+  -->
+
+  <!-- ===================== A favourite kind of animal ===================== -->
+
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_FavouriteAnimal</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>{SUBJECT} about the place</label>
+    <description>A colonist fond of animals has always loved one kind most, and it lives on this land (or is roaming the map). They'd like the colony to have one. With PokéWorld, a favourite Pokémon, caught in a ball.</description>
+    <workerClass>ColonyCouncil.WishWorker_FavouriteAnimal</workerClass>
+    <forbiddenBy><li>NoPets</li></forbiddenBy>
+    <lasting>true</lasting>
+    <lostText>{OTHER_nameDef}, the animal {FOR_nameDef} always wanted, is no longer the colony's.</lostText>
+    <category>Social</category>
+    <weight>0.7</weight>
+    <expiryDays>15</expiryDays>
+    <cooldownDays>40</cooldownDays>
+    <grantedThought>Council_Granted_FavouriteAnimal</grantedThought>
+    <inspirationChance>0.15</inspirationChance>
+    <envy>0.1</envy>
+    <talkInteraction>Council_Talk_Animals</talkInteraction>
+    <fulfilledWhen>The colony has {SUBJECT} of its own: tamed (or, for a Pokémon, caught). If it bonds to {FOR_nameDef}, that will mean more to {FOR_objective} still. Promised, a calm one out on the land is marked for taming.</fulfilledWhen>
+    <request>
+      <plain>
+        <li>I've loved them since I was small. I'd give a lot to have {SUBJECT} about the place.</li>
+        <li>They live round here, you know. I've seen the tracks. I'd like us to have {SUBJECT} of our own.</li>
+        <li>Of all the animals in the world, that's the one. I'd like to see {SUBJECT} in our herd one day.</li>
+        <li>[child] Can we have {SUBJECT}? I'd look after it every single day.</li>
+        <li>[lowmood] Just having {SUBJECT} around would make this place feel more like home.</li>
+        <li>[spring] It's the time of year for young ones. If we were ever going to bring {SUBJECT} home, it's now.</li>
+        <li>[old] I've wanted {SUBJECT} my whole life. I'd like to have one about before I'm done.</li>
+      </plain>
+      <warm>
+        <li>I'd look after it properly. It wouldn't want for anything, I promise you.</li>
+        <li>I don't need it to be mine. I'd just like to see it every morning.</li>
+      </warm>
+      <blunt>
+        <li>Bring home {SUBJECT}. I've asked for less, but never wanted anything more.</li>
+      </blunt>
+      <cheerful>
+        <li>Imagine {SUBJECT}, here, with us! I've already thought of a name.</li>
+        <li>I've drawn them on every scrap of paper I've ever had. Now I'd like a real one.</li>
+      </cheerful>
+      <gloomy>
+        <li>Everyone has something they love. Mine lives out past the fields, and it doesn't know we're here.</li>
+      </gloomy>
+      <cold>
+        <li>I'm fond of the kind, and it would earn its keep. Bringing {SUBJECT} home is time well spent.</li>
+      </cold>
+    </request>
+    <thanks>
+      <plain>
+        <li>There it is. I keep going to look at it.</li>
+        <li>I've wanted one of these for as long as I can remember. Now we have one.</li>
+      </plain>
+      <warm><li>I'll look after it. I promised myself I would, years ago.</li></warm>
+      <blunt><li>Good. That's the one.</li></blunt>
+      <cheerful><li>Come and see! Come and see!</li></cheerful>
+      <gloomy><li>I didn't think I'd ever really have one.</li></gloomy>
+      <cold><li>Exactly what I wanted. Thank you.</li></cold>
+    </thanks>
+    <expired>
+      <plain><li>Maybe one day. They're still out there.</li></plain>
+      <gloomy><li>Out past the fields, where they always are.</li></gloomy>
+      <blunt><li>Fine. I'll keep drawing them instead.</li></blunt>
+    </expired>
+    <reminder>
+      <plain><li>I saw the tracks again this morning.</li></plain>
+      <cheerful><li>Still thinking about {SUBJECT}. Still thinking of names.</li></cheerful>
+    </reminder>
+  </ColonyCouncil.WishDef>
+
+  <!-- ===================== A pack animal of my own ===================== -->
+
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_PackAnimal</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a pack animal of {FOR_possessive} own</label>
+    <description>A hauler, someone with a trader's gift for talk, or a restless soul who'd rather be on the road wants a pack animal that is theirs: its master, or bonded to it. Only where the colony has one going spare or the land has pack animals it could tame.</description>
+    <workerClass>ColonyCouncil.WishWorker_PackAnimal</workerClass>
+    <forbiddenBy><li>NoPets</li></forbiddenBy>
+    <lasting>true</lasting>
+    <lostText>{FOR_nameDef}'s pack animal doesn't answer to {FOR_objective} any more.</lostText>
+    <category>Work</category>
+    <weight>0.7</weight>
+    <expiryDays>10</expiryDays>
+    <cooldownDays>30</cooldownDays>
+    <grantedThought>Council_Granted_PackAnimal</grantedThought>
+    <envy>0.1</envy>
+    <talkInteraction>Council_Talk_Animals</talkInteraction>
+    <fulfilledWhen>{FOR_nameDef} is master of a pack animal, or bonded to one. One like {SUBJECT} would do. Set its master in the Animals tab, or promise it: one of the colony's with no master is made {FOR_possessive}, else a calm one out on the land is marked for taming.</fulfilledWhen>
+    <request>
+      <plain>
+        <li>I carry everything on my back, and {SUBJECT} could carry twice as much without complaining.</li>
+        <li>Every trip to the far fields I'm hauling back and forth. With {SUBJECT} of my own, it would be one trip.</li>
+        <li>[skill:Social] Someone who trades needs something to carry the goods. Give me {SUBJECT} and I'll do the talking.</li>
+        <li>[lowmood] I'd like something that walks beside me and carries the load. It doesn't have to be clever.</li>
+        <li>[winter] Hauling wood through the snow on my own back, again. I'd like {SUBJECT} to share it with.</li>
+      </plain>
+      <warm>
+        <li>I'd treat it well. It would earn its keep and get the best of the hay.</li>
+      </warm>
+      <blunt>
+        <li>Give me a pack animal. I'm tired of being one.</li>
+      </blunt>
+      <cheerful>
+        <li>Me and {SUBJECT}, on the road together! Well, to the far field and back.</li>
+      </cheerful>
+      <gloomy>
+        <li>My back's going. Something has to carry this stuff, and soon it won't be me.</li>
+      </gloomy>
+      <cold>
+        <li>A pack animal triples what one person can move. Assign one to me.</li>
+      </cold>
+    </request>
+    <thanks>
+      <plain><li>It follows me now, loaded up and patient. Good animal.</li></plain>
+      <warm><li>We'll get on, the two of us.</li></warm>
+      <blunt><li>Good. Load it up.</li></blunt>
+      <cheerful><li>Look how much it can carry!</li></cheerful>
+      <cold><li>Carrying capacity improved.</li></cold>
+    </thanks>
+    <expired>
+      <plain><li>I'll keep carrying it myself, then.</li></plain>
+      <blunt><li>My back, my problem.</li></blunt>
+    </expired>
+  </ColonyCouncil.WishDef>
+
+</Defs>

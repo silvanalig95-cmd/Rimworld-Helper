@@ -493,7 +493,7 @@
   <ColonyCouncil.WishDef>
     <defName>Council_Wish_FoodThatKeeps</defName>
     <label>food that keeps</label>
-    <description>Winter is coming, and someone wants food put by that won't spoil: pemmican in a tribe, packaged meals or canned goods later on, whatever the colony can make now.</description>
+    <description>Winter is coming (or the heat turns the food faster than it can be eaten, in hot country with no way yet to keep it frozen), and someone wants food put by that won't spoil: pemmican in a tribe, packaged meals or canned goods later on, whatever the colony can make now.</description>
     <workerClass>ColonyCouncil.WishWorker_Stock</workerClass>
     <forbiddenBy><li>NoMeat</li><li>MeatOnly</li><li>FungusOrInsectOnly</li></forbiddenBy>
     <category>Safety</category>
@@ -519,7 +519,9 @@
       <count>40</count>
       <seasons><li>Fall</li><li>Winter</li></seasons>
       <coldComing>true</coldComing>
-      <reason>{PAWN_nameDef} wants food put by that won't spoil, for the hungry end of winter.</reason>
+      <!-- In hot country where nothing can keep food frozen yet (a passive cooler can't), any time of year. -->
+      <orHotLandNoCold>true</orHotLandNoCold>
+      <reason>{PAWN_nameDef} wants food put by that won't spoil: for the hungry end of winter, or for the heat that turns everything else.</reason>
     </wants>
     <request>
       <plain>
@@ -530,6 +532,8 @@
         <li>[lowtech] My people dried meat and berries every autumn and pounded them together with fat. It kept a family through the dark months.</li>
         <li>[!lowtech] Packaged meals, canned goods, anything sealed. Food for a bad month.</li>
         <li>[poor] We can't afford to waste a single meal. Food that keeps doesn't get wasted.</li>
+        <li>[hot] Nothing keeps in this heat. Dried meat and fat do. Let's make a store of it.</li>
+        <li>[hot,lowtech] We've no cold room and can't build one. Then we do what the desert people do: dry it, pound it, and put it by.</li>
       </plain>
       <warm>
         <li>Nobody should go hungry here, not even in the worst of the winter.</li>
@@ -571,7 +575,7 @@
   <ColonyCouncil.WishDef>
     <defName>Council_Wish_Fishing</defName>
     <label>a fishing spot</label>
-    <description>Odyssey: there are fish in the water on the map and nobody is catching them. Someone who'd like an afternoon at the water's edge, and fish for supper, wants a fishing zone marked out.</description>
+    <description>Only where fishing is part of the game (Odyssey, or Vanilla Fishing Expanded on its own) and the map's water holds fish: nobody is catching them. Someone who'd like an afternoon at the water's edge, and fish for supper, wants a fishing spot marked out and used.</description>
     <workerClass>ColonyCouncil.WishWorker_Fishing</workerClass>
     <forbiddenBy><li>NoFishing</li><li>NoMeat</li></forbiddenBy>
     <lasting>true</lasting>
@@ -584,7 +588,7 @@
     <allowPetition>true</allowPetition>
     <envy>0</envy>
     <talkInteraction>Council_Talk_Fun</talkInteraction>
-    <fulfilledWhen>The colony marks out a fishing zone on the water.</fulfilledWhen>
+    <fulfilledWhen>A fishing zone is marked out on the water, fishing is allowed in it, and someone at home has the fishing work switched on.</fulfilledWhen>
     <request>
       <plain>
         <li>There are fish in that water, and we're eating the same stew every night. Let me mark out a spot.</li>
@@ -593,9 +597,13 @@
         <li>[summer] On a day like this, I'd rather be sitting on the bank with a line than anywhere else.</li>
         <li>[rain] Fish bite in the rain. Everybody knows that. We should be out there.</li>
         <li>[lowmood] An afternoon by the water, with nothing to do but wait for a bite. That's all I want.</li>
+        <li>[evening] The water goes still in the evening, and that's when the big ones come up to feed.</li>
+        <li>[winter] They bite through the ice too, if you're patient. I'm patient.</li>
+        <li>[lowtech] A line, a hook carved from bone, and the morning. My grandmother fed a family that way.</li>
       </plain>
       <warm>
         <li>Fresh fish for everyone, and a quiet hour on the bank for whoever catches it.</li>
+        <li>I'd bring back enough for the whole table. Let me try.</li>
       </warm>
       <blunt>
         <li>Fish in the water, none on the table. Fix that.</li>
