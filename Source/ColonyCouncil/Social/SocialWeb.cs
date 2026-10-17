@@ -544,6 +544,7 @@ namespace ColonyCouncil
                 comp.quirks.Notify_Fought(p);
                 comp.aspirations.Notify_Event(p, "battle");
             }
+            TalkHooks.Battle(list, foe);
             if (list.Count < 2 || !S.socialWeb) return;
             var formed = new List<Pawn>();
             for (int i = 0; i < list.Count; i++)

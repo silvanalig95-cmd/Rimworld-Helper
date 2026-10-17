@@ -419,6 +419,45 @@ What people did, who knows it, how the story spreads, and the name that follows 
   epithet's bar 7-15% lower, strain eased beside the brave in a fight (through `Interplay.Ease`), and news when a side
   forms or fades.
 
+### Conversations, views and shared memories
+
+What colonists talk about, the views they hold, and what they went through together (`Social/Talk/`; the arithmetic in
+`TalkMath.cs` and the lines' queue in `ExchangeQueue.cs`, checked by `Tools/Tests/TalkTests.cs`).
+
+- **Topics** (`TopicDef`, 19, a worker each) say when they come up, what's news (`TalkNote`s from the game's events and
+  the talk's hour, and the game's state: the food, a disaster, traders), who or what a talk is about, and what a
+  colonist's life adds to a view. A view (-1..1) is kept with `Persona.SetStance` under the topic's defName
+  (`defName:id` for a newcomer, let go once they're settled). It's seeded from the topic's weights per side of a person,
+  its leans (traits, passions, memes, precepts) and that life, drifts 4% a day back toward it, is pushed by events (a
+  fight, a death) and moved by talk (`TalkMath.Pull`, at most a quarter of the way in one talk).
+- **In the game's picker.** One InteractionDef per topic, and one each for remembering, an in-joke and comfort
+  (`InteractionWorker_Talk`). They share one budget, 0.08 next to chitchat, times the moments frequency, the pair
+  (friends, rivals, dislike) and `Heart.MomentWeightFactor` (which carries the persona's talkativeness, counted once),
+  split by salience (`TalkMath.Shares`): more to talk about means livelier talk, not more of it. Worked out once per
+  pair and tick. A starter waits 4 hours, a pair 10, a topic between the same two is rarer for two days (not saved).
+  `ModOverlapDef` lowers it to 0.4 with RimTalk or Speak Up.
+- **How it goes** (`TalkMath.Outcome`): a joker who likes the other teases (never someone low, never about the dead);
+  close views agree; otherwise heat (the gap, both tempers against warmth, liking and humour, ties, a sore spat from
+  `MomentTones`) decides a debate or an argument, and with frictions off nobody argues. Effects come in `Interacted`:
+  small social thoughts (opinion only; the warm ones count for the heart through `RewardInstead`), views moved,
+  `MomentTones` warm, friction or mend, tie bumps, now and then a `Persona.Nudge` (arguing hardens temper, a long
+  friendship warms, jokes lighten), and a quarrel made up is remembered.
+- **Lines** (`TalkLinesDef`: a topic or memory, a turn, outcomes, toned lines with tags): the turn's own pools (twice as
+  likely) and the generic ones together, filtered by the moment (both sides, the outcome, their tie, the topic's news,
+  the other's group and name read from tags only), in the speaker's voice (`TalkMath.Voice`: their tone, sharpened by
+  how it goes), not a line said lately. Two to four lines, said through `Speech.Say` by `TalkTracker` (every 15 ticks,
+  only while a talk is under way), dropped as soon as `Together.Can` fails. The game's own log entry for the
+  interaction is the one summary (with a sentence on how it went, from a rule pack): a second one through
+  `Speech.Logged` would only repeat it, and show twice with Interaction Bubbles.
+- **Shared memories** (`SharedMemoryDef`, 17 here, 3 more from groups) come from one-line hooks where the colony
+  already notices things (a fight over in SocialWeb, a death, a wedding, a birth, a caravan home, a breakdown), two small
+  postfixes of its own (`Frame.CompleteConstruction`, `TendUtility.DoTend`), the talk's hour (night shifts, disasters
+  lifting, gatherings ended, fires beaten out, food poisoning, a tame gone wrong from the play log; mentors and secrets
+  daily) and a social event's effect (`DilemmaEffect_SharedMemory`). A mishap only becomes a joke an hour later, with
+  everyone in it up and nobody of the colony dead meanwhile.
+- **The character page**: views (section 30, with what each rests on and the last talk that moved it) and shared
+  memories (40).
+
 ## Real effects: answers that play out on the map
 
 A dilemma's answer, an event's answer or a calendar day used to give moods and a message and nothing else: "a victory
@@ -1326,6 +1365,7 @@ fights pass and the worn-out episode read from it. (A downed victim after a figh
 | 1903 | Groups (with "Personalities and social life" and the social web on): work sampled, habits kept together | per colonist on a home map (their job); per group (its members up and about, together, doing its habit) |
 | 2089 | Story chains and missions; the peoples' memory fades (first hour of the day only) | per running chain, per mission; per remembered deed |
 | 2280 | Council: encounters and nuisances, Rimfolk's own events | one roll each; event memory pruned in the first hour of the day |
+| 2375 | Conversations: the hour's look for what people go through together (with social life on); views drift in the first hour of the day | per home map: colonists up between one and four at night (pairs together), active conditions, lords, fires, fresh food poisoning, newcomers, prisoners, traders; new play-log lines (tames); finished studies; daily per colonist and view, mentors and secrets |
 | 2471 | Ailments, the colony's part (on the slice that lands here): the catching ailments' clock; pruning on the first look of the day | per home map |
 
 **Every 250 ticks**, by tick of the cycle:
@@ -1351,6 +1391,7 @@ fights pass and the worn-out episode read from it. (A downed victim after a figh
 | every tick | Ailments and health: queued work (an ailment that ended, a tend) | only when something is queued |
 | every 30 ticks, tick 0 | Council: wishes after building (only after something was built) | per open wish |
 | every 30 ticks, tick 11 | Visual touches pulse (at most every 0.4 s of real time; only with them on) | the map in view: flecks due, a warlord's band, fireflies, hail, camp smoke, a camp walking in, the first snow's flakes, a dream told at breakfast (the untold dreams only) |
+| every 15 ticks, tick 7 | Conversations: the next line of a talk under way (only while one is) | the two speaking: still together? |
 | every 60 ticks, tick 23 | Council meeting upkeep (only while one is called) | the attendees |
 | every 60 ticks | Rimfolk scenario parts set their stakes (only until done) | one check |
 | every 300 ticks | A council meeting in session talks (its lord job) | the attendees |
@@ -1383,7 +1424,8 @@ and pages rebuild their models every half second to second while open (UiCache, 
 - *Global work speed* (StatPart_HeartStrain): one dictionary lookup.
 - *Conversation weights*: each Rimfolk interaction is weighed every time two colonists talk; def-name endings, a
   moment's tie kind and need are read once. Gossip picks its story once per pair every 250 ticks (an opinion and a
-  sight check once per subject, only for a story that could win).
+  sight check once per subject, only for a story that could win). Conversations work out all their topics' shares
+  once per pair and tick (the topic's scene once an hour per map, the news' heat every 250 ticks).
 - *The reputation opinion* (asked for every pair of colonists): one dictionary lookup in what each makes of the other,
   worked out again only when a deed or a knower changes (at most every 30 ticks) and once an hour for fading.
 - *Per frame*: the inspector line (a string join), the Needs tab's extra tooltip lines (cached half a second), alert
@@ -1448,6 +1490,7 @@ on a map, in the world or in a caravan), so such a record is let go when the gam
 | World situations | 2 running; 40 past |
 | Story chains, missions | chains 120 days after they end; missions 2 days |
 | Faction memory | 12 deeds per people (the settled and the faintest make way); a deed is dropped once it fades below 1, and with its people when they're gone |
+| Views and shared memories | views with the person's record (`PawnPersona.stances`), a view about a newcomer let go once they've been here 60 days or are gone; shared memories 8 per pair and 900 in all, the faded ones and those of people the game no longer knows dropped at saving; the talk's news 40 notes, a month at most; who talked to whom lately and talks under way not saved |
 | Reputation | 10 deeds per colonist and 220 in all (the faintest make way), 30 knowers a deed; a deed faded to nearly nothing is dropped, and daily those of the dead and departed and anything the dead knew; one packed number per colonist for the names told |
 | Other mods' people | best-friend pairs of known pawns, 200 at most |
 | Advisor (per map) | 60 days of wealth samples |

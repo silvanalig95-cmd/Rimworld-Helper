@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Mods with conversations of their own (RimTalk's, Speak Up's): Rimfolk's conversations step back while one is active,
+    so the colony doesn't talk twice as much. Applied once at startup by Social/Talk/Talk.cs to the talk interactions
+    listed (their share is multiplied by factor).
+  -->
+
+  <ColonyCouncil.ModOverlapDef>
+    <defName>Rimfolk_Overlap_Talk</defName>
+    <label>conversations</label>
+    <mods>
+      <li>cj.rimtalk</li>
+      <li>jpt.speakup</li>
+    </mods>
+    <moments>
+      <li>Rimfolk_Talk_Raid</li>
+      <li>Rimfolk_Talk_Council</li>
+      <li>Rimfolk_Talk_Food</li>
+      <li>Rimfolk_Talk_Work</li>
+      <li>Rimfolk_Talk_Newcomer</li>
+      <li>Rimfolk_Talk_Faith</li>
+      <li>Rimfolk_Talk_Outside</li>
+      <li>Rimfolk_Talk_Animals</li>
+      <li>Rimfolk_Talk_Weather</li>
+      <li>Rimfolk_Talk_Art</li>
+      <li>Rimfolk_Talk_Future</li>
+      <li>Rimfolk_Talk_Dead</li>
+      <li>Rimfolk_Talk_Prisoners</li>
+      <li>Rimfolk_Talk_Drugs</li>
+      <li>Rimfolk_Talk_Tech</li>
+      <li>Rimfolk_Talk_Children</li>
+      <li>Rimfolk_Talk_Project</li>
+      <li>Rimfolk_Talk_Wealth</li>
+      <li>Rimfolk_Talk_Love</li>
+      <li>Rimfolk_Talk_Memory</li>
+      <li>Rimfolk_Talk_Joke</li>
+      <li>Rimfolk_Talk_Comfort</li>
+    </moments>
+    <factor>0.4</factor>
+  </ColonyCouncil.ModOverlapDef>
+
+</Defs>

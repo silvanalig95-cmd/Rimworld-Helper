@@ -46,6 +46,8 @@ namespace ColonyCouncil
         public const int Stories = 2089;
         /// <summary>The council: encounters and nuisances, Rimfolk's own events.</summary>
         public const int CouncilEvents = 2280;
+        /// <summary>Conversations: what people went through together (night shifts, disasters, gatherings, mishaps); views drift in the first hour of the day.</summary>
+        public const int Talk = 2375;
         /// <summary>Ailments, the colony's part: the catching ailments' clock and the day's pruning, inside the slice that lands here (each colonist's part runs in <see cref="RareAilments"/>'s slices).</summary>
         public const int Ailments = 2471;
 
@@ -53,7 +55,7 @@ namespace ColonyCouncil
         public static readonly int[] HourlyOffsets =
         {
             CouncilWishes, Camp, CouncilDayFirst, Health, CouncilDaySecond, CouncilLife, WorldSituations, Calendar, Setbacks, CouncilPeople,
-            Reputation, Arcs, Groups, Stories, CouncilEvents, Ailments
+            Reputation, Arcs, Groups, Stories, CouncilEvents, Talk, Ailments
         };
 
         /// <summary>The hourly passes that run inside a 250-tick pass of their own system on purpose (same tick, same work).</summary>

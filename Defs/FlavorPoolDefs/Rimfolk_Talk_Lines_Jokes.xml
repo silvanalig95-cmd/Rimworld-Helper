@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    In-jokes (Source/ColonyCouncil/Social/Talk/, Defs/SharedMemoryDefs/): small mishaps two colonists laugh about later. A joke gets funnier the first few times and then wears thin: [fresh] the first time, [told] after that, [worn] once it has come up too often. [byme]: the speaker is the one it happened to (the one who was ill, the tamer, the one who binged). {LABEL} is the joke's name ("the stew", "the boomalope", "the alpaca", "the little fire", "the mud", "that long night").
+  -->
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Joke_Open</defName>
+    <turn>Open</turn>
+    <outcomes><li>Joke</li></outcomes>
+    <lines>
+      <plain>
+        <li>Two words, {OTHER}: {LABEL}.</li>
+        <li>I was telling someone about {LABEL} today.</li>
+        <li>I thought of {LABEL} this morning and laughed out loud on my own.</li>
+        <li>[worn] Remember {LABEL}?</li>
+        <li>[worn] I know, I know, but {LABEL}, though.</li>
+        <li>[told] Still makes me laugh, {LABEL}.</li>
+      </plain>
+      <cheerful>
+        <li>Guess what I was thinking about, {LABEL}.</li>
+        <li>[fresh] I was thinking about {LABEL} and nearly fell over.</li>
+      </cheerful>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Joke_Reply</defName>
+    <turn>Reply</turn>
+    <outcomes><li>Joke</li></outcomes>
+    <lines>
+      <plain>
+        <li>[fresh] Don't, I'll start again.</li>
+        <li>[fresh] Stop it, I can't breathe.</li>
+        <li>[told] Not {LABEL} again.</li>
+        <li>[told] You promised you wouldn't bring that up.</li>
+        <li>[worn] Yes, {LABEL}, we know.</li>
+        <li>[worn] You've told that one, {OTHER}.</li>
+        <li>[worn] It was funnier the first nine times.</li>
+      </plain>
+      <cheerful>
+        <li>[fresh] I'm still laughing about it, honestly.</li>
+        <li>[told] Every time, every single time.</li>
+      </cheerful>
+      <cold>
+        <li>[worn] Again.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Joke_Close</defName>
+    <turn>Close</turn>
+    <outcomes><li>Joke</li></outcomes>
+    <lines>
+      <plain>
+        <li>Worth it, for the story.</li>
+        <li>We'll be telling that one when we're old.</li>
+        <li>[worn] All right, I'll find a new one.</li>
+        <li>[worn] Fine, fine, I'll retire it.</li>
+        <li>[fresh] We'll be telling that one for years.</li>
+        <li>[told] Never gets old, never.</li>
+      </plain>
+      <cheerful>
+        <li>Classic, absolute classic.</li>
+      </cheerful>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Joke_Stew_Open</defName>
+    <memory>Rimfolk_Mem_Stew</memory>
+    <turn>Open</turn>
+    <outcomes><li>Joke</li></outcomes>
+    <lines>
+      <plain>
+        <li>Fancy some stew tonight, {OTHER}?</li>
+        <li>They're making stew again, I'm keeping my distance.</li>
+        <li>I saw a pot on the fire and thought of {LABEL}.</li>
+        <li>[byme] I still can't look at a bowl of stew.</li>
+        <li>[byother] Feeling brave enough for stew tonight?</li>
+        <li>[byother] Remember how green you went, after {LABEL}?</li>
+        <li>[worn] I know, I know, but the stew, though.</li>
+      </plain>
+      <cheerful>
+        <li>I've written a song about {LABEL}, it's mostly groaning.</li>
+      </cheerful>
+      <gloomy>
+        <li>Every meal since {LABEL}, I've wondered.</li>
+      </gloomy>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Joke_Stew_Reply</defName>
+    <memory>Rimfolk_Mem_Stew</memory>
+    <turn>Reply</turn>
+    <outcomes><li>Joke</li></outcomes>
+    <lines>
+      <plain>
+        <li>[fresh] Don't, I can still taste it.</li>
+        <li>[fresh] Never again, not as long as I live.</li>
+        <li>[told] Please, not the stew, not again.</li>
+        <li>[told] I'm eating bread for the rest of my life.</li>
+        <li>[worn] Yes, yes, the stew, very good.</li>
+        <li>[byme] I was greener than a cabbage.</li>
+        <li>[byother] You were the colour of the pot, honestly.</li>
+        <li>[told] I'm still not sure what was in it.</li>
+      </plain>
+      <cheerful>
+        <li>[fresh] I'll never trust a carrot again.</li>
+        <li>[told] I'd have rated it highly, before.</li>
+      </cheerful>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Joke_Stew_Close</defName>
+    <memory>Rimfolk_Mem_Stew</memory>
+    <turn>Close</turn>
+    <outcomes><li>Joke</li></outcomes>
+    <lines>
+      <plain>
+        <li>I'll cook tonight, then, shall I?</li>
+        <li>Bread and water for us, then.</li>
+        <li>[worn] All right, the stew can rest in peace.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Joke_Boom_Open</defName>
+    <memory>Rimfolk_Mem_Boom</memory>
+    <turn>Open</turn>
+    <outcomes><li>Joke</li></outcomes>
+    <lines>
+      <plain>
+        <li>Remember {LABEL}, and the bang?</li>
+        <li>My eyebrows have only just grown back since {LABEL}.</li>
+        <li>Every time I see one of those beasts, I think of {LABEL}.</li>
+        <li>I can still hear {LABEL} going up.</li>
+        <li>You've never run so fast as when {LABEL} went off.</li>
+      </plain>
+      <cheerful>
+        <li>I'd like to thank {LABEL} for the free haircut.</li>
+      </cheerful>
+      <gloomy>
+        <li>We could have died, at {LABEL}, you know.</li>
+      </gloomy>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Joke_Boom_Reply</defName>
+    <memory>Rimfolk_Mem_Boom</memory>
+    <turn>Reply</turn>
+    <outcomes><li>Joke</li></outcomes>
+    <lines>
+      <plain>
+        <li>[fresh] I still smell of smoke, I swear.</li>
+        <li>[fresh] I was picking bits out of my hair for days.</li>
+        <li>[told] We are never getting that close to one again.</li>
+        <li>[told] I've seen you flinch at a cough since.</li>
+        <li>[worn] Boom, yes, very good.</li>
+        <li>[told] I've stopped standing near anything with horns.</li>
+        <li>[byme] I still have a ringing in one ear.</li>
+      </plain>
+      <cheerful>
+        <li>[fresh] Best fireworks we've ever had.</li>
+        <li>[told] My eyebrows have never forgiven me.</li>
+      </cheerful>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Joke_Boom_Close</defName>
+    <memory>Rimfolk_Mem_Boom</memory>
+    <turn>Close</turn>
+    <outcomes><li>Joke</li></outcomes>
+    <lines>
+      <plain>
+        <li>From a distance next time, please.</li>
+        <li>Long sticks, that's the lesson.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Joke_Tame_Open</defName>
+    <memory>Rimfolk_Mem_Tame</memory>
+    <turn>Open</turn>
+    <outcomes><li>Joke</li></outcomes>
+    <lines>
+      <plain>
+        <li>How's your new friend, {LABEL}?</li>
+        <li>[byme] I think {LABEL} still holds a grudge.</li>
+        <li>[byme] I was only being friendly, with {LABEL}.</li>
+        <li>[byother] I'll never forget you running from {LABEL}.</li>
+        <li>[byother] Fancy taming another one like {LABEL}?</li>
+        <li>I saw a wild one at the edge of the fields and thought of {LABEL}.</li>
+        <li>[worn] Remember {LABEL}, though?</li>
+      </plain>
+      <cheerful>
+        <li>[byother] You and {LABEL}, a love story for the ages.</li>
+      </cheerful>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Joke_Tame_Reply</defName>
+    <memory>Rimfolk_Mem_Tame</memory>
+    <turn>Reply</turn>
+    <outcomes><li>Joke</li></outcomes>
+    <lines>
+      <plain>
+        <li>[fresh] It had murder in its eyes, I swear.</li>
+        <li>[fresh] I've never run so fast in my life.</li>
+        <li>[told] It started it, for the record.</li>
+        <li>[told] I'd like to see you do better.</li>
+        <li>[worn] Yes, I know, I ran, we all know.</li>
+        <li>[byother] You should have seen your face.</li>
+        <li>[byme] I was being gentle, it was being rude.</li>
+      </plain>
+      <cheerful>
+        <li>[told] We're friends now, me and that beast, from a distance.</li>
+      </cheerful>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Joke_Tame_Close</defName>
+    <memory>Rimfolk_Mem_Tame</memory>
+    <turn>Close</turn>
+    <outcomes><li>Joke</li></outcomes>
+    <lines>
+      <plain>
+        <li>Next time, take a carrot.</li>
+        <li>Leave the wild ones to the wild, that's my motto now.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Joke_Fire_Open</defName>
+    <memory>Rimfolk_Mem_Fire</memory>
+    <turn>Open</turn>
+    <outcomes><li>Joke</li></outcomes>
+    <lines>
+      <plain>
+        <li>Remember {LABEL}, and all that shouting?</li>
+        <li>I still think of you beating out {LABEL} with your shirt.</li>
+        <li>Whenever someone lights a candle, I think of {LABEL}.</li>
+        <li>[byme] I was very calm during {LABEL}, I'll have you know.</li>
+        <li>Somebody lit the stove and I thought of {LABEL}.</li>
+      </plain>
+      <cheerful>
+        <li>I've never seen anyone dance like you did at {LABEL}.</li>
+      </cheerful>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Joke_Fire_Reply</defName>
+    <memory>Rimfolk_Mem_Fire</memory>
+    <turn>Reply</turn>
+    <outcomes><li>Joke</li></outcomes>
+    <lines>
+      <plain>
+        <li>[fresh] My shirt never recovered.</li>
+        <li>[fresh] You screamed louder than I did.</li>
+        <li>[told] I was not screaming, I was giving orders.</li>
+        <li>[told] It was a very small fire and I was very brave.</li>
+        <li>[worn] Yes, the fire, and the shirt, we know.</li>
+        <li>[told] We used half the well on a fire the size of a hat.</li>
+        <li>[byme] I panicked, all right, I admit it.</li>
+      </plain>
+      <cheerful>
+        <li>[fresh] I'm still finding soot in my ears.</li>
+      </cheerful>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Joke_Fire_Close</defName>
+    <memory>Rimfolk_Mem_Fire</memory>
+    <turn>Close</turn>
+    <outcomes><li>Joke</li></outcomes>
+    <lines>
+      <plain>
+        <li>Buckets by the door from now on.</li>
+        <li>Next time, less shouting and more water.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Joke_Mud_Open</defName>
+    <memory>Rimfolk_Mem_Mud</memory>
+    <turn>Open</turn>
+    <outcomes><li>Joke</li></outcomes>
+    <lines>
+      <plain>
+        <li>Mind the mud, {OTHER}.</li>
+        <li>It's raining, shall we go for a walk in the yard?</li>
+        <li>I found more of {LABEL} in my boot this morning.</li>
+        <li>I was telling them about {LABEL}, and I did the noise you made.</li>
+        <li>[rain] Looks like good weather for {LABEL}, doesn't it.</li>
+      </plain>
+      <cheerful>
+        <li>I've named that puddle after you.</li>
+      </cheerful>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Joke_Mud_Reply</defName>
+    <memory>Rimfolk_Mem_Mud</memory>
+    <turn>Reply</turn>
+    <outcomes><li>Joke</li></outcomes>
+    <lines>
+      <plain>
+        <li>[fresh] I'm still finding it in places mud shouldn't go.</li>
+        <li>[fresh] You pulled me down with you, admit it.</li>
+        <li>[told] I did not make a noise.</li>
+        <li>[told] Some of us went down with dignity.</li>
+        <li>[worn] Yes, the mud, I know.</li>
+        <li>[told] My boots have never been the same.</li>
+        <li>[byme] I went down like a sack of grain, didn't I.</li>
+      </plain>
+      <cheerful>
+        <li>[fresh] I'll never be clean again, and I've accepted it.</li>
+      </cheerful>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Joke_Mud_Close</defName>
+    <memory>Rimfolk_Mem_Mud</memory>
+    <turn>Close</turn>
+    <outcomes><li>Joke</li></outcomes>
+    <lines>
+      <plain>
+        <li>I'll hold your hand next time, for balance.</li>
+        <li>Boots off at the door, I've learned my lesson.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Joke_Binge_Open</defName>
+    <memory>Rimfolk_Mem_Binge</memory>
+    <turn>Open</turn>
+    <outcomes><li>Joke</li></outcomes>
+    <lines>
+      <plain>
+        <li>[byme] Don't say it, I know what you're going to say.</li>
+        <li>[byme] I'm never living down {LABEL}, am I.</li>
+        <li>[byother] How's the head, since {LABEL}?</li>
+        <li>[byother] I've got a story about {LABEL} for anyone who'll listen.</li>
+        <li>[byother] Remember the singing, during {LABEL}?</li>
+        <li>Big night tonight, {OTHER}, or have you learned your lesson?</li>
+      </plain>
+      <cheerful>
+        <li>[byother] Encore performance tonight, {OTHER}?</li>
+      </cheerful>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Joke_Binge_Reply</defName>
+    <memory>Rimfolk_Mem_Binge</memory>
+    <turn>Reply</turn>
+    <outcomes><li>Joke</li></outcomes>
+    <lines>
+      <plain>
+        <li>[fresh] I don't remember any singing.</li>
+        <li>[fresh] My head still hurts thinking about it.</li>
+        <li>[told] That was a different person, a very different person.</li>
+        <li>[told] One night, and you'll never let me forget it.</li>
+        <li>[worn] Yes, I know, I sang, everybody knows.</li>
+        <li>[byother] You were there too, don't forget.</li>
+        <li>[byme] I'd like it known that I was celebrating.</li>
+      </plain>
+      <cheerful>
+        <li>[told] It was a performance, and I stand by it.</li>
+      </cheerful>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Joke_Binge_Close</defName>
+    <memory>Rimfolk_Mem_Binge</memory>
+    <turn>Close</turn>
+    <outcomes><li>Joke</li></outcomes>
+    <lines>
+      <plain>
+        <li>Water tonight, then, both of us.</li>
+        <li>Your secret's safe with me, mostly.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+</Defs>

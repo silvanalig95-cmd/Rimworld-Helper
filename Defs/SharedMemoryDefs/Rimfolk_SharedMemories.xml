@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    What two colonists went through together (Source/ColonyCouncil/Persona/, Social/Talk/TalkHooks.cs), kept per pair
+    (at most 8 each) and brought up in conversation: remembering it, grieving it, or, for the jokes, laughing about it
+    until it wears thin. text: how the character page shows it after the other's name ({A} and {B} are the two, the
+    first one the one who did it where it matters: the doctor, the teacher; {LABEL} what it was). weight: how much it
+    matters next to the pair's other memories. fadeDays: its weight halves in this many days (0: never). valence: good
+    (1), bad (-1) or both (0) to remember. joke: an in-joke, funnier for a while each time, then worn out.
+
+    Mishaps only become jokes once everyone in them is fine; none are made of real tragedies.
+  -->
+
+  <ColonyCouncil.SharedMemoryDef>
+    <defName>Rimfolk_Mem_Battle</defName>
+    <label>fought side by side</label>
+    <description>They held the line together once. People who have done that don't forget it.</description>
+    <text>fought side by side in {LABEL}</text>
+    <weight>1.5</weight>
+    <fadeDays>120</fadeDays>
+    <valence>0</valence>
+  </ColonyCouncil.SharedMemoryDef>
+
+  <ColonyCouncil.SharedMemoryDef>
+    <defName>Rimfolk_Mem_Tended</defName>
+    <label>tended while down</label>
+    <description>One of them lay hurt on the ground and the other patched them up. That sort of thing is owed for a long time.</description>
+    <text>{A} patched {B} up after {LABEL}</text>
+    <weight>1.4</weight>
+    <fadeDays>150</fadeDays>
+    <valence>1</valence>
+  </ColonyCouncil.SharedMemoryDef>
+
+  <ColonyCouncil.SharedMemoryDef>
+    <defName>Rimfolk_Mem_Funeral</defName>
+    <label>buried someone together</label>
+    <description>They stood at the same grave. Grief shared is a bond of its own.</description>
+    <text>stood together at the grave of {LABEL}</text>
+    <weight>1.5</weight>
+    <fadeDays>240</fadeDays>
+    <valence>-1</valence>
+  </ColonyCouncil.SharedMemoryDef>
+
+  <ColonyCouncil.SharedMemoryDef>
+    <defName>Rimfolk_Mem_Feast</defName>
+    <label>a gathering together</label>
+    <description>A good night, the kind people bring up for years.</description>
+    <text>were at {LABEL} together</text>
+    <weight>0.8</weight>
+    <fadeDays>60</fadeDays>
+    <valence>1</valence>
+  </ColonyCouncil.SharedMemoryDef>
+
+  <ColonyCouncil.SharedMemoryDef>
+    <defName>Rimfolk_Mem_Disaster</defName>
+    <label>came through a disaster</label>
+    <description>They came through it together, and it still comes up when the sky turns strange.</description>
+    <text>came through {LABEL} together</text>
+    <weight>1.2</weight>
+    <fadeDays>120</fadeDays>
+    <valence>0</valence>
+  </ColonyCouncil.SharedMemoryDef>
+
+  <ColonyCouncil.SharedMemoryDef>
+    <defName>Rimfolk_Mem_Caravan</defName>
+    <label>travelled together</label>
+    <description>Weeks on the road together, sharing a fire and a tent. They know each other's snoring.</description>
+    <text>travelled together on {LABEL}</text>
+    <weight>1.2</weight>
+    <fadeDays>120</fadeDays>
+    <valence>1</valence>
+  </ColonyCouncil.SharedMemoryDef>
+
+  <ColonyCouncil.SharedMemoryDef>
+    <defName>Rimfolk_Mem_Built</defName>
+    <label>built something together</label>
+    <description>They raised it together, and walk past it a little prouder.</description>
+    <text>built {LABEL} together</text>
+    <weight>1</weight>
+    <fadeDays>90</fadeDays>
+    <valence>1</valence>
+  </ColonyCouncil.SharedMemoryDef>
+
+  <ColonyCouncil.SharedMemoryDef>
+    <defName>Rimfolk_Mem_NightShift</defName>
+    <label>a long night together</label>
+    <description>They kept each other going through the small hours, while everyone else slept.</description>
+    <text>kept each other going through {LABEL}</text>
+    <weight>0.8</weight>
+    <fadeDays>45</fadeDays>
+    <valence>1</valence>
+  </ColonyCouncil.SharedMemoryDef>
+
+  <ColonyCouncil.SharedMemoryDef>
+    <defName>Rimfolk_Mem_Taught</defName>
+    <label>taught and learned</label>
+    <description>One taught, the other learned, and both remember the lessons.</description>
+    <text>{A} taught {B} {LABEL}</text>
+    <weight>1.5</weight>
+    <fadeDays>240</fadeDays>
+    <valence>1</valence>
+  </ColonyCouncil.SharedMemoryDef>
+
+  <ColonyCouncil.SharedMemoryDef>
+    <defName>Rimfolk_Mem_Mended</defName>
+    <label>made up after a quarrel</label>
+    <description>They fell out and found their way back. Some friendships are stronger for it.</description>
+    <text>made up after {LABEL}</text>
+    <weight>1.2</weight>
+    <fadeDays>90</fadeDays>
+    <valence>1</valence>
+  </ColonyCouncil.SharedMemoryDef>
+
+  <ColonyCouncil.SharedMemoryDef>
+    <defName>Rimfolk_Mem_Confided</defName>
+    <label>a secret confided</label>
+    <description>One trusted the other with something nobody else knows, and the other has kept it.</description>
+    <text>{A} trusted {B} with a secret</text>
+    <weight>1.5</weight>
+    <fadeDays>240</fadeDays>
+    <valence>1</valence>
+  </ColonyCouncil.SharedMemoryDef>
+
+  <!-- ===================== Mishaps that became in-jokes ===================== -->
+
+  <ColonyCouncil.SharedMemoryDef>
+    <defName>Rimfolk_Mem_Stew</defName>
+    <label>the bad stew</label>
+    <description>A meal that disagreed with them. It's funny now. It was not funny then.</description>
+    <text>still joke about {LABEL}</text>
+    <weight>1</weight>
+    <fadeDays>90</fadeDays>
+    <valence>1</valence>
+    <joke>true</joke>
+  </ColonyCouncil.SharedMemoryDef>
+
+  <ColonyCouncil.SharedMemoryDef>
+    <defName>Rimfolk_Mem_Boom</defName>
+    <label>the explosion</label>
+    <description>An animal that went off like a powder keg with the two of them far too close. Nobody was hurt, eyebrows aside.</description>
+    <text>still joke about {LABEL}</text>
+    <weight>1.1</weight>
+    <fadeDays>90</fadeDays>
+    <valence>1</valence>
+    <joke>true</joke>
+  </ColonyCouncil.SharedMemoryDef>
+
+  <ColonyCouncil.SharedMemoryDef>
+    <defName>Rimfolk_Mem_Tame</defName>
+    <label>the tame that went wrong</label>
+    <description>A tame that went badly wrong, with one of them running and the other watching. Everyone came out of it fine, more or less.</description>
+    <text>still joke about {LABEL}</text>
+    <weight>1</weight>
+    <fadeDays>90</fadeDays>
+    <valence>1</valence>
+    <joke>true</joke>
+  </ColonyCouncil.SharedMemoryDef>
+
+  <ColonyCouncil.SharedMemoryDef>
+    <defName>Rimfolk_Mem_Fire</defName>
+    <label>the little fire</label>
+    <description>A small fire they beat out together, with more shouting than was strictly needed.</description>
+    <text>still joke about {LABEL}</text>
+    <weight>0.9</weight>
+    <fadeDays>75</fadeDays>
+    <valence>1</valence>
+    <joke>true</joke>
+  </ColonyCouncil.SharedMemoryDef>
+
+  <ColonyCouncil.SharedMemoryDef>
+    <defName>Rimfolk_Mem_Mud</defName>
+    <label>the mud</label>
+    <description>One went down in the mud, the other went down trying to help. Nobody stayed clean or dignified.</description>
+    <text>still joke about {LABEL}</text>
+    <weight>0.9</weight>
+    <fadeDays>75</fadeDays>
+    <valence>1</valence>
+    <joke>true</joke>
+  </ColonyCouncil.SharedMemoryDef>
+
+  <ColonyCouncil.SharedMemoryDef>
+    <defName>Rimfolk_Mem_Binge</defName>
+    <label>the long night</label>
+    <description>One of them had a night of it, and the other was there. It's been forgiven, and is never going to be forgotten.</description>
+    <text>still joke about {LABEL}</text>
+    <weight>0.9</weight>
+    <fadeDays>75</fadeDays>
+    <valence>1</valence>
+    <joke>true</joke>
+  </ColonyCouncil.SharedMemoryDef>
+
+</Defs>

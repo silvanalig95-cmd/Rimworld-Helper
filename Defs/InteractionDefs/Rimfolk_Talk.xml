@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Conversations between colonists (Source/ColonyCouncil/Social/Talk/Talk.cs). One interaction per topic (its TopicDef
+    points at it), and one each for remembering something together, an in-joke and comforting someone. They compete in
+    the game's own social picker beside chitchat: together they take a fixed share of a colonist's talk (more for the
+    warm and humorous, less for the cold and dour, scaled by the moments setting), split by how much each matters to the
+    two right now. The lines themselves are said over their heads as an exchange (Defs/FlavorPoolDefs/Rimfolk_Talk_*.xml);
+    the social log keeps the one line below, with a sentence on how it went (the Rimfolk_TalkSent_ rule packs).
+  -->
+
+  <InteractionDef Name="Rimfolk_TalkBase" Abstract="True">
+    <workerClass>ColonyCouncil.InteractionWorker_Talk</workerClass>
+    <symbol>ColonyCouncil/Symbols/Moment</symbol>
+    <initiatorXpGainSkill>Social</initiatorXpGainSkill>
+    <initiatorXpGainAmount>4</initiatorXpGainAmount>
+    <modExtensions><li Class="ColonyCouncil.TalkExtension"><kind>Topic</kind></li></modExtensions>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Rimfolk_TalkBase">
+    <defName>Rimfolk_Talk_Raid</defName>
+    <label>talked about the last raid</label>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] went over the last fight again.</li>
+        <li>r_logentry->[INITIATOR_nameDef] got talking with [RECIPIENT_nameDef] about the last raid.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] what [RECIPIENT_pronoun] made of the last raid.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about what to do when the raiders come back.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Rimfolk_TalkBase">
+    <defName>Rimfolk_Talk_Council</defName>
+    <label>talked about the council</label>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about the council and what it has decided.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] what [RECIPIENT_pronoun] thought of the council lately.</li>
+        <li>r_logentry->[INITIATOR_nameDef] got talking with [RECIPIENT_nameDef] about who runs things here, and how.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Rimfolk_TalkBase">
+    <defName>Rimfolk_Talk_Food</defName>
+    <label>talked about the food</label>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about the food.</li>
+        <li>r_logentry->[INITIATOR_nameDef] had something to say to [RECIPIENT_nameDef] about the last meal.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] got onto the subject of what the colony eats.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Rimfolk_TalkBase">
+    <defName>Rimfolk_Talk_Work</defName>
+    <label>talked about the work</label>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about the work, and who does how much of it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] got talking with [RECIPIENT_nameDef] about the day's work.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] compared notes on the chores.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Rimfolk_TalkBase">
+    <defName>Rimfolk_Talk_Newcomer</defName>
+    <label>talked about a newcomer</label>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about the newest face in the colony.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] what [RECIPIENT_pronoun] made of the newcomer.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] traded first impressions of the colony's latest arrival.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Rimfolk_TalkBase">
+    <defName>Rimfolk_Talk_Faith</defName>
+    <label>talked about faith</label>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about faith.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] got onto what they believe, and why.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] what [RECIPIENT_pronoun] believes in.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Rimfolk_TalkBase">
+    <defName>Rimfolk_Talk_Outside</defName>
+    <label>talked about the world outside</label>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about the world beyond the colony.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about traders and the other peoples out there.</li>
+        <li>r_logentry->[INITIATOR_nameDef] wondered aloud to [RECIPIENT_nameDef] what the rest of the world is up to.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Rimfolk_TalkBase">
+    <defName>Rimfolk_Talk_Animals</defName>
+    <label>talked about the animals</label>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about the animals.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] got onto the subject of the colony's beasts.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] what [INITIATOR_pronoun] thinks of keeping animals.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Rimfolk_TalkBase">
+    <defName>Rimfolk_Talk_Weather</defName>
+    <label>talked about the weather</label>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about the weather, and meant it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about the season and what it's doing to them.</li>
+        <li>r_logentry->[INITIATOR_nameDef] looked at the sky and said something to [RECIPIENT_nameDef] about it.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Rimfolk_TalkBase">
+    <defName>Rimfolk_Talk_Art</defName>
+    <label>talked about art</label>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about art and beauty.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] got onto whether art is worth the stone.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] what [RECIPIENT_pronoun] thinks makes a thing beautiful.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Rimfolk_TalkBase">
+    <defName>Rimfolk_Talk_Future</defName>
+    <label>talked about the future</label>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about the future.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about whether the colony will last.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] where [RECIPIENT_pronoun] sees [RECIPIENT_objective]self in a few years.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Rimfolk_TalkBase">
+    <defName>Rimfolk_Talk_Dead</defName>
+    <label>talked about the dead</label>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about the ones they have lost.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked quietly about the dead.</li>
+        <li>r_logentry->[INITIATOR_nameDef] brought up the colony's dead with [RECIPIENT_nameDef].</li>
+      </rulesStrings>
+    </logRulesInitiator>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Rimfolk_TalkBase">
+    <defName>Rimfolk_Talk_Prisoners</defName>
+    <label>talked about the prisoners</label>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about how the colony treats its captives.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about the ones in the cells.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] what [INITIATOR_pronoun] thinks should be done with the captives.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Rimfolk_TalkBase">
+    <defName>Rimfolk_Talk_Drugs</defName>
+    <label>talked about drink and drugs</label>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about drink and drugs.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] got onto the subject of what people take to get through the day.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] what [INITIATOR_pronoun] thinks of a drink after work.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Rimfolk_TalkBase">
+    <defName>Rimfolk_Talk_Tech</defName>
+    <label>talked about new ways and old</label>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about new learning and the old ways.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about what the colony should learn next.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] got onto whether newer is always better.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Rimfolk_TalkBase">
+    <defName>Rimfolk_Talk_Children</defName>
+    <label>talked about the children</label>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about the children.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about what kind of place this is to grow up in.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [RECIPIENT_pronoun] ever thinks about children.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Rimfolk_TalkBase">
+    <defName>Rimfolk_Talk_Project</defName>
+    <label>talked about the colony's project</label>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about the colony's project.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about how the council's project is going.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether the project is worth all the work.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Rimfolk_TalkBase">
+    <defName>Rimfolk_Talk_Wealth</defName>
+    <label>talked about money</label>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about money.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about how rich the colony is, or isn't.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] what [INITIATOR_pronoun] would do with a pile of silver.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Rimfolk_TalkBase">
+    <defName>Rimfolk_Talk_Love</defName>
+    <label>talked about love</label>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about love, and who is with whom.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] got onto the colony's couples.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] what [RECIPIENT_pronoun] thinks of love out here.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+  </InteractionDef>
+
+  <!-- ===================== Remembering, in-jokes, comfort ===================== -->
+
+  <InteractionDef ParentName="Rimfolk_TalkBase">
+    <defName>Rimfolk_Talk_Memory</defName>
+    <label>remembered something together</label>
+    <symbol>ColonyCouncil/Symbols/Heart</symbol>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about something they went through together.</li>
+        <li>r_logentry->[INITIATOR_nameDef] reminded [RECIPIENT_nameDef] of something only the two of them remember the same way.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] got talking about old times.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+    <modExtensions Inherit="False"><li Class="ColonyCouncil.TalkExtension"><kind>Memory</kind></li></modExtensions>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Rimfolk_TalkBase">
+    <defName>Rimfolk_Talk_Joke</defName>
+    <label>shared an in-joke</label>
+    <symbol>ColonyCouncil/Symbols/Star</symbol>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] brought up an old joke with [RECIPIENT_nameDef].</li>
+        <li>r_logentry->[INITIATOR_nameDef] said one word to [RECIPIENT_nameDef], and they both knew what it meant.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] shared a joke nobody else would get.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+    <modExtensions Inherit="False"><li Class="ColonyCouncil.TalkExtension"><kind>Joke</kind></li></modExtensions>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Rimfolk_TalkBase">
+    <defName>Rimfolk_Talk_Comfort</defName>
+    <label>comforted someone</label>
+    <symbol>ColonyCouncil/Symbols/Heart</symbol>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] saw that [RECIPIENT_nameDef] was low, and sat down beside [RECIPIENT_objective].</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] how [RECIPIENT_pronoun] was really doing, and waited for the answer.</li>
+        <li>r_logentry->[INITIATOR_nameDef] kept [RECIPIENT_nameDef] company through a bad hour.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+    <modExtensions Inherit="False"><li Class="ColonyCouncil.TalkExtension"><kind>Comfort</kind></li></modExtensions>
+  </InteractionDef>
+
+  <!-- ===================== How it went (a second sentence in the log) ===================== -->
+
+  <RulePackDef>
+    <defName>Rimfolk_TalkSent_Agree</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>sent->They found they saw it the same way.</li>
+        <li>sent->They agreed on most of it.</li>
+        <li>sent->Neither had to be talked round.</li>
+        <li>sent->It turned out they were of one mind.</li>
+        <li>sent->They nodded along with each other the whole time.</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_TalkSent_Debate</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>sent->They didn't agree, and enjoyed not agreeing.</li>
+        <li>sent->They argued it back and forth, good-naturedly.</li>
+        <li>sent->Neither gave an inch, and neither minded.</li>
+        <li>sent->It was a friendly disagreement, as theirs usually are.</li>
+        <li>sent->They agreed to disagree, eventually.</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_TalkSent_Argue</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>sent->It turned into an argument.</li>
+        <li>sent->Voices were raised.</li>
+        <li>sent->It ended badly, with neither of them listening.</li>
+        <li>sent->Things got heated.</li>
+        <li>sent->They parted angrier than they started.</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_TalkSent_Tease</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>sent->[INITIATOR_nameDef] couldn't resist teasing, and [RECIPIENT_nameDef] took it well.</li>
+        <li>sent->[INITIATOR_nameDef] pulled [RECIPIENT_possessive] leg about it, and [RECIPIENT_nameDef] laughed.</li>
+        <li>sent->[INITIATOR_nameDef] made a joke of it, and [RECIPIENT_nameDef] gave as good as [RECIPIENT_pronoun] got.</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_TalkSent_TeaseStung</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>sent->[INITIATOR_nameDef] teased, and [RECIPIENT_nameDef] didn't find it funny.</li>
+        <li>sent->[INITIATOR_nameDef] made a joke of it; [RECIPIENT_nameDef] wasn't in the mood.</li>
+        <li>sent->[INITIATOR_nameDef]'s teasing landed badly.</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_TalkSent_Reminisce</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>sent->They remembered it together.</li>
+        <li>sent->It came back to them both, every detail.</li>
+        <li>sent->They told it to each other again, the way they always do.</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_TalkSent_Grief</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>sent->It still hurts, and they said so.</li>
+        <li>sent->They were quiet for a while afterwards.</li>
+        <li>sent->Neither of them has let it go.</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_TalkSent_Joke</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>sent->They both laughed.</li>
+        <li>sent->It was funnier than it had any right to be.</li>
+        <li>sent->It still gets them, every time.</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_TalkSent_JokeWorn</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>sent->It wasn't as funny as the first time.</li>
+        <li>sent->The joke is wearing thin.</li>
+        <li>sent->[RECIPIENT_nameDef] has heard it before. Several times.</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_TalkSent_MadeUp</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>sent->It was the first easy word between them since their quarrel.</li>
+        <li>sent->Whatever had been between them, they let it go.</li>
+        <li>sent->They seem to have patched things up.</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+</Defs>

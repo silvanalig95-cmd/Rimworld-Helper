@@ -1,0 +1,539 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Talk about faith, the world outside, art, and new learning against the old ways (Source/ColonyCouncil/Social/Talk/). Tags as in Rimfolk_Talk_Lines_Fight.xml; for faith [sameideo], [otherideo], [noideo], [devout], [doubting]; outside [traders], [caravan]; art [isartist], [toartist]; learning [research]. {SUBJECT}: the speaker's faith by name, a trading people, the best artist, the study just finished.
+  -->
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Faith_Open</defName>
+    <topic>Rimfolk_Topic_Faith</topic>
+    <turn>Open</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[for] Faith is what keeps me going, out here.</li>
+        <li>[for] I prayed last night, and I slept better for it.</li>
+        <li>[for,subject] I hold to {SUBJECT}, whatever happens.</li>
+        <li>[for,otherideo] I wish you'd come to one of our gatherings, just to see.</li>
+        <li>[for,sameideo] It's good to share a faith with someone, isn't it.</li>
+        <li>[for,devout] I've never been surer of anything than I am of this.</li>
+        <li>[for,noideo] There's something out there looking after us, I'm sure of it.</li>
+        <li>[for,strong] Without faith we're just animals with tools.</li>
+        <li>[against] I don't know what I believe anymore.</li>
+        <li>[against] Prayers didn't stop the last raid, did they?</li>
+        <li>[against,otherideo] Your faith and mine can't both be right, can they?</li>
+        <li>[against,sameideo] Do you ever have doubts, about any of it?</li>
+        <li>[against,doubting] I went through the motions at the ritual, and felt nothing.</li>
+        <li>[against,noideo] The stars don't care about us, they're just stars.</li>
+        <li>[against,strong] The world is what we make of it, no one's watching over us.</li>
+        <li>[mixed] What do you think happens to us when we die?</li>
+        <li>[for] I said a prayer for the harvest, and look at it.</li>
+        <li>[for] Faith gives you something to stand on when everything shakes.</li>
+        <li>[for,otherideo,subject] I wish you'd let me tell you about {SUBJECT}.</li>
+        <li>[against] I used to pray, but I stopped hearing anything back.</li>
+        <li>[against] I believe in walls and full stores, that's my faith.</li>
+        <li>[against,devout] I've been having doubts, and it frightens me.</li>
+        <li>[mixed,sameideo] Do you think we're doing it right, our faith?</li>
+      </plain>
+      <warm>
+        <li>[for] I pray for all of you, you know, every night.</li>
+        <li>[against] I envy people who are sure, I really do.</li>
+        <li>[for,sameideo] I'm glad I share a faith with you.</li>
+        <li>[against] I wish I believed as easily as some people do.</li>
+      </warm>
+      <blunt>
+        <li>[against] Faith's a comfort for people who can't face facts.</li>
+        <li>[for] A little faith wouldn't hurt some people round here.</li>
+        <li>[for] People without faith are lost, whether they know it or not.</li>
+        <li>[against] I'll believe it when it pays my debts.</li>
+      </blunt>
+      <cheerful>
+        <li>[for] I asked the heavens for a good harvest and a pie, and one of those came true.</li>
+        <li>[against] If there's a god, they owe me a new pair of boots.</li>
+        <li>[for] I pray every night, mostly for better weather and more pie.</li>
+        <li>[against] I tried praying, and all I got was a stiff neck.</li>
+      </cheerful>
+      <gloomy>
+        <li>[against] If anyone's up there, they're not on our side.</li>
+        <li>[for] Faith's all we'll have left, in the end.</li>
+        <li>[for] Faith is all we have left, really.</li>
+        <li>[against] The heavens are empty, and that's the truth.</li>
+      </gloomy>
+      <cold>
+        <li>[against] Belief is a habit, not evidence.</li>
+        <li>[for] Shared belief keeps a colony together; that's worth something.</li>
+        <li>[for] Ritual keeps people steady.</li>
+        <li>[against] I've never seen proof of any of it.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Faith_Reply</defName>
+    <topic>Rimfolk_Topic_Faith</topic>
+    <turn>Reply</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree,for] It's what gets me through, too.</li>
+        <li>[agree,for,sameideo] We're lucky to have each other in it.</li>
+        <li>[agree,against] I've wondered the same, more than once.</li>
+        <li>[debate,against] I'm glad it helps you, but it doesn't help me.</li>
+        <li>[debate,against,otherideo] We'll have to see whose turns out right.</li>
+        <li>[debate,for] Doubt is part of faith, my teacher used to say.</li>
+        <li>[debate,for,otherideo] Our ways are different, but I think we want the same things.</li>
+        <li>[argue,against] You'd believe anything you were told.</li>
+        <li>[argue,for] Mock it if you like, it doesn't make you right.</li>
+        <li>[argue,for,otherideo] Keep your strange beliefs to yourself.</li>
+        <li>[agree,for] It's what keeps me going, too.</li>
+        <li>[agree,against] I've had my doubts as well.</li>
+        <li>[debate,for] Faith isn't about proof, that's the whole point.</li>
+        <li>[debate,against] I respect it, I just can't feel it.</li>
+        <li>[argue,for] You've no idea what you're mocking.</li>
+        <li>[argue,against] Blind faith is still blind.</li>
+        <li>[agree,against] I've stopped expecting answers.</li>
+        <li>[argue,for] Have some respect, at least.</li>
+        <li>[argue,against] Keep your sermons to yourself.</li>
+      </plain>
+      <warm>
+        <li>[debate,for] I'll pray for you anyway, if that's all right.</li>
+        <li>[agree,for] I'll keep you in my prayers.</li>
+      </warm>
+      <blunt>
+        <li>[argue,against] Your gods never did a day's work here.</li>
+      </blunt>
+      <cheerful>
+        <li>[debate,for] Pie for everyone would prove it, wouldn't it.</li>
+      </cheerful>
+      <gloomy>
+        <li>[agree,against] Nobody's listening up there.</li>
+        <li>[debate,for] Doubting won't make it any easier either.</li>
+      </gloomy>
+      <cold>
+        <li>[argue,for] Your cynicism is tiresome.</li>
+        <li>[debate,against] Comfort isn't evidence.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Faith_Close</defName>
+    <topic>Rimfolk_Topic_Faith</topic>
+    <turn>Close</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree] Strength to us both, then.</li>
+        <li>[debate] Let's see who's right in the end.</li>
+        <li>[argue] Believe what you like, and leave me to it.</li>
+        <li>[agree] Peace be with us both, then.</li>
+        <li>[debate] Maybe we're both a little right.</li>
+        <li>[agree] I'll see you at the next gathering.</li>
+        <li>[argue,for] I'll pray for you anyway.</li>
+      </plain>
+      <warm>
+        <li>[argue] I'll still pray for you, whatever you think.</li>
+      </warm>
+      <cold>
+        <li>[debate] We'll see who's right in the end.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Faith_Tease</defName>
+    <topic>Rimfolk_Topic_Faith</topic>
+    <turn>Open</turn>
+    <outcomes><li>Tease</li></outcomes>
+    <lines>
+      <plain>
+        <li>[otherfor] Praying for rain again, {OTHER}, ask for a pie while you're at it.</li>
+        <li>[otheragainst] {OTHER} doesn't believe in anything, except second helpings.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Outside_Open</defName>
+    <topic>Rimfolk_Topic_Outside</topic>
+    <turn>Open</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[for] We should trade more, there's a whole world out there.</li>
+        <li>[for] I'd love to know what the other settlements are like.</li>
+        <li>[for] Friends outside the walls are worth more than any wall.</li>
+        <li>[for,traders,subject] The traders from {SUBJECT} had some lovely things.</li>
+        <li>[for,caravan] That trip opened my eyes; there's so much out there.</li>
+        <li>[for,strong] We'll never be more than a camp if we hide from the world.</li>
+        <li>[against] The less we have to do with outsiders, the better.</li>
+        <li>[against] Every trader that comes is another stranger who knows our walls.</li>
+        <li>[against,traders,subject] Don't trust the {SUBJECT} lot, they've got shifty eyes.</li>
+        <li>[against,afterraid] Outsiders are trouble, the last raid proved it.</li>
+        <li>[against,strong] Out there is where the raiders come from.</li>
+        <li>[mixed] Do you ever wonder what's beyond the hills?</li>
+        <li>[for] The last traders told me about a city by the sea.</li>
+        <li>[for] We could learn so much from the other settlements.</li>
+        <li>[for,caravan] I'd go out again tomorrow, the road suits me.</li>
+        <li>[for,traders] Have you seen what the traders brought this time?</li>
+        <li>[against] The world out there is full of people who want what we have.</li>
+        <li>[against] I'd rather know everyone at the table.</li>
+        <li>[against,traders] I watch the traders the whole time they're here.</li>
+        <li>[mixed] Do you think anyone out there knows we're here?</li>
+      </plain>
+      <warm>
+        <li>[for] I hope the people out there are as decent as the people in here.</li>
+        <li>[for] I'd love to make friends beyond the walls.</li>
+        <li>[against] I just want everyone here safe, that's all.</li>
+      </warm>
+      <blunt>
+        <li>[against] Outsiders can stay outside.</li>
+        <li>[for] We can't do everything ourselves, we need trade.</li>
+        <li>[for] Hiding from the world won't make it go away.</li>
+        <li>[against] Strangers bring trouble, always have.</li>
+      </blunt>
+      <cheerful>
+        <li>[for] I'd trade a pig for a story from somewhere new.</li>
+        <li>[for,traders] I bought a hat from the traders, it's hideous, I love it.</li>
+        <li>[against] My policy on outsiders is a locked door and a pleasant wave.</li>
+      </cheerful>
+      <gloomy>
+        <li>[against] Nobody out there cares if we live or die.</li>
+        <li>[for] Out there's better than in here, some days.</li>
+        <li>[against,traders] They'll be back with an army, you'll see.</li>
+      </gloomy>
+      <cold>
+        <li>[for] Trade improves our position.</li>
+        <li>[against] Contact means risk.</li>
+        <li>[for,traders] The traders give us a fair price, mostly.</li>
+        <li>[against] Each visitor is a scout, whether they know it or not.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Outside_Reply</defName>
+    <topic>Rimfolk_Topic_Outside</topic>
+    <turn>Reply</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree,for] I'd go on the next trip in a heartbeat.</li>
+        <li>[agree,against] We've got all we need right here.</li>
+        <li>[debate,against] Trade, fine, but let's not invite them to supper.</li>
+        <li>[debate,for] We can't stay hidden forever.</li>
+        <li>[argue,against] You'd give them the keys to the gate.</li>
+        <li>[argue,for] You'd have us living in a cave.</li>
+        <li>[agree,for] I'd love to see more of it.</li>
+        <li>[agree,against] Better safe in here than sorry out there.</li>
+        <li>[debate,for] We can't do everything on our own.</li>
+        <li>[debate,against] Trade, yes; trust, no.</li>
+        <li>[argue,for] You'd have us locked up like prisoners.</li>
+        <li>[argue,against] You'd invite the raiders to supper.</li>
+        <li>[agree,for] Every trader's a story, I love it.</li>
+        <li>[agree,against] We've all we need inside these walls.</li>
+        <li>[agree,against] I've seen what comes from outside, thank you.</li>
+        <li>[debate,for] The world won't leave us alone just because we hide.</li>
+        <li>[debate,against] Friendly today, raiders tomorrow, that's how it goes.</li>
+        <li>[argue,for] You'd brick up the gate if you could.</li>
+        <li>[argue,against] You'll get us all killed with your open gates.</li>
+      </plain>
+      <warm>
+        <li>[agree,for] Let's be good neighbours, then.</li>
+      </warm>
+      <blunt>
+        <li>[agree,against] Strangers stay strangers.</li>
+      </blunt>
+      <cheerful>
+        <li>[debate,for] Imagine the spices, though, imagine them.</li>
+        <li>[agree,for] More hats, that's what we need, more hats.</li>
+      </cheerful>
+      <gloomy>
+        <li>[agree,against] Nobody out there cares about us.</li>
+      </gloomy>
+      <cold>
+        <li>[agree,for] Trade is necessary.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Outside_Close</defName>
+    <topic>Rimfolk_Topic_Outside</topic>
+    <turn>Close</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree] Next caravan, then.</li>
+        <li>[debate] We'll see who comes knocking.</li>
+        <li>[argue] Hide in here forever, then.</li>
+        <li>[agree] We'll greet the next ones properly.</li>
+        <li>[debate] We'll see who turns up next.</li>
+        <li>[agree,for] Next caravan, we're both going.</li>
+        <li>[agree,against] Keep the gate shut, then.</li>
+      </plain>
+      <warm>
+        <li>[argue] I just want us to be safe, that's all.</li>
+      </warm>
+      <cheerful>
+        <li>[debate] Next trader, I'm buying you a hat.</li>
+      </cheerful>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Art_Open</defName>
+    <topic>Rimfolk_Topic_Art</topic>
+    <turn>Open</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[for] A place needs beautiful things in it, or what's it all for?</li>
+        <li>[for] I stood looking at that sculpture for ages yesterday.</li>
+        <li>[for,subject] {SUBJECT} has real talent, have you seen their work?</li>
+        <li>[for,isartist] I've been working on something, I'll show you when it's ready.</li>
+        <li>[for,strong] Art is how people remember we were here.</li>
+        <li>[against] All that stone, and for what, something to look at?</li>
+        <li>[against] We need walls and beds, not statues.</li>
+        <li>[against,subject] {SUBJECT} spends a lot of time on art when there's hauling to do.</li>
+        <li>[against,strong] Every statue is a wall we didn't build.</li>
+        <li>[mixed] I don't know much about art, but I know what I don't like.</li>
+        <li>[for] I put a flower by my bed, and it changed the whole room.</li>
+        <li>[for] We should make this place beautiful, not just safe.</li>
+        <li>[for,subject] I watched {SUBJECT} carving yesterday; it was like magic.</li>
+        <li>[against] I don't see the point of a statue when the roof leaks.</li>
+        <li>[against] People spend days on art and then nobody looks at it.</li>
+        <li>[against,isartist] I'm not sure my carving is worth the stone, to be honest.</li>
+        <li>[mixed] I don't understand art, but some of it moves me.</li>
+      </plain>
+      <warm>
+        <li>[for] Pretty things make the hard days softer.</li>
+        <li>[for] Beautiful things make people kinder, I think.</li>
+        <li>[against] I like pretty things, but walls come first.</li>
+      </warm>
+      <blunt>
+        <li>[against] Art's a waste of good stone.</li>
+        <li>[for] A colony without art is just a barracks.</li>
+        <li>[against] Statues don't stop arrows.</li>
+      </blunt>
+      <cheerful>
+        <li>[for] I'm told my sculpture has a "raw energy", which means it's terrible.</li>
+        <li>[for] I sculpted a duck, it looks like a potato, I'm thrilled.</li>
+        <li>[against] I've seen the new sculpture, and I have questions.</li>
+      </cheerful>
+      <gloomy>
+        <li>[against] Who'll look at it when we're gone?</li>
+        <li>[for] At least art will outlast us.</li>
+        <li>[against] It'll all be rubble one day, art and all.</li>
+      </gloomy>
+      <cold>
+        <li>[for] Beauty improves morale measurably.</li>
+        <li>[against] Art produces nothing.</li>
+        <li>[for] Beautiful rooms are good for morale.</li>
+        <li>[against] Art is a poor use of labour.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Art_Reply</defName>
+    <topic>Rimfolk_Topic_Art</topic>
+    <turn>Reply</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree,for] It lifts the place, it really does.</li>
+        <li>[agree,against] We've got better uses for our time.</li>
+        <li>[debate,against] Pretty, sure, but you can't eat it.</li>
+        <li>[debate,for] A wall keeps you alive; art reminds you why.</li>
+        <li>[argue,against] You'd carve statues while the roof fell in.</li>
+        <li>[argue,for] No wonder you're miserable, you've no soul.</li>
+        <li>[argue,against,toartist] Your hobby is eating our stone.</li>
+        <li>[agree,for] It makes the whole place feel alive.</li>
+        <li>[agree,against] There's always something more useful to do.</li>
+        <li>[debate,for] What are we surviving for, if not for beautiful things?</li>
+        <li>[debate,against] Nice to look at, I'll give you that.</li>
+        <li>[argue,for] You'd paint the walls grey and call it home.</li>
+        <li>[argue,against] You'd carve a statue while the stores ran empty.</li>
+        <li>[agree,for] Beauty matters, more than people think.</li>
+        <li>[agree,against] Useful first, pretty later.</li>
+        <li>[debate,for] Walls keep us alive; art reminds us we're alive.</li>
+        <li>[debate,against] I like it, but I like a dry roof more.</li>
+        <li>[argue,for] There's no joy in you at all, is there.</li>
+        <li>[argue,against] We'll be admiring statues as we starve.</li>
+      </plain>
+      <warm>
+        <li>[agree,for] I love seeing what people make.</li>
+      </warm>
+      <cheerful>
+        <li>[agree,for] I'll pose for the next one, my good side's the left.</li>
+        <li>[debate,against] I'll admire the art from my nice dry bed.</li>
+      </cheerful>
+      <gloomy>
+        <li>[agree,against] Nobody will look at it in a hundred years.</li>
+      </gloomy>
+      <cold>
+        <li>[agree,against] Practical things first.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Art_Close</defName>
+    <topic>Rimfolk_Topic_Art</topic>
+    <turn>Close</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree] I'll show you my favourite piece later.</li>
+        <li>[debate] Come and look at it properly, then decide.</li>
+        <li>[argue] Enjoy your bare walls.</li>
+        <li>[agree] Let's go and look at the new piece together.</li>
+        <li>[argue] Fine, enjoy your bare walls.</li>
+        <li>[agree,for] I'll carve something for the hall.</li>
+        <li>[agree,against] Walls first, then.</li>
+      </plain>
+      <warm>
+        <li>[debate] I'll show you my favourite piece sometime.</li>
+      </warm>
+      <cheerful>
+        <li>[debate] I'll carve you something, then you'll see.</li>
+      </cheerful>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Tech_Open</defName>
+    <topic>Rimfolk_Topic_Tech</topic>
+    <turn>Open</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[for] Every new thing we learn makes life here a little easier.</li>
+        <li>[for] We should be studying more, not less.</li>
+        <li>[for,research,subject] Did you hear we worked out {SUBJECT}?</li>
+        <li>[for,strong] Knowledge is the only thing raiders can't steal.</li>
+        <li>[against] The old ways worked for a thousand years, why change now?</li>
+        <li>[against] Every new thing we build is another thing to break.</li>
+        <li>[against,research,subject] {SUBJECT} sounds clever, but I don't trust it.</li>
+        <li>[against,strong] We're forgetting how to do things with our own hands.</li>
+        <li>[mixed] I can't keep up with all the new ideas, honestly.</li>
+        <li>[for] Every time we learn something, life here gets a bit easier.</li>
+        <li>[for] I'd love to know how the old machines worked.</li>
+        <li>[for,research] Have you heard what the researchers worked out?</li>
+        <li>[against] My grandmother did it this way, and it worked for her.</li>
+        <li>[against] Every new thing needs fixing, sooner or later.</li>
+        <li>[against,research] Clever, sure, but who's going to fix it when it breaks?</li>
+        <li>[mixed,research] I don't really understand the new ideas, but I'm trying.</li>
+      </plain>
+      <warm>
+        <li>[for] I love watching the clever ones work things out.</li>
+        <li>[for] I love how much we're learning, all of us.</li>
+        <li>[against] I like the old ways; they feel like home.</li>
+      </warm>
+      <blunt>
+        <li>[against] Newfangled nonsense.</li>
+        <li>[for] Stop being afraid of anything new.</li>
+        <li>[for] Afraid of anything new, some people.</li>
+        <li>[against] Nobody needs half the new things they come up with.</li>
+      </blunt>
+      <cheerful>
+        <li>[for] I learned something new today, and I've already forgotten it.</li>
+        <li>[for] I invented a new way to carry three buckets, it involved falling over.</li>
+        <li>[against] I prefer the old ways, they don't explode.</li>
+      </cheerful>
+      <gloomy>
+        <li>[against] Clever things fail in clever ways.</li>
+        <li>[for] We'd better learn fast, or we won't last.</li>
+        <li>[against] Newer just means more ways to fail.</li>
+      </gloomy>
+      <cold>
+        <li>[for] Progress is efficiency.</li>
+        <li>[against] Untested methods carry risk.</li>
+        <li>[for] Learning compounds.</li>
+        <li>[against] Tried methods are reliable.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Tech_Reply</defName>
+    <topic>Rimfolk_Topic_Tech</topic>
+    <turn>Reply</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree,for] We'll be better off for it.</li>
+        <li>[agree,against] There's a lot to be said for the old ways.</li>
+        <li>[debate,against] New isn't always better.</li>
+        <li>[debate,for] The old ways were new once, too.</li>
+        <li>[argue,against] You'd swap your hands for a gadget if you could.</li>
+        <li>[argue,for] You'd still be living in a cave if it were up to you.</li>
+        <li>[agree,for] We'll be better off for every bit of it.</li>
+        <li>[agree,against] There's wisdom in the old ways.</li>
+        <li>[debate,for] The old ways were somebody's new idea once.</li>
+        <li>[debate,against] Some of it's good, some of it's just new.</li>
+        <li>[argue,for] You'd still be using sticks if it were up to you.</li>
+        <li>[argue,against] You'd trade your common sense for a shiny gadget.</li>
+        <li>[agree,for] I love learning new things, I always have.</li>
+        <li>[agree,against] My hands know more than any book.</li>
+        <li>[debate,for] The old ways had their day.</li>
+        <li>[debate,against] Some old things last because they work.</li>
+        <li>[argue,for] Afraid of anything you don't understand.</li>
+        <li>[argue,against] You'll learn your way into trouble.</li>
+      </plain>
+      <warm>
+        <li>[agree,for] I can't wait to see what we learn next.</li>
+      </warm>
+      <cheerful>
+        <li>[debate,against] I'll trust it once it's stopped exploding.</li>
+      </cheerful>
+      <gloomy>
+        <li>[agree,against] New things break in new ways.</li>
+      </gloomy>
+      <cold>
+        <li>[agree,for] Agreed, progress pays.</li>
+        <li>[argue,for] Your nostalgia is costing us.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Tech_Close</defName>
+    <topic>Rimfolk_Topic_Tech</topic>
+    <turn>Close</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree] Here's to learning, then.</li>
+        <li>[debate] Time will tell.</li>
+        <li>[argue] Stay in the past, then.</li>
+        <li>[agree] Here's to whatever comes next.</li>
+        <li>[debate] We'll see which way serves us better.</li>
+        <li>[agree,for] I'll go and see what they're studying.</li>
+        <li>[agree,against] I'll stick to what I know.</li>
+      </plain>
+      <blunt>
+        <li>[argue] Go and live in a cave, then.</li>
+      </blunt>
+      <cheerful>
+        <li>[debate] I'll stick to my buckets, thank you.</li>
+      </cheerful>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Outside_Tease</defName>
+    <topic>Rimfolk_Topic_Outside</topic>
+    <turn>Open</turn>
+    <outcomes><li>Tease</li></outcomes>
+    <lines>
+      <plain>
+        <li>[otherfor] {OTHER} would follow a trader home if we let them.</li>
+        <li>[otheragainst] {OTHER} counts the spoons whenever a trader leaves.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+</Defs>

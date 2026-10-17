@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Conversations, views and shared memories (Source/ColonyCouncil/Social/Talk/). -->
+
+  <!-- The character page: views -->
+  <CC_Talk_Views>Views</CC_Talk_Views>
+  <CC_Talk_Strongly>(strongly)</CC_Talk_Strongly>
+  <CC_Talk_ViewOn>On {0}.</CC_Talk_ViewOn>
+  <CC_Talk_ViewWhy>It comes from who they are: {0}.</CC_Talk_ViewWhy>
+  <CC_Talk_ViewMoved>Last moved in a talk with {0}, {1} ago.</CC_Talk_ViewMoved>
+  <CC_Talk_ViewNews>It's the talk of the colony just now.</CC_Talk_ViewNews>
+  <CC_Talk_ReasonPassion>a passion for {0}</CC_Talk_ReasonPassion>
+  <CC_Talk_ReasonFaith>their faith ({0})</CC_Talk_ReasonFaith>
+
+  <!-- The character page: shared memories -->
+  <CC_Talk_Memories>Shared memories</CC_Talk_Memories>
+  <CC_Talk_MemoryLine>With {0}: {1}</CC_Talk_MemoryLine>
+  <CC_Talk_MemoryWhen>{0} ago.</CC_Talk_MemoryWhen>
+  <CC_Talk_MemoryJoke>An in-joke between them; it has come up {0} times.</CC_Talk_MemoryJoke>
+  <CC_Talk_MemoryWorn>An old joke between them by now. It has worn thin.</CC_Talk_MemoryWorn>
+  <CC_Talk_MemoryRecalled>They have talked about it {0} times.</CC_Talk_MemoryRecalled>
+
+  <!-- Why a mood or opinion came (the cause line) and the bond's history -->
+  <CC_Talk_Cause>a talk between {0} and {1}</CC_Talk_Cause>
+  <CC_TieNote_TalkArgued>fell out over {0}</CC_TieNote_TalkArgued>
+  <CC_TieNote_TalkComfort>was there when it counted</CC_TieNote_TalkComfort>
+
+  <!-- What shared memories are called in conversation ("Remember the fight with the Iron Hand?") -->
+  <CC_TalkLabel_FightWith>the fight with {0}</CC_TalkLabel_FightWith>
+  <CC_TalkLabel_FightOn>the fight on the {0}</CC_TalkLabel_FightOn>
+  <CC_TalkLabel_Mechs>the mechanoid attack</CC_TalkLabel_Mechs>
+  <CC_TalkLabel_Insects>the hive</CC_TalkLabel_Insects>
+  <CC_TalkLabel_Day>the bad day on the {0}</CC_TalkLabel_Day>
+  <CC_TalkLabel_Night>the long night of the {0}</CC_TalkLabel_Night>
+  <CC_TalkLabel_Road>the road in {0}</CC_TalkLabel_Road>
+  <CC_TalkLabel_Disaster>the {0} of {1}</CC_TalkLabel_Disaster>
+  <CC_TalkLabel_Funeral>the last funeral</CC_TalkLabel_Funeral>
+  <CC_TalkLabel_Couple>{0} and {1}</CC_TalkLabel_Couple>
+  <CC_TalkLabel_Wedding>the wedding of {0}</CC_TalkLabel_Wedding>
+  <CC_TalkLabel_WeddingDay>the wedding on the {0}</CC_TalkLabel_WeddingDay>
+  <CC_TalkLabel_Party>the party on the {0}</CC_TalkLabel_Party>
+  <CC_TalkLabel_Row>the quarrel</CC_TalkLabel_Row>
+  <CC_TalkLabel_RowAbout>the row about {0}</CC_TalkLabel_RowAbout>
+  <CC_TalkLabel_Secret>the secret</CC_TalkLabel_Secret>
+  <CC_TalkLabel_Stew>the stew</CC_TalkLabel_Stew>
+  <CC_TalkLabel_Fire>the little fire</CC_TalkLabel_Fire>
+  <CC_TalkLabel_FireIn>the fire in the {0}</CC_TalkLabel_FireIn>
+  <CC_TalkLabel_Feast>the midnight feast</CC_TalkLabel_Feast>
+  <CC_TalkLabel_Binge>that long night</CC_TalkLabel_Binge>
+
+</LanguageData>

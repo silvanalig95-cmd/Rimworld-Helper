@@ -1,0 +1,478 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Lines that fit a talk on any topic (Source/ColonyCouncil/Social/Talk/): the reply, the first speaker's closing word and the other's last word, by how the talk goes ([agree], [debate], [argue], [tease]...). Topic lines (Rimfolk_Talk_Lines_*.xml) come first; these keep the talk varied. {OTHER} is the one spoken to, {TOPIC} the topic in a few words.
+  -->
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Any_Reply</defName>
+    <turn>Reply</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree] That's exactly what I've been saying.</li>
+        <li>[agree] You took the words right out of my mouth.</li>
+        <li>[agree] I was thinking the same thing this morning.</li>
+        <li>[agree] Nobody else says it, but you're right.</li>
+        <li>[agree] I'm glad it isn't just me.</li>
+        <li>[agree] Couldn't have put it better myself.</li>
+        <li>[agree] Yes, and I'll say so to anyone who asks.</li>
+        <li>[agree] That's how I see it too.</li>
+        <li>[agree,friends] You always know what I'm thinking, don't you.</li>
+        <li>[agree,rivals] For once, {OTHER}, I can't argue with that.</li>
+        <li>[agree,strong] I'd go further than that, if anything.</li>
+        <li>[agree,mixed] I suppose so, though I go back and forth on it.</li>
+        <li>[debate] I see it differently, but go on.</li>
+        <li>[debate] Maybe, but I'm not convinced.</li>
+        <li>[debate] You'd think so, wouldn't you, but no.</li>
+        <li>[debate] I hear you, and I still think you're wrong.</li>
+        <li>[debate] Funny, I was about to say the opposite.</li>
+        <li>[debate] That's one way of looking at it.</li>
+        <li>[debate] Give me a better reason and I might come round.</li>
+        <li>[debate,friends] You know I love you, and you know you're wrong.</li>
+        <li>[debate,friends] We have this argument every week, you know.</li>
+        <li>[debate,mixed] I honestly don't know, but I don't think it's that simple.</li>
+        <li>[argue] That's the silliest thing I've heard all week.</li>
+        <li>[argue] You don't know what you're talking about.</li>
+        <li>[argue] I can't believe you'd say that out loud.</li>
+        <li>[argue] And who asked you?</li>
+        <li>[argue] You only think that because nobody's ever told you otherwise.</li>
+        <li>[argue] Say that again and see what happens.</li>
+        <li>[argue,rivals] Of course you'd say that, {OTHER}; you always do.</li>
+        <li>[argue,sore] We're not doing this again, are we.</li>
+        <li>[argue,strong] Over my dead body.</li>
+        <li>[argue,persona:proud] I've forgotten more about this than you'll ever know.</li>
+        <li>[agree] I've said the same to anyone who'd listen.</li>
+        <li>[agree] I'm glad you think so too, I was starting to wonder.</li>
+        <li>[agree,samegroup] That's what we all say, at the fire.</li>
+        <li>[agree,othergroup] Funny, your lot and mine agree on that.</li>
+        <li>[debate] Have you thought about it the other way round?</li>
+        <li>[debate] I'll grant you half of that.</li>
+        <li>[debate] You're half right, which is better than usual.</li>
+        <li>[debate,othergroup] Your lot always say that, and I still don't buy it.</li>
+        <li>[debate,grouprole:peacemaker] We can both be a bit right, can't we?</li>
+        <li>[argue] I'm not listening to this again.</li>
+        <li>[argue] You always do this, twist everything.</li>
+        <li>[argue,othergroup] Is that what your lot tell you to think?</li>
+        <li>[argue,grouprole:firebrand] Someone has to say it, and it won't be you.</li>
+        <li>[argue,persona:hothead] Don't you dare lecture me.</li>
+        <li>[argue,persona:wary] I knew you'd say that, I just knew it.</li>
+        <li>[agree,mixed] I can see that, I suppose.</li>
+        <li>[agree,mixed] Maybe, I've not made my mind up either.</li>
+        <li>[debate,mixed] I'm not sure, but I don't think you're right.</li>
+        <li>[debate,mixed] There's another way to see it, though.</li>
+        <li>[argue,mixed] Don't drag me into your crusade.</li>
+        <li>[argue,mixed] I don't have to pick a side to know you're wrong.</li>
+        <li>[debate,persona:curious] Interesting, what makes you think that?</li>
+        <li>[agree,persona:humble] I'm no expert, but I agree.</li>
+        <li>[argue,persona:proud] I won't be lectured by you.</li>
+        <li>[debate,persona:traditional] That's not how we did it, back home.</li>
+        <li>[agree,otherrep:trustworthy] If you say so, I believe it.</li>
+        <li>[agree,otherrep:skilled] You'd know better than most.</li>
+        <li>[debate,otherrep:gossip] Is this going to be all over the colony by supper?</li>
+        <li>[debate,otherrep:levelheaded] You're always so calm about it, it drives me mad.</li>
+        <li>[argue,otherrep:hothead] Calm down before you burst something.</li>
+        <li>[argue,otherrep:gossip] Go on, tell everyone I said so, you will anyway.</li>
+        <li>[argue,otherrep:idle] Do something useful for once, then talk.</li>
+        <li>[debate,otherrep:clumsy] Careful, you'll trip over that argument.</li>
+      </plain>
+      <warm>
+        <li>[agree] I'm so glad you said that, I thought I was the only one.</li>
+        <li>[agree] You're right, and it's good to hear someone say it.</li>
+        <li>[agree,friends] This is why I like talking to you.</li>
+        <li>[debate] I see why you'd think that, I just don't, quite.</li>
+        <li>[debate] I love you dearly, and I think you're wrong.</li>
+        <li>[debate] Let's not fall out over it, but no, I don't agree.</li>
+        <li>[argue] Please, just listen to yourself for a moment.</li>
+        <li>[argue] I don't want to fight about this, but you're wrong.</li>
+        <li>[argue] That hurt to hear, {OTHER}.</li>
+        <li>[agree,friends] It's a comfort, having you see it the same way.</li>
+        <li>[debate] I could listen to you argue all day, even when you're wrong.</li>
+      </warm>
+      <blunt>
+        <li>[agree] Finally, someone with sense.</li>
+        <li>[agree] Right, obviously.</li>
+        <li>[agree] Yes, and anyone who says otherwise is a fool.</li>
+        <li>[debate] Wrong, but I'll let you finish.</li>
+        <li>[debate] Nope.</li>
+        <li>[debate] That's not how it is, and you know it.</li>
+        <li>[argue] Rubbish.</li>
+        <li>[argue] Don't talk nonsense to me.</li>
+        <li>[argue] You've got a nerve saying that.</li>
+        <li>[argue] Shut up, {OTHER}.</li>
+        <li>[argue] Talk like that is why nothing gets done around here.</li>
+        <li>[argue] I've had enough of your opinions for one day.</li>
+        <li>[agree] Took you long enough to say it.</li>
+        <li>[argue] Stop talking.</li>
+      </blunt>
+      <cheerful>
+        <li>[agree] Look at us, agreeing on something; mark the calendar.</li>
+        <li>[agree] Great minds, {OTHER}, great minds.</li>
+        <li>[agree] Agreed, and that calls for a drink.</li>
+        <li>[debate] Wrong, but charmingly wrong.</li>
+        <li>[debate] Oh, here we go, I love this one.</li>
+        <li>[debate] Bold of you, very bold, and very wrong.</li>
+        <li>[argue] Wow, all right, someone woke up on the wrong side of the bedroll.</li>
+        <li>[argue] Easy now, it was only a thought.</li>
+        <li>[agree] I'm so right, and so are you, look at us.</li>
+        <li>[debate] Oh, you're adorable when you're wrong.</li>
+      </cheerful>
+      <gloomy>
+        <li>[agree] Yes, and it'll probably get worse.</li>
+        <li>[agree] True, sadly.</li>
+        <li>[agree] I wish you were wrong.</li>
+        <li>[debate] Maybe, but I wouldn't get your hopes up.</li>
+        <li>[debate] You can believe that if it helps.</li>
+        <li>[argue] Fine, have it your way; it won't matter in the end.</li>
+        <li>[argue] You'll see I was right when it all goes wrong.</li>
+        <li>[agree] Not that it'll change anything.</li>
+        <li>[debate] Maybe you're right, maybe it won't matter.</li>
+      </gloomy>
+      <cold>
+        <li>[agree] Correct.</li>
+        <li>[agree] Yes.</li>
+        <li>[agree] That is the sensible view.</li>
+        <li>[debate] I disagree.</li>
+        <li>[debate] The facts say otherwise.</li>
+        <li>[debate] Your reasoning has holes in it.</li>
+        <li>[argue] That is a stupid thing to believe.</li>
+        <li>[argue] I'm not going to waste time on this.</li>
+        <li>[argue] You're wrong, and I don't care how you feel about it.</li>
+        <li>[agree] Obviously.</li>
+        <li>[argue] I'm not interested in your opinion.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Any_Close</defName>
+    <turn>Close</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree] Good, that's two of us, then.</li>
+        <li>[agree] Glad we see it the same way.</li>
+        <li>[agree] We should say it louder, the pair of us.</li>
+        <li>[agree] Well, that's settled, then.</li>
+        <li>[agree] I knew I could count on you.</li>
+        <li>[agree,friends] This is why we get on, you and me.</li>
+        <li>[agree,mend] And about the other day, I'm sorry.</li>
+        <li>[agree,mend] Good to talk again, properly.</li>
+        <li>[debate] We'll see who's right.</li>
+        <li>[debate] Agree to disagree, then.</li>
+        <li>[debate] I'll win you round one day.</li>
+        <li>[debate] Same time tomorrow, then?</li>
+        <li>[debate] You're wrong, but I like how you're wrong.</li>
+        <li>[debate,friends] Never change, {OTHER}.</li>
+        <li>[debate,mend] Still friends, though?</li>
+        <li>[debate,mend] Let's not fall out over it again.</li>
+        <li>[argue] I'm done talking about this.</li>
+        <li>[argue] Fine, have it your way.</li>
+        <li>[argue] Forget I said anything.</li>
+        <li>[argue] There's no talking to you.</li>
+        <li>[argue] Think what you like, then.</li>
+        <li>[argue,rivals] Typical.</li>
+        <li>[argue,sore] And you wonder why I can't stand you.</li>
+        <li>[agree] Let's tell the others.</li>
+        <li>[agree,samegroup] The whole lot of us agree, then.</li>
+        <li>[debate] We'll pick this up again later.</li>
+        <li>[debate] Well, I've enjoyed being right.</li>
+        <li>[debate,grouprole:peacemaker] Let's call it even, shall we.</li>
+        <li>[argue] I'm going before I say something I regret.</li>
+        <li>[argue,othergroup] Go back to your own lot, then.</li>
+        <li>[argue,mend] I thought we'd put this behind us.</li>
+      </plain>
+      <warm>
+        <li>[agree] It means a lot to hear you say it.</li>
+        <li>[agree] Thank you, I needed someone to agree with me today.</li>
+        <li>[agree,mend] I've missed talking like this.</li>
+        <li>[debate] Well, I'm glad we can talk about it, at least.</li>
+        <li>[debate] Come on, let me get you something warm.</li>
+        <li>[argue] I'm sorry it came to this, I really am.</li>
+        <li>[argue] Let's both sleep on it, please.</li>
+        <li>[argue] I hate fighting with you.</li>
+      </warm>
+      <blunt>
+        <li>[agree] Good, glad you're not an idiot.</li>
+        <li>[agree] Right, now let's tell the others.</li>
+        <li>[debate] You'll come round.</li>
+        <li>[argue] Suit yourself.</li>
+        <li>[argue] Don't come crying to me when I'm proven right.</li>
+        <li>[argue] Talk to me again when you've grown a brain.</li>
+        <li>[argue] Whatever.</li>
+        <li>[agree] Good, that's sorted.</li>
+      </blunt>
+      <cheerful>
+        <li>[agree] Look at that, harmony, the elders would weep.</li>
+        <li>[agree] Two geniuses in one colony, what are the odds?</li>
+        <li>[debate] I'll put you down as "wrong but lovable".</li>
+        <li>[debate] Rematch tomorrow, winner gets the last biscuit.</li>
+        <li>[argue] Right, I'm going to go and be cheerful somewhere else.</li>
+        <li>[debate] Same argument, same time tomorrow?</li>
+      </cheerful>
+      <gloomy>
+        <li>[agree] At least we'll have each other when it goes wrong.</li>
+        <li>[debate] We'll both be wrong in the end, probably.</li>
+        <li>[argue] It doesn't matter anyway.</li>
+        <li>[argue] Fine, it'll all fall apart without my help.</li>
+        <li>[debate] We'll both be wrong in a year anyway.</li>
+      </gloomy>
+      <cold>
+        <li>[agree] Good.</li>
+        <li>[debate] We'll see.</li>
+        <li>[argue] We're done here.</li>
+        <li>[argue] I have better things to do.</li>
+        <li>[argue] I've heard enough.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Any_Last</defName>
+    <turn>Last</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li><li>Tease</li><li>Comfort</li><li>Reminisce</li><li>Joke</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree] Mm.</li>
+        <li>[agree] Right with you.</li>
+        <li>[agree] Always.</li>
+        <li>[agree] Mind how you go.</li>
+        <li>[debate] Not a chance.</li>
+        <li>[debate] We'll see about that.</li>
+        <li>[debate] Hah, you wish.</li>
+        <li>[debate] Keep telling yourself that.</li>
+        <li>[debate] Fine, but I'm still right.</li>
+        <li>[argue] Walk away, then.</li>
+        <li>[argue] Don't you turn your back on me.</li>
+        <li>[argue] Good, go.</li>
+        <li>[argue] Unbelievable.</li>
+        <li>[argue] I'll remember this.</li>
+        <li>[argue,persona:hothead] Come back here and say that.</li>
+        <li>[argue,persona:calm] I'll be here when you've cooled off.</li>
+        <li>[tease] I'll get you back for that.</li>
+        <li>[tease] Very funny.</li>
+        <li>[tease] Laugh it up.</li>
+        <li>[tease,stung] Not funny.</li>
+        <li>[tease,stung] Leave it, will you.</li>
+        <li>[comfort] Thank you, {OTHER}.</li>
+        <li>[comfort] I mean it, thank you.</li>
+        <li>[comfort] I'll try.</li>
+        <li>[comfort] Stay a bit longer?</li>
+        <li>[reminisce] I'll never forget it.</li>
+        <li>[reminisce] Those were the days, if you can call them that.</li>
+        <li>[reminisce] Strange to think about it now.</li>
+        <li>[reminisce,bad] I still dream about it.</li>
+        <li>[joke] Stop, I can't breathe.</li>
+        <li>[joke] Every time, {OTHER}, every time.</li>
+        <li>[joke,worn] Yes, yes, we know.</li>
+        <li>[joke,worn] Give it a rest.</li>
+        <li>[agree] Glad we talked.</li>
+        <li>[agree] Same as ever.</li>
+        <li>[debate] We'll see.</li>
+        <li>[debate] Not a chance in the world.</li>
+        <li>[argue] Don't bother coming back.</li>
+        <li>[argue] You'll regret that.</li>
+        <li>[tease] Watch your back, {OTHER}.</li>
+        <li>[comfort] I'm glad it was you.</li>
+        <li>[reminisce] Strange times, those.</li>
+        <li>[joke] Every time.</li>
+      </plain>
+      <warm>
+        <li>[agree] Look after yourself, won't you.</li>
+        <li>[debate] I'll never agree, but I'll always listen.</li>
+        <li>[argue] I didn't mean to shout.</li>
+        <li>[comfort] You're a good friend, {OTHER}.</li>
+        <li>[reminisce] I'm glad it was you there with me.</li>
+        <li>[argue] I'm sorry, I didn't mean it like that.</li>
+        <li>[comfort] You're kind, you know that.</li>
+      </warm>
+      <blunt>
+        <li>[argue] Coward.</li>
+        <li>[argue] Yeah, yeah, run along.</li>
+        <li>[argue] Wasting my time.</li>
+        <li>[tease] Keep it up and see what happens.</li>
+        <li>[debate] Wrong, still.</li>
+      </blunt>
+      <cheerful>
+        <li>[debate] I'll write it down so you can be wrong in writing.</li>
+        <li>[tease] Ha, you got me.</li>
+        <li>[joke] I'm going to be laughing at that all day.</li>
+        <li>[debate] I'll have the last word, it's tradition.</li>
+        <li>[joke] I'm still laughing.</li>
+      </cheerful>
+      <gloomy>
+        <li>[argue] Whatever, nothing changes.</li>
+        <li>[comfort] It helps, a little.</li>
+        <li>[reminisce] Feels like a hundred years ago.</li>
+        <li>[debate] It doesn't matter anyway.</li>
+        <li>[comfort] It's a little better, maybe.</li>
+      </gloomy>
+      <cold>
+        <li>[argue] Noted.</li>
+        <li>[debate] Unlikely.</li>
+        <li>[tease] Hilarious.</li>
+        <li>[argue] Done.</li>
+        <li>[joke] Mm.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Any_TeaseOpen</defName>
+    <turn>Open</turn>
+    <outcomes><li>Tease</li></outcomes>
+    <lines>
+      <plain>
+        <li>Still going on about {TOPIC}, {OTHER}?</li>
+        <li>Here comes our expert on {TOPIC}.</li>
+        <li>Let me guess, you've got opinions about {TOPIC} again.</li>
+        <li>Nobody's ever been as sure of anything as {OTHER} is about {TOPIC}.</li>
+        <li>Careful, if you say "{TOPIC}" three times, {OTHER} appears and lectures you.</li>
+        <li>I hear {OTHER} has drawn up a plan about {TOPIC}, in triplicate.</li>
+        <li>Somebody stop {OTHER} before the speech about {TOPIC} starts.</li>
+        <li>[friends] Go on then, tell me again what you think about {TOPIC}, I've missed it.</li>
+        <li>[persona:joker] I've been practising my {OTHER} impression: "but what about {TOPIC}?"</li>
+        <li>[samegroup] I've been warning the others about you and {TOPIC}.</li>
+        <li>[tooutsider] Has anyone warned you about {OTHER}'s other opinions yet?</li>
+        <li>[otherrep:clumsy] Mind your feet, {OTHER}, you're about to fall over {TOPIC}.</li>
+        <li>[otherrep:hothead] Deep breaths, {OTHER}, before you start on {TOPIC}.</li>
+      </plain>
+      <cheerful>
+        <li>Quick, everyone, {OTHER} is about to have a feeling about {TOPIC}.</li>
+        <li>I bet you dream about {TOPIC}, {OTHER}.</li>
+        <li>Every time someone mentions {TOPIC}, {OTHER} grows an inch taller.</li>
+        <li>If {TOPIC} were a person, {OTHER} would have married it by now.</li>
+        <li>That's eleven times today you've mentioned {TOPIC}, {OTHER}.</li>
+        <li>[grouprole:joker] Ladies and gentlemen, {OTHER}'s views on {TOPIC}, again.</li>
+        <li>[otherrep:brave] Our hero has views on {TOPIC}, everybody stand back.</li>
+      </cheerful>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Any_TeaseReply</defName>
+    <turn>Reply</turn>
+    <outcomes><li>Tease</li></outcomes>
+    <lines>
+      <plain>
+        <li>Laugh all you like, I'm still right.</li>
+        <li>Oh, very funny, {OTHER}.</li>
+        <li>You're one to talk.</li>
+        <li>At least I've got an opinion, unlike some.</li>
+        <li>Fine, but you'll miss me when I stop.</li>
+        <li>I'll have you know I've only mentioned it twice today.</li>
+        <li>Keep going, I'm writing all of this down.</li>
+        <li>[stung] That's not funny, {OTHER}.</li>
+        <li>[stung] Do you have to make a joke of everything?</li>
+        <li>[stung] Some of us take things seriously, you know.</li>
+        <li>[stung] Leave it, will you, I'm not in the mood.</li>
+        <li>[friends] You're lucky I like you.</li>
+        <li>[persona:joker] Says the one who laughs at their own jokes.</li>
+        <li>[persona:proud] I'll let that go, because I'm the bigger person.</li>
+        <li>You'll pay for that.</li>
+        <li>Funny, coming from you.</li>
+        <li>[samegroup] The others warned me about you.</li>
+      </plain>
+      <warm>
+        <li>Ha, all right, you've got me.</li>
+        <li>You know me too well, that's the trouble.</li>
+        <li>[stung] I know you mean well, but not today, please.</li>
+      </warm>
+      <blunt>
+        <li>Watch it.</li>
+        <li>Keep talking and you'll be wearing your dinner.</li>
+        <li>[stung] Say that again, I dare you.</li>
+      </blunt>
+      <cheerful>
+        <li>Guilty as charged, and proud of it.</li>
+        <li>You're only jealous of my passion, {OTHER}.</li>
+        <li>I'll take that as a compliment, thank you very much.</li>
+        <li>Ha, very good, I'll steal that one.</li>
+      </cheerful>
+      <gloomy>
+        <li>Mock me now, you'll see.</li>
+        <li>[stung] Typical, nobody takes me seriously.</li>
+      </gloomy>
+      <cold>
+        <li>Are you finished?</li>
+        <li>[stung] I don't find you amusing.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Any_TeaseClose</defName>
+    <turn>Close</turn>
+    <outcomes><li>Tease</li></outcomes>
+    <lines>
+      <plain>
+        <li>Only teasing, you know that.</li>
+        <li>You make it too easy, {OTHER}.</li>
+        <li>Never change, honestly.</li>
+        <li>I'll stop when it stops being funny.</li>
+        <li>[stung] All right, all right, sorry.</li>
+        <li>[stung] I didn't mean anything by it.</li>
+        <li>[stung] Sorry, bad timing.</li>
+        <li>I'm only having fun with you.</li>
+        <li>Don't take it to heart.</li>
+      </plain>
+      <warm>
+        <li>You know I only tease the people I like.</li>
+        <li>[stung] Sorry, that was unkind of me.</li>
+      </warm>
+      <blunt>
+        <li>Lighten up.</li>
+        <li>[stung] Can't take a joke, can you.</li>
+      </blunt>
+      <cheerful>
+        <li>Same time tomorrow, I'll bring new material.</li>
+        <li>I'm here all week.</li>
+        <li>[stung] Tough crowd today.</li>
+        <li>Admit it, you love it.</li>
+      </cheerful>
+      <gloomy>
+        <li>Somebody has to laugh around here.</li>
+      </gloomy>
+      <cold>
+        <li>Calm down.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Any_Open</defName>
+    <turn>Open</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>I've been thinking about {TOPIC}.</li>
+        <li>What do you make of {TOPIC}, honestly?</li>
+        <li>Can I tell you what I think about {TOPIC}?</li>
+        <li>I had a long think about {TOPIC} last night.</li>
+        <li>[strong] I feel strongly about {TOPIC}, and I don't care who knows it.</li>
+        <li>[mixed] I go back and forth on {TOPIC}, I really do.</li>
+        <li>[hot] Everyone's talking about {TOPIC} today.</li>
+        <li>[friends] You're the only one I can talk to about {TOPIC}.</li>
+        <li>[rivals] I suppose you've got an opinion on {TOPIC} too.</li>
+        <li>[samegroup] We were talking about {TOPIC} at the fire last night.</li>
+      </plain>
+      <warm>
+        <li>I'd love to know what you think about {TOPIC}.</li>
+      </warm>
+      <blunt>
+        <li>Let's have it out about {TOPIC}.</li>
+      </blunt>
+      <cheerful>
+        <li>Quick, give me your hottest opinion on {TOPIC}.</li>
+      </cheerful>
+      <gloomy>
+        <li>I keep worrying about {TOPIC}.</li>
+      </gloomy>
+      <cold>
+        <li>I have views on {TOPIC}.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+</Defs>
