@@ -1272,11 +1272,8 @@ namespace ColonyCouncil
             var e = ctx.enemy;
             if (option <= 1 && !byDefault && Fits(e))
             {
-                if (option == 1)
-                {
-                    var food = StorytellerEvents.Food(ctx.variant);
-                    if (food.Unavailable(ctx) == null) food.Apply(ctx);
-                }
+                // The silver or the food goes out with the answer's own errand (DilemmaEffect_CarryOut, carried to the
+                // envoy at the gate; taken at once if it never happens).
                 // Lifted to just above zero, where the game ends a war.
                 e.TryAffectGoodwillWith(Faction.OfPlayer, Mathf.Max(5, 5 - e.PlayerGoodwill), true, false);
                 if (!e.HostileTo(Faction.OfPlayer)) CouncilGameComponent.Instance?.happenings.Remember(StorytellerEvents.Peace, null, e, null, null, false, ctx.a);

@@ -165,9 +165,11 @@
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_Honeycomb</thought></li>
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><skill>Animals</skill><xp>300</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Outdoors</to><hours>10~17</hours><duration>1~1.5</duration><label>the smoking of the bees</label></li>
             </effects>
             <riskEffects>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_ChasedByBees</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Outdoors</to><hours>10~17</hours><duration>0.75~1</duration><label>the smoking of the bees</label></li>
             </riskEffects>
           </li>
           <li>

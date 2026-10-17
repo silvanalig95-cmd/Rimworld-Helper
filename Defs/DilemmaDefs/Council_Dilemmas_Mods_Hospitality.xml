@@ -51,7 +51,7 @@
         <outcome>The council sent the {FACTION} party off with a hundred and fifty silver and its thanks, and {X_nameDef} stayed behind. The parting was warmer than anyone expected.</outcome>
         <ways><openness>4</openness><generosity>3</generosity></ways>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>150</count></li>
+          <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the gift for {FACTION}</label><what>silver</what><count>150</count><to>Gate</to></li>
           <li Class="ColonyCouncil.DilemmaEffect_AdoptGuest" />
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>-2</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmH_GuestStayed</thought></li>
@@ -109,7 +109,7 @@
         <outcome>The council returned {X_nameDef}'s silver and sat {X_objective} down to the best meal the kitchen could manage. {X_nameDef} ate every bite and allowed that the place had its good points.</outcome>
         <ways><generosity>3</generosity><openness>1</openness></ways>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>40</count></li>
+          <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>{X_nameDef}'s silver</label><what>silver</what><count>40</count></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_DlmH_ComplaintHeard</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>3</amount></li>
         </effects>

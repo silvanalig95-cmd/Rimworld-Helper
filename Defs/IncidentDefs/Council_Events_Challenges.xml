@@ -225,7 +225,7 @@
             <label>Pay the {COUNT} silver</label>
             <outcome>The tribute is handed over. They take it and leave, and the colony goes back to work in a sour mood.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the tribute</label><what>silver</what><to>Gate</to></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_PaidTribute</thought><exceptTrait><li>Ascetic</li></exceptTrait></li>
             </effects>
           </li>
@@ -236,7 +236,7 @@
             <riskReplaces>true</riskReplaces>
             <riskOutcome>{A_nameDef} pushes too hard, and {ENEMY} take offense. They no longer want the tribute. A war party is coming instead, and soon.</riskOutcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><factor>0.5</factor></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>half the tribute</label><what>silver</what><factor>0.5</factor><to>Gate</to></li>
             </effects>
             <riskEffects>
               <li Class="ColonyCouncil.DilemmaEffect_RaidLater">

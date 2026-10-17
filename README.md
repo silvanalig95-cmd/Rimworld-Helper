@@ -400,8 +400,8 @@ a youngster who wants to see the world, an elder who wants one last walk in the 
 tale to tell or feels the cold in their bones. Many answers call on whoever is
 best placed (the doctor, a forager, a tracker, the best talker), and their skill decides how it goes.
 
-**Answers play out on the map.** When an answer describes something people do, they do it (337 answers of 105
-dilemmas and 112 Rimfolk events, stories and world events, plus calendar days, five decrees and nine ambitions). A
+**Answers play out on the map.** When an answer describes something people do, they do it (408 answers of 129
+dilemmas and 123 Rimfolk events, stories and world events, plus calendar days, five decrees and nine ambitions). A
 victory feast is eaten at the dining table, each guest sent to eat a cooked meal from the stores, the finest first
 they may eat. The midsummer bonfire is lit (a campfire laid for the evening if the colony has none, burned down to ash
 after), a toast is raised, an apology or a reading is heard round the table, a friend sits with someone who is ill, a
@@ -409,7 +409,10 @@ colonist sits by a grave or at the camp's fire, an apprentice works at the teach
 to bed. A work party cleans, hauls, mends, builds, sows or brings in the harvest with the game's own jobs, on work the
 colony really has; the colony walks out together to the graves or the gate and back; a few keep a vigil into the
 night; searchers fan out over the land and bring back what was promised; real medicine, food or silver is carried out
-of the stores to the visitor or the rider at the gate; the hunters go after the game an answer marked. None of them
+of the stores to the visitor or the rider at the gate; the hunters go after the game an answer marked. Every answer
+whose words say people do something has been read: the thief is punished in front of everyone at supper, the doctor
+sits at the bedside with the last dose, the snow is shovelled, the bees are smoked out, and the tribute, the bounty
+and the envoy's price go out to the gate by hand. The answer's own words are told once it's over. None of them
 holds anyone in a gathering, so the game's own parties and rituals can always take them. Nobody is called from
 danger, sleep, a meal or a sickbed, nothing starts with enemies about, and danger, drafting, hunger or exhaustion ends
 it. The answer's good moods come to those who were there once it's over; if it never happens within a few hours,

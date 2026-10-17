@@ -221,13 +221,20 @@ namespace ColonyCouncil
     /// <summary>
     /// One colonist (<see cref="who"/>, A unless given) goes somewhere for a while: to a person (<see cref="whom"/>: B
     /// unless given, A or the stranger X), keeping them company wherever they are (at their bedside, if they're in
-    /// bed); to a grave (the event's own, else one of the colony's dead); to the camp's fire; or on a long walk.
+    /// bed); to a grave (the event's own, else one of the colony's dead); to the camp's fire; or on a long walk. A visit to
+    /// a place on their own (the water, the fields, the gate, the open air) may name others to go to when that one can't
+    /// be had (<see cref="orTo"/>: no water near the colony, no fields).
     /// </summary>
     public class DilemmaEffect_Visit : DilemmaEffect_PlayOut
     {
         public PlayWho who = PlayWho.A;
         public PlaySpot to = PlaySpot.Person;
         public PlayWho whom = PlayWho.B;
+        public List<PlaySpot> orTo;
+
+        /// <summary>The places a visit can go to on its own (not to a person, a grave or the camp, which have their own ways).</summary>
+        public static bool OwnPlace(PlaySpot s) =>
+            s == PlaySpot.Fields || s == PlaySpot.Water || s == PlaySpot.Gate || s == PlaySpot.Outdoors || s == PlaySpot.Fire || s == PlaySpot.Place;
 
         public DilemmaEffect_Visit()
         {
@@ -243,6 +250,7 @@ namespace ColonyCouncil
             if (v == null || v.Dead || v.RaceProps == null || !v.RaceProps.Humanlike) return false;
             p.visitor = v;
             p.to = to;
+            p.spots = OwnPlace(to) && orTo != null ? orTo.Where(OwnPlace).ToList() : new List<PlaySpot>();
             if (to == PlaySpot.Person || to == PlaySpot.Stranger)
             {
                 // B going to someone means going to A, unless the effect says otherwise.

@@ -13,7 +13,7 @@
     <order>22</order>
     <summary>When an answer says people do something, they do it: a feast is eaten, a fire lit, a grave visited, a work party sent out, a watch kept at the gate, medicine carried out to the rider.</summary>
     <tip>Keep a few cooked meals and a few free hands: the answers you choose may need both.</tip>
-    <description>With "Answers play out on the map" on (the Events and world page of the settings, on by default), an answer to a dilemma, a Rimfolk event, a story or a world event that describes something people do happens on the map. A message says when it starts and where, This week lists it under "Gatherings and plans" while it waits and while it goes on, and the dilemmas page says how it went. The good moods the answer gives the people it names come to them once they have taken part; if it never comes about, everyone gets them anyway, as answers always did.</description>
+    <description>With "Answers play out on the map" on (the Events and world page of the settings, on by default), an answer to a dilemma, a Rimfolk event, a story or a world event that describes something people do happens on the map. A message says when it starts and where, This week lists it under "Gatherings and plans" while it waits and while it goes on, and the dilemmas page says how it went. The good moods the answer gives the people it names come to them once they have taken part; if it never comes about, everyone gets them anyway, as answers always did. When the answer is given you only hear when it's planned; the answer's own words for what happened ("They danced until the fire was embers...") come once it's over. An answer that says no, tells of something far away, or of something that happened before the letter came, sets nothing going and is told at once.</description>
     <sections>
       <li>
         <heading>What can happen</heading>
@@ -21,7 +21,7 @@
           <li>Kind | What happens | Taken part</li>
           <li>Feast | Everyone who comes eats a cooked meal from the stores, the finest first they may eat | Ate, or stayed a while</li>
           <li>Gathering, bonfire, toast, words | The colony gathers round the table, a fire, a stranger or a grave; a toast is drunk, a story heard | Stayed a while</li>
-          <li>Visit, lesson | One goes to sit with someone, by a grave, at the camp's fire, the field's edge or the gate, or works at a teacher's side | Half of it</li>
+          <li>Visit, lesson | One goes to sit with someone, by a grave, at the camp's fire, the water, the field's edge or the gate (the open air, if the answer allows it, when there's no water or field near), or works at a teacher's side | Half of it</li>
           <li>Work party | A few clean, haul, mend, build, carry the dead, clear snow, sow or bring in the harvest together | A job done, or a quarter of it at work</li>
           <li>Walk together | They gather, walk out to a grave, the gate, the fields, the water or far out, stand a while and walk back | Half the stay at the far end</li>
           <li>Vigil | They keep watch at a grave, the gate, the fields or someone's bedside, into the night | A third of it, at most two hours</li>
