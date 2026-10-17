@@ -4,7 +4,7 @@
   <!--
     Marks: what happens to people changes them (Source/ColonyCouncil/Persona/Marks.cs). A hook or a memory names a
     family; the first mark of the family whose "when" fits the person's nature is given, scaled by "lean"
-    (MarksMath.Scale). Part of the move stays for good (lastingShare), the rest fades over a year or so. A turning point
+    (MarksMath.Scale). Part of the move stays for good (lastingShare), the rest fades slowly (half in 240 days). A turning point
     (major) writes a journal line and may be news. In "shaped", {OTHER} is a name and {LABEL} what it was about.
 
     This file: violence and danger. {LABEL} is the fight ("the raid of 5 Aprimay") unless it says otherwise.
@@ -49,7 +49,7 @@
     <shifts><nerve>10</nerve><pride>8</pride><outlook>4</outlook></shifts>
     <major>true</major>
     <keepDays>180</keepDays>
-    <shaped>{PAWN_nameDef} has carried {PAWN_objective}self a little taller since holding the line in {LABEL}.</shaped>
+    <shaped>{PAWN_nameDef} has carried {PAWN_objective}self taller since holding the line in {LABEL}.</shaped>
     <defaultLabel>a fight at home</defaultLabel>
     <modExtensions>
       <li Class="ColonyCouncil.PersonaMarkExtension">
@@ -77,7 +77,7 @@
     <label>fought through a costly fight</label>
     <shifts><nerve>4</nerve><outlook>-6</outlook><warmth>3</warmth></shifts>
     <keepDays>120</keepDays>
-    <shaped>{PAWN_nameDef} has held on to the living a little tighter since {LABEL}, which not all of them survived.</shaped>
+    <shaped>{PAWN_nameDef} has held on to the living more tightly since {LABEL}, which not all of them survived.</shaped>
     <defaultLabel>a fight at home</defaultLabel>
     <modExtensions>
       <li Class="ColonyCouncil.PersonaMarkExtension">
@@ -150,7 +150,7 @@
     <label>carried someone to safety</label>
     <shifts><nerve>5</nerve><warmth>4</warmth><pride>4</pride></shifts>
     <keepDays>120</keepDays>
-    <shaped>{PAWN_nameDef} has stood a little straighter since carrying {OTHER} to safety in {LABEL}.</shaped>
+    <shaped>{PAWN_nameDef} has stood straighter since carrying {OTHER} to safety in {LABEL}.</shaped>
     <defaultLabel>a fight at home</defaultLabel>
     <modExtensions>
       <li Class="ColonyCouncil.PersonaMarkExtension">
@@ -180,7 +180,7 @@
     <label>hardened by the raids</label>
     <shifts><nerve>6</nerve><warmth>-5</warmth><temper>3</temper></shifts>
     <keepDays>120</keepDays>
-    <shaped>{PAWN_nameDef} has grown harder, and a little colder, through {LABEL}.</shaped>
+    <shaped>{PAWN_nameDef} has grown harder, and colder, through {LABEL}.</shaped>
     <defaultLabel>a year of raids</defaultLabel>
     <modExtensions>
       <li Class="ColonyCouncil.PersonaMarkExtension">

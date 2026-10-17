@@ -339,6 +339,31 @@ stat part contribute nothing and the hooks return 1.
   they show what a life is missing and point wishes and life goals toward it.
 - **Removal.** No hediffs and no stored thoughts. The only trace is a colonist in the middle of an episode.
 
+## Layer 8: Social life
+
+### Character: nature, marks and the character page
+A colonist's character is eight sides from -100 to 100 (`Persona/`). Nature is worked out from the game (traits through
+`PersonaNatureDef`s, the Social skill, age, a stable personal lean) and never saved; what happened to them is (lasting
+and fading moves, the marks themselves). Marks (`PersonaMarkDef` with a `PersonaMarkExtension`) are data: a family, the
+memories that bring it, a condition on nature ("nerve>=10"), a lean that scales it by nature (0.4 to 1.6), journal lines
+and news for turning points.
+
+- **One way in per happening.** Memories as they're gained (the one Harmony hook, shared with good times); otherwise
+  one-line calls where the colony already notices things: a fight won and a breakdown (WorldReactions), the downed
+  during a fight (quirks' hourly look), elections and the speaker's death (Offices), bonds lost (SocialWeb), vengeance
+  sworn, the sick pulled through, fine work, and a daily look in the council's day for the slow ones.
+- **Nature picks, then scales.** The first mark of a family whose condition fits is given; the same raid hardens one
+  colonist and shakes another. Nothing is random but a few small kindnesses (2 in 5 leave a mark).
+- **Rare enough to read.** `MarksMath.Blocked`: one small mark per three days, a turning point never twice within its
+  keeping, one happening one mark (a story and who it was about), two turning points a day at most. A person keeps 12
+  marks; small ones go first.
+- **Soft feedback only.** Character tips weights already there and never adds mood: moment weights 0.7 to 1.35
+  (`Heart.MomentWeightFactor`), soreness half again for hot-heads (`MomentTones`), confiding 0.4 to 1.6 and mentors
+  0.5 to 1.6 (with the systems talking to each other). Conversation, groups and gossip read character through their
+  own code and the `persona:*` tags.
+- **The page.** StoryView draws the sections of `CharacterPage` (character 10, what shaped them 20, then the other parts'),
+  with eight bars and per-side tooltips worked out the same way as nature. With social life off only nature shows.
+
 ## Real effects: answers that play out on the map
 
 A dilemma's answer, an event's answer or a calendar day used to give moods and a message and nothing else: "a victory
@@ -1162,7 +1187,7 @@ fights pass and the worn-out episode read from it. (A downed victim after a figh
 | 327 | A camp's hour (only while a camp is there) | the camp's members, trade, fees, its day's event |
 | 502 | Council's day, first half (first hour of the day only): trust, standards, decree trust and petitions, anniversaries, names, journals, offices | per colonist (their memories, for the journal) |
 | 677 | Health stories, the colony's part (with convalescence or reputation on): the cases of dangerous illness; pruning in the first hour of the day | per case (each colonist's part runs in its slice, below) |
-| 852 | Council's day, second half (first hour of the day only): the social web, social events, life goals, secrets, vendettas, quirks, legacy, the colony's ways, the links between systems (the physician's rounds, the herdmaster, setbacks counted), the day's history sample, trust effects, bitter colonists | per pair of colonists (opinions, ties, circles), per colonist and quirk def |
+| 852 | Council's day, second half (first hour of the day only): the social web, social events, life goals, secrets, vendettas, quirks, legacy, the colony's ways, marks on people's characters (illness, hunger, addiction, mastery, faith, peace), the links between systems (the physician's rounds, the herdmaster, setbacks counted), the day's history sample, trust effects, bitter colonists | per pair of colonists (opinions, ties, circles), per colonist and quirk def |
 | 917 | Links with other mods (only with one there): water and mending for strain and recovery | per colonist |
 | 1027 | Council: ambitions, personal touches, dilemmas, annals, dreams, quirks | the ambition's goals on its map; per colonist (asleep or waking; a dream weighs every dream def for the one waking) |
 | 1203 | World situations | per running situation (at most two); a new one rolls now and then |
@@ -1281,6 +1306,7 @@ on a map, in the world or in a caravan), so such a record is let go when the gam
 | Character | 5 ways; 30 recent shifts |
 | Decrees, dilemmas, offices, names, encounters, ambitions | one entry per def, office or title |
 | Heart | one per colonist, the gone dropped hourly |
+| Character marks | 12 marks per person (small ones go first, each let go after its keeping, turning points three times as long); what the marks watch: per person, the last 8 fights won (a year), their addictions and their last breakdown (5 days), known pawns only; skills mastered: known pawns, 800 at most |
 | Ailments | by pawn: last ailments 120 days, known pawns only; by hediff: only hediffs colonists still have |
 | Health stories | healers, beds, convalescence: known pawns only; losses 30 days; tends 3 days; setbacks and trust lines 20 days; visits 30 days; cases while the patient lives |
 | Calendar | at most 12 days written by the colony and 8 named by the player (traditions and the founding day stay); days about people who are gone let go; days taken off by hand grow only with the player's clicks |

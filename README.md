@@ -447,9 +447,27 @@ rivals) write about it. The **Social** tab shows every bond with its strength an
 
 ### Story: a page for every colonist
 Select a colonist and open the **Story** tab in their inspect panel (next to Bio, Social and Gear): their trust,
-office and earned names, their life goal and how close they are, their personal story and what it waits for next,
-their friends, rivals, comrades, students and the people they've lost, their quirks, vendettas and the secrets the
-colony knows about, their last dreams and the latest lines of their journal.
+office and earned names, their character and what shaped it, their life goal and how close they are, their personal
+story and what it waits for next, their friends, rivals, comrades, students and the people they've lost, their
+quirks, vendettas and the secrets the colony knows about, their last dreams and the latest lines of their journal.
+
+### Character: who they are, and what shaped them
+Every colonist has a character on eight sides (warmth, nerve, temper, humour, trust, pride, openness, outlook). Their
+nature sets where they start: traits (the base game's and DLCs', and 74 from Vanilla Traits Expanded, RimTraits,
+Medieval Overhaul, Vanilla Ideology Expanded - Memes, Alpha Memes and Alpha Genes), the Social skill, age and a small
+lean of their own. Then life marks them, with 48 kinds of mark: downed in a raid, carried out of one, holding the
+line or breaking under fire, a friend, lover, child or parent lost, nursed through an illness, forgiven after a
+breakdown, a secret betrayed, a seat won or lost, a craft mastered, a child raised, a hungry season, an addiction
+beaten, a new faith, a brush with what lies past the world. Their nature picks the mark and how deep it goes: the
+bold harden where the timid are shaken, the cold close up where others grieve, raid after raid hardens some and
+wears others down. Part of each change stays for good and the rest fades over years; marks are kept rare (one small
+mark per few days, each turning point once in a long while), and a turning point goes into their journal in their
+own voice. Character shows in what they say and do: the lines they get and their tone, more warm moments from the
+warm and more frictions from the hot-tempered, secrets confided sooner by the trusting, students taken on sooner by
+the warm. The Story tab opens with it: their character in words, eight bars with where their nature put them and
+where they are now (hover for every trait and mark that moved it), and "what shaped them", dated, turning points
+first. A setting ("Personalities and social life") turns it all off; the Almanac pages "character" and "what shapes
+a person" explain it.
 
 ### Life goals
 A few days after settling in, each colonist sets their heart on something to do before they die: master a craft,

@@ -156,7 +156,7 @@
         <journal>
           <plain>
             <li>{OTHER_nameDef} is here. Small, loud and furious about everything. I'd die for {OTHER_objective} already.</li>
-            <li>I held {OTHER_nameDef} for an hour and didn't notice the time go. I've never done that before.</li>
+            <li>I held {OTHER_nameDef} all afternoon and didn't notice the light go. I've never done that before.</li>
             <li>I'm a parent. I keep checking that {OTHER_nameDef} is still breathing, every few minutes.</li>
           </plain>
           <warm><li>{OTHER_nameDef} grabbed my finger and wouldn't let go. Neither will I.</li></warm>

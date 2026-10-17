@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- A colonist's character and what shapes it (Source/ColonyCouncil/Persona/). -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_C_Character</defName>
+    <label>character</label>
+    <category>Council</category>
+    <order>9</order>
+    <summary>Who each colonist is: eight sides of a person, set by their nature and moved by what happens to them.</summary>
+    <tip>Hover a side on a colonist's character page to see what put it there.</tip>
+    <description>Every colonist has a character, kept on eight sides, each running from one end to the other: warmth (cold to big-hearted), nerve (timid to fearless), temper (unflappable to hot-headed), humour (dour to a born joker), trust (suspicious to open-hearted), pride (self-effacing to vain), openness (set in their ways to restless for anything new) and outlook (bleak to sunny). Each side runs from -100 to 100. It shows from 30 either way and is strong from 60; the character in words names the three sides that show most ("warm, quick-tempered and guarded").
+
+A colonist starts from their nature and changes only for reasons the game can tell you: what happened to them. Two people who live through the same raid can come out of it changed in different ways, and the same person stays recognisably themselves.</description>
+    <sections>
+      <li>
+        <heading>Nature</heading>
+        <text>Traits set where a colonist starts: kind gives warmth +50, a psychopath warmth -60, a wimp nerve -40, tough nerve +25, abrasive temper +30, joyous humour +40, an optimist outlook +25, too smart openness +35. The Social skill adds warmth and humour (a passion for it adds warmth), and age counts: children are open and trusting (openness +20, trust +15, humour +10), teenagers restless (openness +10, temper +5), the old settled (openness -10, temper -5, nerve +5). On top comes a small lean of their own, up to 12 either way on each side, so two colonists without a single telling trait still differ, and always in the same way.
+
+The traits of other mods count too, where they say something about a person: Vanilla Traits Expanded (brave, coward, vengeful, fun-loving, world weary and more), RimTraits (valiant, craven, rowdy, composed, inquisitive), Medieval Overhaul's fighter and veteran, the elder of Vanilla Ideology Expanded - Memes, Alpha Memes' vow of nonviolence and Alpha Genes' beauty. A mod that isn't loaded is simply skipped.</text>
+      </li>
+      <li>
+        <heading>Marks: how people change</heading>
+        <text>What happens to a colonist leaves a mark on them: a raid, a death, a kindness, a betrayal, a seat won, a child grown. A mark moves a few sides, some far and some barely. 30% of the move stays for good; the rest fades slowly, half of it in 240 days (four years), so a hard season is still felt years later and then softens. All that life can add is capped (40 for good and 50 still fading on each side), and each new push the same way counts for less than the last: someone already hardened hardens less with every blow.
+
+Marks are kept rare enough to mean something:</text>
+        <points>
+          <li>at most one small mark per person in three days;</li>
+          <li>a turning point (a death, a betrayal, a seat won, a craft mastered) never comes twice within its keeping, and at most two come in one day;</li>
+          <li>one happening leaves one mark of its kind: a brother who was also a friend is mourned once;</li>
+          <li>a small mark doesn't come again for 20 days or more.</li>
+        </points>
+        <after>A turning point is written in the colonist's journal in their own voice, and some are news and go into the chronicle. The page "what shapes a person" lists every mark.</after>
+      </li>
+      <li>
+        <heading>The same thing, different people</heading>
+        <text>The happening decides what kind of mark it is; the colonist's nature decides which mark, and how deep it goes. Downed in a fight, someone with nerve 10 or more gets up harder to frighten, while anyone else is shaken, the timid most of all. When a close friend dies, the cold (warmth -25 or less) close up and let fewer people near; others go quiet. After four fights in a year, those with any nerve harden and cool, the rest are worn down. A child who loses family clings to the grown-ups, where an adult holds the rest of the family closer.
+
+How far someone already is on a side can make a mark weigh more or less, from 0.4 to 1.6 times: a fright hits the timid harder, a seat won goes more to the head of the humble, a betrayal hurts the trusting most, being carried out of a fight wins over the suspicious more than the trusting.</text>
+      </li>
+      <li>
+        <heading>How it shows</heading>
+        <text>Character is heard as well as seen. Lines can be written for the warm, the cold, the bold, the timid, the hot-headed, the calm, the joker, the serious, the trusting, the wary, the proud, the humble, the curious, the traditional, the hopeful and the gloomy, and are picked for the colonist they fit; a colonist whose traits don't set their tone of voice speaks in the tone their character gives them.
+
+It also tips what they do, gently. The warm and the playful start up to a quarter more warm moments in conversation (more still to comfort someone grieving), and the hot-tempered up to a third more frictions; a hot-head stays sore after a spat half as long again. With the systems talking to each other (a setting), the trusting confide a secret in a friend up to 1.6 times as readily and the suspicious far less, and a warm master takes on a student sooner.</text>
+      </li>
+      <li>
+        <heading>The character page</heading>
+        <text>A colonist's Story tab, and their page in the council's People roster, open with their character: the words for it, and eight small bars. Each bar fills from the middle to where the colonist is now; a pale tick marks where their nature put them, and a gold mark shows where they've moved to. Hover a bar for what the side means and what put it there: each trait, the Social skill, their age, their own lean, and the marks that moved it.
+
+Under it, "what shaped them" lists their marks with the day each happened, turning points first ("Mara has been harder to frighten since going down in the raid of 5 Aprimay"); hover one to see what it moved. Then come the views they hold, the memories they share with others, their groups and what people say about them, as those parts of the colony's life fill in. A colonist nothing has marked yet shows their nature alone. With "Personalities and social life" off, only nature shows and nothing leaves a mark.</text>
+      </li>
+    </sections>
+    <keywords><li>character</li><li>personality</li><li>nature</li><li>mark</li><li>warmth</li><li>nerve</li><li>temper</li><li>humour</li><li>trust</li><li>pride</li><li>openness</li><li>outlook</li></keywords>
+    <seeAlso><li>Council_Alm_C_Marks</li><li>Council_Alm_C_Social</li><li>Council_Alm_C_Secrets</li></seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_C_Marks</defName>
+    <label>what shapes a person</label>
+    <category>Council</category>
+    <order>9</order>
+    <summary>Every mark a colonist can carry: what brings it, who it changes how, and what it moves.</summary>
+    <tip>A colonist who is carried out of a fight trusts more readily for years.</tip>
+    <description>These are the marks life can leave on a colonist's character (see "character"). Each comes from something that really happened, at the moment it happened or, for the slow ones (a long illness, hunger, an addiction, mastery, a new faith, a long peace), on the day the colony notices. Where a row names two marks, the colonist's nature picks one. Numbers are the full move before nature scales it; turning points are marked "(turning point)" and kept three times as long as their keeping says.</description>
+    <sections>
+      <li>
+        <heading>Violence and danger</heading>
+        <table>
+          <li>What happens | The mark</li>
+          <li>Downed while a fight is on at home | Nerve 10 or more: harder to frighten (nerve +7, temper +3, warmth -2). Anyone else: shaken (nerve -8, outlook -5, trust +3), the timid more.</li>
+          <li>Most kills in a fight won (two or more) | Held the line (turning point): nerve +10, pride +8, outlook +4.</li>
+          <li>Fought in a fight won at a cost | Holds on to the living (nerve +4, outlook -6, warmth +3), unless the death already marked them.</li>
+          <li>A breakdown while a fight is on | Broke under fire (turning point): nerve -10, pride -8.</li>
+          <li>Carried out of a fight while downed | Trusts more readily (turning point): trust +10, warmth +6. The one who carried them stands straighter: nerve +5, warmth +4, pride +4.</li>
+          <li>Taken prisoner | Watches every locked door: trust -8, nerve -3, temper +3.</li>
+          <li>Four fights won in a year | Nerve 0 or more: harder and colder (nerve +6, warmth -5, temper +3). Anyone else: worn down (outlook -8, nerve -4).</li>
+          <li>Swore vengeance on a people | Quicker to anger: temper +8, warmth -4, nerve +3.</li>
+        </table>
+      </li>
+      <li>
+        <heading>Loss</heading>
+        <table>
+          <li>What happens | The mark</li>
+          <li>A husband, wife, fiancé or lover died | Laughs less (turning point): outlook -12, humour -6, warmth -4.</li>
+          <li>A son or daughter died | A hardness (turning point): outlook -14, temper +6, openness -5.</li>
+          <li>A parent, brother, sister or grandparent died | Adults hold the family closer (outlook -7, warmth +4, pride +3); children cling to the grown-ups (trust -8, nerve -6, outlook -6). Both turning points.</li>
+          <li>A close friend died (opinion 40 or more), or a friend, comrade or teacher they were bonded to | Warmth -25 or less: lets fewer people close (warmth -6, nerve +3, trust -3). Anyone else: quieter (outlook -8, humour -4, warmth +2). Both turning points.</li>
+          <li>A bonded animal died | Keeps animals at arm's length: warmth -3, outlook -5.</li>
+          <li>The speaker died | The colony feels less steady: trust -5, outlook -6.</li>
+        </table>
+      </li>
+      <li>
+        <heading>Kindness, shame and betrayal</heading>
+        <table>
+          <li>What happens | The mark</li>
+          <li>A doctor pulled them through a dangerous illness | Gentler with the sick (turning point): warmth +7, trust +7, outlook +3.</li>
+          <li>A gift, someone having their back, someone speaking up for them | Sometimes (2 in 5): thinks better of people, trust +4, warmth +4.</li>
+          <li>The council kept a promise, or the colony stood by them | Takes the council at its word: trust +5, outlook +2.</li>
+          <li>A kind word or a making-up within four days of a breakdown that hurt someone | Forgiven (turning point): warmth +6, pride -5, trust +5, temper -3.</li>
+          <li>A violent breakdown | Watches their temper: pride -5, temper -4, trust -3.</li>
+          <li>A confidant gave their secret away | Keeps their own counsel (turning point): trust -14, warmth -4. The one who told: pride -6, outlook -3, trust -3, more for the warm.</li>
+          <li>Lost an election and minded it | Touchy about the council: pride -4, temper +4, trust -3.</li>
+          <li>Voted out of a seat | Quieter at meetings: pride -7, trust -3.</li>
+          <li>The council broke a promise or took back what it gave | Takes its word with a pinch of salt: trust -8, outlook -2.</li>
+          <li>Left, divorced or cheated on | Slow to let anyone close (turning point): trust -10, warmth -5, pride -4.</li>
+        </table>
+      </li>
+      <li>
+        <heading>Pride and growth</heading>
+        <table>
+          <li>What happens | The mark</li>
+          <li>Given a seat, by a vote or a ruler (a seat kept doesn't count again) | Speaks up more (turning point): pride +7, nerve +4, outlook +3.</li>
+          <li>Reached level 20 in a skill they love | A master's certainty (turning point): pride +9, outlook +4, openness -3.</li>
+          <li>Made a masterwork | Prouder of their work: pride +5, outlook +2.</li>
+          <li>Made something legendary | Carries themselves like a master (turning point): pride +12, outlook +5.</li>
+          <li>Their child came of age | A settled pride (turning point): warmth +6, outlook +6, pride +4.</li>
+          <li>Their first child was born | Softer and more careful (turning point): warmth +8, nerve -4, openness -3.</li>
+          <li>Married | Someone to come home to (turning point): warmth +5, outlook +6, trust +4.</li>
+          <li>Their student graduated | Glad to share what they know: pride +5, warmth +4, openness +2.</li>
+        </table>
+      </li>
+      <li>
+        <heading>Hardship</heading>
+        <table>
+          <li>What happens | The mark</li>
+          <li>Malnourished past its first stage | Never wastes a crumb: outlook -5, openness -4, warmth -2.</li>
+          <li>Sick with an illness for eight days or more | More patience with the sick: outlook -4, warmth +3, nerve -2.</li>
+          <li>An addiction gone | Trusts their own will (turning point): pride +6, nerve +5, outlook +6.</li>
+          <li>Enslaved | Eyes down, thoughts their own (turning point): trust -12, pride -8, temper +4.</li>
+          <li>Freed | Head held up (turning point): outlook +10, pride +6, trust +5.</li>
+          <li>A year at home without a big threat | Lets their guard down: outlook +7, nerve -4, humour +3.</li>
+        </table>
+      </li>
+      <li>
+        <heading>Faith and the world</heading>
+        <table>
+          <li>What happens | The mark</li>
+          <li>Changed faith after their first days here (Ideology) | Sees things through new eyes (turning point): openness +6, outlook +4, trust +3.</li>
+          <li>An unforgettable party, festival or sky lanterns, a heartwarming funeral, a spectacular ceremony, a grand bestowing | Holds the colony's ways closer: outlook +4, warmth +3, openness -3.</li>
+          <li>Taken by an obelisk, a psychic ritual, an inhuman voice, a harbinger's scream, the dark, an anima tree's scream, a neuroquake | Openness 25 or more: wants to know more (openness +6, warmth -2, outlook -2). Anyone else: looks over their shoulder (nerve -6, outlook -5, trust -3).</li>
+        </table>
+        <after>Anything a DLC or mod brings only marks people when that DLC or mod is there.</after>
+      </li>
+    </sections>
+    <keywords><li>mark</li><li>character</li><li>change</li><li>turning point</li><li>grief</li><li>trauma</li><li>betrayal</li><li>pride</li></keywords>
+    <seeAlso><li>Council_Alm_C_Character</li><li>Council_Alm_C_Secrets</li><li>Council_Alm_C_Offices</li></seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+</Defs>

@@ -202,6 +202,11 @@ MODEL = {
     "Quirks/Quirks.cs:luckyPast": ("cap", (C["LuckyPast"], 0.05), 150, "LuckyItems.MaxPast"),
     "Quirks/Quirks.cs:downedTick": ("colonists", 0.5, D, "within the longest quirk window"),
     "Quirks/Quirks.cs:battleTick": ("colonists", 1, D, "within the longest quirk window"),
+    # Marks on a person's character (what the marks watch for; the marks themselves are kept on the persona)
+    "Persona/Marks.cs:watches": ("colonists", 1, 120, "one per person watched; known pawns only, empty ones dropped"),
+    "Persona/Marks.cs:fights": ("colonists", 8, V, "the last 8 fights won per person, a year at most"),
+    "Persona/Marks.cs:addictions": ("colonists", 0.3, 40, "the addictions they have now"),
+    "Persona/Marks.cs:once": ("known", 0.3, 40, "skills mastered; known pawns only, 800 at most"),
     # The world
     "World/FactionMemory.cs:deeds": ("fixed", 12 * 12, 200, "12 deeds per people (12 peoples), fading out"),
     "World/WorldSituation.cs:flags": ("fixed", 4, 40, "per situation (counted under active and history)"),

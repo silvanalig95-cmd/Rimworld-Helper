@@ -17,7 +17,7 @@
   <CC_Char_TurningPoint>a turning point</CC_Char_TurningPoint>
   <CC_Char_Raised>Raised: {0}.</CC_Char_Raised>
   <CC_Char_Lowered>Lowered: {0}.</CC_Char_Lowered>
-  <CC_Char_MarkTip>{0}% of the change stays for good; the rest fades over a year or so.</CC_Char_MarkTip>
+  <CC_Char_MarkTip>{0}% of the change stays for good; the rest fades slowly, half of it in 240 days (four years).</CC_Char_MarkTip>
   <CC_Char_Neither>in between</CC_Char_Neither>
   <CC_Char_Now>Now: {0} ({1}).</CC_Char_Now>
   <CC_Char_NatureIs>By nature: {0} ({1}).</CC_Char_NatureIs>
