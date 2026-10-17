@@ -1,0 +1,470 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Kinds of group (Source/ColonyCouncil/Social/Groups/GroupDefs.cs, GroupKindDef). A group forms out of people who
+    pull together (friendship, shared work, a fight fought side by side, the night hours, faith, where they came from,
+    age, being alike); the kind is what binds most of them, and it gives the group its name, picked once and kept.
+    Among the kinds that fit enough of the group (minShare), the lowest order wins: the most particular reason first,
+    friendship (named after the one it gathers round) last.
+
+    names: era tags as in flavour lines ([lowtech], [!lowtech], [tribal], [medieval]); [pods] only when the colony's
+    first people came down in drop pods. {ANCHOR} is the one the group gathers round, when it formed.
+    habits: what it does together (Rimfolk_GroupHabits.xml), the first one that fits first.
+  -->
+
+  <!-- ===================== The hours ===================== -->
+
+  <ColonyCouncil.GroupKindDef>
+    <defName>Rimfolk_Group_NightShift</defName>
+    <label>night shift</label>
+    <binds>NightShift</binds>
+    <minShare>0.67</minShare>
+    <names>
+      <li>the night shift</li>
+      <li>the night owls</li>
+      <li>the small-hours crowd</li>
+      <li>the lamp-lighters</li>
+    </names>
+    <why>They keep the night hours while the rest sleep.</why>
+    <habits><li>Rimfolk_Habit_Night</li><li>Rimfolk_Habit_Table</li></habits>
+    <tag>nightshift</tag>
+    <order>5</order>
+  </ColonyCouncil.GroupKindDef>
+
+  <!-- ===================== Shared work ===================== -->
+
+  <ColonyCouncil.GroupKindDef>
+    <defName>Rimfolk_Group_Hunters</defName>
+    <label>hunters</label>
+    <binds>Work</binds>
+    <workTypes><li>Hunting</li></workTypes>
+    <names>
+      <li>the hunters</li>
+      <li>the hunting party</li>
+      <li>the trackers</li>
+      <li>[tribal] the spear-carriers</li>
+      <li>[medieval] the huntsmen's table</li>
+    </names>
+    <why>They go out after game together.</why>
+    <habits><li>Rimfolk_Habit_Fire</li><li>Rimfolk_Habit_Hunt</li></habits>
+    <tag>hunters</tag>
+    <order>10</order>
+  </ColonyCouncil.GroupKindDef>
+
+  <ColonyCouncil.GroupKindDef>
+    <defName>Rimfolk_Group_Kitchen</defName>
+    <label>kitchen crowd</label>
+    <binds>Work</binds>
+    <workTypes><li>Cooking</li></workTypes>
+    <names>
+      <li>the kitchen crowd</li>
+      <li>the cooks</li>
+      <li>the pot-watchers</li>
+      <li>[lowtech] the hearth-keepers</li>
+    </names>
+    <why>They spend their days over the same pots.</why>
+    <habits><li>Rimfolk_Habit_Table</li><li>Rimfolk_Habit_Work</li></habits>
+    <tag>kitchen</tag>
+    <order>11</order>
+  </ColonyCouncil.GroupKindDef>
+
+  <ColonyCouncil.GroupKindDef>
+    <defName>Rimfolk_Group_Fields</defName>
+    <label>field hands</label>
+    <binds>Work</binds>
+    <workTypes><li>Growing</li><li>PlantCutting</li></workTypes>
+    <names>
+      <li>the field hands</li>
+      <li>the growers</li>
+      <li>the green thumbs</li>
+      <li>the furrow crowd</li>
+      <li>[tribal] the planters</li>
+    </names>
+    <why>They work the fields side by side.</why>
+    <habits><li>Rimfolk_Habit_Work</li><li>Rimfolk_Habit_Table</li></habits>
+    <tag>fields</tag>
+    <order>12</order>
+  </ColonyCouncil.GroupKindDef>
+
+  <ColonyCouncil.GroupKindDef>
+    <defName>Rimfolk_Group_Workshop</defName>
+    <label>workshop lot</label>
+    <binds>Work</binds>
+    <workTypes><li>Crafting</li><li>Smithing</li><li>Tailoring</li></workTypes>
+    <names>
+      <li>the workshop lot</li>
+      <li>the bench crowd</li>
+      <li>the makers</li>
+      <li>[lowtech] the forge crowd</li>
+      <li>[!lowtech] the shop floor</li>
+    </names>
+    <why>They share the benches and the workshop's noise.</why>
+    <habits><li>Rimfolk_Habit_Work</li><li>Rimfolk_Habit_Table</li></habits>
+    <tag>workshop</tag>
+    <order>13</order>
+  </ColonyCouncil.GroupKindDef>
+
+  <ColonyCouncil.GroupKindDef>
+    <defName>Rimfolk_Group_Builders</defName>
+    <label>builders</label>
+    <binds>Work</binds>
+    <workTypes><li>Construction</li></workTypes>
+    <names>
+      <li>the builders</li>
+      <li>the wall-raisers</li>
+      <li>the hammer crowd</li>
+      <li>the scaffold lot</li>
+    </names>
+    <why>They put up the colony's walls together.</why>
+    <habits><li>Rimfolk_Habit_Work</li><li>Rimfolk_Habit_Fire</li></habits>
+    <tag>builders</tag>
+    <order>14</order>
+  </ColonyCouncil.GroupKindDef>
+
+  <ColonyCouncil.GroupKindDef>
+    <defName>Rimfolk_Group_Miners</defName>
+    <label>diggers</label>
+    <binds>Work</binds>
+    <workTypes><li>Mining</li></workTypes>
+    <names>
+      <li>the diggers</li>
+      <li>the rock crew</li>
+      <li>the miners</li>
+      <li>the dust-eaters</li>
+    </names>
+    <why>They dig the rock together, and come up grey with it.</why>
+    <habits><li>Rimfolk_Habit_Work</li><li>Rimfolk_Habit_Table</li></habits>
+    <tag>miners</tag>
+    <order>15</order>
+  </ColonyCouncil.GroupKindDef>
+
+  <ColonyCouncil.GroupKindDef>
+    <defName>Rimfolk_Group_Healers</defName>
+    <label>sickroom lot</label>
+    <binds>Work</binds>
+    <workTypes><li>Doctor</li></workTypes>
+    <names>
+      <li>the sickroom lot</li>
+      <li>the healers</li>
+      <li>the bandage crowd</li>
+      <li>[lowtech] the bone-setters</li>
+    </names>
+    <why>They have sat up with the sick together.</why>
+    <habits><li>Rimfolk_Habit_Talk</li><li>Rimfolk_Habit_Table</li></habits>
+    <tag>healers</tag>
+    <order>16</order>
+  </ColonyCouncil.GroupKindDef>
+
+  <ColonyCouncil.GroupKindDef>
+    <defName>Rimfolk_Group_Scholars</defName>
+    <label>scholars</label>
+    <binds>Work</binds>
+    <workTypes><li>Research</li></workTypes>
+    <names>
+      <li>the scholars</li>
+      <li>the readers</li>
+      <li>the bookish lot</li>
+      <li>[lowtech] the lettered</li>
+      <li>[!lowtech] the lab crowd</li>
+    </names>
+    <why>They puzzle over the same problems.</why>
+    <habits><li>Rimfolk_Habit_Talk</li><li>Rimfolk_Habit_Games</li></habits>
+    <tag>scholars</tag>
+    <order>17</order>
+  </ColonyCouncil.GroupKindDef>
+
+  <ColonyCouncil.GroupKindDef>
+    <defName>Rimfolk_Group_Keepers</defName>
+    <label>beast-keepers</label>
+    <binds>Work</binds>
+    <workTypes><li>Handling</li></workTypes>
+    <names>
+      <li>the beast-keepers</li>
+      <li>the herders</li>
+      <li>the animal folk</li>
+      <li>the pen crowd</li>
+    </names>
+    <why>They tend the colony's animals together.</why>
+    <habits><li>Rimfolk_Habit_Walk</li><li>Rimfolk_Habit_Fire</li></habits>
+    <tag>keepers</tag>
+    <order>18</order>
+  </ColonyCouncil.GroupKindDef>
+
+  <ColonyCouncil.GroupKindDef>
+    <defName>Rimfolk_Group_Artists</defName>
+    <label>artists</label>
+    <binds>Work</binds>
+    <workTypes><li>Art</li></workTypes>
+    <names>
+      <li>the artists</li>
+      <li>the carvers</li>
+      <li>the dreamers at the bench</li>
+    </names>
+    <why>They make beautiful things side by side.</why>
+    <habits><li>Rimfolk_Habit_Talk</li><li>Rimfolk_Habit_Games</li></habits>
+    <tag>artists</tag>
+    <order>19</order>
+  </ColonyCouncil.GroupKindDef>
+
+  <!-- ===================== A fight fought together ===================== -->
+
+  <ColonyCouncil.GroupKindDef>
+    <defName>Rimfolk_Group_Comrades</defName>
+    <label>comrades</label>
+    <binds>Battle</binds>
+    <minShare>0.67</minShare>
+    <names>
+      <li>the ones who held the line</li>
+      <li>the wall's own</li>
+      <li>the veterans</li>
+      <li>the old comrades</li>
+      <li>[lowtech] the shield-line</li>
+      <li>[!lowtech] the firing line</li>
+    </names>
+    <why>They have fought side by side.</why>
+    <habits><li>Rimfolk_Habit_Fire</li><li>Rimfolk_Habit_Table</li></habits>
+    <norms><li>Rimfolk_Norm_Brave</li></norms>
+    <tag>comrades</tag>
+    <order>20</order>
+  </ColonyCouncil.GroupKindDef>
+
+  <!-- ===================== Faith ===================== -->
+
+  <ColonyCouncil.GroupKindDef>
+    <defName>Rimfolk_Group_Faithful</defName>
+    <label>faithful</label>
+    <binds>Faith</binds>
+    <minShare>0.75</minShare>
+    <names>
+      <li>the faithful</li>
+      <li>the devout</li>
+      <li>the believers</li>
+      <li>the ones at prayer</li>
+    </names>
+    <why>They hold to the same faith, and hold to it hard.</why>
+    <habits><li>Rimfolk_Habit_Prayer</li><li>Rimfolk_Habit_Table</li></habits>
+    <norms><li>Rimfolk_Norm_Devout</li></norms>
+    <tag>faithful</tag>
+    <order>22</order>
+  </ColonyCouncil.GroupKindDef>
+
+  <!-- ===================== Where they came from ===================== -->
+
+  <ColonyCouncil.GroupKindDef>
+    <defName>Rimfolk_Group_Founders</defName>
+    <label>founders</label>
+    <binds>Founders</binds>
+    <minShare>0.75</minShare>
+    <names>
+      <li>the founders</li>
+      <li>the first ones</li>
+      <li>the old crew</li>
+      <li>[pods] the ones from the ship</li>
+      <li>[pods] the pod crew</li>
+    </names>
+    <why>They were here from the colony's first day.</why>
+    <habits><li>Rimfolk_Habit_Fire</li><li>Rimfolk_Habit_Table</li></habits>
+    <tag>founders</tag>
+    <order>30</order>
+  </ColonyCouncil.GroupKindDef>
+
+  <ColonyCouncil.GroupKindDef>
+    <defName>Rimfolk_Group_Arrived</defName>
+    <label>ones who came together</label>
+    <binds>Arrived</binds>
+    <minShare>0.75</minShare>
+    <names>
+      <li>the ones who came together</li>
+      <li>the late arrivals</li>
+      <li>the second wave</li>
+    </names>
+    <why>They came to the colony on the same day, and stayed close.</why>
+    <habits><li>Rimfolk_Habit_Table</li><li>Rimfolk_Habit_Talk</li></habits>
+    <tag>arrived</tag>
+    <order>32</order>
+  </ColonyCouncil.GroupKindDef>
+
+  <ColonyCouncil.GroupKindDef>
+    <defName>Rimfolk_Group_TribeBorn</defName>
+    <label>tribe-born</label>
+    <binds>Origin</binds>
+    <origin>Tribal</origin>
+    <minShare>0.75</minShare>
+    <names>
+      <li>the tribe-born</li>
+      <li>the old-ways crowd</li>
+      <li>the fire-born</li>
+    </names>
+    <why>They grew up in the tribes, and it shows.</why>
+    <habits><li>Rimfolk_Habit_Fire</li><li>Rimfolk_Habit_Walk</li></habits>
+    <tag>tribeborn</tag>
+    <order>34</order>
+  </ColonyCouncil.GroupKindDef>
+
+  <ColonyCouncil.GroupKindDef>
+    <defName>Rimfolk_Group_Offworlders</defName>
+    <label>offworlders</label>
+    <binds>Origin</binds>
+    <origin>Offworld</origin>
+    <minShare>0.75</minShare>
+    <names>
+      <li>the offworlders</li>
+      <li>the sky-born</li>
+      <li>the star folk</li>
+    </names>
+    <why>They came from other worlds, and remember them.</why>
+    <habits><li>Rimfolk_Habit_Talk</li><li>Rimfolk_Habit_Walk</li></habits>
+    <tag>offworlders</tag>
+    <order>35</order>
+  </ColonyCouncil.GroupKindDef>
+
+  <!-- ===================== Age ===================== -->
+
+  <ColonyCouncil.GroupKindDef>
+    <defName>Rimfolk_Group_Elders</defName>
+    <label>old hands</label>
+    <binds>Elders</binds>
+    <minShare>0.67</minShare>
+    <names>
+      <li>the old hands</li>
+      <li>the elders</li>
+      <li>the grey heads</li>
+      <li>the old guard</li>
+    </names>
+    <why>They have the most years behind them.</why>
+    <habits><li>Rimfolk_Habit_Walk</li><li>Rimfolk_Habit_Fire</li></habits>
+    <tag>elders</tag>
+    <order>40</order>
+  </ColonyCouncil.GroupKindDef>
+
+  <ColonyCouncil.GroupKindDef>
+    <defName>Rimfolk_Group_Young</defName>
+    <label>young ones</label>
+    <binds>Young</binds>
+    <minShare>0.67</minShare>
+    <names>
+      <li>the young ones</li>
+      <li>the youngsters</li>
+      <li>the young crowd</li>
+    </names>
+    <why>They are the colony's young.</why>
+    <habits><li>Rimfolk_Habit_Games</li><li>Rimfolk_Habit_Walk</li></habits>
+    <tag>young</tag>
+    <order>41</order>
+  </ColonyCouncil.GroupKindDef>
+
+  <!-- ===================== Being alike ===================== -->
+
+  <ColonyCouncil.GroupKindDef>
+    <defName>Rimfolk_Group_Merry</defName>
+    <label>merry lot</label>
+    <binds>Likeness</binds>
+    <axis>Humour</axis>
+    <atLeast>30</atLeast>
+    <minShare>0.67</minShare>
+    <names>
+      <li>the merry lot</li>
+      <li>the laughing table</li>
+      <li>the jokers' corner</li>
+    </names>
+    <why>They all love a laugh.</why>
+    <habits><li>Rimfolk_Habit_Games</li><li>Rimfolk_Habit_Fire</li></habits>
+    <tag>merry</tag>
+    <order>60</order>
+  </ColonyCouncil.GroupKindDef>
+
+  <ColonyCouncil.GroupKindDef>
+    <defName>Rimfolk_Group_Grumblers</defName>
+    <label>grumblers</label>
+    <binds>Likeness</binds>
+    <axis>Outlook</axis>
+    <atLeast>30</atLeast>
+    <low>true</low>
+    <minShare>0.67</minShare>
+    <names>
+      <li>the grumblers</li>
+      <li>the long faces</li>
+      <li>the gloomy corner</li>
+    </names>
+    <why>They all expect the worst, and enjoy saying so.</why>
+    <habits><li>Rimfolk_Habit_Table</li><li>Rimfolk_Habit_Talk</li></habits>
+    <tag>grumblers</tag>
+    <order>61</order>
+  </ColonyCouncil.GroupKindDef>
+
+  <ColonyCouncil.GroupKindDef>
+    <defName>Rimfolk_Group_Curious</defName>
+    <label>curious ones</label>
+    <binds>Likeness</binds>
+    <axis>Openness</axis>
+    <atLeast>30</atLeast>
+    <minShare>0.67</minShare>
+    <names>
+      <li>the curious ones</li>
+      <li>the question-askers</li>
+      <li>the wanderers</li>
+    </names>
+    <why>They are all forever after something new.</why>
+    <habits><li>Rimfolk_Habit_Talk</li><li>Rimfolk_Habit_Walk</li></habits>
+    <tag>curious</tag>
+    <order>62</order>
+  </ColonyCouncil.GroupKindDef>
+
+  <ColonyCouncil.GroupKindDef>
+    <defName>Rimfolk_Group_Bold</defName>
+    <label>bold ones</label>
+    <binds>Likeness</binds>
+    <axis>Nerve</axis>
+    <atLeast>30</atLeast>
+    <minShare>0.67</minShare>
+    <names>
+      <li>the bold ones</li>
+      <li>the daredevils</li>
+      <li>the reckless lot</li>
+    </names>
+    <why>None of them knows how to back down.</why>
+    <habits><li>Rimfolk_Habit_Fire</li><li>Rimfolk_Habit_Games</li></habits>
+    <tag>bold</tag>
+    <order>63</order>
+  </ColonyCouncil.GroupKindDef>
+
+  <ColonyCouncil.GroupKindDef>
+    <defName>Rimfolk_Group_Gentle</defName>
+    <label>gentle ones</label>
+    <binds>Likeness</binds>
+    <axis>Warmth</axis>
+    <atLeast>35</atLeast>
+    <minShare>0.67</minShare>
+    <names>
+      <li>the gentle ones</li>
+      <li>the soft hearts</li>
+      <li>the kind table</li>
+    </names>
+    <why>They are all big-hearted, and look out for each other.</why>
+    <habits><li>Rimfolk_Habit_Table</li><li>Rimfolk_Habit_Talk</li></habits>
+    <tag>gentle</tag>
+    <order>64</order>
+  </ColonyCouncil.GroupKindDef>
+
+  <!-- ===================== Friendship ===================== -->
+
+  <ColonyCouncil.GroupKindDef>
+    <defName>Rimfolk_Group_Friends</defName>
+    <label>friends</label>
+    <binds>Friends</binds>
+    <minShare>0.5</minShare>
+    <names>
+      <li>{ANCHOR}'s lot</li>
+      <li>{ANCHOR}'s crowd</li>
+      <li>{ANCHOR}'s circle</li>
+      <li>{ANCHOR}'s friends</li>
+      <li>{ANCHOR}'s table</li>
+    </names>
+    <why>They are friends, and gather round one of them.</why>
+    <habits><li>Rimfolk_Habit_Fire</li><li>Rimfolk_Habit_Table</li><li>Rimfolk_Habit_Talk</li></habits>
+    <tag>friends</tag>
+    <order>90</order>
+  </ColonyCouncil.GroupKindDef>
+
+</Defs>

@@ -736,7 +736,6 @@ namespace ColonyCouncil
             if (home == null) return;
             var labels = new Dictionary<string, int>();
             int frameStale = (int)(PressureMath.FrameStaleDays * GenDate.TicksPerDay);
-            int planStale = (int)(PressureMath.BlueprintStaleDays * GenDate.TicksPerDay);
             foreach (var t in map.listerThings.ThingsInGroup(ThingRequestGroup.BuildingFrame))
             {
                 if (!(t is Frame f) || f.Faction != Faction.OfPlayer || !f.Spawned || !home[f.Position]) continue;
@@ -752,21 +751,7 @@ namespace ColonyCouncil
                 u.frames++;
                 Count(labels, f.def.entityDefToBuild?.label, 5);
             }
-            foreach (var t in map.listerThings.ThingsInGroup(ThingRequestGroup.Blueprint))
-            {
-                if (t == null || t.Faction != Faction.OfPlayer || !t.Spawned || !home[t.Position]) continue;
-                int id = t.thingIDNumber;
-                seenThings.Add(id);
-                if (!firstSeen.TryGetValue(id, out int seen) || seen > now)
-                {
-                    firstSeen[id] = now;
-                    continue;
-                }
-                if (now - seen < planStale) continue;
-                u.blueprints++;
-                Count(labels, t.def.entityDefToBuild?.label, 1);
-            }
-            u.stage = PressureMath.UnfinishedStage(PressureMath.UnfinishedScore(u.frames, u.blueprints));
+            u.stage = PressureMath.UnfinishedStage(PressureMath.UnfinishedScore(u.frames));
             u.thing = labels.Count == 0 ? null : labels.OrderByDescending(kv => kv.Value).First().Key;
         }
 

@@ -288,8 +288,8 @@ as moods while their cause lasts, each saying what caused it, with what helps in
   homecoming is already celebrated when they're back.
 - **a packed room**: a dining or rec room with too little space per person, or diners short of seats (-1 to -2, for
   half a day). Parties, rituals and meetings don't count.
-- **half-built work**: frames left untouched for 2 days and plans waiting 4 days in the home area (-1 to -3). Plans
-  alone stay small; lazy colonists and slobs don't care.
+- **half-built work**: frames left untouched for 2 days in the home area (-1 to -3). Plans (blueprints) never count;
+  lazy colonists and slobs don't care.
 
 None of them is a flat penalty: a second meal bill, a second job in the Work tab or a bigger dining room makes them go
 away. They feed the heart's feelings (loneliness, restlessness, frustration, contentment). The **Life's ups and
@@ -447,6 +447,28 @@ into them: being passed over for a rival, losing an election, a fight, a grudge 
 decree can start a rivalry, while backing the same petition or making up after a quarrel builds a friendship. Some
 dilemmas only come up between friends, rivals or comrades. When someone dies, the people closest to them (and their
 rivals) write about it. The **Social** tab shows every bond with its strength and history, and every circle.
+
+### Groups: circles that form, quarrel, split and merge
+With "Personalities and social life" on, the circles become real groups. They grow out of something real (friendship,
+the same work, a fight fought together, the night hours, faith, where people came from, age, being alike) and keep the
+name they were given: **the hunters, the night shift, the old hands, the kitchen crowd, the faithful, the ones from the
+ship, Hector's lot** (25 kinds, with names for a tribe or a keep). Each has:
+- **roles** that come from character and settle slowly: the anchor, the joker, the peacemaker (who steps into its
+  quarrels), the firebrand, the worrier, the quiet one, the newcomer;
+- **ways** it shares and expects (18: loud and merry, keep to themselves, suspicious of outsiders, brave to a fault...),
+  which its people drift towards over the weeks, and **views** most of them hold;
+- **habits** kept together when they're really together (9: an evening at the fire, a shared table, a game night, the
+  small hours...), which ease strain and count for belonging rather than mood; now and then the anchor calls them all to
+  one on the map;
+- **cohesion** that grows with habits and shared memories and falls with quarrels, losses and time apart, and a history.
+
+Newcomers are outsiders until a group takes them in, sooner in a warm, trusting group, while a wary one closes ranks.
+Groups fall out over feuds, opposed views and clashing ways (digs at the other lot, votes against them), and a loose
+group with a rift splits; two that overlap merge; an empty one ends and someone remembers it. Twelve group moments run
+in the game's own conversations, with about 600 lines in all. **People → Bonds** shows each group as a card (its people
+and their parts, ways, habits, quarrels and history) and as a coloured band on the web; a bond's details list what the
+two went through together, and the character page has a "Groups and role" section. Almanac: "Groups" and "Roles in a
+group".
 
 ### Story: a page for every colonist
 Select a colonist and open the **Story** tab in their inspect panel (next to Bio, Social and Gear): their trust,

@@ -35,7 +35,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RF_PressureUnfinished</defName>
     <thoughts><li>Council_Pressure_Unfinished</li></thoughts>
-    <fix>Finish the frames that are waiting (often for materials), or cancel what you don't need. Untouched plans count for much less than half-built work. Lazy colonists and slobs don't care.</fix>
+    <fix>Finish the frames that are waiting (often for materials), or cancel what you don't need. Lazy colonists and slobs don't care.</fix>
     <article>Council_Alm_C_Pressures</article>
   </ColonyCouncil.MoodHintDef>
 

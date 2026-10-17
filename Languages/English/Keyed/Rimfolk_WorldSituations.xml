@@ -33,6 +33,7 @@
   <!-- The World page -->
   <CC_WS_InTheWorld>In the world</CC_WS_InTheWorld>
   <CC_WS_Quiet>Nothing out of the ordinary in the region.</CC_WS_Quiet>
+  <CC_WS_QuietYet>Nothing out of the ordinary in the region yet. World events are rare: the first comes once the colony has found its feet, then about one every {0} days (the mod settings set how often).</CC_WS_QuietYet>
   <CC_WS_ColonyPart>The colony so far: {0}.</CC_WS_ColonyPart>
   <CC_WS_MayLast>May last</CC_WS_MayLast>
   <CC_WS_Likelier>Likelier while it lasts: {0}.</CC_WS_Likelier>

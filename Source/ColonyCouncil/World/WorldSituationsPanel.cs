@@ -39,7 +39,10 @@ namespace ColonyCouncil
             y += UiKit.SectionTitle(x, y, w, "CC_WS_InTheWorld".Translate(), Icons.WorldEvent, Accent);
             if (cards.Count == 0)
             {
-                y += UiKit.EmptyState(x, y, w, Icons.WorldEvent, "CC_WS_Quiet".Translate(), 56f);
+                // Never had one yet: say how often they come, so a quiet region doesn't look like something broken.
+                y += UiKit.EmptyState(x, y, w, Icons.WorldEvent, inst.history.Count == 0
+                    ? "CC_WS_QuietYet".Translate(Mathf.RoundToInt(ColonyCouncilMod.Settings.daysBetweenWorldSituations)).Resolve()
+                    : "CC_WS_Quiet".Translate().ToString(), 56f);
                 return y + 14f;
             }
             y += 4f;

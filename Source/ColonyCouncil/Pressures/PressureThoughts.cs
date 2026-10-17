@@ -186,7 +186,7 @@ namespace ColonyCouncil
         }
     }
 
-    /// <summary>Half-built frames and old plans left standing in the home area.</summary>
+    /// <summary>Half-built frames left standing in the home area (plans never count).</summary>
     public class ThoughtWorker_Unfinished : ThoughtWorker_Pressure
     {
         protected override int Stage(Pawn p, PressureTracker t)
@@ -198,21 +198,10 @@ namespace ColonyCouncil
             return stage - 1;
         }
 
-        public override string Label(Pawn p, string stageLabel) => PlansOnly(p) ? "CC_Pressure_PlansLabel".Translate().ToString() : stageLabel;
-
-        public override string Describe(Pawn p, string stageDescription) => PlansOnly(p) ? "CC_Pressure_PlansDesc".Translate().ToString() : stageDescription;
-
-        /// <summary>Plans nobody has started aren't half-built yet.</summary>
-        private static bool PlansOnly(Pawn p)
-        {
-            var u = p?.Map != null ? Pressures.Tracker?.UnfinishedOn(p.Map) : null;
-            return u != null && u.frames == 0 && u.blueprints > 0;
-        }
-
         public override string Why(Pawn p)
         {
             var u = p?.Map != null ? Pressures.Tracker?.UnfinishedOn(p.Map) : null;
-            return u == null ? null : "CC_Pressure_Why_Unfinished".Translate(u.frames, u.blueprints).Resolve();
+            return u == null ? null : "CC_Pressure_Why_Unfinished".Translate(u.frames).Resolve();
         }
     }
 }

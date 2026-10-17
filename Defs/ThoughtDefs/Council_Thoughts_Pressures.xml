@@ -151,12 +151,12 @@
       </li>
       <li>
         <label>half-built everywhere</label>
-        <description>Frames and plans all over, and none of them finished. We start things and leave them.</description>
+        <description>Half-built frames all over, and none of them finished. We start things and leave them.</description>
         <baseMoodEffect>-2</baseMoodEffect>
       </li>
       <li>
         <label>a colony of loose ends</label>
-        <description>Everywhere I look there's a frame or a plan left standing for days. I can't remember the last thing we finished.</description>
+        <description>Everywhere I look there's a frame left standing for days. I can't remember the last thing we finished.</description>
         <baseMoodEffect>-3</baseMoodEffect>
       </li>
     </stages>

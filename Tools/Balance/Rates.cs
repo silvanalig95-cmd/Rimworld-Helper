@@ -94,6 +94,19 @@ namespace Balance
         };
 
         /// <summary>
+        /// Group moments (Social/Groups/, GroupMomentExtension): who they are between. Most pairs in a colony with groups
+        /// don't share one; few pairs are across two groups at odds, fewer still a member and a newcomer (welcomed, spoken
+        /// for, or shut out), or one who is out of step with their group's ways. A role named for the one who starts it
+        /// (the joker, the worrier...) is one person in a group of four or five.
+        /// </summary>
+        public static readonly Dictionary<string, float> GroupGates = new Dictionary<string, float>
+        {
+            ["sameGroup"] = 0.35f, ["rivalGroups"] = 0.1f, ["welcome"] = 0.06f, ["sponsor"] = 0.03f, ["closeRanks"] = 0.02f, ["outOfStep"] = 0.06f
+        };
+
+        public const float GroupRoleGate = 0.25f;
+
+        /// <summary>
         /// The conditions of a custom of the land or the faith (CustomConditions on a dilemma): the land it needs (a
         /// colony is one or two of a dozen lands), rain falling that day, and a faith of the colony's own with the right
         /// memes (Ideology, and one of a few kinds of belief).

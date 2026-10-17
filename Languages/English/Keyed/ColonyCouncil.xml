@@ -1693,9 +1693,7 @@ Those against it ({WHO}) will trust the council less and resent it more than usu
   <CC_Pressure_Why_MissingFriend>apart from {OTHER_nameDef}, a close friend, for {TIME}.</CC_Pressure_Why_MissingFriend>
   <CC_Pressure_Why_CrowdedSeats>{0} people in the {1}, with seats for {2}.</CC_Pressure_Why_CrowdedSeats>
   <CC_Pressure_Why_Crowded>{0} people in a {1} of {2} cells.</CC_Pressure_Why_Crowded>
-  <CC_Pressure_Why_Unfinished>in the home area, {0} frames not worked on for 2 days or more, and {1} plans waiting 4 days or more.</CC_Pressure_Why_Unfinished>
-  <CC_Pressure_PlansLabel>plans gathering dust</CC_Pressure_PlansLabel>
-  <CC_Pressure_PlansDesc>Plans have been marked out for days, and not one of them started. I keep stepping around the lines.</CC_Pressure_PlansDesc>
+  <CC_Pressure_Why_Unfinished>in the home area, {0} frames not worked on for 2 days or more.</CC_Pressure_Why_Unfinished>
   <CC_Pressure_RoomFallback>room</CC_Pressure_RoomFallback>
   <CC_Pressure_ThingFallback>building</CC_Pressure_ThingFallback>
   <CC_Pressure_WorkFallback>the same work</CC_Pressure_WorkFallback>
