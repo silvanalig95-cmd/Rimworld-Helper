@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Groups and the parts people play in them (Source/ColonyCouncil/Social/Groups/). -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_C_Groups</defName>
+    <label>groups</label>
+    <category>Council</category>
+    <order>9</order>
+    <summary>The colony's social circles: how they form and get their names, what they do together, their ways, newcomers, quarrels between them, and how they split, merge and end.</summary>
+    <tip>Put the new one on the same shift as the hunters and give it a week. They'll be telling each other the same bad jokes by then.</tip>
+    <description>With "Personalities and social life" and the social web on, colonists drift into groups: the hunters, the night shift, the old hands, the kitchen crowd, the faithful, Hector's lot. A group grows out of something real, keeps the name it was given when it formed, and has a life of its own: its people settle into parts (see "Roles in a group"), it grows closer or looser, it takes up ways of its own, it keeps habits together, it takes newcomers in or shuts them out, it falls out with other groups, and it can split, merge or come to an end. Every group has a card on the council's Bonds page with its people, its ways, its quarrels and its history, and each colonist's character page says which groups they're in and what part they play.</description>
+    <sections>
+      <li>
+        <heading>How a group forms</heading>
+        <text>Once a day, with the social web's day, the colony looks at who pulls towards whom. Friendship counts most and a rivalry pushes hardest; work shared (what they're actually seen doing, the same workshop, field or kitchen), a fight fought side by side, keeping the night hours, being alike in character, the same faith held hard, having come to the colony together or from the same kind of life, and being among the colony's young or old each pull a little. Three to seven people who all pull together well enough, with no rift between any two of them, become a group. A colonist belongs to at most two.
+
+A group is named for what binds most of it, picked once and kept, in the colony's era: a band of hunters may be "the spear-carriers" in a tribe. When nothing in particular binds them but friendship, it's named after the one it gathers round. Groups already there in an old save are found quietly on its first day; after that a founding, a split, a merge and an end are each told once, in the news, the chronicle and the journals of those in it.</text>
+        <table>
+          <li>What binds them | What they may be called</li>
+          <li>The night hours | the night shift, the night owls</li>
+          <li>The same work | the hunters, the kitchen crowd, the field hands, the workshop lot, the builders, the diggers, the sickroom lot, the scholars, the beast-keepers, the artists</li>
+          <li>A fight fought together | the ones who held the line, the veterans</li>
+          <li>The same faith, held hard (Ideology) | the faithful, the devout</li>
+          <li>Here from the first day, or came together later | the founders, the ones from the ship, the late arrivals</li>
+          <li>The same life before (where it sets them apart) | the tribe-born, the offworlders</li>
+          <li>Age (where it sets them apart) | the old hands, the young ones</li>
+          <li>Character | the merry lot, the grumblers, the curious ones, the bold ones, the gentle ones</li>
+          <li>Friendship | Hector's lot, Hector's crowd</li>
+        </table>
+      </li>
+      <li>
+        <heading>Cohesion</heading>
+        <text>How close a group is, from 0 to 100. It settles towards what its people's pull on each other holds up, and moves with what happens: habits kept together, things they go through together and quarrels mended raise it; quarrels between its people, a member lost (a death most of all) and being apart for days lower it, and so does someone who goes against its ways. Someone who no longer holds to the others for a few days drifts off, and doesn't go back.</text>
+      </li>
+      <li>
+        <heading>Habits</heading>
+        <text>Each group has something it does together: an evening at the fire, a shared table, a game night in the rec room, working side by side, a hunt, the small hours, prayers, talking late, a walk at dusk. When two or more of its people are together doing it, they keep the habit, once a day at most: each feels they belong (a small moment that counts for the heart's Belonging and gives a little recreation rather than mood), their strain eases a little, one of them says something, and the group grows closer. With "Answers play out on the map" on, the anchor of a close group calls them all to it every week or two: a fire laid of an evening or a gathering, on the map.</text>
+      </li>
+      <li>
+        <heading>Ways and views</heading>
+        <text>A group takes up ways from its people's character: loud and merry, serious-minded, keep to themselves, look after their own, suspicious of outsiders, open to anyone, brave to a fault, keep their heads down, quick to take offence, slow to anger, think well of themselves, always look on the bright side, expect the worst, set in their ways, always after something new, hard workers, keep late hours, devout. It keeps up to three. Its people are drawn a little towards them over the weeks, more in a close group, and someone far the other way is out of step: the others let them know, and it costs them a little mood. Views most of its people share on what the colony talks about show on its card, and those who don't hold them yet come round, slowly.</text>
+      </li>
+      <li>
+        <heading>Newcomers</heading>
+        <text>Someone new to the colony is an outsider until a group takes them in. Each day they find their way a little further into the group they hold to best: what its people think of them, things they go through together, work they share, a member who speaks for them and welcomes from its people all help. A warm, trusting group with open ways takes them in within a couple of weeks; a wary, cold one may close ranks, and then they get the cold shoulder, feel left out now and then, and can wait more than a month. Someone in no group and with no close friend feels left out now and then too.</text>
+        <after>To bring a newcomer in: put them on the same work as the group they lean towards, at the same table, and let a member who likes them do the rest.</after>
+      </li>
+      <li>
+        <heading>Between groups</heading>
+        <text>Two groups fall out when their people feud, when they hold opposite views or clashing ways, and with every spat between them. Once it's bad blood, it's told: their people think less of each other, have digs at each other, vote against each other in elections and object to each other's wishes, and a group's firebrand stirs it up. It cools when the feuds end. Members of the same group think a little better of each other and vote for their own.</text>
+      </li>
+      <li>
+        <heading>Splits, merges and ends</heading>
+        <table>
+          <li>What | When | What happens</li>
+          <li>Split | A group of four or more stays loose (cohesion under 25) for three days and two of its people pull against each other | The two go to different sides and everyone goes with the side they hold to. The side with the anchor keeps the name; the other becomes a group of its own if it's three or more, else they simply leave. Everyone feels it for a few days.</li>
+          <li>Merge | Half or more of the smaller group is in the larger one already, or two close groups pull together and would still be small | The older group keeps its name and takes the other in.</li>
+          <li>End | Fewer than two of its people are left, or it falls apart (cohesion near 0 for days) | It's told, and those who were in it, or someone who lost a friend in it, write about it.</li>
+        </table>
+      </li>
+    </sections>
+    <keywords><li>group</li><li>circle</li><li>clique</li><li>cohesion</li><li>habit</li><li>norm</li><li>newcomer</li><li>outsider</li><li>rivalry</li><li>split</li><li>merge</li></keywords>
+    <seeAlso><li>Council_Alm_C_GroupRoles</li><li>Council_Alm_C_Social</li><li>Council_Alm_C_Offices</li></seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_C_GroupRoles</defName>
+    <label>roles in a group</label>
+    <category>Council</category>
+    <order>9</order>
+    <summary>The parts people play in their groups (anchor, joker, peacemaker, firebrand, worrier, quiet one, newcomer), where they come from and what they do.</summary>
+    <tip>Every crowd has one who talks, one who laughs and one who just turns up. Ours has two who talk.</tip>
+    <description>In each group its people settle into parts that come from their character (warm, proud, quick-tempered, a joker...) and how they behave (their friends in the group, the quarrels they have mended). A part changes slowly: only after a better one has fitted for three days running, so a role doesn't flip from day to day, and someone who already has a part keeps it against a rival who fits it only a little better. A group has one anchor, one joker and one peacemaker at most. Someone who fits no part is simply one of them. The group's card shows each person's part; their character page says it in words, and lines they say are picked for it.</description>
+    <sections>
+      <li>
+        <heading>The parts</heading>
+        <table>
+          <li>Part | Who | What they do</li>
+          <li>The anchor | Warm, sure of themselves, good with people, friends with most of the group | The one it gathers round: a friends group is named after them, they look in on anyone who has gone low, and they call the group to its habit on the map.</li>
+          <li>The joker | Makes the jokes | Speaks most at the habit, and when one of the group is low, gets a laugh out of them (a little recreation, and they think better of the joker).</li>
+          <li>The peacemaker | Warm and slow to anger; quarrels mended count | When two of the group quarrel and the peacemaker is there, they step in now and then: the quarrel is over in half the time, and it counts as one mended.</li>
+          <li>The firebrand | Quick-tempered and proud | Stirs the group up against a group it's at odds with, which makes it worse.</li>
+          <li>The worrier | Gloomy and big-hearted | Frets to the others about the stores, the next raid, each of them; the others talk them down, and they feel better for it.</li>
+          <li>The quiet one | Says little, not much for company | There anyway: a cup kept full, a nod across the fire. They seldom speak at the habit.</li>
+          <li>The newcomer | Joined a group that's been going a while, ten days ago or less | Asks about the old days and how the group came together, then settles into a part of their own.</li>
+        </table>
+      </li>
+      <li>
+        <heading>Where it shows</heading>
+        <text>People → Bonds: each group's card shows its people with their parts under their names; hover over one for what it means and why it fits. The colonist's character page lists their groups and parts ("One of the hunters since 5 Aprimay: the joker"), and a part they're settling into. Lines spoken at a group's habits are picked for the speaker's part, and other parts of the mod can ask for it (the grouprole tags).</text>
+      </li>
+    </sections>
+    <keywords><li>role</li><li>anchor</li><li>joker</li><li>peacemaker</li><li>firebrand</li><li>worrier</li><li>quiet</li><li>newcomer</li></keywords>
+    <seeAlso><li>Council_Alm_C_Groups</li><li>Council_Alm_C_Social</li></seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+</Defs>

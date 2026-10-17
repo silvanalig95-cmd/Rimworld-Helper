@@ -15,7 +15,7 @@ namespace ColonyCouncil
     /// an empty one ends, people join the group they hold to, and new groups form out of what binds people (friendship,
     /// work, a fight, the night hours, faith, where they came from, age, being alike). The first day on a save finds the
     /// groups already there quietly; after that a founding, a split, a merge and an end are each told once.
-    /// See DESIGN.md ("Layer: social life", groups) and the Almanac pages "Groups" and "Roles in a group".
+    /// See DESIGN.md ("Layer 8: Social life", Groups) and the Almanac pages "Groups" and "Roles in a group".
     /// </summary>
     public static partial class GroupLife
     {
@@ -36,6 +36,8 @@ namespace ColonyCouncil
         // ---------------- The social web's circles, built from the groups ----------------
 
         private static readonly Dictionary<int, Clique> cliqueById = new Dictionary<int, Clique>();
+        private static int cliqueVersion = -1;
+        private static GroupTracker cliqueTracker;
 
         /// <summary>The groups as the social web's circles (for the older code that asks about circles), one per group.</summary>
         public static List<Clique> BuildCliques()
@@ -43,6 +45,8 @@ namespace ColonyCouncil
             cliqueById.Clear();
             var list = new List<Clique>();
             var t = Tracker;
+            cliqueTracker = t;
+            cliqueVersion = t?.version ?? -1;
             if (t == null) return list;
             foreach (var g in t.groups.OrderBy(x => x.formed))
             {
@@ -59,7 +63,10 @@ namespace ColonyCouncil
         {
             var g = Groups.Primary(p);
             if (g == null) return null;
-            if (!cliqueById.TryGetValue(g.id, out var c)) CouncilGameComponent.Instance?.social?.RebuildCliques();
+            // Built again only when membership has changed since (a group of one has no circle, and isn't asked about again).
+            var t = Tracker;
+            if (!cliqueById.TryGetValue(g.id, out var c) && (cliqueTracker != t || cliqueVersion != (t?.version ?? -1)))
+                CouncilGameComponent.Instance?.social?.RebuildCliques();
             return cliqueById.TryGetValue(g.id, out c) ? c : null;
         }
 
@@ -700,7 +707,9 @@ namespace ColonyCouncil
             {
                 var p = f.people[i];
                 if (!Free(t, p)) continue;
-                int target = GroupMath.JoinTarget(f.aff, i, lists);
+                // Nobody goes back to a group they broke away from or drifted off from (only a merge brings them back).
+                var closed = t.groups.Select(g => g.formerNames.Contains(p.LabelShort)).ToArray();
+                int target = GroupMath.JoinTarget(f.aff, i, lists, closed);
                 if (target < 0 || (!quiet && !Rand.Chance(0.3f))) continue;
                 var g = t.groups[target];
                 if (g.Has(p)) continue;

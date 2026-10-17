@@ -270,15 +270,18 @@ namespace ColonyCouncil
             return null;
         }
 
-        /// <summary>The group (index into <paramref name="groups"/>) someone outside it would join, or -1: the one they hold to best, if well enough and not full.</summary>
-        public static int JoinTarget(float[,] aff, int who, List<List<int>> groups)
+        /// <summary>
+        /// The group (index into <paramref name="groups"/>) someone outside it would join, or -1: the one they hold to
+        /// best, if well enough and not full, and not one closed to them (<paramref name="closed"/>: one they left).
+        /// </summary>
+        public static int JoinTarget(float[,] aff, int who, List<List<int>> groups, bool[] closed = null)
         {
             int best = -1;
             float bestV = JoinAt;
             for (int g = 0; g < groups.Count; g++)
             {
                 var members = groups[g];
-                if (members.Contains(who) || members.Count >= MaxSize) continue;
+                if (members.Contains(who) || members.Count >= MaxSize || (closed != null && g < closed.Length && closed[g])) continue;
                 bool against = false;
                 foreach (int m in members)
                     if (aff[who, m] < 0f)
@@ -521,9 +524,9 @@ namespace ColonyCouncil
         /// </summary>
         public static float NextIntegration(float progress, IntegrationDay d, float welcome)
         {
-            float gain = 1.5f + Clamp(d.opinion, -50f, 60f) / 10f + Math.Min(d.memories, 3) * 3f + Clamp(d.sharedWork, 0f, 1f) * 3f
+            float gain = 3f + Clamp(d.opinion, -50f, 60f) / 10f + Math.Min(d.memories, 3) * 3f + Clamp(d.sharedWork, 0f, 1f) * 3f
                          + (d.sponsor ? 4f : 0f) + Math.Min(d.welcomes, 3) * 4f;
-            float f = gain < 0f ? 1f : Clamp(welcome * 1.6f, 0.2f, 1.5f);
+            float f = gain < 0f ? 1f : Clamp(welcome * 2f, 0.25f, 1.5f);
             return Clamp(progress + gain * f, 0f, Accepted);
         }
 

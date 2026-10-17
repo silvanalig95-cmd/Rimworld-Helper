@@ -11,13 +11,13 @@ namespace ColonyCouncil
     /// further into the group they hold to best: what its people think of them, what they went through together, work
     /// they share, a member who speaks for them (a sponsor) and the welcomes they get all count, more in a group open to
     /// newcomers and much less in one that closes ranks (its ways, its people's trust and warmth decide which). Once far
-    /// enough in, they're one of them. A newcomer no group takes in within a month simply settles in on their own.
+    /// enough in, they're one of them. A newcomer no group takes in within forty days simply settles in on their own.
     /// </summary>
     public static class GroupNewcomers
     {
         private const int Day = GenDate.TicksPerDay;
         /// <summary>Someone who came this long after the colony's first days, and this lately, is new.</summary>
-        public const int NewAfterDays = 3, NewWithinDays = 15, GiveUpDays = 30;
+        public const int NewAfterDays = 3, NewWithinDays = 15, GiveUpDays = 40;
 
         public static void Daily(CouncilGameComponent comp, GroupTracker t, GroupFacts f, bool quiet)
         {

@@ -100,6 +100,8 @@ public static class GroupTests
             Set(m, 3, 2, 0.4f);
             var groups = new List<List<int>> { new List<int> { 0, 1, 2 } };
             Check(GroupMath.JoinTarget(m, 3, groups) == 0, "someone who holds to a group joins it");
+            Check(GroupMath.JoinTarget(m, 3, groups, new[] { true }) == -1, "but not a group they left");
+            Check(GroupMath.LeaveBelow < GroupMath.JoinAt - 0.2f, "leaving takes far less pull than joining: nobody flickers in and out");
             Check(GroupMath.JoinTarget(m, 4, groups) == -1, "someone who doesn't, doesn't");
             Set(m, 3, 2, -0.1f);
             Check(GroupMath.JoinTarget(m, 3, groups) == -1, "nobody joins a group with a rival of theirs in it");
