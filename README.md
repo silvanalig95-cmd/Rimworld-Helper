@@ -53,7 +53,7 @@ window, organized in five sections:
 | Section | Sub-tabs | What's there |
 |---|---|---|
 | **Colony** | This week · Overview · Priorities · Moods · World · Room plans · Defenses | what needs you, what's coming and how people are; the colony at a glance (numbers, how they moved this week, graphs of mood, trust, wealth and people over the last weeks); the advisor's ranked list of what the colony needs; every mood added up; what's coming and who's out there; ready-made rooms; where raiders come from and what to build against them |
-| **People** | Roster · Everyone · Bonds · Wishes | every colonist at a glance with their full story; all colonists in one sortable table; friendships, rivalries, circles, vendettas, secrets; open wishes, promises kept and trust |
+| **People** | Roster · Everyone · Bonds · Wishes | every colonist at a glance with their full story; all colonists in one sortable table; friendships, rivalries, groups, vendettas, secrets; open wishes, promises kept and trust |
 | **Council** | Decrees · Ambition · Our ways · Dilemmas | decrees, petitions and the council's offices (five, up to fourteen seats in a bigger colony); the current ambition and meetings; what the colony is known for; questions waiting and how the answers went |
 | **History** | Chronicle · Calendar · Dreams · Journals | everything that happened (filter by wishes, council, people, strangers, world events, dreams, losses), the colony calendar, recent dreams, every colonist's journal |
 | **Almanac** | | the knowledge base |
@@ -438,18 +438,18 @@ too (about a hundred kinds, 44 of them frictions), shaped by who they are (night
 brawlers comparing scars, an iron-willed colonist steadying a nervous one) and by what's going on (visiting the sick,
 talking over a council meeting, watching a camp's fires, confiding a worry). Moments, frictions and events keep to
 one story between the same two: no compliment right after an insult, no warm evening the day after a falling-out.
-Three to six people held together by strong friendships form a **circle**, and people outside every circle sometimes
-feel left out.
+Strong friendships hold people together in **groups** (see below), and people outside every group sometimes feel left
+out.
 
-Bonds change how people act. Friends and circle members back each other's wishes and petitions and vote for each
+Bonds change how people act. Friends and members of the same group back each other's wishes and petitions and vote for each
 other; rivals object to each other's wishes and vote against each other. The council's own decisions feed back
 into them: being passed over for a rival, losing an election, a fight, a grudge from a dilemma or arguing over a
 decree can start a rivalry, while backing the same petition or making up after a quarrel builds a friendship. Some
 dilemmas only come up between friends, rivals or comrades. When someone dies, the people closest to them (and their
-rivals) write about it. The **Social** tab shows every bond with its strength and history, and every circle.
+rivals) write about it. The **Social** tab shows every bond with its strength and history, and every group.
 
-### Groups: circles that form, quarrel, split and merge
-With "Personalities and social life" on, the circles become real groups. They grow out of something real (friendship,
+### Groups: they form, quarrel, split and merge
+Groups replace the old circles of friends (which remain, simpler, only with "Personalities and social life" off). They grow out of something real (friendship,
 the same work, a fight fought together, the night hours, faith, where people came from, age, being alike) and keep the
 name they were given: **the hunters, the night shift, the old hands, the kitchen crowd, the faithful, the ones from the
 ship, Hector's lot** (25 kinds, with names for a tribe or a keep). Each has:
@@ -694,7 +694,7 @@ together, from five), the **chaplain** (with Ideology: keeps the colony's faith,
 (looks after visitors and the camp on the colony's land, from five), the **keeper of days** (every kept custom and
 calendar day a small occasion, from six), the **herdmaster** (more from the animals, from six) and, for a colony of
 ten, a **council of elders** (three seats, where age counts, and a steadier colony while they sit). Colonists elect them every year, voting for the skilled, the
-suited and the liked, friends and circles voting together, and the election letter has a word about each new
+suited and the liked, friends and groups voting together, and the election letter has a word about each new
 holder. You can appoint and dismiss from the Decrees tab, but whoever the colony actually voted for will remember
 being overruled. A wish the council took back counts against those sitting on it at the next election, and the
 names the colony gave someone count for them.

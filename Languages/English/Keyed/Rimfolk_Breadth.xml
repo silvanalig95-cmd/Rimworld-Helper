@@ -50,7 +50,7 @@
   <CC_Heart_F_Worry_Does>Adds a little dread-strain every hour. Makes wishes for a sickbed visit, a rescue or a proper infirmary likelier, and warm moments with the one they worry about. Nightmares a little more common.</CC_Heart_F_Worry_Does>
   <CC_Heart_F_Fellowship>fellowship</CC_Heart_F_Fellowship>
   <CC_Heart_F_Fellowship_Adj>among friends</CC_Heart_F_Fellowship_Adj>
-  <CC_Heart_F_Fellowship_Desc>Parties, feasts and customs kept together, fighting side by side, shared meals and jokes, belonging to a circle, good friends close by.</CC_Heart_F_Fellowship_Desc>
+  <CC_Heart_F_Fellowship_Desc>Parties, feasts and customs kept together, fighting side by side, shared meals and jokes, belonging to a group, good friends close by.</CC_Heart_F_Fellowship_Desc>
   <CC_Heart_F_Fellowship_Does>Eases loneliness and strain drains up to 15% faster. Warm moments up to 25% likelier. Makes wishes for a party, music, a meeting, enough seats or an evening at a camp likelier.</CC_Heart_F_Fellowship_Does>
   <CC_Heart_F_Resolve>resolve</CC_Heart_F_Resolve>
   <CC_Heart_F_Resolve_Adj>resolute</CC_Heart_F_Resolve_Adj>
@@ -66,7 +66,7 @@
   <CC_Heart_Cause_WorryDowned>{0} is down</CC_Heart_Cause_WorryDowned>
   <CC_Heart_Cause_WorryIll>{0} is ill</CC_Heart_Cause_WorryIll>
   <CC_Heart_Cause_WorryAway>{0} is away on the road</CC_Heart_Cause_WorryAway>
-  <CC_Heart_Cause_Circle>one of a circle</CC_Heart_Cause_Circle>
+  <CC_Heart_Cause_Circle>one of a group</CC_Heart_Cause_Circle>
   <CC_Heart_Cause_ManyFriends>good friends close by</CC_Heart_Cause_ManyFriends>
   <CC_Heart_Cause_Vendetta>a debt of blood to collect</CC_Heart_Cause_Vendetta>
   <CC_Heart_Cause_GoalHalfway>a life goal half won</CC_Heart_Cause_GoalHalfway>

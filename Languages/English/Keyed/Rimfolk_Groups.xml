@@ -48,7 +48,7 @@
   <CC_Group_NameOf>{ANCHOR_nameDef}'s {KIND}</CC_Group_NameOf>
 
   <!-- News (told once) -->
-  <CC_Group_Formed>A new circle: {NAMES} have become {GROUP}. {WHY}</CC_Group_Formed>
+  <CC_Group_Formed>A new group: {NAMES} have become {GROUP}. {WHY}</CC_Group_Formed>
   <CC_Group_Joined>{PAWN_nameDef} has joined {GROUP}.</CC_Group_Joined>
   <CC_Group_DriftedOff>{PAWN_nameDef} has drifted away from {GROUP}.</CC_Group_DriftedOff>
   <CC_Group_Accepted>{GROUP} have taken {PAWN_nameDef} in: {PAWN_pronoun} is no longer the new one.</CC_Group_Accepted>
@@ -63,7 +63,7 @@
 
   <!-- A group's history -->
   <CC_GroupNote_Formed>Came together. {WHY}</CC_GroupNote_Formed>
-  <CC_GroupNote_Found>Already together when the colony began keeping track of its circles. {WHY}</CC_GroupNote_Found>
+  <CC_GroupNote_Found>Already together when the colony began keeping track of its groups. {WHY}</CC_GroupNote_Found>
   <CC_GroupNote_Joined>{PAWN_nameDef} joined.</CC_GroupNote_Joined>
   <CC_GroupNote_JoinedWith>{PAWN_nameDef} was taken in, with {OTHER} speaking for {PAWN_objective}.</CC_GroupNote_JoinedWith>
   <CC_GroupNote_Sponsor>{PAWN_nameDef} spoke up for {OTHER_nameDef}, who is new.</CC_GroupNote_Sponsor>
