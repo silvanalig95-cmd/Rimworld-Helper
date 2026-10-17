@@ -581,7 +581,11 @@ namespace ColonyCouncil
                     if (!ties.Contains(t)) return;
                     CouncilGameComponent.GiveThought(mentor, CouncilDefOf.Council_ProudMentor, student);
                     CouncilGameComponent.GiveThought(student, CouncilDefOf.Council_GratefulStudent, mentor);
-                    SocialLog.Add(student, mentor, "CC_Together_Graduated".Translate(mentor.Named("A"), student.Named("B"), (sk?.label ?? "").Named("SKILL")).Resolve());
+                    // The thanks in the student's own voice; the keyed line when the pool has nothing that fits.
+                    string skillLabel = sk?.label ?? "";
+                    string thanks = Interplay.Line("Council_Pool_Together_Graduated", student, null, mentor.Named("OTHER"), skillLabel.Named("SKILL"))
+                                    ?? "CC_Together_Graduated".Translate(mentor.Named("A"), student.Named("B"), skillLabel.Named("SKILL")).Resolve();
+                    SocialLog.Add(student, mentor, thanks);
                     End(t, true);
                 }, 48f, 4f);
                 return;

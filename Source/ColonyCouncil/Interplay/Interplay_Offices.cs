@@ -126,7 +126,8 @@ namespace ColonyCouncil
             if (h == null) return;
             h.Severity = Mathf.Max(0.001f, h.Severity - PhysicianRoundsEase);
             if (Rand.Chance(0.3f)) Journal(p, "Council_Pool_Interplay_PhysicianRounds", null, doc.Named("OTHER"));
-            string text = "CC_Together_PhysicianLooksIn".Translate(doc.Named("PAWN"), p.Named("OTHER")).Resolve();
+            string text = Line("Council_Pool_Together_PhysicianLooksIn", doc, null, p.Named("OTHER"))
+                          ?? "CC_Together_PhysicianLooksIn".Translate(doc.Named("PAWN"), p.Named("OTHER")).Resolve();
             SocialLog.Add(doc, p, text);
             News.Post(text, new LookTargets(doc, p), NewsKind.Health, MessageTypeDefOf.SilentInput, Importance.Flavor);
         }
@@ -287,7 +288,9 @@ namespace ColonyCouncil
                 {
                     if (!Heart.On || !Heart.Eligible(them)) return;
                     Ease(them, MarshalRelief, StrainRelief.Friends);
-                    SocialLog.Add(marshal, them, "CC_Together_MarshalWord".Translate(marshal.Named("PAWN"), them.Named("OTHER")).Resolve());
+                    string word = Line("Council_Pool_Together_MarshalWord", marshal, null, them.Named("OTHER"))
+                                  ?? "CC_Together_MarshalWord".Translate(marshal.Named("PAWN"), them.Named("OTHER")).Resolve();
+                    SocialLog.Add(marshal, them, word);
                     // The colony hears of it once, with the first word.
                     if (told) return;
                     told = true;
