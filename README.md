@@ -76,8 +76,8 @@ details, click to select. **Dilemmas** keeps every answer the council gives, wit
 went wrong, still to happen, took place, never came about). The pages remember their filters and sort orders, and
 Options → Keyboard has optional shortcuts for the council's pages under "Rimfolk" (none set until you pick a key).
 
-The window opens on This week; the "Council window opens on" setting makes it open on the page you last looked at
-instead, also after a restart (it's kept with the mod settings). A colony's
+The window reopens on the page you last looked at, also after a restart (it's kept with the mod settings); the
+"Council window opens on" setting can make it always open on This week instead. A colony's
 first session with Rimfolk brings one quiet **welcome letter**: what Rimfolk does, where the council button is, and a
 button to the Almanac's **Start here** page. Saves that already had Rimfolk never get it, and it needs no setting.
 The **Mood** and **Story** tabs fit the room above the inspect pane: on a small screen, at a big interface scale or

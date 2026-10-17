@@ -274,12 +274,14 @@ Content grows only where it fits the game's goals (the player, October 2026: "I'
 be added just for the sake of variety, if they don't fit naturally into the game's goals"). A new wish, goal,
 project, dilemma, ailment, day or trait must point at something a player would want to pursue or deal with in a run
 and make for a real choice; deepening how existing things play out comes before adding new things to want, and the
-"grow toward" column below is a list of possibilities, not a quota. Where things stand:
+"grow toward" column below is a list of possibilities, not a quota. New wishes are proposed to the player as a list
+first and added once picked (a wish the player can ignore at a mood cost is welcome when it's interesting). Where
+things stand:
 
 | Content | Count | Grow toward |
 |---|---|---|
 | Rimfolk events, story stages and missions | 183 (1 for PokéWorld; 13 mission kinds, 9 → 13: a pilgrim to escort, word to carry, a lost child, hands for a harvest; 6 aftermath events after world events, 2 vendetta endings) | more everyday events per group, more chains, more mission kinds |
-| Wishes | 112 (2 for the herd and pets, 1 for Giddy-Up, 2 for PokéWorld; none added for variety's sake: a new wish must point at what the colony really needs and make a real choice; the player is reviewing the existing ones for filler) | only wishes that serve the colony's own goals |
+| Wishes | 112 (2 for the herd and pets, 1 for Giddy-Up, 2 for PokéWorld; none added for variety's sake: a new wish must point at what the colony really needs and make a real choice; the player keeps all the existing ones: a wish can be ignored at a mood cost, which keeps things moving) | only wishes that serve the colony's own goals |
 | Council projects (ambitions) | 66 (8 in stages, 3 season-long; 2 tribal, 2 spacer, 1 for Hospitality, 1 for PokéWorld, 1 from the defense planner) | projects from the calendar and the faith, more for children and elders |
 | Life goals | 90 (6 with animals, 2 of them for PokéWorld; children's dreams that grow into grown-up goals, teenagers' goals, elders' last wishes a friend may finish, faith and the heart; goals a faith forbids never come up) | goals for each mod's content, goals two people share |
 | Dilemmas | 165 (7 about the colony's animals, 2 of them customs; 14 new for children, teenagers and elders, two asking for a quirk; 8 new customs) | more for the camps; dilemmas for each new system as it lands |
