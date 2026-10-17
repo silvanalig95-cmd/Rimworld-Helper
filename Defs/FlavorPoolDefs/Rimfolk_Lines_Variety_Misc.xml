@@ -264,7 +264,7 @@
         <li>{PAWN_nameDef} asked {A_nameDef} and {B_nameDef} what each of them liked about the other. It took a while, but they both came up with something.</li>
       </warm>
       <blunt>
-        <li>{PAWN_nameDef} told {A_nameDef} and {B_nameDef} the next one to start it would be hauling for a week. Nobody has started it.</li>
+        <li>{PAWN_nameDef} told {A_nameDef} and {B_nameDef} the next one to start it would be hauling for a week. It has been quiet since.</li>
       </blunt>
       <cheerful>
         <li>{PAWN_nameDef} made {A_nameDef} and {B_nameDef} cook supper together. It was terrible, and they laughed about it all evening.</li>
@@ -506,7 +506,7 @@
         <li>Faster, there's daylight left.</li>
       </blunt>
       <cheerful>
-        <li>Look how much we've done already!</li>
+        <li>We'll be done by supper at this rate!</li>
       </cheerful>
       <gloomy>
         <li>My back will never forgive me.</li>
@@ -533,7 +533,7 @@
         <li>To us, and to the next one!</li>
       </cheerful>
       <gloomy>
-        <li>To the ones who aren't here to drink it.</li>
+        <li>To the empty places at the table.</li>
       </gloomy>
       <cold>
         <li>To the colony, and its continued survival.</li>

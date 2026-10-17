@@ -63,7 +63,7 @@
         <li>[fall] The cold mornings set it aching before I'm out of bed.</li>
         <li>[fall] Tried to help in the fields and had to stop before noon.</li>
         <li>[winter] The cold gets into the wound and settles there.</li>
-        <li>[winter] Lay close to the fire all evening. It helped, a little.</li>
+        <li>[winter] Lay close to the fire all evening, turning the bad side toward it.</li>
         <li>[winter] Every step on the frozen ground jars it.</li>
         <li>[hurt] The doctor says it's healing. It doesn't feel like it.</li>
         <li>[old] Pain takes longer to leave at my age. This one has settled in for the season.</li>
@@ -218,7 +218,7 @@
         <li>[afterraid] No table and no chairs since the fight. We ate wherever we sat down.</li>
       </plain>
       <warm>
-        <li>We ate shoulder to shoulder on the floor tonight. Nobody minded the crowding.</li>
+        <li>We ate shoulder to shoulder on the floor tonight, elbows in each other's bowls, and it was fine.</li>
       </warm>
       <blunt>
         <li>A table. Planks. Legs. Do it.</li>
@@ -250,7 +250,7 @@
         <li>[fall] Rain on the windows and a warm meal at a good table.</li>
         <li>[fall] The dining room smells of woodsmoke and bread this time of year.</li>
         <li>[winter] Snow outside, and inside the long table, warm and full.</li>
-        <li>[winter] Stayed in the dining room long after supper. Nobody wanted to go out into the cold.</li>
+        <li>[winter] Stayed in the dining room long after supper, putting off the walk out into the cold.</li>
         <li>[winter] The dining room was the brightest place in the colony tonight.</li>
         <li>[highmood] Good supper, good room, good people. That's a good day.</li>
       </plain>
@@ -298,7 +298,7 @@
         <li>Nothing to do. Again.</li>
       </blunt>
       <cheerful>
-        <li>Nothing to do, so I invented a game with pebbles. Nobody else understands the rules yet.</li>
+        <li>Nothing to do, so I invented a game with pebbles. The rules change every time I lose.</li>
       </cheerful>
       <gloomy>
         <li>The days are all the same shape. I keep waiting for one that isn't.</li>
@@ -397,7 +397,7 @@
         <li>[fall] {OTHER_nameDef} said the harvest wouldn't have come in without me. It would have, but I liked hearing it.</li>
         <li>[fall] {OTHER_nameDef} thanked me for the stores I'd laid by. I didn't think anyone had noticed.</li>
         <li>[fall] {OTHER_nameDef} said I'd carried the colony through the hard part of the year. I'm keeping that one.</li>
-        <li>[winter] On a cold night, {OTHER_nameDef} said I make the place feel warmer. It did, a little.</li>
+        <li>[winter] On a cold night, {OTHER_nameDef} said I make the place feel warmer. I went to bed smiling.</li>
         <li>[winter] {OTHER_nameDef} told me my stew was the best thing about winter.</li>
         <li>[winter] {OTHER_nameDef} stopped by the fire to say I'd been a great help all week.</li>
         <li>[grieving] {OTHER_nameDef} said something gentle about the one we lost, and about me. I needed both.</li>
@@ -425,7 +425,7 @@
     <pool>Council_Journal_Day_RecRoom</pool>
     <lines>
       <plain>
-        <li>[spring] Rainy evening in the games room. Everyone came in out of the wet.</li>
+        <li>[spring] Rainy evening, so the games room filled up with wet coats and steaming boots.</li>
         <li>[spring] Played cards by the open window. You could hear the frogs.</li>
         <li>[spring] An evening in the rec room after a day of planting. My back was grateful.</li>
         <li>[summer] The rec room was cooler than outside, so it was packed.</li>
@@ -435,7 +435,7 @@
         <li>[fall] Wet evening. Half the colony in the rec room, and the other half wishing they were.</li>
         <li>[fall] Played dice with the old hands and lost a week's worth of bragging rights.</li>
         <li>[winter] Snow outside, games inside. The rec room is the place to be in winter.</li>
-        <li>[winter] Long winter evening in the games room. Nobody wanted to go to bed.</li>
+        <li>[winter] Long winter evening in the games room. We played until the fire was down to coals.</li>
         <li>[winter] Played cards by the fire until the fire went out.</li>
         <li>[highmood] Good games and good company. I'm in a good mood and I plan to stay in it.</li>
       </plain>
@@ -500,7 +500,7 @@
     <lines>
       <plain>
         <li>[spring] Spring by the calendar, winter in the bedroom. Frost on the floor again.</li>
-        <li>[spring] Warm days, cold nights. Nobody told the nights it was spring.</li>
+        <li>[spring] Warm days, cold nights. The nights haven't heard it's spring.</li>
         <li>[spring] Woke shivering. The fire was out and the window was open.</li>
         <li>[summer] Even now the room goes cold after midnight, and I'd put the blanket away.</li>
         <li>[summer] Slept with the window open for the heat and woke up frozen.</li>
@@ -551,7 +551,7 @@
         <li>[hot] Too hot for work today and too hot for sleep tonight.</li>
       </plain>
       <warm>
-        <li>Fanned the youngest to sleep with a plate. Slept a little myself after.</li>
+        <li>Fanned the youngest to sleep with a plate. Got an hour myself after.</li>
       </warm>
       <blunt>
         <li>Hot room. Again.</li>
@@ -563,7 +563,7 @@
         <li>Lay in my own sweat all night. I'm too tired to be angry about it.</li>
       </gloomy>
       <cold>
-        <li>The room has no draught through it. A window at each end would fix it. Nobody asks me.</li>
+        <li>The room has no draught through it. A window at each end would fix it, and I've said so twice.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
@@ -697,7 +697,7 @@
         <li>[good] Someone put flowers in a cup on every table. It's a small thing, and it made the whole day.</li>
         <li>[good] The colony looks cared for, and it's because everyone cares a bit. I'm proud of that.</li>
         <li>[good] The hall is clean and bright tonight. I said so to the cook, who did most of it.</li>
-        <li>[bad] Carried the rubble out of the hall myself. Nobody asked me to, and nobody had to.</li>
+        <li>[bad] Carried the rubble out of the hall myself, one basket at a time, before supper.</li>
         <li>[bad] The yard's a mess. I'll ask if a few of us can spend a morning on it together.</li>
         <li>[bad] It's grim around here lately. I put the one nice thing I own where everyone can see it.</li>
         <li>[bad] The place is worn down, like the rest of us. We'll mend it when we're mended.</li>
@@ -739,9 +739,9 @@
         <li>[good] Clean and pretty for once. I almost forgot what's out past the walls.</li>
         <li>[good] It's a nice place now. I'm not sure I've earned living in it.</li>
         <li>[good] The garden's blooming. Everything here is, except me.</li>
-        <li>[bad] Grime and rubble. Nobody has the heart to clear it, me least of all.</li>
+        <li>[bad] Grime and rubble in every corner, and I haven't the heart to clear it.</li>
         <li>[bad] Ugly walls, ugly floors, ugly weather. It all runs together.</li>
-        <li>[bad] There's a stain on the hall floor that's been there since the fight. Nobody talks about it.</li>
+        <li>[bad] There's a stain on the hall floor that's been there since the fight. We all step round it.</li>
         <li>[bad] The place is falling apart a little at a time, the way places do.</li>
         <li>[bad] Mud and refuse. It's hard to feel like a person in a place like this.</li>
         <li>[bad] Everything here is gray, and getting grayer.</li>
@@ -785,7 +785,7 @@
         <li>[bad] The roof drips over my bed, so I moved the bed. Small room, small problem.</li>
         <li>[bad] It isn't much of a room. Someone offered to help me fix the walls, which helped already.</li>
         <li>[bad] My room's dark and damp. I left the door open to share the hall's warmth.</li>
-        <li>[bad] Ugly room. I hung up a drawing the youngest made me, and it's a little less ugly.</li>
+        <li>[bad] Ugly room. I hung up a drawing the youngest made me, and now there's one thing in it worth looking at.</li>
       </warm>
       <blunt>
         <li>[good] Good bed. Slept straight through.</li>

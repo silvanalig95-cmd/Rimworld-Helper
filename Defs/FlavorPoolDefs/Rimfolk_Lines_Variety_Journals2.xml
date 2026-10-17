@@ -169,7 +169,7 @@
         <li>[mage] Showed {OTHER_nameDef} how I shape a working. {OTHER_nameDef} asked better questions than most students.</li>
       </plain>
       <warm>
-        <li>{OTHER_nameDef} asked how I was holding up after the last fight. Nobody else had.</li>
+        <li>{OTHER_nameDef} asked how I was holding up after the last fight, and waited for the real answer.</li>
       </warm>
       <blunt>
         <li>Drilled with {OTHER_nameDef}. Getting faster.</li>
@@ -208,7 +208,7 @@
         <li>They said yes to "{WISH}". I want to give something back, and I'm thinking about what.</li>
       </warm>
       <blunt>
-        <li>Asked. Got it. Good.</li>
+        <li>Asked. Waited. Got it.</li>
         <li>They did "{WISH}". Took a while. Done now.</li>
       </blunt>
       <cheerful>
@@ -245,7 +245,7 @@
         <li>[winter] Short day, long fight. It was dark before we'd counted everyone.</li>
       </plain>
       <warm>
-        <li>Everyone helped carry the wounded in. Nobody had to be asked.</li>
+        <li>We carried the wounded in between us, two to a stretcher, and nobody was left out there.</li>
       </warm>
       <blunt>
         <li>Fought. Won. Need sleep.</li>
@@ -267,7 +267,7 @@
     <pool>Council_Journal_PromiseBroken</pool>
     <lines>
       <plain>
-        <li>The promise ran out today. Nobody came to say sorry, or anything else.</li>
+        <li>The promise ran out today, and not one of them came to say sorry.</li>
         <li>They promised "{WISH}". I told the others they'd keep it. Now I have to eat that.</li>
         <li>[doubtful] I didn't fully believe them, and I was still disappointed.</li>
         <li>[winter] A promise broken in the dead of winter. It feels colder than it is.</li>
@@ -327,7 +327,7 @@
     <pool>Council_Journal_Lapsed</pool>
     <lines>
       <plain>
-        <li>Nobody said no to "{WISH}". Nobody said anything at all.</li>
+        <li>Not a yes, not a no: "{WISH}" just ran out of days.</li>
         <li>The time ran out on my request. I only noticed because I'd been counting.</li>
         <li>[trusting] I'm sure they meant to get to it. They didn't.</li>
       </plain>
@@ -409,7 +409,7 @@
     <lines>
       <plain>
         <li>Got tired of asking and took care of it myself. Should have done it weeks ago.</li>
-        <li>Fixed it myself this afternoon. Nobody noticed, which is fine.</li>
+        <li>Fixed it myself this afternoon, with a borrowed hammer and some swearing.</li>
         <li>[old] At my age you learn not to wait. Sorted it out before supper.</li>
       </plain>
       <warm>
@@ -426,7 +426,7 @@
       </cheerful>
       <gloomy>
         <li>Did it myself. Easier than waiting for a council that wasn't coming.</li>
-        <li>Fixed it. Nobody will thank me, and I didn't do it for thanks.</li>
+        <li>Fixed it. I didn't do it for thanks, which is just as well.</li>
       </gloomy>
       <cold>
         <li>Handled it without the council. I'll keep doing that where I can.</li>

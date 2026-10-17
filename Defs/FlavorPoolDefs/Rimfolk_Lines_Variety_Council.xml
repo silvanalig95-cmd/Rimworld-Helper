@@ -45,7 +45,7 @@
         <li>No pressure. "{WISH}" would just make my days a little easier.</li>
       </warm>
       <blunt>
-        <li>"{WISH}". Still. Waiting.</li>
+        <li>Is "{WISH}" happening or not?</li>
         <li>How long does "{WISH}" take? Longer than this?</li>
         <li>I asked. You heard. Now do it.</li>
         <li>"{WISH}". Not getting younger here.</li>
@@ -220,7 +220,7 @@
         <li>I'm for it. Let's not talk it to death.</li>
       </blunt>
       <cheerful>
-        <li>Yes, yes, a hundred times yes to "{AMBITION}"!</li>
+        <li>Yes to "{AMBITION}", and I'll be first in line to start!</li>
         <li>I've been waiting for someone to suggest this. Put me down for the first shift.</li>
       </cheerful>
       <gloomy>
@@ -452,6 +452,55 @@
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
 
+  <!-- Company for tags that had one or two lines in a voice. -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Company_Pool_Council</defName>
+    <pool>Council_Pool_Scene_Thanks</pool>
+    <lines>
+      <plain>
+        <li>[trusting] {PAWN_nameDef} nods as if {PAWN_pronoun} knew all along the council would see to it.</li>
+        <li>[trusting] {PAWN_nameDef} thanks the council warmly, and isn't surprised in the least.</li>
+        <li>[doubtful] {PAWN_nameDef} walks round it twice before {PAWN_pronoun} lets {PAWN_objective}self believe it.</li>
+        <li>[doubtful] {PAWN_nameDef} hadn't really expected this, and says so, and then says thank you.</li>
+        <li>[lowmood] For a while, at least, {PAWN_nameDef} looks less weighed down.</li>
+        <li>[lowmood] {PAWN_nameDef} manages a smile, the first in days.</li>
+        <li>[night] {PAWN_nameDef} goes back out after dark with a lamp, just to look at it again.</li>
+        <li>[night] Long after supper, {PAWN_nameDef} is still sitting beside it.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Company_Pool_Scene</defName>
+    <pool>Council_Pool_Scene</pool>
+    <lines>
+      <plain>
+        <li>[trusting] {PAWN_nameDef} brings it up without fuss, sure of a fair hearing.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Company_Pool_MeetingDoubt</defName>
+    <pool>Council_Pool_MeetingDoubt</pool>
+    <lines>
+      <plain>
+        <li>[winter] We've firewood for a month. Let's talk about "{AMBITION}" when we've more than that.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Company_Pool_Objection</defName>
+    <pool>Council_Pool_Objection</pool>
+    <lines>
+      <plain>
+        <li>[winter] We're burning wood faster than we can cut it, and {OTHER_nameDef} wants "{WISH}"?</li>
+        <li>[winter] Ask again in spring, {OTHER_nameDef}. Winter has enough to say about what comes first.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
   <ColonyCouncil.FlavorExtensionDef>
     <defName>Rimfolk_Variety_Pool_AmbitionDeadline</defName>
     <pool>Council_Pool_AmbitionDeadline</pool>
@@ -526,7 +575,7 @@
     <pool>Council_Pool_NemesisDied</pool>
     <lines>
       <plain>
-        <li>Word has come: {X_nameDef}, who {DEED}, is dead.</li>
+        <li>Word has come that {X_nameDef} is dead, and won't trouble {VICTIM} again.</li>
         <li>{X_nameDef} is dead. {VICTIM} won't have to watch the horizon for {X_nameDef} anymore.</li>
         <li>The news reached the colony today. {X_nameDef}, who {DEED}, will not be back.</li>
         <li>{X_nameDef} is gone for good. What {X_nameDef} did to {VICTIM} stays, but {X_nameDef} doesn't.</li>

@@ -23,7 +23,7 @@
     <pool>Council_Journal_Day_Barracks</pool>
     <lines>
       <plain>
-        <li>[lowmood] Cried a little after the lights went out. Quietly, in a room full of ears.</li>
+        <li>[lowmood] Cried after the lights went out, as softly as I could, in a room full of ears.</li>
         <li>[lowmood] A bad day, and the barracks give you nowhere to put a bad day.</li>
       </plain>
     </lines>
@@ -352,7 +352,7 @@
     <pool>Council_Journal_SelfHelp</pool>
     <lines>
       <plain>
-        <li>[night] Did it by lamplight, after everyone else had gone to bed. Nobody will know until morning.</li>
+        <li>[night] Did it by lamplight, after the others had gone to bed. They'll see it in the morning.</li>
         <li>[night] Couldn't sleep, so I got up and saw to it myself.</li>
       </plain>
     </lines>

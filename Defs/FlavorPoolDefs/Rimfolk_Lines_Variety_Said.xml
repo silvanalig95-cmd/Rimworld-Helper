@@ -157,6 +157,33 @@
   </ColonyCouncil.FlavorExtensionDef>
 
   <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Pool_SayStory</defName>
+    <pool>Council_Pool_SayStory</pool>
+    <lines>
+      <warm>
+        <li>Things are getting better for me here, slowly.</li>
+        <li>I've been thinking about where I'm headed, and it's somewhere good.</li>
+      </warm>
+      <blunt>
+        <li>I've got something to finish, so don't hold me up.</li>
+        <li>Working on it, don't ask.</li>
+      </blunt>
+      <cheerful>
+        <li>I've got a feeling this is going to be my year.</li>
+        <li>Big things coming for me, you'll see!</li>
+      </cheerful>
+      <gloomy>
+        <li>Some things you carry a long time.</li>
+        <li>I'm not where I hoped I'd be by now.</li>
+      </gloomy>
+      <cold>
+        <li>I know what I want, and I'm working toward it.</li>
+        <li>One step at a time, and no step wasted.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
     <defName>Rimfolk_Variety_Pool_SayWish</defName>
     <pool>Council_Pool_SayWish</pool>
     <lines>
@@ -181,7 +208,7 @@
         <li>I've decided "{WISH}" is coming soon.</li>
       </cheerful>
       <gloomy>
-        <li>One day "{WISH}" will happen, maybe, if we last.</li>
+        <li>If we last the winter, maybe "{WISH}" will happen.</li>
         <li>I've stopped expecting "{WISH}", mostly.</li>
         <li>Everyone else gets theirs before "{WISH}".</li>
       </gloomy>

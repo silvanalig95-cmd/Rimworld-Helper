@@ -505,7 +505,7 @@
     <lines>
       <plain>
         <li>We went out together and came back together, which is the whole point, I think.</li>
-        <li>Walked out with everyone today. Nobody hurried, and that was the best of it.</li>
+        <li>Walked out with the others today, at the pace of the slowest, and that was the best of it.</li>
       </plain>
       <warm>
         <li>Somebody took my arm on the way back without being asked. I keep thinking about it.</li>
@@ -531,7 +531,7 @@
     <lines>
       <plain>
         <li>The walk for {NAME} never happened. Everyone was busy, or said they were.</li>
-        <li>I waited by the gate for the others. Nobody came, so I walked back in.</li>
+        <li>I waited by the gate for the others until the light changed, then walked back in.</li>
       </plain>
       <warm>
         <li>We meant to walk out together for {NAME}. Next time I'll go and fetch people myself.</li>
@@ -554,7 +554,7 @@
         <li>A long night's watch. We took turns sleeping against each other's shoulders.</li>
       </plain>
       <warm>
-        <li>We kept watch together. Nobody had to sit alone in the dark, and that mattered.</li>
+        <li>We kept watch together, shoulder to shoulder in the dark, and that mattered.</li>
       </warm>
       <blunt>
         <li>Up all night. Tired. It was right to do.</li>
@@ -582,7 +582,7 @@
         <li>The vigil never came together. I lit a candle by my bed instead and kept it a little while.</li>
       </warm>
       <blunt>
-        <li>No vigil. Slept instead.</li>
+        <li>Vigil fell through. Went to bed.</li>
       </blunt>
       <cheerful>
         <li>No vigil this time, but I said a few words out loud on my own, and that felt good.</li>
@@ -605,7 +605,7 @@
         <li>We combed every field and ditch. I know this land better now, if nothing else.</li>
       </plain>
       <warm>
-        <li>Everyone turned out for the search. Nobody grumbled, not even once.</li>
+        <li>Half a dozen of us turned out for the search, and the grumblers kept it to themselves.</li>
       </warm>
       <blunt>
         <li>Searched all day. Done now.</li>
@@ -668,7 +668,7 @@
         <li>We gave it away. I hope we don't need it this winter.</li>
       </gloomy>
       <cold>
-        <li>Delivered as the council decided. Our side of the bargain is kept.</li>
+        <li>Handed over in full. Our side of the bargain is kept.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>

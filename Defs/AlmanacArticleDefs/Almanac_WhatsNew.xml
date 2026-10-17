@@ -16,7 +16,7 @@
     <category>Basics</category>
     <order>-20</order>
     <summary>What changed in each update of Rimfolk, newest first.</summary>
-    <description>Rimfolk is updated often. Each update is listed here with its highlights, newest first, so you can see what is new since you last played. The same list is in CHANGELOG.md in the mod's folder.
+    <description>Rimfolk is updated often. Each update is listed here with its highlights, newest first, so you can see what is new since you last played. The same list is in CHANGELOG.md, beside the mod's files in the downloaded or cloned folder.
 
 When you load a save after an update, a letter lists the newest round once. The setting "A letter after each update" (Interface page of the mod settings) turns it off.</description>
     <keywords>
@@ -32,12 +32,15 @@ When you load a save after an update, a letter lists the newest round once. The 
 
       <li>
         <version>0.5.0</version>
-        <date>16 October 2026, night</date>
-        <title>Fewer repeats, and what's new</title>
+        <date>17 October 2026</date>
+        <title>Defenses, animals and fewer repeats</title>
         <points>
-          <li>About 2,700 new lines where colonists repeated themselves most: everyday journal entries, wish reminders and thanks, personal touches, meeting talk, moments between colonists, dreams told over breakfast, what colonists say aloud, and the newer walks, vigils, searches and hunts. The lines heard most now come round about once a year or less.</li>
-          <li>Moments between colonists can get more lines from separate files, the same way flavour lines already could.</li>
-          <li>This page, a CHANGELOG.md in the mod's folder, and a letter when you load a save after an update. A new colony gets the welcome letter instead.</li>
+          <li>Colony → Defenses reads your map: the edges raiders come from, the narrow places on their way in, whether the home is walled in, and advice ranked by what matters now, with eleven defense plans you place like room plans. Fifteen new Almanac pages on defending the colony.</li>
+          <li>The advisor watches 62 kinds of thing: a mission running out, plague or famine in the region, a camp's question or an office left waiting, the low-tech winter, and rooms that could be better. Some advice takes the first step for you.</li>
+          <li>The colony's animals: the herdmaster's rounds, an animal of one's own to wish for, stories of an old companion or an orphan raised by hand, hard choices about the herd, and the lambing watch and shearing day as traditions. With PokéWorld, trainers spar and talk moves, and the council can set out to fill a Pokédex.</li>
+          <li>Four new scenarios: The Elders' Fire, What the Ship Carried, The Orphanage (Biotech) and The Land Grant. A colony can become known for its hospitality, its faith or the days it keeps, and people earn names from their years in a seat, the faith and the colony.</li>
+          <li>About 2,600 new lines where colonists repeated themselves most: everyday journals, wish reminders and thanks, personal touches, meeting talk, moments between colonists, dreams over breakfast, what colonists say aloud, walks, vigils and hunts, camps' requests and the newer decrees. The lines heard most now come round about once a year or less.</li>
+          <li>This page, a CHANGELOG.md with the same list, and a letter when you load a save after an update (a new colony gets the welcome letter instead; the Interface page of the settings can turn it off).</li>
         </points>
       </li>
 

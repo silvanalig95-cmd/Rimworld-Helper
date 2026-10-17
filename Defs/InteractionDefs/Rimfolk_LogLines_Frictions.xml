@@ -17,7 +17,7 @@
         <li>r_logentry->[INITIATOR_nameDef] tried to explain why the joke about [RECIPIENT_nameDef]'s [jokesubject] was funny, which made it worse.</li>
         <li>r_logentry->[INITIATOR_nameDef] laughed about [RECIPIENT_nameDef]'s [jokesubject] at supper, and the laugh went round the table and skipped [RECIPIENT_nameDef].</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] [INITIATOR_pronoun] was only joking, twice, which is once more than a joke can take.</li>
-        <li>r_logentry->[INITIATOR_nameDef] did an impression of [RECIPIENT_nameDef]'s [jokesubject]. Nobody laughed, least of all [RECIPIENT_nameDef].</li>
+        <li>r_logentry->[INITIATOR_nameDef] did an impression of [RECIPIENT_nameDef]'s [jokesubject], and [RECIPIENT_nameDef] watched it with a stony face.</li>
         <li>r_logentry->[INITIATOR_nameDef] made a joke about [RECIPIENT_nameDef]'s [jokesubject] on the one day [RECIPIENT_pronoun] was in no mood for it.</li>
         <li>r_logentry->[INITIATOR_nameDef] made a crack about [RECIPIENT_nameDef]'s [jokesubject] and looked around for laughs that didn't come.</li>
         <li>jokesubject->handwriting</li>

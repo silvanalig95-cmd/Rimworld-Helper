@@ -261,7 +261,10 @@ play deep. In order:
 - Variety checks: a dev report of the lines shown most often, so the pools that repeat get new lines first.
   Done: a round of about 1,800 lines for the pools it ranked highest and the thin ones it doesn't rank (personal
   touches, reminders and last calls, journals, quirks, wishes' own lines, the calendar, personal stories, health,
-  camps, the newest events and the room advice cards).
+  camps, the newest events and the room advice cards). Done: a second round of about 2,600 lines for the 60 pools it
+  ranked worst (every one now at most about 1.5 times a year) and the autumn's thin ones (what colonists say aloud,
+  the weather, small habits, answers on the map, the camps' asks, the newer decrees), with log lines for moments
+  kept in separate files (Social/LogLines.cs) the way flavor extensions are.
 
 ### Breadth, where it fits the game
 Content grows only where it fits the game's goals (the player, October 2026: "I'd rather not have further wishes etc
@@ -289,7 +292,7 @@ and make for a real choice; deepening how existing things play out comes before 
 | Room types | 28 (108 layouts, 6 themes) | odd shapes beyond partitions, more spacer and mod-furniture sizes, themes for more furniture mods |
 | Calendar days and ways to keep them | 17 kinds (the first foal, a beloved animal's day), 7 ways (about 710 lines, with lines per land and faith) | days from the camps and world events, days for a faith's own holidays |
 | Answers that play out on the map | 337 answers (324 → 337 with the animals: 105 dilemmas, 112 events, stories and world events, 61 of the answers in 33 world events), 5 calendar ways, 5 decrees, 9 ambitions; 15 kinds of real effect (9 → 15: work parties, walks together, vigils, searches, gifts carried out, hunt parties) | new dilemmas and events from the start, missions, play-outs for the calendar's other ways (done: a drink from the stores at a toast, world events' beats) |
-| Lines in the flavor pools (variety report) | about 25,200 in 3,640 pools | the pools at the top of the report |
+| Lines in the flavor pools (variety report) | about 34,600 in 4,735 pools (32,000 → 34,600: about 2,600 for the pools that came round most, so 155 → 16 pools come round more than 1.5 times a year, the 16 being the newest animal and Pokémon pools, two health moments and two one-line fallbacks) | the pools at the top of the report, starting with the animals' and Pokémon's new ones |
 | Social events, moments, frictions, nuisances | 103 (21 from quirks, 6 for elders, 3 about animals), 142 (5 about animals; 45 frictions, 4 that follow something real, 6 that ask for a quirk), 22 | every trait pairing and home condition |
 | Links between Rimfolk's own systems | 37 (5 for the animals: births into the calendar and the herdmaster's naming, a beloved animal's death into the calendar, a sick animal into the herdmaster's word, a pet's fight into a life goal; offices at work, the heart in choices, stories that hear the world, the peoples' memory at camps and in encounters, setbacks into wishes and stories, a colonist's day in the news) | links for each new system as it lands: the camps and world events into the council, the calendar into dreams and life goals |
 | Secrets | 62 (3 for scenarios only, one of them shared by the whole company; 9 that only come during a world event or a camp, 5 of them good), each with its own confide and graveside lines | more good ones, dilemmas for the newer ones |

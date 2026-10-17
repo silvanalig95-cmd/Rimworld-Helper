@@ -5,13 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
-## Fewer repeats, and what's new
+## Defenses, animals and fewer repeats
 
-*16 October 2026, night, version 0.5.0*
+*17 October 2026, version 0.5.0*
 
-- About 2,700 new lines where colonists repeated themselves most: everyday journal entries, wish reminders and thanks, personal touches, meeting talk, moments between colonists, dreams told over breakfast, what colonists say aloud, and the newer walks, vigils, searches and hunts. The lines heard most now come round about once a year or less.
-- Moments between colonists can get more lines from separate files, the same way flavour lines already could.
-- This page, a CHANGELOG.md in the mod's folder, and a letter when you load a save after an update. A new colony gets the welcome letter instead.
+- Colony → Defenses reads your map: the edges raiders come from, the narrow places on their way in, whether the home is walled in, and advice ranked by what matters now, with eleven defense plans you place like room plans. Fifteen new Almanac pages on defending the colony.
+- The advisor watches 62 kinds of thing: a mission running out, plague or famine in the region, a camp's question or an office left waiting, the low-tech winter, and rooms that could be better. Some advice takes the first step for you.
+- The colony's animals: the herdmaster's rounds, an animal of one's own to wish for, stories of an old companion or an orphan raised by hand, hard choices about the herd, and the lambing watch and shearing day as traditions. With PokéWorld, trainers spar and talk moves, and the council can set out to fill a Pokédex.
+- Four new scenarios: The Elders' Fire, What the Ship Carried, The Orphanage (Biotech) and The Land Grant. A colony can become known for its hospitality, its faith or the days it keeps, and people earn names from their years in a seat, the faith and the colony.
+- About 2,600 new lines where colonists repeated themselves most: everyday journals, wish reminders and thanks, personal touches, meeting talk, moments between colonists, dreams over breakfast, what colonists say aloud, walks, vigils and hunts, camps' requests and the newer decrees. The lines heard most now come round about once a year or less.
+- This page, a CHANGELOG.md with the same list, and a letter when you load a save after an update (a new colony gets the welcome letter instead; the Interface page of the settings can turn it off).
 
 ## The colony's year, the world beyond and people's lives
 
