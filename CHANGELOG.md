@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Building up a defense, and the land's year
+
+*17 October 2026, night, version 0.6.0*
+
+- Four new defense plans for building a line up step by step: a sandbag or barricade line behind a gate, a second layer of wall, a small killbox for narrow gaps and bows, and a tunnel killbox for mountain bases. The killbox is deeper, with its shooters out of grenade reach and walls between turrets and shooters, and the turret nest shields its repairer.
+- Five new Almanac pages on defending: defense lines step by step, where a killbox fits, killbox mistakes, the field of fire (weapon reach by era, and darkness as 1.6 really has it) and keeping a defense up. "How a killbox works" is rewritten in real RimWorld terms.
+- Wishes follow the land's year: clothes for the coming season (warm, or cool on hot land), measured by what the colonist wears; a freezer in hot country; and on cold land a sauna, with Dubs Bad Hygiene or without, where people sit and talk on cold days. Fishing wishes work with Odyssey or Vanilla Fishing Expanded.
+- The planting day: when the fields open after a cold season, the council asks whether to sow together. Held, it's a sowing party and a word at the field's edge in the evening, and a crop sown in full is remembered as a good start. You can also put a planting day on the calendar yourself.
+- The animals: a favourite kind of animal (or Pokémon) to wish for, a pack animal of one's own, and bringing the herd home before winter or after a raid, each animal walked into the barn or pen on a rope.
+
 ## Fungus meals and digging into the dark
 
 *17 October 2026, evening, version 0.5.1*
