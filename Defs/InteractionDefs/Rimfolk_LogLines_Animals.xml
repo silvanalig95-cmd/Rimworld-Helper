@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More ways for the animals' moments to go (Social/LogLines.cs): a bonded animal's mischief and its person's pride,
+    the wish talk about animals, the result of a PokéWorld spar, and the two generic entries' fallbacks. Joined to
+    their targets at startup, with the same symbols as the originals. The moments that come up most get the most, so a
+    line comes round about once a year at most (Tools/variety_report.py).
+  -->
+
+  <!-- The initiator owns the animal; the recipient is the one it wronged. petcrime follows "had". -->
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLines_PetMischief</defName>
+    <interaction>Council_Friction_PetMischief</interaction>
+    <rulePack>
+      <rulesStrings>
+        <li>r_logentry->[RECIPIENT_nameDef] held up what was left of [RECIPIENT_possessive] supper and asked [INITIATOR_nameDef] whose animal had been at it.</li>
+        <li>r_logentry->[RECIPIENT_nameDef] told [INITIATOR_nameDef] that [INITIATOR_possessive] animal had [petcrime], and [INITIATOR_nameDef] [ownerexcuse].</li>
+        <li>r_logentry->[RECIPIENT_nameDef] woke to find [INITIATOR_nameDef]'s animal standing on [RECIPIENT_objective], and said so at breakfast, loudly.</li>
+        <li>r_logentry->[RECIPIENT_nameDef] found tooth marks in [RECIPIENT_possessive] hat and knew at once whose animal to blame. [INITIATOR_nameDef] [ownerexcuse].</li>
+        <li>r_logentry->[RECIPIENT_nameDef] spent the morning cleaning up after [INITIATOR_nameDef]'s animal and made sure [INITIATOR_nameDef] heard about every minute of it.</li>
+        <li>r_logentry->[RECIPIENT_nameDef] said that [INITIATOR_nameDef]'s animal had [petcrime] twice this week, and that [RECIPIENT_pronoun] had been counting.</li>
+        <li>r_logentry->[RECIPIENT_nameDef] asked [INITIATOR_nameDef] whether [INITIATOR_possessive] animal would ever learn the word "no". [INITIATOR_nameDef] [ownerexcuse].</li>
+        <li>r_logentry->[RECIPIENT_nameDef] caught [INITIATOR_nameDef]'s animal with its head in the berry basket and marched it straight back to [INITIATOR_objective].</li>
+        <li>r_logentry->[RECIPIENT_nameDef] stepped in something [INITIATOR_nameDef]'s animal had left by the door, and came to tell [INITIATOR_objective] about it with one boot off.</li>
+        <li>r_logentry->[RECIPIENT_nameDef] told [INITIATOR_nameDef] that [INITIATOR_possessive] animal had [petcrime], and [INITIATOR_nameDef] laughed before [INITIATOR_pronoun] could stop [INITIATOR_objective]self.</li>
+        <li>r_logentry->[RECIPIENT_nameDef] complained to [INITIATOR_nameDef] that [INITIATOR_possessive] animal sat and stared at [RECIPIENT_objective] all through every meal.</li>
+        <li>ownerexcuse->said it only did that to people it liked</li>
+        <li>ownerexcuse->promised to have a word with it</li>
+        <li>ownerexcuse->said the animal was clearly sorry, though it didn't look it</li>
+        <li>ownerexcuse->offered to make it up with a week of [RECIPIENT_possessive] chores</li>
+        <li>ownerexcuse->asked whether [RECIPIENT_pronoun] was quite sure it was that animal</li>
+        <li>petcrime->made a nest in [RECIPIENT_possessive] spare clothes</li>
+        <li>petcrime->eaten [RECIPIENT_possessive] share of the berries</li>
+        <li>petcrime->trampled the seedlings [RECIPIENT_pronoun] had just put in</li>
+        <li>petcrime->woken [RECIPIENT_objective] before dawn</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <!-- The initiator shows off their bonded animal to the recipient. -->
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLines_PetPride</defName>
+    <interaction>Council_Moment_PetPride</interaction>
+    <rulePack>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] brought [INITIATOR_possessive] animal over to meet [RECIPIENT_nameDef] properly, and the animal [petgreeting].</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [INITIATOR_possessive] animal could tell [INITIATOR_possessive] footsteps from anyone else's. [RECIPIENT_nameDef] [petreaction].</li>
+        <li>r_logentry->[INITIATOR_nameDef] went on to [RECIPIENT_nameDef] about [INITIATOR_possessive] animal's [petfeat] until their supper went cold.</li>
+        <li>r_logentry->[INITIATOR_nameDef] showed [RECIPIENT_nameDef] where [INITIATOR_possessive] animal liked to be scratched, and [RECIPIENT_nameDef] found the spot at the first try.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [INITIATOR_possessive] animal was the only one in the colony who never minded [INITIATOR_possessive] singing.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] to guess what [INITIATOR_possessive] animal had done that morning, and told [RECIPIENT_objective] before [RECIPIENT_pronoun] could.</li>
+        <li>r_logentry->[INITIATOR_nameDef] said [INITIATOR_possessive] animal always knew when [INITIATOR_pronoun] was low, before anyone else did. [RECIPIENT_nameDef] [petreaction].</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] watched [INITIATOR_possessive] animal [petplay], and [INITIATOR_nameDef] said that was nothing, it was better on a good day.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] the whole story of how [INITIATOR_pronoun] and [INITIATOR_possessive] animal first met, with only a little added.</li>
+        <li>r_logentry->[INITIATOR_nameDef] let [RECIPIENT_nameDef] walk [INITIATOR_possessive] animal once round the yard, and kept a close eye on them both.</li>
+        <li>petgreeting->sniffed [RECIPIENT_objective] all over and seemed to approve</li>
+        <li>petgreeting->ignored [RECIPIENT_objective] completely, which [INITIATOR_nameDef] said was a very good sign</li>
+        <li>petgreeting->leaned its whole weight against [RECIPIENT_possessive] legs</li>
+        <li>petgreeting->sat down at once and waited for a treat</li>
+        <li>petplay->chase a leaf across the yard</li>
+        <li>petplay->roll in the dust and look pleased about it</li>
+        <li>petplay->steal a glove and run off with it</li>
+        <li>petfeat->patience with the children</li>
+        <li>petfeat->way of keeping watch at night</li>
+        <li>petreaction->asked to borrow it for a day</li>
+        <li>petreaction->said [RECIPIENT_pronoun] had noticed the same thing</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <!-- Talking about a wish to do with animals: one of their own, the herd's barn or pen, fodder, a hunt, a mount or a Pokémon. -->
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLines_Talk_Animals</defName>
+    <interaction>Council_Talk_Animals</interaction>
+    <rulePack>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] leaned on the fence and talked about what the animals would need before the cold came.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about the first animal [INITIATOR_pronoun] ever looked after, and what became of it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] which of the colony's animals [RECIPIENT_pronoun] would save first in a fire. They did not agree.</li>
+        <li>r_logentry->[INITIATOR_nameDef] showed [RECIPIENT_nameDef] some tracks at the edge of the fields and said what had made them, more or less.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that you could tell a lot about a colony by how it kept its animals.</li>
+        <li>r_logentry->[INITIATOR_nameDef] described to [RECIPIENT_nameDef] [animaldream], and [RECIPIENT_nameDef] [animalreply].</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether the council ever gave the animals a thought.</li>
+        <li>r_logentry->[INITIATOR_nameDef] counted the herd out loud for [RECIPIENT_nameDef], came up one short, and found it standing right behind them.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that an animal of [INITIATOR_possessive] own would be [animalworth].</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] argued over which animal in the colony was the cleverest, and agreed only that it wasn't the chickens.</li>
+        <li>animaldream->the pen [INITIATOR_pronoun] would build if anyone gave [INITIATOR_objective] the timber</li>
+        <li>animaldream->the animal [INITIATOR_pronoun] had been watching at the edge of the woods</li>
+        <li>animaldream->how the herd might look in a few years, with care</li>
+        <li>animalreply->offered to help when the time came</li>
+        <li>animalreply->said it sounded like a lot of work, and that [INITIATOR_pronoun] should do it anyway</li>
+        <li>animalreply->asked who would be doing the feeding</li>
+        <li>animalworth->worth more to [INITIATOR_objective] than a new bed</li>
+        <li>animalworth->someone to talk to who never talked back</li>
+        <li>animalworth->a reason to be up before everyone else</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <!-- ===================== PokéWorld: how a spar came out (Moments.cs, Contest) ===================== -->
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLines_Sent_PW_InitiatorWon</defName>
+    <pack>Council_Sent_PW_InitiatorWon</pack>
+    <rulePack>
+      <rulesStrings>
+        <li>sent->[INITIATOR_nameDef]'s Pokémon won it in the last exchange, and [RECIPIENT_nameDef] asked to see the move again, slowly.</li>
+        <li>sent->[INITIATOR_nameDef]'s Pokémon had the better of it from the start, and was given an extra handful of berries for it.</li>
+        <li>sent->[INITIATOR_nameDef]'s Pokémon won, and [RECIPIENT_nameDef] spent the evening scratching out in the dirt where it had all gone wrong.</li>
+        <li>sent->[INITIATOR_nameDef]'s Pokémon carried the day, though [RECIPIENT_nameDef] says the sun was in [RECIPIENT_possessive] Pokémon's eyes.</li>
+        <li>sent->[INITIATOR_nameDef]'s Pokémon came out ahead, and [INITIATOR_nameDef] was gracious about it for nearly an hour.</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLines_Sent_PW_RecipientWon</defName>
+    <pack>Council_Sent_PW_RecipientWon</pack>
+    <rulePack>
+      <rulesStrings>
+        <li>sent->[RECIPIENT_nameDef]'s Pokémon won, and [INITIATOR_nameDef] asked for a rematch before the dust had settled.</li>
+        <li>sent->[RECIPIENT_nameDef]'s Pokémon took it, and [INITIATOR_nameDef] admitted [INITIATOR_pronoun] had called the wrong move at the wrong moment.</li>
+        <li>sent->[RECIPIENT_nameDef]'s Pokémon won it cleanly, and both trainers went to fetch water for the two of them.</li>
+        <li>sent->[RECIPIENT_nameDef]'s Pokémon came out on top, and [INITIATOR_nameDef] was quiet and thoughtful all through supper.</li>
+        <li>sent->[RECIPIENT_nameDef]'s Pokémon won by a hair, and the people at the fence argued about it until dark.</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <!-- ===================== The generic entries (only seen if their own text is lost) ===================== -->
+
+  <!-- A social event, an encounter or a moment that waited for two people (Speech.Logged): its own text normally. -->
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLines_SocialEvent</defName>
+    <interaction>Council_SocialEvent</interaction>
+    <rulePack>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] stopped to talk with [RECIPIENT_nameDef] for a while.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] passed a few minutes in each other's company.</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <!-- A line one person says (Speech.Say): the line itself normally. Only the speaker is known. -->
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLines_Speech</defName>
+    <interaction>Council_Speech</interaction>
+    <rulePack>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] spoke up for a moment.</li>
+        <li>r_logentry->[INITIATOR_nameDef] said something half to [INITIATOR_objective]self.</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+</Defs>

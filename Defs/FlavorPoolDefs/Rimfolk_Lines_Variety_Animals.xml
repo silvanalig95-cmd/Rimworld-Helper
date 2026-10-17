@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More lines for the colony's animals (Source/ColonyCouncil/Animals/, Integrations/PokeWorldLife.cs): what's said to
+    an animal at work, the two animal habits, the herdmaster's word about a sick or hurt animal, a Pokémon evolving, and
+    the ranch talk in the journal. These pools were the ones that came round most often (Tools/variety_report.py).
+    Lines said over a head are one sentence of 90 characters at most, with one "!" at most. Every voice gets a few more
+    lines, the weather and the time of day come in threes, and the tags are the ones the callers pass (see the comment
+    on each pool's own def).
+  -->
+
+  <!-- Said to an animal (AnimalLife.TalkToAnimal). Tags: job:milk, job:shear, job:tame, job:train, job:tend, job:feed,
+       job:rescue, job:rope; childplay; bonded, young, oldanimal, pokemon, wild, named. -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Pool_SayToAnimal</defName>
+    <pool>Council_Pool_SayToAnimal</pool>
+    <lines>
+      <plain>
+        <li>Nearly there, nearly there.</li>
+        <li>Gently does it.</li>
+        <li>[winter] Snow on your back again, look at you.</li>
+        <li>[winter] Breath like smoke, the pair of us.</li>
+        <li>[rain] Rain or not, the work still wants doing.</li>
+        <li>[rain] Shake off over there, not on me.</li>
+        <li>[night] Quiet now, the others are sleeping.</li>
+        <li>[night] Late for both of us, I know.</li>
+        <li>[job:milk] Good girl, that's the last of it.</li>
+        <li>[job:shear] Hold still, this is the tricky bit round the legs.</li>
+        <li>[job:tame] I'll sit here as long as it takes.</li>
+        <li>[job:train] Once more, and then a treat.</li>
+        <li>[job:tend] Let me see that, there's a good animal.</li>
+        <li>[job:feed] Plenty for everyone, no shoving.</li>
+        <li>[job:rescue] Easy, easy, I'll have you inside in a moment.</li>
+        <li>[job:rope] Back to the pen with you, there's a good one.</li>
+        <li>[childplay] You can have half my bread if you stay.</li>
+        <li>[childplay] I'm going to tell you a story and you have to listen.</li>
+      </plain>
+      <warm>
+        <li>There now, you're safe with me.</li>
+        <li>You've been so patient with me today.</li>
+        <li>That's it, you're doing well.</li>
+      </warm>
+      <blunt>
+        <li>Move.</li>
+        <li>Come on, I haven't got all day.</li>
+        <li>Quit fussing.</li>
+      </blunt>
+      <cheerful>
+        <li>Look at you go, you clever thing!</li>
+        <li>You're doing so well today, you know that?</li>
+        <li>Best animal in the colony, and I'll tell anyone who asks.</li>
+      </cheerful>
+      <gloomy>
+        <li>You and me, stuck with the jobs nobody wants.</li>
+        <li>Don't look at me like that, I didn't choose this either.</li>
+        <li>At least one of us is having a good day.</li>
+      </gloomy>
+      <cold>
+        <li>Stand where I put you.</li>
+        <li>No sudden moves, and I'll make none either.</li>
+        <li>Sufficient, we're finished here.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- Sitting out with the herd (a small habit): said on arriving, to nobody in particular. The speaker's own tags. -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Pool_HabitHerd</defName>
+    <pool>Council_Pool_HabitHerd</pool>
+    <lines>
+      <plain>
+        <li>Nobody out here asks me for anything.</li>
+        <li>I could watch them all afternoon.</li>
+        <li>[child] That one's the boss, I can tell.</li>
+        <li>[child] I'm going to count them all, every single one.</li>
+        <li>[evening] Last light, and every one of them accounted for.</li>
+        <li>[evening] Listen to them settling, that's the best bit of the day.</li>
+        <li>[spring] New grass, and they know it.</li>
+        <li>[spring] Everyone shedding, everyone hungry, everyone happy.</li>
+        <li>[winter] They've got the right idea, standing close like that.</li>
+        <li>[winter] Thick coats on all of them, good.</li>
+      </plain>
+      <warm>
+        <li>Look at them, every one of them fed and safe.</li>
+        <li>Hello, you lot, don't mind me.</li>
+      </warm>
+      <blunt>
+        <li>All present.</li>
+        <li>Good grass, fat animals, fine.</li>
+      </blunt>
+      <cheerful>
+        <li>Look at them all, fat and happy and not a care between them.</li>
+        <li>Best spot in the colony, and the best company too.</li>
+      </cheerful>
+      <gloomy>
+        <li>They'll still be grazing here long after the rest of us.</li>
+        <li>Nobody out here asks how I'm doing, and that suits me.</li>
+      </gloomy>
+      <cold>
+        <li>Head count correct.</li>
+        <li>Fodder holding, coats good, nobody limping.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- Brushing down a big animal (a small habit): said to it on arriving. {OTHER} the animal. Tags animal, bonded,
+       named, young. -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Pool_HabitGroom</defName>
+    <pool>Council_Pool_HabitGroom</pool>
+    <lines>
+      <plain>
+        <li>Lift your foot, no, the other one.</li>
+        <li>You've half the field in this coat.</li>
+        <li>[named] There you are, {OTHER_nameDef}, fit to be seen.</li>
+        <li>[named] Stand still, {OTHER_nameDef}, you'll thank me later.</li>
+        <li>[named] Easy, {OTHER_nameDef}, I'm only after the burrs.</li>
+        <li>[young] All fluff and no patience, aren't you?</li>
+        <li>[winter] Snow in your coat again, hold still.</li>
+        <li>[winter] Coat as thick as a blanket, I'm almost jealous.</li>
+        <li>[summer] Flies again, stand still and I'll get the worst of them.</li>
+        <li>[summer] Too hot for all this hair, let's get some of it off you.</li>
+        <li>[rain] Mud to your knees, where have you been?</li>
+        <li>[rain] Wet through, let's get you dry before you take a chill.</li>
+        <li>[rain] You smell like a wet rug, a lovely wet rug.</li>
+      </plain>
+      <warm>
+        <li>There, doesn't that feel better?</li>
+        <li>Take your time, there's no hurry today.</li>
+      </warm>
+      <blunt>
+        <li>Hold still, I'm not doing this twice.</li>
+        <li>Knots everywhere, honestly.</li>
+      </blunt>
+      <cheerful>
+        <li>Look at that shine, the others will be jealous!</li>
+        <li>Handsomest animal in the colony, whatever anyone says.</li>
+      </cheerful>
+      <gloomy>
+        <li>One of us might as well look tidy today.</li>
+        <li>You don't mind my company, which is more than most do.</li>
+      </gloomy>
+      <cold>
+        <li>Burrs first, then the coat.</li>
+        <li>Stand square, this takes as long as it takes.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- The herdmaster's word about someone's sick or hurt animal, face to face (news and the social log). {PAWN} the
+       herdmaster, {OTHER} the animal's person, {PET} the animal. [sick] or [hurt]. -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Pool_Herd_Rounds</defName>
+    <pool>Council_Pool_Herd_Rounds</pool>
+    <lines>
+      <plain>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} that {PET_nameDef} was resting easy and would be up soon.</li>
+        <li>{PAWN_nameDef} took {OTHER_nameDef} down to see {PET_nameDef}, who lifted its head at once.</li>
+        <li>{PAWN_nameDef} found {OTHER_nameDef} at supper to say {PET_nameDef} had had a good day.</li>
+        <li>[sick] {PAWN_nameDef} told {OTHER_nameDef} that {PET_nameDef}'s fever had broken in the night.</li>
+        <li>[sick] {PAWN_nameDef} let {OTHER_nameDef} know that {PET_nameDef} had kept its food down at last.</li>
+        <li>[hurt] {PAWN_nameDef} told {OTHER_nameDef} that the wound on {PET_nameDef} was knitting cleanly.</li>
+        <li>[hurt] {PAWN_nameDef} told {OTHER_nameDef} that {PET_nameDef} was moving more easily today.</li>
+      </plain>
+      <warm>
+        <li>{PAWN_nameDef} sat with {OTHER_nameDef} by {PET_nameDef}'s pen until {OTHER_nameDef} could smile again.</li>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} that {PET_nameDef} had been asking for {OTHER_objective}, in its way.</li>
+      </warm>
+      <blunt>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} that {PET_nameDef} was fine and to stop hovering.</li>
+        <li>{PAWN_nameDef} said {PET_nameDef} would mend, and that was the end of it.</li>
+      </blunt>
+      <cheerful>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} that {PET_nameDef} was already back to its old tricks.</li>
+        <li>{PAWN_nameDef} came to say {PET_nameDef} had tried to steal {PAWN_possessive} lunch, which was a good sign.</li>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} that {PET_nameDef} would be bossing the others again in no time.</li>
+      </cheerful>
+      <gloomy>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} that {PET_nameDef} would pull through, though it would take time.</li>
+        <li>{PAWN_nameDef} warned {OTHER_nameDef} that {PET_nameDef} was still weak, but no worse.</li>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} not to expect too much of {PET_nameDef} just yet.</li>
+      </gloomy>
+      <cold>
+        <li>{PAWN_nameDef} gave {OTHER_nameDef} {PET_nameDef}'s progress in one plain word: improving.</li>
+        <li>{PAWN_nameDef} reported to {OTHER_nameDef} that {PET_nameDef} was eating, drinking and recovering.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- PokéWorld: said by the trainer to their Pokémon as it evolves. Tags pokemon, shiny, named. Never "a" or "an"
+       before {OLD} or {NEW}. -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Pool_PW_SayEvolved</defName>
+    <pool>Council_Pool_PW_SayEvolved</pool>
+    <lines>
+      <plain>
+        <li>All that training, and here you are.</li>
+        <li>Let me look at you properly.</li>
+        <li>[named] There you are, {PET_nameDef}, all grown up.</li>
+        <li>[named] Steady, {PET_nameDef}, you'll get used to it.</li>
+        <li>[shiny] Even brighter than before, if that's possible.</li>
+      </plain>
+      <warm>
+        <li>You've worked so hard for this.</li>
+        <li>Big or small, you're still my partner.</li>
+      </warm>
+      <blunt>
+        <li>Good, about time too.</li>
+        <li>Bigger, stronger, good.</li>
+      </blunt>
+      <cheerful>
+        <li>Look at you, you're magnificent!</li>
+        <li>Wait until the others see you.</li>
+      </cheerful>
+      <gloomy>
+        <li>I'll miss how small you were.</li>
+        <li>You won't fit in my lap any more, will you?</li>
+      </gloomy>
+      <cold>
+        <li>Evolution complete, now we test it.</li>
+        <li>Stronger, as planned.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- PokéWorld: said by whoever is beside the trainer when it evolves: {PAWN} the speaker, {OTHER} the trainer. -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Pool_PW_Congratulate</defName>
+    <pool>Council_Pool_PW_Congratulate</pool>
+    <lines>
+      <plain>
+        <li>I've never seen one do that up close.</li>
+        <li>Is it meant to glow like that?</li>
+        <li>So that's what all the training was for.</li>
+        <li>[named] {PET_nameDef} has grown, hasn't it, {OTHER_nameDef}?</li>
+      </plain>
+      <warm>
+        <li>You must be so proud, {OTHER_nameDef}.</li>
+        <li>It's lovely to see it so happy.</li>
+      </warm>
+      <blunt>
+        <li>Huh, it actually did it.</li>
+        <li>Well, that's new.</li>
+      </blunt>
+      <cheerful>
+        <li>Best thing I've seen all week!</li>
+        <li>Can I pat it, or is it too grand now?</li>
+      </cheerful>
+      <gloomy>
+        <li>It'll eat twice as much now, I suppose.</li>
+        <li>Hope it still knows who its friends are.</li>
+      </gloomy>
+      <cold>
+        <li>A sensible use of training time.</li>
+        <li>Stronger animal, better defence.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- Alpha Memes: a day of ranch talk in the journal. The writer is the one who keeps the cowboy meme
+       ([meme:AM_Cowboys]) or the one who knows animals ([!meme:AM_Cowboys]); {OTHER_...} the other one. -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Journal_Day_Alpha_Ranch</defName>
+    <pool>Council_Journal_Day_Alpha_Ranch</pool>
+    <lines>
+      <plain>
+        <li>[meme:AM_Cowboys] Showed {OTHER_nameDef} how to read a herd from the fence before it moves. Quick to catch on.</li>
+        <li>[meme:AM_Cowboys] {OTHER_nameDef} asked me about the open range. I talked until the lamp was out and could have gone on.</li>
+        <li>[!meme:AM_Cowboys] {OTHER_nameDef} counts the herd at dusk, every night, twice. I've started doing it too.</li>
+        <li>[!meme:AM_Cowboys] Spent the evening at the fence with {OTHER_nameDef}, who talks about grazing the way some people talk about poetry.</li>
+        <li>Out by the pens with {OTHER_nameDef} until dark. We said more about the animals than about ourselves, and it was a good evening.</li>
+      </plain>
+      <warm>
+        <li>{OTHER_nameDef} and I agreed the herd is family, the loud and smelly part of it.</li>
+        <li>Good company at the fence tonight. {OTHER_nameDef} knows every animal by its walk.</li>
+      </warm>
+      <blunt>
+        <li>Talked herds with {OTHER_nameDef}. Knows the work.</li>
+      </blunt>
+      <cheerful>
+        <li>{OTHER_nameDef} and I gave every animal in the pen a new name, again. They didn't seem to mind.</li>
+      </cheerful>
+      <gloomy>
+        <li>Talked about the herd with {OTHER_nameDef}. Easier than talking about anything else.</li>
+        <li>{OTHER_nameDef} says a good herd outlives its keepers. I'm not sure that's a comfort.</li>
+      </gloomy>
+      <cold>
+        <li>Compared notes on the herd with {OTHER_nameDef}. Our counts matched. Our methods did not.</li>
+        <li>{OTHER_nameDef} has sound views on rotating the grazing. Worth listening to.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+</Defs>
