@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Marks of pride and growth, hardship, and faith and the world (Source/ColonyCouncil/Persona/Marks.cs): a seat won,
+    a skill mastered, a legendary piece, a child raised or born, a wedding, a student finished; a hungry season, a long
+    illness, an addiction overcome, enslaved or freed, a long peace; a new faith, a ceremony that moved them, a brush with
+    what lies past the world. The slow ones are looked for once a day.
+  -->
+
+  <!-- ===================== Pride and growth ===================== -->
+
+  <ColonyCouncil.PersonaMarkDef>
+    <defName>Rimfolk_Mark_Elected</defName>
+    <label>given a seat</label>
+    <shifts><pride>7</pride><nerve>4</nerve><outlook>3</outlook></shifts>
+    <major>true</major>
+    <keepDays>120</keepDays>
+    <shaped>{PAWN_nameDef} has spoken up more since the colony made {PAWN_objective} its {LABEL}.</shaped>
+    <defaultLabel>councillor</defaultLabel>
+    <modExtensions>
+      <li Class="ColonyCouncil.PersonaMarkExtension">
+        <family>Elected</family>
+        <lean>pride:-0.3</lean>
+        <journal>
+          <plain>
+            <li>They chose me as {LABEL}. I keep looking round to see who they meant.</li>
+            <li>So I'm {LABEL} now. I've a list of things to put right already, and I've only been at it an hour.</li>
+            <li>I went for a walk after the vote to think about being {LABEL}. I came back with more questions than I left with.</li>
+            <li>[persona:proud] They made me {LABEL}. About time somebody noticed.</li>
+          </plain>
+          <warm><li>The colony trusts me enough to make me {LABEL}. I won't let them down.</li></warm>
+          <blunt><li>I'm {LABEL} now. Good. There's work to do.</li></blunt>
+          <cheerful><li>I'm the {LABEL}! I tried to look serious when they read it out. I don't think it worked.</li></cheerful>
+          <gloomy><li>I'm {LABEL} now, so everything that goes wrong will be my fault.</li></gloomy>
+          <cold><li>Elected {LABEL}. A useful position. I intend to use it.</li></cold>
+        </journal>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.PersonaMarkDef>
+
+  <ColonyCouncil.PersonaMarkDef>
+    <defName>Rimfolk_Mark_Mastered</defName>
+    <label>mastered a craft</label>
+    <shifts><pride>9</pride><outlook>4</outlook><openness>-3</openness></shifts>
+    <major>true</major>
+    <keepDays>300</keepDays>
+    <shaped>{PAWN_nameDef} has spoken with a master's certainty since mastering {LABEL}.</shaped>
+    <defaultLabel>a craft</defaultLabel>
+    <modExtensions>
+      <li Class="ColonyCouncil.PersonaMarkExtension">
+        <family>Mastered</family>
+        <news>{PAWN_nameDef} has mastered {LABEL}: there is nothing left anyone here could teach {PAWN_objective}.</news>
+        <chronicle>true</chronicle>
+        <journal>
+          <plain>
+            <li>I've gone as far with {LABEL} as anyone can go. I thought it would feel like arriving. It feels like starting.</li>
+            <li>The others come to me now with questions about {LABEL}, and I have the answers. Most of them.</li>
+            <li>Years of {LABEL}, and today I did it without thinking at all. That's what it was for.</li>
+          </plain>
+          <warm><li>I mastered {LABEL}. I'd like to teach someone. It's no good keeping it all in one head.</li></warm>
+          <blunt><li>Mastered {LABEL}. Took long enough.</li></blunt>
+          <cheerful><li>Nobody in this colony is better at {LABEL} than me. I've checked. Twice.</li></cheerful>
+          <gloomy><li>I've mastered {LABEL}. Nowhere left to go with it but down.</li></gloomy>
+          <cold><li>My work in {LABEL} has reached its limit. Efficient. I'll find another field to improve.</li></cold>
+        </journal>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.PersonaMarkDef>
+
+  <ColonyCouncil.PersonaMarkDef>
+    <defName>Rimfolk_Mark_Masterwork</defName>
+    <label>made a masterwork</label>
+    <shifts><pride>5</pride><outlook>2</outlook></shifts>
+    <keepDays>90</keepDays>
+    <shaped>{PAWN_nameDef} has been prouder of {PAWN_possessive} work since making a masterwork {LABEL}.</shaped>
+    <defaultLabel>piece</defaultLabel>
+    <modExtensions>
+      <li Class="ColonyCouncil.PersonaMarkExtension">
+        <family>Masterwork</family>
+        <repeatDays>45</repeatDays>
+        <lean>pride:0.2</lean>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.PersonaMarkDef>
+
+  <ColonyCouncil.PersonaMarkDef>
+    <defName>Rimfolk_Mark_Legendary</defName>
+    <label>made a legendary piece</label>
+    <shifts><pride>12</pride><outlook>5</outlook></shifts>
+    <major>true</major>
+    <keepDays>240</keepDays>
+    <shaped>{PAWN_nameDef} has carried {PAWN_objective}self like a master since making a legendary {LABEL}.</shaped>
+    <defaultLabel>piece</defaultLabel>
+    <modExtensions>
+      <li Class="ColonyCouncil.PersonaMarkExtension">
+        <family>Legendary</family>
+        <lean>pride:0.2</lean>
+        <news>{PAWN_nameDef} made a legendary {LABEL}, and knows it.</news>
+        <journal>
+          <plain>
+            <li>I made a {LABEL} today that I'll never better. My hands were steadier than they've ever been.</li>
+            <li>The {LABEL} came off the bench and the room went quiet. People will remember who made it.</li>
+            <li>I keep going back to look at the {LABEL}. I'm not sure I made it so much as let it out.</li>
+          </plain>
+          <warm><li>The {LABEL} is the best thing I'll ever make. I hope it goes to someone who'll love it.</li></warm>
+          <blunt><li>Made a legendary {LABEL}. Back to work tomorrow.</li></blunt>
+          <cheerful><li>A legendary {LABEL}! By my own hands! I may need a lie down.</li></cheerful>
+          <gloomy><li>That {LABEL} is the best I'll ever do. Everything after it will be a disappointment.</li></gloomy>
+          <cold><li>The {LABEL} is flawless. I have finally met my own standards.</li></cold>
+        </journal>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.PersonaMarkDef>
+
+  <ColonyCouncil.PersonaMarkDef>
+    <defName>Rimfolk_Mark_RaisedChild</defName>
+    <label>raised a child</label>
+    <shifts><warmth>6</warmth><outlook>6</outlook><pride>4</pride></shifts>
+    <major>true</major>
+    <keepDays>300</keepDays>
+    <shaped>{PAWN_nameDef} has carried a settled kind of pride since {OTHER} grew up.</shaped>
+    <defaultLabel>coming of age</defaultLabel>
+    <modExtensions>
+      <li Class="ColonyCouncil.PersonaMarkExtension">
+        <family>RaisedChild</family>
+        <thoughts><li>Council_ChildGrown</li></thoughts>
+        <needsOther>true</needsOther>
+        <journal>
+          <plain>
+            <li>{OTHER_nameDef} is grown. I keep wanting to tie {OTHER_possessive} boots for {OTHER_objective}.</li>
+            <li>I watched {OTHER_nameDef} walk off to work this morning like any grown-up. I had to sit down for a moment.</li>
+            <li>{OTHER_nameDef} asked my advice today, as one adult to another. I think I gave good advice.</li>
+          </plain>
+          <warm><li>{OTHER_nameDef} has grown up kind. Whatever else I've done wrong, I did that right.</li></warm>
+          <blunt><li>{OTHER_nameDef}'s grown. Turned out well.</li></blunt>
+          <cheerful><li>{OTHER_nameDef} is all grown up and taller than me. When did that happen?</li></cheerful>
+          <gloomy><li>{OTHER_nameDef} is grown, and won't need me much now. That's how it's meant to go, I suppose.</li></gloomy>
+          <cold><li>{OTHER_nameDef} has reached adulthood capable and sound. A good outcome.</li></cold>
+        </journal>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.PersonaMarkDef>
+
+  <ColonyCouncil.PersonaMarkDef>
+    <defName>Rimfolk_Mark_BecameParent</defName>
+    <label>became a parent</label>
+    <shifts><warmth>8</warmth><nerve>-4</nerve><openness>-3</openness></shifts>
+    <major>true</major>
+    <keepDays>300</keepDays>
+    <shaped>{PAWN_nameDef} has been softer, and more careful, since {OTHER} was born.</shaped>
+    <defaultLabel>a birth</defaultLabel>
+    <modExtensions>
+      <li Class="ColonyCouncil.PersonaMarkExtension">
+        <family>BecameParent</family>
+        <journal>
+          <plain>
+            <li>{OTHER_nameDef} is here. Small, loud and furious about everything. I'd die for {OTHER_objective} already.</li>
+            <li>I held {OTHER_nameDef} for an hour and didn't notice the time go. I've never done that before.</li>
+            <li>I'm a parent. I keep checking that {OTHER_nameDef} is still breathing, every few minutes.</li>
+          </plain>
+          <warm><li>{OTHER_nameDef} grabbed my finger and wouldn't let go. Neither will I.</li></warm>
+          <blunt><li>{OTHER_nameDef} was born today. Healthy. Loud.</li></blunt>
+          <cheerful><li>{OTHER_nameDef} is the most beautiful thing in this colony and I will fight anyone who says otherwise.</li></cheerful>
+          <gloomy><li>{OTHER_nameDef}, born into this. I'll do what I can to make it worth it.</li></gloomy>
+          <cold><li>{OTHER_nameDef} is born. I find I am not as detached as I expected.</li></cold>
+        </journal>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.PersonaMarkDef>
+
+  <ColonyCouncil.PersonaMarkDef>
+    <defName>Rimfolk_Mark_Married</defName>
+    <label>married</label>
+    <shifts><warmth>5</warmth><outlook>6</outlook><trust>4</trust></shifts>
+    <major>true</major>
+    <keepDays>300</keepDays>
+    <shaped>{PAWN_nameDef} has had someone to come home to since marrying {OTHER}.</shaped>
+    <defaultLabel>a wedding</defaultLabel>
+    <modExtensions>
+      <li Class="ColonyCouncil.PersonaMarkExtension">
+        <family>Married</family>
+        <thoughts><li>GotMarried</li></thoughts>
+        <needsOther>true</needsOther>
+        <journal>
+          <plain>
+            <li>Married to {OTHER_nameDef}. I said my words without stumbling, which surprised us both.</li>
+            <li>{OTHER_nameDef} and I are married. I keep turning the word over. It fits better than I thought.</li>
+            <li>The wedding's done and the others have gone to bed. {OTHER_nameDef} is asleep beside me. Good day.</li>
+          </plain>
+          <warm><li>I married {OTHER_nameDef} today. Whatever comes, we'll meet it together.</li></warm>
+          <blunt><li>Married {OTHER_nameDef}. Good choice.</li></blunt>
+          <cheerful><li>I married {OTHER_nameDef}! There was dancing. I'm told I was the worst at it.</li></cheerful>
+          <gloomy><li>Married {OTHER_nameDef}. Out here, I'd better make the most of every day of it.</li></gloomy>
+          <cold><li>{OTHER_nameDef} and I are married. A sensible arrangement, and I find I'm glad of it.</li></cold>
+        </journal>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.PersonaMarkDef>
+
+  <ColonyCouncil.PersonaMarkDef>
+    <defName>Rimfolk_Mark_TaughtWell</defName>
+    <label>saw a student through</label>
+    <shifts><pride>5</pride><warmth>4</warmth><openness>2</openness></shifts>
+    <keepDays>120</keepDays>
+    <shaped>{PAWN_nameDef} has been glad to share what {PAWN_pronoun} knows since {OTHER} finished {PAWN_possessive} lessons.</shaped>
+    <defaultLabel>a student</defaultLabel>
+    <modExtensions>
+      <li Class="ColonyCouncil.PersonaMarkExtension">
+        <family>TaughtWell</family>
+        <thoughts><li>Council_ProudMentor</li></thoughts>
+        <needsOther>true</needsOther>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.PersonaMarkDef>
+
+  <!-- ===================== Hardship ===================== -->
+
+  <ColonyCouncil.PersonaMarkDef>
+    <defName>Rimfolk_Mark_HungrySeason</defName>
+    <label>went hungry</label>
+    <shifts><outlook>-5</outlook><openness>-4</openness><warmth>-2</warmth></shifts>
+    <keepDays>120</keepDays>
+    <shaped>{PAWN_nameDef} has never wasted a crumb since {LABEL}.</shaped>
+    <defaultLabel>a hungry season</defaultLabel>
+    <modExtensions>
+      <li Class="ColonyCouncil.PersonaMarkExtension">
+        <family>HungrySeason</family>
+        <repeatDays>40</repeatDays>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.PersonaMarkDef>
+
+  <ColonyCouncil.PersonaMarkDef>
+    <defName>Rimfolk_Mark_LongIllness</defName>
+    <label>a long illness</label>
+    <shifts><outlook>-4</outlook><warmth>3</warmth><nerve>-2</nerve></shifts>
+    <keepDays>90</keepDays>
+    <shaped>{PAWN_nameDef} has had more patience with the sick since a long bout of {LABEL}.</shaped>
+    <defaultLabel>illness</defaultLabel>
+    <modExtensions>
+      <li Class="ColonyCouncil.PersonaMarkExtension">
+        <family>LongIllness</family>
+        <lean>outlook:-0.3</lean>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.PersonaMarkDef>
+
+  <ColonyCouncil.PersonaMarkDef>
+    <defName>Rimfolk_Mark_AddictionOvercome</defName>
+    <label>overcame an addiction</label>
+    <shifts><pride>6</pride><nerve>5</nerve><outlook>6</outlook></shifts>
+    <major>true</major>
+    <keepDays>240</keepDays>
+    <shaped>{PAWN_nameDef} has trusted {PAWN_possessive} own will since getting free of {LABEL}.</shaped>
+    <defaultLabel>an addiction</defaultLabel>
+    <modExtensions>
+      <li Class="ColonyCouncil.PersonaMarkExtension">
+        <family>AddictionOvercome</family>
+        <news>{PAWN_nameDef} is free of {LABEL}.</news>
+        <journal>
+          <plain>
+            <li>It's gone. The {LABEL} that had me by the throat is gone. I woke up this morning and didn't want it.</li>
+            <li>I'm free of {LABEL}. The shakes, the bad nights, the begging: all behind me now.</li>
+            <li>I walked past the drug shelf today and only noticed afterwards. That's how I know the {LABEL} is over.</li>
+          </plain>
+          <warm><li>I beat the {LABEL}, with a lot of help. I'm going to thank every one of them.</li></warm>
+          <blunt><li>Clean of {LABEL}. Staying that way.</li></blunt>
+          <cheerful><li>No more {LABEL}! I feel like I could carry a muffalo.</li></cheerful>
+          <gloomy><li>Free of {LABEL}, for now. I'll keep watching myself.</li></gloomy>
+          <cold><li>The {LABEL} has run its course. My judgement is my own again.</li></cold>
+        </journal>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.PersonaMarkDef>
+
+  <ColonyCouncil.PersonaMarkDef>
+    <defName>Rimfolk_Mark_Enslaved</defName>
+    <label>enslaved</label>
+    <shifts><trust>-12</trust><pride>-8</pride><temper>4</temper></shifts>
+    <major>true</major>
+    <keepDays>360</keepDays>
+    <shaped>{PAWN_nameDef} has kept {PAWN_possessive} eyes down and {PAWN_possessive} thoughts to {PAWN_objective}self since being made a slave.</shaped>
+    <defaultLabel>slavery</defaultLabel>
+    <modExtensions>
+      <li Class="ColonyCouncil.PersonaMarkExtension">
+        <family>Enslaved</family>
+        <thoughts><li>WasEnslaved</li></thoughts>
+        <journal>
+          <plain>
+            <li>They made me a slave today. I've decided not to give them the rest of me.</li>
+            <li>I'm a slave now. I can still think what I like, and I do.</li>
+            <li>Work, eat, sleep, work. Nobody asks what I want any more. I remember, though.</li>
+          </plain>
+          <blunt><li>Enslaved. I'll wait.</li></blunt>
+          <gloomy><li>So this is what the rest of my life looks like.</li></gloomy>
+          <cold><li>My status has changed. My plans have not.</li></cold>
+        </journal>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.PersonaMarkDef>
+
+  <ColonyCouncil.PersonaMarkDef>
+    <defName>Rimfolk_Mark_Freed</defName>
+    <label>freed</label>
+    <shifts><outlook>10</outlook><pride>6</pride><trust>5</trust></shifts>
+    <major>true</major>
+    <keepDays>360</keepDays>
+    <shaped>{PAWN_nameDef} has held {PAWN_possessive} head up since being freed on {LABEL}.</shaped>
+    <defaultLabel>the day of freedom</defaultLabel>
+    <modExtensions>
+      <li Class="ColonyCouncil.PersonaMarkExtension">
+        <family>Freed</family>
+        <thoughts><li>FreedFromSlavery</li></thoughts>
+        <labelDay>true</labelDay>
+        <news>{PAWN_nameDef} is free, and walks like it.</news>
+        <journal>
+          <plain>
+            <li>Free. I said it out loud three times in the empty storeroom, just to hear it.</li>
+            <li>I'm not a slave any more. My shoulders don't know what to do with themselves.</li>
+            <li>I'm free, and I've decided to stay. That's the first choice I've made in a long time.</li>
+          </plain>
+          <warm><li>They freed me. I'll work twice as hard now, because now it's mine to give.</li></warm>
+          <blunt><li>Free. Finally.</li></blunt>
+          <cheerful><li>I'm free! I walked the long way round to supper just because I could.</li></cheerful>
+          <gloomy><li>Free, they say. I'll believe it when it's been a year.</li></gloomy>
+          <cold><li>My freedom has been returned. I will not hand it back.</li></cold>
+        </journal>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.PersonaMarkDef>
+
+  <ColonyCouncil.PersonaMarkDef>
+    <defName>Rimfolk_Mark_LongPeace</defName>
+    <label>a long peace</label>
+    <shifts><outlook>7</outlook><nerve>-4</nerve><humour>3</humour></shifts>
+    <keepDays>60</keepDays>
+    <shaped>{PAWN_nameDef} has let {PAWN_possessive} guard down after {LABEL}.</shaped>
+    <defaultLabel>a year without a raid</defaultLabel>
+    <modExtensions>
+      <li Class="ColonyCouncil.PersonaMarkExtension">
+        <family>LongPeace</family>
+        <repeatDays>60</repeatDays>
+        <lean>outlook:-0.2</lean>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.PersonaMarkDef>
+
+  <!-- ===================== Faith and the world ===================== -->
+
+  <ColonyCouncil.PersonaMarkDef>
+    <defName>Rimfolk_Mark_Converted</defName>
+    <label>took up a new faith</label>
+    <shifts><openness>6</openness><outlook>4</outlook><trust>3</trust></shifts>
+    <major>true</major>
+    <keepDays>240</keepDays>
+    <shaped>{PAWN_nameDef} has seen things through new eyes since taking up the ways of {LABEL}.</shaped>
+    <defaultLabel>a new faith</defaultLabel>
+    <modExtensions>
+      <li Class="ColonyCouncil.PersonaMarkExtension">
+        <family>Converted</family>
+        <news>{PAWN_nameDef} has taken up the ways of {LABEL}.</news>
+        <chronicle>true</chronicle>
+        <journal>
+          <plain>
+            <li>I hold to {LABEL} now. I didn't decide it so much as notice it had happened.</li>
+            <li>I've taken up the ways of {LABEL}. Some of the old prayers still come to me at night, out of habit.</li>
+            <li>Whatever I was before, I'm of {LABEL} now. The world looks the same, but it means something else.</li>
+          </plain>
+          <warm><li>Those who keep {LABEL} took me in, and now their faith is mine too. It feels like coming home.</li></warm>
+          <blunt><li>I follow {LABEL} now. My business.</li></blunt>
+          <cheerful><li>I'm of {LABEL} now! There's so much I didn't know. I've been asking questions all day.</li></cheerful>
+          <gloomy><li>I've given up the old faith for {LABEL}. I hope this one holds up better.</li></gloomy>
+          <cold><li>The arguments of {LABEL} were better. I have changed my position accordingly.</li></cold>
+        </journal>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.PersonaMarkDef>
+
+  <ColonyCouncil.PersonaMarkDef>
+    <defName>Rimfolk_Mark_MovingRitual</defName>
+    <label>moved by a ceremony</label>
+    <shifts><outlook>4</outlook><warmth>3</warmth><openness>-3</openness></shifts>
+    <keepDays>90</keepDays>
+    <shaped>{PAWN_nameDef} has held the colony's ways closer since the ceremony on {LABEL}.</shaped>
+    <defaultLabel>a ceremony</defaultLabel>
+    <modExtensions>
+      <li Class="ColonyCouncil.PersonaMarkExtension">
+        <family>MovingRitual</family>
+        <thoughts>
+          <li>UnforgettableParty</li><li>UnforgettableFestival</li><li>UnforgettableSkyLanterns</li><li>HeartwarmingFuneral</li>
+          <li>GrandioseBestowingCeremony</li><li>SpectacularSacrifice</li><li>SpectacularScarification</li><li>SpectacularBlinding</li>
+        </thoughts>
+        <labelDay>true</labelDay>
+        <repeatDays>30</repeatDays>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.PersonaMarkDef>
+
+  <ColonyCouncil.PersonaMarkDef>
+    <defName>Rimfolk_Mark_TouchedByTheUnknown</defName>
+    <label>drawn to what lies beyond</label>
+    <shifts><openness>6</openness><warmth>-2</warmth><outlook>-2</outlook></shifts>
+    <keepDays>120</keepDays>
+    <shaped>{PAWN_nameDef} has wanted to know more about what lies past the world since what happened on {LABEL}.</shaped>
+    <defaultLabel>a strange day</defaultLabel>
+    <modExtensions>
+      <li Class="ColonyCouncil.PersonaMarkExtension">
+        <family>Unknown</family>
+        <order>0</order>
+        <when>openness>=25</when>
+        <thoughts>
+          <li>ObeliskAbduction</li><li>HeardInhumanRambling</li><li>PsychicRitualVictim</li><li>SwallowedByDarkness</li><li>HarbingerScream</li>
+          <li>SpokeToDisturbing</li><li>UsedMeForPsychicRitual</li><li>DrainedMySkills</li><li>VoidCuriositySatisfied</li><li>NeuroquakeEcho</li>
+          <li>AnimaScream</li>
+        </thoughts>
+        <labelDay>true</labelDay>
+        <repeatDays>30</repeatDays>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.PersonaMarkDef>
+
+  <ColonyCouncil.PersonaMarkDef>
+    <defName>Rimfolk_Mark_ShakenByTheUnknown</defName>
+    <label>shaken by what lies beyond</label>
+    <shifts><nerve>-6</nerve><outlook>-5</outlook><trust>-3</trust></shifts>
+    <keepDays>120</keepDays>
+    <shaped>{PAWN_nameDef} has looked over {PAWN_possessive} shoulder since what happened on {LABEL}.</shaped>
+    <defaultLabel>a strange day</defaultLabel>
+    <modExtensions>
+      <li Class="ColonyCouncil.PersonaMarkExtension">
+        <family>Unknown</family>
+        <order>1</order>
+        <thoughts>
+          <li>ObeliskAbduction</li><li>HeardInhumanRambling</li><li>PsychicRitualVictim</li><li>SwallowedByDarkness</li><li>HarbingerScream</li>
+          <li>SpokeToDisturbing</li><li>UsedMeForPsychicRitual</li><li>DrainedMySkills</li><li>VoidCuriositySatisfied</li><li>NeuroquakeEcho</li>
+          <li>AnimaScream</li>
+        </thoughts>
+        <labelDay>true</labelDay>
+        <repeatDays>30</repeatDays>
+        <lean>nerve:-0.4</lean>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.PersonaMarkDef>
+
+</Defs>

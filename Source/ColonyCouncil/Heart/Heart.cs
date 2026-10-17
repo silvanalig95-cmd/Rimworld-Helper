@@ -105,9 +105,11 @@ namespace ColonyCouncil
         /// </summary>
         public static float MomentWeightFactor(Pawn initiator, Pawn recipient, bool friction, string kind)
         {
+            // Their character too: the warm and playful start more warm moments, the hot-tempered more frictions (Persona).
+            float lean = PersonaLean.Moment(initiator, friction, kind);
             var h = Of(initiator);
-            if (h == null || h.feelings.Count == 0) return 1f;
-            float f = 1f;
+            if (h == null || h.feelings.Count == 0) return lean;
+            float f = lean;
             bool grief = kind == "grief";
             for (int i = 0; i < h.feelings.Count; i++)
             {

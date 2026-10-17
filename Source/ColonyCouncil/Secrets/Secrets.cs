@@ -220,7 +220,8 @@ namespace ColonyCouncil
 
             // Confiding: in a close friend who doesn't know yet, face to face (Together: when they're together, or the
             // owner goes and finds them in their free time).
-            if (Rand.Chance(0.04f))
+            // The trusting confide sooner, the suspicious later (Persona/MarksLean.cs).
+            if (Rand.Chance(0.04f * PersonaLean.Confiding(owner)))
             {
                 var friend = social.ties.Where(t => t.kind == TieKind.Friends && t.announced && t.strength >= 50f && t.Involves(owner))
                     .Select(t => t.Other(owner)).Where(f => f != null && f.IsColonist && !f.Dead && !s.knowers.Contains(f)).RandomElementWithFallback();

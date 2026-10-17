@@ -520,8 +520,8 @@ namespace ColonyCouncil
         private static (int, int) Key(Pawn x, Pawn y) =>
             x.thingIDNumber < y.thingIDNumber ? (x.thingIDNumber, y.thingIDNumber) : (y.thingIDNumber, x.thingIDNumber);
 
-        /// <summary>Abrasive or volatile: slower to let a friction go, quicker to start one.</summary>
-        private static bool Temper(Pawn p) => PeopleTags.Has(p, "trait:Abrasive") || PeopleTags.Has(p, "trait:Volatile");
+        /// <summary>Abrasive, volatile or hot-headed by character (Persona): slower to let a friction go, quicker to start one.</summary>
+        private static bool Temper(Pawn p) => PeopleTags.Has(p, "trait:Abrasive") || PeopleTags.Has(p, "trait:Volatile") || PeopleTags.Has(p, "persona:hothead");
 
         public static void ResetCache() => cacheTick = -1;
 

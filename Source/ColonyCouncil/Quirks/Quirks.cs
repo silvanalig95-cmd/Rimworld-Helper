@@ -205,6 +205,7 @@ namespace ColonyCouncil
             {
                 if (!p.Downed || p.Dead) continue;
                 downedTick[p] = now;
+                PersonaMarks.Notify_Downed(p);
                 CouncilGameComponent.Instance?.aspirations.Notify_Event(p, "downed");
             }
             LuckyItems.Bind(this);

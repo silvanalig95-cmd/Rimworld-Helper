@@ -194,6 +194,7 @@ namespace ColonyCouncil
                 var gone = holders[k];
                 holders.Remove(k);
                 elected.Remove(k);
+                PersonaMarks.Notify_SeatEmptied(gone, DefNameOf(k));
                 if (S.offices && gone != null)
                 {
                     var def = DefDatabase<OfficeDef>.GetNamedSilentFail(DefNameOf(k));
@@ -343,6 +344,7 @@ namespace ColonyCouncil
                     text.Append(" ").Append("CC_Election_Unbeaten".Translate(winner.Named("PAWN")).Resolve());
                 CouncilGameComponent.GiveThought(winner, CouncilDefOf.Council_ElectedToOffice);
                 comp.journals.Write(winner, "Council_Journal_Elected", null, office.label.Named("OFFICE"));
+                PersonaMarks.Notify_Elected(winner, office.label, previous == winner);
                 if (previous != null && previous != winner && Valid(previous))
                 {
                     if (office.Seats > 1) benchLost.Add((office, previous, winner));
