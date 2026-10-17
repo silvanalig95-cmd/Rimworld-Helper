@@ -24,7 +24,7 @@
   <CC_Reason_Sauna>The winter here is long, and {PAWN_nameDef} would like somewhere hot to sit at the end of a cold day.</CC_Reason_Sauna>
   <CC_Fulfilled_SaunaModded>The colony has a sauna: {THING} in a small closed room, or another sauna heater.</CC_Fulfilled_SaunaModded>
   <CC_Fulfilled_SaunaOwn>The colony has a sauna: a small closed room (30 cells at most, no bed or workbench in it) with a seat and {THING} or another heat source, kept at {HEAT} or more. A fire can only warm a room so far: with only a fire, as warm as it can make it does.</CC_Fulfilled_SaunaOwn>
-  <CC_Kept_Lost_Sauna>The sauna {FOR_nameDef} asked for is gone, or has gone cold.</CC_Kept_Lost_Sauna>
+  <CC_Kept_Lost_Sauna>The sauna {FOR_nameDef} asked for is gone.</CC_Kept_Lost_Sauna>
   <CC_TieNote_Sauna>talked in the sauna</CC_TieNote_Sauna>
   <CC_Habit_Report_Sauna>sitting in the sauna.</CC_Habit_Report_Sauna>
 

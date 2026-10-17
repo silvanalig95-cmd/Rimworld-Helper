@@ -252,7 +252,7 @@ namespace ColonyCouncil
     /// <summary>
     /// A sauna: Dubs Bad Hygiene's (a room with its sauna heater), or one the colony made itself, a small closed room with
     /// no bed or workbench, a seat, and a heater or a fire that keeps it hot (28 °C, or as hot as a fire can make a room).
-    /// Found once an hour per map.
+    /// Found at most every 250 ticks per map (the joy giver asks often; walls going up or down change the rooms).
     /// </summary>
     public static class Sauna
     {
@@ -268,7 +268,7 @@ namespace ColonyCouncil
                 game = Current.Game;
                 found.Clear();
             }
-            int hour = Find.TickManager.TicksGame / GenDate.TicksPerHour;
+            int hour = Find.TickManager.TicksGame / 250;
             if (found.TryGetValue(map.uniqueID, out var c) && c.hour == hour) return c.rooms;
             var list = new List<Room>();
             try
@@ -284,7 +284,7 @@ namespace ColonyCouncil
             return list;
         }
 
-        public static bool Exists(Map map) => Rooms(map).Count > 0;
+        public static bool Exists(Map map) => Rooms(map).Any(r => !r.Dereferenced);
 
         /// <summary>A fire: the game's fire overlay, or something burning fuel for heat and light.</summary>
         public static bool IsFire(ThingDef d) =>
@@ -304,7 +304,24 @@ namespace ColonyCouncil
         /// <summary>Real heat: a sauna heater, a heater, or a fire big enough to warm a room (a campfire; not a torch).</summary>
         private static bool Heats(ThingDef d) => Hygiene.IsSaunaHeater(d) || Avail.IsHeater(d);
 
-        public static bool IsSauna(Room room)
+        public static bool IsSauna(Room room) => IsSauna(room, true);
+
+        /// <summary>A sauna stands here (hot or not today: a fire left to burn out, a heater turned down for the summer).</summary>
+        public static bool Built(Map map)
+        {
+            try
+            {
+                foreach (var room in RoomUtil.ColonyRooms(map))
+                    if (IsSauna(room, false)) return true;
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("sauna built", e);
+            }
+            return false;
+        }
+
+        private static bool IsSauna(Room room, bool hot)
         {
             if (room == null || room.PsychologicallyOutdoors || room.UsesOutdoorTemperature || room.IsDoorway) return false;
             int cells = room.CellCount;
@@ -324,7 +341,7 @@ namespace ColonyCouncil
                 if (d.building != null && d.building.isSittable) seat = true;
             }
             if (modded) return true;
-            return seat && ceiling > 0f && SeasonWishMath.SaunaHotEnough(room.Temperature, ceiling);
+            return seat && ceiling > 0f && (!hot || SeasonWishMath.SaunaHotEnough(room.Temperature, ceiling));
         }
 
         /// <summary>The heater, the sauna heater or the fire in it, to face while sitting there.</summary>
@@ -450,8 +467,8 @@ namespace ColonyCouncil
             wish.thingDef != null && Hygiene.IsSaunaHeater(wish.thingDef) ? "CC_Fulfilled_SaunaModded".Translate(wish.thingDef.label.Named("THING")).Resolve()
                 : "CC_Fulfilled_SaunaOwn".Translate((wish.thingDef?.label ?? "?").Named("THING"), SeasonWishMath.SaunaHeat.ToStringTemperature("F0").Named("HEAT")).Resolve();
 
-        // Promises kept: the sauna stays (its heater, its seat).
-        public override KeptCheck Holds(Wish wish) => IsFulfilled(wish) ? KeptCheck.Holds : KeptCheck.Gone;
+        // Promises kept: the sauna stays (its room, its heat and its seat). Gone cold isn't taken away: the fire's the colony's to feed.
+        public override KeptCheck Holds(Wish wish) => wish.Beneficiary?.MapHeld == null ? KeptCheck.Unclear : Sauna.Built(wish.Beneficiary.MapHeld) ? KeptCheck.Holds : KeptCheck.Gone;
 
         public override bool Concerns(Wish wish, BuildableDef d) => d is ThingDef td && (Hygiene.IsSaunaHeater(td) || Avail.IsHeater(td) || Sauna.IsFire(td));
 
@@ -482,7 +499,7 @@ namespace ColonyCouncil
 
         protected override Job Give(Pawn p)
         {
-            var room = Sauna.Rooms(p.Map).Where(r => r.Cells.Any() && p.CanReach(r.Cells.First(), PathEndMode.OnCell, Danger.None))
+            var room = Sauna.Rooms(p.Map).Where(r => !r.Dereferenced && r.Cells.Any() && p.CanReach(r.Cells.First(), PathEndMode.OnCell, Danger.None))
                 .OrderBy(r => r.Cells.First().DistanceToSquared(p.Position)).FirstOrDefault();
             if (room == null) return null;
             var cell = Sauna.SpotIn(room, p);
