@@ -454,7 +454,8 @@ namespace ColonyCouncil
         /// the gap, facing the raiders), in front of it (a trap corridor), behind it (a turret nest, a shooting post),
         /// between it and the beds (a fallback line), or among the beds and deep inside (a keep, a mortar pit). Without a
         /// narrow place, where the busiest way in crosses open ground. The spot and turn where most of it can be built
-        /// nearby win. False if nothing fits.
+        /// nearby win, then the one that closes the gap on both sides, whose firing positions see the way in, and with the
+        /// least for raiders to shelter behind. False if nothing fits.
         /// </summary>
         public static bool FindSpot(DefenseTemplateDef t, Map map, DefensePlanConfig cfg, List<DefensePiece> resolved, int chokeIndex, out IntVec3 anchor, out int rot)
         {
@@ -462,39 +463,176 @@ namespace ColonyCouncil
             rot = cfg.rotation;
             var s = DefenseSurvey.For(map);
             if (s == null || resolved == null || resolved.Count == 0) return false;
-            var targets = Targets(t, s, chokeIndex);
+            return Search(t, map, cfg, resolved, Targets(t, s, chokeIndex), false, IntVec3.Invalid, out anchor, out rot, out _);
+        }
+
+        /// <summary>
+        /// Where a template goes at a defense line: relative to the line's gate and the side raiders come from, as
+        /// <paramref name="placeAt"/> says. "line": the template's wall row on the gate (<paramref name="distance"/> cells
+        /// back for a second skin of wall); "behind": its front row that many cells behind the gate; "front": its back row
+        /// that many cells in front; "between": halfway to the beds. With <paramref name="bothMirrors"/>, the mirrored
+        /// layout is tried too. False if nothing fits; the anchor, turn and mirror are then where it would stand.
+        /// </summary>
+        public static bool FindSpotAt(DefenseTemplateDef t, Map map, DefensePlanConfig cfg, List<DefensePiece> resolved, IntVec3 gate, int facing, string placeAt, int distance,
+            bool bothMirrors, out IntVec3 anchor, out int rot, out bool mirror)
+        {
+            var targets = TargetsAt(t, DefenseSurvey.Kept(map), gate, facing, placeAt, distance);
+            var outward = IntVec3.North.RotatedBy(new Rot4(DefenseLineMath.Norm(facing)));
+            var inner = gate - outward;
+            if (Search(t, map, cfg, resolved, targets, bothMirrors, inner.InBounds(map) ? inner : gate, out anchor, out rot, out mirror)) return true;
+            // Where it would stand, even if nothing fits there.
+            var (cell0, facing0, cx0, cz0, _) = targets[0];
+            mirror = cfg.mirror;
+            DefenseLayout.FaceAt(t.Grid, cx0, cz0, mirror, facing0, cell0.x, cell0.z, out rot, out int ax, out int az);
+            anchor = new IntVec3(ax, 0, az);
+            return false;
+        }
+
+        /// <summary>The column of a template's gate on its wall row (a killbox's opening), else its middle.</summary>
+        public static int GateColumn(DefenseTemplateDef t)
+        {
+            var g = t.Grid;
+            if (g.line >= 0)
+                for (int x = 0; x < g.W; x++)
+                    if (g.cells[x, g.line] == DefenseLayout.Gate || (t.kind == "killbox" && g.cells[x, g.line] == DefenseLayout.Open))
+                        return x;
+            return g.W / 2;
+        }
+
+        /// <summary>Something raiders would shelter behind: a tree, a chunk, a ruin or a bit of furniture that isn't the colony's.</summary>
+        public static bool GivesShelter(Thing thing)
+        {
+            if (thing == null || thing is Pawn || thing.Faction == Faction.OfPlayer || thing.def.fillPercent < 0.2f) return false;
+            switch (thing.def.category)
+            {
+                case ThingCategory.Plant: return true;
+                case ThingCategory.Item: return thing.def.thingCategories != null && thing.def.thingCategories.Contains(ThingCategoryDefOf.Chunks);
+                case ThingCategory.Building: return thing.def.passability != Traversability.Impassable;
+                default: return false;
+            }
+        }
+
+        /// <summary>How many things in these cells raiders would shelter behind.</summary>
+        public static int ShelterIn(IEnumerable<IntVec3> cells, Map map)
+        {
+            int n = 0;
+            foreach (var c in cells)
+            {
+                if (!c.InBounds(map)) continue;
+                var list = c.GetThingList(map);
+                for (int i = 0; i < list.Count; i++)
+                    if (GivesShelter(list[i])) n++;
+            }
+            return n;
+        }
+
+        private static bool Search(DefenseTemplateDef t, Map map, DefensePlanConfig cfg, List<DefensePiece> resolved, List<(IntVec3 cell, int facing, int cx, int cz, int jitter)> targets,
+            bool bothMirrors, IntVec3 lookAt, out IntVec3 anchor, out int rot, out bool mirror)
+        {
+            anchor = IntVec3.Invalid;
+            rot = cfg.rotation;
+            mirror = cfg.mirror;
+            if (resolved == null || resolved.Count == 0) return false;
             float best = float.MinValue;
             var trial = cfg.Copy();
             var g = t.Grid;
-            foreach (var (cell, facing, cx, cz, jitter) in targets)
+            bool closing = cfg.closeGap && t.line >= 0 && (t.kind == "gate" || t.kind == "wall" || t.kind == "palisade" || t.kind == "fallback");
+            for (int m = 0; m < (bothMirrors ? 2 : 1); m++)
             {
-                for (int dx = -jitter; dx <= jitter; dx++)
+                trial.mirror = m == 0 ? cfg.mirror : !cfg.mirror;
+                foreach (var (cell, facing, cx, cz, jitter) in targets)
                 {
-                    for (int dz = -jitter; dz <= jitter; dz++)
+                    for (int dx = -jitter; dx <= jitter; dx++)
                     {
-                        var at = new IntVec3(cell.x + dx, 0, cell.z + dz);
-                        if (!at.InBounds(map)) continue;
-                        DefenseLayout.FaceAt(g, cx, cz, trial.mirror, facing, at.x, at.z, out int turn, out int ax, out int az);
-                        trial.rotation = turn;
-                        var a = new IntVec3(ax, 0, az);
-                        var plan = Plan(t, map, a, trial, resolved, true);
-                        if (!plan.CanPlace) continue;
-                        float score = plan.Count(PieceState.Ready) * 2f + plan.Count(PieceState.Present) * 2.5f - plan.Count(PieceState.Waiting) * 0.5f
-                                      - plan.pieces.Count(p => p.state == PieceState.Blocked && !plan.inRock.Contains(p)) * 4f - plan.inRock.Count * 0.5f
-                                      - plan.mine.Count * 0.6f - plan.clearBlocked.Count * 3f
-                                      - (Mathf.Abs(dx) + Mathf.Abs(dz)) * 0.8f;
-                        // The roof over a mortar stops it firing.
-                        if (t.kind == "mortar" && plan.pieces.Any(p => p.group == "mortar" && p.rect.Cells.Any(c => c.Roofed(map)))) score -= 40f;
-                        if (score > best)
+                        for (int dz = -jitter; dz <= jitter; dz++)
                         {
-                            best = score;
-                            anchor = a;
-                            rot = turn;
+                            var at = new IntVec3(cell.x + dx, 0, cell.z + dz);
+                            if (!at.InBounds(map)) continue;
+                            DefenseLayout.FaceAt(g, cx, cz, trial.mirror, facing, at.x, at.z, out int turn, out int ax, out int az);
+                            trial.rotation = turn;
+                            var a = new IntVec3(ax, 0, az);
+                            var plan = Plan(t, map, a, trial, resolved, true);
+                            if (!plan.CanPlace) continue;
+                            float score = plan.Count(PieceState.Ready) * 2f + plan.Count(PieceState.Present) * 2.5f - plan.Count(PieceState.Waiting) * 0.5f
+                                          - plan.pieces.Count(p => p.state == PieceState.Blocked && !plan.inRock.Contains(p)) * 4f - plan.inRock.Count * 0.5f
+                                          - plan.mine.Count * 0.6f - plan.clearBlocked.Count * 3f
+                                          - (Mathf.Abs(dx) + Mathf.Abs(dz)) * 0.8f;
+                            // The roof over a mortar stops it firing.
+                            if (t.kind == "mortar" && plan.pieces.Any(p => p.group == "mortar" && p.rect.Cells.Any(c => c.Roofed(map)))) score -= 40f;
+                            score += Fit(plan, map, closing, lookAt);
+                            if (score > best)
+                            {
+                                best = score;
+                                anchor = a;
+                                rot = turn;
+                                mirror = trial.mirror;
+                            }
                         }
                     }
                 }
             }
             return anchor.IsValid;
+        }
+
+        /// <summary>
+        /// What the line review checks, scored for a spot: a wall line that reaches rock or a wall on both sides beats
+        /// one that leaves a way round; firing positions that see the way in beat blind ones; less in the field for
+        /// raiders to shelter behind.
+        /// </summary>
+        private static float Fit(DefensePlan plan, Map map, bool closing, IntVec3 lookAt)
+        {
+            float score = 0f;
+            if (closing)
+            {
+                foreach (int stop in new[] { plan.stopA, plan.stopB })
+                {
+                    if (stop == DefenseLayout.GapClosed) score += 3f;
+                    else if (stop == DefenseLayout.GapGround || stop == DefenseLayout.GapTooWide || stop == DefenseLayout.GapBlocked) score -= 6f;
+                }
+            }
+            var target = lookAt.IsValid ? lookAt : plan.pieces.FirstOrDefault(p => p.group == "gate")?.cell ?? IntVec3.Invalid;
+            if (target.IsValid && target.InBounds(map) && plan.firing.Count > 0)
+            {
+                int sees = 0;
+                foreach (var f in plan.firing)
+                    if (f != target && f.InBounds(map) && GenSight.LineOfSight(f, target, map, true)) sees++;
+                score += sees * 1f - (plan.firing.Count - sees) * 1.5f;
+            }
+            score -= ShelterIn(plan.clear, map) * 0.4f;
+            return score;
+        }
+
+        /// <summary>The cells a template's anchor cell (cx, cz) lands on at a line, by where it goes (see <see cref="FindSpotAt"/>).</summary>
+        private static List<(IntVec3 cell, int facing, int cx, int cz, int jitter)> TargetsAt(DefenseTemplateDef t, DefenseSurvey s, IntVec3 gate, int facing, string placeAt, int distance)
+        {
+            var list = new List<(IntVec3, int, int, int, int)>();
+            var g = t.Grid;
+            int midX = GateColumn(t);
+            facing = DefenseLineMath.Norm(facing);
+            var outward = IntVec3.North.RotatedBy(new Rot4(facing));
+            switch (placeAt)
+            {
+                case "front":
+                    list.Add((gate + outward * Mathf.Max(1, distance), facing, midX, 0, 1));
+                    break;
+                case "behind":
+                    list.Add((gate - outward * Mathf.Max(1, distance > 0 ? distance : t.behind), facing, midX, g.H - 1, 2));
+                    break;
+                case "between":
+                {
+                    var core = s != null ? (s.bedCenter.IsValid ? s.bedCenter : s.center) : gate - outward * 14;
+                    float d = gate.DistanceTo(core);
+                    var toward = core - gate;
+                    float k = d > 1f ? Mathf.Min(14f, d * 0.5f) / d : 0f;
+                    var at = new IntVec3(gate.x + Mathf.RoundToInt(toward.x * k), 0, gate.z + Mathf.RoundToInt(toward.z * k));
+                    list.Add((at, facing, midX, Mathf.Max(0, g.line), 3));
+                    break;
+                }
+                default:
+                    list.Add((gate - outward * Mathf.Max(0, distance), facing, midX, Mathf.Max(0, g.line), 1));
+                    break;
+            }
+            return list;
         }
 
         /// <summary>The cells the template's anchor cell (cx, cz) could land on, the side to face, and how far to look round each.</summary>

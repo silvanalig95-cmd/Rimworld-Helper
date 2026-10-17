@@ -11,6 +11,9 @@ namespace ColonyCouncil
     /// (yellow, with their width and the share of raids that pass), the side each one faces (an orange arrow), and where
     /// the gate line would go (gold). Drawn only while the Defenses page is open, while a defense is being planned, or
     /// while the player has the overlay switched on; it draws the survey already made and never works one out itself.
+    /// The defense line last shown from the page is drawn too: its span and gate, the kill zone, the firing positions
+    /// (green where they see the gate, red where they don't, each with its line of sight), the way round with the gate
+    /// shut (red, where it crosses the line marked), and what raiders would shelter behind in the field (orange).
     /// </summary>
     public class DefenseOverlay : MapComponent
     {
@@ -42,6 +45,20 @@ namespace ColonyCouncil
         private readonly List<List<IntVec3>> lines = new List<List<IntVec3>>();
         private readonly List<(IntVec3 cell, string text)> labels = new List<(IntVec3, string)>();
 
+        private DefenseLineReview drawnLine;
+        private readonly List<IntVec3> lineSpan = new List<IntVec3>(), lineGate = new List<IntVec3>(), lineZone = new List<IntVec3>(),
+            lineSees = new List<IntVec3>(), lineBlind = new List<IntVec3>(), lineShelter = new List<IntVec3>(), lineCross = new List<IntVec3>();
+        private readonly List<(Vector3 from, Vector3 to, bool sees)> sights = new List<(Vector3, Vector3, bool)>();
+        private readonly List<Vector3> leakWay = new List<Vector3>();
+
+        private static readonly Color SpanColor = new Color(1f, 0.82f, 0.3f);
+        private static readonly Color GateColor = new Color(1f, 1f, 1f, 0.95f);
+        private static readonly Color ZoneColor = new Color(1f, 0.55f, 0.45f, 0.35f);
+        private static readonly Color SeesColor = new Color(0.45f, 0.95f, 0.45f);
+        private static readonly Color BlindColor = new Color(1f, 0.35f, 0.3f);
+        private static readonly Color ShelterColor = new Color(1f, 0.6f, 0.2f);
+        private static readonly Color CrossColor = new Color(1f, 0.25f, 0.6f);
+
         private static readonly Color GapColor = new Color(1f, 0.9f, 0.3f);
         private static readonly Color HeldColor = new Color(0.45f, 0.75f, 1f);
         private static readonly Color LineColor = new Color(1f, 0.78f, 0.35f, 0.9f);
@@ -68,12 +85,69 @@ namespace ColonyCouncil
             }
             foreach (var line in lines) GenDraw.DrawFieldEdges(line, LineColor);
             foreach (var (from, to) in arrows) GenDraw.DrawLineBetween(from, to, SimpleColor.Orange, 0.3f);
+            DrawLine();
+        }
+
+        /// <summary>The selected defense line's parts, from its review (worked out again now and then while shown).</summary>
+        private void DrawLine()
+        {
+            var line = DefenseLines.Selected(map);
+            if (line == null) return;
+            if (Time.frameCount % 300 == 150) DefenseLineReview.For(map, line);
+            var r = DefenseLineReview.Kept(map, line);
+            if (r?.f == null) return;
+            if (r != drawnLine) PrepareLine(r);
+            if (lineZone.Count > 0) GenDraw.DrawFieldEdges(lineZone, ZoneColor);
+            if (lineSpan.Count > 0) GenDraw.DrawFieldEdges(lineSpan, SpanColor);
+            GenDraw.DrawFieldEdges(lineGate, GateColor);
+            if (lineShelter.Count > 0) GenDraw.DrawFieldEdges(lineShelter, ShelterColor);
+            if (lineSees.Count > 0) GenDraw.DrawFieldEdges(lineSees, SeesColor);
+            if (lineBlind.Count > 0) GenDraw.DrawFieldEdges(lineBlind, BlindColor);
+            foreach (var (from, to, sees) in sights) GenDraw.DrawLineBetween(from, to, sees ? SimpleColor.Green : SimpleColor.Red, 0.08f);
+            for (int i = 1; i < leakWay.Count; i++) GenDraw.DrawLineBetween(leakWay[i - 1], leakWay[i], SimpleColor.Magenta, 0.15f);
+            if (lineCross.Count > 0) GenDraw.DrawFieldEdges(lineCross, CrossColor);
+        }
+
+        private void PrepareLine(DefenseLineReview r)
+        {
+            drawnLine = r;
+            var f = r.f;
+            lineSpan.Clear();
+            lineGate.Clear();
+            lineZone.Clear();
+            lineSees.Clear();
+            lineBlind.Clear();
+            lineShelter.Clear();
+            lineCross.Clear();
+            sights.Clear();
+            leakWay.Clear();
+            lineSpan.AddRange(f.span.Where(c => c.InBounds(map)));
+            if (f.gate.InBounds(map)) lineGate.Add(f.gate);
+            lineZone.AddRange(f.zone.Concat(f.front));
+            var target = f.inner.InBounds(map) ? f.inner : f.gate;
+            foreach (var p in f.firing.Take(16))
+            {
+                (p.sees ? lineSees : lineBlind).Add(p.cell);
+                sights.Add((p.cell.ToVector3Shifted(), target.ToVector3Shifted(), p.sees));
+            }
+            lineShelter.AddRange(f.shelter.Where(t => t.Spawned).Select(t => t.Position).Distinct());
+            if (f.Leaks && f.leak.path.Count > 0)
+            {
+                var path = f.leak.path;
+                for (int i = 0; i < path.Count; i += 3) leakWay.Add(f.Cell(path[i]).ToVector3Shifted());
+                leakWay.Add(f.Cell(path[path.Count - 1]).ToVector3Shifted());
+                var cross = f.Cell(f.leak.cross);
+                if (cross.IsValid && cross.InBounds(map)) lineCross.Add(cross);
+            }
         }
 
         public override void MapComponentOnGUI()
         {
             if (!Showing || map != Find.CurrentMap || drawn == null || drawn != DefenseSurvey.Kept(map)) return;
             if (Find.CameraDriver.CurrentZoom > CameraZoomRange.Far) return;
+            var selectedLine = DefenseLines.Selected(map);
+            if (selectedLine != null && drawnLine?.line == selectedLine && selectedLine.gate.InBounds(map))
+                GenMapUI.DrawThingLabel((selectedLine.gate - selectedLine.Outward * 2).ToVector3Shifted().MapToUIPosition(), DefenseLineReview.NameOf(selectedLine, map), SpanColor);
             foreach (var (cell, text) in labels)
                 GenMapUI.DrawThingLabel(cell.ToVector3Shifted().MapToUIPosition(), text, GapColor);
         }
