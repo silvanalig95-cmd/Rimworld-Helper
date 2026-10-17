@@ -272,6 +272,9 @@
         <li>[debate,against] Most of us, yes, but not quite all.</li>
         <li>[argue,for] Keep your nose out of other people's work.</li>
         <li>[argue,against] Open your eyes, half of them are leaning on shovels.</li>
+        <li>[argue,against,otherrep:idle] Funny, that, coming from you.</li>
+        <li>[agree,for,otherrep:reliable] You'd know, you never let anyone down.</li>
+        <li>[debate,against,otherrep:reliable] You carry more than most, so you don't see it.</li>
       </plain>
       <warm>
         <li>[debate,for] Let's not start blaming each other, we're all tired.</li>

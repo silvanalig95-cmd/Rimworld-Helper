@@ -277,11 +277,7 @@ namespace ColonyCouncil
     {
         public override float Hot(TalkScene s) => Mathf.Max(base.Hot(s), s.traders ? 0.7f : 0f);
 
-        public override TalkSubject Subject(Pawn a, Pawn b, TalkScene s)
-        {
-            var trader = s.map.mapPawns.AllPawnsSpawned.FirstOrDefault(p => p.TraderKind != null && p.Faction != null && p.Faction != Faction.OfPlayer && !p.HostileTo(Faction.OfPlayer));
-            return trader?.Faction != null ? TalkSubject.Named(trader.Faction.Name) : null;
-        }
+        public override TalkSubject Subject(Pawn a, Pawn b, TalkScene s) => TalkSubject.Named(s.traderPeople);
 
         public override float Experience(Pawn p, TalkSubject subject, TalkScene s)
         {
@@ -465,7 +461,7 @@ namespace ColonyCouncil
         public override float Relevance(Pawn a, Pawn b, TalkScene s)
         {
             float r = def.relevance;
-            if (TopicUtil.Latest(def, 10f) != null || s.colonists.Any(Addicted)) r += 0.4f;
+            if (TopicUtil.Latest(def, 10f) != null || s.addicted) r += 0.4f;
             return r;
         }
 
@@ -497,7 +493,7 @@ namespace ColonyCouncil
         public override float Relevance(Pawn a, Pawn b, TalkScene s)
         {
             if (s.children.Count > 0) return def.relevance;
-            if (s.colonists.Any(p => p.health?.hediffSet?.hediffs.Any(h => h.def.defName.StartsWith("Pregnan")) == true)) return def.relevance * 0.8f;
+            if (s.expecting) return def.relevance * 0.8f;
             return ModsConfig.BiotechActive ? def.relevance * 0.3f : 0f;
         }
 

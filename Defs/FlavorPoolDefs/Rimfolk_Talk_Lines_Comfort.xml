@@ -41,6 +41,9 @@
         <li>[grief] I keep thinking of you, since the funeral.</li>
         <li>[despair] We've been through worse, and we got through it.</li>
         <li>[worry] Want to tell me what's going round in your head?</li>
+        <li>[otherrep:kind] You're always the one looking after everyone; let someone look after you.</li>
+        <li>[otherrep:brave] Even the brave get frightened, you know.</li>
+        <li>[otherrep:reliable] You carry everyone; you're allowed to put it down sometimes.</li>
       </plain>
       <warm>
         <li>Oh, come here, you look like you need a hug.</li>
@@ -159,6 +162,7 @@
         <li>[samegroup] Come to the fire tonight; we'll all be there.</li>
         <li>[tooutsider] Come and sit with us, we're not as frightening as we look.</li>
         <li>[despair] Tomorrow we'll find one good thing, I promise.</li>
+        <li>[otherrep:kind] You've been kind to all of us; let us be kind back.</li>
       </plain>
       <warm>
         <li>I'm always here, you know that.</li>

@@ -34,6 +34,10 @@ namespace ColonyCouncil
         public Pawn slacker;
         public AmbitionState ambition;
         public bool traders;
+        /// <summary>The people of a trader at the door, by name, or null.</summary>
+        public string traderPeople;
+        /// <summary>Someone here is addicted; someone here is with child.</summary>
+        public bool addicted, expecting;
         public float strain;
 
         public const float NewDays = 15f;
@@ -132,8 +136,11 @@ namespace ColonyCouncil
             leader = Leader();
             var amb = CouncilGameComponent.Instance?.ambitions?.active;
             ambition = amb != null && amb.map == map ? amb : null;
-            traders = map.passingShipManager?.passingShips?.Count > 0
-                      || map.mapPawns.AllPawnsSpawned.Any(p => p.TraderKind != null && p.Faction != null && p.Faction != Faction.OfPlayer && !p.HostileTo(Faction.OfPlayer));
+            var trader = map.mapPawns.AllPawnsSpawned.FirstOrDefault(p => p.TraderKind != null && p.Faction != null && p.Faction != Faction.OfPlayer && !p.HostileTo(Faction.OfPlayer));
+            traderPeople = trader?.Faction?.Name;
+            traders = trader != null || map.passingShipManager?.passingShips?.Count > 0;
+            addicted = colonists.Any(p => p.health?.hediffSet?.hediffs.Any(h => h is Hediff_Addiction) == true);
+            expecting = colonists.Any(p => p.health?.hediffSet?.hediffs.Any(h => h.def.defName.StartsWith("Pregnan", StringComparison.Ordinal)) == true);
             strain = colonists.Count == 0 ? 0f : colonists.Average(p => Heart.StrainOf(p));
         }
 

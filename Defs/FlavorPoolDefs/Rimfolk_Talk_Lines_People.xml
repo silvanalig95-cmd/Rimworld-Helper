@@ -34,6 +34,7 @@
         <li>[against] I caught {SUBJECT} looking at the stores a bit too long.</li>
         <li>[against] Strangers turn up, and we just take them in, every time.</li>
         <li>[mixed,arrived] Funny, having a new face at supper.</li>
+        <li>[against,otherrep:trustworthy] Between us, I'm not sure about {SUBJECT} yet.</li>
       </plain>
       <warm>
         <li>[for] I made {SUBJECT} up a bed with an extra blanket, the nights are cold.</li>

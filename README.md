@@ -490,6 +490,30 @@ own moments (the cruel given a wide berth, the coward jibed at, the brave asked 
 dies down; newcomers pick it up over their first weeks. The character page shows it under "What people say about
 them", with the deeds behind it, who told whom, and who thinks what of them for it.
 
+### Conversations: views that last, and memories they share
+Two colonists who are together now and then talk about something real, in a short exchange over their heads (two to
+four lines, taking turns): the last raid, the council and its decrees, the food, the work and who does too little, the
+newest face in the colony, faith, the world outside and its traders, the animals, the weather, art, the future and
+whether to stay, the dead, the prisoners, drink, new learning against the old ways, the children, the colony's project,
+money, love (19 topics). What comes up follows the news (a raid yesterday, a death, a new decree, a wedding, a
+newcomer, a harvest, a disaster), what each of them cares about and who they are, and their tie: friends talk about
+anything, rivals find what they disagree on.
+
+Everyone holds a **view** on each topic, from their character, traits, passions and faith (the bold want to fight back
+and the timid want walls, the trusting back the council, the curious welcome newcomers), and it moves slowly with what
+happens and with talk: a liked, trusted, self-assured speaker brings an open listener round a little. So two of them
+**agree**, have a **friendly debate**, or a **heated argument** when tempers, opposed views and dislike meet; a joker
+**teases**; someone low or grieving is **comforted**. Each sounds like themselves (a hothead snaps, a joker jokes, the
+cold are curt, the gloomy see the worst), in about 2,400 lines. A talk leaves a small opinion of each other, not a
+mood; arguing hardens a temper a little over time, and a long friendship warms.
+
+Pairs also keep **shared memories** (17 kinds): fighting side by side, being patched up while down, a funeral, a feast,
+a disaster come through, a caravan, something big built together, a long night shift, lessons, a quarrel made up, a
+secret kept. Small mishaps become **in-jokes** ("the stew", "the boomalope", "the alpaca", the little fire, the mud, a
+short binge) once everyone's fine, funnier the first few times and then worn thin. The character page lists their
+**views** (with what each rests on) and their **shared memories**. Almanac: "Conversations and views", "Shared memories
+and in-jokes".
+
 ### Story: a page for every colonist
 Select a colonist and open the **Story** tab in their inspect panel (next to Bio, Social and Gear): their trust,
 office and earned names, their character and what shaped it, their life goal and how close they are, their personal

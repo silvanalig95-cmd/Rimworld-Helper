@@ -140,6 +140,10 @@
         <li>[argue,for] You'd have us all hiding under the beds.</li>
         <li>[argue,against] You're not brave, you're reckless, and one day it'll kill someone.</li>
         <li>[argue,mixed] Don't put words in my mouth, I haven't decided anything.</li>
+        <li>[agree,for,otherrep:brave] Coming from you, I'll take that seriously; everyone saw you at the gate.</li>
+        <li>[debate,against,otherrep:brave] You're brave, everyone knows it, but brave isn't the same as right.</li>
+        <li>[argue,for,otherrep:coward] Says the one everyone saw running for the storeroom.</li>
+        <li>[debate,for,otherrep:levelheaded] You're always the calm one, so I'll listen, but no.</li>
       </plain>
       <warm>
         <li>[agree,for] I feel safer knowing you'll be out there.</li>
@@ -489,6 +493,8 @@
         <li>[debate,against] Kind's fine, soft isn't.</li>
         <li>[argue,for] Shame on you.</li>
         <li>[argue,against] Naive, that's what you are.</li>
+        <li>[argue,for,otherrep:cruel] Of course you'd say that; everyone knows how you treat them.</li>
+        <li>[agree,for,otherrep:kind] You'd know, you're the one who takes them their food.</li>
       </plain>
       <warm>
         <li>[agree,for] You're a kind soul, you know that.</li>

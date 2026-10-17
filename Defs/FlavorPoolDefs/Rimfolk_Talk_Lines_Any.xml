@@ -68,6 +68,14 @@
         <li>[agree,persona:humble] I'm no expert, but I agree.</li>
         <li>[argue,persona:proud] I won't be lectured by you.</li>
         <li>[debate,persona:traditional] That's not how we did it, back home.</li>
+        <li>[agree,otherrep:trustworthy] If you say so, I believe it.</li>
+        <li>[agree,otherrep:skilled] You'd know better than most.</li>
+        <li>[debate,otherrep:gossip] Is this going to be all over the colony by supper?</li>
+        <li>[debate,otherrep:levelheaded] You're always so calm about it, it drives me mad.</li>
+        <li>[argue,otherrep:hothead] Calm down before you burst something.</li>
+        <li>[argue,otherrep:gossip] Go on, tell everyone I said so, you will anyway.</li>
+        <li>[argue,otherrep:idle] Do something useful for once, then talk.</li>
+        <li>[debate,otherrep:clumsy] Careful, you'll trip over that argument.</li>
       </plain>
       <warm>
         <li>[agree] I'm so glad you said that, I thought I was the only one.</li>
@@ -327,6 +335,8 @@
         <li>[persona:joker] I've been practising my {OTHER} impression: "but what about {TOPIC}?"</li>
         <li>[samegroup] I've been warning the others about you and {TOPIC}.</li>
         <li>[tooutsider] Has anyone warned you about {OTHER}'s other opinions yet?</li>
+        <li>[otherrep:clumsy] Mind your feet, {OTHER}, you're about to fall over {TOPIC}.</li>
+        <li>[otherrep:hothead] Deep breaths, {OTHER}, before you start on {TOPIC}.</li>
       </plain>
       <cheerful>
         <li>Quick, everyone, {OTHER} is about to have a feeling about {TOPIC}.</li>
@@ -335,6 +345,7 @@
         <li>If {TOPIC} were a person, {OTHER} would have married it by now.</li>
         <li>That's eleven times today you've mentioned {TOPIC}, {OTHER}.</li>
         <li>[grouprole:joker] Ladies and gentlemen, {OTHER}'s views on {TOPIC}, again.</li>
+        <li>[otherrep:brave] Our hero has views on {TOPIC}, everybody stand back.</li>
       </cheerful>
     </lines>
   </ColonyCouncil.TalkLinesDef>
