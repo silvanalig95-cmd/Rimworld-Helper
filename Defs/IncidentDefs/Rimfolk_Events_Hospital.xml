@@ -29,12 +29,12 @@
           <li>[!camp,!lowtech] A patient for the hospital</li>
         </titles>
         <texts>
-          <li>[camp] {X_nameDef} of {FACTION}, from the camp, came up to the gate this morning with {TALE} and asked for the colony's doctor. The camp has been watching {A_nameDef} at work, {X_nameDef} says, and nobody among them knows half as much.</li>
-          <li>[camp] The camp's people have been talking about the colony's doctor. This morning {X_nameDef} of {FACTION} walked over with {TALE}, cap in hand, and asked whether {A_nameDef} would take a look.</li>
-          <li>[!camp,known,lowtech] {X_nameDef} of {FACTION} has walked a long way with {TALE}, because people on the road say the colony's sickroom turns nobody away. {X_nameDef} asks whether {A_nameDef} would see to it.</li>
-          <li>[!camp,known,!lowtech] {X_nameDef} of {FACTION} has come to the gate with {TALE}. Travellers say the colony's hospital is a good one, {X_nameDef} explains, and the nearest doctor on {X_possessive} road is days away.</li>
-          <li>[!camp,renowned] {X_nameDef} of {FACTION} has come a long way with {TALE}, on the strength of the colony's name: across the region they say there's no better place to fall ill. {X_nameDef} would like to see {A_nameDef}, if there's time.</li>
-          <li>[!camp] {X_nameDef}, a traveller of {FACTION}, stopped at the colony with {TALE} and asked for its doctor by name: {A_nameDef}. Someone on the road had told {X_objective} to.</li>
+          <li>[camp] {X_nameDef} of {FACTION}, from the camp, came up to the gate this morning with a {TALE} and asked for the colony's doctor. The camp has been watching {A_nameDef} at work, {X_nameDef} says, and nobody among them knows half as much.</li>
+          <li>[camp] The camp's people have been talking about the colony's doctor. This morning {X_nameDef} of {FACTION} walked over with a {TALE}, cap in hand, and asked whether {A_nameDef} would take a look.</li>
+          <li>[!camp,known,lowtech] {X_nameDef} of {FACTION} has walked a long way with a {TALE}, because people on the road say the colony's sickroom turns nobody away. {X_nameDef} asks whether {A_nameDef} would see to it.</li>
+          <li>[!camp,known,!lowtech] {X_nameDef} of {FACTION} has come to the gate with a {TALE}. Travellers say the colony's hospital is a good one, {X_nameDef} explains, and the nearest doctor on {X_possessive} road is days away.</li>
+          <li>[!camp,renowned] {X_nameDef} of {FACTION} has come a long way with a {TALE}, on the strength of the colony's name: across the region they say there's no better place to fall ill. {X_nameDef} would like to see {A_nameDef}, if there's time.</li>
+          <li>[!camp] {X_nameDef}, a traveller of {FACTION}, stopped at the colony with a {TALE} and asked for its doctor by name: {A_nameDef}. Someone on the road had told {X_objective} to.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
