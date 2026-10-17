@@ -173,35 +173,8 @@ namespace ColonyCouncil
                     var c = new IntVec3(x, 0, z);
                     int i = m.Index(x, z);
                     m.home[i] = home[c];
-                    if (c.Fogged(map))
-                    {
-                        m.kind[i] = DefenseMath.Unknown;
-                        continue;
-                    }
-                    var ed = c.GetEdifice(map);
-                    if (ed != null && ed.def.IsDoor)
-                    {
-                        m.kind[i] = DefenseMath.Door;
-                        continue;
-                    }
-                    if (ed != null && ed.def.passability == Traversability.Impassable)
-                    {
-                        bool rock = ed.def.building != null && (ed.def.building.isNaturalRock || (ed.def.mineable && ed.Faction == null));
-                        m.kind[i] = rock ? DefenseMath.Rock : ed.Faction == player ? DefenseMath.Wall : DefenseMath.Other;
-                        continue;
-                    }
-                    var terrain = c.GetTerrain(map);
-                    if (terrain == null || terrain.passability == Traversability.Impassable)
-                    {
-                        m.kind[i] = terrain != null && terrain.IsWater ? DefenseMath.Water : DefenseMath.Other;
-                        continue;
-                    }
-                    m.kind[i] = terrain.bridge ? DefenseMath.Bridge : DefenseMath.Open;
-                    if (pg != null)
-                    {
-                        int cost = pg.Cost(c);
-                        m.cost[i] = cost >= 10000 ? 600 : Mathf.Clamp(cost, 0, 600);
-                    }
+                    m.kind[i] = KindAt(map, c, player, pg, out int cost);
+                    m.cost[i] = cost;
                 }
             }
             // Where people live: the rooms with the colonists' beds, else round the colony's middle.
@@ -230,6 +203,32 @@ namespace ColonyCouncil
                 foreach (var c in GenRadial.RadialCellsAround(s.center, 5f, true))
                     if (c.InBounds(map)) m.core[m.Index(c.x, c.z)] = true;
             return m;
+        }
+
+        /// <summary>
+        /// What a cell is for the survey: unexplored, a door, rock, the colony's wall, something else in the way, deep
+        /// water, a bridge or open ground, and what it costs to walk.
+        /// </summary>
+        public static byte KindAt(Map map, IntVec3 c, Faction player, Verse.AI.PathGrid pg, out int cost)
+        {
+            cost = 0;
+            if (c.Fogged(map)) return DefenseMath.Unknown;
+            var ed = c.GetEdifice(map);
+            if (ed != null && ed.def.IsDoor) return DefenseMath.Door;
+            if (ed != null && ed.def.passability == Traversability.Impassable)
+            {
+                bool rock = ed.def.building != null && (ed.def.building.isNaturalRock || (ed.def.mineable && ed.Faction == null));
+                return rock ? DefenseMath.Rock : ed.Faction == player ? DefenseMath.Wall : DefenseMath.Other;
+            }
+            var terrain = c.GetTerrain(map);
+            if (terrain == null || terrain.passability == Traversability.Impassable)
+                return terrain != null && terrain.IsWater ? DefenseMath.Water : DefenseMath.Other;
+            if (pg != null)
+            {
+                int raw = pg.Cost(c);
+                cost = raw >= 10000 ? 600 : Mathf.Clamp(raw, 0, 600);
+            }
+            return terrain.bridge ? DefenseMath.Bridge : DefenseMath.Open;
         }
 
         // ---------------- Threats ----------------

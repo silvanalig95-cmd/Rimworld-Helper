@@ -32,17 +32,27 @@ namespace ColonyCouncil
         public int chunks;
         public List<string> warnings = new List<string>();
         public bool edgeBlocked;
+        /// <summary>
+        /// Cells of the plan in unexplored ground. Nothing is read of what's there (the player can't see it either): its
+        /// rock is marked for mining and dug out as the colonists reach it, its pieces wait in the plan queue, and a wall
+        /// there is the rock that stays or a wall once the ground comes to light.
+        /// </summary>
+        public List<IntVec3> fog = new List<IntVec3>();
+        /// <summary>Part of it lies in unexplored ground that the plan may not dig ("mine rock" off), or all of it does.</summary>
+        public bool fogBlocked, allFog;
+        public int seen;
 
         public int Count(PieceState s) => pieces.Count(p => p.state == s);
 
-        /// <summary>Something can go down, and no part of the plan is off the map or in unexplored ground.</summary>
-        public bool CanPlace => !edgeBlocked && pieces.Any(p => p.state == PieceState.Ready || p.state == PieceState.Waiting);
+        /// <summary>Something can go down, no part of the plan is off the map, and some of it is on ground the colony knows.</summary>
+        public bool CanPlace => !edgeBlocked && !allFog && pieces.Any(p => p.state == PieceState.Ready || p.state == PieceState.Waiting);
 
         public string FailReason
         {
             get
             {
                 if (edgeBlocked) return "CC_Plan_Block_Edge".Translate();
+                if (allFog) return "CC_Plan_Block_AllFog".Translate();
                 if (!pieces.Any(p => p.state == PieceState.Ready || p.state == PieceState.Waiting))
                     return pieces.Count > 0 && pieces.All(p => p.state == PieceState.Present) ? "CC_Def_AllThere".Translate().ToString() : "CC_Plan_Blocked".Translate().ToString();
                 return null;
@@ -163,7 +173,19 @@ namespace ColonyCouncil
                     char ch = g.cells[x, z];
                     if (ch != DefenseLayout.Open && ch != DefenseLayout.Firing) continue;
                     var c = ToWorld(t, anchor, x, z, mirror, rot);
-                    if (!c.InBounds(map) || c.Fogged(map)) continue;
+                    if (!c.InBounds(map)) continue;
+                    if (c.Fogged(map))
+                    {
+                        // Unexplored: dug out as the colonists reach it, when the plan may dig; a gap's plan leaves it be.
+                        if (!plan.fog.Contains(c)) plan.fog.Add(c);
+                        if (mineRock)
+                        {
+                            if (plan.mineSet.Add(c)) plan.mine.Add(c);
+                        }
+                        else if (!closes) plan.fogBlocked = true;
+                        continue;
+                    }
+                    plan.seen++;
                     (ch == DefenseLayout.Firing ? plan.firing : plan.clear).Add(c);
                     // Open ground must be open: rock is dug out (raiders and defenders have to get through), anything
                     // else built there is the player's to move.
@@ -179,6 +201,8 @@ namespace ColonyCouncil
             }
 
             if (t.line >= 0 && cfg.closeGap) CloseGap(plan, map, t, anchor, mirror, rot, taken);
+            // Digging in from ground the colony knows: a plan wholly in the dark has nowhere to start from.
+            if (plan.seen == 0 && !plan.edgeBlocked && plan.fog.Count > 0) plan.allFog = true;
 
             if (!quick)
             {
@@ -189,7 +213,7 @@ namespace ColonyCouncil
                         if (p.state == PieceState.Blocked || p.state == PieceState.Present) continue;
                         foreach (var c in p.rect)
                         {
-                            var plant = c.InBounds(map) ? c.GetPlant(map) : null;
+                            var plant = c.InBounds(map) && !c.Fogged(map) ? c.GetPlant(map) : null;
                             if (plant != null && !plan.cut.Contains(plant)) plan.cut.Add(plant);
                         }
                     }
@@ -209,23 +233,42 @@ namespace ColonyCouncil
 
         /// <summary>
         /// Whether a piece can go down: Present when it (or the same plan) is already there, or the rock already closes a
-        /// wall cell; Waiting when rock has to be mined or one of the colony's buildings taken down; else Ready or Blocked
-        /// with the reason (off the map or in unexplored ground blocks the whole plan).
+        /// wall cell; Waiting when rock has to be mined, one of the colony's buildings taken down or unexplored ground
+        /// dug into; else Ready or Blocked with the reason (off the map blocks the whole plan).
         /// </summary>
         private static PieceState PieceStateAt(DefensePlan plan, Map map, PlannedThing pt, string role, bool mineRock, bool replace, out string reason, out bool ground)
         {
             reason = null;
             ground = false;
-            bool waiting = false;
+            bool waiting = false, fogged = false;
             foreach (var c in pt.rect)
             {
-                if (!c.InBounds(map) || c.Fogged(map))
+                if (!c.InBounds(map))
                 {
                     reason = "CC_Plan_Block_Edge".Translate();
                     plan.edgeBlocked = true;
                     return PieceState.Blocked;
                 }
+                if (c.Fogged(map)) fogged = true;
             }
+            if (fogged)
+            {
+                // Unexplored ground: nothing about what's there is read. A wall waits (rock that stays as the wall, or a
+                // wall once the ground comes to light); anything else is dug out first, when the plan may dig.
+                foreach (var c in pt.rect)
+                    if (c.Fogged(map) && !plan.fog.Contains(c)) plan.fog.Add(c);
+                if (role == "wall" && pt.rect.Area == 1) return PieceState.Waiting;
+                if (!mineRock)
+                {
+                    reason = "CC_Plan_Block_Fog".Translate();
+                    plan.fogBlocked = true;
+                    return PieceState.Blocked;
+                }
+                foreach (var c in pt.rect)
+                    if (c.Fogged(map) && plan.mineSet.Add(c)) plan.mine.Add(c);
+                return PieceState.Waiting;
+            }
+            plan.seen++;
             // Already there: the same building or its blueprint, a door where a gate goes, rock or a wall where a wall goes.
             var root = pt.cell.GetEdifice(map);
             if (root != null && (root.def == pt.def || (role == "gate" && root.def.IsDoor) || (role == "wall" && TemplatePlanner.IsWallLike(root.def))))
@@ -305,7 +348,9 @@ namespace ColonyCouncil
                 {
                     var c = ToWorld(t, anchor, start + dir * i, g.line, mirror, rot);
                     cells.Add(c);
-                    if (!c.InBounds(map) || c.Fogged(map) || c.InNoBuildEdgeArea(map)) return DefenseLayout.GapBlocked;
+                    if (!c.InBounds(map) || c.InNoBuildEdgeArea(map)) return DefenseLayout.GapBlocked;
+                    // Unexplored ground closes the line as the survey reads it (most often the hill's rock); nothing in it is looked at.
+                    if (c.Fogged(map)) return DefenseLayout.GapClosed;
                     if (taken.Contains(c)) return DefenseLayout.GapClosed;
                     var ed = c.GetEdifice(map);
                     if (ed != null)
@@ -356,6 +401,8 @@ namespace ColonyCouncil
             int blocked = plan.pieces.Count(p => p.state == PieceState.Blocked && !p.ground && !plan.inRock.Contains(p));
             if (blocked > 0) plan.warnings.Add("CC_Def_Warn_Blocked".Translate(blocked));
             if (plan.inRock.Count > 0) plan.warnings.Add("CC_Def_Warn_InRock".Translate(plan.inRock.Count));
+            if (plan.fog.Count > 0) plan.warnings.Add("CC_Plan_Warn_Fog".Translate(plan.fog.Count));
+            if (plan.fogBlocked) plan.warnings.Add("CC_Plan_Block_Fog".Translate());
             if (plan.mine.Count > 0) plan.warnings.Add("CC_Plan_Warn_Mine".Translate(plan.mine.Count));
             if (plan.deconstruct.Count > 0) plan.warnings.Add("CC_Plan_Warn_Deconstruct".Translate(plan.deconstruct.Count));
             int waiting = plan.Count(PieceState.Waiting);
@@ -454,7 +501,8 @@ namespace ColonyCouncil
         /// the gap, facing the raiders), in front of it (a trap corridor), behind it (a turret nest, a shooting post),
         /// between it and the beds (a fallback line), or among the beds and deep inside (a keep, a mortar pit). Without a
         /// narrow place, where the busiest way in crosses open ground. The spot and turn where most of it can be built
-        /// nearby win. False if nothing fits.
+        /// nearby win, then the one that closes the gap on both sides, whose firing positions see the way in, and with the
+        /// least for raiders to shelter behind. False if nothing fits.
         /// </summary>
         public static bool FindSpot(DefenseTemplateDef t, Map map, DefensePlanConfig cfg, List<DefensePiece> resolved, int chokeIndex, out IntVec3 anchor, out int rot)
         {
@@ -462,39 +510,191 @@ namespace ColonyCouncil
             rot = cfg.rotation;
             var s = DefenseSurvey.For(map);
             if (s == null || resolved == null || resolved.Count == 0) return false;
-            var targets = Targets(t, s, chokeIndex);
+            return Search(t, map, cfg, resolved, Targets(t, s, chokeIndex), false, IntVec3.Invalid, out anchor, out rot, out _);
+        }
+
+        /// <summary>
+        /// Where a template goes at a defense line: relative to the line's gate and the side raiders come from, as
+        /// <paramref name="placeAt"/> says. "line": the template's wall row on the gate (<paramref name="distance"/> cells
+        /// back for a second skin of wall); "behind": its front row that many cells behind the gate; "front": its back row
+        /// that many cells in front; "between": halfway to the beds. With <paramref name="bothMirrors"/>, the mirrored
+        /// layout is tried too. False if nothing fits; the anchor, turn and mirror are then where it would stand.
+        /// </summary>
+        public static bool FindSpotAt(DefenseTemplateDef t, Map map, DefensePlanConfig cfg, List<DefensePiece> resolved, IntVec3 gate, int facing, string placeAt, int distance,
+            bool bothMirrors, out IntVec3 anchor, out int rot, out bool mirror)
+        {
+            var targets = TargetsAt(t, DefenseSurvey.Kept(map), gate, facing, placeAt, distance);
+            var outward = IntVec3.North.RotatedBy(new Rot4(DefenseLineMath.Norm(facing)));
+            var inner = gate - outward;
+            if (Search(t, map, cfg, resolved, targets, bothMirrors, inner.InBounds(map) ? inner : gate, out anchor, out rot, out mirror)) return true;
+            // Where it would stand, even if nothing fits there.
+            var (cell0, facing0, cx0, cz0, _) = targets[0];
+            mirror = cfg.mirror;
+            DefenseLayout.FaceAt(t.Grid, cx0, cz0, mirror, facing0, cell0.x, cell0.z, out rot, out int ax, out int az);
+            anchor = new IntVec3(ax, 0, az);
+            return false;
+        }
+
+        /// <summary>The column of a template's gate on its wall row (a killbox's opening), else its middle.</summary>
+        public static int GateColumn(DefenseTemplateDef t)
+        {
+            var g = t.Grid;
+            if (g.line >= 0)
+                for (int x = 0; x < g.W; x++)
+                    if (g.cells[x, g.line] == DefenseLayout.Gate || (t.kind == "killbox" && g.cells[x, g.line] == DefenseLayout.Open))
+                        return x;
+            return g.W / 2;
+        }
+
+        /// <summary>Something raiders would shelter behind: a tree, a chunk, a ruin or a bit of furniture that isn't the colony's.</summary>
+        public static bool GivesShelter(Thing thing)
+        {
+            if (thing == null || thing is Pawn || thing.Faction == Faction.OfPlayer || thing.def.fillPercent < 0.2f) return false;
+            switch (thing.def.category)
+            {
+                case ThingCategory.Plant: return true;
+                case ThingCategory.Item: return thing.def.thingCategories != null && thing.def.thingCategories.Contains(ThingCategoryDefOf.Chunks);
+                case ThingCategory.Building: return thing.def.passability != Traversability.Impassable;
+                default: return false;
+            }
+        }
+
+        /// <summary>How many things in these cells raiders would shelter behind.</summary>
+        public static int ShelterIn(IEnumerable<IntVec3> cells, Map map)
+        {
+            int n = 0;
+            foreach (var c in cells)
+            {
+                if (!c.InBounds(map)) continue;
+                var list = c.GetThingList(map);
+                for (int i = 0; i < list.Count; i++)
+                    if (GivesShelter(list[i])) n++;
+            }
+            return n;
+        }
+
+        private static bool Search(DefenseTemplateDef t, Map map, DefensePlanConfig cfg, List<DefensePiece> resolved, List<(IntVec3 cell, int facing, int cx, int cz, int jitter)> targets,
+            bool bothMirrors, IntVec3 lookAt, out IntVec3 anchor, out int rot, out bool mirror)
+        {
+            anchor = IntVec3.Invalid;
+            rot = cfg.rotation;
+            mirror = cfg.mirror;
+            if (resolved == null || resolved.Count == 0) return false;
             float best = float.MinValue;
             var trial = cfg.Copy();
             var g = t.Grid;
-            foreach (var (cell, facing, cx, cz, jitter) in targets)
+            bool closing = cfg.closeGap && t.line >= 0 && (t.kind == "gate" || t.kind == "wall" || t.kind == "palisade" || t.kind == "fallback");
+            for (int m = 0; m < (bothMirrors ? 2 : 1); m++)
             {
-                for (int dx = -jitter; dx <= jitter; dx++)
+                trial.mirror = m == 0 ? cfg.mirror : !cfg.mirror;
+                foreach (var (cell, facing, cx, cz, jitter) in targets)
                 {
-                    for (int dz = -jitter; dz <= jitter; dz++)
+                    for (int dx = -jitter; dx <= jitter; dx++)
                     {
-                        var at = new IntVec3(cell.x + dx, 0, cell.z + dz);
-                        if (!at.InBounds(map)) continue;
-                        DefenseLayout.FaceAt(g, cx, cz, trial.mirror, facing, at.x, at.z, out int turn, out int ax, out int az);
-                        trial.rotation = turn;
-                        var a = new IntVec3(ax, 0, az);
-                        var plan = Plan(t, map, a, trial, resolved, true);
-                        if (!plan.CanPlace) continue;
-                        float score = plan.Count(PieceState.Ready) * 2f + plan.Count(PieceState.Present) * 2.5f - plan.Count(PieceState.Waiting) * 0.5f
-                                      - plan.pieces.Count(p => p.state == PieceState.Blocked && !plan.inRock.Contains(p)) * 4f - plan.inRock.Count * 0.5f
-                                      - plan.mine.Count * 0.6f - plan.clearBlocked.Count * 3f
-                                      - (Mathf.Abs(dx) + Mathf.Abs(dz)) * 0.8f;
-                        // The roof over a mortar stops it firing.
-                        if (t.kind == "mortar" && plan.pieces.Any(p => p.group == "mortar" && p.rect.Cells.Any(c => c.Roofed(map)))) score -= 40f;
-                        if (score > best)
+                        for (int dz = -jitter; dz <= jitter; dz++)
                         {
-                            best = score;
-                            anchor = a;
-                            rot = turn;
+                            var at = new IntVec3(cell.x + dx, 0, cell.z + dz);
+                            if (!at.InBounds(map)) continue;
+                            DefenseLayout.FaceAt(g, cx, cz, trial.mirror, facing, at.x, at.z, out int turn, out int ax, out int az);
+                            trial.rotation = turn;
+                            var a = new IntVec3(ax, 0, az);
+                            var plan = Plan(t, map, a, trial, resolved, true);
+                            if (!plan.CanPlace) continue;
+                            float score = plan.Count(PieceState.Ready) * 2f + plan.Count(PieceState.Present) * 2.5f - plan.Count(PieceState.Waiting) * 0.5f
+                                          - plan.pieces.Count(p => p.state == PieceState.Blocked && !plan.inRock.Contains(p)) * 4f - plan.inRock.Count * 0.5f
+                                          - plan.mine.Count * 0.6f - plan.clearBlocked.Count * 3f
+                                          - (Mathf.Abs(dx) + Mathf.Abs(dz)) * 0.8f;
+                            // The roof over a mortar stops it firing.
+                            if (t.kind == "mortar" && plan.pieces.Any(p => p.group == "mortar" && p.rect.Cells.Any(c => c.Roofed(map)))) score -= 40f;
+                            score += Fit(plan, map, closing, lookAt);
+                            if (score > best)
+                            {
+                                best = score;
+                                anchor = a;
+                                rot = turn;
+                                mirror = trial.mirror;
+                            }
                         }
                     }
                 }
             }
             return anchor.IsValid;
+        }
+
+        /// <summary>
+        /// What the line review checks, scored for a spot: a wall line that reaches rock or a wall on both sides beats
+        /// one that leaves a way round; firing positions that see the way in beat blind ones; less in the field for
+        /// raiders to shelter behind.
+        /// </summary>
+        private static float Fit(DefensePlan plan, Map map, bool closing, IntVec3 lookAt)
+        {
+            float score = 0f;
+            if (closing)
+            {
+                foreach (int stop in new[] { plan.stopA, plan.stopB })
+                {
+                    if (stop == DefenseLayout.GapClosed) score += 3f;
+                    else if (stop == DefenseLayout.GapGround || stop == DefenseLayout.GapTooWide || stop == DefenseLayout.GapBlocked) score -= 6f;
+                }
+            }
+            var target = lookAt.IsValid ? lookAt : plan.pieces.FirstOrDefault(p => p.group == "gate")?.cell ?? IntVec3.Invalid;
+            if (target.IsValid && target.InBounds(map) && plan.firing.Count > 0)
+            {
+                int sees = 0;
+                foreach (var f in plan.firing)
+                    if (f != target && f.InBounds(map) && GenSight.LineOfSight(f, target, map, true)) sees++;
+                score += sees * 1f - (plan.firing.Count - sees) * 1.5f;
+            }
+            score -= ShelterIn(plan.clear, map) * 0.4f;
+            return score;
+        }
+
+        /// <summary>The cells a template's anchor cell (cx, cz) lands on at a line, by where it goes (see <see cref="FindSpotAt"/>).</summary>
+        private static List<(IntVec3 cell, int facing, int cx, int cz, int jitter)> TargetsAt(DefenseTemplateDef t, DefenseSurvey s, IntVec3 gate, int facing, string placeAt, int distance)
+        {
+            var list = new List<(IntVec3, int, int, int, int)>();
+            var g = t.Grid;
+            int midX = GateColumn(t);
+            facing = DefenseLineMath.Norm(facing);
+            var outward = IntVec3.North.RotatedBy(new Rot4(facing));
+            switch (placeAt)
+            {
+                case "front":
+                    list.Add((gate + outward * Mathf.Max(1, distance), facing, midX, 0, 1));
+                    break;
+                case "behind":
+                    list.Add((gate - outward * Mathf.Max(1, distance > 0 ? distance : t.behind), facing, midX, g.H - 1, 2));
+                    break;
+                case "between":
+                {
+                    var core = s != null ? (s.bedCenter.IsValid ? s.bedCenter : s.center) : gate - outward * 14;
+                    float d = gate.DistanceTo(core);
+                    var toward = core - gate;
+                    float k = d > 1f ? Mathf.Min(14f, d * 0.5f) / d : 0f;
+                    var at = new IntVec3(gate.x + Mathf.RoundToInt(toward.x * k), 0, gate.z + Mathf.RoundToInt(toward.z * k));
+                    list.Add((at, facing, midX, Mathf.Max(0, g.line), 3));
+                    break;
+                }
+                default:
+                    // A second skin of wall goes exactly behind the line, never on it or in front of it.
+                    list.Add((gate - outward * Mathf.Max(0, distance), facing, midX, Mathf.Max(0, g.line), distance > 0 ? 0 : 1));
+                    break;
+            }
+            return list;
+        }
+
+        /// <summary>How many rows down from a template's front its first cover (or turret) stands: where it goes behind a line is measured to that row.</summary>
+        public static int CoverRow(DefenseTemplateDef t)
+        {
+            var g = t?.Grid;
+            if (g == null) return 0;
+            for (int z = g.H - 1; z >= 0; z--)
+                for (int x = 0; x < g.W; x++)
+                {
+                    char c = g.cells[x, z];
+                    if (c == DefenseLayout.Cover || c == DefenseLayout.Embrasure || c == DefenseLayout.Turret || c == DefenseLayout.TurretRoom) return g.H - 1 - z;
+                }
+            return 0;
         }
 
         /// <summary>The cells the template's anchor cell (cx, cz) could land on, the side to face, and how far to look round each.</summary>

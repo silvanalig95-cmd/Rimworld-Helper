@@ -45,6 +45,9 @@ namespace ColonyCouncil
             public int open;
         }
 
+        /// <summary>Back to the top of the page, where the defense lines are.</summary>
+        public static void ScrollToTop() => scroll = Vector2.zero;
+
         public static void Draw(Rect rect, Map map)
         {
             if (map == null || !map.IsPlayerHome)
@@ -353,6 +356,14 @@ namespace ColonyCouncil
         private static float DrawRight(Model m, float x, float y, float w)
         {
             var s = m.s;
+            try
+            {
+                y = DefenseLinesPanel.Draw(s, x, y, w);
+            }
+            catch (System.Exception e)
+            {
+                CouncilLog.ErrorOnce("defense lines on the page", e);
+            }
             y += UiKit.SectionTitle(x, y, w, "CC_Def_Advice".Translate(), Icons.Priorities,
                 null, m.open > 0 ? "CC_Def_AdviceOpen".Translate(m.open).Resolve() : "CC_Def_AdviceNone".Translate().Resolve());
             if (m.marshal != null && m.advice.Any(a => !a.done && !a.standing))
@@ -387,7 +398,9 @@ namespace ColonyCouncil
             float textW = Mathf.Max(80f, w - 100f - ButtonsW - 8f);
             float titleH = Measure(a.title ?? "", textW, GameFont.Small);
             float whyH = Measure(a.why ?? "", textW, GameFont.Tiny);
-            int buttons = (a.template != null && !a.done ? 1 : 0) + (a.look.IsValid ? 1 : 0) + (a.article != null ? 1 : 0);
+            bool gap = a.choke >= 0 && a.choke < s.chokes.Count && a.key != null && (a.key.StartsWith("gap") || a.key.StartsWith("cover"));
+            var lineThere = gap ? DefenseLines.Of(s.map)?.ForChoke(s, s.chokes[a.choke]) : null;
+            int buttons = (a.template != null && !a.done ? 1 : 0) + (a.look.IsValid ? 1 : 0) + (a.article != null ? 1 : 0) + (gap ? 1 : 0);
             float h = Mathf.Max(56f, titleH + whyH + 16f, buttons * 28f + 8f);
             var color = a.done ? UiKit.Good : LevelColor(a.Level);
             var r = new Rect(x, y, w, h);
@@ -430,6 +443,17 @@ namespace ColonyCouncil
                 by += 28f;
             }
             if (a.article != null && Widgets.ButtonText(new Rect(bx, by, ButtonsW, 24f), "CC_ReadMore".Translate())) MainTabWindow_Council.OpenAlmanac(a.article);
+            if (a.article != null) by += 28f;
+            if (gap)
+            {
+                var lr = new Rect(bx, by, ButtonsW, 24f);
+                if (Widgets.ButtonText(lr, (lineThere != null ? "CC_DefLine_OpenIts" : "CC_DefLine_MakeLine").Translate()))
+                {
+                    if (lineThere != null) DefenseLinesPanel.Open(s.map, lineThere);
+                    else DefenseLinesPanel.MakeFromAdvice(s, a.choke);
+                }
+                TooltipHandler.TipRegion(lr, (lineThere != null ? "CC_DefLine_OpenIts_Tip" : "CC_DefLine_MakeLine_Tip").Translate());
+            }
             return y + h;
         }
 

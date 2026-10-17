@@ -879,6 +879,28 @@ deep inside, as the plan needs. Every plan is checked in every turn and mirrored
 gates in wall lines with a way through, every firing position covered toward the threat with open ground in front,
 traps on the raiders' way and never side by side or by a gate, turrets three cells apart.
 
+**Defense lines** build one gap up a step at a time with the helper. Make a line from a gap's advice, from **New
+defense line** (the gaps without one, busiest first, or a spot picked on the map), or by putting a gate on a gap; say
+what it should become (hold a gate, a killbox, a turret line, an archers' wall), and it climbs an **eight-step
+ladder**: close the gap, clear the field of fire, cover behind the gate, traps on the way in, guns that never sleep
+(turrets, or an archers' post), the killbox (once raids reach about 700 points, at once for a killbox line: the small,
+full or tunnel killbox as the place allows, tried at the gate first and, if it doesn't fit, where it would), harden the
+line, a line to fall back to. Each step says why now, how it works and the common mistakes, and is ticked off by what
+stands on the map, built by plan or by hand; **Plan this step** opens the planner already placed and turned for the
+line, and plans placed for a line (or near its gate) join it. The helper's notes check the line the way a seasoned
+player would, each with a fix where it can: the way round with the gate shut ("the wall stops 4 cells short of the
+rock to the west", with **Wall it off**), which firing positions see the gate and from how far against the colony's
+best weapon, trees and chunks raiders would shelter behind (**Cut and haul**), turrets that would blow each other up or
+have no power, wood in the wall, a gate not held open, the dark for a belief that fights better in it, and upkeep
+after a raid. A rough **strength** sets the line against today's raids ("should hold a raid of about 1,500 points with
+everyone at their posts"), with its parts in the tooltip. While raiders are on the map the lines watch how they come
+in, every few seconds and only then: through the gate, round it or through the walls, and where colonists fall; after
+the raid each line keeps what it taught ("9 came through the gate, 3 went round to the west; Hana was downed at the
+sandbags on the left") with a button to the check or step it points at. A setting reminds you once a raid when a
+line's gate is shut. The defense planner now digs into unexplored ground the way the room planner does, so a killbox
+can go into a mountain pass, and its suggested spots prefer those that close the gap, see the gate and leave raiders
+nothing to hide behind.
+
 The marshal, when there is one, points at the first piece of advice, and the council can take up **hold the way in**
 as a project: a gate across the way most raids take with cover behind it, or the home walled in. The Almanac's
 **Defending the colony** section explains it all (20 pages), from building a defense line step by step and how a

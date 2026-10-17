@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- ===================== Defense lines (Source/ColonyCouncil/Defense/DefenseLine*.cs, UI/DefenseLinesPanel.cs) ===================== -->
+
+  <!-- The section on Colony → Defenses -->
+  <CC_DefLine_Section>Defense lines</CC_DefLine_Section>
+  <CC_DefLine_SectionCount>{0} line(s)</CC_DefLine_SectionCount>
+  <CC_DefLine_SectionNone>none yet</CC_DefLine_SectionNone>
+  <CC_DefLine_Intro>A defense line is one gap you mean to hold, built up step by step: close it, clear the field of fire, cover behind the gate, traps, guns that never sleep, a killbox when raids grow, harder walls and a line to fall back to. The helper checks each step against what stands on the map, says what's left and why, and puts the plans down where they fit together. Start one from a gap's advice below ("Make a defense line"), or with "New defense line".</CC_DefLine_Intro>
+  <CC_DefLine_New>New defense line...</CC_DefLine_New>
+  <CC_DefLine_New_Tip>Start a line on one of the gaps raiders pass, busiest first, or pick the spot on the map yourself.</CC_DefLine_New_Tip>
+  <CC_DefLine_New_Gap>To the {0}: {1}, {2} wide (about {3} in 10 raids)</CC_DefLine_New_Gap>
+  <CC_DefLine_New_Open>Where the busiest way in crosses open ground, to the {0}</CC_DefLine_New_Open>
+  <CC_DefLine_New_Pick>Pick a spot on the map...</CC_DefLine_New_Pick>
+  <CC_DefLine_HowLines>Lines, step by step</CC_DefLine_HowLines>
+  <CC_DefLine_Made>Started a defense line: {0}. Its steps are on Colony → Defenses.</CC_DefLine_Made>
+  <CC_DefLine_MakeLine>Make a defense line</CC_DefLine_MakeLine>
+  <CC_DefLine_MakeLine_Tip>Make this gap a defense line. The helper then takes you through building it up step by step, from closing the gap to a killbox, and keeps checking it as you go.</CC_DefLine_MakeLine_Tip>
+  <CC_DefLine_OpenIts>Open its line</CC_DefLine_OpenIts>
+  <CC_DefLine_OpenIts_Tip>This gap is a defense line already: open its card at the top of the page.</CC_DefLine_OpenIts_Tip>
+
+  <!-- Names and places -->
+  <CC_DefLine_Name_Gate>the {0} gate</CC_DefLine_Name_Gate>
+  <CC_DefLine_Name_Pass>the {0} pass</CC_DefLine_Name_Pass>
+  <CC_DefLine_Name_Bridge>the {0} bridge</CC_DefLine_Name_Bridge>
+  <CC_DefLine_Name_Line>the {0} line</CC_DefLine_Name_Line>
+  <CC_DefLine_Name_Nth>{0} ({1})</CC_DefLine_Name_Nth>
+  <CC_DefLine_Name_Tip>Click to draw this line on the map: its span and gate, the kill zone, who sees the gate, the way round and what raiders would shelter behind.</CC_DefLine_Name_Tip>
+  <CC_DefLine_Place_Open>open ground</CC_DefLine_Place_Open>
+  <CC_DefLine_Where>To the {0}: {1}, {2} wide. Raiders come at it from the {3}.</CC_DefLine_Where>
+  <CC_DefLine_Rename>Rename</CC_DefLine_Rename>
+  <CC_DefLine_NamePrompt>A name for this line:</CC_DefLine_NamePrompt>
+  <CC_DefLine_NameEmpty>Leave it empty for the helper's own name.</CC_DefLine_NameEmpty>
+  <CC_DefLine_Remove>Remove this line</CC_DefLine_Remove>
+  <CC_DefLine_Remove_Confirm>Remove the defense line at {0}? What's built stays; only the helper's record of the line goes.</CC_DefLine_Remove_Confirm>
+  <CC_DefLine_Fold>Fold to one row</CC_DefLine_Fold>
+  <CC_DefLine_Unfold>Show the whole card</CC_DefLine_Unfold>
+  <CC_DefLine_FoldedRow>{0} of {1} steps done. Next: {2}. Holds about {3} points.</CC_DefLine_FoldedRow>
+  <CC_DefLine_FoldedDone>{0} of {1} steps done. Holds about {2} points.</CC_DefLine_FoldedDone>
+
+  <!-- Aims -->
+  <CC_DefLine_Aim_gate>Hold a gate</CC_DefLine_Aim_gate>
+  <CC_DefLine_Aim_killbox>A killbox</CC_DefLine_Aim_killbox>
+  <CC_DefLine_Aim_turrets>A turret line</CC_DefLine_Aim_turrets>
+  <CC_DefLine_Aim_archers>An archers' wall</CC_DefLine_Aim_archers>
+  <CC_DefLine_Aim_NeedsTurrets>needs turrets</CC_DefLine_Aim_NeedsTurrets>
+  <CC_DefLine_Aim_Tip>What you mean this line to become. The ladder follows it: a killbox line builds its killbox early, a turret line its turrets.</CC_DefLine_Aim_Tip>
+  <CC_DefLine_AimTip_gate>Hold the gap with a gate and people behind cover: the plain, sturdy line most colonies start with.</CC_DefLine_AimTip_gate>
+  <CC_DefLine_AimTip_killbox>Bring raiders round a turn into open ground under every gun. The killbox comes right after the gap is closed and the field cleared, whatever the raids.</CC_DefLine_AimTip_killbox>
+  <CC_DefLine_AimTip_turrets>Let turrets do most of the shooting, with people to repair them. The turrets come early.</CC_DefLine_AimTip_turrets>
+  <CC_DefLine_AimTip_archers>A wall with archers or shooters behind cover, for a colony without turrets. Their post comes early.</CC_DefLine_AimTip_archers>
+
+  <!-- The ladder and the step -->
+  <CC_DefLine_DiscTip>Step {0}: {1} ({2}). Click to look at it.</CC_DefLine_DiscTip>
+  <CC_DefLine_StepsDone>{0} of {1} done</CC_DefLine_StepsDone>
+  <CC_DefLine_StepNow>Step {0} of {1}: {2}</CC_DefLine_StepNow>
+  <CC_DefLine_StepOther>Looking at step {0} of {1}: {2}</CC_DefLine_StepOther>
+  <CC_DefLine_State_Done>done</CC_DefLine_State_Done>
+  <CC_DefLine_State_Partly>partly done</CC_DefLine_State_Partly>
+  <CC_DefLine_State_Open>to do</CC_DefLine_State_Open>
+  <CC_DefLine_State_Later>for later</CC_DefLine_State_Later>
+  <CC_DefLine_State_NotYet>not yet</CC_DefLine_State_NotYet>
+  <CC_DefLine_State_NotApplicable>not for this game</CC_DefLine_State_NotApplicable>
+  <CC_DefLine_State_Skipped>set aside</CC_DefLine_State_Skipped>
+  <CC_DefLine_FromRaid>The last raid showed this is missing, so it comes first.</CC_DefLine_FromRaid>
+  <CC_DefLine_WhyNow>Why now: {0}</CC_DefLine_WhyNow>
+  <CC_DefLine_LeftLine>Left to do: {0}</CC_DefLine_LeftLine>
+  <CC_DefLine_NotYet>Not yet: {0}</CC_DefLine_NotYet>
+  <CC_DefLine_LaterLine>For later. {0}</CC_DefLine_LaterLine>
+  <CC_DefLine_NotApplicableLine>Not for this game: {0}.</CC_DefLine_NotApplicableLine>
+  <CC_DefLine_Off>{0}</CC_DefLine_Off>
+  <CC_DefLine_Later>Raids are about {0} points now; this pays from about {1}.</CC_DefLine_Later>
+  <CC_DefLine_HowShut>How it works, and common mistakes</CC_DefLine_HowShut>
+  <CC_DefLine_HowOpen>Hide how it works</CC_DefLine_HowOpen>
+  <CC_DefLine_Mistakes>Common mistakes:</CC_DefLine_Mistakes>
+  <CC_DefLine_AllDone>Every step of this line is done or set aside. The notes below are what's left to watch.</CC_DefLine_AllDone>
+  <CC_DefLine_PlanStep>Plan this step</CC_DefLine_PlanStep>
+  <CC_DefLine_PlanStep_Tip>Opens the planner with the {0} placed and turned for this line. Nothing is built until you click to place it.</CC_DefLine_PlanStep_Tip>
+  <CC_DefLine_Show_Tip>Takes the camera there and draws the line on the map: its span and gate, the kill zone, who sees the gate, the way round and what raiders would shelter behind.</CC_DefLine_Show_Tip>
+  <CC_DefLine_Skip>Not for this line</CC_DefLine_Skip>
+  <CC_DefLine_Skip_Tip>Set this step aside for this line. It stays on the ladder, crossed out, and you can bring it back.</CC_DefLine_Skip_Tip>
+  <CC_DefLine_Unskip>Bring it back</CC_DefLine_Unskip>
+  <CC_DefLine_Unskip_Tip>Put this step back on the line's ladder.</CC_DefLine_Unskip_Tip>
+  <CC_DefLine_Left_Plan>{0} of the plan's {1} pieces stand.</CC_DefLine_Left_Plan>
+
+  <!-- Step: close the gap -->
+  <CC_DefLine_Close_Open>Nothing closes the gap yet: {0} cell(s) of open ground across it.</CC_DefLine_Close_Open>
+  <CC_DefLine_Close_Some>{0} of the {1} cells across the gap are closed; {2} are still open.</CC_DefLine_Close_Some>
+  <CC_DefLine_Close_Waiting>{0} of the {1} cells across the gap stand; the rest are planned and wait for builders.</CC_DefLine_Close_Waiting>
+  <CC_DefLine_Close_NoDoor>The gap is walled shut with no gate in it. Raiders with no way in break the wall wherever they like: put a gate in it.</CC_DefLine_Close_NoDoor>
+
+  <!-- Step: clear the field -->
+  <CC_DefLine_Field_Left>In the field of fire: {0}.</CC_DefLine_Field_Left>
+  <CC_DefLine_Field_Marked>All of it is marked ({0}); it's done once your people get to it.</CC_DefLine_Field_Marked>
+  <CC_DefLine_Field_ByHand>Still in the field: {0}. Those need moving or taking down by hand.</CC_DefLine_Field_ByHand>
+  <CC_DefLine_Field_Fix>Cut and haul</CC_DefLine_Field_Fix>
+  <CC_DefLine_Field_Fix_Tip>Marks the trees and bushes in the field of fire to be cut, the chunks to be hauled away and loose rock to be mined.</CC_DefLine_Field_Fix_Tip>
+  <CC_DefLine_Marked>Marked {0} in the field of fire.</CC_DefLine_Marked>
+  <CC_DefLine_Marked_Cut>{0} plant(s) to cut</CC_DefLine_Marked_Cut>
+  <CC_DefLine_Marked_Haul>{0} chunk(s) to haul</CC_DefLine_Marked_Haul>
+  <CC_DefLine_Marked_Mine>{0} cell(s) of rock to mine</CC_DefLine_Marked_Mine>
+  <CC_DefLine_Marked_None>Everything there is marked already.</CC_DefLine_Marked_None>
+  <CC_DefLine_Tree>a tree</CC_DefLine_Tree>
+  <CC_DefLine_Trees>{0} trees</CC_DefLine_Trees>
+  <CC_DefLine_Bush>a bush</CC_DefLine_Bush>
+  <CC_DefLine_Bushes>{0} bushes and tall plants</CC_DefLine_Bushes>
+  <CC_DefLine_Chunk>a chunk</CC_DefLine_Chunk>
+  <CC_DefLine_Chunks>{0} chunks</CC_DefLine_Chunks>
+  <CC_DefLine_Rock>a spur of rock</CC_DefLine_Rock>
+  <CC_DefLine_Rocks>{0} cells of rock</CC_DefLine_Rocks>
+  <CC_DefLine_OwnWall>a wall of your own</CC_DefLine_OwnWall>
+  <CC_DefLine_OwnWalls>{0} of your own walls</CC_DefLine_OwnWalls>
+  <CC_DefLine_Thing>a piece of furniture or ruin</CC_DefLine_Thing>
+  <CC_DefLine_Things>{0} pieces of furniture or ruins</CC_DefLine_Things>
+
+  <!-- Step: cover -->
+  <CC_DefLine_Cover_None>No cover behind the gate yet. Room for {0} shooters about {1} cells back would do.</CC_DefLine_Cover_None>
+  <CC_DefLine_Cover_Some>{0} of the {1} firing positions this line wants see the gate. More cover about {2} cells back.</CC_DefLine_Cover_Some>
+  <CC_DefLine_Cover_Blind>There are {0} pieces of cover behind the gate, but nobody behind them would see it.</CC_DefLine_Cover_Blind>
+
+  <!-- Step: traps -->
+  <CC_DefLine_Traps_NotYet>the colony can't build traps yet: {0}</CC_DefLine_Traps_NotYet>
+  <CC_DefLine_Traps_Some>{0} of {1} traps in front of the gate.</CC_DefLine_Traps_Some>
+  <CC_DefLine_Traps_Waiting>{0} trap(s) armed in front of the gate; {1} were sprung and wait to be rebuilt.</CC_DefLine_Traps_Waiting>
+
+  <!-- Step: guns -->
+  <CC_DefLine_Guns_One>One working turret; a second, three cells from it, covers the first.</CC_DefLine_Guns_One>
+  <CC_DefLine_Guns_PostLabel>A sniper's post</CC_DefLine_Guns_PostLabel>
+  <CC_DefLine_Guns_Posts>{0} firing position(s) further back see the gate; three make a post.</CC_DefLine_Guns_Posts>
+  <CC_DefLine_Guns_TurretsOff>{0}, so the guns that never sleep are people at a post.</CC_DefLine_Guns_TurretsOff>
+  <CC_DefLine_Guns_TurretResearch>Turrets come later ({0}); until then a post for your best shots does the work.</CC_DefLine_Guns_TurretResearch>
+  <CC_DefLine_Turret_NoPower>The {0} has no power.</CC_DefLine_Turret_NoPower>
+  <CC_DefLine_Turret_NoFuel>The {0} is out of {1}.</CC_DefLine_Turret_NoFuel>
+  <CC_DefLine_Turret_Broken>The {0} has broken down.</CC_DefLine_Turret_Broken>
+  <CC_DefLine_Turret_Chain>The {0} stands within {2} cells of the {1}: if one blows up, it takes the other with it.</CC_DefLine_Turret_Chain>
+  <CC_DefLine_Turret_Shooters>{1} firing position(s) stand within {2} cells of the {0}, where its blast would reach them.</CC_DefLine_Turret_Shooters>
+
+  <!-- Step: the killbox -->
+  <CC_DefLine_Killbox_Why1>Raiders who can walk to your people take the easiest path, so the killbox's open gate is where they come.</CC_DefLine_Killbox_Why1>
+  <CC_DefLine_Killbox_Why2>The entrance turns, so they can't stop in the doorway and shoot from its cover: they have to come out into the box.</CC_DefLine_Killbox_Why2>
+  <CC_DefLine_Killbox_Why3>The way in must stay open during the raid. Shut it, and with no way in they break the walls wherever they like.</CC_DefLine_Killbox_Why3>
+  <CC_DefLine_Killbox_Why4>Sappers and breachers ignore it and come through the walls: keep a line to fall back to.</CC_DefLine_Killbox_Why4>
+  <CC_DefLine_Killbox_Why4Pods>Sappers, breachers and drop pods ignore it, and some of your enemies can land inside: keep weapons by the beds and a line to fall back to.</CC_DefLine_Killbox_Why4Pods>
+  <CC_DefLine_Killbox_Tunnel>In a pass through the mountain the killbox can be dug out of the rock: the rock is its walls, and nothing falls on it from above.</CC_DefLine_Killbox_Tunnel>
+  <CC_DefLine_Killbox_Fits>The {0} fits behind this gate ({1} × {2} cells) without mining or taking anything down.</CC_DefLine_Killbox_Fits>
+  <CC_DefLine_Killbox_FitsIf>The {0} fits behind this gate if {1}.</CC_DefLine_Killbox_FitsIf>
+  <CC_DefLine_Killbox_Mine>{0} cells are mined out</CC_DefLine_Killbox_Mine>
+  <CC_DefLine_Killbox_Remove>{0} of your buildings are taken down</CC_DefLine_Killbox_Remove>
+  <CC_DefLine_Killbox_NoRoom>there's no room for the {0} behind this gate: it needs {1} × {2} cells of open or mineable ground.</CC_DefLine_Killbox_NoRoom>
+  <CC_DefLine_Killbox_Nowhere>Clear the ground behind the gate, or let the planner mine rock (its "mine rock" switch).</CC_DefLine_Killbox_Nowhere>
+  <CC_DefLine_Killbox_There>It would fit at the gap to the {0} ({1}, {2} wide).</CC_DefLine_Killbox_There>
+  <CC_DefLine_Killbox_Back>It would fit {0} cells further back along the way in, where the ground opens out.</CC_DefLine_Killbox_Back>
+
+  <!-- Step: harden -->
+  <CC_DefLine_Harden_NoWall>close the gap first: there's no wall here to harden yet.</CC_DefLine_Harden_NoWall>
+  <CC_DefLine_Harden_Thin>{0} of the line's {1} cells are one wall thick.</CC_DefLine_Harden_Thin>
+  <CC_DefLine_Harden_Wood>{0} of them are wood, which burns.</CC_DefLine_Harden_Wood>
+  <CC_DefLine_Harden_Embrasures>With {0} you could let archers and shooters fire through the line itself.</CC_DefLine_Harden_Embrasures>
+  <CC_DefLine_Harden_Gatehouse>Behind a palisade or a castle gate, a second wall would close off the embrasures' firing positions. Thicken the plain walls beside them by hand, and let the gatehouse be the second line.</CC_DefLine_Harden_Gatehouse>
+  <CC_DefLine_Harden_ByHand>There's no plan for a second skin of wall in this game: build one right behind the line by hand, wall against wall.</CC_DefLine_Harden_ByHand>
+
+  <!-- Step: fall back -->
+  <CC_DefLine_Fallback_None>Between this gate and the beds there's no second door: raiders who get through walk straight to the bedrooms.</CC_DefLine_Fallback_None>
+
+  <!-- The helper's notes -->
+  <CC_DefLine_Notes>What the helper sees</CC_DefLine_Notes>
+  <CC_DefLine_NotesMore>{0} more...</CC_DefLine_NotesMore>
+  <CC_DefLine_NotesFewer>Fewer</CC_DefLine_NotesFewer>
+  <CC_DefLine_NoteRead>More in the Almanac: {0}.</CC_DefLine_NoteRead>
+
+  <CC_DefLine_Leak_Short>The wall stops {0} short of {1} to the {2}: with the gate shut, raiders walk round there.</CC_DefLine_Leak_Short>
+  <CC_DefLine_Leak_Open>To the {0} the wall ends in open ground: raiders walk round its end.</CC_DefLine_Leak_Open>
+  <CC_DefLine_Leak_Far>With the gate shut, raiders walk round {0} to the {1} of the gate.</CC_DefLine_Leak_Far>
+  <CC_DefLine_Leak_Door>With the gate shut, the easiest way on is through your door to the {0}: hold one gate, and keep the other shut and strong.</CC_DefLine_Leak_Door>
+  <CC_DefLine_Leak_EvenOpen>That way is easier than the gate itself, so they'd go round even with it open.</CC_DefLine_Leak_EvenOpen>
+  <CC_DefLine_Leak_Long>With the gate shut, raiders still have a way on: the long way round, about {0} cells further, crossing the line's row to the {1}. Hold the gate open in a raid, or close that way too.</CC_DefLine_Leak_Long>
+  <CC_DefLine_Leak_Planned>Walls are planned there; it's closed once they're built.</CC_DefLine_Leak_Planned>
+  <CC_DefLine_Leak_Sealed>No way round: with the gate shut, raiders would have to break in.</CC_DefLine_Leak_Sealed>
+  <CC_DefLine_Leak_NoWayOn>From in front of this gate there's no way on to the beds, even with it open, so raiders have no reason to come this way. Check that the line is where they cross.</CC_DefLine_Leak_NoWayOn>
+  <CC_DefLine_End_Rock>the rock</CC_DefLine_End_Rock>
+  <CC_DefLine_End_Water>the water</CC_DefLine_End_Water>
+  <CC_DefLine_End_Wall>your wall</CC_DefLine_End_Wall>
+  <CC_DefLine_End_Door>your door</CC_DefLine_End_Door>
+  <CC_DefLine_WallOff>Wall it off</CC_DefLine_WallOff>
+  <CC_DefLine_WallOff_Tip>Plans {0} wall(s), of the line's own wall and material, in the open cells between its end and what closes the gap.</CC_DefLine_WallOff_Tip>
+  <CC_DefLine_WalledOff>Planned {0} × {1} to close the way round.</CC_DefLine_WalledOff>
+  <CC_DefLine_WalledOff_None>Nothing could be planned there: something is in the way.</CC_DefLine_WalledOff_None>
+  <CC_DefLine_PlanWall>Plan a wall there</CC_DefLine_PlanWall>
+  <CC_DefLine_PlanWall_Tip>Opens the planner with a stretch of wall across the way round, carried on to the rock or water on both sides.</CC_DefLine_PlanWall_Tip>
+
+  <CC_DefLine_Sight_Blind>{0} of the {1} firing positions behind the cover can't see the way in: something solid stands between.</CC_DefLine_Sight_Blind>
+  <CC_DefLine_Sight_Range>{0} firing position(s) are further from the gate than your best weapon's reach of {1} cells.</CC_DefLine_Sight_Range>
+  <CC_DefLine_Sight_Good>{0} firing positions see the gate from about {1} cells, inside your best weapon's reach of {2}.</CC_DefLine_Sight_Good>
+  <CC_DefLine_Field>Raiders would find cover in the field of fire: {0}.</CC_DefLine_Field>
+  <CC_DefLine_Dist_Close>The cover is only {0} cells behind the gate: the first raider through, or a grenade, reaches it. About {1} cells back is better.</CC_DefLine_Dist_Close>
+  <CC_DefLine_Dist_Far>The cover is {0} cells back, where shots start to go wide. About {1} cells back would hit more.</CC_DefLine_Dist_Far>
+  <CC_DefLine_Dist_TooFar>The cover is {0} cells back, past your best weapon's reach of {1}. About {2} cells back is in range.</CC_DefLine_Dist_TooFar>
+  <CC_DefLine_PlanCover>Cover {0} cells back</CC_DefLine_PlanCover>
+  <CC_DefLine_PlanCover_Tip>Opens the planner with a line of cover at that distance, placed for this line.</CC_DefLine_PlanCover_Tip>
+  <CC_DefLine_Walls_Wood>{0} of the line's {1} cells are wood. Raiders set fires, and a burning wall in a narrow place is a trap for your own people.</CC_DefLine_Walls_Wood>
+  <CC_DefLine_Gate_Open>The gate ({0}) is held open: raiders come to it rather than break the wall.</CC_DefLine_Gate_Open>
+  <CC_DefLine_Gate_Shut>The gate ({0}) isn't held open. When raiders come, set it to stay open, or with no way in they break the wall wherever they like.</CC_DefLine_Gate_Shut>
+  <CC_DefLine_SelectGate>Select the gate</CC_DefLine_SelectGate>
+  <CC_DefLine_SelectGate_Tip>Takes you to the gate and selects it, so you can set it to stay open.</CC_DefLine_SelectGate_Tip>
+  <CC_DefLine_Dark_Posts>At night {0} of the {1} firing positions that see the gate are dark. The dark doesn't spoil anyone's aim, but people there move and work more slowly and it wears on them: a lamp behind the cover helps.</CC_DefLine_Dark_Posts>
+  <CC_DefLine_Dark_Lit>{0} of your shooters hold to fighting in the dark: they aim 25% better at raiders in darkness and 20% worse at lit ones. At night {1}% of the kill zone is lit, which takes that edge away there.</CC_DefLine_Dark_Lit>
+  <CC_DefLine_Dark_Good>At night the kill zone is dark, where the {0} shooters who hold to fighting in the dark aim 25% better.</CC_DefLine_Dark_Good>
+  <CC_DefLine_Upkeep_Damaged>{0} piece(s) of the line are damaged.</CC_DefLine_Upkeep_Damaged>
+  <CC_DefLine_Upkeep_OutsideHome>{0} of them stand outside the home area, where nobody repairs them.</CC_DefLine_Upkeep_OutsideHome>
+  <CC_DefLine_Upkeep_Traps>{0} sprung trap(s) wait to be rebuilt.</CC_DefLine_Upkeep_Traps>
+  <CC_DefLine_Upkeep_Bodies>{0} bodies lie in the field.</CC_DefLine_Upkeep_Bodies>
+  <CC_DefLine_AddHome>Add to the home area</CC_DefLine_AddHome>
+  <CC_DefLine_AddHome_Tip>Paints the damaged walls and cover into the home area, so your builders repair them.</CC_DefLine_AddHome_Tip>
+  <CC_DefLine_AddHome_Done>{0} damaged piece(s) added to the home area: your builders will repair them.</CC_DefLine_AddHome_Done>
+  <CC_DefLine_HaulBodies>Haul the bodies</CC_DefLine_HaulBodies>
+  <CC_DefLine_HaulBodies_Tip>Marks the bodies in the field to be hauled away.</CC_DefLine_HaulBodies_Tip>
+
+  <!-- How each check works (tooltips) -->
+  <CC_DefLine_How_Leak>Raiders who can walk to your people take the easiest way. A way round a line that's only a little longer than through its gate is the one they take as soon as the gate is shut.</CC_DefLine_How_Leak>
+  <CC_DefLine_How_LeakDoor>Raiders don't open your doors; they break them. A second door is a second gate: hold one, and make the other strong.</CC_DefLine_How_LeakDoor>
+  <CC_DefLine_How_NoWayOn>The helper measures the way from just in front of the gate to the beds. Where there's none, raiders arriving here have no reason to come through.</CC_DefLine_How_NoWayOn>
+  <CC_DefLine_How_Sight>A firing position counts when someone standing there can see the cell just inside the gate, or in a killbox the box itself. Walls, rock and doors block the view; sandbags and barricades don't.</CC_DefLine_How_Sight>
+  <CC_DefLine_How_Range>Past a weapon's reach nobody can shoot at all, and hits fall off well before it.</CC_DefLine_How_Range>
+  <CC_DefLine_How_Field>Raiders shelter behind trees, chunks, rubble and furniture as they come. A tree stops about a quarter of the shots, a chunk half, a wall three quarters.</CC_DefLine_How_Field>
+  <CC_DefLine_How_Distance>Too close, and a rush or a grenade through the gate reaches the shooters at once; too far, and the shots go wide. The helper aims for about a quarter of your best weapon's reach, six to ten cells.</CC_DefLine_How_Distance>
+  <CC_DefLine_How_Turrets>A badly damaged turret can explode, and its blast reaches the turrets and people near it. A turret without power, fuel or repairs is just cover for raiders.</CC_DefLine_How_Turrets>
+  <CC_DefLine_How_Wood>Raiders bring torches and incendiaries. Stone doesn't burn, and holds longer against a breacher's axe.</CC_DefLine_How_Wood>
+  <CC_DefLine_How_Gate>Raiders who have a way to your people take it. A gate held open during a raid brings them into your guns; a shut one leaves them to break the wall anywhere.</CC_DefLine_How_Gate>
+  <CC_DefLine_How_Dark>Darkness doesn't spoil anyone's aim by itself: it slows movement and work, and wears on the mood. Only a belief that prefers combat in darkness changes shooting, 25% better at targets in the dark and 20% worse at lit ones.</CC_DefLine_How_Dark>
+  <CC_DefLine_How_Upkeep>Damaged walls fall sooner in the next raid, and sprung traps do nothing until they're rebuilt. Your builders repair only what's inside the home area.</CC_DefLine_How_Upkeep>
+
+  <!-- Strength -->
+  <CC_DefLine_Strength_Well>Should hold a raid of about {0} points with everyone at their posts, well above today's {1}.</CC_DefLine_Strength_Well>
+  <CC_DefLine_Strength_Holds>Should hold a raid of about {0} points with everyone at their posts, a little more than today's ({1}).</CC_DefLine_Strength_Holds>
+  <CC_DefLine_Strength_Close>With everyone at their posts it holds about {0} points; today's raids, about {1}, would test it.</CC_DefLine_Strength_Close>
+  <CC_DefLine_Strength_Weak>With everyone at their posts it holds about {0} points; today's raids are about {1}, more than it would hold.</CC_DefLine_Strength_Weak>
+  <CC_DefLine_StrTip_People>People: {0} fighters, {1} of them at firing positions that see the gate (those count 1.6 times): {2} points.</CC_DefLine_StrTip_People>
+  <CC_DefLine_StrTip_Turrets>Working turrets: {0}, {1} points.</CC_DefLine_StrTip_Turrets>
+  <CC_DefLine_StrTip_Traps>Traps: {0}, {1} points.</CC_DefLine_StrTip_Traps>
+  <CC_DefLine_StrTip_Factor>Then × {0} for {1}.</CC_DefLine_StrTip_Factor>
+  <CC_DefLine_StrTip_Killbox>a killbox (× 1.5)</CC_DefLine_StrTip_Killbox>
+  <CC_DefLine_StrTip_Closed>the gap closed with no way round (× 1.2)</CC_DefLine_StrTip_Closed>
+  <CC_DefLine_StrTip_Leak>a way round (× 0.6)</CC_DefLine_StrTip_Leak>
+  <CC_DefLine_StrTip_Field>{0} thing(s) in the field for raiders to shelter behind (2% less each)</CC_DefLine_StrTip_Field>
+  <CC_DefLine_StrTip_Nothing>nothing else</CC_DefLine_StrTip_Nothing>
+  <CC_DefLine_StrTip_Rough>A rough guide, counting fighters the way the advisor does. Drop pods, sappers and breachers don't come through the gate at all.</CC_DefLine_StrTip_Rough>
+
+  <!-- The planner -->
+  <CC_DefLine_PlanReady>The {0} for {1}, placed and turned. Click "Place it there", or move it and click to place it yourself.</CC_DefLine_PlanReady>
+  <CC_DefLine_PlanTight>There's no spot where the whole {0} fits for {1}: it's shown where it would go. Red pieces are in the way; move it, or clear the ground.</CC_DefLine_PlanTight>
+  <CC_DefLine_PlanningFor>Planning for {0}.</CC_DefLine_PlanningFor>
+  <CC_DefLine_PlanJoined>The {0} is part of {1} now.</CC_DefLine_PlanJoined>
+  <CC_DefLine_Offer_Title>A new defense line?</CC_DefLine_Offer_Title>
+  <CC_DefLine_Offer>The {0} you placed closes the gap to the {1}. Make it a defense line? The helper then takes you through building it up, step by step, and keeps checking it.</CC_DefLine_Offer>
+  <CC_DefLine_Offer_Yes>Make it a defense line</CC_DefLine_Offer_Yes>
+  <CC_DefLine_Offer_No>Not now</CC_DefLine_Offer_No>
+  <CC_DefLine_PickSpot>Pick the spot</CC_DefLine_PickSpot>
+  <CC_DefLine_PickSpot_Tip>Click the cell where raiders cross: a gap, a bridge, a gate. The line faces the way that gap faces, or else away from the colony.</CC_DefLine_PickSpot_Tip>
+  <CC_DefLine_PickSpot_Msg>Click where raiders cross to start a defense line there. Right-click to stop.</CC_DefLine_PickSpot_Msg>
+  <CC_DefLine_PickSpot_NotHere>Nobody can walk here.</CC_DefLine_PickSpot_NotHere>
+  <CC_DefLine_PickSpot_Taken>There's a defense line here already.</CC_DefLine_PickSpot_Taken>
+
+  <!-- Raids -->
+  <CC_DefLine_Remind>Raiders are here, and the gate of {0} is shut. With no way in, they break the wall wherever they like. If you mean to fight there, select the gate and set it to stay open.</CC_DefLine_Remind>
+  <CC_DefLine_RaidOver>The raid at {0} is over. {1} Colony → Defenses has what it teaches.</CC_DefLine_RaidOver>
+  <CC_DefLine_LastRaid>Last raid ({0} ago): {1}</CC_DefLine_LastRaid>
+  <CC_DefLine_Raid_Through>{0} came through the gate</CC_DefLine_Raid_Through>
+  <CC_DefLine_Raid_Round>{0} went round to the {1}</CC_DefLine_Raid_Round>
+  <CC_DefLine_Raid_Broke>{0} broke through the walls</CC_DefLine_Raid_Broke>
+  <CC_DefLine_Raid_Inside>{0} came down inside</CC_DefLine_Raid_Inside>
+  <CC_DefLine_Raid_NoneNear>none of them came near it</CC_DefLine_Raid_NoneNear>
+  <CC_DefLine_DownedAt>{PAWN_nameDef} was downed {1}</CC_DefLine_DownedAt>
+  <CC_DefLine_At_Gate>at the gate</CC_DefLine_At_Gate>
+  <CC_DefLine_At_Front>in front of the line</CC_DefLine_At_Front>
+  <CC_DefLine_At_CoverLeft>at the {0} on the left</CC_DefLine_At_CoverLeft>
+  <CC_DefLine_At_CoverRight>at the {0} on the right</CC_DefLine_At_CoverRight>
+  <CC_DefLine_At_Zone>in the kill zone</CC_DefLine_At_Zone>
+  <CC_DefLine_At_Behind>behind the line</CC_DefLine_At_Behind>
+  <CC_DefLine_Left>left</CC_DefLine_Left>
+  <CC_DefLine_Right>right</CC_DefLine_Right>
+  <CC_DefLine_Lesson_Held>It held: they came through the gate, and nobody fell.</CC_DefLine_Lesson_Held>
+  <CC_DefLine_Lesson_Leak>Some went round to the {0}: close the way round there.</CC_DefLine_Lesson_Leak>
+  <CC_DefLine_Lesson_Harden>Some broke through the walls: two thick and of stone, they'd have held longer.</CC_DefLine_Lesson_Harden>
+  <CC_DefLine_Lesson_Cover>People fell at the cover on the {0}: more cover there, a turret covering it, or fewer raiders reaching it.</CC_DefLine_Lesson_Cover>
+  <CC_DefLine_Lesson_StayBehind>People fell in front of the line: fight from behind it, and let raiders come to you.</CC_DefLine_Lesson_StayBehind>
+  <CC_DefLine_Lesson_Fallback>Raiders got among the buildings: a line to fall back to keeps them from the beds.</CC_DefLine_Lesson_Fallback>
+  <CC_DefLine_Lesson_GoStep>To the step: {0}</CC_DefLine_Lesson_GoStep>
+  <CC_DefLine_Lesson_GoStep_Tip>Shows that step on the card.</CC_DefLine_Lesson_GoStep_Tip>
+
+  <!-- Settings -->
+  <CC_Settings_DefenseGateReminder>Remind me of a shut gate when raiders come</CC_Settings_DefenseGateReminder>
+  <CC_Settings_DefenseGateReminder_Tip>When raiders arrive, says once if a defense line's gate is shut. With no way in, raiders break the wall wherever they like; a gate held open brings them into your guns.</CC_Settings_DefenseGateReminder_Tip>
+  <CC_SetNote_DefenseGateReminder>Once a raid, a word if a defense line's gate is shut when raiders come.</CC_SetNote_DefenseGateReminder>
+
+</LanguageData>

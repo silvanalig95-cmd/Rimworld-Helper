@@ -25,6 +25,8 @@ namespace ColonyCouncil
         private bool suggestedMirror;
         /// <summary>The choke point the planner was opened for (from a piece of advice), or -1 for the best.</summary>
         public int choke = -1;
+        /// <summary>The defense line this plan is for (opened from a line's step), or -1: the plan joins it when placed.</summary>
+        public int lineId = -1;
 
         private DefensePlan cachedPlan;
         private IntVec3 cachedAnchor = IntVec3.Invalid;
@@ -71,6 +73,43 @@ namespace ColonyCouncil
             Find.DesignatorManager.Select(des);
             if (atSpot) des.SuggestSpot();
         }
+
+        /// <summary>
+        /// Starts planning a defense for a line, already placed and turned where the line's step wants it: the camera goes
+        /// there, the spot is outlined, and "Place it there" or a click puts it down. Nothing is built until then.
+        /// </summary>
+        public static void BeginAt(DefenseTemplateDef t, IntVec3 anchor, int rot, bool mirror, bool closeGap, int lineId, bool fits)
+        {
+            var map = Find.CurrentMap;
+            if (t == null || map == null) return;
+            string reason = t.UnavailableReason(map);
+            if (reason != null)
+            {
+                Messages.Message(reason, MessageTypeDefOf.RejectInput, false);
+                return;
+            }
+            var des = new Designator_PlanDefense(t) { lineId = lineId };
+            Find.MainTabsRoot.EscapeCurrentTab(false);
+            Find.DesignatorManager.Select(des);
+            var cfg = des.Config;
+            cfg.rotation = TemplateMath.Norm(rot);
+            cfg.mirror = mirror;
+            cfg.closeGap = closeGap;
+            cfg.Changed();
+            des.suggestedAnchor = anchor;
+            des.suggestedRot = cfg.rotation;
+            des.suggestedMirror = mirror;
+            TemplateMath.RotatedSize(t.Width, t.Height, cfg.rotation, out int rw, out int rh);
+            CameraJumper.TryJump(new IntVec3(anchor.x + rw / 2, 0, anchor.z + rh / 2), map);
+            var line = DefenseLines.Of(map)?.Get(lineId);
+            if (line != null) DefenseLines.Select(map, line);
+            string name = line != null ? DefenseLineReview.NameOf(line, map) : "";
+            Messages.Message((fits ? "CC_DefLine_PlanReady" : "CC_DefLine_PlanTight").Translate(t.LabelNow, name).Resolve(),
+                fits ? MessageTypeDefOf.SilentInput : MessageTypeDefOf.CautionInput, false);
+        }
+
+        /// <summary>The line this plan is for, if any.</summary>
+        public DefenseLine Line => lineId < 0 ? null : DefenseLines.Of(Find.CurrentMap)?.Get(lineId);
 
         public override GizmoResult GizmoOnGUI(Vector2 topLeft, float maxWidth, GizmoRenderParms parms)
         {
@@ -224,6 +263,14 @@ namespace ColonyCouncil
             Messages.Message(summary, first != null ? new LookTargets(first.cell, Map) : LookTargets.Invalid, MessageTypeDefOf.TaskCompletion, false);
             cachedPlan = null;
             suggestedAnchor = IntVec3.Invalid;
+            try
+            {
+                DefenseLines.Of(Map)?.OnPlaced(plan, lineId, Config.closeGap);
+            }
+            catch (System.Exception e)
+            {
+                CouncilLog.ErrorOnce("defense line: a plan placed", e);
+            }
             // The survey sees the new blueprints as soon as they're built; the page asks again then.
         }
 

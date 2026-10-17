@@ -192,6 +192,8 @@ namespace ColonyCouncil
         // Advisor
         public bool advisorAlert = true;
         public bool wishAlert = true;
+        /// <summary>When raiders come, say once if a defense line's gate is shut (raiders with no way in break the wall anywhere).</summary>
+        public bool defenseGateReminder = true;
 
         // Room planner (the clearing options are remembered between games)
         public bool planCutPlants = true;
@@ -330,6 +332,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref daysBetweenPersonalTouches, "daysBetweenPersonalTouches", 6f);
             Scribe_Values.Look(ref advisorAlert, "advisorAlert", true);
             Scribe_Values.Look(ref wishAlert, "wishAlert", true);
+            Scribe_Values.Look(ref defenseGateReminder, "defenseGateReminder", true);
             Scribe_Values.Look(ref planCutPlants, "planCutPlants", true);
             Scribe_Values.Look(ref planMineRock, "planMineRock", true);
             Scribe_Values.Look(ref planReplaceOwn, "planReplaceOwn", false);

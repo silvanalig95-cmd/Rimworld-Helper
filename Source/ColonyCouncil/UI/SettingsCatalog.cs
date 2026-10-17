@@ -357,6 +357,7 @@ namespace ColonyCouncil
             Section("CC_Settings_Alerts");
             Toggle("advisorAlert", "CC_Settings_AdvisorAlert", "CC_SetNote_AdvisorAlert", "enableAdvisor");
             Toggle("wishAlert", "CC_Settings_WishAlert", "CC_SetNote_WishAlert", "enableWishes");
+            Toggle("defenseGateReminder", "CC_Settings_DefenseGateReminder", "CC_SetNote_DefenseGateReminder");
             Section("CC_Settings_Interface");
             Toggle("moodInsight", "CC_Settings_MoodInsight", "CC_SetNote_MoodInsight");
             Toggle("needsTabHints", "CC_Settings_NeedsTabHints", "CC_SetNote_NeedsTabHints", "moodInsight");

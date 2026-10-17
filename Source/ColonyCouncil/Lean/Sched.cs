@@ -77,7 +77,10 @@ namespace ColonyCouncil
         /// <summary>How many slices the per-colonist passes spread the colony over: each colonist comes round once an hour.</summary>
         public const int Slices = 10;
 
-        public static readonly int[] RareOffsets = { RareWorldKeep, RarePlanQueue, RareHeart, RareCamp, RareMissions, RareWelcome, RareAilments, RareHealth };
+        /// <summary>Defense lines watch how a raid meets them (only while raiders are on a home map that has lines).</summary>
+        public const int RareDefenseLines = 233;
+
+        public static readonly int[] RareOffsets = { RareWorldKeep, RarePlanQueue, RareHeart, RareCamp, RareMissions, RareWelcome, RareAilments, RareHealth, RareDefenseLines };
 
         /// <summary>Passes on the 250-tick cycle that only run while something is waiting (the news of the evening, an answer playing out, the council window's memory).</summary>
         public const int RareNews = 167;

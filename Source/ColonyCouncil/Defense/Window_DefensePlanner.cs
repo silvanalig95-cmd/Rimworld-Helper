@@ -108,6 +108,13 @@ namespace ColonyCouncil
             Widgets.Label(new Rect(0f, y, w, 22f), "CC_Def_Size".Translate(t.Width, t.Height));
             GUI.color = Color.white;
             y += 22f;
+            var line = des.Line;
+            if (line != null)
+            {
+                GUI.color = UiKit.Gold;
+                y += Label(y, w, "CC_DefLine_PlanningFor".Translate(DefenseLineReview.NameOf(line, map)).Resolve());
+                GUI.color = Color.white;
+            }
 
             // Another plan
             if (Widgets.ButtonText(new Rect(0f, y, w, RowH), "CC_Def_Another".Translate()))
