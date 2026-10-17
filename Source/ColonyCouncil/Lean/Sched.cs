@@ -67,7 +67,7 @@ namespace ColonyCouncil
         public const int RareCamp = 77;
         /// <summary>Missions: a quest accepted, a goal met.</summary>
         public const int RareMissions = 89;
-        /// <summary>The first-run welcome letter (nothing once it has been sent).</summary>
+        /// <summary>The first-run welcome letter, and the letter after an update (nothing once they have been sent).</summary>
         public const int RareWelcome = 113;
         /// <summary>One tenth of the colonists' ailments (see <see cref="SliceTurn"/>); the slice at tick 2471 also carries the colony's part (<see cref="Ailments"/>).</summary>
         public const int RareAilments = 221;

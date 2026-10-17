@@ -1,0 +1,794 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More things colonists say aloud (Immersion/): what weighs on them, the weather, a dream at breakfast, a camp
+    arriving, a guest's opinion, a council wedding, and their small habits (a grave, the stars, the stores). Said over
+    a head, so each line is one sentence of 90 characters at most, with one "!" at most (Tools/Tests checks it). Most
+    voices had a single line each, so every voice gets a few more; the tags are the ones the callers pass.
+  -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Pool_SaySetback</defName>
+    <pool>Council_Pool_SaySetback</pool>
+    <lines>
+      <plain>
+        <li>Well, that's the day spoiled.</li>
+        <li>I'll be thinking about that one tonight.</li>
+        <li>Nothing for it but to start again.</li>
+      </plain>
+      <warm>
+        <li>Never mind me, I'll be right by supper.</li>
+        <li>It happens to everyone, I know, it still smarts.</li>
+        <li>I'm all right, really, it was just a knock.</li>
+      </warm>
+      <blunt>
+        <li>Great, just great.</li>
+        <li>Leave it, I'll fix it.</li>
+        <li>Don't say anything.</li>
+      </blunt>
+      <cheerful>
+        <li>Ah well, that's what tomorrow is for!</li>
+        <li>Could have been worse, could have been raining too.</li>
+        <li>Bad day, good story later.</li>
+      </cheerful>
+      <gloomy>
+        <li>Of course it did.</li>
+        <li>I knew today would go like this.</li>
+        <li>One more thing, then.</li>
+      </gloomy>
+      <cold>
+        <li>That will cost us, and I'll say how much later.</li>
+        <li>A mistake, and not one I'll make twice.</li>
+        <li>Unfortunate, and avoidable.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Pool_SayTomorrow</defName>
+    <pool>Council_Pool_SayTomorrow</pool>
+    <lines>
+      <plain>
+        <li>Don't forget, it's {NAME} tomorrow.</li>
+        <li>I've been looking forward to {NAME} all week.</li>
+        <li>{NAME} tomorrow, so get your chores done tonight.</li>
+      </plain>
+      <warm>
+        <li>{NAME} tomorrow, it'll be good to have everyone together.</li>
+        <li>I've got a little something put by for {NAME} tomorrow.</li>
+        <li>Make sure the little ones know it's {NAME} tomorrow.</li>
+      </warm>
+      <blunt>
+        <li>{NAME} tomorrow, don't be late.</li>
+        <li>Tomorrow's {NAME}, plan for it.</li>
+        <li>Big day tomorrow, early night tonight.</li>
+      </blunt>
+      <cheerful>
+        <li>Only one more sleep till {NAME}!</li>
+        <li>{NAME} tomorrow, I've been counting the days.</li>
+        <li>Who's excited for tomorrow, because I am.</li>
+      </cheerful>
+      <gloomy>
+        <li>{NAME} again, the year's gone so fast.</li>
+        <li>Tomorrow's {NAME}, and I don't feel much like it.</li>
+        <li>Another {NAME} with fewer of us than the last.</li>
+      </gloomy>
+      <cold>
+        <li>{NAME} tomorrow, so the hauling gets done today.</li>
+        <li>Tomorrow's {NAME}; the work won't wait for it.</li>
+        <li>We lose a day of work tomorrow for {NAME}, and that's fine.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Pool_SayTakenBack</defName>
+    <pool>Council_Pool_SayTakenBack</pool>
+    <lines>
+      <plain>
+        <li>I'd only just got used to having it.</li>
+        <li>Nobody even told me why.</li>
+        <li>So "{WISH}" was only for a while, was it.</li>
+      </plain>
+      <warm>
+        <li>I suppose someone needed it more, I hope so.</li>
+        <li>I'll ask what happened, gently.</li>
+        <li>It was lovely while I had it, thank you for that much.</li>
+      </warm>
+      <blunt>
+        <li>Given, then taken, typical.</li>
+        <li>Give it back.</li>
+        <li>I want to know who decided that.</li>
+      </blunt>
+      <cheerful>
+        <li>Easy come, easy go, I suppose.</li>
+        <li>Never mind, I'll ask for it again, nicely.</li>
+        <li>At least I got to enjoy it for a bit!</li>
+      </cheerful>
+      <gloomy>
+        <li>I knew it wouldn't last.</li>
+        <li>Nothing good stays long here.</li>
+        <li>Back to how it was, then.</li>
+      </gloomy>
+      <cold>
+        <li>Taken back without a word, I'll remember that.</li>
+        <li>A promise broken is a debt, and I collect debts.</li>
+        <li>So the council's word lasts about a season.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Pool_SayNemesis</defName>
+    <pool>Council_Pool_SayNemesis</pool>
+    <lines>
+      <plain>
+        <li>I still think about {ENEMY} more than I'd like.</li>
+        <li>Every stranger on the road could be {ENEMY}.</li>
+        <li>If you see {ENEMY}, come and get me first.</li>
+      </plain>
+      <warm>
+        <li>Thank you all for watching my back, with {ENEMY} still about.</li>
+        <li>I sleep better knowing you're all here, with {ENEMY} out there.</li>
+        <li>Don't worry about me and {ENEMY}, I'm all right.</li>
+      </warm>
+      <blunt>
+        <li>{ENEMY} owes me.</li>
+        <li>I'm not done with {ENEMY}.</li>
+        <li>Next time, {ENEMY} won't walk away.</li>
+      </blunt>
+      <cheerful>
+        <li>{ENEMY} won't catch me napping twice!</li>
+        <li>I've been training, so {ENEMY} had better watch out.</li>
+        <li>One day I'll laugh about {ENEMY}, just not today.</li>
+      </cheerful>
+      <gloomy>
+        <li>{ENEMY} is out there, and I'm in here waiting.</li>
+        <li>I see {ENEMY} every time I shut my eyes.</li>
+        <li>Some things you don't get over, {ENEMY} is one.</li>
+      </gloomy>
+      <cold>
+        <li>I know how {ENEMY} moves now, and that's an advantage.</li>
+        <li>{ENEMY} made one mistake: leaving me alive.</li>
+        <li>I've been patient with {ENEMY}, patience runs out.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Pool_SayStory</defName>
+    <pool>Council_Pool_SayStory</pool>
+    <lines>
+      <warm>
+        <li>Things are getting better for me here, slowly.</li>
+        <li>I've been thinking about where I'm headed, and it's somewhere good.</li>
+      </warm>
+      <blunt>
+        <li>I've got something to finish, so don't hold me up.</li>
+        <li>Working on it, don't ask.</li>
+      </blunt>
+      <cheerful>
+        <li>I've got a feeling this is going to be my year.</li>
+        <li>Big things coming for me, you'll see!</li>
+      </cheerful>
+      <gloomy>
+        <li>Some things you carry a long time.</li>
+        <li>I'm not where I hoped I'd be by now.</li>
+      </gloomy>
+      <cold>
+        <li>I know what I want, and I'm working toward it.</li>
+        <li>One step at a time, and no step wasted.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Pool_SayWish</defName>
+    <pool>Council_Pool_SayWish</pool>
+    <lines>
+      <plain>
+        <li>It would make all the difference, "{WISH}".</li>
+        <li>I walked past the spot for "{WISH}" again today.</li>
+        <li>Has anyone said anything about "{WISH}"?</li>
+      </plain>
+      <warm>
+        <li>No hurry, but I do still think about "{WISH}".</li>
+        <li>Whenever there's time, "{WISH}" would be such a kindness.</li>
+        <li>I'd help build "{WISH}" myself, if someone showed me how.</li>
+      </warm>
+      <blunt>
+        <li>Any time now, "{WISH}".</li>
+        <li>Asked for "{WISH}", still waiting.</li>
+        <li>How hard can "{WISH}" be?</li>
+      </blunt>
+      <cheerful>
+        <li>Just imagine "{WISH}", wouldn't that be grand?</li>
+        <li>I've already picked where "{WISH}" goes.</li>
+        <li>I've decided "{WISH}" is coming soon.</li>
+      </cheerful>
+      <gloomy>
+        <li>If we last the winter, maybe "{WISH}" will happen.</li>
+        <li>I've stopped expecting "{WISH}", mostly.</li>
+        <li>Everyone else gets theirs before "{WISH}".</li>
+      </gloomy>
+      <cold>
+        <li>I've noticed how overdue "{WISH}" is.</li>
+        <li>I asked for "{WISH}" through the proper channels.</li>
+        <li>Done properly, "{WISH}" would pay for itself in a season.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Pool_SayDream</defName>
+    <pool>Council_Pool_SayDream</pool>
+    <lines>
+      <plain>
+        <li>I've got a dream to tell, if anyone's awake enough to listen.</li>
+        <li>[dream:Strange] I dreamt the bell rang by itself and everyone came with spoons.</li>
+        <li>[dream:Sweet] I dreamt of a warm kitchen and nowhere I had to be.</li>
+      </plain>
+      <warm>
+        <li>I dreamt about all of you last night, it was a good one.</li>
+        <li>Sit down, I want to tell you a dream while I still remember it.</li>
+        <li>Such a gentle dream, I've been smiling since I woke.</li>
+      </warm>
+      <blunt>
+        <li>Had a dream, it was stupid, pass the bread.</li>
+        <li>Weird dream, don't ask.</li>
+        <li>Dreamt something, already forgot it.</li>
+      </blunt>
+      <cheerful>
+        <li>I had the best dream, and you're all in it!</li>
+        <li>Wait till you hear what I dreamt about the cook.</li>
+        <li>My dream last night had a talking goat in it, honestly.</li>
+      </cheerful>
+      <gloomy>
+        <li>I didn't sleep well, the dreams were bad.</li>
+        <li>I dreamt about the ones we lost again.</li>
+        <li>Don't ask me what I dreamt, I'd rather not say.</li>
+      </gloomy>
+      <cold>
+        <li>An odd dream, I'll think about what it meant later.</li>
+        <li>I dreamt in great detail last night, I must be overtired.</li>
+        <li>Dreams are noise, but that one was interesting noise.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Pool_SayStorm</defName>
+    <pool>Council_Pool_SayStorm</pool>
+    <lines>
+      <plain>
+        <li>Everyone in, it's getting worse.</li>
+        <li>Secure the doors and stay away from the windows.</li>
+        <li>[thunder] That was right over us.</li>
+      </plain>
+      <warm>
+        <li>Stay close, all of you, it'll pass.</li>
+        <li>Come in by the fire till it blows over.</li>
+        <li>Has everyone got in, is anyone still out there?</li>
+      </warm>
+      <blunt>
+        <li>Inside, quick.</li>
+        <li>Shut that door.</li>
+        <li>Not a night to be out.</li>
+      </blunt>
+      <cheerful>
+        <li>Listen to it howl, what a night!</li>
+        <li>Let's tell stories till it stops.</li>
+        <li>I'll count the thunder, you count the lightning.</li>
+      </cheerful>
+      <gloomy>
+        <li>The roof won't hold if it gets any worse.</li>
+        <li>Something always breaks in a storm like this.</li>
+        <li>I hate this sound.</li>
+      </gloomy>
+      <cold>
+        <li>Check the roof and the stores once it's passed.</li>
+        <li>Nobody goes out until it's over.</li>
+        <li>We'll count the damage in the morning.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Pool_SayFirstSnow</defName>
+    <pool>Council_Pool_SayFirstSnow</pool>
+    <lines>
+      <plain>
+        <li>First snow, and right on time.</li>
+        <li>Bring the washing in, it's snowing.</li>
+      </plain>
+      <warm>
+        <li>Wrap up warm, the snow's here.</li>
+        <li>It's pretty, isn't it, the first snow.</li>
+      </warm>
+      <blunt>
+        <li>Snow, so winter's here.</li>
+        <li>There goes the outdoor work.</li>
+      </blunt>
+      <cheerful>
+        <li>First snow, I'm going to make a snowman after supper.</li>
+        <li>Look at it, everything's gone white!</li>
+      </cheerful>
+      <gloomy>
+        <li>Snow already, and so much still to do.</li>
+        <li>The cold months start now.</li>
+      </gloomy>
+      <cold>
+        <li>First snow, so the stores have to last from here.</li>
+        <li>Snow, count the firewood again tonight.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Pool_SayHeatWave</defName>
+    <pool>Council_Pool_SayHeatWave</pool>
+    <lines>
+      <plain>
+        <li>Keep your head covered out there.</li>
+        <li>Even the stones are hot to touch.</li>
+        <li>[work:Growing] The fields need water twice a day in this.</li>
+      </plain>
+      <warm>
+        <li>Here, have my water, I've had plenty.</li>
+        <li>Take a rest in the shade, nobody will mind.</li>
+        <li>Wet your hair, it helps, trust me.</li>
+      </warm>
+      <blunt>
+        <li>Too hot to work, too hot to talk.</li>
+        <li>Shade, now.</li>
+        <li>This heat is ridiculous.</li>
+      </blunt>
+      <cheerful>
+        <li>Who's for a dip in the river after this?</li>
+        <li>I've never sweated so much in my life!</li>
+        <li>Hot enough to cook supper on the roof.</li>
+      </cheerful>
+      <gloomy>
+        <li>It's never going to cool down.</li>
+        <li>The crops won't last another week of this.</li>
+        <li>I can't think straight in this heat.</li>
+      </gloomy>
+      <cold>
+        <li>Water rations go up while this lasts.</li>
+        <li>Rest at noon, work at dusk.</li>
+        <li>Heat like this kills the careless.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Pool_SayColdSnap</defName>
+    <pool>Council_Pool_SayColdSnap</pool>
+    <lines>
+      <plain>
+        <li>The water bucket's frozen solid.</li>
+        <li>Nobody stand still too long out here.</li>
+        <li>[work:Growing] Cover what you can in the fields tonight.</li>
+      </plain>
+      <warm>
+        <li>Come and stand by the fire a minute.</li>
+        <li>Here, take my spare scarf.</li>
+        <li>Check on the old ones tonight, would you?</li>
+      </warm>
+      <blunt>
+        <li>Freezing, absolutely freezing.</li>
+        <li>Shut the door, you're letting the cold in.</li>
+        <li>Cold, and getting colder.</li>
+      </blunt>
+      <cheerful>
+        <li>Cold enough to skate on the puddles!</li>
+        <li>My eyelashes have frost on them, look.</li>
+        <li>Hot soup tonight, I'm sure of it.</li>
+      </cheerful>
+      <gloomy>
+        <li>Not everyone will get through a winter like this.</li>
+        <li>The cold's in my bones now, it won't leave.</li>
+        <li>I can't remember being warm.</li>
+      </gloomy>
+      <cold>
+        <li>Nobody works outside alone until this lifts.</li>
+        <li>Count the firewood and halve the estimate.</li>
+        <li>Frostbite costs fingers, so keep your gloves on.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Pool_GuestSays</defName>
+    <pool>Council_Pool_GuestSays</pool>
+    <lines>
+      <plain>
+        <li>You've done a lot with this place.</li>
+        <li>Quieter here than on the road, I'll give you that.</li>
+        <li>[happy] I'd come back, if you'd have me.</li>
+        <li>[unhappy] I've been in friendlier places, and colder ones.</li>
+      </plain>
+      <warm>
+        <li>Your people have been very kind to me.</li>
+        <li>I'll remember the welcome, thank you.</li>
+        <li>It's good to sit somewhere safe for a night.</li>
+      </warm>
+      <blunt>
+        <li>Roof's dry, food's hot, I'm happy.</li>
+        <li>Decent place, decent people.</li>
+        <li>I'll be off at first light.</li>
+      </blunt>
+      <cheerful>
+        <li>What a lovely spot you've got here!</li>
+        <li>I'll be telling everyone on the road about you.</li>
+        <li>Best supper I've had in weeks, thank the cook for me.</li>
+      </cheerful>
+      <gloomy>
+        <li>Nice while it lasts, these places.</li>
+        <li>I've seen settlements like this go under.</li>
+        <li>I won't stay long, I never do.</li>
+      </gloomy>
+      <cold>
+        <li>Good walls, I noticed them on the way in.</li>
+        <li>Your stores look well kept.</li>
+        <li>I'll mention you to the right people.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Pool_TouchCampComing</defName>
+    <pool>Council_Pool_TouchCampComing</pool>
+    <lines>
+      <plain>
+        <li>There's dust on the road, and people under it.</li>
+        <li>Visitors, and they look like they mean to stay a while.</li>
+      </plain>
+      <warm>
+        <li>Someone put some water on, they'll be thirsty.</li>
+        <li>They look tired, poor things.</li>
+        <li>Let's give them a proper hello.</li>
+      </warm>
+      <blunt>
+        <li>Strangers, watch your things.</li>
+        <li>More people, great.</li>
+        <li>Who invited them?</li>
+      </blunt>
+      <cheerful>
+        <li>Visitors, I wonder what news they've got!</li>
+        <li>Someone new to talk to, finally.</li>
+        <li>I hope they've brought music.</li>
+      </cheerful>
+      <gloomy>
+        <li>Strangers never bring good news.</li>
+        <li>I hope they don't bring sickness with them.</li>
+        <li>They'll want something, they always do.</li>
+      </gloomy>
+      <cold>
+        <li>Count them, and count our stores.</li>
+        <li>Find out what they want before they set up.</li>
+        <li>Someone watch them till we know who they are.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Pool_TouchCouncilWedding</defName>
+    <pool>Council_Pool_TouchCouncilWedding</pool>
+    <lines>
+      <plain>
+        <li>A wedding, and the council's own bell for it.</li>
+        <li>Here's to {A_nameDef} and {B_nameDef}, long may it last.</li>
+        <li>The whole colony turned out for {A_nameDef} and {B_nameDef}.</li>
+      </plain>
+      <warm>
+        <li>They're so happy, look at them.</li>
+        <li>I've been waiting for this day for them.</li>
+        <li>Be good to each other, you two.</li>
+      </warm>
+      <blunt>
+        <li>Good match, finally done.</li>
+        <li>Wedding's done, now where's the food?</li>
+        <li>Took them long enough.</li>
+      </blunt>
+      <cheerful>
+        <li>A wedding, I love a wedding!</li>
+        <li>Dance with me, everyone's dancing.</li>
+        <li>I'm going to cry and I don't care.</li>
+      </cheerful>
+      <gloomy>
+        <li>Lovely, I hope they get the years they deserve.</li>
+        <li>I had a wedding once, a long time ago.</li>
+        <li>Enjoy today, tomorrow's another matter.</li>
+      </gloomy>
+      <cold>
+        <li>A good alliance, the colony is stronger for it.</li>
+        <li>Married before the council, it's binding now.</li>
+        <li>I've noted the date, for the annals.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== Small habits ===================== -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Pool_HabitGrave</defName>
+    <pool>Council_Pool_HabitGrave</pool>
+    <lines>
+      <plain>
+        <li>The others send their love, {OTHER_nameDef}.</li>
+        <li>I fixed the marker, it had tipped over.</li>
+      </plain>
+      <warm>
+        <li>I brought you something, {OTHER_nameDef}, just a flower.</li>
+        <li>We're looking after each other, like you'd want.</li>
+      </warm>
+      <blunt>
+        <li>Miss you, {OTHER_nameDef}.</li>
+        <li>Still here, still angry.</li>
+      </blunt>
+      <cheerful>
+        <li>You'd have loved supper tonight, {OTHER_nameDef}.</li>
+        <li>The garden's doing well, you'd be pleased.</li>
+      </cheerful>
+      <gloomy>
+        <li>It doesn't get easier, {OTHER_nameDef}.</li>
+        <li>I don't know what to say anymore, so I just sit.</li>
+      </gloomy>
+      <cold>
+        <li>The colony is holding, {OTHER_nameDef}, I thought you'd want to know.</li>
+        <li>I keep this grave tidy, it's the least that's owed.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Pool_HabitLookOut</defName>
+    <pool>Council_Pool_HabitLookOut</pool>
+    <lines>
+      <plain>
+        <li>The road goes on past those hills, all the way home.</li>
+        <li>I used to know every path back there.</li>
+      </plain>
+      <warm>
+        <li>I hope they're all well, back home.</li>
+        <li>This is home too, now, I know that.</li>
+      </warm>
+      <blunt>
+        <li>Just looking, go on.</li>
+        <li>Long way back.</li>
+      </blunt>
+      <cheerful>
+        <li>I'll send word home one day, they'll never believe it.</li>
+        <li>Two homes is better than none.</li>
+      </cheerful>
+      <gloomy>
+        <li>They've probably forgotten me by now.</li>
+        <li>I'll never see that place again.</li>
+      </gloomy>
+      <cold>
+        <li>I left for good reasons, I remind myself.</li>
+        <li>Nothing back there I need.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Pool_HabitFire</defName>
+    <pool>Council_Pool_HabitFire</pool>
+    <lines>
+      <plain>
+        <li>Everyone here, everyone accounted for.</li>
+        <li>Put another log on, I'm not ready to go in.</li>
+      </plain>
+      <warm>
+        <li>Sit closer, there's room for everyone.</li>
+        <li>I'm glad you're all still here.</li>
+      </warm>
+      <blunt>
+        <li>Good fight.</li>
+        <li>Next time we're faster.</li>
+      </blunt>
+      <cheerful>
+        <li>We did it, we actually did it!</li>
+        <li>Let's tell it again, the bit where they ran.</li>
+      </cheerful>
+      <gloomy>
+        <li>I keep hearing it, even now.</li>
+        <li>We were lucky, that's all it was.</li>
+      </gloomy>
+      <cold>
+        <li>We lost ground on the west side, we'll fix that.</li>
+        <li>They'll learn from today, so must we.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Pool_HabitRemember</defName>
+    <pool>Council_Pool_HabitRemember</pool>
+    <lines>
+      <plain>
+        <li>{OTHER_nameDef} always took the last piece of bread.</li>
+        <li>I still have the knife {OTHER_nameDef} gave me.</li>
+      </plain>
+      <warm>
+        <li>{OTHER_nameDef} would be glad to see us doing well.</li>
+        <li>I hope wherever {OTHER_nameDef} is, someone's kind to them.</li>
+      </warm>
+      <blunt>
+        <li>{OTHER_nameDef} should have stayed.</li>
+        <li>Gone, but not forgotten.</li>
+      </blunt>
+      <cheerful>
+        <li>I bet {OTHER_nameDef} is telling stories about us somewhere.</li>
+        <li>{OTHER_nameDef} would love what we've done with the place.</li>
+      </cheerful>
+      <gloomy>
+        <li>I never said goodbye to {OTHER_nameDef} properly.</li>
+        <li>People come and go, and they mostly go.</li>
+      </gloomy>
+      <cold>
+        <li>{OTHER_nameDef} was useful, and I miss that.</li>
+        <li>We've filled {OTHER_nameDef}'s work, not {OTHER_nameDef}'s place.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Pool_HabitStars</defName>
+    <pool>Council_Pool_HabitStars</pool>
+    <lines>
+      <plain>
+        <li>There's the one that rises over the gate in winter.</li>
+        <li>I always find the same three first.</li>
+      </plain>
+      <warm>
+        <li>Sit with me, it's a lovely night for it.</li>
+        <li>I like to think someone back home is looking at these too.</li>
+      </warm>
+      <blunt>
+        <li>Stars, quiet, good.</li>
+        <li>Shh, I'm counting.</li>
+      </blunt>
+      <cheerful>
+        <li>A shooting star, did you see it?</li>
+        <li>I've named that cluster after the cook.</li>
+      </cheerful>
+      <gloomy>
+        <li>They make you feel very small.</li>
+        <li>Some of those are probably long gone.</li>
+      </gloomy>
+      <cold>
+        <li>The pole star hasn't moved, so neither will I.</li>
+        <li>Good for finding north, if nothing else.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Pool_HabitPlants</defName>
+    <pool>Council_Pool_HabitPlants</pool>
+    <lines>
+      <plain>
+        <li>There's a weed trying its luck, out you come.</li>
+        <li>A bit more sun for you, and you'll be fine.</li>
+      </plain>
+      <warm>
+        <li>You're doing so well, all of you.</li>
+        <li>I'll be back tomorrow, don't worry.</li>
+      </warm>
+      <blunt>
+        <li>Grow faster.</li>
+        <li>Weeds out, water in.</li>
+      </blunt>
+      <cheerful>
+        <li>Who's a good sprout, you are!</li>
+        <li>Look at that new leaf, well done.</li>
+      </cheerful>
+      <gloomy>
+        <li>One frost and you're all done for.</li>
+        <li>I'll try, but I don't promise anything.</li>
+      </gloomy>
+      <cold>
+        <li>This row needs thinning.</li>
+        <li>Too close together, half of these won't make it.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Pool_HabitStores</defName>
+    <pool>Council_Pool_HabitStores</pool>
+    <lines>
+      <plain>
+        <li>Someone's been at the dried fruit again.</li>
+        <li>Rice, roots, meat, and not much of the last.</li>
+      </plain>
+      <warm>
+        <li>Enough for everyone, that's what matters.</li>
+        <li>We've done well this season, all of us.</li>
+      </warm>
+      <blunt>
+        <li>Low, again.</li>
+        <li>Who ate the cheese?</li>
+      </blunt>
+      <cheerful>
+        <li>Full shelves, my favorite sight!</li>
+        <li>We could feed an army, a small one.</li>
+      </cheerful>
+      <gloomy>
+        <li>It never lasts as long as you think.</li>
+        <li>Half of this will spoil before we eat it.</li>
+      </gloomy>
+      <cold>
+        <li>I'll ration the meat from tomorrow.</li>
+        <li>Recount, then lock up.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Pool_HabitCompany</defName>
+    <pool>Council_Pool_HabitCompany</pool>
+    <lines>
+      <plain>
+        <li>How's your day been, really?</li>
+        <li>I saved you a seat, if you want it.</li>
+      </plain>
+      <warm>
+        <li>I always feel better after a chat with you.</li>
+        <li>Stay as long as you like.</li>
+      </warm>
+      <blunt>
+        <li>Talk to me, I'm bored.</li>
+        <li>Sit, stay a while.</li>
+      </blunt>
+      <cheerful>
+        <li>Company, at last, I was going mad on my own!</li>
+        <li>You'll never guess what happened at the workbench today.</li>
+      </cheerful>
+      <gloomy>
+        <li>It's been a long day, I didn't want to end it alone.</li>
+        <li>You don't have to talk, just stay.</li>
+      </gloomy>
+      <cold>
+        <li>Tell me what's said about the council, I'm curious.</li>
+        <li>A little company keeps the mind sharp.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Pool_HabitStories</defName>
+    <pool>Council_Pool_HabitStories</pool>
+    <lines>
+      <plain>
+        <li>This happened before any of you were born, mostly.</li>
+        <li>I'll tell the one about the flood, it's a short one.</li>
+      </plain>
+      <warm>
+        <li>My grandmother told me this one, now it's yours.</li>
+        <li>Settle in, it's a long one, but it ends well.</li>
+      </warm>
+      <blunt>
+        <li>True story, don't interrupt.</li>
+        <li>Listen, this one's important.</li>
+      </blunt>
+      <cheerful>
+        <li>This one always gets a laugh, wait for it.</li>
+        <li>Stop me if you've heard it, actually, don't.</li>
+      </cheerful>
+      <gloomy>
+        <li>It doesn't end well, but it's worth telling.</li>
+        <li>I'm the last one who remembers this.</li>
+      </gloomy>
+      <cold>
+        <li>There's a lesson in this one, if you're listening.</li>
+        <li>I'll keep it short and keep it true.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+</Defs>

@@ -24,6 +24,10 @@ To update later, double-click **`Update Rimfolk.bat`** in the `Rimfolk` folder (
 **Pull origin**, in GitHub Desktop). Restart RimWorld afterwards. Updating replaces anything changed by hand inside
 the mod folder; your settings and saves are kept elsewhere and are safe.
 
+**What changed?** [CHANGELOG.md](CHANGELOG.md) lists every update, newest first, and the same list is the "What's
+new" page at the top of the in-game Almanac. The first save you load after an update brings one letter with the
+newest round's highlights (the setting "A letter after each update" turns it off).
+
 **Or: download a ZIP and run the installer.**
 1. Download this repository as a ZIP (green **Code** button → **Download ZIP**; pick the branch you want in the
    branch menu first) and extract it anywhere, for example in Downloads.
@@ -1769,7 +1773,8 @@ The pages:
 - **Interface & integrations**: how chatty Rimfolk is: **Everything**, **Notable only** (default: messages for what
   changes something; small moments stay in the journals, the Story tab and History) or **Important only**; where the
   smaller news goes (**Colony news**: one letter each evening by default, as it happens, or off, to the History tab
-  only); a message for every dream, letters or messages for new and granted wishes, how colonists' speech shows
+  only); a message for every dream, letters or messages for new and granted wishes, a letter after each update (on
+  by default; see CHANGELOG.md), how colonists' speech shows
   (bubbles with Interaction Bubbles, floating text, or off), the visual and sound touches; the two alerts; mood insight (and its hints in the Needs tab), the slow speed buttons (and putting them
   back), where the council button sits in the bottom bar, the rooms button, which page the council window opens on
   (**This week** by default, or the last page), the Almanac's text size; the deeper game hooks and the notes in the

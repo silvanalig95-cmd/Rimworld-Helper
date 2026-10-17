@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- What's new (UI/WhatsNew.cs): the letter after an update, and its setting. -->
+  <CC_WhatsNew_Label>Rimfolk has been updated</CC_WhatsNew_Label>
+  <CC_WhatsNew_Text>Rimfolk has been updated to version {0} since you last played. The newest round:</CC_WhatsNew_Text>
+  <CC_WhatsNew_More>Every update, newest first, is on the "What's new" page at the top of the Almanac. This letter comes once per update; the mod settings can turn it off.</CC_WhatsNew_More>
+  <CC_WhatsNew_Open>Open "What's new"</CC_WhatsNew_Open>
+  <CC_WhatsNew_DateVersion>{0}, version {1}</CC_WhatsNew_DateVersion>
+
+  <CC_Settings_WhatsNewLetter>A letter after each update</CC_Settings_WhatsNewLetter>
+  <CC_Settings_WhatsNewLetter_Tip>On (default): when you load a save after Rimfolk has been updated, a letter lists the newest round's highlights, with a button to the Almanac's "What's new" page. A new colony gets the welcome letter instead.</CC_Settings_WhatsNewLetter_Tip>
+  <CC_SetNote_WhatsNewLetter>On: "Rimfolk has been updated" once per update. Off: see the Almanac's "What's new" page.</CC_SetNote_WhatsNewLetter>
+
+</LanguageData>

@@ -394,6 +394,8 @@ for (int r = 0; r < 4; r++)
         Console.WriteLine($"Checked {PerfTests.Run(root, Check)} things about the caches that keep Rimfolk light (lines, facts, slices).");
         Console.WriteLine($"Checked {DefenseTests.Run(root, Check)} things about the defense planner (its plans in every turn, reading a map's ways in).");
         Console.WriteLine($"Checked {ColonyTraitTests.Run(root, Check)} things about what a colony grows into and the names of its years.");
+        Console.WriteLine($"Checked {WhatsNewTests.Run(root, Check)} things about What's new (the page, CHANGELOG.md and the version).");
+        Console.WriteLine($"Checked {LogLinesTests.Run(root, Check, out int logLines)} things about the {logLines} log lines added from separate files.");
     }
 }
 
