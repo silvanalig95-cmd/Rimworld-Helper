@@ -172,15 +172,14 @@ namespace ColonyCouncil
 
         // ---------------- Unfinished building ----------------
 
-        /// <summary>A frame nobody has worked on for this long, or a plan waiting this long, has been left.</summary>
+        /// <summary>A frame nobody has worked on for this long has been left.</summary>
         public const float FrameStaleDays = 2f;
-        public const float BlueprintStaleDays = 4f;
 
         /// <summary>
-        /// Half-built frames count in full; plans that were never started a fifth each, and at most 6 together, so old
-        /// plans alone are never more than one step.
+        /// Half-built frames left standing. Plans (blueprints) never count: laying a plan out in advance is the
+        /// player's own business (the player asked for "plans gathering dust" to go).
         /// </summary>
-        public static float UnfinishedScore(int staleFrames, int staleBlueprints) => staleFrames + Math.Min(6f, staleBlueprints / 5f);
+        public static float UnfinishedScore(int staleFrames) => staleFrames;
 
         public static int UnfinishedStage(float score) => score >= 25f ? 3 : score >= 10f ? 2 : score >= 3f ? 1 : 0;
 

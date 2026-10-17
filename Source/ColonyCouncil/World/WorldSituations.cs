@@ -142,8 +142,8 @@ namespace ColonyCouncil
                 Tick(s, now, daily);
             }
             if (!S.worldSituations) return;
-            // The first comes a little sooner than the rest, once the colony has found its feet.
-            if (nextTick < 0) nextTick = Mathf.Max(now, GenDate.TicksPerDay * 12) + Mathf.RoundToInt(Interval() * 0.6f);
+            // The first comes sooner than the rest, once the colony has found its feet (around days 20 to 35 by default).
+            if (nextTick < 0) nextTick = Mathf.Max(now, GenDate.TicksPerDay * 10) + Mathf.RoundToInt(Interval() * 0.35f);
             if (now < nextTick || active.Count(s => !s.ended) >= MaxActive) return;
             var map = HappeningTracker.HomeMap();
             if (map == null) return;

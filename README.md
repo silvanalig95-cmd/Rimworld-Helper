@@ -288,8 +288,8 @@ as moods while their cause lasts, each saying what caused it, with what helps in
   homecoming is already celebrated when they're back.
 - **a packed room**: a dining or rec room with too little space per person, or diners short of seats (-1 to -2, for
   half a day). Parties, rituals and meetings don't count.
-- **half-built work**: frames left untouched for 2 days and plans waiting 4 days in the home area (-1 to -3). Plans
-  alone stay small; lazy colonists and slobs don't care.
+- **half-built work**: frames left untouched for 2 days in the home area (-1 to -3). Plans (blueprints) never count;
+  lazy colonists and slobs don't care.
 
 None of them is a flat penalty: a second meal bill, a second job in the Work tab or a bigger dining room makes them go
 away. They feed the heart's feelings (loneliness, restlessness, frustration, contentment). The **Life's ups and
