@@ -745,7 +745,10 @@ namespace ColonyCouncil
                 {
                     Notify_Event(friend, "fulfilled:" + defName);
                     inspiredBy[friend.ThingID + "|" + defName] = p.LabelShort;
-                    SocialLog.Add(p, friend, "CC_Together_GoalShared".Translate(friend.Named("PAWN"), p.Named("OTHER"), goal.Named("GOAL")).Resolve());
+                    // Told in the voice of the one who reached it ({PAWN} in the pool); the keyed line names them OTHER.
+                    string told = Interplay.Line("Council_Pool_Together_GoalShared", p, null, friend.Named("OTHER"), goal.Named("GOAL"))
+                                  ?? "CC_Together_GoalShared".Translate(friend.Named("PAWN"), p.Named("OTHER"), goal.Named("GOAL")).Resolve();
+                    SocialLog.Add(p, friend, told);
                 }, 48f);
             }
         }

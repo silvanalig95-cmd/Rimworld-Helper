@@ -96,7 +96,9 @@ namespace ColonyCouncil
                     Together.When("gladback|" + them.thingIDNumber + "|" + friend.thingIDNumber, friend, them, () =>
                     {
                         CouncilGameComponent.GiveThought(friend, CouncilDefOf.Council_GladTheyreBack, them, -1f, "CC_Cause_GladBack".Translate(them.LabelShort).Resolve());
-                        SocialLog.Add(friend, them, "CC_Together_GladBack".Translate(friend.Named("PAWN"), them.Named("OTHER")).Resolve());
+                        string glad = Interplay.Line("Council_Pool_Together_GladBack", friend, null, them.Named("OTHER"))
+                                      ?? "CC_Together_GladBack".Translate(friend.Named("PAWN"), them.Named("OTHER")).Resolve();
+                        SocialLog.Add(friend, them, glad);
                     }, 24f);
                 }
             string names = TextUtil.JoinAnd(back.Select(p => p.LabelShort).ToList());

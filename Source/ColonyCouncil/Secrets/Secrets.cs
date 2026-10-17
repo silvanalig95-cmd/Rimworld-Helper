@@ -275,9 +275,12 @@ namespace ColonyCouncil
             Together.WhenInCompany("secretout|" + owner.thingIDNumber, speaker, heard =>
             {
                 if (!secrets.Contains(s) || s.revealed || owner.Dead || speaker.Dead) return;
+                // In the speaker's voice ({PAWN} in the pools; the slip's pool names the owner ABOUT), else the keyed line.
                 string line = confession
-                    ? "CC_Together_SecretConfessed".Translate(owner.Named("PAWN"), heard.Named("OTHER")).Resolve()
-                    : "CC_Together_SecretSlipped".Translate(speaker.Named("LEAKER"), heard.Named("OTHER"), owner.Named("PAWN")).Resolve();
+                    ? Interplay.Line("Council_Pool_Together_SecretConfessed", owner, null, heard.Named("OTHER"))
+                      ?? "CC_Together_SecretConfessed".Translate(owner.Named("PAWN"), heard.Named("OTHER")).Resolve()
+                    : Interplay.Line("Council_Pool_Together_SecretSlipped", speaker, null, heard.Named("OTHER"), owner.Named("ABOUT"))
+                      ?? "CC_Together_SecretSlipped".Translate(speaker.Named("LEAKER"), heard.Named("OTHER"), owner.Named("PAWN")).Resolve();
                 SocialLog.Add(speaker, heard, line);
                 Reveal(comp, s, speaker);
             }, 24f, confession ? null : owner);
@@ -295,9 +298,14 @@ namespace ColonyCouncil
             CouncilGameComponent.GiveThought(friend, CouncilDefOf.Council_Secret_Trusted, owner);
             comp.journals.Write(owner, "Council_Journal_Confided", null, friend.Named("OTHER"));
             comp.journals.Write(friend, "Council_Journal_Confidant", null, owner.Named("OTHER"));
-            string news = s.def.confide.NullOrEmpty()
-                ? "CC_Secret_Confided".Translate(owner.Named("A"), friend.Named("B")).Resolve()
-                : s.def.confide.Formatted(owner.Named("A"), friend.Named("B")).Resolve();
+            // The secret's own line the first time it is told; after that (and for a secret without one) a line from the
+            // pool in the owner's voice, so a secret told to three friends isn't told the same way three times.
+            string own = s.def.confide.NullOrEmpty() ? null : s.def.confide.Formatted(owner.Named("A"), friend.Named("B")).Resolve();
+            bool first = s.knowers.Count <= 1;
+            string news = (first ? own : null)
+                          ?? Interplay.Line("Council_Pool_Together_Confided", owner, s.def.good ? new[] { "goodsecret" } : null, friend.Named("OTHER"))
+                          ?? own
+                          ?? "CC_Secret_Confided".Translate(owner.Named("A"), friend.Named("B")).Resolve();
             News.Post(news, new LookTargets(owner, friend), NewsKind.People, MessageTypeDefOf.SilentInput, Importance.Flavor);
             // Said face to face (ConfideWhenTogether): it shows between them, as speech does.
             SocialLog.Add(owner, friend, news);

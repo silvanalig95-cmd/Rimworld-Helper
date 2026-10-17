@@ -1,0 +1,463 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    What happens when two people meet for a moment that waited for them to be together, often after one walked over to
+    find the other (Source/ColonyCouncil/Social/Together.cs): a secret confided, let slip or confessed, thanks for a
+    mentor's lessons, the physician's rounds, the marshal's word after a fight, a friend home again, a life goal told,
+    and the offices' own sittings. Each shows between the two (the social log, a bubble or floating text) and most go
+    to the news as well, so a line is one sentence, short enough to float. Picked in the voice of the one who speaks
+    or acts ({PAWN_...}); {OTHER_...} is the one they talk to. The keyed line in Rimfolk_Together.xml stays as the
+    fallback when a pool has nothing that fits.
+  -->
+
+  <!-- ===================== Secrets (Secrets/Secrets.cs) ===================== -->
+
+  <!-- A secret confided in a friend, face to face: the secret's own line the first time it is told, these after that
+       (and for a secret with no line of its own). {PAWN} the owner, {OTHER} the friend. [goodsecret] a good one. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_Together_Confided</defName>
+    <lines>
+      <plain>
+        <li>{PAWN_nameDef} walked out past the fields with {OTHER_nameDef} and talked low for a long while.</li>
+        <li>{PAWN_nameDef} waited for the room to empty, then told {OTHER_nameDef} what {PAWN_pronoun} had kept back.</li>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} something in confidence, and {OTHER_nameDef} has been thoughtful since.</li>
+        <li>{PAWN_nameDef} and {OTHER_nameDef} talked in whispers by the wall, and {OTHER_nameDef} isn't saying what about.</li>
+        <li>{PAWN_nameDef} trusted {OTHER_nameDef} with something very few people know.</li>
+        <li>{PAWN_nameDef} found {OTHER_nameDef} alone at the end of the day and told {OTHER_objective} a secret.</li>
+        <li>[goodsecret] {PAWN_nameDef} told {OTHER_nameDef} something that kept {OTHER_objective} smiling all evening.</li>
+        <li>[goodsecret] {PAWN_nameDef} shared a happy secret with {OTHER_nameDef}, who has looked pleased with it since.</li>
+        <li>[goodsecret] {PAWN_nameDef} whispered something to {OTHER_nameDef}, and they both laughed and wouldn't explain.</li>
+      </plain>
+      <warm>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} something hard to say, and {OTHER_nameDef} simply took {PAWN_possessive} hand.</li>
+        <li>{PAWN_nameDef} trusted {OTHER_nameDef} with what {PAWN_pronoun} had carried alone, and felt lighter for it.</li>
+      </warm>
+      <blunt>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} straight out what {PAWN_pronoun} had kept quiet, and asked for silence.</li>
+        <li>{PAWN_nameDef} said it once, plainly, to {OTHER_nameDef}, and made {OTHER_objective} promise to keep it.</li>
+      </blunt>
+      <cheerful>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} a secret and laughed, a little nervously, once it was out.</li>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} a secret and said it felt better already, just having said it.</li>
+      </cheerful>
+      <gloomy>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} a secret, and said {PAWN_pronoun} hadn't known who else to tell.</li>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} something {PAWN_pronoun} had kept a long time, and sighed when it was done.</li>
+      </gloomy>
+      <cold>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} a secret, briefly, and said what should be done with it: nothing.</li>
+        <li>{PAWN_nameDef} judged {OTHER_nameDef} safe to tell, and told {OTHER_objective}.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Someone who knows lets a secret slip to whoever is with them. {PAWN} the one who let it slip, {OTHER} who heard,
+       {ABOUT} whose secret it was. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_Together_SecretSlipped</defName>
+    <lines>
+      <plain>
+        <li>{PAWN_nameDef} said too much to {OTHER_nameDef} about {ABOUT_nameDef}, and saw it too late.</li>
+        <li>{PAWN_nameDef} let something about {ABOUT_nameDef} slip to {OTHER_nameDef}, and couldn't take it back.</li>
+        <li>{PAWN_nameDef} was halfway through a story for {OTHER_nameDef} when {ABOUT_nameDef}'s secret came out with it.</li>
+        <li>{OTHER_nameDef} heard something about {ABOUT_nameDef} from {PAWN_nameDef} that was never meant to be told.</li>
+      </plain>
+      <warm>
+        <li>{PAWN_nameDef} meant no harm, but what {PAWN_pronoun} told {OTHER_nameDef} about {ABOUT_nameDef} wasn't {PAWN_possessive} to tell.</li>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} about {ABOUT_nameDef} out of worry, and was sorry at once.</li>
+      </warm>
+      <blunt>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} what {ABOUT_nameDef} had been hiding, and didn't seem sorry.</li>
+        <li>{PAWN_nameDef} blurted out {ABOUT_nameDef}'s secret to {OTHER_nameDef} in the middle of an argument.</li>
+      </blunt>
+      <cheerful>
+        <li>{PAWN_nameDef} was in a chatty mood and told {OTHER_nameDef} more about {ABOUT_nameDef} than {PAWN_pronoun} should.</li>
+        <li>{PAWN_nameDef} got carried away telling {OTHER_nameDef} a story, and {ABOUT_nameDef}'s secret was in it.</li>
+      </cheerful>
+      <gloomy>
+        <li>{PAWN_nameDef}, low and tired, told {OTHER_nameDef} what {ABOUT_nameDef} had asked {PAWN_objective} to keep.</li>
+        <li>{PAWN_nameDef} let {ABOUT_nameDef}'s secret out to {OTHER_nameDef} on a bad day, and knew it straight away.</li>
+      </gloomy>
+      <cold>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} {ABOUT_nameDef}'s secret as if it were a remark about the weather.</li>
+        <li>{PAWN_nameDef} passed {ABOUT_nameDef}'s secret on to {OTHER_nameDef}, plainly and on purpose.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- At the bottom, an owner says their secret out loud to whoever is there. {PAWN} the owner, {OTHER} who heard. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_Together_SecretConfessed</defName>
+    <lines>
+      <plain>
+        <li>{PAWN_nameDef} stopped in the middle of the day and told {OTHER_nameDef} everything.</li>
+        <li>{PAWN_nameDef} couldn't carry it any longer and told {OTHER_nameDef}, all of it.</li>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} what {PAWN_pronoun} had kept so long, and didn't ask {OTHER_objective} to keep it.</li>
+        <li>{PAWN_nameDef} sat down beside {OTHER_nameDef} and said, quite calmly, what {PAWN_pronoun} had been hiding.</li>
+      </plain>
+      <warm>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} the truth, and asked {OTHER_objective} to be gentle with it.</li>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} the whole of it, and said {PAWN_pronoun} was tired of hiding from friends.</li>
+      </warm>
+      <blunt>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} flat out what {PAWN_pronoun} had been hiding, and walked off.</li>
+        <li>{PAWN_nameDef} said it to {OTHER_nameDef} in one breath and didn't take any of it back.</li>
+      </blunt>
+      <cheerful>
+        <li>{PAWN_nameDef} laughed, not happily, and told {OTHER_nameDef} the whole thing.</li>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} the secret, and said it was almost funny how long {PAWN_pronoun} had kept it.</li>
+      </cheerful>
+      <gloomy>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} the truth, too tired to keep it in any longer.</li>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} the secret, and said {PAWN_pronoun} no longer cared who knew.</li>
+        <li>{PAWN_nameDef} broke down in front of {OTHER_nameDef}, and the whole secret came out with the tears.</li>
+      </gloomy>
+      <cold>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} the truth in a level voice, as if reading out a list.</li>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} the secret, and said keeping it had cost more than it was worth.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== A mentor's lessons are done (Social/SocialWeb.cs) ===================== -->
+
+  <!-- The student goes to thank the mentor. {PAWN} the student, {OTHER} the mentor, {SKILL} the skill. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_Together_Graduated</defName>
+    <lines>
+      <plain>
+        <li>{PAWN_nameDef} thanked {OTHER_nameDef} for every lesson in {SKILL}, the bad days included.</li>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} the lessons in {SKILL} had done their work, and thanked {OTHER_objective}.</li>
+        <li>{PAWN_nameDef} found {OTHER_nameDef} after work to say thank you for all the lessons in {SKILL}.</li>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} that most of what {PAWN_pronoun} knew of {SKILL} had come from {OTHER_objective}.</li>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} the lessons in {SKILL} were over, and that {PAWN_pronoun} would miss them.</li>
+      </plain>
+      <warm>
+        <li>{PAWN_nameDef} hugged {OTHER_nameDef} and thanked {OTHER_objective} for every lesson in {SKILL}.</li>
+        <li>{PAWN_nameDef} gave {OTHER_nameDef} something {PAWN_pronoun} had made, as thanks for the lessons in {SKILL}.</li>
+        <li>{PAWN_nameDef} promised {OTHER_nameDef} to teach {SKILL} one day with the same patience.</li>
+      </warm>
+      <blunt>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} the lessons in {SKILL} had been worth it, and shook {OTHER_possessive} hand.</li>
+        <li>{PAWN_nameDef} said a short thank you to {OTHER_nameDef} for the lessons in {SKILL}, and meant it.</li>
+      </blunt>
+      <cheerful>
+        <li>{PAWN_nameDef} thanked {OTHER_nameDef} for the lessons in {SKILL} and promised to outdo {OTHER_objective} one day.</li>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} the lessons in {SKILL} had been the best part of {PAWN_possessive} days.</li>
+      </cheerful>
+      <gloomy>
+        <li>{PAWN_nameDef} thanked {OTHER_nameDef} for the lessons in {SKILL}, sorry that they were over.</li>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} {PAWN_pronoun} had never thought {PAWN_pronoun} would be good at {SKILL}.</li>
+      </gloomy>
+      <cold>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} {PAWN_pronoun} needed no more lessons in {SKILL}, and thanked {OTHER_objective}.</li>
+        <li>{PAWN_nameDef} thanked {OTHER_nameDef} for the lessons in {SKILL}, precisely and in full.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== The offices (Interplay/Interplay_Offices.cs) ===================== -->
+
+  <!-- The physician's daily rounds: a visit to someone convalescing. {PAWN} the physician, {OTHER} the patient. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_Together_PhysicianLooksIn</defName>
+    <lines>
+      <plain>
+        <li>{PAWN_nameDef} looked in on {OTHER_nameDef}, checked the healing and changed the dressing.</li>
+        <li>{PAWN_nameDef} came by on the rounds and made {OTHER_nameDef} walk to the door and back.</li>
+        <li>{PAWN_nameDef} sat with {OTHER_nameDef} a few minutes and asked how the nights had been.</li>
+        <li>{PAWN_nameDef} looked {OTHER_nameDef} over on the rounds and said another day or two of rest.</li>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} the healing was coming on, and to keep off the heavy work.</li>
+        <li>{PAWN_nameDef} felt {OTHER_nameDef}'s forehead, took {OTHER_possessive} pulse and seemed satisfied.</li>
+        <li>[lowtech] {PAWN_nameDef} brought {OTHER_nameDef} a fresh poultice and a cup of something bitter.</li>
+      </plain>
+      <warm>
+        <li>{PAWN_nameDef} looked in on {OTHER_nameDef} and stayed a while longer than the rounds needed.</li>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} {OTHER_pronoun} was mending well, and that {PAWN_pronoun} was glad of it.</li>
+      </warm>
+      <blunt>
+        <li>{PAWN_nameDef} checked on {OTHER_nameDef} and told {OTHER_objective} to stop lifting things.</li>
+        <li>{PAWN_nameDef} changed {OTHER_nameDef}'s dressing and said rest, not work.</li>
+      </blunt>
+      <cheerful>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} {OTHER_pronoun} was healing faster than anyone on the rounds.</li>
+        <li>{PAWN_nameDef} looked in on {OTHER_nameDef} and declared {OTHER_objective} very nearly mended.</li>
+      </cheerful>
+      <gloomy>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} the healing was slower than {PAWN_pronoun} would like, but coming.</li>
+        <li>{PAWN_nameDef} looked in on {OTHER_nameDef} and warned {OTHER_objective} not to rush it.</li>
+      </gloomy>
+      <cold>
+        <li>{PAWN_nameDef} examined {OTHER_nameDef}, noted the progress, and set the day's limits.</li>
+        <li>{PAWN_nameDef} checked {OTHER_nameDef} on the rounds and found the recovery on schedule.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- After a fight at home, the marshal has a word with each who fought beside them. {PAWN} the marshal, {OTHER} the fighter. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_Together_MarshalWord</defName>
+    <lines>
+      <plain>
+        <li>{PAWN_nameDef} found {OTHER_nameDef} after the fight and told {OTHER_objective} {OTHER_pronoun} had held well.</li>
+        <li>{PAWN_nameDef} went over the fight with {OTHER_nameDef}, what went right first.</li>
+        <li>{PAWN_nameDef} asked {OTHER_nameDef} how {OTHER_pronoun} was sleeping since the fight, and listened.</li>
+        <li>{PAWN_nameDef} sat down beside {OTHER_nameDef} and talked the fight through until it felt finished.</li>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} the colony was still standing because of people like {OTHER_objective}.</li>
+        <li>[lowtech] {PAWN_nameDef} clasped {OTHER_nameDef}'s arm after the fight and named what {OTHER_pronoun} had done.</li>
+      </plain>
+      <warm>
+        <li>{PAWN_nameDef} checked {OTHER_nameDef} for hurts the doctor might have missed, and thanked {OTHER_objective}.</li>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} it was all right to be shaken, and that {PAWN_pronoun} was too.</li>
+      </warm>
+      <blunt>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} {OTHER_pronoun} had done well, and to go and eat something.</li>
+        <li>{PAWN_nameDef} gave {OTHER_nameDef} a nod and a few words about the fight, all of them good.</li>
+      </blunt>
+      <cheerful>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} {OTHER_pronoun} had fought like three people, and clapped {OTHER_objective} on the back.</li>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} that whoever came next would find the colony ready for them.</li>
+      </cheerful>
+      <gloomy>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} they had come through it this time, and that was what mattered.</li>
+        <li>{PAWN_nameDef} sat with {OTHER_nameDef} after the fight, neither of them saying much for a while.</li>
+      </gloomy>
+      <cold>
+        <li>{PAWN_nameDef} went over {OTHER_nameDef}'s part in the fight, point by point, and found little to fault.</li>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} where {OTHER_pronoun} had stood well, and where to stand next time.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== Friends (Social/WorldReactions.cs, Aspirations/Aspirations.cs) ===================== -->
+
+  <!-- A friend who stayed sees someone home again after days away. {PAWN} the friend, {OTHER} the one back. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_Together_GladBack</defName>
+    <lines>
+      <plain>
+        <li>{PAWN_nameDef} met {OTHER_nameDef} by the door and asked about the road.</li>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} the place had been too quiet without {OTHER_objective}.</li>
+        <li>{PAWN_nameDef} caught {OTHER_nameDef} up on everything that had happened while {OTHER_pronoun} was away.</li>
+        <li>{PAWN_nameDef} had kept {OTHER_nameDef}'s seat at the table, and said so.</li>
+      </plain>
+      <warm>
+        <li>{PAWN_nameDef} hugged {OTHER_nameDef} hard and said welcome home.</li>
+        <li>{PAWN_nameDef} had something warm ready for {OTHER_nameDef} after the long road.</li>
+      </warm>
+      <blunt>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} {OTHER_pronoun} had taken {OTHER_possessive} time, and was glad of {OTHER_objective} anyway.</li>
+        <li>{PAWN_nameDef} nodded to {OTHER_nameDef} and said it was about time.</li>
+      </blunt>
+      <cheerful>
+        <li>{PAWN_nameDef} spotted {OTHER_nameDef} and came over at a run to say welcome home.</li>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} everything had gone wrong while {OTHER_pronoun} was gone, and laughed.</li>
+      </cheerful>
+      <gloomy>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} {PAWN_pronoun} had half thought {OTHER_pronoun} wasn't coming back.</li>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} the days had been long without {OTHER_objective}.</li>
+      </gloomy>
+      <cold>
+        <li>{PAWN_nameDef} noted {OTHER_nameDef}'s return and asked for an account of the journey.</li>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} the colony had managed, and that {PAWN_pronoun} was glad {OTHER_pronoun} was back.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Someone who reached a life goal tells a friend about it. {PAWN} the one who reached it, {OTHER} the friend,
+       {GOAL} what they set out to do ("make a best friend", "see their nemesis brought down"): after "to". -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_Together_GoalShared</defName>
+    <lines>
+      <plain>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} what it had taken to {GOAL}, start to finish.</li>
+        <li>{OTHER_nameDef} asked {PAWN_nameDef} how it felt to {GOAL}, and got the whole story.</li>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} the hardest part of trying to {GOAL} was the first step.</li>
+        <li>{PAWN_nameDef} and {OTHER_nameDef} sat up late talking about what it meant to {GOAL}.</li>
+      </plain>
+      <warm>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} {PAWN_pronoun} couldn't have managed to {GOAL} without {OTHER_objective}.</li>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} it was {OTHER_possessive} turn now to want something that much.</li>
+      </warm>
+      <blunt>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} it had been hard work to {GOAL}, and worth it.</li>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} {PAWN_pronoun} had said {PAWN_pronoun} would {GOAL}, and now {PAWN_pronoun} had.</li>
+      </blunt>
+      <cheerful>
+        <li>{PAWN_nameDef} couldn't stop telling {OTHER_nameDef} how it felt to {GOAL} at last.</li>
+        <li>{PAWN_nameDef} grinned all through telling {OTHER_nameDef} how {PAWN_pronoun} came to {GOAL}.</li>
+      </cheerful>
+      <gloomy>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} {PAWN_pronoun} hardly knew what to do now {PAWN_pronoun} had managed to {GOAL}.</li>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} {PAWN_pronoun} had doubted, most days, that {PAWN_pronoun} would ever {GOAL}.</li>
+      </gloomy>
+      <cold>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} how long it had taken to {GOAL}, to the day.</li>
+        <li>{PAWN_nameDef} explained to {OTHER_nameDef} exactly how {PAWN_pronoun} had come to {GOAL}.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== The offices' sittings, more lines (Interplay_Offices.cs, Interplay_Offices2.cs, Offices.cs) ===================== -->
+
+  <!-- The herdmaster sits with someone whose animal died. {PAWN} the herdmaster, {OTHER} the one who lost it, {PET} the animal. -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Together_Pool_Interplay_HerdmasterComforts</defName>
+    <pool>Council_Pool_Interplay_HerdmasterComforts</pool>
+    <lines>
+      <plain>
+        <li>{PAWN_nameDef} helped {OTHER_nameDef} choose a place for {PET_nameDef}'s grave, somewhere with sun.</li>
+        <li>{PAWN_nameDef} sat with {OTHER_nameDef} at the pens and talked about {PET_nameDef}'s first days.</li>
+      </plain>
+      <warm>
+        <li>{PAWN_nameDef} brought {OTHER_nameDef} something of {PET_nameDef}'s to keep, cleaned and wrapped in cloth.</li>
+      </warm>
+      <blunt>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} {PET_nameDef} had been a good animal, and stayed while {OTHER_pronoun} cried.</li>
+      </blunt>
+      <cheerful>
+        <li>{PAWN_nameDef} had {OTHER_nameDef} laughing through tears with a story of {PET_nameDef}'s worst habits.</li>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} how {PET_nameDef} used to raid the feed bins, until {OTHER_pronoun} smiled.</li>
+      </cheerful>
+      <gloomy>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} that losing {PET_nameDef} would not get easier soon, and that {PAWN_pronoun} knew.</li>
+        <li>{PAWN_nameDef} sat with {OTHER_nameDef} in the empty corner where {PET_nameDef} used to sleep.</li>
+      </gloomy>
+      <cold>
+        <li>{PAWN_nameDef} answered every question {OTHER_nameDef} had about {PET_nameDef}'s last days, plainly.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- Home again, someone hears who looked after their animal while they were away. {PAWN} the one who minded it,
+       {OTHER} its person, {PET} the animal. -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Together_Pool_Interplay_HerdmasterMinded</defName>
+    <pool>Council_Pool_Interplay_HerdmasterMinded</pool>
+    <lines>
+      <plain>
+        <li>{PAWN_nameDef} handed {PET_nameDef} back to {OTHER_nameDef}, well fed and very pleased to see {OTHER_objective}.</li>
+      </plain>
+      <warm>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} {PET_nameDef} had slept by {OTHER_possessive} bed every night {OTHER_pronoun} was gone.</li>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} that {PET_nameDef} had been good company while {OTHER_pronoun} was away.</li>
+      </warm>
+      <blunt>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} that {PET_nameDef} had been fed, watered and no trouble, mostly.</li>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} {PET_nameDef} was all {OTHER_possessive} again now, and good luck.</li>
+      </blunt>
+      <cheerful>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} {PET_nameDef} had learned a new trick, and wouldn't say who taught it.</li>
+      </cheerful>
+      <gloomy>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} {PET_nameDef} had moped by the door the whole time {OTHER_pronoun} was away.</li>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} that {PET_nameDef} had watched the road every evening.</li>
+      </gloomy>
+      <cold>
+        <li>{PAWN_nameDef} gave {OTHER_nameDef} an account of {PET_nameDef}'s days: fed, healthy, restless.</li>
+        <li>{PAWN_nameDef} returned {PET_nameDef} to {OTHER_nameDef} in good health, with nothing to report.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- The peacemaker sits a feuding pair down. {PAWN} the peacemaker, {A} and {B} the pair. Night and winter in threes. -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Together_Pool_PeacemakerMediates</defName>
+    <pool>Council_Pool_PeacemakerMediates</pool>
+    <lines>
+      <plain>
+        <li>[night] {PAWN_nameDef} sat up with {A_nameDef} and {B_nameDef} until both had said everything twice.</li>
+        <li>[night] {PAWN_nameDef} kept the lamp lit for {A_nameDef} and {B_nameDef} until the worst of it was out.</li>
+        <li>[winter] {PAWN_nameDef} sat {A_nameDef} and {B_nameDef} by the one warm fire and let neither of them leave it.</li>
+        <li>[winter] {PAWN_nameDef} had {A_nameDef} and {B_nameDef} clear the snow from the same path, side by side.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- The chaplain has a word with the believer least sure of the faith. {PAWN} the chaplain, {OTHER} the believer. -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Together_Pool_Interplay_ChaplainTends</defName>
+    <pool>Council_Pool_Interplay_ChaplainTends</pool>
+    <lines>
+      <plain>
+        <li>{PAWN_nameDef} walked with {OTHER_nameDef} after supper and let {OTHER_objective} ask whatever {OTHER_pronoun} liked.</li>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} an old story from the faith, and asked what {OTHER_pronoun} made of it.</li>
+      </plain>
+      <warm>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} that every believer wavers, the chaplain included.</li>
+      </warm>
+      <blunt>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} doubt was no reason to stay away, and saved {OTHER_objective} a seat.</li>
+      </blunt>
+      <cheerful>
+        <li>{PAWN_nameDef} got {OTHER_nameDef} talking about the faith over the washing-up, and laughing too.</li>
+      </cheerful>
+      <gloomy>
+        <li>{PAWN_nameDef} admitted to {OTHER_nameDef} that faith was hard out here, and worth the trouble.</li>
+        <li>{PAWN_nameDef} sat with {OTHER_nameDef} through a long silence, then said the one thing that helped.</li>
+      </gloomy>
+      <cold>
+        <li>{PAWN_nameDef} gave {OTHER_nameDef} the faith's answer to each question, then asked for the next.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- The warden of guests welcomes visitors. {PAWN} the warden, {OTHER} one of them, {FACTION} their people. -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Together_Pool_Interplay_WardenGuests</defName>
+    <pool>Council_Pool_Interplay_WardenGuests</pool>
+    <lines>
+      <plain>
+        <li>{PAWN_nameDef} walked {OTHER_nameDef} of {FACTION} round the colony and answered every question.</li>
+        <li>{PAWN_nameDef} saw that the visitors from {FACTION} had water, food and a place to rest.</li>
+      </plain>
+      <warm>
+        <li>{PAWN_nameDef} asked {OTHER_nameDef} of {FACTION} about home, and listened as if it mattered.</li>
+      </warm>
+      <blunt>
+        <li>{PAWN_nameDef} showed {OTHER_nameDef} of {FACTION} where to eat and sleep, and no more.</li>
+      </blunt>
+      <cheerful>
+        <li>{PAWN_nameDef} had {OTHER_nameDef} of {FACTION} trading stories with {PAWN_objective} half the afternoon.</li>
+      </cheerful>
+      <gloomy>
+        <li>{PAWN_nameDef} welcomed {OTHER_nameDef} of {FACTION}, and hoped the road home would be kinder.</li>
+        <li>{PAWN_nameDef} sat with {OTHER_nameDef} of {FACTION} and swapped news of the troubles out there.</li>
+      </gloomy>
+      <cold>
+        <li>{PAWN_nameDef} received {OTHER_nameDef} of {FACTION} with every courtesy owed a guest.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- An elder passes on what they know best. {PAWN} the elder, {OTHER} the younger one, {SKILL} the skill. -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Together_Pool_Interplay_ElderCounsel</defName>
+    <pool>Council_Pool_Interplay_ElderCounsel</pool>
+    <lines>
+      <plain>
+        <li>{PAWN_nameDef} showed {OTHER_nameDef} the slow way of {SKILL}, which {PAWN_pronoun} says is the fast way.</li>
+        <li>{PAWN_nameDef} named the three mistakes everyone makes in {SKILL}, and {OTHER_nameDef} made two.</li>
+      </plain>
+      <warm>
+        <li>{PAWN_nameDef} spent the afternoon on {SKILL} with {OTHER_nameDef}, praising every small improvement.</li>
+      </warm>
+      <blunt>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} {OTHER_pronoun} was going about {SKILL} the hard way, and showed {OTHER_objective} why.</li>
+      </blunt>
+      <cheerful>
+        <li>{PAWN_nameDef} made a game of {SKILL} for {OTHER_nameDef}, who learned more than {OTHER_pronoun} noticed.</li>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} funny stories of learning {SKILL}, each with a lesson in it.</li>
+      </cheerful>
+      <gloomy>
+        <li>{PAWN_nameDef} taught {OTHER_nameDef} what {PAWN_pronoun} knew of {SKILL}, so someone would know it after {PAWN_objective}.</li>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} all {PAWN_pronoun} had got wrong in {SKILL} over the years, so {OTHER_pronoun} wouldn't.</li>
+      </gloomy>
+      <cold>
+        <li>{PAWN_nameDef} set {OTHER_nameDef} a task in {SKILL}, watched it done, and corrected one thing.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+</Defs>
