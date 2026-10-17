@@ -126,25 +126,29 @@ to them. A raid makes someone ask for defenses within hours; a cold night, a mea
 friend's death or food poisoning all set off matching wishes. Every wish arrives with a little scene and a line
 in the colonist's own voice, chosen to fit the season, weather, time of day and their situation.
 
-107 kinds of wish, most with variants (six kinds of work room, a dozen pieces of furniture, any
+115 kinds of wish, most with variants (six kinds of work room, a dozen pieces of furniture, any
 missing body part), so the same colony rarely hears the same request twice in a row: a wish the colony has
 heard several times lately becomes much less likely, and one nobody here has ever made a little more likely.
 Every wish asks only for what the colony can do now, in its era: a tribe hears about healroot and pemmican, an
 industrial colony about a deep drill or a comms console. The Almanac page "what colonists wish for" lists them all.
+Wishes follow the land's year: clothes are asked for by the season coming (what someone wears has to keep them
+comfortable in its usual cold, or on hot land its heat, never a coat for the stores), hot country wants a freezer
+(and, with nothing yet that can keep food frozen, food that keeps), and cold land a sauna, Dubs Bad Hygiene's or a
+small hot room of the colony's own, where people sit on cold days and talk.
 
 | Wish | Who asks |
 |---|---|
 | **Home:** a room of their own, a bigger, roomier or nicer bedroom, a piece of furniture, a light, a plant, art for the bedroom, a fire in their room for winter, a real floor instead of bare earth, a bed for their pet | barracks sleepers, the greedy and jealous, night owls, rising expectations, the cold, the tidy |
 | **Love and family:** to share a bed with their partner, not to sleep next to someone, a wedding, a birthday treat, a crib for the little one, somewhere for children to learn and play | couples, feuding roommates, parents (Biotech) |
 | **Children and the old:** lessons from the colony's best, a pet to look after, new stories to read; a soft chair, a biosculpter pod, a resting place for when the time comes | children (Biotech); colonists of 50, 60 or 65 and over |
-| **Work:** a workshop, kitchen, laboratory, hospital, greenhouse or barn; to do the work they love; lessons from the colony's best, or an apprentice to teach; somewhere to train; a weapon rack; a smokehouse; a beehive; a tool cabinet; stone blocks put by; a deep drill; a pen for the animals; a fishing spot (Odyssey) | passionate colonists, the old, fighters, cooks, keepers |
-| **Stores:** better food, a freezer, a brewery, a little something to drink, firewood for winter, fodder before winter, food that keeps, something fresh to eat, honey in the larder, more books, a stocked infirmary, healroot put by, a proper treasury | gourmands, cooks, the food-poisoned, keepers, readers, healers, the greedy |
+| **Work:** a workshop, kitchen, laboratory, hospital, greenhouse or barn; to do the work they love; lessons from the colony's best, or an apprentice to teach; somewhere to train; a weapon rack; a smokehouse; a beehive; a tool cabinet; stone blocks put by; a deep drill; a pen for the animals; a fishing spot (Odyssey, or Vanilla Fishing Expanded) | passionate colonists, the old, fighters, cooks, keepers |
+| **Stores:** better food, a freezer (in hot country, anyone), a brewery, a little something to drink, firewood for winter, fodder before winter, food that keeps, something fresh to eat, honey in the larder, more books, a stocked infirmary, healroot put by, a proper treasury | gourmands, cooks, the food-poisoned, keepers, readers, healers, the greedy |
 | **Illness:** a bed for the sick, a pot of tea (Vanilla Brewing Expanded) | anyone down with a cold, flu or worse |
-| **Gear:** new clothes, something warm for winter, a hat, something fine, a piece of jewelry, proper armor, a decent weapon, something a visiting trader has | tattered clothes, the cold, the vain, fighters, anyone who saw the trader's wares |
-| **Colony:** stronger defenses, a clean colony, music, art where people gather, another sculpture, flowers, a bath, a fountain, a banner, a place to pray, a bench to sit on outside, a fire to gather around, a table where everyone fits, a telescope, a cooler for the hottest days | anyone shaken by a raid, the tidy, artists, the devout, everyone in spring, the lonely, curious minds, anyone in the heat |
+| **Gear:** new clothes, clothes warm enough for the season (or, on hot land, cool enough), a hat, something fine, a piece of jewelry, proper armor, a decent weapon, something a visiting trader has | tattered clothes, anyone dressed wrong for the season coming, the vain, fighters, anyone who saw the trader's wares |
+| **Colony:** stronger defenses, a clean colony, music, art where people gather, another sculpture, flowers, a bath, a fountain, a banner, a place to pray, a bench to sit on outside, a fire to gather around, a table where everyone fits, a telescope, a cooler for the hottest days, a sauna for the cold months | anyone shaken by a raid, the tidy, artists, the devout, everyone in spring, the lonely, curious minds, anyone in the heat, the cold and the old |
 | **People:** a proper burial for a friend, a party, a day off, time outside, help quitting a drug or a steady supply of it, a prisoner recruited, executed or set free, a kidnapped friend brought home, an evening at the campers' fire, a council meeting (promising it calls one), a comms console, a bed kept for guests (Hospitality) | grieving friends, the bored and overworked, addicts, the kind, the vengeful, the sociable |
 | **Adventure:** to see something of the world (a caravan), a hunt, the beast that mauled someone hunted down | the restless, hunters, the beast's victims and their friends |
-| **Body and status:** a prosthetic, an animal companion, a hurt animal patched up, a room befitting their title | the maimed, animal lovers, Royalty nobles |
+| **Body and status:** a prosthetic, an animal companion, a favourite kind of animal, a pack animal of their own, a hurt animal patched up, a room befitting their title | the maimed, animal lovers, haulers and the restless, Royalty nobles |
 
 **Your answer matters:**
 - **Grant it** and they're pleased and **motivated** (they work faster for a few days). The happier they already
@@ -173,7 +177,7 @@ Alpha Memes would make them sick for (only fungus or insect for its two required
 paste); with nothing fit in the stores they sit at the table without eating. Life goals and council projects
 follow the same rules.
 
-**Promises kept.** 61 kinds of wish give something that stays, and the council is watched on it for about 60 days
+**Promises kept.** 67 kinds of wish give something that stays, and the council is watched on it for about 60 days
 after granting it (90 for rooms): a bed kept for guests, a room of their own, a nicer or roomier bedroom, a bed shared,
 a workshop, kitchen or other room for their passion, a telescope, a sauna, a pen for the animals, a real floor, a
 stocked infirmary, a pet, the work they love switched on, hours of rest, a decree they asked for. Take it away and you
@@ -619,8 +623,9 @@ The herd and the pets are part of the colony's life, not only its larder and its
   takes someone keen along for a day's work now and then. Keepers talk shop, two with bonded animals swap stories, a
   child asks about the animals, someone shows a child the pens or lends a hand with the herd. Two small habits: sitting
   out with the herd, and brushing down a horse.
-- **Wishes and life goals:** an animal of one's own, a barn for a herd that sleeps out (with Giddy-Up 2, something to
-  ride); a champion that fights at one's side, a great beast tamed, a herd worth the name, an animal that knows
+- **Wishes and life goals:** an animal of one's own, a favourite kind of animal from those of the land (a favourite
+  Pokémon with PokéWorld; bonded, it means more), a pack animal of one's own, a barn for a herd that sleeps out (with
+  Giddy-Up 2, something to ride); a champion that fights at one's side, a great beast tamed, a herd worth the name, an animal that knows
   everything it can be taught.
 - **Personal stories:** an old companion's last good days (its death ends the story with a farewell), an orphan raised
   by hand until the two may bond, a stray that comes in from the edge of the colony, a feud with an animal that ends in
@@ -628,7 +633,8 @@ The herd and the pets are part of the colony's life, not only its larder and its
 - **Hard choices:** the herd or the stores in a hungry week (a real cull, or lean days for everyone), a grazer in the
   crops, the good medicine for a sick animal, a predator at the pens (left alone, it may break in and take one), a bond
   the faith frowns on. Nobody's own animal, nothing bonded or named, is ever culled or lost.
-- **The herd's year:** the lambing watch and shearing day can become traditions; the colony's first foal and a beloved
+- **The herd's year:** the lambing watch, shearing day and bringing the herd home (before the winter, in a cold snap
+  or after a raid: a work party walks the animals into the barn or pen on ropes) can become traditions; the colony's first foal and a beloved
   animal's day are on the calendar.
 - **Dreams** of the herd, of talking animals, of riding, of an old pet young again, and of a lost one coming back.
 
@@ -660,8 +666,9 @@ welcomed (their people's goodwill rises); the elders sit with the young and pass
 ### Traditions
 Choose the same answer to a seasonal dilemma two years running (a midsummer feast, a harvest celebration, a vigil
 on the longest night) and it becomes a tradition. From then on it comes up first every year: keeping it pleases
-everyone, breaking it disappoints them. Twenty-five customs can become traditions, among them the **planting blessing**
-and the **remembrance walk** to the colony's graves in spring, the **midsummer swim** on a hot day by the water,
+everyone, breaking it disappoints them. Twenty-eight customs can become traditions, among them the **planting day** (asked
+when the fields open after a cold season: the colony sows together, the grower says a few words at the field's edge,
+and a crop sown in full is remembered as a good start) and the **remembrance walk** to the colony's graves in spring, the **midsummer swim** on a hot day by the water,
 the **harvest dance**, **first-frost soup** on the first freezing day, and **lantern night** in winter. Some belong
 to the land: **the sun's return** in the tundra, **the rain welcome** in the desert, **the blessing of the waters** by
 the sea or a river, **the marsh lights** in a swamp or jungle, **the high watch** in the hills. Some to the faith,
@@ -679,13 +686,14 @@ a **new crop**, the **first trade**, a **great hunt**, the herd's **first foal**
 bonded animal long with the colony, or killed fighting for its person, kept as a remembrance by those who loved it), up
 to a dozen of the most meaningful. On the **Calendar**
 page under History you can also **name days of your own** (up to 8) as a feast, a day of remembrance, a rest day, a
-day of games, a **bonfire**, a **day of gifts** or a **hunt**, rename any day, or change how it's kept. What people say
+day of games, a **bonfire**, a **day of gifts**, a **hunt** or a **planting day**, rename any day, or change how it's kept. What people say
 about a day knows the land and the faith: founding day in the desert is a jar of sand from where the first tent stood.
 
 When a day comes round, a letter asks whether to keep it this year: a **feast** is a party at the gathering spot,
 **games** an afternoon of recreation, a **rest day** turns the rest of the day's work hours to recreation (the
 schedule goes back the next day), a **bonfire** is built at nightfall with music, a **day of gifts** warms every
-friendship round the circle, and a **hunt** sends the hunters out after the day's game; a **remembrance** is kept with
+friendship round the circle, a **hunt** sends the hunters out after the day's game, and a **planting day** sends
+everyone out to sow the fields together, with a word at the field's edge after; a **remembrance** is kept with
 a quiet, bittersweet mood for those who knew the person. A birthday comes as a message and a small lift for the colonist. People write about the day in their
 journals, talk about it in the social log, and mention it the evening before; the World page shows the days coming
 up. All the moods are small and share the budget of good moods. Kept **three years running**, a day becomes a

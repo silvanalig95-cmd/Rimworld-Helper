@@ -191,6 +191,8 @@ namespace ColonyCouncil
         /// <summary>The season it was for is over (or they're somewhere without seasons): let go without blame.</summary>
         public override bool StillValid(Wish wish)
         {
+            // A wish from before it asked by the season (an older save's "something warm to wear") has no season: let it go.
+            if (wish.subjectLabel.NullOrEmpty()) return false;
             var map = wish.Beneficiary?.MapHeld;
             if (map == null) return true;
             if (!SeasonUtil.HasSeasons(map)) return false;

@@ -51,6 +51,11 @@ namespace ColonyCouncil
         /// <summary>Real cold is on its way (freezing within the next few months).</summary>
         public bool coldComing;
         /// <summary>
+        /// Or, whatever the season and the cold: in hot country where nothing can keep food frozen yet (no freezer, and
+        /// nothing that could make one buildable: pemmican for a desert tribe). See WishWorker_Freezer.
+        /// </summary>
+        public bool orHotLandNoCold;
+        /// <summary>
         /// The colony's era, as the line tags name it: any one of these fits (tribal, medieval, industrial, spacer,
         /// lowtech; "!lowtech" for a colony past it). Empty: any era. What is asked for must still be buildable or makeable.
         /// </summary>
@@ -175,7 +180,9 @@ namespace ColonyCouncil
             if (!notTrait.NullOrEmpty() && traits != null && notTrait.Any(traits.HasTrait)) return false;
             if (!tags.NullOrEmpty() && !PeopleTags.Matches(p, tags)) return false;
             if (minAnimals > 0 && (p.MapHeld?.mapPawns.SpawnedColonyAnimals.Count ?? 0) < minAnimals) return false;
-            if (!seasons.NullOrEmpty() && (p.MapHeld == null || !seasons.Contains(GenLocalDate.Season(p.MapHeld)))) return false;
+            bool hotNoCold = orHotLandNoCold && p.MapHeld != null && WishWorker_Freezer.HotLand(p.MapHeld) && !RoomUtil.HasFreezer(p.MapHeld)
+                             && WishWorker_Freezer.BestCold(p.MapHeld) == null;
+            if (!hotNoCold && !seasons.NullOrEmpty() && (p.MapHeld == null || !seasons.Contains(GenLocalDate.Season(p.MapHeld)))) return false;
             if (minDaysInColony > 0f && (p.records?.GetValue(RecordDefOf.TimeAsColonistOrColonyAnimal) ?? 0f) < minDaysInColony * GenDate.TicksPerDay) return false;
             if (parentOfLittleOne && !(p.relations?.Children.Any(c => !c.Dead && c.DevelopmentalStage.Baby() && c.MapHeld == p.MapHeld) ?? false)) return false;
             if (minAge > 0f && Flavor.HumanAge(p) < minAge) return false;
@@ -185,7 +192,7 @@ namespace ColonyCouncil
             if (minOutdoorTemp > -999f && (map == null || map.mapTemperature.OutdoorTemp < minOutdoorTemp)) return false;
             if ((burnsWood || coldComing) && map == null) return false;
             if (burnsWood && !Goal_Woodpile.BurnsWood(map)) return false;
-            if (coldComing && !Goal_Woodpile.ColdComing(map)) return false;
+            if (coldComing && !hotNoCold && !Goal_Woodpile.ColdComing(map)) return false;
             if (noHeaterInRoom && RoomUtil.RoomContains(RoomUtil.PrivateRoom(p) ?? RoomUtil.BedRoom(p), Avail.IsHeater)) return false;
             if (sleepsCold && !SleepsCold(p)) return false;
             return true;

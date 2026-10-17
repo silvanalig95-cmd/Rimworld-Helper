@@ -58,8 +58,11 @@
         <li>In the sauna, {OTHER_nameDef} told {PAWN_nameDef} something {OTHER_pronoun} hadn't told anyone. The steam made it easier.</li>
         <li>{PAWN_nameDef} and {OTHER_nameDef} sat shoulder to shoulder in the sauna, too warm to argue about anything.</li>
         <li>[snow] {PAWN_nameDef} dared {OTHER_nameDef} to run out into the snow from the sauna. They both did, and both ran straight back in.</li>
+        <li>{PAWN_nameDef} and {OTHER_nameDef} compared aches in the sauna and agreed that {OTHER_nameDef}'s back was the worse of the two.</li>
+        <li>{OTHER_nameDef} fell asleep sitting up in the sauna, and {PAWN_nameDef} let {OTHER_objective} be until the heat woke {OTHER_objective}.</li>
       </plain>
       <warm><li>{PAWN_nameDef} and {OTHER_nameDef} warmed up together in the sauna, and came out friends of a slightly better sort.</li></warm>
+      <blunt><li>{PAWN_nameDef} told {OTHER_nameDef} to stop talking and sweat. {OTHER_nameDef} did, mostly.</li></blunt>
       <cheerful><li>{PAWN_nameDef} sang in the sauna until {OTHER_nameDef} joined in, badly.</li></cheerful>
       <gloomy><li>{PAWN_nameDef} and {OTHER_nameDef} sat in the sauna and agreed the winter was too long. It helped, a bit.</li></gloomy>
     </lines>
@@ -112,9 +115,12 @@
         <li>Whatever comes up, we put it there together.</li>
         <li>[lowtech] To the ground, and back to us in the autumn.</li>
         <li>[rain] Listen to that. The fields are drinking.</li>
+        <li>Remember this evening when we're bringing it in.</li>
+        <li>Every row of it ours. Every one.</li>
       </plain>
       <warm>
         <li>Thank you, all of you. It's a good day's work.</li>
+        <li>Look at it. We did that, together.</li>
       </warm>
       <blunt>
         <li>Seed's in. Now we wait.</li>
