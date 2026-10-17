@@ -114,8 +114,7 @@ namespace ColonyCouncil
     /// </summary>
     public class GroupNormDef : Def
     {
-        /// <summary>What it means, for the card's tooltip.</summary>
-        [MustTranslate] public string description;
+        // Its description (Def.description) says what it means, for the card's tooltip.
         /// <summary>The side of character it's about (a PersonaAxis name), with the members' average at least <see cref="above"/> or at most <see cref="below"/>.</summary>
         public string axis;
         public float above = 999f;

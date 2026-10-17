@@ -287,8 +287,10 @@ namespace ColonyCouncil
                 if (k.binds == GroupBinds.Work && k.Works.Count == 0) continue;
                 float s = members.Count(m => Fits(k, m, members)) / (float)Mathf.Max(1, members.Count);
                 if (s < k.minShare) continue;
-                // The founders, the old, the young, the tribe-born are only a group of their own where they're not most of the colony.
-                if (k.binds == GroupBinds.Founders || k.binds == GroupBinds.Elders || k.binds == GroupBinds.Young || k.binds == GroupBinds.Origin)
+                // The founders, the old, the young, the tribe-born, the faithful and those who fought are only a group of
+                // their own where they're not most of the colony (after a raid everyone held the line).
+                if (k.binds == GroupBinds.Founders || k.binds == GroupBinds.Elders || k.binds == GroupBinds.Young || k.binds == GroupBinds.Origin
+                    || k.binds == GroupBinds.Faith || k.binds == GroupBinds.Battle)
                 {
                     int all = 0;
                     for (int i = 0; i < Count; i++)

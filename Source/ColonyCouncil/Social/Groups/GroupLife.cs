@@ -571,11 +571,14 @@ namespace ColonyCouncil
                     (broke?.Name ?? "").Named("OTHER")).Resolve();
                 News.Post(GroupText.Sentences(text), new LookTargets(leavers.Concat(g.Pawns).Where(p => p.Spawned).Take(6)), NewsKind.People, MessageTypeDefOf.NegativeEvent, Importance.Notable);
                 comp.AddChronicle(new ChronicleEntry(ChronicleKind.Bond, GroupText.Sentences(text), x));
+                // Each writes about the one of the two on the other side from them.
+                var wentWith = leavers.Contains(y) ? y : x;
+                var stayedWith = wentWith == y ? x : y;
                 foreach (var p in leavers.Concat(g.Pawns).Distinct().ToList())
                 {
                     if (p.Dead) continue;
                     CouncilGameComponent.GiveThought(p, GroupDefs.CircleBroke, null, -1f, "CC_Cause_CircleSplit".Translate(g.Name).Resolve());
-                    if (Rand.Chance(0.6f)) GroupText.Journal(p, "Rimfolk_Journal_Group_Split", g.Name.Named("GROUP"), (leavers.Contains(p) ? y : x).Named("OTHER"));
+                    if (Rand.Chance(0.6f)) GroupText.Journal(p, "Rimfolk_Journal_Group_Split", g.Name.Named("GROUP"), (leavers.Contains(p) ? stayedWith : wentWith).Named("OTHER"));
                 }
             }
         }
@@ -628,7 +631,7 @@ namespace ColonyCouncil
                 if (g.Has(m.pawn)) continue;
                 g.members.Add(new GroupMember { pawn = m.pawn, name = m.name, joined = m.joined, role = GroupRole.None, roleSince = Now });
             }
-            g.cohesion = (g.cohesion + h.cohesion) / 2f + 5f;
+            g.cohesion = Mathf.Min(100f, (g.cohesion + h.cohesion) / 2f + 5f);
             foreach (var n in h.norms)
                 if (!g.norms.Contains(n) && g.norms.Count < 3)
                     g.norms.Add(n);
@@ -736,8 +739,9 @@ namespace ColonyCouncil
         {
             for (int k = 0; k < (quiet ? 6 : 1); k++)
             {
+                // Newcomers may form a group of their own (those who came together, say): then they're outsiders no more.
                 var free = new bool[f.Count];
-                for (int i = 0; i < f.Count; i++) free[i] = Free(t, f.people[i]);
+                for (int i = 0; i < f.Count; i++) free[i] = t.Of(f.people[i]).Count < GroupMath.MaxGroupsEach;
                 var existing = t.groups.Select(g => Present(g, f)).ToList();
                 var cluster = GroupMath.Cluster(f.aff, f.Count, free, existing);
                 if (cluster == null) return;
