@@ -49,6 +49,8 @@
   <CC_Rep_Grown_Better>It has grown in the telling.</CC_Rep_Grown_Better>
   <CC_Rep_Grown_Softer>Most have heard a kinder version.</CC_Rep_Grown_Softer>
   <CC_Rep_Grown_Smaller>Most have heard less of it than it was.</CC_Rep_Grown_Smaller>
+  <CC_Rep_Chain_Inline>It went from {CHAIN}.</CC_Rep_Chain_Inline>
+  <CC_Rep_Chain_To>to</CC_Rep_Chain_To>
   <CC_Rep_Chain_Saw>Saw it: {0}.</CC_Rep_Chain_Saw>
   <CC_Rep_Chain_Heard>{WHO} heard it from {FROM}, {HOW}.</CC_Rep_Chain_Heard>
   <CC_Rep_Chain_Doubts>Not quite believed.</CC_Rep_Chain_Doubts>

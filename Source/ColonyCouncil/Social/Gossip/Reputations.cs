@@ -222,6 +222,8 @@ namespace ColonyCouncil
                 int knowing = d.heard.Count(k => tr.PawnOf(k.id) != null);
                 string what = Deeds.TextOf(d, p);
                 string line = "CC_Rep_Deed".Translate(what.CapitalizeFirst().Named("WHAT"), (d.label ?? "").Named("LABEL"), knowing.Named("COUNT"), others.Named("ALL")).Resolve();
+                string chain = Chain(d);
+                if (chain != null) line += " " + chain;
                 string grown = Grown(d);
                 if (grown != null) line += " " + grown;
                 s.Line(line, ChainTip(d));
@@ -254,6 +256,35 @@ namespace ColonyCouncil
             if (unheard.Count > 0 && (well.Count > 0 || ill.Count > 0)) parts.Add("CC_Rep_Split_Unheard".Translate(TextUtil.JoinAnd(unheard.Take(6).ToList())).Resolve());
             if (parts.Count > 0) s.Line(string.Join(" ", parts), "CC_Rep_Split_Tip".Translate());
             return s;
+        }
+
+        /// <summary>
+        /// The longest way the story went round, when it went through three people or more ("It went from Ana to Bo to
+        /// Cara."): from the one who saw it (or the doer, for a boast) to the last who heard it. Null for a short one.
+        /// </summary>
+        private static string Chain(Deed d)
+        {
+            List<string> best = null;
+            foreach (var k in d.heard)
+            {
+                if (k.Witness) continue;
+                var names = new List<string> { k.name };
+                var cur = k;
+                for (int guard = 0; guard < 12 && !cur.Witness; guard++)
+                {
+                    var prev = cur.from == d.doer ? null : d.KnowerOf(cur.from);
+                    if (prev == null)
+                    {
+                        names.Insert(0, cur.fromName ?? "?");
+                        break;
+                    }
+                    names.Insert(0, prev.name);
+                    cur = prev;
+                }
+                if (best == null || names.Count > best.Count) best = names;
+            }
+            if (best == null || best.Count < 3) return null;
+            return "CC_Rep_Chain_Inline".Translate(string.Join(" " + "CC_Rep_Chain_To".Translate() + " ", best).Named("CHAIN")).Resolve();
         }
 
         /// <summary>How the story has changed on its way round: grown in the telling, or told kinder than it was.</summary>

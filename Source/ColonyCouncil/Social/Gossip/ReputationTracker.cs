@@ -142,7 +142,7 @@ namespace ColonyCouncil
             var mine = By(d.doer);
             while (mine.Count > RepMath.MaxDeedsPerSubject)
                 Forget(mine.Where(x => x != d).OrderBy(x => x.Weight(now)).First());
-            if (deeds.Count > RepMath.MaxDeeds) Forget(deeds.OrderBy(x => x.Weight(now)).First());
+            if (deeds.Count > RepMath.MaxDeeds) Forget(deeds.Where(x => x != d).OrderBy(x => x.Weight(now)).First());
             Changed();
         }
 

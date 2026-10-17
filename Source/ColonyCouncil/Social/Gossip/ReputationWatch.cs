@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using RimWorld;
 using Verse;
+using Verse.AI.Group;
 
 namespace ColonyCouncil
 {
@@ -93,10 +94,13 @@ namespace ColonyCouncil
             return job.def == JobDefOf.Wait_Wander || job.def == JobDefOf.GotoWander || job.def == JobDefOf.Wait || job.def == JobDefOf.Wait_MaintainPosture;
         }
 
-        /// <summary>Someone who could be working: grown, awake, up and about, not in bed or a break, and able to work at all.</summary>
+        /// <summary>
+        /// Someone who could be working: grown, awake, up and about, not in bed or a break, able to work at all, and not
+        /// part of a gathering, a ritual or a council meeting (waiting about is what those are for).
+        /// </summary>
         private static bool CouldWork(Pawn p) =>
             !p.DevelopmentalStage.Juvenile() && p.Awake() && !p.Downed && !p.Drafted && !p.InMentalState && !p.InBed()
-            && (p.workSettings?.EverWork ?? false) && p.timetable?.CurrentAssignment != TimeAssignmentDefOf.Joy
+            && (p.workSettings?.EverWork ?? false) && p.GetLord() == null && p.timetable?.CurrentAssignment != TimeAssignmentDefOf.Joy
             && p.timetable?.CurrentAssignment != TimeAssignmentDefOf.Sleep;
 
         private static void Work(List<Pawn> people)
@@ -137,7 +141,7 @@ namespace ColonyCouncil
             foreach (var kv in idleHours.ToList())
             {
                 var p = tr.PawnOf(kv.Key);
-                if (p == null || kv.Value < 4) continue;
+                if (p == null || kv.Value < 5) continue;
                 idleSeenBy.TryGetValue(kv.Key, out var seen);
                 // Seen by nobody busy: nobody minds.
                 if (seen == null || seen.Count == 0) continue;
@@ -167,6 +171,8 @@ namespace ColonyCouncil
                     tendedBy.Remove(kv.Key);
                 }
                 tendScore[kv.Key] = score;
+                // The stretch is over: the patients seen in it are forgotten with it.
+                if (score < 1f) tendedBy.Remove(kv.Key);
             }
             foreach (var id in tendBase.Keys.Where(id => !tr.Colony.ContainsKey(id)).ToList())
             {

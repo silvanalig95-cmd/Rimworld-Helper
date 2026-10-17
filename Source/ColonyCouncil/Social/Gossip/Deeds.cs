@@ -223,7 +223,7 @@ namespace ColonyCouncil
         public static string LabelFor(DeedDef def, Pawn doer)
         {
             var map = doer?.MapHeld;
-            if (def.duringFight || (def.labelText.NullOrEmpty() && FightOn(map))) return FightLabel(map);
+            if (def.duringFight) return FightLabel(map);
             string pattern = def.labelText.NullOrEmpty() ? "CC_Rep_Label_Day".Translate().ToString() : def.labelText;
             return pattern.Formatted(DateNow(map).Named("DATE")).Resolve();
         }
