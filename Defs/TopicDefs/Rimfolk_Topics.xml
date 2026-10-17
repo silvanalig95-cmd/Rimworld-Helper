@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    What a colony talks about (Source/ColonyCouncil/Social/Talk/). Each colonist holds a view on each topic, from against
+    (-1) to for (+1). The first time it's needed, the view starts from their character (seed: per side of them, the view
+    at a side of 100, in hundredths), their traits, passions and faith (leans), a small personal lean (spread) and what
+    their life now adds (the worker's experience: a vendetta, their trust in the council, last night's meal). After that
+    it drifts a little each day toward what their life suggests, and moves through talk.
+
+    relevance: how much it comes up next to the others (the worker says when it can't). hotDays: how long news on it
+    stays hot. interest: who brings it up (per side, in hundredths). perSubject: a view per person it's about.
+    viewFor / viewAgainst: the view in words, for the character page. Leans name traits (with their degree), passions,
+    memes and precepts by defName; anything a DLC or mod doesn't bring is skipped.
+  -->
+
+  <ColonyCouncil.TopicDef>
+    <defName>Rimfolk_Topic_Raid</defName>
+    <label>the last raid</label>
+    <about>the last raid</about>
+    <workerClass>ColonyCouncil.TopicWorker_Raid</workerClass>
+    <interaction>Rimfolk_Talk_Raid</interaction>
+    <viewFor>would rather meet raiders at the gate than wait for them behind a wall</viewFor>
+    <viewAgainst>wants thicker walls and fewer heroics when raiders come</viewAgainst>
+    <relevance>1</relevance>
+    <hotDays>3</hotDays>
+    <seed><nerve>55</nerve><temper>30</temper><pride>15</pride><warmth>-10</warmth></seed>
+    <leans>
+      <li><trait>Brawler</trait><lean>0.25</lean></li>
+      <li><trait>Bloodlust</trait><lean>0.3</lean></li>
+      <li><trait>Wimp</trait><lean>-0.35</lean></li>
+      <li><trait>Kind</trait><lean>-0.1</lean></li>
+      <li><trait>Nerves</trait><degree>-1</degree><lean>-0.2</lean></li>
+      <li><trait>Nerves</trait><degree>2</degree><lean>0.15</lean></li>
+      <li><skill>Shooting</skill><lean>0.12</lean></li>
+      <li><skill>Melee</skill><lean>0.15</lean></li>
+      <li><meme>Raider</meme><lean>0.3</lean></li>
+    </leans>
+    <interest><nerve>30</nerve><temper>30</temper></interest>
+  </ColonyCouncil.TopicDef>
+
+  <ColonyCouncil.TopicDef>
+    <defName>Rimfolk_Topic_Council</defName>
+    <label>the council</label>
+    <about>the council</about>
+    <workerClass>ColonyCouncil.TopicWorker_Council</workerClass>
+    <interaction>Rimfolk_Talk_Council</interaction>
+    <viewFor>trusts the council and stands by its decrees</viewFor>
+    <viewAgainst>doesn't trust the council, and says so</viewAgainst>
+    <relevance>1</relevance>
+    <seed><trust>50</trust><temper>-15</temper><pride>-10</pride><outlook>15</outlook></seed>
+    <leans>
+      <li><trait>Jealous</trait><lean>-0.1</lean></li>
+      <li><trait>Abrasive</trait><lean>-0.1</lean></li>
+      <li><meme>Loyalist</meme><lean>0.2</lean></li>
+      <li><meme>Collectivist</meme><lean>0.15</lean></li>
+      <li><meme>Individualist</meme><lean>-0.15</lean></li>
+    </leans>
+    <interest><trust>-25</trust><pride>20</pride><temper>20</temper></interest>
+  </ColonyCouncil.TopicDef>
+
+  <ColonyCouncil.TopicDef>
+    <defName>Rimfolk_Topic_Food</defName>
+    <label>the food</label>
+    <about>the food</about>
+    <workerClass>ColonyCouncil.TopicWorker_Food</workerClass>
+    <interaction>Rimfolk_Talk_Food</interaction>
+    <viewFor>thinks the food is fine and the rest should be grateful for it</viewFor>
+    <viewAgainst>has a complaint about every meal</viewAgainst>
+    <relevance>1</relevance>
+    <seed><outlook>40</outlook><warmth>15</warmth><pride>-20</pride><humour>10</humour></seed>
+    <leans>
+      <li><trait>Ascetic</trait><lean>0.35</lean></li>
+      <li><trait>Gourmand</trait><lean>-0.2</lean></li>
+      <li><trait>Greedy</trait><lean>-0.1</lean></li>
+      <li><skill>Cooking</skill><lean>0.1</lean></li>
+    </leans>
+    <interest><humour>15</humour><outlook>-20</outlook></interest>
+  </ColonyCouncil.TopicDef>
+
+  <ColonyCouncil.TopicDef>
+    <defName>Rimfolk_Topic_Work</defName>
+    <label>the work</label>
+    <about>the work</about>
+    <workerClass>ColonyCouncil.TopicWorker_Work</workerClass>
+    <interaction>Rimfolk_Talk_Work</interaction>
+    <viewFor>thinks everyone here pulls their weight</viewFor>
+    <viewAgainst>thinks some here don't pull their weight</viewAgainst>
+    <relevance>0.8</relevance>
+    <seed><outlook>25</outlook><temper>-25</temper><pride>-15</pride><trust>15</trust></seed>
+    <leans>
+      <li><trait>Industriousness</trait><degree>2</degree><lean>-0.15</lean></li>
+      <li><trait>Industriousness</trait><degree>1</degree><lean>-0.1</lean></li>
+      <li><trait>Industriousness</trait><degree>-1</degree><lean>0.25</lean></li>
+      <li><trait>Industriousness</trait><degree>-2</degree><lean>0.35</lean></li>
+      <li><trait>Kind</trait><lean>0.1</lean></li>
+      <li><trait>Abrasive</trait><lean>-0.15</lean></li>
+    </leans>
+    <interest><temper>30</temper><pride>20</pride></interest>
+  </ColonyCouncil.TopicDef>
+
+  <ColonyCouncil.TopicDef>
+    <defName>Rimfolk_Topic_Newcomer</defName>
+    <label>a newcomer</label>
+    <about>{SUBJECT}, the newcomer</about>
+    <workerClass>ColonyCouncil.TopicWorker_Newcomer</workerClass>
+    <interaction>Rimfolk_Talk_Newcomer</interaction>
+    <viewFor>has taken to {SUBJECT}</viewFor>
+    <viewAgainst>is keeping an eye on {SUBJECT}</viewAgainst>
+    <relevance>1.2</relevance>
+    <hotDays>4</hotDays>
+    <perSubject>true</perSubject>
+    <seed><openness>40</openness><trust>45</trust><warmth>30</warmth><pride>-10</pride></seed>
+    <leans>
+      <li><trait>Kind</trait><lean>0.2</lean></li>
+      <li><trait>Jealous</trait><lean>-0.15</lean></li>
+      <li><trait>Psychopath</trait><lean>-0.1</lean></li>
+      <li><meme>Supremacist</meme><lean>-0.2</lean></li>
+      <li><meme>Collectivist</meme><lean>0.1</lean></li>
+    </leans>
+    <interest><openness>30</openness><warmth>25</warmth></interest>
+  </ColonyCouncil.TopicDef>
+
+  <ColonyCouncil.TopicDef>
+    <defName>Rimfolk_Topic_Faith</defName>
+    <label>faith</label>
+    <about>faith</about>
+    <workerClass>ColonyCouncil.TopicWorker_Faith</workerClass>
+    <interaction>Rimfolk_Talk_Faith</interaction>
+    <viewFor>holds to the faith and thinks it matters</viewFor>
+    <viewAgainst>has their doubts about faith</viewAgainst>
+    <relevance>0.8</relevance>
+    <seed><openness>-35</openness><outlook>20</outlook><trust>15</trust><pride>10</pride></seed>
+    <leans>
+      <li><trait>TooSmart</trait><lean>-0.25</lean></li>
+      <li><trait>Psychopath</trait><lean>-0.2</lean></li>
+      <li><meme>Proselytizer</meme><lean>0.25</lean></li>
+    </leans>
+    <interest><openness>-20</openness><pride>15</pride></interest>
+  </ColonyCouncil.TopicDef>
+
+  <ColonyCouncil.TopicDef>
+    <defName>Rimfolk_Topic_Outside</defName>
+    <label>the world outside</label>
+    <about>the world outside</about>
+    <workerClass>ColonyCouncil.TopicWorker_Outside</workerClass>
+    <interaction>Rimfolk_Talk_Outside</interaction>
+    <viewFor>wants more to do with traders and the other peoples</viewFor>
+    <viewAgainst>would rather the colony kept to itself</viewAgainst>
+    <relevance>0.6</relevance>
+    <hotDays>2</hotDays>
+    <seed><openness>50</openness><trust>35</trust><nerve>10</nerve></seed>
+    <leans>
+      <li><trait>Greedy</trait><lean>0.15</lean></li>
+      <li><trait>Kind</trait><lean>0.1</lean></li>
+      <li><meme>Supremacist</meme><lean>-0.25</lean></li>
+      <li><meme>Raider</meme><lean>-0.2</lean></li>
+    </leans>
+    <interest><openness>45</openness></interest>
+  </ColonyCouncil.TopicDef>
+
+  <ColonyCouncil.TopicDef>
+    <defName>Rimfolk_Topic_Animals</defName>
+    <label>the animals</label>
+    <about>the animals</about>
+    <workerClass>ColonyCouncil.TopicWorker_Animals</workerClass>
+    <interaction>Rimfolk_Talk_Animals</interaction>
+    <viewFor>counts the animals as part of the family</viewFor>
+    <viewAgainst>sees animals as livestock and trouble</viewAgainst>
+    <relevance>0.7</relevance>
+    <seed><warmth>45</warmth><openness>10</openness><outlook>10</outlook></seed>
+    <leans>
+      <li><trait>Psychopath</trait><lean>-0.4</lean></li>
+      <li><trait>Kind</trait><lean>0.2</lean></li>
+      <li><trait>Bloodlust</trait><lean>-0.1</lean></li>
+      <li><skill>Animals</skill><lean>0.3</lean></li>
+      <li><meme>AnimalPersonhood</meme><lean>0.4</lean></li>
+      <li><meme>NaturePrimacy</meme><lean>0.2</lean></li>
+      <li><meme>Rancher</meme><lean>-0.15</lean></li>
+    </leans>
+    <interest><warmth>35</warmth></interest>
+  </ColonyCouncil.TopicDef>
+
+  <ColonyCouncil.TopicDef>
+    <defName>Rimfolk_Topic_Weather</defName>
+    <label>the weather</label>
+    <about>the weather</about>
+    <workerClass>ColonyCouncil.TopicWorker_Weather</workerClass>
+    <interaction>Rimfolk_Talk_Weather</interaction>
+    <viewFor>takes the weather as it comes</viewFor>
+    <viewAgainst>takes every cold snap and storm personally</viewAgainst>
+    <relevance>0.7</relevance>
+    <hotDays>2</hotDays>
+    <seed><outlook>55</outlook><nerve>10</nerve><humour>15</humour></seed>
+    <leans>
+      <li><trait>Tough</trait><lean>0.1</lean></li>
+      <li><skill>Plants</skill><lean>0.1</lean></li>
+    </leans>
+    <interest><outlook>-30</outlook><humour>10</humour></interest>
+  </ColonyCouncil.TopicDef>
+
+  <ColonyCouncil.TopicDef>
+    <defName>Rimfolk_Topic_Art</defName>
+    <label>art and beauty</label>
+    <about>art and beauty</about>
+    <workerClass>ColonyCouncil.TopicWorker_Art</workerClass>
+    <interaction>Rimfolk_Talk_Art</interaction>
+    <viewFor>thinks art and beauty are worth the time</viewFor>
+    <viewAgainst>thinks art is a waste of good stone</viewAgainst>
+    <relevance>0.45</relevance>
+    <seed><openness>40</openness><warmth>15</warmth><pride>15</pride></seed>
+    <leans>
+      <li><skill>Artistic</skill><lean>0.35</lean></li>
+      <li><trait>Ascetic</trait><lean>-0.15</lean></li>
+      <li><trait>TooSmart</trait><lean>0.1</lean></li>
+      <li><trait>Psychopath</trait><lean>-0.15</lean></li>
+    </leans>
+    <interest><openness>30</openness><pride>25</pride></interest>
+  </ColonyCouncil.TopicDef>
+
+  <ColonyCouncil.TopicDef>
+    <defName>Rimfolk_Topic_Future</defName>
+    <label>the future</label>
+    <about>the future</about>
+    <workerClass>ColonyCouncil.TopicWorker_Future</workerClass>
+    <interaction>Rimfolk_Talk_Future</interaction>
+    <viewFor>believes there's a future here</viewFor>
+    <viewAgainst>doubts the colony will last, and talks of leaving</viewAgainst>
+    <relevance>0.7</relevance>
+    <seed><outlook>60</outlook><nerve>15</nerve><trust>15</trust></seed>
+    <leans>
+      <li><trait>NaturalMood</trait><degree>2</degree><lean>0.2</lean></li>
+      <li><trait>NaturalMood</trait><degree>1</degree><lean>0.1</lean></li>
+      <li><trait>NaturalMood</trait><degree>-1</degree><lean>-0.15</lean></li>
+      <li><trait>NaturalMood</trait><degree>-2</degree><lean>-0.25</lean></li>
+    </leans>
+    <interest><outlook>-35</outlook><openness>20</openness></interest>
+  </ColonyCouncil.TopicDef>
+
+  <ColonyCouncil.TopicDef>
+    <defName>Rimfolk_Topic_Dead</defName>
+    <label>the dead</label>
+    <about>the dead</about>
+    <workerClass>ColonyCouncil.TopicWorker_Dead</workerClass>
+    <interaction>Rimfolk_Talk_Dead</interaction>
+    <noTease>true</noTease>
+    <viewFor>keeps the memory of the dead alive</viewFor>
+    <viewAgainst>would rather let the dead rest</viewAgainst>
+    <relevance>1</relevance>
+    <hotDays>6</hotDays>
+    <seed><warmth>40</warmth><outlook>15</outlook><temper>-10</temper></seed>
+    <leans>
+      <li><trait>Psychopath</trait><lean>-0.4</lean></li>
+      <li><trait>Kind</trait><lean>0.15</lean></li>
+    </leans>
+    <interest><warmth>30</warmth><outlook>-20</outlook></interest>
+  </ColonyCouncil.TopicDef>
+
+  <ColonyCouncil.TopicDef>
+    <defName>Rimfolk_Topic_Prisoners</defName>
+    <label>the prisoners</label>
+    <about>the prisoners</about>
+    <workerClass>ColonyCouncil.TopicWorker_Prisoners</workerClass>
+    <interaction>Rimfolk_Talk_Prisoners</interaction>
+    <viewFor>wants prisoners and slaves treated kindly</viewFor>
+    <viewAgainst>thinks prisoners and slaves get off too lightly</viewAgainst>
+    <relevance>0.9</relevance>
+    <seed><warmth>50</warmth><trust>20</trust><temper>-20</temper></seed>
+    <leans>
+      <li><trait>Kind</trait><lean>0.3</lean></li>
+      <li><trait>Psychopath</trait><lean>-0.4</lean></li>
+      <li><trait>Bloodlust</trait><lean>-0.35</lean></li>
+      <li><meme>Supremacist</meme><lean>-0.3</lean></li>
+      <li><meme>Guilty</meme><lean>0.2</lean></li>
+      <li><meme>Raider</meme><lean>-0.2</lean></li>
+      <li><meme>PainIsVirtue</meme><lean>-0.15</lean></li>
+      <li><precept>Slavery_Honorable</precept><lean>-0.2</lean></li>
+      <li><precept>Slavery_Abhorrent</precept><lean>0.25</lean></li>
+    </leans>
+    <interest><warmth>20</warmth><temper>20</temper></interest>
+  </ColonyCouncil.TopicDef>
+
+  <ColonyCouncil.TopicDef>
+    <defName>Rimfolk_Topic_Drugs</defName>
+    <label>drink and drugs</label>
+    <about>drink and drugs</about>
+    <workerClass>ColonyCouncil.TopicWorker_Drugs</workerClass>
+    <interaction>Rimfolk_Talk_Drugs</interaction>
+    <viewFor>thinks a drink now and then never hurt anyone</viewFor>
+    <viewAgainst>thinks drink and drugs ruin people</viewAgainst>
+    <relevance>0.35</relevance>
+    <seed><openness>25</openness><humour>25</humour><nerve>10</nerve></seed>
+    <leans>
+      <li><trait>DrugDesire</trait><degree>-1</degree><lean>-0.6</lean></li>
+      <li><trait>DrugDesire</trait><degree>1</degree><lean>0.3</lean></li>
+      <li><trait>DrugDesire</trait><degree>2</degree><lean>0.5</lean></li>
+      <li><precept>DrugUse_Prohibited</precept><lean>-0.5</lean></li>
+      <li><precept>DrugUse_MedicalOnly</precept><lean>-0.25</lean></li>
+      <li><precept>DrugUse_MedicalOrSocial</precept><lean>0.1</lean></li>
+      <li><meme>HighLife</meme><lean>0.4</lean></li>
+    </leans>
+    <interest><humour>30</humour></interest>
+  </ColonyCouncil.TopicDef>
+
+  <ColonyCouncil.TopicDef>
+    <defName>Rimfolk_Topic_Tech</defName>
+    <label>new learning and the old ways</label>
+    <about>new learning and the old ways</about>
+    <workerClass>ColonyCouncil.TopicWorker_Tech</workerClass>
+    <interaction>Rimfolk_Talk_Tech</interaction>
+    <viewFor>is all for new learning and new ways of doing things</viewFor>
+    <viewAgainst>trusts the old ways over new learning</viewAgainst>
+    <relevance>0.5</relevance>
+    <seed><openness>55</openness><pride>10</pride><outlook>10</outlook></seed>
+    <leans>
+      <li><trait>Transhumanist</trait><lean>0.35</lean></li>
+      <li><trait>BodyPurist</trait><lean>-0.35</lean></li>
+      <li><trait>TooSmart</trait><lean>0.15</lean></li>
+      <li><skill>Intellectual</skill><lean>0.2</lean></li>
+      <li><skill>Crafting</skill><lean>0.1</lean></li>
+      <li><meme>Transhumanist</meme><lean>0.3</lean></li>
+      <li><meme>NaturePrimacy</meme><lean>-0.3</lean></li>
+      <li><meme>TreeConnection</meme><lean>-0.25</lean></li>
+    </leans>
+    <interest><openness>45</openness></interest>
+  </ColonyCouncil.TopicDef>
+
+  <ColonyCouncil.TopicDef>
+    <defName>Rimfolk_Topic_Children</defName>
+    <label>the children</label>
+    <about>the children</about>
+    <workerClass>ColonyCouncil.TopicWorker_Children</workerClass>
+    <interaction>Rimfolk_Talk_Children</interaction>
+    <viewFor>thinks this is a good place to raise children</viewFor>
+    <viewAgainst>thinks this is no place for children</viewAgainst>
+    <relevance>0.9</relevance>
+    <hotDays>5</hotDays>
+    <seed><warmth>45</warmth><outlook>30</outlook><nerve>5</nerve></seed>
+    <leans>
+      <li><trait>Kind</trait><lean>0.2</lean></li>
+      <li><trait>Psychopath</trait><lean>-0.3</lean></li>
+      <li><trait>Abrasive</trait><lean>-0.1</lean></li>
+    </leans>
+    <interest><warmth>45</warmth></interest>
+  </ColonyCouncil.TopicDef>
+
+  <ColonyCouncil.TopicDef>
+    <defName>Rimfolk_Topic_Project</defName>
+    <label>the colony's project</label>
+    <about>the colony's project</about>
+    <workerClass>ColonyCouncil.TopicWorker_Project</workerClass>
+    <interaction>Rimfolk_Talk_Project</interaction>
+    <viewFor>believes in the colony's project</viewFor>
+    <viewAgainst>thinks the colony's project is a waste of effort</viewAgainst>
+    <relevance>1</relevance>
+    <seed><outlook>30</outlook><trust>30</trust><pride>10</pride><openness>10</openness></seed>
+    <leans>
+      <li><trait>Industriousness</trait><degree>2</degree><lean>0.15</lean></li>
+      <li><trait>Industriousness</trait><degree>1</degree><lean>0.1</lean></li>
+      <li><trait>Industriousness</trait><degree>-1</degree><lean>-0.15</lean></li>
+      <li><trait>Industriousness</trait><degree>-2</degree><lean>-0.25</lean></li>
+    </leans>
+    <interest><pride>25</pride><outlook>25</outlook></interest>
+  </ColonyCouncil.TopicDef>
+
+  <ColonyCouncil.TopicDef>
+    <defName>Rimfolk_Topic_Wealth</defName>
+    <label>money</label>
+    <about>money</about>
+    <workerClass>ColonyCouncil.TopicWorker_Wealth</workerClass>
+    <interaction>Rimfolk_Talk_Wealth</interaction>
+    <viewFor>thinks the colony should be a good deal richer</viewFor>
+    <viewAgainst>thinks silver can't buy what matters</viewAgainst>
+    <relevance>0.45</relevance>
+    <seed><pride>45</pride><warmth>-20</warmth><openness>-5</openness></seed>
+    <leans>
+      <li><trait>Greedy</trait><lean>0.45</lean></li>
+      <li><trait>Ascetic</trait><lean>-0.45</lean></li>
+      <li><trait>Kind</trait><lean>-0.1</lean></li>
+    </leans>
+    <interest><pride>45</pride></interest>
+  </ColonyCouncil.TopicDef>
+
+  <ColonyCouncil.TopicDef>
+    <defName>Rimfolk_Topic_Love</defName>
+    <label>love and pairings</label>
+    <about>love and pairings</about>
+    <workerClass>ColonyCouncil.TopicWorker_Love</workerClass>
+    <interaction>Rimfolk_Talk_Love</interaction>
+    <viewFor>is all for love and weddings</viewFor>
+    <viewAgainst>is wary of love and all its trouble</viewAgainst>
+    <relevance>0.6</relevance>
+    <hotDays>5</hotDays>
+    <seed><warmth>45</warmth><outlook>30</outlook><trust>20</trust><humour>10</humour></seed>
+    <leans>
+      <li><trait>Psychopath</trait><lean>-0.35</lean></li>
+      <li><trait>Kind</trait><lean>0.1</lean></li>
+      <li><trait>Abrasive</trait><lean>-0.1</lean></li>
+    </leans>
+    <interest><warmth>30</warmth><humour>25</humour></interest>
+  </ColonyCouncil.TopicDef>
+
+</Defs>

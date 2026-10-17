@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Talk about the future, drink and drugs, the colony's project and money (Source/ColonyCouncil/Social/Talk/). Tags as in Rimfolk_Talk_Lines_Fight.xml; for the future [loss], [homesick]; for drink [binge], [addicted]; for the project [proposer], [toproposer], [deadline], [chosen]; and the colony's [rich] and [poor]. {SUBJECT}: the project's name.
+  -->
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Future_Open</defName>
+    <topic>Rimfolk_Topic_Future</topic>
+    <turn>Open</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[for] I think we're going to make it, you know.</li>
+        <li>[for] Give it a few years and this place will be something.</li>
+        <li>[for] I can see us here in ten years, can't you?</li>
+        <li>[for,strong] This is home now, and I'm not going anywhere.</li>
+        <li>[against] Do you ever think about just leaving?</li>
+        <li>[against] I don't think this place will last.</li>
+        <li>[against] One bad winter and we're finished.</li>
+        <li>[against,loss] After what happened, I can't see the point in staying.</li>
+        <li>[against,homesick] I miss home, the real one.</li>
+        <li>[against,strong] I'd leave tomorrow if I had somewhere to go.</li>
+        <li>[mixed] Where do you see yourself in a few years?</li>
+        <li>[mixed] I can't tell if things are getting better or worse.</li>
+      </plain>
+      <warm>
+        <li>[for] Whatever happens, we'll face it together.</li>
+        <li>[against] I worry about what's coming for all of us.</li>
+      </warm>
+      <blunt>
+        <li>[for] Quit talking about leaving and fix something.</li>
+        <li>[against] This place is a dead end, and everyone knows it.</li>
+      </blunt>
+      <cheerful>
+        <li>[for] In ten years we'll have a bakery, mark my words.</li>
+        <li>[against] My plan for the future is to have one.</li>
+      </cheerful>
+      <gloomy>
+        <li>[against] We're all just waiting for the end, aren't we.</li>
+        <li>[for] I suppose we might survive, somehow.</li>
+      </gloomy>
+      <cold>
+        <li>[for] The numbers are improving.</li>
+        <li>[against] Our odds are poor.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Future_Reply</defName>
+    <topic>Rimfolk_Topic_Future</topic>
+    <turn>Reply</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree,for] I feel it too, things are turning.</li>
+        <li>[agree,against] I've thought about it more than I'd like.</li>
+        <li>[debate,against] I want to believe that, I really do.</li>
+        <li>[debate,for] Leave and go where, though, this is as good as anywhere.</li>
+        <li>[argue,against] You'd say the sun was shining in a flood.</li>
+        <li>[argue,for] Go on, then, nobody's stopping you.</li>
+      </plain>
+      <warm>
+        <li>[debate,for] Stay, we need you here.</li>
+      </warm>
+      <gloomy>
+        <li>[agree,against] I give it a year.</li>
+      </gloomy>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Future_Close</defName>
+    <topic>Rimfolk_Topic_Future</topic>
+    <turn>Close</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree] One day at a time, then.</li>
+        <li>[debate] Ask me again in a year.</li>
+        <li>[argue] Pack your bags, then.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Drugs_Open</defName>
+    <topic>Rimfolk_Topic_Drugs</topic>
+    <turn>Open</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[for] A drink at the end of the day never hurt anyone.</li>
+        <li>[for] People need something to take the edge off, out here.</li>
+        <li>[for,binge] Everyone needs a night off now and again.</li>
+        <li>[for,strong] Life's too short to go through it sober.</li>
+        <li>[against] I've seen what drink does to people.</li>
+        <li>[against] Nobody should need something to get through the day.</li>
+        <li>[against,binge] Did you see the state of them last night?</li>
+        <li>[against,addicted] I can't stop once I start, and I hate it.</li>
+        <li>[against,strong] Every bottle in this colony should go in the river.</li>
+        <li>[mixed] I like a drink, but I know where it leads.</li>
+      </plain>
+      <warm>
+        <li>[for] A cup of something warm with friends, that's all I mean.</li>
+        <li>[against] I just don't want to see anyone hurt by it.</li>
+      </warm>
+      <blunt>
+        <li>[against] Drunks get people killed.</li>
+        <li>[for] Leave people their one pleasure.</li>
+      </blunt>
+      <cheerful>
+        <li>[for] Beer is just bread you can drink, I'm told.</li>
+      </cheerful>
+      <gloomy>
+        <li>[for] Might as well drink, nothing else helps.</li>
+      </gloomy>
+      <cold>
+        <li>[against] Intoxication reduces work output.</li>
+        <li>[for] Moderate use keeps morale up.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Drugs_Reply</defName>
+    <topic>Rimfolk_Topic_Drugs</topic>
+    <turn>Reply</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree,for] One drink, now and again, where's the harm?</li>
+        <li>[agree,against] I've seen it ruin good people too.</li>
+        <li>[debate,against] One's fine, it's the fifth that worries me.</li>
+        <li>[debate,for] It's not the drink, it's the drinker.</li>
+        <li>[argue,against] You'd drink the lamp oil if we let you.</li>
+        <li>[argue,for] Nobody asked for your sermon.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Drugs_Close</defName>
+    <topic>Rimfolk_Topic_Drugs</topic>
+    <turn>Close</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree] In moderation, then.</li>
+        <li>[debate] Have one with me sometime and we'll argue properly.</li>
+        <li>[argue] Enjoy your water.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Project_Open</defName>
+    <topic>Rimfolk_Topic_Project</topic>
+    <turn>Open</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[for] I think "{SUBJECT}" is going to be worth it.</li>
+        <li>[for] We're getting somewhere with the project, I can feel it.</li>
+        <li>[for,proposer] I'm proud of "{SUBJECT}"; I hope you are too.</li>
+        <li>[for,chosen] I'm glad the council picked "{SUBJECT}".</li>
+        <li>[for,deadline] Nearly there, just a little more on "{SUBJECT}".</li>
+        <li>[against] Whose idea was "{SUBJECT}" anyway?</li>
+        <li>[against] We've got better things to do than "{SUBJECT}".</li>
+        <li>[against,deadline] We're never going to finish "{SUBJECT}" in time.</li>
+        <li>[against,toproposer] Honestly, "{SUBJECT}" was a mistake.</li>
+        <li>[mixed] Do you think we'll actually finish "{SUBJECT}"?</li>
+      </plain>
+      <warm>
+        <li>[for] It's nice, working towards something together.</li>
+      </warm>
+      <blunt>
+        <li>[against] "{SUBJECT}" is a waste of everyone's time.</li>
+      </blunt>
+      <cheerful>
+        <li>[for] When "{SUBJECT}" is done, I'm having a nap for a week.</li>
+      </cheerful>
+      <gloomy>
+        <li>[against] It'll fall apart before it's done.</li>
+      </gloomy>
+      <cold>
+        <li>[for] "{SUBJECT}" is on track.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Project_Reply</defName>
+    <topic>Rimfolk_Topic_Project</topic>
+    <turn>Reply</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree,for] It'll be something to be proud of.</li>
+        <li>[agree,against] I can't see the point of it either.</li>
+        <li>[debate,against] Maybe, if we ever finish.</li>
+        <li>[debate,for] Give it time, it'll come together.</li>
+        <li>[argue,against] You'd follow the council off a cliff.</li>
+        <li>[argue,for] Then do less complaining and more helping.</li>
+        <li>[argue,for,proposer] I'll finish it without you, then.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Project_Close</defName>
+    <topic>Rimfolk_Topic_Project</topic>
+    <turn>Close</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree] Back to it, then, the both of us.</li>
+        <li>[debate] We'll know when it's done.</li>
+        <li>[argue] Don't help, then.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Wealth_Open</defName>
+    <topic>Rimfolk_Topic_Wealth</topic>
+    <turn>Open</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[for] We should be making more silver than we do.</li>
+        <li>[for] A rich colony is a safe colony.</li>
+        <li>[for,poor] We're scraping by when we could be thriving.</li>
+        <li>[for,rich] We're doing well, and we could do better still.</li>
+        <li>[for,strong] I'd sell half the stores for the right price.</li>
+        <li>[against] Silver doesn't keep you warm at night.</li>
+        <li>[against] The richer we look, the more raiders come.</li>
+        <li>[against,rich] We've got more than we need, and still people want more.</li>
+        <li>[against,strong] Money ruins people, I've seen it.</li>
+        <li>[mixed] Do you ever wonder what we'd do with real money?</li>
+      </plain>
+      <warm>
+        <li>[against] The best things here don't cost anything.</li>
+      </warm>
+      <blunt>
+        <li>[for] Poverty's for fools.</li>
+      </blunt>
+      <cheerful>
+        <li>[for] If I were rich, I'd buy a chair that doesn't wobble.</li>
+      </cheerful>
+      <gloomy>
+        <li>[against] Silver won't save us when it counts.</li>
+      </gloomy>
+      <cold>
+        <li>[for] Wealth is leverage.</li>
+        <li>[against] Wealth attracts threats.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Wealth_Reply</defName>
+    <topic>Rimfolk_Topic_Wealth</topic>
+    <turn>Reply</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree,for] Silver opens doors, plain and simple.</li>
+        <li>[agree,against] Enough is enough, and we have enough.</li>
+        <li>[debate,against] Rich is nice, but safe is better.</li>
+        <li>[debate,for] A little more never hurt anyone.</li>
+        <li>[argue,against] Greedy, that's all you are.</li>
+        <li>[argue,for] Easy to say you don't need silver, until you do.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Wealth_Close</defName>
+    <topic>Rimfolk_Topic_Wealth</topic>
+    <turn>Close</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree] We'll keep our eyes open for a good trade.</li>
+        <li>[debate] We'll see who's laughing when the trader comes.</li>
+        <li>[argue] Keep your pennies, then.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+</Defs>

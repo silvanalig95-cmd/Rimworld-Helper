@@ -38,6 +38,8 @@ namespace ColonyCouncil
         public const int CouncilPeople = 1544;
         /// <summary>Personal stories.</summary>
         public const int Arcs = 1777;
+        /// <summary>Conversations: what people went through together (night shifts, disasters, gatherings, mishaps); views drift in the first hour of the day.</summary>
+        public const int Talk = 1951;
         /// <summary>Story chains and missions, inside the missions' own 250-tick pass.</summary>
         public const int Stories = 2089;
         /// <summary>The council: encounters and nuisances, Rimfolk's own events.</summary>
@@ -49,7 +51,7 @@ namespace ColonyCouncil
         public static readonly int[] HourlyOffsets =
         {
             CouncilWishes, Camp, CouncilDayFirst, Health, CouncilDaySecond, CouncilLife, WorldSituations, Calendar, Setbacks, CouncilPeople,
-            Arcs, Stories, CouncilEvents, Ailments
+            Arcs, Talk, Stories, CouncilEvents, Ailments
         };
 
         /// <summary>The hourly passes that run inside a 250-tick pass of their own system on purpose (same tick, same work).</summary>

@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Talk about a newcomer, love, the children and the dead (Source/ColonyCouncil/Social/Talk/). Tags as in Rimfolk_Talk_Lines_Fight.xml; for a newcomer [arrived], [likesthem], [dislikesthem], [young]; for love [wedding], [inlove], [single]; for the children [birth], [parent], [nochildren]; for the dead [battle], [fresh]. {SUBJECT}: the newcomer, the newlyweds, a child, the one who died.
+  -->
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Newcomer_Open</defName>
+    <topic>Rimfolk_Topic_Newcomer</topic>
+    <turn>Open</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[for] I like {SUBJECT}, I think they'll fit in fine.</li>
+        <li>[for] {SUBJECT} pitched in without being asked, did you see?</li>
+        <li>[for] We should make {SUBJECT} feel welcome; it's hard, being new.</li>
+        <li>[for,arrived] I've met {SUBJECT}, and they seem decent enough.</li>
+        <li>[for,likesthem] {SUBJECT} and I got talking last night; good sort.</li>
+        <li>[for,young] {SUBJECT} is so young, we should look out for them.</li>
+        <li>[for,strong] I'd trust {SUBJECT} with my life already, strange as that sounds.</li>
+        <li>[against] I'm not sure about {SUBJECT} yet.</li>
+        <li>[against] Has anyone actually asked {SUBJECT} where they came from?</li>
+        <li>[against] {SUBJECT} asks a lot of questions for someone so new.</li>
+        <li>[against,arrived] We know nothing about {SUBJECT}, and we've let them in.</li>
+        <li>[against,dislikesthem] {SUBJECT} rubs me the wrong way, I can't say why.</li>
+        <li>[against,strong] I'm keeping my door locked until I know what {SUBJECT} is about.</li>
+        <li>[mixed] What do you make of {SUBJECT}?</li>
+        <li>[mixed] I haven't made up my mind about {SUBJECT}.</li>
+      </plain>
+      <warm>
+        <li>[for] I made {SUBJECT} up a bed with an extra blanket, the nights are cold.</li>
+        <li>[for] I hope {SUBJECT} knows they're one of us now.</li>
+        <li>[against] I want to like {SUBJECT}, I'm just being careful.</li>
+      </warm>
+      <blunt>
+        <li>[against] {SUBJECT} had better earn their keep.</li>
+        <li>[for] {SUBJECT}'s all right, better than some here.</li>
+      </blunt>
+      <cheerful>
+        <li>[for] {SUBJECT} laughed at my joke, so they're clearly a genius.</li>
+        <li>[against] I'm told {SUBJECT} hums in their sleep; I'm reserving judgement.</li>
+      </cheerful>
+      <gloomy>
+        <li>[against] Give it a month, {SUBJECT} will be gone or trouble.</li>
+        <li>[for] I hope {SUBJECT} lasts longer than the last one.</li>
+      </gloomy>
+      <cold>
+        <li>[against] {SUBJECT} is an unknown, and unknowns are risks.</li>
+        <li>[for] {SUBJECT} is competent, that's enough.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Newcomer_Reply</defName>
+    <topic>Rimfolk_Topic_Newcomer</topic>
+    <turn>Reply</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree,for] I like them too, they've got good hands.</li>
+        <li>[agree,for] Same, felt like they'd always been here.</li>
+        <li>[agree,against] I'm watching them too, don't worry.</li>
+        <li>[agree,against] Something's off, I just can't put my finger on it.</li>
+        <li>[debate,against] Give it time before you hand them the keys.</li>
+        <li>[debate,against] Seems nice, but we've been fooled before.</li>
+        <li>[debate,for] We were all new once, remember.</li>
+        <li>[debate,for] Give them a chance; nobody's perfect in their first week.</li>
+        <li>[argue,against] You'd trust a raider if they smiled at you.</li>
+        <li>[argue,for] You don't trust anyone, that's your trouble.</li>
+        <li>[argue,for] Did they do something to you, or is this just how you are?</li>
+      </plain>
+      <warm>
+        <li>[debate,for] Imagine how lonely they must feel.</li>
+      </warm>
+      <blunt>
+        <li>[argue,against] Naive, that's what you are.</li>
+      </blunt>
+      <cold>
+        <li>[debate,against] Trust is earned over seasons, not days.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Newcomer_Close</defName>
+    <topic>Rimfolk_Topic_Newcomer</topic>
+    <turn>Close</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree,for] I'll ask them to eat with us tonight.</li>
+        <li>[agree,against] We'll keep an eye on them, then.</li>
+        <li>[debate] We'll know soon enough.</li>
+        <li>[argue,for] Well, I'm going to be friendly, whatever you do.</li>
+        <li>[argue,against] When they rob us blind, remember I said so.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Newcomer_Tease</defName>
+    <topic>Rimfolk_Topic_Newcomer</topic>
+    <turn>Open</turn>
+    <outcomes><li>Tease</li></outcomes>
+    <lines>
+      <plain>
+        <li>[otherfor] {OTHER} has already adopted the new one, I see.</li>
+        <li>[otheragainst] {OTHER} has been following {SUBJECT} around like a guard dog.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Love_Open</defName>
+    <topic>Rimfolk_Topic_Love</topic>
+    <turn>Open</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[for] It does you good, seeing people happy together.</li>
+        <li>[for] Everyone should have someone, out here especially.</li>
+        <li>[for,wedding,subject] Wasn't it lovely, {SUBJECT}'s wedding?</li>
+        <li>[for,inlove] I never thought I'd be this happy, here of all places.</li>
+        <li>[for,single] I'd like someone of my own one day.</li>
+        <li>[for,strong] Love's the only thing that makes any of this worth it.</li>
+        <li>[against] Love out here just means more to lose.</li>
+        <li>[against] Couples always end up fighting, and then we all have to pick sides.</li>
+        <li>[against,wedding,subject] I give {SUBJECT} a year, maybe two.</li>
+        <li>[against,single] I'm better off on my own, honestly.</li>
+        <li>[against,strong] Romance is a distraction we can't afford.</li>
+        <li>[mixed] Do you think it's sensible, falling in love out here?</li>
+      </plain>
+      <warm>
+        <li>[for] I love a wedding, I cried the whole way through.</li>
+        <li>[for,inlove] Is it obvious how much I adore them?</li>
+      </warm>
+      <blunt>
+        <li>[against] All this mooning about, it's embarrassing.</li>
+        <li>[for] People should stop being so shy and just say how they feel.</li>
+      </blunt>
+      <cheerful>
+        <li>[for] Romance is in the air, or that's the compost.</li>
+        <li>[against] My one true love is a full night's sleep.</li>
+      </cheerful>
+      <gloomy>
+        <li>[against] Love ends one way or another, usually badly.</li>
+        <li>[for] At least we won't die alone, some of us.</li>
+      </gloomy>
+      <cold>
+        <li>[against] Attachments complicate decisions.</li>
+        <li>[for] Pairs are stable, and stability is good for a colony.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Love_Reply</defName>
+    <topic>Rimfolk_Topic_Love</topic>
+    <turn>Reply</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree,for] It makes the whole place warmer.</li>
+        <li>[agree,for,wedding] Best day we've had in a long while.</li>
+        <li>[agree,against] Heartbreak's the last thing we need around here.</li>
+        <li>[debate,against] It's sweet, until it isn't.</li>
+        <li>[debate,for] What else are we fighting for, if not that?</li>
+        <li>[argue,against] You'd fall for anyone who looked at you twice.</li>
+        <li>[argue,for] Bitter, aren't you.</li>
+      </plain>
+      <warm>
+        <li>[agree,for] I hope you find it too.</li>
+      </warm>
+      <cheerful>
+        <li>[debate,for] Come on, everyone loves a good love story.</li>
+      </cheerful>
+      <gloomy>
+        <li>[agree,against] It always ends in tears.</li>
+      </gloomy>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Love_Close</defName>
+    <topic>Rimfolk_Topic_Love</topic>
+    <turn>Close</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree] Here's to the happy ones.</li>
+        <li>[debate] You'll change your tune when it happens to you.</li>
+        <li>[argue] Be alone, then.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Love_Tease</defName>
+    <topic>Rimfolk_Topic_Love</topic>
+    <turn>Open</turn>
+    <outcomes><li>Tease</li></outcomes>
+    <lines>
+      <plain>
+        <li>[otherfor] {OTHER} has been sighing at the sunset again.</li>
+        <li>[otheragainst] {OTHER} says love is a waste of time, while blushing.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Children_Open</defName>
+    <topic>Rimfolk_Topic_Children</topic>
+    <turn>Open</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[for] It's good to hear children about the place.</li>
+        <li>[for] Children give a place a reason to last.</li>
+        <li>[for,subject] {SUBJECT} asked me how the stars stay up; I didn't know what to say.</li>
+        <li>[for,birth,subject] I held {SUBJECT} today, so small, so very small.</li>
+        <li>[for,parent] I want my children to grow up here, whatever happens.</li>
+        <li>[for,nochildren] We should have children here one day, a colony needs them.</li>
+        <li>[against] This is no place for children, with the raids and everything.</li>
+        <li>[against] I worry about the little ones every time the bell goes.</li>
+        <li>[against,subject] {SUBJECT} shouldn't have to see what goes on here.</li>
+        <li>[against,parent] I lie awake wondering if I've done right by mine, bringing them up here.</li>
+        <li>[mixed] What kind of life are we giving the children, do you think?</li>
+      </plain>
+      <warm>
+        <li>[for,subject] {SUBJECT} made me a little wooden horse, I'll keep it forever.</li>
+        <li>[for] I'd teach the little ones anything they wanted to learn.</li>
+      </warm>
+      <blunt>
+        <li>[against] Children here should learn to work and fight, soft won't help them.</li>
+        <li>[for] Kids need room to run about, not lessons all day.</li>
+      </blunt>
+      <cheerful>
+        <li>[for] The children have formed a council of their own, they're stricter than ours.</li>
+      </cheerful>
+      <gloomy>
+        <li>[against] What future are we giving them, really?</li>
+      </gloomy>
+      <cold>
+        <li>[for] Children are the colony's long-term investment.</li>
+        <li>[against] Children consume resources the colony doesn't have.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Children_Reply</defName>
+    <topic>Rimfolk_Topic_Children</topic>
+    <turn>Reply</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree,for] They're the best of us, the little ones.</li>
+        <li>[agree,against] I fear for them, honestly.</li>
+        <li>[debate,against] Lovely, yes, but safe, not yet.</li>
+        <li>[debate,for] Where else would they be safer than with all of us?</li>
+        <li>[argue,against] You'd raise them in a war camp if it suited you.</li>
+        <li>[argue,for] They need hope, not your doom and gloom.</li>
+      </plain>
+      <warm>
+        <li>[agree,for] I'd do anything for them, anything at all.</li>
+      </warm>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Children_Close</defName>
+    <topic>Rimfolk_Topic_Children</topic>
+    <turn>Close</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree] We'll keep them safe, between all of us.</li>
+        <li>[debate] Let's just do right by them, either way.</li>
+        <li>[argue] Stay away from the children with that talk.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Dead_Open</defName>
+    <topic>Rimfolk_Topic_Dead</topic>
+    <turn>Open</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[for] I keep thinking about {SUBJECT}.</li>
+        <li>[for] We should talk about {SUBJECT} more, not less.</li>
+        <li>[for] {SUBJECT} would have laughed at what happened today.</li>
+        <li>[for,fresh] I still expect to see {SUBJECT} at the table.</li>
+        <li>[for,battle] {SUBJECT} died for the rest of us, and we should say so.</li>
+        <li>[for,strong] As long as we talk about {SUBJECT}, they're not really gone.</li>
+        <li>[against] I can't talk about {SUBJECT} yet.</li>
+        <li>[against] It doesn't help, going over it again and again.</li>
+        <li>[against,fresh] Let {SUBJECT} rest; it's too soon.</li>
+        <li>[against,strong] The dead are dead, and we have work to do.</li>
+        <li>[mixed] Do you ever think about {SUBJECT}?</li>
+      </plain>
+      <warm>
+        <li>[for] I miss {SUBJECT}; I miss them every day.</li>
+        <li>[for] I planted something by {SUBJECT}'s grave, I hope that's all right.</li>
+        <li>[against] I loved {SUBJECT}, but I can't keep reopening it.</li>
+      </warm>
+      <blunt>
+        <li>[against] Moping won't bring {SUBJECT} back.</li>
+        <li>[for] Nobody says {SUBJECT}'s name anymore, and it makes me angry.</li>
+      </blunt>
+      <cheerful>
+        <li>[for] I'd give anything to hear one of {SUBJECT}'s awful jokes again.</li>
+      </cheerful>
+      <gloomy>
+        <li>[for] It should have been me instead of {SUBJECT}.</li>
+        <li>[against] One day someone will be forgetting us like this.</li>
+      </gloomy>
+      <cold>
+        <li>[against] Grieving costs work; we should be careful how long it goes on.</li>
+        <li>[for] {SUBJECT} was useful and well liked; the loss is real.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Dead_Reply</defName>
+    <topic>Rimfolk_Topic_Dead</topic>
+    <turn>Reply</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree,for] Me too, all the time.</li>
+        <li>[agree,for] I'm glad someone still says their name.</li>
+        <li>[agree,against] I know, I can't either.</li>
+        <li>[debate,against] Remembering's one thing, dwelling's another.</li>
+        <li>[debate,for] It hurts, but forgetting would hurt more.</li>
+        <li>[argue,against] You never even liked them.</li>
+        <li>[argue,for] How can you be so cold about it?</li>
+        <li>[argue,against] Stop picking at it, please, just stop.</li>
+      </plain>
+      <warm>
+        <li>[agree,for] They'd be glad we still think of them.</li>
+      </warm>
+      <gloomy>
+        <li>[agree,for] It never gets easier, does it.</li>
+      </gloomy>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Dead_Close</defName>
+    <topic>Rimfolk_Topic_Dead</topic>
+    <turn>Close</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree] We'll remember them, the two of us.</li>
+        <li>[debate] We all grieve our own way, I suppose.</li>
+        <li>[argue] Forget them, then, if you can.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+</Defs>

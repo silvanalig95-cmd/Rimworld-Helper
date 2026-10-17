@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Conversations that went badly (Source/ColonyCouncil/Social/Talk/): an opinion, not a mood, but worth knowing what helps. -->
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Rimfolk_Mood_TalkArgued</defName>
+    <thoughts><li>Rimfolk_Talk_Argued</li><li>Rimfolk_Talk_TeasedStung</li></thoughts>
+    <fix>It fades in a couple of days. Two who keep arguing hold opposite views on something (see their character pages, Views); time apart, a peacemaker on the council and a warm talk later on smooth it over, and a later talk can bring one round.</fix>
+    <article>Council_Alm_C_Talk</article>
+  </ColonyCouncil.MoodHintDef>
+
+</Defs>

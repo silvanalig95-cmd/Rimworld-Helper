@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Talk about the food, the work, the animals and the weather (Source/ColonyCouncil/Social/Talk/). Tags as in Rimfolk_Talk_Lines_Fight.xml; for the food [lowfood], [harvest], [paste], [raw], [finemeal], [iscook], [tocook]; for the work [slacker], [strained], [toslacker]; for the animals [bonded], [noanimals]; for the weather [disaster] and the season and weather tags. {SUBJECT}: the best cook, the one who does least, one's own animal, a disaster.
+  -->
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Food_Open</defName>
+    <topic>Rimfolk_Topic_Food</topic>
+    <turn>Open</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[for] That was a decent meal, you know.</li>
+        <li>[for] I don't know what people complain about; we eat well here.</li>
+        <li>[for] Hot food, every day, and a roof over it; I'm not complaining.</li>
+        <li>[for,subject] {SUBJECT} did something good with the stew today.</li>
+        <li>[for,harvest] With the harvest in, we'll eat like kings for a while.</li>
+        <li>[for,finemeal] That meal tonight was proper food, that was.</li>
+        <li>[for,iscook] I put a lot into tonight's meal, I hope people noticed.</li>
+        <li>[for,lowfood] It's not much, but it's food, and that's what matters.</li>
+        <li>[for,strong] I'll eat anything that's hot and doesn't move.</li>
+        <li>[against] If I see that grey mush one more time, I'll scream.</li>
+        <li>[against] What was that, tonight, exactly?</li>
+        <li>[against] I'd give a day's work for something with flavour.</li>
+        <li>[against,raw] I ate it raw again, because nobody had cooked.</li>
+        <li>[against,paste] The paste again, it tastes of nothing and regret.</li>
+        <li>[against,lowfood] We're going to run out, you know, and soon.</li>
+        <li>[against,subject] I don't want to be rude about {SUBJECT}'s cooking, but I will be.</li>
+        <li>[against,strong] I'm sure the cook is a lovely person, but the stew is a war crime.</li>
+        <li>[mixed] It's food, I suppose, and that's about all I can say for it.</li>
+        <li>[mixed,harvest] At least we won't starve this winter, whatever it tastes like.</li>
+      </plain>
+      <warm>
+        <li>[for] I love sitting down to eat with everyone, whatever's in the pot.</li>
+        <li>[for,subject] We should tell {SUBJECT} how much we appreciate the cooking.</li>
+        <li>[against] I don't mind for myself, but the others deserve better food.</li>
+      </warm>
+      <blunt>
+        <li>[for] People who complain about the food can cook it themselves.</li>
+        <li>[against] That meal was a disgrace.</li>
+        <li>[against] I've eaten better in a cell.</li>
+        <li>[against,raw] Raw again; does anyone in this colony know how to light a stove?</li>
+      </blunt>
+      <cheerful>
+        <li>[for] Tonight's stew had a vegetable in it, I counted.</li>
+        <li>[for] I'd marry tonight's soup if it asked.</li>
+        <li>[against] I think the stew looked at me tonight.</li>
+        <li>[against] Good news, I've found a use for the leftovers: they make a fine glue.</li>
+      </cheerful>
+      <gloomy>
+        <li>[for] Enjoy it while it lasts, the food won't last forever.</li>
+        <li>[against] Same meal every day until we die, I suppose.</li>
+        <li>[against,lowfood] We'll be eating bark by spring.</li>
+      </gloomy>
+      <cold>
+        <li>[for] The food is adequate.</li>
+        <li>[against] The cooking is inefficient and the results are poor.</li>
+        <li>[against,lowfood] At this rate the stores are gone within the week.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Food_Reply</defName>
+    <topic>Rimfolk_Topic_Food</topic>
+    <turn>Reply</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree,for] Better than most places I've eaten, that's for sure.</li>
+        <li>[agree,for] I had seconds, so I'm not complaining.</li>
+        <li>[agree,for,harvest] We worked hard for that harvest, and it shows on the plate.</li>
+        <li>[agree,against] I left half of mine, if that tells you anything.</li>
+        <li>[agree,against] It's been bad all week, hasn't it.</li>
+        <li>[agree,against,paste] I've started dreaming about real bread.</li>
+        <li>[debate,against] Fine is a strong word for it.</li>
+        <li>[debate,against] I'll be grateful when it has some taste.</li>
+        <li>[debate,for] It's hot and there's plenty, what more do you want?</li>
+        <li>[debate,for] You should try eating raw roots for a month, then complain.</li>
+        <li>[debate,for,tocook] I'll have you know I worked hard on that.</li>
+        <li>[argue,against] You'd eat a boot if someone put salt on it.</li>
+        <li>[argue,for] Then cook it yourself, if you're so particular.</li>
+        <li>[argue,for,tocook] Next time you can make it, and I'll watch you burn it.</li>
+        <li>[argue,against,tocook] Then learn to cook, because that was dreadful.</li>
+      </plain>
+      <warm>
+        <li>[agree,for] It's the company that makes it, really.</li>
+        <li>[debate,against] I'm sure the cook tries, I just wish it tasted of something.</li>
+      </warm>
+      <blunt>
+        <li>[agree,against] It was slop.</li>
+        <li>[argue,for] Stop moaning and eat.</li>
+      </blunt>
+      <cheerful>
+        <li>[debate,for] I'll eat yours if you don't want it.</li>
+        <li>[agree,against] I'm planning an escape, to anywhere with spices.</li>
+      </cheerful>
+      <gloomy>
+        <li>[agree,against] It's never going to get better, either.</li>
+      </gloomy>
+      <cold>
+        <li>[debate,against] Nutritious, perhaps, but not good.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Food_Close</defName>
+    <topic>Rimfolk_Topic_Food</topic>
+    <turn>Close</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree,for] Let's go and get some before it's gone.</li>
+        <li>[agree,against] Maybe the council could do something about it.</li>
+        <li>[debate] Well, there's always tomorrow's meal.</li>
+        <li>[argue,for] Go hungry, then.</li>
+        <li>[argue,against] Enjoy your slop, then.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Food_Tease</defName>
+    <topic>Rimfolk_Topic_Food</topic>
+    <turn>Open</turn>
+    <outcomes><li>Tease</li></outcomes>
+    <lines>
+      <plain>
+        <li>[otherfor] {OTHER} would call a boiled boot "rustic".</li>
+        <li>[otheragainst] Look out, {OTHER} has a new complaint about the stew.</li>
+        <li>[otheragainst] {OTHER} sniffs every bowl like it owes money.</li>
+      </plain>
+      <cheerful>
+        <li>[otherfor] I've seen {OTHER} lick the pot, I'm not saying a word.</li>
+      </cheerful>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Work_Open</defName>
+    <topic>Rimfolk_Topic_Work</topic>
+    <turn>Open</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[for] Everyone's working hard, I'll give us that.</li>
+        <li>[for] We get more done here than anywhere I've lived.</li>
+        <li>[for] It's honest work, and there's plenty of it.</li>
+        <li>[for,subject] Leave {SUBJECT} alone; everyone does what they can.</li>
+        <li>[for,strong] I like a hard day; you sleep better for it.</li>
+        <li>[against] Some people here do a lot less than others.</li>
+        <li>[against] I've been at it since dawn, and some people are only just getting up.</li>
+        <li>[against] Have you noticed who's always resting when there's hauling to do?</li>
+        <li>[against,subject] Has anyone seen {SUBJECT} lift a finger today?</li>
+        <li>[against,strained] I can't keep this up, there's too much to do and too few doing it.</li>
+        <li>[against,strong] If one more person sits down while I'm carrying stone, I'll lose it.</li>
+        <li>[mixed] Some days I think we work too hard, and some days not hard enough.</li>
+      </plain>
+      <warm>
+        <li>[for] I'm proud of how hard everyone works, I really am.</li>
+        <li>[against,strained] I'm worried about everyone, we're all so tired.</li>
+        <li>[for,subject] {SUBJECT} has their own troubles, I'm sure; let's not judge.</li>
+      </warm>
+      <blunt>
+        <li>[against] Lazy, some of them, that's the word.</li>
+        <li>[against,subject] {SUBJECT} is dead weight.</li>
+        <li>[for] Anyone who thinks we don't work hard can try my shift.</li>
+      </blunt>
+      <cheerful>
+        <li>[for] I've worked so hard today my hands have stopped talking to me.</li>
+        <li>[against] I'm going to start charging people for every crate I carry.</li>
+      </cheerful>
+      <gloomy>
+        <li>[against] It'll be me doing it in the end, it always is.</li>
+        <li>[against,strained] We'll work ourselves into the ground and nobody will notice.</li>
+      </gloomy>
+      <cold>
+        <li>[against] The work is not shared evenly.</li>
+        <li>[for] The work is getting done, that's what matters.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Work_Reply</defName>
+    <topic>Rimfolk_Topic_Work</topic>
+    <turn>Reply</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree,for] I've no complaints, we're a good crew.</li>
+        <li>[agree,against] You're not the only one who's noticed.</li>
+        <li>[agree,against,slacker] Somebody should say something to them.</li>
+        <li>[agree,against,strained] I've been dead on my feet for days.</li>
+        <li>[debate,against] Most, maybe, but not all.</li>
+        <li>[debate,against] I'd say some work harder than others, that's all.</li>
+        <li>[debate,for] People have their reasons; not everyone's built for hauling.</li>
+        <li>[debate,for] Everyone pulls in their own way, you just don't see it.</li>
+        <li>[argue,against] Easy to say when you don't do any.</li>
+        <li>[argue,for] Maybe if you spent less time counting other people's work.</li>
+        <li>[argue,for,toslacker] I heard that, and I work as hard as anyone.</li>
+        <li>[argue,against,toslacker] Look who's talking.</li>
+      </plain>
+      <warm>
+        <li>[debate,for] Let's not start blaming each other, we're all tired.</li>
+      </warm>
+      <blunt>
+        <li>[agree,against] Some of them need a kick.</li>
+        <li>[argue,for] Mind your own business.</li>
+      </blunt>
+      <cheerful>
+        <li>[agree,for] Dream team, that's us.</li>
+      </cheerful>
+      <cold>
+        <li>[debate,against] I keep a tally, if you want to see it.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Work_Close</defName>
+    <topic>Rimfolk_Topic_Work</topic>
+    <turn>Close</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree] Back to it, then.</li>
+        <li>[debate] Well, the work won't do itself.</li>
+        <li>[argue,against] Fine, I'll do it myself, as usual.</li>
+        <li>[argue,for] Go and count someone else's crates.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Work_Tease</defName>
+    <topic>Rimfolk_Topic_Work</topic>
+    <turn>Open</turn>
+    <outcomes><li>Tease</li></outcomes>
+    <lines>
+      <plain>
+        <li>[otheragainst] {OTHER} has a list of everyone's breaks, with times.</li>
+        <li>[otherfor] {OTHER} thinks a nap counts as a shift.</li>
+      </plain>
+      <cheerful>
+        <li>[otheragainst] Careful, {OTHER} is keeping score again.</li>
+      </cheerful>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Animals_Open</defName>
+    <topic>Rimfolk_Topic_Animals</topic>
+    <turn>Open</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[for] The animals are the best thing about this place, honestly.</li>
+        <li>[for] I talk to the animals more than to people, some days.</li>
+        <li>[for] An animal never lies to you, or asks for anything it doesn't need.</li>
+        <li>[for,bonded,subject] {SUBJECT} slept on my feet last night, every last bit of them.</li>
+        <li>[for,bonded] I'd go back into a fire for my animal, you know.</li>
+        <li>[for,noanimals] We should get some animals, it'd make this feel like a home.</li>
+        <li>[for,strong] Anyone who hurts an animal answers to me.</li>
+        <li>[against] Animals eat more than they're worth, if you ask me.</li>
+        <li>[against] I've cleaned up after the animals three times today.</li>
+        <li>[against] An animal's an animal, it's food or it's work.</li>
+        <li>[against,bonded] I don't see why people get so attached.</li>
+        <li>[against,strong] Every beast in this colony is one bad day from the cooking pot.</li>
+        <li>[mixed] I like the animals, I just don't like cleaning up after them.</li>
+      </plain>
+      <warm>
+        <li>[for] The little one this morning, I could have cried.</li>
+        <li>[for,bonded] I don't know what I'd do without my animal.</li>
+      </warm>
+      <blunt>
+        <li>[against] Too many animals, not enough sense.</li>
+        <li>[for] People who hurt animals are the worst kind.</li>
+      </blunt>
+      <cheerful>
+        <li>[for] I've named every chicken; one of them is named after you.</li>
+        <li>[against] The goat ate my hat again, I'm declaring war.</li>
+      </cheerful>
+      <gloomy>
+        <li>[against] We'll grow fond of them, and then they'll die.</li>
+      </gloomy>
+      <cold>
+        <li>[against] Animals are a resource, nothing more.</li>
+        <li>[for] Animals are useful, and the useful ones should be kept well.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Animals_Reply</defName>
+    <topic>Rimfolk_Topic_Animals</topic>
+    <turn>Reply</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree,for] They're family, plain and simple.</li>
+        <li>[agree,for] I'd trust some of them more than some of us.</li>
+        <li>[agree,against] I've had enough of the smell, I'll tell you that.</li>
+        <li>[debate,against] Nice enough, but they're animals, not people.</li>
+        <li>[debate,for] Livestock, maybe, but you can still be kind to them.</li>
+        <li>[argue,against] You'd let them sleep in the beds if you could.</li>
+        <li>[argue,for] Heartless, that's what you are.</li>
+        <li>[argue,for,bonded] Say that again in front of my animal.</li>
+      </plain>
+      <warm>
+        <li>[agree,for] They make the hard days softer.</li>
+      </warm>
+      <blunt>
+        <li>[argue,against] Sentimental rubbish.</li>
+      </blunt>
+      <cheerful>
+        <li>[debate,for] The goat disagrees with you, and so do I.</li>
+      </cheerful>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Animals_Close</defName>
+    <topic>Rimfolk_Topic_Animals</topic>
+    <turn>Close</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree] I'll go and see to them, then.</li>
+        <li>[debate] Come and meet them properly, you'll change your mind.</li>
+        <li>[argue,for] Keep away from the animals, then.</li>
+        <li>[argue,against] Kiss your goat goodnight for me.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Animals_Tease</defName>
+    <topic>Rimfolk_Topic_Animals</topic>
+    <turn>Open</turn>
+    <outcomes><li>Tease</li></outcomes>
+    <lines>
+      <plain>
+        <li>[otherfor] Did {OTHER} just say goodnight to a chicken?</li>
+        <li>[otheragainst] {OTHER} and the goat have a feud, it's very serious.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Weather_Open</defName>
+    <topic>Rimfolk_Topic_Weather</topic>
+    <turn>Open</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[for] Weather's weather, there's no sense fretting about it.</li>
+        <li>[for,rain] I don't mind the rain; the fields need it.</li>
+        <li>[for,snow] There's something peaceful about the snow, isn't there.</li>
+        <li>[for,clear] What a day, look at that sky.</li>
+        <li>[for,winter] Winter's not so bad when there's a fire and a full store.</li>
+        <li>[for,summer] I love the long evenings this time of year.</li>
+        <li>[for,disaster,subject] We'll get through {SUBJECT}; we've got through worse.</li>
+        <li>[against] I hate this weather, I hate it.</li>
+        <li>[against,rain] It's rained for days, and I'm wet to the bone.</li>
+        <li>[against,snow] I can't feel my feet, and the snow just keeps coming.</li>
+        <li>[against,cold] It's so cold my teeth won't stop.</li>
+        <li>[against,hot] It's too hot to think, let alone work.</li>
+        <li>[against,storm] This storm is going to take the roof off, you watch.</li>
+        <li>[against,disaster,subject] {SUBJECT} is going to be the end of us.</li>
+        <li>[against,winter] I hate winter, I hate every day of it.</li>
+        <li>[mixed] I can't decide if I like this season or not.</li>
+      </plain>
+      <warm>
+        <li>[for] Come and sit by the fire, the weather can wait.</li>
+        <li>[against,cold] It's bitter out there, are you warm enough?</li>
+      </warm>
+      <blunt>
+        <li>[against] Stupid weather.</li>
+        <li>[for] It's only weather, stop whining.</li>
+      </blunt>
+      <cheerful>
+        <li>[for,rain] Rain! Free bath for everyone.</li>
+        <li>[against,snow] If it snows any more I'm going to hibernate.</li>
+        <li>[for,storm] I love a good storm, it's the sky having a tantrum.</li>
+      </cheerful>
+      <gloomy>
+        <li>[against] The weather's turning, and so will our luck.</li>
+        <li>[against,clear] Lovely day, it'll rain tomorrow.</li>
+        <li>[for,disaster] It's bad, but at least it's the same for all of us.</li>
+      </gloomy>
+      <cold>
+        <li>[against] This weather costs us work days.</li>
+        <li>[for] The weather is what it is.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Weather_Reply</defName>
+    <topic>Rimfolk_Topic_Weather</topic>
+    <turn>Reply</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree,for] It'll pass, it always does.</li>
+        <li>[agree,for] I like it, to be honest.</li>
+        <li>[agree,against] Worst I've known it.</li>
+        <li>[agree,against,disaster] I don't like it either, it feels wrong.</li>
+        <li>[debate,against] Easy to say when you're inside all day.</li>
+        <li>[debate,for] Could be worse; could be raining fire.</li>
+        <li>[argue,against] You'd say that in a blizzard.</li>
+        <li>[argue,for] Moaning won't make the sun come out.</li>
+      </plain>
+      <warm>
+        <li>[agree,for] Let's get something hot to drink and watch it from the window.</li>
+      </warm>
+      <cheerful>
+        <li>[debate,for] Weather's the only thing in this colony that never asks for a raise.</li>
+      </cheerful>
+      <gloomy>
+        <li>[agree,against] It'll get worse before it gets better.</li>
+      </gloomy>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Weather_Close</defName>
+    <topic>Rimfolk_Topic_Weather</topic>
+    <turn>Close</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree] Let's get inside, then.</li>
+        <li>[debate] Ask me again tomorrow.</li>
+        <li>[argue] Enjoy it, then.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Weather_Tease</defName>
+    <topic>Rimfolk_Topic_Weather</topic>
+    <turn>Open</turn>
+    <outcomes><li>Tease</li></outcomes>
+    <lines>
+      <plain>
+        <li>[otheragainst] {OTHER} takes the weather personally, have you noticed?</li>
+        <li>[otherfor] {OTHER} would call a hurricane "brisk".</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+</Defs>

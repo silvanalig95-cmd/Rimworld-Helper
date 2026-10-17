@@ -50,6 +50,7 @@ namespace ColonyCouncil
 
         public static void Postfix(Pawn __instance, Map __state)
         {
+            TalkHooks.Killed(__instance, __state);
             if (__state == null || __instance == null || !__instance.Dead) return;
             try
             {
@@ -71,6 +72,7 @@ namespace ColonyCouncil
             {
                 WorldReactions.Wedding(firstPawn, secondPawn);
                 VisualTouches.Wedding(firstPawn, secondPawn);
+                TalkHooks.Wedding(firstPawn, secondPawn);
             }
             catch (System.Exception e)
             {
@@ -87,6 +89,7 @@ namespace ColonyCouncil
             try
             {
                 if (__result is Pawn baby) WorldReactions.Birth(baby, geneticMother, father);
+                if (__result is Pawn born) TalkHooks.Birth(born, geneticMother, father);
             }
             catch (System.Exception e)
             {
@@ -113,6 +116,7 @@ namespace ColonyCouncil
             try
             {
                 WorldReactions.Homecoming(__state);
+                TalkHooks.Homecoming(__state);
             }
             catch (System.Exception e)
             {
@@ -131,6 +135,7 @@ namespace ColonyCouncil
             try
             {
                 WorldReactions.Breakdown(___pawn, stateDef);
+                TalkHooks.Breakdown(___pawn, stateDef);
             }
             catch (System.Exception e)
             {

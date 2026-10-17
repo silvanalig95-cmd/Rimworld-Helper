@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    A small mishap between two colonists that becomes an in-joke between them (a shared memory, Social/Talk/): it comes
+    back in their conversations, funnier each time for a while, then worn thin. Only on a wet day (roleA tags).
+  -->
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Rimfolk_Soc_Mud</defName>
+    <label>down in the mud</label>
+    <tone>warm</tone>
+    <weight>0.5</weight>
+    <minOpinion>0</minOpinion>
+    <roleA><tags>rain|snow</tags></roleA>
+    <texts>
+      <li>{B_nameDef} slipped in the mud, grabbed {A_nameDef} on the way down, and they both ended up sitting in it, laughing too hard to get up.</li>
+      <li>{A_nameDef} reached out to steady {B_nameDef} on the wet path and they went down together, face first, in front of everyone.</li>
+      <li>{B_nameDef} lost a boot to the mud, and {A_nameDef} lost {A_possessive} dignity pulling it out.</li>
+      <li>{A_nameDef} and {B_nameDef} came in from the yard caked to the knees, and neither would say who fell first.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Soc_Laughed</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_SharedMemory"><memory>Rimfolk_Mem_Mud</memory><label>the mud</label></li>
+    </effects>
+    <changeTie>Friends</changeTie>
+    <change>3</change>
+    <note>went down in the mud together</note>
+  </ColonyCouncil.SocialEventDef>
+
+</Defs>
