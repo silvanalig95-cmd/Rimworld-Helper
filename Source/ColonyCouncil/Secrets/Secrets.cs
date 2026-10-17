@@ -275,11 +275,11 @@ namespace ColonyCouncil
             Together.WhenInCompany("secretout|" + owner.thingIDNumber, speaker, heard =>
             {
                 if (!secrets.Contains(s) || s.revealed || owner.Dead || speaker.Dead) return;
-                // In the speaker's voice ({PAWN} in the pools; the slip's pool names the owner OWNER), else the keyed line.
+                // In the speaker's voice ({PAWN} in the pools; the slip's pool names the owner ABOUT), else the keyed line.
                 string line = confession
                     ? Interplay.Line("Council_Pool_Together_SecretConfessed", owner, null, heard.Named("OTHER"))
                       ?? "CC_Together_SecretConfessed".Translate(owner.Named("PAWN"), heard.Named("OTHER")).Resolve()
-                    : Interplay.Line("Council_Pool_Together_SecretSlipped", speaker, null, heard.Named("OTHER"), owner.Named("OWNER"))
+                    : Interplay.Line("Council_Pool_Together_SecretSlipped", speaker, null, heard.Named("OTHER"), owner.Named("ABOUT"))
                       ?? "CC_Together_SecretSlipped".Translate(speaker.Named("LEAKER"), heard.Named("OTHER"), owner.Named("PAWN")).Resolve();
                 SocialLog.Add(speaker, heard, line);
                 Reveal(comp, s, speaker);

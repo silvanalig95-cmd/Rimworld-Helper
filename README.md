@@ -1846,7 +1846,9 @@ clipboard" button) says most of what a bug report needs.
   together, else waiting a day or two, optionally with a walk over for a word), and every line a colonist says through
   `Speech.Say` (Immersion/Speech.cs), never `MoteMaker.ThrowText` or the play log directly; `Tools/Tests` checks the
   latter. `python3 Tools/interaction_audit.py` (`--open`, `--summary`) lists every place two people interact and how
-  each is held to it; a place that rightly happens apart says so in a `// apart:` comment.
+  each is held to it; a place that rightly happens apart says so in a `// apart:` comment. What is said when two meet
+  (a secret confided, a mentor thanked, the physician's rounds, the marshal's word) comes from a pool in the speaker's
+  voice (`Defs/FlavorPoolDefs/Rimfolk_Pools_Together.xml`), with a keyed line as the fallback.
 - `Source/ColonyCouncil/UI/UiKit.cs`: the small interface kit every council page is drawn with (colors, spacing,
   page headers, cards, tags, meters, portraits). New pages should use it so they look like the rest.
 - `Tools/make_icons.py`: draws the interface icons into `Textures/ColonyCouncil/Icons/` and a contact sheet of

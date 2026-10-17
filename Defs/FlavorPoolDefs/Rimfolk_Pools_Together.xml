@@ -53,35 +53,35 @@
   </ColonyCouncil.FlavorPoolDef>
 
   <!-- Someone who knows lets a secret slip to whoever is with them. {PAWN} the one who let it slip, {OTHER} who heard,
-       {OWNER} whose secret it was. -->
+       {ABOUT} whose secret it was. -->
   <ColonyCouncil.FlavorPoolDef>
     <defName>Council_Pool_Together_SecretSlipped</defName>
     <lines>
       <plain>
-        <li>{PAWN_nameDef} said too much to {OTHER_nameDef} about {OWNER_nameDef}, and saw it too late.</li>
-        <li>{PAWN_nameDef} let something about {OWNER_nameDef} slip to {OTHER_nameDef}, and couldn't take it back.</li>
-        <li>{PAWN_nameDef} was halfway through a story for {OTHER_nameDef} when {OWNER_nameDef}'s secret came out with it.</li>
-        <li>{OTHER_nameDef} heard something about {OWNER_nameDef} from {PAWN_nameDef} that was never meant to be told.</li>
+        <li>{PAWN_nameDef} said too much to {OTHER_nameDef} about {ABOUT_nameDef}, and saw it too late.</li>
+        <li>{PAWN_nameDef} let something about {ABOUT_nameDef} slip to {OTHER_nameDef}, and couldn't take it back.</li>
+        <li>{PAWN_nameDef} was halfway through a story for {OTHER_nameDef} when {ABOUT_nameDef}'s secret came out with it.</li>
+        <li>{OTHER_nameDef} heard something about {ABOUT_nameDef} from {PAWN_nameDef} that was never meant to be told.</li>
       </plain>
       <warm>
-        <li>{PAWN_nameDef} meant no harm, but what {PAWN_pronoun} told {OTHER_nameDef} about {OWNER_nameDef} wasn't {PAWN_possessive} to tell.</li>
-        <li>{PAWN_nameDef} told {OTHER_nameDef} about {OWNER_nameDef} out of worry, and was sorry at once.</li>
+        <li>{PAWN_nameDef} meant no harm, but what {PAWN_pronoun} told {OTHER_nameDef} about {ABOUT_nameDef} wasn't {PAWN_possessive} to tell.</li>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} about {ABOUT_nameDef} out of worry, and was sorry at once.</li>
       </warm>
       <blunt>
-        <li>{PAWN_nameDef} told {OTHER_nameDef} what {OWNER_nameDef} had been hiding, and didn't seem sorry.</li>
-        <li>{PAWN_nameDef} blurted out {OWNER_nameDef}'s secret to {OTHER_nameDef} in the middle of an argument.</li>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} what {ABOUT_nameDef} had been hiding, and didn't seem sorry.</li>
+        <li>{PAWN_nameDef} blurted out {ABOUT_nameDef}'s secret to {OTHER_nameDef} in the middle of an argument.</li>
       </blunt>
       <cheerful>
-        <li>{PAWN_nameDef} was in a chatty mood and told {OTHER_nameDef} more about {OWNER_nameDef} than {PAWN_pronoun} should.</li>
-        <li>{PAWN_nameDef} got carried away telling {OTHER_nameDef} a story, and {OWNER_nameDef}'s secret was in it.</li>
+        <li>{PAWN_nameDef} was in a chatty mood and told {OTHER_nameDef} more about {ABOUT_nameDef} than {PAWN_pronoun} should.</li>
+        <li>{PAWN_nameDef} got carried away telling {OTHER_nameDef} a story, and {ABOUT_nameDef}'s secret was in it.</li>
       </cheerful>
       <gloomy>
-        <li>{PAWN_nameDef}, low and tired, told {OTHER_nameDef} what {OWNER_nameDef} had asked {PAWN_objective} to keep.</li>
-        <li>{PAWN_nameDef} let {OWNER_nameDef}'s secret out to {OTHER_nameDef} on a bad day, and knew it straight away.</li>
+        <li>{PAWN_nameDef}, low and tired, told {OTHER_nameDef} what {ABOUT_nameDef} had asked {PAWN_objective} to keep.</li>
+        <li>{PAWN_nameDef} let {ABOUT_nameDef}'s secret out to {OTHER_nameDef} on a bad day, and knew it straight away.</li>
       </gloomy>
       <cold>
-        <li>{PAWN_nameDef} told {OTHER_nameDef} {OWNER_nameDef}'s secret as if it were a remark about the weather.</li>
-        <li>{PAWN_nameDef} passed {OWNER_nameDef}'s secret on to {OTHER_nameDef}, plainly and on purpose.</li>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} {ABOUT_nameDef}'s secret as if it were a remark about the weather.</li>
+        <li>{PAWN_nameDef} passed {ABOUT_nameDef}'s secret on to {OTHER_nameDef}, plainly and on purpose.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
