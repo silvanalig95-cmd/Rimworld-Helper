@@ -185,7 +185,7 @@ namespace ColonyCouncil
                 int n = count > 0 ? count : Math.Max(1, ctx.count);
                 var dm = ctx.map.designationManager;
                 var pick = AnimalFacts.Herd(ctx.map)
-                    .Where(a => PetTracker.PersonOf(a) == null && (a.Name == null || a.Name.Numerical) && dm.DesignationOn(a) == null && !AnimalFacts.Pregnant(a))
+                    .Where(a => PetTracker.PersonOf(a) == null && (a.Name == null || a.Name.Numerical) && dm.DesignationOn(a) == null && !AnimalFacts.Pregnant(a) && !a.IsQuestLodger())
                     .OrderByDescending(a => AnimalFacts.Young(a) ? 0f : 1f + AnimalFacts.LifeShare(a))
                     .Take(n).ToList();
                 if (pick.Count == 0) return;
@@ -216,12 +216,16 @@ namespace ColonyCouncil
             {
                 int n = count > 0 ? count : Math.Max(1, ctx.count);
                 var pick = AnimalFacts.Herd(ctx.map)
-                    .Where(a => PetTracker.PersonOf(a) == null && (a.Name == null || a.Name.Numerical) && !AnimalFacts.Pregnant(a))
+                    .Where(a => PetTracker.PersonOf(a) == null && (a.Name == null || a.Name.Numerical) && !AnimalFacts.Pregnant(a) && !a.IsQuestLodger())
                     .OrderByDescending(AnimalFacts.LifeShare).Take(n).ToList();
+                int now = Find.TickManager.TicksGame;
                 foreach (var a in pick)
                 {
                     a.jobs?.StopAll();
                     a.SetFaction(null);
+                    // Walked out past the fields: they move on within the day (the game's own timed leaving, as a beast
+                    // passing through has) rather than stay wild at the gate, grazing the colony's crops.
+                    if (a.mindState != null) a.mindState.exitMapAfterTick = now + Rand.Range(GenDate.TicksPerHour * 3, GenDate.TicksPerDay);
                 }
                 if (pick.Count > 0)
                     Messages.Message("CC_Dlm_TurnedOut".Translate(pick.Count).Resolve(), new LookTargets(pick), MessageTypeDefOf.NegativeEvent, false);

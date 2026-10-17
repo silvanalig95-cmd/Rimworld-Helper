@@ -69,12 +69,15 @@ namespace ColonyCouncil
                 known.Clear();
                 looked = false;
             }
+            var here = new List<int>();
             foreach (var map in Find.Maps)
             {
                 if (!map.IsPlayerHome) continue;
                 foreach (var a in map.mapPawns.SpawnedColonyAnimals.ToList())
                 {
-                    if (a == null || !known.Add(a.thingIDNumber) || !looked) continue;
+                    if (a == null) continue;
+                    here.Add(a.thingIDNumber);
+                    if (!known.Add(a.thingIDNumber) || !looked) continue;
                     if (!AnimalFacts.Newborn(a)) continue;
                     var mother = a.GetMother();
                     if (mother == null || mother.Faction != Faction.OfPlayer) continue;
@@ -82,7 +85,12 @@ namespace ColonyCouncil
                 }
             }
             looked = true;
-            if (known.Count > 4000) known.Clear();
+            // Let go of the long-gone, but keep the ones here now: this day's newborns aren't announced again next hour.
+            if (known.Count > 4000)
+            {
+                known.Clear();
+                foreach (int id in here) known.Add(id);
+            }
         }
 
         private static void Born(CouncilGameComponent comp, Pawn baby, Pawn mother)

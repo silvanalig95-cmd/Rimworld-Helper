@@ -233,6 +233,16 @@ namespace ColonyCouncil
             foreach (var thing in pt.cell.GetThingList(map))
                 if (SameBuild(thing, pt.def) || (role == "wall" && (thing is Blueprint_Build || thing is Frame) && thing.def.entityDefToBuild is ThingDef td && TemplatePlanner.IsWallLike(td)))
                     return PieceState.Present;
+            // Nothing can be built this close to the map's edge: no rock is dug and nothing taken down for a piece that
+            // could never go there (the game would refuse its blueprint once the way was clear).
+            foreach (var c in pt.rect)
+            {
+                if (c.InNoBuildEdgeArea(map))
+                {
+                    reason = "CC_Plan_Block_Edge".Translate();
+                    return PieceState.Blocked;
+                }
+            }
             foreach (var c in pt.rect)
             {
                 var ed = c.GetEdifice(map);
