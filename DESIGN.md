@@ -364,6 +364,29 @@ and news for turning points.
 - **The page.** StoryView draws the sections of `CharacterPage` (character 10, what shaped them 20, then the other parts'),
   with eight bars and per-side tooltips worked out the same way as nature. With social life off only nature shows.
 
+### Traits that change
+The game's traits can grow, appear or fade at the end of a stretch of life the player can read (`Persona/TraitChanges.cs`,
+`TraitChangeMath.cs`). Each rule is a `TraitChangeDef`: a trait, gain, loss or a step of one degree (through none, so a
+nervous colonist steadies to no nerves trait before steadfast), and what it asks for: marks (defNames, families or
+stories), sides moved from nature (lasting plus fading) and where they stand, deeds counted on separate occasions, the
+game's records, a share of time from record snapshots every ten days, calm days, skills; guards for DLC, mods and tech.
+
+- **Rare.** Checked in the council's day: when the colony has had no change for 10 days, every rule that holds for a
+  colonist rolls its chance (3 to 15% a day) and one of those that come up happens. Nobody twice in 60 days; the same
+  trait in a person waits its rule's gap (90 to 150 days). Only marks and deeds since that trait last changed count,
+  so a stretch of life earns one change. Psychopath and cannibal need an extreme history and come once per colony.
+- **Never touched.** Sexuality, the body and inborn gifts (`TraitChangeMath.Untouchable`), traits from genes, a
+  backstory or the scenario, suppressed traits, a faith role whose requirements speak of traits. The game's conflicts,
+  exclusion tags, conflicting passions, backstory and gene rules hold; nobody gains past four traits.
+- **Nothing doubles.** Nature is read from traits, so the shift a trait brings (worked out from nature before and after)
+  is taken out of the person's moves, the fading part first, then the lasting part (`TraitChangeMath.Absorb`): every
+  side stays put and the change is now held for good. A loss gives the shift back the same way.
+- **Ways in.** The daily pass (one line in `CouncilDynamics.DailySecond`), the memory hook it shares with marks (one
+  line), a postfix on `HistoryEventsManager.RecordEvent` for deeds with a doer, and the day's tales for executions.
+- **Told.** A letter (good, bad or neither by rule) with the news, what it means and what led to it with dates, a
+  journal line by tone, the chronicle, "Traits gained and lost" (page section 25) and a line in each side's tooltip
+  for what went into a trait. Setting "Traits can change", under social life.
+
 ## Real effects: answers that play out on the map
 
 A dilemma's answer, an event's answer or a calendar day used to give moods and a message and nothing else: "a victory
@@ -1259,7 +1282,7 @@ fights pass and the worn-out episode read from it. (A downed victim after a figh
 | 327 | A camp's hour (only while a camp is there) | the camp's members, trade, fees, its day's event |
 | 502 | Council's day, first half (first hour of the day only): trust, standards, decree trust and petitions, anniversaries, names, journals, offices | per colonist (their memories, for the journal) |
 | 677 | Health stories, the colony's part (with convalescence or reputation on): the cases of dangerous illness; pruning in the first hour of the day | per case (each colonist's part runs in its slice, below) |
-| 852 | Council's day, second half (first hour of the day only): the social web, social events, life goals, secrets, vendettas, quirks, legacy, the colony's ways, marks on people's characters (illness, hunger, addiction, mastery, faith, peace), the links between systems (the physician's rounds, the herdmaster, setbacks counted), the day's history sample, trust effects, bitter colonists | per pair of colonists (opinions, ties, circles), per colonist and quirk def |
+| 852 | Council's day, second half (first hour of the day only): the social web, social events, life goals, secrets, vendettas, quirks, legacy, the colony's ways, marks on people's characters (illness, hunger, addiction, mastery, faith, peace), traits that change (the watches, then at most one change), the links between systems (the physician's rounds, the herdmaster, setbacks counted), the day's history sample, trust effects, bitter colonists | per pair of colonists (opinions, ties, circles), per colonist and quirk def |
 | 917 | Links with other mods (only with one there): water and mending for strain and recovery | per colonist |
 | 1027 | Council: ambitions, personal touches, dilemmas, annals, dreams, quirks | the ambition's goals on its map; per colonist (asleep or waking; a dream weighs every dream def for the one waking) |
 | 1203 | World situations | per running situation (at most two); a new one rolls now and then |
@@ -1379,6 +1402,7 @@ on a map, in the world or in a caravan), so such a record is let go when the gam
 | Decrees, dilemmas, offices, names, encounters, ambitions | one entry per def, office or title |
 | Heart | one per colonist, the gone dropped hourly |
 | Character marks | 12 marks per person (small ones go first, each let go after its keeping, turning points three times as long); what the marks watch: per person, the last 8 fights won (a year), their addictions and their last breakdown (5 days), known pawns only; skills mastered: known pawns, 800 at most |
+| Traits that change | changes made: known pawns only, 8 per person, 200 in all; what each colonist is watched for: deeds counted 240 days (12 per kind), 10 snapshots of a few records, when they were last unsettled; the once-in-a-colony changes (2 keys) |
 | Ailments | by pawn: last ailments 120 days, known pawns only; by hediff: only hediffs colonists still have |
 | Health stories | healers, beds, convalescence: known pawns only; losses 30 days; tends 3 days; setbacks and trust lines 20 days; visits 30 days; cases while the patient lives |
 | Calendar | at most 12 days written by the colony and 8 named by the player (traditions and the founding day stay); days about people who are gone let go; days taken off by hand grow only with the player's clicks |

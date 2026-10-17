@@ -472,6 +472,24 @@ where they are now (hover for every trait and mark that moved it), and "what sha
 first. A setting ("Personalities and social life") turns it all off; the Almanac pages "character" and "what shapes
 a person" explain it.
 
+### Traits that change
+Rarely, a long stretch of the same kind of life reaches the game's own traits. 36 rules: nerves steady to steadfast
+and then iron-willed after raid after raid held, or fray to nervous and volatile after breaking under fire, captivity
+and loss, and a volatile temper softens after two calm years; an optimist darkens after a year of graves and a
+pessimist brightens after a good stretch; kindness appears after many kindnesses, abrasiveness, greed and a wimp's
+weakness fade; an ascetic after hardship, jealousy after vote on lost vote, a brawler in a melee fighter, rare
+bloodlust in a cold killer, an undergrounder who hardly sees the sky; harder work after two seasons of barely
+stopping (by the game's record of time at recreation) and idleness after the opposite; an addiction beaten makes a
+teetotaler; a recluse (Biotech), void fascination (Anomaly) and an ascetic of the faith (Ideology); six for Vanilla
+Traits Expanded and RimTraits. A psychopath or a cannibal comes only from an extreme history (executions by their own
+hand with warmth and trust driven down by loss and betrayal; human flesh eaten three separate times while starving),
+once in a colony's life each. Every change brings a letter that tells what led to it, with the dates of the marks and
+deeds behind it, a journal line in the colonist's voice and a chronicle entry, and it stays on the character page
+under "Traits gained and lost". At most one change per colonist in 60 days and one in the colony in 10; sexuality,
+the body and traits from genes or a backstory never change, and the game's trait conflicts always hold. Their
+character doesn't jump: the trait takes the place of the change that earned it. A setting ("Traits can change")
+turns it off; the Almanac page "traits that change" lists every rule.
+
 ### Life goals
 A few days after settling in, each colonist sets their heart on something to do before they die: master a craft,
 marry for love, have a child, find three true friends, train a student until they can stand alone, make peace with
