@@ -40,7 +40,7 @@ namespace ColonyCouncil
             var camp = CampTracker.Enabled ? CampTracker.Instance?.camp : null;
             if (camp == null || camp.map != map || !camp.Settled || !camp.CanTalk) return null;
             return camp.members.Where(p => p != null && p.Spawned && p.Map == map && !p.Dead && !p.Downed && p != camp.leader && p.RaceProps.Humanlike
-                                            && !p.DevelopmentalStage.Baby()).RandomElementWithFallback();
+                                            && !p.DevelopmentalStage.Juvenile()).RandomElementWithFallback();
         }
 
         protected override bool Cast(HappeningContext ctx, HappeningExtension ext)
