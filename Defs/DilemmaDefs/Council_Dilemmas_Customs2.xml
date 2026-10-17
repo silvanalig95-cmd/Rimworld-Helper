@@ -290,6 +290,7 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Trad_HighWatch</thought><chance>0.4</chance></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>1</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Procession"><label>the climb at sunset</label><count>4</count><hours>17~20</hours><duration>1.5~2</duration></li>
         </effects>
       </li>
       <li>

@@ -1478,6 +1478,7 @@
         <ways><tradition>1</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmL_SentToPlay</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Rest"><target>A</target></li>
         </effects>
       </li>
     </options>
