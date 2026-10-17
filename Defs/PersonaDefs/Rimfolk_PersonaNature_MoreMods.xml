@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    A few more mods in the player's lists whose traits say something about a person (Source/ColonyCouncil/Persona/):
+    Medieval Overhaul's fighter and veteran, Vanilla Ideology Expanded - Memes' elder, Alpha Memes' vow of
+    nonviolence and Alpha Genes' unnatural beauty. Trait defNames from each mod's own 1.6 TraitDefs; without the mod
+    they are simply skipped.
+  -->
+
+  <ColonyCouncil.PersonaNatureDef>
+    <defName>Rimfolk_Nature_MoreMods</defName>
+    <label>other mods' traits</label>
+    <traits>
+      <!-- Medieval Overhaul (dankpyon.medieval.overhaul) -->
+      <li><trait>DankPyon_Fighter</trait><nerve>20</nerve><temper>10</temper></li>
+      <li><trait>DankPyon_Veteran</trait><nerve>30</nerve><outlook>-10</outlook><warmth>-5</warmth></li>
+      <!-- Vanilla Ideology Expanded - Memes (vanillaexpanded.vmemese) -->
+      <li><trait>VME_Elder</trait><openness>-15</openness><pride>5</pride><nerve>5</nerve></li>
+      <!-- Alpha Memes (sarg.alphamemes) -->
+      <li><trait>AM_Ahimsa</trait><warmth>15</warmth><temper>-20</temper></li>
+      <!-- Alpha Genes (sarg.alphagenes) -->
+      <li><trait>AG_Beauty</trait><degree>2</degree><pride>20</pride></li>
+      <li><trait>AG_Beauty</trait><degree>-2</degree><pride>-10</pride><outlook>-10</outlook></li>
+    </traits>
+  </ColonyCouncil.PersonaNatureDef>
+
+</Defs>

@@ -403,6 +403,8 @@ wishPh.Add("GATHERING");
 // Animals and PokéWorld (Animals/, Integrations/PokeWorldLife.cs): an animal's kind, a species, and an evolution's
 // species before and after, and the level a Pokémon reached.
 wishPh.UnionWith(new[] { "KIND", "SPECIES", "OLD", "NEW", "LEVEL" });
+// Characters (Persona/): what a mark was about, and the other person in it by name (Persona.Shaped, PersonaMarks).
+wishPh.UnionWith(new[] { "LABEL", "OTHER" });
 var pawnPrefixes = new HashSet<string> { "PAWN", "FOR", "OTHER", "ENVIED", "ABOUT", "A", "B", "PET", "LEAKER", "TELLER", "X", "SLAYER", "BABY", "THIRD" };
 // The colonist a people remembers by name (World/KinMemory.cs: events, world events, camps).
 pawnPrefixes.Add("FRIEND");

@@ -37,8 +37,8 @@ namespace ColonyCouncil
         public const float Max = 100f;
         /// <summary>How far what happens can move a person, on top of their nature: lasting marks and fading drift each.</summary>
         public const float MaxLasting = 40f, MaxDrift = 50f;
-        /// <summary>Drift halves in this many days without anything renewing it: a hard season is felt for a year or so.</summary>
-        public const float DriftHalfLifeDays = 240f;
+        /// <summary>Drift halves in this many days (a year and a half) without anything renewing it: a hard season is felt for a year or two.</summary>
+        public const float DriftHalfLifeDays = 90f;
         /// <summary>Where a side starts to show (a tag, a word) and where it's strong.</summary>
         public const float Shows = 30f, Strong = 60f;
         /// <summary>A stance on a topic, from against (-1) to for (+1).</summary>

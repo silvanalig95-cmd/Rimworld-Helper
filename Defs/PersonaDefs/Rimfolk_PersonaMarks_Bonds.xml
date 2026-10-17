@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Marks of kindness, shame and betrayal (Source/ColonyCouncil/Persona/Marks.cs): nursed through an illness, a kindness
+    remembered, a promise the council kept or broke, forgiven after a breakdown, a secret betrayed, a seat lost, a heart
+    broken. {OTHER} is the other person in it; where a mark comes from a memory with labelDay, {LABEL} is the day.
+  -->
+
+  <ColonyCouncil.PersonaMarkDef>
+    <defName>Rimfolk_Mark_NursedBack</defName>
+    <label>nursed back to health</label>
+    <shifts><warmth>7</warmth><trust>7</trust><outlook>3</outlook></shifts>
+    <major>true</major>
+    <keepDays>240</keepDays>
+    <shaped>{PAWN_nameDef} has been gentler with the sick since {OTHER} nursed {PAWN_objective} through {LABEL}.</shaped>
+    <defaultLabel>a long illness</defaultLabel>
+    <modExtensions>
+      <li Class="ColonyCouncil.PersonaMarkExtension">
+        <family>NursedBack</family>
+        <journal>
+          <plain>
+            <li>I'm on my feet again after {LABEL}. {OTHER_nameDef} sat up with me more nights than I can count.</li>
+            <li>{OTHER_nameDef} changed my dressings every day through {LABEL} and never once made me feel like a nuisance.</li>
+            <li>First day outside since {LABEL}. I went to find {OTHER_nameDef} before I did anything else.</li>
+          </plain>
+          <warm><li>I wouldn't have come through {LABEL} without {OTHER_nameDef}. I want to be that for someone one day.</li></warm>
+          <blunt><li>{OTHER_nameDef} kept me alive through {LABEL}. Noted. Owed.</li></blunt>
+          <cheerful><li>I survived {LABEL}, mostly out of spite, and partly because {OTHER_nameDef} wouldn't let me do otherwise.</li></cheerful>
+          <gloomy><li>I came through {LABEL}. {OTHER_nameDef} made sure of it, though I'm not sure I'd have bothered.</li></gloomy>
+          <cold><li>{OTHER_nameDef}'s care through {LABEL} was competent and patient. I will remember it.</li></cold>
+        </journal>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.PersonaMarkDef>
+
+  <ColonyCouncil.PersonaMarkDef>
+    <defName>Rimfolk_Mark_KindnessRemembered</defName>
+    <label>a kindness remembered</label>
+    <shifts><trust>4</trust><warmth>4</warmth></shifts>
+    <keepDays>90</keepDays>
+    <shaped>{PAWN_nameDef} has thought better of people since {OTHER}'s kindness on {LABEL}.</shaped>
+    <defaultLabel>a good day</defaultLabel>
+    <modExtensions>
+      <li Class="ColonyCouncil.PersonaMarkExtension">
+        <family>Kindness</family>
+        <thoughts><li>Council_Soc_Gift</li><li>Council_Soc_HadMyBack</li><li>Council_SpokeUpForMe</li></thoughts>
+        <needsOther>true</needsOther>
+        <labelDay>true</labelDay>
+        <chance>0.4</chance>
+        <repeatDays>30</repeatDays>
+        <lean>trust:-0.2</lean>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.PersonaMarkDef>
+
+  <ColonyCouncil.PersonaMarkDef>
+    <defName>Rimfolk_Mark_PromiseKept</defName>
+    <label>a promise kept to them</label>
+    <shifts><trust>5</trust><outlook>2</outlook></shifts>
+    <keepDays>90</keepDays>
+    <shaped>{PAWN_nameDef} has taken the council at its word since it kept its promise on {LABEL}.</shaped>
+    <defaultLabel>a good day</defaultLabel>
+    <modExtensions>
+      <li Class="ColonyCouncil.PersonaMarkExtension">
+        <family>PromiseKept</family>
+        <thoughts><li>Council_PromiseKept</li><li>Council_Evt_StoodByMe</li></thoughts>
+        <labelDay>true</labelDay>
+        <repeatDays>30</repeatDays>
+        <lean>trust:-0.2</lean>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.PersonaMarkDef>
+
+  <ColonyCouncil.PersonaMarkDef>
+    <defName>Rimfolk_Mark_ForgivenBy</defName>
+    <label>forgiven</label>
+    <shifts><warmth>6</warmth><pride>-5</pride><trust>5</trust><temper>-3</temper></shifts>
+    <major>true</major>
+    <keepDays>180</keepDays>
+    <shaped>{PAWN_nameDef} has been slower to judge others since {OTHER} forgave {PAWN_objective} for what {PAWN_pronoun} did on {LABEL}.</shaped>
+    <defaultLabel>a bad day</defaultLabel>
+    <modExtensions>
+      <li Class="ColonyCouncil.PersonaMarkExtension">
+        <family>ForgivenBy</family>
+        <thoughts><li>KindWords</li><li>KindWordsMood</li><li>Council_Mend_AirCleared</li></thoughts>
+        <needsOther>true</needsOther>
+        <news>{OTHER_nameDef} has forgiven {PAWN_nameDef} for the breakdown on {LABEL}.</news>
+        <journal>
+          <plain>
+            <li>I was sure {OTHER_nameDef} would never speak to me again after what I did on {LABEL}. Today {OTHER_pronoun} did, and kindly.</li>
+            <li>{OTHER_nameDef} told me to stop apologising for what happened on {LABEL}. I don't think I will, but it helped.</li>
+            <li>After what I did on {LABEL}, {OTHER_nameDef} brought me tea. Just tea. I nearly cried into it.</li>
+          </plain>
+          <warm><li>{OTHER_nameDef} has forgiven me for what I did on {LABEL}. I'm going to try to deserve it.</li></warm>
+          <blunt><li>I lost my head on {LABEL}. {OTHER_nameDef} let it go. I won't forget that.</li></blunt>
+          <cheerful><li>{OTHER_nameDef} forgave me for the business on {LABEL}! I think. There was a hug, so I'm counting it.</li></cheerful>
+          <gloomy><li>{OTHER_nameDef} forgave me for what I did on {LABEL}, which is more than I've managed.</li></gloomy>
+          <cold><li>{OTHER_nameDef} chose not to hold what happened on {LABEL} against me. An unusual choice. I'll return it.</li></cold>
+        </journal>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.PersonaMarkDef>
+
+  <ColonyCouncil.PersonaMarkDef>
+    <defName>Rimfolk_Mark_SecretBetrayed</defName>
+    <label>their secret betrayed</label>
+    <shifts><trust>-14</trust><warmth>-4</warmth></shifts>
+    <major>true</major>
+    <keepDays>360</keepDays>
+    <shaped>{PAWN_nameDef} has kept {PAWN_possessive} own counsel since {OTHER} gave away {PAWN_possessive} secret.</shaped>
+    <defaultLabel>a secret told</defaultLabel>
+    <modExtensions>
+      <li Class="ColonyCouncil.PersonaMarkExtension">
+        <family>SecretBetrayed</family>
+        <story>Betrayal</story>
+        <thoughts><li>Council_Secret_Betrayed</li></thoughts>
+        <needsOther>true</needsOther>
+        <lean>trust:0.3</lean>
+        <journal>
+          <plain>
+            <li>I told {OTHER_nameDef} the one thing I'd never told anyone. Now everyone knows it.</li>
+            <li>{OTHER_nameDef} said it out loud, in company, like it was nothing. It was everything.</li>
+            <li>I keep going over the night I told {OTHER_nameDef}. I should have kept my mouth shut.</li>
+          </plain>
+          <warm><li>I thought {OTHER_nameDef} cared about me. Maybe {OTHER_pronoun} does, and it slipped. It doesn't matter much now.</li></warm>
+          <blunt><li>{OTHER_nameDef} told. Never again.</li></blunt>
+          <gloomy><li>Of course {OTHER_nameDef} told. People do. I knew that, and I told {OTHER_objective} anyway.</li></gloomy>
+          <cold><li>{OTHER_nameDef} has shown what {OTHER_pronoun} is. I've adjusted accordingly.</li></cold>
+        </journal>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.PersonaMarkDef>
+
+  <ColonyCouncil.PersonaMarkDef>
+    <defName>Rimfolk_Mark_BetrayedSomeone</defName>
+    <label>betrayed a confidence</label>
+    <shifts><pride>-6</pride><outlook>-3</outlook><trust>-3</trust></shifts>
+    <keepDays>120</keepDays>
+    <shaped>{PAWN_nameDef} has had trouble meeting {OTHER}'s eyes since letting {OTHER}'s secret slip.</shaped>
+    <defaultLabel>a secret told</defaultLabel>
+    <modExtensions>
+      <li Class="ColonyCouncil.PersonaMarkExtension">
+        <family>BetrayedSomeone</family>
+        <story>Betrayal</story>
+        <lean>warmth:0.4</lean>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.PersonaMarkDef>
+
+  <ColonyCouncil.PersonaMarkDef>
+    <defName>Rimfolk_Mark_LashedOut</defName>
+    <label>lashed out</label>
+    <shifts><pride>-5</pride><temper>-4</temper><trust>-3</trust></shifts>
+    <keepDays>120</keepDays>
+    <shaped>{PAWN_nameDef} has watched {PAWN_possessive} temper since lashing out on {LABEL}.</shaped>
+    <defaultLabel>a bad day</defaultLabel>
+    <modExtensions>
+      <li Class="ColonyCouncil.PersonaMarkExtension">
+        <family>LashedOut</family>
+        <lean>warmth:0.3</lean>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.PersonaMarkDef>
+
+  <ColonyCouncil.PersonaMarkDef>
+    <defName>Rimfolk_Mark_LostElection</defName>
+    <label>lost the vote</label>
+    <shifts><pride>-4</pride><temper>4</temper><trust>-3</trust></shifts>
+    <keepDays>90</keepDays>
+    <shaped>{PAWN_nameDef} has been touchy about the council since losing the vote to {OTHER}.</shaped>
+    <defaultLabel>an election</defaultLabel>
+    <modExtensions>
+      <li Class="ColonyCouncil.PersonaMarkExtension">
+        <family>LostElection</family>
+        <thoughts><li>Council_LostElection</li></thoughts>
+        <needsOther>true</needsOther>
+        <lean>pride:0.3</lean>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.PersonaMarkDef>
+
+  <ColonyCouncil.PersonaMarkDef>
+    <defName>Rimfolk_Mark_VotedOut</defName>
+    <label>voted out of a seat</label>
+    <shifts><pride>-7</pride><trust>-3</trust></shifts>
+    <keepDays>120</keepDays>
+    <shaped>{PAWN_nameDef} has been quieter at meetings since losing {PAWN_possessive} seat on {LABEL}.</shaped>
+    <defaultLabel>election day</defaultLabel>
+    <modExtensions>
+      <li Class="ColonyCouncil.PersonaMarkExtension">
+        <family>VotedOut</family>
+        <thoughts><li>Council_LostOffice</li></thoughts>
+        <labelDay>true</labelDay>
+        <lean>pride:0.3</lean>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.PersonaMarkDef>
+
+  <ColonyCouncil.PersonaMarkDef>
+    <defName>Rimfolk_Mark_BrokenPromise</defName>
+    <label>a promise the council broke</label>
+    <shifts><trust>-8</trust><outlook>-2</outlook></shifts>
+    <keepDays>90</keepDays>
+    <shaped>{PAWN_nameDef} has taken the council's word with a pinch of salt since it went back on it on {LABEL}.</shaped>
+    <defaultLabel>a bad day</defaultLabel>
+    <modExtensions>
+      <li Class="ColonyCouncil.PersonaMarkExtension">
+        <family>BrokenPromise</family>
+        <thoughts><li>Council_BrokenPromise</li><li>Council_TakenBack</li></thoughts>
+        <labelDay>true</labelDay>
+        <repeatDays>30</repeatDays>
+        <lean>trust:0.3</lean>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.PersonaMarkDef>
+
+  <ColonyCouncil.PersonaMarkDef>
+    <defName>Rimfolk_Mark_Heartbroken</defName>
+    <label>heartbroken</label>
+    <shifts><trust>-10</trust><warmth>-5</warmth><pride>-4</pride></shifts>
+    <major>true</major>
+    <keepDays>240</keepDays>
+    <shaped>{PAWN_nameDef} has been slow to let anyone close since {OTHER} broke {PAWN_possessive} heart.</shaped>
+    <defaultLabel>a parting</defaultLabel>
+    <modExtensions>
+      <li Class="ColonyCouncil.PersonaMarkExtension">
+        <family>Heartbroken</family>
+        <thoughts><li>BrokeUpWithMe</li><li>DivorcedMe</li><li>CheatedOnMe</li></thoughts>
+        <needsOther>true</needsOther>
+        <lean>warmth:0.3</lean>
+        <journal>
+          <plain>
+            <li>{OTHER_nameDef} and I are finished. I moved my things out of our room this evening. There weren't many.</li>
+            <li>I saw {OTHER_nameDef} at supper and turned straight round. I'll eat later.</li>
+            <li>It's over with {OTHER_nameDef}. Everyone is being very careful around me, which is worse.</li>
+          </plain>
+          <warm><li>I gave {OTHER_nameDef} everything I had. I don't know if I have it to give again.</li></warm>
+          <blunt><li>{OTHER_nameDef} and me: done. Don't ask.</li></blunt>
+          <cheerful><li>Single again. I'm fine. I'm writing it down so it becomes true.</li></cheerful>
+          <gloomy><li>I knew it wouldn't last with {OTHER_nameDef}. Nothing does. I just hoped.</li></gloomy>
+          <cold><li>{OTHER_nameDef} has ended things. I'll spend the time on work. Work doesn't leave.</li></cold>
+        </journal>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.PersonaMarkDef>
+
+</Defs>

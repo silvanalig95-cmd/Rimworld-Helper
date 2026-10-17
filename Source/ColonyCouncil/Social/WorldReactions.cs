@@ -63,6 +63,7 @@ namespace ColonyCouncil
 
         public static void Birth(Pawn baby, Pawn mother, Pawn father)
         {
+            PersonaMarks.Notify_Birth(baby, mother, father);
             if (!On || baby == null || baby.Dead) return;
             var parents = new[] { mother, father }.Where(p => p != null && !p.Dead && p.IsColonist).ToList();
             if (parents.Count == 0 && baby.Faction != Faction.OfPlayer) return;
@@ -110,6 +111,7 @@ namespace ColonyCouncil
         /// <summary>A colonist broke down from their mood: their friends worry, and the worst breaks are remembered.</summary>
         public static void Breakdown(Pawn p, MentalStateDef state)
         {
+            if (ownBreaks == 0) PersonaMarks.Notify_Breakdown(p, state);
             if (!On || ownBreaks > 0 || p == null || state == null || !p.IsColonist || !People.HasInnerLife(p)) return;
             var comp = CouncilGameComponent.Instance;
             foreach (var f in FriendsOf(p, 40).Take(3))
@@ -126,6 +128,8 @@ namespace ColonyCouncil
         {
             // A battle the colony will remember goes on its calendar (its own switch).
             CalendarTracker.Notify_Victory(fighters, foe, kills, fallen);
+            // Who held the line, who fought through a costly one, and raid after raid (Persona/Marks.cs).
+            PersonaMarks.Notify_Battle(fighters, foe, kills, fallen, killsBy);
             if (!On || comp == null || fighters.NullOrEmpty()) return;
             // A real fight: a raid seen off, or a pack brought down. One stray wolf isn't a victory.
             if (kills < 3 && !(foe != null && kills >= 1)) return;

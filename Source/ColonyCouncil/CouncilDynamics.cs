@@ -663,6 +663,7 @@ namespace ColonyCouncil
             Safe("quirks", () => quirks.Daily(this));
             Safe("legacy", () => legacy.Daily(this));
             Safe("character", () => character.Daily(this));
+            Safe("persona marks", () => PersonaMarks.Daily(this));
             Safe("interplay", () => Interplay.Daily(this));
             Safe("animal life", () => AnimalLife.Daily(this));
             Safe("history", RecordDay);

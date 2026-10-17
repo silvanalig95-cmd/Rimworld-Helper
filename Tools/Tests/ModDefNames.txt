@@ -128,3 +128,85 @@ Outland_RedburnPact
 Outland_VathunNobles
 # Outland 1.5 (Outland-Genetics)
 # Outland 1.5 (Outland-Furniture-Decor)
+# Traits read for a person's character (Defs/PersonaDefs/Rimfolk_PersonaNature_*.xml), from each mod's 1.6 TraitDefs
+# Medieval Overhaul 1.6 (dankpyon.medieval.overhaul)
+DankPyon_Fighter
+DankPyon_Veteran
+# Alpha Genes 1.6 (sarg.alphagenes)
+AG_Beauty
+# Alpha Memes 1.6 (sarg.alphamemes)
+AM_Ahimsa
+# Vanilla Ideology Expanded - Memes 1.6 (vanillaexpanded.vmemese)
+VME_Elder
+# Vanilla Traits Expanded 1.6 (vanillaexpanded.vanillatraitsexpanded)
+VTE_AbsentMinded
+VTE_Academian
+VTE_AnimalHater
+VTE_AnimalLover
+VTE_Anxious
+VTE_Brave
+VTE_Clumsy
+VTE_CouchPotato
+VTE_Coward
+VTE_Desensitized
+VTE_DrunkenMaster
+VTE_Dunce
+VTE_Eccentric
+VTE_Ecologist
+VTE_FunLoving
+VTE_Gastronomist
+VTE_Groundbreaker
+VTE_Insatiable
+VTE_Insomniac
+VTE_Kleptomaniac
+VTE_Lush
+VTE_MadSurgeon
+VTE_MartialArtist
+VTE_Menagerist
+VTE_Neat
+VTE_Perfectionist
+VTE_Prodigy
+VTE_Prude
+VTE_Rebel
+VTE_RefinedPalate
+VTE_Schizoid
+VTE_Slob
+VTE_Snob
+VTE_Squeamish
+VTE_Stoner
+VTE_Submissive
+VTE_Technophobe
+VTE_Tycoon
+VTE_Vengeful
+VTE_Wanderlust
+VTE_Workaholic
+VTE_WorldWeary
+# RimTraits - General Traits 1.6 (sierra.rt.generaltraits)
+RT_ChronicallyIll
+RT_Composed
+RT_ConstantlyBemused
+RT_Craven
+RT_EasilyAmused
+RT_Energetic
+RT_Fragile
+RT_Gifted
+RT_Healthy
+RT_Ignorant
+RT_Incompetent
+RT_Inquisitive
+RT_Muscular
+RT_Persuasive
+RT_Resilient
+RT_Rowdy
+RT_Unconvincing
+RT_Valiant
+# RimTraits - Medieval Talents 1.6 (sierra.rt.medievaltalents)
+RT_TalentAdventurer
+RT_TalentHerald
+RT_TalentHero
+RT_TalentNoTalent
+RT_TalentPhilosopher
+RT_TalentRecruiter
+RT_TalentScholar
+RT_TalentScout
+RT_TalentVeterinarian
