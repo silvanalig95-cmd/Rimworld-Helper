@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Dreams where a feeling meets the world beyond the walls (Source/ColonyCouncil/Dreams/Dreams.cs): fellowship or
+    restlessness while a camp is on the map, worry or hope while a world event runs in the region, gratitude or shame
+    after what passed between the colony and a camp or a neighbour. Each needs both the feeling and the camp or the
+    world event (or the memory), so they come only when the two really meet. Fields as in Council_Dreams3.xml.
+  -->
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf5_CampFriends</defName>
+    <label>a dream of the camp's fire</label>
+    <kind>Sweet</kind>
+    <children>true</children>
+    <camp>true</camp>
+    <feelings><li>Fellowship</li></feelings>
+    <lines>
+      <plain>
+        <li>Dreamt I sat at the camp's fire, and they made room for me as if I'd always had a place there.</li>
+        <li>In the dream the camp's people taught me their song, and I knew all the words by the end.</li>
+        <li>I dreamt the camp and the colony were one place, with no wall between, and nobody thought it strange.</li>
+        <li>[child] I dreamt the camp children and me built a fort, and nobody had to go home.</li>
+      </plain>
+      <warm><li>Dreamt we all ate together, ours and theirs, and someone passed me a bowl before I could ask.</li></warm>
+      <blunt><li>Dreamt of the camp's fire. Good people.</li></blunt>
+      <cheerful><li>Dreamt the camp threw a dance and I was very good at it. Not true. Nice dream.</li></cheerful>
+      <gloomy><li>Dreamt of the camp's fire, and woke up knowing they'll be gone soon.</li></gloomy>
+      <cold><li>A dream about the camp. My mind seems to have filed them as friends.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf5_CampRoad</defName>
+    <label>a dream of going with them</label>
+    <kind>Strange</kind>
+    <camp>true</camp>
+    <feelings>
+      <li>Restless</li>
+      <li>Curiosity</li>
+    </feelings>
+    <lines>
+      <plain>
+        <li>In the dream I packed my things in the night and walked off with the camp, and nobody here noticed until noon.</li>
+        <li>Dreamt I was on the road with the camp's people, and every bend showed a country I'd never seen.</li>
+        <li>I dreamt the camp folded up its tents with me inside one, and I let it.</li>
+      </plain>
+      <blunt><li>Dreamt I left with the camp. Didn't. Thought about it.</li></blunt>
+      <cheerful><li>Dreamt I joined the camp and saw the whole world in a week. Then I came back for supper.</li></cheerful>
+      <gloomy><li>Dreamt I went with them, and the colony forgot me before I reached the hill.</li></gloomy>
+      <cold><li>A dream about leaving. The road has its appeal. So does the roof.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf5_FeverAtTheDoor</defName>
+    <label>a dream of the fever at the door</label>
+    <kind>Nightmare</kind>
+    <situations><li>sickness</li></situations>
+    <feelings><li>Worry</li></feelings>
+    <lines>
+      <plain>
+        <li>In the dream the sickness walked up the road like a traveller and knocked, and I couldn't remember if I'd barred the door.</li>
+        <li>Dreamt every bed in the colony had someone in it, and I couldn't tell which of them were ours.</li>
+        <li>I dreamt the children were coughing, all of them, and I went from bed to bed with one cup of water.</li>
+      </plain>
+      <warm><li>Dreamt I nursed half the region through the fever, and woke up so tired it felt real.</li></warm>
+      <blunt><li>Dreamt the sickness got in. It didn't. Checked.</li></blunt>
+      <gloomy><li>Dreamt the fever reached us, and nobody was surprised.</li></gloomy>
+      <cold><li>A dream about the epidemic reaching the colony. A reasonable thing to be afraid of.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf5_DryFields</defName>
+    <label>a dream of the dry fields</label>
+    <kind>Nightmare</kind>
+    <situations>
+      <li>hunger</li>
+      <li>drought</li>
+      <li>scarcity</li>
+    </situations>
+    <feelings>
+      <li>Worry</li>
+      <li>Dread</li>
+    </feelings>
+    <lines>
+      <plain>
+        <li>In the dream our own fields went the way of theirs, yellow and then grey, while I watched from the gate.</li>
+        <li>Dreamt I dug for potatoes and found only stones, row after row.</li>
+        <li>I dreamt hungry people stood at the wall in silence, and I knew every one of their faces.</li>
+      </plain>
+      <warm><li>Dreamt we shared what we had with the hungry on the road, and it stretched, somehow, to all of them.</li></warm>
+      <blunt><li>Dreamt our crops failed. Went and looked at them. Fine.</li></blunt>
+      <gloomy><li>Dreamt the hunger in the region came here. Hard to say it won't.</li></gloomy>
+      <cold><li>A dream about our stores running out. I'll count them again today.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf5_RoadOpen</defName>
+    <label>a dream of the open road</label>
+    <kind>Sweet</kind>
+    <children>true</children>
+    <situations>
+      <li>fair</li>
+      <li>road</li>
+      <li>trade</li>
+      <li>peace</li>
+      <li>harvest</li>
+      <li>songs</li>
+    </situations>
+    <feelings>
+      <li>Hope</li>
+      <li>Joy</li>
+    </feelings>
+    <lines>
+      <plain>
+        <li>Dreamt the road was full of carts going both ways, and every one of them stopped to wave.</li>
+        <li>In the dream the whole region came to a fair at our gate, and nobody had brought a weapon.</li>
+        <li>I dreamt of a town I've never been to, and they knew the colony's name there, and said it kindly.</li>
+        <li>[child] I dreamt there was a fair with a ribbon for every child, and I got two.</li>
+      </plain>
+      <warm><li>Dreamt of good times for everyone, near and far, and I didn't have to choose who.</li></warm>
+      <blunt><li>Good dream. Good news. Both.</li></blunt>
+      <cheerful><li>Dreamt the good news kept coming, one rider after another, until we ran out of places to sit them!</li></cheerful>
+      <gloomy><li>Dreamt things were getting better out there. Hard to trust a dream like that. I liked it, though.</li></gloomy>
+      <cold><li>A hopeful dream. The region's prospects do seem improved.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf5_GoodTurn</defName>
+    <label>a dream of the good turn</label>
+    <kind>Sweet</kind>
+    <afterThoughts>
+      <li>Council_Camp_Helped</li>
+      <li>Council_After_Thanked</li>
+      <li>Council_WS_HealerMended</li>
+      <li>Council_Camp_PilgrimBlessing</li>
+    </afterThoughts>
+    <withinDays>3</withinDays>
+    <feelings><li>Gratitude</li></feelings>
+    <lines>
+      <plain>
+        <li>Dreamt I went to thank them properly, and the road to their fire was lined with lanterns.</li>
+        <li>In the dream I paid back the kindness, and then they paid it back again, and it went on all night.</li>
+        <li>I dreamt of the strangers who helped us, and in the dream they weren't strangers at all.</li>
+      </plain>
+      <warm><li>Dreamt everyone who has ever helped me stood in one room, and I had time to thank each of them.</li></warm>
+      <blunt><li>Dreamt of the help they gave. I owe them.</li></blunt>
+      <gloomy><li>Dreamt I never got to thank them. I'd better, while I can.</li></gloomy>
+      <cold><li>A dream about the debt of gratitude. It should be settled.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf5_TurnedAway</defName>
+    <label>a dream of the shut gate</label>
+    <kind>Nightmare</kind>
+    <afterThoughts>
+      <li>Council_Camp_DroveThemOff</li>
+      <li>Council_After_Reckoning</li>
+    </afterThoughts>
+    <withinDays>4</withinDays>
+    <feelings><li>Shame</li></feelings>
+    <lines>
+      <plain>
+        <li>In the dream they were still out there past the gate, in the rain, and I was the one holding the bar.</li>
+        <li>Dreamt I went out to say sorry, and the road was empty all the way to the hills.</li>
+        <li>I dreamt their children looked back at the colony as they left, and I couldn't look away.</li>
+      </plain>
+      <warm><li>Dreamt I ran after them with food and blankets, and I got there just in time. I wish I had.</li></warm>
+      <blunt><li>Dreamt about sending them off. Not proud of it.</li></blunt>
+      <gloomy><li>Dreamt we drove them off again, and again, every night the same.</li></gloomy>
+      <cold><li>A dream about the decision. My conscience disagrees with the council.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+</Defs>

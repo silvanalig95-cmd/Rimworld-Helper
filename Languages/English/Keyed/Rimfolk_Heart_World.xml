@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- What the world beyond the walls feeds the heart's feelings (Source/ColonyCouncil/Heart/FeelingFeeds_World.cs). -->
+  <CC_Heart_Cause_CampFriends>friends at the camp of {0}</CC_Heart_Cause_CampFriends>
+  <CC_Heart_Cause_SicknessChildren>the sickness in the region, with children at home</CC_Heart_Cause_SicknessChildren>
+  <CC_Heart_Cause_SicknessHealer>the sick in the region, and no way to reach them</CC_Heart_Cause_SicknessHealer>
+  <CC_Heart_Cause_HungerGrower>hunger in the region, and our own fields</CC_Heart_Cause_HungerGrower>
+  <CC_Heart_Cause_GoodNews>good news from the region: {0}</CC_Heart_Cause_GoodNews>
+
+</LanguageData>

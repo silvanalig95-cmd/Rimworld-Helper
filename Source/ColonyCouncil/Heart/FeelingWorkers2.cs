@@ -54,11 +54,13 @@ namespace ColonyCouncil
         }
     }
 
-    /// <summary>Someone they love is downed, ill, carried off or away on the road.</summary>
+    /// <summary>Someone they love is downed, ill, carried off or away on the road; a sickness or hunger in the region.</summary>
     public class FeelingWorker_Worry : FeelingWorker
     {
         public override void Feed(Pawn p, PawnHeart heart, HeartMapContext map, IFeelingSink sink)
         {
+            // The region's troubles, for those they touch most (Heart/FeelingFeeds_World.cs).
+            WorldFeeds.RegionTroubles(p, sink);
             if (p.relations == null) return;
             var seen = new HashSet<Pawn>();
             int added = 0;
@@ -109,7 +111,7 @@ namespace ColonyCouncil
         }
     }
 
-    /// <summary>Belonging to a circle, and good friends close by.</summary>
+    /// <summary>Belonging to a circle, good friends close by, and friends made at a camp.</summary>
     public class FeelingWorker_Fellowship : FeelingWorker
     {
         public override void Feed(Pawn p, PawnHeart heart, HeartMapContext map, IFeelingSink sink)
@@ -117,6 +119,8 @@ namespace ColonyCouncil
             var comp = CouncilGameComponent.Instance;
             if (comp?.social != null && ColonyCouncilMod.Settings.socialWeb && comp.social.CliqueOf(p) != null) sink.Add(3f, "CC_Heart_Cause_Circle".Translate());
             if (HeartNeeds.FriendsHere(p, out _) >= 3) sink.Add(2f, "CC_Heart_Cause_ManyFriends".Translate());
+            // Friends made at a camp on the map (Heart/FeelingFeeds_World.cs).
+            WorldFeeds.CampFriends(p, sink);
         }
     }
 

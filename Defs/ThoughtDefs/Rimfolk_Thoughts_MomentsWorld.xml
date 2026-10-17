@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Moods of the moments where a feeling meets the world beyond the walls (Defs/InteractionDefs/
+    Rimfolk_Moments_FeelingsWorld.xml): small good moments that give a little recreation and feed a feeling rather than
+    a mood (RewardInstead). The worried and the ashamed share the existing Council_Moment_SaidItOutLoud and
+    Council_Moment_HeardTheirWorries.
+  -->
+
+  <ThoughtDef ParentName="Council_Moment2Base">
+    <defName>Council_Moment_CampStories</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>stories from the camp</label><description>We talked about the people at the camp, and the roads they've walked. The world's bigger than our walls.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>3</baseOpinionOffset></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.05</joy><felt>2</felt><feelings><li>Fellowship</li></feelings></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_Moment2Base">
+    <defName>Council_Moment_PlannedAhead</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>planned on the good news</label><description>We made plans on the strength of the good news out there. Even if half of them come to nothing, it was good to make them.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>3</baseOpinionOffset></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.04</joy><felt>2</felt><feelings><li>Hope</li></feelings></li></modExtensions>
+  </ThoughtDef>
+
+</Defs>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Moments where a feeling meets the world beyond the walls (see Council_Moments2.xml and Social/Moments.cs): the
+    initiator feels it, and a camp is on the map or a world event runs in the region. Ordinary conversations: the
+    game's own social system picks them, so the two are together when they happen. Their moods are in
+    Defs/ThoughtDefs/Rimfolk_Thoughts_MomentsWorld.xml; the good ones give something other than mood.
+  -->
+
+  <InteractionDef ParentName="Council_MomentBase">
+    <defName>Council_Moment_CampFriendsTalk</defName>
+    <label>talked about friends at the camp</label>
+    <initiatorThought>Council_Moment_CampStories</initiatorThought>
+    <recipientThought>Council_Moment_CampStories</recipientThought>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about the people [INITIATOR_pronoun] had got to know at the camp, and what they'd said about the road.</li>
+        <li>r_logentry->[INITIATOR_nameDef] passed on a story [INITIATOR_pronoun] had heard at the camp's fire, and [RECIPIENT_nameDef] laughed in the right place.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] to come down to the camp one evening and meet [INITIATOR_possessive] friends there.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] agreed the camp's people were better neighbours than they'd feared.</li>
+        <li>r_logentry->[INITIATOR_nameDef] showed [RECIPIENT_nameDef] a small thing [INITIATOR_pronoun] had been given at the camp: [gift].</li>
+        <li>gift->a carved spoon</li>
+        <li>gift->a knotted cord bracelet</li>
+        <li>gift->a twist of dried herbs for tea</li>
+        <li>gift->a song, sung badly</li>
+      </rulesStrings>
+    </logRulesInitiator>
+    <modExtensions>
+      <li Class="ColonyCouncil.MomentExtension">
+        <weight>0.07</weight>
+        <cooldownDays>4</cooldownDays>
+        <camp>true</camp>
+        <initiatorFeelings><li>Fellowship</li><li>Gratitude</li></initiatorFeelings>
+        <minOpinion>0</minOpinion>
+        <bumpTie>Friends</bumpTie>
+        <bumpAmount>2</bumpAmount>
+      </li>
+    </modExtensions>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Council_MomentBase">
+    <defName>Council_Moment_RegionWorry</defName>
+    <label>worried about the region together</label>
+    <symbol>ColonyCouncil/Symbols/Heart</symbol>
+    <initiatorThought>Council_Moment_SaidItOutLoud</initiatorThought>
+    <recipientThought>Council_Moment_HeardTheirWorries</recipientThought>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] [INITIATOR_pronoun] couldn't stop thinking about the trouble in the region, and [RECIPIENT_nameDef] admitted [RECIPIENT_pronoun] couldn't either.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] went over what the colony would do if the trouble on the roads came this way, and felt a little better for having a plan.</li>
+        <li>r_logentry->[INITIATOR_nameDef] said [INITIATOR_pronoun] kept thinking of the people out there with less than the colony had. [RECIPIENT_nameDef] said that was a good thing to think about.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [RECIPIENT_pronoun] thought it would reach them. [RECIPIENT_nameDef] said [reach].</li>
+        <li>reach->not if they kept their heads</li>
+        <li>reach->maybe, and they'd manage</li>
+        <li>reach->[RECIPIENT_pronoun] didn't know, and that was the hard part</li>
+      </rulesStrings>
+    </logRulesInitiator>
+    <modExtensions>
+      <li Class="ColonyCouncil.MomentExtension">
+        <weight>0.06</weight>
+        <cooldownDays>5</cooldownDays>
+        <initiatorTags>!child</initiatorTags>
+        <situations><li>sickness</li><li>hunger</li><li>drought</li><li>war</li><li>scarcity</li><li>sellswords</li></situations>
+        <initiatorFeelings><li>Worry</li><li>Dread</li></initiatorFeelings>
+        <mutualFriends>true</mutualFriends>
+        <bumpTie>Friends</bumpTie>
+        <bumpAmount>2</bumpAmount>
+      </li>
+    </modExtensions>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Council_MomentBase">
+    <defName>Council_Moment_GoodNewsPlans</defName>
+    <label>made plans on the good news</label>
+    <initiatorThought>Council_Moment_PlannedAhead</initiatorThought>
+    <recipientThought>Council_Moment_PlannedAhead</recipientThought>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about the good news from the region, and what the colony might make of it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] said that if things kept going this way, next year could be a good one. [RECIPIENT_nameDef] said not to say it too loudly.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] made a list of everything they'd trade for, if the roads stayed open.</li>
+        <li>r_logentry->[INITIATOR_nameDef] talked [RECIPIENT_nameDef] into going to see it for [RECIPIENT_objective]self, one day.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+    <modExtensions>
+      <li Class="ColonyCouncil.MomentExtension">
+        <weight>0.05</weight>
+        <cooldownDays>5</cooldownDays>
+        <situations><li>fair</li><li>road</li><li>trade</li><li>peace</li><li>harvest</li><li>songs</li><li>town</li></situations>
+        <initiatorFeelings><li>Hope</li><li>Joy</li></initiatorFeelings>
+        <minOpinion>0</minOpinion>
+      </li>
+    </modExtensions>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Council_MomentBase">
+    <defName>Council_Moment_CampShame</defName>
+    <label>wished the camp had been treated better</label>
+    <initiatorThought>Council_Moment_SaidItOutLoud</initiatorThought>
+    <recipientThought>Council_Moment_HeardTheirWorries</recipientThought>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] [INITIATOR_pronoun] wished the colony had done better by the people who camped here. [RECIPIENT_nameDef] said next time it would.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about the camp that was sent away, and what they'd say if those people ever came back.</li>
+        <li>r_logentry->[INITIATOR_nameDef] admitted to [RECIPIENT_nameDef] that [INITIATOR_pronoun] still thought about the faces at the gate.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+    <modExtensions>
+      <li Class="ColonyCouncil.MomentExtension">
+        <weight>0.06</weight>
+        <cooldownDays>6</cooldownDays>
+        <initiatorTags>!child</initiatorTags>
+        <initiatorMemories><li>Council_Camp_DroveThemOff</li><li>Council_After_Reckoning</li></initiatorMemories>
+        <memoryDays>5</memoryDays>
+        <initiatorFeelings><li>Shame</li></initiatorFeelings>
+        <mutualFriends>true</mutualFriends>
+      </li>
+    </modExtensions>
+  </InteractionDef>
+
+</Defs>
