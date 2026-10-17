@@ -531,6 +531,15 @@ namespace ColonyCouncil
         public static bool Covers(Room room) =>
             room != null && (room.Role == RoomRoleDefOf.Bedroom || room.Role == RoomRoleDefOf.Barracks) && room.CellCount <= LightMath.MediumRoomMaxCells;
 
+        /// <summary>A bed for people in the room that no light (built, framed or planned) reaches.</summary>
+        private static bool HasDarkBed(Room room)
+        {
+            var lights = RoomLights.In(room);
+            foreach (var bed in room.ContainedBeds)
+                if (!bed.Medical && !bed.ForPrisoners && bed.def.building.bed_humanlike && !AdvisorMath.Lit(bed.Position.x, bed.Position.z, lights)) return true;
+            return false;
+        }
+
         public override IEnumerable<AdvisorSignal> Evaluate(Map map)
         {
             var light = WallLights.ForRoom(map, LightMath.SmallRoomMaxCells);
@@ -559,7 +568,9 @@ namespace ColonyCouncil
             s.look = new LookTargets(rooms.Take(5).Select(r => new TargetInfo(r.Cells.First(), map)));
             s.suggestThing = light;
             var list = rooms.Take(8).ToList();
-            s.act = () => RoomLights.Plan(list, map);
+            // Only rooms still dark when the button is pressed: a second press (the advice stays until the next look)
+            // plans nothing more where the first one's lights already reach the beds.
+            s.act = () => RoomLights.Plan(list.Where(r => r != null && !r.Dereferenced && HasDarkBed(r)).ToList(), map);
             s.actLabel = "CC_Adv_Act_PlanLamps".Translate();
             s.key = "beds-dark";
             yield return s;
