@@ -574,6 +574,8 @@
   <CC_Plan_QueueGaveUp>Dropped {0} waiting piece(s) of a room plan. Something is still in the way.</CC_Plan_QueueGaveUp>
   <CC_Plan_Block_Edge>Too close to the map edge or unexplored ground.</CC_Plan_Block_Edge>
   <CC_Plan_Block_Rock>Rock is in the way. Tick "mine rock" to dig it out.</CC_Plan_Block_Rock>
+  <CC_Plan_Block_Fog>Part of it lies in unexplored ground. Tick "mine rock" to dig in as the colonists reach it.</CC_Plan_Block_Fog>
+  <CC_Plan_Block_AllFog>All of it lies in unexplored ground. Place it where it touches ground you've seen, and the colonists dig in from there.</CC_Plan_Block_AllFog>
   <CC_Plan_Block_Own>Your own buildings are in the way. Tick "replace my buildings" to take them down first.</CC_Plan_Block_Own>
   <CC_Plan_Block_Ground>None of this room can be built here. The ground can't hold walls (water, marsh or mud).</CC_Plan_Block_Ground>
   <CC_Plan_Block_Other>Something you can't remove is in the way.</CC_Plan_Block_Other>
@@ -584,6 +586,7 @@
   <CC_Plan_Warn_Zone>{0} growing-zone cell(s) will be removed from the field.</CC_Plan_Warn_Zone>
   <CC_Plan_Warn_Mine>{0} cell(s) to mine first.</CC_Plan_Warn_Mine>
   <CC_Plan_Warn_Deconstruct>{0} of your buildings will be taken down.</CC_Plan_Warn_Deconstruct>
+  <CC_Plan_Warn_Fog>{0} cell(s) lie in unexplored ground. They're dug out as the colonists reach them: rock in the walls stays as the wall, and the rest follows as the ground comes to light.</CC_Plan_Warn_Fog>
   <CC_Plan_Warn_Waiting>{0} piece(s) wait until the way is clear, then go down by themselves.</CC_Plan_Warn_Waiting>
   <CC_Plan_Warn_FurnitureBlocked>{0} piece(s) of furniture don't fit here and will be left out.</CC_Plan_Warn_FurnitureBlocked>
   <CC_Plan_Warn_DoorFacesWall>The door opens onto a wall. Move the door or turn the room.</CC_Plan_Warn_DoorFacesWall>
@@ -604,7 +607,7 @@
   <CC_Planner_CutPlants>Cut plants and trees</CC_Planner_CutPlants>
   <CC_Planner_CutPlants_Tip>Marks plants in the walls, under furniture and inside the room for cutting (ripe crops and trees are harvested). Fields inside the room are taken out of the growing zone.</CC_Planner_CutPlants_Tip>
   <CC_Planner_MineRock>Mine rock</CC_Planner_MineRock>
-  <CC_Planner_MineRock_Tip>Rock inside the room, in the doorway and right outside the door is marked for mining. Rock in the walls is kept as wall. Furniture on mined cells is planned once the rock is gone.</CC_Planner_MineRock_Tip>
+  <CC_Planner_MineRock_Tip>Rock inside the room, in the doorway and right outside the door is marked for mining. Rock in the walls is kept as wall. Furniture on mined cells is planned once the rock is gone. A room reaching into unexplored ground is dug out the same way, as far as it goes.</CC_Planner_MineRock_Tip>
   <CC_Planner_ReplaceOwn>Replace my buildings in the way</CC_Planner_ReplaceOwn>
   <CC_Planner_ReplaceOwn_Tip>Your own buildings inside the room or in its walls are marked for deconstruction, and the plan follows once they're gone. Off by default, so nothing gets torn down by accident.</CC_Planner_ReplaceOwn_Tip>
   <CC_Planner_Smooth>Smooth the stone</CC_Planner_Smooth>

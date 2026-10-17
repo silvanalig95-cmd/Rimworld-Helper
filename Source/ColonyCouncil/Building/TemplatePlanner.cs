@@ -69,6 +69,16 @@ namespace ColonyCouncil
         /// <summary>What the game said about a wall it won't place, when it isn't the ground or a building.</summary>
         public string otherReason;
 
+        /// <summary>
+        /// Wall cells in unexplored ground. Nothing is said about what's there: rock stays as the wall, open ground gets a
+        /// wall once the colonists uncover it (queued, see <see cref="CouncilPlanQueue"/>).
+        /// </summary>
+        public List<IntVec3> wallFog = new List<IntVec3>();
+        /// <summary>Cells inside the room in unexplored ground: marked for mining and dug out as the colonists reach them.</summary>
+        public HashSet<IntVec3> fogInside = new HashSet<IntVec3>();
+        /// <summary>Part of the room lies in unexplored ground and "mine rock" is off, or all of it does.</summary>
+        public bool fogBlocked, allFog;
+
         /// <summary>Cells to mine (inside the room, the doorway, and the step in front of the door).</summary>
         public List<IntVec3> mine = new List<IntVec3>();
         public HashSet<IntVec3> mineSet = new HashSet<IntVec3>();
@@ -100,7 +110,7 @@ namespace ColonyCouncil
         /// Nothing the player has to deal with first is in the way, so a click places it. Cells whose ground can't hold
         /// anything are simply left out (a warning), unless that leaves nothing at all to build.
         /// </summary>
-        public bool CanPlace => wallBlocked.Count == 0 && interiorBlocked.Count == 0 && (doorState != PieceState.Blocked || doorSkipped)
+        public bool CanPlace => !allFog && wallBlocked.Count == 0 && interiorBlocked.Count == 0 && (doorState != PieceState.Blocked || doorSkipped)
                                 && (Skipped == 0 || AnythingToBuild);
 
         /// <summary>Wall segments, inside cells and the door left out because of the ground.</summary>
@@ -114,7 +124,7 @@ namespace ColonyCouncil
 
         /// <summary>At least one wall, the door, a piece of furniture or some floor would go down.</summary>
         public bool AnythingToBuild =>
-            wallNew.Count + wallWaiting.Count > 0
+            wallNew.Count + wallWaiting.Count + wallFog.Count > 0
             || (!doorExists && (doorState == PieceState.Ready || doorState == PieceState.Waiting))
             || furniture.Any(f => f.state == PieceState.Ready || f.state == PieceState.Waiting)
             || floorCells > 0;
@@ -126,6 +136,8 @@ namespace ColonyCouncil
                 var reasons = new List<string>();
                 if (doorState == PieceState.Blocked && !doorSkipped && !doorReason.NullOrEmpty()) reasons.Add(doorReason);
                 if (edgeBlocked) reasons.Add("CC_Plan_Block_Edge".Translate());
+                if (allFog) reasons.Add("CC_Plan_Block_AllFog".Translate());
+                else if (fogBlocked) reasons.Add("CC_Plan_Block_Fog".Translate());
                 if (rockBlocked) reasons.Add("CC_Plan_Block_Rock".Translate());
                 if (ownBlocked) reasons.Add("CC_Plan_Block_Own".Translate());
                 if (otherBlocked) reasons.Add(otherReason.NullOrEmpty() ? "CC_Plan_Block_Other".Translate().ToString() : otherReason);
@@ -250,7 +262,7 @@ namespace ColonyCouncil
                 }
             }
 
-            int floorCount = 0;
+            int floorCount = 0, seen = 0;
             for (int fx = 0; fx < w; fx++)
             {
                 for (int fz = 0; fz < h; fz++)
@@ -259,7 +271,7 @@ namespace ColonyCouncil
                     bool isWall = fx == 0 || fz == 0 || fx == w - 1 || fz == h - 1;
                     bool isDoor = fz == 0 && fx == doorFx;
                     bool isCorner = (fx == 0 || fx == w - 1) && (fz == 0 || fz == h - 1);
-                    if (!cell.InBounds(map) || cell.Fogged(map))
+                    if (!cell.InBounds(map))
                     {
                         plan.edgeBlocked = true;
                         if (isDoor) plan.doorState = PieceState.Blocked;
@@ -267,6 +279,12 @@ namespace ColonyCouncil
                         else plan.interiorBlocked.Add(cell);
                         continue;
                     }
+                    if (cell.Fogged(map))
+                    {
+                        PlanFog(plan, map, cell, isDoor, isWall && !reservedWall.Contains(((long)fx << 32) | (uint)fz), isWall, mineRock);
+                        continue;
+                    }
+                    seen++;
                     var ed = cell.GetEdifice(map);
 
                     if (!quick)
@@ -373,6 +391,8 @@ namespace ColonyCouncil
                 }
             }
             plan.floorCells = floorCount;
+            // Digging in from ground the colony knows: a room wholly in the dark has nowhere to start from.
+            if (seen == 0 && !plan.edgeBlocked) plan.allFog = true;
 
             var lamps = new List<PlannedThing>();
             foreach (var pt in placed)
@@ -438,6 +458,8 @@ namespace ColonyCouncil
             int w = t.FullWidth, h = t.FullHeight;
             var newWalls = new HashSet<IntVec3>(plan.wallNew);
             var waitingWalls = new HashSet<IntVec3>(plan.wallWaiting);
+            // A wall in unexplored ground is still to come (rock that stays, or a wall once it's uncovered).
+            waitingWalls.UnionWith(plan.wallFog);
             var oldWalls = new HashSet<IntVec3>(plan.wallReuse);
             var taken = new HashSet<IntVec3>(plan.interiorBlocked);
             taken.UnionWith(plan.interiorSkipped);
@@ -514,7 +536,7 @@ namespace ColonyCouncil
             HashSet<IntVec3> newWalls, HashSet<IntVec3> waitingWalls, HashSet<IntVec3> oldWalls, HashSet<IntVec3> taken, out string reason)
         {
             reason = null;
-            if (!cell.InBounds(map) || cell.Fogged(map))
+            if (!cell.InBounds(map) || (cell.Fogged(map) && !plan.mineSet.Contains(cell)))
             {
                 reason = "CC_Plan_Block_Edge".Translate();
                 return PieceState.Blocked;
@@ -770,6 +792,37 @@ namespace ColonyCouncil
             }
         }
 
+        /// <summary>
+        /// A cell of the room in unexplored ground. The plan doesn't look at what's there (the player can't see it either):
+        /// the inside, the doorway and in-wall pieces are marked for mining (only rock actually gets the designation, and
+        /// the colonists dig in from the ground they know), and their furniture and floor wait; a wall cell waits too, and
+        /// is either rock that stays as the wall or open ground that gets its wall once uncovered.
+        /// </summary>
+        private static void PlanFog(PlacementPlan plan, Map map, IntVec3 cell, bool isDoor, bool isWall, bool inWallLine, bool mineRock)
+        {
+            if (isDoor) plan.door = cell;
+            if (isWall && !isDoor)
+            {
+                plan.wallFog.Add(cell);
+                return;
+            }
+            if (!isDoor && !inWallLine) plan.interior.Add(cell);
+            if (!mineRock)
+            {
+                plan.fogBlocked = true;
+                if (isDoor)
+                {
+                    plan.doorState = PieceState.Blocked;
+                    plan.doorReason = "CC_Plan_Block_Fog".Translate();
+                }
+                else plan.interiorBlocked.Add(cell);
+                return;
+            }
+            if (!isDoor && !inWallLine) plan.fogInside.Add(cell);
+            AddMine(plan, cell, map);
+            if (isDoor) plan.doorState = PieceState.Waiting;
+        }
+
         private static void AddMine(PlacementPlan plan, IntVec3 cell, Map map)
         {
             if (plan.mineSet.Add(cell)) plan.mine.Add(cell);
@@ -836,9 +889,14 @@ namespace ColonyCouncil
             bool waiting = false;
             foreach (var c in rect)
             {
-                if (!c.InBounds(map) || c.Fogged(map))
+                if (!c.InBounds(map))
                 {
                     reason = "CC_Plan_Block_Edge".Translate();
+                    return PieceState.Blocked;
+                }
+                if (c.Fogged(map) && !plan.mineSet.Contains(c))
+                {
+                    reason = "CC_Plan_Block_Fog".Translate();
                     return PieceState.Blocked;
                 }
                 if (plan.mineSet.Contains(c) || plan.deconstructCells.Contains(c))
@@ -879,9 +937,11 @@ namespace ColonyCouncil
             }
             if (thick > 0) plan.warnings.Add("CC_Plan_Warn_Mountain".Translate());
             if (plan.zoneCells.Count > 0) plan.warnings.Add("CC_Plan_Warn_Zone".Translate(plan.zoneCells.Count));
+            int dark = plan.wallFog.Count + plan.fogInside.Count;
+            if (dark > 0) plan.warnings.Add("CC_Plan_Warn_Fog".Translate(dark));
             if (plan.mine.Count > 0) plan.warnings.Add("CC_Plan_Warn_Mine".Translate(plan.mine.Count));
             if (plan.deconstruct.Count > 0) plan.warnings.Add("CC_Plan_Warn_Deconstruct".Translate(plan.deconstruct.Count));
-            int waiting = plan.furniture.Count(f => f.state == PieceState.Waiting) + plan.wallWaiting.Count + (plan.doorState == PieceState.Waiting ? 1 : 0);
+            int waiting = plan.furniture.Count(f => f.state == PieceState.Waiting) + plan.wallWaiting.Count + plan.wallFog.Count + (plan.doorState == PieceState.Waiting ? 1 : 0);
             if (waiting > 0) plan.warnings.Add("CC_Plan_Warn_Waiting".Translate(waiting));
             int groundFurniture = plan.GroundFurniture;
             if (groundFurniture > 0) plan.warnings.Add("CC_Plan_Warn_FurnitureGround".Translate(groundFurniture));
@@ -892,7 +952,11 @@ namespace ColonyCouncil
             if (plan.door.IsValid && !plan.doorSkipped)
             {
                 var outside = DoorOutside(plan, map);
-                if (outside.IsValid && outside.InBounds(map))
+                if (outside.IsValid && outside.InBounds(map) && outside.Fogged(map))
+                {
+                    if (S.planMineRock) AddMine(plan, outside, map);
+                }
+                else if (outside.IsValid && outside.InBounds(map))
                 {
                     var ed = outside.GetEdifice(map);
                     if (ed != null && IsMineable(ed) && S.planMineRock) AddMine(plan, outside, map);
@@ -985,7 +1049,7 @@ namespace ColonyCouncil
             {
                 if (TryPlace(ThingDefOf.Wall, c, Rot4.North, plan.wallStuff, map)) walls++;
             }
-            foreach (var c in plan.wallWaiting)
+            foreach (var c in plan.wallWaiting.Concat(plan.wallFog))
             {
                 queue?.Add(ThingDefOf.Wall, plan.wallStuff, c, Rot4.North, label);
                 queued++;

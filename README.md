@@ -171,7 +171,9 @@ what the colonist may eat, and a wish that comes to clash with a changed faith i
 serve each colonist only what their food or drug policy allows, what leaves no bad "ate ..." memory, and nothing
 Alpha Memes would make them sick for (only fungus or insect for its two required diets together, no forbidden
 paste); with nothing fit in the stores they sit at the table without eating. Life goals and council projects
-follow the same rules.
+follow the same rules. With Ideology, a "cook fungus meal" bill at any stove makes fungus meals: simple meals that
+always have fungus in them, a kind of their own, so one colonist's food policy can take only these while everyone
+else's leaves them out.
 
 **Promises kept.** 61 kinds of wish give something that stays, and the council is watched on it for about 60 days
 after granting it (90 for rooms): a bed kept for guests, a room of their own, a nicer or roomier bedroom, a bed shared,
@@ -798,7 +800,8 @@ follows the mouse, and a planner panel lets you:
   to swap them for a standing lamp, or the other way round
 - **clear the site**: cut plants and trees, mine rock (inside, in the doorway and just outside the door),
   replace your own buildings in the way, smooth natural stone. Pieces blocked by rock go down by themselves
-  once it's mined.
+  once it's mined. A room reaching into **unexplored ground** is dug out as the colonists get there: rock in the
+  walls stays as the wall, and walls on open ground, the door, furniture and floor follow as it comes to light.
 - build on **uneven ground**: where part of a room is on water, marsh or mud, the cells that can't hold a wall,
   the door or a piece of furniture are outlined in amber and left out, and the rest goes down. The message says
   how many wall segments and pieces were left out, and whether the door was. Only when nothing at all could be
