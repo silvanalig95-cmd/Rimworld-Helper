@@ -654,7 +654,8 @@ namespace ColonyCouncil
             int newestReturn = nemesisReturnSeenTick;
             foreach (var n in comp.nemeses.all)
             {
-                if (n == null || !n.announced || n.firstReturnTick <= nemesisReturnSeenTick || now - n.firstReturnTick < GenDate.TicksPerDay) continue;
+                // 0: never back yet (or back before the calendar kept returns), not a return on the colony's first day.
+                if (n == null || !n.announced || n.firstReturnTick <= 0 || n.firstReturnTick <= nemesisReturnSeenTick || now - n.firstReturnTick < GenDate.TicksPerDay) continue;
                 newestReturn = Mathf.Max(newestReturn, n.firstReturnTick);
                 var knew = known.Values.Where(p => !p.Dead && Ours(p)).Select(p => p.ThingID).ToList();
                 if (n.victim != null && !n.victim.Dead && !knew.Contains(n.victim.ThingID)) knew.Add(n.victim.ThingID);
