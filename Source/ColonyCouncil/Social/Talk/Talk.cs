@@ -205,8 +205,9 @@ namespace ColonyCouncil
                     sal[k] = 0f;
                 }
             }
-            float budget = BaseBudget * S.momentFrequency * TalkMath.Talkative(va[(int)PersonaAxis.Warmth], va[(int)PersonaAxis.Humour]) * PairFactor(a, b, tie)
-                           * InteractionWorker_Moment.MomentWeightFactor(a, b, false, "talk");
+            // How talkative the speaker is (warm and playful more, cold and dour less) and how they feel today come in
+            // through the moments' own factor (Heart.MomentWeightFactor, with the persona's lean), counted once.
+            float budget = BaseBudget * S.momentFrequency * PairFactor(a, b, tie) * InteractionWorker_Moment.MomentWeightFactor(a, b, false, "talk");
             var shares = TalkMath.Shares(sal, budget);
             for (int k = 0; k < shares.Length; k++) shares[k] *= extWeight[k];
             return shares;

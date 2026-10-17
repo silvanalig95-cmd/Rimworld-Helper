@@ -54,7 +54,7 @@ namespace ColonyCouncil
         /// <summary>
         /// A new exchange between <paramref name="a"/> and <paramref name="b"/>: the lines in order, the first said by
         /// <paramref name="a"/> after <paramref name="firstGap"/> ticks and each after that <paramref name="gap"/> ticks
-        /// later, the speakers taking turns. Empty lines are skipped. Returns its id, or 0 if there was nothing to say
+        /// later, the speakers taking turns. Empty lines are skipped (the turns go on with the next). Returns its id, or 0 if there was nothing to say
         /// or one of them is already talking.
         /// </summary>
         public int Add(T a, T b, IList<string> texts, int now, int firstGap, int gap)
@@ -66,7 +66,7 @@ namespace ColonyCouncil
             for (int i = 0; i < texts.Count; i++)
             {
                 if (string.IsNullOrEmpty(texts[i])) continue;
-                bool first = i % 2 == 0;
+                bool first = e.lines.Count % 2 == 0;
                 e.lines.Add(new Line { speaker = first ? a : b, listener = first ? b : a, text = texts[i], due = due });
                 due += Math.Max(1, gap);
             }

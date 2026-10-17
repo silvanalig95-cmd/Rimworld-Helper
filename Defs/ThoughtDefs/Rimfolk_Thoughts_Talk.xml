@@ -42,7 +42,7 @@
     <defName>Rimfolk_Talk_TeasedFine</defName>
     <durationDays>1</durationDays>
     <stages><li><label>pulled my leg</label><description>They pulled my leg, and I gave it back. It was funny.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>2</baseOpinionOffset></li></stages>
-    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.02</joy></li></modExtensions>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.02</joy><felt>1</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Rimfolk_TalkThoughtBase">

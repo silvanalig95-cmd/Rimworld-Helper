@@ -213,9 +213,6 @@ namespace ColonyCouncil
             return shares;
         }
 
-        /// <summary>How often someone starts a talk at all, from their character: the warm and the humorous more, the cold and dour less.</summary>
-        public static float Talkative(float warmth, float humour) => Clamp(1f + (warmth + humour) / 400f, 0.6f, 1.5f);
-
         // ---------------- How it goes ----------------
 
         /// <summary>A joker's chance to pull someone's leg, from their humour (0 below 30).</summary>
@@ -242,7 +239,7 @@ namespace ColonyCouncil
             h += (x.temperA + x.temperB) / 400f;
             h -= (x.warmthA + x.warmthB) / 600f;
             h -= (x.opinionAB + x.opinionBA) / 400f;
-            h -= (x.humourA + x.humourB) / 800f;
+            h -= (x.humourA + x.humourB) / 500f;
             if (x.rivals) h += 0.25f;
             if (x.friends) h -= 0.2f;
             if (x.lovers) h -= 0.15f;

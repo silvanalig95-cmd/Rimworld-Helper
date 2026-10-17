@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Conversations, views and shared memories (Source/ColonyCouncil/Social/Talk/). -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_C_Talk</defName>
+    <label>conversations and views</label>
+    <category>Council</category>
+    <order>9</order>
+    <summary>What colonists talk about, the views they hold, and how a talk goes between two people.</summary>
+    <tip>A colonist's views are on their character page, under Views. Hover one to see what it rests on and the last talk that moved it.</tip>
+    <description>Colonists don't only chat. Now and then two of them who are together get talking about something real: the last raid, the council and its decrees, the food, the work and who does too little, the newest face in the colony, faith, the world outside and its traders, the animals, the weather, art, the future and whether to stay, the dead, the prisoners, drink, new learning against the old ways, the children, the colony's project, money, love. Each of them holds a view on each of these, and says so in their own voice.
+
+The talk shows over their heads as two to four lines, the two taking turns, a few seconds apart; if one of them walks off, the rest isn't said. The social log keeps one line saying what it was about and how it went.</description>
+    <sections>
+      <li>
+        <heading>Views</heading>
+        <text>Each view runs from against to for: for meeting raiders at the gate or for thicker walls, trusting the council or not, grateful for the food or not, welcoming a newcomer or wary of them (a view for each newcomer). A view starts from who the colonist is, the first time it's needed:</text>
+        <points>
+          <li>their character: the bold want to fight back and the timid want walls, the trusting back the council, the curious welcome newcomers, traders and new learning, the warm count the animals as family;</li>
+          <li>their traits and passions: a brawler or a shooter leans to the fight, an ascetic thinks the food is fine, a teetotaler is against drink, a passion for art is for art;</li>
+          <li>their faith, with Ideology: the memes and precepts that speak to it (a raider faith, a supremacist one, a faith that forbids drugs);</li>
+          <li>their life now: a vendetta, their trust in the council and how they feel about its decrees, last night's meal, a bonded animal, a lover, being a newcomer's friend, grief.</li>
+        </points>
+        <after>After that a view moves slowly. Each day it drifts 4% of the way toward what the colonist's life now suggests (a bad week of paste, a decree they hate), events push it (a fight won makes those who fought bolder; losing someone makes the timid want walls, and those who were close to the dead less sure of the future), and talk moves it.</after>
+      </li>
+      <li>
+        <heading>What comes up</heading>
+        <text>The game picks Rimfolk's talks in its own social picker, beside its chitchat. All of them together take a fixed share of a colonist's talk (about a tenth as often as chitchat, scaled by the moments setting, more for the warm and the playful, a little more between friends and rivals, half as much toward someone they can't stand), and that share is split by what's worth talking about between these two, now:</text>
+        <points>
+          <li>news: a raid in the last days, a death, a new decree or council meeting, a wedding or a birth, a newcomer, a harvest or a hungry week, a disaster, traders at the gate, a finished study, a prisoner taken, a binge;</li>
+          <li>how strongly each of them cares (strong views get aired), the speaker's character (the hot-tempered bring up the raids and the work, the curious the world and new learning, the gloomy the future and the weather, the warm the children and the newcomer);</li>
+          <li>their tie: friends talk about anything, rivals pick what they disagree on;</li>
+          <li>what they went through together (see "shared memories and in-jokes"), and whether one of them is low;</li>
+          <li>what they talked about lately: the same topic between the same two is much rarer for two days.</li>
+        </points>
+        <after>A colonist who starts a talk waits three hours before starting another, and the same two talk at most every ten hours. A topic only comes up when it means something: no prisoners, no talk of prisoners; no children, little talk of them.</after>
+      </li>
+      <li>
+        <heading>How it goes</heading>
+        <table>
+          <li>How it goes | When | What it leaves</li>
+          <li>Agreeing | Their views are close | Opinion +3 each way; both views a little surer</li>
+          <li>A friendly debate | Opposed views, and warmth, liking, friendship or humour keep it light | Opinion +2; each pulls the other's view their way</li>
+          <li>An argument | Opposed views, and tempers, rivalry, dislike or a spat not yet made up for heat it | Opinion -4 each way, a sore spot for ten hours; views usually harden</li>
+          <li>Teasing | The speaker is a joker who likes the other | Opinion +2, or -3 if it stings (the humourless, the proud, anyone low)</li>
+          <li>Comfort | The other is low or grieving | Opinion +6 of the comforter; some strain eased</li>
+          <li>Remembering, an in-joke | They share a memory | Opinion +3 (an old joke worn thin, +1)</li>
+        </table>
+        <after>How far one person's words move another's view depends on both: more when the listener likes and trusts the speaker and is open by nature, and the speaker is sure of themselves; at most a quarter of the way in one talk, and a friendly debate moves people most. A talk that goes well after a spat they hadn't made up for makes it up, and they remember the quarrel as one they got past. Friends who keep talking grow a little warmer over time; people who keep arguing grow a little shorter-tempered. With frictions off, nobody argues; nobody teases anyone about the dead.</after>
+      </li>
+      <li>
+        <heading>In their own voice</heading>
+        <text>Every line is picked for the topic, how the talk is going, whose turn it is, which side the speaker is on and who they are. A hothead snaps in an argument, a joker jokes, the cold are curt even when they comfort, the gloomy see the worst, the warm take the sting out of a disagreement. Lines know the news (a fight won or someone lost to it, mechanoids or raiders, paste for supper, the newest decree by name), the people (the newcomer, the cook, the leader, the dead), and the tie between the two. About 1,500 lines in all, picked so the same one doesn't come round again soon.</text>
+      </li>
+      <li>
+        <heading>Settings and other mods</heading>
+        <text>Conversations need "Personalities and social life" and "Moments between colonists"; the moments frequency scales them, and "frictions" decides whether anyone argues. With RimTalk or Speak Up, whose conversations are their own, Rimfolk's talk drops to two fifths as often.</text>
+      </li>
+    </sections>
+    <keywords><li>conversation</li><li>talk</li><li>view</li><li>stance</li><li>opinion</li><li>argument</li><li>debate</li><li>persuasion</li><li>teasing</li><li>comfort</li></keywords>
+    <seeAlso><li>Council_Alm_C_SharedMemories</li><li>Council_Alm_C_Character</li><li>Council_Alm_C_Social</li></seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_C_SharedMemories</defName>
+    <label>shared memories and in-jokes</label>
+    <category>Council</category>
+    <order>9</order>
+    <summary>What two colonists went through together, how they bring it up, and the jokes only they get.</summary>
+    <tip>A colonist's shared memories are on their character page. Hover one to see when it happened and how often it has come up.</tip>
+    <description>Two colonists remember what they went through together, and it comes back in their conversations: "Remember the fight with the Iron Hand?", "I keep thinking about Mara", "Two words: the stew." Each pair keeps its eight weightiest memories; most fade over a few months, some stay for many, and a memory that just came up is much less likely to come up again for a few days.</description>
+    <sections>
+      <li>
+        <heading>What they remember</heading>
+        <table>
+          <li>What happened | What they remember | Fades in</li>
+          <li>A fight on a home map | Those who fought side by side (each with the five they're closest to) | half in 120 days</li>
+          <li>Tended while down | The doctor and the one they patched up | half in 150 days</li>
+          <li>A funeral (with Ideology) | Those who stood at the grave together, by the dead's name | half in 240 days</li>
+          <li>A party, feast, wedding or ritual | Those who were there together | half in 60 days</li>
+          <li>A disaster come through: a cold snap or heat wave, toxic fallout, a volcanic winter, an eclipse, a flashstorm, a drought, a death pall and the like | Everyone who lived through it at home, with the two they're closest to, once it has lifted (half a day or longer) | half in 120 days</li>
+          <li>A caravan home | Those who travelled together | half in 120 days</li>
+          <li>Something big built (3,000 work or more) | The builder and those at the building work beside them | half in 90 days</li>
+          <li>Three hours of work together between one and four in the morning | The two who kept each other going | half in 45 days</li>
+          <li>A student who has learned from a mentor | The teacher and the student, by the skill | half in 240 days</li>
+          <li>A quarrel made up in a later talk | The two, by what they argued about | half in 90 days</li>
+          <li>A secret confided and kept | The one who told and the one who keeps it (never said what it was) | half in 240 days</li>
+        </table>
+      </li>
+      <li>
+        <heading>In-jokes</heading>
+        <text>Some mishaps become jokes between the two who were there, but only once it's clear nobody came to harm: an hour later, everyone in it alive and up, and nobody of the colony died meanwhile. None are made of real tragedies.</text>
+        <points>
+          <li>a bad stew: two who fell ill of food poisoning together, or one of them and the colony's best cook ("the stew");</li>
+          <li>an exploding beast going off beside two or more colonists ("the boomalope");</li>
+          <li>a tame that ended with the animal turning on its tamer, and whoever watched ("the alpaca");</li>
+          <li>a small fire beaten out together ("the little fire", "the fire in the kitchen");</li>
+          <li>a short binge, food or drink, and the friend who saw it ("the midnight feast", "that long night");</li>
+          <li>going down in the mud together on a wet day (a small event of its own, "the mud").</li>
+        </points>
+        <after>A joke gets funnier the first few times it comes up, then wears thin: after four tellings it weighs less with every one, the other groans instead of laughing, and it leaves only a small opinion. In the end they find a new one.</after>
+      </li>
+      <li>
+        <heading>How they come up</heading>
+        <text>Remembering comes up more between friends and for the warm; jokes less for the dour, and hardly at all with someone who's low. A good memory is told with a smile, a bad one quietly ("I still dream about it"); the doctor asks after the wound and the patient says thank you, the teacher is proud and the student remembers their first try. Remembering together leaves opinion +3 (a loss remembered, +4), a little nostalgia or fellowship for the heart, and the friendship a little warmer.</text>
+      </li>
+    </sections>
+    <keywords><li>memory</li><li>shared memory</li><li>in-joke</li><li>joke</li><li>remember</li><li>funeral</li><li>battle</li><li>caravan</li><li>mishap</li></keywords>
+    <seeAlso><li>Council_Alm_C_Talk</li><li>Council_Alm_C_Character</li><li>Council_Alm_C_Social</li></seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+</Defs>
