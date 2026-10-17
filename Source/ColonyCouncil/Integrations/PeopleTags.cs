@@ -187,6 +187,8 @@ namespace ColonyCouncil
             AnimalTags.Add(p, tags);
             // Their character: persona:warm, persona:hothead, persona:joker... (Persona/).
             Persona.AddTags(p, tags);
+            // Their groups: group:ID, grouprole:joker, ingroup, outsider... (Social/Groups/).
+            ColonyCouncil.Groups.AddTags(p, tags);
             foreach (var g in Groups)
             {
                 if (g.tag.NullOrEmpty() || tags.Contains(g.tag)) continue;
