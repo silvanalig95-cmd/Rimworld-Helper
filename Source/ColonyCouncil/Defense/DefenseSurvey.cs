@@ -63,7 +63,7 @@ namespace ColonyCouncil
         {
             public DefenseMath.Choke c;
             public IntVec3 cell;
-            /// <summary>A gate (door) already stands in the gap, in the colony's wall.</summary>
+            /// <summary>A gate (door) already closes the gap: in the colony's wall, or between the rock faces.</summary>
             public bool gated;
             public int coverInside, trapsOutside, turretsNear, woodWalls;
             public IntVec3 Outward => IntVec3.North.RotatedBy(new Rot4(c.facing));
@@ -443,7 +443,9 @@ namespace ColonyCouncil
             foreach (var c in r.chokes)
             {
                 var info = new ChokeInfo { c = c, cell = new IntVec3(c.x, 0, c.z) };
-                info.gated = c.doors > 0 && (c.endA == DefenseMath.Wall || c.endB == DefenseMath.Wall);
+                // Held when every way across the gap is a door: a gate in the colony's wall, or doors filling a narrow pass
+                // between rock faces. A door with open ground beside it (a wall half built) holds nothing.
+                info.gated = c.doors > 0 && c.doors >= c.span.Count;
                 var outward = info.Outward;
                 foreach (var b in Avail.ColonyBuildings(map, d => Avail.IsCover(d) || Avail.IsTrap(d) || d.thingClass != null && typeof(Building_Turret).IsAssignableFrom(d.thingClass) || d.IsWall))
                 {
