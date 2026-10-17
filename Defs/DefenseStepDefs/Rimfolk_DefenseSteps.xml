@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The ladder a defense line climbs (Colony → Defenses, "Defense lines"). Each step says why it comes now, how it works
+    and the common mistakes; its worker (Source/ColonyCouncil/Defense/DefenseStepWorkers.cs) reads from the map whether it's
+    done, so steps built by hand count too. templates: the plans it places, best first, looked up by name (one that's
+    missing is passed over). placeAt: where, relative to the line: "line" (its wall row on the gate, distance cells back),
+    "behind", "front", "between" (between the line and the beds). aims: the line's aims it belongs to (empty: all);
+    orderFor moves it up for some aims; minRaidPoints makes it an idea for later below that, unless the aim is in nowFor.
+    articles: Almanac pages, the first that exists is linked.
+  -->
+
+  <ColonyCouncil.DefenseStepDef>
+    <defName>Rimfolk_Step_CloseGap</defName>
+    <label>close the gap</label>
+    <order>10</order>
+    <workerClass>ColonyCouncil.StepWorker_CloseGap</workerClass>
+    <templates>
+      <li>Rimfolk_Defense_Gate</li>
+      <li>Rimfolk_Defense_Wall</li>
+    </templates>
+    <placeAt>line</placeAt>
+    <whyNow>Everything else on this line works only once raiders have one way through it. Until the gap is closed, they walk in wherever it's widest.</whyNow>
+    <howItWorks>Raiders who can walk to your people take the easiest way, and don't break walls while there is one. A wall across the gap with one gate in it makes that gate the easiest way. Carry the wall on until it meets rock, water or another wall, or they simply walk round its end.</howItWorks>
+    <mistakes>
+      <li>A wall that stops a few cells short of the rock: raiders find the gap at once.</li>
+      <li>No gate at all. With every way shut, raiders break the wall wherever they like.</li>
+      <li>A wooden gate in a wooden wall, where raiders bring torches.</li>
+      <li>A gate in the strip along the map's edge, where nothing can be built.</li>
+    </mistakes>
+    <articles>
+      <li>Rimfolk_AlmDef_Lines</li>
+      <li>Rimfolk_AlmDef_ChokePoints</li>
+    </articles>
+  </ColonyCouncil.DefenseStepDef>
+
+  <ColonyCouncil.DefenseStepDef>
+    <defName>Rimfolk_Step_ClearField</defName>
+    <label>clear the field of fire</label>
+    <order>20</order>
+    <workerClass>ColonyCouncil.StepWorker_ClearField</workerClass>
+    <whyNow>Trees, chunks and rubble in front of the gate and behind it are cover for raiders. Clearing them costs a little work now and saves a lot of shots later.</whyNow>
+    <howItWorks>A tree stops about a quarter of the shots aimed at the raider behind it, and a stone chunk half. Raiders look for cover as they come, so anything left in the field is where they stop and shoot back. Cut the plants, haul the chunks away and keep it that way, as trees grow back.</howItWorks>
+    <mistakes>
+      <li>Clearing the field once and forgetting the bushes and trees that grow back.</li>
+      <li>Leaving the chunks from mining out the gap right in front of it.</li>
+      <li>A stockpile or furniture of your own behind the gate: raiders shelter behind it too.</li>
+    </mistakes>
+    <articles>
+      <li>Rimfolk_AlmDef_FieldOfFire</li>
+      <li>Rimfolk_AlmDef_Cover</li>
+    </articles>
+  </ColonyCouncil.DefenseStepDef>
+
+  <ColonyCouncil.DefenseStepDef>
+    <defName>Rimfolk_Step_Cover</defName>
+    <label>cover behind the gate</label>
+    <order>30</order>
+    <workerClass>ColonyCouncil.StepWorker_Cover</workerClass>
+    <templates>
+      <li>Rimfolk_Defense_CoverLine</li>
+      <li>Rimfolk_Defense_Post</li>
+    </templates>
+    <placeAt>behind</placeAt>
+    <whyNow>With the gap closed, raiders come through one gate. People behind cover a few cells back hit them while they stand in the open.</whyNow>
+    <howItWorks>Sandbags and barricades stop about half the shots aimed at someone behind them, as long as the shot comes from the front. Raiders coming through the gate stand in the open for a few seconds before they find cover of their own. Too close and a rush or a grenade reaches your line; too far back and the shots go wide.</howItWorks>
+    <mistakes>
+      <li>Sandbags against a wall: nobody behind them can shoot over it.</li>
+      <li>Cover facing the wrong way, so shots from the gate come in from the side.</li>
+      <li>Firing positions that can't see the gate past a corner or a wall.</li>
+      <li>Cover right behind the gate, where the first raider through is already on top of it.</li>
+    </mistakes>
+    <articles>
+      <li>Rimfolk_AlmDef_Cover</li>
+      <li>Rimfolk_AlmDef_FieldOfFire</li>
+    </articles>
+  </ColonyCouncil.DefenseStepDef>
+
+  <ColonyCouncil.DefenseStepDef>
+    <defName>Rimfolk_Step_Traps</defName>
+    <label>traps on the way in</label>
+    <order>40</order>
+    <workerClass>ColonyCouncil.StepWorker_Traps</workerClass>
+    <templates>
+      <li>Rimfolk_Defense_TrapCorridor</li>
+    </templates>
+    <placeAt>front</placeAt>
+    <distance>2</distance>
+    <whyNow>Traps wear raiders down before they reach the gate, and cost nobody's time during the fight.</whyNow>
+    <howItWorks>Raiders don't see traps, so they walk the open lane straight into them, while your own people know where they are and step round. A spike trap is spent once it springs and has to be rebuilt. Keep traps a cell apart and away from the gate, where your own people walk.</howItWorks>
+    <mistakes>
+      <li>Traps in the gateway or the kill zone, where your own haulers and fighters pass.</li>
+      <li>Traps side by side, so one blast sets off the next.</li>
+      <li>Forgetting to rebuild the sprung ones after a raid.</li>
+    </mistakes>
+    <articles>
+      <li>Rimfolk_AlmDef_Traps</li>
+    </articles>
+  </ColonyCouncil.DefenseStepDef>
+
+  <ColonyCouncil.DefenseStepDef>
+    <defName>Rimfolk_Step_Guns</defName>
+    <label>guns that never sleep</label>
+    <labelLowTech>an archers' post</labelLowTech>
+    <order>50</order>
+    <orderFor>
+      <li><aim>turrets</aim><order>25</order></li>
+      <li><aim>archers</aim><order>25</order></li>
+    </orderFor>
+    <workerClass>ColonyCouncil.StepWorker_Guns</workerClass>
+    <templates>
+      <li>Rimfolk_Defense_TurretNest</li>
+      <li>Rimfolk_Defense_Post</li>
+    </templates>
+    <placeAt>behind</placeAt>
+    <whyNow>Your people sleep, eat and work far from the gate. Something has to be shooting the moment raiders arrive.</whyNow>
+    <howItWorks>A turret behind cover fires at whatever comes through the gate until your people get there, as long as it has power and someone repairs it. Badly damaged, a turret can blow up, so stand them three cells apart and away from the shooters. Without turrets, a post for your best archers or shooters further back does the same work with people.</howItWorks>
+    <mistakes>
+      <li>Turrets side by side, so one blowing up takes the next with it.</li>
+      <li>Turrets left without power when a solar flare or a broken conduit cuts it.</li>
+      <li>More turrets than you'll use: every one is wealth, and wealth makes the next raid bigger.</li>
+      <li>An archers' post so far back that the arrows fall short or miss.</li>
+    </mistakes>
+    <articles>
+      <li>Rimfolk_AlmDef_Turrets</li>
+      <li>Rimfolk_AlmDef_Medieval</li>
+    </articles>
+  </ColonyCouncil.DefenseStepDef>
+
+  <ColonyCouncil.DefenseStepDef>
+    <defName>Rimfolk_Step_Killbox</defName>
+    <label>the killbox</label>
+    <order>60</order>
+    <orderFor>
+      <li><aim>killbox</aim><order>22</order></li>
+    </orderFor>
+    <minRaidPoints>700</minRaidPoints>
+    <nowFor>
+      <li>killbox</li>
+    </nowFor>
+    <workerClass>ColonyCouncil.StepWorker_Killbox</workerClass>
+    <templates>
+      <li>Rimfolk_Defense_SmallKillbox</li>
+      <li>Rimfolk_Defense_Killbox</li>
+      <li>Rimfolk_Defense_TunnelKillbox</li>
+    </templates>
+    <placeAt>line</placeAt>
+    <whyNow>Raids this size break a plain gate. A killbox brings them in a few at a time, into open ground under every gun the colony has.</whyNow>
+    <howItWorks>The gate opens into a narrow entrance with a turn in it, then a box of open ground with your cover and turrets at the far end. Raiders take the one easy way in, come round the turn a few at a time, and stand in the open while everyone shoots. It does nothing against those who don't use the gate.</howItWorks>
+    <mistakes>
+      <li>A straight entrance: raiders stop in the doorway and shoot from its cover.</li>
+      <li>A gate shut during the raid: with no way in, raiders break the wall anywhere.</li>
+      <li>An entrance so long that raiders give up on it and go for the walls.</li>
+      <li>Wood in or near the box: raiders set fires, and a burning killbox burns your own people.</li>
+      <li>Shooting the first raider through instead of waiting until they're in the box.</li>
+    </mistakes>
+    <articles>
+      <li>Rimfolk_AlmDef_Killbox</li>
+      <li>Rimfolk_AlmDef_KillboxWhere</li>
+    </articles>
+  </ColonyCouncil.DefenseStepDef>
+
+  <ColonyCouncil.DefenseStepDef>
+    <defName>Rimfolk_Step_Harden</defName>
+    <label>harden the line</label>
+    <order>70</order>
+    <workerClass>ColonyCouncil.StepWorker_Harden</workerClass>
+    <templates>
+      <li>Rimfolk_Defense_WallBacking</li>
+    </templates>
+    <placeAt>line</placeAt>
+    <distance>1</distance>
+    <whyNow>Breachers, sappers and fire come for the walls themselves. A second skin of stone buys the time to meet them.</whyNow>
+    <howItWorks>Breachers and sappers go through walls, not gates, and wood burns when raiders bring torches. Two walls thick, a breacher takes twice as long, and stone holds far longer than wood. The second wall goes right behind the first, with no gap, so the inner one isn't open all along once the outer falls.</howItWorks>
+    <mistakes>
+      <li>A second wall with a gap behind the first: once the outer wall falls, the inner one is open all along.</li>
+      <li>A gate one door thick where the walls beside it are two.</li>
+      <li>Rebuilding in wood because it's quicker.</li>
+    </mistakes>
+    <articles>
+      <li>Rimfolk_AlmDef_WallsGates</li>
+      <li>Rimfolk_AlmDef_Upkeep</li>
+    </articles>
+  </ColonyCouncil.DefenseStepDef>
+
+  <ColonyCouncil.DefenseStepDef>
+    <defName>Rimfolk_Step_Fallback</defName>
+    <label>a line to fall back to</label>
+    <order>80</order>
+    <workerClass>ColonyCouncil.StepWorker_Fallback</workerClass>
+    <templates>
+      <li>Rimfolk_Defense_Fallback</li>
+    </templates>
+    <placeAt>between</placeAt>
+    <whyNow>Every line breaks some day. A second door between it and the beds is where people regroup instead of running.</whyNow>
+    <howItWorks>When the outer line breaks, people fall back behind a wall with a door and cover, between the gate and the beds. Raiders who get through then meet a second line instead of the bedrooms. It also keeps a drop pod raid that lands on the far side of it away from the beds.</howItWorks>
+    <mistakes>
+      <li>A line nobody knows about until the raid: say beforehand who falls back and when.</li>
+      <li>No medicine or spare weapons there.</li>
+      <li>A fallback door that is just the bedroom's own door.</li>
+    </mistakes>
+    <articles>
+      <li>Rimfolk_AlmDef_Fallback</li>
+    </articles>
+  </ColonyCouncil.DefenseStepDef>
+
+</Defs>
