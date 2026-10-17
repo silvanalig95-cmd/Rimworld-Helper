@@ -111,7 +111,7 @@ namespace ColonyCouncil
             {
                 // A nemesis brought down has lines of its own; a battle won cleanly or at a cost, its own.
                 if (d.fallen.Count > 0) t.Add("fallen");
-                else t.Add(d.id.StartsWith("nemesis|") ? "nemesis" : "clean");
+                else t.Add(d.id.StartsWith("nemesis|") ? "nemesis" : d.id.StartsWith("return|") ? "nemesisreturn" : "clean");
             }
             // The land the colony stands on (land:desert, land:coast...) and, with Ideology, whether it has a faith of its
             // own ([faith]); the speaker's own beliefs come with them ([meme:...], [devout]).

@@ -51,6 +51,12 @@ namespace ColonyCouncil
         /// <summary>A gate of kind Custom.</summary>
         public virtual bool CustomGate(Arc arc, ArcGate gate) => false;
 
+        /// <summary>Tags of its own for the story's lines, beyond <see cref="Arc.tag"/> (how the nemesis's story ended).</summary>
+        public virtual IEnumerable<string> LineTags(Arc arc)
+        {
+            yield break;
+        }
+
         /// <summary>
         /// Just before the story moves to its next stage: settles how it went, usually by setting <see cref="Arc.tag"/>
         /// for the lines and effects to come (who was chosen, which student came on further).

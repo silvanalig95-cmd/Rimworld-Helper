@@ -10,6 +10,7 @@
   <CC_Cal_Name_Battle>the victory over {0}</CC_Cal_Name_Battle>
   <CC_Cal_Name_BattleCostly>the battle with {0}</CC_Cal_Name_BattleCostly>
   <CC_Cal_Name_Nemesis>the day {0} fell</CC_Cal_Name_Nemesis>
+  <CC_Cal_Name_NemesisReturn>the day {0} came back</CC_Cal_Name_NemesisReturn>
   <CC_Cal_Name_Death>the day {0} died</CC_Cal_Name_Death>
   <CC_Cal_Name_Wedding>{0} and {1}'s wedding day</CC_Cal_Name_Wedding>
   <CC_Cal_Name_Arrival>the day {0} came</CC_Cal_Name_Arrival>
@@ -100,6 +101,7 @@
   <CC_Cal_Origin_Battle>{0} attacked on this day in {1}, and {2} of them fell.</CC_Cal_Origin_Battle>
   <CC_Cal_Origin_BattleCostly>{0} attacked on this day in {1}. {2} of them fell, and so did {3}.</CC_Cal_Origin_BattleCostly>
   <CC_Cal_Origin_Nemesis>{0} was brought down on this day in {1}.</CC_Cal_Origin_Nemesis>
+  <CC_Cal_Origin_NemesisReturn>{0} came back on this day in {1}, and the colony held.</CC_Cal_Origin_NemesisReturn>
   <CC_Cal_Origin_Death>{0} died on this day in {1}.</CC_Cal_Origin_Death>
   <CC_Cal_Origin_Wedding>{0} and {1} were married on this day in {2}.</CC_Cal_Origin_Wedding>
   <CC_Cal_Origin_Arrival>{0} came to the colony on this day in {1}, in its first year.</CC_Cal_Origin_Arrival>

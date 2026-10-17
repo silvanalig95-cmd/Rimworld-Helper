@@ -150,7 +150,9 @@ public static class ArcTests
         "child", "night", "snow", "rain", "storm", "winter", "summer",
         // Stories of people's lives (ArcWorkers_Lives.cs): how a story of three went, and why one ended early.
         "won", "lost", "neither", "elsewhere", "otherahead", "thirdahead", "even", "mentor", "grown",
-        "thirddead", "thirdleft", "campfight", "officegone", "kindead", "babygone", "old"
+        "thirddead", "thirdleft", "campfight", "officegone", "kindead", "babygone", "old",
+        // The fear laid to rest (ArcWorkers_Nemesis.cs): how it stands with the nemesis.
+        "captured", "dead", "released", "joined", "beast", "escaped"
     };
 
     private static readonly Regex LowerStart = new Regex(@"(^(\[[^\]]*\]\s*)?|[.!?]\s+)\{[A-Z]+_(pronoun|possessive|objective|definite|indefinite)\}");

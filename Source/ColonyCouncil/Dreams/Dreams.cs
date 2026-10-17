@@ -43,7 +43,13 @@ namespace ColonyCouncil
         /// The personal story they're in the middle of: {OTHER} is its other person (or its third). Pair it with the
         /// dreamer's tags (story:Suitors, story:Grief...) for a dream about one story in particular.
         /// </summary>
-        Story
+        Story,
+        /// <summary>
+        /// Their nemesis: the enemy who hurt them (or killed someone of their blood or their partner) and got away, by name
+        /// as {NAME}. <see cref="DreamDef.nemesis"/> says how it must stand; lines can ask for [beast], [kin] and the deed
+        /// ([killed], [maimed], [downed]).
+        /// </summary>
+        Nemesis
     }
 
     /// <summary>A dream that comes true: the incident happens a few days later.</summary>
@@ -98,6 +104,12 @@ namespace ColonyCouncil
         public bool camp;
         /// <summary>Only while a world event of one of these kinds ("sickness", "hunger", "fair") or defNames runs.</summary>
         public List<string> situations;
+        /// <summary>
+        /// About a nemesis (<see cref="DreamAbout.Nemesis"/>): "loose" (still out there), "captured" (in the colony's cells),
+        /// "ended" (gone for good within <see cref="nemesisDays"/>); empty, either of the first two.
+        /// </summary>
+        public string nemesis;
+        public float nemesisDays = 20f;
         public ToneLines lines = new ToneLines();
         /// <summary>The mood memory. Empty = the usual one for the kind of dream.</summary>
         public ThoughtDef thought;
@@ -290,6 +302,9 @@ namespace ColonyCouncil
             public string lost;
             public SkillDef skill;
             public float weight;
+            /// <summary>{NAME}: an enemy's name (a nemesis dream), and its tags for the lines.</summary>
+            public string name;
+            public List<string> tags;
         }
 
         public bool TryDream(CouncilGameComponent comp, Pawn p, bool fever, DreamDef only = null)
@@ -348,7 +363,7 @@ namespace ColonyCouncil
                 if (def.feelingTarget) c.other = felt.target;
                 feeling = felt.Share;
             }
-            if (!About(comp, def.about, p, c)) return null;
+            if (def.about == DreamAbout.Nemesis ? !Nemesis(comp, def, p, c) : !About(comp, def.about, p, c)) return null;
             if (c.skill == null) c.skill = SkillOf(p);
 
             if (def.omen != null)
@@ -439,6 +454,54 @@ namespace ColonyCouncil
             return c.other != null;
         }
 
+        /// <summary>
+        /// Their nemesis, standing as the dream asks: one who hurt them, or who killed someone of their blood or their
+        /// partner. Named as {NAME}, never as {OTHER} (they may be long gone from the world), with its tags.
+        /// </summary>
+        private static bool Nemesis(CouncilGameComponent comp, DreamDef def, Pawn p, Cast c)
+        {
+            if (!S.nemeses || comp.nemeses == null) return false;
+            int now = Find.TickManager.TicksGame;
+            Nemesis pick = null;
+            bool kin = false;
+            foreach (var n in comp.nemeses.all)
+            {
+                if (n == null || !n.announced) continue;
+                bool mine = n.victim == p;
+                bool ofMine = !mine && n.deed == "killed" && n.victim != null && n.victim != p && Kin(p, n.victim);
+                if (!mine && !ofMine) continue;
+                bool fits;
+                switch (def.nemesis)
+                {
+                    case "loose": fits = !n.ended && !n.captured; break;
+                    case "captured": fits = !n.ended && n.captured; break;
+                    case "ended": fits = n.ended && n.endedTick > 0 && now - n.endedTick <= def.nemesisDays * GenDate.TicksPerDay; break;
+                    default: fits = !n.ended; break;
+                }
+                if (!fits) continue;
+                if (pick == null || (mine && kin))
+                {
+                    pick = n;
+                    kin = ofMine;
+                }
+            }
+            if (pick == null) return false;
+            c.name = pick.Name;
+            c.tags = new List<string> { pick.IsBeast ? "beast" : "person", pick.deed ?? "downed" };
+            if (kin) c.tags.Add("kin");
+            return true;
+        }
+
+        /// <summary>Of their blood, or their partner.</summary>
+        private static bool Kin(Pawn p, Pawn o)
+        {
+            if (p.relations == null || o == null) return false;
+            foreach (var r in p.relations.DirectRelations)
+                if (r.otherPawn == o && (r.def.familyByBloodRelation || r.def == PawnRelationDefOf.Spouse || r.def == PawnRelationDefOf.Lover || r.def == PawnRelationDefOf.Fiance))
+                    return true;
+            return false;
+        }
+
         /// <summary>Names of the dead they loved: family, partners, close bonds, a bonded animal.</summary>
         public static List<string> LostOnes(CouncilGameComponent comp, Pawn p)
         {
@@ -481,10 +544,12 @@ namespace ColonyCouncil
             tags.Add("dream");
             if (times > 0) tags.Add("again");
             if (fever) tags.Add("fever");
+            if (c.tags != null)
+                foreach (var t in c.tags) tags.Add(t);
             string raw = def.lines.Pick(ToneUtility.ToneFor(p), tags);
             if (raw.NullOrEmpty()) return;
             string text = raw.Formatted(p.Named("PAWN"), (c.other ?? p).Named("OTHER"), (c.pet ?? p).Named("PET"), (c.lost ?? "").Named("LOST"), (c.skill?.label ?? "").Named("SKILL"),
-                (comp.aspirations.Active(p)?.Goal ?? "").Named("GOAL")).Resolve();
+                (comp.aspirations.Active(p)?.Goal ?? "").Named("GOAL"), (c.name ?? "").Named("NAME")).Resolve();
 
             bool wasInspired = p.Inspired;
             int hediffsBefore = p.health?.hediffSet?.hediffs.Count ?? 0;

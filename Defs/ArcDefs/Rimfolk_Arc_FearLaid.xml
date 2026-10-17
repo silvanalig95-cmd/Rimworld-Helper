@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    A personal story about a nemesis (Source/ColonyCouncil/Arcs/ArcWorkers_Nemesis.cs): the fear laid to rest. The enemy
+    who hurt them is behind the colony's door, or gone for good, and the fear is still there. Taking it in, telling
+    someone the whole of it, a few good nights. The worker is a kind of the fear faced (ArcWorker_Fear) with the
+    "nemesis" tag, so going for that very enemy in a fight ends it well at once, through Interplay's watch. {NAME} is the
+    enemy, {OTHER} the friend they tell; lines may ask for [captured], [dead], [released], [joined], [gone], [beast].
+  -->
+
+  <ColonyCouncil.ArcDef>
+    <defName>Council_Arc_FearLaid</defName>
+    <label>the fear laid to rest</label>
+    <summary>The enemy who hurt them is in the colony's cells, or gone for good, but the fear isn't. Taking it in, telling a friend the whole of it, and a few good nights lay it to rest.</summary>
+    <workerClass>ColonyCouncil.ArcWorker_FearLaid</workerClass>
+    <who><notTrait><li>Psychopath</li></notTrait></who>
+    <needsOther>false</needsOther>
+    <maxDays>45</maxDays>
+    <stages>
+      <li>
+        <label>over, mostly</label>
+        <waiting>Next: a few days for {PAWN_nameDef} to take it in.</waiting>
+        <journal>
+          <plain>
+            <li>[captured] {NAME} is in our cells now. I walk the long way round so I don't pass that door.</li>
+            <li>[captured] They say {NAME} can't hurt anyone from in there. My hands didn't get the message.</li>
+            <li>[dead] {NAME} is dead. I keep waiting to feel something about it, and what comes is the old fear.</li>
+            <li>[dead,beast] They brought {NAME} down at last. I went to look at the body, to be sure. It looked smaller than I remembered.</li>
+            <li>[released] We let {NAME} go. I understand why. I still check the road every morning.</li>
+            <li>[joined] {NAME} eats at our table now. I sit at the far end and watch {NAME}'s hands.</li>
+            <li>[gone] Nobody has seen {NAME} in months. That should help. It doesn't, quite.</li>
+            <li>It's over. Everyone keeps telling me so.</li>
+          </plain>
+          <warm><li>It's over, and the others keep checking on me. I wish I could tell them it's working.</li></warm>
+          <blunt>
+            <li>[captured] {NAME}'s locked up. Still scared. Stupid.</li>
+            <li>It's done. Doesn't feel done.</li>
+          </blunt>
+          <cheerful><li>The danger's past, they say. Now I just have to convince the rest of me.</li></cheerful>
+          <gloomy><li>The one who hurt me can't any more. The fear doesn't seem to care.</li></gloomy>
+          <cold><li>The threat is resolved. The fear is a habit now, and habits can be broken.</li></cold>
+        </journal>
+        <chronicle>
+          <li>[captured] {PAWN_nameDef} hasn't been easy since {NAME} was put in the colony's cells.</li>
+          <li>{PAWN_nameDef} is still afraid of {NAME}, though it's over.</li>
+        </chronicle>
+        <gate><kind>Time</kind><days>3</days><minDays>2</minDays></gate>
+      </li>
+      <li>
+        <label>telling it</label>
+        <waiting>Next: {PAWN_nameDef} tells someone the whole of it.</waiting>
+        <journal>
+          <plain>
+            <li>I've never told anyone what it was like, that day with {NAME}. I think I'm going to have to.</li>
+            <li>[captured] I went and stood outside the cell today, and didn't go in. Next time I'll tell someone why.</li>
+            <li>The fear is smaller in daylight. I'd like to say it out loud before it grows back.</li>
+          </plain>
+          <warm><li>{OTHER_nameDef} keeps asking how I am, gently. I think I'm going to answer properly.</li></warm>
+          <blunt><li>Need to talk about it. Will.</li></blunt>
+          <gloomy><li>Telling it means living it again. I'll do it anyway.</li></gloomy>
+          <cold><li>A full account to someone I trust should take the weight off.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef} has been trying to talk about what {NAME} did.</li>
+        </chronicle>
+        <gate>
+          <kind>Talk</kind>
+          <talk>Council_Arc_Talk_FearLaid</talk>
+          <anyone>true</anyone>
+          <minOpinion>10</minOpinion>
+          <minDays>1</minDays>
+          <quietAfterDays>6</quietAfterDays>
+          <timeoutDays>20</timeoutDays>
+          <timeoutPasses>true</timeoutPasses>
+        </gate>
+      </li>
+      <li>
+        <label>quiet nights</label>
+        <waiting>Next: a few good days and quiet nights for {PAWN_nameDef}.</waiting>
+        <journal>
+          <plain>
+            <li>Told it all, start to finish. My voice shook in the middle. Then it stopped shaking.</li>
+            <li>Now someone else knows what {NAME} did, I don't have to carry it on my own.</li>
+            <li>[captured] Maybe one day I'll go and look {NAME} in the face. Maybe I won't need to.</li>
+          </plain>
+          <warm><li>{OTHER_nameDef} listened to the whole thing and then just sat with me. That was the part that helped.</li></warm>
+          <blunt><li>Said it. Better.</li></blunt>
+          <cheerful><li>Talking helped! Who knew. Everyone, apparently.</li></cheerful>
+          <gloomy><li>I said it all out loud. It sounded smaller than it felt.</li></gloomy>
+          <cold><li>The account is given. The rest is sleep and time.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef} has told the whole story of {NAME}, at last.</li>
+        </chronicle>
+        <gate>
+          <kind>Hold</kind>
+          <hold>Mood</hold>
+          <value>0.45</value>
+          <hours>36</hours>
+          <minDays>2</minDays>
+          <timeoutDays>15</timeoutDays>
+          <timeoutPasses>true</timeoutPasses>
+          <or>
+            <li><kind>Custom</kind><minDays>2</minDays></li>
+          </or>
+        </gate>
+      </li>
+      <li>
+        <label>laid to rest</label>
+        <journal>
+          <plain>
+            <li>Slept the whole night through, and didn't dream of {NAME}. I didn't notice until breakfast.</li>
+            <li>[captured] Walked past {NAME}'s door today without changing my step. That's the end of it.</li>
+            <li>[dead] {NAME} is dead, and I'm alive, and today that's simply true.</li>
+            <li>[joined] Passed {NAME} the salt at supper. Our hands touched, and nothing happened. Nothing at all.</li>
+            <li>[gone,beast] I walked out past the trees where {NAME} used to wait, and only birds came out of them.</li>
+          </plain>
+          <warm><li>I'm not afraid any more. I keep wanting to thank everyone, and I don't know how to say it.</li></warm>
+          <blunt><li>Not afraid. Done.</li></blunt>
+          <cheerful><li>The fear's gone! I'd thought it had moved in for good.</li></cheerful>
+          <gloomy><li>It's gone. I'll miss having something to blame, a little.</li></gloomy>
+          <cold><li>The fear has run its course. I am functioning normally again.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef} has laid the fear of {NAME} to rest.</li>
+          <li>[captured] {PAWN_nameDef} can walk past {NAME}'s cell now without a second look.</li>
+        </chronicle>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Arc_FearLaid</thought></li>
+          <li Class="ColonyCouncil.ArcEffect_Strain"><amount>-8</amount></li>
+        </effects>
+      </li>
+    </stages>
+    <fizzle>
+      <plain>
+        <li>[timeout] It's over, they say, and I'm still afraid. Maybe that just takes longer.</li>
+        <li>[escaped] {NAME} is out. Of course {NAME} is out. The fear was right all along.</li>
+        <li>I tried to put the fear of {NAME} down. Not yet, it seems.</li>
+      </plain>
+      <warm><li>[timeout] The fear's still with me, but so are the others. That will have to do for now.</li></warm>
+      <blunt><li>[escaped] {NAME} got out. Here we go again.</li></blunt>
+      <gloomy><li>[timeout] I tried to put it down. It's heavier than I thought.</li></gloomy>
+    </fizzle>
+    <fizzleChronicle>
+      <li>[escaped] {PAWN_nameDef}'s fear came back the day {NAME} got away.</li>
+      <li>{PAWN_nameDef} is still afraid of {NAME}.</li>
+    </fizzleChronicle>
+    <eulogy>
+      <plain>
+        <li>{OTHER_nameDef} was finally letting go of the fear. I hope {OTHER_pronoun} had done it by the end.</li>
+      </plain>
+    </eulogy>
+  </ColonyCouncil.ArcDef>
+
+  <InteractionDef ParentName="Council_ArcTalkBase">
+    <defName>Council_Arc_Talk_FearLaid</defName>
+    <label>talked about an old fear</label>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked late about the enemy who once hurt one of them, and the day it happened.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] went over the old fight from start to finish, slowly, until it was only a story.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] sat by the fire and talked about the one who got away, and what it had left behind.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about being afraid, and agreed it was nothing to be ashamed of.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] said the enemy's name out loud between them until it was just a name.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+  </InteractionDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Arc_FearLaid</defName>
+    <durationDays>6</durationDays>
+    <stages><li><label>laid the fear to rest</label><description>The one who hurt me can't any more, and at last the rest of me believes it. I slept the whole night through.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+</Defs>
