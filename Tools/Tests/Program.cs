@@ -392,6 +392,7 @@ for (int r = 0; r < 4; r++)
         Console.WriteLine($"Checked {TalkTests.Run(root, Check)} things about conversations (topics, how a talk goes, persuasion, the lines in turn).");
         Console.WriteLine($"Checked {MarkTests.Run(root, Check)} things about marks (choosing by nature, the limits, soft factors, the defs).");
         Console.WriteLine($"Checked {GroupTests.Run(root, Check)} things about groups (forming, roles, cohesion, splits and merges, newcomers, rivalries).");
+        Console.WriteLine($"Checked {ReputationTests.Run(root, Check)} things about gossip and reputation (slants, belief, fading, caps, the deeds).");
         Console.WriteLine($"Checked {CouncilUiTests.Run(root, Check)} things about the council window (This week, the tables, page links, shortcuts).");
         Console.WriteLine($"Checked {ModsTests.Run(root, Check)} things about the player's other mods (their names, people who change).");
         Console.WriteLine($"Checked {PerfTests.Run(root, Check)} things about the caches that keep Rimfolk light (lines, facts, slices).");

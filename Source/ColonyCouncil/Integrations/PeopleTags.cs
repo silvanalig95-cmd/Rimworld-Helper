@@ -179,6 +179,8 @@ namespace ColonyCouncil
                 if (p.needs.food == null) tags.Add("nofood");
             }
             if (ModsConfig.RoyaltyActive && p.HasPsylink) tags.Add("psycaster");
+            // Their name in the colony: rep:brave, rep:cruel, rep:gossip... (Social/Gossip/).
+            Reputations.AddTags(p, tags);
             // Rimfolk's quirks, like traits: quirk:Hums, quirk:SleepTalker (Interplay/).
             Interplay.AddQuirkTags(p, tags);
             // Their life goal and personal story: goal:Marry, story:Suitors, instory:Suitors (Interplay/).

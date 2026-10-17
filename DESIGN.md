@@ -395,6 +395,30 @@ component of its own, so an old save just starts without it and finds its groups
 - **Balance.** Belonging is company, not mood (`RewardInstead` on the habit, welcome and role moments); what a group does
   against someone is small and short (-1 to -3).
 
+### Reputation and gossip
+
+What people did, who knows it, how the story spreads, and the name that follows (`Social/Gossip/`; pure arithmetic in
+`RepMath.cs`, checked by `Tools/Tests/ReputationTests.cs`).
+
+- **Deeds** (`DeedDef`, 31): facets per side of a name (courage, kindness, diligence, skill, discretion, temper), a
+  theme for lines, a fade half-life, merging of repeats. Recorded where the event is already noticed (one-line calls
+  in WorldReactions.Victory, Moments' contests, Secrets.Reveal, Offices, Patch_ArcMade, Ambitions, Encounters,
+  MeetingAttendance), by four light postfixes (a memory gained, a mental break, a history event, a social fight; one
+  dictionary look each) and by the reputation's own hour (rescues under fire, the brave's company, idling, tending).
+  Each keeps doer, victim, when, a name ("the raid on 5th of Aprimay"), size, and its knowers: witnesses, and those who
+  heard, from whom, in what version, believed how far.
+- **Gossip** is an InteractionDef in the game's picker (`InteractionWorker_Gossip`, separate from the council's
+  `CouncilGossip`). Weight: there's a deed the teller knows and the listener doesn't, by someone else (or the proud
+  teller's own good one), its subject absent unless the teller is a hothead or their rival; fresher, juicier, more
+  from the talkative, much more to newcomers. Slant from the teller's opinion, ties, group and humour; a version grows
+  or shrinks within 40%-160% of the truth and never turns round; belief from the listener's trust and opinions. Lines
+  via `Speech.Say` (pools by valence and slant, tagged by deed and persona); the log line from slant and topic packs.
+- **A name** is what each person makes of another (deeds known × version × belief × fade × their character's weight),
+  capped at ±40 a side, and the colony's view is that summed and shared over everyone. It gives a small social thought
+  (-12..+7, the bad sooner), rep: tags, moments that read them, a vote lean (±2), fewer secrets told to a gossip, an
+  epithet's bar 7-15% lower, strain eased beside the brave in a fight (through `Interplay.Ease`), and news when a side
+  forms or fades.
+
 ## Real effects: answers that play out on the map
 
 A dilemma's answer, an event's answer or a calendar day used to give moods and a message and nothing else: "a victory
@@ -1297,6 +1321,7 @@ fights pass and the worn-out episode read from it. (A downed victim after a figh
 | 1311 | Colony calendar | the home map: snow, the day's first look (harvest, deaths, rest day), talk, a day coming round |
 | 1427 | Setbacks: the lasting ones (a wish still waiting, a decree dragging on, a sick friend, quiet days...), crops lost, rain on gatherings, noisy nights, long hauls, waiting for a doctor; outshone, cooled friendships and hard weeks in the first hour of the day | per colonist (their wish, decrees, those close to them who are ill or away), per home map (gatherings, sleepers and who is at loud work nearby, hauls, beds), per skill once a day |
 | 1544 | Council: nemeses, pets, the links between systems (pets and grief, the marshal after a fight, a fear faced), moments waiting for two to be together, PokeWorld, autonomy, who is home, everyday pressures | per colony animal on home maps, per spawned colonist (a plan or a job now and then), per colonist (meals, work), per home map (crowded rooms, half-built frames) |
+| 1660 | Reputation and gossip (only with "Personalities and social life"): in a fight, rescues under way and the brave's company; otherwise who idles while the rest work and who tends whom; in the first hour of the day, the day's idling and tending made deeds, the names that formed or faded told, the dead and departed let go | per spawned colonist on home maps (a job look; a sight check only for the idle, the brave and their side) |
 | 1777 | Personal stories | per story under way; new stories in the first hour of the day |
 | 1903 | Groups (with "Personalities and social life" and the social web on): work sampled, habits kept together | per colonist on a home map (their job); per group (its members up and about, together, doing its habit) |
 | 2089 | Story chains and missions; the peoples' memory fades (first hour of the day only) | per running chain, per mission; per remembered deed |
@@ -1357,7 +1382,10 @@ and pages rebuild their models every half second to second while open (UiCache, 
   decree's mood finds its decree in a map built once.
 - *Global work speed* (StatPart_HeartStrain): one dictionary lookup.
 - *Conversation weights*: each Rimfolk interaction is weighed every time two colonists talk; def-name endings, a
-  moment's tie kind and need are read once.
+  moment's tie kind and need are read once. Gossip picks its story once per pair every 250 ticks (an opinion and a
+  sight check once per subject, only for a story that could win).
+- *The reputation opinion* (asked for every pair of colonists): one dictionary lookup in what each makes of the other,
+  worked out again only when a deed or a knower changes (at most every 30 ticks) and once an hour for fading.
 - *Per frame*: the inspector line (a string join), the Needs tab's extra tooltip lines (cached half a second), alert
   labels (rebuilt only when they change), the slow-time buttons (labels translated once, tooltips only on hover), a
   lucky thing's inspect line and description (a lookup by thing id, nothing while no thing is lucky). Windows and tabs
@@ -1420,6 +1448,7 @@ on a map, in the world or in a caravan), so such a record is let go when the gam
 | World situations | 2 running; 40 past |
 | Story chains, missions | chains 120 days after they end; missions 2 days |
 | Faction memory | 12 deeds per people (the settled and the faintest make way); a deed is dropped once it fades below 1, and with its people when they're gone |
+| Reputation | 10 deeds per colonist and 220 in all (the faintest make way), 30 knowers a deed; a deed faded to nearly nothing is dropped, and daily those of the dead and departed and anything the dead knew; one packed number per colonist for the names told |
 | Other mods' people | best-friend pairs of known pawns, 200 at most |
 | Advisor (per map) | 60 days of wealth samples |
 

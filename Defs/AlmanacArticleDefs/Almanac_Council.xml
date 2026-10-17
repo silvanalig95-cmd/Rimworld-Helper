@@ -485,14 +485,14 @@ Moments, frictions and social events tell one story between the same two people.
 Most warm moments change how the two see each other rather than anyone's mood: a joke or a story by the fire gives a little recreation, talking shop a little practice in a passion they share, and a child shown how to do something learns a bit of what the grown-up knows. Grief shared, a friend steadying someone in a bad hour or cheering them up when they're low still lifts the mood (see "Rising standards").</text>
       </li>
       <li>
-        <heading>Circles</heading>
-        <text>With "Personalities and social life" on, the circles are the colony's groups (see "Groups"): circles with names, roles, habits and a history, which grow out of friendship, work, battles and more, and can split and merge. With it off, three to six colonists held together by strong friendships form a circle. Either way a circle votes as a bloc, and colonists outside every circle, with no close friend, sometimes feel left out.
+        <heading>Groups</heading>
+        <text>With "Personalities and social life" on, the colony's groups (see "Groups") have names, roles, habits and a history; they grow out of friendship, work, battles and more, and can split and merge. With it off, groups are simpler: three to six colonists held together by strong friendships, worked out afresh each day. Either way a group votes as a bloc, and colonists outside every group, with no close friend, sometimes feel left out.
 
-Let someone's wish lapse and their close friends trust the council a little less, and those in the same circle lose slightly more.</text>
+Let someone's wish lapse and their close friends trust the council a little less, and those in the same group lose slightly more.</text>
       </li>
       <li>
         <heading>What bonds change</heading>
-        <text>Friends and circle members back each other's wishes and petitions and vote for each other; rivals object to each other's wishes and vote against each other. A colonist's bonds and circle are listed in their trust tooltip on the Wishes page. When a bonded colonist dies, the ones left behind write about it.</text>
+        <text>Friends and members of the same group back each other's wishes and petitions and vote for each other; rivals object to each other's wishes and vote against each other. A colonist's bonds and circle are listed in their trust tooltip on the Wishes page. When a bonded colonist dies, the ones left behind write about it.</text>
       </li>
     </sections>
     <keywords><li>friend</li><li>rival</li><li>comrade</li><li>mentor</li><li>student</li><li>circle</li><li>social</li><li>bond</li><li>relationship</li></keywords>
@@ -1065,7 +1065,7 @@ To head it off, use days of rest: a decree that slows everyone's work by 10% for
           <li>Relief | a fight survived, a hunt or debt over, someone brought home, the warlord fallen or the warband broken up | faster recovery, less fear, a day off</li>
           <li>Tenderness | a baby, a patient, a little one learning, a bonded animal, a lost child seen home | warm moments, less anger, a crib or a pet bed</li>
           <li>Worry | someone loved downed, ill, carried off or away; a sickness in the region for parents and healers, hunger in the region for growers | a sickbed visit, an infirmary, a trickle of strain</li>
-          <li>Fellowship | feasts and customs kept together, a circle, friends close by, friends made at a camp, good neighbours to a camp, its music at night | warm moments, less loneliness, parties and music</li>
+          <li>Fellowship | feasts and customs kept together, a group, friends close by, friends made at a camp, good neighbours to a camp, its music at night | warm moments, less loneliness, parties and music</li>
           <li>Resolve | a score to settle, drills, a steady nerve, a goal half won | less despair, fewer episodes, training and weapons</li>
         </table>
         <after>The world beyond the walls reaches the heart too: what passes between the colony and a camp or a neighbour feeds the feelings above, and while a camp is on the map or a world event runs, a feeling that fits brings dreams and moments of its own (the camp's fire in a dream, friends at the camp talked about, worries about the region shared with a friend, plans made on good news, a camp sent away regretted).</after>
@@ -1074,7 +1074,7 @@ To head it off, use days of rest: a decree that slows everyone's work by 10% for
         <heading>The heart's needs</heading>
         <table>
           <li>Need | Met by | Makes likelier</li>
-          <li>Belonging | friends here, a partner, family, a circle, good moments | parties, companions, a wedding; goals about friends and family</li>
+          <li>Belonging | friends here, a partner, family, a group, good moments | parties, companions, a wedding; goals about friends and family</li>
           <li>Purpose | work they love, a life goal, a seat, learning | a space for their craft, lessons; goals of mastery</li>
           <li>Safety | no danger, food, medicine, defenses, their health | defenses, armor, an infirmary; goals of a fighter</li>
           <li>Freedom | time outdoors, free time, varied work, travel, few restrictions | time outside, travel, a hunt; goals of discovery</li>

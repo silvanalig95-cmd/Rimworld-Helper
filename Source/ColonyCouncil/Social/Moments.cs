@@ -453,6 +453,7 @@ namespace ColonyCouncil
             CouncilGameComponent.GiveThought(winner, x.winnerThought, loser, -1f, "CC_Cause_Contest".Translate(interaction.label, loser.LabelShort).Resolve());
             CouncilGameComponent.GiveThought(loser, x.loserThought, winner, -1f, "CC_Cause_Contest".Translate(interaction.label, winner.LabelShort).Resolve());
             winner.skills?.Learn(x.contestSkill, 30f);
+            Deeds.Contest(winner, loser, x.contestSkill);
             loser.skills?.Learn(x.contestSkill, 30f);
         }
     }

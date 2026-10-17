@@ -53,7 +53,7 @@ window, organized in five sections:
 | Section | Sub-tabs | What's there |
 |---|---|---|
 | **Colony** | This week · Overview · Priorities · Moods · World · Room plans · Defenses | what needs you, what's coming and how people are; the colony at a glance (numbers, how they moved this week, graphs of mood, trust, wealth and people over the last weeks); the advisor's ranked list of what the colony needs; every mood added up; what's coming and who's out there; ready-made rooms; where raiders come from and what to build against them |
-| **People** | Roster · Everyone · Bonds · Wishes | every colonist at a glance with their full story; all colonists in one sortable table; friendships, rivalries, circles, vendettas, secrets; open wishes, promises kept and trust |
+| **People** | Roster · Everyone · Bonds · Wishes | every colonist at a glance with their full story; all colonists in one sortable table; friendships, rivalries, groups, vendettas, secrets; open wishes, promises kept and trust |
 | **Council** | Decrees · Ambition · Our ways · Dilemmas | decrees, petitions and the council's offices (five, up to fourteen seats in a bigger colony); the current ambition and meetings; what the colony is known for; questions waiting and how the answers went |
 | **History** | Chronicle · Calendar · Dreams · Journals | everything that happened (filter by wishes, council, people, strangers, world events, dreams, losses), the colony calendar, recent dreams, every colonist's journal |
 | **Almanac** | | the knowledge base |
@@ -438,18 +438,18 @@ too (about a hundred kinds, 44 of them frictions), shaped by who they are (night
 brawlers comparing scars, an iron-willed colonist steadying a nervous one) and by what's going on (visiting the sick,
 talking over a council meeting, watching a camp's fires, confiding a worry). Moments, frictions and events keep to
 one story between the same two: no compliment right after an insult, no warm evening the day after a falling-out.
-Three to six people held together by strong friendships form a **circle**, and people outside every circle sometimes
-feel left out.
+Strong friendships hold people together in **groups** (see below), and people outside every group sometimes feel left
+out.
 
-Bonds change how people act. Friends and circle members back each other's wishes and petitions and vote for each
+Bonds change how people act. Friends and members of the same group back each other's wishes and petitions and vote for each
 other; rivals object to each other's wishes and vote against each other. The council's own decisions feed back
 into them: being passed over for a rival, losing an election, a fight, a grudge from a dilemma or arguing over a
 decree can start a rivalry, while backing the same petition or making up after a quarrel builds a friendship. Some
 dilemmas only come up between friends, rivals or comrades. When someone dies, the people closest to them (and their
-rivals) write about it. The **Social** tab shows every bond with its strength and history, and every circle.
+rivals) write about it. The **Social** tab shows every bond with its strength and history, and every group.
 
-### Groups: circles that form, quarrel, split and merge
-With "Personalities and social life" on, the circles become real groups. They grow out of something real (friendship,
+### Groups: they form, quarrel, split and merge
+Groups replace the old circles of friends (which remain, simpler, only with "Personalities and social life" off). They grow out of something real (friendship,
 the same work, a fight fought together, the night hours, faith, where people came from, age, being alike) and keep the
 name they were given: **the hunters, the night shift, the old hands, the kitchen crowd, the faithful, the ones from the
 ship, Hector's lot** (25 kinds, with names for a tribe or a keep). Each has:
@@ -469,6 +469,26 @@ in the game's own conversations, with about 600 lines in all. **People → Bonds
 and their parts, ways, habits, quarrels and history) and as a coloured band on the web; a bond's details list what the
 two went through together, and the character page has a "Groups and role" section. Almanac: "Groups" and "Roles in a
 group".
+
+### Reputation and gossip: what people say about each other
+Colonists notice what the others do (31 kinds of deed): who carried a wounded friend out of a fight and who ran, who
+held the line or brought many down, who sat with the wounded for days, a tantrum, a berserk rage, the first punch, a
+binge while the stores ran low, a secret kept or let out, a masterwork, a great work seen through, a botched
+operation, a contest or an election won, a kindness to a stranger, a cruelty to a prisoner, an affair or a breakup,
+a week of idling while everyone else worked, a council meeting someone didn't bother with. Those who saw it know.
+Everyone else hears it in **gossip**, a conversation like any other, when the one it's about isn't there: the teller
+colours it by what they think of them and who they are (a friend talks it up or excuses it, a rival runs it down, a
+joker makes it a joke, the proud boast of their own), the story grows a little in the telling but never into
+fiction, and the listener believes it as far as their nature lets them (the wary believe the bad, the trusting the
+good) and makes of it what their character does (the bold admire courage, the warm condemn cruelty). It's said over
+their heads, in about 480 lines by deed, slant and character, and the listener answers.
+
+What the colony knows of someone is their **name**: brave or a coward, kind or cruel, reliable or idle, skilled,
+trustworthy or a gossip, a hothead or level-headed. A name is a small opinion either way, steadies those beside the
+brave in a fight, leans a vote, means fewer secrets for a gossip and a colony name a little sooner, and brings its
+own moments (the cruel given a wide berth, the coward jibed at, the brave asked how they do it). It fades as the talk
+dies down; newcomers pick it up over their first weeks. The character page shows it under "What people say about
+them", with the deeds behind it, who told whom, and who thinks what of them for it.
 
 ### Story: a page for every colonist
 Select a colonist and open the **Story** tab in their inspect panel (next to Bio, Social and Gear): their trust,
@@ -694,7 +714,7 @@ together, from five), the **chaplain** (with Ideology: keeps the colony's faith,
 (looks after visitors and the camp on the colony's land, from five), the **keeper of days** (every kept custom and
 calendar day a small occasion, from six), the **herdmaster** (more from the animals, from six) and, for a colony of
 ten, a **council of elders** (three seats, where age counts, and a steadier colony while they sit). Colonists elect them every year, voting for the skilled, the
-suited and the liked, friends and circles voting together, and the election letter has a word about each new
+suited and the liked, friends and groups voting together, and the election letter has a word about each new
 holder. You can appoint and dismiss from the Decrees tab, but whoever the colony actually voted for will remember
 being overruled. A wish the council took back counts against those sitting on it at the next election, and the
 names the colony gave someone count for them.

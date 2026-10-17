@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Moments a name brings (Source/ColonyCouncil/Social/Gossip/): ordinary moments (MomentExtension, Social/Moments.cs)
+    that ask for the rep: tags a colonist's name gives once it shows (rep:brave, rep:coward, rep:kind, rep:cruel,
+    rep:reliable, rep:idle, rep:skilled, rep:trustworthy, rep:gossip, rep:hothead). The cruel are given a wide berth,
+    the coward is jibed at, the gossip finds the talk stopping, the brave are asked how they do it.
+  -->
+
+  <!-- ===================== Frictions ===================== -->
+
+  <InteractionDef ParentName="Council_FrictionMomentBase">
+    <defName>Rimfolk_RepMoment_WideBerth</defName>
+    <label>gave them a wide berth</label>
+    <recipientThought>Rimfolk_Friction_WideBerth</recipientThought>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] moved to the far end of the table when [RECIPIENT_nameDef] sat down.</li>
+        <li>r_logentry->[INITIATOR_nameDef] found a reason to be somewhere else when [RECIPIENT_nameDef] came over.</li>
+        <li>r_logentry->[INITIATOR_nameDef] kept a bench between [INITIATOR_objective]self and [RECIPIENT_nameDef] all through supper.</li>
+        <li>r_logentry->[INITIATOR_nameDef] wouldn't hand [RECIPIENT_nameDef] the [thing], and left it on the table between them instead.</li>
+        <li>r_logentry->[INITIATOR_nameDef] went stiff when [RECIPIENT_nameDef] laughed, as if remembering what [INITIATOR_pronoun] had heard.</li>
+        <li>r_logentry->[INITIATOR_nameDef] steered the children away from [RECIPIENT_nameDef] without a word.</li>
+        <li>r_logentry->[INITIATOR_nameDef] answered [RECIPIENT_nameDef] in single words and kept [INITIATOR_possessive] eyes on [INITIATOR_possessive] work.</li>
+        <li>r_logentry->[INITIATOR_nameDef] took the long way round rather than pass [RECIPIENT_nameDef] in the doorway.</li>
+        <li>thing->bread</li>
+        <li>thing->salt</li>
+        <li>thing->knife</li>
+        <li>thing->water jug</li>
+      </rulesStrings>
+    </logRulesInitiator>
+    <modExtensions>
+      <li Class="ColonyCouncil.MomentExtension">
+        <weight>0.05</weight>
+        <cooldownDays>3</cooldownDays>
+        <tone>friction</tone>
+        <soreHours>14</soreHours>
+        <initiatorTags>!child,persona:warm|trait:Kind|persona:timid</initiatorTags>
+        <recipientTags>rep:cruel</recipientTags>
+        <maxOpinion>30</maxOpinion>
+      </li>
+    </modExtensions>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Council_FrictionMomentBase">
+    <defName>Rimfolk_RepMoment_FightJibe</defName>
+    <label>jibed about the fighting</label>
+    <recipientThought>Rimfolk_Friction_FightJibe</recipientThought>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [RECIPIENT_pronoun] would be sticking around for the next raid.</li>
+        <li>r_logentry->[INITIATOR_nameDef] offered to save [RECIPIENT_nameDef] a spot well behind the wall for next time.</li>
+        <li>r_logentry->[INITIATOR_nameDef] made a show of checking where [RECIPIENT_nameDef] was before the alarm drill.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] the bravest thing [RECIPIENT_pronoun] had done all season was finish [RECIPIENT_possessive] stew.</li>
+        <li>r_logentry->[INITIATOR_nameDef] jumped at a loud noise and said [INITIATOR_pronoun] was only doing [RECIPIENT_nameDef]'s part for [RECIPIENT_objective].</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef], loudly, how fast [RECIPIENT_pronoun] could run with a pack on.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that the others had stopped counting on [RECIPIENT_objective] in a fight.</li>
+        <li>r_logentry->[INITIATOR_nameDef] handed [RECIPIENT_nameDef] a spear and asked if [RECIPIENT_pronoun] remembered which end to hold.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+    <modExtensions>
+      <li Class="ColonyCouncil.MomentExtension">
+        <weight>0.05</weight>
+        <cooldownDays>3</cooldownDays>
+        <tone>friction</tone>
+        <soreHours>18</soreHours>
+        <initiatorTags>!child,persona:bold|persona:hothead|trait:Abrasive|rep:brave</initiatorTags>
+        <recipientTags>rep:coward</recipientTags>
+        <maxOpinion>20</maxOpinion>
+      </li>
+    </modExtensions>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Council_FrictionMomentBase">
+    <defName>Rimfolk_RepMoment_TalkStopped</defName>
+    <label>stopped talking when they came over</label>
+    <recipientThought>Rimfolk_Friction_TalkStopped</recipientThought>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] stopped mid-sentence when [RECIPIENT_nameDef] sat down, and didn't pick it up again.</li>
+        <li>r_logentry->[INITIATOR_nameDef] changed the subject to the weather the moment [RECIPIENT_nameDef] came within earshot.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] it was nothing, really, nothing at all.</li>
+        <li>r_logentry->[INITIATOR_nameDef] waited until [RECIPIENT_nameDef] had gone before finishing [INITIATOR_possessive] story.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] not to repeat what [INITIATOR_pronoun] was about to say, then decided not to say it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] lowered [INITIATOR_possessive] voice when [RECIPIENT_nameDef] walked past, and kept it low.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that some things are better kept between two people, and looked at [RECIPIENT_objective] meaningfully.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+    <modExtensions>
+      <li Class="ColonyCouncil.MomentExtension">
+        <weight>0.04</weight>
+        <cooldownDays>3</cooldownDays>
+        <tone>friction</tone>
+        <soreHours>10</soreHours>
+        <initiatorTags>!child</initiatorTags>
+        <recipientTags>rep:gossip</recipientTags>
+        <maxOpinion>40</maxOpinion>
+      </li>
+    </modExtensions>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Council_FrictionMomentBase">
+    <defName>Rimfolk_RepMoment_HandedWork</defName>
+    <label>handed them work, pointedly</label>
+    <recipientThought>Rimfolk_Friction_HandedWork</recipientThought>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] put a broom in [RECIPIENT_nameDef]'s hands without a word.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [RECIPIENT_pronoun] was planning to do anything today, or just watch.</li>
+        <li>r_logentry->[INITIATOR_nameDef] counted out loud the hours [INITIATOR_pronoun] had worked since dawn, for [RECIPIENT_nameDef]'s benefit.</li>
+        <li>r_logentry->[INITIATOR_nameDef] dropped a heavy sack at [RECIPIENT_nameDef]'s feet and walked off.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [chore], in case [RECIPIENT_pronoun] was waiting for that.</li>
+        <li>r_logentry->[INITIATOR_nameDef] offered [RECIPIENT_nameDef] a chair, since [RECIPIENT_pronoun] seemed to like sitting so much.</li>
+        <li>chore->the dishes wouldn't wash themselves</li>
+        <li>chore->the weeds wouldn't pull themselves</li>
+        <li>chore->the firewood wouldn't split itself</li>
+        <li>chore->the stores wouldn't carry themselves in</li>
+      </rulesStrings>
+    </logRulesInitiator>
+    <modExtensions>
+      <li Class="ColonyCouncil.MomentExtension">
+        <weight>0.04</weight>
+        <cooldownDays>3</cooldownDays>
+        <tone>friction</tone>
+        <soreHours>10</soreHours>
+        <initiatorTags>!child,trait:Industrious|trait:HardWorker|persona:proud|persona:hothead|rep:reliable</initiatorTags>
+        <recipientTags>rep:idle</recipientTags>
+        <maxOpinion>40</maxOpinion>
+      </li>
+    </modExtensions>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Council_FrictionMomentBase">
+    <defName>Rimfolk_RepMoment_Tiptoed</defName>
+    <label>tiptoed around their temper</label>
+    <recipientThought>Rimfolk_Friction_Tiptoed</recipientThought>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] chose every word carefully around [RECIPIENT_nameDef], and it showed.</li>
+        <li>r_logentry->[INITIATOR_nameDef] put the breakable things on a high shelf when [RECIPIENT_nameDef] came into the room.</li>
+        <li>r_logentry->[INITIATOR_nameDef] agreed with everything [RECIPIENT_nameDef] said, which [RECIPIENT_nameDef] noticed.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked someone else to tell [RECIPIENT_nameDef] the bad news.</li>
+        <li>r_logentry->[INITIATOR_nameDef] edged towards the door the moment [RECIPIENT_nameDef] raised [RECIPIENT_possessive] voice.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] to calm down before [RECIPIENT_nameDef] had said anything at all.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+    <modExtensions>
+      <li Class="ColonyCouncil.MomentExtension">
+        <weight>0.04</weight>
+        <cooldownDays>3</cooldownDays>
+        <tone>friction</tone>
+        <soreHours>8</soreHours>
+        <initiatorTags>persona:timid|persona:calm|child|trait:Kind</initiatorTags>
+        <recipientTags>rep:hothead</recipientTags>
+        <maxOpinion>50</maxOpinion>
+      </li>
+    </modExtensions>
+  </InteractionDef>
+
+  <!-- ===================== A good name ===================== -->
+
+  <InteractionDef ParentName="Council_MomentBase">
+    <defName>Rimfolk_RepMoment_AskBrave</defName>
+    <label>asked how they keep steady</label>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] how [RECIPIENT_pronoun] keeps steady when the raiders come.</li>
+        <li>r_logentry->[INITIATOR_nameDef] admitted to [RECIPIENT_nameDef] that [INITIATOR_pronoun] freezes in a fight, and asked what to do about it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked to stand next to [RECIPIENT_nameDef] when the next alarm goes.</li>
+        <li>r_logentry->[RECIPIENT_nameDef] showed [INITIATOR_nameDef] where [RECIPIENT_pronoun] stands when the wall is hit, and why.</li>
+        <li>r_logentry->[INITIATOR_nameDef] wanted to hear the story of the last fight from [RECIPIENT_nameDef] [INITIATOR_objective]self, not secondhand.</li>
+        <li>r_logentry->[RECIPIENT_nameDef] told [INITIATOR_nameDef] that being scared is fine, as long as [INITIATOR_pronoun] stays put.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [RECIPIENT_pronoun] was ever afraid, and [RECIPIENT_nameDef] said every time.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+    <modExtensions>
+      <li Class="ColonyCouncil.MomentExtension">
+        <weight>0.04</weight>
+        <cooldownDays>4</cooldownDays>
+        <initiatorTags>persona:timid|teen|child|newcomer|rep:coward</initiatorTags>
+        <recipientTags>rep:brave</recipientTags>
+        <minOpinion>-10</minOpinion>
+        <bumpTie>Friends</bumpTie>
+        <bumpAmount>2</bumpAmount>
+      </li>
+    </modExtensions>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Council_MomentBase">
+    <defName>Rimfolk_RepMoment_ThankKind</defName>
+    <label>sought out a kind word</label>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] sat down next to [RECIPIENT_nameDef] after a hard day, because everyone says [RECIPIENT_pronoun] is easy to talk to.</li>
+        <li>r_logentry->[INITIATOR_nameDef] brought [RECIPIENT_nameDef] something warm to drink, having heard what [RECIPIENT_pronoun] did for the others.</li>
+        <li>r_logentry->[INITIATOR_nameDef] went to [RECIPIENT_nameDef] with a splinter, and stayed to talk about something else entirely.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that people speak well of [RECIPIENT_objective], and [RECIPIENT_nameDef] went red.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] for advice about a falling-out, since [RECIPIENT_pronoun] never seems to have any.</li>
+        <li>r_logentry->[INITIATOR_nameDef] saved [RECIPIENT_nameDef] the warm end of the bench without being asked.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+    <modExtensions>
+      <li Class="ColonyCouncil.MomentExtension">
+        <weight>0.03</weight>
+        <cooldownDays>4</cooldownDays>
+        <recipientTags>rep:kind</recipientTags>
+        <minOpinion>0</minOpinion>
+        <bumpTie>Friends</bumpTie>
+        <bumpAmount>2</bumpAmount>
+      </li>
+    </modExtensions>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Council_MomentBase">
+    <defName>Rimfolk_RepMoment_AskSkilled</defName>
+    <label>asked them to look over the work</label>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] to look over [INITIATOR_possessive] work, since everyone says [RECIPIENT_pronoun] has the best hands here.</li>
+        <li>r_logentry->[INITIATOR_nameDef] watched [RECIPIENT_nameDef] work for a while and asked how [RECIPIENT_pronoun] got the edges so clean.</li>
+        <li>r_logentry->[RECIPIENT_nameDef] showed [INITIATOR_nameDef] a trick of [RECIPIENT_possessive] trade, and [INITIATOR_nameDef] made [RECIPIENT_objective] show it twice.</li>
+        <li>r_logentry->[INITIATOR_nameDef] brought [RECIPIENT_nameDef] a broken thing nobody else could fix.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] where [RECIPIENT_pronoun] learned to work like that, and got the long version.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [INITIATOR_pronoun] had heard about the masterwork, and wanted to see it for [INITIATOR_objective]self.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+    <modExtensions>
+      <li Class="ColonyCouncil.MomentExtension">
+        <weight>0.03</weight>
+        <cooldownDays>4</cooldownDays>
+        <recipientTags>rep:skilled</recipientTags>
+        <minOpinion>-10</minOpinion>
+        <bumpTie>Friends</bumpTie>
+        <bumpAmount>1.5</bumpAmount>
+      </li>
+    </modExtensions>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Council_MomentBase">
+    <defName>Rimfolk_RepMoment_Confided</defName>
+    <label>told them something private</label>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] something [INITIATOR_pronoun] had never told anyone, because [RECIPIENT_pronoun] keeps things to [RECIPIENT_objective]self.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] for a word in private, and [RECIPIENT_nameDef] listened without interrupting once.</li>
+        <li>r_logentry->[INITIATOR_nameDef] got something off [INITIATOR_possessive] chest to [RECIPIENT_nameDef], knowing it would go no further.</li>
+        <li>r_logentry->[INITIATOR_nameDef] admitted to [RECIPIENT_nameDef] what was really keeping [INITIATOR_objective] up at night.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked behind the storehouse until [INITIATOR_nameDef] felt lighter.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+    <modExtensions>
+      <li Class="ColonyCouncil.MomentExtension">
+        <weight>0.03</weight>
+        <cooldownDays>5</cooldownDays>
+        <initiatorTags>!child</initiatorTags>
+        <recipientTags>rep:trustworthy</recipientTags>
+        <minOpinion>10</minOpinion>
+        <bumpTie>Friends</bumpTie>
+        <bumpAmount>3</bumpAmount>
+      </li>
+    </modExtensions>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Council_MomentBase">
+    <defName>Rimfolk_RepMoment_LeanOn</defName>
+    <label>left something in their hands</label>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] to keep an eye on the [task], since [RECIPIENT_pronoun] never lets anything slip.</li>
+        <li>r_logentry->[INITIATOR_nameDef] left [RECIPIENT_nameDef] in charge of the [task] and didn't check on it once.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that if [RECIPIENT_pronoun] said it would be done, that was good enough.</li>
+        <li>r_logentry->[INITIATOR_nameDef] went to [RECIPIENT_nameDef] first when the [task] needed doing, as most people do.</li>
+        <li>task->stores</li>
+        <li>task->night watch</li>
+        <li>task->seedlings</li>
+        <li>task->count of the firewood</li>
+      </rulesStrings>
+    </logRulesInitiator>
+    <modExtensions>
+      <li Class="ColonyCouncil.MomentExtension">
+        <weight>0.03</weight>
+        <cooldownDays>4</cooldownDays>
+        <recipientTags>rep:reliable</recipientTags>
+        <minOpinion>0</minOpinion>
+        <bumpTie>Friends</bumpTie>
+        <bumpAmount>1.5</bumpAmount>
+      </li>
+    </modExtensions>
+  </InteractionDef>
+
+</Defs>

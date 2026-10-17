@@ -511,6 +511,8 @@ namespace Balance
                     continue;
                 }
                 if (Rates.Gates.TryGetValue(n, out float factor)) g *= factor;
+                // A name in the colony (rep:cruel, rep:brave...) shows for a few colonists, not most.
+                if ((n == "initiatorTags" || n == "recipientTags") && c.Value.Contains("rep:")) g *= Rates.RepTagShare;
             }
             return Math.Max(0.01f, g);
         }
