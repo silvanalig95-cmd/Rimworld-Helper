@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- ===================== Groups (Source/ColonyCouncil/Social/Groups/) ===================== -->
+
+  <!-- Roles -->
+  <CC_GroupRole_None>one of them</CC_GroupRole_None>
+  <CC_GroupRole_Anchor>the anchor</CC_GroupRole_Anchor>
+  <CC_GroupRole_Joker>the joker</CC_GroupRole_Joker>
+  <CC_GroupRole_Peacemaker>the peacemaker</CC_GroupRole_Peacemaker>
+  <CC_GroupRole_Firebrand>the firebrand</CC_GroupRole_Firebrand>
+  <CC_GroupRole_Worrier>the worrier</CC_GroupRole_Worrier>
+  <CC_GroupRole_Quiet>the quiet one</CC_GroupRole_Quiet>
+  <CC_GroupRole_Newcomer>the newcomer</CC_GroupRole_Newcomer>
+  <CC_GroupRoleTip_None>No particular part in the group: just one of them, which is most people.</CC_GroupRoleTip_None>
+  <CC_GroupRoleTip_Anchor>The one the group gathers round: warm, sure of themselves, good with people, with the most friends among them. They call the others together, and the group often bears their name.</CC_GroupRoleTip_Anchor>
+  <CC_GroupRoleTip_Joker>The one who makes the jokes. When one of them is low, the joker is the one who gets a laugh out of them.</CC_GroupRoleTip_Joker>
+  <CC_GroupRoleTip_Peacemaker>Warm and slow to anger. When two of the group quarrel and the peacemaker is there, they step in, and the quarrel is over sooner.</CC_GroupRoleTip_Peacemaker>
+  <CC_GroupRoleTip_Firebrand>Quick-tempered and proud. They stir the group up, most of all against a group it's at odds with.</CC_GroupRoleTip_Firebrand>
+  <CC_GroupRoleTip_Worrier>Gloomy and big-hearted: they fret for everyone, and the others talk them down.</CC_GroupRoleTip_Worrier>
+  <CC_GroupRoleTip_Quiet>Says little and is there anyway: a cup kept full, a nod across the fire.</CC_GroupRoleTip_Quiet>
+  <CC_GroupRoleTip_Newcomer>Joined lately, and still finding their place. After ten days or so they settle into a part of their own.</CC_GroupRoleTip_Newcomer>
+
+  <!-- How close a group is, how bad it is between two -->
+  <CC_Group_Cohesion_Tight>tight-knit</CC_Group_Cohesion_Tight>
+  <CC_Group_Cohesion_Close>close</CC_Group_Cohesion_Close>
+  <CC_Group_Cohesion_Loose>loose</CC_Group_Cohesion_Loose>
+  <CC_Group_Cohesion_Fraying>fraying</CC_Group_Cohesion_Fraying>
+  <CC_Group_Rivalry_Bad>bad blood</CC_Group_Rivalry_Bad>
+  <CC_Group_Rivalry_Some>at odds</CC_Group_Rivalry_Some>
+  <CC_Group_Rivalry_Little>some friction</CC_Group_Rivalry_Little>
+
+  <!-- Why two groups fell out, why one split (each follows a comma) -->
+  <CC_Group_RivalWhy_Feud>after the feud between {0} and {1}</CC_Group_RivalWhy_Feud>
+  <CC_Group_RivalWhy_View>divided over {0}</CC_Group_RivalWhy_View>
+  <CC_Group_RivalWhy_Ways>their ways being what they are</CC_Group_RivalWhy_Ways>
+  <CC_Group_RivalWhy_Frictions>after one spat too many</CC_Group_RivalWhy_Frictions>
+  <CC_Group_SplitWhy_Feud>after the feud between {A_nameDef} and {B_nameDef}</CC_Group_SplitWhy_Feud>
+  <CC_Group_SplitWhy_Apart>with {A_nameDef} and {B_nameDef} pulling opposite ways</CC_Group_SplitWhy_Apart>
+
+  <!-- How a group ended -->
+  <CC_GroupHow_AllGone>all its people gone</CC_GroupHow_AllGone>
+  <CC_GroupHow_LastOne>only one of them left</CC_GroupHow_LastOne>
+  <CC_GroupHow_DriftedApart>its people drifted apart</CC_GroupHow_DriftedApart>
+  <CC_GroupHow_Merged>joined with {0}</CC_GroupHow_Merged>
+
+  <!-- A name when the kind's own are all taken -->
+  <CC_Group_NameOf>{ANCHOR_nameDef}'s {KIND}</CC_Group_NameOf>
+
+  <!-- News (told once) -->
+  <CC_Group_Formed>A new circle: {NAMES} have become {GROUP}. {WHY}</CC_Group_Formed>
+  <CC_Group_Joined>{PAWN_nameDef} has joined {GROUP}.</CC_Group_Joined>
+  <CC_Group_DriftedOff>{PAWN_nameDef} has drifted away from {GROUP}.</CC_Group_DriftedOff>
+  <CC_Group_Accepted>{GROUP} have taken {PAWN_nameDef} in: {PAWN_pronoun} is no longer the new one.</CC_Group_Accepted>
+  <CC_Group_ClosedRanks>{GROUP} have closed ranks against {PAWN_nameDef}, who is new here.</CC_Group_ClosedRanks>
+  <CC_Group_Split>{NAMES} have broken away from {GROUP}, {WHY}.</CC_Group_Split>
+  <CC_Group_SplitInTwo>{GROUP} have split in two, {WHY}: {NAMES} go their own way as {OTHER}.</CC_Group_SplitInTwo>
+  <CC_Group_Merged>{OTHER} and {GROUP} have become one crowd, and all of them are {GROUP} now.</CC_Group_Merged>
+  <CC_Group_Ended>{GROUP} are no more: {HOW}.</CC_Group_Ended>
+  <CC_Group_Rivalry>Bad blood: {GROUP} and {OTHER} are at odds, {WHY}.</CC_Group_Rivalry>
+  <CC_Group_RivalryOver>{GROUP} and {OTHER} have made their peace.</CC_Group_RivalryOver>
+  <CC_Group_PlayLabel>{HABIT} for {GROUP}</CC_Group_PlayLabel>
+
+  <!-- A group's history -->
+  <CC_GroupNote_Formed>Came together. {WHY}</CC_GroupNote_Formed>
+  <CC_GroupNote_Found>Already together when the colony began keeping track of its circles. {WHY}</CC_GroupNote_Found>
+  <CC_GroupNote_Joined>{PAWN_nameDef} joined.</CC_GroupNote_Joined>
+  <CC_GroupNote_JoinedWith>{PAWN_nameDef} was taken in, with {OTHER} speaking for {PAWN_objective}.</CC_GroupNote_JoinedWith>
+  <CC_GroupNote_Sponsor>{PAWN_nameDef} spoke up for {OTHER_nameDef}, who is new.</CC_GroupNote_Sponsor>
+  <CC_GroupNote_ClosedRanks>Closed ranks against {PAWN_nameDef}, who is new.</CC_GroupNote_ClosedRanks>
+  <CC_GroupNote_DriftedOff>{PAWN_nameDef} drifted away.</CC_GroupNote_DriftedOff>
+  <CC_GroupNote_Died>{0} died.</CC_GroupNote_Died>
+  <CC_GroupNote_Gone>{PAWN_nameDef} left the colony.</CC_GroupNote_Gone>
+  <CC_GroupNote_Role>{PAWN_nameDef} became {ROLE}.</CC_GroupNote_Role>
+  <CC_GroupNote_Norm>A way of theirs took hold: {NORM}.</CC_GroupNote_Norm>
+  <CC_GroupNote_NormLost>A way of theirs faded: {NORM}.</CC_GroupNote_NormLost>
+  <CC_GroupNote_Rivals>Fell out with {GROUP}, {WHY}.</CC_GroupNote_Rivals>
+  <CC_GroupNote_RivalsOver>Made peace with {GROUP}.</CC_GroupNote_RivalsOver>
+  <CC_GroupNote_Split>{NAMES} broke away, {WHY}.</CC_GroupNote_Split>
+  <CC_GroupNote_BrokeAway>Broke away from {GROUP}, {WHY}.</CC_GroupNote_BrokeAway>
+  <CC_GroupNote_Merged>Took in {OTHER}: the two are one now.</CC_GroupNote_Merged>
+  <CC_GroupNote_HabitFirst>Kept {HABIT} for the first time.</CC_GroupNote_HabitFirst>
+  <CC_GroupNote_HabitCount>{HABIT}: {COUNT} times now.</CC_GroupNote_HabitCount>
+  <CC_GroupNote_Gathered>{COUNT} of them gathered for {NAME}.</CC_GroupNote_Gathered>
+
+  <!-- Causes (moods' tooltips) -->
+  <CC_Cause_GroupHabit>{0}, with {1}</CC_Cause_GroupHabit>
+  <CC_Cause_ShutOut>{0} keep a newcomer at arm's length</CC_Cause_ShutOut>
+  <CC_Cause_CircleSplit>{0} split apart</CC_Cause_CircleSplit>
+  <CC_Cause_CircleEnded>{0} came to an end</CC_Cause_CircleEnded>
+
+  <!-- The card on People → Bonds -->
+  <CC_Group_Card_Since>since {0}</CC_Group_Card_Since>
+  <CC_Group_Card_Cohesion>{0} ({1})</CC_Group_Card_Cohesion>
+  <CC_Group_Card_Ways>Ways: {0}.</CC_Group_Card_Ways>
+  <CC_Group_Card_Members>Its people: {0}.</CC_Group_Card_Members>
+  <CC_Group_Card_Joined>One of them since {0}.</CC_Group_Card_Joined>
+  <CC_Group_Card_OutOfStep>Out of step with its ways: {0}.</CC_Group_Card_OutOfStep>
+  <CC_Group_Card_Character>Character: {0}.</CC_Group_Card_Character>
+  <CC_Group_Card_Edge>at the edge, {0}%</CC_Group_Card_Edge>
+  <CC_Group_Card_ShutOut>shut out</CC_Group_Card_ShutOut>
+  <CC_Group_Card_EdgeTip>{0} is {1}% of the way in.</CC_Group_Card_EdgeTip>
+  <CC_Group_Card_ClosedTip>The group has closed ranks against them: its ways and its people's wariness keep them out. Work alongside its people, meals at the same table and a member who likes them all help, slowly.</CC_Group_Card_ClosedTip>
+  <CC_Group_Card_Rival>At odds with {OTHER} ({HOW}), {WHY}.</CC_Group_Card_Rival>
+  <CC_Group_Card_RivalBudding>Cooling towards {OTHER}, {WHY}.</CC_Group_Card_RivalBudding>
+  <CC_Group_CohesionTip>How close the group is, 0 to 100. Habits kept together, things gone through together and a peacemaker's work raise it; quarrels inside it, a member lost and long separation lower it. A loose group with a rift in it splits.</CC_Group_CohesionTip>
+  <CC_Group_HabitTip>Kept {0} times so far.</CC_Group_HabitTip>
+  <CC_Group_ViewFor>for {0}</CC_Group_ViewFor>
+  <CC_Group_ViewAgainst>against {0}</CC_Group_ViewAgainst>
+  <CC_Group_ViewTip>A view most of them share. Members who don't hold it yet are drawn towards it, slowly.</CC_Group_ViewTip>
+  <CC_Group_RivalTip>How bad it is between them: {0} of 100. It grows with feuds between their people, views and ways at odds, and spats between them; it cools when those end. Members of groups at odds think less of each other, vote against each other and object to each other's wishes.</CC_Group_RivalTip>
+  <CC_Group_OutsiderTip>Someone new to the colony is an outsider until a group takes them in. What its people think of them, things they go through together, work they share and a member who speaks for them all help; a warm, trusting group takes them in far sooner than a wary one, which may close ranks.</CC_Group_OutsiderTip>
+  <CC_Group_NoneTip>Groups grow out of what binds people: friendship, the same work, a fight fought together, the night hours, faith, where they came from, their age, being alike.</CC_Group_NoneTip>
+
+  <!-- The character page (section "Groups and role") -->
+  <CC_Group_PageTitle>Groups and role</CC_Group_PageTitle>
+  <CC_Group_Page_In>One of {GROUP} since {DATE}: {ROLE}.</CC_Group_Page_In>
+  <CC_Group_Page_NoRole>no particular part in it yet</CC_Group_Page_NoRole>
+  <CC_Group_Page_Pending>Settling into being {0}.</CC_Group_Page_Pending>
+  <CC_Group_Page_OutOfStep>Out of step with the ways of {GROUP}: {NORM}.</CC_Group_Page_OutOfStep>
+  <CC_Group_Page_Rival>{GROUP} are at odds with {OTHER}.</CC_Group_Page_Rival>
+  <CC_Group_Page_FindingWay>New here, finding a way into {GROUP} ({PCT}% of the way).</CC_Group_Page_FindingWay>
+  <CC_Group_Page_Sponsor>{PAWN_nameDef} speaks for them.</CC_Group_Page_Sponsor>
+  <CC_Group_Page_ShutOut>New here, and {GROUP} have closed ranks against {PAWN_objective}.</CC_Group_Page_ShutOut>
+  <CC_Group_Page_NewNoGroup>New here, and not yet part of any group.</CC_Group_Page_NewNoGroup>
+  <CC_Group_Page_Past>Was one of {GROUP} until {DATE} ({HOW}).</CC_Group_Page_Past>
+  <CC_Group_Page_None>Not part of any group.</CC_Group_Page_None>
+
+  <!-- People → Bonds -->
+  <CC_Social_Groups>Groups</CC_Social_Groups>
+  <CC_Social_GroupsNone>No groups yet. They grow out of friendships, shared work, battles fought together, the night hours, faith, where people came from, age and character, and take a few days to show.</CC_Social_GroupsNone>
+  <CC_Social_GroupsNoneFor>{0} isn't part of any group.</CC_Social_GroupsNoneFor>
+  <CC_Social_Outsiders>New and still outside every group: {0}.</CC_Social_Outsiders>
+  <CC_Social_PastGroups>Groups that are no more</CC_Social_PastGroups>
+  <CC_Social_PastGroup>{0}, {1} to {2}: {3}</CC_Social_PastGroup>
+  <CC_Social_Memories>What they went through together:</CC_Social_Memories>
+  <CC_Social_TieGroup>Both of {0}.</CC_Social_TieGroup>
+
+</LanguageData>

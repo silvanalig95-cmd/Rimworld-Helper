@@ -119,6 +119,48 @@ namespace ColonyCouncil
             }
         }
 
+        /// <summary>Every sentence starts with a capital ("the hunters are..." at the start of one, from a group's name).</summary>
+        public static string Sentences(string text)
+        {
+            if (text.NullOrEmpty()) return text;
+            var c = text.ToCharArray();
+            bool start = true;
+            for (int i = 0; i < c.Length; i++)
+            {
+                if (start && char.IsLetter(c[i]))
+                {
+                    c[i] = char.ToUpperInvariant(c[i]);
+                    start = false;
+                }
+                else if (c[i] == '.' || c[i] == '!' || c[i] == '?') start = i + 1 < c.Length && c[i + 1] == ' ';
+                else if (!char.IsWhiteSpace(c[i]) && c[i] != '"' && c[i] != '\'') start = false;
+            }
+            return new string(c);
+        }
+
+        /// <summary>
+        /// A journal line from a pool in the colonist's voice, with a group's name in it ({GROUP}): written with every
+        /// sentence capitalised, since a group's name ("the hunters") may begin one.
+        /// </summary>
+        public static void Journal(Pawn p, string pool, params NamedArgument[] args)
+        {
+            if (p == null || p.Dead || !(ColonyCouncilMod.Settings?.journals ?? false)) return;
+            var comp = CouncilGameComponent.Instance;
+            if (comp == null) return;
+            try
+            {
+                string line = Flavor.FromPool(pool, p);
+                if (line.NullOrEmpty()) return;
+                var all = new List<NamedArgument> { p.Named("PAWN") };
+                if (args != null) all.AddRange(args);
+                comp.journals.WriteText(p, Sentences(line.Formatted(all.ToArray()).Resolve()));
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("group journal " + pool, e);
+            }
+        }
+
         /// <summary>The group's ways, in words ("loud and merry, and hard workers").</summary>
         public static string NormWords(SocialGroup g) => TextUtil.JoinAnd(g.NormDefs.Select(n => n.label).ToList());
 

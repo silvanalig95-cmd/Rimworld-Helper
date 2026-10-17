@@ -287,6 +287,15 @@ namespace ColonyCouncil
                 if (k.binds == GroupBinds.Work && k.Works.Count == 0) continue;
                 float s = members.Count(m => Fits(k, m, members)) / (float)Mathf.Max(1, members.Count);
                 if (s < k.minShare) continue;
+                // The founders, the old, the young, the tribe-born are only a group of their own where they're not most of the colony.
+                if (k.binds == GroupBinds.Founders || k.binds == GroupBinds.Elders || k.binds == GroupBinds.Young || k.binds == GroupBinds.Origin)
+                {
+                    int all = 0;
+                    for (int i = 0; i < Count; i++)
+                        if (Fits(k, i, members))
+                            all++;
+                    if (all > Count * 0.6f) continue;
+                }
                 if (best == null || k.order < best.order || (k.order == best.order && s > share))
                 {
                     best = k;

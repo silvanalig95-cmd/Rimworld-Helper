@@ -1,0 +1,490 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Moments that belong to groups (Source/ColonyCouncil/Social/Groups/GroupMoments.cs). They are the game's own
+    conversations, picked among the rest when two colonists talk (so the two are face to face), with the usual moment
+    conditions (MomentExtension, Social/Moments.cs) and the group's own (GroupMomentExtension): who they are to each
+    other (two of one group, members of two groups at odds, a member and a newcomer the group is taking in or shutting
+    out, someone out of step with the group's ways) and the roles they play. Afterwards they move the group: its
+    closeness, the rivalry, the newcomer's way in. Words only: nobody is hurt.
+    Text stays era-neutral, so it fits a tribal camp, a medieval keep and an industrial town.
+  -->
+
+  <InteractionDef Name="Rimfolk_GroupMomentBase" ParentName="Council_MomentBase" Abstract="True">
+    <workerClass>ColonyCouncil.InteractionWorker_GroupMoment</workerClass>
+  </InteractionDef>
+
+  <!-- ===================== Newcomers ===================== -->
+
+  <InteractionDef ParentName="Rimfolk_GroupMomentBase">
+    <defName>Rimfolk_GroupMoment_Welcome</defName>
+    <label>made a newcomer welcome</label>
+    <symbol>ColonyCouncil/Symbols/Heart</symbol>
+    <recipientThought>Council_Soc_Welcomed</recipientThought>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] showed [RECIPIENT_nameDef] [thing], the way [INITIATOR_possessive] crowd does it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] waved [RECIPIENT_nameDef] over and made room for [RECIPIENT_objective] on the bench.</li>
+        <li>r_logentry->[INITIATOR_nameDef] explained one of the old jokes to [RECIPIENT_nameDef], badly, and they both laughed anyway.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] who sits where, and which seat is never to be taken.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] where [RECIPIENT_pronoun] came from, and listened to the answer.</li>
+        <li>r_logentry->[INITIATOR_nameDef] saved [RECIPIENT_nameDef] a bowl when [RECIPIENT_pronoun] came in late.</li>
+        <li>r_logentry->[INITIATOR_nameDef] introduced [RECIPIENT_nameDef] to the others properly, names and all.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] [advice].</li>
+        <li>r_logentry->[INITIATOR_nameDef] let [RECIPIENT_nameDef] in on [secret].</li>
+        <li>r_logentry->[INITIATOR_nameDef] gave [RECIPIENT_nameDef] a nod and a place by the fire, which from [INITIATOR_objective] is a lot.</li>
+        <li>r_logentry->[INITIATOR_nameDef] made sure [RECIPIENT_nameDef] wasn't left standing at the edge of things.</li>
+        <li>thing->the best way to the stores</li>
+        <li>thing->how to keep the fire in all night</li>
+        <li>thing->where the good water is</li>
+        <li>thing->the quickest way round the fields</li>
+        <li>thing->how the cook likes the pots stacked</li>
+        <li>advice->which of the others to stay on the right side of</li>
+        <li>advice->never to touch the cook's knife</li>
+        <li>advice->that the first winter is the hardest, and to come and find [INITIATOR_objective] if it gets bad</li>
+        <li>advice->not to take the council too seriously</li>
+        <li>advice->where to sit to stay out of the draught</li>
+        <li>secret->the story behind the crooked wall</li>
+        <li>secret->what really happened the night of the big storm</li>
+        <li>secret->why nobody mentions the old well</li>
+        <li>secret->the name the others use for the council when it can't hear</li>
+      </rulesStrings>
+    </logRulesInitiator>
+    <modExtensions>
+      <li Class="ColonyCouncil.MomentExtension">
+        <weight>0.06</weight>
+        <cooldownDays>1</cooldownDays>
+        <initiatorTags>!trait:Psychopath</initiatorTags>
+      </li>
+      <li Class="ColonyCouncil.GroupMomentExtension">
+        <between>welcome</between>
+        <integration>5</integration>
+      </li>
+    </modExtensions>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Rimfolk_GroupMomentBase">
+    <defName>Rimfolk_GroupMoment_Sponsor</defName>
+    <label>spoke up for a newcomer</label>
+    <symbol>ColonyCouncil/Symbols/Heart</symbol>
+    <recipientThought>Council_Soc_Welcomed</recipientThought>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] [INITIATOR_pronoun]'d been putting in a good word for [RECIPIENT_objective] with the others.</li>
+        <li>r_logentry->[INITIATOR_nameDef] brought [RECIPIENT_nameDef] along to sit with [INITIATOR_possessive] crowd, and dared anyone to object.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that the others would come round, and that [INITIATOR_pronoun] would see to it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] made a point of laughing loudest at [RECIPIENT_nameDef]'s joke, so the others would too.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [RECIPIENT_pronoun] [praise], and that [INITIATOR_pronoun]'d told the others so.</li>
+        <li>r_logentry->[INITIATOR_nameDef] walked [RECIPIENT_nameDef] over to the others and said, "This one's all right."</li>
+        <li>r_logentry->[INITIATOR_nameDef] stood up for [RECIPIENT_nameDef] when someone muttered about new faces.</li>
+        <li>praise->worked harder than anyone that week</li>
+        <li>praise->had more sense than half the colony</li>
+        <li>praise->told a better story than any of them</li>
+        <li>praise->had kept [RECIPIENT_possessive] head when it mattered</li>
+      </rulesStrings>
+    </logRulesInitiator>
+    <modExtensions>
+      <li Class="ColonyCouncil.MomentExtension">
+        <weight>0.07</weight>
+        <cooldownDays>1.5</cooldownDays>
+      </li>
+      <li Class="ColonyCouncil.GroupMomentExtension">
+        <between>sponsor</between>
+        <integration>8</integration>
+      </li>
+    </modExtensions>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Rimfolk_GroupMomentBase">
+    <defName>Rimfolk_GroupMoment_CloseRanks</defName>
+    <label>gave a newcomer the cold shoulder</label>
+    <symbol>ColonyCouncil/Symbols/Friction</symbol>
+    <recipientThought>Council_Grp_ColdShoulder</recipientThought>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[RECIPIENT_nameDef] sat down near [INITIATOR_nameDef]'s crowd, and [INITIATOR_nameDef] [shoulder].</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that seat was taken. It wasn't.</li>
+        <li>r_logentry->[INITIATOR_nameDef] went quiet when [RECIPIENT_nameDef] came over, and stayed quiet until [RECIPIENT_pronoun] left.</li>
+        <li>r_logentry->[INITIATOR_nameDef] answered [RECIPIENT_nameDef]'s question in as few words as possible, then turned back to [INITIATOR_possessive] own.</li>
+        <li>r_logentry->[INITIATOR_nameDef] made a joke [RECIPIENT_nameDef] wasn't meant to understand, and the others laughed.</li>
+        <li>r_logentry->[INITIATOR_nameDef] reminded [RECIPIENT_nameDef], politely, that [RECIPIENT_pronoun] hadn't been here long.</li>
+        <li>r_logentry->[INITIATOR_nameDef] let [RECIPIENT_nameDef] know that [INITIATOR_possessive] crowd had [closed].</li>
+        <li>r_logentry->[INITIATOR_nameDef] watched [RECIPIENT_nameDef] [act] and said nothing to help.</li>
+        <li>shoulder->found somewhere else to be</li>
+        <li>shoulder->turned [INITIATOR_possessive] back on [RECIPIENT_objective]</li>
+        <li>shoulder->kept talking as if no one had arrived</li>
+        <li>shoulder->moved down the bench, away</li>
+        <li>closed->all the company it needed</li>
+        <li>closed->been fine before [RECIPIENT_pronoun] came</li>
+        <li>closed->its own ways, and they weren't [RECIPIENT_possessive]</li>
+        <li>act->struggle with the work</li>
+        <li>act->look for a place to sit</li>
+        <li>act->try to join the conversation</li>
+      </rulesStrings>
+    </logRulesInitiator>
+    <modExtensions>
+      <li Class="ColonyCouncil.MomentExtension">
+        <weight>0.05</weight>
+        <cooldownDays>2</cooldownDays>
+        <tone>friction</tone>
+        <soreHours>10</soreHours>
+        <initiatorTags>!trait:Kind,!child</initiatorTags>
+      </li>
+      <li Class="ColonyCouncil.GroupMomentExtension">
+        <between>closeRanks</between>
+        <integration>-2</integration>
+      </li>
+    </modExtensions>
+  </InteractionDef>
+
+  <!-- ===================== Between groups ===================== -->
+
+  <InteractionDef ParentName="Rimfolk_GroupMomentBase">
+    <defName>Rimfolk_GroupMoment_RivalDig</defName>
+    <label>had a dig at the other lot</label>
+    <symbol>ColonyCouncil/Symbols/Friction</symbol>
+    <recipientThought>Council_Grp_RivalDig</recipientThought>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef], loudly, whether [RECIPIENT_possessive] lot had [dig] yet.</li>
+        <li>r_logentry->[INITIATOR_nameDef] said [RECIPIENT_nameDef]'s crowd [jibe], and [RECIPIENT_nameDef] said [answer].</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] argued over whose lot [claim].</li>
+        <li>r_logentry->[INITIATOR_nameDef] made a crack about [RECIPIENT_nameDef]'s friends that wasn't quite a joke.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] [INITIATOR_possessive] people had done more work before breakfast than [RECIPIENT_possessive] did all week.</li>
+        <li>r_logentry->[INITIATOR_nameDef] blamed [RECIPIENT_nameDef]'s lot for [blame].</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] traded remarks about each other's crowd across the room.</li>
+        <li>r_logentry->[INITIATOR_nameDef] said, within [RECIPIENT_nameDef]'s hearing, that some people's friends [jibe].</li>
+        <li>r_logentry->[INITIATOR_nameDef] reminded [RECIPIENT_nameDef] of the time [RECIPIENT_possessive] lot [blunder].</li>
+        <li>dig->finished their share of the chores</li>
+        <li>dig->learned which end of a shovel to hold</li>
+        <li>dig->stopped sulking about last week</li>
+        <li>jibe->couldn't find their own feet in daylight</li>
+        <li>jibe->thought far too well of themselves</li>
+        <li>jibe->never pulled their weight</li>
+        <li>jibe->were all talk</li>
+        <li>answer->at least they weren't [INITIATOR_possessive] lot</li>
+        <li>answer->nothing, very pointedly</li>
+        <li>answer->that [INITIATOR_pronoun] would know all about not pulling one's weight</li>
+        <li>answer->something that made the cook laugh</li>
+        <li>claim->had held the wall last time</li>
+        <li>claim->had brought in more of the harvest</li>
+        <li>claim->ate more than its share</li>
+        <li>claim->the council listened to</li>
+        <li>blame->the mess in the dining room</li>
+        <li>blame->the empty woodpile</li>
+        <li>blame->the noise at night</li>
+        <li>blame->the last thing that went wrong</li>
+        <li>blunder->left the gate open</li>
+        <li>blunder->burnt the supper</li>
+        <li>blunder->got lost a stone's throw from the wall</li>
+      </rulesStrings>
+    </logRulesInitiator>
+    <modExtensions>
+      <li Class="ColonyCouncil.MomentExtension">
+        <weight>0.04</weight>
+        <cooldownDays>3</cooldownDays>
+        <tone>friction</tone>
+        <soreHours>8</soreHours>
+        <initiatorTags>!trait:Kind,!child</initiatorTags>
+        <maxOpinion>40</maxOpinion>
+      </li>
+      <li Class="ColonyCouncil.GroupMomentExtension">
+        <between>rivalGroups</between>
+        <rivalry>1.5</rivalry>
+      </li>
+    </modExtensions>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Rimfolk_GroupMomentBase">
+    <defName>Rimfolk_GroupMoment_FirebrandStirs</defName>
+    <label>stirred things up against the other lot</label>
+    <symbol>ColonyCouncil/Symbols/Friction</symbol>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] worked [RECIPIENT_nameDef] up about the other lot until [RECIPIENT_pronoun] was nodding along.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that the other crowd [grievance], and that somebody ought to say something.</li>
+        <li>r_logentry->[INITIATOR_nameDef] kept [RECIPIENT_nameDef] up late listing everything the other lot had done wrong.</li>
+        <li>r_logentry->[INITIATOR_nameDef] said to [RECIPIENT_nameDef] that [INITIATOR_pronoun] was done being polite to the other crowd.</li>
+        <li>r_logentry->[INITIATOR_nameDef] made [RECIPIENT_nameDef] promise to stand with [INITIATOR_objective] the next time the other lot started something.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] agreed, a little too loudly, that the other lot [grievance].</li>
+        <li>grievance->had it easy</li>
+        <li>grievance->got the best of everything</li>
+        <li>grievance->looked down on the rest of them</li>
+        <li>grievance->had the council's ear</li>
+        <li>grievance->were laughing at them</li>
+      </rulesStrings>
+    </logRulesInitiator>
+    <modExtensions>
+      <li Class="ColonyCouncil.MomentExtension">
+        <weight>0.04</weight>
+        <cooldownDays>3</cooldownDays>
+        <tone>neutral</tone>
+      </li>
+      <li Class="ColonyCouncil.GroupMomentExtension">
+        <between>sameGroup</between>
+        <initiatorRole>firebrand</initiatorRole>
+        <hasRival>true</hasRival>
+        <rivalry>2</rivalry>
+      </li>
+    </modExtensions>
+  </InteractionDef>
+
+  <!-- ===================== Inside the group ===================== -->
+
+  <InteractionDef ParentName="Rimfolk_GroupMomentBase">
+    <defName>Rimfolk_GroupMoment_OutOfStep</defName>
+    <label>let someone know they were out of step</label>
+    <symbol>ColonyCouncil/Symbols/Friction</symbol>
+    <recipientThought>Council_Grp_OutOfStep</recipientThought>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that's not how [INITIATOR_possessive] crowd does things.</li>
+        <li>r_logentry->[INITIATOR_nameDef] gave [RECIPIENT_nameDef] a long look and said, "You're not like the rest of us, are you?"</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] why [RECIPIENT_pronoun] [odd].</li>
+        <li>r_logentry->[INITIATOR_nameDef] made a remark about [RECIPIENT_nameDef] that the others pretended not to hear.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] [INITIATOR_pronoun] could [hint], if [RECIPIENT_pronoun] wanted to fit in.</li>
+        <li>r_logentry->[INITIATOR_nameDef] sighed at [RECIPIENT_nameDef] in the way people sigh at someone who never quite gets it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef], not unkindly, that [RECIPIENT_pronoun] was spoiling the mood.</li>
+        <li>odd->always had to be different</li>
+        <li>odd->never joined in</li>
+        <li>odd->made everything so difficult</li>
+        <li>odd->couldn't just go along for once</li>
+        <li>hint->try a bit harder</li>
+        <li>hint->lighten up a little</li>
+        <li>hint->stop going against everyone</li>
+      </rulesStrings>
+    </logRulesInitiator>
+    <modExtensions>
+      <li Class="ColonyCouncil.MomentExtension">
+        <weight>0.04</weight>
+        <cooldownDays>3</cooldownDays>
+        <tone>friction</tone>
+        <soreHours>8</soreHours>
+        <initiatorTags>!trait:Kind,!child</initiatorTags>
+      </li>
+      <li Class="ColonyCouncil.GroupMomentExtension">
+        <between>outOfStep</between>
+        <cohesion>-1</cohesion>
+      </li>
+    </modExtensions>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Rimfolk_GroupMomentBase">
+    <defName>Rimfolk_GroupMoment_JokerLightens</defName>
+    <label>lightened the mood</label>
+    <symbol>ColonyCouncil/Symbols/Star</symbol>
+    <recipientThought>Council_Soc_Lightened</recipientThought>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] saw [RECIPIENT_nameDef]'s face and did [trick] until [RECIPIENT_pronoun] cracked a smile.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] the one about [joke], and [RECIPIENT_nameDef] laughed despite [RECIPIENT_objective]self.</li>
+        <li>r_logentry->[INITIATOR_nameDef] did an impression of [target] that had [RECIPIENT_nameDef] wiping [RECIPIENT_possessive] eyes.</li>
+        <li>r_logentry->[INITIATOR_nameDef] refused to let [RECIPIENT_nameDef] sulk alone, and was annoying about it until [RECIPIENT_pronoun] gave in and laughed.</li>
+        <li>r_logentry->[INITIATOR_nameDef] reminded [RECIPIENT_nameDef] of the time [memory], and the gloom lifted.</li>
+        <li>r_logentry->[INITIATOR_nameDef] put on a terrible voice and read [RECIPIENT_nameDef] [reading].</li>
+        <li>r_logentry->[INITIATOR_nameDef] kept up a running commentary on [RECIPIENT_nameDef]'s bad day until even [RECIPIENT_nameDef] found it funny.</li>
+        <li>trick->a little dance</li>
+        <li>trick->a very bad juggling act</li>
+        <li>trick->a face [INITIATOR_pronoun] swore was [RECIPIENT_possessive]</li>
+        <li>joke->the muffalo and the council</li>
+        <li>joke->the cook who couldn't boil water</li>
+        <li>joke->the raider who got lost on the way</li>
+        <li>joke->the two farmers and the very large turnip</li>
+        <li>target->the council at its most solemn</li>
+        <li>target->the colony's grumpiest animal</li>
+        <li>target->[RECIPIENT_nameDef] [RECIPIENT_objective]self, on a good day</li>
+        <li>memory->somebody fell in the pond</li>
+        <li>memory->the pot boiled over and nobody owned up</li>
+        <li>memory->the chicken got into the meeting</li>
+        <li>reading->a very serious list of chores</li>
+        <li>reading->the council's last decree</li>
+        <li>reading->a love letter to a turnip</li>
+      </rulesStrings>
+    </logRulesInitiator>
+    <modExtensions>
+      <li Class="ColonyCouncil.MomentExtension">
+        <weight>0.06</weight>
+        <cooldownDays>1.5</cooldownDays>
+      </li>
+      <li Class="ColonyCouncil.GroupMomentExtension">
+        <between>sameGroup</between>
+        <initiatorRole>joker</initiatorRole>
+        <recipientMoodBelow>0.45</recipientMoodBelow>
+        <cohesion>1</cohesion>
+      </li>
+    </modExtensions>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Rimfolk_GroupMomentBase">
+    <defName>Rimfolk_GroupMoment_WorrierFrets</defName>
+    <label>fretted, and was talked down</label>
+    <symbol>ColonyCouncil/Symbols/Moment</symbol>
+    <initiatorThought>Council_Soc_Reassured</initiatorThought>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] fretted to [RECIPIENT_nameDef] about [worry], and [RECIPIENT_nameDef] [calm].</li>
+        <li>r_logentry->[INITIATOR_nameDef] confessed to [RECIPIENT_nameDef] that [INITIATOR_pronoun] couldn't stop thinking about [worry]. [RECIPIENT_nameDef] [calm].</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether everyone had eaten, slept and kept warm. [RECIPIENT_nameDef] said yes, three times.</li>
+        <li>r_logentry->[INITIATOR_nameDef] worried aloud to [RECIPIENT_nameDef] about all of them, one by one, and [RECIPIENT_nameDef] let [INITIATOR_objective] get to the end.</li>
+        <li>r_logentry->[INITIATOR_nameDef] fussed over [RECIPIENT_nameDef]'s cough until [RECIPIENT_nameDef] promised to rest.</li>
+        <li>worry->the stores running low</li>
+        <li>worry->the next raid</li>
+        <li>worry->the weather turning</li>
+        <li>worry->someone in the group who'd gone quiet</li>
+        <li>worry->a noise past the wall</li>
+        <li>worry->what the council would decide next</li>
+        <li>calm->went through it all calmly until it seemed smaller</li>
+        <li>calm->said they'd face it together, as they always had</li>
+        <li>calm->made [INITIATOR_objective] sit down and drink something hot</li>
+        <li>calm->pointed out it had been fine the last ten times</li>
+      </rulesStrings>
+    </logRulesInitiator>
+    <modExtensions>
+      <li Class="ColonyCouncil.MomentExtension">
+        <weight>0.04</weight>
+        <cooldownDays>2</cooldownDays>
+      </li>
+      <li Class="ColonyCouncil.GroupMomentExtension">
+        <between>sameGroup</between>
+        <initiatorRole>worrier</initiatorRole>
+        <cohesion>0.5</cohesion>
+      </li>
+    </modExtensions>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Rimfolk_GroupMomentBase">
+    <defName>Rimfolk_GroupMoment_AnchorChecks</defName>
+    <label>looked in on one of their own</label>
+    <symbol>ColonyCouncil/Symbols/Heart</symbol>
+    <recipientThought>Council_Soc_CheckedOn</recipientThought>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] noticed [RECIPIENT_nameDef] hadn't come to the fire and went to find [RECIPIENT_objective].</li>
+        <li>r_logentry->[INITIATOR_nameDef] sat down next to [RECIPIENT_nameDef] and asked, properly, how [RECIPIENT_pronoun] was.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] the others had been asking after [RECIPIENT_objective].</li>
+        <li>r_logentry->[INITIATOR_nameDef] brought [RECIPIENT_nameDef] [gift] and stayed until it was gone.</li>
+        <li>r_logentry->[INITIATOR_nameDef] reminded [RECIPIENT_nameDef] that [RECIPIENT_pronoun] wasn't on [RECIPIENT_possessive] own, whatever it felt like.</li>
+        <li>r_logentry->[INITIATOR_nameDef] made sure [RECIPIENT_nameDef] came along that evening, and wouldn't hear no.</li>
+        <li>gift->a cup of something hot</li>
+        <li>gift->the last of the good bread</li>
+        <li>gift->a blanket and some news</li>
+      </rulesStrings>
+    </logRulesInitiator>
+    <modExtensions>
+      <li Class="ColonyCouncil.MomentExtension">
+        <weight>0.05</weight>
+        <cooldownDays>2</cooldownDays>
+      </li>
+      <li Class="ColonyCouncil.GroupMomentExtension">
+        <between>sameGroup</between>
+        <initiatorRole>anchor</initiatorRole>
+        <recipientMoodBelow>0.5</recipientMoodBelow>
+        <cohesion>1</cohesion>
+      </li>
+    </modExtensions>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Rimfolk_GroupMomentBase">
+    <defName>Rimfolk_GroupMoment_InJoke</defName>
+    <label>shared an old joke</label>
+    <symbol>ColonyCouncil/Symbols/Star</symbol>
+    <initiatorThought>Council_Soc_InJoke</initiatorThought>
+    <recipientThought>Council_Soc_InJoke</recipientThought>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] said one word to [RECIPIENT_nameDef], and they were both helpless with laughter. Nobody else understood.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] did the thing with [thing] again. The others in their crowd groaned.</li>
+        <li>r_logentry->[INITIATOR_nameDef] brought up [old] with [RECIPIENT_nameDef], as [INITIATOR_possessive] crowd always does sooner or later.</li>
+        <li>r_logentry->[INITIATOR_nameDef] caught [RECIPIENT_nameDef]'s eye across the room, and that was enough to set them both off.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] finished each other's sentence, and then each other's joke.</li>
+        <li>r_logentry->[INITIATOR_nameDef] gave [RECIPIENT_nameDef] the secret sign their crowd uses. It isn't very secret.</li>
+        <li>thing->the spoon</li>
+        <li>thing->the voice</li>
+        <li>thing->the old hat</li>
+        <li>thing->the turnip</li>
+        <li>old->the night of the runaway pig</li>
+        <li>old->the stew nobody would eat</li>
+        <li>old->the time the roof leaked on the council</li>
+        <li>old->the song with no end</li>
+      </rulesStrings>
+    </logRulesInitiator>
+    <modExtensions>
+      <li Class="ColonyCouncil.MomentExtension">
+        <weight>0.04</weight>
+        <cooldownDays>3</cooldownDays>
+      </li>
+      <li Class="ColonyCouncil.GroupMomentExtension">
+        <between>sameGroup</between>
+        <minCohesion>55</minCohesion>
+        <cohesion>0.5</cohesion>
+      </li>
+    </modExtensions>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Rimfolk_GroupMomentBase">
+    <defName>Rimfolk_GroupMoment_QuietOne</defName>
+    <label>was there, quietly</label>
+    <symbol>ColonyCouncil/Symbols/Moment</symbol>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] said hardly a word all evening, but [INITIATOR_pronoun] kept [RECIPIENT_nameDef]'s cup full.</li>
+        <li>r_logentry->[INITIATOR_nameDef] left [gift] where [RECIPIENT_nameDef] would find it, and never said it was [INITIATOR_objective].</li>
+        <li>r_logentry->[INITIATOR_nameDef] listened to [RECIPIENT_nameDef] for an hour and said one thing at the end. It was the right thing.</li>
+        <li>r_logentry->[INITIATOR_nameDef] sat with [RECIPIENT_nameDef] in a comfortable silence.</li>
+        <li>r_logentry->[INITIATOR_nameDef] fixed [RECIPIENT_nameDef]'s [broken] without being asked, and shrugged when thanked.</li>
+        <li>r_logentry->[INITIATOR_nameDef] gave [RECIPIENT_nameDef] a nod across the fire that said more than most speeches.</li>
+        <li>gift->a carved little figure</li>
+        <li>gift->a handful of berries</li>
+        <li>gift->a mended glove</li>
+        <li>broken->stool</li>
+        <li>broken->boot strap</li>
+        <li>broken->lamp</li>
+      </rulesStrings>
+    </logRulesInitiator>
+    <modExtensions>
+      <li Class="ColonyCouncil.MomentExtension">
+        <weight>0.03</weight>
+        <cooldownDays>3</cooldownDays>
+      </li>
+      <li Class="ColonyCouncil.GroupMomentExtension">
+        <between>sameGroup</between>
+        <initiatorRole>quiet</initiatorRole>
+        <cohesion>0.5</cohesion>
+      </li>
+    </modExtensions>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Rimfolk_GroupMomentBase">
+    <defName>Rimfolk_GroupMoment_NewcomerAsks</defName>
+    <label>asked about the old days</label>
+    <symbol>ColonyCouncil/Symbols/Moment</symbol>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] how their crowd first came together, and got the long version.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] why everyone laughs whenever someone mentions [thing].</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] about the ones who were here before [INITIATOR_objective], and [RECIPIENT_nameDef] told [INITIATOR_objective] about them.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] which of the old stories were true. [RECIPIENT_nameDef] said [answer].</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] to teach [INITIATOR_objective] the song the others always sing.</li>
+        <li>thing->the goat</li>
+        <li>thing->the first winter</li>
+        <li>thing->the council's old chair</li>
+        <li>answer->most of them, more or less</li>
+        <li>answer->the worst ones</li>
+        <li>answer->[RECIPIENT_pronoun] would tell [INITIATOR_objective] when [INITIATOR_pronoun] was older</li>
+      </rulesStrings>
+    </logRulesInitiator>
+    <modExtensions>
+      <li Class="ColonyCouncil.MomentExtension">
+        <weight>0.04</weight>
+        <cooldownDays>2</cooldownDays>
+      </li>
+      <li Class="ColonyCouncil.GroupMomentExtension">
+        <between>sameGroup</between>
+        <initiatorRole>newcomer</initiatorRole>
+        <cohesion>0.5</cohesion>
+      </li>
+    </modExtensions>
+  </InteractionDef>
+
+</Defs>

@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    A group's ways (Source/ColonyCouncil/Social/Groups/GroupDefs.cs, GroupNormDef): what its people share and expect.
+    A way on a side of character (axis) holds while the members' average is past its line (above or below; it lapses
+    only a margin back, so it doesn't flicker); a way on tags holds while that share of them fit. A group keeps at most
+    three. Its members are drawn a little towards it each day (conform, on the axis, more in a close group), and a
+    member far the other way (breakAt) is out of step: the others let them know (Rimfolk_GroupMoment_OutOfStep), and it wears
+    on the group. welcome opens or closes the group to newcomers; two groups whose ways clash fall out more easily.
+  -->
+
+  <ColonyCouncil.GroupNormDef>
+    <defName>Rimfolk_Norm_Merry</defName>
+    <label>loud and merry</label>
+    <description>They laugh a lot, and loudly, and expect the rest of the table to join in.</description>
+    <axis>Humour</axis>
+    <above>25</above>
+    <breakAt>25</breakAt>
+    <welcome>0.1</welcome>
+    <clashes>Rimfolk_Norm_Serious</clashes>
+    <habit>Rimfolk_Habit_Games</habit>
+    <tag>merry</tag>
+  </ColonyCouncil.GroupNormDef>
+
+  <ColonyCouncil.GroupNormDef>
+    <defName>Rimfolk_Norm_Serious</defName>
+    <label>serious-minded</label>
+    <description>They have little time for jokes, and less for people who tell them at the wrong moment.</description>
+    <axis>Humour</axis>
+    <below>-25</below>
+    <breakAt>35</breakAt>
+    <clashes>Rimfolk_Norm_Merry</clashes>
+    <tag>serious</tag>
+  </ColonyCouncil.GroupNormDef>
+
+  <ColonyCouncil.GroupNormDef>
+    <defName>Rimfolk_Norm_Aloof</defName>
+    <label>keep to themselves</label>
+    <description>They don't go out of their way for anyone outside their own, and they don't expect anyone to go out of theirs.</description>
+    <axis>Warmth</axis>
+    <below>-20</below>
+    <breakAt>35</breakAt>
+    <welcome>-0.2</welcome>
+    <clashes>Rimfolk_Norm_Warm</clashes>
+    <tag>aloof</tag>
+  </ColonyCouncil.GroupNormDef>
+
+  <ColonyCouncil.GroupNormDef>
+    <defName>Rimfolk_Norm_Warm</defName>
+    <label>look after their own</label>
+    <description>Nobody among them goes hungry, cold or unthanked. A newcomer is fed before they're asked their name.</description>
+    <axis>Warmth</axis>
+    <above>30</above>
+    <breakAt>30</breakAt>
+    <welcome>0.15</welcome>
+    <clashes>Rimfolk_Norm_Aloof</clashes>
+    <tag>warm</tag>
+  </ColonyCouncil.GroupNormDef>
+
+  <ColonyCouncil.GroupNormDef>
+    <defName>Rimfolk_Norm_Wary</defName>
+    <label>suspicious of outsiders</label>
+    <description>Trust is earned among them, slowly, and newcomers wait a long while to earn it.</description>
+    <axis>Trust</axis>
+    <below>-20</below>
+    <breakAt>35</breakAt>
+    <welcome>-0.3</welcome>
+    <clashes>Rimfolk_Norm_Open</clashes>
+    <tag>wary</tag>
+  </ColonyCouncil.GroupNormDef>
+
+  <ColonyCouncil.GroupNormDef>
+    <defName>Rimfolk_Norm_Open</defName>
+    <label>open to anyone</label>
+    <description>Anyone who sits down with them is one of them by the end of the evening.</description>
+    <axis>Trust</axis>
+    <above>25</above>
+    <breakAt>30</breakAt>
+    <welcome>0.25</welcome>
+    <clashes>Rimfolk_Norm_Wary</clashes>
+    <tag>open</tag>
+  </ColonyCouncil.GroupNormDef>
+
+  <ColonyCouncil.GroupNormDef>
+    <defName>Rimfolk_Norm_Brave</defName>
+    <label>brave to a fault</label>
+    <description>They are first to the wall when the alarm goes, and think a little less of whoever is last.</description>
+    <axis>Nerve</axis>
+    <above>30</above>
+    <breakAt>25</breakAt>
+    <clashes>Rimfolk_Norm_Careful</clashes>
+    <tag>brave</tag>
+  </ColonyCouncil.GroupNormDef>
+
+  <ColonyCouncil.GroupNormDef>
+    <defName>Rimfolk_Norm_Careful</defName>
+    <label>keep their heads down</label>
+    <description>They don't take chances, and look sideways at those who do.</description>
+    <axis>Nerve</axis>
+    <below>-25</below>
+    <breakAt>40</breakAt>
+    <clashes>Rimfolk_Norm_Brave</clashes>
+    <tag>careful</tag>
+  </ColonyCouncil.GroupNormDef>
+
+  <ColonyCouncil.GroupNormDef>
+    <defName>Rimfolk_Norm_Touchy</defName>
+    <label>quick to take offence</label>
+    <description>A careless word to one of them is a careless word to all of them.</description>
+    <axis>Temper</axis>
+    <above>30</above>
+    <welcome>-0.1</welcome>
+    <clashes>Rimfolk_Norm_Calm</clashes>
+    <tag>touchy</tag>
+  </ColonyCouncil.GroupNormDef>
+
+  <ColonyCouncil.GroupNormDef>
+    <defName>Rimfolk_Norm_Calm</defName>
+    <label>slow to anger</label>
+    <description>Shouting gets you nowhere with them. They wait until you've finished, then carry on.</description>
+    <axis>Temper</axis>
+    <below>-30</below>
+    <breakAt>40</breakAt>
+    <welcome>0.05</welcome>
+    <clashes>Rimfolk_Norm_Touchy</clashes>
+    <tag>calm</tag>
+  </ColonyCouncil.GroupNormDef>
+
+  <ColonyCouncil.GroupNormDef>
+    <defName>Rimfolk_Norm_Proud</defName>
+    <label>think well of themselves</label>
+    <description>They are sure they do things best, and say so, often.</description>
+    <axis>Pride</axis>
+    <above>30</above>
+    <welcome>-0.1</welcome>
+    <tag>proud</tag>
+  </ColonyCouncil.GroupNormDef>
+
+  <ColonyCouncil.GroupNormDef>
+    <defName>Rimfolk_Norm_Hopeful</defName>
+    <label>always look on the bright side</label>
+    <description>Whatever happens, they find a reason it could have been worse, and drink to that.</description>
+    <axis>Outlook</axis>
+    <above>30</above>
+    <breakAt>30</breakAt>
+    <welcome>0.05</welcome>
+    <clashes>Rimfolk_Norm_Gloomy</clashes>
+    <tag>hopeful</tag>
+  </ColonyCouncil.GroupNormDef>
+
+  <ColonyCouncil.GroupNormDef>
+    <defName>Rimfolk_Norm_Gloomy</defName>
+    <label>expect the worst</label>
+    <description>They have seen how things go, and they are seldom wrong about it.</description>
+    <axis>Outlook</axis>
+    <below>-25</below>
+    <breakAt>40</breakAt>
+    <clashes>Rimfolk_Norm_Hopeful</clashes>
+    <tag>gloomy</tag>
+  </ColonyCouncil.GroupNormDef>
+
+  <ColonyCouncil.GroupNormDef>
+    <defName>Rimfolk_Norm_OldWays</defName>
+    <label>set in their ways</label>
+    <description>Things are done the way they've always been done, and newcomers learn that first.</description>
+    <axis>Openness</axis>
+    <below>-25</below>
+    <breakAt>35</breakAt>
+    <welcome>-0.15</welcome>
+    <clashes>Rimfolk_Norm_Curious</clashes>
+    <tag>oldways</tag>
+  </ColonyCouncil.GroupNormDef>
+
+  <ColonyCouncil.GroupNormDef>
+    <defName>Rimfolk_Norm_Curious</defName>
+    <label>always after something new</label>
+    <description>A new idea, a new face, a new way of doing it: they want to hear about all of them.</description>
+    <axis>Openness</axis>
+    <above>30</above>
+    <breakAt>35</breakAt>
+    <welcome>0.1</welcome>
+    <clashes>Rimfolk_Norm_OldWays</clashes>
+    <tag>curious</tag>
+  </ColonyCouncil.GroupNormDef>
+
+  <ColonyCouncil.GroupNormDef>
+    <defName>Rimfolk_Norm_HardWorkers</defName>
+    <label>hard workers</label>
+    <description>The day's work comes first with them, and anyone who slacks hears about it.</description>
+    <tags>trait:Industrious|trait:HardWorker</tags>
+    <tagShare>0.5</tagShare>
+    <tag>hardworkers</tag>
+  </ColonyCouncil.GroupNormDef>
+
+  <ColonyCouncil.GroupNormDef>
+    <defName>Rimfolk_Norm_NightOwls</defName>
+    <label>keep late hours</label>
+    <description>Their evenings run long into the night, and their mornings start late.</description>
+    <tags>trait:NightOwl</tags>
+    <tagShare>0.5</tagShare>
+    <habit>Rimfolk_Habit_Night</habit>
+    <tag>nightowls</tag>
+  </ColonyCouncil.GroupNormDef>
+
+  <ColonyCouncil.GroupNormDef>
+    <defName>Rimfolk_Norm_Devout</defName>
+    <label>devout</label>
+    <description>Their faith is the centre of their days, and they keep its rites together.</description>
+    <kinds><li>Rimfolk_Group_Faithful</li></kinds>
+    <welcome>-0.05</welcome>
+    <tag>devout</tag>
+  </ColonyCouncil.GroupNormDef>
+
+</Defs>

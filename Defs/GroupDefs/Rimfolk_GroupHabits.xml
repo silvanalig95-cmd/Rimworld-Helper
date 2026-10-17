@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    What groups do together (Source/ColonyCouncil/Social/Groups/GroupHabits.cs, GroupHabitDef). Once an hour, a group
+    with two or more of its people together right now, doing the habit's thing within its hours, keeps it (at most once
+    a day): each of them gets Council_Soc_GroupHabit (company, not mood; it counts for Belonging), their strain eases a
+    little, one of them says a line from the pool, and the group grows closer. With "Answers play out on the map" on,
+    the anchor of a close group now and then calls them all to a habit with a playKind: a fire laid of an evening, or a
+    gathering in the rec room.
+
+    where: fire (at leisure within a few steps of a lit fire of the colony's), table (eating in the same room), rec (at
+    leisure in a rec room), work (at the group's work, side by side), night (up in the small hours), prayer (praying or
+    meditating), outdoors (at leisure under the sky), any (at leisure anywhere).
+    The pools are spoken aloud by one of them to another, so their lines carry no names.
+  -->
+
+  <ColonyCouncil.GroupHabitDef>
+    <defName>Rimfolk_Habit_Fire</defName>
+    <label>an evening at the fire</label>
+    <description>Of an evening they sit round the fire together: the day talked over, the same seats, the same stories.</description>
+    <where>fire</where>
+    <hourFrom>18</hourFrom>
+    <hourTo>23</hourTo>
+    <pool>Rimfolk_Pool_Group_Fire</pool>
+    <playKind>Bonfire</playKind>
+    <playSpots><li>Fire</li><li>Outdoors</li></playSpots>
+  </ColonyCouncil.GroupHabitDef>
+
+  <ColonyCouncil.GroupHabitDef>
+    <defName>Rimfolk_Habit_Table</defName>
+    <label>a shared table</label>
+    <description>They eat together when they can, at the same end of the same table.</description>
+    <where>table</where>
+    <hourFrom>6</hourFrom>
+    <hourTo>21</hourTo>
+    <pool>Rimfolk_Pool_Group_Table</pool>
+  </ColonyCouncil.GroupHabitDef>
+
+  <ColonyCouncil.GroupHabitDef>
+    <defName>Rimfolk_Habit_Games</defName>
+    <label>a game night</label>
+    <description>Dice, cards, a board or whatever the rec room holds: they play of an evening, and argue about the rules.</description>
+    <where>rec</where>
+    <hourFrom>16</hourFrom>
+    <hourTo>23</hourTo>
+    <pool>Rimfolk_Pool_Group_Games</pool>
+    <playKind>Gathering</playKind>
+    <playSpots><li>Rec</li><li>Dining</li></playSpots>
+  </ColonyCouncil.GroupHabitDef>
+
+  <ColonyCouncil.GroupHabitDef>
+    <defName>Rimfolk_Habit_Work</defName>
+    <label>working side by side</label>
+    <description>They do the same work, and like to do it within earshot of each other.</description>
+    <where>work</where>
+    <hourFrom>6</hourFrom>
+    <hourTo>20</hourTo>
+    <pool>Rimfolk_Pool_Group_Work</pool>
+    <cohesion>1.5</cohesion>
+    <ease>2</ease>
+  </ColonyCouncil.GroupHabitDef>
+
+  <ColonyCouncil.GroupHabitDef>
+    <defName>Rimfolk_Habit_Hunt</defName>
+    <label>a hunt together</label>
+    <description>They go out after game in twos and threes, and come back with stories.</description>
+    <where>work</where>
+    <workTypes><li>Hunting</li></workTypes>
+    <hourFrom>5</hourFrom>
+    <hourTo>19</hourTo>
+    <pool>Rimfolk_Pool_Group_Hunt</pool>
+  </ColonyCouncil.GroupHabitDef>
+
+  <ColonyCouncil.GroupHabitDef>
+    <defName>Rimfolk_Habit_Night</defName>
+    <label>the small hours</label>
+    <description>They keep each other company through the night, when the rest of the colony is asleep.</description>
+    <where>night</where>
+    <hourFrom>0</hourFrom>
+    <hourTo>4</hourTo>
+    <pool>Rimfolk_Pool_Group_Night</pool>
+  </ColonyCouncil.GroupHabitDef>
+
+  <ColonyCouncil.GroupHabitDef>
+    <defName>Rimfolk_Habit_Prayer</defName>
+    <label>prayers together</label>
+    <description>They pray, or sit in silence, side by side.</description>
+    <where>prayer</where>
+    <hourFrom>5</hourFrom>
+    <hourTo>22</hourTo>
+    <pool>Rimfolk_Pool_Group_Prayer</pool>
+  </ColonyCouncil.GroupHabitDef>
+
+  <ColonyCouncil.GroupHabitDef>
+    <defName>Rimfolk_Habit_Talk</defName>
+    <label>talking late</label>
+    <description>They sit up of an evening and talk, about the work, about the colony, about nothing much.</description>
+    <where>any</where>
+    <hourFrom>19</hourFrom>
+    <hourTo>23</hourTo>
+    <pool>Rimfolk_Pool_Group_Talk</pool>
+    <playKind>Gathering</playKind>
+    <playSpots><li>Gather</li><li>Rec</li><li>Dining</li></playSpots>
+  </ColonyCouncil.GroupHabitDef>
+
+  <ColonyCouncil.GroupHabitDef>
+    <defName>Rimfolk_Habit_Walk</defName>
+    <label>a walk at dusk</label>
+    <description>Of an evening they take the same slow walk round the colony, in the open.</description>
+    <where>outdoors</where>
+    <hourFrom>16</hourFrom>
+    <hourTo>20</hourTo>
+    <pool>Rimfolk_Pool_Group_Walk</pool>
+  </ColonyCouncil.GroupHabitDef>
+
+</Defs>

@@ -258,7 +258,7 @@ namespace ColonyCouncil
                 foreach (var p in came) Interplay.Ease(p, 3f, StrainRelief.Gathering);
                 g.Note("CC_GroupNote_Gathered".Translate((play.label ?? "").Named("NAME"), came.Count.Named("COUNT")).Resolve());
                 var writer = came.RandomElement();
-                CouncilGameComponent.Instance?.journals.WriteTagged(writer, "Rimfolk_Journal_Group_Gathered", null, null, g.Name.Named("GROUP"));
+                GroupText.Journal(writer, "Rimfolk_Journal_Group_Gathered", g.Name.Named("GROUP"));
             }
             catch (Exception e)
             {

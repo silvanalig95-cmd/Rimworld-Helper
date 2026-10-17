@@ -170,7 +170,7 @@ namespace ColonyCouncil
         public void Note(string text, bool major = false)
         {
             if (text.NullOrEmpty()) return;
-            history.Add(new GroupEvent { tick = Find.TickManager.TicksGame, text = text, major = major });
+            history.Add(new GroupEvent { tick = Find.TickManager.TicksGame, text = GroupText.Sentences(text), major = major });
             while (history.Count > MaxHistory)
             {
                 var drop = history.Take(history.Count - 4).FirstOrDefault(e => !e.major) ?? history[0];

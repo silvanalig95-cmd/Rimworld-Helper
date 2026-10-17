@@ -185,9 +185,9 @@ namespace ColonyCouncil
                     g.Note("CC_GroupNote_DriftedOff".Translate(m.pawn.Named("PAWN")).Resolve());
                     if (!quiet)
                     {
-                        News.Post("CC_Group_DriftedOff".Translate(m.pawn.Named("PAWN"), g.Name.Named("GROUP")).Resolve(), new LookTargets(m.pawn), NewsKind.People,
+                        News.Post(GroupText.Sentences("CC_Group_DriftedOff".Translate(m.pawn.Named("PAWN"), g.Name.Named("GROUP")).Resolve()), new LookTargets(m.pawn), NewsKind.People,
                             MessageTypeDefOf.SilentInput, Importance.Flavor);
-                        comp.journals.WriteTagged(m.pawn, "Rimfolk_Journal_Group_DriftedOff", null, null, g.Name.Named("GROUP"));
+                        GroupText.Journal(m.pawn, "Rimfolk_Journal_Group_DriftedOff", g.Name.Named("GROUP"));
                     }
                 }
             }
@@ -200,7 +200,7 @@ namespace ColonyCouncil
             if (!Rand.Chance(0.6f)) return;
             var writer = g.Holder(GroupRole.Anchor) ?? g.Pawns.Where(p => !p.Dead).RandomElementWithFallback();
             if (writer == null || writer.Dead) return;
-            comp.journals.WriteTagged(writer, pool, null, null, g.Name.Named("GROUP"), (name ?? "?").Named("NAME"));
+            GroupText.Journal(writer, pool, g.Name.Named("GROUP"), (name ?? "?").Named("NAME"));
         }
 
         // ---------------- How close it is ----------------
@@ -511,13 +511,13 @@ namespace ColonyCouncil
             // apart: news of two groups falling out (or making peace), read from the day's account of them.
             string text = (began ? "CC_Group_Rivalry" : "CC_Group_RivalryOver").Translate(g.Name.Named("GROUP"), h.Name.Named("OTHER"), why.Named("WHY")).Resolve();
             var look = new LookTargets(g.Pawns.Concat(h.Pawns).Where(p => p.Spawned).Take(6));
-            News.Post(text, look, NewsKind.People, began ? MessageTypeDefOf.NegativeEvent : MessageTypeDefOf.NeutralEvent, Importance.Notable);
-            comp.AddChronicle(new ChronicleEntry(ChronicleKind.Bond, text, g.Pawns.FirstOrDefault()));
+            News.Post(GroupText.Sentences(text), look, NewsKind.People, began ? MessageTypeDefOf.NegativeEvent : MessageTypeDefOf.NeutralEvent, Importance.Notable);
+            comp.AddChronicle(new ChronicleEntry(ChronicleKind.Bond, GroupText.Sentences(text), g.Pawns.FirstOrDefault()));
             if (!began) return;
             var fire = g.Holder(GroupRole.Firebrand) ?? h.Holder(GroupRole.Firebrand);
             var writer = fire ?? g.Holder(GroupRole.Anchor) ?? g.Pawns.FirstOrDefault();
             var them = g.Has(writer) ? h : g;
-            if (writer != null) comp.journals.WriteTagged(writer, "Rimfolk_Journal_Group_Rivalry", null, null, them.Name.Named("GROUP"));
+            if (writer != null) GroupText.Journal(writer, "Rimfolk_Journal_Group_Rivalry", them.Name.Named("GROUP"));
         }
 
         // ---------------- Splits ----------------
@@ -562,13 +562,13 @@ namespace ColonyCouncil
                 // apart: news of a group coming apart, read from the day's account of it.
                 string text = (broke != null ? "CC_Group_SplitInTwo" : "CC_Group_Split").Translate(g.Name.Named("GROUP"), names.Named("NAMES"), why.Named("WHY"),
                     (broke?.Name ?? "").Named("OTHER")).Resolve();
-                News.Post(text, new LookTargets(leavers.Concat(g.Pawns).Where(p => p.Spawned).Take(6)), NewsKind.People, MessageTypeDefOf.NegativeEvent, Importance.Notable);
-                comp.AddChronicle(new ChronicleEntry(ChronicleKind.Bond, text, x));
+                News.Post(GroupText.Sentences(text), new LookTargets(leavers.Concat(g.Pawns).Where(p => p.Spawned).Take(6)), NewsKind.People, MessageTypeDefOf.NegativeEvent, Importance.Notable);
+                comp.AddChronicle(new ChronicleEntry(ChronicleKind.Bond, GroupText.Sentences(text), x));
                 foreach (var p in leavers.Concat(g.Pawns).Distinct().ToList())
                 {
                     if (p.Dead) continue;
                     CouncilGameComponent.GiveThought(p, GroupDefs.CircleBroke, null, -1f, "CC_Cause_CircleSplit".Translate(g.Name).Resolve());
-                    if (Rand.Chance(0.6f)) comp.journals.WriteTagged(p, "Rimfolk_Journal_Group_Split", null, null, g.Name.Named("GROUP"), (leavers.Contains(p) ? y : x).Named("OTHER"));
+                    if (Rand.Chance(0.6f)) GroupText.Journal(p, "Rimfolk_Journal_Group_Split", g.Name.Named("GROUP"), (leavers.Contains(p) ? y : x).Named("OTHER"));
                 }
             }
         }
@@ -631,10 +631,10 @@ namespace ColonyCouncil
             if (quiet) return;
             // apart: news of two groups becoming one, read from the day's account of them.
             string text = "CC_Group_Merged".Translate(h.Name.Named("OTHER"), g.Name.Named("GROUP")).Resolve();
-            News.Post(text, new LookTargets(g.Pawns.Where(p => p.Spawned).Take(6)), NewsKind.People, MessageTypeDefOf.PositiveEvent, Importance.Notable);
-            comp.AddChronicle(new ChronicleEntry(ChronicleKind.Bond, text, g.Pawns.FirstOrDefault()));
+            News.Post(GroupText.Sentences(text), new LookTargets(g.Pawns.Where(p => p.Spawned).Take(6)), NewsKind.People, MessageTypeDefOf.PositiveEvent, Importance.Notable);
+            comp.AddChronicle(new ChronicleEntry(ChronicleKind.Bond, GroupText.Sentences(text), g.Pawns.FirstOrDefault()));
             foreach (var p in g.Pawns.Where(p => !p.Dead && Rand.Chance(0.5f)).ToList())
-                comp.journals.WriteTagged(p, "Rimfolk_Journal_Group_Merged", null, null, g.Name.Named("GROUP"), h.Name.Named("OTHER"));
+                GroupText.Journal(p, "Rimfolk_Journal_Group_Merged", g.Name.Named("GROUP"), h.Name.Named("OLD"));
         }
 
         // ---------------- Ends ----------------
@@ -653,8 +653,8 @@ namespace ColonyCouncil
                 if (quiet) continue;
                 // apart: news that a group is no more, read from the day's account of it.
                 string text = "CC_Group_Ended".Translate(g.Name.Named("GROUP"), how.Named("HOW")).Resolve();
-                News.Post(text, new LookTargets(formerly.Where(p => p.Spawned)), NewsKind.People, MessageTypeDefOf.NeutralEvent, Importance.Notable);
-                comp.AddChronicle(new ChronicleEntry(ChronicleKind.Bond, text, formerly.FirstOrDefault()));
+                News.Post(GroupText.Sentences(text), new LookTargets(formerly.Where(p => p.Spawned)), NewsKind.People, MessageTypeDefOf.NeutralEvent, Importance.Notable);
+                comp.AddChronicle(new ChronicleEntry(ChronicleKind.Bond, GroupText.Sentences(text), formerly.FirstOrDefault()));
                 // Someone remembers it: those who were in it, or else someone who lost a friend in it.
                 var rememberers = formerly.ToList();
                 if (rememberers.Count == 0 && web != null)
@@ -665,7 +665,7 @@ namespace ColonyCouncil
                 foreach (var p in rememberers)
                 {
                     if (fell) CouncilGameComponent.GiveThought(p, GroupDefs.CircleBroke, null, -1f, "CC_Cause_CircleEnded".Translate(g.Name).Resolve());
-                    comp.journals.WriteTagged(p, "Rimfolk_Journal_Group_Remembered", null, null, g.Name.Named("GROUP"));
+                    GroupText.Journal(p, "Rimfolk_Journal_Group_Remembered", g.Name.Named("GROUP"));
                 }
             }
         }
@@ -717,8 +717,8 @@ namespace ColonyCouncil
             t.Changed();
             g.Note((sponsor != null ? "CC_GroupNote_JoinedWith" : "CC_GroupNote_Joined").Translate(p.Named("PAWN"), (sponsor?.LabelShort ?? "").Named("OTHER")).Resolve());
             if (quiet) return;
-            News.Post("CC_Group_Joined".Translate(p.Named("PAWN"), g.Name.Named("GROUP")).Resolve(), new LookTargets(p), NewsKind.People, MessageTypeDefOf.SilentInput, Importance.Flavor);
-            comp?.journals.WriteTagged(p, "Rimfolk_Journal_Group_Joined", null, null, g.Name.Named("GROUP"));
+            News.Post(GroupText.Sentences("CC_Group_Joined".Translate(p.Named("PAWN"), g.Name.Named("GROUP")).Resolve()), new LookTargets(p), NewsKind.People, MessageTypeDefOf.SilentInput, Importance.Flavor);
+            GroupText.Journal(p, "Rimfolk_Journal_Group_Joined", g.Name.Named("GROUP"));
         }
 
         // ---------------- Forming ----------------
@@ -768,11 +768,11 @@ namespace ColonyCouncil
             if (quiet || brokeFrom != null) return g;
             // apart: news that a group has formed, read from the day's account of who drifted together.
             string text = "CC_Group_Formed".Translate(g.Name.Named("GROUP"), GroupText.Members(g).Named("NAMES"), kind.why.Named("WHY")).Resolve();
-            News.Post(text, new LookTargets(g.Pawns.Where(p => p.Spawned)), NewsKind.People, MessageTypeDefOf.PositiveEvent, Importance.Notable);
-            comp.AddChronicle(new ChronicleEntry(ChronicleKind.Bond, text, anchor));
+            News.Post(GroupText.Sentences(text), new LookTargets(g.Pawns.Where(p => p.Spawned)), NewsKind.People, MessageTypeDefOf.PositiveEvent, Importance.Notable);
+            comp.AddChronicle(new ChronicleEntry(ChronicleKind.Bond, GroupText.Sentences(text), anchor));
             foreach (var m in g.members)
             {
-                if (Rand.Chance(0.7f)) comp.journals.WriteTagged(m.pawn, "Rimfolk_Journal_Group_Formed", null, null, g.Name.Named("GROUP"));
+                if (Rand.Chance(0.7f)) GroupText.Journal(m.pawn, "Rimfolk_Journal_Group_Formed", g.Name.Named("GROUP"));
                 if (m.pawn != anchor && GroupDefs.FoundedMemory != null) SharedMemories.Add(anchor, m.pawn, GroupDefs.FoundedMemory, g.Name, 0.6f);
             }
             return g;

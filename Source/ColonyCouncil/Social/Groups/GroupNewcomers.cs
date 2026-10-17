@@ -132,9 +132,9 @@ namespace ColonyCouncil
                 n.closed = true;
                 best.Note("CC_GroupNote_ClosedRanks".Translate(p.Named("PAWN")).Resolve());
                 // apart: news of how a group has taken to someone new, read from the day's account of them.
-                News.Post("CC_Group_ClosedRanks".Translate(best.Name.Named("GROUP"), p.Named("PAWN")).Resolve(), new LookTargets(p), NewsKind.People,
+                News.Post(GroupText.Sentences("CC_Group_ClosedRanks".Translate(best.Name.Named("GROUP"), p.Named("PAWN")).Resolve()), new LookTargets(p), NewsKind.People,
                     MessageTypeDefOf.SilentInput, Importance.Flavor);
-                comp.journals.WriteTagged(p, "Rimfolk_Journal_Group_ShutOut", null, null, best.Name.Named("GROUP"));
+                GroupText.Journal(p, "Rimfolk_Journal_Group_ShutOut", best.Name.Named("GROUP"));
             }
             else if (!closes && n.closed && welcome >= GroupMath.CloseRanksBelow + 0.1f) n.closed = false;
             var d = new IntegrationDay { sponsor = n.sponsor != null && best.Has(n.sponsor), welcomes = n.welcomes };
@@ -164,11 +164,11 @@ namespace ColonyCouncil
             GroupLife.Join(comp, t, best, p, true, d.sponsor ? n.sponsor : null);
             best.cohesion = Mathf.Min(100f, best.cohesion + 2f);
             // apart: news that a group has taken someone in, read from the day's account of them.
-            News.Post("CC_Group_Accepted".Translate(p.Named("PAWN"), best.Name.Named("GROUP")).Resolve(), new LookTargets(p), NewsKind.People,
+            News.Post(GroupText.Sentences("CC_Group_Accepted".Translate(p.Named("PAWN"), best.Name.Named("GROUP")).Resolve()), new LookTargets(p), NewsKind.People,
                 MessageTypeDefOf.PositiveEvent, Importance.Flavor);
-            comp.journals.WriteTagged(p, "Rimfolk_Journal_Group_Accepted", null, null, best.Name.Named("GROUP"));
+            GroupText.Journal(p, "Rimfolk_Journal_Group_Accepted", best.Name.Named("GROUP"));
             if (d.sponsor && n.sponsor != null && Rand.Chance(0.5f))
-                comp.journals.WriteTagged(n.sponsor, "Rimfolk_Journal_Group_Vouched", null, null, best.Name.Named("GROUP"), p.Named("OTHER"));
+                GroupText.Journal(n.sponsor, "Rimfolk_Journal_Group_Vouched", best.Name.Named("GROUP"), p.Named("OTHER"));
         }
 
         /// <summary>The newcomers finding their way into a group, for its card.</summary>
