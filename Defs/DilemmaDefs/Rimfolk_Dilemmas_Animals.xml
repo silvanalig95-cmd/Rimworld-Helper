@@ -287,6 +287,7 @@
         <outcome>The herd is brought in close to the houses for a few nights, and everyone sleeps with one ear open.</outcome>
         <ways><toil>1</toil></ways>
         <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>bringing the herd in close</label><target>AAndB</target><organizer>A</organizer><count>2</count><tasks><li>Herd</li></tasks><hours>15~21</hours><duration>1.5~2</duration><pool>Council_Pool_HerdHome</pool></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Compromise</thought></li>
         </effects>
         <riskChance>0.25</riskChance>

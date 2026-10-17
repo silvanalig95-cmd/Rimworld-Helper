@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Bringing the herd home (Source/ColonyCouncil/Animals/HerdHome.cs): a custom of the herd's year, beside the lambing
+    watch and shearing day (Rimfolk_Dilemmas_Animals.xml). Before the winter (the cold coming in the fall), in a cold snap,
+    or the day after a raid, with a herd of three or more, a barn or a pen for it, and two or more of it out in the open.
+    Asked in its moment (timely). Held, the colony walks the herd in on ropes, one animal at a time, as a work party:
+    practice with the animals and the herd under a roof, little mood. Kept two years running, it becomes a tradition.
+  -->
+
+  <ColonyCouncil.DilemmaDef>
+    <defName>Council_Dilemma_HerdHome</defName>
+    <label>bringing the herd home</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_HerdHome</workerClass>
+    <timely>true</timely>
+    <weight>1</weight>
+    <cooldownDays>40</cooldownDays>
+    <answerDays>1</answerDays>
+    <roleA>
+      <bestAt>Animals</bestAt>
+    </roleA>
+    <texts>
+      <li>The wind has turned and there's ice at the edge of the trough. The herd is still out grazing, {PET_nameDef} furthest of all. {A_nameDef} wants everyone who can be spared to go out together and bring them in to the barn before the weather does it for them.</li>
+      <li>{A_nameDef} has been watching the sky all morning. "They'll want to be under a roof tonight," {A_nameDef} says, and asks the council for a few hands: out to the herd with ropes, and every head of it home before dark.</li>
+      <li>[fall] The last of the grazing is going brown, and the nights are long now. Where {A_nameDef} grew up, the whole household brought the herd home on the same day each autumn, and ate together after. {A_nameDef} would like to do the same here.</li>
+      <li>[afterraid] The raid scattered the herd across the land: {PET_nameDef} is still out past the fields, and others with it. {A_nameDef} wants to gather them all in together before anything else finds them.</li>
+      <li>[snow] Snow's coming in sideways and half the herd is still out in it. {A_nameDef} is already at the door with the ropes, waiting for the council to say how many can go.</li>
+      <li>[colony:Traditional] The cold is coming, and with it the day the colony brings the herd home. {A_nameDef} has the ropes coiled and ready.</li>
+    </texts>
+    <traditionOption>0</traditionOption>
+    <traditionLabel>bringing the herd home</traditionLabel>
+    <defaultOption>1</defaultOption>
+    <options>
+      <li>
+        <label>Bring the herd home together</label>
+        <outcome>Everyone who could be spared went out with a rope. One by one the herd came in out of the weather, {PET_nameDef} last and loudest, and the barn door was shut on all of them by dark.</outcome>
+        <outcomes>
+          <li>[snow] They brought the herd in through the snow in a long line, people and animals both white to the knees, and stamped their feet in the barn doorway after.</li>
+          <li>[afterraid] They found the scattered ones in twos and threes across the land and walked them home past the marks the raid had left. Nobody said much. Everyone counted.</li>
+        </outcomes>
+        <ways><tradition>3</tradition><toil>1</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>bringing the herd home</label><count>5</count><tasks><li>Herd</li></tasks><hours>7~17</hours><duration>2~3</duration><pool>Council_Pool_HerdHome</pool></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Trad_HerdHome</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>{A_nameDef} brings them in alone</label>
+        <outcome>{A_nameDef} went out alone with a rope over {A_possessive} shoulder, and brought the herd in a head at a time until the light went.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>bringing the herd home</label><target>A</target><organizer>A</organizer><count>1</count><tasks><li>Herd</li></tasks><hours>7~18</hours><duration>2.5~3.5</duration><pool>Council_Pool_HerdHome</pool></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Animals</skill><xp>300</xp></li>
+        </effects>
+      </li>
+      <li>
+        <label>They'll find their own way in</label>
+        <outcome>The council left the herd to find its own way home. {A_nameDef} went out to the fence twice that evening to look at them standing in the weather, and came back in without a word.</outcome>
+        <ways><tradition>-2</tradition><toil>2</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_HerdLeftOut</thought></li>
+        </effects>
+      </li>
+    </options>
+    <modExtensions>
+      <li Class="ColonyCouncil.HerdConditions"><minHerd>3</minHerd></li>
+    </modExtensions>
+  </ColonyCouncil.DilemmaDef>
+
+</Defs>

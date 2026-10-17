@@ -422,7 +422,9 @@ words describe something done without it). These now play out (A and B are the d
 
 - **Calendar days:** a feast day is a feast from the stores (the day's lift after it); a games day a gathering in the
   rec room; a remembrance of one of the colony's dead an hour by their grave, for those who knew them, if the grave is
-  on the map. A rest day was already real (work hours turned to recreation) and is unchanged.
+  on the map. A rest day was already real (work hours turned to recreation) and is unchanged. A planting day (a day the
+  player names and keeps that way) is a sowing party in the fields and a word at the field's edge after, or a walk out
+  to the fields when there's nothing to sow.
 - **Decrees:** a feast day (a feast at noon), festival days (music on the first evening), days of rest (the first
   day's work hours are free time).
 - **Ambitions reached (the council meeting's outcomes):** the great feast, the great hall, fine dining and a table for
@@ -467,7 +469,7 @@ words describe something done without it). These now play out (A and B are the d
 
 **Council_Dilemmas_Customs**
 
-- **the planting blessing** (`Council_Dilemma_PlantingBlessing`): "Bless the fields together": gathering to hear it, A speaks ("the blessing of the fields") · "A quiet word at the field's edge": A goes out to the fields.
+- **the planting day** (`Council_Dilemma_PlantingBlessing`, once the planting blessing): "Make a day of the planting": a work party up to 6 (sow) by the fields ("the planting day"), then a gathering at the field's edge to hear A ("a word at the field's edge") · "A sows the first row": a work party of A (sow) ("the first row").
 - **the remembrance walk** (`Council_Dilemma_RemembranceWalk`): "Walk to the graves together": a walk together to a grave and back ("the walk to the graves") · "Those who want to can go": A sits by a grave · "The living have work to do": A sits by a grave.
 - **the midsummer swim** (`Council_Dilemma_MidsummerSwim`): "Everyone to the water": gathering ("the midsummer swim") · "A swim once the day's work is done": gathering ("the evening swim").
 - **the harvest dance** (`Council_Dilemma_HarvestDance`): "Dance until the fire burns down": bonfire with music ("the harvest dance") · "One dance, then bed": bonfire with music ("the harvest dance").

@@ -39,6 +39,7 @@ Some wishes belong to an era (healroot for a tribe or a medieval village, a deep
           <li>A bath, a fountain, another sculpture, art where people gather | The grimy, artists, anyone with taste.</li>
           <li>A bench outside, flowers around the colony | Anyone, flowers in spring and summer.</li>
           <li>A cooler for the hottest days | Anyone, while it's 30°C or more outside and nothing in the colony cools. A passive cooler before electricity.</li>
+          <li>A sauna for the cold months | On cold land (its coldest month freezing or worse) in fall and winter: the cold, the old and the sociable, while the colony has no sauna. With Dubs Bad Hygiene its sauna heater; without, a sauna of the colony's own: a small closed room (30 cells at most, no bed or workbench) with a seat and a heater set to 28 °C or more, or a campfire before electricity (as warm as it gets). Planned from the sweat room layout. On cold days people sit in it a while ("Small habits"): warmed through (comfort and a little rest, no mood), and two in there together talk.</li>
           <li>Time outside, more time to rest | The cooped-up, the worn out and the lazy.</li>
         </table>
       </li>
@@ -69,9 +70,9 @@ Some wishes belong to an era (healroot for a tribe or a medieval village, a deep
           <li>A deep drill | Miners, once the colony has electricity and the research.</li>
           <li>A smokehouse, a beehive, fodder before winter | Cooks; growers and animal lovers; handlers with three or more animals in fall.</li>
           <li>A pen for the animals | Handlers, when the colony keeps two or more animals and has no pen.</li>
-          <li>A fishing spot | Those who'd fish, the restless and gourmands, when there are fish in the water and no fishing zone (Odyssey).</li>
+          <li>A fishing spot | Those who'd fish, the restless and gourmands, when fishing is part of the game (Odyssey, or Vanilla Fishing Expanded on its own), the water holds fish, and no fishing spot is in use. Fulfilled when a fishing zone is marked, fishing is allowed in it and someone at home has the fishing work on.</li>
           <li>A hunt | Shooters and the bloodthirsty.</li>
-          <li>A freezer, a brewery | Cooks and anyone who ate something rotten; the chemically inclined.</li>
+          <li>A freezer, a brewery | Cooks and anyone who ate something rotten, and in hot country (hot most of the year, or a hot summer) anyone, growers and cooks most, while there's food to keep; the chemically inclined. The freezer is only asked for when something can keep food frozen now: an electric cooler, a fridge from a mod, or a mod's cooler that freezes without power. A passive cooler can't (it stops at 17 °C), so a hot land before electricity hears about pemmican instead. Fulfilled when a room below 0 °C, or a working fridge, holds food.</li>
         </table>
       </li>
       <li>
@@ -81,7 +82,7 @@ Some wishes belong to an era (healroot for a tribe or a medieval village, a deep
           <li>Better meals, honey in the larder | Gourmands and anyone sick of raw food or paste.</li>
           <li>Something to drink or smoke | Those with a taste for chemicals.</li>
           <li>Something fresh to eat | Anyone in winter and spring, when the stores hold fewer than 60 vegetables, fruit or grain. Scurvy makes it urgent.</li>
-          <li>Food that keeps | Anyone in fall and winter, with real cold coming: pemmican, packaged meals or canned goods, whichever the colony can make.</li>
+          <li>Food that keeps | Anyone in fall and winter, with real cold coming, and any time of year in hot country where nothing can keep food frozen yet: pemmican, packaged meals or canned goods, whichever the colony can make.</li>
           <li>Firewood for the winter | When the colony burns wood and the cold is coming.</li>
           <li>A stocked infirmary | Doctors, when there's less than two medicine per colonist.</li>
           <li>Healroot put by | Healers and growers in a colony without electricity, when healroot can be grown.</li>
@@ -103,7 +104,8 @@ Some wishes belong to an era (healroot for a tribe or a medieval village, a deep
         <heading>Gear and status</heading>
         <table>
           <li>Wish | Who asks, and when</li>
-          <li>New clothes, something warm to wear, a hat | Tattered clothes, the cold, the bareheaded.</li>
+          <li>New clothes, a hat | Tattered clothes; the bareheaded.</li>
+          <li>Clothes for the season | Anyone whose clothes won't keep them comfortable in the coming season's usual cold (or, on hot land, its heat): what they wear must reach it, as near as one new piece the colony has or can make goes. Never a coat for the stores. Only what their apparel policy, beliefs and body allow, and never in place of something locked on them. Promised, they put on the best piece in store that would do; let go quietly when the season passes.</li>
           <li>Something fine to wear, jewelry | The greedy, the jealous, the vain.</li>
           <li>Proper armor, a decent weapon | Fighters.</li>
           <li>Something a visiting trader has | Anyone who has seen the trader's wares and can't stop thinking about them.</li>
@@ -119,6 +121,7 @@ Some wishes belong to an era (healroot for a tribe or a medieval village, a deep
           <li>A prisoner recruited, executed or set free | The kind, the lonely, the vengeful.</li>
           <li>A kidnapped friend brought home | Those who loved them.</li>
           <li>To see something of the world, an animal companion | The restless; animal lovers.</li>
+          <li>A favourite kind of animal, a pack animal of their own | Those fond of animals, when the kind they've always loved lives on the land (or roams the map) and the colony could tame it; haulers, talkers and the restless, where a pack animal can be had. The colony's animals has the details.</li>
           <li>Stronger defenses, a beast hunted down | Anyone shaken by a raid; a beast's victim and their friends.</li>
           <li>An evening with the campers | The sociable, the kind and those lacking belonging or freedom, while strangers are camped on the map.</li>
           <li>A council meeting | The sociable, office holders, and anyone who missed the last meeting, when the council hasn't met in eight days or more. Promising it calls the meeting.</li>
@@ -140,7 +143,6 @@ Some wishes belong to an era (healroot for a tribe or a medieval village, a deep
         <table>
           <li>Wish | Who asks, and when</li>
           <li>A toilet, somewhere to wash, hot water | Dubs Bad Hygiene.</li>
-          <li>A sauna for the cold months | Dubs Bad Hygiene, in fall and winter.</li>
           <li>A pot of tea | Vanilla Brewing Expanded, for anyone ill, once tea can be brewed.</li>
           <li>A grill for summer evenings | Vanilla Cooking Expanded (or Medieval Overhaul's grill), cooks in spring and summer.</li>
           <li>A bed kept for guests | Hospitality, the kind and the sociable, most often while visitors are here.</li>
@@ -148,6 +150,7 @@ Some wishes belong to an era (healroot for a tribe or a medieval village, a deep
           <li>A scarecrow for the fields | Vanilla Furniture Expanded - Farming, growers from spring to fall.</li>
           <li>A magic circle | A RimWorld of Magic, for mages.</li>
           <li>A new species | PokéWorld, animal lovers who spot a wild Pokémon the colony doesn't have.</li>
+          <li>A favourite Pokémon | PokéWorld, those fond of animals, when the Pokémon they've always loved is about and the colony can throw a ball.</li>
         </table>
         <after>Other mods' people want some of these too: Vanilla Traits Expanded's academians the telescope, perfectionists the tool cabinet, menagerists the pen; A RimWorld of Magic's healers the healroot.</after>
       </li>

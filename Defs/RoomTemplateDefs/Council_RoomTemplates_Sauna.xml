@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    A sauna of the colony's own, for the sauna wish without Dubs Bad Hygiene (Source/ColonyCouncil/Wishes/WishWorkers_Seasons.cs):
+    a small closed room with a heater (a campfire before electricity) and seats, and nothing else in it.
+  -->
+
+  <ColonyCouncil.RoomTemplateDef>
+    <defName>Council_SweatRoom</defName>
+    <label>sweat room</label>
+    <description>A small closed room with a heater (or a campfire before electricity) and a few stools: a sauna of the colony's own.</description>
+    <purpose>Somewhere hot to sit at the end of a cold day. Colonists come here to warm through on cold days, and talk while they do.</purpose>
+    <order>29</order>
+    <group>Leisure</group>
+    <size>(3,3)</size>
+    <iconDefs><li>Heater</li><li>Campfire</li></iconDefs>
+    <floors><li>WoodPlankFloor</li></floors>
+    <near><li>RecRoom</li></near>
+    <tips>
+      <li>It counts as a sauna at 28 °C or more: turn the heater's target up once it's built. A campfire can only warm a room to about 23 °C, so with a fire, as warm as the fire makes it counts.</li>
+      <li>Keep it small (30 cells at most), the door shut, and no bed or workbench in it, or it's just another room.</li>
+      <li>On cold days, colonists with time to spare come and sit in it a while (with "Small habits" on), and chat with whoever else is in there.</li>
+    </tips>
+    <things>
+      <li><defs><li>Heater</li><li>Campfire</li></defs><role>heater</role><pos>(0,0)</pos><rot>South</rot><optional>false</optional></li>
+      <li><defs><li>Stool</li><li>DiningChair</li></defs><role>chair</role><pos>(0,2)</pos></li>
+      <li><defs><li>Stool</li><li>DiningChair</li></defs><role>chair</role><pos>(1,2)</pos></li>
+      <li><defs><li>Stool</li><li>DiningChair</li></defs><role>chair</role><pos>(2,2)</pos></li>
+      <li><defs><li>Stool</li><li>DiningChair</li></defs><role>chair</role><pos>(2,1)</pos></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+</Defs>

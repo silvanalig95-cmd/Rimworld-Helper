@@ -9,57 +9,68 @@
     raw food (foodFactor times thingCount).
   -->
 
-  <!-- ===================== The planting blessing (spring) ===================== -->
+  <!-- ===================== The planting day (the fields opening after a cold season) ===================== -->
+  <!--
+    Once the planting blessing; now the day the colony sows together (Source/ColonyCouncil/Dilemmas/PlantingDay.cs). Asked
+    when the fields open after a cold season (the first twelfth warm enough to grow, after one that wasn't), on a growing
+    day, with ten or more cells of the colony's fields waiting for seed; not when the calendar already holds a planting
+    day this season. Held: a sowing party, then a few words at the field's edge in the evening, and the fields watched for
+    a good start. Let go: a small cost for the growers, and for the faithful of a nature faith.
+  -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_Dilemma_PlantingBlessing</defName>
-    <label>the planting blessing</label>
-    <weight>0.7</weight>
+    <label>the planting day</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_PlantingDay</workerClass>
+    <timely>true</timely>
+    <weight>1</weight>
     <cooldownDays>50</cooldownDays>
-    <seasons><li>Spring</li></seasons>
     <roleA>
-      <passion>Plants</passion>
+      <bestAt>Plants</bestAt>
     </roleA>
     <texts>
-      <li>The ground has thawed, and {A_nameDef} wants the whole colony out in the fields at first light before the sowing starts, to walk the rows together and say a few words over the seed. "Where I'm from, nobody planted a thing until it was blessed," {A_nameDef} says.\n\nIt would cost the colony a morning's work.</li>
-      <li>{A_nameDef} has been sorting seed by the window all week, and has asked the council for one morning: everyone in the fields at dawn, a handful of grain scattered for luck, and then the planting can begin.</li>
-      <li>[lowtech] Back in {A_nameDef}'s village, the first furrow of spring was blessed by everyone together, with a little grain thrown to the birds so they'd leave the rest. {A_nameDef} would like to do the same here.</li>
-      <li>[colony:Traditional] The colony keeps its customs, and {A_nameDef} has asked for one more: a blessing on the fields before the first seed goes in, with everyone there to see it.</li>
+      <li>The ground has thawed, and the fields are bare and waiting. {A_nameDef} wants to make a day of the sowing: everyone who can be spared out in the fields with the seed, all of it in by evening, and a few words at the field's edge when it's done.\n\n"Where I'm from, nobody sowed alone on the first day," {A_nameDef} says.</li>
+      <li>{A_nameDef} has been sorting seed by the window all week, and has asked the council for one day: the whole colony at the furrows together, the first rows in before noon, and then a word over the fields at dusk.\n\nIt would cost the colony a day's other work.</li>
+      <li>[lowtech] Back in {A_nameDef}'s village, the first sowing of the year was done by everyone together, with a little grain thrown to the birds so they'd leave the rest. {A_nameDef} would like a planting day here, the old way.</li>
+      <li>[rain] Soft rain on the open fields, the best weather for seed there is. {A_nameDef} wants everyone out in it tomorrow for a planting day: the whole crop in at once, and a word together when it's done.</li>
+      <li>[colony:Traditional] The fields are open again, and {A_nameDef} has the seed ready. The colony keeps its customs, and {A_nameDef} asks for the planting day: everyone out to sow, and a few words at the field's edge.</li>
+      <li>[small] There aren't many of them, and the fields are wide. {A_nameDef} says that's the reason to do it together: one day, everyone, every row.</li>
     </texts>
     <traditionOption>0</traditionOption>
-    <traditionLabel>the planting blessing</traditionLabel>
+    <traditionLabel>the planting day</traditionLabel>
     <defaultOption>1</defaultOption>
     <options>
       <li>
-        <label>Bless the fields together</label>
-        <outcome>The whole colony walked the rows at dawn while {A_nameDef} said the words. The planting started late, and nobody minded.</outcome>
+        <label>Make a day of the planting</label>
+        <outcome>The colony went out to the fields with the seed and sowed together, row by row, until the light went. At dusk {A_nameDef} stood at the edge and said a few words over the furrows.</outcome>
         <outcomes>
-          <li>[rain] It rained on the blessing, which {A_nameDef} declared the best possible sign. Everyone came back soaked and smiling.</li>
-          <li>[lowtech] {A_nameDef} threw the first handful of grain to the birds, and the colony followed the furrow one by one, each with a word for the year.</li>
+          <li>[rain] It rained all through the sowing, which {A_nameDef} declared the best possible sign. Everyone came in soaked to the knees and pleased with themselves.</li>
+          <li>[lowtech] {A_nameDef} threw the first handful of grain to the birds, and then everyone set to the furrows. By dusk the fields were in.</li>
         </outcomes>
-        <ways><tradition>4</tradition><toil>-3</toil></ways>
+        <ways><tradition>4</tradition><toil>1</toil></ways>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>5</count></li>
+          <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>the planting day</label><count>6</count><tasks><li>Sow</li></tasks><near><li>Fields</li></near><hours>6~13</hours><duration>3~4</duration><pool>Council_Pool_PlantingWork</pool></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Words"><label>a word at the field's edge</label><spots><li>Fields</li><li>Outdoors</li></spots><hours>17~20</hours><duration>0.75~1</duration><pool>Council_Pool_PlantingWords</pool></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Trad_Blessing</thought></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>4</amount></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Words"><label>the blessing of the fields</label><spots><li>Fields</li><li>Outdoors</li></spots><hours>5~10</hours><duration>0.75~1</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>3</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_PlantingWatch" />
         </effects>
       </li>
       <li>
-        <label>A quiet word at the field's edge</label>
-        <outcome>{A_nameDef} said the words alone at the edge of the field before breakfast, then went to fetch the seed.</outcome>
+        <label>{A_nameDef} sows the first row, the rest in its turn</label>
+        <outcome>{A_nameDef} went out alone at first light and sowed the first row by hand, carefully, before the rest of the work began as it usually does.</outcome>
         <ways><tradition>1</tradition></ways>
         <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>the first row</label><target>A</target><organizer>A</organizer><count>1</count><tasks><li>Sow</li></tasks><near><li>Fields</li></near><hours>5~10</hours><duration>1~1.5</duration><pool>Council_Pool_PlantingWork</pool></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Trad_Blessing</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>1</amount></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Fields</to><hours>5~9</hours><duration>0.5~0.75</duration></li>
         </effects>
       </li>
       <li>
-        <label>Just get the seed in the ground</label>
-        <outcome>The sowing started at dawn as usual. {A_nameDef} planted the first row a little more carefully than the rest, and didn't say why.</outcome>
-        <ways><tradition>-3</tradition><toil>4</toil></ways>
+        <label>The seed goes in like any other work</label>
+        <outcome>No planting day. The seed will go in between the other jobs, the way it usually does. {A_nameDef} planted the first row a little more carefully than the rest, and didn't say why.</outcome>
+        <ways><tradition>-3</tradition><toil>3</toil></ways>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_NoCelebration</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_PlantingSkipped"><thought>Council_Dlm_PlantingSkipped</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-2</amount></li>
         </effects>
       </li>

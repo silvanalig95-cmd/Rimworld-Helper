@@ -25,6 +25,7 @@ namespace ColonyCouncil
         private static readonly Color BonfireColor = new Color(1f, 0.6f, 0.35f);
         private static readonly Color GiftsColor = new Color(0.9f, 0.62f, 0.85f);
         private static readonly Color HuntColor = new Color(0.72f, 0.66f, 0.45f);
+        private static readonly Color PlantingColor = new Color(0.62f, 0.8f, 0.42f);
 
         public static Color WayColor(DayWay way)
         {
@@ -37,6 +38,7 @@ namespace ColonyCouncil
                 case DayWay.Bonfire: return BonfireColor;
                 case DayWay.Gifts: return GiftsColor;
                 case DayWay.Hunt: return HuntColor;
+                case DayWay.Planting: return PlantingColor;
                 default: return UiKit.Faint;
             }
         }
@@ -292,7 +294,7 @@ namespace ColonyCouncil
         private bool focused;
         private bool finished;
 
-        private static readonly DayWay[] Ways = { DayWay.Feast, DayWay.Remembrance, DayWay.Rest, DayWay.Games, DayWay.Bonfire, DayWay.Gifts, DayWay.Hunt };
+        private static readonly DayWay[] Ways = { DayWay.Feast, DayWay.Remembrance, DayWay.Rest, DayWay.Games, DayWay.Bonfire, DayWay.Gifts, DayWay.Hunt, DayWay.Planting };
 
         public Dialog_CalendarDay(CalendarDay editing)
         {

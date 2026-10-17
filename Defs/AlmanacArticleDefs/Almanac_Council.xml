@@ -397,13 +397,13 @@ Two more things weigh on a ballot. Someone whose granted wish the council took b
     <order>8</order>
     <summary>What the colony keeps doing becomes expected.</summary>
     <tip>Hold the midsummer feast two years running and they'll expect it every year after.</tip>
-    <description>Some seasonal dilemmas have an answer the colony can make its own: a midsummer bonfire, a harvest celebration, a vigil on the longest night, a blessing on the fields. Choose the same answer two years running and it becomes a tradition. From then on it comes up first every year, keeping it pleases everyone, and breaking it disappoints them.</description>
+    <description>Some seasonal dilemmas have an answer the colony can make its own: a midsummer bonfire, a harvest celebration, a vigil on the longest night, a planting day in the fields. Choose the same answer two years running and it becomes a tradition. From then on it comes up first every year, keeping it pleases everyone, and breaking it disappoints them.</description>
     <sections>
       <li>
         <heading>The customs</heading>
         <table>
           <li>Season | Custom | What it needs</li>
-          <li>Spring | The planting blessing: everyone walks the fields at dawn before the sowing | a grower to ask for it</li>
+          <li>Spring | The planting day: when the fields open after a cold season, the colony sows together (a work party) and the grower says a few words at the field's edge that evening; hope and practice, no mood. Let go, the growers (and a nature faith's faithful) mind a little | land with a cold season, the first days the fields can grow again, 10 or more cells waiting for seed. Or name a planting day on the calendar</li>
           <li>Spring | The remembrance walk: the colony visits its graves together and says the names | graves of the colony's own dead</li>
           <li>Spring | Naming the year (the muffalo is a tradition too) | nothing</li>
           <li>Summer | The midsummer bonfire | firewood</li>
@@ -420,6 +420,7 @@ Two more things weigh on a ballot. Someone whose granted wish the council took b
           <li>Fall | The children's gleaning: what's left in the stubble is theirs, shared at supper | a child</li>
           <li>Winter | The snow day: no chores, everyone out in the snow | a child, a freezing day</li>
         </table>
+        <after>The herd's year has customs of its own (the colony's animals has them): the lambing watch, shearing day, and bringing the herd home before the winter, in a cold snap or after a raid.</after>
       </li>
       <li>
         <heading>Customs of the land and the faith</heading>
