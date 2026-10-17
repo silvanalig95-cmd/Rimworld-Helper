@@ -259,6 +259,8 @@ namespace ColonyCouncil
                 bool matters = role == RoomUtil.Workshop || role == RoomUtil.Kitchen || role == RoomUtil.Laboratory || role == RoomUtil.Hospital
                                || role == RoomUtil.DiningRoom || role == RoomUtil.RecRoom || role == RoomRoleDefOf.Bedroom || role == RoomRoleDefOf.Barracks;
                 if (!matters || RoomUtil.RoomContains(room, Avail.IsLight)) continue;
+                // Bedrooms that aren't large and workshops with benches have advice of their own, which plans the lamps.
+                if (AdvisorWorker_BedsDark.Covers(room) || AdvisorWorker_WorkshopUpgrade.Covers(room)) continue;
                 // Some open sky lets daylight in; that's someone else's problem at night, but not a dark room.
                 if (room.OpenRoofCount > 0) continue;
                 dark.Add(room);

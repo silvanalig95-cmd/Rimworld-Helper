@@ -1,0 +1,438 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More journal lines where the same entry came round too often: the smaller everyday moments (a fight, teasing,
+    gossip, a thing not given back, the cold shoulder) and the council's journals (a wish granted, refused or left to
+    lapse, a promise kept or broken, a raid, a loss). Same placeholders as the pools they join: {WISH} for the wish,
+    {OTHER_...} for the other person.
+  -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Journal_Day_Disturbed2</defName>
+    <pool>Council_Journal_Day_Disturbed</pool>
+    <lines>
+      <plain>
+        <li>[clear] Clear, still night, and every footstep in the place carried straight to my bed.</li>
+        <li>[old] Up twice for my own reasons and three times for everyone else's.</li>
+        <li>[lowmood] Woke at every sound. I was half waiting for one anyway.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Journal_Day_Fight</defName>
+    <pool>Council_Journal_Day_Fight</pool>
+    <lines>
+      <plain>
+        <li>[good] {OTHER_nameDef} and I went at it in the yard until we were both too winded to swing. Then we sat down, and it was over.</li>
+        <li>[good] Got a black eye off {OTHER_nameDef}. Gave one back. The air's cleaner between us than it's been for weeks.</li>
+        <li>[good] Fought {OTHER_nameDef} today, fair and square. Afterward {OTHER_nameDef} helped me up.</li>
+        <li>[bad] {OTHER_nameDef} hit me first. I don't remember what I said to deserve it, which worries me.</li>
+        <li>[bad] Fought with {OTHER_nameDef} in front of the others. I'm more ashamed of that than of the bruise.</li>
+        <li>[bad] {OTHER_nameDef} and I fought, and nobody won. Two sore faces and the same argument.</li>
+        <li>[bad] My hand still hurts from {OTHER_nameDef}'s jaw. It was a stupid fight about a stupid thing.</li>
+      </plain>
+      <warm>
+        <li>Hit {OTHER_nameDef}. I've never hit anyone I liked before. I'll make it right.</li>
+      </warm>
+      <blunt>
+        <li>{OTHER_nameDef} had it coming. Still sore, though.</li>
+      </blunt>
+      <cheerful>
+        <li>Wrestled {OTHER_nameDef} into the mud! I lost, but it was a magnificent loss.</li>
+      </cheerful>
+      <gloomy>
+        <li>Fought {OTHER_nameDef}. We're all so tired that it was always going to be someone.</li>
+      </gloomy>
+      <cold>
+        <li>{OTHER_nameDef} drops the left hand when tired. I'll remember that.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Journal_Day_Teased</defName>
+    <pool>Council_Journal_Day_Teased</pool>
+    <lines>
+      <plain>
+        <li>{OTHER_nameDef} did the voice again, the one that's supposed to be mine.</li>
+        <li>{OTHER_nameDef} has a new nickname for me. It's caught on, which is the worst part.</li>
+        <li>{OTHER_nameDef} told the table about my mistake at the workbench. It gets funnier every time, apparently.</li>
+        <li>[newcomer] {OTHER_nameDef} keeps making jokes about where I came from. I'm still too new to answer back.</li>
+      </plain>
+      <warm>
+        <li>{OTHER_nameDef} teases everyone, I know. I'd still like a day off from it.</li>
+      </warm>
+      <blunt>
+        <li>{OTHER_nameDef} thinks I'm the joke. I'm not.</li>
+      </blunt>
+      <cheerful>
+        <li>{OTHER_nameDef} made fun of my hat, so I wore it to supper on purpose. Twice the hat.</li>
+      </cheerful>
+      <gloomy>
+        <li>{OTHER_nameDef} was joking. Everyone keeps saying so.</li>
+      </gloomy>
+      <cold>
+        <li>{OTHER_nameDef} needs an audience for the jokes. I'll see that there isn't one.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Journal_Day_Gossip</defName>
+    <pool>Council_Journal_Day_Gossip</pool>
+    <lines>
+      <plain>
+        <li>Somebody told me what {OTHER_nameDef} said about me. I wish they hadn't.</li>
+        <li>{OTHER_nameDef} has been talking. Half the colony knew before I did.</li>
+        <li>Walked in on {OTHER_nameDef} telling a story about me. It was mostly wrong, and I didn't correct it.</li>
+      </plain>
+      <warm>
+        <li>{OTHER_nameDef} has been talking about me. I'd rather {OTHER_pronoun} had just asked me.</li>
+      </warm>
+      <blunt>
+        <li>{OTHER_nameDef} has a big mouth. I'll stop feeding it.</li>
+      </blunt>
+      <cheerful>
+        <li>{OTHER_nameDef} has been spreading stories about me, and they're more exciting than my real life.</li>
+      </cheerful>
+      <gloomy>
+        <li>Everyone's heard it by now. I can tell by the way they look at me.</li>
+      </gloomy>
+      <cold>
+        <li>{OTHER_nameDef} can't keep a thing to {OTHER_objective}self. That cuts both ways.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Journal_Day_NotReturned</defName>
+    <pool>Council_Journal_Day_NotReturned</pool>
+    <lines>
+      <plain>
+        <li>{OTHER_nameDef} borrowed my needle a week ago. My shirt is still waiting for it.</li>
+        <li>Asked {OTHER_nameDef} about my cup. Apparently it's been lent on to someone else.</li>
+        <li>My whetstone is somewhere in {OTHER_nameDef}'s things. My knife is getting duller by the day.</li>
+      </plain>
+      <warm>
+        <li>{OTHER_nameDef} forgot to give back my hat again. I'll put my name inside it this time.</li>
+      </warm>
+      <blunt>
+        <li>{OTHER_nameDef}. My knife. Now.</li>
+      </blunt>
+      <cheerful>
+        <li>{OTHER_nameDef} still has my spoon, so I've been eating soup with a ladle. I recommend it.</li>
+      </cheerful>
+      <gloomy>
+        <li>Lend something here and it's gone. I should have learned that by now.</li>
+      </gloomy>
+      <cold>
+        <li>I've stopped lending {OTHER_nameDef} anything I'd mind losing, which is everything.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Journal_Day_ColdShoulder</defName>
+    <pool>Council_Journal_Day_ColdShoulder</pool>
+    <lines>
+      <plain>
+        <li>{OTHER_nameDef} left the room when I came in. I gave it a moment, then I went in after.</li>
+        <li>Three days now and {OTHER_nameDef} hasn't said a word to me that wasn't about work.</li>
+        <li>{OTHER_nameDef} laughed at something across the table and stopped when I looked over.</li>
+      </plain>
+      <warm>
+        <li>Left a bowl of berries on {OTHER_nameDef}'s bench. No note. We'll see.</li>
+      </warm>
+      <blunt>
+        <li>{OTHER_nameDef} can talk to me when {OTHER_pronoun}'s ready. I'm not chasing.</li>
+      </blunt>
+      <cheerful>
+        <li>{OTHER_nameDef} is still not talking to me, so I've started narrating my day out loud nearby.</li>
+      </cheerful>
+      <gloomy>
+        <li>{OTHER_nameDef} won't speak to me, and the others have started picking sides.</li>
+      </gloomy>
+      <cold>
+        <li>{OTHER_nameDef}'s silence tells me more than {OTHER_possessive} talk ever did.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Journal_Day_Magic_Shop</defName>
+    <pool>Council_Journal_Day_Magic_Shop</pool>
+    <lines>
+      <plain>
+        <li>{OTHER_nameDef} and I went over who stands where when the next fight comes. We agreed, mostly.</li>
+        <li>[mage] Showed {OTHER_nameDef} how I shape a working. {OTHER_nameDef} asked better questions than most students.</li>
+      </plain>
+      <warm>
+        <li>{OTHER_nameDef} asked how I was holding up after the last fight, and waited for the real answer.</li>
+      </warm>
+      <blunt>
+        <li>Drilled with {OTHER_nameDef}. Getting faster.</li>
+      </blunt>
+      <cheerful>
+        <li>{OTHER_nameDef} and I worked out a signal for the next fight. It's a sort of whistle, and I'm very proud of it.</li>
+      </cheerful>
+      <gloomy>
+        <li>{OTHER_nameDef} and I planned for the worst. It's what we're good at.</li>
+      </gloomy>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== The council's journals ===================== -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Journal_Granted</defName>
+    <pool>Council_Journal_Granted</pool>
+    <lines>
+      <plain>
+        <li>[spring] Spring, and "{WISH}" is done. Feels like everything's starting at once.</li>
+        <li>[spring] They saw to "{WISH}" between the planting and the rain. I don't know how they found the time.</li>
+        <li>[spring] New shoots in the fields and "{WISH}" crossed off my list. Good week.</li>
+        <li>[summer] Long hot day, and at the end of it, "{WISH}". I sat with it until the light went.</li>
+        <li>[summer] They did it in the middle of the busiest season. I noticed.</li>
+        <li>[summer] "{WISH}" is done. I've been in a good mood all day, and the heat hasn't spoiled it.</li>
+        <li>[fall] The council got "{WISH}" done before the cold. Good timing, and I said so.</li>
+        <li>[fall] Harvest's in and so is "{WISH}". A good season, whatever else happens.</li>
+        <li>[fall] With everyone busy in the fields, someone still found time for "{WISH}".</li>
+        <li>[clear] Clear evening, and I walked out to look at it twice before bed.</li>
+        <li>[highmood] Good day all round, and then they came through on "{WISH}" on top of it.</li>
+        <li>[trusting] I knew they'd see to "{WISH}". It's nice to be right about people.</li>
+      </plain>
+      <warm>
+        <li>I found the people who did the work and thanked them by name.</li>
+        <li>They said yes to "{WISH}". I want to give something back, and I'm thinking about what.</li>
+      </warm>
+      <blunt>
+        <li>Asked. Waited. Got it.</li>
+        <li>They did "{WISH}". Took a while. Done now.</li>
+      </blunt>
+      <cheerful>
+        <li>"{WISH}" happened. I've told everyone, and the animals too.</li>
+        <li>They said yes. I did a small dance in the storeroom where nobody could see.</li>
+      </cheerful>
+      <gloomy>
+        <li>They came through on "{WISH}". I'll enjoy it before something comes along to take it.</li>
+        <li>Got what I asked for. I don't quite know what to do with being happy.</li>
+      </gloomy>
+      <cold>
+        <li>Request fulfilled. I'll remember who argued for it.</li>
+        <li>"{WISH}" delivered. The council has earned a little patience from me.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Journal_Raid</defName>
+    <pool>Council_Journal_Raid</pool>
+    <lines>
+      <plain>
+        <li>[spring] They came through the new crops. Half the field is trampled flat.</li>
+        <li>[spring] Fought in the mud. I lost a boot in it and haven't found it.</li>
+        <li>[spring] They came on the first warm day. I'd been looking forward to that day.</li>
+        <li>[summer] Fighting in the heat. Afterward we drank the well half dry.</li>
+        <li>[summer] They came at dusk, out of the long grass. We'll cut it back tomorrow.</li>
+        <li>[summer] Sweat and smoke all afternoon. I can still taste both.</li>
+        <li>[fall] They came for the harvest. They didn't get it.</li>
+        <li>[fall] Fought in the rain among the fallen leaves. Couldn't tell blood from mud by the end.</li>
+        <li>[fall] Raiders before the frost, as if they knew our stores were full.</li>
+        <li>[winter] They came over the frozen ground, and we held them at the wall.</li>
+        <li>[winter] Fought in the cold until my fingers wouldn't close. Someone had to pry the weapon out of my hand.</li>
+        <li>[winter] Short day, long fight. It was dark before we'd counted everyone.</li>
+      </plain>
+      <warm>
+        <li>We carried the wounded in between us, two to a stretcher, and nobody was left out there.</li>
+      </warm>
+      <blunt>
+        <li>Fought. Won. Need sleep.</li>
+      </blunt>
+      <cheerful>
+        <li>We're all still here, and the stew survived too.</li>
+      </cheerful>
+      <gloomy>
+        <li>We won today. I don't feel like it.</li>
+      </gloomy>
+      <cold>
+        <li>We held, but the east side was slow. I'll say so tomorrow.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Journal_PromiseBroken</defName>
+    <pool>Council_Journal_PromiseBroken</pool>
+    <lines>
+      <plain>
+        <li>The promise ran out today, and not one of them came to say sorry.</li>
+        <li>They promised "{WISH}". I told the others they'd keep it. Now I have to eat that.</li>
+        <li>[doubtful] I didn't fully believe them, and I was still disappointed.</li>
+        <li>[winter] A promise broken in the dead of winter. It feels colder than it is.</li>
+      </plain>
+      <warm>
+        <li>Maybe they couldn't. I'd still have liked to hear it from them.</li>
+        <li>I'll forgive it. I'll remember it too, but I'll forgive it.</li>
+      </warm>
+      <blunt>
+        <li>A promise means something. Apparently not here.</li>
+        <li>They broke it. I won't ask again.</li>
+      </blunt>
+      <cheerful>
+        <li>Promise broken. Still, I've got my health and half a loaf of bread.</li>
+        <li>They forgot their promise. I'll remind them, cheerfully, every single day.</li>
+      </cheerful>
+      <gloomy>
+        <li>They promised. I should have known what that's worth here.</li>
+        <li>I counted the days down to nothing. Next time I won't count.</li>
+      </gloomy>
+      <cold>
+        <li>A broken promise is information. I have it now.</li>
+        <li>The council's word has a price. I've just learned what it is.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Journal_PromiseKept</defName>
+    <pool>Council_Journal_PromiseKept</pool>
+    <lines>
+      <plain>
+        <li>They told me "{WISH}" was coming, and it came. That's all I ever wanted from them.</li>
+        <li>Promise kept. I've stopped half listening when they speak at meetings.</li>
+        <li>[trusting] I said they'd keep it, and they did. I told the doubters at supper.</li>
+      </plain>
+      <warm>
+        <li>They kept their word. I'll keep mine, the next time they need me.</li>
+      </warm>
+      <blunt>
+        <li>Said. Done. Good council.</li>
+      </blunt>
+      <cheerful>
+        <li>They kept their promise, so I'm keeping mine: an extra slice of pie for everyone who helped.</li>
+      </cheerful>
+      <gloomy>
+        <li>They kept it. I'm a little ashamed of how sure I was that they wouldn't.</li>
+      </gloomy>
+      <cold>
+        <li>Promise honored. Noted, with the date.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Journal_Lapsed</defName>
+    <pool>Council_Journal_Lapsed</pool>
+    <lines>
+      <plain>
+        <li>Not a yes, not a no: "{WISH}" just ran out of days.</li>
+        <li>The time ran out on my request. I only noticed because I'd been counting.</li>
+        <li>[trusting] I'm sure they meant to get to it. They didn't.</li>
+      </plain>
+      <warm>
+        <li>It didn't happen. I'll mention it more gently next time, or more often.</li>
+      </warm>
+      <blunt>
+        <li>Too slow. Forget it.</li>
+      </blunt>
+      <cheerful>
+        <li>Missed my chance this time. There's always next season.</li>
+      </cheerful>
+      <gloomy>
+        <li>It came to nothing. Most things do, if you wait long enough.</li>
+      </gloomy>
+      <cold>
+        <li>Lapsed. Silence is an answer, and I've taken it as one.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Journal_Refused</defName>
+    <pool>Council_Journal_Refused</pool>
+    <lines>
+      <plain>
+        <li>They said no to "{WISH}". At least they said something.</li>
+        <li>Refused. They gave a reason, and it was even a decent one. I'm still annoyed.</li>
+        <li>[trusting] The council said no. I suppose they know something I don't.</li>
+      </plain>
+      <warm>
+        <li>They turned me down. I'll ask what would change their minds, once I'm calmer.</li>
+      </warm>
+      <blunt>
+        <li>Refused. I'll live.</li>
+      </blunt>
+      <cheerful>
+        <li>They said no! Well, now I know where I stand, and it's right here, still cheerful.</li>
+      </cheerful>
+      <gloomy>
+        <li>A no. I'd prepared for it, and it still landed.</li>
+      </gloomy>
+      <cold>
+        <li>Refused. They'll find it harder to ask me for things now.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Journal_Grief</defName>
+    <pool>Council_Journal_Grief</pool>
+    <lines>
+      <plain>
+        <li>Folded {OTHER_nameDef}'s blanket and didn't know where to put it.</li>
+        <li>The others keep looking at me as if I might break. I might.</li>
+        <li>I keep remembering the last ordinary thing {OTHER_nameDef} said to me. It was about the weather.</li>
+      </plain>
+      <warm>
+        <li>Told the youngest a story about {OTHER_nameDef} tonight, so it gets remembered.</li>
+      </warm>
+      <blunt>
+        <li>{OTHER_nameDef}. Gone. Can't write more.</li>
+      </blunt>
+      <cheerful>
+        <li>{OTHER_nameDef} laughed louder than anyone. I'll laugh louder for both of us, when I can.</li>
+      </cheerful>
+      <gloomy>
+        <li>The colony feels smaller without {OTHER_nameDef}, and colder.</li>
+      </gloomy>
+      <cold>
+        <li>{OTHER_nameDef}'s tools are still where {OTHER_pronoun} left them. Nobody wants to move them, me included.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Variety_Journal_SelfHelp</defName>
+    <pool>Council_Journal_SelfHelp</pool>
+    <lines>
+      <plain>
+        <li>Got tired of asking and took care of it myself. Should have done it weeks ago.</li>
+        <li>Fixed it myself this afternoon, with a borrowed hammer and some swearing.</li>
+        <li>[old] At my age you learn not to wait. Sorted it out before supper.</li>
+      </plain>
+      <warm>
+        <li>Fixed it myself, and fixed the same thing for the one next door while I was at it.</li>
+        <li>Saw to it on my own. I didn't want to bother the council with something so small.</li>
+      </warm>
+      <blunt>
+        <li>Didn't wait. Did it.</li>
+        <li>Nobody else was going to. So I did.</li>
+      </blunt>
+      <cheerful>
+        <li>Did it myself and it turned out better than I'd hoped. I'm a genius, occasionally.</li>
+        <li>Sorted it out with my own two hands and a lot of muttering.</li>
+      </cheerful>
+      <gloomy>
+        <li>Did it myself. Easier than waiting for a council that wasn't coming.</li>
+        <li>Fixed it. I didn't do it for thanks, which is just as well.</li>
+      </gloomy>
+      <cold>
+        <li>Handled it without the council. I'll keep doing that where I can.</li>
+        <li>Done myself, done right. That's the lesson.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+</Defs>

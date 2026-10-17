@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- How a colony starts, what it becomes, and what people are called: the newer scenario parts, the names that come with years. -->
+
+  <!-- ===================== Names ===================== -->
+  <CC_Election_Unbeaten>Not once has a vote gone against {PAWN_nameDef}, and this year was no different.</CC_Election_Unbeaten>
+  <CC_Annals_OpeningAnnalist>The year {0} is over, and {PAWN_nameDef}, who has kept the colony's annals for years now, has written it down in the same careful hand.</CC_Annals_OpeningAnnalist>
+
+  <!-- ===================== A sworn enemy: the feud ===================== -->
+  <CC_Scen_Foe_feud>{FACTION} and the tribe have been at feud since before anyone here was born, and {FOE_nameDef}, who leads their war bands, has sworn to finish it with {VICTIM_nameDef}.</CC_Scen_Foe_feud>
+  <CC_Scen_Foe_Vendetta>{VICTIM_nameDef} has sworn vengeance on {FACTION} for {KIN}, killed in the last raid on the old camp.</CC_Scen_Foe_Vendetta>
+  <CC_Scen_Kinsman>a kinsman</CC_Scen_Kinsman>
+  <CC_ScenPart_Foe_feud>Rimfolk: a neighbouring people the colonists have been at feud with for generations.</CC_ScenPart_Foe_feud>
+  <CC_Scen_Hunt_feud_Label>{FACTION}'s war band</CC_Scen_Hunt_feud_Label>
+  <CC_Scen_Hunt_feud_Text>{FACTION} have come for the colony again. The old feud goes on, on {FOE}'s word.</CC_Scen_Hunt_feud_Text>
+  <CC_Scen_Hunt_feud_Led_Label>{FOE} comes for the feud</CC_Scen_Hunt_feud_Led_Label>
+  <CC_Scen_Hunt_feud_Led_Text>{FOE} is leading {FACTION}'s war band against the colony in person, to settle the old feud the old way.</CC_Scen_Hunt_feud_Led_Text>
+
+  <!-- ===================== A shared secret ===================== -->
+  <CC_Scen_SecretShared>{NAMES} came down with one secret between them, and swore never to speak of it. {KEEPER_nameDef} carries most of its weight. Whoever comes to live here later won't know, unless one of them lets it slip.</CC_Scen_SecretShared>
+
+  <!-- ===================== A council already formed ===================== -->
+  <CC_Scen_Seat>{PAWN_nameDef} as {OFFICE}</CC_Scen_Seat>
+  <CC_Scen_Seats>The council was named before the colony set out, and sits from the first day: {SEATS}. The colony votes again when the year turns.</CC_Scen_Seats>
+  <CC_Scen_Seats_Eldest>By the old custom the eldest sits with the council from the first day: {SEATS}. The colony will choose for itself once it has grown.</CC_Scen_Seats_Eldest>
+  <CC_ScenPart_Seats_best>Rimfolk: a council already formed ({0}).</CC_ScenPart_Seats_best>
+  <CC_ScenPart_Seats_eldest>Rimfolk: the eldest sits with the council from the first day ({0}).</CC_ScenPart_Seats_eldest>
+
+  <!-- ===================== Days the colony keeps ===================== -->
+  <CC_Scen_Day>{NAME} (a {WAY}, first in {DAYS} days)</CC_Scen_Day>
+  <CC_Scen_Days>They brought their own days with them, and the calendar keeps them as traditions from the first year: {DAYS}. Letting one pass will be felt.</CC_Scen_Days>
+  <CC_ScenPart_Days>Rimfolk: the colony brings days of its own ({0}).</CC_ScenPart_Days>
+
+  <!-- ===================== A life goal ===================== -->
+  <CC_Scen_Goal>{PAWN_nameDef} came with {PAWN_possessive} heart set on one thing: to {GOAL}.</CC_Scen_Goal>
+  <CC_ScenPart_Goal>Rimfolk: someone came with a life goal ({0}).</CC_ScenPart_Goal>
+
+  <!-- ===================== Beholden to a people ===================== -->
+  <CC_Scen_Beholden_granted_Lord>The colony holds this land by grant of {FACTION}, in the name of {LORD}. A grant is not a gift.</CC_Scen_Beholden_granted_Lord>
+  <CC_Scen_Beholden_granted>The colony holds this land by grant of {FACTION}. A grant is not a gift.</CC_Scen_Beholden_granted>
+  <CC_Scen_Beholden>The colony is beholden to {FACTION}.</CC_Scen_Beholden>
+  <CC_Scen_Beholden_Remembered>{FACTION} have written it down, and one day they will ask for something in return. What the colony says then will be remembered.</CC_Scen_Beholden_Remembered>
+  <CC_ScenPart_Beholden>Rimfolk: the colony holds its land by another people's grant, and owes them for it.</CC_ScenPart_Beholden>
+  <CC_Memory_Deed_granted>granted the colony its land</CC_Memory_Deed_granted>
+  <CC_Memory_Deed_granted_Name>granted the colony its land, in {NAME}'s name</CC_Memory_Deed_granted_Name>
+
+  <!-- ===================== Children in the colony's care ===================== -->
+  <CC_Scen_Wards>{CARERS} brought {COUNT} children out with them: {NAMES}. None of them has anyone else in the world.</CC_Scen_Wards>
+  <CC_ScenPart_Wards>Rimfolk: {0}-{1} children in the colony's care, with nobody else (Biotech).</CC_ScenPart_Wards>
+
+  <!-- ===================== A world event set in motion ===================== -->
+  <CC_ScenPart_Situation>Rimfolk: {0} around day {1}-{2}.</CC_ScenPart_Situation>
+  <CC_Scen_Hint_ShipDown>The ship won't stay in orbit for long. When it comes down, half the region will be picking through the wreck, and through whatever it was carrying.</CC_Scen_Hint_ShipDown>
+  <CC_Scen_Hint_Orphanage>Word travels that there are children here. A storyteller or a troupe of players will find their way to the gate before long, and so might a child who is lost.</CC_Scen_Hint_Orphanage>
+  <CC_Scen_Hint_Steward>The lord's reeve will come round to see how the grant is being worked, and what it owes, sooner rather than later.</CC_Scen_Hint_Steward>
+
+</LanguageData>

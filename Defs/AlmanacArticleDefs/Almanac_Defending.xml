@@ -1,0 +1,666 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Almanac: Defending the colony. How defenses are planned and built, from the Defenses page's point of view (Colony →
+    Defenses). The reference pages on raids and events stay in the Defense section (Almanac_Defense.xml); these link to
+    them for the full numbers.
+  -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Rimfolk_AlmDef_Overview</defName>
+    <label>planning the colony's defense</label>
+    <category>Defending</category>
+    <order>10</order>
+    <summary>Reading your map, holding the way in, and the threats that never use it</summary>
+    <tip>Raiders take the easiest way to your people. Decide where that is, and you decide where the fight is.</tip>
+    <description>A colony's defense starts with its map: where raiders can walk in from, and the narrow places they have to pass. Hold one of those, and most raids come to you on your terms. Then come the raids that ignore it: drop pods, sappers, sieges, insects and mechanoids. The Defenses page (Colony → Defenses) reads all of this from your map and suggests what to build first.</description>
+    <sections>
+      <li>
+        <heading>The order most colonies build in</heading>
+        <points>
+          <li>A way in of your own: a gap closed with a wall and one gate, or a wall round the colony.</li>
+          <li>Cover behind the gate, and someone with a weapon who knows to go there.</li>
+          <li>Weapons by the beds, for raids that land inside.</li>
+          <li>As raids grow: a killbox behind the gate, traps on the way in, turrets or archers' posts.</li>
+          <li>A line to fall back to, a hospital close behind it, and an answer to sieges and mechanoids.</li>
+        </points>
+      </li>
+      <li>
+        <heading>What the Defenses page does</heading>
+        <text>It reads the map once when you open it, and again when the colony's buildings have changed, at most once an hour: the edges raiders can reach you from, the ways they walk, the narrow places on those ways with their width and how many raids pass, and whether your home is walled in. It counts what stands already, who fights and what you can build, and looks at the factions around you and the threats your DLCs bring.
+
+From that it ranks its advice and marks what's done. "Plan it here" opens a defense plan at the place the advice is about, turned to face the raiders; nothing is built until you click. "Show on the map" draws the ways in (red), the gaps (yellow, blue where a gate holds one) and where a gate's wall would cross (gold).</text>
+      </li>
+      <li>
+        <heading>The plans</heading>
+        <text>A gate with sandbag lines, a stretch of perimeter wall two thick, a killbox, a trap corridor, a turret nest, a sniper's or archers' post, a fallback line, a keep, a mortar pit, and with Medieval Overhaul a palisade or a castle gate with a gatehouse. Each uses what your colony can build: barricades and log gates for a medieval colony, sandbags and turrets once you have them. A plan the colony can't build yet says what it lacks.
+
+A plan with a wall line can "close the gap": the wall carries on to the rock, a wall or deep water on both sides, up to 12 cells each way. It stops at shallow water and marsh, which take no wall, and says so.</text>
+      </li>
+    </sections>
+    <keywords>
+      <li>defense planner</li>
+      <li>defenses page</li>
+      <li>where to build</li>
+      <li>defense plan</li>
+      <li>templates</li>
+    </keywords>
+    <seeAlso>
+      <li>Rimfolk_AlmDef_ChokePoints</li>
+      <li>Rimfolk_AlmDef_Killbox</li>
+      <li>Rimfolk_AlmDef_Cover</li>
+      <li>Council_Alm_3_03_RaidTypes</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Rimfolk_AlmDef_ChokePoints</defName>
+    <label>choke points</label>
+    <category>Defending</category>
+    <order>20</order>
+    <summary>Narrow places raiders have to pass, natural or built</summary>
+    <tip>A raider with a clear way to you takes it, however long and winding, rather than break a wall.</tip>
+    <description>A choke point is a narrow place on the way in that raiders have to pass: a pass between hills, a gap between rock and water, a bridge, or a gate in your own wall. Raiders who can walk to a colonist take the quickest open way and don't break walls, so a single open way in is where they will come. Hold it, and the fight happens where you chose.</description>
+    <sections>
+      <li>
+        <heading>Finding one</heading>
+        <points>
+          <li>Look along the ways raiders would walk from the map's edge: where the open ground narrows between rock, water or your own buildings.</li>
+          <li>The narrower it is, the fewer can shoot at once. Five cells closes easily with a wall and a gate; much wider needs a longer wall.</li>
+          <li>Prefer the one most raids pass. Raids come in from wherever the edge is open, so a gap that serves only a small stretch of edge sees few of them.</li>
+          <li>Nothing can be built within 10 cells of the map's edge, so a gap right at the edge can't be closed there.</li>
+        </points>
+      </li>
+      <li>
+        <heading>Using the land</heading>
+        <text>Water and marsh slow raiders down, so a river or a lake makes a moat, and a bridge across it becomes the obvious way over. Two hills with a gap between them can be closed with a short wall. In a mountain, the few tunnels out are the choke points.</text>
+      </li>
+      <li>
+        <heading>Making one</heading>
+        <text>On open ground, wall the colony round and leave one gate. With the gate open, raiders walk in through it; with every way shut, each raider picks a stretch of wall at random and starts on it, so a closed perimeter splits them up but leaves you guessing where. Most players leave the gate open in a raid and fight at it.</text>
+      </li>
+    </sections>
+    <keywords>
+      <li>choke point</li>
+      <li>chokepoint</li>
+      <li>gap</li>
+      <li>pass</li>
+      <li>bridge</li>
+      <li>moat</li>
+      <li>map edge</li>
+    </keywords>
+    <seeAlso>
+      <li>Rimfolk_AlmDef_WallsGates</li>
+      <li>Rimfolk_AlmDef_Killbox</li>
+      <li>Council_Alm_3_04_Killbox</li>
+      <li>Rimfolk_AlmDef_Overview</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Rimfolk_AlmDef_Cover</defName>
+    <label>cover, and how the game counts it</label>
+    <category>Defending</category>
+    <order>30</order>
+    <summary>High cover, low cover, angles and distance, and where to put sandbags</summary>
+    <tip>Cover works best when the shot comes straight at it, and least when the shooter is right in front of it.</tip>
+    <description>Cover is the chance that a shot aimed at someone hits the thing in front of them instead. A wall or rock you lean round is high cover: it stops the shot and anything behind it. Sandbags, barricades, chunks, trees and furniture are low cover you can shoot over. Raiders use cover too, so what you clear from the field matters as much as what you build.</description>
+    <sections>
+      <li>
+        <heading>How much</heading>
+        <table>
+          <li>Cover | Counts as</li>
+          <li>Walls, rock, doors | 75%</li>
+          <li>Sandbags, barricades | 55%</li>
+          <li>Stone chunks | 50%</li>
+          <li>Trees | 25%</li>
+        </table>
+        <after>Something that fills its whole cell counts as 75%; lower cover counts by how much of the cell it fills. Medieval Overhaul's palisade embrasures fill 75% of theirs and its castle wall embrasures 85%, and shots pass over both.</after>
+      </li>
+      <li>
+        <heading>Angle and distance</heading>
+        <text>Cover counts in full when the shot comes within 15° of straight on, and falls away to nothing beyond 65°. Up close it fails: a shooter right in front of the cover meets a third of it, one cell away two thirds. So the cover line faces the way raiders come from, and something stops them before they reach it: open ground, traps or a melee fighter.</text>
+      </li>
+      <li>
+        <heading>Building it</heading>
+        <points>
+          <li>A firing position needs cover between it and the threat, with open ground in front: sandbags against a wall shelter nobody.</li>
+          <li>Mix walls and sandbags. A wall blocks your own line of fire; a short line of sandbags in a gap of the wall lets people shoot through it from good cover.</li>
+          <li>Sandbags are made of cloth or leather and don't burn; barricades are wood, stone or metal.</li>
+          <li>Since 1.6 raiders can stop and shoot while standing on sandbags or anything else, so cover no longer keeps them off a spot.</li>
+          <li>Cut trees and haul chunks out of the field in front: each one is cover for them.</li>
+        </points>
+      </li>
+    </sections>
+    <keywords>
+      <li>cover</li>
+      <li>sandbags</li>
+      <li>barricade</li>
+      <li>embrasure</li>
+      <li>high cover</li>
+      <li>low cover</li>
+      <li>firing position</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_3_05_Cover</li>
+      <li>Rimfolk_AlmDef_Killbox</li>
+      <li>Rimfolk_AlmDef_Medieval</li>
+    </seeAlso>
+    <approximate>true</approximate>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Rimfolk_AlmDef_Killbox</defName>
+    <label>killboxes, and the raiders who go round them</label>
+    <category>Defending</category>
+    <order>40</order>
+    <summary>A turn in the entrance, open ground, guns at the far end; and why sappers and breachers ignore it</summary>
+    <tip>Hold fire until they're in the box: every gun on the first one through is wasted.</tip>
+    <description>A killbox is a choke point built to kill: the one easy way in leads round a turn into open ground, with your people and turrets behind cover at the far end. Raiders trickle in a few at a time, without cover, at close range. It beats most raids, and does nothing at all against the ones that don't come through the gate.</description>
+    <sections>
+      <li>
+        <heading>Building one</heading>
+        <points>
+          <li>A turn in the entrance. Through a straight one, raiders stop in the doorway and shoot from its cover; round a turn, they have to come out into the box.</li>
+          <li>One cell wide where it opens, so a good melee fighter can hold them one at a time.</li>
+          <li>The way through stays open. If the only way to your people is through a shut door, raiders break walls elsewhere instead.</li>
+          <li>Not too long: past a point, raiders decide it isn't worth it and go for something else.</li>
+          <li>Fences or sandbags every second cell in the entrance slow them; a continuous line doesn't, as they only slow down climbing in.</li>
+          <li>Double the wall at the receiving end: your own fire breaks walls, and a hole there lets them round your line.</li>
+          <li>Turrets apart and behind their own cover; a badly damaged turret can explode.</li>
+        </points>
+      </li>
+      <li>
+        <heading>Sappers</heading>
+        <text>Sappers don't use the gate. Their best miner digs toward an assigned bed by the shortest way, through rock and walls, and the rest follow. They avoid digging into a turret's reach and through tough ore. Their groups are smaller than other raids of the same size.</text>
+      </li>
+      <li>
+        <heading>Breachers</heading>
+        <text>Breachers smash the colony walls in their way toward the beds. Tribes bring breach axes; mechanoid breachers are termites, whose thump cannon brings down a wooden wall in one shot and a stone block wall in two. Smart breachers keep out of your turrets' line of fire.
+
+Against both: walls at least two thick, cover ready in more than one place, an inner ring round the beds, and a few fighters who can go and meet them.</text>
+      </li>
+    </sections>
+    <keywords>
+      <li>killbox</li>
+      <li>sappers</li>
+      <li>breachers</li>
+      <li>termite</li>
+      <li>breach axe</li>
+      <li>entrance</li>
+      <li>melee block</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_3_04_Killbox</li>
+      <li>Council_Alm_3_11_SappersBreachers</li>
+      <li>Rimfolk_AlmDef_Turrets</li>
+      <li>Rimfolk_AlmDef_Traps</li>
+      <li>Rimfolk_AlmDef_WallsGates</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Rimfolk_AlmDef_WallsGates</defName>
+    <label>walls and gates</label>
+    <category>Defending</category>
+    <order>50</order>
+    <summary>What to build them of, how thick, and where to leave the doors</summary>
+    <tip>Standard raiders don't break walls while they have a way to you.</tip>
+    <description>Walls decide where raiders walk. A perimeter wall with one gate makes a choke point of a whole colony; with every gate shut, it splits a raid up and holds it off while your builders repair. Built well, it also keeps fires and manhunting animals out.</description>
+    <sections>
+      <li>
+        <heading>Material</heading>
+        <text>Stone is the wall of choice: cheap, slow to build, strong, and it doesn't burn. Wood is quick but weak and burns, and raiders set fires. Steel walls burn too. Plasteel and uranium are the strongest and dearest, worth it only in a few key places.</text>
+      </li>
+      <li>
+        <heading>Thickness</heading>
+        <text>Two thick holds a sapper's pick and a breacher's axe much longer. Against ordinary raiders who attack walls at random, two layers with no gap between them work best: with a gap, the whole inner layer is open to them once the first falls. A gap does let your builders repair the outer layer from inside.</text>
+      </li>
+      <li>
+        <heading>Gates</heading>
+        <points>
+          <li>Doors give 75% cover, but break sooner than a stone wall.</li>
+          <li>Two doors with a cell between them keep raiders and manhunters out while people come and go.</li>
+          <li>A door every fifteen to twenty-five cells of perimeter lets people out to take a shot or deal with a breacher.</li>
+          <li>Manhunting animals can't open doors, but will break one down if they see someone go in behind it.</li>
+          <li>Wall in generators and anything else you'd hate to lose, even inside the perimeter: raiders pick other targets.</li>
+        </points>
+      </li>
+    </sections>
+    <keywords>
+      <li>wall</li>
+      <li>perimeter</li>
+      <li>gate</li>
+      <li>door</li>
+      <li>double wall</li>
+      <li>stone</li>
+      <li>airlock</li>
+    </keywords>
+    <seeAlso>
+      <li>Rimfolk_AlmDef_ChokePoints</li>
+      <li>Rimfolk_AlmDef_Killbox</li>
+      <li>Council_Alm_3_20_FireSafety</li>
+      <li>Council_Alm_3_13_ManhunterPacks</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Rimfolk_AlmDef_Turrets</defName>
+    <label>turrets and their weaknesses</label>
+    <category>Defending</category>
+    <order>60</order>
+    <summary>Guns that never sleep, and the five things that silence them</summary>
+    <tip>A turret is backup for your people, never instead of them.</tip>
+    <description>Turrets fire at anything hostile in reach without needing a colonist, as long as they have power and their ammunition is kept up. In a killbox they add a lot of firepower. They also add wealth, so raids grow with them, and each has weaknesses a raid can find.</description>
+    <sections>
+      <li>
+        <heading>Weaknesses</heading>
+        <table>
+          <li>What | What it does</li>
+          <li>EMP | Stuns them; a turret never gets used to it</li>
+          <li>Explosives | Wreck them fast</li>
+          <li>Smoke | Stops them aiming into it</li>
+          <li>Solar flare | Every powered turret goes quiet</li>
+          <li>Fire | They can't put themselves out</li>
+        </table>
+        <after>Raiders' mortars and long guns can also shoot a mini-turret from beyond its reach.</after>
+      </li>
+      <li>
+        <heading>Placing them</heading>
+        <points>
+          <li>Behind cover, in the killbox, where your people can cover them.</li>
+          <li>At least three cells apart: a badly damaged turret can explode and take the next with it.</li>
+          <li>Mini-turrets close in. Autocannons further back, as they can't hit what's right in front of them.</li>
+          <li>A trap or two in front keeps melee raiders off them.</li>
+          <li>On their own power switch, so they're off when nobody is attacking.</li>
+        </points>
+      </li>
+      <li>
+        <heading>Medieval engines</heading>
+        <text>Medieval Overhaul's scorpio and ballista, and Vanilla Furniture Expanded - Security's ballista, are turrets that need a gunner rather than power. They count as turrets on the Defenses page, and the turret nest leaves room for a ballista's 2 x 2.</text>
+      </li>
+    </sections>
+    <keywords>
+      <li>turret</li>
+      <li>EMP</li>
+      <li>solar flare</li>
+      <li>smoke</li>
+      <li>ballista</li>
+      <li>scorpio</li>
+      <li>explosion</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_3_07_Turrets</li>
+      <li>Council_Alm_3_08_TurretExplosions</li>
+      <li>Rimfolk_AlmDef_Mechanoids</li>
+      <li>Rimfolk_AlmDef_Sieges</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Rimfolk_AlmDef_Traps</defName>
+    <label>traps, and your own people</label>
+    <category>Defending</category>
+    <order>70</order>
+    <summary>Where to lay them so raiders find them and colonists don't</summary>
+    <tip>Raiders don't see traps and can't use your doors. Your people see traps and use the doors.</tip>
+    <description>Traps work because raiders don't see them: a lane with traps looks like the fastest way to a raider. Your own people do see them and walk round when there's another way, but they still set one off now and then. A good trap layout gives raiders the trapped way and your people a better one.</description>
+    <sections>
+      <li>
+        <heading>Who sets them off</heading>
+        <table>
+          <li>Who | How often</li>
+          <li>Enemies | Always</li>
+          <li>Wild animals | 1 in 5 for spikes</li>
+          <li>Colonists, tame animals | 1 in 200</li>
+        </table>
+        <after>Your people set one off more often while hauling over it, uninstalling it, or when drafted onto it. Sappers and smart raiders know of about 30% of your traps and step round them.</after>
+      </li>
+      <li>
+        <heading>The trap corridor</heading>
+        <text>Two cells wide: one side a trap every other cell, the other side something that slows a raider, like a fence. Raiders take the clear side, your people the slow one. Traps can't stand next to each other in any case.
+
+Keep traps out of the home area's busy paths, or keep haulers off them with an allowed area. IEDs go off when shot, so keep them away from your firing line and from walls you need.</text>
+      </li>
+    </sections>
+    <keywords>
+      <li>trap</li>
+      <li>spike trap</li>
+      <li>IED</li>
+      <li>trap corridor</li>
+      <li>allowed area</li>
+      <li>fence</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_3_06_Traps</li>
+      <li>Rimfolk_AlmDef_Killbox</li>
+      <li>Rimfolk_AlmDef_Medieval</li>
+    </seeAlso>
+    <approximate>true</approximate>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Rimfolk_AlmDef_Mechanoids</defName>
+    <label>mechanoids: EMP, not fire</label>
+    <category>Defending</category>
+    <order>80</order>
+    <summary>Machines that don't burn, don't freeze and never give up</summary>
+    <tip>After an EMP stun a mechanoid is adapted for 2,200 ticks: the second grenade in a row is wasted.</tip>
+    <description>Mechanoids are immune to fire, toxic buildup and heat and cold. They don't flee when the fight turns: a mechanoid raid lasts until the last of them falls, and a downed mechanoid dies. What they can't stand is EMP.</description>
+    <sections>
+      <li>
+        <heading>EMP</heading>
+        <text>Each point of EMP damage stuns for 30 ticks; most EMP grenades, launchers and shells deal 50, which is 25 seconds. From the moment of a stun, a mechanoid is adapted for 2,200 ticks and further EMP does nothing to it. Some command mechanoids resist EMP and are stunned for less. A turret or other building never adapts.
+
+Use the stun: while they stand still, close in with melee or concentrate fire. EMP shells from a mortar cover a wide area, which makes up for their inaccuracy.</text>
+      </li>
+      <li>
+        <heading>Meeting them</heading>
+        <points>
+          <li>Scythers outrun the rest: meet them with melee fighters before the slow ones arrive.</li>
+          <li>Centipedes are heavily armored but slow in melee; several melee fighters at once bring one down.</li>
+          <li>An inferno cannon sets fire to cover and people, so build the killbox of stone.</li>
+          <li>A tribe has no EMP: hold a doorway with several fighters close in, and keep the archers behind cover.</li>
+        </points>
+        <after>Mechanoids no longer drop right on top of a colony, though they still come by pod at the edge or scattered across the map, and can come up out of water.</after>
+      </li>
+    </sections>
+    <keywords>
+      <li>mechanoid</li>
+      <li>EMP</li>
+      <li>scyther</li>
+      <li>centipede</li>
+      <li>termite</li>
+      <li>stun</li>
+      <li>adapted</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_3_14_MechClusters</li>
+      <li>Rimfolk_AlmDef_Turrets</li>
+      <li>Rimfolk_AlmDef_Sieges</li>
+      <li>Rimfolk_AlmDef_Killbox</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Rimfolk_AlmDef_Sieges</defName>
+    <label>sieges and mortars</label>
+    <category>Defending</category>
+    <order>90</order>
+    <summary>A camp out of reach that shells you, and what answers it</summary>
+    <tip>An incendiary shell into a siege camp can set off its own shells.</tip>
+    <description>A siege walks in from the map's edge, picks a spot well outside your base, and builds two mortars and some sandbags with supplies dropped by pod. Then it shells you, resupplied as it goes. A killbox does nothing against it. You either break the camp or goad it into attacking early.</description>
+    <sections>
+      <li>
+        <heading>How long they wait</heading>
+        <text>A siege attacks directly after 1.5 to 3 days, sooner if its mortars are destroyed or can't be built. Every time one of them takes damage there's an 8% chance the whole siege attacks. Overhead mountain is the only roof that stops their shells.</text>
+      </li>
+      <li>
+        <heading>Answering it</heading>
+        <points>
+          <li>Your own mortars, from deep inside: a mortar can't hit anything within about 30 cells of it.</li>
+          <li>Several mortars, as their misses overlap: one is often enough with incendiary shells to set the camp's shells off.</li>
+          <li>A sniper rifle or your longest bow, to wound them into attacking.</li>
+          <li>Mortars can't fire from under a roof. Keep them apart from each other and from the shell store, with walls between.</li>
+        </points>
+      </li>
+    </sections>
+    <keywords>
+      <li>siege</li>
+      <li>mortar</li>
+      <li>mortar pit</li>
+      <li>shells</li>
+      <li>incendiary</li>
+      <li>shelling</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_3_10_Sieges</li>
+      <li>Council_Alm_3_09_Mortars</li>
+      <li>Rimfolk_AlmDef_Turrets</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Rimfolk_AlmDef_DropPods</defName>
+    <label>drop pods inside the walls</label>
+    <category>Defending</category>
+    <order>100</order>
+    <summary>Raids that skip the gate entirely, and the defensible core that answers them</summary>
+    <tip>Only overhead mountain stops a drop pod. A built roof doesn't.</tip>
+    <description>Some raids come down by drop pod, past every wall and gate. A drop on top of you lands round one colonist and attacks at once; a scattered drop puts pods all over the map, sometimes into a storeroom full of things to burn. Only outlanders, pirates and the Empire drop right on top of a colony; tribes don't use pods, and mechanoids no longer drop on top of you.</description>
+    <sections>
+      <li>
+        <heading>Being ready</heading>
+        <points>
+          <li>Weapons stored near the beds, not only at the gate.</li>
+          <li>A core you can hold: a keep or an inner ring among the beds.</li>
+          <li>People spread out near cover, rather than everyone in one room.</li>
+          <li>Firefoam and stone floors where they'd do most damage.</li>
+          <li>An unroofed, powered orbital trade beacon draws 40% of drops onto it: put it where you'd want to fight.</li>
+        </points>
+        <after>Raiders take a moment to climb out of their pods. That's the time to put a melee fighter among them.</after>
+      </li>
+    </sections>
+    <keywords>
+      <li>drop pods</li>
+      <li>center drop</li>
+      <li>scatter</li>
+      <li>keep</li>
+      <li>weapons by the beds</li>
+      <li>orbital trade beacon</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_3_12_DropPods</li>
+      <li>Rimfolk_AlmDef_Fallback</li>
+      <li>Rimfolk_AlmDef_Infestations</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Rimfolk_AlmDef_Infestations</defName>
+    <label>infestations under the mountain</label>
+    <category>Defending</category>
+    <order>110</order>
+    <summary>Insects come up inside the walls: keep the rock lit, cold or walled</summary>
+    <tip>Only walls stop insects coming up. Doors and columns don't.</tip>
+    <description>Overhead mountain keeps out drop pods and mortar shells, and lets insects in. A natural infestation comes up under overhead mountain, warmer than -17 °C, within 30 cells of your buildings, preferring dark places far from open sky. It starts inside your defenses, so the gate doesn't help.</description>
+    <sections>
+      <li>
+        <heading>Keeping them out</heading>
+        <points>
+          <li>Wall off or fill the rock you don't use, old tunnels included. A wall on every second cell is enough.</li>
+          <li>Light the deep rooms you do use, and keep them near open sky.</li>
+          <li>With power, keep unused rock at -17 °C or colder; a solar flare ends that, so walls are safer.</li>
+          <li>Below -8 °C the chance already falls.</li>
+          <li>A fallback with its own way out, so nobody is trapped behind the hives.</li>
+        </points>
+        <after>The Defenses page counts the cells of your home area under overhead mountain, and how many of them are dark and warm.</after>
+      </li>
+    </sections>
+    <keywords>
+      <li>infestation</li>
+      <li>insects</li>
+      <li>hives</li>
+      <li>overhead mountain</li>
+      <li>dark</li>
+      <li>cold</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_3_15_Infestations</li>
+      <li>Rimfolk_AlmDef_Fallback</li>
+      <li>Rimfolk_AlmDef_Biotech</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Rimfolk_AlmDef_Anomaly</defName>
+    <label>what the dark sends</label>
+    <category>Defending</category>
+    <order>120</order>
+    <summary>Anomaly's threats that walk in unseen or come up from below</summary>
+    <tip>Light is a defense: noctols are barely more dangerous than an unarmed man in it.</tip>
+    <description>Some of Anomaly's threats ignore walls and killboxes altogether. Fleshbeasts come up out of pits in the ground, sightstealers and revenants walk in unseen, and devourers can come out of water. A defense against them is spread out, well lit and ready anywhere, more than strong in one place.</description>
+    <sections>
+      <li>
+        <heading>Threat by threat</heading>
+        <table>
+          <li>Threat | What helps</li>
+          <li>Shambler hordes | A killbox: they walk in</li>
+          <li>Fleshbeasts | Fighters near anywhere</li>
+          <li>Sightstealers | People in pairs</li>
+          <li>Revenants | EMP, disruptor flares</li>
+          <li>Noctols | Bright light</li>
+        </table>
+        <after>A pit gate needs 500 raid points and comes no more than once in 45 days, then sends waves of fleshbeasts about every two weeks until the dreadmeld below is dead.</after>
+      </li>
+      <li>
+        <heading>Unseen</heading>
+        <text>Sightstealers and revenants enter invisible and stay so until they're close. A revenant shows itself when damaged (EMP and fire count), when a disruptor flare lands near it, or when covered in firefoam. Noctols come in unnatural darkness; above 30% light they slow down, hurt, and hit far less hard, so floodlights round the base turn them from a menace into a nuisance.</text>
+      </li>
+    </sections>
+    <keywords>
+      <li>anomaly</li>
+      <li>fleshbeast</li>
+      <li>pit gate</li>
+      <li>sightstealer</li>
+      <li>revenant</li>
+      <li>noctol</li>
+      <li>shambler</li>
+      <li>devourer</li>
+    </keywords>
+    <seeAlso>
+      <li>Rimfolk_AlmDef_DropPods</li>
+      <li>Rimfolk_AlmDef_Fallback</li>
+    </seeAlso>
+    <dlc>Anomaly</dlc>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Rimfolk_AlmDef_Biotech</defName>
+    <label>Biotech's threats</label>
+    <category>Defending</category>
+    <order>130</order>
+    <summary>Wastepacks, pollution and what the colony's own mechs change</summary>
+    <tip>A wastepack destroyed pollutes six cells of ground.</tip>
+    <description>Biotech's threats to a colony's defense mostly come from its own industry. Toxic wastepacks pile up wherever mechanoids are recharged, and destroying them pollutes the ground and can bring insects. The colony's own mechs and children change how big the raids are.</description>
+    <sections>
+      <li>
+        <heading>Wastepacks</heading>
+        <text>Each wastepack destroyed or left to fall apart pollutes six cells of ground, and insect cocoons can come of them. Store them well away from the base, behind walls, or get rid of them properly. A tox IED trap is one more trap on the raiders' way.</text>
+      </li>
+      <li>
+        <heading>Your own mechs</heading>
+        <text>A mechanitor's war mechs fight without fear and don't count as colonists for raids, but friendly mechs add to the raid points: from 20% of their combat power at low wealth to 40% at a million. Babies count nothing toward raids and children rise from nothing at three to full at eighteen.</text>
+      </li>
+    </sections>
+    <keywords>
+      <li>biotech</li>
+      <li>wastepack</li>
+      <li>pollution</li>
+      <li>mechanitor</li>
+      <li>tox IED</li>
+      <li>children</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_3_02_WealthAndRaids</li>
+      <li>Rimfolk_AlmDef_Infestations</li>
+      <li>Rimfolk_AlmDef_Mechanoids</li>
+    </seeAlso>
+    <dlc>Biotech</dlc>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Rimfolk_AlmDef_Fallback</defName>
+    <label>falling back, and the wounded</label>
+    <category>Defending</category>
+    <order>140</order>
+    <summary>A second line, a keep, and a hospital close behind</summary>
+    <tip>A line people only find in the middle of a raid is no line.</tip>
+    <description>Every defense breaks somewhere sometime: a breach in the wall, pods among the beds, a fire in the killbox. A colony that knows where to fall back to loses a room; one that doesn't loses people. And after every fight there are wounded, who need beds and medicine close by.</description>
+    <sections>
+      <li>
+        <heading>The fallback line</heading>
+        <text>A wall with a door between the outer defense and the beds, with cover behind it and a shelf of medicine and spare weapons. When the outer line breaks, people fall back through the door and fight from there. The Defenses page counts a second door on the busiest way in as a second line.</text>
+      </li>
+      <li>
+        <heading>The keep</heading>
+        <text>A small room with thick walls and one door, among the beds or dug into the mountain, for the people who matter most when all else fails. Stock it with food for a day or two, medicine and something to pass the time. Raiders go for the door: give your best builder the job of repairing it from inside.</text>
+      </li>
+      <li>
+        <heading>The wounded</heading>
+        <points>
+          <li>A hospital close behind the line, with medicine on a shelf in it.</li>
+          <li>A doctor who isn't on the line, or one who leaves it when the first person goes down.</li>
+          <li>Bleeding kills first: tend the worst bleeders before anything else.</li>
+        </points>
+      </li>
+    </sections>
+    <keywords>
+      <li>fallback</li>
+      <li>keep</li>
+      <li>panic room</li>
+      <li>hospital</li>
+      <li>medicine</li>
+      <li>second line</li>
+      <li>wounded</li>
+    </keywords>
+    <seeAlso>
+      <li>Rimfolk_AlmDef_DropPods</li>
+      <li>Rimfolk_AlmDef_WallsGates</li>
+      <li>Council_Alm_4_05_BleedingAndPain</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Rimfolk_AlmDef_Medieval</defName>
+    <label>medieval defenses</label>
+    <category>Defending</category>
+    <order>150</order>
+    <summary>Palisades, embrasures, archers, spikes and engines, without power</summary>
+    <tip>A palisade burns. Keep a firebreak in front of it.</tip>
+    <description>A colony without power defends itself the old way: a wall across the gap, archers behind cover, spikes on the approach, and someone with a spear at the gate. With Medieval Overhaul, Vanilla Furniture Expanded - Security and their kind, it has more: palisades with embrasures, castle walls, log gates, ballistae and catapults.</description>
+    <sections>
+      <li>
+        <heading>Walls and gates</heading>
+        <table>
+          <li>Medieval Overhaul | Notes</li>
+          <li>Palisade | Wood, 450 HP, burns</li>
+          <li>Palisade embrasures | Shoot over, 75% fill</li>
+          <li>Castle wall | Stone, 1,000 HP, no fire</li>
+          <li>Castle embrasures | Shoot over, 85% fill</li>
+        </table>
+        <after>The castle wall needs stonecutting. Hit points are before the material is counted. The Defenses page offers a palisade with a gatehouse and a castle gate once you can build them: an outer gate with embrasures either side, a walled yard behind it, and a second gate.</after>
+      </li>
+      <li>
+        <heading>Archers</heading>
+        <text>Bows fire in long arcs and miss a lot at range, so archers do best together on one target, from behind cover or embrasures, with the field in front cleared of chunks and trees. A spear or an axe beside the gate takes whoever gets through. A medieval colony meeting tribes should expect numbers: their archers come in volleys.</text>
+      </li>
+      <li>
+        <heading>Engines</heading>
+        <text>A mortar needs no power, only its research, a gunner and shells. Medieval Overhaul's scorpio and ballista and Security's ballista need a gunner too. Security's catapult and Medieval Overhaul's trebuchet throw stones over walls: an answer to a siege where there's no mortar.</text>
+      </li>
+    </sections>
+    <keywords>
+      <li>medieval</li>
+      <li>palisade</li>
+      <li>embrasure</li>
+      <li>castle wall</li>
+      <li>archers</li>
+      <li>ballista</li>
+      <li>tribal</li>
+    </keywords>
+    <seeAlso>
+      <li>Rimfolk_AlmDef_Cover</li>
+      <li>Rimfolk_AlmDef_Traps</li>
+      <li>Rimfolk_AlmDef_Sieges</li>
+      <li>Rimfolk_AlmDef_ChokePoints</li>
+    </seeAlso>
+    <mods>
+      <li>dankpyon.medieval.overhaul</li>
+      <li>vanillaexpanded.vfesecurity</li>
+    </mods>
+    <approximate>true</approximate>
+  </ColonyCouncil.AlmanacArticleDef>
+
+</Defs>

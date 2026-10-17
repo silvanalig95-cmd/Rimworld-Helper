@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    PokéWorld: two trainers talking moves (the tag trainer only exists with the mod).
+  -->
+
+  <!-- PokéWorld: two trainers (the tag only exists with the mod). -->
+  <ColonyCouncil.SocialEventDef>
+    <defName>Council_SocA_PW_TrainersTalk</defName>
+    <label>trainers' talk</label>
+    <tone>warm</tone>
+    <minOpinion>-5</minOpinion>
+    <roleA><tags>trainer</tags></roleA>
+    <roleB><tags>trainer</tags></roleB>
+    <texts>
+      <li>{A_nameDef} and {B_nameDef} sat up late comparing their Pokémon's moves and who'd learned what at which level. They filled two pages and argued over one of them.</li>
+      <li>{A_nameDef} showed {B_nameDef} a trick for keeping a Pokémon calm before a fight. {B_nameDef} showed {A_nameDef} a better one.</li>
+      <li>{A_nameDef} and {B_nameDef} walked their Pokémon out to the edge of the land together and talked about what they'd catch next, if the colony ever has belts enough.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>AAndB</target><skill>Animals</skill><xp>150</xp></li>
+    </effects>
+    <changeTie>Friends</changeTie>
+    <change>3</change>
+    <note>trainers' talk</note>
+  </ColonyCouncil.SocialEventDef>
+
+</Defs>

@@ -2,8 +2,8 @@
 <Defs>
 
   <!--
-    Finding your way into Rimfolk: the "Start here" page the welcome letter points to (first in the almanac, so it is
-    also the page it opens on), and a short checklist for seeing the newer features at work in a game.
+    Finding your way into Rimfolk: the "Start here" page the welcome letter points to (second in the almanac, after
+    "What's new"), and a short checklist for seeing the newer features at work in a game.
   -->
 
   <ColonyCouncil.AlmanacArticleDef>
@@ -33,6 +33,7 @@ All of it lives in the council window. Open it with the council button in the bo
         <points>
           <li>People, then Everyone: every colonist in one table, with mood and Rimfolk's share of it, trust and how it moved this week, strain, the setbacks weighing on them and what helps, their wish, their personal story, health and quirks. Click a heading to sort; hover a cell for more; click a row to select the colonist.</li>
           <li>Council, then Dilemmas: the questions waiting for an answer, the traditions the answers founded, and every answer since with how it went.</li>
+          <li>Colony, then Defenses: where raiders can reach you from on this map, the narrow places on their way and how many raids pass each, what you face and what stands already, advice on what to build first with the reasons for it, and defense plans (a gate with sandbags, a killbox, a palisade with a gatehouse...) to place like room plans, at the spot the council suggests and facing the raiders. "Show on the map" draws the ways in.</li>
           <li>Pin a colonist or a wish to keep it at the top of This week: the pin shows when you hover a line there, a row in Everyone, a wish card, or a colonist's page in the roster.</li>
           <li>"Mark all read" on This week (or "Put all news away" in a news letter) clears the evenings' colony news from the letter stack; it stays in the History tab.</li>
           <li>Each page remembers its filter and sort order. Options, then Keyboard, has optional shortcuts for the council's pages under "Rimfolk"; none is set until you pick a key.</li>

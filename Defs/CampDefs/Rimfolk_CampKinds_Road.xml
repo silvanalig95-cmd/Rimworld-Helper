@@ -122,6 +122,8 @@
         <tension>-6</tension>
         <outcomes>
           <li>The colony is going over to the caravan's fire this evening. {X_nameDef} has promised the long version of every story.</li>
+          <li>Half the colony will be at the caravan's fire tonight. {X_nameDef} says there's salt fish for everyone and stories for longer.</li>
+          <li>{X_nameDef} has asked the colony over to the caravan's fire tonight, and the drivers are already arguing about who tells the first story.</li>
         </outcomes>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>an evening at the caravan's fire</label><spots><li>Camp</li><li>Outdoors</li></spots><hours>17~22</hours><duration>2~3</duration></li>
@@ -135,6 +137,8 @@
         <silver>90</silver>
         <outcomes>
           <li>{X_nameDef} counts out sacks of preserved fare for the colony's stores and the silver into the caravan's chest, and both sides seem pleased with the bargain.</li>
+          <li>The caravan's drivers carry the sacks over themselves, and {X_nameDef} counts the silver twice, cheerfully.</li>
+          <li>{X_nameDef} sells the colony enough salted meat and dried fruit for a hard month, and throws in a sack of salt for luck.</li>
         </outcomes>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>Pemmican</thing><count>50</count></li>
@@ -147,6 +151,8 @@
         <minDays>0.5</minDays>
         <outcomes>
           <li>{A_nameDef} spent an hour with {X_nameDef} and a stick drawing roads in the dirt, and came back knowing more about the region than anyone in the colony.</li>
+          <li>{A_nameDef} sat up late with {X_nameDef} over the caravan's maps, and came back knowing which roads to trust and which to avoid.</li>
+          <li>{X_nameDef} told {A_nameDef} about every town ten days in any direction, and {A_nameDef} remembered as much of it as {A_pronoun} could.</li>
         </outcomes>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><duration>1~1.5</duration></li>
@@ -234,6 +240,8 @@
         <silver>120</silver>
         <outcomes>
           <li>{X_nameDef} sells the colony a bundle of charts and notebooks from the far south, some of them very old. The colony's scholars fall on them.</li>
+          <li>{X_nameDef} unrolls chart after chart on the colony's table and sells the best of them, with notes in three different hands in the margins.</li>
+          <li>The merchants part with a crate of notebooks and star tables. {X_nameDef} says one of them was written by a scholar who walked the whole rim.</li>
         </outcomes>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Research"><share>0.15</share><max>900</max></li>
@@ -247,6 +255,8 @@
         <deed>welcomed</deed>
         <outcomes>
           <li>The merchants are coming to supper tonight, and {X_nameDef} insists on cooking one dish from home. Nobody has asked what's in it.</li>
+          <li>The merchants will eat at the colony's table tonight. {X_nameDef} has brought spices nobody here can name.</li>
+          <li>Supper with the merchants tonight. {X_nameDef} has asked to help in the kitchen, and the cook hasn't said no yet.</li>
         </outcomes>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>supper with the merchants</label><hours>17~21</hours></li>
@@ -334,6 +344,8 @@
         <deed>traded</deed>
         <outcomes>
           <li>{X_nameDef} walks a young beast over the ridge on a rope and hands the rope to {A_nameDef}, along with a long list of what it likes and what it doesn't.</li>
+          <li>{X_nameDef} picks a sound young beast out of the herd and walks it over, and {A_nameDef} is given its rope and its name.</li>
+          <li>{A_nameDef} chooses a beast from the drovers' herd, and {X_nameDef} spends an hour telling {A_objective} how to keep it content.</li>
         </outcomes>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_SpawnAnimal"><kinds><li>Cow</li><li>Goat</li><li>Sheep</li><li>Muffalo</li><li>Yak</li><li>Alpaca</li><li>Dromedary</li><li>Donkey</li><li>Horse</li></kinds></li>
@@ -347,6 +359,8 @@
         <warm>2</warm>
         <outcomes>
           <li>{A_nameDef} is going out to the herd with {X_nameDef} for a while, to watch how the drovers do it.</li>
+          <li>{A_nameDef} is off with the drovers for the day, to learn how {X_nameDef} moves a herd without shouting.</li>
+          <li>{X_nameDef} has agreed to take {A_nameDef} out with the herd, and says the first lesson is learning to stand still.</li>
         </outcomes>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>X</teacher><student>A</student><skill>Animals</skill><duration>2~3</duration></li>
@@ -361,6 +375,7 @@
     <defName>Council_Camp_Penitents</defName>
     <label>penitents</label>
     <weight>0.5</weight>
+    <drawnBy><li>Devout</li></drawnBy>
     <people>3~6</people>
     <days>2~4</days>
     <ages>18~70</ages>
@@ -438,6 +453,8 @@
         <tension>-6</tension>
         <outcomes>
           <li>Some of the colony are going to sit with the penitents at their evening prayer. {X_nameDef} has made room at the fire.</li>
+          <li>A few of the colony will kneel with the penitents tonight. {X_nameDef} says anyone is welcome, believer or not.</li>
+          <li>The penitents have asked the colony to their evening prayer, and {X_nameDef} has laid out mats by the fire.</li>
         </outcomes>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>evening prayer with the penitents</label><spots><li>Camp</li><li>Outdoors</li></spots><hours>17~21</hours><duration>1.5~2.5</duration></li>
@@ -452,6 +469,8 @@
         <deed>welcomed</deed>
         <outcomes>
           <li>{A_nameDef} takes bread and dried fruit to the penitents' camp. {X_nameDef} accepts it with both hands and a bow, and says they will pray for whoever grew it.</li>
+          <li>{A_nameDef} carries a basket of bread to the penitents, and {X_nameDef} blesses the basket and the one who carried it.</li>
+          <li>{A_nameDef} brings the penitents food for the road. {X_nameDef} accepts it quietly and asks the colony's name, so they can remember it in their prayers.</li>
         </outcomes>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Camp</to><duration>0.75~1.25</duration></li>
@@ -543,6 +562,8 @@
         <tension>-5</tension>
         <outcomes>
           <li>{A_nameDef} has gone walking in the woods with the tree-singers, to listen to whatever it is they listen to.</li>
+          <li>{A_nameDef} has gone into the woods with the tree-singers and won't be back before dusk.</li>
+          <li>The tree-singers have taken {A_nameDef} to the oldest trees nearby, to hear what they call the slow songs.</li>
         </outcomes>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><duration>2~3</duration></li>
@@ -557,6 +578,8 @@
         <deed>welcomed</deed>
         <outcomes>
           <li>The tree-singers are going out to the colony's fields to sing to the crops, and the growers are going with them.</li>
+          <li>The tree-singers will walk the colony's rows this afternoon, singing low, and the growers mean to walk with them.</li>
+          <li>The fields will have singers today. The colony's growers are curious, a little embarrassed, and going anyway.</li>
         </outcomes>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>the singing in the fields</label><spots><li>Fields</li><li>Outdoors</li></spots><hours>7~18</hours><duration>1.5~2</duration></li>
@@ -643,6 +666,8 @@
         <tension>-3</tension>
         <outcomes>
           <li>{X_nameDef} spends an hour with {A_nameDef}, prodding, listening and muttering, and leaves {A_objective} with a remedy and very firm instructions.</li>
+          <li>{X_nameDef} sits with {A_nameDef} a long while, asks a great many questions, and leaves a bitter tea and stern advice.</li>
+          <li>{X_nameDef} looks {A_nameDef} over with quick hands and leaves a remedy wrapped in leaves, to be taken exactly as told.</li>
         </outcomes>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><duration>1~1.5</duration></li>
@@ -659,6 +684,8 @@
         <deed>campHealed</deed>
         <outcomes>
           <li>{A_nameDef} is going to follow {X_nameDef} about for a few hours and learn what {X_pronoun} can show.</li>
+          <li>{A_nameDef} will spend the day at {X_nameDef}'s side, watching how the healer works.</li>
+          <li>{X_nameDef} has agreed to teach {A_nameDef} what can be taught in an afternoon, starting with how to wash hands properly.</li>
         </outcomes>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>X</teacher><student>A</student><skill>Medicine</skill><xpPerHour>220</xpPerHour><duration>2~3</duration></li>
@@ -673,6 +700,7 @@
     <defName>Council_Camp_Minstrels</defName>
     <label>band of minstrels</label>
     <weight>0.6</weight>
+    <drawnBy><li>LongMemoried</li></drawnBy>
     <people>3~5</people>
     <days>2~5</days>
     <ages>16~60</ages>
@@ -745,6 +773,8 @@
         <deed>welcomed</deed>
         <outcomes>
           <li>The minstrels are coming to play at the colony's table tonight. {X_nameDef} has already started tuning.</li>
+          <li>The minstrels will play at the colony's table tonight, and {X_nameDef} has been asking everyone what their favorite song is.</li>
+          <li>There'll be music at supper. {X_nameDef} has promised something fast for dancing and something slow for after.</li>
         </outcomes>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>the minstrels' feast</label><music>true</music><hours>17~21</hours></li>
@@ -759,6 +789,8 @@
         <tension>-4</tension>
         <outcomes>
           <li>The minstrels have been asking questions about the colony all day, and tonight they'll sing what they've made of it at their fire.</li>
+          <li>The minstrels have asked half the colony for stories today. Tonight, at their fire, they'll sing what they've made of them.</li>
+          <li>The minstrels are making a song about the colony, and won't say yet whether it's a sad one.</li>
         </outcomes>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Words"><label>the colony's song</label><organizer>A</organizer><spots><li>Camp</li><li>Outdoors</li></spots><music>true</music><hours>18~22</hours></li>
@@ -773,6 +805,8 @@
         <warm>2</warm>
         <outcomes>
           <li>{A_nameDef} is going over to the minstrels' camp to learn a tune or two from {X_nameDef}.</li>
+          <li>{A_nameDef} is off to the minstrels' camp, where {X_nameDef} has promised to teach {A_objective} one tune properly.</li>
+          <li>{X_nameDef} will teach {A_nameDef} a tune from the road this afternoon, the kind everyone can hum by supper.</li>
         </outcomes>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>X</teacher><student>A</student><skill>Artistic</skill><duration>2~3</duration></li>
@@ -787,6 +821,7 @@
     <defName>Council_Camp_Mourners</defName>
     <label>mourners passing through</label>
     <weight>0.5</weight>
+    <drawnBy><li>LongMemoried</li></drawnBy>
     <people>3~6</people>
     <days>1~3</days>
     <ages>16~75</ages>
@@ -823,6 +858,7 @@
       <li>[ws:sickness] Mourners of {FACTION} are carrying one of {SITUATION}'s dead home, well wrapped and well apart. {X_nameDef} asked {A_nameDef} for leave to stop {PLACE} a night or two, and swore none of the living are sick.</li>
       <li>[their:friend] Mourners of {FACTION} have stopped by the colony with their dead. {X_nameDef} asked for {A_nameDef} by name, and said the one they carry spoke of {A_objective} often. They would like to rest {PLACE} a night or two.</li>
       <li>[winter] Mourners of {FACTION} have come through the snow with a covered sledge. {X_nameDef} asked {A_nameDef} for a sheltered place {PLACE} to stop a night or two before the last of the road.</li>
+      <li>[colony:LongMemoried] Mourners of {FACTION} have stopped by the colony with their dead because, {X_nameDef} said, it is a place that remembers. They asked {A_nameDef} whether they might stop {PLACE} a night or two, and say their words where the colony says its own.</li>
     </texts>
     <settled>
       <li>The mourners from {FACTION} have made a small camp {PLACE}, with the cart drawn up beside the fire and a lamp lit beside it that nobody lets go out.</li>
@@ -857,6 +893,8 @@
         <deed>mourned</deed>
         <outcomes>
           <li>{A_nameDef} will go and sit vigil with the mourners tonight. {X_nameDef} said they'd keep a place by the lamp.</li>
+          <li>{A_nameDef} will sit up with the mourners tonight. {X_nameDef} has put aside a blanket and a place by the lamp.</li>
+          <li>{A_nameDef} is going to keep the mourners company through the night, and {X_nameDef} said it was more than they'd hoped for.</li>
         </outcomes>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Camp</to><hours>20~23</hours><duration>2.5~3.5</duration></li>
@@ -872,6 +910,8 @@
         <deed>mourned</deed>
         <outcomes>
           <li>The colony will stand by the road when the mourners go on. {X_nameDef} thanked {A_nameDef} without words.</li>
+          <li>When the mourners leave, the colony will line the road in silence. {X_nameDef} pressed {A_nameDef}'s hand when told.</li>
+          <li>The colony will see the mourners off at the road. {X_nameDef} said it was the kindest thing anyone had offered them.</li>
         </outcomes>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Toast"><label>standing by the road for the mourners</label><spots><li>Outdoors</li></spots><target>Colony</target></li>
@@ -887,6 +927,8 @@
         <deed>sheltered</deed>
         <outcomes>
           <li>{A_nameDef} takes food to the mourners' camp. {X_nameDef} takes it with a nod and says the one in the cart would have thanked the colony with a song.</li>
+          <li>{A_nameDef} brings the mourners food for the road, and {X_nameDef} gives thanks for the living and for the one in the cart.</li>
+          <li>{A_nameDef} carries food to the mourners' camp. {X_nameDef} says it will last them to the next town, and further.</li>
         </outcomes>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Camp</to><duration>0.75~1.25</duration></li>

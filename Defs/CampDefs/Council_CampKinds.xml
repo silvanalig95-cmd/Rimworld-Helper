@@ -88,6 +88,7 @@
     <defName>Council_Camp_Refugees</defName>
     <label>refugee family</label>
     <weight>1</weight>
+    <drawnBy><li>Hospitable</li></drawnBy>
     <people>3~6</people>
     <days>6~14</days>
     <ages>16~65</ages>
@@ -136,6 +137,7 @@
       <li>[ws:water] The water took their house in {SITUATION}, and a family of {FACTION} has walked up out of the valley with what they carried out of it. {X_nameDef} asked {A_nameDef} for a dry patch of ground {PLACE} to camp on.</li>
       <li>[ws:drought] {SITUATION} dried up their well and then their fields, and a family of {FACTION} has given up and taken to the road. {X_nameDef} asked {A_nameDef} whether they might camp {PLACE} near the colony's water for a while.</li>
       <li>[ws:weather] {SITUATION} drove a family of {FACTION} down out of the hills, half frozen. {X_nameDef} asked {A_nameDef} for a sheltered spot {PLACE} to camp until the worst of it passes.</li>
+      <li>[colony:Hospitable] A family of {FACTION} has come a long way on the word of strangers: the colony takes people in, they were told, and sees them on their way fed. {X_nameDef} asked {A_nameDef} whether it was true, and whether they might camp {PLACE} for a while.</li>
     </texts>
     <settled>
       <li>The family from {FACTION} put up a windbreak and laid out their beds around a fire {PLACE}. It almost looks like a home.</li>
@@ -243,6 +245,7 @@
     <defName>Council_Camp_Pilgrims</defName>
     <label>pilgrims</label>
     <weight>0.9</weight>
+    <drawnBy><li>Devout</li></drawnBy>
     <people>3~6</people>
     <days>3~6</days>
     <ages>18~75</ages>
@@ -280,6 +283,7 @@
       <li>[ideology,sameFaith] Pilgrims of {FACTION} who keep {IDEO}, the colony's own faith, have stopped to rest among their own. {X_nameDef} asked {A_nameDef} whether they might camp {PLACE} a few days before going on to the shrine.</li>
       <li>[ws:faith] {SITUATION} has put pilgrims on every road in the region, and a band of {FACTION}'s has stopped by the colony to rest. {X_nameDef} asked {A_nameDef} for a few days' camp {PLACE}.</li>
       <li>[winter] Pilgrims of {FACTION} have come through the snow on their way to a holy place, and stopped at the colony because they could go no further today. {X_nameDef} asked {A_nameDef} whether they might camp {PLACE} until the road clears.</li>
+      <li>[colony:Devout] Pilgrims of {FACTION} have turned off their road to rest at the colony: they had heard on the way that it keeps its faith, and wanted to see it for themselves. {X_nameDef} asked {A_nameDef} for leave to camp {PLACE} a few days.</li>
     </texts>
     <settled>
       <li>The pilgrims from {FACTION} made a simple camp {PLACE}, with a place set aside for prayer.</li>

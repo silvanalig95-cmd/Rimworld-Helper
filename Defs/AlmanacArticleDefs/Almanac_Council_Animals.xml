@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The colony's animals in Rimfolk (Source/ColonyCouncil/Animals/). -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_C_Animals</defName>
+    <label>the colony's animals</label>
+    <category>Council</category>
+    <order>13</order>
+    <summary>What the colony's people want for their animals, the stories and choices that come of them, and the herd's year.</summary>
+    <tip>Give the old dog the warm spot by the fire. Someone will notice.</tip>
+    <description>The colony's animals are part of its life in Rimfolk, not only its larder and its guard. Someone milking or taming talks to the animal in front of them, a bonded dog falls in at its person's heels, a birth in the herd is news, and an old companion's death is grieved and remembered. Colonists who love animals ask for things that help the herd and their own animals; the council faces hard choices about them in hungry weeks and bad nights; and the herdmaster looks after the people who look after them.
+
+The everyday parts follow the setting "Pets as companions" (People). With PokéWorld, Pokémon count as the colony's animals everywhere on this page, and have a page of their own besides.</description>
+    <sections>
+      <li>
+        <heading>Every day</heading>
+        <table>
+          <li>What | When</li>
+          <li>A word to an animal | Someone milking, shearing, taming, training, tending, feeding or roping an animal in view says something to it, and a child at leisure talks to the animal beside them. These share the once-a-day rate of everything said on screen.</li>
+          <li>At its person's heels | A bonded animal with nothing to do, near its person, follows them about for a while (not one roped, penned or at work).</li>
+          <li>A birth in the herd | News, with the mother's name. The colony's first is a day on the calendar.</li>
+          <li>A death | A named animal's death gets a farewell from the one who loved it, with lines of their own for an old animal that died at the end of a long life and for a Pokémon.</li>
+          <li>Talk between colonists | Two people who keep animals talk shop (some practice for both), two with bonded animals swap stories, and a child asks a keeper about the animals. Face to face, as all such moments are.</li>
+          <li>Social events | A keeper shows a child the animals (the two grow closer, and the child learns something), and someone lends a herder a hand with the herd (friendship, and practice).</li>
+          <li>Small habits | Someone who loves animals and has a herd to watch, or a child, sits out with the herd for a while by day; someone who loves animals or is bonded to a big one brushes down a horse or another big animal of theirs, a little handling practice. Both need "Small habits" on.</li>
+        </table>
+      </li>
+      <li>
+        <heading>The herdmaster</heading>
+        <text>With "Systems talk to each other" on, the herdmaster goes down to the pens within the day to give each newborn a name, if it has none. When someone's animal is sick or hurt, the herdmaster finds them in their free time and tells them how it's doing, face to face: their strain eases a little and the two grow a little closer. About once a week, someone keen on animals who is four levels or more behind the herdmaster is taken along for the day's work, a lesson on the map. Besides, as before, the herdmaster sits with anyone whose named animal dies and minds the animals of those away.</text>
+      </li>
+      <li>
+        <heading>Wishes</heading>
+        <table>
+          <li>Wish | Who asks | Granted</li>
+          <li>An animal of my own | A grown colonist who loves animals (a passion, a kind soul, a lonely one) and has none, when one of the colony's grown animals has no master. Promised, they're made its master. | +3 mood for 6 days</li>
+          <li>A barn for the herd | Someone who loves animals, the herdmaster or a kind soul, when the colony's herd of 3 or more sleeps out (likelier in the cold seasons). Fulfilled when one barn has animal beds or sleeping spots for most of the herd, from 2 to 6. | Some contentment and a journal line, no mood</li>
+          <li>Something to ride | Only with Giddy-Up 2: a hunter, a restless soul or someone who loves animals, with no mount of their own. A rideable animal of the colony's with no master is made theirs when promised; otherwise one is tamed for them. | +3 for 5 days</li>
+        </table>
+        <after>Nobody whose faith abhors bonding with animals asks for these, and nobody whose faith frowns on ranching asks for a barn.</after>
+      </li>
+      <li>
+        <heading>Life goals</heading>
+        <table>
+          <li>Goal | For | Done when</li>
+          <li>A champion at my side | Someone who can fight, with an animal of their own or a love of animals | An animal of theirs has fought beside them in 3 of the colony's battles</li>
+          <li>A great beast tamed | A handler of level 6 or more with a love of animals, where the land has great beasts (huge ones, or as wild as a thrumbo) | One of them is theirs, bonded or as its master</li>
+          <li>A herd worth the name | Someone who loves animals, the herdmaster, or a keen grower when there's a herd already | The colony's livestock reaches 8 head, or 4 more than when they set out, whichever is more</li>
+          <li>An animal that knows everything | A handler with a love of animals, with an animal of their own or one going spare | An animal of theirs has learned everything it can be taught</li>
+        </table>
+      </li>
+      <li>
+        <heading>Personal stories</heading>
+        <table>
+          <li>Story | How it starts | How it ends</li>
+          <li>An old companion | A bonded animal grows old (four fifths of its kind's life) | Quiet hours together, slow afternoons, one more good day. Its death ends the story, without the usual "came to nothing": a farewell instead.</li>
+          <li>Raised by hand | A young animal of the colony's loses its mother, and a handler who loves animals, a kind soul, a child or the herdmaster takes it on | Hours at its side and handling practice; once it's grown, the two may bond</li>
+          <li>The stray | A calm wild animal hangs about the colony and someone leaves scraps out | If it stays a few days, it's marked for taming and the story ends when it's the colony's. If it leaves the land, it's over.</li>
+          <li>A feud with an animal | Someone else's named animal and a colonist take against each other, often after it stole their food | Open war (a small bad mood), then an uneasy truce, then a friendship neither will admit to</li>
+        </table>
+      </li>
+      <li>
+        <heading>Dilemmas</heading>
+        <table>
+          <li>Dilemma | When | The choices</li>
+          <li>The herd or the stores | Food for fewer than 6 days, with a herd of 4 or more eating from the same stores | Cull about a quarter of the herd (1 to 4 head, never the last 2), tighten everyone's belts, turn the weakest out to forage, or let the handler choose. A cull is real: the handlers slaughter the marked animals.</li>
+          <li>A raider in the crops | Spring to autumn, a wild grazer in or near the fields | Send the hunters, watch the fields at night, try to tame it, or let it eat. The crops it eats are lost.</li>
+          <li>Medicine for an animal | One of the colony's animals is ill, with 1 to 15 medicine in store | The good medicine, herbs only, its person nursing it through, or nothing. The answer sets its medical care.</li>
+          <li>Something at the pens | A predator on the land near a herd of 2 or more | Hunt it, keep watch at the pens, bring the herd in close, or leave it be. A predator left alone may break in and take one of the herd.</li>
+          <li>A bond against the faith | With Ideology: a colonist bonded to an animal, and another whose faith abhors such bonds | Stand by the bond, keep the animal out of the faithful one's way, give it to someone else, or ask for a blessing</li>
+        </table>
+        <after>Nobody's own animal, and nothing bonded or named, is ever culled, turned out or lost.</after>
+      </li>
+      <li>
+        <heading>The herd's year</heading>
+        <text>Two customs can become traditions, like the council's seasonal ones: the lambing watch in spring, when an animal of the herd is in lamb (the whole colony takes turns at the pens through the night), and shearing day in spring or summer, when there are animals to shear or milk (the whole colony at the pens and something to eat in the sun after). Both ask for a herd of 2 or more.
+
+On the calendar, the colony's first foal is written down the day it's born and kept as a feast, and a beloved animal's day, for a bonded animal that died after a year or more with the colony or fighting for its person, is kept as a remembrance by those who loved it (up to 3).</text>
+      </li>
+      <li>
+        <heading>Dreams and setbacks</heading>
+        <text>People dream of the herd, of animals that talk, of something at the pens, of riding (children), of a beloved animal grown old, and, after a bonded animal dies, of it coming back.
+
+Two setbacks come from the pens: "one of the herd was taken" (-3 for 4 days) and "the pen was broken into" (-2 for 3 days), when a predator the council left alone, or let close, gets in.</text>
+      </li>
+    </sections>
+    <keywords><li>animal</li><li>pet</li><li>herd</li><li>livestock</li><li>barn</li><li>mount</li><li>ride</li><li>herdmaster</li><li>bond</li><li>cull</li><li>stray</li><li>orphan</li><li>lambing</li><li>shearing</li><li>foal</li><li>predator</li></keywords>
+    <seeAlso><li>Council_Alm_C_Strangers</li><li>Council_Alm_C_Offices</li><li>Council_Alm_C_Calendar</li><li>Council_Alm_C_Arcs</li><li>Council_AlmMod_D_PokeWorldLife</li></seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+</Defs>

@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The moods of the colony's animals in Rimfolk (Source/ColonyCouncil/Animals/): the animals' wishes, personal stories,
+    dilemmas, customs and moments. Most good ones give something other than mood (RewardInstead: practice, rest, play,
+    a feeling, the journal); the bad ones are small setbacks with hints of their own (Rimfolk_MoodHints_Animals.xml).
+  -->
+
+  <!-- ===================== Wishes granted ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Granted_OwnAnimal</defName>
+    <durationDays>6</durationDays>
+    <stages><li><label>an animal of my own</label><description>It answers to me now. I've started on the commands, and it's started on my boots.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Granted_Barn</defName>
+    <durationDays>5</durationDays>
+    <stages><li><label>a barn for the herd</label><description>The herd sleeps under a roof now. I went out last night just to hear them breathing in the dark.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.HeartTags"><feelings><li>Contentment</li></feelings><weight>0.3</weight></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Granted_Mount</defName>
+    <durationDays>5</durationDays>
+    <stages><li><label>something to ride</label><description>I rode out to the edge of the land and back before breakfast. My legs hurt in new places. I don't care.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== Personal stories ===================== -->
+
+  <!-- The old companion: the good days kept. -->
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Arc_EveryDayAGift</defName>
+    <durationDays>6</durationDays>
+    <stages><li><label>every day with my old friend</label><description>My old friend is still here, slow and grey and warm against my legs. Every morning it gets up is a good one.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>3</felt><comfort>0.1</comfort><feelings><li>Tenderness</li></feelings></li></modExtensions>
+  </ThoughtDef>
+
+  <!-- The orphan raised by hand: grown. -->
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Arc_RaisedByHand</defName>
+    <durationDays>6</durationDays>
+    <stages><li><label>raised it by hand</label><description>I fed it from a rag when it was small enough to hold in one hand. Look at it now.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>3</felt><skill>Animals</skill><xp>400</xp><feelings><li>Pride</li></feelings></li></modExtensions>
+  </ThoughtDef>
+
+  <!-- The stray: home at last. -->
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Arc_StrayHome</defName>
+    <durationDays>5</durationDays>
+    <stages><li><label>the stray stayed</label><description>It came to the door every day for weeks, and now it's ours. It still sleeps by the door, as if it isn't sure.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- The feud with an animal: open war, and a grudging peace. -->
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Arc_FeudWithAnimal</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>at war with an animal</label><description>That animal has it in for me. It waits for me in doorways. Everyone thinks it's funny.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.HeartTags"><feelings><li>Frustration</li></feelings><weight>0.3</weight></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Arc_GrudgingFriends</defName>
+    <durationDays>5</durationDays>
+    <stages><li><label>a truce with the beast</label><description>We've come to an arrangement, that animal and I. I don't step on it and it doesn't eat my lunch. I may even like it.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt><joy>0.08</joy></li></modExtensions>
+  </ThoughtDef>
+
+  <!-- ===================== Dilemmas ===================== -->
+
+  <!-- The herd in a famine. -->
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmA_CulledHerd</defName>
+    <durationDays>5</durationDays>
+    <stages><li><label>we culled the herd</label><description>I raised some of those animals from the day they were born. It had to be done. I did it properly, and I didn't sleep after.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.HeartTags"><feelings><li>Grief</li></feelings><weight>0.3</weight></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmA_HerdSpared</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>the herd was spared</label><description>The council could have taken the herd for the pot. It didn't. I won't forget that when the lambs come.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.HeartTags"><feelings><li>Gratitude</li></feelings><weight>0.3</weight></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmA_LeanDays</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>lean days for the herd's sake</label><description>Smaller portions, so the animals can eat too. I understand it. My stomach doesn't.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmA_TurnedOutHerd</defName>
+    <durationDays>6</durationDays>
+    <stages><li><label>we turned the herd out</label><description>We opened the gate and walked away from them. I keep looking for them on the hills.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.HeartTags"><feelings><li>Grief</li></feelings><weight>0.3</weight></li></modExtensions>
+  </ThoughtDef>
+
+  <!-- A wild animal in the crops. -->
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmA_FieldWatch</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>watched the fields all night</label><description>I sat out by the crops with a lamp and a pot to bang. It came twice, and went twice. The field is still ours.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt><feelings><li>Resolve</li></feelings></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmA_LetItGraze</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>let it eat our crops</label><description>We sat and watched an animal eat a season's work, because the council said live and let live.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.HeartTags"><feelings><li>Frustration</li></feelings><weight>0.3</weight></li></modExtensions>
+  </ThoughtDef>
+
+  <!-- A sick animal and the medicine it would take. -->
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmA_BestCareForAnimal</defName>
+    <durationDays>5</durationDays>
+    <stages><li><label>the good medicine for my animal</label><description>The doctors treated my animal with the same medicine they'd use on me. Nobody asked them to make a fuss. They did anyway.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.HeartTags"><feelings><li>Gratitude</li></feelings><weight>0.3</weight></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmA_AnimalLeftToFate</defName>
+    <durationDays>5</durationDays>
+    <stages><li><label>my animal left to its fate</label><description>No medicine for my animal. It's lying in the straw, and all I can do is sit with it.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.HeartTags"><feelings><li>Worry</li></feelings><weight>0.4</weight></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmA_MedicineOnAnimal</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>medicine spent on an animal</label><description>Good medicine, the kind that saves people, poured into an animal. We'll want it back one day.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- A predator stalking the pens. -->
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmA_WatchAtThePens</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>kept watch at the pens</label><description>I spent the night at the pens with a lantern and a stick. The herd slept. Something out in the dark didn't.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt><feelings><li>Resolve</li></feelings></li></modExtensions>
+  </ThoughtDef>
+
+  <!-- A bond the faith frowns on. -->
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmA_BondShamed</defName>
+    <durationDays>5</durationDays>
+    <stages><li><label>told my bond is wrong</label><description>The council heard my faith called sinful for loving an animal, and let it stand. I keep my animal close anyway. I just don't look at anyone.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.HeartTags"><feelings><li>Shame</li></feelings><weight>0.3</weight></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmA_FaithRespected</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>my faith was respected</label><description>The council heard what my faith asks and took it seriously. That's all I wanted.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt><trust>2</trust></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmA_GaveUpMyAnimal</defName>
+    <durationDays>8</durationDays>
+    <stages><li><label>gave my animal to someone else</label><description>It answers to someone else now. It still comes to my door in the evening, and I have to send it away.</description><baseMoodEffect>-5</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.HeartTags"><feelings><li>Grief</li></feelings><weight>0.4</weight></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmA_FaithBrushedAside</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>my faith brushed aside</label><description>A private matter, the council called it. Nothing a faith asks is private.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== Setbacks: the herd ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Setback_AnimalLost</defName>
+    <durationDays>4</durationDays>
+    <modExtensions>
+      <li Class="ColonyCouncil.SetbackExtension"><group>Life</group></li>
+      <li Class="ColonyCouncil.HeartTags"><feelings><li>Grief</li></feelings><weight>0.3</weight></li>
+    </modExtensions>
+    <stages>
+      <li>
+        <label>one of the herd was taken</label>
+        <description>Something got into the pens in the night and took one of them. I found the tracks at first light, and the fence pushed in.</description>
+        <baseMoodEffect>-3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Setback_PenBroken</defName>
+    <durationDays>3</durationDays>
+    <modExtensions>
+      <li Class="ColonyCouncil.SetbackExtension"><group>Life</group></li>
+      <li Class="ColonyCouncil.HeartTags"><feelings><li>Frustration</li></feelings><weight>0.3</weight></li>
+    </modExtensions>
+    <stages>
+      <li>
+        <label>the pen was broken into</label>
+        <description>The fence I mended last week, flattened, and the herd scattered halfway to the river. Half a day rounding them up.</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- ===================== Customs of the herd's year ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Dlm_Trad_LambingWatch</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>the lambing watch</label><description>Up all night in the straw with a lantern, and in the grey before dawn, new legs, wobbling. Worth every hour of sleep.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>3</felt><feelings><li>Tenderness</li><li>Fellowship</li></feelings></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Dlm_Trad_Shearing</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>shearing day</label><description>Wool in my hair, my teeth and my boots, and the whole colony laughing at the ones that got away. A good day.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== Moments and social events ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_MomentA_HerdTips</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>talked animals</label><description>Swapped what we know about the herd. I learned a trick with a stubborn ewe I'll try tomorrow.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>1</felt><skillFrom>shared</skillFrom><xp>120</xp></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_MomentA_PetStories</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>swapped animal stories</label><description>We told each other what our animals have been up to. Mine is cleverer. I didn't say so.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>1</felt><joy>0.05</joy><feelings><li>Fellowship</li></feelings></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_SocA_ShownTheAnimals</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>shown how to handle the animals</label><description>They showed me how to come up on a nervous animal slow, from the side, talking all the while. It worked.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>1</felt><skill>Animals</skill><xp>250</xp></li></modExtensions>
+  </ThoughtDef>
+
+</Defs>

@@ -152,7 +152,9 @@ public static class ArcTests
         "won", "lost", "neither", "elsewhere", "otherahead", "thirdahead", "even", "mentor", "grown",
         "thirddead", "thirdleft", "campfight", "officegone", "kindead", "babygone", "old",
         // The fear laid to rest (ArcWorkers_Nemesis.cs): how it stands with the nemesis.
-        "captured", "dead", "released", "joined", "beast", "escaped"
+        "captured", "dead", "released", "joined", "beast", "escaped",
+        // A feud with an animal (Animals/AnimalArcs.cs) that began with a stolen meal.
+        "robbed"
     };
 
     private static readonly Regex LowerStart = new Regex(@"(^(\[[^\]]*\]\s*)?|[.!?]\s+)\{[A-Z]+_(pronoun|possessive|objective|definite|indefinite)\}");

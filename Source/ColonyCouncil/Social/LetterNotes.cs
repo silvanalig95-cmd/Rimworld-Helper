@@ -90,6 +90,9 @@ namespace ColonyCouncil
             string title = S.epithets ? comp.epithets.Of(p).FirstOrDefault()?.label : null;
             if (!office.NullOrEmpty()) notes.Add("CC_DeathNote_Office".Translate(office.Named("OFFICE")).Resolve());
             else if (!title.NullOrEmpty()) notes.Add("CC_DeathNote_Title".Translate(p.Named("PAWN"), title.Named("TITLE")).Resolve());
+            // A name with a place in the colony's years says what goes with them (the last of the founders).
+            var told = S.epithets ? comp.epithets.Of(p).FirstOrDefault(e => !e.deathNote.NullOrEmpty()) : null;
+            if (told != null) notes.Add(told.deathNote.Formatted(p.Named("PAWN")).Resolve());
             return notes.Count == 0 ? null : string.Join(" ", notes);
         }
     }

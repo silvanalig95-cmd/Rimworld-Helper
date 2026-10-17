@@ -142,10 +142,14 @@ namespace ColonyCouncil
         private void Write(CouncilGameComponent comp, Map map)
         {
             var now = Colonists();
-            var author = now.Where(p => !p.DevelopmentalStage.Juvenile())
+            // The colony's annalist, once it has one, keeps the pen (a name earned by writing the annals: Epithets/).
+            var annalist = ColonyCouncilMod.Settings.epithets ? comp.epithets.HolderOf("Council_Epithet_Annalist") : null;
+            bool keeps = annalist != null && now.Contains(annalist) && !annalist.DevelopmentalStage.Juvenile();
+            var author = keeps ? annalist : now.Where(p => !p.DevelopmentalStage.Juvenile())
                 .OrderByDescending(p => (p.skills?.GetSkill(SkillDefOf.Intellectual)?.Level ?? 0) + (p.skills?.GetSkill(SkillDefOf.Social)?.Level ?? 0))
                 .FirstOrDefault();
             if (author == null) return;
+            CouncilRecords.Add(author, NameRecords.AnnalsWritten);
 
             var sb = new StringBuilder();
             void Para(string s)
@@ -155,7 +159,7 @@ namespace ColonyCouncil
                 sb.Append(s);
             }
 
-            Para((partial ? "CC_Annals_OpeningPartial" : "CC_Annals_Opening").Translate(year, author.Named("PAWN")).Resolve());
+            Para((partial ? "CC_Annals_OpeningPartial" : keeps ? "CC_Annals_OpeningAnnalist" : "CC_Annals_Opening").Translate(year, author.Named("PAWN")).Resolve());
 
             // People
             Para("CC_Annals_Count".Translate(startCount, now.Count).Resolve());

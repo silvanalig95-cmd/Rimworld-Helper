@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    PokéWorld: encounters with wild Pokémon and the colony's own. X's tags (pokemon, shiny, rarepokemon, young) come from
+    Source/ColonyCouncil/Animals/AnimalFacts.cs and only exist with the mod, so none of these ever happens without it.
+    {X_definite} / {X_indefinite} name the species as PokéWorld does ("the Pikachu"); never start a sentence with one.
+  -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncPW_Watching</defName>
+    <label>a Pokémon watching</label>
+    <stranger>
+      <kind>Wild</kind>
+      <tags>pokemon</tags>
+      <maxDistance>30</maxDistance>
+    </stranger>
+    <children>true</children>
+    <weight>1.1</weight>
+    <cooldownDays>6</cooldownDays>
+    <texts>
+      <li>{A_nameDef} looked up from {A_possessive} work and found {X_indefinite} sitting on a rock a little way off, watching with great interest. When {A_nameDef} waved, it tilted its head.</li>
+      <li>All afternoon {A_nameDef} had the feeling of being watched, and at last caught {X_definite} peering from the long grass. It ducked out of sight, then peered out again.</li>
+      <li>While {A_nameDef} worked, {X_indefinite} crept closer and closer, until it was near enough to sniff {A_possessive} boot. Then it bolted, very pleased with itself.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncPW_Curious</thought></li>
+    </effects>
+    <journal>Council_Journal_EncPW_Watching</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncPW_Shiny</defName>
+    <label>a glint in the grass</label>
+    <stranger>
+      <kind>Wild</kind>
+      <tags>pokemon,shiny</tags>
+    </stranger>
+    <weight>3</weight>
+    <cooldownDays>15</cooldownDays>
+    <notable>true</notable>
+    <texts>
+      <li>{A_nameDef} saw it first: {X_indefinite}, but the wrong colour, its coat catching the light like a coin. {A_nameDef} stood very still and didn't breathe until it moved on.</li>
+      <li>There was a sparkle in the grass beyond the fields, and when {A_nameDef} went to look, there was {X_indefinite} unlike any {A_pronoun} had seen, shining strangely, as if somebody had painted it.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_PW_SawRareOne</thought></li>
+    </effects>
+    <journal>Council_Journal_EncPW_Shiny</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncPW_Rare</defName>
+    <label>a rare one passing</label>
+    <stranger>
+      <kind>Wild</kind>
+      <tags>rarepokemon</tags>
+    </stranger>
+    <weight>1.5</weight>
+    <cooldownDays>12</cooldownDays>
+    <texts>
+      <li>At the far edge of the land, {A_nameDef} saw {X_indefinite} crossing the ridge, unhurried, the kind trainers talk about for years. {A_nameDef} watched until it was out of sight.</li>
+      <li>{A_nameDef} came back from the fields breathless: {X_indefinite}, a rare one, drinking at the water as calmly as a goat. By the time anyone else looked, it was gone into the trees.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_PW_SawRareOne</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Animals</skill><xp>150</xp></li>
+    </effects>
+    <journal>Council_Journal_EncPW_Rare</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncPW_ChildAndWild</defName>
+    <label>a small friend</label>
+    <stranger>
+      <kind>Wild</kind>
+      <tags>pokemon</tags>
+      <notPredator>true</notPredator>
+      <maxBodySize>0.6</maxBodySize>
+      <maxDistance>25</maxDistance>
+    </stranger>
+    <colonist><child>true</child></colonist>
+    <weight>1.2</weight>
+    <cooldownDays>8</cooldownDays>
+    <texts>
+      <li>{A_nameDef} sat very still at the edge of the field holding out a berry, and after a long while {X_indefinite} came and took it from {A_possessive} hand. {A_nameDef} hasn't stopped talking about it.</li>
+      <li>{A_nameDef} and {X_indefinite} played chase along the fence for most of the afternoon. It wasn't clear who was chasing whom.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncPW_SmallFriend</thought></li>
+    </effects>
+    <journal>Council_Journal_EncPW_ChildAndWild</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncPW_Partner</defName>
+    <label>out of its ball</label>
+    <stranger>
+      <kind>Pet</kind>
+      <ofA>true</ofA>
+      <tags>pokemon</tags>
+    </stranger>
+    <children>true</children>
+    <weight>1.2</weight>
+    <cooldownDays>7</cooldownDays>
+    <texts>
+      <li>{A_nameDef} was working alone when {A_possessive} Pokémon, {X_nameDef}, came and settled beside {A_objective}, just to be near. They stayed like that until the light went.</li>
+      <li>{X_nameDef} has learned the sound of {A_nameDef}'s footsteps, and comes running every time, whatever it was doing.</li>
+      <li>{A_nameDef} sat down after a long day and {X_nameDef} climbed into {A_possessive} lap, which it has been too big to do for some time. {A_nameDef} didn't have the heart to say so.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncC_Greeted</thought></li>
+    </effects>
+    <journal>Council_Journal_EncPW_Partner</journal>
+  </ColonyCouncil.EncounterDef>
+
+</Defs>

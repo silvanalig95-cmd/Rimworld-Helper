@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Moments between colonists about the colony's animals (ColonyCouncil.InteractionWorker_Moment, see
+    Source/ColonyCouncil/Social/Moments.cs). The tags keeper, herder and bondedanimal come from
+    Source/ColonyCouncil/Animals/AnimalFacts.cs. PokéWorld's trainers have moments of their own
+    (Rimfolk_Moments_Mods_PokeWorld.xml).
+  -->
+
+  <!-- ===================== Talking animals: two who love them ===================== -->
+  <InteractionDef ParentName="Council_MomentBase">
+    <defName>Council_MomentA_HerdTalk</defName>
+    <label>talked animals</label>
+    <initiatorThought>Council_MomentA_HerdTips</initiatorThought>
+    <recipientThought>Council_MomentA_HerdTips</recipientThought>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] leaned on the fence and talked about the herd until the light went.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] [trick], and [RECIPIENT_nameDef] said [RECIPIENT_pronoun] would try it in the morning.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] argued, cheerfully, about which of the animals was the cleverest.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] about a lame one in the pens, and they went to look at it together.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] traded stories of the worst animal either of them had ever handled.</li>
+        <li>trick->how to come up on a nervous animal from the side, talking all the while</li>
+        <li>trick->the old trick with a handful of salt and a lot of patience</li>
+        <li>trick->how to tell from the ears what an animal is about to do</li>
+        <li>trick->why you never stand behind one that's eating</li>
+      </rulesStrings>
+    </logRulesInitiator>
+    <modExtensions>
+      <li Class="ColonyCouncil.MomentExtension">
+        <weight>0.04</weight>
+        <cooldownDays>4</cooldownDays>
+        <initiatorTags>keeper|herder,!child</initiatorTags>
+        <recipientTags>skill:Animals|keeper</recipientTags>
+        <minOpinion>-10</minOpinion>
+        <bumpTie>Friends</bumpTie>
+        <bumpAmount>2</bumpAmount>
+      </li>
+    </modExtensions>
+  </InteractionDef>
+
+  <!-- ===================== Two who have animals of their own swap stories ===================== -->
+  <InteractionDef ParentName="Council_MomentBase">
+    <defName>Council_MomentA_PetStories</defName>
+    <label>swapped animal stories</label>
+    <symbol>ColonyCouncil/Symbols/Heart</symbol>
+    <initiatorThought>Council_MomentA_PetStories</initiatorThought>
+    <recipientThought>Council_MomentA_PetStories</recipientThought>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] compared what their animals had been up to this week, and each privately decided theirs was cleverer.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] how [INITIATOR_possessive] animal had learned to open the storeroom door, and [RECIPIENT_nameDef] laughed until [RECIPIENT_pronoun] had to sit down.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] sat on the step while their animals sniffed each other over, and agreed they'd get along.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] how [RECIPIENT_pronoun] taught [RECIPIENT_possessive] animal to come to a whistle.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+    <modExtensions>
+      <li Class="ColonyCouncil.MomentExtension">
+        <weight>0.04</weight>
+        <cooldownDays>5</cooldownDays>
+        <bondedPet>true</bondedPet>
+        <recipientTags>bondedanimal</recipientTags>
+        <minOpinion>0</minOpinion>
+        <bumpTie>Friends</bumpTie>
+        <bumpAmount>2</bumpAmount>
+      </li>
+    </modExtensions>
+  </InteractionDef>
+
+  <!-- ===================== A child asks about the animals ===================== -->
+  <InteractionDef ParentName="Council_MomentBase">
+    <defName>Council_MomentA_ChildAsks</defName>
+    <label>asked about the animals</label>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] [question], and listened to the whole answer.</li>
+        <li>r_logentry->[INITIATOR_nameDef] followed [RECIPIENT_nameDef] to the pens and asked a question about every single animal.</li>
+        <li>r_logentry->[INITIATOR_nameDef] wanted to know from [RECIPIENT_nameDef] whether animals have names for us. [RECIPIENT_nameDef] said probably, and none of them flattering.</li>
+        <li>question->why the goats climb on everything</li>
+        <li>question->where the young ones come from, and got a careful answer</li>
+        <li>question->whether the animals know they belong to us</li>
+        <li>question->how you can tell when an animal is happy</li>
+      </rulesStrings>
+    </logRulesInitiator>
+    <modExtensions>
+      <li Class="ColonyCouncil.MomentExtension">
+        <weight>0.05</weight>
+        <cooldownDays>4</cooldownDays>
+        <initiatorTags>child</initiatorTags>
+        <recipientTags>keeper|herder|skill:Animals,!child</recipientTags>
+        <minOpinion>-5</minOpinion>
+        <bumpTie>Friends</bumpTie>
+        <bumpAmount>2</bumpAmount>
+      </li>
+    </modExtensions>
+  </InteractionDef>
+
+</Defs>

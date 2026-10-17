@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The letter after an update (UI/WhatsNew.cs): once per new version, a little while after a save is loaded, with a
+       button to the Almanac's "What's new" page. Quiet like the welcome letter. -->
+  <LetterDef>
+    <defName>Council_UpdateLetter</defName>
+    <letterClass>ColonyCouncil.ChoiceLetter_WhatsNew</letterClass>
+    <color>(205, 190, 145)</color>
+    <flashColor>(205, 190, 145)</flashColor>
+    <arriveSound>LetterArrive</arriveSound>
+    <bounce>false</bounce>
+  </LetterDef>
+
+</Defs>

@@ -111,6 +111,16 @@ namespace Balance
         };
 
         /// <summary>
+        /// Dilemmas whose worker looks for something the defs don't name (Animals/AnimalDilemmas.cs): a hungry colony with
+        /// a herd, a grazer in the crops, a sick animal, a predator near the pens, a bond a faith abhors, the herd's season.
+        /// </summary>
+        public static readonly Dictionary<string, float> WorkerGates = new Dictionary<string, float>
+        {
+            ["DilemmaWorker_Famine"] = 0.1f, ["DilemmaWorker_CropRaider"] = 0.3f, ["DilemmaWorker_SickAnimal"] = 0.25f,
+            ["DilemmaWorker_PenStalker"] = 0.3f, ["DilemmaWorker_BondFaith"] = 0.05f, ["DilemmaWorker_HerdCustom"] = 0.4f
+        };
+
+        /// <summary>
         /// How often a wish can be voiced at all (its worker looks for a reason: a prisoner to recruit, lovers to marry, a
         /// lost limb, a camp on the map, a child). Wishes about the home and the work can come any time (1).
         /// </summary>
@@ -142,8 +152,10 @@ namespace Balance
                 case "WishWorker_Sickbed":
                 case "WishWorker_SickbedVisit":
                 case "WishWorker_ChildPet":
+                case "WishWorker_Barn":
                 case "WishWorker_ChildPlay": return 0.2f;
                 case "WishWorker_Recruit": return 0.25f;
+                case "WishWorker_OwnAnimal": return 0.3f;
                 case "WishWorker_Outside": return 0.3f;
                 case "WishWorker_Apprentice":
                 case "WishWorker_Fix": return 0.4f;

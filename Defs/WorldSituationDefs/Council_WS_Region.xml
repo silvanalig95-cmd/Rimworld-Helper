@@ -487,6 +487,7 @@
     <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a holy year</label>
     <weight>0.8</weight>
+    <drawnBy><li>Devout</li></drawnBy>
     <earliestDay>30</earliestDay>
     <cooldownDays>240</cooldownDays>
     <durationDays>20~30</durationDays>

@@ -339,6 +339,7 @@ namespace ColonyCouncil
                 case CalendarKind.Birthday: return 4;
                 case CalendarKind.NewCrop: return 2;
                 case CalendarKind.GreatHunt: return 2;
+                case CalendarKind.Companion: return 3;
                 default: return 1;
             }
         }
@@ -402,6 +403,8 @@ namespace ColonyCouncil
                 case CalendarKind.NewCrop: return "CC_Cal_Name_NewCrop".Translate(d.subject ?? "?");
                 case CalendarKind.FirstTrade: return "CC_Cal_Name_FirstTrade".Translate();
                 case CalendarKind.GreatHunt: return "CC_Cal_Name_GreatHunt".Translate();
+                case CalendarKind.Foal: return "CC_Cal_Name_Foal".Translate(d.subject ?? "?");
+                case CalendarKind.Companion: return "CC_Cal_Name_Companion".Translate(d.pawnName ?? "?");
                 default: return "CC_Cal_Name_Holiday".Translate();
             }
         }
@@ -420,6 +423,7 @@ namespace ColonyCouncil
                 case CalendarKind.FirstTrade: return DayWay.Gifts;
                 case CalendarKind.Walls: return DayWay.Bonfire;
                 case CalendarKind.GreatHunt: return DayWay.Hunt;
+                case CalendarKind.Companion: return DayWay.Remembrance;
                 default: return DayWay.Feast;
             }
         }
@@ -805,6 +809,7 @@ namespace ColonyCouncil
                     case CalendarKind.Battle:
                     case CalendarKind.Homecoming:
                     case CalendarKind.GreatHunt:
+                    case CalendarKind.Companion:
                         if (!d.tradition && d.knew.Count > 0 && !d.knew.Any(k => Living(k, known) != null)) days.Remove(d);
                         break;
                 }

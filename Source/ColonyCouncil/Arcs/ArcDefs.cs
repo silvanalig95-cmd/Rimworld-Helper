@@ -215,6 +215,11 @@ namespace ColonyCouncil
         /// ([thirddead], [thirdleft]).
         /// </summary>
         public bool withThird;
+        /// <summary>
+        /// The story is about the other's last days (an old companion): their death is its ending. It is told by the fizzle
+        /// lines tagged [otherdead], and the news calls it ended rather than come to nothing.
+        /// </summary>
+        public bool otherDeathEnds;
 
         // ---- What the workers look for (each worker reads the ones it needs) ----
 

@@ -120,7 +120,19 @@ namespace ColonyCouncil
             { "Hardworking", (Way.Toil, 1) }, { "Easygoing", (Way.Toil, -1) }
         };
 
-        public static IEnumerable<string> TagNames => TagMap.Keys;
+        /// <summary>
+        /// Every name a letter's lines can ask for as [colony:Name]: the ten of the ways, and what the colony has grown
+        /// into (GreenFingered, Hospitable, Devout...).
+        /// </summary>
+        public static IEnumerable<string> TagNames
+        {
+            get
+            {
+                foreach (var k in TagMap.Keys) yield return k;
+                foreach (var d in ColonyTraits.All)
+                    if (!d.tag.NullOrEmpty()) yield return d.tag;
+            }
+        }
 
         public bool Is(string tag) => S.colonyCharacter && (TagMap.TryGetValue(tag, out var t) ? Math.Sign(Tier(t.way)) == t.sign : traits.HasTag(tag));
 

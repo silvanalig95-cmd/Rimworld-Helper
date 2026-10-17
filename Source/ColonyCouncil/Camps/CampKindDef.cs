@@ -77,9 +77,20 @@ namespace ColonyCouncil
         /// one kind of faith. Empty: any people.
         /// </summary>
         public List<string> memes;
+        /// <summary>
+        /// A colony known for one of these (a colony trait's tag, or a way: Devout, LongMemoried, Generous) draws this
+        /// kind of camp: it comes twice as often there. Pilgrims seek out a devout colony; players, one that keeps its days.
+        /// </summary>
+        public List<string> drawnBy;
 
         /// <summary>How likely this kind is to be the one that comes now.</summary>
-        public float WeightNow() => CampWords.Situation(this) != null ? weight * situationWeight : weight;
+        public float WeightNow()
+        {
+            float w = CampWords.Situation(this) != null ? weight * situationWeight : weight;
+            var ch = drawnBy.NullOrEmpty() ? null : CouncilGameComponent.Instance?.character;
+            if (ch != null && drawnBy.Any(ch.Is)) w *= 2f;
+            return w;
+        }
 
         [MustTranslate] public List<string> titles = new List<string>();
         [MustTranslate] public List<string> texts = new List<string>();

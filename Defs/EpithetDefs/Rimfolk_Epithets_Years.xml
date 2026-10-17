@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Names that come with years: in a council seat, in the faith, and in the colony itself (same rules as
+    Council_Epithets.xml). The records are Rimfolk's own (Defs/Misc/Rimfolk_Records_Names.xml): days in the physician's
+    and the marshal's seats and as the faith's moral guide, terms won as speaker and votes lost, rituals of the faith
+    led, years of annals written. "only" asks for a place in the colony's years (Source/ColonyCouncil/Epithets/Epithets.cs):
+    founder, lastFounder (the only founder still here, of two or more, a year on) or firstborn (the first child born here,
+    grown). Time is counted in ticks: a year is 3,600,000, a day 60,000.
+    Where they are used: the known-by-name visitors (Workers_Living.cs: Old Doc heals, Old Iron defends, the Celebrant
+    blesses, the Shepherd counsels), the speaker's re-election, the annals (the Annalist keeps the pen), the founding
+    day's letter, and death letters (deathNote).
+  -->
+
+  <!-- ===================== Offices ===================== -->
+
+  <ColonyCouncil.EpithetDef>
+    <defName>Council_Epithet_OldDoc</defName>
+    <label>Old Doc</label>
+    <record>Council_DaysAsPhysician</record>
+    <threshold>120</threshold>
+    <earned>{PAWN_nameDef} has held the physician's seat for two years now, and has set most of the bones in the colony at least once. Nobody remembers who started it, but everyone calls {PAWN_objective} Old Doc, the children included.</earned>
+  </ColonyCouncil.EpithetDef>
+
+  <ColonyCouncil.EpithetDef>
+    <defName>Council_Epithet_OldIron</defName>
+    <label>Old Iron</label>
+    <record>Council_DaysAsMarshal</record>
+    <threshold>120</threshold>
+    <earned>Two years as marshal, two years of drills in the cold before breakfast. The colony grumbles about {PAWN_nameDef}'s drills and is alive because of them, and it has started calling {PAWN_objective} Old Iron.</earned>
+  </ColonyCouncil.EpithetDef>
+
+  <ColonyCouncil.EpithetDef>
+    <defName>Council_Epithet_Unbeaten</defName>
+    <label>the Unbeaten</label>
+    <record>Council_SpeakerTerms</record>
+    <threshold>3</threshold>
+    <requireNone><li>Council_VotesLost</li></requireNone>
+    <earned>Three times the colony has chosen {PAWN_nameDef} to chair the council, and not once in all its elections has a vote gone against {PAWN_objective}. People have started calling {PAWN_objective} the Unbeaten, partly as a joke.</earned>
+  </ColonyCouncil.EpithetDef>
+
+  <!-- ===================== Faith (Ideology) ===================== -->
+
+  <ColonyCouncil.EpithetDef>
+    <defName>Council_Epithet_Celebrant</defName>
+    <label>the Celebrant</label>
+    <record>Council_RitualsLed</record>
+    <threshold>6</threshold>
+    <earned>When the faith gathers the colony, for a feast, a funeral or the words at the turn of the year, it's {PAWN_nameDef} standing at the front more often than anyone. The colony calls {PAWN_objective} the Celebrant.</earned>
+  </ColonyCouncil.EpithetDef>
+
+  <ColonyCouncil.EpithetDef>
+    <defName>Council_Epithet_Shepherd</defName>
+    <label>the Shepherd</label>
+    <record>Council_DaysAsGuide</record>
+    <threshold>120</threshold>
+    <earned>{PAWN_nameDef} has guided the colony's faith for two years: the doubts heard out at night, the quarrels about what the faith allows, the new arrivals walked through it slowly. The colony calls {PAWN_objective} the Shepherd.</earned>
+  </ColonyCouncil.EpithetDef>
+
+  <!-- ===================== The colony's years ===================== -->
+
+  <ColonyCouncil.EpithetDef>
+    <defName>Council_Epithet_Founder</defName>
+    <label>the Founder</label>
+    <record>TimeAsColonistOrColonyAnimal</record>
+    <threshold>36000000</threshold>
+    <only>founder</only>
+    <earned>Ten years ago {PAWN_nameDef} stood on this ground with nothing but what {PAWN_pronoun} could carry. {PAWN_nameDef} is still here. Children who were born long after call {PAWN_objective} the Founder, and say it carefully.</earned>
+    <deathNote>{PAWN_nameDef} founded this colony, and saw ten years of it.</deathNote>
+  </ColonyCouncil.EpithetDef>
+
+  <ColonyCouncil.EpithetDef>
+    <defName>Council_Epithet_LastOfTheFirst</defName>
+    <label>the Last of the First</label>
+    <record>TimeAsColonistOrColonyAnimal</record>
+    <threshold>3600000</threshold>
+    <only>lastFounder</only>
+    <earned>Of everyone who was here on the colony's first day, only {PAWN_nameDef} is left. The others are buried, or gone down the road. People have started calling {PAWN_objective} the Last of the First, and asking {PAWN_objective} what it was like.</earned>
+    <deathNote>With {PAWN_nameDef} goes the last of those who were here on the colony's first day. Nobody left remembers it now.</deathNote>
+  </ColonyCouncil.EpithetDef>
+
+  <ColonyCouncil.EpithetDef>
+    <defName>Council_Epithet_Firstborn</defName>
+    <label>the Firstborn</label>
+    <record>TimeAsColonistOrColonyAnimal</record>
+    <threshold>1</threshold>
+    <only>firstborn</only>
+    <earned>{PAWN_nameDef} was the first child ever born in the colony, and today {PAWN_pronoun} is grown. The ones who were there that night still call {PAWN_objective} the Firstborn, and now everyone else does too.</earned>
+    <deathNote>{PAWN_nameDef} was the first child ever born here.</deathNote>
+  </ColonyCouncil.EpithetDef>
+
+  <ColonyCouncil.EpithetDef>
+    <defName>Council_Epithet_Annalist</defName>
+    <label>the Annalist</label>
+    <record>Council_AnnalsWritten</record>
+    <threshold>3</threshold>
+    <earned>{PAWN_nameDef} has written the colony's annals three years running now, in the same careful hand. The colony calls {PAWN_objective} the Annalist, and nobody else would think of taking the pen.</earned>
+  </ColonyCouncil.EpithetDef>
+
+</Defs>

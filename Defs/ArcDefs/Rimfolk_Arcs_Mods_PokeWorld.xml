@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    PokéWorld: a trainer and a partner (ColonyCouncil.ArcWorker_PokemonPartner, Source/ColonyCouncil/Animals/AnimalArcs.cs).
+    Time together, its moves, a fight side by side, and its friendship (PokéWorld's own) grown until they're partners.
+  -->
+
+  <ColonyCouncil.ArcDef>
+    <defName>Council_Arc_PW_Partner</defName>
+    <label>a trainer and a partner</label>
+    <summary>A trainer and a Pokémon that isn't their friend yet: time together, learning its moves, a fight side by side, and its friendship (PokéWorld's own) growing until they're partners. Only with PokéWorld.</summary>
+    <workerClass>ColonyCouncil.ArcWorker_PokemonPartner</workerClass>
+    <children>true</children>
+    <weight>1.1</weight>
+    <maxDays>70</maxDays>
+    <stages>
+      <li>
+        <label>a ball at my belt</label>
+        <waiting>Next: hours together, {PAWN_nameDef} and {PET_nameDef}.</waiting>
+        <journal>
+          <plain>
+            <li>{PET_nameDef} is mine to train, and {PET_pronoun} doesn't think much of me yet. Fair enough. I don't know much about {PET_objective} either.</li>
+            <li>{PET_nameDef} turns away whenever I call. Every trainer starts somewhere, I'm told.</li>
+            <li>[child] {PET_nameDef} is my Pokémon now! {PET_nameDef} doesn't know that yet.</li>
+          </plain>
+          <warm><li>I sat with {PET_nameDef} all evening and didn't ask anything of {PET_objective}. Tomorrow I'll ask a little.</li></warm>
+          <blunt><li>New Pokémon. Doesn't listen. Yet.</li></blunt>
+          <cheerful><li>{PET_nameDef} and me, a team from today! {PET_nameDef} just has to agree.</li></cheerful>
+          <gloomy><li>{PET_nameDef} would rather be back in the wild. I can't say I blame {PET_objective}.</li></gloomy>
+          <cold><li>{PET_nameDef}'s friendship is low. That will change with time and good handling.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef} has a new Pokémon to train: {PET_nameDef}, who isn't sure about it.</li>
+        </chronicle>
+        <gate><kind>Hold</kind><hold>Near</hold><hours>12</hours><minDays>1</minDays><timeoutDays>20</timeoutDays><timeoutPasses>true</timeoutPasses></gate>
+      </li>
+      <li>
+        <label>learning its moves</label>
+        <waiting>Next: more handling, or some days of training.</waiting>
+        <journal>
+          <plain>
+            <li>Worked through {PET_nameDef}'s moves today, one by one. {PET_nameDef} knows more than I thought. I know less than I thought.</li>
+            <li>{PET_nameDef} did exactly what I asked, then looked back at me as if to check. That's new.</li>
+          </plain>
+          <warm><li>We're learning each other's signals. Mine are clumsier.</li></warm>
+          <blunt><li>Training. Getting there.</li></blunt>
+          <cheerful><li>{PET_nameDef} did a move on command! Mostly in the right direction.</li></cheerful>
+          <gloomy><li>Some days {PET_nameDef} still won't listen. I hope that's {PET_objective}, not me.</li></gloomy>
+          <cold><li>{PET_nameDef} responds to commands more reliably. Progress is measurable.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef} has been training hard with {PET_nameDef}.</li>
+        </chronicle>
+        <gate>
+          <kind>Practice</kind>
+          <amount>1500</amount>
+          <minDays>2</minDays>
+          <timeoutDays>20</timeoutDays>
+          <timeoutPasses>true</timeoutPasses>
+          <or>
+            <li><kind>Time</kind><days>6</days></li>
+          </or>
+        </gate>
+      </li>
+      <li>
+        <label>side by side</label>
+        <waiting>Next: a fight at home, side by side (or friendship enough without one).</waiting>
+        <journal>
+          <plain>
+            <li>We're ready, I think, {PET_nameDef} and me. Whatever comes over the wall next, we'll meet it together.</li>
+            <li>{PET_nameDef} stands between me and the gate now when strangers come. Nobody taught {PET_objective} that.</li>
+          </plain>
+          <warm><li>I hope we never need to fight. If we do, I know {PET_nameDef} will be there.</li></warm>
+          <blunt><li>Ready for a fight. Both of us.</li></blunt>
+          <cheerful><li>Let the raiders come! Actually, don't. But if they do, we're ready.</li></cheerful>
+          <gloomy><li>I've trained {PET_nameDef} to fight. Now I'm afraid of the day {PET_pronoun} has to.</li></gloomy>
+          <cold><li>{PET_nameDef} is combat-ready. Only a real fight will tell us how ready.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef} and {PET_nameDef} are ready to stand together.</li>
+        </chronicle>
+        <gate>
+          <kind>Battle</kind>
+          <minDays>1</minDays>
+          <timeoutDays>30</timeoutDays>
+          <timeoutPasses>true</timeoutPasses>
+          <or>
+            <li><kind>Custom</kind></li>
+          </or>
+        </gate>
+      </li>
+      <li>
+        <label>friends</label>
+        <waiting>Next: {PET_nameDef}'s friendship, grown.</waiting>
+        <journal>
+          <plain>
+            <li>{PET_nameDef} came out of {PET_possessive} ball on {PET_possessive} own this morning, just to sit next to me.</li>
+            <li>After the fight, {PET_nameDef} wouldn't leave my side until I'd been bandaged. Then {PET_pronoun} slept against my bed.</li>
+          </plain>
+          <warm><li>Something's changed between us. You can feel it, like a door opening.</li></warm>
+          <blunt><li>{PET_nameDef} likes me now. I like {PET_objective}.</li></blunt>
+          <cheerful><li>{PET_nameDef} is happy to see me. Every time. Every single time!</li></cheerful>
+          <gloomy><li>I didn't think {PET_nameDef} would ever trust me. I'm trying not to ruin it.</li></gloomy>
+          <cold><li>{PET_nameDef}'s friendship has risen sharply. The fight seems to have settled something.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{PET_nameDef} has come round to {PAWN_nameDef} at last.</li>
+        </chronicle>
+        <gate><kind>Custom</kind><minDays>1</minDays><timeoutDays>30</timeoutDays><timeoutPasses>true</timeoutPasses></gate>
+      </li>
+      <li>
+        <label>partners</label>
+        <journal>
+          <plain>
+            <li>{PET_nameDef} and I are partners now. A trainer and a Pokémon, the way the old stories tell it.</li>
+            <li>People say {PET_nameDef} is my Pokémon. I'd say we belong to each other.</li>
+            <li>[child] {PET_nameDef} is my partner. The best partner in the whole world!</li>
+          </plain>
+          <warm><li>Everything I know about trust, I learned from {PET_nameDef}.</li></warm>
+          <blunt><li>Partners. Me and {PET_nameDef}.</li></blunt>
+          <cheerful><li>We did it. A real team. Nobody can beat us now!</li></cheerful>
+          <gloomy><li>I've found my partner. I'd better keep {PET_objective} safe.</li></gloomy>
+          <cold><li>{PET_nameDef} and I work as one. It took longer than I expected, and was worth it.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef} and {PET_nameDef} are partners: a trainer and a Pokémon who trust each other completely.</li>
+        </chronicle>
+        <effects>
+          <li Class="ColonyCouncil.ArcEffect_AnimalBond" />
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Arc_PokemonPartners</thought></li>
+        </effects>
+      </li>
+    </stages>
+    <fizzle>
+      <plain>
+        <li>[otherdead] {PET_nameDef} fainted and never got up. We were just starting to understand each other.</li>
+        <li>[otherleft] {PET_nameDef} has another trainer now. I hope {PET_pronoun} listens to them better than to me.</li>
+        <li>[timeout] {PET_nameDef} and I are getting along. Not partners, maybe. Not yet.</li>
+        <li>{PET_nameDef} and I never quite became partners. We'll see what the next season brings.</li>
+        <li>[gone] {PET_nameDef} is just an animal now, the way the world goes. I still remember how {PET_pronoun} used to look at me.</li>
+      </plain>
+      <warm><li>[otherdead] I'll keep {PET_nameDef}'s ball. I can't bring myself to use it for another.</li></warm>
+      <blunt><li>[otherdead] Lost {PET_nameDef}. Bad day.</li></blunt>
+      <gloomy><li>[otherdead] I trained {PET_nameDef} to fight, and {PET_pronoun} died fighting. I can't stop thinking about that.</li></gloomy>
+    </fizzle>
+    <fizzleChronicle>
+      <li>[otherdead] {PAWN_nameDef}'s {PET_nameDef} died before the two of them became partners.</li>
+      <li>{PAWN_nameDef} and {PET_nameDef} never quite became partners.</li>
+    </fizzleChronicle>
+    <eulogy>
+      <plain>
+        <li>{OTHER_nameDef} was just becoming a real trainer. The Pokémon still looks for {OTHER_objective} at the door, and won't go in its ball for anyone else.</li>
+      </plain>
+    </eulogy>
+  </ColonyCouncil.ArcDef>
+
+</Defs>
