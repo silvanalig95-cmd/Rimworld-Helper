@@ -49,7 +49,7 @@
   <CC_Health_Hospital_Known>The colony's {HOSPITAL} has a name now: {COUNT} patients pulled through, operated on, delivered or seen from outside, and people on the road speak well of it. Its patients rest easier, and now and then the sick will come to ask for its doctor.</CC_Health_Hospital_Known>
   <CC_Health_Hospital_Renowned>The colony's {HOSPITAL} is known across the region now, with {COUNT} patients to its name. The sick come a long way for it.</CC_Health_Hospital_Renowned>
   <CC_Health_Story_Hospital>The colony's {HOSPITAL} is {STANDING}: {GOOD} patients pulled through, operated on, born or seen from outside ({OUTSIDE} of them strangers), {LOST} lost.</CC_Health_Story_Hospital>
-  <CC_Health_Patient_Unwell>a fever</CC_Health_Patient_Unwell>
+  <CC_Health_Patient_Unwell>fever</CC_Health_Patient_Unwell>
 
   <!-- The sickbed visit wish -->
   <CC_Reason_SickbedVisit>{PAWN_nameDef} is laid up and hasn't seen {OTHER_nameDef} for days.</CC_Reason_SickbedVisit>

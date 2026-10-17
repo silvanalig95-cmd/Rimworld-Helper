@@ -865,7 +865,8 @@ namespace ColonyCouncil
 
         /// <summary>
         /// A horror: a fresh wound from an entity (each wound counted once, one roll a day for them), or a fresh memory of
-        /// one of these thoughts (each memory counted once).
+        /// one of these thoughts (each memory counted once: one renewed, a chimera seen again or more rambling heard, is the
+        /// same horror until a day has passed).
         /// </summary>
         private bool FreshHorror(Pawn p, PawnDay d, int now, List<string> thoughts)
         {
@@ -883,7 +884,8 @@ namespace ColonyCouncil
             if (m == null) return false;
             int mark = now - m.age;
             string key = p.ThingID + "|horror";
-            if (last.TryGetValue(key, out int seen) && Math.Abs(seen - mark) <= GenDate.TicksPerHour) return false;
+            // A renewed memory starts its age again: within a day of the last one counted, it isn't a fresh horror.
+            if (last.TryGetValue(key, out int seen) && Math.Abs(seen - mark) < GenDate.TicksPerDay) return false;
             last[key] = mark;
             return true;
         }

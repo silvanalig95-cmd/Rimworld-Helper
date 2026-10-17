@@ -46,8 +46,8 @@
     <defName>Council_Journal_Evt_HospitalPatient</defName>
     <lines>
       <plain>
-        <li>[opt0] A stranger came with {TALE} and asked for me by name. I saw to {X_objective}. Word gets about, it seems.</li>
-        <li>[opt0,camp] One of the camp people came up with {TALE}. Treated {X_objective} by their fire, with an audience.</li>
+        <li>[opt0] A stranger came with a {TALE} and asked for me by name. I saw to {X_objective}. Word gets about, it seems.</li>
+        <li>[opt0,camp] One of the camp people came up with a {TALE}. Treated {X_objective} by their fire, with an audience.</li>
         <li>[opt1] Gave {X_nameDef} a dose for the road and what advice I could. I'd have liked to do more.</li>
         <li>[opt2] Sent {X_nameDef} on with a few words and no medicine. We need what we have. I keep telling myself that.</li>
       </plain>
