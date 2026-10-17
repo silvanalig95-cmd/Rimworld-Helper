@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -60,6 +61,12 @@ namespace ColonyCouncil
             }
         }
 
+        /// <summary>
+        /// The kinds of world event that are good news: those the good-news moment and dream ask for, and a holy year. Not
+        /// every event that isn't bad news is good (a mourning, a toll, a feud, iron gone scarce, sellswords on the roads).
+        /// </summary>
+        private static readonly HashSet<string> GoodKinds = new HashSet<string> { "fair", "faith", "road", "trade", "peace", "harvest", "songs", "town" };
+
         /// <summary>Good news from the region: a world event that is neither bad news nor a fight (a fair, a holy year, a new road).</summary>
         public static void GoodNews(Pawn p, IFeelingSink sink)
         {
@@ -69,7 +76,7 @@ namespace ColonyCouncil
             {
                 foreach (var s in world.Running)
                 {
-                    if (s?.def == null || s.def.bad || s.def.battle) continue;
+                    if (s?.def == null || s.def.bad || s.def.battle || s.def.kind == null || !GoodKinds.Contains(s.def.kind)) continue;
                     sink.Add(1.5f, "CC_Heart_Cause_GoodNews".Translate(s.def.label ?? "?"));
                     return;
                 }
