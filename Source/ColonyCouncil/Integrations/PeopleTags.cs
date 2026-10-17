@@ -185,6 +185,8 @@ namespace ColonyCouncil
             Interplay.AddLifeTags(p, tags);
             // Who they are with animals (keeper, herder, trainer...), and an animal's own (livestock, pokemon...) (Animals/).
             AnimalTags.Add(p, tags);
+            // Their character: persona:warm, persona:hothead, persona:joker... (Persona/).
+            Persona.AddTags(p, tags);
             foreach (var g in Groups)
             {
                 if (g.tag.NullOrEmpty() || tags.Contains(g.tag)) continue;

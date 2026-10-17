@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- A person's character (Source/ColonyCouncil/Persona/): the sides of it, and the word for each side once it shows. -->
+  <CC_Persona_Axis_Warmth>warmth</CC_Persona_Axis_Warmth>
+  <CC_Persona_Axis_Nerve>nerve</CC_Persona_Axis_Nerve>
+  <CC_Persona_Axis_Temper>temper</CC_Persona_Axis_Temper>
+  <CC_Persona_Axis_Humour>humour</CC_Persona_Axis_Humour>
+  <CC_Persona_Axis_Trust>trust</CC_Persona_Axis_Trust>
+  <CC_Persona_Axis_Pride>pride</CC_Persona_Axis_Pride>
+  <CC_Persona_Axis_Openness>openness</CC_Persona_Axis_Openness>
+  <CC_Persona_Axis_Outlook>outlook</CC_Persona_Axis_Outlook>
+
+  <CC_Persona_Warmth_M2>cold</CC_Persona_Warmth_M2>
+  <CC_Persona_Warmth_M1>reserved</CC_Persona_Warmth_M1>
+  <CC_Persona_Warmth_P1>warm</CC_Persona_Warmth_P1>
+  <CC_Persona_Warmth_P2>big-hearted</CC_Persona_Warmth_P2>
+  <CC_Persona_Nerve_M2>timid</CC_Persona_Nerve_M2>
+  <CC_Persona_Nerve_M1>cautious</CC_Persona_Nerve_M1>
+  <CC_Persona_Nerve_P1>bold</CC_Persona_Nerve_P1>
+  <CC_Persona_Nerve_P2>fearless</CC_Persona_Nerve_P2>
+  <CC_Persona_Temper_M2>unflappable</CC_Persona_Temper_M2>
+  <CC_Persona_Temper_M1>even-tempered</CC_Persona_Temper_M1>
+  <CC_Persona_Temper_P1>quick-tempered</CC_Persona_Temper_P1>
+  <CC_Persona_Temper_P2>hot-headed</CC_Persona_Temper_P2>
+  <CC_Persona_Humour_M2>dour</CC_Persona_Humour_M2>
+  <CC_Persona_Humour_M1>serious</CC_Persona_Humour_M1>
+  <CC_Persona_Humour_P1>playful</CC_Persona_Humour_P1>
+  <CC_Persona_Humour_P2>a born joker</CC_Persona_Humour_P2>
+  <CC_Persona_Trust_M2>suspicious</CC_Persona_Trust_M2>
+  <CC_Persona_Trust_M1>guarded</CC_Persona_Trust_M1>
+  <CC_Persona_Trust_P1>trusting</CC_Persona_Trust_P1>
+  <CC_Persona_Trust_P2>open-hearted</CC_Persona_Trust_P2>
+  <CC_Persona_Pride_M2>self-effacing</CC_Persona_Pride_M2>
+  <CC_Persona_Pride_M1>modest</CC_Persona_Pride_M1>
+  <CC_Persona_Pride_P1>proud</CC_Persona_Pride_P1>
+  <CC_Persona_Pride_P2>vain</CC_Persona_Pride_P2>
+  <CC_Persona_Openness_M2>set in their ways</CC_Persona_Openness_M2>
+  <CC_Persona_Openness_M1>traditional</CC_Persona_Openness_M1>
+  <CC_Persona_Openness_P1>curious</CC_Persona_Openness_P1>
+  <CC_Persona_Openness_P2>restless for anything new</CC_Persona_Openness_P2>
+  <CC_Persona_Outlook_M2>bleak</CC_Persona_Outlook_M2>
+  <CC_Persona_Outlook_M1>gloomy</CC_Persona_Outlook_M1>
+  <CC_Persona_Outlook_P1>hopeful</CC_Persona_Outlook_P1>
+  <CC_Persona_Outlook_P2>sunny</CC_Persona_Outlook_P2>
+  <CC_Persona_Even>even in everything</CC_Persona_Even>
+
+</LanguageData>

@@ -256,6 +256,7 @@ namespace ColonyCouncil
             Section("CC_Settings_Bonds");
             Toggle("socialWeb", "CC_Settings_SocialWeb", "CC_SetNote_SocialWeb");
             Toggle("socialEvents", "CC_Settings_SocialEvents", "CC_SetNote_SocialEvents", "socialWeb");
+            Toggle("socialLife", "CC_Settings_SocialLife", "CC_SetNote_SocialLife");
             Toggle("secrets", "CC_Settings_Secrets", "CC_SetNote_Secrets");
             Toggle("vendettas", "CC_Settings_Vendettas", "CC_SetNote_Vendettas");
             Section("CC_Settings_Lives");
@@ -429,7 +430,7 @@ namespace ColonyCouncil
         /// <summary>The systems the "what's switched on" setups turn on or off together (the old "people" switches).</summary>
         public static readonly string[] PeopleSystems =
         {
-            "socialWeb", "socialEvents", "secrets", "vendettas", "aspirations", "quirks", "heirlooms", "comingOfAge", "dreams", "dreamOmens", "eulogies",
+            "socialWeb", "socialEvents", "socialLife", "secrets", "vendettas", "aspirations", "quirks", "heirlooms", "comingOfAge", "dreams", "dreamOmens", "eulogies",
             "heart", "strangers", "nemeses", "nemesisReturns", "petMoments", "colonistMoments", "frictions", "autonomy", "worldReactions", "worldEvents",
             "worldSituations", "factionMemory", "ailments", "convalescence", "healerReputations"
         };

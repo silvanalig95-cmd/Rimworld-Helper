@@ -38,6 +38,7 @@
     <Compile Include="../../Source/ColonyCouncil/Wishes/SeasonWishMath.cs" Link="SeasonWishMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/UI/CouncilLayoutMath.cs" Link="CouncilLayoutMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Social/TogetherMath.cs" Link="TogetherMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Persona/PersonaMath.cs" Link="PersonaMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Immersion/SpeechMath.cs" Link="SpeechMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Integrations/ChangeMath.cs" Link="ChangeMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Defense/DefenseLayout.cs" Link="DefenseLayout.cs" />

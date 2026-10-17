@@ -1174,6 +1174,8 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
 
   <!-- Social web -->
   <CC_Settings_SocialWeb>Social web: friendships, rivalries, comrades, mentors</CC_Settings_SocialWeb>
+  <CC_Settings_SocialLife>Personalities and social life</CC_Settings_SocialLife>
+  <CC_Settings_SocialLife_Tip>Each colonist has a character that starts from their traits and changes with what happens to them: a raid survived side by side, a friend lost, a kindness never forgotten. People remember what they went through together and bring it up, hold views and argue them, gossip, and fall into groups that keep their own names, habits and history.</CC_Settings_SocialLife_Tip>
   <CC_Settings_SocialWeb_Tip>Colonists form lasting bonds out of how they feel about each other and what they live through: friends, rivals, comrades who fought side by side, mentors who teach a skill. Bonds grow, sour and end, and they change how people vote, object, petition and get elected.</CC_Settings_SocialWeb_Tip>
   <CC_Settings_SocialEvents>Social events between colonists</CC_Settings_SocialEvents>
   <CC_Settings_SocialEvents_Tip>Small things happen between people every day or so (a late-night talk, a squabble over chores, a prank, war stories), shaped by who they are to each other. They move bonds and moods a little.</CC_Settings_SocialEvents_Tip>

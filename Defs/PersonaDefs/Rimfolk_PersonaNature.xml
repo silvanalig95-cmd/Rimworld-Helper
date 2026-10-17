@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Where the game's traits set a person's character (Source/ColonyCouncil/Persona/). Each side runs from -100 to 100:
+    warmth (cold to big-hearted), nerve (timid to fearless), temper (unflappable to hot-headed), humour (dour to a born
+    joker), trust (suspicious to open-hearted), pride (self-effacing to vain), openness (set in their ways to restless
+    for anything new), outlook (bleak to sunny). Skills, age and a small personal lean are added in code; what happens
+    to a person moves them from there. A trait from a DLC or mod that isn't loaded is skipped; mods' traits can have a
+    PersonaNatureDef of their own.
+  -->
+
+  <ColonyCouncil.PersonaNatureDef>
+    <defName>Rimfolk_Nature_Vanilla</defName>
+    <label>the game's traits</label>
+    <traits>
+      <li><trait>Kind</trait><warmth>50</warmth><trust>15</trust><temper>-15</temper></li>
+      <li><trait>Psychopath</trait><warmth>-60</warmth><nerve>20</nerve><trust>-20</trust></li>
+      <li><trait>Abrasive</trait><warmth>-25</warmth><temper>30</temper><pride>15</pride></li>
+      <li><trait>Bloodlust</trait><nerve>25</nerve><temper>20</temper><warmth>-10</warmth></li>
+      <li><trait>Brawler</trait><nerve>25</nerve><temper>15</temper></li>
+      <li><trait>TooSmart</trait><openness>35</openness><pride>15</pride></li>
+      <li><trait>Ascetic</trait><pride>-25</pride><openness>-5</openness></li>
+      <li><trait>Greedy</trait><pride>20</pride><warmth>-10</warmth></li>
+      <li><trait>Jealous</trait><pride>25</pride><trust>-15</trust><warmth>-10</warmth></li>
+      <li><trait>BodyPurist</trait><openness>-25</openness></li>
+      <li><trait>Transhumanist</trait><openness>25</openness></li>
+      <li><trait>Tough</trait><nerve>25</nerve></li>
+      <li><trait>Wimp</trait><nerve>-40</nerve></li>
+      <li><trait>Nimble</trait><nerve>10</nerve></li>
+      <li><trait>Masochist</trait><nerve>15</nerve></li>
+      <li><trait>Pyromaniac</trait><temper>15</temper><openness>5</openness></li>
+      <li><trait>Cannibal</trait><warmth>-15</warmth><openness>10</openness></li>
+      <li><trait>Nudist</trait><openness>15</openness></li>
+      <li><trait>Undergrounder</trait><openness>-10</openness></li>
+      <li><trait>Joyous</trait><humour>40</humour><outlook>20</outlook></li>
+      <li><trait>Beauty</trait><degree>2</degree><pride>20</pride></li>
+      <li><trait>Beauty</trait><degree>1</degree><pride>10</pride></li>
+      <li><trait>Beauty</trait><degree>-1</degree><pride>-5</pride><outlook>-5</outlook></li>
+      <li><trait>Beauty</trait><degree>-2</degree><pride>-10</pride><outlook>-10</outlook></li>
+      <li><trait>Nerves</trait><degree>2</degree><nerve>30</nerve><temper>-30</temper></li>
+      <li><trait>Nerves</trait><degree>1</degree><nerve>15</nerve><temper>-15</temper></li>
+      <li><trait>Nerves</trait><degree>-1</degree><nerve>-15</nerve><temper>10</temper><outlook>-10</outlook></li>
+      <li><trait>Nerves</trait><degree>-2</degree><nerve>-10</nerve><temper>35</temper></li>
+      <li><trait>NaturalMood</trait><degree>2</degree><outlook>50</outlook><humour>15</humour></li>
+      <li><trait>NaturalMood</trait><degree>1</degree><outlook>25</outlook></li>
+      <li><trait>NaturalMood</trait><degree>-1</degree><outlook>-25</outlook></li>
+      <li><trait>NaturalMood</trait><degree>-2</degree><outlook>-50</outlook><humour>-15</humour></li>
+      <li><trait>Neurotic</trait><degree>1</degree><outlook>-10</outlook><trust>-10</trust><temper>5</temper></li>
+      <li><trait>Neurotic</trait><degree>2</degree><outlook>-15</outlook><trust>-15</trust><temper>10</temper></li>
+      <li><trait>DrugDesire</trait><degree>1</degree><openness>10</openness></li>
+      <li><trait>DrugDesire</trait><degree>2</degree><openness>15</openness></li>
+      <li><trait>DrugDesire</trait><degree>-1</degree><openness>-10</openness></li>
+      <li><trait>Industriousness</trait><degree>2</degree><pride>10</pride></li>
+      <li><trait>Industriousness</trait><degree>-2</degree><humour>10</humour></li>
+      <li><trait>Occultist</trait><openness>25</openness></li>
+      <li><trait>Disturbing</trait><warmth>-15</warmth></li>
+      <li><trait>VoidFascination</trait><openness>20</openness></li>
+    </traits>
+  </ColonyCouncil.PersonaNatureDef>
+
+</Defs>

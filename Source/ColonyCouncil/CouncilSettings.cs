@@ -75,6 +75,8 @@ namespace ColonyCouncil
         public bool journals = true;
         public bool offices = true;
         public bool socialWeb = true;
+        /// <summary>Personalities shaped by what happens to people, what they went through together, the views they hold, their groups and talk.</summary>
+        public bool socialLife = true;
         public bool socialEvents = true;
         public bool dreams = true;
         public bool aspirations = true;
@@ -253,6 +255,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref journals, "journals", true);
             Scribe_Values.Look(ref offices, "offices", true);
             Scribe_Values.Look(ref socialWeb, "socialWeb", true);
+            Scribe_Values.Look(ref socialLife, "socialLife", true);
             Scribe_Values.Look(ref socialEvents, "socialEvents", true);
             Scribe_Values.Look(ref dreams, "dreams", true);
             Scribe_Values.Look(ref aspirations, "aspirations", true);

@@ -156,6 +156,10 @@ namespace ColonyCouncil
             if (social >= 12) return Tone.Warm;
             if (social <= 2) return Tone.Blunt;
 
+            // Their character, as what happened to them has shaped it (Persona/).
+            var shaped = Persona.ToneOf(pawn);
+            if (shaped != null) return shaped.Value;
+
             // Stable per pawn, so the same colonist tends to sound the same.
             int seed = pawn?.thingIDNumber ?? 0;
             switch (seed % 5)
