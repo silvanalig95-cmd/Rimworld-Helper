@@ -39,6 +39,7 @@ namespace ColonyCouncil
         public static readonly Texture2D Week = Load("Week");
         public static readonly Texture2D Table = Load("Table");
         public static readonly Texture2D Dilemmas = Load("Dilemmas");
+        public static readonly Texture2D Defenses = Load("Defenses");
 
         // Markers
         public static readonly Texture2D Pin = Load("Pin");
@@ -134,6 +135,7 @@ namespace ColonyCouncil
                 case AlmanacCategory.Rooms: return Rooms;
                 case AlmanacCategory.Mood: return Moods;
                 case AlmanacCategory.Defense: return CatDefense;
+                case AlmanacCategory.Defending: return Defenses ?? CatDefense;
                 case AlmanacCategory.Health: return CatHealth;
                 case AlmanacCategory.Management: return CatManagement;
                 case AlmanacCategory.LowTech: return CatLowTech;

@@ -333,7 +333,16 @@
     <code>true</code>
     <live>pokeworld</live>
     <packageIds><li>gargamiel.pokeworld</li><li>eth0net.pokeworld</li></packageIds>
-    <what>Animal events follow its wild Pokémon settings, a caught Pokémon counts as tamed, animal lovers ask to catch new species, and four Almanac pages explain it.</what>
+    <what>Animal events follow its wild Pokémon settings, a caught Pokémon counts as tamed, and evolutions, levels and the Pokédex become news, wishes, life goals and a council project; five Almanac pages explain it.</what>
+  </ColonyCouncil.ModSupportDef>
+
+  <ColonyCouncil.ModSupportDef>
+    <defName>Council_Support_GiddyUp</defName>
+    <label>Giddy-Up 2</label>
+    <order>61</order>
+    <code>true</code>
+    <packageIds><li>memegoddess.giddyup</li></packageIds>
+    <what>A hunter, a restless soul or an animal lover may wish for a mount of their own, from what Giddy-Up says can be ridden.</what>
   </ColonyCouncil.ModSupportDef>
 
   <!-- ===================== The newer systems: the heart, health, lands and the sky ===================== -->

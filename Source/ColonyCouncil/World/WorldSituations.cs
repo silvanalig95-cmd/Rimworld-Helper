@@ -263,6 +263,8 @@ namespace ColonyCouncil
         private float Weight(WorldSituationDef d)
         {
             float w = Mathf.Max(0.01f, d.weight);
+            var ch = d.drawnBy.NullOrEmpty() ? null : CouncilGameComponent.Instance?.character;
+            if (ch != null && d.drawnBy.Any(ch.Is)) w *= 2f;
             int times = history.Count(r => r.defName == d.defName);
             return w / (1f + times * 0.5f);
         }

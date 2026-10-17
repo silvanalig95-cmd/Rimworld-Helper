@@ -11,6 +11,7 @@
     <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a people in mourning</label>
     <weight>0.7</weight>
+    <drawnBy><li>LongMemoried</li></drawnBy>
     <earliestDay>30</earliestDay>
     <cooldownDays>180</cooldownDays>
     <durationDays>10~15</durationDays>
@@ -37,6 +38,7 @@
       <li>[theirLowtech] The bells of {PLACE} have been ringing since yesterday: {NAME} is dead. {FACTION} wear grey for their beloved dead, and the whole town is grey this week.\n\nThe custom is that neighbours send something for the burial, or stand by the road when the mourners pass. Not everyone does.</li>
       <li>[theirHightech] {FACTION} have lowered their flags at {PLACE}: {NAME} died two nights ago. There was a notice on every board in the region by morning, and a long list of the people {NAME} had taught, mended or fed.\n\n{FACTION} will hold their memorial in a few days. Neighbours are welcome to send words.</li>
       <li>[their:friend] {FACTION} have sent word that {NAME} is dead. The rider added something for {FRIEND_nameDef}: {NAME} had heard what {FRIEND_pronoun} once did for their people, and spoke of it near the end.</li>
+      <li>[colony:LongMemoried] {NAME} of {PLACE} has died, at a great age. {FACTION} have sent word to the colony among the first, because, the rider said, it is known as a place that remembers its dead, and {NAME} would have wanted to be remembered there too.</li>
     </texts>
     <summaries>
       <li>{FACTION} will welcome a gift for {NAME}'s burial and neighbours by the road when their mourners pass. Mourners may camp near the colony on their way.</li>
@@ -159,6 +161,7 @@
     <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>season of songs</label>
     <weight>0.6</weight>
+    <drawnBy><li>LongMemoried</li></drawnBy>
     <earliestDay>30</earliestDay>
     <cooldownDays>200</cooldownDays>
     <durationDays>12~18</durationDays>
@@ -544,6 +547,7 @@
     <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>exiles on the roads</label>
     <weight>0.6</weight>
+    <drawnBy><li>Hospitable</li></drawnBy>
     <earliestDay>40</earliestDay>
     <cooldownDays>200</cooldownDays>
     <durationDays>14~20</durationDays>
@@ -558,6 +562,7 @@
     <texts>
       <li>{FACTION} have cast out a whole household from {PLACE}: a family that sided with the wrong cousin in a quarrel over the leadership, or spoke too loudly against the {TITLE}, depending on who tells it. They have a day to leave {FACTION}'s lands and may not come back.\n\nThey are on the roads now, with everything they could carry. Some of them will come this way.</li>
       <li>[theirLowtech] By the old law of {FACTION}, a household that breaks faith with the {TITLE} is driven out with nothing but its clothes and its name. That law has been used at {PLACE} for the first time in living memory.\n\nThe exiles are walking. The colony is on their road.</li>
+      <li>[colony:Hospitable] {FACTION} have cast out a whole household from {PLACE}, and the exiles have been told, by more than one person on the road, that the colony takes people in. They are walking its way.\n\nWhat the colony does with them will be remembered at {PLACE}, one way or the other.</li>
     </texts>
     <summaries>
       <li>Exiles from {PLACE} will ask the colony for shelter. {FACTION} will not thank anyone who gives it.</li>

@@ -96,7 +96,12 @@ every era. Called world events until the world situations below took that name.
 - Done: gentler stakes (later, smaller and fewer attacks; smaller debts; a softer feud; a strength setting) and
   four small, gentle starts with one or two colonists (The Inheritance, Master and Apprentice, Runaway Hearts,
   The Lone Hunter), built from two new parts: a bond from the start, and an event around a set day.
-- Next: a tribal and a medieval scenario or two, once the parts have been played with.
+- Done: a tribal and a medieval scenario, and two more (The Elders' Fire, What the Ship Carried, The Orphanage with
+  Biotech, The Land Grant with a medieval player faction), built from six new parts: a council already formed, days
+  the colony keeps, a life goal from before, a people the colony is beholden to (a debt in the region's memory),
+  children in its care, and a world event set in motion; a secret can now be shared by the whole company, and a sworn
+  enemy can be a people of the old ways with a vendetta sworn against them.
+- Next: a nomad start, and scenarios for other mods' peoples.
 
 ## Phase H3: World events (first batch done)
 Rare happenings across the whole region that last a while and change what the colony meets, on Rimfolk's own slow
@@ -258,53 +263,75 @@ play deep. In order:
   touches, reminders and last calls, journals, quirks, wishes' own lines, the calendar, personal stories, health,
   camps, the newest events and the room advice cards).
 
-### Always: breadth grows with every round
-Variety means more than more lines: more things that can happen and be wished for. Every round of work adds to
-the content itself, not only to systems, alongside whatever else it does. Where things stood on 14 October 2026:
+### Breadth, where it fits the game
+Content grows only where it fits the game's goals (the player, October 2026: "I'd rather not have further wishes etc
+be added just for the sake of variety, if they don't fit naturally into the game's goals"). A new wish, goal,
+project, dilemma, ailment, day or trait must point at something a player would want to pursue or deal with in a run
+and make for a real choice; deepening how existing things play out comes before adding new things to want, and the
+"grow toward" column below is a list of possibilities, not a quota. Where things stand:
 
 | Content | Count | Grow toward |
 |---|---|---|
-| Rimfolk events, story stages and missions | 182 (13 mission kinds, 9 → 13: a pilgrim to escort, word to carry, a lost child, hands for a harvest; 6 aftermath events after world events, 2 vendetta endings) | more everyday events per group, more chains, more mission kinds |
-| Wishes | 107 | more seasonal and biome wishes, more for the always-on mods (Alpha mods, Vanilla Expanded furniture) |
-| Council projects (ambitions) | 64 (8 in stages, 3 season-long; 2 tribal, 2 spacer, 1 for Hospitality) | projects from the calendar and the faith, more for children and elders |
-| Life goals | 84 (children's dreams that grow into grown-up goals, teenagers' goals, elders' last wishes a friend may finish, faith and the heart; goals a faith forbids never come up) | goals for each mod's content, goals two people share |
-| Dilemmas | 158 (14 new for children, teenagers and elders, two asking for a quirk; 8 new customs) | more for the camps; dilemmas for each new system as it lands |
-| Encounters | 183 (7 for Outland's peoples and Medieval Total Rim's nations, 4 for the one colonist a people remembers by name, 5 for what a stranger's people remember, 8 for the land's shape, 3 for Seasonal Weather's skies) | more lands (lakes, rivers), more mods' creatures, peoples and biomes, rarer night and weather moments |
+| Rimfolk events, story stages and missions | 183 (1 for PokéWorld; 13 mission kinds, 9 → 13: a pilgrim to escort, word to carry, a lost child, hands for a harvest; 6 aftermath events after world events, 2 vendetta endings) | more everyday events per group, more chains, more mission kinds |
+| Wishes | 112 (2 for the herd and pets, 1 for Giddy-Up, 2 for PokéWorld; none added for variety's sake: a new wish must point at what the colony really needs and make a real choice; the player is reviewing the existing ones for filler) | only wishes that serve the colony's own goals |
+| Council projects (ambitions) | 66 (8 in stages, 3 season-long; 2 tribal, 2 spacer, 1 for Hospitality, 1 for PokéWorld, 1 from the defense planner) | projects from the calendar and the faith, more for children and elders |
+| Life goals | 90 (6 with animals, 2 of them for PokéWorld; children's dreams that grow into grown-up goals, teenagers' goals, elders' last wishes a friend may finish, faith and the heart; goals a faith forbids never come up) | goals for each mod's content, goals two people share |
+| Dilemmas | 165 (7 about the colony's animals, 2 of them customs; 14 new for children, teenagers and elders, two asking for a quirk; 8 new customs) | more for the camps; dilemmas for each new system as it lands |
+| Encounters | 188 (5 with PokéWorld's Pokémon; 7 for Outland's peoples and Medieval Total Rim's nations, 4 for the one colonist a people remembers by name, 5 for what a stranger's people remember, 8 for the land's shape, 3 for Seasonal Weather's skies) | more lands (lakes, rivers), more mods' creatures, peoples and biomes, rarer night and weather moments |
+
 | Decrees | 30 (11 new: 2 for world events, 1 for the faith; gated by era, research, faith, world events and mods) | decrees for mods (Medieval Overhaul, Hospitality), more for the faith's memes, decrees children petition for |
 | Quirks | 40 (21 now touch others, through 21 social events and moments; 8 new ones change how someone speaks and answers, in letters, council and journal; a lucky thing says whose it is, and whose it was) | more from events and dreams |
-| Personal stories | 29 (113 stages of three to five; 4 stories of three, whose talks need the two together; from camps, offices and the world's troubles; 5 for children and elders; 1 for A RimWorld of Magic's classes) | stories for more mods, stories that pass between generations |
-| Dreams | 155 (every feeling has dreams; 27 new for quirks, life goals and personal stories) | dreams for the rest of the quirks, goals and stories, and for mod content |
+| Personal stories | 34 (134 stages of three to five; 5 with the colony's animals, 1 for PokéWorld; 4 stories of three, whose talks need the two together; from camps, offices and the world's troubles; 5 for children and elders; 1 for A RimWorld of Magic's classes) | stories for more mods, stories that pass between generations |
+| Dreams | 164 (9 of animals, 3 for PokéWorld's trainers; every feeling has dreams; 27 new for quirks, life goals and personal stories) | dreams for the rest of the quirks, goals and stories, and for mod content |
 | World events | 44 (32 → 44: 10 regional, 2 that follow another's end), and 6 aftermath events when one ends | world events for more peoples and mods, follow-ups for the newer ones, more beats per event |
 | Camp kinds | 19 (11 → 19: caravans, merchants, drovers, penitents, tree-singers, a healer, minstrels, mourners), with 19 things the colony can ask of them | camps for more eras and mods, asks for the older kinds |
 | Ailments | 34 everyday (2 for Alpha Biomes' lands), 14 serious; convalescence from 4 causes, 2 healers' names | ailments for every biome and DLC, more after-effects |
 | Room types | 28 (108 layouts, 6 themes) | odd shapes beyond partitions, more spacer and mod-furniture sizes, themes for more furniture mods |
-| Calendar days and ways to keep them | 15 kinds, 7 ways (about 710 lines, with lines per land and faith) | days from the camps and world events, days for a faith's own holidays |
-| Answers that play out on the map | 324 answers (191 → 324: 98 dilemmas, 111 events, stories and world events, 61 of the answers in 33 world events), 5 calendar ways, 5 decrees, 9 ambitions; 15 kinds of real effect (9 → 15: work parties, walks together, vigils, searches, gifts carried out, hunt parties) | new dilemmas and events from the start, missions, play-outs for the calendar's other ways (done: a drink from the stores at a toast, world events' beats) |
+| Calendar days and ways to keep them | 17 kinds (the first foal, a beloved animal's day), 7 ways (about 710 lines, with lines per land and faith) | days from the camps and world events, days for a faith's own holidays |
+| Answers that play out on the map | 337 answers (324 → 337 with the animals: 105 dilemmas, 112 events, stories and world events, 61 of the answers in 33 world events), 5 calendar ways, 5 decrees, 9 ambitions; 15 kinds of real effect (9 → 15: work parties, walks together, vigils, searches, gifts carried out, hunt parties) | new dilemmas and events from the start, missions, play-outs for the calendar's other ways (done: a drink from the stores at a toast, world events' beats) |
 | Lines in the flavor pools (variety report) | about 25,200 in 3,640 pools | the pools at the top of the report |
-| Social events, moments, frictions, nuisances | 100 (21 from quirks, 6 for elders), 137 (45 frictions, 4 that follow something real, 6 that ask for a quirk), 22 | every trait pairing and home condition |
-| Links between Rimfolk's own systems | 32 (offices at work, the heart in choices, stories that hear the world, the peoples' memory at camps and in encounters, setbacks into wishes and stories, a colonist's day in the news) | links for each new system as it lands: the camps and world events into the council, the calendar into dreams and life goals |
-| Secrets | 61 (2 for scenarios only; 9 that only come during a world event or a camp, 5 of them good), each with its own confide and graveside lines | more good ones, dilemmas for the newer ones |
+| Social events, moments, frictions, nuisances | 103 (21 from quirks, 6 for elders, 3 about animals), 142 (5 about animals; 45 frictions, 4 that follow something real, 6 that ask for a quirk), 22 | every trait pairing and home condition |
+| Links between Rimfolk's own systems | 37 (5 for the animals: births into the calendar and the herdmaster's naming, a beloved animal's death into the calendar, a sick animal into the herdmaster's word, a pet's fight into a life goal; offices at work, the heart in choices, stories that hear the world, the peoples' memory at camps and in encounters, setbacks into wishes and stories, a colonist's day in the news) | links for each new system as it lands: the camps and world events into the council, the calendar into dreams and life goals |
+| Secrets | 62 (3 for scenarios only, one of them shared by the whole company; 9 that only come during a world event or a camp, 5 of them good), each with its own confide and graveside lines | more good ones, dilemmas for the newer ones |
 | Ways a vendetta is sworn and settled | 3 sworn (a death, a kidnapping, a bonded animal), 8 settled (blood, captives, a homecoming, laid down, laid down in peace, the blood price, an apology, passed to an heir) | vendettas against nemeses, dilemmas when an heir takes one up |
 | Council offices | 12 (14 seats; 7 open as the colony grows: a chaplain with Ideology, a warden of guests, a council of elders of three) | offices for mods (a guild master with Medieval Overhaul), offices that hear petitions |
-| Customs that can become traditions | 25 (5 of the land, 3 of the faith, 4 children's) | more for the faith's memes and other mods' biomes |
-| Rimfolk scenarios | 13 (7 gentle, 6 with stakes) | a tribe's start, a spacer crash with a secret, an orphanage |
-| Names (epithets) | 54 (8 from Rimfolk's own records; 5 given for one deed beyond the walls) | names from offices, faith and the colony's years |
-| Advisor checks | 43 | checks for the newer systems (missions, the world page), more for tribal colonies |
-| Colony character | 5 ways (10 names), 6 things a colony grows into | traits from hospitality, faith and the calendar |
-| Pets and nemeses | 14 heroics, 32 farewells, 22 taunts and parting words, 4 endings told from pools (one new: let go from the cells) | pets in the calendar, nemeses in dreams and personal stories |
+| Customs that can become traditions | 27 (5 of the land, 3 of the faith, 4 children's, 2 of the herd's year) | more for the faith's memes and other mods' biomes |
+| Rimfolk scenarios | 17 (8 gentle, 9 with stakes; 13 → 17: a tribe's fire, a ship's shared secret, an orphanage with Biotech, a medieval land grant), 14 scenario parts (8 → 14) | a nomad start that moves with the seasons, a scenario for a mod's people |
+| Names (epithets) | 63 (54 → 63; 14 from Rimfolk's own records; 5 given for one deed beyond the walls; 9 from years in a seat, in the faith and in the colony, each shown in play) | names from a mod's offices and peoples, names that pass to an heir |
+| Advisor checks | 62 (43 → 62: 7 for Rimfolk's systems (missions, world events, camps, decrees, offices, the calendar, promises), 3 for a low-tech winter, 3 everyday, 6 rooms to make better; advice can now open its council page or take the first step, like planning lamps) | checks for the dilemmas and ambitions, more for spacer colonies, actions for more of the older advice |
+| Defense plans and advice | 11 plans (2 with Medieval Overhaul), 21 kinds of defense advice, 15 Almanac pages | plans for more mods (Vanilla Furniture Expanded - Security's trenches and barbed wire), a bunker, a moat |
+| Colony character | 5 ways (10 names), 9 things a colony grows into (6 → 9: good hosts, devout, long-memoried, from Rimfolk's own records, each changing what comes) | effects in play for the six work names, a name for a colony at war |
+| Pets and nemeses | 14 heroics, 40 farewells (old age and Pokémon), 22 taunts and parting words, 4 endings told from pools (one new: let go from the cells) | nemeses in dreams and personal stories (pets in the calendar: done) |
 | Feelings | 26 (4 deepened by a heart's need that runs low) | feelings that touch the camps and world events, each with more dreams and moments |
-| Seen and heard (touches, speech, small habits) | 24 touches (6 new: a camp arriving, the first snow's flakes, a dream told at breakfast, a council wedding, a guest's word, guests' cups at a toast); lines about 9 kinds of state (about 400), dreams, guests and 4 kinds of weather; 12 small habits (6 → 12: stars, plants, animals, the stores, company, old stories) | touches for the world events' beats and the calendar's ways, habits for children and elders |
-| Mood hints | 173 | hints for every new thought as it lands |
-| Small good moments that give something other than mood | 248 of 474 (opinion, recreation, rest, comfort, practice, a feeling, an inspiration, trust, research, goodwill, the journal), 4 habits with a knack instead | a reward instead for each new small moment as it lands |
-| Negative moods | 589 thoughts with a bad side (548 → 589); 41 setbacks from play (8 council, 3 gatherings, 10 work, 7 home, 6 worries, 7 between people) | setbacks for camps, world events and the calendar, more from mod content (a mod's bench, crop or ritual gone wrong) |
+| Seen and heard (touches, speech, small habits) | 24 touches (6 new: a camp arriving, the first snow's flakes, a dream told at breakfast, a council wedding, a guest's word, guests' cups at a toast); lines about 9 kinds of state (about 400), dreams, guests and 4 kinds of weather; 14 small habits (6 → 14: stars, plants, animals, the stores, company, old stories, the herd, a horse brushed down) | touches for the world events' beats and the calendar's ways, habits for children and elders |
+| Mood hints | 181 | hints for every new thought as it lands |
+| Small good moments that give something other than mood | 373 of 614 (opinion, recreation, rest, comfort, practice, a feeling, an inspiration, trust, research, goodwill, the journal), 4 habits with a knack instead | a reward instead for each new small moment as it lands |
+| Negative moods | 603 thoughts with a bad side (589 → 603); 43 setbacks from play (2 at the pens; 8 council, 3 gatherings, 10 work, 7 home, 6 worries, 7 between people) | setbacks for camps, world events and the calendar, more from mod content (a mod's bench, crop or ritual gone wrong) |
 
 ### Asked for by the player (queued after the current fixes)
-- A defense planner: what makes sense for this colony and its threats (raids, sieges, drop pods, mechanoids,
-  tribal waves), where to build it on this map (choke points, killboxes, cover and fallback lines, turret and trap
-  placement for the colony's tech level), templates to place like the room planner's, and the reasoning shown, the
-  way the advisor explains a room.
-- Animals and Pokémon deeper in Rimfolk: animals in wishes, dreams, personal stories, the calendar and the council
-  (a herd's year, a bonded animal's old age, a Pokémon's evolution as a colony event), with PokéWorld kept soft.
+- Done: a defense planner (Colony → Defenses). The council reads the map: the edges raiders can reach home from
+  and the ways they walk (the easiest path from a sample of edge cells, doors costing extra), the narrow places on
+  them (passes, gaps between rock and water, bridges, the colony's own gates) with their width and the share of raids
+  passing, whether the home is walled in, how much of the outer wall is two thick, and the doors between the gate and
+  the beds. It weighs what stands (walls, gates, turrets, traps, cover, embrasures, mortars, weapons by the beds), who
+  fights, what can be built, and the threats: raid points, hostile peoples and whether they drop pods, besiege or
+  breach, mechanoids and their clusters, insects under the mountain, Anomaly and Biotech. Ranked advice with its
+  reasons and what's done, a map of the ways in, a short "how it's commonly done", and an overlay on the map.
+  Eleven defense plans place like room plans (every turn and mirror, materials, obstacles, closing a gap to the
+  rock) and go down at the spot the advice is about, turned to face the raiders: a gate with sandbag lines, a
+  perimeter wall, a killbox, a trap corridor, a turret nest, a sniper's or archers' post, a fallback line, a keep, a
+  mortar pit, and with Medieval Overhaul a palisade with a gatehouse and a castle gate. The Almanac's new section
+  "Defending the colony" (15 pages), a council project to hold the way in, and the marshal's word on the page.
+  Next: the overlay as a toggle in the game's own map settings; raids remembered by where they really came in.
+- Done: animals and Pokémon deeper in Rimfolk. The colony's animals in wishes (an animal of one's own, a barn, with
+  Giddy-Up a mount), four life goals, four personal stories (an old companion, an orphan, a stray, a feud), six dreams,
+  five dilemmas and two customs of the herd's year, moments, social events and two small habits; the herdmaster names
+  newborns, brings word of a sick animal and takes someone along to learn; births and deaths are news, and the first
+  foal and a beloved animal's day are on the calendar. With PokéWorld, read softly by name: evolutions, levels and
+  bonds as colony moments, a fainted Pokémon's trainer, friendly sparring, a trainer's story with a partner, two
+  wishes, two life goals, the Pokédex as a council project, wild and rare encounters, a rare-sighting event, dreams,
+  and farewells of their own. What only added variety was left out (a wish for a favourite kind of animal, one for a
+  pack animal of one's own, a custom of bringing the herd home).
 
 ### 5. Wider (integrations)
 - Done: deeper with the always-on mods. Hospitality guests are visitors with stories (eight encounters with

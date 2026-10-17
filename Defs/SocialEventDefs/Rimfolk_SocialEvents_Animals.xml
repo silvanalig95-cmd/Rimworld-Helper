@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Social events about the colony's animals: two colonists who are near each other, one of them with animals of their
+    own or a herd to look after (the tags keeper and herder: Source/ColonyCouncil/Animals/AnimalFacts.cs).
+    They change the bond between the two and give practice rather than mood.
+  -->
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Council_SocA_ShowedTheAnimals</defName>
+    <label>shown the animals</label>
+    <tone>warm</tone>
+    <children>true</children>
+    <minOpinion>-5</minOpinion>
+    <roleA><tags>keeper|herder</tags></roleA>
+    <roleB><child>true</child></roleB>
+    <texts>
+      <li>{A_nameDef} took {B_nameDef} down to the pens and showed {B_objective} how to come up on an animal slow, from the side, talking all the while. {B_nameDef} has been practising on everything since, including the cook.</li>
+      <li>{B_nameDef} spent the afternoon at {A_nameDef}'s heels, carrying the feed bucket and asking questions. By evening {B_nameDef} knew every animal's name and three of their bad habits.</li>
+      <li>{A_nameDef} let {B_nameDef} hold the lead rope for the first time. {B_nameDef} held it the whole way to the pens with both hands and didn't breathe.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_SocA_ShownTheAnimals</thought></li>
+    </effects>
+    <changeTie>Mentor</changeTie>
+    <change>3</change>
+    <note>shown the animals</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Council_SocA_HelpedWithHerd</defName>
+    <label>a hand with the herd</label>
+    <tone>warm</tone>
+    <minOpinion>-10</minOpinion>
+    <roleA><tags>herder</tags></roleA>
+    <roleB><tags>!herder</tags></roleB>
+    <texts>
+      <li>Half the herd got out through a gap in the fence, and {B_nameDef} dropped what {B_pronoun} was doing to help {A_nameDef} bring them back. It took an hour and a great deal of shouting, and they were both laughing by the end.</li>
+      <li>{B_nameDef} helped {A_nameDef} with the evening feed when {A_nameDef}'s hands were full, and stayed to learn which animal gets fed first, and why.</li>
+      <li>{A_nameDef} needed someone to hold a nervous animal still while {A_pronoun} saw to its hoof. {B_nameDef} did it, came out muddy, and was thanked properly.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Animals</skill><xp>200</xp></li>
+    </effects>
+    <changeTie>Friends</changeTie>
+    <change>3</change>
+    <note>helped with the herd</note>
+  </ColonyCouncil.SocialEventDef>
+
+</Defs>

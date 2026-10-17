@@ -199,6 +199,7 @@ namespace ColonyCouncil
                     if (!mine && (whose = Fond(p, map, d.pawnId)) == null) return;
                     break;
                 case CalendarKind.Death:
+                case CalendarKind.Companion:
                     if (!knew) return;
                     break;
                 case CalendarKind.Wedding:
@@ -208,7 +209,7 @@ namespace ColonyCouncil
             var said = Add("Council_Pool_SayTomorrow", 1f, "day:" + d.kind.ToString().ToLowerInvariant(), "way:" + d.way.ToString().ToLowerInvariant(),
                 mine ? "mine" : null, knew ? "knew" : null);
             said.args.Add((d.label ?? "").Named("NAME"));
-            said.args.Add((d.kind == CalendarKind.Death ? d.pawnName ?? "" : "").Named("DEAD"));
+            said.args.Add((d.kind == CalendarKind.Death || d.kind == CalendarKind.Companion ? d.pawnName ?? "" : "").Named("DEAD"));
             said.args.Add((whose ?? p).Named("OTHER"));
         }
 

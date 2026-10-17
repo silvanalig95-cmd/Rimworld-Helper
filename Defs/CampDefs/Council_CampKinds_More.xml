@@ -94,6 +94,7 @@
     <defName>Council_Camp_Procession</defName>
     <label>procession of the faithful</label>
     <weight>0.7</weight>
+    <drawnBy><li>Devout</li></drawnBy>
     <people>4~7</people>
     <days>2~5</days>
     <ages>16~75</ages>
@@ -131,6 +132,7 @@
       <li>[ideology,sameFaith] A procession of {FACTION} has arrived singing hymns the colony knows: they keep {IDEO}, the colony's own faith, and they've come out of their way to rest among their own. {X_nameDef} asked {A_nameDef} for a few days' camp {PLACE}.</li>
       <li>[ws:faith] {SITUATION} has brought the faithful out on every road, and a procession of {FACTION} has stopped by the colony on its way. {X_nameDef} asked {A_nameDef} whether they might camp {PLACE} for a few days.</li>
       <li>[lowtech] A procession of {FACTION} has come over the hill with bells and drums, carrying a carved figure on a litter. {X_nameDef}, their leader, asked {A_nameDef} whether the figure and its people might rest {PLACE} a few nights on their long road.</li>
+      <li>[colony:Devout] A procession of {FACTION} has come out of its way to pass the colony, which the faithful on the roads call a devout place. {X_nameDef}, who walks at the front, asked {A_nameDef} whether they might rest {PLACE} and pray a while.</li>
     </texts>
     <settled>
       <li>The faithful from {FACTION} have set their shrine down {PLACE}, with a place cleared before it for prayer and their bedrolls in a ring around the fire.</li>
@@ -171,6 +173,7 @@
     <defName>Council_Camp_Players</defName>
     <label>traveling players</label>
     <weight>0.7</weight>
+    <drawnBy><li>LongMemoried</li></drawnBy>
     <people>3~6</people>
     <days>3~6</days>
     <ages>18~60</ages>
@@ -205,6 +208,7 @@
       <li>Players of {FACTION} have stopped at the colony with costumes in a trunk and a play they're tired of. {X_nameDef} asked {A_nameDef} if they could camp {PLACE} for a few nights, rehearse something new, and try it out on the colony.</li>
       <li>[winter] Players of {FACTION} came in out of the snow in their stage clothes, which are warmer than they look. There are no audiences on the roads in winter, {X_nameDef} told {A_nameDef}; they'd like to camp {PLACE} for a few nights and play for the colony instead.</li>
       <li>[tribal] Dancers and drummers of {FACTION} have come to the colony, painted for the dance. They travel from camp to camp and dance the old stories, {X_nameDef} told {A_nameDef}, and would like to stay {PLACE} a few nights.</li>
+      <li>[colony:LongMemoried] Players of {FACTION} have come up the road with a new piece about the colony's founding, put together from what the road says of it. {X_nameDef} asked {A_nameDef} whether they might camp {PLACE} a few nights, and whether anyone here could tell them how it really went.</li>
     </texts>
     <settled>
       <li>The players from {FACTION} have their camp up {PLACE}, with a stage of packed earth and a torch at each corner.</li>

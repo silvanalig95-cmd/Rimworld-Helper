@@ -183,6 +183,8 @@ namespace ColonyCouncil
             Interplay.AddQuirkTags(p, tags);
             // Their life goal and personal story: goal:Marry, story:Suitors, instory:Suitors (Interplay/).
             Interplay.AddLifeTags(p, tags);
+            // Who they are with animals (keeper, herder, trainer...), and an animal's own (livestock, pokemon...) (Animals/).
+            AnimalTags.Add(p, tags);
             foreach (var g in Groups)
             {
                 if (g.tag.NullOrEmpty() || tags.Contains(g.tag)) continue;

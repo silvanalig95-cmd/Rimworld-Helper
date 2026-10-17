@@ -375,6 +375,7 @@
     <defName>Council_Camp_Penitents</defName>
     <label>penitents</label>
     <weight>0.5</weight>
+    <drawnBy><li>Devout</li></drawnBy>
     <people>3~6</people>
     <days>2~4</days>
     <ages>18~70</ages>
@@ -699,6 +700,7 @@
     <defName>Council_Camp_Minstrels</defName>
     <label>band of minstrels</label>
     <weight>0.6</weight>
+    <drawnBy><li>LongMemoried</li></drawnBy>
     <people>3~5</people>
     <days>2~5</days>
     <ages>16~60</ages>
@@ -819,6 +821,7 @@
     <defName>Council_Camp_Mourners</defName>
     <label>mourners passing through</label>
     <weight>0.5</weight>
+    <drawnBy><li>LongMemoried</li></drawnBy>
     <people>3~6</people>
     <days>1~3</days>
     <ages>16~75</ages>
@@ -855,6 +858,7 @@
       <li>[ws:sickness] Mourners of {FACTION} are carrying one of {SITUATION}'s dead home, well wrapped and well apart. {X_nameDef} asked {A_nameDef} for leave to stop {PLACE} a night or two, and swore none of the living are sick.</li>
       <li>[their:friend] Mourners of {FACTION} have stopped by the colony with their dead. {X_nameDef} asked for {A_nameDef} by name, and said the one they carry spoke of {A_objective} often. They would like to rest {PLACE} a night or two.</li>
       <li>[winter] Mourners of {FACTION} have come through the snow with a covered sledge. {X_nameDef} asked {A_nameDef} for a sheltered place {PLACE} to stop a night or two before the last of the road.</li>
+      <li>[colony:LongMemoried] Mourners of {FACTION} have stopped by the colony with their dead because, {X_nameDef} said, it is a place that remembers. They asked {A_nameDef} whether they might stop {PLACE} a night or two, and say their words where the colony says its own.</li>
     </texts>
     <settled>
       <li>The mourners from {FACTION} have made a small camp {PLACE}, with the cart drawn up beside the fire and a lamp lit beside it that nobody lets go out.</li>

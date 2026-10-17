@@ -90,6 +90,8 @@ namespace ColonyCouncil
                 if (d == null || d.kind == CalendarKind.FirstSnow || d.way == DayWay.Personal) continue;
                 int until = CalendarMath.DaysUntil(today, d.day);
                 if (until < 1 || until > 2 || until >= soonest) continue;
+                // Tomorrow with nothing laid by: the unprepared day's advice says so instead (AdvisorSignals5.cs).
+                if (until == 1 && AdvisorWorker_CalendarUnprepared.Lacks(map, d) != null) continue;
                 next = d;
                 soonest = until;
             }

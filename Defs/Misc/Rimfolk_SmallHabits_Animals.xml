@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Two small habits about the colony's animals (Source/ColonyCouncil/Animals/AnimalHabits.cs), under the same rules as
+    the others in Rimfolk_SmallHabits.xml: only with the "Small habits" setting on, in free time, off cooldown, and when
+    they fit. Sitting out with the herd: one who loves animals, keeps a herd, or a child, by day, beside the colony's
+    grazing animals. Brushing down a horse: one who loves animals or is bonded to a big one, beside a big tame animal of
+    theirs; a little handling practice while they do.
+  -->
+
+  <JobDef>
+    <defName>Council_Habit_Herd</defName>
+    <driverClass>ColonyCouncil.JobDriver_SmallHabit</driverClass>
+    <reportString>sitting out with the herd.</reportString>
+    <joyKind>Meditative</joyKind>
+    <joyGainRate>0.9</joyGainRate>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+    <modExtensions>
+      <li Class="ColonyCouncil.HabitExtension">
+        <kind>Herd</kind>
+        <pool>Council_Pool_HabitHerd</pool>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Council_Habit_Groom</defName>
+    <driverClass>ColonyCouncil.JobDriver_SmallHabit</driverClass>
+    <reportString>brushing down an animal.</reportString>
+    <joyKind>Meditative</joyKind>
+    <joyGainRate>0.9</joyGainRate>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+    <modExtensions>
+      <li Class="ColonyCouncil.HabitExtension">
+        <kind>Groom</kind>
+        <pool>Council_Pool_HabitGroom</pool>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <JoyGiverDef>
+    <defName>Council_HabitGiver_Herd</defName>
+    <giverClass>ColonyCouncil.JoyGiver_HabitHerd</giverClass>
+    <baseChance>3</baseChance>
+    <jobDef>Council_Habit_Herd</jobDef>
+    <joyKind>Meditative</joyKind>
+    <requiredCapacities>
+      <li>Moving</li>
+    </requiredCapacities>
+  </JoyGiverDef>
+
+  <JoyGiverDef>
+    <defName>Council_HabitGiver_Groom</defName>
+    <giverClass>ColonyCouncil.JoyGiver_HabitGroom</giverClass>
+    <baseChance>3</baseChance>
+    <jobDef>Council_Habit_Groom</jobDef>
+    <joyKind>Meditative</joyKind>
+    <requiredCapacities>
+      <li>Moving</li>
+      <li>Manipulation</li>
+    </requiredCapacities>
+  </JoyGiverDef>
+
+</Defs>

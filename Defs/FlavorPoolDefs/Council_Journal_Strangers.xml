@@ -69,6 +69,10 @@
         <li>[hero] {PAWN_nameDef} carried {PET_definite} back from the fighting alone and wouldn't let anyone help.</li>
         <li>[winter] {PAWN_nameDef} wanted to bury {PET_nameDef}, but the ground was frozen. {PAWN_nameDef} dug anyway.</li>
         <li>[rain] {PAWN_nameDef} stood in the rain for a long time, at the spot where {PET_nameDef} used to wait for {PAWN_objective}.</li>
+        <li>[pokemon] {PAWN_nameDef} kept {PET_nameDef}'s ball. It sits empty on the shelf by {PAWN_possessive} bed, and nobody is to touch it.</li>
+        <li>[pokemon,hero] {PET_nameDef} fainted once too often, standing in front of {PAWN_nameDef}. This time it didn't get up.</li>
+        <li>[oldage] {PET_nameDef} died of old age, warm and fed, with {PAWN_nameDef} beside it. Out here that's the best ending there is.</li>
+        <li>[oldage] {PET_nameDef} had grown slow and grey, and went quietly in the end. {PAWN_nameDef} said it had earned the rest.</li>
       </plain>
       <warm>
         <li>{PAWN_nameDef} thanked {PET_nameDef} out loud, for everything, and then asked to be left alone for a minute.</li>
@@ -246,6 +250,10 @@
         <li>Buried {PET_nameDef} today. Somebody scratched the name into a board for the grave. I didn't ask them to.</li>
         <li>[night] The room is too quiet. I didn't know an animal could breathe that loudly until it stopped.</li>
         <li>[child] They say {PET_nameDef} went to sleep and won't wake up. I'm not stupid. I know what dead is.</li>
+        <li>[pokemon] I kept the ball. I don't know why. There's nothing in it now.</li>
+        <li>[pokemon] All those levels, all that training, and it was the quiet times I'll miss. {PET_nameDef} asleep on my feet.</li>
+        <li>[oldage] {PET_nameDef} grew old here. Not many things get to, out here. I'm glad it was one of them.</li>
+        <li>[oldage] It was slow at the end, and gentle. I held {PET_nameDef} until it was over.</li>
       </plain>
       <warm>
         <li>Thank you, {PET_nameDef}, for waiting at the door every single day.</li>

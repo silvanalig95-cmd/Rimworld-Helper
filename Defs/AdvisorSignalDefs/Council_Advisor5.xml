@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- What Rimfolk's newer systems leave waiting on the player, what a tribal or medieval colony must do before the
+       cold, and two everyday checks (Source/ColonyCouncil/Advisor/AdvisorSignals5.cs, thresholds in AdvisorMath.cs).
+       Each leads to the page, the letter or the plan that deals with it. -->
+
+  <!-- ===================== The newer systems ===================== -->
+
+  <ColonyCouncil.AdvisorSignalDef>
+    <defName>Council_Adv_MissionDue</defName>
+    <label>a mission running out</label>
+    <workerClass>ColonyCouncil.AdvisorWorker_MissionDue</workerClass>
+    <article>Council_Alm_C_WorldEvents</article>
+    <category>Progress</category>
+    <importance>1</importance>
+    <tips>
+      <li>Goods for a mission must be in a stockpile or on a shelf, unforbidden, to count. Something a cook has already claimed doesn't.</li>
+      <li>A mission that fails costs the goodwill it would have earned, and the people who asked remember it.</li>
+      <li>When the goods won't be ready in time, a caravan to a trader may still buy what's missing.</li>
+    </tips>
+  </ColonyCouncil.AdvisorSignalDef>
+
+  <ColonyCouncil.AdvisorSignalDef>
+    <defName>Council_Adv_WorldTrouble</defName>
+    <label>trouble in the region</label>
+    <workerClass>ColonyCouncil.AdvisorWorker_WorldTrouble</workerClass>
+    <article>Council_Alm_C_WorldSituations</article>
+    <category>Health</category>
+    <importance>0.9</importance>
+    <tips>
+      <li>A world event changes what comes to the colony while it lasts: plague in the region makes illness at home likelier, a famine brings the hungry to the gate.</li>
+      <li>Caravans come less often while the region is in trouble, so what the colony lacks now it may not be able to buy.</li>
+      <li>[lowtech] Healroot grown and dried before a fever is worth more than any amount bought after.</li>
+      <li>Help given to a people in a bad year is remembered long after it ends.</li>
+    </tips>
+  </ColonyCouncil.AdvisorSignalDef>
+
+  <ColonyCouncil.AdvisorSignalDef>
+    <defName>Council_Adv_CampWaiting</defName>
+    <label>the camp waiting on an answer</label>
+    <workerClass>ColonyCouncil.AdvisorWorker_CampWaiting</workerClass>
+    <article>Council_Alm_C_Camps</article>
+    <category>Defense</category>
+    <importance>0.7</importance>
+    <tips>
+      <li>A camp's question left unanswered until its time runs out gets the default answer, whether or not it's the one the council would have chosen.</li>
+      <li>How the colony answers a camp is remembered when they leave, and by their people.</li>
+    </tips>
+  </ColonyCouncil.AdvisorSignalDef>
+
+  <ColonyCouncil.AdvisorSignalDef>
+    <defName>Council_Adv_DecreeCost</defName>
+    <label>a decree that costs more than it gives</label>
+    <workerClass>ColonyCouncil.AdvisorWorker_DecreeCost</workerClass>
+    <article>Council_Alm_C_Decrees</article>
+    <category>Comfort</category>
+    <importance>0.8</importance>
+    <tips>
+      <li>A decree is worth its moods while what it does matters more than how people feel about it: rationing in a hungry winter, drills after a raid. This advice speaks only once that reason has passed.</li>
+      <li>A decree enacted again soon after the last time wears thinner, and the bad moods about it grow.</li>
+      <li>Who loves and who hates a decree shows on its card on the Decrees page, before it's enacted.</li>
+    </tips>
+  </ColonyCouncil.AdvisorSignalDef>
+
+  <ColonyCouncil.AdvisorSignalDef>
+    <defName>Council_Adv_OfficeEmpty</defName>
+    <label>an office standing empty</label>
+    <workerClass>ColonyCouncil.AdvisorWorker_OfficeEmpty</workerClass>
+    <article>Council_Alm_C_Offices</article>
+    <category>Work</category>
+    <importance>0.7</importance>
+    <tips>
+      <li>Offices are filled at the yearly election, or by the council from the Decrees page at any time. Overruling the colony's vote costs some trust.</li>
+      <li>Only someone who can do an office's work can hold it: nobody incapable of medicine is ever the physician.</li>
+      <li>An office helps the colony as a whole while it's filled, as well as the one who holds it.</li>
+    </tips>
+  </ColonyCouncil.AdvisorSignalDef>
+
+  <ColonyCouncil.AdvisorSignalDef>
+    <defName>Council_Adv_CalendarUnprepared</defName>
+    <label>a calendar day with nothing laid by</label>
+    <workerClass>ColonyCouncil.AdvisorWorker_CalendarUnprepared</workerClass>
+    <article>Council_Alm_C_Calendar</article>
+    <category>Comfort</category>
+    <importance>0.6</importance>
+    <tips>
+      <li>A feast day is a meal from the stores eaten together: with no meals in store, there's nothing to sit down to.</li>
+      <li>A day of the hunt marks game for the colony's hunters, and a hunter without a bow or a gun can't take part.</li>
+      <li>A bonfire is laid from the colony's wood when it has no campfire to gather round.</li>
+      <li>A day the colony can't keep this year can be let pass, or kept another way, from the Calendar page.</li>
+    </tips>
+  </ColonyCouncil.AdvisorSignalDef>
+
+  <ColonyCouncil.AdvisorSignalDef>
+    <defName>Council_Adv_PromiseBreaking</defName>
+    <label>a promise about to break</label>
+    <workerClass>ColonyCouncil.AdvisorWorker_PromiseBreaking</workerClass>
+    <article>Council_Alm_C_Wishes</article>
+    <category>Comfort</category>
+    <importance>1</importance>
+    <tips>
+      <li>A promise broken hurts more than a wish refused: it costs trust, and the one who asked remembers it for a long while.</li>
+      <li>If it can't be done in time, saying so honestly before it runs out costs less than letting it lapse.</li>
+    </tips>
+  </ColonyCouncil.AdvisorSignalDef>
+
+  <!-- ===================== Before the cold, in a tribe or a manor ===================== -->
+
+  <ColonyCouncil.AdvisorSignalDef>
+    <defName>Council_Adv_StorageRoof</defName>
+    <label>stores under the open sky</label>
+    <workerClass>ColonyCouncil.AdvisorWorker_StorageRoof</workerClass>
+    <article>Council_Alm_1_28_SpoilageAndDeterioration</article>
+    <category>Shelter</category>
+    <importance>0.8</importance>
+    <tips>
+      <li>Wood, cloth, leather and tools left out in the weather lose their condition day by day. A roof stops it.</li>
+      <li>A roof needs no walls, only something to hold it up within six cells: a few columns over a stockpile will do.</li>
+      <li>[lowtech] A storehouse of wood and straw is cheap. Keep a torch or fire out of it, or keep it clear of the houses.</li>
+      <li>Meat and vegetables rot in the warm whatever is over them; a roof only keeps the weather off.</li>
+    </tips>
+  </ColonyCouncil.AdvisorSignalDef>
+
+  <ColonyCouncil.AdvisorSignalDef>
+    <defName>Council_Adv_WinterStores</defName>
+    <label>food that won't keep through winter</label>
+    <workerClass>ColonyCouncil.AdvisorWorker_WinterStores</workerClass>
+    <article>Council_Alm_6_03_FoodWithoutFreezer</article>
+    <category>Food</category>
+    <importance>1</importance>
+    <tips>
+      <li>Pemmican keeps for months and needs only meat and vegetables, at a campfire or a stove.</li>
+      <li>Meat keeps only days in the warm. A winter mild enough to grow nothing is usually too mild to freeze it either.</li>
+      <li>Rice, corn and potatoes keep for a month or more on their own; berries and meat don't.</li>
+    </tips>
+  </ColonyCouncil.AdvisorSignalDef>
+
+  <ColonyCouncil.AdvisorSignalDef>
+    <defName>Council_Adv_Firewood</defName>
+    <label>firewood for the winter</label>
+    <workerClass>ColonyCouncil.AdvisorWorker_Firewood</workerClass>
+    <article>Council_Alm_6_04_CampfiresAndStoves</article>
+    <category>Temperature</category>
+    <importance>0.9</importance>
+    <tips>
+      <li>A campfire left lit burns about ten logs a day; torches burn wood too, more slowly.</li>
+      <li>Trees cut in summer, before the snow, are the cheapest firewood there is. Mark a stand of them for cutting.</li>
+      <li>A fire that runs out at night leaves everyone sleeping in the cold, and some of them ill by morning.</li>
+    </tips>
+  </ColonyCouncil.AdvisorSignalDef>
+
+  <!-- ===================== Every day ===================== -->
+
+  <ColonyCouncil.AdvisorSignalDef>
+    <defName>Council_Adv_DoctorBackup</defName>
+    <label>only one doctor</label>
+    <workerClass>ColonyCouncil.AdvisorWorker_DoctorBackup</workerClass>
+    <article>Council_Alm_4_02_DoctorSkill</article>
+    <category>Health</category>
+    <importance>0.9</importance>
+    <tips>
+      <li>A doctor who tends their own wounds does it worse, and can't at all while unconscious.</li>
+      <li>Doctoring at a low priority is enough for a second doctor: they step in when the first is hurt or away.</li>
+      <li>Medicine skill grows fastest with practice on real patients; a second doctor learns on the small cuts and colds.</li>
+    </tips>
+  </ColonyCouncil.AdvisorSignalDef>
+
+  <ColonyCouncil.AdvisorSignalDef>
+    <defName>Council_Adv_BedsDark</defName>
+    <label>beds in the dark</label>
+    <workerClass>ColonyCouncil.AdvisorWorker_BedsDark</workerClass>
+    <article>Council_Alm_2_17_Light</article>
+    <category>Comfort</category>
+    <importance>0.6</importance>
+    <tips>
+      <li>Anyone awake in the dark loses a little mood for it, and a bedroom is where people are awake in the dark most: late at night and early in the morning.</li>
+      <li>A lamp on the wall takes no floor space, which matters most in a small bedroom.</li>
+      <li>[lowtech] A wall torch lights a small room well; keep it away from anything that burns easily.</li>
+      <li>The planned lamps go where they light what is dark now, never beside the door.</li>
+    </tips>
+  </ColonyCouncil.AdvisorSignalDef>
+
+  <ColonyCouncil.AdvisorSignalDef>
+    <defName>Council_Adv_NoSeat</defName>
+    <label>meals eaten without a table</label>
+    <workerClass>ColonyCouncil.AdvisorWorker_NoSeat</workerClass>
+    <article>Council_Alm_2_11_EatingAtTable</article>
+    <category>Comfort</category>
+    <importance>0.7</importance>
+    <tips>
+      <li>Colonists eat where they are when the nearest free seat is too far away, and lose mood for it.</li>
+      <li>A small table and two chairs by the fields or the workshops saves the walk at lunch.</li>
+      <li>Packed meals carried in a pocket are eaten wherever hunger strikes; a table nearby keeps them from eating on the floor.</li>
+    </tips>
+  </ColonyCouncil.AdvisorSignalDef>
+
+</Defs>

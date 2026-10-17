@@ -83,7 +83,9 @@ namespace ColonyCouncil
         public bool CanStartOn(Map map)
         {
             if (!Enabled || camp != null || map == null || !map.IsPlayerHome) return false;
-            if (Now - lastEndedTick < GenDate.TicksPerDay * 15 || GenDate.DaysPassed < 20) return false;
+            // A colony known for its hospitality hears from the road sooner (ColonyTraitDef.campGap).
+            float gap = 15f * (CouncilGameComponent.Instance?.character?.traits?.CampGap ?? 1f);
+            if (Now - lastEndedTick < GenDate.TicksPerDay * gap || GenDate.DaysPassed < 20) return false;
             if (MapFacts.ThreatOn(map)) return false;
             float temp = map.mapTemperature.OutdoorTemp;
             if (temp < -8f || temp > 38f) return false;

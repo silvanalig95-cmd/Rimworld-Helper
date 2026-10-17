@@ -53,7 +53,19 @@
       </li>
       <li>
         <heading>When the colony outgrows a room</heading>
-        <text>The council's priorities notice when a room no longer fits the colony: a dining room with fewer seats than people, a barracks that could become bedrooms now there's enough wall material in store, a hospital without the vitals monitor, hospital beds or sterile tile the colony has researched, and a rec room with less than one game for every three people. Each comes with the fitting larger size to plan, or for the hospital "Upgrade the room", which plans only what's missing in the room you have. This advice is gentle: it never shows among the alerts.</text>
+        <text>The council's priorities notice when a room no longer fits the colony: a dining room with fewer seats than people, a barracks that could become bedrooms now there's enough wall material in store, a hospital without the vitals monitor, hospital beds or sterile tile the colony has researched, and a rec room with less than one game for every three people. Each comes with the fitting larger size to plan, or for the hospital "Upgrade the room", which plans only what's missing in the room you have. This advice is gentle: it never shows among the alerts.
+
+It also notices rooms the colony could make better:</text>
+        <table>
+          <li>Room | When | What it offers</li>
+          <li>A noble's bedroom (Royalty) | it falls short of what the title asks | the room upgraded where it stands, or a roomy bedroom (a master suite for a couple) when it's too small to be enough</li>
+          <li>Kitchen | eight or more people share one stove, there's a second cook, and fewer meals in store than mouths | the kitchen size with the stoves the colony needs</li>
+          <li>Freezer | its stockpile is nearly full while food that spoils lies out in the warm | the next freezer size up</li>
+          <li>Dining room | there are seats enough, but its space is rather tight for five or more people | the next dining room size up</li>
+          <li>Workshop | a bench stands where no light reaches its work spot, or half the benches have no chair at it | the workshop upgraded, or a button that plans a chair on each empty work spot and wall lamps where it's dark</li>
+          <li>Prison cell | it holds prisoners and lacks two of a light, a table, a seat and a cell that isn't awful | the furnished cell, upgraded where it stands</li>
+        </table>
+        <after>Beds no light reaches in a bedroom or barracks that isn't large have advice of their own, with a button that plans wall lamps where the beds lie dark. The planned lamps go where they light the most of what's dark, never beside a door.</after>
       </li>
       <li>
         <heading>Furniture the game doesn't have</heading>

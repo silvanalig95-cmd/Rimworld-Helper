@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    PokéWorld: the council's project to fill the Pokédex (ColonyCouncil.Goal_Pokedex, Integrations/PokeWorldLife.cs),
+    counted from PokéWorld's own Pokédex. Only possible with the mod, with wild Pokémon on the map and a ball belt in the
+    colony or one it can make.
+  -->
+
+  <ColonyCouncil.AmbitionDef>
+    <defName>Council_Amb_PW_Pokedex</defName>
+    <label>pages of the Pokédex</label>
+    <description>Catch five species the colony's Pokédex doesn't have yet.</description>
+    <forbiddenBy><li>NoPets</li></forbiddenBy>
+    <days>25</days>
+    <weight>0.9</weight>
+    <relevantCategories>
+      <li>Idea</li>
+    </relevantCategories>
+    <proposerSkills>
+      <li>Animals</li>
+    </proposerSkills>
+    <goals>
+      <li Class="ColonyCouncil.Goal_Pokedex">
+        <count>5</count>
+      </li>
+    </goals>
+    <pitch>
+      <plain>
+        <li>Half the Pokédex is question marks. I say we put five names where the question marks are, before the season's out.</li>
+        <li>Every species we catch teaches us something about this land. Five more, and we'll know it better than anyone.</li>
+      </plain>
+      <warm><li>Every Pokémon out there is a friend we haven't met. Let's meet five of them.</li></warm>
+      <blunt><li>Five new species. Belts on, everybody.</li></blunt>
+      <cheerful><li>A Pokédex project. I'll make a chart, with little drawings!</li></cheerful>
+      <gloomy><li>If we don't catch them now, some of them we'll never see again. Five, at least.</li></gloomy>
+      <cold><li>The Pokédex is incomplete, and a fuller one opens doors, the old stories say. Five species is a reasonable target.</li></cold>
+    </pitch>
+    <achieved>
+      <plain>
+        <li>Five new pages in the Pokédex. Everyone signed the margin.</li>
+      </plain>
+      <cheerful><li>Five, and the chart is full. I need a bigger chart!</li></cheerful>
+      <cold><li>Five species added, as planned. The next five will be harder.</li></cold>
+    </achieved>
+  </ColonyCouncil.AmbitionDef>
+
+</Defs>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Almanac: what the council's Priorities page watches, and what its buttons do (Source/ColonyCouncil/Advisor/). -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_C_Priorities</defName>
+    <label>the council's priorities</label>
+    <category>Council</category>
+    <order>23</order>
+    <summary>What the advisor watches, from the food against the winter to a promise about to break, and what its buttons do</summary>
+    <tip>Start at the top of the list. Gentle advice sits low and never shows among the alerts.</tip>
+    <description>Priorities, in the Colony section of the council window, lists what the colony needs right now, worst first. The advisor looks again every hour, and each piece of advice says why it matters, what helps, and a rotating tip. It never acts on its own: every button only shows, plans or opens something for you to decide on.</description>
+    <sections>
+      <li>
+        <heading>The buttons</heading>
+        <table>
+          <li>Button | What it does</li>
+          <li>Show me | Goes to the people, rooms or things the advice is about.</li>
+          <li>Plan the room | Opens the room planner on the fitting room, at the size the colony needs.</li>
+          <li>Upgrade the room | Opens the planner on a room you've built: pick it, and only what's missing is planned.</li>
+          <li>Go to | Opens the council page that deals with it: Decrees for a decree or an empty office, World for a mission or a world event, Wishes for a promise, Calendar for a day.</li>
+          <li>Its own action | Some advice can do the first step for you: show the mission's quest, open the camp's letter, open the Work tab, plan wall lamps where beds lie dark, or plan chairs and lamps at a workshop's benches.</li>
+          <li>Read more | Opens the Almanac page on it.</li>
+        </table>
+      </li>
+      <li>
+        <heading>What it watches</heading>
+        <table>
+          <li>Kind | The advice</li>
+          <li>Food | the food against the coming winter, spoiling food, blight, ripe crops before frost, a week without fruit or vegetables, food that won't keep through a mild winter in a tribe or a manor</li>
+          <li>Shelter and warmth | beds and barracks, cold or hot months ahead, the weather's troubles, stores left under the open sky before winter, firewood short of what the fires will burn by spring</li>
+          <li>Health | doctors, medicine and a hospital, the only doctor with nobody to tend them, convalescents back at work, a plague or a famine in the region while the colony is short of what helps</li>
+          <li>Comfort | rooms without light, beds no light reaches, meals eaten without a table, recreation and its hours, strain near breaking, loneliness, clothes worn to rags</li>
+          <li>The council | wishes about to lapse, promises about to break, trust, a decree whose reason has passed while its moods still cost, an office empty when it matters (no physician with the sick in bed, no reeve at harvest, no keeper of days before a day)</li>
+          <li>Rimfolk's world | a mission near its deadline with its goods not all there, a camp growing tense or hungry, a camp's question left waiting, a calendar day coming round, and one tomorrow with nothing laid by for it</li>
+          <li>Rooms, gently | a dining room with too few seats or too cramped, barracks that could become bedrooms, a hospital without what you've researched, a rec room with too little to do, a noble's bedroom short of the title, a kitchen with one stove for too many, a full freezer, a workshop with dark benches or no chairs, a prison cell without comfort</li>
+        </table>
+        <after>Defenses, power, fire risk, insects under the mountain, the dead, prisoners' needs and an idle research bench are watched too. Where a newer piece of advice says more, the older one steps aside: dark bedrooms and workshops have their own advice with lamps to plan, a mild winter's food has its own, and a calendar day tomorrow with nothing laid by replaces the plain reminder.</after>
+      </li>
+      <li>
+        <heading>When it speaks</heading>
+        <text>A mission is pressing in its last two days, or its last quarter when that is under four. A decree is called costly only once what it was enacted for has passed (the food is no longer low, the threat is days gone) while more people are against it than for it and the moods add up to a loss of three or more. The winter advice comes within about twenty days of the cold, for a tribal or medieval colony, and only when the winter won't freeze the stores on its own. A kitchen has outgrown its stove at eight people with one stove, two cooks and fewer meals than mouths; a freezer is full when 17 of every 20 storage spots are taken while 30 or more pieces of food spoil outside it; a dining room is cramped when its space is rather tight or under two and a half for each of five or more.</text>
+      </li>
+    </sections>
+    <keywords>
+      <li>priorities</li>
+      <li>advisor</li>
+      <li>advice</li>
+      <li>upgrade</li>
+      <li>missions</li>
+      <li>decrees</li>
+      <li>offices</li>
+      <li>winter</li>
+      <li>firewood</li>
+      <li>doctor</li>
+      <li>lamps</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_Basics_ReadingTheCouncil</li>
+      <li>Council_Alm_9_00_RoomPlanner</li>
+      <li>Council_Alm_C_Decrees</li>
+      <li>Council_Alm_C_Offices</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+</Defs>

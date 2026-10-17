@@ -44,6 +44,11 @@
   </KeyBindingDef>
 
   <KeyBindingDef ParentName="Council_KeyBase">
+    <defName>Council_Key_Defenses</defName>
+    <label>council: defenses</label>
+  </KeyBindingDef>
+
+  <KeyBindingDef ParentName="Council_KeyBase">
     <defName>Council_Key_Calendar</defName>
     <label>council: calendar</label>
   </KeyBindingDef>

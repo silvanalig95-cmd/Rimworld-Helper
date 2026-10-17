@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- A council project from the Defenses page's reading of the map (Source/ColonyCouncil/Defense/DefenseGoals.cs). -->
+
+  <ColonyCouncil.AmbitionDef>
+    <defName>Rimfolk_Amb_HoldTheWayIn</defName>
+    <label>hold the way in</label>
+    <description>Put a gate across the way in that most raids take, with cover behind it; on open ground, wall the home in with one gate. Colony → Defenses shows where.</description>
+    <days>16</days>
+    <weight>1</weight>
+    <relevantCategories>
+      <li>Defense</li>
+    </relevantCategories>
+    <proposerSkills>
+      <li>Shooting</li>
+      <li>Melee</li>
+      <li>Construction</li>
+    </proposerSkills>
+    <proposerTraits>
+      <li>Tough</li>
+    </proposerTraits>
+    <goals>
+      <li Class="ColonyCouncil.Goal_HoldTheWayIn">
+        <cover>3</cover>
+      </li>
+    </goals>
+    <pitch>
+      <plain>
+        <li>I've walked the ground. Nearly every raid will come the same way in, and that's where we should be waiting for them, behind a gate.</li>
+        <li>We know where they come from now. A wall across it, one gate, and sandbags behind: let's spend the next fortnight on that.</li>
+      </plain>
+      <warm>
+        <li>I want everyone to know where to stand when the alarm goes, and to have something to stand behind. Let's build the gate.</li>
+      </warm>
+      <blunt>
+        <li>They walk in the same way every time. Put a gate in it.</li>
+      </blunt>
+      <cheerful>
+        <li>Picture it: they come round the hill and there's a gate, and behind it, us. I like that picture.</li>
+      </cheerful>
+      <gloomy>
+        <li>Every raid so far has had the run of the place. Next time it should have to come through a gate.</li>
+      </gloomy>
+      <cold>
+        <li>The ground decides where raids come from. We decide where they stop. A gate, with cover behind it.</li>
+      </cold>
+    </pitch>
+    <achieved>
+      <plain>
+        <li>The gate's up and there's cover behind it. Now we know where the fight will be.</li>
+      </plain>
+      <blunt>
+        <li>Let them come through the gate. That's what it's for.</li>
+      </blunt>
+      <gloomy>
+        <li>A gate won't stop all of them. It'll stop them all coming at once.</li>
+      </gloomy>
+      <cold>
+        <li>The way in is ours now.</li>
+      </cold>
+    </achieved>
+  </ColonyCouncil.AmbitionDef>
+
+</Defs>
