@@ -406,6 +406,9 @@ wishPh.UnionWith(new[] { "KIND", "SPECIES", "OLD", "NEW", "LEVEL" });
 var pawnPrefixes = new HashSet<string> { "PAWN", "FOR", "OTHER", "ENVIED", "ABOUT", "A", "B", "PET", "LEAKER", "TELLER", "X", "SLAYER", "BABY", "THIRD" };
 // The colonist a people remembers by name (World/KinMemory.cs: events, world events, camps).
 pawnPrefixes.Add("FRIEND");
+// Gossip and reputation (Social/Gossip/): the one a story is about, a deed's detail, and the date in a deed's name.
+pawnPrefixes.Add("SUBJECT");
+wishPh.UnionWith(new[] { "DETAIL", "DATE" });
 var pawnSuffixes = new HashSet<string> { "nameDef", "nameFull", "labelShort", "pronoun", "possessive", "objective", "label", "definite", "indefinite", "gender" };
 foreach (var (file, doc) in docs)
 {

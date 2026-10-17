@@ -343,6 +343,7 @@ namespace ColonyCouncil
                     text.Append(" ").Append("CC_Election_Unbeaten".Translate(winner.Named("PAWN")).Resolve());
                 CouncilGameComponent.GiveThought(winner, CouncilDefOf.Council_ElectedToOffice);
                 comp.journals.Write(winner, "Council_Journal_Elected", null, office.label.Named("OFFICE"));
+                Deeds.Elected(winner, office, voters);
                 if (previous != null && previous != winner && Valid(previous))
                 {
                     if (office.Seats > 1) benchLost.Add((office, previous, winner));
@@ -421,7 +422,7 @@ namespace ColonyCouncil
                 s += vain ? 6f : 1.5f;
             }
             // A promise taken back counts against those in office; the names the colony gave count for them (Interplay/).
-            return s + Interplay.VoteLean(voter, candidate) + Rand.Range(0f, 2.5f);
+            return s + Interplay.VoteLean(voter, candidate) + Reputations.VoteLean(voter, candidate) + Rand.Range(0f, 2.5f);
         }
 
         /// <summary>The council puts someone else in the seat. Overruling the vote costs the trust of those who wanted the winner.</summary>

@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Gossip (ColonyCouncil.InteractionWorker_Gossip, Source/ColonyCouncil/Social/Gossip/Gossip.cs): one colonist passes
+    on what another did. It comes up in the game's own conversation picker only when the speaker knows of a deed the
+    listener doesn't. The words themselves are said over their heads (Rimfolk_Gossip_Lines.xml); the social log gets
+    one of the lines below: the base lines, or (much more often) a line from the pack for how it was told, with
+    [gossip_topic] from the pack for what it was about. Separate from the talk about the council (Council_Gossip_*).
+  -->
+
+  <InteractionDef>
+    <defName>Rimfolk_Gossip</defName>
+    <label>passed on some talk</label>
+    <workerClass>ColonyCouncil.InteractionWorker_Gossip</workerClass>
+    <symbol>ColonyCouncil/Symbols/Moment</symbol>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] passed on some talk to [RECIPIENT_nameDef].</li>
+        <li>r_logentry->[INITIATOR_nameDef] lowered [INITIATOR_possessive] voice and told [RECIPIENT_nameDef] what [INITIATOR_pronoun] had heard.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+  </InteractionDef>
+
+  <!-- ===================== How it was told (r_logentry with [gossip_topic]) ===================== -->
+
+  <RulePackDef>
+    <defName>Rimfolk_GossipLog_Good_Plain</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about [gossip_topic].</li>
+        <li>r_logentry->[INITIATOR_nameDef] passed on what [INITIATOR_pronoun] had heard about [gossip_topic] to [RECIPIENT_nameDef].</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about [gossip_topic] over their work.</li>
+        <li>r_logentry->[INITIATOR_nameDef] filled [RECIPIENT_nameDef] in on [gossip_topic].</li>
+        <li>r_logentry->[INITIATOR_nameDef] mentioned [gossip_topic] to [RECIPIENT_nameDef], just as [INITIATOR_pronoun] had heard it.</li>
+        <li>r_logentry->[RECIPIENT_nameDef] asked what the fuss was about, and [INITIATOR_nameDef] told [RECIPIENT_objective] about [gossip_topic].</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about [gossip_topic] while they waited for supper.</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_GossipLog_Good_Praise</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about [gossip_topic], and made it sound better with every sentence.</li>
+        <li>r_logentry->[INITIATOR_nameDef] couldn't stop talking about [gossip_topic], and [RECIPIENT_nameDef] couldn't get a word in.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about [gossip_topic] as if it were an old song.</li>
+        <li>r_logentry->[INITIATOR_nameDef] made sure [RECIPIENT_nameDef] heard about [gossip_topic], every detail of it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] talked up [gossip_topic] to [RECIPIENT_nameDef] with real pride.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about [gossip_topic] twice, the second time with more in it.</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_GossipLog_Good_Scorn</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about [gossip_topic], and made it sound like nothing much.</li>
+        <li>r_logentry->[INITIATOR_nameDef] brushed off [gossip_topic] when [RECIPIENT_nameDef] brought it up.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [gossip_topic] wasn't half what people were making of it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] shrugged through the story of [gossip_topic] for [RECIPIENT_nameDef].</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about [gossip_topic], with a few things left out.</li>
+        <li>r_logentry->[INITIATOR_nameDef] said [INITIATOR_pronoun] was tired of hearing about [gossip_topic], then told [RECIPIENT_nameDef] all about it anyway.</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_GossipLog_Good_Joke</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] turned [gossip_topic] into a joke, and [RECIPIENT_nameDef] laughed.</li>
+        <li>r_logentry->[INITIATOR_nameDef] acted out [gossip_topic] for [RECIPIENT_nameDef], with more flourishes than it ever had.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] a version of [gossip_topic] with a punchline it didn't have.</li>
+        <li>r_logentry->[INITIATOR_nameDef] did the voices while telling [RECIPIENT_nameDef] about [gossip_topic].</li>
+        <li>r_logentry->[INITIATOR_nameDef] had [RECIPIENT_nameDef] in stitches over [gossip_topic].</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_GossipLog_Bad_Plain</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about [gossip_topic], keeping [INITIATOR_possessive] voice down.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked over [gossip_topic] in low voices.</li>
+        <li>r_logentry->[INITIATOR_nameDef] passed on to [RECIPIENT_nameDef] what [INITIATOR_pronoun] knew about [gossip_topic].</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about [gossip_topic], and they both went quiet for a while.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [RECIPIENT_pronoun] had heard about [gossip_topic].</li>
+        <li>r_logentry->[INITIATOR_nameDef] filled [RECIPIENT_nameDef] in on [gossip_topic] without taking sides.</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_GossipLog_Bad_Praise</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about [gossip_topic], and was quick to add that there was more to it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] played down [gossip_topic] when [RECIPIENT_nameDef] brought it up.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about [gossip_topic] and spent longer on the excuses than the story.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] not to judge too quickly over [gossip_topic].</li>
+        <li>r_logentry->[INITIATOR_nameDef] stuck up for the one at the middle of [gossip_topic] while telling [RECIPIENT_nameDef] about it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [gossip_topic] could have happened to anyone.</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_GossipLog_Bad_Scorn</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about [gossip_topic], and it got worse every time [INITIATOR_pronoun] came back to it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] made sure [RECIPIENT_nameDef] heard the worst of [gossip_topic].</li>
+        <li>r_logentry->[INITIATOR_nameDef] went through [gossip_topic] for [RECIPIENT_nameDef] in unkind detail.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about [gossip_topic] and added a few things that may not have happened.</li>
+        <li>r_logentry->[INITIATOR_nameDef] couldn't hide how much [INITIATOR_pronoun] enjoyed telling [RECIPIENT_nameDef] about [gossip_topic].</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [gossip_topic] was just what [INITIATOR_pronoun] had always expected.</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_GossipLog_Bad_Joke</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] made a joke out of [gossip_topic], and [RECIPIENT_nameDef] laughed despite [RECIPIENT_objective]self.</li>
+        <li>r_logentry->[INITIATOR_nameDef] did an impression to go with [gossip_topic], for [RECIPIENT_nameDef].</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about [gossip_topic] in a way that had them both snorting.</li>
+        <li>r_logentry->[INITIATOR_nameDef] couldn't tell [RECIPIENT_nameDef] about [gossip_topic] without laughing.</li>
+        <li>r_logentry->[INITIATOR_nameDef] turned [gossip_topic] into a story [RECIPIENT_nameDef] will be repeating for days.</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_GossipLog_Boast</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] all about [INITIATOR_possessive] part in [gossip_topic].</li>
+        <li>r_logentry->[INITIATOR_nameDef] made sure [RECIPIENT_nameDef] knew who was behind [gossip_topic].</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about [gossip_topic], mostly the parts about [INITIATOR_objective]self.</li>
+        <li>r_logentry->[INITIATOR_nameDef] brought up [gossip_topic] again, in case [RECIPIENT_nameDef] had forgotten who did it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] gave [RECIPIENT_nameDef] [INITIATOR_possessive] own account of [gossip_topic], at length.</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_GossipLog_Present</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] brought up [gossip_topic] with [RECIPIENT_nameDef], loud enough for the one it was about to hear.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about [gossip_topic] with the one it concerned standing right there.</li>
+        <li>r_logentry->[INITIATOR_nameDef] talked about [gossip_topic] in front of the very person it was about.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about [gossip_topic] without bothering to lower [INITIATOR_possessive] voice.</li>
+        <li>r_logentry->[INITIATOR_nameDef] made a point of discussing [gossip_topic] where the one involved could hear every word.</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <!-- ===================== What it was about (gossip_topic) ===================== -->
+
+  <RulePackDef>
+    <defName>Rimfolk_GossipTopic_Rescue</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->the rescue in the last fight</li>
+        <li>gossip_topic->who carried whom out of the fighting</li>
+        <li>gossip_topic->someone going back for the wounded under fire</li>
+        <li>gossip_topic->the wounded who were dragged clear</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_GossipTopic_Fled</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->who ran when the fighting started</li>
+        <li>gossip_topic->someone bolting from the fight</li>
+        <li>gossip_topic->the empty place on the wall during the last fight</li>
+        <li>gossip_topic->who was missing when it mattered</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_GossipTopic_HeldLine</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->who held the line in the last fight</li>
+        <li>gossip_topic->the ones who stayed on the wall</li>
+        <li>gossip_topic->the last fight and who stood firm</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_GossipTopic_Kills</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->who brought the most of them down</li>
+        <li>gossip_topic->the tally from the last fight</li>
+        <li>gossip_topic->the count of fallen raiders and whose they were</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_GossipTopic_Tended</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->the long nights at the sickbeds</li>
+        <li>gossip_topic->who kept the wounded alive</li>
+        <li>gossip_topic->the days of tending after the fighting</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_GossipTopic_Stranger</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->a kindness to a stranger</li>
+        <li>gossip_topic->a traveller who left with a full belly</li>
+        <li>gossip_topic->how one of ours treated a passing stranger</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_GossipTopic_Recruited</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->the prisoner who was talked round</li>
+        <li>gossip_topic->how a prisoner came to join us</li>
+        <li>gossip_topic->the newest of us and who won them over</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_GossipTopic_Tantrum</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->a tantrum and the broken things it left</li>
+        <li>gossip_topic->someone's temper and the furniture that paid for it</li>
+        <li>gossip_topic->the shouting and smashing the other day</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_GossipTopic_Insults</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->a day of insults</li>
+        <li>gossip_topic->someone's sharp tongue the other day</li>
+        <li>gossip_topic->the names someone called the others</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_GossipTopic_Berserk</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->someone going berserk</li>
+        <li>gossip_topic->the rage that had to be held down</li>
+        <li>gossip_topic->the fit that frightened everyone</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_GossipTopic_LashedOut</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->someone who hurt one of ours in a fit</li>
+        <li>gossip_topic->the bruises from that rage</li>
+        <li>gossip_topic->who got hurt when someone lost their mind</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_GossipTopic_StartedFight</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->who threw the first punch</li>
+        <li>gossip_topic->a fight that started over nothing</li>
+        <li>gossip_topic->the scuffle by the stores</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_GossipTopic_Hoarded</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->the food someone ate through in the hungry days</li>
+        <li>gossip_topic->who ate while the rest went short</li>
+        <li>gossip_topic->the missing stores in the lean days</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_GossipTopic_KeptSecret</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->a secret someone kept all that time</li>
+        <li>gossip_topic->how well one of ours keeps a confidence</li>
+        <li>gossip_topic->who knew and never said a word</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_GossipTopic_Betrayed</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->a secret that got out and who let it</li>
+        <li>gossip_topic->someone who couldn't keep a confidence</li>
+        <li>gossip_topic->the trust somebody broke</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_GossipTopic_Masterwork</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->a piece of fine work everyone is admiring</li>
+        <li>gossip_topic->the best thing made here in a long while</li>
+        <li>gossip_topic->a masterwork from the workshop</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_GossipTopic_GreatWork</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->who pushed the council's plan through</li>
+        <li>gossip_topic->the council's work and who saw it done</li>
+        <li>gossip_topic->the finished project and the one behind it</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_GossipTopic_Botched</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->an operation that went wrong</li>
+        <li>gossip_topic->the surgery that left someone worse off</li>
+        <li>gossip_topic->who held the knife when it went badly</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_GossipTopic_Idle</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->who has been standing about while the rest work</li>
+        <li>gossip_topic->someone's long rests between short tasks</li>
+        <li>gossip_topic->who never seems to have a job in hand</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_GossipTopic_Skipped</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->the empty seat at the council meeting</li>
+        <li>gossip_topic->who didn't bother with the council</li>
+        <li>gossip_topic->someone who stayed away from the meeting</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_GossipTopic_Contest</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->a friendly contest and who won it</li>
+        <li>gossip_topic->the last contest and the boasting after it</li>
+        <li>gossip_topic->who came out on top in the last contest</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_GossipTopic_Elected</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->the last vote and who won it</li>
+        <li>gossip_topic->the new officer and how the votes fell</li>
+        <li>gossip_topic->who the colony chose at the vote</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_GossipTopic_Cruelty</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->the way someone treated a fallen raider</li>
+        <li>gossip_topic->a cruelty out where the fighting was</li>
+        <li>gossip_topic->what someone did to an enemy lying hurt</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_GossipTopic_Prisoner</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->what was done to a prisoner</li>
+        <li>gossip_topic->the business in the prison cells</li>
+        <li>gossip_topic->who did the grim work with the prisoners</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_GossipTopic_Cheated</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->an affair that came to light</li>
+        <li>gossip_topic->someone who went behind a partner's back</li>
+        <li>gossip_topic->a broken promise between two people</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_GossipTopic_Breakup</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->a couple who aren't one any more</li>
+        <li>gossip_topic->who ended it with whom</li>
+        <li>gossip_topic->the latest heartbreak in the colony</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_GossipTopic_Generic</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->something one of the others did</li>
+        <li>gossip_topic->the latest talk about the others</li>
+        <li>gossip_topic->a story going round</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+</Defs>

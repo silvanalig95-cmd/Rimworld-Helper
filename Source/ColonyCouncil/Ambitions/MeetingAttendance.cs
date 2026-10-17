@@ -656,6 +656,7 @@ namespace ColonyCouncil
         /// </summary>
         public static void AbsenteeEffects(CouncilMeeting m)
         {
+            Deeds.MeetingSkipped(m);
             foreach (var inv in m.invites)
             {
                 var p = inv.pawn;

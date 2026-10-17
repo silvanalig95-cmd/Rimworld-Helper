@@ -994,6 +994,7 @@ namespace ColonyCouncil
             if (a.proposer != null) CouncilGameComponent.Speak(a.proposer, line, new Color(0.6f, 1f, 0.6f));
             comp.AddChronicle(new ChronicleEntry(ChronicleKind.AmbitionAchieved,
                 "CC_Chronicle_AmbitionAchieved".Translate(a.def.label).Resolve(), a.proposer));
+            Deeds.GreatWork(a.proposer, a.def.label, map);
             nextMeetingTick = Mathf.Max(nextMeetingTick, Find.TickManager.TicksGame + GenDate.TicksPerDay * 3);
             if (!a.def.achievedEffects.NullOrEmpty() && PlayOuts.On && map != null)
                 PlayOuts.Run(a.def.achievedEffects, new DilemmaContext { map = map, a = a.proposer != null && !a.proposer.Dead ? a.proposer : null, why = a.def.LabelCap },

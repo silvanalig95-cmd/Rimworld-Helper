@@ -1,0 +1,507 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Gossip: what a colonist says over their head when passing on what someone did (Source/ColonyCouncil/Social/Gossip/).
+    One pool per way of telling it: a good deed or a bad one, told plainly, in the subject's favour (praise: the good
+    talked up, the bad excused), against them (scorn: the good played down, the bad made worse), as a joke; a proud
+    colonist's own good deed (boast); and a story told with its subject standing right there (present).
+    {PAWN} the speaker, {OTHER} the listener, {SUBJECT} the one it's about, {VICTIM} the other person in it (a name),
+    {DEED} what they did (a deed's text), {DETAIL} its detail (a count, an office, a piece of work).
+    Tags a line can ask for besides the speaker's own (persona:joker, rep:brave...): deed:<theme>, slant:<how>, good/bad,
+    hasvictim/novictim, tonewcomer (the listener is new), aboutfriend/aboutrival/aboutkin (the speaker and the subject),
+    again (not the first time). Speech shows one sentence of up to 90 letters, so each line is one short sentence.
+  -->
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Gossip_Good_Plain</defName>
+    <lines>
+      <plain>
+        <li>{SUBJECT_nameDef} {DEED}, did you hear?</li>
+        <li>Heard {SUBJECT_nameDef} {DEED}.</li>
+        <li>You know {SUBJECT_nameDef} {DEED}?</li>
+        <li>So {SUBJECT_nameDef} {DEED}, apparently.</li>
+        <li>Word is {SUBJECT_nameDef} {DEED}.</li>
+        <li>Somebody told me {SUBJECT_nameDef} {DEED}.</li>
+        <li>Did anyone tell you {SUBJECT_nameDef} {DEED}?</li>
+        <li>[tonewcomer] You'll want to know this one: {SUBJECT_nameDef} {DEED}.</li>
+        <li>[tonewcomer] Since you're new, you should know {SUBJECT_nameDef} {DEED}.</li>
+        <li>[again] {SUBJECT_nameDef} {DEED}, and not for the first time.</li>
+        <li>[aboutkin] My own kin, {SUBJECT_nameDef}, {DEED}.</li>
+        <li>[persona:wary] If it's true, {SUBJECT_nameDef} {DEED}.</li>
+        <li>[deed:rescue,hasvictim] {SUBJECT_nameDef} went back for {VICTIM} with the shooting still going.</li>
+        <li>[deed:rescue] {SUBJECT_nameDef} dragged someone clear while the rest of us kept our heads down.</li>
+        <li>[deed:rescue,hasvictim] {VICTIM} would be dead if {SUBJECT_nameDef} hadn't gone back out.</li>
+        <li>[deed:rescue] Did you see {SUBJECT_nameDef} run into the open to pull someone back?</li>
+        <li>[deed:heldline] {SUBJECT_nameDef} didn't give an inch when they hit the wall.</li>
+        <li>[deed:heldline] {SUBJECT_nameDef} stayed put when it got bad, I saw it myself.</li>
+        <li>[deed:heldline] {SUBJECT_nameDef} was still standing there at the end of it.</li>
+        <li>[deed:kills] {SUBJECT_nameDef} brought down {DETAIL} of them in that last fight.</li>
+        <li>[deed:kills] Count them yourself, {DETAIL} of the raiders fell to {SUBJECT_nameDef}.</li>
+        <li>[deed:kills] {SUBJECT_nameDef} accounted for {DETAIL} of them, more than anyone.</li>
+        <li>[deed:tended] {SUBJECT_nameDef} has hardly slept since the fighting, too busy with the wounded.</li>
+        <li>[deed:tended] Those patients owe their lives to {SUBJECT_nameDef}, and they know it.</li>
+        <li>[deed:tended] {SUBJECT_nameDef} sat up with the wounded night after night.</li>
+        <li>[deed:stranger,hasvictim] {SUBJECT_nameDef} looked after {VICTIM} like one of our own.</li>
+        <li>[deed:stranger] {SUBJECT_nameDef} gave a stranger the warm bowl and kept the cold one.</li>
+        <li>[deed:stranger,hasvictim] {VICTIM} left here thinking well of us, thanks to {SUBJECT_nameDef}.</li>
+        <li>[deed:recruited,hasvictim] {SUBJECT_nameDef} sat outside {VICTIM}'s cell for days until it worked.</li>
+        <li>[deed:recruited,hasvictim] {VICTIM} is one of us now, and that's {SUBJECT_nameDef}'s doing.</li>
+        <li>[deed:keptsecret,hasvictim] {SUBJECT_nameDef} knew {VICTIM}'s secret all along and never said a word.</li>
+        <li>[deed:keptsecret] {SUBJECT_nameDef} sat on that secret for seasons without a whisper.</li>
+        <li>[deed:masterwork] {SUBJECT_nameDef} made {DETAIL}, have you seen it?</li>
+        <li>[deed:masterwork] Go and look at {DETAIL} {SUBJECT_nameDef} made, it's something.</li>
+        <li>[deed:masterwork] {SUBJECT_nameDef} turned out {DETAIL}, the best thing in the place.</li>
+        <li>[deed:greatwork] {SUBJECT_nameDef} pushed and pushed for {DETAIL}, and now look at it.</li>
+        <li>[deed:greatwork] We'd never have finished {DETAIL} without {SUBJECT_nameDef} on at us.</li>
+        <li>[deed:contestwon,hasvictim] {SUBJECT_nameDef} beat {VICTIM} at {DETAIL}, fair and square.</li>
+        <li>[deed:contestwon,hasvictim] {VICTIM} lost to {SUBJECT_nameDef} at {DETAIL}, and took it well.</li>
+        <li>[deed:elected] {SUBJECT_nameDef} won the vote for {DETAIL}, and fairly.</li>
+        <li>[deed:elected] The colony picked {SUBJECT_nameDef} as {DETAIL}, did you vote for {SUBJECT_objective}?</li>
+      </plain>
+      <warm>
+        <li>It warms me, hearing {SUBJECT_nameDef} {DEED}.</li>
+        <li>Good news for once, {SUBJECT_nameDef} {DEED}.</li>
+        <li>I keep thinking about how {SUBJECT_nameDef} {DEED}.</li>
+      </warm>
+      <blunt>
+        <li>{SUBJECT_nameDef} {DEED}.</li>
+        <li>{SUBJECT_nameDef} {DEED}, for the record.</li>
+      </blunt>
+      <cheerful>
+        <li>You'll like this, {SUBJECT_nameDef} {DEED}!</li>
+        <li>Guess what, {SUBJECT_nameDef} {DEED}!</li>
+      </cheerful>
+      <gloomy>
+        <li>At least {SUBJECT_nameDef} {DEED}, which is something.</li>
+        <li>{SUBJECT_nameDef} {DEED}, one good thing in a bad month.</li>
+      </gloomy>
+      <cold>
+        <li>{SUBJECT_nameDef} {DEED}, if it matters to you.</li>
+        <li>For what it's worth, {SUBJECT_nameDef} {DEED}.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Gossip_Good_Praise</defName>
+    <lines>
+      <plain>
+        <li>{SUBJECT_nameDef} {DEED}, and I'd like to see anyone else try.</li>
+        <li>You should hear it properly: {SUBJECT_nameDef} {DEED}.</li>
+        <li>{SUBJECT_nameDef} {DEED}, and made it look easy.</li>
+        <li>Best thing I've heard all season, {SUBJECT_nameDef} {DEED}.</li>
+        <li>{SUBJECT_nameDef} {DEED}, and never once asked for thanks.</li>
+        <li>[aboutfriend] That's my friend {SUBJECT_nameDef}, who {DEED}.</li>
+        <li>[aboutfriend] {SUBJECT_nameDef} {DEED}, that's just who {SUBJECT_pronoun} is.</li>
+        <li>[tonewcomer] Stick close to {SUBJECT_nameDef}, {SUBJECT_pronoun} {DEED}.</li>
+        <li>[again] {SUBJECT_nameDef} {DEED}, same as always.</li>
+        <li>[aboutkin] Family of mine, {SUBJECT_nameDef}, and {SUBJECT_pronoun} {DEED}.</li>
+        <li>[deed:rescue,hasvictim] {SUBJECT_nameDef} walked straight into it for {VICTIM} and didn't even flinch.</li>
+        <li>[deed:rescue] I've never seen anything braver than {SUBJECT_nameDef} going back out there.</li>
+        <li>[deed:rescue,hasvictim] {SUBJECT_nameDef} carried {VICTIM} on one shoulder with shots going past.</li>
+        <li>[deed:heldline] {SUBJECT_nameDef} held that wall near enough alone.</li>
+        <li>[deed:heldline] If {SUBJECT_nameDef} had stepped back, we'd all have gone down.</li>
+        <li>[deed:heldline,persona:bold] {SUBJECT_nameDef} stood there like a rock, and I mean it.</li>
+        <li>[deed:kills] {SUBJECT_nameDef} took down {DETAIL} of them, and I'd swear it was more.</li>
+        <li>[deed:kills] {SUBJECT_nameDef} put down {DETAIL} raiders and never broke a sweat.</li>
+        <li>[deed:tended] {SUBJECT_nameDef} kept every one of the wounded alive by stubbornness alone.</li>
+        <li>[deed:tended] Nobody works a sickbed like {SUBJECT_nameDef}, nobody.</li>
+        <li>[deed:stranger] {SUBJECT_nameDef} would give a stranger the coat off {SUBJECT_possessive} back, and did.</li>
+        <li>[deed:recruited,hasvictim] {SUBJECT_nameDef} could talk anyone round, look at {VICTIM}.</li>
+        <li>[deed:keptsecret] Tell {SUBJECT_nameDef} anything and it goes no further, that's been proved.</li>
+        <li>[deed:masterwork] {SUBJECT_nameDef} made {DETAIL}, and people will talk about it for years.</li>
+        <li>[deed:masterwork] Every piece {SUBJECT_nameDef} makes is better than the last, look at {DETAIL}.</li>
+        <li>[deed:greatwork] All of {DETAIL} is down to {SUBJECT_nameDef}, start to finish.</li>
+        <li>[deed:contestwon,hasvictim] {SUBJECT_nameDef} made {VICTIM} look like a beginner at {DETAIL}.</li>
+        <li>[deed:elected] Best choice we ever made, {SUBJECT_nameDef} as {DETAIL}.</li>
+      </plain>
+      <warm>
+        <li>It does me good to say it, {SUBJECT_nameDef} {DEED}.</li>
+        <li>I'm so proud of {SUBJECT_nameDef}, {SUBJECT_pronoun} {DEED}.</li>
+        <li>There's a good heart in {SUBJECT_nameDef}, {SUBJECT_pronoun} {DEED}.</li>
+      </warm>
+      <blunt>
+        <li>{SUBJECT_nameDef} {DEED}, better than anyone here could.</li>
+        <li>{SUBJECT_nameDef} {DEED}, give {SUBJECT_objective} credit.</li>
+      </blunt>
+      <cheerful>
+        <li>{SUBJECT_nameDef} {DEED}, can you believe it!</li>
+        <li>Three cheers for {SUBJECT_nameDef}, {SUBJECT_pronoun} {DEED}!</li>
+      </cheerful>
+      <gloomy>
+        <li>{SUBJECT_nameDef} {DEED}, more than the rest of us managed.</li>
+      </gloomy>
+      <cold>
+        <li>{SUBJECT_nameDef} {DEED}, which is more than most would.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Gossip_Good_Scorn</defName>
+    <lines>
+      <plain>
+        <li>So {SUBJECT_nameDef} {DEED}, people do things every day.</li>
+        <li>{SUBJECT_nameDef} {DEED}, and I'll never hear the end of it.</li>
+        <li>Everyone's going on about how {SUBJECT_nameDef} {DEED}.</li>
+        <li>Yes, {SUBJECT_nameDef} {DEED}, anyone would have.</li>
+        <li>{SUBJECT_nameDef} {DEED}, if you believe the talk.</li>
+        <li>Luck, mostly, that {SUBJECT_nameDef} {DEED}.</li>
+        <li>[aboutrival] Of course {SUBJECT_nameDef} {DEED}, and made sure we all knew.</li>
+        <li>[again] {SUBJECT_nameDef} {DEED} again, and we all have to clap again.</li>
+        <li>[tonewcomer] You'll hear {SUBJECT_nameDef} {DEED}, don't be impressed.</li>
+        <li>[deed:rescue] {SUBJECT_nameDef} was nearest, that's all, anyone would have gone.</li>
+        <li>[deed:rescue,hasvictim] {VICTIM} was ten steps from the door when {SUBJECT_nameDef} got there.</li>
+        <li>[deed:heldline] {SUBJECT_nameDef} stood behind a wall, which is what walls are for.</li>
+        <li>[deed:kills] {SUBJECT_nameDef} got {DETAIL} of them, and most were already running.</li>
+        <li>[deed:tended] {SUBJECT_nameDef} sat by a few beds, the medicine did the real work.</li>
+        <li>[deed:stranger] {SUBJECT_nameDef} fed a stranger our food and calls it kindness.</li>
+        <li>[deed:recruited,hasvictim] {VICTIM} would have joined anyway, {SUBJECT_nameDef} just happened to be there.</li>
+        <li>[deed:keptsecret] {SUBJECT_nameDef} kept a secret, which is the least you'd expect.</li>
+        <li>[deed:masterwork] {SUBJECT_nameDef} made {DETAIL} with the best materials we had, mind.</li>
+        <li>[deed:masterwork] Anyone could make {DETAIL} with that much time at the bench.</li>
+        <li>[deed:greatwork] {SUBJECT_nameDef} talked a lot about {DETAIL}, the rest of us built it.</li>
+        <li>[deed:contestwon,hasvictim] {SUBJECT_nameDef} beat {VICTIM} at {DETAIL}, and {VICTIM} wasn't trying.</li>
+        <li>[deed:elected] {SUBJECT_nameDef} as {DETAIL}, well, nobody else wanted it.</li>
+      </plain>
+      <warm>
+        <li>Good for {SUBJECT_nameDef}, I suppose, {SUBJECT_pronoun} {DEED}.</li>
+      </warm>
+      <blunt>
+        <li>{SUBJECT_nameDef} {DEED}, so what.</li>
+        <li>{SUBJECT_nameDef} {DEED}, it was the job.</li>
+      </blunt>
+      <cheerful>
+        <li>{SUBJECT_nameDef} {DEED}, someone fetch a drum.</li>
+      </cheerful>
+      <gloomy>
+        <li>{SUBJECT_nameDef} {DEED}, and it won't change anything.</li>
+      </gloomy>
+      <cold>
+        <li>{SUBJECT_nameDef} {DEED}, which was expected of {SUBJECT_objective}.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Gossip_Good_Joke</defName>
+    <lines>
+      <plain>
+        <li>{SUBJECT_nameDef} {DEED}, and now there's no living with {SUBJECT_objective}.</li>
+        <li>Apparently {SUBJECT_nameDef} {DEED}, quick, a song.</li>
+        <li>{SUBJECT_nameDef} {DEED}, we'll need a statue at this rate.</li>
+        <li>{SUBJECT_nameDef} {DEED}, next it'll be walking on water.</li>
+        <li>{SUBJECT_nameDef} {DEED}, so mind you bow when {SUBJECT_pronoun} walks past.</li>
+        <li>Hero of the hour, {SUBJECT_nameDef}, who {DEED}.</li>
+        <li>[deed:rescue] {SUBJECT_nameDef} ran into a fight to fetch someone, which is either brave or daft.</li>
+        <li>[deed:heldline] {SUBJECT_nameDef} stood so still the raiders took {SUBJECT_objective} for a post.</li>
+        <li>[deed:kills] {SUBJECT_nameDef} got {DETAIL} of them, the rest of us are thinking of retiring.</li>
+        <li>[deed:tended] {SUBJECT_nameDef} has sat by the sickbeds so long the patients save {SUBJECT_objective} a pillow.</li>
+        <li>[deed:masterwork] {SUBJECT_nameDef} made {DETAIL} and carries it about like a newborn.</li>
+        <li>[deed:contestwon,hasvictim] {SUBJECT_nameDef} beat {VICTIM} at {DETAIL}, and {VICTIM} wants a rematch hourly.</li>
+        <li>[deed:elected] {SUBJECT_nameDef} is {DETAIL} now, so start practising your bow.</li>
+        <li>[deed:stranger] {SUBJECT_nameDef} takes in every stray that wanders past, people included.</li>
+        <li>[deed:keptsecret] {SUBJECT_nameDef} kept that secret so well {SUBJECT_pronoun} nearly forgot it.</li>
+        <li>[deed:greatwork] {SUBJECT_nameDef} finally got {DETAIL}, and now we'll hear about nothing else.</li>
+        <li>[deed:recruited] {SUBJECT_nameDef} talked a prisoner into joining, probably just for the company.</li>
+      </plain>
+      <blunt>
+        <li>{SUBJECT_nameDef} {DEED}, now {SUBJECT_pronoun}'s unbearable.</li>
+      </blunt>
+      <cheerful>
+        <li>{SUBJECT_nameDef} {DEED}, bring out the cake!</li>
+        <li>All hail {SUBJECT_nameDef}, who {DEED}!</li>
+      </cheerful>
+      <gloomy>
+        <li>{SUBJECT_nameDef} {DEED}, so now we all look worse.</li>
+      </gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Gossip_Bad_Plain</defName>
+    <lines>
+      <plain>
+        <li>{SUBJECT_nameDef} {DEED}, did you hear?</li>
+        <li>Heard {SUBJECT_nameDef} {DEED}.</li>
+        <li>Keep this between us, {SUBJECT_nameDef} {DEED}.</li>
+        <li>You know {SUBJECT_nameDef} {DEED}?</li>
+        <li>Word is {SUBJECT_nameDef} {DEED}.</li>
+        <li>Not to spread it about, but {SUBJECT_nameDef} {DEED}.</li>
+        <li>I don't like saying it, but {SUBJECT_nameDef} {DEED}.</li>
+        <li>[tonewcomer] Before you hear it wrong, {SUBJECT_nameDef} {DEED}.</li>
+        <li>[again] {SUBJECT_nameDef} {DEED}, and it isn't the first time.</li>
+        <li>[persona:wary] Watch yourself, {SUBJECT_nameDef} {DEED}.</li>
+        <li>[deed:fled] {SUBJECT_nameDef} was gone the moment the first shots came in.</li>
+        <li>[deed:fled] When I looked round for {SUBJECT_nameDef}, there was nobody there.</li>
+        <li>[deed:fled] {SUBJECT_nameDef} hid in {SUBJECT_possessive} room until the fighting was over.</li>
+        <li>[deed:tantrum] {SUBJECT_nameDef} smashed a table and two chairs the other day, over nothing.</li>
+        <li>[deed:tantrum] {SUBJECT_nameDef} lost {SUBJECT_possessive} temper and broke whatever was nearest.</li>
+        <li>[deed:tantrum,again] {SUBJECT_nameDef} has had another one of {SUBJECT_possessive} rages.</li>
+        <li>[deed:insults,hasvictim] {SUBJECT_nameDef} called {VICTIM} things I won't repeat, all day long.</li>
+        <li>[deed:insults] {SUBJECT_nameDef} had something nasty to say to everyone yesterday.</li>
+        <li>[deed:berserk] {SUBJECT_nameDef} went completely wild, it took three of us to hold {SUBJECT_objective}.</li>
+        <li>[deed:berserk,hasvictim] {SUBJECT_nameDef} went for {VICTIM} with murder in {SUBJECT_possessive} eyes.</li>
+        <li>[deed:lashedout,hasvictim] {VICTIM} still has the marks from when {SUBJECT_nameDef} lost it.</li>
+        <li>[deed:lashedout,hasvictim] {SUBJECT_nameDef} hurt {VICTIM}, out of {SUBJECT_possessive} mind, but still.</li>
+        <li>[deed:startedfight,hasvictim] {SUBJECT_nameDef} swung at {VICTIM} first, I was there.</li>
+        <li>[deed:startedfight,hasvictim] {SUBJECT_nameDef} and {VICTIM} came to blows, and {SUBJECT_nameDef} started it.</li>
+        <li>[deed:hoarded] {SUBJECT_nameDef} ate through a week's food while the rest of us went without.</li>
+        <li>[deed:hoarded] When the stores were nearly bare, {SUBJECT_nameDef} was still eating.</li>
+        <li>[deed:betrayed,hasvictim] {VICTIM} told {SUBJECT_nameDef} a secret, and now everyone knows it.</li>
+        <li>[deed:betrayed] Don't tell {SUBJECT_nameDef} anything you want kept, that's all I'll say.</li>
+        <li>[deed:contestlost,hasvictim] {SUBJECT_nameDef} lost to {VICTIM} at {DETAIL}, and badly.</li>
+        <li>[deed:contestlost,hasvictim] {VICTIM} beat {SUBJECT_nameDef} at {DETAIL} without really trying.</li>
+        <li>[deed:skipped] {SUBJECT_nameDef} didn't come to the council, didn't even send word.</li>
+        <li>[deed:skipped] There was an empty seat at the council, and it was {SUBJECT_nameDef}'s.</li>
+        <li>[deed:cruelty] {SUBJECT_nameDef} spat at a raider lying hurt in the dirt.</li>
+        <li>[deed:cruelty,hasvictim] {VICTIM} was down and bleeding, and {SUBJECT_nameDef} spat beside {VICTIM}'s face.</li>
+        <li>[deed:prisoner] {SUBJECT_nameDef} did the grim work in the cells and came out as if nothing happened.</li>
+        <li>[deed:prisoner,hasvictim] Did you hear what {SUBJECT_nameDef} did to {VICTIM}?</li>
+        <li>[deed:cheated,hasvictim] {SUBJECT_nameDef} has been seeing someone behind {VICTIM}'s back.</li>
+        <li>[deed:cheated,hasvictim] {VICTIM} found out about {SUBJECT_nameDef} and the other one.</li>
+        <li>[deed:breakup,hasvictim] {SUBJECT_nameDef} and {VICTIM} are finished, and it was {SUBJECT_nameDef} who ended it.</li>
+        <li>[deed:breakup,hasvictim] {SUBJECT_nameDef} broke it off with {VICTIM}, just like that.</li>
+        <li>[deed:breakup,hasvictim] Have you seen {VICTIM} since {SUBJECT_nameDef} ended it?</li>
+        <li>[deed:idle] {SUBJECT_nameDef} spent all of yesterday leaning on a wall while we hauled.</li>
+        <li>[deed:idle] Every time I look up, {SUBJECT_nameDef} is standing about.</li>
+        <li>[deed:idle,again] {SUBJECT_nameDef} has been idling again, all week.</li>
+        <li>[deed:botched,hasvictim] {SUBJECT_nameDef} made a mess of {VICTIM}'s operation.</li>
+        <li>[deed:botched,hasvictim] {VICTIM} went under the knife and came out worse, thanks to {SUBJECT_nameDef}.</li>
+      </plain>
+      <warm>
+        <li>I hate to say it, {SUBJECT_nameDef} {DEED}.</li>
+        <li>Poor {SUBJECT_nameDef}, {SUBJECT_pronoun} {DEED}.</li>
+      </warm>
+      <blunt>
+        <li>{SUBJECT_nameDef} {DEED}.</li>
+        <li>{SUBJECT_nameDef} {DEED}, that's all I know.</li>
+      </blunt>
+      <cheerful>
+        <li>Not a good week for {SUBJECT_nameDef}, {SUBJECT_pronoun} {DEED}.</li>
+      </cheerful>
+      <gloomy>
+        <li>{SUBJECT_nameDef} {DEED}, which doesn't surprise me any more.</li>
+        <li>{SUBJECT_nameDef} {DEED}, it was bound to happen.</li>
+      </gloomy>
+      <cold>
+        <li>{SUBJECT_nameDef} {DEED}, you may as well know.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Gossip_Bad_Praise</defName>
+    <lines>
+      <plain>
+        <li>{SUBJECT_nameDef} {DEED}, but you have to see why.</li>
+        <li>All right, {SUBJECT_nameDef} {DEED}, it was a bad day.</li>
+        <li>{SUBJECT_nameDef} {DEED}, and I'd have done the same.</li>
+        <li>People say {SUBJECT_nameDef} {DEED}, but not the rest.</li>
+        <li>{SUBJECT_nameDef} {DEED} once, and people won't let it go.</li>
+        <li>Go easy on {SUBJECT_nameDef}, {SUBJECT_pronoun} {DEED} and feels awful.</li>
+        <li>[aboutfriend] {SUBJECT_nameDef} {DEED}, and I'm still on {SUBJECT_possessive} side.</li>
+        <li>[aboutkin] {SUBJECT_nameDef} {DEED}, and family sticks by family.</li>
+        <li>[tonewcomer] You'll hear {SUBJECT_nameDef} {DEED}, don't judge {SUBJECT_objective} on that.</li>
+        <li>[deed:fled] {SUBJECT_nameDef} froze, that's all, it happens to people.</li>
+        <li>[deed:fled] {SUBJECT_nameDef} isn't a fighter and never claimed to be.</li>
+        <li>[deed:tantrum] {SUBJECT_nameDef} broke a few things, and most of them were junk anyway.</li>
+        <li>[deed:insults] {SUBJECT_nameDef} said some hard things, and some of them were true.</li>
+        <li>[deed:berserk] That wasn't really {SUBJECT_nameDef} in there, not the one we know.</li>
+        <li>[deed:lashedout,hasvictim] {SUBJECT_nameDef} would never hurt {VICTIM} in {SUBJECT_possessive} right mind.</li>
+        <li>[deed:startedfight,hasvictim] {VICTIM} had been pushing {SUBJECT_nameDef} for days, it was coming.</li>
+        <li>[deed:hoarded] {SUBJECT_nameDef} was starving like everyone else and cracked first.</li>
+        <li>[deed:betrayed] {SUBJECT_nameDef} let a secret slip and hasn't stopped apologising since.</li>
+        <li>[deed:contestlost] {SUBJECT_nameDef} lost, but it was closer than they're saying.</li>
+        <li>[deed:skipped] {SUBJECT_nameDef} had work that couldn't wait, the council can spare one chair.</li>
+        <li>[deed:cruelty] {SUBJECT_nameDef} had just watched that raider try to kill us, remember.</li>
+        <li>[deed:prisoner] {SUBJECT_nameDef} only did what the council asked, someone had to.</li>
+        <li>[deed:cheated] Things weren't good between those two for a long time, believe me.</li>
+        <li>[deed:breakup] {SUBJECT_nameDef} did them both a favour, ending it.</li>
+        <li>[deed:idle] {SUBJECT_nameDef} works when it counts, you just don't see it.</li>
+        <li>[deed:botched] {SUBJECT_nameDef} did what anyone could with what we had to work with.</li>
+      </plain>
+      <warm>
+        <li>{SUBJECT_nameDef} {DEED}, and needs a friend, not a lecture.</li>
+        <li>Be kind to {SUBJECT_nameDef}, {SUBJECT_pronoun} {DEED} and knows it.</li>
+      </warm>
+      <blunt>
+        <li>{SUBJECT_nameDef} {DEED}, it happens, move on.</li>
+      </blunt>
+      <cheerful>
+        <li>{SUBJECT_nameDef} {DEED}, and is sorry, let it go.</li>
+      </cheerful>
+      <gloomy>
+        <li>{SUBJECT_nameDef} {DEED}, and who wouldn't, living like this.</li>
+      </gloomy>
+      <cold>
+        <li>{SUBJECT_nameDef} {DEED}, there were reasons.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Gossip_Bad_Scorn</defName>
+    <lines>
+      <plain>
+        <li>{SUBJECT_nameDef} {DEED}, and I'm not a bit surprised.</li>
+        <li>Of course {SUBJECT_nameDef} {DEED}, what did anyone expect?</li>
+        <li>{SUBJECT_nameDef} {DEED}, and that's the kind version.</li>
+        <li>{SUBJECT_nameDef} {DEED}, and it was worse than that.</li>
+        <li>Mark my words, {SUBJECT_nameDef} {DEED}, and will again.</li>
+        <li>{SUBJECT_nameDef} {DEED}, and didn't even look sorry.</li>
+        <li>[aboutrival] I said it from the start, {SUBJECT_nameDef} {DEED}.</li>
+        <li>[aboutrival] Nobody listened to me, and now {SUBJECT_nameDef} {DEED}.</li>
+        <li>[again] {SUBJECT_nameDef} {DEED} again, and we're to pretend.</li>
+        <li>[tonewcomer] Watch {SUBJECT_nameDef}, that one {DEED}.</li>
+        <li>[deed:fled] {SUBJECT_nameDef} ran, simple as that, and left the rest of us to it.</li>
+        <li>[deed:fled] First sign of trouble and {SUBJECT_nameDef} was nowhere, as usual.</li>
+        <li>[deed:fled] {SUBJECT_nameDef} would leave the lot of us to save {SUBJECT_possessive} own skin.</li>
+        <li>[deed:tantrum] {SUBJECT_nameDef} tore the place apart like a child, over nothing at all.</li>
+        <li>[deed:insults,hasvictim] {SUBJECT_nameDef} had {VICTIM} in tears, and seemed to enjoy it.</li>
+        <li>[deed:berserk] {SUBJECT_nameDef} is dangerous, and one day we won't be able to hold {SUBJECT_objective}.</li>
+        <li>[deed:lashedout,hasvictim] {SUBJECT_nameDef} hurt {VICTIM}, and I don't believe it was any fit.</li>
+        <li>[deed:startedfight,hasvictim] {SUBJECT_nameDef} went for {VICTIM} over nothing, nothing at all.</li>
+        <li>[deed:hoarded] {SUBJECT_nameDef} stuffed {SUBJECT_objective}self while the rest of us chewed bark.</li>
+        <li>[deed:betrayed,hasvictim] {SUBJECT_nameDef} sold out {VICTIM} the first chance there was.</li>
+        <li>[deed:contestlost,hasvictim] {SUBJECT_nameDef} lost to {VICTIM} at {DETAIL} and sulked for a day.</li>
+        <li>[deed:skipped] {SUBJECT_nameDef} can't be bothered with the council, but wants a say in everything.</li>
+        <li>[deed:cruelty] {SUBJECT_nameDef} spat on someone who couldn't stand, that tells you everything.</li>
+        <li>[deed:prisoner] {SUBJECT_nameDef} didn't have to look so calm about it, but did.</li>
+        <li>[deed:cheated,hasvictim] Poor {VICTIM}, everyone knew about {SUBJECT_nameDef} except {VICTIM}.</li>
+        <li>[deed:breakup,hasvictim] {SUBJECT_nameDef} dropped {VICTIM} like an old boot.</li>
+        <li>[deed:idle] {SUBJECT_nameDef} hasn't lifted a finger in days, and still turns up first for supper.</li>
+        <li>[deed:botched,hasvictim] I wouldn't let {SUBJECT_nameDef} near me with a knife, ask {VICTIM}.</li>
+      </plain>
+      <warm>
+        <li>I try to think well of everyone, but {SUBJECT_nameDef} {DEED}.</li>
+      </warm>
+      <blunt>
+        <li>{SUBJECT_nameDef} {DEED}, typical.</li>
+        <li>{SUBJECT_nameDef} {DEED}, enough said.</li>
+      </blunt>
+      <cheerful>
+        <li>Ha, {SUBJECT_nameDef} {DEED}, who could have guessed!</li>
+      </cheerful>
+      <gloomy>
+        <li>{SUBJECT_nameDef} {DEED}, and it'll be one of us next.</li>
+      </gloomy>
+      <cold>
+        <li>{SUBJECT_nameDef} {DEED}, remember that when it matters.</li>
+        <li>{SUBJECT_nameDef} {DEED}, I've made a note of it.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Gossip_Bad_Joke</defName>
+    <lines>
+      <plain>
+        <li>{SUBJECT_nameDef} {DEED}, and we're all very impressed.</li>
+        <li>Big news, {SUBJECT_nameDef} {DEED}.</li>
+        <li>{SUBJECT_nameDef} {DEED}, someone carve it on a plaque.</li>
+        <li>{SUBJECT_nameDef} {DEED}, and I do the impression.</li>
+        <li>{SUBJECT_nameDef} {DEED}, a proud day for all of us.</li>
+        <li>[deed:fled] {SUBJECT_nameDef} is the fastest runner we have, ask any raider.</li>
+        <li>[deed:fled] {SUBJECT_nameDef} fought bravely in the storeroom, all by {SUBJECT_objective}self.</li>
+        <li>[deed:tantrum] {SUBJECT_nameDef} had words with a chair, and the chair lost.</li>
+        <li>[deed:insults] {SUBJECT_nameDef} called me a turnip-headed goat, which I've decided is a compliment.</li>
+        <li>[deed:berserk] {SUBJECT_nameDef} went so wild even the raiders would have stayed home.</li>
+        <li>[deed:startedfight,hasvictim] {SUBJECT_nameDef} and {VICTIM} had a little dance, and {SUBJECT_nameDef} led.</li>
+        <li>[deed:hoarded] {SUBJECT_nameDef} found the stores, and the stores did not survive.</li>
+        <li>[deed:betrayed] Tell {SUBJECT_nameDef} a secret if you want it known by supper.</li>
+        <li>[deed:contestlost,hasvictim] {SUBJECT_nameDef} lost to {VICTIM} at {DETAIL}, and it wasn't even close.</li>
+        <li>[deed:skipped] {SUBJECT_nameDef} sent {SUBJECT_possessive} empty chair to the council instead.</li>
+        <li>[deed:cheated] {SUBJECT_nameDef} has been very busy lately, in two places at once.</li>
+        <li>[deed:breakup] {SUBJECT_nameDef} is free again, form an orderly queue.</li>
+        <li>[deed:idle] {SUBJECT_nameDef} has guarded that wall all week, from a sitting position.</li>
+        <li>[deed:idle] {SUBJECT_nameDef} is saving {SUBJECT_possessive} strength, has been for days.</li>
+        <li>[deed:botched] Let {SUBJECT_nameDef} at you with a knife if you're tired of having two of something.</li>
+      </plain>
+      <blunt>
+        <li>{SUBJECT_nameDef} {DEED}, well done, {SUBJECT_nameDef}.</li>
+      </blunt>
+      <cheerful>
+        <li>Did you hear, {SUBJECT_nameDef} {DEED}, what a legend!</li>
+      </cheerful>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Gossip_Boast</defName>
+    <lines>
+      <plain>
+        <li>Did I tell you I {DEED}?</li>
+        <li>Not to boast, but I {DEED}.</li>
+        <li>I {DEED}, in case nobody mentioned it.</li>
+        <li>You'll have heard I {DEED}, I expect.</li>
+        <li>I {DEED}, and I'd do it again.</li>
+        <li>[tonewcomer] You should know who you're living with, I {DEED}.</li>
+        <li>[persona:proud] Nobody else here {DEED}, only me.</li>
+        <li>[deed:rescue] I went back out there for one of ours while the rest stayed down.</li>
+        <li>[deed:rescue,hasvictim] Ask {VICTIM} who carried {VICTIM} out of that fight.</li>
+        <li>[deed:kills] I put down {DETAIL} of them, I counted.</li>
+        <li>[deed:heldline] I didn't move a step in that fight, not one.</li>
+        <li>[deed:masterwork] Have you seen {DETAIL} I made, go and look.</li>
+        <li>[deed:elected] They voted me in as {DETAIL}, you know.</li>
+        <li>[deed:contestwon,hasvictim] I beat {VICTIM} at {DETAIL}, ask {VICTIM}.</li>
+        <li>[deed:tended] I kept the wounded alive for days, practically alone.</li>
+        <li>[deed:stranger] I looked after that stranger when nobody else would.</li>
+        <li>[deed:keptsecret] I can keep a secret, you know, I proved it.</li>
+        <li>[deed:greatwork] It was me who kept on at the council about {DETAIL}.</li>
+        <li>[deed:recruited,hasvictim] I'm the one who talked {VICTIM} round.</li>
+      </plain>
+      <warm>
+        <li>I don't like to brag, but I {DEED}.</li>
+      </warm>
+      <blunt>
+        <li>I {DEED}, that's all.</li>
+      </blunt>
+      <cheerful>
+        <li>Guess who {DEED}, it was me!</li>
+      </cheerful>
+      <gloomy>
+        <li>I {DEED}, not that anyone noticed.</li>
+      </gloomy>
+      <cold>
+        <li>I {DEED}, remember that.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Gossip_Present</defName>
+    <lines>
+      <plain>
+        <li>{SUBJECT_nameDef} {DEED}, and can't deny it.</li>
+        <li>Here's the one who {DEED}, {OTHER_nameDef}.</li>
+        <li>[slant:plain] {OTHER_nameDef}, you know {SUBJECT_nameDef} {DEED}?</li>
+        <li>[slant:scorn] Look who it is, the one who {DEED}.</li>
+        <li>[slant:scorn] Don't mind {SUBJECT_nameDef}, {SUBJECT_pronoun} only {DEED}.</li>
+        <li>[slant:scorn,bad] We were just saying how {SUBJECT_nameDef} {DEED}.</li>
+        <li>[slant:scorn,bad] Mind yourself, this is the one who {DEED}.</li>
+        <li>[slant:scorn,good] Here comes {SUBJECT_nameDef}, who {DEED}, as we keep hearing.</li>
+        <li>[slant:praise,good] Here's {SUBJECT_nameDef}, who {DEED}, give {SUBJECT_objective} a nod.</li>
+        <li>[slant:praise,good] {OTHER_nameDef}, meet the one who {DEED}.</li>
+        <li>[slant:praise,bad] {SUBJECT_nameDef} {DEED}, and we've all done worse.</li>
+        <li>[slant:joke] Careful, {OTHER_nameDef}, this is the one who {DEED}.</li>
+        <li>[slant:joke] Speak of the devil, {SUBJECT_nameDef}, who {DEED}.</li>
+        <li>[persona:hothead] I'll say it to {SUBJECT_possessive} face, {SUBJECT_nameDef} {DEED}.</li>
+      </plain>
+      <blunt>
+        <li>{SUBJECT_nameDef} {DEED}, and {SUBJECT_pronoun} knows it.</li>
+      </blunt>
+      <cheerful>
+        <li>[good] Oh, {SUBJECT_nameDef}, we were just talking about you, all good things!</li>
+      </cheerful>
+      <gloomy>
+        <li>[bad] {SUBJECT_nameDef} {DEED}, and here {SUBJECT_pronoun} is, as if not.</li>
+      </gloomy>
+      <cold>
+        <li>{SUBJECT_nameDef} {DEED}, as {SUBJECT_pronoun} can confirm.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

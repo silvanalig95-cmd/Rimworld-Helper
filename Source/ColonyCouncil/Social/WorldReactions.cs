@@ -126,6 +126,8 @@ namespace ColonyCouncil
         {
             // A battle the colony will remember goes on its calendar (its own switch).
             CalendarTracker.Notify_Victory(fighters, foe, kills, fallen);
+            // Those who brought many down, and who held their ground, are talked of (Social/Gossip/).
+            Deeds.Victory(fighters, foe, kills, fallen, killsBy);
             if (!On || comp == null || fighters.NullOrEmpty()) return;
             // A real fight: a raid seen off, or a pack brought down. One stray wolf isn't a victory.
             if (kills < 3 && !(foe != null && kills >= 1)) return;
