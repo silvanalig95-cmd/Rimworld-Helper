@@ -224,7 +224,7 @@ namespace ColonyCouncil
             if (Rand.Chance(0.04f * PersonaLean.Confiding(owner)))
             {
                 var friend = social.ties.Where(t => t.kind == TieKind.Friends && t.announced && t.strength >= 50f && t.Involves(owner))
-                    .Select(t => t.Other(owner)).Where(f => f != null && f.IsColonist && !f.Dead && !s.knowers.Contains(f)).RandomElementWithFallback();
+                    .Select(t => t.Other(owner)).Where(f => f != null && f.IsColonist && !f.Dead && !s.knowers.Contains(f) && Reputations.WouldConfideIn(owner, f)).RandomElementWithFallback();
                 if (friend != null) ConfideWhenTogether(comp, s, friend);
             }
             // Someone who knows lets it slip, to whoever they're with; much likelier if they've fallen out since.
@@ -343,6 +343,8 @@ namespace ColonyCouncil
                 comp.social.Weaken(owner, leaker, TieKind.Friends, 30f, "CC_TieNote_Betrayed".Translate());
                 comp.social.Bump(owner, leaker, TieKind.Rivals, 15f, "CC_TieNote_Betrayed".Translate());
             }
+            // A confidence betrayed, and those who kept it, are talked of (Social/Gossip/).
+            Deeds.SecretOut(s, leaker, confessed);
             // Everyone else, according to their nature.
             var ctx = new DilemmaContext { map = owner.MapHeld ?? Find.AnyPlayerHomeMap, a = owner, b = confessed ? null : leaker, why = s.def.label, cause = Causes.Current };
             foreach (var e in s.def.revealEffects)

@@ -1,0 +1,458 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Deeds: what colonists do that the others talk about (ColonyCouncil.DeedDef, Source/ColonyCouncil/Social/Gossip/).
+    facets: how it reflects on the doer, per side of a name, for a deed of size 1 (courage, kindness, diligence, skill,
+    discretion, temper; temper up is a hothead). text: what they did, without the doer ({SUBJECT_...} is the doer,
+    {VICTIM} the other person in it by name, {DETAIL} a detail from the hook); textAlone without anyone else in it.
+    Speech lines put the text after the doer's name (and a boast after "I"), so keep it short (under 45 letters or
+    so) and don't refer back to the doer in it.
+    Triggers: memories (the game gives the one it was done to a memory about the doer), historyEvents (the game names
+    the doer), mentalStates (the doer starts one), encounters (Rimfolk's moments with strangers). Deeds without
+    triggers are recorded by hooks in the code (fights won, contests, secrets, elections, fine work, ambitions, the
+    council meeting, idling, tending, gossiping). Names that aren't in this game (a DLC not loaded) are never met.
+  -->
+
+  <!-- ===================== Fights ===================== -->
+
+  <ColonyCouncil.DeedDef>
+    <defName>Rimfolk_Deed_Rescue</defName>
+    <label>rescued someone under fire</label>
+    <theme>rescue</theme>
+    <facets><courage>12</courage><kindness>6</kindness></facets>
+    <fadeDays>150</fadeDays>
+    <mergeDays>1</mergeDays>
+    <mergeShare>0</mergeShare>
+    <interest>1.5</interest>
+    <text>carried {VICTIM} out of the fight</text>
+    <textAlone>carried one of ours out of the fight</textAlone>
+    <logTopic>Rimfolk_GossipTopic_Rescue</logTopic>
+    <memories><li>RescuedMe</li></memories>
+    <duringFight>true</duringFight>
+  </ColonyCouncil.DeedDef>
+
+  <ColonyCouncil.DeedDef>
+    <defName>Rimfolk_Deed_Fled</defName>
+    <label>ran from a fight</label>
+    <theme>fled</theme>
+    <facets><courage>-12</courage></facets>
+    <size>0.7</size>
+    <draftedSize>1.5</draftedSize>
+    <fadeDays>120</fadeDays>
+    <mergeDays>1</mergeDays>
+    <mergeShare>0.3</mergeShare>
+    <interest>1.4</interest>
+    <text>ran when the fighting started</text>
+    <logTopic>Rimfolk_GossipTopic_Fled</logTopic>
+    <mentalStates><li>Wander_OwnRoom</li><li>PanicFlee</li><li>Terror</li><li>Wander_Sad</li><li>Wander_Psychotic</li><li>GiveUpExit</li></mentalStates>
+    <duringFight>true</duringFight>
+  </ColonyCouncil.DeedDef>
+
+  <ColonyCouncil.DeedDef>
+    <defName>Rimfolk_Deed_HeldLine</defName>
+    <label>held the line</label>
+    <theme>heldline</theme>
+    <facets><courage>5</courage></facets>
+    <fadeDays>90</fadeDays>
+    <interest>0.6</interest>
+    <text>held the line when it was worst</text>
+    <logTopic>Rimfolk_GossipTopic_HeldLine</logTopic>
+  </ColonyCouncil.DeedDef>
+
+  <ColonyCouncil.DeedDef>
+    <defName>Rimfolk_Deed_ManyKills</defName>
+    <label>brought many down in a fight</label>
+    <theme>kills</theme>
+    <facets><courage>7</courage></facets>
+    <fadeDays>120</fadeDays>
+    <interest>1.1</interest>
+    <text>brought down {DETAIL} of them</text>
+    <logTopic>Rimfolk_GossipTopic_Kills</logTopic>
+  </ColonyCouncil.DeedDef>
+
+  <!-- ===================== Care ===================== -->
+
+  <ColonyCouncil.DeedDef>
+    <defName>Rimfolk_Deed_Tended</defName>
+    <label>tended the wounded for days</label>
+    <theme>tended</theme>
+    <facets><kindness>8</kindness><diligence>4</diligence></facets>
+    <fadeDays>100</fadeDays>
+    <mergeDays>6</mergeDays>
+    <interest>0.9</interest>
+    <text>sat with the wounded for days</text>
+    <labelText>the hard days around {DATE}</labelText>
+    <logTopic>Rimfolk_GossipTopic_Tended</logTopic>
+  </ColonyCouncil.DeedDef>
+
+  <ColonyCouncil.DeedDef>
+    <defName>Rimfolk_Deed_StrangerKindness</defName>
+    <label>was kind to a stranger</label>
+    <theme>stranger</theme>
+    <facets><kindness>7</kindness></facets>
+    <fadeDays>90</fadeDays>
+    <interest>0.9</interest>
+    <text>was kind to {VICTIM}, a stranger</text>
+    <textAlone>was kind to a passing stranger</textAlone>
+    <logTopic>Rimfolk_GossipTopic_Stranger</logTopic>
+    <encounters>
+      <li>Council_EncP_GaveWater</li>
+      <li>Council_EncP_KindWords</li>
+      <li>Council_EncR_HopesForMeal</li>
+      <li>Council_EncP_RefugeeThanks</li>
+      <li>Council_EncH_NightTalk</li>
+    </encounters>
+  </ColonyCouncil.DeedDef>
+
+  <ColonyCouncil.DeedDef>
+    <defName>Rimfolk_Deed_Recruited</defName>
+    <label>talked a prisoner round</label>
+    <theme>recruited</theme>
+    <facets><skill>5</skill><kindness>2</kindness></facets>
+    <fadeDays>90</fadeDays>
+    <interest>0.8</interest>
+    <text>talked {VICTIM} round to joining us</text>
+    <logTopic>Rimfolk_GossipTopic_Recruited</logTopic>
+    <memories><li>RecruitedMe</li></memories>
+  </ColonyCouncil.DeedDef>
+
+  <!-- ===================== Tempers ===================== -->
+
+  <ColonyCouncil.DeedDef>
+    <defName>Rimfolk_Deed_Tantrum</defName>
+    <label>threw a tantrum</label>
+    <theme>tantrum</theme>
+    <facets><temper>7</temper></facets>
+    <fadeDays>50</fadeDays>
+    <mergeDays>1</mergeDays>
+    <interest>1.2</interest>
+    <text>smashed things in a rage</text>
+    <labelText>the tantrum on {DATE}</labelText>
+    <logTopic>Rimfolk_GossipTopic_Tantrum</logTopic>
+    <mentalStates><li>Tantrum</li><li>TargetedTantrum</li><li>BedroomTantrum</li></mentalStates>
+  </ColonyCouncil.DeedDef>
+
+  <ColonyCouncil.DeedDef>
+    <defName>Rimfolk_Deed_Insults</defName>
+    <label>went on an insulting spree</label>
+    <theme>insults</theme>
+    <facets><temper>5</temper><kindness>-3</kindness></facets>
+    <fadeDays>40</fadeDays>
+    <mergeDays>1</mergeDays>
+    <interest>1.1</interest>
+    <text>spent a day insulting {VICTIM}</text>
+    <textAlone>spent a day insulting everyone</textAlone>
+    <labelText>the day of insults, {DATE}</labelText>
+    <logTopic>Rimfolk_GossipTopic_Insults</logTopic>
+    <mentalStates><li>InsultingSpree</li><li>TargetedInsultingSpree</li></mentalStates>
+  </ColonyCouncil.DeedDef>
+
+  <ColonyCouncil.DeedDef>
+    <defName>Rimfolk_Deed_Berserk</defName>
+    <label>went berserk</label>
+    <theme>berserk</theme>
+    <facets><temper>10</temper><kindness>-3</kindness></facets>
+    <fadeDays>90</fadeDays>
+    <mergeDays>1</mergeDays>
+    <interest>1.5</interest>
+    <text>went for {VICTIM} in a blind rage</text>
+    <textAlone>went berserk and was held down</textAlone>
+    <labelText>the rage on {DATE}</labelText>
+    <logTopic>Rimfolk_GossipTopic_Berserk</logTopic>
+    <mentalStates><li>Berserk</li><li>MurderousRage</li><li>SadisticRage</li><li>Slaughterer</li><li>FireStartingSpree</li></mentalStates>
+  </ColonyCouncil.DeedDef>
+
+  <ColonyCouncil.DeedDef>
+    <defName>Rimfolk_Deed_LashedOut</defName>
+    <label>hurt someone in a fit</label>
+    <theme>lashedout</theme>
+    <facets><temper>8</temper><kindness>-8</kindness></facets>
+    <fadeDays>120</fadeDays>
+    <mergeDays>1</mergeDays>
+    <mergeShare>0.3</mergeShare>
+    <interest>1.6</interest>
+    <text>hurt {VICTIM} in a blind fit</text>
+    <labelText>the rage on {DATE}</labelText>
+    <logTopic>Rimfolk_GossipTopic_LashedOut</logTopic>
+    <memories><li>HarmedMe</li></memories>
+    <doerInBreak>true</doerInBreak>
+  </ColonyCouncil.DeedDef>
+
+  <ColonyCouncil.DeedDef>
+    <defName>Rimfolk_Deed_StartedFight</defName>
+    <label>threw the first punch</label>
+    <theme>startedfight</theme>
+    <facets><temper>9</temper></facets>
+    <fadeDays>60</fadeDays>
+    <mergeDays>0.5</mergeDays>
+    <interest>1.3</interest>
+    <text>started a fight with {VICTIM}</text>
+    <labelText>the fight on {DATE}</labelText>
+    <logTopic>Rimfolk_GossipTopic_StartedFight</logTopic>
+  </ColonyCouncil.DeedDef>
+
+  <!-- ===================== Hard times ===================== -->
+
+  <ColonyCouncil.DeedDef>
+    <defName>Rimfolk_Deed_Hoarded</defName>
+    <label>ate through the stores in a hunger</label>
+    <theme>hoarded</theme>
+    <facets><kindness>-6</kindness><diligence>-2</diligence></facets>
+    <fadeDays>120</fadeDays>
+    <mergeDays>2</mergeDays>
+    <interest>1.5</interest>
+    <text>ate our stores while we went short</text>
+    <labelText>the hungry days around {DATE}</labelText>
+    <logTopic>Rimfolk_GossipTopic_Hoarded</logTopic>
+    <mentalStates><li>Binging_Food</li></mentalStates>
+    <duringHunger>true</duringHunger>
+  </ColonyCouncil.DeedDef>
+
+  <!-- ===================== Secrets ===================== -->
+
+  <ColonyCouncil.DeedDef>
+    <defName>Rimfolk_Deed_KeptSecret</defName>
+    <label>kept a confidence</label>
+    <theme>keptsecret</theme>
+    <facets><discretion>10</discretion></facets>
+    <fadeDays>150</fadeDays>
+    <interest>1</interest>
+    <text>kept {VICTIM}'s secret all along</text>
+    <labelText>the secret that came out on {DATE}</labelText>
+    <logTopic>Rimfolk_GossipTopic_KeptSecret</logTopic>
+  </ColonyCouncil.DeedDef>
+
+  <ColonyCouncil.DeedDef>
+    <defName>Rimfolk_Deed_Betrayed</defName>
+    <label>betrayed a confidence</label>
+    <theme>betrayed</theme>
+    <facets><discretion>-14</discretion><kindness>-3</kindness></facets>
+    <fadeDays>150</fadeDays>
+    <interest>1.8</interest>
+    <text>let {VICTIM}'s secret out</text>
+    <labelText>the secret that came out on {DATE}</labelText>
+    <logTopic>Rimfolk_GossipTopic_Betrayed</logTopic>
+  </ColonyCouncil.DeedDef>
+
+  <ColonyCouncil.DeedDef>
+    <defName>Rimfolk_Deed_Gossiped</defName>
+    <label>carried tales</label>
+    <theme>gossiped</theme>
+    <facets><discretion>-5</discretion></facets>
+    <size>0.2</size>
+    <fadeDays>40</fadeDays>
+    <mergeDays>10</mergeDays>
+    <mergeShare>1</mergeShare>
+    <interest>0.5</interest>
+    <told>false</told>
+    <text>carried tales about the others</text>
+    <labelText>the talk around {DATE}</labelText>
+    <logTopic>Rimfolk_GossipTopic_Generic</logTopic>
+  </ColonyCouncil.DeedDef>
+
+  <!-- ===================== Work and craft ===================== -->
+
+  <ColonyCouncil.DeedDef>
+    <defName>Rimfolk_Deed_Masterwork</defName>
+    <label>made a masterwork</label>
+    <theme>masterwork</theme>
+    <facets><skill>8</skill></facets>
+    <fadeDays>120</fadeDays>
+    <interest>1</interest>
+    <text>made {DETAIL}</text>
+    <logTopic>Rimfolk_GossipTopic_Masterwork</logTopic>
+  </ColonyCouncil.DeedDef>
+
+  <ColonyCouncil.DeedDef>
+    <defName>Rimfolk_Deed_GreatWork</defName>
+    <label>saw a great work through</label>
+    <theme>greatwork</theme>
+    <facets><diligence>8</diligence><skill>3</skill></facets>
+    <fadeDays>150</fadeDays>
+    <interest>0.8</interest>
+    <text>pushed {DETAIL} through the council</text>
+    <labelText>the council's work, finished on {DATE}</labelText>
+    <logTopic>Rimfolk_GossipTopic_GreatWork</logTopic>
+  </ColonyCouncil.DeedDef>
+
+  <ColonyCouncil.DeedDef>
+    <defName>Rimfolk_Deed_Botched</defName>
+    <label>botched an operation</label>
+    <theme>botched</theme>
+    <facets><skill>-8</skill></facets>
+    <fadeDays>90</fadeDays>
+    <interest>1.3</interest>
+    <text>botched {VICTIM}'s operation</text>
+    <logTopic>Rimfolk_GossipTopic_Botched</logTopic>
+    <memories><li>BotchedMySurgery</li></memories>
+  </ColonyCouncil.DeedDef>
+
+  <ColonyCouncil.DeedDef>
+    <defName>Rimfolk_Deed_Idle</defName>
+    <label>idled while the others worked</label>
+    <theme>idle</theme>
+    <facets><diligence>-6</diligence></facets>
+    <fadeDays>45</fadeDays>
+    <mergeDays>7</mergeDays>
+    <mergeShare>0.6</mergeShare>
+    <interest>1</interest>
+    <text>stood about while the rest worked</text>
+    <labelText>the days around {DATE}</labelText>
+    <logTopic>Rimfolk_GossipTopic_Idle</logTopic>
+  </ColonyCouncil.DeedDef>
+
+  <ColonyCouncil.DeedDef>
+    <defName>Rimfolk_Deed_SkippedMeeting</defName>
+    <label>didn't come to the council</label>
+    <theme>skipped</theme>
+    <facets><diligence>-5</diligence></facets>
+    <fadeDays>40</fadeDays>
+    <interest>0.7</interest>
+    <text>didn't bother coming to the council</text>
+    <labelText>the council meeting on {DATE}</labelText>
+    <logTopic>Rimfolk_GossipTopic_Skipped</logTopic>
+  </ColonyCouncil.DeedDef>
+
+  <!-- ===================== Contests and votes ===================== -->
+
+  <ColonyCouncil.DeedDef>
+    <defName>Rimfolk_Deed_ContestWon</defName>
+    <label>won a contest</label>
+    <theme>contestwon</theme>
+    <facets><skill>3</skill></facets>
+    <size>0.7</size>
+    <fadeDays>30</fadeDays>
+    <interest>0.7</interest>
+    <text>beat {VICTIM} at {DETAIL}</text>
+    <textAlone>won at {DETAIL}</textAlone>
+    <logTopic>Rimfolk_GossipTopic_Contest</logTopic>
+    <notInFight>true</notInFight>
+  </ColonyCouncil.DeedDef>
+
+  <ColonyCouncil.DeedDef>
+    <defName>Rimfolk_Deed_ContestLost</defName>
+    <label>lost a contest</label>
+    <theme>contestlost</theme>
+    <facets><skill>-2.5</skill></facets>
+    <size>0.6</size>
+    <fadeDays>25</fadeDays>
+    <interest>0.6</interest>
+    <text>lost to {VICTIM} at {DETAIL}</text>
+    <textAlone>lost at {DETAIL}</textAlone>
+    <logTopic>Rimfolk_GossipTopic_Contest</logTopic>
+    <notInFight>true</notInFight>
+  </ColonyCouncil.DeedDef>
+
+  <ColonyCouncil.DeedDef>
+    <defName>Rimfolk_Deed_Elected</defName>
+    <label>won an election</label>
+    <theme>elected</theme>
+    <facets><diligence>5</diligence><discretion>2</discretion></facets>
+    <fadeDays>120</fadeDays>
+    <interest>0.6</interest>
+    <text>was voted in as {DETAIL}</text>
+    <labelText>the vote on {DATE}</labelText>
+    <logTopic>Rimfolk_GossipTopic_Elected</logTopic>
+  </ColonyCouncil.DeedDef>
+
+  <!-- ===================== Cruelty ===================== -->
+
+  <ColonyCouncil.DeedDef>
+    <defName>Rimfolk_Deed_SpatOnFallen</defName>
+    <label>spat on a fallen enemy</label>
+    <theme>cruelty</theme>
+    <facets><kindness>-9</kindness></facets>
+    <fadeDays>90</fadeDays>
+    <interest>1.2</interest>
+    <text>spat at {VICTIM} lying hurt</text>
+    <textAlone>spat at a fallen raider in the dirt</textAlone>
+    <logTopic>Rimfolk_GossipTopic_Cruelty</logTopic>
+    <encounters><li>Council_EncP_SpatOn</li></encounters>
+  </ColonyCouncil.DeedDef>
+
+  <ColonyCouncil.DeedDef>
+    <defName>Rimfolk_Deed_Executed</defName>
+    <label>carried out an execution</label>
+    <theme>prisoner</theme>
+    <facets><kindness>-5</kindness></facets>
+    <fadeDays>120</fadeDays>
+    <grave>true</grave>
+    <interest>1.3</interest>
+    <text>carried out {VICTIM}'s execution</text>
+    <textAlone>carried out the execution</textAlone>
+    <logTopic>Rimfolk_GossipTopic_Prisoner</logTopic>
+    <historyEvents><li>ExecutedPrisoner</li><li>ExecutedGuest</li></historyEvents>
+  </ColonyCouncil.DeedDef>
+
+  <ColonyCouncil.DeedDef>
+    <defName>Rimfolk_Deed_OrganTaken</defName>
+    <label>took an organ from someone held</label>
+    <theme>prisoner</theme>
+    <facets><kindness>-10</kindness></facets>
+    <fadeDays>150</fadeDays>
+    <mergeDays>1</mergeDays>
+    <mergeShare>0</mergeShare>
+    <interest>1.5</interest>
+    <text>cut an organ out of {VICTIM}</text>
+    <textAlone>cut an organ out of a prisoner</textAlone>
+    <logTopic>Rimfolk_GossipTopic_Prisoner</logTopic>
+    <historyEvents><li>HarvestedOrgan</li><li>HarvestedOrganFromGuest</li></historyEvents>
+  </ColonyCouncil.DeedDef>
+
+  <ColonyCouncil.DeedDef>
+    <defName>Rimfolk_Deed_FedOnPrisoner</defName>
+    <label>fed on a prisoner</label>
+    <theme>prisoner</theme>
+    <facets><kindness>-6</kindness></facets>
+    <fadeDays>90</fadeDays>
+    <mergeDays>3</mergeDays>
+    <mergeShare>0.4</mergeShare>
+    <grave>true</grave>
+    <interest>1.3</interest>
+    <text>fed on {VICTIM}, held in a cell</text>
+    <logTopic>Rimfolk_GossipTopic_Prisoner</logTopic>
+    <memories><li>FedOn_Social</li></memories>
+    <victimOutsider>true</victimOutsider>
+  </ColonyCouncil.DeedDef>
+
+  <!-- ===================== Love ===================== -->
+
+  <ColonyCouncil.DeedDef>
+    <defName>Rimfolk_Deed_Cheated</defName>
+    <label>cheated on a partner</label>
+    <theme>cheated</theme>
+    <facets><discretion>-6</discretion><kindness>-6</kindness></facets>
+    <fadeDays>120</fadeDays>
+    <mergeDays>3</mergeDays>
+    <interest>2</interest>
+    <text>went behind {VICTIM}'s back</text>
+    <logTopic>Rimfolk_GossipTopic_Cheated</logTopic>
+    <memories><li>CheatedOnMe</li></memories>
+  </ColonyCouncil.DeedDef>
+
+  <ColonyCouncil.DeedDef>
+    <defName>Rimfolk_Deed_BrokeUp</defName>
+    <label>broke it off</label>
+    <theme>breakup</theme>
+    <facets><kindness>-2</kindness></facets>
+    <fadeDays>60</fadeDays>
+    <interest>1.6</interest>
+    <text>broke it off with {VICTIM}</text>
+    <logTopic>Rimfolk_GossipTopic_Breakup</logTopic>
+    <memories><li>BrokeUpWithMe</li></memories>
+  </ColonyCouncil.DeedDef>
+
+  <ColonyCouncil.DeedDef>
+    <defName>Rimfolk_Deed_Divorced</defName>
+    <label>divorced</label>
+    <theme>breakup</theme>
+    <facets><kindness>-3</kindness></facets>
+    <fadeDays>90</fadeDays>
+    <interest>1.8</interest>
+    <text>divorced {VICTIM}</text>
+    <logTopic>Rimfolk_GossipTopic_Breakup</logTopic>
+    <memories><li>DivorcedMe</li></memories>
+  </ColonyCouncil.DeedDef>
+
+</Defs>

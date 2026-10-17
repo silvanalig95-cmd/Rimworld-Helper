@@ -61,6 +61,7 @@ namespace ColonyCouncil
                 // Something fine made: counted for the life goals that want one (an elder's last good piece).
                 if (thing.TryGetQuality(out var q) && q >= QualityCategory.Excellent) CouncilGameComponent.Instance?.aspirations?.Notify(worker, "madeFine");
                 PersonaMarks.Notify_Made(worker, thing);
+                Deeds.Made(worker, thing);
             }
             catch (Exception e)
             {

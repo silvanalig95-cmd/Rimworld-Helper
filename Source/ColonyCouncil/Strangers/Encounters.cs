@@ -238,6 +238,7 @@ namespace ColonyCouncil
                 }
             }
             comp.character.Shift(def.ways, text);
+            Deeds.Encounter(def, a, x);
             News.Post(text, new LookTargets(a, x), NewsKind.World, MessageTypeDefOf.SilentInput, def.notable ? Importance.Notable : Importance.Flavor);
             // Into the social log too, where Interaction Bubbles picks it up (Integrations/SocialLog.cs).
             SocialLog.Add(a, x, text);

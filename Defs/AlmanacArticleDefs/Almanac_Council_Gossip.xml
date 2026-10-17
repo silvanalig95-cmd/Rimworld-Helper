@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Gossip and reputation (Source/ColonyCouncil/Social/Gossip/). -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Rimfolk_Alm_C_Gossip</defName>
+    <label>gossip</label>
+    <category>Council</category>
+    <order>9</order>
+    <summary>What colonists say about each other when the one they're talking about isn't there, and how a story changes on its way round.</summary>
+    <tip>Gossip needs no managing. Watch who tells what: a rival's version of a deed says as much about the teller as about the deed.</tip>
+    <description>Colonists notice what the others do: who carried a wounded friend out of a fight, who ran, who threw a tantrum, who sat with the sick for days, who let a secret out. Those who saw it know. Everyone else hears about it, sooner or later, in conversation.
+
+Gossip is an ordinary conversation. The game picks it among the others when two colonists talk, but only when the speaker knows of something the listener doesn't, about someone else, and the one it's about isn't there to hear. The social log gets a line saying what was talked about and how ("Ana told Bo about who ran when the fighting started, and it got worse every time she came back to it"), and the words themselves show over their heads: the teller's line, and often the listener's answer. Gossip is separate from the grumbling about the council, which is about trust in the council.</description>
+    <sections>
+      <li>
+        <heading>How a story is told</heading>
+        <text>The teller colours it by what they think of the one it's about, and by who they are. A friend talks a good deed up and plays a bad one down ("she froze, that's all, it happens to people"). A rival does the opposite. Someone who doesn't care either way tells it plainly. A born joker turns a story into a joke now and then, though never one where someone was hurt or a cruelty was done. A proud colonist may tell of their own good deed, which is believed a good deal less.
+
+A story can grow in the telling, but only so far: passed along a chain of rivals it can grow to about half again as big as it was (60% at most), and excused by friends it shrinks to no less than 40% of what happened. It is never turned round. A bad deed stays bad and nothing is made up out of nothing.</text>
+      </li>
+      <li>
+        <heading>How it's taken</heading>
+        <text>The listener believes it as far as their nature lets them. The wary believe the bad readily and the trusting believe the good. A story against someone they like is believed less, and so is one from someone they don't like. A joke is taken less seriously, and a boast less again. Someone who saw it themselves believes their own eyes.
+
+What it means to them depends on who they are too. The bold make more of courage and more of cowardice. The warm make more of kindness and much more of cruelty. The wary mind a loose tongue, the even-tempered mind a temper (a hothead shrugs it off), the proud and the curious notice skill, and those set in their ways value a steady worker. No deed counts for less than half or more than double with anyone.
+
+The answer shows it: admiring, condemning, laughing, doubting ("Who told you that?"), shrugging it off, or sticking up for someone they think well of. Agreeing brings teller and listener a little closer. Sticking up for the one it's about is a small friction between them.</text>
+      </li>
+      <li>
+        <heading>Said to their face</heading>
+        <text>Most people wait until the one they're talking about has gone. A hothead or a rival doesn't. Told with its subject standing right there, the subject answers for themselves, and if they were being run down they take it badly: they remember being talked about behind their back (-2 mood, -5 opinion of the teller, for a day and a half), the teller feels caught at it, and the two are a little more rivals than before.</text>
+      </li>
+      <li>
+        <heading>How often</heading>
+        <text>One colonist passes on a story at most every ten hours, and the same two not more than once in two days. Fresh news is told more than old, a scandal more than a held line, jokers and the warm talk more than the cold, and people say more about those they feel strongly about. Newcomers (their first 20 days) are told much more, and old news is still news to them, so they learn who's who over their first weeks. The "Moments between colonists" frequency setting covers gossip too, and all of it (gossip, deeds and reputations) follows "Personalities and social life".
+
+Gossiping is talked about in turn. Running others down, or passing on their troubles, is noticed by those who listen, and enough of it gets a colonist known as a gossip (see "reputation").</text>
+      </li>
+    </sections>
+    <keywords><li>gossip</li><li>rumour</li><li>rumor</li><li>talk</li><li>story</li><li>slant</li><li>joke</li><li>newcomer</li></keywords>
+    <seeAlso><li>Rimfolk_Alm_C_Reputation</li><li>Council_Alm_C_Social</li><li>Council_Alm_C_Secrets</li></seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Rimfolk_Alm_C_Reputation</defName>
+    <label>reputation</label>
+    <category>Council</category>
+    <order>9</order>
+    <summary>What the colony says about someone, from the deeds it knows of: brave or a coward, kind or cruel, reliable or idle, skilled, trustworthy or a gossip, a hothead or level-headed.</summary>
+    <tip>A colonist's name is on their character page, under "What people say about them": what they're known for, the deeds behind it, how far each story has gone round, and who thinks what of them for it.</tip>
+    <description>A reputation is what the others make of someone from the deeds they've seen or heard of (see "gossip"). It has six sides, and each runs from bad to good: courage (a coward to fearless), kindness (cruel to good-hearted), work (bone idle to tireless), skill (ham-fisted to masterful), keeping things quiet (a gossip to trustworthy) and temper (level-headed to a hothead).
+
+The colony's view of a person is what everyone else makes of them, added up and shared out over the whole colony, so a name needs its story to have got round. One rescue that everyone has heard of is enough to be called brave; one only a single friend knows of isn't. A side shows from 6 and is strong from 18 (40 at most). When one forms, grows strong or fades away, the news says so ("People have started saying Ana is brave").</description>
+    <sections>
+      <li>
+        <heading>The deeds</heading>
+        <table>
+          <li>Deed | When it's noticed | What it says</li>
+          <li>Rescued someone under fire | carrying one of ours to safety while a fight is on | courage, kindness</li>
+          <li>Ran from a fight | a break that takes them out of a fight (hiding, fleeing, wandering off); counts for more if they had been drafted | a coward</li>
+          <li>Held the line | a hard fight won (one of ours fell, or 6 or more enemies did), for everyone who fought and didn't run | courage</li>
+          <li>Brought many down | 3 or more enemies in one fight | courage</li>
+          <li>Tended the wounded for days | a dozen tends or so over a day or two | kindness, work</li>
+          <li>A tantrum, an insulting spree, a berserk rage | the break itself | temper (an insulting spree and a rage also unkind)</li>
+          <li>Hurt someone in a fit | someone harmed by them while they were in an aggressive break | temper, cruelty</li>
+          <li>Threw the first punch | starting a social fight | temper</li>
+          <li>Ate the stores in a hunger | a food binge while food is short | unkindness, idleness</li>
+          <li>Kept a confidence; betrayed one | a secret coming out: who told it, and who knew and kept it | trustworthy; a gossip</li>
+          <li>Carried tales | running others down in gossip, or passing on their troubles | a gossip</li>
+          <li>A masterwork | something made at masterwork quality (legendary counts double) | skill</li>
+          <li>Saw a great work through | proposing the council ambition that was reached | work, skill</li>
+          <li>Botched an operation | a surgery that went wrong | clumsy</li>
+          <li>Talked a prisoner round | a prisoner recruited | skill, kindness</li>
+          <li>Won or lost a contest | the friendly contests between colonists | skill, a little</li>
+          <li>Won an election | voted into an office | reliable</li>
+          <li>Didn't come to the council | free to come to a meeting and didn't bother | idle</li>
+          <li>Idled while the others worked | 5 or more hours of a day standing about while most of the others worked, seen by someone busy (not at a gathering or a meeting) | idle</li>
+          <li>Kind to a stranger | an encounter with a stranger that was a kindness (water for the fallen, kind words through a cell door, a bowl for a hungry visitor) | kindness</li>
+          <li>A cruelty | spitting on a fallen raider; carrying out an execution; taking an organ from someone held; feeding on a prisoner | cruel</li>
+          <li>Cheated, broke it off, divorced | the game's own memories of being cheated on, left or divorced | unkindness (and a cheat is untrustworthy)</li>
+        </table>
+        <after>Each deed keeps who did it, when, a name for when it was ("the raid on 5th of Aprimay", "the tantrum on 12th of Jugust"), how big it was, and who knows of it: those who saw it from the start, and everyone who heard it since, from whom and in what version.</after>
+      </li>
+      <li>
+        <heading>What a name does</heading>
+        <text>Each person's view of another, from what they've heard and believe, is a small opinion: from -12 ("a bad name, from what I hear") through -7 and -3, to +2, +4 and +7 ("a good name"). The bad is felt sooner than the good. It is never a mood.
+
+Beyond that, a name does a few small things. In a fight, those beside someone known as brave are steadied by it (strain eased by 1.2, or 2 for the fearless, once a day, within the heart's daily limit for company); it only happens with "Systems talk to each other" and "Feelings and strain" on. At an election, what each voter has heard of a candidate leans their vote a little (at most 2 points, next to a candidate's competence and the voter's opinion). Someone known as loose-lipped is confided half as many secrets, a gossip a quarter as many, and someone known to keep things to themselves a quarter more. A strong name on the side a colony name belongs to (brave for the Defender or Deadeye, kind for the Healer, skilled for the Maker, a hothead for the Storm) lowers the bar for that name by 7%, or 15% when strong, and the character page shows the names a colonist holds beside what's said of them.
+
+Lines and moments can ask for a name (rep:brave, rep:coward, rep:kind, rep:cruel, rep:reliable, rep:idle, rep:skilled, rep:clumsy, rep:trustworthy, rep:gossip, rep:hothead, rep:levelheaded), and some do. The warm and the timid give the cruel a wide berth, the bold jibe at a coward, the talk stops when a gossip comes over, the hard-working hand the idle a broom, people tiptoe round a hothead; and the brave are asked how they keep steady, the kind are sought out, the skilled are asked to look at the work, the trustworthy are told things in private. Each of the frictions is small (-1 or -2 mood for a day) and its mood hint says where it comes from.</text>
+      </li>
+      <li>
+        <heading>Fading and limits</heading>
+        <text>Talk dies down. Each deed's weight halves after a set time without a repeat, from 25 days for a lost contest to 150 for a rescue or a secret betrayed, and a deed faded to almost nothing is let go. The same deed again soon after (another day of idling, another blow in the same fit) grows the deed already there instead of adding one. A person keeps 10 deeds at most, the colony 220, and a deed is known by 30 people at most. Deeds of the dead and of those who have left the colony are let go, and so is anything the dead knew.</text>
+      </li>
+    </sections>
+    <keywords><li>reputation</li><li>name</li><li>deed</li><li>brave</li><li>coward</li><li>cruel</li><li>kind</li><li>idle</li><li>gossip</li><li>hothead</li><li>trustworthy</li><li>character page</li></keywords>
+    <seeAlso><li>Rimfolk_Alm_C_Gossip</li><li>Council_Alm_C_Names</li><li>Council_Alm_C_Offices</li><li>Council_Alm_C_Secrets</li></seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+</Defs>

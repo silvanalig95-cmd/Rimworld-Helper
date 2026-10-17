@@ -76,6 +76,12 @@ namespace Balance
         public const float DiscomfortDays = 0.7f;
 
         /// <summary>
+        /// The share of colonists a side of a name shows for (rep: tags, Social/Gossip/): a few in a colony, after a
+        /// story has gone round. On top of the tag condition's own factor.
+        /// </summary>
+        public const float RepTagShare = 0.2f;
+
+        /// <summary>
         /// How often each kind of condition a def can name holds, as a factor on how often the def can be cast (DefSet.Gate).
         /// Ties and passions are common, memories of a death and illnesses rare, a camp or a world event rarer.
         /// </summary>

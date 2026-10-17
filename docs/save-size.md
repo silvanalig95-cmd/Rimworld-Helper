@@ -7,15 +7,17 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 279; modelled: 242; growing without end: 0.
-Rimfolk's part of the save, roughly: **994 KB** after a year, **1,245 KB** after two, **1,306 KB** after five.
+Saved collections found: 282; modelled: 245; growing without end: 0.
+Rimfolk's part of the save, roughly: **1,269 KB** after a year, **1,519 KB** after two, **1,581 KB** after five.
 
 Not modelled (add them to MODEL in the script): `Ailments/AilmentTracker.cs:carrying`, `Ailments/AilmentTracker.cs:healing`, `Calendar/CalendarWatch.cs:awaySince`, `Calendar/CalendarWatch.cs:huntKills`, `Calendar/CalendarWatch.cs:knownCrops`, `Calendar/CalendarWatch.cs:pendingCrops`, `Camps/Camp.cs:asksMade`, `Character/ColonyTraits.cs:today`, `Decrees/Decrees.cs:nightHours`, `Defense/DefenseLine.cs:done`, `Defense/DefenseLine.cs:downed`, `Defense/DefenseLine.cs:lessons`, `Defense/DefenseLine.cs:plans`, `Defense/DefenseLine.cs:raids`, `Defense/DefenseLine.cs:skipped`, `Defense/DefenseLine.cs:span`, `Defense/DefenseLines.cs:lines`, `Defense/DefenseLinesWatch.cs:downedSeen`, `Defense/DefenseLinesWatch.cs:running`, `Epithets/Epithets.cs:founders`, `Health/HealthTracker.cs:worst`, `Persona/PawnPersona.cs:d`, `Persona/PawnPersona.cs:l`, `Persona/PawnPersona.cs:marks`, `Persona/PawnPersona.cs:stances`, `Persona/PersonaTracker.cs:list`, `Persona/PersonaTracker.cs:memories`, `PlayOut/PlayOutTracker.cs:results`, `PlayOut/PlayOuts.cs:game`, `PlayOut/PlayOuts.cs:hands`, `PlayOut/PlayOuts.cs:named`, `PlayOut/PlayOuts.cs:route`, `PlayOut/PlayOuts.cs:tasks`, `Scenarios/ScenarioParts.cs:days`, `Scenarios/ScenarioParts.cs:offices`, `World/FactionMemory.cs:notes`, `World/WorldSituation.cs:followUps`
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
 | `Journal.cs:journals` | the living's, and the 30 departed written in most lately | cap | 30 | 50 | 50 | 468.8 |
+| `Social/Gossip/Deed.cs:heard` | who knows each deed (30 at most a deed), with its deed | cap | 2,000 | 2,000 | 2,000 | 214.8 |
 | `CouncilGameComponent.cs:chronicle` | Caps.Chronicle; the newest 200 always, milestones longest | cap | 300 | 300 | 300 | 102.5 |
+| `Social/Gossip/ReputationTracker.cs:deeds` | 10 per colonist, 220 in all, faded ones dropped | cap | 200 | 200 | 200 | 58.6 |
 | `Journal.cs:everydaySeen` | 24 days | window | 480 | 480 | 480 | 42.2 |
 | `World/FactionMemory.cs:deeds` | 12 deeds per people (12 peoples), fading out | fixed | 144 | 144 | 144 | 28.1 |
 | `Heart/HeartTracker.cs:hearts` | one per colonist, the gone dropped hourly | colonists | 20 | 20 | 20 | 27.3 |
@@ -109,6 +111,7 @@ Not modelled (add them to MODEL in the script): `Ailments/AilmentTracker.cs:carr
 | `Dilemmas/Dilemmas.cs:traditionBreaks` | per tradition | defs | 17 | 17 | 17 | 1.5 |
 | `Ambitions/CouncilMeeting.cs:remarks` | while a meeting is called | while | 10 | 10 | 10 | 1.2 |
 | `Happenings/Happenings.cs:grudges` | grudges 2 years | window | 3 | 6 | 6 | 1.2 |
+| `Social/Gossip/ReputationTracker.cs:told` | one packed number per colonist, the gone dropped daily | colonists | 20 | 20 | 20 | 1.2 |
 | `Strangers/Pets.cs:known` | animals known: the dead get their farewell, the discarded are dropped | fixed | 30 | 30 | 30 | 1.2 |
 | `Offices/Offices.cs:holders` | one per office | defs | 12 | 12 | 12 | 1.1 |
 | `Setbacks/SetbackTracker.cs:bestAt` | one per skill | fixed | 12 | 12 | 12 | 1.1 |

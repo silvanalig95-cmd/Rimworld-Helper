@@ -159,7 +159,7 @@ namespace ColonyCouncil
                 var best = pawns.Where(def.Allows).OrderByDescending(p => p.records.GetValue(def.record)).FirstOrDefault();
                 if (best == null || best == holder) continue;
                 float value = best.records.GetValue(def.record);
-                if (value < def.threshold) continue;
+                if (value < def.threshold * Reputations.EpithetEase(def, best)) continue;
                 if (holder != null && value < holder.records.GetValue(def.record) * def.margin) continue;
                 if (quiet)
                 {

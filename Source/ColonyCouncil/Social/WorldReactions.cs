@@ -130,6 +130,8 @@ namespace ColonyCouncil
             CalendarTracker.Notify_Victory(fighters, foe, kills, fallen);
             // Who held the line, who fought through a costly one, and raid after raid (Persona/Marks.cs).
             PersonaMarks.Notify_Battle(fighters, foe, kills, fallen, killsBy);
+            // Those who brought many down, and who held their ground, are talked of (Social/Gossip/).
+            Deeds.Victory(fighters, foe, kills, fallen, killsBy);
             if (!On || comp == null || fighters.NullOrEmpty()) return;
             // A real fight: a raid seen off, or a pack brought down. One stray wolf isn't a victory.
             if (kills < 3 && !(foe != null && kills >= 1)) return;

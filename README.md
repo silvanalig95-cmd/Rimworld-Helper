@@ -470,6 +470,26 @@ and their parts, ways, habits, quarrels and history) and as a coloured band on t
 two went through together, and the character page has a "Groups and role" section. Almanac: "Groups" and "Roles in a
 group".
 
+### Reputation and gossip: what people say about each other
+Colonists notice what the others do (31 kinds of deed): who carried a wounded friend out of a fight and who ran, who
+held the line or brought many down, who sat with the wounded for days, a tantrum, a berserk rage, the first punch, a
+binge while the stores ran low, a secret kept or let out, a masterwork, a great work seen through, a botched
+operation, a contest or an election won, a kindness to a stranger, a cruelty to a prisoner, an affair or a breakup,
+a week of idling while everyone else worked, a council meeting someone didn't bother with. Those who saw it know.
+Everyone else hears it in **gossip**, a conversation like any other, when the one it's about isn't there: the teller
+colours it by what they think of them and who they are (a friend talks it up or excuses it, a rival runs it down, a
+joker makes it a joke, the proud boast of their own), the story grows a little in the telling but never into
+fiction, and the listener believes it as far as their nature lets them (the wary believe the bad, the trusting the
+good) and makes of it what their character does (the bold admire courage, the warm condemn cruelty). It's said over
+their heads, in about 480 lines by deed, slant and character, and the listener answers.
+
+What the colony knows of someone is their **name**: brave or a coward, kind or cruel, reliable or idle, skilled,
+trustworthy or a gossip, a hothead or level-headed. A name is a small opinion either way, steadies those beside the
+brave in a fight, leans a vote, means fewer secrets for a gossip and a colony name a little sooner, and brings its
+own moments (the cruel given a wide berth, the coward jibed at, the brave asked how they do it). It fades as the talk
+dies down; newcomers pick it up over their first weeks. The character page shows it under "What people say about
+them", with the deeds behind it, who told whom, and who thinks what of them for it.
+
 ### Story: a page for every colonist
 Select a colonist and open the **Story** tab in their inspect panel (next to Bio, Social and Gear): their trust,
 office and earned names, their character and what shaped it, their life goal and how close they are, their personal

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Reputation and gossip (Source/ColonyCouncil/Social/Gossip/): the sides of a name and the word for each once it shows. -->
+  <CC_Rep_Facet_Courage>courage</CC_Rep_Facet_Courage>
+  <CC_Rep_Facet_Kindness>kindness</CC_Rep_Facet_Kindness>
+  <CC_Rep_Facet_Diligence>work</CC_Rep_Facet_Diligence>
+  <CC_Rep_Facet_Skill>skill</CC_Rep_Facet_Skill>
+  <CC_Rep_Facet_Discretion>keeping things quiet</CC_Rep_Facet_Discretion>
+  <CC_Rep_Facet_Temper>temper</CC_Rep_Facet_Temper>
+
+  <CC_Rep_Courage_M2>a coward</CC_Rep_Courage_M2>
+  <CC_Rep_Courage_M1>shaky in a fight</CC_Rep_Courage_M1>
+  <CC_Rep_Courage_P1>brave</CC_Rep_Courage_P1>
+  <CC_Rep_Courage_P2>fearless</CC_Rep_Courage_P2>
+  <CC_Rep_Kindness_M2>cruel</CC_Rep_Kindness_M2>
+  <CC_Rep_Kindness_M1>hard-hearted</CC_Rep_Kindness_M1>
+  <CC_Rep_Kindness_P1>kind</CC_Rep_Kindness_P1>
+  <CC_Rep_Kindness_P2>good-hearted</CC_Rep_Kindness_P2>
+  <CC_Rep_Diligence_M2>bone idle</CC_Rep_Diligence_M2>
+  <CC_Rep_Diligence_M1>idle</CC_Rep_Diligence_M1>
+  <CC_Rep_Diligence_P1>reliable</CC_Rep_Diligence_P1>
+  <CC_Rep_Diligence_P2>tireless</CC_Rep_Diligence_P2>
+  <CC_Rep_Skill_M2>ham-fisted</CC_Rep_Skill_M2>
+  <CC_Rep_Skill_M1>clumsy</CC_Rep_Skill_M1>
+  <CC_Rep_Skill_P1>skilled</CC_Rep_Skill_P1>
+  <CC_Rep_Skill_P2>masterful</CC_Rep_Skill_P2>
+  <CC_Rep_Discretion_M2>a gossip</CC_Rep_Discretion_M2>
+  <CC_Rep_Discretion_M1>loose-lipped</CC_Rep_Discretion_M1>
+  <CC_Rep_Discretion_P1>trustworthy</CC_Rep_Discretion_P1>
+  <CC_Rep_Discretion_P2>as close as a locked door</CC_Rep_Discretion_P2>
+  <CC_Rep_Temper_M2>level-headed</CC_Rep_Temper_M2>
+  <CC_Rep_Temper_M1>steady</CC_Rep_Temper_M1>
+  <CC_Rep_Temper_P1>quick to anger</CC_Rep_Temper_P1>
+  <CC_Rep_Temper_P2>a hothead</CC_Rep_Temper_P2>
+
+  <!-- The character page: "What people say about them". -->
+  <CC_Rep_PageTitle>What people say about them</CC_Rep_PageTitle>
+  <CC_Rep_Known_Good>{PAWN_nameDef} is known to be {GOOD}.</CC_Rep_Known_Good>
+  <CC_Rep_Known_Bad>{PAWN_nameDef} is said to be {BAD}.</CC_Rep_Known_Bad>
+  <CC_Rep_Known_Both>{PAWN_nameDef} is known to be {GOOD}, though people also say {PAWN_pronoun} is {BAD}.</CC_Rep_Known_Both>
+  <CC_Rep_Nothing>Nobody has much to say about {PAWN_objective} yet.</CC_Rep_Nothing>
+  <CC_Rep_NothingSaid>nothing said</CC_Rep_NothingSaid>
+  <CC_Rep_StandingTip>What the colony says about them, from the deeds people know of, side by side. A side shows from 6 and is strong from 18 (40 at most). It is shared out over everyone in the colony, so a name needs the story to have got round, and it fades as the talk dies down.</CC_Rep_StandingTip>
+  <CC_Rep_Called>The colony calls {PAWN_objective} {TITLES}.</CC_Rep_Called>
+  <CC_Rep_Called_Tip>A colony name (an epithet) comes from what someone keeps doing. A strong name on the same side (brave, for the Defender or Deadeye; kind, for the Healer; skilled, for the Maker) earns it sooner.</CC_Rep_Called_Tip>
+  <CC_Rep_Deed>{WHAT} ({LABEL}). {COUNT} of {ALL} have heard.</CC_Rep_Deed>
+  <CC_Rep_Grown_Worse>It sounds worse every time it's told.</CC_Rep_Grown_Worse>
+  <CC_Rep_Grown_Better>It has grown in the telling.</CC_Rep_Grown_Better>
+  <CC_Rep_Grown_Softer>Most have heard a kinder version.</CC_Rep_Grown_Softer>
+  <CC_Rep_Grown_Smaller>Most have heard less of it than it was.</CC_Rep_Grown_Smaller>
+  <CC_Rep_Chain_Inline>It went from {CHAIN}.</CC_Rep_Chain_Inline>
+  <CC_Rep_Chain_To>to</CC_Rep_Chain_To>
+  <CC_Rep_Chain_Saw>Saw it: {0}.</CC_Rep_Chain_Saw>
+  <CC_Rep_Chain_Heard>{WHO} heard it from {FROM}, {HOW}.</CC_Rep_Chain_Heard>
+  <CC_Rep_Chain_Doubts>Not quite believed.</CC_Rep_Chain_Doubts>
+  <CC_Rep_Chain_Nobody>Nobody else knows of it yet.</CC_Rep_Chain_Nobody>
+  <CC_Rep_Chain_Fades>Talk dies down: a deed is half forgotten after a month or a few, unless something new is heard.</CC_Rep_Chain_Fades>
+  <CC_Rep_Slant_Plain>told plainly</CC_Rep_Slant_Plain>
+  <CC_Rep_Slant_Praise>told in a kindly light</CC_Rep_Slant_Praise>
+  <CC_Rep_Slant_Scorn>told unkindly</CC_Rep_Slant_Scorn>
+  <CC_Rep_Slant_Joke>as a joke</CC_Rep_Slant_Joke>
+  <CC_Rep_Slant_Boast>from the one who did it</CC_Rep_Slant_Boast>
+  <CC_Rep_Split_Well>Think well of them for it: {0}.</CC_Rep_Split_Well>
+  <CC_Rep_Split_Ill>Think less of them for it: {0}.</CC_Rep_Split_Ill>
+  <CC_Rep_Split_Unheard>Haven't heard: {0}.</CC_Rep_Split_Unheard>
+  <CC_Rep_Split_Tip>What each of the others makes of them from what they've heard and believe, weighed by their own character: the bold make more of courage, the warm of kindness and cruelty, the wary of a loose tongue. Someone whose good and bad cancel out is in neither list.</CC_Rep_Split_Tip>
+
+  <!-- News when a name forms, grows strong or fades. {WORD} is one of the words above. -->
+  <CC_Rep_News_Formed>People have started saying {PAWN_nameDef} is {WORD}.</CC_Rep_News_Formed>
+  <CC_Rep_News_Faded>People have stopped saying {PAWN_nameDef} is {WORD}; that talk has died down.</CC_Rep_News_Faded>
+
+  <!-- Names for when a deed happened. -->
+  <CC_Rep_Fight_Raid>the raid on {DATE}</CC_Rep_Fight_Raid>
+  <CC_Rep_Fight_Mechs>the mechanoid attack on {DATE}</CC_Rep_Fight_Mechs>
+  <CC_Rep_Fight_Beasts>the fight with the animals on {DATE}</CC_Rep_Fight_Beasts>
+  <CC_Rep_Fight_Other>the fight on {DATE}</CC_Rep_Fight_Other>
+  <CC_Rep_Label_Day>{DATE}</CC_Rep_Label_Day>
+  <CC_Rep_Label_Contest>the contest on {DATE}</CC_Rep_Label_Contest>
+  <CC_Rep_MadeDetail>a {QUALITY} {THING}</CC_Rep_MadeDetail>
+
+  <!-- What a friendly contest was, by the skill that decided it (Moments). -->
+  <CC_Rep_Contest_Melee>arm-wrestling</CC_Rep_Contest_Melee>
+  <CC_Rep_Contest_Intellectual>a game of wits</CC_Rep_Contest_Intellectual>
+  <CC_Rep_Contest_Shooting>pebble-throwing</CC_Rep_Contest_Shooting>
+  <CC_Rep_Contest_Social>storytelling</CC_Rep_Contest_Social>
+  <CC_Rep_Contest_Crafting>a crafting contest</CC_Rep_Contest_Crafting>
+  <CC_Rep_Contest_Plants>growing vegetables</CC_Rep_Contest_Plants>
+  <CC_Rep_Contest_Animals>sparring</CC_Rep_Contest_Animals>
+  <CC_Rep_Contest_Other>a friendly contest</CC_Rep_Contest_Other>
+
+</LanguageData>

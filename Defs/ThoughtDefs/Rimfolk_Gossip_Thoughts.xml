@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Reputation (Source/ColonyCouncil/Social/Gossip/). What someone has heard of another colonist, from the deeds they
+    know of and believe, weighed by their own character: a small opinion either way, the bad sooner felt than the good.
+    It fades as the talk dies down and changes with each new deed heard of.
+  -->
+  <ThoughtDef>
+    <defName>Rimfolk_Rep_HeardOf</defName>
+    <thoughtClass>Thought_SituationalSocial</thoughtClass>
+    <workerClass>ColonyCouncil.ThoughtWorker_Reputation</workerClass>
+    <validWhileDespawned>true</validWhileDespawned>
+    <stages>
+      <li><label>a bad name, from what I hear</label><baseOpinionOffset>-12</baseOpinionOffset></li>
+      <li><label>heard bad things of them</label><baseOpinionOffset>-7</baseOpinionOffset></li>
+      <li><label>heard a few things against them</label><baseOpinionOffset>-3</baseOpinionOffset></li>
+      <li><label>heard good of them</label><baseOpinionOffset>2</baseOpinionOffset></li>
+      <li><label>well spoken of</label><baseOpinionOffset>4</baseOpinionOffset></li>
+      <li><label>a good name, from what I hear</label><baseOpinionOffset>7</baseOpinionOffset></li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- Frictions a name brings (moments in Rimfolk_Gossip_Moments.xml): small, and over in a day. -->
+
+  <ThoughtDef ParentName="Council_FrictionThoughtBase">
+    <defName>Rimfolk_Friction_WideBerth</defName>
+    <stages><li><label>given a wide berth</label><description>They moved down the bench when I sat. I know what they've heard about me.</description><baseMoodEffect>-1</baseMoodEffect><baseOpinionOffset>-4</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_FrictionThoughtBase">
+    <defName>Rimfolk_Friction_FightJibe</defName>
+    <durationDays>1.5</durationDays>
+    <stages><li><label>a jibe about the fighting</label><description>They asked whether I'd be staying for the next raid, and laughed when I walked off.</description><baseMoodEffect>-2</baseMoodEffect><baseOpinionOffset>-5</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_FrictionThoughtBase">
+    <defName>Rimfolk_Friction_TalkStopped</defName>
+    <stages><li><label>the talk stopped when I came over</label><description>They went quiet the moment I sat down. Apparently I can't be trusted with anything.</description><baseMoodEffect>-1</baseMoodEffect><baseOpinionOffset>-3</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_FrictionThoughtBase">
+    <defName>Rimfolk_Friction_HandedWork</defName>
+    <stages><li><label>handed work, pointedly</label><description>They put a broom in my hands without a word, as if I never lift a finger.</description><baseMoodEffect>-1</baseMoodEffect><baseOpinionOffset>-3</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_FrictionThoughtBase">
+    <defName>Rimfolk_Friction_Tiptoed</defName>
+    <stages><li><label>treated like a lit fuse</label><description>They chose every word around me as if I might go off. Maybe I would have.</description><baseMoodEffect>-1</baseMoodEffect><baseOpinionOffset>-3</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+</Defs>

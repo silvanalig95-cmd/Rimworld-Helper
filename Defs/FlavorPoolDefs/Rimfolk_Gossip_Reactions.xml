@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Gossip: the listener's answer, by what they make of it (admire, condemn, laugh, doubt, defend, shrug), and the
+    subject's own when it's said to their face (against: run down; for: talked up). {PAWN} is the one answering,
+    {OTHER} the teller; the rest as in Rimfolk_Gossip_Lines.xml, with the same tags.
+  -->
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Gossip_React_Admire</defName>
+    <lines>
+      <plain>
+        <li>Good for {SUBJECT_objective}.</li>
+        <li>I'll think of {SUBJECT_nameDef} differently now.</li>
+        <li>That's someone I'd want next to me.</li>
+        <li>I didn't know {SUBJECT_nameDef} had it in {SUBJECT_objective}.</li>
+        <li>Remind me to thank {SUBJECT_objective}.</li>
+        <li>That's worth remembering.</li>
+        <li>Huh, {SUBJECT_nameDef}, of all people.</li>
+        <li>[tonewcomer] Good to know who's who around here.</li>
+        <li>[persona:bold,deed:rescue|deed:heldline|deed:kills] I'll stand next to that one any day.</li>
+        <li>[persona:bold] Now that's what I like to hear.</li>
+        <li>[persona:timid,deed:rescue|deed:heldline|deed:kills] I couldn't have done it, not in a hundred years.</li>
+        <li>[persona:proud,deed:masterwork|deed:contestwon] Hm, I could do as well, given the time.</li>
+        <li>[persona:wary] If it's true, good for {SUBJECT_objective}.</li>
+        <li>[persona:curious,deed:masterwork] I want to see it for myself.</li>
+        <li>[persona:joker] Next {SUBJECT_pronoun}'ll want a statue.</li>
+        <li>[deed:keptsecret] I'll remember that the next time I need to talk.</li>
+        <li>[deed:elected] Well, it was a fair vote.</li>
+        <li>[deed:tended] I hope I never need it, but it's good to know.</li>
+        <li>[deed:stranger] That's how it should be done.</li>
+        <li>[slant:praise] You make it sound like a song.</li>
+      </plain>
+      <warm>
+        <li>That's lovely, it really is.</li>
+        <li>[deed:tended|deed:stranger] Bless {SUBJECT_objective}, that's a good heart.</li>
+        <li>I'm glad {SUBJECT_nameDef} is one of ours.</li>
+      </warm>
+      <blunt>
+        <li>Good.</li>
+        <li>Fair play to {SUBJECT_objective}.</li>
+      </blunt>
+      <cheerful>
+        <li>Oh, that's wonderful!</li>
+        <li>Well done, {SUBJECT_nameDef}!</li>
+      </cheerful>
+      <gloomy>
+        <li>Nice to hear something good for a change.</li>
+        <li>Doesn't happen often, does it?</li>
+      </gloomy>
+      <cold>
+        <li>Useful to know.</li>
+        <li>Then {SUBJECT_nameDef} is worth keeping.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Gossip_React_Condemn</defName>
+    <lines>
+      <plain>
+        <li>That's not right.</li>
+        <li>I didn't think {SUBJECT_nameDef} would do that.</li>
+        <li>I'll be keeping an eye on {SUBJECT_objective}.</li>
+        <li>That's an ugly thing to hear.</li>
+        <li>Someone should have a word with {SUBJECT_objective}.</li>
+        <li>I'd rather not have known that.</li>
+        <li>[tonewcomer] Good to know who to watch out for.</li>
+        <li>[persona:warm,deed:cruelty|deed:prisoner|deed:lashedout|deed:hoarded] That's cruel, there's no other word for it.</li>
+        <li>[persona:warm,hasvictim] Poor {VICTIM}, that's awful.</li>
+        <li>[persona:bold,deed:fled] Running, with the rest of us out there, I won't forget it.</li>
+        <li>[persona:hothead] If {SUBJECT_nameDef} tries that near me, there'll be trouble.</li>
+        <li>[persona:wary] I knew there was something off about {SUBJECT_objective}.</li>
+        <li>[persona:wary,deed:betrayed] Well, nobody's telling {SUBJECT_objective} anything now.</li>
+        <li>[persona:calm] Hm, that's a pity.</li>
+        <li>[persona:traditional,deed:cheated|deed:breakup] In my day people kept their promises.</li>
+        <li>[deed:idle] Typical, and the rest of us running ourselves ragged.</li>
+        <li>[deed:cheated,hasvictim] {VICTIM} deserved better than that.</li>
+        <li>[deed:breakup] These things happen, I suppose.</li>
+        <li>[deed:tantrum|deed:berserk] I'll be keeping my door shut.</li>
+        <li>[deed:skipped] The council's for all of us, you'd think people would come.</li>
+        <li>[deed:botched] I'm not letting that one near me with a knife.</li>
+      </plain>
+      <warm>
+        <li>I'm sad to hear it, I thought better of {SUBJECT_objective}.</li>
+      </warm>
+      <blunt>
+        <li>Disgraceful.</li>
+        <li>That's {SUBJECT_nameDef} done, as far as I'm concerned.</li>
+      </blunt>
+      <cheerful>
+        <li>Oh no, that's not good at all.</li>
+      </cheerful>
+      <gloomy>
+        <li>Nothing surprises me any more.</li>
+        <li>Figures.</li>
+      </gloomy>
+      <cold>
+        <li>Noted.</li>
+        <li>Then {SUBJECT_nameDef} can't be counted on.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Gossip_React_Laugh</defName>
+    <lines>
+      <plain>
+        <li>Stop it, that's terrible.</li>
+        <li>Ha, I can just picture it.</li>
+        <li>Oh, don't, I'll never look at {SUBJECT_objective} the same.</li>
+        <li>You're awful, tell me again.</li>
+        <li>That's going to stick to {SUBJECT_objective} now.</li>
+        <li>I shouldn't laugh, but I am.</li>
+        <li>[persona:serious] It's not that funny.</li>
+        <li>[persona:joker] Oh, I'm stealing that one.</li>
+        <li>[persona:warm] We shouldn't laugh, poor thing.</li>
+        <li>[persona:wary] Don't let {SUBJECT_objective} hear you say that.</li>
+        <li>[persona:hopeful] At least nobody got hurt, by the sound of it.</li>
+      </plain>
+      <warm>
+        <li>Ha, poor {SUBJECT_nameDef}.</li>
+      </warm>
+      <blunt>
+        <li>Ha.</li>
+      </blunt>
+      <cheerful>
+        <li>Oh, that's brilliant!</li>
+        <li>Stop, my sides hurt!</li>
+      </cheerful>
+      <gloomy>
+        <li>Well, you have to laugh, or you'd cry.</li>
+      </gloomy>
+      <cold>
+        <li>Mildly amusing.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Gossip_React_Doubt</defName>
+    <lines>
+      <plain>
+        <li>I'll believe that when I see it.</li>
+        <li>That doesn't sound like {SUBJECT_nameDef} to me.</li>
+        <li>Who told you that?</li>
+        <li>Sounds like it grew a bit on the way here.</li>
+        <li>I'd want to hear it from {SUBJECT_nameDef} first.</li>
+        <li>That's not how I heard it.</li>
+        <li>[slant:boast] You've told me already, twice.</li>
+        <li>[slant:boast] Did you, now.</li>
+        <li>[slant:boast] And I suppose you want a medal.</li>
+        <li>[persona:trusting] That doesn't seem fair to {SUBJECT_nameDef}, are you sure?</li>
+        <li>[persona:wary] People say all sorts of things.</li>
+        <li>[aboutrival] You'd say that about {SUBJECT_objective} whatever happened.</li>
+        <li>[aboutfriend] You would say that, you're friends.</li>
+        <li>[aboutgroupmate] You lot always stick up for each other.</li>
+        <li>[slant:joke] Is any of that true, or is it just the joke?</li>
+      </plain>
+      <warm>
+        <li>I'd rather not think that of {SUBJECT_objective}.</li>
+      </warm>
+      <blunt>
+        <li>Rubbish.</li>
+        <li>Prove it.</li>
+      </blunt>
+      <cheerful>
+        <li>Oh, come off it!</li>
+      </cheerful>
+      <gloomy>
+        <li>Stories always get bigger out here.</li>
+      </gloomy>
+      <cold>
+        <li>Unlikely.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Gossip_React_Defend</defName>
+    <lines>
+      <plain>
+        <li>{SUBJECT_nameDef} wouldn't, not without a reason.</li>
+        <li>Leave {SUBJECT_objective} alone, {SUBJECT_pronoun}'s had a hard time.</li>
+        <li>I know {SUBJECT_nameDef}, and that isn't the whole story.</li>
+        <li>Say that where {SUBJECT_nameDef} can hear it.</li>
+        <li>You don't know what you're talking about.</li>
+        <li>{SUBJECT_nameDef} has done more for this place than you have.</li>
+        <li>[persona:hothead] Watch what you say about {SUBJECT_objective}.</li>
+        <li>[persona:warm] Everyone has a bad day, give {SUBJECT_objective} a break.</li>
+        <li>[aboutrival] You've had it in for {SUBJECT_objective} for ages.</li>
+        <li>[aboutkin] That's my family you're talking about.</li>
+        <li>[aboutoutsider] {SUBJECT_nameDef} keeps to {SUBJECT_objective}self, that doesn't make it true.</li>
+        <li>[deed:fled] Not everyone is made for fighting, and that's all right.</li>
+        <li>[deed:idle] There's more than one kind of work, you know.</li>
+      </plain>
+      <warm>
+        <li>I won't hear a word against {SUBJECT_objective}.</li>
+      </warm>
+      <blunt>
+        <li>Drop it, {SUBJECT_nameDef} is all right.</li>
+      </blunt>
+      <cheerful>
+        <li>Oh, give over, it wasn't like that!</li>
+      </cheerful>
+      <gloomy>
+        <li>We've all done worse, one time or another.</li>
+      </gloomy>
+      <cold>
+        <li>{SUBJECT_nameDef} is useful, that's what matters.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Gossip_React_Shrug</defName>
+    <lines>
+      <plain>
+        <li>Huh.</li>
+        <li>If you say so.</li>
+        <li>None of my business, really.</li>
+        <li>Well, there it is.</li>
+        <li>People will talk.</li>
+        <li>Can't say I'm bothered either way.</li>
+        <li>[persona:calm] It'll blow over.</li>
+        <li>[persona:serious] Is that all?</li>
+        <li>[slant:praise] Sounds like it wasn't so bad, then.</li>
+      </plain>
+      <warm>
+        <li>Let's hope it all works out.</li>
+      </warm>
+      <blunt>
+        <li>And?</li>
+      </blunt>
+      <cheerful>
+        <li>Oh well, these things happen!</li>
+      </cheerful>
+      <gloomy>
+        <li>It's always something.</li>
+      </gloomy>
+      <cold>
+        <li>Doesn't matter to me.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Gossip_React_Subject</defName>
+    <lines>
+      <plain>
+        <li>[against] I'm standing right here, you know.</li>
+        <li>[against] Say it to my face, then.</li>
+        <li>[against] That's not how it happened and you know it.</li>
+        <li>[against] Keep my name out of your mouth.</li>
+        <li>[against] Is that what you go round telling people?</li>
+        <li>[against,persona:hothead] Say that again, I dare you.</li>
+        <li>[against,persona:timid] That isn't fair, and you know it isn't.</li>
+        <li>[against,persona:joker] Tell it properly at least, I was magnificent.</li>
+        <li>[against,persona:calm] Believe what you like.</li>
+        <li>[against,persona:proud] I won't dignify that.</li>
+        <li>[against,persona:gloomy] Go on, everyone else does.</li>
+        <li>[for] It wasn't as much as all that.</li>
+        <li>[for] Stop it, you're embarrassing me.</li>
+        <li>[for,persona:proud] Well, it was rather good, wasn't it?</li>
+        <li>[for,persona:humble] Anyone would have done it.</li>
+        <li>[for,persona:joker] Go on, tell the bit where I'm heroic.</li>
+        <li>[for,persona:serious] Let's not make a song of it.</li>
+      </plain>
+      <warm>
+        <li>[for] That's kind of you to say.</li>
+        <li>[against] I thought you were my friend.</li>
+      </warm>
+      <blunt>
+        <li>[against] Enough.</li>
+        <li>[for] It was nothing.</li>
+      </blunt>
+      <cheerful>
+        <li>[for] Oh, stop, do go on!</li>
+      </cheerful>
+      <gloomy>
+        <li>[against] Of course you'd bring that up.</li>
+      </gloomy>
+      <cold>
+        <li>[against] I heard every word.</li>
+        <li>[for] Accurate.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

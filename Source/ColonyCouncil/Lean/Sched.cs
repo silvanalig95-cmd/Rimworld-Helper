@@ -36,6 +36,8 @@ namespace ColonyCouncil
         public const int Setbacks = 1427;
         /// <summary>The council: nemeses, pets, PokeWorld, autonomy, who is home, everyday pressures.</summary>
         public const int CouncilPeople = 1544;
+        /// <summary>Reputation and gossip: the fight's rescues and the brave's company, idling and tending watched; the day's deeds and names in its first hour.</summary>
+        public const int Reputation = 1660;
         /// <summary>Personal stories.</summary>
         public const int Arcs = 1777;
         /// <summary>Groups: what everyone's work is, and habits kept together (Social/Groups/GroupTracker.cs).</summary>
@@ -51,7 +53,7 @@ namespace ColonyCouncil
         public static readonly int[] HourlyOffsets =
         {
             CouncilWishes, Camp, CouncilDayFirst, Health, CouncilDaySecond, CouncilLife, WorldSituations, Calendar, Setbacks, CouncilPeople,
-            Arcs, Groups, Stories, CouncilEvents, Ailments
+            Reputation, Arcs, Groups, Stories, CouncilEvents, Ailments
         };
 
         /// <summary>The hourly passes that run inside a 250-tick pass of their own system on purpose (same tick, same work).</summary>
