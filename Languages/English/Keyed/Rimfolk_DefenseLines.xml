@@ -189,7 +189,7 @@
   <CC_DefLine_PlanWall>Plan a wall there</CC_DefLine_PlanWall>
   <CC_DefLine_PlanWall_Tip>Opens the planner with a stretch of wall across the way round, carried on to the rock or water on both sides.</CC_DefLine_PlanWall_Tip>
 
-  <CC_DefLine_Sight_Blind>{0} of the {1} firing positions behind the cover can't see the gate: something solid stands between.</CC_DefLine_Sight_Blind>
+  <CC_DefLine_Sight_Blind>{0} of the {1} firing positions behind the cover can't see the way in: something solid stands between.</CC_DefLine_Sight_Blind>
   <CC_DefLine_Sight_Range>{0} firing position(s) are further from the gate than your best weapon's reach of {1} cells.</CC_DefLine_Sight_Range>
   <CC_DefLine_Sight_Good>{0} firing positions see the gate from about {1} cells, inside your best weapon's reach of {2}.</CC_DefLine_Sight_Good>
   <CC_DefLine_Field>Raiders would find cover in the field of fire: {0}.</CC_DefLine_Field>
@@ -220,7 +220,7 @@
   <CC_DefLine_How_Leak>Raiders who can walk to your people take the easiest way. A way round a line that's only a little longer than through its gate is the one they take as soon as the gate is shut.</CC_DefLine_How_Leak>
   <CC_DefLine_How_LeakDoor>Raiders don't open your doors; they break them. A second door is a second gate: hold one, and make the other strong.</CC_DefLine_How_LeakDoor>
   <CC_DefLine_How_NoWayOn>The helper measures the way from just in front of the gate to the beds. Where there's none, raiders arriving here have no reason to come through.</CC_DefLine_How_NoWayOn>
-  <CC_DefLine_How_Sight>A firing position counts when someone standing there can see the cell just inside the gate. Walls, rock and doors block the view; sandbags and barricades don't.</CC_DefLine_How_Sight>
+  <CC_DefLine_How_Sight>A firing position counts when someone standing there can see the cell just inside the gate, or in a killbox the box itself. Walls, rock and doors block the view; sandbags and barricades don't.</CC_DefLine_How_Sight>
   <CC_DefLine_How_Range>Past a weapon's reach nobody can shoot at all, and hits fall off well before it.</CC_DefLine_How_Range>
   <CC_DefLine_How_Field>Raiders shelter behind trees, chunks, rubble and furniture as they come. A tree stops about a quarter of the shots, a chunk half, a wall three quarters.</CC_DefLine_How_Field>
   <CC_DefLine_How_Distance>Too close, and a rush or a grenade through the gate reaches the shooters at once; too far, and the shots go wide. The helper aims for about a quarter of your best weapon's reach, six to ten cells.</CC_DefLine_How_Distance>

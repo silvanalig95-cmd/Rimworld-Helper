@@ -84,8 +84,13 @@ namespace ColonyCouncil
         private readonly List<Pawn> shooters = new List<Pawn>();
         private readonly Dictionary<DefenseLinePlan, DefensePlan> replanned = new Dictionary<DefenseLinePlan, DefensePlan>();
 
-        /// <summary>The gap is closed across: every cell of it wall, door or rock, with a gate in it.</summary>
-        public bool Closed => span.Count > 0 && spanClosed >= span.Count && doors > 0;
+        /// <summary>Cells across the gap still open further than a step from the gate.</summary>
+        public int spanOpenFar;
+        /// <summary>The line is a killbox's: its mouth at the gate stays open by design (raiders must have their way in).</summary>
+        public bool killboxMouth;
+
+        /// <summary>The gap is closed across: every cell of it wall, door or rock, with a gate in it (or a killbox's open mouth).</summary>
+        public bool Closed => span.Count > 0 && (spanClosed >= span.Count && doors > 0 || killboxMouth);
 
         /// <summary>A way round over open ground, with the gap closed.</summary>
         public bool Leaks => Closed && leak.found && !leak.viaDoor;
@@ -114,6 +119,7 @@ namespace ColonyCouncil
             Leak(f);
             Fighters(f);
             Plans(f);
+            f.killboxMouth = f.spanOpenFar == 0 && f.spanClosed < f.span.Count && f.plans.Any(p => p.def.kind == "killbox" && p.Progress >= 0.5f);
             Cover(f);
             Turrets(f);
             Traps(f);
@@ -178,7 +184,11 @@ namespace ColonyCouncil
             {
                 var ed = c.GetEdifice(map);
                 if (ed != null && (ed.def.IsDoor || ed.def.passability == Traversability.Impassable)) f.spanClosed++;
-                else if (PlannedWallOrDoor(c, map)) f.spanPlanned++;
+                else
+                {
+                    if (PlannedWallOrDoor(c, map)) f.spanPlanned++;
+                    if (c.DistanceTo(f.gate) > 1.5f) f.spanOpenFar++;
+                }
             }
         }
 
@@ -317,10 +327,18 @@ namespace ColonyCouncil
                     f.firing.Add(new FirePos { cell = c, cover = front.GetEdifice(map), dist = c.DistanceTo(f.gate) });
                 }
             }
+            // In a killbox the entrance turns so nobody sees the mouth: the shooters' job is the box itself.
+            var targets = new List<IntVec3> { target };
+            foreach (var kv in f.replanned)
+            {
+                if (kv.Key.Def?.kind != "killbox") continue;
+                var box = kv.Value.clear.Where(c => f.line.Ahead(c) <= -5 && c.InBounds(map) && !c.Fogged(map)).ToList();
+                for (int i = 0; i < box.Count; i += 5) targets.Add(box[i]);
+            }
             float reach = f.bestRange > 0f ? f.bestRange : 25f;
             foreach (var p in f.firing)
             {
-                p.sees = p.cell != target && GenSight.LineOfSight(p.cell, target, map, true);
+                p.sees = targets.Any(t => p.cell != t && GenSight.LineOfSight(p.cell, t, map, true));
                 if (p.sees && p.dist <= reach) f.seeing++;
             }
             var near = f.firing.Where(p => p.sees).Select(p => Mathf.Abs(f.line.Ahead(p.cell))).OrderBy(d => d).ToList();
@@ -396,6 +414,12 @@ namespace ColonyCouncil
             int depth = Mathf.Max(3, (f.coverAt > 0 ? f.coverAt : f.coverDist) - 1);
             var own = new HashSet<Thing>(f.cover);
             foreach (var p in f.parts) own.Add(p);
+            // The line's own plans stand where they're meant to: a killbox's entrance walls are no cover for raiders.
+            var planned = new HashSet<IntVec3>();
+            foreach (var kv in f.replanned)
+                foreach (var piece in kv.Value.pieces)
+                    foreach (var c in piece.rect)
+                        planned.Add(c);
             int roofed = 0;
             for (int a = -depth; a <= 8; a++)
             {
@@ -407,6 +431,7 @@ namespace ColonyCouncil
                     if (!c.InBounds(map) || c.Fogged(map)) continue;
                     (a < 0 ? f.zone : f.front).Add(c);
                     if (a < 0 && c.Roofed(map)) roofed++;
+                    if (planned.Contains(c)) continue;
                     var list = c.GetThingList(map);
                     for (int i = 0; i < list.Count; i++)
                     {
