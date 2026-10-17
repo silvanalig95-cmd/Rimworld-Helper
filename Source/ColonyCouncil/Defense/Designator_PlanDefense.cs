@@ -265,7 +265,7 @@ namespace ColonyCouncil
             suggestedAnchor = IntVec3.Invalid;
             try
             {
-                DefenseLines.Of(Map)?.OnPlaced(plan, lineId);
+                DefenseLines.Of(Map)?.OnPlaced(plan, lineId, Config.closeGap);
             }
             catch (System.Exception e)
             {

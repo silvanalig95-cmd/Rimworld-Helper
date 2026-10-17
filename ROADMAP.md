@@ -307,7 +307,7 @@ things stand:
 | Rimfolk scenarios | 17 (8 gentle, 9 with stakes; 13 → 17: a tribe's fire, a ship's shared secret, an orphanage with Biotech, a medieval land grant), 14 scenario parts (8 → 14) | a nomad start that moves with the seasons, a scenario for a mod's people |
 | Names (epithets) | 63 (54 → 63; 14 from Rimfolk's own records; 5 given for one deed beyond the walls; 9 from years in a seat, in the faith and in the colony, each shown in play) | names from a mod's offices and peoples, names that pass to an heir |
 | Advisor checks | 62 (43 → 62: 7 for Rimfolk's systems (missions, world events, camps, decrees, offices, the calendar, promises), 3 for a low-tech winter, 3 everyday, 6 rooms to make better; advice can now open its council page or take the first step, like planning lamps) | checks for the dilemmas and ambitions, more for spacer colonies, actions for more of the older advice |
-| Defense plans and advice | 15 plans (11 → 15: a cover line, a second layer of wall, a small and a tunnel killbox; 2 with Medieval Overhaul), 21 kinds of defense advice, 20 Almanac pages (15 → 20) | plans for more mods (Vanilla Furniture Expanded - Security's trenches and barbed wire), a bunker, a moat |
+| Defense plans and advice | 15 plans (11 → 15: a cover line, a second layer of wall, a small and a tunnel killbox; 2 with Medieval Overhaul), 21 kinds of defense advice, 20 Almanac pages (15 → 20); defense lines (new): 4 aims, an 8-step ladder, 9 checks on a line, lessons from raids | plans for more mods (Vanilla Furniture Expanded - Security's trenches and barbed wire), a bunker, a moat; steps for mortars and EMP |
 | Colony character | 5 ways (10 names), 9 things a colony grows into (6 → 9: good hosts, devout, long-memoried, from Rimfolk's own records, each changing what comes) | effects in play for the six work names, a name for a colony at war |
 | Pets and nemeses | 14 heroics, 40 farewells (old age and Pokémon), 22 taunts and parting words, 4 endings told from pools (one new: let go from the cells); nemeses in 4 dreams, a personal story (the fear laid to rest) and on the calendar (the day one first came back) | a nemesis's own voice in more letters, vendettas against nemeses |
 | Feelings | 26 (4 deepened by a heart's need that runs low); 28 of the camps' and world events' memories now feed them, 3 feeds from the world (friends at a camp, the region's troubles, good news), with 7 dreams and 4 moments where a feeling meets a camp or a world event | feelings that touch the calendar and the council, more of the world events' beats |
@@ -330,7 +330,10 @@ things stand:
   perimeter wall, a killbox, a trap corridor, a turret nest, a sniper's or archers' post, a fallback line, a keep, a
   mortar pit, and with Medieval Overhaul a palisade with a gatehouse and a castle gate. The Almanac's new section
   "Defending the colony" (15 pages), a council project to hold the way in, and the marshal's word on the page.
-  Next: the overlay as a toggle in the game's own map settings; raids remembered by where they really came in.
+  Then defense lines: one gap built up step by step with the helper (an eight-step ladder from closing the gap to a
+  killbox and a line to fall back to, each step ticked off by what stands), checks with one-click fixes, a strength
+  against the raids, and lessons from where raids really came in.
+  Next: the overlay as a toggle in the game's own map settings.
 - Done: animals and Pokémon deeper in Rimfolk. The colony's animals in wishes (an animal of one's own, a barn, with
   Giddy-Up a mount), four life goals, four personal stories (an old companion, an orphan, a stray, a feud), six dreams,
   five dilemmas and two customs of the herd's year, moments, social events and two small habits; the herdmaster names

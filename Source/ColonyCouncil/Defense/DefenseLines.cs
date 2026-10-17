@@ -130,7 +130,7 @@ namespace ColonyCouncil
         /// A defense plan was placed: it joins the line it was planned for, or one whose gate is close; a gate or wall
         /// put down on a gap with no line yet offers to start one.
         /// </summary>
-        public void OnPlaced(DefensePlan plan, int lineId)
+        public void OnPlaced(DefensePlan plan, int lineId, bool closeGap = true)
         {
             if (plan?.template == null) return;
             var t = plan.template;
@@ -140,7 +140,7 @@ namespace ColonyCouncil
             var saved = new DefenseLinePlan
             {
                 template = t.defName, anchor = plan.anchor, rotation = plan.rotation, mirror = plan.mirror,
-                closeGap = plan.extension.Count > 0 || t.line >= 0, tick = Find.TickManager.TicksGame
+                closeGap = closeGap && t.line >= 0, tick = Find.TickManager.TicksGame
             };
             if (line != null)
             {
