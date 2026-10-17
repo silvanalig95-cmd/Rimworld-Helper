@@ -178,6 +178,30 @@ def dist_tone(pool, tone, ctx):
     return acc
 
 
+def dist_talk(pool, tone, ctx):
+    """Conversations (Social/Talk/Talk.cs PickLine): the speaker's tone list (half again as likely) and the plain list
+    together, every line that fits weighed by its tags; any voice only when neither has one."""
+    w = {}
+    lists = [(pool.get(tone, []), 1.5 if tone != "plain" else 1.0)]
+    if tone != "plain":
+        lists.append((pool.get("plain", []), 1.0))
+    for lst, f in lists:
+        for l in lst:
+            if not l or not tech_fits(l, ctx):
+                continue
+            m = match(l, ctx)
+            if m < 0:
+                continue
+            w[l] = w.get(l, 0) + (1.0 if m == 0 else 2.5 + 1.5 * m) * f
+    if not w:
+        for t in TONES:
+            for l in pool.get(t, []):
+                if l and tech_fits(l, ctx) and match(l, ctx) >= 0:
+                    w[l] = w.get(l, 0) + 0.5
+    tot = sum(w.values())
+    return {k: v / tot for k, v in w.items()} if tot else None
+
+
 def effective(d):
     s = sum(v * v for v in d.values())
     return 1.0 / s if s > 0 else 0.0
@@ -768,7 +792,9 @@ def variety(p, samples, rng):
         for tag, chance in p.extra:
             if rng.random() < chance:
                 ctx.add(rng.choice(tag.split("|")))
-        if p.kind == "toned":
+        if p.kind == "toned" and p.name.startswith("Rimfolk_TL_"):
+            d = dist_talk(pool, tone, ctx)
+        elif p.kind == "toned":
             d = dist_tone(pool, tone, ctx)
         elif getattr(p, "dtype", "") == "NuisanceDef":
             d = dist_pick(p.lines, ctx)

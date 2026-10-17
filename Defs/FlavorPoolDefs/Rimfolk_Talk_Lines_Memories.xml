@@ -17,6 +17,8 @@
         <li>Remember {LABEL}, feels like years ago now.</li>
         <li>[bad] I keep thinking about {LABEL}.</li>
         <li>[good] I still smile when I think about {LABEL}.</li>
+        <li>[mixed] Strange, how {LABEL} feels now.</li>
+        <li>[first] I don't think we've ever talked about {LABEL}.</li>
       </plain>
       <warm>
         <li>I'm glad it was you with me, back at {LABEL}.</li>
@@ -39,6 +41,10 @@
         <li>[good] Those were good days, in their way.</li>
         <li>[bad] I'd rather not, but yes, I remember.</li>
         <li>[bad] I still dream about it.</li>
+        <li>[first] I didn't know you thought about it too.</li>
+        <li>[good] It's one of my favourite memories, honestly.</li>
+        <li>[bad] I try not to think about it, but I do.</li>
+        <li>[mixed] It was awful and wonderful at once, wasn't it.</li>
       </plain>
       <warm>
         <li>I'm glad we went through it together.</li>
@@ -46,6 +52,12 @@
       <blunt>
         <li>Course I remember.</li>
       </blunt>
+      <cheerful>
+        <li>[good] We were magnificent, weren't we.</li>
+      </cheerful>
+      <gloomy>
+        <li>[bad] It never leaves you, does it.</li>
+      </gloomy>
       <cold>
         <li>I remember.</li>
       </cold>
@@ -61,10 +73,16 @@
         <li>We've been through a lot, you and me.</li>
         <li>Strange, the things that stay with you.</li>
         <li>[bad] Let's not go back there tonight.</li>
+        <li>I'm glad we went through it together.</li>
+        <li>[good] We should make more memories like that.</li>
+        <li>[bad] We got through it, that's what counts.</li>
       </plain>
       <warm>
         <li>I'm glad I've got you.</li>
       </warm>
+      <cheerful>
+        <li>Same again next year, or maybe not.</li>
+      </cheerful>
     </lines>
   </ColonyCouncil.TalkLinesDef>
 
@@ -81,6 +99,8 @@
         <li>You saved my skin at {LABEL}, you know that?</li>
         <li>We held, at {LABEL}, didn't we, the two of us.</li>
         <li>[first] I keep thinking about {LABEL}, about how you stood your ground.</li>
+        <li>I sharpen my blade and think of {LABEL}.</li>
+        <li>[first] I've never told you how glad I was you were there, at {LABEL}.</li>
       </plain>
       <warm>
         <li>I'd stand next to you again, after {LABEL}, any day.</li>
@@ -112,7 +132,13 @@
         <li>I don't think about it if I can help it.</li>
         <li>Couldn't have asked for better at my side.</li>
         <li>We were lucky, both of us.</li>
+        <li>I still jump at loud noises.</li>
+        <li>You were braver than you think.</li>
+        <li>We kept each other alive, that's all.</li>
       </plain>
+      <warm>
+        <li>I'd want no one else beside me.</li>
+      </warm>
       <blunt>
         <li>They didn't stand a chance.</li>
       </blunt>
@@ -122,6 +148,9 @@
       <gloomy>
         <li>Lucky, this time.</li>
       </gloomy>
+      <cold>
+        <li>We did what we had to.</li>
+      </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
 
@@ -152,6 +181,8 @@
         <li>[byme] Let me see that arm, how is it since {LABEL}?</li>
         <li>[byme] You gave me a fright, after {LABEL}.</li>
         <li>[byme] I still remember you lying there, after {LABEL}.</li>
+        <li>[byother] I still have the scar from {LABEL}, and I think of you.</li>
+        <li>[byme] Promise me you'll duck next time.</li>
       </plain>
       <warm>
         <li>[byother] I owe you everything, after {LABEL}.</li>
@@ -182,7 +213,13 @@
         <li>[byother] Healing nicely, thanks to you.</li>
         <li>[byother] I don't remember much of it, to be honest.</li>
         <li>[byother] I'd have died out there without you.</li>
+        <li>[byme] You'd have done the same, I know you would.</li>
+        <li>[byme] I'm just glad I got there in time.</li>
+        <li>[byother] Every day since has been a gift.</li>
       </plain>
+      <warm>
+        <li>[byother] You held my hand, I remember that most.</li>
+      </warm>
       <cheerful>
         <li>[byother] Terrible patient, me, I was a delight.</li>
       </cheerful>
@@ -240,10 +277,18 @@
         <li>I miss them every day.</li>
         <li>They'd be glad we still think of them.</li>
         <li>I go there too, when nobody's looking.</li>
+        <li>I'll never forget the quiet, at the grave.</li>
+        <li>I still have the flower from that day.</li>
       </plain>
+      <warm>
+        <li>They were loved, and they knew it.</li>
+      </warm>
       <gloomy>
         <li>It doesn't get easier, does it.</li>
       </gloomy>
+      <cold>
+        <li>It was done properly; that matters.</li>
+      </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
 
@@ -297,10 +342,18 @@
         <li>I still have a sore head from it.</li>
         <li>We needed that, all of us.</li>
         <li>I'd do it all again tomorrow.</li>
+        <li>I danced until my feet hurt.</li>
+        <li>I still haven't recovered, honestly.</li>
       </plain>
+      <warm>
+        <li>Everyone looked so happy, didn't they.</li>
+      </warm>
       <cheerful>
         <li>My singing was beautiful, and you know it.</li>
       </cheerful>
+      <gloomy>
+        <li>Shame those nights don't last.</li>
+      </gloomy>
     </lines>
   </ColonyCouncil.TalkLinesDef>
 
@@ -353,7 +406,12 @@
         <li>I've never been so scared in my life.</li>
         <li>We got through it, that's what matters.</li>
         <li>I still check the sky every morning.</li>
+        <li>I thought it would never end.</li>
+        <li>We kept each other going, that's how.</li>
       </plain>
+      <cheerful>
+        <li>I've never been so glad to see a normal sky.</li>
+      </cheerful>
       <gloomy>
         <li>Next time we won't be so lucky.</li>
       </gloomy>
@@ -406,10 +464,15 @@
         <li>My feet are still recovering.</li>
         <li>We weren't lost, we were exploring.</li>
         <li>I'd go again in a heartbeat.</li>
+        <li>I miss the stars out there.</li>
+        <li>I'd go again, sore feet and all.</li>
       </plain>
       <cheerful>
         <li>I did not fall, I was pushed, by gravity.</li>
       </cheerful>
+      <gloomy>
+        <li>I was sure we'd never make it back.</li>
+      </gloomy>
     </lines>
   </ColonyCouncil.TalkLinesDef>
 
@@ -461,7 +524,12 @@
         <li>It'll stand long after we're gone.</li>
         <li>My back remembers it, I'll tell you that.</li>
         <li>We make a good team.</li>
+        <li>I touch it sometimes when I walk past.</li>
+        <li>Nobody else knows how hard it was.</li>
       </plain>
+      <cheerful>
+        <li>And it's only fallen down once.</li>
+      </cheerful>
     </lines>
   </ColonyCouncil.TalkLinesDef>
 
@@ -509,10 +577,15 @@
         <li>Longest night of my life.</li>
         <li>I liked it, the quiet.</li>
         <li>I still owe you for keeping me awake.</li>
+        <li>You kept me awake with your stories.</li>
+        <li>The sunrise was worth it, though.</li>
       </plain>
       <cheerful>
         <li>I was resting my eyes, very efficiently.</li>
       </cheerful>
+      <gloomy>
+        <li>I could barely stand by morning.</li>
+      </gloomy>
     </lines>
   </ColonyCouncil.TalkLinesDef>
 
@@ -571,7 +644,12 @@
         <li>[byother] I had a good teacher.</li>
         <li>[byother] I'd never have got anywhere without you.</li>
         <li>[byother] Don't remind me of my first try, please.</li>
+        <li>[byme] Teaching you taught me a lot too.</li>
+        <li>[byother] I still do it the way you showed me.</li>
       </plain>
+      <warm>
+        <li>[byother] You were so patient with me.</li>
+      </warm>
       <cheerful>
         <li>[byother] A glorious disaster, and you loved every minute.</li>
       </cheerful>
@@ -588,6 +666,8 @@
         <li>[byme] Keep at it, you'll be better than me one day.</li>
         <li>[byother] Thank you, for all of it.</li>
         <li>Same time tomorrow, then?</li>
+        <li>[byother] I'll teach someone else one day, the way you taught me.</li>
+        <li>[byme] You'll be teaching me soon.</li>
       </plain>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -627,7 +707,12 @@
         <li>We were both stubborn, that's all.</li>
         <li>Water under the bridge.</li>
         <li>I was mostly the idiot, if we're honest.</li>
+        <li>I'm glad you didn't give up on me.</li>
+        <li>Life's too short for grudges.</li>
       </plain>
+      <warm>
+        <li>I missed you, you know.</li>
+      </warm>
     </lines>
   </ColonyCouncil.TalkLinesDef>
 
@@ -656,6 +741,8 @@
         <li>[byme] I sleep easier, since I told you.</li>
         <li>[byother] I've kept your secret, you know, and I always will.</li>
         <li>[byother] What you told me, it's safe with me, I want you to know that.</li>
+        <li>[byme] I'm glad there's one person who knows.</li>
+        <li>[byother] I've never told a soul, and I never will.</li>
       </plain>
       <warm>
         <li>[byme] I'm glad it was you I told.</li>
@@ -677,7 +764,12 @@
         <li>[byme] You can trust me, you know that.</li>
         <li>[byother] I know, and I'm grateful.</li>
         <li>[byother] I've never regretted telling you.</li>
+        <li>[byme] It's safe with me, always.</li>
+        <li>[byother] You've been a true friend about it.</li>
       </plain>
+      <warm>
+        <li>[byme] I'm honoured you trusted me.</li>
+      </warm>
     </lines>
   </ColonyCouncil.TalkLinesDef>
 
@@ -690,6 +782,173 @@
       <plain>
         <li>Between us, always.</li>
         <li>Thank you, really.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Mem_GroupHabit_Open</defName>
+    <memory>Rimfolk_Mem_Group_Habit</memory>
+    <turn>Open</turn>
+    <outcomes><li>Reminisce</li></outcomes>
+    <lines>
+      <plain>
+        <li>Same time for {LABEL} tonight?</li>
+        <li>I look forward to {LABEL} all day, you know.</li>
+        <li>{LABEL} wouldn't be the same without you.</li>
+        <li>I missed {LABEL} yesterday, and the whole day felt wrong.</li>
+      </plain>
+      <warm>
+        <li>{LABEL} is the best part of my week, and that's down to all of you.</li>
+      </warm>
+      <cheerful>
+        <li>I've been saving a story for {LABEL}, it's a good one.</li>
+      </cheerful>
+      <gloomy>
+        <li>Without {LABEL} I think I'd have given up long ago.</li>
+      </gloomy>
+      <cold>
+        <li>{LABEL} is a good habit; we should keep it.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Mem_GroupHabit_Reply</defName>
+    <memory>Rimfolk_Mem_Group_Habit</memory>
+    <turn>Reply</turn>
+    <outcomes><li>Reminisce</li></outcomes>
+    <lines>
+      <plain>
+        <li>Wouldn't miss it.</li>
+        <li>Best part of the day, that.</li>
+        <li>I'll bring something to share this time.</li>
+        <li>It keeps me going, honestly.</li>
+      </plain>
+      <cheerful>
+        <li>I'll be there, with my terrible jokes.</li>
+      </cheerful>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Mem_GroupHabit_Close</defName>
+    <memory>Rimfolk_Mem_Group_Habit</memory>
+    <turn>Close</turn>
+    <outcomes><li>Reminisce</li></outcomes>
+    <lines>
+      <plain>
+        <li>See you there, then.</li>
+        <li>Save me a seat.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Mem_GroupFounded_Open</defName>
+    <memory>Rimfolk_Mem_Group_Founded</memory>
+    <turn>Open</turn>
+    <outcomes><li>Reminisce</li></outcomes>
+    <lines>
+      <plain>
+        <li>Remember when it was just us, before {LABEL} was anything?</li>
+        <li>We started {LABEL}, you and me, do you remember?</li>
+        <li>Look at {LABEL} now, who'd have thought it.</li>
+        <li>[byme] I'm glad you were the first to join {LABEL}.</li>
+        <li>[first] I don't think I ever thanked you for starting {LABEL} with me.</li>
+      </plain>
+      <warm>
+        <li>{LABEL} feels like family now, and it started with us.</li>
+      </warm>
+      <cheerful>
+        <li>We should have a song for {LABEL}, I'll write it.</li>
+      </cheerful>
+      <gloomy>
+        <li>I wonder how long {LABEL} will last, honestly.</li>
+      </gloomy>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Mem_GroupFounded_Reply</defName>
+    <memory>Rimfolk_Mem_Group_Founded</memory>
+    <turn>Reply</turn>
+    <outcomes><li>Reminisce</li></outcomes>
+    <lines>
+      <plain>
+        <li>Feels like a long time ago.</li>
+        <li>I'd do it all again.</li>
+        <li>We built something there, didn't we.</li>
+      </plain>
+      <cheerful>
+        <li>Please don't write a song.</li>
+      </cheerful>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Mem_GroupFounded_Close</defName>
+    <memory>Rimfolk_Mem_Group_Founded</memory>
+    <turn>Close</turn>
+    <outcomes><li>Reminisce</li></outcomes>
+    <lines>
+      <plain>
+        <li>Here's to the next year of it.</li>
+        <li>Look after it, won't you.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Mem_GroupSplit_Open</defName>
+    <memory>Rimfolk_Mem_Group_Split</memory>
+    <turn>Open</turn>
+    <outcomes><li>Reminisce</li></outcomes>
+    <lines>
+      <plain>
+        <li>I still think about how {LABEL} fell apart.</li>
+        <li>Do you miss {LABEL}, the way it was?</li>
+        <li>We ended up on opposite sides, when {LABEL} split.</li>
+        <li>I passed some of the old lot of {LABEL} today, it was strange.</li>
+      </plain>
+      <warm>
+        <li>I hope the split in {LABEL} didn't cost us our friendship.</li>
+      </warm>
+      <blunt>
+        <li>{LABEL} split because people wouldn't listen, simple as that.</li>
+      </blunt>
+      <gloomy>
+        <li>Nothing lasts, does it, look at {LABEL}.</li>
+      </gloomy>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Mem_GroupSplit_Reply</defName>
+    <memory>Rimfolk_Mem_Group_Split</memory>
+    <turn>Reply</turn>
+    <outcomes><li>Reminisce</li></outcomes>
+    <lines>
+      <plain>
+        <li>Some days, yes, I miss it.</li>
+        <li>We were on different sides, I know.</li>
+        <li>It was bound to happen, I think.</li>
+      </plain>
+      <warm>
+        <li>It didn't change what I think of you.</li>
+      </warm>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Mem_GroupSplit_Close</defName>
+    <memory>Rimfolk_Mem_Group_Split</memory>
+    <turn>Close</turn>
+    <outcomes><li>Reminisce</li></outcomes>
+    <lines>
+      <plain>
+        <li>Water under the bridge, I hope.</li>
+        <li>No hard feelings, then.</li>
       </plain>
     </lines>
   </ColonyCouncil.TalkLinesDef>

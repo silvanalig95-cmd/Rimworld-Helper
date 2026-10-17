@@ -24,26 +24,43 @@
         <li>[against,strong] I'd leave tomorrow if I had somewhere to go.</li>
         <li>[mixed] Where do you see yourself in a few years?</li>
         <li>[mixed] I can't tell if things are getting better or worse.</li>
+        <li>[for] I planted a tree yesterday, I want to see it grow tall.</li>
+        <li>[for] We've come so far already, imagine the next few years.</li>
+        <li>[for] One day this place will be a proper town.</li>
+        <li>[against] I keep thinking about what happens when we run out of luck.</li>
+        <li>[against] Some nights I lie awake and plan my way out.</li>
+        <li>[against,loss] We lose someone, and the rest of us just carry on, until when?</li>
+        <li>[mixed,homesick] I don't know if this is home or just where I ended up.</li>
       </plain>
       <warm>
         <li>[for] Whatever happens, we'll face it together.</li>
         <li>[against] I worry about what's coming for all of us.</li>
+        <li>[for] I want to grow old here, with all of you.</li>
+        <li>[against] I'm frightened for all of us, honestly.</li>
       </warm>
       <blunt>
         <li>[for] Quit talking about leaving and fix something.</li>
         <li>[against] This place is a dead end, and everyone knows it.</li>
+        <li>[for] Stop worrying about tomorrow and build something.</li>
+        <li>[against] We'll all be dead or gone in a few years.</li>
       </blunt>
       <cheerful>
         <li>[for] In ten years we'll have a bakery, mark my words.</li>
         <li>[against] My plan for the future is to have one.</li>
+        <li>[for] In ten years I'll have a rocking chair and opinions.</li>
+        <li>[against] My long-term plan is surviving lunch.</li>
       </cheerful>
       <gloomy>
         <li>[against] We're all just waiting for the end, aren't we.</li>
         <li>[for] I suppose we might survive, somehow.</li>
+        <li>[for] Maybe it'll get better, stranger things have happened.</li>
+        <li>[against] I don't think any of us will see old age here.</li>
       </gloomy>
       <cold>
         <li>[for] The numbers are improving.</li>
         <li>[against] Our odds are poor.</li>
+        <li>[for] Our position improves each season.</li>
+        <li>[against] One bad season ends us.</li>
       </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -61,13 +78,34 @@
         <li>[debate,for] Leave and go where, though, this is as good as anywhere.</li>
         <li>[argue,against] You'd say the sun was shining in a flood.</li>
         <li>[argue,for] Go on, then, nobody's stopping you.</li>
+        <li>[agree,for] I can see it too, we're going to make it.</li>
+        <li>[agree,against] I've had the same thoughts.</li>
+        <li>[debate,for] It's hard, but it's ours.</li>
+        <li>[debate,against] Maybe, but I'm keeping a bag packed.</li>
+        <li>[argue,for] Go, then, nobody's chaining you here.</li>
+        <li>[argue,against] Dream all you like, the world won't listen.</li>
+        <li>[agree,for] We'll make it, I know we will.</li>
+        <li>[agree,against] I've been thinking about leaving too.</li>
+        <li>[debate,for] Every year we're still here is a year they said we wouldn't be.</li>
+        <li>[debate,against] Hope's good, but so is a plan to run.</li>
+        <li>[argue,for] Leave, then, and good luck out there.</li>
+        <li>[argue,against] Hope won't stop a raid.</li>
       </plain>
       <warm>
         <li>[debate,for] Stay, we need you here.</li>
+        <li>[agree,for] We'll grow old together, the lot of us.</li>
+        <li>[argue,for] Please don't go, we need you.</li>
       </warm>
+      <cheerful>
+        <li>[agree,for] I'm reserving the best rocking chair now.</li>
+      </cheerful>
       <gloomy>
         <li>[agree,against] I give it a year.</li>
+        <li>[debate,for] Maybe, if we're lucky.</li>
       </gloomy>
+      <cold>
+        <li>[debate,against] The odds aren't in our favour.</li>
+      </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
 
@@ -81,7 +119,17 @@
         <li>[agree] One day at a time, then.</li>
         <li>[debate] Ask me again in a year.</li>
         <li>[argue] Pack your bags, then.</li>
+        <li>[debate] Stay a while longer, at least.</li>
+        <li>[agree,for] Here's to the years ahead.</li>
+        <li>[agree,against] If we go, we go together.</li>
+        <li>[argue,against] Stay and rot, then.</li>
       </plain>
+      <warm>
+        <li>[argue] I hope you stay, I really do.</li>
+      </warm>
+      <cheerful>
+        <li>[debate] I'll save you a rocking chair either way.</li>
+      </cheerful>
     </lines>
   </ColonyCouncil.TalkLinesDef>
 
@@ -102,24 +150,41 @@
         <li>[against,addicted] I can't stop once I start, and I hate it.</li>
         <li>[against,strong] Every bottle in this colony should go in the river.</li>
         <li>[mixed] I like a drink, but I know where it leads.</li>
+        <li>[for] A drink by the fire after work, that's all I want.</li>
+        <li>[for] People need something to look forward to at the end of the day.</li>
+        <li>[for,binge] So someone had a big night, it happens.</li>
+        <li>[against] I don't like what drink does to some people here.</li>
+        <li>[against] I've seen people lose everything to a bottle.</li>
+        <li>[against,binge] Someone was in a terrible state last night, did you hear?</li>
+        <li>[mixed,addicted] I need it more than I'd like to.</li>
       </plain>
       <warm>
         <li>[for] A cup of something warm with friends, that's all I mean.</li>
         <li>[against] I just don't want to see anyone hurt by it.</li>
+        <li>[for] A cup of something with friends makes the cold go away.</li>
+        <li>[against] I worry about the ones who drink too much.</li>
       </warm>
       <blunt>
         <li>[against] Drunks get people killed.</li>
         <li>[for] Leave people their one pleasure.</li>
+        <li>[for] Leave people their one comfort.</li>
+        <li>[against] I don't trust anyone with a drink in their hand.</li>
       </blunt>
       <cheerful>
         <li>[for] Beer is just bread you can drink, I'm told.</li>
+        <li>[for] I'm told beer counts as a vegetable, I'm told this by me.</li>
+        <li>[against] I tried drink once and woke up with a goat, never again.</li>
       </cheerful>
       <gloomy>
         <li>[for] Might as well drink, nothing else helps.</li>
+        <li>[for] What else is there to look forward to?</li>
+        <li>[against] It starts with one, and then it's all you've got.</li>
       </gloomy>
       <cold>
         <li>[against] Intoxication reduces work output.</li>
         <li>[for] Moderate use keeps morale up.</li>
+        <li>[for] A drink calms the nerves; that's useful.</li>
+        <li>[against] Drink makes people unreliable.</li>
       </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -137,7 +202,32 @@
         <li>[debate,for] It's not the drink, it's the drinker.</li>
         <li>[argue,against] You'd drink the lamp oil if we let you.</li>
         <li>[argue,for] Nobody asked for your sermon.</li>
+        <li>[agree,for] Just the one, now and then, where's the harm.</li>
+        <li>[agree,against] I've seen it ruin people too.</li>
+        <li>[debate,for] It's not the drink, it's how much.</li>
+        <li>[debate,against] One's fine, it's the rest that worries me.</li>
+        <li>[argue,for] Stop preaching, it's tiresome.</li>
+        <li>[argue,against] You'd drink the lamp oil if it was all we had.</li>
+        <li>[agree,for] A drink with friends is half the joy of the day.</li>
+        <li>[agree,against] I've seen what it does, and I want none of it.</li>
+        <li>[debate,for] People will drink anyway, better here with us.</li>
+        <li>[debate,against] A little's fine, until it isn't.</li>
+        <li>[argue,for] You'd ban laughter if you could.</li>
+        <li>[argue,against] Drink yourself silly, then.</li>
       </plain>
+      <warm>
+        <li>[agree,against] I just want everyone safe.</li>
+      </warm>
+      <cheerful>
+        <li>[agree,for] Drinks on you, then.</li>
+        <li>[debate,against] I prefer my troubles sober, they're funnier.</li>
+      </cheerful>
+      <gloomy>
+        <li>[agree,for] Might as well, eh.</li>
+      </gloomy>
+      <cold>
+        <li>[debate,against] Moderation is the key.</li>
+      </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
 
@@ -151,7 +241,17 @@
         <li>[agree] In moderation, then.</li>
         <li>[debate] Have one with me sometime and we'll argue properly.</li>
         <li>[argue] Enjoy your water.</li>
+        <li>[agree] Just the one, then.</li>
+        <li>[debate] Have a drink with me and we'll argue properly.</li>
+        <li>[agree,for] One tonight, then, by the fire.</li>
+        <li>[agree,against] Tea for us, then.</li>
       </plain>
+      <warm>
+        <li>[agree,against] Look after yourself, that's all.</li>
+      </warm>
+      <blunt>
+        <li>[argue,for] More for me, then.</li>
+      </blunt>
     </lines>
   </ColonyCouncil.TalkLinesDef>
 
@@ -172,21 +272,38 @@
         <li>[against,deadline] We're never going to finish "{SUBJECT}" in time.</li>
         <li>[against,toproposer] Honestly, "{SUBJECT}" was a mistake.</li>
         <li>[mixed] Do you think we'll actually finish "{SUBJECT}"?</li>
+        <li>[for] I worked on "{SUBJECT}" all morning, and I'm proud of it.</li>
+        <li>[for] When "{SUBJECT}" is done, everyone will see why it mattered.</li>
+        <li>[for,toproposer] Your idea, "{SUBJECT}", it's a good one.</li>
+        <li>[against] I can't see what "{SUBJECT}" does for anyone.</li>
+        <li>[against] All this effort on "{SUBJECT}" and the walls are crumbling.</li>
+        <li>[against,proposer] I'm starting to think "{SUBJECT}" was a mistake, and it was my idea.</li>
+        <li>[mixed,deadline] Are we going to make it in time, with "{SUBJECT}"?</li>
       </plain>
       <warm>
         <li>[for] It's nice, working towards something together.</li>
+        <li>[for] I love working on "{SUBJECT}" with all of you.</li>
+        <li>[against] I want "{SUBJECT}" to work, I just don't see how.</li>
       </warm>
       <blunt>
         <li>[against] "{SUBJECT}" is a waste of everyone's time.</li>
+        <li>[for] Stop whining and help with "{SUBJECT}".</li>
+        <li>[against] Whoever thought up "{SUBJECT}" should do it themselves.</li>
       </blunt>
       <cheerful>
         <li>[for] When "{SUBJECT}" is done, I'm having a nap for a week.</li>
+        <li>[for] "{SUBJECT}" is going to be glorious, or at least finished.</li>
+        <li>[against] I've decided to support "{SUBJECT}" from a comfortable distance.</li>
       </cheerful>
       <gloomy>
         <li>[against] It'll fall apart before it's done.</li>
+        <li>[for] Maybe "{SUBJECT}" will be the thing that gets us through.</li>
+        <li>[against,deadline] We'll never finish "{SUBJECT}" in time.</li>
       </gloomy>
       <cold>
         <li>[for] "{SUBJECT}" is on track.</li>
+        <li>[for] "{SUBJECT}" is worth the investment.</li>
+        <li>[against] "{SUBJECT}" diverts labour from essentials.</li>
       </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -205,7 +322,31 @@
         <li>[argue,against] You'd follow the council off a cliff.</li>
         <li>[argue,for] Then do less complaining and more helping.</li>
         <li>[argue,for,proposer] I'll finish it without you, then.</li>
+        <li>[agree,for] It'll be worth every blister.</li>
+        <li>[agree,against] I've been thinking the same.</li>
+        <li>[debate,for] Give it time, things like this take time.</li>
+        <li>[debate,against] I'll believe in it when I see it standing.</li>
+        <li>[argue,for] You complain more than you help.</li>
+        <li>[argue,against] You'd build a tower on sand if the council said so.</li>
+        <li>[agree,for] We'll look back on it and be proud.</li>
+        <li>[agree,against] It's eating all our time.</li>
+        <li>[debate,for] Big things take a while, that's all.</li>
+        <li>[debate,against] I'll believe it when it's finished.</li>
+        <li>[argue,for] Help or get out of the way.</li>
+        <li>[argue,against] It's a vanity project and you know it.</li>
       </plain>
+      <warm>
+        <li>[agree,for] We'll finish it together.</li>
+      </warm>
+      <cheerful>
+        <li>[agree,for] I'll carve my name on it when it's done.</li>
+      </cheerful>
+      <gloomy>
+        <li>[agree,against] It's going to fall apart, you watch.</li>
+      </gloomy>
+      <cold>
+        <li>[agree,for] It's on schedule.</li>
+      </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
 
@@ -219,7 +360,18 @@
         <li>[agree] Back to it, then, the both of us.</li>
         <li>[debate] We'll know when it's done.</li>
         <li>[argue] Don't help, then.</li>
+        <li>[agree] Back to it, then.</li>
+        <li>[debate] Let's see it done, then decide.</li>
+        <li>[agree,for] Let's get it done, then.</li>
+        <li>[agree,against] I'll say something at the meeting.</li>
+        <li>[argue,against] Waste your time, then.</li>
       </plain>
+      <warm>
+        <li>[agree] I'm glad you're part of it.</li>
+      </warm>
+      <cheerful>
+        <li>[debate] Loser carries the heavy end.</li>
+      </cheerful>
     </lines>
   </ColonyCouncil.TalkLinesDef>
 
@@ -240,22 +392,39 @@
         <li>[against,rich] We've got more than we need, and still people want more.</li>
         <li>[against,strong] Money ruins people, I've seen it.</li>
         <li>[mixed] Do you ever wonder what we'd do with real money?</li>
+        <li>[for] We should be selling more of what we make.</li>
+        <li>[for] Silver's what keeps the traders coming back.</li>
+        <li>[for,poor] We're poorer than we need to be, and it bothers me.</li>
+        <li>[against] I've never met a happy rich person.</li>
+        <li>[against] What's the use of silver out here?</li>
+        <li>[against,rich] We've got plenty, and still people want more.</li>
+        <li>[mixed,rich] Strange, being comfortable after so long.</li>
       </plain>
       <warm>
         <li>[against] The best things here don't cost anything.</li>
+        <li>[for] I'd like everyone here to have a bit more comfort.</li>
+        <li>[against] The best things here are free, the company, the stars.</li>
       </warm>
       <blunt>
         <li>[for] Poverty's for fools.</li>
+        <li>[for] Being poor's no virtue.</li>
+        <li>[against] Greed rots people.</li>
       </blunt>
       <cheerful>
         <li>[for] If I were rich, I'd buy a chair that doesn't wobble.</li>
+        <li>[for] When I'm rich I'll buy a hat for every day of the week.</li>
+        <li>[against] I'm rich in friends, and that's a lie, but it's a nice one.</li>
       </cheerful>
       <gloomy>
         <li>[against] Silver won't save us when it counts.</li>
+        <li>[for] Silver might buy us time, if nothing else.</li>
+        <li>[against] All the silver in the world won't stop a raid.</li>
       </gloomy>
       <cold>
         <li>[for] Wealth is leverage.</li>
         <li>[against] Wealth attracts threats.</li>
+        <li>[for] More silver means more options.</li>
+        <li>[against] Wealth attracts raiders.</li>
       </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -273,7 +442,31 @@
         <li>[debate,for] A little more never hurt anyone.</li>
         <li>[argue,against] Greedy, that's all you are.</li>
         <li>[argue,for] Easy to say you don't need silver, until you do.</li>
+        <li>[agree,for] Silver opens doors.</li>
+        <li>[agree,against] We have what we need.</li>
+        <li>[debate,for] A little more silver never hurt anyone.</li>
+        <li>[debate,against] More silver, more raiders.</li>
+        <li>[argue,for] Easy to say silver doesn't matter until you're starving.</li>
+        <li>[argue,against] You'd sell your own mother for a good price.</li>
+        <li>[agree,for] Silver buys safety, plain and simple.</li>
+        <li>[agree,against] A full belly and friends, that's riches.</li>
+        <li>[debate,for] A little more silver would buy a lot of peace.</li>
+        <li>[debate,against] The more we have, the more they want.</li>
+        <li>[argue,for] Easy to say when someone else pays.</li>
+        <li>[argue,against] Count your coins, then, and see if they love you back.</li>
       </plain>
+      <warm>
+        <li>[agree,against] We have each other, that's worth more.</li>
+      </warm>
+      <cheerful>
+        <li>[agree,for] Seven hats, I've decided, one for each day.</li>
+      </cheerful>
+      <gloomy>
+        <li>[debate,for] Silver won't save us, but it might help.</li>
+      </gloomy>
+      <cold>
+        <li>[agree,for] Wealth is security.</li>
+      </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
 
@@ -287,6 +480,41 @@
         <li>[agree] We'll keep our eyes open for a good trade.</li>
         <li>[debate] We'll see who's laughing when the trader comes.</li>
         <li>[argue] Keep your pennies, then.</li>
+        <li>[agree] Let's look for a good trade, then.</li>
+        <li>[agree,for] I'll find us a buyer.</li>
+        <li>[agree,against] We're rich enough as we are.</li>
+      </plain>
+      <blunt>
+        <li>[argue] Be poor, then, see if I care.</li>
+      </blunt>
+      <cheerful>
+        <li>[debate] Fine, but when I'm rich, you're not getting a hat.</li>
+      </cheerful>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Drugs_Tease</defName>
+    <topic>Rimfolk_Topic_Drugs</topic>
+    <turn>Open</turn>
+    <outcomes><li>Tease</li></outcomes>
+    <lines>
+      <plain>
+        <li>[otherfor] {OTHER} calls it a "small one", every time.</li>
+        <li>[otheragainst] {OTHER} looks at a cup of beer like it's a snake.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Wealth_Tease</defName>
+    <topic>Rimfolk_Topic_Wealth</topic>
+    <turn>Open</turn>
+    <outcomes><li>Tease</li></outcomes>
+    <lines>
+      <plain>
+        <li>[otherfor] {OTHER} counts the silver twice a day, for fun.</li>
+        <li>[otheragainst] {OTHER} says silver doesn't matter, but takes the bigger share.</li>
       </plain>
     </lines>
   </ColonyCouncil.TalkLinesDef>

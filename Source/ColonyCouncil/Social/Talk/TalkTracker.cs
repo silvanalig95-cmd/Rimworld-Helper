@@ -195,8 +195,8 @@ namespace ColonyCouncil
 
         // ---------------- Who talked lately ----------------
 
-        /// <summary>Starting a talk costs a few hours before the same person starts another, and the same two talk at most every half day.</summary>
-        public const int StarterGapTicks = GenDate.TicksPerHour * 3, PairGapTicks = GenDate.TicksPerHour * 10;
+        /// <summary>Starting a talk costs four hours before the same person starts another, and the same two talk at most every half day.</summary>
+        public const int StarterGapTicks = GenDate.TicksPerHour * 4, PairGapTicks = GenDate.TicksPerHour * 10;
 
         public bool MayStart(Pawn a, Pawn b, int now)
         {

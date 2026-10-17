@@ -139,6 +139,7 @@
         <li>[debate,against] Fight them, sure, but from somewhere they can't reach us.</li>
         <li>[argue,for] You'd have us all hiding under the beds.</li>
         <li>[argue,against] You're not brave, you're reckless, and one day it'll kill someone.</li>
+        <li>[argue,mixed] Don't put words in my mouth, I haven't decided anything.</li>
       </plain>
       <warm>
         <li>[agree,for] I feel safer knowing you'll be out there.</li>
@@ -153,6 +154,7 @@
         <li>[argue,against] Go and get yourself killed, then, see if I care.</li>
         <li>[argue,for] Keep your walls; I'll keep my blade.</li>
         <li>[argue,for] Spoken like someone who hid in the storeroom.</li>
+        <li>[debate,for] Walls are for people who've given up.</li>
       </blunt>
       <cheerful>
         <li>[debate,against] You charge, I'll hold the door, and we'll argue about it afterwards.</li>
@@ -169,6 +171,7 @@
         <li>[argue,against] Your plan has more funerals in it than mine.</li>
         <li>[argue,for] Your walls are just a slower way to lose.</li>
         <li>[agree,for] Agreed, a strong first strike saves lives.</li>
+        <li>[debate,for] A wall delays; it doesn't decide.</li>
       </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -326,6 +329,9 @@
         <li>[debate,for] I've seen worse councils, much worse.</li>
         <li>[argue,against] Keep licking their boots, then.</li>
         <li>[argue,for] You complain about everything, that's your trouble.</li>
+        <li>[agree,for] I'd put my name to most of what they've done.</li>
+        <li>[argue,against] They've got you fooled, and you can't even see it.</li>
+        <li>[argue,for] Ungrateful, after everything they've done.</li>
       </plain>
       <warm>
         <li>[agree,for] I think they're doing their best for all of us.</li>
@@ -348,6 +354,7 @@
       <cold>
         <li>[argue,against] Your trust is misplaced.</li>
         <li>[agree,for] The council is functioning.</li>
+        <li>[debate,against] Results matter, not intentions.</li>
       </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -476,6 +483,12 @@
         <li>[debate,against] Fair, yes, but firm.</li>
         <li>[argue,for] They're people, whatever you think of them.</li>
         <li>[argue,against] They'd slit your throat and you'd thank them.</li>
+        <li>[agree,for] A bit of kindness might turn one of them.</li>
+        <li>[agree,against] I've never trusted a prisoner yet.</li>
+        <li>[debate,for] Firm's fine, cruel isn't.</li>
+        <li>[debate,against] Kind's fine, soft isn't.</li>
+        <li>[argue,for] Shame on you.</li>
+        <li>[argue,against] Naive, that's what you are.</li>
       </plain>
       <warm>
         <li>[agree,for] You're a kind soul, you know that.</li>

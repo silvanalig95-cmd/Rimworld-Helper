@@ -82,8 +82,11 @@ namespace ColonyCouncil
 
         public static bool On => Persona.On && S != null && S.colonistMoments && Current.Game != null;
 
-        /// <summary>The share of a colonist's random talk Rimfolk's conversations take, next to chitchat at 1.</summary>
-        public const float BaseBudget = 0.1f;
+        /// <summary>
+        /// The share of a colonist's random talk Rimfolk's conversations take, next to chitchat at 1 (moments, group
+        /// moments, wish and decree talk keep theirs beside it).
+        /// </summary>
+        public const float BaseBudget = 0.08f;
         /// <summary>Ticks before the first line, and between lines.</summary>
         public const int FirstGap = 45, LineGap = 165;
 
@@ -352,8 +355,9 @@ namespace ColonyCouncil
             // A talk that goes well after a spat they haven't made up for makes it up (and its lines may say so).
             c.mend = Warm(c, tie) && MomentTones.Allows("mend", a, b);
             Lines(c);
-            Effects(c, tie);
+            // How it went, for the log, read before the memory is counted as told.
             var sent = SummaryPack(c);
+            Effects(c, tie);
             if (sent != null && packs != null && !packs.Contains(sent)) packs.Add(sent);
             tr.Started(a, b, c.topic?.shortHash ?? 0, now);
             cacheTick = -1;
@@ -583,9 +587,34 @@ namespace ColonyCouncil
                 tags.Add(c.memory.a == speaker.thingIDNumber ? "byme" : "byother");
             }
             if (c.feeling != null) tags.Add(c.feeling);
+            OtherTags(tags, listener);
             // How the one teased took it: the reply knows.
             if (c.outcome == TalkOutcome.Tease && !first && TookItBadly(speaker, listener)) tags.Add("stung");
             return tags;
+        }
+
+        /// <summary>
+        /// What the speaker knows of the other, read from the other's tags alone (Social/Groups/ and Social/Gossip/ add them):
+        /// "samegroup" when they share a group, "othergroup" when each belongs to a different one, "tooutsider" when the other
+        /// is new and not yet taken in, and the other's name in the colony as "otherrep:brave", "otherrep:idle" and so on.
+        /// </summary>
+        private static void OtherTags(HashSet<string> tags, Pawn listener)
+        {
+            bool mine = tags.Contains("ingroup");
+            var theirs = Flavor.TagsFor(listener);
+            if (theirs.Contains("outsider")) tags.Add("tooutsider");
+            foreach (var t in theirs)
+                if (t.StartsWith("rep:", StringComparison.Ordinal))
+                    tags.Add("other" + t);
+            if (!mine || !theirs.Contains("ingroup")) return;
+            bool shared = false;
+            foreach (var t in theirs)
+                if (t.StartsWith("group:", StringComparison.Ordinal) && tags.Contains(t))
+                {
+                    shared = true;
+                    break;
+                }
+            tags.Add(shared ? "samegroup" : "othergroup");
         }
 
         private static bool TookItBadly(Pawn teased, Pawn teaser)

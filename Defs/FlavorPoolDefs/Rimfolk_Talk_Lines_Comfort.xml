@@ -35,6 +35,12 @@
         <li>[homesick] Tell me about where you grew up.</li>
         <li>[lowmood] Rough day?</li>
         <li>[lowmood] You look like you could use a friend.</li>
+        <li>[samegroup] The others have been asking after you, you know.</li>
+        <li>[grouprole:peacemaker] Whatever it is, we'll sort it out together.</li>
+        <li>[tooutsider] It's hard, being new, I remember.</li>
+        <li>[grief] I keep thinking of you, since the funeral.</li>
+        <li>[despair] We've been through worse, and we got through it.</li>
+        <li>[worry] Want to tell me what's going round in your head?</li>
       </plain>
       <warm>
         <li>Oh, come here, you look like you need a hug.</li>
@@ -43,6 +49,8 @@
         <li>[grief,subject] {SUBJECT} loved you, you know that.</li>
         <li>[fear] I've got you, nothing's going to happen to you tonight.</li>
         <li>[lonely] I'd like your company, if you'll have mine.</li>
+        <li>[lowmood] Come on, sit with me, you don't have to talk.</li>
+        <li>[homesick] I miss my home too, sometimes, more than I say.</li>
       </warm>
       <blunt>
         <li>Out with it, what's eating you?</li>
@@ -67,6 +75,7 @@
         <li>[grief] Grief passes, eventually; eat something in the meantime.</li>
         <li>[fear] We have walls and we have weapons; you're safe tonight.</li>
         <li>[worry] Worrying won't change it, so tell me what it is.</li>
+        <li>[lowmood] You've not eaten; eat, then talk.</li>
       </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -99,14 +108,22 @@
         <li>[homesick] I miss my mother's voice.</li>
         <li>[homesick] Sometimes I forget where I am when I wake up.</li>
         <li>[lowmood] Everything's just a bit much right now.</li>
+        <li>[samegroup] I didn't think anyone would notice.</li>
+        <li>[tooutsider] I don't know anyone here yet, not really.</li>
+        <li>[grief] I keep seeing their face.</li>
+        <li>[fear] I can't sleep, every noise wakes me.</li>
+        <li>[despair] I don't know how to keep going.</li>
+        <li>[shame] I don't know how to face everyone.</li>
       </plain>
       <warm>
         <li>You're kind to sit with me.</li>
         <li>I'm glad it's you.</li>
+        <li>Thank you, it helps more than you know.</li>
       </warm>
       <blunt>
         <li>I don't want to talk about it.</li>
         <li>Leave it, I'll be fine.</li>
+        <li>[lowmood] It's nothing, just a bad week.</li>
       </blunt>
       <cheerful>
         <li>And there I was, going for "mysterious".</li>
@@ -139,16 +156,21 @@
         <li>[worry] Let's worry about it tomorrow, together.</li>
         <li>[shame] We all make mistakes; it's what you do next that counts.</li>
         <li>[homesick] This can be home too, give it time.</li>
+        <li>[samegroup] Come to the fire tonight; we'll all be there.</li>
+        <li>[tooutsider] Come and sit with us, we're not as frightening as we look.</li>
+        <li>[despair] Tomorrow we'll find one good thing, I promise.</li>
       </plain>
       <warm>
         <li>I'm always here, you know that.</li>
         <li>You matter to us, never forget it.</li>
+        <li>I'll check on you in the morning.</li>
       </warm>
       <blunt>
         <li>Right, you're coming to supper, no arguments.</li>
       </blunt>
       <cheerful>
         <li>Stick with me, I'm a professional at bad days.</li>
+        <li>And if all else fails, there's always pie.</li>
       </cheerful>
       <gloomy>
         <li>It's bad, but it'd be worse alone.</li>

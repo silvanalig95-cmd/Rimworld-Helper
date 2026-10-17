@@ -27,27 +27,43 @@
         <li>[against,strong] I'm keeping my door locked until I know what {SUBJECT} is about.</li>
         <li>[mixed] What do you make of {SUBJECT}?</li>
         <li>[mixed] I haven't made up my mind about {SUBJECT}.</li>
+        <li>[for] {SUBJECT} has a good laugh, I like a good laugh.</li>
+        <li>[for] I showed {SUBJECT} where everything is, and they actually listened.</li>
+        <li>[for] {SUBJECT} worked right through the afternoon without a complaint.</li>
+        <li>[against] {SUBJECT} keeps to themselves, and I don't know what that means yet.</li>
+        <li>[against] I caught {SUBJECT} looking at the stores a bit too long.</li>
+        <li>[against] Strangers turn up, and we just take them in, every time.</li>
+        <li>[mixed,arrived] Funny, having a new face at supper.</li>
       </plain>
       <warm>
         <li>[for] I made {SUBJECT} up a bed with an extra blanket, the nights are cold.</li>
         <li>[for] I hope {SUBJECT} knows they're one of us now.</li>
         <li>[against] I want to like {SUBJECT}, I'm just being careful.</li>
+        <li>[for,young] I'll keep an eye on {SUBJECT}, someone that young shouldn't be alone.</li>
+        <li>[against] I'd like to trust {SUBJECT}, I just need a little time.</li>
       </warm>
       <blunt>
         <li>[against] {SUBJECT} had better earn their keep.</li>
         <li>[for] {SUBJECT}'s all right, better than some here.</li>
+        <li>[for] {SUBJECT} works harder than half the people here already.</li>
+        <li>[against] I don't care how nice {SUBJECT} is, we don't know them.</li>
       </blunt>
       <cheerful>
         <li>[for] {SUBJECT} laughed at my joke, so they're clearly a genius.</li>
         <li>[against] I'm told {SUBJECT} hums in their sleep; I'm reserving judgement.</li>
+        <li>[for] {SUBJECT} laughed at the stew, so they've got taste.</li>
+        <li>[against] {SUBJECT} might be a spy, or just shy, I haven't decided.</li>
       </cheerful>
       <gloomy>
         <li>[against] Give it a month, {SUBJECT} will be gone or trouble.</li>
         <li>[for] I hope {SUBJECT} lasts longer than the last one.</li>
+        <li>[for] {SUBJECT} seems decent, which means something will go wrong.</li>
       </gloomy>
       <cold>
         <li>[against] {SUBJECT} is an unknown, and unknowns are risks.</li>
         <li>[for] {SUBJECT} is competent, that's enough.</li>
+        <li>[for] {SUBJECT} is useful already.</li>
+        <li>[against] {SUBJECT} has said very little about where they came from.</li>
       </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -70,15 +86,35 @@
         <li>[argue,against] You'd trust a raider if they smiled at you.</li>
         <li>[argue,for] You don't trust anyone, that's your trouble.</li>
         <li>[argue,for] Did they do something to you, or is this just how you are?</li>
+        <li>[agree,for] They fit in like they've always been here.</li>
+        <li>[agree,against] I'll believe it when they've been here a season.</li>
+        <li>[debate,for] We took you in once, remember.</li>
+        <li>[debate,against] Nice, yes, but nice is easy for a week.</li>
+        <li>[argue,for] You've made your mind up about them before saying hello.</li>
+        <li>[argue,against] You'd hand a stranger your house keys.</li>
+        <li>[agree,for] I've a good feeling about them.</li>
+        <li>[agree,against] I'll keep my door locked a while yet.</li>
+        <li>[debate,for] Let them prove themselves before you judge.</li>
+        <li>[argue,for] They've done nothing to you, leave them be.</li>
+        <li>[argue,against] Don't come crying to me when they're gone with the silver.</li>
       </plain>
       <warm>
         <li>[debate,for] Imagine how lonely they must feel.</li>
+        <li>[agree,for] I'll ask them to sit with us tonight.</li>
       </warm>
       <blunt>
         <li>[argue,against] Naive, that's what you are.</li>
+        <li>[argue,for] Paranoid, that's what you are.</li>
       </blunt>
+      <cheerful>
+        <li>[debate,against] I'll trust them when they've survived your cooking.</li>
+      </cheerful>
+      <gloomy>
+        <li>[agree,against] New people mean new trouble, always.</li>
+      </gloomy>
       <cold>
         <li>[debate,against] Trust is earned over seasons, not days.</li>
+        <li>[agree,for] They're competent, that's what counts.</li>
       </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -95,7 +131,15 @@
         <li>[debate] We'll know soon enough.</li>
         <li>[argue,for] Well, I'm going to be friendly, whatever you do.</li>
         <li>[argue,against] When they rob us blind, remember I said so.</li>
+        <li>[agree] Let's make them feel welcome, then.</li>
+        <li>[debate] Give it a month, then ask me again.</li>
       </plain>
+      <warm>
+        <li>[debate] Be kind to them, whatever you think.</li>
+      </warm>
+      <blunt>
+        <li>[argue,for] I'm going to be decent to them, whatever you say.</li>
+      </blunt>
     </lines>
   </ColonyCouncil.TalkLinesDef>
 
@@ -131,26 +175,44 @@
         <li>[against,single] I'm better off on my own, honestly.</li>
         <li>[against,strong] Romance is a distraction we can't afford.</li>
         <li>[mixed] Do you think it's sensible, falling in love out here?</li>
+        <li>[for] Did you see the way those two looked at each other at supper?</li>
+        <li>[for] Love's what makes people stay, in the end.</li>
+        <li>[for,inlove] I can't stop smiling, and I don't care who notices.</li>
+        <li>[for,single] Do you think there's someone for everyone, even out here?</li>
+        <li>[against] Every couple I've known has ended in a slammed door.</li>
+        <li>[against] I'd rather sleep well than be in love.</li>
+        <li>[against,inlove] I love them, but it's harder than I expected.</li>
+        <li>[mixed,single] I'm not sure I'm the sort for love, honestly.</li>
       </plain>
       <warm>
         <li>[for] I love a wedding, I cried the whole way through.</li>
         <li>[for,inlove] Is it obvious how much I adore them?</li>
+        <li>[for,wedding,subject] I've never seen anyone happier than {SUBJECT} on their wedding day.</li>
+        <li>[against] I just don't want anyone getting their heart broken.</li>
       </warm>
       <blunt>
         <li>[against] All this mooning about, it's embarrassing.</li>
         <li>[for] People should stop being so shy and just say how they feel.</li>
+        <li>[for,single] If you like someone, tell them, life's short.</li>
+        <li>[against] Love makes people stupid.</li>
       </blunt>
       <cheerful>
         <li>[for] Romance is in the air, or that's the compost.</li>
         <li>[against] My one true love is a full night's sleep.</li>
+        <li>[for,wedding] Weddings, I love them, the cake, the crying, all of it.</li>
+        <li>[against,single] I'm happily married to my bedroll.</li>
       </cheerful>
       <gloomy>
         <li>[against] Love ends one way or another, usually badly.</li>
         <li>[for] At least we won't die alone, some of us.</li>
+        <li>[for] Love's the only thing worth losing, I suppose.</li>
+        <li>[against,wedding] Happy now, and then the arguments start.</li>
       </gloomy>
       <cold>
         <li>[against] Attachments complicate decisions.</li>
         <li>[for] Pairs are stable, and stability is good for a colony.</li>
+        <li>[for,wedding] A wedding steadies people.</li>
+        <li>[against] Love clouds judgement.</li>
       </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -169,16 +231,37 @@
         <li>[debate,for] What else are we fighting for, if not that?</li>
         <li>[argue,against] You'd fall for anyone who looked at you twice.</li>
         <li>[argue,for] Bitter, aren't you.</li>
+        <li>[agree,for] It's nice to see, isn't it.</li>
+        <li>[agree,against] I've had my heart broken once, and that's enough.</li>
+        <li>[debate,for] What's life without someone to share it?</li>
+        <li>[debate,against] It's lovely, until somebody gets hurt.</li>
+        <li>[argue,for] You're only saying that because nobody's asked you.</li>
+        <li>[argue,against] You'd fall in love with a fence post if it smiled.</li>
+        <li>[agree,for] Love's what this place needs more of.</li>
+        <li>[agree,against] I'm done with love, honestly.</li>
+        <li>[debate,for] It's worth the risk.</li>
+        <li>[debate,against] Sweet, yes, but it never lasts.</li>
+        <li>[argue,for] You'd scare off cupid himself.</li>
+        <li>[argue,against] Head in the clouds, as always.</li>
       </plain>
       <warm>
         <li>[agree,for] I hope you find it too.</li>
+        <li>[agree,for] Everyone deserves that, everyone.</li>
       </warm>
+      <blunt>
+        <li>[agree,against] Waste of time, all of it.</li>
+      </blunt>
       <cheerful>
         <li>[debate,for] Come on, everyone loves a good love story.</li>
+        <li>[agree,for] Love, cake and dancing, the three best things.</li>
       </cheerful>
       <gloomy>
         <li>[agree,against] It always ends in tears.</li>
+        <li>[debate,for] Better than being alone, I suppose.</li>
       </gloomy>
+      <cold>
+        <li>[debate,for] Pairs are good for morale.</li>
+      </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
 
@@ -192,7 +275,18 @@
         <li>[agree] Here's to the happy ones.</li>
         <li>[debate] You'll change your tune when it happens to you.</li>
         <li>[argue] Be alone, then.</li>
+        <li>[agree] Here's to love, then, wherever it turns up.</li>
+        <li>[debate] You'll see, one day it'll get you too.</li>
+        <li>[agree,for] Let's find someone for you, then.</li>
+        <li>[agree,against] Single and happy, the pair of us.</li>
+        <li>[argue,for] Grumpy and alone, that's your future.</li>
       </plain>
+      <warm>
+        <li>[agree] I hope you find someone, really.</li>
+      </warm>
+      <cheerful>
+        <li>[argue] Fine, die alone, see if I care.</li>
+      </cheerful>
     </lines>
   </ColonyCouncil.TalkLinesDef>
 
@@ -206,6 +300,9 @@
         <li>[otherfor] {OTHER} has been sighing at the sunset again.</li>
         <li>[otheragainst] {OTHER} says love is a waste of time, while blushing.</li>
       </plain>
+      <cheerful>
+        <li>[otherfor] {OTHER} keeps finding reasons to walk past a certain someone's bench.</li>
+      </cheerful>
     </lines>
   </ColonyCouncil.TalkLinesDef>
 
@@ -227,24 +324,43 @@
         <li>[against,subject] {SUBJECT} shouldn't have to see what goes on here.</li>
         <li>[against,parent] I lie awake wondering if I've done right by mine, bringing them up here.</li>
         <li>[mixed] What kind of life are we giving the children, do you think?</li>
+        <li>[for] The little ones laughing in the yard, that's what all this is for.</li>
+        <li>[for] Children learn so fast here, they're tougher than us.</li>
+        <li>[for,subject] {SUBJECT} is getting so tall, have you noticed?</li>
+        <li>[for,parent] I'm proud of how mine are turning out.</li>
+        <li>[against] The children shouldn't hear the raids.</li>
+        <li>[against] It's too dangerous here for children, it really is.</li>
+        <li>[against,birth] Another child born into all this, I don't know what to feel.</li>
+        <li>[against,parent] I'm scared every day for my children.</li>
+        <li>[mixed,nochildren] Would you want children here, do you think?</li>
       </plain>
       <warm>
         <li>[for,subject] {SUBJECT} made me a little wooden horse, I'll keep it forever.</li>
         <li>[for] I'd teach the little ones anything they wanted to learn.</li>
+        <li>[for] I've been teaching the children their letters, they're so quick.</li>
+        <li>[against] I'd give anything to keep the children safe from all of it.</li>
       </warm>
       <blunt>
         <li>[against] Children here should learn to work and fight, soft won't help them.</li>
         <li>[for] Kids need room to run about, not lessons all day.</li>
+        <li>[for] Children need to grow up, and this place will make them grow up.</li>
+        <li>[against] No place to raise kids, this, and you know it.</li>
       </blunt>
       <cheerful>
         <li>[for] The children have formed a council of their own, they're stricter than ours.</li>
+        <li>[for] The children beat me at cards again, I'm not good enough for this colony.</li>
+        <li>[against,subject] {SUBJECT} asked where babies come from, so I ran away.</li>
       </cheerful>
       <gloomy>
         <li>[against] What future are we giving them, really?</li>
+        <li>[for] At least the children don't know how bad things are.</li>
+        <li>[against,subject] I wonder what kind of world {SUBJECT} will grow up into.</li>
       </gloomy>
       <cold>
         <li>[for] Children are the colony's long-term investment.</li>
         <li>[against] Children consume resources the colony doesn't have.</li>
+        <li>[for,birth] A birth strengthens the colony.</li>
+        <li>[against] Children cost more than they give, for years.</li>
       </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -262,10 +378,32 @@
         <li>[debate,for] Where else would they be safer than with all of us?</li>
         <li>[argue,against] You'd raise them in a war camp if it suited you.</li>
         <li>[argue,for] They need hope, not your doom and gloom.</li>
+        <li>[agree,for] They're the best of all of us, the children.</li>
+        <li>[agree,against] I worry about them too, all the time.</li>
+        <li>[debate,for] They're safer here than out there, at least.</li>
+        <li>[debate,against] Happy, yes, but are they safe?</li>
+        <li>[argue,for] Don't fill their heads with your fears.</li>
+        <li>[argue,against] You'd let them play in the raiders' path.</li>
+        <li>[agree,for] They make every day better.</li>
+        <li>[agree,against] I wish they were somewhere safer.</li>
+        <li>[debate,for] They're tougher than you think.</li>
+        <li>[debate,against] Happy, yes, but this place is hard.</li>
+        <li>[argue,for] They're not made of glass.</li>
+        <li>[argue,against] They're children, not soldiers.</li>
       </plain>
       <warm>
         <li>[agree,for] I'd do anything for them, anything at all.</li>
+        <li>[agree,for] I'd teach them anything they wanted.</li>
       </warm>
+      <cheerful>
+        <li>[agree,for] They're running this place, really, we just work here.</li>
+      </cheerful>
+      <gloomy>
+        <li>[agree,against] I hope they forgive us, one day.</li>
+      </gloomy>
+      <cold>
+        <li>[debate,for] They'll adapt, children do.</li>
+      </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
 
@@ -279,7 +417,18 @@
         <li>[agree] We'll keep them safe, between all of us.</li>
         <li>[debate] Let's just do right by them, either way.</li>
         <li>[argue] Stay away from the children with that talk.</li>
+        <li>[agree] Let's keep them safe, then, all of us.</li>
+        <li>[debate] Either way, they need us.</li>
+        <li>[agree,for] I'll take them out to the fields tomorrow.</li>
+        <li>[agree,against] We'll keep them close, then.</li>
+        <li>[debate,against] Just be careful with them.</li>
       </plain>
+      <warm>
+        <li>[agree] I'll read to them tonight.</li>
+      </warm>
+      <blunt>
+        <li>[argue,against] Just keep them away from the gate.</li>
+      </blunt>
     </lines>
   </ColonyCouncil.TalkLinesDef>
 
@@ -301,15 +450,26 @@
         <li>[against,fresh] Let {SUBJECT} rest; it's too soon.</li>
         <li>[against,strong] The dead are dead, and we have work to do.</li>
         <li>[mixed] Do you ever think about {SUBJECT}?</li>
+        <li>[for] I told the children about {SUBJECT} today, so they'll remember.</li>
+        <li>[for] We should put up a marker for {SUBJECT}, something that lasts.</li>
+        <li>[for,battle] {SUBJECT} stood their ground to the end.</li>
+        <li>[against] I don't want to talk about {SUBJECT}, not today.</li>
+        <li>[against] Every time someone says {SUBJECT}'s name, it starts again.</li>
+        <li>[against] We have to keep going, for {SUBJECT}'s sake if nothing else.</li>
+        <li>[mixed,fresh] I keep turning round to tell {SUBJECT} something.</li>
       </plain>
       <warm>
         <li>[for] I miss {SUBJECT}; I miss them every day.</li>
         <li>[for] I planted something by {SUBJECT}'s grave, I hope that's all right.</li>
         <li>[against] I loved {SUBJECT}, but I can't keep reopening it.</li>
+        <li>[for] {SUBJECT} would be proud of all of us.</li>
+        <li>[against] I loved {SUBJECT}, and I can't bear to talk about it.</li>
       </warm>
       <blunt>
         <li>[against] Moping won't bring {SUBJECT} back.</li>
         <li>[for] Nobody says {SUBJECT}'s name anymore, and it makes me angry.</li>
+        <li>[for] Nobody should forget what {SUBJECT} did for this place.</li>
+        <li>[against] Talking won't bring {SUBJECT} back, so let it be.</li>
       </blunt>
       <cheerful>
         <li>[for] I'd give anything to hear one of {SUBJECT}'s awful jokes again.</li>
@@ -317,10 +477,14 @@
       <gloomy>
         <li>[for] It should have been me instead of {SUBJECT}.</li>
         <li>[against] One day someone will be forgetting us like this.</li>
+        <li>[for] I think about {SUBJECT} every night.</li>
+        <li>[against] Remembering just makes it hurt more.</li>
       </gloomy>
       <cold>
         <li>[against] Grieving costs work; we should be careful how long it goes on.</li>
         <li>[for] {SUBJECT} was useful and well liked; the loss is real.</li>
+        <li>[for] {SUBJECT}'s work still stands; that should be remembered.</li>
+        <li>[against] What's done is done.</li>
       </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -340,13 +504,30 @@
         <li>[argue,against] You never even liked them.</li>
         <li>[argue,for] How can you be so cold about it?</li>
         <li>[argue,against] Stop picking at it, please, just stop.</li>
+        <li>[agree,for] I talk to them sometimes, at the grave.</li>
+        <li>[agree,against] I'm not ready either.</li>
+        <li>[debate,for] Saying their name keeps them with us.</li>
+        <li>[debate,against] Some days it helps, some days it doesn't.</li>
+        <li>[argue,for] They deserve better than being forgotten.</li>
+        <li>[argue,against] Leave it, please, I'm begging you.</li>
+        <li>[agree,for] I keep their things, I can't let them go.</li>
+        <li>[agree,against] I think about them, I just can't talk about it.</li>
+        <li>[debate,for] Talking about them is how we keep them.</li>
+        <li>[debate,against] I remember them in my own way, quietly.</li>
+        <li>[argue,for] They'd hate to be forgotten.</li>
+        <li>[argue,against] Not everyone grieves out loud.</li>
       </plain>
       <warm>
         <li>[agree,for] They'd be glad we still think of them.</li>
+        <li>[agree,for] We'll keep them close, you and me.</li>
       </warm>
       <gloomy>
         <li>[agree,for] It never gets easier, does it.</li>
+        <li>[agree,against] It hurts too much.</li>
       </gloomy>
+      <cold>
+        <li>[debate,for] Memory honours the dead; dwelling doesn't.</li>
+      </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
 
@@ -360,7 +541,14 @@
         <li>[agree] We'll remember them, the two of us.</li>
         <li>[debate] We all grieve our own way, I suppose.</li>
         <li>[argue] Forget them, then, if you can.</li>
+        <li>[agree] Let's take them flowers tomorrow.</li>
+        <li>[debate] We'll each remember them our own way.</li>
+        <li>[agree,for] I'll tell the young ones about them.</li>
+        <li>[agree,against] Let them rest, then.</li>
       </plain>
+      <warm>
+        <li>[argue] I'm sorry, I didn't mean to push.</li>
+      </warm>
     </lines>
   </ColonyCouncil.TalkLinesDef>
 

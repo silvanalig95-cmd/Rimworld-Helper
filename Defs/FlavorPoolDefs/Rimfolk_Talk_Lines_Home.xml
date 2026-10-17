@@ -108,6 +108,8 @@
         <li>[debate,against] Grateful, yes, but I'd still like some salt.</li>
         <li>[argue,for] Ungrateful, that's what you are.</li>
         <li>[argue,against] You'd eat anything that sat still long enough.</li>
+        <li>[argue,for] Starve, then, and see how fussy you are.</li>
+        <li>[argue,against] You'd praise the cook if they served you gravel.</li>
       </plain>
       <warm>
         <li>[agree,for] It's the company that makes it, really.</li>
@@ -125,6 +127,7 @@
       </cheerful>
       <gloomy>
         <li>[agree,against] It's never going to get better, either.</li>
+        <li>[debate,for] At least there is some, that's more than many have.</li>
       </gloomy>
       <cold>
         <li>[debate,against] Nutritious, perhaps, but not good.</li>
@@ -147,12 +150,14 @@
         <li>[argue,against] Enjoy your slop, then.</li>
         <li>[agree] We'll see what's for supper, then.</li>
         <li>[debate] Tell you what, you cook tomorrow and we'll see.</li>
+        <li>[argue,iscook] Cook it yourself tomorrow, then.</li>
       </plain>
       <warm>
         <li>[agree] Let's eat together tonight.</li>
       </warm>
       <cheerful>
         <li>[debate] Loser washes the pots.</li>
+        <li>[agree] Seconds for both of us.</li>
       </cheerful>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -261,14 +266,22 @@
         <li>[debate,against] Maybe, but some of us are carrying the rest.</li>
         <li>[argue,for] Do your own work and stop watching everyone else's.</li>
         <li>[argue,against] You'd say that, you're always on a break.</li>
+        <li>[agree,for] Nobody here's afraid of hard work, that's true.</li>
+        <li>[agree,for] I've never seen a harder-working lot.</li>
+        <li>[debate,for] You're tired, that's all, it makes everyone look lazy.</li>
+        <li>[debate,against] Most of us, yes, but not quite all.</li>
+        <li>[argue,for] Keep your nose out of other people's work.</li>
+        <li>[argue,against] Open your eyes, half of them are leaning on shovels.</li>
       </plain>
       <warm>
         <li>[debate,for] Let's not start blaming each other, we're all tired.</li>
         <li>[agree,against] Let me take some of it off you tomorrow.</li>
+        <li>[debate,against] Let's talk to them kindly, before it gets bitter.</li>
       </warm>
       <blunt>
         <li>[agree,against] Some of them need a kick.</li>
         <li>[argue,for] Mind your own business.</li>
+        <li>[argue,against] Don't make me name names.</li>
       </blunt>
       <cheerful>
         <li>[agree,for] Dream team, that's us.</li>
@@ -298,6 +311,8 @@
         <li>[agree,for] Good crew, this.</li>
         <li>[agree,against] I'll say something at the next meeting.</li>
         <li>[debate] Let's just get through today.</li>
+        <li>[agree,against] We'll keep an eye on them.</li>
+        <li>[argue,for] Mind your own work.</li>
       </plain>
       <warm>
         <li>[agree] Get some rest tonight, both of us.</li>
@@ -401,6 +416,12 @@
         <li>[debate,against] Kind to them, sure, but they're still animals.</li>
         <li>[argue,for] I don't trust anyone who doesn't like animals.</li>
         <li>[argue,against] You care more about that animal than about people.</li>
+        <li>[agree,for] I'd trust an animal over most people.</li>
+        <li>[agree,against] I'm tired of mucking out, I'll say that.</li>
+        <li>[debate,for] They're worth their keep, every one.</li>
+        <li>[debate,against] Fond of them, sure, but they're not people.</li>
+        <li>[argue,for] You've got no heart, honestly.</li>
+        <li>[argue,against] They're animals, for goodness' sake.</li>
       </plain>
       <warm>
         <li>[agree,for] They make the hard days softer.</li>
@@ -411,6 +432,7 @@
       </blunt>
       <cheerful>
         <li>[debate,for] The goat disagrees with you, and so do I.</li>
+        <li>[agree,for] The goat agrees with you, I asked.</li>
       </cheerful>
       <cold>
         <li>[agree,against] Livestock is livestock.</li>
@@ -431,6 +453,8 @@
         <li>[argue,against] Kiss your goat goodnight for me.</li>
         <li>[agree] I'll bring them some scraps later.</li>
         <li>[debate] We'll agree to disagree, and the goat will judge us both.</li>
+        <li>[agree,for] I'll take them some apples.</li>
+        <li>[argue,against] Kiss the chickens goodnight, then.</li>
       </plain>
       <cheerful>
         <li>[agree] Animal appreciation meeting, tonight, by the pens.</li>
@@ -539,6 +563,12 @@
         <li>[debate,against] Easy to love the weather from beside the fire.</li>
         <li>[argue,for] Stop complaining about things you can't change.</li>
         <li>[argue,against] You'd call a flood refreshing.</li>
+        <li>[agree,for] There's nothing to be done about it, so why fret.</li>
+        <li>[agree,against] I can't wait for this season to end.</li>
+        <li>[debate,for] It's the same sky for everyone, at least.</li>
+        <li>[debate,against] Easy to be calm about the cold in a thick coat.</li>
+        <li>[argue,for] You'd moan about a perfect day.</li>
+        <li>[argue,against] Go and stand in it, then, if you love it so much.</li>
       </plain>
       <warm>
         <li>[agree,for] Let's get something hot to drink and watch it from the window.</li>
@@ -569,6 +599,8 @@
         <li>[argue] Enjoy it, then.</li>
         <li>[agree] It'll turn soon enough.</li>
         <li>[debate] Well, the weather doesn't care either way.</li>
+        <li>[agree,for] Let's enjoy it, then.</li>
+        <li>[agree,against] I'll stoke the fire.</li>
       </plain>
       <cheerful>
         <li>[agree] I'll put the kettle on.</li>

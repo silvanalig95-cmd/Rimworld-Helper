@@ -27,7 +27,7 @@ The talk shows over their heads as two to four lines, the two taking turns, a fe
       </li>
       <li>
         <heading>What comes up</heading>
-        <text>The game picks Rimfolk's talks in its own social picker, beside its chitchat. All of them together take a fixed share of a colonist's talk (about a tenth as often as chitchat, scaled by the moments setting, more for the warm and the playful, a little more between friends and rivals, half as much toward someone they can't stand), and that share is split by what's worth talking about between these two, now:</text>
+        <text>The game picks Rimfolk's talks in its own social picker, beside its chitchat. All of them together take a fixed share of a colonist's talk (about a twelfth as often as chitchat, scaled by the moments setting, more for the warm and the playful, a little more between friends and rivals, half as much toward someone they can't stand), and that share is split by what's worth talking about between these two, now:</text>
         <points>
           <li>news: a raid in the last days, a death, a new decree or council meeting, a wedding or a birth, a newcomer, a harvest or a hungry week, a disaster, traders at the gate, a finished study, a prisoner taken, a binge;</li>
           <li>how strongly each of them cares (strong views get aired), the speaker's character (the hot-tempered bring up the raids and the work, the curious the world and new learning, the gloomy the future and the weather, the warm the children and the newcomer);</li>
@@ -35,7 +35,7 @@ The talk shows over their heads as two to four lines, the two taking turns, a fe
           <li>what they went through together (see "shared memories and in-jokes"), and whether one of them is low;</li>
           <li>what they talked about lately: the same topic between the same two is much rarer for two days.</li>
         </points>
-        <after>A colonist who starts a talk waits three hours before starting another, and the same two talk at most every ten hours. A topic only comes up when it means something: no prisoners, no talk of prisoners; no children, little talk of them.</after>
+        <after>A colonist who starts a talk waits four hours before starting another, and the same two talk at most every ten hours. A topic only comes up when it means something: no prisoners, no talk of prisoners; no children, little talk of them.</after>
       </li>
       <li>
         <heading>How it goes</heading>

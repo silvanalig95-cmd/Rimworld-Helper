@@ -15,9 +15,12 @@
         <li>I was telling someone about {LABEL} today.</li>
         <li>I thought of {LABEL} this morning and laughed out loud on my own.</li>
         <li>[worn] Remember {LABEL}?</li>
+        <li>[worn] I know, I know, but {LABEL}, though.</li>
+        <li>[told] Still makes me laugh, {LABEL}.</li>
       </plain>
       <cheerful>
         <li>Guess what I was thinking about, {LABEL}.</li>
+        <li>[fresh] I was thinking about {LABEL} and nearly fell over.</li>
       </cheerful>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -56,6 +59,8 @@
         <li>We'll be telling that one when we're old.</li>
         <li>[worn] All right, I'll find a new one.</li>
         <li>[worn] Fine, fine, I'll retire it.</li>
+        <li>[fresh] We'll be telling that one for years.</li>
+        <li>[told] Never gets old, never.</li>
       </plain>
       <cheerful>
         <li>Classic, absolute classic.</li>
@@ -76,6 +81,7 @@
         <li>[byme] I still can't look at a bowl of stew.</li>
         <li>[byother] Feeling brave enough for stew tonight?</li>
         <li>[byother] Remember how green you went, after {LABEL}?</li>
+        <li>[worn] I know, I know, but the stew, though.</li>
       </plain>
       <cheerful>
         <li>I've written a song about {LABEL}, it's mostly groaning.</li>
@@ -100,9 +106,11 @@
         <li>[worn] Yes, yes, the stew, very good.</li>
         <li>[byme] I was greener than a cabbage.</li>
         <li>[byother] You were the colour of the pot, honestly.</li>
+        <li>[told] I'm still not sure what was in it.</li>
       </plain>
       <cheerful>
         <li>[fresh] I'll never trust a carrot again.</li>
+        <li>[told] I'd have rated it highly, before.</li>
       </cheerful>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -155,9 +163,12 @@
         <li>[told] We are never getting that close to one again.</li>
         <li>[told] I've seen you flinch at a cough since.</li>
         <li>[worn] Boom, yes, very good.</li>
+        <li>[told] I've stopped standing near anything with horns.</li>
+        <li>[byme] I still have a ringing in one ear.</li>
       </plain>
       <cheerful>
         <li>[fresh] Best fireworks we've ever had.</li>
+        <li>[told] My eyebrows have never forgiven me.</li>
       </cheerful>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -187,6 +198,8 @@
         <li>[byme] I was only being friendly, with {LABEL}.</li>
         <li>[byother] I'll never forget you running from {LABEL}.</li>
         <li>[byother] Fancy taming another one like {LABEL}?</li>
+        <li>I saw a wild one at the edge of the fields and thought of {LABEL}.</li>
+        <li>[worn] Remember {LABEL}, though?</li>
       </plain>
       <cheerful>
         <li>[byother] You and {LABEL}, a love story for the ages.</li>
@@ -207,7 +220,11 @@
         <li>[told] I'd like to see you do better.</li>
         <li>[worn] Yes, I know, I ran, we all know.</li>
         <li>[byother] You should have seen your face.</li>
+        <li>[byme] I was being gentle, it was being rude.</li>
       </plain>
+      <cheerful>
+        <li>[told] We're friends now, me and that beast, from a distance.</li>
+      </cheerful>
     </lines>
   </ColonyCouncil.TalkLinesDef>
 
@@ -235,6 +252,7 @@
         <li>I still think of you beating out {LABEL} with your shirt.</li>
         <li>Whenever someone lights a candle, I think of {LABEL}.</li>
         <li>[byme] I was very calm during {LABEL}, I'll have you know.</li>
+        <li>Somebody lit the stove and I thought of {LABEL}.</li>
       </plain>
       <cheerful>
         <li>I've never seen anyone dance like you did at {LABEL}.</li>
@@ -254,7 +272,12 @@
         <li>[told] I was not screaming, I was giving orders.</li>
         <li>[told] It was a very small fire and I was very brave.</li>
         <li>[worn] Yes, the fire, and the shirt, we know.</li>
+        <li>[told] We used half the well on a fire the size of a hat.</li>
+        <li>[byme] I panicked, all right, I admit it.</li>
       </plain>
+      <cheerful>
+        <li>[fresh] I'm still finding soot in my ears.</li>
+      </cheerful>
     </lines>
   </ColonyCouncil.TalkLinesDef>
 
@@ -302,7 +325,12 @@
         <li>[told] I did not make a noise.</li>
         <li>[told] Some of us went down with dignity.</li>
         <li>[worn] Yes, the mud, I know.</li>
+        <li>[told] My boots have never been the same.</li>
+        <li>[byme] I went down like a sack of grain, didn't I.</li>
       </plain>
+      <cheerful>
+        <li>[fresh] I'll never be clean again, and I've accepted it.</li>
+      </cheerful>
     </lines>
   </ColonyCouncil.TalkLinesDef>
 
@@ -331,6 +359,7 @@
         <li>[byother] How's the head, since {LABEL}?</li>
         <li>[byother] I've got a story about {LABEL} for anyone who'll listen.</li>
         <li>[byother] Remember the singing, during {LABEL}?</li>
+        <li>Big night tonight, {OTHER}, or have you learned your lesson?</li>
       </plain>
       <cheerful>
         <li>[byother] Encore performance tonight, {OTHER}?</li>
@@ -351,7 +380,11 @@
         <li>[told] One night, and you'll never let me forget it.</li>
         <li>[worn] Yes, I know, I sang, everybody knows.</li>
         <li>[byother] You were there too, don't forget.</li>
+        <li>[byme] I'd like it known that I was celebrating.</li>
       </plain>
+      <cheerful>
+        <li>[told] It was a performance, and I stand by it.</li>
+      </cheerful>
     </lines>
   </ColonyCouncil.TalkLinesDef>
 
