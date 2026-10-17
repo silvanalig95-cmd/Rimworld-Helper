@@ -166,7 +166,7 @@ Human raiders fight until something breaks the raid, and pirates may give up and
     <sections>
       <li>
         <heading>How raiders pick a path</heading>
-        <text>Raiders take the easiest open route. They treat a door they would have to break as a waste of effort, and each trap they know about adds a path cost of 40, so a heavily trapped lane can push them to another way in. Sapper, smart and breaching raiders know where about 30% of your traps are.</text>
+        <text>Raiders take the easiest open route. They treat a door they would have to break as a waste of effort. A trap they know about adds a path cost of 800 when they choose their way, and 40 when they step over it, so a heavily trapped lane can push them to another way in. Sapper, smart and breaching raiders know where about 30% of your traps are.</text>
       </li>
       <li>
         <heading>Building one</heading>
@@ -297,7 +297,7 @@ IEDs explode when bullets hit them, so keep them away from your firing positions
       </li>
       <li>
         <heading>Laying them out</heading>
-        <text>Traps can't be built next to each other, and each known trap adds a path cost of 40. Put them on the easy approach routes, and protect your own path with doors so raiders prefer the trapped one. Without power, line the corridor that leads to your doorway with spike traps, leaving a gap between each.</text>
+        <text>Traps can't be built next to each other. A known trap adds a path cost of 800 when a raider chooses his way and 40 when he steps over it, so he goes round it if he can. Put them on the easy approach routes, and protect your own path with doors so raiders prefer the trapped one. Without power, line the corridor that leads to your doorway with spike traps, leaving a gap between each.</text>
       </li>
     </sections>
     <keywords>
@@ -383,14 +383,14 @@ A solar flare shuts every turret down. Arm your colonists as if the turrets were
         <table>
           <li>Building | When it goes | Blast</li>
           <li>Autocannon turret | Below 20% health: a 50% chance, 240 ticks (about 4 seconds) later | 50 Bomb damage in a 5.9-tile radius</li>
-          <li>Mini-turret | When badly damaged | A smaller radius of about 3 tiles</li>
+          <li>Mini-turret | Below 20% health: a 50% chance, 240 ticks later | 50 Bomb damage in a 3.9-tile radius</li>
           <li>Mortar | Below a third of its health, it may explode | 50 Bomb damage in 4.9 tiles</li>
         </table>
         <after>Bomb damage is ×8 against walls, ×4 against other solid structures and plants, and ×2 against buildings you can walk through.</after>
       </li>
       <li>
         <heading>Spacing and repair</heading>
-        <text>Keep autocannon turrets about 6 tiles or more apart, so one blast can't reach the next. Keep turrets off wooden floors and away from where your colonists stand to fight, and repair any with a low health bar right after each wave.
+        <text>Keep autocannon turrets about 6 tiles or more apart, so one blast can't reach the next, and mini-turrets 4 or more, which leaves 3 empty cells between them. A wall between two turrets stops the blast too. Keep turrets off wooden floors and away from where your colonists stand to fight, and repair any with a low health bar right after each wave.
 
 IEDs behave the same way under fire: a stray bullet sets them off, so keep them clear of your own lines.</text>
       </li>

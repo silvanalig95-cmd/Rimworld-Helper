@@ -261,6 +261,48 @@ Without power, a fueled stove burns wood and cooks the same meals as an electric
   </ColonyCouncil.AlmanacArticleDef>
 
   <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_1_33_FungusMeals</defName>
+    <label>fungus meals</label>
+    <category>Food</category>
+    <order>45</order>
+    <dlc>Ideology</dlc>
+    <summary>A bill of its own for meals with fungus in them, for those whose faith asks for fungus</summary>
+    <tip>Put fungus meals on one colonist's food policy and take them off everyone else's.</tip>
+    <description>Some faiths ask for fungus: Ideology's "fungus preferred", and Alpha Memes' fungus diet, which makes a colonist sick after anything but fungus, insect meat, insect jelly or a meal with some of either in it. Food policies and bills only know kinds of meal, not what went into them, so a simple meal of rice and one with fungus look the same to them. Rimfolk adds the fungus meal for this: a simple meal from its own bill, "cook fungus meal", where part of every meal is always fungus.</description>
+    <sections>
+      <li>
+        <heading>Setting it up</heading>
+        <points>
+          <li>Grow fungus: nutrifungus in a roofed room with no lamps and the door kept shut.</li>
+          <li>Add a "cook fungus meal" bill at the stove (any stove or fire that cooks simple meals has it), set to "do until you have" two or three days' worth. It counts only fungus meals.</li>
+          <li>Give the colonist a food policy with fungus meals on it and nothing that would make them sick; raw fungus is a fallback if the meals run out.</li>
+          <li>Take fungus meals off everyone else's food policy, so the others leave them alone.</li>
+        </points>
+        <after>In a save from before fungus meals existed, every food policy starts with them switched off, so only the policy you tick them on will eat them. A food policy made later allows them like any other meal; untick them there.</after>
+      </li>
+      <li>
+        <heading>What goes in</heading>
+        <text>A fungus meal takes 0.5 nutrition of raw food, the same as a simple meal: at least 0.2 of it fungus (4 raw fungus), the rest anything raw the bill allows, more fungus included. It counts as a simple meal for mood, rots like one and looks like one. Raw fungus from other mods counts as fungus too.</text>
+      </li>
+    </sections>
+    <keywords>
+      <li>fungus</li>
+      <li>fungus meal</li>
+      <li>nutrifungus</li>
+      <li>mushrooms</li>
+      <li>diet</li>
+      <li>food policy</li>
+      <li>Alpha Memes</li>
+      <li>vomit</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_1_26_MealMoods</li>
+      <li>Council_Alm_1_23_SunLamps</li>
+      <li>Council_Alm_1_25_FoodPoisoning</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
     <defName>Council_Alm_1_25_FoodPoisoning</defName>
     <label>food poisoning</label>
     <category>Food</category>

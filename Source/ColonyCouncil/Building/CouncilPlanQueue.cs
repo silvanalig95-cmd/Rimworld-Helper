@@ -37,7 +37,8 @@ namespace ColonyCouncil
     }
 
     /// <summary>
-    /// Places queued room-plan blueprints as soon as their spot is clear. Gives up on a piece when the
+    /// Places queued room-plan blueprints as soon as their spot is clear. A piece in unexplored ground waits until the
+    /// colonists dig through to it; a wall there that turns out to be rock is done. Gives up on a piece when the
     /// player cancels the mining or deconstruction it was waiting for, or after a long while.
     /// </summary>
     public class CouncilPlanQueue : MapComponent
@@ -101,6 +102,12 @@ namespace ColonyCouncil
                             hopeless = true;
                             break;
                         }
+                        // Still in unexplored ground: the colonists are digging towards it.
+                        if (c.Fogged(map))
+                        {
+                            waiting = true;
+                            continue;
+                        }
                         foreach (var t in c.GetThingList(map))
                         {
                             if ((t is Blueprint_Build || t is Frame) && t.def.entityDefToBuild == def) done = true;
@@ -111,6 +118,8 @@ namespace ColonyCouncil
                         else if (dm.DesignationAt(c, DesignationDefOf.Mine) != null || dm.DesignationAt(c, DesignationDefOf.MineVein) != null
                                  || dm.DesignationOn(ed, DesignationDefOf.Deconstruct) != null)
                             waiting = true;
+                        // A wall that waited on unexplored ground found rock (or a wall) there: that is the wall.
+                        else if (q.thing != null && q.thing.IsWall && TemplatePlanner.IsWallLike(ed.def)) done = true;
                         else hopeless = true;
                     }
                     // A wall lamp hangs on the wall it faces: it waits for that wall as long as the wall is still to come.

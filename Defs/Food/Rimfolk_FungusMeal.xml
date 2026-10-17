@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The fungus meal (Ideology): a simple meal with some fungus in it, on a bill of its own, so a colonist whose faith
+    asks for fungus (Alpha Memes' fungus diet, Ideology's fungus preferred) can be given only these through a food
+    policy while everyone else's policy leaves them out. Source/ColonyCouncil/Integrations/FungusMeals.cs finishes
+    both at startup: every raw fungus the game knows (other mods' too) counts as the fungus part, the meal takes the
+    simple meal's look, the bill the simple meal's ingredient filters, and every stove or fire that cooks simple meals
+    gets the bill. The graphic below only stands in until then.
+  -->
+
+  <ThingDef ParentName="MealCooked" MayRequire="Ludeon.RimWorld.Ideology">
+    <defName>Rimfolk_MealFungus</defName>
+    <label>fungus meal</label>
+    <description>A simple meal cooked with fungus in it and whatever else was at hand. It's kept apart from the other meals for those whose faith or diet asks for fungus: put fungus meals on their food policy and leave them off everyone else's.</description>
+    <graphicData>
+      <texPath>ColonyCouncil/Icons/Table</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>15</MarketValue>
+      <WorkToMake>300</WorkToMake>
+      <Nutrition>0.9</Nutrition>
+    </statBases>
+    <ingestible>
+      <preferability>MealSimple</preferability>
+      <ingestEffect>EatVegetarian</ingestEffect>
+      <ingestSound>Meal_Eat</ingestSound>
+    </ingestible>
+  </ThingDef>
+
+  <RecipeDef ParentName="CookMealBase" MayRequire="Ludeon.RimWorld.Ideology">
+    <defName>Rimfolk_CookFungusMeal</defName>
+    <label>cook fungus meal</label>
+    <description>Cook a simple meal with fungus in it. Part of every meal is always fungus; the rest can be any raw food the bill allows, fungus included.</description>
+    <jobString>Cooking fungus meal.</jobString>
+    <workSpeedStat>CookSpeed</workSpeedStat>
+    <effectWorking>Cook</effectWorking>
+    <soundWorking>Recipe_CookMeal</soundWorking>
+    <allowMixingIngredients>true</allowMixingIngredients>
+    <ingredientValueGetterClass>IngredientValueGetter_Nutrition</ingredientValueGetterClass>
+    <recipeUsers>
+      <li>ElectricStove</li>
+      <li>FueledStove</li>
+    </recipeUsers>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>RawFungus</li>
+          </thingDefs>
+        </filter>
+        <count>0.2</count>
+      </li>
+      <li>
+        <filter>
+          <categories>
+            <li>FoodRaw</li>
+          </categories>
+        </filter>
+        <count>0.3</count>
+      </li>
+    </ingredients>
+    <products>
+      <Rimfolk_MealFungus>1</Rimfolk_MealFungus>
+    </products>
+    <fixedIngredientFilter>
+      <categories>
+        <li>FoodRaw</li>
+      </categories>
+      <thingDefs>
+        <li>RawFungus</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <workSkill>Cooking</workSkill>
+  </RecipeDef>
+
+</Defs>

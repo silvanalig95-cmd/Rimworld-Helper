@@ -171,7 +171,9 @@ what the colonist may eat, and a wish that comes to clash with a changed faith i
 serve each colonist only what their food or drug policy allows, what leaves no bad "ate ..." memory, and nothing
 Alpha Memes would make them sick for (only fungus or insect for its two required diets together, no forbidden
 paste); with nothing fit in the stores they sit at the table without eating. Life goals and council projects
-follow the same rules.
+follow the same rules. With Ideology, a "cook fungus meal" bill at any stove makes fungus meals: simple meals that
+always have fungus in them, a kind of their own, so one colonist's food policy can take only these while everyone
+else's leaves them out.
 
 **Promises kept.** 61 kinds of wish give something that stays, and the council is watched on it for about 60 days
 after granting it (90 for rooms): a bed kept for guests, a room of their own, a nicer or roomier bedroom, a bed shared,
@@ -798,7 +800,8 @@ follows the mouse, and a planner panel lets you:
   to swap them for a standing lamp, or the other way round
 - **clear the site**: cut plants and trees, mine rock (inside, in the doorway and just outside the door),
   replace your own buildings in the way, smooth natural stone. Pieces blocked by rock go down by themselves
-  once it's mined.
+  once it's mined. A room reaching into **unexplored ground** is dug out as the colonists get there: rock in the
+  walls stays as the wall, and walls on open ground, the door, furniture and floor follow as it comes to light.
 - build on **uneven ground**: where part of a room is on water, marsh or mud, the cells that can't hold a wall,
   the door or a piece of furniture are outlined in amber and left out, and the rest goes down. The message says
   how many wall segments and pieces were left out, and whether the door was. Only when nothing at all could be
@@ -849,13 +852,16 @@ end. **Plan it here** opens the plan at the place the advice is about, turned to
 until you click. **Show on the map** draws the ways in (red), the gaps (yellow, blue where a gate holds one) and where a
 gate's wall would cross (gold), also with the window closed.
 
-**Eleven defense plans**, placed like room plans with every turn and mirror, material choices from what you have,
+**Fifteen defense plans**, placed like room plans with every turn and mirror, material choices from what you have,
 rock mined and plants cut where you allow it, and a preview that shows what's ready, waiting or in the way: a gate
-with sandbag lines, a perimeter wall two thick with a double gate, a killbox (a narrow entrance with two turns, an
-open box with a trap, cover with turrets or archers at the far end), a trap corridor (traps on one side, something to
-slow raiders on the other, for your people), a turret nest, a sniper's or archers' post, a fallback line, a keep, a
-mortar pit, and with Medieval Overhaul a palisade with a gatehouse and a castle gate (embrasures for the archers, a
-walled yard between two gates). Each uses what the colony can build: barricades and log gates in a medieval colony,
+with sandbag lines, a sandbag or barricade line to put behind a gate you already have, a perimeter wall two thick
+with a double gate, a second layer of wall that makes an existing line two thick, a small killbox for a narrow gap and
+bows, a killbox (a narrow entrance with two turns, a deep open box with two traps, cover at the far end more than a
+grenade's throw from the mouth, turrets on the flanks behind walls of their own), a tunnel killbox dug into a
+mountain's entrance, a trap corridor (traps on one side, something to slow raiders on the other, for your people), a
+turret nest, a sniper's or archers' post, a fallback line, a keep, a mortar pit, and with Medieval Overhaul a
+palisade with a gatehouse and a castle gate (embrasures for the archers, a walled yard between two gates). They are
+the pieces a defense line is built from, a step at a time. Each uses what the colony can build: barricades and log gates in a medieval colony,
 sandbags, mini-turrets and autocannons once researched, and the defenses of Medieval Overhaul and Vanilla Furniture
 Expanded - Security where they're there. A plan the colony can't build yet is greyed with what it lacks, research
 included. A plan with a wall line can **close the gap**: the wall carries on to the rock, a wall or deep water on both
@@ -867,7 +873,10 @@ traps on the raiders' way and never side by side or by a gate, turrets three cel
 
 The marshal, when there is one, points at the first piece of advice, and the council can take up **hold the way in**
 as a project: a gate across the way most raids take with cover behind it, or the home walled in. The Almanac's
-**Defending the colony** section explains it all (15 pages).
+**Defending the colony** section explains it all (20 pages), from building a defense line step by step and how a
+killbox really works (how raiders choose their way, why the way in stays open, the entrance, the kill zone and the
+firing line) to where a killbox fits, the usual killbox mistakes, the field of fire with weapon reach by era, and
+keeping a defense up after a raid.
 
 ### Almanac
 An in-game knowledge base: good practice and the numbers behind it, by topic, searchable, linked from the

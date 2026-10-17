@@ -226,7 +226,7 @@ void ValidateValue(XElement el, Type ft, string file)
 }
 
 // Abstract defs from the base game that the mod's defs may inherit from.
-var vanillaParents = new HashSet<string> { "ScenarioBase", "PlayerFactionBase" };
+var vanillaParents = new HashSet<string> { "ScenarioBase", "PlayerFactionBase", "MealCooked", "CookMealBase" };
 foreach (var (file, doc) in docs)
 {
     foreach (var el in doc.Root!.Elements())

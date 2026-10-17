@@ -333,6 +333,7 @@ namespace ColonyCouncil
             if (plan.wallNew.Count > 0) GenDraw.DrawFieldEdges(plan.wallNew, NewWallColor);
             if (plan.wallReuse.Count > 0) GenDraw.DrawFieldEdges(plan.wallReuse, ReuseColor);
             if (plan.wallWaiting.Count > 0) GenDraw.DrawFieldEdges(plan.wallWaiting, RockColor);
+            if (plan.wallFog.Count > 0) GenDraw.DrawFieldEdges(plan.wallFog, RockColor);
             if (plan.wallBlocked.Count > 0) GenDraw.DrawFieldEdges(plan.wallBlocked, BlockedColor);
             if (plan.wallSkipped.Count > 0) GenDraw.DrawFieldEdges(plan.wallSkipped, SkipColor);
             if (plan.interiorSkipped.Count > 0) GenDraw.DrawFieldEdges(plan.interiorSkipped, SkipColor);

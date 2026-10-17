@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Fungus meals and digging into the dark
+
+*17 October 2026, evening, version 0.5.1*
+
+- With Ideology, a "cook fungus meal" bill at any stove makes simple meals that always have fungus in them, a kind of meal of their own, so one colonist's food policy can take only these while everyone else's leaves them out (Alpha Memes' fungus diet no longer makes them sick). A new Almanac page, "fungus meals", shows how to set it up.
+- Room plans reach into unexplored ground: the inside is marked for mining and dug out as the colonists get there, rock in the walls stays as the wall, and the rest of the room (walls on open ground, the door, furniture and floor) follows as the ground comes to light.
+
 ## Defenses, animals and fewer repeats
 
 *17 October 2026, version 0.5.0*
