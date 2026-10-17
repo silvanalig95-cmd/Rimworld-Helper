@@ -1,0 +1,454 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Traits that change with what happens to a colonist (Source/ColonyCouncil/Persona/TraitChanges.cs). Each rule names
+    one of the game's traits and what it asks for: marks on the person (defNames or families; only marks since that
+    trait last changed count), how far a side has moved from their nature through what happened ("moved", lasting and
+    fading together) and where it is now ("now"), deeds counted, the game's records, a share of their time, calm days.
+    When everything holds, "chance" is rolled once a day. At most one change per colonist in 60 days and one in the
+    colony in 10; "gapDays" is the least time between two changes of the same trait in one person.
+
+    In news, meaning and journal lines {PAWN} is the colonist and {TRAIT} the trait as it is after the change (as it
+    was, for one that's gone). A step that ends at none (nervous steadied) is told by newsLost.
+
+    This file: the traits with degrees. Nerves runs volatile, nervous, (none), steadfast, iron-willed; NaturalMood
+    depressive, pessimist, (none), optimist, sanguine; Industriousness slothful, lazy, (none), industrious, hard worker;
+    DrugDesire teetotaler, (none), chemical interest, chemical fascination. Each step is one degree.
+  -->
+
+  <!-- ==================== Nerves ==================== -->
+
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_NervesSteadier</defName>
+    <label>nerves steadied by danger held</label>
+    <trait>Nerves</trait>
+    <change>StepUp</change>
+    <from><li>-1</li><li>0</li></from>
+    <marks>
+      <li><any>Rimfolk_Mark_HeldTheLine, Rimfolk_Mark_DownedHardened, Rimfolk_Mark_RaidsHardened, SavedSomeone</any><count>3</count></li>
+    </marks>
+    <moved>nerve>=15</moved>
+    <gapDays>90</gapDays>
+    <chance>0.15</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} has become {TRAIT}.</news>
+    <newsLost>{PAWN_nameDef} is no longer {TRAIT}: the fights {PAWN_pronoun} came through have steadied {PAWN_objective}.</newsLost>
+    <meaning>After the fights {PAWN_pronoun} has stood through, it takes more than a raid to shake {PAWN_objective} now.</meaning>
+    <journal>
+      <plain>
+        <li>The alarm went today and my hands stayed still. I noticed that before I noticed the alarm.</li>
+        <li>Someone asked me how I keep so calm when they come. I don't know. It used to be different.</li>
+        <li>I slept through the night after the last fight. A year ago I'd have been up till dawn.</li>
+      </plain>
+      <warm><li>I've stood next to these people enough times now that I trust the ground under me. That's what it is.</li></warm>
+      <blunt><li>Fights don't rattle me anymore. Good.</li></blunt>
+      <cheerful><li>I caught myself whistling while I cleaned my weapon after the raid. Who is this person?</li></cheerful>
+      <gloomy><li>I'm calm in a fight now. I suppose that's what happens when you've seen enough of them.</li></gloomy>
+      <cold><li>Fear is less useful than I thought. I seem to have stopped spending it.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_NervesIron</defName>
+    <label>iron will after many fights</label>
+    <trait>Nerves</trait>
+    <change>StepUp</change>
+    <from><li>1</li></from>
+    <marks>
+      <li><any>Rimfolk_Mark_HeldTheLine, Rimfolk_Mark_DownedHardened, Rimfolk_Mark_RaidsHardened, SavedSomeone</any><count>4</count></li>
+      <li><any>Rimfolk_Mark_HeldTheLine</any></li>
+    </marks>
+    <moved>nerve>=20</moved>
+    <now>nerve>=50</now>
+    <gapDays>120</gapDays>
+    <chance>0.1</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} has become {TRAIT}.</news>
+    <meaning>{PAWN_nameDef} was steady before; after holding the line again and again, very little reaches {PAWN_objective} at all.</meaning>
+    <journal>
+      <plain>
+        <li>They hit the wall hard tonight. I counted shots and waited. It was almost peaceful.</li>
+        <li>The others look at me before they look at the raiders now. I keep my face still for them.</li>
+      </plain>
+      <warm><li>When it gets loud, the young ones stand close to me. I won't move while they're there.</li></warm>
+      <blunt><li>I don't break. Not anymore.</li></blunt>
+      <cheerful><li>Raid this morning, stew this evening. Both handled.</li></cheerful>
+      <gloomy><li>Nothing frightens me now. I'm not sure that's the gift people think it is.</li></gloomy>
+      <cold><li>I have stopped feeling the fear before a fight. I note the change and keep working.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_NervesFrayed</defName>
+    <label>nerves frayed by fright and captivity</label>
+    <trait>Nerves</trait>
+    <change>StepDown</change>
+    <from><li>0</li><li>1</li></from>
+    <marks>
+      <li><any>BrokeUnderFire, Rimfolk_Mark_DownedShaken, Rimfolk_Mark_RaidsWornDown, Imprisoned, Enslaved, Rimfolk_Mark_ShakenByTheUnknown, Rimfolk_Mark_LostKinChild</any><count>3</count></li>
+    </marks>
+    <moved>nerve&lt;=-15</moved>
+    <gapDays>90</gapDays>
+    <chance>0.12</chance>
+    <tone>-1</tone>
+    <news>{PAWN_nameDef} has become {TRAIT}.</news>
+    <newsLost>{PAWN_nameDef} is no longer {TRAIT}: too many frights have worn the steadiness out of {PAWN_objective}.</newsLost>
+    <meaning>Too many frights in too short a time: {PAWN_nameDef} startles easily now, and a bad day can tip {PAWN_objective} over.</meaning>
+    <journal>
+      <plain>
+        <li>A door banged in the wind and I was on the floor before I knew why.</li>
+        <li>I don't sleep with my back to the door anymore. I don't sleep much at all.</li>
+        <li>Everyone else seems to forget the last raid after a few days. I'm still in it.</li>
+      </plain>
+      <warm><li>The others are patient with me when I jump at nothing. I wish I could be patient with myself.</li></warm>
+      <blunt><li>My nerves are shot. That's all there is to say.</li></blunt>
+      <cheerful><li>I've decided my new hobby is flinching. I'm getting very good at it.</li></cheerful>
+      <gloomy><li>Every noise is the next attack. One day one of them will be.</li></gloomy>
+      <cold><li>My reactions have become unreliable. I would not put myself on the wall.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_NervesVolatile</defName>
+    <label>a nervous one pushed past breaking</label>
+    <trait>Nerves</trait>
+    <change>StepDown</change>
+    <from><li>-1</li></from>
+    <marks>
+      <li><any>BrokeUnderFire</any></li>
+      <li><any>BrokeUnderFire, Rimfolk_Mark_DownedShaken, Rimfolk_Mark_RaidsWornDown, Imprisoned, Enslaved, Rimfolk_Mark_ShakenByTheUnknown, LashedOut, Loss</any><count>3</count></li>
+    </marks>
+    <moved>nerve&lt;=-18</moved>
+    <now>temper>=10</now>
+    <gapDays>120</gapDays>
+    <chance>0.08</chance>
+    <tone>-1</tone>
+    <news>{PAWN_nameDef} has become {TRAIT}.</news>
+    <meaning>{PAWN_nameDef} was nervous before; after breaking under fire and the losses since, {PAWN_pronoun} is close to the edge most days.</meaning>
+    <journal>
+      <plain>
+        <li>I shouted at the cook today over nothing. Over a spoon. I could hear myself and couldn't stop.</li>
+        <li>Something in me is wound too tight. I can feel it humming when I try to sleep.</li>
+      </plain>
+      <warm><li>I keep apologising to people. They keep saying it's all right. It isn't, and they're kind to say it.</li></warm>
+      <blunt><li>Leave me be for a while. I mean it.</li></blunt>
+      <cheerful><li>I'm told I'm "a lot" lately. Fair. I'd steer clear of me too.</li></cheerful>
+      <gloomy><li>I can feel the next breakdown coming the way you feel weather in a bad knee.</li></gloomy>
+      <cold><li>My temper has become a hazard. The others have started planning around it.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_VolatileSoftens</defName>
+    <label>a volatile temper softened by calm years</label>
+    <trait>Nerves</trait>
+    <change>StepUp</change>
+    <from><li>-2</li></from>
+    <calmDays>120</calmDays>
+    <marks>
+      <li><any>Married, LongPeace, ForgivenBy, RaisedChild, BecameParent, MovingRitual, NursedBack</any><withinDays>180</withinDays></li>
+    </marks>
+    <gapDays>120</gapDays>
+    <chance>0.12</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} has softened from volatile to {TRAIT}.</news>
+    <meaning>Two years without a breakdown, and a reason to stay steady: {PAWN_nameDef} still frays, but no longer snaps.</meaning>
+    <journal>
+      <plain>
+        <li>I got angry today and then it passed, like weather. I stood there waiting for the rest of it and it didn't come.</li>
+        <li>I can't remember the last time I broke something. That used to be every season.</li>
+      </plain>
+      <warm><li>I think having people who'd forgive me made it easier not to need forgiving so often.</li></warm>
+      <blunt><li>I'm calmer. Took long enough.</li></blunt>
+      <cheerful><li>Two whole years and not one smashed bowl. Someone should carve me a medal. A small one.</li></cheerful>
+      <gloomy><li>Calmer, they say. I still feel it. I just don't let it out.</li></gloomy>
+      <cold><li>My outbursts have stopped. Peace suits my temperament better than I expected.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <!-- ==================== NaturalMood ==================== -->
+
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_MoodDarkens</defName>
+    <label>a darker outlook after heavy losses</label>
+    <trait>NaturalMood</trait>
+    <change>StepDown</change>
+    <from><li>0</li><li>1</li></from>
+    <marks>
+      <li><any>Loss, Rimfolk_Mark_RaidsWornDown, HungrySeason, LongIllness, Heartbroken</any><count>3</count></li>
+      <li><any>LostLove, LostChild, LostKin, LostFriend</any></li>
+    </marks>
+    <moved>outlook&lt;=-18</moved>
+    <gapDays>120</gapDays>
+    <chance>0.1</chance>
+    <tone>-1</tone>
+    <news>{PAWN_nameDef} has become a {TRAIT}.</news>
+    <newsLost>{PAWN_nameDef} is no longer an {TRAIT}: the graves of the last seasons took it out of {PAWN_objective}.</newsLost>
+    <meaning>After the graves of the last seasons, {PAWN_pronoun} expects the worst, and it weighs on {PAWN_possessive} mood every day.</meaning>
+    <journal>
+      <plain>
+        <li>Planted the beans today and caught myself thinking about who won't be here to eat them.</li>
+        <li>I used to wake up and wonder what the day would bring. Now I already know.</li>
+        <li>Walked past the graves on the way to the fields. There's a path worn there now.</li>
+      </plain>
+      <warm><li>I love these people, and I've started bracing for losing each of them. I wish I could stop.</li></warm>
+      <blunt><li>Good things end. Bad things come. I've stopped pretending otherwise.</li></blunt>
+      <cheerful><li>I tried to tell a joke at supper and halfway through I forgot why it was funny.</li></cheerful>
+      <gloomy><li>Every year here costs someone. I've started counting.</li></gloomy>
+      <cold><li>I no longer expect things to improve. It's a more accurate way to live.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_MoodDepressive</defName>
+    <label>a pessimist sunk into despair</label>
+    <trait>NaturalMood</trait>
+    <change>StepDown</change>
+    <from><li>-1</li></from>
+    <marks>
+      <li><any>Loss, Rimfolk_Mark_RaidsWornDown, HungrySeason, LongIllness, Heartbroken</any><count>4</count></li>
+      <li><any>LostLove, LostChild, LostKin, LostFriend</any><count>2</count></li>
+    </marks>
+    <moved>outlook&lt;=-28</moved>
+    <now>outlook&lt;=-55</now>
+    <gapDays>150</gapDays>
+    <chance>0.06</chance>
+    <tone>-1</tone>
+    <news>{PAWN_nameDef} has become {TRAIT}.</news>
+    <meaning>{PAWN_nameDef} already expected the worst; after loss on loss {PAWN_pronoun} has sunk under it, and good days barely reach {PAWN_objective}.</meaning>
+    <journal>
+      <plain>
+        <li>Got up. Ate. Worked. Came back. I keep writing it down so I know the days happened.</li>
+        <li>They had a party tonight. I could hear it through the wall. I lay there and listened.</li>
+      </plain>
+      <warm><li>Someone left flowers on my bed. I sat with them a long time. I couldn't feel anything about them and that frightened me.</li></warm>
+      <blunt><li>Everything's grey.</li></blunt>
+      <cheerful><li>I used to be the one who cheered people up. I remember how. I just can't find the start of it.</li></cheerful>
+      <gloomy><li>I don't think I'll feel better. I think this is what I am now.</li></gloomy>
+      <cold><li>The days have stopped meaning anything in particular. I continue them anyway.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_MoodBrightens</defName>
+    <label>a brighter outlook after a good stretch</label>
+    <trait>NaturalMood</trait>
+    <change>StepUp</change>
+    <from><li>-1</li><li>0</li></from>
+    <marks>
+      <li><any>LongPeace, Married, BecameParent, RaisedChild, Freed, AddictionOvercome, MovingRitual, NursedBack, Elected, Legendary</any><count>3</count></li>
+    </marks>
+    <notMarks>Loss</notMarks>
+    <notMarksDays>45</notMarksDays>
+    <moved>outlook>=12</moved>
+    <gapDays>120</gapDays>
+    <chance>0.1</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} has become an {TRAIT}.</news>
+    <newsLost>{PAWN_nameDef} is no longer a {TRAIT}: a good stretch here has lifted {PAWN_objective}.</newsLost>
+    <meaning>A good stretch of life here has lifted {PAWN_objective}: {PAWN_pronoun} expects tomorrow to be all right, and it shows in {PAWN_possessive} mood.</meaning>
+    <journal>
+      <plain>
+        <li>Woke up before the bell and went out to see the sun come up over the fields. No reason. Just wanted to.</li>
+        <li>I've started making plans for next year. Real ones, with seeds and wood counted.</li>
+        <li>Things are good. I keep waiting for the catch and it keeps not coming.</li>
+      </plain>
+      <warm><li>I look around the table at supper and I'm grateful, every night. I didn't used to be like this.</li></warm>
+      <blunt><li>Life's decent here. I'll say it.</li></blunt>
+      <cheerful><li>I hummed all the way through hauling today. Someone threw a turnip at me. Worth it.</li></cheerful>
+      <gloomy><li>I'm almost hopeful lately. Don't tell anyone.</li></gloomy>
+      <cold><li>The odds here have improved. I find I enjoy that more than I expected to.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_MoodSanguine</defName>
+    <label>an optimist grown sunny through and through</label>
+    <trait>NaturalMood</trait>
+    <change>StepUp</change>
+    <from><li>1</li></from>
+    <marks>
+      <li><any>LongPeace, Married, BecameParent, RaisedChild, Freed, AddictionOvercome, MovingRitual, NursedBack, Elected, Legendary</any><count>4</count></li>
+      <li><any>LongPeace, Married</any></li>
+    </marks>
+    <notMarks>Loss</notMarks>
+    <notMarksDays>60</notMarksDays>
+    <moved>outlook>=20</moved>
+    <now>outlook>=50</now>
+    <gapDays>150</gapDays>
+    <chance>0.07</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} has become {TRAIT}.</news>
+    <meaning>{PAWN_nameDef} was hopeful before; a long run of good years has made {PAWN_objective} hard to bring down at all.</meaning>
+    <journal>
+      <plain>
+        <li>Rain all day. I went out in it anyway. It was lovely.</li>
+        <li>I've stopped keeping a list of what could go wrong. I keep one of what went right instead. It's longer.</li>
+      </plain>
+      <warm><li>Every face at this table is someone I'm glad of. I tell them so, and they roll their eyes, and I don't mind.</li></warm>
+      <blunt><li>I'm happy. Get used to it.</li></blunt>
+      <cheerful><li>Burnt the porridge, laughed until I cried, ate it anyway. Best morning in ages.</li></cheerful>
+      <gloomy><li>I keep trying to worry like I used to. It won't stick.</li></gloomy>
+      <cold><li>My mood no longer tracks circumstances closely. A strange and convenient development.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_DepressionLifts</defName>
+    <label>despair lifting after better days</label>
+    <trait>NaturalMood</trait>
+    <change>StepUp</change>
+    <from><li>-2</li></from>
+    <marks>
+      <li><any>LongPeace, Married, BecameParent, RaisedChild, Freed, AddictionOvercome, MovingRitual, NursedBack, Kindness, ForgivenBy</any><count>2</count></li>
+    </marks>
+    <notMarks>Loss</notMarks>
+    <notMarksDays>60</notMarksDays>
+    <moved>outlook>=12</moved>
+    <gapDays>120</gapDays>
+    <chance>0.1</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} is no longer depressive, only a {TRAIT}.</news>
+    <meaning>The worst of it has lifted: {PAWN_nameDef} still expects little of the world, but good days reach {PAWN_objective} again.</meaning>
+    <journal>
+      <plain>
+        <li>I laughed today. Someone dropped a pie and I laughed, and then I had to sit down because I'd forgotten I could.</li>
+        <li>The grey is thinner lately. I can see shapes through it.</li>
+      </plain>
+      <warm><li>They never gave up on me. I don't know how to repay that, but I'd like to be around long enough to try.</li></warm>
+      <blunt><li>Better. Not good. Better.</li></blunt>
+      <cheerful><li>I had a second helping tonight because I wanted it. Small victories.</li></cheerful>
+      <gloomy><li>It's lighter. I don't trust it yet, but it's lighter.</li></gloomy>
+      <cold><li>The heaviness has receded somewhat. I will take the improvement without asking where it came from.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <!-- ==================== Industriousness ==================== -->
+
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_WorkHarder</defName>
+    <label>harder working after a long stretch of work done well</label>
+    <trait>Industriousness</trait>
+    <change>StepUp</change>
+    <from><li>-1</li><li>0</li><li>1</li></from>
+    <pace>
+      <li><record>TimeGettingJoy</record><atMost>0.04</atMost><days>60</days><label>time at recreation</label></li>
+    </pace>
+    <marks>
+      <li><any>Masterwork, Mastered, Legendary, TaughtWell</any><withinDays>120</withinDays></li>
+    </marks>
+    <moved>pride>=5</moved>
+    <gapDays>120</gapDays>
+    <chance>0.08</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} works harder now ({TRAIT}).</news>
+    <newsLost>{PAWN_nameDef} is no longer {TRAIT}: a long stretch of work that came out well has changed {PAWN_possessive} habits.</newsLost>
+    <meaning>Two seasons of barely stopping, and work {PAWN_pronoun} is proud of to show for it: {PAWN_pronoun} works faster now, and likes it.</meaning>
+    <journal>
+      <plain>
+        <li>Finished early and started the next job before anyone could hand me one.</li>
+        <li>I sat down for a break today and got up again after a minute. My hands wanted something to do.</li>
+        <li>There's a rhythm to a long day now. I fall into it before breakfast.</li>
+      </plain>
+      <warm><li>I like knowing the others can lean on me to get things done. It's a good feeling, being that person.</li></warm>
+      <blunt><li>Work's there. I do it. Simple.</li></blunt>
+      <cheerful><li>I've started racing the sun to the end of each job. The sun's winning, but it's close.</li></cheerful>
+      <gloomy><li>If I stop working I start thinking. So I don't stop.</li></gloomy>
+      <cold><li>My output has improved considerably. Idle time no longer interests me.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_WorkLazier</defName>
+    <label>idler after long idle stretches</label>
+    <trait>Industriousness</trait>
+    <change>StepDown</change>
+    <from><li>0</li><li>1</li></from>
+    <pace>
+      <li><record>TimeGettingJoy</record><atLeast>0.2</atLeast><days>60</days><label>time at recreation</label></li>
+    </pace>
+    <notMarks>Masterwork, Mastered, Legendary</notMarks>
+    <notMarksDays>60</notMarksDays>
+    <daysHere>60</daysHere>
+    <gapDays>120</gapDays>
+    <chance>0.08</chance>
+    <tone>-1</tone>
+    <news>{PAWN_nameDef} has become {TRAIT}.</news>
+    <newsLost>{PAWN_nameDef} is no longer {TRAIT}: two seasons with more leisure than work have slowed {PAWN_objective} down.</newsLost>
+    <meaning>Two seasons with more leisure than work have slowed {PAWN_objective} down: {PAWN_nameDef} works more slowly now.</meaning>
+    <journal>
+      <plain>
+        <li>Played horseshoes most of the afternoon. Nobody asked me to do anything, so I didn't.</li>
+        <li>Started on the stockpile and then the sun was so nice. Tomorrow, then.</li>
+        <li>I've got very good at looking busy. It takes less effort than being busy.</li>
+      </plain>
+      <warm><li>There's no rush here anymore. I like that about us. Maybe I like it a bit too much.</li></warm>
+      <blunt><li>Why hurry? It'll still be there.</li></blunt>
+      <cheerful><li>Took a nap in the hay today. Then a nap after the nap. Excellent day.</li></cheerful>
+      <gloomy><li>It's hard to care about the work when it never ends anyway.</li></gloomy>
+      <cold><li>Effort has diminishing returns. I've adjusted mine accordingly.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <!-- ==================== DrugDesire ==================== -->
+
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_Teetotal</defName>
+    <label>an addiction overcome, and a turn away from drugs</label>
+    <trait>DrugDesire</trait>
+    <change>StepDown</change>
+    <from><li>0</li><li>1</li></from>
+    <marks>
+      <li><any>AddictionOvercome</any><withinDays>120</withinDays></li>
+    </marks>
+    <moved>pride>=3</moved>
+    <gapDays>100</gapDays>
+    <chance>0.15</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} has become a {TRAIT}.</news>
+    <newsLost>{PAWN_nameDef} no longer has a {TRAIT}: getting free of an addiction cured {PAWN_objective} of it.</newsLost>
+    <meaning>Having fought free of an addiction, {PAWN_nameDef} wants nothing more to do with drugs, and minds seeing others take them.</meaning>
+    <journal>
+      <plain>
+        <li>Someone offered me a drink at the party. I said no and it was easy. It didn't used to be.</li>
+        <li>I poured the last of my stash into the river. Watched it go.</li>
+        <li>I remember the shakes. I'm not going back there. Not for anything.</li>
+      </plain>
+      <warm><li>I owe the people who sat with me through the worst of it. The least I can do is stay clean.</li></warm>
+      <blunt><li>No more. Not a sip, not a puff. Done.</li></blunt>
+      <cheerful><li>Clear head, steady hands, and I remember every evening now. Highly recommended.</li></cheerful>
+      <gloomy><li>I still think about it sometimes. That's why I don't keep any near me.</li></gloomy>
+      <cold><li>The chemical dependency was a weakness. I've removed it, and I intend to keep it removed.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_FascinationEases</defName>
+    <label>a chemical fascination eased by an addiction overcome</label>
+    <trait>DrugDesire</trait>
+    <change>StepDown</change>
+    <from><li>2</li></from>
+    <marks>
+      <li><any>AddictionOvercome</any><withinDays>120</withinDays></li>
+    </marks>
+    <moved>pride>=3</moved>
+    <gapDays>100</gapDays>
+    <chance>0.15</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef}'s chemical fascination has eased to a {TRAIT}.</news>
+    <meaning>Fighting free of an addiction has cooled {PAWN_possessive} hunger for drugs: {PAWN_pronoun} still likes them, but no longer needs them close.</meaning>
+    <journal>
+      <plain>
+        <li>I walked past the drug shelf today without stopping. Then I went back and looked, but I didn't take anything.</li>
+        <li>I used to plan my day around the next dose. Now I plan it around work and supper, like everyone else.</li>
+      </plain>
+      <warm><li>The others kept me busy through the worst weeks. I think they knew exactly what they were doing.</li></warm>
+      <blunt><li>I can take it or leave it now. Mostly leave it.</li></blunt>
+      <cheerful><li>I had one smoke at the party and then just danced. I remember the whole night. Novel.</li></cheerful>
+      <gloomy><li>The want is quieter. It hasn't gone anywhere. I just hear it less.</li></gloomy>
+      <cold><li>My cravings are manageable now. I find the control satisfying.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+</Defs>

@@ -405,6 +405,8 @@ wishPh.Add("GATHERING");
 wishPh.UnionWith(new[] { "KIND", "SPECIES", "OLD", "NEW", "LEVEL" });
 // Characters (Persona/): what a mark was about, and the other person in it by name (Persona.Shaped, PersonaMarks).
 wishPh.UnionWith(new[] { "LABEL", "OTHER" });
+// Traits that change (Persona/TraitChanges.cs): the trait as it is after the change, or as it was for one that's gone.
+wishPh.Add("TRAIT");
 var pawnPrefixes = new HashSet<string> { "PAWN", "FOR", "OTHER", "ENVIED", "ABOUT", "A", "B", "PET", "LEAKER", "TELLER", "X", "SLAYER", "BABY", "THIRD" };
 // The colonist a people remembers by name (World/KinMemory.cs: events, world events, camps).
 pawnPrefixes.Add("FRIEND");

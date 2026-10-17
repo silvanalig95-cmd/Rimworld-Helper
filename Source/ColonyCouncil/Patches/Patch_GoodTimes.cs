@@ -31,6 +31,8 @@ namespace ColonyCouncil
         {
             // What happens to people changes them: some memories leave a mark on their character (Persona/Marks.cs).
             PersonaMarks.Notify_Memory(__instance?.pawn, newThought);
+            // Some memories are counted towards a trait that changes (Persona/TraitChanges.cs): human flesh eaten while starving.
+            TraitChanges.Notify_Memory(__instance?.pawn, newThought);
             if (__state == GoodTimes.Untouched) return;
             try
             {

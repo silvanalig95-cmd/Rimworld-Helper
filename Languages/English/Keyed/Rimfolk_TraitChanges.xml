@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Traits that change with what happens to a colonist (Source/ColonyCouncil/Persona/TraitChanges.cs). -->
+  <CC_Settings_TraitChanges>Traits can change</CC_Settings_TraitChanges>
+  <CC_Settings_TraitChanges_Tip>Now and then, after a long stretch of the same kind of life, one of a colonist's traits grows, appears or fades: steadier nerves after raid after raid held, kindness after years of kindnesses, a pessimist after a year of graves. Each change comes with a letter that tells what led to it, with dates, and is kept on the character page. Rare: at most one change per colonist in 60 days, and one in the colony in 10. Traits of the body, sexuality and traits from genes or a backstory never change.</CC_Settings_TraitChanges_Tip>
+  <CC_SetNote_TraitChanges>Rarely, a trait grows, appears or fades after what a colonist went through.</CC_SetNote_TraitChanges>
+
+  <!-- What changed, on the character page: "gained kind", "lost abrasive", "steadfast became iron-willed". -->
+  <CC_TC_Gained>gained {0}</CC_TC_Gained>
+  <CC_TC_Lost>lost {0}</CC_TC_Lost>
+  <CC_TC_Became>{0} became {1}</CC_TC_Became>
+  <!-- The letter. -->
+  <CC_TC_TitleNew>{0}: {PAWN_labelShort}</CC_TC_TitleNew>
+  <CC_TC_TitleLost>No longer {0}: {PAWN_labelShort}</CC_TC_TitleLost>
+  <CC_TC_NewsLost>{PAWN_nameDef} is no longer {TRAIT}.</CC_TC_NewsLost>
+  <CC_TC_LedTo>What led to it:</CC_TC_LedTo>
+  <CC_TC_Absorbed>The trait now holds what had already changed in {PAWN_objective}, so {PAWN_possessive} character stays where it was, and that part of the change is for good.</CC_TC_Absorbed>
+  <CC_TC_Record>{0}: {1}.</CC_TC_Record>
+  <CC_TC_Pace>{0}: {1}% of the time over the last {2} days.</CC_TC_Pace>
+  <CC_TC_Calm>No breakdown or other mental state for {0} days.</CC_TC_Calm>
+  <CC_TC_Skill>{0} skill: {1}.</CC_TC_Skill>
+  <CC_TC_Side>{0}: {1} from what has happened, now {2} ({3}).</CC_TC_Side>
+
+  <!-- The character page and the tooltip of a side on it. -->
+  <CC_TC_Section>Traits gained and lost</CC_TC_Section>
+  <CC_TC_AbsorbedNote>Went into a trait, and counts in nature now:</CC_TC_AbsorbedNote>
+
+</LanguageData>

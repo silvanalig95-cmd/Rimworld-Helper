@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Traits that change with what happens to a colonist (Source/ColonyCouncil/Persona/TraitChanges.cs); see
+    Rimfolk_TraitChanges_Spectrum.xml for how a rule reads. This file: the traits without degrees that say something
+    about a person's character, and a few from DLCs (each only with its DLC). The game's own conflicts always count:
+    nobody gains a trait that clashes with one they have, or with a passion (a brawler never loves shooting).
+  -->
+
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_KindGained</defName>
+    <label>kind after kindnesses given and received</label>
+    <trait>Kind</trait>
+    <change>Gain</change>
+    <marks>
+      <li><any>Kindness, NursedBack, SavedBy, ForgivenBy, TaughtWell, SavedSomeone, RaisedChild, BecameParent, Married</any><count>3</count></li>
+    </marks>
+    <moved>warmth>=16</moved>
+    <now>warmth>=35</now>
+    <blockedBy><li>Psychopath</li><li>Abrasive</li><li>Bloodlust</li></blockedBy>
+    <chance>0.1</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} has become kind.</news>
+    <meaning>So much kindness given and taken has settled in {PAWN_objective}: {PAWN_pronoun} looks for the good in people now, and says so.</meaning>
+    <journal>
+      <plain>
+        <li>Took the late watch so the new one could sleep. I didn't think about it until after.</li>
+        <li>I've started noticing who's had a bad day before they say anything.</li>
+        <li>Brought the cook a cup of something hot. The look on their face was worth the walk.</li>
+      </plain>
+      <warm><li>People have been good to me here, more than I earned. It's easy to pass it on.</li></warm>
+      <blunt><li>Helped where I could today. That's what you do.</li></blunt>
+      <cheerful><li>Left a carved bird on everyone's pillow. Some of them look more like potatoes. It's the thought.</li></cheerful>
+      <gloomy><li>Life here is hard enough. I'd rather not add to it for anyone.</li></gloomy>
+      <cold><li>I find I want the others to be well. I didn't use to. I'm not sure when it changed.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_AbrasiveFades</defName>
+    <label>sharp edges worn smooth by kindness</label>
+    <trait>Abrasive</trait>
+    <change>Lose</change>
+    <marks>
+      <li><any>Kindness, ForgivenBy, NursedBack, SavedBy, Married, TaughtWell, BecameParent</any><count>2</count></li>
+    </marks>
+    <moved>warmth>=12</moved>
+    <chance>0.1</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} is no longer abrasive.</news>
+    <meaning>Too many people have been decent to {PAWN_objective} for {PAWN_objective} to keep snapping at them: the edge has gone out of how {PAWN_pronoun} speaks.</meaning>
+    <journal>
+      <plain>
+        <li>I held my tongue today when I'd normally have had something to say. Nobody died of it.</li>
+        <li>Someone asked my advice instead of avoiding me. I gave it nicely, too.</li>
+      </plain>
+      <warm><li>They kept being kind to me even when I was a misery. I think I owe them a gentler voice.</li></warm>
+      <blunt><li>I still say what I think. I just don't make it hurt.</li></blunt>
+      <cheerful><li>I complimented someone's stew today and meant it. They checked my forehead for fever.</li></cheerful>
+      <gloomy><li>Being sharp with people never made anything better. I suppose I've finally noticed.</li></gloomy>
+      <cold><li>Unpleasantness costs more than it gains. I have revised my manner.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_WimpFades</defName>
+    <label>a wimp who held the line</label>
+    <trait>Wimp</trait>
+    <change>Lose</change>
+    <marks>
+      <li><any>Rimfolk_Mark_HeldTheLine, SavedSomeone, Rimfolk_Mark_DownedHardened, Rimfolk_Mark_RaidsHardened</any><count>2</count></li>
+    </marks>
+    <moved>nerve>=12</moved>
+    <chance>0.12</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} is no longer a wimp.</news>
+    <meaning>After standing in the fight and carrying the others through it, {PAWN_pronoun} no longer goes down at the first wound.</meaning>
+    <journal>
+      <plain>
+        <li>Took a cut on the arm in the raid and kept going. I only noticed it afterwards.</li>
+        <li>I used to fold at the first scratch. Not anymore. I don't quite know what changed.</li>
+      </plain>
+      <warm><li>Someone needed carrying, and I carried them. After that, a little pain didn't seem worth stopping for.</li></warm>
+      <blunt><li>Pain's just pain. I can work through it now.</li></blunt>
+      <cheerful><li>Stubbed my toe on the bed frame and only swore a little. Growth.</li></cheerful>
+      <gloomy><li>I suppose you toughen up or you don't last. I've lasted.</li></gloomy>
+      <cold><li>My tolerance for injury has improved. A useful adaptation.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_BrawlerGained</defName>
+    <label>a brawler made in close fighting</label>
+    <trait>Brawler</trait>
+    <change>Gain</change>
+    <skills>Melee>=10</skills>
+    <meleeFighter>true</meleeFighter>
+    <records>KillsHumanlikes>=8</records>
+    <marks>
+      <li><any>Rimfolk_Mark_HeldTheLine, Rimfolk_Mark_DownedHardened, Rimfolk_Mark_RaidsHardened</any><count>2</count></li>
+    </marks>
+    <now>nerve>=20</now>
+    <blockedBy><li>Wimp</li></blockedBy>
+    <chance>0.08</chance>
+    <tone>0</tone>
+    <news>{PAWN_nameDef} has become a brawler.</news>
+    <meaning>Fight after fight up close, blade in hand, has made {PAWN_objective} a fighter who wants to be in reach of the enemy, and who minds being handed a gun.</meaning>
+    <journal>
+      <plain>
+        <li>They gave me a rifle for the wall today. I gave it back and went to stand by the gate.</li>
+        <li>When it comes to it, I want to see their faces. Shooting from a distance feels like cheating somehow.</li>
+      </plain>
+      <warm><li>If I'm close, I can put myself between them and the others. That's where I want to be.</li></warm>
+      <blunt><li>Give me something with an edge and point me at them.</li></blunt>
+      <cheerful><li>Practised on the training dummy until it fell apart. Then I practised on its pieces.</li></cheerful>
+      <gloomy><li>Up close is where I'm any use. I don't much like what that says about me.</li></gloomy>
+      <cold><li>Melee is efficient and certain. Ranged weapons leave too much to chance.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_JealousGained</defName>
+    <label>jealous after being passed over again and again</label>
+    <trait>Jealous</trait>
+    <change>Gain</change>
+    <records>Council_VotesLost>=3</records>
+    <marks>
+      <li><any>LostElection, VotedOut</any><withinDays>120</withinDays></li>
+    </marks>
+    <now>pride>=10</now>
+    <moved>trust&lt;=-3</moved>
+    <blockedBy><li>Ascetic</li><li>Kind</li></blockedBy>
+    <chance>0.08</chance>
+    <tone>-1</tone>
+    <news>{PAWN_nameDef} has become jealous.</news>
+    <meaning>Passed over at vote after vote, {PAWN_pronoun} keeps a close eye now on what everyone else has, starting with their rooms.</meaning>
+    <journal>
+      <plain>
+        <li>Walked past the new speaker's room today. Bigger window than mine. Of course it is.</li>
+        <li>They vote for the same faces every time. I've stopped pretending I don't mind.</li>
+        <li>I counted the furniture in everyone's rooms tonight. I'm not proud of it. I did it anyway.</li>
+      </plain>
+      <warm><li>I want to be glad for them. Most days I manage. Today I didn't.</li></warm>
+      <blunt><li>Others get the say and the good rooms. I get the leftovers.</li></blunt>
+      <cheerful><li>Lost another vote. I'm going to take it out on my bedroom, by asking for a nicer one.</li></cheerful>
+      <gloomy><li>Nobody picks me. They never will. They'll keep the best for themselves, too.</li></gloomy>
+      <cold><li>I've noted who has what. The distribution is not fair, and I will remember it.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_AsceticGained</defName>
+    <label>an ascetic made by hardship</label>
+    <trait>Ascetic</trait>
+    <change>Gain</change>
+    <marks>
+      <li><any>HungrySeason, LongIllness, Imprisoned, Enslaved</any><count>2</count></li>
+    </marks>
+    <moved>pride&lt;=-6</moved>
+    <now>pride&lt;=0</now>
+    <blockedBy><li>Greedy</li><li>Jealous</li></blockedBy>
+    <chance>0.08</chance>
+    <tone>0</tone>
+    <news>{PAWN_nameDef} has become an ascetic.</news>
+    <meaning>After going without for so long, comfort means little to {PAWN_objective}: a bare room suits {PAWN_objective} better than a fine one.</meaning>
+    <journal>
+      <plain>
+        <li>Took the rug out of my room. I don't need it. I kept tripping over it anyway.</li>
+        <li>A bowl, a blanket, a roof. When you've been without, you learn how little the rest matters.</li>
+      </plain>
+      <warm><li>Give the good bed to someone who'll enjoy it. I'm fine on the plain one, truly.</li></warm>
+      <blunt><li>I don't need a nice room. Spend the wood on walls.</li></blunt>
+      <cheerful><li>My room has one chair and I'm very fond of it. We understand each other.</li></cheerful>
+      <gloomy><li>Fine things only remind me how quickly they can be taken.</li></gloomy>
+      <cold><li>Comfort is a dependency. I have reduced mine.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_AsceticFaith</defName>
+    <label>an ascetic drawn deeper into the faith</label>
+    <trait>Ascetic</trait>
+    <change>Gain</change>
+    <dlc>Ideology</dlc>
+    <marks>
+      <li><any>MovingRitual, Converted</any><count>2</count></li>
+    </marks>
+    <moved>openness&lt;=-3</moved>
+    <now>pride&lt;=5</now>
+    <blockedBy><li>Greedy</li><li>Jealous</li></blockedBy>
+    <chance>0.06</chance>
+    <tone>0</tone>
+    <news>{PAWN_nameDef} has become an ascetic.</news>
+    <meaning>The colony's rites have taken hold of {PAWN_objective}: what {PAWN_pronoun} owns matters less to {PAWN_objective} now than what {PAWN_pronoun} believes.</meaning>
+    <journal>
+      <plain>
+        <li>After the ceremony I gave away my good boots. They felt like too much to be wearing.</li>
+        <li>I've started sitting with the faith in the mornings instead of eating. I don't miss breakfast.</li>
+      </plain>
+      <warm><li>The rite showed me what I have here, and none of it is furniture.</li></warm>
+      <blunt><li>Belief first. Things second. Things a distant second.</li></blunt>
+      <cheerful><li>I've decluttered my soul and my shelf on the same day. The shelf was harder.</li></cheerful>
+      <gloomy><li>Everything I own will rot. What I believe might not.</li></gloomy>
+      <cold><li>Possessions distract from the practice. I've let most of mine go.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_GreedyFades</defName>
+    <label>greed loosened by people worth more than things</label>
+    <trait>Greedy</trait>
+    <change>Lose</change>
+    <marks>
+      <li><any>Kindness, Married, RaisedChild, BecameParent, NursedBack, ForgivenBy, MovingRitual</any><count>2</count></li>
+    </marks>
+    <moved>warmth>=12</moved>
+    <chance>0.1</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} is no longer greedy.</news>
+    <meaning>The people around {PAWN_objective} have come to matter more than what {PAWN_pronoun} owns: a plain room no longer feels like an insult.</meaning>
+    <journal>
+      <plain>
+        <li>Gave my share of the silver to the kitchen fund. Didn't even haggle over it.</li>
+        <li>My room is no grander than anyone's. I keep forgetting to mind.</li>
+      </plain>
+      <warm><li>I have people now. Next to that, a bigger room seems a silly thing to want.</li></warm>
+      <blunt><li>Keep the fancy furniture. I'm fine.</li></blunt>
+      <cheerful><li>Someone admired my lamp and I gave it to them. I don't know who I am anymore and I love it.</li></cheerful>
+      <gloomy><li>All the things I wanted wouldn't have kept anyone alive. People do that, sometimes.</li></gloomy>
+      <cold><li>Accumulation has lost its appeal. My priorities have been recalculated.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_BloodlustGained</defName>
+    <label>bloodlust in someone hardened by many kills</label>
+    <trait>Bloodlust</trait>
+    <change>Gain</change>
+    <records>KillsHumanlikes>=30</records>
+    <marks>
+      <li><any>Rimfolk_Mark_HeldTheLine, Rimfolk_Mark_RaidsHardened, SworeVengeance, Rimfolk_Mark_DownedHardened</any><count>2</count></li>
+    </marks>
+    <moved>warmth&lt;=-10</moved>
+    <now>warmth&lt;=-20</now>
+    <blockedBy><li>Kind</li><li>Wimp</li></blockedBy>
+    <chance>0.03</chance>
+    <tone>-1</tone>
+    <news>{PAWN_nameDef} has developed a taste for blood.</news>
+    <meaning>So many kills, and a heart that has cooled with each one: {PAWN_nameDef} enjoys the fighting now, and the killing, and others have noticed.</meaning>
+    <journal>
+      <plain>
+        <li>The raid ended and I was sorry it was over. I wrote that down to see how it looked. It looks bad.</li>
+        <li>I keep the count of them in my head. I'm not sure when I started.</li>
+      </plain>
+      <warm><li>I tell myself I fight for the others. Today I fought because I wanted to.</li></warm>
+      <blunt><li>I like the fighting. There, I said it.</li></blunt>
+      <cheerful><li>Another raid! Something in me lit up at the alarm, and I'm choosing not to think about it.</li></cheerful>
+      <gloomy><li>Something in me has gone wrong out there. I can feel it smiling.</li></gloomy>
+      <cold><li>Killing has become satisfying. I see no reason to pretend otherwise.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_Undergrounder</defName>
+    <label>used to stone overhead</label>
+    <trait>Undergrounder</trait>
+    <change>Gain</change>
+    <pace>
+      <li><record>TimeUnderRoof</record><atLeast>0.95</atLeast><days>60</days><label>time under a roof</label></li>
+    </pace>
+    <daysHere>120</daysHere>
+    <now>openness&lt;=5</now>
+    <chance>0.05</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} has become an undergrounder.</news>
+    <meaning>Two seasons hardly ever under the open sky, and {PAWN_pronoun} has stopped missing it: walls and a roof feel like home now.</meaning>
+    <journal>
+      <plain>
+        <li>Went outside for the harvest and the sky was too big. I was glad to get back in.</li>
+        <li>I like the sound of rain on the roof better than the rain itself.</li>
+      </plain>
+      <warm><li>Inside is where everyone is. Why would I want to be anywhere else?</li></warm>
+      <blunt><li>Don't need the sky. Got a ceiling.</li></blunt>
+      <cheerful><li>Someone said I'm turning into a mole. Moles are very contented animals.</li></cheerful>
+      <gloomy><li>Nothing good ever came out of the open sky. Raiders, mostly.</li></gloomy>
+      <cold><li>The outdoors offers nothing a roof doesn't improve on.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_Recluse</defName>
+    <label>a recluse after being hurt by those close</label>
+    <trait>Recluse</trait>
+    <change>Gain</change>
+    <dlc>Biotech</dlc>
+    <marks>
+      <li><any>Heartbroken, SecretBetrayed</any></li>
+      <li><any>Heartbroken, SecretBetrayed, LostLove, LostFriend, BrokenPromise</any><count>2</count></li>
+    </marks>
+    <now>trust&lt;=-30, warmth&lt;=-10</now>
+    <chance>0.06</chance>
+    <tone>0</tone>
+    <news>{PAWN_nameDef} has become a recluse.</news>
+    <meaning>Hurt by the people closest to {PAWN_objective}, {PAWN_pronoun} would rather live among few: a small colony suits {PAWN_objective}, a crowded one wears on {PAWN_objective}.</meaning>
+    <journal>
+      <plain>
+        <li>Ate supper on the step outside. Fewer voices. Fewer people to explain myself to.</li>
+        <li>Another newcomer today. I learned their name and then went for a long walk.</li>
+      </plain>
+      <warm><li>I care about the few I have left. I don't think I have room for more.</li></warm>
+      <blunt><li>Too many people here. Not enough quiet.</li></blunt>
+      <cheerful><li>Found a spot behind the storehouse nobody else knows about. It's mine now. Don't tell anyone.</li></cheerful>
+      <gloomy><li>Every new face is someone else who can let me down.</li></gloomy>
+      <cold><li>Fewer people, fewer complications. I prefer the arithmetic.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_VoidFascination</defName>
+    <label>drawn to the unknown after touching it</label>
+    <trait>VoidFascination</trait>
+    <change>Gain</change>
+    <dlc>Anomaly</dlc>
+    <marks>
+      <li><any>Rimfolk_Mark_TouchedByTheUnknown</any><count>2</count></li>
+    </marks>
+    <moved>openness>=8</moved>
+    <now>openness>=40</now>
+    <chance>0.08</chance>
+    <tone>0</tone>
+    <news>{PAWN_nameDef} has developed a void fascination.</news>
+    <meaning>Each brush with the dark has drawn {PAWN_objective} closer instead of driving {PAWN_objective} off: {PAWN_pronoun} wants to know what's on the other side.</meaning>
+    <journal>
+      <plain>
+        <li>I went and stood by the containment cell again tonight. Just to listen.</li>
+        <li>The others look away from it. I can't. I don't want to.</li>
+      </plain>
+      <warm><li>I'd never let it hurt anyone here. But I want to understand it. Someone should.</li></warm>
+      <blunt><li>It's out there. I want to know what it is.</li></blunt>
+      <cheerful><li>Sketched the strange thing in the cell today. It sat very still for me. Good subject.</li></cheerful>
+      <gloomy><li>It calls, and I'm the only one who answers. That can't end well.</li></gloomy>
+      <cold><li>The unknown is the only thing here that still interests me.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+</Defs>

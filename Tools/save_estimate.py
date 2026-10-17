@@ -207,6 +207,14 @@ MODEL = {
     "Persona/Marks.cs:fights": ("colonists", 8, V, "the last 8 fights won per person, a year at most"),
     "Persona/Marks.cs:addictions": ("colonists", 0.3, 40, "the addictions they have now"),
     "Persona/Marks.cs:once": ("known", 0.3, 40, "skills mastered; known pawns only, 800 at most"),
+    # Traits that change (the changes made, and what each colonist is watched for)
+    "Persona/TraitChanges.cs:changes": ("cap", (const("Persona/TraitChanges.cs", "MaxChanges", 200), 0.1), 1200, "known pawns only, 8 per person, 200 at most; with their story"),
+    "Persona/TraitChanges.cs:absorbed": ("fixed", 8, V, "per change: how the trait moved each side (counted under changes)"),
+    "Persona/TraitChanges.cs:watches": ("colonists", 1, 3400, "one per colonist with its deeds and ten snapshots; known pawns only"),
+    "Persona/TraitChanges.cs:tallies": ("fixed", 3, 80, "per colonist: deeds counted, 240 days, 12 per kind (counted under watches)"),
+    "Persona/TraitChanges.cs:snapshots": ("fixed", 10, 60, "per colonist: 10 snapshots, every ten days (counted under watches)"),
+    "Persona/TraitChanges.cs:values": ("fixed", 3, D, "per snapshot: the records a pace reads (counted under watches)"),
+    "Persona/TraitChanges.cs:once": ("fixed", 2, 40, "the changes that come once in a colony's life"),
     # The world
     "World/FactionMemory.cs:deeds": ("fixed", 12 * 12, 200, "12 deeds per people (12 peoples), fading out"),
     "World/WorldSituation.cs:flags": ("fixed", 4, 40, "per situation (counted under active and history)"),
