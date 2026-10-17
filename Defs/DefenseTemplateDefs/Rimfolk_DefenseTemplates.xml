@@ -269,7 +269,7 @@
     <tips>
       <li>Traps can't stand next to each other; a gap between them also keeps one blast from setting off the next.</li>
       <li>Your own people spring a trap about one time in two hundred, more when hauling or drafted onto it. Keep haulers out with an allowed area.</li>
-      <li>A sprung spike trap breaks. With auto rearm on, as it is unless you turn it off, a blueprint goes down in its place; keep the materials near so it's built again before the next raid.</li>
+      <li>A sprung spike trap breaks. Select the traps and check that auto rearm is on: then a blueprint goes down in each one's place, and the materials to build it again should be near.</li>
       <li>Two wide on purpose: the few raiders who know where a trap is step round it to the slow side, and the rest walk on.</li>
       <li>[lowtech]Wooden spikes go up fast but burn. Stone ones take longer, hurt more and don't.</li>
     </tips>

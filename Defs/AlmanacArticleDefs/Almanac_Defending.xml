@@ -27,6 +27,10 @@
         </points>
       </li>
       <li>
+        <heading>Defense lines</heading>
+        <text>The Defenses page also keeps your defense lines: one for each way in you mean to hold, built up a step at a time from a wall and a gate to a killbox and a line behind it. For each line it suggests the next step, reviews what stands, and learns from the raids that reach it. "Defense lines, step by step" explains the steps and the aims; "how a killbox works", "where a killbox fits" and "killbox mistakes" go with the killbox, and "the field of fire" and "keeping a defense up" with everything else.</text>
+      </li>
+      <li>
         <heading>What the Defenses page does</heading>
         <text>It reads the map once when you open it, and again when the colony's buildings have changed, at most once an hour: the edges raiders can reach you from, the ways they walk, the narrow places on those ways with their width and how many raids pass, and whether your home is walled in. It counts what stands already, who fights and what you can build, and looks at the factions around you and the threats your DLCs bring.
 
@@ -34,7 +38,7 @@ From that it ranks its advice and marks what's done. "Plan it here" opens a defe
       </li>
       <li>
         <heading>The plans</heading>
-        <text>A gate with sandbag lines, a stretch of perimeter wall two thick, a killbox, a trap corridor, a turret nest, a sniper's or archers' post, a fallback line, a keep, a mortar pit, and with Medieval Overhaul a palisade or a castle gate with a gatehouse. Each uses what your colony can build: barricades and log gates for a medieval colony, sandbags and turrets once you have them. A plan the colony can't build yet says what it lacks.
+        <text>A gate with sandbag lines, a sandbag or barricade line to put behind a gate you have, a stretch of perimeter wall two thick, a second layer of wall to make a line two thick, a small killbox, a killbox, a tunnel killbox for a mountain's entrance, a trap corridor, a turret nest, a sniper's or archers' post, a fallback line, a keep, a mortar pit, and with Medieval Overhaul a palisade or a castle gate with a gatehouse. Each uses what your colony can build: barricades and log gates for a medieval colony, sandbags and turrets once you have them. A plan the colony can't build yet says what it lacks.
 
 A plan with a wall line can "close the gap": the wall carries on to the rock, a wall or deep water on both sides, up to 12 cells each way. It stops at shallow water and marsh, which take no wall, and says so.</text>
       </li>
@@ -47,8 +51,12 @@ A plan with a wall line can "close the gap": the wall carries on to the rock, a 
       <li>templates</li>
     </keywords>
     <seeAlso>
+      <li>Rimfolk_AlmDef_Lines</li>
       <li>Rimfolk_AlmDef_ChokePoints</li>
       <li>Rimfolk_AlmDef_Killbox</li>
+      <li>Rimfolk_AlmDef_KillboxWhere</li>
+      <li>Rimfolk_AlmDef_FieldOfFire</li>
+      <li>Rimfolk_AlmDef_Upkeep</li>
       <li>Rimfolk_AlmDef_Cover</li>
       <li>Council_Alm_3_03_RaidTypes</li>
     </seeAlso>
@@ -144,6 +152,7 @@ A plan with a wall line can "close the gap": the wall carries on to the rock, a 
     </keywords>
     <seeAlso>
       <li>Council_Alm_3_05_Cover</li>
+      <li>Rimfolk_AlmDef_FieldOfFire</li>
       <li>Rimfolk_AlmDef_Killbox</li>
       <li>Rimfolk_AlmDef_Medieval</li>
     </seeAlso>
@@ -152,24 +161,63 @@ A plan with a wall line can "close the gap": the wall carries on to the rock, a 
 
   <ColonyCouncil.AlmanacArticleDef>
     <defName>Rimfolk_AlmDef_Killbox</defName>
-    <label>killboxes, and the raiders who go round them</label>
+    <label>how a killbox works</label>
     <category>Defending</category>
     <order>40</order>
-    <summary>A turn in the entrance, open ground, guns at the far end; and why sappers and breachers ignore it</summary>
+    <summary>Why raiders walk in, the entrance, the kill zone and the firing line; and the raiders who go round it</summary>
     <tip>Hold fire until they're in the box: every gun on the first one through is wasted.</tip>
-    <description>A killbox is a choke point built to kill: the one easy way in leads round a turn into open ground, with your people and turrets behind cover at the far end. Raiders trickle in a few at a time, without cover, at close range. It beats most raids, and does nothing at all against the ones that don't come through the gate.</description>
+    <description>A killbox is a choke point built to kill: the one easy way in leads round a turn into open ground, with your people and turrets behind cover at the far end. Raiders trickle in a few at a time, without cover, at close range. It beats most raids, and does nothing at all against the ones that don't come through the gate. Every part of it rests on one habit of theirs: they take the easiest way to your people.</description>
     <sections>
       <li>
-        <heading>Building one</heading>
+        <heading>How raiders choose their way</heading>
+        <text>Raiders who walk in from the map's edge go for your people, and for turrets that are firing at them. They take the way that costs them least. Open ground is cheap; water, marsh and climbing over cover cost a little more; a door they would have to break costs as much as a good long walk; and a wall isn't a way at all while any other way is open. So long as there's an open way to a colonist, however long and winding, ordinary raiders take it and leave your walls alone.
+
+That cuts both ways. With no open way, each raider goes for the walls and doors, picking his own stretch, or smashes whatever furniture he can reach. And when the open way is very much longer than breaking a door that stands nearer, he breaks the door. That's why a killbox's entrance shouldn't be long, and why the other doors in your wall shouldn't stand much nearer the raiders than the killbox does.</text>
+      </li>
+      <li>
+        <heading>Why the way in stays open</heading>
+        <text>A killbox works only while it is the open way. Leave its entrance open, or put a door in it and set the door to stay open when a raid comes. A door held open is as good as a gap, and you can shut it again for manhunters, who can't open doors and wander off within a day or two. A shut door on the only way turns the killbox into one more wall to break, wherever the raiders like.</text>
+      </li>
+      <li>
+        <heading>The entrance</heading>
         <points>
-          <li>A turn in the entrance. Through a straight one, raiders stop in the doorway and shoot from its cover; round a turn, they have to come out into the box.</li>
-          <li>One cell wide where it opens, so a good melee fighter can hold them one at a time.</li>
-          <li>The way through stays open. If the only way to your people is through a shut door, raiders break walls elsewhere instead.</li>
-          <li>Not too long: past a point, raiders decide it isn't worth it and go for something else.</li>
-          <li>Fences or sandbags every second cell in the entrance slow them; a continuous line doesn't, as they only slow down climbing in.</li>
-          <li>Double the wall at the receiving end: your own fire breaks walls, and a hole there lets them round your line.</li>
-          <li>Turrets apart and behind their own cover; a badly damaged turret can explode.</li>
+          <li>Turns. Through a straight entrance, raiders stand beside the opening and shoot in from the corner of the wall; round two turns, they can't see your line until they're in the box.</li>
+          <li>One cell wide, with the last turn right at the box, so nobody can stand beside the opening on the outside.</li>
+          <li>Short. Two turns are enough, and a long way in makes a door elsewhere look easier.</li>
+          <li>Fences or sandbags every second cell slow them; a continuous line doesn't, as they only slow down climbing over.</li>
+          <li>Traps in the box, not the one-wide entrance. A raider who knows of a trap counts it as a long way round, and in a one-wide entrance there's no stepping past it.</li>
         </points>
+      </li>
+      <li>
+        <heading>The kill zone</heading>
+        <text>The box is open ground between the entrance and your line, and it stays bare: no chunks, trees, furniture, lamps or graves, nothing a raider can stand behind. Floor it and nothing grows back. Make it deep enough that the firing line is more than 13 cells from where raiders come in. Frag grenades and molotov cocktails reach 12.9 cells, so a grenadier has to walk out into the open before he can throw. A trap or two near the mouth catches the first ones in.
+
+Hold the box until they break. Raiders give up and run once somewhere between four and seven in ten of their group are down; mechanoids never do.</text>
+      </li>
+      <li>
+        <heading>The firing line</heading>
+        <text>At the far end, a line of cover facing the entrance with firing positions behind it, and a way through for your own people. Turrets stand on its flanks, each behind its own cover with a wall between it and the shooters, because a badly damaged turret can explode. Mini-turrets fire close in; an autocannon can't hit anything within 8.9 cells and a uranium slug turret nothing within 11.9, so those go further back. Your own misses break the walls behind the raiders: build the box of stone, and double the wall where a hole would let them round your line.</text>
+      </li>
+      <li>
+        <heading>Doors and gates</heading>
+        <points>
+          <li>A door in the way in, held open in a raid, lets you close the box the rest of the time.</li>
+          <li>A door beside the trap lane lets your people rebuild traps without walking over them. Make it strong: raiders in the box can break it.</li>
+          <li>Two doors in a row hold longer than one. Hold both open when a raid comes.</li>
+        </points>
+      </li>
+      <li>
+        <heading>What goes round it</heading>
+        <table>
+          <li>Threat | What it does | What helps</li>
+          <li>Sappers | Dig toward an assigned bed by the shortest way | Walls two thick, fighters who go to meet the digger</li>
+          <li>Breachers | Smash the walls in their way toward the beds | Stone two thick, an inner ring round the beds</li>
+          <li>Drop pods | Land beside a colonist, or all over the map | Weapons by the beds, a keep</li>
+          <li>Mechanoid clusters | Land near you and wait, with walls and turrets of their own | Mortars, or an attack when you're ready</li>
+          <li>Infestations | Come up inside, under overhead mountain | Walls, light or cold in unused rock; a fallback with its own way out</li>
+          <li>Manhunters | Chase anyone they see down any length of corridor, but can't open doors | Shut the gate and wait, or let them in and shoot: they can't shoot back</li>
+          <li>Sieges | Camp out of reach and shell you | Mortars, or a long gun to goad them in; then they come by the easiest way</li>
+        </table>
       </li>
       <li>
         <heading>Sappers</heading>
@@ -181,6 +229,10 @@ A plan with a wall line can "close the gap": the wall carries on to the rock, a 
 
 Against both: walls at least two thick, cover ready in more than one place, an inner ring round the beds, and a few fighters who can go and meet them.</text>
       </li>
+      <li>
+        <heading>Melee blockers</heading>
+        <text>Where the entrance opens into the box, or where your line has its way through, a melee fighter standing just beyond a one-cell opening meets raiders one at a time. Up to three of your fighters can stand round the inside of such an opening and all reach the raider in it, while the raiders behind him reach nobody. It works best against raids that come to fight hand to hand: tribes, insects, scythers, manhunters. Keep blockers out of your shooters' line of fire, and a doctor close behind them.</text>
+      </li>
     </sections>
     <keywords>
       <li>killbox</li>
@@ -190,8 +242,14 @@ Against both: walls at least two thick, cover ready in more than one place, an i
       <li>breach axe</li>
       <li>entrance</li>
       <li>melee block</li>
+      <li>kill zone</li>
+      <li>firing line</li>
+      <li>hold open</li>
     </keywords>
     <seeAlso>
+      <li>Rimfolk_AlmDef_KillboxWhere</li>
+      <li>Rimfolk_AlmDef_KillboxMistakes</li>
+      <li>Rimfolk_AlmDef_Lines</li>
       <li>Council_Alm_3_04_Killbox</li>
       <li>Council_Alm_3_11_SappersBreachers</li>
       <li>Rimfolk_AlmDef_Turrets</li>

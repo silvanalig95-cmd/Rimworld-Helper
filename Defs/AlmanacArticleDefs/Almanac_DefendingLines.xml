@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Almanac: Defending the colony, part two. Defense lines built up step by step, where a killbox fits and what goes
+    wrong with one, the field of fire, and keeping a defense up. The killbox itself is explained in
+    Almanac_Defending.xml (Rimfolk_AlmDef_Killbox). Weapon ranges are from the 1.6 weapon defs as the wiki gives them.
+  -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Rimfolk_AlmDef_Lines</defName>
+    <label>defense lines, step by step</label>
+    <category>Defending</category>
+    <order>15</order>
+    <summary>Building up one way in, from a wall and a gate to a killbox and a line behind it</summary>
+    <tip>A gate you can hold this week beats a killbox you'll finish next year.</tip>
+    <description>A defense line is everything you build at one way into the colony: the wall across it, the gate, the cover behind, the traps in front, the guns, in time a killbox, and a second line behind it all. Nobody builds that in one go. The Defenses page keeps your lines and suggests the next step for each, in the order most colonies find works, then looks over what stands and what the last raid did to it.</description>
+    <sections>
+      <li>
+        <heading>The steps</heading>
+        <table>
+          <li>Step | What you build | Skip it when</li>
+          <li>1. Close the gap | A wall across the way in, with one gate | Rock, deep water or a wall of yours closes it already</li>
+          <li>2. Clear the field of fire | Trees cut, chunks hauled from the ground in front | The ground is bare rock or floor</li>
+          <li>3. Cover behind the gate | A sandbag or barricade line with firing positions | You built the gate with its own sandbag lines</li>
+          <li>4. Traps on the way in | A trap corridor in front of the gate | Traps are off in your difficulty settings</li>
+          <li>5. Guns that never sleep | A turret nest, or an archers' post | You have neither turrets nor archers to spare</li>
+          <li>6. The killbox | A small killbox, a killbox or a tunnel killbox | Raids are still well under 700 points</li>
+          <li>7. Harden the line | Walls two thick, stone for wood, embrasures | The rock is the wall already</li>
+          <li>8. A line to fall back to | A wall and a door between this line and the beds | A keep among the beds will do for now</li>
+        </table>
+        <after>The order isn't a rule. The step the last raid showed you were missing comes first, whatever its number.</after>
+      </li>
+      <li>
+        <heading>1. Close the gap</heading>
+        <text>A wall across the way in, carried on to the rock, a wall or deep water on both sides, with one gate in it. It comes first because raiders take the easiest way to your people: until the gap is closed, everything else you build can be walked round. With the gate held open, ordinary raiders walk through it into your guns; with it shut, they start on the wall wherever they like. The gate with sandbag lines, the perimeter wall and, with Medieval Overhaul, the palisade and the castle gate all close a gap. Skip it where the land closes the way already, or your perimeter wall does.</text>
+      </li>
+      <li>
+        <heading>2. Clear the field of fire</heading>
+        <text>Cut the trees and bushes and haul away the stone chunks in front of the gate and just inside it. It costs almost nothing and takes away the raiders' cover before you build your own: a chunk gives the raider behind it 50% cover, a tree 25%. Plants grow back, so this is a step you come back to. Skip it on bare rock or floor.</text>
+      </li>
+      <li>
+        <heading>3. Cover behind the gate</heading>
+        <text>Two short lines of sandbags or barricades a few steps behind the gate, firing positions behind them and a way through the middle. Now that the way in is yours, your people need somewhere to stand when raiders use it. Whoever comes through the gate has open ground to cross toward people behind cover, and the two halves stand off to the sides, where raiders outside can hardly see them. Skip it if you built the gate with its own sandbag lines.</text>
+      </li>
+      <li>
+        <heading>4. Traps on the way in</heading>
+        <text>A walled lane of traps in front of the gate, two wide: traps on one side, something that slows raiders on the other. Raiders don't see traps and take the clear side; your people see them and take the slow one. Traps come now because they work with nobody watching and soften every raid before it reaches the cover. Skip them if your difficulty settings turn traps off, and keep them off the paths your own people walk every day.</text>
+      </li>
+      <li>
+        <heading>5. Guns that never sleep</heading>
+        <text>A turret nest behind the gate, two turrets with walls between them; in a colony without power, an archers' post further back for the longest bows. They come once the colony has power and steel to keep turrets going, or archers to spare. A turret fires at anything hostile in reach while it has power and someone repairs it, and every one adds wealth, which makes the next raid bigger. Skip turrets if your settings turn them off, and the post if nobody can be spared to stand in it.</text>
+      </li>
+      <li>
+        <heading>6. The killbox</heading>
+        <text>Once raids reach about 700 points, a gate and a line of cover get swamped: too many raiders come through at once. A killbox turns the way in into a winding entrance and an open box, so they come in one at a time under every gun you have. The small killbox suits a narrow gap and a colony of bows, the killbox a wider one, and the tunnel killbox a base under a mountain. Build it on the gap the line already holds, and the gate becomes its way in. Skip it while raids are small, or while most of yours come by drop pod or as sappers: then the line behind matters more.</text>
+      </li>
+      <li>
+        <heading>7. Harden the line</heading>
+        <text>A second layer of wall right behind the first, stone where you built wood, and embrasures where Medieval Overhaul gives you them. Breachers and sappers come as raids grow, and they don't use the gate: two layers of stone hold an axe or a pick twice as long, and stone doesn't burn. Skip it where the rock is the wall already.</text>
+      </li>
+      <li>
+        <heading>8. A line to fall back to</heading>
+        <text>A wall with a door between this line and the beds, cover behind it and a shelf of medicine and spare weapons. It comes last because it only matters once there's an outer line worth falling back from, and then it's what saves people when that line breaks, or when pods land between it and the beds. A small colony can make do with a keep among the beds for a while.</text>
+      </li>
+      <li>
+        <heading>Choosing an aim</heading>
+        <text>Each line has an aim: what you want it to become. The aim decides which steps the helper suggests and what it looks for when it reviews the line. You can change it as the colony grows.</text>
+        <table>
+          <li>Aim | Suits | It leans on</li>
+          <li>Hold a gate | Small colonies and early raids | A gate, cover behind it, a melee fighter by the gate</li>
+          <li>Killbox | Raids of 700 points and more, plenty of shooters | A winding entrance, a bare box, a firing line out of grenade reach</li>
+          <li>Turret line | A powered colony with steel to spare and few fighters | Turrets apart and behind walls, power, repairs</li>
+          <li>Archers' wall | A tribal or medieval colony | Stone or palisade walls, embrasures or barricades, bows that reach</li>
+        </table>
+      </li>
+      <li>
+        <heading>How the helper reviews a line</heading>
+        <text>When you look at a line, the helper checks it against how raids really go and suggests what would make it better:</text>
+        <table>
+          <li>It looks at | Because</li>
+          <li>Leaks | A way round the line, however long, is the way raiders take</li>
+          <li>Sight lines | A firing position that can't see the gate or the box is a wasted shooter</li>
+          <li>Cover in the kill zone | Trees, chunks and furniture there shelter the raiders</li>
+          <li>Distance and range | Too close, and grenades and melee reach your people; too far, and the bows don't reach the raiders</li>
+          <li>Turret spacing | One turret blowing up can take the next with it</li>
+          <li>Wood | Wooden walls and gates burn, and raiders set fires</li>
+          <li>A shut gate | With no open way in, raiders break the walls wherever they like</li>
+          <li>Darkness | In the dark your people move and work more slowly, and their mood suffers</li>
+          <li>Upkeep | Sprung traps, damaged walls, turrets without power or steel</li>
+        </table>
+        <after>From what stands it gives the line a rough strength: a guide to the size of raid it should hold, not a promise.</after>
+      </li>
+      <li>
+        <heading>Learning from raids</heading>
+        <text>After a raid, the helper looks at what it did to each line it reached: where the raiders came in, what they broke and how the fight went. It keeps those lessons with the line, and they shape the step it suggests next. Look for yourself too: "keeping a defense up" has a short list of what to check.</text>
+      </li>
+    </sections>
+    <keywords>
+      <li>defense line</li>
+      <li>steps</li>
+      <li>ladder</li>
+      <li>aim</li>
+      <li>review</li>
+      <li>line strength</li>
+      <li>lessons</li>
+      <li>harden</li>
+    </keywords>
+    <seeAlso>
+      <li>Rimfolk_AlmDef_Overview</li>
+      <li>Rimfolk_AlmDef_ChokePoints</li>
+      <li>Rimfolk_AlmDef_FieldOfFire</li>
+      <li>Rimfolk_AlmDef_Killbox</li>
+      <li>Rimfolk_AlmDef_KillboxWhere</li>
+      <li>Rimfolk_AlmDef_Upkeep</li>
+      <li>Rimfolk_AlmDef_Fallback</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Rimfolk_AlmDef_FieldOfFire</defName>
+    <label>the field of fire</label>
+    <category>Defending</category>
+    <order>35</order>
+    <summary>What your shooters can see and reach, and what the raiders can hide behind</summary>
+    <tip>Every chunk left in front of the gate is cover you've built for them.</tip>
+    <description>The field of fire is the ground your people shoot across, from the firing positions to the gate and beyond it. Three things decide how well it works: what stands in it to shelter the raiders, whether your people can see across it, and whether their weapons reach. Getting most of it right costs nothing but a few hours of cutting and hauling.</description>
+    <sections>
+      <li>
+        <heading>Cover, and how much it blocks</heading>
+        <table>
+          <li>What | Cover | Shot over?</li>
+          <li>Walls, rock, doors | 75% | No: a shooter leans round the corner</li>
+          <li>Sandbags, barricades | 55% | Yes</li>
+          <li>Stone chunks | 50% | Yes</li>
+          <li>Furniture | 40% | Yes</li>
+          <li>Trees | 25% | Yes</li>
+          <li>Bushes | 20% | Yes</li>
+        </table>
+        <after>Cover counts in full when the shot comes within 15° of straight on, and not at all beyond 65°. A shooter right in front of it meets only a third of it, one cell away two thirds. Seen from an angle, two pieces of cover side by side can both count, which is why the cover line's inner ends turn toward the gate.</after>
+      </li>
+      <li>
+        <heading>Sight lines</heading>
+        <text>Walls block both sight and shots; low cover blocks neither. A colonist beside the end of a wall can lean round it to shoot and keep the wall as cover, but can't see through it. So every firing position needs a clear line to where raiders will be: the gate, the box, the ground in front. Draft someone onto each firing position before you need it and see what they can target.
+
+Raiders see the same way. A wall corner beside an opening is where they'll stand to shoot in, which is why a killbox's entrance turns, and why the cover line stands off to the sides of the gate rather than straight behind it.</text>
+      </li>
+      <li>
+        <heading>Weapon reach</heading>
+        <table>
+          <li>Weapon | Era | Reach in cells</li>
+          <li>Short bow | Neolithic | 22.9</li>
+          <li>Recurve bow | Neolithic | 25.9</li>
+          <li>Greatbow | Neolithic | 29.9</li>
+          <li>Pila, thrown | Neolithic | 18.9</li>
+          <li>Machine pistol | Industrial | 19.9</li>
+          <li>Revolver, autopistol | Industrial | 25.9</li>
+          <li>Pump shotgun | Industrial | 15.9</li>
+          <li>Chain shotgun | Industrial | 12.9</li>
+          <li>Heavy SMG | Industrial | 22.9</li>
+          <li>LMG | Industrial | 25.9</li>
+          <li>Assault rifle, minigun | Industrial | 30.9</li>
+          <li>Bolt-action rifle | Industrial | 36.9</li>
+          <li>Sniper rifle | Industrial | 44.9</li>
+          <li>Frag grenades, molotov cocktails | Industrial | 12.9</li>
+          <li>Charge rifle | Spacer | 27.9</li>
+          <li>Mini-turret | Industrial | 28.9</li>
+          <li>Autocannon turret | Industrial | 32.9, nothing within 8.9</li>
+          <li>Uranium slug turret | Industrial | 45.9, nothing within 11.9</li>
+        </table>
+        <after>Most weapons are at their most accurate well inside their reach; the sniper rifle and the uranium slug turret are built for distance and do worse up close. Raiders carry the same weapons: a firing line more than 13 cells from where they come in is out of a grenade's throw, and a sniper's post can shoot at them while they gather.</after>
+      </li>
+      <li>
+        <heading>Raiders' cover in the kill zone</heading>
+        <text>Raiders under fire look for cover nearby and fight from it. A chunk, a tree or a table in the kill zone tells them where to stand, and takes a share of every shot aimed at them. With none, they stand in the open or come on toward your line, where a trap or a melee fighter meets them. If you can't clear it all, leave what's left where your firing positions see it from the side: cover only counts against shots that come at it nearly straight.</text>
+      </li>
+      <li>
+        <heading>Keeping it clear</heading>
+        <points>
+          <li>Cut trees and bushes in front of the line and in the kill zone. Plants come back to bare ground in time, but not to floor or under a roof.</li>
+          <li>Haul chunks to a dumping stockpile behind the line.</li>
+          <li>No furniture, graves, sculptures or lamps where raiders will stand.</li>
+          <li>A defense plan counts the chunks lying on the ground it keeps open and, if you let plans cut plants, marks the plants there for cutting when you place it.</li>
+        </points>
+      </li>
+      <li>
+        <heading>Darkness</heading>
+        <text>In 1.6 darkness on its own doesn't spoil anyone's aim. Below 30% light people move and work more slowly, down to 80% in full darkness, and a colonist awake in the dark for a while gets the darkness mood. Human raiders are slowed as well; insects, animals and mechanoids are not. Shooting changes only for people whose ideoligion holds "combat in darkness: preferred", from the Darkness meme: they get +25% shooting accuracy in the dark and -20% in the light, and that goes for raiders of such a faith as much as for yours.
+
+So light the firing line and the way to it: repairing a wall is work, and work is slower in the dark. Against Anomaly's noctols, bright light is a weapon in itself.</text>
+      </li>
+    </sections>
+    <keywords>
+      <li>field of fire</li>
+      <li>line of sight</li>
+      <li>range</li>
+      <li>weapon range</li>
+      <li>darkness</li>
+      <li>light</li>
+      <li>chunks</li>
+      <li>trees</li>
+    </keywords>
+    <seeAlso>
+      <li>Rimfolk_AlmDef_Cover</li>
+      <li>Council_Alm_3_05_Cover</li>
+      <li>Rimfolk_AlmDef_Lines</li>
+      <li>Rimfolk_AlmDef_Killbox</li>
+      <li>Rimfolk_AlmDef_Upkeep</li>
+      <li>Rimfolk_AlmDef_Anomaly</li>
+    </seeAlso>
+    <approximate>true</approximate>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Rimfolk_AlmDef_KillboxWhere</defName>
+    <label>where a killbox fits</label>
+    <category>Defending</category>
+    <order>42</order>
+    <summary>A pass, a mountain's mouth, open ground walled in, a bridge; and how much room it needs</summary>
+    <tip>A killbox only works on the way the raid was coming anyway.</tip>
+    <description>A killbox kills only what walks into it, and raiders walk into it only if it's the easiest way to your people. So the first question isn't how to build it but where: on the way most raids take, with every other way closed, and close enough to the beds that your people get there first.</description>
+    <sections>
+      <li>
+        <heading>A pass between hills</heading>
+        <text>The easiest place. The killbox's own wall closes the pass, carried on to the rock on both sides, and the box sits behind it where the ground opens out. Walk the hills first: a second, narrower way round that you hadn't noticed is where the raid will go. The Defenses page shows the ways in it found, and how many raids pass each.</text>
+      </li>
+      <li>
+        <heading>A mountain entrance</heading>
+        <text>In a base under a mountain, the few tunnels out are the ways in. The tunnel killbox digs a winding tunnel in from the entrance and a long chamber behind it. The rock does the walling, and under overhead mountain no shell or drop pod falls on it.
+
+It has two prices. Insects come up in warm, dark rock under the mountain, and an empty dug-out chamber is just what they look for, so keep it lit and in use. And sappers don't need your tunnel: they dig their own toward the beds.</text>
+      </li>
+      <li>
+        <heading>Open ground</heading>
+        <text>On open ground there's no gap until you make one. Wall the colony in first, with the killbox as the only open way through the wall and a few doors elsewhere for your own use. Until that wall is closed, raiders simply walk round the killbox. Keep those other doors no nearer the raiders than the killbox: a raider weighs breaking a door against the walk round, and a long walk loses. Put the killbox on the side most raids come from; the Defenses page shows which edges raiders reach you from.</text>
+      </li>
+      <li>
+        <heading>A bridge</heading>
+        <text>Across a river, raiders take a bridge rather than wade: water slows them, and deep water can't be crossed at all. A killbox where the bridge lands on your side makes the bridge its entrance. Close the shallow fords as well, or they're the way round. Marsh and shallow water take no wall, so a plan's wall line stops there and says so.</text>
+      </li>
+      <li>
+        <heading>How much room</heading>
+        <table>
+          <li>Plan | Cells | Notes</li>
+          <li>Small killbox | 9 × 13 | For a narrow gap and early raids</li>
+          <li>Killbox | 15 × 21 | The box alone is 11 × 12</li>
+          <li>Tunnel killbox | 11 × 22 | Most of it dug out of the rock</li>
+        </table>
+        <after>Leave open ground in front of the wall line as well, and room behind the firing line for people to come and go.</after>
+      </li>
+      <li>
+        <heading>How far from the beds</heading>
+        <text>Close enough that your people reach the firing line before the raid reaches the box: a long walk from the bedrooms means a raid at night meets an empty line. Far enough that the fight stays out of the house. Raiders' shots that miss land around whoever they aimed at, grenades and turret blasts reach several cells, and fire spreads, so keep bedrooms, the hospital and anything that burns well away from the firing line. And not so far out that a door or a wall nearer the raiders looks easier to them than the walk to the box.</text>
+      </li>
+      <li>
+        <heading>What the helper looks for</heading>
+        <text>When it finds a spot for a killbox, the planner tries the busiest ways in, with the opening in the killbox's wall on the gap and the box on your side of it, and a few cells either way. It prefers the spot where most of the plan can be built now or stands already, and counts against a spot: rock to dig, your own buildings to take down, things in the way, open ground that has something built on it, and how far it had to move from the gap.
+
+With the plan in front of you, it says where the wall stops short of the rock (at water or marsh, at something in the way, or where the gap runs on more than 12 cells), when the walls would be wood, when traps would lie in the home area, and how many chunks lie in the field of fire.</text>
+      </li>
+    </sections>
+    <keywords>
+      <li>killbox</li>
+      <li>where to build</li>
+      <li>pass</li>
+      <li>mountain base</li>
+      <li>tunnel</li>
+      <li>bridge</li>
+      <li>perimeter</li>
+      <li>room</li>
+    </keywords>
+    <seeAlso>
+      <li>Rimfolk_AlmDef_Killbox</li>
+      <li>Rimfolk_AlmDef_KillboxMistakes</li>
+      <li>Rimfolk_AlmDef_ChokePoints</li>
+      <li>Rimfolk_AlmDef_Lines</li>
+      <li>Rimfolk_AlmDef_Infestations</li>
+      <li>Rimfolk_AlmDef_WallsGates</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Rimfolk_AlmDef_KillboxMistakes</defName>
+    <label>killbox mistakes</label>
+    <category>Defending</category>
+    <order>44</order>
+    <summary>What goes wrong with a killbox, and how to put it right</summary>
+    <tip>If they didn't walk in, look for the way they found instead.</tip>
+    <description>Most killboxes that fail do so for one of a handful of reasons, and nearly all of them show after the first raid: raiders who went round, raiders who shot back from cover, a hole where a turret blew up. Look at where the raid went, find its row here, and fix that before the next one.</description>
+    <sections>
+      <li>
+        <heading>Mistakes and fixes</heading>
+        <table>
+          <li>Mistake | What happens | The fix</li>
+          <li>Cover or trees in the box | Raiders stop behind it and shoot back | Cut and haul it all; floor the box so nothing grows back</li>
+          <li>A way round | Raiders take it and never see the box | Wall every other way, to rock or deep water; marsh and shallow water still let them through</li>
+          <li>The gate shut | With no open way in, they break walls wherever they like | Hold the gate open in a raid; shut it for manhunters</li>
+          <li>A straight entrance | Raiders stand beside the opening and shoot in from its cover | Turns in the entrance, the last one right at the box</li>
+          <li>Shooters near the entrance | Grenades, shotguns and melee reach them from the mouth of the box | A firing line more than 13 cells from where they come in</li>
+          <li>Turrets bunched | One blowing up takes the next with it | 3 empty cells between mini-turrets, autocannons about 6 cells apart, and walls between</li>
+          <li>Wooden walls | They burn, and raiders set fires | Stone, at least round the box and the firing line</li>
+          <li>Too far out, or too long a way in | A door or wall nearer them looks easier, and your people arrive late | On the way the raid comes anyway, a short walk from the beds; two turns are enough</li>
+          <li>Traps in the one-wide entrance | A raider who knows of one counts it as a long way round, and may break in elsewhere | Traps in the box, where there's room to step past them</li>
+          <li>No second line | One breach, a sapper or a drop pod, and the beds are next | A fallback line, and weapons by the beds</li>
+          <li>Beyond the bows' reach | Archers can't hit the mouth, and miss a lot near their limit | A short bow reaches 22.9 cells, a greatbow 29.9: keep the box well inside that</li>
+        </table>
+      </li>
+      <li>
+        <heading>After the first raid</heading>
+        <points>
+          <li>Where did they stand to shoot? Clear what they used, or move it where your firing positions see it from the side.</li>
+          <li>Did anyone come round? Find the way they took and close it.</li>
+          <li>What broke? Walls hit by your own misses, turrets, gates, traps.</li>
+          <li>Who was hurt, and where were they standing? A firing position that took most of the hits needs better cover or a different angle.</li>
+        </points>
+      </li>
+    </sections>
+    <keywords>
+      <li>killbox</li>
+      <li>mistakes</li>
+      <li>problems</li>
+      <li>way round</li>
+      <li>turret spacing</li>
+      <li>grenades</li>
+      <li>entrance</li>
+    </keywords>
+    <seeAlso>
+      <li>Rimfolk_AlmDef_Killbox</li>
+      <li>Rimfolk_AlmDef_KillboxWhere</li>
+      <li>Rimfolk_AlmDef_FieldOfFire</li>
+      <li>Rimfolk_AlmDef_Upkeep</li>
+      <li>Rimfolk_AlmDef_Turrets</li>
+      <li>Rimfolk_AlmDef_Traps</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Rimfolk_AlmDef_Upkeep</defName>
+    <label>keeping a defense up</label>
+    <category>Defending</category>
+    <order>145</order>
+    <summary>Traps, walls, turrets, the kill zone and the gate, before and after a raid</summary>
+    <tip>The hour after a raid decides how the next one goes.</tip>
+    <description>A defense wears out. Traps go off, walls and gates are chipped, turrets run low on steel or lose their power, and the kill zone fills with corpses and new growth. None of it is hard to put right, but it has to be done before the next raid, and some of it only happens if you've set it up.</description>
+    <sections>
+      <li>
+        <heading>Traps</heading>
+        <text>A spike trap that goes off breaks, and an IED is gone once it explodes. Select your traps and check that auto rearm is on: then each sprung trap leaves a blueprint in its place and your builders put it back, using the materials again. Your own people set off a trap about one time in two hundred, more often while hauling over it or drafted onto it, so keep haulers out of the trap lane with an allowed area.</text>
+      </li>
+      <li>
+        <heading>Walls and gates</heading>
+        <text>Colonists repair damaged buildings only inside the home area, and put out fires only there unless you draft them. Paint the home area over your walls, gates and turrets, but leave the trap lane out of it. Repair the gates first: a door is weaker than the wall beside it. Where the fighting is, replace wood with stone as you can.</text>
+      </li>
+      <li>
+        <heading>Turrets and mortars</heading>
+        <text>Powered turrets need their power, and all of them go quiet in a solar flare. After heavy firing they need reloading, with steel for mini-turrets and autocannons and uranium for a slug turret, so keep a stock near them. A power switch of their own keeps them from drawing power between raids; turn them on when one comes. Repair any that sparked or burned. A mortar's barrel lasts 20 shots: keep a spare, and the shells well away from the mortars.</text>
+      </li>
+      <li>
+        <heading>The kill zone</heading>
+        <text>Clear it after every raid. Corpses upset everyone who sees them and rot where they lie: strip them and haul them somewhere out of sight, or burn them. Haul away any chunks, including the ones digging leaves in a tunnel killbox. Cut what has grown back: plants return to bare ground in time, but not to floor or under a roof.</text>
+      </li>
+      <li>
+        <heading>When a raid comes</heading>
+        <points>
+          <li>Hold the gate open, or the killbox's door: an open way in keeps them coming to your guns. Shut it again when it's over, and keep it shut for manhunters.</li>
+          <li>Turn the turrets on.</li>
+          <li>Send people to their firing positions before the raid reaches the gate.</li>
+          <li>Hold fire until they're in the box.</li>
+        </points>
+      </li>
+      <li>
+        <heading>After a raid</heading>
+        <points>
+          <li>Where did they come in, and did anyone come round the line?</li>
+          <li>Where did they stand to shoot from? Clear it.</li>
+          <li>What broke: walls, gates, turrets, traps?</li>
+          <li>Who was hurt, and where were they standing?</li>
+          <li>Take the hold off the gate, and unassign the mortar gunners.</li>
+        </points>
+        <after>The helper notes each raid against the lines it reached, and its lessons say what to build next.</after>
+      </li>
+    </sections>
+    <keywords>
+      <li>upkeep</li>
+      <li>repair</li>
+      <li>rearm</li>
+      <li>auto rearm</li>
+      <li>home area</li>
+      <li>corpses</li>
+      <li>after a raid</li>
+      <li>hold open</li>
+    </keywords>
+    <seeAlso>
+      <li>Rimfolk_AlmDef_Lines</li>
+      <li>Rimfolk_AlmDef_Traps</li>
+      <li>Rimfolk_AlmDef_Turrets</li>
+      <li>Rimfolk_AlmDef_WallsGates</li>
+      <li>Rimfolk_AlmDef_FieldOfFire</li>
+      <li>Rimfolk_AlmDef_KillboxMistakes</li>
+      <li>Rimfolk_AlmDef_Fallback</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+</Defs>
