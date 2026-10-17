@@ -422,8 +422,11 @@ namespace ColonyCouncil
         protected override string Extra(HappeningContext ctx) =>
             VarietyUtil.Line(VarietyUtil.More(def)?.extra, ctx, null, VarietyUtil.Bundle(ctx.thing, VarietyUtil.InStores(ctx.map, ctx.thing)));
 
-        /// <summary>How much medicine an answer sends: all of it, or half with the colony's healer's instructions (answer 3).</summary>
-        private static int Sent(HappeningContext ctx, int option) => option == 3 ? Mathf.Max(1, ctx.variant / 2) : ctx.variant;
+        /// <summary>
+        /// How much medicine an answer sends: all of it, or half with the colony's healer's instructions (answer 3), rounded
+        /// as the errand that carries it rounds (DilemmaEffect_CarryOut, factor 0.5).
+        /// </summary>
+        private static int Sent(HappeningContext ctx, int option) => option == 3 ? Mathf.Max(1, Mathf.RoundToInt(ctx.variant * 0.5f)) : ctx.variant;
 
         public override string Unavailable(HappeningContext ctx, int option) =>
             (option <= 1 || option == 3) && ctx.thing != null && VarietyUtil.InStores(ctx.map, ctx.thing) < Sent(ctx, option)
@@ -432,11 +435,9 @@ namespace ColonyCouncil
 
         public override string Resolved(HappeningContext ctx, int option, bool risk, bool byDefault, string outcome)
         {
-            if ((option <= 1 || option == 3) && !byDefault)
-            {
-                bool sent = VarietyUtil.TakeFromStores(ctx.map, ctx.thing, Sent(ctx, option));
-                if (sent && option == 1) VarietyUtil.PaySilver(ctx.map, VarietyUtil.Near(ctx.a, ctx.map), ctx.count);
-            }
+            // The medicine itself goes out with the answer's errand (DilemmaEffect_CarryOut: carried to their runner at
+            // the gate, or taken at once if it never happens); a sale is paid for now.
+            if (option == 1 && !byDefault) VarietyUtil.PaySilver(ctx.map, VarietyUtil.Near(ctx.a, ctx.map), ctx.count);
             return base.Resolved(ctx, option, risk, byDefault, outcome);
         }
     }

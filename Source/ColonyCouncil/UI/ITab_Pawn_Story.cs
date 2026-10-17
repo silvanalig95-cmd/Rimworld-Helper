@@ -7,9 +7,9 @@ using Verse;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// "Story" in a colonist's inspect pane: everything Rimfolk knows about them on one page. Their life goal,
-    /// bonds and circle, quirks, names, office, trust, vendettas, secrets (only what the colony knows), recent
-    /// dreams and the latest lines of their journal. Fits the room above the inspect pane (RimfolkTab); the name stays
+    /// "Story" in a colonist's inspect pane: everything Rimfolk knows about them on one page. Their character and
+    /// what shaped it, life goal, bonds and circle, quirks, names, office, trust, vendettas, secrets (only what the
+    /// colony knows), recent dreams and the latest lines of their journal. Fits the room above the inspect pane (RimfolkTab); the name stays
     /// put, the rest scrolls, and each section folds away.
     /// </summary>
     public class ITab_Pawn_Story : RimfolkTab
@@ -107,6 +107,11 @@ namespace ColonyCouncil
                     y += 6f;
                     continue;
                 }
+                if (section.character != null)
+                {
+                    y += CharacterView.DrawSection(new Rect(8f, y, view.width - 8f, 0f), p, section.character) + 8f;
+                    continue;
+                }
                 foreach (var (text, color) in section.lines)
                 {
                     float h = Text.CalcHeight(text, view.width - 8f);
@@ -132,6 +137,8 @@ namespace ColonyCouncil
             public Texture2D icon;
             public List<(string, Color)> lines = new List<(string, Color)>();
             public PawnJournal journal;
+            /// <summary>A part of their character page (Persona/CharacterView.cs), which draws itself.</summary>
+            public CharacterSection character;
         }
 
         private static IEnumerable<Section> Sections(CouncilGameComponent comp, Pawn p)
@@ -148,6 +155,10 @@ namespace ColonyCouncil
             if (!titles.NullOrEmpty()) standing.lines.Add(("CC_Epithet_Known".Translate(p.LabelShort, titles).Resolve(), Color.white));
             foreach (var line in HealthTracker.StoryLines(p)) standing.lines.Add((line, Color.white));
             if (standing.lines.Count > 0) yield return standing;
+
+            // Their character and what shaped it, with what the other systems add (Persona/CharacterView.cs).
+            foreach (var cs in CharacterView.Sections(p))
+                yield return new Section { key = "character" + cs.order, header = cs.title, icon = CharacterView.Icon(cs.order), character = cs };
 
             // Life goal.
             if (s.aspirations)

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Vanilla Traits Expanded (vanillaexpanded.vanillatraitsexpanded): where its traits set a person's character
+    (Source/ColonyCouncil/Persona/). Trait defNames from the mod's 1.6 TraitDefs/Traits_Singular.xml; without the mod
+    they are simply skipped. Traits only about the body (thick skin, an iron stomach, heavy sleep) move nothing here.
+  -->
+
+  <ColonyCouncil.PersonaNatureDef>
+    <defName>Rimfolk_Nature_VTE</defName>
+    <label>Vanilla Traits Expanded's traits</label>
+    <traits>
+      <li><trait>VTE_Brave</trait><nerve>35</nerve><temper>-5</temper></li>
+      <li><trait>VTE_Coward</trait><nerve>-45</nerve></li>
+      <li><trait>VTE_Anxious</trait><nerve>-20</nerve><trust>-15</trust><warmth>-10</warmth><humour>-5</humour></li>
+      <li><trait>VTE_Squeamish</trait><nerve>-15</nerve></li>
+      <li><trait>VTE_MartialArtist</trait><nerve>15</nerve><temper>-5</temper></li>
+      <li><trait>VTE_DrunkenMaster</trait><nerve>10</nerve><humour>10</humour></li>
+      <li><trait>VTE_Desensitized</trait><warmth>-30</warmth><nerve>15</nerve></li>
+      <li><trait>VTE_Vengeful</trait><temper>25</temper><warmth>-15</warmth><trust>-10</trust></li>
+      <li><trait>VTE_Schizoid</trait><warmth>-20</warmth><temper>20</temper></li>
+      <li><trait>VTE_Rebel</trait><trust>-20</trust><temper>15</temper><openness>10</openness></li>
+      <li><trait>VTE_Submissive</trait><nerve>-15</nerve><trust>15</trust><pride>-15</pride></li>
+      <li><trait>VTE_AnimalLover</trait><warmth>20</warmth></li>
+      <li><trait>VTE_Menagerist</trait><warmth>15</warmth></li>
+      <li><trait>VTE_AnimalHater</trait><warmth>-15</warmth><pride>10</pride></li>
+      <li><trait>VTE_Ecologist</trait><warmth>10</warmth><openness>-5</openness></li>
+      <li><trait>VTE_MadSurgeon</trait><warmth>-40</warmth><openness>10</openness></li>
+      <li><trait>VTE_Kleptomaniac</trait><warmth>-5</warmth><trust>-5</trust></li>
+      <li><trait>VTE_FunLoving</trait><humour>30</humour><outlook>10</outlook></li>
+      <li><trait>VTE_CouchPotato</trait><humour>10</humour></li>
+      <li><trait>VTE_Stoner</trait><humour>15</humour><temper>-15</temper></li>
+      <li><trait>VTE_Lush</trait><humour>10</humour><temper>5</temper></li>
+      <li><trait>VTE_Dunce</trait><outlook>20</outlook><humour>10</humour><openness>-10</openness></li>
+      <li><trait>VTE_AbsentMinded</trait><humour>10</humour><openness>5</openness></li>
+      <li><trait>VTE_Clumsy</trait><humour>5</humour><pride>-5</pride></li>
+      <li><trait>VTE_Slob</trait><pride>-10</pride><humour>5</humour></li>
+      <li><trait>VTE_Neat</trait><pride>5</pride><openness>-10</openness></li>
+      <li><trait>VTE_Perfectionist</trait><pride>15</pride><temper>10</temper></li>
+      <li><trait>VTE_Workaholic</trait><pride>10</pride><humour>-10</humour></li>
+      <li><trait>VTE_Snob</trait><pride>30</pride><warmth>-10</warmth></li>
+      <li><trait>VTE_RefinedPalate</trait><pride>15</pride></li>
+      <li><trait>VTE_Tycoon</trait><pride>20</pride><trust>-5</trust><warmth>-5</warmth></li>
+      <li><trait>VTE_Gastronomist</trait><pride>10</pride><warmth>5</warmth></li>
+      <li><trait>VTE_Academian</trait><openness>20</openness><pride>10</pride></li>
+      <li><trait>VTE_Prodigy</trait><openness>20</openness><warmth>-5</warmth></li>
+      <li><trait>VTE_Eccentric</trait><openness>25</openness><humour>10</humour></li>
+      <li><trait>VTE_Groundbreaker</trait><openness>10</openness></li>
+      <li><trait>VTE_Wanderlust</trait><openness>30</openness></li>
+      <li><trait>VTE_Technophobe</trait><openness>-35</openness><trust>-10</trust></li>
+      <li><trait>VTE_Prude</trait><openness>-20</openness></li>
+      <li><trait>VTE_Insatiable</trait><warmth>10</warmth><openness>10</openness></li>
+      <li><trait>VTE_Insomniac</trait><temper>10</temper><outlook>-10</outlook></li>
+      <li><trait>VTE_WorldWeary</trait><outlook>-40</outlook><humour>-15</humour><warmth>-10</warmth></li>
+    </traits>
+  </ColonyCouncil.PersonaNatureDef>
+
+</Defs>

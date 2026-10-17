@@ -426,6 +426,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Grudge</thought><about>B</about></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-5</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_FairsFair</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><who>B</who><to>Walk</to></li>
         </riskEffects>
       </li>
       <li>

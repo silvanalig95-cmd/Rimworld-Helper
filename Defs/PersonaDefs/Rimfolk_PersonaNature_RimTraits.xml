@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    RimTraits - General Traits (sierra.rt.generaltraits) and RimTraits - Medieval Talents (sierra.rt.medievaltalents):
+    where their traits set a person's character (Source/ColonyCouncil/Persona/). Trait defNames from the mods' own
+    1.6 TraitDefs (github.com/MapleSierrap). Most of their traits are about the body or a craft and move nothing here;
+    these are the ones about a person's mind and manner. Without the mods they are simply skipped.
+  -->
+
+  <ColonyCouncil.PersonaNatureDef>
+    <defName>Rimfolk_Nature_RimTraits</defName>
+    <label>RimTraits' traits</label>
+    <traits>
+      <li><trait>RT_Valiant</trait><nerve>30</nerve></li>
+      <li><trait>RT_Craven</trait><nerve>-35</nerve></li>
+      <li><trait>RT_Resilient</trait><nerve>10</nerve></li>
+      <li><trait>RT_Fragile</trait><nerve>-10</nerve></li>
+      <li><trait>RT_Rowdy</trait><temper>25</temper><nerve>10</nerve></li>
+      <li><trait>RT_Composed</trait><temper>-25</temper></li>
+      <li><trait>RT_Persuasive</trait><pride>10</pride><warmth>5</warmth></li>
+      <li><trait>RT_Unconvincing</trait><pride>-10</pride></li>
+      <li><trait>RT_Energetic</trait><outlook>10</outlook><humour>5</humour></li>
+      <li><trait>RT_Muscular</trait><pride>10</pride></li>
+      <li><trait>RT_Gifted</trait><pride>10</pride></li>
+      <li><trait>RT_Incompetent</trait><pride>-10</pride></li>
+      <li><trait>RT_Healthy</trait><outlook>10</outlook></li>
+      <li><trait>RT_ChronicallyIll</trait><outlook>-10</outlook></li>
+      <li><trait>RT_EasilyAmused</trait><humour>30</humour><outlook>15</outlook></li>
+      <li><trait>RT_ConstantlyBemused</trait><humour>-15</humour><outlook>-15</outlook></li>
+      <li><trait>RT_Inquisitive</trait><openness>30</openness></li>
+      <li><trait>RT_Ignorant</trait><openness>-25</openness></li>
+      <li><trait>RT_TalentHero</trait><nerve>25</nerve><pride>10</pride></li>
+      <li><trait>RT_TalentHerald</trait><pride>15</pride><nerve>10</nerve></li>
+      <li><trait>RT_TalentAdventurer</trait><nerve>15</nerve><openness>10</openness></li>
+      <li><trait>RT_TalentScout</trait><openness>15</openness><nerve>5</nerve></li>
+      <li><trait>RT_TalentScholar</trait><openness>15</openness></li>
+      <li><trait>RT_TalentPhilosopher</trait><openness>20</openness></li>
+      <li><trait>RT_TalentRecruiter</trait><warmth>10</warmth><trust>5</trust></li>
+      <li><trait>RT_TalentVeterinarian</trait><warmth>10</warmth></li>
+      <li><trait>RT_TalentNoTalent</trait><pride>-10</pride><humour>5</humour></li>
+    </traits>
+  </ColonyCouncil.PersonaNatureDef>
+
+</Defs>

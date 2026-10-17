@@ -960,7 +960,7 @@
             <label>Send the {RELATION} family a peace gift ({COUNT} silver)</label>
             <outcome>A rider takes the gift to {B_nameDef}'s door. {B_nameDef} took it, and said nothing. Whether it was enough will be clear in a few days.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the peace gift</label><what>silver</what><to>Gate</to></li>
             </effects>
             <ways><generosity>2</generosity></ways>
           </li>
@@ -1061,7 +1061,7 @@
             <label>Send them home with a gift ({COUNT} silver)</label>
             <outcome>The gift goes with them.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the wedding gift</label><what>silver</what></li>
             </effects>
             <ways><generosity>1</generosity></ways>
           </li>
@@ -1396,7 +1396,7 @@
             <label>Outfit a rescue (40 raw food, {COUNT} silver for guides)</label>
             <outcome>{X_nameDef} rests a night, then leads the rescue party out at dawn with the colony's food on their backs and the map case under {X_possessive} arm.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>40</count></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the food for the rescue</label><what>rawfood</what><count>40</count></li>
               <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what></li>
             </effects>
             <ways><mercy>3</mercy><generosity>2</generosity></ways>

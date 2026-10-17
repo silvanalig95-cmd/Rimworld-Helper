@@ -148,7 +148,7 @@
         <outcome>Sacks of the colony's food went out the gate for {FACTION}, with no letter and no price. {A_nameDef} helped load them, and seemed lighter for it.</outcome>
         <ways><mercy>8</mercy><generosity>4</generosity></ways>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>30</count></li>
+          <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the food for {FACTION}</label><what>rawfood</what><count>30</count><to>Gate</to></li>
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>10</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmR_KindnessSent</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>5</amount></li>

@@ -11,10 +11,13 @@ and their options, decrees, ambitions) and:
   * lists the answers whose words describe a physical activity (a meal, a vigil, a party, a visit, a lesson, a work
     party, a search, a funeral, a hunt, a procession, a gift carried out, a cleaning, a rebuilding...) and have no
     play-out, as candidates. Not every candidate fits: some happen far from the map ("half a day's walk out"), some are
-    told about rather than done, some are done by the event's own code. --skip lists what was looked at and left.
+    told about rather than done, some are refusals, some are done by the event's own code. Those read by hand and left
+    are in the skip list (Tools/playout_skips.txt, one "DefName [where] why" a line): they're kept out of the
+    candidates, --skip lists them with why, and one that has gone stale (the answer is gone, or now plays out) is
+    named after the candidates, so the list stays true.
 
-Usage: python3 Tools/playout_audit.py [--counts] [--candidates] [--filter REGEX] [--kinds]
-  (no flags: both the counts and the candidates)
+Usage: python3 Tools/playout_audit.py [--counts] [--candidates] [--skip] [--filter REGEX]
+  (no flags: the counts and the candidates)
 """
 import glob
 import os
@@ -24,6 +27,8 @@ import xml.etree.ElementTree as ET
 from collections import Counter, defaultdict
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+SKIPS = os.path.join(ROOT, "Tools", "playout_skips.txt")
+SKIP_LINE = re.compile(r"^(\S+) \[([^\]]+)\]\s*(.*)$")
 
 PLAY = {
     "DilemmaEffect_Gathering": "gathering",
@@ -174,9 +179,28 @@ def counts(answers):
         print("  %-16s %4d" % (k, n))
 
 
-def candidates(answers, flt):
+def load_skips():
+    """The skip list: (defName, where) -> why, in the file's order."""
+    skips = {}
+    if not os.path.exists(SKIPS):
+        return skips
+    with open(SKIPS, encoding="utf-8") as f:
+        for n, line in enumerate(f, 1):
+            line = line.strip()
+            if not line or line.startswith("#"):
+                continue
+            m = SKIP_LINE.match(line)
+            if not m:
+                print("playout_skips.txt:%d: not 'DefName [where] why': %s" % (n, line), file=sys.stderr)
+                continue
+            skips[(m.group(1), m.group(2))] = m.group(3).strip()
+    return skips
+
+
+def candidates(answers, flt, skips):
     rx = re.compile(flt, re.I) if flt else None
     rows = []
+    skipped = 0
     for a in answers:
         if a.kinds or a.source in ("decree", "ambition"):
             continue
@@ -185,14 +209,71 @@ def candidates(answers, flt):
             continue
         if rx and not (rx.search(a.defname) or rx.search(a.words)):
             continue
+        if (a.defname, a.where) in skips:
+            skipped += 1
+            continue
         rows.append((a, hits))
-    print("\nCandidates (answers whose words describe something done, with no play-out): %d" % len(rows))
+    print("\nCandidates (answers whose words describe something done, with no play-out): %d (and %d looked at and left: --skip)" % (len(rows), skipped))
     last = None
     for a, hits in rows:
         if a.path != last:
             print("\n== %s" % a.path)
             last = a.path
         print("  %-8s %s [%s] %s\n           words: %s" % (a.source, a.defname, a.where, a.label[:70], ", ".join(hits[:10])))
+    stale(answers, skips)
+
+
+def stale(answers, skips):
+    """Skip entries that no longer say anything true: the answer is gone, or it plays out now."""
+    by_key = {(a.defname, a.where): a for a in answers}
+    gone = [k for k in skips if k not in by_key]
+    played = [k for k in skips if k in by_key and by_key[k].kinds]
+    if not gone and not played:
+        return
+    print("\nStale entries in playout_skips.txt: %d" % (len(gone) + len(played)))
+    for d, w in gone:
+        print("  gone:       %s [%s]" % (d, w))
+    for d, w in played:
+        print("  plays out:  %s [%s]" % (d, w))
+
+
+def list_skips(answers, flt, skips):
+    rx = re.compile(flt, re.I) if flt else None
+    by_key = {(a.defname, a.where): a for a in answers}
+    rows = [(k, why) for k, why in skips.items() if not rx or rx.search(k[0]) or rx.search(why)]
+    print("\nLooked at and left (Tools/playout_skips.txt): %d" % len(rows))
+    last = None
+    for (d, w), why in rows:
+        a = by_key.get((d, w))
+        path = a.path if a else "(no such answer)"
+        if path != last:
+            print("\n== %s" % path)
+            last = path
+        print("  %s [%s]: %s" % (d, w, why))
+    heads = Counter(reason_kind(why) for _, why in rows)
+    print("\nBy reason:")
+    for h, n in heads.most_common():
+        print("  %4d  %s" % (n, h))
+
+
+# The kinds of reason, for the summary: the first that fits.
+REASONS = [
+    ("a refusal, a ruling, or nothing done", r"refusal|nothing done|ruling|not answered|an order|a ban|a promise made|a wager|an office|a rule for"),
+    ("a habit, or it takes days", r"habit|takes days|for days|over a week|two days|every night|a rota|a roster"),
+    ("far away or off the map", r"far away|off the map|news|comms|not on the map|aren't on the map|nobody waiting|away from the colony|where they were found"),
+    ("told after it happened", r"told after|already happened|already over|last night|already been out|a find already|came and went|arrives|already played out"),
+    ("someone else's part (a stranger, a guest, an animal)", r"part\b|the camp's own|the strangers|the visitors|pass by|passes|watching"),
+    ("already real, or the event's own code", r"already real|own code|already its|sends them away|the game's own|a trade"),
+    ("would hurt someone or take the player's place", r"hurt|player's"),
+    ("no play-out says it honestly", r"no play-out kind|no kind|not a meal|a moment|not a thing on the map|not an activity|tomorrow|a letter written|by the game's doctor"),
+]
+
+
+def reason_kind(why):
+    for name, rx in REASONS:
+        if re.search(rx, why, re.I):
+            return name
+    return "other: " + why
 
 
 def main():
@@ -201,12 +282,17 @@ def main():
     if "--filter" in args:
         flt = args[args.index("--filter") + 1]
     answers = walk()
-    want_counts = "--counts" in args or not any(a in args for a in ("--counts", "--candidates"))
-    want_cands = "--candidates" in args or not any(a in args for a in ("--counts", "--candidates"))
+    skips = load_skips()
+    modes = ("--counts", "--candidates", "--skip")
+    want_counts = "--counts" in args or not any(a in args for a in modes)
+    want_cands = "--candidates" in args or not any(a in args for a in modes)
     if want_counts:
         counts(answers)
     if want_cands:
-        candidates(answers, flt)
+        candidates(answers, flt, skips)
+    if "--skip" in args:
+        list_skips(answers, flt, skips)
+        stale(answers, skips)
 
 
 if __name__ == "__main__":

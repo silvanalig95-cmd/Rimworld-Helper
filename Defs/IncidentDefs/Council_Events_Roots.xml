@@ -317,7 +317,7 @@
             <label>Send them timber instead (80 wood)</label>
             <outcome>A cart of the colony's timber went out to {PLACE} with the rider. {FACTION} paid what they could for it, and will have to work out the rest themselves.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>WoodLog</what><count>80</count></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the timber for {PLACE}</label><what>wood</what><count>80</count><to>Gate</to></li>
               <li Class="ColonyCouncil.WorldEffect_Silver"><factor>0.4</factor></li>
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>6</amount></li>
             </effects>

@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Marks: what happens to people changes them (Source/ColonyCouncil/Persona/Marks.cs). A hook or a memory names a
+    family; the first mark of the family whose "when" fits the person's nature is given, scaled by "lean"
+    (MarksMath.Scale). Part of the move stays for good (lastingShare), the rest fades slowly (half in 240 days). A turning point
+    (major) writes a journal line and may be news. In "shaped", {OTHER} is a name and {LABEL} what it was about.
+
+    This file: violence and danger. {LABEL} is the fight ("the raid of 5 Aprimay") unless it says otherwise.
+  -->
+
+  <ColonyCouncil.PersonaMarkDef>
+    <defName>Rimfolk_Mark_DownedHardened</defName>
+    <label>went down and got up harder</label>
+    <shifts><nerve>7</nerve><temper>3</temper><warmth>-2</warmth></shifts>
+    <keepDays>90</keepDays>
+    <shaped>{PAWN_nameDef} has been harder to frighten since going down in {LABEL}.</shaped>
+    <defaultLabel>a fight at home</defaultLabel>
+    <modExtensions>
+      <li Class="ColonyCouncil.PersonaMarkExtension">
+        <family>Downed</family>
+        <order>0</order>
+        <when>nerve>=10</when>
+        <lean>nerve:0.3</lean>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.PersonaMarkDef>
+
+  <ColonyCouncil.PersonaMarkDef>
+    <defName>Rimfolk_Mark_DownedShaken</defName>
+    <label>went down and was shaken</label>
+    <shifts><nerve>-8</nerve><outlook>-5</outlook><trust>3</trust></shifts>
+    <keepDays>90</keepDays>
+    <shaped>{PAWN_nameDef} has flinched at sudden noises since going down in {LABEL}.</shaped>
+    <defaultLabel>a fight at home</defaultLabel>
+    <modExtensions>
+      <li Class="ColonyCouncil.PersonaMarkExtension">
+        <family>Downed</family>
+        <order>1</order>
+        <lean>nerve:-0.5</lean>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.PersonaMarkDef>
+
+  <ColonyCouncil.PersonaMarkDef>
+    <defName>Rimfolk_Mark_HeldTheLine</defName>
+    <label>held the line</label>
+    <shifts><nerve>10</nerve><pride>8</pride><outlook>4</outlook></shifts>
+    <major>true</major>
+    <keepDays>180</keepDays>
+    <shaped>{PAWN_nameDef} has carried {PAWN_objective}self taller since holding the line in {LABEL}.</shaped>
+    <defaultLabel>a fight at home</defaultLabel>
+    <modExtensions>
+      <li Class="ColonyCouncil.PersonaMarkExtension">
+        <family>HeldTheLine</family>
+        <lean>pride:0.3</lean>
+        <journal>
+          <plain>
+            <li>The others keep telling me I held the line in {LABEL}. I only remember the noise, and not wanting to move.</li>
+            <li>I didn't run in {LABEL}. I thought I might, right up until I didn't.</li>
+            <li>Someone left an extra helping on my plate after {LABEL}. Nobody said why. I know why.</li>
+            <li>[persona:humble] They say I was the one who held in {LABEL}. Anyone would have, standing where I stood.</li>
+          </plain>
+          <warm><li>I held my ground in {LABEL} because the people behind me were worth it. I'd do it again tomorrow.</li></warm>
+          <blunt><li>They came at the line in {LABEL}. I didn't let them through.</li></blunt>
+          <cheerful><li>I held the line in {LABEL}, and I'm going to be unbearable about it for at least a week.</li></cheerful>
+          <gloomy><li>I held in {LABEL}. It only means they'll expect me to hold next time too.</li></gloomy>
+          <cold><li>The position held in {LABEL} because I held it. The arithmetic was simple.</li></cold>
+        </journal>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.PersonaMarkDef>
+
+  <ColonyCouncil.PersonaMarkDef>
+    <defName>Rimfolk_Mark_SurvivedLoss</defName>
+    <label>fought through a costly fight</label>
+    <shifts><nerve>4</nerve><outlook>-6</outlook><warmth>3</warmth></shifts>
+    <keepDays>120</keepDays>
+    <shaped>{PAWN_nameDef} has held on to the living more tightly since {LABEL}, which not all of them survived.</shaped>
+    <defaultLabel>a fight at home</defaultLabel>
+    <modExtensions>
+      <li Class="ColonyCouncil.PersonaMarkExtension">
+        <family>SurvivedLoss</family>
+        <lean>warmth:0.3</lean>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.PersonaMarkDef>
+
+  <ColonyCouncil.PersonaMarkDef>
+    <defName>Rimfolk_Mark_BrokeUnderFire</defName>
+    <label>broke under fire</label>
+    <shifts><nerve>-10</nerve><pride>-8</pride></shifts>
+    <major>true</major>
+    <keepDays>150</keepDays>
+    <shaped>{PAWN_nameDef} has gone quiet whenever talk turns to fighting since breaking down during {LABEL}.</shaped>
+    <defaultLabel>a fight at home</defaultLabel>
+    <modExtensions>
+      <li Class="ColonyCouncil.PersonaMarkExtension">
+        <family>BrokeUnderFire</family>
+        <lean>nerve:-0.3</lean>
+        <journal>
+          <plain>
+            <li>I fell apart in {LABEL}, with the others still fighting. I don't know how to look at them now.</li>
+            <li>In the middle of {LABEL} something in me gave way. The others had to manage without me.</li>
+            <li>I keep going back over {LABEL}, to the moment I stopped being any use.</li>
+          </plain>
+          <warm><li>Nobody has said a hard word to me about {LABEL}. That almost makes it worse.</li></warm>
+          <blunt><li>I broke during {LABEL}. That's the truth of it.</li></blunt>
+          <gloomy><li>So now everyone knows what I'm like when it counts. {LABEL} settled that.</li></gloomy>
+          <cold><li>My nerve failed in {LABEL}. A weakness, noted. I'll have to account for it.</li></cold>
+        </journal>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.PersonaMarkDef>
+
+  <ColonyCouncil.PersonaMarkDef>
+    <defName>Rimfolk_Mark_SavedBy</defName>
+    <label>carried to safety</label>
+    <shifts><trust>10</trust><warmth>6</warmth></shifts>
+    <major>true</major>
+    <keepDays>180</keepDays>
+    <shaped>{PAWN_nameDef} has trusted people more readily since {OTHER} carried {PAWN_objective} out of {LABEL}.</shaped>
+    <defaultLabel>a fight at home</defaultLabel>
+    <modExtensions>
+      <li Class="ColonyCouncil.PersonaMarkExtension">
+        <family>SavedBy</family>
+        <thoughts><li>RescuedMe</li></thoughts>
+        <needsOther>true</needsOther>
+        <lean>trust:-0.2</lean>
+        <news>{OTHER_nameDef} carried {PAWN_nameDef} out of {LABEL} while the fighting was still on.</news>
+        <journal>
+          <plain>
+            <li>I was on the ground in {LABEL}, and then {OTHER_nameDef} was there, dragging me out. I owe {OTHER_objective} everything after that.</li>
+            <li>{OTHER_nameDef} came back for me in {LABEL}. I keep thinking about the fact that {OTHER_pronoun} didn't have to.</li>
+            <li>The last thing I remember of {LABEL} is {OTHER_nameDef}'s hands under my arms.</li>
+          </plain>
+          <warm><li>{OTHER_nameDef} carried me out of {LABEL}. I've told {OTHER_objective} thank you three times and it isn't nearly enough.</li></warm>
+          <blunt><li>{OTHER_nameDef} pulled me out of {LABEL}. I owe {OTHER_objective}.</li></blunt>
+          <cheerful><li>{OTHER_nameDef} hauled me out of {LABEL} like a sack of grain. Best sack of grain I've ever been!</li></cheerful>
+          <gloomy><li>I'd be dead after {LABEL} if {OTHER_nameDef} hadn't come for me. I'm still deciding how I feel about that.</li></gloomy>
+          <cold><li>{OTHER_nameDef} took a risk to recover me in {LABEL}. A debt. I pay my debts.</li></cold>
+        </journal>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.PersonaMarkDef>
+
+  <ColonyCouncil.PersonaMarkDef>
+    <defName>Rimfolk_Mark_SavedSomeone</defName>
+    <label>carried someone to safety</label>
+    <shifts><nerve>5</nerve><warmth>4</warmth><pride>4</pride></shifts>
+    <keepDays>120</keepDays>
+    <shaped>{PAWN_nameDef} has stood straighter since carrying {OTHER} to safety in {LABEL}.</shaped>
+    <defaultLabel>a fight at home</defaultLabel>
+    <modExtensions>
+      <li Class="ColonyCouncil.PersonaMarkExtension">
+        <family>SavedSomeone</family>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.PersonaMarkDef>
+
+  <ColonyCouncil.PersonaMarkDef>
+    <defName>Rimfolk_Mark_Imprisoned</defName>
+    <label>taken prisoner</label>
+    <shifts><trust>-8</trust><nerve>-3</nerve><temper>3</temper></shifts>
+    <keepDays>120</keepDays>
+    <shaped>{PAWN_nameDef} has watched every locked door since being taken prisoner.</shaped>
+    <defaultLabel>the cells</defaultLabel>
+    <modExtensions>
+      <li Class="ColonyCouncil.PersonaMarkExtension">
+        <family>Imprisoned</family>
+        <thoughts><li>WasImprisoned</li></thoughts>
+        <lean>trust:0.2</lean>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.PersonaMarkDef>
+
+  <ColonyCouncil.PersonaMarkDef>
+    <defName>Rimfolk_Mark_RaidsHardened</defName>
+    <label>hardened by the raids</label>
+    <shifts><nerve>6</nerve><warmth>-5</warmth><temper>3</temper></shifts>
+    <keepDays>120</keepDays>
+    <shaped>{PAWN_nameDef} has grown harder, and colder, through {LABEL}.</shaped>
+    <defaultLabel>a year of raids</defaultLabel>
+    <modExtensions>
+      <li Class="ColonyCouncil.PersonaMarkExtension">
+        <family>ManyRaids</family>
+        <order>0</order>
+        <when>nerve>=0</when>
+        <repeatDays>60</repeatDays>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.PersonaMarkDef>
+
+  <ColonyCouncil.PersonaMarkDef>
+    <defName>Rimfolk_Mark_RaidsWornDown</defName>
+    <label>worn down by the raids</label>
+    <shifts><outlook>-8</outlook><nerve>-4</nerve></shifts>
+    <keepDays>120</keepDays>
+    <shaped>{PAWN_nameDef} has looked tired to the bone, worn down by {LABEL}.</shaped>
+    <defaultLabel>a year of raids</defaultLabel>
+    <modExtensions>
+      <li Class="ColonyCouncil.PersonaMarkExtension">
+        <family>ManyRaids</family>
+        <order>1</order>
+        <lean>nerve:-0.3</lean>
+        <repeatDays>60</repeatDays>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.PersonaMarkDef>
+
+  <ColonyCouncil.PersonaMarkDef>
+    <defName>Rimfolk_Mark_SworeVengeance</defName>
+    <label>swore vengeance</label>
+    <shifts><temper>8</temper><warmth>-4</warmth><nerve>3</nerve></shifts>
+    <keepDays>120</keepDays>
+    <shaped>{PAWN_nameDef} has been quicker to anger since swearing vengeance on {LABEL} for {OTHER}.</shaped>
+    <defaultLabel>the killers</defaultLabel>
+    <modExtensions>
+      <li Class="ColonyCouncil.PersonaMarkExtension">
+        <family>SworeVengeance</family>
+        <lean>temper:0.3</lean>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.PersonaMarkDef>
+
+</Defs>

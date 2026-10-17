@@ -968,12 +968,14 @@ namespace ColonyCouncil
             DilemmaChoices.PickHelpers(option, ctx);
             bool risk = option.riskChance > 0f && Rand.Chance(DilemmaChoices.RiskChance(option, ctx, option.riskChance));
             // What the answer sets going on the map comes first, so it can hold the moods of those taking part.
+            List<PlayOut> plays;
             using (PlayOuts.Collect())
             {
                 if (!risk || !option.riskReplaces)
                     foreach (var e in PlayOuts.Ordered(option.effects)) Safe(e, ctx);
                 if (risk && option.riskEffects != null)
                     foreach (var e in PlayOuts.Ordered(option.riskEffects)) Safe(e, ctx);
+                plays = PlayOuts.Collected();
             }
             // After the effects, so a helper they picked (B) is in the tags and the text.
             string outcome = DilemmaChoices.Outcome(option, risk, LetterTags.For(ctx));
@@ -983,9 +985,12 @@ namespace ColonyCouncil
             string told = ctx.Format(outcome);
             // Written down for Council → Dilemmas, with what it set going on the map (UI/DilemmaLog.cs).
             DilemmaLog.Record(ctx, option, told, risk, byDefault);
-            if (byDefault) told = "CC_Dilemma_NoAnswer".Translate() + " " + told;
-            if (!told.NullOrEmpty())
+            // What the answer set going on the map tells its outcome when it's over; until then, only when it will be.
+            if (!told.NullOrEmpty() && !PlayOuts.TellWhenDone(plays, told, byDefault ? "CC_Dilemma_NoAnswer".Translate().ToString() : null))
+            {
+                if (byDefault) told = "CC_Dilemma_NoAnswer".Translate() + " " + told;
                 Messages.Message(told, new LookTargets(new[] { ctx.a, ctx.b, ctx.stranger }.Where(p => p != null && p.Spawned)), MessageTypeDefOf.NeutralEvent, false);
+            }
             CouncilGameComponent.Instance?.AddChronicle(new ChronicleEntry(ChronicleKind.Council,
                 "CC_Chronicle_Dilemma".Translate(ctx.def.label, ctx.Format(option.label)).Resolve(), ctx.a));
             // The letter's text is already written; let go of the people and places so old saves don't hold them.

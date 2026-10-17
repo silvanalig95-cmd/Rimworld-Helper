@@ -661,6 +661,7 @@ namespace ColonyCouncil
             if (p.kind == PlayKind.Search) found = GiveFind(p, early ? null : took);
             t.Done(p, took, false);
             string text = PlayWords.EndText(p, early, took, found, to, carried);
+            if (!early) text = PlayWords.EndWords(p, text, p.note);
             if (!text.NullOrEmpty())
             {
                 var look = new List<Thing>();

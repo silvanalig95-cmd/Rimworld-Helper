@@ -157,6 +157,7 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_CropsEaten"><count>8</count></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmA_LetItGraze</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Fields</to><hours>12~18</hours><duration>0.5~1</duration><label>{A_nameDef}'s look at the fields</label></li>
         </effects>
       </li>
     </options>

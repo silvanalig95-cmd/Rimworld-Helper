@@ -1,0 +1,442 @@
+# The play-out audit's skip list (Tools/playout_audit.py): answers whose words describe something done, read by hand
+# and left without a play-out, with why. One per line: DefName [where] why. [where] is as the audit prints it
+# (option N, letter, beat/N, beat, end:key). The audit leaves these out of --candidates, lists them with --skip,
+# and says when one has gone stale (the answer is gone, or now plays out).
+#
+# The usual reasons: a refusal or nothing done; a habit or something that takes days; far away or off the map; told
+# after it happened; a stranger's or guest's part; already real (a fight, a joining, a trade, the event's own code);
+# it would hurt someone or take the player's place.
+
+# Defs/DilemmaDefs/Council_Dilemmas.xml
+Council_Dilemma_Feud [option 0] storming out of the meeting, not an activity
+
+# Defs/DilemmaDefs/Council_Dilemmas2.xml
+Council_Dilemma_OldFriends [option 0] silver sent far away with a passing caravan: nobody waiting on the map
+Council_Dilemma_Keepsake [option 1] a payment to a colonist; nothing done
+Council_Dilemma_Sculpture [option 1] a habit told about (eating with back to it)
+Council_Dilemma_Music [option 0] a ban; habit
+Council_Dilemma_Music [option 1] a rule for every night; habit
+Council_Dilemma_Music [option 2] a habit over nights
+Council_Dilemma_OldFace [option 0] walking out of the meeting; eating apart is a habit
+Council_Dilemma_OldFace [option 3] refusal to act; eating alone is a habit
+
+# Defs/DilemmaDefs/Council_Dilemmas3.xml
+Council_Dilemma_YoungHunter [option 2] a refusal; the risk's search already happened by the time it is told
+Council_Dilemma_WhereTheDeadGo [option 3] not answered; a habit at meals
+Council_Dilemma_WildFriend [option 3] nothing done; an animal's part
+Council_Dilemma_PetBite [option 2] an animal's part: the pet is let go (ReleasePet), not led about
+Council_Dilemma_PetPot [option 0] a ruling; habit
+Council_Dilemma_PetPot [option 1] extra rations for one colonist, not a meal from the stores
+Council_Dilemma_LoveLetter [option 3] nothing done
+Council_Dilemma_OwnFuneral [option 0] a coffin made: crafting, no play-out kind; others stop visiting is a habit
+Council_Dilemma_OwnFuneral [option 3] not answered; the risk is a mental state (wandering), already real
+Council_Dilemma_Sleepwalker [option 3] not answered; the risk is a mental state, already real
+Council_Dilemma_Credit [option 1] a ruling; story told at meals is a habit; the risk is a fight, already real
+Council_Dilemma_Credit [option 3] a ruling; nothing done
+Council_Dilemma_LetterHome [option 2] a refusal; the risk is a mental state, already real
+
+# Defs/DilemmaDefs/Council_Dilemmas_Customs.xml
+Council_Dilemma_MidsummerSwim [option 2] a refusal: everyone keeps working
+Council_Dilemma_HarvestDance [option 2] a refusal: no dance
+
+# Defs/DilemmaDefs/Council_Dilemmas_Customs2.xml
+Council_Dilemma_RainWelcome [option 1] pots set out and back to work: a moment, no gathering
+Council_Dilemma_WaterBlessing [option 2] a refusal
+Council_Dilemma_MarshLights [option 2] a refusal
+Council_Dilemma_NightVigil [option 2] a refusal
+Council_Dilemma_TreeSinging [option 2] a refusal
+Council_Dilemma_AncestorsSupper [option 2] a refusal
+
+# Defs/DilemmaDefs/Council_Dilemmas_Goals.xml
+Council_Dilemma_Goal_Excused [option 0] a season off chores: a habit
+Council_Dilemma_Goal_Excused [option 2] a refusal
+Council_Dilemma_Goal_Foolish [option 2] a wager about the future
+Council_Dilemma_Goal_GivingUp [option 3] words at the council; nothing done
+Council_Dilemma_Goal_Remember [option 1] a promise made at the council itself
+Council_Dilemma_Goal_Remember [option 3] a refusal
+
+# Defs/DilemmaDefs/Council_Dilemmas_Health.xml
+Council_DlmH_BackTooSoon [option 0] light work from now on: a habit
+Council_DlmH_BackTooSoon [option 2] work from bed: already its own effect (learning)
+Council_DlmH_MidwifeApprentice [option 1] a refusal
+
+# Defs/DilemmaDefs/Council_Dilemmas_Life.xml
+Council_DlmL_Quarantine [option 1] staying in bed: a habit
+Council_DlmL_SickCook [option 1] cooking with a cloth: a habit
+Council_DlmL_SickCook [option 2] cold suppers for days: a habit, not one meal
+Council_DlmL_OldRemedy [option 1] treatment from the stores by the game's doctor, told
+Council_DlmL_StrangerMedicine [option 2] a refusal
+Council_DlmL_CampHungry [option 2] the camp's people work for two days: a stranger's part
+Council_DlmL_CampLostChild [option 1] the camp's own people search
+Council_DlmL_CampLostChild [option 3] a refusal
+Council_DlmL_EmptyChair [option 1] a ruling
+Council_DlmL_EmptyChair [option 2] a rule for later meetings
+Council_DlmL_DayOffBadTime [option 1] light work for days: a habit
+Council_DlmL_DayOffBadTime [option 2] a refusal; the risk is a mental state, already real
+Council_DlmL_FrictionGrown [option 1] separate shifts and tables: a habit
+Council_DlmL_FrictionGrown [option 3] nothing done
+Council_DlmL_ElderRest [option 2] lighter work from now on: a habit
+Council_DlmL_FoundJournal [option 2] a scholar's study: already its research and learning
+Council_DlmL_SameMeal [option 2] a refusal
+Council_DlmL_SameWork [option 2] a weekly rota: a habit
+Council_DlmL_Crowded [option 1] supper in two sittings: a habit
+Council_DlmL_Crowded [option 3] a refusal
+
+# Defs/DilemmaDefs/Council_Dilemmas_Mods_Hospitality.xml
+Council_DlmH_GuestWantsToStay [option 0] already real: the guest joins
+Council_DlmH_GuestWantsToStay [option 3] a refusal
+
+# Defs/DilemmaDefs/Council_Dilemmas_Pets.xml
+Council_Dilemma_PetDinner [option 1] nothing done
+
+# Defs/DilemmaDefs/Council_Dilemmas_Reputation.xml
+Council_DlmR_Sanctuary [option 0] already real: the stranger joins
+Council_DlmR_Sanctuary [option 1] a stranger's part: the party leaves
+Council_DlmR_TheirThief [option 0] would hurt someone (a flogging)
+Council_DlmR_TheirThief [option 1] a stranger's part: the pardoned thief thanks the council
+Council_DlmR_SkipCustom [option 0] a ruling for every supper: a habit
+Council_DlmR_OldCustom [option 2] a refusal
+Council_DlmR_Overstay [option 0] nothing done
+Council_DlmR_Overstay [option 1] a guest's part: the guest chops wood
+Council_DlmR_Overstay [option 2] already real: the visitors are sent away
+Council_DlmR_DayOfRest [option 2] a refusal; the risk is a mental state, already real
+Council_DlmR_CarryingEveryone [option 0] a chore roster: a habit
+
+# Defs/DilemmaDefs/Council_Dilemmas_Seasons.xml
+Council_Dilemma_Midsummer [option 1] a refusal: no bonfire
+Council_Dilemma_NameTheYear [option 0] a name given; nothing done
+
+# Defs/DilemmaDefs/Council_Dilemmas_Secrets.xml
+Council_Dilemma_Secret_Bounty [option 0] a message over the comms; nothing done on the map
+Council_Dilemma_Secret_Bounty [option 1] a message over the comms; nothing done on the map
+Council_Dilemma_Secret_Bounty [option 2] a message over the comms; nothing done on the map
+Council_Dilemma_Secret_DoctorsHands [option 0] back to doctoring: a habit
+Council_Dilemma_Secret_LooseTongue [option 0] an order; nothing done
+Council_Dilemma_Secret_LooseTongue [option 3] nothing done
+Council_Dilemma_Secret_KindnessFound [option 2] a roster: a habit
+Council_Dilemma_Secret_Sickness [option 0] a quarantine: the colony's beds and care are the player's
+Council_Dilemma_Secret_Sickness [option 1] two days of examinations: takes days
+Council_Dilemma_Secret_Sickness [option 2] nothing done
+Council_Dilemma_Secret_OneMoreBout [option 0] already real: the bout is a fight on the map
+Council_Dilemma_Secret_OneMoreBout [option 2] a refusal; the risk is a fight, already real
+Council_Dilemma_Secret_UsingAgain [option 1] searching a room and burning a stash: the player's to order
+Council_Dilemma_Secret_WhatCameOut [option 1] an order; nothing done
+Council_Dilemma_Secret_WhatCameOut [option 2] nothing done
+
+# Defs/DilemmaDefs/Council_Dilemmas_Social.xml
+Council_Dilemma_Soc_SwornRivals [option 1] separate shifts for days: a habit
+Council_Dilemma_Soc_SwornRivals [option 3] nothing done; the risk is a fight, already real
+Council_Dilemma_Soc_Accusation [option 0] searching someone's things: the player's to order
+Council_Dilemma_Soc_LeftBehind [option 3] nothing done
+Council_Dilemma_Soc_ClosedCircle [option 1] crews reshuffled: a habit
+Council_Dilemma_Soc_ClosedCircle [option 3] a ruling; nothing done
+Council_Dilemma_Soc_WhoseWork [option 0] tours given since: a habit; the risk is a fight, already real
+Council_Dilemma_Soc_WhoseWork [option 3] a ruling; nothing done
+Council_Dilemma_Soc_Plea [option 3] a punishment; the risk is a mental state, already real
+Council_Dilemma_Soc_Favoritism [option 0] counting the stores: no play-out kind, told
+
+# Defs/DilemmaDefs/Council_Dilemmas_Strangers.xml
+Council_DlmS_WantsToStay [option 0] already real: the stranger joins
+Council_DlmS_WantsToStay [option 2] the stranger leaves; the risk is a mental state, already real
+Council_DlmS_WantsToStay [option 3] a talk with the party's leader, not someone the answer names; the joining is already real
+Council_DlmS_RudeGuest [option 0] a guest's part: the guest apologizes
+Council_DlmS_RudeGuest [option 1] nothing done
+Council_DlmS_RudeGuest [option 2] already real: the party is sent away
+Council_DlmS_HeirloomOffer [option 1] a trade: already real (the heirloom is sold)
+Council_DlmS_HeirloomOffer [option 2] a refusal
+Council_DlmS_PrisonerPlea [option 2] a refusal; meals carried down are a habit
+Council_DlmS_FallenPlea [option 0] already real: the enemy is captured
+Council_DlmS_Beggars [option 2] a refusal
+Council_DlmS_PetBit [option 1] a ruling; nothing done
+Council_DlmS_PredatorDen [option 0] already real: the animal is marked for the game's hunters
+Council_DlmS_PredatorDen [option 2] nothing done; the risk is the animal's attack, already real
+Council_DlmS_Tonic [option 1] a trade with the trader, at the council
+Council_DlmS_OldAcquaintance [option 1] a stranger's part: the secret is told
+Council_DlmS_OldAcquaintance [option 2] a threat; the risk is a fight, already real
+Council_DlmS_BeastReturns [option 0] already real: the beast is marked for the game's hunters
+Council_DlmS_BeastReturns [option 1] staying indoors: a habit
+Council_DlmS_BeastReturns [option 2] already real: marked for taming
+
+# Defs/DilemmaDefs/Rimfolk_Dilemmas_Animals.xml
+Council_DlmA_FamineCull [option 1] lean days: a habit
+Council_DlmA_PenStalker [option 0] already real: the animal is marked for the game's hunters
+Council_DlmA_BondFaith [option 0] a ruling; nothing done
+Council_DlmA_BondFaith [option 1] a ruling; nothing done
+
+# Defs/DilemmaDefs/Rimfolk_Dilemmas_Lives.xml
+Council_DlmLv_Mischief [option 2] the broken window is not a thing on the map to mend
+Council_DlmLv_ChildrenQuarrel [option 1] a den built from wood already taken: no blueprint to build, no kind
+Council_DlmLv_TeenRoad [option 1] a refusal
+Council_DlmLv_ElderAndChild [option 2] a ruling; evening visits are a habit
+Council_DlmLv_ElderCold [option 3] a refusal
+Council_DlmLv_WorrierWatch [option 2] a refusal
+Council_DlmLv_RecordKeeper [option 0] an office given; nothing done now
+
+# Defs/DilemmaDefs/Rimfolk_Dilemmas_Lives_Customs.xml
+Council_Dilemma_ChildrensRace [option 2] a refusal
+
+# Defs/IncidentDefs/Council_Events_Battles.xml
+Council_Evt_NemesisReturns [letter] a raid: the event's own code
+Council_Evt_Revenge [letter] a raid: the event's own code
+Council_Evt_Deserter [option 0] already real: the deserter joins
+Council_Evt_Deserter [option 2] a stranger handed over under guard: the event's own code
+
+# Defs/IncidentDefs/Council_Events_Callers.xml
+Council_Evt_Photographer [option 2] a refusal
+Council_Evt_SpiritSinger [option 2] a stranger's part: the singer is fed and moves on
+Council_Evt_WanderingCook [option 2] a refusal
+Council_Evt_Bonesetter [option 2] a refusal; the bone-setter moves on
+
+# Defs/IncidentDefs/Council_Events_Camps.xml
+Council_Evt_Camp [option 0] the camp is the event's own code; the pot carried out is one variant's flavour
+Council_Evt_Camp [option 4] the camp driven off: the event's own code
+
+# Defs/IncidentDefs/Council_Events_Chains.xml
+Council_Evt_DeserterFound [option 2] already real: the colonist leaves
+Council_Evt_Rematch [option 0] already real: the contest happens on the map
+Council_Evt_BeastHeir [letter] news of a beast; hunting it is the player's
+Council_Evt_PilgrimsReturn [letter] a gift that arrives; told
+
+# Defs/IncidentDefs/Council_Events_Challenges.xml
+Council_Evt_GreatBeast [letter] news of a beast; hunting it is the player's
+Council_Evt_TreasureMap [option 1] a refusal
+
+# Defs/IncidentDefs/Council_Events_Land.xml
+Council_Evt_MushroomFlush [option 2] a refusal
+Council_Evt_WhiteNights [option 2] sleeping late tomorrow: tomorrow's timetable isn't today's to change
+Council_Evt_IceFair [option 0] off the map: the fair is down the river
+Council_Evt_Rut [option 2] staying close to home: a habit
+Council_Evt_LongestNight [option 2] a refusal
+
+# Defs/IncidentDefs/Council_Events_Living.xml
+Council_Evt_KinLetter [option 0] a letter written; the trader takes it later
+Council_Evt_KinLetter [option 2] a parcel sent with the next trader: off the map
+Council_Evt_FortuneScare [letter] something that already happened, told
+Council_Evt_KindredSpirit [letter] the letter tells of last night's talk, already over
+Council_Evt_MidwinterGuest [option 1] a stranger's part: the guest is fed and sent on (already real)
+Council_Evt_Thaw [letter] news of the season; a find already made
+
+# Defs/IncidentDefs/Council_Events_More.xml
+Council_Evt_LostCargo [option 2] the cargo is the event's own code
+Council_Evt_Music [letter] listening to music: a habit over days
+Council_Evt_Celebrity [letter] a visitor's stay: the event's own code; nothing to answer
+
+# Defs/IncidentDefs/Council_Events_Nature.xml
+Council_Evt_WildBounty [letter] wild plants to pick: the player's harvest
+Council_Evt_Pests [letter] something that already happened, told
+Council_Evt_BuriedCache [letter] a find already made, told
+
+# Defs/IncidentDefs/Council_Events_NewsAndPlayers.xml
+Council_Evt_Namesake [letter] news from far away
+Council_Evt_OldTrade [letter] news from far away
+
+# Defs/IncidentDefs/Council_Events_Pasts.xml
+Council_Evt_OldComrade [option 1] a refusal
+Council_Evt_LostKin [option 1] a refusal
+Council_Evt_BountyHunters [option 0] a raid: the event's own code
+Council_Evt_BountyHunters [option 2] already real: the colonist leaves
+Council_Evt_TeacherLetter [letter] a letter from far away
+Council_Evt_GoodNews [letter] news from far away
+
+# Defs/IncidentDefs/Council_Events_Remembered.xml
+Council_Evt_OldDebt [option 0] a stranger's part: the visitor unloads the gift (already real)
+Council_Evt_OldDebt [option 2] a refusal; the visitor takes the gift home
+Council_Evt_Relief [option 2] the carters eat: a guest's part; the cooking is the game's
+Council_Evt_OldEnemyPeace [option 3] a refusal
+Council_Evt_Quarrel [option 3] a refusal
+
+# Defs/IncidentDefs/Council_Events_Roots.xml
+Council_Evt_TasteOfHome [option 0] a purchase at the peddler's blanket: a trade, not something carried out
+Council_Evt_TasteOfHome [option 2] a refusal
+Council_Evt_Amends [option 2] a refusal: the visitor is sent away
+Council_Evt_Headstones [option 2] a refusal; the stonecutter's words are a stranger's part
+Council_Evt_BridgeWork [option 0] a day with another people's carpenters, away from the colony
+Council_Evt_SickHerd [option 0] off the map: the herder's herd
+Council_Evt_CampFeast [option 2] a refusal
+Council_Evt_CampQuarrel [option 0] a ruling
+Council_Evt_CampQuarrel [option 1] a ruling
+
+# Defs/IncidentDefs/Council_Events_Stories.xml
+Council_Story_DoorCasket [option 0] the story's own code brings the sleeper home
+Council_Story_DoorHoard [option 0] two days of carrying, by the story's own code
+Council_Story_Fugitive [option 2] a refusal; bread passed through the gate
+Council_Story_Pursuers [option 0] nothing done; the riders' part
+Council_Story_DebtGift [option 0] a gift kept; nothing done
+Council_Story_Feud [option 4] a refusal
+Council_Story_FeudWedding [option 2] a refusal
+Council_Story_Prophet [option 2] a stranger's part: the preacher moves on
+Council_Story_ProphetFollowers [option 0] the story's own code: the colonist leaves
+Council_Story_ProphetFollowers [option 2] the story's own code: the preacher joins
+Council_Story_ProphetHill [option 0] the pilgrims eat and sleep: a guest's part
+Council_Story_ProphetPilgrims [letter] guests who came and went, told
+
+# Defs/IncidentDefs/Council_Events_Storyteller.xml
+Council_Evt_Cartographer [option 1] two days in the hills with the mapmaker, who leaves: off the map
+Council_Evt_SilentMonk [option 2] a refusal
+Council_Evt_WoundedStranger [option 0] the stranger is brought in by the event's own code
+Council_Evt_WoundedStranger [option 1] the stranger stays where they were found, off the map until taken in
+Council_Evt_WoundedStranger [option 2] a refusal
+Council_Evt_Envoy [option 2] a refusal
+
+# Defs/IncidentDefs/Council_Events_Storyteller_Home.xml
+Council_Evt_Recognized [option 0] the traveler is sent on at once (the event sends them away): nobody left to carry it to
+Council_Evt_Recognized [option 2] the traveler is sent on at once (the event sends them away): nobody left to walk with
+Council_Evt_OldCommander [option 1] a refusal: a letter written
+Council_Evt_FormerPatient [option 0] a stranger's part: the visitor sets out the gift
+Council_Evt_FormerPatient [option 1] already real: the visitor joins
+Council_Evt_PetFind [letter] an animal's part, already happened
+Council_Evt_SealedCrate [option 2] the rider takes the crate: the event's own code
+
+# Defs/IncidentDefs/Council_Events_Storyteller_Land.xml
+Council_Evt_WarmVent [letter] news of the land; already been out to see it
+Council_Evt_StarIron [option 1] the star broken up and carried in: the event's own code
+Council_Evt_HighWater [letter] driftwood to haul: the game's own hauling
+Council_Evt_OmenBeast [option 0] the event's own code: the find is handed over at once and the beast goes its way within hours
+Council_Evt_OmenBeast [option 3] nothing done
+
+# Defs/IncidentDefs/Council_Events_Variety.xml
+Council_Evt_Stranded [option 0] the merchants are sent on at once (the event sends them away): nobody left to help on the map
+Council_Evt_Stranded [option 2] a refusal
+Council_Evt_Tinker [option 0] the tinker's part: the mending is the event's own code
+Council_Evt_GrowingSpell [letter] news of the season
+Council_Evt_OldGrave [option 1] already real: the grave goods are brought in
+Council_Evt_OldGrave [option 2] nothing done
+Council_Evt_Elopers [option 2] a refusal
+Council_Evt_FamilyVisit [option 0] already real: the visitor joins
+
+# Defs/IncidentDefs/Rimfolk_Events_Aftermath.xml
+Council_Evt_After_PlagueThanks [option 0] a stranger's part: the visitors set down the gift
+Council_Evt_After_PlagueThanks [option 2] a refusal
+Council_Evt_After_FloodBell [option 0] the visitors' part: they carry the bell home
+Council_Evt_After_FloodBell [option 1] the visitors' part: they buy the bell and carry it home
+Council_Evt_After_SpringReturn [option 0] a guest's part: the visitors eat
+Council_Evt_After_Reckoning [option 2] a refusal
+
+# Defs/MissionDefs/Council_Missions.xml
+Council_Mission_Runaway [option 1] a refusal
+Council_Mission_Shrine [option 1] a refusal
+
+# Defs/MissionDefs/Council_Missions_Remembered.xml
+Council_Mission_Dignitary [option 0] the mission's own code: the visit comes later
+
+# Defs/MissionDefs/Rimfolk_Missions_Road.xml
+Council_Mission_Escort [option 1] a refusal
+Council_Mission_Word [option 0] off the map: the next caravan carries the word
+Council_Mission_LostChild [option 0] the mission's own code: the search is the mission
+Council_Mission_LostChild [option 1] a refusal
+
+# Defs/WorldSituationDefs/Council_WS_Hardship.xml
+Council_WS_Plague [refugees/2] a refusal
+Council_WS_Plague [end:ignored] far away, told
+Council_WS_Famine [end:helped] far away, told
+Council_WS_Famine [end:ignored] far away, told
+Council_WS_Flood [refugees/0] already real: the family joins
+Council_WS_Flood [flotsam] already happened, told; the find is real
+Council_WS_Flood [end:recedes] far away, told
+
+# Defs/WorldSituationDefs/Council_WS_Land.xml
+Council_WS_Healer [visit] the healer's visit is the world event's own code, told
+Council_WS_Healer [end:visited] told after it happened
+Council_WS_Healer [end:passed] far away, told
+Council_WS_Migration [hunters/0] the strangers' part: their hunters go after the herds
+Council_WS_Migration [hunters/1] the strangers' part
+Council_WS_Migration [hunters/2] a refusal
+Council_WS_Migration [end:passed] told after it happened
+Council_WS_StrangeHerds [tracks] already happened, told
+Council_WS_StrangeHerds [end:moved] far away, told
+
+# Defs/WorldSituationDefs/Council_WS_Mods_Factions.xml
+Council_WS_ImperialDeserters [fugitive/2] a stranger's part: the deserter is fed
+Council_WS_ImperialDeserters [end:over] far away, told
+Council_WS_RepublicVotes [canvass/2] a refusal; the canvassers are fed
+Council_WS_RepublicVotes [games] news from far away
+Council_WS_RepublicVotes [end:won] far away, told
+Council_WS_GoldFever [claim/0] the prospector's part, over a week
+
+# Defs/WorldSituationDefs/Council_WS_Places.xml
+Council_WS_NewTown [end:settled] far away, told
+Council_WS_TradeBoom [toll/0] a toll kept on the road: a habit
+Council_WS_Fair [end:closes] off the map: the fair is in the town
+Council_WS_Pilgrimage [camp/1] the pilgrims' part: they pay and camp
+Council_WS_Pilgrimage [camp/2] a refusal
+Council_WS_Pilgrimage [blessing] the pilgrims' blessing, told after it happened
+
+# Defs/WorldSituationDefs/Council_WS_Powers.xml
+Council_WS_Succession [end:harshSoftened] far away, told
+Council_WS_Succession [end:settled] far away, told
+Council_WS_Claimants [end:heirOpposed] far away, told
+Council_WS_Claimants [end:captainBacked] far away, told
+Council_WS_Claimants [end:captainOpposed] far away, told
+Council_WS_Claimants [end:captain] far away, told
+Council_WS_PeaceTalks [ask/0] the talks come days later, by the world event's own code
+Council_WS_PeaceTalks [end:peace] told after it happened
+Council_WS_Mercenaries [end:won] the company's part; the share is left at the gate (already real)
+Council_WS_BanditRoad [robbed/0] a guest's part: the merchant is fed
+Council_WS_BanditRoad [robbed/1] a refusal
+
+# Defs/WorldSituationDefs/Council_WS_Region.xml
+Council_WS_Drought [herders/1] the strangers' part: the herders water their animals
+Council_WS_Drought [herders/2] a refusal
+Council_WS_NewRoad [route/1] the surveyors' part, far off
+Council_WS_HolyYear [alms/1] a refusal
+Council_WS_HolyYear [end:graced] far away, told
+Council_WS_BanditLordFalls [captive/0] already real: the newcomer joins
+Council_WS_BanditLordFalls [end:peace] far away, told
+Council_WS_BanditLordFalls [end:successor] far away, told
+Council_WS_Murrain [herdsman/0] off the map: two days among the herds of another people
+Council_WS_ShipDown [survivor/0] already real: the survivor joins
+Council_WS_ShipDown [survivor/2] a refusal
+Council_WS_ShipDown [end:helped] far away, told
+
+# Defs/WorldSituationDefs/Council_WS_Warlord.xml
+Council_WS_Warlord [terms/1] notices sent out with traders: far away
+Council_WS_Warlord [terms/3] another people's army, far away
+Council_WS_Warlord [battle] far away, told
+Council_WS_Warlord [captive/2] a stranger's part: the ransomed captive walks out (already real)
+Council_WS_Warlord [end:slain] told after it happened
+Council_WS_Warlord [end:hunted] far away, told
+Council_WS_Warlord [end:bounty] far away, told
+Council_WS_Warlord [end:allies] far away, told
+
+# Defs/WorldSituationDefs/Rimfolk_WS_Beyond.xml
+Council_WS_GreatFire [end:ignored] far away, told
+Council_WS_Feud [mediate/0] talks with two families who aren't on the map, told
+Council_WS_Feud [end:handed] far away, told
+Council_WS_Feud [end:burnedOut] far away, told
+Council_WS_Comet [watch/1] a refusal
+Council_WS_Comet [scholar/0] the stargazer is not on the map; sitting up every night is a habit
+Council_WS_Comet [scholar/1] a refusal
+Council_WS_Comet [end:gone] a memory of the night already played out, told
+Council_WS_Bumper [hands/0] off the map: four days in another people's fields
+Council_WS_Bumper [supper/1] a refusal
+Council_WS_Bumper [end:plenty] far away, told
+Council_WS_Drovers [dispute/0] the drovers are not on the map, told
+
+# Defs/WorldSituationDefs/Rimfolk_WS_Beyond2.xml
+Council_WS_Mourning [road/1] watching the mourners pass from the fields: nothing to set going
+Council_WS_Mourning [end:honoured] told after it happened
+Council_WS_Mourning [end:buried] far away, told
+Council_WS_Songs [song/1] nothing done
+Council_WS_Songs [visit/1] a refusal
+Council_WS_Songs [end:sung] told after it happened
+Council_WS_Toll [pay/1] a refusal
+Council_WS_Toll [end:lifted] far away, told
+Council_WS_IronScarce [mend/0] off the map: three days in another people's forges
+Council_WS_IronScarce [end:over] far away, told
+Council_WS_Exiles [ask/2] a refusal
+Council_WS_Exiles [plea/0] off the map: the colonist goes to the town to speak
+Council_WS_Exiles [end:pardoned] far away, told
+
+# Defs/WorldSituationDefs/Rimfolk_WS_FollowUps.xml
+Council_WS_Rebuilding [homecoming/1] the families pass by: nothing done
+Council_WS_Rebuilding [end:rebuilt] far away, told
+Council_WS_Rebuilding [end:slow] far away, told
+
+# Defs/WorldSituationDefs/Rimfolk_WS_Mods_Peoples.xml
+Council_WS_LordsProgress [stayed] the retinue's night, told after it happened
+Council_WS_LordsProgress [passing] watching the progress pass from the wall: nothing to set going
+Council_WS_LordsProgress [end:gift] far away, told
+Council_WS_ClansGather [envoy/2] a refusal
+Council_WS_ClansGather [end:paid] far away, told
+Council_WS_ClansGather [end:warned] far away, told
+Council_WS_ClansGather [end:over] far away, told

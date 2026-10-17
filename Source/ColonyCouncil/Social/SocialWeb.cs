@@ -358,6 +358,7 @@ namespace ColonyCouncil
                     if (!Eligible(alive) || !written.Add((alive, dead))) continue;
                     comp.journals.Write(alive, t.kind == TieKind.Rivals ? "Council_Journal_RivalLost" : "Council_Journal_TieLost", null, dead.Named("OTHER"));
                     lost.Add(new LostBond { survivor = alive, name = dead.LabelShort, kind = t.kind, tick = Find.TickManager.TicksGame });
+                    PersonaMarks.Notify_BondLost(alive, dead, t.kind, t.kind == TieKind.Mentor && t.b == alive);
                 }
                 lost.RemoveAll(l => l.survivor == null || l.survivor.Dead);
                 while (lost.Count > 40) lost.RemoveAt(0);
@@ -628,7 +629,7 @@ namespace ColonyCouncil
                 {
                     var mentor = mentors.Where(m => m != student && m.MapHeld != null && m.MapHeld == student.MapHeld && Get(m, student, TieKind.Mentor) == null
                                                     && m.relations != null && m.relations.OpinionOf(student) >= 0 && student.relations.OpinionOf(m) >= 0
-                                                    && ties.Count(t => t.kind == TieKind.Mentor && t.a == m) < 2).RandomElementWithFallback();
+                                                    && ties.Count(t => t.kind == TieKind.Mentor && t.a == m) < 2).RandomElementByWeightWithFallback(PersonaLean.Mentoring);
                     if (mentor == null) continue;
                     var t = new SocialTie { a = mentor, b = student, kind = TieKind.Mentor, strength = 20f, formedTick = Find.TickManager.TicksGame, skill = sk };
                     ties.Add(t);

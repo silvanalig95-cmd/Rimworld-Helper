@@ -350,6 +350,7 @@
             </outcomes>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><skill>Plants</skill><xp>300</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Fields</to><orTo><li>Outdoors</li></orTo><hours>15~20</hours><duration>1~1.5</duration><label>the planting of the seeds</label></li>
             </effects>
             <ways><mercy>1</mercy><openness>1</openness></ways>
           </li>

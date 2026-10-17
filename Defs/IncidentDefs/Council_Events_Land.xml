@@ -311,6 +311,7 @@
               <li Class="ColonyCouncil.DilemmaEffect_Needs"><target>Colony</target><skill>Construction</skill><minLevel>4</minLevel><asB>true</asB></li>
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Construction</skill><xp>600</xp></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_DryAtLast</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>the patching and the drains</label><organizer>B</organizer><count>4</count><tasks><li>Repair</li><li>Clean</li><li>Haul</li></tasks><hours>7~18</hours><duration>2~3</duration></li>
             </effects>
             <ways><toil>2</toil></ways>
           </li>

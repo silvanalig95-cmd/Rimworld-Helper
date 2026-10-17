@@ -74,6 +74,7 @@
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Recruit" />
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_WonOverCreature</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><whom>X</whom><hours>11~17</hours><duration>2~3</duration><label>{A_nameDef}'s afternoon with the creature</label></li>
             </effects>
             <riskEffects>
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><skill>Animals</skill><xp>300</xp></li>

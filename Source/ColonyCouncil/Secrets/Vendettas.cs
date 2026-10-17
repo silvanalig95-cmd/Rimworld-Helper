@@ -273,6 +273,7 @@ namespace ColonyCouncil
                 });
                 comp.journals.WriteTagged(p, kidnapped ? "Council_Journal_VendettaTaken" : "Council_Journal_VendettaSworn", pet ? new[] { "pet" } : null, null,
                     lostOne.Named("OTHER"), faction.Name.Named("FACTION"));
+                PersonaMarks.Notify_Sworn(p, lostOne, faction.Name);
             }
             string names = TextUtil.JoinAnd(avengers.Select(a => a.LabelShort).ToList());
             var first = avengers[0];

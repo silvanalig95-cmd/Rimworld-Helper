@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Answers that happen before they're told
+
+*18 October 2026, version 0.6.1*
+
+- An answer that sets something going on the map no longer tells its outcome the moment it's given. It says when it's planned ("The harvest dance is planned for this evening"), and the story is told once it has happened, with how it went (meals eaten, jobs done). If it falls through, you hear that instead.
+- Answers that describe something done now do it on the map in 38 more places: the thief is punished in front of everyone at supper, the doctor sits at the bedside with the last dose, the snow is shovelled, the bees are smoked out, and the tribute, the bounty, the envoy's price and medicine for sick neighbours are carried out to the gate by hand.
+
 ## Building up a defense, and the land's year
 
 *17 October 2026, night, version 0.6.0*

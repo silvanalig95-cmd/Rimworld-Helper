@@ -58,10 +58,18 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Harsh</thought><onlyTrait><li>Kind</li></onlyTrait></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_FairsFair</thought><exceptTrait><li>Kind</li></exceptTrait></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Grudge</thought><about>B</about></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Words"><label>{A_nameDef}'s punishment at supper</label><organizer>None</organizer><spots><li>Dining</li><li>Gather</li></spots><hours>17~21</hours><duration>0.75~1</duration><pool>Council_Pool_PlayReckoning</pool></li>
         </effects>
         <riskChance>0.25</riskChance>
+        <!-- When it goes wrong, the fight comes at once: nothing is held for a supper that's already broken up. -->
+        <riskReplaces>true</riskReplaces>
         <riskOutcome>The council made an example of {A_nameDef}, who took it badly and went straight for {B_nameDef}.</riskOutcome>
         <riskEffects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Humiliated</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-12</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Harsh</thought><onlyTrait><li>Kind</li></onlyTrait></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_FairsFair</thought><exceptTrait><li>Kind</li></exceptTrait></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Grudge</thought><about>B</about></li>
           <li Class="ColonyCouncil.DilemmaEffect_Fight" />
         </riskEffects>
       </li>

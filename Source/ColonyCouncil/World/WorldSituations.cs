@@ -535,9 +535,12 @@ namespace ColonyCouncil
                 comp?.character.Shift(byDefault ? o.ways?.Scaled(0.5f) : o.ways, "CC_Ways_Why_Event".Translate(s.def.label, ctx.Format(o.label)).Resolve());
                 Setbacks.Notify_Answer(ctx, o.ways, byDefault, risk, s.def.label, ctx.Format(o.label));
                 string told = WorldSituationWorker.Sentences(ctx.Format(outcome));
-                if (byDefault) told = "CC_Evt_NoAnswer".Translate() + " " + told;
-                if (!told.NullOrEmpty())
+                // What the answer set going on the map (still being collected here) tells its outcome when it's over.
+                if (!told.NullOrEmpty() && !PlayOuts.TellWhenDone(PlayOuts.Collected(), told, byDefault ? "CC_Evt_NoAnswer".Translate().ToString() : null))
+                {
+                    if (byDefault) told = "CC_Evt_NoAnswer".Translate() + " " + told;
                     Messages.Message(told, new LookTargets(new[] { ctx.a, ctx.stranger, ctx.other }.Where(p => p != null && p.Spawned)), MessageTypeDefOf.NeutralEvent, false);
+                }
                 comp?.AddChronicle(new ChronicleEntry(ChronicleKind.World, "CC_Chronicle_EventChoice".Translate(s.def.LabelCap, ctx.Format(o.label)).Resolve(), ctx.a));
             }
             catch (Exception e)

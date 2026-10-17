@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Marks of loss (Source/ColonyCouncil/Persona/Marks.cs). They come from the game's own memories of a death, and from
+    the bonds Rimfolk keeps (SocialWeb). They share the story "Loss": one death leaves one mark, however many ways the
+    game tells it (a brother is also a friend). {OTHER} is the one who died.
+  -->
+
+  <ColonyCouncil.PersonaMarkDef>
+    <defName>Rimfolk_Mark_LostLove</defName>
+    <label>lost the one they loved</label>
+    <shifts><outlook>-12</outlook><humour>-6</humour><warmth>-4</warmth></shifts>
+    <major>true</major>
+    <keepDays>360</keepDays>
+    <shaped>{PAWN_nameDef} has laughed less since {OTHER} died.</shaped>
+    <defaultLabel>a death</defaultLabel>
+    <modExtensions>
+      <li Class="ColonyCouncil.PersonaMarkExtension">
+        <family>LostLove</family>
+        <story>Loss</story>
+        <thoughts><li>MyHusbandDied</li><li>MyWifeDied</li><li>MyFianceDied</li><li>MyFianceeDied</li><li>MyLoverDied</li></thoughts>
+        <needsOther>true</needsOther>
+        <lean>warmth:0.3</lean>
+        <journal>
+          <plain>
+            <li>I set out two bowls this morning without thinking. {OTHER_nameDef} has been gone a day.</li>
+            <li>{OTHER_nameDef}'s side of the bed is cold. I can't make myself sleep on it.</li>
+            <li>I keep saving things up to tell {OTHER_nameDef}. Then I remember.</li>
+          </plain>
+          <warm><li>{OTHER_nameDef} made this place home. I don't know what it is now.</li></warm>
+          <blunt><li>{OTHER_nameDef} is dead. I don't want to talk about it.</li></blunt>
+          <cheerful><li>Everyone keeps waiting for me to make a joke about it. I haven't got one. {OTHER_nameDef} would have.</li></cheerful>
+          <gloomy><li>Everything I had, I had with {OTHER_nameDef}. Now I don't.</li></gloomy>
+          <cold><li>{OTHER_nameDef} died today. I have been told to rest. I keep working instead.</li></cold>
+        </journal>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.PersonaMarkDef>
+
+  <ColonyCouncil.PersonaMarkDef>
+    <defName>Rimfolk_Mark_LostChild</defName>
+    <label>lost a child</label>
+    <shifts><outlook>-14</outlook><temper>6</temper><openness>-5</openness></shifts>
+    <major>true</major>
+    <keepDays>360</keepDays>
+    <shaped>{PAWN_nameDef} has had a hardness about {PAWN_objective} since {OTHER} died.</shaped>
+    <defaultLabel>a death</defaultLabel>
+    <modExtensions>
+      <li Class="ColonyCouncil.PersonaMarkExtension">
+        <family>LostChild</family>
+        <story>Loss</story>
+        <thoughts><li>MySonDied</li><li>MyDaughterDied</li></thoughts>
+        <needsOther>true</needsOther>
+        <journal>
+          <plain>
+            <li>A parent shouldn't outlive a child. {OTHER_nameDef} was mine, and I have.</li>
+            <li>I folded {OTHER_nameDef}'s clothes today. It took most of the afternoon.</li>
+            <li>People keep telling me they're sorry about {OTHER_nameDef}. I nod. I can't do much else.</li>
+          </plain>
+          <warm><li>I keep seeing {OTHER_nameDef} small, running ahead of me. I hope someone carries {OTHER_objective} now.</li></warm>
+          <blunt><li>My child is dead. {OTHER_nameDef}. Leave me be.</li></blunt>
+          <gloomy><li>Whatever I was going to be, after {OTHER_nameDef}, I'm not going to be it now.</li></gloomy>
+          <cold><li>{OTHER_nameDef} is gone. I find I can't feel my hands properly. That will pass, I'm told.</li></cold>
+        </journal>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.PersonaMarkDef>
+
+  <ColonyCouncil.PersonaMarkDef>
+    <defName>Rimfolk_Mark_LostKinChild</defName>
+    <label>lost family young</label>
+    <shifts><trust>-8</trust><nerve>-6</nerve><outlook>-6</outlook></shifts>
+    <major>true</major>
+    <keepDays>360</keepDays>
+    <shaped>{PAWN_nameDef} has clung to the grown-ups since {OTHER} died.</shaped>
+    <defaultLabel>a death</defaultLabel>
+    <modExtensions>
+      <li Class="ColonyCouncil.PersonaMarkExtension">
+        <family>LostKin</family>
+        <order>0</order>
+        <ages>child</ages>
+        <story>Loss</story>
+        <thoughts><li>MyFatherDied</li><li>MyMotherDied</li><li>MyBrotherDied</li><li>MySisterDied</li><li>MyBirthMotherDied</li><li>MyGrandparentDied</li></thoughts>
+        <needsOther>true</needsOther>
+        <journal>
+          <plain>
+            <li>{OTHER_nameDef} isn't coming back. The grown-ups keep saying it like I didn't hear the first time.</li>
+            <li>I slept in {OTHER_nameDef}'s blanket last night. It still smells right.</li>
+            <li>Somebody else walked me to bed tonight. It should have been {OTHER_nameDef}.</li>
+          </plain>
+          <warm><li>I put flowers where we buried {OTHER_nameDef}. The yellow ones, because they were {OTHER_possessive} favourite.</li></warm>
+          <blunt><li>{OTHER_nameDef} died. I don't want to play today.</li></blunt>
+          <cheerful><li>I'm trying to be brave about {OTHER_nameDef}. Brave is what {OTHER_pronoun} always called me.</li></cheerful>
+          <gloomy><li>Everybody dies. I know that now. {OTHER_nameDef} did.</li></gloomy>
+        </journal>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.PersonaMarkDef>
+
+  <ColonyCouncil.PersonaMarkDef>
+    <defName>Rimfolk_Mark_LostKin</defName>
+    <label>lost family</label>
+    <shifts><outlook>-7</outlook><warmth>4</warmth><pride>3</pride></shifts>
+    <major>true</major>
+    <keepDays>240</keepDays>
+    <shaped>{PAWN_nameDef} has held the rest of {PAWN_possessive} people closer since {OTHER} died.</shaped>
+    <defaultLabel>a death</defaultLabel>
+    <modExtensions>
+      <li Class="ColonyCouncil.PersonaMarkExtension">
+        <family>LostKin</family>
+        <order>1</order>
+        <story>Loss</story>
+        <thoughts><li>MyFatherDied</li><li>MyMotherDied</li><li>MyBrotherDied</li><li>MySisterDied</li><li>MyBirthMotherDied</li><li>MyGrandparentDied</li></thoughts>
+        <needsOther>true</needsOther>
+        <journal>
+          <plain>
+            <li>{OTHER_nameDef} is gone, and I'm the one the others look to now. I didn't ask for that.</li>
+            <li>I found myself telling the young ones one of {OTHER_nameDef}'s old stories. I got most of it right.</li>
+            <li>We buried {OTHER_nameDef}. I kept {OTHER_possessive} knife. It's the only thing I could carry.</li>
+          </plain>
+          <warm><li>{OTHER_nameDef} would want us to look after each other. So I will.</li></warm>
+          <blunt><li>{OTHER_nameDef} died. We go on. That's what {OTHER_pronoun} taught me.</li></blunt>
+          <gloomy><li>One less of us. There were never many to begin with. Goodbye, {OTHER_nameDef}.</li></gloomy>
+          <cold><li>{OTHER_nameDef} has died. The family is smaller. I will keep what is left of it together.</li></cold>
+        </journal>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.PersonaMarkDef>
+
+  <ColonyCouncil.PersonaMarkDef>
+    <defName>Rimfolk_Mark_LostFriendCold</defName>
+    <label>lost a friend and closed up</label>
+    <shifts><warmth>-6</warmth><nerve>3</nerve><trust>-3</trust></shifts>
+    <major>true</major>
+    <keepDays>180</keepDays>
+    <shaped>{PAWN_nameDef} has let fewer people close since {OTHER} died.</shaped>
+    <defaultLabel>a death</defaultLabel>
+    <modExtensions>
+      <li Class="ColonyCouncil.PersonaMarkExtension">
+        <family>LostFriend</family>
+        <order>0</order>
+        <when>warmth&lt;=-25</when>
+        <story>Loss</story>
+        <thoughts><li>PawnWithGoodOpinionDied</li></thoughts>
+        <needsOther>true</needsOther>
+        <minOpinion>40</minOpinion>
+        <journal>
+          <plain>
+            <li>{OTHER_nameDef} died. That's what comes of getting attached to people out here.</li>
+            <li>I liked {OTHER_nameDef}. I'll be more careful about liking people.</li>
+            <li>The others are gathering to talk about {OTHER_nameDef}. I went for a walk instead.</li>
+          </plain>
+          <blunt><li>{OTHER_nameDef} is dead. I'm not going through that again.</li></blunt>
+          <gloomy><li>Everyone I let in ends up like {OTHER_nameDef}. I'll stop letting them in.</li></gloomy>
+          <cold><li>{OTHER_nameDef} was useful to have around, and good company. A loss on both counts.</li></cold>
+        </journal>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.PersonaMarkDef>
+
+  <ColonyCouncil.PersonaMarkDef>
+    <defName>Rimfolk_Mark_LostFriend</defName>
+    <label>lost a friend</label>
+    <shifts><outlook>-8</outlook><humour>-4</humour><warmth>2</warmth></shifts>
+    <major>true</major>
+    <keepDays>180</keepDays>
+    <shaped>{PAWN_nameDef} has been quieter since {OTHER} died.</shaped>
+    <defaultLabel>a death</defaultLabel>
+    <modExtensions>
+      <li Class="ColonyCouncil.PersonaMarkExtension">
+        <family>LostFriend</family>
+        <order>1</order>
+        <story>Loss</story>
+        <thoughts><li>PawnWithGoodOpinionDied</li></thoughts>
+        <needsOther>true</needsOther>
+        <minOpinion>40</minOpinion>
+        <lean>warmth:0.25</lean>
+        <journal>
+          <plain>
+            <li>{OTHER_nameDef} is gone. The work went on today as if nothing happened, and I hated it for that.</li>
+            <li>I walked past {OTHER_nameDef}'s spot at the table three times before I sat down somewhere else.</li>
+            <li>{OTHER_nameDef} owed me a game of horseshoes. I'll never collect.</li>
+          </plain>
+          <warm><li>I hope {OTHER_nameDef} knew how glad I was of {OTHER_objective}. I think {OTHER_pronoun} did.</li></warm>
+          <blunt><li>Lost {OTHER_nameDef} today. Good friend. Bad day.</li></blunt>
+          <cheerful><li>[persona:joker] {OTHER_nameDef} laughed at all my worst jokes. I told one at the grave. Nobody laughed.</li></cheerful>
+          <gloomy><li>{OTHER_nameDef} today. Someone else tomorrow, probably.</li></gloomy>
+          <cold><li>{OTHER_nameDef} died. I find I mind more than I expected to.</li></cold>
+        </journal>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.PersonaMarkDef>
+
+  <ColonyCouncil.PersonaMarkDef>
+    <defName>Rimfolk_Mark_LostPet</defName>
+    <label>lost their animal</label>
+    <shifts><warmth>-3</warmth><outlook>-5</outlook></shifts>
+    <keepDays>90</keepDays>
+    <shaped>{PAWN_nameDef} has kept the other animals at arm's length since {LABEL} died.</shaped>
+    <defaultLabel>their animal</defaultLabel>
+    <modExtensions>
+      <li Class="ColonyCouncil.PersonaMarkExtension">
+        <family>LostPet</family>
+        <thoughts><li>BondedAnimalDied</li><li>Council_Pet_Lost</li></thoughts>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.PersonaMarkDef>
+
+  <ColonyCouncil.PersonaMarkDef>
+    <defName>Rimfolk_Mark_LostLeader</defName>
+    <label>lost the colony's leader</label>
+    <shifts><trust>-5</trust><outlook>-6</outlook></shifts>
+    <keepDays>120</keepDays>
+    <shaped>{PAWN_nameDef} has felt the colony stand less steady since {OTHER}, who spoke for it, died.</shaped>
+    <defaultLabel>the speaker's death</defaultLabel>
+    <modExtensions>
+      <li Class="ColonyCouncil.PersonaMarkExtension">
+        <family>LostLeader</family>
+        <story>Loss</story>
+        <lean>trust:0.2</lean>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.PersonaMarkDef>
+
+</Defs>

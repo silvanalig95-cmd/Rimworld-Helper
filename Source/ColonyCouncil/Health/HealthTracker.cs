@@ -686,6 +686,7 @@ namespace ColonyCouncil
         public void PulledThrough(Pawn doctor, Pawn patient, string illness, float peak, bool rimfolk)
         {
             if (doctor == null || patient == null || doctor == patient) return;
+            PersonaMarks.Notify_PulledThrough(doctor, patient, illness);
             if (!rimfolk && ConvalescenceOn) Convalesce(patient, HealthMath.AfterIllness(peak), "Illness", doctor);
             if (!ReputationOn || !doctor.RaceProps.Humanlike) return;
             var rec = RecordOf(doctor, true);

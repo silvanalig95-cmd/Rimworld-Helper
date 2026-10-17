@@ -173,6 +173,7 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Trad_WaterBlessing</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>1</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Water</to><orTo><li>Outdoors</li></orTo><hours>5~9</hours><duration>0.75~1</duration><label>{A_nameDef}'s blessing of the waters</label></li>
         </effects>
       </li>
       <li>
@@ -289,6 +290,7 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Trad_HighWatch</thought><chance>0.4</chance></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>1</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Procession"><label>the climb at sunset</label><count>4</count><hours>17~20</hours><duration>1.5~2</duration></li>
         </effects>
       </li>
       <li>
@@ -348,6 +350,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Faith"><amount>0.03</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Trad_NightVigil</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>1</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Words"><label>the words at dusk</label><spots><li>Gather</li><li>Dining</li></spots><hours>17~20</hours><duration>0.75~1</duration></li>
         </effects>
       </li>
       <li>
@@ -413,6 +416,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Faith"><amount>0.02</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Trad_TreeSinging</thought><chance>0.4</chance></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>1</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>the song at dusk</label><music>true</music><spots><li>Outdoors</li><li>Fields</li></spots><hours>17~20</hours><duration>0.5~0.75</duration></li>
         </effects>
       </li>
       <li>
@@ -473,6 +477,7 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Trad_AncestorsSupper</thought><exceptTrait><li>Psychopath</li></exceptTrait><chance>0.4</chance></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>1</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Toast"><label>the names said at supper</label><pool>Council_Pool_PlayRemembrance</pool><hours>17~21</hours><duration>0.75~1</duration></li>
         </effects>
       </li>
       <li>

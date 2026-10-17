@@ -56,6 +56,7 @@
         <ways><toil>3</toil><tradition>-2</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_NoCelebration</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>the shovelling</label><count>4</count><tasks><li>Snow</li><li>Haul</li><li>Clean</li></tasks><hours>8~16</hours><duration>1.5~2</duration></li>
         </effects>
       </li>
     </options>
@@ -98,6 +99,7 @@
         <ways><tradition>1</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmLv_ChildrensRace</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Fields</to><orTo><li>Outdoors</li></orTo><hours>16~20</hours><duration>1~1.5</duration><label>the children's race</label></li>
         </effects>
       </li>
       <li>
@@ -145,6 +147,7 @@
         <ways><toil>2</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Plants</skill><xp>300</xp></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Fields</to><orTo><li>Outdoors</li></orTo><hours>9~16</hours><duration>1.5~2</duration><label>the gleaning</label></li>
         </effects>
       </li>
       <li>

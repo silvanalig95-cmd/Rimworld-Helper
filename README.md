@@ -400,8 +400,8 @@ a youngster who wants to see the world, an elder who wants one last walk in the 
 tale to tell or feels the cold in their bones. Many answers call on whoever is
 best placed (the doctor, a forager, a tracker, the best talker), and their skill decides how it goes.
 
-**Answers play out on the map.** When an answer describes something people do, they do it (337 answers of 105
-dilemmas and 112 Rimfolk events, stories and world events, plus calendar days, five decrees and nine ambitions). A
+**Answers play out on the map.** When an answer describes something people do, they do it (408 answers of 129
+dilemmas and 123 Rimfolk events, stories and world events, plus calendar days, five decrees and nine ambitions). A
 victory feast is eaten at the dining table, each guest sent to eat a cooked meal from the stores, the finest first
 they may eat. The midsummer bonfire is lit (a campfire laid for the evening if the colony has none, burned down to ash
 after), a toast is raised, an apology or a reading is heard round the table, a friend sits with someone who is ill, a
@@ -409,7 +409,10 @@ colonist sits by a grave or at the camp's fire, an apprentice works at the teach
 to bed. A work party cleans, hauls, mends, builds, sows or brings in the harvest with the game's own jobs, on work the
 colony really has; the colony walks out together to the graves or the gate and back; a few keep a vigil into the
 night; searchers fan out over the land and bring back what was promised; real medicine, food or silver is carried out
-of the stores to the visitor or the rider at the gate; the hunters go after the game an answer marked. None of them
+of the stores to the visitor or the rider at the gate; the hunters go after the game an answer marked. Every answer
+whose words say people do something has been read: the thief is punished in front of everyone at supper, the doctor
+sits at the bedside with the last dose, the snow is shovelled, the bees are smoked out, and the tribute, the bounty
+and the envoy's price go out to the gate by hand. The answer's own words are told once it's over. None of them
 holds anyone in a gathering, so the game's own parties and rituals can always take them. Nobody is called from
 danger, sleep, a meal or a sickbed, nothing starts with enemies about, and danger, drafting, hunger or exhaustion ends
 it. The answer's good moods come to those who were there once it's over; if it never happens within a few hours,
@@ -447,9 +450,27 @@ rivals) write about it. The **Social** tab shows every bond with its strength an
 
 ### Story: a page for every colonist
 Select a colonist and open the **Story** tab in their inspect panel (next to Bio, Social and Gear): their trust,
-office and earned names, their life goal and how close they are, their personal story and what it waits for next,
-their friends, rivals, comrades, students and the people they've lost, their quirks, vendettas and the secrets the
-colony knows about, their last dreams and the latest lines of their journal.
+office and earned names, their character and what shaped it, their life goal and how close they are, their personal
+story and what it waits for next, their friends, rivals, comrades, students and the people they've lost, their
+quirks, vendettas and the secrets the colony knows about, their last dreams and the latest lines of their journal.
+
+### Character: who they are, and what shaped them
+Every colonist has a character on eight sides (warmth, nerve, temper, humour, trust, pride, openness, outlook). Their
+nature sets where they start: traits (the base game's and DLCs', and 74 from Vanilla Traits Expanded, RimTraits,
+Medieval Overhaul, Vanilla Ideology Expanded - Memes, Alpha Memes and Alpha Genes), the Social skill, age and a small
+lean of their own. Then life marks them, with 48 kinds of mark: downed in a raid, carried out of one, holding the
+line or breaking under fire, a friend, lover, child or parent lost, nursed through an illness, forgiven after a
+breakdown, a secret betrayed, a seat won or lost, a craft mastered, a child raised, a hungry season, an addiction
+beaten, a new faith, a brush with what lies past the world. Their nature picks the mark and how deep it goes: the
+bold harden where the timid are shaken, the cold close up where others grieve, raid after raid hardens some and
+wears others down. Part of each change stays for good and the rest fades over years; marks are kept rare (one small
+mark per few days, each turning point once in a long while), and a turning point goes into their journal in their
+own voice. Character shows in what they say and do: the lines they get and their tone, more warm moments from the
+warm and more frictions from the hot-tempered, secrets confided sooner by the trusting, students taken on sooner by
+the warm. The Story tab opens with it: their character in words, eight bars with where their nature put them and
+where they are now (hover for every trait and mark that moved it), and "what shaped them", dated, turning points
+first. A setting ("Personalities and social life") turns it all off; the Almanac pages "character" and "what shapes
+a person" explain it.
 
 ### Life goals
 A few days after settling in, each colonist sets their heart on something to do before they die: master a craft,
