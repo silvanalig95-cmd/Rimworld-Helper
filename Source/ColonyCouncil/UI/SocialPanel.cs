@@ -8,8 +8,9 @@ namespace ColonyCouncil
 {
     /// <summary>
     /// People → Bonds: who is close to whom. Two views: a web (portraits in a circle, a line for each bond, colored
-    /// by kind and thicker the stronger it is) and a list (circles, then every bond by kind with its strength and
-    /// history, then vendettas, nemeses and secrets).
+    /// by kind and thicker the stronger it is, each group a band of its own colour through its people) and a list (the
+    /// groups as cards, or the circles with groups off, then every bond by kind with its strength, history and shared
+    /// memories, then vendettas, nemeses and secrets).
     /// </summary>
     public static class SocialPanel
     {
@@ -47,6 +48,9 @@ namespace ColonyCouncil
             public List<Pawn> colonists;
             public List<SocialTie> ties;
             public List<Clique> cliques;
+            /// <summary>With groups on (Social/Groups/): the colony's groups, which take the circles' place.</summary>
+            public List<SocialGroup> groups = new List<SocialGroup>();
+            public bool grouped;
         }
 
         private static Model model;
@@ -58,12 +62,24 @@ namespace ColonyCouncil
             var m = new Model();
             var colonists = PawnsFinder.AllMaps_FreeColonists.Where(p => !p.IsQuestLodger() && p.RaceProps.Humanlike).ToList();
             bool on = ColonyCouncilMod.Settings.socialWeb;
-            m.cliques = on ? comp.social.Cliques.Where(c => c.members.Count(Shown) >= 2).ToList() : new List<Clique>();
-            // Circle members next to each other, so the web can mark each circle with one arc.
-            m.colonists = colonists.OrderBy(p => CliqueIndex(m.cliques, p)).ThenBy(p => p.LabelShort).ToList();
+            m.grouped = on && GroupLife.Active;
+            m.cliques = on && !m.grouped ? comp.social.Cliques.Where(c => c.members.Count(Shown) >= 2).ToList() : new List<Clique>();
+            if (m.grouped) m.groups = Groups.All.Where(g => g.members.Count(x => Shown(x.pawn)) >= 2).OrderBy(g => g.formed).ToList();
+            // Circle (or group) members next to each other, so the web can mark each with one band.
+            m.colonists = m.grouped
+                ? colonists.OrderBy(p => GroupIndex(m.groups, p)).ThenBy(p => p.LabelShort).ToList()
+                : colonists.OrderBy(p => CliqueIndex(m.cliques, p)).ThenBy(p => p.LabelShort).ToList();
             m.ties = on ? comp.social.ties.Where(t => Shown(t.a) && Shown(t.b) && t.announced && colonists.Contains(t.a) && colonists.Contains(t.b)).ToList()
                 : new List<SocialTie>();
             return m;
+        }
+
+        /// <summary>Where someone sits on the web: with their first group.</summary>
+        private static int GroupIndex(List<SocialGroup> groups, Pawn p)
+        {
+            var first = Groups.Primary(p);
+            int i = first != null ? groups.IndexOf(first) : -1;
+            return i >= 0 ? i : groups.Count;
         }
 
         private static int CliqueIndex(List<Clique> cliques, Pawn p)
@@ -178,10 +194,15 @@ namespace ColonyCouncil
                 foreach (var t in m.ties)
                     if (t.Involves(lit)) litNeighbors.Add(t.Other(lit));
 
-            // Circles: a soft gold band through their members, like beads on a string.
+            // Circles: a soft gold band through their members, like beads on a string. Groups: a band of each one's
+            // colour through its people, its name inside the ring.
             if (n > 2)
+            {
                 foreach (var c in m.cliques)
                     DrawCliqueArc(c, m, center, radius, n, d * 0.45f);
+                for (int g = 0; g < m.groups.Count; g++)
+                    DrawGroupArc(m.groups[g], m, center, radius, n, d, lit);
+            }
 
             // The bonds: dim ones first, lit ones on top.
             pairSeen.Clear();
@@ -228,7 +249,7 @@ namespace ColonyCouncil
             Text.Font = GameFont.Small;
             if (m.ties.Count == 0) UiKit.LabelFit(new Rect(area.x + 10f, area.y + 8f, area.width - 20f, 22f), "CC_Social_None".Translate(), UiKit.Faint);
 
-            DrawLegend(new Rect(rect.x, rect.yMax - legendH, rect.width, legendH), m.cliques.Count > 0);
+            DrawLegend(new Rect(rect.x, rect.yMax - legendH, rect.width, legendH), m.cliques.Count > 0 || m.groups.Count > 0, m.grouped);
         }
 
         private static long PairKey(SocialTie t)
@@ -280,11 +301,80 @@ namespace ColonyCouncil
             }
         }
 
+        /// <summary>
+        /// A group's band on the web: an arc of its colour through its people where they sit together (with their first
+        /// group), a dot of its colour on anyone else in it, and its name inside the ring.
+        /// </summary>
+        private static void DrawGroupArc(SocialGroup g, Model m, Vector2 center, float r, int n, float d, Pawn lit)
+        {
+            var color = GroupText.ColorOf(g);
+            bool on = lit == null || g.Has(lit);
+            float alpha = on ? 1f : 0.35f;
+            float step = 2f * Mathf.PI / n;
+            int first = -1, last = -1;
+            var loose = new List<int>();
+            for (int i = 0; i < m.colonists.Count; i++)
+            {
+                var p = m.colonists[i];
+                if (!g.Has(p)) continue;
+                if (Groups.Primary(p) == g)
+                {
+                    if (first < 0) first = i;
+                    last = i;
+                }
+                else loose.Add(i);
+            }
+            if (first >= 0)
+            {
+                float a0 = -Mathf.PI / 2f + first * step - step * 0.35f;
+                float a1 = -Mathf.PI / 2f + last * step + step * 0.35f;
+                var band = UiKit.WithAlpha(color, 0.24f * alpha);
+                int segs = Mathf.Max(2, Mathf.CeilToInt((a1 - a0) / 0.06f));
+                var prev = center + new Vector2(Mathf.Cos(a0), Mathf.Sin(a0)) * r;
+                for (int s = 1; s <= segs; s++)
+                {
+                    float a = Mathf.Lerp(a0, a1, s / (float)segs);
+                    var pt = center + new Vector2(Mathf.Cos(a), Mathf.Sin(a)) * r;
+                    Widgets.DrawLine(prev, pt, band, d * 0.45f);
+                    prev = pt;
+                }
+                // Its name, inside the ring at the middle of its band.
+                float mid = (a0 + a1) / 2f;
+                var at = center + new Vector2(Mathf.Cos(mid), Mathf.Sin(mid)) * (r - d / 2f - 20f);
+                Text.Font = GameFont.Tiny;
+                string name = g.Name;
+                float w = Mathf.Min(140f, Text.CalcSize(name).x + 6f);
+                var lr = new Rect(at.x - w / 2f, at.y - 9f, w, 18f);
+                Widgets.DrawBoxSolid(lr, new Color(0f, 0f, 0f, 0.45f * alpha));
+                UiKit.LabelFit(lr, name, UiKit.WithAlpha(color, alpha), GameFont.Tiny, TextAnchor.MiddleCenter);
+                TooltipHandler.TipRegion(lr, () => GroupTip(g), g.id ^ 0x3E11);
+            }
+            // Someone in it whose first group is another: a dot of its colour by their portrait.
+            foreach (int i in loose)
+            {
+                float a = -Mathf.PI / 2f + i * step;
+                var pt = center + new Vector2(Mathf.Cos(a), Mathf.Sin(a)) * (r + d / 2f + 2f) + new Vector2(-Mathf.Sin(a), Mathf.Cos(a)) * (d * 0.3f);
+                UiKit.DiscFill(new Rect(pt.x - 4f, pt.y - 4f, 8f, 8f), UiKit.WithAlpha(color, 0.9f * alpha));
+            }
+        }
+
+        private static string GroupTip(SocialGroup g)
+        {
+            var lines = new List<string> { g.Name.CapitalizeFirst(), g.why ?? "" };
+            lines.Add("CC_Group_Card_Cohesion".Translate(GroupText.Cohesion(g.cohesion), g.cohesion.ToString("0")).Resolve());
+            if (g.norms.Count > 0) lines.Add("CC_Group_Card_Ways".Translate(GroupText.NormWords(g)).Resolve());
+            foreach (var mem in g.members.Where(x => x.pawn != null))
+                lines.Add("  " + mem.pawn.LabelShort + (mem.role != GroupRole.None ? ": " + GroupText.Role(mem.role) : ""));
+            return string.Join("\n", lines);
+        }
+
         private static string NodeTip(Pawn p, Model m)
         {
             var lines = new List<string> { p.LabelShortCap };
             var clique = m.cliques.FirstOrDefault(c => c.members.Contains(p));
             if (clique != null) lines.Add(clique.name.Colorize(CliqueColor));
+            foreach (var g in m.groups.Where(g => g.Has(p)))
+                lines.Add((g.Name.CapitalizeFirst() + ": " + GroupText.Role(g.RoleOf(p))).Colorize(GroupText.ColorOf(g)));
             foreach (var t in m.ties.Where(t => t.Involves(p)).OrderByDescending(t => t.strength))
                 lines.Add(t.Other(p).LabelShort + ": " + t.Label + " (" + t.strength.ToString("0") + ")");
             lines.Add("");
@@ -292,7 +382,7 @@ namespace ColonyCouncil
             return string.Join("\n", lines);
         }
 
-        private static void DrawLegend(Rect r, bool circles)
+        private static void DrawLegend(Rect r, bool circles, bool grouped)
         {
             float x = r.x + 4f;
             Text.Font = GameFont.Tiny;
@@ -307,7 +397,7 @@ namespace ColonyCouncil
             }
             if (circles)
             {
-                string label = "CC_Social_Cliques".Translate();
+                string label = (grouped ? "CC_Social_Groups" : "CC_Social_Cliques").Translate();
                 float w = Text.CalcSize(label).x;
                 if (x + 26f + w <= r.xMax)
                 {
@@ -333,6 +423,7 @@ namespace ColonyCouncil
             cy += UiKit.Paragraph(0f, cy, w, "CC_Social_Intro".Translate(), UiKit.Faint) + 10f;
             if (ties.Count == 0 && ColonyCouncilMod.Settings.socialWeb) cy += UiKit.EmptyState(0f, cy, w, Icons.Bonds, "CC_Social_None".Translate(), 90f);
 
+            if (m.grouped) cy += DrawGroups(comp, m, w, cy);
             var cliques = focus == null ? m.cliques : m.cliques.Where(c => c.members.Contains(focus)).ToList();
             if (cliques.Count > 0)
             {
@@ -404,6 +495,52 @@ namespace ColonyCouncil
                 cx += cw;
             }
             return h;
+        }
+
+        /// <summary>
+        /// The groups as cards (the filter shows the colonist's own, and the one they're finding their way into), then
+        /// newcomers no group has yet, then the groups that are no more.
+        /// </summary>
+        private static float DrawGroups(CouncilGameComponent comp, Model m, float width, float y)
+        {
+            var t = GroupTracker.Instance;
+            if (t == null) return 0f;
+            float start = y;
+            var shown = focus == null
+                ? m.groups
+                : m.groups.Where(g => g.Has(focus) || t.NewcomerOf(focus)?.groupId == g.id).ToList();
+            y += UiKit.SectionTitle(0f, y, width, "CC_Social_Groups".Translate(), Icons.Bonds, UiKit.Gold, shown.Count.ToString());
+            if (shown.Count == 0)
+            {
+                y += UiKit.Paragraph(0f, y, width, (focus == null ? "CC_Social_GroupsNone" : "CC_Social_GroupsNoneFor").Translate(focus?.LabelShort ?? "").Resolve(), UiKit.Faint) + 6f;
+            }
+            foreach (var g in shown)
+            {
+                float h = GroupView.Card(0f, y, width, g, t, false);
+                GroupView.Card(0f, y, width, g, t, true);
+                y += h + 8f;
+            }
+            // Newcomers with no group to find their way into yet.
+            var alone = t.newcomers.Where(n => n.pawn != null && !n.pawn.Dead && n.pawn.IsColonist && t.Get(n.groupId) == null && (focus == null || n.pawn == focus)).ToList();
+            if (alone.Count > 0)
+            {
+                UiKit.LabelFit(new Rect(0f, y, width, 22f), "CC_Social_Outsiders".Translate(TextUtil.JoinAnd(alone.Select(n => n.pawn.LabelShort).ToList())).Resolve(), UiKit.Info);
+                TooltipHandler.TipRegion(new Rect(0f, y, width, 22f), "CC_Group_OutsiderTip".Translate());
+                y += 24f;
+            }
+            var past = t.past.Where(pg => focus == null || pg.members.Contains(focus.thingIDNumber)).Reverse().Take(5).ToList();
+            if (past.Count > 0)
+            {
+                UiKit.LabelFit(new Rect(0f, y, width, 20f), "CC_Social_PastGroups".Translate(), UiKit.Dim, GameFont.Tiny);
+                y += 20f;
+                foreach (var pg in past)
+                {
+                    string line = "CC_Social_PastGroup".Translate(pg.name.CapitalizeFirst(), GroupText.Day(pg.formed), GroupText.Day(pg.ended), pg.how ?? "").Resolve();
+                    UiKit.LabelFit(new Rect(10f, y, width - 10f, 20f), line, UiKit.Faint, GameFont.Tiny);
+                    y += 20f;
+                }
+            }
+            return y - start + 12f;
         }
 
         private static float DrawVendettas(CouncilGameComponent comp, float width, float y)
@@ -512,6 +649,15 @@ namespace ColonyCouncil
             if (t.kind == TieKind.Mentor && t.skill != null)
                 lines.Add("CC_Social_Lessons".Translate(t.skill.label, t.b.LabelShort, t.b.skills?.GetSkill(t.skill)?.Level ?? 0));
             if (t.history.Count > 0) lines.Add("\n" + string.Join("\n", t.history));
+            // What the two went through together (Persona/SharedMemories).
+            var memories = SharedMemories.Of(t.a, t.b);
+            if (memories.Count > 0)
+            {
+                lines.Add("\n" + "CC_Social_Memories".Translate());
+                foreach (var mem in memories.Take(5)) lines.Add("  " + SharedMemories.Text(mem).CapitalizeFirst());
+            }
+            var shared = Groups.Shared(t.a, t.b);
+            if (shared != null) lines.Add("\n" + "CC_Social_TieGroup".Translate(shared.Name).Resolve());
             lines.Add("\n" + "CC_Social_TieTip_Trust".Translate());
             return string.Join("\n", lines);
         }

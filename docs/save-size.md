@@ -7,8 +7,10 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 226; modelled: 226; growing without end: 0.
-Rimfolk's part of the save, roughly: **951 KB** after a year, **1,200 KB** after two, **1,259 KB** after five.
+Saved collections found: 279; modelled: 242; growing without end: 0.
+Rimfolk's part of the save, roughly: **994 KB** after a year, **1,245 KB** after two, **1,306 KB** after five.
+
+Not modelled (add them to MODEL in the script): `Ailments/AilmentTracker.cs:carrying`, `Ailments/AilmentTracker.cs:healing`, `Calendar/CalendarWatch.cs:awaySince`, `Calendar/CalendarWatch.cs:huntKills`, `Calendar/CalendarWatch.cs:knownCrops`, `Calendar/CalendarWatch.cs:pendingCrops`, `Camps/Camp.cs:asksMade`, `Character/ColonyTraits.cs:today`, `Decrees/Decrees.cs:nightHours`, `Defense/DefenseLine.cs:done`, `Defense/DefenseLine.cs:downed`, `Defense/DefenseLine.cs:lessons`, `Defense/DefenseLine.cs:plans`, `Defense/DefenseLine.cs:raids`, `Defense/DefenseLine.cs:skipped`, `Defense/DefenseLine.cs:span`, `Defense/DefenseLines.cs:lines`, `Defense/DefenseLinesWatch.cs:downedSeen`, `Defense/DefenseLinesWatch.cs:running`, `Epithets/Epithets.cs:founders`, `Health/HealthTracker.cs:worst`, `Persona/PawnPersona.cs:d`, `Persona/PawnPersona.cs:l`, `Persona/PawnPersona.cs:marks`, `Persona/PawnPersona.cs:stances`, `Persona/PersonaTracker.cs:list`, `Persona/PersonaTracker.cs:memories`, `PlayOut/PlayOutTracker.cs:results`, `PlayOut/PlayOuts.cs:game`, `PlayOut/PlayOuts.cs:hands`, `PlayOut/PlayOuts.cs:named`, `PlayOut/PlayOuts.cs:route`, `PlayOut/PlayOuts.cs:tasks`, `Scenarios/ScenarioParts.cs:days`, `Scenarios/ScenarioParts.cs:offices`, `World/FactionMemory.cs:notes`, `World/WorldSituation.cs:followUps`
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -27,13 +29,14 @@ Rimfolk's part of the save, roughly: **951 KB** after a year, **1,200 KB** after
 | `Pressures/Pressures.cs:people` | one per colonist, the gone dropped daily | colonists | 20 | 20 | 20 | 17.6 |
 | `Setbacks/SetbackTracker.cs:last` | 20 days | window | 200 | 200 | 200 | 17.6 |
 | `UI/WeekMemory.cs:dilemmas` | DilemmaLog.MaxRecords | cap | 30 | 60 | 60 | 17.6 |
+| `Strangers/Encounters.cs:lastTick` | one per encounter def | defs | 191 | 191 | 191 | 16.8 |
 | `Calendar/CalendarTracker.cs:days` | 12 the colony's, 8 the player's, traditions and the founding | cap | 12 | 24 | 26 | 15.2 |
-| `Strangers/Encounters.cs:lastTick` | one per encounter def | defs | 172 | 172 | 172 | 15.1 |
+| `Social/Groups/GroupTracker.cs:groups` | groups of 3 to 9, the dead and departed dropped daily, ended below two | cap | 6 | 6 | 6 | 14.6 |
+| `Dilemmas/Dilemmas.cs:lastTick` | one per dilemma def | defs | 166 | 166 | 166 | 14.6 |
 | `CouncilGameComponent.cs:history` | a sample a day, 120 days | window | 60 | 120 | 120 | 14.1 |
 | `Annals.cs:written` | Caps.AnnalsYears written years | cap | 1 | 2 | 5 | 12.2 |
 | `CouncilGameComponent.cs:wishes` | open wishes only (one per colonist at most) | cap | 20 | 20 | 20 | 11.7 |
 | `Setbacks/SetbackTracker.cs:built` | what colonists built, while it stands and is recent | window | 60 | 60 | 60 | 11.7 |
-| `Dilemmas/Dilemmas.cs:lastTick` | one per dilemma def | defs | 132 | 132 | 132 | 11.6 |
 | `Social/Moments.cs:pairs` | pair tones forgotten after 4 quiet days or when one is gone | pairs | 95 | 95 | 95 | 11.1 |
 | `Ailments/AilmentTracker.cs:had` | known pawns only | known | 165 | 180 | 225 | 11.0 |
 | `Happenings/Happenings.cs:memos` | memos 3 years (children's 10), used ones a day | window | 18 | 36 | 54 | 10.5 |
@@ -41,6 +44,7 @@ Rimfolk's part of the save, roughly: **951 KB** after a year, **1,200 KB** after
 | `Quirks/Quirks.cs:quirks` | 2 per colonist, the dead and discarded dropped | colonists | 40 | 40 | 40 | 7.8 |
 | `Secrets/Secrets.cs:secrets` | one per colonist, ended with their death | colonists | 20 | 20 | 20 | 7.8 |
 | `Setbacks/SetbackTracker.cs:sown` | fields sown, until harvested or lost | window | 40 | 40 | 40 | 7.8 |
+| `Social/Groups/GroupTracker.cs:work` | one work log per colonist, 6 kinds each | colonists | 20 | 20 | 20 | 7.8 |
 | `UI/News.cs:items` | per news letter; the game's archive keeps 200 letters | cap | 40 | 40 | 40 | 7.8 |
 | `UI/News.cs:waiting` | the evening's news, 40 at most, sent each evening | cap | 40 | 40 | 40 | 7.8 |
 | `Journal.cs:griefSeen` | cleared at 500 | cap | 30 | 60 | 150 | 7.3 |
@@ -50,22 +54,25 @@ Rimfolk's part of the save, roughly: **951 KB** after a year, **1,200 KB** after
 | `Missions/StoriesComponent.cs:chains` | chains 120 days after they end | window | 6 | 12 | 12 | 5.9 |
 | `Secrets/Vendettas.cs:vendettas` | 40 settled, avengers dead or discarded dropped | cap | 3 | 6 | 15 | 5.9 |
 | `Standing.cs:standings` | one per colonist, the gone dropped daily | colonists | 20 | 20 | 20 | 5.9 |
+| `Ambitions/Ambitions.cs:lastOffered` | one per ambition def | defs | 66 | 66 | 66 | 5.8 |
+| `Epithets/Epithets.cs:holders` | one per title | defs | 63 | 63 | 63 | 5.5 |
 | `CouncilGameComponent.cs:cooldowns` | dropped once over | window | 60 | 60 | 60 | 5.3 |
 | `Arcs/ArcTracker.cs:active` | stories under way | colonists | 10 | 10 | 10 | 4.9 |
-| `Ambitions/Ambitions.cs:lastOffered` | one per ambition def | defs | 54 | 54 | 54 | 4.7 |
 | `PlayOut/PlayOutTracker.cs:plays` | waiting ones capped, done ones dropped | cap | 8 | 8 | 8 | 4.7 |
+| `Social/Groups/GroupTracker.cs:past` | 12 past groups, members the game still knows | cap | 3 | 6 | 12 | 4.7 |
 | `Building/CouncilPlanQueue.cs:queue` | blueprints waiting to be placed | while | 30 | 30 | 30 | 4.4 |
 | `Character/Character.cs:recent` | 30 recent shifts | cap | 30 | 30 | 30 | 4.4 |
 | `Strangers/Nemeses.cs:all` | 30 that have ended | cap | 3 | 6 | 15 | 4.4 |
-| `Epithets/Epithets.cs:holders` | one per title | defs | 45 | 45 | 45 | 4.0 |
-| `CouncilGameComponent.cs:everWished` | one per wish def | defs | 107 | 107 | 107 | 3.7 |
+| `Dilemmas/Dilemmas.cs:traditionCount` | per tradition | defs | 50 | 50 | 50 | 4.4 |
+| `World/WorldSituations.cs:lastEnded` | one per situation def | defs | 46 | 46 | 46 | 4.0 |
+| `CouncilGameComponent.cs:everWished` | one per wish def | defs | 115 | 115 | 115 | 3.9 |
+| `Persona/Marks.cs:fights` | the last 8 fights won per person, a year at most | colonists | 160 | 160 | 160 | 3.9 |
 | `Integrations/SocialInteractions.cs:bestFriends` | Caps.BestFriendPairs, known pawns | cap | 12 | 24 | 60 | 3.5 |
-| `Dilemmas/Dilemmas.cs:traditionCount` | per tradition | defs | 40 | 40 | 40 | 3.5 |
 | `Social/SocialWeb.cs:lost` | 40 lost bonds | cap | 3 | 6 | 15 | 2.9 |
 | `Wishes/Kept.cs:watches` | granted wishes still watched (grace days) | window | 8 | 8 | 8 | 2.9 |
 | `World/WorldSituations.cs:active` | 2 running | fixed | 2 | 2 | 2 | 2.9 |
-| `World/WorldSituations.cs:lastEnded` | one per situation def | defs | 32 | 32 | 32 | 2.8 |
 | `Aspirations/Aspirations.cs:events` | sparks, 30 days | window | 30 | 30 | 30 | 2.6 |
+| `Decrees/Decrees.cs:readyAt` | one per decree def | defs | 30 | 30 | 30 | 2.6 |
 | `Health/HealthTracker.cs:lastDoctor` | tends 3 days | window | 30 | 30 | 30 | 2.6 |
 | `Health/HealthTracker.cs:lastTend` | tends 3 days | window | 30 | 30 | 30 | 2.6 |
 | `Health/HealthTracker.cs:visits` | 30 days | window | 30 | 30 | 30 | 2.6 |
@@ -75,6 +82,7 @@ Rimfolk's part of the save, roughly: **951 KB** after a year, **1,200 KB** after
 | `Secrets/Secrets.cs:rolled` | known pawns only | known | 55 | 60 | 75 | 2.6 |
 | `Calendar/CalendarTracker.cs:restHours` | days taken off by hand: only the player's clicks | colonists | 20 | 20 | 20 | 2.3 |
 | `Happenings/Happenings.cs:departed` | the departed 2 years | window | 3 | 6 | 6 | 2.3 |
+| `Persona/Marks.cs:watches` | one per person watched; known pawns only, empty ones dropped | colonists | 20 | 20 | 20 | 2.3 |
 | `Quirks/Quirks.cs:luckyPast` | LuckyItems.MaxPast | cap | 3 | 6 | 15 | 2.2 |
 | `Aspirations/Aspirations.cs:inspiredBy` | known pawns only | known | 16 | 18 | 22 | 2.0 |
 | `Building/PersonalTouches.cs:pending` | until built or dropped | cap | 10 | 10 | 10 | 2.0 |
@@ -93,16 +101,16 @@ Rimfolk's part of the save, roughly: **951 KB** after a year, **1,200 KB** after
 | `Quirks/Quirks.cs:battleTick` | within the longest quirk window | colonists | 20 | 20 | 20 | 1.8 |
 | `Strangers/Nuisances.cs:last` | 10 days | window | 20 | 20 | 20 | 1.8 |
 | `UI/WeekMemory.cs:trustValues` | 8 days of trust each | colonists | 20 | 20 | 20 | 1.7 |
-| `Decrees/Decrees.cs:readyAt` | one per decree def | defs | 19 | 19 | 19 | 1.7 |
 | `Ambitions/CouncilMeeting.cs:invites` | while a meeting is called | while | 20 | 20 | 20 | 1.6 |
 | `Advisor/AdvisorCore.cs:wealthHistory` | 60 days of wealth | window | 60 | 60 | 60 | 1.5 |
 | `Camps/Camp.cs:felledTicks` | with the above | while | 60 | 60 | 60 | 1.5 |
 | `Happenings/Happenings.cs:seenQuests` | quests the game still keeps | fixed | 60 | 60 | 60 | 1.5 |
 | `Health/HealthTracker.cs:cases` | cases while the patient lives | cap | 2 | 4 | 5 | 1.5 |
+| `Dilemmas/Dilemmas.cs:traditionBreaks` | per tradition | defs | 17 | 17 | 17 | 1.5 |
 | `Ambitions/CouncilMeeting.cs:remarks` | while a meeting is called | while | 10 | 10 | 10 | 1.2 |
 | `Happenings/Happenings.cs:grudges` | grudges 2 years | window | 3 | 6 | 6 | 1.2 |
 | `Strangers/Pets.cs:known` | animals known: the dead get their farewell, the discarded are dropped | fixed | 30 | 30 | 30 | 1.2 |
-| `Dilemmas/Dilemmas.cs:traditionBreaks` | per tradition | defs | 13 | 13 | 13 | 1.2 |
+| `Offices/Offices.cs:holders` | one per office | defs | 12 | 12 | 12 | 1.1 |
 | `Setbacks/SetbackTracker.cs:bestAt` | one per skill | fixed | 12 | 12 | 12 | 1.1 |
 | `Arcs/ArcTracker.cs:eulogies` | until given | cap | 3 | 5 | 5 | 1.0 |
 | `Camps/Camp.cs:owned` | the camp's goods, pruned of the gone at saving | while | 40 | 40 | 40 | 1.0 |
@@ -111,9 +119,11 @@ Rimfolk's part of the save, roughly: **951 KB** after a year, **1,200 KB** after
 | `Secrets/Vendettas.cs:eulogies` | until given | cap | 3 | 5 | 5 | 1.0 |
 | `Ailments/AilmentTracker.cs:doctors` | only hediffs colonists still have | colonists | 10 | 10 | 10 | 0.9 |
 | `Ailments/AilmentTracker.cs:sweets` | faded below 0.05 dropped | colonists | 10 | 10 | 10 | 0.9 |
+| `Persona/Marks.cs:once` | skills mastered; known pawns only, 800 at most | known | 16 | 18 | 22 | 0.9 |
 | `Quirks/Quirks.cs:downedTick` | within the longest quirk window | colonists | 10 | 10 | 10 | 0.9 |
 | `Pressures/Pressures.cs:apartSince` | pairs apart now | pairs | 10 | 10 | 10 | 0.8 |
-| `Offices/Offices.cs:holders` | one per office | defs | 9 | 9 | 9 | 0.8 |
+| `Character/ColonyTraits.cs:last` | one per colony trait def | defs | 9 | 9 | 9 | 0.8 |
+| `Character/ColonyTraits.cs:rates` | one per colony trait def | defs | 9 | 9 | 9 | 0.8 |
 | `Ambitions/Ambitions.cs:voterPawns` | while the letter waits | while | 20 | 20 | 20 | 0.8 |
 | `Ambitions/CouncilMeeting.cs:attendees` | while a meeting is called | while | 20 | 20 | 20 | 0.8 |
 | `Ambitions/CouncilMeeting.cs:voters` | while a meeting is called | while | 20 | 20 | 20 | 0.8 |
@@ -127,19 +137,19 @@ Rimfolk's part of the save, roughly: **951 KB** after a year, **1,200 KB** after
 | `Social/SocialWeb.cs:fighters` | while a fight lasts | while | 20 | 20 | 20 | 0.8 |
 | `UI/WeekMemory.cs:trustKeys` | a trail per colonist, forgotten after 10 days away | colonists | 20 | 20 | 20 | 0.8 |
 | `World/WorldSituation.cs:beats` | per situation | fixed | 4 | 4 | 4 | 0.8 |
+| `Social/Groups/GroupTracker.cs:newcomers` | newcomers, 40 days at most | cap | 5 | 5 | 5 | 0.7 |
 | `Annals.cs:tiesFormed` | the year in progress | yearly | 12 | 12 | 12 | 0.7 |
 | `Camps/Camp.cs:warmth` | while the camp stays | while | 8 | 8 | 8 | 0.7 |
 | `PlayOut/PlayOutLord.cs:lines` | while the gathering lasts | while | 6 | 6 | 6 | 0.7 |
+| `Dilemmas/Dilemmas.cs:traditions` | per tradition | defs | 17 | 17 | 17 | 0.6 |
 | `Ambitions/CouncilMeeting.cs:pitches` | while a meeting is called | while | 3 | 3 | 3 | 0.6 |
 | `Secrets/Vendettas.cs:known` | known pawns only | known | 11 | 12 | 15 | 0.6 |
-| `Character/ColonyTraits.cs:last` | one per colony trait def | defs | 6 | 6 | 6 | 0.5 |
-| `Character/ColonyTraits.cs:rates` | one per colony trait def | defs | 6 | 6 | 6 | 0.5 |
-| `Dilemmas/Dilemmas.cs:traditions` | per tradition | defs | 13 | 13 | 13 | 0.5 |
 | `Ailments/AilmentTracker.cs:announced` | only hediffs colonists still have | colonists | 20 | 20 | 20 | 0.5 |
 | `Ailments/AilmentTracker.cs:woundsRolled` | only hediffs colonists still have | colonists | 20 | 20 | 20 | 0.5 |
 | `Ambitions/Ambitions.cs:voterChoice` | while the letter waits | while | 20 | 20 | 20 | 0.5 |
 | `Social/Autonomy.cs:lastActed` | with the above | window | 20 | 20 | 20 | 0.5 |
 | `Annals.cs:decrees` | the year in progress | yearly | 12 | 12 | 12 | 0.5 |
+| `Offices/Offices.cs:elected` | one per office | defs | 12 | 12 | 12 | 0.5 |
 | `PlayOut/PlayOuts.cs:lines` | per play-out | fixed | 4 | 4 | 4 | 0.5 |
 | `PlayOut/PlayOuts.cs:moods` | per play-out | fixed | 4 | 4 | 4 | 0.5 |
 | `Decrees/Decrees.cs:active` | decrees in force (3 at most) | fixed | 3 | 3 | 3 | 0.4 |
@@ -153,7 +163,6 @@ Rimfolk's part of the save, roughly: **951 KB** after a year, **1,200 KB** after
 | `Annals.cs:omens` | the year in progress | yearly | 6 | 6 | 6 | 0.4 |
 | `Health/HealthTracker.cs:bedHours` | known pawns only, while laid up | colonists | 4 | 4 | 4 | 0.4 |
 | `Health/HealthTracker.cs:lastTrustLine` | 20 days | window | 4 | 4 | 4 | 0.4 |
-| `Offices/Offices.cs:elected` | one per office | defs | 9 | 9 | 9 | 0.4 |
 | `World/WorldSituation.cs:numbers` | per situation | fixed | 4 | 4 | 4 | 0.4 |
 | `Camps/Camp.cs:members` | the camp's people, while it stays | while | 8 | 8 | 8 | 0.3 |
 | `Camps/Camp.cs:willing` | while the camp stays | while | 8 | 8 | 8 | 0.3 |
@@ -166,6 +175,7 @@ Rimfolk's part of the save, roughly: **951 KB** after a year, **1,200 KB** after
 | `Annals.cs:joined` | the year in progress | yearly | 6 | 6 | 6 | 0.2 |
 | `Annals.cs:traditionsKept` | the year in progress | yearly | 6 | 6 | 6 | 0.2 |
 | `Camps/Camp.cs:prey` | while the camp stays | while | 6 | 6 | 6 | 0.2 |
+| `Persona/Marks.cs:addictions` | the addictions they have now | colonists | 6 | 6 | 6 | 0.2 |
 | `Pressures/Pressures.cs:workKinds` | per colonist | fixed | 6 | 6 | 6 | 0.2 |
 | `Heart/HeartData.cs:recentRelief` | per heart | fixed | 8 | 8 | 8 | 0.2 |
 | `Heart/HeartData.cs:today` | per heart | fixed | 8 | 8 | 8 | 0.2 |
@@ -173,6 +183,7 @@ Rimfolk's part of the save, roughly: **951 KB** after a year, **1,200 KB** after
 | `Social/SocialWeb.cs:battleFallen` | while a fight lasts | while | 5 | 5 | 5 | 0.2 |
 | `Strangers/Pets.cs:fought` | animals in the last fight | fixed | 5 | 5 | 5 | 0.2 |
 | `Annals.cs:secretsOut` | the year in progress | yearly | 3 | 3 | 3 | 0.2 |
+| `Character/ColonyTraits.cs:known` | traits the colony grew into | defs | 4 | 4 | 4 | 0.2 |
 | `Decrees/Decrees.cs:useDefs` | uses within the fatigue window | window | 4 | 4 | 4 | 0.2 |
 | `Health/HealthTracker.cs:lastSetback` | 20 days | window | 2 | 2 | 2 | 0.2 |
 | `Health/HealthTracker.cs:setbacks` | convalescences colonists still have | colonists | 2 | 2 | 2 | 0.2 |
@@ -195,7 +206,6 @@ Rimfolk's part of the save, roughly: **951 KB** after a year, **1,200 KB** after
 | `Annals.cs:quit` | the year in progress | yearly | 3 | 3 | 3 | 0.1 |
 | `Annals.cs:traditionsBroken` | the year in progress | yearly | 3 | 3 | 3 | 0.1 |
 | `Camps/Camp.cs:joined` | while the camp stays | while | 3 | 3 | 3 | 0.1 |
-| `Character/ColonyTraits.cs:known` | traits the colony grew into | defs | 3 | 3 | 3 | 0.1 |
 | `Happenings/Happenings.cs:things` | per departed record | fixed | 3 | 3 | 3 | 0.1 |
 | `Happenings/Happenings.cs:touched` | per visit | fixed | 3 | 3 | 3 | 0.1 |
 | `PlayOut/PlayOuts.cs:spots` | per play-out | fixed | 2 | 2 | 2 | 0.1 |
@@ -233,6 +243,14 @@ Rimfolk's part of the save, roughly: **951 KB** after a year, **1,200 KB** after
 | `Pressures/Pressures.cs:meals` | per colonist: 12 meals (counted under people) | fixed | 12 | 12 | 12 | (in its record) |
 | `Secrets/Secrets.cs:knowers` | per secret (counted under secrets) | fixed | 3 | 3 | 3 | (in its record) |
 | `Setbacks/SetbackTracker.cs:sowers` | per sown field (counted under sown) | fixed | 3 | 3 | 3 | (in its record) |
+| `Social/Groups/SocialGroup.cs:counts` | per work log (counted under work) | fixed | 6 | 6 | 6 | (in its record) |
+| `Social/Groups/SocialGroup.cs:formerNames` | per group: 10 names (counted under groups) | fixed | 10 | 10 | 10 | (in its record) |
+| `Social/Groups/SocialGroup.cs:history` | per group: 14 lines (counted under groups) | fixed | 14 | 14 | 14 | (in its record) |
+| `Social/Groups/SocialGroup.cs:kinds` | per work log: 6 kinds (counted under work) | fixed | 6 | 6 | 6 | (in its record) |
+| `Social/Groups/SocialGroup.cs:members` | per group, and per past group by ID (counted under groups) | fixed | 6 | 6 | 6 | (in its record) |
+| `Social/Groups/SocialGroup.cs:norms` | per group: 3 ways (counted under groups) | fixed | 3 | 3 | 3 | (in its record) |
+| `Social/Groups/SocialGroup.cs:rivals` | per group: rivalries with groups still there (counted under groups) | fixed | 3 | 3 | 3 | (in its record) |
+| `Social/Groups/SocialGroup.cs:views` | per group: 3 views (counted under groups) | fixed | 3 | 3 | 3 | (in its record) |
 | `Social/SocialWeb.cs:history` | per tie (counted under ties) | fixed | 10 | 10 | 10 | (in its record) |
 | `UI/DilemmaLog.cs:plays` | per dilemma record (counted under dilemmas) | fixed | 4 | 4 | 4 | (in its record) |
 | `Wishes/Kept.cs:things` | per watch (counted under watches) | fixed | 2 | 2 | 2 | (in its record) |

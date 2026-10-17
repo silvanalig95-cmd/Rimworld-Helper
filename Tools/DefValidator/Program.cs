@@ -405,6 +405,8 @@ wishPh.Add("GATHERING");
 wishPh.UnionWith(new[] { "KIND", "SPECIES", "OLD", "NEW", "LEVEL" });
 // Characters (Persona/): what a mark was about, and the other person in it by name (Persona.Shaped, PersonaMarks).
 wishPh.UnionWith(new[] { "LABEL", "OTHER" });
+// Groups (Social/Groups/): a group's name, the one a friends group is named after, a shared memory's label.
+wishPh.UnionWith(new[] { "GROUP", "ANCHOR", "LABEL" });
 var pawnPrefixes = new HashSet<string> { "PAWN", "FOR", "OTHER", "ENVIED", "ABOUT", "A", "B", "PET", "LEAKER", "TELLER", "X", "SLAYER", "BABY", "THIRD" };
 // The colonist a people remembers by name (World/KinMemory.cs: events, world events, camps).
 pawnPrefixes.Add("FRIEND");

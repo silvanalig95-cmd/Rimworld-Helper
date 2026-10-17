@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    A group's life in its people's journals (Source/ColonyCouncil/Social/Groups/): founded, joined, taken in or shut
+    out, drifting off, coming apart, merging, falling out with another group, one of them lost, the group remembered
+    once it's gone. Written in the colonist's own voice ({PAWN_...}); {GROUP} is the group's name (a word, not a
+    person: "the hunters"), and where a pool says so {OTHER_...} is a person and {OTHER} or {NAME} a word.
+    Also the group's peacemaker stepping into a spat between two of them (GroupMoments.Notify_Spat).
+  -->
+
+  <!-- A group has formed, and they're in it. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Journal_Group_Formed</defName>
+    <lines>
+      <plain>
+        <li>People have started calling us {GROUP}. I suppose that's what we are now.</li>
+        <li>Somewhere along the way we became {GROUP}. Nobody decided it. It just happened.</li>
+        <li>We have our own seats now, and our own jokes. {GROUP}, the others call us.</li>
+        <li>I heard someone say "{GROUP}" today and realised they meant me too.</li>
+        <li>It's good to belong to something here. {GROUP}. I like the sound of it.</li>
+        <li>[groupkind:hunters] We go out together, we come back together. That's what {GROUP} means.</li>
+        <li>[groupkind:comrades] You don't forget the people who stood beside you. We've become {GROUP} because of it.</li>
+        <li>[groupkind:nightshift] The night is ours. {GROUP}, they call us, and they're not wrong.</li>
+        <li>[groupkind:faithful] We pray together now, every day. {GROUP}, the others say, half joking.</li>
+        <li>[groupkind:founders] We were here first, and we've stayed close. {GROUP}. It fits.</li>
+      </plain>
+      <warm>
+        <li>I have people here now. {GROUP}. I didn't know how much I needed that.</li>
+      </warm>
+      <blunt>
+        <li>Apparently I'm one of {GROUP} now. Fine. They're the only ones here worth talking to.</li>
+      </blunt>
+      <cheerful>
+        <li>{GROUP}! We're a proper crowd now. I've half a mind to carve it over the door.</li>
+      </cheerful>
+      <gloomy>
+        <li>We're {GROUP} now. I give it a season before something breaks it, but I'll enjoy it while it lasts.</li>
+      </gloomy>
+      <cold>
+        <li>The others have taken to calling us {GROUP}. Names are for convenience. Still.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- They joined a group that was there already. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Journal_Group_Joined</defName>
+    <lines>
+      <plain>
+        <li>I sat with {GROUP} tonight and nobody told me to move. I think I'm one of them now.</li>
+        <li>{GROUP} have made room for me. I'm still learning the jokes.</li>
+        <li>I've been spending my evenings with {GROUP}. It feels like the right place.</li>
+        <li>Someone counted me in when they counted {GROUP} today. I noticed.</li>
+        <li>[grouprole:newcomer] I'm the new one in {GROUP}. They'll get used to me.</li>
+      </plain>
+      <warm>
+        <li>{GROUP} took me in without a fuss. I'm grateful, more than I'll tell them.</li>
+      </warm>
+      <blunt>
+        <li>Started sitting with {GROUP}. Better company than my own.</li>
+      </blunt>
+      <cheerful>
+        <li>One of {GROUP} now. About time, too.</li>
+      </cheerful>
+      <gloomy>
+        <li>{GROUP} let me sit with them. I keep waiting for them to change their minds.</li>
+      </gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- A newcomer taken in at last. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Journal_Group_Accepted</defName>
+    <lines>
+      <plain>
+        <li>{GROUP} have taken me in. I'm not the new one any more, not really.</li>
+        <li>Tonight {GROUP} saved me a seat without being asked. That's when I knew.</li>
+        <li>It took a while, but I'm one of {GROUP} now.</li>
+        <li>They told me one of their old stories tonight, the kind they only tell each other. I'm in.</li>
+        <li>[lowtech] {GROUP} shared their fire with me tonight, and their bread. I'm one of them.</li>
+        <li>[groupnorm:wary] {GROUP} don't trust easily. They trust me now. I won't let them down.</li>
+      </plain>
+      <warm>
+        <li>I came here with nothing and no one. Now I have {GROUP}.</li>
+      </warm>
+      <blunt>
+        <li>{GROUP} finally stopped treating me like a stranger. Took them long enough.</li>
+      </blunt>
+      <cheerful>
+        <li>Officially one of {GROUP}! Well, as official as these things get.</li>
+      </cheerful>
+      <gloomy>
+        <li>{GROUP} have let me in. I hope I don't disappoint them.</li>
+      </gloomy>
+      <cold>
+        <li>{GROUP} accept me now. It makes things easier.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Someone spoke for a newcomer, and the newcomer was taken in. {OTHER_...} the newcomer. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Journal_Group_Vouched</defName>
+    <lines>
+      <plain>
+        <li>I spoke up for {OTHER_nameDef} with {GROUP}, and now {OTHER_pronoun}'s one of us. Good.</li>
+        <li>{OTHER_nameDef} is one of {GROUP} now. I told them {OTHER_pronoun} would fit.</li>
+        <li>I knew {OTHER_nameDef} would settle in with {GROUP}. I just had to get them to see it.</li>
+      </plain>
+      <warm>
+        <li>{OTHER_nameDef} looked so lost those first days. Now {OTHER_pronoun} has {GROUP}, and I had a hand in it.</li>
+      </warm>
+      <blunt>
+        <li>Told {GROUP} to give {OTHER_nameDef} a chance. They did. I was right.</li>
+      </blunt>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- A group closed ranks against them. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Journal_Group_ShutOut</defName>
+    <lines>
+      <plain>
+        <li>{GROUP} go quiet when I sit down. I've stopped sitting down.</li>
+        <li>I tried to join {GROUP} at the fire. Nobody moved up.</li>
+        <li>{GROUP} have their own jokes and their own seats, and none of them are mine.</li>
+        <li>They're polite, {GROUP}. Polite the way you are with a stranger.</li>
+        <li>I don't know what I did to {GROUP}. Maybe nothing. Maybe that's the trouble.</li>
+        <li>[groupnorm:wary] {GROUP} don't trust anyone new. I'm going to be new for a long time, it seems.</li>
+        <li>[groupnorm:aloof] {GROUP} keep to themselves, and they mean it.</li>
+      </plain>
+      <warm>
+        <li>I keep trying with {GROUP}. One day, maybe.</li>
+      </warm>
+      <blunt>
+        <li>{GROUP} can keep their little club. I don't need it.</li>
+      </blunt>
+      <cheerful>
+        <li>{GROUP} are a tough crowd. I'll win them round, see if I don't.</li>
+      </cheerful>
+      <gloomy>
+        <li>I knew it would be like this. It always is, being new.</li>
+      </gloomy>
+      <cold>
+        <li>{GROUP} have made their feelings clear. So be it.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- They drifted off from a group they no longer held to. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Journal_Group_DriftedOff</defName>
+    <lines>
+      <plain>
+        <li>I don't sit with {GROUP} much any more. I couldn't say when that changed.</li>
+        <li>{GROUP} have their evenings without me now. I don't think anyone minds, least of all me.</li>
+        <li>I've drifted away from {GROUP}. We still nod to each other.</li>
+        <li>Somewhere along the way I stopped being one of {GROUP}.</li>
+      </plain>
+      <warm>
+        <li>I miss {GROUP}, a little. But I'd stopped fitting.</li>
+      </warm>
+      <blunt>
+        <li>Done with {GROUP}. We'd nothing left to say to each other.</li>
+      </blunt>
+      <gloomy>
+        <li>{GROUP} went on without me, the way things do.</li>
+      </gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Their group split. {OTHER_...} one of those on the other side. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Journal_Group_Split</defName>
+    <lines>
+      <plain>
+        <li>{GROUP} have split. I'm on one side and {OTHER_nameDef} is on the other, and that's that.</li>
+        <li>We used to be {GROUP}. Now there are two tables where there was one.</li>
+        <li>It was coming for weeks, and now it's happened: {GROUP} are in two halves.</li>
+        <li>I don't sit with {OTHER_nameDef} any more. None of us do, on this side.</li>
+        <li>Everyone in {GROUP} has had to pick a side. I hate it.</li>
+      </plain>
+      <warm>
+        <li>I keep hoping {GROUP} will mend. I said hello to {OTHER_nameDef} today, at least.</li>
+      </warm>
+      <blunt>
+        <li>{GROUP} split, and good riddance to the half that left.</li>
+      </blunt>
+      <cheerful>
+        <li>{GROUP} broke apart, but we'll find our feet. We always do.</li>
+      </cheerful>
+      <gloomy>
+        <li>I knew {GROUP} couldn't last. Nothing here does.</li>
+      </gloomy>
+      <cold>
+        <li>{GROUP} have split. It was inevitable, given who was in it.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Their group took in another whole group. {OLD} the other group's old name. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Journal_Group_Merged</defName>
+    <lines>
+      <plain>
+        <li>{OLD} and {GROUP} are one crowd now. The fire's bigger, and so is the noise.</li>
+        <li>We were sitting with {OLD} most evenings anyway. Now it's official: we're all {GROUP}.</li>
+        <li>{GROUP} have taken in {OLD}, or the other way round. Nobody can remember which.</li>
+        <li>More faces round the table now that {OLD} have joined {GROUP}.</li>
+      </plain>
+      <warm>
+        <li>{OLD} and {GROUP} together. It feels right, like it should always have been this way.</li>
+      </warm>
+      <blunt>
+        <li>{OLD} are part of {GROUP} now. Fine, as long as they pull their weight.</li>
+      </blunt>
+      <cheerful>
+        <li>Double the stories, double the songs! {OLD} and {GROUP} are one lot now.</li>
+      </cheerful>
+      <gloomy>
+        <li>{OLD} joined {GROUP}. More people to lose, I suppose.</li>
+      </gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- A group they were in is no more. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Journal_Group_Remembered</defName>
+    <lines>
+      <plain>
+        <li>There's no {GROUP} any more. I walked past our old place by the fire and nobody was there.</li>
+        <li>I keep thinking about {GROUP}, the way it was at the start.</li>
+        <li>{GROUP} are no more. Someone should remember us, so I'm writing it down.</li>
+        <li>We were {GROUP} once. I wonder if anyone else remembers.</li>
+        <li>[afterraid] So many gone, and {GROUP} with them.</li>
+      </plain>
+      <warm>
+        <li>I was happy with {GROUP}. I hope the others were too.</li>
+      </warm>
+      <blunt>
+        <li>That's the end of {GROUP}. It was good while it lasted.</li>
+      </blunt>
+      <gloomy>
+        <li>{GROUP} came apart the way everything does. I'll miss us anyway.</li>
+      </gloomy>
+      <cold>
+        <li>It's over for {GROUP}. I find I mind more than I expected.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- One of the group died. {NAME} their name. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Journal_Group_LostOne</defName>
+    <lines>
+      <plain>
+        <li>There's an empty seat in {GROUP} tonight. {NAME}'s seat. Nobody will sit in it.</li>
+        <li>{GROUP} won't be the same without {NAME}. We all know it.</li>
+        <li>We kept {NAME}'s place at the fire tonight. It seemed right.</li>
+        <li>{NAME} was the heart of {GROUP} in ways none of us said out loud.</li>
+        <li>One of {GROUP} is gone. {NAME}. I keep looking round for them.</li>
+      </plain>
+      <warm>
+        <li>We told stories about {NAME} until late. {GROUP} needed that.</li>
+      </warm>
+      <blunt>
+        <li>Lost {NAME}. {GROUP} will carry on. That's what you do.</li>
+      </blunt>
+      <gloomy>
+        <li>First {NAME}. Who's next? {GROUP} gets smaller every season.</li>
+      </gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Their group and another have fallen out. {GROUP} the other group. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Journal_Group_Rivalry</defName>
+    <lines>
+      <plain>
+        <li>{GROUP} think they run this colony. They don't.</li>
+        <li>Nobody on our side talks to {GROUP} any more, not if we can help it.</li>
+        <li>There's bad blood with {GROUP} now. Everyone can feel it at supper.</li>
+        <li>I don't know who started it with {GROUP}. I know who's going to finish it.</li>
+        <li>{GROUP} sit at their end and we sit at ours. That's how it is now.</li>
+      </plain>
+      <warm>
+        <li>I wish it weren't like this with {GROUP}. We used to get on.</li>
+      </warm>
+      <blunt>
+        <li>{GROUP} can say it to my face, if they've got something to say.</li>
+      </blunt>
+      <cheerful>
+        <li>{GROUP} are sore at us. We'll beat them at cards and see if it helps.</li>
+      </cheerful>
+      <gloomy>
+        <li>Two crowds glaring at each other across one colony. It'll end badly.</li>
+      </gloomy>
+      <cold>
+        <li>{GROUP} are a nuisance. I've stopped pretending otherwise.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The anchor called the group together on the map, and they came. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Journal_Group_Gathered</defName>
+    <lines>
+      <plain>
+        <li>All of {GROUP} together tonight, every one of us. It doesn't happen often enough.</li>
+        <li>{GROUP} sat up late tonight, all of us. I'll remember it.</li>
+        <li>We made an evening of it, {GROUP} and I. I'm tired and happy.</li>
+        <li>Somebody called {GROUP} together and everyone came. That says something.</li>
+      </plain>
+      <warm>
+        <li>An evening with {GROUP}. Exactly what I needed.</li>
+      </warm>
+      <cheerful>
+        <li>What a night with {GROUP}! My face hurts from laughing.</li>
+      </cheerful>
+      <gloomy>
+        <li>A good evening with {GROUP}. Rare enough these days.</li>
+      </gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== The group's peacemaker steps in (spoken) ===================== -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Group_PeacemakerSays</defName>
+    <lines>
+      <plain>
+        <li>Not between us. Not over this.</li>
+        <li>You two sit at the same fire every night. Act like it.</li>
+        <li>Let it go. You'll laugh about it next week.</li>
+        <li>Both of you are right, which means both of you are wrong.</li>
+        <li>Come on, we're all on the same side here.</li>
+        <li>Say sorry now and it costs you nothing.</li>
+        <li>Shake on it, and we'll say no more.</li>
+        <li>[persona:calm] Slowly. One of you, then the other.</li>
+      </plain>
+      <warm>
+        <li>I hate seeing you two like this. Talk to me.</li>
+        <li>Nobody here wants this. Least of all you two.</li>
+      </warm>
+      <blunt>
+        <li>Enough. Save it for the raiders.</li>
+      </blunt>
+      <cheerful>
+        <li>If you're going to fight, at least make it entertaining.</li>
+      </cheerful>
+      <gloomy>
+        <li>We've got enough troubles without this.</li>
+      </gloomy>
+      <cold>
+        <li>This is beneath both of you.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- {PAWN} the peacemaker, {A} and {B} the two, {GROUP} their group. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Group_PeacemakerSteps</defName>
+    <lines>
+      <plain>
+        <li>{PAWN_nameDef} got between {A_nameDef} and {B_nameDef} before it went any further. Nobody quarrels for long in {GROUP}.</li>
+        <li>{PAWN_nameDef} sat {A_nameDef} and {B_nameDef} down together and made them hear each other out.</li>
+        <li>{A_nameDef} and {B_nameDef} were at it again until {PAWN_nameDef} came over. It blew over sooner than usual.</li>
+        <li>{PAWN_nameDef} reminded {A_nameDef} and {B_nameDef} of the last time they fell out, and how silly it seemed after.</li>
+        <li>{PAWN_nameDef}, as always in {GROUP}, smoothed things over between {A_nameDef} and {B_nameDef}.</li>
+        <li>{PAWN_nameDef} put a cup in each of their hands and waited until {A_nameDef} and {B_nameDef} had calmed down.</li>
+      </plain>
+      <warm>
+        <li>{PAWN_nameDef} talked {A_nameDef} and {B_nameDef} round, gently, until they were both a little ashamed of themselves.</li>
+      </warm>
+      <blunt>
+        <li>{PAWN_nameDef} told {A_nameDef} and {B_nameDef} to drop it, and they did.</li>
+      </blunt>
+      <cheerful>
+        <li>{PAWN_nameDef} made a joke of the whole thing, and {A_nameDef} and {B_nameDef} couldn't keep a straight face.</li>
+      </cheerful>
+      <gloomy>
+        <li>{PAWN_nameDef} sighed and stepped between {A_nameDef} and {B_nameDef}, as {PAWN_pronoun} so often has to.</li>
+      </gloomy>
+      <cold>
+        <li>{PAWN_nameDef} pointed out to {A_nameDef} and {B_nameDef} exactly how little their quarrel was worth.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

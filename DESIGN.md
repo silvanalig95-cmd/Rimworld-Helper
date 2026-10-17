@@ -231,7 +231,8 @@ social web adds a small number of named, lasting bonds on top of it, each with a
   happening, it settles or fades.
 - **Comrades** come from dealing damage in the same battle, and fade between battles.
 - **Mentorships** pair a skilled, passionate colonist with a keen learner and end in graduation.
-- **Circles** are connected groups of strong bonds, recomputed daily.
+- **Circles** are connected groups of strong bonds, recomputed daily; with social life on, they are the persistent
+  groups ("Layer 8: Social life").
 
 Design rules:
 - Everything the council does should be able to touch a bond (elections, overrules, passed-over wishes,
@@ -363,6 +364,36 @@ and news for turning points.
   own code and the `persona:*` tags.
 - **The page.** StoryView draws the sections of `CharacterPage` (character 10, what shaped them 20, then the other parts'),
   with eight bars and per-side tooltips worked out the same way as nature. With social life off only nature shows.
+
+### Groups
+
+The social web's circles used to be rebuilt every day from strong friendships, with no identity or memory. With
+"Personalities and social life" on, they are persistent groups (`Social/Groups/`, saved in `GroupTracker`, a game
+component of its own, so an old save just starts without it and finds its groups quietly on the first day).
+
+- **Forming.** Once a day, with the social web's day, every pair gets an affinity from the game (`GroupFacts` →
+  `GroupMath.Affinity`): friendship and rivalry most, then shared work (sampled hourly), comrades, the night hours,
+  likeness (`Persona.Likeness`), faith held hard, arriving together or the same kind of life before, age. A cluster of
+  three to seven with no rift becomes a group; someone joins the group they hold to (and never one they left) and drifts
+  off after days of not holding to it. Two groups each at most.
+- **Identity.** The kind is what binds most of it (`GroupKindDef`: 25, lowest order wins, friendship last); it gives a
+  name picked once, in the colony's era, and kept. Roles come from character and behaviour (`GroupMath.AssignRoles`:
+  one anchor, joker and peacemaker each; a change waits three days; the incumbent keeps a unique role against a near
+  rival). Ways (`GroupNormDef`, at most three) come from the members' average character or tags, with hysteresis; views
+  from members' stances (`Persona.Stance`, any topic key). Members drift towards both (`Persona.Nudge`, `SetStance`).
+- **Life.** Cohesion (0-100) settles towards the members' mean affinity and moves with habits kept, shared memories,
+  quarrels and mends (read from `MomentTones`), losses and separation. Habits (`GroupHabitDef`) are kept when members are
+  really together doing them (hourly, `Together.Can`), or called on the map as a play-out by the anchor. Newcomers
+  integrate by opinion, memories, work, a sponsor and welcomes, scaled by how open the group is; a closed group gives the
+  cold shoulder and the old left-out feeling. Rivalry between groups grows from feuds, opposed views and ways, and spats,
+  and reaches votes, petitions and objections through `SocialWeb.Warmth`. Splits (loose and riven), merges (overlapping
+  or close) and ends are told once.
+- **Contracts.** Other parts read groups only through tags: `group:<id>`, `grouprole:<role>`, `ingroup`, plus
+  `outsider`, `groupkind:`, `groupnorm:`, `grouprival` (`Groups.AddTags`, one line in `PeopleTags`). `SocialWeb.cliques`
+  is built from the groups, so older code that asks about circles still works. The pure arithmetic is `GroupMath`,
+  covered by `Tools/Tests/GroupTests.cs`.
+- **Balance.** Belonging is company, not mood (`RewardInstead` on the habit, welcome and role moments); what a group does
+  against someone is small and short (-1 to -3).
 
 ## Real effects: answers that play out on the map
 
@@ -1267,6 +1298,7 @@ fights pass and the worn-out episode read from it. (A downed victim after a figh
 | 1427 | Setbacks: the lasting ones (a wish still waiting, a decree dragging on, a sick friend, quiet days...), crops lost, rain on gatherings, noisy nights, long hauls, waiting for a doctor; outshone, cooled friendships and hard weeks in the first hour of the day | per colonist (their wish, decrees, those close to them who are ill or away), per home map (gatherings, sleepers and who is at loud work nearby, hauls, beds), per skill once a day |
 | 1544 | Council: nemeses, pets, the links between systems (pets and grief, the marshal after a fight, a fear faced), moments waiting for two to be together, PokeWorld, autonomy, who is home, everyday pressures | per colony animal on home maps, per spawned colonist (a plan or a job now and then), per colonist (meals, work), per home map (crowded rooms, half-built frames) |
 | 1777 | Personal stories | per story under way; new stories in the first hour of the day |
+| 1903 | Groups (with "Personalities and social life" and the social web on): work sampled, habits kept together | per colonist on a home map (their job); per group (its members up and about, together, doing its habit) |
 | 2089 | Story chains and missions; the peoples' memory fades (first hour of the day only) | per running chain, per mission; per remembered deed |
 | 2280 | Council: encounters and nuisances, Rimfolk's own events | one roll each; event memory pruned in the first hour of the day |
 | 2471 | Ailments, the colony's part (on the slice that lands here): the catching ailments' clock; pruning on the first look of the day | per home map |
@@ -1364,6 +1396,7 @@ on a map, in the world or in a caravan), so such a record is let go when the gam
 | Wishes | open ones only; recent wishes 20 days or 60; cooldowns dropped once over |
 | Trust | one record per colonist, the gone dropped daily; 8 log lines; grants of the last 30 days |
 | Social web | ties of the dead dropped daily, of those gone faded out; 40 lost bonds; pair tones (moment memory) forgotten after 4 quiet days or when one of the two is gone |
+| Groups | groups of 3 to 9, the dead and departed dropped daily, a group ended when fewer than two are left; 14 history lines, 10 former names and the rivalries with groups still there each; newcomers 40 days at most; 12 past groups (those the game still knows); work samples of colonists only, 6 kinds each |
 | Dreams | 80 recent dreams (a discarded dreamer kept by name only); omens until they come; dream counts of known pawns. The session-only maps (last dream, untold dream) drop the dead and whatever is too old to matter |
 | Life goals | goals of the dead and departed end daily; finished ones of the dead kept 3 years, of discarded pawns dropped; counters of known pawns; sparks 30 days |
 | Secrets | one per colonist, ended with their death; who was rolled for one: known pawns only |

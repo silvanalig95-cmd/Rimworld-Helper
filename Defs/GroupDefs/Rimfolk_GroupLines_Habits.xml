@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    What's said when a group keeps its habit (Source/ColonyCouncil/Social/Groups/GroupHabits.cs): one of them says a
+    line to another who is right there, over their head; when the anchor calls them to a gathering for it, the same
+    lines are said at the gathering. Spoken aloud, so one short sentence and no names. Picked in the speaker's voice
+    (tone) and by what they are: their role in the group ([grouprole:joker], anchor, peacemaker, firebrand, worrier,
+    quiet, newcomer), the group's ways ([groupnorm:merry], aloof, brave...), its kind ([groupkind:hunters]...), their
+    character ([persona:hothead]...), and the moment ([winter], [rain], [afterraid], [lowtech], [child]).
+  -->
+
+  <!-- ===================== An evening at the fire ===================== -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Group_Fire</defName>
+    <lines>
+      <plain>
+        <li>Same seats as always.</li>
+        <li>Shift up, there's room for one more.</li>
+        <li>Pass the kettle round, would you?</li>
+        <li>Somebody put another log on.</li>
+        <li>That's the best part of the day, this.</li>
+        <li>Where were we last night? The bit about the river.</li>
+        <li>Tell the one about the boomalope again.</li>
+        <li>Hear that? Just the wind.</li>
+        <li>My feet have finally stopped aching.</li>
+        <li>Nobody talk about work for an hour.</li>
+        <li>Look at those sparks go up.</li>
+        <li>I saved you the warm side.</li>
+        <li>[winter] Closer in, it's bitter tonight.</li>
+        <li>[winter] I can't feel my toes, and I don't care.</li>
+        <li>[summer] Too hot for a fire, and here we all are.</li>
+        <li>[rain] Under the eaves, everyone, the rain's coming in sideways.</li>
+        <li>[afterraid] We made it through another one.</li>
+        <li>[afterraid] Nobody sleeps much after a day like that.</li>
+        <li>[child] Can I stay up a bit longer? Just till the fire's low.</li>
+        <li>[grouprole:anchor] Good. Everyone's here.</li>
+        <li>[grouprole:anchor] Sit down, you've earned it.</li>
+        <li>[grouprole:joker] I was going to tell a story, but you've all heard it.</li>
+        <li>[grouprole:joker] Who let the cook near the stew again?</li>
+        <li>[grouprole:joker] Don't look at me like that, the smoke follows me.</li>
+        <li>[grouprole:peacemaker] Let's leave today's quarrels outside the circle.</li>
+        <li>[grouprole:firebrand] You know what I'd change about this place?</li>
+        <li>[grouprole:worrier] Did anyone check the gate before we sat down?</li>
+        <li>[grouprole:quiet] Yes. Together.</li>
+        <li>[grouprole:quiet] This is enough.</li>
+        <li>[grouprole:newcomer] Is this anyone's seat?</li>
+        <li>[grouprole:newcomer] Do you do this every night?</li>
+        <li>[groupkind:hunters] Three days on that trail, and the beast walks past the wall.</li>
+        <li>[groupkind:hunters] I'll find its tracks again tomorrow.</li>
+        <li>[groupkind:comrades] I still hear it, some nights.</li>
+        <li>[groupkind:comrades] To the ones who aren't sitting here.</li>
+        <li>[groupkind:elders] When I was your age there was no fire, just stars.</li>
+        <li>[groupkind:founders] Remember the first night, with nothing but a blanket between us?</li>
+        <li>[groupkind:tribeborn] This is how a fire should burn.</li>
+        <li>[groupnorm:brave] Next time they come, I'm at the front.</li>
+        <li>[groupnorm:gloomy] Enjoy it while it lasts.</li>
+        <li>[lowtech] The old songs sound better by firelight.</li>
+      </plain>
+      <warm>
+        <li>Come here, you look frozen.</li>
+        <li>I'm glad you're all here.</li>
+        <li>Have the last of the tea, go on.</li>
+      </warm>
+      <blunt>
+        <li>Move, you're in my seat.</li>
+        <li>Fire's too small. Fix it.</li>
+        <li>Don't start that story again.</li>
+      </blunt>
+      <cheerful>
+        <li>Who's got a song, then?</li>
+        <li>Best seats in the colony, these.</li>
+        <li>I've been looking forward to this all day.</li>
+      </cheerful>
+      <gloomy>
+        <li>Another day done, at least.</li>
+        <li>It'll be out by morning, like everything.</li>
+      </gloomy>
+      <cold>
+        <li>I'll sit. I won't talk.</li>
+        <li>Wake me when it's over.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== A shared table ===================== -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Group_Table</defName>
+    <lines>
+      <plain>
+        <li>Pass the salt down this end.</li>
+        <li>We kept you a place.</li>
+        <li>Eat first, talk after.</li>
+        <li>Is that seconds you've got there?</li>
+        <li>Who made this? It's good.</li>
+        <li>Same again tomorrow, then.</li>
+        <li>Budge up, there's room on the bench.</li>
+        <li>Anyone want the crust?</li>
+        <li>Finish yours before you look at mine.</li>
+        <li>That's better. I could eat a muffalo.</li>
+        <li>[morning] Nobody talks before they've eaten.</li>
+        <li>[evening] Long day. Good soup.</li>
+        <li>[winter] Hot food and full bowls, that's all I ask.</li>
+        <li>[poor] It's thin, but it's hot.</li>
+        <li>[child] I don't like the green bits.</li>
+        <li>[grouprole:anchor] Wait for the others before you start.</li>
+        <li>[grouprole:anchor] Save some for whoever's still at work.</li>
+        <li>[grouprole:joker] I've counted the beans, and I got fewer than you.</li>
+        <li>[grouprole:joker] If this is the cook's best, I'd hate to taste the worst.</li>
+        <li>[grouprole:peacemaker] Half each. There, nobody's cheated.</li>
+        <li>[grouprole:firebrand] Who decided we eat this three days running?</li>
+        <li>[grouprole:worrier] Are you sure this meat's all right?</li>
+        <li>[grouprole:worrier] You're not eating enough, you know.</li>
+        <li>[grouprole:quiet] Thank you.</li>
+        <li>[grouprole:newcomer] Where do I put my bowl after?</li>
+        <li>[groupkind:faithful] Hands together first.</li>
+        <li>[groupkind:faithful] We give thanks, and then we eat.</li>
+        <li>[groupkind:kitchen] Too much salt. Mine, I mean.</li>
+        <li>[groupkind:kitchen] Next time, less fire under it.</li>
+        <li>[groupkind:fields] We grew these, you know.</li>
+        <li>[groupkind:miners] I've still got rock dust in my teeth.</li>
+        <li>[groupkind:nightshift] Breakfast for us, supper for everyone else.</li>
+        <li>[groupnorm:hardworkers] Eat quick, there's daylight left.</li>
+        <li>[groupnorm:merry] Who's telling the story tonight?</li>
+        <li>[groupnorm:aloof] Our end of the table.</li>
+      </plain>
+      <warm>
+        <li>Have some of mine, I'm full.</li>
+        <li>You look tired. Eat up.</li>
+      </warm>
+      <blunt>
+        <li>Stop talking with your mouth full.</li>
+        <li>Pass it. Now, please.</li>
+      </blunt>
+      <cheerful>
+        <li>A full table, that's the way.</li>
+        <li>Best part of the day, this.</li>
+      </cheerful>
+      <gloomy>
+        <li>Same as yesterday. Same as tomorrow.</li>
+      </gloomy>
+      <cold>
+        <li>Eat. Don't chatter.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== A game night ===================== -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Group_Games</defName>
+    <lines>
+      <plain>
+        <li>Your turn. No, yours.</li>
+        <li>That's not how that piece moves.</li>
+        <li>Best of three, then.</li>
+        <li>Who's keeping score?</li>
+        <li>Again. I want a rematch.</li>
+        <li>I saw that.</li>
+        <li>That's twice you've won. Suspicious.</li>
+        <li>Deal me in.</li>
+        <li>Quiet, I'm thinking.</li>
+        <li>Same stakes as last time.</li>
+        <li>[lowtech] Throw the bones, let's see.</li>
+        <li>[!lowtech] Shuffle them properly this time.</li>
+        <li>[child] Can I play? I know the rules.</li>
+        <li>[child] I won! Did everyone see?</li>
+        <li>[grouprole:anchor] Everyone gets a turn, and that means you.</li>
+        <li>[grouprole:joker] I wasn't cheating. I was improvising.</li>
+        <li>[grouprole:joker] That's the third time I've lost on purpose.</li>
+        <li>[grouprole:peacemaker] It's a game. Nobody owes anybody anything.</li>
+        <li>[grouprole:firebrand] Rematch. Now.</li>
+        <li>[grouprole:firebrand] Those rules are rubbish and you know it.</li>
+        <li>[grouprole:worrier] We should stop before someone gets cross.</li>
+        <li>[grouprole:quiet] Your move.</li>
+        <li>[grouprole:newcomer] How do you win at this, exactly?</li>
+        <li>[groupnorm:merry] Loser sings.</li>
+        <li>[groupnorm:merry] Louder, so the whole colony knows who won.</li>
+        <li>[groupnorm:proud] Nobody here beats me twice.</li>
+        <li>[groupkind:young] Last one to bed has to tidy.</li>
+        <li>[groupkind:scholars] There's a better strategy, I've worked it out.</li>
+        <li>[persona:hothead] Who moved my piece?</li>
+      </plain>
+      <warm>
+        <li>Good game. Really, well played.</li>
+      </warm>
+      <blunt>
+        <li>You're terrible at this.</li>
+      </blunt>
+      <cheerful>
+        <li>Ha! Pay up.</li>
+        <li>This is the best night of the week.</li>
+      </cheerful>
+      <gloomy>
+        <li>I always lose, don't know why I bother.</li>
+      </gloomy>
+      <cold>
+        <li>Check. And that's that.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== Working side by side ===================== -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Group_Work</defName>
+    <lines>
+      <plain>
+        <li>Hand me that, would you?</li>
+        <li>You take that end.</li>
+        <li>Nearly there.</li>
+        <li>Mind your fingers.</li>
+        <li>Keep going, we'll finish before dark.</li>
+        <li>Mine's straighter than yours.</li>
+        <li>That'll hold.</li>
+        <li>Slow down, you'll ruin it.</li>
+        <li>We make a good pair at this.</li>
+        <li>[rain] Wet through, and still not done.</li>
+        <li>[hot] Water break, before we drop.</li>
+        <li>[grouprole:anchor] Good work, all of you.</li>
+        <li>[grouprole:anchor] Show the new hands how it's done.</li>
+        <li>[grouprole:joker] If we work any harder, the council might notice.</li>
+        <li>[grouprole:joker] I'm not slow, I'm thorough.</li>
+        <li>[grouprole:peacemaker] Your way's fine. So is theirs.</li>
+        <li>[grouprole:firebrand] We do all this, and who gets the thanks?</li>
+        <li>[grouprole:worrier] Is that safe? It doesn't look safe.</li>
+        <li>[grouprole:quiet] There.</li>
+        <li>[grouprole:newcomer] Like this? Show me again.</li>
+        <li>[groupkind:kitchen] Stir, don't stab it.</li>
+        <li>[groupkind:kitchen] Taste this. Too much?</li>
+        <li>[groupkind:fields] Another row and we'll call it.</li>
+        <li>[groupkind:fields] The soil's good this year.</li>
+        <li>[groupkind:workshop] Measure twice.</li>
+        <li>[groupkind:workshop] Sharpen that before you blunt my patience.</li>
+        <li>[groupkind:builders] Hold it steady while I fix it.</li>
+        <li>[groupkind:builders] That wall will stand longer than us.</li>
+        <li>[groupkind:miners] Listen to the rock before you hit it.</li>
+        <li>[groupkind:miners] There's a seam here, I can feel it.</li>
+        <li>[groupkind:healers] Clean hands, then we start.</li>
+        <li>[groupkind:scholars] Read me that part again.</li>
+        <li>[groupkind:keepers] Easy, easy. She doesn't like being rushed.</li>
+        <li>[groupkind:artists] Leave it rough. It's better rough.</li>
+        <li>[groupnorm:hardworkers] No sitting down until it's done.</li>
+      </plain>
+      <warm>
+        <li>Let me take that, it's heavy.</li>
+      </warm>
+      <blunt>
+        <li>Wrong. Do it again.</li>
+      </blunt>
+      <cheerful>
+        <li>Look at us go.</li>
+      </cheerful>
+      <gloomy>
+        <li>It'll only need doing again next week.</li>
+      </gloomy>
+      <cold>
+        <li>Less talk. More work.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== A hunt together ===================== -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Group_Hunt</defName>
+    <lines>
+      <plain>
+        <li>Downwind. Always downwind.</li>
+        <li>Tracks, fresh ones.</li>
+        <li>Quiet, it's just past those trees.</li>
+        <li>Your shot.</li>
+        <li>Wait for it to turn.</li>
+        <li>That one's big enough for both of us.</li>
+        <li>Don't waste the hide.</li>
+        <li>I'll circle round.</li>
+        <li>[lowtech] Keep your spear low.</li>
+        <li>[lowtech] Nock it and wait.</li>
+        <li>[!lowtech] Steady. Breathe out, then squeeze.</li>
+        <li>[winter] Easy tracking in the snow, at least.</li>
+        <li>[rain] Rain's washing the trail away.</li>
+        <li>[grouprole:anchor] Stay together, nobody goes off alone.</li>
+        <li>[grouprole:joker] That's the one that got away last time. I recognise its smirk.</li>
+        <li>[grouprole:firebrand] I'm not going home with nothing.</li>
+        <li>[grouprole:worrier] What if it charges?</li>
+        <li>[grouprole:quiet] There.</li>
+        <li>[grouprole:newcomer] What am I looking for, exactly?</li>
+        <li>[groupnorm:brave] Closer. I want to see its eyes.</li>
+      </plain>
+      <cheerful>
+        <li>Good hunting today, I can feel it.</li>
+      </cheerful>
+      <gloomy>
+        <li>Nothing out here but our own footprints.</li>
+      </gloomy>
+      <cold>
+        <li>Clean kill. Move on.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== The small hours ===================== -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Group_Night</defName>
+    <lines>
+      <plain>
+        <li>Still up? Me too.</li>
+        <li>Everyone else is snoring.</li>
+        <li>Best time of the day, the middle of the night.</li>
+        <li>Listen to how quiet it is.</li>
+        <li>Another hour and the sky starts going grey.</li>
+        <li>Want something hot?</li>
+        <li>I'll take the next round of the walls.</li>
+        <li>Did you hear that, or was it me?</li>
+        <li>Stars are sharp tonight.</li>
+        <li>[winter] Cold enough to freeze your thoughts.</li>
+        <li>[rain] Rain on the roof, nobody else awake to hear it.</li>
+        <li>[grouprole:anchor] Wake me if anything moves.</li>
+        <li>[grouprole:joker] The day lot don't know what they're missing.</li>
+        <li>[grouprole:worrier] Something's out there, I'm sure of it.</li>
+        <li>[grouprole:quiet] Nice, this.</li>
+        <li>[grouprole:newcomer] Is it always this quiet?</li>
+        <li>[groupnorm:nightowls] Mornings are for other people.</li>
+        <li>[groupkind:nightshift] Day shift left a mess again.</li>
+      </plain>
+      <warm>
+        <li>Take my blanket, I'm warm enough.</li>
+      </warm>
+      <cheerful>
+        <li>Another night, and all of us still here.</li>
+      </cheerful>
+      <gloomy>
+        <li>The night always feels longer than it is.</li>
+      </gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== Prayers together ===================== -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Group_Prayer</defName>
+    <lines>
+      <plain>
+        <li>Together, then.</li>
+        <li>Let's sit a moment before we start.</li>
+        <li>For the ones we lost.</li>
+        <li>For the harvest.</li>
+        <li>For the ones still out there.</li>
+        <li>Quiet now.</li>
+        <li>I always feel better after.</li>
+        <li>[afterraid] For those who held, and those who didn't.</li>
+        <li>[winter] For the stores, and the spring.</li>
+        <li>[grouprole:anchor] Hands together. Everyone.</li>
+        <li>[grouprole:peacemaker] Let's ask for patience, all of us.</li>
+        <li>[grouprole:worrier] I hope it's listening.</li>
+        <li>[grouprole:quiet] Yes. Together.</li>
+        <li>[grouprole:newcomer] Is it the same words every time?</li>
+        <li>[groupnorm:devout] Not one day missed, not since we started.</li>
+      </plain>
+      <warm>
+        <li>I said one for you too.</li>
+      </warm>
+      <gloomy>
+        <li>We could all use a little more faith right now.</li>
+      </gloomy>
+      <cold>
+        <li>Words don't fill the stores. But still.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== Talking late ===================== -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Group_Talk</defName>
+    <lines>
+      <plain>
+        <li>So, what did you think of the council today?</li>
+        <li>One more cup and then bed.</li>
+        <li>Have you noticed how quiet the new one is?</li>
+        <li>You never finished that story.</li>
+        <li>I've been thinking about what you said.</li>
+        <li>Where do you think we'll all be in a year?</li>
+        <li>Tell me about where you grew up.</li>
+        <li>That's the trouble with this place, and the best of it.</li>
+        <li>I don't agree, but go on.</li>
+        <li>Is it just me, or is everyone tired lately?</li>
+        <li>[afterraid] We need to talk about the wall.</li>
+        <li>[winter] Long nights for talking, at least.</li>
+        <li>[grouprole:anchor] Right, what's everyone's news?</li>
+        <li>[grouprole:joker] I've got gossip, but you'll have to bribe me.</li>
+        <li>[grouprole:peacemaker] I think you two want the same thing, really.</li>
+        <li>[grouprole:firebrand] Somebody has to say it, so I will.</li>
+        <li>[grouprole:worrier] I can't stop thinking about the stores.</li>
+        <li>[grouprole:quiet] I'm listening.</li>
+        <li>[grouprole:newcomer] Is it always like this here?</li>
+        <li>[groupkind:healers] Three patients this week, and all of them walked out.</li>
+        <li>[groupkind:scholars] I nearly had it today. Nearly.</li>
+        <li>[groupkind:offworlders] Do you miss the stars? The other ones, I mean.</li>
+        <li>[groupkind:curious] What's past the hills, do you think?</li>
+        <li>[groupkind:grumblers] Mark my words, it'll go wrong.</li>
+        <li>[groupnorm:curious] I heard of a new way of doing it.</li>
+        <li>[groupnorm:wary] I don't trust the new arrivals yet.</li>
+      </plain>
+      <warm>
+        <li>I'm glad we have these evenings.</li>
+      </warm>
+      <blunt>
+        <li>Get to the point.</li>
+      </blunt>
+      <cheerful>
+        <li>You'll never guess what happened today.</li>
+      </cheerful>
+      <gloomy>
+        <li>I don't know how much longer we can keep this up.</li>
+      </gloomy>
+      <cold>
+        <li>Talk if you like. I'll listen, mostly.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== A walk at dusk ===================== -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Group_Walk</defName>
+    <lines>
+      <plain>
+        <li>The usual way round?</li>
+        <li>Slow down, it's not a race.</li>
+        <li>Look at that sky.</li>
+        <li>The fields are coming on.</li>
+        <li>Good air out here.</li>
+        <li>Let's go as far as the old tree.</li>
+        <li>Mind the mud there.</li>
+        <li>Hear the birds settling?</li>
+        <li>[winter] Short walk tonight.</li>
+        <li>[rain] Nobody else would walk in this.</li>
+        <li>[spring] Everything's green again.</li>
+        <li>[fall] The leaves are turning.</li>
+        <li>[grouprole:anchor] Wait for the slow ones.</li>
+        <li>[grouprole:joker] If we walk far enough, maybe the chores will forget us.</li>
+        <li>[grouprole:worrier] Not too far from the walls.</li>
+        <li>[grouprole:quiet] Lovely.</li>
+        <li>[groupkind:elders] My knees aren't what they were. Keep up anyway.</li>
+        <li>[groupkind:elders] I remember when all this was bush.</li>
+        <li>[groupkind:keepers] The herd's restless tonight.</li>
+        <li>[groupkind:tribeborn] The land talks, if you walk it slow enough.</li>
+        <li>[groupkind:young] Race you to the fence.</li>
+      </plain>
+      <warm>
+        <li>Take my arm, the path's rough here.</li>
+      </warm>
+      <cheerful>
+        <li>What a fine evening for it.</li>
+      </cheerful>
+      <gloomy>
+        <li>It's getting dark sooner every day.</li>
+      </gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

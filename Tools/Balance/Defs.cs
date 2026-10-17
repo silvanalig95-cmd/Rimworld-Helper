@@ -522,7 +522,7 @@ namespace Balance
             if (li == null || li.Element("mods") != null) return;
             moments.Add(new OutcomeDef
             {
-                gate = Gate(li),
+                gate = Gate(li) * GroupGate(exts),
                 sharesBedroom = (string)li.Element("shares") == "bedroom",
                 name = Get(el, "defName"),
                 kind = "moment",
@@ -535,6 +535,17 @@ namespace Balance
                 winnerThought = (string)li.Element("winnerThought"),
                 loserThought = (string)li.Element("loserThought")
             });
+        }
+
+        /// <summary>A group moment comes only between the people its group conditions name (Rates.GroupGates); others: 1.</summary>
+        private static float GroupGate(XElement exts)
+        {
+            var g = exts?.Elements("li").FirstOrDefault(x => ((string)x.Attribute("Class") ?? "").EndsWith("GroupMomentExtension"));
+            if (g == null) return 1f;
+            float f = Rates.GroupGates.TryGetValue((string)g.Element("between") ?? "sameGroup", out float v) ? v : 0.3f;
+            if (g.Element("initiatorRole") != null) f *= Rates.GroupRoleGate;
+            if (g.Element("recipientMoodBelow") != null) f *= 0.4f;
+            return f;
         }
 
         private void Wish(XElement el)

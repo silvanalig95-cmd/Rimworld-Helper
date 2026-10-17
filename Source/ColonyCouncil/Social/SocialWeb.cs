@@ -213,12 +213,15 @@ namespace ColonyCouncil
         public Clique CliqueOf(Pawn p)
         {
             if (!S.socialWeb || p == null) return null;
+            // With groups on, a circle is someone's first group (Social/Groups/).
+            if (GroupLife.Active) return GroupLife.CliqueOf(p);
             if (!cliquesBuilt) RebuildCliques();
             return cliques.FirstOrDefault(c => c.members.Contains(p));
         }
 
         public bool SameClique(Pawn x, Pawn y)
         {
+            if (S.socialWeb && GroupLife.Active) return Groups.Same(x, y);
             var c = CliqueOf(x);
             return c != null && c.members.Contains(y);
         }
@@ -239,7 +242,8 @@ namespace ColonyCouncil
                     case TieKind.Rivals: w -= t.strength; break;
                 }
             }
-            if (SameClique(x, y)) w += 20f;
+            // One of us counts for something; with groups on, so does being of the other lot (Social/Groups/).
+            w += GroupLife.Active ? Groups.Warmth(x, y) : SameClique(x, y) ? 20f : 0f;
             return w;
         }
 
@@ -404,6 +408,20 @@ namespace ColonyCouncil
                 if (t.kind == TieKind.Mentor && ties.Contains(t)) Mentor(t, comp);
             }
             TryStartMentorship(pawns);
+            // With groups on (Social/Groups/), the circles are the colony's groups, and their day runs here; the left-out
+            // feeling is theirs too.
+            if (GroupLife.Active)
+            {
+                try
+                {
+                    GroupLife.Daily(comp, this, pawns);
+                }
+                catch (System.Exception e)
+                {
+                    CouncilLog.ErrorOnce("groups", e);
+                }
+                return;
+            }
             BuildCliques(pawns);
             // Circles have a way of making the people outside them feel it.
             if (cliques.Count > 0 && Rand.Chance(0.15f))
@@ -672,7 +690,16 @@ namespace ColonyCouncil
             }
         }
 
-        public void RebuildCliques() => BuildCliques(PawnsFinder.AllMaps_FreeColonists.Where(Eligible).ToList());
+        public void RebuildCliques()
+        {
+            if (GroupLife.Active)
+            {
+                cliques = GroupLife.BuildCliques();
+                cliquesBuilt = true;
+                return;
+            }
+            BuildCliques(PawnsFinder.AllMaps_FreeColonists.Where(Eligible).ToList());
+        }
 
         public void ExposeData()
         {

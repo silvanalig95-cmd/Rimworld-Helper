@@ -56,6 +56,7 @@ namespace ColonyCouncil
         /// </summary>
         public static void Notify_Spat(Pawn a, Pawn b, PairTone tone)
         {
+            GroupMoments.Notify_Spat(a, b, tone);
             if (!On || tone == null || a == null || b == null || !S.frictions) return;
             try
             {
