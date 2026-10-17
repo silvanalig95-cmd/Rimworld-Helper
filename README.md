@@ -471,14 +471,14 @@ remembered: the chronicle notes what they never got to do, and their friends wri
 
 ### Personal stories
 A few times a year, one colonist's own story begins, and plays out in three to five stages over days to a season.
-There are 28 of them: the long way home (away for days, missing someone; home; the road told), somewhere to belong (a
+There are 29 of them: the long way home (away for days, missing someone; home; the road told), somewhere to belong (a
 homesick newcomer finds a friendly face, a room, roots), a companion (an animal that follows its master about, until
 they bond), grudging respect (rivals who are good at the same thing), old wounds (former lovers, family at odds, a
 friend who let a secret slip), an old debt (a rescue or a kindness repaid with something made by hand), second chances
 (a colonist who gave up on the council), the apprentice's masterwork, a calling (a child or teenager taken with what a
 grown-up does well), passing it on (an elder's craft handed down), a long grief, a secret told (to a friend first, then
-everyone), a fear faced (an enemy who got away, a dread of the dark or of storms), the recurring dream, a grudge laid
-down, and within reach (halfway to a life goal and doubting it). Others grow out of the world and the colony's
+everyone), a fear faced (an enemy who got away, a dread of the dark or of storms), the fear laid to rest (that enemy
+in the cells or gone for good, and the fear not yet), the recurring dream, a grudge laid down, and within reach (halfway to a life goal and doubting it). Others grow out of the world and the colony's
 offices: the road calls (a friend made at a camp, and the itch to go with them), the weight of office (a new seat on
 the council that sits heavy) and word from far away (family out in the world when sickness, famine or war comes
 there). The young and the old have their own: bad nights (a child's nightmares), not a child any more (a teenager
@@ -552,14 +552,17 @@ roommate up (21 social events and a handful of moments, which change the bond be
 mood).
 
 ### Dreams
-Colonists who sleep (or lie unconscious) for a few hours sometimes wake from a dream (there are 155), and tell each
+Colonists who sleep (or lie unconscious) for a few hours sometimes wake from a dream (there are 184), and tell each
 other about it. Dreams grow out of their lives: the raid two days ago, the friend they buried, the rival who insulted
 them, the wish the council ignored, the leg they lost, the skill they're learning, the dead they miss, their partner,
 their dog. They grow out of what they feel, too (an argument all night with the one they're angry at, a debt repaid
 to the one they're grateful to, dreams of fear, shame, loneliness, pride or hope), out of what ails them (loose teeth
 with a toothache, breathing underwater with a cold), and out of what's around them: a camp on the map, a council
 meeting, sickness, famine, fighting or a fair in the region, and the seasons, and out of the colony's own days: the
-dead visiting after a remembrance, a feast that goes on all night, a wish taken back, work lost. Every feeling has
+dead visiting after a remembrance, a feast that goes on all night, a wish taken back, work lost. A nemesis comes back
+in dreams (at the gate, behind the cell door, and gone once it's over); convalescents dream of running again, healers of
+the patients they pulled through or lost; and a feeling that meets a camp or a world event dreams deepest (fellowship
+by the camp's fire, worry about the fever at the door, hope on the open road). Every feeling has
 dreams of its own, and so do many quirks, life goals and personal stories: the worrier dreams of checking one gate after
 another, someone set on marrying dreams of a wedding, someone caught between two friends of a rope pulled both ways.
 Most leave a line in their journal and
@@ -598,7 +601,9 @@ Colonists meet everyone else on the map, too:
   prowling. The victim dreads it or burns for it, may make settling the score their life goal, and feels it
   when the nemesis is captured or finally brought down. One who gets away has a parting word and one who comes back
   shouts something across the field (a beast leaves signs); the story can also end with them joining, collared,
-  tamed, let go from the cells, dying out in the world or vanishing.
+  tamed, let go from the cells, dying out in the world or vanishing. The one they hurt dreams of them, a fight at home
+  can leave bad nights, two personal stories grow out of it (a fear faced, and the fear laid to rest once they're in the
+  cells or gone), and the day a nemesis first came back goes on the calendar beside the day one fell.
 - **Pets as companions:** an animal that fights beside its person is remembered for it, the more so if it stood
   over them when they fell, and a named animal that dies gets a farewell shaped by its years here, its size and how
   it died (an old animal and a Pokémon have farewells of their own).
@@ -667,7 +672,7 @@ children's (Biotech): a **snow day** off when the snow comes, the **children's r
 ### The colony calendar
 The days that matter to this colony, written down as its history happens: its **founding day**, its **first good
 harvest**, **the first snow** (which comes with the first snow of each winter, not on a date), **a battle it
-remembers** (a big raid seen off, ours who fell, a nemesis brought down), **the death of someone it loved**,
+remembers** (a big raid seen off, ours who fell, a nemesis brought down or come back), **the death of someone it loved**,
 **weddings**, the **arrivals** of its first members and the **birthdays** of its long-serving colonists, the **first
 child** born here, **the day the walls went up**, a caravan's **homecoming** after a long journey, the first harvest of
 a **new crop**, the **first trade**, a **great hunt**, the herd's **first foal** and a **beloved animal's day** (a
@@ -1530,7 +1535,10 @@ game's, Rimfolk's and other mods') and from what they can see: enemies on the ma
 coming, a newcomer, quiet days. Feelings add no mood, since that would count the same thing twice. They nudge
 instead: a wish that fits becomes up to half again as likely (fear asks for defenses, grief for a grave,
 restlessness for a journey, pride for art), moments between colonists go warmer or pricklier, dreams change color,
-fear, grief and despair add a little strain, and joy, pride and hope help it drain.
+fear, grief and despair add a little strain, and joy, pride and hope help it drain. The world beyond the walls feeds
+them too: friends made at a camp (fellowship), a camp driven off (shame), a camp's good turn (gratitude), a sickness in
+the region for parents and healers or hunger for growers (worry), good news from the region (hope), a prize at the
+region's fair (pride); and a feeling that meets a camp or a world event brings dreams and moments of its own.
 
 **The heart's needs.** Four values from 0 to 100: **belonging** (friends, a partner, family, good moments, not being
 left out), **purpose** (work they love, a life goal, a seat, learning), **safety** (no danger, food, medicine,
@@ -1552,13 +1560,13 @@ Rimfolk's own save data. The only trace in a save is a colonist in the middle of
 the game can't load that mental state, logs it once and lets them go back to work.
 
 ## Ailments and illnesses
-Colony life wears on the body too. **Everyday ailments** (34 of them) are small and temporary: they never kill, never
+Colony life wears on the body too. **Everyday ailments** (44 of them) are small and temporary: they never kill, never
 leave a mark, last from a night to two weeks, and say in their description what helps. Doctors tend them like any
 illness.
 
 - **Going round** (the game's own disease events, so immunity, genes and the medical tab work as usual; never babies):
   a head cold, a stomach bug, a chest cold in cold weather, hay fever in spring and summer (back to the same people
-  each year), pinkeye, and dreamfever, an invented rim fever of vivid dreams. About one every 30 days, more where the
+  each year), pinkeye, and dreamfever, an invented rim fever of vivid dreams. About one every 35 days, more where the
   game's diseases are common, less on gentle storyteller settings.
 - **From the day's work**, once a colonist's day holds enough hours of the cause: a strained back after long hauling,
   mining or building, sore hands after long bench work, blisters after a day's walking or a caravan trip, chilblains
@@ -1570,13 +1578,19 @@ illness.
   lice in dirty crowded rooms (they go round, and make typhus likelier), insomnia from worry or late nights, migraines
   after missed meals or worry, cold sores, and heartburn and hiccups after a rich meal or a drink. With Alpha Biomes,
   two of its lands have their own: a spore cough in the mycotic jungle and the miasmic mangrove, a fume headache at
-  the tar pits and the propane lakes. Never more than two at once, never the same one again within days, and never
-  on guests, prisoners or babies.
+  the tar pits and the propane lakes. Snow blindness on bright snow or ice with nothing over the eyes, leeches from
+  wading in a swamp, a pollution cough on polluted ground or under the acid haze (Biotech, not with a gas mask), and
+  orbit sickness in the first days aloft (Odyssey). Never more than two at once, never the same one again within days,
+  and never on guests, prisoners or babies.
+- **After what happened**, once it's over: a cough after the flu, swellings after the plague, a limp once a broken leg
+  bone has knit, an itching burn once a bad burn has healed, bad nights after a fight at home (likelier for those hurt
+  in it), and with Anomaly, unease after a horror (an entity's wound, a chimera, the labyrinth, a psychic ritual).
 
-**Serious illnesses** (14 of them) are rare, behind their own switch, and most can kill: tetanus from a wound left
+**Serious illnesses** (15 of them) are rare, behind their own switch, and most can kill: tetanus from a wound left
 untended, pneumonia after a cold in someone old, frail or starving, tuberculosis, typhus in dirty crowded quarters,
 meningitis, scurvy after weeks without fruit or vegetables, cholera in hot weather, appendicitis, rabies from an
-animal's bite, and two invented ones: glassblood from the dust of ancient ruins and hive fever from insectoid stings.
+animal's bite, swamp fever (leptospirosis) from wading in swamps and bogs, and two invented ones: glassblood from the
+dust of ancient ruins and hive fever from insectoid stings.
 Measles in children, kidney stones, and shingles in people over fifty are hard going but never kill. One kind at a
 time in the colony, none within 30 days of the last, and each comes with a letter and a doctor's note saying what it
 is and what helps. They follow the real diseases: a quiet incubation where there is one, a course of days to weeks,
@@ -1596,8 +1610,9 @@ course.
 
 ### Recovery, doctors and midwives
 Getting better takes a while. After a dangerous illness that got serious (the game's own flu, plague or wound
-infection as well as Rimfolk's), a major operation (an organ, a limb, the brain), four days or more laid up in bed, or
-losing an arm or a leg, a colonist is **convalescing** for a few days to two weeks: a little slower at work and on
+infection as well as Rimfolk's, tended or not), a major operation (an organ, a limb, the brain), four days or more laid
+up in bed, losing an arm or a leg, going hungry as far as malnutrition, or serious hypothermia or heatstroke, a colonist
+is **convalescing** for a few days to two weeks: a little slower at work and on
 their feet, less in bed. Most are glad to be alive (a good mood that fades); the industrious and hard workers are weak
 and frustrated instead. A friend who sits by the sickbed (the game's own visit) lifts both their moods, friends walk
 slowly with a convalescent or take the load out of their hands, and someone laid up may wish for a visit from a
@@ -1609,7 +1624,12 @@ patients lost, shown on their Story tab and in the game's Records. A doctor the 
 ease (a small good mood when they tend them) and others write "I'd trust no one else with a knife" in their journals; a
 run of losses weighs on the doctor (the heart's grief and shame) and can cost them the trust. The best is called
 **Goodhands**. With Biotech, whoever attends a birth as the doctor is its **midwife**: a good mood, the mother's
-lasting good opinion and, for the one with the most births, the name **the Midwife**. Two life goals (pull ten patients
+lasting good opinion and, for the one with the most births, the name **the Midwife**. The **hospital** has a name of
+its own, from everyone it pulled through, operated on, delivered or saw from outside, against those it lost: well
+spoken of, it eases patients in its medical beds (comfort and rest, not a mood) and draws the sick, from a camp on the
+map or from the road, who come to ask for its doctor (a dose of medicine, their people's memory of the doctor, and a
+bigger name); known across the region, they come twice as often. It shows on the Story tab of doctors, midwives and
+its patients. Convalescents dream of running again and healers of the patients they pulled through or lost. Two life goals (pull ten patients
 through, deliver five babies), a wish (a visit from a friend) and four dilemmas (a doctor's day away after a loss, back
 to work too soon, family who want a say in an operation, a midwife's apprentice) come with it. Two switches on the
 Heart & health page: convalescence and sickbed visits, and doctors' and midwives' reputations.

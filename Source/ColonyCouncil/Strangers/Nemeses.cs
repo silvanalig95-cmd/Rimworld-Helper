@@ -30,6 +30,8 @@ namespace ColonyCouncil
         public int lastSeedThreat;
         /// <summary>Last time they were on one of our maps (or got away); long silence ends it.</summary>
         public int lastSeen;
+        /// <summary>When they first came back to one of our homes (0: never yet), for the calendar.</summary>
+        public int firstReturnTick;
 
         public bool IsBeast => pawn?.RaceProps != null && pawn.RaceProps.Animal;
 
@@ -79,6 +81,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref endText, "endText");
             Scribe_Values.Look(ref lastSeedThreat, "lastSeedThreat");
             Scribe_Values.Look(ref lastSeen, "lastSeen");
+            Scribe_Values.Look(ref firstReturnTick, "firstReturnTick");
         }
     }
 
@@ -406,6 +409,8 @@ namespace ColonyCouncil
 
         private void Returned(CouncilGameComponent comp, Nemesis n, bool tell = true)
         {
+            // The calendar remembers the day they first came back (CalendarTracker.WatchNemeses).
+            if (n.firstReturnTick <= 0) n.firstReturnTick = Find.TickManager.TicksGame;
             using var _cause = Causes.Push("CC_Cause_Nemesis".Translate(n.Name, n.DeedText).Resolve());
             var x = n.pawn;
             string text = "CC_Nemesis_Returned".Translate(x.Named("X"), (n.victimName ?? "?").Named("VICTIM"), n.DeedText.Named("DEED")).Resolve();

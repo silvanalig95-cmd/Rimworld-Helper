@@ -10,9 +10,9 @@
     <order>165</order>
     <summary>Rimfolk's everyday ailments and rare serious illnesses: where they come from, what they do and what helps</summary>
     <tip>Tend wounds within a few hours, keep a hat on in the heat, and keep fruit or vegetables on the table.</tip>
-    <description>Besides the game's own diseases, Rimfolk adds everyday ailments: small, temporary troubles from ordinary life. Some go round like a cold, through the game's own disease events; others come from how a colonist's day went, like a strained back after a day of hauling. None of them can kill or leaves a mark, and each says in its description what helps. Doctors tend them like any illness, and a colonist has at most two of the day-to-day kind at once.
+    <description>Besides the game's own diseases, Rimfolk adds everyday ailments: small, temporary troubles from ordinary life. Some go round like a cold, through the game's own disease events; others come from how a colonist's day went, like a strained back after a day of hauling. Some follow what really happened: a cough after the flu, a limp once a broken leg has knit, bad nights after a raid. None of them can kill or leaves a mark, and each says in its description what helps. Doctors tend them like any illness, and a colonist has at most two of the day-to-day kind at once.
 
-A rare serious tier sits on top, behind its own setting: twelve illnesses modeled on real ones and two from the rim. Most of them can kill; measles, kidney stones and shingles can't, but they are hard going. At most one kind runs in the colony at a time, never within 30 days of the last, and each comes with a letter that says what it is and what helps. Steady tending beats all of them (for rabies, only if it starts before the symptoms show), appendicitis can also be cut out, and against the ones that real medicine treats with modern drugs, industrial or glitterworld medicine makes a much bigger difference than herbs.</description>
+A rare serious tier sits on top, behind its own setting: thirteen illnesses modeled on real ones (one of them only in swamps and bogs) and two from the rim. Most of them can kill; measles, kidney stones and shingles can't, but they are hard going. At most one kind runs in the colony at a time, never within 30 days of the last, and each comes with a letter that says what it is and what helps. Steady tending beats all of them (for rabies, only if it starts before the symptoms show), appendicitis can also be cut out, and against the ones that real medicine treats with modern drugs, industrial or glitterworld medicine makes a much bigger difference than herbs.</description>
     <sections>
       <li>
         <heading>Going round</heading>
@@ -25,7 +25,7 @@ A rare serious tier sits on top, behind its own setting: twelve illnesses modele
           <li>Pinkeye | Conjunctivitis | Any time | About a week, 3 to 4 days with tending | Clean hands and towels; industrial medicine clears it fastest</li>
           <li>Dreamfever | Invented | Any time | About a week | Rest and quiet; it brings vivid dreams</li>
         </table>
-        <after>At 100%, one of these goes round about every 30 days on an average map, more often where the game's own diseases are common and less on gentler storyteller settings, and the same one at most once in 20 to 40 days. They hit a share of the colony the way the game's diseases do, never babies, and immunity, genes and the medical tab work as usual.</after>
+        <after>At 100%, one of these goes round about every 35 days on an average map, more often where the game's own diseases are common and less on gentler storyteller settings, and the same one at most once in 20 to 40 days. They hit a share of the colony the way the game's diseases do, never babies, and immunity, genes and the medical tab work as usual.</after>
       </li>
       <li>
         <heading>From the day's work</heading>
@@ -56,12 +56,30 @@ A rare serious tier sits on top, behind its own setting: twelve illnesses modele
           <li>Insomnia | 8 hours of worry in a day (mood under 30%, or strain of 30 or more), or 3 hours awake between midnight and five (never night owls) | 4 to 7 days | A regular bedtime and fewer late nights; tending</li>
           <li>Migraine | 6 hours hungry or 6 hours of worry in a day (rarely in children) | About a day, half that in bed | A dark room and rest; tending, industrial best</li>
           <li>Cold sore | 8 hours of worry or 4 hours in the midday heat; 1 in 10 colds leave one | 4 to 7 days | Tending, industrial best (an antiviral)</li>
-          <li>Heartburn | A fine or lavish meal: 4% each, half again from 40 and double from 60 | 6 to 10 hours | Smaller helpings</li>
+          <li>Heartburn | A fine or lavish meal: 3.5% each, half again from 40 and double from 60 | 6 to 10 hours | Smaller helpings</li>
           <li>Hiccups | An alcoholic drink (5%) or a rich meal (1%) | 1 to 2 hours | Nothing; they stop</li>
           <li>Spore cough (invented; Alpha Biomes' mycotic jungle and miasmic mangrove only) | A night in a damp room, or 4 hours growing or cutting plants outdoors above 10 °C | 2 to 4 days, less with tending | A dry, roofed bedroom; a cloth over the face in the fields</li>
           <li>Fume headache (Alpha Biomes' tar pits and propane lakes only) | 5 hours of hauling, mining or building, or 4 hours at 32 °C or more | 1 to 2 days | Heavy work upwind of the seeps, a rest in the hottest hours</li>
+          <li>Pollution cough (Biotech) | 4 hours outdoors on polluted ground or under the acid haze, without a gas mask | 2 to 4 days | A gas mask, clean air, cleaning up the ground; tending</li>
+          <li>Snow blindness | 4 hours outdoors on deep snow or bare ice between 9 and 16 under a bright sky, with nothing over the eyes | About a day, less in bed | Goggles, a visor or a full helmet; a dark room; tending</li>
+          <li>Leeches (swamps only) | 2 hours wading through water, marsh or mud in a temperate or tropical swamp | A few hours | Salt or a flame, or one tending; high boots</li>
+          <li>Orbit sickness (Odyssey) | 8 hours awake in orbit; not again within 30 days | 1.5 to 3 days, less in bed | Plain food and regular hours; tending</li>
         </table>
         <after>Once a day holds enough hours of the cause, the ailment gets one small chance that day, from under 1% for a cold sore from worry and 1.5% for a sprained ankle to 12% for ash lung after a fire; heartburn and hiccups are rolled with each meal or drink instead. Someone who works hard at one thing every day gets an ailment about once a month, the same one again only after 6 days or more for most (3 to 5 for nosebleeds, frostnip and insect bites, a day or two for hiccups and heartburn), and never more than two at once.</after>
+      </li>
+      <li>
+        <heading>After what happened</heading>
+        <text>Some ailments follow something that really happened to that colonist, once it is over: an illness got over, an injury that healed without a scar, a fight at home, a horror. Each comes with one roll when the thing is over (for a fight, on the first night's sleep within a day of it), and the same rules as the others hold: never the same one again within its weeks, never more than two everyday ailments at once.</text>
+        <table>
+          <li>Ailment | Comes after | Chance | Lasts | What helps</li>
+          <li>Post-flu cough | Getting over the flu (the game's own) | 1 in 5, more in the old | 6 to 10 days | Warm drinks and a warm room at night; tending a little</li>
+          <li>Plague swellings | Getting over the plague | About 1 in 3 | 6 to 10 days, less in bed | Clean dressings and rest; tending. The weakness after plague is the convalescence below</li>
+          <li>Limp | A broken leg bone healing without a scar (not a leg lost or replaced) | 3 in 10: more in the old, less for the tough, half as often in children | 5 to 9 days | Walking on it, a doctor's strapping; bed rest doesn't help</li>
+          <li>Itching burn | A bad burn healing without a scar | 1 in 4 | 4 to 7 days | A salve, loose clothes; tending</li>
+          <li>Bad nights | A fight at home they fought in, on the first night's sleep within a day of it | 2%, three times that if they were hurt; half as often again in children, never in psychopaths, less in the tough and the bloodthirsty | 1.5 to 3 days | Company in the evening and an ordinary day; it can't be tended</li>
+          <li>Unease (Anomaly) | A horror: a wound from an entity, seeing a chimera, inhuman rambling, the labyrinth, a psychic ritual, someone turned ghoul, the unnatural darkness lifting | About 1 in 7, never in psychopaths | 3 to 5 days, less in bed | Company and ordinary days; it can't be tended</li>
+        </table>
+        <after>Bad nights and unease feed the heart's fear rather than its frustration, and each brings nightmares of its own.</after>
       </li>
       <li>
         <heading>Serious illnesses</heading>
@@ -81,6 +99,7 @@ A rare serious tier sits on top, behind its own setting: twelve illnesses modele
           <li>Kidney stone | Kidney stones | Rarely, to adults, twice as often while it's 25 °C or warmer outside | Can't kill; passes in 5 to 7 days | Tending eases the pain and speeds it, industrial best</li>
           <li>Shingles | Shingles: the chickenpox virus waking again | Rarely, to people of 50 or older | Can't kill; 2 to 3 weeks, and 3 in 10 have nerve pain for a week or two after | Tending, industrial best (an antiviral)</li>
           <li>Hive fever | Invented: insectoid saliva | An insectoid's bite or sting: 4% on a day stung. It shows within a day | Kills in about 5 days | 7 to 10 days</li>
+          <li>Swamp fever | Leptospirosis | Only in swamps and bogs: 3 hours wading through water, marsh or mud in a day: 0.6%. It shows 5 to 12 days later, and never passes from one person to another | Kills in about 7 days | 4 to 5 days with industrial medicine, 8 to 9 with herbal</li>
         </table>
         <after>Herbal medicine in a good doctor's hands (70% tend quality, tending kept up) brings a patient through every one of the fatal ones, though appendicitis comes close and rabies takes weeks. With poorer care, tetanus and meningitis are often fatal without modern medicine, and pneumonia, cholera and appendicitis without any medicine, much as they were in history. A new serious illness never starts within 30 days of the last; tuberculosis, typhus and cholera can spread to at most 3 people, measles to 4 children.</after>
       </li>
@@ -88,11 +107,11 @@ A rare serious tier sits on top, behind its own setting: twelve illnesses modele
         <heading>Medicine, rest and recovery</heading>
         <text>Tending works as it does for any illness: the doctor's skill and the medicine set the quality, and the illness eases while the treatment lasts, 8 hours for meningitis up to 3 days for a strapped ankle. On top of that, the kind of medicine counts the way it would against the real illness. For colds, coughs and strains it barely matters. For the illnesses real doctors treat with antibiotics, an antitoxin or a vaccine it matters a great deal: industrial medicine works 1.3 to 1.4 times as well as usual against tetanus, pneumonia, typhus, meningitis, appendicitis, rabies and hive fever, herbal medicine (or none) only 0.6 to 0.8 times (0.85 against rabies), and against tuberculosis herbs do half as much. Cholera is the exception: what saves a patient is fluids, so herbs do nearly as well (0.9 against 1.2). Rabies only responds to treatment before its symptoms show; after that, nothing slows it. A patient's tooltip says which medicine was used last and how well it works on that illness.
 
-Bed rest helps the body build immunity, as with any disease, and also speeds a strained back, a sprained ankle and the weakness after an illness. Many illnesses end with an after-effect: a lingering cough for some days after a cold, a chest cold, pneumonia or tuberculosis, now and then a cold sore after a cold, nerve pain for a week or two after shingles, and some days of weakness (convalescing, with slower work) after a serious illness or the operation for appendicitis. Nothing is permanent.</text>
+Bed rest helps the body build immunity, as with any disease, and also speeds a strained back, a sprained ankle and the weakness after an illness. Many illnesses end with an after-effect: a lingering cough for some days after one cold in five, three chest colds in ten, pneumonia or tuberculosis, now and then a cold sore after a cold, nerve pain for a week or two after shingles, and some days of weakness (convalescing, with slower work) after a serious illness or the operation for appendicitis. Nothing is permanent.</text>
       </li>
       <li>
         <heading>Recovery</heading>
-        <text>Getting better isn't the end of it. After a dangerous illness or infection that got serious (the game's own, like flu, plague or a wound infection, as well as Rimfolk's), a major operation (an organ, a limb or the brain; not a finger or an eye), four days or more laid up in bed, or losing an arm or a leg, a colonist is convalescing: a little slower at work (5%, or 12% while still weak) and on their feet, for a few days to two weeks. Rest in bed shortens it by a third. Two causes at once don't add up; the longer one counts.
+        <text>Getting better isn't the end of it. After a dangerous illness or infection that got serious (the game's own, like flu, plague or a wound infection, as well as Rimfolk's, whether a doctor tended it or not), a major operation (an organ, a limb or the brain; not a finger or an eye), four days or more laid up in bed, losing an arm or a leg, hunger that went as far as moderate malnutrition, or serious hypothermia or heatstroke, a colonist is convalescing: a little slower at work (5%, or 12% while still weak) and on their feet, for a few days to two weeks. Rest in bed shortens it by a third. Two causes at once don't add up; the longer one counts.
 
 Most are glad to be alive, a good mood that fades over six days. The industrious and hard workers are weak and frustrated instead, for as long as it lasts. A friend who visits the sickbed (the game's own visit) lifts the patient's mood and their own, and a colonist laid up in bed may ask the council for a visit from a particular friend; promising it sends the friend over. Back at work while still weak, a full day's work has about an 8% chance of setting the recovery back two days, at most twice and never two days running; a setback only ever makes it last longer.</text>
         <table>
@@ -101,12 +120,16 @@ Most are glad to be alive, a good mood that fades over six days. The industrious
           <li>A major operation | 5 to 7 days, 3 to 4.5</li>
           <li>Losing an arm or a leg | 7 to 10 days, 4.5 to 7</li>
           <li>A dangerous illness pulled through | 5 to 12 days, 3.5 to 8</li>
+          <li>Going hungry (moderate malnutrition or worse) | 3 to 7.5 days, 2 to 5</li>
+          <li>Serious hypothermia or heatstroke | 2.5 to 6.5 days, 1.5 to 4.5</li>
           <li>One of Rimfolk's serious illnesses | 5 to 15 days, 3.5 to 10</li>
         </table>
       </li>
       <li>
         <heading>Doctors and midwives</heading>
         <text>Rimfolk keeps each doctor's record: patients pulled through (a dangerous illness or infection they tended through the worst of it, or a major operation done well) and patients lost (dying of a condition within a day of their care, or on the table). Both show on the doctor's Story tab, and patients pulled through also in the game's Records. At 3 saved, and at least twice as many saved as lost, the colony trusts the doctor: a patient in bed they tend rests easier (in good hands, a small good mood), and others write about them in their journals. At 8 saved and three times as many as lost, the whole colony would choose them. One loss weighs on a doctor for days; a second within ten days weighs more, feeds the heart's grief and shame, and can bring a dilemma about a day away. Losses can cost the trust, and more patients pulled through win it back. The colonist with the most patients pulled through (5 at least) is called Goodhands.
+
+The hospital has a name of its own, beside its doctors' and midwives': everyone it pulled through, operated on well or delivered, and the sick from outside it saw, against the patients it lost. At 6, and at least three times as many as lost, it is well spoken of: a patient tended in a medical bed in the hospital rests easier there (a little comfort and rest, not a mood), and now and then someone unwell comes to ask for its doctor, from a camp on the map or from the road. At 15, and four times as many as lost, it is known across the region, and they come twice as often. Seeing them costs a dose of medicine; their people remember the doctor by name, the doctor learns a little, and the hospital's name grows. Losses take the name down quietly, and it has to be earned again. It shows on the Story tab of the colony's doctors and midwives, and of a patient lying in it; before industrial medicine it is the sickroom.
 
 With Biotech, whoever attends a birth as the doctor delivers the baby: a good mood, a line in their journal, the mother's lasting good opinion, and a count of babies delivered. The one with the most (3 at least) is called the Midwife. Two life goals come from these records (pull ten patients through, deliver five babies), and a few dilemmas: a doctor after a loss, someone back at work too soon, family who want a say in an operation, a midwife looking for an apprentice.</text>
       </li>
@@ -150,6 +173,17 @@ With Biotech, whoever attends a birth as the doctor delivers the baby: a good mo
       <li>splinter</li>
       <li>insect bites</li>
       <li>frostnip</li>
+      <li>hospital</li>
+      <li>post-flu cough</li>
+      <li>plague swellings</li>
+      <li>limp</li>
+      <li>bad nights</li>
+      <li>unease</li>
+      <li>pollution cough</li>
+      <li>snow blindness</li>
+      <li>leeches</li>
+      <li>orbit sickness</li>
+      <li>swamp fever</li>
     </keywords>
     <seeAlso>
       <li>Council_Alm_4_16_DiseasePenoxycyline</li>

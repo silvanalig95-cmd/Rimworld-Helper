@@ -34,6 +34,23 @@
   <CC_Health_Story_Midwife>Babies delivered: {COUNT}.</CC_Health_Story_Midwife>
   <CC_Health_Story_Convalescing>Convalescing: about {DAYS} days to full strength, {BEDDAYS} with rest in bed.</CC_Health_Story_Convalescing>
 
+  <!-- More ways into convalescence: hunger, cold or heat -->
+  <CC_Health_Cause_Hunger>coming through a hungry time.</CC_Health_Cause_Hunger>
+  <CC_Health_Cause_Exposure>being brought in from the cold, or the heat.</CC_Health_Cause_Exposure>
+  <CC_Health_Convalescing_Hunger>{PAWN_nameDef} is eating properly again, and still weak from going hungry.</CC_Health_Convalescing_Hunger>
+  <CC_Health_Convalescing_Exposure>{PAWN_nameDef} has come through the exposure and is getting {PAWN_possessive} strength back.</CC_Health_Convalescing_Exposure>
+
+  <!-- The hospital's own name -->
+  <CC_Health_Hospital_Word>hospital</CC_Health_Hospital_Word>
+  <CC_Health_Hospital_WordLowTech>sickroom</CC_Health_Hospital_WordLowTech>
+  <CC_Health_Hospital_Level_0>not yet known beyond the walls</CC_Health_Hospital_Level_0>
+  <CC_Health_Hospital_Level_1>well spoken of</CC_Health_Hospital_Level_1>
+  <CC_Health_Hospital_Level_2>known across the region</CC_Health_Hospital_Level_2>
+  <CC_Health_Hospital_Known>The colony's {HOSPITAL} has a name now: {COUNT} patients pulled through, operated on, delivered or seen from outside, and people on the road speak well of it. Its patients rest easier, and now and then the sick will come to ask for its doctor.</CC_Health_Hospital_Known>
+  <CC_Health_Hospital_Renowned>The colony's {HOSPITAL} is known across the region now, with {COUNT} patients to its name. The sick come a long way for it.</CC_Health_Hospital_Renowned>
+  <CC_Health_Story_Hospital>The colony's {HOSPITAL} is {STANDING}: {GOOD} patients pulled through, operated on, born or seen from outside ({OUTSIDE} of them strangers), {LOST} lost.</CC_Health_Story_Hospital>
+  <CC_Health_Patient_Unwell>a fever</CC_Health_Patient_Unwell>
+
   <!-- The sickbed visit wish -->
   <CC_Reason_SickbedVisit>{PAWN_nameDef} is laid up and hasn't seen {OTHER_nameDef} for days.</CC_Reason_SickbedVisit>
   <CC_Promise_SickbedVisit>{OTHER_nameDef} puts down what {OTHER_pronoun} was doing and goes to sit with {FOR_nameDef}.</CC_Promise_SickbedVisit>

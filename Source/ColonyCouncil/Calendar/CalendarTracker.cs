@@ -40,6 +40,8 @@ namespace ColonyCouncil
         private int snowPendingTick = -1;
         /// <summary>Nemeses brought down up to this tick are on the calendar (or were weighed for it).</summary>
         private int nemesisSeenTick = -1;
+        /// <summary>Nemeses' first returns up to this tick are on the calendar (or were weighed for it).</summary>
+        private int nemesisReturnSeenTick = -1;
         /// <summary>The founding day is the founding event's to keep; until this tick the calendar watches for it.</summary>
         private int foundingWaitUntil = -1;
         private int foundingWaitYear = -99999;
@@ -110,6 +112,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref lastSnowMarkTick, "lastSnowMarkTick", -9999999);
             Scribe_Values.Look(ref snowPendingTick, "snowPendingTick", -1);
             Scribe_Values.Look(ref nemesisSeenTick, "nemesisSeenTick", -1);
+            Scribe_Values.Look(ref nemesisReturnSeenTick, "nemesisReturnSeenTick", -1);
             Scribe_Values.Look(ref foundingWaitUntil, "foundingWaitUntil", -1);
             Scribe_Values.Look(ref foundingWaitYear, "foundingWaitYear", -99999);
             Scribe_Collections.Look(ref restHours, "restHours", LookMode.Value, LookMode.Value, ref tmpKeys2, ref tmpStrings);
@@ -388,6 +391,7 @@ namespace ColonyCouncil
                 case CalendarKind.FirstSnow: return "CC_Cal_Name_FirstSnow".Translate();
                 case CalendarKind.Battle:
                     if (d.id != null && d.id.StartsWith("nemesis|")) return "CC_Cal_Name_Nemesis".Translate(d.enemy ?? "?");
+                    if (d.id != null && d.id.StartsWith("return|")) return "CC_Cal_Name_NemesisReturn".Translate(d.enemy ?? "?");
                     return (d.fallen.Count > 0 ? "CC_Cal_Name_BattleCostly" : "CC_Cal_Name_Battle").Translate(d.enemy ?? "?");
                 case CalendarKind.Death: return "CC_Cal_Name_Death".Translate(d.pawnName ?? "?");
                 case CalendarKind.Wedding: return "CC_Cal_Name_Wedding".Translate(d.pawnName ?? "?", d.otherName ?? "?");
@@ -599,12 +603,14 @@ namespace ColonyCouncil
         {
             int today = GenLocalDate.DayOfYear(map);
             int year = GenLocalDate.Year(map);
-            // A nemesis brought down in a battle already on the calendar is the same day.
+            // A nemesis brought down (or come back) in a battle already on the calendar is the same day: the fall names it
+            // before the return, and either before a plain battle.
             var same = days.FirstOrDefault(x => x.kind == CalendarKind.Battle && Mathf.Abs(x.tick - tick) < GenDate.TicksPerDay * 1.5f);
             if (same != null)
             {
                 bool nemesis = id.StartsWith("nemesis|");
-                if (nemesis && !same.id.StartsWith("nemesis|"))
+                bool back = id.StartsWith("return|");
+                if ((nemesis && !same.id.StartsWith("nemesis|")) || (back && same.id.StartsWith("battle|")))
                 {
                     // The day takes the nemesis's name, unless the player has named it themselves.
                     bool ownName = same.byPlayer || (!same.label.NullOrEmpty() && same.label != DefaultLabel(same));
@@ -644,6 +650,18 @@ namespace ColonyCouncil
                 AddBattle(map, "nemesis|" + n.endedTick, n.Name, 1, new List<string>(), knew, n.endedTick, CalendarMath.NemesisWeight, now - n.endedTick < GenDate.TicksPerDay * 2);
             }
             nemesisSeenTick = newest;
+            // The day one first came back, once the fight is a day behind: remembered whatever became of them after.
+            int newestReturn = nemesisReturnSeenTick;
+            foreach (var n in comp.nemeses.all)
+            {
+                if (n == null || !n.announced || n.firstReturnTick <= nemesisReturnSeenTick || now - n.firstReturnTick < GenDate.TicksPerDay) continue;
+                newestReturn = Mathf.Max(newestReturn, n.firstReturnTick);
+                var knew = known.Values.Where(p => !p.Dead && Ours(p)).Select(p => p.ThingID).ToList();
+                if (n.victim != null && !n.victim.Dead && !knew.Contains(n.victim.ThingID)) knew.Add(n.victim.ThingID);
+                AddBattle(map, "return|" + n.firstReturnTick, n.Name, 0, new List<string>(), knew, n.firstReturnTick, CalendarMath.NemesisReturnWeight,
+                    now - n.firstReturnTick < GenDate.TicksPerDay * 3);
+            }
+            nemesisReturnSeenTick = newestReturn;
         }
 
         // ---------------- Deaths ----------------

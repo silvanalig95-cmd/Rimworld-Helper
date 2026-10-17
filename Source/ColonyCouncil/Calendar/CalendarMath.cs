@@ -85,6 +85,8 @@ namespace ColonyCouncil
         public const float SnowWeight = 30f;
         public const float WeddingWeight = 35f;
         public const float NemesisWeight = 45f;
+        /// <summary>The day a nemesis first came back and the colony held: less than the day they fell.</summary>
+        public const float NemesisReturnWeight = 34f;
 
         /// <summary>A battle: a little more for a bigger fight, and more than any clean win for each of ours who fell.</summary>
         public static float BattleWeight(int kills, int fallen) => 28f + 0.5f * Math.Min(Math.Max(kills, 0), 20) + 16f * Math.Min(Math.Max(fallen, 0), 4);

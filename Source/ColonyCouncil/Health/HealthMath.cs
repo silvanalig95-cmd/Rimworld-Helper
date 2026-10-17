@@ -56,6 +56,18 @@ namespace ColonyCouncil
         /// <summary>After a dangerous illness pulled through: 0.3 for one that just reached half, up to 0.7 for a close call.</summary>
         public static float AfterIllness(float peak) => peak < SeriousPeak ? 0f : Clamp(0.3f + 0.8f * (peak - SeriousPeak), 0.3f, 0.7f);
 
+        /// <summary>Hunger counts once it went as far as this (the game's malnutrition, moderate).</summary>
+        public const float HungerFrom = 0.4f;
+
+        /// <summary>After going hungry that long: 0.2 from moderate malnutrition, up to 0.45 for a close call.</summary>
+        public static float AfterHunger(float peak) => peak < HungerFrom ? 0f : Clamp(0.2f + 0.5f * (peak - HungerFrom), 0.2f, 0.45f);
+
+        /// <summary>Cold or heat counts once it went as far as this (the game's serious hypothermia or heatstroke).</summary>
+        public const float ExposureFrom = 0.35f;
+
+        /// <summary>After being brought in from the cold or the heat: 0.15 from serious, up to 0.4 for a close call.</summary>
+        public static float AfterExposure(float peak) => peak < ExposureFrom ? 0f : Clamp(0.15f + 0.5f * (peak - ExposureFrom), 0.15f, 0.4f);
+
         /// <summary>Convalescence never adds up: a second cause raises it to the larger of the two.</summary>
         public static float Combine(float current, float added) => Math.Min(MaxSeverity, Math.Max(current, added));
 
@@ -87,6 +99,21 @@ namespace ColonyCouncil
             if (saved >= 3 && saved >= lost * 2) return 1;
             return 0;
         }
+
+        /// <summary>
+        /// The hospital's name, from everyone it did right by (pulled through, operated on well, delivered, seen from
+        /// outside) against the patients it lost: 0 not known yet, 1 well spoken of (6, at least three times as many as
+        /// lost), 2 known across the region (15, at least four times as many).
+        /// </summary>
+        public static int HospitalLevel(int good, int lost)
+        {
+            if (good >= 15 && good >= lost * 4) return 2;
+            if (good >= 6 && good >= lost * 3) return 1;
+            return 0;
+        }
+
+        /// <summary>A sick traveller's visit is likelier from a hospital with a bigger name (the event's weight).</summary>
+        public static float PatientWeight(int hospitalLevel) => hospitalLevel >= 2 ? 2f : hospitalLevel == 1 ? 1f : 0f;
 
         /// <summary>A midwife's standing from babies delivered alive: 1 from two, 2 from five.</summary>
         public static int MidwifeLevel(int births) => births >= 5 ? 2 : births >= 2 ? 1 : 0;

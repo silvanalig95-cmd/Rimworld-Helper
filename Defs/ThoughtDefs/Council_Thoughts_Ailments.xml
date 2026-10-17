@@ -495,6 +495,114 @@
     </stages>
   </ThoughtDef>
 
+  <!-- ===================== After what happened, and the land and the sky ===================== -->
+  <!-- Bad nights and unease feed the heart's fear rather than its frustration: they are what a fight or a horror left. -->
+
+  <ThoughtDef ParentName="Council_AilmentThoughtBase">
+    <defName>Council_Ail_FluCough_Mood</defName>
+    <hediff>Council_Ail_FluCough</hediff>
+    <stages>
+      <li><label>a dry cough</label><description>The flu's gone and the cough hasn't. It tickles every time I start to say something.</description><baseMoodEffect>-1</baseMoodEffect></li>
+      <li><label>coughing fits</label><description>I cough until my eyes water, mostly at night. The flu was shorter than this.</description><baseMoodEffect>-2</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_AilmentThoughtBase">
+    <defName>Council_Ail_PlagueSwellings_Mood</defName>
+    <hediff>Council_Ail_PlagueSwellings</hediff>
+    <stages>
+      <li><label>tender glands</label><description>The swellings the plague left are going down. Slowly.</description><baseMoodEffect>-1</baseMoodEffect></li>
+      <li><label>plague swellings</label><description>I'm over the plague, they tell me. The lumps under my arms haven't heard.</description><baseMoodEffect>-2</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_AilmentThoughtBase">
+    <defName>Council_Ail_Limp_Mood</defName>
+    <hediff>Council_Ail_Limp</hediff>
+    <stages>
+      <li><label>a stiff leg</label><description>The bone's knit. The leg doesn't quite believe it yet.</description><baseMoodEffect>-1</baseMoodEffect></li>
+      <li><label>limping</label><description>I limp like an old dog. Everyone can see it.</description><baseMoodEffect>-2</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_AilmentThoughtBase">
+    <defName>Council_Ail_BurnItch_Mood</defName>
+    <hediff>Council_Ail_BurnItch</hediff>
+    <stages>
+      <li><label>an itching burn</label><description>The new skin over the burn itches, and I'm not allowed to scratch it.</description><baseMoodEffect>-1</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_AilmentThoughtBase">
+    <defName>Council_Ail_BadNights_Mood</defName>
+    <hediff>Council_Ail_BadNights</hediff>
+    <stages>
+      <li><label>restless sleep</label><description>I keep waking up at small sounds since the fight. Then I lie there listening.</description><baseMoodEffect>-1</baseMoodEffect></li>
+      <li><label>nightmares about the fight</label><description>Every time I close my eyes the raid starts again.</description><baseMoodEffect>-2</baseMoodEffect></li>
+    </stages>
+    <modExtensions Inherit="False">
+      <li Class="ColonyCouncil.HeartTags"><feelings><li>Fear</li></feelings><weight>0.6</weight></li>
+    </modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_AilmentThoughtBase" MayRequire="Ludeon.RimWorld.Anomaly">
+    <defName>Council_Ail_Unease_Mood</defName>
+    <hediff>Council_Ail_Unease</hediff>
+    <stages>
+      <li><label>jumpy</label><description>I keep looking at the corners of rooms. There's nothing there. I keep looking.</description><baseMoodEffect>-1</baseMoodEffect></li>
+      <li><label>haunted</label><description>I saw something that shouldn't exist, and now I can't stop seeing it.</description><baseMoodEffect>-2</baseMoodEffect></li>
+    </stages>
+    <modExtensions Inherit="False">
+      <li Class="ColonyCouncil.HeartTags"><feelings><li>Fear</li></feelings><weight>0.6</weight></li>
+    </modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_AilmentThoughtBase" MayRequire="Ludeon.RimWorld.Biotech">
+    <defName>Council_Ail_PollutionCough_Mood</defName>
+    <hediff>Council_Ail_PollutionCough</hediff>
+    <stages>
+      <li><label>a scratchy throat</label><description>My throat's raw from the grit out on the bad ground.</description><baseMoodEffect>-1</baseMoodEffect></li>
+      <li><label>pollution cough</label><description>I cough up grey, and it tastes of metal.</description><baseMoodEffect>-2</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_AilmentThoughtBase">
+    <defName>Council_Ail_SnowBlind_Mood</defName>
+    <hediff>Council_Ail_SnowBlind</hediff>
+    <stages>
+      <li><label>gritty eyes</label><description>My eyes feel full of sand after a day on the snow.</description><baseMoodEffect>-1</baseMoodEffect></li>
+      <li><label>snow-blind</label><description>The light hurts and everything is a blur. I have to keep my eyes shut.</description><baseMoodEffect>-2</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_AilmentThoughtBase">
+    <defName>Council_Ail_Leeches_Mood</defName>
+    <hediff>Council_Ail_Leeches</hediff>
+    <stages>
+      <li><label>leeches</label><description>There are leeches on my legs. Fat ones.</description><baseMoodEffect>-1</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_AilmentThoughtBase" MayRequire="Ludeon.RimWorld.Odyssey">
+    <defName>Council_Ail_OrbitSick_Mood</defName>
+    <hediff>Council_Ail_OrbitSick</hediff>
+    <stages>
+      <li><label>queasy in orbit</label><description>My stomach hasn't worked out where we are yet.</description><baseMoodEffect>-1</baseMoodEffect></li>
+      <li><label>orbit-sick</label><description>My head aches, food tastes of the scrubbers and the stars won't keep still.</description><baseMoodEffect>-2</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_IllnessThoughtBase">
+    <defName>Council_Ail_SwampFever_Mood</defName>
+    <hediff>Council_Ail_SwampFever</hediff>
+    <stages>
+      <li><label>swamp fever</label><description>I'm burning up, my eyes are red and my calves ache like I've walked for a week.</description><baseMoodEffect>-4</baseMoodEffect></li>
+      <li><label>yellow with swamp fever</label><description>My skin's gone yellow. Nobody says anything about it, which is worse.</description><baseMoodEffect>-6</baseMoodEffect></li>
+      <li><label>failing with swamp fever</label><description>Everything hurts and I can't keep water down.</description><baseMoodEffect>-8</baseMoodEffect></li>
+      <li><label>bleeding lungs</label><description>There's blood when I cough. I'm so tired.</description><baseMoodEffect>-10</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
   <!-- ===================== Memories ===================== -->
 
   <ThoughtDef ParentName="Council_MemoryBase">

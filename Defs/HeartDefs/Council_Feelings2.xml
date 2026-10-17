@@ -81,6 +81,9 @@
       <li>Council_Vendetta_LetGo</li>
       <li>DarknessLifted</li>
       <li>VoidClosed</li>
+      <li>Council_WS_WarlordFell</li>
+      <li>Council_WS_WarbandGone</li>
+      <li>Council_WS_WarlordAvenged</li>
     </thoughts>
     <counters>Council_Feeling_Fear</counters>
     <counterAmount>0.5</counterAmount>
@@ -116,6 +119,7 @@
       <li>Council_Health_SatWithFriend</li>
       <li>Council_Health_DeliveredBaby</li>
       <li>Council_Pet_Defended</li>
+      <li>Council_Mission_ChildHome</li>
     </thoughts>
     <traitFactors><li><trait>Psychopath</trait><factor>0.2</factor></li><li><trait>Kind</trait><factor>1.3</factor></li></traitFactors>
     <counters>Council_Feeling_Anger</counters>
@@ -195,6 +199,8 @@
       <li>Council_Dlm_HarvestHome</li>
       <li>Council_Dlm_Midwinter</li>
       <li>Council_Dlm_VictoryFeast</li>
+      <li>Council_Camp_GoodNeighbors</li>
+      <li>Council_Camp_SongHeard</li>
     </thoughts>
     <feeds>
       <li><thought>Council_Dlm_Trad_*</thought><weight>0.7</weight></li>

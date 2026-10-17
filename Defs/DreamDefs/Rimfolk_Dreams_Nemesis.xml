@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Dreams of a nemesis (Source/ColonyCouncil/Dreams/Dreams.cs, DreamAbout.Nemesis): the enemy who hurt the dreamer, or
+    killed someone of their blood or their partner, and got away. {NAME} is the enemy; lines may ask for [beast] or
+    [person], [kin] (the one they killed was the dreamer's own) and the deed ([killed], [maimed], [downed]).
+    <nemesis> says how it stands: loose, captured, or ended (gone for good lately). Only for a nemesis the colony
+    really has; never with nemeses off.
+  -->
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf_Nemesis_AtTheGate</defName>
+    <label>a dream of the one who got away</label>
+    <kind>Nightmare</kind>
+    <weight>1.5</weight>
+    <about>Nemesis</about>
+    <nemesis>loose</nemesis>
+    <lines>
+      <plain>
+        <li>[person] {NAME} was standing at the gate in the dream, just standing, and nobody else could see.</li>
+        <li>[person] I dreamt the fight again, and this time {NAME} turned at the edge of the trees and smiled at me.</li>
+        <li>[person,kin] Dreamt {NAME} came to the funeral and stood at the back, and I couldn't make my legs move.</li>
+        <li>[beast] Something big moved in the dark at the edge of the fields all night in my dream. I knew it was {NAME}.</li>
+        <li>[beast] Dreamt I heard {NAME} breathing under the floor, slow and patient.</li>
+      </plain>
+      <warm><li>Dreamt {NAME} came back, and everyone I love stood between us without being asked.</li></warm>
+      <blunt><li>Dreamt of {NAME}. Woke up with my fists shut.</li></blunt>
+      <gloomy><li>{NAME} is out there. In the dream, {NAME} was in here.</li></gloomy>
+      <cold><li>A dream about {NAME}. My mind is rehearsing. Fine.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf_Nemesis_Standing</defName>
+    <label>a dream of standing my ground</label>
+    <kind>Strange</kind>
+    <about>Nemesis</about>
+    <nemesis>loose</nemesis>
+    <feelings>
+      <li>Resolve</li>
+      <li>Anger</li>
+    </feelings>
+    <lines>
+      <plain>
+        <li>[person] In the dream {NAME} came at me and I didn't step back. I woke up before either of us moved again.</li>
+        <li>[person] Dreamt I found {NAME} asleep by a fire, and stood there a long time deciding.</li>
+        <li>[beast] Dreamt I followed {NAME}'s tracks through the snow until they ended in my own footprints.</li>
+        <li>[kin] I dreamt I told {NAME} the name of the one {NAME} killed, and made {NAME} say it back.</li>
+      </plain>
+      <blunt><li>Dreamt I faced {NAME}. Didn't run. Good.</li></blunt>
+      <cheerful><li>Dreamt I chased {NAME} clean off the map, shouting. Very satisfying.</li></cheerful>
+      <gloomy><li>Dreamt I faced {NAME}, and it didn't end. It just went on.</li></gloomy>
+      <cold><li>A dream of the next encounter with {NAME}. I took notes on my footing.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf_Nemesis_BehindTheDoor</defName>
+    <label>a dream of the locked door</label>
+    <kind>Strange</kind>
+    <about>Nemesis</about>
+    <nemesis>captured</nemesis>
+    <lines>
+      <plain>
+        <li>Dreamt I went down to the cells, and {NAME}'s door was open, and the room was full of my own things.</li>
+        <li>In the dream {NAME} talked to me through the wall all night in a voice I'd never heard {NAME} use.</li>
+        <li>I dreamt I held the key to {NAME}'s cell, and it got heavier every hour, and I couldn't put it down.</li>
+      </plain>
+      <warm><li>Dreamt I brought {NAME} a bowl of soup and we said nothing, and that was the end of something.</li></warm>
+      <blunt><li>Dreamt of {NAME} in the cells. Checked the lock this morning.</li></blunt>
+      <gloomy><li>Dreamt {NAME} was the free one and I was in the cell, and nobody noticed the difference.</li></gloomy>
+      <cold><li>A dream about the prisoner. The lock held, as locks do.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf_Nemesis_Over</defName>
+    <label>a dream that it's over</label>
+    <kind>Sweet</kind>
+    <about>Nemesis</about>
+    <nemesis>ended</nemesis>
+    <nemesisDays>20</nemesisDays>
+    <lines>
+      <plain>
+        <li>Dreamt of {NAME}, and felt nothing at all, and woke up rested for the first time in a long while.</li>
+        <li>In the dream I walked the place where it happened, and it was just a field, with flowers in it.</li>
+        <li>[beast] Dreamt I walked under the trees where {NAME} used to wait, and only birds came out of them.</li>
+        <li>[kin] Dreamt the one {NAME} took from us came and sat by my bed and said it was all right now.</li>
+      </plain>
+      <warm><li>Dreamt of everyone who stood with me against {NAME}, at one table, laughing about something else.</li></warm>
+      <blunt><li>Dreamt about {NAME}. Didn't care. Good dream.</li></blunt>
+      <cheerful><li>Dreamt {NAME} was a very small dog. I've decided that's how I'll remember it.</li></cheerful>
+      <gloomy><li>Dreamt it was over. It is. I keep needing to be told.</li></gloomy>
+      <cold><li>A dream about {NAME}, emotionally flat. The matter is closed.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+</Defs>

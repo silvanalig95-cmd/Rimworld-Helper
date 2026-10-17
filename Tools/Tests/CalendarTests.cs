@@ -43,6 +43,8 @@ public static class CalendarTests
         // What days mean.
         check(CalendarMath.BattleWeight(10, 0) > CalendarMath.BattleWeight(6, 0) && CalendarMath.BattleWeight(6, 1) > CalendarMath.BattleWeight(20, 0),
             "a battle that cost us means more than any clean one");
+        check(CalendarMath.NemesisReturnWeight < CalendarMath.NemesisWeight && CalendarMath.NemesisReturnWeight > CalendarMath.BattleWeight(6, 0),
+            "a nemesis come back means less than the day they fell, more than a small clean win");
         check(CalendarMath.DeathWeight(3, 1f, false) > CalendarMath.DeathWeight(1, 1f, false) && CalendarMath.DeathWeight(1, 1f, true) > CalendarMath.DeathWeight(1, 1f, false),
             "a death means more for each who loved them, and for family");
         check(CalendarMath.BirthdayWeight(6f) > CalendarMath.BirthdayWeight(2f) && CalendarMath.BirthdayWeight(2f) < CalendarMath.HarvestWeight, "birthdays mean less than the colony's own days");

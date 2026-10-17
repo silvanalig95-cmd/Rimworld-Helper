@@ -98,6 +98,7 @@
       <li>Council_Secret2_Hunted</li>
       <li>Council_DlmS_SomethingWatching</li>
       <li>VTE_EnvironmentDark</li>
+      <li>Council_WS_SurgeShaken</li>
     </thoughts>
     <traitFactors>
       <li><trait>Nerves</trait><degree>-1</degree><factor>1.3</factor></li>
@@ -208,6 +209,8 @@
       <li>Council_DecreeArgument</li>
       <li>VTE_MyRivalsAreAlive</li>
       <li>VTE_KilledMyBondedAnimalHater</li>
+      <li>Council_WS_WarlordEscaped</li>
+      <li>Council_WS_WarlordFreed</li>
     </thoughts>
     <feeds>
       <!-- Any bad memory about someone they dislike, from the game or any mod. -->
@@ -218,6 +221,7 @@
       <li><thought>Council_Moment_*</thought><aboutSomeone>true</aboutSomeone></li>
       <li><thought>Council_Friction*</thought></li>
       <li><thought>Council_Dlm*</thought><weight>0.4</weight></li>
+      <li><thought>Council_Camp_Crowded</thought><weight>0.6</weight></li>
     </feeds>
     <traitFactors>
       <li><trait>Abrasive</trait><factor>1.25</factor></li>
@@ -278,6 +282,8 @@
       <li>Council_DlmS_PaidForAPerson</li>
       <li>Council_Dlm_Dismissed</li>
       <li>Council_TookMatters</li>
+      <li>Council_Camp_DroveThemOff</li>
+      <li>Council_After_Reckoning</li>
     </thoughts>
     <feeds>
       <li><thought>KnowColonistExecuted</thought><weight>0.5</weight></li>
@@ -411,6 +417,7 @@
       <li>Council_Soc2_Neglected</li>
       <li>Council_FriendQuit</li>
       <li>Council_Friction_LeftOut</li>
+      <li>Council_Camp_FriendLeft</li>
     </thoughts>
     <feeds>
       <li><thought>NeedOutdoors</thought><weight>0.3</weight></li>
@@ -488,6 +495,8 @@
       <li>VTE_CouldNotFinishItem</li>
       <li>VTE_NoDedicatedLaboratory</li>
       <li>Council_TakenBack</li>
+      <li>Council_WS_LocustsTook</li>
+      <li>Council_WS_FairLost</li>
     </thoughts>
     <feeds>
       <li><thought>ApparelDamaged</thought><weight>0.5</weight></li>
@@ -674,6 +683,11 @@
       <li>Council_Secret_Seen</li>
       <li>Council_Secret2_Honored</li>
       <li>Council_Mission_Shrine</li>
+      <li>Council_WS_FairPrize</li>
+      <li>Council_WS_PeaceHosted</li>
+      <li>Council_WS_DoctorHelped</li>
+      <li>Council_WS_WarlordSlayer</li>
+      <li>Council_WS_HelpedNeighbors</li>
     </thoughts>
     <feeds>
       <li><thought>SleptInBedroom</thought><weight>0.4</weight></li>
@@ -784,6 +798,10 @@
       <li>Council_Secret2_LetItLie</li>
       <li>Council_Secret_Grateful</li>
       <li>Council_Dlm_Understood</li>
+      <li>Council_Camp_Helped</li>
+      <li>Council_WS_HealerMended</li>
+      <li>Council_WS_Blessed</li>
+      <li>Council_Camp_PilgrimBlessing</li>
     </thoughts>
     <feeds>
       <li><thought>Council_Granted_*</thought><weight>0.6</weight></li>
@@ -820,6 +838,7 @@
       <li>Council_Scen_DebtPaid</li>
       <li>Council_Nemesis_Captured</li>
       <li>Council_Secret2_NoMorePretending</li>
+      <li>Council_WS_KeptTheYear</li>
     </thoughts>
     <feeds>
       <li><thought>MoodOffsetOptimist</thought><weight>0.4</weight></li>
@@ -865,6 +884,7 @@
       <li>Council_Quirk_RainCleanses</li>
       <li>Council_Secret2_Starstruck</li>
       <li>Council_Evt_Fireflies</li>
+      <li>Council_WS_PilgrimSongs</li>
     </thoughts>
     <feeds>
       <li><thought>NeedBeauty</thought><weight>0.6</weight></li>
@@ -935,6 +955,8 @@
       <li>Council_Secret2_Fascinated</li>
       <li>Council_Secret2_HeardTheirStory</li>
       <li>Council_DlmS_LearnedFromHealer</li>
+      <li>Council_WS_HealerTaught</li>
+      <li>Council_Mission_Escorted</li>
     </thoughts>
     <feeds>
       <li><thought>Council_EncP_*</thought><weight>0.3</weight></li>

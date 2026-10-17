@@ -99,6 +99,7 @@
       <li>Council_Ail_Cholera_Mood</li>
       <li>Council_Ail_HiveFever_Mood</li>
       <li>Council_Ail_Measles_Mood</li>
+      <li>Council_Ail_SwampFever_Mood</li>
     </thoughts>
     <fix>Keep the patient in bed and tended as often as possible, with the best medicine the colony has. The illness's description says what helps most; for tuberculosis, every day without gaps, and for cholera, someone to keep them drinking.</fix>
     <article>Council_Alm_4_25_Ailments</article>
@@ -189,6 +190,48 @@
     <defName>Council_Mood_RF_AilLice</defName>
     <thoughts><li>Council_Ail_Lice_Mood</li></thoughts>
     <fix>Have a doctor treat them, then clean the room they sleep in: lice spread in dirty rooms, and they carry typhus.</fix>
+    <article>Council_Alm_4_25_Ailments</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_AilAfterIllness</defName>
+    <thoughts>
+      <li>Council_Ail_FluCough_Mood</li>
+      <li>Council_Ail_PlagueSwellings_Mood</li>
+    </thoughts>
+    <fix>What the flu or the plague left behind. Warm drinks and a warm room at night for the cough, clean dressings and rest for the swellings; a doctor's tending speeds both a little. They pass in one to three weeks.</fix>
+    <article>Council_Alm_4_25_Ailments</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_AilHealed</defName>
+    <thoughts>
+      <li>Council_Ail_Limp_Mood</li>
+      <li>Council_Ail_BurnItch_Mood</li>
+    </thoughts>
+    <fix>A healed break or burn settling. Walking on the leg (not bed rest) and a doctor's strapping shorten a limp; a salve calms an itching burn. Both pass in a week or two.</fix>
+    <article>Council_Alm_4_25_Ailments</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_AilAfterFright</defName>
+    <thoughts>
+      <li>Council_Ail_BadNights_Mood</li>
+      <li>Council_Ail_Unease_Mood</li>
+    </thoughts>
+    <fix>The fight or the horror coming back at night. Company in the evening, an ordinary day's work and a few nights pass it; it can't be tended. Strong walls and fewer fights at the door mean fewer bad nights.</fix>
+    <article>Council_Alm_4_25_Ailments</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_AilLandAndSky</defName>
+    <thoughts>
+      <li>Council_Ail_PollutionCough_Mood</li>
+      <li>Council_Ail_SnowBlind_Mood</li>
+      <li>Council_Ail_Leeches_Mood</li>
+      <li>Council_Ail_OrbitSick_Mood</li>
+    </thoughts>
+    <fix>The place itself. Gas masks on polluted ground (and cleaning it up), goggles or a full helmet on bright snow, high boots in the swamp; in orbit, plain food and regular hours while the body settles. All pass in hours to a few days, and a doctor's tending helps.</fix>
     <article>Council_Alm_4_25_Ailments</article>
   </ColonyCouncil.MoodHintDef>
 

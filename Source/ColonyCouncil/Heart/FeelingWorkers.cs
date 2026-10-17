@@ -200,7 +200,7 @@ namespace ColonyCouncil
             other.Faction == Faction.OfPlayer && (p.Spawned && other.Spawned && other.Map == p.Map || p.GetCaravan() != null && p.GetCaravan() == other.GetCaravan());
     }
 
-    /// <summary>Spring, a new face, a wound healing, strain lifting, a new land.</summary>
+    /// <summary>Spring, a new face, a wound healing, strain lifting, a new land, good news from the region.</summary>
     public class FeelingWorker_Hope : FeelingWorker
     {
         public override void Feed(Pawn p, PawnHeart heart, HeartMapContext map, IFeelingSink sink)
@@ -211,6 +211,8 @@ namespace ColonyCouncil
             if (!p.Downed && (p.health?.hediffSet?.HasTendedAndHealingInjury() ?? false)) sink.Add(3f, "CC_Heart_Cause_Healing".Translate());
             if (heart.strainDayAgoTick >= 0 && heart.strainDayAgo - heart.strain >= 10f) sink.Add(3f, "CC_Heart_Cause_Lifting".Translate());
             if (map.home && map.colonyDays < 10) sink.Add(2f, "CC_Heart_Cause_NewStart".Translate());
+            // Good news from the region (Heart/FeelingFeeds_World.cs).
+            WorldFeeds.GoodNews(p, sink);
         }
     }
 

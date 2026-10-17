@@ -48,7 +48,7 @@ namespace ColonyCouncil
                 case CalendarKind.Founding: return Icons.Colony;
                 case CalendarKind.Harvest: return Icons.CatFood;
                 case CalendarKind.FirstSnow: return Icons.Dreams;
-                case CalendarKind.Battle: return d.id != null && d.id.StartsWith("nemesis|") ? Icons.Nemesis : Icons.Raid;
+                case CalendarKind.Battle: return d.id != null && (d.id.StartsWith("nemesis|") || d.id.StartsWith("return|")) ? Icons.Nemesis : Icons.Raid;
                 case CalendarKind.Death: return Icons.Death;
                 case CalendarKind.Wedding: return Icons.Wedding;
                 case CalendarKind.Arrival: return Icons.Visitor;
@@ -254,6 +254,7 @@ namespace ColonyCouncil
                 case CalendarKind.FirstSnow: return "CC_Cal_Origin_FirstSnow".Translate(CalendarTracker.DateText(d.day), d.sinceYear).Resolve();
                 case CalendarKind.Battle:
                     if (d.id != null && d.id.StartsWith("nemesis|")) return "CC_Cal_Origin_Nemesis".Translate(d.enemy ?? "?", d.sinceYear).Resolve();
+                    if (d.id != null && d.id.StartsWith("return|")) return "CC_Cal_Origin_NemesisReturn".Translate(d.enemy ?? "?", d.sinceYear).Resolve();
                     return d.fallen.Count > 0
                         ? "CC_Cal_Origin_BattleCostly".Translate(d.enemy ?? "?", d.sinceYear, d.kills, TextUtil.JoinAnd(d.fallen)).Resolve()
                         : "CC_Cal_Origin_Battle".Translate(d.enemy ?? "?", d.sinceYear, d.kills).Resolve();

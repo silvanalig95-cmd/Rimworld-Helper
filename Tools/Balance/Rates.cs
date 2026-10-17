@@ -210,6 +210,7 @@ namespace Balance
                 case "PlantWork": return quadrum == 3 ? 0.05f : quadrum == 2 ? 0.6f : 1f;
                 case "BitterCold": return quadrum == 3 ? 0.2f : 0f;
                 case "Sweltering": return quadrum == 1 ? 0.12f : 0f;
+                case "SnowGlare": return quadrum == 3 ? 1f : 0f;
                 case "RoughGround": return quadrum == 3 ? 1.3f : 1f;
                 default: return 1f;
             }
@@ -242,6 +243,10 @@ namespace Balance
             public float tendShare, tendQuality, bedShare;
             /// <summary>Share of days that hold each home cause: a hard bed, damp, a dirty crowded room, smoke, the dark, hunger, late nights.</summary>
             public Dictionary<string, float> home;
+            // ... and what ailments follow (AilmentTracker.Afters): the day they got over the flu or the plague, a break or
+            // a burn healed, the night after a fight at home (those hurt in it count three times over), a horror; with
+            // polluted ground and snow glare (winter only). The flu and the plague, and a broken leg and a burn, are each
+            // one trigger here though they never come together, so those two are about half the days with either.
 
             // Pressures: the share of colonists at each stage on a given day (stage 0 = none).
             public float[] sameMeal, sameWork, crowded, unfinished, missing;
@@ -273,14 +278,15 @@ namespace Balance
             home = new Dictionary<string, float>
             {
                 ["HardBed"] = 0f, ["DampSleep"] = 0f, ["CrowdedDirty"] = 0f, ["SmokyRoom"] = 0f, ["DarkWork"] = 0.02f, ["Hungry"] = 0.01f, ["NightWork"] = 0.08f,
-                ["Firefighting"] = 0.004f, ["CaravanTravel"] = 0.01f, ["Insects"] = 0f, ["Ashfall"] = 0f
+                ["Firefighting"] = 0.004f, ["CaravanTravel"] = 0.01f, ["Insects"] = 0f, ["Ashfall"] = 0f,
+                ["AfterIllness"] = 0.0012f, ["Healed"] = 0.0012f, ["AfterFight"] = 0.08f, ["Horror"] = 0.004f, ["Polluted"] = 0.01f, ["SnowGlare"] = 0.03f
             },
             sameMeal = new[] { 0.88f, 0.12f, 0f, 0f }, sameWork = new[] { 0.82f, 0.13f, 0.05f, 0f }, crowded = new[] { 0.97f, 0.03f, 0f },
             unfinished = new[] { 0.9f, 0.1f, 0f, 0f }, missing = new[] { 0.95f, 0.03f, 0.02f, 0f }, variedTable = 0.55f,
             setbackFactor = 0.6f, quietDays = 0f, researchIdle = 0f, bedroomEnvy = 0.05f, worries = 0.01f,
             nuisanceFits = 0.12f, frictionFactor = 0.7f,
             ways = new[] { 0f, 0.08f, 0.35f, 0.1f }, strain = new[] { 0.02f, 0f, 0f },
-            aspirationsPerYear = 0.5f, convalescencePerYear = 0.4f, pets = 0.9f, touchBuilt = 0.9f, traitPride = 0.15f, heirloom = 0.05f, sharedBedrooms = 0.15f
+            aspirationsPerYear = 0.5f, convalescencePerYear = 0.45f, pets = 0.9f, touchBuilt = 0.9f, traitPride = 0.15f, heirloom = 0.05f, sharedBedrooms = 0.15f
         };
 
         public static readonly Style Average = new Style
@@ -293,14 +299,15 @@ namespace Balance
             home = new Dictionary<string, float>
             {
                 ["HardBed"] = 0.1f, ["DampSleep"] = 0.05f, ["CrowdedDirty"] = 0.05f, ["SmokyRoom"] = 0.1f, ["DarkWork"] = 0.1f, ["Hungry"] = 0.05f, ["NightWork"] = 0.12f,
-                ["Firefighting"] = 0.006f, ["CaravanTravel"] = 0.01f, ["Insects"] = 0f, ["Ashfall"] = 0f
+                ["Firefighting"] = 0.006f, ["CaravanTravel"] = 0.01f, ["Insects"] = 0f, ["Ashfall"] = 0f,
+                ["AfterIllness"] = 0.0015f, ["Healed"] = 0.0015f, ["AfterFight"] = 0.1f, ["Horror"] = 0.005f, ["Polluted"] = 0.02f, ["SnowGlare"] = 0.05f
             },
             sameMeal = new[] { 0.55f, 0.32f, 0.13f, 0f }, sameWork = new[] { 0.6f, 0.25f, 0.1f, 0.05f }, crowded = new[] { 0.85f, 0.12f, 0.03f },
             unfinished = new[] { 0.7f, 0.2f, 0.1f, 0f }, missing = new[] { 0.94f, 0.04f, 0.02f, 0f }, variedTable = 0.2f,
             setbackFactor = 1f, quietDays = 0.15f, researchIdle = 0.05f, bedroomEnvy = 0.15f, worries = 0.02f,
             nuisanceFits = 0.4f, frictionFactor = 1f,
             ways = new[] { 0.02f, 0.13f, 0.2f, 0.04f }, strain = new[] { 0.08f, 0.02f, 0f },
-            aspirationsPerYear = 0.3f, convalescencePerYear = 0.6f, pets = 0.8f, touchBuilt = 0.6f, traitPride = 0.1f, heirloom = 0.05f, sharedBedrooms = 0.3f
+            aspirationsPerYear = 0.3f, convalescencePerYear = 0.7f, pets = 0.8f, touchBuilt = 0.6f, traitPride = 0.1f, heirloom = 0.05f, sharedBedrooms = 0.3f
         };
 
         public static readonly Style Neglectful = new Style
@@ -313,14 +320,15 @@ namespace Balance
             home = new Dictionary<string, float>
             {
                 ["HardBed"] = 0.6f, ["DampSleep"] = 0.3f, ["CrowdedDirty"] = 0.4f, ["SmokyRoom"] = 0.4f, ["DarkWork"] = 0.4f, ["Hungry"] = 0.25f, ["NightWork"] = 0.2f,
-                ["Firefighting"] = 0.01f, ["CaravanTravel"] = 0.01f, ["Insects"] = 0f, ["Ashfall"] = 0f
+                ["Firefighting"] = 0.01f, ["CaravanTravel"] = 0.01f, ["Insects"] = 0f, ["Ashfall"] = 0f,
+                ["AfterIllness"] = 0.0018f, ["Healed"] = 0.0018f, ["AfterFight"] = 0.12f, ["Horror"] = 0.006f, ["Polluted"] = 0.05f, ["SnowGlare"] = 0.06f
             },
             sameMeal = new[] { 0.35f, 0.45f, 0.2f, 0f }, sameWork = new[] { 0.4f, 0.3f, 0.2f, 0.1f }, crowded = new[] { 0.6f, 0.3f, 0.1f },
             unfinished = new[] { 0.4f, 0.3f, 0.2f, 0.1f }, missing = new[] { 0.93f, 0.04f, 0.03f, 0f }, variedTable = 0.02f,
             setbackFactor = 1.6f, quietDays = 0.6f, researchIdle = 0.15f, bedroomEnvy = 0.25f, worries = 0.04f,
             nuisanceFits = 0.75f, frictionFactor = 1.5f,
             ways = new[] { 0.05f, 0.2f, 0.1f, 0f }, strain = new[] { 0.2f, 0.08f, 0.02f },
-            aspirationsPerYear = 0.1f, convalescencePerYear = 0.9f, pets = 0.5f, touchBuilt = 0.2f, traitPride = 0.03f, heirloom = 0.05f, sharedBedrooms = 0.75f
+            aspirationsPerYear = 0.1f, convalescencePerYear = 1.1f, pets = 0.5f, touchBuilt = 0.2f, traitPride = 0.03f, heirloom = 0.05f, sharedBedrooms = 0.75f
         };
 
         public static readonly Style[] Styles = { WellRun, Average, Neglectful };

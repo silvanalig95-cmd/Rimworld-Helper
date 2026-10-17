@@ -12,7 +12,9 @@
     basic/industrial/ultra factors say how much the kind of medicine matters. Moods are in
     Defs/ThoughtDefs/Council_Thoughts_Ailments.xml. The last three here are after-effects: what an illness leaves behind.
     Some causes are counted in hours (hunger, worry, the small hours, bitter cold...), some are rolled per meal or drink
-    (heartburn, hiccups); lice go round in dirty rooms like the contagious serious illnesses.
+    (heartburn, hiccups); lice go round in dirty rooms like the contagious serious illnesses. Some follow what really
+    happened: an illness got over, an injury healed, a fight at home, a horror (the "After what happened" section). The
+    DLCs' own (pollution, orbit, horrors) MayRequire their DLC, and leeches only come in swamps (<biomes>).
   -->
 
   <HediffDef Name="Council_AilmentBase" Abstract="True">
@@ -35,7 +37,7 @@
       <li Class="ColonyCouncil.HediffCompProperties_Ailment">
         <key>HeadCold</key>
         <afterEffects>
-          <li><hediff>Council_Ail_LingeringCough</hediff><chance>0.25</chance><severity>0.2~0.35</severity></li>
+          <li><hediff>Council_Ail_LingeringCough</hediff><chance>0.2</chance><severity>0.2~0.35</severity></li>
           <li><hediff>Council_Ail_ColdSore</hediff><chance>0.1</chance><severity>0.3~0.5</severity></li>
         </afterEffects>
         <notes>
@@ -95,7 +97,7 @@
       <li Class="ColonyCouncil.HediffCompProperties_Ailment">
         <key>StomachBug</key>
         <afterEffects>
-          <li><hediff>Council_Ail_Convalescent</hediff><chance>0.3</chance><severity>0.1~0.2</severity></li>
+          <li><hediff>Council_Ail_Convalescent</hediff><chance>0.15</chance><severity>0.1~0.2</severity></li>
         </afterEffects>
         <notes>
           <li>Water, a little at a time, and a bowl by the bed. It's over in two days for most. Wash hands before cooking, or it goes round again.</li>
@@ -156,7 +158,7 @@
       <li Class="ColonyCouncil.HediffCompProperties_Ailment">
         <key>ChestCold</key>
         <afterEffects>
-          <li><hediff>Council_Ail_LingeringCough</hediff><chance>0.35</chance><severity>0.25~0.4</severity></li>
+          <li><hediff>Council_Ail_LingeringCough</hediff><chance>0.3</chance><severity>0.25~0.4</severity></li>
         </afterEffects>
         <notes>
           <li>Keep them warm and out of the wind. The cough will hang on for a couple of weeks, and that's normal. If they get feverish and short of breath, call me at once: that's pneumonia.</li>
@@ -917,8 +919,8 @@
       <li Class="ColonyCouncil.HediffCompProperties_Ailment">
         <key>Insomnia</key>
         <causes>
-          <li><trigger>Worry</trigger><hours>8</hours><chance>0.015</chance></li>
-          <li><trigger>NightWork</trigger><hours>3</hours><chance>0.015</chance></li>
+          <li><trigger>Worry</trigger><hours>8</hours><chance>0.012</chance></li>
+          <li><trigger>NightWork</trigger><hours>3</hours><chance>0.012</chance></li>
         </causes>
         <childFactor>0.5</childFactor>
         <oldFactor>1.3</oldFactor>
@@ -1023,7 +1025,7 @@
       <li Class="ColonyCouncil.HediffCompProperties_Ailment">
         <key>Heartburn</key>
         <quiet>true</quiet>
-        <causes><li><trigger>RichMeal</trigger><chance>0.04</chance></li></causes>
+        <causes><li><trigger>RichMeal</trigger><chance>0.035</chance></li></causes>
         <childFactor>0.2</childFactor>
         <cooldownDays>2</cooldownDays>
         <startSeverity>0.3~0.5</startSeverity>
@@ -1486,6 +1488,476 @@
       <li>
         <label>hiccuping</label>
         <capMods><li><capacity>Talking</capacity><offset>-0.1</offset></li></capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <!-- ===================== After what happened ===================== -->
+  <!--
+    What real events leave behind: an illness got over, a broken leg or a burn healed, a hard fight at home, a horror
+    (Anomaly). Each is rolled once, when the thing is over (AilmentTracker.Afters), with the cause's <after> naming the
+    game's own illnesses, injuries or memories; a DLC's that isn't there simply never counts.
+  -->
+
+  <HediffDef ParentName="Council_AilmentBase">
+    <defName>Council_Ail_FluCough</defName>
+    <label>post-flu cough</label>
+    <description>The dry cough the flu leaves behind once the fever has gone. It comes in fits, worst at night and in cold air, and hangs on for a week or two while the airways heal. It isn't catching and does no harm, but it wears people out. Warm drinks, honey and a warm room at night ease it, and tending soothes it a little.</description>
+    <tendable>true</tendable>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <key>FluCough</key>
+        <causes><li><trigger>AfterIllness</trigger><after><li>Flu</li></after><minSeverity>0.2</minSeverity><chance>0.2</chance></li></causes>
+        <childFactor>0.8</childFactor>
+        <oldFactor>1.5</oldFactor>
+        <cooldownDays>20</cooldownDays>
+        <startSeverity>0.3~0.5</startSeverity>
+        <gotText>The flu has gone, but it has left {PAWN_nameDef} with a dry cough.</gotText>
+        <notes>
+          <li>It's the airways healing after the flu. Warm drinks, a warm room at night, and patience.</li>
+          <li>[lowtech] Honey in hot water before bed, and a pan of steam to breathe over. It goes in its own time.</li>
+          <li>[!lowtech] A cough syrup at night so they can sleep. Nothing makes it go faster than the lungs allow.</li>
+        </notes>
+      </li>
+      <li Class="HediffCompProperties_TendDuration">
+        <baseTendDurationHours>48</baseTendDurationHours>
+        <severityPerDayTended>0</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentMedicine">
+        <severityPerDayTended>-0.03</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentRecovery">
+        <severityPerDay>-0.05</severityPerDay>
+        <bedFactor>1.3</bedFactor>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>a dry cough</label>
+        <restFallFactor>1.05</restFallFactor>
+        <capMods><li><capacity>Breathing</capacity><offset>-0.03</offset></li></capMods>
+      </li>
+      <li>
+        <minSeverity>0.35</minSeverity>
+        <label>coughing fits</label>
+        <restFallFactor>1.1</restFallFactor>
+        <capMods><li><capacity>Breathing</capacity><offset>-0.05</offset></li></capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Council_AilmentBase">
+    <defName>Council_Ail_PlagueSwellings</defName>
+    <label>plague swellings</label>
+    <description>The swollen glands plague leaves in the neck, armpits and groin, going down slowly after the fever has broken: tender, hot to the touch and sore to move on, for a week or so. They pass nothing on once the fever has gone. Clean dressings and rest help them heal. The weakness after plague is the convalescence that comes with any dangerous illness.</description>
+    <tendable>true</tendable>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <key>PlagueSwellings</key>
+        <causes><li><trigger>AfterIllness</trigger><after><li>Plague</li></after><minSeverity>0.2</minSeverity><chance>0.35</chance></li></causes>
+        <cooldownDays>30</cooldownDays>
+        <startSeverity>0.3~0.5</startSeverity>
+        <gotText>{PAWN_nameDef} has beaten the plague, but the swellings it left are slow to go down.</gotText>
+        <notes>
+          <li>The glands are going down. Clean dressings, rest, and nothing heavy for a week or two.</li>
+          <li>[lowtech] Warm poultices on the swellings and clean linen over them. Burn the old dressings.</li>
+          <li>[!lowtech] Keep them clean and dressed, and something for the pain. They'll go down on their own.</li>
+        </notes>
+      </li>
+      <li Class="HediffCompProperties_TendDuration">
+        <baseTendDurationHours>48</baseTendDurationHours>
+        <severityPerDayTended>0</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentMedicine">
+        <severityPerDayTended>-0.04</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentRecovery">
+        <severityPerDay>-0.05</severityPerDay>
+        <bedFactor>1.5</bedFactor>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>tender glands</label>
+        <painOffset>0.03</painOffset>
+        <capMods><li><capacity>Moving</capacity><offset>-0.02</offset></li></capMods>
+      </li>
+      <li>
+        <minSeverity>0.35</minSeverity>
+        <label>swollen glands</label>
+        <painOffset>0.06</painOffset>
+        <capMods>
+          <li><capacity>Moving</capacity><offset>-0.05</offset></li>
+          <li><capacity>Manipulation</capacity><offset>-0.03</offset></li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Council_AilmentBase">
+    <defName>Council_Ail_Limp</defName>
+    <label>limp</label>
+    <description>A leg that has knit after a break but hasn't yet remembered how to walk: stiff in the morning, weak on stairs, and favoured without thinking. It goes in a week or two of ordinary walking. Lying in bed doesn't hurry it, but a doctor's strapping and exercises do.</description>
+    <tendable>true</tendable>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <key>Limp</key>
+        <causes><li><trigger>Healed</trigger><after><li>Crack</li></after><partGroup>Legs</partGroup><chance>0.3</chance></li></causes>
+        <risks>
+          <li><trait>Tough</trait><factor>0.6</factor></li>
+        </risks>
+        <childFactor>0.5</childFactor>
+        <oldFactor>1.5</oldFactor>
+        <cooldownDays>10</cooldownDays>
+        <startSeverity>0.3~0.55</startSeverity>
+        <gotText>{PAWN_nameDef}'s broken leg has knit, but {PAWN_pronoun} is still limping on it.</gotText>
+        <notes>
+          <li>The bone has knit; the muscles haven't caught up. Walk on it, a little more each day.</li>
+          <li>[lowtech] A stick to lean on, and a walk round the walls every morning. Rub the calf with warm fat at night.</li>
+          <li>[!lowtech] Strapping and a few exercises twice a day. Short walks, not bed rest.</li>
+        </notes>
+      </li>
+      <li Class="HediffCompProperties_TendDuration">
+        <baseTendDurationHours>72</baseTendDurationHours>
+        <severityPerDayTended>0</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentMedicine">
+        <severityPerDayTended>-0.05</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentRecovery">
+        <severityPerDay>-0.06</severityPerDay>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>stiff leg</label>
+        <painOffset>0.02</painOffset>
+        <capMods><li><capacity>Moving</capacity><offset>-0.05</offset></li></capMods>
+      </li>
+      <li>
+        <minSeverity>0.4</minSeverity>
+        <label>limping</label>
+        <painOffset>0.04</painOffset>
+        <capMods><li><capacity>Moving</capacity><offset>-0.1</offset></li></capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Council_AilmentBase">
+    <defName>Council_Ail_BurnItch</defName>
+    <label>itching burn</label>
+    <description>New skin over a burn that has healed: tight, shiny and maddeningly itchy for a week or so while it settles, worse in the heat. Scratching only makes it angry. A cool cloth, a soothing salve and loose clothes over it help, and tending calms it.</description>
+    <tendable>true</tendable>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <key>BurnItch</key>
+        <quiet>true</quiet>
+        <causes><li><trigger>Healed</trigger><after><li>Burn</li></after><minSeverity>4</minSeverity><chance>0.25</chance></li></causes>
+        <cooldownDays>10</cooldownDays>
+        <startSeverity>0.3~0.5</startSeverity>
+        <gotText>{PAWN_nameDef}'s burn has healed, and the new skin itches.</gotText>
+        <notes>
+          <li>New skin. Don't scratch it; keep it cool and covered loosely.</li>
+          <li>[lowtech] Aloe, or cool fat with a little honey, spread thin. Linen over it, not wool.</li>
+          <li>[!lowtech] A soothing cream twice a day and something for the itch at night.</li>
+        </notes>
+      </li>
+      <li Class="HediffCompProperties_TendDuration">
+        <baseTendDurationHours>48</baseTendDurationHours>
+        <severityPerDayTended>0</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentMedicine">
+        <severityPerDayTended>-0.1</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentRecovery">
+        <severityPerDay>-0.07</severityPerDay>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>itching</label>
+        <restFallFactor>1.03</restFallFactor>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Council_AilmentBase">
+    <defName>Council_Ail_BadNights</defName>
+    <label>bad nights</label>
+    <description>The nights after a hard fight at home: the raid again behind closed eyes, and waking with the heart pounding at a door banging in the wind. Sleep comes late and leaves early. It eases over a few nights, sooner with company in the evening and an ordinary day's work. Those who were hurt in the fight have it worst; the hardest hardly have it at all.</description>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <key>BadNights</key>
+        <causes><li><trigger>AfterFight</trigger><chance>0.02</chance><hurtFactor>3</hurtFactor></li></causes>
+        <risks>
+          <li><trait>Psychopath</trait><factor>0</factor></li>
+          <li><trait>Bloodlust</trait><factor>0.3</factor></li>
+          <li><trait>Tough</trait><factor>0.6</factor></li>
+        </risks>
+        <childFactor>1.5</childFactor>
+        <cooldownDays>10</cooldownDays>
+        <startSeverity>0.3~0.55</startSeverity>
+        <gotText>{PAWN_nameDef} hasn't slept properly since the fight.</gotText>
+        <notes>
+          <li>It's the fight, coming back at night. Company in the evening and ordinary work by day; it eases.</li>
+          <li>[lowtech] A warm drink by the fire before bed, and someone to talk to until they're tired enough.</li>
+          <li>[!lowtech] Let them talk it out, keep the evenings ordinary. A mild sleeping draught if it drags on.</li>
+        </notes>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentRecovery">
+        <severityPerDay>-0.2</severityPerDay>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>restless sleep</label>
+        <restFallFactor>1.1</restFallFactor>
+      </li>
+      <li>
+        <minSeverity>0.4</minSeverity>
+        <label>nightmares</label>
+        <restFallFactor>1.2</restFallFactor>
+        <capMods><li><capacity>Consciousness</capacity><offset>-0.02</offset></li></capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Council_AilmentBase" MayRequire="Ludeon.RimWorld.Anomaly">
+    <defName>Council_Ail_Unease</defName>
+    <label>unease</label>
+    <description>The days after a horror: something seen that shouldn't exist, a voice in the dark, a wound from a thing with too many teeth. Jumpy at small sounds, sleeping badly, checking the corners of rooms. It isn't madness, and it fades on its own, faster with rest, company and an ordinary day's work: a few days, a week at most.</description>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <key>Unease</key>
+        <causes>
+          <li>
+            <trigger>Horror</trigger>
+            <after>
+              <li>Chimera</li>
+              <li>HeardInhumanRambling</li>
+              <li>ObeliskAbduction</li>
+              <li>PsychicRitualVictim</li>
+              <li>BecameGhoul</li>
+              <li>DarknessLifted</li>
+            </after>
+            <chance>0.15</chance>
+          </li>
+        </causes>
+        <risks>
+          <li><trait>Psychopath</trait><factor>0</factor></li>
+          <li><trait>Tough</trait><factor>0.7</factor></li>
+        </risks>
+        <childFactor>1.3</childFactor>
+        <cooldownDays>12</cooldownDays>
+        <startSeverity>0.3~0.55</startSeverity>
+        <gotText>{PAWN_nameDef} hasn't been right since the horror: jumpy, and sleeping badly.</gotText>
+        <notes>
+          <li>Nothing's wrong with them that a few ordinary days won't mend. Keep them busy and in company.</li>
+          <li>[lowtech] A lamp left burning at night and a friend in the next bed. Don't send them out alone after dark.</li>
+          <li>[!lowtech] Talk it through, keep the evenings in company, and leave a light on. It passes.</li>
+        </notes>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentRecovery">
+        <severityPerDay>-0.1</severityPerDay>
+        <bedFactor>1.3</bedFactor>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>jumpy</label>
+        <restFallFactor>1.05</restFallFactor>
+      </li>
+      <li>
+        <minSeverity>0.4</minSeverity>
+        <label>haunted</label>
+        <restFallFactor>1.15</restFallFactor>
+        <capMods><li><capacity>Consciousness</capacity><offset>-0.03</offset></li></capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <!-- ===================== Of the land and the sky ===================== -->
+
+  <HediffDef ParentName="Council_AilmentBase" MayRequire="Ludeon.RimWorld.Biotech">
+    <defName>Council_Ail_PollutionCough</defName>
+    <label>pollution cough</label>
+    <description>A harsh, dry cough from hours outdoors on polluted ground, where the grit underfoot is half ash and half something worse, or under the acid haze that hangs over a polluted world. It catches in the throat and burns a little going down, and passes within a few days of clean air. A gas mask keeps it off, and so does indoor work while the haze lasts; cleaning up the polluted ground keeps it away for good.</description>
+    <tendable>true</tendable>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <key>PollutionCough</key>
+        <causes><li><trigger>Polluted</trigger><hours>4</hours><chance>0.02</chance></li></causes>
+        <childFactor>1.5</childFactor>
+        <oldFactor>1.3</oldFactor>
+        <cooldownDays>8</cooldownDays>
+        <startSeverity>0.25~0.5</startSeverity>
+        <gotText>{PAWN_nameDef} has a cough from the polluted ground.</gotText>
+        <notes>
+          <li>It's the pollution. Clean air and a few days' rest from work out on the bad ground.</li>
+          <li>[lowtech] A wet cloth over the mouth out there, and steam to breathe in the evening.</li>
+          <li>[!lowtech] Gas masks for whoever works the polluted ground, and inside work while the haze is down.</li>
+        </notes>
+      </li>
+      <li Class="HediffCompProperties_TendDuration">
+        <baseTendDurationHours>24</baseTendDurationHours>
+        <severityPerDayTended>0</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentMedicine">
+        <severityPerDayTended>-0.1</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentRecovery">
+        <severityPerDay>-0.12</severityPerDay>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>scratchy throat</label>
+        <capMods><li><capacity>Breathing</capacity><offset>-0.03</offset></li></capMods>
+      </li>
+      <li>
+        <minSeverity>0.35</minSeverity>
+        <label>pollution cough</label>
+        <restFallFactor>1.1</restFallFactor>
+        <capMods><li><capacity>Breathing</capacity><offset>-0.07</offset></li></capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Council_AilmentBase">
+    <defName>Council_Ail_SnowBlind</defName>
+    <label>snow blindness</label>
+    <description>Sunburn of the eyes, from hours in the glare off snow and ice on a bright day. They go red and gritty, water constantly and can't bear the light, and the world blurs. It heals by itself in a day or two in a dim room, and a cool cloth over the eyes helps. Goggles, a visor, a full helmet, or even a strip of bark with a slit cut in it prevents it.</description>
+    <tendable>true</tendable>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <key>SnowBlind</key>
+        <causes><li><trigger>SnowGlare</trigger><hours>4</hours><chance>0.03</chance></li></causes>
+        <childFactor>1.2</childFactor>
+        <cooldownDays>6</cooldownDays>
+        <startSeverity>0.3~0.6</startSeverity>
+        <gotText>{PAWN_nameDef}'s eyes are burned red from the glare off the snow.</gotText>
+        <notes>
+          <li>A dim room and a cool cloth over the eyes. A day or two and they'll see again.</li>
+          <li>[lowtech] Bark or bone goggles with a thin slit, the way the far-north people make them. Soot under the eyes helps too.</li>
+          <li>[!lowtech] Eye drops and a dark room. Tinted goggles for anyone working out on the snow.</li>
+        </notes>
+      </li>
+      <li Class="HediffCompProperties_TendDuration">
+        <baseTendDurationHours>24</baseTendDurationHours>
+        <severityPerDayTended>0</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentMedicine">
+        <severityPerDayTended>-0.3</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentRecovery">
+        <severityPerDay>-0.4</severityPerDay>
+        <bedFactor>1.5</bedFactor>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>gritty eyes</label>
+        <painOffset>0.02</painOffset>
+        <capMods><li><capacity>Sight</capacity><offset>-0.1</offset></li></capMods>
+      </li>
+      <li>
+        <minSeverity>0.45</minSeverity>
+        <label>snow-blind</label>
+        <painOffset>0.04</painOffset>
+        <capMods><li><capacity>Sight</capacity><offset>-0.25</offset></li></capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Council_AilmentBase">
+    <defName>Council_Ail_Leeches</defName>
+    <label>leeches</label>
+    <description>Leeches, picked up wading through a swamp's warm water: soft, dark and fat by the time anyone notices, clinging behind the knees and between the toes. They do no lasting harm and drop off on their own within hours; salt, a flame held close or a doctor's tweezers get them off sooner. High boots, and staying out of the deep water, keep them off.</description>
+    <tendable>true</tendable>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <key>Leeches</key>
+        <quiet>true</quiet>
+        <biomes>
+          <li>TemperateSwamp</li>
+          <li>TropicalSwamp</li>
+        </biomes>
+        <causes><li><trigger>WetFeet</trigger><hours>2</hours><chance>0.06</chance></li></causes>
+        <childFactor>1.3</childFactor>
+        <cooldownDays>3</cooldownDays>
+        <startSeverity>0.3~0.5</startSeverity>
+        <gotText>{PAWN_nameDef} came out of the swamp with leeches on both legs.</gotText>
+        <notes>
+          <li>Salt, or a pinch of ash, and they let go. Don't pull them off.</li>
+          <li>[lowtech] A glowing stick held close, or salt. Then wash the bites and wrap them.</li>
+          <li>[!lowtech] Salt or a lighter flame, then antiseptic on the bites.</li>
+        </notes>
+      </li>
+      <li Class="HediffCompProperties_TendDuration">
+        <baseTendDurationHours>12</baseTendDurationHours>
+        <severityPerDayTended>0</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentMedicine">
+        <severityPerDayTended>-4</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentRecovery">
+        <severityPerDay>-2</severityPerDay>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>leeches</label>
+        <painOffset>0.01</painOffset>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Council_AilmentBase" MayRequire="Ludeon.RimWorld.Odyssey">
+    <defName>Council_Ail_OrbitSick</defName>
+    <label>orbit sickness</label>
+    <description>The body's complaint at living in orbit. The grav plating never feels quite like ground, the light never changes, the air tastes of the scrubbers and the stars wheel past the windows. A dull headache, a queasy stomach and poor sleep, mostly in the first days aloft. It settles in two or three days as the body gives in and believes it; a good night's sleep and something plain to eat help, and tending settles the stomach.</description>
+    <tendable>true</tendable>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <key>OrbitSick</key>
+        <causes><li><trigger>InSpace</trigger><hours>8</hours><chance>0.06</chance></li></causes>
+        <childFactor>1.3</childFactor>
+        <cooldownDays>30</cooldownDays>
+        <startSeverity>0.3~0.55</startSeverity>
+        <gotText>{PAWN_nameDef} is orbit-sick: a headache, a queasy stomach and no appetite.</gotText>
+        <notes>
+          <li>The body hasn't caught up with where it is. Plain food, plenty of water, and sleep.</li>
+          <li>[!lowtech] Something for the nausea, and a regular day: meals, work and lights out at the same hours.</li>
+        </notes>
+      </li>
+      <li Class="HediffCompProperties_TendDuration">
+        <baseTendDurationHours>24</baseTendDurationHours>
+        <severityPerDayTended>0</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentMedicine">
+        <severityPerDayTended>-0.15</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentRecovery">
+        <severityPerDay>-0.2</severityPerDay>
+        <bedFactor>1.5</bedFactor>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>queasy</label>
+        <capMods>
+          <li><capacity>Consciousness</capacity><offset>-0.03</offset></li>
+          <li><capacity>Eating</capacity><offset>-0.05</offset></li>
+        </capMods>
+      </li>
+      <li>
+        <minSeverity>0.4</minSeverity>
+        <label>orbit-sick</label>
+        <restFallFactor>1.1</restFallFactor>
+        <capMods>
+          <li><capacity>Consciousness</capacity><offset>-0.05</offset></li>
+          <li><capacity>Eating</capacity><offset>-0.1</offset></li>
+        </capMods>
       </li>
     </stages>
   </HediffDef>

@@ -519,7 +519,9 @@ Unhappy colonists have more nightmares, and volatile ones more still. Recurring 
 
 Quirks bring dreams (a storm-dreader's storm, the dark for someone who sleeps with a light, the stars for a stargazer, the plants answering back), and so do life goals (a wedding for someone who wants to marry, the far road for a youngster who wants to travel, the last fine piece for an old maker) and personal stories (two doors for a rival in love, a rope pulled both ways for someone caught between two people, one more spring).
 
-Ailments color dreams: a toothache brings dreams of loose teeth, a cold or a cough dreams of breathing underwater, insomnia dreams of lying awake, bites and rashes dreams of itching, a bad back or a kidney stone dreams of carrying a millstone, and getting over an illness dreams of being strong again. So does the world around them: a camp on the map, a council meeting they spoke at or missed, sickness, famine, fighting or a fair in the region (world events), and the time of year.</text>
+A nemesis comes back in dreams: standing at the gate while still out there (or, for someone feeling their resolve, faced at last), behind a locked door while in the colony's cells, and once it's over, gone from the dream as from the world. Someone whose family member or partner was killed by that enemy dreams of them too. Getting better and healing have dreams of their own: running again while convalescing (the impatient dream of the work waiting), a patient walking out of the sickroom, the empty bed after a loss, the first cry after a birth.
+
+Ailments color dreams: a toothache brings dreams of loose teeth, a cold or a cough dreams of breathing underwater, insomnia dreams of lying awake, bites and rashes dreams of itching, a bad back or a kidney stone dreams of carrying a millstone, and getting over an illness dreams of being strong again. So does the world around them: a camp on the map, a council meeting they spoke at or missed, sickness, famine, fighting or a fair in the region (world events), and the time of year. A feeling and the world together dream deepest: fellowship by the camp's fire, the road with the camp for the restless, the fever at the door for someone worried while a sickness goes round, the open road for the hopeful in good times, gratitude for a camp's good turn and shame for a camp sent away.</text>
       </li>
       <li>
         <heading>Dreams that change something</heading>
@@ -698,7 +700,9 @@ Council choices about strangers come with short deadlines when the stranger is o
 
 Capturing a nemesis, or seeing them dead, lifts the mood of the one they hurt. Doing it by their own hand lifts them most, and completes the "settle the score" life goal.
 
-A raider who gets away often has a parting word, and one who comes back usually has something to shout across the field; a beast leaves signs instead. The story can also end with the nemesis joining the colony, wearing its collar, being tamed, dying out in the world, vanishing, or being let go from the cells, which the one they hurt will have feelings about.</text>
+A raider who gets away often has a parting word, and one who comes back usually has something to shout across the field; a beast leaves signs instead. The story can also end with the nemesis joining the colony, wearing its collar, being tamed, dying out in the world, vanishing, or being let go from the cells, which the one they hurt will have feelings about.
+
+The one they hurt dreams of them (at the gate, behind the cell door, and once it's over, gone), and a fight at home can leave them bad nights. Two personal stories grow out of a nemesis: a fear faced while the enemy is still out there, and the fear laid to rest once they're in the cells or gone for good. The day a nemesis first came back, and the day one fell, go on the colony's calendar.</text>
         <points>
           <li>When a nemesis returns, put the one they hurt somewhere safe, or somewhere they can finish it themselves. Either way, expect a big swing in their mood.</li>
           <li>Capture fallen raiders who downed your people: a nemesis in your cells can't come back with the next raid.</li>
@@ -1039,30 +1043,31 @@ To head it off, use days of rest: a decree that slows everyone's work by 10% for
           <li>Grief | deaths and losses | a grave for the dead, grief shared, dreams of the dead, some strain</li>
           <li>Fear | danger here and now | defenses and weapons, nightmares, strain</li>
           <li>Dread | what's coming: a promised fight, a warband, a lean winter | stores, medicine and defenses, a trickle of strain</li>
-          <li>Anger | insults, fights, unfair decisions, a rival | frictions, wishes for justice</li>
-          <li>Shame | a prisoner executed or sold, a break they regret | fewer warm moments, wishes that make amends</li>
+          <li>Anger | insults, fights, unfair decisions, a rival, strangers camped on our land, a warlord who got away | frictions, wishes for justice</li>
+          <li>Shame | a prisoner executed or sold, a break they regret, a camp driven off, neighbours turned away in a hard year | fewer warm moments, wishes that make amends</li>
           <li>Envy | someone else's room or things, the council's favorite | frictions with them, the same things</li>
           <li>Disgust | raw food, corpses, rot, filth | a clean colony, better food</li>
-          <li>Loneliness | no friends here, a partner away, left out | warm moments, a party, a companion</li>
+          <li>Loneliness | no friends here, a partner away, left out, a friend gone on with the camp | warm moments, a party, a companion</li>
           <li>Homesickness | new here, family elsewhere | good food, keepsakes, dreams of home</li>
-          <li>Frustration | refusals, lapsed wishes, work they love turned off | less patience, frictions</li>
+          <li>Frustration | refusals, lapsed wishes, work they love turned off, crops lost to the locusts, a prize lost at the fair | less patience, frictions</li>
           <li>Despair | long low spirits, loss after loss, a colony losing | slower recovery, a day off likelier</li>
           <li>Joy | good meals, parties, wishes granted | faster recovery, warm moments, sweet dreams</li>
-          <li>Pride | good work, victories, a seat, a name | faster recovery, art and fine things</li>
+          <li>Pride | good work, victories, a seat, a name, a prize at the region's fair, a peace made at our table, neighbours helped | faster recovery, art and fine things</li>
           <li>Love | a partner or children close by | warm moments, sweet dreams, less loneliness</li>
-          <li>Gratitude | rescued, tended, helped, a wish granted | warm moments with the one who helped, trust in the council</li>
-          <li>Hope | spring, a newcomer, healing, strain lifting | faster recovery, less despair</li>
-          <li>Awe | auroras, eclipses, the comet, beautiful things | art, flowers, a shrine, very rarely an inspiration</li>
+          <li>Gratitude | rescued, tended, helped, a wish granted, a camp's good turn, a famous healer's cure, a stranger's blessing | warm moments with the one who helped, trust in the council</li>
+          <li>Hope | spring, a newcomer, healing, strain lifting, good news from the region (a fair, a new road, a peace) | faster recovery, less despair</li>
+          <li>Awe | auroras, eclipses, the comet, beautiful things, pilgrims singing in the night | art, flowers, a shrine, very rarely an inspiration</li>
           <li>Contentment | quiet days with needs met | faster recovery</li>
-          <li>Curiosity | research, books, visitors, new land | books, lessons, journeys</li>
+          <li>Curiosity | research, books, visitors and camps, new land, a master healer at work, a pilgrim's road | books, lessons, journeys</li>
           <li>Restlessness | the same work every day, too little fun | time outside, travel, a hunt</li>
           <li>Nostalgia | anniversaries, old stories, an heirloom, long years here, old age | a memorial, a hearth, dreams of the lost</li>
-          <li>Relief | a fight survived, a hunt or debt over, someone brought home | faster recovery, less fear, a day off</li>
-          <li>Tenderness | a baby, a patient, a little one learning, a bonded animal | warm moments, less anger, a crib or a pet bed</li>
-          <li>Worry | someone loved downed, ill, carried off or away | a sickbed visit, an infirmary, a trickle of strain</li>
-          <li>Fellowship | feasts and customs kept together, a circle, friends close by | warm moments, less loneliness, parties and music</li>
+          <li>Relief | a fight survived, a hunt or debt over, someone brought home, the warlord fallen or the warband broken up | faster recovery, less fear, a day off</li>
+          <li>Tenderness | a baby, a patient, a little one learning, a bonded animal, a lost child seen home | warm moments, less anger, a crib or a pet bed</li>
+          <li>Worry | someone loved downed, ill, carried off or away; a sickness in the region for parents and healers, hunger in the region for growers | a sickbed visit, an infirmary, a trickle of strain</li>
+          <li>Fellowship | feasts and customs kept together, a circle, friends close by, friends made at a camp, good neighbours to a camp, its music at night | warm moments, less loneliness, parties and music</li>
           <li>Resolve | a score to settle, drills, a steady nerve, a goal half won | less despair, fewer episodes, training and weapons</li>
         </table>
+        <after>The world beyond the walls reaches the heart too: what passes between the colony and a camp or a neighbour feeds the feelings above, and while a camp is on the map or a world event runs, a feeling that fits brings dreams and moments of its own (the camp's fire in a dream, friends at the camp talked about, worries about the region shared with a friend, plans made on good news, a camp sent away regretted).</after>
       </li>
       <li>
         <heading>The heart's needs</heading>

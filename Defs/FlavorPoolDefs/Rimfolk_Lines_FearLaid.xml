@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    What colonists say while their personal story is the fear laid to rest (Defs/ArcDefs/Rimfolk_Arc_FearLaid.xml),
+    added to the stories' own pool (Council_Pool_SayStory): [story:FearLaid] by stage, {NAME} the enemy.
+  -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_SayStory_FearLaid</defName>
+    <pool>Council_Pool_SayStory</pool>
+    <lines>
+      <plain>
+        <li>[story:FearLaid,stage:0] Everyone keeps telling me it's over.</li>
+        <li>[story:FearLaid,stage:0,captured] I don't go down to the cells, not while {NAME} is there.</li>
+        <li>[story:FearLaid,stage:0,dead] {NAME} is dead, so why am I still checking the doors?</li>
+        <li>[story:FearLaid,stage:1] There's something about {NAME} I've never told anyone.</li>
+        <li>[story:FearLaid,stage:2] I told it all, start to finish, and I'm still standing.</li>
+        <li>[story:FearLaid,stage:2] I slept a little better last night.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+</Defs>
