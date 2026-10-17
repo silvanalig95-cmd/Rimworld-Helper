@@ -26,8 +26,10 @@
         <li>Did anyone tell you {SUBJECT_nameDef} {DEED}?</li>
         <li>[tonewcomer] You'll want to know this one: {SUBJECT_nameDef} {DEED}.</li>
         <li>[tonewcomer] Since you're new, you should know {SUBJECT_nameDef} {DEED}.</li>
-        <li>[again] {SUBJECT_nameDef} {DEED}, and not for the first time.</li>
+        <li>[again] {SUBJECT_nameDef} {DEED}, and that's twice now.</li>
         <li>[aboutkin] My own kin, {SUBJECT_nameDef}, {DEED}.</li>
+        <li>[aboutgroupmate] One of ours, {SUBJECT_nameDef}, {DEED}.</li>
+        <li>[aboutoutsider] {SUBJECT_nameDef} keeps to {SUBJECT_objective}self, but {SUBJECT_pronoun} {DEED}.</li>
         <li>[persona:wary] If it's true, {SUBJECT_nameDef} {DEED}.</li>
         <li>[deed:rescue,hasvictim] {SUBJECT_nameDef} went back for {VICTIM} with the shooting still going.</li>
         <li>[deed:rescue] {SUBJECT_nameDef} dragged someone clear while the rest of us kept our heads down.</li>
@@ -97,6 +99,7 @@
         <li>[tonewcomer] Stick close to {SUBJECT_nameDef}, {SUBJECT_pronoun} {DEED}.</li>
         <li>[again] {SUBJECT_nameDef} {DEED}, same as always.</li>
         <li>[aboutkin] Family of mine, {SUBJECT_nameDef}, and {SUBJECT_pronoun} {DEED}.</li>
+        <li>[aboutgroupmate] We look after our own, and {SUBJECT_nameDef} {DEED}.</li>
         <li>[deed:rescue,hasvictim] {SUBJECT_nameDef} walked straight into it for {VICTIM} and didn't even flinch.</li>
         <li>[deed:rescue] I've never seen anything braver than {SUBJECT_nameDef} going back out there.</li>
         <li>[deed:rescue,hasvictim] {SUBJECT_nameDef} carried {VICTIM} on one shoulder with shots going past.</li>
@@ -149,6 +152,7 @@
         <li>{SUBJECT_nameDef} {DEED}, if you believe the talk.</li>
         <li>Luck, mostly, that {SUBJECT_nameDef} {DEED}.</li>
         <li>[aboutrival] Of course {SUBJECT_nameDef} {DEED}, and made sure we all knew.</li>
+        <li>[aboutoutsider] {SUBJECT_nameDef} {DEED}, and still won't sit with anyone.</li>
         <li>[again] {SUBJECT_nameDef} {DEED} again, and we all have to clap again.</li>
         <li>[tonewcomer] You'll hear {SUBJECT_nameDef} {DEED}, don't be impressed.</li>
         <li>[deed:rescue] {SUBJECT_nameDef} was nearest, that's all, anyone would have gone.</li>
@@ -303,6 +307,7 @@
         <li>Go easy on {SUBJECT_nameDef}, {SUBJECT_pronoun} {DEED} and feels awful.</li>
         <li>[aboutfriend] {SUBJECT_nameDef} {DEED}, and I'm still on {SUBJECT_possessive} side.</li>
         <li>[aboutkin] {SUBJECT_nameDef} {DEED}, and family sticks by family.</li>
+        <li>[aboutgroupmate] {SUBJECT_nameDef} {DEED}, and we stand by our own.</li>
         <li>[tonewcomer] You'll hear {SUBJECT_nameDef} {DEED}, don't judge {SUBJECT_objective} on that.</li>
         <li>[deed:fled] {SUBJECT_nameDef} froze, that's all, it happens to people.</li>
         <li>[deed:fled] {SUBJECT_nameDef} isn't a fighter and never claimed to be.</li>
@@ -352,6 +357,7 @@
         <li>Mark my words, {SUBJECT_nameDef} {DEED}, and will again.</li>
         <li>{SUBJECT_nameDef} {DEED}, and didn't even look sorry.</li>
         <li>[aboutrival] I said it from the start, {SUBJECT_nameDef} {DEED}.</li>
+        <li>[aboutoutsider] Nobody really knows {SUBJECT_nameDef}, and now {SUBJECT_pronoun} {DEED}.</li>
         <li>[aboutrival] Nobody listened to me, and now {SUBJECT_nameDef} {DEED}.</li>
         <li>[again] {SUBJECT_nameDef} {DEED} again, and we're to pretend.</li>
         <li>[tonewcomer] Watch {SUBJECT_nameDef}, that one {DEED}.</li>
@@ -408,12 +414,12 @@
         <li>[deed:tantrum] {SUBJECT_nameDef} had words with a chair, and the chair lost.</li>
         <li>[deed:insults] {SUBJECT_nameDef} called me a turnip-headed goat, which I've decided is a compliment.</li>
         <li>[deed:berserk] {SUBJECT_nameDef} went so wild even the raiders would have stayed home.</li>
-        <li>[deed:startedfight,hasvictim] {SUBJECT_nameDef} and {VICTIM} had a little dance, and {SUBJECT_nameDef} led.</li>
+        <li>[deed:startedfight,hasvictim] {SUBJECT_nameDef} and {VICTIM} had a dance, and {SUBJECT_nameDef} led.</li>
         <li>[deed:hoarded] {SUBJECT_nameDef} found the stores, and the stores did not survive.</li>
         <li>[deed:betrayed] Tell {SUBJECT_nameDef} a secret if you want it known by supper.</li>
         <li>[deed:contestlost,hasvictim] {SUBJECT_nameDef} lost to {VICTIM} at {DETAIL}, and it wasn't even close.</li>
         <li>[deed:skipped] {SUBJECT_nameDef} sent {SUBJECT_possessive} empty chair to the council instead.</li>
-        <li>[deed:cheated] {SUBJECT_nameDef} has been very busy lately, in two places at once.</li>
+        <li>[deed:cheated] {SUBJECT_nameDef} has been sharing {SUBJECT_possessive} evenings rather widely.</li>
         <li>[deed:breakup] {SUBJECT_nameDef} is free again, form an orderly queue.</li>
         <li>[deed:idle] {SUBJECT_nameDef} has guarded that wall all week, from a sitting position.</li>
         <li>[deed:idle] {SUBJECT_nameDef} is saving {SUBJECT_possessive} strength, has been for days.</li>

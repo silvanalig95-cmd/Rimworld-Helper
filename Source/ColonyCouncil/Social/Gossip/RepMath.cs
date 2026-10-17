@@ -61,7 +61,7 @@ namespace ColonyCouncil
         public const float MaxGrowth = 1.6f, MinShrink = 0.4f;
 
         /// <summary>Deeds kept per person, in all, and people who know of one deed.</summary>
-        public const int MaxDeedsPerSubject = 12, MaxDeeds = 600, MaxKnowers = 40;
+        public const int MaxDeedsPerSubject = 12, MaxDeeds = 400, MaxKnowers = 40;
 
         /// <summary>A deed fainter than this (its size, faded) is let go.</summary>
         public const float Forgotten = 0.08f;
@@ -124,8 +124,8 @@ namespace ColonyCouncil
         /// <summary>The chance a story comes out as a joke: none below humour 25, half at the very top.</summary>
         public static float JokeChance(float humour) => humour <= 25f ? 0f : Clamp((humour - 25f) / 150f, 0f, 0.5f);
 
-        /// <summary>Grave: someone was hurt, or it was cruel (kindness -5 or worse at size 1). Nobody jokes about those.</summary>
-        public static bool Grave(float[] shifts) => shifts != null && shifts.Length > (int)RepFacet.Kindness && shifts[(int)RepFacet.Kindness] <= -5f;
+        /// <summary>Grave: someone was hurt, or it was cruel (kindness -8 or worse at size 1). Nobody jokes about those.</summary>
+        public static bool Grave(float[] shifts) => shifts != null && shifts.Length > (int)RepFacet.Kindness && shifts[(int)RepFacet.Kindness] <= -8f;
 
         /// <summary>A proud colonist may tell of their own good deed; nobody boasts of a bad one.</summary>
         public static bool MayBoast(float pride, int valence) => valence > 0 && pride >= 30f;

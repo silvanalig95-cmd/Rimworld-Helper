@@ -58,6 +58,8 @@ namespace ColonyCouncil
         public float interest = 1f;
         /// <summary>Passed on in gossip at all (false: only those who saw it know, like a colonist's own run of gossiping).</summary>
         public bool told = true;
+        /// <summary>Nobody makes a joke of it (an execution); any deed cruel enough (kindness -8) is grave anyway.</summary>
+        public bool grave;
         /// <summary>
         /// What they did, for lines and the character page, in the third person without the doer: "carried
         /// {VICTIM_nameDef} out of the fight". {SUBJECT_...} is the doer, {VICTIM_...} the other person in it, {DETAIL} a
@@ -109,6 +111,9 @@ namespace ColonyCouncil
                 return valence;
             }
         }
+
+        /// <summary>Not to be joked about.</summary>
+        public bool Grave => grave || RepMath.Grave(Shifts);
 
         /// <summary>The theme as a line tag: deed:rescue.</summary>
         public string Tag => "deed:" + (theme ?? defName);

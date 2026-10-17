@@ -110,6 +110,20 @@ namespace ColonyCouncil
 
         private static bool Friend(Pawn a, Pawn b) => (CouncilGameComponent.Instance?.social?.Strength(a, b, TieKind.Friends) ?? 0f) >= 20f;
 
+        /// <summary>
+        /// The two belong to the same group (Social/Groups/, read only through its tags: group:&lt;id&gt;). Group members
+        /// speak up for each other a little.
+        /// </summary>
+        private static bool SameGroup(Pawn a, Pawn b)
+        {
+            var ta = PeopleTags.Identity(a);
+            var tb = PeopleTags.Identity(b);
+            foreach (var t in ta)
+                if (t.StartsWith("group:", StringComparison.Ordinal) && tb.Contains(t))
+                    return true;
+            return false;
+        }
+
         /// <summary>The story the teller would tell this listener now, and how likely: the likeliest of all they know.</summary>
         private static Pick Choose(Pawn teller, Pawn listener)
         {
@@ -185,7 +199,9 @@ namespace ColonyCouncil
             float opinion = pick.own ? 0f : teller.relations?.OpinionOf(subject) ?? 0f;
             bool rival = !pick.own && Rival(teller, subject);
             bool friend = !pick.own && Friend(teller, subject);
-            var slant = RepMath.SlantFor(valence, opinion, friend, rival, pt[(int)PersonaAxis.Humour], pick.own, Rand.Value, RepMath.Grave(d.def.Shifts));
+            // One of their own group: spoken up for a little, as a friend would be.
+            if (!pick.own && !rival && SameGroup(teller, subject)) opinion += 15f;
+            var slant = RepMath.SlantFor(valence, opinion, friend, rival, pt[(int)PersonaAxis.Humour], pick.own, Rand.Value, d.def.Grave);
             float heard = pick.own ? d.size : d.KnowerOf(teller.thingIDNumber)?.version ?? d.size;
             float version = RepMath.Retold(heard, d.size, slant, valence, Rand.Value);
             float listenerOfSubject = listener.relations?.OpinionOf(subject) ?? 0f;
@@ -238,6 +254,9 @@ namespace ColonyCouncil
                 if (Friend(teller, subject)) tags.Add("aboutfriend");
                 if (Rival(teller, subject)) tags.Add("aboutrival");
                 if (subject.relations?.DirectRelations?.Any(r => r.otherPawn == teller && r.def != null && r.def.familyByBloodRelation) ?? false) tags.Add("aboutkin");
+                // The groups (Social/Groups/, by their tags): one of the teller's own, or someone who belongs nowhere.
+                if (SameGroup(teller, subject)) tags.Add("aboutgroupmate");
+                else if (PeopleTags.Identity(subject).Contains("outsider")) tags.Add("aboutoutsider");
             }
             // Not the first time: the same thing again, or a big one.
             if (d.size >= 2f || tr.By(d.doer).Count(x => x.def == d.def) >= 2) tags.Add("again");

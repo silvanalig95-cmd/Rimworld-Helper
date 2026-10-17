@@ -204,6 +204,10 @@ MODEL = {
     "Quirks/Quirks.cs:battleTick": ("colonists", 1, D, "within the longest quirk window"),
     # The world
     "World/FactionMemory.cs:deeds": ("fixed", 12 * 12, 200, "12 deeds per people (12 peoples), fading out"),
+    # Reputation and gossip
+    "Social/Gossip/ReputationTracker.cs:deeds": ("cap", (min(400, 12 * COLONISTS), COLONISTS * 0.3), 300, "12 per colonist, 400 in all, faded ones dropped"),
+    "Social/Gossip/Deed.cs:heard": ("cap", (min(400, 12 * COLONISTS) * 10, COLONISTS * 3), 110, "who knows each deed (40 at most a deed), with its deed"),
+    "Social/Gossip/ReputationTracker.cs:told": ("colonists", 1, 60, "one packed number per colonist, the gone dropped daily"),
     "World/WorldSituation.cs:flags": ("fixed", 4, 40, "per situation (counted under active and history)"),
     "World/WorldSituation.cs:deeds": ("fixed", 4, 40, "per situation"),
     "World/WorldSituation.cs:beats": ("fixed", 4, 200, "per situation"),

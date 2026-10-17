@@ -43,7 +43,7 @@
   <CC_Rep_NothingSaid>nothing said</CC_Rep_NothingSaid>
   <CC_Rep_StandingTip>What the colony says about them, from the deeds people know of, side by side. A side shows from 6 and is strong from 18 (40 at most). It is shared out over everyone in the colony, so a name needs the story to have got round, and it fades as the talk dies down.</CC_Rep_StandingTip>
   <CC_Rep_Called>The colony calls {PAWN_objective} {TITLES}.</CC_Rep_Called>
-  <CC_Rep_Called_Tip>A colony name (an epithet) comes from what someone keeps doing. A strong name on the same side (brave, for the Defender or Deadeye; kind, for the Healer; skilled, for the Maker) earns it a little sooner.</CC_Rep_Called_Tip>
+  <CC_Rep_Called_Tip>A colony name (an epithet) comes from what someone keeps doing. A strong name on the same side (brave, for the Defender or Deadeye; kind, for the Healer; skilled, for the Maker) earns it sooner.</CC_Rep_Called_Tip>
   <CC_Rep_Deed>{WHAT} ({LABEL}). {COUNT} of {ALL} have heard.</CC_Rep_Deed>
   <CC_Rep_Grown_Worse>It sounds worse every time it's told.</CC_Rep_Grown_Worse>
   <CC_Rep_Grown_Better>It has grown in the telling.</CC_Rep_Grown_Better>

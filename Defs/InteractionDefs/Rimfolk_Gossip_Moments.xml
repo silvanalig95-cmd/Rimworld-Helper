@@ -195,7 +195,7 @@
         <li>r_logentry->[INITIATOR_nameDef] sat down next to [RECIPIENT_nameDef] after a hard day, because everyone says [RECIPIENT_pronoun] is easy to talk to.</li>
         <li>r_logentry->[INITIATOR_nameDef] brought [RECIPIENT_nameDef] something warm to drink, having heard what [RECIPIENT_pronoun] did for the others.</li>
         <li>r_logentry->[INITIATOR_nameDef] went to [RECIPIENT_nameDef] with a splinter, and stayed to talk about something else entirely.</li>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that people speak well of [RECIPIENT_objective], and [RECIPIENT_nameDef] went a little red.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that people speak well of [RECIPIENT_objective], and [RECIPIENT_nameDef] went red.</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] for advice about a falling-out, since [RECIPIENT_pronoun] never seems to have any.</li>
         <li>r_logentry->[INITIATOR_nameDef] saved [RECIPIENT_nameDef] the warm end of the bench without being asked.</li>
       </rulesStrings>
