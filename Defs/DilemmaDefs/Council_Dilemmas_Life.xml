@@ -51,6 +51,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>3</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmL_StoresBare</thought><degreeTrait>Nerves</degreeTrait><maxDegree>-1</maxDegree></li>
           <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Medicine</skill><xp>250</xp></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><who>B</who><whom>A</whom><duration>1~1.5</duration></li>
         </effects>
         <riskChance>0.3</riskChance>
         <riskSkill>Medicine</riskSkill>
@@ -60,6 +61,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>medicine</what><count>1</count></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmL_StoresBare</thought><degreeTrait>Nerves</degreeTrait><maxDegree>-1</maxDegree></li>
           <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Medicine</skill><xp>150</xp></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><who>B</who><whom>A</whom><duration>1~1.5</duration></li>
         </riskEffects>
       </li>
       <li>
@@ -356,6 +358,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_GoodCompany</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmL_GaveAwayStores</thought><onlyTrait><li>Greedy</li></onlyTrait></li>
           <li Class="ColonyCouncil.DilemmaEffect_LifeEvent"><target>A</target><counter>stranger</counter></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><duration>0.75~1</duration></li>
         </effects>
       </li>
       <li>
@@ -421,6 +424,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_GoodCompany</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>2</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_LifeEvent"><target>A</target><counter>stranger</counter></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><hours>5~12</hours><duration>1.5~2</duration></li>
         </effects>
         <riskChance>0.5</riskChance>
         <riskReplaces>true</riskReplaces>
@@ -431,6 +435,7 @@
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmL_OddCureFlop</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_GoodCompany</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><hours>5~12</hours><duration>1.5~2</duration></li>
         </riskEffects>
       </li>
       <li>

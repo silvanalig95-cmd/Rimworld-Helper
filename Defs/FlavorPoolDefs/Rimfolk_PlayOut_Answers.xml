@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Lines for answers that play out on the map and need words of their own kind (Source/ColonyCouncil/PlayOut): an
+    answer names the pool on its gathering (<pool>). Short lines: they float up and fade.
+  -->
+
+  <!-- A reckoning in front of everyone: a punishment handed down at supper, a dressing-down the colony was meant to see. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_PlayReckoning</defName>
+    <lines>
+      <plain>
+        <li>Everyone heard that.</li>
+        <li>Nobody does that again. Nobody.</li>
+        <li>Eat your supper. It's said now.</li>
+        <li>That's the end of it, then.</li>
+        <li>[child] Is that what happens?</li>
+      </plain>
+      <warm>
+        <li>Sit down. It's done.</li>
+        <li>Hard thing to hear. Harder to say.</li>
+      </warm>
+      <blunt>
+        <li>Should have been said sooner.</li>
+      </blunt>
+      <cheerful>
+        <li>Well. Pass the bread, then.</li>
+      </cheerful>
+      <gloomy>
+        <li>I didn't want to watch that.</li>
+      </gloomy>
+      <cold>
+        <li>It had to be done.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

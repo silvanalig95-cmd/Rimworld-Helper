@@ -245,6 +245,7 @@
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>15</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_HelpedNeighbors</thought><exceptTrait><li>Greedy</li><li>Psychopath</li></exceptTrait></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the medicine for {FACTION}</label><variant>true</variant><steward>false</steward><to>Gate</to></li>
             </effects>
             <ways><generosity>4</generosity><mercy>2</mercy></ways>
           </li>
@@ -253,6 +254,7 @@
             <outcome>{FACTION} pay {COUNT} silver for the {THING} and send their thanks.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>4</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the medicine for {FACTION}</label><variant>true</variant><steward>false</steward><to>Gate</to></li>
             </effects>
           </li>
           <li>
@@ -272,6 +274,7 @@
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>11</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_HelpedNeighbors</thought></li>
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><skill>Medicine</skill><xp>300</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the medicine for {FACTION}</label><variant>true</variant><factor>0.5</factor><steward>false</steward><to>Gate</to></li>
             </effects>
             <ways><generosity>2</generosity><mercy>2</mercy></ways>
           </li>

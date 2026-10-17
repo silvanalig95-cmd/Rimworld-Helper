@@ -569,7 +569,7 @@
             <label>Pay {COUNT} silver for peace</label>
             <outcome>{X_nameDef} takes the silver back to {ENEMY}. By nightfall word comes back: the feud is over, for now.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the silver for the peace</label><what>silver</what><to>Gate</to></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_PeaceMade</thought><exceptTrait><li>Bloodlust</li></exceptTrait></li>
             </effects>
             <ways><mercy>2</mercy><openness>2</openness></ways>
@@ -579,6 +579,7 @@
             <outcome>The food is carried out to the envoy, and {ENEMY} send carts for it before dark. The feud is over, for now.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_PeaceMade</thought><exceptTrait><li>Bloodlust</li></exceptTrait></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the food for the peace</label><what>rawfood</what><variant>true</variant><to>Gate</to></li>
             </effects>
             <ways><mercy>2</mercy><openness>2</openness></ways>
           </li>

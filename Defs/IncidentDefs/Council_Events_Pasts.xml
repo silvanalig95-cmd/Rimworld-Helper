@@ -335,7 +335,7 @@
             <label>Pay them {COUNT} silver</label>
             <outcome>The hunters take the silver, count it, and leave. {A_nameDef}'s old life is paid for.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the bounty</label><what>silver</what><who>None</who><to>Gate</to></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_BoughtFreedom</thought></li>
               <li Class="ColonyCouncil.DilemmaEffect_Trust"><amount>6</amount></li>
             </effects>

@@ -369,8 +369,18 @@ namespace ColonyCouncil
                 case PlaySpot.Fire:
                 case PlaySpot.Place:
                 {
-                    // Somewhere on their own for a while: the field's edge, the water, the gate, a fire.
+                    // Somewhere on their own for a while: the field's edge, the water, the gate, a fire. When that place
+                    // can't be had (no water near the colony, no fields), the next the answer allows (its orTo).
                     var c = PlaySpots.FocusCell(p, p.to, v, out string where);
+                    if (!c.IsValid && p.spots != null)
+                        foreach (var alt in p.spots)
+                        {
+                            if (alt == p.to || !DilemmaEffect_Visit.OwnPlace(alt)) continue;
+                            c = PlaySpots.FocusCell(p, alt, v, out where);
+                            if (!c.IsValid) continue;
+                            p.to = alt;
+                            break;
+                        }
                     if (!c.IsValid)
                     {
                         p.waitReason = "CC_Play_Why_Place".Translate();

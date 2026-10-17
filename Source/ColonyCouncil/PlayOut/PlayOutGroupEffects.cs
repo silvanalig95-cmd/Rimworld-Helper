@@ -225,7 +225,8 @@ namespace ColonyCouncil
     /// things from the stores and carries them out: to the visitor (X), if they're here; else to the gate, where a rider
     /// or a cart waits; or to the camp (<see cref="to"/> Camp). What goes, and how much, is as the answer's own taking
     /// was: <see cref="what"/> ("silver", "rawfood", "medicine", "meals", "wood", or a thing's defName; empty: the event's
-    /// thing), <see cref="count"/> (else the letter's {COUNT}) times <see cref="factor"/>, less the quartermaster's
+    /// thing), <see cref="count"/> (else the letter's {COUNT}, or with <see cref="variant"/> the event's other number:
+    /// the food or medicine its letter names besides a price) times <see cref="factor"/>, less the quartermaster's
     /// saving (<see cref="steward"/>), rounded to tens for a sum of silver the letter names (<see cref="tens"/>). The
     /// answer is greyed out without enough. One trip: what the carrier can't hold goes on the cart when they hand it
     /// over. If it never happens, or with the setting off, the things are taken from the stores at once, as always.
@@ -237,6 +238,8 @@ namespace ColonyCouncil
         public float factor = 1f;
         public bool steward = true;
         public bool tens;
+        /// <summary>The amount is the event's own second number (HappeningContext.variant: "{TALE}", 60 raw food), not {COUNT}.</summary>
+        public bool variant;
         public PlayWho who = PlayWho.A;
         public PlaySpot to = PlaySpot.Stranger;
 
@@ -252,7 +255,8 @@ namespace ColonyCouncil
         private ThingDef Def(DilemmaContext ctx) => PlayCarry.DefOf(what, ctx?.thing);
 
         private int Need(DilemmaContext ctx) =>
-            PlayOutMath.CarryAmount(count, ctx?.count ?? 0, factor, steward ? CouncilGameComponent.Instance?.offices.CostFactor ?? 1f : 1f, tens);
+            PlayOutMath.CarryAmount(count, variant ? (ctx as HappeningContext)?.variant ?? 0 : ctx?.count ?? 0, factor,
+                steward ? CouncilGameComponent.Instance?.offices.CostFactor ?? 1f : 1f, tens);
 
         public override string Unavailable(DilemmaContext ctx)
         {

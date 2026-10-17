@@ -179,11 +179,13 @@
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Choice_SmoothedOver</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>1</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><who>B</who><to>Stranger</to><duration>0.5~0.75</duration></li>
         </effects>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmS_Stung</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Choice_TalkFailed</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>-3</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><who>B</who><to>Stranger</to><duration>0.5~0.75</duration></li>
         </riskEffects>
       </li>
     </options>
@@ -398,7 +400,7 @@
         <outcome>The {FACTION} people left with their sacks full of the colony's food, and {X_nameDef} promised they would remember it. The cooks have started stretching the winter stores to make up the difference.</outcome>
         <ways><generosity>8</generosity><openness>2</openness></ways>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>40</count></li>
+          <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the food for {FACTION}</label><what>rawfood</what><count>40</count></li>
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>8</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_DlmS_FedTheHungry</thought><onlyTrait><li>Kind</li></onlyTrait></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_DlmS_GaveItAway</thought><onlyTrait><li>Greedy</li></onlyTrait></li>
@@ -409,7 +411,7 @@
         <outcome>The council gave {X_nameDef} sixty silver and directions to the nearest market. It's a long walk, but they left in better spirits than they came.</outcome>
         <ways><generosity>4</generosity></ways>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>60</count></li>
+          <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the silver for {FACTION}</label><what>silver</what><count>60</count></li>
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>5</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_DlmS_GaveItAway</thought><onlyTrait><li>Greedy</li></onlyTrait><chance>0.5</chance></li>
         </effects>
@@ -798,7 +800,7 @@
         <outcome>The silver changed hands behind the storeroom. {X_nameDef} went back to the other visitors whistling, and {A_nameDef} finally got a decent night's sleep.</outcome>
         <ways><generosity>5</generosity></ways>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>150</count></li>
+          <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the silver for {X_nameDef}'s silence</label><what>silver</what><count>150</count></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmS_BoughtSilence</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>5</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmS_HushMoney</thought><onlyTrait><li>Greedy</li></onlyTrait></li>
