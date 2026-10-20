@@ -54,7 +54,9 @@ namespace ColonyCouncil
             var comp = CouncilGameComponent.Instance;
             string text = "CC_World_Wedding".Translate(a.Named("A"), b.Named("B")).Resolve();
             comp.AddChronicle(new ChronicleEntry(ChronicleKind.Life, text, a.IsColonist ? a : b));
-            foreach (var p in new[] { a, b }.Where(p => p.IsColonist)) comp.journals.Write(p, "Council_Journal_Wedding", null, (p == a ? b : a).Named("OTHER"));
+            // A spouse the wedding marked has already written of it in their own words (Persona/Marks.cs): one line each.
+            foreach (var p in new[] { a, b }.Where(p => p.IsColonist && !comp.journals.WroteWithin(p)))
+                comp.journals.Write(p, "Council_Journal_Wedding", null, (p == a ? b : a).Named("OTHER"));
             foreach (var f in FriendsOf(a).Concat(FriendsOf(b)).Distinct().Where(f => f != a && f != b).Take(4))
                 comp.journals.Write(f, "Council_Journal_WeddingGuest", null, a.Named("A"), b.Named("B"));
             // A wedding is the oldest custom there is.
@@ -72,7 +74,8 @@ namespace ColonyCouncil
                 ? "CC_World_Birth".Translate(baby.Named("BABY"), parents[0].Named("PARENT")).Resolve()
                 : "CC_World_BirthNoParent".Translate(baby.Named("BABY")).Resolve();
             comp.AddChronicle(new ChronicleEntry(ChronicleKind.Life, text, parents.FirstOrDefault()));
-            foreach (var p in parents) comp.journals.Write(p, "Council_Journal_Birth", null, baby.Named("BABY"));
+            // A first child marks its parents, who write of it in their own words (Persona/Marks.cs): one line each.
+            foreach (var p in parents.Where(p => !comp.journals.WroteWithin(p))) comp.journals.Write(p, "Council_Journal_Birth", null, baby.Named("BABY"));
         }
 
         /// <summary>Colonists back from a journey of at least two days (counted from when each was last at home).</summary>

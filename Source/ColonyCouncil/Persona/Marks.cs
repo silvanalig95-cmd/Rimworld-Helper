@@ -261,7 +261,11 @@ namespace ColonyCouncil
             if (comp == null) return;
             var otherArg = other != null ? other.Named("OTHER") : (mark.otherName ?? "").Named("OTHER");
             var labelArg = (mark.label ?? "").Named("LABEL");
-            if (x.journal != null && x.journal.Any)
+            // One happening, one line: not when the happening already has its line in their journal (the council's line
+            // for an election, a wedding's), and a death is written about once, whoever notices it first (the grief, the
+            // bond lost, the group: JournalTracker.FirstOnLoss).
+            if (x.journal != null && x.journal.Any && !comp.journals.WroteWithin(p)
+                && (other == null || MarkDefs.StoryOf(def) != "Loss" || comp.journals.FirstOnLoss(p, other)))
             {
                 string raw = x.journal.Pick(ToneUtility.ToneFor(p), Flavor.TagsFor(p));
                 if (!raw.NullOrEmpty()) comp.journals.WriteText(p, raw.Formatted(p.Named("PAWN"), otherArg, labelArg).Resolve());

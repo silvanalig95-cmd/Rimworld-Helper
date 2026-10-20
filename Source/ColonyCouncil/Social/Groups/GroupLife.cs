@@ -161,7 +161,7 @@ namespace ColonyCouncil
                         g.todayDied++;
                         g.Former(m.name);
                         if (!quiet) g.Note("CC_GroupNote_Died".Translate(m.name ?? "?").Resolve(), true);
-                        Remember(comp, g, m.name, "Rimfolk_Journal_Group_LostOne");
+                        Remember(comp, g, m.name, "Rimfolk_Journal_Group_LostOne", p);
                         continue;
                     }
                     if (f.IndexOf(p) < 0)
@@ -201,12 +201,16 @@ namespace ColonyCouncil
             t.Changed();
         }
 
-        /// <summary>A member lost: one of those left writes about it (the anchor first).</summary>
-        private static void Remember(CouncilGameComponent comp, SocialGroup g, string name, string pool)
+        /// <summary>
+        /// A member lost: one of those left writes about it (the anchor first), unless they have already written of that
+        /// death (its mark, their grief, a bond lost: JournalTracker.FirstOnLoss).
+        /// </summary>
+        private static void Remember(CouncilGameComponent comp, SocialGroup g, string name, string pool, Pawn lost = null)
         {
             if (!Rand.Chance(0.6f)) return;
             var writer = g.Holder(GroupRole.Anchor) ?? g.Pawns.Where(p => !p.Dead).RandomElementWithFallback();
             if (writer == null || writer.Dead) return;
+            if (lost != null && comp?.journals != null && !comp.journals.FirstOnLoss(writer, lost)) return;
             GroupText.Journal(writer, pool, g.Name.Named("GROUP"), (name ?? "?").Named("NAME"));
         }
 

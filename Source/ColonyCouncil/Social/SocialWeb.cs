@@ -360,7 +360,9 @@ namespace ColonyCouncil
                     var dead = t.a.Dead ? t.a : t.b;
                     var alive = t.Other(dead);
                     if (!Eligible(alive) || !written.Add((alive, dead))) continue;
-                    comp.journals.Write(alive, t.kind == TieKind.Rivals ? "Council_Journal_RivalLost" : "Council_Journal_TieLost", null, dead.Named("OTHER"));
+                    // Written once, whoever notices the death first (the grief, the mark it leaves, the group: FirstOnLoss).
+                    if (comp.journals.FirstOnLoss(alive, dead))
+                        comp.journals.Write(alive, t.kind == TieKind.Rivals ? "Council_Journal_RivalLost" : "Council_Journal_TieLost", null, dead.Named("OTHER"));
                     lost.Add(new LostBond { survivor = alive, name = dead.LabelShort, kind = t.kind, tick = Find.TickManager.TicksGame });
                     PersonaMarks.Notify_BondLost(alive, dead, t.kind, t.kind == TieKind.Mentor && t.b == alive);
                 }
