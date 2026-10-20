@@ -2,10 +2,8 @@
 <LanguageData>
 
   <!-- Marks: what happens to people changes them (Source/ColonyCouncil/Persona/Marks.cs). Labels for what a mark was about. -->
-  <CC_Mark_Day>{0} {1}</CC_Mark_Day>
-  <CC_Mark_Date>{0} {1} {2}</CC_Mark_Date>
-  <CC_MarkLabel_Raid>the raid of {0}</CC_MarkLabel_Raid>
-  <CC_MarkLabel_Attack>the attack of {0}</CC_MarkLabel_Attack>
+  <CC_Mark_Day>the {0}</CC_Mark_Day>
+  <CC_Mark_Date>{0} {1}</CC_Mark_Date>
   <CC_MarkLabel_HungrySeason>the hungry {0} of {1}</CC_MarkLabel_HungrySeason>
 
   <!-- The character page (Source/ColonyCouncil/Persona/CharacterView.cs), in the Story tab and the People roster. -->
@@ -14,6 +12,7 @@
   <CC_Char_NatureOnly>Nothing has marked {PAWN_nameDef} yet: this is {PAWN_possessive} nature, from traits, skills and age.</CC_Char_NatureOnly>
   <CC_Char_ByNature>By nature {0}.</CC_Char_ByNature>
   <CC_Char_Shaped>What shaped {PAWN_objective}</CC_Char_Shaped>
+  <CC_Char_MoreMarks>And {0} more, older or smaller: hover to read them.</CC_Char_MoreMarks>
   <CC_Char_TurningPoint>a turning point</CC_Char_TurningPoint>
   <CC_Char_Raised>Raised: {0}.</CC_Char_Raised>
   <CC_Char_Lowered>Lowered: {0}.</CC_Char_Lowered>

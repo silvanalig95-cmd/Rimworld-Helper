@@ -96,6 +96,8 @@ namespace ColonyCouncil
             if (lastTold.TryGetValue(teller.thingIDNumber, out int t) && t <= now && now - t < TellerGapTicks) return 0f;
             long key = Key(teller, listener);
             if (pairTold.TryGetValue(key, out int pt) && pt <= now && now - pt < PairGapTicks) return 0f;
+            // One of Rimfolk's exchanges just started, or one of the two is mid-conversation (SocialPace).
+            if (!SocialPace.Ready(teller, listener)) return 0f;
             if (!picks.TryGetValue(key, out var pick) || now - pick.tick >= Sched.RareTicks || now < pick.tick)
             {
                 if (picks.Count > 600) picks.Clear();
@@ -186,6 +188,7 @@ namespace ColonyCouncil
             int now = Now;
             var pick = Choose(teller, listener);
             picks.Remove(Key(teller, listener));
+            SocialPace.Started(teller);
             lastTold[teller.thingIDNumber] = now;
             pairTold[Key(teller, listener)] = now;
             if (pairTold.Count > 2000) pairTold.Clear();
@@ -223,14 +226,25 @@ namespace ColonyCouncil
             }
             var tags = Tags(d, subject, teller, listener, slant, pick, tr);
             string pool = pick.present ? "Rimfolk_Gossip_Present" : pick.own ? "Rimfolk_Gossip_Boast" : "Rimfolk_Gossip_" + (valence < 0 ? "Bad_" : "Good_") + slant;
+            var turns = new List<(Pawn speaker, Pawn listener, string text)>();
             string line = Line(pool, teller, d, subject, listener, tags);
-            if (!line.NullOrEmpty()) Speech.Say(teller, line, listener);
-            if (pick.present)
-            {
-                InFront(teller, listener, subject, d, slant, valence, tags);
-                return;
-            }
-            Answer(teller, listener, subject, d, slant, valence, belief, listenerOfSubject, tags);
+            if (!line.NullOrEmpty()) turns.Add((teller, listener, line));
+            if (pick.present) InFront(teller, listener, subject, d, slant, valence, tags, turns);
+            else Answer(teller, listener, subject, d, slant, valence, belief, listenerOfSubject, tags, turns);
+            Say(turns);
+        }
+
+        /// <summary>
+        /// The story and its answer said over their heads in turn, like a conversation's lines (TalkTracker's queue: each
+        /// a moment after the last, and only while they're still together); said at once if there's no queue.
+        /// </summary>
+        private static void Say(List<(Pawn speaker, Pawn listener, string text)> turns)
+        {
+            // together: the game's own conversation brought them face to face; each line checks it again as it's said.
+            if (turns.Count == 0) return;
+            var queue = TalkTracker.Instance?.exchanges;
+            if (queue != null && queue.AddTurns(turns, Now, Talk.FirstGap, Talk.LineGap) != 0) return;
+            foreach (var (speaker, to, text) in turns) Speech.Say(speaker, text, to);
         }
 
         private static string LogPack(int valence, Slant slant, bool present)
@@ -285,7 +299,8 @@ namespace ColonyCouncil
         /// up for someone they think well of. Taking the teller's side brings the two a little closer; sticking up for
         /// the one it's about is a small friction between them.
         /// </summary>
-        private static void Answer(Pawn teller, Pawn listener, Pawn subject, Deed d, Slant slant, int valence, float belief, float opinionOfSubject, string[] tags)
+        private static void Answer(Pawn teller, Pawn listener, Pawn subject, Deed d, Slant slant, int valence, float belief, float opinionOfSubject, string[] tags,
+            List<(Pawn, Pawn, string)> turns)
         {
             // together: said back in the same conversation (Told).
             string kind;
@@ -298,7 +313,7 @@ namespace ColonyCouncil
             if (Rand.Chance(0.7f))
             {
                 string line = Line("Rimfolk_Gossip_React_" + kind, listener, d, subject, teller, tags);
-                if (!line.NullOrEmpty()) Speech.Say(listener, line, teller);
+                if (!line.NullOrEmpty()) turns.Add((listener, teller, line));
             }
             if (kind == "Defend")
                 MomentTones.RecordEvent("friction", teller, listener, 6f);
@@ -310,14 +325,14 @@ namespace ColonyCouncil
         /// Told with its subject right there: they answer for themselves. Run down to their face, they take it badly (a
         /// friction, and the teller is caught at it); talked up, it brings them a little closer.
         /// </summary>
-        private static void InFront(Pawn teller, Pawn listener, Pawn subject, Deed d, Slant slant, int valence, string[] tags)
+        private static void InFront(Pawn teller, Pawn listener, Pawn subject, Deed d, Slant slant, int valence, string[] tags, List<(Pawn, Pawn, string)> turns)
         {
             // together: the one it's about is standing with them (SocialLog.Near in Choose); Speech.Say checks it again.
             if (!Together.Can(subject, teller)) return;
             bool against = slant == Slant.Scorn || (valence < 0 && slant != Slant.Praise);
             var all = new List<string>(tags) { against ? "against" : "for" };
             string line = Line("Rimfolk_Gossip_React_Subject", subject, d, subject, teller, all.ToArray());
-            if (!line.NullOrEmpty()) Speech.Say(subject, line, teller);
+            if (!line.NullOrEmpty()) turns.Add((subject, teller, line));
             if (against)
             {
                 CouncilGameComponent.GiveThought(subject, DefDatabase<ThoughtDef>.GetNamedSilentFail("Council_Friction_TalkedAboutMe"), teller);

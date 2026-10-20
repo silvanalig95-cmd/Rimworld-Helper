@@ -12,7 +12,7 @@
     <tip>Gossip needs no managing. Watch who tells what: a rival's version of a deed says as much about the teller as about the deed.</tip>
     <description>Colonists notice what the others do: who carried a wounded friend out of a fight, who ran, who threw a tantrum, who sat with the sick for days, who let a secret out. Those who saw it know. Everyone else hears about it, sooner or later, in conversation.
 
-Gossip is an ordinary conversation. The game picks it among the others when two colonists talk, but only when the speaker knows of something the listener doesn't, about someone else, and the one it's about isn't there to hear. The social log gets a line saying what was talked about and how ("Ana told Bo about who ran when the fighting started, and it got worse every time she came back to it"), and the words themselves show over their heads: the teller's line, and often the listener's answer. Gossip is separate from the grumbling about the council, which is about trust in the council.</description>
+Gossip is an ordinary conversation. The game picks it among the others when two colonists talk, but only when the speaker knows of something the listener doesn't, about someone else, and the one it's about isn't there to hear. The social log gets a line saying what was talked about and how ("Ana told Bo about who ran when the fighting started, and it got worse every time she came back to it"), and the words themselves show over their heads, a moment apart like a conversation's: the teller's line, and often the listener's answer. Gossip is separate from the grumbling about the council, which is about trust in the council.</description>
     <sections>
       <li>
         <heading>How a story is told</heading>
@@ -34,13 +34,13 @@ The answer shows it: admiring, condemning, laughing, doubting ("Who told you tha
       </li>
       <li>
         <heading>How often</heading>
-        <text>One colonist passes on a story at most every ten hours, and the same two not more than once in two days. Fresh news is told more than old, a scandal more than a held line, jokers and the warm talk more than the cold, and people say more about those they feel strongly about. Newcomers (their first 20 days) are told much more, and old news is still news to them, so they learn who's who over their first weeks. The "Moments between colonists" frequency setting covers gossip too, and all of it (gossip, deeds and reputations) follows "Personalities and social life".
+        <text>One colonist passes on a story at most every ten hours, and the same two not more than once in two days; like all of Rimfolk's talk, not within an hour of another the teller started, nor with someone in the middle of a talk. Fresh news is told more than old, a scandal more than a held line, jokers and the warm talk more than the cold, and people say more about those they feel strongly about. Newcomers (their first 20 days) are told much more, and old news is still news to them, so they learn who's who over their first weeks. The "Moments between colonists" frequency setting covers gossip too, and all of it (gossip, deeds and reputations) follows "Personalities and social life".
 
 Gossiping is talked about in turn. Running others down, or passing on their troubles, is noticed by those who listen, and enough of it gets a colonist known as a gossip (see "reputation").</text>
       </li>
     </sections>
     <keywords><li>gossip</li><li>rumour</li><li>rumor</li><li>talk</li><li>story</li><li>slant</li><li>joke</li><li>newcomer</li></keywords>
-    <seeAlso><li>Rimfolk_Alm_C_Reputation</li><li>Council_Alm_C_Social</li><li>Council_Alm_C_Secrets</li></seeAlso>
+    <seeAlso><li>Council_Alm_C_SocialLife</li><li>Rimfolk_Alm_C_Reputation</li><li>Council_Alm_C_Talk</li><li>Council_Alm_C_Groups</li><li>Council_Alm_C_Secrets</li></seeAlso>
   </ColonyCouncil.AlmanacArticleDef>
 
   <ColonyCouncil.AlmanacArticleDef>
@@ -81,7 +81,7 @@ The colony's view of a person is what everyone else makes of them, added up and 
           <li>A cruelty | spitting on a fallen raider; carrying out an execution; taking an organ from someone held; feeding on a prisoner | cruel</li>
           <li>Cheated, broke it off, divorced | the game's own memories of being cheated on, left or divorced | unkindness (and a cheat is untrustworthy)</li>
         </table>
-        <after>Each deed keeps who did it, when, a name for when it was ("the raid on 5th of Aprimay", "the tantrum on 12th of Jugust"), how big it was, and who knows of it: those who saw it from the start, and everyone who heard it since, from whom and in what version.</after>
+        <after>Each deed keeps who did it, when, a name for when it was ("the raid on the 5th of Aprimay", "the tantrum on the 12th of Jugust"), how big it was, and who knows of it: those who saw it from the start, and everyone who heard it since, from whom and in what version.</after>
       </li>
       <li>
         <heading>What a name does</heading>
@@ -97,7 +97,7 @@ Lines and moments can ask for a name (rep:brave, rep:coward, rep:kind, rep:cruel
       </li>
     </sections>
     <keywords><li>reputation</li><li>name</li><li>deed</li><li>brave</li><li>coward</li><li>cruel</li><li>kind</li><li>idle</li><li>gossip</li><li>hothead</li><li>trustworthy</li><li>character page</li></keywords>
-    <seeAlso><li>Rimfolk_Alm_C_Gossip</li><li>Council_Alm_C_Names</li><li>Council_Alm_C_Offices</li><li>Council_Alm_C_Secrets</li></seeAlso>
+    <seeAlso><li>Council_Alm_C_SocialLife</li><li>Rimfolk_Alm_C_Gossip</li><li>Council_Alm_C_Character</li><li>Council_Alm_C_Names</li><li>Council_Alm_C_Offices</li><li>Council_Alm_C_Secrets</li></seeAlso>
   </ColonyCouncil.AlmanacArticleDef>
 
 </Defs>

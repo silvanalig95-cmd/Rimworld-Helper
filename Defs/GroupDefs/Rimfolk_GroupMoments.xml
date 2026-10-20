@@ -417,6 +417,7 @@
       <li Class="ColonyCouncil.GroupMomentExtension">
         <between>sameGroup</between>
         <minCohesion>55</minCohesion>
+        <noOwnJoke>true</noOwnJoke>
         <cohesion>0.5</cohesion>
       </li>
     </modExtensions>

@@ -189,7 +189,7 @@ namespace ColonyCouncil
         {
             if (!Eligible(a) || !Eligible(b) || !Together.Can(a, b)) return null;
             var tr = TalkTracker.Instance;
-            if (tr == null || !tr.MayStart(a, b, now)) return null;
+            if (tr == null || !tr.MayStart(a, b, now) || !SocialPace.Ready(a, b)) return null;
             var scene = TalkScene.Of(a.Map);
             if (scene == null) return null;
             var va = Persona.Values(a);
@@ -360,6 +360,7 @@ namespace ColonyCouncil
             Effects(c, tie);
             if (sent != null && packs != null && !packs.Contains(sent)) packs.Add(sent);
             tr.Started(a, b, c.topic?.shortHash ?? 0, now);
+            SocialPace.Started(a);
             cacheTick = -1;
             if (c.lines.Count > 0) tr.exchanges.Add(a, b, c.lines, now, FirstGap, LineGap);
         }
@@ -504,9 +505,11 @@ namespace ColonyCouncil
             var (raw, pool) = PickLine(specific, generic, tone, tags, hasSubject, hasLabel);
             if (raw == null) return null;
             Flavor.Memory.Remember(pool, raw, pool.lines.AllLines().Count());
-            string label = c.memory?.label ?? "";
+            // A fight is said aloud without its date ("remember the raid?"); the page and the log keep the full name.
+            string label = FightNames.Spoken(c.memory?.label ?? "");
+            string subject = FightNames.Spoken(c.subject?.name ?? "");
             string topic = About(c.topic, c.subject) ?? "";
-            return raw.Formatted(speaker.Named("PAWN"), listener.Named("OTHER"), (c.subject?.name ?? "").Named("SUBJECT"), label.Named("LABEL"), topic.Named("TOPIC")).Resolve();
+            return raw.Formatted(speaker.Named("PAWN"), listener.Named("OTHER"), subject.Named("SUBJECT"), label.Named("LABEL"), topic.Named("TOPIC")).Resolve();
         }
 
         private static (string line, TalkLinesDef pool) PickLine(List<TalkLinesDef> specific, List<TalkLinesDef> generic, Tone tone, HashSet<string> tags, bool hasSubject, bool hasLabel)

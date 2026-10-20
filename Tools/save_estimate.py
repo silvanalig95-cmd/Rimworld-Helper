@@ -232,7 +232,7 @@ MODEL = {
     "Persona/PawnPersona.cs:d": ("fixed", C["PersonaAxes"], V, "per person: one per side, fading (counted under people)"),
     "Persona/PawnPersona.cs:marks": ("fixed", C["PersonaMarks"], 200, "per person: PawnPersona.MaxMarks, each let go after its keeping (counted under people)"),
     "Persona/PawnPersona.cs:stances": ("fixed", 20, 70, "per person: one per topic, and per newcomer for 60 days (counted under people)"),
-    "Persona/PersonaTracker.cs:memories": ("cap", (C["SharedMemories"], 5), 320, "PersonaTracker.MaxMemories, 8 per pair; faded ones and those of people the game no longer knows dropped at saving"),
+    "Persona/PersonaTracker.cs:memories": ("cap", (C["SharedMemories"], 5), 320, "PersonaTracker.MaxMemories, 8 per pair and 3 of a kind; past it by 60 the faintest go at once; faded ones and those of people the game no longer knows dropped at saving"),
     "Social/Talk/TalkTracker.cs:notes": ("cap", (C["TalkNotes"], 4), 200, "the talk's news: TalkTracker.MaxNotes, a month at most"),
     # Traits that change (the changes made, and what each colonist is watched for)
     "Persona/TraitChanges.cs:changes": ("cap", (const("Persona/TraitChanges.cs", "MaxChanges", 200), 0.1), 1200, "known pawns only, 8 per person, 200 at most; with their story"),

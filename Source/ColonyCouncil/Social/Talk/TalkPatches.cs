@@ -14,7 +14,7 @@ namespace ColonyCouncil
         public static void Prefix(Frame __instance, out (Map map, IntVec3 pos, ThingDef def, float work) __state)
         {
             __state = default;
-            if (!RimfolkPatches.On || __instance == null || !__instance.Spawned) return;
+            if (!RimfolkPatches.On || !Persona.On || __instance == null || !__instance.Spawned) return;
             try
             {
                 var def = __instance.def?.entityDefToBuild as ThingDef;
@@ -39,7 +39,7 @@ namespace ColonyCouncil
     {
         public static void Postfix(Pawn doctor, Pawn patient)
         {
-            if (!RimfolkPatches.On || doctor == null || patient == null || doctor == patient) return;
+            if (!RimfolkPatches.On || !Persona.On || doctor == null || patient == null || doctor == patient) return;
             if (doctor.Faction != Faction.OfPlayer || !patient.Downed) return;
             TalkHooks.Tended(doctor, patient);
         }

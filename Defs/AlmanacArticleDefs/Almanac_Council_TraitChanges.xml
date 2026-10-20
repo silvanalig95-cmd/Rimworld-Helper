@@ -106,7 +106,7 @@ Only marks and deeds since that trait last changed count, so one stretch of life
       </li>
     </sections>
     <keywords><li>trait</li><li>traits</li><li>trait change</li><li>steadfast</li><li>nervous</li><li>optimist</li><li>pessimist</li><li>kind</li><li>psychopath</li><li>cannibal</li><li>personality</li></keywords>
-    <seeAlso><li>Council_Alm_C_Character</li><li>Council_Alm_C_Marks</li></seeAlso>
+    <seeAlso><li>Council_Alm_C_SocialLife</li><li>Council_Alm_C_Character</li><li>Council_Alm_C_Marks</li></seeAlso>
   </ColonyCouncil.AlmanacArticleDef>
 
 </Defs>

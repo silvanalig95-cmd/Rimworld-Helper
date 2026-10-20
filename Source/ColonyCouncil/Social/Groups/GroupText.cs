@@ -44,7 +44,7 @@ namespace ColonyCouncil
 
         public static string Day(int tick) => "CC_DayN".Translate(tick / GenDate.TicksPerDay + 1).ToString();
 
-        /// <summary>A date the way the game writes one ("5 Aprimay 5501"), at home.</summary>
+        /// <summary>A date the way the game writes one ("5th of Aprimay, 5501"), at home.</summary>
         public static string Date(int tick)
         {
             try

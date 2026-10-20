@@ -115,7 +115,7 @@ namespace ColonyCouncil
         public SharedMemoryDef def;
         public int a, b;
         public string aName, bName;
-        /// <summary>What it was ("the raid of 5 Aprimay", "the boomalope"): set by whoever made the memory.</summary>
+        /// <summary>What it was ("the raid on the 5th of Aprimay", "the boomalope"): set by whoever made the memory.</summary>
         public string label;
         public int tick;
         public float weight = 1f;

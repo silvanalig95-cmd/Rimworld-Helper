@@ -93,9 +93,19 @@ namespace ColonyCouncil
                     if (x.hasRival && !g.rivals.Any(r => r.strength >= RivalMoments)) return 0f;
                     if (x.recipientMoodBelow >= 0f && (b.needs?.mood == null || b.needs.mood.CurLevel >= x.recipientMoodBelow)) return 0f;
                     if (x.between == "outOfStep" && (GroupLife.Breaks(g, b) == null || GroupLife.Breaks(g, a) != null)) return 0f;
+                    if (x.noOwnJoke && HaveOwnJoke(a, b)) return 0f;
                     return 1f;
                 }
             }
+        }
+
+        /// <summary>The two share an in-joke of their own (a shared memory that became a joke).</summary>
+        private static bool HaveOwnJoke(Pawn a, Pawn b)
+        {
+            foreach (var m in SharedMemories.Of(a, b))
+                if (m.def != null && m.def.joke)
+                    return true;
+            return false;
         }
 
         private static bool RoleFits(string role, SocialGroup g, Pawn p)

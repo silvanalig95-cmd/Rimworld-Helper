@@ -18,8 +18,12 @@ namespace ColonyCouncil
         public Dictionary<int, PawnPersona> people = new Dictionary<int, PawnPersona>();
         public List<SharedMemory> memories = new List<SharedMemory>();
 
-        /// <summary>Shared memories kept in all, and per pair.</summary>
-        public const int MaxMemories = 900, MaxPerPair = 8;
+        /// <summary>
+        /// Shared memories kept in all, per pair, and of one kind per pair (so a season of raids can't push out a funeral,
+        /// a quarrel made up or an in-joke). The weightiest are kept; past <see cref="MaxMemories"/> by a margin the
+        /// faintest go at once, and at saving down to it.
+        /// </summary>
+        public const int MaxMemories = 600, MaxPerPair = 8, MaxSameKind = 3, MaxOver = 60;
 
         [Unsaved] private Dictionary<long, List<SharedMemory>> byPair;
 
@@ -81,6 +85,14 @@ namespace ColonyCouncil
         {
             memories.Remove(m);
             if (byPair != null && byPair.TryGetValue(PersonaMath.PairKey(m.a, m.b), out var list)) list.Remove(m);
+        }
+
+        /// <summary>The faintest memories let go, down to <see cref="MaxMemories"/> (between saves, once past it by a margin).</summary>
+        public void Trim(int now)
+        {
+            if (memories.Count <= MaxMemories) return;
+            memories = memories.OrderByDescending(m => m.WeightNow(now)).Take(MaxMemories).ToList();
+            byPair = null;
         }
 
         public override void ExposeData()
@@ -425,7 +437,10 @@ namespace ColonyCouncil
             };
             tr.memories.Add(mem);
             list.Add(mem);
+            // One kind never fills a pair's memories: past three of a kind, the faintest of that kind goes.
+            if (list.Count(m => m.def == def) > PersonaTracker.MaxSameKind) tr.Forget(list.Where(m => m.def == def).OrderBy(m => m.WeightNow(now)).First());
             if (list.Count > PersonaTracker.MaxPerPair) tr.Forget(list.OrderBy(m => m.WeightNow(now)).First());
+            if (tr.memories.Count > PersonaTracker.MaxMemories + PersonaTracker.MaxOver) tr.Trim(now);
             return mem;
         }
 

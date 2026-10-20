@@ -93,6 +93,11 @@ namespace ColonyCouncil
         public MomentTones tones = new MomentTones();
         [Unsaved] public List<Clique> cliques = new List<Clique>();
         [Unsaved] private bool cliquesBuilt;
+        /// <summary>The circles were built from the groups (Social/Groups/): with groups since turned off, they're built the old way again.</summary>
+        [Unsaved] private bool cliquesFromGroups;
+
+        /// <summary>The circles as they stand still fit the setting (groups on or off).</summary>
+        private bool CliquesCurrent => cliquesBuilt && cliquesFromGroups == GroupLife.Active;
         /// <summary>The fight going on now: who has fought in it so far, and who it's against.</summary>
         private List<Pawn> fighters = new List<Pawn>();
         public Faction battleFaction;
@@ -215,7 +220,7 @@ namespace ColonyCouncil
             if (!S.socialWeb || p == null) return null;
             // With groups on, a circle is someone's first group (Social/Groups/).
             if (GroupLife.Active) return GroupLife.CliqueOf(p);
-            if (!cliquesBuilt) RebuildCliques();
+            if (!CliquesCurrent) RebuildCliques();
             return cliques.FirstOrDefault(c => c.members.Contains(p));
         }
 
@@ -360,7 +365,9 @@ namespace ColonyCouncil
                     var dead = t.a.Dead ? t.a : t.b;
                     var alive = t.Other(dead);
                     if (!Eligible(alive) || !written.Add((alive, dead))) continue;
-                    comp.journals.Write(alive, t.kind == TieKind.Rivals ? "Council_Journal_RivalLost" : "Council_Journal_TieLost", null, dead.Named("OTHER"));
+                    // Written once, whoever notices the death first (the grief, the mark it leaves, the group: FirstOnLoss).
+                    if (comp.journals.FirstOnLoss(alive, dead))
+                        comp.journals.Write(alive, t.kind == TieKind.Rivals ? "Council_Journal_RivalLost" : "Council_Journal_TieLost", null, dead.Named("OTHER"));
                     lost.Add(new LostBond { survivor = alive, name = dead.LabelShort, kind = t.kind, tick = Find.TickManager.TicksGame });
                     PersonaMarks.Notify_BondLost(alive, dead, t.kind, t.kind == TieKind.Mentor && t.b == alive);
                 }
@@ -665,8 +672,10 @@ namespace ColonyCouncil
         /// </summary>
         private void BuildCliques(List<Pawn> pawns)
         {
-            cliques.Clear();
+            // A new list: the groups' circles may still be held by whoever asked for them.
+            cliques = new List<Clique>();
             cliquesBuilt = true;
+            cliquesFromGroups = false;
             var strong = ties.Where(t => t.kind == TieKind.Friends && t.announced && t.strength >= 35f && pawns.Contains(t.a) && pawns.Contains(t.b)).ToList();
             var free = new HashSet<Pawn>(pawns.Where(p => strong.Any(t => t.Involves(p))));
             while (free.Count >= 3)
@@ -686,7 +695,7 @@ namespace ColonyCouncil
         {
             get
             {
-                if (!cliquesBuilt) RebuildCliques();
+                if (!CliquesCurrent) RebuildCliques();
                 return cliques;
             }
         }
@@ -697,6 +706,7 @@ namespace ColonyCouncil
             {
                 cliques = GroupLife.BuildCliques();
                 cliquesBuilt = true;
+                cliquesFromGroups = true;
                 return;
             }
             BuildCliques(PawnsFinder.AllMaps_FreeColonists.Where(Eligible).ToList());

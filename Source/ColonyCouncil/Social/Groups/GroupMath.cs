@@ -308,22 +308,33 @@ namespace ColonyCouncil
         /// <summary>Only one of these to a group.</summary>
         public static bool Unique(GroupRole r) => r == GroupRole.Anchor || r == GroupRole.Joker || r == GroupRole.Peacemaker;
 
-        /// <summary>How well a role fits someone (higher is better; <see cref="Threshold"/> to fit at all).</summary>
+        /// <summary>A side of a person that shows (the persona tags and words do from here).</summary>
+        private const float Shows = 30f;
+
+        /// <summary>
+        /// How well a role fits someone (higher is better; <see cref="Threshold"/> to fit at all). A role never goes
+        /// against what shows of their character, so the part they play in a group matches how they talk everywhere
+        /// else: no cold anchor, no dour joker, no quiet one who is the room's joker.
+        /// </summary>
         public static float RoleScore(GroupRole r, RoleFacts x)
         {
             switch (r)
             {
                 case GroupRole.Anchor:
+                    if (x.warmth <= -Shows) return 0f;
                     return x.warmth * 0.35f + x.pride * 0.2f + (x.social - 6) * 2.5f + Clamp(x.tieShare, 0f, 1f) * 45f;
                 case GroupRole.Joker:
+                    if (x.humour < Shows) return 0f;
                     return x.humour * 0.9f + x.warmth * 0.1f;
                 case GroupRole.Peacemaker:
+                    if (x.temper >= Shows || x.warmth <= -Shows) return 0f;
                     return x.warmth * 0.45f - x.temper * 0.45f + Math.Min(x.mended, 6) * 5f;
                 case GroupRole.Firebrand:
                     return x.temper * 0.6f + x.pride * 0.35f + x.nerve * 0.1f;
                 case GroupRole.Worrier:
                     return x.outlook > -15f ? 0f : -x.outlook * 0.6f + x.warmth * 0.25f - x.nerve * 0.15f;
                 case GroupRole.Quiet:
+                    if (x.humour >= Shows || x.temper >= Shows) return 0f;
                     return -(x.humour * 0.35f + x.warmth * 0.2f) - (x.social - 6) * 2f - x.pride * 0.15f;
                 default:
                     return 0f;

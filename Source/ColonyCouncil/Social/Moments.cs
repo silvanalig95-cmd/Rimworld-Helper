@@ -234,6 +234,8 @@ namespace ColonyCouncil
                 // (A time in the future means an older save was loaded: that wait is over.)
                 if (lastAny.TryGetValue(initiator.thingIDNumber, out int any) && any <= now && now - any < MinGapTicks) return 0f;
                 if (lastStarted.TryGetValue((initiator.thingIDNumber, interaction.shortHash), out int last) && last <= now && now - last < ext.cooldownDays * GenDate.TicksPerDay) return 0f;
+                // One of Rimfolk's exchanges just started, or one of the two is mid-conversation (SocialPace).
+                if (!SocialPace.Ready(initiator, recipient)) return 0f;
                 if (!Fits(ext, initiator, recipient)) return 0f;
                 float tone = MomentTones.Factor(ext, initiator, recipient);
                 if (tone <= 0f) return 0f;
@@ -427,6 +429,7 @@ namespace ColonyCouncil
             int now = Find.TickManager.TicksGame;
             lastStarted[(initiator.thingIDNumber, interaction.shortHash)] = now;
             lastAny[initiator.thingIDNumber] = now;
+            SocialPace.Started(initiator);
             if (lastStarted.Count > 2000) lastStarted.Clear();
             try
             {

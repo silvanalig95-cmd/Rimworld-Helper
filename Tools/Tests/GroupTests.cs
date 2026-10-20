@@ -159,6 +159,15 @@ public static class GroupTests
             Check(fresh[0].role == GroupRole.Joker, "a newcomer whose time is up takes their part at once");
             Check(GroupMath.AssignRoles(new[] { Person(warmth: 60, social: 15, tieShare: 1f, newcomer: true) }, new RoleState[1])[0].role == GroupRole.Newcomer,
                 "a newcomer is the newcomer, however warm");
+            // A role never contradicts how they come across everywhere else (the persona tags their lines are picked by).
+            Check(GroupMath.AssignRoles(new[] { Person(warmth: -40, pride: 40, social: 16, tieShare: 1f) }, new RoleState[1])[0].role != GroupRole.Anchor,
+                "a cold one is never the anchor, however well connected");
+            Check(GroupMath.RoleScore(GroupRole.Joker, Person(humour: 25, warmth: 90)) < GroupMath.Threshold(GroupRole.Joker),
+                "the joker is someone whose humour shows");
+            Check(GroupMath.RoleScore(GroupRole.Quiet, Person(humour: 40, warmth: -60, social: 0, pride: -40)) < GroupMath.Threshold(GroupRole.Quiet),
+                "a joker is never the quiet one");
+            Check(GroupMath.RoleScore(GroupRole.Peacemaker, Person(temper: 35, warmth: 100, mended: 6)) < GroupMath.Threshold(GroupRole.Peacemaker),
+                "a hothead doesn't keep the peace");
         }
 
         // ---------- Cohesion ----------

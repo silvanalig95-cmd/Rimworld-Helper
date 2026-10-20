@@ -448,13 +448,95 @@ decree can start a rivalry, while backing the same petition or making up after a
 dilemmas only come up between friends, rivals or comrades. When someone dies, the people closest to them (and their
 rivals) write about it. The **Social** tab shows every bond with its strength and history, and every group.
 
-### Groups: they form, quarrel, split and merge
-Groups replace the old circles of friends (which remain, simpler, only with "Personalities and social life" off). They grow out of something real (friendship,
+### Personalities and social life
+Colonists are people with a character of their own that changes with what happens to them, and they talk, gather and
+talk about each other the way that character would. Four parts make one feature, under one setting ("Personalities
+and social life", on by default; off, the colony goes back to the simpler circles of friends and nothing new is said):
+- **Character** is the root: eight sides set by traits, the Social skill and age, and moved by what happens (a raid,
+  a death, a kindness, a seat won); rarely, a long stretch of life changes a trait itself. It sets each colonist's
+  voice, the tone of everything they say anywhere.
+- **Conversations** are where one character meets another: what two people talk about, how it goes (they agree,
+  debate, argue, tease or comfort) and the views each keeps. What they go through together becomes **shared
+  memories** and in-jokes they bring up later.
+- **Groups** grow out of those bonds, shared work, fights fought together and being alike, and the part someone plays
+  in one follows from their character.
+- **Reputation** is what everyone hears: what someone did spreads in gossip, coloured by who tells it, and becomes
+  their name, which changes how the others treat them.
+
+Each part feeds the others. A raid marks the bold and the timid differently, leaves a memory between those who fought
+side by side, makes the brave's name and gives the colony something to argue about for days; a group's people speak
+up for each other when stories go round; a newcomer finds a way in through talk and shared work. A happening is told
+once: one journal line, one name for the fight in every part. Rimfolk's own talk stays a share of the colony's
+conversation, about one exchange in four next to the game's own chitchat (the moments setting scales it), and nobody
+starts two of them within an hour. The Almanac page "Social life: how it fits together" follows two colonists through
+a year.
+
+#### Character: who they are, and what shaped them
+Every colonist has a character on eight sides (warmth, nerve, temper, humour, trust, pride, openness, outlook). Their
+nature sets where they start: traits (the base game's and DLCs', and 74 from Vanilla Traits Expanded, RimTraits,
+Medieval Overhaul, Vanilla Ideology Expanded - Memes, Alpha Memes and Alpha Genes), the Social skill, age and a small
+lean of their own. Then life marks them, with 48 kinds of mark: downed in a raid, carried out of one, holding the
+line or breaking under fire, a friend, lover, child or parent lost, nursed through an illness, forgiven after a
+breakdown, a secret betrayed, a seat won or lost, a craft mastered, a child raised, a hungry season, an addiction
+beaten, a new faith, a brush with what lies past the world. Their nature picks the mark and how deep it goes: the
+bold harden where the timid are shaken, the cold close up where others grieve, raid after raid hardens some and
+wears others down. Part of each change stays for good and the rest fades over years; marks are kept rare (one small
+mark per few days, each turning point once in a long while), and a turning point goes into their journal in their
+own voice. Character shows in what they say and do: the lines they get and their tone, more warm moments from the
+warm and more frictions from the hot-tempered, secrets confided sooner by the trusting, students taken on sooner by
+the warm. The Story tab opens with it: their character in words, eight bars with where their nature put them and
+where they are now (hover for every trait and mark that moved it), and "what shaped them", turning points first.
+The Almanac pages "character" and "what shapes a person" explain it.
+
+#### Traits that change
+Rarely, a long stretch of the same kind of life reaches the game's own traits. 36 rules: nerves steady to steadfast
+and then iron-willed after raid after raid held, or fray to nervous and volatile after breaking under fire, captivity
+and loss, and a volatile temper softens after two calm years; an optimist darkens after a year of graves and a
+pessimist brightens after a good stretch; kindness appears after many kindnesses, abrasiveness, greed and a wimp's
+weakness fade; an ascetic after hardship, jealousy after vote on lost vote, a brawler in a melee fighter, rare
+bloodlust in a cold killer, an undergrounder who hardly sees the sky; harder work after two seasons of barely
+stopping (by the game's record of time at recreation) and idleness after the opposite; an addiction beaten makes a
+teetotaler; a recluse (Biotech), void fascination (Anomaly) and an ascetic of the faith (Ideology); six for Vanilla
+Traits Expanded and RimTraits. A psychopath or a cannibal comes only from an extreme history (executions by their own
+hand with warmth and trust driven down by loss and betrayal; human flesh eaten three separate times while starving),
+once in a colony's life each. Every change brings a letter that tells what led to it, with the dates of the marks and
+deeds behind it, a journal line in the colonist's voice and a chronicle entry, and it stays on the character page
+under "Traits gained and lost". At most one change per colonist in 60 days and one in the colony in 10; sexuality,
+the body and traits from genes or a backstory never change, and the game's trait conflicts always hold. Their
+character doesn't jump: the trait takes the place of the change that earned it. A setting ("Traits can change")
+turns it off; the Almanac page "traits that change" lists every rule.
+
+#### Conversations: views that last, and memories they share
+Two colonists who are together now and then talk about something real, in a short exchange over their heads (two to
+four lines, taking turns): the last raid, the council and its decrees, the food, the work and who does too little, the
+newest face in the colony, faith, the world outside and its traders, the animals, the weather, art, the future and
+whether to stay, the dead, the prisoners, drink, new learning against the old ways, the children, the colony's project,
+money, love (19 topics). What comes up follows the news (a raid yesterday, a death, a new decree, a wedding, a
+newcomer, a harvest, a disaster), what each of them cares about and who they are, and their tie: friends talk about
+anything, rivals find what they disagree on.
+
+Everyone holds a **view** on each topic, from their character, traits, passions and faith (the bold want to fight back
+and the timid want walls, the trusting back the council, the curious welcome newcomers), and it moves slowly with what
+happens and with talk: a liked, trusted, self-assured speaker brings an open listener round a little. So two of them
+**agree**, have a **friendly debate**, or a **heated argument** when tempers, opposed views and dislike meet; a joker
+**teases**; someone low or grieving is **comforted**. Each sounds like themselves (a hothead snaps, a joker jokes, the
+cold are curt, the gloomy see the worst), in about 2,400 lines. A talk leaves a small opinion of each other, not a
+mood; arguing hardens a temper a little over time, and a long friendship warms.
+
+Pairs also keep **shared memories** (17 kinds): fighting side by side (those really seen together in the fight), being patched up while down, a funeral, a feast,
+a disaster come through, a caravan, something big built together, a long night shift, lessons, a quarrel made up, a
+secret kept. Small mishaps become **in-jokes** ("the stew", "the boomalope", "the alpaca", the little fire, the mud, a
+short binge) once everyone's fine, funnier the first few times and then worn thin. The character page lists their
+**views** (with what each rests on) and their **shared memories**. Almanac: "Conversations and views", "Shared memories
+and in-jokes".
+
+#### Groups: they form, quarrel, split and merge
+Groups replace the old circles of friends (which come back, simpler, with "Personalities and social life" off). They grow out of something real (friendship,
 the same work, a fight fought together, the night hours, faith, where people came from, age, being alike) and keep the
 name they were given: **the hunters, the night shift, the old hands, the kitchen crowd, the faithful, the ones from the
 ship, Hector's lot** (25 kinds, with names for a tribe or a keep). Each has:
-- **roles** that come from character and settle slowly: the anchor, the joker, the peacemaker (who steps into its
-  quarrels), the firebrand, the worrier, the quiet one, the newcomer;
+- **roles** that come from character and settle slowly, and never against it (no cold anchor, no dour joker): the
+  anchor, the joker, the peacemaker (who steps into its quarrels), the firebrand, the worrier, the quiet one, the newcomer;
 - **ways** it shares and expects (18: loud and merry, keep to themselves, suspicious of outsiders, brave to a fault...),
   which its people drift towards over the weeks, and **views** most of them hold;
 - **habits** kept together when they're really together (9: an evening at the fire, a shared table, a game night, the
@@ -470,7 +552,7 @@ and their parts, ways, habits, quarrels and history) and as a coloured band on t
 two went through together, and the character page has a "Groups and role" section. Almanac: "Groups" and "Roles in a
 group".
 
-### Reputation and gossip: what people say about each other
+#### Reputation and gossip: what people say about each other
 Colonists notice what the others do (31 kinds of deed): who carried a wounded friend out of a fight and who ran, who
 held the line or brought many down, who sat with the wounded for days, a tantrum, a berserk rage, the first punch, a
 binge while the stores ran low, a secret kept or let out, a masterwork, a great work seen through, a botched
@@ -490,71 +572,17 @@ own moments (the cruel given a wide berth, the coward jibed at, the brave asked 
 dies down; newcomers pick it up over their first weeks. The character page shows it under "What people say about
 them", with the deeds behind it, who told whom, and who thinks what of them for it.
 
-### Conversations: views that last, and memories they share
-Two colonists who are together now and then talk about something real, in a short exchange over their heads (two to
-four lines, taking turns): the last raid, the council and its decrees, the food, the work and who does too little, the
-newest face in the colony, faith, the world outside and its traders, the animals, the weather, art, the future and
-whether to stay, the dead, the prisoners, drink, new learning against the old ways, the children, the colony's project,
-money, love (19 topics). What comes up follows the news (a raid yesterday, a death, a new decree, a wedding, a
-newcomer, a harvest, a disaster), what each of them cares about and who they are, and their tie: friends talk about
-anything, rivals find what they disagree on.
-
-Everyone holds a **view** on each topic, from their character, traits, passions and faith (the bold want to fight back
-and the timid want walls, the trusting back the council, the curious welcome newcomers), and it moves slowly with what
-happens and with talk: a liked, trusted, self-assured speaker brings an open listener round a little. So two of them
-**agree**, have a **friendly debate**, or a **heated argument** when tempers, opposed views and dislike meet; a joker
-**teases**; someone low or grieving is **comforted**. Each sounds like themselves (a hothead snaps, a joker jokes, the
-cold are curt, the gloomy see the worst), in about 2,400 lines. A talk leaves a small opinion of each other, not a
-mood; arguing hardens a temper a little over time, and a long friendship warms.
-
-Pairs also keep **shared memories** (17 kinds): fighting side by side, being patched up while down, a funeral, a feast,
-a disaster come through, a caravan, something big built together, a long night shift, lessons, a quarrel made up, a
-secret kept. Small mishaps become **in-jokes** ("the stew", "the boomalope", "the alpaca", the little fire, the mud, a
-short binge) once everyone's fine, funnier the first few times and then worn thin. The character page lists their
-**views** (with what each rests on) and their **shared memories**. Almanac: "Conversations and views", "Shared memories
-and in-jokes".
+#### The character page
+The **Story** tab opens with the character page, one section for each part, each folding away: **Character** (in words
+and on eight bars), **What shaped them** (six marks, turning points first, the rest on hover), **Traits gained and
+lost**, **Views**, **Shared memories**, **Groups and role** and **What people say about them**. Their trust, office and colony names sit above it;
+their life goal, story, bonds, quirks, dreams and journal below.
 
 ### Story: a page for every colonist
 Select a colonist and open the **Story** tab in their inspect panel (next to Bio, Social and Gear): their trust,
 office and earned names, their character and what shaped it, their life goal and how close they are, their personal
 story and what it waits for next, their friends, rivals, comrades, students and the people they've lost, their
 quirks, vendettas and the secrets the colony knows about, their last dreams and the latest lines of their journal.
-
-### Character: who they are, and what shaped them
-Every colonist has a character on eight sides (warmth, nerve, temper, humour, trust, pride, openness, outlook). Their
-nature sets where they start: traits (the base game's and DLCs', and 74 from Vanilla Traits Expanded, RimTraits,
-Medieval Overhaul, Vanilla Ideology Expanded - Memes, Alpha Memes and Alpha Genes), the Social skill, age and a small
-lean of their own. Then life marks them, with 48 kinds of mark: downed in a raid, carried out of one, holding the
-line or breaking under fire, a friend, lover, child or parent lost, nursed through an illness, forgiven after a
-breakdown, a secret betrayed, a seat won or lost, a craft mastered, a child raised, a hungry season, an addiction
-beaten, a new faith, a brush with what lies past the world. Their nature picks the mark and how deep it goes: the
-bold harden where the timid are shaken, the cold close up where others grieve, raid after raid hardens some and
-wears others down. Part of each change stays for good and the rest fades over years; marks are kept rare (one small
-mark per few days, each turning point once in a long while), and a turning point goes into their journal in their
-own voice. Character shows in what they say and do: the lines they get and their tone, more warm moments from the
-warm and more frictions from the hot-tempered, secrets confided sooner by the trusting, students taken on sooner by
-the warm. The Story tab opens with it: their character in words, eight bars with where their nature put them and
-where they are now (hover for every trait and mark that moved it), and "what shaped them", dated, turning points
-first. A setting ("Personalities and social life") turns it all off; the Almanac pages "character" and "what shapes
-a person" explain it.
-
-### Traits that change
-Rarely, a long stretch of the same kind of life reaches the game's own traits. 36 rules: nerves steady to steadfast
-and then iron-willed after raid after raid held, or fray to nervous and volatile after breaking under fire, captivity
-and loss, and a volatile temper softens after two calm years; an optimist darkens after a year of graves and a
-pessimist brightens after a good stretch; kindness appears after many kindnesses, abrasiveness, greed and a wimp's
-weakness fade; an ascetic after hardship, jealousy after vote on lost vote, a brawler in a melee fighter, rare
-bloodlust in a cold killer, an undergrounder who hardly sees the sky; harder work after two seasons of barely
-stopping (by the game's record of time at recreation) and idleness after the opposite; an addiction beaten makes a
-teetotaler; a recluse (Biotech), void fascination (Anomaly) and an ascetic of the faith (Ideology); six for Vanilla
-Traits Expanded and RimTraits. A psychopath or a cannibal comes only from an extreme history (executions by their own
-hand with warmth and trust driven down by loss and betrayal; human flesh eaten three separate times while starving),
-once in a colony's life each. Every change brings a letter that tells what led to it, with the dates of the marks and
-deeds behind it, a journal line in the colonist's voice and a chronicle entry, and it stays on the character page
-under "Traits gained and lost". At most one change per colonist in 60 days and one in the colony in 10; sexuality,
-the body and traits from genes or a backstory never change, and the game's trait conflicts always hold. Their
-character doesn't jump: the trait takes the place of the change that earned it. A setting ("Traits can change")
-turns it off; the Almanac page "traits that change" lists every rule.
 
 ### Life goals
 A few days after settling in, each colonist sets their heart on something to do before they die: master a craft,

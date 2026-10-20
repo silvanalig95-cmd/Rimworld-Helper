@@ -67,7 +67,7 @@
     <durationDays>2</durationDays>
     <stackLimit>2</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>our old joke</label><description>Nobody else would understand why it's funny. That's half of why it is.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>3</baseOpinionOffset></li></stages>
+    <stages><li><label>our crowd's old joke</label><description>Nobody outside our crowd would understand why it's funny. That's half of why it is.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>3</baseOpinionOffset></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.04</joy><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- How the four parts of "Personalities and social life" fit together (Persona/, Social/Talk/, Social/Groups/, Social/Gossip/). -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_C_SocialLife</defName>
+    <label>social life: how it fits together</label>
+    <category>Council</category>
+    <order>8</order>
+    <summary>How character, conversations and shared memories, groups, and reputation and gossip work as one, with two colonists followed through a year.</summary>
+    <tip>Start with a colonist's character page in the Story tab: every part of their social life has a section there, in this order.</tip>
+    <description>With "Personalities and social life" on (it is by default), colonists' social lives come from four parts that read and feed each other: their character, the conversations they have and the memories they share, the groups they drift into, and what people say about them. Each part has its own page; this one is about how they fit. Turned off, all four stop together: nothing new is said or kept, the colony goes back to the simpler circles of friends, and the character page shows only each colonist's nature.</description>
+    <sections>
+      <li>
+        <heading>The four parts</heading>
+        <table>
+          <li>Part | What it is | What it gives the others | Where you see it</li>
+          <li>Character | Eight sides (warmth, nerve, temper, humour, trust, pride, openness, outlook) from traits, the Social skill and age, moved by what happens; rarely, a long stretch of life changes a trait itself | The voice of every line anyone says, in talk, gossip and at a group's fire; what they care to talk about and how a talk goes; the part they play in a group; how they tell a story and how far they believe one | The character page: Character, What shaped them, Traits gained and lost</li>
+          <li>Conversations and shared memories | Two who are together talk about something real, in turns, and keep their views; what they go through together they remember, and small mishaps become in-jokes | Friendships and rivalries grow from how talks go; shared memories draw people into a group and hold it together; views turn into a group's views | Over their heads, in the social log; the character page: Views, Shared memories</li>
+          <li>Groups | The hunters, the night shift, Hector's lot: groups that form from friendship, work, a fight, being alike, with roles, ways, habits, newcomers and quarrels | Members speak up for each other in gossip and vote for each other; a group's ways pull its people's character and views; "one of us" and "one of that lot" in the Social tab | People → Bonds; the character page: Groups and role</li>
+          <li>Reputation and gossip | What someone did, known by those who saw it and spread in gossip, coloured by the teller; what it adds up to is their name | A name changes how others treat them (a small opinion, moments, votes, secrets, colony names); it's talked about, and a group's lines know it | Gossip over their heads; the character page: What people say about them</li>
+        </table>
+      </li>
+      <li>
+        <heading>One happening, everywhere</heading>
+        <text>Something big reaches every part, each in its own way, and is told once. Take a raid seen off on the 12th of Jugust:</text>
+        <points>
+          <li>Character: the bold who held the line carry themselves taller, the timid who went down flinch at noises for a while, and raid after raid hardens some and wears others down. A turning point goes into their journal in their own words.</li>
+          <li>Shared memories: those who fought side by side remember "the raid on the 12th of Jugust", and the doctor and the one they patched up remember it together.</li>
+          <li>Conversations: the colony talks about the raid for days; the bold grow keener to meet raiders at the gate and, if someone was lost, the timid want thicker walls.</li>
+          <li>Reputation: who brought many down, who held the line and who ran are deeds. Those who saw them know; everyone else hears in gossip, and names form: brave, or a coward.</li>
+          <li>Groups: a fight fought together pulls people towards each other, and a group that lost someone feels it.</li>
+        </points>
+        <after>The fight has one name in every part, so the mark ("since going down in the raid on the 12th of Jugust"), the memory and the deed agree. A happening gets one line in a colonist's journal: when several parts notice it (a death felt through a friend, a bond and a group), the first line written stands.</after>
+      </li>
+      <li>
+        <heading>How much they talk</heading>
+        <text>All of Rimfolk's talk runs in the game's own social picker, beside its chitchat: moments (the groups' and names' moments among them), conversations and gossip each come up by how much they matter now and keep their own waits. On top of those, someone who has just started one of them waits an hour before starting another of any kind, and nobody starts one with someone still in the middle of a conversation. In all, about one exchange in four is Rimfolk's: a colonist is in five or so a day, next to about fourteen of the game's own. The "how often moments come up" setting scales all of it.</text>
+      </li>
+      <li>
+        <heading>Why two of them get on, or don't</heading>
+        <text>Every part that changes what one thinks of another says so in their Social tab, each as a line of its own: a talk that went well or an argument (a few points, for a few days), what they've heard of the other (a name, -12 to +7), being in the same group (+4) or in a group at odds with theirs (-5 or -10), the group's small moments, and the bonds that grow out of all of it (friends up to +18, rivals down to -18). A shared memory only counts again when they talk about it.</text>
+      </li>
+      <li>
+        <heading>A year of two colonists</heading>
+        <text>Mara is a hunter, bold and quick-tempered; Tomas joins in spring as a cook, warm and a little timid.</text>
+        <points>
+          <li>Aprimay: Tomas is new, an outsider until a group takes him in, and he works in the kitchen, so it's the kitchen crowd he leans towards. Over supper he and Mara argue about the walls: she would meet raiders at the gate, he wants thicker walls. Each comes away thinking a little less of the other, and it's in their Social tabs as "argued with me".</li>
+          <li>Jugust: a raid. Mara goes down by the gate and Tomas carries her out with the fighting still on. It marks them both: Mara trusts people more readily since, Tomas stands a little straighter. Tomas tends her wound and they share a memory of it. Bo saw the rescue; by the end of the week the story has gone round, a little bigger each time, and Tomas is known to be brave. The kitchen crowd, whose work and table he shares, has taken him in.</li>
+          <li>Septober: a bad stew lays half the colony low. Once everyone is up, it's "the stew" between Tomas and Mara, an in-joke they bring up for weeks until it wears thin. By autumn Tomas is the kitchen crowd's anchor, warm and liked by all of them; Mara, quick to anger and proud, is the hunters' firebrand.</li>
+          <li>Decembary: Mara still wants raiders met at the gate, but talking it over with someone she now likes has moved her a little toward walls. A long friendship has warmed her a little. When Bo runs Tomas down to her, she sticks up for him.</li>
+        </points>
+        <after>By the year's end their character pages tell it: what shaped each of them and when, their views, the raid and the stew among their shared memories, their groups and parts, and what the colony says of them.</after>
+      </li>
+    </sections>
+    <keywords><li>social life</li><li>personality</li><li>social</li><li>how it fits</li><li>overview</li><li>character page</li><li>talk rate</li></keywords>
+    <seeAlso><li>Council_Alm_C_Character</li><li>Council_Alm_C_Marks</li><li>Council_Alm_C_TraitChanges</li><li>Council_Alm_C_Talk</li><li>Council_Alm_C_SharedMemories</li><li>Council_Alm_C_Groups</li><li>Council_Alm_C_GroupRoles</li><li>Rimfolk_Alm_C_Gossip</li><li>Rimfolk_Alm_C_Reputation</li></seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+</Defs>

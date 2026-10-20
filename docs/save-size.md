@@ -8,13 +8,13 @@ generous guesses; sizes are rough XML sizes. Caps named as constants are read fr
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
 Saved collections found: 290; modelled: 290; growing without end: 0.
-Rimfolk's part of the save, roughly: **1,612 KB** after a year, **1,973 KB** after two, **2,179 KB** after five.
+Rimfolk's part of the save, roughly: **1,612 KB** after a year, **1,973 KB** after two, **2,085 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
 | `Journal.cs:journals` | the living's, and the 30 departed written in most lately | cap | 30 | 50 | 50 | 468.8 |
-| `Persona/PersonaTracker.cs:memories` | PersonaTracker.MaxMemories, 8 per pair; faded ones and those of people the game no longer knows dropped at saving | cap | 300 | 600 | 900 | 281.2 |
 | `Social/Gossip/Deed.cs:heard` | who knows each deed (30 at most a deed), with its deed | cap | 2,000 | 2,000 | 2,000 | 214.8 |
+| `Persona/PersonaTracker.cs:memories` | PersonaTracker.MaxMemories, 8 per pair and 3 of a kind; past it by 60 the faintest go at once; faded ones and those of people the game no longer knows dropped at saving | cap | 300 | 600 | 600 | 187.5 |
 | `Persona/PersonaTracker.cs:list` | the colony's own people the game still knows; empty records dropped at saving | known | 33 | 36 | 45 | 146.8 |
 | `CouncilGameComponent.cs:chronicle` | Caps.Chronicle; the newest 200 always, milestones longest | cap | 300 | 300 | 300 | 102.5 |
 | `Persona/TraitChanges.cs:watches` | one per colonist with its deeds and ten snapshots; known pawns only | colonists | 20 | 20 | 20 | 66.4 |

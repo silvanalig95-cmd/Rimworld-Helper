@@ -146,7 +146,8 @@ namespace ColonyCouncil
                 if (o.GetRelations(p).Any(r => r == PawnRelationDefOf.Parent))
                 {
                     CouncilGameComponent.GiveThought(o, CouncilDefOf.Council_ChildGrown, p);
-                    comp.journals.Write(o, "Council_Journal_ChildGrown", null, p.Named("OTHER"));
+                    // The memory may have marked them, and they wrote of it in their own words (Persona/Marks.cs): one line.
+                    if (!comp.journals.WroteWithin(o)) comp.journals.Write(o, "Council_Journal_ChildGrown", null, p.Named("OTHER"));
                 }
                 else if (o.relations.OpinionOf(p) >= 20) CouncilGameComponent.GiveThought(o, CouncilDefOf.Council_SawThemGrow, p);
             }

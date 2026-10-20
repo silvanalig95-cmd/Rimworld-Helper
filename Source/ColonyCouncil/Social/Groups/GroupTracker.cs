@@ -198,12 +198,24 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>Drops the dead and the discarded from work logs and newcomers, and those the game no longer knows from the past groups.</summary>
+        /// <summary>
+        /// Drops the dead and the discarded from work logs and newcomers, and those the game no longer knows from the
+        /// groups and the past groups. A member who died stays until the group's day notices (and mourns) them, but one
+        /// the game has let go of entirely can't be saved as a reference: the load would find nobody there.
+        /// </summary>
         public void Prune()
         {
             work.RemoveAll(w => w.pawn == null || w.pawn.Dead || w.pawn.Destroyed || !w.pawn.IsColonist);
             newcomers.RemoveAll(n => n.pawn == null || n.pawn.Dead || n.pawn.Destroyed);
             var known = CouncilGameComponent.KnownPawnNumbers();
+            bool changed = false;
+            foreach (var g in groups)
+                if (g.members.RemoveAll(m => m.pawn == null || m.pawn.Discarded || !known.Contains(m.pawn.thingIDNumber)) > 0)
+                    changed = true;
+            foreach (var n in newcomers)
+                if (n.sponsor != null && (n.sponsor.Discarded || !known.Contains(n.sponsor.thingIDNumber)))
+                    n.sponsor = null;
+            if (changed) Changed();
             foreach (var p in past) p.members.RemoveAll(id => !known.Contains(id));
             past.RemoveAll(p => p.members.Count == 0);
             while (past.Count > MaxPast) past.RemoveAt(0);
@@ -220,10 +232,13 @@ namespace ColonyCouncil
     {
         public static GroupTracker Tracker => GroupTracker.Instance;
 
-        public static List<SocialGroup> All => GroupLife.Active ? Tracker?.groups ?? new List<SocialGroup>() : new List<SocialGroup>();
+        /// <summary>No groups (shared: never change it).</summary>
+        private static readonly List<SocialGroup> None = new List<SocialGroup>();
+
+        public static List<SocialGroup> All => GroupLife.Active ? Tracker?.groups ?? None : None;
 
         /// <summary>The groups someone is in (none while groups are off).</summary>
-        public static List<SocialGroup> Of(Pawn p) => GroupLife.Active ? Tracker?.Of(p) ?? new List<SocialGroup>() : new List<SocialGroup>();
+        public static List<SocialGroup> Of(Pawn p) => GroupLife.Active ? Tracker?.Of(p) ?? None : None;
 
         /// <summary>Their first group: the one they joined first.</summary>
         public static SocialGroup Primary(Pawn p)
@@ -263,12 +278,22 @@ namespace ColonyCouncil
             ga = gb = null;
             if (a == null || b == null || a == b) return 0f;
             var la = Of(a);
+            if (la.Count == 0) return 0f;
+            // Most groups have no quarrel with anyone: then there's nothing to look up.
+            bool any = false;
+            foreach (var x in la)
+                if (x.rivals.Count > 0)
+                {
+                    any = true;
+                    break;
+                }
+            if (!any) return 0f;
             var lb = Of(b);
-            if (la.Count == 0 || lb.Count == 0) return 0f;
+            if (lb.Count == 0) return 0f;
             float best = 0f;
             foreach (var x in la)
             {
-                if (x.Has(b)) continue;
+                if (x.rivals.Count == 0 || x.Has(b)) continue;
                 foreach (var y in lb)
                 {
                     if (y.Has(a)) continue;

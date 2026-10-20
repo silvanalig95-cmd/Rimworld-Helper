@@ -114,6 +114,36 @@ namespace ColonyCouncil
             return GenDate.DateFullStringAt(Find.TickManager.TicksAbs, loc);
         }
 
+        // ---------------- One happening, one line ----------------
+
+        /// <summary>A happening's lines come in the same moment (a wedding, an election, a birth): within this many ticks.</summary>
+        public const int SameHappeningTicks = 120;
+
+        /// <summary>
+        /// Whether <paramref name="p"/> already has a line from the last <paramref name="ticks"/> ticks: a happening that
+        /// several systems notice (an election: the council's line and the mark it leaves) is written once.
+        /// </summary>
+        public bool WroteWithin(Pawn p, int ticks = SameHappeningTicks)
+        {
+            var j = For(p);
+            if (j == null || j.entries.Count == 0) return false;
+            int last = j.entries[j.entries.Count - 1].tick;
+            int now = Find.TickManager.TicksGame;
+            return last <= now && now - last <= ticks;
+        }
+
+        /// <summary>
+        /// The first word on a loss: true (and remembered) the first time <paramref name="p"/> writes about
+        /// <paramref name="lost"/> dying, false after that. A death is felt through several memories (a brother, a friend,
+        /// a colonist) and noticed by several systems (the mark it leaves, the grief, the bond lost, the group), and is
+        /// written about once.
+        /// </summary>
+        public bool FirstOnLoss(Pawn p, Pawn lost)
+        {
+            if (p == null || lost == null) return true;
+            return griefSeen.Add(p.ThingID + "|lost|" + lost.ThingID);
+        }
+
         private int lastThreatWritten;
 
         /// <summary>When a journal's last line was written (0 for an empty one).</summary>
@@ -150,7 +180,8 @@ namespace ColonyCouncil
             if (threat > lastThreatWritten && Find.TickManager.TicksGame - threat < GenDate.TicksPerDay * 2)
             {
                 lastThreatWritten = threat;
-                var writers = colonists.Where(p => p.MapHeld == map)
+                // Not those who already wrote about the fight in their own words (it marked them: Persona/Marks.cs).
+                var writers = colonists.Where(p => p.MapHeld == map && !WroteWithin(p, GenDate.TicksPerDay))
                     .OrderByDescending(p => (p.health.hediffSet.hediffs.Any(h => h is Hediff_Injury) ? 2f : 0f) + Rand.Value)
                     .Take(2);
                 foreach (var p in writers) Write(p, "Council_Journal_Raid");
@@ -163,7 +194,7 @@ namespace ColonyCouncil
                 {
                     if (!Flavor.GriefThoughts.Contains(m.def.defName) || m.otherPawn == null || m.age > GenDate.TicksPerDay * 2) continue;
                     string key = p.ThingID + "|" + m.def.defName + "|" + m.otherPawn.ThingID;
-                    if (!griefSeen.Add(key)) continue;
+                    if (!griefSeen.Add(key) || !FirstOnLoss(p, m.otherPawn)) continue;
                     Write(p, "Council_Journal_Grief", null, m.otherPawn.Named("OTHER"));
                 }
             }

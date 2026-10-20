@@ -41,12 +41,21 @@ namespace ColonyCouncil
 
         public IReadOnlyList<Exchange> Exchanges => exchanges;
 
-        /// <summary>Someone is in an exchange still under way.</summary>
+        /// <summary>Someone is in an exchange still under way (as one of its two, or speaking or spoken to in it).</summary>
         public bool Busy(T p)
         {
             if (p == null) return false;
             foreach (var e in exchanges)
-                if (e.a == p || e.b == p)
+                if (In(e, p))
+                    return true;
+            return false;
+        }
+
+        private static bool In(Exchange e, T p)
+        {
+            if (e.a == p || e.b == p) return true;
+            foreach (var l in e.lines)
+                if (l.speaker == p || l.listener == p)
                     return true;
             return false;
         }
@@ -76,6 +85,39 @@ namespace ColonyCouncil
             return e.id;
         }
 
+        /// <summary>
+        /// A new exchange whose lines name their own speaker and listener (a story told, the listener's answer, and the
+        /// one it was about answering for themselves), said in that order with the same gaps as <see cref="Add"/>.
+        /// Returns its id, or 0 if there was nothing to say or someone in it is already talking.
+        /// </summary>
+        public int AddTurns(IList<(T speaker, T listener, string text)> turns, int now, int firstGap, int gap)
+        {
+            if (turns == null || turns.Count == 0) return 0;
+            T a = null, b = null;
+            foreach (var t in turns)
+            {
+                if (t.speaker == null || t.listener == null || t.speaker == t.listener || string.IsNullOrEmpty(t.text)) continue;
+                if (Busy(t.speaker) || Busy(t.listener)) return 0;
+                if (a == null)
+                {
+                    a = t.speaker;
+                    b = t.listener;
+                }
+            }
+            if (a == null) return 0;
+            var e = new Exchange { id = nextId++, a = a, b = b };
+            int due = now + Math.Max(0, firstGap);
+            foreach (var t in turns)
+            {
+                if (t.speaker == null || t.listener == null || t.speaker == t.listener || string.IsNullOrEmpty(t.text)) continue;
+                e.lines.Add(new Line { speaker = t.speaker, listener = t.listener, text = t.text, due = due });
+                due += Math.Max(1, gap);
+            }
+            exchanges.Add(e);
+            while (exchanges.Count > Max) exchanges.RemoveAt(0);
+            return e.id;
+        }
+
         /// <summary>The lines due by <paramref name="now"/>, in order, taken off the queue (an exchange with nothing left is done).</summary>
         public List<(int id, Line line)> Due(int now)
         {
@@ -99,7 +141,7 @@ namespace ColonyCouncil
         /// <summary>Everything someone is in is dropped.</summary>
         public void DropWith(T p)
         {
-            if (p != null) exchanges.RemoveAll(e => e.a == p || e.b == p);
+            if (p != null) exchanges.RemoveAll(e => In(e, p));
         }
 
         public Exchange Find(int id)

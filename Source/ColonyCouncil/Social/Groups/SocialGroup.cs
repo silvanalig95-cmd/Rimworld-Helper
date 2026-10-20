@@ -136,7 +136,14 @@ namespace ColonyCouncil
 
         public IEnumerable<Pawn> Pawns => members.Select(m => m.pawn).Where(p => p != null);
 
-        public GroupRivalry RivalryWith(int other) => rivals.FirstOrDefault(r => r.other == other);
+        /// <summary>Its rivalry with another group, or null (a loop: asked for every pair of colonists by the opinion thoughts).</summary>
+        public GroupRivalry RivalryWith(int other)
+        {
+            for (int i = 0; i < rivals.Count; i++)
+                if (rivals[i].other == other)
+                    return rivals[i];
+            return null;
+        }
 
         public float RivalryTo(int other) => RivalryWith(other)?.strength ?? 0f;
 

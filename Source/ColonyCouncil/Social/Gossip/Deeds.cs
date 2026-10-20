@@ -160,11 +160,7 @@ namespace ColonyCouncil
 
         // ---------------- Names for when it happened ----------------
 
-        private static string DateNow(Map map)
-        {
-            float longitude = map != null ? Find.WorldGrid.LongLatOf(map.Tile).x : 0f;
-            return GenDate.QuadrumDateStringAt(Find.TickManager.TicksAbs, longitude);
-        }
+        private static string DateNow(Map map) => FightNames.DateNow(map);
 
         /// <summary>A fight on the doer's map (a threat on it, or the fight the colony is in still going).</summary>
         public static bool FightOn(Map map)
@@ -184,40 +180,11 @@ namespace ColonyCouncil
 
         private static readonly List<string> HungerKinds = new List<string> { "hunger" };
 
-        private static Map fightMap;
-        private static int fightTick = -99999;
-        private static string fightLabel;
-
         /// <summary>
-        /// The fight's name, the same for everything done in it: "the raid on 5th of Aprimay", "the mechanoid attack on...",
-        /// "the fight with the animals on...". Kept while the fight lasts (and half a day after).
+        /// The fight's name, the same for everything done in it and wherever else it is told (marks, shared memories):
+        /// "the raid on the 5th of Aprimay", "the mechanoid attack on...". See <see cref="FightNames"/>.
         /// </summary>
-        public static string FightLabel(Map map)
-        {
-            int now = Now;
-            if (fightLabel != null && fightMap == map && now >= fightTick && now - fightTick < GenDate.TicksPerHour * 12)
-            {
-                fightTick = now;
-                return fightLabel;
-            }
-            string kind = "Other";
-            if (map != null)
-            {
-                bool people = false, mechs = false, beasts = false;
-                foreach (var x in map.mapPawns.AllPawnsSpawned.ToList())
-                {
-                    if (x.Dead || x.Faction == Faction.OfPlayer || !x.HostileTo(Faction.OfPlayer)) continue;
-                    if (x.RaceProps.Humanlike) people = true;
-                    else if (x.RaceProps.IsMechanoid) mechs = true;
-                    else if (x.RaceProps.Animal) beasts = true;
-                }
-                kind = people ? "Raid" : mechs ? "Mechs" : beasts ? "Beasts" : "Other";
-            }
-            fightMap = map;
-            fightTick = now;
-            fightLabel = ("CC_Rep_Fight_" + kind).Translate(DateNow(map).Named("DATE")).Resolve();
-            return fightLabel;
-        }
+        public static string FightLabel(Map map) => FightNames.Of(map);
 
         /// <summary>A name for when a deed happened: its own pattern ("the tantrum on {DATE}"), or the fight's when it was done in one.</summary>
         public static string LabelFor(DeedDef def, Pawn doer)
@@ -448,11 +415,6 @@ namespace ColonyCouncil
         }
 
         /// <summary>A new game or a load: the last fight's name is let go.</summary>
-        public static void Reset()
-        {
-            fightLabel = null;
-            fightMap = null;
-            fightTick = -99999;
-        }
+        public static void Reset() => FightNames.Reset();
     }
 }
