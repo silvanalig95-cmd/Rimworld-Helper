@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- The colonist bar's badges (Source/ColonyCouncil/ColonistBar/BarBadges.cs, Patches/Patch_ColonistBarBadges.cs). -->
+
+  <!-- Hovering a badge: the most important thing first, with its size; what helps; then the click. -->
+  <CC_Bar_Break_Near>{PAWN_nameDef} is getting close to a mental break: mood {MOOD}, only {GAP} points above {PAWN_possessive} minor break line ({LINE}).</CC_Bar_Break_Near>
+  <CC_Bar_Break_Minor>{PAWN_nameDef} could have a minor mental break: mood {MOOD}, {GAP} points under {PAWN_possessive} minor break line ({LINE}). Under {NEXT} a major one could come.</CC_Bar_Break_Minor>
+  <CC_Bar_Break_Major>{PAWN_nameDef} could have a major mental break: mood {MOOD}, {GAP} points under {PAWN_possessive} major break line ({LINE}). Under {NEXT} an extreme one could come.</CC_Bar_Break_Major>
+  <CC_Bar_Break_Extreme>{PAWN_nameDef} could have an extreme mental break at any moment: mood {MOOD}, under {PAWN_possessive} extreme break line ({LINE}).</CC_Bar_Break_Extreme>
+  <CC_Bar_Break_Help>What lifts a mood: a good meal, rest, recreation, a better room, time with friends. The Mood tab shows what weighs on {PAWN_objective} most and what helps.</CC_Bar_Break_Help>
+  <CC_Bar_Leaving>{PAWN_nameDef} is leaving the colony in {LEFT}, bitter about the council. About {TRUST} more trust would keep {PAWN_objective} here.</CC_Bar_Leaving>
+  <CC_Bar_Leaving_Help>Granting one of {PAWN_possessive} wishes or keeping a promise can win {PAWN_objective} back.</CC_Bar_Leaving_Help>
+  <CC_Bar_Wish>{PAWN_nameDef}'s wish has waited {SHARE} of its time: {WISH}. {LEFT} left before it lapses.</CC_Bar_Wish>
+  <CC_Bar_WishLastCall>{PAWN_nameDef}'s wish is on its last call: {WISH}. {LEFT} left before it lapses.</CC_Bar_WishLastCall>
+  <CC_Bar_WishGrant>Granting it: {0}.</CC_Bar_WishGrant>
+  <CC_Bar_WishLapse>If it lapses: about {0} mood for {1} days, and less trust in the council.</CC_Bar_WishLapse>
+  <CC_Bar_WishLapsePromised>If it lapses, the promise is broken: about {0} mood for {1} days, and much less trust in the council.</CC_Bar_WishLapsePromised>
+  <CC_Bar_WishLapseGentle>If it lapses, nothing worse than a chance missed.</CC_Bar_WishLapseGentle>
+  <CC_Bar_Strain>{PAWN_nameDef} is {BAND}: strain {STRAIN} of 100. {DESC}</CC_Bar_Strain>
+  <CC_Bar_Strain_Help>Sleep, recreation, quiet hours, friends and gatherings ease strain. The Mood tab's Heart section shows what builds it.</CC_Bar_Strain_Help>
+  <CC_Bar_Faith>{PAWN_nameDef}'s faith in {FAITH} is wavering: {CERTAINTY} certain. Under {WAVERING} {PAWN_pronoun} is open to another faith, and when it runs out {PAWN_pronoun} takes up the faith of whoever wore it down.</CC_Bar_Faith>
+  <CC_Bar_Faith_Help>A contented mood wins certainty back day by day, and an evening of {PAWN_possessive} faith (called from the council's Faiths page) steadies {PAWN_objective}. The Culture tab shows what moved it lately.</CC_Bar_Faith_Help>
+  <CC_Bar_PromiseCost>It cost {0} trust.</CC_Bar_PromiseCost>
+  <CC_Bar_Also>Also: {0}.</CC_Bar_Also>
+  <CC_Bar_Short_Break>close to a break (mood {0})</CC_Bar_Short_Break>
+  <CC_Bar_Short_Leaving>leaving in {0}</CC_Bar_Short_Leaving>
+  <CC_Bar_Short_Wish>a wish waiting ({0}, {1} left)</CC_Bar_Short_Wish>
+  <CC_Bar_Short_Faith>wavering faith ({0} certain)</CC_Bar_Short_Faith>
+  <CC_Bar_Short_Promise>a promise at risk ({0})</CC_Bar_Short_Promise>
+  <CC_Bar_Short_PromiseTaken>a promise taken back ({0})</CC_Bar_Short_PromiseTaken>
+  <CC_Bar_Click_Mood>Click for the Mood tab.</CC_Bar_Click_Mood>
+  <CC_Bar_Click_Wishes>Click for the council's Wishes page.</CC_Bar_Click_Wishes>
+  <CC_Bar_Click_Culture>Click for the Culture tab.</CC_Bar_Click_Culture>
+
+  <!-- Settings: Interface page, "Colonist bar". -->
+  <CC_SetSec_ColonistBar>Colonist bar</CC_SetSec_ColonistBar>
+  <CC_SetSec_ColonistBar_Note>Small badges on the portraits along the top of the screen, so you can see who needs you without clicking through everyone.</CC_SetSec_ColonistBar_Note>
+  <CC_Settings_BarBadges>Badges on the colonist bar</CC_Settings_BarBadges>
+  <CC_Settings_BarBadges_Tip>Small badges in a corner of each portrait on the colonist bar: someone close to a mental break, about to leave, with a wish that has waited long, near breaking from strain, wavering in their faith, or with a promise at risk. A calm colonist shows none. Hover a badge for what it means and what helps; click it to go where it can be dealt with. Dragging a portrait to reorder the bar still works from anywhere but a badge. Needs the deeper game hooks.</CC_Settings_BarBadges_Tip>
+  <CC_SetNote_BarBadges>Who needs you shows on the portraits at the top of the screen; hover or click a badge.</CC_SetNote_BarBadges>
+  <CC_SetLabel_BarBreakMark>Close to breaking shows as</CC_SetLabel_BarBreakMark>
+  <CC_SetTip_BarBreakMark>How the bar shows someone close to a mental break. Its colour and strength follow how close they are: pale amber just above the minor break line, orange under it, red under the major line, deep red under the extreme one. Not while they are already in a break: the game shows that.</CC_SetTip_BarBreakMark>
+  <CC_BarBreak_Ring>Ring</CC_BarBreak_Ring>
+  <CC_BarBreak_Ring_Tip>A soft ring around the portrait. It takes no badge's place, and hovering the portrait says how close they are.</CC_BarBreak_Ring_Tip>
+  <CC_BarBreak_Dot>Dot</CC_BarBreak_Dot>
+  <CC_BarBreak_Dot_Tip>A coloured dot among the badges, first in line once a break could really come.</CC_BarBreak_Dot_Tip>
+  <CC_BarBreak_Off>Off</CC_BarBreak_Off>
+  <CC_BarBreak_Off_Tip>No mark on the bar. The game's own alerts still warn of break risks.</CC_BarBreak_Off_Tip>
+  <CC_SetNote_BarBreak_Ring>A soft ring around the portrait, pale amber to deep red as they near a break.</CC_SetNote_BarBreak_Ring>
+  <CC_SetNote_BarBreak_Dot>A coloured dot among the badges, pale amber to deep red as they near a break.</CC_SetNote_BarBreak_Dot>
+  <CC_SetNote_BarBreak_Off>No mark for break risk on the bar; the game's own alerts still warn.</CC_SetNote_BarBreak_Off>
+  <CC_Settings_BarBreakMargin>Warn from this far above the minor break line</CC_Settings_BarBreakMargin>
+  <CC_Settings_BarBreakMargin_Tip>The ring (or dot) starts, faintly, once mood comes within this much of a colonist's minor break line. At 0% it shows only once they are under it.</CC_Settings_BarBreakMargin_Tip>
+  <CC_SetNote_BarBreakMargin>An early, faint warning before a break could really come.</CC_SetNote_BarBreakMargin>
+  <CC_Settings_BarLeaving>About to leave</CC_Settings_BarLeaving>
+  <CC_Settings_BarLeaving_Tip>A colonist bitter about the council who has said they will leave the colony (with Demanding stakes and walking out allowed). Click for the Wishes page: a wish granted or a promise kept can win them back.</CC_Settings_BarLeaving_Tip>
+  <CC_SetNote_BarLeaving>A badge on anyone who has said they are leaving the colony.</CC_SetNote_BarLeaving>
+  <CC_Settings_BarWish>A wish waiting long</CC_Settings_BarWish>
+  <CC_Settings_BarWish_Tip>A colonist's open wish that has used up a good share of its time (set below). The tooltip says how long it has left, what granting it gives and what it costs if it lapses. Click for the Wishes page.</CC_Settings_BarWish_Tip>
+  <CC_SetNote_BarWish>A badge once a wish has waited past the share of its time set below.</CC_SetNote_BarWish>
+  <CC_Settings_BarWishPatience>Wish badge from</CC_Settings_BarWishPatience>
+  <CC_Settings_BarWishPatience_Tip>How much of a wish's time must have passed before its badge shows. A wish on its last call (reminded twice, or 85% of its time gone) always shows.</CC_Settings_BarWishPatience_Tip>
+  <CC_SetNote_BarWishPatience>Lower shows waiting wishes sooner; higher shows only those running out.</CC_SetNote_BarWishPatience>
+  <CC_Settings_BarStrain>Strain near breaking</CC_Settings_BarStrain>
+  <CC_Settings_BarStrain_Tip>A colonist worn down or near breaking from strain (feelings and strain). Click for the Mood tab, whose Heart section shows what builds it.</CC_Settings_BarStrain_Tip>
+  <CC_SetNote_BarStrain>A badge on anyone worn down or near breaking.</CC_SetNote_BarStrain>
+  <CC_Settings_BarFaith>Wavering faith</CC_Settings_BarFaith>
+  <CC_Settings_BarFaith_Tip>A colonist whose certainty in their faith has fallen under 60% (with Ideology and faith in the colony on). Click for their Culture tab.</CC_Settings_BarFaith_Tip>
+  <CC_SetNote_BarFaith>A badge on anyone wavering in their faith (with Ideology).</CC_SetNote_BarFaith>
+  <CC_Settings_BarPromise>A promise at risk</CC_Settings_BarPromise>
+  <CC_Settings_BarPromise_Tip>Something the council granted is gone and the grace is running, or it was taken back and can still be made right. Click for the Wishes page and its promises kept.</CC_Settings_BarPromise_Tip>
+  <CC_SetNote_BarPromise>A badge while a granted wish is missing, or taken back and still to be made right.</CC_SetNote_BarPromise>
+  <CC_SetLabel_BarBadgeSize>Badge size</CC_SetLabel_BarBadgeSize>
+  <CC_SetTip_BarBadgeSize>How large the badges are on a full-size bar. They shrink with the bar as the colony grows, as the portraits do.</CC_SetTip_BarBadgeSize>
+  <CC_BarSize_Small>Small</CC_BarSize_Small>
+  <CC_BarSize_Small_Tip>About 11 pixels on a full-size bar.</CC_BarSize_Small_Tip>
+  <CC_BarSize_Normal>Normal</CC_BarSize_Normal>
+  <CC_BarSize_Normal_Tip>About 13 pixels on a full-size bar: two fit down the side above the game's own icons.</CC_BarSize_Normal_Tip>
+  <CC_BarSize_Large>Large</CC_BarSize_Large>
+  <CC_BarSize_Large_Tip>About 16 pixels on a full-size bar. Only one fits down the side, so a second sits beside it.</CC_BarSize_Large_Tip>
+  <CC_SetNote_BarSize_Small>Small badges, about 11 pixels on a full-size bar.</CC_SetNote_BarSize_Small>
+  <CC_SetNote_BarSize_Normal>Badges about 13 pixels on a full-size bar.</CC_SetNote_BarSize_Normal>
+  <CC_SetNote_BarSize_Large>Large badges, about 16 pixels on a full-size bar.</CC_SetNote_BarSize_Large>
+  <CC_SetLabel_BarBadgeCorner>Badges start from</CC_SetLabel_BarBadgeCorner>
+  <CC_SetTip_BarBadgeCorner>Which corner of the portrait the badges sit in. The game draws its own icons (asleep, idle, inspired, a role) along the bottom from the left, and some mods put an icon in the top left. Bottom corners start just above the game's icons.</CC_SetTip_BarBadgeCorner>
+  <CC_BarCorner_TopRight>Top right</CC_BarCorner_TopRight>
+  <CC_BarCorner_TopRight_Tip>Down the right side from the top: clear of the game's own icons.</CC_BarCorner_TopRight_Tip>
+  <CC_BarCorner_TopLeft>Top left</CC_BarCorner_TopLeft>
+  <CC_BarCorner_TopLeft_Tip>Down the left side from the top. Some mods put an icon there.</CC_BarCorner_TopLeft_Tip>
+  <CC_BarCorner_BottomRight>Bottom right</CC_BarCorner_BottomRight>
+  <CC_BarCorner_BottomRight_Tip>Up the right side from just above the game's own icons.</CC_BarCorner_BottomRight_Tip>
+  <CC_BarCorner_BottomLeft>Bottom left</CC_BarCorner_BottomLeft>
+  <CC_BarCorner_BottomLeft_Tip>Up the left side from just above the game's own icons.</CC_BarCorner_BottomLeft_Tip>
+  <CC_SetNote_BarCorner_TopRight>Top right, down the side: clear of the game's own icons.</CC_SetNote_BarCorner_TopRight>
+  <CC_SetNote_BarCorner_TopLeft>Top left, down the side; some mods put an icon there.</CC_SetNote_BarCorner_TopLeft>
+  <CC_SetNote_BarCorner_BottomRight>Bottom right, up the side from just above the game's own icons.</CC_SetNote_BarCorner_BottomRight>
+  <CC_SetNote_BarCorner_BottomLeft>Bottom left, up the side from just above the game's own icons.</CC_SetNote_BarCorner_BottomLeft>
+  <CC_Settings_BarBadgeMax>Badges on one portrait, at most</CC_Settings_BarBadgeMax>
+  <CC_Settings_BarBadgeMax_Tip>When more apply, the most pressing win: under a break line or about to leave first, then a wish on its last call, strain near breaking, a wish waiting long and a promise at risk, then the early warnings (just above the break line, worn down), and wavering faith last. Hovering a badge names the rest.</CC_Settings_BarBadgeMax_Tip>
+  <CC_SetNote_BarBadgeMax>The rest are named when you hover a badge.</CC_SetNote_BarBadgeMax>
+
+</LanguageData>

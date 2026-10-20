@@ -116,6 +116,8 @@ HARMONY_FREQ = {
     "ThingWithComps.GetInspectString": FRAMES_PER_HOUR, "Thing.DescriptionDetailed": FRAMES_PER_HOUR / 10,
     "Thing.DescriptionFlavor": FRAMES_PER_HOUR / 10, "ThingWithComps.DescriptionFlavor": FRAMES_PER_HOUR / 10,
     "TendUtility.DoTend": 20, "JobDriver_VisitSickPawn.MakeNewToils": 5,
+    # The colonist bar: painted once a frame per colonist; its clicks are handled every GUI event.
+    "ColonistBarColonistDrawer.DrawColonist": FRAMES_PER_HOUR * COLONISTS, "ColonistBarColonistDrawer.HandleClicks": GUI_PER_HOUR * COLONISTS,
 }
 HARMONY_DEFAULT = 2  # a game event (a death, a raid, a trade, a letter)
 

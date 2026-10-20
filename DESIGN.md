@@ -1503,6 +1503,32 @@ MoodCompact the Mood tab), and a line in the game's Needs tab:
   scroll view start below it; a click opens the Mood tab. Its `Prepare` checks the method's first two parameters (a
   `Rect` named `listingRect`, a `Pawn` named `pawn`); if they differ, nothing is patched and the bootstrap lists it
   as skipped. It never skips the game's method and draws nothing for pawns without a Mood tab.
+### The colonist bar's badges
+
+`ColonistBar/BarBadges.cs` draws small badges on the game's colonist bar so the colony's state shows without clicking
+into each colonist: close to a mental break (a soft ring, `BarRing`, tinted amber to deep red with its strength
+following how close, or a dot among the badges), about to leave (`PawnStanding.leavingTick`), an own open wish past
+the set share of its patience (`Wish.Elapsed`, or on its last call), strain worn down or near breaking
+(`Heart.ForView`), wavering faith (`Faiths.Wavering`, so only with Ideology and the setting) and a promise at risk (a
+`GrantWatch` missing or taken back and still within its amends window). A calm colonist shows nothing.
+`BarBadgeMath` holds the parts without game types, tested in `Tools/Tests/BarBadgeTests.cs`: the break level and
+closeness against the colonist's own `MentalBreaker` lines, the ring's colour, each kind's step, one priority table
+(`Priority`: under the major line and leaving first, wavering faith last) with an allocation-free sort, and the layout
+(from the chosen corner down the side as far as fits above the game's own icon row, then the next column inward,
+never more than fit on the portrait).
+
+Two patch classes, each applied on its own:
+- `Patch_ColonistBarBadges`, a postfix on `ColonistBarColonistDrawer.DrawColonist(Rect, Pawn, Map, bool, bool)`, which
+  the bar calls only to paint. It reads a cache keyed by `thingIDNumber`, worked out at most once a second per
+  colonist and started over when `Current.Game` changes; the draw allocates nothing, fades with the portrait (messages,
+  another map) and writes a tooltip only while one is hovered.
+- `Patch_ColonistBarBadgeClicks`, a prefix on `ColonistBarColonistDrawer.HandleClicks`, which the bar calls for every
+  event before it paints. A left mouse-down on a badge is used there (`Event.Use`), so the bar's selection (the
+  selector's drag box, later in the frame) and its reordering never see it; every other event passes untouched. Without
+  this patch the badges show and explain without clicks, and their tooltips leave the click out.
+
+Both signatures are the same in 1.6 and 1.7 (ApiDiff). The settings (Interface page, "Colonist bar") switch each kind,
+the break mark and its margin above the minor line, the wish threshold, size, corner and the most shown.
 
 ### Checking a new game version
 
@@ -1652,6 +1678,8 @@ the Social tab column's own caches).
   worked out again only when a deed or a knower changes (at most every 30 ticks) and once an hour for fading.
 - *Per frame*: the inspector line (a string join), the Needs tab's extra tooltip lines and its summary line (each
   cached half a second), the
+- *Per frame*: the colonist bar's badges (a dictionary lookup per portrait, the facts worked out once a second), the
+  inspector line (a string join), the Needs tab's extra tooltip lines (cached half a second), the
   Social tab's width (a cached model and a field write), its rows' extra tooltip line (cached a second per pair), alert
   labels (rebuilt only when they change), the slow-time buttons (labels translated once, tooltips only on hover), a
   lucky thing's inspect line and description (a lookup by thing id, nothing while no thing is lucky). Windows and tabs

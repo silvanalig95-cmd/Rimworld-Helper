@@ -1996,6 +1996,16 @@ Small buttons sit next to the time controls (drag them by their grip to put them
 Steam Deck too). The game's own "slower" and "faster" keys also step below normal speed. Picking normal or any
 faster speed ends it; pausing and unpausing keeps it. Hide the buttons in the settings if you only want the keys.
 
+## Badges on the colonist bar
+The portraits along the top of the screen show who needs you, without clicking into each colonist: a soft ring that
+turns from amber to deep red as someone nears a mental break (or a dot, or nothing), and up to two small badges (one
+to three in the settings) for someone about to leave, a wish that has waited past half its time, strain near
+breaking, wavering faith (with Ideology) or a promise at risk. A calm colonist shows nothing; when more apply, the most
+pressing win. Hover a badge for what it means, how big it is and what helps; click it for the Mood tab, the council's
+Wishes page or the Culture tab. Dragging and selecting work as before anywhere but a badge. Each kind, the ring's
+early warning, the wish badge's threshold, the size, the corner and how many show are all in the settings
+(Interface, "Colonist bar"); it is one of the deeper game hooks.
+
 ## Settings
 
 **Options → Mod options → Rimfolk.** A search box sits at the top: type a word (dreams, raids, letters, illness)
@@ -2071,7 +2081,8 @@ The pages:
   (bubbles with Interaction Bubbles, floating text, or off), the visual and sound touches; the two alerts; mood insight (and its hints in the Needs tab), the slow speed buttons (and putting them
   back), where the council button sits in the bottom bar, the rooms button, which page the council window opens on
   (**This week** by default, or the last page), the Almanac's text size; the deeper game hooks and the notes in the
-  game's letters.
+  game's letters; the **badges on the colonist bar** (each kind, the break ring or dot and its early warning, the wish
+  badge's threshold, size, corner and how many show).
 - **Advanced**: this colony's era (detected, pre-industrial or industrial; set per colony, so it needs a loaded game),
   **Check what's on and working** (the same report as the dev action "Rimfolk: check myself"), and a full reset to
   the defaults (with the list of what changes; saved rooms are kept).
