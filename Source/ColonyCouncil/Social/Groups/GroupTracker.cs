@@ -198,12 +198,24 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>Drops the dead and the discarded from work logs and newcomers, and those the game no longer knows from the past groups.</summary>
+        /// <summary>
+        /// Drops the dead and the discarded from work logs and newcomers, and those the game no longer knows from the
+        /// groups and the past groups. A member who died stays until the group's day notices (and mourns) them, but one
+        /// the game has let go of entirely can't be saved as a reference: the load would find nobody there.
+        /// </summary>
         public void Prune()
         {
             work.RemoveAll(w => w.pawn == null || w.pawn.Dead || w.pawn.Destroyed || !w.pawn.IsColonist);
             newcomers.RemoveAll(n => n.pawn == null || n.pawn.Dead || n.pawn.Destroyed);
             var known = CouncilGameComponent.KnownPawnNumbers();
+            bool changed = false;
+            foreach (var g in groups)
+                if (g.members.RemoveAll(m => m.pawn == null || m.pawn.Discarded || !known.Contains(m.pawn.thingIDNumber)) > 0)
+                    changed = true;
+            foreach (var n in newcomers)
+                if (n.sponsor != null && (n.sponsor.Discarded || !known.Contains(n.sponsor.thingIDNumber)))
+                    n.sponsor = null;
+            if (changed) Changed();
             foreach (var p in past) p.members.RemoveAll(id => !known.Contains(id));
             past.RemoveAll(p => p.members.Count == 0);
             while (past.Count > MaxPast) past.RemoveAt(0);

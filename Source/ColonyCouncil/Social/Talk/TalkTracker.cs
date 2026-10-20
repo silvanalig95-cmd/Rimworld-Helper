@@ -100,7 +100,12 @@ namespace ColonyCouncil
         public override void GameComponentTick()
         {
             int t = Find.TickManager.TicksGame;
-            if (exchanges.Count > 0 && Sched.Every(t, LinePeriod, LineOffset)) Talk.Step(this, t);
+            if (exchanges.Count > 0 && Sched.Every(t, LinePeriod, LineOffset))
+            {
+                // Social life turned off mid-talk: the rest of it isn't said.
+                if (!Persona.On) exchanges.Clear();
+                else Talk.Step(this, t);
+            }
             if (!Sched.Hourly(t, Sched.Talk)) return;
             if (!Persona.On) return;
             try

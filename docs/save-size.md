@@ -7,15 +7,17 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 282; modelled: 245; growing without end: 0.
-Rimfolk's part of the save, roughly: **1,269 KB** after a year, **1,519 KB** after two, **1,581 KB** after five.
+Saved collections found: 283; modelled: 252; growing without end: 0.
+Rimfolk's part of the save, roughly: **1,567 KB** after a year, **1,863 KB** after two, **1,924 KB** after five.
 
-Not modelled (add them to MODEL in the script): `Ailments/AilmentTracker.cs:carrying`, `Ailments/AilmentTracker.cs:healing`, `Calendar/CalendarWatch.cs:awaySince`, `Calendar/CalendarWatch.cs:huntKills`, `Calendar/CalendarWatch.cs:knownCrops`, `Calendar/CalendarWatch.cs:pendingCrops`, `Camps/Camp.cs:asksMade`, `Character/ColonyTraits.cs:today`, `Decrees/Decrees.cs:nightHours`, `Defense/DefenseLine.cs:done`, `Defense/DefenseLine.cs:downed`, `Defense/DefenseLine.cs:lessons`, `Defense/DefenseLine.cs:plans`, `Defense/DefenseLine.cs:raids`, `Defense/DefenseLine.cs:skipped`, `Defense/DefenseLine.cs:span`, `Defense/DefenseLines.cs:lines`, `Defense/DefenseLinesWatch.cs:downedSeen`, `Defense/DefenseLinesWatch.cs:running`, `Epithets/Epithets.cs:founders`, `Health/HealthTracker.cs:worst`, `Persona/PawnPersona.cs:d`, `Persona/PawnPersona.cs:l`, `Persona/PawnPersona.cs:marks`, `Persona/PawnPersona.cs:stances`, `Persona/PersonaTracker.cs:list`, `Persona/PersonaTracker.cs:memories`, `PlayOut/PlayOutTracker.cs:results`, `PlayOut/PlayOuts.cs:game`, `PlayOut/PlayOuts.cs:hands`, `PlayOut/PlayOuts.cs:named`, `PlayOut/PlayOuts.cs:route`, `PlayOut/PlayOuts.cs:tasks`, `Scenarios/ScenarioParts.cs:days`, `Scenarios/ScenarioParts.cs:offices`, `World/FactionMemory.cs:notes`, `World/WorldSituation.cs:followUps`
+Not modelled (add them to MODEL in the script): `Ailments/AilmentTracker.cs:carrying`, `Ailments/AilmentTracker.cs:healing`, `Calendar/CalendarWatch.cs:awaySince`, `Calendar/CalendarWatch.cs:huntKills`, `Calendar/CalendarWatch.cs:knownCrops`, `Calendar/CalendarWatch.cs:pendingCrops`, `Camps/Camp.cs:asksMade`, `Character/ColonyTraits.cs:today`, `Decrees/Decrees.cs:nightHours`, `Defense/DefenseLine.cs:done`, `Defense/DefenseLine.cs:downed`, `Defense/DefenseLine.cs:lessons`, `Defense/DefenseLine.cs:plans`, `Defense/DefenseLine.cs:raids`, `Defense/DefenseLine.cs:skipped`, `Defense/DefenseLine.cs:span`, `Defense/DefenseLines.cs:lines`, `Defense/DefenseLinesWatch.cs:downedSeen`, `Defense/DefenseLinesWatch.cs:running`, `Epithets/Epithets.cs:founders`, `Health/HealthTracker.cs:worst`, `PlayOut/PlayOutTracker.cs:results`, `PlayOut/PlayOuts.cs:game`, `PlayOut/PlayOuts.cs:hands`, `PlayOut/PlayOuts.cs:named`, `PlayOut/PlayOuts.cs:route`, `PlayOut/PlayOuts.cs:tasks`, `Scenarios/ScenarioParts.cs:days`, `Scenarios/ScenarioParts.cs:offices`, `World/FactionMemory.cs:notes`, `World/WorldSituation.cs:followUps`
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
 | `Journal.cs:journals` | the living's, and the 30 departed written in most lately | cap | 30 | 50 | 50 | 468.8 |
+| `Persona/PersonaTracker.cs:memories` | 8 per pair, 900 in all; faded ones and the gone dropped on save | cap | 720 | 900 | 900 | 228.5 |
 | `Social/Gossip/Deed.cs:heard` | who knows each deed (30 at most a deed), with its deed | cap | 2,000 | 2,000 | 2,000 | 214.8 |
+| `Persona/PersonaTracker.cs:list` | one record per person the colony keeps; the gone and empty records dropped on save | colonists | 24 | 24 | 24 | 110.2 |
 | `CouncilGameComponent.cs:chronicle` | Caps.Chronicle; the newest 200 always, milestones longest | cap | 300 | 300 | 300 | 102.5 |
 | `Social/Gossip/ReputationTracker.cs:deeds` | 10 per colonist, 220 in all, faded ones dropped | cap | 200 | 200 | 200 | 58.6 |
 | `Journal.cs:everydaySeen` | 24 days | window | 480 | 480 | 480 | 42.2 |
@@ -62,6 +64,7 @@ Not modelled (add them to MODEL in the script): `Ailments/AilmentTracker.cs:carr
 | `Arcs/ArcTracker.cs:active` | stories under way | colonists | 10 | 10 | 10 | 4.9 |
 | `PlayOut/PlayOutTracker.cs:plays` | waiting ones capped, done ones dropped | cap | 8 | 8 | 8 | 4.7 |
 | `Social/Groups/GroupTracker.cs:past` | 12 past groups, members the game still knows | cap | 3 | 6 | 12 | 4.7 |
+| `Social/Talk/TalkTracker.cs:notes` | the news people talk about: 40 at most, a month at most | cap | 40 | 40 | 40 | 4.7 |
 | `Building/CouncilPlanQueue.cs:queue` | blueprints waiting to be placed | while | 30 | 30 | 30 | 4.4 |
 | `Character/Character.cs:recent` | 30 recent shifts | cap | 30 | 30 | 30 | 4.4 |
 | `Strangers/Nemeses.cs:all` | 30 that have ended | cap | 3 | 6 | 15 | 4.4 |
@@ -242,6 +245,10 @@ Not modelled (add them to MODEL in the script): `Ailments/AilmentTracker.cs:carr
 | `Heart/HeartData.cs:recentBuild` | per heart: one per strain source (counted under hearts) | fixed | 8 | 8 | 8 | (in its record) |
 | `Journal.cs:entries` | per journal: 60 lines (counted under journals) | fixed | 60 | 60 | 60 | (in its record) |
 | `Missions/Missions.cs:goals` | per mission (counted under missions) | fixed | 3 | 3 | 3 | (in its record) |
+| `Persona/PawnPersona.cs:d` | per record: 8 sides (counted under list) | fixed | 8 | 8 | 8 | (in its record) |
+| `Persona/PawnPersona.cs:l` | per record: 8 sides (counted under list) | fixed | 8 | 8 | 8 | (in its record) |
+| `Persona/PawnPersona.cs:marks` | per record: 12 marks at most, past their keeping dropped (counted under list) | fixed | 12 | 12 | 12 | (in its record) |
+| `Persona/PawnPersona.cs:stances` | per record: a view per topic, a newcomer's let go once settled (counted under list) | fixed | 22 | 22 | 22 | (in its record) |
 | `PlayOut/PlayOuts.cs:invited` | per play-out (counted under plays) | fixed | 8 | 8 | 8 | (in its record) |
 | `Pressures/Pressures.cs:meals` | per colonist: 12 meals (counted under people) | fixed | 12 | 12 | 12 | (in its record) |
 | `Secrets/Secrets.cs:knowers` | per secret (counted under secrets) | fixed | 3 | 3 | 3 | (in its record) |

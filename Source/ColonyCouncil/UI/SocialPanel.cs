@@ -649,8 +649,8 @@ namespace ColonyCouncil
             if (t.kind == TieKind.Mentor && t.skill != null)
                 lines.Add("CC_Social_Lessons".Translate(t.skill.label, t.b.LabelShort, t.b.skills?.GetSkill(t.skill)?.Level ?? 0));
             if (t.history.Count > 0) lines.Add("\n" + string.Join("\n", t.history));
-            // What the two went through together (Persona/SharedMemories).
-            var memories = SharedMemories.Of(t.a, t.b);
+            // What the two went through together (Persona/SharedMemories), while social life is on.
+            var memories = Persona.On ? SharedMemories.Of(t.a, t.b) : new List<SharedMemory>();
             if (memories.Count > 0)
             {
                 lines.Add("\n" + "CC_Social_Memories".Translate());

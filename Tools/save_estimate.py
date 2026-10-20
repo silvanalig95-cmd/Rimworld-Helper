@@ -207,6 +207,15 @@ MODEL = {
     "Persona/Marks.cs:fights": ("colonists", 8, V, "the last 8 fights won per person, a year at most"),
     "Persona/Marks.cs:addictions": ("colonists", 0.3, 40, "the addictions they have now"),
     "Persona/Marks.cs:once": ("known", 0.3, 40, "skills mastered; known pawns only, 800 at most"),
+    # Characters and what pairs went through together (Persona/PersonaTracker.cs)
+    "Persona/PersonaTracker.cs:list": ("colonists", 1.2, 4700, "one record per person the colony keeps; the gone and empty records dropped on save"),
+    "Persona/PawnPersona.cs:l": ("fixed", 8, 25, "per record: 8 sides (counted under list)"),
+    "Persona/PawnPersona.cs:d": ("fixed", 8, 25, "per record: 8 sides (counted under list)"),
+    "Persona/PawnPersona.cs:marks": ("fixed", 12, 180, "per record: 12 marks at most, past their keeping dropped (counted under list)"),
+    "Persona/PawnPersona.cs:stances": ("fixed", 22, 90, "per record: a view per topic, a newcomer's let go once settled (counted under list)"),
+    "Persona/PersonaTracker.cs:memories": ("cap", (900, 12), 260, "8 per pair, 900 in all; faded ones and the gone dropped on save"),
+    # Conversations (Social/Talk/)
+    "Social/Talk/TalkTracker.cs:notes": ("cap", (40, 4), 120, "the news people talk about: 40 at most, a month at most"),
     # The world
     "World/FactionMemory.cs:deeds": ("fixed", 12 * 12, 200, "12 deeds per people (12 peoples), fading out"),
     # Reputation and gossip
