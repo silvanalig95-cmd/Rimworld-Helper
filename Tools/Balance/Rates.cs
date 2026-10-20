@@ -134,13 +134,33 @@ namespace Balance
 
         /// <summary>
         /// Dilemmas whose worker looks for something the defs don't name (Animals/AnimalDilemmas.cs): a hungry colony with
-        /// a herd, a grazer in the crops, a sick animal, a predator near the pens, a bond a faith abhors, the herd's season.
+        /// a herd, a grazer in the crops, a sick animal, a predator near the pens, a bond a faith abhors, the herd's season;
+        /// and the council's faith questions (Dilemmas/DilemmaWorkers_Faith.cs): faiths at odds (Ideology, a split colony,
+        /// half the time unless sharpened) and a devout believer asking for an evening of faith (one can be held now).
         /// </summary>
         public static readonly Dictionary<string, float> WorkerGates = new Dictionary<string, float>
         {
             ["DilemmaWorker_Famine"] = 0.1f, ["DilemmaWorker_CropRaider"] = 0.3f, ["DilemmaWorker_SickAnimal"] = 0.25f,
-            ["DilemmaWorker_PenStalker"] = 0.3f, ["DilemmaWorker_BondFaith"] = 0.05f, ["DilemmaWorker_HerdCustom"] = 0.4f
+            ["DilemmaWorker_PenStalker"] = 0.3f, ["DilemmaWorker_BondFaith"] = 0.05f, ["DilemmaWorker_HerdCustom"] = 0.4f,
+            ["DilemmaWorker_FaithClash"] = FaithSplitColony * 0.7f, ["DilemmaWorker_FaithEvening"] = FaithSplitColony * 0.6f
         };
+
+        // ---------------- Faith and the council (Faith/, with Ideology) ----------------
+
+        /// <summary>Share of colonies (runs) with Ideology and more than one faith at home, where faith and the council come into play.</summary>
+        public const float FaithSplitColony = 0.35f;
+
+        /// <summary>
+        /// Evenings of faith in such a colony: about one in nine days (the council calls one every five days at most, a
+        /// faith every ten); the share of colonists who come; and how they go (poor, good, fine).
+        /// </summary>
+        public const float EveningEveryDays = 9f, EveningComes = 0.6f, EveningPoor = 0.25f, EveningFine = 0.2f;
+
+        /// <summary>
+        /// One faith for the colony: the share of days the decree holds in such a colony, the share of colonists of another
+        /// faith, and the trust they lose a day on average (FaithCouncilMath.DecreeTrustPerDay: a quarter to a whole point).
+        /// </summary>
+        public const float OneFaithDays = 0.12f, OneFaithOutsiders = 0.6f, OneFaithTrustPerDay = -0.55f;
 
         /// <summary>
         /// How often a wish can be voiced at all (its worker looks for a reason: a prisoner to recruit, lovers to marry, a
@@ -157,6 +177,7 @@ namespace Balance
             switch (worker)
             {
                 case "WishWorker_Rescue": return 0.02f;
+                case "WishWorker_LearnFaith": return FaithSplitColony * 0.25f;
                 case "WishWorker_Quit":
                 case "WishWorker_Prosthetic":
                 case "WishWorker_RoyalStandards":

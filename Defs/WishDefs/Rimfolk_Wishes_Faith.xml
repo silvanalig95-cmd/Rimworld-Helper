@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    A wavering colonist's wish (Source/ColonyCouncil/Wishes/WishWorkers_Faith.cs), picked by the player for "Faith in
+    the colony": with Ideology, someone whose faith is shaken (certainty under 60%) asks to spend an evening with a
+    devout believer of another faith they think well of, learning about it. {OTHER} is the believer, {SUBJECT} the
+    faith. Promised, the evening plays out on the map (a visit in the evening); going to an evening of that faith also
+    counts. Granted, they are swayed toward it and the two share the memory; ignored, it costs what any wish does.
+  -->
+
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_LearnFaith</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>an evening learning about {SUBJECT}</label>
+    <description>Someone whose faith has been shaken wants to hear another faith out: an evening with a devout believer they think well of, learning what that faith holds and why. Promising it arranges the evening (they walk over in the evening and spend a couple of hours together); going to an evening of that faith counts too. Granted, it moves them toward that faith (about 12% of certainty, more if they're open-minded and fond of the believer) and the two remember it together. Only with Ideology.</description>
+    <workerClass>ColonyCouncil.WishWorker_LearnFaith</workerClass>
+    <category>Social</category>
+    <weight>0.9</weight>
+    <expiryDays>8</expiryDays>
+    <cooldownDays>30</cooldownDays>
+    <grantedThought>Council_Granted_LearnFaith</grantedThought>
+    <envy>0</envy>
+    <objectionChance>0.2</objectionChance>
+    <fulfilledWhen>{FOR_nameDef} spends an evening with {OTHER_nameDef} hearing about {SUBJECT}, or goes to an evening of {SUBJECT}.</fulfilledWhen>
+    <grantEffects>
+      <li Class="ColonyCouncil.WishEffect_LearnFaith" />
+    </grantEffects>
+    <request>
+      <plain>
+        <li>I'm not as sure of my own faith as I was. I'd like to hear {OTHER_nameDef} out about {SUBJECT}, properly, one evening.</li>
+        <li>{OTHER_nameDef} seems so certain. I'd like to know what that's like, and what {SUBJECT} gives {OTHER_objective}.</li>
+        <li>Could someone ask {OTHER_nameDef} to give me an evening? I have questions about {SUBJECT} I can't ask over supper.</li>
+        <li>[afterraid] After what happened, I keep wondering what holds {OTHER_nameDef} up. I'd like to ask {OTHER_objective} about {SUBJECT}.</li>
+        <li>[grieving] My faith hasn't been much comfort lately. {OTHER_nameDef} says {SUBJECT} has words for times like these.</li>
+      </plain>
+      <warm><li>I like {OTHER_nameDef}, and I'd like to understand what {OTHER_pronoun} believes. Just an evening.</li></warm>
+      <blunt><li>I want to hear about {SUBJECT}. From {OTHER_nameDef}. One evening.</li></blunt>
+      <cheerful><li>{OTHER_nameDef} has promised me the best stories of {SUBJECT}, if the council gives us an evening for it.</li></cheerful>
+      <gloomy><li>I don't know what I believe any more. Maybe {OTHER_nameDef} does.</li></gloomy>
+      <cold><li>I'd like to examine {SUBJECT} with someone who holds it. {OTHER_nameDef} would do.</li></cold>
+    </request>
+    <thanks>
+      <plain>
+        <li>We talked until the fire was low. I don't know where it leaves me, but I'm glad I asked.</li>
+        <li>{OTHER_nameDef} answered everything I asked, and some things I didn't.</li>
+      </plain>
+      <warm><li>Thank you for the evening. {OTHER_nameDef} was kinder about my doubts than I've been.</li></warm>
+      <blunt><li>Good evening. Lots to think about.</li></blunt>
+      <gloomy><li>More questions than I started with. That's something, I suppose.</li></gloomy>
+    </thanks>
+    <expired>
+      <plain><li>I'll work out what I believe on my own, then.</li></plain>
+      <blunt><li>Forget I asked.</li></blunt>
+      <gloomy><li>Nobody had an evening to spare. Not even for that.</li></gloomy>
+    </expired>
+    <reminder>
+      <plain><li>I'd still like that evening with {OTHER_nameDef}, if it can be found.</li></plain>
+      <blunt><li>The evening with {OTHER_nameDef}. Still waiting.</li></blunt>
+    </reminder>
+  </ColonyCouncil.WishDef>
+
+</Defs>

@@ -59,6 +59,8 @@ namespace ColonyCouncil
         public static void Notify_GatheringOver(PlayOut play, List<Pawn> attended, List<Pawn> fed, PlayKind kind, bool early, Map map)
         {
             GroupHabits.Notify_GatheringOver(play, attended, early);
+            // An evening of faith is judged and does its work (Faith/FaithEvenings.cs), whatever this setting says.
+            FaithEvenings.Notify_GatheringOver(play, attended, early);
             if (!On || attended.NullOrEmpty() || early) return;
             Safe("interplay: convalescents at a gathering", () => Convalescents(attended));
             if (kind == PlayKind.Feast && !fed.NullOrEmpty()) Safe("interplay: the feast's table", () => FeastFresh(fed, map));

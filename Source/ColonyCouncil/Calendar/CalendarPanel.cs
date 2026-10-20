@@ -26,6 +26,7 @@ namespace ColonyCouncil
         private static readonly Color GiftsColor = new Color(0.9f, 0.62f, 0.85f);
         private static readonly Color HuntColor = new Color(0.72f, 0.66f, 0.45f);
         private static readonly Color PlantingColor = new Color(0.62f, 0.8f, 0.42f);
+        private static readonly Color FaithColor = new Color(0.78f, 0.72f, 1f);
 
         public static Color WayColor(DayWay way)
         {
@@ -39,6 +40,7 @@ namespace ColonyCouncil
                 case DayWay.Gifts: return GiftsColor;
                 case DayWay.Hunt: return HuntColor;
                 case DayWay.Planting: return PlantingColor;
+                case DayWay.Faith: return FaithColor;
                 default: return UiKit.Faint;
             }
         }
@@ -146,7 +148,7 @@ namespace ColonyCouncil
                         : "CC_Cal_InDays".Translate(until).Resolve(),
                     name = d.label.CapitalizeFirst(),
                     origin = Origin(d),
-                    way = CalendarTracker.WayLabel(d.way),
+                    way = CalendarTracker.WayLabel(d.way) + (d.way == DayWay.Faith && d.kind == CalendarKind.Holiday && !d.subject.NullOrEmpty() ? ": " + d.subject : ""),
                     wayTip = ("CC_Cal_Way_" + d.way + "_Desc").Translate()
                 };
                 if (d.tradition)
@@ -294,7 +296,13 @@ namespace ColonyCouncil
         private bool focused;
         private bool finished;
 
-        private static readonly DayWay[] Ways = { DayWay.Feast, DayWay.Remembrance, DayWay.Rest, DayWay.Games, DayWay.Bonfire, DayWay.Gifts, DayWay.Hunt, DayWay.Planting };
+        private static readonly DayWay[] AllWays = { DayWay.Feast, DayWay.Remembrance, DayWay.Rest, DayWay.Games, DayWay.Bonfire, DayWay.Gifts, DayWay.Hunt, DayWay.Planting, DayWay.Faith };
+
+        /// <summary>The ways a day can be kept here: an evening of faith only with faith in the colony (Ideology).</summary>
+        private static IEnumerable<DayWay> Ways => AllWays.Where(w => w != DayWay.Faith || Faiths.On);
+
+        /// <summary>The faith a day kept as an evening of faith speaks for (by name, as the day keeps it).</summary>
+        private string faithName;
 
         public Dialog_CalendarDay(CalendarDay editing)
         {
@@ -309,13 +317,15 @@ namespace ColonyCouncil
             CalendarMath.Split(day, out quadrum, out dayOfQuadrum);
             name = editing?.label ?? "";
             way = editing?.way ?? DayWay.Feast;
+            faithName = editing?.way == DayWay.Faith ? editing.subject : null;
+            if (faithName.NullOrEmpty() && Faiths.On) faithName = Faiths.Census().FirstOrDefault()?.ideo?.name;
         }
 
         private bool DateEditable => editing == null || editing.byPlayer;
 
         private bool WayEditable => editing == null || !editing.Personal;
 
-        public override Vector2 InitialSize => new Vector2(560f, 560f);
+        public override Vector2 InitialSize => new Vector2(560f, 630f);
 
         public override void DoWindowContents(Rect inRect)
         {
@@ -344,6 +354,25 @@ namespace ColonyCouncil
                     if (Widgets.RadioButtonLabeled(r, CalendarTracker.WayLabel(wy).CapitalizeFirst() + ": " + ("CC_Cal_Way_" + wy + "_Desc").Translate(), way == wy))
                         way = wy;
                     y += 28f;
+                }
+                // An evening of faith: which faith it's for (the colony's faiths, most believers first).
+                if (way == DayWay.Faith && Faiths.On)
+                {
+                    var faiths = Faiths.Census().Where(f => f?.ideo != null).ToList();
+                    float fx = 24f;
+                    foreach (var f in faiths)
+                    {
+                        string label = f.ideo.name;
+                        float bw = Mathf.Min(Text.CalcSize(label).x + 24f, inRect.width - 24f);
+                        if (fx > 24f && fx + bw > inRect.width)
+                        {
+                            fx = 24f;
+                            y += 30f;
+                        }
+                        if (UiKit.TabButton(new Rect(fx, y, bw, 26f), label, null, faithName == label)) faithName = label;
+                        fx += bw + 4f;
+                    }
+                    if (faiths.Count > 0) y += 30f;
                 }
             }
             else
@@ -405,12 +434,14 @@ namespace ColonyCouncil
                     Messages.Message("CC_Cal_NameDay_Full".Translate(CalendarMath.MaxNamedDays), MessageTypeDefOf.RejectInput, false);
                     return;
                 }
+                if (way == DayWay.Faith) d.subject = faithName;
                 Messages.Message("CC_Cal_Dialog_Added".Translate(d.label, CalendarTracker.DateText(d.day)).Resolve(), MessageTypeDefOf.PositiveEvent, false);
             }
             else
             {
                 editing.label = n;
                 if (WayEditable) editing.way = way;
+                if (WayEditable && way == DayWay.Faith && editing.kind == CalendarKind.Holiday) editing.subject = faithName;
                 if (DateEditable && editing.kind != CalendarKind.FirstSnow)
                 {
                     int day = CalendarMath.Join(quadrum, dayOfQuadrum);

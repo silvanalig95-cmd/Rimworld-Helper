@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Remembering an evening of faith, or an evening spent learning someone's faith (Defs/SharedMemoryDefs/
+    Rimfolk_SharedMemories_Faith.xml). {LABEL} is the evening ("the evening of the Sunward Way", "the evening we talked
+    about the Sunward Way"). [byme]: the speaker is the believer who spoke; [byother]: the one who listened. One
+    sentence a line, so speech never cuts it short.
+  -->
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Mem_FaithEvening_Open</defName>
+    <memory>Rimfolk_Mem_FaithEvening</memory>
+    <turn>Open</turn>
+    <outcomes><li>Reminisce</li></outcomes>
+    <lines>
+      <plain>
+        <li>[byother] I keep thinking about what you said at {LABEL}.</li>
+        <li>[byother] Where's that bit about the long road from, the one you told at {LABEL}?</li>
+        <li>[byme] I didn't think you'd come to {LABEL}, and I was glad you did.</li>
+        <li>[byme] Thank you for sitting through {LABEL}, when it isn't even your faith.</li>
+      </plain>
+      <blunt><li>[byother] You went on a bit at {LABEL}, and I didn't mind.</li></blunt>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Mem_FaithEvening_Reply</defName>
+    <memory>Rimfolk_Mem_FaithEvening</memory>
+    <turn>Reply</turn>
+    <outcomes><li>Reminisce</li></outcomes>
+    <lines>
+      <plain>
+        <li>[byme] Come again if you like, there's always room.</li>
+        <li>[byme] I'll tell you the rest of it some time.</li>
+        <li>[byother] It was a good evening, whatever I believe.</li>
+        <li>[byother] I came for the company, mostly.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Mem_FaithEvening_Close</defName>
+    <memory>Rimfolk_Mem_FaithEvening</memory>
+    <turn>Close</turn>
+    <outcomes><li>Reminisce</li></outcomes>
+    <lines>
+      <plain>
+        <li>[byme] The next one's yours too, if you want it.</li>
+        <li>[byother] Save me a seat at the next one.</li>
+        <li>That was a good evening.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Mem_FaithLearned_Open</defName>
+    <memory>Rimfolk_Mem_FaithLearned</memory>
+    <turn>Open</turn>
+    <outcomes><li>Reminisce</li></outcomes>
+    <lines>
+      <plain>
+        <li>[byother] I've been thinking about {LABEL} more than I meant to.</li>
+        <li>[byother] You never told me how the old story ends, that night.</li>
+        <li>[byme] Have you thought any more since {LABEL}?</li>
+        <li>[byme] You asked good questions that night, and I've been turning some of them over myself.</li>
+      </plain>
+      <warm><li>[byme] I'm glad you asked me, of everyone.</li></warm>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Mem_FaithLearned_Reply</defName>
+    <memory>Rimfolk_Mem_FaithLearned</memory>
+    <turn>Reply</turn>
+    <outcomes><li>Reminisce</li></outcomes>
+    <lines>
+      <plain>
+        <li>[byme] Whenever you want to talk it over, I'm here.</li>
+        <li>[byme] No hurry, a faith isn't a coat you change in a day.</li>
+        <li>[byother] I haven't made up my mind, but I'm listening.</li>
+        <li>[byother] I still don't know what I believe, but that evening helped.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Mem_FaithLearned_Close</defName>
+    <memory>Rimfolk_Mem_FaithLearned</memory>
+    <turn>Close</turn>
+    <outcomes><li>Reminisce</li></outcomes>
+    <lines>
+      <plain>
+        <li>[byme] Ask me anything, any time.</li>
+        <li>[byother] Thank you for that evening.</li>
+        <li>We should do it again some time.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+</Defs>

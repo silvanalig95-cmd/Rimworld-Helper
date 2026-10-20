@@ -61,6 +61,14 @@ namespace ColonyCouncil
         /// <summary>Of the colony's own faith (Ideology), or of another one.</summary>
         public bool sameFaith;
         public bool otherFaith;
+        /// <summary>
+        /// Of the faith a "one faith for the colony" decree names, or of another one (Decrees/DecreeFaith.cs). Unlike the
+        /// rest, these narrow the rule: with tags or beliefs as well, both must hold; on their own, they are the rule.
+        /// </summary>
+        public bool decreeFaith;
+        public bool notDecreeFaith;
+        /// <summary>Their faith frowns on being preached to (Faiths.DislikesPreaching).</summary>
+        public bool dislikesPreaching;
         /// <summary>Whose faith, traits or habits rule out any of these (Wishes/Beliefs.cs): NoViolence, NoRecreation, NoReligion.</summary>
         public List<Belief> beliefs;
         public DecreeReaction reaction = DecreeReaction.Neutral;
@@ -70,6 +78,9 @@ namespace ColonyCouncil
 
         public bool Matches(Pawn p)
         {
+            if (decreeFaith && !DecreeFaith.Believer(p)) return false;
+            if (notDecreeFaith && !DecreeFaith.Outsider(p)) return false;
+            if (dislikesPreaching && !Faiths.DislikesPreaching(p)) return false;
             if (!beliefs.NullOrEmpty())
             {
                 if (!beliefMaskSet)
@@ -96,7 +107,7 @@ namespace ColonyCouncil
             if (!tags.NullOrEmpty()) return PeopleTags.Matches(p, tags);
             if (sameFaith) return DecreeWork.Believer(p);
             if (otherFaith) return DecreeWork.OtherFaith(p);
-            return false;
+            return decreeFaith || notDecreeFaith || dislikesPreaching;
         }
     }
 
@@ -213,6 +224,13 @@ namespace ColonyCouncil
         public bool callsTraders;
         /// <summary>Applied when it's declared, whether or not answers play out on the map (a gift, a thought).</summary>
         public List<DilemmaEffect> enactEffects;
+        /// <summary>
+        /// Ideology: one faith for the colony (Decrees/DecreeFaith.cs). The player names the faith when declaring it (the
+        /// largest by default); while it holds, wavering colonists of other faiths are swayed toward it each day, those of
+        /// other faiths trust the council a little less, and meetings open with a word from it. Never listed without
+        /// Ideology, in classic mode, with "Faith in the colony" off, or with a single faith at home.
+        /// </summary>
+        public bool oneFaith;
 
         /// <summary>Never possible in this game as it stands (another era, a DLC or mod missing, another faith): not listed.</summary>
         public bool Hidden => DecreeWork.Hidden(this);

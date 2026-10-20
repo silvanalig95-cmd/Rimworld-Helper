@@ -396,6 +396,7 @@ for (int r = 0; r < 4; r++)
         Console.WriteLine($"Checked {TogetherTests.Run(root, Check)} things about moments that need people together, and how speech shows.");
         Console.WriteLine($"Checked {PersonaTests.Run(root, Check)} things about characters (nature, marks, drift, words, likeness).");
         Console.WriteLine($"Checked {FaithTests.Run(root, Check)} things about faith in the colony (devout, wavering, swaying, a split colony).");
+        Console.WriteLine($"Checked {FaithCouncilTests.Run(root, Check)} things about faith and the council (evenings of faith, the wish, the decree, faiths at odds).");
         Console.WriteLine($"Checked {TalkTests.Run(root, Check)} things about conversations (topics, how a talk goes, persuasion, the lines in turn).");
         Console.WriteLine($"Checked {MarkTests.Run(root, Check)} things about marks (choosing by nature, the limits, soft factors, the defs).");
         Console.WriteLine($"Checked {GroupTests.Run(root, Check)} things about groups (forming, roles, cohesion, splits and merges, newcomers, rivalries).");

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Faith and the council (Source/ColonyCouncil/Dilemmas/DilemmaWorkers_Faith.cs), with Ideology and "Faith in the
+    colony" on. {FAITH} is the faith the question is about (the colony's largest when faiths clash, the asker's for an
+    evening of faith), {OTHERFAITH} the other side's, {ALTAR} the altar or ideogram that stands (else "the fire"), {WHY}
+    a sentence on what sharpened it (a quarrel between faiths lately, an altar in plain sight), {COUNT} the colony's
+    number of faiths. Costs are trust and certainty, never a mood: the effects say who gains and who loses. What the
+    answers say people do plays out on the map (FaithWords, an evening of faith, a work party).
+  -->
+
+  <!-- ===================== Faiths at odds ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Council_DlmFaith_Clash</defName>
+    <label>faiths at odds</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_FaithClash</workerClass>
+    <weight>1.2</weight>
+    <cooldownDays>30</cooldownDays>
+    <minColonists>4</minColonists>
+    <texts>
+      <li>The colony holds {COUNT} faiths now, and it shows. {A_nameDef} of {FAITH} and {B_nameDef} of {OTHERFAITH} both want the evenings for their own faith, and neither will give way. {WHY}\n\nThey have asked the council to settle it.</li>
+      <li>{B_nameDef} says {FAITH} behaves as if the colony were already theirs. {A_nameDef} says {OTHERFAITH} could share a little more gracefully. {WHY}\n\nWith {COUNT} faiths under one roof, the council is asked how they should live together.</li>
+      <li>[b:faith:devout] {B_nameDef} has stopped coming to meals when {A_nameDef} says the words of {FAITH} over them. {WHY}\n\nThe council is asked to find a way for {COUNT} faiths to share one colony.</li>
+      <li>[lowtech] There is one fire to gather at, and {COUNT} faiths that want it. {A_nameDef} speaks for {FAITH}, {B_nameDef} for {OTHERFAITH}. {WHY}\n\nThe council must say how the colony keeps its faiths.</li>
+    </texts>
+    <defaultOption>1</defaultOption>
+    <options>
+      <li>
+        <label>Share the {ALTAR}: the faiths take turns</label>
+        <outcome>The faiths take turns at the {ALTAR} now: {FAITH} in the evenings, {OTHERFAITH} at first light, the others as they ask. The open-minded call it the fairest thing the council has done in a while. The devout are less sure.</outcome>
+        <outcomes>
+          <li>[b:faith:devout] The faiths take turns at the {ALTAR}. {B_nameDef} keeps {OTHERFAITH}'s hour to the minute, and makes a point of leaving the place cleaner than {B_pronoun} found it.</li>
+        </outcomes>
+        <ways><openness>2</openness></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_FaithClash"><answer>Share</answer></li>
+          <li Class="ColonyCouncil.DilemmaEffect_FaithWords"><label>{FAITH} and {OTHERFAITH} at the {ALTAR}</label><speaker>true</speaker><atAltar>true</atAltar><anyAltar>true</anyAltar><spots><li>Fire</li><li>Gather</li><li>Dining</li></spots><hours>17~22</hours><duration>1~1.5</duration><pool>Council_Pool_FaithShare</pool></li>
+        </effects>
+      </li>
+      <li>
+        <label>A corner for each faith</label>
+        <outcome>Each faith has a corner of its own now, to keep as it likes. Nobody is entirely happy and nobody is unhappy, which the council takes as a good sign. A few of them cleared the corners together.</outcome>
+        <outcomes>
+          <li>[lowtech] Each faith has its own corner now, marked with a cloth or a carved post. The colony got on with clearing them out, side by side.</li>
+        </outcomes>
+        <ways><tradition>1</tradition><openness>1</openness></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_FaithClash"><answer>Corners</answer></li>
+          <li Class="ColonyCouncil.DilemmaEffect_FaithCorners" />
+          <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>clearing a corner for each faith</label><count>3</count><tasks><li>Clean</li><li>Haul</li></tasks><near><li>Rec</li><li>Gather</li></near><hours>8~18</hours></li>
+        </effects>
+      </li>
+      <li>
+        <label>Name {FAITH} the colony's faith</label>
+        <outcome>The council has named {FAITH} the colony's faith. Its believers stand a little taller. Everyone else has gone quiet, and some of the devout have gone very quiet indeed.</outcome>
+        <outcomes>
+          <li>[b:faith:devout] The council has named {FAITH} the colony's faith. {B_nameDef} heard it out, said nothing, and went straight to {B_possessive} room.</li>
+          <li>[b:persona:curious] The council has named {FAITH} the colony's faith. {B_nameDef} took it better than anyone expected, and asked {A_nameDef} where to begin.</li>
+        </outcomes>
+        <ways><tradition>3</tradition><openness>-3</openness></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_FaithClash"><answer>Name</answer></li>
+          <li Class="ColonyCouncil.DilemmaEffect_FaithWords"><label>the council's word on {FAITH}</label><speaker>true</speaker><spots><li>Dining</li><li>Gather</li><li>Outdoors</li></spots><hours>17~21</hours><pool>Council_Pool_FaithDecreeWords</pool></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== An evening of faith, asked for by the devout ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Council_DlmFaith_Evening</defName>
+    <label>an evening of faith</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_FaithEvening</workerClass>
+    <weight>0.8</weight>
+    <cooldownDays>20</cooldownDays>
+    <minColonists>3</minColonists>
+    <texts>
+      <li>{A_nameDef} has asked the council for an evening to speak for {FAITH}. Whoever wants to come may come, and nobody will be made to. {A_nameDef} says some of the colony have been asking questions.</li>
+      <li>[persona:warm] {A_nameDef} would like to hold an evening of {FAITH}, with the old stories, for anyone who cares to listen. It would mean a great deal to {A_objective}.</li>
+      <li>[lowtech] {A_nameDef} asks for an evening by the fire to tell the stories of {FAITH}, the way they were told to {A_objective}.</li>
+      <li>[faith:alone] {A_nameDef} is the only one of {FAITH} in the colony, and would like one evening to tell the others what {A_pronoun} believes and why.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>Hold the evening, and all are welcome</label>
+        <outcome>The council has given {A_nameDef} the evening. {A_nameDef} has gone off to find the right words.</outcome>
+        <ways><openness>2</openness></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_FaithEvening" />
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>An evening for those of {FAITH} only</label>
+        <outcome>The faithful of {FAITH} keep a quiet evening of their own, and nobody else need hear it. {A_nameDef} says that will do, for now.</outcome>
+        <ways><tradition>2</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_FaithSteady"><amount>0.04</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_FaithWords"><label>a quiet evening of {FAITH}</label><speaker>true</speaker><atAltar>true</atAltar><onlyFaith>true</onlyFaith><spots><li>Fire</li><li>Rec</li><li>Gather</li></spots><hours>17~22</hours><duration>1.5~2</duration><pool>Council_Pool_FaithEvening</pool></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>1</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Not now</label>
+        <outcome>The council said not now. {A_nameDef} nodded and put away the notes {A_pronoun} had been making.</outcome>
+        <ways><openness>-1</openness></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-2</amount></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+</Defs>

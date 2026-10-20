@@ -378,6 +378,11 @@ MODEL = {
     "Social/SocialWeb.cs:lost": ("cap", (40, 0.05), 200, "40 lost bonds"),
     "Social/SocialWeb.cs:fighters": ("while", COLONISTS, P, "while a fight lasts"),
     "Social/SocialWeb.cs:battleFallen": ("while", 5, 40, "while a fight lasts"),
+    # Faith and the council (Faith/FaithCouncilTracker.cs)
+    "Faith/FaithCouncilTracker.cs:faithEvenings": ("fixed", 6, D, "each faith's last evening of faith: one per faith, gone after 60 days or with the faith"),
+    "Faith/FaithCouncilTracker.cs:plans": ("while", 1, R, "the evening of faith waiting to be held: one at a time, let go when its gathering is over"),
+    "Faith/FaithCouncilTracker.cs:heard": ("cap", (const("Faith/FaithCouncilTracker.cs", "MaxHeard", 40), 0.6), 80,
+                                             "who heard which faith spoken for lately: one per colonist, 30 days, FaithCouncilTracker.MaxHeard"),
     # Groups (Social/Groups/)
     "Social/Groups/GroupTracker.cs:groups": ("cap", (6, 0.1), 2500, "groups of 3 to 9, the dead and departed dropped daily, ended below two"),
     "Social/Groups/GroupTracker.cs:newcomers": ("cap", (5, 0.1), 150, "newcomers, 40 days at most"),

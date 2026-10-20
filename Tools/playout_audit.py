@@ -46,6 +46,9 @@ PLAY = {
     "DilemmaEffect_Search": "search",
     "DilemmaEffect_CarryOut": "gift carried out",
     "DilemmaEffect_HuntParty": "hunt party",
+    # Faith and the council (Dilemmas/DilemmaWorkers_Faith.cs): words said for a faith, and an evening of faith called.
+    "DilemmaEffect_FaithWords": "words",
+    "DilemmaEffect_FaithEvening": "evening of faith",
 }
 
 # Words that say people do something together, or go somewhere on the map. Deliberately wide: the list is read by hand.
