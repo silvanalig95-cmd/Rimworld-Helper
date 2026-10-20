@@ -65,42 +65,67 @@ namespace ColonyCouncil
                 : "CC_Pnl_TrendNow".Translate(avg[avg.Count - 1].ToStringPercent(), low[low.Count - 1].ToStringPercent()).Resolve();
         }
 
-        protected override Vector2 Measure(float s) => new Vector2(Mathf.Round(214f * s), Mathf.Round((St.compact ? 62f : 100f) * s));
+        protected override Vector2 Measure(float s) => new Vector2(Mathf.Round(224f * s), Mathf.Round((St.compact ? 62f : 100f) * s));
+
+        /// <summary>The y-axis' marks, drawn in a gutter inside the panel.</summary>
+        private static readonly float[] AxisMarks = { 1f, 0.5f, 0f };
+        private static string[] axisLabels;
 
         protected override void DrawBody(Rect r, float s)
         {
             var st = St;
             float pad = Mathf.Round(4f * s);
             float top = Mathf.Round(16f * s), bottom = st.compact ? 0f : Mathf.Round(13f * s);
-            var graph = new Rect(r.x + pad, r.y + pad + top, r.width - pad * 2f, r.height - pad * 2f - top - bottom);
+            var area = new Rect(r.x + pad, r.y + pad + top, r.width - pad * 2f, r.height - pad * 2f - top - bottom);
             int days = st.days == 7 ? 7 : 3;
-            // Top line: the range and the latest values, or the values under the mouse.
             var head = new Rect(r.x + pad, r.y + pad - 1f, r.width - pad * 2f, top);
-            string label = rangeLabel ?? "";
+            // Until there are two points there's no line to draw: say so instead of an empty graph.
+            if (hours.Count < 2)
+            {
+                HudKit.Label(head, rangeLabel ?? "", UiKit.HeaderColor, GameFont.Tiny);
+                Widgets.DrawBoxSolid(area, new Color(0f, 0f, 0f, 0.22f));
+                Wrapped(area.ContractedBy(Mathf.Round(4f * s)), HudKit.T("CC_Pnl_TrendEmpty"), UiKit.Faint);
+                Clicks(area);
+                return;
+            }
+            // The y-axis' numbers in a gutter of their own, inside the panel; the compact graph goes without.
+            float gutter = st.compact ? 0f : HudKit.Width("100%", GameFont.Tiny) + 3f;
+            var graph = new Rect(area.x + gutter, area.y, area.width - gutter, area.height);
+            // Top line: the range and the latest values, or the values under the mouse; never one over the other.
             int at = -1;
-            if (hours.Count >= 2 && Mouse.IsOver(graph))
+            if (Mouse.IsOver(graph))
             {
                 float hourAtMouse = nowHour - days * 24 + (Event.current.mousePosition.x - graph.x) / Mathf.Max(1f, graph.width) * days * 24;
                 at = HudMath.Nearest(hours, hourAtMouse);
             }
             if (at >= 0)
             {
-                string when = nowHour - hours[at] <= 0 ? HudKit.T("CC_Pnl_Now").ToString() : "CC_Pnl_Ago".Translate(UiKit.Duration((nowHour - hours[at]) * GenDate.TicksPerHour)).Resolve();
+                string when = nowHour - hours[at] <= 0 ? HudKit.T("CC_Pnl_Now") : "CC_Pnl_Ago".Translate(UiKit.Duration((nowHour - hours[at]) * GenDate.TicksPerHour)).Resolve();
                 HudKit.Label(head, "CC_Pnl_TrendAt".Translate(when, avg[at].ToStringPercent(), low[at].ToStringPercent()).Resolve(), Color.white, GameFont.Tiny);
             }
             else
             {
-                HudKit.Label(head, label, UiKit.HeaderColor, GameFont.Tiny);
-                if (summary != null) HudKit.Label(head, summary, UiKit.Faint, GameFont.Tiny, TextAnchor.MiddleRight);
+                string label = rangeLabel ?? "";
+                HudMath.FitThree(head.width, HudKit.Width(label, GameFont.Tiny), 0f, HudKit.Width(summary, GameFont.Tiny), 8f, out bool showRange, out _,
+                    out bool showSummary);
+                if (showRange) HudKit.Label(head, label, UiKit.HeaderColor, GameFont.Tiny);
+                if (showSummary) HudKit.Label(head, summary, UiKit.Faint, GameFont.Tiny, TextAnchor.MiddleRight);
             }
             Widgets.DrawBoxSolid(graph, new Color(0f, 0f, 0f, 0.22f));
-            if (hours.Count < 2)
-            {
-                HudKit.Label(graph, HudKit.T("CC_Pnl_TrendEmpty"), UiKit.Faint, GameFont.Tiny, TextAnchor.MiddleCenter);
-                return;
-            }
             float X(int hour) => graph.x + Mathf.Clamp01((hour - (nowHour - days * 24)) / (float)(days * 24)) * graph.width;
             float Y(float v) => HudMath.GraphY(v, graph.y, graph.height);
+            if (gutter > 0f)
+            {
+                float lh = HudKit.LineHeight(GameFont.Tiny);
+                axisLabels ??= new[] { AxisMarks[0].ToStringPercent(), AxisMarks[1].ToStringPercent(), AxisMarks[2].ToStringPercent() };
+                for (int i = 0; i < AxisMarks.Length; i++)
+                {
+                    float v = AxisMarks[i];
+                    // Each number beside its line, kept inside the graph's height so none sits outside the panel.
+                    float y = Mathf.Clamp(Y(v) - lh / 2f, graph.y - 2f, graph.yMax - lh + 2f);
+                    HudKit.Label(new Rect(area.x, y, gutter - 3f, lh), axisLabels[i], UiKit.Dim, GameFont.Tiny, TextAnchor.MiddleRight);
+                }
+            }
             if (Event.current.type == EventType.Repaint)
             {
                 // Faint day lines, and the minor break line dashed.
@@ -128,18 +153,41 @@ namespace ColonyCouncil
             }
             if (bottom > 0f)
             {
+                // Under the graph: where it starts, the key in the middle when there's room for it, and now.
                 var foot = new Rect(graph.x, graph.yMax, graph.width, bottom);
-                HudKit.Label(foot, agoLabel ?? "", UiKit.Dim, GameFont.Tiny);
-                HudKit.Label(foot, HudKit.T("CC_Pnl_Now"), UiKit.Dim, GameFont.Tiny, TextAnchor.MiddleRight);
-                // A small key in the middle.
-                HudKit.Label(foot, HudKit.T("CC_Pnl_TrendKey"), UiKit.Dim, GameFont.Tiny, TextAnchor.MiddleCenter);
+                string ago = agoLabel ?? "", key = HudKit.T("CC_Pnl_TrendKey"), now = HudKit.T("CC_Pnl_Now");
+                HudMath.FitThree(foot.width, HudKit.Width(ago, GameFont.Tiny), HudKit.Width(key, GameFont.Tiny), HudKit.Width(now, GameFont.Tiny), 6f,
+                    out bool showAgo, out bool showKey, out bool showNow);
+                if (showAgo) HudKit.Label(foot, ago, UiKit.Dim, GameFont.Tiny);
+                if (showNow) HudKit.Label(foot, now, UiKit.Dim, GameFont.Tiny, TextAnchor.MiddleRight);
+                if (showKey) HudKit.Label(foot, key, UiKit.Dim, GameFont.Tiny, TextAnchor.MiddleCenter);
             }
             TooltipHandler.TipRegion(graph, HudKit.T("CC_Pnl_TrendTip"));
-            if (Widgets.ButtonInvisible(graph, false))
-            {
-                if (Event.current.button == 1) OpenMenu();
-                else MainTabWindow_Council.OpenTab("Moods");
-            }
+            Clicks(graph);
+        }
+
+        private void Clicks(Rect r)
+        {
+            if (!Widgets.ButtonInvisible(r, false)) return;
+            if (Event.current.button == 1) OpenMenu();
+            else MainTabWindow_Council.OpenTab("Moods");
+        }
+
+        /// <summary>A short note wrapped over as many lines as it needs, centred in <paramref name="r"/>.</summary>
+        private static void Wrapped(Rect r, string text, Color color)
+        {
+            var oldFont = Text.Font;
+            var oldAnchor = Text.Anchor;
+            bool oldWrap = Text.WordWrap;
+            Text.Font = GameFont.Tiny;
+            Text.Anchor = TextAnchor.MiddleCenter;
+            Text.WordWrap = true;
+            GUI.color = color;
+            Widgets.Label(r, text);
+            GUI.color = Color.white;
+            Text.WordWrap = oldWrap;
+            Text.Anchor = oldAnchor;
+            Text.Font = oldFont;
         }
 
         private void Line(List<float> values, System.Func<int, float> x, System.Func<float, float> y, Color c, float s)

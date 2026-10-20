@@ -381,6 +381,8 @@ namespace ColonyCouncil
             Section("CC_SetSec_Panels");
             Toggle("hudShown", "CC_Settings_HudShown", "CC_SetNote_HudShown");
             Action("hudPanelOptions", "CC_Settings_HudPanelOptions", null, "CC_SetNote_HudPanelOptions", "hudShown");
+            Action("hudPanelOptions2", "CC_Settings_HudPanelOptions2", null, "CC_SetNote_HudPanelOptions2", "hudShown");
+            Toggle("hudHideGameAlerts", "CC_Settings_HudHideGameAlerts", "CC_SetNote_HudHideGameAlerts", "hudShown");
             Toggle("hudLock", "CC_Settings_HudLock", "CC_SetNote_HudLock", "hudShown");
             Toggle("hudHideWithTabs", "CC_Settings_HudHideWithTabs", "CC_SetNote_HudHideWithTabs", "hudShown");
             Toggle("hudHideOnWorld", "CC_Settings_HudHideOnWorld", "CC_SetNote_HudHideOnWorld", "hudShown");
@@ -402,6 +404,7 @@ namespace ColonyCouncil
             Toggle("hoverConcerns", "CC_Settings_HoverConcerns", "CC_SetNote_HoverConcerns", "hoverCard");
             Slider("hoverLines", "CC_Settings_HoverLines", "CC_SetNote_HoverLines", 1f, 5f, 1f, "0", "hoverCard,hoverConcerns");
             Toggle("hoverDoing", "CC_Settings_HoverDoing", "CC_SetNote_HoverDoing", "hoverCard");
+            Toggle("hoverHideGameTip", "CC_Settings_HoverHideGameTip", "CC_SetNote_HoverHideGameTip", "hoverCard");
             Slider("hoverScale", "CC_Settings_HoverScale", "CC_SetNote_HoverScale", 0.75f, 1.5f, 0.05f, "%", "hoverCard");
             Slider("hoverOpacity", "CC_Settings_HoverOpacity", "CC_SetNote_HoverOpacity", 0.3f, 1f, 0.05f, "%", "hoverCard");
             Section("CC_SetSec_Hooks");

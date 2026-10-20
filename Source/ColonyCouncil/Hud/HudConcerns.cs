@@ -12,12 +12,15 @@ namespace ColonyCouncil
         public float score;
         public string text;
         public Texture2D icon;
+        /// <summary>What would help ("Give them a bedroom"), shown after the text, or on a line of its own when it doesn't fit.</summary>
+        public string act;
 
-        public HudConcern(float score, string text, Texture2D icon = null)
+        public HudConcern(float score, string text, Texture2D icon = null, string act = null)
         {
             this.score = score;
             this.text = text;
             this.icon = icon;
+            this.act = act;
         }
 
         public HudLevel Level => HudRank.LevelOf(score);
@@ -130,7 +133,7 @@ namespace ColonyCouncil
             // The moods dragging them down most, with what helps.
             foreach (var d in HudMood.Drags(h.mood, 2))
                 if (-d.mood >= 1f)
-                    list.Add(new HudConcern(d.score, d.WithAct, d.fixable ? Icons.TrendDown : null));
+                    list.Add(new HudConcern(d.score, d.Short, d.fixable ? Icons.TrendDown : null, d.act));
         }
 
         /// <summary>What they're doing now, in the game's words ("Hauling steel."), or null.</summary>

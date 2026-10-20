@@ -25,6 +25,8 @@ namespace ColonyCouncil
             public Pawn pawn;
             public HudPawn mood;
             public readonly List<HudConcern> concerns = new List<HudConcern>();
+            /// <summary>For each concern: what would help goes on a line of its own (it doesn't fit beside the text).</summary>
+            public readonly List<bool> actBelow = new List<bool>();
             public int more;
             public string moreText, title;
             public string doing;
@@ -38,11 +40,21 @@ namespace ColonyCouncil
         private static Pawn lastPicked;
         private static Card card;
         private static bool broken;
+        private static Pawn shownPawn;
+        private static int shownFrame = -10;
 
         private static CouncilSettings S => ColonyCouncilMod.Settings;
 
+        /// <summary>
+        /// Whether the card was drawn for this pawn this frame or the last, with "Hide the game's tooltip for that pawn"
+        /// on: the game's own tooltip for them stays away (Patch_HudGameTooltip).
+        /// </summary>
+        public static bool ShowingFor(Pawn p) =>
+            p != null && p == shownPawn && Time.frameCount - shownFrame <= 1 && S != null && S.hoverCard && S.hoverHideGameTip;
+
         public static void Reset()
         {
+            shownPawn = null;
             target = null;
             lastPicked = null;
             card = null;
@@ -70,7 +82,10 @@ namespace ColonyCouncil
                 if (p == null || now - since < S.hoverDelay || !ModifierHeld()) return;
                 var c = CardFor(p, now);
                 if (c == null) return;
-                var rect = Place(c);
+                // Never over a window: beside the mouse wherever there's room, or not at all.
+                if (!Place(c, out var rect)) return;
+                shownPawn = p;
+                shownFrame = Time.frameCount;
                 Find.WindowStack.ImmediateWindow(WindowId, rect, WindowLayer.Super, () => Draw(c, rect.AtZero()), false, false, 0f);
             }
             catch (Exception e)
@@ -164,11 +179,21 @@ namespace ColonyCouncil
             c.title = p.LabelShortCap + (p.IsPrisonerOfColony ? " (" + HudKit.T("CC_Pnl_Prisoner") + ")" : p.IsSlaveOfColony ? " (" + HudKit.T("CC_Pnl_Slave") + ")" : "");
             float s = Scale;
             float pad = Mathf.Round(6f * s);
-            c.width = Mathf.Round(276f * s);
+            c.width = Mathf.Round(292f * s);
             float h = pad + Mathf.Round(30f * s);
             if (S.hoverMood && c.mood != null) h += Mathf.Round(12f * s);
             float line = LineH(s);
-            if (c.concerns.Count > 0) h += Mathf.Round(4f * s) + c.concerns.Count * line;
+            // What would help goes beside the mood when both fit, else on its own line under it: never cut short.
+            var font = HudKit.Main(s);
+            float textW = c.width - pad * 2f - Mathf.Round(13f * s) - 5f;
+            int lines = 0;
+            foreach (var con in c.concerns)
+            {
+                bool below = !con.act.NullOrEmpty() && HudKit.Width(con.text + ActJoin + con.act, font) > textW;
+                c.actBelow.Add(below);
+                lines += below ? 2 : 1;
+            }
+            if (c.concerns.Count > 0) h += Mathf.Round(4f * s) + lines * line;
             else if (S.hoverConcerns && c.mood != null) h += line;
             if (c.more > 0) h += Mathf.Round(15f * s);
             if (!c.doing.NullOrEmpty()) h += Mathf.Round(4f * s) + Mathf.Round(16f * s);
@@ -179,7 +204,13 @@ namespace ColonyCouncil
 
         private static float LineH(float s) => Mathf.Round((HudKit.Main(s) == GameFont.Tiny ? 17f : 21f) * Mathf.Max(1f, s * 0.9f));
 
-        private static Rect Place(Card c)
+        private const string ActJoin = "  → ";
+
+        /// <summary>
+        /// Where the card goes: beside the mouse (below and right, else the other sides), or in the corner. False when
+        /// every place would cover a window (the inspect pane, a main tab, a dialog, a planner): the card waits.
+        /// </summary>
+        private static bool Place(Card c, out Rect rect)
         {
             float sw = UI.screenWidth, sh = UI.screenHeight;
             float w = Mathf.Min(c.width, sw), h = Mathf.Min(c.height, sh);
@@ -188,14 +219,42 @@ namespace ColonyCouncil
                 float bottom = sh - 35f;
                 var inspect = MainButtonDefOf.Inspect;
                 if (Find.MainTabsRoot?.OpenTab == inspect && inspect?.TabWindow != null) bottom = Mathf.Min(bottom, inspect.TabWindow.windowRect.y);
-                return new Rect(0f, Mathf.Max(0f, bottom - h - 6f), w, h);
+                rect = new Rect(0f, Mathf.Max(0f, bottom - h - 6f), w, h);
+                return !OverAWindow(rect);
             }
             var m = UI.MousePositionOnUIInverted;
             const float off = 20f;
-            float x = m.x + off, y = m.y + off;
-            if (x + w > sw) x = m.x - off - w;
-            if (y + h > sh) y = m.y - off - h;
-            return new Rect(Mathf.Clamp(x, 0f, Mathf.Max(0f, sw - w)), Mathf.Clamp(y, 0f, Mathf.Max(0f, sh - h)), w, h);
+            // Right and below first, as before; then left, above, or both.
+            for (int i = 0; i < 4; i++)
+            {
+                bool left = i == 1 || i == 3, above = i >= 2;
+                float x = left ? m.x - off - w : m.x + off, y = above ? m.y - off - h : m.y + off;
+                if (i == 0)
+                {
+                    if (x + w > sw) x = m.x - off - w;
+                    if (y + h > sh) y = m.y - off - h;
+                }
+                rect = new Rect(Mathf.Clamp(x, 0f, Mathf.Max(0f, sw - w)), Mathf.Clamp(y, 0f, Mathf.Max(0f, sh - h)), w, h);
+                // Clamped onto the screen, the card mustn't land under the mouse.
+                if (rect.Contains(m)) continue;
+                if (!OverAWindow(rect)) return true;
+            }
+            rect = default;
+            return false;
+        }
+
+        /// <summary>Whether a rectangle covers part of a window other than the panels and the card itself.</summary>
+        private static bool OverAWindow(Rect r)
+        {
+            var windows = Find.WindowStack?.Windows;
+            if (windows == null) return false;
+            for (int i = 0; i < windows.Count; i++)
+            {
+                var w = windows[i];
+                if (w == null || w.ID == -WindowId || HudWindowOrder.IsPanel(w)) continue;
+                if (w.windowRect.Overlaps(r)) return true;
+            }
+            return false;
         }
 
         private static void Draw(Card c, Rect r)
@@ -239,11 +298,23 @@ namespace ColonyCouncil
                 if (c.concerns.Count > 0)
                 {
                     y += Mathf.Round(4f * s);
-                    foreach (var con in c.concerns)
+                    for (int i = 0; i < c.concerns.Count; i++)
                     {
+                        var con = c.concerns[i];
                         var color = HudKit.ColorOf(con.Level, con.Level == HudLevel.Worth ? new Color(0.9f, 0.9f, 0.9f) : UiKit.Faint);
                         if (con.icon != null) UiKit.Icon(new Rect(x, y + (line - icon) / 2f, icon, icon), con.icon, color);
-                        HudKit.Label(new Rect(x + icon + 5f, y, w - icon - 5f, line), con.text, color, font);
+                        var tr = new Rect(x + icon + 5f, y, w - icon - 5f, line);
+                        bool below = i < c.actBelow.Count && c.actBelow[i];
+                        if (con.act.NullOrEmpty()) HudKit.Label(tr, con.text, color, font);
+                        else if (!below) HudKit.Label(tr, con.text + ActJoin + con.act, color, font);
+                        else
+                        {
+                            // What would help on a line of its own, indented under the mood it eases.
+                            HudKit.Label(tr, con.text, color, font);
+                            y += line;
+                            float indent = Mathf.Round(10f * s);
+                            HudKit.Label(new Rect(tr.x + indent, y, tr.width - indent, line), "→ " + con.act, UiKit.Gold, font);
+                        }
                         y += line;
                     }
                 }

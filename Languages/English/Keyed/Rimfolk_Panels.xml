@@ -7,6 +7,9 @@
   <CC_Pnl_Name_trend>Mood trend</CC_Pnl_Name_trend>
   <CC_Pnl_Name_vitals>Colony vitals</CC_Pnl_Name_vitals>
   <CC_Pnl_Name_council>Council at a glance</CC_Pnl_Name_council>
+  <CC_Pnl_Name_alerts>Alerts</CC_Pnl_Name_alerts>
+  <CC_Pnl_Name_health>Health</CC_Pnl_Name_health>
+  <CC_Pnl_Name_work>Work and idle</CC_Pnl_Name_work>
   <CC_Pnl_Name_hover>Hover card</CC_Pnl_Name_hover>
 
   <!-- The bar over a panel, and its menu -->
@@ -15,8 +18,6 @@
   <CC_Pnl_OpacityTip>The panel's background. Click to make it fainter; at its faintest, the next click makes it full again.</CC_Pnl_OpacityTip>
   <CC_Pnl_CompactTip>Compact: the same, in less room.</CC_Pnl_CompactTip>
   <CC_Pnl_FullTip>Full: everything the panel shows.</CC_Pnl_FullTip>
-  <CC_Pnl_GripTip>Drag to move the panel (or drag it by any empty spot). It snaps to the screen's edges and to the other panels.\n\nRight-click for its menu.</CC_Pnl_GripTip>
-  <CC_Pnl_LockedTip>The panels are locked in place. Right-click for the menu to unlock them.</CC_Pnl_LockedTip>
   <CC_Pnl_Compact>Compact</CC_Pnl_Compact>
   <CC_Pnl_Full>Full</CC_Pnl_Full>
   <CC_Pnl_Options>Options...</CC_Pnl_Options>
@@ -26,7 +27,7 @@
   <CC_Pnl_Hide>Hide this panel</CC_Pnl_Hide>
   <CC_Pnl_ResetPositions>Put the panels back in their places</CC_Pnl_ResetPositions>
   <CC_Pnl_AllOptions>Every option...</CC_Pnl_AllOptions>
-  <CC_Pnl_ButtonTip>On-screen panels: the colonists' moods, the mood trend, the colony's vitals and the council at a glance.\n\nClick to show or hide them. Right-click for each panel, the hover card, and arranging them.</CC_Pnl_ButtonTip>
+  <CC_Pnl_ButtonTip>On-screen panels: the colonists' moods, the mood trend, the colony's vitals, the council at a glance, the alerts, health, and work and idle.\n\nClick to show or hide them. Right-click for each panel, the hover card, and arranging them.</CC_Pnl_ButtonTip>
   <CC_Pnl_ButtonKey>Key: {0}</CC_Pnl_ButtonKey>
   <CC_Pnl_EditHint>Drag each panel by its top bar; it snaps to the edges and to the others.</CC_Pnl_EditHint>
   <CC_Pnl_Done>Done</CC_Pnl_Done>
@@ -47,6 +48,7 @@
   <CC_Pnl_SortBarTip>In the colonist bar's order. Click for the most at risk first.</CC_Pnl_SortBarTip>
   <CC_Pnl_SortRisk>Most at risk first</CC_Pnl_SortRisk>
   <CC_Pnl_SortBar>In the colonist bar's order</CC_Pnl_SortBar>
+  <CC_Pnl_SortUrgent>What needs attention first</CC_Pnl_SortUrgent>
   <CC_Pnl_OpenMoods>Open the Moods page</CC_Pnl_OpenMoods>
 
   <!-- The mood trend -->
@@ -56,7 +58,7 @@
   <CC_Pnl_Now>now</CC_Pnl_Now>
   <CC_Pnl_Ago>{0} ago</CC_Pnl_Ago>
   <CC_Pnl_DaysAgo>{0} days ago</CC_Pnl_DaysAgo>
-  <CC_Pnl_TrendEmpty>The graph fills in as the hours pass.</CC_Pnl_TrendEmpty>
+  <CC_Pnl_TrendEmpty>Collecting: the first points come after an hour.</CC_Pnl_TrendEmpty>
   <CC_Pnl_TrendKey>average · lowest</CC_Pnl_TrendKey>
   <CC_Pnl_TrendTip>The colony's average mood (gold) and its lowest colonist's (orange), taken once an hour. The dashed line is where minor breaks begin for most people (35%).\n\nHover the graph for the values at a point. Click for the Moods page.</CC_Pnl_TrendTip>
   <CC_Pnl_DaysShort>{0} d</CC_Pnl_DaysShort>
@@ -106,6 +108,70 @@
   <CC_Pnl_TrustTip>The colonists' trust in the council, on average: {0}.</CC_Pnl_TrustTip>
   <CC_Pnl_OpenWeek>Open This week</CC_Pnl_OpenWeek>
 
+  <!-- The alerts -->
+  <CC_Pnl_NoAlerts>No alerts.</CC_Pnl_NoAlerts>
+  <CC_Pnl_AlertsUnreadable>The game's alerts can't be read here.</CC_Pnl_AlertsUnreadable>
+  <CC_Pnl_MoreAlertsTip>Not every alert fits, so the panel keeps the most urgent; critical ones always show. Allow more rows in its options to see them all.</CC_Pnl_MoreAlertsTip>
+  <CC_Pnl_AlertClick>Click: as clicking the game's alert (go to it, and to the next with the next click). Right-click: the panel's menu.</CC_Pnl_AlertClick>
+  <CC_Pnl_HideGameAlerts>Hide the game's own alert list</CC_Pnl_HideGameAlerts>
+  <CC_Pnl_ShowGameAlerts>Show the game's own alert list too</CC_Pnl_ShowGameAlerts>
+  <CC_Pnl_SortPriority>By priority, in the game's own order</CC_Pnl_SortPriority>
+  <CC_Pnl_SortNewest>The newest first</CC_Pnl_SortNewest>
+
+  <!-- Health -->
+  <CC_Pnl_H_AllWell>Everyone is well.</CC_Pnl_H_AllWell>
+  <CC_Pnl_H_Bleeding>bleeding</CC_Pnl_H_Bleeding>
+  <CC_Pnl_H_BleedingFor>bleeding: {0}</CC_Pnl_H_BleedingFor>
+  <CC_Pnl_H_Danger>in danger</CC_Pnl_H_Danger>
+  <CC_Pnl_H_Untended>{0} to tend</CC_Pnl_H_Untended>
+  <CC_Pnl_H_Losing>losing</CC_Pnl_H_Losing>
+  <CC_Pnl_H_Worsening>getting worse</CC_Pnl_H_Worsening>
+  <CC_Pnl_H_Healing>healing</CC_Pnl_H_Healing>
+  <CC_Pnl_H_Race>{0} {1}, immunity {2}</CC_Pnl_H_Race>
+  <CC_Pnl_H_BleedTip>Bleeding {0} a day.</CC_Pnl_H_BleedTip>
+  <CC_Pnl_H_BleedDeath>Without tending, dead in {0}.</CC_Pnl_H_BleedDeath>
+  <CC_Pnl_H_NeedsTend>needs tending</CC_Pnl_H_NeedsTend>
+  <CC_Pnl_H_Tended>tended</CC_Pnl_H_Tended>
+  <CC_Pnl_H_RaceTip>severity {0}, immunity {1}</CC_Pnl_H_RaceTip>
+  <CC_Pnl_H_WillRecover>will recover</CC_Pnl_H_WillRecover>
+  <CC_Pnl_H_LosingTip>losing: at this pace it wins before immunity does</CC_Pnl_H_LosingTip>
+  <CC_Pnl_H_TowardsDeath>{0} of the way to killing</CC_Pnl_H_TowardsDeath>
+  <CC_Pnl_H_Click>Click for their Health tab. Right-click for the panel's menu.</CC_Pnl_H_Click>
+  <CC_Pnl_InCaravan>in a caravan</CC_Pnl_InCaravan>
+  <CC_Pnl_Away>away</CC_Pnl_Away>
+
+  <!-- Work and idle -->
+  <!-- Where the game's job report is cut short ("Hauling steel to stockpile zone 1." to "Hauling steel"), when two or more words come before: words separated by |. -->
+  <CC_Pnl_W_CutAt>to|at|from|into|onto|toward|towards</CC_Pnl_W_CutAt>
+  <CC_Pnl_W_Break>break</CC_Pnl_W_Break>
+  <CC_Pnl_W_Down>down</CC_Pnl_W_Down>
+  <CC_Pnl_W_Drafted>drafted</CC_Pnl_W_Drafted>
+  <CC_Pnl_W_Idle>idle</CC_Pnl_W_Idle>
+  <CC_Pnl_W_IdleFor>idle {0} h</CC_Pnl_W_IdleFor>
+  <CC_Pnl_W_IdleTip>Idle for about {0} hours: nothing they may do needs doing, or they can't reach it.</CC_Pnl_W_IdleTip>
+  <CC_Pnl_W_Food>Food</CC_Pnl_W_Food>
+  <CC_Pnl_W_Rest>Rest</CC_Pnl_W_Rest>
+  <CC_Pnl_W_Joy>Recreation</CC_Pnl_W_Joy>
+  <CC_Pnl_W_Click>Click to go to them. Right-click for the panel's menu.</CC_Pnl_W_Click>
+  <CC_Pnl_W_IdleCount>Idle: {0}</CC_Pnl_W_IdleCount>
+  <CC_Pnl_W_NeedyCount>Need food or sleep: {0}</CC_Pnl_W_NeedyCount>
+  <CC_Pnl_W_CycleClick>Click to go to each of them in turn.</CC_Pnl_W_CycleClick>
+  <CC_Pnl_W_Unmanned>Nobody does: {0}</CC_Pnl_W_Unmanned>
+  <CC_Pnl_W_UnmannedClick>No one able to do it has it switched on. Click for the Work tab.</CC_Pnl_W_UnmannedClick>
+  <CC_Pnl_W_WhyFire>a fire in the home area</CC_Pnl_W_WhyFire>
+  <CC_Pnl_W_WhyTend>someone needs tending</CC_Pnl_W_WhyTend>
+  <CC_Pnl_W_WhyBuild>something waits to be built</CC_Pnl_W_WhyBuild>
+  <CC_Pnl_W_WhyCut>plants are marked to cut or harvest</CC_Pnl_W_WhyCut>
+  <CC_Pnl_W_WhyMine>rock is marked to mine</CC_Pnl_W_WhyMine>
+  <CC_Pnl_W_WhyHunt>animals are marked to hunt</CC_Pnl_W_WhyHunt>
+  <CC_Pnl_W_WhyHandle>animals are marked to tame or slaughter</CC_Pnl_W_WhyHandle>
+  <CC_Pnl_W_WhyWarden>there are prisoners to look after</CC_Pnl_W_WhyWarden>
+  <CC_Pnl_W_WhyHaul>things lie waiting to be hauled</CC_Pnl_W_WhyHaul>
+  <CC_Pnl_W_WhyResearch>a research project is chosen</CC_Pnl_W_WhyResearch>
+  <CC_Pnl_W_ShowDrafted>List drafted colonists too</CC_Pnl_W_ShowDrafted>
+  <CC_Pnl_W_HideDrafted>Leave drafted colonists out</CC_Pnl_W_HideDrafted>
+  <CC_Pnl_W_OpenWork>Open the Work tab</CC_Pnl_W_OpenWork>
+
   <!-- The hover card -->
   <CC_Pnl_C_Bleeding>Bleeding</CC_Pnl_C_Bleeding>
   <CC_Pnl_C_BleedingDeath>Bleeding: dead in {0} without help</CC_Pnl_C_BleedingDeath>
@@ -133,6 +199,9 @@
   <CC_Pnl_Opt_Compact_trend>The graph alone, without the line under it.</CC_Pnl_Opt_Compact_trend>
   <CC_Pnl_Opt_Compact_vitals>Icons and values only, two to a row.</CC_Pnl_Opt_Compact_vitals>
   <CC_Pnl_Opt_Compact_council>Icons and values only, two to a row.</CC_Pnl_Opt_Compact_council>
+  <CC_Pnl_Opt_Compact_alerts>Tighter rows in small text, a narrower panel.</CC_Pnl_Opt_Compact_alerts>
+  <CC_Pnl_Opt_Compact_health>One line each: the name and what matters most.</CC_Pnl_Opt_Compact_health>
+  <CC_Pnl_Opt_Compact_work>Names, marks and the need bars, without what they're doing.</CC_Pnl_Opt_Compact_work>
   <CC_Pnl_Opt_Order>Order</CC_Pnl_Opt_Order>
   <CC_Pnl_Opt_Who>Who</CC_Pnl_Opt_Who>
   <CC_Pnl_Who_Home>Colonists at home</CC_Pnl_Who_Home>
@@ -161,6 +230,22 @@
   <CC_Pnl_Part_decrees>Decrees in force</CC_Pnl_Part_decrees>
   <CC_Pnl_Part_calendar>The next day or meeting</CC_Pnl_Part_calendar>
   <CC_Pnl_Part_trust>Trust</CC_Pnl_Part_trust>
+  <CC_Pnl_Part_critical>Critical alerts (always worth keeping)</CC_Pnl_Part_critical>
+  <CC_Pnl_Part_high>High alerts</CC_Pnl_Part_high>
+  <CC_Pnl_Part_medium>Medium alerts</CC_Pnl_Part_medium>
+  <CC_Pnl_Part_count>How many things an alert is about</CC_Pnl_Part_count>
+  <CC_Pnl_Part_details>Each condition, under their name</CC_Pnl_Part_details>
+  <CC_Pnl_Part_healing>Those who are only healing</CC_Pnl_Part_healing>
+  <CC_Pnl_Part_ailments>Rimfolk's everyday ailments</CC_Pnl_Part_ailments>
+  <CC_Pnl_Part_doing>What they're doing</CC_Pnl_Part_doing>
+  <CC_Pnl_Part_idle>Idle, and for how long</CC_Pnl_Part_idle>
+  <CC_Pnl_Part_needfood>Food bar</CC_Pnl_Part_needfood>
+  <CC_Pnl_Part_needrest>Rest bar</CC_Pnl_Part_needrest>
+  <CC_Pnl_Part_needjoy>Recreation bar</CC_Pnl_Part_needjoy>
+  <CC_Pnl_Part_status>Marks: drafted, down, a break</CC_Pnl_Part_status>
+  <CC_Pnl_Part_drafted>Drafted colonists</CC_Pnl_Part_drafted>
+  <CC_Pnl_Part_colony>Who is idle, who needs food or sleep</CC_Pnl_Part_colony>
+  <CC_Pnl_Part_unmanned>Work waiting that nobody does</CC_Pnl_Part_unmanned>
   <CC_Pnl_Opt_Rows>Rows before "and more": {0}</CC_Pnl_Opt_Rows>
   <CC_Pnl_Opt_RowsAll>all</CC_Pnl_Opt_RowsAll>
   <CC_Pnl_Opt_RowsTip>When there are more, the panel keeps what matters most and says how many it left out. Critical rows always show. At 0 every row shows.</CC_Pnl_Opt_RowsTip>
@@ -174,10 +259,15 @@
   <!-- Settings: on-screen panels -->
   <CC_SetSec_Panels>On-screen panels</CC_SetSec_Panels>
   <CC_Settings_HudShown>Show on-screen panels</CC_Settings_HudShown>
-  <CC_Settings_HudShown_Tip>Small panels on the map beside the game's own: the mood board, the mood trend, the colony's vitals and the council at a glance. Show or hide them all with the button by the play settings (bottom right), or with a key you pick in Options, Keyboard, Rimfolk.</CC_Settings_HudShown_Tip>
-  <CC_SetNote_HudShown>Moods, the trend, the vitals and the council on the map; move them by their top bar.</CC_SetNote_HudShown>
+  <CC_Settings_HudShown_Tip>Small panels on the map beside the game's own: the mood board, the mood trend, the colony's vitals, the council at a glance, the alerts, health, and work and idle. Show or hide them all with the button by the play settings (bottom right), or with a key you pick in Options, Keyboard, Rimfolk.</CC_Settings_HudShown_Tip>
+  <CC_SetNote_HudShown>Moods, vitals, the council, alerts, health and work on the map; move them by their top bar.</CC_SetNote_HudShown>
   <CC_Settings_HudPanelOptions>Each panel's options</CC_Settings_HudPanelOptions>
   <CC_SetNote_HudPanelOptions>Rows and columns, order, whom it lists, rows before "and more", size and background.</CC_SetNote_HudPanelOptions>
+  <CC_Settings_HudPanelOptions2>Each panel's options (more)</CC_Settings_HudPanelOptions2>
+  <CC_SetNote_HudPanelOptions2>The alerts, health, and work and idle.</CC_SetNote_HudPanelOptions2>
+  <CC_Settings_HudHideGameAlerts>Hide the game's own alert list while the Alerts panel shows</CC_Settings_HudHideGameAlerts>
+  <CC_Settings_HudHideGameAlerts_Tip>The Alerts panel shows every alert the game has, so the game's own list on the right steps aside while it's up. The alerts keep updating as always; with the panel hidden, switched off, or on the world map, the game's list is back.</CC_Settings_HudHideGameAlerts_Tip>
+  <CC_SetNote_HudHideGameAlerts>The Alerts panel instead of the game's list; the list comes back whenever the panel is gone.</CC_SetNote_HudHideGameAlerts>
   <CC_Settings_HudLock>Lock their places</CC_Settings_HudLock>
   <CC_Settings_HudLock_Tip>The panels can't be dragged by accident. "Arrange the panels" in their menu still moves them.</CC_Settings_HudLock_Tip>
   <CC_SetNote_HudLock>The panels stay where they are; "Arrange the panels" still moves them.</CC_SetNote_HudLock>
@@ -252,6 +342,9 @@
   <CC_Settings_HoverDoing>What they're doing</CC_Settings_HoverDoing>
   <CC_Settings_HoverDoing_Tip>Their current job, in the game's words.</CC_Settings_HoverDoing_Tip>
   <CC_SetNote_HoverDoing>Their current job, in the game's words.</CC_SetNote_HoverDoing>
+  <CC_Settings_HoverHideGameTip>Hide the game's tooltip for that pawn</CC_Settings_HoverHideGameTip>
+  <CC_Settings_HoverHideGameTip_Tip>While the card shows for someone, the game's own small tooltip for them (name, weapon, health) stays away so it doesn't cover the card. Everyone else's tooltips are left alone.</CC_Settings_HoverHideGameTip_Tip>
+  <CC_SetNote_HoverHideGameTip>The game's own tooltip for them steps aside while their card shows.</CC_SetNote_HoverHideGameTip>
   <CC_Settings_HoverScale>Card size: {0}</CC_Settings_HoverScale>
   <CC_SetNote_HoverScale>Bigger for large screens, smaller to keep more of the map in view.</CC_SetNote_HoverScale>
   <CC_Settings_HoverOpacity>Card background: {0}</CC_Settings_HoverOpacity>

@@ -255,6 +255,7 @@ namespace ColonyCouncil
         public float hudMoodMargin = 0.05f;
         public float hudFoodWarnDays = 10f;
         public float hudFoodBadDays = 4f;
+        public bool hudHideGameAlerts = true;
         public bool hoverCard = true;
         public float hoverDelay = 0.4f;
         public HudModifier hoverModifier = HudModifier.None;
@@ -266,6 +267,7 @@ namespace ColonyCouncil
         public int hoverLines = 3;
         public float hoverScale = 1f;
         public float hoverOpacity = 0.9f;
+        public bool hoverHideGameTip = true;
         /// <summary>Each panel's place and options (Hud/HudPanelState.cs), set on the panels themselves.</summary>
         public System.Collections.Generic.List<HudPanelState> hudPanels = new System.Collections.Generic.List<HudPanelState>();
 
@@ -432,6 +434,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref hudMoodMargin, "hudMoodMargin", 0.05f);
             Scribe_Values.Look(ref hudFoodWarnDays, "hudFoodWarnDays", 10f);
             Scribe_Values.Look(ref hudFoodBadDays, "hudFoodBadDays", 4f);
+            Scribe_Values.Look(ref hudHideGameAlerts, "hudHideGameAlerts", true);
             Scribe_Values.Look(ref hoverCard, "hoverCard", true);
             Scribe_Values.Look(ref hoverDelay, "hoverDelay", 0.4f);
             Scribe_Values.Look(ref hoverModifier, "hoverModifier", HudModifier.None);
@@ -443,6 +446,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref hoverLines, "hoverLines", 3);
             Scribe_Values.Look(ref hoverScale, "hoverScale", 1f);
             Scribe_Values.Look(ref hoverOpacity, "hoverOpacity", 0.9f);
+            Scribe_Values.Look(ref hoverHideGameTip, "hoverHideGameTip", true);
             Scribe_Collections.Look(ref hudPanels, "hudPanels", LookMode.Deep);
             if (Scribe.mode == LoadSaveMode.PostLoadInit || Scribe.mode == LoadSaveMode.LoadingVars)
             {

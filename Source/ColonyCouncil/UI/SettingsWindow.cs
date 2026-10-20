@@ -550,6 +550,7 @@ namespace ColonyCouncil
                     if (Widgets.ButtonText(one, UiKit.Fit(t.label, oneW - 12f), true, true, on) && on) Find.WindowStack.Add(new Dialog_SelfCheck());
                     break;
                 case "hudPanelOptions":
+                case "hudPanelOptions2":
                 case "hudReset":
                     // The on-screen panels' buttons (Hud/HudSettingsRows.cs).
                     HudSettingsRows.Draw(e.id, t.label, x, y, width, ButtonH, on);

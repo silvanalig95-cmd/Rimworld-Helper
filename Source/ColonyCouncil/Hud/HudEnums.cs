@@ -53,12 +53,14 @@ namespace ColonyCouncil
         WithPrisoners
     }
 
-    /// <summary>The order of the mood board's rows.</summary>
+    /// <summary>The order of a panel's rows.</summary>
     public enum HudSort
     {
-        /// <summary>Most at risk first (the shared ranking in HudRank).</summary>
+        /// <summary>Most at risk first (the shared ranking in HudRank); for the alerts, the game's priority and its own order.</summary>
         Risk,
         /// <summary>The colonist bar's order.</summary>
-        Bar
+        Bar,
+        /// <summary>The alerts: the newest first.</summary>
+        Newest
     }
 }

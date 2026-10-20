@@ -11,13 +11,16 @@ namespace ColonyCouncil
     /// </summary>
     public static class HudLayout
     {
-        public const string Moods = "moods";
-        public const string Trend = "trend";
-        public const string Vitals = "vitals";
-        public const string Council = "council";
+        public const string Moods = HudIds.Moods;
+        public const string Trend = HudIds.Trend;
+        public const string Vitals = HudIds.Vitals;
+        public const string Council = HudIds.Council;
+        public const string Alerts = HudIds.Alerts;
+        public const string Health = HudIds.Health;
+        public const string Work = HudIds.Work;
 
         /// <summary>Every panel, in the order of the menus.</summary>
-        public static readonly string[] Ids = { Moods, Trend, Vitals, Council };
+        public static readonly string[] Ids = HudIds.All;
 
         private static CouncilSettings S => ColonyCouncilMod.Settings;
 
@@ -34,41 +37,75 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// A panel as Rimfolk ships it. The mood board on the left a little below the top (clear of the resource list),
-        /// the trend graph low on the left above the inspect pane, the vitals and the council on the right above the
-        /// alerts. Places are the anchor corner as fractions of the screen.
+        /// A panel as Rimfolk ships it, its place laid out for the screen now (<see cref="HudMath.DefaultPlace"/>): the
+        /// mood board and the trend on the left, the vitals, the council and the alerts (in the game's alert place,
+        /// following the letters) on the right edge, work and health in a second column beside them. Calm: the alerts and
+        /// health panels keep few rows, the council six.
         /// </summary>
         public static HudPanelState Default(string id)
         {
             var st = new HudPanelState { id = id };
+            float sw = 1920f, sh = 1080f;
+            try
+            {
+                if (UI.screenWidth > 0 && UI.screenHeight > 0)
+                {
+                    sw = UI.screenWidth;
+                    sh = UI.screenHeight;
+                }
+            }
+            catch (Exception)
+            {
+            }
+            HudMath.DefaultPlace(id, sw, sh, out st.x, out st.y, out st.right, out st.bottom, out _);
             switch (id)
             {
                 case Moods:
-                    st.x = 0f;
-                    st.y = 0.27f;
                     st.maxRows = 10;
                     // What would help shows on hover and on the hover card; beside every row it makes the board much wider.
                     st.hidden.Add(HudMoodBoard.PartAct);
                     break;
                 case Trend:
-                    st.x = 0f;
-                    st.y = 0.78f;
-                    st.bottom = true;
                     st.days = 3;
                     break;
-                case Vitals:
-                    st.x = 1f;
-                    st.y = 0.25f;
-                    st.right = true;
-                    break;
                 case Council:
-                    st.x = 1f;
-                    st.y = 0.43f;
-                    st.right = true;
                     st.maxRows = 6;
+                    break;
+                case Alerts:
+                    st.maxRows = 8;
+                    break;
+                case Health:
+                    st.maxRows = 4;
+                    break;
+                case Work:
+                    st.maxRows = 10;
                     break;
             }
             return st;
+        }
+
+        private static bool migrated;
+
+        /// <summary>
+        /// Once a session: the vitals and the council where 0.9.0 put them (on the right, a quarter and 43% down) move to
+        /// their new places above the alerts panel, which now takes the game's alert place. Panels the player moved stay.
+        /// </summary>
+        public static void MigrateOldPlaces()
+        {
+            if (migrated) return;
+            migrated = true;
+            bool changed = false;
+            foreach (var (id, oldY) in new[] { (Vitals, 0.25f), (Council, 0.43f) })
+            {
+                var list = S.hudPanels;
+                var st = list?.Find(p => p != null && p.id == id);
+                if (st == null || !st.right || st.bottom || Math.Abs(st.x - 1f) > 0.0001f || Math.Abs(st.y - oldY) > 0.0001f) continue;
+                var d = Default(id);
+                st.x = d.x;
+                st.y = d.y;
+                changed = true;
+            }
+            if (changed) Save();
         }
 
         /// <summary>Every panel back to its default place, keeping its options.</summary>
@@ -111,6 +148,8 @@ namespace ColonyCouncil
             s.hoverLines = d.hoverLines;
             s.hoverScale = d.hoverScale;
             s.hoverOpacity = d.hoverOpacity;
+            s.hoverHideGameTip = d.hoverHideGameTip;
+            s.hudHideGameAlerts = d.hudHideGameAlerts;
             s.hudPanels = new List<HudPanelState>();
             foreach (var id in Ids) s.hudPanels.Add(Default(id));
             HudManager.editing = false;
