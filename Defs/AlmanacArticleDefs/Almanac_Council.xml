@@ -802,21 +802,39 @@ Some encounters and dilemmas only come up for a colony with a certain name: refu
     <order>15</order>
     <summary>The Mood tab and the Moods page: what weighs on your colonists, why, and what to do about it.</summary>
     <tip>Most bad moods come from something you can build: a table, a light, a bed.</tip>
-    <description>Every colonist has a Mood tab next to their Needs: each mood with its size, why it's there, when it fades, which mod it comes from, and what you can do about it. The council window's Moods page adds up every mood in the colony, so you can see what weighs on everyone at once, who feels it, and who is closest to breaking.</description>
+    <description>Every colonist has a Mood tab next to their Needs: each mood with its size, why it's there, when it fades, which mod it comes from, and what you can do about it, sorted by what you can do. The council window's Moods page adds up every mood in the colony, so you can see what weighs on everyone at once, who feels it, and who is closest to breaking.</description>
     <sections>
       <li>
         <heading>The Mood tab</heading>
-        <text>The mood bar shows where a colonist is, where their mood is heading, and the lines below which minor, major and extreme breaks become possible.
+        <text>The mood bar shows where a colonist is, where their mood is heading, and the lines below which minor, major and extreme breaks become possible. Under it, one sentence says how close they are to a break.
 
-A memory fades on its own, and the Mood tab says when. A lasting mood stays while its cause does, so removing the cause is the only fix. Each mood with a known fix has a "what to do" line, with buttons that lead to the advisor's matching warning, the council page that deals with it, or an Almanac page. Moods from other mods get general advice based on what kind of mood they are, and their mod's name.
+The tab sorts their moods by what you can do about them. A row of chips gives each group's total ("You can fix -15", "Will pass -11 · 2 days", "Faith -4", "Lifting +22"); click a chip to jump to its group. Each mood is one line: a faint bar for its size, the number, its name, and on the right a short action ("Build a dining table") or when it ends. Hover a line for everything about it (the game's description, why, when it fades, what helps); click it to open its card in place, with buttons that lead to the advisor's matching warning, the council page that deals with it, or an Almanac page. Only one card is open at a time.
 
-"Where it comes from" splits the mood between the base game, Rimfolk and each of your other mods, so you can see which mod is pushing hardest. When a colonist has it good, a "Good times" line under it says how much Rimfolk's balance takes off their good moods right now: good moods that add up slowly, good memories that fade sooner, and comforts that high standards make count for less. Hover it for the rules.
+"Details" in the tab's header shows every mood as a card instead, the way the tab used to look; "Compact" goes back. Rimfolk remembers which you chose.
 
-Click a section's heading (the heart, what weighs on them, what lifts them) to fold it away; it stays folded until you quit. Above a tall inspect pane, as with RimHUD, the tab gets shorter and scrolls.</text>
+When a colonist has it good, a "Good times" line under the moods says how much Rimfolk's balance takes off their good moods right now: good moods that add up slowly, good memories that fade sooner, and comforts that high standards make count for less. Hover it for the rules. "Where it comes from" splits the mood between the base game, Rimfolk and each of your other mods, so you can see which mod is pushing hardest. The heart section (strain, feelings and the heart's needs) comes last, folded; click its heading to open it.
+
+Click a group's heading to fold it away; it stays folded until you quit. Above a tall inspect pane, as with RimHUD, the tab gets shorter and scrolls.</text>
+      </li>
+      <li>
+        <heading>The four groups</heading>
+        <text>Every mood goes in one of four groups, each in order of size, biggest first.</text>
+        <table>
+          <li>Group|What's in it|What the line says</li>
+          <li>You can fix|Moods you can do something about now: a mood that lasts while its cause does, or a memory that comes straight back until you act (a meal without a table, a night in the barracks)|What to do, in gold</li>
+          <li>Will pass|Memories that only fade (grief, a council answer, a story gone badly), and moods that end with what caused them (a world event)|When it's gone; the group's heading says when the last of them is</li>
+          <li>Faith and who they are|Moods from their beliefs, their traits or genes, and moods that never fade|What their faith asks, or "Their nature", or "Lasting"</li>
+          <li>Lifting|The good moods, folded to one line until you click it|When it ends</li>
+        </table>
+        <after>A belief or a trait that asks for something you can build still counts as something you can fix: the altar their faith wants, the bedroom a greedy colonist expects.
+
+Moods from other mods are sorted by what kind of mood they are, with a short line to match: "While it lasts" for a mood that stays while its cause does, "Fades in 2 days" for a memory, "Their faith" for a belief's mood, "Lasting" for one that never fades. Their card gives general advice and their mod's name.
+
+The game's own Needs tab gets a line above its mood list with the same totals; click it to open the Mood tab. Hovering a mood there ends its tooltip with what helps.</after>
       </li>
       <li>
         <heading>The Moods page</heading>
-        <text>Start at the top of "Weighing on the colony": the biggest totals usually have the cheapest fixes, like a dining table, lights or a bedroom. Check "Closest to breaking" before a long job or a caravan, and give the shakiest colonists something good first.
+        <text>The Moods page sorts the colony's moods into the same groups, one line per kind of mood with how many colonists have it; click a line for its card, with who feels it most. Start at the top of "You can fix": the biggest totals usually have the cheapest fixes, like a dining table, lights or a bedroom. Check "Closest to breaking" before a long job or a caravan, and give the shakiest colonists something good first.
 
 A colonist sinking toward a break line needs help now: a fine meal, recreation, a party or rest, while you fix the cause.</text>
       </li>

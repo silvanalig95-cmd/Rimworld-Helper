@@ -43,7 +43,8 @@
   <CC_MoodC_NothingBad>Nothing weighs on {0} right now.</CC_MoodC_NothingBad>
   <CC_MoodC_NothingBadColony>Nothing weighs on the colony right now.</CC_MoodC_NothingBadColony>
   <!-- The Moods page: a kind of mood and how many colonists have it. -->
-  <CC_MoodC_ColonyLabel>{0} ({1})</CC_MoodC_ColonyLabel>
+  <CC_MoodC_ColonyLabel>{0} · {1} colonists</CC_MoodC_ColonyLabel>
+  <CC_MoodC_ColonyLabelOne>{0} · 1 colonist</CC_MoodC_ColonyLabelOne>
 
   <!-- The line at the top of the game's Needs tab mood list. -->
   <CC_MoodC_NeedsTip>Rimfolk sorts {0}'s moods by what you can do about them: what you can fix now, what will pass on its own, what comes from faith or who they are, and what lifts them.\n\nClick to open the Mood tab, with what helps for each.</CC_MoodC_NeedsTip>

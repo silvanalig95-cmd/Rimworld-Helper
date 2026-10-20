@@ -1446,8 +1446,9 @@ Things the game exposes that this relies on (all available to mods):
 
 ### A colonist's tabs
 
-A colonist's inspect pane has three Rimfolk places, each a page of folding sections built a couple of times a second
-and drawn from that model (`UI/PawnPane.cs` lays out the Culture tab and the column; StoryView the Story tab):
+A colonist's inspect pane has four Rimfolk places, each a page of folding sections built a couple of times a second
+and drawn from that model (`UI/PawnPane.cs` lays out the Culture tab and the column; StoryView the Story tab;
+MoodCompact the Mood tab), and a line in the game's Needs tab:
 
 - **Story** (`ITab_Pawn_Story`): who they are and what they've lived (standing, character, what shaped them, traits,
   life goal, personal story, quirks, heirlooms, vendettas, nemeses, dreams, journal). `StoryView` takes a `StoryParts`
@@ -1478,6 +1479,30 @@ and drawn from that model (`UI/PawnPane.cs` lays out the Culture tab and the col
   width), it is switched off for the session with one log line, the tab keeps its width, and the Story tab shows the
   social parts again. Guests (Hospitality) and other people's pawns never get the column. "Recent talks" reads the
   game's play log (Rimfolk's interactions and social events concerning them), so nothing is saved for it.
+
+- **Mood** (`ITab_Pawn_Mood`, with the council's Moods page through the same `MoodCompact`): opens compact. The
+  player said a colonist with 20 or 30 moods was a long scroll of cards they had to hover one by one, so the tab sorts
+  moods by what the player can do and gives each one line. `MoodSortMath` (pure, tested) holds the rules: a good mood
+  is *Lifting*; a mood that never fades goes with *Faith and who they are*; a mood whose hint is `actionable` (doing
+  something now ends it, or keeps it from coming straight back: a table, the next night in a real bedroom) is *You
+  can fix*, even when a belief or trait asks for it (an altar, a greedy colonist's bedroom); other moods from a
+  precept (`sourcePrecept`, or a thought some `PreceptComp_Thought` gives) or with `requiredTraits`/`requiredGenes`
+  are *Faith and who they are*; memories are *Will pass*; a mood that lasts while its cause does is *You can fix*,
+  unless its hint says it only passes (a world event). Each `MoodHintDef` with a `fix` has an `act` (2 to 6 words, at
+  most 40 characters, no full stop; a test checks every one) and `actionable` (default true; false on 75 of 184).
+  Moods without a hint get a short line by kind (`MoodSortMath.FallbackOf`). The model is built every half second
+  with the cards' texts; rows are drawn only in sight, each laid out once per width (`MoodSortMath.RowLayout`), and a
+  click opens the row's card (`MoodView.Draw`) in place, one at a time. The heart section moves under the moods,
+  folded. "Details" switches back to the cards (`moodDetails`, kept in the settings file, not on the settings page).
+  On a short tab (`MoodSortMath.StateFixed`) the state sentence scrolls with the moods, so at least six rows show at
+  768 pixels with RimHUD at 400.
+- **Needs** (the game's tab): `Patch_NeedsTabMoodHints` (a transpiler on `DrawThoughtGroup`) adds Rimfolk's lines to
+  each mood's tooltip; `Patch_NeedsTabMoodSummary` (a prefix on `NeedsCardUtility.DrawThoughtListing(Rect
+  listingRect, Pawn pawn, ref Vector2 thoughtScrollPosition)`, present in 1.6 and 1.7) draws one line of group totals
+  at the top of `listingRect` and moves its top down by the line, in the layout pass too, so the game's list and
+  scroll view start below it; a click opens the Mood tab. Its `Prepare` checks the method's first two parameters (a
+  `Rect` named `listingRect`, a `Pawn` named `pawn`); if they differ, nothing is patched and the bootstrap lists it
+  as skipped. It never skips the game's method and draws nothing for pawns without a Mood tab.
 
 ### Checking a new game version
 
@@ -1625,13 +1650,15 @@ the Social tab column's own caches).
   once per pair and tick (the topic's scene once an hour per map, the news' heat every 250 ticks).
 - *The reputation opinion* (asked for every pair of colonists): one dictionary lookup in what each makes of the other,
   worked out again only when a deed or a knower changes (at most every 30 ticks) and once an hour for fading.
-- *Per frame*: the inspector line (a string join), the Needs tab's extra tooltip lines (cached half a second), the
+- *Per frame*: the inspector line (a string join), the Needs tab's extra tooltip lines and its summary line (each
+  cached half a second), the
   Social tab's width (a cached model and a field write), its rows' extra tooltip line (cached a second per pair), alert
   labels (rebuilt only when they change), the slow-time buttons (labels translated once, tooltips only on hover), a
   lucky thing's inspect line and description (a lookup by thing id, nothing while no thing is lucky). Windows and tabs
   keep a model and draw from it: the floor picker keeps each floor's research, cost, material, stats and tooltip for a
   second (at once again after a pick), the decree page lays out its cards with what stands in a decree's way once a
-  second, the Mood tab builds its headings and hint buttons with its half-second model, the Almanac's cards their
+  second, the Mood tab builds its groups, rows, headings and hint buttons with its half-second model and draws only
+  the rows in sight, the Almanac's cards their
   "Column: value" lines with their layout.
 - *Picking a line*: every line Rimfolk says goes through Flavor, which takes each tagged line apart once
   (`Lean/LineTags.cs`) and only compares after that; the moment's tags (trait:, skill:, weather:) are built once per def.

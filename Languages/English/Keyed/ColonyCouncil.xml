@@ -1623,7 +1623,7 @@ Those against it ({WHO}) will trust the council less and resent it more than usu
   <CC_Tab_Mood>Mood</CC_Tab_Mood>
   <CC_Tab_Moods>Moods</CC_Tab_Moods>
   <CC_Settings_MoodInsight>Mood insight</CC_Settings_MoodInsight>
-  <CC_Settings_MoodInsight_Tip>A Mood tab for each colonist and a Moods page in the council window: every mood with its size, why it's there, when it fades, which mod it comes from, and what you can do about it.</CC_Settings_MoodInsight_Tip>
+  <CC_Settings_MoodInsight_Tip>A Mood tab for each colonist and a Moods page in the council window: every mood with its size, why it's there, when it fades, which mod it comes from, and what you can do about it, sorted into what you can fix, what will pass, what comes from faith or who they are, and what lifts them.</CC_Settings_MoodInsight_Tip>
   <CC_Mood_Title>{0}'s mood</CC_Mood_Title>
   <CC_Mood_State>Mood {0}, {1}.</CC_Mood_State>
   <CC_Mood_Steady>holding steady</CC_Mood_Steady>
@@ -1664,7 +1664,7 @@ Those against it ({WHO}) will trust the council less and resent it more than usu
   <CC_Moods_Summary>Average mood {0}. {1} of {2} colonists are near or below the line where breaks begin.</CC_Moods_Summary>
   <CC_Moods_InBreak>{0} in a mental break right now.</CC_Moods_InBreak>
   <CC_Moods_PerColonist>(per colonist, on average)</CC_Moods_PerColonist>
-  <CC_Moods_Intro>Every mood in the colony, added up: what weighs on it most, who feels it, and what to do. Hover over a line for the game's own description. Click a colonist to open their Mood tab.</CC_Moods_Intro>
+  <CC_Moods_Intro>Every mood in the colony, added up: what weighs on it most, who feels it, and what to do. Hover over a line for the game's own description; in the compact view, click it for its card. Click a colonist to open their Mood tab.</CC_Moods_Intro>
   <CC_Moods_Closest>Closest to breaking</CC_Moods_Closest>
   <CC_Moods_ClickPerson>Click to open their Mood tab.</CC_Moods_ClickPerson>
   <CC_Moods_Weighing>Weighing on the colony</CC_Moods_Weighing>
@@ -1713,7 +1713,7 @@ Those against it ({WHO}) will trust the council less and resent it more than usu
   <CC_Settings_DeepHooks>Deeper game hooks</CC_Settings_DeepHooks>
   <CC_Settings_DeepHooks_Tip>Small, careful changes to how the game itself behaves (through Harmony), such as Rimfolk's hints in the game's own Needs tab. Each one switches itself off if it can't work with your other mods. Active now: {0}; skipped: {1}. Turning this off takes effect at once.</CC_Settings_DeepHooks_Tip>
   <CC_Settings_NeedsTabHints>... and in the game's Needs tab</CC_Settings_NeedsTabHints>
-  <CC_Settings_NeedsTabHints_Tip>Hovering a mood in the game's own Needs tab also shows, at the end of the same tooltip, which mod it comes from, why it's there and what to do about it.</CC_Settings_NeedsTabHints_Tip>
+  <CC_Settings_NeedsTabHints_Tip>Hovering a mood in the game's own Needs tab also shows, at the end of the same tooltip, which mod it comes from, why it's there and what to do about it. A line at the top of the mood list sorts the moods by what you can do (you can fix, will pass, faith, lifting); click it to open the Mood tab.</CC_Settings_NeedsTabHints_Tip>
   <CC_Settings_LetterNotes>... and notes in the game's letters</CC_Settings_LetterNotes>
   <CC_Settings_LetterNotes_Tip>Some of the game's own letters get a line of what Rimfolk knows: the nemesis riding with a raid (who now arrives with it), what was weighing on a colonist who breaks down, and, when a colonist dies, how long they'd been here and what they never got to do.</CC_Settings_LetterNotes_Tip>
 

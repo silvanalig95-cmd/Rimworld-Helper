@@ -121,8 +121,6 @@ namespace ColonyCouncil
     {
         public const string LiftingKey = "c.lifting";
         private static readonly string[] keys = { "c.fix", "c.pass", "c.faith", LiftingKey };
-        private static readonly Color PassColor = new Color(0.72f, 0.72f, 0.72f);
-        private static readonly Color FaithColor = new Color(0.68f, 0.76f, 0.95f);
         private const float ChipHeight = 22f;
 
         private static string clickForCard, compactLabel, detailsLabel, compactTip, detailsTip, foldedTip;
@@ -146,8 +144,8 @@ namespace ColonyCouncil
             switch (g)
             {
                 case MoodGroup.Fix: return UiKit.Gold;
-                case MoodGroup.Pass: return PassColor;
-                case MoodGroup.Faith: return FaithColor;
+                case MoodGroup.Pass: return UiKit.Faint;
+                case MoodGroup.Faith: return UiKit.Info;
                 default: return MoodView.GoodColor;
             }
         }
@@ -213,7 +211,8 @@ namespace ColonyCouncil
                         texts = c.texts ?? (c.texts = MoodView.TextsFor(c)),
                         description = () => MoodInsight.Description(sample)
                     };
-                    row.label = "CC_MoodC_ColonyLabel".Translate(c.label, "CC_Moods_People".Translate(c.byPawn.Count)).Resolve();
+                    int people = c.byPawn.Count;
+                    row.label = people == 1 ? "CC_MoodC_ColonyLabelOne".Translate(c.label).Resolve() : "CC_MoodC_ColonyLabel".Translate(c.label, people).Resolve();
                     row.tipId = row.texts.tipId ^ 0x5C0FF;
                     bool fromFaith = g == MoodGroup.Faith && c.lines.Any(l => MoodGroups.FromFaith(l.thought, l.def));
                     row.right = MoodGroups.Right(g, c.def, c.total, ticksLeft, fromFaith, out row.gold);
