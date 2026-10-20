@@ -9,7 +9,8 @@ using Verse;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// A colonist's character page, drawn in the Story tab and the People roster (StoryView): their character in words
+    /// A colonist's character page, drawn in the Story tab and the People roster (StoryView; the Social tab's Rimfolk
+    /// column and the Culture tab draw some of its sections too): their character in words
     /// and on eight small bars (where their nature puts them, and where they are now), what shaped them, and the
     /// sections the other systems add (<see cref="CharacterPage"/>). With "Personalities and social life" off, only
     /// their nature shows.
@@ -44,6 +45,7 @@ namespace ColonyCouncil
                 if (s != null && !s.Empty)
                 {
                     s.order = 10;
+                    s.key = "character";
                     list.Add(s);
                 }
                 return list;

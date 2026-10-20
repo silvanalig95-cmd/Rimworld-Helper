@@ -130,6 +130,8 @@ namespace ColonyCouncil
             Avail.ResetCache();
             MoodsPanel.Reset();
             StoryView.Reset();
+            SocialColumn.Reset();
+            CultureView.Reset();
             UiCache.Clear();
             InteractionWorker_Moment.Reset();
             Interplay.Reset();

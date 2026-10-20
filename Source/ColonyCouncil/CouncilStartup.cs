@@ -36,7 +36,9 @@ namespace ColonyCouncil
 
         /// <summary>
         /// Adds the Mood and Story tabs to every humanlike race (vanilla humans and modded races alike), in code rather than by
-        /// an XML patch, so it survives other mods rewriting a race's tabs and covers races added by mods.
+        /// an XML patch, so it survives other mods rewriting a race's tabs and covers races added by mods. The Culture tab
+        /// goes right after the game's Social tab in the list, so it's drawn just left of it (the pane draws its tabs from
+        /// right to left); a race without a Social tab gets it at the end.
         /// </summary>
         private static void AddStoryTab()
         {
@@ -50,6 +52,30 @@ namespace ColonyCouncil
                     if (def.inspectorTabsResolved == null) def.inspectorTabsResolved = new List<InspectTabBase>();
                     if (!def.inspectorTabsResolved.Any(t => t.GetType() == tabType))
                         def.inspectorTabsResolved.Add(InspectTabManager.GetSharedInstance(tabType));
+                }
+            }
+            var culture = typeof(ITab_Pawn_Culture);
+            foreach (var def in DefDatabase<ThingDef>.AllDefsListForReading)
+            {
+                if (def.race == null || !def.race.Humanlike) continue;
+                try
+                {
+                    if (def.inspectorTabs == null) def.inspectorTabs = new List<System.Type>();
+                    if (!def.inspectorTabs.Contains(culture))
+                    {
+                        int at = def.inspectorTabs.FindIndex(t => t != null && typeof(ITab_Pawn_Social).IsAssignableFrom(t));
+                        def.inspectorTabs.Insert(at >= 0 ? at + 1 : def.inspectorTabs.Count, culture);
+                    }
+                    if (def.inspectorTabsResolved == null) def.inspectorTabsResolved = new List<InspectTabBase>();
+                    if (!def.inspectorTabsResolved.Any(t => t != null && t.GetType() == culture))
+                    {
+                        int at = def.inspectorTabsResolved.FindIndex(t => t is ITab_Pawn_Social);
+                        def.inspectorTabsResolved.Insert(at >= 0 ? at + 1 : def.inspectorTabsResolved.Count, InspectTabManager.GetSharedInstance(culture));
+                    }
+                }
+                catch (System.Exception e)
+                {
+                    CouncilLog.ErrorOnce("culture tab on " + def.defName, e);
                 }
             }
         }

@@ -75,6 +75,8 @@ namespace ColonyCouncil
         public bool journals = true;
         public bool offices = true;
         public bool socialWeb = true;
+        /// <summary>Rimfolk's column in the game's own Social tab (bonds, groups, name, shared memories, talks, secrets), and a line about the pair on its rows.</summary>
+        public bool socialTabColumn = true;
         /// <summary>Personalities shaped by what happens to people, what they went through together, the views they hold, their groups and talk.</summary>
         public bool socialLife = true;
         /// <summary>The game's traits can grow, appear or fade with what happens to a colonist (Persona/TraitChanges.cs); needs social life.</summary>
@@ -259,6 +261,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref journals, "journals", true);
             Scribe_Values.Look(ref offices, "offices", true);
             Scribe_Values.Look(ref socialWeb, "socialWeb", true);
+            Scribe_Values.Look(ref socialTabColumn, "socialTabColumn", true);
             Scribe_Values.Look(ref socialLife, "socialLife", true);
             Scribe_Values.Look(ref traitChanges, "traitChanges", true);
             Scribe_Values.Look(ref faithLife, "faithLife", true);

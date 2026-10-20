@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Rimfolk's column in the game's Social tab (Source/ColonyCouncil/UI/SocialColumn.cs, Patches/Patch_SocialTab.cs). -->
+  <CC_SocialCol_Title>Among the colony</CC_SocialCol_Title>
+  <CC_SocialCol_Sub>Bonds, groups, talk and secrets</CC_SocialCol_Sub>
+  <CC_SocialCol_Tip>Rimfolk's side of this colonist's social life: the bonds that have grown between them and others, the groups they belong to, what people say about them, what they went through with others, their last few talks and the secrets the colony knows of. Click a heading to fold it away; click a person to go to them.</CC_SocialCol_Tip>
+  <CC_SocialCol_Empty>Nothing has passed between {0} and the others yet.</CC_SocialCol_Empty>
+  <CC_SocialCol_Memories>Shared memories and in-jokes</CC_SocialCol_Memories>
+  <CC_SocialCol_Talks>Recent talks</CC_SocialCol_Talks>
+  <CC_SocialCol_LostTip>{0} died in {1}.</CC_SocialCol_LostTip>
+  <CC_SocialCol_SecretOutTip>Out in the open: the whole colony knows.</CC_SocialCol_SecretOutTip>
+  <CC_SocialCol_ConfidedTip>Who they confided in is known. What they said stays between them.</CC_SocialCol_ConfidedTip>
+  <CC_SocialCol_KeepsTip>Someone confided in them. The colony knows that much, and no more.</CC_SocialCol_KeepsTip>
+  <CC_SocialCol_PairHeader>Rimfolk:</CC_SocialCol_PairHeader>
+  <CC_SocialCol_PairTie>{0} ({1}).</CC_SocialCol_PairTie>
+  <CC_SocialCol_PairMemory>One shared memory.</CC_SocialCol_PairMemory>
+  <CC_SocialCol_PairMemories>{0} shared memories.</CC_SocialCol_PairMemories>
+  <CC_SocialCol_PairAgree>They agree about {0}.</CC_SocialCol_PairAgree>
+  <CC_SocialCol_PairOdds>They're at odds over {0}.</CC_SocialCol_PairOdds>
+
+  <!-- The setting. -->
+  <CC_Settings_SocialTabColumn>Rimfolk in the Social tab</CC_Settings_SocialTabColumn>
+  <CC_Settings_SocialTabColumn_Tip>The game's own Social tab gets a column of Rimfolk's on its right: a colonist's bonds, groups and role, what people say about them, their shared memories and in-jokes, their last few talks and the secrets the colony knows of. Hovering someone in the game's list adds a line about the two of them to its tooltip. The Story tab then leaves those parts out. Off, the Social tab is the game's own and the Story tab shows them again.</CC_Settings_SocialTabColumn_Tip>
+  <CC_SetNote_SocialTabColumn>The Social tab is wider, with bonds, groups, talk and secrets on the right.</CC_SetNote_SocialTabColumn>
+
+  <!-- The Culture tab (Source/ColonyCouncil/UI/ITab_Pawn_Culture.cs). -->
+  <CC_Tab_Culture>Culture</CC_Tab_Culture>
+  <CC_Culture_Empty>Nothing to tell about where {0} comes from or what they believe yet.</CC_Culture_Empty>
+  <CC_Culture_Culture>{0} culture</CC_Culture_Culture>
+  <CC_Culture_Certainty>Certainty</CC_Culture_Certainty>
+  <CC_Culture_CertaintyValue>{0}, {1}</CC_Culture_CertaintyValue>
+  <CC_Culture_FaithBefore>Held to {0} before.</CC_Culture_FaithBefore>
+  <CC_Culture_FaithBeforeTip>The faiths they followed before this one.</CC_Culture_FaithBeforeTip>
+
+  <CC_Culture_Ways>The colony's ways</CC_Culture_Ways>
+  <CC_Culture_WaysBar>How they sit with our ways</CC_Culture_WaysBar>
+  <CC_Culture_WaysWord_Proud>proud</CC_Culture_WaysWord_Proud>
+  <CC_Culture_WaysWord_Like>content</CC_Culture_WaysWord_Like>
+  <CC_Culture_WaysWord_Even>neither here nor there</CC_Culture_WaysWord_Even>
+  <CC_Culture_WaysWord_Uneasy>uneasy</CC_Culture_WaysWord_Uneasy>
+  <CC_Culture_WaysWord_Ashamed>ashamed</CC_Culture_WaysWord_Ashamed>
+  <CC_Culture_WaysFeel_Proud>{PAWN_nameDef} is proud of the colony's ways.</CC_Culture_WaysFeel_Proud>
+  <CC_Culture_WaysFeel_Like>{PAWN_nameDef} likes the way the colony does things.</CC_Culture_WaysFeel_Like>
+  <CC_Culture_WaysFeel_Even>The colony's ways don't much stir {PAWN_nameDef} either way.</CC_Culture_WaysFeel_Even>
+  <CC_Culture_WaysFeel_Uneasy>{PAWN_nameDef} is uneasy about the way the colony is going.</CC_Culture_WaysFeel_Uneasy>
+  <CC_Culture_WaysFeel_Ashamed>{PAWN_nameDef} is ashamed of the colony's ways.</CC_Culture_WaysFeel_Ashamed>
+  <CC_Culture_WaysTip>How far the colony's ways suit their nature: {0} (from about -100 to 100). From 18 either way it shows in their mood, and from 45 more strongly. The council's answers, decrees and granted wishes move the ways; Council, then Our ways, shows them.</CC_Culture_WaysTip>
+  <CC_Culture_TraitPride>Proud that the colony is known as {0}: it's the work they love.</CC_Culture_TraitPride>
+  <CC_Culture_KnownTip>What the colony is known for: its ways (Council, then Our ways) and what its work has made it.</CC_Culture_KnownTip>
+
+  <CC_Culture_Decrees>Decrees in force</CC_Culture_Decrees>
+  <CC_Culture_Reaction_Neutral>Don't mind</CC_Culture_Reaction_Neutral>
+  <CC_Culture_DecreeNeutral>{PAWN_nameDef} doesn't mind it either way.</CC_Culture_DecreeNeutral>
+  <CC_Culture_DecreeEnds>Ends in {0}.</CC_Culture_DecreeEnds>
+  <CC_Culture_Petition>Asked the council for {0}.</CC_Culture_Petition>
+  <CC_Culture_PetitionRepeal>Asked the council to end {0}.</CC_Culture_PetitionRepeal>
+
+  <CC_Culture_Origin>Where they come from</CC_Culture_Origin>
+  <CC_Culture_Childhood>Childhood: {0}</CC_Culture_Childhood>
+  <CC_Culture_Adulthood>Adulthood: {0}</CC_Culture_Adulthood>
+  <CC_Culture_OfFaction>Of {0}.</CC_Culture_OfFaction>
+  <CC_Culture_OfFactionTip>{PAWN_nameDef} belongs to {FACTION} and is held here.</CC_Culture_OfFactionTip>
+  <CC_Culture_AmongPeople>Lived among {0} before the colony.</CC_Culture_AmongPeople>
+  <CC_Culture_AmongPeopleTip>{PAWN_nameDef} was a {KIND} of a {FACTION} before coming here.</CC_Culture_AmongPeopleTip>
+  <CC_Culture_Here>With the colony for {0}.</CC_Culture_Here>
+  <CC_Culture_Founder>One of the founders.</CC_Culture_Founder>
+  <CC_Culture_BornHere>Born in the colony.</CC_Culture_BornHere>
+  <CC_Culture_WonOver>Won over by {BY} while held here.</CC_Culture_WonOver>
+
+</LanguageData>

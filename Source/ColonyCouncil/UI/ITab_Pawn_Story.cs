@@ -7,10 +7,13 @@ using Verse;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// "Story" in a colonist's inspect pane: everything Rimfolk knows about them on one page. Their character and
-    /// what shaped it, life goal, bonds and circle, quirks, names, office, trust, vendettas, secrets (only what the
-    /// colony knows), recent dreams and the latest lines of their journal. Fits the room above the inspect pane (RimfolkTab); the name stays
-    /// put, the rest scrolls, and each section folds away.
+    /// "Story" in a colonist's inspect pane: who they are and what they've lived. Their standing (trust, office, names,
+    /// health), their character, what shaped it and the traits life changed, their life goal, their personal story,
+    /// quirks, heirlooms, vendettas and nemeses, recent dreams and the latest lines of their journal. Their social life
+    /// (bonds, groups, what people say, shared memories, secrets) is in Rimfolk's column of the game's Social tab
+    /// (UI/SocialColumn.cs), and their faith and views in the Culture tab (UI/ITab_Pawn_Culture.cs); with the column
+    /// switched off, the social parts stay here. Fits the room above the inspect pane (RimfolkTab); the name stays put,
+    /// the rest scrolls, and each section folds away.
     /// </summary>
     public class ITab_Pawn_Story : RimfolkTab
     {
@@ -53,13 +56,23 @@ namespace ColonyCouncil
             UiKit.LabelFit(new Rect(rect.x + 42f, rect.y + 1f, rect.width - 42f - 144f, 32f), p.LabelShortCap, Color.white, GameFont.Medium);
             if (p.IsColonist && Widgets.ButtonText(new Rect(rect.xMax - 138f, rect.y + 4f, 124f, 26f), "CC_Story_OpenCouncil".Translate()))
                 MainTabWindow_Council.OpenPerson(p);
-            StoryView.Draw(new Rect(rect.x, rect.y + 42f, rect.width, rect.height - 42f), p, ref scroll, ref height, folds);
+            StoryView.Draw(new Rect(rect.x, rect.y + 42f, rect.width, rect.height - 42f), p, ref scroll, ref height, folds, StoryParts.StoryTab);
         }
+    }
+
+    /// <summary>Which parts of a colonist's story a page shows.</summary>
+    public enum StoryParts
+    {
+        /// <summary>Everything (the council window's People roster).</summary>
+        All,
+        /// <summary>The Story tab: without what the Culture tab shows, and without what the Social tab's column shows while it's on.</summary>
+        StoryTab
     }
 
     /// <summary>
     /// The story of one colonist, drawn in the Story tab and the council window's People roster. Each place passes its
-    /// own folds, so a section folded in the tab stays open in the roster.
+    /// own folds, so a section folded in the tab stays open in the roster, and its own parts: the roster shows
+    /// everything, the Story tab leaves out what the Social tab's column and the Culture tab show.
     /// </summary>
     public static class StoryView
     {
@@ -67,28 +80,49 @@ namespace ColonyCouncil
         private static readonly Color HeaderColor = new Color(0.95f, 0.85f, 0.6f);
         private static readonly Color Quote = new Color(1f, 0.93f, 0.75f);
 
-        // Built a couple of times a second rather than every frame.
-        private static Pawn cachedPawn;
-        private static float cachedAt = -1f;
-        private static List<Section> cached;
+        /// <summary>The character page's sections the Culture tab shows (its views and faith).</summary>
+        public static readonly string[] CultureKeys = { "talk.views", "faith" };
+
+        /// <summary>
+        /// One page's model, built a couple of times a second rather than every frame; one per kind of page, so the tab
+        /// and the roster drawn together don't take turns rebuilding it.
+        /// </summary>
+        private class Cache
+        {
+            public Pawn pawn;
+            public float at = -1f;
+            public bool socialElsewhere;
+            public List<Section> sections;
+        }
+
+        private static readonly Cache[] caches = { new Cache(), new Cache() };
 
         /// <summary>Forget the last game's colonist (called when a game loads).</summary>
         public static void Reset()
         {
-            cachedPawn = null;
-            cached = null;
+            foreach (var c in caches)
+            {
+                c.pawn = null;
+                c.sections = null;
+            }
         }
 
-        public static void Draw(Rect outRect, Pawn p, ref Vector2 scroll, ref float height, Folds folds = null)
+        public static void Draw(Rect outRect, Pawn p, ref Vector2 scroll, ref float height, Folds folds = null, StoryParts parts = StoryParts.All)
         {
             var comp = CouncilGameComponent.Instance;
             if (p == null || comp == null) return;
-            if (cachedPawn != p || cached == null || Time.realtimeSinceStartup - cachedAt > 0.5f)
+            var cache = caches[parts == StoryParts.StoryTab ? 1 : 0];
+            // The social parts move to the Social tab's column only while it can show.
+            bool socialElsewhere = parts == StoryParts.StoryTab && SocialColumn.Available;
+            float time = Time.realtimeSinceStartup;
+            if (cache.pawn != p || cache.sections == null || time - cache.at > 0.5f || time < cache.at || cache.socialElsewhere != socialElsewhere)
             {
-                cached = Sections(comp, p).ToList();
-                cachedPawn = p;
-                cachedAt = Time.realtimeSinceStartup;
+                cache.sections = Sections(comp, p, parts, socialElsewhere).ToList();
+                cache.pawn = p;
+                cache.at = time;
+                cache.socialElsewhere = socialElsewhere;
             }
+            var cached = cache.sections;
             var view = new Rect(0f, 0f, outRect.width - 16f, height);
             Widgets.BeginScrollView(outRect, ref scroll, view);
             float y = 0f;
@@ -141,9 +175,10 @@ namespace ColonyCouncil
             public CharacterSection character;
         }
 
-        private static IEnumerable<Section> Sections(CouncilGameComponent comp, Pawn p)
+        private static IEnumerable<Section> Sections(CouncilGameComponent comp, Pawn p, StoryParts parts, bool socialElsewhere)
         {
             var s = ColonyCouncilMod.Settings;
+            bool tab = parts == StoryParts.StoryTab;
 
             // Standing: trust, office, names.
             var standing = new Section { key = "standing", header = "CC_Story_Standing".Translate(), icon = Icons.Trust };
@@ -158,7 +193,11 @@ namespace ColonyCouncil
 
             // Their character and what shaped it, with what the other systems add (Persona/CharacterView.cs).
             foreach (var cs in CharacterView.Sections(p))
+            {
+                if (tab && CultureKeys.Contains(cs.key)) continue;
+                if (socialElsewhere && SocialColumn.CharacterKeys.Contains(cs.key)) continue;
                 yield return new Section { key = "character" + cs.order, header = cs.title, icon = CharacterView.Icon(cs.order), character = cs };
+            }
 
             // Life goal.
             if (s.aspirations)
@@ -188,8 +227,8 @@ namespace ColonyCouncil
                 yield return arc;
             }
 
-            // Bonds.
-            if (s.socialWeb)
+            // Bonds (in the Social tab's column, when it shows).
+            if (s.socialWeb && !socialElsewhere)
             {
                 var bonds = new Section { key = "bonds", header = "CC_Story_Bonds".Translate(), icon = Icons.Bonds };
                 string describe = comp.social.Describe(p);
@@ -199,7 +238,7 @@ namespace ColonyCouncil
                 if (bonds.lines.Count > 0) yield return bonds;
             }
 
-            // Quirks, vendettas, secrets.
+            // Quirks, heirlooms, vendettas, nemeses; secrets (in the Social tab's column, when it shows).
             var heart = new Section { key = "heart", header = "CC_Story_Heart".Translate(), icon = Icons.Heart };
             if (s.quirks)
                 foreach (var q in comp.quirks.Of(p))
@@ -214,7 +253,7 @@ namespace ColonyCouncil
             if (s.nemeses && comp.nemeses != null)
                 foreach (var n in comp.nemeses.Of(p).OrderBy(n => n.ended))
                     heart.lines.Add(("CC_Story_Nemesis".Translate(n.Line).Resolve(), n.ended ? Faint : new Color(0.9f, 0.5f, 0.4f)));
-            if (s.secrets)
+            if (s.secrets && !socialElsewhere)
             {
                 var secret = comp.secrets.Of(p);
                 if (secret != null && secret.revealed) heart.lines.Add((secret.Truth, new Color(0.9f, 0.6f, 0.5f)));
