@@ -86,7 +86,10 @@ namespace ColonyCouncil
         /// <summary>Defense lines watch how a raid meets them (only while raiders are on a home map that has lines).</summary>
         public const int RareDefenseLines = 233;
 
-        public static readonly int[] RareOffsets = { RareWorldKeep, RarePlanQueue, RareHeart, RareCamp, RareMissions, RareWelcome, RareAilments, RareHealth, RareDefenseLines };
+        /// <summary>Conversations: who stands beside whom in a fight at home (only while one is on), for who remembers it together.</summary>
+        public const int RareFightSides = 187;
+
+        public static readonly int[] RareOffsets = { RareWorldKeep, RarePlanQueue, RareHeart, RareCamp, RareMissions, RareWelcome, RareAilments, RareHealth, RareDefenseLines, RareFightSides };
 
         /// <summary>Passes on the 250-tick cycle that only run while something is waiting (the news of the evening, an answer playing out, the council window's memory).</summary>
         public const int RareNews = 167;

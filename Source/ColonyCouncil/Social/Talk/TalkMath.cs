@@ -320,5 +320,45 @@ namespace ColonyCouncil
 
         /// <summary>Whether a joke has been told too often: it wears out after a few tellings.</summary>
         public static bool Worn(int recalls) => recalls > 4;
+
+        // ---------------- Who remembers a fight together ----------------
+
+        /// <summary>A fight's partners each: those they stood beside longest.</summary>
+        public const int BattlePartners = 3;
+
+        /// <summary>
+        /// The pairs (indices into the fighters) who remember a fight together: those seen side by side in it, twice or
+        /// more (once is enough in a fight seen only a few times), each fighter with at most <paramref name="maxEach"/>
+        /// others, those they stood beside longest first. When nothing was seen at all (a fight over between two looks,
+        /// or a load in between), each remembers it with the one they're closest to (<paramref name="closest"/>, -1: none).
+        /// </summary>
+        public static List<(int a, int b)> BattlePairs(int n, IDictionary<(int a, int b), int> near, int samples, int[] closest, int maxEach = BattlePartners)
+        {
+            var pairs = new List<(int, int)>();
+            var deg = new int[Math.Max(0, n)];
+            var have = new HashSet<(int, int)>();
+            void Add(int a, int b)
+            {
+                if (a == b || a < 0 || b < 0 || a >= n || b >= n) return;
+                var k = a < b ? (a, b) : (b, a);
+                if (deg[k.Item1] >= maxEach || deg[k.Item2] >= maxEach || !have.Add(k)) return;
+                deg[k.Item1]++;
+                deg[k.Item2]++;
+                pairs.Add(k);
+            }
+            int need = samples >= 4 ? 2 : 1;
+            if (near != null && samples > 0)
+            {
+                var seen = new List<KeyValuePair<(int a, int b), int>>(near);
+                seen.Sort((x, y) => y.Value != x.Value ? y.Value.CompareTo(x.Value) : x.Key.CompareTo(y.Key));
+                foreach (var kv in seen)
+                    if (kv.Value >= need)
+                        Add(kv.Key.a, kv.Key.b);
+            }
+            if (pairs.Count == 0 && closest != null)
+                for (int i = 0; i < n && i < closest.Length; i++)
+                    Add(i, closest[i]);
+            return pairs;
+        }
     }
 }

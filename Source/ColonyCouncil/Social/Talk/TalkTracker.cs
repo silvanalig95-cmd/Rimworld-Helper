@@ -107,6 +107,17 @@ namespace ColonyCouncil
                 if (!Persona.On) exchanges.Clear();
                 else Talk.Step(this, t);
             }
+            if (Sched.Every(t, Sched.RareTicks, Sched.RareFightSides) && Persona.On)
+            {
+                try
+                {
+                    TalkHooks.SampleFight();
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("talk: the fight", e);
+                }
+            }
             if (!Sched.Hourly(t, Sched.Talk)) return;
             if (!Persona.On) return;
             try

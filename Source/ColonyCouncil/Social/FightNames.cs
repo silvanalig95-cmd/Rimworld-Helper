@@ -86,5 +86,36 @@ namespace ColonyCouncil
             if (foe == Faction.OfInsects) return "Insects";
             return "Raid";
         }
+
+        // ---------------- Said aloud ----------------
+
+        private static readonly string[] Kinds = { "Raid", "Mechs", "Insects", "Beasts", "Other" };
+        private static (string prefix, string suffix, string spoken)[] spokenForms;
+        private static LoadedLanguage spokenLanguage;
+
+        /// <summary>
+        /// A fight's name as someone says it aloud, without the date ("the raid", "the mechanoid attack"): a bubble
+        /// has little room, and the two know which fight they mean. Anything else is returned as it is.
+        /// </summary>
+        public static string Spoken(string label)
+        {
+            if (label.NullOrEmpty()) return label;
+            if (spokenForms == null || spokenLanguage != LanguageDatabase.activeLanguage)
+            {
+                spokenLanguage = LanguageDatabase.activeLanguage;
+                spokenForms = new (string, string, string)[Kinds.Length];
+                for (int i = 0; i < Kinds.Length; i++)
+                {
+                    string raw = ("CC_Rep_Fight_" + Kinds[i]).Translate().RawText ?? "";
+                    int at = raw.IndexOf("{DATE}", System.StringComparison.Ordinal);
+                    spokenForms[i] = at <= 0 ? (null, null, null) : (raw.Substring(0, at), raw.Substring(at + 6), ("CC_Rep_FightSpoken_" + Kinds[i]).Translate().ToString());
+                }
+            }
+            foreach (var (prefix, suffix, spoken) in spokenForms)
+                if (prefix != null && label.Length > prefix.Length + suffix.Length && label.StartsWith(prefix, System.StringComparison.Ordinal)
+                    && label.EndsWith(suffix, System.StringComparison.Ordinal))
+                    return spoken;
+            return label;
+        }
     }
 }

@@ -67,6 +67,8 @@ namespace ColonyCouncil
             lastLogId = -1;
             noted.Clear();
             lastFood.Clear();
+            fightNear.Clear();
+            fightSamples = 0;
         }
 
         private static void Safe(string what, Action act)
@@ -196,10 +198,94 @@ namespace ColonyCouncil
 
         // ---------------- From the game's events ----------------
 
+        // ---------------- Who stood beside whom ----------------
+
+        /// <summary>How often each pair (PairKey) was seen side by side in the fight going on, and how many looks there were.</summary>
+        private static readonly Dictionary<long, int> fightNear = new Dictionary<long, int>();
+        private static int fightSamples;
+
+        /// <summary>
+        /// Every 250 ticks while a fight is on at home (Sched.RareFightSides): which of the colony's fighters are side by
+        /// side (close, and in the same room or in sight of each other). Only those remember the fight together.
+        /// </summary>
+        public static void SampleFight()
+        {
+            if (!On) return;
+            int now = Now;
+            foreach (var map in Find.Maps)
+            {
+                if (!map.IsPlayerHome || !MapFacts.ThreatOn(map)) continue;
+                var fighting = new List<Pawn>();
+                foreach (var p in map.mapPawns.FreeColonistsSpawned)
+                {
+                    if (p.Downed || !Talk.Eligible(p)) continue;
+                    var ms = p.mindState;
+                    if (p.Drafted || p.CurJobDef == JobDefOf.ManTurret || (ms != null && now - ms.lastAttackTargetTick < 600)) fighting.Add(p);
+                }
+                if (fighting.Count < 2) continue;
+                fightSamples++;
+                for (int i = 0; i < fighting.Count; i++)
+                for (int j = i + 1; j < fighting.Count; j++)
+                {
+                    // together: two in the same fight, close and in sight of each other.
+                    if (!SocialLog.Near(fighting[i], fighting[j])) continue;
+                    long key = PersonaMath.PairKey(fighting[i].thingIDNumber, fighting[j].thingIDNumber);
+                    fightNear.TryGetValue(key, out int n);
+                    fightNear[key] = n + 1;
+                }
+                if (fightNear.Count > 2000) fightNear.Clear();
+            }
+        }
+
+        /// <summary>
+        /// The pairs who remember a fight together: those seen side by side in it (each with the three they stood beside
+        /// longest), or, if nobody was seen at all, each with the one they're closest to (TalkMath.BattlePairs).
+        /// </summary>
+        private static List<(Pawn a, Pawn b)> StoodTogether(List<Pawn> fighters)
+        {
+            var list = fighters.Where(Talk.Eligible).Distinct().ToList();
+            var near = new Dictionary<(int a, int b), int>();
+            var closest = new int[list.Count];
+            for (int i = 0; i < list.Count; i++)
+            {
+                closest[i] = -1;
+                int best = int.MinValue;
+                for (int j = 0; j < list.Count; j++)
+                {
+                    if (i == j) continue;
+                    int op = list[i].relations?.OpinionOf(list[j]) ?? 0;
+                    if (op > best)
+                    {
+                        best = op;
+                        closest[i] = j;
+                    }
+                    if (j > i && fightNear.TryGetValue(PersonaMath.PairKey(list[i].thingIDNumber, list[j].thingIDNumber), out int n)) near[(i, j)] = n;
+                }
+            }
+            return TalkMath.BattlePairs(list.Count, near, fightSamples, closest).Select(x => (list[x.a], list[x.b])).ToList();
+        }
+
+        /// <summary>
+        /// A fight remembered by two: one memory a pair a day (a second fight the same day only adds weight to the first),
+        /// unless they already have this very one.
+        /// </summary>
+        private static void FoughtTogether(Pawn a, Pawn b, string label)
+        {
+            int now = Now;
+            var today = SharedMemories.Of(a, b).FirstOrDefault(m => m.def == TalkDefs.Battle && now - m.tick < GenDate.TicksPerDay);
+            if (today != null) SharedMemories.Add(a, b, TalkDefs.Battle, today.label, 0.75f);
+            else AddOnce(a, b, TalkDefs.Battle, label, 1.5f);
+        }
+
         /// <summary>A fight on a home map is over (SocialWeb): those who fought side by side remember it, and the colony talks of it.</summary>
         public static void Battle(List<Pawn> fighters, Faction foe)
         {
-            if (!On || fighters == null) return;
+            if (!On || fighters == null)
+            {
+                fightNear.Clear();
+                fightSamples = 0;
+                return;
+            }
             Safe("battle", () =>
             {
                 var map = fighters.FirstOrDefault(p => p?.MapHeld != null)?.MapHeld ?? Find.AnyPlayerHomeMap;
@@ -208,7 +294,10 @@ namespace ColonyCouncil
                 bool fallen = tr?.Recent("Rimfolk_Topic_Dead", 0.5f).Any(n => n.tag == "battle") ?? false;
                 string kind = foe == null ? "animals" : foe == Faction.OfMechanoids ? "mechs" : foe == Faction.OfInsects ? "insects" : foe.def.techLevel <= TechLevel.Neolithic ? "tribal" : "people";
                 tr?.Note("Rimfolk_Topic_Raid", label, -1, (fallen ? "fallen" : "won") + "," + kind);
-                AmongThem(fighters, TalkDefs.Battle, label, 1.5f, 5);
+                // Only those who really stood together remember it together (a few each), not every pair who fought.
+                foreach (var (a, b) in StoodTogether(fighters)) FoughtTogether(a, b, label);
+                fightNear.Clear();
+                fightSamples = 0;
                 // A fight won makes people bolder about the next one; losing someone makes the timid want walls.
                 var raid = TalkDefs.Topic("Raid");
                 foreach (var p in fighters.Where(Talk.Eligible))

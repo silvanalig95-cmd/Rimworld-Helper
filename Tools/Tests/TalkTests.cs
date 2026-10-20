@@ -196,6 +196,26 @@ public static class TalkTests
         Check(q.NextDue == 10, "the next line due");
         q.Clear();
         Check(q.Count == 0 && q.NextDue == int.MaxValue, "a load forgets talks under way");
+        // A story told, the listener's answer, and the one it was about answering for themselves: three people, in turn.
+        int told = q.AddTurns(new List<(P, P, string)> { (a, b, "story"), (b, a, "answer"), (c, a, "that's not how it was") }, 0, 10, 10);
+        Check(told > 0 && q.Busy(a) && q.Busy(b) && q.Busy(c) && !q.Busy(d), "everyone in a story told is busy until it's said");
+        Check(q.AddTurns(new List<(P, P, string)> { (c, d, "x") }, 0, 10, 10) == 0, "nobody already in one starts another");
+        var turns = q.Due(1000);
+        Check(turns.Count == 3 && turns[2].line.speaker == c && turns[2].line.listener == a, "each line said by its own speaker, in order");
+        q.Clear();
+
+        // ---------- Who remembers a fight together ----------
+        var near = new Dictionary<(int a, int b), int> { [(0, 1)] = 6, [(0, 2)] = 5, [(0, 3)] = 4, [(0, 4)] = 3, [(1, 2)] = 1, [(3, 4)] = 2 };
+        var fought = TalkMath.BattlePairs(6, near, 8, new[] { 1, 0, 0, 4, 3, 0 });
+        Check(fought.Count(p => p.a == 0 || p.b == 0) == TalkMath.BattlePartners, "a fighter remembers it with the few they stood beside longest");
+        Check(fought.Contains((0, 1)) && fought.Contains((3, 4)) && !fought.Contains((1, 2)), "only pairs really seen side by side (more than once, in a long fight)");
+        Check(!fought.Any(p => p.a == 5 || p.b == 5), "someone seen beside nobody doesn't share it");
+        var brief = TalkMath.BattlePairs(3, new Dictionary<(int a, int b), int> { [(1, 2)] = 1 }, 2, new[] { 1, 0, 0 });
+        Check(brief.Count == 1 && brief[0] == (1, 2), "in a short fight, once side by side is enough");
+        var unseen = TalkMath.BattlePairs(4, new Dictionary<(int a, int b), int>(), 0, new[] { 1, 0, 3, 2 });
+        Check(unseen.Count == 2 && unseen.Contains((0, 1)) && unseen.Contains((2, 3)), "a fight nobody saw: each with the one they're closest to");
+        Check(TalkMath.BattlePairs(20, new Dictionary<(int a, int b), int>(), 0, Enumerable.Range(0, 20).Select(i => (i + 1) % 20).ToArray()).Count <= 20,
+            "a big fight makes at most one memory per fighter when nobody was seen");
 
         // ---------- The defs ----------
         var all = new List<(string file, XElement el)>();

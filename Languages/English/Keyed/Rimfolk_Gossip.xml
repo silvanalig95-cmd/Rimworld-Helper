@@ -74,6 +74,12 @@
   <CC_Rep_Fight_Insects>the fight with the insects on the {DATE}</CC_Rep_Fight_Insects>
   <CC_Rep_Fight_Beasts>the fight with the animals on the {DATE}</CC_Rep_Fight_Beasts>
   <CC_Rep_Fight_Other>the fight on the {DATE}</CC_Rep_Fight_Other>
+  <!-- The same fights said aloud, without the date (a bubble has little room). -->
+  <CC_Rep_FightSpoken_Raid>the raid</CC_Rep_FightSpoken_Raid>
+  <CC_Rep_FightSpoken_Mechs>the mechanoid attack</CC_Rep_FightSpoken_Mechs>
+  <CC_Rep_FightSpoken_Insects>the fight with the insects</CC_Rep_FightSpoken_Insects>
+  <CC_Rep_FightSpoken_Beasts>the fight with the animals</CC_Rep_FightSpoken_Beasts>
+  <CC_Rep_FightSpoken_Other>the fight</CC_Rep_FightSpoken_Other>
   <CC_Rep_Label_Day>{DATE}</CC_Rep_Label_Day>
   <CC_Rep_Label_Contest>the contest on the {DATE}</CC_Rep_Label_Contest>
   <CC_Rep_MadeDetail>a {QUALITY} {THING}</CC_Rep_MadeDetail>
