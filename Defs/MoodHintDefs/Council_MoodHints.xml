@@ -707,7 +707,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RF_Favoritism</defName>
     <thoughts><li>Council_Favoritism</li></thoughts>
-    <fix>They feel others get all the favors. Spread granted wishes more fairly, and grant theirs next.</fix>
+    <fix>They've watched the same colonist get a second wish granted while theirs still waits. Spread granted wishes more fairly, and grant theirs next.</fix>
     <act>Grant their wish next</act>
     <article>Council_Alm_C_Wishes</article>
     <councilTab>Wishes</councilTab>

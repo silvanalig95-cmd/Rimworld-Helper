@@ -147,12 +147,20 @@ namespace ColonyCouncil
 
     /// <summary>
     /// People of the situation's people (or of nobody's) join the colony: refugees, a family, a prospector. They walk
-    /// in from the edge of the map, as adults of the colony's era where the people's own kind won't do.
+    /// in from the edge of the map, as adults of the colony's era where the people's own kind won't do. With
+    /// <see cref="family"/> they are a real family, as the event's text says: a couple who share a name, and with three
+    /// or more their children. With <see cref="animal"/> the dog or goat the text speaks of comes with them, tame.
     /// </summary>
     public class WorldEffect_Join : WorldEffect
     {
         public IntRange count = new IntRange(1, 1);
         public FloatRange ages = new FloatRange(18f, 50f);
+        /// <summary>A family: at least two, a couple sharing a name, any more their children.</summary>
+        public bool family;
+        /// <summary>An animal that comes with them: "dog", "goat", or a PawnKindDef's defName.</summary>
+        public string animal;
+
+        private static readonly string[] Dogs = { "LabradorRetriever", "Husky", "YorkshireTerrier" };
 
         public override void Apply(DilemmaContext ctx)
         {
@@ -162,15 +170,19 @@ namespace ColonyCouncil
             var kind = f != null ? Arrivals.PersonKind(f) : null;
             if (kind == null || Avail.IsPreIndustrial && f.def.techLevel > TechLevel.Medieval) kind = Arrivals.JoinerKind();
             int n = count.RandomInRange;
-            Pawn first = null;
+            if (family) n = Mathf.Max(2, n);
+            Pawn first = null, second = null;
             string lastName = null;
             for (int i = 0; i < n; i++)
             {
+                bool child = family && i >= 2;
                 Pawn p;
                 try
                 {
-                    // A family that walks together shares a name.
-                    p = Arrivals.Make(kind, f, ages, null, lastName);
+                    // A family that walks together shares a name; parents old enough for the children they bring.
+                    var age = !family ? ages : child ? ChildAges() : n > 2 ? new FloatRange(32f, 45f) : new FloatRange(22f, 45f);
+                    Gender? gender = family && i == 1 && first != null ? (first.gender == Gender.Male ? Gender.Female : Gender.Male) : (Gender?)null;
+                    p = Arrivals.Make(kind, f, age, gender, lastName, child && ModsConfig.BiotechActive, first);
                 }
                 catch (System.Exception e)
                 {
@@ -178,14 +190,58 @@ namespace ColonyCouncil
                     return;
                 }
                 if (p == null) continue;
-                if (i == 0 && p.Name is NameTriple nt && Rand.Chance(0.6f)) lastName = nt.Last;
+                if (i == 0 && p.Name is NameTriple nt && (family || Rand.Chance(0.6f))) lastName = nt.Last;
                 if (!Arrivals.Join(p, map, first != null && first.Spawned ? first.Position : (IntVec3?)null))
                 {
                     Arrivals.Discard(p);
                     continue;
                 }
-                first = first ?? p;
+                if (family) Relate(p, first, second, i);
+                if (first == null) first = p;
+                else if (second == null) second = p;
                 if (ctx is SituationContext sc && sc.stranger == null) sc.stranger = p;
+            }
+            if (first != null && !animal.NullOrEmpty()) Bring(first, map);
+        }
+
+        /// <summary>Children young enough to be the couple's: real children with Biotech, else teenagers.</summary>
+        private static FloatRange ChildAges() => ModsConfig.BiotechActive ? new FloatRange(4f, 12f) : new FloatRange(14f, 17f);
+
+        private static void Relate(Pawn p, Pawn first, Pawn second, int i)
+        {
+            try
+            {
+                if (i == 1 && first != null) p.relations?.AddDirectRelation(PawnRelationDefOf.Spouse, first);
+                else if (i >= 2)
+                {
+                    if (first != null) p.relations?.AddDirectRelation(PawnRelationDefOf.Parent, first);
+                    if (second != null) p.relations?.AddDirectRelation(PawnRelationDefOf.Parent, second);
+                }
+            }
+            catch (System.Exception e)
+            {
+                CouncilLog.ErrorOnce("world event family", e);
+            }
+        }
+
+        /// <summary>The animal the text speaks of, tame and the colony's, beside the first of them.</summary>
+        private void Bring(Pawn first, Map map)
+        {
+            try
+            {
+                PawnKindDef kind = null;
+                if (animal == "dog") kind = Dogs.Select(d => DefDatabase<PawnKindDef>.GetNamedSilentFail(d)).FirstOrDefault(k => k != null);
+                else if (animal == "goat") kind = DefDatabase<PawnKindDef>.GetNamedSilentFail("Goat");
+                else kind = DefDatabase<PawnKindDef>.GetNamedSilentFail(animal);
+                if (kind?.RaceProps == null || !kind.RaceProps.Animal) return;
+                var a = PawnGenerator.GeneratePawn(new PawnGenerationRequest(kind, Faction.OfPlayer));
+                if (a == null) return;
+                if (a.Name == null || a.Name.Numerical) a.Name = PawnBioAndNameGenerator.GeneratePawnName(a, NameStyle.Full);
+                if (!Arrivals.Spawn(a, map, first.Spawned ? first.Position : (IntVec3?)null)) Arrivals.Discard(a);
+            }
+            catch (System.Exception e)
+            {
+                CouncilLog.ErrorOnce("world event animal", e);
             }
         }
     }

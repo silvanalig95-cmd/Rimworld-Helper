@@ -118,7 +118,7 @@
             <label>Take them in</label>
             <outcome>The family is shown a corner to sleep in and a place at the table. They mean to earn it.</outcome>
             <effects>
-              <li Class="ColonyCouncil.WorldEffect_Join"><count>1~2</count></li>
+              <li Class="ColonyCouncil.WorldEffect_Join"><count>2~3</count><family>true</family></li>
             </effects>
             <help>1</help>
             <deed>took in a family from {PLACE}</deed>
@@ -352,7 +352,7 @@
             <label>Take them in</label>
             <outcome>They are fed first, and then shown where to sleep. By the end of the week they are working like they have something to prove.</outcome>
             <effects>
-              <li Class="ColonyCouncil.WorldEffect_Join"><count>1~2</count></li>
+              <li Class="ColonyCouncil.WorldEffect_Join"><count>2~3</count><family>true</family></li>
             </effects>
             <help>1</help>
             <deed>took in hungry people from {PLACE}</deed>
@@ -804,7 +804,7 @@
             <label>Take them in</label>
             <outcome>The family gets dry clothes, a hot meal and a place to sleep. The goat gets the pen.</outcome>
             <effects>
-              <li Class="ColonyCouncil.WorldEffect_Join"><count>1~2</count></li>
+              <li Class="ColonyCouncil.WorldEffect_Join"><count>2~3</count><family>true</family><animal>goat</animal></li>
             </effects>
             <help>1</help>
             <deed>took in a family flooded out of {PLACE}</deed>

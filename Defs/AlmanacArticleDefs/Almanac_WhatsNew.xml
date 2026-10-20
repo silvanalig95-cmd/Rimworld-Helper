@@ -31,6 +31,16 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.9.1</version>
+        <date>22 October 2026, later</date>
+        <title>Families that really come</title>
+        <points>
+          <li>World events that bring a family now bring one: a couple who share a name, sometimes with a child, and the dog or goat the text speaks of, tame and the colony's. Before, "the family" could be one person, and the dog never came. "The exiles" are always more than one, and no line assumes the colony already has a dog.</li>
+          <li>"The favorite" only comes when the same colonist has had a second wish granted since the other's own last one, within 30 days, while the other's request still waits. One wish granted is just good news.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.9.0</version>
         <date>22 October 2026</date>
         <title>What matters, on screen</title>

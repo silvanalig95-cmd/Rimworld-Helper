@@ -588,7 +588,7 @@
             <label>Take them in</label>
             <outcome>The exiles are given beds and a place at the table. {FACTION} will know by the end of the week.</outcome>
             <effects>
-              <li Class="ColonyCouncil.WorldEffect_Join"><count>1~2</count></li>
+              <li Class="ColonyCouncil.WorldEffect_Join"><count>2~3</count></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-6</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>tookSides</kind><about>none</about></li>
             </effects>

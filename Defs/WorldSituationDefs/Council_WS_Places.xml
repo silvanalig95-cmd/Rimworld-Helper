@@ -162,7 +162,7 @@
             <label>Take them in</label>
             <outcome>The family unloads the handcart. The dog has already found the warmest spot.</outcome>
             <effects>
-              <li Class="ColonyCouncil.WorldEffect_Join"><count>1~2</count></li>
+              <li Class="ColonyCouncil.WorldEffect_Join"><count>2~3</count><family>true</family><animal>dog</animal></li>
             </effects>
             <help>1</help>
             <deed>took in a family from {PLACE}</deed>

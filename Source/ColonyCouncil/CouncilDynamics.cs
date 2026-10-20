@@ -409,6 +409,19 @@ namespace ColonyCouncil
             yield return who.mindState.inspirationHandler.GetRandomAvailableInspirationDef();
         }
 
+        /// <summary>
+        /// <paramref name="who"/> has had two or more wishes granted (this one counts) since <paramref name="other"/>'s own
+        /// last one, within the 30 days the council remembers grants for: the pattern that makes someone "the favorite".
+        /// </summary>
+        private bool Favoured(Pawn who, Pawn other)
+        {
+            var mine = standings.For(who, false)?.recentGrants;
+            if (mine == null || mine.Count < 2) return false;
+            var theirs = standings.For(other, false)?.recentGrants;
+            int since = theirs != null && theirs.Count > 0 ? theirs.Max() : int.MinValue;
+            return mine.Count(t => t > since) >= 2;
+        }
+
         private void GrantRipples(Wish w)
         {
             using var _cause = Causes.Push(WishCause(w, "CC_Cause_WishGranted"));
@@ -439,8 +452,10 @@ namespace ColonyCouncil
                     else if (opinion >= 30) chance *= 0.25f;
                     if (Rand.Chance(Mathf.Clamp01(chance * pen)))
                     {
-                        // Feeling passed over needs a request of their own still waiting; the jealous or greedy without
-                        // one ask for the same instead, and anyone else just hears the news.
+                        // Feeling passed over needs a request of their own still waiting, and a pattern: this is at
+                        // least the second wish granted to the same person since their own last one (in the last 30
+                        // days). One wish granted is just good news. The jealous or greedy without a request of their
+                        // own ask for the same instead, and anyone else just hears the news.
                         if (own == null)
                         {
                             if ((jealous || greedy) && envious == null && w.def.meToo)
@@ -449,7 +464,7 @@ namespace ColonyCouncil
                                 continue;
                             }
                         }
-                        else
+                        else if (Favoured(who, p))
                         {
                             GiveThought(p, CouncilDefOf.Council_Favoritism, who, pen);
                             if (waitedLonger)

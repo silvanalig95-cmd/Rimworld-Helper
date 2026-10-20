@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Families that really come
+
+*22 October 2026, later, version 0.9.1*
+
+- World events that bring a family now bring one: a couple who share a name, sometimes with a child, and the dog or goat the text speaks of, tame and the colony's. Before, "the family" could be one person, and the dog never came. "The exiles" are always more than one, and no line assumes the colony already has a dog.
+- "The favorite" only comes when the same colonist has had a second wish granted since the other's own last one, within 30 days, while the other's request still waits. One wish granted is just good news.
+
 ## What matters, on screen
 
 *22 October 2026, version 0.9.0*

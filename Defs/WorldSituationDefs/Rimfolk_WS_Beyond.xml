@@ -103,9 +103,9 @@
         <options>
           <li>
             <label>Take them in</label>
-            <outcome>The family is given a corner and a place at the table. The youngest has already found the colony's dog.</outcome>
+            <outcome>The family is given a corner and a place at the table. The youngest is asleep before supper is over.</outcome>
             <effects>
-              <li Class="ColonyCouncil.WorldEffect_Join"><count>1~2</count></li>
+              <li Class="ColonyCouncil.WorldEffect_Join"><count>2~3</count><family>true</family></li>
             </effects>
             <help>1</help>
             <deed>took in a family burned out of {PLACE}</deed>
