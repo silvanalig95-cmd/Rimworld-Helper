@@ -189,7 +189,7 @@ namespace ColonyCouncil
         {
             if (!Eligible(a) || !Eligible(b) || !Together.Can(a, b)) return null;
             var tr = TalkTracker.Instance;
-            if (tr == null || !tr.MayStart(a, b, now)) return null;
+            if (tr == null || !tr.MayStart(a, b, now) || !SocialPace.Ready(a, b)) return null;
             var scene = TalkScene.Of(a.Map);
             if (scene == null) return null;
             var va = Persona.Values(a);
@@ -360,6 +360,7 @@ namespace ColonyCouncil
             Effects(c, tie);
             if (sent != null && packs != null && !packs.Contains(sent)) packs.Add(sent);
             tr.Started(a, b, c.topic?.shortHash ?? 0, now);
+            SocialPace.Started(a);
             cacheTick = -1;
             if (c.lines.Count > 0) tr.exchanges.Add(a, b, c.lines, now, FirstGap, LineGap);
         }

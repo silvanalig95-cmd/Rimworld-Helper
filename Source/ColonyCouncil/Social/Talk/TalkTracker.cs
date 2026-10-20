@@ -95,6 +95,7 @@ namespace ColonyCouncil
             TalkScene.Reset();
             TalkHooks.Reset();
             Talk.Reset();
+            SocialPace.Reset();
         }
 
         public override void GameComponentTick()
