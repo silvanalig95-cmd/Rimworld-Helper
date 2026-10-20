@@ -35,7 +35,7 @@ The talk shows over their heads as two to four lines, the two taking turns, a fe
           <li>what they went through together (see "shared memories and in-jokes"), and whether one of them is low;</li>
           <li>what they talked about lately: the same topic between the same two is much rarer for two days.</li>
         </points>
-        <after>A colonist who starts a talk waits four hours before starting another, and the same two talk at most every ten hours. A topic only comes up when it means something: no prisoners, no talk of prisoners; no children, little talk of them.</after>
+        <after>A colonist who starts a talk waits four hours before starting another, and the same two talk at most every ten hours. On top of that, someone who has just started any of Rimfolk's exchanges (a moment, a talk, a story passed on) waits an hour before starting another, and nobody starts one with someone still in the middle of a talk. A topic only comes up when it means something: no prisoners, no talk of prisoners; no children, little talk of them.</after>
       </li>
       <li>
         <heading>How it goes</heading>
@@ -60,7 +60,7 @@ The talk shows over their heads as two to four lines, the two taking turns, a fe
       </li>
     </sections>
     <keywords><li>conversation</li><li>talk</li><li>view</li><li>stance</li><li>opinion</li><li>argument</li><li>debate</li><li>persuasion</li><li>teasing</li><li>comfort</li></keywords>
-    <seeAlso><li>Council_Alm_C_SharedMemories</li><li>Council_Alm_C_Character</li><li>Council_Alm_C_Social</li></seeAlso>
+    <seeAlso><li>Council_Alm_C_SocialLife</li><li>Council_Alm_C_SharedMemories</li><li>Council_Alm_C_Character</li><li>Rimfolk_Alm_C_Gossip</li><li>Council_Alm_C_Groups</li><li>Council_Alm_C_Social</li></seeAlso>
   </ColonyCouncil.AlmanacArticleDef>
 
   <ColonyCouncil.AlmanacArticleDef>
@@ -70,13 +70,13 @@ The talk shows over their heads as two to four lines, the two taking turns, a fe
     <order>9</order>
     <summary>What two colonists went through together, how they bring it up, and the jokes only they get.</summary>
     <tip>A colonist's shared memories are on their character page. Hover one to see when it happened and how often it has come up.</tip>
-    <description>Two colonists remember what they went through together, and it comes back in their conversations: "Remember the fight with the Iron Hand?", "I keep thinking about Mara", "Two words: the stew." Each pair keeps its eight weightiest memories; most fade over a few months, some stay for many, and a memory that just came up is much less likely to come up again for a few days.</description>
+    <description>Two colonists remember what they went through together, and it comes back in their conversations: "Remember the raid, you right there beside me?", "I keep thinking about Mara", "Two words: the stew." Each pair keeps its eight weightiest memories, no more than three of one kind (so a season of raids can't push out a funeral or an in-joke), and the colony its 600 weightiest; most fade over a few months, some stay for many, and a memory that just came up is much less likely to come up again for a few days.</description>
     <sections>
       <li>
         <heading>What they remember</heading>
         <table>
           <li>What happened | What they remember | Fades in</li>
-          <li>A fight on a home map | Those who fought side by side (each with the five they're closest to) | half in 120 days</li>
+          <li>A fight on a home map | Those seen side by side in it (close, and in sight of each other), each with the three they stood beside longest; if nobody was seen, each with the one they're closest to. One memory a pair a day | half in 120 days</li>
           <li>Tended while down | The doctor and the one they patched up | half in 150 days</li>
           <li>A funeral (with Ideology) | Those who stood at the grave together, by the dead's name | half in 240 days</li>
           <li>A party, feast, wedding or ritual | Those who were there together | half in 60 days</li>
@@ -108,7 +108,7 @@ The talk shows over their heads as two to four lines, the two taking turns, a fe
       </li>
     </sections>
     <keywords><li>memory</li><li>shared memory</li><li>in-joke</li><li>joke</li><li>remember</li><li>funeral</li><li>battle</li><li>caravan</li><li>mishap</li></keywords>
-    <seeAlso><li>Council_Alm_C_Talk</li><li>Council_Alm_C_Character</li><li>Council_Alm_C_Social</li></seeAlso>
+    <seeAlso><li>Council_Alm_C_SocialLife</li><li>Council_Alm_C_Talk</li><li>Council_Alm_C_Marks</li><li>Council_Alm_C_Groups</li><li>Council_Alm_C_Social</li></seeAlso>
   </ColonyCouncil.AlmanacArticleDef>
 
 </Defs>

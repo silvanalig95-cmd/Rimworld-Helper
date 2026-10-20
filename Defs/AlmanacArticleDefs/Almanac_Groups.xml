@@ -62,7 +62,7 @@ A group is named for what binds most of it, picked once and kept, in the colony'
       </li>
     </sections>
     <keywords><li>group</li><li>circle</li><li>clique</li><li>cohesion</li><li>habit</li><li>norm</li><li>newcomer</li><li>outsider</li><li>rivalry</li><li>split</li><li>merge</li></keywords>
-    <seeAlso><li>Council_Alm_C_GroupRoles</li><li>Council_Alm_C_Social</li><li>Council_Alm_C_Offices</li></seeAlso>
+    <seeAlso><li>Council_Alm_C_SocialLife</li><li>Council_Alm_C_GroupRoles</li><li>Council_Alm_C_SharedMemories</li><li>Rimfolk_Alm_C_Gossip</li><li>Council_Alm_C_Social</li><li>Council_Alm_C_Offices</li></seeAlso>
   </ColonyCouncil.AlmanacArticleDef>
 
   <ColonyCouncil.AlmanacArticleDef>
@@ -72,7 +72,7 @@ A group is named for what binds most of it, picked once and kept, in the colony'
     <order>9</order>
     <summary>The parts people play in their groups (anchor, joker, peacemaker, firebrand, worrier, quiet one, newcomer), where they come from and what they do.</summary>
     <tip>Every crowd has one who talks, one who laughs and one who just turns up. Ours has two who talk.</tip>
-    <description>In each group its people settle into parts that come from their character (warm, proud, quick-tempered, a joker...) and how they behave (their friends in the group, the quarrels they have mended). A part changes slowly: only after a better one has fitted for three days running, so a role doesn't flip from day to day, and someone who already has a part keeps it against a rival who fits it only a little better. A group has one anchor, one joker and one peacemaker at most. Someone who fits no part is simply one of them. The group's card shows each person's part; their character page says it in words, and lines they say are picked for it.</description>
+    <description>In each group its people settle into parts that come from their character (warm, proud, quick-tempered, a joker...) and how they behave (their friends in the group, the quarrels they have mended). A part changes slowly: only after a better one has fitted for three days running, so a role doesn't flip from day to day, and someone who already has a part keeps it against a rival who fits it only a little better. A group has one anchor, one joker and one peacemaker at most. A part never goes against what shows of someone's character, so they come across the same in their group as in conversation: a cold colonist is never the anchor, nobody whose humour doesn't show is the joker, a joker or a hothead is never the quiet one, and a hothead never keeps the peace. Someone who fits no part is simply one of them. The group's card shows each person's part; their character page says it in words, and lines they say are picked for it.</description>
     <sections>
       <li>
         <heading>The parts</heading>
@@ -93,7 +93,7 @@ A group is named for what binds most of it, picked once and kept, in the colony'
       </li>
     </sections>
     <keywords><li>role</li><li>anchor</li><li>joker</li><li>peacemaker</li><li>firebrand</li><li>worrier</li><li>quiet</li><li>newcomer</li></keywords>
-    <seeAlso><li>Council_Alm_C_Groups</li><li>Council_Alm_C_Social</li></seeAlso>
+    <seeAlso><li>Council_Alm_C_SocialLife</li><li>Council_Alm_C_Groups</li><li>Council_Alm_C_Character</li><li>Council_Alm_C_Social</li></seeAlso>
   </ColonyCouncil.AlmanacArticleDef>
 
 </Defs>

@@ -342,6 +342,34 @@ stat part contribute nothing and the hooks return 1.
 
 ## Layer 8: Social life
 
+One feature in four parts, under one setting (`socialLife`, "Personalities and social life"): **character**
+(`Persona/`), **conversations, views and shared memories** (`Social/Talk/`), **groups** (`Social/Groups/`) and
+**reputation and gossip** (`Social/Gossip/`). Character is the root everyone reads: its sides give the tone of every
+line (`Persona.ToneOf` in `ToneUtility.ToneFor`) and the `persona:*` tags, so a colonist sounds the same in a talk, a
+story passed on and at their group's fire. The parts never call each other's internals for what they say: groups and
+names reach the lines as tags (`group:`, `grouprole:`, `rep:`), and the shared pieces sit in the foundation
+(`SharedMemories`, stances, `CharacterPage`). Rules that hold across all four:
+
+- **One happening, told once.** A fight has one name everywhere (`FightNames`: who came and the day, kept while it
+  lasts), so a mark, a shared memory and a deed name the same raid, and two raids by the same people are two
+  memories. A happening gets one journal line (`JournalTracker.WroteWithin` for lines written in the same moment,
+  `FirstOnLoss` for a death, which several memories and systems notice): a mark's line, the council's, the grief, the
+  bond lost and the group's step back for the one written first.
+- **One pace for Rimfolk's talk.** Moments (the groups' and names' moments are moments), conversations and gossip keep
+  their own waits, and on top `SocialPace`: an hour between any two of them started by the same colonist, and none
+  with someone mid-conversation. Their lines go through the talk's queue in turn (`ExchangeQueue`, gossip included).
+  Measured against the picker's rhythm (0.6 started a waking hour), a colonist is in about 5 Rimfolk-made exchanges a
+  day next to about 14 of the game's own, a quarter of all; `momentFrequency` scales every one of them.
+- **Opinion is explainable.** Each part adds its own labelled line in the Social tab, small and short: a talk's 1 to 6
+  (2-4 days), a name's -12 to +7, "one of us" +4 and "one of that lot" -5/-10, the group moments' -8 to +6 (1.5-3 days),
+  next to the bonds' own (friends up to +18, rivals down to -18). One happening reaches a pair through few of them,
+  each saying why: a rescue under fire is the game's own "rescued me", a deed that adds to a name, and the fight's
+  comradeship; the memory of it only counts again when they talk about it (a few points, for days).
+- **Roles follow character.** A group's role never goes against what shows (no cold anchor, no dour joker), and the
+  crowd's in-joke is only for two with none of their own (conversation brings up theirs).
+- **Off means off.** With the setting off nothing new is said or kept, the old circles come back at once, talks under
+  way stop, and the page shows nature alone; old saves and removed defs load (records of missing defs are dropped).
+
 ### Character: nature, marks and the character page
 A colonist's character is eight sides from -100 to 100 (`Persona/`). Nature is worked out from the game (traits through
 `PersonaNatureDef`s, the Social skill, age, a stable personal lean) and never saved; what happened to them is (lasting
@@ -454,7 +482,10 @@ What colonists talk about, the views they hold, and what they went through toget
   postfixes of its own (`Frame.CompleteConstruction`, `TendUtility.DoTend`), the talk's hour (night shifts, disasters
   lifting, gatherings ended, fires beaten out, food poisoning, a tame gone wrong from the play log; mentors and secrets
   daily) and a social event's effect (`DilemmaEffect_SharedMemory`). A mishap only becomes a joke an hour later, with
-  everyone in it up and nobody of the colony dead meanwhile.
+  everyone in it up and nobody of the colony dead meanwhile. A fight is remembered only by those seen side by side in
+  it (sampled every 250 ticks while it's on, `TalkMath.BattlePairs`: three partners each, one memory a pair a day), and a
+  pair keeps three of a kind at most, so a season of raids never pushes out a funeral, a quarrel made up or a joke. A
+  fight is said aloud without its date (`FightNames.Spoken`).
 - **The character page**: views (section 30, with what each rests on and the last talk that moved it) and shared
   memories (40).
 
@@ -1381,6 +1412,7 @@ fights pass and the worn-out episode read from it. (A downed victim after a figh
 | 139 | Health stories: one tenth of the colonists (by ID), each once an hour (with convalescence or reputation on) | per colonist in the slice: limbs lost, bed rest, setbacks |
 | 167 | The colony news: what waits goes out (as the evening's digest, around six) | the waiting news |
 | 199 | The council window's memory: the day's trust sample, the dilemmas it watches | per colonist once a day |
+| 187 | Conversations: who stands beside whom in a fight at home (only while one is on), so only they remember it together | per fighting colonist pair on that map (close, then the same room or in sight) |
 | 221 | Ailments: one tenth of the colonists (by ID), each once an hour; the slice at tick 2471 also carries the colony's part | the colony's serious illnesses counted (every colonist's hediffs, as before every hour's rolls), then per colonist in the slice: circumstances sampled, each ailment's counted causes rolled; diet and sweets on the first look of the day |
 | 233 | Defense lines watch a raid (only while hostile people or mechanoids are on a home map that has lines) | per raider: in front of or behind each line, how it got behind; colonists newly downed near a line; the raid's lessons once it's over |
 
@@ -1466,7 +1498,7 @@ on a map, in the world or in a caravan), so such a record is let go when the gam
 | Wishes | open ones only; recent wishes 20 days or 60; cooldowns dropped once over |
 | Trust | one record per colonist, the gone dropped daily; 8 log lines; grants of the last 30 days |
 | Social web | ties of the dead dropped daily, of those gone faded out; 40 lost bonds; pair tones (moment memory) forgotten after 4 quiet days or when one of the two is gone |
-| Groups | groups of 3 to 9, the dead and departed dropped daily, a group ended when fewer than two are left; 14 history lines, 10 former names and the rivalries with groups still there each; newcomers 40 days at most; 12 past groups (those the game still knows); work samples of colonists only, 6 kinds each |
+| Groups | groups of 3 to 9, the dead and departed dropped daily (and anyone the game has let go of, at saving, so no reference is saved to nobody), a group ended when fewer than two are left; 14 history lines, 10 former names and the rivalries with groups still there each; newcomers 40 days at most; 12 past groups (those the game still knows); work samples of colonists only, 6 kinds each |
 | Dreams | 80 recent dreams (a discarded dreamer kept by name only); omens until they come; dream counts of known pawns. The session-only maps (last dream, untold dream) drop the dead and whatever is too old to matter |
 | Life goals | goals of the dead and departed end daily; finished ones of the dead kept 3 years, of discarded pawns dropped; counters of known pawns; sparks 30 days |
 | Secrets | one per colonist, ended with their death; who was rolled for one: known pawns only |
@@ -1490,7 +1522,7 @@ on a map, in the world or in a caravan), so such a record is let go when the gam
 | World situations | 2 running; 40 past |
 | Story chains, missions | chains 120 days after they end; missions 2 days |
 | Faction memory | 12 deeds per people (the settled and the faintest make way); a deed is dropped once it fades below 1, and with its people when they're gone |
-| Views and shared memories | views with the person's record (`PawnPersona.stances`), a view about a newcomer let go once they've been here 60 days or are gone; shared memories 8 per pair and 900 in all, the faded ones and those of people the game no longer knows dropped at saving; the talk's news 40 notes, a month at most; who talked to whom lately and talks under way not saved |
+| Views and shared memories | views with the person's record (`PawnPersona.stances`), a view about a newcomer let go once they've been here 60 days or are gone; shared memories 8 per pair, 3 of one kind, and 600 in all (the faintest go at once past 660, and at saving the faded ones and those of people the game no longer knows); a fight is remembered only by those seen side by side in it, 3 partners each; the talk's news 40 notes, a month at most; who talked to whom lately and talks under way not saved |
 | Reputation | 10 deeds per colonist and 220 in all (the faintest make way), 30 knowers a deed; a deed faded to nearly nothing is dropped, and daily those of the dead and departed and anything the dead knew; one packed number per colonist for the names told |
 | Other mods' people | best-friend pairs of known pawns, 200 at most |
 | Advisor (per map) | 60 days of wealth samples |

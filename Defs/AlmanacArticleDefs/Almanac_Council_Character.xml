@@ -53,7 +53,7 @@ Under it, "what shaped them" lists their marks with the day each happened, turni
       </li>
     </sections>
     <keywords><li>character</li><li>personality</li><li>nature</li><li>mark</li><li>warmth</li><li>nerve</li><li>temper</li><li>humour</li><li>trust</li><li>pride</li><li>openness</li><li>outlook</li></keywords>
-    <seeAlso><li>Council_Alm_C_Marks</li><li>Council_Alm_C_Social</li><li>Council_Alm_C_Secrets</li></seeAlso>
+    <seeAlso><li>Council_Alm_C_SocialLife</li><li>Council_Alm_C_Marks</li><li>Council_Alm_C_Talk</li><li>Council_Alm_C_GroupRoles</li><li>Rimfolk_Alm_C_Reputation</li><li>Council_Alm_C_Social</li></seeAlso>
   </ColonyCouncil.AlmanacArticleDef>
 
   <ColonyCouncil.AlmanacArticleDef>
@@ -145,7 +145,7 @@ Under it, "what shaped them" lists their marks with the day each happened, turni
       </li>
     </sections>
     <keywords><li>mark</li><li>character</li><li>change</li><li>turning point</li><li>grief</li><li>trauma</li><li>betrayal</li><li>pride</li></keywords>
-    <seeAlso><li>Council_Alm_C_Character</li><li>Council_Alm_C_Secrets</li><li>Council_Alm_C_Offices</li></seeAlso>
+    <seeAlso><li>Council_Alm_C_SocialLife</li><li>Council_Alm_C_Character</li><li>Council_Alm_C_SharedMemories</li><li>Rimfolk_Alm_C_Reputation</li><li>Council_Alm_C_Secrets</li><li>Council_Alm_C_Offices</li></seeAlso>
   </ColonyCouncil.AlmanacArticleDef>
 
 </Defs>
