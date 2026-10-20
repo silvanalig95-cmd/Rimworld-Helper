@@ -137,6 +137,7 @@ namespace ColonyCouncil
             ["lastCouncilPage"] = "the council window's page when it was last closed",
             ["lastAlmanacPage"] = "the Almanac's page when it was last closed",
             ["almanacFolded"] = "whether the Almanac's categories and page list are folded away, switched in the Almanac itself",
+            ["moodDetails"] = "whether the Mood tab and the Moods page show every mood as a card, switched on those pages (Compact / Details)",
             ["councilPageState"] = "the filters and sort orders the council's pages remember, set on the pages themselves",
             ["lastSeenVersion"] = "the Rimfolk version the player last saw, so the letter after an update comes once (the row \"What's new letter\")",
             ["speechText"] = "the old switch for colonists speaking, kept in step with speechShows (the row \"Colonists' speech shows as\") so older settings files load"

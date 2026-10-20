@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- The compact Mood tab and Moods page (Moods/MoodCompact.cs), and the line in the game's Needs tab. -->
+
+  <!-- The switch in the header. -->
+  <CC_MoodC_Compact>Compact</CC_MoodC_Compact>
+  <CC_MoodC_Details>Details</CC_MoodC_Details>
+  <CC_MoodC_CompactTip>One line per mood, grouped by what you can do about it, each with what helps. Hover a line for everything about it; click it for its card and buttons.</CC_MoodC_CompactTip>
+  <CC_MoodC_DetailsTip>Every mood as a card: why it's there, when it fades, where it comes from and what helps.</CC_MoodC_DetailsTip>
+
+  <!-- The groups: headings, and their short names on the chips and in the Needs tab. -->
+  <CC_MoodC_Fix>You can fix</CC_MoodC_Fix>
+  <CC_MoodC_Pass>Will pass</CC_MoodC_Pass>
+  <CC_MoodC_Title_Faith>Their faith</CC_MoodC_Title_Faith>
+  <CC_MoodC_Title_Nature>Who they are</CC_MoodC_Title_Nature>
+  <CC_MoodC_Title_Both>Faith and who they are</CC_MoodC_Title_Both>
+  <CC_MoodC_Short_Fix>You can fix</CC_MoodC_Short_Fix>
+  <CC_MoodC_Short_Pass>Will pass</CC_MoodC_Short_Pass>
+  <CC_MoodC_Short_Faith>Faith</CC_MoodC_Short_Faith>
+  <CC_MoodC_Short_Nature>Who they are</CC_MoodC_Short_Nature>
+  <CC_MoodC_Short_Both>Faith, nature</CC_MoodC_Short_Both>
+  <CC_MoodC_Short_Lifting>Lifting</CC_MoodC_Short_Lifting>
+  <!-- A chip: the group's short name, its total and, for "Will pass", when the last of them is gone. -->
+  <CC_MoodC_Chip>{0} {1}</CC_MoodC_Chip>
+  <CC_MoodC_ChipDays>{0} {1} · {2}</CC_MoodC_ChipDays>
+  <CC_MoodC_PassRight>{0} · all gone in {1}</CC_MoodC_PassRight>
+  <CC_MoodC_Tip_Fix>Moods you can do something about now, biggest first. Each line says what helps; click one for its card, with buttons to the advisor, the council page or the Almanac.\n\nClick to go there.</CC_MoodC_Tip_Fix>
+  <CC_MoodC_Tip_Pass>Memories that fade on their own, and moods that end with what caused them. Good moments balance them out in the meantime: a fine meal, recreation, time with friends.\n\nClick to go there.</CC_MoodC_Tip_Pass>
+  <CC_MoodC_Tip_Faith>Moods from their faith, their traits or genes, and moods that never fade. Honor the belief where you can, or plan around who they are.\n\nClick to go there.</CC_MoodC_Tip_Faith>
+  <CC_MoodC_Tip_Lifting>The good moods holding them up.\n\nClick to go there.</CC_MoodC_Tip_Lifting>
+
+  <!-- A row's short line when its mood has no short action of its own. -->
+  <CC_MoodC_WhileItLasts>While it lasts</CC_MoodC_WhileItLasts>
+  <CC_MoodC_Faith>Their faith</CC_MoodC_Faith>
+  <CC_MoodC_Nature>Their nature</CC_MoodC_Nature>
+  <CC_MoodC_Lasting>Lasting</CC_MoodC_Lasting>
+
+  <CC_MoodC_ClickForCard>Click for its card: why, what helps, and where to go about it.</CC_MoodC_ClickForCard>
+  <!-- The good moods, folded to one line: "+22 from 9: Fine meal +5, Bedroom +4, Recreation +3 and 6 more". -->
+  <CC_MoodC_LiftSummary>{0} from {1}: {2}</CC_MoodC_LiftSummary>
+  <CC_MoodC_AndMore>{0} and {1} more</CC_MoodC_AndMore>
+  <CC_MoodC_NothingBad>Nothing weighs on {0} right now.</CC_MoodC_NothingBad>
+  <CC_MoodC_NothingBadColony>Nothing weighs on the colony right now.</CC_MoodC_NothingBadColony>
+  <!-- The Moods page: a kind of mood and how many colonists have it. -->
+  <CC_MoodC_ColonyLabel>{0} · {1} colonists</CC_MoodC_ColonyLabel>
+  <CC_MoodC_ColonyLabelOne>{0} · 1 colonist</CC_MoodC_ColonyLabelOne>
+
+  <!-- The line at the top of the game's Needs tab mood list. -->
+  <CC_MoodC_NeedsTip>Rimfolk sorts {0}'s moods by what you can do about them: what you can fix now, what will pass on its own, what comes from faith or who they are, and what lifts them.\n\nClick to open the Mood tab, with what helps for each.</CC_MoodC_NeedsTip>
+
+</LanguageData>

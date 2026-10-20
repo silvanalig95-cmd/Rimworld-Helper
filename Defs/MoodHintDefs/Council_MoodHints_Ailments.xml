@@ -11,6 +11,7 @@
       <li>Council_Ail_LingeringCough_Mood</li>
     </thoughts>
     <fix>Bed rest, warmth and time. A cold passes in about a week and a chest cold in one or two. Keep the old and the frail warm and fed, so it doesn't turn into pneumonia.</fix>
+    <act>Keep them warm and resting</act>
     <article>Council_Alm_4_25_Ailments</article>
   </ColonyCouncil.MoodHintDef>
 
@@ -18,6 +19,7 @@
     <defName>Council_Mood_RF_AilStomachBug</defName>
     <thoughts><li>Council_Ail_StomachBug_Mood</li></thoughts>
     <fix>Rest and time; it's over in two or three days. Tending helps a little.</fix>
+    <act>Let them rest</act>
     <article>Council_Alm_4_25_Ailments</article>
   </ColonyCouncil.MoodHintDef>
 
@@ -28,6 +30,7 @@
       <li>Council_Ail_Pinkeye_Mood</li>
     </thoughts>
     <fix>Have a doctor tend it; industrial medicine works best on both. Indoor work keeps hay fever down while the plants are in flower.</fix>
+    <act>Have a doctor tend it</act>
     <article>Council_Alm_4_25_Ailments</article>
   </ColonyCouncil.MoodHintDef>
 
@@ -35,6 +38,7 @@
     <defName>Council_Mood_RF_AilDreamfever</defName>
     <thoughts><li>Council_Ail_Dreamfever_Mood</li></thoughts>
     <fix>Rest and quiet. It passes in under a week.</fix>
+    <act>Let them rest in quiet</act>
     <article>Council_Alm_4_25_Ailments</article>
   </ColonyCouncil.MoodHintDef>
 
@@ -46,6 +50,7 @@
       <li>Council_Ail_SoreHands_Mood</li>
     </thoughts>
     <fix>A day or two in bed at the start (or other work, for sore hands), then light work until it heals. Tending speeds it along.</fix>
+    <act>Bed rest, then light work</act>
     <article>Council_Alm_4_25_Ailments</article>
   </ColonyCouncil.MoodHintDef>
 
@@ -58,6 +63,8 @@
       <li>Council_Ail_Sunburn_Mood</li>
     </thoughts>
     <fix>It heals in a few days. A proper bed prevents a stiff neck, warm clothes chilblains, and a hat sunburn.</fix>
+    <act>Heals in a few days</act>
+    <actionable>false</actionable>
     <article>Council_Alm_4_25_Ailments</article>
   </ColonyCouncil.MoodHintDef>
 
@@ -70,6 +77,7 @@
       <li>Council_Ail_AshLung_Mood</li>
     </thoughts>
     <fix>Better rooms: move a wood fire out of a small room, light the bench, and keep bedrooms clean, dry and roofed. Clean air clears the coughs; tending eases rimrot and ash lung.</fix>
+    <act>Fix their rooms' air and light</act>
     <article>Council_Alm_4_25_Ailments</article>
   </ColonyCouncil.MoodHintDef>
 
@@ -77,6 +85,7 @@
     <defName>Council_Mood_RF_AilToothache</defName>
     <thoughts><li>Council_Ail_Toothache_Mood</li></thoughts>
     <fix>One treatment from a doctor settles it within a day or two. Fewer sweets keep it from coming back.</fix>
+    <act>Have a doctor treat it</act>
     <article>Council_Alm_4_25_Ailments</article>
   </ColonyCouncil.MoodHintDef>
 
@@ -84,6 +93,7 @@
     <defName>Council_Mood_RF_AilConvalescent</defName>
     <thoughts><li>Council_Ail_Convalescent_Mood</li></thoughts>
     <fix>Rest, food and time. Time in bed shortens it.</fix>
+    <act>Let them rest in bed</act>
     <article>Council_Alm_4_25_Ailments</article>
   </ColonyCouncil.MoodHintDef>
 
@@ -102,6 +112,7 @@
       <li>Council_Ail_SwampFever_Mood</li>
     </thoughts>
     <fix>Keep the patient in bed and tended as often as possible, with the best medicine the colony has. The illness's description says what helps most; for tuberculosis, every day without gaps, and for cholera, someone to keep them drinking.</fix>
+    <act>Keep them in bed and tended</act>
     <article>Council_Alm_4_25_Ailments</article>
   </ColonyCouncil.MoodHintDef>
 
@@ -109,6 +120,7 @@
     <defName>Council_Mood_RF_AilScurvy</defName>
     <thoughts><li>Council_Ail_Scurvy_Mood</li></thoughts>
     <fix>Fruit or vegetables, raw or cooked into meals. Nothing else cures it, and it clears within about 10 days of eating them again.</fix>
+    <act>Feed them fruit or vegetables</act>
     <article>Council_Alm_4_25_Ailments</article>
   </ColonyCouncil.MoodHintDef>
 
@@ -120,6 +132,8 @@
       <li>Council_Ail_Survived</li>
     </thoughts>
     <fix>It passes in two days. Good medicine on the shelf and a second doctor make a hard case lighter to carry.</fix>
+    <act>Passes in two days</act>
+    <actionable>false</actionable>
     <keep>It comes from seeing someone through a serious illness.</keep>
     <article>Council_Alm_4_25_Ailments</article>
   </ColonyCouncil.MoodHintDef>
@@ -128,6 +142,7 @@
     <defName>Council_Mood_RF_AilAppendicitis</defName>
     <thoughts><li>Council_Ail_Appendicitis_Mood</li></thoughts>
     <fix>Have a doctor do the "remove appendix" operation (two medicine). Until then, tend the patient as often as possible.</fix>
+    <act>Have the appendix removed</act>
     <article>Council_Alm_4_25_Ailments</article>
   </ColonyCouncil.MoodHintDef>
 
@@ -135,6 +150,7 @@
     <defName>Council_Mood_RF_AilRabies</defName>
     <thoughts><li>Council_Ail_Rabies_Mood</li></thoughts>
     <fix>Treat the bite every day, without a gap, until it's gone: treatment only works before the fever comes. Industrial medicine or better works fastest.</fix>
+    <act>Treat the bite every day</act>
     <article>Council_Alm_4_25_Ailments</article>
   </ColonyCouncil.MoodHintDef>
 
@@ -146,6 +162,7 @@
       <li>Council_Ail_NervePain_Mood</li>
     </thoughts>
     <fix>Neither can kill. Tending eases the pain and speeds it along; industrial medicine works best. A kidney stone passes within a week, shingles in two or three.</fix>
+    <act>Tend it to ease the pain</act>
     <article>Council_Alm_4_25_Ailments</article>
   </ColonyCouncil.MoodHintDef>
 
@@ -156,6 +173,7 @@
       <li>Council_Ail_Migraine_Mood</li>
     </thoughts>
     <fix>A dark, quiet room and a regular bedtime. Fewer late nights, regular meals and less to worry about keep them away; a doctor can help with either.</fix>
+    <act>Give them a dark, quiet room</act>
     <article>Council_Alm_4_25_Ailments</article>
   </ColonyCouncil.MoodHintDef>
 
@@ -169,6 +187,8 @@
       <li>Council_Ail_Splinter_Mood</li>
     </thoughts>
     <fix>They pass within hours. A doctor picks out a splinter in one go and eases travel sickness; smaller helpings stop heartburn.</fix>
+    <act>Passes within hours</act>
+    <actionable>false</actionable>
     <article>Council_Alm_4_25_Ailments</article>
   </ColonyCouncil.MoodHintDef>
 
@@ -183,6 +203,7 @@
       <li>Council_Ail_Frostnip_Mood</li>
     </thoughts>
     <fix>They heal in days, and a doctor's salve eases most of them. Long sleeves and nets in swamps and jungles, gloves in the fields, cooler bedrooms in the heat, dry socks, and mittens in the bitter cold prevent them.</fix>
+    <act>Have a doctor apply salve</act>
     <article>Council_Alm_4_25_Ailments</article>
   </ColonyCouncil.MoodHintDef>
 
@@ -190,6 +211,7 @@
     <defName>Council_Mood_RF_AilLice</defName>
     <thoughts><li>Council_Ail_Lice_Mood</li></thoughts>
     <fix>Have a doctor treat them, then clean the room they sleep in: lice spread in dirty rooms, and they carry typhus.</fix>
+    <act>Treat them, then clean their room</act>
     <article>Council_Alm_4_25_Ailments</article>
   </ColonyCouncil.MoodHintDef>
 
@@ -200,6 +222,7 @@
       <li>Council_Ail_PlagueSwellings_Mood</li>
     </thoughts>
     <fix>What the flu or the plague left behind. Warm drinks and a warm room at night for the cough, clean dressings and rest for the swellings; a doctor's tending speeds both a little. They pass in one to three weeks.</fix>
+    <act>Keep them warm and rested</act>
     <article>Council_Alm_4_25_Ailments</article>
   </ColonyCouncil.MoodHintDef>
 
@@ -210,6 +233,7 @@
       <li>Council_Ail_BurnItch_Mood</li>
     </thoughts>
     <fix>A healed break or burn settling. Walking on the leg (not bed rest) and a doctor's strapping shorten a limp; a salve calms an itching burn. Both pass in a week or two.</fix>
+    <act>Strap the limp, salve the burn</act>
     <article>Council_Alm_4_25_Ailments</article>
   </ColonyCouncil.MoodHintDef>
 
@@ -220,6 +244,8 @@
       <li>Council_Ail_Unease_Mood</li>
     </thoughts>
     <fix>The fight or the horror coming back at night. Company in the evening, an ordinary day's work and a few nights pass it; it can't be tended. Strong walls and fewer fights at the door mean fewer bad nights.</fix>
+    <act>Company in the evening helps</act>
+    <actionable>false</actionable>
     <article>Council_Alm_4_25_Ailments</article>
   </ColonyCouncil.MoodHintDef>
 
@@ -232,6 +258,7 @@
       <li>Council_Ail_OrbitSick_Mood</li>
     </thoughts>
     <fix>The place itself. Gas masks on polluted ground (and cleaning it up), goggles or a full helmet on bright snow, high boots in the swamp; in orbit, plain food and regular hours while the body settles. All pass in hours to a few days, and a doctor's tending helps.</fix>
+    <act>Give them the right gear</act>
     <article>Council_Alm_4_25_Ailments</article>
   </ColonyCouncil.MoodHintDef>
 

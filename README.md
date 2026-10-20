@@ -1738,17 +1738,33 @@ switch in the settings.
 
 ## Mood tab and Moods page: what to do about it
 Select a colonist and open their **Mood** tab: every mood weighing on them or lifting them, with its size, why it's
-there, when it fades, which mod it comes from, and **what you can do about it** ("Build a table with chairs near
-where they eat"). The mood bar shows where they are, where they're heading and the lines where breaks begin.
-The council window's **Moods** page (Colony section) adds it up for the whole colony: what weighs on everyone,
-who feels it, who is closest to breaking, and how much comes from the base game, Rimfolk and each of your mods.
-Buttons lead straight to the advisor's matching warning, the council page that deals with it, or an Almanac page.
-Every "Go to" button leads to a real page, and to the one its hint names (dilemmas and traditions to Dilemmas, names
-to the roster, strangers and world events to World, a missed gathering to This week); the game checks this on load.
-Hints cover the base game, the DLCs and Rimfolk (172 groups of them, down to the calendar's days, convalescence and
-personal stories); moods from other mods get general advice and their mod's name.
-The game's own **Needs** tab gets the same hints: hover a mood and its usual tooltip ends with which mod it comes
-from and what to do about it (a setting turns this off).
+there, when it fades, which mod it comes from, and **what you can do about it**. The mood bar shows where they are,
+where they're heading and the lines where breaks begin.
+
+The tab opens **compact**, sorted by what you can do. Chips under the bar give each group's total ("You can fix -15",
+"Will pass -11 · 2 days", "Faith -4", "Lifting +22"); click one to jump to its group.
+- **You can fix**: moods you can do something about now, biggest first, each with a short action in gold ("Build a
+  dining table", "Vary the meals", "Light where they work and walk").
+- **Will pass**: memories fading on their own, with when each is gone, and when the last of them is.
+- **Faith and who they are**: moods from their beliefs, their traits or genes, and moods that never fade.
+- **Lifting**: the good moods, folded to one line ("+22 from 9: Fine meal +5, ...") until you click it.
+
+Each mood is one line with a faint bar for its size. Hover it for everything its card says (the game's description,
+why, when it fades, what helps); click it to open the card in place, with buttons to the advisor's matching warning,
+the council page that deals with it, or an Almanac page. The heart section (strain, feelings, the heart's needs)
+comes after the moods, folded. **Details** in the tab's header brings back every mood as a card; the choice is kept.
+
+The council window's **Moods** page (Colony section) adds it up for the whole colony, grouped the same way: what
+weighs on everyone, who feels it, who is closest to breaking, and how much comes from the base game, Rimfolk and each
+of your mods. Every "Go to" button leads to a real page, and to the one its hint names (dilemmas and traditions to
+Dilemmas, names to the roster, strangers and world events to World, a missed gathering to This week); the game checks
+this on load. Hints cover the base game, the DLCs and Rimfolk (202 groups of them, down to the calendar's days,
+convalescence and personal stories), and every one with a fix has its short action; moods from other mods are sorted
+by kind ("While it lasts", "Fades in 2 days", "Their faith", "Lasting") and get general advice and their mod's name.
+
+The game's own **Needs** tab gets a line above its mood list with the same totals ("You can fix -15 · Will pass -11
+· Faith -4 · Lifting +22"; click it to open the Mood tab), and hovering a mood there ends its usual tooltip with
+which mod it comes from and what to do about it (a setting turns both off).
 
 ## Feelings and strain
 Mood says how a colonist feels today. **Strain** says how worn down they are, and a fine meal or a nice room can't buy

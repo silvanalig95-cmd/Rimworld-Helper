@@ -10,6 +10,7 @@
     <defName>Council_Mood_DBH_Clean</defName>
     <thoughts><li>HygieneLevel</li></thoughts>
     <fix>They need to wash: somewhere to do it (a water tub, bathtub or shower) with water in it. Keep the water tubs filled and the baths supplied.</fix>
+    <act>Give them somewhere to wash</act>
     <keep>Keep the water coming and the baths free, and they'll stay clean.</keep>
     <signal>Council_Adv_Washing</signal>
   </ColonyCouncil.MoodHintDef>
@@ -18,6 +19,7 @@
     <defName>Council_Mood_DBH_Toilet</defName>
     <thoughts><li>BowelLevel</li><li>openDefecation</li><li>SoiledSelf</li></thoughts>
     <fix>There was no toilet they could reach in time. Build enough latrines or toilets, close to where people sleep and work.</fix>
+    <act>Build toilets close by</act>
     <signal>Council_Adv_Toilets</signal>
   </ColonyCouncil.MoodHintDef>
 
@@ -25,18 +27,21 @@
     <defName>Council_Mood_DBH_Privacy</defName>
     <thoughts><li>ToiletPrivacy</li><li>WashPrivacy</li></thoughts>
     <fix>Someone saw them on the toilet or washing. Give toilets and baths rooms of their own, or put stall doors between them.</fix>
+    <act>Give toilets and baths privacy</act>
   </ColonyCouncil.MoodHintDef>
 
   <ColonyCouncil.MoodHintDef MayRequire="dubwise.dubsbadhygiene">
     <defName>Council_Mood_DBH_ColdWater</defName>
     <thoughts><li>ColdWater</li></thoughts>
     <fix>There was no hot water. A campfire next to a bathtub heats it; with the Heating research, a log boiler and a hot water tank heat the pipes.</fix>
+    <act>Heat the bath water</act>
   </ColonyCouncil.MoodHintDef>
 
   <ColonyCouncil.MoodHintDef MayRequire="dubwise.dubsbadhygiene">
     <defName>Council_Mood_DBH_DirtyWater</defName>
     <thoughts><li>DrankDirtyWater</li><li>DrankUrine</li></thoughts>
     <fix>They had nothing clean to drink. Keep clean water within reach: a well away from sewage and latrines, and water tubs kept full.</fix>
+    <act>Keep clean water in reach</act>
     <signal>Council_Adv_WaterSickness</signal>
   </ColonyCouncil.MoodHintDef>
 
@@ -44,6 +49,7 @@
     <defName>Council_Mood_DBH_Bathroom</defName>
     <thoughts><li>UsedPrivateBathroom</li></thoughts>
     <fix>Their bathroom is a grim place. It is rated like a bedroom: clean it, lay a floor and give it something nice to look at.</fix>
+    <act>Clean and improve their bathroom</act>
     <keep>Their bathroom impresses them. Keep it clean.</keep>
   </ColonyCouncil.MoodHintDef>
 

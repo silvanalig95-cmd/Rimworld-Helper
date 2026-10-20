@@ -223,6 +223,8 @@ namespace ColonyCouncil
         /// <summary>How large the Almanac's pages are written (its "Aa" buttons), and whether its lists are folded away.</summary>
         public AlmanacTextSize almanacTextSize = AlmanacTextSize.Normal;
         public bool almanacFolded = false;
+        /// <summary>The Mood tab and the Moods page show every mood as a card ("Details") rather than one line each, switched on the pages themselves.</summary>
+        public bool moodDetails = false;
         /// <summary>Where the council window opens: This week (UI/WeekPanel.cs), or the page last looked at.</summary>
         public CouncilOpensOn councilOpensOn = CouncilOpensOn.LastPage;
         /// <summary>The filters and sort orders the council's pages remember, as "page.key=value" (UI/PageMemory.cs).</summary>
@@ -365,6 +367,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref lastAlmanacPage, "lastAlmanacPage", "");
             Scribe_Values.Look(ref almanacTextSize, "almanacTextSize", AlmanacTextSize.Normal);
             Scribe_Values.Look(ref almanacFolded, "almanacFolded", false);
+            Scribe_Values.Look(ref moodDetails, "moodDetails", false);
             Scribe_Values.Look(ref councilOpensOn, "councilOpensOn", CouncilOpensOn.LastPage);
             Scribe_Collections.Look(ref councilPageState, "councilPageState", LookMode.Value);
             if (Scribe.mode == LoadSaveMode.PostLoadInit || Scribe.mode == LoadSaveMode.LoadingVars)

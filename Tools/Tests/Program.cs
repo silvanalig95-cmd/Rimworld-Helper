@@ -411,6 +411,7 @@ for (int r = 0; r < 4; r++)
         Console.WriteLine($"Checked {ColonyTraitTests.Run(root, Check)} things about what a colony grows into and the names of its years.");
         Console.WriteLine($"Checked {WhatsNewTests.Run(root, Check)} things about What's new (the page, CHANGELOG.md and the version).");
         Console.WriteLine($"Checked {LogLinesTests.Run(root, Check, out int logLines)} things about the {logLines} log lines added from separate files.");
+        Console.WriteLine($"Checked {MoodSortTests.Run(root, Check)} things about the compact Mood tab (its groups, rows and every hint's short action).");
     }
 }
 

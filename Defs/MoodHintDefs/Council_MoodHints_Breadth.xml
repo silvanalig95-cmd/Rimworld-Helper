@@ -82,6 +82,8 @@
       <li>Council_Story_SeedsChoked</li>
     </thoughts>
     <fix>A story that went badly. It fades in a few days; a friend's company or a good evening helps it pass. Next time, the World page shows what's still unfolding, and the colony's answers decide the next stage.</fix>
+    <act>Company helps it pass</act>
+    <actionable>false</actionable>
     <article>Council_Alm_C_WorldEvents</article>
     <councilTab>World</councilTab>
   </ColonyCouncil.MoodHintDef>
@@ -109,6 +111,8 @@
       <li>Council_Scen_DebtPaid</li>
     </thoughts>
     <fix>A feeling the colony started the game with. It fades over a month or more; shared work, shared meals and a common enemy bring feuding families together sooner.</fix>
+    <act>Shared work brings them round</act>
+    <actionable>false</actionable>
     <keep>Something the colony started the game with. It lasts for a season or more, and the bonds it began can grow into lasting friendships on the Bonds page.</keep>
     <article>Council_Alm_C_Scenarios</article>
     <councilTab>Bonds</councilTab>

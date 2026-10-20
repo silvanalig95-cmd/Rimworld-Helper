@@ -244,12 +244,20 @@ namespace ColonyCouncil
             return y;
         }
 
-        /// <summary>Select a colonist and open their Mood tab; if they can't be selected on the map, open their council page.</summary>
-        public static void ShowMoodTab(Pawn p)
+        /// <summary>
+        /// Select a colonist and open their Mood tab; if they can't be selected on the map, open their council page. With
+        /// <paramref name="jump"/> off (from their own Needs tab), a colonist already selected is left where the camera is.
+        /// </summary>
+        public static void ShowMoodTab(Pawn p, bool jump = true)
         {
             if (p == null) return;
             try
             {
+                if (!jump && Find.Selector.SingleSelectedThing == p)
+                {
+                    InspectPaneUtility.OpenTab(typeof(ITab_Pawn_Mood));
+                    return;
+                }
                 if (Find.MainTabsRoot.OpenTab != null && Find.MainTabsRoot.OpenTab != MainButtonDefOf.Inspect) Find.MainTabsRoot.EscapeCurrentTab(false);
                 CameraJumper.TryJumpAndSelect(p, CameraJumper.MovementMode.Pan);
                 // A carried baby or someone in a shuttle selects whoever holds them: don't show the wrong person.

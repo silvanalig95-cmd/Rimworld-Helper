@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Moods at a glance
+
+*21 October 2026, evening, version 0.8.2*
+
+- The Mood tab opens compact: moods sorted into "You can fix", "Will pass", "Faith and who they are" and "Lifting", with chips for each group's total. Each mood is one line with its size and what helps ("Build a dining table") or how long it has left. Hover for the full explanation, click for its card with the advisor, council and Almanac buttons. "Details" brings back the old cards.
+- The game's own Needs tab gets one line above the moods with the same totals, so you can see how much is in your hands and how much will pass. Click it to open the Mood tab.
+- Every mood hint now has a short action, and the council's Moods page sorts the colony's moods the same way.
+
 ## Social and Culture in the colonist's tabs
 
 *21 October 2026, later, version 0.8.1*

@@ -156,7 +156,7 @@
   <CC_SetNote_AdvisorAlert>The council's most urgent concern shows in the alerts on the right.</CC_SetNote_AdvisorAlert>
   <CC_SetNote_WishAlert>A reminder in the alerts while colonists wait on wishes.</CC_SetNote_WishAlert>
   <CC_SetNote_MoodInsight>A Mood tab on each colonist and a Moods page: every mood, why it's there, and what helps.</CC_SetNote_MoodInsight>
-  <CC_SetNote_NeedsTabHints>Hovering a mood in the game's Needs tab also says why it's there and what helps.</CC_SetNote_NeedsTabHints>
+  <CC_SetNote_NeedsTabHints>The game's Needs tab: a line sorting the moods by what you can do, and what helps in each tooltip.</CC_SetNote_NeedsTabHints>
   <CC_SetNote_SlowButtons>Half and quarter speed buttons beside the time controls.</CC_SetNote_SlowButtons>
   <CC_SetNote_SlowButtonsReset>Drag the buttons by their grip to move them; this puts them back.</CC_SetNote_SlowButtonsReset>
   <CC_SetNote_ButtonPosition>Where the Council button sits in the bottom bar; it moves at once.</CC_SetNote_ButtonPosition>

@@ -31,6 +31,17 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.8.2</version>
+        <date>21 October 2026, evening</date>
+        <title>Moods at a glance</title>
+        <points>
+          <li>The Mood tab opens compact: moods sorted into "You can fix", "Will pass", "Faith and who they are" and "Lifting", with chips for each group's total. Each mood is one line with its size and what helps ("Build a dining table") or how long it has left. Hover for the full explanation, click for its card with the advisor, council and Almanac buttons. "Details" brings back the old cards.</li>
+          <li>The game's own Needs tab gets one line above the moods with the same totals, so you can see how much is in your hands and how much will pass. Click it to open the Mood tab.</li>
+          <li>Every mood hint now has a short action, and the council's Moods page sorts the colony's moods the same way.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.8.1</version>
         <date>21 October 2026, later</date>
         <title>Social and Culture in the colonist's tabs</title>
