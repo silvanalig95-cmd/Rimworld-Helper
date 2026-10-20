@@ -42,7 +42,8 @@ def text(rel):
 
 
 def const(rel, name, fallback):
-    m = re.search(r"\bconst\s+(?:int|float)\s+" + re.escape(name) + r"\s*=\s*([\d.]+)f?\s*;", text(rel))
+    # "const int MaxRaids = 5, MaxPlans = 24;" names more than one.
+    m = re.search(r"\bconst\s+(?:int|float)\s+(?:\w+\s*=\s*[\d.]+f?\s*,\s*)*" + re.escape(name) + r"\s*=\s*([\d.]+)f?\s*[;,]", text(rel))
     return float(m.group(1)) if m else fallback
 
 
@@ -59,6 +60,15 @@ C = {
     "LuckyPast": const("Quirks/LuckyItems.cs", "MaxPast", 40),
     "TrailDays": const("UI/WeekMemory.cs", "TrailDays", 8),
     "Calendar": 12 + 8 + 6,
+    "DefenseRaids": const("Defense/DefenseLine.cs", "MaxRaids", 5),
+    "DefensePlans": const("Defense/DefenseLine.cs", "MaxPlans", 24),
+    "SpanSide": const("Defense/DefenseMath.cs", "MaxSpanSide", 14),
+    "PersonaAxes": const("Persona/PersonaMath.cs", "Axes", 8),
+    "PersonaMarks": const("Persona/PawnPersona.cs", "MaxMarks", 12),
+    "SharedMemories": const("Persona/PersonaTracker.cs", "MaxMemories", 900),
+    "TalkNotes": const("Social/Talk/TalkTracker.cs", "MaxNotes", 40),
+    "PlayResults": const("PlayOut/PlayOutTracker.cs", "MaxResults", 30),
+    "KinNoteDays": const("World/MemoryMath.cs", "NoteDays", 30),
 }
 
 # How many defs of a kind there are, counted from the mod's own XML (more with other mods' content).
@@ -147,6 +157,10 @@ MODEL = {
     "Calendar/CalendarTracker.cs:harvested": ("colonists", 1, D, "the year's harvest, per colonist; cleared yearly"),
     "Calendar/CalendarTracker.cs:restHours": ("colonists", 1, 120, "days taken off by hand: only the player's clicks"),
     "Calendar/CalendarTracker.cs:forgotten": ("fixed", 10, 40, "days put away by hand: only the player's clicks"),
+    "Calendar/CalendarWatch.cs:awaySince": ("colonists", 0.5, D, "the colony's people away now; the dead and those no longer ours dropped"),
+    "Calendar/CalendarWatch.cs:huntKills": ("colonists", 1, D, "one per colonist, those no longer ours dropped daily"),
+    "Calendar/CalendarWatch.cs:knownCrops": ("fixed", 40, 40, "one per crop the colony has grown (crop defs)"),
+    "Calendar/CalendarWatch.cs:pendingCrops": ("fixed", 5, D, "new crops until their first harvest (crop defs)"),
     # Dreams
     "Dreams/Dreams.cs:recent": ("cap", (80, 3), 250, "80 recent dreams"),
     "Dreams/Dreams.cs:omens": ("cap", (10, 0.2), 200, "until they come"),
@@ -155,6 +169,7 @@ MODEL = {
     "Offices/Offices.cs:holders": ("defs", ("OfficeDef", 1), D, "one per office"),
     "Offices/Offices.cs:elected": ("defs", ("OfficeDef", 1), 40, "one per office"),
     "Epithets/Epithets.cs:holders": ("defs", ("EpithetDef", 1), D, "one per title"),
+    "Epithets/Epithets.cs:founders": ("fixed", 6, 40, "those here in the colony's first two days (by ThingID)"),
     # Heart
     "Heart/HeartData.cs:recentBuild": ("fixed", 8, V, "per heart: one per strain source (counted under hearts)"),
     "Heart/HeartData.cs:recentRelief": ("fixed", 8, V, "per heart"),
@@ -176,6 +191,7 @@ MODEL = {
     "Camps/Camp.cs:felled": ("while", 60, 30, "trees felled during one stay"),
     "Camps/Camp.cs:felledTicks": ("while", 60, V, "with the above"),
     "Camps/Camp.cs:owned": ("while", 40, V, "the camp's goods, pruned of the gone at saving"),
+    "Camps/Camp.cs:asksMade": ("while", 15, 40, "asks made of the camp (once each, or once a day), while it stays"),
     # Wishes kept
     "Wishes/Kept.cs:things": ("fixed", 2, P, "per watch (counted under watches)"),
     "Wishes/Kept.cs:cells": ("fixed", 4, 30, "per watch"),
@@ -197,6 +213,8 @@ MODEL = {
     "UI/WeekMemory.cs:trustKeys": ("colonists", 1, 40, "a trail per colonist, forgotten after 10 days away"),
     "UI/WeekMemory.cs:trustValues": ("colonists", 1, 25 + 8 * C["TrailDays"], "8 days of trust each"),
     "Scenarios/Scenarios.cs:events": ("fixed", 3, 40, "a scenario part's events"),
+    "Scenarios/ScenarioParts.cs:days": ("fixed", 3, 150, "a scenario part's days, fixed by the scenario"),
+    "Scenarios/ScenarioParts.cs:offices": ("fixed", 4, 40, "a scenario part's seats, fixed by the scenario"),
     # Quirks
     "Quirks/Quirks.cs:quirks": ("colonists", 2, 200, "2 per colonist, the dead and discarded dropped"),
     "Quirks/Quirks.cs:luckyPast": ("cap", (C["LuckyPast"], 0.05), 150, "LuckyItems.MaxPast"),
@@ -207,6 +225,15 @@ MODEL = {
     "Persona/Marks.cs:fights": ("colonists", 8, V, "the last 8 fights won per person, a year at most"),
     "Persona/Marks.cs:addictions": ("colonists", 0.3, 40, "the addictions they have now"),
     "Persona/Marks.cs:once": ("known", 0.3, 40, "skills mastered; known pawns only, 800 at most"),
+    # A person's record (sides moved, marks, views) and what pairs went through together
+    "Persona/PersonaTracker.cs:list": ("known", 0.6, 100 + 2 * C["PersonaAxes"] * V + C["PersonaMarks"] * 0.6 * 200 + 20 * 70,
+                                       "the colony's own people the game still knows; empty records dropped at saving"),
+    "Persona/PawnPersona.cs:l": ("fixed", C["PersonaAxes"], V, "per person: one per side (counted under people)"),
+    "Persona/PawnPersona.cs:d": ("fixed", C["PersonaAxes"], V, "per person: one per side, fading (counted under people)"),
+    "Persona/PawnPersona.cs:marks": ("fixed", C["PersonaMarks"], 200, "per person: PawnPersona.MaxMarks, each let go after its keeping (counted under people)"),
+    "Persona/PawnPersona.cs:stances": ("fixed", 20, 70, "per person: one per topic, and per newcomer for 60 days (counted under people)"),
+    "Persona/PersonaTracker.cs:memories": ("cap", (C["SharedMemories"], 5), 320, "PersonaTracker.MaxMemories, 8 per pair; faded ones and those of people the game no longer knows dropped at saving"),
+    "Social/Talk/TalkTracker.cs:notes": ("cap", (C["TalkNotes"], 4), 200, "the talk's news: TalkTracker.MaxNotes, a month at most"),
     # Traits that change (the changes made, and what each colonist is watched for)
     "Persona/TraitChanges.cs:changes": ("cap", (const("Persona/TraitChanges.cs", "MaxChanges", 200), 0.1), 1200, "known pawns only, 8 per person, 200 at most; with their story"),
     "Persona/TraitChanges.cs:absorbed": ("fixed", 8, V, "per change: how the trait moved each side (counted under changes)"),
@@ -217,6 +244,7 @@ MODEL = {
     "Persona/TraitChanges.cs:once": ("fixed", 2, 40, "the changes that come once in a colony's life"),
     # The world
     "World/FactionMemory.cs:deeds": ("fixed", 12 * 12, 200, "12 deeds per people (12 peoples), fading out"),
+    "World/FactionMemory.cs:notes": ("window", (C["KinNoteDays"], 1), 200, "who tended or freed whom: 30 days, 60 at most, dropped when the stranger dies"),
     # Reputation and gossip
     "Social/Gossip/ReputationTracker.cs:deeds": ("cap", (min(220, 10 * COLONISTS), COLONISTS * 0.3), 300, "10 per colonist, 220 in all, faded ones dropped"),
     "Social/Gossip/Deed.cs:heard": ("cap", (min(220, 10 * COLONISTS) * 10, COLONISTS * 3), 110, "who knows each deed (30 at most a deed), with its deed"),
@@ -227,6 +255,7 @@ MODEL = {
     "World/WorldSituation.cs:sufferers": ("fixed", 4, P, "per situation"),
     "World/WorldSituation.cs:held": ("fixed", 4, P, "per situation"),
     "World/WorldSituation.cs:numbers": ("fixed", 4, D, "per situation"),
+    "World/WorldSituation.cs:followUps": ("fixed", 2, 40, "per past situation: what followed from it, once per def (counted under history)"),
     "World/WorldSituations.cs:active": ("fixed", C["SituationsActive"], 1500, "2 running"),
     "World/WorldSituations.cs:history": ("cap", (40, 0.1), 250, "40 past"),
     "World/WorldSituations.cs:lastEnded": ("defs", ("WorldSituationDef", 1), D, "one per situation def"),
@@ -247,10 +276,16 @@ MODEL = {
     "PlayOut/PlayOutLord.cs:fed": ("while", COLONISTS, P, "while the gathering lasts"),
     "PlayOut/PlayOutLord.cs:abstained": ("while", 4, P, "while the gathering lasts"),
     "PlayOut/PlayOutTracker.cs:plays": ("cap", (8, 0.5), 600, "waiting ones capped, done ones dropped"),
+    "PlayOut/PlayOutTracker.cs:results": ("cap", (C["PlayResults"], 1), 120, "how the last ones went: PlayOutTracker.MaxResults"),
     "PlayOut/PlayOuts.cs:invited": ("fixed", 8, P, "per play-out (counted under plays)"),
     "PlayOut/PlayOuts.cs:spots": ("fixed", 2, 60, "per play-out"),
     "PlayOut/PlayOuts.cs:lines": ("fixed", 4, 120, "per play-out"),
     "PlayOut/PlayOuts.cs:moods": ("fixed", 4, 120, "per play-out"),
+    "PlayOut/PlayOuts.cs:named": ("fixed", 2, P, "per play-out: those the answer names (counted under plays)"),
+    "PlayOut/PlayOuts.cs:hands": ("fixed", 6, 200, "per play-out: who went (counted under plays)"),
+    "PlayOut/PlayOuts.cs:route": ("fixed", 6, 40, "per searcher: the places they look over (counted under plays)"),
+    "PlayOut/PlayOuts.cs:tasks": ("fixed", 3, 30, "per work party: its kinds of work (counted under plays)"),
+    "PlayOut/PlayOuts.cs:game": ("fixed", 3, P, "per hunt: 3 animals at most (counted under plays)"),
     # Ambitions and meetings
     "Ambitions/Ambitions.cs:baselines": ("fixed", 4, V, "per ambition's goals"),
     "Ambitions/Ambitions.cs:lastOffered": ("defs", ("AmbitionDef", 1), D, "one per ambition def"),
@@ -280,6 +315,8 @@ MODEL = {
     "Ailments/AilmentTracker.cs:bitesRolled": ("colonists", 0.2, V, "only hediffs colonists still have"),
     "Ailments/AilmentTracker.cs:doctors": ("colonists", 0.5, D, "only hediffs colonists still have"),
     "Ailments/AilmentTracker.cs:had": ("known", 3, 50, "known pawns only"),
+    "Ailments/AilmentTracker.cs:carrying": ("known", 0.1, 60, "illnesses had now that an ailment may follow; let go when over, known pawns only"),
+    "Ailments/AilmentTracker.cs:healing": ("known", 0.3, 120, "injuries an ailment may follow; let go when healed, known pawns only"),
     # Advisor, building
     "Advisor/AdvisorCore.cs:wealthHistory": ("window", (60, 1), V, "60 days of wealth"),
     "Building/CouncilPlanQueue.cs:queue": ("while", 30, 150, "blueprints waiting to be placed"),
@@ -295,6 +332,7 @@ MODEL = {
     "Decrees/Decrees.cs:active": ("fixed", 3, 150, "decrees in force (3 at most)"),
     "Decrees/Decrees.cs:readyAt": ("defs", ("DecreeDef", 1), D, "one per decree def"),
     "Decrees/Decrees.cs:requests": ("fixed", 3, 150, "one per decree at most"),
+    "Decrees/Decrees.cs:nightHours": ("colonists", 1, 150, "a curfew's night hours, per colonist while it lasts; after it only those away (the dead, the gone and the unknown let go)"),
     # Other mods
     "Integrations/ModLinks.cs:lastWater": ("colonists", 1, D, "today and yesterday only"),
     "Integrations/ModLinks.cs:lastMend": ("colonists", 1, D, "today and yesterday only"),
@@ -323,6 +361,7 @@ MODEL = {
     "Character/ColonyTraits.cs:rates": ("defs", ("ColonyTraitDef", 1), D, "one per colony trait def"),
     "Character/ColonyTraits.cs:last": ("defs", ("ColonyTraitDef", 1), D, "one per colony trait def"),
     "Character/ColonyTraits.cs:known": ("defs", ("ColonyTraitDef", 0.5), 40, "traits the colony grew into"),
+    "Character/ColonyTraits.cs:today": ("fixed", 3, D, "today's tallies, emptied each day"),
     # Strangers
     "Strangers/Encounters.cs:lastTick": ("defs", ("EncounterDef", 1), D, "one per encounter def"),
     "Strangers/Nemeses.cs:all": ("cap", (30 + 3, 0.05), 300, "30 that have ended"),
@@ -367,6 +406,7 @@ MODEL = {
     "Health/HealthTracker.cs:convalescing": ("colonists", 0.2, 40, "known pawns only"),
     "Health/HealthTracker.cs:visits": ("window", (30, 1), D, "30 days"),
     "Health/HealthTracker.cs:lastTrustLine": ("window", (20, 0.2), D, "20 days"),
+    "Health/HealthTracker.cs:worst": ("known", 0.1, D, "hard times not over yet (hunger, cold, untended illness); known pawns only"),
     # Everyday pressures
     "Pressures/Pressures.cs:meals": ("fixed", 12, 40, "per colonist: 12 meals (counted under people)"),
     "Pressures/Pressures.cs:mealTicks": ("fixed", 12, V, "per colonist"),
@@ -382,6 +422,18 @@ MODEL = {
     "Missions/Missions.cs:group": ("fixed", 4, P, "per mission"),
     "Missions/StoriesComponent.cs:chains": ("window", (120, 0.1), 500, "chains 120 days after they end"),
     "Missions/StoriesComponent.cs:missions": ("window", (2, 0.2), 500, "missions 2 days after they end"),
+    # Defense lines (per home map, gone with it)
+    "Defense/DefenseLines.cs:lines": ("fixed", 4, 300 + C["SpanSide"] * 30 + 8 * 80 + 3 * 40 + C["DefensePlans"] / 2 * 180 + C["DefenseRaids"] * 1100,
+                                      "lines the player made (only their clicks), per map; gone with the map"),
+    "Defense/DefenseLine.cs:span": ("fixed", C["SpanSide"], 30, "per line: the cells across its gap, 29 at most (counted under lines)"),
+    "Defense/DefenseLine.cs:done": ("defs", ("DefenseStepDef", 1), 80, "per line: one per step (counted under lines)"),
+    "Defense/DefenseLine.cs:skipped": ("defs", ("DefenseStepDef", 0.5), 40, "per line: steps set aside by hand, one per step (counted under lines)"),
+    "Defense/DefenseLine.cs:plans": ("fixed", C["DefensePlans"], 180, "per line: DefenseLine.MaxPlans (counted under lines)"),
+    "Defense/DefenseLine.cs:raids": ("fixed", C["DefenseRaids"], 1100, "per line: the last DefenseLine.MaxRaids raids (counted under lines)"),
+    "Defense/DefenseLine.cs:downed": ("fixed", 4, 120, "per raid: 4 at most (counted under lines)"),
+    "Defense/DefenseLine.cs:lessons": ("fixed", 3, 40, "per raid: 3 at most (counted under lines)"),
+    "Defense/DefenseLinesWatch.cs:running": ("while", 4, 600, "one per line while a raid lasts"),
+    "Defense/DefenseLinesWatch.cs:downedSeen": ("while", COLONISTS, V, "colonists downed in the raid under way, cleared when it ends"),
 }
 
 # Collections kept per something counted elsewhere (inside a record already sized above), not added to the total.
