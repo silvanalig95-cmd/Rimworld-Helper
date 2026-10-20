@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## No more freeze when the region stirs
+
+*20 October 2026, version 0.6.2*
+
+- The game no longer freezes and then crashes when a world event is chosen for the region. Looking for a spot for "a new town nearby", Rimfolk started a second search of the world map inside the first, which the game can't survive. A save that crashed this way loads and plays on.
+- "Plans gathering dust" is gone: plans marked out and not yet started never weigh on anyone. Frames left half-built for two days still do.
+- The region's first world event comes sooner, around days 20 to 35, and until one has come the World page says how rare they are instead of standing empty.
+
 ## Answers that happen before they're told
 
 *18 October 2026, version 0.6.1*

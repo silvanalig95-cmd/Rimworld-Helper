@@ -489,6 +489,29 @@ What colonists talk about, the views they hold, and what they went through toget
 - **The character page**: views (section 30, with what each rests on and the last talk that moved it) and shared
   memories (40).
 
+### Traits that change
+The game's traits can grow, appear or fade at the end of a stretch of life the player can read (`Persona/TraitChanges.cs`,
+`TraitChangeMath.cs`). Each rule is a `TraitChangeDef`: a trait, gain, loss or a step of one degree (through none, so a
+nervous colonist steadies to no nerves trait before steadfast), and what it asks for: marks (defNames, families or
+stories), sides moved from nature (lasting plus fading) and where they stand, deeds counted on separate occasions, the
+game's records, a share of time from record snapshots every ten days, calm days, skills; guards for DLC, mods and tech.
+
+- **Rare.** Checked in the council's day: when the colony has had no change for 10 days, every rule that holds for a
+  colonist rolls its chance (3 to 15% a day) and one of those that come up happens. Nobody twice in 60 days; the same
+  trait in a person waits its rule's gap (90 to 150 days). Only marks and deeds since that trait last changed count,
+  so a stretch of life earns one change. Psychopath and cannibal need an extreme history and come once per colony.
+- **Never touched.** Sexuality, the body and inborn gifts (`TraitChangeMath.Untouchable`), traits from genes, a
+  backstory or the scenario, suppressed traits, a faith role whose requirements speak of traits. The game's conflicts,
+  exclusion tags, conflicting passions, backstory and gene rules hold; nobody gains past four traits.
+- **Nothing doubles.** Nature is read from traits, so the shift a trait brings (worked out from nature before and after)
+  is taken out of the person's moves, the fading part first, then the lasting part (`TraitChangeMath.Absorb`): every
+  side stays put and the change is now held for good. A loss gives the shift back the same way.
+- **Ways in.** The daily pass (one line in `CouncilDynamics.DailySecond`), the memory hook it shares with marks (one
+  line), a postfix on `HistoryEventsManager.RecordEvent` for deeds with a doer, and the day's tales for executions.
+- **Told.** A letter (good, bad or neither by rule) with the news, what it means and what led to it with dates, a
+  journal line by tone, the chronicle, "Traits gained and lost" (page section 25) and a line in each side's tooltip
+  for what went into a trait. Setting "Traits can change", under social life.
+
 ## Real effects: answers that play out on the map
 
 A dilemma's answer, an event's answer or a calendar day used to give moods and a message and nothing else: "a victory
@@ -1384,7 +1407,7 @@ fights pass and the worn-out episode read from it. (A downed victim after a figh
 | 327 | A camp's hour (only while a camp is there) | the camp's members, trade, fees, its day's event |
 | 502 | Council's day, first half (first hour of the day only): trust, standards, decree trust and petitions, anniversaries, names, journals, offices | per colonist (their memories, for the journal) |
 | 677 | Health stories, the colony's part (with convalescence or reputation on): the cases of dangerous illness; pruning in the first hour of the day | per case (each colonist's part runs in its slice, below) |
-| 852 | Council's day, second half (first hour of the day only): the social web, social events, life goals, secrets, vendettas, quirks, legacy, the colony's ways, marks on people's characters (illness, hunger, addiction, mastery, faith, peace), the links between systems (the physician's rounds, the herdmaster, setbacks counted), the day's history sample, trust effects, bitter colonists | per pair of colonists (opinions, ties, circles), per colonist and quirk def |
+| 852 | Council's day, second half (first hour of the day only): the social web, social events, life goals, secrets, vendettas, quirks, legacy, the colony's ways, marks on people's characters (illness, hunger, addiction, mastery, faith, peace), traits that change (the watches, then at most one change), the links between systems (the physician's rounds, the herdmaster, setbacks counted), the day's history sample, trust effects, bitter colonists | per pair of colonists (opinions, ties, circles), per colonist and quirk def |
 | 917 | Links with other mods (only with one there): water and mending for strain and recovery | per colonist |
 | 1027 | Council: ambitions, personal touches, dilemmas, annals, dreams, quirks | the ambition's goals on its map; per colonist (asleep or waking; a dream weighs every dream def for the one waking) |
 | 1203 | World situations | per running situation (at most two); a new one rolls now and then |
@@ -1510,27 +1533,31 @@ on a map, in the world or in a caravan), so such a record is let go when the gam
 | Autonomy | who acted when: the last 2 days, not the dead; plans until built |
 | Rimfolk's events | raids until they come; the departed 2 years (unless asked about); grudges 2 years; memos 3 years (children's 10), used ones a day; quests already told of: those the game still keeps |
 | Everyday pressures | per colonist, the gone dropped daily; 12 meals; frames and plans while they stand |
-| Character | 5 ways; 30 recent shifts |
-| Decrees, dilemmas, offices, names, encounters, ambitions | one entry per def, office or title |
+| Character | 5 ways; 30 recent shifts; the colony's traits one per trait, today's tallies emptied each day |
+| Decrees, dilemmas, offices, names, encounters, ambitions | one entry per def, office or title; a curfew's night hours per colonist while it lasts, then only for those away (the dead, those no longer the colony's and those the game no longer knows let go); the colony's founders: those here in its first two days |
 | Heart | one per colonist, the gone dropped hourly |
-| Character marks | 12 marks per person (small ones go first, each let go after its keeping, turning points three times as long); what the marks watch: per person, the last 8 fights won (a year), their addictions and their last breakdown (5 days), known pawns only; skills mastered: known pawns, 800 at most |
-| Ailments | by pawn: last ailments 120 days, known pawns only; by hediff: only hediffs colonists still have |
-| Health stories | healers, beds, convalescence: known pawns only; losses 30 days; tends 3 days; setbacks and trust lines 20 days; visits 30 days; cases while the patient lives |
-| Calendar | at most 12 days written by the colony and 8 named by the player (traditions and the founding day stay); days about people who are gone let go; days taken off by hand grow only with the player's clicks |
+| Character marks | a person's record (sides moved, marks, views): the colony's own people the game still knows, empty records dropped at saving; 12 marks per person (small ones go first, each let go after its keeping, turning points three times as long); what the marks watch: per person, the last 8 fights won (a year), their addictions and their last breakdown (5 days), known pawns only; skills mastered: known pawns, 800 at most |
+| Traits that change | changes made: known pawns only, 8 per person, 200 in all; what each colonist is watched for: deeds counted 240 days (12 per kind), 10 snapshots of a few records, when they were last unsettled; the once-in-a-colony changes (2 keys) |
+| Ailments | by pawn: last ailments 120 days, known pawns only; by hediff: only hediffs colonists still have; illnesses and injuries an ailment may follow: until over or healed, known pawns only |
+| Health stories | healers, beds, convalescence, hard times not over yet: known pawns only; losses 30 days; tends 3 days; setbacks and trust lines 20 days; visits 30 days; cases while the patient lives |
+| Calendar | at most 12 days written by the colony and 8 named by the player (traditions and the founding day stay); days about people who are gone let go; days taken off by hand grow only with the player's clicks; who is away and each colonist's hunt: the colony's own only; crops grown: one per crop |
 | Personal stories | stories under way; 200 past; eulogies until given |
-| Camps | one camp; its lists pruned of the gone at saving |
-| World situations | 2 running; 40 past |
+| Camps | one camp; its lists (and the asks made of it) go with it, pruned of the gone at saving |
+| World situations | 2 running; 40 past, each with what followed from it (once per def) |
 | Story chains, missions | chains 120 days after they end; missions 2 days |
-| Faction memory | 12 deeds per people (the settled and the faintest make way); a deed is dropped once it fades below 1, and with its people when they're gone |
+| Answers playing out | waiting ones 10 at most, done ones dropped (their people, places, hunt and search routes with them); how the last 30 went, for the dilemmas page |
+| Defense lines | per home map, gone with it; only the lines the player makes: one mark per step done or set aside, 24 plans, the last 5 raids (4 downed and 3 lessons each); the raid under way only while it lasts |
+| Scenario parts | fixed by the scenario (its days, its seats) |
+| Faction memory | 12 deeds per people (the settled and the faintest make way); a deed is dropped once it fades below 1, and with its people when they're gone; who tended or freed whom: 60 notes, 30 days, dropped when the stranger dies |
 | Views and shared memories | views with the person's record (`PawnPersona.stances`), a view about a newcomer let go once they've been here 60 days or are gone; shared memories 8 per pair, 3 of one kind, and 600 in all (the faintest go at once past 660, and at saving the faded ones and those of people the game no longer knows); a fight is remembered only by those seen side by side in it, 3 partners each; the talk's news 40 notes, a month at most; who talked to whom lately and talks under way not saved |
 | Reputation | 10 deeds per colonist and 220 in all (the faintest make way), 30 knowers a deed; a deed faded to nearly nothing is dropped, and daily those of the dead and departed and anything the dead knew; one packed number per colonist for the names told |
 | Other mods' people | best-friend pairs of known pawns, 200 at most |
 | Advisor (per map) | 60 days of wealth samples |
 
-How big it gets: `Tools/save_estimate.py` models every saved collection (226) with its rule and plays five in-game
+How big it gets: `Tools/save_estimate.py` models every saved collection (290) with its rule and plays five in-game
 years in a colony of 20 (`docs/save-size.md`). Nothing grows without end; Rimfolk's part of a five-year save comes to
-about 1.3 MB, nearly half of it the journals. `--strict` fails on a saved collection with no model, so a new one needs
-its rule written down.
+about 2.2 MB: a fifth of it the journals, and about as much again people's records and their shared memories.
+`--strict` fails on a saved collection with no model, so a new one needs its rule written down.
 
 Pawn references: a saved reference to a pawn the game has discarded is written as nothing, so every such record was
 already dropped on the next load. The trackers above now drop or forget them while playing too, so a long session

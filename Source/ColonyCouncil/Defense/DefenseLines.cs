@@ -26,19 +26,19 @@ namespace ColonyCouncil
 
         // ---------------- Which line is shown on the map ----------------
 
-        private static readonly Dictionary<Map, int> selected = new Dictionary<Map, int>();
+        // Kept on the map's own component (not saved), so a map that's gone takes it along.
+        private int selectedId = -1;
 
         public static void Select(Map map, DefenseLine line)
         {
-            if (map == null) return;
-            if (line == null) selected.Remove(map);
-            else selected[map] = line.id;
+            var d = Of(map);
+            if (d != null) d.selectedId = line?.id ?? -1;
         }
 
         public static DefenseLine Selected(Map map)
         {
-            if (map == null || !selected.TryGetValue(map, out int id)) return null;
-            return Of(map)?.Get(id);
+            var d = Of(map);
+            return d?.Get(d.selectedId);
         }
 
         // ---------------- Making and removing ----------------

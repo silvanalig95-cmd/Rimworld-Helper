@@ -16,7 +16,7 @@
         <heading>The four parts</heading>
         <table>
           <li>Part | What it is | What it gives the others | Where you see it</li>
-          <li>Character | Eight sides (warmth, nerve, temper, humour, trust, pride, openness, outlook) from traits, the Social skill and age, moved by what happens | The voice of every line anyone says, in talk, gossip and at a group's fire; what they care to talk about and how a talk goes; the part they play in a group; how they tell a story and how far they believe one | The character page: Character, What shaped them</li>
+          <li>Character | Eight sides (warmth, nerve, temper, humour, trust, pride, openness, outlook) from traits, the Social skill and age, moved by what happens; rarely, a long stretch of life changes a trait itself | The voice of every line anyone says, in talk, gossip and at a group's fire; what they care to talk about and how a talk goes; the part they play in a group; how they tell a story and how far they believe one | The character page: Character, What shaped them, Traits gained and lost</li>
           <li>Conversations and shared memories | Two who are together talk about something real, in turns, and keep their views; what they go through together they remember, and small mishaps become in-jokes | Friendships and rivalries grow from how talks go; shared memories draw people into a group and hold it together; views turn into a group's views | Over their heads, in the social log; the character page: Views, Shared memories</li>
           <li>Groups | The hunters, the night shift, Hector's lot: groups that form from friendship, work, a fight, being alike, with roles, ways, habits, newcomers and quarrels | Members speak up for each other in gossip and vote for each other; a group's ways pull its people's character and views; "one of us" and "one of that lot" in the Social tab | People → Bonds; the character page: Groups and role</li>
           <li>Reputation and gossip | What someone did, known by those who saw it and spread in gossip, coloured by the teller; what it adds up to is their name | A name changes how others treat them (a small opinion, moments, votes, secrets, colony names); it's talked about, and a group's lines know it | Gossip over their heads; the character page: What people say about them</li>
@@ -55,7 +55,7 @@
       </li>
     </sections>
     <keywords><li>social life</li><li>personality</li><li>social</li><li>how it fits</li><li>overview</li><li>character page</li><li>talk rate</li></keywords>
-    <seeAlso><li>Council_Alm_C_Character</li><li>Council_Alm_C_Marks</li><li>Council_Alm_C_Talk</li><li>Council_Alm_C_SharedMemories</li><li>Council_Alm_C_Groups</li><li>Council_Alm_C_GroupRoles</li><li>Rimfolk_Alm_C_Gossip</li><li>Rimfolk_Alm_C_Reputation</li></seeAlso>
+    <seeAlso><li>Council_Alm_C_Character</li><li>Council_Alm_C_Marks</li><li>Council_Alm_C_TraitChanges</li><li>Council_Alm_C_Talk</li><li>Council_Alm_C_SharedMemories</li><li>Council_Alm_C_Groups</li><li>Council_Alm_C_GroupRoles</li><li>Rimfolk_Alm_C_Gossip</li><li>Rimfolk_Alm_C_Reputation</li></seeAlso>
   </ColonyCouncil.AlmanacArticleDef>
 
 </Defs>

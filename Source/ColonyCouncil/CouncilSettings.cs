@@ -77,6 +77,8 @@ namespace ColonyCouncil
         public bool socialWeb = true;
         /// <summary>Personalities shaped by what happens to people, what they went through together, the views they hold, their groups and talk.</summary>
         public bool socialLife = true;
+        /// <summary>The game's traits can grow, appear or fade with what happens to a colonist (Persona/TraitChanges.cs); needs social life.</summary>
+        public bool traitChanges = true;
         public bool socialEvents = true;
         public bool dreams = true;
         public bool aspirations = true;
@@ -256,6 +258,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref offices, "offices", true);
             Scribe_Values.Look(ref socialWeb, "socialWeb", true);
             Scribe_Values.Look(ref socialLife, "socialLife", true);
+            Scribe_Values.Look(ref traitChanges, "traitChanges", true);
             Scribe_Values.Look(ref socialEvents, "socialEvents", true);
             Scribe_Values.Look(ref dreams, "dreams", true);
             Scribe_Values.Look(ref aspirations, "aspirations", true);

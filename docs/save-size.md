@@ -7,20 +7,21 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 283; modelled: 252; growing without end: 0.
-Rimfolk's part of the save, roughly: **1,567 KB** after a year, **1,863 KB** after two, **1,924 KB** after five.
-
-Not modelled (add them to MODEL in the script): `Ailments/AilmentTracker.cs:carrying`, `Ailments/AilmentTracker.cs:healing`, `Calendar/CalendarWatch.cs:awaySince`, `Calendar/CalendarWatch.cs:huntKills`, `Calendar/CalendarWatch.cs:knownCrops`, `Calendar/CalendarWatch.cs:pendingCrops`, `Camps/Camp.cs:asksMade`, `Character/ColonyTraits.cs:today`, `Decrees/Decrees.cs:nightHours`, `Defense/DefenseLine.cs:done`, `Defense/DefenseLine.cs:downed`, `Defense/DefenseLine.cs:lessons`, `Defense/DefenseLine.cs:plans`, `Defense/DefenseLine.cs:raids`, `Defense/DefenseLine.cs:skipped`, `Defense/DefenseLine.cs:span`, `Defense/DefenseLines.cs:lines`, `Defense/DefenseLinesWatch.cs:downedSeen`, `Defense/DefenseLinesWatch.cs:running`, `Epithets/Epithets.cs:founders`, `Health/HealthTracker.cs:worst`, `PlayOut/PlayOutTracker.cs:results`, `PlayOut/PlayOuts.cs:game`, `PlayOut/PlayOuts.cs:hands`, `PlayOut/PlayOuts.cs:named`, `PlayOut/PlayOuts.cs:route`, `PlayOut/PlayOuts.cs:tasks`, `Scenarios/ScenarioParts.cs:days`, `Scenarios/ScenarioParts.cs:offices`, `World/FactionMemory.cs:notes`, `World/WorldSituation.cs:followUps`
+Saved collections found: 290; modelled: 290; growing without end: 0.
+Rimfolk's part of the save, roughly: **1,612 KB** after a year, **1,973 KB** after two, **2,085 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
 | `Journal.cs:journals` | the living's, and the 30 departed written in most lately | cap | 30 | 50 | 50 | 468.8 |
-| `Persona/PersonaTracker.cs:memories` | 8 per pair, 900 in all; faded ones and the gone dropped on save | cap | 720 | 900 | 900 | 228.5 |
 | `Social/Gossip/Deed.cs:heard` | who knows each deed (30 at most a deed), with its deed | cap | 2,000 | 2,000 | 2,000 | 214.8 |
-| `Persona/PersonaTracker.cs:list` | one record per person the colony keeps; the gone and empty records dropped on save | colonists | 24 | 24 | 24 | 110.2 |
+| `Persona/PersonaTracker.cs:memories` | PersonaTracker.MaxMemories, 8 per pair and 3 of a kind; past it by 60 the faintest go at once; faded ones and those of people the game no longer knows dropped at saving | cap | 300 | 600 | 600 | 187.5 |
+| `Persona/PersonaTracker.cs:list` | the colony's own people the game still knows; empty records dropped at saving | known | 33 | 36 | 45 | 146.8 |
 | `CouncilGameComponent.cs:chronicle` | Caps.Chronicle; the newest 200 always, milestones longest | cap | 300 | 300 | 300 | 102.5 |
+| `Persona/TraitChanges.cs:watches` | one per colonist with its deeds and ten snapshots; known pawns only | colonists | 20 | 20 | 20 | 66.4 |
 | `Social/Gossip/ReputationTracker.cs:deeds` | 10 per colonist, 220 in all, faded ones dropped | cap | 200 | 200 | 200 | 58.6 |
 | `Journal.cs:everydaySeen` | 24 days | window | 480 | 480 | 480 | 42.2 |
+| `Defense/DefenseLines.cs:lines` | lines the player made (only their clicks), per map; gone with the map | fixed | 4 | 4 | 4 | 35.7 |
+| `Persona/TraitChanges.cs:changes` | known pawns only, 8 per person, 200 at most; with their story | cap | 6 | 12 | 30 | 35.2 |
 | `World/FactionMemory.cs:deeds` | 12 deeds per people (12 peoples), fading out | fixed | 144 | 144 | 144 | 28.1 |
 | `Heart/HeartTracker.cs:hearts` | one per colonist, the gone dropped hourly | colonists | 20 | 20 | 20 | 27.3 |
 | `Aspirations/Aspirations.cs:all` | goals of the dead and departed end; finished ones of the dead kept 3 years | known | 55 | 60 | 75 | 25.6 |
@@ -49,6 +50,7 @@ Not modelled (add them to MODEL in the script): `Ailments/AilmentTracker.cs:carr
 | `Secrets/Secrets.cs:secrets` | one per colonist, ended with their death | colonists | 20 | 20 | 20 | 7.8 |
 | `Setbacks/SetbackTracker.cs:sown` | fields sown, until harvested or lost | window | 40 | 40 | 40 | 7.8 |
 | `Social/Groups/GroupTracker.cs:work` | one work log per colonist, 6 kinds each | colonists | 20 | 20 | 20 | 7.8 |
+| `Social/Talk/TalkTracker.cs:notes` | the talk's news: TalkTracker.MaxNotes, a month at most | cap | 40 | 40 | 40 | 7.8 |
 | `UI/News.cs:items` | per news letter; the game's archive keeps 200 letters | cap | 40 | 40 | 40 | 7.8 |
 | `UI/News.cs:waiting` | the evening's news, 40 at most, sent each evening | cap | 40 | 40 | 40 | 7.8 |
 | `Journal.cs:griefSeen` | cleared at 500 | cap | 30 | 60 | 150 | 7.3 |
@@ -58,13 +60,13 @@ Not modelled (add them to MODEL in the script): `Ailments/AilmentTracker.cs:carr
 | `Missions/StoriesComponent.cs:chains` | chains 120 days after they end | window | 6 | 12 | 12 | 5.9 |
 | `Secrets/Vendettas.cs:vendettas` | 40 settled, avengers dead or discarded dropped | cap | 3 | 6 | 15 | 5.9 |
 | `Standing.cs:standings` | one per colonist, the gone dropped daily | colonists | 20 | 20 | 20 | 5.9 |
+| `World/FactionMemory.cs:notes` | who tended or freed whom: 30 days, 60 at most, dropped when the stranger dies | window | 30 | 30 | 30 | 5.9 |
 | `Ambitions/Ambitions.cs:lastOffered` | one per ambition def | defs | 66 | 66 | 66 | 5.8 |
 | `Epithets/Epithets.cs:holders` | one per title | defs | 63 | 63 | 63 | 5.5 |
 | `CouncilGameComponent.cs:cooldowns` | dropped once over | window | 60 | 60 | 60 | 5.3 |
 | `Arcs/ArcTracker.cs:active` | stories under way | colonists | 10 | 10 | 10 | 4.9 |
 | `PlayOut/PlayOutTracker.cs:plays` | waiting ones capped, done ones dropped | cap | 8 | 8 | 8 | 4.7 |
 | `Social/Groups/GroupTracker.cs:past` | 12 past groups, members the game still knows | cap | 3 | 6 | 12 | 4.7 |
-| `Social/Talk/TalkTracker.cs:notes` | the news people talk about: 40 at most, a month at most | cap | 40 | 40 | 40 | 4.7 |
 | `Building/CouncilPlanQueue.cs:queue` | blueprints waiting to be placed | while | 30 | 30 | 30 | 4.4 |
 | `Character/Character.cs:recent` | 30 recent shifts | cap | 30 | 30 | 30 | 4.4 |
 | `Strangers/Nemeses.cs:all` | 30 that have ended | cap | 3 | 6 | 15 | 4.4 |
@@ -73,9 +75,12 @@ Not modelled (add them to MODEL in the script): `Ailments/AilmentTracker.cs:carr
 | `CouncilGameComponent.cs:everWished` | one per wish def | defs | 115 | 115 | 115 | 3.9 |
 | `Persona/Marks.cs:fights` | the last 8 fights won per person, a year at most | colonists | 160 | 160 | 160 | 3.9 |
 | `Integrations/SocialInteractions.cs:bestFriends` | Caps.BestFriendPairs, known pawns | cap | 12 | 24 | 60 | 3.5 |
+| `PlayOut/PlayOutTracker.cs:results` | how the last ones went: PlayOutTracker.MaxResults | cap | 30 | 30 | 30 | 3.5 |
+| `Decrees/Decrees.cs:nightHours` | a curfew's night hours, per colonist while it lasts; after it only those away (the dead, the gone and the unknown let go) | colonists | 20 | 20 | 20 | 2.9 |
 | `Social/SocialWeb.cs:lost` | 40 lost bonds | cap | 3 | 6 | 15 | 2.9 |
 | `Wishes/Kept.cs:watches` | granted wishes still watched (grace days) | window | 8 | 8 | 8 | 2.9 |
 | `World/WorldSituations.cs:active` | 2 running | fixed | 2 | 2 | 2 | 2.9 |
+| `Ailments/AilmentTracker.cs:healing` | injuries an ailment may follow; let go when healed, known pawns only | known | 16 | 18 | 22 | 2.6 |
 | `Aspirations/Aspirations.cs:events` | sparks, 30 days | window | 30 | 30 | 30 | 2.6 |
 | `Decrees/Decrees.cs:readyAt` | one per decree def | defs | 30 | 30 | 30 | 2.6 |
 | `Health/HealthTracker.cs:lastDoctor` | tends 3 days | window | 30 | 30 | 30 | 2.6 |
@@ -86,6 +91,7 @@ Not modelled (add them to MODEL in the script): `Ailments/AilmentTracker.cs:carr
 | `Pressures/Pressures.cs:lastWork` | frames while they stand | while | 30 | 30 | 30 | 2.6 |
 | `Secrets/Secrets.cs:rolled` | known pawns only | known | 55 | 60 | 75 | 2.6 |
 | `Calendar/CalendarTracker.cs:restHours` | days taken off by hand: only the player's clicks | colonists | 20 | 20 | 20 | 2.3 |
+| `Defense/DefenseLinesWatch.cs:running` | one per line while a raid lasts | while | 4 | 4 | 4 | 2.3 |
 | `Happenings/Happenings.cs:departed` | the departed 2 years | window | 3 | 6 | 6 | 2.3 |
 | `Persona/Marks.cs:watches` | one per person watched; known pawns only, empty ones dropped | colonists | 20 | 20 | 20 | 2.3 |
 | `Quirks/Quirks.cs:luckyPast` | LuckyItems.MaxPast | cap | 3 | 6 | 15 | 2.2 |
@@ -97,6 +103,7 @@ Not modelled (add them to MODEL in the script): `Ailments/AilmentTracker.cs:carr
 | `Ailments/AilmentTracker.cs:freshDay` | known pawns only | colonists | 20 | 20 | 20 | 1.8 |
 | `Ailments/AilmentTracker.cs:seenDay` | known pawns only | colonists | 20 | 20 | 20 | 1.8 |
 | `Calendar/CalendarTracker.cs:harvested` | the year's harvest, per colonist; cleared yearly | colonists | 20 | 20 | 20 | 1.8 |
+| `Calendar/CalendarWatch.cs:huntKills` | one per colonist, those no longer ours dropped daily | colonists | 20 | 20 | 20 | 1.8 |
 | `Camps/Camp.cs:felled` | trees felled during one stay | while | 60 | 60 | 60 | 1.8 |
 | `CouncilGameComponent.cs:lastAtHome` | colonists still ours | colonists | 20 | 20 | 20 | 1.8 |
 | `Happenings/Happenings.cs:visits` | visits a month | window | 6 | 6 | 6 | 1.8 |
@@ -107,6 +114,7 @@ Not modelled (add them to MODEL in the script): `Ailments/AilmentTracker.cs:carr
 | `Strangers/Nuisances.cs:last` | 10 days | window | 20 | 20 | 20 | 1.8 |
 | `UI/WeekMemory.cs:trustValues` | 8 days of trust each | colonists | 20 | 20 | 20 | 1.7 |
 | `Ambitions/CouncilMeeting.cs:invites` | while a meeting is called | while | 20 | 20 | 20 | 1.6 |
+| `Calendar/CalendarWatch.cs:knownCrops` | one per crop the colony has grown (crop defs) | fixed | 40 | 40 | 40 | 1.6 |
 | `Advisor/AdvisorCore.cs:wealthHistory` | 60 days of wealth | window | 60 | 60 | 60 | 1.5 |
 | `Camps/Camp.cs:felledTicks` | with the above | while | 60 | 60 | 60 | 1.5 |
 | `Happenings/Happenings.cs:seenQuests` | quests the game still keeps | fixed | 60 | 60 | 60 | 1.5 |
@@ -125,6 +133,7 @@ Not modelled (add them to MODEL in the script): `Ailments/AilmentTracker.cs:carr
 | `Secrets/Vendettas.cs:eulogies` | until given | cap | 3 | 5 | 5 | 1.0 |
 | `Ailments/AilmentTracker.cs:doctors` | only hediffs colonists still have | colonists | 10 | 10 | 10 | 0.9 |
 | `Ailments/AilmentTracker.cs:sweets` | faded below 0.05 dropped | colonists | 10 | 10 | 10 | 0.9 |
+| `Calendar/CalendarWatch.cs:awaySince` | the colony's people away now; the dead and those no longer ours dropped | colonists | 10 | 10 | 10 | 0.9 |
 | `Persona/Marks.cs:once` | skills mastered; known pawns only, 800 at most | known | 16 | 18 | 22 | 0.9 |
 | `Quirks/Quirks.cs:downedTick` | within the longest quirk window | colonists | 10 | 10 | 10 | 0.9 |
 | `Pressures/Pressures.cs:apartSince` | pairs apart now | pairs | 10 | 10 | 10 | 0.8 |
@@ -147,19 +156,25 @@ Not modelled (add them to MODEL in the script): `Ailments/AilmentTracker.cs:carr
 | `Annals.cs:tiesFormed` | the year in progress | yearly | 12 | 12 | 12 | 0.7 |
 | `Camps/Camp.cs:warmth` | while the camp stays | while | 8 | 8 | 8 | 0.7 |
 | `PlayOut/PlayOutLord.cs:lines` | while the gathering lasts | while | 6 | 6 | 6 | 0.7 |
+| `Health/HealthTracker.cs:worst` | hard times not over yet (hunger, cold, untended illness); known pawns only | known | 6 | 6 | 8 | 0.7 |
 | `Dilemmas/Dilemmas.cs:traditions` | per tradition | defs | 17 | 17 | 17 | 0.6 |
 | `Ambitions/CouncilMeeting.cs:pitches` | while a meeting is called | while | 3 | 3 | 3 | 0.6 |
+| `Camps/Camp.cs:asksMade` | asks made of the camp (once each, or once a day), while it stays | while | 15 | 15 | 15 | 0.6 |
 | `Secrets/Vendettas.cs:known` | known pawns only | known | 11 | 12 | 15 | 0.6 |
 | `Ailments/AilmentTracker.cs:announced` | only hediffs colonists still have | colonists | 20 | 20 | 20 | 0.5 |
 | `Ailments/AilmentTracker.cs:woundsRolled` | only hediffs colonists still have | colonists | 20 | 20 | 20 | 0.5 |
 | `Ambitions/Ambitions.cs:voterChoice` | while the letter waits | while | 20 | 20 | 20 | 0.5 |
+| `Defense/DefenseLinesWatch.cs:downedSeen` | colonists downed in the raid under way, cleared when it ends | while | 20 | 20 | 20 | 0.5 |
 | `Social/Autonomy.cs:lastActed` | with the above | window | 20 | 20 | 20 | 0.5 |
 | `Annals.cs:decrees` | the year in progress | yearly | 12 | 12 | 12 | 0.5 |
 | `Offices/Offices.cs:elected` | one per office | defs | 12 | 12 | 12 | 0.5 |
 | `PlayOut/PlayOuts.cs:lines` | per play-out | fixed | 4 | 4 | 4 | 0.5 |
 | `PlayOut/PlayOuts.cs:moods` | per play-out | fixed | 4 | 4 | 4 | 0.5 |
+| `Ailments/AilmentTracker.cs:carrying` | illnesses had now that an ailment may follow; let go when over, known pawns only | known | 6 | 6 | 8 | 0.4 |
+| `Calendar/CalendarWatch.cs:pendingCrops` | new crops until their first harvest (crop defs) | fixed | 5 | 5 | 5 | 0.4 |
 | `Decrees/Decrees.cs:active` | decrees in force (3 at most) | fixed | 3 | 3 | 3 | 0.4 |
 | `Decrees/Decrees.cs:requests` | one per decree at most | fixed | 3 | 3 | 3 | 0.4 |
+| `Scenarios/ScenarioParts.cs:days` | a scenario part's days, fixed by the scenario | fixed | 3 | 3 | 3 | 0.4 |
 | `Calendar/CalendarTracker.cs:forgotten` | days put away by hand: only the player's clicks | fixed | 10 | 10 | 10 | 0.4 |
 | `Camps/Camp.cs:trees` | while the camp stays | while | 10 | 10 | 10 | 0.4 |
 | `Setbacks/SetbackTracker.cs:grantWho` | 20 days | window | 10 | 10 | 10 | 0.4 |
@@ -175,12 +190,14 @@ Not modelled (add them to MODEL in the script): `Ailments/AilmentTracker.cs:carr
 | `Happenings/Happenings.cs:group` | per raid or visit (counted with them) | fixed | 1 | 1 | 1 | 0.3 |
 | `Lives/Legacy.cs:children` | known pawns only | known | 6 | 6 | 8 | 0.3 |
 | `Pressures/Pressures.cs:mealTicks` | per colonist | fixed | 12 | 12 | 12 | 0.3 |
+| `Character/ColonyTraits.cs:today` | today's tallies, emptied each day | fixed | 3 | 3 | 3 | 0.3 |
 | `Health/HealthTracker.cs:partsSeen` | missing parts colonists still have | colonists | 10 | 10 | 10 | 0.2 |
 | `Setbacks/SetbackTracker.cs:grantTicks` | 20 days | window | 10 | 10 | 10 | 0.2 |
 | `Setbacks/SetbackTracker.cs:grantVoiced` | 20 days | window | 10 | 10 | 10 | 0.2 |
 | `Annals.cs:joined` | the year in progress | yearly | 6 | 6 | 6 | 0.2 |
 | `Annals.cs:traditionsKept` | the year in progress | yearly | 6 | 6 | 6 | 0.2 |
 | `Camps/Camp.cs:prey` | while the camp stays | while | 6 | 6 | 6 | 0.2 |
+| `Epithets/Epithets.cs:founders` | those here in the colony's first two days (by ThingID) | fixed | 6 | 6 | 6 | 0.2 |
 | `Persona/Marks.cs:addictions` | the addictions they have now | colonists | 6 | 6 | 6 | 0.2 |
 | `Pressures/Pressures.cs:workKinds` | per colonist | fixed | 6 | 6 | 6 | 0.2 |
 | `Heart/HeartData.cs:recentRelief` | per heart | fixed | 8 | 8 | 8 | 0.2 |
@@ -199,6 +216,7 @@ Not modelled (add them to MODEL in the script): `Ailments/AilmentTracker.cs:carr
 | `Heart/HeartData.cs:feelingSinceKeys` | per heart: feelings felt now | fixed | 4 | 4 | 4 | 0.2 |
 | `Missions/Missions.cs:group` | per mission | fixed | 4 | 4 | 4 | 0.2 |
 | `PlayOut/PlayOutLord.cs:abstained` | while the gathering lasts | while | 4 | 4 | 4 | 0.2 |
+| `Scenarios/ScenarioParts.cs:offices` | a scenario part's seats, fixed by the scenario | fixed | 4 | 4 | 4 | 0.2 |
 | `UI/WeekMemory.cs:pinnedPawns` | pins: only the player's clicks, the gone dropped | fixed | 4 | 4 | 4 | 0.2 |
 | `World/WorldSituation.cs:deeds` | per situation | fixed | 4 | 4 | 4 | 0.2 |
 | `World/WorldSituation.cs:held` | per situation | fixed | 4 | 4 | 4 | 0.2 |
@@ -227,6 +245,7 @@ Not modelled (add them to MODEL in the script): `Ailments/AilmentTracker.cs:carr
 | `Ambitions/Ambitions.cs:absentProposers` | while the letter waits | while | 2 | 2 | 2 | 0.1 |
 | `Calendar/CalendarDay.cs:kin` | per day on the calendar | fixed | 2 | 2 | 2 | 0.1 |
 | `Camps/Camp.cs:arrested` | while the camp stays | while | 2 | 2 | 2 | 0.1 |
+| `Persona/TraitChanges.cs:once` | the changes that come once in a colony's life | fixed | 2 | 2 | 2 | 0.1 |
 | `Setbacks/SetbackTracker.cs:ticks` | per sown field | fixed | 3 | 3 | 3 | 0.1 |
 | `Annals.cs:traditionsBorn` | the year in progress | yearly | 2 | 2 | 2 | 0.1 |
 | `UI/DilemmaLog.cs:started` | per dilemma record | fixed | 2 | 2 | 2 | 0.0 |
@@ -239,17 +258,33 @@ Not modelled (add them to MODEL in the script): `Ailments/AilmentTracker.cs:carr
 | `CouncilSettings.cs:councilPageState` | the mod's settings file, not the save | settings | 30 | 30 | 30 | (settings file) |
 | `CouncilSettings.cs:planMaterials` | the mod's settings file, not the save | settings | 30 | 30 | 30 | (settings file) |
 | `CouncilSettings.cs:savedRooms` | the mod's settings file, not the save: rooms the player saved | settings | 10 | 10 | 10 | (settings file) |
+| `Defense/DefenseLine.cs:done` | per line: one per step (counted under lines) | defs | 8 | 8 | 8 | (in its record) |
+| `Defense/DefenseLine.cs:downed` | per raid: 4 at most (counted under lines) | fixed | 4 | 4 | 4 | (in its record) |
+| `Defense/DefenseLine.cs:lessons` | per raid: 3 at most (counted under lines) | fixed | 3 | 3 | 3 | (in its record) |
+| `Defense/DefenseLine.cs:plans` | per line: DefenseLine.MaxPlans (counted under lines) | fixed | 24 | 24 | 24 | (in its record) |
+| `Defense/DefenseLine.cs:raids` | per line: the last DefenseLine.MaxRaids raids (counted under lines) | fixed | 5 | 5 | 5 | (in its record) |
+| `Defense/DefenseLine.cs:skipped` | per line: steps set aside by hand, one per step (counted under lines) | defs | 4 | 4 | 4 | (in its record) |
+| `Defense/DefenseLine.cs:span` | per line: the cells across its gap, 29 at most (counted under lines) | fixed | 14 | 14 | 14 | (in its record) |
 | `Happenings/Workers_Chains2.cs:flags` | per story chain (counted under chains) | fixed | 4 | 4 | 4 | (in its record) |
 | `Health/HealthTracker.cs:losses` | per healer: 30 days (counted under healers) | fixed | 3 | 3 | 3 | (in its record) |
 | `Health/HealthTracker.cs:tends` | per case: who tended it (counted under cases) | fixed | 4 | 4 | 4 | (in its record) |
 | `Heart/HeartData.cs:recentBuild` | per heart: one per strain source (counted under hearts) | fixed | 8 | 8 | 8 | (in its record) |
 | `Journal.cs:entries` | per journal: 60 lines (counted under journals) | fixed | 60 | 60 | 60 | (in its record) |
 | `Missions/Missions.cs:goals` | per mission (counted under missions) | fixed | 3 | 3 | 3 | (in its record) |
-| `Persona/PawnPersona.cs:d` | per record: 8 sides (counted under list) | fixed | 8 | 8 | 8 | (in its record) |
-| `Persona/PawnPersona.cs:l` | per record: 8 sides (counted under list) | fixed | 8 | 8 | 8 | (in its record) |
-| `Persona/PawnPersona.cs:marks` | per record: 12 marks at most, past their keeping dropped (counted under list) | fixed | 12 | 12 | 12 | (in its record) |
-| `Persona/PawnPersona.cs:stances` | per record: a view per topic, a newcomer's let go once settled (counted under list) | fixed | 22 | 22 | 22 | (in its record) |
+| `Persona/PawnPersona.cs:d` | per person: one per side, fading (counted under people) | fixed | 8 | 8 | 8 | (in its record) |
+| `Persona/PawnPersona.cs:l` | per person: one per side (counted under people) | fixed | 8 | 8 | 8 | (in its record) |
+| `Persona/PawnPersona.cs:marks` | per person: PawnPersona.MaxMarks, each let go after its keeping (counted under people) | fixed | 12 | 12 | 12 | (in its record) |
+| `Persona/PawnPersona.cs:stances` | per person: one per topic, and per newcomer for 60 days (counted under people) | fixed | 20 | 20 | 20 | (in its record) |
+| `Persona/TraitChanges.cs:absorbed` | per change: how the trait moved each side (counted under changes) | fixed | 8 | 8 | 8 | (in its record) |
+| `Persona/TraitChanges.cs:snapshots` | per colonist: 10 snapshots, every ten days (counted under watches) | fixed | 10 | 10 | 10 | (in its record) |
+| `Persona/TraitChanges.cs:tallies` | per colonist: deeds counted, 240 days, 12 per kind (counted under watches) | fixed | 3 | 3 | 3 | (in its record) |
+| `Persona/TraitChanges.cs:values` | per snapshot: the records a pace reads (counted under watches) | fixed | 3 | 3 | 3 | (in its record) |
+| `PlayOut/PlayOuts.cs:game` | per hunt: 3 animals at most (counted under plays) | fixed | 3 | 3 | 3 | (in its record) |
+| `PlayOut/PlayOuts.cs:hands` | per play-out: who went (counted under plays) | fixed | 6 | 6 | 6 | (in its record) |
 | `PlayOut/PlayOuts.cs:invited` | per play-out (counted under plays) | fixed | 8 | 8 | 8 | (in its record) |
+| `PlayOut/PlayOuts.cs:named` | per play-out: those the answer names (counted under plays) | fixed | 2 | 2 | 2 | (in its record) |
+| `PlayOut/PlayOuts.cs:route` | per searcher: the places they look over (counted under plays) | fixed | 6 | 6 | 6 | (in its record) |
+| `PlayOut/PlayOuts.cs:tasks` | per work party: its kinds of work (counted under plays) | fixed | 3 | 3 | 3 | (in its record) |
 | `Pressures/Pressures.cs:meals` | per colonist: 12 meals (counted under people) | fixed | 12 | 12 | 12 | (in its record) |
 | `Secrets/Secrets.cs:knowers` | per secret (counted under secrets) | fixed | 3 | 3 | 3 | (in its record) |
 | `Setbacks/SetbackTracker.cs:sowers` | per sown field (counted under sown) | fixed | 3 | 3 | 3 | (in its record) |
@@ -266,4 +301,5 @@ Not modelled (add them to MODEL in the script): `Ailments/AilmentTracker.cs:carr
 | `Wishes/Kept.cs:things` | per watch (counted under watches) | fixed | 2 | 2 | 2 | (in its record) |
 | `Wishes/Wish.cs:coSigners` | per open wish (counted under wishes) | fixed | 2 | 2 | 2 | (in its record) |
 | `World/WorldSituation.cs:flags` | per situation (counted under active and history) | fixed | 4 | 4 | 4 | (in its record) |
+| `World/WorldSituation.cs:followUps` | per past situation: what followed from it, once per def (counted under history) | fixed | 2 | 2 | 2 | (in its record) |
 

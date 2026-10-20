@@ -251,6 +251,9 @@ namespace ColonyCouncil
                             sb.Append("\n  ").Append(m.def.shifts.Of(axis) > 0f ? "+" : "-").Append("  ").Append(m.def.label)
                                 .Append(" (").Append(PersonaMarks.DateLabel(m.tick, p)).Append(")");
                     }
+                    // A trait gained or lost took its part of the move into their nature (Persona/TraitChanges.cs).
+                    string traits = TraitChanges.AbsorbedNote(p, axis);
+                    if (traits != null) sb.Append("\n\n").Append(traits);
                 }
                 return sb.ToString();
             }
