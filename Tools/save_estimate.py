@@ -121,7 +121,7 @@ MODEL = {
     "CouncilSettings.cs:planMaterials": ("settings", 30, 40, "the mod's settings file, not the save"),
     "CouncilSettings.cs:councilPageState": ("settings", 30, 40, "the mod's settings file, not the save"),
     # The on-screen panels (Hud/): their layout in the settings file, the mood trend in the save
-    "CouncilSettings.cs:hudPanels": ("settings", 4, 400, "the mod's settings file, not the save: one per panel"),
+    "CouncilSettings.cs:hudPanels": ("settings", 7, 400, "the mod's settings file, not the save: one per panel"),
     "Hud/HudPanelState.cs:hidden": ("settings", 3, 30, "per panel: the rows or columns switched off (settings file)"),
     "Hud/HudComponent.cs:samples": ("cap", (const("Hud/HudComponent.cs", "MaxSamples", 168), 24), 20,
                                     "the mood trend: one packed number an hour, the last week (HudComponent.MaxSamples)"),

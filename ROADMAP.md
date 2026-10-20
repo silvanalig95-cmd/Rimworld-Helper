@@ -222,7 +222,9 @@ play deep. In order:
   it's heading, what drags them down; compact raid-frame grid), a mood trend graph (3 or 7 days, saved), the colony's
   vitals and the council at a glance, each a movable window that snaps to the edges and to the others, with its own
   options; and a hover card on the map for whoever is under the mouse. One tested ranking puts what matters most
-  first everywhere. Next: a second batch (health and needs at a glance, threats on the map, work and idle colonists).
+  first everywhere. Then (October 2026, from the player's feedback on 0.9.0): the game's alerts in a movable panel
+  instead of its own list, a health panel (only what passes or needs a reaction), work and idle, the panels always
+  behind other windows, and the game's tooltip stepping aside for the hover card. Next: threats on the map.
 - Done (October 2026): a small visual pass with the game's own effects: the comet tints the sky, fireflies glow, camps
   smoke, a warlord's raid comes with banners of dust; and more of Rimfolk's events seen: a camp arriving (dust on the
   road, a word from whoever sees it), the first snow's flakes, a dream told at breakfast, the council's bell at a

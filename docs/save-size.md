@@ -262,7 +262,7 @@ Rimfolk's part of the save, roughly: **1,623 KB** after a year, **1,986 KB** aft
 | `Building/CustomRooms.cs:pieces` | per saved room, in the mod's settings file | settings | 30 | 30 | 30 | (settings file) |
 | `Calendar/CalendarDay.cs:fallen` | per day on the calendar (counted under days) | fixed | 2 | 2 | 2 | (in its record) |
 | `CouncilSettings.cs:councilPageState` | the mod's settings file, not the save | settings | 30 | 30 | 30 | (settings file) |
-| `CouncilSettings.cs:hudPanels` | the mod's settings file, not the save: one per panel | settings | 4 | 4 | 4 | (settings file) |
+| `CouncilSettings.cs:hudPanels` | the mod's settings file, not the save: one per panel | settings | 7 | 7 | 7 | (settings file) |
 | `CouncilSettings.cs:planMaterials` | the mod's settings file, not the save | settings | 30 | 30 | 30 | (settings file) |
 | `CouncilSettings.cs:savedRooms` | the mod's settings file, not the save: rooms the player saved | settings | 10 | 10 | 10 | (settings file) |
 | `Defense/DefenseLine.cs:done` | per line: one per step (counted under lines) | defs | 8 | 8 | 8 | (in its record) |
