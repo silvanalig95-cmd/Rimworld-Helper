@@ -9,7 +9,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 *20 October 2026, evening, version 0.7.2*
 
-- Hard times: as a colonist nears breaking, Rimfolk's own small letdowns (a joke that fell flat, being talked about, a sticking door) weigh less, down to half at their break line, and its everyday pressures down to three quarters. It eases back as they recover. Low spirits no longer double the nightmares or chase away sweet dreams.
+- Hard times: as a colonist nears breaking, Rimfolk's own small letdowns (a joke that fell flat, being talked about, a sticking door) weigh less, down to half at their break line, and its everyday pressures down to three quarters. It eases back as they recover. Low spirits no longer double the nightmares (sweet dreams still come rarely).
 - On the normal setting, everyday pressures and the colony's small frictions press at 85% of their old strength. The same work starts to wear after 4 days instead of 3, and a passion for the work takes it a step lighter.
 - Good moods add up a little faster: the third, fourth and fifth on a colonist's mind count for 60%, 45% and 35%, and every one after that a quarter.
 - "The favorite" now only comes to someone who really has a request of their own still waiting. Before, it could come to anyone when a wish was granted.

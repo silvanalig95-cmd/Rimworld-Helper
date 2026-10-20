@@ -1169,7 +1169,7 @@ prevent and a colony of five faiths). Small steps, one at a time, measured each 
 - **Hard times** (`PressureMath.HardTimes`): from 15 points above a colonist's minor-break line down to the line,
   small letdowns ease to half and pressures to three quarters, and come back as they recover. It is read when the
   mood is felt, so nothing is stored and nothing lingers. Nightmares at low mood went from twice as likely to a
-  quarter more, and low mood no longer makes sweet dreams rarer: neither should feed a bad stretch.
+  quarter more, so they don't feed a bad stretch; sweet dreams stay rarer in low spirits, as the player preferred.
 - The good-mood budget counts the third to fifth good moods at 60%, 45% and 35% (was 50%, 35%, 25%), and every one
   after at a quarter (was a fifth).
 - The same work starts to wear at 4, 7 and 10 days (was 3, 5 and 8), a step lighter with any passion for it; fine and
