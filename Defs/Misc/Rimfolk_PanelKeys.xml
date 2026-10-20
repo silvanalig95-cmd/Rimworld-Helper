@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Keys for the on-screen panels (Source/ColonyCouncil/Hud/HudComponent.cs), under "Rimfolk" in Options, Keyboard.
+    Like the council's page keys, none is set until the player picks one, so they never clash with the game's own keys
+    or another mod's. The button by the play settings (bottom right) does the same with a click.
+  -->
+
+  <KeyBindingDef ParentName="Council_KeyBase">
+    <defName>Council_Key_Panels</defName>
+    <label>on-screen panels: show or hide</label>
+  </KeyBindingDef>
+
+  <KeyBindingDef ParentName="Council_KeyBase">
+    <defName>Council_Key_HoverCard</defName>
+    <label>hover card: on or off</label>
+  </KeyBindingDef>
+
+</Defs>

@@ -668,6 +668,51 @@ def g_trenddown():
     return m
 
 
+# On-screen panels (Source/ColonyCouncil/Hud/)
+
+def g_panels():
+    """The panels' switch: a screen frame with a tall panel on the left and two small ones on the right."""
+    m = new()
+    rect(m, 14, 30, 242, 226, r=22)
+    rect(m, 36, 52, 220, 204, r=10, fill=OFF)
+    rect(m, 52, 68, 108, 188, r=8)
+    rect(m, 150, 68, 204, 110, r=8)
+    rect(m, 150, 128, 204, 170, r=8)
+    return m
+
+
+def g_power():
+    """Power: a lightning bolt."""
+    m = new()
+    poly(m, [(150, 14), (52, 146), (118, 146), (96, 242), (204, 100), (136, 100), (172, 14)])
+    return m
+
+
+def g_temperature():
+    """Temperature: a thermometer, its bulb filled."""
+    m = new()
+    rect(m, 98, 18, 158, 170, r=30)
+    circle(m, 128, 192, 50)
+    rect(m, 116, 40, 140, 160, r=12, fill=OFF)
+    circle(m, 128, 192, 30, OFF)
+    circle(m, 128, 192, 22)
+    rect(m, 120, 96, 136, 190, r=6)
+    for y in (64, 96, 128):
+        rect(m, 168, y - 6, 206, y + 6, r=5)
+    return m
+
+
+def g_research():
+    """Research: a flask with liquid in it."""
+    m = new()
+    rect(m, 100, 18, 156, 40, r=8)
+    poly(m, [(108, 36), (148, 36), (148, 96), (226, 220), (30, 220), (108, 96)])
+    line(m, [(30, 220), (226, 220)], 24, ON)
+    poly(m, [(124, 52), (132, 52), (132, 104), (196, 202), (60, 202), (124, 104)], OFF)
+    poly(m, [(100, 150), (156, 150), (190, 196), (66, 196)])
+    return m
+
+
 # Almanac categories
 
 def g_cat_basics():
@@ -836,6 +881,8 @@ GLYPHS = [
     ("TrendUp", g_trendup), ("TrendDown", g_trenddown),
     # the colonist bar's badges (Source/ColonyCouncil/ColonistBar/BarBadges.cs)
     ("Strain", g_strain), ("Leaving", g_leaving), ("BarDot", g_bar_dot), ("BarRing", g_bar_ring),
+    # on-screen panels
+    ("Panels", g_panels), ("Power", g_power), ("Temperature", g_temperature), ("Research", g_research),
     # almanac categories
     ("CatBasics", g_cat_basics), ("CatFood", g_cat_food), ("CatDefense", g_cat_defense), ("CatHealth", g_cat_health),
     ("CatManagement", g_cat_management), ("CatLowTech", g_cat_lowtech), ("CatRoomDesign", g_cat_roomdesign),

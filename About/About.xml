@@ -3,7 +3,7 @@
   <packageId>silvanalig.colonycouncil</packageId>
   <name>Rimfolk</name>
   <author>silvanalig</author>
-  <modVersion>0.8.2</modVersion>
+  <modVersion>0.9.0</modVersion>
   <supportedVersions>
     <li>1.6</li>
     <li>1.7</li>
@@ -37,7 +37,7 @@ A thief in the stores, a feud, a pet that ate someone's dinner, the spoils of a 
 Every colonist keeps a journal in their own voice. People earn names for what they do (the Healer, Deadeye, the Kindling). Anniversaries are marked, and each year someone writes the colony's annals.
 
 [b]And the practical side[/b]
-An advisor that ranks what the colony needs next and explains why, council meetings where colonists pitch ambitions and vote, whole-room plans you can place in one go, and an in-game almanac of the game's numbers and hard lessons.
+Movable on-screen panels with every colonist's mood, the colony's vitals and the council at a glance, a hover card for any colonist, badges on the colonist bar for who needs you, and an advisor that ranks what the colony needs next and explains why, council meetings where colonists pitch ambitions and vote, whole-room plans you can place in one go, and an in-game almanac of the game's numbers and hard lessons.
 
 Adapts to your tech level, research and DLCs (a medieval colony is never asked for turrets). Every part can be switched off or tuned in the settings.
 

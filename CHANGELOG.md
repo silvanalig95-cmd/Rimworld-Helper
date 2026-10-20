@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## What matters, on screen
+
+*22 October 2026, version 0.9.0*
+
+- On-screen panels: a mood board (every colonist's mood with their own break lines, where it's heading and the biggest thing dragging them down, most at risk first), a mood trend graph over 3 or 7 days, the colony's vitals (food days, medicine, power, the weather ahead, days since a raid, research) and the council at a glance (wishes, promises, questions, decrees, the next day or meeting, trust). Click through to the right place.
+- Every panel can be dragged, snaps to edges and other panels, and has its own options: rows and columns, sort, who's listed, compact or full, size and background. Toggle all of them with the button among the game's icons at the bottom right or a key, and find every option under Interface → On-screen panels.
+- Hover card: rest the mouse on a colonist on the map to see their mood and the two or three things that matter most right now, from bleeding and breaks to the biggest mood drag and what helps. Delay, modifier key, position and lines can all be set.
+- Badges on the colonist bar: a ring warms from amber to red as someone nears a break, and small badges mark someone about to leave, a wish waiting long, strain near breaking, wavering faith or a promise at risk. Hover for what and how much, click to go straight there. Each kind, the ring, size, corner and count can be set.
+- One shared ranking puts what matters most first everywhere: life and limb, then what's about to become a problem, then what's worth knowing; the biggest and most fixable first, and "and 3 more" rather than silently cutting a line.
+
 ## Moods at a glance
 
 *21 October 2026, evening, version 0.8.2*

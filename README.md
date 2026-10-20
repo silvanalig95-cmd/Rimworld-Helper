@@ -1766,6 +1766,45 @@ The game's own **Needs** tab gets a line above its mood list with the same total
 · Faith -4 · Lifting +22"; click it to open the Mood tab), and hovering a mood there ends its usual tooltip with
 which mod it comes from and what to do about it (a setting turns both off).
 
+## On-screen panels and the hover card
+What you keep checking, on the map, so you don't click through every colonist. Four small panels, each its own
+window (clicks on them don't reach the map, and they never take the keyboard):
+- **Mood board**: a row for each colonist at home with their portrait, a mood bar with their own minor and major break
+  lines, an arrow and the number for where it's heading, and, faint under it, what drags them down most with its size
+  ("-8 No bedroom"; with the option on, "→ Give them a bedroom" too). Marks for a mental break, high strain, an open
+  wish and wavering faith. Most at risk first, or the colonist bar's order; rows go orange and red under their break
+  lines, with a soft pulse under the major one. Click to go to them, Shift-click for their Mood tab, hover for their
+  five biggest moods. **Compact**: thin bars with initials in a grid, like raid frames.
+- **Mood trend**: the colony's average mood and its lowest colonist's over the last 3 or 7 days, with the 35% line;
+  one point an in-game hour, kept with the save. Hover for the values at a point.
+- **Colony vitals**: days of food (orange under 10, red under 4, the advisor's line; both in the settings), medicine
+  (the advisor's two per colonist), the power grid's balance, the temperature outside and the next season, days since
+  the last raid, the research under way. Clicks go to the advisor, the temperature overlay, the defenses, the research tab.
+- **Council at a glance**: open wishes and whose has waited longest, petitions, promises coming due, questions
+  waiting, decrees in force with their days left, the next calendar day or meeting, the colony's trust. Only what has
+  something to say shows; each line opens the right page.
+
+**The hover card**: rest the mouse on a colonist on the map and a small card shows their mood bar, the two or three
+things that matter most right now and what they're doing. It keeps out of the way: not while a mouse button is held,
+something is being placed or targeted, a menu or window is under the mouse, or the world map is up.
+
+**What comes first.** One ranking (`Hud/HudRank.cs`) orders the board, picks the card's lines and colours the
+vitals: life and limb first (bleeding, a condition that can kill, starving, a mental break, right at the break line),
+then what will soon be a problem (falling towards a break, food running out, a wish about to lapse), then what's
+worth knowing (the moods dragging someone down, biggest and most fixable first). A calm colony shows short, quiet
+panels. When rows are cut for space the least important go and the panel says "and 3 more"; nothing critical is cut.
+
+**Show, move, fit.** The button among the play settings (bottom right) shows or hides them, a right-click there gives
+each panel, the hover card, **Arrange the panels** and putting them back; a key can be set under Options, Keyboard,
+Rimfolk. A thin bar on hover drags the panel (it snaps to the screen's edges and the other panels; its place is kept
+as part of the screen, so it survives a new resolution), switches compact and full, fades the background, opens its
+options and hides it. Each panel's options: which rows or columns show, order, whom it lists (home, everywhere,
+with prisoners), the graph's range, rows before "and more", size 75% to 150%, background. The settings (Interface,
+**On-screen panels** and **Hover card**) have all of it, plus a lock, hiding under big windows and on the world map,
+a darker or clearer look, small or normal text, the food and mood lines, and the hover card's wait, key, people,
+place, parts, size and background. Each panel gathers its data at most twice a second, and one that fails hides
+itself for the session with one line in the log. It complements RimHUD (the selected colonist in the inspect pane).
+
 ## Feelings and strain
 Mood says how a colonist feels today. **Strain** says how worn down they are, and a fine meal or a nice room can't buy
 it off in an afternoon. It's a layer under mood, kept in Rimfolk's own save data: the game still decides mental breaks
@@ -2080,9 +2119,10 @@ The pages:
   by default; see CHANGELOG.md), how colonists' speech shows
   (bubbles with Interaction Bubbles, floating text, or off), the visual and sound touches; the two alerts; mood insight (and its hints in the Needs tab), the slow speed buttons (and putting them
   back), where the council button sits in the bottom bar, the rooms button, which page the council window opens on
-  (**This week** by default, or the last page), the Almanac's text size; the deeper game hooks and the notes in the
-  game's letters; the **badges on the colonist bar** (each kind, the break ring or dot and its early warning, the wish
-  badge's threshold, size, corner and how many show).
+  (**This week** by default, or the last page), the Almanac's text size; the **on-screen panels** (each panel's
+  options, lock, hiding, look, text size, the food and mood lines, putting them back) and the **hover card**; the
+  **badges on the colonist bar** (each kind, the break ring or dot and its early warning, the wish badge's threshold,
+  size, corner and how many show); the deeper game hooks and the notes in the game's letters.
 - **Advanced**: this colony's era (detected, pre-industrial or industrial; set per colony, so it needs a loaded game),
   **Check what's on and working** (the same report as the dev action "Rimfolk: check myself"), and a full reset to
   the defaults (with the list of what changes; saved rooms are kept).

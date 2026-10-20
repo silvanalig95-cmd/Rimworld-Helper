@@ -58,5 +58,7 @@
     <Compile Include="../../Source/ColonyCouncil/Character/ColonyTraitMath.cs" Link="ColonyTraitMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Social/Gossip/RepMath.cs" Link="RepMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/ColonistBar/BarBadgeMath.cs" Link="BarBadgeMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Hud/HudMath.cs" Link="HudMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Hud/HudRank.cs" Link="HudRank.cs" />
   </ItemGroup>
 </Project>

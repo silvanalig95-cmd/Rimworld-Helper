@@ -245,6 +245,30 @@ namespace ColonyCouncil
         /// <summary>The filters and sort orders the council's pages remember, as "page.key=value" (UI/PageMemory.cs).</summary>
         public System.Collections.Generic.List<string> councilPageState = new System.Collections.Generic.List<string>();
 
+        // On-screen panels and the hover card (Hud/). The food lines default to the advisor's own (Advisor: four days is low).
+        public bool hudShown = true;
+        public bool hudLock = false;
+        public bool hudHideWithTabs = true;
+        public bool hudHideOnWorld = true;
+        public HudTheme hudTheme = HudTheme.Dark;
+        public HudFont hudFont = HudFont.Normal;
+        public float hudMoodMargin = 0.05f;
+        public float hudFoodWarnDays = 10f;
+        public float hudFoodBadDays = 4f;
+        public bool hoverCard = true;
+        public float hoverDelay = 0.4f;
+        public HudModifier hoverModifier = HudModifier.None;
+        public HoverWho hoverWho = HoverWho.Colonists;
+        public HoverPlace hoverPlace = HoverPlace.Cursor;
+        public bool hoverMood = true;
+        public bool hoverConcerns = true;
+        public bool hoverDoing = true;
+        public int hoverLines = 3;
+        public float hoverScale = 1f;
+        public float hoverOpacity = 0.9f;
+        /// <summary>Each panel's place and options (Hud/HudPanelState.cs), set on the panels themselves.</summary>
+        public System.Collections.Generic.List<HudPanelState> hudPanels = new System.Collections.Generic.List<HudPanelState>();
+
         public override void ExposeData()
         {
             base.ExposeData();
@@ -399,6 +423,32 @@ namespace ColonyCouncil
             Scribe_Collections.Look(ref councilPageState, "councilPageState", LookMode.Value);
             if (Scribe.mode == LoadSaveMode.PostLoadInit || Scribe.mode == LoadSaveMode.LoadingVars)
                 councilPageState ??= new System.Collections.Generic.List<string>();
+            Scribe_Values.Look(ref hudShown, "hudShown", true);
+            Scribe_Values.Look(ref hudLock, "hudLock", false);
+            Scribe_Values.Look(ref hudHideWithTabs, "hudHideWithTabs", true);
+            Scribe_Values.Look(ref hudHideOnWorld, "hudHideOnWorld", true);
+            Scribe_Values.Look(ref hudTheme, "hudTheme", HudTheme.Dark);
+            Scribe_Values.Look(ref hudFont, "hudFont", HudFont.Normal);
+            Scribe_Values.Look(ref hudMoodMargin, "hudMoodMargin", 0.05f);
+            Scribe_Values.Look(ref hudFoodWarnDays, "hudFoodWarnDays", 10f);
+            Scribe_Values.Look(ref hudFoodBadDays, "hudFoodBadDays", 4f);
+            Scribe_Values.Look(ref hoverCard, "hoverCard", true);
+            Scribe_Values.Look(ref hoverDelay, "hoverDelay", 0.4f);
+            Scribe_Values.Look(ref hoverModifier, "hoverModifier", HudModifier.None);
+            Scribe_Values.Look(ref hoverWho, "hoverWho", HoverWho.Colonists);
+            Scribe_Values.Look(ref hoverPlace, "hoverPlace", HoverPlace.Cursor);
+            Scribe_Values.Look(ref hoverMood, "hoverMood", true);
+            Scribe_Values.Look(ref hoverConcerns, "hoverConcerns", true);
+            Scribe_Values.Look(ref hoverDoing, "hoverDoing", true);
+            Scribe_Values.Look(ref hoverLines, "hoverLines", 3);
+            Scribe_Values.Look(ref hoverScale, "hoverScale", 1f);
+            Scribe_Values.Look(ref hoverOpacity, "hoverOpacity", 0.9f);
+            Scribe_Collections.Look(ref hudPanels, "hudPanels", LookMode.Deep);
+            if (Scribe.mode == LoadSaveMode.PostLoadInit || Scribe.mode == LoadSaveMode.LoadingVars)
+            {
+                hudPanels ??= new System.Collections.Generic.List<HudPanelState>();
+                hudPanels.RemoveAll(p => p == null || p.id.NullOrEmpty());
+            }
         }
 
         /// <summary>Saves the settings file right away (used by the planner's checkboxes).</summary>
