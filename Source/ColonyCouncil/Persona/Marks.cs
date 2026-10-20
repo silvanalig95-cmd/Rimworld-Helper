@@ -217,6 +217,8 @@ namespace ColonyCouncil
             {
                 CouncilLog.ErrorOnce("persona mark told: " + pick.defName, e);
             }
+            // A loved one lost, a rescue by someone of another faith: maybe a crisis of faith in the days after (Faith/).
+            FaithCrisis.AfterMark(p, MarkDefs.FamilyOf(pick), other);
             return mark;
         }
 
@@ -420,6 +422,8 @@ namespace ColonyCouncil
         {
             try
             {
+                // Close to death, fight or not: a crisis of faith may follow once they're up (Faith/).
+                FaithCrisis.Notify_Downed(p);
                 if (!On || !CanBeMarked(p) || !FightOn(p.MapHeld)) return;
                 NoteFight();
                 Give(p, "Downed", null, FightLabel);
@@ -617,6 +621,8 @@ namespace ColonyCouncil
                     CouncilLog.ErrorOnce("persona marks: daily", e);
                 }
             }
+            // Faith in the colony: views kept with certainty, a faith's demands held too long, crises come due (Faith/).
+            FaithCrisis.Daily();
         }
 
         private static void DailyFor(MarksTracker t, Pawn p, int now)

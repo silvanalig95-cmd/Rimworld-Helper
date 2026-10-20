@@ -354,10 +354,13 @@ namespace ColonyCouncil
             if (!Plan(c, tie)) return;
             // A talk that goes well after a spat they haven't made up for makes it up (and its lines may say so).
             c.mend = Warm(c, tie) && MomentTones.Allows("mend", a, b);
+            // A talk about faith that will move someone's faith says so in its lines (Faith/FaithTalk.cs).
+            FaithTalk.Plan(c);
             Lines(c);
             // How it went, for the log, read before the memory is counted as told.
             var sent = SummaryPack(c);
             Effects(c, tie);
+            FaithTalk.Apply(c);
             if (sent != null && packs != null && !packs.Contains(sent)) packs.Add(sent);
             tr.Started(a, b, c.topic?.shortHash ?? 0, now);
             SocialPace.Started(a);

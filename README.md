@@ -480,10 +480,10 @@ a year.
 Every colonist has a character on eight sides (warmth, nerve, temper, humour, trust, pride, openness, outlook). Their
 nature sets where they start: traits (the base game's and DLCs', and 74 from Vanilla Traits Expanded, RimTraits,
 Medieval Overhaul, Vanilla Ideology Expanded - Memes, Alpha Memes and Alpha Genes), the Social skill, age and a small
-lean of their own. Then life marks them, with 48 kinds of mark: downed in a raid, carried out of one, holding the
+lean of their own. Then life marks them, with 53 kinds of mark: downed in a raid, carried out of one, holding the
 line or breaking under fire, a friend, lover, child or parent lost, nursed through an illness, forgiven after a
 breakdown, a secret betrayed, a seat won or lost, a craft mastered, a child raised, a hungry season, an addiction
-beaten, a new faith, a brush with what lies past the world. Their nature picks the mark and how deep it goes: the
+beaten, a new faith, a crisis of faith (with Ideology), a brush with what lies past the world. Their nature picks the mark and how deep it goes: the
 bold harden where the timid are shaken, the cold close up where others grieve, raid after raid hardens some and
 wears others down. Part of each change stays for good and the rest fades over years; marks are kept rare (one small
 mark per few days, each turning point once in a long while), and a turning point goes into their journal in their
@@ -525,7 +525,7 @@ and the timid want walls, the trusting back the council, the curious welcome new
 happens and with talk: a liked, trusted, self-assured speaker brings an open listener round a little. So two of them
 **agree**, have a **friendly debate**, or a **heated argument** when tempers, opposed views and dislike meet; a joker
 **teases**; someone low or grieving is **comforted**. Each sounds like themselves (a hothead snaps, a joker jokes, the
-cold are curt, the gloomy see the worst), in about 2,400 lines. A talk leaves a small opinion of each other, not a
+cold are curt, the gloomy see the worst), in about 2,500 lines. A talk leaves a small opinion of each other, not a
 mood; arguing hardens a temper a little over time, and a long friendship warms.
 
 Pairs also keep **shared memories** (17 kinds): fighting side by side (those really seen together in the fight), being patched up while down, a funeral, a feast,
@@ -577,10 +577,37 @@ own moments (the cruel given a wide berth, the coward jibed at, the brave asked 
 dies down; newcomers pick it up over their first weeks. The character page shows it under "What people say about
 them", with the deeds behind it, who told whom, and who thinks what of them for it.
 
+#### Faith in the colony: who believes what, and what moves it
+With Ideology, how firmly each colonist holds their faith (the game's own certainty) comes into their life, under its
+own setting ("Faith in the colony", on by default). Conversions stay the game's own: someone takes up a new faith when
+their certainty runs out, and it's told the same way whatever led to it.
+- **People → Faiths** shows each faith in the colony as a card in its own colour and icon: its believers, each with a
+  bar of how firmly they hold it, marked devout (from 85%) or wavering (under 60%); its leader and moral guide, or that
+  the role is empty here; what it asks that weighs on someone right now (its believers' bad moods from its own
+  precepts, with the mood and who feels it); and who is likely to sway whom (devout, well-liked speakers against
+  wavering, open listeners). Under the cards, how to bring people together with the game's own tools: the moral
+  guide's Convert ability, the conversion ritual, mood and certainty, roles. The advisor speaks up when half the colony
+  or more is split between three faiths or more.
+- **Talks about faith matter.** When two of different faiths agree, or have a friendly debate, the devout one who comes
+  out of it well (by the game's conversion power, how devout and how liked) sways the other a little; the open and
+  friends are moved more, the proud less. A heated argument sways nobody and both dig in; two of one faith steady each
+  other. A believer whose faith frowns on preaching takes it badly: a small opinion of the preacher, not a mood. One
+  move a pair in two days, a sway at most once a day per listener, and about a hundred lines that show it (the devout
+  reaching out, the wavering giving ground or keeping it to themselves, both digging in).
+- **A crisis of faith**, now and then, shakes someone's certainty for real (10 to 30%, by their nature): a loved one
+  lost though their faith had a funeral or a prayer to offer, being saved by someone of another faith (who draws them a
+  little toward theirs), the same demand of their faith weighing on them five days running, a brush with death. Each
+  is a turning point on the character page with a journal line in their own voice, rare (a chance, a long wait before
+  the same again, never two within 20 days) and never announced.
+
+The character page has a **Faith** section: their faith and certainty, a role they hold, what it asks of them now,
+what moved it lately and by how much, and who is likeliest to sway them; their view about faith keeps in step with
+their certainty. Almanac: "Faith in the colony".
+
 #### The character page
 The **Story** tab opens with the character page, one section for each part, each folding away: **Character** (in words
 and on eight bars), **What shaped them** (six marks, turning points first, the rest on hover), **Traits gained and
-lost**, **Views**, **Shared memories**, **Groups and role** and **What people say about them**. Their trust, office and colony names sit above it;
+lost**, **Views**, **Faith** (with Ideology), **Shared memories**, **Groups and role** and **What people say about them**. Their trust, office and colony names sit above it;
 their life goal, story, bonds, quirks, dreams and journal below.
 
 ### Story: a page for every colonist

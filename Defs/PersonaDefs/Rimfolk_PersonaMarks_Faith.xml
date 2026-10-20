@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    A crisis of faith (Source/ColonyCouncil/Faith/FaithCrisis.cs, with Ideology and "Faith in the colony" on): a turning
+    point that shakes someone's certainty for real. The FaithShake extension says how much before their nature (the
+    mark's lean scales it, never under 10% or over 30%), how far it draws them toward the other's faith, and what the
+    faith pages say caused it. Rare: each has its chance and its repeat window, and nobody has two crises within 20 days.
+    {LABEL} is their faith's name (the rescuer's, for a rescue).
+  -->
+
+  <!-- ===================== A loved one lost, for all their faith ===================== -->
+
+  <ColonyCouncil.PersonaMarkDef>
+    <defName>Rimfolk_Mark_FaithLossAnger</defName>
+    <label>angry at the heavens</label>
+    <shifts><temper>5</temper><trust>-4</trust><openness>3</openness></shifts>
+    <major>true</major>
+    <keepDays>180</keepDays>
+    <shaped>{PAWN_nameDef} has had hard words for {LABEL} since {OTHER} died, rites and all.</shaped>
+    <defaultLabel>the faith</defaultLabel>
+    <modExtensions>
+      <li Class="ColonyCouncil.PersonaMarkExtension">
+        <family>FaithLoss</family>
+        <story>FaithCrisis</story>
+        <needsOther>true</needsOther>
+        <when>temper>=20</when>
+        <lean>temper:0.3, outlook:-0.3</lean>
+        <chance>0.45</chance>
+        <repeatDays>60</repeatDays>
+        <news>{PAWN_nameDef} has turned on {PAWN_possessive} faith since {OTHER_nameDef} died.</news>
+        <journal>
+          <plain>
+            <li>We gave {OTHER_nameDef} every rite {LABEL} has. It didn't bring {OTHER_objective} back, and I'm done pretending it might have.</li>
+            <li>I said the words over {OTHER_nameDef} like I was taught. Then I walked off and kicked a wall until my foot hurt more than the rest of me.</li>
+            <li>If {LABEL} was listening, it had a strange way of showing it. {OTHER_nameDef} is still dead.</li>
+          </plain>
+          <warm><li>I prayed for {OTHER_nameDef} every night. I don't know who I was talking to. I'm angry, and I don't know who at.</li></warm>
+          <blunt><li>Did the rites for {OTHER_nameDef}. Waste of breath. Said so.</li></blunt>
+          <cheerful><li>I can usually laugh at anything. Not this. {OTHER_nameDef} deserved better than a few words and a hole.</li></cheerful>
+          <gloomy><li>So that's what {LABEL} is worth when it counts. Nothing. I should have known.</li></gloomy>
+          <cold><li>The rites of {LABEL} were observed for {OTHER_nameDef}. They changed nothing. I note that, and I resent it.</li></cold>
+        </journal>
+      </li>
+      <li Class="ColonyCouncil.FaithShake">
+        <shake>0.2</shake>
+        <note>{OTHER} died, for all the rites</note>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.PersonaMarkDef>
+
+  <ColonyCouncil.PersonaMarkDef>
+    <defName>Rimfolk_Mark_FaithLoss</defName>
+    <label>a faith that didn't comfort</label>
+    <shifts><outlook>-5</outlook><openness>4</openness><trust>-2</trust></shifts>
+    <major>true</major>
+    <keepDays>180</keepDays>
+    <shaped>{PAWN_nameDef} has prayed less since {OTHER} died, for all that {LABEL} had to offer.</shaped>
+    <defaultLabel>the faith</defaultLabel>
+    <modExtensions>
+      <li Class="ColonyCouncil.PersonaMarkExtension">
+        <family>FaithLoss</family>
+        <order>1</order>
+        <story>FaithCrisis</story>
+        <needsOther>true</needsOther>
+        <lean>outlook:-0.4, warmth:0.2</lean>
+        <chance>0.4</chance>
+        <repeatDays>60</repeatDays>
+        <news>{PAWN_nameDef}'s faith has been shaken since {OTHER_nameDef} died.</news>
+        <journal>
+          <plain>
+            <li>Everyone says {LABEL} will carry me through losing {OTHER_nameDef}. I knelt for an hour tonight and felt nothing come.</li>
+            <li>The funeral was done properly. I keep waiting for it to help. It hasn't, and I don't know what that says about me, or about the faith.</li>
+            <li>I used to know what happens to us after. Since {OTHER_nameDef}, I find I'm only hoping.</li>
+          </plain>
+          <warm><li>I want to believe {OTHER_nameDef} is somewhere kind now. Wanting it and believing it used to be the same thing.</li></warm>
+          <blunt><li>The rites didn't help. Missing {OTHER_nameDef} is all I've got. Faith can wait.</li></blunt>
+          <cheerful><li>I tried to say a prayer for {OTHER_nameDef} and couldn't remember how it went. That's never happened before. It frightened me.</li></cheerful>
+          <gloomy><li>{LABEL} promised comfort. I've had none. Perhaps there was never any to have.</li></gloomy>
+          <cold><li>I have examined my faith since {OTHER_nameDef}'s death. It holds up less well than I had assumed.</li></cold>
+        </journal>
+      </li>
+      <li Class="ColonyCouncil.FaithShake">
+        <shake>0.18</shake>
+        <note>{OTHER} died, for all the rites</note>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.PersonaMarkDef>
+
+  <!-- ===================== Saved by someone of another faith ===================== -->
+
+  <ColonyCouncil.PersonaMarkDef>
+    <defName>Rimfolk_Mark_FaithRescued</defName>
+    <label>saved by another faith</label>
+    <shifts><openness>6</openness><trust>3</trust></shifts>
+    <major>true</major>
+    <keepDays>180</keepDays>
+    <shaped>{PAWN_nameDef} has looked at {LABEL} with new eyes since {OTHER}, who keeps it, saved {PAWN_objective}.</shaped>
+    <defaultLabel>another faith</defaultLabel>
+    <modExtensions>
+      <li Class="ColonyCouncil.PersonaMarkExtension">
+        <family>FaithRescued</family>
+        <story>FaithCrisis</story>
+        <needsOther>true</needsOther>
+        <lean>openness:0.3, pride:-0.3</lean>
+        <chance>0.5</chance>
+        <repeatDays>90</repeatDays>
+        <news>{PAWN_nameDef} has been asking {OTHER_nameDef} about {LABEL} since {OTHER_pronoun} saved {PAWN_objective}.</news>
+        <journal>
+          <plain>
+            <li>{OTHER_nameDef} doesn't pray the way I do, and {OTHER_pronoun} saved my life anyway. I keep turning that over.</li>
+            <li>I was raised to think little of {LABEL}. It was one of its own who got me through. I owe it a fairer hearing.</li>
+            <li>Asked {OTHER_nameDef} what {OTHER_pronoun} says before sleeping. I'd never thought to ask before.</li>
+          </plain>
+          <warm><li>{OTHER_nameDef} looked after me like I was {OTHER_possessive} own. Whatever {LABEL} teaches, it taught {OTHER_objective} that.</li></warm>
+          <blunt><li>{OTHER_nameDef} saved my neck. Keeps {LABEL}. Can't be all wrong, then.</li></blunt>
+          <cheerful><li>I'm alive, thanks to {OTHER_nameDef}, who's been trying to tell me about {LABEL} for weeks. I suppose I'll have to listen now.</li></cheerful>
+          <gloomy><li>My own faith didn't send anyone. {OTHER_nameDef}'s did. I don't like what that might mean.</li></gloomy>
+          <cold><li>I was saved by a believer in {LABEL}. I am revising some opinions I held about it.</li></cold>
+        </journal>
+      </li>
+      <li Class="ColonyCouncil.FaithShake">
+        <shake>0.12</shake>
+        <towardOther>0.05</towardOther>
+        <note>{OTHER} saved {PAWN_objective}</note>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.PersonaMarkDef>
+
+  <!-- ===================== What their own faith asks, too long ===================== -->
+
+  <ColonyCouncil.PersonaMarkDef>
+    <defName>Rimfolk_Mark_FaithBurden</defName>
+    <label>worn down by the faith's demands</label>
+    <shifts><openness>4</openness><outlook>-3</outlook><pride>-2</pride></shifts>
+    <major>true</major>
+    <keepDays>150</keepDays>
+    <shaped>{PAWN_nameDef} has asked whether {LABEL} asks too much of {PAWN_objective}, after days of carrying it.</shaped>
+    <defaultLabel>the faith</defaultLabel>
+    <modExtensions>
+      <li Class="ColonyCouncil.PersonaMarkExtension">
+        <family>FaithBurden</family>
+        <story>FaithCrisis</story>
+        <lean>pride:-0.25, openness:0.25</lean>
+        <chance>0.35</chance>
+        <repeatDays>60</repeatDays>
+        <news>{PAWN_nameDef} has begun to wonder whether {PAWN_possessive} faith asks too much.</news>
+        <journal>
+          <plain>
+            <li>Day after day of doing without what {LABEL} says I must have. I'm starting to ask who it's for.</li>
+            <li>I keep the ways of {LABEL}, and I'm miserable keeping them while the others seem glad to.</li>
+            <li>Something {LABEL} asks has been eating at me all week. Tonight I wondered whether it has to.</li>
+          </plain>
+          <warm><li>I don't want to let the others of {LABEL} down. But I'm tired, and the faith never seems to notice.</li></warm>
+          <blunt><li>{LABEL} wants things this colony can't give. I'm sick of paying for it.</li></blunt>
+          <cheerful><li>I've been a good believer all week and all I've got for it is a sour face. I'm starting to think the rules were written by someone with a bigger house.</li></cheerful>
+          <gloomy><li>Every day {LABEL} finds a new way I'm falling short. Maybe I'm not the one at fault.</li></gloomy>
+          <cold><li>The demands of {LABEL} cost me more than they return. I am reconsidering the arrangement.</li></cold>
+        </journal>
+      </li>
+      <li Class="ColonyCouncil.FaithShake">
+        <shake>0.15</shake>
+        <note>days of "{LABEL}"</note>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.PersonaMarkDef>
+
+  <!-- ===================== Close to death ===================== -->
+
+  <ColonyCouncil.PersonaMarkDef>
+    <defName>Rimfolk_Mark_FaithNearDeath</defName>
+    <label>came close to death</label>
+    <shifts><outlook>-3</outlook><openness>5</openness><nerve>-2</nerve></shifts>
+    <major>true</major>
+    <keepDays>150</keepDays>
+    <shaped>{PAWN_nameDef} has held {LABEL} more loosely since coming so close to death.</shaped>
+    <defaultLabel>the faith</defaultLabel>
+    <modExtensions>
+      <li Class="ColonyCouncil.PersonaMarkExtension">
+        <family>FaithNearDeath</family>
+        <story>FaithCrisis</story>
+        <lean>nerve:-0.35, outlook:-0.25</lean>
+        <chance>0.4</chance>
+        <repeatDays>60</repeatDays>
+        <news>{PAWN_nameDef} came close to dying, and {PAWN_possessive} faith hasn't been the same since.</news>
+        <journal>
+          <plain>
+            <li>I nearly died. I always thought I'd see something, at the end. There was only the cold and the ceiling.</li>
+            <li>They tell me I was nearly gone. I don't remember {LABEL} being anywhere near me.</li>
+            <li>Up and walking again. The faith I had before feels like a coat that doesn't fit any more.</li>
+          </plain>
+          <warm><li>I thought of everyone here when I was going. Not of {LABEL}. I'm not sure what to make of that.</li></warm>
+          <blunt><li>Nearly died. Nobody came for me but the doctor. Noted.</li></blunt>
+          <cheerful><li>The other side is very quiet and smells of the infirmary. I expected more from {LABEL}.</li></cheerful>
+          <gloomy><li>I was nearly dead, and there was nothing waiting. I can't stop thinking about the nothing.</li></gloomy>
+          <cold><li>At the edge of death I observed no evidence for the teachings of {LABEL}. I find the absence significant.</li></cold>
+        </journal>
+      </li>
+      <li Class="ColonyCouncil.FaithShake">
+        <shake>0.18</shake>
+        <note>came close to dying</note>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.PersonaMarkDef>
+
+</Defs>
