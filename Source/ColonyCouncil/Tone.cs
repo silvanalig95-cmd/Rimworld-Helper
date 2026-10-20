@@ -152,13 +152,14 @@ namespace ColonyCouncil
             float mood = pawn?.needs?.mood?.CurLevelPercentage ?? 0.5f;
             if (mood < 0.3f) return Tone.Gloomy;
 
+            // Their character, as what happened to them has shaped it (Persona/): only a marked one has a voice of its
+            // own, and that comes before a way with words (a hothead with a silver tongue still snaps).
+            var shaped = Persona.ToneOf(pawn);
+            if (shaped != null) return shaped.Value;
+
             int social = pawn?.skills?.GetSkill(SkillDefOf.Social)?.Level ?? 5;
             if (social >= 12) return Tone.Warm;
             if (social <= 2) return Tone.Blunt;
-
-            // Their character, as what happened to them has shaped it (Persona/).
-            var shaped = Persona.ToneOf(pawn);
-            if (shaped != null) return shaped.Value;
 
             // Stable per pawn, so the same colonist tends to sound the same.
             int seed = pawn?.thingIDNumber ?? 0;

@@ -5,6 +5,19 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## People with a character of their own
+
+*20 October 2026, version 0.7.0*
+
+- Every colonist has a character on eight sides (warmth, nerve, temper, humour, trust, pride, openness, outlook). Traits, the Social skill and age set where they start, and life marks them, with 48 kinds of mark: a raid held or a nerve broken, a friend lost, being nursed through an illness, a craft mastered, a hungry season. The Story tab opens with it: eight bars, and what shaped them, with dates.
+- Character shows in how they speak, in talk, gossip and the journal alike: a hothead snaps, a joker jokes, the cold are curt, the gloomy see the worst. It shows in what they do too: the warm have more warm moments, the hot-tempered more frictions, and the trusting confide their secrets sooner.
+- Conversations: two colonists who are together now and then really talk, a short exchange over their heads, taking turns. They talk about the last raid, the council, the food, the newcomer, faith and 14 more topics, and what comes up follows the news. Everyone holds a view on each topic, which moves slowly with what happens and with who talks them round, so a talk ends in agreement, a friendly debate, a heated argument, teasing or comfort.
+- Pairs keep shared memories: fighting side by side (only those who really stood together), a funeral, a feast, a caravan, a quarrel made up. Small mishaps become in-jokes once everyone's fine, funny for a while and then worn thin.
+- Groups grow out of something real (friendship, the same work, a fight, the night hours, faith, where they came from) and keep their name: the hunters, the night shift, Hector's lot. Each has roles, ways and habits, takes newcomers in or closes ranks, falls out with other groups, and can split or merge. People → Bonds shows each one.
+- Reputation and gossip: colonists notice what the others do (31 kinds of deed), and the rest hear it in gossip. Who tells it colours it, and the listener believes it as far as their nature lets them. What the colony knows becomes a name (brave or a coward, kind or cruel, reliable or idle), and a name leans votes and opinions.
+- Traits can change, rarely, after a long stretch of the same kind of life. Raid after raid held can make someone steadfast, a year of graves a pessimist, many kindnesses kind, and a beaten addiction a teetotaler. A psychopath or a cannibal comes only from an extreme history, once in a colony's life each. A letter tells what led to the change, with dates.
+- All of it gives opinion and company, not mood. "Personalities and social life" and "Traits can change" in the settings turn it off, and a new Almanac page, "Social life: how it fits together", follows two colonists through a year. Saves stay lean: everything Rimfolk keeps now has a limit, and curfews no longer keep notes on people the game has forgotten.
+
 ## No more freeze when the region stirs
 
 *20 October 2026, version 0.6.2*
