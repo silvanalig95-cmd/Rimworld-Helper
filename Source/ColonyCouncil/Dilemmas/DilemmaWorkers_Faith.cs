@@ -21,7 +21,7 @@ namespace ColonyCouncil
         public string faithName;
         public string otherFaithName;
         public string altarLabel;
-        public string why;
+        public string sharpened;
 
         [Unsaved] private Ideo faithCache;
         [Unsaved] private Ideo otherCache;
@@ -51,7 +51,7 @@ namespace ColonyCouncil
             args.Add((faithName ?? "").Named("FAITH"));
             args.Add((otherFaithName ?? "").Named("OTHERFAITH"));
             args.Add((altarLabel ?? "CC_FaithClash_NoAltar".Translate().ToString()).Named("ALTAR"));
-            args.Add((why ?? "").Named("WHY"));
+            args.Add((sharpened ?? "").Named("WHY"));
         }
 
         public override void ExposeData()
@@ -60,7 +60,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref faithName, "faithName");
             Scribe_Values.Look(ref otherFaithName, "otherFaithName");
             Scribe_Values.Look(ref altarLabel, "altarLabel");
-            Scribe_Values.Look(ref why, "why");
+            Scribe_Values.Look(ref sharpened, "sharpened");
         }
     }
 
@@ -169,7 +169,7 @@ namespace ColonyCouncil
                 Faith = faith,
                 OtherFaith = Faiths.Of(b),
                 altarLabel = altar?.LabelShort,
-                why = FaithClash.Why(quarrel, altar)
+                sharpened = FaithClash.Why(quarrel, altar)
             };
             return true;
         }

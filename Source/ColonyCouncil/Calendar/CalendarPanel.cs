@@ -298,8 +298,11 @@ namespace ColonyCouncil
 
         private static readonly DayWay[] AllWays = { DayWay.Feast, DayWay.Remembrance, DayWay.Rest, DayWay.Games, DayWay.Bonfire, DayWay.Gifts, DayWay.Hunt, DayWay.Planting, DayWay.Faith };
 
-        /// <summary>The ways a day can be kept here: an evening of faith only with faith in the colony (Ideology).</summary>
-        private static IEnumerable<DayWay> Ways => AllWays.Where(w => w != DayWay.Faith || Faiths.On);
+        /// <summary>
+        /// The ways a day can be kept here: an evening of faith only with faith in the colony (Ideology), and only for a
+        /// day the player names (the day keeps its faith in place of what a colony's own day is about).
+        /// </summary>
+        private IEnumerable<DayWay> Ways => AllWays.Where(w => w != DayWay.Faith || (Faiths.On && (editing == null || editing.kind == CalendarKind.Holiday)));
 
         /// <summary>The faith a day kept as an evening of faith speaks for (by name, as the day keeps it).</summary>
         private string faithName;
