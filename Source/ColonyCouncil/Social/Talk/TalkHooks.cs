@@ -93,14 +93,11 @@ namespace ColonyCouncil
 
         private static string The(string label) => label.NullOrEmpty() ? label : Find.ActiveLanguageWorker.WithDefiniteArticle(label);
 
-        /// <summary>What a fight is called afterwards: the fight with a people, the mechanoids, the hive, or a date.</summary>
-        public static string FightLabel(Faction foe, Map map)
-        {
-            if (foe == null) return "CC_TalkLabel_FightOn".Translate(Date(map)).Resolve();
-            if (foe == Faction.OfMechanoids) return "CC_TalkLabel_Mechs".Translate().Resolve();
-            if (foe == Faction.OfInsects) return "CC_TalkLabel_Insects".Translate().Resolve();
-            return "CC_TalkLabel_FightWith".Translate(foe.Name).Resolve();
-        }
+        /// <summary>
+        /// What a fight is called afterwards: the name its marks and deeds use too, with the day it was, so two raids by
+        /// the same people are two memories ("the raid on the 5th of Aprimay"; see <see cref="FightNames"/>).
+        /// </summary>
+        public static string FightLabel(Faction foe, Map map) => FightNames.Of(map, foe);
 
         /// <summary>A disaster the colony comes through together (Defs: the conditions named here, if the game has them).</summary>
         private static readonly HashSet<string> disasterNames = new HashSet<string>

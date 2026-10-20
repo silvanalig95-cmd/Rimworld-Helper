@@ -70,13 +70,14 @@
   <CC_Rep_News_Formed>People have started saying {PAWN_nameDef} is {WORD}.</CC_Rep_News_Formed>
   <CC_Rep_News_Faded>People have stopped saying {PAWN_nameDef} is {WORD}; that talk has died down.</CC_Rep_News_Faded>
 
-  <!-- Names for when a deed happened. -->
-  <CC_Rep_Fight_Raid>the raid on {DATE}</CC_Rep_Fight_Raid>
-  <CC_Rep_Fight_Mechs>the mechanoid attack on {DATE}</CC_Rep_Fight_Mechs>
-  <CC_Rep_Fight_Beasts>the fight with the animals on {DATE}</CC_Rep_Fight_Beasts>
-  <CC_Rep_Fight_Other>the fight on {DATE}</CC_Rep_Fight_Other>
+  <!-- Names for when a deed happened. A fight has one name everywhere it is told: deeds, marks and shared memories (Social/FightNames.cs). -->
+  <CC_Rep_Fight_Raid>the raid on the {DATE}</CC_Rep_Fight_Raid>
+  <CC_Rep_Fight_Mechs>the mechanoid attack on the {DATE}</CC_Rep_Fight_Mechs>
+  <CC_Rep_Fight_Insects>the fight with the insects on the {DATE}</CC_Rep_Fight_Insects>
+  <CC_Rep_Fight_Beasts>the fight with the animals on the {DATE}</CC_Rep_Fight_Beasts>
+  <CC_Rep_Fight_Other>the fight on the {DATE}</CC_Rep_Fight_Other>
   <CC_Rep_Label_Day>{DATE}</CC_Rep_Label_Day>
-  <CC_Rep_Label_Contest>the contest on {DATE}</CC_Rep_Label_Contest>
+  <CC_Rep_Label_Contest>the contest on the {DATE}</CC_Rep_Label_Contest>
   <CC_Rep_MadeDetail>a {QUALITY} {THING}</CC_Rep_MadeDetail>
 
   <!-- What a friendly contest was, by the skill that decided it (Moments). -->

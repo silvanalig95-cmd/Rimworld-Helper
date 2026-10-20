@@ -405,7 +405,7 @@ What people did, who knows it, how the story spreads, and the name that follows 
   in WorldReactions.Victory, Moments' contests, Secrets.Reveal, Offices, Patch_ArcMade, Ambitions, Encounters,
   MeetingAttendance), by four light postfixes (a memory gained, a mental break, a history event, a social fight; one
   dictionary look each) and by the reputation's own hour (rescues under fire, the brave's company, idling, tending).
-  Each keeps doer, victim, when, a name ("the raid on 5th of Aprimay"), size, and its knowers: witnesses, and those who
+  Each keeps doer, victim, when, a name ("the raid on the 5th of Aprimay"), size, and its knowers: witnesses, and those who
   heard, from whom, in what version, believed how far.
 - **Gossip** is an InteractionDef in the game's picker (`InteractionWorker_Gossip`, separate from the council's
   `CouncilGossip`). Weight: there's a deed the teller knows and the listener doesn't, by someone else (or the proud

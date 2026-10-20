@@ -27,10 +27,6 @@
   <CC_TieNote_TalkComfort>was there when it counted</CC_TieNote_TalkComfort>
 
   <!-- What shared memories are called in conversation ("Remember the fight with the Iron Hand?") -->
-  <CC_TalkLabel_FightWith>the fight with {0}</CC_TalkLabel_FightWith>
-  <CC_TalkLabel_FightOn>the fight on the {0}</CC_TalkLabel_FightOn>
-  <CC_TalkLabel_Mechs>the mechanoid attack</CC_TalkLabel_Mechs>
-  <CC_TalkLabel_Insects>the hive</CC_TalkLabel_Insects>
   <CC_TalkLabel_Day>the bad day on the {0}</CC_TalkLabel_Day>
   <CC_TalkLabel_Night>the long night of the {0}</CC_TalkLabel_Night>
   <CC_TalkLabel_Road>the road in {0}</CC_TalkLabel_Road>

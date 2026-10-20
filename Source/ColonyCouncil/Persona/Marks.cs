@@ -49,7 +49,7 @@ namespace ColonyCouncil
         /// <summary>"id|what" for marks that come once in a life (a skill mastered).</summary>
         public HashSet<string> once = new HashSet<string>();
         public List<MarkWatch> watches = new List<MarkWatch>();
-        /// <summary>The last time a fight was seen at home, and what it's called ("the raid of 5 Aprimay").</summary>
+        /// <summary>The last time a fight was seen at home, and what it's called ("the raid on the 5th of Aprimay").</summary>
         public int lastFight = -999999;
         public string fightLabel;
 
@@ -280,20 +280,22 @@ namespace ColonyCouncil
             return map != null ? Find.WorldGrid.LongLatOf(map.Tile).x : 0f;
         }
 
-        /// <summary>"5 Aprimay": the day a game tick fell on.</summary>
+        /// <summary>"the 5th of Aprimay": the day a game tick fell on, as deeds and shared memories say it too.</summary>
         public static string DayLabel(int gameTick, Pawn p = null)
         {
             long abs = GenDate.TickGameToAbs(gameTick);
-            float lon = Longitude(p);
-            return "CC_Mark_Day".Translate(GenDate.DayOfQuadrum(abs, lon) + 1, GenDate.Quadrum(abs, lon).Label()).Resolve();
+            return "CC_Mark_Day".Translate(GenDate.QuadrumDateStringAt(abs, Longitude(p))).Resolve();
         }
 
-        /// <summary>"5 Aprimay 5501": the day and year, for the character page.</summary>
+        /// <summary>
+        /// "Aprimay 5501": the season and year beside a mark on the character page (the day itself is usually in the
+        /// mark's own words: "since the raid on the 5th of Aprimay").
+        /// </summary>
         public static string DateLabel(int gameTick, Pawn p = null)
         {
             long abs = GenDate.TickGameToAbs(gameTick);
             float lon = Longitude(p);
-            return "CC_Mark_Date".Translate(GenDate.DayOfQuadrum(abs, lon) + 1, GenDate.Quadrum(abs, lon).Label(), GenDate.Year(abs, lon)).Resolve();
+            return "CC_Mark_Date".Translate(GenDate.Quadrum(abs, lon).Label(), GenDate.Year(abs, lon)).Resolve();
         }
 
         public static string Today(Pawn p = null) => DayLabel(Now, p);
@@ -306,13 +308,15 @@ namespace ColonyCouncil
             int now = Now;
             if (now - t.lastFight > GenDate.TicksPerHour * 12 || t.fightLabel.NullOrEmpty())
             {
-                foe ??= CouncilGameComponent.Instance?.social?.battleFaction;
-                t.fightLabel = (foe != null ? "CC_MarkLabel_Raid" : "CC_MarkLabel_Attack").Translate(Today()).Resolve();
+                var social = CouncilGameComponent.Instance?.social;
+                foe ??= social?.battleFaction;
+                // The name the fight has everywhere else too (deeds, shared memories).
+                t.fightLabel = FightNames.Of(social?.battleMap ?? Find.AnyPlayerHomeMap, foe);
             }
             t.lastFight = now;
         }
 
-        private static string FightLabel => Tracker?.fightLabel ?? "CC_MarkLabel_Attack".Translate(Today()).Resolve();
+        private static string FightLabel => Tracker?.fightLabel ?? FightNames.Of(null);
 
         private static bool FightOn(Map map) =>
             (CouncilGameComponent.Instance?.social?.battleActive ?? false) || MapFacts.ThreatOn(map);

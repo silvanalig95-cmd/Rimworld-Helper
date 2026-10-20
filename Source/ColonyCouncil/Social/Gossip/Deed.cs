@@ -53,7 +53,7 @@ namespace ColonyCouncil
         /// <summary>When it happened, and when it last grew (a merged repeat).</summary>
         public int tick;
         public int lastTick;
-        /// <summary>A name for it: "the raid on 5th of Aprimay".</summary>
+        /// <summary>A name for it: "the raid on the 5th of Aprimay".</summary>
         public string label;
         /// <summary>A detail the hook gave (an office won, a piece of work made), for {DETAIL} in its text.</summary>
         public string detail;

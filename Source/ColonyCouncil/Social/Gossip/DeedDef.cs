@@ -30,7 +30,7 @@ namespace ColonyCouncil
     /// <summary>
     /// Something a colonist did that people talk about: carrying someone out under fire, running from a fight, a tantrum,
     /// a confidence kept or betrayed, a masterwork, a week of idling while the others worked. A deed is kept with who did
-    /// it, when, a name for it ("the raid on 5th of Aprimay"), how big it was, and who knows of it (those who saw it, and
+    /// it, when, a name for it ("the raid on the 5th of Aprimay"), how big it was, and who knows of it (those who saw it, and
     /// those who heard, from whom and in what version). What the colony knows of someone's deeds is their name in it
     /// (Social/Gossip/Reputations.cs).
     /// <para>

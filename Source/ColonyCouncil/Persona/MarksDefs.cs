@@ -23,7 +23,7 @@ namespace ColonyCouncil
         public List<string> thoughts;
         /// <summary>The memory must name someone (its other pawn), who becomes {OTHER}.</summary>
         public bool needsOther;
-        /// <summary>A mark from a memory is about the day it came ({LABEL} is "5 Aprimay"), not its default label.</summary>
+        /// <summary>A mark from a memory is about the day it came ({LABEL} is "the 5th of Aprimay"), not its default label.</summary>
         public bool labelDay;
         /// <summary>From a memory about someone: only if they thought this well of them (a friend, not everyone they liked).</summary>
         public int minOpinion = -101;
