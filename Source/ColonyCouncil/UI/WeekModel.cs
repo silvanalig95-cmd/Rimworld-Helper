@@ -354,7 +354,7 @@ namespace ColonyCouncil
         }
 
         /// <summary>The line's key for a Rimfolk letter still waiting for the player's answer, or null.</summary>
-        private static string WaitingKind(Letter l)
+        internal static string WaitingKind(Letter l)
         {
             switch (l)
             {

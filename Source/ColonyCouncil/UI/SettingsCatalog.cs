@@ -138,6 +138,7 @@ namespace ColonyCouncil
             ["lastAlmanacPage"] = "the Almanac's page when it was last closed",
             ["almanacFolded"] = "whether the Almanac's categories and page list are folded away, switched in the Almanac itself",
             ["moodDetails"] = "whether the Mood tab and the Moods page show every mood as a card, switched on those pages (Compact / Details)",
+            ["hudPanels"] = "each on-screen panel's place and options, set on the panels themselves (their menu) or with the buttons under \"On-screen panels\"",
             ["councilPageState"] = "the filters and sort orders the council's pages remember, set on the pages themselves",
             ["lastSeenVersion"] = "the Rimfolk version the player last saw, so the letter after an update comes once (the row \"What's new letter\")",
             ["speechText"] = "the old switch for colonists speaking, kept in step with speechShows (the row \"Colonists' speech shows as\") so older settings files load"
@@ -376,6 +377,33 @@ namespace ColonyCouncil
                 new[] { "ThisWeek", "LastPage" });
             Choice("almanacTextSize", "CC_SetLabel_AlmanacTextSize", "CC_SetTip_AlmanacTextSize", "CC_TextSize_", "CC_SetNote_TextSize_",
                 new[] { "Small", "Normal", "Large", "Larger" });
+            // The on-screen panels and the hover card (Hud/): the same switches as the panels' own menus.
+            Section("CC_SetSec_Panels");
+            Toggle("hudShown", "CC_Settings_HudShown", "CC_SetNote_HudShown");
+            Action("hudPanelOptions", "CC_Settings_HudPanelOptions", "CC_Settings_HudPanelOptions_Tip", "CC_SetNote_HudPanelOptions", "hudShown");
+            Toggle("hudLock", "CC_Settings_HudLock", "CC_SetNote_HudLock", "hudShown");
+            Toggle("hudHideWithTabs", "CC_Settings_HudHideWithTabs", "CC_SetNote_HudHideWithTabs", "hudShown");
+            Toggle("hudHideOnWorld", "CC_Settings_HudHideOnWorld", "CC_SetNote_HudHideOnWorld", "hudShown");
+            Choice("hudTheme", "CC_SetLabel_HudTheme", "CC_SetTip_HudTheme", "CC_HudTheme_", "CC_SetNote_HudTheme_", new[] { "Dark", "Darker", "Clear" }, "hudShown");
+            Choice("hudFont", "CC_SetLabel_HudFont", "CC_SetTip_HudFont", "CC_HudFont_", "CC_SetNote_HudFont_", new[] { "Small", "Normal" }, "hudShown");
+            Slider("hudMoodMargin", "CC_Settings_HudMoodMargin", "CC_SetNote_HudMoodMargin", 0f, 0.2f, 0.01f, "%", "hudShown");
+            Slider("hudFoodWarnDays", "CC_Settings_HudFoodWarn", "CC_SetNote_HudFoodWarn", 2f, 30f, 1f, "0", "hudShown");
+            Slider("hudFoodBadDays", "CC_Settings_HudFoodBad", "CC_SetNote_HudFoodBad", 1f, 15f, 1f, "0", "hudShown");
+            Action("hudReset", "CC_Settings_HudReset", "CC_Settings_HudReset_Tip", "CC_SetNote_HudReset");
+            Section("CC_SetSec_HoverCard");
+            Toggle("hoverCard", "CC_Settings_HoverCard", "CC_SetNote_HoverCard");
+            Slider("hoverDelay", "CC_Settings_HoverDelay", "CC_SetNote_HoverDelay", 0f, 2f, 0.1f, "0.0", "hoverCard");
+            Choice("hoverModifier", "CC_SetLabel_HoverModifier", "CC_SetTip_HoverModifier", "CC_HoverKey_", "CC_SetNote_HoverKey_",
+                new[] { "None", "Alt", "Shift", "Ctrl" }, "hoverCard");
+            Choice("hoverWho", "CC_SetLabel_HoverWho", "CC_SetTip_HoverWho", "CC_HoverWho_", "CC_SetNote_HoverWho_", new[] { "Colonists", "Everyone" }, "hoverCard");
+            Choice("hoverPlace", "CC_SetLabel_HoverPlace", "CC_SetTip_HoverPlace", "CC_HoverPlace_", "CC_SetNote_HoverPlace_", new[] { "Cursor", "Corner" },
+                "hoverCard");
+            Toggle("hoverMood", "CC_Settings_HoverMood", "CC_SetNote_HoverMood", "hoverCard");
+            Toggle("hoverConcerns", "CC_Settings_HoverConcerns", "CC_SetNote_HoverConcerns", "hoverCard");
+            Slider("hoverLines", "CC_Settings_HoverLines", "CC_SetNote_HoverLines", 1f, 5f, 1f, "0", "hoverCard,hoverConcerns");
+            Toggle("hoverDoing", "CC_Settings_HoverDoing", "CC_SetNote_HoverDoing", "hoverCard");
+            Slider("hoverScale", "CC_Settings_HoverScale", "CC_SetNote_HoverScale", 0.75f, 1.5f, 0.05f, "%", "hoverCard");
+            Slider("hoverOpacity", "CC_Settings_HoverOpacity", "CC_SetNote_HoverOpacity", 0.3f, 1f, 0.05f, "%", "hoverCard");
             Section("CC_SetSec_Hooks");
             Toggle("deepHooks", "CC_Settings_DeepHooks", "CC_SetNote_DeepHooks");
             Toggle("letterNotes", "CC_Settings_LetterNotes", "CC_SetNote_LetterNotes", "deepHooks");

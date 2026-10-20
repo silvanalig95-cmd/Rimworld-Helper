@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- The on-screen panels and the hover card (Source/ColonyCouncil/Hud/). -->
+
+  <!-- The panels -->
+  <CC_Pnl_Name_moods>Mood board</CC_Pnl_Name_moods>
+  <CC_Pnl_Name_trend>Mood trend</CC_Pnl_Name_trend>
+  <CC_Pnl_Name_vitals>Colony vitals</CC_Pnl_Name_vitals>
+  <CC_Pnl_Name_council>Council at a glance</CC_Pnl_Name_council>
+  <CC_Pnl_Name_hover>Hover card</CC_Pnl_Name_hover>
+
+  <!-- The bar over a panel, and its menu -->
+  <CC_Pnl_HideTip>Hide this panel. Bring it back with a right-click on the panels' button by the play settings (bottom right).</CC_Pnl_HideTip>
+  <CC_Pnl_OptionsTip>This panel's options: what it shows, whom it lists, its size and background.</CC_Pnl_OptionsTip>
+  <CC_Pnl_OpacityTip>The panel's background. Click to make it fainter; at its faintest, the next click makes it full again.</CC_Pnl_OpacityTip>
+  <CC_Pnl_CompactTip>Compact: the same, in less room.</CC_Pnl_CompactTip>
+  <CC_Pnl_FullTip>Full: everything the panel shows.</CC_Pnl_FullTip>
+  <CC_Pnl_GripTip>Drag to move the panel (or drag it by any empty spot). It snaps to the screen's edges and to the other panels.\n\nRight-click for its menu.</CC_Pnl_GripTip>
+  <CC_Pnl_LockedTip>The panels are locked in place. Right-click for the menu to unlock them.</CC_Pnl_LockedTip>
+  <CC_Pnl_Compact>Compact</CC_Pnl_Compact>
+  <CC_Pnl_Full>Full</CC_Pnl_Full>
+  <CC_Pnl_Options>Options...</CC_Pnl_Options>
+  <CC_Pnl_EditLayout>Arrange the panels</CC_Pnl_EditLayout>
+  <CC_Pnl_Lock>Lock the panels in place</CC_Pnl_Lock>
+  <CC_Pnl_Unlock>Unlock the panels</CC_Pnl_Unlock>
+  <CC_Pnl_Hide>Hide this panel</CC_Pnl_Hide>
+  <CC_Pnl_ResetPositions>Put the panels back in their places</CC_Pnl_ResetPositions>
+  <CC_Pnl_AllOptions>Every option...</CC_Pnl_AllOptions>
+  <CC_Pnl_ButtonTip>On-screen panels: the colonists' moods, the mood trend, the colony's vitals and the council at a glance.\n\nClick to show or hide them. Right-click for each panel, the hover card, and arranging them.</CC_Pnl_ButtonTip>
+  <CC_Pnl_ButtonKey>Key: {0}</CC_Pnl_ButtonKey>
+  <CC_Pnl_EditHint>Drag each panel by its top bar; it snaps to the edges and to the others.</CC_Pnl_EditHint>
+  <CC_Pnl_Done>Done</CC_Pnl_Done>
+  <CC_Pnl_AndMore>and {0} more</CC_Pnl_AndMore>
+  <CC_Pnl_MoreLinesTip>Not every line fits, so the panel keeps what matters most. Allow more rows in its options to see them all.</CC_Pnl_MoreLinesTip>
+
+  <!-- The mood board -->
+  <CC_Pnl_NoOne>No colonists here.</CC_Pnl_NoOne>
+  <CC_Pnl_MoreTip>Not everyone fits, so the board keeps those most at risk; no one in trouble is ever left off. Click for the Moods page, or allow more rows in the panel's options.</CC_Pnl_MoreTip>
+  <CC_Pnl_MoodTabTip>Open {0}'s Mood tab</CC_Pnl_MoodTabTip>
+  <CC_Pnl_OpenPage>Open {0}'s page in the council window</CC_Pnl_OpenPage>
+  <CC_Pnl_WishMark>Open wish: {0}</CC_Pnl_WishMark>
+  <CC_Pnl_RowClick>Click to go to them. Shift-click for their Mood tab. Right-click for more.</CC_Pnl_RowClick>
+  <CC_Pnl_WhatHelps>What would help most: {1} ({0}).</CC_Pnl_WhatHelps>
+  <CC_Pnl_SortRiskShort>risk</CC_Pnl_SortRiskShort>
+  <CC_Pnl_SortBarShort>bar</CC_Pnl_SortBarShort>
+  <CC_Pnl_SortRiskTip>Most at risk first. Click for the colonist bar's order.</CC_Pnl_SortRiskTip>
+  <CC_Pnl_SortBarTip>In the colonist bar's order. Click for the most at risk first.</CC_Pnl_SortBarTip>
+  <CC_Pnl_SortRisk>Most at risk first</CC_Pnl_SortRisk>
+  <CC_Pnl_SortBar>In the colonist bar's order</CC_Pnl_SortBar>
+  <CC_Pnl_OpenMoods>Open the Moods page</CC_Pnl_OpenMoods>
+
+  <!-- The mood trend -->
+  <CC_Pnl_TrendDays>Last {0} days</CC_Pnl_TrendDays>
+  <CC_Pnl_TrendNow>avg {0} · low {1}</CC_Pnl_TrendNow>
+  <CC_Pnl_TrendAt>{0}: average {1}, lowest {2}</CC_Pnl_TrendAt>
+  <CC_Pnl_Now>now</CC_Pnl_Now>
+  <CC_Pnl_Ago>{0} ago</CC_Pnl_Ago>
+  <CC_Pnl_DaysAgo>{0} days ago</CC_Pnl_DaysAgo>
+  <CC_Pnl_TrendEmpty>The graph fills in as the hours pass.</CC_Pnl_TrendEmpty>
+  <CC_Pnl_TrendKey>average · lowest</CC_Pnl_TrendKey>
+  <CC_Pnl_TrendTip>The colony's average mood (gold) and its lowest colonist's (orange), taken once an hour. The dashed line is where minor breaks begin for most people (35%).\n\nHover the graph for the values at a point. Click for the Moods page.</CC_Pnl_TrendTip>
+  <CC_Pnl_DaysShort>{0} d</CC_Pnl_DaysShort>
+  <CC_Pnl_DaysTip>Click to show the last {0} days.</CC_Pnl_DaysTip>
+  <CC_Pnl_ShowDays>Show the last {0} days</CC_Pnl_ShowDays>
+
+  <!-- The colony's vitals -->
+  <CC_Pnl_NoMap>No home map.</CC_Pnl_NoMap>
+  <CC_Pnl_Food>Food</CC_Pnl_Food>
+  <CC_Pnl_DaysValue>{0} days</CC_Pnl_DaysValue>
+  <CC_Pnl_FoodTip>About {0} days of food at the colony's rate: meals and raw food people can eat, counted as the advisor counts it. Orange under {1} days, red under {2} (Rimfolk's settings).</CC_Pnl_FoodTip>
+  <CC_Pnl_ClickAdvisor>Click for the advisor's priorities.</CC_Pnl_ClickAdvisor>
+  <CC_Pnl_Medicine>Medicine</CC_Pnl_Medicine>
+  <CC_Pnl_MedicineTip>{0} medicine on the map and with the colonists. The advisor likes two for each colonist ({1}).</CC_Pnl_MedicineTip>
+  <CC_Pnl_MedicineTending>Someone needs tending now.</CC_Pnl_MedicineTending>
+  <CC_Pnl_Power>Power</CC_Pnl_Power>
+  <CC_Pnl_PowerTip>The grid makes {0} W more than it uses (less, when the number is negative). {1} Wd stored in batteries.</CC_Pnl_PowerTip>
+  <CC_Pnl_Outside>Outside</CC_Pnl_Outside>
+  <CC_Pnl_SeasonIn>{0} in {1} days</CC_Pnl_SeasonIn>
+  <CC_Pnl_TempTip>Outdoors now: {0}.</CC_Pnl_TempTip>
+  <CC_Pnl_SeasonTip>{0} begins in {1} days, averaging {2}.</CC_Pnl_SeasonTip>
+  <CC_Pnl_ClickOverlay>Click to show or hide the temperature overlay.</CC_Pnl_ClickOverlay>
+  <CC_Pnl_Raid>Since the last raid</CC_Pnl_Raid>
+  <CC_Pnl_RaidNone>No big threat yet.</CC_Pnl_RaidNone>
+  <CC_Pnl_RaidTip>The last big threat came {0} days ago.</CC_Pnl_RaidTip>
+  <CC_Pnl_ClickDefenses>Click for the defenses.</CC_Pnl_ClickDefenses>
+  <CC_Pnl_ResearchTip>Researching {0}: {1} done.</CC_Pnl_ResearchTip>
+  <CC_Pnl_ClickResearch>Click for the research tab.</CC_Pnl_ClickResearch>
+  <CC_Pnl_NoResearch>No research project</CC_Pnl_NoResearch>
+  <CC_Pnl_NoResearchTip>Nothing is being researched, though there is something to research.</CC_Pnl_NoResearchTip>
+  <CC_Pnl_OpenAdvisor>Open the advisor's priorities</CC_Pnl_OpenAdvisor>
+
+  <!-- The council at a glance -->
+  <CC_Pnl_CouncilCalm>Nothing waits on the council.</CC_Pnl_CouncilCalm>
+  <CC_Pnl_Wishes>Open wishes: {0}</CC_Pnl_Wishes>
+  <CC_Pnl_WaitedShort>{0}, {1}</CC_Pnl_WaitedShort>
+  <CC_Pnl_WishLine>{0}: {1} ({2} left)</CC_Pnl_WishLine>
+  <CC_Pnl_WishLapsing>{0}'s wish is about to lapse: {1}.</CC_Pnl_WishLapsing>
+  <CC_Pnl_Petitions>Petitions: {0}</CC_Pnl_Petitions>
+  <CC_Pnl_Promises>Promises: {0}</CC_Pnl_Promises>
+  <CC_Pnl_DueIn>due in {0}</CC_Pnl_DueIn>
+  <CC_Pnl_Questions>Questions waiting: {0}</CC_Pnl_Questions>
+  <CC_Pnl_LeftShort>{0} left</CC_Pnl_LeftShort>
+  <CC_Pnl_ClickLetter>Click to open the most pressing letter.</CC_Pnl_ClickLetter>
+  <CC_Pnl_InShort>in {0}</CC_Pnl_InShort>
+  <CC_Pnl_Trust>Trust: {0}</CC_Pnl_Trust>
+  <CC_Pnl_TrustTip>The colonists' trust in the council, on average: {0}.</CC_Pnl_TrustTip>
+  <CC_Pnl_OpenWeek>Open This week</CC_Pnl_OpenWeek>
+
+  <!-- The hover card -->
+  <CC_Pnl_C_Bleeding>Bleeding</CC_Pnl_C_Bleeding>
+  <CC_Pnl_C_BleedingDeath>Bleeding: dead in {0} without help</CC_Pnl_C_BleedingDeath>
+  <CC_Pnl_C_Dangerous>{0}: it can kill</CC_Pnl_C_Dangerous>
+  <CC_Pnl_C_Starving>Starving</CC_Pnl_C_Starving>
+  <CC_Pnl_C_Hungry>Very hungry</CC_Pnl_C_Hungry>
+  <CC_Pnl_C_Downed>Down and can't get up</CC_Pnl_C_Downed>
+  <CC_Pnl_C_Exhausted>Exhausted</CC_Pnl_C_Exhausted>
+  <CC_Pnl_C_InBreak>In a mental break: {0}</CC_Pnl_C_InBreak>
+  <CC_Pnl_C_BelowMajor>Mood {0}, under the major break line ({1})</CC_Pnl_C_BelowMajor>
+  <CC_Pnl_C_AtMinor>Mood {0}, at the break line ({1})</CC_Pnl_C_AtMinor>
+  <CC_Pnl_C_Falling>Falling towards a break: heading for {0}, the line is {1}</CC_Pnl_C_Falling>
+  <CC_Pnl_C_Close>Mood {0}, close to the break line ({1})</CC_Pnl_C_Close>
+  <CC_Pnl_C_Wish>Wishes for: {0} ({1} left)</CC_Pnl_C_Wish>
+  <CC_Pnl_C_Wavering>Faith wavering</CC_Pnl_C_Wavering>
+  <CC_Pnl_C_AllWell>Nothing pressing.</CC_Pnl_C_AllWell>
+  <CC_Pnl_Prisoner>prisoner</CC_Pnl_Prisoner>
+  <CC_Pnl_Slave>slave</CC_Pnl_Slave>
+
+  <!-- A panel's options -->
+  <CC_Pnl_OptionsTitle>{0}: options</CC_Pnl_OptionsTitle>
+  <CC_Pnl_Opt_Show>Show this panel</CC_Pnl_Opt_Show>
+  <CC_Pnl_Opt_Compact>Compact</CC_Pnl_Opt_Compact>
+  <CC_Pnl_Opt_Compact_moods>Thin bars with initials in a grid, like raid frames.</CC_Pnl_Opt_Compact_moods>
+  <CC_Pnl_Opt_Compact_trend>The graph alone, without the line under it.</CC_Pnl_Opt_Compact_trend>
+  <CC_Pnl_Opt_Compact_vitals>Icons and values only, two to a row.</CC_Pnl_Opt_Compact_vitals>
+  <CC_Pnl_Opt_Compact_council>Icons and values only, two to a row.</CC_Pnl_Opt_Compact_council>
+  <CC_Pnl_Opt_Order>Order</CC_Pnl_Opt_Order>
+  <CC_Pnl_Opt_Who>Who</CC_Pnl_Opt_Who>
+  <CC_Pnl_Who_Home>Colonists at home</CC_Pnl_Who_Home>
+  <CC_Pnl_Who_Everywhere>Colonists everywhere, caravans too</CC_Pnl_Who_Everywhere>
+  <CC_Pnl_Who_WithPrisoners>Colonists everywhere, and the colony's prisoners</CC_Pnl_Who_WithPrisoners>
+  <CC_Pnl_Opt_Range>Range</CC_Pnl_Opt_Range>
+  <CC_Pnl_Opt_Parts>What it shows</CC_Pnl_Opt_Parts>
+  <CC_Pnl_Part_portrait>Portraits</CC_Pnl_Part_portrait>
+  <CC_Pnl_Part_number>The mood and where it's heading</CC_Pnl_Part_number>
+  <CC_Pnl_Part_drag>What drags their mood down most</CC_Pnl_Part_drag>
+  <CC_Pnl_Part_act>What would help (a wider panel)</CC_Pnl_Part_act>
+  <CC_Pnl_Part_icons>Marks: a break, strain, a wish, wavering faith</CC_Pnl_Part_icons>
+  <CC_Pnl_Part_average>The colony's average</CC_Pnl_Part_average>
+  <CC_Pnl_Part_lowest>The lowest colonist</CC_Pnl_Part_lowest>
+  <CC_Pnl_Part_line>The minor break line</CC_Pnl_Part_line>
+  <CC_Pnl_Part_food>Days of food</CC_Pnl_Part_food>
+  <CC_Pnl_Part_medicine>Medicine</CC_Pnl_Part_medicine>
+  <CC_Pnl_Part_power>Power</CC_Pnl_Part_power>
+  <CC_Pnl_Part_temperature>Temperature and the next season</CC_Pnl_Part_temperature>
+  <CC_Pnl_Part_raid>Days since the last raid</CC_Pnl_Part_raid>
+  <CC_Pnl_Part_research>Research</CC_Pnl_Part_research>
+  <CC_Pnl_Part_wishes>Open wishes</CC_Pnl_Part_wishes>
+  <CC_Pnl_Part_petitions>Petitions for decrees</CC_Pnl_Part_petitions>
+  <CC_Pnl_Part_promises>Promises coming due</CC_Pnl_Part_promises>
+  <CC_Pnl_Part_questions>Questions waiting</CC_Pnl_Part_questions>
+  <CC_Pnl_Part_decrees>Decrees in force</CC_Pnl_Part_decrees>
+  <CC_Pnl_Part_calendar>The next day or meeting</CC_Pnl_Part_calendar>
+  <CC_Pnl_Part_trust>Trust</CC_Pnl_Part_trust>
+  <CC_Pnl_Opt_Rows>Rows before "and more": {0}</CC_Pnl_Opt_Rows>
+  <CC_Pnl_Opt_RowsAll>all</CC_Pnl_Opt_RowsAll>
+  <CC_Pnl_Opt_RowsTip>When there are more, the panel keeps what matters most and says how many it left out. Critical rows always show. At 0 every row shows.</CC_Pnl_Opt_RowsTip>
+  <CC_Pnl_Opt_Scale>Size: {0}</CC_Pnl_Opt_Scale>
+  <CC_Pnl_Opt_Opacity>Background: {0}</CC_Pnl_Opt_Opacity>
+  <CC_Pnl_Opt_Place>Back to its usual place</CC_Pnl_Opt_Place>
+  <CC_Pnl_Opt_Reset>This panel as Rimfolk ships it</CC_Pnl_Opt_Reset>
+  <CC_Pnl_ResetConfirm>Put every on-screen panel and the hover card back as Rimfolk ships them: their places, sizes and options?</CC_Pnl_ResetConfirm>
+  <CC_Pnl_SettingsButtonTip>{0}: what it shows, its order and size (shown now: {1}).</CC_Pnl_SettingsButtonTip>
+
+  <!-- Settings: on-screen panels -->
+  <CC_SetSec_Panels>On-screen panels</CC_SetSec_Panels>
+  <CC_Settings_HudShown>Show on-screen panels</CC_Settings_HudShown>
+  <CC_Settings_HudShown_Tip>Small panels on the map beside the game's own: the mood board, the mood trend, the colony's vitals and the council at a glance. Show or hide them all with the button by the play settings (bottom right), or with a key you pick in Options, Keyboard, Rimfolk.</CC_Settings_HudShown_Tip>
+  <CC_SetNote_HudShown>Moods, the trend, the vitals and the council on the map; move them by their top bar.</CC_SetNote_HudShown>
+  <CC_Settings_HudPanelOptions>Each panel's options</CC_Settings_HudPanelOptions>
+  <CC_Settings_HudPanelOptions_Tip>What each panel shows, its order, whom it lists, its size and background: the same as the gear on its bar.</CC_Settings_HudPanelOptions_Tip>
+  <CC_SetNote_HudPanelOptions>Rows and columns, order, whom it lists, rows before "and more", size and background.</CC_SetNote_HudPanelOptions>
+  <CC_Settings_HudLock>Lock their places</CC_Settings_HudLock>
+  <CC_Settings_HudLock_Tip>The panels can't be dragged by accident. "Arrange the panels" in their menu still moves them.</CC_Settings_HudLock_Tip>
+  <CC_SetNote_HudLock>The panels stay where they are; "Arrange the panels" still moves them.</CC_SetNote_HudLock>
+  <CC_Settings_HudHideWithTabs>Hide them under big windows</CC_Settings_HudHideWithTabs>
+  <CC_Settings_HudHideWithTabs_Tip>While a big window is open, such as the Work or Research tab or the council window, the panels step aside. Small ones like the build menu leave them be.</CC_Settings_HudHideWithTabs_Tip>
+  <CC_SetNote_HudHideWithTabs>Out of the way while the Work tab, Research or the council window is open.</CC_SetNote_HudHideWithTabs>
+  <CC_Settings_HudHideOnWorld>Hide them on the world map</CC_Settings_HudHideOnWorld>
+  <CC_Settings_HudHideOnWorld_Tip>The panels show on the colony's map only, not while the world map is up.</CC_Settings_HudHideOnWorld_Tip>
+  <CC_SetNote_HudHideOnWorld>Only on the colony's map, not on the world map.</CC_SetNote_HudHideOnWorld>
+  <CC_SetLabel_HudTheme>Look</CC_SetLabel_HudTheme>
+  <CC_SetTip_HudTheme>The panels' background. Each panel's own background setting makes it fainter still.</CC_SetTip_HudTheme>
+  <CC_HudTheme_Dark>Dark</CC_HudTheme_Dark>
+  <CC_HudTheme_Darker>Darker</CC_HudTheme_Darker>
+  <CC_HudTheme_Clear>Clear</CC_HudTheme_Clear>
+  <CC_SetNote_HudTheme_Dark>A dark background a little see-through, like the game's own readouts.</CC_SetNote_HudTheme_Dark>
+  <CC_SetNote_HudTheme_Darker>Nearly solid, for busy maps and bright snow.</CC_SetNote_HudTheme_Darker>
+  <CC_SetNote_HudTheme_Clear>Mostly see-through, with no border until the mouse is on a panel.</CC_SetNote_HudTheme_Clear>
+  <CC_SetLabel_HudFont>Text size</CC_SetLabel_HudFont>
+  <CC_SetTip_HudFont>The panels' text. Each panel's size setting scales it further.</CC_SetTip_HudFont>
+  <CC_HudFont_Small>Small</CC_HudFont_Small>
+  <CC_HudFont_Normal>Normal</CC_HudFont_Normal>
+  <CC_SetNote_HudFont_Small>Tiny text throughout: the panels at their smallest.</CC_SetNote_HudFont_Small>
+  <CC_SetNote_HudFont_Normal>Names and values in the game's usual text size, easier to read.</CC_SetNote_HudFont_Normal>
+  <CC_Settings_HudMoodMargin>At risk within {0} of the break line</CC_Settings_HudMoodMargin>
+  <CC_Settings_HudMoodMargin_Tip>Someone this close above their own minor break line counts as at risk: orange on the board, first in its order, and on the hover card.</CC_Settings_HudMoodMargin_Tip>
+  <CC_SetNote_HudMoodMargin>How close above their own break line someone turns orange on the board and the card.</CC_SetNote_HudMoodMargin>
+  <CC_Settings_HudFoodWarn>Food orange under {0} days</CC_Settings_HudFoodWarn>
+  <CC_SetNote_HudFoodWarn>The vitals' food line turns orange with less food than this.</CC_SetNote_HudFoodWarn>
+  <CC_Settings_HudFoodBad>Food red under {0} days</CC_Settings_HudFoodBad>
+  <CC_SetNote_HudFoodBad>And red with less than this; four days is where the advisor calls food low.</CC_SetNote_HudFoodBad>
+  <CC_Settings_HudReset>Put the panels and the hover card back as shipped</CC_Settings_HudReset>
+  <CC_Settings_HudReset_Tip>Their places, sizes and options, and the switches under "On-screen panels" and "Hover card", as Rimfolk ships them.</CC_Settings_HudReset_Tip>
+  <CC_SetNote_HudReset>Everything under "On-screen panels" and "Hover card" back to how it started.</CC_SetNote_HudReset>
+
+  <!-- Settings: the hover card -->
+  <CC_SetSec_HoverCard>Hover card</CC_SetSec_HoverCard>
+  <CC_Settings_HoverCard>Hover card on the map</CC_Settings_HoverCard>
+  <CC_Settings_HoverCard_Tip>Rest the mouse on a colonist on the map and, after a moment, a small card shows what matters most about them now: their mood and break lines, the two or three most pressing things, and what they're doing. It stays out of the game's way: not while dragging, placing, targeting, or over a window.</CC_Settings_HoverCard_Tip>
+  <CC_SetNote_HoverCard>Rest the mouse on a colonist: their mood and what matters most right now.</CC_SetNote_HoverCard>
+  <CC_Settings_HoverDelay>Wait before showing: {0} seconds</CC_Settings_HoverDelay>
+  <CC_SetNote_HoverDelay>How long the mouse rests on someone before their card shows.</CC_SetNote_HoverDelay>
+  <CC_SetLabel_HoverModifier>Only while holding</CC_SetLabel_HoverModifier>
+  <CC_SetTip_HoverModifier>Show the card only while this key is held, so it never shows by itself.</CC_SetTip_HoverModifier>
+  <CC_HoverKey_None>No key</CC_HoverKey_None>
+  <CC_HoverKey_Alt>Alt</CC_HoverKey_Alt>
+  <CC_HoverKey_Shift>Shift</CC_HoverKey_Shift>
+  <CC_HoverKey_Ctrl>Ctrl</CC_HoverKey_Ctrl>
+  <CC_SetNote_HoverKey_None>The card shows whenever the mouse rests on someone.</CC_SetNote_HoverKey_None>
+  <CC_SetNote_HoverKey_Alt>The card shows only while Alt is held.</CC_SetNote_HoverKey_Alt>
+  <CC_SetNote_HoverKey_Shift>The card shows only while Shift is held.</CC_SetNote_HoverKey_Shift>
+  <CC_SetNote_HoverKey_Ctrl>The card shows only while Ctrl is held.</CC_SetNote_HoverKey_Ctrl>
+  <CC_SetLabel_HoverWho>For</CC_SetLabel_HoverWho>
+  <CC_SetTip_HoverWho>Whom the card shows for.</CC_SetTip_HoverWho>
+  <CC_HoverWho_Colonists>Colonists</CC_HoverWho_Colonists>
+  <CC_HoverWho_Everyone>Colonists, slaves and prisoners</CC_HoverWho_Everyone>
+  <CC_SetNote_HoverWho_Colonists>The colony's free colonists.</CC_SetNote_HoverWho_Colonists>
+  <CC_SetNote_HoverWho_Everyone>The colony's free colonists, its slaves and its prisoners.</CC_SetNote_HoverWho_Everyone>
+  <CC_SetLabel_HoverPlace>Where</CC_SetLabel_HoverPlace>
+  <CC_SetTip_HoverPlace>Beside the mouse, or always in the same corner.</CC_SetTip_HoverPlace>
+  <CC_HoverPlace_Cursor>By the mouse</CC_HoverPlace_Cursor>
+  <CC_HoverPlace_Corner>In a corner</CC_HoverPlace_Corner>
+  <CC_SetNote_HoverPlace_Cursor>Beside the mouse, never under it.</CC_SetNote_HoverPlace_Cursor>
+  <CC_SetNote_HoverPlace_Corner>Bottom left, above the inspect pane.</CC_SetNote_HoverPlace_Corner>
+  <CC_Settings_HoverMood>Their mood bar</CC_Settings_HoverMood>
+  <CC_Settings_HoverMood_Tip>The mood bar with their own break lines and a mark where their mood is heading.</CC_Settings_HoverMood_Tip>
+  <CC_SetNote_HoverMood>The mood bar with their break lines and where it's heading.</CC_SetNote_HoverMood>
+  <CC_Settings_HoverConcerns>What matters most now</CC_Settings_HoverConcerns>
+  <CC_Settings_HoverConcerns_Tip>The most pressing things about them, most urgent first: bleeding or a condition that can kill, a mental break or the break line, hunger and exhaustion, strain, a wish waiting, wavering faith, and the biggest moods dragging them down with what would help.</CC_Settings_HoverConcerns_Tip>
+  <CC_SetNote_HoverConcerns>Bleeding, a break, hunger, strain, a wish, the biggest moods dragging them down.</CC_SetNote_HoverConcerns>
+  <CC_Settings_HoverLines>...at most {0} lines</CC_Settings_HoverLines>
+  <CC_SetNote_HoverLines>Anything critical always shows, even beyond this.</CC_SetNote_HoverLines>
+  <CC_Settings_HoverDoing>What they're doing</CC_Settings_HoverDoing>
+  <CC_Settings_HoverDoing_Tip>Their current job, in the game's words.</CC_Settings_HoverDoing_Tip>
+  <CC_SetNote_HoverDoing>Their current job, in the game's words.</CC_SetNote_HoverDoing>
+  <CC_Settings_HoverScale>Card size: {0}</CC_Settings_HoverScale>
+  <CC_SetNote_HoverScale>Bigger for large screens, smaller to keep more of the map in view.</CC_SetNote_HoverScale>
+  <CC_Settings_HoverOpacity>Card background: {0}</CC_Settings_HoverOpacity>
+  <CC_SetNote_HoverOpacity>Fainter to see the map through it.</CC_SetNote_HoverOpacity>
+</LanguageData>
