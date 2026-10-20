@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## A fungus diet that holds
+
+*23 October 2026, version 0.9.2*
+
+- The fungus meal is now made from fungus and nothing else. When a colonist's faith requires fungus, Rimfolk makes a "Fungus diet" food policy once (fungus meals, raw fungus, insect jelly and insect meat only) and tells you who needs it. A policy that still allows simple meals or raw vegetables is what keeps such a colonist throwing up.
+- The small frictions between colonists (a borrowed thing not returned, a taken seat, a joke that fell flat) now say what they are and that they fade in a day or so, instead of pointing to the council.
+
 ## Families that really come
 
 *22 October 2026, later, version 0.9.1*

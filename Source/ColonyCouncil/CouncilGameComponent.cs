@@ -88,6 +88,8 @@ namespace ColonyCouncil
         public PressureTracker pressures = new PressureTracker();
         /// <summary>A Rimfolk scenario's stakes (its enemy, debt, families...) have been set up for this game.</summary>
         public bool scenarioSetUp;
+        /// <summary>The "Fungus diet" food policy has been made for this game (Integrations/FungusDiet.cs): never made twice.</summary>
+        public bool fungusDietMade;
         /// <summary>The colony's era, set by hand in the mod settings or detected (Auto). Saved with each colony.</summary>
         public EraMode era = EraMode.Auto;
         public CharacterTracker character = new CharacterTracker();
@@ -179,6 +181,7 @@ namespace ColonyCouncil
             Scribe_Deep.Look(ref pressures, "pressures");
             Scribe_Deep.Look(ref kept, "kept");
             Scribe_Values.Look(ref scenarioSetUp, "scenarioSetUp");
+            Scribe_Values.Look(ref fungusDietMade, "fungusDietMade");
             ExposeWelcome();
             Scribe_Collections.Look(ref history, "history", LookMode.Deep);
             Scribe_Values.Look(ref era, "era", EraMode.Auto);

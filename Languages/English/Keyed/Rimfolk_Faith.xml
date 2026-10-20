@@ -21,4 +21,8 @@
   <CC_FaithBtn_DecreeOther>The council has already named {0} the colony's faith. Lift that decree first.</CC_FaithBtn_DecreeOther>
   <CC_FaithBtn_NoHome>There's no home for the colony to gather in.</CC_FaithBtn_NoHome>
 
+  <!-- A colonist whose faith requires fungus (Source/ColonyCouncil/Integrations/FungusDiet.cs). -->
+  <CC_FungusDiet_Label>Fungus diet</CC_FungusDiet_Label>
+  <CC_FungusDiet_Made>{0} can keep down only fungus and insect food: their faith makes them throw up anything else. Rimfolk has made a food policy, "{1}", that allows only fungus meals, raw fungus and insect food. Give it to them in the Assign tab, and keep a "cook fungus meal" bill going at a stove.</CC_FungusDiet_Made>
+
 </LanguageData>

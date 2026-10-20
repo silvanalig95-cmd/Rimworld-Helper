@@ -8,12 +8,11 @@ using Verse;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// The fungus meal (Ideology; Defs/Food/Rimfolk_FungusMeal.xml): a simple meal with some fungus in it, cooked on
-    /// its own bill, so a colonist whose faith asks for fungus can be given only these through a food policy. Alpha
-    /// Memes' fungus diet is content with a meal that has any fungus in it, so it stops the sickness. Finished once at
-    /// startup: every raw fungus the game knows (other mods' too) counts as the fungus part, the meal looks like a
-    /// simple meal, the bill takes the simple meal's ingredient filters, and every stove or fire that cooks simple
-    /// meals cooks this too.
+    /// The fungus meal (Ideology; Defs/Food/Rimfolk_FungusMeal.xml): a simple meal of fungus alone, cooked on its own
+    /// bill, so a colonist whose faith asks for fungus can be given only these through a food policy. Finished once at
+    /// startup: every raw fungus the game knows (other mods' too) is an ingredient and nothing else is, the meal looks
+    /// like a simple meal, and every stove or fire that cooks simple meals cooks this too. A colonist whose faith
+    /// requires fungus also gets a ready-made food policy (FungusDiet).
     /// </summary>
     [StaticConstructorOnStartup]
     public static class FungusMeals
@@ -43,13 +42,11 @@ namespace ColonyCouncil
             var raw = DefDatabase<ThingCategoryDef>.GetNamedSilentFail("FoodRaw");
             var fungi = DefDatabase<ThingDef>.AllDefsListForReading.Where(d => IsRawFungus(d, raw)).ToList();
 
-            // The part that must be fungus takes any raw fungus.
+            // Every ingredient is fungus: any raw fungus, and nothing else.
             var fungusPart = recipe.ingredients[0].filter;
             foreach (var f in fungi) fungusPart.SetAllow(f, true);
-
-            // The simple meal's ingredient rules (no hay, no human meat by default), with every fungus allowed.
-            recipe.fixedIngredientFilter = Filter(cookSimple?.fixedIngredientFilter ?? recipe.fixedIngredientFilter, fungi);
-            recipe.defaultIngredientFilter = Filter(cookSimple?.defaultIngredientFilter ?? recipe.fixedIngredientFilter, fungi);
+            recipe.fixedIngredientFilter = Filter(fungi);
+            recipe.defaultIngredientFilter = Filter(fungi);
 
             // It looks like a simple meal.
             if (simple?.graphicData != null)
@@ -85,13 +82,15 @@ namespace ColonyCouncil
             return raw == null ? d.ingestible.preferability <= FoodPreferability.RawTasty : d.IsWithinCategory(raw);
         }
 
-        private static ThingFilter Filter(ThingFilter from, List<ThingDef> fungi)
+        private static ThingFilter Filter(List<ThingDef> fungi)
         {
             var filter = new ThingFilter();
-            if (from != null) filter.CopyAllowancesFrom(from);
             foreach (var f in fungi) filter.SetAllow(f, true);
             filter.RecalculateDisplayRootCategory();
             return filter;
         }
+
+        /// <summary>Raw food that counts as fungus (any mod's), for the fungus diet policy.</summary>
+        public static bool IsRawFungus(ThingDef d) => IsRawFungus(d, DefDatabase<ThingCategoryDef>.GetNamedSilentFail("FoodRaw"));
     }
 }

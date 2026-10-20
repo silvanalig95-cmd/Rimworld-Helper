@@ -202,6 +202,15 @@
   </ColonyCouncil.MoodHintDef>
 
   <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_Frictions</defName>
+    <nameContains><li>council_friction_</li></nameContains>
+    <fix>A small friction between two people who live too close: a borrowed thing, a seat, a joke, a snore. It fades in a day or so. Bedrooms of their own, enough room at the table and in the rec room, and keeping those who dislike each other apart mean fewer of them.</fix>
+    <act>Fades in a day or so</act>
+    <actionable>false</actionable>
+    <article>Council_Alm_C_Social</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RF_SetbackSlight</defName>
     <thoughts><li>Council_Friction_CookingCriticised</li><li>Council_Friction_Mocked</li><li>Council_Friction_CreditTaken</li><li>Council_Friction_ReturnedBroken</li></thoughts>
     <fix>A friction that followed something real. It fades in a day or so. A clean kitchen and a skilled cook prevent food poisoning, the commonest cause.</fix>

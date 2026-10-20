@@ -31,6 +31,16 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.9.2</version>
+        <date>23 October 2026</date>
+        <title>A fungus diet that holds</title>
+        <points>
+          <li>The fungus meal is now made from fungus and nothing else. When a colonist's faith requires fungus, Rimfolk makes a "Fungus diet" food policy once (fungus meals, raw fungus, insect jelly and insect meat only) and tells you who needs it. A policy that still allows simple meals or raw vegetables is what keeps such a colonist throwing up.</li>
+          <li>The small frictions between colonists (a borrowed thing not returned, a taken seat, a joke that fell flat) now say what they are and that they fade in a day or so, instead of pointing to the council.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.9.1</version>
         <date>22 October 2026, later</date>
         <title>Families that really come</title>
