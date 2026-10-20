@@ -555,6 +555,49 @@ mode or with "Faith in the colony" off; the talks also need the talk's settings,
   asks, the last three faith moments with how far each moved them, who is likeliest to sway them or whom they could
   bring round), the mark under "what shaped them", news, the journal; the advisor's `Council_Adv_FaithSplit` (split
   0.5 or more with three faiths or more, leading to the page); the Almanac page "faith in the colony".
+### Faith and the council
+With Ideology, the council can work with the colony's faiths (`Faith/FaithEvenings.cs`, `Faith/FaithCouncilMath.cs`,
+`Dilemmas/DilemmaWorkers_Faith.cs`, `Decrees/DecreeFaith.cs`, `Wishes/WishWorkers_Faith.cs`). Everything moves faith
+through the shared core (`Faiths.Sway`, `SwayToward`, `Steady`), so the listener's openness, pride and opinion of the
+speaker always count, no single moment takes more than 15%, and a conversion is the game's own. Off without Ideology,
+in classic mode and with "Faith in the colony" off. Faith costs trust and certainty, never a bad mood: a colony of many
+faiths is a lever the player can pull, not one more drain.
+
+- **An evening of faith** is a gathering (a play-out, `PlayKind.Gathering` with words) for one faith, 17:00 to 23:00,
+  about two hours. The speaker is the faith's moral guide at home, else its most devout believer with the best Social
+  skill; the place its altar or ideogram (styled for it, or for the colony's own faith any unclaimed one: a soft check
+  by name, so other mods' altars count), else a fire, the dining table, a gather spot. Who comes is decided as it's
+  called (`FaithCouncilMath.ComeChance`): believers always, a faith that frowns on preaching never (they say so where
+  they are), the rest by openness, opinion of the speaker, wavering or devout. It is judged when the gathering ends
+  (`Interplay.Notify_GatheringOver` hands every gathering to `FaithEvenings.Notify_GatheringOver`): Social skill up to
+  0.55, warmth 0.15 either way, listeners up to 0.2 at six, the altar 0.1, halved when broken off. Poor (under 0.3)
+  does nothing but a line; good sways listeners of other faiths from 6% (to 9%) and steadies believers, with recreation
+  and fellowship instead of mood (RewardInstead); fine (0.65 or more) sways up to 12% and gives a small mood (+3, a
+  day and a half) through the shared budget. Its outcome becomes the gathering's closing words (`PlayOut.outcome`).
+  One every five days, a faith every ten; offered and nobody coming spends the faith's turn, so the dice can't be
+  rolled again at once.
+- **Called from:** a calendar day kept as an evening of faith (`DayWay.Faith`, the faith by name in the day's subject;
+  it ignores the gaps, a yearly day), the devout's council question (`DilemmaWorker_FaithEvening`), and
+  `FaithEvenings.CanCall(Map, out why)`, `CanCall(Map, Ideo, out why)` and `Call(Map, Ideo)` for any page.
+- **The wish** (`WishWorker_LearnFaith`): wavering (under 60%), a devout believer of another faith thought well of
+  (opinion 20+), never for a faith that frowns on preaching. Promised, a play-out visit that evening (re-arranged if it
+  falls through while promised; without play-outs, `Together.When`); an evening of that faith counts too. The grant's
+  effect (`WishEffect_LearnFaith`) sways 12% base (none more if an evening already did it) and adds a shared memory.
+- **Faiths at odds** (`DilemmaWorker_FaithClash`): two faiths of two or more, or a split of a half; half the time unless
+  believers of different faiths quarrelled in the last five days or an altar stands. Share the altar (+2 trust for the
+  open-minded, -1 for the devout), a corner each (+1 trust, 3% certainty, a letter suggesting places), or name the
+  largest faith (+3 for its believers, -2 and a 3% sway for the rest, -4 more for the devout of other faiths who take
+  it hard). Each plays out (`DilemmaEffect_FaithWords`, a work party). Faiths are kept by name in the letter's context,
+  so an archived letter never references a faith the game has let go.
+- **One faith for the colony** (a DecreeDef with `oneFaith`): the player picks the faith from a menu on the enact
+  button (the largest first). Each morning (`DecreeWork.Daily`): the wavering of other faiths `SwayToward` it 1.2% to 2%
+  (opinion of its believers, a little by openness), and those of other faiths lose 0.25 to 1 trust (logged on the first
+  morning and every fifth). Reactions narrow by faith (`decreeFaith`, `notDecreeFaith`, `dislikesPreaching` on a
+  reaction rule), so the devout of other faiths hate it and the decree system's own petition to lift it comes from them.
+  Meetings open with a word from a believer (`DecreeFaith.MeetingWord`, once a meeting). No mood of its own. The faith
+  talks read `DecreeFaith.FaithOfColony` and `TalkFactor` (1.5). Lifted or run out, the named faith is let go.
+- **Saved** in `FaithCouncilTracker` (a game component that never ticks): the last evening and each faith's, the
+  evening waiting, the decree's faith, and who heard which faith lately (one each, 30 days, 40 at most).
 
 ## Real effects: answers that play out on the map
 
@@ -1612,6 +1655,7 @@ on a map, in the world or in a caravan), so such a record is let go when the gam
 | Faith (the people) | one record per colonist whose faith moved or is watched (when talk last swayed or steadied them, their last crisis, the demand of their faith weighing on them), known pawns only, empty ones dropped; 5 faith moments each, 120 days; crises waiting to be felt, one per kind per colonist, 6 days; which pairs talked about faith lately not saved |
 | Views and shared memories | views with the person's record (`PawnPersona.stances`), a view about a newcomer let go once they've been here 60 days or are gone; shared memories 8 per pair, 3 of one kind, and 600 in all (the faintest go at once past 660, and at saving the faded ones and those of people the game no longer knows); a fight is remembered only by those seen side by side in it, 3 partners each; the talk's news 40 notes, a month at most; who talked to whom lately and talks under way not saved |
 | Reputation | 10 deeds per colonist and 220 in all (the faintest make way), 30 knowers a deed; a deed faded to nearly nothing is dropped, and daily those of the dead and departed and anything the dead knew; one packed number per colonist for the names told |
+| Faith and the council | each faith's last evening of faith (one per faith, let go after 60 days or with the faith); the evening waiting to be held (one); the faith a decree names; who heard which faith spoken for lately (one per colonist, 30 days, 40 at most) |
 | Other mods' people | best-friend pairs of known pawns, 200 at most |
 | Advisor (per map) | 60 days of wealth samples |
 

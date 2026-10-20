@@ -5,6 +5,19 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Faith in the colony
+
+*21 October 2026, version 0.8.0*
+
+- People → Faiths (with Ideology): every faith in the colony on one page. It shows who believes what and how firmly, which faiths have no leader or moral guide here, what each faith asks that is weighing on someone right now, and who could sway whom. Each faith's card can call an evening of faith or name it the colony's faith, and the page explains the game's own tools.
+- Talks about faith matter: a devout, well-liked colonist who comes out of a friendly talk well sways someone of another faith a little. The open-minded and friends are swayed more, the proud less. An argument makes both dig in, two of one faith steady each other, and a faith that dislikes preaching takes it badly.
+- Evenings of faith: the council can call one from the faiths page or the calendar, or say yes when the devout ask. The faith's moral guide or most devout believer speaks, at its altar if one stands. Others choose whether to come, and a good evening can sway them and lifts those who came.
+- A wavering colonist may ask to spend an evening with a devout believer of another faith, to learn about it. Granted, the two sit together, and it moves them.
+- When the colony's faiths are at odds, the council decides: share the altar, give each faith its own corner, or name one faith the colony's. Each answer costs trust or certainty somewhere, and plays out on the map.
+- New decree, one faith for the colony: you name the faith. The wavering are drawn to it, its believers speak of it more often and meetings open with a word from it, while everyone else trusts the council a little less until it's lifted.
+- Crises of faith: losing someone for all the rites, being saved by someone of another faith, a faith's demands carried too long, or a brush with death can shake a colonist's faith for real. It shows as a turning point on their character page and in their journal.
+- Every conversion is the game's own: someone takes a new faith when their certainty runs out, and Rimfolk tells you who brought them round. The advisor speaks up when the colony is badly split. Two Almanac pages, "faith in the colony" and "faith and the council", explain it, and the "Faith in the colony" setting turns it all off.
+
 ## Easier to keep spirits up
 
 *20 October 2026, evening, version 0.7.2*

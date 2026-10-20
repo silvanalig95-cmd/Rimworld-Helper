@@ -120,6 +120,7 @@ namespace ColonyCouncil
             if (!WishParams.EraFits(d.eras)) return true;
             if ((d.needsIdeology || !d.memes.NullOrEmpty()) && ColonyFaith == null) return true;
             if (!d.memes.NullOrEmpty() && !FaithHas(d.memes)) return true;
+            if (d.oneFaith && DecreeFaith.Hidden) return true;
             return false;
         }
 
@@ -195,6 +196,7 @@ namespace ColonyCouncil
                     var a = asker != null && asker.Spawned && asker.Map == map ? asker : map.mapPawns.FreeColonistsSpawned.Where(PlayOuts.OurPerson).RandomElementWithFallback();
                     PlayOuts.Run(def.enactEffects, new DilemmaContext { map = map, a = a, faction = GoodwillFaction(def), why = def.LabelCap }, "decree " + def.defName);
                 }
+                if (def.oneFaith) DecreeFaith.Enacted(def);
             }
             catch (Exception e)
             {
@@ -205,6 +207,7 @@ namespace ColonyCouncil
         public static void Ended(DecreeTracker t, DecreeDef def)
         {
             if (def.nightSleep && !t.active.Any(a => a.def != null && a.def.nightSleep)) RestoreNight(t);
+            if (def.oneFaith) DecreeFaith.Ended(def);
         }
 
         // ---------------- The hour ----------------
@@ -263,6 +266,7 @@ namespace ColonyCouncil
                     foreach (var p in PawnsFinder.AllMaps_FreeColonistsSpawned.ToList())
                         if (Believer(p) && !p.IsQuestLodger()) p.ideo?.OffsetCertainty(amount);
                 }
+                if (def.oneFaith) DecreeFaith.Daily(t, def);
                 if (given > 0)
                 {
                     string text = to != null

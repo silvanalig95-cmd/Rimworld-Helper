@@ -380,6 +380,10 @@ namespace ColonyCouncil
                 case DayWay.Planting:
                     Planting(d, map, home);
                     return false;
+                case DayWay.Faith:
+                    // The faith's own speaker for its own faith (Faith/FaithEvenings.cs); when it can't be held, a word at supper.
+                    if (FaithEvenings.FromCalendar(d, map)) return true;
+                    return PlayDay(d, map, home, PlayKind.Toast, null, null, null, null);
                 case DayWay.Remembrance:
                     string subject = d.kind == CalendarKind.Death || d.kind == CalendarKind.Companion ? d.pawnName
                         : d.kind == CalendarKind.Battle ? "CC_Cal_Subject_Battle".Translate(d.enemy ?? "?").Resolve()
@@ -919,7 +923,8 @@ namespace ColonyCouncil
         /// </summary>
         public static Precept_Ritual RitualFor(DayWay way)
         {
-            if (!ModsConfig.IdeologyActive || way == DayWay.Personal || way == DayWay.Rest || way == DayWay.Gifts || way == DayWay.Hunt || way == DayWay.Planting) return null;
+            if (!ModsConfig.IdeologyActive || way == DayWay.Personal || way == DayWay.Rest || way == DayWay.Gifts || way == DayWay.Hunt || way == DayWay.Planting
+                || way == DayWay.Faith) return null;
             try
             {
                 var ideo = Faction.OfPlayer?.ideos?.PrimaryIdeo;

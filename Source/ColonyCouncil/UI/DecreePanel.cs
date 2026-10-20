@@ -110,6 +110,9 @@ namespace ColonyCouncil
             l.effects = string.Join("\n", def.effects.Select(e => "- " + e));
             // Feelings and strain (Heart/): a hard decree wears on those who resent it.
             if (def.strainPerDay > 0f && Heart.On) l.effects += "\n- " + "CC_Heart_DecreeStrain".Translate(def.strainPerDay.ToString("0.#")).Resolve();
+            // One faith for the colony: which faith it names (Decrees/DecreeFaith.cs).
+            string faithLine = DecreeFaith.CardLine(def);
+            if (faithLine != null) l.effects += "\n- " + faithLine;
             var req = tracker.RequestFor(def);
             l.note = req?.pawn == null ? null
                 : (req.repeal ? "CC_Decree_RepealLine" : "CC_Decree_PetitionLine").Translate(req.pawn.Named("PAWN")).Resolve() + (req.line != null ? " \"" + req.line + "\"" : "");
@@ -274,7 +277,7 @@ namespace ColonyCouncil
             if (why == null)
             {
                 if (Widgets.ButtonText(btn, UiKit.Fit(l.enactLabel ?? "CC_Decree_Enact".Translate(TextUtil.DaysString(Mathf.RoundToInt(def.durationDays * GenDate.TicksPerDay))), btn.width - 10f)))
-                    tracker.Enact(def, comp);
+                    DecreeFaith.Enact(def, () => tracker.Enact(def, comp));
                 return;
             }
             // Only the cooldown stands in the way: it can be forced through, at a price.
@@ -298,7 +301,7 @@ namespace ColonyCouncil
                 string who = against.Count > 0 ? string.Join(", ", against) : "CC_Decree_ForceNobody".Translate().ToString();
                 Find.WindowStack.Add(Dialog_MessageBox.CreateConfirmation(
                     "CC_Decree_ForceConfirm".Translate(def.label.Named("DECREE"), who.Named("WHO"), chance.Named("CHANCE")).Resolve(),
-                    () => tracker.Enact(def, comp, true), true));
+                    () => DecreeFaith.Enact(def, () => tracker.Enact(def, comp, true)), true));
             }
         }
 

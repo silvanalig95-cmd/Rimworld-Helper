@@ -12,7 +12,7 @@ namespace Balance
         private static readonly string[] SystemOrder =
         {
             "wishes", "event wishes", "dilemmas", "dilemmas (after a raid)", "dilemmas (strangers)", "events", "encounters", "social events", "setbacks", "ailments",
-            "health", "calendar", "stories", "camps", "world events", "missions", "play-outs", "meetings", "decrees", "dreams", "people", "colony", "world"
+            "health", "calendar", "stories", "camps", "world events", "missions", "play-outs", "meetings", "decrees", "faith", "dreams", "people", "colony", "world"
         };
 
         public static string Write(DefSet defs, SourceConstants src, List<Result> results, Dictionary<string, Summary> before, int runs)

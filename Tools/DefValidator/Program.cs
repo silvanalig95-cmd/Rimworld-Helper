@@ -411,6 +411,9 @@ wishPh.UnionWith(new[] { "GROUP", "ANCHOR", "LABEL" });
 wishPh.UnionWith(new[] { "TOPIC", "A", "B" });
 // Traits that change (Persona/TraitChanges.cs): the trait as it is after the change, or as it was for one that's gone.
 wishPh.Add("TRAIT");
+// Faith and the council (Faith/, Dilemmas/DilemmaWorkers_Faith.cs): the faith, the other side's, the altar that stands,
+// and what sharpened a clash.
+wishPh.UnionWith(new[] { "FAITH", "OTHERFAITH", "ALTAR", "WHY" });
 var pawnPrefixes = new HashSet<string> { "PAWN", "FOR", "OTHER", "ENVIED", "ABOUT", "A", "B", "PET", "LEAKER", "TELLER", "X", "SLAYER", "BABY", "THIRD" };
 // The colonist a people remembers by name (World/KinMemory.cs: events, world events, camps).
 pawnPrefixes.Add("FRIEND");

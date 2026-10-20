@@ -638,6 +638,7 @@ namespace Balance
             Calendar();
             Stories();
             Decrees();
+            Faith();
             Camps();
             OtherLetters();
             LifeAndHonours();
@@ -1486,6 +1487,40 @@ namespace Balance
             Send("decrees", Channel.Message);
             var c = Pick(people);
             Trust(c, Chance(style.best) ? 5f : -2f);
+        }
+
+        // ---------------- Faith and the council (Faith/, with Ideology) ----------------
+
+        private bool? faithSplit;
+        private int lastEvening = -9999;
+
+        /// <summary>
+        /// A colony of more than one faith (a share of runs, Rates.FaithSplitColony): now and then an evening of faith,
+        /// where those who come get recreation and fellowship (a good evening, no mood) or a small good mood (a fine one);
+        /// and some of the year one faith is the colony's by decree, and those of other faiths trust the council less.
+        /// </summary>
+        private void Faith()
+        {
+            source = "faith";
+            if (!set.B("faithLife") || !set.B("answersPlayOut")) return;
+            faithSplit ??= Chance(Rates.FaithSplitColony);
+            if (!faithSplit.Value) return;
+            if (Day - lastEvening >= 5 && Chance(1f / Rates.EveningEveryDays))
+            {
+                lastEvening = Day;
+                Count("evenings of faith");
+                Send("play-outs", Channel.Message);
+                float roll = (float)rng.NextDouble();
+                string thought = roll < Rates.EveningPoor ? null : roll < 1f - Rates.EveningFine ? "Council_Faith_GoodEvening" : "Council_Faith_FineEvening";
+                if (thought != null)
+                    foreach (var c in people.Where(_ => Chance(Rates.EveningComes)).ToList())
+                        Give(c, thought);
+            }
+            if (Chance(Rates.OneFaithDays))
+            {
+                Count("days of one faith for the colony");
+                foreach (var c in people.Where(_ => Chance(Rates.OneFaithOutsiders)).ToList()) Trust(c, Rates.OneFaithTrustPerDay);
+            }
         }
 
         /// <summary>The rest of the people and colony letters, at a documented yearly rate (OtherLettersPerYear).</summary>

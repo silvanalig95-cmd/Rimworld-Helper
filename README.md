@@ -126,7 +126,7 @@ to them. A raid makes someone ask for defenses within hours; a cold night, a mea
 friend's death or food poisoning all set off matching wishes. Every wish arrives with a little scene and a line
 in the colonist's own voice, chosen to fit the season, weather, time of day and their situation.
 
-115 kinds of wish, most with variants (six kinds of work room, a dozen pieces of furniture, any
+116 kinds of wish, most with variants (six kinds of work room, a dozen pieces of furniture, any
 missing body part), so the same colony rarely hears the same request twice in a row: a wish the colony has
 heard several times lately becomes much less likely, and one nobody here has ever made a little more likely.
 Every wish asks only for what the colony can do now, in its era: a tribe hears about healroot and pemmican, an
@@ -346,7 +346,7 @@ heaters burn a quarter less fuel, in colder, darker rooms), **apprenticeships** 
 crafting, cooking and growing every hour) and **a feast day** (one day of eating well and working half). Colonists
 petition for them when someone is ill, in winter, or when a newcomer joins.
 
-Thirty decrees in all. The newest come from a village's own year and do something no stat can: **tithes** (a tenth
+Thirty-one decrees in all. The newest come from a village's own year and do something no stat can: **tithes** (a tenth
 of the silver each morning to a people of the colony's faith or the nearest village, for goodwill and, with Ideology,
 the faithful's certainty), **a curfew** (everyone's night hours turned to sleep and put back after; night owls keep
 the watch), **militia drills** (twelve days of light practice for everyone who can fight), **alms for the poor** (a
@@ -394,7 +394,7 @@ stash of beer, a cook who wants to spend the stores on one magnificent feast, a 
 can't cope. Kind, greedy, industrious and teetotal colonists all react differently. Leave a dilemma unanswered and
 the council's silence decides for you.
 
-There are 158 of them, and many grow out of everyday life: a sick colonist when the medicine is nearly gone,
+There are 160 of them, and many grow out of everyday life: a sick colonist when the medicine is nearly gone,
 whether to keep someone with a fever apart, a cook with a cold, an old family remedy, a visitor's strange cure, the
 camp on the colony's land asking for medicine, food or searchers for a lost child, a council meeting someone missed,
 a worn-out colonist asking for days off at the worst time, a doctor who just lost a patient, someone convalescing who
@@ -405,8 +405,8 @@ a youngster who wants to see the world, an elder who wants one last walk in the 
 tale to tell or feels the cold in their bones. Many answers call on whoever is
 best placed (the doctor, a forager, a tracker, the best talker), and their skill decides how it goes.
 
-**Answers play out on the map.** When an answer describes something people do, they do it (408 answers of 129
-dilemmas and 123 Rimfolk events, stories and world events, plus calendar days, five decrees and nine ambitions). A
+**Answers play out on the map.** When an answer describes something people do, they do it (413 answers of 131
+dilemmas and 123 Rimfolk events, stories and world events, plus calendar days, six decrees and nine ambitions). A
 victory feast is eaten at the dining table, each guest sent to eat a cooked meal from the stores, the finest first
 they may eat. The midsummer bonfire is lit (a campfire laid for the evening if the colony has none, burned down to ash
 after), a toast is raised, an apology or a reading is heard round the table, a friend sits with someone who is ill, a
@@ -423,6 +423,38 @@ danger, sleep, a meal or a sickbed, nothing starts with enemies about, and dange
 it. The answer's good moods come to those who were there once it's over; if it never happens within a few hours,
 everyone gets them anyway, as before. This week lists what's coming, the dilemmas page says how each went, and those
 who took part write about it. A setting (Events & world) turns it off.
+
+### Faith and the council
+With Ideology, a colony of many faiths gives the council something to work with (all of it off in classic mode, and
+with "Faith in the colony" off). Every move goes through the game's own certainty: Rimfolk takes some away or gives
+some back, and when someone has none left the game converts them, with a message and a line in the chronicle.
+
+- **An evening of faith.** The council calls a gathering where one faith is spoken for, by its moral guide or else
+  its most devout believer with the best Social skill, at its altar or ideogram if one stands (else round a fire or at
+  the dining table). Its believers come; the others choose for themselves, by how open they are, how sure of their own
+  faith and what they think of the speaker, and those whose faith frowns on being preached to stay away and say so.
+  How it went (the speaker's Social skill and warmth, how many came, the altar) decides what it does: listeners of
+  other faiths are swayed toward it (6% to 12% to start with, then their own openness, pride and opinion of the
+  speaker), believers steadied, everyone given recreation and fellowship (a fine evening, a small good mood); a poor
+  one changes nothing but a line. One every five days at most, the same faith one every ten. Put it on the calendar
+  as a day kept as an evening of faith, say yes when one of the devout asks the council for one, or call it from the
+  faiths page.
+- **A wavering colonist's wish.** Someone whose faith is shaken may ask for an evening with a devout believer of
+  another faith they think well of. Promised, they walk over that evening and spend a couple of hours together;
+  granted, they are swayed toward that faith and the two remember it together.
+- **Faiths at odds.** When the colony is split (two faiths of two believers or more, or half of everyone apart), the
+  council is asked how its faiths should live together, more often after a quarrel between them or while an altar
+  stands: share the altar and take turns (the open-minded approve, the devout less so), give each faith its own
+  corner (a letter suggests where; a little trust all round and everyone surer of their own), or name the largest
+  faith the colony's (its believers pleased, everyone else trusting the council less and drawn a little toward it,
+  the devout of other faiths taking it hard). Each answer plays out on the map.
+- **One faith for the colony.** A decree for fifteen days, naming the faith you choose. Each day the wavering of other
+  faiths are drawn a little toward it, its believers speak of it more and open the council's meetings with a word
+  from it, and those of other faiths trust the council a little less (the open-minded least, the devout most); the
+  devout of other faiths petition to lift it. Lifting it ends all of it.
+
+None of it adds a bad mood: what faith costs is trust and certainty. The Almanac page "faith and the council" has
+the numbers.
 
 ### Social: friends, rivals, comrades and mentors
 Colonists form lasting bonds out of how they feel about each other and what they live through, and those bonds
@@ -853,14 +885,16 @@ a **new crop**, the **first trade**, a **great hunt**, the herd's **first foal**
 bonded animal long with the colony, or killed fighting for its person, kept as a remembrance by those who loved it), up
 to a dozen of the most meaningful. On the **Calendar**
 page under History you can also **name days of your own** (up to 8) as a feast, a day of remembrance, a rest day, a
-day of games, a **bonfire**, a **day of gifts**, a **hunt** or a **planting day**, rename any day, or change how it's kept. What people say
+day of games, a **bonfire**, a **day of gifts**, a **hunt**, a **planting day** or, with Ideology, an **evening of faith**
+for one of the colony's faiths, rename any day, or change how it's kept. What people say
 about a day knows the land and the faith: founding day in the desert is a jar of sand from where the first tent stood.
 
 When a day comes round, a letter asks whether to keep it this year: a **feast** is a party at the gathering spot,
 **games** an afternoon of recreation, a **rest day** turns the rest of the day's work hours to recreation (the
 schedule goes back the next day), a **bonfire** is built at nightfall with music, a **day of gifts** warms every
 friendship round the circle, a **hunt** sends the hunters out after the day's game, and a **planting day** sends
-everyone out to sow the fields together, with a word at the field's edge after; a **remembrance** is kept with
+everyone out to sow the fields together, with a word at the field's edge after, an **evening of faith** gathers the
+day's faith and whoever chooses to come to hear its speaker (Faith and the council, above); a **remembrance** is kept with
 a quiet, bittersweet mood for those who knew the person. A birthday comes as a message and a small lift for the colonist. People write about the day in their
 journals, talk about it in the social log, and mention it the evening before; the World page shows the days coming
 up. All the moods are small and share the budget of good moods. Kept **three years running**, a day becomes a

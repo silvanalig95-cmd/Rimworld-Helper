@@ -57,7 +57,9 @@ namespace ColonyCouncil
         /// <summary>The hunters go out for the day's game, and come back with something for the pot.</summary>
         Hunt,
         /// <summary>The colony sows the fields together, and its grower says a few words at the field's edge (Calendar/CalendarPlanting.cs).</summary>
-        Planting
+        Planting,
+        /// <summary>An evening of faith for the faith the day names (its subject), with Ideology (Faith/FaithEvenings.cs).</summary>
+        Faith
     }
 
     /// <summary>

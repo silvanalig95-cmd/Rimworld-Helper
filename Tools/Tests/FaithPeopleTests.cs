@@ -81,8 +81,8 @@ public static class FaithPeopleTests
         {
             string name = m.Element("defName")?.Value ?? "?";
             var lis = m.Element("modExtensions")?.Elements("li").ToList() ?? new List<XElement>();
-            var mark = lis.FirstOrDefault(li => (string?)li.Attribute("Class") == "ColonyCouncil.PersonaMarkExtension");
-            var shake = lis.FirstOrDefault(li => (string?)li.Attribute("Class") == "ColonyCouncil.FaithShake");
+            var mark = lis.FirstOrDefault(li => (string)li.Attribute("Class") == "ColonyCouncil.PersonaMarkExtension");
+            var shake = lis.FirstOrDefault(li => (string)li.Attribute("Class") == "ColonyCouncil.FaithShake");
             families.Add(mark?.Element("family")?.Value ?? name);
             float s = float.TryParse(shake?.Element("shake")?.Value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out float v) ? v : 0f;
             Check(s >= FaithPeopleMath.MinShake && s <= FaithPeopleMath.MaxShake, name + " shakes certainty between 10 and 30% before nature");

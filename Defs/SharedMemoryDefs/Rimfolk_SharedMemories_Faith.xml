@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    What two colonists of different faiths went through together because of the council (Source/ColonyCouncil/Faith/):
+    one spoke for a faith at an evening of faith and the other came to hear it, or one asked to learn the other's faith
+    and they spent an evening on it. {A} is the believer, {B} the one who listened. Brought up in conversation like the
+    others (Rimfolk_Talk_Lines_FaithMemories.xml has their own lines).
+  -->
+
+  <ColonyCouncil.SharedMemoryDef>
+    <defName>Rimfolk_Mem_FaithEvening</defName>
+    <label>an evening of faith</label>
+    <description>One spoke for their faith one evening, and the other came of their own accord to hear it.</description>
+    <text>{B} came to hear {A} speak at {LABEL}</text>
+    <weight>0.9</weight>
+    <fadeDays>90</fadeDays>
+    <valence>1</valence>
+  </ColonyCouncil.SharedMemoryDef>
+
+  <ColonyCouncil.SharedMemoryDef>
+    <defName>Rimfolk_Mem_FaithLearned</defName>
+    <label>an evening learning a faith</label>
+    <description>One asked about the other's faith, and they gave a whole evening to it.</description>
+    <text>{B} spent an evening learning {A}'s faith</text>
+    <weight>1.3</weight>
+    <fadeDays>180</fadeDays>
+    <valence>1</valence>
+  </ColonyCouncil.SharedMemoryDef>
+
+</Defs>

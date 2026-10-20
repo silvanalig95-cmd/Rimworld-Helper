@@ -246,7 +246,8 @@ namespace ColonyCouncil
         public override float Relevance(Pawn a, Pawn b, TalkScene s)
         {
             if (!ModsConfig.IdeologyActive || a.Ideo == null || b.Ideo == null) return def.relevance * 0.35f;
-            return a.Ideo != b.Ideo ? def.relevance * 1.4f : def.relevance;
+            // While the council has named one faith the colony's (DecreeFaith), its believers speak of it more often.
+            return (a.Ideo != b.Ideo ? def.relevance * 1.4f : def.relevance) * DecreeFaith.TalkFactor(a);
         }
 
         public override TalkSubject Subject(Pawn a, Pawn b, TalkScene s) =>

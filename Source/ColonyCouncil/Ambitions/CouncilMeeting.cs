@@ -273,6 +273,9 @@ namespace ColonyCouncil
                 return;
             }
 
+            // While one faith is the colony's by decree, a word from it before the business (Decrees/DecreeFaith.cs).
+            if (DecreeFaith.MeetingWord(this, here)) return;
+
             // Then every proposer makes their case, if they've turned up.
             var next = pitches.FirstOrDefault(p => !p.spoken && here.Contains(p.proposer));
             if (next != null)
