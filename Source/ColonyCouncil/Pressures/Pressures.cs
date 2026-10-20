@@ -378,6 +378,13 @@ namespace ColonyCouncil
             RefreshFood(rec, now);
         }
 
+        /// <summary>A remembered meal that's a fine meal or better (the game's own, or a mod's at that level).</summary>
+        private static bool FineOrBetter(string key)
+        {
+            var def = key == null ? null : DefDatabase<ThingDef>.GetNamedSilentFail(PressureMath.KindOf(key));
+            return def?.ingestible != null && def.ingestible.preferability >= FoodPreferability.MealFine;
+        }
+
         /// <summary>How many different kinds of meal the colony can cook right now (worked out once a day).</summary>
         public int MealOptions
         {
@@ -456,10 +463,6 @@ namespace ColonyCouncil
             rec.foodKind = null;
             var p = rec.pawn;
             if (p == null || Pressures.AnyFood(p) || rec.meals.Count == 0) return;
-            int options = MealOptions;
-            int stage = PressureMath.FoodStage(rec.meals, options);
-            if (stage > 0 && Pressures.Picky(p)) stage = PressureMath.Picky(stage, options);
-            rec.foodStage = stage;
             // The kind that came up most in the last eight, and how often in all of the last week.
             int from = Math.Max(0, rec.meals.Count - 8), best = 0;
             for (int i = from; i < rec.meals.Count; i++)
@@ -473,6 +476,12 @@ namespace ColonyCouncil
                     rec.foodKind = rec.meals[i];
                 }
             }
+            int options = MealOptions;
+            int stage = PressureMath.FoodStage(rec.meals, options);
+            if (stage > 0 && Pressures.Picky(p)) stage = PressureMath.Picky(stage, options);
+            // A fine or lavish meal every day is eating well, not a rut: nobody tires of it enough to mind.
+            if (stage > 0 && FineOrBetter(rec.foodKind)) stage = 0;
+            rec.foodStage = stage;
             rec.foodOf = rec.meals.Count;
             rec.foodCount = rec.meals.Count(m => m == rec.foodKind);
             int since = now - (int)(PressureMath.VarietyWindowDays * GenDate.TicksPerDay);

@@ -31,6 +31,16 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.7.1</version>
+        <date>20 October 2026, later</date>
+        <title>Eating well is no rut, and lean saves</title>
+        <points>
+          <li>Fine and lavish meals no longer count towards "the same meal again". A colonist who eats a fine meal every day enjoys it, and doesn't sour on it. Simple meals, pemmican and the like still count, and a varied table is still rewarded.</li>
+          <li>Saves stay lean: everything Rimfolk keeps now has a limit, about 2 MB after five years in a large colony. Curfews no longer keep notes on people the game has forgotten, and a removed map is no longer held on to for the defense line shown on it.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.7.0</version>
         <date>20 October 2026</date>
         <title>People with a character of their own</title>
@@ -42,7 +52,7 @@ When you load a save after an update, a letter lists the newest round once. The 
           <li>Groups grow out of something real (friendship, the same work, a fight, the night hours, faith, where they came from) and keep their name: the hunters, the night shift, Hector's lot. Each has roles, ways and habits, takes newcomers in or closes ranks, falls out with other groups, and can split or merge. People → Bonds shows each one.</li>
           <li>Reputation and gossip: colonists notice what the others do (31 kinds of deed), and the rest hear it in gossip. Who tells it colours it, and the listener believes it as far as their nature lets them. What the colony knows becomes a name (brave or a coward, kind or cruel, reliable or idle), and a name leans votes and opinions.</li>
           <li>Traits can change, rarely, after a long stretch of the same kind of life. Raid after raid held can make someone steadfast, a year of graves a pessimist, many kindnesses kind, and a beaten addiction a teetotaler. A psychopath or a cannibal comes only from an extreme history, once in a colony's life each. A letter tells what led to the change, with dates.</li>
-          <li>All of it gives opinion and company, not mood. "Personalities and social life" and "Traits can change" in the settings turn it off, and a new Almanac page, "Social life: how it fits together", follows two colonists through a year. Saves stay lean: everything Rimfolk keeps now has a limit, and curfews no longer keep notes on people the game has forgotten.</li>
+          <li>All of it gives opinion and company, not mood. "Personalities and social life" and "Traits can change" in the settings turn it off, and a new Almanac page, "Social life: how it fits together", follows two colonists through a year.</li>
         </points>
       </li>
 
