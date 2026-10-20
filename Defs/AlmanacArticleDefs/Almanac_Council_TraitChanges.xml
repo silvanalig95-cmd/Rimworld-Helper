@@ -73,7 +73,7 @@ Only marks and deeds since that trait last changed count, so one stretch of life
           <li>Ascetic | appears | 2 marks of hardship (a hungry season, a long illness, taken prisoner, enslaved); pride moved -6 and now 0 or less; not greedy or jealous | 8%</li>
           <li>Greedy | fades | 2 marks of a kindness remembered, forgiveness, being nursed back, a wedding, a child born or grown, or a moving ritual; warmth moved +12 | 10%</li>
           <li>Bloodlust | appears | 30 people killed, 2 marks of fighting (held the line, hardened by raids, a vow of vengeance, harder after going down); warmth moved -10 and now -20 or less; not kind or a wimp | 3%</li>
-          <li>Undergrounder | appears | 95% or more of their time under a roof over the last 60 days, 120 days in the colony, openness 5 or less | 5%</li>
+          <li>Undergrounder | appears | 97% or more of their time under a roof over the last 60 days, 180 days in the colony, openness 0 or less | 3%</li>
           <li>Ascetic (Ideology) | appears | 2 moving rituals or a new faith; openness moved -3, pride 5 or less; not greedy or jealous | 6%</li>
           <li>Recluse (Biotech) | appears | heartbreak or a secret given away, and one more such hurt (a love or friend lost, a broken promise); trust -30 or less and warmth -10 or less | 6%</li>
           <li>Void fascination (Anomaly) | appears | 2 marks of wanting to know more after touching the unknown; openness moved +8 and now 40 or more | 8%</li>

@@ -443,6 +443,34 @@ namespace ColonyCouncil
             }
         }
 
+        /// <summary>
+        /// Dev mode: why each rule would or wouldn't change this colonist now (the rate limits apart), and with
+        /// <paramref name="apply"/> the first that holds happens at once, chance and limits aside.
+        /// </summary>
+        public static string DebugFor(Pawn p, bool apply)
+        {
+            var t = Tracker;
+            if (t == null || !On || !CanChange(p)) return "Traits can't change for " + (p?.LabelShort ?? "nobody") + " now (setting off, or not a colonist).";
+            Build();
+            int now = Now;
+            Look(t.Watch(p, true), p, now);
+            var sb = new StringBuilder();
+            sb.Append(p.LabelShort).Append(": person ").Append(TraitChangeMath.RateBlocked(t.LastChange(p.thingIDNumber), -1, -1, 0, now) ?? "free")
+                .Append(", colony ").Append(TraitChangeMath.RateBlocked(-1, t.lastChange, -1, 0, now) ?? "free");
+            foreach (var def in TraitChangeDef.All)
+            {
+                string why = Why(p, def, now, out var step);
+                sb.Append("\n  ").Append(def.defName).Append(": ").Append(why ?? "holds (" + (def.chance * 100f).ToString("0") + "% a day)");
+                if (why == null && apply)
+                {
+                    Apply(p, def, step, now);
+                    sb.Append(" - changed now");
+                    break;
+                }
+            }
+            return sb.ToString();
+        }
+
         /// <summary>Keeps up what a colonist is watched for: calm since when, and every ten days how their time is spent.</summary>
         private static void Look(TraitWatch w, Pawn p, int now)
         {

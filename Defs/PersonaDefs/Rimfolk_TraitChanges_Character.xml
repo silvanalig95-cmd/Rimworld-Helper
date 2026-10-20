@@ -52,7 +52,7 @@
     <meaning>Too many people have been decent to {PAWN_objective} for {PAWN_objective} to keep snapping at them: the edge has gone out of how {PAWN_pronoun} speaks.</meaning>
     <journal>
       <plain>
-        <li>I held my tongue today when I'd normally have had something to say. Nobody died of it.</li>
+        <li>I held my tongue today when I'd normally have had something to say. Then I said something kind instead.</li>
         <li>Someone asked my advice instead of avoiding me. I gave it nicely, too.</li>
       </plain>
       <warm><li>They kept being kind to me even when I was a misery. I think I owe them a gentler voice.</li></warm>
@@ -81,9 +81,9 @@
         <li>Took a cut on the arm in the raid and kept going. I only noticed it afterwards.</li>
         <li>I used to fold at the first scratch. Not anymore. I don't quite know what changed.</li>
       </plain>
-      <warm><li>Someone needed carrying, and I carried them. After that, a little pain didn't seem worth stopping for.</li></warm>
+      <warm><li>Someone needed carrying, and I carried them. After that, a cut or two didn't seem worth stopping for.</li></warm>
       <blunt><li>Pain's just pain. I can work through it now.</li></blunt>
-      <cheerful><li>Stubbed my toe on the bed frame and only swore a little. Growth.</li></cheerful>
+      <cheerful><li>Stubbed my toe on the bed frame and kept walking. Growth.</li></cheerful>
       <gloomy><li>I suppose you toughen up or you don't last. I've lasted.</li></gloomy>
       <cold><li>My tolerance for injury has improved. A useful adaptation.</li></cold>
     </journal>
@@ -109,7 +109,7 @@
     <journal>
       <plain>
         <li>They gave me a rifle for the wall today. I gave it back and went to stand by the gate.</li>
-        <li>When it comes to it, I want to see their faces. Shooting from a distance feels like cheating somehow.</li>
+        <li>When it comes to it, I want to see their faces. Shooting from a distance feels like cheating.</li>
       </plain>
       <warm><li>If I'm close, I can put myself between them and the others. That's where I want to be.</li></warm>
       <blunt><li>Give me something with an edge and point me at them.</li></blunt>
@@ -138,13 +138,13 @@
     <journal>
       <plain>
         <li>Walked past the new speaker's room today. Bigger window than mine. Of course it is.</li>
-        <li>They vote for the same faces every time. I've stopped pretending I don't mind.</li>
+        <li>They vote for the same faces every time. I mind more than I let on.</li>
         <li>I counted the furniture in everyone's rooms tonight. I'm not proud of it. I did it anyway.</li>
       </plain>
       <warm><li>I want to be glad for them. Most days I manage. Today I didn't.</li></warm>
       <blunt><li>Others get the say and the good rooms. I get the leftovers.</li></blunt>
       <cheerful><li>Lost another vote. I'm going to take it out on my bedroom, by asking for a nicer one.</li></cheerful>
-      <gloomy><li>Nobody picks me. They never will. They'll keep the best for themselves, too.</li></gloomy>
+      <gloomy><li>They never pick me. They never will. They'll keep the best for themselves, too.</li></gloomy>
       <cold><li>I've noted who has what. The distribution is not fair, and I will remember it.</li></cold>
     </journal>
   </ColonyCouncil.TraitChangeDef>
@@ -267,11 +267,11 @@
     <trait>Undergrounder</trait>
     <change>Gain</change>
     <pace>
-      <li><record>TimeUnderRoof</record><atLeast>0.95</atLeast><days>60</days><label>time under a roof</label></li>
+      <li><record>TimeUnderRoof</record><atLeast>0.97</atLeast><days>60</days><label>time under a roof</label></li>
     </pace>
-    <daysHere>120</daysHere>
-    <now>openness&lt;=5</now>
-    <chance>0.05</chance>
+    <daysHere>180</daysHere>
+    <now>openness&lt;=0</now>
+    <chance>0.03</chance>
     <tone>1</tone>
     <news>{PAWN_nameDef} has become an undergrounder.</news>
     <meaning>Two seasons hardly ever under the open sky, and {PAWN_pronoun} has stopped missing it: walls and a roof feel like home now.</meaning>

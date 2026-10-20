@@ -193,7 +193,7 @@
         <li>Walked past the graves on the way to the fields. There's a path worn there now.</li>
       </plain>
       <warm><li>I love these people, and I've started bracing for losing each of them. I wish I could stop.</li></warm>
-      <blunt><li>Good things end. Bad things come. I've stopped pretending otherwise.</li></blunt>
+      <blunt><li>Good things end. Bad things come. That's the whole of it.</li></blunt>
       <cheerful><li>I tried to tell a joke at supper and halfway through I forgot why it was funny.</li></cheerful>
       <gloomy><li>Every year here costs someone. I've started counting.</li></gloomy>
       <cold><li>I no longer expect things to improve. It's a more accurate way to live.</li></cold>
@@ -379,7 +379,7 @@
     <meaning>Two seasons with more leisure than work have slowed {PAWN_objective} down: {PAWN_nameDef} works more slowly now.</meaning>
     <journal>
       <plain>
-        <li>Played horseshoes most of the afternoon. Nobody asked me to do anything, so I didn't.</li>
+        <li>Played horseshoes most of the afternoon. No one handed me a job, and I didn't go looking.</li>
         <li>Started on the stockpile and then the sun was so nice. Tomorrow, then.</li>
         <li>I've got very good at looking busy. It takes less effort than being busy.</li>
       </plain>
