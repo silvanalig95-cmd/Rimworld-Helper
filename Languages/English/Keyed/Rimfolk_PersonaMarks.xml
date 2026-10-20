@@ -12,6 +12,7 @@
   <CC_Char_NatureOnly>Nothing has marked {PAWN_nameDef} yet: this is {PAWN_possessive} nature, from traits, skills and age.</CC_Char_NatureOnly>
   <CC_Char_ByNature>By nature {0}.</CC_Char_ByNature>
   <CC_Char_Shaped>What shaped {PAWN_objective}</CC_Char_Shaped>
+  <CC_Char_MoreMarks>And {0} more, older or smaller: hover to read them.</CC_Char_MoreMarks>
   <CC_Char_TurningPoint>a turning point</CC_Char_TurningPoint>
   <CC_Char_Raised>Raised: {0}.</CC_Char_Raised>
   <CC_Char_Lowered>Lowered: {0}.</CC_Char_Lowered>

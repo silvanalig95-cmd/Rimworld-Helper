@@ -197,9 +197,12 @@ namespace ColonyCouncil
         /// hold beside it), the deeds people know of and how far each has gone round (who told whom, when the story grew
         /// or shrank on the way), and who thinks well or ill of them for it.
         /// </summary>
+        /// <summary>The deeds listed on the page (the most talked-of first).</summary>
+        public const int MaxDeedsShown = 4;
+
         public static CharacterSection Section(Pawn p)
         {
-            var s = new CharacterSection { title = "CC_Rep_PageTitle".Translate() };
+            var s = new CharacterSection { title = p != null ? "CC_Rep_PageTitle".Translate(p.Named("PAWN")).Resolve() : "CC_Rep_PageTitle".Translate().ToString() };
             var tr = Tracker;
             if (!On || tr == null || p == null || !Persona.Eligible(p)) return s;
             int now = Find.TickManager.TicksGame;
@@ -211,11 +214,8 @@ namespace ColonyCouncil
                 s.Line("CC_Rep_Known_Both".Translate(p.Named("PAWN"), TextUtil.JoinAnd(good).Named("GOOD"), TextUtil.JoinAnd(bad).Named("BAD")).Resolve(), tip);
             else if (good.Count > 0) s.Line("CC_Rep_Known_Good".Translate(p.Named("PAWN"), TextUtil.JoinAnd(good).Named("GOOD")).Resolve(), tip);
             else if (bad.Count > 0) s.Line("CC_Rep_Known_Bad".Translate(p.Named("PAWN"), TextUtil.JoinAnd(bad).Named("BAD")).Resolve(), tip);
-            // The colony's own names for them, beside what's said.
-            var names = CouncilGameComponent.Instance?.epithets?.Of(p).Select(d => d.label).ToList();
-            if (!names.NullOrEmpty())
-                s.Line("CC_Rep_Called".Translate(p.Named("PAWN"), TextUtil.JoinAnd(names).Named("TITLES")).Resolve(), "CC_Rep_Called_Tip".Translate());
-            var deeds = tr.By(p.thingIDNumber).Where(d => d.def != null).OrderByDescending(d => d.Weight(now) * (1 + d.heard.Count)).Take(5).ToList();
+            // (The colony's own names for them are in the Standing section above, with a word on how a name eases them.)
+            var deeds = tr.By(p.thingIDNumber).Where(d => d.def != null).OrderByDescending(d => d.Weight(now) * (1 + d.heard.Count)).Take(MaxDeedsShown).ToList();
             int others = Mathf.Max(0, tr.PublicCount - 1);
             foreach (var d in deeds)
             {

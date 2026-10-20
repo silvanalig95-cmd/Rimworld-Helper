@@ -35,15 +35,13 @@
   <CC_Rep_Temper_P2>a hothead</CC_Rep_Temper_P2>
 
   <!-- The character page: "What people say about them". -->
-  <CC_Rep_PageTitle>What people say about them</CC_Rep_PageTitle>
+  <CC_Rep_PageTitle>What people say about {PAWN_objective}</CC_Rep_PageTitle>
   <CC_Rep_Known_Good>{PAWN_nameDef} is known to be {GOOD}.</CC_Rep_Known_Good>
   <CC_Rep_Known_Bad>{PAWN_nameDef} is said to be {BAD}.</CC_Rep_Known_Bad>
   <CC_Rep_Known_Both>{PAWN_nameDef} is known to be {GOOD}, though people also say {PAWN_pronoun} is {BAD}.</CC_Rep_Known_Both>
   <CC_Rep_Nothing>Nobody has much to say about {PAWN_objective} yet.</CC_Rep_Nothing>
   <CC_Rep_NothingSaid>nothing said</CC_Rep_NothingSaid>
   <CC_Rep_StandingTip>What the colony says about them, from the deeds people know of, side by side. A side shows from 6 and is strong from 18 (40 at most). It is shared out over everyone in the colony, so a name needs the story to have got round, and it fades as the talk dies down.</CC_Rep_StandingTip>
-  <CC_Rep_Called>The colony calls {PAWN_objective} {TITLES}.</CC_Rep_Called>
-  <CC_Rep_Called_Tip>A colony name (an epithet) comes from what someone keeps doing. A strong name on the same side (brave, for the Defender or Deadeye; kind, for the Healer; skilled, for the Maker) earns it sooner.</CC_Rep_Called_Tip>
   <CC_Rep_Deed>{WHAT} ({LABEL}). {COUNT} of {ALL} have heard.</CC_Rep_Deed>
   <CC_Rep_Grown_Worse>It sounds worse every time it's told.</CC_Rep_Grown_Worse>
   <CC_Rep_Grown_Better>It has grown in the telling.</CC_Rep_Grown_Better>

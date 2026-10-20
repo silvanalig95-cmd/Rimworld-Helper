@@ -275,12 +275,22 @@ namespace ColonyCouncil
             ga = gb = null;
             if (a == null || b == null || a == b) return 0f;
             var la = Of(a);
+            if (la.Count == 0) return 0f;
+            // Most groups have no quarrel with anyone: then there's nothing to look up.
+            bool any = false;
+            foreach (var x in la)
+                if (x.rivals.Count > 0)
+                {
+                    any = true;
+                    break;
+                }
+            if (!any) return 0f;
             var lb = Of(b);
-            if (la.Count == 0 || lb.Count == 0) return 0f;
+            if (lb.Count == 0) return 0f;
             float best = 0f;
             foreach (var x in la)
             {
-                if (x.Has(b)) continue;
+                if (x.rivals.Count == 0 || x.Has(b)) continue;
                 foreach (var y in lb)
                 {
                     if (y.Has(a)) continue;

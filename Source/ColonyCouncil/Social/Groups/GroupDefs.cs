@@ -257,6 +257,11 @@ namespace ColonyCouncil
         public float integration;
         /// <summary>Weight factor on top of the moment's own.</summary>
         public float factor = 1f;
+        /// <summary>
+        /// Only between two who have no in-joke of their own (a shared memory that became a joke): those bring theirs up
+        /// in conversation instead (Social/Talk/), so the crowd's old joke is for the rest.
+        /// </summary>
+        public bool noOwnJoke;
 
         private static readonly HashSet<string> Betweens = new HashSet<string> { "sameGroup", "rivalGroups", "welcome", "closeRanks", "outOfStep", "sponsor" };
 

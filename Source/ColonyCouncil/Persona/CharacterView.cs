@@ -82,19 +82,29 @@ namespace ColonyCouncil
             return s;
         }
 
-        /// <summary>Section 20: what shaped them, turning points first, then the newest.</summary>
+        /// <summary>The marks shown in full on the page; the rest are listed in one line's tooltip.</summary>
+        public const int MaxMarksShown = 6;
+
+        /// <summary>Section 20: what shaped them, turning points first, then the newest; past six, one line for the rest.</summary>
         public static CharacterSection Shaped(Pawn p)
         {
             var record = Persona.Of(p);
             if (record == null || record.marks.Count == 0) return null;
             var s = new CharacterSection { title = "CC_Char_Shaped".Translate(p.Named("PAWN")).Resolve() };
+            var rest = new List<string>();
             foreach (var m in record.marks.Where(m => m?.def != null).OrderByDescending(m => m.def.major).ThenByDescending(m => m.tick))
             {
                 string text = Persona.Shaped(p, m);
                 if (text.NullOrEmpty()) continue;
+                if (s.lines.Count >= MaxMarksShown)
+                {
+                    rest.Add(PersonaMarks.DateLabel(m.tick, p) + ": " + text);
+                    continue;
+                }
                 string line = PersonaMarks.DateLabel(m.tick, p).Colorize(UiKit.Dim) + "  " + (m.def.major ? text : text.Colorize(UiKit.Faint));
                 s.Line(line, MarkTip(m));
             }
+            if (rest.Count > 0) s.Line("CC_Char_MoreMarks".Translate(rest.Count).Resolve().Colorize(UiKit.Faint), string.Join("\n\n", rest));
             return s;
         }
 
@@ -166,11 +176,37 @@ namespace ColonyCouncil
             return BarRow * 4f;
         }
 
+        // The bars' words, translated once (the page draws every frame); asked again when the language or the defs change.
+        private static string[] axisLabels;
+        private static readonly Dictionary<int, string> sideWords = new Dictionary<int, string>();
+        private static LoadedLanguage wordsLanguage;
+        private static int wordsGeneration = -1;
+
+        private static void FreshWords()
+        {
+            if (axisLabels != null && wordsLanguage == LanguageDatabase.activeLanguage && wordsGeneration == DefRefs.Generation) return;
+            wordsLanguage = LanguageDatabase.activeLanguage;
+            wordsGeneration = DefRefs.Generation;
+            axisLabels = new string[PersonaMath.Axes];
+            for (int i = 0; i < PersonaMath.Axes; i++) axisLabels[i] = ("CC_Persona_Axis_" + (PersonaAxis)i).Translate().CapitalizeFirst();
+            sideWords.Clear();
+        }
+
+        /// <summary>The word for where they are on a side ("warm", or "neither" in the middle), kept per side and degree.</summary>
+        private static string SideWord(PersonaAxis axis, float v)
+        {
+            int key = (int)axis * 8 + PersonaMath.Degree(v) + 2;
+            if (!sideWords.TryGetValue(key, out var w))
+                sideWords[key] = w = Persona.Word(axis, v) ?? "CC_Char_Neither".Translate().ToString();
+            return w;
+        }
+
         private static void DrawBar(Rect cell, Pawn p, PersonaAxis axis, float nature, float now, PawnPersona record)
         {
-            string word = Persona.Word(axis, now) ?? "CC_Char_Neither".Translate().ToString();
+            FreshWords();
+            string word = SideWord(axis, now);
             var old = Text.Font;
-            UiKit.LabelFit(new Rect(cell.x, cell.y, cell.width * 0.5f, 18f), ("CC_Persona_Axis_" + axis).Translate().CapitalizeFirst(), UiKit.Faint, GameFont.Tiny);
+            UiKit.LabelFit(new Rect(cell.x, cell.y, cell.width * 0.5f, 18f), axisLabels[(int)axis], UiKit.Faint, GameFont.Tiny);
             UiKit.LabelFit(new Rect(cell.x + cell.width * 0.5f, cell.y, cell.width * 0.5f, 18f), word, PersonaMath.Degree(now) == 0 ? UiKit.Dim : UiKit.HeaderColor,
                 GameFont.Tiny, TextAnchor.MiddleRight);
             Text.Font = old;
