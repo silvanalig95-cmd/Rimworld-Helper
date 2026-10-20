@@ -32,7 +32,7 @@
         <li>[persuading] I'd like to tell you why I believe what I do, and you can laugh after.</li>
         <li>[persuading,debate] Go on, give me your best argument, I've heard most of them.</li>
         <li>[faith:wavering] I used to be so sure of it all, and lately I can't find my footing.</li>
-        <li>[faith:wavering,otherideo] How do you stay so certain, honestly?</li>
+        <li>[faith:wavering,otherideo] How do you stay so sure of it, out here?</li>
         <li>[faith:wavering,sameideo] Do you ever kneel and feel nothing at all?</li>
         <li>[faith:wavering] I stood at the back of the rite and couldn't make myself go closer.</li>
         <li>[faith:wavering,otherfaith:devout] You always look so sure at the rites, what's that like?</li>
@@ -107,7 +107,7 @@
         <li>[steadied,faith:wavering] I'd been slipping, and this helps more than you know.</li>
         <li>[steadied,myfaith] {SUBJECT} has carried us this far, and it'll carry us further.</li>
         <li>[faith:wavering,sameideo] I want to believe you, so give me time.</li>
-        <li>[faith:alone,otherideo] You're kind to ask, nobody else here does.</li>
+        <li>[faith:alone,otherideo] You're kind to ask, most here don't.</li>
       </plain>
       <warm>
         <li>[persuaded] You care about this, and about me, and that counts for something.</li>

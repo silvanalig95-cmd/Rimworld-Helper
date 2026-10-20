@@ -512,6 +512,50 @@ game's records, a share of time from record snapshots every ten days, calm days,
   journal line by tone, the chronicle, "Traits gained and lost" (page section 25) and a line in each side's tooltip
   for what went into a trait. Setting "Traits can change", under social life.
 
+### Faith in the colony: the people
+With Ideology, how firmly colonists hold their faith (the game's certainty, 0..1) comes into their life (`Faith/`; the
+arithmetic in `FaithMath.cs` and `FaithPeopleMath.cs`, checked by `Tools/Tests/FaithTests.cs` and
+`FaithPeopleTests.cs`). Everything moves certainty through the core (`Faiths.Sway`, `SwayToward`, `Shake`, `Steady`), so
+a conversion is always the game's own `IdeoConversionAttempt` and is told one way. Off without Ideology, in classic
+mode or with "Faith in the colony" off; the talks also need the talk's settings, the crises social life.
+
+- **The faiths page** (People → Faiths, `UI/FaithsPanel.cs`, a page only while `Faiths.On`): a card per faith of the
+  census (most believers first) in its colour and icon, with its memes; believers with a certainty bar marked devout
+  (0.85) or wavering (under 0.6); leader and moral guide from the faith's roles, or empty here, held elsewhere or not
+  in the faith; what it asks that weighs on someone now (`FaithAsks`: a believer's mood thought groups whose
+  `sourcePrecept` is of their faith, or whose def a precept's `PreceptComp_Thought` gives, half a point off or more);
+  who could sway whom (each devout believer against everyone of another faith, by `FaithPeople.Expected`: the core's
+  sway for a friendly debate and the game's certainty-loss factor, from 2.5%); then the game's own tools. Built once a
+  second, the game's stats read once per build. `FaithsPanel.Buttons` is the hook for the council's own buttons (per
+  faith, or for the colony), empty until something adds to it.
+- **Faith talks** (`FaithTalk.cs`, two lines in `Talk.Run` and one in the faith topic's tags): planned once the talk's
+  outcome is known and before its lines, applied after its own effects. Across faiths: agreeing (base 0.035) or a
+  friendly debate (0.045: one of them likes the other at 15 or more, or friends or lovers) lets the devout one who comes
+  out of it well sway the other (in a debate by persuasion: conversion power, twice for the devout, how liked, with a
+  roll; only a devout winner sways); an argument makes both dig in (+0.01). One faith steadies itself (+0.01). One
+  faith move a pair in two days (not saved), a sway once a day per listener and a steadying once a day (saved). A
+  listener whose faith frowns on preaching (`Faiths.DislikesPreaching`, the core halves the sway) gets
+  `Rimfolk_Faith_PreachedAt` about the preacher (-5 opinion, 4 days, no mood, with a hint). The lines' tags say it:
+  persuading, persuaded (expected 0.03 or more) or unmoved, preachedat, digin, steadied, otherfaith:devout and
+  :wavering, myfaith or theirfaith for whose faith {SUBJECT} is, nopreaching.
+- **Views beside certainty.** A move of certainty moves the faith view twice over, then `ViewWithCertainty` keeps it
+  where it can't read against certainty (wavering: never "holds to the faith"; devout: never "doubts"), daily too.
+- **Crises of faith** (`FaithCrisis.cs`, 5 marks in 4 families with a `FaithShake` extension: base shake, a pull toward
+  the other's faith, what the pages say caused it). Ways in are one line each in `Persona/Marks.cs`: after any mark
+  (`Give`), a loss mark (LostLove, LostChild, LostKin, LostFriend) about someone dead, for a faith with a funeral or a
+  prayer, waits 1 to 3 days; a rescue (SavedBy, NursedBack) by someone of another faith waits 0.4 to 1.5; the hourly
+  look at the downed notes a brush with death (blood loss 0.45, a lethal hediff three quarters of the way, bleeding out
+  within 8 hours) to be felt once they're up; the daily look follows the worst demand of their own faith and counts
+  the days it stays (5, at -4 or worse). A crisis then is the family's mark through `PersonaMarks.Give` (its chance,
+  repeat window and the marks' own limits), never within 20 days of the last; the shake is the base times the mark's
+  lean, 0.1 to 0.3; a rescue also sways toward the rescuer's faith (0.05 before openness, pride, opinion). Waiting
+  ones are let go after 6 days. A crisis never converts by itself; the game's drift by mood rebuilds faith, nothing
+  more is added.
+- **Shown**: the character page's Faith section (35: faith and certainty with the game's daily change, a role, what it
+  asks, the last three faith moments with how far each moved them, who is likeliest to sway them or whom they could
+  bring round), the mark under "what shaped them", news, the journal; the advisor's `Council_Adv_FaithSplit` (split
+  0.5 or more with three faiths or more, leading to the page); the Almanac page "faith in the colony".
+
 ## Real effects: answers that play out on the map
 
 A dilemma's answer, an event's answer or a calendar day used to give moods and a message and nothing else: "a victory
@@ -1565,12 +1609,13 @@ on a map, in the world or in a caravan), so such a record is let go when the gam
 | Defense lines | per home map, gone with it; only the lines the player makes: one mark per step done or set aside, 24 plans, the last 5 raids (4 downed and 3 lessons each); the raid under way only while it lasts |
 | Scenario parts | fixed by the scenario (its days, its seats) |
 | Faction memory | 12 deeds per people (the settled and the faintest make way); a deed is dropped once it fades below 1, and with its people when they're gone; who tended or freed whom: 60 notes, 30 days, dropped when the stranger dies |
+| Faith (the people) | one record per colonist whose faith moved or is watched (when talk last swayed or steadied them, their last crisis, the demand of their faith weighing on them), known pawns only, empty ones dropped; 5 faith moments each, 120 days; crises waiting to be felt, one per kind per colonist, 6 days; which pairs talked about faith lately not saved |
 | Views and shared memories | views with the person's record (`PawnPersona.stances`), a view about a newcomer let go once they've been here 60 days or are gone; shared memories 8 per pair, 3 of one kind, and 600 in all (the faintest go at once past 660, and at saving the faded ones and those of people the game no longer knows); a fight is remembered only by those seen side by side in it, 3 partners each; the talk's news 40 notes, a month at most; who talked to whom lately and talks under way not saved |
 | Reputation | 10 deeds per colonist and 220 in all (the faintest make way), 30 knowers a deed; a deed faded to nearly nothing is dropped, and daily those of the dead and departed and anything the dead knew; one packed number per colonist for the names told |
 | Other mods' people | best-friend pairs of known pawns, 200 at most |
 | Advisor (per map) | 60 days of wealth samples |
 
-How big it gets: `Tools/save_estimate.py` models every saved collection (290) with its rule and plays five in-game
+How big it gets: `Tools/save_estimate.py` models every saved collection (293) with its rule and plays five in-game
 years in a colony of 20 (`docs/save-size.md`). Nothing grows without end; Rimfolk's part of a five-year save comes to
 about 2.2 MB: a fifth of it the journals, and about as much again people's records and their shared memories.
 `--strict` fails on a saved collection with no model, so a new one needs its rule written down.

@@ -70,6 +70,7 @@ namespace ColonyCouncil
             public string label;
             public float mood;
             public List<Pawn> who = new List<Pawn>();
+            public string text, tip;
         }
 
         private class SwayRow
@@ -77,6 +78,7 @@ namespace ColonyCouncil
             public Pawn speaker, listener;
             public float amount;
             public string why;
+            public string text, tip;
         }
 
         private class Card
@@ -86,6 +88,7 @@ namespace ColonyCouncil
             public Color color;
             public Texture2D icon;
             public float average;
+            public string countText;
             public readonly List<Believer> believers = new List<Believer>();
             public readonly List<UiKit.PillSpec> memes = new List<UiKit.PillSpec>();
             public bool hasLeader, hasGuide;
@@ -102,6 +105,7 @@ namespace ColonyCouncil
             public int people;
             public float split;
             public int wavering;
+            public string statText, splitTip, togetherText;
         }
 
         private static Model model;
@@ -114,10 +118,14 @@ namespace ColonyCouncil
         private static Model Build()
         {
             var m = new Model();
-            var census = Faiths.Census();
-            var all = census.SelectMany(f => f.believers).Where(p => p != null && !p.Dead).ToList();
+            // Who holds what right now: the colony's own people, as the core's census counts them, read fresh (the census
+            // itself is kept an hour, and the game's own Convert ability can change a faith in between).
+            var all = PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_FreeColonists_NoCryptosleep
+                .Where(p => p != null && !p.Dead && !p.IsQuestLodger() && Faiths.Of(p) != null).ToList();
+            var groups = all.GroupBy(Faiths.Of).Select(g => (ideo: g.Key, believers: g.ToList()))
+                .OrderByDescending(g => g.believers.Count).ThenByDescending(g => g.believers.Average(Faiths.Certainty)).ToList();
             m.people = all.Count;
-            m.split = FaithMath.Split(census.Count, all.Count);
+            m.split = FaithMath.Split(groups.Count, all.Count);
             // The game's stats, read once per build: each speaker's conversion power, each listener's certainty-loss factor.
             var power = new Dictionary<Pawn, float>();
             var loss = new Dictionary<Pawn, float>();
@@ -135,9 +143,8 @@ namespace ColonyCouncil
                     loss[p] = 1f;
                 }
             }
-            foreach (var f in census)
+            foreach (var (ideo, believers) in groups)
             {
-                var ideo = f.ideo;
                 if (ideo == null) continue;
                 var card = new Card { ideo = ideo, name = ideo.name.CapitalizeFirst() };
                 try
@@ -154,9 +161,9 @@ namespace ColonyCouncil
                 if (ideo.memes != null)
                     foreach (var meme in ideo.memes.Where(x => x != null))
                         card.memes.Add(new UiKit.PillSpec(meme.LabelCap, UiKit.Info, null, meme.description));
-                Roles(card, f.believers);
+                Roles(card, believers);
                 var asks = new Dictionary<string, AskRow>();
-                foreach (var p in f.believers.Where(x => x != null && !x.Dead).OrderByDescending(x => x.ideo.Certainty))
+                foreach (var p in believers.OrderByDescending(Faiths.Certainty))
                 {
                     var b = new Believer { p = p, certainty = Faiths.Certainty(p) };
                     var role = FaithCharacter.SafeRole(ideo, p);
@@ -173,7 +180,15 @@ namespace ColonyCouncil
                     if (FaithMath.Wavering(b.certainty)) m.wavering++;
                 }
                 card.average = card.believers.Count > 0 ? card.believers.Average(b => b.certainty) : 0f;
+                card.countText = "CC_FaithPg_Count".Translate(card.believers.Count.Named("N"), card.average.ToStringPercent().Named("PCT")).Resolve();
                 card.asks.AddRange(asks.Values.OrderBy(a => a.mood * a.who.Count).Take(MaxAskRows));
+                string asksTip = "CC_FaithP_AsksTip".Translate();
+                foreach (var a in card.asks)
+                {
+                    a.text = "CC_FaithPg_AskRow".Translate(a.label.Named("WHAT"), a.mood.ToString("0").Named("MOOD"),
+                        TextUtil.JoinAnd(a.who.Select(p => p.LabelShort).ToList()).Named("WHO")).Resolve();
+                    a.tip = a.text + "\n\n" + asksTip;
+                }
                 // Who of this faith could sway whom of another: its devout speakers against everyone else, best first.
                 foreach (var speaker in card.believers.Where(b => FaithMath.Devout(b.certainty)).Select(b => b.p))
                 foreach (var listener in all.Where(o => !Faiths.Same(o, speaker)))
@@ -188,8 +203,19 @@ namespace ColonyCouncil
                 var seen = new HashSet<Pawn>();
                 card.sways.RemoveAll(s => !seen.Add(s.listener));
                 if (card.sways.Count > MaxSwayRows) card.sways.RemoveRange(MaxSwayRows, card.sways.Count - MaxSwayRows);
+                string swayTip = "CC_FaithP_SwayTip".Translate();
+                foreach (var s in card.sways)
+                {
+                    string pct = Mathf.Max(1, Mathf.RoundToInt(s.amount * 100f)).ToString();
+                    s.text = (s.why.NullOrEmpty() ? "CC_FaithPg_SwayRowPlain" : "CC_FaithPg_SwayRow")
+                        .Translate(s.speaker.Named("PAWN"), s.listener.Named("OTHER"), pct.Named("PTS"), (s.why ?? "").Named("WHY")).Resolve();
+                    s.tip = s.text + "\n\n" + swayTip;
+                }
                 m.cards.Add(card);
             }
+            m.statText = m.cards.Count > 0 ? "CC_FaithPg_Stat".Translate(m.cards.Count.Named("N"), m.people.Named("PEOPLE")).Resolve() : null;
+            m.splitTip = "CC_FaithPg_SplitTip".Translate(m.split.ToStringPercent().Named("PCT")).Resolve();
+            m.togetherText = m.cards.Count > 1 ? "CC_FaithPg_TogetherSplit".Translate(m.cards.Count.Named("N"), m.wavering.Named("WAVERING")).Resolve() : null;
             return m;
         }
 
@@ -278,9 +304,8 @@ namespace ColonyCouncil
                 modelAt = Time.realtimeSinceStartup;
             }
             var m = model;
-            string stat = m.cards.Count > 0 ? "CC_FaithPg_Stat".Translate(m.cards.Count.Named("N"), m.people.Named("PEOPLE")).Resolve() : null;
-            float top = UiKit.PageHeader(rect, Icons.CatIdeology, "CC_Tab_Faiths".Translate(), "CC_UI_Sub_Faiths".Translate(), stat,
-                m.split >= 0.5f ? UiKit.Warn : (Color?)null, 0f, "CC_FaithPg_SplitTip".Translate(m.split.ToStringPercent().Named("PCT")).Resolve());
+            float top = UiKit.PageHeader(rect, Icons.CatIdeology, "CC_Tab_Faiths".Translate(), "CC_UI_Sub_Faiths".Translate(), m.statText,
+                m.split >= 0.5f ? UiKit.Warn : (Color?)null, 0f, m.splitTip);
             var outRect = new Rect(rect.x, rect.y + top, rect.width, rect.height - top);
             var view = new Rect(0f, 0f, outRect.width - 16f, height);
             Widgets.BeginScrollView(outRect, ref scroll, view);
@@ -324,8 +349,7 @@ namespace ColonyCouncil
             float nameW = Mathf.Min(inner * 0.55f, Text.CalcSize(card.name).x + 8f);
             Text.Font = GameFont.Small;
             UiKit.LabelFit(new Rect(nx, cy - 2f, nameW, 30f), card.name, Color.Lerp(card.color, Color.white, 0.35f), GameFont.Medium);
-            string count = "CC_FaithPg_Count".Translate(card.believers.Count.Named("N"), card.average.ToStringPercent().Named("PCT")).Resolve();
-            UiKit.LabelFit(new Rect(nx + nameW + 6f, cy + 4f, Mathf.Max(0f, inner - (nx - ix) - nameW - 6f), 20f), count, UiKit.Faint, GameFont.Tiny);
+            UiKit.LabelFit(new Rect(nx + nameW + 6f, cy + 4f, Mathf.Max(0f, inner - (nx - ix) - nameW - 6f), 20f), card.countText, UiKit.Faint, GameFont.Tiny);
             var ideo = card.ideo;
             TooltipHandler.TipRegion(new Rect(ix, cy, inner, 26f), () => IdeoTip(ideo), ideo.id ^ 0x2F1A);
             cy += 30f;
@@ -354,11 +378,9 @@ namespace ColonyCouncil
             }
             foreach (var a in card.asks)
             {
-                string who = TextUtil.JoinAnd(a.who.Select(p => p.LabelShort).ToList());
-                string line = "CC_FaithPg_AskRow".Translate(a.label.Named("WHAT"), a.mood.ToString("0").Named("MOOD"), who.Named("WHO")).Resolve();
                 var r = new Rect(ix + 10f, cy, inner - 10f, Row);
-                UiKit.LabelFit(r, line, a.mood <= -5f ? UiKit.Bad : UiKit.LossColor, GameFont.Tiny);
-                TooltipHandler.TipRegion(r, line + "\n\n" + "CC_FaithP_AsksTip".Translate());
+                UiKit.LabelFit(r, a.text, a.mood <= -5f ? UiKit.Bad : UiKit.LossColor, GameFont.Tiny);
+                TooltipHandler.TipRegion(r, a.tip);
                 cy += Row;
             }
 
@@ -375,13 +397,10 @@ namespace ColonyCouncil
             }
             foreach (var s in card.sways)
             {
-                string pct = Mathf.Max(1, Mathf.RoundToInt(s.amount * 100f)).ToString();
-                string line = (s.why.NullOrEmpty() ? "CC_FaithPg_SwayRowPlain" : "CC_FaithPg_SwayRow")
-                    .Translate(s.speaker.Named("PAWN"), s.listener.Named("OTHER"), pct.Named("PTS"), (s.why ?? "").Named("WHY")).Resolve();
                 var r = new Rect(ix + 10f, cy, inner - 10f, Row);
                 Widgets.DrawHighlightIfMouseover(r);
-                UiKit.LabelFit(r, line, UiKit.Info, GameFont.Tiny);
-                TooltipHandler.TipRegion(r, line + "\n\n" + "CC_FaithP_SwayTip".Translate());
+                UiKit.LabelFit(r, s.text, UiKit.Info, GameFont.Tiny);
+                TooltipHandler.TipRegion(r, s.tip);
                 if (Widgets.ButtonInvisible(r)) MainTabWindow_Council.OpenPerson(s.listener);
                 cy += Row;
             }
@@ -420,7 +439,7 @@ namespace ColonyCouncil
             }
             string text = !exists ? "CC_FaithPg_RoleNone".Translate() : away ? "CC_FaithPg_RoleAway".Translate() : "CC_FaithPg_RoleEmpty".Translate();
             UiKit.LabelFit(rest, text, exists ? UiKit.Warn : UiKit.Dim);
-            TooltipHandler.TipRegion(rest, "CC_FaithPg_RoleEmptyTip".Translate(what.Named("ROLE")).Resolve());
+            TooltipHandler.TipRegion(rest, () => "CC_FaithPg_RoleEmptyTip".Translate(what.Named("ROLE")).Resolve(), what.GetHashCode() ^ 0x51D3);
         }
 
         private static void DrawBeliever(float x, float y, Believer b)
@@ -487,7 +506,7 @@ namespace ColonyCouncil
         {
             float start = y;
             y += UiKit.SectionTitle(x, y, w, "CC_FaithPg_Together".Translate(), Icons.Heart, UiKit.HeaderColor);
-            if (m.cards.Count > 1) y += UiKit.Paragraph(x, y, w, "CC_FaithPg_TogetherSplit".Translate(m.cards.Count.Named("N"), m.wavering.Named("WAVERING")).Resolve(), UiKit.Faint) + 6f;
+            if (m.togetherText != null) y += UiKit.Paragraph(x, y, w, m.togetherText, UiKit.Faint) + 6f;
             foreach (var key in new[] { "CC_FaithPg_ToolConvert", "CC_FaithPg_ToolRitual", "CC_FaithPg_ToolMood", "CC_FaithPg_ToolTalk", "CC_FaithPg_ToolRoles" })
             {
                 UiKit.DiscFill(new Rect(x + 4f, y + 7f, 5f, 5f), UiKit.Gold);

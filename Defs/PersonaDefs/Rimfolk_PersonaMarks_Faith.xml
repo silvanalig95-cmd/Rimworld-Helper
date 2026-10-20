@@ -148,8 +148,8 @@
         <journal>
           <plain>
             <li>Day after day of doing without what {LABEL} says I must have. I'm starting to ask who it's for.</li>
-            <li>I keep {LABEL}'s ways, and I'm miserable keeping them. Nobody here seems to mind but me.</li>
-            <li>Something {LABEL} asks has been eating at me all week. Tonight I wondered, for the first time, whether it has to.</li>
+            <li>I keep the ways of {LABEL}, and I'm miserable keeping them while the others seem glad to.</li>
+            <li>Something {LABEL} asks has been eating at me all week. Tonight I wondered whether it has to.</li>
           </plain>
           <warm><li>I don't want to let the others of {LABEL} down. But I'm tired, and the faith never seems to notice.</li></warm>
           <blunt><li>{LABEL} wants things this colony can't give. I'm sick of paying for it.</li></blunt>
@@ -191,7 +191,7 @@
           </plain>
           <warm><li>I thought of everyone here when I was going. Not of {LABEL}. I'm not sure what to make of that.</li></warm>
           <blunt><li>Nearly died. Nobody came for me but the doctor. Noted.</li></blunt>
-          <cheerful><li>Turns out the other side is very quiet and smells of the infirmary. I expected more from {LABEL}, frankly.</li></cheerful>
+          <cheerful><li>The other side is very quiet and smells of the infirmary. I expected more from {LABEL}.</li></cheerful>
           <gloomy><li>I was nearly dead, and there was nothing waiting. I can't stop thinking about the nothing.</li></gloomy>
           <cold><li>At the edge of death I observed no evidence for the teachings of {LABEL}. I find the absence significant.</li></cold>
         </journal>
