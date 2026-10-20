@@ -43,6 +43,7 @@
     <Compile Include="../../Source/ColonyCouncil/Social/Talk/ExchangeQueue.cs" Link="ExchangeQueue.cs" />
     <Compile Include="../../Source/ColonyCouncil/Persona/MarksMath.cs" Link="MarksMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Social/Groups/GroupMath.cs" Link="GroupMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Persona/TraitChangeMath.cs" Link="TraitChangeMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Immersion/SpeechMath.cs" Link="SpeechMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Integrations/ChangeMath.cs" Link="ChangeMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Defense/DefenseLayout.cs" Link="DefenseLayout.cs" />

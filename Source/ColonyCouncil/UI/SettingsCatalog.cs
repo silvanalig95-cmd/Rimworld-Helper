@@ -257,6 +257,7 @@ namespace ColonyCouncil
             Toggle("socialWeb", "CC_Settings_SocialWeb", "CC_SetNote_SocialWeb");
             Toggle("socialEvents", "CC_Settings_SocialEvents", "CC_SetNote_SocialEvents", "socialWeb");
             Toggle("socialLife", "CC_Settings_SocialLife", "CC_SetNote_SocialLife");
+            Toggle("traitChanges", "CC_Settings_TraitChanges", "CC_SetNote_TraitChanges", "socialLife");
             Toggle("secrets", "CC_Settings_Secrets", "CC_SetNote_Secrets");
             Toggle("vendettas", "CC_Settings_Vendettas", "CC_SetNote_Vendettas");
             Section("CC_Settings_Lives");

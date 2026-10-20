@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Traits that change with what happens to a colonist (Source/ColonyCouncil/Persona/TraitChanges.cs, Defs/PersonaDefs/Rimfolk_TraitChanges_*.xml). -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_C_TraitChanges</defName>
+    <label>traits that change</label>
+    <category>Council</category>
+    <order>9</order>
+    <summary>Rarely, after a long stretch of the same kind of life, one of a colonist's traits grows, appears or fades, and the letter says why.</summary>
+    <tip>A colonist who holds the line raid after raid may become steadfast; one who keeps breaking under fire may become nervous.</tip>
+    <description>What happens to a colonist moves their character (see "character"), and now and then it reaches the game's own traits as well: nerves steady after raid after raid held, an optimist darkens after a year of graves, kindness appears after many kindnesses, an addiction overcome turns someone teetotal. A change is always the end of a story you can read. It comes with a letter that lists what led to it, with the date of each mark, deed and record behind it, a line in the colonist's journal and the chronicle, and it stays on their character page under "Traits gained and lost".
+
+Changes are rare. Once a day the colony is looked over. Each rule that holds for someone rolls its chance (3% to 15% a day), and of those that come up, one happens. Nobody changes twice in 60 days, the colony sees at most one change in 10 days, and the same trait in one person waits 90 to 150 days before it can step again. The setting is "Traits can change", under "Personalities and social life" (on by default).</description>
+    <sections>
+      <li>
+        <heading>How a rule reads a life</heading>
+        <text>Each rule names one trait and what it asks for, all of it things you can see: marks on the colonist's character page, how far a side has moved from their nature through what happened (lasting and fading together) and where it stands now, deeds counted on separate occasions, the game's records of them (people killed, votes lost), a share of their time over the last 60 days (time at recreation, time under a roof), or days without a breakdown or any other mental state.
+
+Only marks and deeds since that trait last changed count, so one stretch of life earns one change: becoming steadfast takes three marks of danger held, and iron-willed four more after that. Traits with degrees step one degree at a time, through none: a nervous colonist steadies to no nerves trait at all before steadfast comes.</text>
+      </li>
+      <li>
+        <heading>What never changes</heading>
+        <points>
+          <li>who someone loves: gay, bisexual and asexual, and the dislike of men or women;</li>
+          <li>the body and inborn gifts: tough, nimble, beauty, speed, immunity, delicate, psychic sensitivity, an annoying voice, creepy breathing, quick sleeper, fast or slow learner, memory, too smart, body mastery, a careful or trigger-happy shot, and their equivalents from trait mods;</li>
+          <li>a trait a gene gives or suppresses, one the backstory forces or rules out, one the scenario gave, and the traits of anyone holding a faith role whose requirements speak of traits;</li>
+          <li>a trait the game says conflicts with one they have, shares an exclusion tag with one, or clashes with a passion of theirs (a brawler never loves shooting);</li>
+          <li>a fifth trait: nobody gains a trait past four.</li>
+        </points>
+      </li>
+      <li>
+        <heading>Their character stays where it was</heading>
+        <text>A colonist's nature is read from their traits, so a trait gained would count twice: kind adds warmth +50 to nature, on top of the kindnesses that earned it. Instead, the trait's shift is taken out of what life had moved them, the still-fading part first and then the part that stays, and every side stays exactly where it was. What was fading is now held by the trait for good. When a trait goes, its shift is given back the same way. Hover a side on the character page to see how much of it went into a trait.</text>
+      </li>
+      <li>
+        <heading>Nerves and mood</heading>
+        <table>
+          <li>Trait | Change | What it asks for | Chance a day</li>
+          <li>Nerves | nervous to none, none to steadfast | 3 marks of danger held (held the line, harder after going down, hardened by raid after raid, carried someone out of a fight); nerve moved +15 | 15%</li>
+          <li>Nerves | steadfast to iron-willed | 4 such marks, one of them holding the line; nerve moved +20 and now 50 or more | 10%</li>
+          <li>Nerves | steadfast to none, none to nervous | 3 marks of fright or captivity (broke under fire, shaken after going down, worn down by raids, taken prisoner, enslaved, shaken by the unknown, family lost as a child); nerve moved -15 | 12%</li>
+          <li>Nerves | nervous to volatile | broke under fire, and 3 marks of fright, captivity, lashing out or loss; nerve moved -18, temper 10 or more | 8%</li>
+          <li>Nerves | volatile to nervous | 120 days without a breakdown or other mental state, and in the last 180 days a wedding, a year of peace, forgiveness, a child born or grown, a moving ritual or being nursed back | 12%</li>
+          <li>Natural mood | optimist to none, none to pessimist | 3 marks of loss or hardship (a death, worn down by raids, a hungry season, a long illness, heartbreak), one of them the death of a love, a child, family or a close friend; outlook moved -18 | 10%</li>
+          <li>Natural mood | pessimist to depressive | 4 such marks, 2 of them deaths of those closest; outlook moved -28 and now -55 or lower | 6%</li>
+          <li>Natural mood | pessimist to none, none to optimist | 3 good marks (a year of peace, a wedding, a first child, a child grown, freedom, an addiction beaten, a moving ritual, nursed back, a seat won, a legendary work) and no death in 45 days; outlook moved +12 | 10%</li>
+          <li>Natural mood | optimist to sanguine | 4 good marks, one a year of peace or a wedding, and no death in 60 days; outlook moved +20 and now 50 or more | 7%</li>
+          <li>Natural mood | depressive to pessimist | 2 good marks (a year of peace, a wedding, a first child, a child grown, freedom, an addiction beaten, a moving ritual, nursed back, a kindness remembered, forgiveness) and no death in 60 days; outlook moved +12 | 10%</li>
+        </table>
+      </li>
+      <li>
+        <heading>Work and drugs</heading>
+        <table>
+          <li>Trait | Change | What it asks for | Chance a day</li>
+          <li>Industriousness | lazy to none, none to industrious, industrious to hard worker | 4% or less of their time at recreation over the last 60 days, and a masterwork, a skill mastered, a legendary work or a student taught in the last 120 days; pride moved +5 | 8%</li>
+          <li>Industriousness | industrious to none, none to lazy | 20% or more of their time at recreation over the last 60 days, no masterwork, mastery or legendary work in 60 days, and 60 days in the colony | 8%</li>
+          <li>Drug desire | chemical interest to none, none to teetotaler | an addiction overcome in the last 120 days; pride moved +3 | 15%</li>
+          <li>Drug desire | chemical fascination to chemical interest | an addiction overcome in the last 120 days; pride moved +3 | 15%</li>
+        </table>
+        <after>Time at recreation is the game's own record of it, measured from a snapshot every ten days; someone away for most of the stretch isn't measured. An idle colony gives its colonists a lot of recreation, and so do long recreation hours in the schedule.</after>
+      </li>
+      <li>
+        <heading>Character</heading>
+        <table>
+          <li>Trait | Change | What it asks for | Chance a day</li>
+          <li>Kind | appears | 3 marks of kindness given or received (a kindness remembered, nursed back, carried to safety, forgiven, a student taught, someone carried out of a fight, a child born or grown, a wedding); warmth moved +16 and now 35 or more; not a psychopath, abrasive or bloodlust | 10%</li>
+          <li>Abrasive | fades | 2 marks of a kindness remembered, forgiveness, being nursed back or carried to safety, a wedding, a student taught or a first child; warmth moved +12 | 10%</li>
+          <li>Wimp | fades | 2 marks of danger held; nerve moved +12 | 12%</li>
+          <li>Brawler | appears | Melee 10 or more and two above Shooting, no ranged weapon in hand, 8 people killed, 2 marks of fighting (held the line, harder after going down, hardened by raids); nerve 20 or more; not a wimp | 8%</li>
+          <li>Jealous | appears | 3 votes lost, one of them in the last 120 days that marked them; pride 10 or more, trust moved -3; not ascetic or kind | 8%</li>
+          <li>Ascetic | appears | 2 marks of hardship (a hungry season, a long illness, taken prisoner, enslaved); pride moved -6 and now 0 or less; not greedy or jealous | 8%</li>
+          <li>Greedy | fades | 2 marks of a kindness remembered, forgiveness, being nursed back, a wedding, a child born or grown, or a moving ritual; warmth moved +12 | 10%</li>
+          <li>Bloodlust | appears | 30 people killed, 2 marks of fighting (held the line, hardened by raids, a vow of vengeance, harder after going down); warmth moved -10 and now -20 or less; not kind or a wimp | 3%</li>
+          <li>Undergrounder | appears | 97% or more of their time under a roof over the last 60 days, 180 days in the colony, openness 0 or less | 3%</li>
+          <li>Ascetic (Ideology) | appears | 2 moving rituals or a new faith; openness moved -3, pride 5 or less; not greedy or jealous | 6%</li>
+          <li>Recluse (Biotech) | appears | heartbreak or a secret given away, and one more such hurt (a love or friend lost, a broken promise); trust -30 or less and warmth -10 or less | 6%</li>
+          <li>Void fascination (Anomaly) | appears | 2 marks of wanting to know more after touching the unknown; openness moved +8 and now 40 or more | 8%</li>
+        </table>
+      </li>
+      <li>
+        <heading>The two extreme traits</heading>
+        <text>A psychopath and a cannibal come only from a history as extreme as the trait, each at most once in a colony's life, and nothing undoes them by itself later. The letter is a negative one and names the deeds with their dates.</text>
+        <table>
+          <li>Trait | Change | What it asks for | Chance a day</li>
+          <li>Psychopath | appears | 3 executions or organs taken by their own hand (the same victim counts once), and a betrayal, heartbreak or death among their marks; warmth moved -30 and trust -25, now warmth -60 and trust -50 or lower; never someone kind | 10%</li>
+          <li>Psychopath | appears | 60 people killed, an execution or an organ taken by their own hand, and a vow of vengeance, a betrayal or heartbreak among their marks; the same warmth and trust | 5%</li>
+          <li>Cannibal | appears | human flesh eaten on 3 separate occasions in 120 days while starving, malnourished or in a hungry season, and a hungry season among their marks | 15%</li>
+          <li>Cannibal (Ideology) | appears | human flesh eaten on 5 separate occasions in 120 days as their faith holds right | 8%</li>
+        </table>
+        <after>Deeds are counted on separate occasions: the same victim, or meals within half a day, count once. They are kept 240 days. Executions are counted from the game's history and its tales, organs and meals from the game's history and the memories the colonist gains.</after>
+      </li>
+      <li>
+        <heading>Other mods' traits</heading>
+        <table>
+          <li>Trait | Change | What it asks for | Chance a day</li>
+          <li>Coward (Vanilla Traits Expanded) | fades | 2 marks of danger held; nerve moved +12 | 12%</li>
+          <li>Vengeful (Vanilla Traits Expanded) | appears | a vow of vengeance, and a death or a betrayal among their marks; temper moved +6, warmth 10 or less; not kind | 8%</li>
+          <li>World weary (Vanilla Traits Expanded) | appears | age 35 or more, 3 marks of loss or hardship; outlook moved -20 | 6%</li>
+          <li>Rebel (Vanilla Traits Expanded) | appears | 3 broken promises, elections lost or seats lost; trust moved -12 | 8%</li>
+          <li>Workaholic (Vanilla Traits Expanded) | appears | 4% or less of their time at recreation over the last 60 days, and 2 masterworks, masteries, legendary works or students taught in 180 days | 6%</li>
+          <li>Craven (RimTraits) | fades | 2 marks of danger held; nerve moved +12 | 12%</li>
+        </table>
+        <after>A rule for a DLC's or a mod's trait does nothing without it.</after>
+      </li>
+    </sections>
+    <keywords><li>trait</li><li>traits</li><li>trait change</li><li>steadfast</li><li>nervous</li><li>optimist</li><li>pessimist</li><li>kind</li><li>psychopath</li><li>cannibal</li><li>personality</li></keywords>
+    <seeAlso><li>Council_Alm_C_Character</li><li>Council_Alm_C_Marks</li></seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+</Defs>

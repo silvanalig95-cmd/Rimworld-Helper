@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Traits that change with what happens to a colonist (Source/ColonyCouncil/Persona/TraitChanges.cs); see
+    Rimfolk_TraitChanges_Spectrum.xml for how a rule reads. This file: the two traits that only an extreme history can
+    give, each at most once in a colony's life (onceKey), and never undone by anything that happens later.
+
+    Deeds are counted on separate occasions (tallies): a memory the colonist gained, a deed in the game's history with
+    them as the one who did it, or a tale the game tells about them. The same victim, or the same half day, is one
+    occasion. Deeds are kept 240 days.
+  -->
+
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_PsychopathExecutioner</defName>
+    <label>a psychopath made by executions, betrayal and loss</label>
+    <trait>Psychopath</trait>
+    <change>Gain</change>
+    <onceKey>Psychopath</onceKey>
+    <tallies>
+      <li>
+        <key>Cruelty</key>
+        <events>ExecutedPrisoner, ExecutedGuest, ExecutedColonist, ExecutedPrisonerGuilty, ExecutedPrisonerInnocent, HarvestedOrgan, HarvestedOrganFromGuest, HarvestedOrganFromColonist</events>
+        <tales>ExecutedPrisoner</tales>
+        <count>3</count>
+        <label>carried out an execution or took an organ</label>
+      </li>
+    </tallies>
+    <marks>
+      <li><any>Betrayal, Loss, Heartbroken</any></li>
+    </marks>
+    <moved>warmth&lt;=-30, trust&lt;=-25</moved>
+    <now>warmth&lt;=-60, trust&lt;=-50</now>
+    <blockedBy><li>Kind</li></blockedBy>
+    <gapDays>0</gapDays>
+    <chance>0.1</chance>
+    <tone>-1</tone>
+    <news>{PAWN_nameDef} has become a psychopath.</news>
+    <meaning>{PAWN_nameDef} has done the colony's killing by hand, more than once, after the people closest to {PAWN_objective} were lost or turned on {PAWN_objective}. Somewhere along the way {PAWN_pronoun} stopped feeling for anyone. It won't come back by itself.</meaning>
+    <journal>
+      <plain>
+        <li>They looked at me oddly at supper. I couldn't think why. Then I remembered what I did this morning, and I still couldn't.</li>
+        <li>I used to lie awake after an execution. Last night I slept fine.</li>
+      </plain>
+      <warm><li>People keep telling me how sorry they are. I nod. I've learned when to nod.</li></warm>
+      <blunt><li>Someone has to do it. I don't mind. That's the difference now.</li></blunt>
+      <cheerful><li>Everyone's been so tense lately. I can't think why. I feel fine.</li></cheerful>
+      <gloomy><li>Whatever it was in me that hurt for other people, it's gone. I don't miss it. That should frighten me.</li></gloomy>
+      <cold><li>Other people's feelings are a weather report now. I check them when it's useful.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_PsychopathKiller</defName>
+    <label>a psychopath made by a long trail of killing</label>
+    <trait>Psychopath</trait>
+    <change>Gain</change>
+    <onceKey>Psychopath</onceKey>
+    <records>KillsHumanlikes>=60</records>
+    <tallies>
+      <li>
+        <key>Cruelty</key>
+        <events>ExecutedPrisoner, ExecutedGuest, ExecutedColonist, ExecutedPrisonerGuilty, ExecutedPrisonerInnocent, HarvestedOrgan, HarvestedOrganFromGuest, HarvestedOrganFromColonist</events>
+        <tales>ExecutedPrisoner</tales>
+        <count>1</count>
+        <label>carried out an execution or took an organ</label>
+      </li>
+    </tallies>
+    <marks>
+      <li><any>SworeVengeance, Betrayal, Heartbroken</any></li>
+    </marks>
+    <moved>warmth&lt;=-30, trust&lt;=-25</moved>
+    <now>warmth&lt;=-60, trust&lt;=-50</now>
+    <blockedBy><li>Kind</li></blockedBy>
+    <gapDays>0</gapDays>
+    <chance>0.05</chance>
+    <tone>-1</tone>
+    <news>{PAWN_nameDef} has become a psychopath.</news>
+    <meaning>Sixty lives and more, an execution by {PAWN_possessive} own hand, and a grudge or a betrayal that soured everything after: {PAWN_nameDef} no longer feels for anyone. It won't come back by itself.</meaning>
+    <journal>
+      <plain>
+        <li>Counted again tonight. I've lost track of the faces. I haven't lost any sleep over it.</li>
+        <li>The others flinch at a death now and then. I watch them do it, like watching rain.</li>
+      </plain>
+      <warm><li>I say the right words at funerals. I know them well by now. They don't mean anything going out.</li></warm>
+      <blunt><li>They die, we live. It's that simple. It always was.</li></blunt>
+      <cheerful><li>Quiet week. No raids. I almost miss them, which is funny if you think about it.</li></cheerful>
+      <gloomy><li>Too many of them. Somewhere in the count I stopped being someone who minds.</li></gloomy>
+      <cold><li>I have stopped weighing lives. It saves a great deal of time.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_CannibalFamine</defName>
+    <label>a cannibal made by famine</label>
+    <trait>Cannibal</trait>
+    <change>Gain</change>
+    <onceKey>Cannibal</onceKey>
+    <tallies>
+      <li>
+        <key>HumanFleshHungry</key>
+        <thoughts>AteHumanlikeMeatDirect, AteHumanlikeMeatAsIngredient, AteRawHumanlikeMeat, AteHumanMeat_Disapproved, AteHumanMeat_Horrible, AteHumanMeat_Abhorrent</thoughts>
+        <events>AteHumanMeat, AteHumanMeatDirect, AteHumanMeatAsIngredient</events>
+        <whileHungry>true</whileHungry>
+        <count>3</count>
+        <withinDays>120</withinDays>
+        <label>ate human flesh while starving</label>
+      </li>
+    </tallies>
+    <marks>
+      <li><any>HungrySeason</any></li>
+    </marks>
+    <gapDays>0</gapDays>
+    <chance>0.15</chance>
+    <tone>-1</tone>
+    <news>{PAWN_nameDef} has become a cannibal.</news>
+    <meaning>Starving, {PAWN_pronoun} ate human flesh, and then again, and again. The horror of it has worn off, and what's left is a taste for it.</meaning>
+    <journal>
+      <plain>
+        <li>The first time I was sick afterwards. The third time I wasn't. I've been trying to decide what that means.</li>
+        <li>I walked past the freezer today and thought about what's in the back of it. Not with horror.</li>
+      </plain>
+      <warm><li>We did what we had to, to keep each other alive. I can't make myself regret it, or the taste.</li></warm>
+      <blunt><li>Meat is meat. Hunger taught me that.</li></blunt>
+      <cheerful><li>I've stopped asking the cook what's in the stew. Lately I've started hoping.</li></cheerful>
+      <gloomy><li>The famine's over. Whatever it did to me isn't.</li></gloomy>
+      <cold><li>The taboo turned out to be only a taboo. The famine removed it.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_CannibalFaith</defName>
+    <label>a cannibal by faith and habit</label>
+    <trait>Cannibal</trait>
+    <change>Gain</change>
+    <dlc>Ideology</dlc>
+    <onceKey>Cannibal</onceKey>
+    <tallies>
+      <li>
+        <key>HumanFleshFaith</key>
+        <thoughts>AteHumanMeat_Preferred, AteHumanMeat_RequiredStrong, AteHumanMeat_RequiredRavenous</thoughts>
+        <count>5</count>
+        <withinDays>120</withinDays>
+        <label>ate human flesh as the faith holds right</label>
+      </li>
+    </tallies>
+    <gapDays>0</gapDays>
+    <chance>0.08</chance>
+    <tone>-1</tone>
+    <news>{PAWN_nameDef} has become a cannibal.</news>
+    <meaning>The faith {PAWN_pronoun} follows holds that human flesh is good to eat, and {PAWN_pronoun} has eaten it again and again. It isn't only belief anymore: it's appetite.</meaning>
+    <journal>
+      <plain>
+        <li>The faith says it's right. My stomach agrees now, and it didn't used to.</li>
+        <li>I look forward to the feast days for the meat. I didn't expect to admit that.</li>
+      </plain>
+      <warm><li>We share the flesh as the faith asks, and I feel closer to everyone at the table for it.</li></warm>
+      <blunt><li>I like it. The faith was right.</li></blunt>
+      <cheerful><li>Second helpings at the ritual meal. The cook gave me a look. I gave the cook a bigger look.</li></cheerful>
+      <gloomy><li>I don't think I could go back to plain meat. I don't think I want to.</li></gloomy>
+      <cold><li>Belief became habit, and habit became preference. A natural progression.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+</Defs>
