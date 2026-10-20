@@ -638,7 +638,8 @@ namespace ColonyCouncil
             if (Widgets.ButtonInvisible(r) && t.a.Spawned) CameraJumper.TryJumpAndSelect(t.a);
         }
 
-        private static string Tip(SocialTie t)
+        /// <summary>A bond's tooltip: who, how strong, since when, what happened between them, what they went through together.</summary>
+        public static string Tip(SocialTie t)
         {
             var lines = new List<string>
             {

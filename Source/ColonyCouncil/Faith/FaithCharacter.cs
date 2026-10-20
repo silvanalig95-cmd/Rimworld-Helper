@@ -11,7 +11,8 @@ namespace ColonyCouncil
     /// A colonist's faith on their character page (section 35, after their views): which faith and how firmly (the game's
     /// certainty, devout or wavering), a role they hold in it, what it asks that weighs on them now, what moved their
     /// faith lately (a talk, a crisis, with how far), and who is likeliest to sway them, or whom they could bring round.
-    /// Shown with "Faith in the colony" on (Ideology, not classic mode).
+    /// Shown with "Faith in the colony" on (Ideology, not classic mode). The Culture tab draws the same, with the faith's
+    /// icon and a certainty bar in place of the first lines (<see cref="Details"/>).
     /// </summary>
     [StaticConstructorOnStartup]
     public static class FaithCharacter
@@ -41,13 +42,32 @@ namespace ColonyCouncil
                 CertaintyTip(p));
             var role = SafeRole(ideo, p);
             if (role != null) s.Line("CC_FaithP_PageRole".Translate(p.Named("PAWN"), role.LabelCap.Named("ROLE"), ideo.name.Named("FAITH")).Resolve());
+            AddDetails(s, p, ideo);
+            return s;
+        }
+
+        /// <summary>
+        /// The section without its first lines (which faith, how firmly, a role): the Culture tab draws those itself, with
+        /// the faith's icon and a certainty bar. Null without "Faith in the colony".
+        /// </summary>
+        public static CharacterSection Details(Pawn p)
+        {
+            if (!Faiths.Holds(p)) return null;
+            var s = new CharacterSection { title = "CC_FaithP_PageTitle".Translate(), order = Order, key = "faith" };
+            AddDetails(s, p, Faiths.Of(p));
+            return s.Empty ? null : s;
+        }
+
+        /// <summary>What it asks of them now, the faith moments lately, and who could sway them (or whom they could).</summary>
+        private static void AddDetails(CharacterSection s, Pawn p, Ideo ideo)
+        {
             var asks = FaithAsks.Of(p);
             if (asks.Count > 0)
                 s.Line("CC_FaithP_PageAsks".Translate(ideo.name.Named("FAITH"), p.Named("PAWN"), TextUtil.JoinAnd(asks.Take(3).Select(FaithAsks.Text).ToList()).Named("LIST")).Resolve(),
                     "CC_FaithP_AsksTip".Translate());
             foreach (var n in FaithPeople.Notes(p).Take(NotesShown))
                 s.Line((PersonaMarks.DateLabel(n.tick, p).Colorize(UiKit.Dim) + "  " + NoteText(n)).Trim(), n.crisis ? "CC_FaithP_NoteCrisisTip".Translate() : "CC_FaithP_NoteTalkTip".Translate());
-            if (!p.IsFreeColonist) return s;
+            if (!p.IsFreeColonist) return;
             // Who could sway them, and whom they could sway.
             var others = PawnsFinder.AllMaps_FreeColonists.Where(o => o != p && Faiths.Holds(o) && !Faiths.Same(o, p) && !o.IsQuestLodger()).ToList();
             var by = others.Where(Faiths.Devout).Select(o => (o, v: FaithPeople.Expected(p, o, FaithPeopleMath.DebateSway)))
@@ -63,7 +83,6 @@ namespace ColonyCouncil
                     s.Line("CC_FaithP_PageCouldSway".Translate(p.Named("PAWN"), TextUtil.JoinAnd(could.Select(x => x.o.LabelShort).ToList()).Named("LIST")).Resolve(),
                         "CC_FaithP_SwayTip".Translate());
             }
-            return s;
         }
 
         /// <summary>A faith moment as the pages say it: what it was, and how far it moved them.</summary>

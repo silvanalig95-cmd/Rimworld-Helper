@@ -9,7 +9,7 @@
     <category>Council</category>
     <order>9</order>
     <summary>What colonists talk about, the views they hold, and how a talk goes between two people.</summary>
-    <tip>A colonist's views are on their character page, under Views. Hover one to see what it rests on and the last talk that moved it.</tip>
+    <tip>A colonist's views are in their Culture tab, under Views. Hover one to see what it rests on and the last talk that moved it.</tip>
     <description>Colonists don't only chat. Now and then two of them who are together get talking about something real: the last raid, the council and its decrees, the food, the work and who does too little, the newest face in the colony, faith, the world outside and its traders, the animals, the weather, art, the future and whether to stay, the dead, the prisoners, drink, new learning against the old ways, the children, the colony's project, money, love. Each of them holds a view on each of these, and says so in their own voice.
 
 The talk shows over their heads as two to four lines, the two taking turns, a few seconds apart; if one of them walks off, the rest isn't said. The social log keeps one line saying what it was about and how it went.</description>
@@ -69,7 +69,7 @@ The talk shows over their heads as two to four lines, the two taking turns, a fe
     <category>Council</category>
     <order>9</order>
     <summary>What two colonists went through together, how they bring it up, and the jokes only they get.</summary>
-    <tip>A colonist's shared memories are on their character page. Hover one to see when it happened and how often it has come up.</tip>
+    <tip>A colonist's shared memories are in Rimfolk's column of their Social tab, with their last few talks. Hover one to see when it happened and how often it has come up.</tip>
     <description>Two colonists remember what they went through together, and it comes back in their conversations: "Remember the raid, you right there beside me?", "I keep thinking about Mara", "Two words: the stew." Each pair keeps its eight weightiest memories, no more than three of one kind (so a season of raids can't push out a funeral or an in-joke), and the colony its 600 weightiest; most fade over a few months, some stay for many, and a memory that just came up is much less likely to come up again for a few days.</description>
     <sections>
       <li>

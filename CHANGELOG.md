@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Social and Culture in the colonist's tabs
+
+*21 October 2026, later, version 0.8.1*
+
+- Rimfolk now sits in the game's own Social tab: a column beside the relations list with a colonist's bonds, groups and role, what people say about them, shared memories and in-jokes, recent talks and the secrets the colony knows. Hovering someone in the list adds a line on what is between the two of them. The "Rimfolk in the Social tab" setting turns it off.
+- A new Culture tab next to Social: faith with a certainty bar and any role, the views they hold, how they feel about the colony's ways, what they think of each decree in force, and where they come from.
+- The Story tab is lighter and keeps who they are and what they've lived through. The council's People page still shows everything.
+
 ## Faith in the colony
 
 *21 October 2026, version 0.8.0*

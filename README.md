@@ -59,8 +59,9 @@ window, organized in five sections:
 | **Almanac** | | the knowledge base |
 
 Section names show a count when something there wants your attention (urgent advice, open wishes, petitions).
-Each colonist also has a **Story** tab in their inspect panel, and clicking a colonist's name in the council window
-opens their page in the roster.
+Each colonist also has a **Story** and a **Culture** tab in their inspect panel and a Rimfolk column in the game's own
+**Social** tab (see "Story, Culture and Social" below), and clicking a colonist's name in the council window opens
+their page in the roster.
 
 **This week** is the first page: one place for everything that wants you. Wishes and petitions (oldest first),
 dilemmas and other letters waiting for an answer, and promises at risk (granted wishes gone missing, with the time
@@ -80,10 +81,10 @@ The window reopens on the page you last looked at, also after a restart (it's ke
 "Council window opens on" setting can make it always open on This week instead. A colony's
 first session with Rimfolk brings one quiet **welcome letter**: what Rimfolk does, where the council button is, and a
 button to the Almanac's **Start here** page. Saves that already had Rimfolk never get it, and it needs no setting.
-The **Mood** and **Story** tabs fit the room above the inspect pane: on a small screen, at a big interface scale or
-above RimHUD's taller pane they get shorter and scroll instead of running off the top of the screen. A click on a
-section's heading (the heart, what weighs on them, their bonds...) folds it away, and each tab remembers that for the
-session.
+The **Mood**, **Story** and **Culture** tabs fit the room above the inspect pane: on a small screen, at a big interface
+scale or above RimHUD's taller pane they get shorter and scroll instead of running off the top of the screen. A click
+on a section's heading (the heart, what weighs on them, their bonds...) folds it away, and each tab (and the Social
+tab's column) remembers that for the session.
 
 ### Priorities: what the colony needs
 A ranked list of concerns (62 kinds of check), each with a short explanation, a rotating **"why it matters"** tip,
@@ -483,7 +484,9 @@ other; rivals object to each other's wishes and vote against each other. The cou
 into them: being passed over for a rival, losing an election, a fight, a grudge from a dilemma or arguing over a
 decree can start a rivalry, while backing the same petition or making up after a quarrel builds a friendship. Some
 dilemmas only come up between friends, rivals or comrades. When someone dies, the people closest to them (and their
-rivals) write about it. The **Social** tab shows every bond with its strength and history, and every group.
+rivals) write about it. The council's **Bonds** page shows every bond with its strength and history, and every group;
+a colonist's own bonds, with the ones they lost, open Rimfolk's column in their **Social** tab, and hovering someone in
+the game's list there says what is between the two of them (a bond, a group, memories, views they share or not).
 
 ### Personalities and social life
 Colonists are people with a character of their own that changes with what happens to them, and they talk, gather and
@@ -564,7 +567,7 @@ Pairs also keep **shared memories** (17 kinds): fighting side by side (those rea
 a disaster come through, a caravan, something big built together, a long night shift, lessons, a quarrel made up, a
 secret kept. Small mishaps become **in-jokes** ("the stew", "the boomalope", "the alpaca", the little fire, the mud, a
 short binge) once everyone's fine, funnier the first few times and then worn thin. The character page lists their
-**views** (with what each rests on) and their **shared memories**. Almanac: "Conversations and views", "Shared memories
+**views** (with what each rests on; in the Culture tab) and their **shared memories** (in the Social tab's column). Almanac: "Conversations and views", "Shared memories
 and in-jokes".
 
 #### Groups: they form, quarrel, split and merge
@@ -586,7 +589,7 @@ Groups fall out over feuds, opposed views and clashing ways (digs at the other l
 group with a rift splits; two that overlap merge; an empty one ends and someone remembers it. Twelve group moments run
 in the game's own conversations, with about 600 lines in all. **People → Bonds** shows each group as a card (its people
 and their parts, ways, habits, quarrels and history) and as a coloured band on the web; a bond's details list what the
-two went through together, and the character page has a "Groups and role" section. Almanac: "Groups" and "Roles in a
+two went through together, and the character page has a "Groups and role" section (in the Social tab's column). Almanac: "Groups" and "Roles in a
 group".
 
 #### Reputation and gossip: what people say about each other
@@ -607,7 +610,7 @@ trustworthy or a gossip, a hothead or level-headed. A name is a small opinion ei
 brave in a fight, leans a vote, means fewer secrets for a gossip and a colony name a little sooner, and brings its
 own moments (the cruel given a wide berth, the coward jibed at, the brave asked how they do it). It fades as the talk
 dies down; newcomers pick it up over their first weeks. The character page shows it under "What people say about
-them", with the deeds behind it, who told whom, and who thinks what of them for it.
+them" (in the Social tab's column), with the deeds behind it, who told whom, and who thinks what of them for it.
 
 #### Faith in the colony: who believes what, and what moves it
 With Ideology, how firmly each colonist holds their faith (the game's own certainty) comes into their life, under its
@@ -632,21 +635,36 @@ their certainty runs out, and it's told the same way whatever led to it.
   is a turning point on the character page with a journal line in their own voice, rare (a chance, a long wait before
   the same again, never two within 20 days) and never announced.
 
-The character page has a **Faith** section: their faith and certainty, a role they hold, what it asks of them now,
-what moved it lately and by how much, and who is likeliest to sway them; their view about faith keeps in step with
-their certainty. Almanac: "Faith in the colony".
+The **Culture** tab opens with their **Faith**: the faith's icon and name, a certainty bar, a role they hold, what it
+asks of them now, what moved it lately and by how much, who is likeliest to sway them and the faiths they held before;
+their view about faith keeps in step with their certainty. Almanac: "Faith in the colony".
 
 #### The character page
-The **Story** tab opens with the character page, one section for each part, each folding away: **Character** (in words
-and on eight bars), **What shaped them** (six marks, turning points first, the rest on hover), **Traits gained and
-lost**, **Views**, **Faith** (with Ideology), **Shared memories**, **Groups and role** and **What people say about them**. Their trust, office and colony names sit above it;
-their life goal, story, bonds, quirks, dreams and journal below.
+The character page has one section for each part, each folding away: **Character** (in words and on eight bars),
+**What shaped them** (six marks, turning points first, the rest on hover), **Traits gained and lost**, **Views**,
+**Faith** (with Ideology), **Shared memories**, **Groups and role** and **What people say about them**. The council
+window's People roster shows it whole. In the inspect pane each part sits where it belongs: who they are in the
+**Story** tab (character, what shaped them, traits gained and lost), what they believe in the **Culture** tab (faith
+and views), and their life among others in Rimfolk's column of the **Social** tab (shared memories, groups and role,
+what people say).
 
-### Story: a page for every colonist
-Select a colonist and open the **Story** tab in their inspect panel (next to Bio, Social and Gear): their trust,
-office and earned names, their character and what shaped it, their life goal and how close they are, their personal
-story and what it waits for next, their friends, rivals, comrades, students and the people they've lost, their
-quirks, vendettas and the secrets the colony knows about, their last dreams and the latest lines of their journal.
+### Story, Culture and Social: a colonist's pages
+Select a colonist and three places in their inspect panel tell Rimfolk's side of them:
+- **Story**: who they are and what they've lived. Their trust, office and earned names, their character and what
+  shaped it, the traits life changed, their life goal and how close they are, their personal story and what it waits
+  for next, their quirks, heirlooms, vendettas and nemeses, their last dreams and the latest lines of their journal.
+- **Culture** (just left of Social): what they believe and where they come from. Their faith (with Ideology: its icon,
+  how firmly they hold it, a role, what it asks of them, what moved it, who could sway them), the views they hold,
+  how they sit with the colony's ways (a bar from ashamed to proud, and why), what they think of each decree in force
+  and any decree they asked for, and their backstory, xenotype (Biotech), the people they came from and how long
+  they've been here (a founder, born here, or won over while held here).
+- **Social**: the game's own tab, a little wider, with a column of Rimfolk's on its right: their bonds (each with
+  its strength, and the people they lost), their groups and role, what people say about them, the memories and
+  in-jokes they share, their last few Rimfolk talks (from the game's own log) and the secrets the colony knows of.
+  Hover someone in the game's list on the left for a line about the two of them. The column only widens the tab and
+  draws beside the game's card; with another mod keeping the tab at a width of its own, or a screen too narrow, it
+  stays out of the way, and the Story tab shows those parts again. **Rimfolk in the Social tab** (People & moods
+  page) turns it off.
 
 ### Life goals
 A few days after settling in, each colonist sets their heart on something to do before they die: master a craft,
@@ -1179,7 +1197,7 @@ while that feature is off; nothing vanilla is changed or removed. A few things i
   made with the Vanilla Expanded framework or Processor Framework (Medieval Overhaul's rustic fermenting barrel)
   count for brewing wishes and room plans, and a stock of social drinks (ale, mead, cider, wine) fulfils the
   brewery wish.
-- **Alien races (Humanoid Alien Races):** every humanlike race gets the Story tab, and ages are read against the
+- **Alien races (Humanoid Alien Races):** every humanlike race gets the Story and Culture tabs, and ages are read against the
   race's lifespan, so a 300-year-old elf isn't treated as elderly.
 - **Simple Sidearms:** an heirloom weapon carried as a sidearm still counts as carried.
 - **No mechanoids:** mechanoid dreams and goals only show up in games where mechanoids are around and hostile
@@ -1195,7 +1213,8 @@ while that feature is off; nothing vanilla is changed or removed. A few things i
 - **Vanilla Social Interactions Expanded:** works alongside, and feeds Rimfolk's bonds (see below). Its
   "aspirations" are short inspiration tasks, not life goals, so nothing doubles up.
 - **Guests, prisoners and visitors** (Hospitality and the like) are left out of meetings, votes and council
-  talk.
+  talk. Rimfolk's column in the Social tab is only for the colony's own people (colonists, prisoners, slaves), so a
+  guest's Social tab stays the game's (and Hospitality's).
 - **Removing a mod mid-game:** room plans that used a material from that mod fall back to a default material,
   and people who vanished with it are quietly forgotten.
 
@@ -2012,7 +2031,7 @@ The pages:
   strength, no half-built work or the fussiest setbacks, and high standards don't make frictions sting more; **normal**, the default, a little under written strength; or **demanding**,
   half again as strong), rising standards (and whether they also cover the game's comforts), whether Rimfolk's good
   moods add up slowly, getting used to good times, everyday frictions; the social web and social events,
-  personalities and social life, traits that change, faith in the colony (with Ideology), secrets, vendettas; life goals, personal stories (off, rare, normal or frequent), quirks, heirlooms, coming of age,
+  Rimfolk's column in the game's Social tab, personalities and social life, traits that change, faith in the colony (with Ideology), secrets, vendettas; life goals, personal stories (off, rare, normal or frequent), quirks, heirlooms, coming of age,
   colonists fixing what bothers them (and placing small plans), dreams and dream omens; moments between colonists,
   the colony noticing what happens, and small habits in free time; journals, names, anniversaries, annals and eulogies; and how often moments,
   social events and dreams come (a quarter as often to three times as often).

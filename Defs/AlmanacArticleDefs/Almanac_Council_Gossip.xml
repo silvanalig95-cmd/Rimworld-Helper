@@ -49,7 +49,7 @@ Gossiping is talked about in turn. Running others down, or passing on their trou
     <category>Council</category>
     <order>9</order>
     <summary>What the colony says about someone, from the deeds it knows of: brave or a coward, kind or cruel, reliable or idle, skilled, trustworthy or a gossip, a hothead or level-headed.</summary>
-    <tip>A colonist's name is on their character page, under "What people say about them": what they're known for, the deeds behind it, how far each story has gone round, and who thinks what of them for it.</tip>
+    <tip>A colonist's name is in Rimfolk's column of their Social tab, under "What people say about them": what they're known for, the deeds behind it, how far each story has gone round, and who thinks what of them for it.</tip>
     <description>A reputation is what the others make of someone from the deeds they've seen or heard of (see "gossip"). It has six sides, and each runs from bad to good: courage (a coward to fearless), kindness (cruel to good-hearted), work (bone idle to tireless), skill (ham-fisted to masterful), keeping things quiet (a gossip to trustworthy) and temper (level-headed to a hothead).
 
 The colony's view of a person is what everyone else makes of them, added up and shared out over the whole colony, so a name needs its story to have got round. One rescue that everyone has heard of is enough to be called brave; one only a single friend knows of isn't. A side shows from 6 and is strong from 18 (40 at most). When one forms, grows strong or fades away, the news says so ("People have started saying Ana is brave").</description>

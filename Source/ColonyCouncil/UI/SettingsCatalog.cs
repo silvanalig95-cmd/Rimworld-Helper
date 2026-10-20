@@ -256,6 +256,7 @@ namespace ColonyCouncil
             Section("CC_Settings_Bonds");
             Toggle("socialWeb", "CC_Settings_SocialWeb", "CC_SetNote_SocialWeb");
             Toggle("socialEvents", "CC_Settings_SocialEvents", "CC_SetNote_SocialEvents", "socialWeb");
+            Toggle("socialTabColumn", "CC_Settings_SocialTabColumn", "CC_SetNote_SocialTabColumn", "deepHooks");
             Toggle("socialLife", "CC_Settings_SocialLife", "CC_SetNote_SocialLife");
             Toggle("traitChanges", "CC_Settings_TraitChanges", "CC_SetNote_TraitChanges", "socialLife");
             Toggle("faithLife", "CC_Settings_FaithLife", "CC_SetNote_FaithLife");

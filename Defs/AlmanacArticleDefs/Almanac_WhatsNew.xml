@@ -31,6 +31,17 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.8.1</version>
+        <date>21 October 2026, later</date>
+        <title>Social and Culture in the colonist's tabs</title>
+        <points>
+          <li>Rimfolk now sits in the game's own Social tab: a column beside the relations list with a colonist's bonds, groups and role, what people say about them, shared memories and in-jokes, recent talks and the secrets the colony knows. Hovering someone in the list adds a line on what is between the two of them. The "Rimfolk in the Social tab" setting turns it off.</li>
+          <li>A new Culture tab next to Social: faith with a certainty bar and any role, the views they hold, how they feel about the colony's ways, what they think of each decree in force, and where they come from.</li>
+          <li>The Story tab is lighter and keeps who they are and what they've lived through. The council's People page still shows everything.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.8.0</version>
         <date>21 October 2026</date>
         <title>Faith in the colony</title>

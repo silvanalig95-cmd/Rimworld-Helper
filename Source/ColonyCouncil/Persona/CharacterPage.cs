@@ -13,6 +13,8 @@ namespace ColonyCouncil
         /// <summary>A tooltip per line (same order; null or shorter for lines without one).</summary>
         public List<string> tips = new List<string>();
         public int order;
+        /// <summary>The key it was registered under ("faith", "groups"...), so a page can pick the parts it shows.</summary>
+        public string key;
 
         public bool Empty => lines == null || lines.Count == 0;
 
@@ -58,6 +60,7 @@ namespace ColonyCouncil
                     var s = make(p);
                     if (s == null || s.Empty) continue;
                     s.order = order;
+                    s.key = key;
                     list.Add(s);
                 }
                 catch (Exception e)
@@ -66,6 +69,30 @@ namespace ColonyCouncil
                 }
             }
             return list;
+        }
+
+        /// <summary>One section by its key, or null when it's empty, missing or throws (the Social tab's column, the Culture tab).</summary>
+        public static CharacterSection Make(string key, Pawn p)
+        {
+            if (p == null || key == null) return null;
+            foreach (var (k, order, make) in makers)
+            {
+                if (k != key) continue;
+                try
+                {
+                    var s = make(p);
+                    if (s == null || s.Empty) return null;
+                    s.order = order;
+                    s.key = key;
+                    return s;
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("character page: " + key, e);
+                    return null;
+                }
+            }
+            return null;
         }
     }
 }

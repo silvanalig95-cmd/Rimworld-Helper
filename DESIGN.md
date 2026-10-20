@@ -392,6 +392,9 @@ and news for turning points.
   own code and the `persona:*` tags.
 - **The page.** StoryView draws the sections of `CharacterPage` (character 10, what shaped them 20, then the other parts'),
   with eight bars and per-side tooltips worked out the same way as nature. With social life off only nature shows.
+  Each section carries its registry key, so a page picks its parts (`CharacterPage.Make` asks one): the People roster
+  shows them all, the Story tab character, shaped and traits, the Culture tab views and faith, and the Social tab's
+  column groups, reputation and memories (see "A colonist's tabs").
 
 ### Groups
 
@@ -1441,6 +1444,41 @@ Things the game exposes that this relies on (all available to mods):
 | Building | Placing standard blueprints (so pawns build them normally) |
 | Rewards | Mood memories, inspirations |
 
+### A colonist's tabs
+
+A colonist's inspect pane has three Rimfolk places, each a page of folding sections built a couple of times a second
+and drawn from that model (`UI/PawnPane.cs` lays out the Culture tab and the column; StoryView the Story tab):
+
+- **Story** (`ITab_Pawn_Story`): who they are and what they've lived (standing, character, what shaped them, traits,
+  life goal, personal story, quirks, heirlooms, vendettas, nemeses, dreams, journal). `StoryView` takes a `StoryParts`
+  filter: the roster passes `All`, the tab `StoryTab`, which leaves out the Culture tab's parts always and the
+  column's parts only while the column can show (`SocialColumn.Available`), so nothing is lost with it off.
+- **Culture** (`ITab_Pawn_Culture`, added in code to every humanlike race right after `ITab_Pawn_Social` in
+  `inspectorTabs`, so it's drawn just left of Social): faith (the vanilla icon, certainty and role, then
+  `FaithCharacter.Details`), views, how they sit with the colony's ways (`CharacterTracker.Approval`, its reasons,
+  `ColonyTraits.PrideOf`), their reaction to each decree in force and their own petitions, and where they come from
+  (backstories, xenotype, a prisoner's faction or the kind of people the game made them among, time with the colony,
+  founder, born here, or the game's "recruited" tale). Its button asks only a cheap check (a backstory, a faith or a
+  xenotype).
+- **Social**: the game's own tab with Rimfolk's column (`SocialColumn`) to the right of its card. Three patch classes,
+  each applied on its own:
+  - `Patch_SocialTabColumn` on `ITab_Pawn_Social.FillTab`. Its prefix sets the tab's protected `size` (a FieldRef on
+    `InspectTabBase.size`) to the tab's own width plus a gap and the column (`TabFitMath.ColumnWidth`: 360, less on a
+    narrow screen, none under 300), or back to its own width when the column doesn't apply. The tab's own width is
+    what it had before Rimfolk touched it (`TabFitMath.BaseWidth`), so a width another mod gives it becomes the base.
+    It notes whom the tab draws for; the postfix draws the column only when the window really is wide enough and the
+    game's card really was kept to its width this frame; a finalizer forgets it all, even when the card throws.
+  - `Patch_SocialCardWidth` on `SocialCardUtility.DrawSocialCard(ref Rect rect, Pawn pawn)` (priority first): while the
+    tab draws for that colonist, the card keeps the tab's own width, however FillTab sizes it.
+  - `Patch_SocialRowTip` on `SocialCardUtility.GetPawnRowTooltip` (postfix): the game's own tooltip on a relation row
+    gets one Rimfolk line about the pair (bond, shared group, memories, views agreed or at odds), kept a second per pair.
+
+  The column needs both of the first two (`SocialColumn.Patched`), the setting, the deeper game hooks and a wide enough
+  screen. If the tab stays narrow for a second and a half while the column wants room (another mod keeping its own
+  width), it is switched off for the session with one log line, the tab keeps its width, and the Story tab shows the
+  social parts again. Guests (Hospitality) and other people's pawns never get the column. "Recent talks" reads the
+  game's play log (Rimfolk's interactions and social events concerning them), so nothing is saved for it.
+
 ### Checking a new game version
 
 One DLL serves every supported version: it is built against the 1.6 references into `1.6/Assemblies`, and on 1.7
@@ -1566,7 +1604,8 @@ fights pass and the worn-out episode read from it. (A downed victim after a figh
 
 **Worked out when asked, not on a clock.** The advisor's advice (24 checks on a map) is refreshed at most once an hour,
 when the alert or the council tab reads it; the inspector's strain line is built when the heart changes; Rimfolk's tabs
-and pages rebuild their models every half second to second while open (UiCache, the Mood and Story tabs' own caches).
+and pages rebuild their models every half second to second while open (UiCache, the Mood, Story and Culture tabs' and
+the Social tab column's own caches).
 
 **Called by the game often (no clock of their own).** These must stay cheap:
 - *Situational moods* (asked for every colonist every few seconds): heart strain, the colony's ways, decrees, trust,
@@ -1586,7 +1625,8 @@ and pages rebuild their models every half second to second while open (UiCache, 
   once per pair and tick (the topic's scene once an hour per map, the news' heat every 250 ticks).
 - *The reputation opinion* (asked for every pair of colonists): one dictionary lookup in what each makes of the other,
   worked out again only when a deed or a knower changes (at most every 30 ticks) and once an hour for fading.
-- *Per frame*: the inspector line (a string join), the Needs tab's extra tooltip lines (cached half a second), alert
+- *Per frame*: the inspector line (a string join), the Needs tab's extra tooltip lines (cached half a second), the
+  Social tab's width (a cached model and a field write), its rows' extra tooltip line (cached a second per pair), alert
   labels (rebuilt only when they change), the slow-time buttons (labels translated once, tooltips only on hover), a
   lucky thing's inspect line and description (a lookup by thing id, nothing while no thing is lucky). Windows and tabs
   keep a model and draw from it: the floor picker keeps each floor's research, cost, material, stats and tooltip for a
