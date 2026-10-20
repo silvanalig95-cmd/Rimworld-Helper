@@ -232,10 +232,13 @@ namespace ColonyCouncil
     {
         public static GroupTracker Tracker => GroupTracker.Instance;
 
-        public static List<SocialGroup> All => GroupLife.Active ? Tracker?.groups ?? new List<SocialGroup>() : new List<SocialGroup>();
+        /// <summary>No groups (shared: never change it).</summary>
+        private static readonly List<SocialGroup> None = new List<SocialGroup>();
+
+        public static List<SocialGroup> All => GroupLife.Active ? Tracker?.groups ?? None : None;
 
         /// <summary>The groups someone is in (none while groups are off).</summary>
-        public static List<SocialGroup> Of(Pawn p) => GroupLife.Active ? Tracker?.Of(p) ?? new List<SocialGroup>() : new List<SocialGroup>();
+        public static List<SocialGroup> Of(Pawn p) => GroupLife.Active ? Tracker?.Of(p) ?? None : None;
 
         /// <summary>Their first group: the one they joined first.</summary>
         public static SocialGroup Primary(Pawn p)

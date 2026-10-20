@@ -188,8 +188,14 @@ namespace ColonyCouncil
             wordsLanguage = LanguageDatabase.activeLanguage;
             wordsGeneration = DefRefs.Generation;
             axisLabels = new string[PersonaMath.Axes];
-            for (int i = 0; i < PersonaMath.Axes; i++) axisLabels[i] = ("CC_Persona_Axis_" + (PersonaAxis)i).Translate().CapitalizeFirst();
             sideWords.Clear();
+        }
+
+        /// <summary>A side's name ("Warmth"), translated the first time it's drawn.</summary>
+        private static string AxisLabel(PersonaAxis axis)
+        {
+            int i = (int)axis;
+            return axisLabels[i] ??= ("CC_Persona_Axis_" + axis).Translate().CapitalizeFirst();
         }
 
         /// <summary>The word for where they are on a side ("warm", or "neither" in the middle), kept per side and degree.</summary>
@@ -206,7 +212,7 @@ namespace ColonyCouncil
             FreshWords();
             string word = SideWord(axis, now);
             var old = Text.Font;
-            UiKit.LabelFit(new Rect(cell.x, cell.y, cell.width * 0.5f, 18f), axisLabels[(int)axis], UiKit.Faint, GameFont.Tiny);
+            UiKit.LabelFit(new Rect(cell.x, cell.y, cell.width * 0.5f, 18f), AxisLabel(axis), UiKit.Faint, GameFont.Tiny);
             UiKit.LabelFit(new Rect(cell.x + cell.width * 0.5f, cell.y, cell.width * 0.5f, 18f), word, PersonaMath.Degree(now) == 0 ? UiKit.Dim : UiKit.HeaderColor,
                 GameFont.Tiny, TextAnchor.MiddleRight);
             Text.Font = old;
