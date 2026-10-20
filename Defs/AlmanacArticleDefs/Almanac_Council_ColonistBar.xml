@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The colonist bar's badges (Source/ColonyCouncil/ColonistBar/BarBadges.cs and BarBadgeMath.cs, drawn through
+    Patches/Patch_ColonistBarBadges.cs): what each means, which win when there are more than fit, hover and click, and
+    the settings on the Interface page.
+  -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_C_ColonistBar</defName>
+    <label>badges on the colonist bar</label>
+    <category>Council</category>
+    <order>23</order>
+    <summary>Small badges on the portraits along the top of the screen show who needs you: close to a break, about to leave, a wish waiting long, strain, wavering faith, a promise at risk.</summary>
+    <tip>A portrait with nothing on it is a colonist who is fine for now.</tip>
+    <description>The colonist bar already shows everyone's face. Rimfolk adds a small badge in a corner of a portrait when something about that colonist wants your attention, so you can see how the colony is doing without clicking through everyone's tabs. A calm colonist shows nothing at all. Hover a badge for what it means, how big it is and what helps; click it to go where it can be dealt with.</description>
+    <sections>
+      <li>
+        <heading>What the badges mean</heading>
+        <table>
+          <li>Badge | Shows when | Click opens</li>
+          <li>Ring (or a dot) | Mood is within 5% of the colonist's minor break line, or under it. The ring turns from pale amber to orange under the minor line, red under the major line and deep red under the extreme one, and grows stronger the closer they are. Not while they are already in a break: the game shows that. | Nothing for the ring (hover the portrait for how close they are); the dot opens the Mood tab</li>
+          <li>Doorway | They are bitter about the council and have said they will leave the colony, which they do three days later unless their trust climbs back above -35 | The council's Wishes page</li>
+          <li>Speech bubble with a star | Their own open wish has used up half of its time, or is on its last call (reminded twice, or 85% of its time gone) | The council's Wishes page</li>
+          <li>Cracked heart | Worn down (strain 55 or more) or near breaking (75 or more) | The Mood tab, whose Heart section shows what builds it</li>
+          <li>Sun | With Ideology: their certainty in their faith is under 60% | Their Culture tab</li>
+          <li>Speech bubble with a tick | Something the council granted them is gone and the grace is running, or it was taken back and can still be made right | The council's Wishes page, with its promises kept</li>
+        </table>
+        <after>Each badge's colour says how pressing it is: a wish turns orange on its last call, strain and a promise turn red when it's serious, faith turns orange when it barely holds (under 30%).</after>
+      </li>
+      <li>
+        <heading>The most pressing first</heading>
+        <text>A portrait shows two badges at most (one to three in the settings). When more apply, the most urgent and the most costly win, and hovering a badge names the rest:</text>
+        <points>
+          <li>Under the extreme or major break line: a break could come any moment.</li>
+          <li>About to leave the colony.</li>
+          <li>Under the minor break line.</li>
+          <li>A wish on its last call, then strain near breaking, then a wish that has waited long.</li>
+          <li>A promise taken back, then something granted that has gone missing.</li>
+          <li>The early warnings: just above the minor break line, then worn down.</li>
+          <li>Wavering faith, barely holding first.</li>
+        </points>
+        <after>With the ring, being close to a break takes no badge's place. A badge's tooltip starts with what matters most and its size: how far mood is from the break line in points, how long a wish has left with what granting it gives and what it costs if it lapses, how much trust would keep someone from leaving, the strain's own effects on mood and work speed, how certain someone still is of their faith.</after>
+      </li>
+      <li>
+        <heading>Where they sit, and clicking</heading>
+        <text>By default the badges sit in the top right corner and run down the right side: the game draws its own icons (asleep, idle, a mental state, inspired, a role) along the bottom of the portrait from the left, and some mods put an icon in the top left. Bottom corners start just above the game's icons. The badges shrink with the bar as the colony grows, as the portraits do.
+
+A left click on a badge goes there instead of doing the bar's usual click, and never starts a drag. Click or drag anywhere else on the portrait as usual: to select, to reorder the bar, or a double click to jump to them. If another mod changes the colonist bar so the click can't be taken, the badges still show and explain themselves, and their tooltips leave out the click.</text>
+      </li>
+      <li>
+        <heading>Settings</heading>
+        <text>All on the Interface page of the mod settings, under "Colonist bar". The badges need the deeper game hooks.</text>
+        <points>
+          <li>Badges on the colonist bar: on or off (on).</li>
+          <li>Close to breaking shows as: a ring (the default), a dot among the badges, or nothing.</li>
+          <li>Warn from this far above the minor break line: 0% to 15% (5%). At 0% the ring shows only under the line.</li>
+          <li>Each kind on its own: about to leave, a wish waiting long, strain near breaking, wavering faith, a promise at risk (all on).</li>
+          <li>Wish badge from: 25% to 90% of a wish's time (50%).</li>
+          <li>Badge size: small (about 11 pixels on a full-size bar), normal (13) or large (16).</li>
+          <li>Badges start from: top right (the default), top left, bottom right or bottom left.</li>
+          <li>Badges on one portrait, at most: 1 to 3 (2).</li>
+        </points>
+        <after>Each colonist's badges are worked out at most once a second; drawing them every frame only reads what was worked out.</after>
+      </li>
+    </sections>
+    <keywords><li>colonist bar</li><li>badges</li><li>portraits</li><li>overview</li><li>break risk</li><li>ring</li><li>leaving</li><li>strain</li><li>wavering</li><li>promise</li></keywords>
+    <seeAlso><li>Council_Alm_C_Moods</li><li>Council_Alm_C_Wishes</li><li>Council_Alm_C_Trust</li><li>Council_Alm_C_Heart</li><li>Rimfolk_Alm_C_Faith</li></seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+</Defs>

@@ -620,6 +620,42 @@ def g_heart():
     return m
 
 
+def g_strain():
+    """Strain near breaking (the colonist bar's badge): the heart with a crack down it."""
+    m = g_heart()
+    line(m, [(128, 52), (104, 104), (150, 140), (116, 182), (130, 236)], 26, OFF, caps=False)
+    return m
+
+
+def g_leaving():
+    """About to leave the colony (the colonist bar's badge): a doorway, and an arrow heading out of it."""
+    m = new()
+    rect(m, 24, 26, 136, 230, r=14)
+    rect(m, 52, 54, S, 202, fill=OFF)  # hollow it, open on the right
+    rect(m, 84, 110, 186, 146, r=8)  # the arrow's shaft
+    poly(m, [(170, 66), (242, 128), (170, 190)])  # its head
+    return m
+
+
+def g_bar_dot():
+    """A plain round dot: the badges' dark backing on the colonist bar, and the break dot."""
+    m = new()
+    circle(m, 128, 128, 122)
+    return m
+
+
+def g_bar_ring():
+    """The colonist bar's break ring: a soft band along a portrait's edge, strongest at the edge, clear in the middle."""
+    outer = new()
+    rect(outer, 0, 0, S - 1, S - 1, r=36)
+    hard_inner = new()
+    rect(hard_inner, 11, 11, S - 12, S - 12, r=28)
+    soft_inner = new()
+    rect(soft_inner, 20, 20, S - 21, S - 21, r=24)
+    soft = minus(outer, soft_inner).filter(ImageFilter.GaussianBlur(8)).point(lambda v: v * 3 // 4)
+    return ImageChops.multiply(union(minus(outer, hard_inner), soft), outer)
+
+
 def g_trendup():
     m = new()
     poly(m, [(128, 40), (224, 176), (32, 176)])
@@ -798,6 +834,8 @@ GLYPHS = [
     ("Trader", g_trader), ("Visitor", g_visitor), ("Death", g_death), ("Birth", g_birth), ("Wedding", g_wedding),
     ("Decree", g_decree), ("Promise", g_promise), ("Warning", g_warning), ("Heart", g_heart),
     ("TrendUp", g_trendup), ("TrendDown", g_trenddown),
+    # the colonist bar's badges (Source/ColonyCouncil/ColonistBar/BarBadges.cs)
+    ("Strain", g_strain), ("Leaving", g_leaving), ("BarDot", g_bar_dot), ("BarRing", g_bar_ring),
     # almanac categories
     ("CatBasics", g_cat_basics), ("CatFood", g_cat_food), ("CatDefense", g_cat_defense), ("CatHealth", g_cat_health),
     ("CatManagement", g_cat_management), ("CatLowTech", g_cat_lowtech), ("CatRoomDesign", g_cat_roomdesign),

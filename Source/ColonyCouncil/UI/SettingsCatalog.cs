@@ -378,6 +378,24 @@ namespace ColonyCouncil
             Section("CC_SetSec_Hooks");
             Toggle("deepHooks", "CC_Settings_DeepHooks", "CC_SetNote_DeepHooks");
             Toggle("letterNotes", "CC_Settings_LetterNotes", "CC_SetNote_LetterNotes", "deepHooks");
+            // The colonist bar's badges (ColonistBar/BarBadges.cs): what they show, and how.
+            Section("CC_SetSec_ColonistBar");
+            NoteUnder("CC_SetSec_ColonistBar_Note");
+            Toggle("barBadges", "CC_Settings_BarBadges", "CC_SetNote_BarBadges", "deepHooks");
+            Choice("barBreakMark", "CC_SetLabel_BarBreakMark", "CC_SetTip_BarBreakMark", "CC_BarBreak_", "CC_SetNote_BarBreak_", new[] { "Ring", "Dot", "Off" },
+                "barBadges");
+            Slider("barBreakMargin", "CC_Settings_BarBreakMargin", "CC_SetNote_BarBreakMargin", 0f, 0.15f, 0.01f, "%", "barBadges,barBreakMark!=Off");
+            Toggle("barBadgeLeaving", "CC_Settings_BarLeaving", "CC_SetNote_BarLeaving", "barBadges,enableWishes");
+            Toggle("barBadgeWish", "CC_Settings_BarWish", "CC_SetNote_BarWish", "barBadges,enableWishes");
+            Slider("barWishPatience", "CC_Settings_BarWishPatience", "CC_SetNote_BarWishPatience", 0.25f, 0.9f, 0.05f, "%", "barBadges,barBadgeWish,enableWishes");
+            Toggle("barBadgeStrain", "CC_Settings_BarStrain", "CC_SetNote_BarStrain", "barBadges,heart");
+            Toggle("barBadgeFaith", "CC_Settings_BarFaith", "CC_SetNote_BarFaith", "barBadges,faithLife");
+            Toggle("barBadgePromise", "CC_Settings_BarPromise", "CC_SetNote_BarPromise", "barBadges,wishesTakenBack");
+            Choice("barBadgeSize", "CC_SetLabel_BarBadgeSize", "CC_SetTip_BarBadgeSize", "CC_BarSize_", "CC_SetNote_BarSize_", new[] { "Small", "Normal", "Large" },
+                "barBadges");
+            Choice("barBadgeCorner", "CC_SetLabel_BarBadgeCorner", "CC_SetTip_BarBadgeCorner", "CC_BarCorner_", "CC_SetNote_BarCorner_",
+                new[] { "TopRight", "TopLeft", "BottomRight", "BottomLeft" }, "barBadges");
+            Slider("barBadgeMax", "CC_Settings_BarBadgeMax", "CC_SetNote_BarBadgeMax", 1f, 3f, 1f, "0", "barBadges");
 
             // Advanced: the colony's era, a check of what's working, and a full reset.
             Page(SettingsPage.Advanced);

@@ -161,6 +161,21 @@ namespace ColonyCouncil
         public bool needsTabHints = true;
         /// <summary>A line of Rimfolk's context in the game's raid, mood break and death letters.</summary>
         public bool letterNotes = true;
+        /// <summary>Small badges on the colonist bar's portraits (ColonistBar/BarBadges.cs, a deeper game hook), and what they show.</summary>
+        public bool barBadges = true;
+        public BarBreakMark barBreakMark = BarBreakMark.Ring;
+        /// <summary>How far above the minor break line (as a share of mood) the break ring starts, faintly; 0 = only under it.</summary>
+        public float barBreakMargin = 0.05f;
+        public bool barBadgeLeaving = true;
+        public bool barBadgeWish = true;
+        /// <summary>The share of a wish's patience gone before its badge shows.</summary>
+        public float barWishPatience = 0.5f;
+        public bool barBadgeStrain = true;
+        public bool barBadgeFaith = true;
+        public bool barBadgePromise = true;
+        public BarBadgeSize barBadgeSize = BarBadgeSize.Normal;
+        public BarBadgeCorner barBadgeCorner = BarBadgeCorner.TopRight;
+        public int barBadgeMax = 2;
         public float slowButtonsX = -1f;
         public float slowButtonsY = -1f;
         public bool allDreamMessages;
@@ -315,6 +330,18 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref deepHooks, "deepHooks", true);
             Scribe_Values.Look(ref needsTabHints, "needsTabHints", true);
             Scribe_Values.Look(ref letterNotes, "letterNotes", true);
+            Scribe_Values.Look(ref barBadges, "barBadges", true);
+            Scribe_Values.Look(ref barBreakMark, "barBreakMark", BarBreakMark.Ring);
+            Scribe_Values.Look(ref barBreakMargin, "barBreakMargin", 0.05f);
+            Scribe_Values.Look(ref barBadgeLeaving, "barBadgeLeaving", true);
+            Scribe_Values.Look(ref barBadgeWish, "barBadgeWish", true);
+            Scribe_Values.Look(ref barWishPatience, "barWishPatience", 0.5f);
+            Scribe_Values.Look(ref barBadgeStrain, "barBadgeStrain", true);
+            Scribe_Values.Look(ref barBadgeFaith, "barBadgeFaith", true);
+            Scribe_Values.Look(ref barBadgePromise, "barBadgePromise", true);
+            Scribe_Values.Look(ref barBadgeSize, "barBadgeSize", BarBadgeSize.Normal);
+            Scribe_Values.Look(ref barBadgeCorner, "barBadgeCorner", BarBadgeCorner.TopRight);
+            Scribe_Values.Look(ref barBadgeMax, "barBadgeMax", 2);
             Scribe_Values.Look(ref slowButtonsX, "slowButtonsX", -1f);
             Scribe_Values.Look(ref slowButtonsY, "slowButtonsY", -1f);
             Scribe_Values.Look(ref dreamOmens, "dreamOmens", true);
