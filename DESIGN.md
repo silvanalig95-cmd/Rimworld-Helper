@@ -1500,28 +1500,31 @@ on a map, in the world or in a caravan), so such a record is let go when the gam
 | Autonomy | who acted when: the last 2 days, not the dead; plans until built |
 | Rimfolk's events | raids until they come; the departed 2 years (unless asked about); grudges 2 years; memos 3 years (children's 10), used ones a day; quests already told of: those the game still keeps |
 | Everyday pressures | per colonist, the gone dropped daily; 12 meals; frames and plans while they stand |
-| Character | 5 ways; 30 recent shifts |
-| Decrees, dilemmas, offices, names, encounters, ambitions | one entry per def, office or title |
+| Character | 5 ways; 30 recent shifts; the colony's traits one per trait, today's tallies emptied each day |
+| Decrees, dilemmas, offices, names, encounters, ambitions | one entry per def, office or title; a curfew's night hours per colonist while it lasts, then only for those away (the dead, those no longer the colony's and those the game no longer knows let go); the colony's founders: those here in its first two days |
 | Heart | one per colonist, the gone dropped hourly |
-| Character marks | 12 marks per person (small ones go first, each let go after its keeping, turning points three times as long); what the marks watch: per person, the last 8 fights won (a year), their addictions and their last breakdown (5 days), known pawns only; skills mastered: known pawns, 800 at most |
+| Character marks | a person's record (sides moved, marks, views): the colony's own people the game still knows, empty records dropped at saving; 12 marks per person (small ones go first, each let go after its keeping, turning points three times as long); what the marks watch: per person, the last 8 fights won (a year), their addictions and their last breakdown (5 days), known pawns only; skills mastered: known pawns, 800 at most |
 | Traits that change | changes made: known pawns only, 8 per person, 200 in all; what each colonist is watched for: deeds counted 240 days (12 per kind), 10 snapshots of a few records, when they were last unsettled; the once-in-a-colony changes (2 keys) |
-| Ailments | by pawn: last ailments 120 days, known pawns only; by hediff: only hediffs colonists still have |
-| Health stories | healers, beds, convalescence: known pawns only; losses 30 days; tends 3 days; setbacks and trust lines 20 days; visits 30 days; cases while the patient lives |
-| Calendar | at most 12 days written by the colony and 8 named by the player (traditions and the founding day stay); days about people who are gone let go; days taken off by hand grow only with the player's clicks |
+| Ailments | by pawn: last ailments 120 days, known pawns only; by hediff: only hediffs colonists still have; illnesses and injuries an ailment may follow: until over or healed, known pawns only |
+| Health stories | healers, beds, convalescence, hard times not over yet: known pawns only; losses 30 days; tends 3 days; setbacks and trust lines 20 days; visits 30 days; cases while the patient lives |
+| Calendar | at most 12 days written by the colony and 8 named by the player (traditions and the founding day stay); days about people who are gone let go; days taken off by hand grow only with the player's clicks; who is away and each colonist's hunt: the colony's own only; crops grown: one per crop |
 | Personal stories | stories under way; 200 past; eulogies until given |
-| Camps | one camp; its lists pruned of the gone at saving |
-| World situations | 2 running; 40 past |
+| Camps | one camp; its lists (and the asks made of it) go with it, pruned of the gone at saving |
+| World situations | 2 running; 40 past, each with what followed from it (once per def) |
 | Story chains, missions | chains 120 days after they end; missions 2 days |
-| Faction memory | 12 deeds per people (the settled and the faintest make way); a deed is dropped once it fades below 1, and with its people when they're gone |
+| Answers playing out | waiting ones 10 at most, done ones dropped (their people, places, hunt and search routes with them); how the last 30 went, for the dilemmas page |
+| Defense lines | per home map, gone with it; only the lines the player makes: one mark per step done or set aside, 24 plans, the last 5 raids (4 downed and 3 lessons each); the raid under way only while it lasts |
+| Scenario parts | fixed by the scenario (its days, its seats) |
+| Faction memory | 12 deeds per people (the settled and the faintest make way); a deed is dropped once it fades below 1, and with its people when they're gone; who tended or freed whom: 60 notes, 30 days, dropped when the stranger dies |
 | Views and shared memories | views with the person's record (`PawnPersona.stances`), a view about a newcomer let go once they've been here 60 days or are gone; shared memories 8 per pair and 900 in all, the faded ones and those of people the game no longer knows dropped at saving; the talk's news 40 notes, a month at most; who talked to whom lately and talks under way not saved |
 | Reputation | 10 deeds per colonist and 220 in all (the faintest make way), 30 knowers a deed; a deed faded to nearly nothing is dropped, and daily those of the dead and departed and anything the dead knew; one packed number per colonist for the names told |
 | Other mods' people | best-friend pairs of known pawns, 200 at most |
 | Advisor (per map) | 60 days of wealth samples |
 
-How big it gets: `Tools/save_estimate.py` models every saved collection (226) with its rule and plays five in-game
+How big it gets: `Tools/save_estimate.py` models every saved collection (290) with its rule and plays five in-game
 years in a colony of 20 (`docs/save-size.md`). Nothing grows without end; Rimfolk's part of a five-year save comes to
-about 1.3 MB, nearly half of it the journals. `--strict` fails on a saved collection with no model, so a new one needs
-its rule written down.
+about 2.2 MB: a fifth of it the journals, and about as much again people's records and their shared memories.
+`--strict` fails on a saved collection with no model, so a new one needs its rule written down.
 
 Pawn references: a saved reference to a pawn the game has discarded is written as nothing, so every such record was
 already dropped on the next load. The trackers above now drop or forget them while playing too, so a long session
