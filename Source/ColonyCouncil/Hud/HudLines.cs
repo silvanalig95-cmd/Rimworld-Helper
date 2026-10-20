@@ -139,7 +139,7 @@ namespace ColonyCouncil
                 float my = compact ? y + (shown.Count + 1) / 2 * rh : y + shown.Count * rh;
                 var mr = new Rect(r.x + pad, my, r.width - pad * 2f, Mathf.Round(16f * s));
                 HudKit.Label(mr, moreText, UiKit.Faint, GameFont.Tiny);
-                TooltipHandler.TipRegion(mr, "CC_Pnl_MoreLinesTip".Translate());
+                TooltipHandler.TipRegion(mr, HudKit.T("CC_Pnl_MoreLinesTip"));
             }
         }
 

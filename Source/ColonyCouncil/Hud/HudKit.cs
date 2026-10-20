@@ -57,6 +57,25 @@ namespace ColonyCouncil
 
         // ---------------- Text ----------------
 
+        private static readonly System.Collections.Generic.Dictionary<string, string> texts = new System.Collections.Generic.Dictionary<string, string>();
+        private static LoadedLanguage textsLanguage;
+
+        /// <summary>A fixed line, translated once per language: what the panels draw every frame (labels, tooltips).</summary>
+        public static string T(string key)
+        {
+            if (textsLanguage != LanguageDatabase.activeLanguage)
+            {
+                texts.Clear();
+                textsLanguage = LanguageDatabase.activeLanguage;
+            }
+            if (!texts.TryGetValue(key, out var s))
+            {
+                s = key.Translate().Resolve();
+                texts[key] = s;
+            }
+            return s;
+        }
+
         /// <summary>The main text's font (names, values) at this scale.</summary>
         public static GameFont Main(float scale)
         {

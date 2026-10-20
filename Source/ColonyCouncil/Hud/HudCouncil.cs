@@ -27,7 +27,7 @@ namespace ColonyCouncil
 
         protected override float FullWidth => 244f;
 
-        protected override string Empty => "CC_Pnl_CouncilCalm".Translate();
+        protected override string Empty => HudKit.T("CC_Pnl_CouncilCalm");
 
         private static Action Page(string page) => () => MainTabWindow_Council.OpenTab(page);
 
@@ -134,7 +134,7 @@ namespace ColonyCouncil
             string tip = string.Join("\n", waiting.Take(6).Select(w => w.letter.Label.ToString()));
             var open = first.letter;
             Add(PartQuestions, Icons.Dilemmas ?? Icons.Decree, "CC_Pnl_Questions".Translate(waiting.Count).Resolve(), value, HudRank.Question(hours),
-                Tip(tip, "CC_Pnl_ClickLetter".Translate()), () => open.OpenLetter());
+                Tip(tip, HudKit.T("CC_Pnl_ClickLetter")), () => open.OpenLetter());
         }
 
         private void Decrees(CouncilGameComponent comp, int now)
@@ -214,7 +214,7 @@ namespace ColonyCouncil
 
         protected override void MenuOptions(List<FloatMenuOption> options)
         {
-            options.Add(new FloatMenuOption("CC_Pnl_OpenWeek".Translate(), () => MainTabWindow_Council.OpenTab("Week")));
+            options.Add(new FloatMenuOption(HudKit.T("CC_Pnl_OpenWeek"), () => MainTabWindow_Council.OpenTab("Week")));
         }
     }
 }

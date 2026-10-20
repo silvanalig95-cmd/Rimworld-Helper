@@ -218,6 +218,11 @@ play deep. In order:
   sortable table of every colonist with what helps for their setbacks; Council → Dilemmas, with how each answer went;
   "Mark all read" for the colony news; pages that remember their filters and sort orders; optional page shortcuts;
   and a setting for the page the window opens on. Layout and page links are checked by tests.
+- Done (October 2026): on-screen panels. A mood board (portraits, mood bars with each colonist's break lines, where
+  it's heading, what drags them down; compact raid-frame grid), a mood trend graph (3 or 7 days, saved), the colony's
+  vitals and the council at a glance, each a movable window that snaps to the edges and to the others, with its own
+  options; and a hover card on the map for whoever is under the mouse. One tested ranking puts what matters most
+  first everywhere. Next: a second batch (health and needs at a glance, threats on the map, work and idle colonists).
 - Done (October 2026): a small visual pass with the game's own effects: the comet tints the sky, fireflies glow, camps
   smoke, a warlord's raid comes with banners of dust; and more of Rimfolk's events seen: a camp arriving (dust on the
   road, a word from whoever sees it), the first snow's flakes, a dream told at breakfast, the council's bell at a

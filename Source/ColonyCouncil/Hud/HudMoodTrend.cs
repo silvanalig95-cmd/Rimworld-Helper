@@ -22,7 +22,7 @@ namespace ColonyCouncil
         private readonly List<float> avg = new List<float>();
         private readonly List<float> low = new List<float>();
         private int readVersion = -1, readDays = -1, nowHour;
-        private string summary;
+        private string summary, rangeLabel, agoLabel, barLabel, barTip;
 
         private static readonly Color AvgColor = new Color(1f, 0.86f, 0.55f);
         private static readonly Color LowColor = new Color(0.93f, 0.55f, 0.35f);
@@ -40,6 +40,11 @@ namespace ColonyCouncil
             if (comp.Version == readVersion && days == readDays) return;
             readVersion = comp.Version;
             readDays = days;
+            int other = days == 7 ? 3 : 7;
+            rangeLabel = "CC_Pnl_TrendDays".Translate(days).Resolve();
+            agoLabel = "CC_Pnl_DaysAgo".Translate(days).Resolve();
+            barLabel = "CC_Pnl_DaysShort".Translate(days).Resolve();
+            barTip = "CC_Pnl_DaysTip".Translate(other).Resolve();
             hours.Clear();
             avg.Clear();
             low.Clear();
@@ -71,7 +76,7 @@ namespace ColonyCouncil
             int days = st.days == 7 ? 7 : 3;
             // Top line: the range and the latest values, or the values under the mouse.
             var head = new Rect(r.x + pad, r.y + pad - 1f, r.width - pad * 2f, top);
-            string label = ("CC_Pnl_TrendDays").Translate(days).Resolve();
+            string label = rangeLabel ?? "";
             int at = -1;
             if (hours.Count >= 2 && Mouse.IsOver(graph))
             {
@@ -80,7 +85,7 @@ namespace ColonyCouncil
             }
             if (at >= 0)
             {
-                string when = nowHour - hours[at] <= 0 ? "CC_Pnl_Now".Translate().ToString() : "CC_Pnl_Ago".Translate(UiKit.Duration((nowHour - hours[at]) * GenDate.TicksPerHour)).Resolve();
+                string when = nowHour - hours[at] <= 0 ? HudKit.T("CC_Pnl_Now").ToString() : "CC_Pnl_Ago".Translate(UiKit.Duration((nowHour - hours[at]) * GenDate.TicksPerHour)).Resolve();
                 HudKit.Label(head, "CC_Pnl_TrendAt".Translate(when, avg[at].ToStringPercent(), low[at].ToStringPercent()).Resolve(), Color.white, GameFont.Tiny);
             }
             else
@@ -91,7 +96,7 @@ namespace ColonyCouncil
             Widgets.DrawBoxSolid(graph, new Color(0f, 0f, 0f, 0.22f));
             if (hours.Count < 2)
             {
-                HudKit.Label(graph, "CC_Pnl_TrendEmpty".Translate(), UiKit.Faint, GameFont.Tiny, TextAnchor.MiddleCenter);
+                HudKit.Label(graph, HudKit.T("CC_Pnl_TrendEmpty"), UiKit.Faint, GameFont.Tiny, TextAnchor.MiddleCenter);
                 return;
             }
             float X(int hour) => graph.x + Mathf.Clamp01((hour - (nowHour - days * 24)) / (float)(days * 24)) * graph.width;
@@ -124,12 +129,12 @@ namespace ColonyCouncil
             if (bottom > 0f)
             {
                 var foot = new Rect(graph.x, graph.yMax, graph.width, bottom);
-                HudKit.Label(foot, "CC_Pnl_DaysAgo".Translate(days).Resolve(), UiKit.Dim, GameFont.Tiny);
-                HudKit.Label(foot, "CC_Pnl_Now".Translate(), UiKit.Dim, GameFont.Tiny, TextAnchor.MiddleRight);
+                HudKit.Label(foot, agoLabel ?? "", UiKit.Dim, GameFont.Tiny);
+                HudKit.Label(foot, HudKit.T("CC_Pnl_Now"), UiKit.Dim, GameFont.Tiny, TextAnchor.MiddleRight);
                 // A small key in the middle.
-                HudKit.Label(foot, "CC_Pnl_TrendKey".Translate(), UiKit.Dim, GameFont.Tiny, TextAnchor.MiddleCenter);
+                HudKit.Label(foot, HudKit.T("CC_Pnl_TrendKey"), UiKit.Dim, GameFont.Tiny, TextAnchor.MiddleCenter);
             }
-            TooltipHandler.TipRegion(graph, "CC_Pnl_TrendTip".Translate());
+            TooltipHandler.TipRegion(graph, HudKit.T("CC_Pnl_TrendTip"));
             if (Widgets.ButtonInvisible(graph, false))
             {
                 if (Event.current.button == 1) OpenMenu();
@@ -152,7 +157,7 @@ namespace ColonyCouncil
         {
             var st = St;
             int other = st.days == 7 ? 3 : 7;
-            return BarText(bar, right, "CC_Pnl_DaysShort".Translate(st.days == 7 ? 7 : 3).Resolve(), "CC_Pnl_DaysTip".Translate(other).Resolve(),
+            return BarText(bar, right, barLabel ?? "", barTip,
                 () => st.days = other);
         }
 

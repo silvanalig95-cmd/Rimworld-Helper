@@ -163,18 +163,18 @@ namespace ColonyCouncil
                 options.Add(new FloatMenuOption(HudLayout.Label(id), () => SetPanel(pid, !on), on ? Widgets.CheckboxOnTex : Widgets.CheckboxOffTex, Color.white));
             }
             bool card = S.hoverCard;
-            options.Add(new FloatMenuOption("CC_Pnl_Name_hover".Translate(), () =>
+            options.Add(new FloatMenuOption(HudKit.T("CC_Pnl_Name_hover"), () =>
             {
                 S.hoverCard = !card;
                 HudLayout.Save();
             }, card ? Widgets.CheckboxOnTex : Widgets.CheckboxOffTex, Color.white));
-            options.Add(new FloatMenuOption("CC_Pnl_EditLayout".Translate(), () =>
+            options.Add(new FloatMenuOption(HudKit.T("CC_Pnl_EditLayout"), () =>
             {
                 S.hudShown = true;
                 editing = true;
             }));
-            options.Add(new FloatMenuOption("CC_Pnl_ResetPositions".Translate(), HudLayout.ResetPositions));
-            options.Add(new FloatMenuOption("CC_Pnl_AllOptions".Translate(), OpenSettings));
+            options.Add(new FloatMenuOption(HudKit.T("CC_Pnl_ResetPositions"), HudLayout.ResetPositions));
+            options.Add(new FloatMenuOption(HudKit.T("CC_Pnl_AllOptions"), OpenSettings));
             return options;
         }
 
@@ -196,7 +196,7 @@ namespace ColonyCouncil
         public static string ButtonTip()
         {
             string key = HudComponent.KeyLabel();
-            string tip = "CC_Pnl_ButtonTip".Translate().Resolve();
+            string tip = HudKit.T("CC_Pnl_ButtonTip");
             if (!key.NullOrEmpty()) tip += "\n" + "CC_Pnl_ButtonKey".Translate(key).Resolve();
             return tip;
         }
@@ -236,7 +236,7 @@ namespace ColonyCouncil
         {
             try
             {
-                HudKit.Label(new Rect(inRect.x, inRect.y, inRect.width, 22f), "CC_Pnl_EditHint".Translate(), UiKit.HeaderColor, GameFont.Small);
+                HudKit.Label(new Rect(inRect.x, inRect.y, inRect.width, 22f), HudKit.T("CC_Pnl_EditHint"), UiKit.HeaderColor, GameFont.Small);
                 float x = inRect.x, y = inRect.y + 26f;
                 foreach (var id in HudLayout.Ids)
                 {
@@ -250,8 +250,8 @@ namespace ColonyCouncil
                     x += w + 12f;
                 }
                 float by = inRect.yMax - 26f;
-                if (Widgets.ButtonText(new Rect(inRect.x, by, 170f, 26f), "CC_Pnl_ResetPositions".Translate())) HudLayout.ResetPositions();
-                if (Widgets.ButtonText(new Rect(inRect.xMax - 120f, by, 120f, 26f), "CC_Pnl_Done".Translate()))
+                if (Widgets.ButtonText(new Rect(inRect.x, by, 170f, 26f), HudKit.T("CC_Pnl_ResetPositions"))) HudLayout.ResetPositions();
+                if (Widgets.ButtonText(new Rect(inRect.xMax - 120f, by, 120f, 26f), HudKit.T("CC_Pnl_Done")))
                 {
                     HudManager.editing = false;
                     HudLayout.Save();

@@ -33,7 +33,7 @@ namespace ColonyCouncil
 
         public override string[] PartNames => Parts;
 
-        protected override string Empty => "CC_Pnl_NoMap".Translate();
+        protected override string Empty => HudKit.T("CC_Pnl_NoMap");
 
         /// <summary>The map the vitals are for: the one on screen if it's a home, else the busiest home.</summary>
         public static Map MapFor()
@@ -63,8 +63,8 @@ namespace ColonyCouncil
             float warn = Mathf.Max(S.hudFoodWarnDays, S.hudFoodBadDays), bad = S.hudFoodBadDays;
             bool none = days >= 900f;
             string value = none ? "-" : "CC_Pnl_DaysValue".Translate(days < 10f ? days.ToString("0.#") : days.ToString("0")).Resolve();
-            string tip = Tip("CC_Pnl_FoodTip".Translate(days.ToString("0.#"), warn.ToString("0"), bad.ToString("0")).Resolve(), "CC_Pnl_ClickAdvisor".Translate());
-            Add(PartFood, Icons.CatFood, "CC_Pnl_Food".Translate(), value, none ? 10f : HudRank.Food(days, warn, bad), tip, () => MainTabWindow_Council.OpenTab("Priorities"));
+            string tip = Tip("CC_Pnl_FoodTip".Translate(days.ToString("0.#"), warn.ToString("0"), bad.ToString("0")).Resolve(), HudKit.T("CC_Pnl_ClickAdvisor"));
+            Add(PartFood, Icons.CatFood, HudKit.T("CC_Pnl_Food"), value, none ? 10f : HudRank.Food(days, warn, bad), tip, () => MainTabWindow_Council.OpenTab("Priorities"));
         }
 
         private void Medicine(Map map, MapFacts facts, int colonists)
@@ -77,9 +77,9 @@ namespace ColonyCouncil
                     tending = true;
                     break;
                 }
-            string tip = Tip("CC_Pnl_MedicineTip".Translate(meds, colonists * MedicinePerColonist).Resolve() + (tending ? "\n" + "CC_Pnl_MedicineTending".Translate() : ""),
-                "CC_Pnl_ClickAdvisor".Translate());
-            Add(PartMedicine, Icons.CatHealth, "CC_Pnl_Medicine".Translate(), meds.ToString(), HudRank.Medicine(meds, colonists, tending, MedicinePerColonist), tip,
+            string tip = Tip("CC_Pnl_MedicineTip".Translate(meds, colonists * MedicinePerColonist).Resolve() + (tending ? "\n" + HudKit.T("CC_Pnl_MedicineTending") : ""),
+                HudKit.T("CC_Pnl_ClickAdvisor"));
+            Add(PartMedicine, Icons.CatHealth, HudKit.T("CC_Pnl_Medicine"), meds.ToString(), HudRank.Medicine(meds, colonists, tending, MedicinePerColonist), tip,
                 () => MainTabWindow_Council.OpenTab("Priorities"));
         }
 
@@ -100,7 +100,7 @@ namespace ColonyCouncil
             float watts = gain / CompPower.WattsToWattDaysPerTick;
             string value = (watts >= 0f ? "+" : "−") + Mathf.Abs(watts).ToString("0") + " W";
             string tip = Tip("CC_Pnl_PowerTip".Translate(watts.ToString("0"), stored.ToString("0")).Resolve(), null);
-            Add(PartPower, HudIcons.Power ?? Icons.Warning, "CC_Pnl_Power".Translate(), value, HudRank.Power(watts, stored), tip, null);
+            Add(PartPower, HudIcons.Power ?? Icons.Warning, HudKit.T("CC_Pnl_Power"), value, HudRank.Power(watts, stored), tip, null);
         }
 
         private void Temperature(Map map)
@@ -112,7 +112,7 @@ namespace ColonyCouncil
                 seasonHour = hour;
                 NextSeason(map);
             }
-            string text = "CC_Pnl_Outside".Translate();
+            string text = HudKit.T("CC_Pnl_Outside");
             string seasonLine = null;
             if (seasonDays > 0 && nextSeason != Season.Undefined)
             {
@@ -121,7 +121,7 @@ namespace ColonyCouncil
             }
             string tip = "CC_Pnl_TempTip".Translate(t.ToStringTemperature("F0")).Resolve();
             if (seasonLine != null) tip += "\n" + "CC_Pnl_SeasonTip".Translate(SeasonUtility.Label(nextSeason), seasonDays, seasonTemp.ToStringTemperature("F0")).Resolve();
-            Add(PartTemperature, HudIcons.Temperature ?? Icons.World, text, t.ToStringTemperature("F0"), HudRank.Temperature(t), Tip(tip, "CC_Pnl_ClickOverlay".Translate()),
+            Add(PartTemperature, HudIcons.Temperature ?? Icons.World, text, t.ToStringTemperature("F0"), HudRank.Temperature(t), Tip(tip, HudKit.T("CC_Pnl_ClickOverlay")),
                 () =>
                 {
                     var ps = Find.PlaySettings;
@@ -165,7 +165,7 @@ namespace ColonyCouncil
             if (last <= 0 || last > now)
             {
                 value = "-";
-                tip = "CC_Pnl_RaidNone".Translate();
+                tip = HudKit.T("CC_Pnl_RaidNone");
             }
             else
             {
@@ -173,7 +173,7 @@ namespace ColonyCouncil
                 value = "CC_Pnl_DaysValue".Translate(days < 10f ? days.ToString("0.#") : days.ToString("0")).Resolve();
                 tip = "CC_Pnl_RaidTip".Translate(days.ToString("0.#")).Resolve();
             }
-            Add(PartRaid, Icons.Raid, "CC_Pnl_Raid".Translate(), value, 10f, Tip(tip, "CC_Pnl_ClickDefenses".Translate()), () => MainTabWindow_Council.OpenTab("Defenses"));
+            Add(PartRaid, Icons.Raid, HudKit.T("CC_Pnl_Raid"), value, 10f, Tip(tip, HudKit.T("CC_Pnl_ClickDefenses")), () => MainTabWindow_Council.OpenTab("Defenses"));
         }
 
         private void Research()
@@ -198,15 +198,15 @@ namespace ColonyCouncil
             };
             if (proj != null)
                 Add(PartResearch, HudIcons.Research ?? Icons.Almanac, proj.LabelCap, proj.ProgressPercent.ToStringPercent(), HudRank.Research(true, available),
-                    Tip("CC_Pnl_ResearchTip".Translate(proj.LabelCap, proj.ProgressPercent.ToStringPercent()).Resolve(), "CC_Pnl_ClickResearch".Translate()), open);
+                    Tip("CC_Pnl_ResearchTip".Translate(proj.LabelCap, proj.ProgressPercent.ToStringPercent()).Resolve(), HudKit.T("CC_Pnl_ClickResearch")), open);
             else if (available)
-                Add(PartResearch, HudIcons.Research ?? Icons.Almanac, "CC_Pnl_NoResearch".Translate(), null, HudRank.Research(false, true),
-                    Tip("CC_Pnl_NoResearchTip".Translate(), "CC_Pnl_ClickResearch".Translate()), open);
+                Add(PartResearch, HudIcons.Research ?? Icons.Almanac, HudKit.T("CC_Pnl_NoResearch"), null, HudRank.Research(false, true),
+                    Tip(HudKit.T("CC_Pnl_NoResearchTip"), HudKit.T("CC_Pnl_ClickResearch")), open);
         }
 
         protected override void MenuOptions(System.Collections.Generic.List<FloatMenuOption> options)
         {
-            options.Add(new FloatMenuOption("CC_Pnl_OpenAdvisor".Translate(), () => MainTabWindow_Council.OpenTab("Priorities")));
+            options.Add(new FloatMenuOption(HudKit.T("CC_Pnl_OpenAdvisor"), () => MainTabWindow_Council.OpenTab("Priorities")));
         }
     }
 }

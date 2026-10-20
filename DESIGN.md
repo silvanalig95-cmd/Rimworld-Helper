@@ -1504,6 +1504,64 @@ MoodCompact the Mood tab), and a line in the game's Needs tab:
   `Rect` named `listingRect`, a `Pawn` named `pawn`); if they differ, nothing is patched and the bootstrap lists it
   as skipped. It never skips the game's method and draws nothing for pawns without a Mood tab.
 
+### On-screen panels and the hover card
+
+The player asked for "more things visible directly on the screen without always having to go to a menu", the mood of
+the pawns first, in places other than the alerts column, movable and switchable. The rule for all of it, from the
+player: the most impactful and relevant data comes first. Everything lives in `Source/ColonyCouncil/Hud/`.
+
+- **One ranking** (`HudRank`, pure, tested): urgency times impact in three tiers that never overlap. Life and limb
+  (300 to 399, in the player's order: bleeding by hours to death, a life-threatening stage not yet immune, starving,
+  a mental break, under or within 2% of the minor break line), soon (200 to 299: falling towards a break, within the
+  at-risk margin of it, downed, hungry, exhausted, strain worn or breaking, a wish at its last call or under a quarter
+  of its time, food or medicine low, a question unanswered within a day), worth knowing (100 to 199: the moods
+  dragging someone down, `3 x size`, times 0.4 when the mood passes on its own; a wish waiting; faith wavering;
+  strain). The mood board sorts by `MoodRisk`, the hover card shows the top lines of `HudConcerns`, the vitals and
+  the council's lines take their colour from the tier (orange soon, red life). `HudMath.Keep` cuts rows for space:
+  everything at life and limb stays, then the highest of the rest, in their order, and the panel says "and N more".
+- **Panels are windows** (`HudPanel : Window`): layer `GameUI`, no close button, no game background or shadow,
+  `focusWhenOpened`, `closeOnAccept`/`closeOnCancel`/`closeOnClickedOutside`, `absorbInputAroundWindow`,
+  `preventCameraMotion` and `forcePause` all off, not drawn in screenshot mode. Being windows, clicks on them don't
+  reach the map. They are not `draggable`: the game's drag-anywhere can't snap, clamp or honour the lock, so a panel
+  starts a drag itself (on its bar or an empty spot, on mouse down) and follows the mouse in `WindowUpdate` until
+  `Input.GetMouseButton(0)` lets go, snapping each frame (`HudMath.Snap`: screen edges and the other panels' edges
+  within 8 px) and saving on release. The bar (drag, compact, background, options, hide) is added above the body only
+  while the mouse is on the panel (below it at the top of the screen), so the body never moves and no invisible
+  strip blocks the map.
+- **Places** are saved as the nearest corner's point as fractions of the screen (`HudMath.ToFraction`), so a panel
+  against the bottom or right edge stays there at any resolution and grows away from it; `FromFraction` keeps it on
+  the screen. Each panel's state (`HudPanelState`: on, place, compact, scale 0.75 to 1.5, opacity, rows, whom, order,
+  range, the parts switched off) is a list in the mod settings (`CouncilSettings.hudPanels`, listed as not a setting
+  in `SettingsCatalog.NotDrawn`, with the settings page's buttons opening the same options window as the panel's gear).
+  The global options are ordinary settings rows under "On-screen panels" and "Hover card". Scale is applied by sizes
+  and font choice (Tiny or Small by scale and the text-size setting), never by a GUI matrix.
+- **Lifecycle** (`HudComponent : GameComponent`): `FinalizeInit` (new game or load) forgets the last game's windows,
+  which went with the old interface; `GameComponentUpdate` asks `HudManager.Update` once a frame to open or close each
+  panel (shown, on, not failed, not hidden by the world map or a main tab covering 15% of the screen or more) and
+  takes the trend's sample when the in-game hour changes; `GameComponentOnGUI` hears the two keys and draws the hover
+  card. Nothing runs per tick. Going to the main menu takes the windows with the game's interface.
+- **Data**: each panel gathers at most twice a second while the game runs (every three seconds while paused, or at
+  once after an option changes), and measures itself without the GUI (fixed widths, so `Measure` can run from
+  `WindowUpdate`); drawing reads only what was gathered. The mood board and the hover card share `HudMood`'s cache: the
+  levels, break, strain, wish and faith every 0.45 s per colonist, the mood lines (`MoodInsight.MoodOf`) every 2 s,
+  staggered by ID. `HudMood.TopDrag` is the one place that picks "what drags them down most": by `HudRank.Drag` over
+  the lines, with the hint's short action where the Mood tab would show one (`MoodSortMath.ShowsAct`). Any panel that
+  throws is hidden for the session with one `ErrorOnce` (`HudManager.Fail`).
+- **The trend** samples the colony's free colonists (as This week counts them) once an in-game hour: one packed int
+  per hour (`HudMath.Pack`: hour x 10000, average and lowest in whole percent), the last 168 kept in the save
+  (`moodSamples`, about 3 KB; `Tools/save_estimate.py` models it). The daily `history` only had the average.
+- **The hover card** (`HudHoverCard`): on repaint only, finds the pawn from `UI.MouseCell()` and the cell's thing list
+  (looked at again when the cell changes or every 0.1 s), never while a mouse button is held, a designator or targeter
+  is active, the drag box is open, a float menu or input-absorbing window is up, a window is under the mouse, or the
+  world is selected. After the delay (and with the modifier held, if one is set) it's drawn with
+  `WindowStack.ImmediateWindow` in the `Super` layer, beside the mouse and never under it, so it never takes a click;
+  in the corner it sits above the inspect pane. The card's content is kept half a second per pawn.
+- **The switch** (`Patch_HudButton`, a postfix on `PlaySettings.DoPlaySettingsGlobalControls(WidgetRow row, bool
+  worldView)`, through the per-patch bootstrap): on the map only, an icon (`WidgetRow.Icon`) with the on/off check like
+  the game's toggles; a left click shows or hides, a right click opens the menu. It draws nothing with the deeper game
+  hooks off, and if it fails or can't be applied, the key (`Council_Key_Panels`, unbound like the council's page
+  keys) and the settings still work.
+
 ### Checking a new game version
 
 One DLL serves every supported version: it is built against the 1.6 references into `1.6/Assemblies`, and on 1.7

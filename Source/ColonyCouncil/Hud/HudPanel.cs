@@ -28,7 +28,7 @@ namespace ColonyCouncil
         private bool showHeader, headerAbove, hovered;
         private float hoverGrace;
         private bool dragging;
-        private Vector2 dragOffset;
+        private Vector2 dragOffset, dragFrom;
         private float nextRefresh = -1f;
         private int refreshedTick = -1;
         private bool dirty = true;
@@ -151,7 +151,8 @@ namespace ColonyCouncil
                 if (!Input.GetMouseButton(0))
                 {
                     dragging = false;
-                    SavePlace();
+                    // A click that didn't move it leaves its place (and the settings file) alone.
+                    if ((body.position - dragFrom).sqrMagnitude >= 1f) SavePlace();
                 }
                 else
                 {
@@ -192,6 +193,7 @@ namespace ColonyCouncil
         {
             if (!CanMove) return;
             dragging = true;
+            dragFrom = body.position;
             dragOffset = UI.MousePositionOnUIInverted - body.position;
         }
 
@@ -256,7 +258,7 @@ namespace ColonyCouncil
             float right = bar.xMax - 2f;
             // Hide
             var hide = new Rect(right - bs, bar.y + 2f, bs, bs);
-            if (Widgets.ButtonImage(hide, TexButton.CloseXSmall, UiKit.Faint, Color.white, false, "CC_Pnl_HideTip".Translate()))
+            if (Widgets.ButtonImage(hide, TexButton.CloseXSmall, UiKit.Faint, Color.white, false, HudKit.T("CC_Pnl_HideTip")))
             {
                 St.on = false;
                 HudLayout.Save();
@@ -265,7 +267,7 @@ namespace ColonyCouncil
             right = hide.x - 3f;
             // Options
             var gear = new Rect(right - bs, bar.y + 2f, bs, bs);
-            if (Widgets.ButtonImage(gear, TexButton.OpenInspectSettings, UiKit.Faint, Color.white, false, "CC_Pnl_OptionsTip".Translate()))
+            if (Widgets.ButtonImage(gear, TexButton.OpenInspectSettings, UiKit.Faint, Color.white, false, HudKit.T("CC_Pnl_OptionsTip")))
                 Dialog_HudPanel.Open(id);
             right = gear.x - 3f;
             // Background: steps down, then back to full.
@@ -274,7 +276,7 @@ namespace ColonyCouncil
             var opR = new Rect(right - ow, bar.y, ow, bar.height);
             Widgets.DrawHighlightIfMouseover(opR);
             HudKit.Label(opR, op, UiKit.Faint, GameFont.Tiny, TextAnchor.MiddleCenter);
-            TooltipHandler.TipRegion(opR, "CC_Pnl_OpacityTip".Translate());
+            TooltipHandler.TipRegion(opR, HudKit.T("CC_Pnl_OpacityTip"));
             if (Widgets.ButtonInvisible(opR, false))
             {
                 var st = St;
@@ -286,7 +288,7 @@ namespace ColonyCouncil
             // Compact or full
             var cf = new Rect(right - bs, bar.y + 2f, bs, bs);
             if (Widgets.ButtonImage(cf, St.compact ? TexButton.Reveal : TexButton.Collapse, UiKit.Faint, Color.white, false,
-                    (St.compact ? "CC_Pnl_FullTip" : "CC_Pnl_CompactTip").Translate()))
+                    HudKit.T(St.compact ? "CC_Pnl_FullTip" : "CC_Pnl_CompactTip")))
             {
                 St.compact = !St.compact;
                 MarkDirty();
@@ -305,7 +307,7 @@ namespace ColonyCouncil
             }
             HudKit.Label(new Rect(bar.x + bs + 5f, bar.y, Mathf.Max(0f, right - bar.x - bs - 7f), bar.height), HudLayout.Label(id), UiKit.HeaderColor,
                 GameFont.Tiny);
-            TooltipHandler.TipRegion(grip, CanMove ? "CC_Pnl_GripTip".Translate() : "CC_Pnl_LockedTip".Translate());
+            TooltipHandler.TipRegion(grip, CanMove ? HudKit.T("CC_Pnl_GripTip") : HudKit.T("CC_Pnl_LockedTip"));
             var ev = Event.current;
             if (ev.type == EventType.MouseDown && Mouse.IsOver(grip))
             {
@@ -341,20 +343,20 @@ namespace ColonyCouncil
             {
                 var options = new List<FloatMenuOption>();
                 MenuOptions(options);
-                options.Add(new FloatMenuOption((St.compact ? "CC_Pnl_Full" : "CC_Pnl_Compact").Translate(), () =>
+                options.Add(new FloatMenuOption(HudKit.T(St.compact ? "CC_Pnl_Full" : "CC_Pnl_Compact"), () =>
                 {
                     St.compact = !St.compact;
                     MarkDirty();
                     HudLayout.Save();
                 }));
-                options.Add(new FloatMenuOption("CC_Pnl_Options".Translate(), () => Dialog_HudPanel.Open(id)));
-                options.Add(new FloatMenuOption("CC_Pnl_EditLayout".Translate(), () => HudManager.editing = true));
-                options.Add(new FloatMenuOption((S.hudLock ? "CC_Pnl_Unlock" : "CC_Pnl_Lock").Translate(), () =>
+                options.Add(new FloatMenuOption(HudKit.T("CC_Pnl_Options"), () => Dialog_HudPanel.Open(id)));
+                options.Add(new FloatMenuOption(HudKit.T("CC_Pnl_EditLayout"), () => HudManager.editing = true));
+                options.Add(new FloatMenuOption(HudKit.T(S.hudLock ? "CC_Pnl_Unlock" : "CC_Pnl_Lock"), () =>
                 {
                     S.hudLock = !S.hudLock;
                     HudLayout.Save();
                 }));
-                options.Add(new FloatMenuOption("CC_Pnl_Hide".Translate(), () =>
+                options.Add(new FloatMenuOption(HudKit.T("CC_Pnl_Hide"), () =>
                 {
                     St.on = false;
                     HudLayout.Save();

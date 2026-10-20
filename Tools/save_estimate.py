@@ -120,6 +120,11 @@ MODEL = {
     "CouncilSettings.cs:savedRooms": ("settings", 10, 2000, "the mod's settings file, not the save: rooms the player saved"),
     "CouncilSettings.cs:planMaterials": ("settings", 30, 40, "the mod's settings file, not the save"),
     "CouncilSettings.cs:councilPageState": ("settings", 30, 40, "the mod's settings file, not the save"),
+    # The on-screen panels (Hud/): their layout in the settings file, the mood trend in the save
+    "CouncilSettings.cs:hudPanels": ("settings", 4, 400, "the mod's settings file, not the save: one per panel"),
+    "Hud/HudPanelState.cs:hidden": ("settings", 3, 30, "per panel: the rows or columns switched off (settings file)"),
+    "Hud/HudComponent.cs:samples": ("cap", (const("Hud/HudComponent.cs", "MaxSamples", 168), 24), 20,
+                                    "the mood trend: one packed number an hour, the last week (HudComponent.MaxSamples)"),
     "Journal.cs:entries": ("fixed", C["JournalLines"], 160, "per journal: 60 lines (counted under journals)"),
     "Journal.cs:journals": ("cap", (COLONISTS + C["DepartedJournals"], 0.5), 160 * C["JournalLines"], "the living's, and the 30 departed written in most lately"),
     "Journal.cs:griefSeen": ("cap", (500, 0.5), 50, "cleared at 500"),

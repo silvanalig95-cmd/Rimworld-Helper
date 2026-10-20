@@ -26,6 +26,7 @@ namespace ColonyCouncil
             public HudPawn mood;
             public readonly List<HudConcern> concerns = new List<HudConcern>();
             public int more;
+            public string moreText, title;
             public string doing;
             public float at;
             public float width, height;
@@ -104,8 +105,13 @@ namespace ColonyCouncil
             if (Find.Targeter != null && Find.Targeter.IsTargeting) return null;
             var stack = Find.WindowStack;
             if (stack.FloatMenu != null || stack.AnyWindowAbsorbingAllInput) return null;
-            var under = stack.GetWindowAt(UI.MousePositionOnUIInverted);
+            var mouse = UI.MousePositionOnUIInverted;
+            var under = stack.GetWindowAt(mouse);
             if (under != null && under.ID != -WindowId) return null;
+            // The game's own bars over the map: the main buttons at the bottom, the colonist bar at the top.
+            if (mouse.y >= UI.screenHeight - 35f) return null;
+            if (Find.PlaySettings != null && Find.PlaySettings.showColonistBar && Find.ColonistBar != null && Find.ColonistBar.AnyColonistOrCorpseAt(mouse))
+                return null;
             // In the corner, the card itself may be under the mouse: keep showing whom it was showing.
             if (under != null) return target;
             var cell = UI.MouseCell();
@@ -154,6 +160,8 @@ namespace ColonyCouncil
                 }
             }
             if (S.hoverDoing) c.doing = HudConcerns.Doing(p);
+            if (c.more > 0) c.moreText = "CC_Pnl_AndMore".Translate(c.more).Resolve();
+            c.title = p.LabelShortCap + (p.IsPrisonerOfColony ? " (" + HudKit.T("CC_Pnl_Prisoner") + ")" : p.IsSlaveOfColony ? " (" + HudKit.T("CC_Pnl_Slave") + ")" : "");
             float s = Scale;
             float pad = Mathf.Round(6f * s);
             c.width = Mathf.Round(276f * s);
@@ -218,10 +226,7 @@ namespace ColonyCouncil
                     HudKit.Heading(new Rect(x + w - numW - aw - 2f, y + (ps - aw) / 2f, aw, aw), h.now, h.heading);
                     numW += aw + 4f;
                 }
-                string who = p.LabelShortCap;
-                if (p.IsPrisonerOfColony) who += " (" + "CC_Pnl_Prisoner".Translate() + ")";
-                else if (p.IsSlaveOfColony) who += " (" + "CC_Pnl_Slave".Translate() + ")";
-                HudKit.Label(new Rect(tx, y, Mathf.Max(0f, x + w - numW - tx), ps), who, Color.white, titleFont);
+                HudKit.Label(new Rect(tx, y, Mathf.Max(0f, x + w - numW - tx), ps), c.title, Color.white, titleFont);
                 y += ps + Mathf.Round(2f * s);
                 if (S.hoverMood && h != null)
                 {
@@ -244,12 +249,12 @@ namespace ColonyCouncil
                 }
                 else if (S.hoverConcerns && h != null)
                 {
-                    HudKit.Label(new Rect(x, y, w, line), "CC_Pnl_C_AllWell".Translate(), UiKit.Good, font);
+                    HudKit.Label(new Rect(x, y, w, line), HudKit.T("CC_Pnl_C_AllWell"), UiKit.Good, font);
                     y += line;
                 }
                 if (c.more > 0)
                 {
-                    HudKit.Label(new Rect(x + icon + 5f, y, w, Mathf.Round(15f * s)), "CC_Pnl_AndMore".Translate(c.more).Resolve(), UiKit.Dim, GameFont.Tiny);
+                    HudKit.Label(new Rect(x + icon + 5f, y, w, Mathf.Round(15f * s)), c.moreText, UiKit.Dim, GameFont.Tiny);
                     y += Mathf.Round(15f * s);
                 }
                 if (!c.doing.NullOrEmpty())

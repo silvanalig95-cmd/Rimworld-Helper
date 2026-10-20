@@ -75,45 +75,45 @@ namespace ColonyCouncil
             l.Begin(view);
             try
             {
-                l.CheckboxLabeled("CC_Pnl_Opt_Show".Translate(), ref st.on);
-                l.CheckboxLabeled("CC_Pnl_Opt_Compact".Translate(), ref st.compact, ("CC_Pnl_Opt_Compact_" + id).Translate());
+                l.CheckboxLabeled(HudKit.T("CC_Pnl_Opt_Show"), ref st.on);
+                l.CheckboxLabeled(HudKit.T("CC_Pnl_Opt_Compact"), ref st.compact, HudKit.T("CC_Pnl_Opt_Compact_" + id));
                 if (id == HudLayout.Moods)
                 {
                     l.GapLine();
-                    l.Label("CC_Pnl_Opt_Order".Translate());
-                    if (l.RadioButton("CC_Pnl_SortRisk".Translate(), st.sort == HudSort.Risk, 12f)) st.sort = HudSort.Risk;
-                    if (l.RadioButton("CC_Pnl_SortBar".Translate(), st.sort == HudSort.Bar, 12f)) st.sort = HudSort.Bar;
-                    l.Label("CC_Pnl_Opt_Who".Translate());
+                    l.Label(HudKit.T("CC_Pnl_Opt_Order"));
+                    if (l.RadioButton(HudKit.T("CC_Pnl_SortRisk"), st.sort == HudSort.Risk, 12f)) st.sort = HudSort.Risk;
+                    if (l.RadioButton(HudKit.T("CC_Pnl_SortBar"), st.sort == HudSort.Bar, 12f)) st.sort = HudSort.Bar;
+                    l.Label(HudKit.T("CC_Pnl_Opt_Who"));
                     foreach (HudWho w in Enum.GetValues(typeof(HudWho)))
-                        if (l.RadioButton(("CC_Pnl_Who_" + w).Translate(), st.who == w, 12f))
+                        if (l.RadioButton(HudKit.T("CC_Pnl_Who_" + w), st.who == w, 12f))
                             st.who = w;
                 }
                 if (id == HudLayout.Trend)
                 {
                     l.GapLine();
-                    l.Label("CC_Pnl_Opt_Range".Translate());
+                    l.Label(HudKit.T("CC_Pnl_Opt_Range"));
                     if (l.RadioButton("CC_Pnl_TrendDays".Translate(3).Resolve(), st.days != 7, 12f)) st.days = 3;
                     if (l.RadioButton("CC_Pnl_TrendDays".Translate(7).Resolve(), st.days == 7, 12f)) st.days = 7;
                 }
                 l.GapLine();
-                l.Label("CC_Pnl_Opt_Parts".Translate());
+                l.Label(HudKit.T("CC_Pnl_Opt_Parts"));
                 foreach (var part in PartsOf(id))
                 {
                     bool on = st.Shows(part);
-                    l.CheckboxLabeled(("CC_Pnl_Part_" + part).Translate(), ref on, 12f);
+                    l.CheckboxLabeled(HudKit.T("CC_Pnl_Part_" + part), ref on, 12f);
                     if (on != st.Shows(part)) st.Toggle(part);
                 }
                 l.GapLine();
                 if (id != HudLayout.Trend)
                 {
-                    string rows = st.maxRows <= 0 ? "CC_Pnl_Opt_RowsAll".Translate().ToString() : st.maxRows.ToString();
-                    st.maxRows = Mathf.RoundToInt(l.SliderLabeled("CC_Pnl_Opt_Rows".Translate(rows), st.maxRows, 0f, 20f, 0.5f, "CC_Pnl_Opt_RowsTip".Translate()));
+                    string rows = st.maxRows <= 0 ? HudKit.T("CC_Pnl_Opt_RowsAll").ToString() : st.maxRows.ToString();
+                    st.maxRows = Mathf.RoundToInt(l.SliderLabeled("CC_Pnl_Opt_Rows".Translate(rows), st.maxRows, 0f, 20f, 0.5f, HudKit.T("CC_Pnl_Opt_RowsTip")));
                 }
                 st.scale = HudMath.ClampScale(l.SliderLabeled("CC_Pnl_Opt_Scale".Translate(st.scale.ToStringPercent()), st.scale, HudMath.MinScale, HudMath.MaxScale, 0.5f));
                 st.opacity = HudMath.ClampOpacity(l.SliderLabeled("CC_Pnl_Opt_Opacity".Translate(st.opacity.ToStringPercent()), st.opacity, HudMath.MinOpacity,
                     HudMath.MaxOpacity, 0.5f));
                 l.Gap(6f);
-                if (l.ButtonText("CC_Pnl_Opt_Place".Translate()))
+                if (l.ButtonText(HudKit.T("CC_Pnl_Opt_Place")))
                 {
                     var d = HudLayout.Default(id);
                     st.x = d.x;
@@ -121,7 +121,7 @@ namespace ColonyCouncil
                     st.right = d.right;
                     st.bottom = d.bottom;
                 }
-                if (l.ButtonText("CC_Pnl_Opt_Reset".Translate()))
+                if (l.ButtonText(HudKit.T("CC_Pnl_Opt_Reset")))
                 {
                     var d = HudLayout.Default(id);
                     d.on = st.on;
@@ -139,7 +139,7 @@ namespace ColonyCouncil
             if (Changed(before, st)) HudManager.Window(id)?.MarkDirty();
             // Rimfolk's settings, unless this was opened from there.
             if (!Find.WindowStack.IsOpen(typeof(RimWorld.Dialog_ModSettings)) &&
-                Widgets.ButtonText(new Rect(inRect.x, inRect.yMax - 32f, 200f, 32f), "CC_Pnl_AllOptions".Translate()))
+                Widgets.ButtonText(new Rect(inRect.x, inRect.yMax - 32f, 200f, 32f), HudKit.T("CC_Pnl_AllOptions")))
                 HudManager.OpenSettings();
         }
 

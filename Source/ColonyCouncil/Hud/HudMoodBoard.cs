@@ -88,7 +88,7 @@ namespace ColonyCouncil
             float pad = Mathf.Round(4f * s);
             if (rows.Count == 0)
             {
-                HudKit.Label(r.ContractedBy(pad), "CC_Pnl_NoOne".Translate(), UiKit.Faint, HudKit.Minor(s));
+                HudKit.Label(r.ContractedBy(pad), HudKit.T("CC_Pnl_NoOne"), UiKit.Faint, HudKit.Minor(s));
                 return;
             }
             float y = r.y + pad;
@@ -113,7 +113,7 @@ namespace ColonyCouncil
             {
                 var mr = new Rect(r.x + pad, y, r.width - pad * 2f, Mathf.Round(16f * s));
                 HudKit.Label(mr, moreText, UiKit.Faint, GameFont.Tiny);
-                TooltipHandler.TipRegion(mr, "CC_Pnl_MoreTip".Translate());
+                TooltipHandler.TipRegion(mr, HudKit.T("CC_Pnl_MoreTip"));
                 if (Widgets.ButtonInvisible(mr, false))
                 {
                     if (Event.current.button == 1) OpenMenu();
@@ -207,18 +207,20 @@ namespace ColonyCouncil
         private static float Marks(Rect line, HudPawn h, float size)
         {
             float x = line.xMax;
-            void Mark(Texture2D tex, Color c, string tip)
+            int id = h.pawn.thingIDNumber;
+            // The tooltips are only worked out when hovered.
+            void Mark(Texture2D tex, Color c, Func<string> tip, int which)
             {
                 if (tex == null) return;
                 x -= size + 1f;
                 var r = new Rect(x, line.y + (line.height - size) / 2f, size, size);
                 UiKit.Icon(r, tex, c);
-                TooltipHandler.TipRegion(r, tip);
+                TooltipHandler.TipRegion(r, tip, Gen.HashCombineInt(id, 0x4D41 + which));
             }
-            if (h.inBreak) Mark(Icons.Warning, UiKit.Bad, "CC_Pnl_C_InBreak".Translate(h.breakLabel ?? "?"));
-            if (h.band >= StrainBand.Worn) Mark(Icons.Heart, HeartView.BandColor(h.band), HeartView.BandLabel(h.band));
-            if (h.wish != null) Mark(Icons.Wishes, h.wish.stage >= 2 ? UiKit.Warn : UiKit.Gold, "CC_Pnl_WishMark".Translate(h.wish.Label));
-            if (h.wavering) Mark(Icons.CatIdeology, UiKit.Faint, "CC_Pnl_C_Wavering".Translate());
+            if (h.inBreak) Mark(Icons.Warning, UiKit.Bad, () => "CC_Pnl_C_InBreak".Translate(h.breakLabel ?? "?"), 1);
+            if (h.band >= StrainBand.Worn) Mark(Icons.Heart, HeartView.BandColor(h.band), () => HeartView.BandLabel(h.band), 2);
+            if (h.wish != null) Mark(Icons.Wishes, h.wish.stage >= 2 ? UiKit.Warn : UiKit.Gold, () => "CC_Pnl_WishMark".Translate(h.wish?.Label ?? "").Resolve(), 3);
+            if (h.wavering) Mark(Icons.CatIdeology, UiKit.Faint, () => HudKit.T("CC_Pnl_C_Wavering"), 4);
             return x - 2f;
         }
 
@@ -283,20 +285,20 @@ namespace ColonyCouncil
         {
             var st = St;
             bool risk = st.sort == HudSort.Risk;
-            return BarText(bar, right, (risk ? "CC_Pnl_SortRiskShort" : "CC_Pnl_SortBarShort").Translate(),
-                (risk ? "CC_Pnl_SortRiskTip" : "CC_Pnl_SortBarTip").Translate(), () => st.sort = risk ? HudSort.Bar : HudSort.Risk);
+            return BarText(bar, right, HudKit.T(risk ? "CC_Pnl_SortRiskShort" : "CC_Pnl_SortBarShort"),
+                HudKit.T(risk ? "CC_Pnl_SortRiskTip" : "CC_Pnl_SortBarTip"), () => st.sort = risk ? HudSort.Bar : HudSort.Risk);
         }
 
         protected override void MenuOptions(List<FloatMenuOption> options)
         {
             var st = St;
-            options.Add(new FloatMenuOption((st.sort == HudSort.Risk ? "CC_Pnl_SortBar" : "CC_Pnl_SortRisk").Translate(), () =>
+            options.Add(new FloatMenuOption(HudKit.T(st.sort == HudSort.Risk ? "CC_Pnl_SortBar" : "CC_Pnl_SortRisk"), () =>
             {
                 st.sort = st.sort == HudSort.Risk ? HudSort.Bar : HudSort.Risk;
                 MarkDirty();
                 HudLayout.Save();
             }));
-            options.Add(new FloatMenuOption("CC_Pnl_OpenMoods".Translate(), () => MainTabWindow_Council.OpenTab("Moods")));
+            options.Add(new FloatMenuOption(HudKit.T("CC_Pnl_OpenMoods"), () => MainTabWindow_Council.OpenTab("Moods")));
         }
     }
 }

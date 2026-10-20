@@ -129,6 +129,6 @@ namespace ColonyCouncil
         }
 
         /// <summary>The panel's name, for menus and its header.</summary>
-        public static string Label(string id) => ("CC_Pnl_Name_" + id).Translate();
+        public static string Label(string id) => HudKit.T("CC_Pnl_Name_" + id);
     }
 }

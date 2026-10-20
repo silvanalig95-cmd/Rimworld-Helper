@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The on-screen panels and the hover card (Source/ColonyCouncil/Hud/): what each shows, what comes first, and how to
+    move, fit and switch them.
+  -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_C_Panels</defName>
+    <label>on-screen panels</label>
+    <category>Council</category>
+    <order>15</order>
+    <summary>Small panels on the map for what you keep checking: everyone's mood, the mood over the last days, the colony's vitals and the council, with a card for whoever is under the mouse.</summary>
+    <tip>Rest the mouse on a colonist for a moment: the card says what matters most about them right now.</tip>
+    <description>Some things you want to keep an eye on all the time: who is close to breaking, how much food is left, whether a wish is about to lapse. The on-screen panels keep them on the map, so you don't have to click through each colonist. There are four: the mood board, the mood trend, the colony's vitals and the council at a glance. A calm colony shows short, quiet panels; when something goes wrong it rises to the top and turns orange or red. Everything else stays one hover or one click away.
+
+Show or hide them all with the button among the play settings at the bottom right (a screen with small panels on it), or with a key you pick under Options, Keyboard, Rimfolk. Right-click that button for each panel, the hover card, arranging them and putting them back.</description>
+    <sections>
+      <li>
+        <heading>The mood board</heading>
+        <text>A row for each colonist at home: their portrait and name, a mood bar with their own minor and major break lines marked on it, an arrow and the number for where the mood is heading, and, faint under the bar, the mood dragging them down most with its size ("-8 No bedroom"). When something can be done about it and they're at risk, it shows in gold. Small marks at the end of the row: a mental break, high strain, an open wish, wavering faith.</text>
+        <points>
+          <li>Most at risk first, or in the colonist bar's order: switch it on the panel's bar.</li>
+          <li>A row turns orange under its minor break line and red under the major one, with a soft pulse.</li>
+          <li>Click a row to go to the colonist; Shift-click, or the small button that shows on the row, for their Mood tab. Hover a row for their five biggest moods.</li>
+          <li>Compact: thin bars with initials in a grid, like raid frames.</li>
+        </points>
+        <after>The panel's options also show the colonists everywhere (caravans too) or the colony's prisoners, and add what would help most beside each drag ("-8 No bedroom → Give them a bedroom").</after>
+      </li>
+      <li>
+        <heading>The mood trend</heading>
+        <text>A small graph of the colony's average mood (gold) and its lowest colonist's (orange) over the last 3 or 7 days, with the line where minor breaks begin for most people (35%) dashed across it. A point is taken once an in-game hour and kept with the save, so the graph survives a reload. Hover the graph for the time and the values at that point; click it for the Moods page.</text>
+      </li>
+      <li>
+        <heading>The colony's vitals</heading>
+        <text>Short lines, each with a small icon, for the map on screen (or the busiest home):</text>
+        <points>
+          <li>Food: days left at the colony's rate, meals and raw food, counted as the advisor counts it. Orange under 10 days and red under 4 (the advisor's own line), both set in the settings.</li>
+          <li>Medicine: orange under 2 for each colonist (the advisor's line), red with none while someone needs tending.</li>
+          <li>Power, when there's a grid: what it makes more than it uses. Red in a blackout, orange when the batteries won't last the day.</li>
+          <li>Outside: the temperature now and the next season coming. Orange in hard frost or fierce heat. Click for the temperature overlay.</li>
+          <li>Days since the last raid. Click for the defenses.</li>
+          <li>The research under way and how far it has got. Click for the research tab.</li>
+        </points>
+      </li>
+      <li>
+        <heading>The council at a glance</heading>
+        <text>Only what has something to say: open wishes and whose has waited longest, petitions, promises coming due, questions waiting for an answer, the decrees in force with the days they have left, the next day on the calendar or the next meeting, and the colony's trust. Each line opens the council window on the right page; a waiting question opens its letter.</text>
+      </li>
+      <li>
+        <heading>The hover card</heading>
+        <text>Rest the mouse on a colonist on the map and, after a moment, a small card shows beside it: their name and mood bar with their break lines, the two or three things that matter most about them right now, and what they're doing. It never gets in the game's way: it doesn't show while you hold a mouse button, place or target something, have a menu open, or point at a window, and it isn't there on the world map.
+
+In the settings you can switch it off, change the wait before it shows, show it only while Alt, Shift or Ctrl is held, show it for slaves and prisoners too, keep it in a corner instead, pick which parts it shows and how many lines, and change its size and background.</text>
+      </li>
+      <li>
+        <heading>What comes first</heading>
+        <text>The board, the card and the vitals share one ranking, so they agree with each other. Life and limb come first: bleeding (sooner death first), a condition that can kill, starving, a mental break, being right at or under the break line. Then what will soon be a problem: falling towards a break, mood close to the line, being downed, hunger and exhaustion, high strain, food or medicine running low, a wish about to lapse. Then what's merely worth knowing, such as the moods dragging someone down, the biggest first, where something that can be done about it counts for more than a memory that will pass on its own.
+
+When there is room for only some rows, the least important go first and the panel says "and 3 more". Anything critical always shows, whatever the limit.</text>
+      </li>
+      <li>
+        <heading>Moving and fitting them</heading>
+        <text>A thin bar shows over a panel while the mouse is on it. Drag the bar (or any empty spot) to move the panel: it snaps to the screen's edges and to the other panels within 8 pixels, and its place is kept as part of the screen, so it stays put at another resolution or interface scale. The bar's buttons switch compact and full, make the background fainter, open the panel's options, and hide it. Right-click a panel for its menu.</text>
+        <points>
+          <li>Each panel's options: what it shows, whom it lists, its order or range, how many rows before "and more", its size (75% to 150%) and background.</li>
+          <li>Arrange the panels: every bar shows and a small bar of its own switches panels on and off and puts their places back.</li>
+          <li>The settings (Interface, On-screen panels) have every option too: lock their places, hide them under big windows like the Work tab, hide them on the world map, a darker or clearer look, small or normal text, the food and mood lines, and putting everything back as shipped.</li>
+        </points>
+        <after>The panels gather what they show at most twice a second and only while the game runs, so they cost very little. They work beside RimHUD, which shows the selected colonist in the inspect pane, and Dubs Mint Minimap; drag them clear of anything else on your screen.</after>
+      </li>
+    </sections>
+    <keywords><li>panels</li><li>on screen</li><li>hud</li><li>overlay</li><li>mood board</li><li>hover</li><li>hover card</li><li>tooltip</li><li>vitals</li><li>raid frames</li><li>graph</li><li>trend</li><li>overview</li></keywords>
+    <seeAlso><li>Council_Alm_C_Moods</li><li>Council_Alm_C_Wishes</li><li>Council_Alm_C_Heart</li><li>Council_Alm_2_15_MentalBreaks</li></seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+</Defs>
