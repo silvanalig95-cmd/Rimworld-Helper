@@ -455,7 +455,7 @@ namespace ColonyCouncil
         /// <summary>
         /// The curfew is over: each night hour still set to sleep goes back to what it was. Someone of the colony's away
         /// where its lists don't reach (carried off, say) keeps their note, and is put back when they come home (the hour
-        /// checks again); only the dead and those no longer the colony's are let go.
+        /// checks again); the dead, those no longer the colony's and those the game no longer knows are let go.
         /// </summary>
         private static void RestoreNight(DecreeTracker t)
         {
@@ -473,7 +473,10 @@ namespace ColonyCouncil
                     {
                         everyone ??= PawnsFinder.AllMapsWorldAndTemporary_AliveOrDead.ToList();
                         var q = everyone.FirstOrDefault(x => x.ThingID == kv.Key);
-                        if (q == null || (!q.Dead && !q.Discarded && q.Faction == Faction.OfPlayer)) (away ??= new List<string>()).Add(kv.Key);
+                        // Not found anywhere: off at an outpost or aboard something the lists don't reach, else let go
+                        // (a pawn the game no longer knows would otherwise be kept for ever).
+                        bool keep = q == null ? CouncilGameComponent.KnownPawnIds().Contains(kv.Key) : !q.Dead && !q.Discarded && q.Faction == Faction.OfPlayer;
+                        if (keep) (away ??= new List<string>()).Add(kv.Key);
                         continue;
                     }
                     if (p.timetable == null) continue;
