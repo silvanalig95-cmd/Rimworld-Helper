@@ -458,7 +458,7 @@ Days on the colony calendar grow into traditions the same way: keep one three ye
     <order>9</order>
     <summary>The bonds between colonists: how they form, grow, sour and end, and what they change.</summary>
     <tip>Colonists who work side by side don't always end up friends.</tip>
-    <description>Colonists form lasting bonds out of how they feel about each other and what they go through. Steady liking turns into friendship, steady loathing into rivalry, fighting side by side into comradeship, and a skilled colonist may take an eager learner under their wing. Every bond has a strength and a short history, shown on the council's Bonds page.</description>
+    <description>Colonists form lasting bonds out of how they feel about each other and what they go through. Steady liking turns into friendship, steady loathing into rivalry, fighting side by side into comradeship, and a skilled colonist may take an eager learner under their wing. Every bond has a strength and a short history, shown on the council's Bonds page and, for one colonist, in Rimfolk's column of their Social tab, beside the game's own list. Hovering someone in that list says what is between the two of them: a bond, a group they share, memories, views they agree or differ on.</description>
     <sections>
       <li>
         <heading>The four bonds</heading>

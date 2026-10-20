@@ -73,6 +73,7 @@ namespace ColonyCouncil
         private static Pawn cachedPawn;
         private static float cachedAt = -1f;
         private static List<PaneSection> cached;
+        private static string empty;
 
         /// <summary>Forget the last game's colonist (called when a game loads).</summary>
         public static void Reset()
@@ -113,10 +114,11 @@ namespace ColonyCouncil
                     CouncilLog.ErrorOnce("culture tab", e);
                     cached = new List<PaneSection>();
                 }
+                empty = cached.Count == 0 ? "CC_Culture_Empty".Translate(p.LabelShort).Resolve() : null;
                 cachedPawn = p;
                 cachedAt = Time.realtimeSinceStartup;
             }
-            PawnPane.Draw(outRect, cached, ref scroll, ref height, folds, "CC_Culture_Empty".Translate(p.LabelShort), p);
+            PawnPane.Draw(outRect, cached, ref scroll, ref height, folds, empty, p);
         }
 
         private static List<PaneSection> Build(CouncilGameComponent comp, Pawn p)
@@ -156,6 +158,7 @@ namespace ColonyCouncil
             string value = "CC_Culture_CertaintyValue".Translate(certainty.ToStringPercent(), state).Resolve();
             var color = FaithMath.Devout(certainty) ? UiKit.Good : FaithMath.Wavering(certainty) ? UiKit.Warn : UiKit.Info;
             string tip = FaithCharacter.CertaintyTip(p);
+            string certaintyLabel = "CC_Culture_Certainty".Translate();
             string roleTip = null;
             if (role != null)
             {
@@ -200,7 +203,7 @@ namespace ColonyCouncil
                 }
                 if (culture != null && x + w - lx > 40f) UiKit.LabelFit(new Rect(lx, y + 18f, x + w - lx, 18f), culture, UiKit.Faint, GameFont.Tiny);
                 float my = y + icon + 6f;
-                UiKit.Meter(new Rect(x, my, w, UiKit.MeterHeight), certainty, color, "CC_Culture_Certainty".Translate(), value, null, tip);
+                UiKit.Meter(new Rect(x, my, w, UiKit.MeterHeight), certainty, color, certaintyLabel, value, null, tip);
                 return icon + 6f + UiKit.MeterHeight + 6f;
             };
             // Faiths they held before this one.
@@ -238,9 +241,11 @@ namespace ColonyCouncil
             string word = ("CC_Culture_WaysWord_" + feeling).Translate();
             string line = ("CC_Culture_WaysFeel_" + feeling).Translate(p.Named("PAWN")).Resolve();
             float fill = Mathf.Clamp(approval / 100f, -1f, 1f);
+            string barLabel = "CC_Culture_WaysBar".Translate();
+            string barTip = "CC_Culture_WaysTip".Translate(approval.ToString("0")).Resolve();
             s.custom = (x, y, w) =>
             {
-                UiKit.LabelFit(new Rect(x, y, w * 0.6f, 18f), "CC_Culture_WaysBar".Translate(), UiKit.Faint, GameFont.Tiny);
+                UiKit.LabelFit(new Rect(x, y, w * 0.6f, 18f), barLabel, UiKit.Faint, GameFont.Tiny);
                 UiKit.LabelFit(new Rect(x + w * 0.4f, y, w * 0.6f, 18f), word, color, GameFont.Tiny, TextAnchor.MiddleRight);
                 var bar = new Rect(x, y + 19f, w, 8f);
                 Widgets.DrawBoxSolidWithOutline(bar, UiKit.MeterBack, new Color(1f, 1f, 1f, 0.1f), 1);
@@ -250,7 +255,7 @@ namespace ColonyCouncil
                 Widgets.DrawBoxSolid(new Rect(mid, bar.y - 2f, 1f, bar.height + 4f), new Color(1f, 1f, 1f, 0.3f));
                 var area = new Rect(x, y, w, 30f);
                 if (Mouse.IsOver(area)) Widgets.DrawHighlight(area);
-                TooltipHandler.TipRegion(area, "CC_Culture_WaysTip".Translate(approval.ToString("0")).Resolve());
+                TooltipHandler.TipRegion(area, barTip);
                 return 32f;
             };
             s.Add(line, color);

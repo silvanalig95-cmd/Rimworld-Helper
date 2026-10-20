@@ -26,6 +26,8 @@ namespace ColonyCouncil
         private static Pawn cachedPawn;
         private static float cachedAt = -1f;
         private static List<PaneSection> cached;
+        /// <summary>The header's words, translated with the model rather than every frame.</summary>
+        private static string title, subtitle, tip, empty;
 
         /// <summary>The Social tab's sections shown in the column, by the character page's keys.</summary>
         public static readonly string[] CharacterKeys = { "groups", "reputation", "talk.memories" };
@@ -130,6 +132,10 @@ namespace ColonyCouncil
                     CouncilLog.ErrorOnce("social tab column", e);
                     cached = new List<PaneSection>();
                 }
+                title = "CC_SocialCol_Title".Translate();
+                subtitle = "CC_SocialCol_Sub".Translate();
+                tip = "CC_SocialCol_Tip".Translate();
+                empty = cached.Count == 0 ? "CC_SocialCol_Empty".Translate(p.LabelShort).Resolve() : null;
                 cachedPawn = p;
                 cachedAt = Time.realtimeSinceStartup;
             }
@@ -178,7 +184,7 @@ namespace ColonyCouncil
             // Their groups, what people say of them, and what they went through with others (the character page's own sections).
             if (Persona.On && Persona.Eligible(p))
             {
-                AddCharacter(list, p, "groups", Icons.Bonds, null);
+                AddCharacter(list, p, "groups", Icons.People, null);
                 AddCharacter(list, p, "reputation", Icons.Chronicle, null);
                 AddCharacter(list, p, "talk.memories", Icons.Heart, "CC_SocialCol_Memories".Translate());
             }
@@ -187,7 +193,7 @@ namespace ColonyCouncil
             var talks = Talks(p);
             if (talks.Count > 0)
             {
-                var sec = new PaneSection { key = "talks", header = "CC_SocialCol_Talks".Translate(), icon = Icons.Council };
+                var sec = new PaneSection { key = "talks", header = "CC_SocialCol_Talks".Translate(), icon = Icons.Wishes };
                 sec.rows.AddRange(talks);
                 list.Add(sec);
             }
@@ -322,10 +328,8 @@ namespace ColonyCouncil
                 Widgets.DrawBoxSolid(new Rect(rect.x - TabFitMath.ColumnGap / 2f, rect.y + 10f, 1f, Mathf.Max(0f, rect.height - 20f)), UiKit.DividerColor);
                 var inner = new Rect(rect.x, rect.y + 10f, rect.width - 10f, rect.height - 20f);
                 // The tab's close button sits in the top right corner, above the column.
-                float top = UiKit.PageHeader(inner, Icons.Bonds, "CC_SocialCol_Title".Translate(), "CC_SocialCol_Sub".Translate(), null, null, 26f,
-                    "CC_SocialCol_Tip".Translate());
-                PawnPane.Draw(new Rect(inner.x, inner.y + top, inner.width, inner.height - top), model, ref scroll, ref height, folds,
-                    "CC_SocialCol_Empty".Translate(p.LabelShort), p);
+                float top = UiKit.PageHeader(inner, Icons.People, title, subtitle, null, null, 26f, tip);
+                PawnPane.Draw(new Rect(inner.x, inner.y + top, inner.width, inner.height - top), model, ref scroll, ref height, folds, empty, p);
             }
             finally
             {
