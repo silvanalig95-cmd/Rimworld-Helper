@@ -7,6 +7,7 @@
     <defName>Council_Mood_RF_HealthFrustrated</defName>
     <thoughts><li>Council_Health_WeakFrustrated</li></thoughts>
     <fix>It lasts as long as the convalescence. Rest in bed shortens it by a third, and working while still weak can set it back. A visit from a friend helps the mood in the meantime.</fix>
+    <act>Let them rest in bed</act>
     <article>Council_Alm_4_25_Ailments</article>
   </ColonyCouncil.MoodHintDef>
 
@@ -17,6 +18,8 @@
       <li>Council_Health_LostRun</li>
     </thoughts>
     <fix>Time, and company: a friend's visit or a good talk helps. Good medicine and a clean hospital bed make the next loss less likely. A dilemma may let the doctor take a day away.</fix>
+    <act>Company and time help</act>
+    <actionable>false</actionable>
     <article>Council_Alm_4_25_Ailments</article>
   </ColonyCouncil.MoodHintDef>
 

@@ -8,6 +8,8 @@
     <defName>Council_Mood_RF_AnimalFeud</defName>
     <thoughts><li>Council_Arc_FeudWithAnimal</li></thoughts>
     <fix>A personal story: one of the colony's named animals and this colonist have taken against each other, often after it stole their food. It passes in a few days, and the story ends in a grudging truce. Eating at a table, with the food put away, gives the animal fewer chances.</fix>
+    <act>Passes in a few days</act>
+    <actionable>false</actionable>
     <article>Council_Alm_C_Animals</article>
   </ColonyCouncil.MoodHintDef>
 
@@ -15,6 +17,8 @@
     <defName>Council_Mood_RF_HerdCulled</defName>
     <thoughts><li>Council_DlmA_CulledHerd</li><li>Council_DlmA_TurnedOutHerd</li><li>Council_DlmA_LeanDays</li></thoughts>
     <fix>The council chose between the herd and the stores in a hungry week. It fades in a few days. A herd no bigger than the fields and the hay can feed, and food stored ahead of winter, keep the question from coming up.</fix>
+    <act>Passes in a few days</act>
+    <actionable>false</actionable>
     <article>Council_Alm_C_Animals</article>
   </ColonyCouncil.MoodHintDef>
 
@@ -22,6 +26,8 @@
     <defName>Council_Mood_RF_CropsGrazed</defName>
     <thoughts><li>Council_DlmA_LetItGraze</li></thoughts>
     <fix>A wild animal ate the crops they'd grown. It passes in a few days. A fence round the fields keeps grazers out, and a hunt or a night's watch settles the next one.</fix>
+    <act>Fence the fields</act>
+    <actionable>false</actionable>
     <article>Council_Alm_C_Animals</article>
   </ColonyCouncil.MoodHintDef>
 
@@ -29,6 +35,8 @@
     <defName>Council_Mood_RF_AnimalCare</defName>
     <thoughts><li>Council_DlmA_AnimalLeftToFate</li><li>Council_DlmA_MedicineOnAnimal</li></thoughts>
     <fix>The council decided how much medicine a sick animal was worth. It fades in a few days. More medicine in store, herbal at the least, makes the next answer easier; the greedy and the cold-hearted mind any medicine spent on an animal.</fix>
+    <act>Keep more medicine in store</act>
+    <actionable>false</actionable>
     <article>Council_Alm_C_Animals</article>
   </ColonyCouncil.MoodHintDef>
 
@@ -36,6 +44,8 @@
     <defName>Council_Mood_RF_BondAndFaith</defName>
     <thoughts><li>Council_DlmA_BondShamed</li><li>Council_DlmA_GaveUpMyAnimal</li><li>Council_DlmA_FaithBrushedAside</li></thoughts>
     <fix>The council settled a quarrel between a bond with an animal and a faith that frowns on it. It fades in a few days, except giving the animal to someone else, which hurts its person for eight. Keeping the animal out of the faithful one's way hurts nobody much.</fix>
+    <act>Passes in a few days</act>
+    <actionable>false</actionable>
     <article>Council_Alm_C_Animals</article>
   </ColonyCouncil.MoodHintDef>
 
@@ -43,6 +53,8 @@
     <defName>Council_Mood_RF_PenBroken</defName>
     <thoughts><li>Council_Setback_AnimalLost</li><li>Council_Setback_PenBroken</li></thoughts>
     <fix>A predator got into the pens and took one of the herd. It passes in a few days. Pens close to the houses, a barn with a door, and a hunt or a watch when something stalks the herd keep it from happening again.</fix>
+    <act>Pen the herd near the houses</act>
+    <actionable>false</actionable>
     <article>Council_Alm_C_Animals</article>
   </ColonyCouncil.MoodHintDef>
 
@@ -50,6 +62,8 @@
     <defName>Council_Mood_RF_PokemonFainted</defName>
     <thoughts><li>Council_PW_Fainted</li></thoughts>
     <fix>Their Pokémon went down in a fight. It lasts a day. Tending it, or a potion, gets it on its feet; keeping a low-level Pokémon back from the worst fighting avoids it.</fix>
+    <act>Tend it, or use a potion</act>
+    <actionable>false</actionable>
     <article>Council_AlmMod_D_PokeWorldLife</article>
   </ColonyCouncil.MoodHintDef>
 
@@ -57,6 +71,8 @@
     <defName>Council_Mood_RF_RareOneMissed</defName>
     <thoughts><li>Council_PW_RareOneMissed</li></thoughts>
     <fix>The council let a rare Pokémon pass by. It lasts two days and is very slight. Going out to see the next one, or sending the colony's trainer after it, turns it into a good memory instead.</fix>
+    <act>Passes in two days</act>
+    <actionable>false</actionable>
     <article>Council_AlmMod_D_PokeWorldLife</article>
   </ColonyCouncil.MoodHintDef>
 

@@ -7,6 +7,8 @@
     <defName>Council_Mood_RF_AfterReckoning</defName>
     <thoughts><li>Council_After_Reckoning</li></thoughts>
     <fix>A neighbour came to say what the colony's closed gate cost them in a hard year. It passes in a few days; making amends when they ask helps them remember it differently, and helping in the next hard year is what changes the story.</fix>
+    <act>Make amends when asked</act>
+    <actionable>false</actionable>
     <article>Council_Alm_C_WorldSituations</article>
   </ColonyCouncil.MoodHintDef>
 

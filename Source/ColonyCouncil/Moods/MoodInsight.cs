@@ -28,11 +28,25 @@ namespace ColonyCouncil
         [MustTranslate] public string fix;
         /// <summary>When it helps: how to keep it, or get more of it.</summary>
         [MustTranslate] public string keep;
+        /// <summary>
+        /// The fix in a few words, for the Mood tab's compact rows ("Build a dining table", "Passes with time"): an
+        /// imperative of 2 to 6 words, at most <see cref="MoodSortMath.MaxActLength"/> characters, no full stop.
+        /// </summary>
+        [MustTranslate] public string act;
+        /// <summary>
+        /// Whether something done now ends this mood or keeps it from coming straight back (a table, a light, a decree
+        /// repealed), so it counts under "You can fix". False for moods that only fade (grief, a council answer, a story
+        /// gone badly); those count under "Will pass". Only matters with a <see cref="fix"/>.
+        /// </summary>
+        public bool actionable = true;
         public AlmanacArticleDef article;
         public AdvisorSignalDef signal;
         /// <summary>A page of the council window that deals with it: Decrees, Wishes, Ways, Bonds, Roster...</summary>
         public string councilTab;
         public int priority;
+
+        /// <summary>Whether acting now helps with this mood (see <see cref="actionable"/>): a fix that says so.</summary>
+        public bool Actionable => actionable && !fix.NullOrEmpty();
 
         public int Score(ThoughtDef t)
         {
@@ -65,6 +79,8 @@ namespace ColonyCouncil
         {
             foreach (var e in base.ConfigErrors()) yield return e;
             if (fix.NullOrEmpty() && keep.NullOrEmpty()) yield return "mood hint has neither fix nor keep";
+            // The compact row has one line for it (the tests hold the English text to its length and words; a translation may run longer).
+            if (act != null && (act.Trim().Length == 0 || act.IndexOf('\n') >= 0)) yield return "act must be one line of text";
             if (thoughts.NullOrEmpty() && workers.NullOrEmpty() && thoughtClasses.NullOrEmpty() && nameContains.NullOrEmpty() && mods.NullOrEmpty())
                 yield return "mood hint matches nothing";
             if (nameContains != null && nameContains.Any(c => c != c.ToLowerInvariant())) yield return "nameContains must be lowercase";

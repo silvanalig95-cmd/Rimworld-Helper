@@ -9,12 +9,16 @@ namespace ColonyCouncil
     /// <summary>
     /// Colony → Moods: every mood in the colony added up. What weighs on the colony and what lifts it, who has it and
     /// what to do about it, who is closest to breaking, and how much comes from the base game, Rimfolk and each mod.
-    /// Everything is worked out about once a second, not every frame.
+    /// Compact (the default, the same switch as the Mood tab): the moods grouped by what the player can do, one line per
+    /// kind of mood, its card a click away (MoodCompact). Details: every kind as a card. Everything is worked out about
+    /// once a second, not every frame.
     /// </summary>
     public static class MoodsPanel
     {
         private static Vector2 scroll;
         private static float height = 800f;
+        /// <summary>The compact view's folds, open card and groups' places.</summary>
+        private static readonly CompactState state = new CompactState(false);
 
         private class Report
         {
@@ -24,6 +28,8 @@ namespace ColonyCouncil
             public Color averageColor;
             public List<PawnMood> shaky;
             public HeartView.ColonyModel heart;
+            public CompactModel compact;
+            public string nothingBad;
         }
 
         private static Report report;
@@ -34,6 +40,8 @@ namespace ColonyCouncil
         {
             report = null;
             scroll = Vector2.zero;
+            state.Forget();
+            MoodSummary.Reset();
         }
 
         private static Report Build()
@@ -43,6 +51,11 @@ namespace ColonyCouncil
             foreach (var c in colony) c.texts = MoodView.TextsFor(c);
             r.bad = colony.Where(c => !c.good && c.total < -0.05f).OrderBy(c => c.total).Take(20).ToList();
             r.good = colony.Where(c => c.good && c.total > 0.05f).OrderByDescending(c => c.total).Take(12).ToList();
+            if (!MoodCompact.Details)
+            {
+                r.compact = MoodCompact.For(r.bad.Concat(r.good).ToList());
+                r.nothingBad = "CC_MoodC_NothingBadColony".Translate().Resolve();
+            }
             r.badHeader = "CC_Moods_Weighing".Translate() + "  (" + MoodView.Number(colony.Where(c => !c.good).Sum(c => c.total)) + ")";
             r.goodHeader = "CC_Moods_Lifting".Translate() + "  (" + MoodView.Number(colony.Where(c => c.good).Sum(c => c.total)) + ")";
             r.shaky = r.pawns.OrderBy(m => m.now - m.minor).Take(6).ToList();
@@ -69,15 +82,28 @@ namespace ColonyCouncil
                 UiKit.EmptyState(rect, Icons.Moods, "CC_Moods_Off".Translate());
                 return;
             }
-            if (report == null || Time.realtimeSinceStartup - reportAt > 1f)
+            bool compact = !MoodCompact.Details;
+            if (report == null || Time.realtimeSinceStartup - reportAt > 1f || Time.realtimeSinceStartup < reportAt || compact != (report.compact != null))
             {
+                if (report != null && compact != (report.compact != null))
+                {
+                    scroll = Vector2.zero;
+                    state.Forget();
+                }
                 report = Build();
                 reportAt = Time.realtimeSinceStartup;
             }
             var r = report;
-            float top = UiKit.PageHeader(rect, Icons.Moods, "CC_Moods_Header".Translate(), "CC_UI_Sub_Moods".Translate(), r.average, r.averageColor);
+            float top = UiKit.PageHeader(rect, Icons.Moods, "CC_Moods_Header".Translate(), "CC_UI_Sub_Moods".Translate(), r.average, r.averageColor,
+                MoodCompact.ViewToggleWidth + 12f);
+            MoodCompact.DrawViewToggle(rect.xMax, rect.y + 8f, 26f);
             var outRect = new Rect(rect.x, rect.y + top, rect.width, rect.height - top);
             var view = new Rect(0f, 0f, outRect.width - 16f, height);
+            if (r.compact != null)
+            {
+                float to = MoodCompact.TakeScroll(state);
+                if (to >= 0f) scroll.y = Mathf.Min(to, Mathf.Max(0f, height - outRect.height));
+            }
             Widgets.BeginScrollView(outRect, ref scroll, view);
             try
             {
@@ -91,6 +117,12 @@ namespace ColonyCouncil
                 y += UiKit.Paragraph(0f, y, w, r.summary, Color.white) + 2f;
                 y += UiKit.Paragraph(0f, y, w, r.sources, MoodView.Faint) + 2f;
                 y += UiKit.Paragraph(0f, y, w, "CC_Moods_Intro".Translate(), MoodView.Faint) + 10f;
+                // The groups' totals; a click goes down to the group.
+                if (r.compact != null)
+                {
+                    float ch = MoodCompact.DrawChips(0f, y, w, r.compact, state);
+                    if (ch > 0f) y += ch + 12f;
+                }
 
                 // Who's closest to breaking.
                 y += UiKit.SectionTitle(0f, y, w, "CC_Moods_Closest".Translate(), Icons.Warning, Color.white);
@@ -113,6 +145,12 @@ namespace ColonyCouncil
                 // Who is worn down (strain, Heart/).
                 if (r.heart != null) y = HeartView.DrawColony(r.heart, y, w) + 4f;
 
+                if (r.compact != null)
+                {
+                    y = MoodCompact.DrawGroups(r.compact, state, y, w, scroll.y, outRect.height, r.nothingBad);
+                    height = Mathf.Max(y + 10f, 100f);
+                    return;
+                }
                 y += UiKit.SectionTitle(0f, y, w, r.badHeader, Icons.TrendDown, MoodView.BadColor);
                 if (r.bad.Count == 0) y += UiKit.Paragraph(0f, y, w, "CC_Mood_Nothing".Translate(), MoodView.Faint) + 4f;
                 y = MoodView.DrawList(r.bad, y, w, scroll.y, outRect.height, c => c.texts, c => c.total, c => () => MoodInsight.Description(c.sample));

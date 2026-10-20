@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using HarmonyLib;
 using Verse;
 
@@ -57,7 +58,14 @@ namespace ColonyCouncil
             {
                 try
                 {
-                    harmony.CreateClassProcessor(type).Patch();
+                    var done = harmony.CreateClassProcessor(type).Patch();
+                    // Nothing patched: the class's Prepare found the game's method other than it expects and stood down.
+                    if ((done == null || done.Count == 0) && type.GetMethod("Prepare", BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic) != null)
+                    {
+                        Failed.Add(type.Name);
+                        FailedWhy[type.Name] = "skipped: the game's method isn't the one it expects in this version";
+                        continue;
+                    }
                     Applied.Add(type.Name);
                 }
                 catch (Exception e)
