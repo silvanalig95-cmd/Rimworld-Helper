@@ -47,6 +47,8 @@ namespace ColonyCouncil
                     st.x = 0f;
                     st.y = 0.27f;
                     st.maxRows = 10;
+                    // What would help shows on hover and on the hover card; beside every row it makes the board much wider.
+                    st.hidden.Add(HudMoodBoard.PartAct);
                     break;
                 case Trend:
                     st.x = 0f;

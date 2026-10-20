@@ -176,8 +176,8 @@ namespace ColonyCouncil
         /// <summary>"42%", the mood as the game shows it.</summary>
         public static string Percent(float v) => v.ToStringPercent();
 
-        /// <summary>"−8", a mood's size as a whole number with its sign.</summary>
-        public static string Signed(float v) => v >= 0f ? "+" + Mathf.RoundToInt(v) : "−" + Mathf.RoundToInt(-v);
+        /// <summary>"-8", a mood's size as a whole number with its sign.</summary>
+        public static string Signed(float v) => v >= 0f ? "+" + Mathf.RoundToInt(v) : "-" + Mathf.RoundToInt(-v);
 
         /// <summary>Two letters for the compact board: the first of each of two names, or the first two letters of one.</summary>
         public static string Initials(Pawn p)

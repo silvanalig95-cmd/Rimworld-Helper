@@ -61,7 +61,7 @@ namespace ColonyCouncil
         private float FullWidth(float s)
         {
             var st = St;
-            float w = 214f;
+            float w = 226f;
             if (!st.Shows(PartPortrait)) w -= 30f;
             if (st.Shows(PartAct)) w += 130f;
             return Mathf.Round(w * s);

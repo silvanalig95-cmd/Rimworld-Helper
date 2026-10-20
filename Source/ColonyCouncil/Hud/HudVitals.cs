@@ -98,7 +98,7 @@ namespace ColonyCouncil
             }
             if (!any) return;
             float watts = gain / CompPower.WattsToWattDaysPerTick;
-            string value = (watts >= 0f ? "+" : "−") + Mathf.Abs(watts).ToString("0") + " W";
+            string value = (watts >= 0f ? "+" : "-") + Mathf.Abs(watts).ToString("0") + " W";
             string tip = Tip("CC_Pnl_PowerTip".Translate(watts.ToString("0"), stored.ToString("0")).Resolve(), null);
             Add(PartPower, HudIcons.Power ?? Icons.Warning, HudKit.T("CC_Pnl_Power"), value, HudRank.Power(watts, stored), tip, null);
         }
