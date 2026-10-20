@@ -1977,8 +1977,8 @@ The pages:
 - **People & moods**: **life's ups and downs** (how hard the everyday pressures and setbacks press: **gentle**, half
   strength, no half-built work or the fussiest setbacks, and high standards don't make frictions sting more; **normal**, the default, a little under written strength; or **demanding**,
   half again as strong), rising standards (and whether they also cover the game's comforts), whether Rimfolk's good
-  moods add up slowly, getting used to good times, everyday frictions; the social web and social events, secrets,
-  vendettas; life goals, personal stories (off, rare, normal or frequent), quirks, heirlooms, coming of age,
+  moods add up slowly, getting used to good times, everyday frictions; the social web and social events,
+  personalities and social life, traits that change, faith in the colony (with Ideology), secrets, vendettas; life goals, personal stories (off, rare, normal or frequent), quirks, heirlooms, coming of age,
   colonists fixing what bothers them (and placing small plans), dreams and dream omens; moments between colonists,
   the colony noticing what happens, and small habits in free time; journals, names, anniversaries, annals and eulogies; and how often moments,
   social events and dreams come (a quarter as often to three times as often).
