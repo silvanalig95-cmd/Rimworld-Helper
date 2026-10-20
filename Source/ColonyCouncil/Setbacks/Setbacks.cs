@@ -142,7 +142,7 @@ namespace ColonyCouncil
             switch (group)
             {
                 case SetbackGroup.Council: return m * S.PenaltyScale * Standards.MoodFactor(p, false);
-                case SetbackGroup.Friction: return m * Pressures.Contrast(p);
+                case SetbackGroup.Friction: return m * Pressures.Letdown(p);
                 default: return Pressures.Bad(p, m);
             }
         }

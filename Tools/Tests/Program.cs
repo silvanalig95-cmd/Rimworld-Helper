@@ -205,7 +205,12 @@ Check(MeetingMath.TooFar(MeetingMath.EtaTicks(200f, 13f)), "200 cells: too far")
 Check(!MeetingMath.Late(1500) && MeetingMath.Late(1501) && !MeetingMath.TooFar(3150) && MeetingMath.TooFar(3151), "late after a third, too far after 70%");
 
 // Everyday pressures: the setting, meals, work, missing someone, crowding, half-built work and earned rewards.
-Check(PressureMath.Factor(LifePressure.Gentle) == 0.5f && PressureMath.Factor(LifePressure.Normal) == 1f && PressureMath.Factor(LifePressure.Demanding) == 1.5f, "life factor");
+Check(PressureMath.Factor(LifePressure.Gentle) == 0.5f && PressureMath.Factor(LifePressure.Normal) == 0.85f && PressureMath.Factor(LifePressure.Demanding) == 1.5f, "life factor");
+Check(PressureMath.LetdownFactor(LifePressure.Gentle) < PressureMath.LetdownFactor(LifePressure.Normal) && PressureMath.LetdownFactor(LifePressure.Normal) < PressureMath.LetdownFactor(LifePressure.Demanding) && PressureMath.LetdownFactor(LifePressure.Demanding) == 1f, "letdowns soften with the setting");
+Check(PressureMath.HardTimes(0.6f, 0.35f) == 0f && PressureMath.HardTimes(0.35f, 0.35f) == 1f && PressureMath.HardTimes(0.1f, 0.35f) == 1f
+      && Math.Abs(PressureMath.HardTimes(0.425f, 0.35f) - 0.5f) < 0.001f, "hard times: none 15 points above the break line, full at it");
+Check(PressureMath.HardTimesLetdown(0f) == 1f && PressureMath.HardTimesLetdown(1f) == 0.5f && PressureMath.HardTimesPressure(1f) == 0.75f,
+      "hard times halve small letdowns and take a quarter off pressures");
 Check(PressureMath.Scale(-1f, 0.5f) == -1f && PressureMath.Scale(-3f, 0.5f) == -1.5f && PressureMath.Scale(-2f, 1.5f) == -3f, "pressure scale, a whole point at least");
 Check(PressureMath.Scale(2f, 0.5f) == 2f && PressureMath.Scale(-2f, 0f) == 0f, "scale leaves good moods, and off is off");
 List<string> Meals(params string[] k) => new List<string>(k);
@@ -231,9 +236,10 @@ Check(PressureMath.SameWorkDay(9, 12) && !PressureMath.SameWorkDay(8, 12) && !Pr
 int streak = 0;
 foreach (bool same in new[] { true, true, true, true, true })
     streak = PressureMath.NextStreak(streak, true, same && streak > 0);
-Check(streak == 5 && PressureMath.WorkStage(streak) == 2, "five days of one kind of work: two steps");
+Check(streak == 5 && PressureMath.WorkStage(streak) == 1, "five days of one kind of work: one step");
 Check(PressureMath.NextStreak(5, true, false) == 1 && PressureMath.NextStreak(5, false, false) == 0, "other work starts again, a varied day or a day off clears it");
-Check(PressureMath.WorkStage(2) == 0 && PressureMath.WorkStage(3) == 1 && PressureMath.WorkStage(8) == 3 && PressureMath.WorkStage(30) == 3, "work steps at 3, 5 and 8 days");
+Check(PressureMath.WorkStage(3) == 0 && PressureMath.WorkStage(4) == 1 && PressureMath.WorkStage(7) == 2 && PressureMath.WorkStage(10) == 3 && PressureMath.WorkStage(30) == 3, "work steps at 4, 7 and 10 days");
+Check(PressureMath.WorkStageWithPassion(1, true) == 0 && PressureMath.WorkStageWithPassion(3, true) == 2 && PressureMath.WorkStageWithPassion(2, false) == 2 && PressureMath.WorkStageWithPassion(0, true) == 0, "a passion for the work takes a step off");
 Check(PressureMath.MissingStage(1.9f, true) == 0 && PressureMath.MissingStage(2f, true) == 1 && PressureMath.MissingStage(5f, true) == 2 && PressureMath.MissingStage(12f, true) == 3, "a partner is missed after 2, 5 and 10 days");
 Check(PressureMath.MissingStage(2.5f, false) == 0 && PressureMath.MissingStage(3f, false) == 1 && PressureMath.MissingStage(30f, false) == 2, "a friend after 3 and 8 days, two steps at most");
 Check(PressureMath.CrowdLevel(3, 4, 3, 0) == 0, "three people are never a crowd");
@@ -284,8 +290,8 @@ Check(GoodTimesMath.Comfort(-6f, 0.7f) == -6f && GoodTimesMath.Comfort(0f, 0.7f)
     Check(rises, "a bigger comfort is always felt as more");
 }
 Check(GoodTimesMath.RankFactor(0) == 1f && GoodTimesMath.RankFactor(1) == 1f, "the two biggest good moods count in full");
-Check(GoodTimesMath.RankFactor(2) == 0.5f && GoodTimesMath.RankFactor(3) == 0.35f && GoodTimesMath.RankFactor(4) == 0.25f, "then a half, 35% and a quarter");
-Check(GoodTimesMath.RankFactor(5) == 0.2f && GoodTimesMath.RankFactor(40) == 0.2f && GoodTimesMath.RankFactor(1000) == 0.2f, "every one after that a fifth, however deep");
+Check(GoodTimesMath.RankFactor(2) == 0.6f && GoodTimesMath.RankFactor(3) == 0.45f && GoodTimesMath.RankFactor(4) == 0.35f, "then 60%, 45% and 35%");
+Check(GoodTimesMath.RankFactor(5) == 0.25f && GoodTimesMath.RankFactor(40) == 0.25f && GoodTimesMath.RankFactor(1000) == 0.25f, "every one after that a quarter, however deep");
 Check(GoodTimesMath.RankFactor(-1) == 1f, "rank factor below range");
 {
     bool never = true;
@@ -293,10 +299,10 @@ Check(GoodTimesMath.RankFactor(-1) == 1f, "rank factor below range");
     Check(never, "a later good mood never counts for more than an earlier one, and never for nothing");
     // A +3 deep in the pile still shows on the Needs tab (whole numbers) as +1.
     Check(Math.Round(3f * GoodTimesMath.RankFactor(30), MidpointRounding.AwayFromZero) == 1, "a +3 joy deep in the stack still shows as +1");
-    // A dozen good moods of +3 add up to half their sum: far less than the pile, more than the old curve's +9.
+    // A dozen good moods of +3 add up to under half their sum: far less than the pile, more than the old curve's +9.
     float sum = 0f;
     for (int r = 0; r < 12; r++) sum += 3f * GoodTimesMath.RankFactor(r);
-    Check(Math.Abs(sum - 13.5f) < 0.01f, $"a dozen +3 joys count as {sum}");
+    Check(Math.Abs(sum - 15.45f) < 0.01f, $"a dozen +3 joys count as {sum}");
 }
 
 // ---------------- Room layouts (Building/TemplateLayout.cs) ----------------

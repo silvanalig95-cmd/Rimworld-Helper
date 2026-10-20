@@ -59,6 +59,9 @@ namespace Balance
         /// <summary>A camp's letters per day while it's here (help, terms, a fee, someone asking to join), and the share that ask something.</summary>
         public const float CampLettersPerDay = 0.35f, CampQuestionShare = 0.5f;
 
+        /// <summary>The game's minor-break line for most colonists (the MentalBreakThreshold stat's base).</summary>
+        public const float MinorBreak = 0.35f;
+
         /// <summary>Share of a world event's beats that come (each has its own conditions).</summary>
         public const float SituationBeatShare = 0.7f;
 
@@ -300,8 +303,10 @@ namespace Balance
                 ["Firefighting"] = 0.004f, ["CaravanTravel"] = 0.01f, ["Insects"] = 0f, ["Ashfall"] = 0f,
                 ["AfterIllness"] = 0.0012f, ["Healed"] = 0.0012f, ["AfterFight"] = 0.08f, ["Horror"] = 0.004f, ["Polluted"] = 0.01f, ["SnowGlare"] = 0.03f
             },
-            sameMeal = new[] { 0.88f, 0.12f, 0f, 0f }, sameWork = new[] { 0.82f, 0.13f, 0.05f, 0f }, crowded = new[] { 0.97f, 0.03f, 0f },
-            unfinished = new[] { 0.9f, 0.1f, 0f, 0f }, missing = new[] { 0.95f, 0.03f, 0.02f, 0f }, variedTable = 0.55f,
+            // Fine meals never count as the same meal, work streaks start at 4 days (a passion takes a step off), and
+            // only frames left standing count as unfinished: a well-run colony cooks fine meals and rotates work.
+            sameMeal = new[] { 0.94f, 0.06f, 0f, 0f }, sameWork = new[] { 0.88f, 0.09f, 0.03f, 0f }, crowded = new[] { 0.97f, 0.03f, 0f },
+            unfinished = new[] { 0.95f, 0.05f, 0f, 0f }, missing = new[] { 0.95f, 0.03f, 0.02f, 0f }, variedTable = 0.55f,
             setbackFactor = 0.6f, quietDays = 0f, researchIdle = 0f, bedroomEnvy = 0.05f, worries = 0.01f,
             nuisanceFits = 0.12f, frictionFactor = 0.7f,
             ways = new[] { 0f, 0.08f, 0.35f, 0.1f }, strain = new[] { 0.02f, 0f, 0f },
@@ -321,8 +326,8 @@ namespace Balance
                 ["Firefighting"] = 0.006f, ["CaravanTravel"] = 0.01f, ["Insects"] = 0f, ["Ashfall"] = 0f,
                 ["AfterIllness"] = 0.0015f, ["Healed"] = 0.0015f, ["AfterFight"] = 0.1f, ["Horror"] = 0.005f, ["Polluted"] = 0.02f, ["SnowGlare"] = 0.05f
             },
-            sameMeal = new[] { 0.55f, 0.32f, 0.13f, 0f }, sameWork = new[] { 0.6f, 0.25f, 0.1f, 0.05f }, crowded = new[] { 0.85f, 0.12f, 0.03f },
-            unfinished = new[] { 0.7f, 0.2f, 0.1f, 0f }, missing = new[] { 0.94f, 0.04f, 0.02f, 0f }, variedTable = 0.2f,
+            sameMeal = new[] { 0.62f, 0.28f, 0.1f, 0f }, sameWork = new[] { 0.72f, 0.18f, 0.07f, 0.03f }, crowded = new[] { 0.85f, 0.12f, 0.03f },
+            unfinished = new[] { 0.8f, 0.15f, 0.05f, 0f }, missing = new[] { 0.94f, 0.04f, 0.02f, 0f }, variedTable = 0.2f,
             setbackFactor = 1f, quietDays = 0.15f, researchIdle = 0.05f, bedroomEnvy = 0.15f, worries = 0.02f,
             nuisanceFits = 0.4f, frictionFactor = 1f,
             ways = new[] { 0.02f, 0.13f, 0.2f, 0.04f }, strain = new[] { 0.08f, 0.02f, 0f },
@@ -342,8 +347,8 @@ namespace Balance
                 ["Firefighting"] = 0.01f, ["CaravanTravel"] = 0.01f, ["Insects"] = 0f, ["Ashfall"] = 0f,
                 ["AfterIllness"] = 0.0018f, ["Healed"] = 0.0018f, ["AfterFight"] = 0.12f, ["Horror"] = 0.006f, ["Polluted"] = 0.05f, ["SnowGlare"] = 0.06f
             },
-            sameMeal = new[] { 0.35f, 0.45f, 0.2f, 0f }, sameWork = new[] { 0.4f, 0.3f, 0.2f, 0.1f }, crowded = new[] { 0.6f, 0.3f, 0.1f },
-            unfinished = new[] { 0.4f, 0.3f, 0.2f, 0.1f }, missing = new[] { 0.93f, 0.04f, 0.03f, 0f }, variedTable = 0.02f,
+            sameMeal = new[] { 0.35f, 0.45f, 0.2f, 0f }, sameWork = new[] { 0.52f, 0.27f, 0.14f, 0.07f }, crowded = new[] { 0.6f, 0.3f, 0.1f },
+            unfinished = new[] { 0.55f, 0.25f, 0.15f, 0.05f }, missing = new[] { 0.93f, 0.04f, 0.03f, 0f }, variedTable = 0.02f,
             setbackFactor = 1.6f, quietDays = 0.6f, researchIdle = 0.15f, bedroomEnvy = 0.25f, worries = 0.04f,
             nuisanceFits = 0.75f, frictionFactor = 1.5f,
             ways = new[] { 0.05f, 0.2f, 0.1f, 0f }, strain = new[] { 0.2f, 0.08f, 0.02f },

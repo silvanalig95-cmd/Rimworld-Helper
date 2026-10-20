@@ -22,7 +22,7 @@ Pressures wear on a colony that runs without care. Setbacks are what goes wrong 
           <li>Pressure | When | Mood | Spared | What helps</li>
           <li>The same meal | 6 of the last 8 meals the same kind; 10 of 12, then 12 of 12, for more | -1 to -3 | Ascetics, and fine or lavish meals; gourmands mind it a step more | Two or three kinds of meal in the bills</li>
           <li>A varied table | 3 different foods in the last 2 days | +2 | Ascetics don't notice it | Keep the mix going</li>
-          <li>The same work | 70% of a day's working hours on one kind of work, 3, 5 and 8 days running | -1 to -3 | The industrious and hard-working, children, a burning passion for that work | A second kind of work, even a few hours a day</li>
+          <li>The same work | 70% of a day's working hours on one kind of work, 4, 7 and 10 days running | -1 to -3 | The industrious and hard-working, children, a burning passion for that work; any passion for it makes it a step lighter | A second kind of work, even a few hours a day</li>
           <li>Missing someone | A partner apart for 2, 5 and 10 days; a close friend for 3 and 8 | -1 to -3 | Psychopaths and recluses don't miss friends | Being together again, shorter trips</li>
           <li>A packed room | 4 or more people in a dining or rec room with too little space, or diners short of seats | -1 to -2, for half a day | Children; recluses mind it a step more | A bigger room, more seats, meals spread over the day</li>
           <li>Half-built work | Frames untouched for 2 days in the home area | -1 to -3 | The lazy and slobs; the neat and industrious mind it a step more | Finish what's waiting, cancel the rest</li>
@@ -42,11 +42,15 @@ Only half-built frames count: 3 waiting frames are the first step, 10 the second
       <li>
         <heading>Life's ups and downs</heading>
         <table>
-          <li>Setting | Pressures | Also</li>
-          <li>Gentle | Half strength, never less than 1 | Half-built work and the fussiest setbacks aren't minded; standards don't make frictions sting more</li>
-          <li>Normal | As in the table above | Spoiled colonists feel pressures and frictions up to 40% more</li>
-          <li>Demanding | Half again as strong | As normal</li>
+          <li>Setting | Pressures | Small frictions | Also</li>
+          <li>Gentle | Half strength, never less than 1 | 70% | Half-built work and the fussiest setbacks aren't minded; standards don't make frictions sting more</li>
+          <li>Normal | 85% of the table above, never less than 1 | 85% | Spoiled colonists feel pressures and frictions up to 40% more</li>
+          <li>Demanding | Half again as strong | As written | As normal</li>
         </table>
+      </li>
+      <li>
+        <heading>Hard times</heading>
+        <text>People go easier on someone who is struggling. As a colonist's mood nears the line where they could break, Rimfolk's own small letdowns (a joke that fell flat, being talked about, a bad moment at the table, a sticking door) weigh less, down to half at the line, and its pressures down to three quarters. It starts 15 points above their minor-break line and goes back to normal as they recover, so it steadies a bad stretch without hiding what's wrong: the pressures still say what to fix. Low spirits also bring nightmares only a little more often, and sweet dreams as often as ever.</text>
       </li>
       <li>
         <heading>Standards and the heart</heading>

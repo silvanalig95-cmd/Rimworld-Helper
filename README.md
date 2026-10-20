@@ -217,9 +217,9 @@ turns it off.
 
 **Good moods add up slowly.** Every good mood Rimfolk gives a colonist shares one budget: a wish granted, a wedding,
 a dilemma that went their way, a reunion, a feast. The two biggest on a colonist's mind count in full, the third
-half, the fourth 35%, the fifth a quarter and every one after that a fifth, so a small joy adds little on top of a
+60%, the fourth 45%, the fifth 35% and every one after that a quarter, so a small joy adds little on top of a
 wish just granted, but it never disappears: every good mood stays on the Needs tab at what it counts for now (a +3
-deep in the pile shows as +1), and its tooltip says so ("+0.6 instead of +3"). Bad moods aren't part of it, and
+deep in the pile shows as +1), and its tooltip says so ("+0.8 instead of +3"). Bad moods aren't part of it, and
 neither is anything the game and other mods give (high standards take their own share of those, see above). The
 reward strength setting and rising standards apply to Rimfolk's good moods too. The *good moods add up slowly*
 setting turns this off.
@@ -283,8 +283,9 @@ as moods while their cause lasts, each saying what caused it, with what helps in
   can cook only one kind feels it least; ascetics don't mind, gourmands mind it more, and fine or lavish meals never
   count. Three different foods in two
   days make **a varied table** (+2).
-- **the same work for days**: most of each day on one kind of work, 3, 5 and 8 days running (-1 to -3). The
-  industrious and hard-working, children and anyone with a burning passion for that work don't mind.
+- **the same work for days**: most of each day on one kind of work, 4, 7 and 10 days running (-1 to -3). The
+  industrious and hard-working, children and anyone with a burning passion for that work don't mind, and any passion
+  for it makes it a step lighter.
 - **missing someone**: a partner apart for 2, 5 and 10 days, or a close friend for 3 and 8 (-1 to -3). The
   homecoming is already celebrated when they're back.
 - **a packed room**: a dining or rec room with too little space per person, or diners short of seats (-1 to -2, for
@@ -294,8 +295,11 @@ as moods while their cause lasts, each saying what caused it, with what helps in
 
 None of them is a flat penalty: a second meal bill, a second job in the Work tab or a bigger dining room makes them go
 away. They feed the heart's feelings (loneliness, restlessness, frustration, contentment). The **Life's ups and
-downs** setting makes them gentle (half strength, no half-built work), normal or demanding (half again as strong).
-Meals are noted through one of the deeper game hooks. The Almanac's *everyday pressures* page has the details.
+downs** setting makes them gentle (half strength, no half-built work), normal (85%) or demanding (half again as
+strong), and softens the colony's small frictions too (70% on gentle, 85% on normal). **Hard times**: as a colonist
+nears breaking, Rimfolk's small letdowns weigh less (down to half at their minor-break line) and its pressures down to
+three quarters, easing back to normal as they recover. Meals are noted through one of the deeper game hooks. The
+Almanac's *everyday pressures* page has the details.
 
 **Setbacks.** The other side of all the small rewards: about forty bad moods that come from what actually happens in
 play, each naming its cause in its tooltip and, in the Mood tab, what helps. Most are -1 to -4 for a day or a few; the
@@ -1944,7 +1948,7 @@ The pages:
   petitions; dilemmas (and how often), decree requests, the colony's character and offices; the meeting interval,
   ambition deadlines, and whether meetings call people from their work.
 - **People & moods**: **life's ups and downs** (how hard the everyday pressures and setbacks press: **gentle**, half
-  strength, no half-built work or the fussiest setbacks, and high standards don't make frictions sting more; **normal**, the default; or **demanding**,
+  strength, no half-built work or the fussiest setbacks, and high standards don't make frictions sting more; **normal**, the default, a little under written strength; or **demanding**,
   half again as strong), rising standards (and whether they also cover the game's comforts), whether Rimfolk's good
   moods add up slowly, getting used to good times, everyday frictions; the social web and social events, secrets,
   vendettas; life goals, personal stories (off, rare, normal or frequent), quirks, heirlooms, coming of age,

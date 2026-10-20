@@ -20,8 +20,34 @@ namespace ColonyCouncil
     {
         // ---------------- The setting ----------------
 
-        /// <summary>Gentle halves the pressures, demanding makes them half again as strong.</summary>
-        public static float Factor(LifePressure mode) => mode == LifePressure.Gentle ? 0.5f : mode == LifePressure.Demanding ? 1.5f : 1f;
+        /// <summary>Gentle halves the pressures, normal takes a little off their written strength, demanding makes them half again as strong.</summary>
+        public static float Factor(LifePressure mode) => mode == LifePressure.Gentle ? 0.5f : mode == LifePressure.Demanding ? 1.5f : 0.85f;
+
+        /// <summary>
+        /// The small letdowns between people that the council never gave (a joke that fell flat, a remark overheard, a
+        /// bad moment at the table): softer on gentle and normal, as written on demanding.
+        /// </summary>
+        public static float LetdownFactor(LifePressure mode) => mode == LifePressure.Gentle ? 0.7f : mode == LifePressure.Demanding ? 1f : 0.85f;
+
+        /// <summary>How far above their minor-break line someone has to be before hard times stop easing what Rimfolk adds.</summary>
+        public const float HardTimesBand = 0.15f;
+
+        /// <summary>
+        /// Hard times, 0 to 1: 0 from <see cref="HardTimesBand"/> above the colonist's minor-break line up, 1 at the line
+        /// and below, in between on a straight line. People go easier on someone who is struggling, so Rimfolk's own
+        /// letdowns and pressures weigh less the nearer they are to breaking, and come back as they recover.
+        /// </summary>
+        public static float HardTimes(float mood, float minorBreak)
+        {
+            float t = (minorBreak + HardTimesBand - mood) / HardTimesBand;
+            return t <= 0f ? 0f : t >= 1f ? 1f : t;
+        }
+
+        /// <summary>A small letdown in hard times: down to half at the break line.</summary>
+        public static float HardTimesLetdown(float hard) => 1f - 0.5f * hard;
+
+        /// <summary>A pressure in hard times: down to three quarters at the break line (it still says what to fix).</summary>
+        public static float HardTimesPressure(float hard) => 1f - 0.25f * hard;
 
         /// <summary>
         /// A pressure's mood at a given strength (the setting times the colonist's standards). A pressure that shows is
@@ -139,8 +165,11 @@ namespace ColonyCouncil
             return sameKindAsBefore ? streak + 1 : 1;
         }
 
-        /// <summary>Three days running is one step, five two, eight three.</summary>
-        public static int WorkStage(int streakDays) => streakDays >= 8 ? 3 : streakDays >= 5 ? 2 : streakDays >= 3 ? 1 : 0;
+        /// <summary>Four days running is one step, seven two, ten three.</summary>
+        public static int WorkStage(int streakDays) => streakDays >= 10 ? 3 : streakDays >= 7 ? 2 : streakDays >= 4 ? 1 : 0;
+
+        /// <summary>A passion for the work, short of a burning one, takes it a step lighter.</summary>
+        public static int WorkStageWithPassion(int stage, bool passion) => passion && stage > 0 ? stage - 1 : stage;
 
         // ---------------- Missing someone ----------------
 

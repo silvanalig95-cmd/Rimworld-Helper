@@ -1161,6 +1161,22 @@ ailment where it was, the catching clock went from 30 to 35 days, a few of the c
 480 runs an average colony of six went from 16.8% to about 17% of its time with an ailment, with Rimfolk's mood within
 a tenth or two of a point.
 
+**Easing, step one** (October 2026, after a player found mood too hard to keep up, much of it from things they couldn't
+prevent and a colony of five faiths). Small steps, one at a time, measured each time:
+- Normal life's ups and downs presses at 85% (`PressureMath.Factor`), and the colony's small letdowns that the council
+  never gave (moments' frictions, nuisances) at 85% on normal and 70% on gentle (`LetdownFactor`, via
+  `Pressures.Letdown`). The "never less than a whole point" floor still holds for pressures and setbacks.
+- **Hard times** (`PressureMath.HardTimes`): from 15 points above a colonist's minor-break line down to the line,
+  small letdowns ease to half and pressures to three quarters, and come back as they recover. It is read when the
+  mood is felt, so nothing is stored and nothing lingers. Nightmares at low mood went from twice as likely to a
+  quarter more, and low mood no longer makes sweet dreams rarer: neither should feed a bad stretch.
+- The good-mood budget counts the third to fifth good moods at 60%, 45% and 35% (was 50%, 35%, 25%), and every one
+  after at a quarter (was a fifth).
+- The same work starts to wear at 4, 7 and 10 days (was 3, 5 and 8), a step lighter with any passion for it; fine and
+  lavish meals never count as the same meal; "the favorite" needs a request of one's own still waiting.
+- Measured (6 colonists): well run +3.1 to +3.5, average 0.0 to +0.7, neglected -10.9 to -8.9. The rates for the
+  same work and meal in `Rates.cs` were lowered to match the new rules (they are assumptions, not read from code).
+
 **The presets** each aim at their own balance: Light touch about +5, +4 and 0 (well run, average, neglected) with
 fewer questions; Story-rich the default's moods with a question a little more often than every two days; Demanding
 about 0, -4 and -18. Each preset's tooltip says so.

@@ -33,8 +33,21 @@ namespace ColonyCouncil
         /// </summary>
         public static float Contrast(Pawn p) => Gentle || p == null ? 1f : Standards.MoodFactor(p, false);
 
+        /// <summary>A small letdown the council never gave (a moment, a friction) as it's felt: the setting's softening, the contrast and hard times.</summary>
+        public static float Letdown(Pawn p) =>
+            (S == null ? 1f : PressureMath.LetdownFactor(S.lifePressure)) * Contrast(p) * PressureMath.HardTimesLetdown(Hard(p));
+
+        /// <summary>How near breaking someone is, 0 to 1 (<see cref="PressureMath.HardTimes"/>).</summary>
+        public static float Hard(Pawn p)
+        {
+            var mood = p?.needs?.mood;
+            var breaker = p?.mindState?.mentalBreaker;
+            if (mood == null || breaker == null) return 0f;
+            return PressureMath.HardTimes(mood.CurLevelPercentage, breaker.BreakThresholdMinor);
+        }
+
         /// <summary>A pressure's bad mood: the setting and the colonist's standards, never less than a whole point.</summary>
-        public static float Bad(Pawn p, float offset) => PressureMath.Scale(offset, LifeFactor * Contrast(p));
+        public static float Bad(Pawn p, float offset) => PressureMath.Scale(offset, LifeFactor * Contrast(p) * PressureMath.HardTimesPressure(Hard(p)));
 
         public static PressureTracker Tracker => CouncilGameComponent.Instance?.pressures;
 
@@ -89,6 +102,16 @@ namespace ColonyCouncil
             if (work?.relevantSkills == null || p.skills == null) return false;
             foreach (var s in work.relevantSkills)
                 if (s != null && People.Burning(p.skills.GetSkill(s)))
+                    return true;
+            return false;
+        }
+
+        /// <summary>Any passion for one of the work's skills (a burning one spares them altogether: <see cref="SparedSameWork"/>).</summary>
+        public static bool PassionFor(Pawn p, WorkTypeDef work)
+        {
+            if (work?.relevantSkills == null || p?.skills == null) return false;
+            foreach (var s in work.relevantSkills)
+                if (s != null && People.Passionate(p.skills.GetSkill(s)))
                     return true;
             return false;
         }
@@ -550,6 +573,7 @@ namespace ColonyCouncil
             {
                 var work = DefDatabase<WorkTypeDef>.GetNamedSilentFail(rec.streakWork ?? "");
                 if (rec.pawn == null || Pressures.SparedSameWork(rec.pawn, work)) stage = 0;
+                else stage = PressureMath.WorkStageWithPassion(stage, Pressures.PassionFor(rec.pawn, work));
             }
             rec.workStage = stage;
         }

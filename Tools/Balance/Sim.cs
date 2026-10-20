@@ -272,6 +272,9 @@ namespace Balance
         private float LiveScale(Colonist c) => set.RewardFactor * (1f - 0.5f * c.standards);
         private float BadScale(Colonist c) => 1f + 0.4f * c.standards;
 
+        /// <summary>How near breaking (PressureMath.HardTimes), with the game's usual minor-break line.</summary>
+        private static float Hard(Colonist c) => PressureMath.HardTimes(c.mood, Rates.MinorBreak);
+
         // ---------------- Moods ----------------
 
         /// <summary>CouncilGameComponent.GiveThought: rewards and penalties, scaled by the settings and the colonist's standards.</summary>
@@ -343,7 +346,7 @@ namespace Balance
                     break;
                 case "Friction":
                     if (!set.B("frictions")) return;
-                    factor = 1f;
+                    factor = PressureMath.LetdownFactor(set.Life) * PressureMath.HardTimesLetdown(Hard(c));
                     break;
                 default:
                     if (t.notGentle && set.Life == LifePressure.Gentle) return;
@@ -379,7 +382,7 @@ namespace Balance
             if (stage <= 0) return 0f;
             var t = defs.T(thought);
             if (t == null) return 0f;
-            return PressureMath.Scale(t.Stage(stage - 1), PressureMath.Factor(set.Life) * BadScale(c));
+            return PressureMath.Scale(t.Stage(stage - 1), PressureMath.Factor(set.Life) * BadScale(c) * PressureMath.HardTimesPressure(Hard(c)));
         }
 
         private float SetbackSituational(string thought, int stage, Colonist c)
@@ -387,7 +390,9 @@ namespace Balance
             var t = defs.T(thought);
             if (t == null || !set.MoodEffects) return 0f;
             string group = t.setbackGroup ?? "Life";
-            float factor = group == "Council" ? set.PenaltyScale : group == "Friction" ? (set.B("frictions") ? 1f : 0f) : PressureMath.Factor(set.Life);
+            float factor = group == "Council" ? set.PenaltyScale
+                : group == "Friction" ? (set.B("frictions") ? PressureMath.LetdownFactor(set.Life) * PressureMath.HardTimesLetdown(Hard(c)) : 0f)
+                : PressureMath.Factor(set.Life) * PressureMath.HardTimesPressure(Hard(c));
             if (factor <= 0f) return 0f;
             float own = t.Stage(stage);
             return own * SetbackMath.AtLeastOnePoint(own, factor * BadScale(c));
@@ -1185,7 +1190,7 @@ namespace Balance
             var t = defs.T(thought);
             if (t == null || t.Situational || t.rewardInstead || !set.MoodEffects) return;
             float own = t.First;
-            AddMemory(c, t, own > 0f ? own * LiveScale(c) : own);
+            AddMemory(c, t, own > 0f ? own * LiveScale(c) : own * PressureMath.LetdownFactor(set.Life) * BadScale(c) * PressureMath.HardTimesLetdown(Hard(c)));
         }
 
         private void Nuisances()
@@ -1214,7 +1219,7 @@ namespace Balance
             {
                 if (hour - c.lastDream < Code.DreamGapHours || !Chance(Math.Min(0.95f, Code.DreamChance * set.F("dreamFrequency", 1f)))) continue;
                 c.lastDream = hour;
-                var d = Weighted(defs.dreams, x => x.weight * x.gate * (x.aboutEvents ? 4f : 1f) * (x.dreamKind == "Nightmare" ? (c.mood < 0.35f ? 3f : c.mood < 0.5f ? 1.5f : 0.7f) : 1f));
+                var d = Weighted(defs.dreams, x => x.weight * x.gate * (x.aboutEvents ? 4f : 1f) * (x.dreamKind == "Nightmare" ? (c.mood < 0.35f ? 1.9f : c.mood < 0.5f ? 1.5f : 0.7f) : 1f));
                 if (d == null) continue;
                 Count("dreams");
                 var t = defs.T("Council_Dream_" + (d.dreamKind ?? "Sweet"));

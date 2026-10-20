@@ -109,7 +109,7 @@ namespace Balance
             // ---------------- Mood ----------------
             sb.AppendLine("## Rimfolk's mood per colonist");
             sb.AppendLine();
-            sb.AppendLine("Good memories are what they count for after the shared budget (the two biggest in full, then 50%, 35%, 25%, 20%)");
+            sb.AppendLine("Good memories are what they count for after the shared budget (the two biggest in full, then 60%, 45%, 35%, 25%)");
             sb.AppendLine("and fading sooner above 75% mood; \"raw\" is the same memories without the budget. Steady moods are trust, the");
             sb.AppendLine("colony's ways, pressures, ailments, waiting and strain. P10 and P90: a hard and a good moment for one colonist.");
             sb.AppendLine();

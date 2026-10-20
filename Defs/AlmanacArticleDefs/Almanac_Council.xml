@@ -128,12 +128,12 @@ The "Good times" line in a colonist's Mood tab says what these rules take off ri
         <table>
           <li>Place, biggest first | Counts for</li>
           <li>First and second | In full</li>
-          <li>Third | Half</li>
-          <li>Fourth | 35%</li>
-          <li>Fifth | A quarter</li>
-          <li>Sixth and after | A fifth</li>
+          <li>Third | 60%</li>
+          <li>Fourth | 45%</li>
+          <li>Fifth | 35%</li>
+          <li>Sixth and after | A quarter</li>
         </table>
-        <after>Nothing is hidden: every good mood stays on the Needs tab at what it counts for now, so a +3 deep in the pile still shows as +1, and its tooltip says "+0.6 instead of +3". Bad moods, and the good moods of the game and other mods, aren't part of it. The "Good moods add up slowly" setting turns this off.</after>
+        <after>Nothing is hidden: every good mood stays on the Needs tab at what it counts for now, so a +3 deep in the pile still shows as +1, and its tooltip says "+0.8 instead of +3". Bad moods, and the good moods of the game and other mods, aren't part of it. The "Good moods add up slowly" setting turns this off.</after>
       </li>
       <li>
         <heading>Good moments that aren't moods</heading>

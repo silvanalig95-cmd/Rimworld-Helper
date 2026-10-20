@@ -379,8 +379,9 @@ namespace ColonyCouncil
             else if (def.AboutNow) w *= 1.5f + 1.5f * feeling;
             else if (def.about != DreamAbout.None) w *= 1.5f;
             float mood = p.needs.mood.CurLevelPercentage;
-            if (def.kind == DreamKind.Nightmare) w *= mood < 0.35f ? 2f : mood > 0.75f ? 0.6f : 1f;
-            if (def.kind == DreamKind.Sweet) w *= mood > 0.7f ? 1.5f : mood < 0.3f ? 0.6f : 1f;
+            // Low spirits colour the night a little, never so much that a bad stretch feeds itself.
+            if (def.kind == DreamKind.Nightmare) w *= mood < 0.35f ? 1.25f : mood > 0.75f ? 0.6f : 1f;
+            if (def.kind == DreamKind.Sweet) w *= mood > 0.7f ? 1.5f : 1f;
             if (def.kind == DreamKind.Nightmare && Nerves(p) < 0) w *= 1.5f;
             // Strain turns dreams to nightmares; feelings color them (Heart/).
             w *= Heart.DreamFactor(p, def.kind);

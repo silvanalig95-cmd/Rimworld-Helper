@@ -439,18 +439,30 @@ namespace ColonyCouncil
                     else if (opinion >= 30) chance *= 0.25f;
                     if (Rand.Chance(Mathf.Clamp01(chance * pen)))
                     {
-                        GiveThought(p, CouncilDefOf.Council_Favoritism, who, pen);
-                        if (waitedLonger)
+                        // Feeling passed over needs a request of their own still waiting; the jealous or greedy without
+                        // one ask for the same instead, and anyone else just hears the news.
+                        if (own == null)
                         {
-                            standings.Change(p, -4f * Gentleness(p), "CC_Log_PassedOver".Translate(who.LabelShort));
-                            passedOver++;
-                            social.Bump(p, who, TieKind.Rivals, 4f, "CC_TieNote_PassedOver".Translate(w.Label));
-                            string grumble = Flavor.FromPool("Council_Pool_PassedOver", p, own);
-                            if (grumble != null)
-                                Speak(p, grumble.Formatted(p.Named("PAWN"), who.Named("OTHER"), w.Label.Named("WISH"), own.Label.Named("MINE")).Resolve(), SpeechSour);
+                            if ((jealous || greedy) && envious == null && w.def.meToo)
+                            {
+                                envious = p;
+                                continue;
+                            }
                         }
-                        if ((jealous || greedy) && envious == null && w.def.meToo && own == null) envious = p;
-                        continue;
+                        else
+                        {
+                            GiveThought(p, CouncilDefOf.Council_Favoritism, who, pen);
+                            if (waitedLonger)
+                            {
+                                standings.Change(p, -4f * Gentleness(p), "CC_Log_PassedOver".Translate(who.LabelShort));
+                                passedOver++;
+                                social.Bump(p, who, TieKind.Rivals, 4f, "CC_TieNote_PassedOver".Translate(w.Label));
+                                string grumble = Flavor.FromPool("Council_Pool_PassedOver", p, own);
+                                if (grumble != null)
+                                    Speak(p, grumble.Formatted(p.Named("PAWN"), who.Named("OTHER"), w.Label.Named("WISH"), own.Label.Named("MINE")).Resolve(), SpeechSour);
+                            }
+                            continue;
+                        }
                     }
                 }
                 if (opinion >= 30 && Rand.Chance(0.5f)) GiveThought(p, CouncilDefOf.Council_HappyForThem, who);
