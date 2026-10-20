@@ -194,15 +194,16 @@ namespace ColonyCouncil
         /// <summary>
         /// Far enough from every one of the colony's homes that the game doesn't hold the town's nearness against the
         /// colony (it takes goodwill every quadrum from a colony settled close to a people's town, and that can end in war).
+        /// Straight-line only, with a margin: this runs inside the tile search's flood fill, and asking the world for a
+        /// walking distance here starts a second flood fill inside the first, which hangs the game.
         /// </summary>
         private static bool ClearOfColony(PlanetTile t)
         {
-            int max = SettlementProximityGoodwillUtility.MaxDist;
+            float near = SettlementProximityGoodwillUtility.MaxDist + 1.5f;
             foreach (var home in Find.WorldObjects.Settlements)
             {
                 if (home.Faction != Faction.OfPlayer || home.Tile.Layer != t.Layer) continue;
-                if (Find.WorldGrid.ApproxDistanceInTiles(t, home.Tile) > max + 2f) continue;
-                if (Find.WorldGrid.TraversalDistanceBetween(t, home.Tile, true, max + 1) <= max) return false;
+                if (Find.WorldGrid.ApproxDistanceInTiles(t, home.Tile) <= near) return false;
             }
             return true;
         }
