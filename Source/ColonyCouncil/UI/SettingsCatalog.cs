@@ -380,7 +380,7 @@ namespace ColonyCouncil
             // The on-screen panels and the hover card (Hud/): the same switches as the panels' own menus.
             Section("CC_SetSec_Panels");
             Toggle("hudShown", "CC_Settings_HudShown", "CC_SetNote_HudShown");
-            Action("hudPanelOptions", "CC_Settings_HudPanelOptions", "CC_Settings_HudPanelOptions_Tip", "CC_SetNote_HudPanelOptions", "hudShown");
+            Action("hudPanelOptions", "CC_Settings_HudPanelOptions", null, "CC_SetNote_HudPanelOptions", "hudShown");
             Toggle("hudLock", "CC_Settings_HudLock", "CC_SetNote_HudLock", "hudShown");
             Toggle("hudHideWithTabs", "CC_Settings_HudHideWithTabs", "CC_SetNote_HudHideWithTabs", "hudShown");
             Toggle("hudHideOnWorld", "CC_Settings_HudHideOnWorld", "CC_SetNote_HudHideOnWorld", "hudShown");
@@ -389,7 +389,7 @@ namespace ColonyCouncil
             Slider("hudMoodMargin", "CC_Settings_HudMoodMargin", "CC_SetNote_HudMoodMargin", 0f, 0.2f, 0.01f, "%", "hudShown");
             Slider("hudFoodWarnDays", "CC_Settings_HudFoodWarn", "CC_SetNote_HudFoodWarn", 2f, 30f, 1f, "0", "hudShown");
             Slider("hudFoodBadDays", "CC_Settings_HudFoodBad", "CC_SetNote_HudFoodBad", 1f, 15f, 1f, "0", "hudShown");
-            Action("hudReset", "CC_Settings_HudReset", "CC_Settings_HudReset_Tip", "CC_SetNote_HudReset");
+            Action("hudReset", "CC_Settings_HudReset", null, "CC_SetNote_HudReset");
             Section("CC_SetSec_HoverCard");
             Toggle("hoverCard", "CC_Settings_HoverCard", "CC_SetNote_HoverCard");
             Slider("hoverDelay", "CC_Settings_HoverDelay", "CC_SetNote_HoverDelay", 0f, 2f, 0.1f, "0.0", "hoverCard");

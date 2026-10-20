@@ -177,7 +177,6 @@
   <CC_Settings_HudShown_Tip>Small panels on the map beside the game's own: the mood board, the mood trend, the colony's vitals and the council at a glance. Show or hide them all with the button by the play settings (bottom right), or with a key you pick in Options, Keyboard, Rimfolk.</CC_Settings_HudShown_Tip>
   <CC_SetNote_HudShown>Moods, the trend, the vitals and the council on the map; move them by their top bar.</CC_SetNote_HudShown>
   <CC_Settings_HudPanelOptions>Each panel's options</CC_Settings_HudPanelOptions>
-  <CC_Settings_HudPanelOptions_Tip>What each panel shows, its order, whom it lists, its size and background: the same as the gear on its bar.</CC_Settings_HudPanelOptions_Tip>
   <CC_SetNote_HudPanelOptions>Rows and columns, order, whom it lists, rows before "and more", size and background.</CC_SetNote_HudPanelOptions>
   <CC_Settings_HudLock>Lock their places</CC_Settings_HudLock>
   <CC_Settings_HudLock_Tip>The panels can't be dragged by accident. "Arrange the panels" in their menu still moves them.</CC_Settings_HudLock_Tip>
