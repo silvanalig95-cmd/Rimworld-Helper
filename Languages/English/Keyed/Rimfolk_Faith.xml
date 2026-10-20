@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Faith in the colony (Source/ColonyCouncil/Faith/), with Ideology. -->
+  <CC_Settings_FaithLife>Faith in the colony</CC_Settings_FaithLife>
+  <CC_Settings_FaithLife_Tip>With Ideology: how firmly each colonist holds their faith comes into Rimfolk's life. Talks about faith can move a listener's certainty, the council can call an evening of faith or decree one faith for the colony, a hard turn of life can shake someone's faith, and a page shows who believes what and how firmly. Conversions are always the game's own: someone takes a new faith when their certainty runs out.</CC_Settings_FaithLife_Tip>
+  <CC_SetNote_FaithLife>Talks, rites and hard times can move a colonist's faith (Ideology).</CC_SetNote_FaithLife>
+
+  <!-- Someone took a new faith through something Rimfolk did (a talk, an evening of faith, a decree). -->
+  <CC_Faith_Converted>{PAWN_nameDef} has taken up {FAITH}, leaving {OLD} behind.</CC_Faith_Converted>
+  <CC_Faith_ConvertedBy>{PAWN_nameDef} has taken up {FAITH}, leaving {OLD} behind. {OTHER_nameDef} brought {PAWN_objective} round.</CC_Faith_ConvertedBy>
+
+</LanguageData>

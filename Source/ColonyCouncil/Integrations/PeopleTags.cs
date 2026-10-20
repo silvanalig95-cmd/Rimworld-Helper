@@ -191,6 +191,8 @@ namespace ColonyCouncil
             Persona.AddTags(p, tags);
             // Their groups: group:ID, grouprole:joker, ingroup, outsider... (Social/Groups/).
             ColonyCouncil.Groups.AddTags(p, tags);
+            // Their faith in the colony: faith:devout, faith:wavering, faith:minority... (Faith/).
+            Faiths.AddTags(p, tags);
             foreach (var g in Groups)
             {
                 if (g.tag.NullOrEmpty() || tags.Contains(g.tag)) continue;
