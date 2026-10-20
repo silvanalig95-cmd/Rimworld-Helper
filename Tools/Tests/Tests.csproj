@@ -40,6 +40,7 @@
     <Compile Include="../../Source/ColonyCouncil/Social/TogetherMath.cs" Link="TogetherMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Persona/PersonaMath.cs" Link="PersonaMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Faith/FaithMath.cs" Link="FaithMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Faith/FaithPeopleMath.cs" Link="FaithPeopleMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Social/Talk/TalkMath.cs" Link="TalkMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Social/Talk/ExchangeQueue.cs" Link="ExchangeQueue.cs" />
     <Compile Include="../../Source/ColonyCouncil/Persona/MarksMath.cs" Link="MarksMath.cs" />

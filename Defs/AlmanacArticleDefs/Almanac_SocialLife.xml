@@ -10,7 +10,9 @@
     <order>8</order>
     <summary>How character, conversations and shared memories, groups, and reputation and gossip work as one, with two colonists followed through a year.</summary>
     <tip>Start with a colonist's character page in the Story tab: every part of their social life has a section there, in this order.</tip>
-    <description>With "Personalities and social life" on (it is by default), colonists' social lives come from four parts that read and feed each other: their character, the conversations they have and the memories they share, the groups they drift into, and what people say about them. Each part has its own page; this one is about how they fit. Turned off, all four stop together: nothing new is said or kept, the colony goes back to the simpler circles of friends, and the character page shows only each colonist's nature.</description>
+    <description>With "Personalities and social life" on (it is by default), colonists' social lives come from four parts that read and feed each other: their character, the conversations they have and the memories they share, the groups they drift into, and what people say about them. Each part has its own page; this one is about how they fit. Turned off, all four stop together: nothing new is said or kept, the colony goes back to the simpler circles of friends, and the character page shows only each colonist's nature.
+
+With Ideology, faith runs through all four: a talk about faith can sway someone of another faith or steady one of the same, a hard turn of life can shake a colonist's faith and becomes one of the marks that shaped them, and People → Faiths shows who believes what and how firmly (see "faith in the colony").</description>
     <sections>
       <li>
         <heading>The four parts</heading>
@@ -55,7 +57,7 @@
       </li>
     </sections>
     <keywords><li>social life</li><li>personality</li><li>social</li><li>how it fits</li><li>overview</li><li>character page</li><li>talk rate</li></keywords>
-    <seeAlso><li>Council_Alm_C_Character</li><li>Council_Alm_C_Marks</li><li>Council_Alm_C_TraitChanges</li><li>Council_Alm_C_Talk</li><li>Council_Alm_C_SharedMemories</li><li>Council_Alm_C_Groups</li><li>Council_Alm_C_GroupRoles</li><li>Rimfolk_Alm_C_Gossip</li><li>Rimfolk_Alm_C_Reputation</li></seeAlso>
+    <seeAlso><li>Council_Alm_C_Character</li><li>Council_Alm_C_Marks</li><li>Council_Alm_C_TraitChanges</li><li>Council_Alm_C_Talk</li><li>Council_Alm_C_SharedMemories</li><li>Council_Alm_C_Groups</li><li>Council_Alm_C_GroupRoles</li><li>Rimfolk_Alm_C_Gossip</li><li>Rimfolk_Alm_C_Reputation</li><li>Rimfolk_Alm_C_Faith</li></seeAlso>
   </ColonyCouncil.AlmanacArticleDef>
 
 </Defs>

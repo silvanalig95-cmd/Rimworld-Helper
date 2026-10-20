@@ -58,6 +58,7 @@ namespace ColonyCouncil
                 case 10: return Icons.People;
                 case 20: return Icons.Journal;
                 case 30: return Icons.Council;
+                case 35: return Icons.CatIdeology ?? Icons.People;
                 case 40: return Icons.Heart;
                 case 50: return Icons.Bonds;
                 case 60: return Icons.Chronicle;

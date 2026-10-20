@@ -225,6 +225,10 @@ MODEL = {
     "Persona/Marks.cs:fights": ("colonists", 8, V, "the last 8 fights won per person, a year at most"),
     "Persona/Marks.cs:addictions": ("colonists", 0.3, 40, "the addictions they have now"),
     "Persona/Marks.cs:once": ("known", 0.3, 40, "skills mastered; known pawns only, 800 at most"),
+    # Faith among the colony's people (a colonist's faith moments, a faith's demands watched, crises waiting to be felt)
+    "Faith/FaithPeople.cs:people": ("colonists", 1, 160, "one per colonist whose faith moved or is watched; known pawns only, empty records dropped daily and at saving"),
+    "Faith/FaithPeople.cs:notes": ("fixed", const("Faith/FaithPeopleMath.cs", "MaxNotes", 5), 170, "per colonist: the newest faith moments, 120 days at most (counted under people)"),
+    "Faith/FaithPeople.cs:waiting": ("cap", (COLONISTS, 0.15), 140, "crises waiting to be felt: one per kind per colonist, let go after 6 days"),
     # A person's record (sides moved, marks, views) and what pairs went through together
     "Persona/PersonaTracker.cs:list": ("known", 0.6, 100 + 2 * C["PersonaAxes"] * V + C["PersonaMarks"] * 0.6 * 200 + 20 * 70,
                                        "the colony's own people the game still knows; empty records dropped at saving"),

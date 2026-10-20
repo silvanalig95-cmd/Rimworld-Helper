@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    A believer whose faith frowns on preaching, preached at in a talk about faith by someone of another faith
+    (Source/ColonyCouncil/Faith/FaithTalk.cs): a small opinion of the preacher, no mood. Uses the talk's own base
+    (Rimfolk_Thoughts_Talk.xml).
+  -->
+
+  <ThoughtDef ParentName="Rimfolk_TalkThoughtBase">
+    <defName>Rimfolk_Faith_PreachedAt</defName>
+    <durationDays>4</durationDays>
+    <stackLimitForSameOtherPawn>2</stackLimitForSameOtherPawn>
+    <stages><li><label>preached at me</label><description>They pressed their faith on me. Where I come from, nobody does that to anyone.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>-5</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+</Defs>

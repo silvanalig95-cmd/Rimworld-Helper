@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Talks about faith that matter (Source/ColonyCouncil/Faith/FaithTalk.cs, with Ideology and "Faith in the colony" on):
+    lines that show what the talk does to their faith, beside the faith topic's own (Rimfolk_Talk_Lines_Mind.xml).
+    Tags, besides the talk's (agree, debate, argue, for, against, sameideo, otherideo, friends...) and the speaker's own
+    (faith:devout, faith:wavering, faith:majority, faith:minority, faith:alone):
+      [persuading]  the speaker is the devout one whose word sways the other this time
+      [persuaded]   the speaker is being swayed, and it shows; [unmoved] swayed a little, and keeping it to themselves
+      [preachedat]  the speaker's faith frowns on preaching, and they're being preached at
+      [digin]       a heated argument across faiths: both hold on tighter
+      [steadied]    two of one faith steadying each other
+      [otherfaith:devout], [otherfaith:wavering]  the other's faith, as the speaker sees it
+      [myfaith], [theirfaith]  whose faith {SUBJECT} is (the first speaker's: theirs when they open and close, the other's in a reply)
+      [nopreaching] the speaker's own faith frowns on preaching
+    The first speaker opens and closes, the other replies and has the last word. One sentence each, as all talk lines.
+  -->
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_FaithMoves_Open</defName>
+    <topic>Rimfolk_Topic_Faith</topic>
+    <turn>Open</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[persuading,otherfaith:wavering] You've seemed unsettled lately, and I know that feeling well.</li>
+        <li>[persuading,otherfaith:wavering] You don't have to carry your doubts alone, you know.</li>
+        <li>[persuading,myfaith] Can I tell you what {SUBJECT} means to me, just so you know?</li>
+        <li>[persuading,myfaith] {SUBJECT} has never once let me down, and I've tested it.</li>
+        <li>[persuading,friends] We've been through a lot together, so I'd like you to know what I believe.</li>
+        <li>[persuading] I'd like to tell you why I believe what I do, and you can laugh after.</li>
+        <li>[persuading,debate] Go on, give me your best argument, I've heard most of them.</li>
+        <li>[faith:wavering] I used to be so sure of it all, and lately I can't find my footing.</li>
+        <li>[faith:wavering,otherideo] How do you stay so certain, honestly?</li>
+        <li>[faith:wavering,sameideo] Do you ever kneel and feel nothing at all?</li>
+        <li>[faith:wavering] I stood at the back of the rite and couldn't make myself go closer.</li>
+        <li>[faith:wavering,otherfaith:devout] You always look so sure at the rites, what's that like?</li>
+        <li>[faith:alone,myfaith] I'm the only one here who keeps {SUBJECT}, and some nights it's lonely.</li>
+        <li>[faith:alone] Nobody here prays the way I do, so I say the words out loud to hear them.</li>
+        <li>[faith:minority,otherideo] It's not easy, keeping a faith most of the colony doesn't share.</li>
+        <li>[faith:minority,myfaith] Hardly anyone here keeps {SUBJECT}, and I mind more than I let on.</li>
+        <li>[faith:majority,otherideo] I hope you never feel shut out, keeping a different faith from most of us.</li>
+        <li>[faith:devout,sameideo] I'm glad of you at the rites, it's easier to hold on with someone beside me.</li>
+        <li>[steadied,faith:devout] Nothing out here is certain except this, and I'm glad we share it.</li>
+        <li>[steadied] I said the old words this morning and thought of you saying them too.</li>
+        <li>[nopreaching,otherideo] I'll tell you what I believe if you ask, but I won't push it on you.</li>
+        <li>[nopreaching] Where I come from, you keep your faith and let others keep theirs.</li>
+        <li>[digin,faith:devout] I'll say it plainly: I'm not ashamed of what I believe.</li>
+        <li>[digin,otherideo] I've seen how your lot do things, and I can't say I'm impressed.</li>
+      </plain>
+      <warm>
+        <li>[persuading] I pray for you, you know, and I'd love it if one day you prayed with me.</li>
+        <li>[persuading,otherfaith:wavering] Whatever's troubling you, there's room for you at our rites.</li>
+        <li>[faith:wavering] I miss being sure, and I'd give a lot to feel it again.</li>
+        <li>[faith:alone] It would mean a lot if someone sat with me at a rite one day, even just to watch.</li>
+      </warm>
+      <blunt>
+        <li>[persuading] Your faith's done nothing for you that I can see, and mine might.</li>
+        <li>[digin] Let's not pretend we'll agree on this.</li>
+        <li>[faith:wavering] I don't know what I believe any more, and I'm tired of pretending I do.</li>
+      </blunt>
+      <cheerful>
+        <li>[persuading] Come to one rite with us, and if you hate it I'll do your laundry for a week.</li>
+        <li>[faith:alone] Being the only one of my faith here means I always get the best seat at the rites.</li>
+        <li>[steadied,sameideo] Good rite this morning, and I only nodded off once.</li>
+      </cheerful>
+      <gloomy>
+        <li>[faith:wavering] Some days the faith holds me up, and some days it holds me down.</li>
+        <li>[persuading] Out here, faith is the only thing that doesn't run out, think about it.</li>
+      </gloomy>
+      <cold>
+        <li>[persuading] I can set out the case for what I believe, if you'll hear it to the end.</li>
+        <li>[digin] Your faith and mine contradict each other on most points, and I won't pretend otherwise.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_FaithMoves_Reply</defName>
+    <topic>Rimfolk_Topic_Faith</topic>
+    <turn>Reply</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[persuaded] I hadn't thought of it like that.</li>
+        <li>[persuaded,theirfaith] Maybe there's more to {SUBJECT} than I gave it credit for.</li>
+        <li>[persuaded,faith:wavering] That's the first thing in weeks that's made any sense to me.</li>
+        <li>[persuaded,friends] Coming from you, I'll listen, so go on.</li>
+        <li>[persuaded] You say it like you've never doubted it once, and I envy that.</li>
+        <li>[persuaded,agree] Funny, I've thought the same and never said it.</li>
+        <li>[unmoved] I hear you, but I'm staying where I am.</li>
+        <li>[unmoved,faith:devout] That's well said, but it isn't enough.</li>
+        <li>[unmoved] I'll grant you that one point, and just the one.</li>
+        <li>[preachedat] Where I come from we don't press our faith on people, so don't press yours.</li>
+        <li>[preachedat] I didn't ask to be preached at.</li>
+        <li>[preachedat,theirfaith] I know what {SUBJECT} teaches without hearing it over supper.</li>
+        <li>[persuading,otherfaith:wavering] Doubt isn't the end of faith, sometimes it's the door to it.</li>
+        <li>[persuading] What I have, I'd share with anyone who asked, and you're asking in your way.</li>
+        <li>[persuading,otherfaith:wavering] Whatever you lost hold of, you can find again, I did.</li>
+        <li>[persuading,debate] You make a fair point, so let me make a better one.</li>
+        <li>[digin,otherideo] You won't talk me out of mine, and I won't try to talk you out of yours.</li>
+        <li>[digin,faith:devout] I've held to this through worse than you.</li>
+        <li>[digin] The more you push, the surer I get.</li>
+        <li>[digin,theirfaith] I've heard enough about {SUBJECT} for one lifetime.</li>
+        <li>[steadied] It helps to hear someone say it out loud.</li>
+        <li>[steadied,faith:wavering] I'd been slipping, and this helps more than you know.</li>
+        <li>[steadied,myfaith] {SUBJECT} has carried us this far, and it'll carry us further.</li>
+        <li>[faith:wavering,sameideo] I want to believe you, so give me time.</li>
+        <li>[faith:alone,otherideo] You're kind to ask, nobody else here does.</li>
+      </plain>
+      <warm>
+        <li>[persuaded] You care about this, and about me, and that counts for something.</li>
+        <li>[persuading] I'm not trying to take anything from you, only to give you something.</li>
+        <li>[steadied] I'm glad it's you I share this with.</li>
+        <li>[preachedat] I know you mean well, but please don't.</li>
+      </warm>
+      <blunt>
+        <li>[preachedat] Save the sermon.</li>
+        <li>[digin] No, and don't ask again.</li>
+        <li>[unmoved] Nice speech, still no.</li>
+        <li>[persuaded] Fine, you've got a point, don't let it go to your head.</li>
+      </blunt>
+      <cheerful>
+        <li>[persuaded] Keep talking like that and I'll be at your rites by spring.</li>
+        <li>[unmoved] Very convincing, and I'll think it over in the next life.</li>
+        <li>[steadied] Between the two of us, we've nearly got the whole thing worked out.</li>
+      </cheerful>
+      <gloomy>
+        <li>[persuaded,faith:wavering] I've nothing else to hold on to, so maybe yours will do.</li>
+        <li>[digin] Believe what you like, we'll both be dust in the end.</li>
+      </gloomy>
+      <cold>
+        <li>[persuaded] That is a better argument than I expected, and I'll consider it.</li>
+        <li>[unmoved] Your reasoning is sound until the last step.</li>
+        <li>[preachedat] I don't recall inviting a sermon.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_FaithMoves_Close</defName>
+    <topic>Rimfolk_Topic_Faith</topic>
+    <turn>Close</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[persuading] Think on it, that's all I ask.</li>
+        <li>[persuading,myfaith] The door of {SUBJECT} is open whenever you want it.</li>
+        <li>[persuading] Come to the next rite and stand at the back, if you like.</li>
+        <li>[persuaded] You've given me a lot to think about.</li>
+        <li>[persuaded,faith:wavering] I'll sleep on it, and I might even sleep, for once.</li>
+        <li>[unmoved] I'll think about it, but don't wait up.</li>
+        <li>[preachedat] Let's leave it there, before one of us says something.</li>
+        <li>[digin] Well, neither of us is moving tonight.</li>
+        <li>[digin] We'll each keep our own, then.</li>
+        <li>[steadied] Same time at the next rite, then.</li>
+        <li>[steadied,faith:devout] Hold fast, and so will I.</li>
+      </plain>
+      <warm>
+        <li>[persuading] Whatever you decide, you're welcome at our rites.</li>
+        <li>[persuaded] Thank you for not pushing, it made it easier to listen.</li>
+      </warm>
+      <blunt>
+        <li>[digin] Done talking, I know what I believe.</li>
+      </blunt>
+      <cheerful>
+        <li>[persuading] One rite, and I'll save you a seat and won't even make you sing.</li>
+      </cheerful>
+      <cold>
+        <li>[persuading] Consider it at your leisure, the argument will keep.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_FaithMoves_Last</defName>
+    <topic>Rimfolk_Topic_Faith</topic>
+    <turn>Last</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[persuaded] I'll think on it, and I mean that.</li>
+        <li>[persuaded,theirfaith] Maybe I'll come and see one of your rites, just to see.</li>
+        <li>[persuaded] Nobody's ever put it to me like that before.</li>
+        <li>[unmoved] Good night, and I'm keeping my own faith, thank you.</li>
+        <li>[preachedat] Next time, ask before you start.</li>
+        <li>[persuading] You know where to find me.</li>
+        <li>[persuading,otherfaith:wavering] Don't be afraid of the doubt, just don't be alone with it.</li>
+        <li>[digin] Suit yourself.</li>
+        <li>[digin,faith:devout] I'll pray for you anyway, so don't argue.</li>
+        <li>[steadied] Thank you, I needed that.</li>
+      </plain>
+      <warm>
+        <li>[persuaded] Thank you for caring enough to say all that.</li>
+      </warm>
+      <blunt>
+        <li>[unmoved] Nice try.</li>
+      </blunt>
+      <gloomy>
+        <li>[persuaded] I'll try it, what's one more thing to lose.</li>
+      </gloomy>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+</Defs>

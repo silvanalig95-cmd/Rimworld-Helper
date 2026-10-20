@@ -269,6 +269,8 @@ namespace ColonyCouncil
             float c = speaker.ideo?.Certainty ?? 0.5f;
             if (c >= 0.8f) tags.Add("devout");
             else if (c <= 0.3f) tags.Add("doubting");
+            // Faith in the colony: the other's faith, whose faith it's about, and what the talk does for theirs.
+            FaithTalk.AddTags(speaker, other, subject, tags);
         }
     }
 

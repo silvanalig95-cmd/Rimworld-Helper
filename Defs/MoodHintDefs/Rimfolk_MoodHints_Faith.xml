@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Faith in the colony (Source/ColonyCouncil/Faith/): what helps when a talk about faith leaves someone sore. -->
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Rimfolk_Mood_FaithPreachedAt</defName>
+    <thoughts><li>Rimfolk_Faith_PreachedAt</li></thoughts>
+    <fix>Their faith frowns on being preached to, and someone of another faith pressed theirs in a talk. It fades in a few days. The faiths page (People) shows who is likely to sway whom: keeping a keen believer of another faith off their shift and their table for a while spares them the next sermon.</fix>
+    <article>Rimfolk_Alm_C_Faith</article>
+    <councilTab>Faiths</councilTab>
+  </ColonyCouncil.MoodHintDef>
+
+</Defs>

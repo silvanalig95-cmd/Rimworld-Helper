@@ -41,7 +41,8 @@ namespace ColonyCouncil
             Calendar,
             Everyone,
             Dilemmas,
-            Defenses
+            Defenses,
+            Faiths
         }
 
         private static Tab tab = Tab.Week;
@@ -70,6 +71,7 @@ namespace ColonyCouncil
                 case Tab.Roster:
                 case Tab.Everyone:
                 case Tab.Bonds:
+                case Tab.Faiths:
                 case Tab.Wishes: return Section.People;
                 case Tab.Decrees:
                 case Tab.Ambition:
@@ -88,7 +90,7 @@ namespace ColonyCouncil
             switch (s)
             {
                 case Section.Colony: return ColonyTabs;
-                case Section.People: return PeopleTabs;
+                case Section.People: return Faiths.On ? PeopleFaithTabs : PeopleTabs;
                 case Section.Council: return CouncilTabs;
                 case Section.History: return HistoryTabs;
                 default: return AlmanacTabs;
@@ -98,6 +100,8 @@ namespace ColonyCouncil
         // Each section's pages, made once (asked every frame).
         private static readonly Tab[] ColonyTabs = { Tab.Week, Tab.Overview, Tab.Priorities, Tab.Moods, Tab.World, Tab.Build, Tab.Defenses };
         private static readonly Tab[] PeopleTabs = { Tab.Roster, Tab.Everyone, Tab.Bonds, Tab.Wishes };
+        /// <summary>With "Faith in the colony" on (Ideology): the faiths page after the bonds (UI/FaithsPanel.cs).</summary>
+        private static readonly Tab[] PeopleFaithTabs = { Tab.Roster, Tab.Everyone, Tab.Bonds, Tab.Faiths, Tab.Wishes };
         private static readonly Tab[] CouncilTabs = { Tab.Decrees, Tab.Ambition, Tab.Ways, Tab.Dilemmas };
         private static readonly Tab[] HistoryTabs = { Tab.Chronicle, Tab.Calendar, Tab.Dreams, Tab.Journals };
         private static readonly Tab[] AlmanacTabs = { Tab.Almanac };
@@ -269,6 +273,7 @@ namespace ColonyCouncil
                 case Tab.Defenses: DefensePanel.Draw(content, map); break;
                 case Tab.Roster: PeoplePanel.Draw(content, comp); break;
                 case Tab.Bonds: SocialPanel.Draw(content, comp); break;
+                case Tab.Faiths: FaithsPanel.Draw(content, comp); break;
                 case Tab.Wishes: WishesPanel.Draw(content, comp); break;
                 case Tab.Decrees: DecreePanel.Draw(content, comp); break;
                 case Tab.Ambition: AmbitionPanel.Draw(content, comp, map); break;
@@ -376,6 +381,7 @@ namespace ColonyCouncil
                 case Tab.Defenses: return Icons.Defenses ?? Icons.CatDefense;
                 case Tab.Roster: return Icons.Roster;
                 case Tab.Bonds: return Icons.Bonds;
+                case Tab.Faiths: return Icons.CatIdeology ?? Icons.People;
                 case Tab.Wishes: return Icons.Wishes;
                 case Tab.Decrees: return Icons.Decrees;
                 case Tab.Ambition: return Icons.Ambition;
