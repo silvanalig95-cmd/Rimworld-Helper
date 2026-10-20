@@ -172,5 +172,51 @@ namespace ColonyCouncil
 
         /// <summary>A letter waiting for an answer: soon when it will go unanswered within a day, worth knowing otherwise.</summary>
         public static float Question(float hoursLeft) => hoursLeft >= 0f && hoursLeft < 24f ? Within(230f, 40f, 1f - hoursLeft / 24f) : 160f;
+
+        // ---------------- Health (the health panel's order) ----------------
+
+        /// <summary>Wounds or an illness waiting to be tended: soon, 255 to 279, more with more of them.</summary>
+        public static float Untended(int count) => count <= 0 ? 0f : Within(255f, 24f, (count - 1) / 4f);
+
+        /// <summary>Losing an immunity race: soon, 215 to 249, higher the sooner it would kill at today's pace (in days).</summary>
+        public static float LosingRace(float daysToDeath) => Within(215f, 34f, 1f - daysToDeath / 6f);
+
+        /// <summary>Something that can kill getting worse with no race to win (hypothermia, toxic buildup): soon, 210 to 249 by how far it has gone (0..1).</summary>
+        public static float Worsening(float progress) => Within(210f, 39f, progress);
+
+        /// <summary>Healing or passing on its own: worth knowing, 105 to 134, the further along the worse it is.</summary>
+        public static float Healing(float progress) => Within(105f, 29f, progress);
+
+        // ---------------- Work and idle ----------------
+
+        /// <summary>Idle: worth knowing, 150 to 190, the longer the higher (hours).</summary>
+        public static float Idle(float hours) => Within(150f, 40f, hours / 12f);
+
+        /// <summary>Hungry or tired but not yet urgently: worth knowing.</summary>
+        public const float LowNeeds = 125f;
+
+        /// <summary>Busy, or drafted: nothing to say.</summary>
+        public const float Busy = 50f, Drafted = 40f;
+
+        /// <summary>
+        /// A colonist's row on the work panel: starving, then urgently hungry or exhausted (and a mental break, as
+        /// everywhere), then idle (longer first), then hungry or tired, then busy.
+        /// </summary>
+        public static float Work(bool starving, float malnutrition, bool urgentlyHungry, bool exhausted, bool inBreak, bool idle, float idleHours, bool lowNeeds,
+            bool drafted)
+        {
+            if (starving) return Starving(malnutrition);
+            if (inBreak) return InBreak;
+            if (urgentlyHungry) return Hungry;
+            if (exhausted) return Exhausted;
+            if (idle) return Idle(idleHours);
+            if (lowNeeds) return LowNeeds;
+            return drafted ? Drafted : Busy;
+        }
+
+        // ---------------- The game's alerts ----------------
+
+        /// <summary>An alert by the game's priority (0 medium, 1 high, 2 critical): critical alerts are never cut for space.</summary>
+        public static float Alert(int priority) => priority >= 2 ? 340f : priority == 1 ? 250f : 150f;
     }
 }

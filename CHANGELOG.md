@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Alerts, health and work on screen
+
+*23 October 2026, later, version 0.9.3*
+
+- Your alerts in a panel you can move: the game's and every mod's, coloured by urgency, with the game's explanation on hover and its click to jump to them. The game's own list steps aside while the panel shows (a setting keeps both).
+- Health panel: only what will pass or needs seeing to (wounds, bleeding with the time left, anything untended, illnesses and whether they're winning), never scars, implants, chronic conditions, lost limbs or magical effects. Work and idle panel: what everyone is doing, who's idle and for how long, food, rest and recreation bars, and work nobody is set to do.
+- The panels always stay behind other windows. The game's own tooltip makes way for the hover card, which now puts long advice on its own line instead of cutting it, the mood trend's labels no longer overlap, and the "drag to move" tooltip is gone.
+
 ## A fungus diet that holds
 
 *23 October 2026, version 0.9.2*

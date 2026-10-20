@@ -1767,8 +1767,9 @@ The game's own **Needs** tab gets a line above its mood list with the same total
 which mod it comes from and what to do about it (a setting turns both off).
 
 ## On-screen panels and the hover card
-What you keep checking, on the map, so you don't click through every colonist. Four small panels, each its own
-window (clicks on them don't reach the map, and they never take the keyboard):
+What you keep checking, on the map, so you don't click through every colonist. Seven small panels, each its own
+window (clicks on them don't reach the map, they never take the keyboard, and they always stay behind other windows,
+so a tab, a planner or a dialog opens over them):
 - **Mood board**: a row for each colonist at home with their portrait, a mood bar with their own minor and major break
   lines, an arrow and the number for where it's heading, and, faint under it, what drags them down most with its size
   ("-8 No bedroom"; with the option on, "→ Give them a bedroom" too). Marks for a mental break, high strain, an open
@@ -1783,10 +1784,26 @@ window (clicks on them don't reach the map, and they never take the keyboard):
 - **Council at a glance**: open wishes and whose has waited longest, petitions, promises coming due, questions
   waiting, decrees in force with their days left, the next calendar day or meeting, the colony's trust. Only what has
   something to say shows; each line opens the right page.
+- **Alerts**: the game's alerts, its own and every mod's, in a panel you can move: red, orange or plain by priority,
+  in the game's order (or the newest first), a count where an alert is about several things, the game's explanation
+  on hover, and a click that does what clicking the game's alert does. New urgent ones flash. It starts in the game's
+  alert place above the letters, and while it shows the game's own list steps aside (a setting; the alerts keep
+  updating, and the list is back whenever the panel isn't there).
+- **Health**: one row per colonist with something that will pass or needs seeing to: wounds, bleeding with the time
+  it leaves, what waits to be tended, illnesses with their immunity race ("will recover" or "losing"), anything
+  deadly while it moves, Rimfolk's everyday ailments. Never lost parts, implants, scars, lasting conditions like a bad
+  back, pregnancy, or buffs, auras and other mods' magic. Bleeding or close to dying first, then untended, then losing,
+  then healing; a click opens their Health tab. A calm colony: "Everyone is well."
+- **Work and idle**: one row per colonist with what they're doing, a mark when idle and for how long, three small bars
+  for food, rest and recreation (red when low), and drafted, down or in a break; starving or exhausted first, then
+  idle, then busy. Above it, only when it matters: how many are idle, who needs food or sleep, and work waiting that
+  nobody has switched on (a fire with no firefighter, someone to tend with no doctor).
 
 **The hover card**: rest the mouse on a colonist on the map and a small card shows their mood bar, the two or three
-things that matter most right now and what they're doing. It keeps out of the way: not while a mouse button is held,
-something is being placed or targeted, a menu or window is under the mouse, or the world map is up.
+things that matter most right now (what would help on a line of its own when it doesn't fit) and what they're doing.
+While it shows, the game's own tooltip for that colonist steps aside (a setting). It keeps out of the way: not while
+a mouse button is held, something is being placed or targeted, a menu or window is under the mouse, or the world map
+is up, and it never covers a window.
 
 **What comes first.** One ranking (`Hud/HudRank.cs`) orders the board, picks the card's lines and colours the
 vitals: life and limb first (bleeding, a condition that can kill, starving, a mental break, right at the break line),
@@ -1799,7 +1816,9 @@ each panel, the hover card, **Arrange the panels** and putting them back; a key 
 Rimfolk. A thin bar on hover drags the panel (it snaps to the screen's edges and the other panels; its place is kept
 as part of the screen, so it survives a new resolution), switches compact and full, fades the background, opens its
 options and hides it. Each panel's options: which rows or columns show, order, whom it lists (home, everywhere,
-with prisoners), the graph's range, rows before "and more", size 75% to 150%, background. The settings (Interface,
+with prisoners), the graph's range, rows before "and more", size 75% to 150%, background. Where they start is laid
+out so nothing overlaps at 1080p: the board and the trend on the left, the vitals, the council and the alerts on the
+right, work and health in a column beside them. The settings (Interface,
 **On-screen panels** and **Hover card**) have all of it, plus a lock, hiding under big windows and on the world map,
 a darker or clearer look, small or normal text, the food and mood lines, and the hover card's wait, key, people,
 place, parts, size and background. Each panel gathers its data at most twice a second, and one that fails hides
@@ -2120,7 +2139,8 @@ The pages:
   (bubbles with Interaction Bubbles, floating text, or off), the visual and sound touches; the two alerts; mood insight (and its hints in the Needs tab), the slow speed buttons (and putting them
   back), where the council button sits in the bottom bar, the rooms button, which page the council window opens on
   (**This week** by default, or the last page), the Almanac's text size; the **on-screen panels** (each panel's
-  options, lock, hiding, look, text size, the food and mood lines, putting them back) and the **hover card**; the
+  options, lock, hiding, the game's own alert list, look, text size, the food and mood lines, putting them back) and
+  the **hover card** (the game's tooltip under it too); the
   **badges on the colonist bar** (each kind, the break ring or dot and its early warning, the wish badge's threshold,
   size, corner and how many show); the deeper game hooks and the notes in the game's letters.
 - **Advanced**: this colony's era (detected, pre-industrial or industrial; set per colony, so it needs a loaded game),

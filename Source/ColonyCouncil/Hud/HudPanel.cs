@@ -90,6 +90,16 @@ namespace ColonyCouncil
         /// <summary>The panel's own buttons on its bar, right to left from <paramref name="right"/>; returns where they end.</summary>
         protected virtual float HeaderButtons(Rect bar, float right) => right;
 
+        /// <summary>
+        /// A place worked out each frame while the player hasn't moved the panel (the alerts follow the letters, as the
+        /// game's own list does); false to use the saved or shipped fractions.
+        /// </summary>
+        protected virtual bool AutoPlace(Vector2 size, float sw, float sh, out HudBox box)
+        {
+            box = default;
+            return false;
+        }
+
         /// <summary>The panel's own lines at the top of its right-click menu.</summary>
         protected virtual void MenuOptions(List<FloatMenuOption> options)
         {
@@ -164,12 +174,17 @@ namespace ColonyCouncil
             if (!dragging)
             {
                 var st = St;
-                var place = st.Placed ? st : HudLayout.Default(id);
-                var b = HudMath.FromFraction(place.x, place.y, place.right, place.bottom, size.x, size.y, sw, sh);
-                body = new Rect(b.x, b.y, b.w, b.h);
+                if (!st.Placed && AutoPlace(size, sw, sh, out var auto)) body = new Rect(auto.x, auto.y, auto.w, auto.h);
+                else
+                {
+                    var place = st.Placed ? st : HudLayout.Default(id);
+                    var b = HudMath.FromFraction(place.x, place.y, place.right, place.bottom, size.x, size.y, sw, sh);
+                    body = new Rect(b.x, b.y, b.w, b.h);
+                }
             }
             float hh = HeaderH;
-            hovered = mouse && windowRect.Contains(m) && !HudManager.AnyDragging;
+            // Under the mouse, and not behind another window there.
+            hovered = mouse && windowRect.Contains(m) && !HudManager.AnyDragging && (dragging || Find.WindowStack?.GetWindowAt(m) == this);
             float now = Time.realtimeSinceStartup;
             if (hovered) hoverGrace = now + 0.35f;
             showHeader = dragging || HudManager.editing || hovered || now < hoverGrace;
@@ -210,6 +225,9 @@ namespace ColonyCouncil
         public override void DoWindowContents(Rect inRect)
         {
             if (HudManager.Failed(id)) return;
+            // Behind another window where the mouse is: the clicks, drags and wheel are that window's, never the panel's.
+            var cur = Event.current;
+            if ((cur.isMouse || cur.type == EventType.ScrollWheel) && !dragging && Find.WindowStack.GetWindowAt(UI.MousePositionOnUIInverted) != this) return;
             var oldFont = Text.Font;
             try
             {
@@ -307,7 +325,6 @@ namespace ColonyCouncil
             }
             HudKit.Label(new Rect(bar.x + bs + 5f, bar.y, Mathf.Max(0f, right - bar.x - bs - 7f), bar.height), HudLayout.Label(id), UiKit.HeaderColor,
                 GameFont.Tiny);
-            TooltipHandler.TipRegion(grip, CanMove ? HudKit.T("CC_Pnl_GripTip") : HudKit.T("CC_Pnl_LockedTip"));
             var ev = Event.current;
             if (ev.type == EventType.MouseDown && Mouse.IsOver(grip))
             {

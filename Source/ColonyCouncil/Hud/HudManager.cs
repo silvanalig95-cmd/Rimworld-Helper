@@ -12,7 +12,8 @@ namespace ColonyCouncil
     /// Opens and closes the on-screen panels (once a frame, from <see cref="HudComponent"/>'s update, never per tick):
     /// each panel shows while the panels are switched on, it is on, it hasn't failed this session, and nothing hides
     /// them (the world map, a big window such as the Work tab). Also the switch itself (the button by the game's
-    /// play settings, the key, the settings), the button's menu, and the layout mode.
+    /// play settings, the key, the settings), the button's menu, and the layout mode. The panels are kept behind every
+    /// other window (<see cref="HudWindowOrder"/>).
     /// </summary>
     [StaticConstructorOnStartup]
     public static class HudManager
@@ -71,6 +72,9 @@ namespace ColonyCouncil
                 case HudLayout.Trend: return new HudMoodTrend();
                 case HudLayout.Vitals: return new HudVitals();
                 case HudLayout.Council: return new HudCouncil();
+                case HudLayout.Alerts: return new HudAlerts();
+                case HudLayout.Health: return new HudHealth();
+                case HudLayout.Work: return new HudWork();
                 default: return null;
             }
         }
@@ -82,6 +86,7 @@ namespace ColonyCouncil
             editBar = null;
             editing = false;
             game = Current.Game;
+            HudLayout.MigrateOldPlaces();
         }
 
         // ---------------- Once a frame ----------------
@@ -133,6 +138,8 @@ namespace ColonyCouncil
                 Find.WindowStack.Add(editBar);
             }
             else if (!bar && editBar != null && editBar.IsOpen) editBar.Close(false);
+            // Behind every other window, always (see HudWindowOrder).
+            HudWindowOrder.KeepBehind(Find.WindowStack);
         }
 
         // ---------------- The switch ----------------
@@ -222,7 +229,7 @@ namespace ColonyCouncil
             drawInScreenshotMode = false;
         }
 
-        public override Vector2 InitialSize => new Vector2(Mathf.Min(560f, UI.screenWidth - 20f), 88f);
+        public override Vector2 InitialSize => new Vector2(Mathf.Min(620f, UI.screenWidth - 20f), 116f);
 
         protected override float Margin => 8f;
 
@@ -244,6 +251,12 @@ namespace ColonyCouncil
                     string label = HudLayout.Label(id);
                     Text.Font = GameFont.Small;
                     float w = Text.CalcSize(label).x + 32f;
+                    // On to a second line when the first is full.
+                    if (x > inRect.x && x + w > inRect.xMax)
+                    {
+                        x = inRect.x;
+                        y += 26f;
+                    }
                     bool on = st.on;
                     Widgets.CheckboxLabeled(new Rect(x, y, w, 24f), label, ref on);
                     if (on != st.on) HudManager.SetPanel(id, on);

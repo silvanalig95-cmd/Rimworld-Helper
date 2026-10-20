@@ -6,7 +6,8 @@ namespace ColonyCouncil
 {
     /// <summary>
     /// One panel's options, from its bar's gear, its menu, or the buttons under "On-screen panels" in Rimfolk's
-    /// settings: shown or not, compact or full, the order and whom it lists (the mood board), the range (the trend),
+    /// settings: shown or not, compact or full, the order and whom it lists (the mood board, health, work and idle), the
+    /// order and the game's own list (the alerts), the range (the trend),
     /// which rows or columns show, how many rows before "and N more", its scale and background. Changes show at once
     /// and are saved when the window closes.
     /// </summary>
@@ -59,6 +60,9 @@ namespace ColonyCouncil
                 case HudLayout.Trend: return HudMoodTrend.Parts;
                 case HudLayout.Vitals: return HudVitals.Parts;
                 case HudLayout.Council: return HudCouncil.Parts;
+                case HudLayout.Alerts: return HudAlerts.Parts;
+                case HudLayout.Health: return HudHealth.Parts;
+                case HudLayout.Work: return HudWork.Parts;
                 default: return new string[0];
             }
         }
@@ -77,16 +81,29 @@ namespace ColonyCouncil
             {
                 l.CheckboxLabeled(HudKit.T("CC_Pnl_Opt_Show"), ref st.on);
                 l.CheckboxLabeled(HudKit.T("CC_Pnl_Opt_Compact"), ref st.compact, HudKit.T("CC_Pnl_Opt_Compact_" + id));
-                if (id == HudLayout.Moods)
+                if (id == HudLayout.Moods || id == HudLayout.Health || id == HudLayout.Work)
                 {
                     l.GapLine();
                     l.Label(HudKit.T("CC_Pnl_Opt_Order"));
-                    if (l.RadioButton(HudKit.T("CC_Pnl_SortRisk"), st.sort == HudSort.Risk, 12f)) st.sort = HudSort.Risk;
+                    if (l.RadioButton(HudKit.T(id == HudLayout.Moods ? "CC_Pnl_SortRisk" : "CC_Pnl_SortUrgent"), st.sort != HudSort.Bar, 12f)) st.sort = HudSort.Risk;
                     if (l.RadioButton(HudKit.T("CC_Pnl_SortBar"), st.sort == HudSort.Bar, 12f)) st.sort = HudSort.Bar;
                     l.Label(HudKit.T("CC_Pnl_Opt_Who"));
                     foreach (HudWho w in Enum.GetValues(typeof(HudWho)))
-                        if (l.RadioButton(HudKit.T("CC_Pnl_Who_" + w), st.who == w, 12f))
-                            st.who = w;
+                    {
+                        // Prisoners don't work for the colony.
+                        if (id == HudLayout.Work && w == HudWho.WithPrisoners) continue;
+                        if (l.RadioButton(HudKit.T("CC_Pnl_Who_" + w), st.who == w, 12f)) st.who = w;
+                    }
+                }
+                if (id == HudLayout.Alerts)
+                {
+                    l.GapLine();
+                    l.Label(HudKit.T("CC_Pnl_Opt_Order"));
+                    if (l.RadioButton(HudKit.T("CC_Pnl_SortPriority"), st.sort != HudSort.Newest, 12f)) st.sort = HudSort.Risk;
+                    if (l.RadioButton(HudKit.T("CC_Pnl_SortNewest"), st.sort == HudSort.Newest, 12f)) st.sort = HudSort.Newest;
+                    l.Gap(4f);
+                    var s = ColonyCouncilMod.Settings;
+                    l.CheckboxLabeled(HudKit.T("CC_Settings_HudHideGameAlerts"), ref s.hudHideGameAlerts, HudKit.T("CC_Settings_HudHideGameAlerts_Tip"));
                 }
                 if (id == HudLayout.Trend)
                 {

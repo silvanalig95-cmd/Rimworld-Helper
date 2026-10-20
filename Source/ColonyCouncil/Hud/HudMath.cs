@@ -20,6 +20,20 @@ namespace ColonyCouncil
         public float YMax => y + h;
     }
 
+    /// <summary>The panels' names, as kept in the settings file (HudPanelState.id), in the order of the menus.</summary>
+    public static class HudIds
+    {
+        public const string Moods = "moods";
+        public const string Trend = "trend";
+        public const string Vitals = "vitals";
+        public const string Council = "council";
+        public const string Alerts = "alerts";
+        public const string Health = "health";
+        public const string Work = "work";
+
+        public static readonly string[] All = { Moods, Trend, Vitals, Council, Alerts, Health, Work };
+    }
+
     /// <summary>
     /// The layout maths of the on-screen panels, free of game types so Tools/Tests can check it: a panel's place kept as
     /// a fraction of the screen from the corner it's nearest to (so it survives a new resolution, and a panel against
@@ -132,6 +146,93 @@ namespace ColonyCouncil
         /// <summary>Whether the bar over a panel goes above it (true), or below it when there's no room above.</summary>
         public static bool HeaderAbove(HudBox body, float header) => body.y >= header;
 
+        /// <summary>Whether two boxes overlap (touching edges don't).</summary>
+        public static bool Overlap(HudBox a, HudBox b) => a.x < b.XMax && b.x < a.XMax && a.y < b.YMax && b.y < a.YMax;
+
+        // ---------------- Where each panel starts ----------------
+
+        /// <summary>The gap between the right-hand column (vitals, council, alerts) and the second column (work, health), in UI pixels.</summary>
+        public const float SecondColumn = 262f;
+
+        /// <summary>
+        /// A panel's place as Rimfolk ships it, for a screen of <paramref name="sw"/> by <paramref name="sh"/> UI pixels,
+        /// laid out so nothing overlaps at 1080p. The left: the mood board below the resource list, the trend above the
+        /// inspect pane. The right edge: the vitals and the council, and the alerts in the game's own alert place above
+        /// the letters (<paramref name="auto"/>: worked out every frame, see <see cref="AlertsBox"/>). A second column
+        /// left of it, clear of the colonist bar: work and idle, then health.
+        /// </summary>
+        public static void DefaultPlace(string id, float sw, float sh, out float fx, out float fy, out bool right, out bool bottom, out bool auto)
+        {
+            fx = 0f;
+            fy = 0f;
+            right = false;
+            bottom = false;
+            auto = false;
+            if (sw <= 0f) sw = 1920f;
+            if (sh <= 0f) sh = 1080f;
+            float column2 = Clamp((sw - SecondColumn) / sw, 0.5f, 1f);
+            switch (id)
+            {
+                case HudIds.Moods:
+                    fy = 0.27f;
+                    break;
+                case HudIds.Trend:
+                    fy = 0.78f;
+                    bottom = true;
+                    break;
+                case HudIds.Vitals:
+                    fx = 1f;
+                    fy = 0.2f;
+                    right = true;
+                    break;
+                case HudIds.Council:
+                    fx = 1f;
+                    fy = 0.326f;
+                    right = true;
+                    break;
+                case HudIds.Alerts:
+                    fx = -1f;
+                    fy = -1f;
+                    right = true;
+                    bottom = true;
+                    auto = true;
+                    break;
+                case HudIds.Work:
+                    fx = column2;
+                    fy = 0.14f;
+                    right = true;
+                    break;
+                case HudIds.Health:
+                    fx = column2;
+                    fy = 0.413f;
+                    right = true;
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// The alerts panel in the game's alert place: against the right edge, its bottom just above the letters
+        /// (<paramref name="lettersTop"/>, the top of the game's letter stack), or above the game's own alert list while
+        /// that still shows (<paramref name="gameList"/> pixels tall). Without a sensible letter line, a quarter up from the bottom.
+        /// </summary>
+        public static HudBox AlertsBox(float w, float h, float sw, float sh, float lettersTop, float gameList)
+        {
+            float bottom = lettersTop > sh * 0.2f && lettersTop <= sh ? lettersTop - 4f : sh * 0.76f;
+            if (gameList > 0f) bottom -= gameList + 6f;
+            return OnScreen(new HudBox(sw - w, bottom - h, w, h), sw, sh);
+        }
+
+        /// <summary>Whether an alert's row shows the number of things it's about: two or more, and the label doesn't already say a number.</summary>
+        public static bool ShowCount(string label, int count)
+        {
+            if (count < 2) return false;
+            if (label == null) return true;
+            foreach (char c in label)
+                if (char.IsDigit(c))
+                    return false;
+            return true;
+        }
+
         // ---------------- Rows when space is short ----------------
 
         /// <summary>
@@ -225,6 +326,21 @@ namespace ColonyCouncil
                 }
             }
             return best;
+        }
+
+        /// <summary>
+        /// Which of three labels on one line fit without touching: one at the left, one centred, one at the right, each
+        /// <paramref name="gap"/> apart. The right one (where the line ends: "now") goes first, then the left, then the
+        /// middle only if it fits between them. A width of 0 means there's no such label.
+        /// </summary>
+        public static void FitThree(float width, float left, float middle, float right, float gap, out bool showLeft, out bool showMiddle, out bool showRight)
+        {
+            showRight = right > 0f && right <= width;
+            float rightTaken = showRight ? right + gap : 0f;
+            showLeft = left > 0f && left + rightTaken <= width;
+            float leftTaken = showLeft ? left + gap : 0f;
+            float from = (width - middle) / 2f, to = (width + middle) / 2f;
+            showMiddle = middle > 0f && from >= leftTaken && to <= width - rightTaken;
         }
 
         /// <summary>The y of a value (0..1) in a graph from <paramref name="top"/> down <paramref name="height"/> pixels.</summary>
