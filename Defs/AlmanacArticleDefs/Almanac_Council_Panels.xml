@@ -21,7 +21,7 @@ Show or hide them all with the button among the play settings at the bottom righ
     <sections>
       <li>
         <heading>The mood board</heading>
-        <text>A row for each colonist at home: their portrait and name, a mood bar with their own minor and major break lines marked on it, an arrow and the number for where the mood is heading, and, faint under the bar, the mood dragging them down most with its size ("-8 No bedroom"). When something can be done about it and they're at risk, it shows in gold. Small marks at the end of the row: a mental break, high strain, an open wish, wavering faith.</text>
+        <text>A row for each colonist at home: their portrait and name, a mood bar with their own minor and major break lines marked on it, an arrow and the number for where the mood is heading, and, faint under the bar, the mood dragging them down most with its size ("-8 No bedroom"). When something can be done about it and they're at risk, it shows in gold. Small marks at the end of the row: a mental break, high strain, an open wish, wavering certainty.</text>
         <points>
           <li>Most at risk first, or in the colonist bar's order: switch it on the panel's bar.</li>
           <li>A row turns orange under its minor break line and red under the major one, with a soft pulse.</li>

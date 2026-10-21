@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
 
-  <!-- Faith in the colony (Source/ColonyCouncil/Faith/), with Ideology. -->
-  <CC_Settings_FaithLife>Faith in the colony</CC_Settings_FaithLife>
-  <CC_Settings_FaithLife_Tip>With Ideology: how firmly each colonist holds their faith comes into Rimfolk's life. Talks about faith can move a listener's certainty, the council can call an evening of faith or decree one faith for the colony, a hard turn of life can shake someone's faith, and a page shows who believes what and how firmly. Conversions are always the game's own: someone takes a new faith when their certainty runs out.</CC_Settings_FaithLife_Tip>
-  <CC_SetNote_FaithLife>Talks, rites and hard times can move a colonist's faith (Ideology).</CC_SetNote_FaithLife>
+  <!-- Ideoligions in the colony (Source/ColonyCouncil/Faith/), with Ideology. -->
+  <CC_Settings_FaithLife>Ideoligions in the colony</CC_Settings_FaithLife>
+  <CC_Settings_FaithLife_Tip>With Ideology: the game's ideoligions, and each colonist's certainty in their own, come into Rimfolk's life. Talks about their ideoligions can move a listener's certainty, the council can call an ideoligion evening or decree one ideoligion for the colony, a hard turn of life can shake someone's certainty, and a page shows who holds which ideoligion and how firmly. Conversions are always the game's own: someone takes up a new ideoligion when their certainty runs out.</CC_Settings_FaithLife_Tip>
+  <CC_SetNote_FaithLife>Talks, rites and hard times can move a colonist's certainty in their ideoligion (Ideology).</CC_SetNote_FaithLife>
 
-  <!-- Someone took a new faith through something Rimfolk did (a talk, an evening of faith, a decree). -->
+  <!-- Someone took up a new ideoligion through something Rimfolk did (a talk, an ideoligion evening, a decree). -->
   <CC_Faith_Converted>{PAWN_nameDef} has taken up {FAITH}, leaving {OLD} behind.</CC_Faith_Converted>
   <CC_Faith_ConvertedBy>{PAWN_nameDef} has taken up {FAITH}, leaving {OLD} behind. {OTHER_nameDef} brought {PAWN_objective} round.</CC_Faith_ConvertedBy>
 
-  <!-- The council's buttons on the faiths page (Source/ColonyCouncil/Faith/FaithButtons.cs). -->
-  <CC_FaithBtn_Evening>Call an evening of faith</CC_FaithBtn_Evening>
+  <!-- The council's buttons on the ideoligions page (Source/ColonyCouncil/Faith/FaithButtons.cs). -->
+  <CC_FaithBtn_Evening>Call an ideoligion evening</CC_FaithBtn_Evening>
   <CC_FaithBtn_Evening_Tip>Ask {0}'s moral guide, or its most devout believer, to speak this evening. Its believers come to hear it; others decide for themselves, and a good evening can sway them.</CC_FaithBtn_Evening_Tip>
-  <CC_FaithBtn_Decree>Name it the colony's faith</CC_FaithBtn_Decree>
-  <CC_FaithBtn_Decree_Tip>Declare "one faith for the colony" for {0}: each day the wavering of other faiths are drawn to it, its believers speak of it more often and council meetings open with a word from it, while everyone else trusts the council a little less until it's lifted.</CC_FaithBtn_Decree_Tip>
-  <CC_FaithBtn_Decree_Confirm>Declare {0} the colony's faith? Colonists of other faiths will trust the council a little less every day the decree holds. You can lift it on the decrees page.</CC_FaithBtn_Decree_Confirm>
-  <CC_FaithBtn_DecreeHeld>The colony's faith by decree</CC_FaithBtn_DecreeHeld>
-  <CC_FaithBtn_DecreeHeld_Tip>{0} is the colony's faith by decree. Lift it on the decrees page.</CC_FaithBtn_DecreeHeld_Tip>
-  <CC_FaithBtn_DecreeOther>The council has already named {0} the colony's faith. Lift that decree first.</CC_FaithBtn_DecreeOther>
+  <CC_FaithBtn_Decree>Name it the colony's ideoligion</CC_FaithBtn_Decree>
+  <CC_FaithBtn_Decree_Tip>Declare "one ideoligion for the colony" for {0}: each day the wavering of other ideoligions are drawn to it, its believers speak of it more often and council meetings open with a word from it, while everyone else trusts the council a little less until it's lifted.</CC_FaithBtn_Decree_Tip>
+  <CC_FaithBtn_Decree_Confirm>Declare {0} the colony's ideoligion? Colonists of other ideoligions will trust the council a little less every day the decree holds. You can lift it on the decrees page.</CC_FaithBtn_Decree_Confirm>
+  <CC_FaithBtn_DecreeHeld>The colony's ideoligion by decree</CC_FaithBtn_DecreeHeld>
+  <CC_FaithBtn_DecreeHeld_Tip>{0} is the colony's ideoligion by decree. Lift it on the decrees page.</CC_FaithBtn_DecreeHeld_Tip>
+  <CC_FaithBtn_DecreeOther>The council has already named {0} the colony's ideoligion. Lift that decree first.</CC_FaithBtn_DecreeOther>
   <CC_FaithBtn_NoHome>There's no home for the colony to gather in.</CC_FaithBtn_NoHome>
 
-  <!-- A colonist whose faith requires fungus (Source/ColonyCouncil/Integrations/FungusDiet.cs). -->
+  <!-- A colonist whose ideoligion requires fungus (Source/ColonyCouncil/Integrations/FungusDiet.cs). -->
   <CC_FungusDiet_Label>Fungus diet</CC_FungusDiet_Label>
-  <CC_FungusDiet_Made>{0} can keep down only fungus and insect food: their faith makes them throw up anything else. Rimfolk has made a food policy, "{1}", that allows only fungus meals, raw fungus and insect food. Give it to them in the Assign tab, and keep a "cook fungus meal" bill going at a stove.</CC_FungusDiet_Made>
+  <CC_FungusDiet_Made>{0} can keep down only fungus and insect food: their ideoligion makes them throw up anything else. Rimfolk has made a food policy, "{1}", that allows only fungus meals, raw fungus and insect food. Give it to them in the Assign tab, and keep a "cook fungus meal" bill going at a stove.</CC_FungusDiet_Made>
 
 </LanguageData>

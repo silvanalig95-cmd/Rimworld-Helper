@@ -167,12 +167,12 @@ small hot room of the colony's own, where people sit on cold days and talk.
 **Others are watching.** Friends are happy for the one who got their wish. The jealous, rivals and anyone who
 has been waiting longer can feel passed over, and some will want the same thing.
 
-**Beliefs and diets.** Nobody asks for what their faith or their own nature forbids, read from the game's Ideology,
-Vanilla Ideology Expanded - Memes and Alpha Memes (all optional): no shared bed before the wedding under a faith that
+**Beliefs and diets.** Nobody asks for what their ideoligion or their own nature forbids, read from the game's Ideology,
+Vanilla Ideology Expanded - Memes and Alpha Memes (all optional): no shared bed before the wedding under an ideoligion that
 keeps lovin for the married (an engaged couple asks for the wedding instead), no smokehouse or hunt for a vegetarian,
-no beer or brewery for a teetotaler, a faith that keeps drugs to medicine or an addict being weaned off, no clothes
-for a nudist, a dark torch rather than a lamp for a faith that prefers darklight, and so on. Food wishes count only
-what the colonist may eat, and a wish that comes to clash with a changed faith is let go quietly. Feasts and toasts
+no beer or brewery for a teetotaler, an ideoligion that keeps drugs to medicine or an addict being weaned off, no clothes
+for a nudist, a dark torch rather than a lamp for an ideoligion that prefers darklight, and so on. Food wishes count only
+what the colonist may eat, and a wish that comes to clash with a changed ideoligion is let go quietly. Feasts and toasts
 serve each colonist only what their food or drug policy allows, what leaves no bad "ate ..." memory, and nothing
 Alpha Memes would make them sick for (only fungus or insect for its two required diets together, no forbidden
 paste); with nothing fit in the stores they sit at the table without eating. Life goals and council projects
@@ -281,7 +281,7 @@ no warm moments until it wears off or they clear the air. A setting turns them o
 **Everyday pressures.** A colony that has everything still has its everyday wear. Five small, fixable pressures show
 as moods while their cause lasts, each saying what caused it, with what helps in the Mood tab:
 - **the same meal again**: 6 of the last 8 meals the same kind, more after 10 or 12 of 12 (-1 to -3). A colony that
-  can cook only one kind feels it least; ascetics and anyone whose faith allows only one kind of food (a fungus diet)
+  can cook only one kind feels it least; ascetics and anyone whose ideoligion allows only one kind of food (a fungus diet)
   don't mind, gourmands mind it more, and fine or lavish meals never count. Three different foods in two
   days make **a varied table** (+2).
 - **the same work for days**: most of each day on one kind of work, 4, 7 and 10 days running (-1 to -3). The
@@ -348,15 +348,15 @@ crafting, cooking and growing every hour) and **a feast day** (one day of eating
 petition for them when someone is ill, in winter, or when a newcomer joins.
 
 Thirty-one decrees in all. The newest come from a village's own year and do something no stat can: **tithes** (a tenth
-of the silver each morning to a people of the colony's faith or the nearest village, for goodwill and, with Ideology,
+of the silver each morning to a people of the colony's ideoligion or the nearest village, for goodwill and, with Ideology,
 the faithful's certainty), **a curfew** (everyone's night hours turned to sleep and put back after; night owls keep
 the watch), **militia drills** (twelve days of light practice for everyone who can fight), **alms for the poor** (a
 little food at the gate each morning, and the neighbours remember it), **holy days** (with Ideology: three days for
-the faith), **a market day** (a trade caravan comes that day), **a fast**, **a work song** (recreation while working,
+the colony's ideoligion), **a market day** (a trade caravan comes that day), **a fast**, **a work song** (recreation while working,
 slower research), and **open gates** (more visitors). Two answer the region's hard times and can only be declared
 while they last: a **quarantine** while sickness goes round (illness passes between roommates a fifth as often, and
 visitors are turned away) and **famine bread** while a famine lies over the region (the colony eats a little less
-and sends bread to the hungry people). A decree for another era or faith isn't listed at all.
+and sends bread to the hungry people). A decree for another era or ideoligion isn't listed at all.
 
 There's no hard limit on repeating a decree, but there is a price. Enact the same one again within a month, or
 **force it through** before its cooldown is over, and those against it lose more trust and resent it more each
@@ -381,7 +381,7 @@ in it (+2), and the name fades if the work stops for long (a winter alone won't 
 
 Three more names grow out of how the colony lives, counted from Rimfolk's own records for the colony as a whole and
 worth no mood at all: **good hosts** (camps that stayed their time and left on good terms, people taken in, with
-Hospitality its guests' nights), **devout** (with Ideology: the faith's rituals held to their end, a chaplain, a moral
+Hospitality its guests' nights), **devout** (with Ideology: the ideoligion's rituals held to their end, a chaplain, a moral
 guide) and **long-memoried** (calendar days kept two years running, and traditions). What they change is what comes:
 camps come sooner to good hosts, and refugees and exiles seek them out; pilgrims and processions find a devout colony;
 players, minstrels and mourners a long-memoried one. Each has its own visitors on the road and lines in letters, and
@@ -425,36 +425,36 @@ it. The answer's good moods come to those who were there once it's over; if it n
 everyone gets them anyway, as before. This week lists what's coming, the dilemmas page says how each went, and those
 who took part write about it. A setting (Events & world) turns it off.
 
-### Faith and the council
-With Ideology, a colony of many faiths gives the council something to work with (all of it off in classic mode, and
-with "Faith in the colony" off). Every move goes through the game's own certainty: Rimfolk takes some away or gives
-some back, and when someone has none left the game converts them, with a message and a line in the chronicle.
+### Ideoligions and the council
+With Ideology, a colony of many ideoligions gives the council something to work with (all of it off in classic mode,
+and with "Ideoligions in the colony" off). Every move goes through the game's own certainty: Rimfolk takes some away
+or gives some back, and when someone has none left the game converts them, with a message and a line in the chronicle.
 
-- **An evening of faith.** The council calls a gathering where one faith is spoken for, by its moral guide or else
-  its most devout believer with the best Social skill, at its altar or ideogram if one stands (else round a fire or at
-  the dining table). Its believers come; the others choose for themselves, by how open they are, how sure of their own
-  faith and what they think of the speaker, and those whose faith frowns on being preached to stay away and say so.
-  How it went (the speaker's Social skill and warmth, how many came, the altar) decides what it does: listeners of
-  other faiths are swayed toward it (6% to 12% to start with, then their own openness, pride and opinion of the
-  speaker), believers steadied, everyone given recreation and fellowship (a fine evening, a small good mood); a poor
-  one changes nothing but a line. One every five days at most, the same faith one every ten. Put it on the calendar
-  as a day kept as an evening of faith, say yes when one of the devout asks the council for one, or call it from the
-  faiths page.
-- **A wavering colonist's wish.** Someone whose faith is shaken may ask for an evening with a devout believer of
-  another faith they think well of. Promised, they walk over that evening and spend a couple of hours together;
-  granted, they are swayed toward that faith and the two remember it together.
-- **Faiths at odds.** When the colony is split (two faiths of two believers or more, or half of everyone apart), the
-  council is asked how its faiths should live together, more often after a quarrel between them or while an altar
-  stands: share the altar and take turns (the open-minded approve, the devout less so), give each faith its own
-  corner (a letter suggests where; a little trust all round and everyone surer of their own), or name the largest
-  faith the colony's (its believers pleased, everyone else trusting the council less and drawn a little toward it,
-  the devout of other faiths taking it hard). Each answer plays out on the map.
-- **One faith for the colony.** A decree for fifteen days, naming the faith you choose. Each day the wavering of other
-  faiths are drawn a little toward it, its believers speak of it more and open the council's meetings with a word
-  from it, and those of other faiths trust the council a little less (the open-minded least, the devout most); the
-  devout of other faiths petition to lift it. Lifting it ends all of it.
+- **An ideoligion evening.** The council calls a gathering where one ideoligion is spoken for, by its moral guide or
+  else its most devout believer with the best Social skill, at its altar or ideogram if one stands (else round a fire
+  or at the dining table). Its believers come; the others choose for themselves, by how open they are, how certain of
+  their own ideoligion and what they think of the speaker, and those whose ideoligion frowns on being preached to stay
+  away and say so. How it went (the speaker's Social skill and warmth, how many came, the altar) decides what it does:
+  listeners of other ideoligions are swayed toward it (6% to 12% to start with, then their own openness, pride and
+  opinion of the speaker), believers steadied, everyone given recreation and fellowship (a fine evening, a small good
+  mood); a poor one changes nothing but a line. One every five days at most, the same ideoligion one every ten. Put it
+  on the calendar as a day kept as an ideoligion evening, say yes when one of the devout asks the council for one, or
+  call it from the ideoligions page.
+- **A wavering colonist's wish.** Someone whose certainty is shaken may ask for an evening with a devout believer of
+  another ideoligion they think well of. Promised, they walk over that evening and spend a couple of hours together;
+  granted, they are swayed toward that ideoligion and the two remember it together.
+- **Ideoligions at odds.** When the colony is split (two ideoligions of two believers or more, or half of everyone
+  apart), the council is asked how its ideoligions should live together, more often after a quarrel between them or
+  while an altar stands: share the altar and take turns (the open-minded approve, the devout less so), give each
+  ideoligion its own corner (a letter suggests where; a little trust all round and everyone surer of their own), or
+  name the largest ideoligion the colony's (its believers pleased, everyone else trusting the council less and drawn a
+  little toward it, the devout of other ideoligions taking it hard). Each answer plays out on the map.
+- **One ideoligion for the colony.** A decree for fifteen days, naming the ideoligion you choose. Each day the
+  wavering of other ideoligions are drawn a little toward it, its believers speak of it more and open the council's
+  meetings with a word from it, and those of other ideoligions trust the council a little less (the open-minded least,
+  the devout most); the devout of other ideoligions petition to lift it. Lifting it ends all of it.
 
-None of it adds a bad mood: what faith costs is trust and certainty. The Almanac page "faith and the council" has
+None of it adds a bad mood: what it costs is trust and certainty. The Almanac page "ideoligions and the council" has
 the numbers.
 
 ### Social: friends, rivals, comrades and mentors
@@ -518,7 +518,7 @@ Medieval Overhaul, Vanilla Ideology Expanded - Memes, Alpha Memes and Alpha Gene
 lean of their own. Then life marks them, with 53 kinds of mark: downed in a raid, carried out of one, holding the
 line or breaking under fire, a friend, lover, child or parent lost, nursed through an illness, forgiven after a
 breakdown, a secret betrayed, a seat won or lost, a craft mastered, a child raised, a hungry season, an addiction
-beaten, a new faith, a crisis of faith (with Ideology), a brush with what lies past the world. Their nature picks the mark and how deep it goes: the
+beaten, a new ideoligion, a crisis of faith (with Ideology), a brush with what lies past the world. Their nature picks the mark and how deep it goes: the
 bold harden where the timid are shaken, the cold close up where others grieve, raid after raid hardens some and
 wears others down. Part of each change stays for good and the rest fades over years; marks are kept rare (one small
 mark per few days, each turning point once in a long while), and a turning point goes into their journal in their
@@ -536,7 +536,7 @@ pessimist brightens after a good stretch; kindness appears after many kindnesses
 weakness fade; an ascetic after hardship, jealousy after vote on lost vote, a brawler in a melee fighter, rare
 bloodlust in a cold killer, an undergrounder who hardly sees the sky; harder work after two seasons of barely
 stopping (by the game's record of time at recreation) and idleness after the opposite; an addiction beaten makes a
-teetotaler; a recluse (Biotech), void fascination (Anomaly) and an ascetic of the faith (Ideology); six for Vanilla
+teetotaler; a recluse (Biotech), void fascination (Anomaly) and an ascetic drawn deeper into their ideoligion (Ideology); six for Vanilla
 Traits Expanded and RimTraits. A psychopath or a cannibal comes only from an extreme history (executions by their own
 hand with warmth and trust driven down by loss and betrayal; human flesh eaten three separate times while starving),
 once in a colony's life each. Every change brings a letter that tells what led to it, with the dates of the marks and
@@ -555,7 +555,7 @@ money, love (19 topics). What comes up follows the news (a raid yesterday, a dea
 newcomer, a harvest, a disaster), what each of them cares about and who they are, and their tie: friends talk about
 anything, rivals find what they disagree on.
 
-Everyone holds a **view** on each topic, from their character, traits, passions and faith (the bold want to fight back
+Everyone holds a **view** on each topic, from their character, traits, passions and ideoligion (the bold want to fight back
 and the timid want walls, the trusting back the council, the curious welcome newcomers), and it moves slowly with what
 happens and with talk: a liked, trusted, self-assured speaker brings an open listener round a little. So two of them
 **agree**, have a **friendly debate**, or a **heated argument** when tempers, opposed views and dislike meet; a joker
@@ -572,7 +572,7 @@ and in-jokes".
 
 #### Groups: they form, quarrel, split and merge
 Groups replace the old circles of friends (which come back, simpler, with "Personalities and social life" off). They grow out of something real (friendship,
-the same work, a fight fought together, the night hours, faith, where people came from, age, being alike) and keep the
+the same work, a fight fought together, the night hours, an ideoligion held hard, where people came from, age, being alike) and keep the
 name they were given: **the hunters, the night shift, the old hands, the kitchen crowd, the faithful, the ones from the
 ship, Hector's lot** (25 kinds, with names for a tribe or a keep). Each has:
 - **roles** that come from character and settle slowly, and never against it (no cold anchor, no dour joker): the
@@ -612,39 +612,41 @@ own moments (the cruel given a wide berth, the coward jibed at, the brave asked 
 dies down; newcomers pick it up over their first weeks. The character page shows it under "What people say about
 them" (in the Social tab's column), with the deeds behind it, who told whom, and who thinks what of them for it.
 
-#### Faith in the colony: who believes what, and what moves it
-With Ideology, how firmly each colonist holds their faith (the game's own certainty) comes into their life, under its
-own setting ("Faith in the colony", on by default). Conversions stay the game's own: someone takes up a new faith when
-their certainty runs out, and it's told the same way whatever led to it.
-- **People → Faiths** shows each faith in the colony as a card in its own colour and icon: its believers, each with a
-  bar of how firmly they hold it, marked devout (from 85%) or wavering (under 60%); its leader and moral guide, or that
-  the role is empty here; what it asks that weighs on someone right now (its believers' bad moods from its own
-  precepts, with the mood and who feels it); and who is likely to sway whom (devout, well-liked speakers against
-  wavering, open listeners). Under the cards, how to bring people together with the game's own tools: the moral
-  guide's Convert ability, the conversion ritual, mood and certainty, roles. The advisor speaks up when half the colony
-  or more is split between three faiths or more.
-- **Talks about faith matter.** When two of different faiths agree, or have a friendly debate, the devout one who comes
-  out of it well (by the game's conversion power, how devout and how liked) sways the other a little; the open and
-  friends are moved more, the proud less. A heated argument sways nobody and both dig in; two of one faith steady each
-  other. A believer whose faith frowns on preaching takes it badly: a small opinion of the preacher, not a mood. One
-  move a pair in two days, a sway at most once a day per listener, and about a hundred lines that show it (the devout
-  reaching out, the wavering giving ground or keeping it to themselves, both digging in).
+#### Ideoligions in the colony: who holds which, and what moves their certainty
+With Ideology, the game's ideoligions and how firmly each colonist holds theirs (the game's own certainty) come into
+their life, under their own setting ("Ideoligions in the colony", on by default). Rimfolk adds no belief system of its
+own beside the game's. Conversions stay the game's own: someone takes up a new ideoligion when their certainty runs
+out, and it's told the same way whatever led to it.
+- **People → Ideoligions** shows each ideoligion in the colony as a card in its own colour and icon: its believers,
+  each with a bar of how firmly they hold it, marked devout (from 85%) or wavering (under 60%); its leader and moral
+  guide, or that the role is empty here; what it asks that weighs on someone right now (its believers' bad moods from
+  its own precepts, with the mood and who feels it); and who is likely to sway whom (devout, well-liked speakers
+  against wavering, open listeners). Under the cards, how to bring people together with the game's own tools: the
+  moral guide's Convert ability, the conversion ritual, mood and certainty, roles. The advisor speaks up when half the
+  colony or more is split between three ideoligions or more.
+- **Talks about faith matter.** When two of different ideoligions agree, or have a friendly debate, the devout one who
+  comes out of it well (by the game's conversion power, how devout and how liked) sways the other a little; the open
+  and friends are moved more, the proud less. A heated argument sways nobody and both dig in; two of one ideoligion
+  steady each other. A believer whose ideoligion frowns on preaching takes it badly: a small opinion of the preacher,
+  not a mood. One move a pair in two days, a sway at most once a day per listener, and about a hundred lines that show
+  it (the devout reaching out, the wavering giving ground or keeping it to themselves, both digging in).
 - **A crisis of faith**, now and then, shakes someone's certainty for real (10 to 30%, by their nature): a loved one
-  lost though their faith had a funeral or a prayer to offer, being saved by someone of another faith (who draws them a
-  little toward theirs), the same demand of their faith weighing on them five days running, a brush with death. Each
-  is a turning point on the character page with a journal line in their own voice, rare (a chance, a long wait before
-  the same again, never two within 20 days) and never announced.
+  lost though their ideoligion had a funeral or a prayer to offer, being saved by someone of another ideoligion (who
+  draws them a little toward theirs), the same demand of their ideoligion weighing on them five days running, a brush
+  with death. Each is a turning point on the character page with a journal line in their own voice, rare (a chance, a
+  long wait before the same again, never two within 20 days) and never announced.
 
-The **Culture** tab opens with their **Faith**: the faith's icon and name, a certainty bar, a role they hold, what it
-asks of them now, what moved it lately and by how much, who is likeliest to sway them and the faiths they held before;
-their view about faith keeps in step with their certainty. Almanac: "Faith in the colony".
+The **Culture** tab opens with their **Ideoligion**: its icon and name, a certainty bar, a role they hold, what it
+asks of them now, what moved their certainty lately and by how much, who is likeliest to sway them and the
+ideoligions they held before; their view about faith keeps in step with their certainty. Almanac: "ideoligions in the
+colony".
 
 #### The character page
 The character page has one section for each part, each folding away: **Character** (in words and on eight bars),
 **What shaped them** (six marks, turning points first, the rest on hover), **Traits gained and lost**, **Views**,
-**Faith** (with Ideology), **Shared memories**, **Groups and role** and **What people say about them**. The council
+**Ideoligion** (with Ideology), **Shared memories**, **Groups and role** and **What people say about them**. The council
 window's People roster shows it whole. In the inspect pane each part sits where it belongs: who they are in the
-**Story** tab (character, what shaped them, traits gained and lost), what they believe in the **Culture** tab (faith
+**Story** tab (character, what shaped them, traits gained and lost), what they believe in the **Culture** tab (ideoligion
 and views), and their life among others in Rimfolk's column of the **Social** tab (shared memories, groups and role,
 what people say).
 
@@ -653,7 +655,7 @@ Select a colonist and three places in their inspect panel tell Rimfolk's side of
 - **Story**: who they are and what they've lived. Their trust, office and earned names, their character and what
   shaped it, the traits life changed, their life goal and how close they are, their personal story and what it waits
   for next, their quirks, heirlooms, vendettas and nemeses, their last dreams and the latest lines of their journal.
-- **Culture** (just left of Social): what they believe and where they come from. Their faith (with Ideology: its icon,
+- **Culture** (just left of Social): what they believe and where they come from. Their ideoligion (with Ideology: its icon,
   how firmly they hold it, a role, what it asks of them, what moved it, who could sway them), the views they hold,
   how they sit with the colony's ways (a bar from ashamed to proud, and why), what they think of each decree in force
   and any decree they asked for, and their backstory, xenotype (Biotech), the people they came from and how long
@@ -673,14 +675,14 @@ a rival, earn a seat on the council or a name the colony remembers, a bedroom fi
 enemies, raise a hundred and fifty structures, tend a hundred wounds, bring in four hundred harvests, or simply live
 three more years. Children have goals of their own (Biotech): a best friend, getting good at a skill they love, and
 for older children growing up, which comes true when they come of age, so a grown-up's goal follows. The old may
-want a grandchild, one more year or two students who can stand alone; believers a role in their faith or the whole
+want a grandchild, one more year or two students who can stand alone; believers a role in their ideoligion or the whole
 colony sharing it (Ideology); some only want to feel at home or free again, the heart's need well met for ten days
 in a row. Goals grow up with them: a child's dream of letters and numbers, a den of their own or an animal of their
 very own becomes a grown-up's goal (a scholar's, a builder's, a tamer's) when they come of age, and a teenager wants
 a grown-up's work, to be taken seriously, to see past the hills or a first love. The old have last wishes (to see a
 young one grown, one last fine piece, no grudge to the grave, family set right) that a friend may finish after
-them; the faithful want their faith found again or shared; a troubled heart wants to feel safe again, to let a grief
-go, to forgive itself or to find a friend for life. Goals respect belief: nobody whose faith forbids books, pets,
+them; the faithful want their faith found again or their ideoligion shared; a troubled heart wants to feel safe again, to let a grief
+go, to forgive itself or to find a friend for life. Goals respect belief: nobody whose ideoligion forbids books, pets,
 travel or love sets their heart on them. 84 in all, listed on the Almanac page "every life goal". Goals fit the
 person (their passions, traits and situation) and grow out of what happens to them: a battle makes a warrior, a
 brush with death a healer, a wedding someone who wants to marry, a birth someone who wants a child, a lost election
@@ -849,7 +851,7 @@ The herd and the pets are part of the colony's life, not only its larder and its
   a grudging truce.
 - **Hard choices:** the herd or the stores in a hungry week (a real cull, or lean days for everyone), a grazer in the
   crops, the good medicine for a sick animal, a predator at the pens (left alone, it may break in and take one), a bond
-  the faith frowns on. Nobody's own animal, nothing bonded or named, is ever culled or lost.
+  the ideoligion frowns on. Nobody's own animal, nothing bonded or named, is ever culled or lost.
 - **The herd's year:** the lambing watch, shearing day and bringing the herd home (before the winter, in a cold snap
   or after a raid: a work party walks the animals into the barn or pen on ropes) can become traditions; the colony's first foal and a beloved
   animal's day are on the calendar.
@@ -862,7 +864,7 @@ Five council seats: **speaker** (chairs meetings, everyone's trust rises a littl
 count for more, better aim), **quartermaster** (dilemmas cost less, better trade), **physician** (faster healing)
 and **steward** (standards rise more slowly). Seven more offices open as the colony grows: the **reeve** (fuller
 harvests, from four voters), the **peacemaker** (rivalries cool, and now and then the worst-feuding pair is sat down
-together, from five), the **chaplain** (with Ideology: keeps the colony's faith, from five), the **warden of guests**
+together, from five), the **chaplain** (with Ideology: keeps the colony's ideoligion, from five), the **warden of guests**
 (looks after visitors and the camp on the colony's land, from five), the **keeper of days** (every kept custom and
 calendar day a small occasion, from six), the **herdmaster** (more from the animals, from six) and, for a colony of
 ten, a **council of elders** (three seats, where age counts, and a steadier colony while they sit). Colonists elect them every year, voting for the skilled, the
@@ -888,7 +890,7 @@ when the fields open after a cold season: the colony sows together, the grower s
 and a crop sown in full is remembered as a good start) and the **remembrance walk** to the colony's graves in spring, the **midsummer swim** on a hot day by the water,
 the **harvest dance**, **first-frost soup** on the first freezing day, and **lantern night** in winter. Some belong
 to the land: **the sun's return** in the tundra, **the rain welcome** in the desert, **the blessing of the waters** by
-the sea or a river, **the marsh lights** in a swamp or jungle, **the high watch** in the hills. Some to the faith,
+the sea or a river, **the marsh lights** in a swamp or jungle, **the high watch** in the hills. Some to the ideoligion,
 with Ideology: **the night vigil**, **the tree-singing** and **the ancestors' supper**. Four are the
 children's (Biotech): a **snow day** off when the snow comes, the **children's race** in summer, the children's
 **gleaning** after the harvest, and **a tree for every child** planted in spring.
@@ -903,21 +905,21 @@ a **new crop**, the **first trade**, a **great hunt**, the herd's **first foal**
 bonded animal long with the colony, or killed fighting for its person, kept as a remembrance by those who loved it), up
 to a dozen of the most meaningful. On the **Calendar**
 page under History you can also **name days of your own** (up to 8) as a feast, a day of remembrance, a rest day, a
-day of games, a **bonfire**, a **day of gifts**, a **hunt**, a **planting day** or, with Ideology, an **evening of faith**
-for one of the colony's faiths, rename any day, or change how it's kept. What people say
-about a day knows the land and the faith: founding day in the desert is a jar of sand from where the first tent stood.
+day of games, a **bonfire**, a **day of gifts**, a **hunt**, a **planting day** or, with Ideology, an **ideoligion evening**
+for one of the colony's ideoligions, rename any day, or change how it's kept. What people say
+about a day knows the land and the ideoligion: founding day in the desert is a jar of sand from where the first tent stood.
 
 When a day comes round, a letter asks whether to keep it this year: a **feast** is a party at the gathering spot,
 **games** an afternoon of recreation, a **rest day** turns the rest of the day's work hours to recreation (the
 schedule goes back the next day), a **bonfire** is built at nightfall with music, a **day of gifts** warms every
 friendship round the circle, a **hunt** sends the hunters out after the day's game, and a **planting day** sends
-everyone out to sow the fields together, with a word at the field's edge after, an **evening of faith** gathers the
-day's faith and whoever chooses to come to hear its speaker (Faith and the council, above); a **remembrance** is kept with
+everyone out to sow the fields together, with a word at the field's edge after, an **ideoligion evening** gathers the
+day's ideoligion and whoever chooses to come to hear its speaker (Ideoligions and the council, above); a **remembrance** is kept with
 a quiet, bittersweet mood for those who knew the person. A birthday comes as a message and a small lift for the colonist. People write about the day in their
 journals, talk about it in the social log, and mention it the evening before; the World page shows the days coming
 up. All the moods are small and share the budget of good moods. Kept **three years running**, a day becomes a
 **tradition**, with the same letter, moods, chronicle and annals as the council's seasonal traditions, and letting it
-pass then disappoints everyone. With Ideology, the letter suggests the faith's own rite where one fits (a funeral rite,
+pass then disappoints everyone. With Ideology, the letter suggests the ideoligion's own rite where one fits (a funeral rite,
 a feast or festival), and holding it keeps the day. With Rimfolk events on, founding day is the founding event's to
 keep. An older save fills its calendar in from the chronicle, its dead and its nemeses.
 
@@ -1165,7 +1167,7 @@ lost the day they break or take a scratch. Four come from deeds Rimfolk counts i
 given). Out in the world, a colonist can be *Friend of the Road* (evenings at the camps' fires), *the Gatekeeper*
 (camps met at the gate), *Daykeeper* (the colony's days kept) or *Good Neighbour* (world events' calls answered), and
 for one deed *Roof-Raiser*, *Feud-Breaker*, *Bridge-Builder*, *the Finder* or *Road-Warden*. Years in a seat, in
-the faith and in the colony bring more: *Old Doc* and *Old Iron* (two years as physician or marshal), *the Unbeaten*
+the ideoligion and in the colony bring more: *Old Doc* and *Old Iron* (two years as physician or marshal), *the Unbeaten*
 (three terms as speaker without ever losing a vote), *the Celebrant* and *the Shepherd* (rituals led and years as
 moral guide, with Ideology), *the Founder* (ten years since the first day), *the Last of the First*, *the Firstborn*
 and *the Annalist*, who keeps the pen. They show in play: travellers ask for Old Doc or the Celebrant by name, the
@@ -1466,7 +1468,7 @@ medieval things). Many ask the council what to do, with a day or so to answer.
   **traders** with a stall, a **traveling smith**, a **hermit** who builds a hut, **traveling healers** who ease an
   ailment, a **procession of the faithful** who bless the colony (naming their creed with Ideology), **traveling
   players** who put on a show, **surveyors** who may show you a seam of ore, a **salt caravan** or **merchants from
-  afar** with a stall, **drovers** with a herd, barefoot **penitents**, **tree-singers** (Ideology, of a faith that
+  afar** with a stall, **drovers** with a herd, barefoot **penitents**, **tree-singers** (Ideology, of an ideoligion that
   holds trees sacred), a **travelling healer**, a band of **minstrels** whose music the colony walks over to hear, and
   **mourners** carrying their dead home. Refugees come more often while a famine, plague, war, flood, drought, hard
   winter or great fire runs in the region, and say what they fled; pilgrims follow a holy year, surveyors a new road
@@ -1759,11 +1761,11 @@ there, when it fades, which mod it comes from, and **what you can do about it**.
 where they're heading and the lines where breaks begin.
 
 The tab opens **compact**, sorted by what you can do. Chips under the bar give each group's total ("You can fix -15",
-"Will pass -11 · 2 days", "Faith -4", "Lifting +22"); click one to jump to its group.
+"Will pass -11 · 2 days", "Ideoligion -4", "Lifting +22"); click one to jump to its group.
 - **You can fix**: moods you can do something about now, biggest first, each with a short action in gold ("Build a
   dining table", "Vary the meals", "Light where they work and walk").
 - **Will pass**: memories fading on their own, with when each is gone, and when the last of them is.
-- **Faith and who they are**: moods from their beliefs, their traits or genes, and moods that never fade.
+- **Ideoligion and who they are**: moods from their beliefs, their traits or genes, and moods that never fade.
 - **Lifting**: the good moods, folded to one line ("+22 from 9: Fine meal +5, ...") until you click it.
 
 Each mood is one line with a faint bar for its size. Hover it for everything its card says (the game's description,
@@ -1777,10 +1779,10 @@ of your mods. Every "Go to" button leads to a real page, and to the one its hint
 Dilemmas, names to the roster, strangers and world events to World, a missed gathering to This week); the game checks
 this on load. Hints cover the base game, the DLCs and Rimfolk (202 groups of them, down to the calendar's days,
 convalescence and personal stories), and every one with a fix has its short action; moods from other mods are sorted
-by kind ("While it lasts", "Fades in 2 days", "Their faith", "Lasting") and get general advice and their mod's name.
+by kind ("While it lasts", "Fades in 2 days", "Their ideoligion", "Lasting") and get general advice and their mod's name.
 
 The game's own **Needs** tab gets a line above its mood list with the same totals ("You can fix -15 · Will pass -11
-· Faith -4 · Lifting +22"; click it to open the Mood tab), and hovering a mood there ends its usual tooltip with
+· Ideoligion -4 · Lifting +22"; click it to open the Mood tab), and hovering a mood there ends its usual tooltip with
 which mod it comes from and what to do about it (a setting turns both off).
 
 ## On-screen panels and the hover card
@@ -1792,7 +1794,7 @@ panel, it gets the click and the tooltip:
 - **Mood board**: a row for each colonist at home with their portrait, a mood bar with their own minor and major break
   lines, an arrow and the number for where it's heading, and, faint under it, what drags them down most with its size
   ("-8 No bedroom"; with the option on, "→ Give them a bedroom" too). Marks for a mental break, high strain, an open
-  wish and wavering faith. Most at risk first, or the colonist bar's order; rows go orange and red under their break
+  wish and wavering certainty. Most at risk first, or the colonist bar's order; rows go orange and red under their break
   lines, with a soft pulse under the major one. Click to go to them, Shift-click for their Mood tab, hover for their
   five biggest moods. **Compact**: thin bars with initials in a grid, like raid frames.
 - **Mood trend**: the colony's average mood and its lowest colonist's over the last 3 or 7 days, with the 35% line;
@@ -2093,7 +2095,7 @@ faster speed ends it; pausing and unpausing keeps it. Hide the buttons in the se
 The portraits along the top of the screen show who needs you, without clicking into each colonist: a soft ring that
 turns from amber to deep red as someone nears a mental break (or a dot, or nothing), and up to two small badges (one
 to three in the settings) for someone about to leave, a wish that has waited past half its time, strain near
-breaking, wavering faith (with Ideology) or a promise at risk. A calm colonist shows nothing; when more apply, the most
+breaking, wavering certainty (with Ideology) or a promise at risk. A calm colonist shows nothing; when more apply, the most
 pressing win. Hover a badge for what it means, how big it is and what helps; click it for the Mood tab, the council's
 Wishes page or the Culture tab. Dragging and selecting work as before anywhere but a badge. Each kind, the ring's
 early warning, the wish badge's threshold, the size, the corner and how many show are all in the settings
@@ -2150,7 +2152,7 @@ The pages:
   strength, no half-built work or the fussiest setbacks, and high standards don't make frictions sting more; **normal**, the default, a little under written strength; or **demanding**,
   half again as strong), rising standards (and whether they also cover the game's comforts), whether Rimfolk's good
   moods add up slowly, getting used to good times, everyday frictions; the social web and social events,
-  Rimfolk's column in the game's Social tab, personalities and social life, traits that change, faith in the colony (with Ideology), secrets, vendettas; life goals, personal stories (off, rare, normal or frequent), quirks, heirlooms, coming of age,
+  Rimfolk's column in the game's Social tab, personalities and social life, traits that change, ideoligions in the colony (with Ideology), secrets, vendettas; life goals, personal stories (off, rare, normal or frequent), quirks, heirlooms, coming of age,
   colonists fixing what bothers them (and placing small plans), dreams and dream omens; moments between colonists,
   the colony noticing what happens, and small habits in free time; journals, names, anniversaries, annals and eulogies; and how often moments,
   social events and dreams come (a quarter as often to three times as often).

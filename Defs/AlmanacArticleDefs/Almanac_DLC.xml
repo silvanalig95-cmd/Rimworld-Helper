@@ -371,7 +371,7 @@ Give a leader speech only when quality is high, since a terrible one costs -8; a
     <label>ritual limits and rewards</label>
     <category>Ideology</category>
     <order>40</order>
-    <summary>Six rituals per faith, one bonus reward each, and the rules that stop them running</summary>
+    <summary>Six rituals per ideoligion, one bonus reward each, and the rules that stop them running</summary>
     <tip>A funeral can't be held until the body is in a grave or sarcophagus.</tip>
     <description>An ideoligion can hold only a limited number of rituals, so choose the ones your colony will use. Each ritual can also carry an extra reward that pays out only on a good outcome. When a ritual won't start, the cause is usually simple, such as a missing body, an empty role or a speaker who can't speak.</description>
     <sections>
@@ -395,7 +395,7 @@ Give a leader speech only when quality is high, since a terrible one costs -8; a
       <li>
         <heading>Ritual by ritual</heading>
         <points>
-          <li>Funeral: needs the corpse in a grave or sarcophagus and a moral guide of the dead pawn's faith.</li>
+          <li>Funeral: needs the corpse in a grave or sarcophagus and a moral guide of the dead pawn's ideoligion.</li>
           <li>Conversion: a moral guide who can't speak can't run one.</li>
           <li>Gladiator duel: ends at a pain-shock down or a mental break. Child slaves and child prisoners can't fight.</li>
           <li>Trial: a convicted defendant stays guilty for 15 days.</li>

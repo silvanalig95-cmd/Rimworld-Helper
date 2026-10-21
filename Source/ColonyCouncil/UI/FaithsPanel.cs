@@ -459,11 +459,11 @@ namespace ColonyCouncil
             if (Widgets.ButtonInvisible(area)) MainTabWindow_Council.OpenPerson(p);
         }
 
-        /// <summary>The hook's buttons for a faith (perFaith) or for the colony; returns the height used.</summary>
+        /// <summary>The hook's buttons for a faith (perFaith) or for the colony, in as many rows as they need; returns the height used.</summary>
         private static float DrawButtons(float x, float y, float w, Ideo ideo, bool perFaith)
         {
             if (Buttons.Count == 0) return 0f;
-            float bx = x;
+            float bx = x, by = y;
             bool any = false;
             foreach (var b in Buttons)
             {
@@ -474,8 +474,13 @@ namespace ColonyCouncil
                     string label = b.label?.Invoke(ideo) ?? b.key ?? "?";
                     Text.Font = GameFont.Small;
                     float bw = Mathf.Min(w, Text.CalcSize(label).x + 24f);
-                    if (bx > x && bx + bw > x + w) break;
-                    var r = new Rect(bx, y, bw, 28f);
+                    // A button that doesn't fit beside the last goes to a row of its own.
+                    if (bx > x && bx + bw > x + w)
+                    {
+                        bx = x;
+                        by += 34f;
+                    }
+                    var r = new Rect(bx, by, bw, 28f);
                     string blocked = b.blocked?.Invoke(ideo);
                     string tip = b.tip?.Invoke(ideo);
                     if (!blocked.NullOrEmpty()) tip = (tip.NullOrEmpty() ? "" : tip + "\n\n") + blocked;
@@ -498,7 +503,7 @@ namespace ColonyCouncil
                     CouncilLog.ErrorOnce("faiths page: button " + b.key, e);
                 }
             }
-            return any ? 34f : 0f;
+            return any ? by - y + 34f : 0f;
         }
 
         /// <summary>How to bring people together: the game's own tools, and what Rimfolk adds; then the council's buttons.</summary>

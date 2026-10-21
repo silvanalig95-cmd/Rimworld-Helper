@@ -13,7 +13,7 @@
   <ColonyCouncil.OfficeDef>
     <defName>Council_Office_Chaplain</defName>
     <label>chaplain</label>
-    <description>Keeps the colony's faith: leads its prayers and its remembrances, sits with the grieving, and has a word with anyone whose belief is wearing thin.</description>
+    <description>Keeps the colony's ideoligion: leads its prayers and its remembrances, sits with the grieving, and has a word with anyone whose belief is wearing thin.</description>
     <order>10</order>
     <minColonists>5</minColonists>
     <needsIdeology>true</needsIdeology>
@@ -23,10 +23,10 @@
     <badTraits><li>Psychopath</li><li>Abrasive</li></badTraits>
     <hediff>Council_Office_Chaplain</hediff>
     <duties>
-      <li>Most days, sits with someone grieving (their strain eases), or else has a word with the believer least sure of the faith (their certainty rises).</li>
+      <li>Most days, sits with someone grieving (their strain eases), or else has a word with the believer least sure of the ideoligion (their certainty rises).</li>
       <li>Leads the colony's days of remembrance.</li>
-      <li>The faith's decrees and customs strengthen belief half again as much while the chaplain is at home.</li>
-      <li>Only with Ideology, for a colony with a faith of its own. Opens once the colony has five people who can vote.</li>
+      <li>The ideoligion's decrees and customs strengthen certainty half again as much while the chaplain is at home.</li>
+      <li>Only with Ideology, for a colony with an ideoligion of its own. Opens once the colony has five people who can vote.</li>
     </duties>
     <elected>
       <li>{PAWN_nameDef} spent the evening at the altar, and came back looking younger.</li>

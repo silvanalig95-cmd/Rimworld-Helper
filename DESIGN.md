@@ -393,7 +393,7 @@ and news for turning points.
 - **The page.** StoryView draws the sections of `CharacterPage` (character 10, what shaped them 20, then the other parts'),
   with eight bars and per-side tooltips worked out the same way as nature. With social life off only nature shows.
   Each section carries its registry key, so a page picks its parts (`CharacterPage.Make` asks one): the People roster
-  shows them all, the Story tab character, shaped and traits, the Culture tab views and faith, and the Social tab's
+  shows them all, the Story tab character, shaped and traits, the Culture tab views and ideoligion, and the Social tab's
   column groups, reputation and memories (see "A colonist's tabs").
 
 ### Groups
@@ -404,7 +404,7 @@ component of its own, so an old save just starts without it and finds its groups
 
 - **Forming.** Once a day, with the social web's day, every pair gets an affinity from the game (`GroupFacts` →
   `GroupMath.Affinity`): friendship and rivalry most, then shared work (sampled hourly), comrades, the night hours,
-  likeness (`Persona.Likeness`), faith held hard, arriving together or the same kind of life before, age. A cluster of
+  likeness (`Persona.Likeness`), an ideoligion held hard, arriving together or the same kind of life before, age. A cluster of
   three to seven with no rift becomes a group; someone joins the group they hold to (and never one they left) and drifts
   off after days of not holding to it. Two groups each at most.
 - **Identity.** The kind is what binds most of it (`GroupKindDef`: 25, lowest order wins, friendship last); it gives a
@@ -504,7 +504,7 @@ game's records, a share of time from record snapshots every ten days, calm days,
   trait in a person waits its rule's gap (90 to 150 days). Only marks and deeds since that trait last changed count,
   so a stretch of life earns one change. Psychopath and cannibal need an extreme history and come once per colony.
 - **Never touched.** Sexuality, the body and inborn gifts (`TraitChangeMath.Untouchable`), traits from genes, a
-  backstory or the scenario, suppressed traits, a faith role whose requirements speak of traits. The game's conflicts,
+  backstory or the scenario, suppressed traits, an ideoligion role whose requirements speak of traits. The game's conflicts,
   exclusion tags, conflicting passions, backstory and gene rules hold; nobody gains past four traits.
 - **Nothing doubles.** Nature is read from traits, so the shift a trait brings (worked out from nature before and after)
   is taken out of the person's moves, the fading part first, then the lasting part (`TraitChangeMath.Absorb`): every
@@ -515,92 +515,98 @@ game's records, a share of time from record snapshots every ten days, calm days,
   journal line by tone, the chronicle, "Traits gained and lost" (page section 25) and a line in each side's tooltip
   for what went into a trait. Setting "Traits can change", under social life.
 
-### Faith in the colony: the people
-With Ideology, how firmly colonists hold their faith (the game's certainty, 0..1) comes into their life (`Faith/`; the
-arithmetic in `FaithMath.cs` and `FaithPeopleMath.cs`, checked by `Tools/Tests/FaithTests.cs` and
-`FaithPeopleTests.cs`). Everything moves certainty through the core (`Faiths.Sway`, `SwayToward`, `Shake`, `Steady`), so
-a conversion is always the game's own `IdeoConversionAttempt` and is told one way. Off without Ideology, in classic
-mode or with "Faith in the colony" off; the talks also need the talk's settings, the crises social life.
+### Ideoligions in the colony: the people
+With Ideology, the game's ideoligions and how firmly colonists hold them (the game's certainty, 0..1) come into their
+life (`Faith/`; the arithmetic in `FaithMath.cs` and `FaithPeopleMath.cs`, checked by `Tools/Tests/FaithTests.cs` and
+`FaithPeopleTests.cs`). Player-facing text uses the game's own words, ideoligion and certainty, so nobody mistakes this
+for a belief system of Rimfolk's own; code, keys, defNames, tags and saved fields keep their older "faith" names.
+Everything moves certainty through the core (`Faiths.Sway`, `SwayToward`, `Shake`, `Steady`), so a conversion is
+always the game's own `IdeoConversionAttempt` and is told one way. Off without Ideology, in classic mode or with
+"Ideoligions in the colony" off; the talks also need the talk's settings, the crises social life.
 
-- **The faiths page** (People → Faiths, `UI/FaithsPanel.cs`, a page only while `Faiths.On`): a card per faith of the
-  census (most believers first) in its colour and icon, with its memes; believers with a certainty bar marked devout
-  (0.85) or wavering (under 0.6); leader and moral guide from the faith's roles, or empty here, held elsewhere or not
-  in the faith; what it asks that weighs on someone now (`FaithAsks`: a believer's mood thought groups whose
-  `sourcePrecept` is of their faith, or whose def a precept's `PreceptComp_Thought` gives, half a point off or more);
-  who could sway whom (each devout believer against everyone of another faith, by `FaithPeople.Expected`: the core's
-  sway for a friendly debate and the game's certainty-loss factor, from 2.5%); then the game's own tools. Built once a
-  second, the game's stats read once per build. `FaithsPanel.Buttons` is the hook for the council's own buttons (per
-  faith, or for the colony), empty until something adds to it.
-- **Faith talks** (`FaithTalk.cs`, two lines in `Talk.Run` and one in the faith topic's tags): planned once the talk's
-  outcome is known and before its lines, applied after its own effects. Across faiths: agreeing (base 0.035) or a
-  friendly debate (0.045: one of them likes the other at 15 or more, or friends or lovers) lets the devout one who comes
-  out of it well sway the other (in a debate by persuasion: conversion power, twice for the devout, how liked, with a
-  roll; only a devout winner sways); an argument makes both dig in (+0.01). One faith steadies itself (+0.01). One
-  faith move a pair in two days (not saved), a sway once a day per listener and a steadying once a day (saved). A
-  listener whose faith frowns on preaching (`Faiths.DislikesPreaching`, the core halves the sway) gets
-  `Rimfolk_Faith_PreachedAt` about the preacher (-5 opinion, 4 days, no mood, with a hint). The lines' tags say it:
-  persuading, persuaded (expected 0.03 or more) or unmoved, preachedat, digin, steadied, otherfaith:devout and
-  :wavering, myfaith or theirfaith for whose faith {SUBJECT} is, nopreaching.
+- **The ideoligions page** (People → Ideoligions, `UI/FaithsPanel.cs`, a page only while `Faiths.On`): a card per
+  ideoligion of the census (most believers first) in its colour and icon, with its memes; believers with a certainty
+  bar marked devout (0.85) or wavering (under 0.6); leader and moral guide from the ideoligion's roles, or empty here,
+  held elsewhere or not in the ideoligion; what it asks that weighs on someone now (`FaithAsks`: a believer's mood
+  thought groups whose `sourcePrecept` is of their ideoligion, or whose def a precept's `PreceptComp_Thought` gives,
+  half a point off or more); who could sway whom (each devout believer against everyone of another ideoligion, by
+  `FaithPeople.Expected`: the core's sway for a friendly debate and the game's certainty-loss factor, from 2.5%); then
+  the game's own tools. Built once a second, the game's stats read once per build. `FaithsPanel.Buttons` is the hook
+  for the council's own buttons (per ideoligion, or for the colony), empty until something adds to it.
+- **Talks that move certainty** (`FaithTalk.cs`, two lines in `Talk.Run` and one in the faith topic's tags): planned
+  once the talk's outcome is known and before its lines, applied after its own effects. Across ideoligions: agreeing
+  (base 0.035) or a friendly debate (0.045: one of them likes the other at 15 or more, or friends or lovers) lets the
+  devout one who comes out of it well sway the other (in a debate by persuasion: conversion power, twice for the
+  devout, how liked, with a roll; only a devout winner sways); an argument makes both dig in (+0.01). Two of one
+  ideoligion steady each other (+0.01). One move a pair in two days (not saved), a sway once a day per listener and a
+  steadying once a day (saved). A listener whose ideoligion frowns on preaching (`Faiths.DislikesPreaching`, the core
+  halves the sway) gets `Rimfolk_Faith_PreachedAt` about the preacher (-5 opinion, 4 days, no mood, with a hint). The
+  lines' tags say it: persuading, persuaded (expected 0.03 or more) or unmoved, preachedat, digin, steadied,
+  otherfaith:devout and :wavering, myfaith or theirfaith for whose ideoligion {SUBJECT} is, nopreaching. The talk
+  topic itself stays "faith": it comes up without Ideology too, where the game has no ideoligions.
 - **Views beside certainty.** A move of certainty moves the faith view twice over, then `ViewWithCertainty` keeps it
   where it can't read against certainty (wavering: never "holds to the faith"; devout: never "doubts"), daily too.
 - **Crises of faith** (`FaithCrisis.cs`, 5 marks in 4 families with a `FaithShake` extension: base shake, a pull toward
-  the other's faith, what the pages say caused it). Ways in are one line each in `Persona/Marks.cs`: after any mark
-  (`Give`), a loss mark (LostLove, LostChild, LostKin, LostFriend) about someone dead, for a faith with a funeral or a
-  prayer, waits 1 to 3 days; a rescue (SavedBy, NursedBack) by someone of another faith waits 0.4 to 1.5; the hourly
-  look at the downed notes a brush with death (blood loss 0.45, a lethal hediff three quarters of the way, bleeding out
-  within 8 hours) to be felt once they're up; the daily look follows the worst demand of their own faith and counts
-  the days it stays (5, at -4 or worse). A crisis then is the family's mark through `PersonaMarks.Give` (its chance,
-  repeat window and the marks' own limits), never within 20 days of the last; the shake is the base times the mark's
-  lean, 0.1 to 0.3; a rescue also sways toward the rescuer's faith (0.05 before openness, pride, opinion). Waiting
-  ones are let go after 6 days. A crisis never converts by itself; the game's drift by mood rebuilds faith, nothing
-  more is added.
-- **Shown**: the character page's Faith section (35: faith and certainty with the game's daily change, a role, what it
-  asks, the last three faith moments with how far each moved them, who is likeliest to sway them or whom they could
-  bring round), the mark under "what shaped them", news, the journal; the advisor's `Council_Adv_FaithSplit` (split
-  0.5 or more with three faiths or more, leading to the page); the Almanac page "faith in the colony".
-### Faith and the council
-With Ideology, the council can work with the colony's faiths (`Faith/FaithEvenings.cs`, `Faith/FaithCouncilMath.cs`,
-`Dilemmas/DilemmaWorkers_Faith.cs`, `Decrees/DecreeFaith.cs`, `Wishes/WishWorkers_Faith.cs`). Everything moves faith
-through the shared core (`Faiths.Sway`, `SwayToward`, `Steady`), so the listener's openness, pride and opinion of the
-speaker always count, no single moment takes more than 15%, and a conversion is the game's own. Off without Ideology,
-in classic mode and with "Faith in the colony" off. Faith costs trust and certainty, never a bad mood: a colony of many
-faiths is a lever the player can pull, not one more drain.
+  the other's ideoligion, what the pages say caused it). Ways in are one line each in `Persona/Marks.cs`: after any mark
+  (`Give`), a loss mark (LostLove, LostChild, LostKin, LostFriend) about someone dead, for an ideoligion with a funeral
+  or a prayer, waits 1 to 3 days; a rescue (SavedBy, NursedBack) by someone of another ideoligion waits 0.4 to 1.5; the
+  hourly look at the downed notes a brush with death (blood loss 0.45, a lethal hediff three quarters of the way,
+  bleeding out within 8 hours) to be felt once they're up; the daily look follows the worst demand of their own
+  ideoligion and counts the days it stays (5, at -4 or worse). A crisis then is the family's mark through
+  `PersonaMarks.Give` (its chance, repeat window and the marks' own limits), never within 20 days of the last; the
+  shake is the base times the mark's lean, 0.1 to 0.3; a rescue also sways toward the rescuer's ideoligion (0.05
+  before openness, pride, opinion). Waiting ones are let go after 6 days. A crisis never converts by itself; the game's
+  drift by mood rebuilds certainty, nothing more is added.
+- **Shown**: the character page's Ideoligion section (35: ideoligion and certainty with the game's daily change, a
+  role, what it asks, the last three moments that moved it with how far each moved them, who is likeliest to sway them
+  or whom they could bring round), the mark under "what shaped them", news, the journal; the advisor's
+  `Council_Adv_FaithSplit` (split 0.5 or more with three ideoligions or more, leading to the page); the Almanac page
+  "ideoligions in the colony".
+### Ideoligions and the council
+With Ideology, the council can work with the colony's ideoligions (`Faith/FaithEvenings.cs`, `Faith/FaithCouncilMath.cs`,
+`Dilemmas/DilemmaWorkers_Faith.cs`, `Decrees/DecreeFaith.cs`, `Wishes/WishWorkers_Faith.cs`). Everything moves
+certainty through the shared core (`Faiths.Sway`, `SwayToward`, `Steady`), so the listener's openness, pride and opinion
+of the speaker always count, no single moment takes more than 15%, and a conversion is the game's own. Off without
+Ideology, in classic mode and with "Ideoligions in the colony" off. It costs trust and certainty, never a bad mood: a
+colony of many ideoligions is a lever the player can pull, not one more drain.
 
-- **An evening of faith** is a gathering (a play-out, `PlayKind.Gathering` with words) for one faith, 17:00 to 23:00,
-  about two hours. The speaker is the faith's moral guide at home, else its most devout believer with the best Social
-  skill; the place its altar or ideogram (styled for it, or for the colony's own faith any unclaimed one: a soft check
-  by name, so other mods' altars count), else a fire, the dining table, a gather spot. Who comes is decided as it's
-  called (`FaithCouncilMath.ComeChance`): believers always, a faith that frowns on preaching never (they say so where
-  they are), the rest by openness, opinion of the speaker, wavering or devout. It is judged when the gathering ends
-  (`Interplay.Notify_GatheringOver` hands every gathering to `FaithEvenings.Notify_GatheringOver`): Social skill up to
-  0.55, warmth 0.15 either way, listeners up to 0.2 at six, the altar 0.1, halved when broken off. Poor (under 0.3)
-  does nothing but a line; good sways listeners of other faiths from 6% (to 9%) and steadies believers, with recreation
-  and fellowship instead of mood (RewardInstead); fine (0.65 or more) sways up to 12% and gives a small mood (+3, a
-  day and a half) through the shared budget. Its outcome becomes the gathering's closing words (`PlayOut.outcome`).
-  One every five days, a faith every ten; offered and nobody coming spends the faith's turn, so the dice can't be
-  rolled again at once.
-- **Called from:** a calendar day kept as an evening of faith (`DayWay.Faith`, the faith by name in the day's subject;
-  it ignores the gaps, a yearly day), the devout's council question (`DilemmaWorker_FaithEvening`), and
+- **An ideoligion evening** is a gathering (a play-out, `PlayKind.Gathering` with words) for one ideoligion, 17:00 to
+  23:00, about two hours. The speaker is the ideoligion's moral guide at home, else its most devout believer with the
+  best Social skill; the place its altar or ideogram (styled for it, or for the colony's own ideoligion any unclaimed
+  one: a soft check by name, so other mods' altars count), else a fire, the dining table, a gather spot. Who comes is
+  decided as it's called (`FaithCouncilMath.ComeChance`): believers always, an ideoligion that frowns on preaching
+  never (they say so where they are), the rest by openness, opinion of the speaker, wavering or devout. It is judged
+  when the gathering ends (`Interplay.Notify_GatheringOver` hands every gathering to
+  `FaithEvenings.Notify_GatheringOver`): Social skill up to 0.55, warmth 0.15 either way, listeners up to 0.2 at six,
+  the altar 0.1, halved when broken off. Poor (under 0.3) does nothing but a line; good sways listeners of other
+  ideoligions from 6% (to 9%) and steadies believers, with recreation and fellowship instead of mood (RewardInstead);
+  fine (0.65 or more) sways up to 12% and gives a small mood (+3, a day and a half) through the shared budget. Its
+  outcome becomes the gathering's closing words (`PlayOut.outcome`). One every five days, an ideoligion every ten;
+  offered and nobody coming spends the ideoligion's turn, so the dice can't be rolled again at once.
+- **Called from:** a calendar day kept as an ideoligion evening (`DayWay.Faith`, the ideoligion by name in the day's
+  subject; it ignores the gaps, a yearly day), the devout's council question (`DilemmaWorker_FaithEvening`), and
   `FaithEvenings.CanCall(Map, out why)`, `CanCall(Map, Ideo, out why)` and `Call(Map, Ideo)` for any page.
-- **The wish** (`WishWorker_LearnFaith`): wavering (under 60%), a devout believer of another faith thought well of
-  (opinion 20+), never for a faith that frowns on preaching. Promised, a play-out visit that evening (re-arranged if it
-  falls through while promised; without play-outs, `Together.When`); an evening of that faith counts too. The grant's
-  effect (`WishEffect_LearnFaith`) sways 12% base (none more if an evening already did it) and adds a shared memory.
-- **Faiths at odds** (`DilemmaWorker_FaithClash`): two faiths of two or more, or a split of a half; half the time unless
-  believers of different faiths quarrelled in the last five days or an altar stands. Share the altar (+2 trust for the
-  open-minded, -1 for the devout), a corner each (+1 trust, 3% certainty, a letter suggesting places), or name the
-  largest faith (+3 for its believers, -2 and a 3% sway for the rest, -4 more for the devout of other faiths who take
-  it hard). Each plays out (`DilemmaEffect_FaithWords`, a work party). Faiths are kept by name in the letter's context,
-  so an archived letter never references a faith the game has let go.
-- **One faith for the colony** (a DecreeDef with `oneFaith`): the player picks the faith from a menu on the enact
-  button (the largest first). Each morning (`DecreeWork.Daily`): the wavering of other faiths `SwayToward` it 1.2% to 2%
-  (opinion of its believers, a little by openness), and those of other faiths lose 0.25 to 1 trust (logged on the first
-  morning and every fifth). Reactions narrow by faith (`decreeFaith`, `notDecreeFaith`, `dislikesPreaching` on a
-  reaction rule), so the devout of other faiths hate it and the decree system's own petition to lift it comes from them.
-  Meetings open with a word from a believer (`DecreeFaith.MeetingWord`, once a meeting). No mood of its own. The faith
-  talks read `DecreeFaith.FaithOfColony` and `TalkFactor` (1.5). Lifted or run out, the named faith is let go.
-- **Saved** in `FaithCouncilTracker` (a game component that never ticks): the last evening and each faith's, the
-  evening waiting, the decree's faith, and who heard which faith lately (one each, 30 days, 40 at most).
+- **The wish** (`WishWorker_LearnFaith`): wavering (under 60%), a devout believer of another ideoligion thought well of
+  (opinion 20+), never for an ideoligion that frowns on preaching. Promised, a play-out visit that evening
+  (re-arranged if it falls through while promised; without play-outs, `Together.When`); an evening of that ideoligion
+  counts too. The grant's effect (`WishEffect_LearnFaith`) sways 12% base (none more if an evening already did it) and
+  adds a shared memory.
+- **Ideoligions at odds** (`DilemmaWorker_FaithClash`): two ideoligions of two or more, or a split of a half; half the
+  time unless believers of different ideoligions quarrelled in the last five days or an altar stands. Share the altar
+  (+2 trust for the open-minded, -1 for the devout), a corner each (+1 trust, 3% certainty, a letter suggesting
+  places), or name the largest ideoligion (+3 for its believers, -2 and a 3% sway for the rest, -4 more for the devout
+  of other ideoligions who take it hard). Each plays out (`DilemmaEffect_FaithWords`, a work party). Ideoligions are
+  kept by name in the letter's context, so an archived letter never references an ideoligion the game has let go.
+- **One ideoligion for the colony** (a DecreeDef with `oneFaith`): the player picks the ideoligion from a menu on the
+  enact button (the largest first). Each morning (`DecreeWork.Daily`): the wavering of other ideoligions `SwayToward`
+  it 1.2% to 2% (opinion of its believers, a little by openness), and those of other ideoligions lose 0.25 to 1 trust
+  (logged on the first morning and every fifth). Reactions narrow by ideoligion (`decreeFaith`, `notDecreeFaith`,
+  `dislikesPreaching` on a reaction rule), so the devout of other ideoligions hate it and the decree system's own
+  petition to lift it comes from them. Meetings open with a word from a believer (`DecreeFaith.MeetingWord`, once a
+  meeting). No mood of its own. The talks read `DecreeFaith.FaithOfColony` and `TalkFactor` (1.5). Lifted or run out,
+  the named ideoligion is let go.
+- **Saved** in `FaithCouncilTracker` (a game component that never ticks): the last evening and each ideoligion's, the
+  evening waiting, the decree's ideoligion, and who heard which ideoligion lately (one each, 30 days, 40 at most).
 
 ## Real effects: answers that play out on the map
 
@@ -989,7 +995,7 @@ play out (A and B are the dilemma's or event's people, X its stranger):
 - **a raider in the crops** (`Council_DlmA_CropRaider`): "Send the hunters": a hunt party · "Watch the fields at night": a vigil at the fields ("the watch over the fields") · "Let it eat": A goes out to the fields ("A's look at the fields").
 - **medicine for an animal** (`Council_DlmA_SickAnimal`): "The good medicine for the pet": B keeps the pet company · "A nurses the pet through": a vigil at the pet's side ("a night with the pet").
 - **something at the pens** (`Council_DlmA_PenStalker`): "Keep watch at the pens": a vigil at the pet's side ("the watch at the pens") · "Bring the herd in close": a work party of A and B (herd) ("bringing the herd in close").
-- **a bond against the faith** (`Council_DlmA_BondFaith`): "Ask B to bless the pet": gathering to hear it, B speaks ("B's blessing over the pet").
+- **a bond against the ideoligion** (`Council_DlmA_BondFaith`): "Ask B to bless the pet": gathering to hear it, B speaks ("B's blessing over the pet").
 - **the lambing watch** (`Council_Dilemma_LambingWatch`): "Keep the lambing watch together": a vigil at the pet's side ("the lambing watch") · "A sits up alone": A keeps the pet company.
 - **shearing day** (`Council_Dilemma_ShearingDay`): "Make a day of it": gathering ("shearing day").
 
@@ -1252,7 +1258,7 @@ ailment where it was, the catching clock went from 30 to 35 days, a few of the c
 a tenth or two of a point.
 
 **Easing, step one** (October 2026, after a player found mood too hard to keep up, much of it from things they couldn't
-prevent and a colony of five faiths). Small steps, one at a time, measured each time:
+prevent and a colony of five ideoligions). Small steps, one at a time, measured each time:
 - Normal life's ups and downs presses at 85% (`PressureMath.Factor`), and the colony's small letdowns that the council
   never gave (moments' frictions, nuisances) at 85% on normal and 70% on gentle (`LetdownFactor`, via
   `Pressures.Letdown`). The "never less than a whole point" floor still holds for pressures and setbacks.
@@ -1493,11 +1499,11 @@ MoodCompact the Mood tab), and a line in the game's Needs tab:
   filter: the roster passes `All`, the tab `StoryTab`, which leaves out the Culture tab's parts always and the
   column's parts only while the column can show (`SocialColumn.Available`), so nothing is lost with it off.
 - **Culture** (`ITab_Pawn_Culture`, added in code to every humanlike race right after `ITab_Pawn_Social` in
-  `inspectorTabs`, so it's drawn just left of Social): faith (the vanilla icon, certainty and role, then
+  `inspectorTabs`, so it's drawn just left of Social): ideoligion (the vanilla icon, certainty and role, then
   `FaithCharacter.Details`), views, how they sit with the colony's ways (`CharacterTracker.Approval`, its reasons,
   `ColonyTraits.PrideOf`), their reaction to each decree in force and their own petitions, and where they come from
   (backstories, xenotype, a prisoner's faction or the kind of people the game made them among, time with the colony,
-  founder, born here, or the game's "recruited" tale). Its button asks only a cheap check (a backstory, a faith or a
+  founder, born here, or the game's "recruited" tale). Its button asks only a cheap check (a backstory, an ideoligion or a
   xenotype).
 - **Social**: the game's own tab with Rimfolk's column (`SocialColumn`) to the right of its card. Three patch classes,
   each applied on its own:
@@ -1521,11 +1527,11 @@ MoodCompact the Mood tab), and a line in the game's Needs tab:
 - **Mood** (`ITab_Pawn_Mood`, with the council's Moods page through the same `MoodCompact`): opens compact. The
   player said a colonist with 20 or 30 moods was a long scroll of cards they had to hover one by one, so the tab sorts
   moods by what the player can do and gives each one line. `MoodSortMath` (pure, tested) holds the rules: a good mood
-  is *Lifting*; a mood that never fades goes with *Faith and who they are*; a mood whose hint is `actionable` (doing
+  is *Lifting*; a mood that never fades goes with *Ideoligion and who they are*; a mood whose hint is `actionable` (doing
   something now ends it, or keeps it from coming straight back: a table, the next night in a real bedroom) is *You
   can fix*, even when a belief or trait asks for it (an altar, a greedy colonist's bedroom); other moods from a
   precept (`sourcePrecept`, or a thought some `PreceptComp_Thought` gives) or with `requiredTraits`/`requiredGenes`
-  are *Faith and who they are*; memories are *Will pass*; a mood that lasts while its cause does is *You can fix*,
+  are *Ideoligion and who they are*; memories are *Will pass*; a mood that lasts while its cause does is *You can fix*,
   unless its hint says it only passes (a world event). Each `MoodHintDef` with a `fix` has an `act` (2 to 6 words, at
   most 40 characters, no full stop; a test checks every one) and `actionable` (default true; false on 75 of 184).
   Moods without a hint get a short line by kind (`MoodSortMath.FallbackOf`). The model is built every half second
@@ -1547,11 +1553,11 @@ MoodCompact the Mood tab), and a line in the game's Needs tab:
 into each colonist: close to a mental break (a soft ring, `BarRing`, tinted amber to deep red with its strength
 following how close, or a dot among the badges), about to leave (`PawnStanding.leavingTick`), an own open wish past
 the set share of its patience (`Wish.Elapsed`, or on its last call), strain worn down or near breaking
-(`Heart.ForView`), wavering faith (`Faiths.Wavering`, so only with Ideology and the setting) and a promise at risk (a
+(`Heart.ForView`), wavering certainty (`Faiths.Wavering`, so only with Ideology and the setting) and a promise at risk (a
 `GrantWatch` missing or taken back and still within its amends window). A calm colonist shows nothing.
 `BarBadgeMath` holds the parts without game types, tested in `Tools/Tests/BarBadgeTests.cs`: the break level and
 closeness against the colonist's own `MentalBreaker` lines, the ring's colour, each kind's step, one priority table
-(`Priority`: under the major line and leaving first, wavering faith last) with an allocation-free sort, and the layout
+(`Priority`: under the major line and leaving first, wavering certainty last) with an allocation-free sort, and the layout
 (from the chosen corner down the side as far as fits above the game's own icon row, then the next column inward,
 never more than fit on the portrait).
 
@@ -1584,7 +1590,7 @@ rule for all of it, from the player: the most impactful and relevant data comes 
   a mental break, under or within 2% of the minor break line), soon (200 to 299: falling towards a break, within the
   at-risk margin of it, downed, hungry, exhausted, strain worn or breaking, a wish at its last call or under a quarter
   of its time, food or medicine low, a question unanswered within a day), worth knowing (100 to 199: the moods
-  dragging someone down, `3 x size`, times 0.4 when the mood passes on its own; a wish waiting; faith wavering;
+  dragging someone down, `3 x size`, times 0.4 when the mood passes on its own; a wish waiting; certainty wavering;
   strain). The mood board sorts by `MoodRisk`, the hover card shows the top lines of `HudConcerns`, the vitals and
   the council's lines take their colour from the tier (orange soon, red life). `HudMath.Keep` cuts rows for space:
   everything at life and limb stays, then the highest of the rest, in their order, and the panel says "and N more".

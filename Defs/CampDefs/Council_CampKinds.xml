@@ -279,8 +279,8 @@
     <texts>
       <li>Pilgrims of {FACTION} have stopped on the colony's land to rest. {X_nameDef}, who leads them, told {A_nameDef} their road is long and their feet are sore, and they'd like to camp {PLACE} for a few days before they go on.</li>
       <li>A small band of pilgrims of {FACTION} is walking toward a holy place far from here. They've asked to rest {PLACE} for a few days, to pray and mend their sandals. {X_nameDef} promises they'll take very little.</li>
-      <li>[ideology] Pilgrims of {IDEO} from {FACTION} have stopped on the colony's land on their way to a shrine of their faith. {X_nameDef} asked {A_nameDef} for leave to rest {PLACE} a few days, and to keep their prayers there.</li>
-      <li>[ideology,sameFaith] Pilgrims of {FACTION} who keep {IDEO}, the colony's own faith, have stopped to rest among their own. {X_nameDef} asked {A_nameDef} whether they might camp {PLACE} a few days before going on to the shrine.</li>
+      <li>[ideology] Pilgrims of {IDEO} from {FACTION} have stopped on the colony's land on their way to a shrine of their ideoligion. {X_nameDef} asked {A_nameDef} for leave to rest {PLACE} a few days, and to keep their prayers there.</li>
+      <li>[ideology,sameFaith] Pilgrims of {FACTION} who keep {IDEO}, the colony's own ideoligion, have stopped to rest among their own. {X_nameDef} asked {A_nameDef} whether they might camp {PLACE} a few days before going on to the shrine.</li>
       <li>[ws:faith] {SITUATION} has put pilgrims on every road in the region, and a band of {FACTION}'s has stopped by the colony to rest. {X_nameDef} asked {A_nameDef} for a few days' camp {PLACE}.</li>
       <li>[winter] Pilgrims of {FACTION} have come through the snow on their way to a holy place, and stopped at the colony because they could go no further today. {X_nameDef} asked {A_nameDef} whether they might camp {PLACE} until the road clears.</li>
       <li>[colony:Devout] Pilgrims of {FACTION} have turned off their road to rest at the colony: they had heard on the way that it keeps its faith, and wanted to see it for themselves. {X_nameDef} asked {A_nameDef} for leave to camp {PLACE} a few days.</li>
@@ -292,7 +292,7 @@
     </settled>
     <joinTexts>
       <li>{X_nameDef}, one of the pilgrims camped {PLACE}, says the road has given {X_objective} what {X_pronoun} came for, and asks whether {X_pronoun} might stay with the colony instead of walking on.</li>
-      <li>[sameFaith] {X_nameDef}, one of the pilgrims {PLACE}, has found people of {X_possessive} own faith at the colony, and asks to end the pilgrimage here.</li>
+      <li>[sameFaith] {X_nameDef}, one of the pilgrims {PLACE}, has found people of {X_possessive} own ideoligion at the colony, and asks to end the pilgrimage here.</li>
       <li>{X_nameDef}, who has walked with the pilgrims camped {PLACE} since the start of their road, says {X_pronoun} feels {X_pronoun} has arrived somewhere, and would like to stay.</li>
     </joinTexts>
     <farewell>

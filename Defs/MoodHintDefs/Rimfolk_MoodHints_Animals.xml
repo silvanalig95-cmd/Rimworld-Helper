@@ -43,7 +43,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RF_BondAndFaith</defName>
     <thoughts><li>Council_DlmA_BondShamed</li><li>Council_DlmA_GaveUpMyAnimal</li><li>Council_DlmA_FaithBrushedAside</li></thoughts>
-    <fix>The council settled a quarrel between a bond with an animal and a faith that frowns on it. It fades in a few days, except giving the animal to someone else, which hurts its person for eight. Keeping the animal out of the faithful one's way hurts nobody much.</fix>
+    <fix>The council settled a quarrel between a bond with an animal and an ideoligion that frowns on it. It fades in a few days, except giving the animal to someone else, which hurts its person for eight. Keeping the animal out of the faithful one's way hurts nobody much.</fix>
     <act>Passes in a few days</act>
     <actionable>false</actionable>
     <article>Council_Alm_C_Animals</article>

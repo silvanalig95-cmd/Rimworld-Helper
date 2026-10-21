@@ -114,7 +114,7 @@ public static class MoodSortTests
 
         // ---------- The short actions ----------
         foreach (string good1 in new[] { "Build a dining table", "Give them a bedroom", "Vary the meals", "Light their workplaces", "Talk it through at a meeting",
-                     "Passes with time", "Company helps", "Their faith asks it" })
+                     "Passes with time", "Company helps", "Their ideoligion asks it" })
             Check(MoodSortMath.ActProblem(good1) == null, $"\"{good1}\" is a fine short action");
         foreach (string bad1 in new[] { "", "Build a table.", "Build a table and chairs near where they all eat", "Build\na table", "Wait", "build a table",
                      " Build a table", "Build a table!", "Build a nice big table for them all to share" })

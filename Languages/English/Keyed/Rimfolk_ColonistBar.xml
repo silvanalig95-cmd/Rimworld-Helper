@@ -19,14 +19,14 @@
   <CC_Bar_WishLapseGentle>If it lapses, nothing worse than a chance missed.</CC_Bar_WishLapseGentle>
   <CC_Bar_Strain>{PAWN_nameDef} is {BAND}: strain {STRAIN} of 100. {DESC}</CC_Bar_Strain>
   <CC_Bar_Strain_Help>Sleep, recreation, quiet hours, friends and gatherings ease strain. The Mood tab's Heart section shows what builds it.</CC_Bar_Strain_Help>
-  <CC_Bar_Faith>{PAWN_nameDef}'s faith in {FAITH} is wavering: {CERTAINTY} certain. Under {WAVERING} {PAWN_pronoun} is open to another faith, and when it runs out {PAWN_pronoun} takes up the faith of whoever wore it down.</CC_Bar_Faith>
-  <CC_Bar_Faith_Help>A contented mood wins certainty back day by day, and an evening of {PAWN_possessive} faith (called from the council's Faiths page) steadies {PAWN_objective}. The Culture tab shows what moved it lately.</CC_Bar_Faith_Help>
+  <CC_Bar_Faith>{PAWN_nameDef} is wavering in {FAITH}: {CERTAINTY} certain. Under {WAVERING} {PAWN_pronoun} is open to another ideoligion, and when {PAWN_possessive} certainty runs out {PAWN_pronoun} takes up the ideoligion of whoever wore it down.</CC_Bar_Faith>
+  <CC_Bar_Faith_Help>A contented mood wins certainty back day by day, and an evening of {PAWN_possessive} ideoligion (called from the council's Ideoligions page) steadies {PAWN_objective}. The Culture tab shows what moved it lately.</CC_Bar_Faith_Help>
   <CC_Bar_PromiseCost>It cost {0} trust.</CC_Bar_PromiseCost>
   <CC_Bar_Also>Also: {0}.</CC_Bar_Also>
   <CC_Bar_Short_Break>close to a break (mood {0})</CC_Bar_Short_Break>
   <CC_Bar_Short_Leaving>leaving in {0}</CC_Bar_Short_Leaving>
   <CC_Bar_Short_Wish>a wish waiting ({0}, {1} left)</CC_Bar_Short_Wish>
-  <CC_Bar_Short_Faith>wavering faith ({0} certain)</CC_Bar_Short_Faith>
+  <CC_Bar_Short_Faith>wavering certainty ({0})</CC_Bar_Short_Faith>
   <CC_Bar_Short_Promise>a promise at risk ({0})</CC_Bar_Short_Promise>
   <CC_Bar_Short_PromiseTaken>a promise taken back ({0})</CC_Bar_Short_PromiseTaken>
   <CC_Bar_Click_Mood>Click for the Mood tab.</CC_Bar_Click_Mood>
@@ -37,7 +37,7 @@
   <CC_SetSec_ColonistBar>Colonist bar</CC_SetSec_ColonistBar>
   <CC_SetSec_ColonistBar_Note>Small badges on the portraits along the top of the screen, so you can see who needs you without clicking through everyone.</CC_SetSec_ColonistBar_Note>
   <CC_Settings_BarBadges>Badges on the colonist bar</CC_Settings_BarBadges>
-  <CC_Settings_BarBadges_Tip>Small badges in a corner of each portrait on the colonist bar: someone close to a mental break, about to leave, with a wish that has waited long, near breaking from strain, wavering in their faith, or with a promise at risk. A calm colonist shows none. Hover a badge for what it means and what helps; click it to go where it can be dealt with. Dragging a portrait to reorder the bar still works from anywhere but a badge. Needs the deeper game hooks.</CC_Settings_BarBadges_Tip>
+  <CC_Settings_BarBadges_Tip>Small badges in a corner of each portrait on the colonist bar: someone close to a mental break, about to leave, with a wish that has waited long, near breaking from strain, wavering in their ideoligion, or with a promise at risk. A calm colonist shows none. Hover a badge for what it means and what helps; click it to go where it can be dealt with. Dragging a portrait to reorder the bar still works from anywhere but a badge. Needs the deeper game hooks.</CC_Settings_BarBadges_Tip>
   <CC_SetNote_BarBadges>Who needs you shows on the portraits at the top of the screen; hover or click a badge.</CC_SetNote_BarBadges>
   <CC_SetLabel_BarBreakMark>Close to breaking shows as</CC_SetLabel_BarBreakMark>
   <CC_SetTip_BarBreakMark>How the bar shows someone close to a mental break. Its colour and strength follow how close they are: pale amber just above the minor break line, orange under it, red under the major line, deep red under the extreme one. Not while they are already in a break: the game shows that.</CC_SetTip_BarBreakMark>
@@ -65,9 +65,9 @@
   <CC_Settings_BarStrain>Strain near breaking</CC_Settings_BarStrain>
   <CC_Settings_BarStrain_Tip>A colonist worn down or near breaking from strain (feelings and strain). Click for the Mood tab, whose Heart section shows what builds it.</CC_Settings_BarStrain_Tip>
   <CC_SetNote_BarStrain>A badge on anyone worn down or near breaking.</CC_SetNote_BarStrain>
-  <CC_Settings_BarFaith>Wavering faith</CC_Settings_BarFaith>
-  <CC_Settings_BarFaith_Tip>A colonist whose certainty in their faith has fallen under 60% (with Ideology and faith in the colony on). Click for their Culture tab.</CC_Settings_BarFaith_Tip>
-  <CC_SetNote_BarFaith>A badge on anyone wavering in their faith (with Ideology).</CC_SetNote_BarFaith>
+  <CC_Settings_BarFaith>Wavering certainty</CC_Settings_BarFaith>
+  <CC_Settings_BarFaith_Tip>A colonist whose certainty in their ideoligion has fallen under 60% (with Ideology and "Ideoligions in the colony" on). Click for their Culture tab.</CC_Settings_BarFaith_Tip>
+  <CC_SetNote_BarFaith>A badge on anyone wavering in their ideoligion (with Ideology).</CC_SetNote_BarFaith>
   <CC_Settings_BarPromise>A promise at risk</CC_Settings_BarPromise>
   <CC_Settings_BarPromise_Tip>Something the council granted is gone and the grace is running, or it was taken back and can still be made right. Click for the Wishes page and its promises kept.</CC_Settings_BarPromise_Tip>
   <CC_SetNote_BarPromise>A badge while a granted wish is missing, or taken back and still to be made right.</CC_SetNote_BarPromise>
@@ -97,7 +97,7 @@
   <CC_SetNote_BarCorner_BottomRight>Bottom right, up the side from just above the game's own icons.</CC_SetNote_BarCorner_BottomRight>
   <CC_SetNote_BarCorner_BottomLeft>Bottom left, up the side from just above the game's own icons.</CC_SetNote_BarCorner_BottomLeft>
   <CC_Settings_BarBadgeMax>Badges on one portrait, at most</CC_Settings_BarBadgeMax>
-  <CC_Settings_BarBadgeMax_Tip>When more apply, the most pressing win: under a break line or about to leave first, then a wish on its last call, strain near breaking, a wish waiting long and a promise at risk, then the early warnings (just above the break line, worn down), and wavering faith last. Hovering a badge names the rest.</CC_Settings_BarBadgeMax_Tip>
+  <CC_Settings_BarBadgeMax_Tip>When more apply, the most pressing win: under a break line or about to leave first, then a wish on its last call, strain near breaking, a wish waiting long and a promise at risk, then the early warnings (just above the break line, worn down), and wavering certainty last. Hovering a badge names the rest.</CC_Settings_BarBadgeMax_Tip>
   <CC_SetNote_BarBadgeMax>The rest are named when you hover a badge.</CC_SetNote_BarBadgeMax>
 
 </LanguageData>

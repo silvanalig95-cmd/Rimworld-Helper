@@ -2,7 +2,7 @@
 <Defs>
 
   <!--
-    One faith for the colony (Source/ColonyCouncil/Decrees/DecreeFaith.cs), with Ideology and "Faith in the colony" on,
+    One faith for the colony (Source/ColonyCouncil/Decrees/DecreeFaith.cs), with Ideology and "Ideoligions in the colony" on,
     and more than one faith at home. You name the faith as you declare it (the largest first). What it does each day is
     read from oneFaith; who minds it from the reactions (decreeFaith: of the faith it names; notDecreeFaith: of
     another; dislikesPreaching: a faith that frowns on being preached to). No mood of its own: its cost is trust, and
@@ -11,8 +11,8 @@
 
   <ColonyCouncil.DecreeDef>
     <defName>Council_Decree_OneFaith</defName>
-    <label>one faith for the colony</label>
-    <description>The council names one faith the colony's own, and you choose which as you declare it (the one with the most believers is first on the list). For fifteen days its believers may speak of it as often as they like, and they do: those of other faiths who are wavering are drawn a little toward it each day, more if they think well of its believers, and every council meeting opens with a word from it. Everyone of another faith trusts the council a little less each day it holds: the open-minded least, the devout and those whose faith frowns on being preached to most. The devout of other faiths hate it and will ask for it to be lifted. Lifting it ends all of it at once. Only with Ideology, and more than one faith at home.</description>
+    <label>one ideoligion for the colony</label>
+    <description>The council names one ideoligion the colony's own, and you choose which as you declare it (the one with the most believers is first on the list). For fifteen days its believers may speak of it as often as they like, and they do: those of other ideoligions who are wavering are drawn a little toward it each day, more if they think well of its believers, and every council meeting opens with a word from it. Everyone of another ideoligion trusts the council a little less each day it holds: the open-minded least, the devout and those whose ideoligion frowns on being preached to most. The devout of other ideoligions hate it and will ask for it to be lifted. Lifting it ends all of it at once. Only with Ideology, and more than one ideoligion at home.</description>
     <oneFaith>true</oneFaith>
     <order>25</order>
     <durationDays>15</durationDays>
@@ -28,19 +28,19 @@
       <li><notDecreeFaith>true</notDecreeFaith><reaction>Dislike</reaction></li>
     </reactions>
     <effects>
-      <li>You name the faith as you declare it; the one with the most believers is first.</li>
-      <li>Each day, colonists of other faiths who are wavering (certainty under 60%) are drawn 1.2% to 2% toward it, more when they like its believers. At no certainty left, the game converts them.</li>
-      <li>Its believers speak of their faith more often, and every council meeting opens with a word from it.</li>
-      <li>Colonists of other faiths lose trust each day: a quarter point if open-minded, half a point most, three quarters if devout, a whole point if their faith frowns on being preached to.</li>
-      <li>Its believers like it and its devout love it; the devout of other faiths hate it, and the curious don't mind.</li>
+      <li>You name the ideoligion as you declare it; the one with the most believers is first.</li>
+      <li>Each day, colonists of other ideoligions who are wavering (certainty under 60%) are drawn 1.2% to 2% toward it, more when they like its believers. At no certainty left, the game converts them.</li>
+      <li>Its believers speak of their ideoligion more often, and every council meeting opens with a word from it.</li>
+      <li>Colonists of other ideoligions lose trust each day: a quarter point if open-minded, half a point most, three quarters if devout, a whole point if their ideoligion frowns on being preached to.</li>
+      <li>Its believers like it and its devout love it; the devout of other ideoligions hate it, and the curious don't mind.</li>
     </effects>
     <support>
       <plain>
-        <li>A colony needs one faith to hold it together. Let it be ours.</li>
-        <li>[faith:majority] Most of us already share a faith. Why pretend otherwise?</li>
+        <li>A colony needs one ideoligion to hold it together. Let it be ours.</li>
+        <li>[faith:majority] Most of us already share an ideoligion. Why pretend otherwise?</li>
       </plain>
       <warm><li>Nobody will be made to believe. We'd only like to be heard.</li></warm>
-      <cold><li>Every faith its own holy days and its own rules, and no agreement on anything. Pick one.</li></cold>
+      <cold><li>Every ideoligion its own holy days and its own rules, and no agreement on anything. Pick one.</li></cold>
     </support>
     <oppose>
       <plain>
@@ -49,13 +49,13 @@
         <li>[faith:devout] I'll hold to my faith whatever the council names. Lift this.</li>
         <li>[faith:minority] There are few enough of us as it is. This decree makes us fewer.</li>
       </plain>
-      <blunt><li>One faith for the colony. Not mine. Lift it.</li></blunt>
-      <gloomy><li>First they name a faith. Then they start counting who doesn't keep it.</li></gloomy>
-      <cold><li>A council that takes sides on faith loses half its people's trust. Lift it while it still has the rest.</li></cold>
+      <blunt><li>One ideoligion for the colony. Not mine. Lift it.</li></blunt>
+      <gloomy><li>First they name an ideoligion. Then they start counting who doesn't keep it.</li></gloomy>
+      <cold><li>A council that takes sides between ideoligions loses half its people's trust. Lift it while it still has the rest.</li></cold>
     </oppose>
     <!-- With "Answers play out on the map": the first evening, the faith's speaker says a word for it before everyone. -->
     <onEnact>
-      <li Class="ColonyCouncil.DilemmaEffect_FaithWords"><label>the word for the colony's faith</label><speaker>true</speaker><atAltar>true</atAltar><spots><li>Dining</li><li>Gather</li><li>Outdoors</li></spots><hours>17~21</hours><pool>Council_Pool_FaithDecreeWords</pool></li>
+      <li Class="ColonyCouncil.DilemmaEffect_FaithWords"><label>the word for the colony's ideoligion</label><speaker>true</speaker><atAltar>true</atAltar><spots><li>Dining</li><li>Gather</li><li>Outdoors</li></spots><hours>17~21</hours><pool>Council_Pool_FaithDecreeWords</pool></li>
     </onEnact>
   </ColonyCouncil.DecreeDef>
 

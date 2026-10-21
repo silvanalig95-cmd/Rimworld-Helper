@@ -457,7 +457,7 @@
     <label>sharing the faith</label>
     <workerClass>ColonyCouncil.AspirationWorker_FaithGrows</workerClass>
     <weight>1</weight>
-    <goal>bring someone else to their faith</goal>
+    <goal>bring someone else to their ideoligion</goal>
     <forbiddenBy><li>NoReligion</li></forbiddenBy>
     <sparks><li>omen</li><li>birth</li></sparks>
     <chosen>

@@ -11,7 +11,7 @@
   <CC_Talk_ViewMoved>Last moved in a talk with {0}, {1} ago.</CC_Talk_ViewMoved>
   <CC_Talk_ViewNews>It's the talk of the colony just now.</CC_Talk_ViewNews>
   <CC_Talk_ReasonPassion>a passion for {0}</CC_Talk_ReasonPassion>
-  <CC_Talk_ReasonFaith>their faith ({0})</CC_Talk_ReasonFaith>
+  <CC_Talk_ReasonFaith>their ideoligion ({0})</CC_Talk_ReasonFaith>
 
   <!-- The character page: shared memories -->
   <CC_Talk_Memories>Shared memories</CC_Talk_Memories>

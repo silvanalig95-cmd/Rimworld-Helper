@@ -1,77 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
-  <!-- Faith and the council: evenings of faith, the wish to learn another faith, faiths at odds, one faith by decree (Faith/, Dilemmas/, Decrees/, Wishes/). -->
+  <!-- Ideoligions and the council: ideoligion evenings, the wish to learn another ideoligion, ideoligions at odds, one ideoligion by decree (Faith/, Dilemmas/, Decrees/, Wishes/). -->
 
   <ColonyCouncil.AlmanacArticleDef>
     <defName>Council_Alm_C_FaithCouncil</defName>
-    <label>faith and the council</label>
+    <label>ideoligions and the council</label>
     <category>Council</category>
     <order>24</order>
     <dlc>Ideology</dlc>
-    <summary>Evenings of faith, a wavering colonist's wish to learn another faith, the question when faiths clash, and the decree that names one faith the colony's.</summary>
+    <summary>Ideoligion evenings, a wavering colonist's wish to learn another ideoligion, the question when ideoligions clash, and the decree that names one ideoligion the colony's.</summary>
     <tip>Pick the speaker's evening for when the open-minded and the wavering are at home: they are the ones it can move.</tip>
-    <description>With Ideology, each colonist holds their faith with a certainty from 0 to 100%. Under 60% they are wavering, from 85% devout; at none left, the game converts them to the faith that wore it down. Rimfolk never converts anyone itself: everything below takes or gives back certainty, and a conversion, when it comes, is the game's own, with a message and a line in the chronicle.
+    <description>With Ideology, each colonist holds their ideoligion with a certainty from 0 to 100%. Under 60% they are wavering, from 85% devout; at none left, the game converts them to the ideoligion that wore it down. Rimfolk never converts anyone itself: everything below takes or gives back certainty, and a conversion, when it comes, is the game's own, with a message and a line in the chronicle.
 
-The council has four ways to work with the colony's faiths: an evening of faith it can call, a wish a wavering colonist may make, a question that comes when faiths clash, and a decree that names one faith the colony's. Their costs are trust and certainty, never a bad mood. None of it happens without Ideology, in classic mode, or with "Faith in the colony" off in the settings.</description>
+The council has four ways to work with the colony's ideoligions: an ideoligion evening it can call, a wish a wavering colonist may make, a question that comes when ideoligions clash, and a decree that names one ideoligion the colony's. Their costs are trust and certainty, never a bad mood. None of it happens without Ideology, in classic mode, or with "Ideoligions in the colony" off in the settings.</description>
     <sections>
       <li>
-        <heading>An evening of faith</heading>
-        <text>A gathering where one faith is spoken for, between five and eleven in the evening, for about two hours. The speaker is the faith's moral guide if they're at home, else its most devout believer with the best Social skill. It is held at the faith's own altar or ideogram if one is built (one in its style, or for the colony's own faith any that isn't another faith's), else round a fire, at the dining table or a gather spot. It needs "Answers play out on the map" on.
+        <heading>An ideoligion evening</heading>
+        <text>A gathering where one ideoligion is spoken for, between five and eleven in the evening, for about two hours. The speaker is the ideoligion's moral guide if they're at home, else its most devout believer with the best Social skill. It is held at the ideoligion's own altar or ideogram if one is built (one in its style, or for the colony's own ideoligion any that isn't another ideoligion's), else round a fire, at the dining table or a gather spot. It needs "Answers play out on the map" on.
 
-The colony can hold one every five days at most, and the same faith one every ten. It can be called from a day on the calendar kept as an evening of faith (whatever the gap since the last), by answering yes when one of the devout asks the council for one, or from the faiths page. When nobody but the speaker means to come, there is no evening, and that faith can't ask again for ten days.</text>
+The colony can hold one every five days at most, and the same ideoligion one every ten. It can be called from a day on the calendar kept as an ideoligion evening (whatever the gap since the last), by answering yes when one of the devout asks the council for one, or from the ideoligions page. When nobody but the speaker means to come, there is no evening, and that ideoligion can't ask again for ten days.</text>
       </li>
       <li>
         <heading>Who comes</heading>
         <table>
           <li>Who | Comes</li>
-          <li>Believers of the speaker's faith | Always</li>
-          <li>Someone whose faith frowns on being preached to | Never: they stay away and say so</li>
+          <li>Believers of the speaker's ideoligion | Always</li>
+          <li>Someone whose ideoligion frowns on being preached to | Never: they stay away and say so</li>
           <li>Anyone else | 35% to start with; up to 50% more or less by openness, and the same by their opinion of the speaker; 25% more if wavering, 15% less if devout; never under 5% or over 95%</li>
         </table>
       </li>
       <li>
         <heading>How it goes</heading>
-        <text>When it's over the evening is judged from 0 to 1: the speaker's Social skill counts most (up to 0.55 at 20), their warmth up to 0.15 either way, how many came to listen up to 0.2 (six or more), and the faith's own altar 0.1. Broken off early, it counts half; without the speaker there, it counts nothing. The speaker gets a little Social practice (250) however it goes.</text>
+        <text>When it's over the evening is judged from 0 to 1: the speaker's Social skill counts most (up to 0.55 at 20), their warmth up to 0.15 either way, how many came to listen up to 0.2 (six or more), and the ideoligion's own altar 0.1. Broken off early, it counts half; without the speaker there, it counts nothing. The speaker gets a little Social practice (250) however it goes.</text>
         <table>
-          <li>Evening | Score | Listeners of other faiths | Believers who came | Everyone who came</li>
+          <li>Evening | Score | Listeners of other ideoligions | Believers who came | Everyone who came</li>
           <li>Poor | under 0.3 | Nothing | Nothing | Nothing but a line</li>
-          <li>Good | 0.3 to 0.65 | Swayed toward the faith, 6% to 9% to start with | 3.2% to 4.6% surer | Recreation (12% of the bar) and fellowship, no mood</li>
+          <li>Good | 0.3 to 0.65 | Swayed toward the ideoligion, 6% to 9% to start with | 3.2% to 4.6% surer | Recreation (12% of the bar) and fellowship, no mood</li>
           <li>Fine | 0.65 or more | Swayed, 9% to 12% to start with | 4.6% to 6% surer | +3 mood for a day and a half, through the shared good-mood budget</li>
         </table>
-        <after>A listener's own side counts on top: the open-minded are moved up to half again as much and the closed half as much, the proud give less ground, a friend of the speaker is heard and a rival less, and the speaker's conversion power counts. No single moment takes more than 15%. Believers are steadied half again as much with a chaplain at home. Those of other faiths who listened remember the evening with the speaker.</after>
+        <after>A listener's own side counts on top: the open-minded are moved up to half again as much and the closed half as much, the proud give less ground, a friend of the speaker is heard and a rival less, and the speaker's conversion power counts. No single moment takes more than 15%. Believers are steadied half again as much with a chaplain at home. Those of other ideoligions who listened remember the evening with the speaker.</after>
       </li>
       <li>
         <heading>A wavering colonist's wish</heading>
-        <text>Someone wavering (under 60%) who thinks well of a devout believer of another faith (opinion 20 or more) may ask for an evening learning about that faith; never someone whose own faith frowns on being preached to. Promised, the evening is arranged: they walk over to the believer that evening and keep them company for a couple of hours (with answers not playing out on the map, the next time the two are together). Going to an evening of that faith also counts. Granted, they are swayed toward the faith (12% to start with, through the same sides as above, unless an evening of faith already did it), +3 mood for 3 days, and the two share the memory. Ignored, it lapses after 8 days at a wish's usual cost.</text>
+        <text>Someone wavering (under 60%) who thinks well of a devout believer of another ideoligion (opinion 20 or more) may ask for an evening learning about that ideoligion; never someone whose own ideoligion frowns on being preached to. Promised, the evening is arranged: they walk over to the believer that evening and keep them company for a couple of hours (with answers not playing out on the map, the next time the two are together). Going to an evening of that ideoligion also counts. Granted, they are swayed toward the ideoligion (12% to start with, through the same sides as above, unless an ideoligion evening already did it), +3 mood for 3 days, and the two share the memory. Ignored, it lapses after 8 days at a wish's usual cost.</text>
       </li>
       <li>
-        <heading>When faiths clash</heading>
-        <text>A council question for a colony of two or more faiths with at least two believers each, or one split half or more of the way (six people of five faiths are). It comes half as often in a quiet colony as after a quarrel between believers of different faiths in the last five days, or while a faith's altar stands, and at most once in 30 days. A is a believer of the largest faith, B one of another.</text>
+        <heading>When ideoligions clash</heading>
+        <text>A council question for a colony of two or more ideoligions with at least two believers each, or one split half or more of the way (six people of five ideoligions are). It comes half as often in a quiet colony as after a quarrel between believers of different ideoligions in the last five days, or while an ideoligion's altar stands, and at most once in 30 days. A is a believer of the largest ideoligion, B one of another.</text>
         <table>
           <li>Answer | Trust | Certainty | On the map</li>
-          <li>Share the altar: the faiths take turns | +2 for the open-minded, -1 for the devout | Nothing | The faiths at the altar (or the fire) together</li>
-          <li>A corner for each faith (if unanswered) | +1 for everyone with a faith | Everyone's own faith 3% surer | A letter suggests a corner for each, and a few clear them</li>
-          <li>Name the largest faith the colony's | +3 for its believers; -2 for everyone else, and -4 more for the devout of other faiths who take it hard (60%, 90% if their faith frowns on preaching) | Everyone else swayed 3% toward it | Its speaker says a word for it to the colony</li>
+          <li>Share the altar: the ideoligions take turns | +2 for the open-minded, -1 for the devout | Nothing | The ideoligions at the altar (or the fire) together</li>
+          <li>A corner for each ideoligion (if unanswered) | +1 for everyone with an ideoligion | Everyone 3% surer of their own | A letter suggests a corner for each, and a few clear them</li>
+          <li>Name the largest ideoligion the colony's | +3 for its believers; -2 for everyone else, and -4 more for the devout of other ideoligions who take it hard (60%, 90% if their ideoligion frowns on preaching) | Everyone else swayed 3% toward it | Its speaker says a word for it to the colony</li>
         </table>
       </li>
       <li>
-        <heading>An evening of faith, asked for</heading>
-        <text>Now and then one of the devout who would speak for their faith asks the council for an evening of it (at most once in 20 days, only when one could be held). Holding it, open to all, calls it at once and earns the asker 2 trust. An evening for the faith's own believers only gathers them at its altar or a fire, makes them 4% surer, and earns 1 trust (it needs two of them at home). Not now (if unanswered) costs the asker 2 trust.</text>
+        <heading>An ideoligion evening, asked for</heading>
+        <text>Now and then one of the devout who would speak for their ideoligion asks the council for an evening of it (at most once in 20 days, only when one could be held). Holding it, open to all, calls it at once and earns the asker 2 trust. An evening for the ideoligion's own believers only gathers them at its altar or a fire, makes them 4% surer, and earns 1 trust (it needs two of them at home). Not now (if unanswered) costs the asker 2 trust.</text>
       </li>
       <li>
-        <heading>One faith for the colony (a decree)</heading>
-        <text>You choose the faith as you declare it, the largest first. It holds for 15 days, with 20 days to wait before it can be declared again (the decrees page's fatigue and forcing apply as for any decree). It has no mood of its own. Lifting it ends all of it at once, and it is never listed with only one faith at home.</text>
+        <heading>One ideoligion for the colony (a decree)</heading>
+        <text>You choose the ideoligion as you declare it, the largest first. It holds for 15 days, with 20 days to wait before it can be declared again (the decrees page's fatigue and forcing apply as for any decree). It has no mood of its own. Lifting it ends all of it at once, and it is never listed with only one ideoligion at home.</text>
         <table>
           <li>While it holds | Each day</li>
-          <li>Wavering colonists of other faiths | Swayed 1.2% toward it, up to 2% when they like its believers (a little more for the open, less for the closed)</li>
-          <li>Colonists of other faiths | Lose trust: 0.25 if open-minded, 0.5 most, 0.75 if devout, 1 if their faith frowns on being preached to</li>
+          <li>Wavering colonists of other ideoligions | Swayed 1.2% toward it, up to 2% when they like its believers (a little more for the open, less for the closed)</li>
+          <li>Colonists of other ideoligions | Lose trust: 0.25 if open-minded, 0.5 most, 0.75 if devout, 1 if their ideoligion frowns on being preached to</li>
           <li>Its believers | Speak of it half again as often; every council meeting opens with a word from one of them</li>
         </table>
-        <after>Its devout believers love it and the rest of them like it; the devout of other faiths hate it and will petition to lift it, the curious don't mind, and the rest dislike it.</after>
+        <after>Its devout believers love it and the rest of them like it; the devout of other ideoligions hate it and will petition to lift it, the curious don't mind, and the rest dislike it.</after>
       </li>
     </sections>
-    <keywords><li>faith</li><li>ideoligion</li><li>ideology</li><li>certainty</li><li>conversion</li><li>convert</li><li>evening of faith</li><li>moral guide</li><li>altar</li><li>preaching</li><li>wavering</li><li>devout</li><li>one faith</li></keywords>
+    <keywords><li>faith</li><li>ideoligion</li><li>ideology</li><li>certainty</li><li>conversion</li><li>convert</li><li>evening of faith</li><li>moral guide</li><li>altar</li><li>preaching</li><li>wavering</li><li>devout</li><li>one faith</li><li>ideoligion evening</li><li>one ideoligion</li></keywords>
     <seeAlso><li>Council_Alm_C_Decrees</li><li>Council_Alm_C_Dilemmas</li><li>Council_Alm_C_Wishes</li><li>Council_Alm_C_Calendar</li><li>Council_Alm_C_PlayOut</li></seeAlso>
   </ColonyCouncil.AlmanacArticleDef>
 

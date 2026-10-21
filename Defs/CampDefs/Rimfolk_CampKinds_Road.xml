@@ -410,8 +410,8 @@
     </titles>
     <texts>
       <li>A line of penitents of {FACTION} has come up the road barefoot, in plain grey, walking a vow to a shrine far beyond the colony. {X_nameDef}, who leads them, asked {A_nameDef} very quietly whether they might sleep {PLACE} for a few nights. They ask for nothing else.</li>
-      <li>[ideology,otherFaith] Penitents of {IDEO}, from {FACTION}, have stopped by the colony on a long walk of atonement. Their faith isn't the colony's, and {X_nameDef}, who leads them, said so at once, and asked all the same for leave to camp {PLACE}.</li>
-      <li>[ideology,sameFaith] Penitents of {IDEO}, the colony's own faith, have come up the road walking a vow. {X_nameDef} asked {A_nameDef} for a few nights' rest {PLACE}, among people who will understand why they walk.</li>
+      <li>[ideology,otherFaith] Penitents of {IDEO}, from {FACTION}, have stopped by the colony on a long walk of atonement. Their ideoligion isn't the colony's, and {X_nameDef}, who leads them, said so at once, and asked all the same for leave to camp {PLACE}.</li>
+      <li>[ideology,sameFaith] Penitents of {IDEO}, the colony's own ideoligion, have come up the road walking a vow. {X_nameDef} asked {A_nameDef} for a few nights' rest {PLACE}, among people who will understand why they walk.</li>
       <li>[meme:Guilty] Penitents of {FACTION} have come barefoot to the colony's gate, carrying stones in their packs for the wrongs they mean to set down at the end of the road. {X_nameDef} asked to camp {PLACE} for a few nights, and promised they would be no trouble to anyone but themselves.</li>
       <li>[meme:PainIsVirtue] Penitents of {IDEO} have come up the road with their feet bound in rags and their backs straight. The road is the point, {X_nameDef} told {A_nameDef}; the shrine is only where it ends. They ask to camp {PLACE} a few nights.</li>
       <li>[meme:Proselytizer] Penitents of {IDEO} have stopped by the colony on their walk. {X_nameDef} asked for leave to camp {PLACE}, and warned {A_nameDef}, with a smile, that they will talk about their faith to anyone who stands still long enough.</li>
@@ -440,8 +440,8 @@
     </lines>
     <helpTexts>
       <li>[blessing] {X_nameDef} and the penitents walked once round the colony at dusk, barefoot, praying for it in low voices. They didn't ask anyone's leave, and nobody minded.</li>
-      <li>[blessing,otherFaith] The penitents prayed for the colony in the way of {IDEO}, at its gate, at dusk. It isn't the colony's faith. It was kindly meant, all the same.</li>
-      <li>[blessing,sameFaith] The penitents prayed with the colony this evening, as people of one faith, and {X_nameDef} asked forgiveness for the world in words the colony knows by heart.</li>
+      <li>[blessing,otherFaith] The penitents prayed for the colony in the way of {IDEO}, at its gate, at dusk. It isn't the colony's ideoligion. It was kindly meant, all the same.</li>
+      <li>[blessing,sameFaith] The penitents prayed with the colony this evening, as people of one ideoligion, and {X_nameDef} asked forgiveness for the world in words the colony knows by heart.</li>
       <li>[tales] {A_nameDef} sat with {X_nameDef} at the penitents' fire and asked what they had done to walk so far. {X_nameDef} told {A_objective}. {A_nameDef} has been quiet since.</li>
     </helpTexts>
     <asks>
@@ -527,7 +527,7 @@
       <li>Pilgrims of {IDEO}, from {FACTION}, have come to the colony's woods. They walk from grove to grove, {X_nameDef} told {A_nameDef}, singing to the old trees and listening for what the land wants. They ask to camp {PLACE} for a few days, and promise not to cut a single branch.</li>
       <li>[meme:TreeConnection] Tree-singers of {IDEO} have come up the road with their hands stained green and seeds in every pocket. {X_nameDef} told {A_nameDef} there is a tree near the colony they have come a long way to hear, and asked to camp {PLACE} near it.</li>
       <li>[meme:Structure_Animist] Pilgrims of {FACTION}, who believe everything that grows has a spirit, have come to greet the spirits of the colony's woods. {X_nameDef} asked {A_nameDef}, very politely, for leave to camp {PLACE} and greet them properly.</li>
-      <li>[sameFaith] Pilgrims of {IDEO}, the colony's own faith, have come to sing to the colony's trees. {X_nameDef} told {A_nameDef} they had heard the colony's woods were well kept, and asked to camp {PLACE} a few days.</li>
+      <li>[sameFaith] Pilgrims of {IDEO}, the colony's own ideoligion, have come to sing to the colony's trees. {X_nameDef} told {A_nameDef} they had heard the colony's woods were well kept, and asked to camp {PLACE} a few days.</li>
     </texts>
     <settled>
       <li>The tree-singers from {FACTION} have made camp {PLACE} without cutting so much as a twig: their beds are on moss, their fire is in a ring of old stones, and their prayers are under the biggest tree.</li>

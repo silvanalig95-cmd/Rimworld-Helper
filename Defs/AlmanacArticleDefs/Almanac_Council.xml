@@ -29,7 +29,7 @@
       </li>
       <li>
         <heading>Beliefs and diets</heading>
-        <text>Nobody asks for what their own beliefs forbid. A couple whose faith keeps lovin for the married doesn't ask to share a bed before the wedding; an engaged couple asks for the wedding instead, and more often. A vegetarian doesn't ask for a smokehouse, a grill or a hunt; a teetotaler, or a faith that keeps drugs to medicine, never asks for beer or a brewery; an addict being kept off their drug by the drug policy doesn't ask for a supply of it; a nudist doesn't ask for clothes; a faith that prefers darkness doesn't ask for a lamp, and one that prefers darklight asks for a dark torch. The same goes for the other precepts of the game's Ideology, Vanilla Ideology Expanded - Memes and Alpha Memes: fishing, travel, fire, books, pets, private rooms, armour, prosthetics, a biosculpter, a woodpile from felled trees, executions. Wishes for food count only what the colonist may eat: fine meals without meat for a vegetarian, and for someone whose faith holds both of Alpha Memes' required diets, only fungus, insect meat or meals with some of either. If their beliefs change while a wish is open (a conversion, a reformed faith), the wish is let go quietly with no blame, and a granted one they can no longer keep, like a shared bed under a new faith, stops being watched. Life goals and council projects follow the same rules.</text>
+        <text>Nobody asks for what their own beliefs forbid. A couple whose ideoligion keeps lovin for the married doesn't ask to share a bed before the wedding; an engaged couple asks for the wedding instead, and more often. A vegetarian doesn't ask for a smokehouse, a grill or a hunt; a teetotaler, or an ideoligion that keeps drugs to medicine, never asks for beer or a brewery; an addict being kept off their drug by the drug policy doesn't ask for a supply of it; a nudist doesn't ask for clothes; an ideoligion that prefers darkness doesn't ask for a lamp, and one that prefers darklight asks for a dark torch. The same goes for the other precepts of the game's Ideology, Vanilla Ideology Expanded - Memes and Alpha Memes: fishing, travel, fire, books, pets, private rooms, armour, prosthetics, a biosculpter, a woodpile from felled trees, executions. Wishes for food count only what the colonist may eat: fine meals without meat for a vegetarian, and for someone whose ideoligion holds both of Alpha Memes' required diets, only fungus, insect meat or meals with some of either. If their beliefs change while a wish is open (a conversion, a reformed ideoligion), the wish is let go quietly with no blame, and a granted one they can no longer keep, like a shared bed under a new ideoligion, stops being watched. Life goals and council projects follow the same rules.</text>
       </li>
       <li>
         <heading>Taking it back</heading>
@@ -190,18 +190,18 @@ The "Good times" line in a colonist's Mood tab says what these rules take off ri
           <li>Banked fires | Fires, torches and fueled heaters burn 25% less fuel; work 4% slower.</li>
           <li>Apprenticeships | Everyone practices construction, crafting, cooking and growing every hour; work 8% slower.</li>
           <li>A feast day | One day: hunger 40% faster, work 15% slower, standards rise slightly.</li>
-          <li>Tithes | Each morning a tenth of the silver (5 to 40) goes to a people of the colony's faith, or the nearest village: 1 goodwill a day, and with Ideology the faithful grow surer. Not for a tribe.</li>
+          <li>Tithes | Each morning a tenth of the silver (5 to 40) goes to a people of the colony's ideoligion, or the nearest village: 1 goodwill a day, and with Ideology the faithful grow surer. Not for a tribe.</li>
           <li>A curfew | Night hours (10 at night to 5) become sleep in everyone's schedule, put back after; night owls keep the watch. Far fewer social fights.</li>
           <li>Militia drills | Twelve days of light practice at shooting and melee for everyone who can fight; work 3% slower. Not for a spacer colony.</li>
           <li>Alms for the poor | Each morning a little raw food (5 to 20) goes out at the gate: 1 goodwill a day with the nearest friendly people.</li>
-          <li>Holy days | Ideology, a colony with a faith: three days, the faithful 3% surer each day (half again with a chaplain) and a little steadier; work 8% slower.</li>
+          <li>Holy days | Ideology, a colony with an ideoligion: three days, the faithful 3% surer each day (half again with a chaplain) and a little steadier; work 8% slower.</li>
           <li>A market day | A trade caravan of a friendly people comes the day it's declared; trade prices 4% better and work 5% slower for two days.</li>
           <li>A fast | Two days: hunger 50% slower, learning 10% faster, work 6% slower.</li>
           <li>A work song | Work 3% faster, and recreation every hour for those at work who don't mind it; research 10% and learning 5% slower.</li>
           <li>Quarantine | Only while sickness goes round the region, or someone at home is ill: illness passes between roommates a fifth as often, visitor events come a third as often, immunity 6% faster; social impact down, work 4% slower.</li>
           <li>Famine bread | Only while a famine, a drought or locusts lie over the region: hunger 15% slower at home, and a share of the raw food (6 to 24) goes each day to the hungry people of the famine, 2 goodwill a day.</li>
           <li>Open gates | Visitor events come half again as often; social impact and negotiation up 5%.</li>
-          <li>One faith for the colony | Ideology, more than one faith at home: fifteen days naming the faith you choose; the wavering of other faiths drawn toward it 1.2% to 2% a day, a word from it at every council meeting, and those of other faiths trusting the council a little less each day. No mood of its own. Faith and the council has the details.</li>
+          <li>One ideoligion for the colony | Ideology, more than one ideoligion at home: fifteen days naming the ideoligion you choose; the wavering of other ideoligions drawn toward it 1.2% to 2% a day, a word from it at every council meeting, and those of other ideoligions trusting the council a little less each day. No mood of its own. "Ideoligions and the council" has the details.</li>
         </table>
         <after>Each decree also says something about the colony: long hours make it more hard-working, festivals more easygoing and traditional, being on guard more guarded.</after>
       </li>
@@ -217,9 +217,9 @@ Colonists petition for these when the moment fits: when someone is ill, in winte
 
 Tithes and alms give a share of what's in store each morning (a quartermaster stretches it), and the news says where it went. A curfew turns everyone's night hours to sleep and puts them back exactly as they were when it ends (an hour you changed meanwhile is left as you set it); night owls keep the watch, and the sleepless are left alone. A market day only comes when a friendly people who send caravans is near enough; if none can come, the news says so. A work song's recreation only goes to those who don't mind the singing.
 
-Some decrees only exist in the right colony: tithes are for a village, not a tribe, militia drills not for a spacer colony, holy days only with Ideology and a faith of the colony's own. A decree that can never apply isn't listed at all. Two answer the region's hard times and can only be declared while one lasts: a quarantine while a sickness goes round (or someone at home is ill), famine bread while a famine, a drought or locusts lie over the region. Colonists petition for them when the moment fits: when the stores are full and the colony content, or when the world event they answer begins.
+Some decrees only exist in the right colony: tithes are for a village, not a tribe, militia drills not for a spacer colony, holy days only with Ideology and an ideoligion of the colony's own. A decree that can never apply isn't listed at all. Two answer the region's hard times and can only be declared while one lasts: a quarantine while a sickness goes round (or someone at home is ill), famine bread while a famine, a drought or locusts lie over the region. Colonists petition for them when the moment fits: when the stores are full and the colony content, or when the world event they answer begins.
 
-Who minds what goes by their nature, as with every decree, and with Ideology by their faith too: the devout love holy days and approve of tithes, alms and a fast; those of another faith mind holy days.</text>
+Who minds what goes by their nature, as with every decree, and with Ideology by their ideoligion too: the devout love holy days and approve of tithes, alms and a fast; those of another ideoligion mind holy days.</text>
       </li>
       <li>
         <heading>When to call one</heading>
@@ -273,7 +273,7 @@ Health brings its own: a doctor who lost a patient asking for a day away, someon
 
 Nobody is called away from danger, sleep, a sickbed or someone else's care, and nothing starts while enemies are about: it waits a few hours for its moment (an evening feast waits for the evening). The good moods of the answer come to those who were there, once it's over. If it never happens, everyone it was for gets them anyway, as answers always did. Feasts eat real meals: keep a few cooked ones in the freezer when you say yes to one (Vanilla Cooking Expanded's grills spoiled by the cold are never served). A toast is raised with real drinks too, when the stores have them: beer or wine (Vanilla Brewing Expanded's included) for those whose drug policy and beliefs allow it, tea or coffee for teetotalers and the young, one each, never for anyone with a chemical addiction.
 
-What each colonist is served fits what they believe and eat. It's only what their food policy allows (for a drink, their drug policy), nothing that would give them a bad "ate ..." memory (meat for a vegetarian, fungus for one who despises it, paste for one who finds it disgusting), and nothing Alpha Memes would make them sick for: for someone whose faith holds both its fungus and its insect diets, only fungus, insect meat, insect jelly or a meal with some of either, never paste where paste is forbidden, never a simple meal where good food is expected. A faith that frowns on drink gets tea or nothing at a toast. With nothing fit for them in the stores, they sit at the table and eat nothing, may write about it in their journal, and nobody counts it as the council forgetting their plate.</text>
+What each colonist is served fits what they believe and eat. It's only what their food policy allows (for a drink, their drug policy), nothing that would give them a bad "ate ..." memory (meat for a vegetarian, fungus for one who despises it, paste for one who finds it disgusting), and nothing Alpha Memes would make them sick for: for someone whose ideoligion holds both its fungus and its insect diets, only fungus, insect meat, insect jelly or a meal with some of either, never paste where paste is forbidden, never a simple meal where good food is expected. An ideoligion that frowns on drink gets tea or nothing at a toast. With nothing fit for them in the stores, they sit at the table and eat nothing, may write about it in their journal, and nobody counts it as the council forgetting their plate.</text>
       </li>
     </sections>
     <keywords><li>dilemma</li><li>choice</li><li>letter</li><li>feud</li><li>thief</li></keywords>
@@ -306,15 +306,15 @@ Others are given once, for one deed, and stay with their holder: the builder len
         <text>Some names count years rather than deeds. The Old Hand has been here longest, two years at least. Homegrown spent the most of their childhood here. Jailbird spent longest in the cells before joining. Two have a condition: the Unshaken has lived here a year without a single mental break, and Lucky a year without taking any damage at all. Either name is lost the day that changes, and can't be earned back.</text>
       </li>
       <li>
-        <heading>Names from a seat, the faith and the colony's years</heading>
+        <heading>Names from a seat, the ideoligion and the colony's years</heading>
         <text>Rimfolk counts a few more things in the Records tab, and names come of them. Each name shows somewhere in play.</text>
         <table>
           <li>Name | Earned by | Where it shows</li>
           <li>Old Doc | two years in the physician's seat | sick travellers come asking for them by name</li>
           <li>Old Iron | two years as marshal | villages that were raided come to ask how to hold out</li>
           <li>The Unbeaten | three terms as speaker, and never a vote lost in any election | the election letter says so when they keep the chair</li>
-          <li>The Celebrant | leading six of the faith's rituals to their end (Ideology) | neighbours come asking for a blessing</li>
-          <li>The Shepherd | two years as the faith's moral guide (Ideology) | the doubting come to sit with them</li>
+          <li>The Celebrant | leading six of the ideoligion's rituals to their end (Ideology) | neighbours come asking for a blessing</li>
+          <li>The Shepherd | two years as the ideoligion's moral guide (Ideology) | the doubting come to sit with them</li>
           <li>The Founder | ten years here, as one of those who came in the first two days | the founding day's letter, their death letter</li>
           <li>The Last of the First | being the only founder still here, of two or more, a year on | the founding day's letter, their death letter</li>
           <li>The Firstborn | being the first child born here, now grown (Biotech) | the founding day's letter, their death letter</li>
@@ -353,7 +353,7 @@ Others are given once, for one deed, and stay with their holder: the builder len
           <li>Peacemaker (5 voters) | Rivalries between colonists cool a little every day, and now and then the peacemaker sits the worst-feuding pair down, which eases their rivalry a good deal.</li>
           <li>Keeper of days (6 voters) | Every council custom or calendar day the colony keeps leaves everyone there a small good memory (+2 for two days).</li>
           <li>Herdmaster (6 voters) | Everyone gets a little more from milking, shearing and eggs, and the herdmaster tames and trains more easily.</li>
-          <li>Chaplain (5 voters, Ideology) | Keeps the colony's faith: the faith's decrees and customs strengthen belief half again as much, and the chaplain is persuasive and steady. Only with Ideology and a faith of the colony's own; those of the faith count for a candidate, those of another against.</li>
+          <li>Chaplain (5 voters, Ideology) | Keeps the colony's ideoligion: its decrees and customs strengthen certainty half again as much, and the chaplain is persuasive and steady. Only with Ideology and an ideoligion of the colony's own; those of the ideoligion count for a candidate, those of another against.</li>
           <li>Warden of guests (5 voters) | Looks after visitors and the strangers camped on the colony's land; negotiates better and talks easily with strangers.</li>
           <li>Elder (10 voters, three seats) | The council of elders. While any elder sits, the whole colony keeps a slightly steadier head. Age counts for a candidate.</li>
         </table>
@@ -381,7 +381,7 @@ Two more things weigh on a ballot. Someone whose granted wish the council took b
           <li>Herdmaster | Sits with anyone whose named animal dies, and minds the animals of those away two days or more (they come home grateful). Goes down to name each newborn in the herd, brings word face to face to anyone whose animal is sick or hurt (their strain eases), and about once a week takes someone keen on animals, four levels or more behind, along for the day's work.</li>
           <li>Marshal | After a fight at home, has a word with everyone who fought beside them, easing their strain.</li>
           <li>Steward | At a gathering, eases the strain of everyone else there a little.</li>
-          <li>Chaplain | Most days sits with someone grieving (their strain eases) or has a word with the believer least sure of the faith (6% surer); leads the calendar's remembrances.</li>
+          <li>Chaplain | Most days sits with someone grieving (their strain eases) or has a word with the believer least sure of the ideoligion (6% surer); leads the calendar's remembrances.</li>
           <li>Warden of guests | Spends an hour a day at the fire of any camp on the colony's land (its tension eases by 4, and the campers come to know the warden), and sees visitors welcomed: their people's goodwill rises by 2, once every few days for each people.</li>
           <li>Elders | Every couple of days, each elder sits with someone ten years younger or more and passes on what they know best (an afternoon's practice in it), and the two grow a little closer.</li>
         </table>
@@ -404,7 +404,7 @@ Two more things weigh on a ballot. Someone whose granted wish the council took b
         <heading>The customs</heading>
         <table>
           <li>Season | Custom | What it needs</li>
-          <li>Spring | The planting day: when the fields open after a cold season, the colony sows together (a work party) and the grower says a few words at the field's edge that evening; hope and practice, no mood. Let go, the growers (and a nature faith's faithful) mind a little | land with a cold season, the first days the fields can grow again, 10 or more cells waiting for seed. Or name a planting day on the calendar</li>
+          <li>Spring | The planting day: when the fields open after a cold season, the colony sows together (a work party) and the grower says a few words at the field's edge that evening; hope and practice, no mood. Let go, the growers (and the faithful of an ideoligion that holds nature dear) mind a little | land with a cold season, the first days the fields can grow again, 10 or more cells waiting for seed. Or name a planting day on the calendar</li>
           <li>Spring | The remembrance walk: the colony visits its graves together and says the names | graves of the colony's own dead</li>
           <li>Spring | Naming the year (the muffalo is a tradition too) | nothing</li>
           <li>Summer | The midsummer bonfire | firewood</li>
@@ -424,8 +424,8 @@ Two more things weigh on a ballot. Someone whose granted wish the council took b
         <after>The herd's year has customs of its own (the colony's animals has them): the lambing watch, shearing day, and bringing the herd home before the winter, in a cold snap or after a raid.</after>
       </li>
       <li>
-        <heading>Customs of the land and the faith</heading>
-        <text>Some customs only come where the land asks for them, and some only to a colony whose faith keeps them (Ideology). Other mods' biomes count by their names: a mangrove is a swamp, a salt flat a desert. Nobody asks for a custom their own beliefs rule out: no fire customs from those whose faith despises fire, no blessing from those who despise religion, and the ancestors' supper is served by the feast's own rules, each to what they may eat.</text>
+        <heading>Customs of the land and the ideoligion</heading>
+        <text>Some customs only come where the land asks for them, and some only to a colony whose ideoligion keeps them (Ideology). Other mods' biomes count by their names: a mangrove is a swamp, a salt flat a desert. Nobody asks for a custom their own beliefs rule out: no fire customs from those whose ideoligion despises fire, no blessing from those who despise religion, and the ancestors' supper is served by the feast's own rules, each to what they may eat.</text>
         <table>
           <li>Season | Custom | What it needs</li>
           <li>Spring | The sun's return: everyone round a fire on the high ground at dawn to see the sun come back | the tundra or the boreal forest, firewood</li>
@@ -433,11 +433,11 @@ Two more things weigh on a ballot. Someone whose granted wish the council took b
           <li>Spring | The blessing of the waters: a loaf given to the water at the start of the year (trust, no mood) | the coast, a lake or a river, and open water</li>
           <li>Summer | The marsh lights: the bounds walked after dark with smoking torches | a swamp or a jungle, a warm day, firewood</li>
           <li>Fall | The high watch: the colony climbs the high ground to see all it has made (recreation and awe, no mood) | mountains or hills</li>
-          <li>Winter | The night vigil: the faith's vigil through the longest night | Ideology: a faith that worships (a theist or old faith), someone devout to ask</li>
-          <li>Spring or summer | The tree-singing: the colony sings to the oldest tree (recreation and awe, no mood) | Ideology: an animist faith, nature first, or tree connection</li>
-          <li>Fall or winter | The ancestors' supper: a place laid at the table for each of the colony's dead | Ideology: a faith of the colony's own, graves of its dead, raw food</li>
+          <li>Winter | The night vigil: the ideoligion's vigil through the longest night | Ideology: an ideoligion that worships (a theist or ancient one), someone devout to ask</li>
+          <li>Spring or summer | The tree-singing: the colony sings to the oldest tree (recreation and awe, no mood) | Ideology: an animist ideoligion, nature first, or tree connection</li>
+          <li>Fall or winter | The ancestors' supper: a place laid at the table for each of the colony's dead | Ideology: an ideoligion of the colony's own, graves of its dead, raw food</li>
         </table>
-        <after>The faith's customs strengthen the faithful's belief, half again with a chaplain in office.</after>
+        <after>The ideoligion's customs strengthen the faithful's certainty, half again with a chaplain in office.</after>
       </li>
       <li>
         <text>The letter says when a choice is a tradition, and when choosing it again will make one. Keeping a tradition gives everyone a good memory; breaking one gives a bad one and resets the count. New, kept and broken traditions are written into the chronicle and the year's annals, and someone usually writes about a new tradition in their journal.
@@ -560,11 +560,11 @@ You can turn omens off with "Dreams that come true" in the settings.</text>
     <order>11</order>
     <summary>What each colonist has set their heart on doing before they die.</summary>
     <tip>A wish takes a few days to grant. A life goal can take years.</tip>
-    <description>A few days after settling in, each colonist sets their heart on something: master a craft, marry for love, have a child, find three true friends, train a student, make peace with a rival, earn a seat on the council or a name the colony remembers, a bedroom fit for a noble, a warrior's or a builder's record, or simply to live three more years. Children have goals of their own (a best friend, a skill, their letters, an animal of their own, growing up) that grow into a grown-up's goal when they come of age, the young want to be taken seriously or to see past the hills, the old may want a grandchild, one more year or a last wish (a fine last piece, family set right), believers a role in their faith or their faith found again, and some only want to feel at home, safe, loved or free of a grief. The Roster page shows everyone's goal and how close they are; the page "every life goal" lists them all.</description>
+    <description>A few days after settling in, each colonist sets their heart on something: master a craft, marry for love, have a child, find three true friends, train a student, make peace with a rival, earn a seat on the council or a name the colony remembers, a bedroom fit for a noble, a warrior's or a builder's record, or simply to live three more years. Children have goals of their own (a best friend, a skill, their letters, an animal of their own, growing up) that grow into a grown-up's goal when they come of age, the young want to be taken seriously or to see past the hills, the old may want a grandchild, one more year or a last wish (a fine last piece, family set right), believers a role in their ideoligion or their faith found again, and some only want to feel at home, safe, loved or free of a grief. The Roster page shows everyone's goal and how close they are; the page "every life goal" lists them all.</description>
     <sections>
       <li>
         <heading>How a goal is chosen</heading>
-        <text>Goals fit the person: passions, traits, beliefs and situation decide what they want. A psychopath doesn't dream of true friends; an ascetic doesn't want a noble's bedroom; nobody whose faith forbids lovin wants a child, and nobody whose faith forbids violence wants a warrior's record. Someone whose faith keeps lovin for the married, and who has a partner, sets their heart on marriage far more often.
+        <text>Goals fit the person: passions, traits, beliefs and situation decide what they want. A psychopath doesn't dream of true friends; an ascetic doesn't want a noble's bedroom; nobody whose ideoligion forbids lovin wants a child, and nobody whose ideoligion forbids violence wants a warrior's record. Someone whose ideoligion keeps lovin for the married, and who has a partner, sets their heart on marriage far more often.
 
 Life sets them too. A battle can make a warrior, a brush with death a healer or someone who just wants more years, a wedding someone who wants to marry, a birth someone who wants a child, a lost election someone who wants a seat, and loneliness someone who wants friends. Seeing a friend achieve their goal can make them want the same. Something big can change their mind about a goal they've barely started.</text>
       </li>
@@ -781,14 +781,14 @@ Some encounters and dilemmas only come up for a colony with a certain name: refu
       </li>
       <li>
         <heading>What the colony grows into beyond its work</heading>
-        <text>Three more names come from how the colony lives with others, with its faith and with its own years. They are counted for the colony as a whole from Rimfolk's own records, give nobody a mood, and change what comes to the colony instead.</text>
+        <text>Three more names come from how the colony lives with others, with its ideoligion and with its own years. They are counted for the colony as a whole from Rimfolk's own records, give nobody a mood, and change what comes to the colony instead.</text>
         <table>
           <li>Known as | Earned by | What changes</li>
           <li>Good hosts | camps that stayed their time and left on good terms; visitors, refugees, feasts, guests of note and peace talks the region remembers; with Hospitality, guests staying the night | camps come a third sooner after the last; refugee families and exiles seek the colony out</li>
-          <li>Devout (Ideology) | the faith's rituals held to their end, a chaplain in the seat, a moral guide in the faith | pilgrims, processions and penitents come twice as often, and pilgrimages and holy years find the colony</li>
+          <li>Devout (Ideology) | the ideoligion's rituals held to their end, a chaplain in the seat, a moral guide in the ideoligion | pilgrims, processions and penitents come twice as often, and pilgrimages and holy years find the colony</li>
           <li>Long-memoried | calendar days kept two years running or more, and traditions (three between them) | players, minstrels and mourners come twice as often, and a great death in the region is told to the colony first</li>
         </table>
-        <after>Each has its own visitors on the road (a word about the colony's warm fire, a pilgrim's prayer that steadies someone's faith, a stranger asking about the old days who teaches the teller to tell it well), and lines in letters that know the colony's name. And each leans the colony's old hands, those here a year or more: in a colony of good hosts they mind an answer that turns people away, in a devout or long-memoried one an answer that sets the old ways aside. Like the work names, these fade if the colony stops living up to them.</after>
+        <after>Each has its own visitors on the road (a word about the colony's warm fire, a pilgrim's prayer that steadies someone in their ideoligion, a stranger asking about the old days who teaches the teller to tell it well), and lines in letters that know the colony's name. And each leans the colony's old hands, those here a year or more: in a colony of good hosts they mind an answer that turns people away, in a devout or long-memoried one an answer that sets the old ways aside. Like the work names, these fade if the colony stops living up to them.</after>
       </li>
     </sections>
     <keywords><li>reputation</li><li>character</li><li>ways</li><li>merciful</li><li>harsh</li><li>generous</li><li>thrifty</li><li>traditional</li><li>restless</li><li>open</li><li>guarded</li><li>hard-working</li><li>easygoing</li><li>green-fingered</li><li>builders</li><li>learned</li><li>craftsfolk</li><li>hunters</li><li>delvers</li><li>hosts</li><li>hospitality</li><li>devout</li><li>long-memoried</li></keywords>
@@ -808,7 +808,7 @@ Some encounters and dilemmas only come up for a colony with a certain name: refu
         <heading>The Mood tab</heading>
         <text>The mood bar shows where a colonist is, where their mood is heading, and the lines below which minor, major and extreme breaks become possible. Under it, one sentence says how close they are to a break.
 
-The tab sorts their moods by what you can do about them. A row of chips gives each group's total ("You can fix -15", "Will pass -11 · 2 days", "Faith -4", "Lifting +22"); click a chip to jump to its group. Each mood is one line: a faint bar for its size, the number, its name, and on the right a short action ("Build a dining table") or when it ends. Hover a line for everything about it (the game's description, why, when it fades, what helps); click it to open its card in place, with buttons that lead to the advisor's matching warning, the council page that deals with it, or an Almanac page. Only one card is open at a time.
+The tab sorts their moods by what you can do about them. A row of chips gives each group's total ("You can fix -15", "Will pass -11 · 2 days", "Ideoligion -4", "Lifting +22"); click a chip to jump to its group. Each mood is one line: a faint bar for its size, the number, its name, and on the right a short action ("Build a dining table") or when it ends. Hover a line for everything about it (the game's description, why, when it fades, what helps); click it to open its card in place, with buttons that lead to the advisor's matching warning, the council page that deals with it, or an Almanac page. Only one card is open at a time.
 
 "Details" in the tab's header shows every mood as a card instead, the way the tab used to look; "Compact" goes back. Rimfolk remembers which you chose.
 
@@ -823,12 +823,12 @@ Click a group's heading to fold it away; it stays folded until you quit. Above a
           <li>Group|What's in it|What the line says</li>
           <li>You can fix|Moods you can do something about now: a mood that lasts while its cause does, or a memory that comes straight back until you act (a meal without a table, a night in the barracks)|What to do, in gold</li>
           <li>Will pass|Memories that only fade (grief, a council answer, a story gone badly), and moods that end with what caused them (a world event)|When it's gone; the group's heading says when the last of them is</li>
-          <li>Faith and who they are|Moods from their beliefs, their traits or genes, and moods that never fade|What their faith asks, or "Their nature", or "Lasting"</li>
+          <li>Ideoligion and who they are|Moods from their beliefs, their traits or genes, and moods that never fade|What their ideoligion asks, or "Their nature", or "Lasting"</li>
           <li>Lifting|The good moods, folded to one line until you click it|When it ends</li>
         </table>
-        <after>A belief or a trait that asks for something you can build still counts as something you can fix: the altar their faith wants, the bedroom a greedy colonist expects.
+        <after>A belief or a trait that asks for something you can build still counts as something you can fix: the altar their ideoligion wants, the bedroom a greedy colonist expects.
 
-Moods from other mods are sorted by what kind of mood they are, with a short line to match: "While it lasts" for a mood that stays while its cause does, "Fades in 2 days" for a memory, "Their faith" for a belief's mood, "Lasting" for one that never fades. Their card gives general advice and their mod's name.
+Moods from other mods are sorted by what kind of mood they are, with a short line to match: "While it lasts" for a mood that stays while its cause does, "Fades in 2 days" for a memory, "Their ideoligion" for a belief's mood, "Lasting" for one that never fades. Their card gives general advice and their mod's name.
 
 The game's own Needs tab gets a line above its mood list with the same totals; click it to open the Mood tab. Hovering a mood there ends its tooltip with what helps.</after>
       </li>

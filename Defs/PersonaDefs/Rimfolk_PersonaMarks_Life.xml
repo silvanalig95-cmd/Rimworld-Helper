@@ -350,12 +350,12 @@
 
   <ColonyCouncil.PersonaMarkDef>
     <defName>Rimfolk_Mark_Converted</defName>
-    <label>took up a new faith</label>
+    <label>took up a new ideoligion</label>
     <shifts><openness>6</openness><outlook>4</outlook><trust>3</trust></shifts>
     <major>true</major>
     <keepDays>240</keepDays>
     <shaped>{PAWN_nameDef} has seen things through new eyes since taking up the ways of {LABEL}.</shaped>
-    <defaultLabel>a new faith</defaultLabel>
+    <defaultLabel>a new ideoligion</defaultLabel>
     <modExtensions>
       <li Class="ColonyCouncil.PersonaMarkExtension">
         <family>Converted</family>

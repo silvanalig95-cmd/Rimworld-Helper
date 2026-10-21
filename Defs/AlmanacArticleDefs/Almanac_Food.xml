@@ -266,16 +266,16 @@ Without power, a fueled stove burns wood and cooks the same meals as an electric
     <category>Food</category>
     <order>45</order>
     <dlc>Ideology</dlc>
-    <summary>A bill of its own for meals with fungus in them, for those whose faith asks for fungus</summary>
+    <summary>A bill of its own for meals with fungus in them, for those whose ideoligion asks for fungus</summary>
     <tip>Put fungus meals on one colonist's food policy and take them off everyone else's.</tip>
-    <description>Some faiths ask for fungus: Ideology's "fungus preferred", and Alpha Memes' fungus diet, which makes a colonist sick after anything but fungus, insect meat, insect jelly or a meal with some of either in it. Food policies and bills only know kinds of meal, not what went into them, so a simple meal of rice and one with fungus look the same to them. Rimfolk adds the fungus meal for this: a simple meal from its own bill, "cook fungus meal" (or "cook 4 fungus meals" at a stove), where part of every meal is always fungus and the rest can be any raw food. A meal with some fungus in it is enough for Alpha Memes' fungus diet, so this stretches the fungus.</description>
+    <description>Some ideoligions ask for fungus: Ideology's "fungus preferred", and Alpha Memes' fungus diet, which makes a colonist sick after anything but fungus, insect meat, insect jelly or a meal with some of either in it. Food policies and bills only know kinds of meal, not what went into them, so a simple meal of rice and one with fungus look the same to them. Rimfolk adds the fungus meal for this: a simple meal from its own bill, "cook fungus meal" (or "cook 4 fungus meals" at a stove), where part of every meal is always fungus and the rest can be any raw food. A meal with some fungus in it is enough for Alpha Memes' fungus diet, so this stretches the fungus.</description>
     <sections>
       <li>
         <heading>Setting it up</heading>
         <points>
           <li>Grow fungus: nutrifungus in a roofed room with no lamps and the door kept shut.</li>
           <li>Add a "cook fungus meal" bill at the stove (any stove or fire that cooks simple meals has it; stoves also have "cook 4 fungus meals"), set to "do until you have" two or three days' worth. It counts only fungus meals.</li>
-          <li>Give the colonist a food policy with fungus meals on it and nothing that would make them sick; raw fungus is a fallback if the meals run out. When a colonist's faith requires fungus, Rimfolk makes one for you once, "Fungus diet": fungus meals, raw fungus, insect jelly and insect meat only. Assign it in the Assign tab. A policy that still allows simple meals, raw vegetables or nutrient paste is the usual reason a fungus-diet colonist keeps throwing up.</li>
+          <li>Give the colonist a food policy with fungus meals on it and nothing that would make them sick; raw fungus is a fallback if the meals run out. When a colonist's ideoligion requires fungus, Rimfolk makes one for you once, "Fungus diet": fungus meals, raw fungus, insect jelly and insect meat only. Assign it in the Assign tab. A policy that still allows simple meals, raw vegetables or nutrient paste is the usual reason a fungus-diet colonist keeps throwing up.</li>
           <li>Take fungus meals off everyone else's food policy, so the others leave them alone.</li>
         </points>
         <after>In a save from before fungus meals existed, every food policy starts with them switched off, so only the policy you tick them on will eat them. A food policy made later allows them like any other meal; untick them there.</after>

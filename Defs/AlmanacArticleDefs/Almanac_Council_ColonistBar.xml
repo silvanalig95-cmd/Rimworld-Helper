@@ -12,7 +12,7 @@
     <label>badges on the colonist bar</label>
     <category>Council</category>
     <order>23</order>
-    <summary>Small badges on the portraits along the top of the screen show who needs you: close to a break, about to leave, a wish waiting long, strain, wavering faith, a promise at risk.</summary>
+    <summary>Small badges on the portraits along the top of the screen show who needs you: close to a break, about to leave, a wish waiting long, strain, wavering certainty, a promise at risk.</summary>
     <tip>A portrait with nothing on it is a colonist who is fine for now.</tip>
     <description>The colonist bar already shows everyone's face. Rimfolk adds a small badge in a corner of a portrait when something about that colonist wants your attention, so you can see how the colony is doing without clicking through everyone's tabs. A calm colonist shows nothing at all. Hover a badge for what it means, how big it is and what helps; click it to go where it can be dealt with.</description>
     <sections>
@@ -24,10 +24,10 @@
           <li>Doorway | They are bitter about the council and have said they will leave the colony, which they do three days later unless their trust climbs back above -35 | The council's Wishes page</li>
           <li>Speech bubble with a star | Their own open wish has used up half of its time, or is on its last call (reminded twice, or 85% of its time gone) | The council's Wishes page</li>
           <li>Cracked heart | Worn down (strain 55 or more) or near breaking (75 or more) | The Mood tab, whose Heart section shows what builds it</li>
-          <li>Sun | With Ideology: their certainty in their faith is under 60% | Their Culture tab</li>
+          <li>Sun | With Ideology: their certainty in their ideoligion is under 60% | Their Culture tab</li>
           <li>Speech bubble with a tick | Something the council granted them is gone and the grace is running, or it was taken back and can still be made right | The council's Wishes page, with its promises kept</li>
         </table>
-        <after>Each badge's colour says how pressing it is: a wish turns orange on its last call, strain and a promise turn red when it's serious, faith turns orange when it barely holds (under 30%).</after>
+        <after>Each badge's colour says how pressing it is: a wish turns orange on its last call, strain and a promise turn red when it's serious, wavering certainty turns orange when it barely holds (under 30%).</after>
       </li>
       <li>
         <heading>The most pressing first</heading>
@@ -39,9 +39,9 @@
           <li>A wish on its last call, then strain near breaking, then a wish that has waited long.</li>
           <li>A promise taken back, then something granted that has gone missing.</li>
           <li>The early warnings: just above the minor break line, then worn down.</li>
-          <li>Wavering faith, barely holding first.</li>
+          <li>Wavering certainty, barely holding first.</li>
         </points>
-        <after>With the ring, being close to a break takes no badge's place. A badge's tooltip starts with what matters most and its size: how far mood is from the break line in points, how long a wish has left with what granting it gives and what it costs if it lapses, how much trust would keep someone from leaving, the strain's own effects on mood and work speed, how certain someone still is of their faith.</after>
+        <after>With the ring, being close to a break takes no badge's place. A badge's tooltip starts with what matters most and its size: how far mood is from the break line in points, how long a wish has left with what granting it gives and what it costs if it lapses, how much trust would keep someone from leaving, the strain's own effects on mood and work speed, how certain someone still is of their ideoligion.</after>
       </li>
       <li>
         <heading>Where they sit, and clicking</heading>
@@ -56,7 +56,7 @@ A left click on a badge goes there instead of doing the bar's usual click, and n
           <li>Badges on the colonist bar: on or off (on).</li>
           <li>Close to breaking shows as: a ring (the default), a dot among the badges, or nothing.</li>
           <li>Warn from this far above the minor break line: 0% to 15% (5%). At 0% the ring shows only under the line.</li>
-          <li>Each kind on its own: about to leave, a wish waiting long, strain near breaking, wavering faith, a promise at risk (all on).</li>
+          <li>Each kind on its own: about to leave, a wish waiting long, strain near breaking, wavering certainty, a promise at risk (all on).</li>
           <li>Wish badge from: 25% to 90% of a wish's time (50%).</li>
           <li>Badge size: small (about 11 pixels on a full-size bar), normal (13) or large (16).</li>
           <li>Badges start from: top right (the default), top left, bottom right or bottom left.</li>

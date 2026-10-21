@@ -129,7 +129,7 @@
     <texts>
       <li>A procession of {FACTION} has come singing up the road behind a carried shrine: the faithful of a dozen villages, bound for a holy place far beyond the colony. {X_nameDef}, who leads them, asked {A_nameDef} whether they might rest {PLACE} for a few days and keep their prayers.</li>
       <li>[ideology] Followers of {IDEO} from {FACTION} have come up the road carrying the relics of their faith on poles. {X_nameDef}, who walks at the front, asked {A_nameDef} for leave to camp {PLACE}, to rest and to pray.</li>
-      <li>[ideology,sameFaith] A procession of {FACTION} has arrived singing hymns the colony knows: they keep {IDEO}, the colony's own faith, and they've come out of their way to rest among their own. {X_nameDef} asked {A_nameDef} for a few days' camp {PLACE}.</li>
+      <li>[ideology,sameFaith] A procession of {FACTION} has arrived singing hymns the colony knows: they keep {IDEO}, the colony's own ideoligion, and they've come out of their way to rest among their own. {X_nameDef} asked {A_nameDef} for a few days' camp {PLACE}.</li>
       <li>[ws:faith] {SITUATION} has brought the faithful out on every road, and a procession of {FACTION} has stopped by the colony on its way. {X_nameDef} asked {A_nameDef} whether they might camp {PLACE} for a few days.</li>
       <li>[lowtech] A procession of {FACTION} has come over the hill with bells and drums, carrying a carved figure on a litter. {X_nameDef}, their leader, asked {A_nameDef} whether the figure and its people might rest {PLACE} a few nights on their long road.</li>
       <li>[colony:Devout] A procession of {FACTION} has come out of its way to pass the colony, which the faithful on the roads call a devout place. {X_nameDef}, who walks at the front, asked {A_nameDef} whether they might rest {PLACE} and pray a while.</li>
@@ -141,7 +141,7 @@
     </settled>
     <joinTexts>
       <li>{X_nameDef}, one of the faithful camped {PLACE}, says the road has brought {X_objective} where {X_pronoun} was meant to be, and asks whether {X_pronoun} might stay with the colony instead of walking on.</li>
-      <li>[sameFaith] {X_nameDef} from the procession {PLACE} has found people of {X_possessive} own faith here, and asks, after a night's prayer about it, to stay.</li>
+      <li>[sameFaith] {X_nameDef} from the procession {PLACE} has found people of {X_possessive} own ideoligion here, and asks, after a night's prayer about it, to stay.</li>
       <li>{X_nameDef}, one of the faithful camped {PLACE}, says {X_pronoun} has carried the shrine far enough, and asks whether {X_pronoun} might set down {X_possessive} load here, among the colony.</li>
     </joinTexts>
     <farewell>
@@ -162,7 +162,7 @@
     <helpTexts>
       <li>[blessing] {X_nameDef}, the eldest of the faithful, came to the colony at dusk and walked its paths with a bell, blessing the houses, the fields and the people one by one.</li>
       <li>[blessing,ideology] The followers of {IDEO} came to the colony's gate at sunset and sang a blessing over it, the whole procession together, before going back to their fire.</li>
-      <li>[blessing,sameFaith] The procession came to the colony this evening to pray with it, as people of one faith. {X_nameDef} led the prayers, and {A_nameDef} stood at the front.</li>
+      <li>[blessing,sameFaith] The procession came to the colony this evening to pray with it, as people of one ideoligion. {X_nameDef} led the prayers, and {A_nameDef} stood at the front.</li>
       <li>[blessing,lowtech] The faithful carried their shrine around the colony's fields at dusk, ringing bells, so the land would be kind to the people working it.</li>
     </helpTexts>
   </ColonyCouncil.CampKindDef>

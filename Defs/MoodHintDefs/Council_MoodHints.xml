@@ -505,7 +505,7 @@
     <defName>Council_Mood_Precept</defName>
     <workers><li>ThoughtWorker_Precept</li><li>ThoughtWorker_Precept_AlwaysActive</li></workers>
     <fix>This comes from their ideoligion. Honor the belief, or change it when the ideoligion is next reformed.</fix>
-    <act>Their faith asks it</act>
+    <act>Their ideoligion asks it</act>
     <actionable>false</actionable>
     <keep>Their beliefs approve. Keep honoring them.</keep>
     <article>Council_Alm_7_10_PreceptsAndRoles</article>
@@ -516,7 +516,7 @@
     <defName>Council_Mood_IdeoBuildings</defName>
     <thoughts><li>IdeoBuildingMissing</li><li>IdeoBuildingDisrespected</li><li>IdeoRoleEmpty</li><li>IdeoRoleApparelRequirementNotMet</li></thoughts>
     <fix>Their ideoligion wants something in place: the building it asks for, a role filled, or the role's clothes worn.</fix>
-    <act>Give their faith what it asks</act>
+    <act>Give their ideoligion what it asks</act>
     <article>Council_Alm_7_10_PreceptsAndRoles</article>
   </ColonyCouncil.MoodHintDef>
 

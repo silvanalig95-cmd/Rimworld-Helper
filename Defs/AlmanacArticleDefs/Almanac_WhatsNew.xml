@@ -31,6 +31,16 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.9.8</version>
+        <date>25 October 2026, evening</date>
+        <title>The game's own words</title>
+        <points>
+          <li>Rimfolk now calls the game's belief system what the game does: the ideoligion, and how firmly someone holds it, their certainty. The People page shows "Ideoligions", the setting is "Ideoligions in the colony", the council calls an ideoligion evening or names one the colony's ideoligion, and the colonist bar warns of wavering certainty. It was always the game's own Ideology system, not a religion of Rimfolk's.</li>
+          <li>Colonists still speak of their faith in their own voice: in what they say, in their journals and in a crisis of faith. The council's buttons on an ideoligion's card take a second row when they don't fit side by side.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.9.7</version>
         <date>25 October 2026, later</date>
         <title>A defense helper that reads your line</title>

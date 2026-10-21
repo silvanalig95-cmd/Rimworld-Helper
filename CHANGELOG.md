@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The game's own words
+
+*25 October 2026, evening, version 0.9.8*
+
+- Rimfolk now calls the game's belief system what the game does: the ideoligion, and how firmly someone holds it, their certainty. The People page shows "Ideoligions", the setting is "Ideoligions in the colony", the council calls an ideoligion evening or names one the colony's ideoligion, and the colonist bar warns of wavering certainty. It was always the game's own Ideology system, not a religion of Rimfolk's.
+- Colonists still speak of their faith in their own voice: in what they say, in their journals and in a crisis of faith. The council's buttons on an ideoligion's card take a second row when they don't fit side by side.
+
 ## A defense helper that reads your line
 
 *25 October 2026, later, version 0.9.7*

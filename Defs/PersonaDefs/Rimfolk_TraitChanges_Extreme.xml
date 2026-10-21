@@ -141,14 +141,14 @@
         <thoughts>AteHumanMeat_Preferred, AteHumanMeat_RequiredStrong, AteHumanMeat_RequiredRavenous</thoughts>
         <count>5</count>
         <withinDays>120</withinDays>
-        <label>ate human flesh as the faith holds right</label>
+        <label>ate human flesh as their ideoligion holds right</label>
       </li>
     </tallies>
     <gapDays>0</gapDays>
     <chance>0.08</chance>
     <tone>-1</tone>
     <news>{PAWN_nameDef} has become a cannibal.</news>
-    <meaning>The faith {PAWN_pronoun} follows holds that human flesh is good to eat, and {PAWN_pronoun} has eaten it again and again. It isn't only belief anymore: it's appetite.</meaning>
+    <meaning>The ideoligion {PAWN_pronoun} follows holds that human flesh is good to eat, and {PAWN_pronoun} has eaten it again and again. It isn't only belief anymore: it's appetite.</meaning>
     <journal>
       <plain>
         <li>The faith says it's right. My stomach agrees now, and it didn't used to.</li>

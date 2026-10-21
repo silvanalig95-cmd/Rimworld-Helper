@@ -273,10 +273,10 @@
 
   <ColonyCouncil.AspirationDef>
     <defName>Council_Asp3_FaithRole</defName>
-    <label>a place in the faith</label>
+    <label>a place in the ideoligion</label>
     <workerClass>ColonyCouncil.AspirationWorker_IdeoRole</workerClass>
     <weight>0.8</weight>
-    <goal>take on a role in the faith</goal>
+    <goal>take on a role in their ideoligion</goal>
     <sparks><li>omen</li><li>fulfilled</li></sparks>
     <chosen>
       <plain>
@@ -298,10 +298,10 @@
 
   <ColonyCouncil.AspirationDef>
     <defName>Council_Asp3_SharedFaith</defName>
-    <label>one faith</label>
+    <label>one ideoligion</label>
     <workerClass>ColonyCouncil.AspirationWorker_SharedFaith</workerClass>
     <weight>0.6</weight>
-    <goal>see the whole colony share one faith</goal>
+    <goal>see the whole colony share one ideoligion</goal>
     <sparks><li>loss</li><li>omen</li></sparks>
     <chosen>
       <plain>
@@ -310,8 +310,8 @@
         <li>[newcomer] Not everyone here knows the truth yet. I'll be patient, and I'll talk to them.</li>
       </plain>
       <warm><li>My faith has given me so much. I'd like everyone here to have it too.</li></warm>
-      <blunt><li>One colony, one faith. It's simpler for everyone.</li></blunt>
-      <gloomy><li>A colony that doesn't share a faith comes apart when things go wrong.</li></gloomy>
+      <blunt><li>One colony, one ideoligion. It's simpler for everyone.</li></blunt>
+      <gloomy><li>A colony that doesn't share an ideoligion comes apart when things go wrong.</li></gloomy>
       <cold><li>Shared belief makes a colony easier to hold together.</li></cold>
     </chosen>
     <achieved>
