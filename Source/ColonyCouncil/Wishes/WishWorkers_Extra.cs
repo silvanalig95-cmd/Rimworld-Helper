@@ -2,12 +2,48 @@ using System.Collections.Generic;
 using System.Linq;
 using RimWorld;
 using Verse;
+using Verse.AI.Group;
 
 namespace ColonyCouncil
 {
-    /// <summary>Engaged colonists want the wedding. The game marries fiancés on its own eventually; a marriage spot helps.</summary>
+    /// <summary>
+    /// Engaged colonists want the wedding. The game marries fiancés on its own eventually, at a time of its choosing; a
+    /// marriage spot helps. Promised, the council holds it: the game's own ceremony, started as soon as both are ready
+    /// and the day allows it (no danger, no breakdown), tried again every few hours until it happens.
+    /// </summary>
     public class WishWorker_Wedding : WishWorker
     {
+        private const int RetryTicks = GenDate.TicksPerHour * 3;
+        private static readonly Dictionary<int, int> lastTried = new Dictionary<int, int>();
+
+        public override string OnPromised(Wish wish) => TryWed(wish, true) ? "CC_Promise_WeddingNow" : "CC_Promise_WeddingSoon";
+
+        /// <summary>Starts the game's marriage ceremony for the two, if both are ready and the day allows it.</summary>
+        private static bool TryWed(Wish wish, bool now)
+        {
+            var a = wish?.Beneficiary;
+            var b = wish?.other;
+            if (a == null || b == null || !a.Spawned || !b.Spawned || a.Map != b.Map || a.Drafted || b.Drafted) return false;
+            if (a.relations == null || !a.relations.DirectRelationExists(PawnRelationDefOf.Fiance, b)) return false;
+            int tick = Find.TickManager.TicksGame;
+            if (!now && lastTried.TryGetValue(wish.id, out int last) && tick - last < RetryTicks) return false;
+            lastTried[wish.id] = tick;
+            if (lastTried.Count > 100) lastTried.Clear();
+            try
+            {
+                var map = a.Map;
+                if (map.lordsStarter == null || !MarriageCeremonyUtility.AcceptableGameConditionsToStartCeremony(map)
+                    || !MarriageCeremonyUtility.FianceReadyToStartCeremony(a, b) || !MarriageCeremonyUtility.FianceReadyToStartCeremony(b, a))
+                    return false;
+                return map.lordsStarter.TryStartMarriageCeremony(a, b);
+            }
+            catch (System.Exception e)
+            {
+                CouncilLog.ErrorOnce("promised wedding", e);
+                return false;
+            }
+        }
+
         public override IEnumerable<WishCandidate> CandidatesFor(Pawn pawn)
         {
             if (pawn.relations == null || !pawn.DevelopmentalStage.Adult()) yield break;
@@ -26,8 +62,14 @@ namespace ColonyCouncil
             }
         }
 
-        public override bool IsFulfilled(Wish wish) => wish.other != null && wish.Beneficiary.relations != null
-                                                        && wish.Beneficiary.relations.DirectRelationExists(PawnRelationDefOf.Spouse, wish.other);
+        public override bool IsFulfilled(Wish wish)
+        {
+            if (wish.other == null || wish.Beneficiary.relations == null) return false;
+            if (wish.Beneficiary.relations.DirectRelationExists(PawnRelationDefOf.Spouse, wish.other)) return true;
+            // Promised and not yet held: the council tries again (a ceremony already under way isn't started twice).
+            if (wish.promised && wish.Beneficiary.GetLord()?.LordJob is not LordJob_Joinable_MarriageCeremony) TryWed(wish, false);
+            return false;
+        }
 
         public override bool StillValid(Wish wish)
         {

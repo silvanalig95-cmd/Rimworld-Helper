@@ -5,7 +5,7 @@
     <defName>Council_Wish_Wedding</defName>
     <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a wedding with {OTHER_nameDef}</label>
-    <description>Engaged colonists want to get married. The ceremony happens on its own once there's somewhere suitable and a calm day; a marriage spot helps.</description>
+    <description>Engaged colonists want to get married. The game holds the ceremony on its own sooner or later; promise the wish and the council holds it as soon as both are ready and the day is calm (no danger, no breakdown). A marriage spot gives it a place.</description>
     <workerClass>ColonyCouncil.WishWorker_Wedding</workerClass>
     <category>Social</category>
     <weight>1</weight>

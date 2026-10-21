@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## A wedding you can call
+
+*24 October 2026, version 0.9.4*
+
+- The wedding wish no longer depends on the game choosing a day. Promise it and the council holds the wedding, the game's own ceremony, as soon as both are ready and the day is calm, trying again every few hours until it happens.
+- The wish says so: the game still marries an engaged couple on its own sooner or later, and a marriage spot gives the ceremony a place.
+
 ## Alerts, health and work on screen
 
 *23 October 2026, later, version 0.9.3*

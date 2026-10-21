@@ -936,6 +936,8 @@
   <CC_Progress_Party>Promise it and the council calls a party right away. Otherwise, wait for one.</CC_Progress_Party>
   <CC_Progress_NoGatherSpot>A party needs somewhere to gather: build a party spot, or a table people can sit at.</CC_Progress_NoGatherSpot>
   <CC_Promise_Party>The council calls a party, and {PAWN_nameDef} is throwing it.</CC_Promise_Party>
+  <CC_Promise_WeddingNow>The council holds the wedding today: {PAWN_nameDef} and {OTHER_nameDef} are getting married.</CC_Promise_WeddingNow>
+  <CC_Promise_WeddingSoon>The council will hold the wedding as soon as {PAWN_nameDef} and {OTHER_nameDef} are both ready and the day is calm.</CC_Promise_WeddingSoon>
   <CC_SelfHelp_Party>{PAWN_nameDef} got tired of waiting and started a party {PAWN_objective}self.</CC_SelfHelp_Party>
   <CC_Reason_Rescue>{OTHER_nameDef} was carried off by {FACTION}, and {PAWN_nameDef} can't stop thinking about it.</CC_Reason_Rescue>
   <CC_Progress_Rescue>{OTHER_nameDef} is held by {FACTION}. Bring {OTHER_objective} home by rescue, ransom or trade.</CC_Progress_Rescue>

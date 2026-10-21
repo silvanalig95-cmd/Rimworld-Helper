@@ -31,6 +31,16 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.9.4</version>
+        <date>24 October 2026</date>
+        <title>A wedding you can call</title>
+        <points>
+          <li>The wedding wish no longer depends on the game choosing a day. Promise it and the council holds the wedding, the game's own ceremony, as soon as both are ready and the day is calm, trying again every few hours until it happens.</li>
+          <li>The wish says so: the game still marries an engaged couple on its own sooner or later, and a marriage spot gives the ceremony a place.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.9.3</version>
         <date>23 October 2026, later</date>
         <title>Alerts, health and work on screen</title>
