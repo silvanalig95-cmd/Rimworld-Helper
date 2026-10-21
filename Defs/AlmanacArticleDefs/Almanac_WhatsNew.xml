@@ -31,6 +31,16 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.9.5</version>
+        <date>24 October 2026, later</date>
+        <title>Fungus that lasts</title>
+        <points>
+          <li>The fungus meal is part fungus again, the rest any raw food, so the fungus lasts longer: a meal with some fungus in it is all a fungus diet asks. Stoves get a "cook 4 fungus meals" bill too, like the game's own.</li>
+          <li>Someone whose faith allows only one kind of food (a fungus or insect diet) no longer tires of the same meal: they have no choice to tire of.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.9.4</version>
         <date>24 October 2026</date>
         <title>A wedding you can call</title>

@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Fungus that lasts
+
+*24 October 2026, later, version 0.9.5*
+
+- The fungus meal is part fungus again, the rest any raw food, so the fungus lasts longer: a meal with some fungus in it is all a fungus diet asks. Stoves get a "cook 4 fungus meals" bill too, like the game's own.
+- Someone whose faith allows only one kind of food (a fungus or insect diet) no longer tires of the same meal: they have no choice to tire of.
+
 ## A wedding you can call
 
 *24 October 2026, version 0.9.4*

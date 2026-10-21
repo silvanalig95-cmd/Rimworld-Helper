@@ -6,7 +6,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RF_PressureMeal</defName>
     <thoughts><li>Council_Pressure_SameMeal</li><li>Council_Pressure_VariedTable</li></thoughts>
-    <fix>Cook more than one kind of meal: bills for two or three kinds, or pemmican, berries or a fine meal in the mix. It eases as the meals change. A colony that can make only one kind feels it least, and ascetics don't mind.</fix>
+    <fix>Cook more than one kind of meal: bills for two or three kinds, or pemmican, berries or a fine meal in the mix. It eases as the meals change. A colony that can make only one kind feels it least; ascetics and anyone whose faith allows only one kind of food don't mind.</fix>
     <act>Vary the meals</act>
     <keep>Keep three or more kinds of food in the mix, a couple of days at a time.</keep>
     <article>Council_Alm_C_Pressures</article>

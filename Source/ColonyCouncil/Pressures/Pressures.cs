@@ -81,8 +81,20 @@ namespace ColonyCouncil
         private static int Industry(Pawn p) =>
             TraitDefOf.Industriousness != null && (p.story?.traits?.HasTrait(TraitDefOf.Industriousness) ?? false) ? p.story.traits.DegreeOfTrait(TraitDefOf.Industriousness) : 0;
 
-        /// <summary>Ascetics eat what there is and don't think about it.</summary>
-        public static bool AnyFood(Pawn p) => Has(p, TraitDefOf.Ascetic);
+        /// <summary>
+        /// Ascetics eat what there is and don't think about it, and nor does someone whose faith allows only one kind of
+        /// food (Alpha Memes' fungus or insect diet, any mod's "...Eating_Required"): they have no choice to tire of.
+        /// </summary>
+        public static bool AnyFood(Pawn p) => Has(p, TraitDefOf.Ascetic) || OneDiet(p);
+
+        /// <summary>Their faith requires one kind of food.</summary>
+        public static bool OneDiet(Pawn p)
+        {
+            if (!ModsConfig.IdeologyActive || p?.Ideo == null) return false;
+            foreach (var pr in p.Ideo.PreceptsListForReading)
+                if (pr?.def?.defName != null && pr.def.defName.Contains("Eating_Required")) return true;
+            return false;
+        }
 
         /// <summary>Gourmands (and Vanilla Traits Expanded's refined palates and gastronomists) mind the same meal more.</summary>
         public static bool Picky(Pawn p)
