@@ -280,8 +280,8 @@ namespace ColonyCouncil
             t != null && t.kind != "fallback" && t.kind != "keep" && t.kind != "mortar"
             && t.Grid.pieces.Any(p => p.role == "wall" || p.role == "embrasure" || p.role == "turret");
 
-        /// <summary>Templates whose walls are only its sides: it can do without them.</summary>
-        public static bool WallsAreSides(DefenseTemplateDef t) => t != null && (t.kind == "traps" || t.kind == "nest" || t.kind == "post");
+        /// <summary>Templates whose walls are only the sides of a lane on the way in (the trap corridor): it can do without them.</summary>
+        public static bool WallsAreSides(DefenseTemplateDef t) => t != null && t.kind == "traps";
 
         public const int MaxWalks = 30;
 
@@ -312,11 +312,11 @@ namespace ColonyCouncil
             return res;
         }
 
-        /// <summary>A gate piece on the line's row (or right behind its gate): the line's own way through.</summary>
+        /// <summary>A gate piece on the line's row, a cell off it, or right behind its gate (a double gate): the line's own way through.</summary>
         private static bool OnLine(DefenseLine line, IntVec3 c)
         {
             int ahead = line.Ahead(c);
-            return ahead <= 0 && ahead >= -2 && Mathf.Abs(line.Lateral(c)) <= Mathf.Max(2, line.width / 2 + 2);
+            return ahead <= 1 && ahead >= -2 && Mathf.Abs(line.Lateral(c)) <= Mathf.Max(2, line.width / 2 + 2);
         }
 
         /// <summary>What the plan changes on the grid once built: dug-out rock opens, walls close, its gate on the line stays the way through, cover costs a little to climb.</summary>

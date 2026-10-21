@@ -1290,6 +1290,44 @@ find "a free rectangle next to an existing wall near the colony center" reasonab
 well, but not a base you'd be proud of. Rungs 2 and 3 give most of the benefit while
 the base layout stays yours.
 
+### The defense helper: reading the ways in
+
+The Defenses page (Colony → Defenses) and its defense lines rest on one reading of the map (`Defense/DefenseSurvey.cs`,
+the pure part in `DefenseMath.cs`): from a sample of the map's edge, the cheapest way to the home area, with a door to
+break costing about as much as thirty cells of walking, and the narrow places on those ways. A few rules keep it
+honest about what the player has built:
+
+- **The door rule.** A defense line's gate, every door in its wall and a door right behind its gate (a double gate)
+  are the line's way through, shut or not: raiders who find a gate shut break it rather than walk far round. A door
+  held open counts as open. So a shut gate never makes the survey propose a new way in (`DefenseMath.MapGrid.free`,
+  `DefenseLineMath.MarkLineDoors`). The line's card says what a shut gate means and, where the door is shut, to hold it
+  open in a raid.
+- **Gaps a line holds.** The survey measures a pass where it's narrowest outside home, so a line often has the same
+  pass found again a few cells off. A gap whose cells overlap the line's (gap, gate, wall), or that lies within 12
+  cells of it with open ground between, facing no other way and either in line with its gap (the same pass, measured
+  differently) or on the same sampled walks (at least half), is covered by that line (`DefenseLineMath.CoveredBy`). A
+  colony door filling a gap further behind the line is a second line, not this one. Covered gaps are never offered as
+  new lines; the overlay and the page say "covered by the south-west pass". The sampled walks are kept with the survey
+  (`Result.walked`) so lines made later are matched without a new survey.
+- **Plans on the way in.** A plan placed in front of a line (the trap corridor) follows the way raiders walk up to the
+  gate (`DefenseApproach.PathToGate`: from the furthest cell in front that carries at least half the busiest stream of
+  walks, the cheapest way to the gate over the raiders' side, then on out along the stream). Every spot along it is
+  tried (its lane on each path cell 1 to 10 out, facing the line's way and the path's, each lane column, mirrored and
+  not) and costed: walls to build, rock to dig (dearer), unexplored ground (dearer still), walls on the way raiders
+  walk, less for the way running down its lane and for rock or walls standing as its sides. A spot on or behind the
+  line's own cells never fits; nor does one beside the way (less than half its length of the way down its lane, or,
+  tried with its walls standing, raiders walking round it). The cheapest are then tried on the map (`DefensePlanner.Plan`)
+  until the game would take one. The planner says why it stands there, or why nothing fits and what would make room.
+- **Walls that turn raiders away.** Before a step that adds walls is proposed (all but a fallback line, a keep or a
+  mortar pit), the walks that cross the line now are walked again with the plan built (its walls as walls, its gate on
+  the line as the line's way through, the rock it digs as open ground; `DefenseLineMath.CheckWay`). When fewer than half
+  still come through, the player is told which way they'd take and offered the corridor with its sides open, closing
+  the other gap first, or the plan as it is.
+- **Reading again.** The survey is kept for a day, made again at most once a game hour when the colony's buildings
+  change a lot, or when a wall, door, turret, trap, cover, fence or rock is finished or goes within six cells of a line
+  or a gap (two Harmony hooks, `Frame.CompleteConstruction` and `Building.DeSpawn`, one check each), and at once with
+  "Survey again". When the busiest way in moves, the lines say so for a day and a message says it once.
+
 ---
 
 ## Algorithms, not AI
@@ -1789,6 +1827,7 @@ fights pass and the worn-out episode read from it. (A downed victim after a figh
 | once a day, tick 433 | Advisor: the wealth sample (per home map) | one number |
 | once a day, tick 1789 | Other mods' people: best friends | per pair of colonists |
 | every frame | Slow time: the speed keys and the tick budget; its two buttons (when shown) | a few checks |
+| a building finished or gone (Harmony on `Frame.CompleteConstruction`, `Building.DeSpawn`) | The defense survey is marked to be read again (at most once a game hour, when next asked) | one check: the kind of building, then its distance to each line and the survey's gaps |
 
 **Worked out when asked, not on a clock.** The advisor's advice (24 checks on a map) is refreshed at most once an hour,
 when the alert or the council tab reads it; the inspector's strain line is built when the heart changes; Rimfolk's tabs

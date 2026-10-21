@@ -1066,16 +1066,19 @@ traps, cover, embrasures, mortars, weapons kept by the beds), who fights (shoote
 each, the longest reach), what the colony can build, and what it faces: the raid points its wealth buys, the hostile
 peoples around and whether they can drop pods, lay sieges or send sappers and breachers, mechanoids, mechanoid
 clusters (Royalty), insects under overhead mountain, Anomaly's threats and Biotech's wastepacks. The reading is made
-when the page opens and kept until the colony's buildings change a lot (at most once a game hour, never per frame);
-**Look again** makes it now.
+when the page opens and kept for a day, or until a wall, door, turret, trap or cover is finished or taken away near a
+defense line or a gap, or the colony's buildings change a lot (at most once a game hour, never per frame: one look per
+building as it's finished or goes); **Survey again** makes it now. A defense line's gate and the doors in its wall
+count as its way through even when shut (raiders break a shut gate rather than walk far round), and a door held open
+counts as open, so shutting a gate never sends the ways in somewhere else.
 
 The page shows the map in a few colors with the ways in and the gaps, the facts in short cards, a short **how it's
 commonly done** for the colony's era and land, and **advice ranked by what matters most now**, each with its reasons:
 "Raiders mostly come from the north: about 7 in 10 of their ways in pass here. The way in there is a gap between two
 rock faces, 5 cells wide. A gate there with sandbags behind it holds them." Done advice is marked and moves to the
 end. **Plan it here** opens the plan at the place the advice is about, turned to face the raiders; nothing is built
-until you click. **Show on the map** draws the ways in (red), the gaps (yellow, blue where a gate holds one) and where a
-gate's wall would cross (gold), also with the window closed.
+until you click. **Show on the map** draws the ways in (red), the gaps (yellow, blue where a gate or a line holds one,
+labelled "covered by the south-west pass") and where a gate's wall would cross (gold), also with the window closed.
 
 **Fifteen defense plans**, placed like room plans with every turn and mirror, material choices from what you have,
 rock mined and plants cut where you allow it, and a preview that shows what's ready, waiting or in the way: a gate
@@ -1114,15 +1117,29 @@ everyone at their posts"), with its parts in the tooltip. While raiders are on t
 in, every few seconds and only then: through the gate, round it or through the walls, and where colonists fall; after
 the raid each line keeps what it taught ("9 came through the gate, 3 went round to the west; Hana was downed at the
 sandbags on the left") with a button to the check or step it points at. A setting reminds you once a raid when a
-line's gate is shut. The defense planner now digs into unexplored ground the way the room planner does, so a killbox
+line's gate is shut, and a shut gate's note says what that means: raiders break it if there's no other way, so hold it
+open to keep them coming through.
+
+A gap the survey finds that a line already holds (its own cells, the same pass measured a few cells off, or the same
+ways in within about 12 cells) is shown as covered by that line and never offered as a new one; a gap on another way
+in still is. **Plan this step** for a trap corridor lays it on the way raiders actually walk up to the gate, its lane on
+that way and leading to the gate, with the rock or the colony's walls as its sides where they fit and never on or
+behind the line's own wall; it tries the spots along the way and their mirrors, prefers known ground and little
+digging, says why it chose its spot ("On the way to the gate, 2 cells out, using the rock on both sides") or why
+nothing fits and what would make room, and picks materials from stock when the ones remembered from earlier plans run
+short. Before it proposes walls, the helper walks the survey's ways in again with them standing: if most raiders would
+then go another way it says so ("These walls would make the north gap the easier way in") and offers the corridor with
+its sides left open, closing the other gap first, or the plan as it is. When the busiest way in moves after such a
+change, the lines say so for a day ("Raiders now come by the north gap"). The defense planner now digs into unexplored ground the way the room planner does, so a killbox
 can go into a mountain pass, and its suggested spots prefer those that close the gap, see the gate and leave raiders
 nothing to hide behind.
 
 The marshal, when there is one, points at the first piece of advice, and the council can take up **hold the way in**
 as a project: a gate across the way most raids take with cover behind it, or the home walled in. The Almanac's
-**Defending the colony** section explains it all (20 pages), from building a defense line step by step and how a
+**Defending the colony** section explains it all (21 pages), from building a defense line step by step and how a
 killbox really works (how raiders choose their way, why the way in stays open, the entrance, the kill zone and the
-firing line) to where a killbox fits, the usual killbox mistakes, the field of fire with weapon reach by era, and
+firing line) to where a killbox fits, the usual killbox mistakes, the field of fire with weapon reach by era, how
+raiders pick their way (the cheapest way in, what makes a way dear, why a killbox has to stay the easiest), and
 keeping a defense up after a raid.
 
 ### Almanac

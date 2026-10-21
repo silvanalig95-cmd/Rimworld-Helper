@@ -112,6 +112,7 @@ namespace ColonyCouncil
             if (s == null && !force && failed.TryGetValue(map, out int failedAt) && now - failedAt >= 0 && now - failedAt < GenDate.TicksPerHour) return null;
             // Maps that have gone (a camp left, a site abandoned) are let go.
             if (cache.Count > 0) Prune(cache);
+            if (dirty.Count > 1 && Find.Maps != null) dirty.RemoveWhere(m => m != map && !Find.Maps.Contains(m));
             bool first = s == null;
             try
             {
@@ -185,6 +186,14 @@ namespace ColonyCouncil
                     if (Close(cell, l.gate, Mathf.Max(NearChange, l.width / 2 + NearChange))) return true;
                     foreach (var c in l.span)
                         if (Close(cell, c, NearChange)) return true;
+                    // Or on (or just by) a plan placed for the line: a trap corridor out in front, a killbox behind.
+                    foreach (var p in l.plans)
+                    {
+                        var t = p.Def;
+                        if (t == null) continue;
+                        TemplateMath.RotatedSize(t.Width, t.Height, p.rotation, out int w, out int h);
+                        if (cell.x >= p.anchor.x - 2 && cell.x < p.anchor.x + w + 2 && cell.z >= p.anchor.z - 2 && cell.z < p.anchor.z + h + 2) return true;
+                    }
                 }
             var s = Kept(map);
             if (s?.grid == null) return false;
@@ -295,7 +304,16 @@ namespace ColonyCouncil
             var lines = DefenseLines.Of(map)?.lines;
             if (lines == null) return;
             foreach (var l in lines)
+            {
                 if (l.gate.InBounds(map)) DefenseLineMath.MarkLineDoors(m, l.gate.x, l.gate.z, l.facing);
+                // A door anywhere across the line's gap is its gate too, wherever the line's own mark stands.
+                foreach (var c in l.span)
+                {
+                    if (!c.InBounds(map)) continue;
+                    int i = m.Index(c.x, c.z);
+                    if (m.kind[i] == DefenseMath.Door) m.free[i] = true;
+                }
+            }
         }
 
         // ---------------- The grid as it stands now ----------------
@@ -361,6 +379,12 @@ namespace ColonyCouncil
                 if (!l.gate.InBounds(map) || Mathf.Abs(l.gate.x - at.x) > radius + 20 || Mathf.Abs(l.gate.z - at.z) > radius + 20) continue;
                 foreach (int i in DefenseLineMath.LineCells(grid, l.gate.x, l.gate.z, l.facing, 20))
                     if (grid.kind[i] == DefenseMath.Door && !grid.free[i]) patch.Set(i, DefenseMath.Door, true, grid.cost[i]);
+                foreach (var c in l.span)
+                {
+                    if (!c.InBounds(map)) continue;
+                    int i = grid.Index(c.x, c.z);
+                    if (grid.kind[i] == DefenseMath.Door && !grid.free[i]) patch.Set(i, DefenseMath.Door, true, grid.cost[i]);
+                }
                 // A double gate: the door right behind it is the line's too.
                 var inner = l.gate - l.Outward;
                 for (int k = 0; k < 2 && inner.InBounds(map); k++, inner -= l.Outward)
@@ -410,6 +434,8 @@ namespace ColonyCouncil
             coverHash = hash;
             foreach (var c in chokes)
             {
+                // A gap that was a line's and isn't any more is counted round itself again.
+                if (c.coveredBy >= 0) Around(map, c, c.cell, c.Outward);
                 c.coveredBy = -1;
                 c.coverHow = DefenseLineMath.Covered.No;
                 c.lineHeld = false;
@@ -426,6 +452,8 @@ namespace ColonyCouncil
                     c.coveredBy = line.id;
                     c.coverHow = how;
                     c.lineHeld = line.gate.InBounds(map) && line.gate.GetEdifice(map) is Building_Door;
+                    // Its cover, traps and turrets are the line's: counted round the line's gate.
+                    if (line.gate.InBounds(map)) Around(map, c, line.gate, line.Outward);
                 }
             }
             catch (Exception e)
@@ -690,17 +718,7 @@ namespace ColonyCouncil
                 // Held when every way across the gap is a door: a gate in the colony's wall, or doors filling a narrow pass
                 // between rock faces. A door with open ground beside it (a wall half built) holds nothing.
                 info.gated = c.doors > 0 && c.doors >= c.span.Count;
-                var outward = info.Outward;
-                foreach (var b in Avail.ColonyBuildings(map, d => Avail.IsCover(d) || Avail.IsTrap(d) || d.thingClass != null && typeof(Building_Turret).IsAssignableFrom(d.thingClass) || d.IsWall))
-                {
-                    var off = b.Position - info.cell;
-                    int ahead = off.x * outward.x + off.z * outward.z;
-                    float dist = off.LengthHorizontal;
-                    if (Avail.IsCover(b.def) && ahead <= 0 && dist <= 9f) info.coverInside++;
-                    else if (Avail.IsTrap(b.def) && ahead >= 0 && dist <= 14f) info.trapsOutside++;
-                    else if (b.def.IsWall && dist <= 3.5f && b.Stuff?.stuffProps?.categories != null && b.Stuff.stuffProps.categories.Contains(StuffCategoryDefOf.Woody)) info.woodWalls++;
-                    else if (b.def.thingClass != null && typeof(Building_Turret).IsAssignableFrom(b.def.thingClass) && !DefenseTemplateDef.IsMortar(b.def) && dist <= 16f) info.turretsNear++;
-                }
+                Around(map, info, info.cell, info.Outward);
                 s.chokes.Add(info);
             }
             // Open country: where the busiest side's middle way in is a few steps outside home.
@@ -721,6 +739,22 @@ namespace ColonyCouncil
                 int dx = back % s.grid.w - cell % s.grid.w, dz = back / s.grid.w - cell / s.grid.w;
                 s.approach = new IntVec3(cell % s.grid.w, 0, cell / s.grid.w);
                 s.approachFacing = Mathf.Abs(dz) >= Mathf.Abs(dx) ? (dz >= 0 ? 0 : 2) : (dx >= 0 ? 1 : 3);
+            }
+        }
+
+        /// <summary>What stands round a gap (or the gate of the line that holds it): cover behind, traps in front, turrets near, wooden walls.</summary>
+        private static void Around(Map map, ChokeInfo info, IntVec3 at, IntVec3 outward)
+        {
+            info.coverInside = info.trapsOutside = info.turretsNear = info.woodWalls = 0;
+            foreach (var b in Avail.ColonyBuildings(map, d => Avail.IsCover(d) || Avail.IsTrap(d) || d.thingClass != null && typeof(Building_Turret).IsAssignableFrom(d.thingClass) || d.IsWall))
+            {
+                var off = b.Position - at;
+                int ahead = off.x * outward.x + off.z * outward.z;
+                float dist = off.LengthHorizontal;
+                if (Avail.IsCover(b.def) && ahead <= 0 && dist <= 9f) info.coverInside++;
+                else if (Avail.IsTrap(b.def) && ahead >= 0 && dist <= 14f) info.trapsOutside++;
+                else if (b.def.IsWall && dist <= 3.5f && b.Stuff?.stuffProps?.categories != null && b.Stuff.stuffProps.categories.Contains(StuffCategoryDefOf.Woody)) info.woodWalls++;
+                else if (b.def.thingClass != null && typeof(Building_Turret).IsAssignableFrom(b.def.thingClass) && !DefenseTemplateDef.IsMortar(b.def) && dist <= 16f) info.turretsNear++;
             }
         }
 

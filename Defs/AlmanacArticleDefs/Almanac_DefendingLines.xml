@@ -99,7 +99,7 @@ The helper lays the lane on the way raiders actually walk up to the gate, its ne
       </li>
       <li>
         <heading>The gaps a line holds</heading>
-        <text>The survey measures a pass where it is narrowest outside the home area, so once a line stands it often finds the same pass again a few cells off. A gap counts as the line's when its cells are the line's own (its gap, gate or wall), when it is the same pass measured a little further out, or when it lies on the same ways in within about 12 cells of the line, facing the same side. Such a gap is never offered as a new line: the map and the page show it as covered by the line ("covered by the south-west pass"). A gap on another way in is still offered.</text>
+        <text>The survey measures a pass where it is narrowest outside the home area, so once a line stands it often finds the same pass again a few cells off. A gap counts as the line's when its cells are the line's own (its gap, gate or wall), when it is the same pass measured further out, or when it lies on the same ways in within about 12 cells of the line, facing the same side. Such a gap is never offered as a new line: the map and the page show it as covered by the line ("covered by the south-west pass"). A gap on another way in is still offered.</text>
       </li>
       <li>
         <heading>Doors in a line</heading>
@@ -430,7 +430,7 @@ With the plan in front of you, it says where the wall stops short of the rock (a
     <sections>
       <li>
         <heading>The cheapest way</heading>
-        <text>Ordinary raiders walk the easiest way they can find to what they're after: your people, and turrets that are shooting at them. Every step costs them something. Open ground costs little; mud, shallow water and climbing over sandbags or a fence a little more. They take the way that costs least in all, however long and winding it is.</text>
+        <text>Ordinary raiders walk the easiest way they can find to what they're after: your people, and turrets that are shooting at them. Every step costs them something. Open ground costs least; mud, shallow water and climbing over sandbags or a fence cost more. They take the way that costs least in all, however long and winding it is.</text>
       </li>
       <li>
         <heading>What makes a way dear</heading>

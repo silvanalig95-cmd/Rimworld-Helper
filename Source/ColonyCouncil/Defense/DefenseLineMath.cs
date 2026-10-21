@@ -25,8 +25,9 @@ namespace ColonyCouncil
     /// The arithmetic of a defense line, with no game types (the line review fills it from the map; the tests from
     /// strings): which way the line faces, how far its row of wall runs from the gate and what it stops at, whether
     /// raiders can walk round it to the beds when the gate is shut (and where they would cross), how many doors stand
-    /// between it and the beds, the distance the cover goes back, which step comes next, a rough strength to compare
-    /// with the raids, and the lessons a raid leaves. Facings are 0 north, 1 east, 2 south, 3 west, the side raiders come
+    /// between it and the beds, the door rule (its gate and the doors in its wall are its way through), which of the
+    /// survey's gaps it holds already, whether a plan's walls would send raiders another way, the distance the cover
+    /// goes back, which step comes next, a rough strength to compare with the raids, and the lessons a raid leaves. Facings are 0 north, 1 east, 2 south, 3 west, the side raiders come
     /// from; "right" is the right hand of someone standing at the gate looking out.
     /// </summary>
     public static class DefenseLineMath

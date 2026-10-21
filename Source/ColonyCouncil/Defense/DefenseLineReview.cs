@@ -29,9 +29,11 @@ namespace ColonyCouncil
 
     /// <summary>
     /// The helper's reading of one defense line: where each step of its ladder stands (a step built by hand counts),
-    /// the step to do next, the checks a seasoned player would make (a way round, who sees the gate and from how far,
-    /// what raiders would shelter behind, turrets that would blow each other up or have no power, wood in the wall, a
-    /// gate left shut, darkness, upkeep), each with what to do about it, and a rough strength to set against the raids.
+    /// the step to do next, the checks a seasoned player would make (the busiest way in moving, a way round, who sees
+    /// the gate and from how far, what raiders would shelter behind, turrets that would blow each other up or have no
+    /// power, wood in the wall, a gate left shut and more than one door in the wall, darkness, upkeep), each with what
+    /// to do about it, and a rough strength to set against the raids. Planning a step for the line goes through
+    /// <see cref="PlanAt"/>: plans in front follow the way in, and walls that would turn raiders away are caught first.
     /// Worked out on demand, with the survey: when the survey or the line changes, or after a few seconds while the
     /// Defenses page is open. Never on a tick.
     /// </summary>
@@ -690,13 +692,13 @@ namespace ColonyCouncil
             if (f.door == null || !f.Closed) return;
             var page = A("Rimfolk_AlmDef_RaiderWays", "Rimfolk_AlmDef_Lines", "Rimfolk_AlmDef_Killbox");
             bool killbox = r.line.aim == "killbox" || StepWorker_Killbox.Built(f) || f.killboxMouth;
-            string others = f.doors > 1 ? " " + "CC_DefLine_Gate_Doors".Translate(f.doors).Resolve() : "";
+            if (f.doors > 1) Note(r, "doors", "CC_DefLine_Gate_Doors".Translate(f.doors).Resolve(), "CC_DefLine_How_Gate".Translate(), 1.5f, page);
             if (f.door.HoldOpen)
             {
-                Note(r, "gate", "CC_DefLine_Gate_Open".Translate(f.door.LabelShort).Resolve() + others, "CC_DefLine_How_Gate".Translate(), 0.5f, page, true);
+                Note(r, "gate", "CC_DefLine_Gate_Open".Translate(f.door.LabelShort).Resolve(), "CC_DefLine_How_Gate".Translate(), 0.5f, page, true);
                 return;
             }
-            var n = Note(r, "gate", (killbox ? "CC_DefLine_Gate_ShutKillbox" : "CC_DefLine_Gate_Shut").Translate(f.door.LabelShort).Resolve() + others,
+            var n = Note(r, "gate", (killbox ? "CC_DefLine_Gate_ShutKillbox" : "CC_DefLine_Gate_Shut").Translate(f.door.LabelShort).Resolve(),
                 "CC_DefLine_How_Gate".Translate(), 2f, page);
             var door = f.door;
             n.actions.Add(new LineAction
