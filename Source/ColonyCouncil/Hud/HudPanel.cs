@@ -218,8 +218,8 @@ namespace ColonyCouncil
             if (!showHeader) frame = body;
             else if (headerAbove) frame = new Rect(body.x, body.y - hh, body.width, body.height + hh);
             else frame = new Rect(body.x, body.y, body.width, body.height + hh);
-            // Stepped aside: off the screen for this frame, so the window is under the mouse nowhere.
-            windowRect = aside ? new Rect(-4000f - frame.width, -4000f - frame.height, frame.width, frame.height) : frame;
+            // Stepped aside: no size for this frame, so the window is under the mouse nowhere (and nothing can pull it back on).
+            windowRect = aside ? new Rect(frame.x, frame.y, 0f, 0f) : frame;
         }
 
         private void SavePlace()

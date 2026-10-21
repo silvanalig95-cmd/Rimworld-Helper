@@ -69,7 +69,7 @@ namespace ColonyCouncil
 
         private static List<ThingCategoryDef> roots;
         private static readonly Dictionary<ThingDef, int> groupOf = new Dictionary<ThingDef, int>();
-        private static readonly Dictionary<ThingDef, (float at, string text)> tips = new Dictionary<ThingDef, (float, string)>();
+        private static readonly Dictionary<string, (float at, string text)> tips = new Dictionary<string, (float, string)>();
         private static ThingCategoryDef meals;
 
         public HudInventory() : base(HudLayout.Inventory)
@@ -242,7 +242,8 @@ namespace ColonyCouncil
             void One(ThingDef def)
             {
                 if (def == null || shown.Any(i => i.def == def && i.cat == null)) return;
-                int count = rc.GetCount(def);
+                // Only what the game counts (asking the counter for anything else logs an error).
+                if (!rc.AllCountedAmounts.TryGetValue(def, out int count)) return;
                 bool pinned = st.pins.Contains(def.defName);
                 if (count <= 0 && !pinned && !zeros) return;
                 var e = new StockEntry { key = def.defName, label = def.label, count = count, pinned = pinned, hasChange = yesterday != null };
@@ -318,6 +319,16 @@ namespace ColonyCouncil
         {
             float pad = Mathf.Round(4f * s);
             float y = r.y + pad + SearchH(s);
+            // The search box itself is the window's (it takes the keyboard); painted here as a quiet copy, so it's there
+            // even while the window steps aside for the game's interface.
+            if (Painting && St.Shows(PartSearch))
+            {
+                var sr = new Rect(r.x + pad, r.y + pad, r.width - pad * 2f, Mathf.Round(24f * s));
+                Widgets.DrawBoxSolid(sr, new Color(0f, 0f, 0f, 0.35f));
+                string text = search.filter.Text;
+                HudKit.Label(sr.ContractedBy(4f, 0f), text.NullOrEmpty() ? HudKit.T("CC_Pnl_I_SearchHint") : text, text.NullOrEmpty() ? UiKit.Dim : Color.white,
+                    GameFont.Small);
+            }
             if (shown.Count == 0)
             {
                 HudKit.Label(new Rect(r.x + pad, y, r.width - pad * 2f, Mathf.Round(20f * s)), emptyText, UiKit.Faint, HudKit.Minor(s));
@@ -540,9 +551,9 @@ namespace ColonyCouncil
         /// <summary>The item's name and description, where it's kept (stacks in each storage), and the change since yesterday; kept half a second.</summary>
         private string TipFor(Item it)
         {
-            var key = it.def;
+            string key = it.e.key;
             float now = Time.realtimeSinceStartup;
-            if (key != null && it.cat == null && tips.TryGetValue(key, out var c) && now - c.at < 0.5f && now >= c.at) return c.text;
+            if (key != null && tips.TryGetValue(key, out var c) && now - c.at < 0.5f && now >= c.at) return c.text;
             var sb = new StringBuilder();
             sb.Append((it.cat != null ? (string)it.cat.LabelCap : it.def?.LabelCap.ToString() ?? it.e.label).Colorize(UiKit.HeaderColor));
             sb.Append(": ").Append(it.e.count);
@@ -584,7 +595,7 @@ namespace ColonyCouncil
             else if (St.Shows(PartChange)) sb.Append("\n\n").Append(HudKit.T("CC_Pnl_I_ChangeSoon").Colorize(ColoredText.SubtleGrayColor));
             if (it.e.pinned) sb.Append("\n").Append(HudKit.T("CC_Pnl_I_PinnedTip").Colorize(UiKit.Gold));
             string text = sb.ToString();
-            if (key != null && it.cat == null)
+            if (key != null)
             {
                 if (tips.Count > 200) tips.Clear();
                 tips[key] = (now, text);

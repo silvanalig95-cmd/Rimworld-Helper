@@ -62,5 +62,7 @@
     <Compile Include="../../Source/ColonyCouncil/Hud/HudRank.cs" Link="HudRank.cs" />
     <Compile Include="../../Source/ColonyCouncil/Hud/HudHealthMath.cs" Link="HudHealthMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Hud/HudWorkMath.cs" Link="HudWorkMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Hud/HudEnums.cs" Link="HudEnums.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Hud/HudInventoryMath.cs" Link="HudInventoryMath.cs" />
   </ItemGroup>
 </Project>

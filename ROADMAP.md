@@ -224,7 +224,10 @@ play deep. In order:
   options; and a hover card on the map for whoever is under the mouse. One tested ranking puts what matters most
   first everywhere. Then (October 2026, from the player's feedback on 0.9.0): the game's alerts in a movable panel
   instead of its own list, a health panel (only what passes or needs a reaction), work and idle, the panels always
-  behind other windows, and the game's tooltip stepping aside for the hover card. Next: threats on the map.
+  behind other windows, and the game's tooltip stepping aside for the hover card. Then (from the feedback on 0.9.3):
+  the panels painted beneath all of the game's own interface, alerts hidden in the alerts panel (the wishes the
+  council panel repeats), how far each condition is along on the health panel, and an inventory panel with four looks
+  (classic, grouped, an icon grid, essentials), pins, search and the change since yesterday. Next: threats on the map.
 - Done (October 2026): a small visual pass with the game's own effects: the comet tints the sky, fireflies glow, camps
   smoke, a warlord's raid comes with banners of dust; and more of Rimfolk's events seen: a camp arriving (dust on the
   road, a word from whoever sees it), the first snow's flakes, a dream told at breakfast, the council's bell at a

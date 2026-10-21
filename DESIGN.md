@@ -1534,8 +1534,12 @@ the break mark and its margin above the minor line, the wish threshold, size, co
 
 The player asked for "more things visible directly on the screen without always having to go to a menu", the mood of
 the pawns first, in places other than the alerts column, movable and switchable; then (0.9.0's feedback) the game's
-alerts in a movable panel "instead" of the game's list, health, work and idle, and the panels always behind windows. The rule for all of it, from the
-player: the most impactful and relevant data comes first. Everything lives in `Source/ColonyCouncil/Hud/`.
+alerts in a movable panel "instead" of the game's list, health, work and idle, and the panels always behind windows; then
+(0.9.3's) "I don't want the HUD elements to disappear when there's game windows in front of it, but they should just go to
+the background so that I can still see them", the wishes alert hidden where the council panel repeats it, more health
+details ("whether it's tended, how far the healing process is"), and a movable inventory "with different styles". The
+rule for all of it, from the player: the most impactful and relevant data comes first. Everything lives in
+`Source/ColonyCouncil/Hud/`.
 
 - **One ranking** (`HudRank`, pure, tested): urgency times impact in three tiers that never overlap. Life and limb
   (300 to 399, in the player's order: bleeding by hours to death, a life-threatening stage not yet immune, starving,
@@ -1546,7 +1550,47 @@ player: the most impactful and relevant data comes first. Everything lives in `S
   strain). The mood board sorts by `MoodRisk`, the hover card shows the top lines of `HudConcerns`, the vitals and
   the council's lines take their colour from the tier (orange soon, red life). `HudMath.Keep` cuts rows for space:
   everything at life and limb stays, then the highest of the rest, in their order, and the panel says "and N more".
-- **Panels are windows** (`HudPanel : Window`): layer `GameUI`, no close button, no game background or shadow,
+- **A background layer** (`HudPaint`, `Patch_HudPaint`). The panels are painted beneath all of the game's own interface,
+  windows and non-window readouts alike, and above the map. The order relied on, within one repaint of
+  `UIRoot_Play.UIRootOnGUI`: `MapInterface.MapInterfaceOnGUI_BeforeMainTabs` draws the map's overlays first
+  (`ThingOverlays.ThingOverlaysOnGUI`: pawn labels, health bars), then every map component's `MapComponentOnGUI`
+  (`MapComponentUtility.MapComponentOnGUI`: other mods' map labels and overlays, Rimfolk's defence labels), then the
+  colonist bar, the drag box, designators, targeter, the things' tooltips, the bottom-right controls with the letters,
+  and the resource list; after it the main buttons and the game's alert list, the tutor, and last the window stack
+  (`WindowStackOnGUI`: every window's `ExtraOnGUI` first, where the inspect pane draws its tab buttons and gizmos, then
+  every window). The panels paint in a postfix on `MapComponentUtility.MapComponentOnGUI`, on repaint only, in the
+  window stack's order, each in a `GUI.BeginGroup` at its place. The evidence: Interaction Bubbles and RimTalk draw
+  their bubbles from a postfix on `MapInterfaceOnGUI_BeforeMainTabs` and RimTalk's chat overlay from a
+  `MapComponentOnGUI` ("below the UI", with an option to draw it from a `UIRoot_Play` postfix "above"), RimHUD's
+  floating panel from a prefix on `MapInterfaceOnGUI_AfterMainTabs`, and the inspect tabs are drawn in the inspect
+  window's `ExtraOnGUI` (RimHUD replaces `InspectPaneUtility.DoTabs`, called from there). The order is also checked as
+  the game runs: the resource list's patch (`Patch_HudGameResources`) notes when it draws, and if it ever drew before
+  the panels in a frame, the early pass stands down for the session with one warning. **Fail-safe**: a panel's window
+  paints the panel itself, exactly as before, in any frame the early pass didn't paint it (the hook couldn't be applied,
+  the deeper game hooks are off, the world map is up, or the order check stood it down). Screenshot mode paints nothing.
+  The game's messages (top left) are drawn as immediate windows (`Message.Draw`), so they stay above the panels too, as
+  do tooltips, float menus and the hover card.
+- **Windows for input** (`HudPanel : Window`): each panel keeps its window, for input only. `DoWindowContents` runs the
+  same drawing code for every event: on repaint, when the early pass painted, it only hands the tooltips over (kept
+  during the paint where the mouse was, then `TooltipHandler.TipRegion` from inside the window, so they show only where
+  the panel is the window under the mouse, never through another window); on mouse and key events it takes the clicks,
+  the drag and the menu. The panels draw through `Over`, `Clicked`, `Tip` and `ImageButton`, which paint in the early pass
+  (no `GUI.Button`, so no control ids outside windows on repaint) and take input in the window. **Stepping aside**
+  (`HudGameUi`): where the game's own interface is drawn over a panel, that interface must get the mouse, but a window
+  under the mouse would take it (and the game's `Mouse.IsOver` is false wherever any window is under the mouse). So
+  once a frame, while the mouse is over a panel, the places the game draws outside windows are worked out: the main
+  buttons along the bottom (35 px), the colonist bar (the union of `ColonistBar.DrawLocs` and `Size`, with the names
+  under them; not while the play settings hide the bar), the letters and the date, time and play settings under them
+  (`GlobalControls.Width` against the right edge, from `LetterStack.LastTopY` down), the game's alert list while it
+  shows (`Alert.Width` by `AlertsReadout.AlertsHeight` above the letters), the resource list while it shows (150 px by its
+  `lastDrawnHeight`, read by name), and with the inspect pane open its tab row (`HudMath.TabRow`: `TabWidth` per visible
+  tab from the pane's right edge, the whole row with a tab open) and the gizmos beside it (`GizmoGridDrawer
+  .HeightDrawnRecently`). If the mouse is in one of them, the panel's window shrinks to no size for that frame, so the
+  game's interface there gets the highlight, the tooltip and the click; the panel stays painted. Anything that can't
+  be read is left out (the panel then takes the mouse there). The inventory's search box is the one exception: while
+  it's typed in, its panel keeps the keyboard (`KeepsKeyboard`: the window order leaves it the focus, it doesn't step
+  aside, and it holds the camera still), and it is drawn by the window, since a text field needs the window's keyboard.
+- **The windows' own settings**: layer `GameUI`, no close button, no game background or shadow,
   `focusWhenOpened`, `closeOnAccept`/`closeOnCancel`/`closeOnClickedOutside`, `absorbInputAroundWindow`,
   `preventCameraMotion` and `forcePause` all off, not drawn in screenshot mode. Being windows, clicks on them don't
   reach the map. They are not `draggable`: the game's drag-anywhere can't snap, clamp or honour the lock, so a panel
@@ -1567,19 +1611,29 @@ player: the most impactful and relevant data comes first. Everything lives in `S
   Behind a window a panel never takes input meant for it: on any mouse or wheel event where `GetWindowAt` under the
   mouse isn't the panel, `DoWindowContents` returns before drawing anything clickable, the bar shows only when the
   panel is the window under the mouse, and the tooltips go through `Mouse.IsOver`, which is false where a window
-  covers it. "Hide them under big windows" still closes them for the Work tab and the like; this is only the order.
+  covers it. "Hide them under big windows" can still close them for the Work tab and the like; it is off by default
+  since 0.9.4, as the panels now sit beneath every window (a one-time migration, below, switched it off for players
+  who had it on by default).
 - **Places** are saved as the nearest corner's point as fractions of the screen (`HudMath.ToFraction`), so a panel
   against the bottom or right edge stays there at any resolution and grows away from it; `FromFraction` keeps it on
   the screen. Each panel's state (`HudPanelState`: on, place, compact, scale 0.75 to 1.5, opacity, rows, whom, order,
   range, the parts switched off) is a list in the mod settings (`CouncilSettings.hudPanels`, listed as not a setting
   in `SettingsCatalog.NotDrawn`, with the settings page's buttons opening the same options window as the panel's gear).
   The global options are ordinary settings rows under "On-screen panels" and "Hover card". Scale is applied by sizes
-  and font choice (Tiny or Small by scale and the text-size setting), never by a GUI matrix.
+  and font choice (Tiny or Small by scale and the text-size setting), never by a GUI matrix. The state also keeps a
+  panel's style (`style`: the inventory's look, the health panel's rows), the inventory's grid `columns`, `pins` and
+  `folds`, and the alerts hidden in the alerts panel (`alertsHidden`, and `alertsShown` for those hidden by default).
+- **Settings version** (`CouncilSettings.hudVersion`, `HudLayout.SettingsVersion`, applied in `HudLayout.Migrate` at the
+  first game of a session): a settings file without it reads as 0. Version 1 (0.9.4): "Hide them under big windows" goes
+  off once (the player asked to keep the panels in view behind windows; it can be switched on again), and the mood board
+  and the trend where they used to start (against the left edge) move right of the inventory panel. A new player's
+  settings start at the current version. The vitals and the council where 0.9.0 put them still move every session.
 - **Lifecycle** (`HudComponent : GameComponent`): `FinalizeInit` (new game or load) forgets the last game's windows,
   which went with the old interface; `GameComponentUpdate` asks `HudManager.Update` once a frame to open or close each
-  panel (shown, on, not failed, not hidden by the world map or a main tab covering 15% of the screen or more) and
-  takes the trend's sample when the in-game hour changes; `GameComponentOnGUI` hears the two keys and draws the hover
-  card. Nothing runs per tick. Going to the main menu takes the windows with the game's interface.
+  panel (shown, on, not failed, not hidden by the world map, or by a main tab covering 15% of the screen or more while
+  "hide them under big windows" is on), takes the trend's sample when the in-game hour changes and, while the inventory
+  panel is on, the stock's snapshot every six hours; `GameComponentOnGUI` hears the two keys and draws the hover card.
+  Nothing runs per tick. Going to the main menu takes the windows with the game's interface.
 - **Data**: each panel gathers at most twice a second while the game runs (every three seconds while paused, or at
   once after an option changes), and measures itself without the GUI (fixed widths, so `Measure` can run from
   `WindowUpdate`); drawing reads only what was gathered. The mood board and the hover card share `HudMood`'s cache: the
@@ -1596,13 +1650,18 @@ player: the most impactful and relevant data comes first. Everything lives in `S
   world is selected. After the delay (and with the modifier held, if one is set) it's drawn with
   `WindowStack.ImmediateWindow` in the `Super` layer, beside the mouse and never under it, so it never takes a click;
   in the corner it sits above the inspect pane. The card's content is kept half a second per pawn.
-- **Where they start** (`HudMath.DefaultPlace`, tested at 1080p and 1440p with full-size panels: nothing overlaps, and
-  nothing touches the colonist bar at its widest). The mood board and the trend on the left as before; on the right
-  edge the vitals (20% down) and the council (33%), above the alerts, which take the game's alert place; a second
-  column 262 px in from the right, clear of the colonist bar, for work and idle (14%) and health (41%). Places are
-  worked out for the screen at the time a panel's state is made. The vitals and council where 0.9.0 put them (25% and
-  43%, now under the alerts) move once to their new places (`HudLayout.MigrateOldPlaces`); a panel the player moved
-  stays.
+- **Where they start** (`HudMath.DefaultPlace`, tested at 1080p and 1440p with full-size panels: nothing overlaps,
+  nothing touches the colonist bar at its widest, the mood board and the trend start clear of the resource list's
+  column and above the inspect pane's tab row). Checked against the game's own interface: the resource list down the
+  top left (it can be long), the colonist bar top centre, the alerts on the right above the letters, the date, time and
+  play settings bottom right, the inspect pane bottom left with its tab row and the gizmos beside it. The inventory in
+  the resource list's place (top left, where it stands in for that list); the mood board (27% down) and the trend
+  (bottom at 78%) 160 px in from the left (`HudMath.LeftColumn`), right of it and of the game's list when that shows, and
+  below the colonist bar's height; on the right edge the vitals (20% down) and the council (33%), above the alerts,
+  which take the game's alert place; a second column 262 px in from the right, clear of the colonist bar, for work and
+  idle (14%) and health (41%). Places are worked out for the screen at the time a panel's state is made. Old places move
+  in `HudLayout.Migrate` (above); a panel the player moved stays. With the panels beneath the game's interface an
+  overlap no longer hides anything of the game's, but the places still avoid it.
 - **The alerts panel** (`HudAlerts`) mirrors the game's alert list, every mod's alerts included (Rimfolk's
   `Alert_CouncilAdvice` and `Alert_CouncilWishes` too), from the game's own `AlertsReadout.activeAlerts` (a
   `FieldRefAccess`, read twice a second): nothing is worked out twice. Rows: the alert's cached `Label`, in red, orange
@@ -1612,10 +1671,16 @@ player: the most impactful and relevant data comes first. Everything lives in `S
   where the label doesn't already carry a number (`HudMath.ShowCount`). The tooltip is `GetExplanation()`, worked
   out only on hover and kept half a second. A left click calls the alert's own protected `OnClick` (by reflection, so
   it does exactly what clicking the game's alert does: jump to its culprits and cycle through them, or open a tab);
-  a right click opens the panel's menu. New high and critical alerts (those the game bounces in with a bell) flash
-  for three seconds; what is up when the panel opens doesn't. Until the player moves it, it has no saved place:
+  a right click on a row offers "Hide this alert in the panel", then the panel's menu. New high and critical alerts
+  (those the game bounces in with a bell) flash for three seconds; what is up when the panel opens doesn't. Until the player moves it, it has no saved place:
   `AutoPlace` puts it against the right edge with its bottom 4 px above `LetterStack.LastTopY`, so it follows the
-  letters like the game's list (above the game's list, by `AlertsHeight`, when that still shows).
+  letters like the game's list (above the game's list, by `AlertsHeight`, when that still shows). The tooltip is the
+  alert's label and explanation only (the "Click: ... Right-click: ..." help went, as the drag help did before).
+- **Alerts hidden in the panel** (`HudAlerts.Hidden`): kept by the alert's class (its full type name) in the alerts
+  panel's state; the options list them, each with "Unhide", and "Show all" (the names are the labels seen this session,
+  else the class's name in words). Rimfolk's own `Alert_CouncilWishes` is hidden by default while the council panel is on
+  and shows the wishes (it would repeat them); unhiding it is remembered (`alertsShown`), and with the council panel off
+  it shows again by itself. Only the panel changes: the game's own list, when it shows, is never filtered.
 - **The game's own alert list** is hidden while the alerts panel shows (`Patch_HudGameAlerts`, a prefix on
   `AlertsReadout.AlertsReadoutOnGUI` returning false; the setting "Hide the game's own alert list while the Alerts
   panel shows", on by default, as the player asked for "instead"). Only the drawing goes: `AlertsReadoutUpdate`, which
@@ -1637,6 +1702,22 @@ player: the most impactful and relevant data comes first. Everything lives in `S
   recovering) is life and limb; untended (255 to 279), losing a race (215 to 249) and something deadly getting worse
   (210 to 249) are soon; healing is worth knowing. A click selects them and opens `ITab_Pawn_Health`. A calm colony:
   "Everyone is well."
+- **How far along** (the health panel's "Show details", on by default; maths in `HudHealthMath`, tested). For each
+  condition: tended and how well (`HediffComp_TendDuration.tendQuality`) and when it wears off (`tendTicksLeft`, unless
+  `TendIsPermanent`; orange inside three hours), or "untended" in orange (red while it bleeds). Wounds: how much has
+  healed, from the severity at its worst while the panel has watched it (a cache keyed by the hediff, not saved, pruned
+  each refresh; only for wounds first seen under an hour old, as otherwise the start isn't known and the HP still to heal
+  shows instead), and roughly when it's healed, from the game's own healing (`Pawn_HealthTracker`: 8 a day, 4 more lying
+  down plus the bed's `bed_healPerDay`, times the conditions' `naturalHealingFactor`, `InjuryHealingFactor` and the body
+  size, shared at random among the wounds that heal on their own, and for tended wounds 8 more a day times 0.5 to 1.5
+  by the tending's quality, shared among them; nothing while starving). Illnesses with an immunity race: "immunity 62%
+  vs 40%" (two small bars on a line of their own) and "over in ~1.5 d" (until immune at today's pace, then until the
+  severity is gone at the comp's `severityPerDayImmune` plus the other comps), or "losing". Rimfolk's ailments and other
+  conditions that ease: the days left (`HediffComp_Disappears.ticksToDisappear` when it has one, else the severity over
+  its fall a day). Bleeding: the rate a day and the time to death as the game reckons it. The rows: a summary line under
+  each name in the conditions' colours ("Cut 60% healed · Flu immunity 62% vs 40% · Lice untended"; the same said twice
+  counts once with ×2), or one line per condition (an option, up to five lines, the rest in the tooltip). The tooltip
+  says all of it in full and no longer ends with the click help.
 - **The work and idle panel** (`HudWork`, `HudWorkMath`): a row per colonist with the job report
   (`JobDriver.GetReport`) cut short (no full stop, cut at "to", "at", "from"... when two words come before, so
   "Tending to Bob" stays whole; the words are a translation key), an idle mark from the game's own check
@@ -1648,6 +1729,26 @@ player: the most impactful and relevant data comes first. Everything lives in `S
   seconds, for each of ten work types nobody able has switched on (and only then), one cheap look at the lists and
   designations the game keeps (a fire in the home area, someone to tend, blueprints, marked plants, rock, hunts,
   tames, prisoners, things to haul, a research project). Drafted colonists are an option.
+- **The inventory panel** (`HudInventory`, rules in `HudInventoryMath`, tested): the game's own counts, as its resource
+  list shows them (`map.resourceCounter.AllCountedAmounts`, read twice a second; the categories' totals from
+  `GetCountIn`), for the map on screen or the busiest home, with the game's icons (`Widgets.ThingIcon`, which carries the
+  def's colour). Four looks, kept in the panel's `style`: classic (icon and count a line, the name on hover or as an
+  option, on the far left in the game's list's place), grouped (the resource list's root categories,
+  `ThingCategoryDef.resourceReadoutRoot`, in the game's order, each a folding header with its total; the folds kept),
+  an icon grid (tiles with the count under them, `columns` to a row, for a strip along an edge), and essentials (meals
+  with the days of food the vitals use, medicine, silver, steel, components, wood, then the pinned, larger and calm).
+  In each: pinned items first (right-click an item; kept by def name), an optional search box (the game's
+  `QuickSearchWidget`), items at zero left out unless asked (then with what ran out since yesterday), the order by
+  category, name, count or the biggest change, rows before "and N more" (pinned ones always show). The change since
+  about the same hour yesterday: `HudComponent` takes a snapshot of each home map's counted stock every six in-game
+  hours while the panel is on (one packed line, `map|hour|def:count,...`, the last five a map, 15 in all, in the save as
+  `stockSnapshots`; modelled in `Tools/save_estimate.py`), and "yesterday" is the newest snapshot 24 to 30 hours old.
+  The tooltip (worked out on hover, kept half a second): the name and description, the stacks and where they're stored
+  (`SlotGroup.parent.SlotYielderLabel`), the change. A click goes to the stacks in storage one after another, as the
+  game's alerts cycle. **The game's own resource list** steps aside while the panel shows (`Patch_HudGameResources`, a
+  prefix on `ResourceReadout.ResourceReadoutOnGUI` returning false; the setting "Hide the game's own resource list
+  while the Inventory panel shows", on by default): only the drawing, never the counting; nothing hidden with the
+  panels hidden, on the world map, with the game hooks off, or if the patch can't be applied or throws.
 - **The game's tooltip under the card** (`Patch_HudGameTooltip`, a postfix on `Pawn.GetTooltip`, which the game calls
   from `TooltipGiverList.DispenseAllThingTooltips` only for the pawn under the mouse, on repaint): while the card was
   drawn for that same pawn this frame or the last (`HudHoverCard.ShowingFor`) and "Hide the game's tooltip for that

@@ -431,6 +431,7 @@ Console.WriteLine($"Checked {AnimalTests.Run(Check)} things about the colony's a
 Console.WriteLine($"Checked {BarBadgeTests.Run(Check)} things about the colonist bar's badges (break risk, what wins, where they sit).");
 Console.WriteLine($"Checked {HudTests.Run(Check)} things about the on-screen panels (what matters most first, places on any screen, snapping, rows kept).");
 Console.WriteLine($"Checked {HudPanelTests.Run(Check)} things about the alerts, health, and work and idle panels (the health filter, the race, orders, starting places).");
+Console.WriteLine($"Checked {HudLayerTests.Run(Check)} things about the panels beneath the game's interface, health details and the inventory (tab row, places, healing, recovery, stock order and change, grid).");
 
 Console.WriteLine(failures == 0 ? "All tests passed (template math, layout, strain, meetings, pressures, ailments, line memory, good times, tab sizes, calendar, personal stories, clock and caps, faction memory, answers on the map, setbacks, promises kept, what colonists say, the heart's needs, beliefs and diets, animals, other mods)." : failures + " failure(s).");
 return failures == 0 ? 0 : 1;

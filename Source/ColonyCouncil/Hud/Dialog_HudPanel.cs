@@ -136,7 +136,7 @@ namespace ColonyCouncil
                 if (id != HudLayout.Trend)
                 {
                     string rows = st.maxRows <= 0 ? HudKit.T("CC_Pnl_Opt_RowsAll").ToString() : st.maxRows.ToString();
-                    st.maxRows = Mathf.RoundToInt(l.SliderLabeled("CC_Pnl_Opt_Rows".Translate(rows), st.maxRows, 0f, 20f, 0.5f, HudKit.T("CC_Pnl_Opt_RowsTip")));
+                    st.maxRows = Mathf.RoundToInt(l.SliderLabeled("CC_Pnl_Opt_Rows".Translate(rows), st.maxRows, 0f, id == HudLayout.Inventory ? 80f : 20f, 0.5f, HudKit.T("CC_Pnl_Opt_RowsTip")));
                 }
                 st.scale = HudMath.ClampScale(l.SliderLabeled("CC_Pnl_Opt_Scale".Translate(st.scale.ToStringPercent()), st.scale, HudMath.MinScale, HudMath.MaxScale, 0.5f));
                 st.opacity = HudMath.ClampOpacity(l.SliderLabeled("CC_Pnl_Opt_Opacity".Translate(st.opacity.ToStringPercent()), st.opacity, HudMath.MinOpacity,

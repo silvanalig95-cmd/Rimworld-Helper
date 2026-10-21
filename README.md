@@ -1767,9 +1767,11 @@ The game's own **Needs** tab gets a line above its mood list with the same total
 which mod it comes from and what to do about it (a setting turns both off).
 
 ## On-screen panels and the hover card
-What you keep checking, on the map, so you don't click through every colonist. Seven small panels, each its own
-window (clicks on them don't reach the map, they never take the keyboard, and they always stay behind other windows,
-so a tab, a planner or a dialog opens over them):
+What you keep checking, on the map, so you don't click through every colonist. Eight small panels, painted as a
+background layer: above the map and its pawn labels, beneath everything of the game's own, so the resource list, the
+colonist bar, the inspect pane's tabs, the letters, a tab, a planner or a dialog all draw over them, and a panel stays
+in view wherever nothing covers it. Clicks on them don't reach the map; where the game's own interface sits over a
+panel, it gets the click and the tooltip:
 - **Mood board**: a row for each colonist at home with their portrait, a mood bar with their own minor and major break
   lines, an arrow and the number for where it's heading, and, faint under it, what drags them down most with its size
   ("-8 No bedroom"; with the option on, "→ Give them a bedroom" too). Marks for a mental break, high strain, an open
@@ -1788,16 +1790,30 @@ so a tab, a planner or a dialog opens over them):
   in the game's order (or the newest first), a count where an alert is about several things, the game's explanation
   on hover, and a click that does what clicking the game's alert does. New urgent ones flash. It starts in the game's
   alert place above the letters, and while it shows the game's own list steps aside (a setting; the alerts keep
-  updating, and the list is back whenever the panel isn't there).
+  updating, and the list is back whenever the panel isn't there). Right-click an alert to hide it in the panel (the
+  options list the hidden ones to show again); Rimfolk's "Colonist wishes" is hidden there while the council panel
+  shows the wishes.
 - **Health**: one row per colonist with something that will pass or needs seeing to: wounds, bleeding with the time
   it leaves, what waits to be tended, illnesses with their immunity race ("will recover" or "losing"), anything
   deadly while it moves, Rimfolk's everyday ailments. Never lost parts, implants, scars, lasting conditions like a bad
   back, pregnancy, or buffs, auras and other mods' magic. Bleeding or close to dying first, then untended, then losing,
-  then healing; a click opens their Health tab. A calm colony: "Everyone is well."
+  then healing; a click opens their Health tab. A calm colony: "Everyone is well." With **details** (on by default),
+  each condition says how it stands: tended and how well, and when the tending wears off, or untended in orange; how
+  much of a wound has healed and roughly when it's healed, from the game's own healing; an illness's immunity against
+  its severity and when it will be over, or "losing"; how long an ailment has left; the bleeding a day. As a summary
+  line under each name, or one line per condition.
 - **Work and idle**: one row per colonist with what they're doing, a mark when idle and for how long, three small bars
   for food, rest and recreation (red when low), and drafted, down or in a break; starving or exhausted first, then
   idle, then busy. Above it, only when it matters: how many are idle, who needs food or sleep, and work waiting that
   nobody has switched on (a fire with no firefighter, someone to tend with no doctor).
+- **Inventory**: the colony's stock as the game counts it, with the game's item icons, in four looks to switch between
+  on its bar or menu: **classic** (icon and count, in the game's resource list's place on the far left), **grouped**
+  (the game's categories as folding headers with their totals), an **icon grid** (tiles that wrap, for a strip along an
+  edge) and **essentials** (meals and days of food, medicine, silver, steel, components, wood and what you pin, large
+  and calm). Pin items to the top, search, show or hide what's at zero, order by category, name, count or change, and
+  see the change since about this time yesterday as a small +/-. Hover an item for its description and where its
+  stacks are; click it to go to them one after another. While it shows, the game's own resource list steps aside (a
+  setting).
 
 **The hover card**: rest the mouse on a colonist on the map and a small card shows their mood bar, the two or three
 things that matter most right now (what would help on a line of its own when it doesn't fit) and what they're doing.
@@ -1817,9 +1833,10 @@ Rimfolk. A thin bar on hover drags the panel (it snaps to the screen's edges and
 as part of the screen, so it survives a new resolution), switches compact and full, fades the background, opens its
 options and hides it. Each panel's options: which rows or columns show, order, whom it lists (home, everywhere,
 with prisoners), the graph's range, rows before "and more", size 75% to 150%, background. Where they start is laid
-out so nothing overlaps at 1080p: the board and the trend on the left, the vitals, the council and the alerts on the
-right, work and health in a column beside them. The settings (Interface,
-**On-screen panels** and **Hover card**) have all of it, plus a lock, hiding under big windows and on the world map,
+out so nothing overlaps at 1080p and nothing sits under the game's readouts: the inventory in the resource list's place,
+the board and the trend beside it, the vitals, the council and the alerts on the right, work and health in a column
+beside them. The settings (Interface, **On-screen panels** and **Hover card**) have all of it, plus a lock, hiding
+under big windows (off: they stay, beneath the window) and on the world map, the game's own alert and resource lists,
 a darker or clearer look, small or normal text, the food and mood lines, and the hover card's wait, key, people,
 place, parts, size and background. Each panel gathers its data at most twice a second, and one that fails hides
 itself for the session with one line in the log. It complements RimHUD (the selected colonist in the inspect pane).

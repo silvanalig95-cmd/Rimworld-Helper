@@ -400,6 +400,7 @@
   <!-- The inventory -->
   <CC_Pnl_I_Empty>Nothing in storage.</CC_Pnl_I_Empty>
   <CC_Pnl_I_NoMatch>Nothing matches the search.</CC_Pnl_I_NoMatch>
+  <CC_Pnl_I_SearchHint>Search</CC_Pnl_I_SearchHint>
   <CC_Pnl_I_Pinned>Pinned</CC_Pnl_I_Pinned>
   <CC_Pnl_I_Other>Other</CC_Pnl_I_Other>
   <CC_Pnl_I_FoodDays>{0} days of food</CC_Pnl_I_FoodDays>
