@@ -302,6 +302,327 @@ namespace ColonyCouncil
             return doors;
         }
 
+        // ---------------- Doors in a line ----------------
+
+        /// <summary>
+        /// The door rule: a line's gate, every door in its wall and a second door right behind the gate (a double gate)
+        /// are the line's way through, not a block. Raiders who find them shut break them rather than walk far round,
+        /// so the way in still runs through the line; the survey reads them as open ground (<see cref="DefenseMath.MapGrid.free"/>).
+        /// Returns how many doors it marked.
+        /// </summary>
+        public static int MarkLineDoors(DefenseMath.MapGrid m, int gx, int gz, int facing, int maxRow = 20)
+        {
+            int n = 0;
+            if (!m.In(gx, gz)) return 0;
+            void Mark(int i)
+            {
+                if (m.kind[i] != DefenseMath.Door || m.free[i]) return;
+                m.free[i] = true;
+                n++;
+            }
+            foreach (int i in LineCells(m, gx, gz, facing, maxRow)) Mark(i);
+            Outward(facing, out int ox, out int oz);
+            for (int k = 1; k <= 2; k++)
+            {
+                int x = gx - ox * k, z = gz - oz * k;
+                if (!m.In(x, z) || m.kind[m.Index(x, z)] != DefenseMath.Door) break;
+                Mark(m.Index(x, z));
+            }
+            return n;
+        }
+
+        // ---------------- A gap a line holds already ----------------
+
+        /// <summary>What the survey knows of a defense line: where its gate is, the side it faces, its own cells, and the sampled walks that pass it.</summary>
+        public class LineShape
+        {
+            public int id, gx, gz, facing;
+            /// <summary>Its gate, the cells across its gap when it was made, and the wall and doors running on from the gate.</summary>
+            public HashSet<int> cells = new HashSet<int>();
+            /// <summary>The sampled walks (numbers in <see cref="DefenseMath.Result.walked"/>) that cross it.</summary>
+            public HashSet<int> walks = new HashSet<int>();
+        }
+
+        /// <summary>How a gap the survey found is one a line holds already.</summary>
+        public enum Covered
+        {
+            No,
+            /// <summary>Its cells are the line's own: its gap, gate or wall.</summary>
+            Overlap,
+            /// <summary>The same pass measured a few cells off: in line with the gap, facing the same way, with open ground between.</summary>
+            SamePass,
+            /// <summary>On the same ways in as the line, a few cells from it, on the same side.</summary>
+            SameRoute
+        }
+
+        /// <summary>How far (in cells) a gap may be from a line and still be its gap.</summary>
+        public const int CoverReach = 12;
+
+        /// <summary>The line's cells: its gate, its saved span and the walls and doors running on from the gate (on the grid as it stands).</summary>
+        public static HashSet<int> ShapeCells(DefenseMath.MapGrid m, int gx, int gz, int facing, IEnumerable<int> span)
+        {
+            var set = new HashSet<int>();
+            if (m.In(gx, gz)) set.Add(m.Index(gx, gz));
+            if (span != null)
+                foreach (int i in span)
+                    if (i >= 0 && i < m.w * m.h) set.Add(i);
+            foreach (int i in LineCells(m, gx, gz, facing, 20)) set.Add(i);
+            return set;
+        }
+
+        /// <summary>
+        /// The sampled walks that pass any of the cells, or end within <paramref name="endNear"/> cells of them: a walk
+        /// ends where it reaches the home area, so one that stops just short of a line inside home would go on through it.
+        /// </summary>
+        public static HashSet<int> WalksThrough(IList<int[]> walked, HashSet<int> cells, DefenseMath.MapGrid m = null, int endNear = 3)
+        {
+            var set = new HashSet<int>();
+            if (walked == null || cells == null || cells.Count == 0) return set;
+            HashSet<int> near = null;
+            if (m != null && endNear > 0)
+            {
+                near = new HashSet<int>();
+                foreach (int c in cells)
+                {
+                    int cx = c % m.w, cz = c / m.w;
+                    for (int dx = -endNear; dx <= endNear; dx++)
+                        for (int dz = -endNear; dz <= endNear; dz++)
+                            if (m.In(cx + dx, cz + dz)) near.Add(m.Index(cx + dx, cz + dz));
+                }
+            }
+            for (int w = 0; w < walked.Count; w++)
+            {
+                var cs = walked[w];
+                if (cs.Length == 0) continue;
+                if (near != null && near.Contains(cs[cs.Length - 1]))
+                {
+                    set.Add(w);
+                    continue;
+                }
+                for (int k = 0; k < cs.Length; k++)
+                    if (cells.Contains(cs[k]))
+                    {
+                        set.Add(w);
+                        break;
+                    }
+            }
+            return set;
+        }
+
+        /// <summary>
+        /// The line that holds a gap the survey found already, or -1 (its index in <paramref name="lines"/>). A gap is
+        /// covered when its cells overlap a line's own (its gap, gate or wall); or when it lies within
+        /// <see cref="CoverReach"/> cells of the line with open ground between, on the raiders' side or just behind it,
+        /// facing no other way, and is either the same pass measured differently (in line with the line's gap, facing the
+        /// same way) or on the same ways in (at least half the walks through it cross the line too). A door of the
+        /// colony's filling a gap further behind the line is a second line, not this one. The nearest line wins.
+        /// </summary>
+        public static int CoveredBy(DefenseMath.MapGrid m, DefenseMath.Choke c, IList<LineShape> lines, out Covered how)
+        {
+            how = Covered.No;
+            if (c == null || lines == null || lines.Count == 0 || c.span == null || c.span.Count == 0) return -1;
+            for (int l = 0; l < lines.Count; l++)
+                foreach (int i in c.span)
+                    if (lines[l].cells.Contains(i))
+                    {
+                        how = Covered.Overlap;
+                        return l;
+                    }
+            int best = -1;
+            float bestD = float.MaxValue;
+            var bestHow = Covered.No;
+            bool gatedGap = c.doors > 0 && c.doors >= c.span.Count;
+            for (int l = 0; l < lines.Count; l++)
+            {
+                var line = lines[l];
+                if (line.cells.Count == 0) continue;
+                int f = Norm(line.facing), cf = Norm(c.facing);
+                // Facing the other way: a gap on the far side, not this line's.
+                if ((f + 2) % 4 == cf) continue;
+                int ahead = Ahead(c.x - line.gx, c.z - line.gz, f);
+                if (gatedGap && ahead < -1) continue;
+                if (ahead < -CoverReach / 2) continue;
+                float d = Nearest(m, c.span, line.cells);
+                if (d > CoverReach) continue;
+                if (!Connected(m, c.span, line.cells, CoverReach + 2)) continue;
+                var kind = Covered.No;
+                if (f == cf && LateralOverlap(m, c.span, line, 1)) kind = Covered.SamePass;
+                else if (c.walks != null && c.walks.Count > 0 && line.walks.Count > 0)
+                {
+                    int shared = 0;
+                    foreach (int w in c.walks)
+                        if (line.walks.Contains(w)) shared++;
+                    if (shared * 2 >= c.walks.Count) kind = Covered.SameRoute;
+                }
+                if (kind == Covered.No || d >= bestD) continue;
+                best = l;
+                bestD = d;
+                bestHow = kind;
+            }
+            how = bestHow;
+            return best;
+        }
+
+        /// <summary>The shortest distance in cells between two sets of cells.</summary>
+        private static float Nearest(DefenseMath.MapGrid m, IEnumerable<int> a, IEnumerable<int> b)
+        {
+            int best = int.MaxValue;
+            foreach (int i in a)
+            {
+                int ax = i % m.w, az = i / m.w;
+                foreach (int j in b)
+                {
+                    int dx = j % m.w - ax, dz = j / m.w - az;
+                    int d2 = dx * dx + dz * dz;
+                    if (d2 < best) best = d2;
+                }
+            }
+            return best == int.MaxValue ? float.MaxValue : (float)System.Math.Sqrt(best);
+        }
+
+        /// <summary>Whether the gap's cells overlap the line's along the line (seen from its gate), with <paramref name="slack"/> cells to spare.</summary>
+        private static bool LateralOverlap(DefenseMath.MapGrid m, List<int> span, LineShape line, int slack)
+        {
+            int lo = int.MaxValue, hi = int.MinValue;
+            foreach (int j in line.cells)
+            {
+                int lat = Lateral(j % m.w - line.gx, j / m.w - line.gz, line.facing);
+                if (lat < lo) lo = lat;
+                if (lat > hi) hi = lat;
+            }
+            foreach (int i in span)
+            {
+                int lat = Lateral(i % m.w - line.gx, i / m.w - line.gz, line.facing);
+                if (lat >= lo - slack && lat <= hi + slack) return true;
+            }
+            return false;
+        }
+
+        /// <summary>Open ground (or a door) leads from the gap to the line within <paramref name="steps"/> steps.</summary>
+        private static bool Connected(DefenseMath.MapGrid m, List<int> from, HashSet<int> to, int steps)
+        {
+            var seen = new Dictionary<int, int>();
+            var queue = new Queue<int>();
+            foreach (int i in from)
+            {
+                if (seen.ContainsKey(i)) continue;
+                seen[i] = 0;
+                queue.Enqueue(i);
+            }
+            while (queue.Count > 0)
+            {
+                int i = queue.Dequeue();
+                int depth = seen[i];
+                if (to.Contains(i)) return true;
+                int x = i % m.w, z = i / m.w;
+                for (int d = 0; d < 4; d++)
+                {
+                    int nx = x + DX[d], nz = z + DZ[d];
+                    if (!m.In(nx, nz)) continue;
+                    int j = m.Index(nx, nz);
+                    // The line's wall is reached too: the gap runs up to it.
+                    if (to.Contains(j)) return true;
+                    if (depth + 1 > steps || seen.ContainsKey(j) || !m.Passable(j)) continue;
+                    seen[j] = depth + 1;
+                    queue.Enqueue(j);
+                }
+            }
+            return false;
+        }
+
+        // ---------------- Walls that would turn raiders away ----------------
+
+        /// <summary>One cell a plan would change, as the survey reads it: what it becomes and what it then costs to cross.</summary>
+        public struct Change
+        {
+            public int cell;
+            public byte kind;
+            public int cost;
+            /// <summary>A door that would be the line's way through (its gate).</summary>
+            public bool free;
+        }
+
+        /// <summary>How the ways in through a line fare with a plan's walls standing.</summary>
+        public class WayCheck
+        {
+            /// <summary>Walks tried, and how many pass the line now and with the plan built.</summary>
+            public int tried, before, after;
+            /// <summary>Fewer than half of those that come through the line now still would.</summary>
+            public bool turnedAway;
+            /// <summary>One way they'd take instead, edge to beds (empty when none turned away).</summary>
+            public List<int> elsewhere = new List<int>();
+        }
+
+        /// <summary>
+        /// Whether raiders would still come through a line once a plan stood: from the start of each walk given (the
+        /// survey's walks that cross the line, edge cells first), the easiest way to <paramref name="targets"/> now and with
+        /// <paramref name="changes"/> applied, and how many of them cross <paramref name="lineCells"/> each time. The grid is
+        /// changed while it works and put back afterwards.
+        /// </summary>
+        public static WayCheck CheckWay(DefenseMath.MapGrid m, bool[] targets, IList<int> starts, HashSet<int> lineCells, IList<Change> changes)
+        {
+            var r = new WayCheck();
+            if (starts == null || starts.Count == 0 || lineCells == null || lineCells.Count == 0) return r;
+            int n = m.w * m.h;
+            // Now: which of the walks cross the line.
+            var before = DefenseMath.Distances(m, targets);
+            var crossed = new List<int>();
+            foreach (int start in starts)
+            {
+                if (start < 0 || start >= n || before[start] < 0) continue;
+                r.tried++;
+                int budget = n;
+                var was = DefenseMath.Walk(m, before, start, ref budget);
+                if (was == null || !Crosses(was.cells, lineCells)) continue;
+                r.before++;
+                crossed.Add(start);
+            }
+            if (crossed.Count == 0) return r;
+            // With the plan built: the same walks again.
+            var saved = new List<(int i, byte k, int c, bool f)>();
+            try
+            {
+                if (changes != null)
+                    foreach (var ch in changes)
+                    {
+                        if (ch.cell < 0 || ch.cell >= n) continue;
+                        saved.Add((ch.cell, m.kind[ch.cell], m.cost[ch.cell], m.free[ch.cell]));
+                        m.kind[ch.cell] = ch.kind;
+                        m.cost[ch.cell] = ch.cost;
+                        m.free[ch.cell] = ch.free;
+                    }
+                var after = DefenseMath.Distances(m, targets);
+                foreach (int start in crossed)
+                {
+                    if (after[start] < 0) continue;
+                    int budget = n;
+                    var now = DefenseMath.Walk(m, after, start, ref budget);
+                    if (now == null) continue;
+                    if (Crosses(now.cells, lineCells)) r.after++;
+                    else if (r.elsewhere.Count == 0) r.elsewhere = now.cells;
+                }
+            }
+            finally
+            {
+                for (int u = saved.Count - 1; u >= 0; u--)
+                {
+                    m.kind[saved[u].i] = saved[u].k;
+                    m.cost[saved[u].i] = saved[u].c;
+                    m.free[saved[u].i] = saved[u].f;
+                }
+            }
+            r.turnedAway = r.before > 0 && r.after * 2 < r.before;
+            if (!r.turnedAway) r.elsewhere = new List<int>();
+            return r;
+        }
+
+        private static bool Crosses(List<int> cells, HashSet<int> set)
+        {
+            foreach (int c in cells)
+                if (set.Contains(c)) return true;
+            return false;
+        }
+
         /// <summary>The cells across a gap through a cell, along the line (sideways to the facing): walkable cells until something closes it on each side, at most <paramref name="maxSide"/> each way.</summary>
         public static List<int> SpanAcross(DefenseMath.MapGrid m, int x, int z, int facing, int maxSide)
         {

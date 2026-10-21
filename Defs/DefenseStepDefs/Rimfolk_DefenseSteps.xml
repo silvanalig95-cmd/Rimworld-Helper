@@ -93,9 +93,11 @@
       <li>Traps in the gateway or the kill zone, where your own haulers and fighters pass.</li>
       <li>Traps side by side, so one blast sets off the next.</li>
       <li>Auto-rearm switched off and forgotten: a sprung trap is gone, and nothing puts it back.</li>
+      <li>A walled lane beside the way raiders walk, or one whose walls make another gap the easier way in.</li>
     </mistakes>
     <articles>
       <li>Rimfolk_AlmDef_Traps</li>
+      <li>Rimfolk_AlmDef_RaiderWays</li>
     </articles>
   </ColonyCouncil.DefenseStepDef>
 

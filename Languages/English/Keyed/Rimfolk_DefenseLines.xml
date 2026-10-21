@@ -200,7 +200,9 @@
   <CC_DefLine_PlanCover_Tip>Opens the planner with a line of cover at that distance, placed for this line.</CC_DefLine_PlanCover_Tip>
   <CC_DefLine_Walls_Wood>{0} of the line's {1} cells are wood. Raiders set fires, and a burning wall in a narrow place is a trap for your own people.</CC_DefLine_Walls_Wood>
   <CC_DefLine_Gate_Open>The gate ({0}) is held open: raiders come to it rather than break the wall.</CC_DefLine_Gate_Open>
-  <CC_DefLine_Gate_Shut>The gate ({0}) isn't held open. When raiders come, set it to stay open, or with no way in they break the wall wherever they like.</CC_DefLine_Gate_Shut>
+  <CC_DefLine_Gate_Shut>The gate ({0}) is shut. It's still the line's way in: raiders will break this door if there's no other way. Hold it open during a raid to keep them coming through the gate into your guns, rather than hacking at the wall wherever they like.</CC_DefLine_Gate_Shut>
+  <CC_DefLine_Gate_ShutKillbox>The gate ({0}) is shut. It's still the line's way in: raiders will break this door if there's no other way. Hold it open during a raid to keep them coming through the killbox, rather than hacking at the wall wherever they like.</CC_DefLine_Gate_ShutKillbox>
+  <CC_DefLine_Gate_Doors>{0} doors stand in this line's wall, and raiders count each as a way through: hold open only the one you want them to use.</CC_DefLine_Gate_Doors>
   <CC_DefLine_SelectGate>Select the gate</CC_DefLine_SelectGate>
   <CC_DefLine_SelectGate_Tip>Takes you to the gate and selects it, so you can set it to stay open.</CC_DefLine_SelectGate_Tip>
   <CC_DefLine_Dark_Posts>At night {0} of the {1} firing positions that see the gate are dark. The dark doesn't spoil anyone's aim, but people there move and work more slowly and it wears on them: a lamp behind the cover helps.</CC_DefLine_Dark_Posts>
@@ -226,7 +228,8 @@
   <CC_DefLine_How_Distance>Too close, and a rush or a grenade through the gate reaches the shooters at once; too far, and the shots go wide. The helper aims for about a quarter of your best weapon's reach, six to ten cells.</CC_DefLine_How_Distance>
   <CC_DefLine_How_Turrets>A badly damaged turret can explode, and its blast reaches the turrets and people near it. A turret without power, fuel or repairs is just cover for raiders.</CC_DefLine_How_Turrets>
   <CC_DefLine_How_Wood>Raiders bring torches and incendiaries. Stone doesn't burn, and holds longer against a breacher's axe.</CC_DefLine_How_Wood>
-  <CC_DefLine_How_Gate>Raiders who have a way to your people take it. A gate held open during a raid brings them into your guns; a shut one leaves them to break the wall anywhere.</CC_DefLine_How_Gate>
+  <CC_DefLine_How_Gate>Raiders who have a way to your people take it. A gate held open during a raid brings them into your guns; a shut one is a door to break, and if breaking it is no cheaper than somewhere else, they pick their own stretch of wall. The helper counts a line's gate, and every door in its wall, as the line's way through whether it's shut or not, so a shut gate never makes it look for a new way in.</CC_DefLine_How_Gate>
+  <CC_DefLine_How_Way>The helper reads the ways in again when something is built or taken away near a line or a gap (at most once a game hour), and says when the busiest one has moved.</CC_DefLine_How_Way>
   <CC_DefLine_How_Dark>Darkness doesn't spoil anyone's aim by itself: it slows movement and work, and wears on the mood. Only a belief that prefers combat in darkness changes shooting, 25% better at targets in the dark and 20% worse at lit ones.</CC_DefLine_How_Dark>
   <CC_DefLine_How_Upkeep>Damaged walls fall sooner in the next raid, and sprung traps do nothing until they're rebuilt. Your builders repair only what's inside the home area.</CC_DefLine_How_Upkeep>
 
@@ -287,6 +290,55 @@
   <CC_DefLine_Lesson_Fallback>Raiders got among the buildings: a line to fall back to keeps them from the beds.</CC_DefLine_Lesson_Fallback>
   <CC_DefLine_Lesson_GoStep>To the step: {0}</CC_DefLine_Lesson_GoStep>
   <CC_DefLine_Lesson_GoStep_Tip>Shows that step on the card.</CC_DefLine_Lesson_GoStep_Tip>
+
+  <!-- The busiest way in moved -->
+  <CC_DefLine_WayMoved>Raiders now come by {0}, not {1}.</CC_DefLine_WayMoved>
+  <CC_DefLine_WayHere>Raiders now come this way, not by {0}.</CC_DefLine_WayHere>
+  <CC_DefLine_WayGone>Raiders now come by {0}, not this way.</CC_DefLine_WayGone>
+  <CC_DefLine_Way_Gap>the {0} gap</CC_DefLine_Way_Gap>
+  <CC_DefLine_Way_Side>a way in from the {0}</CC_DefLine_Way_Side>
+  <CC_DefLine_Way_Walls>through your walls, with no open way left</CC_DefLine_Way_Walls>
+  <CC_DefLine_Way_Somewhere>another way</CC_DefLine_Way_Somewhere>
+
+  <!-- A plan on the way in (the trap corridor) -->
+  <CC_DefLine_Approach_Why>On the way to the gate, {0} out, {1}.</CC_DefLine_Approach_Why>
+  <CC_DefLine_Approach_RockBoth>using the rock on both sides</CC_DefLine_Approach_RockBoth>
+  <CC_DefLine_Approach_WallsBoth>using your walls on both sides</CC_DefLine_Approach_WallsBoth>
+  <CC_DefLine_Approach_RockAndWall>using the rock on one side and your wall on the other</CC_DefLine_Approach_RockAndWall>
+  <CC_DefLine_Approach_RockOne>using the rock on one side</CC_DefLine_Approach_RockOne>
+  <CC_DefLine_Approach_WallOne>using your wall on one side</CC_DefLine_Approach_WallOne>
+  <CC_DefLine_Approach_OwnWalls>with walls of its own</CC_DefLine_Approach_OwnWalls>
+  <CC_DefLine_Approach_Open>with its sides left open</CC_DefLine_Approach_Open>
+  <CC_DefLine_Approach_NoWalls>in the open approach</CC_DefLine_Approach_NoWalls>
+  <CC_DefLine_Approach_Turned>Turned to follow the way in, which bends there.</CC_DefLine_Approach_Turned>
+  <CC_DefLine_Approach_Dig>{0} cells of rock to dig out.</CC_DefLine_Approach_Dig>
+  <CC_DefLine_Approach_Dark>{0} cells lie in unexplored ground: they're dug out as your people reach them.</CC_DefLine_Approach_Dark>
+  <CC_DefLine_Approach_NoRoomNote>Where it would go: {0}</CC_DefLine_Approach_NoRoomNote>
+  <CC_DefLine_Approach_NoPath>Nothing on the raiders' side walks up to this gate, so there's no way in to lay the {0} on. Open the ground in front of the gate, or check the line faces the way raiders come.</CC_DefLine_Approach_NoPath>
+  <CC_DefLine_Approach_Short>The ground in front of the gate runs out after {1}: too little for the {0} ({2}×{3}) on the way in. Dig the rock in front back, or lay a few traps by hand where raiders walk.</CC_DefLine_Approach_Short>
+  <CC_DefLine_Approach_Fog>The way up to the gate runs into unexplored ground, so there's nowhere known to lay the {0}. Send someone out to see the ground in front of the gate, then plan it again.</CC_DefLine_Approach_Fog>
+  <CC_DefLine_Approach_RockNarrow>The passage in front of the gate is too narrow for the {0} without digging into its rock. Leave its sides open in the planner (the rock is wall enough), or lay the traps by hand.</CC_DefLine_Approach_RockNarrow>
+  <CC_DefLine_Approach_RockNoDig>The passage in front of the gate is narrower than the {0}, and the planner isn't allowed to mine rock. Allow mining rock in the planner, or leave its sides open there.</CC_DefLine_Approach_RockNoDig>
+  <CC_DefLine_Approach_Water>Deep water on the way to the gate leaves no room for the {0}. Lay a few traps by hand where raiders walk, or put the line where the ground is dry.</CC_DefLine_Approach_Water>
+  <CC_DefLine_Approach_Edge>The way to the gate runs along the map's edge, where nothing can be built: no room for the {0} there.</CC_DefLine_Approach_Edge>
+  <CC_DefLine_Approach_OffWay>The way raiders walk up to the gate bends or wanders here, and the {0} can't lie along it: anywhere it fits, they'd walk past it. Lay a few traps by hand on the way in (the red line on the map), or dig the passage straight.</CC_DefLine_Approach_OffWay>
+  <CC_DefLine_Approach_Crosses>The {0} would only fit across the line's own wall or gate, which it must never stand on. Clear some ground in front of the gate first.</CC_DefLine_Approach_Crosses>
+  <CC_DefLine_Approach_Blocked>Something stands on the way to the gate wherever the {0} would go. Clear the ground in front of the gate, or allow taking down your own buildings in the planner.</CC_DefLine_Approach_Blocked>
+  <CC_DefLine_Approach_BlockedBy>Something stands on the way to the gate wherever the {0} would go ({1}). Clear it, or allow taking down your own buildings in the planner.</CC_DefLine_Approach_BlockedBy>
+  <CC_DefLine_NoFit_Title>No room for the {0}</CC_DefLine_NoFit_Title>
+  <CC_DefLine_PlaceMyself>Place it myself</CC_DefLine_PlaceMyself>
+  <CC_DefLine_NotNow>Not now</CC_DefLine_NotNow>
+
+  <!-- Walls that would turn raiders away -->
+  <CC_DefLine_Away_Title>Raiders would go another way</CC_DefLine_Away_Title>
+  <CC_DefLine_Away>These walls would make {0} the easier way in: of the raids that come through {1} now, about {2} in 10 still would.</CC_DefLine_Away>
+  <CC_DefLine_Away_Open>With its sides left open, raiders keep coming this way, and the traps still lie on their path.</CC_DefLine_Away_Open>
+  <CC_DefLine_Away_Close>Or close {0} first: with a gate there that isn't a line's way through, this one is the easier way again.</CC_DefLine_Away_Close>
+  <CC_DefLine_Away_OtherLine>{0} is a line of yours already: they'd meet it there instead.</CC_DefLine_Away_OtherLine>
+  <CC_DefLine_Away_Anyway>You can still plan it as it is; the warning stays in the planner.</CC_DefLine_Away_Anyway>
+  <CC_DefLine_Away_OpenButton>Leave its sides open</CC_DefLine_Away_OpenButton>
+  <CC_DefLine_Away_AnywayButton>Plan it anyway</CC_DefLine_Away_AnywayButton>
+  <CC_DefLine_Away_CloseButton>Close {0} first</CC_DefLine_Away_CloseButton>
 
   <!-- Settings -->
   <CC_Settings_DefenseGateReminder>Remind me of a shut gate when raiders come</CC_Settings_DefenseGateReminder>

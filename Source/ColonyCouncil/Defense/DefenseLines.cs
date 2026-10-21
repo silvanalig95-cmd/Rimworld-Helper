@@ -9,12 +9,24 @@ namespace ColonyCouncil
     /// <summary>
     /// The defense lines of one map (<see cref="DefenseLine"/>): made from a gap the survey found, from a spot the player
     /// picks, or by placing a gate on a gap; plans placed near a line's gate join it. While raiders are on the map it
-    /// watches, every 250 ticks, how they meet each line (<see cref="Watch"/>). A save from before lines loads with none.
+    /// watches, every 250 ticks, how they meet each line (<see cref="Watch"/>). It also remembers the busiest way in the
+    /// last survey found, so that when a change moves it ("Raiders now come by the north gap") the lines say so once. A
+    /// save from before lines loads with none.
     /// </summary>
     public partial class DefenseLines : MapComponent
     {
         public List<DefenseLine> lines = new List<DefenseLine>();
         private int nextId = 1;
+
+        /// <summary>The busiest way in at the last survey: its gap's cell, and the line that holds it (-1 for none).</summary>
+        private IntVec3 mainWay = IntVec3.Invalid;
+        private int mainWayLine = -1;
+        /// <summary>The last time the busiest way in moved, from where to where (cells and the lines holding them).</summary>
+        public IntVec3 wayFrom = IntVec3.Invalid, wayTo = IntVec3.Invalid;
+        public int wayFromLine = -1, wayToLine = -1, wayTick = -1;
+
+        /// <summary>How long the lines speak of a way in that moved.</summary>
+        public const int WayNewFor = GenDate.TicksPerDay;
 
         public DefenseLines(Map map) : base(map)
         {
@@ -94,6 +106,8 @@ namespace ColonyCouncil
             };
             lines.Add(line);
             Select(map, line);
+            // The survey reads the line's gate as its way through from now on.
+            DefenseSurvey.MarkDirty(map);
             return line;
         }
 
@@ -102,6 +116,7 @@ namespace ColonyCouncil
             if (line == null) return;
             lines.Remove(line);
             DefenseLineReview.Forget(map, line);
+            DefenseSurvey.MarkDirty(map);
             if (Selected(map) == line) Select(map, null);
         }
 
@@ -109,10 +124,12 @@ namespace ColonyCouncil
         public DefenseLine Near(IntVec3 c, float radius = 4f) =>
             lines.Where(l => l.gate.DistanceTo(c) <= radius).OrderBy(l => l.gate.DistanceTo(c)).FirstOrDefault();
 
-        /// <summary>The line made on one of the survey's gaps, if there is one.</summary>
+        /// <summary>The line made on one of the survey's gaps, or one that holds it already (the same pass, the same ways in), if there is one.</summary>
         public DefenseLine ForChoke(DefenseSurvey s, DefenseSurvey.ChokeInfo c)
         {
             if (s?.grid == null || c == null) return null;
+            var covering = s.map == map ? s.CoveringLine(c) : null;
+            if (covering != null) return covering;
             foreach (var l in lines)
             {
                 if (l.gate.DistanceTo(c.cell) <= 4f) return l;
@@ -120,6 +137,55 @@ namespace ColonyCouncil
                     if (l.gate.DistanceTo(new IntVec3(i % s.grid.w, 0, i / s.grid.w)) <= 2f) return l;
             }
             return null;
+        }
+
+        // ---------------- The busiest way in ----------------
+
+        /// <summary>
+        /// After a survey: where the busiest way in now runs (the gap most raids pass, or the line that holds it). When it
+        /// moved since the last survey and the map has lines, they say so once (for a day on their cards) and a message
+        /// tells it. <paramref name="first"/>: the first survey this session, which only takes note.
+        /// </summary>
+        public void NoteMainWay(DefenseSurvey s, bool first = false)
+        {
+            if (s == null || s.map != map) return;
+            var main = s.Main;
+            var cell = main?.cell ?? IntVec3.Invalid;
+            int line = main != null ? s.CoveringLine(main)?.id ?? -1 : -1;
+            bool had = mainWay.IsValid;
+            // The same way in: the same line, the same place measured again, or a line made since on the old gap.
+            bool same = line >= 0 && line == mainWayLine || cell.IsValid && cell.DistanceTo(mainWay) <= 12f
+                        || (Get(line)?.gate.DistanceTo(mainWay) ?? 99f) <= DefenseLineMath.CoverReach
+                        || cell.IsValid && (Get(mainWayLine)?.gate.DistanceTo(cell) ?? 99f) <= DefenseLineMath.CoverReach;
+            bool moved = had && cell.IsValid && !same;
+            if (moved && lines.Count > 0 && !first)
+            {
+                wayFrom = mainWay;
+                wayFromLine = mainWayLine;
+                wayTo = cell;
+                wayToLine = line;
+                wayTick = Find.TickManager.TicksGame;
+                foreach (var l in lines) l.Changed();
+                Messages.Message("CC_DefLine_WayMoved".Translate(WayWords(s, wayTo, wayToLine), WayWords(s, wayFrom, wayFromLine)).Resolve(),
+                    new LookTargets(wayTo, map), MessageTypeDefOf.CautionInput, false);
+            }
+            if (cell.IsValid)
+            {
+                mainWay = cell;
+                mainWayLine = line;
+            }
+        }
+
+        /// <summary>The way in moved within the last day.</summary>
+        public bool WayMovedLately => wayTick >= 0 && wayTo.IsValid && Find.TickManager.TicksGame - wayTick >= 0 && Find.TickManager.TicksGame - wayTick < WayNewFor;
+
+        /// <summary>"the south-west pass" (a line's name), else "the north gap".</summary>
+        public string WayWords(DefenseSurvey s, IntVec3 cell, int lineId)
+        {
+            var line = Get(lineId);
+            if (line != null) return DefenseLineReview.NameOf(line, map);
+            if (s == null || !cell.IsValid) return "CC_DefLine_Way_Somewhere".Translate();
+            return "CC_DefLine_Way_Gap".Translate(DefenseAdvice.Where(s, cell)).Resolve();
         }
 
         // ---------------- Plans placed ----------------
@@ -130,7 +196,7 @@ namespace ColonyCouncil
         /// A defense plan was placed: it joins the line it was planned for, or one whose gate is close; a gate or wall
         /// put down on a gap with no line yet offers to start one.
         /// </summary>
-        public void OnPlaced(DefensePlan plan, int lineId, bool closeGap = true)
+        public void OnPlaced(DefensePlan plan, int lineId, bool closeGap = true, ICollection<string> leaveOut = null)
         {
             if (plan?.template == null) return;
             var t = plan.template;
@@ -140,7 +206,8 @@ namespace ColonyCouncil
             var saved = new DefenseLinePlan
             {
                 template = t.defName, anchor = plan.anchor, rotation = plan.rotation, mirror = plan.mirror,
-                closeGap = closeGap && t.line >= 0, tick = Find.TickManager.TicksGame
+                closeGap = closeGap && t.line >= 0, tick = Find.TickManager.TicksGame,
+                leaveOut = leaveOut == null || leaveOut.Count == 0 ? null : string.Join(",", leaveOut.OrderBy(x => x))
             };
             if (line != null)
             {
@@ -197,6 +264,13 @@ namespace ColonyCouncil
             base.ExposeData();
             Scribe_Collections.Look(ref lines, "lines", LookMode.Deep);
             Scribe_Values.Look(ref nextId, "nextId", 1);
+            Scribe_Values.Look(ref mainWay, "mainWay", IntVec3.Invalid);
+            Scribe_Values.Look(ref mainWayLine, "mainWayLine", -1);
+            Scribe_Values.Look(ref wayFrom, "wayFrom", IntVec3.Invalid);
+            Scribe_Values.Look(ref wayTo, "wayTo", IntVec3.Invalid);
+            Scribe_Values.Look(ref wayFromLine, "wayFromLine", -1);
+            Scribe_Values.Look(ref wayToLine, "wayToLine", -1);
+            Scribe_Values.Look(ref wayTick, "wayTick", -1);
             ExposeWatch();
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {

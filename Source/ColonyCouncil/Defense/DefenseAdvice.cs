@@ -77,6 +77,25 @@ namespace ColonyCouncil
             return TextUtil.JoinAnd(names);
         }
 
+        /// <summary>
+        /// The plan that closes a gap: a stretch of perimeter wall for a wide one, a palisade or a castle gate for a medieval
+        /// colony that can raise one, else a gate with sandbag lines.
+        /// </summary>
+        public static DefenseTemplateDef GateFor(DefenseSurvey s, DefenseSurvey.ChokeInfo c)
+        {
+            var gate = T("Rimfolk_Defense_Gate");
+            var wall = T("Rimfolk_Defense_Wall");
+            if (c != null && c.c.width > 9 && wall != null) return wall;
+            if (Avail.IsPreIndustrial && s?.map != null)
+            {
+                var castle = T("Rimfolk_Defense_CastleGate");
+                if (castle != null && castle.UnavailableReason(s.map) == null) return castle;
+                var palisade = T("Rimfolk_Defense_PalisadeGatehouse");
+                if (palisade != null && palisade.UnavailableReason(s.map) == null) return palisade;
+            }
+            return gate ?? wall;
+        }
+
         /// <summary>Which way a place lies from the colony's middle (a compass point).</summary>
         public static string Where(DefenseSurvey s, IntVec3 c)
         {
@@ -107,13 +126,16 @@ namespace ColonyCouncil
                 for (int i = 0; i < s.chokes.Count && i < 3; i++)
                 {
                     var c = s.chokes[i];
+                    // A gap a line holds already is that line's: its card says what's next there.
+                    var holder = s.CoveringLine(c);
+                    string heldBy = holder != null ? " " + "CC_Def_Adv_CoveredBy".Translate(DefenseLineReview.NameOf(holder, map)).Resolve() : "";
                     // The busiest gap always; the others when a fair share of raids pass them.
                     if (i > 0 && c.c.share < 0.2f) continue;
                     string dir = Where(s, c.cell);
                     string came = c.c.share >= 0.9f ? "CC_Def_Came_All".Translate().ToString()
                         : c.c.share >= 0.55f ? "CC_Def_Came_Most".Translate(DefenseSurvey.FacingWord(c.c.facing), Mathf.RoundToInt(c.c.share * 10f)).ToString()
                         : "CC_Def_Came_Some".Translate(Mathf.Max(1, Mathf.RoundToInt(c.c.share * 10f)), DefenseSurvey.FacingWord(c.c.facing)).ToString();
-                    if (!c.gated)
+                    if (!c.Held)
                     {
                         bool wide = c.c.width > 9;
                         var tpl = wide ? wall : gateNow;
@@ -125,11 +147,11 @@ namespace ColonyCouncil
                         {
                             key = "gap" + i,
                             title = "CC_Def_Adv_Gap_Title".Translate(dir),
-                            why = came + " " + "CC_Def_Gap_Line".Translate(s.GapWords(c), DefenseSurvey.Cells(c.c.width)) + " " + plan,
+                            why = came + " " + "CC_Def_Gap_Line".Translate(s.GapWords(c), DefenseSurvey.Cells(c.c.width)) + " " + plan + heldBy,
                             score = 0.3f + 0.6f * c.c.share,
                             template = tpl,
                             choke = i,
-                            look = c.cell,
+                            look = holder?.gate ?? c.cell,
                             article = A("Rimfolk_AlmDef_ChokePoints")
                         });
                     }
@@ -140,12 +162,12 @@ namespace ColonyCouncil
                         {
                             key = "cover" + i,
                             title = "CC_Def_Adv_Cover_Title".Translate(dir),
-                            why = came + " " + "CC_Def_Adv_Cover".Translate(dir, c.coverInside),
+                            why = came + " " + "CC_Def_Adv_Cover".Translate(dir, c.coverInside) + heldBy,
                             score = 0.25f + 0.4f * c.c.share,
                             done = c.coverInside >= 3,
                             template = gateNow,
                             choke = i,
-                            look = c.cell,
+                            look = holder?.gate ?? c.cell,
                             article = A("Rimfolk_AlmDef_Cover")
                         });
                         if (c.woodWalls >= 3 && gateNow != palisade)
@@ -180,7 +202,7 @@ namespace ColonyCouncil
                 }
 
                 var main = s.Main;
-                bool held = r.enclosed || (main != null && main.gated);
+                bool held = r.enclosed || (main != null && main.Held);
                 string mainDir = main != null ? Where(s, main.cell) : s.approach.IsValid ? Where(s, s.approach) : DefenseSurvey.Direction(DefenseMath.Compass(r.angle));
 
                 // A killbox once raids are big.

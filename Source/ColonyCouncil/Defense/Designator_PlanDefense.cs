@@ -27,6 +27,10 @@ namespace ColonyCouncil
         public int choke = -1;
         /// <summary>The defense line this plan is for (opened from a line's step), or -1: the plan joins it when placed.</summary>
         public int lineId = -1;
+        /// <summary>Why the plan stands where it was put ("On the way to the gate, 6 cells out..."), or why nothing fitted.</summary>
+        public string why;
+        /// <summary>What the helper warned of before it was put there (walls that would send raiders another way).</summary>
+        public string warn;
 
         private DefensePlan cachedPlan;
         private IntVec3 cachedAnchor = IntVec3.Invalid;
@@ -71,14 +75,15 @@ namespace ColonyCouncil
             var des = new Designator_PlanDefense(t) { choke = choke };
             Find.MainTabsRoot.EscapeCurrentTab(false);
             Find.DesignatorManager.Select(des);
-            if (atSpot) des.SuggestSpot();
+            if (atSpot) des.SuggestSpot(true);
         }
 
         /// <summary>
         /// Starts planning a defense for a line, already placed and turned where the line's step wants it: the camera goes
         /// there, the spot is outlined, and "Place it there" or a click puts it down. Nothing is built until then.
         /// </summary>
-        public static void BeginAt(DefenseTemplateDef t, IntVec3 anchor, int rot, bool mirror, bool closeGap, int lineId, bool fits)
+        public static void BeginAt(DefenseTemplateDef t, IntVec3 anchor, int rot, bool mirror, bool closeGap, int lineId, bool fits,
+            string why = null, string warn = null, ICollection<string> leaveOut = null)
         {
             var map = Find.CurrentMap;
             if (t == null || map == null) return;
@@ -88,24 +93,104 @@ namespace ColonyCouncil
                 Messages.Message(reason, MessageTypeDefOf.RejectInput, false);
                 return;
             }
-            var des = new Designator_PlanDefense(t) { lineId = lineId };
+            var des = new Designator_PlanDefense(t) { lineId = lineId, why = why, warn = warn };
             Find.MainTabsRoot.EscapeCurrentTab(false);
             Find.DesignatorManager.Select(des);
             var cfg = des.Config;
             cfg.rotation = TemplateMath.Norm(rot);
             cfg.mirror = mirror;
             cfg.closeGap = closeGap;
+            if (leaveOut != null)
+                foreach (var role in leaveOut) cfg.leaveOut.Add(role);
             cfg.Changed();
             des.suggestedAnchor = anchor;
             des.suggestedRot = cfg.rotation;
             des.suggestedMirror = mirror;
+            string cheaper = des.CheaperIfShort(anchor);
             TemplateMath.RotatedSize(t.Width, t.Height, cfg.rotation, out int rw, out int rh);
             CameraJumper.TryJump(new IntVec3(anchor.x + rw / 2, 0, anchor.z + rh / 2), map);
             var line = DefenseLines.Of(map)?.Get(lineId);
             if (line != null) DefenseLines.Select(map, line);
             string name = line != null ? DefenseLineReview.NameOf(line, map) : "";
-            Messages.Message((fits ? "CC_DefLine_PlanReady" : "CC_DefLine_PlanTight").Translate(t.LabelNow, name).Resolve(),
-                fits ? MessageTypeDefOf.SilentInput : MessageTypeDefOf.CautionInput, false);
+            string text = (fits ? "CC_DefLine_PlanReady" : "CC_DefLine_PlanTight").Translate(t.LabelNow, name).Resolve();
+            if (!why.NullOrEmpty()) text += " " + why;
+            if (!cheaper.NullOrEmpty()) text += " " + cheaper;
+            Messages.Message(text, fits && warn.NullOrEmpty() ? MessageTypeDefOf.SilentInput : MessageTypeDefOf.CautionInput, false);
+        }
+
+        /// <summary>Opens the planner for a line with nothing placed (nothing fitted where the helper would put it): the player places it by hand.</summary>
+        public static void BeginBlank(DefenseTemplateDef t, DefenseLine line, IntVec3 look, string why)
+        {
+            var map = Find.CurrentMap;
+            if (t == null || map == null) return;
+            string reason = t.UnavailableReason(map);
+            if (reason != null)
+            {
+                Messages.Message(reason, MessageTypeDefOf.RejectInput, false);
+                return;
+            }
+            var des = new Designator_PlanDefense(t) { lineId = line?.id ?? -1, why = why };
+            Find.MainTabsRoot.EscapeCurrentTab(false);
+            Find.DesignatorManager.Select(des);
+            if (line != null)
+            {
+                DefenseLines.Select(map, line);
+                des.Config.rotation = DefenseLineMath.Norm(line.facing);
+                des.Config.Changed();
+            }
+            if (look.IsValid && look.InBounds(map)) CameraJumper.TryJump(look, map);
+        }
+
+        /// <summary>
+        /// The first proposal: when the materials it picked (remembered from earlier plans) come to more than the colony
+        /// has, each part is picked again from what's in stock, and kept if that leaves less short. Says what changed.
+        /// </summary>
+        public string CheaperIfShort(IntVec3 anchor)
+        {
+            var map = Find.CurrentMap;
+            if (map == null || template == null) return null;
+            try
+            {
+                var cfg = Config;
+                var plan = PlanAtAnchor(anchor);
+                var shortOf = Shortfall(plan, map);
+                if (shortOf.Count == 0 || cfg.stuff.Count == 0) return null;
+                var kept = new Dictionary<string, ThingDef>(cfg.stuff);
+                var keptNow = new HashSet<string>(cfg.pickedNow);
+                cfg.FromStockForNow();
+                pieces = null;
+                cachedPlan = null;
+                var again = PlanAtAnchor(anchor);
+                var still = Shortfall(again, map);
+                if (still.Count < shortOf.Count || still.Sum(x => x.missing) < shortOf.Sum(x => x.missing))
+                {
+                    var now = again.Cost().Keys.Where(d => d.IsStuff).Select(d => d.label).ToList();
+                    return "CC_Def_Cheaper".Translate(TextUtil.JoinAnd(shortOf.Select(x => x.def.label).ToList()), now.Count > 0 ? TextUtil.JoinAnd(now) : "?").Resolve();
+                }
+                // No better: the player's own picks stay.
+                foreach (var kv in kept) cfg.stuff[kv.Key] = kv.Value;
+                foreach (var r in keptNow) cfg.pickedNow.Add(r);
+                cfg.Changed();
+                pieces = null;
+                cachedPlan = null;
+            }
+            catch (System.Exception e)
+            {
+                CouncilLog.ErrorOnce("defense plan: cheaper materials", e);
+            }
+            return null;
+        }
+
+        private static List<(ThingDef def, int missing)> Shortfall(DefensePlan plan, Map map)
+        {
+            var list = new List<(ThingDef, int)>();
+            if (plan == null) return list;
+            foreach (var kv in plan.Cost())
+            {
+                int have = MaterialCounts.Have(map, kv.Key);
+                if (have < kv.Value) list.Add((kv.Key, kv.Value - have));
+            }
+            return list;
         }
 
         /// <summary>The line this plan is for, if any.</summary>
@@ -144,6 +229,8 @@ namespace ColonyCouncil
             pieces = null;
             cachedPlan = null;
             suggestedAnchor = IntVec3.Invalid;
+            why = null;
+            warn = null;
             Config.StartSession();
             SoundDefOf.Click.PlayOneShotOnCamera();
         }
@@ -176,26 +263,60 @@ namespace ColonyCouncil
 
         public bool HasSuggestion => suggestedAnchor.IsValid;
 
-        /// <summary>Asks the survey for the spot, turns the plan to face the raiders there, and takes the camera to it.</summary>
-        public void SuggestSpot()
+        /// <summary>
+        /// Asks the survey for the spot, turns the plan to face the raiders there, and takes the camera to it. A plan in
+        /// front of a gap follows the way raiders walk up to it. <paramref name="first"/>: the plan's first proposal, when
+        /// materials remembered from earlier plans that the colony is short of are picked again from stock.
+        /// </summary>
+        public void SuggestSpot(bool first = false)
         {
             var map = Find.CurrentMap;
             if (map == null || template == null) return;
-            if (DefensePlanner.FindSpot(template, map, Config, Pieces, choke, out var anchor, out int rot))
+            IntVec3 anchor;
+            int rot;
+            bool mirror = Config.mirror, found;
+            why = null;
+            warn = null;
+            // A plan in front of a gap follows the way raiders walk up to it.
+            var line = Line;
+            if (DefenseApproachPlanner.Applies(template, null))
+            {
+                if (line != null)
+                {
+                    var c = DefenseApproachPlanner.Find(map, template, Config, Pieces, line.gate, line.facing, 2, line.span);
+                    found = c.fits;
+                    anchor = c.anchor;
+                    rot = c.rot;
+                    mirror = c.mirror;
+                    why = c.why;
+                }
+                else
+                {
+                    found = DefenseApproachPlanner.ForGap(map, template, Config, Pieces, choke, out anchor, out rot, out mirror, out string w);
+                    why = w;
+                }
+            }
+            else found = DefensePlanner.FindSpot(template, map, Config, Pieces, choke, out anchor, out rot);
+            if (found)
             {
                 suggestedAnchor = anchor;
                 suggestedRot = rot;
-                suggestedMirror = Config.mirror;
+                suggestedMirror = mirror;
                 Config.rotation = rot;
+                Config.mirror = mirror;
                 Config.Changed();
+                string cheaper = first ? CheaperIfShort(anchor) : null;
                 TemplateMath.RotatedSize(template.Width, template.Height, rot, out int rw, out int rh);
                 CameraJumper.TryJump(new IntVec3(anchor.x + rw / 2, 0, anchor.z + rh / 2), map);
-                Messages.Message("CC_Def_SpotFound".Translate(template.LabelNow, DefenseSurvey.FacingWord(DefenseLayout.Outward(Config.mirror, rot))), MessageTypeDefOf.SilentInput, false);
+                string text = "CC_Def_SpotFound".Translate(template.LabelNow, DefenseSurvey.FacingWord(DefenseLayout.Outward(Config.mirror, rot))).Resolve();
+                if (!why.NullOrEmpty()) text += " " + why;
+                if (!cheaper.NullOrEmpty()) text += " " + cheaper;
+                Messages.Message(text, MessageTypeDefOf.SilentInput, false);
             }
             else
             {
                 suggestedAnchor = IntVec3.Invalid;
-                Messages.Message("CC_Def_NoSpot".Translate(template.LabelNow), MessageTypeDefOf.RejectInput, false);
+                Messages.Message(why.NullOrEmpty() ? "CC_Def_NoSpot".Translate(template.LabelNow).ToString() : why, MessageTypeDefOf.RejectInput, false);
             }
         }
 
@@ -265,7 +386,7 @@ namespace ColonyCouncil
             suggestedAnchor = IntVec3.Invalid;
             try
             {
-                DefenseLines.Of(Map)?.OnPlaced(plan, lineId, Config.closeGap);
+                DefenseLines.Of(Map)?.OnPlaced(plan, lineId, Config.closeGap, Config.leaveOut);
             }
             catch (System.Exception e)
             {

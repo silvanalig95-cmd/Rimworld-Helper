@@ -28,7 +28,7 @@ namespace ColonyCouncil
             if (s == null || !s.Reachable) return 0f;
             var main = s.Main;
             if (main == null) return s.result.enclosed ? 1f : 0f;
-            return (main.gated ? 0.6f : 0f) + 0.4f * Mathf.Clamp01(main.coverInside / (float)Mathf.Max(1, cover));
+            return (main.Held ? 0.6f : 0f) + 0.4f * Mathf.Clamp01(main.coverInside / (float)Mathf.Max(1, cover));
         }
 
         public override string Describe(Map map, float baseline)
@@ -38,7 +38,7 @@ namespace ColonyCouncil
             var main = s.Main;
             if (main == null)
                 return "CC_Goal_WallIn".Translate((s.result.enclosed ? "CC_Goal_HoldWayIn_Done" : "CC_Goal_HoldWayIn_NotYet").Translate()).Resolve();
-            return "CC_Goal_HoldWayIn".Translate(DefenseAdvice.Where(s, main.cell), (main.gated ? "CC_Goal_HoldWayIn_Done" : "CC_Goal_HoldWayIn_NotYet").Translate(),
+            return "CC_Goal_HoldWayIn".Translate(DefenseAdvice.Where(s, main.cell), (main.Held ? "CC_Goal_HoldWayIn_Done" : "CC_Goal_HoldWayIn_NotYet").Translate(),
                 Mathf.Min(main.coverInside, cover), cover).Resolve();
         }
     }

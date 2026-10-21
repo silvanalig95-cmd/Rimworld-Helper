@@ -139,8 +139,12 @@ namespace ColonyCouncil
                 for (int i = 0; i < s.chokes.Count && i < 3; i++)
                 {
                     var c = s.chokes[i];
-                    m.from.Add("CC_Def_GapSummary".Translate(DefenseAdvice.Where(s, c.cell), s.GapWords(c), DefenseSurvey.Cells(c.c.width), Mathf.Max(1, Mathf.RoundToInt(c.c.share * 10f))).Resolve());
+                    string gap = "CC_Def_GapSummary".Translate(DefenseAdvice.Where(s, c.cell), s.GapWords(c), DefenseSurvey.Cells(c.c.width), Mathf.Max(1, Mathf.RoundToInt(c.c.share * 10f))).Resolve();
+                    var holder = s.CoveringLine(c);
+                    if (holder != null) gap += " " + "CC_Def_GapCovered".Translate(DefenseLineReview.NameOf(holder, s.map)).Resolve();
+                    m.from.Add(gap);
                 }
+                if (DefenseSurvey.Dirty(s.map)) m.from.Add("CC_Def_SurveyDirty".Translate());
                 if (s.chokes.Count == 0) m.from.Add("CC_Def_NoGaps".Translate());
             }
 
@@ -344,7 +348,7 @@ namespace ColonyCouncil
             }
             foreach (var info in s.chokes)
                 foreach (int i in info.c.span)
-                    px[i] = info.gated ? CDoor : CGap;
+                    px[i] = info.gated || info.coveredBy >= 0 ? CDoor : CGap;
             var tex = new Texture2D(g.w, g.h, TextureFormat.RGBA32, false) { filterMode = FilterMode.Point, wrapMode = TextureWrapMode.Clamp };
             tex.SetPixels32(px);
             tex.Apply(false, false);

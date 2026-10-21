@@ -476,8 +476,9 @@ namespace ColonyCouncil
         {
             try
             {
-                var pieces = t.ResolveCached(map, out _);
                 var cfg = new DefensePlanConfig { rotation = saved.rotation, mirror = saved.mirror, closeGap = saved.closeGap };
+                foreach (var role in saved.LeftOut) cfg.leaveOut.Add(role);
+                var pieces = cfg.leaveOut.Count > 0 ? t.Resolve(map, out _, cfg) : t.ResolveCached(map, out _);
                 return DefensePlanner.Plan(t, map, saved.anchor, cfg, pieces, true);
             }
             catch (Exception e)

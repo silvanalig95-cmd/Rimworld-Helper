@@ -248,6 +248,8 @@ namespace ColonyCouncil
             // Role by role, walls first, so gates and embrasures can match the walls.
             foreach (var p in DefenseLayout.Roles.SelectMany(r => g.pieces.Where(x => x.role == r)))
             {
+                // Planned without (a corridor with its sides left open): that ground is left as it is.
+                if (cfg != null && cfg.leaveOut.Contains(p.role)) continue;
                 if (!chosen.TryGetValue((p.role, p.w, p.h), out var def))
                 {
                     def = Pick(p.role, map, p.w, p.h, cfg);
