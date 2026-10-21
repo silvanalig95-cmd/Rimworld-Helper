@@ -19,6 +19,8 @@ namespace ColonyCouncil
         public readonly Dictionary<string, ThingDef> variant = new Dictionary<string, ThingDef>();
         public readonly Dictionary<string, ThingDef> stuff = new Dictionary<string, ThingDef>();
         public readonly HashSet<string> pickedNow = new HashSet<string>();
+        /// <summary>Roles planned without (a trap corridor with its sides left open, so raiders aren't turned away).</summary>
+        public readonly HashSet<string> leaveOut = new HashSet<string>();
         public int version;
 
         public const string Scope = "defense";
@@ -46,8 +48,25 @@ namespace ColonyCouncil
         public void StartSession()
         {
             pickedNow.Clear();
+            leaveOut.Clear();
             LoadRemembered();
             Changed();
+        }
+
+        /// <summary>
+        /// For the first proposal of a plan only: forget the remembered material picks for this session, so each part is
+        /// chosen again from what's in stock (nothing in the settings is changed).
+        /// </summary>
+        public void FromStockForNow()
+        {
+            stuff.Clear();
+            pickedNow.Clear();
+            Changed();
+        }
+
+        public void LeaveOut(string role, bool leave)
+        {
+            if (leave ? leaveOut.Add(role) : leaveOut.Remove(role)) Changed();
         }
 
         public void PickStuff(string role, ThingDef s)
@@ -109,6 +128,7 @@ namespace ColonyCouncil
             foreach (var kv in variant) c.variant[kv.Key] = kv.Value;
             foreach (var kv in stuff) c.stuff[kv.Key] = kv.Value;
             foreach (var g in pickedNow) c.pickedNow.Add(g);
+            foreach (var r in leaveOut) c.leaveOut.Add(r);
             return c;
         }
     }

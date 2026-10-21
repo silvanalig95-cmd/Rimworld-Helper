@@ -13,8 +13,12 @@ namespace ColonyCouncil
         public bool mirror;
         public bool closeGap = true;
         public int tick;
+        /// <summary>The roles it was planned without, comma-separated (a trap corridor with its sides left open), or null.</summary>
+        public string leaveOut;
 
         public DefenseTemplateDef Def => template.NullOrEmpty() ? null : DefDatabase<DefenseTemplateDef>.GetNamedSilentFail(template);
+
+        public IEnumerable<string> LeftOut => leaveOut.NullOrEmpty() ? Enumerable.Empty<string>() : leaveOut.Split(',').Where(r => !r.NullOrEmpty());
 
         public void ExposeData()
         {
@@ -24,6 +28,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref mirror, "mirror");
             Scribe_Values.Look(ref closeGap, "closeGap", true);
             Scribe_Values.Look(ref tick, "tick");
+            Scribe_Values.Look(ref leaveOut, "leaveOut");
         }
     }
 

@@ -29,9 +29,11 @@ namespace ColonyCouncil
 
     /// <summary>
     /// The helper's reading of one defense line: where each step of its ladder stands (a step built by hand counts),
-    /// the step to do next, the checks a seasoned player would make (a way round, who sees the gate and from how far,
-    /// what raiders would shelter behind, turrets that would blow each other up or have no power, wood in the wall, a
-    /// gate left shut, darkness, upkeep), each with what to do about it, and a rough strength to set against the raids.
+    /// the step to do next, the checks a seasoned player would make (the busiest way in moving, a way round, who sees
+    /// the gate and from how far, what raiders would shelter behind, turrets that would blow each other up or have no
+    /// power, wood in the wall, a gate left shut and more than one door in the wall, darkness, upkeep), each with what
+    /// to do about it, and a rough strength to set against the raids. Planning a step for the line goes through
+    /// <see cref="PlanAt"/>: plans in front follow the way in, and walls that would turn raiders away are caught first.
     /// Worked out on demand, with the survey: when the survey or the line changes, or after a few seconds while the
     /// Defenses page is open. Never on a tick.
     /// </summary>
@@ -302,7 +304,14 @@ namespace ColonyCouncil
             PlanAt(map, line, t, line.gate, line.facing, step.placeAt, step.distance, step.closeGap);
         }
 
-        public static void PlanAt(Map map, DefenseLine line, DefenseTemplateDef t, IntVec3 at, int facing, string placeAt, int distance, bool closeGap)
+        /// <summary>
+        /// Opens the planner with a plan placed for the line. A plan in front of the line follows the way raiders walk
+        /// up to the gate (<see cref="DefenseApproachPlanner"/>), and says why it stands where it does or why nothing fits.
+        /// A plan that adds walls is checked first against the survey's ways in: when its walls would send most raiders
+        /// another way, the player is told and chooses (<see cref="AskAboutWay"/>).
+        /// </summary>
+        public static void PlanAt(Map map, DefenseLine line, DefenseTemplateDef t, IntVec3 at, int facing, string placeAt, int distance, bool closeGap,
+            ICollection<string> leaveOut = null, bool checkWay = true)
         {
             string reason = t.UnavailableReason(map);
             if (reason != null)
@@ -310,11 +319,108 @@ namespace ColonyCouncil
                 Messages.Message(reason, MessageTypeDefOf.RejectInput, false);
                 return;
             }
-            var pieces = t.ResolveCached(map, out _);
             var cfg = DefensePlanConfig.For(t).Copy();
             cfg.closeGap = closeGap;
-            bool fits = DefensePlanner.FindSpotAt(t, map, cfg, pieces, at, facing, placeAt, distance, true, out var anchor, out int rot, out bool mirror);
-            Designator_PlanDefense.BeginAt(t, anchor, rot, mirror, closeGap, line.id, fits);
+            cfg.leaveOut.Clear();
+            if (leaveOut != null)
+                foreach (var role in leaveOut) cfg.leaveOut.Add(role);
+            var pieces = cfg.leaveOut.Count > 0 ? t.Resolve(map, out _, cfg) : t.ResolveCached(map, out _);
+            IntVec3 anchor;
+            int rot;
+            bool mirror, fits;
+            string why = null;
+            if (DefenseApproachPlanner.Applies(t, placeAt))
+            {
+                var choice = DefenseApproachPlanner.Find(map, t, cfg, pieces, at, facing, distance, line?.span);
+                if (!choice.fits)
+                {
+                    // Nothing on the way in fits: say why, rather than put it somewhere it does no good.
+                    Find.WindowStack.Add(new Dialog_MessageBox(choice.why ?? "CC_Plan_Blocked".Translate().ToString(),
+                        "CC_DefLine_PlaceMyself".Translate(), () => Designator_PlanDefense.BeginBlank(t, line, at, choice.why),
+                        "CC_DefLine_NotNow".Translate(), null, "CC_DefLine_NoFit_Title".Translate(t.LabelCapNow).Resolve()));
+                    return;
+                }
+                anchor = choice.anchor;
+                rot = choice.rot;
+                mirror = choice.mirror;
+                fits = true;
+                why = choice.why;
+            }
+            else fits = DefensePlanner.FindSpotAt(t, map, cfg, pieces, at, facing, placeAt, distance, true, out anchor, out rot, out mirror);
+            if (fits && checkWay && line != null && DefenseWayCheck.Worth(t))
+            {
+                DefenseWayCheck.Result check = null;
+                try
+                {
+                    var trial = cfg.Copy();
+                    trial.rotation = rot;
+                    trial.mirror = mirror;
+                    check = DefenseWayCheck.For(map, line, DefensePlanner.Plan(t, map, anchor, trial, pieces, true));
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("defense line: would its walls turn raiders away", e);
+                }
+                if (check != null && check.TurnedAway)
+                {
+                    AskAboutWay(map, line, t, at, facing, placeAt, distance, closeGap, cfg, anchor, rot, mirror, why, check);
+                    return;
+                }
+            }
+            Designator_PlanDefense.BeginAt(t, anchor, rot, mirror, closeGap, line?.id ?? -1, fits, why, null, cfg.leaveOut);
+        }
+
+        /// <summary>
+        /// The plan's walls would send most raiders another way: says so, and offers what keeps them coming (the walls
+        /// left out, where its sides are all they are and leaving them open keeps the way in), closing the other gap
+        /// first, or the plan as it is with the warning shown in the planner.
+        /// </summary>
+        private static void AskAboutWay(Map map, DefenseLine line, DefenseTemplateDef t, IntVec3 at, int facing, string placeAt, int distance, bool closeGap,
+            DefensePlanConfig cfg, IntVec3 anchor, int rot, bool mirror, string why, DefenseWayCheck.Result check)
+        {
+            string warn = DefenseWayCheck.Words(check, line, map);
+            string text = warn;
+            // Its sides left open: does that keep them coming?
+            bool openKeeps = false;
+            if (DefenseWayCheck.WallsAreSides(t) && !cfg.leaveOut.Contains("wall"))
+            {
+                try
+                {
+                    var open = cfg.Copy();
+                    open.leaveOut.Add("wall");
+                    open.rotation = rot;
+                    open.mirror = mirror;
+                    var openPieces = t.Resolve(map, out _, open);
+                    var again = DefenseWayCheck.For(map, line, DefensePlanner.Plan(t, map, anchor, open, openPieces, true));
+                    openKeeps = again != null && !again.TurnedAway;
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("defense line: the open-sided version", e);
+                }
+            }
+            var s = DefenseSurvey.Kept(map);
+            bool closeOther = check.otherGap >= 0 && check.otherLine == null && s != null && check.otherGap < s.chokes.Count;
+            if (openKeeps) text += "\n\n" + "CC_DefLine_Away_Open".Translate().Resolve();
+            if (closeOther) text += "\n\n" + "CC_DefLine_Away_Close".Translate(check.otherWords).Resolve();
+            if (check.otherLine != null) text += "\n\n" + "CC_DefLine_Away_OtherLine".Translate(check.otherWords).Resolve();
+            text += "\n\n" + "CC_DefLine_Away_Anyway".Translate().Resolve();
+            Action anyway = () => Designator_PlanDefense.BeginAt(t, anchor, rot, mirror, closeGap, line.id, true, why, warn, cfg.leaveOut);
+            Action openSides = () => PlanAt(map, line, t, at, facing, placeAt, distance, closeGap, new List<string>(cfg.leaveOut) { "wall" }, false);
+            var box = new Dialog_MessageBox(text,
+                openKeeps ? "CC_DefLine_Away_OpenButton".Translate().ToString() : "CC_DefLine_Away_AnywayButton".Translate().ToString(),
+                openKeeps ? openSides : anyway,
+                openKeeps ? "CC_DefLine_Away_AnywayButton".Translate().ToString() : "CC_DefLine_NotNow".Translate().ToString(),
+                openKeeps ? anyway : null,
+                "CC_DefLine_Away_Title".Translate().Resolve());
+            if (closeOther)
+            {
+                int gap = check.otherGap;
+                box.buttonCText = "CC_DefLine_Away_CloseButton".Translate(check.otherWords).Resolve();
+                box.buttonCAction = () => Designator_PlanDefense.Begin(DefenseAdvice.GateFor(s, s.chokes[gap]), true, gap);
+                box.buttonCClose = true;
+            }
+            Find.WindowStack.Add(box);
         }
 
         /// <summary>Marks the field of fire's trees and bushes to be cut, its chunks to be hauled and its loose rock to be mined.</summary>
@@ -397,6 +503,7 @@ namespace ColonyCouncil
         private static void Checks(DefenseLineReview r)
         {
             var f = r.f;
+            WayMoved(r, f);
             Leak(r, f);
             Sight(r, f);
             Field(r, f);
@@ -406,6 +513,24 @@ namespace ColonyCouncil
             Gate(r, f);
             Dark(r, f);
             Upkeep(r, f);
+        }
+
+        /// <summary>
+        /// The busiest way in moved after a change (a wall built, a gap closed), within the last day: "Raiders now come by
+        /// the north gap", on every line's card, with a look at where. Said once: it goes when the day is out.
+        /// </summary>
+        private static void WayMoved(DefenseLineReview r, DefenseLineFacts f)
+        {
+            var comp = DefenseLines.Of(f.map);
+            if (comp == null || !comp.WayMovedLately) return;
+            string to = comp.WayWords(f.s, comp.wayTo, comp.wayToLine), from = comp.WayWords(f.s, comp.wayFrom, comp.wayFromLine);
+            bool here = comp.wayToLine == r.line.id;
+            bool gone = comp.wayFromLine == r.line.id;
+            string text = here ? "CC_DefLine_WayHere".Translate(from).Resolve()
+                : gone ? "CC_DefLine_WayGone".Translate(to).Resolve()
+                : "CC_DefLine_WayMoved".Translate(to, from).Resolve();
+            var n = Note(r, "way", text, "CC_DefLine_How_Way".Translate(), here ? 2f : 8f, A("Rimfolk_AlmDef_RaiderWays", "Rimfolk_AlmDef_Lines"), here);
+            if (!here && comp.wayTo.IsValid) n.actions.Add(ShowAction(r, comp.wayTo));
         }
 
         private static void Leak(DefenseLineReview r, DefenseLineFacts f)
@@ -557,16 +682,24 @@ namespace ColonyCouncil
             Note(r, "wood", "CC_DefLine_Walls_Wood".Translate(f.wood, f.parts.Count).Resolve(), "CC_DefLine_How_Wood".Translate(), 4f, A("Rimfolk_AlmDef_WallsGates"));
         }
 
+        /// <summary>
+        /// The gate's state, from the door itself: held open, it brings raiders in; shut, it's still the line's way
+        /// through (the survey counts it so), but raiders break it if there's no other way, so hold it open in a raid.
+        /// More than one door in the line's wall: raiders count each as a way through.
+        /// </summary>
         private static void Gate(DefenseLineReview r, DefenseLineFacts f)
         {
             if (f.door == null || !f.Closed) return;
-            var page = A("Rimfolk_AlmDef_Killbox");
+            var page = A("Rimfolk_AlmDef_RaiderWays", "Rimfolk_AlmDef_Lines", "Rimfolk_AlmDef_Killbox");
+            bool killbox = r.line.aim == "killbox" || StepWorker_Killbox.Built(f) || f.killboxMouth;
+            if (f.doors > 1) Note(r, "doors", "CC_DefLine_Gate_Doors".Translate(f.doors).Resolve(), "CC_DefLine_How_Gate".Translate(), 1.5f, page);
             if (f.door.HoldOpen)
             {
                 Note(r, "gate", "CC_DefLine_Gate_Open".Translate(f.door.LabelShort).Resolve(), "CC_DefLine_How_Gate".Translate(), 0.5f, page, true);
                 return;
             }
-            var n = Note(r, "gate", "CC_DefLine_Gate_Shut".Translate(f.door.LabelShort).Resolve(), "CC_DefLine_How_Gate".Translate(), 2f, page);
+            var n = Note(r, "gate", (killbox ? "CC_DefLine_Gate_ShutKillbox" : "CC_DefLine_Gate_Shut").Translate(f.door.LabelShort).Resolve(),
+                "CC_DefLine_How_Gate".Translate(), 2f, page);
             var door = f.door;
             n.actions.Add(new LineAction
             {

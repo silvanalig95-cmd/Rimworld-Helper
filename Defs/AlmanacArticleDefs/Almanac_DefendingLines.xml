@@ -3,7 +3,7 @@
 
   <!--
     Almanac: Defending the colony, part two. Defense lines built up step by step, where a killbox fits and what goes
-    wrong with one, the field of fire, and keeping a defense up. The killbox itself is explained in
+    wrong with one, the field of fire, keeping a defense up, and how raiders pick their way. The killbox itself is explained in
     Almanac_Defending.xml (Rimfolk_AlmDef_Killbox). Weapon ranges are from the 1.6 weapon defs as the wiki gives them.
   -->
 
@@ -45,7 +45,9 @@
       </li>
       <li>
         <heading>4. Traps on the way in</heading>
-        <text>A walled lane of traps in front of the gate, two wide: traps on one side, something that slows raiders on the other. Raiders don't see traps and take the clear side; your people see them and take the slow one. Traps come now because they work with nobody watching and soften every raid before it reaches the cover. Skip them if your difficulty settings turn traps off, and keep them off the paths your own people walk every day.</text>
+        <text>A walled lane of traps in front of the gate, two wide: traps on one side, something that slows raiders on the other. Raiders don't see traps and take the clear side; your people see them and take the slow one. Traps come now because they work with nobody watching and soften every raid before it reaches the cover. Skip them if your difficulty settings turn traps off, and keep them off the paths your own people walk every day.
+
+The helper lays the lane on the way raiders actually walk up to the gate, its near end a couple of cells out and leading straight to it, inside the passage, with the rock or your own walls as its sides where they fit. It never puts it on or behind the line's own wall or gate, prefers ground you've seen to unexplored ground and as little digging as it can, and says where it put it and why ("On the way to the gate, 2 cells out, using the rock on both sides"), or why it doesn't fit and what would make room. If its walls would make another gap the easier way in, it says so first and offers it with its sides left open.</text>
       </li>
       <li>
         <heading>5. Guns that never sleep</heading>
@@ -94,6 +96,22 @@
       <li>
         <heading>Learning from raids</heading>
         <text>After a raid, the helper looks at what it did to each line it reached: where the raiders came in, what they broke and how the fight went. It keeps those lessons with the line, and they shape the step it suggests next. Look for yourself too: "keeping a defense up" has a short list of what to check.</text>
+      </li>
+      <li>
+        <heading>The gaps a line holds</heading>
+        <text>The survey measures a pass where it is narrowest outside the home area, so once a line stands it often finds the same pass again a few cells off. A gap counts as the line's when its cells are the line's own (its gap, gate or wall), when it is the same pass measured further out, or when it lies on the same ways in within about 12 cells of the line, facing the same side. Such a gap is never offered as a new line: the map and the page show it as covered by the line ("covered by the south-west pass"). A gap on another way in is still offered.</text>
+      </li>
+      <li>
+        <heading>Doors in a line</heading>
+        <text>A line's gate, and every door in its wall, is its way through whether it's shut or not. Raiders who find a gate shut break it rather than walk a long way round, so the helper never goes looking for a new way in because a gate is closed. A door held open counts as open ground; a door elsewhere that raiders would have to break costs them a great deal. The line's card says what a shut gate means: raiders will break it if there's no other way, so hold it open during a raid to keep them coming through.</text>
+      </li>
+      <li>
+        <heading>Walls that send raiders elsewhere</heading>
+        <text>Walls in front of a line can turn raiders away from it as surely as a wall across it: a lane that makes the approach longer or narrower can leave another gap the easier way in. Before the helper proposes a step that adds walls, it walks the survey's ways in again with those walls standing. When most raiders would then go another way, it says so ("These walls would make the north gap the easier way in") and offers what keeps them coming: the same plan with its sides left open, where open sides are enough; closing the other gap first; or the plan as it is, with the warning kept in the planner.</text>
+      </li>
+      <li>
+        <heading>When the ways in move</heading>
+        <text>The ways in are read when the Defenses page opens and kept for up to a day. A wall, door, turret, trap or cover built or taken away within a few cells of a line or a gap has them read again, at most once a game hour, and "Survey again" on the page does it at once. When the busiest way in moves after such a change, the lines' cards say so for a day: "Raiders now come by the north gap".</text>
       </li>
     </sections>
     <keywords>
@@ -399,6 +417,60 @@ With the plan in front of you, it says where the wall stops short of the rock (a
       <li>Rimfolk_AlmDef_KillboxMistakes</li>
       <li>Rimfolk_AlmDef_Fallback</li>
     </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Rimfolk_AlmDef_RaiderWays</defName>
+    <label>how raiders pick their way</label>
+    <category>Defending</category>
+    <order>38</order>
+    <summary>The cheapest way in, what makes a way dear, and why a killbox has to stay the easiest</summary>
+    <tip>Raiders don't see your traps, but they do count your walls.</tip>
+    <description>Raiders who walk in from the edge of the map make for your people by the way that costs them least. Most of a good defense is seeing that this way is the one you built for them, and not undoing it by accident.</description>
+    <sections>
+      <li>
+        <heading>The cheapest way</heading>
+        <text>Ordinary raiders walk the easiest way they can find to what they're after: your people, and turrets that are shooting at them. Every step costs them something. Open ground costs least; mud, shallow water and climbing over sandbags or a fence cost more. They take the way that costs least in all, however long and winding it is.</text>
+      </li>
+      <li>
+        <heading>What makes a way dear</heading>
+        <points>
+          <li>A wall or a closed door they would have to break adds a great deal. In the helper's own reckoning a door to break costs about as much as thirty cells of walking. The game keeps its own sums, but the lesson holds: an open way, even a long one, beats one they have to break into.</li>
+          <li>They can't open your doors, so to them a closed door is an obstacle: a weak bit of wall. A door held open is open ground.</li>
+          <li>While any open way is left, a wall is no way at all. With none left, each raider breaks in wherever it's cheapest for him.</li>
+          <li>They don't see traps, so a trap costs them nothing and doesn't change their way. A few (sappers among them) know where some of your traps are and step round those.</li>
+        </points>
+      </li>
+      <li>
+        <heading>So a killbox has to stay the easiest way in</heading>
+        <text>Everything a killbox does rests on this. Leave its way in open, or hold its gate open when a raid comes. Keep its entrance short. Don't let another door stand much nearer the raiders than the killbox's mouth. And when you build in front of it, see that the new walls don't make another gap the easier way: walls along an approach can do that as surely as a wall across it.</text>
+      </li>
+      <li>
+        <heading>How the helper reads it</heading>
+        <text>The Defenses page works the ways in out the same way, roughly: from a sample of the map's edge it follows the cheapest way to the home area, counting a door to break as dear. A defense line's gate, and the doors in its wall, count as its way through even when shut, since raiders who find a gate shut break it rather than walk far round; a door held open counts as open. Before it proposes a step that adds walls, it walks the ways in again with those walls standing and tells you if most raiders would then go elsewhere.
+
+It is an estimate. Raids that drop in, dig or breach don't walk in at all, and a raid that arrives at one edge doesn't care how easy another edge is.</text>
+      </li>
+    </sections>
+    <keywords>
+      <li>raider path</li>
+      <li>pathing</li>
+      <li>way in</li>
+      <li>cheapest way</li>
+      <li>hold open</li>
+      <li>doors</li>
+      <li>walls</li>
+      <li>traps</li>
+    </keywords>
+    <seeAlso>
+      <li>Rimfolk_AlmDef_Killbox</li>
+      <li>Rimfolk_AlmDef_Lines</li>
+      <li>Rimfolk_AlmDef_ChokePoints</li>
+      <li>Rimfolk_AlmDef_Traps</li>
+      <li>Rimfolk_AlmDef_KillboxMistakes</li>
+      <li>Rimfolk_AlmDef_WallsGates</li>
+    </seeAlso>
+    <approximate>true</approximate>
   </ColonyCouncil.AlmanacArticleDef>
 
 </Defs>

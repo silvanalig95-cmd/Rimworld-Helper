@@ -147,6 +147,12 @@ namespace ColonyCouncil
             else if (f.traps > 0) Band(r, f.traps / (float)Need, "CC_DefLine_Traps_Some".Translate(f.traps, Need).Resolve());
             var p = f.BestPlan(r.template);
             if (p != null && p.Progress > r.progress) Band(r, p.Progress, "CC_DefLine_Left_Plan".Translate(p.built, p.total).Resolve());
+            // Where its plan would go on the way in, or why it wouldn't fit there (worked out once per survey and line).
+            if (r.state != StepState.Done && r.template != null && r.template.UnavailableReason(f.map) == null && DefenseApproachPlanner.Applies(r.template, r.placeAt))
+            {
+                var trial = DefenseApproachPlanner.TrialFor(f, r.template, r.distance);
+                if (!(trial?.why).NullOrEmpty()) r.notes.Add(trial.fits ? trial.why : "CC_DefLine_Approach_NoRoomNote".Translate(trial.why).Resolve());
+            }
             return r;
         }
     }

@@ -9,7 +9,8 @@ namespace ColonyCouncil
     /// water, a bridge, a gate in the colony's own wall), and whether the colony is walled in.
     /// <para>
     /// The way in is worked out once from home outward (Dijkstra over the walkable cells, doors costing extra, as raiders
-    /// would have to break them), then every reachable edge cell walks downhill to home. Raids come from a random
+    /// would have to break them; a defense line's gate and a door held open cost nothing, see <see cref="MapGrid.free"/>),
+    /// then every reachable edge cell walks downhill to home. Raids come from a random
     /// reachable edge cell, so the share of those walks that pass a place is about the share of raids that will.
     /// </para>
     /// </summary>
@@ -37,6 +38,11 @@ namespace ColonyCouncil
             public readonly bool[] home;
             /// <summary>Where people sleep and live: what "walled in" protects. Falls back to home.</summary>
             public readonly bool[] core;
+            /// <summary>
+            /// Doors raiders count as open ground: a defense line's gate and the doors in its wall (the line's way
+            /// through, shut or not: they break a shut gate rather than go far round), and any door held open.
+            /// </summary>
+            public readonly bool[] free;
             public int centerX, centerZ;
             /// <summary>Nothing can be built this close to the map's edge (the game's own margin): no choke point there.</summary>
             public int noBuildEdge;
@@ -49,6 +55,7 @@ namespace ColonyCouncil
                 cost = new int[w * h];
                 home = new bool[w * h];
                 core = new bool[w * h];
+                free = new bool[w * h];
                 centerX = w / 2;
                 centerZ = h / 2;
             }
@@ -56,6 +63,9 @@ namespace ColonyCouncil
             public int Index(int x, int z) => z * w + x;
             public bool In(int x, int z) => x >= 0 && z >= 0 && x < w && z < h;
             public bool Passable(int i) => kind[i] == Open || kind[i] == Door || kind[i] == Bridge;
+
+            /// <summary>A door raiders would have to break: neither a line's way through nor held open.</summary>
+            public bool ShutDoor(int i) => kind[i] == Door && !free[i];
         }
 
         public class Route
@@ -87,6 +97,8 @@ namespace ColonyCouncil
             public int fromHome;
             /// <summary>Which edges the raids passing here come from (bit per side).</summary>
             public int sides;
+            /// <summary>The sampled walks that pass here (their numbers in <see cref="Result.walked"/>).</summary>
+            public List<int> walks = new List<int>();
         }
 
         public class Result
@@ -101,6 +113,8 @@ namespace ColonyCouncil
             public int walks;
             /// <summary>A few of the walks, for the map: up to three per side.</summary>
             public List<Route> shown = new List<Route>();
+            /// <summary>Every sampled walk's cells, edge to home, by its number: which gaps and lines share a way in.</summary>
+            public List<int[]> walked = new List<int[]>();
             public List<Choke> chokes = new List<Choke>();
             /// <summary>No way from any map edge to where people live without passing a door.</summary>
             public bool enclosed;
@@ -195,6 +209,7 @@ namespace ColonyCouncil
                 route.side = side;
                 foreach (int c in route.cells) r.flow[c]++;
                 r.walks++;
+                r.walked.Add(route.cells.ToArray());
                 perSide[side].Add(route);
                 var cand = Narrowest(m, route, sources, minOut);
                 if (cand.width > 0) candidates.Add((routeId, cand.cell, cand.width, cand.axis, cand.span, cand.a, cand.b, cand.outX, cand.outZ, cand.fromHome, side));
@@ -260,6 +275,8 @@ namespace ColonyCouncil
             foreach (var g in groups)
             {
                 g.choke.routes = g.routes.Count;
+                g.choke.walks = new List<int>(g.routes);
+                g.choke.walks.Sort();
                 g.choke.share = r.walks > 0 ? g.routes.Count / (float)r.walks : 0f;
                 // Many walks: their summed outward direction decides, along the span's own axis.
                 bool alongZ = g.choke.facing == 0 || g.choke.facing == 2;
@@ -339,8 +356,9 @@ namespace ColonyCouncil
             return m.Passable(m.Index(x + DX[d], z)) && m.Passable(m.Index(x, z + DZ[d]));
         }
 
-        private static int StepCost(MapGrid m, int to, int d) =>
-            (d < 4 ? Ortho : Diag) + System.Math.Max(0, System.Math.Min(m.cost[to], 600)) + (m.kind[to] == Door ? DoorCost : 0);
+        /// <summary>What a step onto a cell costs: the walk, the ground, and a door to break (not a line's gate, nor one held open).</summary>
+        public static int StepCost(MapGrid m, int to, int d) =>
+            (d < 4 ? Ortho : Diag) + System.Math.Max(0, System.Math.Min(m.cost[to], 600)) + (m.ShutDoor(to) ? DoorCost : 0);
 
         /// <summary>The cost of the easiest way from every cell to the sources (Dijkstra from all of them at once); -1 where there's none.</summary>
         public static int[] Distances(MapGrid m, bool[] sources)

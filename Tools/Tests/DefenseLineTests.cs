@@ -236,6 +236,8 @@ public static class DefenseLineTests
 
         // ---------- The step ladder ----------
         checks += StepDefs(root, Check);
+        // ---------- The door rule, gaps a line holds, the way up to a gate and what goes on it ----------
+        checks += DefenseApproachTests.Run(root, check);
         return checks;
     }
 

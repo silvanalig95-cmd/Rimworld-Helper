@@ -714,11 +714,17 @@ namespace ColonyCouncil
                     }
             }
             var spots = new List<(IntVec3 cell, int facing)>();
-            if (chokeIndex >= 0 && chokeIndex < s.chokes.Count) spots.Add((s.chokes[chokeIndex].cell, s.chokes[chokeIndex].c.facing));
+            // A gap a line holds already: at that line's gate, facing its way.
+            (IntVec3, int) Spot(DefenseSurvey.ChokeInfo c)
+            {
+                var line = s.CoveringLine(c);
+                return line != null && line.gate.InBounds(s.map) ? (line.gate, DefenseLineMath.Norm(line.facing)) : (c.cell, c.c.facing);
+            }
+            if (chokeIndex >= 0 && chokeIndex < s.chokes.Count) spots.Add(Spot(s.chokes[chokeIndex]));
             else
             {
-                foreach (var c in s.chokes.Where(c => !c.gated || t.kind != "gate").Take(3)) spots.Add((c.cell, c.c.facing));
-                foreach (var c in s.chokes.Where(c => c.gated && t.kind == "gate").Take(1)) spots.Add((c.cell, c.c.facing));
+                foreach (var c in s.chokes.Where(c => !c.Held || t.kind != "gate").Take(3)) spots.Add(Spot(c));
+                foreach (var c in s.chokes.Where(c => c.Held && t.kind == "gate").Take(1)) spots.Add(Spot(c));
             }
             if (spots.Count == 0 && s.approach.IsValid) spots.Add((s.approach, s.approachFacing));
             var core = s.bedCenter.IsValid ? s.bedCenter : s.center;

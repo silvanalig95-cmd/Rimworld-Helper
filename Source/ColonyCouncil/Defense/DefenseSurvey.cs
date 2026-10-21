@@ -11,8 +11,11 @@ namespace ColonyCouncil
     /// The colony's situation for its defense, read from the map: where raiders can come from and the narrow places on
     /// their way (<see cref="DefenseMath"/>), what already defends it, what it can build, who fights, and the threats it
     /// faces (the raids its wealth buys, the hostile peoples around, the DLC threats that are on). Worked out on demand,
-    /// never more than once a game hour unless asked, and kept until the colony's buildings change a lot or a day has
-    /// passed. Nothing here ticks.
+    /// never more than once a game hour unless asked, and kept until a day has passed, the colony's buildings change a
+    /// lot, or a wall, door, turret, trap or cover is finished or taken away near a line or a gap (<see cref="Notify_Changed"/>,
+    /// one look per building, from the game's own construction and despawning). The door rule: a defense line's gate and
+    /// the doors in its wall are its way through, and a door held open is open, so a shut gate never sends the ways in
+    /// elsewhere. A gap a line holds already is marked as that line's (<see cref="CoveringLine"/>). Nothing here ticks.
     /// </summary>
     public class DefenseSurvey
     {
@@ -66,7 +69,13 @@ namespace ColonyCouncil
             /// <summary>A gate (door) already closes the gap: in the colony's wall, or between the rock faces.</summary>
             public bool gated;
             public int coverInside, trapsOutside, turretsNear, woodWalls;
+            /// <summary>The defense line that holds this gap already (its id), or -1; how; and whether that line's gate stands.</summary>
+            public int coveredBy = -1;
+            public DefenseLineMath.Covered coverHow;
+            public bool lineHeld;
             public IntVec3 Outward => IntVec3.North.RotatedBy(new Rot4(c.facing));
+            /// <summary>Held by a gate: its own, or the one of the line that holds it.</summary>
+            public bool Held => gated || coveredBy >= 0 && lineHeld;
         }
 
         public bool Reachable => result != null && !result.unreachable;
@@ -87,6 +96,7 @@ namespace ColonyCouncil
             {
                 cache.Clear();
                 failed.Clear();
+                dirty.Clear();
                 cacheGame = Current.Game;
             }
             int now = Find.TickManager.TicksGame;
@@ -95,17 +105,20 @@ namespace ColonyCouncil
                 int age = now - s.tick;
                 if (age >= 0 && age < GenDate.TicksPerHour) return s;
                 int count = map.listerBuildings.allBuildingsColonist.Count;
-                bool changed = Mathf.Abs(count - s.buildings) >= Mathf.Max(6, s.buildings / 30);
+                bool changed = dirty.Contains(map) || Mathf.Abs(count - s.buildings) >= Mathf.Max(6, s.buildings / 30);
                 if (age >= 0 && age < GenDate.TicksPerDay && !changed) return s;
             }
             // A map the survey couldn't read isn't tried again for an hour (the page asks every second).
             if (s == null && !force && failed.TryGetValue(map, out int failedAt) && now - failedAt >= 0 && now - failedAt < GenDate.TicksPerHour) return null;
             // Maps that have gone (a camp left, a site abandoned) are let go.
             if (cache.Count > 0) Prune(cache);
+            if (dirty.Count > 1 && Find.Maps != null) dirty.RemoveWhere(m => m != map && !Find.Maps.Contains(m));
+            bool first = s == null;
             try
             {
                 s = Survey(map);
                 failed.Remove(map);
+                dirty.Remove(map);
             }
             catch (Exception e)
             {
@@ -118,10 +131,79 @@ namespace ColonyCouncil
                 s.tick = now;
             }
             cache[map] = s;
+            // The busiest way in moved (a wall built, a gap closed): the lines say so once.
+            try
+            {
+                DefenseLines.Of(map)?.NoteMainWay(s, first);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("defense survey: the busiest way in", e);
+            }
             return s;
         }
 
         private static readonly Dictionary<Map, int> failed = new Dictionary<Map, int>();
+        private static readonly HashSet<Map> dirty = new HashSet<Map>();
+
+        /// <summary>Something that changes the ways in was built or taken away near a line or a gap: the survey is made again once it's an hour old.</summary>
+        public static void MarkDirty(Map map)
+        {
+            if (map != null) dirty.Add(map);
+        }
+
+        /// <summary>The survey is waiting to be made again (after a change near a line or a gap).</summary>
+        public static bool Dirty(Map map) => map != null && dirty.Contains(map);
+
+        /// <summary>How close to a line or a known gap a change has to be to count.</summary>
+        public const int NearChange = 6;
+
+        /// <summary>
+        /// A building was finished or is going (built, destroyed, taken down or uninstalled): if it's a wall, a door, a
+        /// turret, a trap, cover, a fence or rock, within a few cells of a defense line or a gap the survey found, the
+        /// survey is marked to be made again. One look per event, nothing kept.
+        /// </summary>
+        public static void Notify_Changed(Map map, IntVec3 cell, ThingDef def, Faction faction)
+        {
+            if (map == null || def?.building == null || !cell.IsValid || dirty.Contains(map) || !map.IsPlayerHome) return;
+            bool rock = def.building.isNaturalRock || def.mineable && faction == null;
+            if (!rock && faction != Faction.OfPlayer) return;
+            if (!rock && !Matters(def)) return;
+            if (NearLineOrGap(map, cell)) dirty.Add(map);
+        }
+
+        /// <summary>Buildings that change how raiders walk in or meet a line.</summary>
+        private static bool Matters(ThingDef def) =>
+            def.IsDoor || TemplatePlanner.IsWallLike(def) || def.passability == Traversability.Impassable || Avail.IsTrap(def) || Avail.IsCover(def)
+            || def.building.isFence || def.thingClass != null && typeof(Building_Turret).IsAssignableFrom(def.thingClass);
+
+        private static bool NearLineOrGap(Map map, IntVec3 cell)
+        {
+            var lines = DefenseLines.Of(map)?.lines;
+            if (lines != null)
+                foreach (var l in lines)
+                {
+                    if (Close(cell, l.gate, Mathf.Max(NearChange, l.width / 2 + NearChange))) return true;
+                    foreach (var c in l.span)
+                        if (Close(cell, c, NearChange)) return true;
+                    // Or on (or just by) a plan placed for the line: a trap corridor out in front, a killbox behind.
+                    foreach (var p in l.plans)
+                    {
+                        var t = p.Def;
+                        if (t == null) continue;
+                        TemplateMath.RotatedSize(t.Width, t.Height, p.rotation, out int w, out int h);
+                        if (cell.x >= p.anchor.x - 2 && cell.x < p.anchor.x + w + 2 && cell.z >= p.anchor.z - 2 && cell.z < p.anchor.z + h + 2) return true;
+                    }
+                }
+            var s = Kept(map);
+            if (s?.grid == null) return false;
+            foreach (var info in s.chokes)
+                foreach (int i in info.c.span)
+                    if (Close(cell, new IntVec3(i % s.grid.w, 0, i / s.grid.w), NearChange)) return true;
+            return false;
+        }
+
+        private static bool Close(IntVec3 a, IntVec3 b, int d) => Mathf.Abs(a.x - b.x) <= d && Mathf.Abs(a.z - b.z) <= d;
 
         private static void Prune(Dictionary<Map, DefenseSurvey> kept)
         {
@@ -141,6 +223,7 @@ namespace ColonyCouncil
         {
             cache.Clear();
             failed.Clear();
+            dirty.Clear();
         }
 
         private static DefenseSurvey Survey(Map map)
@@ -202,7 +285,197 @@ namespace ColonyCouncil
             else
                 foreach (var c in GenRadial.RadialCellsAround(s.center, 5f, true))
                     if (c.InBounds(map)) m.core[m.Index(c.x, c.z)] = true;
+            Doors(map, m);
             return m;
+        }
+
+        /// <summary>
+        /// The door rule on the grid: a door held open is open ground to raiders, and so is every defense line's gate and
+        /// each door in its wall (a shut gate is still the line's way through: raiders break it rather than go far round).
+        /// </summary>
+        private static void Doors(Map map, DefenseMath.MapGrid m)
+        {
+            foreach (var b in Avail.ColonyBuildings(map, d => d.IsDoor))
+            {
+                if (!(b is Building_Door door) || !door.HoldOpen || !b.Position.InBounds(map)) continue;
+                int i = m.Index(b.Position.x, b.Position.z);
+                if (m.kind[i] == DefenseMath.Door) m.free[i] = true;
+            }
+            var lines = DefenseLines.Of(map)?.lines;
+            if (lines == null) return;
+            foreach (var l in lines)
+            {
+                if (l.gate.InBounds(map)) DefenseLineMath.MarkLineDoors(m, l.gate.x, l.gate.z, l.facing);
+                // A door anywhere across the line's gap is its gate too, wherever the line's own mark stands.
+                foreach (var c in l.span)
+                {
+                    if (!c.InBounds(map)) continue;
+                    int i = m.Index(c.x, c.z);
+                    if (m.kind[i] == DefenseMath.Door) m.free[i] = true;
+                }
+            }
+        }
+
+        // ---------------- The grid as it stands now ----------------
+
+        /// <summary>Changes to the survey's grid that are put back when it's disposed.</summary>
+        public sealed class GridPatch : IDisposable
+        {
+            private readonly DefenseMath.MapGrid g;
+            private readonly List<(int i, byte k, bool f, int c)> undo = new List<(int, byte, bool, int)>();
+
+            public GridPatch(DefenseMath.MapGrid g)
+            {
+                this.g = g;
+            }
+
+            public void Set(int i, byte kind, bool free, int cost)
+            {
+                if (g == null || i < 0 || i >= g.w * g.h) return;
+                undo.Add((i, g.kind[i], g.free[i], g.cost[i]));
+                g.kind[i] = kind;
+                g.free[i] = free;
+                g.cost[i] = cost;
+            }
+
+            public void Dispose()
+            {
+                if (g == null) return;
+                for (int u = undo.Count - 1; u >= 0; u--)
+                {
+                    var (i, k, f, c) = undo[u];
+                    g.kind[i] = k;
+                    g.free[i] = f;
+                    g.cost[i] = c;
+                }
+                undo.Clear();
+            }
+        }
+
+        /// <summary>
+        /// The cells within <paramref name="radius"/> of a place read again from the map into the grid (what's been built,
+        /// mined or held open since the survey counts), with the door rule for the lines there; put back on dispose.
+        /// </summary>
+        public GridPatch PatchAround(IntVec3 at, int radius)
+        {
+            var patch = new GridPatch(grid);
+            if (grid == null || map == null || !at.InBounds(map)) return patch;
+            var player = Faction.OfPlayer;
+            var pg = map.pathing?.Normal?.pathGrid;
+            for (int dx = -radius; dx <= radius; dx++)
+                for (int dz = -radius; dz <= radius; dz++)
+                {
+                    var c = new IntVec3(at.x + dx, 0, at.z + dz);
+                    if (!c.InBounds(map)) continue;
+                    int i = grid.Index(c.x, c.z);
+                    byte k = KindAt(map, c, player, pg, out int cost);
+                    bool free = k == DefenseMath.Door && (grid.free[i] && grid.kind[i] == DefenseMath.Door || c.GetEdifice(map) is Building_Door d && d.HoldOpen);
+                    if (k != grid.kind[i] || cost != grid.cost[i] || free != grid.free[i]) patch.Set(i, k, free, cost);
+                }
+            var lines = DefenseLines.Of(map)?.lines;
+            if (lines == null) return patch;
+            foreach (var l in lines)
+            {
+                if (!l.gate.InBounds(map) || Mathf.Abs(l.gate.x - at.x) > radius + 20 || Mathf.Abs(l.gate.z - at.z) > radius + 20) continue;
+                foreach (int i in DefenseLineMath.LineCells(grid, l.gate.x, l.gate.z, l.facing, 20))
+                    if (grid.kind[i] == DefenseMath.Door && !grid.free[i]) patch.Set(i, DefenseMath.Door, true, grid.cost[i]);
+                foreach (var c in l.span)
+                {
+                    if (!c.InBounds(map)) continue;
+                    int i = grid.Index(c.x, c.z);
+                    if (grid.kind[i] == DefenseMath.Door && !grid.free[i]) patch.Set(i, DefenseMath.Door, true, grid.cost[i]);
+                }
+                // A double gate: the door right behind it is the line's too.
+                var inner = l.gate - l.Outward;
+                for (int k = 0; k < 2 && inner.InBounds(map); k++, inner -= l.Outward)
+                {
+                    int i = grid.Index(inner.x, inner.z);
+                    if (grid.kind[i] != DefenseMath.Door) break;
+                    if (!grid.free[i]) patch.Set(i, DefenseMath.Door, true, grid.cost[i]);
+                }
+            }
+            return patch;
+        }
+
+        // ---------------- Gaps the lines hold ----------------
+
+        private int coverHash = int.MinValue;
+
+        private static int LinesHash(Map map, DefenseLines comp)
+        {
+            if (comp == null) return 0;
+            int h = 17;
+            foreach (var l in comp.lines)
+            {
+                h = h * 31 + l.id;
+                h = h * 31 + l.gate.x * 1000 + l.gate.z;
+                h = h * 31 + l.facing;
+                h = h * 31 + (l.gate.InBounds(map) && l.gate.GetEdifice(map) is Building_Door ? 1 : 0);
+            }
+            return h * 31 + comp.lines.Count;
+        }
+
+        /// <summary>What the survey knows of a line: its cells on the grid and the sampled walks through it.</summary>
+        public DefenseLineMath.LineShape Shape(DefenseLine l)
+        {
+            var shape = new DefenseLineMath.LineShape { id = l.id, gx = l.gate.x, gz = l.gate.z, facing = DefenseLineMath.Norm(l.facing) };
+            if (grid == null || !l.gate.InBounds(map)) return shape;
+            shape.cells = DefenseLineMath.ShapeCells(grid, l.gate.x, l.gate.z, shape.facing, l.span.Where(c => c.InBounds(map)).Select(c => grid.Index(c.x, c.z)));
+            shape.walks = DefenseLineMath.WalksThrough(result?.walked, shape.cells, grid);
+            return shape;
+        }
+
+        /// <summary>Marks the gaps the lines hold already, when the lines (or their gates) have changed since it was last done.</summary>
+        public void RefreshCover()
+        {
+            var comp = DefenseLines.Of(map);
+            int hash = LinesHash(map, comp);
+            if (hash == coverHash) return;
+            coverHash = hash;
+            foreach (var c in chokes)
+            {
+                // A gap that was a line's and isn't any more is counted round itself again.
+                if (c.coveredBy >= 0) Around(map, c, c.cell, c.Outward);
+                c.coveredBy = -1;
+                c.coverHow = DefenseLineMath.Covered.No;
+                c.lineHeld = false;
+            }
+            if (comp == null || comp.lines.Count == 0 || grid == null || result == null) return;
+            try
+            {
+                var shapes = comp.lines.Select(Shape).ToList();
+                foreach (var c in chokes)
+                {
+                    int k = DefenseLineMath.CoveredBy(grid, c.c, shapes, out var how);
+                    if (k < 0) continue;
+                    var line = comp.lines[k];
+                    c.coveredBy = line.id;
+                    c.coverHow = how;
+                    c.lineHeld = line.gate.InBounds(map) && line.gate.GetEdifice(map) is Building_Door;
+                    // Its cover, traps and turrets are the line's: counted round the line's gate.
+                    if (line.gate.InBounds(map)) Around(map, c, line.gate, line.Outward);
+                }
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("defense survey: gaps the lines hold", e);
+            }
+        }
+
+        /// <summary>The defense line that holds a gap already (its cells, the same pass a few cells off, or the same ways in), or null.</summary>
+        public DefenseLine CoveringLine(ChokeInfo c)
+        {
+            if (c == null) return null;
+            RefreshCover();
+            return c.coveredBy >= 0 ? DefenseLines.Of(map)?.Get(c.coveredBy) : null;
+        }
+
+        /// <summary>The busiest gap a line holds, or null.</summary>
+        public ChokeInfo GapOf(DefenseLine line)
+        {
+            if (line == null) return null;
+            RefreshCover();
+            return chokes.FirstOrDefault(c => c.coveredBy == line.id);
         }
 
         /// <summary>
@@ -445,17 +718,7 @@ namespace ColonyCouncil
                 // Held when every way across the gap is a door: a gate in the colony's wall, or doors filling a narrow pass
                 // between rock faces. A door with open ground beside it (a wall half built) holds nothing.
                 info.gated = c.doors > 0 && c.doors >= c.span.Count;
-                var outward = info.Outward;
-                foreach (var b in Avail.ColonyBuildings(map, d => Avail.IsCover(d) || Avail.IsTrap(d) || d.thingClass != null && typeof(Building_Turret).IsAssignableFrom(d.thingClass) || d.IsWall))
-                {
-                    var off = b.Position - info.cell;
-                    int ahead = off.x * outward.x + off.z * outward.z;
-                    float dist = off.LengthHorizontal;
-                    if (Avail.IsCover(b.def) && ahead <= 0 && dist <= 9f) info.coverInside++;
-                    else if (Avail.IsTrap(b.def) && ahead >= 0 && dist <= 14f) info.trapsOutside++;
-                    else if (b.def.IsWall && dist <= 3.5f && b.Stuff?.stuffProps?.categories != null && b.Stuff.stuffProps.categories.Contains(StuffCategoryDefOf.Woody)) info.woodWalls++;
-                    else if (b.def.thingClass != null && typeof(Building_Turret).IsAssignableFrom(b.def.thingClass) && !DefenseTemplateDef.IsMortar(b.def) && dist <= 16f) info.turretsNear++;
-                }
+                Around(map, info, info.cell, info.Outward);
                 s.chokes.Add(info);
             }
             // Open country: where the busiest side's middle way in is a few steps outside home.
@@ -476,6 +739,22 @@ namespace ColonyCouncil
                 int dx = back % s.grid.w - cell % s.grid.w, dz = back / s.grid.w - cell / s.grid.w;
                 s.approach = new IntVec3(cell % s.grid.w, 0, cell / s.grid.w);
                 s.approachFacing = Mathf.Abs(dz) >= Mathf.Abs(dx) ? (dz >= 0 ? 0 : 2) : (dx >= 0 ? 1 : 3);
+            }
+        }
+
+        /// <summary>What stands round a gap (or the gate of the line that holds it): cover behind, traps in front, turrets near, wooden walls.</summary>
+        private static void Around(Map map, ChokeInfo info, IntVec3 at, IntVec3 outward)
+        {
+            info.coverInside = info.trapsOutside = info.turretsNear = info.woodWalls = 0;
+            foreach (var b in Avail.ColonyBuildings(map, d => Avail.IsCover(d) || Avail.IsTrap(d) || d.thingClass != null && typeof(Building_Turret).IsAssignableFrom(d.thingClass) || d.IsWall))
+            {
+                var off = b.Position - at;
+                int ahead = off.x * outward.x + off.z * outward.z;
+                float dist = off.LengthHorizontal;
+                if (Avail.IsCover(b.def) && ahead <= 0 && dist <= 9f) info.coverInside++;
+                else if (Avail.IsTrap(b.def) && ahead >= 0 && dist <= 14f) info.trapsOutside++;
+                else if (b.def.IsWall && dist <= 3.5f && b.Stuff?.stuffProps?.categories != null && b.Stuff.stuffProps.categories.Contains(StuffCategoryDefOf.Woody)) info.woodWalls++;
+                else if (b.def.thingClass != null && typeof(Building_Turret).IsAssignableFrom(b.def.thingClass) && !DefenseTemplateDef.IsMortar(b.def) && dist <= 16f) info.turretsNear++;
             }
         }
 

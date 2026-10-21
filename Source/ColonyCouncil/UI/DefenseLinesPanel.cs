@@ -105,6 +105,7 @@ namespace ColonyCouncil
         {
             var map = s.map;
             var opts = new List<FloatMenuOption>();
+            // Gaps a line holds already (its own cells, the same pass a few cells off, the same ways in) aren't offered again.
             foreach (var c in s.chokes.OrderByDescending(c => c.c.share))
             {
                 if (comp.ForChoke(s, c) != null) continue;
@@ -123,6 +124,13 @@ namespace ColonyCouncil
         {
             var comp = DefenseLines.Of(s?.map);
             if (comp == null || choke < 0 || choke >= s.chokes.Count) return;
+            // A gap a line holds already opens that line.
+            var there = comp.ForChoke(s, s.chokes[choke]);
+            if (there != null)
+            {
+                Open(s.map, there);
+                return;
+            }
             Made(s.map, comp.FromChoke(s, s.chokes[choke]));
         }
 

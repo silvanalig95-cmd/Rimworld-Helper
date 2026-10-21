@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## A defense helper that reads your line
+
+*25 October 2026, later, version 0.9.7*
+
+- The defense helper knows a pass your line already holds: a gap just in front of it, or the same pass measured further out, now reads "covered by the south-west pass" and is no longer offered as a new line. Your gate, the doors in the line's wall and a door across its gap count as its way through even when shut, so a closed gate never makes it look for another way in; the line's card says to hold the gate open during a raid.
+- "Plan this step" lays the trap corridor on the raiders' own route to your gate, in front of the line, using the rock for its sides where it can, and says why it chose that spot, or why nothing fits and what would make room.
+- Before it proposes walls, the helper checks whether they would send raiders another way, and offers to leave the corridor's sides open or to close the other gap first. It reads the map again when you build or take down walls, doors, traps or cover near a line ("Survey again" does it at once), and the line cards say when raiders' way in has moved. A new Almanac page explains how raiders pick their way.
+
 ## Panels in the background
 
 *25 October 2026, version 0.9.6*

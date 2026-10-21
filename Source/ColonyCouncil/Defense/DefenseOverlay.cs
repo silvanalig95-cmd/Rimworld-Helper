@@ -8,8 +8,9 @@ namespace ColonyCouncil
 {
     /// <summary>
     /// The defense survey drawn on the map: the ways raiders walk in from the edge (red), the narrow places on them
-    /// (yellow, with their width and the share of raids that pass), the side each one faces (an orange arrow), and where
-    /// the gate line would go (gold). Drawn only while the Defenses page is open, while a defense is being planned, or
+    /// (yellow, with their width and the share of raids that pass; blue, "covered by the south-west pass", where a gate or
+    /// a defense line holds one already), the side each open one faces (an orange arrow), and where the gate line would
+    /// go (gold). Drawn only while the Defenses page is open, while a defense is being planned, or
     /// while the player has the overlay switched on; it draws the survey already made and never works one out itself.
     /// The defense line last shown from the page is drawn too: its span and gate, the kill zone, the firing positions
     /// (green where they see the gate, red where they don't, each with its line of sight), the way round with the gate
@@ -43,7 +44,8 @@ namespace ColonyCouncil
         private readonly List<List<IntVec3>> gaps = new List<List<IntVec3>>();
         private readonly List<(Vector3 from, Vector3 to)> arrows = new List<(Vector3, Vector3)>();
         private readonly List<List<IntVec3>> lines = new List<List<IntVec3>>();
-        private readonly List<(IntVec3 cell, string text)> labels = new List<(IntVec3, string)>();
+        private readonly List<(IntVec3 cell, string text, bool held)> labels = new List<(IntVec3, string, bool)>();
+        private int labelsLines = -1;
 
         private DefenseLineReview drawnLine;
         private readonly List<IntVec3> lineSpan = new List<IntVec3>(), lineGate = new List<IntVec3>(), lineZone = new List<IntVec3>(),
@@ -71,16 +73,18 @@ namespace ColonyCouncil
         {
             if (!Showing || map != Find.CurrentMap) return;
             // With the switch on and the page closed, the survey is kept fresh now and then (it works itself out at most
-            // once a game hour, and only when the colony's buildings have changed a lot).
+            // once a game hour, and only when the colony's buildings have changed a lot or something changed near a line).
             if (Time.frameCount % 300 == 0) DefenseSurvey.For(map);
             var s = DefenseSurvey.Kept(map);
             if (s?.result == null) return;
-            if (s != drawn) Prepare(s);
+            // A line made or moved: the gaps it holds are labelled with it.
+            int linesNow = LinesStamp();
+            if (s != drawn || linesNow != labelsLines) Prepare(s);
             foreach (var way in ways)
                 for (int i = 1; i < way.Count; i++) GenDraw.DrawLineBetween(way[i - 1], way[i], SimpleColor.Red, 0.12f);
             for (int i = 0; i < gaps.Count; i++)
             {
-                bool held = i < s.chokes.Count && s.chokes[i].gated;
+                bool held = i < s.chokes.Count && (s.chokes[i].gated || s.chokes[i].coveredBy >= 0);
                 GenDraw.DrawFieldEdges(gaps[i], held ? HeldColor : GapColor);
             }
             foreach (var line in lines) GenDraw.DrawFieldEdges(line, LineColor);
@@ -148,14 +152,24 @@ namespace ColonyCouncil
             var selectedLine = DefenseLines.Selected(map);
             if (selectedLine != null && drawnLine?.line == selectedLine && selectedLine.gate.InBounds(map))
                 GenMapUI.DrawThingLabel((selectedLine.gate - selectedLine.Outward * 2).ToVector3Shifted().MapToUIPosition(), DefenseLineReview.NameOf(selectedLine, map), SpanColor);
-            foreach (var (cell, text) in labels)
-                GenMapUI.DrawThingLabel(cell.ToVector3Shifted().MapToUIPosition(), text, GapColor);
+            foreach (var (cell, text, held) in labels)
+                GenMapUI.DrawThingLabel(cell.ToVector3Shifted().MapToUIPosition(), text, held ? HeldColor : GapColor);
+        }
+
+        private int LinesStamp()
+        {
+            var comp = DefenseLines.Of(map);
+            if (comp == null) return 0;
+            int h = comp.lines.Count;
+            foreach (var l in comp.lines) h = h * 31 + l.id * 7 + l.gate.x * 13 + l.gate.z + (l.name?.GetHashCode() ?? 0);
+            return h;
         }
 
         /// <summary>Works out what to draw for a survey, once: the ways in thinned to every fourth cell, the gaps, the arrows, the gate lines.</summary>
         private void Prepare(DefenseSurvey s)
         {
             drawn = s;
+            labelsLines = LinesStamp();
             ways.Clear();
             gaps.Clear();
             arrows.Clear();
@@ -181,8 +195,15 @@ namespace ColonyCouncil
                 var c = info.c;
                 gaps.Add(c.span.Select(i => new IntVec3(i % w, 0, i / w)).ToList());
                 var outward = info.Outward;
+                // A gap a line holds already is shown as that line's, not as a new one to make a line for.
+                var holder = s.CoveringLine(info);
+                if (holder != null)
+                {
+                    labels.Add((info.cell + outward * 2, "CC_Def_MapCovered".Translate(DefenseLineReview.NameOf(holder, map)).Resolve(), true));
+                    continue;
+                }
                 arrows.Add((info.cell.ToVector3Shifted(), (info.cell + outward * 5).ToVector3Shifted()));
-                labels.Add((info.cell + outward * 2, "CC_Def_MapLabel".Translate(c.width, Mathf.RoundToInt(c.share * 10f)).Resolve()));
+                labels.Add((info.cell + outward * 2, "CC_Def_MapLabel".Translate(c.width, Mathf.RoundToInt(c.share * 10f)).Resolve(), false));
                 // Where a gate's wall line would cross the gap.
                 if (!info.gated && gate != null)
                 {
@@ -201,7 +222,7 @@ namespace ColonyCouncil
             {
                 var outward = IntVec3.North.RotatedBy(new Rot4(s.approachFacing));
                 arrows.Add((s.approach.ToVector3Shifted(), (s.approach + outward * 5).ToVector3Shifted()));
-                labels.Add((s.approach + outward * 2, "CC_Def_MapOpen".Translate()));
+                labels.Add((s.approach + outward * 2, "CC_Def_MapOpen".Translate(), false));
             }
         }
     }

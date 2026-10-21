@@ -8,8 +8,9 @@
   <CC_Def_Header>Defenses</CC_Def_Header>
   <CC_Def_Sub>Where raiders come from, where to meet them, and what to build</CC_Def_Sub>
   <CC_Def_Stat>Raids now: about {0} points</CC_Def_Stat>
-  <CC_Def_SurveyAgain>Look again</CC_Def_SurveyAgain>
-  <CC_Def_SurveyAgain_Tip>Read the map again now: the ways in, the gaps, what stands. The page does this by itself once the colony's buildings have changed, at most once an hour.</CC_Def_SurveyAgain_Tip>
+  <CC_Def_SurveyAgain>Survey again</CC_Def_SurveyAgain>
+  <CC_Def_SurveyAgain_Tip>Read the map again now: the ways in, the gaps, what stands. It does this by itself, at most once a game hour, when a wall, door, turret, trap or cover is built or taken away near a defense line or a gap, when the colony's buildings change a lot, and once a day.</CC_Def_SurveyAgain_Tip>
+  <CC_Def_SurveyDirty>Something was built or taken away near a line or a gap: the ways in are read again within the hour ("Survey again" does it now).</CC_Def_SurveyDirty>
   <CC_Def_ShowOnMap>Show on the map</CC_Def_ShowOnMap>
   <CC_Def_ShowOnMap_Tip>Draw the ways raiders walk in (red), the narrow places on them (yellow, blue where a gate holds one) and where a gate's wall would cross (gold), also with this window closed. They're always drawn while this page is open or a defense is being planned.</CC_Def_ShowOnMap_Tip>
   <CC_Def_NoSurvey>The council couldn't read this map just now. Try again in a moment.</CC_Def_NoSurvey>
@@ -186,6 +187,10 @@
   <CC_Def_FindSpot_Tip>Puts the plan where the council's reading of the map suggests (on the gap most raids pass, in front of it, behind it, or among the beds, as the plan needs), turned to face the raiders.</CC_Def_FindSpot_Tip>
   <CC_Def_Parts>WHAT IT'S BUILT OF</CC_Def_Parts>
   <CC_Def_LeftOut>none the colony can build; left out</CC_Def_LeftOut>
+  <CC_Def_LeftOutByChoice>left out (its sides left open)</CC_Def_LeftOutByChoice>
+  <CC_Def_SidesOpen>Leave its walls out</CC_Def_SidesOpen>
+  <CC_Def_SidesOpen_Tip>Plan it without its side walls: the traps and what slows raiders go down on the open approach. Walls beside the way in can make another way the easier one; with open sides raiders keep coming this way. Where the rock or your own walls stand beside it, they're its sides anyway.</CC_Def_SidesOpen_Tip>
+  <CC_Def_Cheaper>There isn't enough {0} for it, so each part is picked again from what's in stock ({1}).</CC_Def_Cheaper>
   <CC_Def_CantBuild>none the colony can build yet</CC_Def_CantBuild>
   <CC_Def_SpotFound>A spot for the {0}, facing {1}. Click "Place it there", or place it yourself.</CC_Def_SpotFound>
   <CC_Def_NoSpot>No good spot for the {0} where the council would put it. Place it by hand.</CC_Def_NoSpot>
@@ -209,6 +214,9 @@
   <CC_Def_Warn_ClearBlocked>{0} cell(s) meant to stay open have something built on them: move it, or raiders and your own people have to go round.</CC_Def_Warn_ClearBlocked>
   <CC_Def_Warn_Chunks>{0} stone chunk(s) lie in the field of fire: haul them away, or raiders shelter behind them.</CC_Def_Warn_Chunks>
   <CC_Def_MapLabel>{0} wide · {1}/10 of raids</CC_Def_MapLabel>
+  <CC_Def_MapCovered>covered by {0}</CC_Def_MapCovered>
+  <CC_Def_GapCovered>Covered by {0}.</CC_Def_GapCovered>
+  <CC_Def_Adv_CoveredBy>It is the way in {0} holds: that line's card above has the next step.</CC_Def_Adv_CoveredBy>
   <CC_Def_MapOpen>open ground: most raids</CC_Def_MapOpen>
   <CC_Def_Missing>Missing: {0}</CC_Def_Missing>
   <CC_Def_MissingResearch>{0} (research: {1})</CC_Def_MissingResearch>

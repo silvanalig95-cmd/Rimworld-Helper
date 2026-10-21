@@ -115,6 +115,23 @@ namespace ColonyCouncil
                 y += Label(y, w, "CC_DefLine_PlanningFor".Translate(DefenseLineReview.NameOf(line, map)).Resolve());
                 GUI.color = Color.white;
             }
+            // Why it stands where it was put, or why nothing fitted; and what the helper warned of.
+            if (!des.why.NullOrEmpty())
+            {
+                Text.Font = GameFont.Tiny;
+                GUI.color = Faint;
+                y += Label(y, w, des.why) + 2f;
+                Text.Font = GameFont.Small;
+                GUI.color = Color.white;
+            }
+            if (!des.warn.NullOrEmpty())
+            {
+                Text.Font = GameFont.Tiny;
+                GUI.color = Warn;
+                y += Label(y, w, des.warn) + 2f;
+                Text.Font = GameFont.Small;
+                GUI.color = Color.white;
+            }
 
             // Another plan
             if (Widgets.ButtonText(new Rect(0f, y, w, RowH), "CC_Def_Another".Translate()))
@@ -155,6 +172,16 @@ namespace ColonyCouncil
                 }
             }
             y += RowH + 3f;
+            // A plan whose walls are only its sides can do without them (raiders keep coming when the sides are open).
+            if (DefenseWayCheck.WallsAreSides(t) && t.Grid.pieces.Any(p => p.role == "wall"))
+            {
+                var openRect = new Rect(0f, y, w, RowH - 4f);
+                bool open = cfg.leaveOut.Contains("wall");
+                Widgets.CheckboxLabeled(openRect, "CC_Def_SidesOpen".Translate(), ref open);
+                TooltipHandler.TipRegion(openRect, "CC_Def_SidesOpen_Tip".Translate());
+                if (open != cfg.leaveOut.Contains("wall")) cfg.LeaveOut("wall", open);
+                y += RowH - 1f;
+            }
             if (Widgets.ButtonText(new Rect(0f, y, des.HasSuggestion ? half : w, RowH), "CC_Def_FindSpot".Translate())) des.SuggestSpot();
             TooltipHandler.TipRegion(new Rect(0f, y, des.HasSuggestion ? half : w, RowH), "CC_Def_FindSpot_Tip".Translate());
             if (des.HasSuggestion && Widgets.ButtonText(new Rect(half + 4f, y, half, RowH), "CC_Planner_PlaceThere".Translate())) des.PlaceAtSuggestion();
@@ -179,8 +206,9 @@ namespace ColonyCouncil
                 string caption = ("CC_DefRole_" + role).Translate().CapitalizeFirst();
                 if (of.Count == 0)
                 {
-                    GUI.color = t.Optional(role) ? Faint : Short;
-                    y += Label(y, w, caption + ": " + (t.Optional(role) ? "CC_Def_LeftOut" : "CC_Def_CantBuild").Translate());
+                    bool chosenOut = cfg.leaveOut.Contains(role);
+                    GUI.color = t.Optional(role) || chosenOut ? Faint : Short;
+                    y += Label(y, w, caption + ": " + (chosenOut ? "CC_Def_LeftOutByChoice" : t.Optional(role) ? "CC_Def_LeftOut" : "CC_Def_CantBuild").Translate());
                     GUI.color = Color.white;
                     continue;
                 }
