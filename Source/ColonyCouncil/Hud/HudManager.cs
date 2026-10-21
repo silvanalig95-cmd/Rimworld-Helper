@@ -75,6 +75,7 @@ namespace ColonyCouncil
                 case HudLayout.Alerts: return new HudAlerts();
                 case HudLayout.Health: return new HudHealth();
                 case HudLayout.Work: return new HudWork();
+                case HudLayout.Inventory: return new HudInventory();
                 default: return null;
             }
         }
@@ -86,7 +87,7 @@ namespace ColonyCouncil
             editBar = null;
             editing = false;
             game = Current.Game;
-            HudLayout.MigrateOldPlaces();
+            HudLayout.Migrate();
         }
 
         // ---------------- Once a frame ----------------

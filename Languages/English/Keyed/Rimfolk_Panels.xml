@@ -10,6 +10,7 @@
   <CC_Pnl_Name_alerts>Alerts</CC_Pnl_Name_alerts>
   <CC_Pnl_Name_health>Health</CC_Pnl_Name_health>
   <CC_Pnl_Name_work>Work and idle</CC_Pnl_Name_work>
+  <CC_Pnl_Name_inventory>Inventory</CC_Pnl_Name_inventory>
   <CC_Pnl_Name_hover>Hover card</CC_Pnl_Name_hover>
 
   <!-- The bar over a panel, and its menu -->
@@ -112,7 +113,13 @@
   <CC_Pnl_NoAlerts>No alerts.</CC_Pnl_NoAlerts>
   <CC_Pnl_AlertsUnreadable>The game's alerts can't be read here.</CC_Pnl_AlertsUnreadable>
   <CC_Pnl_MoreAlertsTip>Not every alert fits, so the panel keeps the most urgent; critical ones always show. Allow more rows in its options to see them all.</CC_Pnl_MoreAlertsTip>
-  <CC_Pnl_AlertClick>Click: as clicking the game's alert (go to it, and to the next with the next click). Right-click: the panel's menu.</CC_Pnl_AlertClick>
+  <CC_Pnl_HideAlert>Hide this alert in the panel</CC_Pnl_HideAlert>
+  <CC_Pnl_WishesAlert>Colonist wishes</CC_Pnl_WishesAlert>
+  <CC_Pnl_A_Hidden>Hidden in this panel:</CC_Pnl_A_Hidden>
+  <CC_Pnl_A_NoneHidden>No alerts are hidden in this panel. Right-click an alert's row to hide it here.</CC_Pnl_A_NoneHidden>
+  <CC_Pnl_A_InCouncil>(the council panel shows them)</CC_Pnl_A_InCouncil>
+  <CC_Pnl_A_Unhide>Unhide</CC_Pnl_A_Unhide>
+  <CC_Pnl_A_ShowAll>Show all</CC_Pnl_A_ShowAll>
   <CC_Pnl_HideGameAlerts>Hide the game's own alert list</CC_Pnl_HideGameAlerts>
   <CC_Pnl_ShowGameAlerts>Show the game's own alert list too</CC_Pnl_ShowGameAlerts>
   <CC_Pnl_SortPriority>By priority, in the game's own order</CC_Pnl_SortPriority>
@@ -136,7 +143,39 @@
   <CC_Pnl_H_WillRecover>will recover</CC_Pnl_H_WillRecover>
   <CC_Pnl_H_LosingTip>losing: at this pace it wins before immunity does</CC_Pnl_H_LosingTip>
   <CC_Pnl_H_TowardsDeath>{0} of the way to killing</CC_Pnl_H_TowardsDeath>
-  <CC_Pnl_H_Click>Click for their Health tab. Right-click for the panel's menu.</CC_Pnl_H_Click>
+  <!-- Health: how far along each condition is. {0} in Hours and Days is a number. -->
+  <CC_Pnl_H_Hours>~{0} h</CC_Pnl_H_Hours>
+  <CC_Pnl_H_Days>~{0} d</CC_Pnl_H_Days>
+  <CC_Pnl_H_UntendedShort>untended</CC_Pnl_H_UntendedShort>
+  <CC_Pnl_H_ImmunityVs>immunity {0} vs {1}</CC_Pnl_H_ImmunityVs>
+  <CC_Pnl_H_HealedShare>{0} healed</CC_Pnl_H_HealedShare>
+  <CC_Pnl_H_TendedQ>tended {0}</CC_Pnl_H_TendedQ>
+  <CC_Pnl_H_HpLeft>{0} HP to heal</CC_Pnl_H_HpLeft>
+  <CC_Pnl_H_ToLethal>{0} of the way</CC_Pnl_H_ToLethal>
+  <CC_Pnl_H_LeftShort>{0} left</CC_Pnl_H_LeftShort>
+  <CC_Pnl_H_WearsOffShort>(wears off {0})</CC_Pnl_H_WearsOffShort>
+  <CC_Pnl_H_OverIn>over in {0}</CC_Pnl_H_OverIn>
+  <CC_Pnl_H_NotHealingShort>not healing</CC_Pnl_H_NotHealingShort>
+  <CC_Pnl_H_BleedShort>bleeding {0} a day</CC_Pnl_H_BleedShort>
+  <CC_Pnl_H_BleedingLine>Bleeding</CC_Pnl_H_BleedingLine>
+  <CC_Pnl_H_BleedRate>{0} a day</CC_Pnl_H_BleedRate>
+  <CC_Pnl_H_TendedTip>tended, quality {0}</CC_Pnl_H_TendedTip>
+  <CC_Pnl_H_WearsOff>(it holds {0} more)</CC_Pnl_H_WearsOff>
+  <CC_Pnl_H_WillRecoverIn>will recover in about {0}</CC_Pnl_H_WillRecoverIn>
+  <CC_Pnl_H_HealedTip>{0} healed</CC_Pnl_H_HealedTip>
+  <CC_Pnl_H_HpLeftTip>{0} HP still to heal</CC_Pnl_H_HpLeftTip>
+  <CC_Pnl_H_NotHealing>not healing while they starve</CC_Pnl_H_NotHealing>
+  <CC_Pnl_H_HealsIn>healed in about {0}</CC_Pnl_H_HealsIn>
+  <CC_Pnl_H_PassesIn>passes in about {0}</CC_Pnl_H_PassesIn>
+  <CC_Pnl_H_StyleSummary>A summary under each name</CC_Pnl_H_StyleSummary>
+  <CC_Pnl_H_StyleLines>A line for each condition</CC_Pnl_H_StyleLines>
+  <CC_Pnl_H_ShowFacts>Show the details</CC_Pnl_H_ShowFacts>
+  <CC_Pnl_H_HideFacts>Hide the details</CC_Pnl_H_HideFacts>
+  <CC_Pnl_H_Opt_Rows>Each colonist's conditions</CC_Pnl_H_Opt_Rows>
+  <CC_Pnl_H_Opt_Summary>Summary per colonist</CC_Pnl_H_Opt_Summary>
+  <CC_Pnl_H_Opt_Summary_Tip>One faint line under each name with every condition and what matters most about it: "Cut 60% healed · Flu immunity 62% vs 40% · Lice untended".</CC_Pnl_H_Opt_Summary_Tip>
+  <CC_Pnl_H_Opt_Lines>One line per condition</CC_Pnl_H_Opt_Lines>
+  <CC_Pnl_H_Opt_Lines_Tip>A line for each condition under the name, with where it is, how well it was tended and when that wears off, how far it has healed and roughly when it's healed, or the immunity race as two small bars.</CC_Pnl_H_Opt_Lines_Tip>
   <CC_Pnl_InCaravan>in a caravan</CC_Pnl_InCaravan>
   <CC_Pnl_Away>away</CC_Pnl_Away>
 
@@ -202,6 +241,7 @@
   <CC_Pnl_Opt_Compact_alerts>Tighter rows in small text, a narrower panel.</CC_Pnl_Opt_Compact_alerts>
   <CC_Pnl_Opt_Compact_health>One line each: the name and what matters most.</CC_Pnl_Opt_Compact_health>
   <CC_Pnl_Opt_Compact_work>Names, marks and the need bars, without what they're doing.</CC_Pnl_Opt_Compact_work>
+  <CC_Pnl_Opt_Compact_inventory>The same rows in a narrower panel.</CC_Pnl_Opt_Compact_inventory>
   <CC_Pnl_Opt_Order>Order</CC_Pnl_Opt_Order>
   <CC_Pnl_Opt_Who>Who</CC_Pnl_Opt_Who>
   <CC_Pnl_Who_Home>Colonists at home</CC_Pnl_Who_Home>
@@ -237,6 +277,11 @@
   <CC_Pnl_Part_details>Each condition, under their name</CC_Pnl_Part_details>
   <CC_Pnl_Part_healing>Those who are only healing</CC_Pnl_Part_healing>
   <CC_Pnl_Part_ailments>Rimfolk's everyday ailments</CC_Pnl_Part_ailments>
+  <CC_Pnl_Part_facts>Show details: tended or not, how far along, the time left</CC_Pnl_Part_facts>
+  <CC_Pnl_Part_change>The change since this time yesterday</CC_Pnl_Part_change>
+  <CC_Pnl_Part_labels>Names in the classic look</CC_Pnl_Part_labels>
+  <CC_Pnl_Part_zero>Items at zero (with what ran out since yesterday)</CC_Pnl_Part_zero>
+  <CC_Pnl_Part_search>A search box</CC_Pnl_Part_search>
   <CC_Pnl_Part_doing>What they're doing</CC_Pnl_Part_doing>
   <CC_Pnl_Part_idle>Idle, and for how long</CC_Pnl_Part_idle>
   <CC_Pnl_Part_needfood>Food bar</CC_Pnl_Part_needfood>
@@ -259,12 +304,15 @@
   <!-- Settings: on-screen panels -->
   <CC_SetSec_Panels>On-screen panels</CC_SetSec_Panels>
   <CC_Settings_HudShown>Show on-screen panels</CC_Settings_HudShown>
-  <CC_Settings_HudShown_Tip>Small panels on the map beside the game's own: the mood board, the mood trend, the colony's vitals, the council at a glance, the alerts, health, and work and idle. Show or hide them all with the button by the play settings (bottom right), or with a key you pick in Options, Keyboard, Rimfolk.</CC_Settings_HudShown_Tip>
-  <CC_SetNote_HudShown>Moods, vitals, the council, alerts, health and work on the map; move them by their top bar.</CC_SetNote_HudShown>
+  <CC_Settings_HudShown_Tip>Small panels on the map beside the game's own: the mood board, the mood trend, the colony's vitals, the council at a glance, the alerts, health, work and idle, and the inventory. They sit beneath the game's own interface, so nothing of the game's is ever covered. Show or hide them all with the button by the play settings (bottom right), or with a key you pick in Options, Keyboard, Rimfolk.</CC_Settings_HudShown_Tip>
+  <CC_SetNote_HudShown>Moods, vitals, the council, alerts, health, work and the stock on the map; move them by their top bar.</CC_SetNote_HudShown>
   <CC_Settings_HudPanelOptions>Each panel's options</CC_Settings_HudPanelOptions>
   <CC_SetNote_HudPanelOptions>Rows and columns, order, whom it lists, rows before "and more", size and background.</CC_SetNote_HudPanelOptions>
   <CC_Settings_HudPanelOptions2>Each panel's options (more)</CC_Settings_HudPanelOptions2>
-  <CC_SetNote_HudPanelOptions2>The alerts, health, and work and idle.</CC_SetNote_HudPanelOptions2>
+  <CC_SetNote_HudPanelOptions2>The alerts, health, work and idle, and the inventory.</CC_SetNote_HudPanelOptions2>
+  <CC_Settings_HudHideGameResources>Hide the game's own resource list while the Inventory panel shows</CC_Settings_HudHideGameResources>
+  <CC_Settings_HudHideGameResources_Tip>The Inventory panel shows the same counts as the game's list down the left, so that list steps aside while the panel is up. The counting goes on as always; with the panel hidden, switched off, or on the world map, the game's list is back.</CC_Settings_HudHideGameResources_Tip>
+  <CC_SetNote_HudHideGameResources>The Inventory panel instead of the game's resource list; the list comes back whenever the panel is gone.</CC_SetNote_HudHideGameResources>
   <CC_Settings_HudHideGameAlerts>Hide the game's own alert list while the Alerts panel shows</CC_Settings_HudHideGameAlerts>
   <CC_Settings_HudHideGameAlerts_Tip>The Alerts panel shows every alert the game has, so the game's own list on the right steps aside while it's up. The alerts keep updating as always; with the panel hidden, switched off, or on the world map, the game's list is back.</CC_Settings_HudHideGameAlerts_Tip>
   <CC_SetNote_HudHideGameAlerts>The Alerts panel instead of the game's list; the list comes back whenever the panel is gone.</CC_SetNote_HudHideGameAlerts>
@@ -272,8 +320,8 @@
   <CC_Settings_HudLock_Tip>The panels can't be dragged by accident. "Arrange the panels" in their menu still moves them.</CC_Settings_HudLock_Tip>
   <CC_SetNote_HudLock>The panels stay where they are; "Arrange the panels" still moves them.</CC_SetNote_HudLock>
   <CC_Settings_HudHideWithTabs>Hide them under big windows</CC_Settings_HudHideWithTabs>
-  <CC_Settings_HudHideWithTabs_Tip>While a big window is open, such as the Work or Research tab or the council window, the panels step aside. Small ones like the build menu leave them be.</CC_Settings_HudHideWithTabs_Tip>
-  <CC_SetNote_HudHideWithTabs>Out of the way while the Work tab, Research or the council window is open.</CC_SetNote_HudHideWithTabs>
+  <CC_Settings_HudHideWithTabs_Tip>The panels always sit beneath the game's windows and its own readouts, so a window simply covers them. With this on, they also go away while a big window is open, such as the Work or Research tab or the council window. Small ones like the build menu leave them be.</CC_Settings_HudHideWithTabs_Tip>
+  <CC_SetNote_HudHideWithTabs>Off: they stay, beneath the window. On: gone while the Work tab, Research or the council window is open.</CC_SetNote_HudHideWithTabs>
   <CC_Settings_HudHideOnWorld>Hide them on the world map</CC_Settings_HudHideOnWorld>
   <CC_Settings_HudHideOnWorld_Tip>The panels show on the colony's map only, not while the world map is up.</CC_Settings_HudHideOnWorld_Tip>
   <CC_SetNote_HudHideOnWorld>Only on the colony's map, not on the world map.</CC_SetNote_HudHideOnWorld>
@@ -349,4 +397,41 @@
   <CC_SetNote_HoverScale>Bigger for large screens, smaller to keep more of the map in view.</CC_SetNote_HoverScale>
   <CC_Settings_HoverOpacity>Card background: {0}</CC_Settings_HoverOpacity>
   <CC_SetNote_HoverOpacity>Fainter to see the map through it.</CC_SetNote_HoverOpacity>
+  <!-- The inventory -->
+  <CC_Pnl_I_Empty>Nothing in storage.</CC_Pnl_I_Empty>
+  <CC_Pnl_I_NoMatch>Nothing matches the search.</CC_Pnl_I_NoMatch>
+  <CC_Pnl_I_Pinned>Pinned</CC_Pnl_I_Pinned>
+  <CC_Pnl_I_Other>Other</CC_Pnl_I_Other>
+  <CC_Pnl_I_FoodDays>{0} days of food</CC_Pnl_I_FoodDays>
+  <CC_Pnl_I_FoldTip>Click to fold this away; its total stays.</CC_Pnl_I_FoldTip>
+  <CC_Pnl_I_UnfoldTip>Click to see what's in it.</CC_Pnl_I_UnfoldTip>
+  <CC_Pnl_I_Loose>Not in storage</CC_Pnl_I_Loose>
+  <CC_Pnl_I_Stacks>Stacks: {0}</CC_Pnl_I_Stacks>
+  <CC_Pnl_I_NoChange>The same as this time yesterday.</CC_Pnl_I_NoChange>
+  <CC_Pnl_I_ChangeTip>{0} since this time yesterday.</CC_Pnl_I_ChangeTip>
+  <CC_Pnl_I_ChangeSoon>The change since yesterday shows once the panel has watched the stock for a day.</CC_Pnl_I_ChangeSoon>
+  <CC_Pnl_I_PinnedTip>Pinned to the top.</CC_Pnl_I_PinnedTip>
+  <CC_Pnl_I_Pin>Pin {0} to the top</CC_Pnl_I_Pin>
+  <CC_Pnl_I_Unpin>Unpin {0}</CC_Pnl_I_Unpin>
+  <CC_Pnl_I_UnpinShort>Unpin</CC_Pnl_I_UnpinShort>
+  <CC_Pnl_I_PinnedList>Pinned to the top:</CC_Pnl_I_PinnedList>
+  <CC_Pnl_I_NonePinned>Nothing is pinned. Right-click an item to pin it to the top.</CC_Pnl_I_NonePinned>
+  <CC_Pnl_I_UnfoldAll>Unfold every category</CC_Pnl_I_UnfoldAll>
+  <CC_Pnl_I_StyleTip>Click for the {0} look.</CC_Pnl_I_StyleTip>
+  <CC_Pnl_I_ShowGameList>Show the game's own resource list too</CC_Pnl_I_ShowGameList>
+  <CC_Pnl_I_HideGameList>Hide the game's own resource list</CC_Pnl_I_HideGameList>
+  <CC_Pnl_I_Opt_Style>Look</CC_Pnl_I_Opt_Style>
+  <CC_Pnl_I_Opt_Columns>Tiles in a row: {0}</CC_Pnl_I_Opt_Columns>
+  <CC_Pnl_I_Style_classic>Classic</CC_Pnl_I_Style_classic>
+  <CC_Pnl_I_Style_classic_Tip>Like the game's own list: each item's icon and count, one to a line. Hover for its name.</CC_Pnl_I_Style_classic_Tip>
+  <CC_Pnl_I_Style_grouped>Grouped</CC_Pnl_I_Style_grouped>
+  <CC_Pnl_I_Style_grouped_Tip>By the game's categories (food, manufactured, raw resources, items, weapons, apparel...), each a header with its total that folds away with a click.</CC_Pnl_I_Style_grouped_Tip>
+  <CC_Pnl_I_Style_grid>Icon grid</CC_Pnl_I_Style_grid>
+  <CC_Pnl_I_Style_grid_Tip>Tiles with the icon and the count under it, wrapping after as many as you like: a strip along an edge of the screen.</CC_Pnl_I_Style_grid_Tip>
+  <CC_Pnl_I_Style_essentials>Essentials</CC_Pnl_I_Style_essentials>
+  <CC_Pnl_I_Style_essentials_Tip>Only what most colonies watch, large and calm: meals and the days of food, medicine, silver, steel, components, wood, and what you pin.</CC_Pnl_I_Style_essentials_Tip>
+  <CC_Pnl_I_Sort_Category>By category, as the game lists them</CC_Pnl_I_Sort_Category>
+  <CC_Pnl_I_Sort_Name>By name</CC_Pnl_I_Sort_Name>
+  <CC_Pnl_I_Sort_Count>The most first</CC_Pnl_I_Sort_Count>
+  <CC_Pnl_I_Sort_Change>The biggest change since yesterday first</CC_Pnl_I_Sort_Change>
 </LanguageData>

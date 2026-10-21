@@ -61,6 +61,14 @@ namespace ColonyCouncil
         /// <summary>The colonist bar's order.</summary>
         Bar,
         /// <summary>The alerts: the newest first.</summary>
-        Newest
+        Newest,
+        /// <summary>The inventory: by the game's categories, as its resource list.</summary>
+        Category,
+        /// <summary>The inventory: by name.</summary>
+        Name,
+        /// <summary>The inventory: the most first.</summary>
+        Count,
+        /// <summary>The inventory: the biggest change since yesterday first.</summary>
+        Change
     }
 }

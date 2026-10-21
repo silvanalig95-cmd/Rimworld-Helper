@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using UnityEngine;
 using Verse;
 
@@ -7,9 +8,10 @@ namespace ColonyCouncil
     /// <summary>
     /// One panel's options, from its bar's gear, its menu, or the buttons under "On-screen panels" in Rimfolk's
     /// settings: shown or not, compact or full, the order and whom it lists (the mood board, health, work and idle), the
-    /// order and the game's own list (the alerts), the range (the trend),
-    /// which rows or columns show, how many rows before "and N more", its scale and background. Changes show at once
-    /// and are saved when the window closes.
+    /// health panel's rows (a summary or a line for each condition), the order, the game's own list and the alerts
+    /// hidden in the panel (the alerts), the style, order, tiles in a row, pinned items and the game's own list (the
+    /// inventory), the range (the trend), which rows or columns show, how many rows before "and N more", its scale and
+    /// background. Changes show at once and are saved when the window closes.
     /// </summary>
     public class Dialog_HudPanel : Window
     {
@@ -63,6 +65,7 @@ namespace ColonyCouncil
                 case HudLayout.Alerts: return HudAlerts.Parts;
                 case HudLayout.Health: return HudHealth.Parts;
                 case HudLayout.Work: return HudWork.Parts;
+                case HudLayout.Inventory: return HudInventory.Parts;
                 default: return new string[0];
             }
         }
@@ -95,6 +98,13 @@ namespace ColonyCouncil
                         if (l.RadioButton(HudKit.T("CC_Pnl_Who_" + w), st.who == w, 12f)) st.who = w;
                     }
                 }
+                if (id == HudLayout.Health)
+                {
+                    l.Label(HudKit.T("CC_Pnl_H_Opt_Rows"));
+                    bool lines = st.style == HudHealth.StyleLines;
+                    if (l.RadioButton(HudKit.T("CC_Pnl_H_Opt_Summary"), !lines, 12f, HudKit.T("CC_Pnl_H_Opt_Summary_Tip"))) st.style = HudHealth.StyleSummary;
+                    if (l.RadioButton(HudKit.T("CC_Pnl_H_Opt_Lines"), lines, 12f, HudKit.T("CC_Pnl_H_Opt_Lines_Tip"))) st.style = HudHealth.StyleLines;
+                }
                 if (id == HudLayout.Alerts)
                 {
                     l.GapLine();
@@ -104,7 +114,9 @@ namespace ColonyCouncil
                     l.Gap(4f);
                     var s = ColonyCouncilMod.Settings;
                     l.CheckboxLabeled(HudKit.T("CC_Settings_HudHideGameAlerts"), ref s.hudHideGameAlerts, HudKit.T("CC_Settings_HudHideGameAlerts_Tip"));
+                    HiddenAlerts(l, st);
                 }
+                if (id == HudLayout.Inventory) Inventory(l, st);
                 if (id == HudLayout.Trend)
                 {
                     l.GapLine();
@@ -162,6 +174,58 @@ namespace ColonyCouncil
 
         private static bool Changed(HudPanelState a, HudPanelState b) =>
             a.compact != b.compact || a.sort != b.sort || a.who != b.who || a.days != b.days || a.maxRows != b.maxRows || Math.Abs(a.scale - b.scale) > 0.001f ||
-            (a.hidden?.Count ?? 0) != (b.hidden?.Count ?? 0);
+            (a.hidden?.Count ?? 0) != (b.hidden?.Count ?? 0) || a.style != b.style || a.columns != b.columns || (a.pins?.Count ?? 0) != (b.pins?.Count ?? 0) ||
+            (a.folds?.Count ?? 0) != (b.folds?.Count ?? 0) || (a.alertsHidden?.Count ?? 0) != (b.alertsHidden?.Count ?? 0) ||
+            (a.alertsShown?.Count ?? 0) != (b.alertsShown?.Count ?? 0);
+
+        /// <summary>The alerts hidden in the panel, each with a button to show it again, and one to show them all.</summary>
+        private static void HiddenAlerts(Listing_Standard l, HudPanelState st)
+        {
+            l.Gap(6f);
+            var hidden = HudAlerts.HiddenNow(st);
+            l.Label(HudKit.T(hidden.Count == 0 ? "CC_Pnl_A_NoneHidden" : "CC_Pnl_A_Hidden"));
+            foreach (var cls in hidden)
+            {
+                var row = l.GetRect(26f);
+                string label = HudAlerts.LabelOf(cls);
+                if (cls == HudAlerts.WishesAlert && HudAlerts.HiddenByDefault(cls)) label += " " + HudKit.T("CC_Pnl_A_InCouncil");
+                var b = new Rect(row.xMax - 90f, row.y + 1f, 90f, 24f);
+                UiKit.LabelFit(new Rect(row.x + 12f, row.y, row.width - 106f, row.height), label, Color.white, GameFont.Small);
+                if (Widgets.ButtonText(b, HudKit.T("CC_Pnl_A_Unhide"))) HudAlerts.Unhide(st, cls);
+            }
+            if (hidden.Count > 1 && l.ButtonText(HudKit.T("CC_Pnl_A_ShowAll"))) HudAlerts.ShowAll(st);
+        }
+
+        /// <summary>The inventory's style, order, tiles in a row, the game's own list, and the pinned items.</summary>
+        private static void Inventory(Listing_Standard l, HudPanelState st)
+        {
+            l.GapLine();
+            l.Label(HudKit.T("CC_Pnl_I_Opt_Style"));
+            string style = HudInventory.Styles.Contains(st.style) ? st.style : HudInventory.StyleClassic;
+            foreach (var sty in HudInventory.Styles)
+                if (l.RadioButton(HudKit.T("CC_Pnl_I_Style_" + sty), style == sty, 12f, HudKit.T("CC_Pnl_I_Style_" + sty + "_Tip")))
+                    st.style = sty;
+            if (style == HudInventory.StyleGrid)
+                st.columns = Mathf.RoundToInt(l.SliderLabeled("CC_Pnl_I_Opt_Columns".Translate(st.columns), st.columns, 2f, 24f, 0.5f));
+            l.Label(HudKit.T("CC_Pnl_Opt_Order"));
+            foreach (var sort in HudInventory.Sorts)
+                if (l.RadioButton(HudKit.T("CC_Pnl_I_Sort_" + sort), st.sort == sort || (sort == HudSort.Category && !HudInventory.Sorts.Contains(st.sort)), 12f))
+                    st.sort = sort;
+            l.Gap(4f);
+            var s = ColonyCouncilMod.Settings;
+            l.CheckboxLabeled(HudKit.T("CC_Settings_HudHideGameResources"), ref s.hudHideGameResources, HudKit.T("CC_Settings_HudHideGameResources_Tip"));
+            l.Gap(6f);
+            l.Label(HudKit.T(st.pins.Count == 0 ? "CC_Pnl_I_NonePinned" : "CC_Pnl_I_PinnedList"));
+            foreach (var name in st.pins.ToList())
+            {
+                var row = l.GetRect(26f);
+                var def = DefDatabase<ThingDef>.GetNamedSilentFail(name);
+                var b = new Rect(row.xMax - 90f, row.y + 1f, 90f, 24f);
+                if (def != null) Widgets.ThingIcon(new Rect(row.x + 12f, row.y + 2f, 22f, 22f), def);
+                UiKit.LabelFit(new Rect(row.x + 40f, row.y, row.width - 134f, row.height), def?.LabelCap ?? name, Color.white, GameFont.Small);
+                if (Widgets.ButtonText(b, HudKit.T("CC_Pnl_I_UnpinShort"))) st.pins.Remove(name);
+            }
+            if (st.folds.Count > 0 && l.ButtonText(HudKit.T("CC_Pnl_I_UnfoldAll"))) st.folds.Clear();
+        }
     }
 }

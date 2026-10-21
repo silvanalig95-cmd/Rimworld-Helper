@@ -93,7 +93,7 @@ namespace ColonyCouncil
             var graph = new Rect(area.x + gutter, area.y, area.width - gutter, area.height);
             // Top line: the range and the latest values, or the values under the mouse; never one over the other.
             int at = -1;
-            if (Mouse.IsOver(graph))
+            if (Over(graph))
             {
                 float hourAtMouse = nowHour - days * 24 + (Event.current.mousePosition.x - graph.x) / Mathf.Max(1f, graph.width) * days * 24;
                 at = HudMath.Nearest(hours, hourAtMouse);
@@ -162,13 +162,13 @@ namespace ColonyCouncil
                 if (showNow) HudKit.Label(foot, now, UiKit.Dim, GameFont.Tiny, TextAnchor.MiddleRight);
                 if (showKey) HudKit.Label(foot, key, UiKit.Dim, GameFont.Tiny, TextAnchor.MiddleCenter);
             }
-            TooltipHandler.TipRegion(graph, HudKit.T("CC_Pnl_TrendTip"));
+            Tip(graph, HudKit.T("CC_Pnl_TrendTip"));
             Clicks(graph);
         }
 
         private void Clicks(Rect r)
         {
-            if (!Widgets.ButtonInvisible(r, false)) return;
+            if (!Clicked(r)) return;
             if (Event.current.button == 1) OpenMenu();
             else MainTabWindow_Council.OpenTab("Moods");
         }

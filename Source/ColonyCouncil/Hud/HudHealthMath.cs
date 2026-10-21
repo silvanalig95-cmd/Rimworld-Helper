@@ -143,6 +143,95 @@ namespace ColonyCouncil
             return HudRank.Healing(f.Lethal ? f.Progress : Math.Min(1f, f.severity));
         }
 
+        // ---------------- How far along: healing, recovering, passing ----------------
+
+        /// <summary>The game's healing, a day, for a wound to share with the others (Pawn_HealthTracker: 8, more lying down).</summary>
+        public const float BaseHealPerDay = 8f;
+
+        /// <summary>Lying down (in bed or not) heals this much more a day, before the bed's own.</summary>
+        public const float LyingHealPerDay = 4f;
+
+        /// <summary>How much of a wound has healed (0..1), from the severity it had at its worst and the severity now.</summary>
+        public static float Healed(float start, float now)
+        {
+            if (start <= 0f) return 0f;
+            return Math.Max(0f, Math.Min(1f, 1f - now / start));
+        }
+
+        /// <summary>
+        /// The natural healing a colonist has a day, shared among their wounds that heal on their own: the game's 8, and 4
+        /// more lying down with the bed's own on top, times their conditions' healing factors, their healing speed and
+        /// their body size. Nothing while starving.
+        /// </summary>
+        public static float NaturalHealPerDay(bool lying, float bedHealPerDay, float stageFactor, float healingFactor, float healthScale, bool starving)
+        {
+            if (starving) return 0f;
+            float perDay = BaseHealPerDay + (lying ? LyingHealPerDay + Math.Max(0f, bedHealPerDay) : 0f);
+            return Math.Max(0f, perDay * stageFactor * healingFactor * healthScale);
+        }
+
+        /// <summary>The healing tended wounds share a day on top: the game's 8, half to one and a half times by the tending's quality.</summary>
+        public static float TendedHealPerDay(float tendQuality, float healingFactor, float healthScale, bool starving)
+        {
+            if (starving) return 0f;
+            float q = Math.Max(0f, Math.Min(1f, tendQuality));
+            return Math.Max(0f, BaseHealPerDay * (0.5f + q) * healingFactor * healthScale);
+        }
+
+        /// <summary>
+        /// One wound's share of the healing a day: the game heals one wound at random at a time, so each of the
+        /// <paramref name="naturalCount"/> healing on their own gets as much on average, and tended ones a share of the
+        /// tended healing too.
+        /// </summary>
+        public static float WoundHealPerDay(float natural, int naturalCount, bool healsNaturally, float tended, int tendedCount, bool healsFromTending)
+        {
+            float v = 0f;
+            if (healsNaturally && naturalCount > 0) v += natural / naturalCount;
+            if (healsFromTending && tendedCount > 0) v += tended / tendedCount;
+            return v;
+        }
+
+        /// <summary>
+        /// A rough time, short: under a day in whole hours (at least one), under ten days to a tenth of a day, else in
+        /// whole days; through <paramref name="hours"/> and <paramref name="days"/> ("~{0} h", "~{0} d").
+        /// </summary>
+        public static string RoughTime(float inDays, string hours, string days)
+        {
+            if (inDays < 0f) return "";
+            if (inDays < 1f) return string.Format(hours, Math.Max(1, (int)Math.Round(inDays * 24f)));
+            if (inDays < 10f) return string.Format(days, (Math.Round(inDays * 10f) / 10f).ToString("0.#", System.Globalization.CultureInfo.InvariantCulture));
+            return string.Format(days, ((int)Math.Round(inDays)).ToString(System.Globalization.CultureInfo.InvariantCulture));
+        }
+
+        /// <summary>Days until <paramref name="left"/> is gone at <paramref name="perDay"/>; under 0 when it isn't going.</summary>
+        public static float DaysToHeal(float left, float perDay)
+        {
+            if (left <= 0f) return 0f;
+            return perDay > Still ? left / perDay : -1f;
+        }
+
+        /// <summary>Days until a condition without an immunity race passes, its severity falling to nothing; under 0 when it isn't falling.</summary>
+        public static float DaysToPass(float severity, float severityPerDay) => severityPerDay < -Still ? Math.Max(0f, severity) / -severityPerDay : -1f;
+
+        /// <summary>
+        /// Days until an illness is over, when immunity wins: until immune, with the severity still moving at today's pace,
+        /// then until the severity falls to nothing at its pace once immune (<paramref name="severityPerDayImmune"/>,
+        /// negative). Under 0 when it can't be said: no immunity gained, or it kills first.
+        /// </summary>
+        public static float DaysToRecover(float immunity, float immunityPerDay, float severity, float severityPerDay, float severityPerDayImmune, float lethal)
+        {
+            float toImmune = 0f;
+            if (immunity < 0.999f)
+            {
+                if (immunityPerDay <= Still) return -1f;
+                toImmune = (1f - immunity) / immunityPerDay;
+            }
+            float then = Math.Max(0f, severity + severityPerDay * toImmune);
+            if (lethal > 0f && then >= lethal) return -1f;
+            float after = severityPerDayImmune < -Still ? then / -severityPerDayImmune : 0f;
+            return toImmune + after;
+        }
+
         /// <summary>
         /// A colonist's row: bleeding (by the hours the game gives them; under 0 for none), else the most pressing of
         /// their conditions, with several untended counted together.

@@ -381,11 +381,11 @@ namespace ColonyCouncil
                 {
                     var lr = new Rect(r.x + 2f, y, r.width - 4f, lh);
                     var c = HudKit.ColorOf(l.score, BarLow);
-                    if (Mouse.IsOver(lr)) Widgets.DrawBoxSolid(lr, UiKit.CardHover);
+                    if (Over(lr)) Widgets.DrawBoxSolid(lr, UiKit.CardHover);
                     if (l.icon != null) UiKit.Icon(new Rect(lr.x + 2f, lr.y + (lh - icon) / 2f, icon, icon), l.icon, c);
                     HudKit.Label(new Rect(lr.x + icon + 6f, lr.y, lr.width - icon - 8f, lh), l.text, c, minor);
-                    TooltipHandler.TipRegion(lr, l.tip);
-                    if (Widgets.ButtonInvisible(lr, false))
+                    Tip(lr, l.tip);
+                    if (Clicked(lr))
                     {
                         if (Event.current.button == 1) OpenMenu();
                         else
@@ -419,7 +419,7 @@ namespace ColonyCouncil
                 else if (level == HudLevel.Soon) Widgets.DrawBoxSolid(rr, UiKit.WithAlpha(UiKit.Warn, 0.1f));
                 else if (row.idle) Widgets.DrawBoxSolid(rr, UiKit.WithAlpha(BarLow, 0.08f));
                 else UiKit.Zebra(rr, i);
-                if (Mouse.IsOver(rr)) Widgets.DrawBoxSolid(rr, UiKit.CardHover);
+                if (Over(rr)) Widgets.DrawBoxSolid(rr, UiKit.CardHover);
                 float x = rr.x + Mathf.Round(4f * s);
                 float right = rr.xMax - Mathf.Round(3f * s);
                 // The three bars at the right end.
@@ -440,8 +440,8 @@ namespace ColonyCouncil
                     HudKit.Label(new Rect(dx, rr.y, Mathf.Max(0f, right - dx - 2f), rh), row.doing, row.idle ? BarLow : UiKit.Faint, minor);
                 }
                 var data = row;
-                TooltipHandler.TipRegion(rr, () => data.tip, row.pawn.thingIDNumber ^ 0x48E2);
-                if (Widgets.ButtonInvisible(rr, false))
+                Tip(rr, () => data.tip, row.pawn.thingIDNumber ^ 0x48E2);
+                if (Clicked(rr))
                 {
                     if (Event.current.button == 1) OpenMenu();
                     else
@@ -455,7 +455,7 @@ namespace ColonyCouncil
             {
                 var mr = new Rect(r.x + pad, y + rows.Count * rh, r.width - pad * 2f, Mathf.Round(16f * s));
                 HudKit.Label(mr, moreText, UiKit.Faint, GameFont.Tiny);
-                TooltipHandler.TipRegion(mr, HudKit.T("CC_Pnl_MoreLinesTip"));
+                Tip(mr, HudKit.T("CC_Pnl_MoreLinesTip"));
             }
         }
 

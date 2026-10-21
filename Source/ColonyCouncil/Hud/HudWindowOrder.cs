@@ -86,7 +86,7 @@ namespace ColonyCouncil
                 panels.Clear();
                 // A clicked panel became the focused window, which the game would bring forward again: give the focus
                 // back to the topmost ordinary window.
-                if (focusField != null && focusField.GetValue(stack) is Window focused && IsPanel(focused))
+                if (focusField != null && focusField.GetValue(stack) is Window focused && IsPanel(focused) && !((HudPanel)focused).KeepsKeyboard)
                 {
                     Window top = null;
                     for (int i = list.Count - 1; i >= 0; i--)

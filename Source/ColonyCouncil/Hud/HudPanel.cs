@@ -8,16 +8,26 @@ using Verse.Sound;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// One on-screen panel: its own window in the game's interface layer, so clicks on it don't fall through to the map
-    /// and the game draws it with its other windows. No close button, no background of the game's, no shadow; it never
-    /// takes the keyboard, pauses nothing and doesn't stop the camera. A thin bar shows over it while the mouse is on it:
-    /// drag it there (or by any empty spot) to move the panel, which snaps to the screen's edges and the other panels;
-    /// its buttons switch compact and full, step the background, open the panel's options, and hide it. A right-click
-    /// anywhere on the panel opens its menu.
+    /// One on-screen panel. It is painted beneath all of the game's own interface, in an early pass of the frame
+    /// (<see cref="HudPaint"/>: after the map and its pawn labels, before the colonist bar, the resource list, the alerts,
+    /// the inspect pane's tabs, the letters and every window), so whatever the game draws stays on top and the panel
+    /// can still be seen wherever nothing covers it. Its window in the game's interface layer is kept for input only
+    /// (clicks, the drag, the right-click menu), so clicks on it don't fall through to the map; on repaint the window only
+    /// hands over the tooltips, which so show only where no other window covers the panel. Where the game's own
+    /// interface sits over the panel (<see cref="HudGameUi"/>), the window steps aside so that interface takes the mouse.
+    /// If the early pass can't run, the window paints the panel itself, as before.
     ///
-    /// The panel gathers its data at most twice a second (<see cref="Refresh"/>), and only when the game has moved on
-    /// (or every few seconds while paused); drawing only reads what was gathered. If a panel throws, it hides itself for
-    /// the rest of the session with one line in the log (<see cref="HudManager.Fail"/>).
+    /// No close button, no background of the game's, no shadow; it pauses nothing and doesn't stop the camera, and it
+    /// never keeps the keyboard (the inventory's search box only while it's typed in). A thin bar shows over it while the
+    /// mouse is on it: drag it there (or by any empty spot) to move the panel, which snaps to the screen's edges and the
+    /// other panels; its buttons switch compact and full, step the background, open the panel's options, and hide it. A
+    /// right-click anywhere on the panel opens its menu.
+    ///
+    /// The same drawing code runs in both passes: the panels draw through <see cref="Over"/>, <see cref="Clicked"/>,
+    /// <see cref="Tip(Rect,string)"/> and <see cref="ImageButton"/>, which paint in the early pass and take input in the
+    /// window. The panel gathers its data at most twice a second (<see cref="Refresh"/>), and only when the game has moved
+    /// on (or every few seconds while paused); drawing only reads what was gathered. If a panel throws, it hides itself
+    /// for the rest of the session with one line in the log (<see cref="HudManager.Fail"/>).
     /// </summary>
     public abstract class HudPanel : Window
     {
@@ -25,7 +35,17 @@ namespace ColonyCouncil
 
         private Vector2 size = new Vector2(180f, 48f);
         private Rect body;
+        /// <summary>Where the panel is drawn this frame: the body and, while it shows, the bar (screen coordinates).</summary>
+        private Rect frame;
         private bool showHeader, headerAbove, hovered;
+        /// <summary>The game's own interface is under the mouse over this panel: the window steps aside for it.</summary>
+        private bool aside;
+        /// <summary>In the early pass: paint only, no input; the tooltips under the mouse are kept for the window.</summary>
+        private bool painting;
+        /// <summary>While painting: the window under the mouse is this panel.</summary>
+        private bool mouseHere;
+        private int paintedFrame = -1;
+        private readonly List<(Rect rect, TipSignal tip)> tips = new List<(Rect, TipSignal)>();
         private float hoverGrace;
         private bool dragging;
         private Vector2 dragOffset, dragFrom;
@@ -84,7 +104,7 @@ namespace ColonyCouncil
         /// <summary>The body's size for what was gathered, at this scale.</summary>
         protected abstract Vector2 Measure(float scale);
 
-        /// <summary>Draw the body in <paramref name="r"/> (window coordinates).</summary>
+        /// <summary>Draw the body in <paramref name="r"/> (the panel's own coordinates), through Over, Clicked and Tip.</summary>
         protected abstract void DrawBody(Rect r, float scale);
 
         /// <summary>The panel's own buttons on its bar, right to left from <paramref name="right"/>; returns where they end.</summary>
@@ -119,6 +139,7 @@ namespace ColonyCouncil
             {
                 HudManager.Fail(id, e);
             }
+            frame = body;
             windowRect = body;
         }
 
@@ -183,15 +204,22 @@ namespace ColonyCouncil
                 }
             }
             float hh = HeaderH;
-            // Under the mouse, and not behind another window there.
-            hovered = mouse && windowRect.Contains(m) && !HudManager.AnyDragging && (dragging || Find.WindowStack?.GetWindowAt(m) == this);
+            bool overFrame = mouse && frame.Contains(m);
+            // The game's own interface (the colonist bar, the resource list, the inspect pane's tabs...) is drawn over the
+            // panel there: the window steps aside, so that interface gets the mouse, its tooltips and its clicks.
+            aside = overFrame && !dragging && !KeepsKeyboard && HudGameUi.Covers(m);
+            // Under the mouse, and not behind another window there (none at all: the window stepped aside last frame).
+            var under = overFrame ? Find.WindowStack?.GetWindowAt(m) : null;
+            hovered = overFrame && !aside && !HudManager.AnyDragging && (dragging || under == this || under == null);
             float now = Time.realtimeSinceStartup;
             if (hovered) hoverGrace = now + 0.35f;
             showHeader = dragging || HudManager.editing || hovered || now < hoverGrace;
             headerAbove = HudMath.HeaderAbove(new HudBox(body.x, body.y, body.width, body.height), hh);
-            if (!showHeader) windowRect = body;
-            else if (headerAbove) windowRect = new Rect(body.x, body.y - hh, body.width, body.height + hh);
-            else windowRect = new Rect(body.x, body.y, body.width, body.height + hh);
+            if (!showHeader) frame = body;
+            else if (headerAbove) frame = new Rect(body.x, body.y - hh, body.width, body.height + hh);
+            else frame = new Rect(body.x, body.y, body.width, body.height + hh);
+            // Stepped aside: off the screen for this frame, so the window is under the mouse nowhere.
+            windowRect = aside ? new Rect(-4000f - frame.width, -4000f - frame.height, frame.width, frame.height) : frame;
         }
 
         private void SavePlace()
@@ -224,23 +252,62 @@ namespace ColonyCouncil
 
         public override void DoWindowContents(Rect inRect)
         {
-            if (HudManager.Failed(id)) return;
-            // Behind another window where the mouse is: the clicks, drags and wheel are that window's, never the panel's.
+            if (HudManager.Failed(id) || aside) return;
             var cur = Event.current;
+            // Painted earlier in the frame, beneath the game's interface: the window only hands over the tooltips.
+            if (cur.type == EventType.Repaint && PaintedThisFrame)
+            {
+                for (int i = 0; i < tips.Count; i++) TooltipHandler.TipRegion(tips[i].rect, tips[i].tip);
+                WindowExtras(true);
+                return;
+            }
+            // Behind another window where the mouse is: the clicks, drags and wheel are that window's, never the panel's.
             if ((cur.isMouse || cur.type == EventType.ScrollWheel) && !dragging && Find.WindowStack.GetWindowAt(UI.MousePositionOnUIInverted) != this) return;
-            var oldFont = Text.Font;
+            Contents(false);
+        }
+
+        /// <summary>Whether the early pass painted this panel this frame (if not, the window paints it, as a fallback).</summary>
+        public bool PaintedThisFrame => paintedFrame == Time.frameCount;
+
+        /// <summary>
+        /// The early pass (<see cref="HudPaint"/>, on repaint only): the panel painted at its place beneath the game's
+        /// interface, with no input; the tooltips under the mouse are kept for the window to hand over.
+        /// </summary>
+        public void PaintEarly()
+        {
+            if (HudManager.Failed(id) || !IsOpen) return;
+            tips.Clear();
+            GUI.BeginGroup(frame);
             try
             {
+                Contents(true);
+            }
+            finally
+            {
+                GUI.EndGroup();
+            }
+            paintedFrame = Time.frameCount;
+        }
+
+        /// <summary>The panel's body and bar in its own coordinates: painted (the early pass), or for input and as a fallback (the window).</summary>
+        private void Contents(bool paint)
+        {
+            var oldFont = Text.Font;
+            painting = paint;
+            try
+            {
+                mouseHere = paint && !aside && Find.WindowStack.GetWindowAt(UI.MousePositionOnUIInverted) == this;
                 float hh = HeaderH;
-                var bodyLocal = new Rect(0f, showHeader && headerAbove ? hh : 0f, body.width, body.height);
+                var bodyLocal = BodyLocal;
                 float scale = HudMath.ClampScale(Scale);
                 HudKit.Panel(bodyLocal, St.opacity, hovered || dragging);
                 DrawBody(bodyLocal, scale);
                 if (HudManager.editing) Widgets.DrawBox(bodyLocal.ContractedBy(1f), 1, HudManager.EditLineTex);
                 if (showHeader) DrawHeader(new Rect(0f, headerAbove ? 0f : body.height, body.width, hh));
+                if (!paint) WindowExtras(false);
                 // A click no row took: right for the menu, left to move the panel.
                 var ev = Event.current;
-                if (ev.type == EventType.MouseDown && Mouse.IsOver(bodyLocal))
+                if (!paint && ev.type == EventType.MouseDown && Mouse.IsOver(bodyLocal))
                 {
                     if (ev.button == 1)
                     {
@@ -260,10 +327,74 @@ namespace ColonyCouncil
             }
             finally
             {
+                painting = false;
                 Text.Font = oldFont;
                 Text.Anchor = TextAnchor.UpperLeft;
                 GUI.color = Color.white;
             }
+        }
+
+        /// <summary>The body in the panel's own coordinates (below the bar when the bar is above it).</summary>
+        protected Rect BodyLocal => new Rect(0f, showHeader && headerAbove ? HeaderH : 0f, body.width, body.height);
+
+        /// <summary>
+        /// What only the window can draw (a text field, which needs the window's keyboard): every event of the window,
+        /// on repaint too (<paramref name="repaintOnly"/> when the body was painted earlier). Nothing by default.
+        /// </summary>
+        protected virtual void WindowExtras(bool repaintOnly)
+        {
+        }
+
+        // ---------------- Drawing that works in both passes ----------------
+
+        /// <summary>The panel is being typed in (the inventory's search box): it keeps the keyboard and never steps aside.</summary>
+        public virtual bool KeepsKeyboard => false;
+
+        /// <summary>Whether this is the early, paint-only pass (nothing is clickable then).</summary>
+        protected bool Painting => painting;
+
+        /// <summary>The mouse is over <paramref name="r"/> on this panel (and no other window covers it there).</summary>
+        protected bool Over(Rect r) => painting ? mouseHere && r.Contains(Event.current.mousePosition) : Mouse.IsOver(r);
+
+        /// <summary>A click on <paramref name="r"/> (any button; Event.current.button says which). Never while painting.</summary>
+        protected bool Clicked(Rect r) => !painting && Widgets.ButtonInvisible(r, false);
+
+        /// <summary>The highlight while the mouse is over <paramref name="r"/>.</summary>
+        protected void HighlightIfOver(Rect r)
+        {
+            if (Over(r)) Widgets.DrawHighlight(r);
+        }
+
+        protected void Tip(Rect r, string text)
+        {
+            if (!text.NullOrEmpty()) Tip(r, new TipSignal(text));
+        }
+
+        /// <summary>A tooltip worked out only while it shows.</summary>
+        protected void Tip(Rect r, Func<string> text, int uniqueId) => Tip(r, new TipSignal(text, uniqueId));
+
+        /// <summary>
+        /// A tooltip for <paramref name="r"/>. While painting it's only kept (when the mouse is on it) for the window to
+        /// hand over, so it shows only where the panel is the window under the mouse, never through another window.
+        /// </summary>
+        protected void Tip(Rect r, TipSignal tip)
+        {
+            if (Event.current.type != EventType.Repaint) return;
+            if (!painting) TooltipHandler.TipRegion(r, tip);
+            else if (r.Contains(Event.current.mousePosition)) tips.Add((r, tip));
+        }
+
+        /// <summary>A small picture button whose colour lights up under the mouse; true when clicked.</summary>
+        protected bool ImageButton(Rect r, Texture2D tex, Color color, Color overColor, string tip)
+        {
+            if (tex != null && Event.current.type == EventType.Repaint)
+            {
+                GUI.color = Over(r) ? overColor : color;
+                GUI.DrawTexture(r, tex);
+                GUI.color = Color.white;
+            }
+            Tip(r, tip);
+            return Clicked(r);
         }
 
         // ---------------- The bar ----------------
@@ -276,7 +407,7 @@ namespace ColonyCouncil
             float right = bar.xMax - 2f;
             // Hide
             var hide = new Rect(right - bs, bar.y + 2f, bs, bs);
-            if (Widgets.ButtonImage(hide, TexButton.CloseXSmall, UiKit.Faint, Color.white, false, HudKit.T("CC_Pnl_HideTip")))
+            if (ImageButton(hide, TexButton.CloseXSmall, UiKit.Faint, Color.white, HudKit.T("CC_Pnl_HideTip")))
             {
                 St.on = false;
                 HudLayout.Save();
@@ -285,17 +416,17 @@ namespace ColonyCouncil
             right = hide.x - 3f;
             // Options
             var gear = new Rect(right - bs, bar.y + 2f, bs, bs);
-            if (Widgets.ButtonImage(gear, TexButton.OpenInspectSettings, UiKit.Faint, Color.white, false, HudKit.T("CC_Pnl_OptionsTip")))
+            if (ImageButton(gear, TexButton.OpenInspectSettings, UiKit.Faint, Color.white, HudKit.T("CC_Pnl_OptionsTip")))
                 Dialog_HudPanel.Open(id);
             right = gear.x - 3f;
             // Background: steps down, then back to full.
             string op = St.opacity.ToStringPercent();
             float ow = HudKit.Width(op, GameFont.Tiny) + 6f;
             var opR = new Rect(right - ow, bar.y, ow, bar.height);
-            Widgets.DrawHighlightIfMouseover(opR);
+            HighlightIfOver(opR);
             HudKit.Label(opR, op, UiKit.Faint, GameFont.Tiny, TextAnchor.MiddleCenter);
-            TooltipHandler.TipRegion(opR, HudKit.T("CC_Pnl_OpacityTip"));
-            if (Widgets.ButtonInvisible(opR, false))
+            Tip(opR, HudKit.T("CC_Pnl_OpacityTip"));
+            if (Clicked(opR))
             {
                 var st = St;
                 st.opacity = st.opacity > 0.8f ? 0.7f : st.opacity > 0.5f ? 0.45f : st.opacity > 0.3f ? 0.25f : 1f;
@@ -305,7 +436,7 @@ namespace ColonyCouncil
             right = opR.x - 3f;
             // Compact or full
             var cf = new Rect(right - bs, bar.y + 2f, bs, bs);
-            if (Widgets.ButtonImage(cf, St.compact ? TexButton.Reveal : TexButton.Collapse, UiKit.Faint, Color.white, false,
+            if (ImageButton(cf, St.compact ? TexButton.Reveal : TexButton.Collapse, UiKit.Faint, Color.white,
                     HudKit.T(St.compact ? "CC_Pnl_FullTip" : "CC_Pnl_CompactTip")))
             {
                 St.compact = !St.compact;
@@ -326,7 +457,7 @@ namespace ColonyCouncil
             HudKit.Label(new Rect(bar.x + bs + 5f, bar.y, Mathf.Max(0f, right - bar.x - bs - 7f), bar.height), HudLayout.Label(id), UiKit.HeaderColor,
                 GameFont.Tiny);
             var ev = Event.current;
-            if (ev.type == EventType.MouseDown && Mouse.IsOver(grip))
+            if (!painting && ev.type == EventType.MouseDown && Mouse.IsOver(grip))
             {
                 if (ev.button == 0 && CanMove) StartDrag();
                 else if (ev.button == 1) OpenMenu();
@@ -339,10 +470,10 @@ namespace ColonyCouncil
         {
             float w = HudKit.Width(label, GameFont.Tiny) + 8f;
             var r = new Rect(right - w, bar.y, w, bar.height);
-            Widgets.DrawHighlightIfMouseover(r);
+            HighlightIfOver(r);
             HudKit.Label(r, label, UiKit.Gold, GameFont.Tiny, TextAnchor.MiddleCenter);
-            if (!tip.NullOrEmpty()) TooltipHandler.TipRegion(r, tip);
-            if (Widgets.ButtonInvisible(r, false))
+            Tip(r, tip);
+            if (Clicked(r))
             {
                 click();
                 MarkDirty();
@@ -354,11 +485,15 @@ namespace ColonyCouncil
 
         // ---------------- The menu ----------------
 
-        public void OpenMenu()
+        public void OpenMenu() => OpenMenu(null);
+
+        /// <summary>The panel's menu, with <paramref name="first"/> (what a row's right-click offers) at the top.</summary>
+        public void OpenMenu(List<FloatMenuOption> first)
         {
             try
             {
                 var options = new List<FloatMenuOption>();
+                if (first != null) options.AddRange(first);
                 MenuOptions(options);
                 options.Add(new FloatMenuOption(HudKit.T(St.compact ? "CC_Pnl_Full" : "CC_Pnl_Compact"), () =>
                 {
