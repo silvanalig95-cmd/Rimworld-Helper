@@ -358,7 +358,7 @@
     <interaction>Council_Moment_FaithDebate</interaction>
     <rulePack>
       <rulesStrings>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] compared what their faiths say about [faithquestion], and found more in common than either had guessed.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] compared what their ideoligions say about [faithquestion], and found more in common than either had guessed.</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] about a prayer [INITIATOR_pronoun] had overheard, and [RECIPIENT_nameDef] explained it gladly.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] argued about faith on a long walk and came home on better terms than they left.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] what [INITIATOR_possessive] faith says about [faithquestion], and [RECIPIENT_nameDef] asked to hear more another day.</li>

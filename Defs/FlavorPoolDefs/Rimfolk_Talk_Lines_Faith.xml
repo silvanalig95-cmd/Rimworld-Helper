@@ -2,7 +2,7 @@
 <Defs>
 
   <!--
-    Talks about faith that matter (Source/ColonyCouncil/Faith/FaithTalk.cs, with Ideology and "Faith in the colony" on):
+    Talks about faith that matter (Source/ColonyCouncil/Faith/FaithTalk.cs, with Ideology and "Ideoligions in the colony" on):
     lines that show what the talk does to their faith, beside the faith topic's own (Rimfolk_Talk_Lines_Mind.xml).
     Tags, besides the talk's (agree, debate, argue, for, against, sameideo, otherideo, friends...) and the speaker's own
     (faith:devout, faith:wavering, faith:majority, faith:minority, faith:alone):

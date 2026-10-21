@@ -2,7 +2,7 @@
 <Defs>
 
   <!--
-    Faith and the council (Source/ColonyCouncil/Dilemmas/DilemmaWorkers_Faith.cs), with Ideology and "Faith in the
+    Faith and the council (Source/ColonyCouncil/Dilemmas/DilemmaWorkers_Faith.cs), with Ideology and "Ideoligions in the
     colony" on. {FAITH} is the faith the question is about (the colony's largest when faiths clash, the asker's for an
     evening of faith), {OTHERFAITH} the other side's, {ALTAR} the altar or ideogram that stands (else "the fire"), {WHY}
     a sentence on what sharpened it (a quarrel between faiths lately, an altar in plain sight), {COUNT} the colony's

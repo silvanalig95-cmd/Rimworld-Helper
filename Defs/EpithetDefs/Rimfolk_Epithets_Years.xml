@@ -55,7 +55,7 @@
     <label>the Shepherd</label>
     <record>Council_DaysAsGuide</record>
     <threshold>120</threshold>
-    <earned>{PAWN_nameDef} has guided the colony's faith for two years: the doubts heard out at night, the quarrels about what the faith allows, the new arrivals walked through it slowly. The colony calls {PAWN_objective} the Shepherd.</earned>
+    <earned>{PAWN_nameDef} has guided the colony's ideoligion for two years: the doubts heard out at night, the quarrels about what it allows, the new arrivals walked through it slowly. The colony calls {PAWN_objective} the Shepherd.</earned>
   </ColonyCouncil.EpithetDef>
 
   <!-- ===================== The colony's years ===================== -->

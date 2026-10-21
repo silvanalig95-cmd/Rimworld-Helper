@@ -36,7 +36,7 @@
   <ColonyCouncil.ColonyTraitDef>
     <defName>Council_Trait_Devout</defName>
     <label>devout</label>
-    <description>The colony keeps its faith in the open: its rituals are held and finished, someone sits in the chaplain's seat or guides the faithful, and the old words are said when they should be.</description>
+    <description>The colony keeps its ideoligion in the open: its rituals are held and finished, someone sits in the chaplain's seat or guides the faithful, and the old words are said when they should be.</description>
     <order>8</order>
     <requires>Ideology</requires>
     <perColony>true</perColony>

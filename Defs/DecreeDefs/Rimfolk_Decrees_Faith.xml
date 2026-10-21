@@ -2,7 +2,7 @@
 <Defs>
 
   <!--
-    One faith for the colony (Source/ColonyCouncil/Decrees/DecreeFaith.cs), with Ideology and "Faith in the colony" on,
+    One faith for the colony (Source/ColonyCouncil/Decrees/DecreeFaith.cs), with Ideology and "Ideoligions in the colony" on,
     and more than one faith at home. You name the faith as you declare it (the largest first). What it does each day is
     read from oneFaith; who minds it from the reactions (decreeFaith: of the faith it names; notDecreeFaith: of
     another; dislikesPreaching: a faith that frowns on being preached to). No mood of its own: its cost is trust, and

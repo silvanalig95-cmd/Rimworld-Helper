@@ -2,7 +2,7 @@
 <Defs>
 
   <!--
-    A crisis of faith (Source/ColonyCouncil/Faith/FaithCrisis.cs, with Ideology and "Faith in the colony" on): a turning
+    A crisis of faith (Source/ColonyCouncil/Faith/FaithCrisis.cs, with Ideology and "Ideoligions in the colony" on): a turning
     point that shakes someone's certainty for real. The FaithShake extension says how much before their nature (the
     mark's lean scales it, never under 10% or over 30%), how far it draws them toward the other's faith, and what the
     faith pages say caused it. Rare: each has its chance and its repeat window, and nobody has two crises within 20 days.
