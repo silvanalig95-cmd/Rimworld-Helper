@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Panels in the background
+
+*25 October 2026, version 0.9.6*
+
+- The on-screen panels now sit beneath the game's own interface: windows, the colonist bar, letters, alerts and the inspect tabs draw over them, and your hover and clicks reach the game there. They stay visible behind open windows instead of disappearing ("hide them under big windows" is off now, still there as an option).
+- An Inventory panel shows what you have with the game's own icons, in four looks to try: classic, grouped by category, an icon grid and essentials only. Pin what matters, search, see the change since about this time yesterday, and click to jump to the stacks. The game's own resource list steps aside while it shows (a setting keeps both).
+- The health panel shows how each condition stands: tended and how well, how far a wound has healed and roughly when it will be gone, an illness's immunity race and whether it's being won. Right-click any alert in the Alerts panel to hide it there; the wishes the Council panel already shows are hidden by default.
+
 ## Fungus that lasts
 
 *24 October 2026, later, version 0.9.5*

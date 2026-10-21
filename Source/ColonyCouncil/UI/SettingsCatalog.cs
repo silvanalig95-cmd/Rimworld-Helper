@@ -138,6 +138,7 @@ namespace ColonyCouncil
             ["lastAlmanacPage"] = "the Almanac's page when it was last closed",
             ["almanacFolded"] = "whether the Almanac's categories and page list are folded away, switched in the Almanac itself",
             ["moodDetails"] = "whether the Mood tab and the Moods page show every mood as a card, switched on those pages (Compact / Details)",
+            ["hudVersion"] = "the on-screen panels' settings version, so a change to older settings is made once (HudLayout.Migrate)",
             ["hudPanels"] = "each on-screen panel's place and options, set on the panels themselves (their menu) or with the buttons under \"On-screen panels\"",
             ["councilPageState"] = "the filters and sort orders the council's pages remember, set on the pages themselves",
             ["lastSeenVersion"] = "the Rimfolk version the player last saw, so the letter after an update comes once (the row \"What's new letter\")",
@@ -383,6 +384,7 @@ namespace ColonyCouncil
             Action("hudPanelOptions", "CC_Settings_HudPanelOptions", null, "CC_SetNote_HudPanelOptions", "hudShown");
             Action("hudPanelOptions2", "CC_Settings_HudPanelOptions2", null, "CC_SetNote_HudPanelOptions2", "hudShown");
             Toggle("hudHideGameAlerts", "CC_Settings_HudHideGameAlerts", "CC_SetNote_HudHideGameAlerts", "hudShown");
+            Toggle("hudHideGameResources", "CC_Settings_HudHideGameResources", "CC_SetNote_HudHideGameResources", "hudShown,deepHooks");
             Toggle("hudLock", "CC_Settings_HudLock", "CC_SetNote_HudLock", "hudShown");
             Toggle("hudHideWithTabs", "CC_Settings_HudHideWithTabs", "CC_SetNote_HudHideWithTabs", "hudShown");
             Toggle("hudHideOnWorld", "CC_Settings_HudHideOnWorld", "CC_SetNote_HudHideOnWorld", "hudShown");

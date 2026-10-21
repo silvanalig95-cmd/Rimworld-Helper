@@ -30,8 +30,9 @@ namespace ColonyCouncil
         public const string Alerts = "alerts";
         public const string Health = "health";
         public const string Work = "work";
+        public const string Inventory = "inventory";
 
-        public static readonly string[] All = { Moods, Trend, Vitals, Council, Alerts, Health, Work };
+        public static readonly string[] All = { Moods, Trend, Vitals, Council, Alerts, Health, Work, Inventory };
     }
 
     /// <summary>
@@ -155,11 +156,18 @@ namespace ColonyCouncil
         public const float SecondColumn = 262f;
 
         /// <summary>
+        /// Where the mood board and the trend start from the left edge, in UI pixels: clear of the inventory panel in the
+        /// resource list's place (and of the game's own list, when that shows), with the game's messages beside them.
+        /// </summary>
+        public const float LeftColumn = 160f;
+
+        /// <summary>
         /// A panel's place as Rimfolk ships it, for a screen of <paramref name="sw"/> by <paramref name="sh"/> UI pixels,
-        /// laid out so nothing overlaps at 1080p. The left: the mood board below the resource list, the trend above the
-        /// inspect pane. The right edge: the vitals and the council, and the alerts in the game's own alert place above
-        /// the letters (<paramref name="auto"/>: worked out every frame, see <see cref="AlertsBox"/>). A second column
-        /// left of it, clear of the colonist bar: work and idle, then health.
+        /// laid out so nothing overlaps at 1080p and nothing sits under the game's own interface. The far left: the
+        /// inventory where the game's resource list is. Beside it: the mood board below the colonist bar's height, the
+        /// trend above the inspect pane's tabs. The right edge: the vitals and the council, and the alerts in the game's
+        /// own alert place above the letters (<paramref name="auto"/>: worked out every frame, see <see cref="AlertsBox"/>).
+        /// A second column left of it, clear of the colonist bar: work and idle, then health.
         /// </summary>
         public static void DefaultPlace(string id, float sw, float sh, out float fx, out float fy, out bool right, out bool bottom, out bool auto)
         {
@@ -171,12 +179,17 @@ namespace ColonyCouncil
             if (sw <= 0f) sw = 1920f;
             if (sh <= 0f) sh = 1080f;
             float column2 = Clamp((sw - SecondColumn) / sw, 0.5f, 1f);
+            float left = Clamp(LeftColumn / sw, 0f, 0.3f);
             switch (id)
             {
+                case HudIds.Inventory:
+                    break;
                 case HudIds.Moods:
+                    fx = left;
                     fy = 0.27f;
                     break;
                 case HudIds.Trend:
+                    fx = left;
                     fy = 0.78f;
                     bottom = true;
                     break;
@@ -220,6 +233,29 @@ namespace ColonyCouncil
             float bottom = lettersTop > sh * 0.2f && lettersTop <= sh ? lettersTop - 4f : sh * 0.76f;
             if (gameList > 0f) bottom -= gameList + 6f;
             return OnScreen(new HudBox(sw - w, bottom - h, w, h), sw, sh);
+        }
+
+        // ---------------- The game's own interface over the panels ----------------
+
+        /// <summary>The game's resource list down the left (its icons and counts, and a scroll bar), in UI pixels.</summary>
+        public const float ResourceListWidth = 150f;
+
+        /// <summary>
+        /// The inspect pane's row of tab buttons, right to left from the pane's right edge above its top
+        /// (<paramref name="paneTop"/>); with a tab open the game fills the rest of the row to the left edge.
+        /// </summary>
+        public static HudBox TabRow(float paneWidth, float paneTop, int tabs, bool anyOpen, float tabWidth, float tabHeight)
+        {
+            if (tabs <= 0 || paneWidth <= 0f) return new HudBox(0f, paneTop - tabHeight, 0f, 0f);
+            float left = anyOpen ? 0f : Math.Max(0f, paneWidth - tabs * tabWidth);
+            return new HudBox(left, paneTop - tabHeight, paneWidth - left, tabHeight);
+        }
+
+        /// <summary>The letters against the right edge, from the top of the last one, and the date, time and play settings under them.</summary>
+        public static HudBox RightColumn(float sw, float sh, float lettersTop, float width)
+        {
+            float top = lettersTop > 0f && lettersTop < sh ? lettersTop : sh;
+            return new HudBox(sw - width, top - 4f, width, sh - top + 4f);
         }
 
         /// <summary>Whether an alert's row shows the number of things it's about: two or more, and the label doesn't already say a number.</summary>

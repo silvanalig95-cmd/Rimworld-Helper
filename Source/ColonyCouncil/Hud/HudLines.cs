@@ -102,7 +102,7 @@ namespace ColonyCouncil
                 var level = l.Level;
                 if (level == HudLevel.Life) Widgets.DrawBoxSolid(row, UiKit.WithAlpha(UiKit.Bad, 0.12f + 0.1f * HudKit.Pulse));
                 else if (level == HudLevel.Soon) Widgets.DrawBoxSolid(row, UiKit.WithAlpha(UiKit.Warn, 0.12f));
-                if (Mouse.IsOver(row)) Widgets.DrawBoxSolid(row, UiKit.CardHover);
+                if (Over(row)) Widgets.DrawBoxSolid(row, UiKit.CardHover);
                 var c = l.Color;
                 float x = row.x + 2f;
                 if (l.icon != null) UiKit.Icon(new Rect(x, row.y + (rh - icon) / 2f, icon, icon), l.icon, level >= HudLevel.Soon ? c : UiKit.WithAlpha(UiKit.HeaderColor, 0.85f));
@@ -119,8 +119,8 @@ namespace ColonyCouncil
                 }
                 var line = l;
                 string full = compact ? l.text + (l.tip.NullOrEmpty() ? "" : "\n\n" + l.tip) : l.tip;
-                if (!full.NullOrEmpty()) TooltipHandler.TipRegion(row, full);
-                if (Widgets.ButtonInvisible(row, false))
+                if (!full.NullOrEmpty()) Tip(row, full);
+                if (Clicked(row))
                 {
                     if (Event.current.button == 1) OpenMenu();
                     else
@@ -139,7 +139,7 @@ namespace ColonyCouncil
                 float my = compact ? y + (shown.Count + 1) / 2 * rh : y + shown.Count * rh;
                 var mr = new Rect(r.x + pad, my, r.width - pad * 2f, Mathf.Round(16f * s));
                 HudKit.Label(mr, moreText, UiKit.Faint, GameFont.Tiny);
-                TooltipHandler.TipRegion(mr, HudKit.T("CC_Pnl_MoreLinesTip"));
+                Tip(mr, HudKit.T("CC_Pnl_MoreLinesTip"));
             }
         }
 

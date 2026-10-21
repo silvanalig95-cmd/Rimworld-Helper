@@ -21,6 +21,10 @@ namespace ColonyCouncil
     /// While it shows, the game's own list is hidden by default (<see cref="Patch_HudGameAlerts"/>): only its drawing,
     /// so the game keeps every alert up to date. Until it's moved, the panel sits in the game's alert place, its bottom
     /// just above the letters. If the game's list can't be read, the panel says so and the game's list stays.
+    ///
+    /// Any alert can be hidden in the panel (right-click its row), kept by the alert's class; the panel's options list
+    /// them to show again. Rimfolk's own "Colonist wishes" is hidden while the council panel shows the wishes, which it
+    /// would only repeat (it can be shown again too). The game's own list, when it shows, is never changed.
     /// </summary>
     public class HudAlerts : HudPanel
     {
@@ -54,6 +58,12 @@ namespace ColonyCouncil
         private static bool looked, unreadable;
 
         private static readonly Dictionary<Alert, (float at, string text)> explanations = new Dictionary<Alert, (float, string)>();
+
+        /// <summary>The alerts' labels seen this session, by class, for the options' list of hidden alerts.</summary>
+        private static readonly Dictionary<string, string> labelsByClass = new Dictionary<string, string>();
+
+        /// <summary>Rimfolk's colonist wishes alert, which the council panel repeats.</summary>
+        public static readonly string WishesAlert = typeof(Alert_CouncilWishes).FullName;
 
         public HudAlerts() : base(HudLayout.Alerts)
         {
@@ -156,6 +166,9 @@ namespace ColonyCouncil
                     continue;
                 }
                 if (label.NullOrEmpty()) continue;
+                string cls = a.GetType().FullName;
+                labelsByClass[cls] = label.StripTags().Replace("\n", " ");
+                if (Hidden(st, cls)) continue;
                 if (!st.Shows(prio >= 2 ? PartCritical : prio == 1 ? PartHigh : PartMedium)) continue;
                 if (wantCounts) counts[a] = CountOf(a);
                 counts.TryGetValue(a, out int count);
@@ -263,7 +276,7 @@ namespace ColonyCouncil
                 float age = now - row.seen;
                 if (row.priority >= 1 && row.seen > 0f && age >= 0f && age < FlashFor)
                     Widgets.DrawBoxSolid(rr, UiKit.WithAlpha(c, 0.45f * (1f - age / FlashFor)));
-                if (Mouse.IsOver(rr)) Widgets.DrawBoxSolid(rr, UiKit.CardHover);
+                if (Over(rr)) Widgets.DrawBoxSolid(rr, UiKit.CardHover);
                 // A stripe in the priority's colour.
                 Widgets.DrawBoxSolid(new Rect(rr.x, rr.y + 2f, 2f, rr.height - 4f), row.priority >= 1 ? c : UiKit.WithAlpha(Color.white, 0.25f));
                 float x = rr.x + Mathf.Round(6f * s);
@@ -277,10 +290,10 @@ namespace ColonyCouncil
                 }
                 HudKit.Label(new Rect(x, rr.y, Mathf.Max(0f, right - x), rh), row.label, c, font);
                 var alert = row.alert;
-                TooltipHandler.TipRegion(rr, () => Explain(alert), Gen.HashCombineInt(0x5A1E7A, row.order ^ (alert.GetHashCode() & 0xFFFF)));
-                if (Widgets.ButtonInvisible(rr, false))
+                Tip(rr, () => Explain(alert), Gen.HashCombineInt(0x5A1E7A, row.order ^ (alert.GetHashCode() & 0xFFFF)));
+                if (Clicked(rr))
                 {
-                    if (Event.current.button == 1) OpenMenu();
+                    if (Event.current.button == 1) RowMenu(alert);
                     else Click(alert);
                 }
             }
@@ -288,11 +301,11 @@ namespace ColonyCouncil
             {
                 var mr = new Rect(r.x + pad, y + rows.Count * rh, r.width - pad * 2f, Mathf.Round(16f * s));
                 HudKit.Label(mr, moreText, UiKit.Faint, GameFont.Tiny);
-                TooltipHandler.TipRegion(mr, HudKit.T("CC_Pnl_MoreAlertsTip"));
+                Tip(mr, HudKit.T("CC_Pnl_MoreAlertsTip"));
             }
         }
 
-        /// <summary>The game's explanation for the alert, as its own info box gives it, kept half a second; then how the click works.</summary>
+        /// <summary>The game's explanation for the alert, as its own info box gives it, kept half a second.</summary>
         private static string Explain(Alert a)
         {
             float now = Time.realtimeSinceStartup;
@@ -309,7 +322,6 @@ namespace ColonyCouncil
             }
             string label = a.Label;
             if (!label.NullOrEmpty()) text = label.Colorize(UiKit.HeaderColor) + "\n\n" + text;
-            text += "\n\n" + HudKit.T("CC_Pnl_AlertClick").Colorize(ColoredText.SubtleGrayColor);
             explanations[a] = (now, text);
             return text;
         }
@@ -332,6 +344,87 @@ namespace ColonyCouncil
             {
                 CouncilLog.ErrorOnce("alerts panel: clicking " + a.GetType().Name, e);
             }
+        }
+
+        // ---------------- Alerts hidden in the panel ----------------
+
+        /// <summary>
+        /// Whether an alert (by class) is hidden in the panel: the player hid it, or it's the colonist wishes while the
+        /// council panel shows the wishes (unless the player chose to see it).
+        /// </summary>
+        public static bool Hidden(HudPanelState st, string cls)
+        {
+            if (st == null || cls.NullOrEmpty()) return false;
+            if (st.alertsHidden != null && st.alertsHidden.Contains(cls)) return true;
+            return HiddenByDefault(cls) && (st.alertsShown == null || !st.alertsShown.Contains(cls));
+        }
+
+        /// <summary>Hidden unless the player asks for it: the colonist wishes, while the council panel shows them.</summary>
+        public static bool HiddenByDefault(string cls)
+        {
+            if (cls != WishesAlert) return false;
+            var s = ColonyCouncilMod.Settings;
+            if (s == null || !s.hudShown || HudManager.Failed(HudLayout.Council)) return false;
+            var council = HudLayout.State(HudLayout.Council);
+            return council.on && council.Shows(HudCouncil.PartWishes);
+        }
+
+        public static void Hide(HudPanelState st, string cls)
+        {
+            st.alertsHidden ??= new List<string>();
+            st.alertsShown ??= new List<string>();
+            if (!st.alertsHidden.Contains(cls)) st.alertsHidden.Add(cls);
+            st.alertsShown.Remove(cls);
+            HudManager.Window(HudLayout.Alerts)?.MarkDirty();
+            HudLayout.Save();
+        }
+
+        public static void Unhide(HudPanelState st, string cls)
+        {
+            st.alertsHidden ??= new List<string>();
+            st.alertsShown ??= new List<string>();
+            st.alertsHidden.Remove(cls);
+            if (HiddenByDefault(cls) && !st.alertsShown.Contains(cls)) st.alertsShown.Add(cls);
+            HudManager.Window(HudLayout.Alerts)?.MarkDirty();
+            HudLayout.Save();
+        }
+
+        /// <summary>Every alert hidden in the panel now, by class (the player's, and the wishes while the council shows them).</summary>
+        public static List<string> HiddenNow(HudPanelState st)
+        {
+            var list = new List<string>();
+            if (st?.alertsHidden != null) list.AddRange(st.alertsHidden);
+            if (Hidden(st, WishesAlert) && !list.Contains(WishesAlert)) list.Add(WishesAlert);
+            return list;
+        }
+
+        public static void ShowAll(HudPanelState st)
+        {
+            foreach (var cls in HiddenNow(st)) Unhide(st, cls);
+        }
+
+        /// <summary>An alert's name for the options: its label when it was seen this session, else its class's name in words.</summary>
+        public static string LabelOf(string cls)
+        {
+            if (cls.NullOrEmpty()) return "?";
+            if (labelsByClass.TryGetValue(cls, out var l) && !l.NullOrEmpty()) return l;
+            if (cls == WishesAlert) return HudKit.T("CC_Pnl_WishesAlert");
+            string name = cls.Substring(cls.LastIndexOf('.') + 1);
+            if (name.StartsWith("Alert_")) name = name.Substring(6);
+            return GenText.SplitCamelCase(name.Replace("_", " ")).CapitalizeFirst();
+        }
+
+        /// <summary>A row's right-click: hide this alert here, then the panel's own menu.</summary>
+        private void RowMenu(Alert a)
+        {
+            string cls = a?.GetType().FullName;
+            var first = new List<FloatMenuOption>();
+            if (!cls.NullOrEmpty())
+            {
+                var st = St;
+                first.Add(new FloatMenuOption(HudKit.T("CC_Pnl_HideAlert"), () => Hide(st, cls)));
+            }
+            OpenMenu(first);
         }
 
         protected override void MenuOptions(List<FloatMenuOption> options)

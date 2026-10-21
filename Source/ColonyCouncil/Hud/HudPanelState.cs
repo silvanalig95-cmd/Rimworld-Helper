@@ -7,7 +7,8 @@ namespace ColonyCouncil
     /// One on-screen panel's place and options, kept in the mod settings (CouncilSettings.hudPanels) so they hold across
     /// games: whether it shows, where (as fractions of the screen, from the corner nearest the edges; see
     /// <see cref="HudMath.ToFraction"/>), compact or full, its scale and background, how many rows, whom it lists, its
-    /// order, the trend graph's days, and the rows or columns switched off. Written when the panel is moved or changed.
+    /// order, the trend graph's days, the rows or columns switched off, its style, and the inventory's pins and folds
+    /// and the alerts hidden in the alerts panel. Written when the panel is moved or changed.
     /// </summary>
     public class HudPanelState : IExposable
     {
@@ -28,6 +29,18 @@ namespace ColonyCouncil
         public int days = 3;
         /// <summary>Rows or columns switched off, by name (see each panel's parts).</summary>
         public List<string> hidden = new List<string>();
+        /// <summary>The panel's style or layout, by name: the inventory's look, the health panel's rows ("" for the panel's own default).</summary>
+        public string style = "";
+        /// <summary>The inventory's icon grid: tiles in a row.</summary>
+        public int columns = 8;
+        /// <summary>The inventory: the items pinned to the top, by def name.</summary>
+        public List<string> pins = new List<string>();
+        /// <summary>The inventory: the categories folded away in the grouped style, by def name.</summary>
+        public List<string> folds = new List<string>();
+        /// <summary>The alerts: alerts hidden in the panel, by the alert's class (its full type name).</summary>
+        public List<string> alertsHidden = new List<string>();
+        /// <summary>The alerts: alerts hidden by default that the player chose to see (the colonist wishes, while the council panel shows).</summary>
+        public List<string> alertsShown = new List<string>();
 
         public bool Shows(string part) => hidden == null || !hidden.Contains(part);
 
@@ -43,6 +56,10 @@ namespace ColonyCouncil
         {
             var c = (HudPanelState)MemberwiseClone();
             c.hidden = hidden == null ? new List<string>() : new List<string>(hidden);
+            c.pins = pins == null ? new List<string>() : new List<string>(pins);
+            c.folds = folds == null ? new List<string>() : new List<string>(folds);
+            c.alertsHidden = alertsHidden == null ? new List<string>() : new List<string>(alertsHidden);
+            c.alertsShown = alertsShown == null ? new List<string>() : new List<string>(alertsShown);
             return c;
         }
 
@@ -62,9 +79,21 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref sort, "sort", HudSort.Risk);
             Scribe_Values.Look(ref days, "days", 3);
             Scribe_Collections.Look(ref hidden, "hidden", LookMode.Value);
+            Scribe_Values.Look(ref style, "style", "");
+            Scribe_Values.Look(ref columns, "columns", 8);
+            Scribe_Collections.Look(ref pins, "pins", LookMode.Value);
+            Scribe_Collections.Look(ref folds, "folds", LookMode.Value);
+            Scribe_Collections.Look(ref alertsHidden, "alertsHidden", LookMode.Value);
+            Scribe_Collections.Look(ref alertsShown, "alertsShown", LookMode.Value);
             if (Scribe.mode == LoadSaveMode.PostLoadInit || Scribe.mode == LoadSaveMode.LoadingVars)
             {
                 hidden ??= new List<string>();
+                style ??= "";
+                columns = columns < 2 ? 2 : columns > 30 ? 30 : columns;
+                pins ??= new List<string>();
+                folds ??= new List<string>();
+                alertsHidden ??= new List<string>();
+                alertsShown ??= new List<string>();
                 scale = HudMath.ClampScale(scale);
                 opacity = HudMath.ClampOpacity(opacity);
                 if (days != 7) days = 3;

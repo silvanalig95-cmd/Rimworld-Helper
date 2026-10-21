@@ -147,7 +147,7 @@ public static class HudPanelTests
             {
                 [HudIds.Moods] = (226f, 8f + 10 * 34f + 16f), [HudIds.Trend] = (224f, 100f), [HudIds.Vitals] = (232f, 8f + 6 * 20f),
                 [HudIds.Council] = (244f, 8f + 6 * 20f + 16f), [HudIds.Alerts] = (248f, 8f + 8 * 20f + 16f), [HudIds.Health] = (252f, 8f + 4 * 32f + 16f),
-                [HudIds.Work] = (256f, 8f + 3 * 18f + 4f + 10 * 20f + 16f)
+                [HudIds.Work] = (256f, 8f + 3 * 18f + 4f + 10 * 20f + 16f), [HudIds.Inventory] = (126f, 8f + 25 * 20f + 16f)
             };
             foreach (var id in HudIds.All)
             {

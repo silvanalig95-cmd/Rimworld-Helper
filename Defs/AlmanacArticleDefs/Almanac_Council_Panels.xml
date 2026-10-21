@@ -11,9 +11,11 @@
     <label>on-screen panels</label>
     <category>Council</category>
     <order>15</order>
-    <summary>Small panels on the map for what you keep checking: everyone's mood, the mood over the last days, the colony's vitals, the council, the game's alerts, who is hurt or ill, and who is working or idle, with a card for whoever is under the mouse.</summary>
+    <summary>Small panels on the map for what you keep checking: everyone's mood, the mood over the last days, the colony's vitals, the council, the game's alerts, who is hurt or ill and how far along, who is working or idle, and the colony's stock, with a card for whoever is under the mouse.</summary>
     <tip>Rest the mouse on a colonist for a moment: the card says what matters most about them right now.</tip>
-    <description>Some things you want to keep an eye on all the time: who is close to breaking, how much food is left, whether a wish is about to lapse. The on-screen panels keep them on the map, so you don't have to click through each colonist. There are seven: the mood board, the mood trend, the colony's vitals, the council at a glance, the alerts, health, and work and idle. A calm colony shows short, quiet panels; when something goes wrong it rises to the top and turns orange or red. Everything else stays one hover or one click away.
+    <description>Some things you want to keep an eye on all the time: who is close to breaking, how much food is left, whether a wish is about to lapse. The on-screen panels keep them on the map, so you don't have to click through each colonist. There are eight: the mood board, the mood trend, the colony's vitals, the council at a glance, the alerts, health, work and idle, and the inventory. A calm colony shows short, quiet panels; when something goes wrong it rises to the top and turns orange or red. Everything else stays one hover or one click away.
+
+The panels sit in the background: above the map and the names over the pawns, beneath everything of the game's own. The resource list, the colonist bar, the inspect pane and its tabs, the letters, and any tab or window you open all draw over them, so they never hide the game, and you can still see a panel wherever nothing covers it. Where the game's own buttons sit over a panel, a click there goes to the game.
 
 Show or hide them all with the button among the play settings at the bottom right (a screen with small panels on it), or with a key you pick under Options, Keyboard, Rimfolk. Right-click that button for each panel, the hover card, arranging them and putting them back.</description>
     <sections>
@@ -53,6 +55,11 @@ Show or hide them all with the button among the play settings at the bottom righ
         <text>The game's alerts in a panel of their own, so you can put them where you like: every alert the game shows, its own and every mod's, Rimfolk's council advice and wishes too. Critical ones in red, high in orange, medium plain, in the game's order (by priority, then as the game lists them) or the newest first. Where an alert is about several things, a small count says how many. Hover a row for the game's explanation; click it to do what clicking the game's alert does, going to what it's about and on to the next with each click. A new high or critical alert flashes for a moment, as the game's own bounce in.
 
 Until you move it, the panel sits where the game's alert list does, just above the letters, and follows them as they come and go. While it shows, the game's own list steps aside; the alerts keep updating as always, and the list is back whenever the panel isn't there (hidden, switched off, or on the world map). The panel's options can keep both, or leave out the medium or high alerts.</text>
+        <points>
+          <li>Right-click an alert and "Hide this alert in the panel" to leave it out; it's remembered by its kind. The panel's options list the hidden ones, each with "Unhide", and "Show all".</li>
+          <li>Rimfolk's own "Colonist wishes" is hidden in the panel while the council panel shows the wishes, since it would only say the same twice. Unhide it if you like it there; with the council panel off it's back by itself.</li>
+          <li>Hiding only changes the panel: the game's own list, when it shows, keeps every alert.</li>
+        </points>
       </li>
       <li>
         <heading>Health</heading>
@@ -61,9 +68,21 @@ Until you move it, the panel sits where the game's alert list does, just above t
           <li>Shown: wounds, bleeding (with how long until it kills, as the game reckons it), anything waiting to be tended, illnesses with their immunity race ("will recover" or "losing"), anything deadly while it moves, like hypothermia or toxic buildup, and Rimfolk's everyday ailments.</li>
           <li>Never shown: lost body parts, prosthetics and implants, scars, lasting conditions such as a bad back, cataracts or frailty, pregnancy, and anything the game doesn't count as bad: psylinks, auras, buffs, and the magic and effects other mods add.</li>
           <li>Bleeding or close to dying first, then what waits to be tended, then an illness that is winning, then what is healing.</li>
-          <li>Under each name, each condition in short ("Flu 48%, immunity 62%"). Click a row for their Health tab; hover it for everything in full.</li>
+          <li>Under each name, each condition and how it stands (below). Click a row for their Health tab; hover it for everything in full.</li>
         </points>
         <after>The options add colonists in caravans and on other maps, or the colony's prisoners, and can leave out those who are only healing or Rimfolk's ailments.</after>
+      </li>
+      <li>
+        <heading>How far along</heading>
+        <text>With "Show details" on (it is, until you switch it off), the health panel says how each condition stands, in a few words:</text>
+        <points>
+          <li>Tended, and how well ("tended 74%"), and when the tending wears off if that's within a few hours; or "untended" in orange, red while it bleeds.</li>
+          <li>A wound: how much of it has healed ("60% healed"), counted from its worst while the panel has watched it, or the HP still to heal when the panel didn't see it come; and roughly when it will be healed. That comes from the game's own healing: a little each day, more lying down and in a good bed, shared among all the wounds, with tended wounds healing faster the better they were tended, and none at all while someone starves.</li>
+          <li>An illness: its immunity against its severity ("immunity 62% vs 48%", or two small bars), and "over in ~1.5 d" when immunity will win at today's pace, or "losing" when it won't.</li>
+          <li>Rimfolk's everyday ailments and anything else that eases by itself: the days left.</li>
+          <li>Bleeding: how much a day, and how long until it kills, as the game reckons it.</li>
+        </points>
+        <after>Shown as a summary line under each name ("Cut 60% healed · Flu immunity 62% vs 40% · Lice untended"), or, in the panel's options, as one line for each condition. The ranking stays the same either way.</after>
       </li>
       <li>
         <heading>Work and idle</heading>
@@ -71,6 +90,17 @@ Until you move it, the panel sits where the game's alert list does, just above t
 
 Above the rows, only when there's something to say: how many are idle and who needs food or sleep (click to go to each in turn), and work waiting that nobody has switched on, such as a fire in the home area with no firefighter or someone to tend with no doctor. Click that line for the Work tab.</text>
         <after>The options pick the columns, leave drafted colonists out, or list colonists away from home too.</after>
+      </li>
+      <li>
+        <heading>The inventory</heading>
+        <text>The colony's stock as the game itself counts it (what lies in storage, as its resource list down the left shows), with the game's own item icons. It starts in that list's place on the far left, and while it shows, the game's list steps aside (a setting; the counting goes on as always). Four looks, switched on the panel's bar or in its menu, each remembered:</text>
+        <points>
+          <li>Classic: like the game's list, an icon and a count on each line; hover for the name, or add the names in the options.</li>
+          <li>Grouped: the game's categories (food, manufactured, raw resources, items, weapons, apparel...), each a header with its total. Click a header to fold it away.</li>
+          <li>Icon grid: tiles with the icon and the count under it, as many to a row as you like; good as a strip along an edge of the screen.</li>
+          <li>Essentials: only what most colonies watch, larger and calm: meals with the days of food, medicine, silver, steel, components, wood, and whatever you pin.</li>
+        </points>
+        <after>In every look: right-click an item to pin it to the top; a search box if you want one; items at zero left out, or shown with what ran out since yesterday; ordered by category as the game lists them, by name, the most first, or the biggest change first. A small +12 or −5 says how much more or less there is than at about this time yesterday (the panel looks at the stock every six hours while it's on, so this shows after its first day). Hover an item for its description and where its stacks are stored; click it to go to them, the next one with each click.</after>
       </li>
       <li>
         <heading>The hover card</heading>
@@ -88,11 +118,11 @@ When there is room for only some rows, the least important go first and the pane
         <heading>Moving and fitting them</heading>
         <text>A thin bar shows over a panel while the mouse is on it. Drag the bar (or any empty spot) to move the panel: it snaps to the screen's edges and to the other panels within 8 pixels, and its place is kept as part of the screen, so it stays put at another resolution or interface scale. The bar's buttons switch compact and full, make the background fainter, open the panel's options, and hide it. Right-click a panel for its menu.
 
-The panels always stay behind windows: a tab, the inspect pane, a planner or a dialog opens over them, never under them, and a panel behind a window never takes a click meant for it.</text>
+The panels always stay beneath windows and the game's own readouts: a tab, the inspect pane, a planner or a dialog opens over them, never under them, and a panel behind them never takes a click meant for them. They don't go away when a window opens; they wait beneath it.</text>
         <points>
           <li>Each panel's options: what it shows, whom it lists, its order or range, how many rows before "and more", its size (75% to 150%) and background.</li>
           <li>Arrange the panels: every bar shows and a small bar of its own switches panels on and off and puts their places back.</li>
-          <li>The settings (Interface, On-screen panels) have every option too: lock their places, hide them under big windows like the Work tab, hide them on the world map, hide the game's own alert list while the alerts panel shows, a darker or clearer look, small or normal text, the food and mood lines, and putting everything back as shipped.</li>
+          <li>The settings (Interface, On-screen panels) have every option too: lock their places, hide them under big windows like the Work tab (off, as they sit beneath windows anyway), hide them on the world map, hide the game's own alert list while the alerts panel shows and its resource list while the inventory shows, a darker or clearer look, small or normal text, the food and mood lines, and putting everything back as shipped.</li>
         </points>
         <after>The panels gather what they show at most twice a second and only while the game runs, so they cost very little. They work beside RimHUD, which shows the selected colonist in the inspect pane, and Dubs Mint Minimap; drag them clear of anything else on your screen.</after>
       </li>

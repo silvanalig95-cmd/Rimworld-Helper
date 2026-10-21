@@ -248,7 +248,8 @@ namespace ColonyCouncil
         // On-screen panels and the hover card (Hud/). The food lines default to the advisor's own (Advisor: four days is low).
         public bool hudShown = true;
         public bool hudLock = false;
-        public bool hudHideWithTabs = true;
+        // Off since 0.9.4: the panels paint beneath the game's interface, so a big window simply covers them (HudLayout.Migrate).
+        public bool hudHideWithTabs = false;
         public bool hudHideOnWorld = true;
         public HudTheme hudTheme = HudTheme.Dark;
         public HudFont hudFont = HudFont.Normal;
@@ -256,6 +257,10 @@ namespace ColonyCouncil
         public float hudFoodWarnDays = 10f;
         public float hudFoodBadDays = 4f;
         public bool hudHideGameAlerts = true;
+        /// <summary>The inventory panel stands in for the game's resource list (Hud/Patch_HudGameResources.cs).</summary>
+        public bool hudHideGameResources = true;
+        /// <summary>The on-screen panels' settings version, for one-time changes to older settings (HudLayout.Migrate).</summary>
+        public int hudVersion = HudLayout.SettingsVersion;
         public bool hoverCard = true;
         public float hoverDelay = 0.4f;
         public HudModifier hoverModifier = HudModifier.None;
@@ -427,7 +432,7 @@ namespace ColonyCouncil
                 councilPageState ??= new System.Collections.Generic.List<string>();
             Scribe_Values.Look(ref hudShown, "hudShown", true);
             Scribe_Values.Look(ref hudLock, "hudLock", false);
-            Scribe_Values.Look(ref hudHideWithTabs, "hudHideWithTabs", true);
+            Scribe_Values.Look(ref hudHideWithTabs, "hudHideWithTabs", false);
             Scribe_Values.Look(ref hudHideOnWorld, "hudHideOnWorld", true);
             Scribe_Values.Look(ref hudTheme, "hudTheme", HudTheme.Dark);
             Scribe_Values.Look(ref hudFont, "hudFont", HudFont.Normal);
@@ -435,6 +440,8 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref hudFoodWarnDays, "hudFoodWarnDays", 10f);
             Scribe_Values.Look(ref hudFoodBadDays, "hudFoodBadDays", 4f);
             Scribe_Values.Look(ref hudHideGameAlerts, "hudHideGameAlerts", true);
+            Scribe_Values.Look(ref hudHideGameResources, "hudHideGameResources", true);
+            Scribe_Values.Look(ref hudVersion, "hudVersion", 0);
             Scribe_Values.Look(ref hoverCard, "hoverCard", true);
             Scribe_Values.Look(ref hoverDelay, "hoverDelay", 0.4f);
             Scribe_Values.Look(ref hoverModifier, "hoverModifier", HudModifier.None);

@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 299; modelled: 299; growing without end: 0.
-Rimfolk's part of the save, roughly: **1,623 KB** after a year, **1,986 KB** after two, **2,099 KB** after five.
+Saved collections found: 304; modelled: 304; growing without end: 0.
+Rimfolk's part of the save, roughly: **1,632 KB** after a year, **1,995 KB** after two, **2,108 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -46,6 +46,7 @@ Rimfolk's part of the save, roughly: **1,623 KB** after a year, **1,986 KB** aft
 | `Ailments/AilmentTracker.cs:had` | known pawns only | known | 165 | 180 | 225 | 11.0 |
 | `Happenings/Happenings.cs:memos` | memos 3 years (children's 10), used ones a day | window | 18 | 36 | 54 | 10.5 |
 | `Standing.cs:asked` | per colonist, one per wish def asked for | colonists | 300 | 300 | 300 | 10.3 |
+| `Hud/HudComponent.cs:stock` | the inventory panel's stock: one packed line (about 120 items) every six hours per home map, the last five; only while that panel is on | cap | 5 | 5 | 5 | 8.8 |
 | `Quirks/Quirks.cs:quirks` | 2 per colonist, the dead and discarded dropped | colonists | 40 | 40 | 40 | 7.8 |
 | `Secrets/Secrets.cs:secrets` | one per colonist, ended with their death | colonists | 20 | 20 | 20 | 7.8 |
 | `Setbacks/SetbackTracker.cs:sown` | fields sown, until harvested or lost | window | 40 | 40 | 40 | 7.8 |
@@ -262,7 +263,7 @@ Rimfolk's part of the save, roughly: **1,623 KB** after a year, **1,986 KB** aft
 | `Building/CustomRooms.cs:pieces` | per saved room, in the mod's settings file | settings | 30 | 30 | 30 | (settings file) |
 | `Calendar/CalendarDay.cs:fallen` | per day on the calendar (counted under days) | fixed | 2 | 2 | 2 | (in its record) |
 | `CouncilSettings.cs:councilPageState` | the mod's settings file, not the save | settings | 30 | 30 | 30 | (settings file) |
-| `CouncilSettings.cs:hudPanels` | the mod's settings file, not the save: one per panel | settings | 7 | 7 | 7 | (settings file) |
+| `CouncilSettings.cs:hudPanels` | the mod's settings file, not the save: one per panel | settings | 8 | 8 | 8 | (settings file) |
 | `CouncilSettings.cs:planMaterials` | the mod's settings file, not the save | settings | 30 | 30 | 30 | (settings file) |
 | `CouncilSettings.cs:savedRooms` | the mod's settings file, not the save: rooms the player saved | settings | 10 | 10 | 10 | (settings file) |
 | `Defense/DefenseLine.cs:done` | per line: one per step (counted under lines) | defs | 8 | 8 | 8 | (in its record) |
@@ -277,7 +278,11 @@ Rimfolk's part of the save, roughly: **1,623 KB** after a year, **1,986 KB** aft
 | `Health/HealthTracker.cs:losses` | per healer: 30 days (counted under healers) | fixed | 3 | 3 | 3 | (in its record) |
 | `Health/HealthTracker.cs:tends` | per case: who tended it (counted under cases) | fixed | 4 | 4 | 4 | (in its record) |
 | `Heart/HeartData.cs:recentBuild` | per heart: one per strain source (counted under hearts) | fixed | 8 | 8 | 8 | (in its record) |
+| `Hud/HudPanelState.cs:alertsHidden` | alerts hidden in the alerts panel, by class (settings file) | settings | 3 | 3 | 3 | (settings file) |
+| `Hud/HudPanelState.cs:alertsShown` | alerts hidden by default that the player shows again (settings file) | settings | 1 | 1 | 1 | (settings file) |
+| `Hud/HudPanelState.cs:folds` | the inventory's folded categories (settings file) | settings | 4 | 4 | 4 | (settings file) |
 | `Hud/HudPanelState.cs:hidden` | per panel: the rows or columns switched off (settings file) | settings | 3 | 3 | 3 | (settings file) |
+| `Hud/HudPanelState.cs:pins` | the inventory's pinned items (settings file) | settings | 8 | 8 | 8 | (settings file) |
 | `Journal.cs:entries` | per journal: 60 lines (counted under journals) | fixed | 60 | 60 | 60 | (in its record) |
 | `Missions/Missions.cs:goals` | per mission (counted under missions) | fixed | 3 | 3 | 3 | (in its record) |
 | `Persona/PawnPersona.cs:d` | per person: one per side, fading (counted under people) | fixed | 8 | 8 | 8 | (in its record) |

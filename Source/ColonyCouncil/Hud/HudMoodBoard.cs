@@ -113,8 +113,8 @@ namespace ColonyCouncil
             {
                 var mr = new Rect(r.x + pad, y, r.width - pad * 2f, Mathf.Round(16f * s));
                 HudKit.Label(mr, moreText, UiKit.Faint, GameFont.Tiny);
-                TooltipHandler.TipRegion(mr, HudKit.T("CC_Pnl_MoreTip"));
-                if (Widgets.ButtonInvisible(mr, false))
+                Tip(mr, HudKit.T("CC_Pnl_MoreTip"));
+                if (Clicked(mr))
                 {
                     if (Event.current.button == 1) OpenMenu();
                     else MainTabWindow_Council.OpenTab("Moods");
@@ -139,7 +139,7 @@ namespace ColonyCouncil
             var tint = Tint(h);
             if (tint.HasValue) Widgets.DrawBoxSolid(r, tint.Value);
             else UiKit.Zebra(r, index);
-            bool over = Mouse.IsOver(r);
+            bool over = Over(r);
             if (over) Widgets.DrawBoxSolid(r, UiKit.CardHover);
             float pad = Mathf.Round(3f * s);
             float x = r.x + pad;
@@ -160,7 +160,7 @@ namespace ColonyCouncil
             {
                 // The Mood tab button takes the marks' place while the mouse is on the row.
                 var b = new Rect(right - icon - 1f, r.y + (line1 - icon) / 2f + 1f, icon + 2f, icon + 2f);
-                if (Widgets.ButtonImage(b, Icons.Moods ?? TexButton.Info, UiKit.Gold, Color.white, false, "CC_Pnl_MoodTabTip".Translate(p.LabelShort)))
+                if (ImageButton(b, Icons.Moods ?? TexButton.Info, UiKit.Gold, Color.white, "CC_Pnl_MoodTabTip".Translate(p.LabelShort)))
                 {
                     MoodView.ShowMoodTab(p);
                     Event.current.Use();
@@ -199,12 +199,12 @@ namespace ColonyCouncil
             }
             var pawn = p;
             var data = h;
-            TooltipHandler.TipRegion(r, () => HudMood.Tip(data), p.thingIDNumber ^ 0x48D7);
-            if (Widgets.ButtonInvisible(r, false)) Click(pawn);
+            Tip(r, () => HudMood.Tip(data), p.thingIDNumber ^ 0x48D7);
+            if (Clicked(r)) Click(pawn);
         }
 
         /// <summary>The small marks at the right of the first line; returns where they begin.</summary>
-        private static float Marks(Rect line, HudPawn h, float size)
+        private float Marks(Rect line, HudPawn h, float size)
         {
             float x = line.xMax;
             int id = h.pawn.thingIDNumber;
@@ -215,7 +215,7 @@ namespace ColonyCouncil
                 x -= size + 1f;
                 var r = new Rect(x, line.y + (line.height - size) / 2f, size, size);
                 UiKit.Icon(r, tex, c);
-                TooltipHandler.TipRegion(r, tip, Gen.HashCombineInt(id, 0x4D41 + which));
+                Tip(r, tip, Gen.HashCombineInt(id, 0x4D41 + which));
             }
             if (h.inBreak) Mark(Icons.Warning, UiKit.Bad, () => "CC_Pnl_C_InBreak".Translate(h.breakLabel ?? "?"), 1);
             if (h.band >= StrainBand.Worn) Mark(Icons.Heart, HeartView.BandColor(h.band), () => HeartView.BandLabel(h.band), 2);
@@ -234,7 +234,7 @@ namespace ColonyCouncil
             Widgets.DrawBoxSolid(new Rect(r.x + r.width * h.minor - 1f, r.y, 1f, r.height), HudKit.MinorLine);
             Widgets.DrawBoxSolid(new Rect(r.x + r.width * h.major - 1f, r.y, 1f, r.height), HudKit.MajorLine);
             if (h.inBreak) Widgets.DrawBox(r, 2, BaseContent.WhiteTex);
-            if (Mouse.IsOver(r)) Widgets.DrawBoxSolid(r, UiKit.CardHover);
+            if (Over(r)) Widgets.DrawBoxSolid(r, UiKit.CardHover);
             HudKit.Label(r, HudKit.Initials(h.pawn), Color.white, GameFont.Tiny, TextAnchor.MiddleCenter);
             if (Mathf.Abs(h.heading - h.now) >= 0.01f)
             {
@@ -242,8 +242,8 @@ namespace ColonyCouncil
                 HudKit.Heading(new Rect(r.xMax - aw - 1f, r.y + 1f, aw, aw), h.now, h.heading);
             }
             var data = h;
-            TooltipHandler.TipRegion(r, () => HudMood.Tip(data), h.pawn.thingIDNumber ^ 0x48D8);
-            if (Widgets.ButtonInvisible(r, false)) Click(h.pawn);
+            Tip(r, () => HudMood.Tip(data), h.pawn.thingIDNumber ^ 0x48D8);
+            if (Clicked(r)) Click(h.pawn);
         }
 
         /// <summary>A row clicked: left to select and jump, Shift for the Mood tab, right for the menu.</summary>

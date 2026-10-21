@@ -31,6 +31,17 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.9.6</version>
+        <date>25 October 2026</date>
+        <title>Panels in the background</title>
+        <points>
+          <li>The on-screen panels now sit beneath the game's own interface: windows, the colonist bar, letters, alerts and the inspect tabs draw over them, and your hover and clicks reach the game there. They stay visible behind open windows instead of disappearing ("hide them under big windows" is off now, still there as an option).</li>
+          <li>An Inventory panel shows what you have with the game's own icons, in four looks to try: classic, grouped by category, an icon grid and essentials only. Pin what matters, search, see the change since about this time yesterday, and click to jump to the stacks. The game's own resource list steps aside while it shows (a setting keeps both).</li>
+          <li>The health panel shows how each condition stands: tended and how well, how far a wound has healed and roughly when it will be gone, an illness's immunity race and whether it's being won. Right-click any alert in the Alerts panel to hide it there; the wishes the Council panel already shows are hidden by default.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.9.5</version>
         <date>24 October 2026, later</date>
         <title>Fungus that lasts</title>
