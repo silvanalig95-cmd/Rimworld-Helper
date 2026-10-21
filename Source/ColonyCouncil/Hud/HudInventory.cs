@@ -268,10 +268,10 @@ namespace ColonyCouncil
 
         // ---------------- Sizes ----------------
 
-        private float RowH(float s) => Mathf.Round((Style == StyleEssentials ? 26f : 20f) * s);
-        private float HeadH(float s) => Mathf.Round(19f * s);
-        private float TileW(float s) => Mathf.Round(38f * s);
-        private float TileH(float s) => Mathf.Round(40f * s);
+        private float RowH(float s) => Mathf.Round((Style == StyleEssentials ? (St.compact ? 22f : 26f) : St.compact ? 17f : 20f) * s);
+        private float HeadH(float s) => Mathf.Round((St.compact ? 17f : 19f) * s);
+        private float TileW(float s) => Mathf.Round((St.compact ? 32f : 38f) * s);
+        private float TileH(float s) => Mathf.Round((St.compact ? 34f : 40f) * s);
         private float SearchH(float s) => St.Shows(PartSearch) ? Mathf.Round(26f * s) : 0f;
         private bool Labels => Style != StyleClassic || St.Shows(PartLabels);
 
@@ -283,9 +283,9 @@ namespace ColonyCouncil
                     HudInventoryMath.GridSize(Math.Max(1, shown.Count), St.columns, TileW(s), TileH(s), 2f, out float w, out _);
                     return Mathf.Max(Mathf.Round(130f * s), w + Mathf.Round(8f * s));
                 case StyleClassic:
-                    return Mathf.Round((Labels ? 196f : 126f) * s);
+                    return Mathf.Round((Labels ? (St.compact ? 168f : 196f) : St.compact ? 112f : 126f) * s);
                 default:
-                    return Mathf.Round(214f * s);
+                    return Mathf.Round((St.compact ? 184f : 214f) * s);
             }
         }
 
@@ -383,7 +383,7 @@ namespace ColonyCouncil
             if (it.e.pinned) Widgets.DrawBoxSolid(rr, UiKit.WithAlpha(UiKit.Gold, 0.07f));
             else UiKit.Zebra(rr, index);
             if (Over(rr)) Widgets.DrawBoxSolid(rr, UiKit.CardHover);
-            float icon = Mathf.Round((big ? 22f : 18f) * s);
+            float icon = Mathf.Min(rr.height - 2f, Mathf.Round((big ? 22f : 18f) * s));
             float x = rr.x + Mathf.Round(3f * s);
             Icon(new Rect(x, rr.y + (rr.height - icon) / 2f, icon, icon), it);
             x += icon + Mathf.Round(5f * s);
@@ -482,7 +482,7 @@ namespace ColonyCouncil
                 var tile = new Rect(x0 + cx, y + cy, tw, th);
                 Widgets.DrawBoxSolid(tile, it.e.pinned ? UiKit.WithAlpha(UiKit.Gold, 0.1f) : new Color(1f, 1f, 1f, 0.04f));
                 if (Over(tile)) Widgets.DrawBoxSolid(tile, UiKit.CardHover);
-                float ic = Mathf.Round(24f * s);
+                float ic = Mathf.Round((St.compact ? 20f : 24f) * s);
                 Icon(new Rect(tile.x + (tw - ic) / 2f, tile.y + Mathf.Round(2f * s), ic, ic), it);
                 var low = new Rect(tile.x, tile.yMax - Mathf.Round(15f * s), tw, Mathf.Round(15f * s));
                 HudKit.Label(low, HudInventoryMath.ShortCount(it.e.count), it.e.count > 0 ? Color.white : UiKit.Dim, GameFont.Tiny, TextAnchor.MiddleCenter);

@@ -1832,7 +1832,8 @@ each panel, the hover card, **Arrange the panels** and putting them back; a key 
 Rimfolk. A thin bar on hover drags the panel (it snaps to the screen's edges and the other panels; its place is kept
 as part of the screen, so it survives a new resolution), switches compact and full, fades the background, opens its
 options and hides it. Each panel's options: which rows or columns show, order, whom it lists (home, everywhere,
-with prisoners), the graph's range, rows before "and more", size 75% to 150%, background. Where they start is laid
+with prisoners), the graph's range, the health panel's rows, the inventory's look and pins, the alerts hidden in the
+panel, rows before "and more", size 75% to 150%, background. Where they start is laid
 out so nothing overlaps at 1080p and nothing sits under the game's readouts: the inventory in the resource list's place,
 the board and the trend beside it, the vitals, the council and the alerts on the right, work and health in a column
 beside them. The settings (Interface, **On-screen panels** and **Hover card**) have all of it, plus a lock, hiding
