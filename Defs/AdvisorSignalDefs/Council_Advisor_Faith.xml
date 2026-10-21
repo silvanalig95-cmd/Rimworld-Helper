@@ -6,7 +6,7 @@
 
   <ColonyCouncil.AdvisorSignalDef>
     <defName>Council_Adv_FaithSplit</defName>
-    <label>a colony split between faiths</label>
+    <label>a colony split between ideoligions</label>
     <workerClass>ColonyCouncil.AdvisorWorker_FaithSplit</workerClass>
     <article>Rimfolk_Alm_C_Faith</article>
     <category>Comfort</category>
@@ -14,8 +14,8 @@
     <tips>
       <li>A moral guide's Convert ability works best on someone wavering who likes the guide. Content colonists win their certainty back day by day, so a low mood helps a conversion along and a good one slows it.</li>
       <li>The conversion ritual lets the moral guide speak to one listener with everyone watching; a well-made altar or ideogram and a good speaker make it likelier to work.</li>
-      <li>Each faith with no moral guide here has no one to speak for it. Naming one gives its believers a voice, and the colony's other faiths someone to listen to.</li>
-      <li>Talks about faith move people slowly: a devout, well-liked colonist who comes out of a friendly talk well sways the other a little, and an argument only makes both dig in.</li>
+      <li>Each ideoligion with no moral guide here has no one to speak for it. Naming one gives its believers a voice, and the colony's other ideoligions someone to listen to.</li>
+      <li>Talks between believers move certainty slowly: a devout, well-liked colonist who comes out of a friendly talk well sways the other a little, and an argument only makes both dig in.</li>
     </tips>
   </ColonyCouncil.AdvisorSignalDef>
 

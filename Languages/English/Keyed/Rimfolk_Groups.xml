@@ -110,7 +110,7 @@
   <CC_Group_ViewTip>A view most of them share. Members who don't hold it yet are drawn towards it, slowly.</CC_Group_ViewTip>
   <CC_Group_RivalTip>How bad it is between them: {0} of 100. It grows with feuds between their people, views and ways at odds, and spats between them; it cools when those end. Members of groups at odds think less of each other, vote against each other and object to each other's wishes.</CC_Group_RivalTip>
   <CC_Group_OutsiderTip>Someone new to the colony is an outsider until a group takes them in. What its people think of them, things they go through together, work they share and a member who speaks for them all help; a warm, trusting group takes them in far sooner than a wary one, which may close ranks.</CC_Group_OutsiderTip>
-  <CC_Group_NoneTip>Groups grow out of what binds people: friendship, the same work, a fight fought together, the night hours, faith, where they came from, their age, being alike.</CC_Group_NoneTip>
+  <CC_Group_NoneTip>Groups grow out of what binds people: friendship, the same work, a fight fought together, the night hours, an ideoligion held hard, where they came from, their age, being alike.</CC_Group_NoneTip>
 
   <!-- The character page (section "Groups and role") -->
   <CC_Group_PageTitle>Groups and role</CC_Group_PageTitle>
@@ -128,7 +128,7 @@
 
   <!-- People → Bonds -->
   <CC_Social_Groups>Groups</CC_Social_Groups>
-  <CC_Social_GroupsNone>No groups yet. They grow out of friendships, shared work, battles fought together, the night hours, faith, where people came from, age and character, and take a few days to show.</CC_Social_GroupsNone>
+  <CC_Social_GroupsNone>No groups yet. They grow out of friendships, shared work, battles fought together, the night hours, a shared ideoligion, where people came from, age and character, and take a few days to show.</CC_Social_GroupsNone>
   <CC_Social_GroupsNoneFor>{0} isn't part of any group.</CC_Social_GroupsNoneFor>
   <CC_Social_Outsiders>New and still outside every group: {0}.</CC_Social_Outsiders>
   <CC_Social_PastGroups>Groups that are no more</CC_Social_PastGroups>

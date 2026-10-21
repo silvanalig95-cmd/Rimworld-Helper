@@ -16,7 +16,7 @@
         <li>[for] I prayed last night, and I slept better for it.</li>
         <li>[for,subject] I hold to {SUBJECT}, whatever happens.</li>
         <li>[for,otherideo] I wish you'd come to one of our gatherings, just to see.</li>
-        <li>[for,sameideo] It's good to share a faith with someone, isn't it.</li>
+        <li>[for,sameideo] It's good to share what you believe with someone, isn't it.</li>
         <li>[for,devout] I've never been surer of anything than I am of this.</li>
         <li>[for,noideo] There's something out there looking after us, I'm sure of it.</li>
         <li>[for,strong] Without faith we're just animals with tools.</li>
@@ -39,7 +39,7 @@
       <warm>
         <li>[for] I pray for all of you, you know, every night.</li>
         <li>[against] I envy people who are sure, I really do.</li>
-        <li>[for,sameideo] I'm glad I share a faith with you.</li>
+        <li>[for,sameideo] I'm glad we hold the same ideoligion, you and I.</li>
         <li>[against] I wish I believed as easily as some people do.</li>
       </warm>
       <blunt>

@@ -3,7 +3,7 @@
 
   <!-- Beliefs and diets (Source/ColonyCouncil/Wishes/Beliefs.cs): wishes and plates that fit what a colonist believes -->
 
-  <!-- An engaged couple whose faith keeps lovin, and a shared bed, to the married -->
-  <CC_Reason_WeddingFaith>{PAWN_nameDef} and {OTHER_nameDef} are engaged, and their faith keeps a shared bed for the married.</CC_Reason_WeddingFaith>
+  <!-- An engaged couple whose ideoligion keeps lovin, and a shared bed, to the married -->
+  <CC_Reason_WeddingFaith>{PAWN_nameDef} and {OTHER_nameDef} are engaged, and their ideoligion keeps a shared bed for the married.</CC_Reason_WeddingFaith>
 
 </LanguageData>

@@ -13,7 +13,7 @@
     <defName>Council_Wish_LearnFaith</defName>
     <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>an evening learning about {SUBJECT}</label>
-    <description>Someone whose faith has been shaken wants to hear another faith out: an evening with a devout believer they think well of, learning what that faith holds and why. Promising it arranges the evening (they walk over in the evening and spend a couple of hours together); going to an evening of that faith counts too. Granted, it moves them toward that faith (about 12% of certainty, more if they're open-minded and fond of the believer) and the two remember it together. Only with Ideology.</description>
+    <description>Someone whose certainty has been shaken wants to hear another ideoligion out: an evening with a devout believer they think well of, learning what that ideoligion holds and why. Promising it arranges the evening (they walk over in the evening and spend a couple of hours together); going to an evening of that ideoligion counts too. Granted, it moves them toward that ideoligion (about 12% of certainty, more if they're open-minded and fond of the believer) and the two remember it together. Only with Ideology.</description>
     <workerClass>ColonyCouncil.WishWorker_LearnFaith</workerClass>
     <category>Social</category>
     <weight>0.9</weight>

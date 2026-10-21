@@ -51,7 +51,7 @@
 
   <ColonyCouncil.PersonaMarkDef>
     <defName>Rimfolk_Mark_FaithLoss</defName>
-    <label>a faith that didn't comfort</label>
+    <label>rites that didn't comfort</label>
     <shifts><outlook>-5</outlook><openness>4</openness><trust>-2</trust></shifts>
     <major>true</major>
     <keepDays>180</keepDays>
@@ -91,12 +91,12 @@
 
   <ColonyCouncil.PersonaMarkDef>
     <defName>Rimfolk_Mark_FaithRescued</defName>
-    <label>saved by another faith</label>
+    <label>saved by a believer of another ideoligion</label>
     <shifts><openness>6</openness><trust>3</trust></shifts>
     <major>true</major>
     <keepDays>180</keepDays>
     <shaped>{PAWN_nameDef} has looked at {LABEL} with new eyes since {OTHER}, who keeps it, saved {PAWN_objective}.</shaped>
-    <defaultLabel>another faith</defaultLabel>
+    <defaultLabel>another ideoligion</defaultLabel>
     <modExtensions>
       <li Class="ColonyCouncil.PersonaMarkExtension">
         <family>FaithRescued</family>
@@ -131,7 +131,7 @@
 
   <ColonyCouncil.PersonaMarkDef>
     <defName>Rimfolk_Mark_FaithBurden</defName>
-    <label>worn down by the faith's demands</label>
+    <label>worn down by their ideoligion's demands</label>
     <shifts><openness>4</openness><outlook>-3</outlook><pride>-2</pride></shifts>
     <major>true</major>
     <keepDays>150</keepDays>

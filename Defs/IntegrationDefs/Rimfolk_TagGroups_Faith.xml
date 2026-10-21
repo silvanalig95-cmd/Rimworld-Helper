@@ -10,7 +10,7 @@
   <ColonyCouncil.TagGroupDef>
     <defName>Rimfolk_Tags_Devout</defName>
     <label>the devout</label>
-    <description>People whose faith worships something: a god or gods, one of the old faiths, or the spirits of the world.</description>
+    <description>People whose ideoligion worships something: a god or gods, one of the old faiths, or the spirits of the world.</description>
     <tag>devout</tag>
     <memes>
       <li>Structure_TheistEmbodied</li>

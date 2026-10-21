@@ -32,7 +32,7 @@
   <HediffDef>
     <defName>Council_Decree_HolyDays</defName>
     <label>holy days (decree)</label>
-    <description>Keeping the faith's holy days, by order of the council: prayers at dawn and dusk, and work set down for them.</description>
+    <description>Keeping the ideoligion's holy days, by order of the council: prayers at dawn and dusk, and work set down for them.</description>
     <hediffClass>HediffWithComps</hediffClass>
     <defaultLabelColor>(0.6, 0.8, 0.95)</defaultLabelColor>
     <isBad>false</isBad>

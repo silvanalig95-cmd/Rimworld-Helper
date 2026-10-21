@@ -38,9 +38,9 @@
         <li>[faith:wavering,otherfaith:devout] You always look so sure at the rites, what's that like?</li>
         <li>[faith:alone,myfaith] I'm the only one here who keeps {SUBJECT}, and some nights it's lonely.</li>
         <li>[faith:alone] Nobody here prays the way I do, so I say the words out loud to hear them.</li>
-        <li>[faith:minority,otherideo] It's not easy, keeping a faith most of the colony doesn't share.</li>
+        <li>[faith:minority,otherideo] It's not easy, keeping an ideoligion most of the colony doesn't share.</li>
         <li>[faith:minority,myfaith] Hardly anyone here keeps {SUBJECT}, and I mind more than I let on.</li>
-        <li>[faith:majority,otherideo] I hope you never feel shut out, keeping a different faith from most of us.</li>
+        <li>[faith:majority,otherideo] I hope you never feel shut out, keeping a different ideoligion from most of us.</li>
         <li>[faith:devout,sameideo] I'm glad of you at the rites, it's easier to hold on with someone beside me.</li>
         <li>[steadied,faith:devout] Nothing out here is certain except this, and I'm glad we share it.</li>
         <li>[steadied] I said the old words this morning and thought of you saying them too.</li>
@@ -62,7 +62,7 @@
       </blunt>
       <cheerful>
         <li>[persuading] Come to one rite with us, and if you hate it I'll do your laundry for a week.</li>
-        <li>[faith:alone] Being the only one of my faith here means I always get the best seat at the rites.</li>
+        <li>[faith:alone] Being the only one of my ideoligion here means I always get the best seat at the rites.</li>
         <li>[steadied,sameideo] Good rite this morning, and I only nodded off once.</li>
       </cheerful>
       <gloomy>

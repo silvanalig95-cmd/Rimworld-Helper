@@ -1,73 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
-  <!-- Faith in the colony, the people's side (Source/ColonyCouncil/Faith/, UI/FaithsPanel.cs), with Ideology. -->
+  <!-- Ideoligions in the colony, the people's side (Source/ColonyCouncil/Faith/, UI/FaithsPanel.cs), with Ideology. -->
 
   <ColonyCouncil.AlmanacArticleDef>
     <defName>Rimfolk_Alm_C_Faith</defName>
-    <label>faith in the colony</label>
+    <label>ideoligions in the colony</label>
     <category>Council</category>
     <order>9</order>
     <dlc>Ideology</dlc>
-    <summary>Who believes what and how firmly, talks about faith that move it, crises that shake it, and the game's own tools for bringing people together.</summary>
-    <tip>People → Faiths shows every faith in the colony: its believers and how firmly each holds it, a leader or moral guide missing, what it asks that weighs on someone now, and who could sway whom.</tip>
-    <description>With Ideology, every colonist holds a faith with a certainty from 0 to 100%. Certainty is the game's own: the moral guide's Convert ability and the conversion ritual wear it down, and the game moves it a little every day by mood, so the content win it back and the unhappy lose it. When it runs out, the colonist takes up the faith that wore it down.
+    <summary>Who holds which ideoligion and how firmly, talks that move their certainty, crises that shake it, and the game's own tools for bringing people together.</summary>
+    <tip>People → Ideoligions shows every ideoligion in the colony: its believers and how firmly each holds it, a leader or moral guide missing, what it asks that weighs on someone now, and who could sway whom.</tip>
+    <description>With Ideology, every colonist holds an ideoligion with a certainty from 0 to 100%. Certainty is the game's own: the moral guide's Convert ability and the conversion ritual wear it down, and the game moves it a little every day by mood, so the content win it back and the unhappy lose it. When it runs out, the colonist takes up the ideoligion that wore it down.
 
-Rimfolk doesn't add a second kind of faith. It reads the game's, shows it plainly, and lets a few things in a colonist's life move it: a talk about faith with someone of another, and a hard turn of life that shakes them. Every conversion is still the game's own, told the same way whatever led to it. Someone is devout from 85% and wavering under 60%.</description>
+Rimfolk adds no belief system of its own beside the game's. It reads the game's ideoligions, shows them plainly, and lets a few things in a colonist's life move their certainty: a talk with someone of another ideoligion, and a hard turn of life that shakes them. Every conversion is still the game's own, told the same way whatever led to it. Someone is devout from 85% and wavering under 60%.</description>
     <sections>
       <li>
-        <heading>The faiths page</heading>
-        <text>People → Faiths (shown with "Faith in the colony" on) has a card for each faith in the colony, the most believers first, in the faith's own colour and icon:</text>
+        <heading>The ideoligions page</heading>
+        <text>People → Ideoligions (shown with "Ideoligions in the colony" on) has a card for each ideoligion in the colony, the most believers first, in its own colour and icon:</text>
         <points>
           <li>its believers, each with a bar of how firmly they hold it, marked devout or wavering (click one for their page);</li>
-          <li>its leader and moral guide, or that the role is empty here, held by someone elsewhere, or not in this faith at all;</li>
+          <li>its leader and moral guide, or that the role is empty here, held by someone elsewhere, or not in this ideoligion at all;</li>
           <li>what it asks that weighs on someone right now: its believers' bad moods that come from its own precepts (no ritual held lately, nowhere of its own to worship, a role left empty, a table to eat at), each with its mood and who feels it;</li>
-          <li>who could sway whom: its devout believers against those of other faiths, by how much one good talk would move the listener (more for someone wavering, open-minded or fond of the speaker; less for the proud, and for a faith that frowns on preaching).</li>
+          <li>who could sway whom: its devout believers against those of other ideoligions, by how much one good talk would move the listener (more for someone wavering, open-minded or fond of the speaker; less for the proud, and for an ideoligion that frowns on preaching).</li>
         </points>
-        <after>Under the cards, how to bring people together, with the game's own tools. A colonist's Culture tab (just left of Social) opens with their faith too: its icon and name, a bar of how firmly they hold it, a role they hold, what it asks of them now, what moved their faith lately and by how much, who is likeliest to sway them, and the faiths they held before. When half the colony or more is split between three faiths or more, the advisor says so and leads here.</after>
+        <after>Under the cards, how to bring people together, with the game's own tools. A colonist's Culture tab (just left of Social) opens with their ideoligion too: its icon and name, a bar of how firmly they hold it, a role they hold, what it asks of them now, what moved their certainty lately and by how much, who is likeliest to sway them, and the ideoligions they held before. When half the colony or more is split between three ideoligions or more, the advisor says so and leads here.</after>
       </li>
       <li>
-        <heading>Talks about faith</heading>
-        <text>Faith is one of the things colonists talk about (see "conversations and views"). When a talk about it goes a certain way, it moves their faith, through the game's own certainty:</text>
+        <heading>Talks about ideoligion</heading>
+        <text>Faith is one of the things colonists talk about (see "conversations and views"), and with Ideology a talk about it is a talk about their ideoligions. When it goes a certain way, it moves their certainty, the game's own:</text>
         <table>
-          <li>How it goes | Between | What it does to their faith</li>
-          <li>Agreeing | Two of different faiths, at least one devout | The devout one's word sways the other: 3.5% before the listener's character</li>
-          <li>A friendly debate | Two of different faiths who like each other (or are friends or lovers) | Whoever comes out of it well, by the game's conversion power, how devout and how liked, with some luck: if they're devout, 4.5% off the other before their character</li>
-          <li>An argument | Two of different faiths, heated | Nobody is swayed; both dig in, 1% surer each</li>
-          <li>Agreeing or debating | Two of one faith | Both steady each other, 1% surer each</li>
+          <li>How it goes | Between | What it does to their certainty</li>
+          <li>Agreeing | Two of different ideoligions, at least one devout | The devout one's word sways the other: 3.5% before the listener's character</li>
+          <li>A friendly debate | Two of different ideoligions who like each other (or are friends or lovers) | Whoever comes out of it well, by the game's conversion power, how devout and how liked, with some luck: if they're devout, 4.5% off the other before their character</li>
+          <li>An argument | Two of different ideoligions, heated | Nobody is swayed; both dig in, 1% surer each</li>
+          <li>Agreeing or debating | Two of one ideoligion | Both steady each other, 1% surer each</li>
         </table>
-        <after>Character decides how far a word goes: the open-minded are moved up to half again as much and the closed half as much, the proud give less ground, a friend is heard and a rival hardly, and a believer whose faith frowns on preaching hears half as much and thinks a little less of the preacher (-5 opinion for four days; no mood). The game's own certainty-loss factor counts too, and no single moment takes more than 15%. One talk moves a pair's faith at most every two days, anyone is swayed by talk at most once a day, and steadied once a day. A wavering, open listener who likes a devout speaker comes round over a season of good talks; a proud, devout believer barely moves. The lines show it: the devout one reaching out, the other giving ground or keeping it to themselves, both digging in. A colonist's view about faith on their character page keeps in step with their certainty: someone wavering never reads as holding firmly to the faith, and someone devout never as doubting it.</after>
+        <after>Character decides how far a word goes: the open-minded are moved up to half again as much and the closed half as much, the proud give less ground, a friend is heard and a rival hardly, and a believer whose ideoligion frowns on preaching hears half as much and thinks a little less of the preacher (-5 opinion for four days; no mood). The game's own certainty-loss factor counts too, and no single moment takes more than 15%. One talk moves a pair's certainty at most every two days, anyone is swayed by talk at most once a day, and steadied once a day. A wavering, open listener who likes a devout speaker comes round over a season of good talks; a proud, devout believer barely moves. The lines show it: the devout one reaching out, the other giving ground or keeping it to themselves, both digging in. A colonist's view about faith on their character page keeps in step with their certainty: someone wavering never reads as holding firmly to their ideoligion, and someone devout never as doubting it.</after>
       </li>
       <li>
         <heading>A crisis of faith</heading>
-        <text>Now and then a hard turn of life shakes someone's faith for real. It's a turning point on their character page ("what shaped them"), with a line in their journal in their own voice and a word in the colony's news; their Faith section says what caused it and how much it took.</text>
+        <text>Now and then a hard turn of life shakes someone's certainty for real. It's a turning point on their character page ("what shaped them"), with a line in their journal in their own voice and a word in the colony's news; their Ideoligion section says what caused it and how much it took.</text>
         <table>
           <li>Crisis | When | Certainty it takes | Chance, and how long before again</li>
-          <li>A loved one lost | A lover, child, family or close friend dies, though their faith had a funeral or a prayer to offer; felt one to three days after | 18%, or 20% for the hot-tempered, who turn on their faith | 45% or 40%; 60 days</li>
-          <li>Saved by another faith | Carried out of a fight, or nursed through a dangerous illness, by someone of another faith; a day or so after | 12%, and a pull toward the rescuer's faith (5% before their character) | 50%; 90 days</li>
-          <li>The faith's demands | The same thing their faith asks weighing on their mood (-4 or worse) five days running | 15% | 35%; 60 days</li>
+          <li>A loved one lost | A lover, child, family or close friend dies, though their ideoligion had a funeral or a prayer to offer; felt one to three days after | 18%, or 20% for the hot-tempered, who turn on their ideoligion | 45% or 40%; 60 days</li>
+          <li>Saved by a believer of another ideoligion | Carried out of a fight, or nursed through a dangerous illness, by someone of another ideoligion; a day or so after | 12%, and a pull toward the rescuer's ideoligion (5% before their character) | 50%; 90 days</li>
+          <li>Their ideoligion's demands | The same thing their ideoligion asks weighing on their mood (-4 or worse) five days running | 15% | 35%; 60 days</li>
           <li>Close to death | Severe blood loss, bleeding out within hours, or an illness or wound three quarters of the way to killing them; felt once they're up again | 18% | 40%; 60 days</li>
         </table>
-        <after>Their nature scales how hard it hits (the gloomy and the timid take a loss or a brush with death harder, the open and humble a rescue), never under 10% or over 30%. Nobody has two crises within 20 days, and nothing says one is coming. A crisis never converts anyone by itself; it leaves them wavering, where a moral guide or a friend of another faith may reach them. Contentment rebuilds faith the game's own way, day by day; Rimfolk adds nothing to that.</after>
+        <after>Their nature scales how hard it hits (the gloomy and the timid take a loss or a brush with death harder, the open and humble a rescue), never under 10% or over 30%. Nobody has two crises within 20 days, and nothing says one is coming. A crisis never converts anyone by itself; it leaves them wavering, where a moral guide or a friend of another ideoligion may reach them. Contentment rebuilds certainty the game's own way, day by day; Rimfolk adds nothing to that.</after>
       </li>
       <li>
         <heading>Bringing people together</heading>
-        <text>A colony of many faiths has no one set of rites, roles and buildings for everyone, and each faith's demands weigh on its own. Faith moves slowly, and mostly through the game's own tools:</text>
+        <text>A colony of many ideoligions has no one set of rites, roles and buildings for everyone, and each ideoligion's demands weigh on its own believers. Certainty moves slowly, and mostly through the game's own tools:</text>
         <points>
-          <li>The moral guide's Convert ability: a talk with one colonist of another faith that takes a good part of their certainty, more from someone wavering who likes the guide.</li>
-          <li>The conversion ritual: a faith's moral guide speaks to one listener of another faith, with others there; how well it goes decides how much it takes.</li>
+          <li>The moral guide's Convert ability: a talk with one colonist of another ideoligion that takes a good part of their certainty, more from someone wavering who likes the guide.</li>
+          <li>The conversion ritual: an ideoligion's moral guide speaks to one listener of another ideoligion, with others there; how well it goes decides how much it takes.</li>
           <li>Mood: a miserable, wavering colonist is the easiest to bring round, and a contented one slips away from it, because the game moves certainty by mood every day.</li>
-          <li>Roles: a faith with a leader and a moral guide here has someone to speak for it; one without has no voice of its own.</li>
-          <li>Talks: a devout, well-liked colonist keeps the others of their faith steady and sways the wavering, a little at a time.</li>
+          <li>Roles: an ideoligion with a leader and a moral guide here has someone to speak for it; one without has no voice of its own.</li>
+          <li>Talks: a devout, well-liked colonist keeps the others of their ideoligion steady and sways the wavering, a little at a time.</li>
         </points>
         <after>Prisoners and slaves are the warden's to convert, as in the game itself.</after>
       </li>
       <li>
         <heading>Settings</heading>
-        <text>Everything here needs Ideology, a game not in classic mode, and "Faith in the colony" on (it is by default). Talks about faith also need "Personalities and social life" and "Moments between colonists"; crises of faith need "Personalities and social life".</text>
+        <text>Everything here needs Ideology, a game not in classic mode, and "Ideoligions in the colony" on (it is by default). Talks that move certainty also need "Personalities and social life" and "Moments between colonists"; crises of faith need "Personalities and social life".</text>
       </li>
     </sections>
-    <keywords><li>faith</li><li>ideoligion</li><li>ideology</li><li>certainty</li><li>conversion</li><li>convert</li><li>moral guide</li><li>devout</li><li>wavering</li><li>crisis of faith</li><li>preaching</li></keywords>
+    <keywords><li>faith</li><li>ideoligion</li><li>ideology</li><li>certainty</li><li>conversion</li><li>convert</li><li>moral guide</li><li>devout</li><li>wavering</li><li>crisis of faith</li><li>preaching</li><li>ideoligions</li></keywords>
     <seeAlso><li>Council_Alm_C_SocialLife</li><li>Council_Alm_C_Talk</li><li>Council_Alm_C_Marks</li><li>Council_Alm_C_Character</li></seeAlso>
   </ColonyCouncil.AlmanacArticleDef>
 

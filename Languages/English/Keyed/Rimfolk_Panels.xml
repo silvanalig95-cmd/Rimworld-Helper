@@ -225,7 +225,7 @@
   <CC_Pnl_C_Falling>Falling towards a break: heading for {0}, the line is {1}</CC_Pnl_C_Falling>
   <CC_Pnl_C_Close>Mood {0}, close to the break line ({1})</CC_Pnl_C_Close>
   <CC_Pnl_C_Wish>Wishes for: {0} ({1} left)</CC_Pnl_C_Wish>
-  <CC_Pnl_C_Wavering>Faith wavering</CC_Pnl_C_Wavering>
+  <CC_Pnl_C_Wavering>Certainty wavering</CC_Pnl_C_Wavering>
   <CC_Pnl_C_AllWell>Nothing pressing.</CC_Pnl_C_AllWell>
   <CC_Pnl_Prisoner>prisoner</CC_Pnl_Prisoner>
   <CC_Pnl_Slave>slave</CC_Pnl_Slave>
@@ -253,7 +253,7 @@
   <CC_Pnl_Part_number>The mood and where it's heading</CC_Pnl_Part_number>
   <CC_Pnl_Part_drag>What drags their mood down most</CC_Pnl_Part_drag>
   <CC_Pnl_Part_act>What would help (a wider panel)</CC_Pnl_Part_act>
-  <CC_Pnl_Part_icons>Marks: a break, strain, a wish, wavering faith</CC_Pnl_Part_icons>
+  <CC_Pnl_Part_icons>Marks: a break, strain, a wish, wavering certainty</CC_Pnl_Part_icons>
   <CC_Pnl_Part_average>The colony's average</CC_Pnl_Part_average>
   <CC_Pnl_Part_lowest>The lowest colonist</CC_Pnl_Part_lowest>
   <CC_Pnl_Part_line>The minor break line</CC_Pnl_Part_line>
@@ -383,7 +383,7 @@
   <CC_Settings_HoverMood_Tip>The mood bar with their own break lines and a mark where their mood is heading.</CC_Settings_HoverMood_Tip>
   <CC_SetNote_HoverMood>The mood bar with their break lines and where it's heading.</CC_SetNote_HoverMood>
   <CC_Settings_HoverConcerns>What matters most now</CC_Settings_HoverConcerns>
-  <CC_Settings_HoverConcerns_Tip>The most pressing things about them, most urgent first: bleeding or a condition that can kill, a mental break or the break line, hunger and exhaustion, strain, a wish waiting, wavering faith, and the biggest moods dragging them down with what would help.</CC_Settings_HoverConcerns_Tip>
+  <CC_Settings_HoverConcerns_Tip>The most pressing things about them, most urgent first: bleeding or a condition that can kill, a mental break or the break line, hunger and exhaustion, strain, a wish waiting, wavering certainty, and the biggest moods dragging them down with what would help.</CC_Settings_HoverConcerns_Tip>
   <CC_SetNote_HoverConcerns>Bleeding, a break, hunger, strain, a wish, the biggest moods dragging them down.</CC_SetNote_HoverConcerns>
   <CC_Settings_HoverLines>...at most {0} lines</CC_Settings_HoverLines>
   <CC_SetNote_HoverLines>Anything critical always shows, even beyond this.</CC_SetNote_HoverLines>

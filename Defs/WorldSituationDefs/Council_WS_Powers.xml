@@ -145,7 +145,7 @@
               <li>[greedy,!sameCreed] Traders say {X_nameDef} counts everything twice and likes a deal. Trade with {FACTION} should pick up, at a price.</li>
               <li>[harsh,!sameCreed] {X_nameDef} has a reputation for a short temper and a long memory. {FACTION} are likely to be cooler toward outsiders for a while.</li>
               <li>[steady,!sameCreed] By all accounts, {X_nameDef} is careful and in no hurry to change anything.</li>
-              <li>[sameCreed] {X_nameDef} keeps the colony's own faith, and has said so in public. That counts for something in {PLACE}.</li>
+              <li>[sameCreed] {X_nameDef} keeps the colony's own ideoligion, and has said so in public. That counts for something in {PLACE}.</li>
             </texts>
           </li>
         </lines>
@@ -335,8 +335,8 @@
     </titles>
     <texts>
       <li>The preachers of {FACTION} and {ENEMY} have fallen out in public. It began with a sermon in {PLACE} against {ITEM}, the creed of {ENEMY}, and the answer came back within the week. Now every market between the two has a preacher on a box in it, and neither side is talking about anything else.\n\nIt is a war of words, so far. Both sides would like the colony's voice.</li>
-      <li>[ourCreed] {FACTION}'s preachers have declared that {ITEM}, the creed of {ENEMY}, is a lie, and {ENEMY} have answered in kind. It has been going on for weeks.\n\n{TALE} is the colony's own faith, and the preachers of {FACTION} know it. They are expecting the colony to say so out loud.</li>
-      <li>[theirCreed] The preachers of {FACTION} have started on {ITEM}, the creed of {ENEMY}, and {ENEMY} are answering back. It has been going on for weeks.\n\n{ITEM} is the colony's own faith. Everyone is waiting to see whether the colony stands up for it.</li>
+      <li>[ourCreed] {FACTION}'s preachers have declared that {ITEM}, the creed of {ENEMY}, is a lie, and {ENEMY} have answered in kind. It has been going on for weeks.\n\n{TALE} is the colony's own ideoligion, and the preachers of {FACTION} know it. They are expecting the colony to say so out loud.</li>
+      <li>[theirCreed] The preachers of {FACTION} have started on {ITEM}, the creed of {ENEMY}, and {ENEMY} are answering back. It has been going on for weeks.\n\n{ITEM} is the colony's own ideoligion. Everyone is waiting to see whether the colony stands up for it.</li>
     </texts>
     <summaries>
       <li>Preachers of both creeds will come asking for the colony's support. Taking a side wins one neighbor and cools the other; a debate could win both, or neither.</li>

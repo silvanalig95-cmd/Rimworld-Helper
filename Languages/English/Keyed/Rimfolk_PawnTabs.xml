@@ -31,7 +31,7 @@
   <CC_Culture_Certainty>Certainty</CC_Culture_Certainty>
   <CC_Culture_CertaintyValue>{0}, {1}</CC_Culture_CertaintyValue>
   <CC_Culture_FaithBefore>Held to {0} before.</CC_Culture_FaithBefore>
-  <CC_Culture_FaithBeforeTip>The faiths they followed before this one.</CC_Culture_FaithBeforeTip>
+  <CC_Culture_FaithBeforeTip>The ideoligions they followed before this one.</CC_Culture_FaithBeforeTip>
 
   <CC_Culture_Ways>The colony's ways</CC_Culture_Ways>
   <CC_Culture_WaysBar>How they sit with our ways</CC_Culture_WaysBar>

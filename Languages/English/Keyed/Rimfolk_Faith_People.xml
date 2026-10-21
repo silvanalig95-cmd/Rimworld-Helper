@@ -1,34 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
 
-  <!-- Faith in the colony, the people's side (Source/ColonyCouncil/Faith/, UI/FaithsPanel.cs): the faiths page, faith
-       talks that matter, crises of faith, the character page's faith section and the advice for a split colony. -->
+  <!-- Ideoligions in the colony, the people's side (Source/ColonyCouncil/Faith/, UI/FaithsPanel.cs): the ideoligions page,
+       talks that matter, crises of faith, the character page's ideoligion section and the advice for a split colony. -->
 
-  <!-- ===================== The faiths page (People → Faiths) ===================== -->
-  <CC_Tab_Faiths>Faiths</CC_Tab_Faiths>
-  <CC_UI_Sub_Faiths>Who believes what and how firmly, what each faith asks, and who could sway whom.</CC_UI_Sub_Faiths>
-  <CC_FaithPg_Stat>{N} faiths among {PEOPLE}</CC_FaithPg_Stat>
-  <CC_FaithPg_SplitTip>How split the colony is: {PCT} (0% is one faith for everyone, 100% everyone their own). From half, with three faiths or more, the advisor speaks up.</CC_FaithPg_SplitTip>
-  <CC_FaithPg_Intro>Who holds which faith, and how firmly. Certainty is the game's own: when it runs out, someone takes up the faith that wore it down. The moral guide, the conversion ritual, talks about faith and a hard turn of life move it; contentment slowly rebuilds it. Click a believer to open their page.</CC_FaithPg_Intro>
-  <CC_FaithPg_None>Nobody in the colony holds a faith.</CC_FaithPg_None>
-  <CC_FaithPg_NoIdeology>Faiths need Ideology.</CC_FaithPg_NoIdeology>
-  <CC_FaithPg_Classic>In classic mode the colony has no faiths to speak of.</CC_FaithPg_Classic>
-  <CC_FaithPg_Off>"Faith in the colony" is off in Rimfolk's settings.</CC_FaithPg_Off>
+  <!-- ===================== The ideoligions page (People → Ideoligions) ===================== -->
+  <CC_Tab_Faiths>Ideoligions</CC_Tab_Faiths>
+  <CC_UI_Sub_Faiths>Who holds which ideoligion and how firmly, what each asks, and who could sway whom.</CC_UI_Sub_Faiths>
+  <CC_FaithPg_Stat>{N} ideoligions among {PEOPLE}</CC_FaithPg_Stat>
+  <CC_FaithPg_SplitTip>How split the colony is: {PCT} (0% is one ideoligion for everyone, 100% everyone their own). From half, with three ideoligions or more, the advisor speaks up.</CC_FaithPg_SplitTip>
+  <CC_FaithPg_Intro>Who holds which ideoligion, and how firmly. Certainty is the game's own: when it runs out, someone takes up the ideoligion that wore it down. The moral guide, the conversion ritual, talks between believers and a hard turn of life move it; contentment slowly rebuilds it. Click a believer to open their page.</CC_FaithPg_Intro>
+  <CC_FaithPg_None>Nobody in the colony holds an ideoligion.</CC_FaithPg_None>
+  <CC_FaithPg_NoIdeology>Ideoligions need Ideology.</CC_FaithPg_NoIdeology>
+  <CC_FaithPg_Classic>In classic mode the colony has no ideoligions to speak of.</CC_FaithPg_Classic>
+  <CC_FaithPg_Off>"Ideoligions in the colony" is off in Rimfolk's settings.</CC_FaithPg_Off>
   <CC_FaithPg_Count>believers: {N}  ·  {PCT} certain on average</CC_FaithPg_Count>
   <CC_FaithPg_IdeoTip>The game's Ideoligion tab shows its memes, precepts and roles in full.</CC_FaithPg_IdeoTip>
   <CC_FaithPg_Leader>Leader</CC_FaithPg_Leader>
   <CC_FaithPg_Guide>Moral guide</CC_FaithPg_Guide>
-  <CC_FaithPg_RoleNone>none in this faith</CC_FaithPg_RoleNone>
+  <CC_FaithPg_RoleNone>none in this ideoligion</CC_FaithPg_RoleNone>
   <CC_FaithPg_RoleAway>held by someone not here</CC_FaithPg_RoleAway>
   <CC_FaithPg_RoleEmpty>empty</CC_FaithPg_RoleEmpty>
-  <CC_FaithPg_RoleEmptyTip>The {ROLE} speaks for the faith. With no one in the role here, its believers have no voice of their own, and a faith that minds an empty role lets them feel it. The game's Ideoligion tab names one from the believers who qualify.</CC_FaithPg_RoleEmptyTip>
+  <CC_FaithPg_RoleEmptyTip>The {ROLE} speaks for the ideoligion. With no one in the role here, its believers have no voice of their own, and an ideoligion that minds an empty role lets them feel it. The game's Ideoligion tab names one from the believers who qualify.</CC_FaithPg_RoleEmptyTip>
   <CC_FaithPg_Certainty>{PCT} certain, {STATE}</CC_FaithPg_Certainty>
   <CC_FaithPg_TipAsks>Weighing on them: {0}</CC_FaithPg_TipAsks>
   <CC_FaithPg_Asks>What it asks that weighs on someone now</CC_FaithPg_Asks>
   <CC_FaithPg_AsksNone>Nothing it asks weighs on anyone right now.</CC_FaithPg_AsksNone>
   <CC_FaithPg_AskRow>{WHAT} ({MOOD}): {WHO}</CC_FaithPg_AskRow>
   <CC_FaithPg_Sways>Who could sway whom</CC_FaithPg_Sways>
-  <CC_FaithPg_SwaysNone>Nobody of another faith would be moved much by its devout yet.</CC_FaithPg_SwaysNone>
+  <CC_FaithPg_SwaysNone>Nobody of another ideoligion would be moved much by its devout yet.</CC_FaithPg_SwaysNone>
   <CC_FaithPg_SwaysNoDevout>None of its believers is devout enough to win others over.</CC_FaithPg_SwaysNoDevout>
   <CC_FaithPg_SwayRow>{PAWN_nameDef} → {OTHER_nameDef}: about {PTS}% of certainty in a good talk ({WHY})</CC_FaithPg_SwayRow>
   <CC_FaithPg_SwayRowPlain>{PAWN_nameDef} → {OTHER_nameDef}: about {PTS}% of certainty in a good talk</CC_FaithPg_SwayRowPlain>
@@ -36,18 +36,18 @@
   <CC_FaithPg_WhyOpen>open-minded</CC_FaithPg_WhyOpen>
   <CC_FaithPg_WhyLikes>fond of {OTHER_objective}</CC_FaithPg_WhyLikes>
   <CC_FaithPg_WhyProud>proud</CC_FaithPg_WhyProud>
-  <CC_FaithPg_WhyNoPreaching>their faith frowns on preaching</CC_FaithPg_WhyNoPreaching>
+  <CC_FaithPg_WhyNoPreaching>their ideoligion frowns on preaching</CC_FaithPg_WhyNoPreaching>
   <CC_FaithPg_Together>How to bring people together</CC_FaithPg_Together>
-  <CC_FaithPg_TogetherSplit>{N} faiths share the colony, and {WAVERING} of its people are wavering. Faith moves slowly, and mostly through the game's own tools:</CC_FaithPg_TogetherSplit>
-  <CC_FaithPg_ToolConvert>The moral guide's Convert ability: a talk with one colonist of another faith that takes a good part of their certainty, more from someone wavering who likes the guide. Every faith with a moral guide here can try.</CC_FaithPg_ToolConvert>
-  <CC_FaithPg_ToolRitual>The conversion ritual: a faith's moral guide speaks to one listener of another faith, with others there to see it. How well it goes decides how much of their certainty it takes.</CC_FaithPg_ToolRitual>
+  <CC_FaithPg_TogetherSplit>{N} ideoligions share the colony, and {WAVERING} of its people are wavering. Certainty moves slowly, and mostly through the game's own tools:</CC_FaithPg_TogetherSplit>
+  <CC_FaithPg_ToolConvert>The moral guide's Convert ability: a talk with one colonist of another ideoligion that takes a good part of their certainty, more from someone wavering who likes the guide. Every ideoligion with a moral guide here can try.</CC_FaithPg_ToolConvert>
+  <CC_FaithPg_ToolRitual>The conversion ritual: an ideoligion's moral guide speaks to one listener of another ideoligion, with others there to see it. How well it goes decides how much of their certainty it takes.</CC_FaithPg_ToolRitual>
   <CC_FaithPg_ToolMood>Mood and certainty: the game moves certainty a little every day by mood. Content colonists win theirs back and unhappy ones lose it, so a miserable, wavering colonist is the easiest to bring round, and a contented one slips away from it.</CC_FaithPg_ToolMood>
-  <CC_FaithPg_ToolTalk>Talks: when two of different faiths talk it over kindly, a devout, well-liked colonist who comes out of it well sways the other a little. An argument only makes both dig in, and two of one faith steady each other.</CC_FaithPg_ToolTalk>
-  <CC_FaithPg_ToolRoles>Roles: a faith with a leader and a moral guide here has someone to speak for it and to bring others in; one without has no voice of its own.</CC_FaithPg_ToolRoles>
-  <CC_FaithPg_ReadMore>Faith in the colony (Almanac)</CC_FaithPg_ReadMore>
+  <CC_FaithPg_ToolTalk>Talks: when two of different ideoligions talk it over kindly, a devout, well-liked colonist who comes out of it well sways the other a little. An argument only makes both dig in, and two of one ideoligion steady each other.</CC_FaithPg_ToolTalk>
+  <CC_FaithPg_ToolRoles>Roles: an ideoligion with a leader and a moral guide here has someone to speak for it and to bring others in; one without has no voice of its own.</CC_FaithPg_ToolRoles>
+  <CC_FaithPg_ReadMore>Ideoligions in the Almanac</CC_FaithPg_ReadMore>
 
-  <!-- ===================== A colonist's faith (character page, section 35) ===================== -->
-  <CC_FaithP_PageTitle>Faith</CC_FaithP_PageTitle>
+  <!-- ===================== A colonist's ideoligion (character page, section 35) ===================== -->
+  <CC_FaithP_PageTitle>Ideoligion</CC_FaithP_PageTitle>
   <CC_FaithP_PageHolds>Holds to {FAITH}: {PCT} certain, {STATE}.</CC_FaithP_PageHolds>
   <CC_FaithP_PageRole>Role in {FAITH}: {ROLE}.</CC_FaithP_PageRole>
   <CC_FaithP_PageAsks>What {FAITH} asks weighs on {PAWN_objective}: {LIST}.</CC_FaithP_PageAsks>
@@ -59,27 +59,27 @@
   <CC_FaithP_Ask>{WHAT} ({MOOD})</CC_FaithP_Ask>
   <CC_FaithP_NoteMoved>{WHAT}: certainty {PTS}</CC_FaithP_NoteMoved>
   <CC_FaithP_NoteConverted>took up {FAITH}</CC_FaithP_NoteConverted>
-  <CC_FaithP_NoteCrisisTip>A crisis of faith: a hard turn of life that shook how firmly they hold it. It's among what shaped them, too.</CC_FaithP_NoteCrisisTip>
-  <CC_FaithP_NoteTalkTip>A talk about faith that moved them.</CC_FaithP_NoteTalkTip>
-  <CC_FaithP_CertaintyTip>Certainty is the game's own: how firmly someone holds their faith, from 0 to 100%. Devout from {DEVOUT}, wavering under {WAVERING}. When it runs out, they take up the faith of whoever wore it down.</CC_FaithP_CertaintyTip>
+  <CC_FaithP_NoteCrisisTip>A crisis of faith: a hard turn of life that shook how firmly they hold their ideoligion. It's among what shaped them, too.</CC_FaithP_NoteCrisisTip>
+  <CC_FaithP_NoteTalkTip>A talk about their ideoligion that moved them.</CC_FaithP_NoteTalkTip>
+  <CC_FaithP_CertaintyTip>Certainty is the game's own: how firmly someone holds their ideoligion, from 0 to 100%. Devout from {DEVOUT}, wavering under {WAVERING}. When it runs out, they take up the ideoligion of whoever wore it down.</CC_FaithP_CertaintyTip>
   <CC_FaithP_CertaintyDrift>The game moves it {0} a day now, by their mood: content colonists win certainty back, unhappy ones lose it.</CC_FaithP_CertaintyDrift>
-  <CC_FaithP_AsksTip>Moods that come from the faith's own precepts: what it expects of its believers (a ritual held lately, a table to eat at, a place of its own, a role filled) and doesn't have here. Giving the faith what it asks lifts them; weighing on someone day after day, it can shake their faith.</CC_FaithP_AsksTip>
-  <CC_FaithP_SwayTip>How much one good talk about faith would take off the listener's certainty: a friendly debate a devout speaker comes out of well. The open are moved more, the proud less; friends are heard, rivals hardly; a faith that frowns on preaching hears half as much. Nobody is swayed by talk more than once a day.</CC_FaithP_SwayTip>
+  <CC_FaithP_AsksTip>Moods that come from the ideoligion's own precepts: what it expects of its believers (a ritual held lately, a table to eat at, a place of its own, a role filled) and doesn't have here. Giving the ideoligion what it asks lifts them; weighing on someone day after day, it can shake their certainty.</CC_FaithP_AsksTip>
+  <CC_FaithP_SwayTip>How much one good talk about their ideoligions would take off the listener's certainty: a friendly debate a devout speaker comes out of well. The open are moved more, the proud less; friends are heard, rivals hardly; an ideoligion that frowns on preaching hears half as much. Nobody is swayed by talk more than once a day.</CC_FaithP_SwayTip>
 
-  <!-- ===================== Faith talks ===================== -->
+  <!-- ===================== Talks about ideoligion ===================== -->
   <CC_FaithT_NoteSwayed>swayed by {OTHER_nameDef} in a talk about {FAITH}</CC_FaithT_NoteSwayed>
-  <CC_FaithT_ConvertCause>The last of it was a talk about faith.</CC_FaithT_ConvertCause>
+  <CC_FaithT_ConvertCause>The last of it was a talk about their ideoligions.</CC_FaithT_ConvertCause>
 
   <!-- ===================== Crises of faith ===================== -->
   <CC_FaithC_NoteToward>drawn toward {FAITH} by {OTHER_nameDef}</CC_FaithC_NoteToward>
   <CC_FaithC_ConvertCause>It began when {OTHER_nameDef} saved {PAWN_objective}.</CC_FaithC_ConvertCause>
 
   <!-- ===================== The advisor: a split colony ===================== -->
-  <CC_Adv_FaithSplit_Title>The colony is split between {N} faiths</CC_Adv_FaithSplit_Title>
+  <CC_Adv_FaithSplit_Title>The colony is split between {N} ideoligions</CC_Adv_FaithSplit_Title>
   <CC_Adv_FaithSplit_Faith>{FAITH} ({N})</CC_Adv_FaithSplit_Faith>
-  <CC_Adv_FaithSplit_Detail>The colony holds {FAITHS}. No one faith's rites, roles and buildings serve everyone, and each faith's demands weigh on its own.</CC_Adv_FaithSplit_Detail>
+  <CC_Adv_FaithSplit_Detail>The colony holds {FAITHS}. No one ideoligion's rites, roles and buildings serve everyone, and each ideoligion's demands weigh on its own believers.</CC_Adv_FaithSplit_Detail>
   <CC_Adv_FaithSplit_Wavering>Wavering now: {LIST}.</CC_Adv_FaithSplit_Wavering>
   <CC_Adv_FaithSplit_NoGuide>No moral guide here for {LIST}.</CC_Adv_FaithSplit_NoGuide>
-  <CC_Adv_FaithSplit_Tools>The faiths page (People) shows who holds what and how firmly, and who could sway whom. A moral guide's Convert ability and the conversion ritual bring people round over time.</CC_Adv_FaithSplit_Tools>
+  <CC_Adv_FaithSplit_Tools>The ideoligions page (People) shows who holds which ideoligion and how firmly, and who could sway whom. A moral guide's Convert ability and the conversion ritual bring people round over time.</CC_Adv_FaithSplit_Tools>
 
 </LanguageData>

@@ -33,7 +33,7 @@ Camps come with world events switched on and the camps setting on. Only one camp
           <li>Merchants from afar | 3 to 5, for 2 to 5 days | An exotic trader's stall; tell news of far places</li>
           <li>Drovers (tribal and later) | 3 to 5, for 2 to 4 days | Graze a herd beyond the camp; leave milk, wool or a hide</li>
           <li>Penitents | 3 to 6, for 2 to 4 days | Pray at their camp, walk round the colony praying for it</li>
-          <li>Tree-singers (Ideology: only of a faith that holds trees or nature sacred) | 2 to 5, for 2 to 5 days | Sing to the trees, bless the fields, tend an ailment with a leaf and a moss</li>
+          <li>Tree-singers (Ideology: only of an ideoligion that holds trees or nature sacred) | 2 to 5, for 2 to 5 days | Sing to the trees, bless the fields, tend an ailment with a leaf and a moss</li>
           <li>A travelling healer | 1 or 2, for 3 to 6 days | Ease a colonist's ailment or illness, leave herbal medicine</li>
           <li>A band of minstrels | 3 to 5, for 2 to 5 days | Play at their fire in the evening: the colony walks over to listen</li>
           <li>Mourners passing through | 3 to 6, for a night to three | Keep a vigil by their cart; tell the story of the one they carry</li>
@@ -44,7 +44,7 @@ Camps come with world events switched on and the camps setting on. Only one camp
         <heading>Camps and the world</heading>
         <text>Camps follow what happens in the region. While a famine, a plague, a war, a flood, a drought, a hard winter, a great fire, exiles on the roads or a rebuilding runs, refugees come about three times as often, and their letters say what they fled. Pilgrims, penitents, tree-singers and the procession come more often in a holy year, a great pilgrimage or under a comet, healers in a plague, surveyors along a new road or in a silver rush, traders and caravans in a trading season, a fair or along a new road, drovers on the drove roads and at harvest, minstrels in a season of songs, mourners in a people's mourning, a plague or a war.
 
-With Ideology, pilgrims, penitents and the procession follow one of the world's creeds and name it in their letters, and say so when the colony shares it; penitents of a guilty, a pain-is-virtue or a preaching faith say that too. Tree-singers come only from a people whose faith holds trees, nature or spirits sacred. Without Ideology, their faith goes unnamed.
+With Ideology, pilgrims, penitents and the procession follow one of the world's creeds and name it in their letters, and say so when the colony shares it; penitents of a guilty, a pain-is-virtue or a preaching ideoligion say that too. Tree-singers come only from a people whose ideoligion holds trees, nature or spirits sacred. Without Ideology, their faith goes unnamed.
 
 A camp of a people that remembers one of the colony by name asks for that colonist when it comes, and that colonist goes out to meet them.</text>
       </li>

@@ -15,7 +15,7 @@
   <ThingDef ParentName="MealCooked" MayRequire="Ludeon.RimWorld.Ideology">
     <defName>Rimfolk_MealFungus</defName>
     <label>fungus meal</label>
-    <description>A simple meal cooked with fungus in it and whatever else was at hand. It's kept apart from the other meals for those whose faith or diet asks for fungus: put fungus meals on their food policy and leave them off everyone else's.</description>
+    <description>A simple meal cooked with fungus in it and whatever else was at hand. It's kept apart from the other meals for those whose ideoligion or diet asks for fungus: put fungus meals on their food policy and leave them off everyone else's.</description>
     <graphicData>
       <texPath>ColonyCouncil/Icons/Table</texPath>
       <graphicClass>Graphic_Single</graphicClass>

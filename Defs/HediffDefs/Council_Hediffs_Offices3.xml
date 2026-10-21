@@ -6,7 +6,7 @@
   <HediffDef>
     <defName>Council_Office_Chaplain</defName>
     <label>chaplain</label>
-    <description>Holds the chaplain's seat: keeps the colony's faith.</description>
+    <description>Holds the chaplain's seat: keeps the colony's ideoligion.</description>
     <hediffClass>HediffWithComps</hediffClass>
     <defaultLabelColor>(0.85, 0.75, 0.5)</defaultLabelColor>
     <isBad>false</isBad>

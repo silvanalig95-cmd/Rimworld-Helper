@@ -10,7 +10,7 @@
     many listened, {PLACE} the altar or ideogram.
   -->
 
-  <!-- ===================== An evening of faith ===================== -->
+  <!-- ===================== An ideoligion evening ===================== -->
 
   <!-- Said while the evening goes on. -->
   <ColonyCouncil.FlavorPoolDef>
@@ -49,7 +49,7 @@
         <li>They can have their evening. I know what I believe.</li>
       </plain>
       <blunt><li>Not for me.</li></blunt>
-      <gloomy><li>Every faith wants one more believer. Not this one.</li></gloomy>
+      <gloomy><li>Every ideoligion wants one more believer. Not this one.</li></gloomy>
       <cold><li>Two hours of being told what to think. No, thank you.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -71,7 +71,7 @@
         <li>[fine,!believers] Those who came to hear {PAWN_nameDef} speak for {FAITH} stayed late, even the doubters.</li>
         <li>[fine,believers] The faithful of {FAITH} heard {PAWN_nameDef} out to the last word, and sat on together long after.</li>
         <li>[fine,altar] At the {PLACE}, {PAWN_nameDef} spoke for {FAITH} as if to each of them alone. It was very still afterwards.</li>
-        <li>[fine,moved] {PAWN_nameDef} spoke for {FAITH}, and those of other faiths who came walked home very thoughtful.</li>
+        <li>[fine,moved] {PAWN_nameDef} spoke for {FAITH}, and those of other ideoligions who came walked home very thoughtful.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -93,7 +93,7 @@
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
-  <!-- ===================== When faiths clash ===================== -->
+  <!-- ===================== When ideoligions clash ===================== -->
 
   <!-- The faiths taking turns at the altar (or the fire). -->
   <ColonyCouncil.FlavorPoolDef>
@@ -103,7 +103,7 @@
         <li>[faith:devout] Ours after supper, theirs at first light. That's fair.</li>
         <li>[faith:devout] We'll leave it tidy for them, the way we'd want it left for us.</li>
         <li>[!faith:devout] I didn't know they sang at theirs.</li>
-        <li>[!faith:devout] Two faiths, one roof. We'll manage.</li>
+        <li>[!faith:devout] Two ideoligions, one roof. We'll manage.</li>
         <li>[!faith:devout] Strange, hearing someone else's words in this place. Not bad. Strange.</li>
       </plain>
       <blunt><li>[!faith:devout] As long as nobody sits in my seat.</li></blunt>
@@ -115,16 +115,16 @@
     <defName>Council_Journal_FaithNamed</defName>
     <lines>
       <plain>
-        <li>The council has named {FAITH} the colony's faith. I'll keep mine all the same, quietly if I have to.</li>
-        <li>So {FAITH} is the colony's faith now. Nobody asked me, and I won't forget that.</li>
-        <li>[faith:alone] One faith for the colony, and I'm the only one left holding mine.</li>
+        <li>The council has named {FAITH} the colony's ideoligion. I'll keep mine all the same, quietly if I have to.</li>
+        <li>So {FAITH} is the colony's ideoligion now. Nobody asked me, and I won't forget that.</li>
+        <li>[faith:alone] One ideoligion for the colony, and I'm the only one left holding mine.</li>
       </plain>
-      <gloomy><li>One faith for the colony, and it isn't mine. Some home this is.</li></gloomy>
-      <cold><li>{FAITH} is the colony's faith by the council's word. Noted.</li></cold>
+      <gloomy><li>One ideoligion for the colony, and it isn't mine. Some home this is.</li></gloomy>
+      <cold><li>{FAITH} is the colony's ideoligion by the council's word. Noted.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
-  <!-- ===================== One faith for the colony ===================== -->
+  <!-- ===================== One ideoligion for the colony ===================== -->
 
   <!-- Said when the colony's faith is declared, at the word for it (by decree, or when the council names it). -->
   <ColonyCouncil.FlavorPoolDef>
@@ -157,7 +157,7 @@
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
-  <!-- ===================== The calendar's evenings of faith ({SUBJECT} is the day's faith) ===================== -->
+  <!-- ===================== The calendar's ideoligion evenings ({SUBJECT} is the day's ideoligion) ===================== -->
 
   <ColonyCouncil.FlavorPoolDef>
     <defName>Council_Cal_Letter_Faith</defName>
@@ -201,7 +201,7 @@
     <pool>Council_Cal_Talk_Eve</pool>
     <lines>
       <plain>
-        <li>[way:faith] {A_nameDef} and {B_nameDef} set out chairs for tomorrow's evening of faith.</li>
+        <li>[way:faith] {A_nameDef} and {B_nameDef} set out chairs for tomorrow's ideoligion evening.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>

@@ -206,7 +206,7 @@
   <ColonyCouncil.GroupNormDef>
     <defName>Rimfolk_Norm_Devout</defName>
     <label>devout</label>
-    <description>Their faith is the centre of their days, and they keep its rites together.</description>
+    <description>Their ideoligion is the centre of their days, and they keep its rites together.</description>
     <kinds><li>Rimfolk_Group_Faithful</li></kinds>
     <welcome>-0.05</welcome>
     <tag>devout</tag>

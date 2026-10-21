@@ -18,7 +18,7 @@
     <tip>A wish you can't grant never comes up: nobody in a tribe asks for a deep drill.</tip>
     <description>There are 106 kinds of wish, many with variants (six kinds of work room, a dozen pieces of furniture, any skill to learn or teach). A colonist only voices a wish that fits who they are and what is happening to them, and only for something the colony can actually do now: a building it can place (the research is done, it's in the build menu, and anything that needs power waits for electricity), something it can make or grow, or something within reach on the map.
 
-Some wishes belong to an era (healroot for a tribe or a medieval village, a deep drill or a comms console once there's electricity), some to an age (children want lessons, pets and stories; the old want a soft chair, a resting place or an apprentice), some to a season or the weather, and some to a DLC or another mod. Without it, they simply never come up. Nor does a wish the colonist's own beliefs forbid: no shared bed before the wedding under a faith that keeps lovin for the married, no hunt for a vegetarian, no beer for a teetotaler (the page "wishes and promises" says more).</description>
+Some wishes belong to an era (healroot for a tribe or a medieval village, a deep drill or a comms console once there's electricity), some to an age (children want lessons, pets and stories; the old want a soft chair, a resting place or an apprentice), some to a season or the weather, and some to a DLC or another mod. Without it, they simply never come up. Nor does a wish the colonist's own beliefs forbid: no shared bed before the wedding under an ideoligion that keeps lovin for the married, no hunt for a vegetarian, no beer for a teetotaler (the page "wishes and promises" says more).</description>
     <sections>
       <li>
         <heading>Home and comfort</heading>
@@ -125,7 +125,7 @@ Some wishes belong to an era (healroot for a tribe or a medieval village, a deep
           <li>Stronger defenses, a beast hunted down | Anyone shaken by a raid; a beast's victim and their friends.</li>
           <li>An evening with the campers | The sociable, the kind and those lacking belonging or freedom, while strangers are camped on the map.</li>
           <li>A council meeting | The sociable, office holders, and anyone who missed the last meeting, when the council hasn't met in eight days or more. Promising it calls the meeting.</li>
-          <li>An evening learning another faith | With Ideology: someone wavering in their own faith, who thinks well of a devout believer of another. Promising it arranges the evening; going to an evening of that faith counts too. Faith and the council has the details.</li>
+          <li>An evening learning another ideoligion | With Ideology: someone wavering in their own ideoligion, who thinks well of a devout believer of another. Promising it arranges the evening; going to an evening of that ideoligion counts too. "Ideoligions and the council" has the details.</li>
           <li>A comms console | The sociable, once one can be built.</li>
         </table>
       </li>
@@ -288,7 +288,7 @@ Some run for a whole season: so many days in a row with something kept up, where
     <order>11</order>
     <summary>All 84 life goals, who sets their heart on each, and what can spark it.</summary>
     <tip>A child's wish to learn their letters becomes a scholar's goal when they grow up. Help the little ones with their wishes.</tip>
-    <description>A colonist sets their heart on one life goal at a time, from what fits them: passions, traits, age, faith and what has happened to them lately. What sparks a goal (a battle, a brush with death, a loss, a birth, a dream that came true, a friend reaching the same goal, a recent memory) makes it far likelier, and can change their mind about a goal they've barely started. Children have goals of their own (Biotech), and a few goals are only for the old (ages in human years).</description>
+    <description>A colonist sets their heart on one life goal at a time, from what fits them: passions, traits, age, ideoligion and what has happened to them lately. What sparks a goal (a battle, a brush with death, a loss, a birth, a dream that came true, a friend reaching the same goal, a recent memory) makes it far likelier, and can change their mind about a goal they've barely started. Children have goals of their own (Biotech), and a few goals are only for the old (ages in human years).</description>
     <sections>
       <li>
         <heading>Skill and craft</heading>
@@ -382,13 +382,13 @@ Some run for a whole season: so many days in a row with something kept up, where
         </table>
       </li>
       <li>
-        <heading>Faith and other mods</heading>
+        <heading>Ideoligion and other mods</heading>
         <table>
           <li>Goal | Who, and what sparks it</li>
-          <li>take on a role in the faith | Believers with some certainty, when their faith has a role open (Ideology); an omen.</li>
-          <li>see the whole colony share one faith | Devout believers in a colony of 3 or more (Ideology); a loss, an omen.</li>
-          <li>find their faith again | Believers whose certainty has fallen below 60% (Ideology), until it's back at 90% in the same faith; a loss, an omen.</li>
-          <li>bring someone else to their faith | Believers in a colony where some don't share it (Ideology); an omen, a birth.</li>
+          <li>take on a role in their ideoligion | Believers with some certainty, when their ideoligion has a role open (Ideology); an omen.</li>
+          <li>see the whole colony share one ideoligion | Devout believers in a colony of 3 or more (Ideology); a loss, an omen.</li>
+          <li>find their faith again | Believers whose certainty has fallen below 60% (Ideology), until it's back at 90% in the same ideoligion; a loss, an omen.</li>
+          <li>bring someone else to their ideoligion | Believers in a colony where some don't share it (Ideology); an omen, a birth.</li>
           <li>reach a level as a mage or a fighter | A RimWorld of Magic's classes; a battle.</li>
           <li>learn or deepen six workings | A RimWorld of Magic's mages; a battle, comparing workings with another mage.</li>
           <li>learn or sharpen six techniques | A RimWorld of Magic's fighters; a battle, a brush with death, comparing forms.</li>

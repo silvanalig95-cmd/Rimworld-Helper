@@ -319,7 +319,7 @@
   <!-- ===================== A bond the faith frowns on (Ideology) ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_DlmA_BondFaith</defName>
-    <label>a bond against the faith</label>
+    <label>a bond against the ideoligion</label>
     <workerClass>ColonyCouncil.DilemmaWorker_BondFaith</workerClass>
     <weight>0.8</weight>
     <cooldownDays>45</cooldownDays>
@@ -327,7 +327,7 @@
       <notTrait><li>Psychopath</li></notTrait>
     </roleA>
     <texts>
-      <li>{B_nameDef}'s faith holds that a bond between a person and an animal is a wrong done to both of them, and {A_nameDef} and {PET_nameDef} are never apart. {B_nameDef} has asked the council to say something.\n\n{A_nameDef} has asked the council, very quietly, not to.</li>
+      <li>{B_nameDef}'s ideoligion holds that a bond between a person and an animal is a wrong done to both of them, and {A_nameDef} and {PET_nameDef} are never apart. {B_nameDef} has asked the council to say something.\n\n{A_nameDef} has asked the council, very quietly, not to.</li>
       <li>{B_nameDef} found {PET_nameDef} asleep on {A_nameDef}'s bed and said a prayer over it, loudly, the kind you say over something unclean. {A_nameDef} hasn't spoken to {B_nameDef} since.\n\nThe council is asked to settle it.</li>
     </texts>
     <defaultOption>1</defaultOption>

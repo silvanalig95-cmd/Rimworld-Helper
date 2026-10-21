@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
 
-  <!-- ===================== An evening of faith (Faith/FaithEvenings.cs) ===================== -->
+  <!-- ===================== An ideoligion evening (Faith/FaithEvenings.cs) ===================== -->
 
   <CC_FaithEve_Label>an evening of {FAITH}</CC_FaithEve_Label>
-  <CC_FaithEve_Why_Off>Needs Ideology, outside classic mode, with "Faith in the colony" on.</CC_FaithEve_Why_Off>
-  <CC_FaithEve_Why_PlayOut>Needs "Answers play out on the map" on: an evening of faith is a gathering.</CC_FaithEve_Why_PlayOut>
+  <CC_FaithEve_Why_Off>Needs Ideology, outside classic mode, with "Ideoligions in the colony" on.</CC_FaithEve_Why_Off>
+  <CC_FaithEve_Why_PlayOut>Needs "Answers play out on the map" on: an ideoligion evening is a gathering.</CC_FaithEve_Why_PlayOut>
   <CC_FaithEve_Why_NoMap>Only at home.</CC_FaithEve_Why_NoMap>
-  <CC_FaithEve_Why_Pending>An evening of faith is already planned.</CC_FaithEve_Why_Pending>
-  <CC_FaithEve_Why_Soon>The colony had an evening of faith only lately (one every five days at most).</CC_FaithEve_Why_Soon>
-  <CC_FaithEve_Why_FaithSoon>{FAITH} had its evening only lately (one every ten days at most for the same faith).</CC_FaithEve_Why_FaithSoon>
+  <CC_FaithEve_Why_Pending>An ideoligion evening is already planned.</CC_FaithEve_Why_Pending>
+  <CC_FaithEve_Why_Soon>The colony had an ideoligion evening only lately (one every five days at most).</CC_FaithEve_Why_Soon>
+  <CC_FaithEve_Why_FaithSoon>{FAITH} had its evening only lately (one every ten days at most for the same ideoligion).</CC_FaithEve_Why_FaithSoon>
   <CC_FaithEve_Why_NoSpeaker>Nobody of {FAITH} at home is free and able to speak for it.</CC_FaithEve_Why_NoSpeaker>
   <CC_FaithEve_Why_Alone>There's nobody else at home to hear it.</CC_FaithEve_Why_Alone>
-  <CC_FaithEve_Why_NoFaith>No faith at home has someone to speak for it.</CC_FaithEve_Why_NoFaith>
+  <CC_FaithEve_Why_NoFaith>No ideoligion at home has someone to speak for it.</CC_FaithEve_Why_NoFaith>
   <CC_FaithEve_Why_FewBelievers>{FAITH} has nobody else at home to gather with.</CC_FaithEve_Why_FewBelievers>
   <CC_FaithEve_Speaker>{SPEAKER_nameDef} will speak for {FAITH}.</CC_FaithEve_Speaker>
   <CC_FaithEve_SpeakerAt>{SPEAKER_nameDef} will speak for {FAITH} at the {PLACE}.</CC_FaithEve_SpeakerAt>
-  <CC_FaithEve_Listeners>Of other faiths, {0} mean to come.</CC_FaithEve_Listeners>
-  <CC_FaithEve_NoListeners>Nobody of another faith means to come: it will be an evening for the faith's own.</CC_FaithEve_NoListeners>
-  <CC_FaithEve_StayAway>{0} will stay away: their faith frowns on being preached to.</CC_FaithEve_StayAway>
+  <CC_FaithEve_Listeners>Of other ideoligions, {0} mean to come.</CC_FaithEve_Listeners>
+  <CC_FaithEve_NoListeners>Nobody of another ideoligion means to come: it will be an evening for its own believers.</CC_FaithEve_NoListeners>
+  <CC_FaithEve_StayAway>{0} will stay away: their ideoligion frowns on being preached to.</CC_FaithEve_StayAway>
   <CC_FaithEve_Declined>{0} would rather not.</CC_FaithEve_Declined>
-  <CC_FaithEve_NobodyCame>{SPEAKER_nameDef} offered to speak for {FAITH} this evening, but nobody else means to come. The faith won't ask again for a while.</CC_FaithEve_NobodyCame>
-  <CC_FaithEve_Cause>It started at an evening of faith.</CC_FaithEve_Cause>
+  <CC_FaithEve_NobodyCame>{SPEAKER_nameDef} offered to speak for {FAITH} this evening, but nobody else means to come. {FAITH} won't ask again for a while.</CC_FaithEve_NobodyCame>
+  <CC_FaithEve_Cause>It started at an ideoligion evening.</CC_FaithEve_Cause>
   <CC_FaithEve_ThoughtCause>An evening of {FAITH}, {SPEAKER_nameDef} speaking.</CC_FaithEve_ThoughtCause>
-  <CC_FaithEve_Moved>{0} came away less sure of their own faith.</CC_FaithEve_Moved>
+  <CC_FaithEve_Moved>{0} came away less certain of their own ideoligion.</CC_FaithEve_Moved>
   <CC_FaithEve_Steadied>Those of {FAITH} went to bed surer of it.</CC_FaithEve_Steadied>
   <CC_FaithEve_Outcome_Poor>{SPEAKER_nameDef} spoke for {FAITH}, and it never quite caught. People drifted off to bed.</CC_FaithEve_Outcome_Poor>
   <CC_FaithEve_Outcome_Good>{SPEAKER_nameDef} spoke for {FAITH}, and people listened.</CC_FaithEve_Outcome_Good>
@@ -33,15 +33,15 @@
   <CC_FaithEve_Chronicle_Fine>An evening of {FAITH}: {COUNT} came to hear {SPEAKER_nameDef}, and it was talked about for days.</CC_FaithEve_Chronicle_Fine>
   <CC_FaithEve_MemLabel>the evening of {FAITH}</CC_FaithEve_MemLabel>
 
-  <!-- The calendar's days kept as an evening of faith (Calendar/CalendarKeeping.cs). -->
-  <CC_Cal_Way_Faith>evening of faith</CC_Cal_Way_Faith>
-  <CC_Cal_Way_Faith_Desc>with Ideology: the faith the day names gathers its believers and whoever else chooses to come, and its moral guide or most devout believer speaks for it; listeners of other faiths may be swayed, believers steadied. Without a speaker, a word at supper.</CC_Cal_Way_Faith_Desc>
-  <CC_Cal_Way_Faith_Letter>If the council keeps it, the faith's speaker will speak for it this evening, at its altar if it has one, to its believers and whoever else chooses to come.</CC_Cal_Way_Faith_Letter>
-  <CC_Cal_Keep_Faith>An evening of faith</CC_Cal_Keep_Faith>
+  <!-- The calendar's days kept as an ideoligion evening (Calendar/CalendarKeeping.cs). -->
+  <CC_Cal_Way_Faith>ideoligion evening</CC_Cal_Way_Faith>
+  <CC_Cal_Way_Faith_Desc>with Ideology: the ideoligion the day names gathers its believers and whoever else chooses to come, and its moral guide or most devout believer speaks for it; listeners of other ideoligions may be swayed, believers steadied. Without a speaker, a word at supper.</CC_Cal_Way_Faith_Desc>
+  <CC_Cal_Way_Faith_Letter>If the council keeps it, the ideoligion's speaker will speak for it this evening, at its altar if it has one, to its believers and whoever else chooses to come.</CC_Cal_Way_Faith_Letter>
+  <CC_Cal_Keep_Faith>An ideoligion evening</CC_Cal_Keep_Faith>
 
   <!-- ===================== A wavering colonist's wish (Wishes/WishWorkers_Faith.cs) ===================== -->
 
-  <CC_Reason_LearnFaith>{PAWN_nameDef} isn't as sure of {PAWN_possessive} own faith as {PAWN_pronoun} was, and {OTHER_nameDef} holds to {FAITH} like a rock.</CC_Reason_LearnFaith>
+  <CC_Reason_LearnFaith>{PAWN_nameDef} isn't as sure of {PAWN_possessive} own ideoligion as {PAWN_pronoun} was, and {OTHER_nameDef} holds to {FAITH} like a rock.</CC_Reason_LearnFaith>
   <CC_Promise_LearnFaith>{FOR_nameDef} will spend this evening with {OTHER_nameDef}, hearing about {SUBJECT}.</CC_Promise_LearnFaith>
   <CC_Promise_LearnFaithTogether>{FOR_nameDef} will talk {SUBJECT} over with {OTHER_nameDef} the next time they're together.</CC_Promise_LearnFaithTogether>
   <CC_LearnFaith_Label>an evening learning about {FAITH}</CC_LearnFaith_Label>
@@ -49,15 +49,15 @@
   <CC_LearnFaith_MemLabel>the evening we talked about {FAITH}</CC_LearnFaith_MemLabel>
   <CC_LearnFaith_Moved>{PAWN_nameDef} came back from the evening with {OTHER_nameDef} thinking hard about {FAITH}.</CC_LearnFaith_Moved>
 
-  <!-- ===================== When faiths clash (Dilemmas/DilemmaWorkers_Faith.cs) ===================== -->
+  <!-- ===================== When ideoligions clash (Dilemmas/DilemmaWorkers_Faith.cs) ===================== -->
 
   <CC_FaithClash_NoAltar>the fire</CC_FaithClash_NoAltar>
-  <CC_FaithClash_WhyQuarrel>Only a few days ago {PAWN_nameDef} and {OTHER_nameDef} came to hard words, and faith was somewhere at the bottom of it.</CC_FaithClash_WhyQuarrel>
+  <CC_FaithClash_WhyQuarrel>Only a few days ago {PAWN_nameDef} and {OTHER_nameDef} came to hard words, and their ideoligions were somewhere at the bottom of it.</CC_FaithClash_WhyQuarrel>
   <CC_FaithClash_WhyAltar>And the {ALTAR} stands where everyone can see whose it is.</CC_FaithClash_WhyAltar>
-  <CC_FaithClash_Cause>The council named {FAITH} the colony's faith.</CC_FaithClash_Cause>
-  <CC_Log_FaithNamed>took it hard when {FAITH} was named the colony's faith</CC_Log_FaithNamed>
-  <CC_FaithClash_CornersTitle>A corner for each faith</CC_FaithClash_CornersTitle>
-  <CC_FaithClash_CornersText>The council has given each faith a corner of its own. Where each might keep it (a suggestion, nothing more; the faiths will find their own places in the end):\n\n{0}</CC_FaithClash_CornersText>
+  <CC_FaithClash_Cause>The council named {FAITH} the colony's ideoligion.</CC_FaithClash_Cause>
+  <CC_Log_FaithNamed>took it hard when {FAITH} was named the colony's ideoligion</CC_Log_FaithNamed>
+  <CC_FaithClash_CornersTitle>A corner for each ideoligion</CC_FaithClash_CornersTitle>
+  <CC_FaithClash_CornersText>The council has given each ideoligion a corner of its own. Where each might keep it (a suggestion, nothing more; the ideoligions will find their own places in the end):\n\n{0}</CC_FaithClash_CornersText>
   <CC_FaithClash_CornerLine>{FAITH}: {WHERE}</CC_FaithClash_CornerLine>
   <CC_FaithClash_CornerAltar>by the {ALTAR}</CC_FaithClash_CornerAltar>
   <CC_FaithClash_CornerRoom>in {PAWN_nameDef}'s room</CC_FaithClash_CornerRoom>
@@ -65,15 +65,15 @@
   <CC_FaithClash_CornerDining>the end of the dining table, after supper</CC_FaithClash_CornerDining>
   <CC_FaithClash_CornerOutside>a quiet spot out of doors</CC_FaithClash_CornerOutside>
 
-  <!-- ===================== One faith for the colony (Decrees/DecreeFaith.cs) ===================== -->
+  <!-- ===================== One ideoligion for the colony (Decrees/DecreeFaith.cs) ===================== -->
 
   <CC_FaithDecree_Pick>{FAITH} ({COUNT} believing)</CC_FaithDecree_Pick>
   <CC_FaithDecree_PickLargest>{FAITH} ({COUNT} believing, the largest)</CC_FaithDecree_PickLargest>
-  <CC_FaithDecree_CardInForce>The colony's faith by decree: {FAITH}.</CC_FaithDecree_CardInForce>
-  <CC_FaithDecree_CardChoose>You choose the faith as you declare it ({FAITH} has the most believers).</CC_FaithDecree_CardChoose>
-  <CC_FaithDecree_Named>The council has named {FAITH} the colony's faith. Its believers may speak of it as often as they like; everyone else will be hearing a good deal of it.</CC_FaithDecree_Named>
-  <CC_FaithDecree_Lifted>{FAITH} is no longer the colony's faith by the council's word. Every faith is back on the same footing.</CC_FaithDecree_Lifted>
-  <CC_FaithDecree_Cause>The council had named {FAITH} the colony's faith.</CC_FaithDecree_Cause>
-  <CC_Log_FaithDecree>{FAITH} is the colony's faith by decree, and theirs isn't</CC_Log_FaithDecree>
+  <CC_FaithDecree_CardInForce>The colony's ideoligion by decree: {FAITH}.</CC_FaithDecree_CardInForce>
+  <CC_FaithDecree_CardChoose>You choose the ideoligion as you declare it ({FAITH} has the most believers).</CC_FaithDecree_CardChoose>
+  <CC_FaithDecree_Named>The council has named {FAITH} the colony's ideoligion. Its believers may speak of it as often as they like; everyone else will be hearing a good deal of it.</CC_FaithDecree_Named>
+  <CC_FaithDecree_Lifted>{FAITH} is no longer the colony's ideoligion by the council's word. Every ideoligion is back on the same footing.</CC_FaithDecree_Lifted>
+  <CC_FaithDecree_Cause>The council had named {FAITH} the colony's ideoligion.</CC_FaithDecree_Cause>
+  <CC_Log_FaithDecree>{FAITH} is the colony's ideoligion by decree, and theirs isn't</CC_Log_FaithDecree>
 
 </LanguageData>

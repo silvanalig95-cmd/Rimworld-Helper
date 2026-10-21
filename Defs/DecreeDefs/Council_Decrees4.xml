@@ -19,7 +19,7 @@
   <ColonyCouncil.DecreeDef>
     <defName>Council_Decree_Tithes</defName>
     <label>tithes</label>
-    <description>A tenth of the silver in the stores is set aside each morning and given away: to the shrine of a people who share the colony's faith if there is one near, otherwise to the nearest friendly village. Goodwill grows with every day's tithe, and with Ideology the faithful grow surer of their faith. The greedy hate it; the devout and ascetics approve. A village's custom: not for a tribe.</description>
+    <description>A tenth of the silver in the stores is set aside each morning and given away: to the shrine of a people who share the colony's ideoligion if there is one near, otherwise to the nearest friendly village. Goodwill grows with every day's tithe, and with Ideology the faithful grow more certain of their ideoligion. The greedy hate it; the devout and ascetics approve. A village's custom: not for a tribe.</description>
     <eras><li>medieval</li><li>industrial</li><li>spacer</li></eras>
     <requestWhen><li>Plenty</li></requestWhen>
     <order>20</order>
@@ -41,7 +41,7 @@
     </reactions>
     <effects>
       <li>Each morning a tenth of the silver in store (5 to 40) is given away, and the people it goes to like the colony a little better for it (1 goodwill a day).</li>
-      <li>With Ideology, it goes to the nearest people of the colony's faith, and those of the faith grow a little surer of it each day.</li>
+      <li>With Ideology, it goes to the nearest people of the colony's ideoligion, and those who hold it grow a little more certain of it each day.</li>
       <li>The devout love it and ascetics and the kind approve; the greedy hate it, and the jealous mind it.</li>
     </effects>
     <support>
@@ -141,7 +141,7 @@
     <effects>
       <li>Everyone who can fight practices shooting and melee a little every waking hour, for twelve days.</li>
       <li>Everyone works 3% slower.</li>
-      <li>Fighters and the bloodthirsty like it; wimps, the kind and those whose faith abhors violence mind it; most people don't mind.</li>
+      <li>Fighters and the bloodthirsty like it; wimps, the kind and those whose ideoligion abhors violence mind it; most people don't mind.</li>
     </effects>
     <support>
       <plain>
@@ -215,7 +215,7 @@
   <ColonyCouncil.DecreeDef>
     <defName>Council_Decree_HolyDays</defName>
     <label>holy days</label>
-    <description>Three days kept for the colony's faith: prayers at dawn and dusk, work set down at the hours of the faith, a gathering on the first evening. The faithful grow surer of their faith each day (half again as much with a chaplain), and work slows. The devout love it; those of another faith mind it, and the industrious think it time wasted. Only with Ideology, for a colony with a faith of its own.</description>
+    <description>Three days kept for the colony's ideoligion: prayers at dawn and dusk, work set down at the hours of the ideoligion, a gathering on the first evening. The faithful grow more certain of their ideoligion each day (half again as much with a chaplain), and work slows. The devout love it; those of another ideoligion mind it, and the industrious think it time wasted. Only with Ideology, for a colony with an ideoligion of its own.</description>
     <needsIdeology>true</needsIdeology>
     <requestWhen><li>ColonyMiserable</li><li>Grief</li><li>Strained</li></requestWhen>
     <order>24</order>
@@ -234,9 +234,9 @@
       <li><sameFaith>true</sameFaith><reaction>Like</reaction></li>
     </reactions>
     <effects>
-      <li>Those of the colony's faith grow 3% surer of it each day (half again with a chaplain), and keep a little steadier.</li>
+      <li>Those of the colony's ideoligion grow 3% more certain of it each day (half again with a chaplain), and keep a little steadier.</li>
       <li>Everyone works 8% slower.</li>
-      <li>The devout love it and the faithful like it; those of another faith, those who despise religion and the industrious mind it.</li>
+      <li>The devout love it and the faithful like it; those of another ideoligion, those who despise religion and the industrious mind it.</li>
     </effects>
     <support>
       <plain>
