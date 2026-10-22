@@ -174,7 +174,7 @@
     </pitch>
     <achieved>
       <plain><li>Traps are set. Learn the safe path, all of you.</li></plain>
-      <blunt><li>Good. Now we wait.</li></blunt>
+      <blunt><li>Now we wait for someone to come the wrong way.</li></blunt>
       <gloomy><li>Someone's going to forget and step on one. Just don't let it be me.</li></gloomy>
     </achieved>
   </ColonyCouncil.FlavorExtensionDef>
@@ -193,7 +193,7 @@
     <achieved>
       <plain><li>Batteries are full and humming. I checked them three times before bed.</li></plain>
       <gloomy><li>Now when the lights go out, it'll be because something worse happened.</li></gloomy>
-      <cold><li>Power supply is now continuous.</li></cold>
+      <cold><li>The batteries carried us to sunrise with a third left over. That will do.</li></cold>
     </achieved>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -211,7 +211,7 @@
     <achieved>
       <plain><li>Two stations, good light, a door that shuts. I could work in here forever.</li></plain>
       <blunt><li>Don't touch my tools.</li></blunt>
-      <cheerful><li>I made my first thing in the new workshop! It's not very good, but there'll be more.</li></cheerful>
+      <cheerful><li>The first thing out of the new workshop is a spoon. It's not a very good spoon, but there'll be more.</li></cheerful>
     </achieved>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -229,7 +229,7 @@
     <achieved>
       <plain><li>Someone just stood in front of one of them for five minutes without saying a word.</li></plain>
       <blunt><li>Don't hang your coats on the sculptures.</li></blunt>
-      <cheerful><li>I've started calling the dining room our gallery!</li></cheerful>
+      <cheerful><li>I've started calling the dining room the gallery, and it's catching on.</li></cheerful>
     </achieved>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -286,7 +286,7 @@
     <achieved>
       <plain><li>The first seedlings are up under the lamps.</li></plain>
       <warm><li>Come and stand in here for a minute. It's the best-smelling room in the colony.</li></warm>
-      <cold><li>Food production no longer depends on the season.</li></cold>
+      <cold><li>Winter used to decide how much we ate. Now I do.</li></cold>
     </achieved>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -345,7 +345,7 @@
     </pitch>
     <achieved>
       <plain><li>Somebody hummed at supper. I haven't heard that in a long time.</li></plain>
-      <cheerful><li>I asked every one of you, and you're all happy!</li></cheerful>
+      <cheerful><li>I went round and asked every one of you. All happy. I wrote it down.</li></cheerful>
       <gloomy><li>Good moods all round. I keep waiting for the catch.</li></gloomy>
     </achieved>
   </ColonyCouncil.FlavorExtensionDef>
@@ -400,7 +400,7 @@
     <achieved>
       <plain><li>The kitchen smells of soap now. I'd forgotten it could.</li></plain>
       <blunt><li>Anybody who drags a carcass in here goes out with it.</li></blunt>
-      <cold><li>Food-borne illness is no longer a significant risk.</li></cold>
+      <cold><li>I've stopped counting the days we lose to bad stew. There aren't any.</li></cold>
     </achieved>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -421,7 +421,7 @@
     <achieved>
       <plain><li>The cell's ready. Strange thing to be proud of, but I am.</li></plain>
       <warm><li>I put a blanket on the prison bed. It's still a bed.</li></warm>
-      <cold><li>Cell complete. I'll choose the first occupant carefully at the next raid.</li></cold>
+      <cold><li>The cell's done. I'll pick out who goes in it at the next raid.</li></cold>
     </achieved>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -456,8 +456,8 @@
     </pitch>
     <achieved>
       <plain><li>Stone, nearly all of it. I knocked on a wall today just to hear how solid it is.</li></plain>
-      <cheerful><li>I held a torch to a wall to test it! It passed.</li></cheerful>
-      <gloomy><li>Fireproof. Now it'll have to be something else that kills us.</li></gloomy>
+      <cheerful><li>I held a torch to a wall to test it. It passed.</li></cheerful>
+      <gloomy><li>Fireproof. Something else will have to kill us.</li></gloomy>
     </achieved>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -493,7 +493,7 @@
     <achieved>
       <plain><li>We have someone who really knows what to do with a needle now. I sleep better.</li></plain>
       <cheerful><li>Our doctor's the real thing now! I'm first in line for a check-up.</li></cheerful>
-      <cold><li>Medical competence achieved. Injuries are now a scheduling problem.</li></cold>
+      <cold><li>With a doctor this good, most wounds are just a few days off work.</li></cold>
     </achieved>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -528,7 +528,7 @@
     </pitch>
     <achieved>
       <plain><li>A hundred and fifty packs of pemmican. The storeroom smells like old saddle leather.</li></plain>
-      <cheerful><li>I've stacked the pemmican into a neat little wall in the storeroom!</li></cheerful>
+      <cheerful><li>I've stacked the pemmican into a neat little wall in the storeroom. Come and see.</li></cheerful>
       <gloomy><li>Enough to survive on, if not to enjoy.</li></gloomy>
     </achieved>
   </ColonyCouncil.FlavorExtensionDef>
@@ -586,7 +586,7 @@
     <achieved>
       <plain><li>Three desks. The children complained immediately, which means it's working.</li></plain>
       <warm><li>One of the kids read me a whole sentence today. A whole sentence.</li></warm>
-      <cold><li>The next generation is now in training.</li></cold>
+      <cold><li>The children will be useful sooner now.</li></cold>
     </achieved>
   </ColonyCouncil.FlavorExtensionDef>
 

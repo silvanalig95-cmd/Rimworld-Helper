@@ -51,11 +51,11 @@
       <cold><li>A finished wall that won't burn halves what every raid costs us. Build it in order.</li></cold>
     </pitch>
     <achieved>
-      <plain><li>Stone all the way round, and people on it who know what they're doing. Let them come.</li></plain>
+      <plain><li>Stone all the way round, and people on it who know what they're doing.</li></plain>
       <warm><li>I slept the whole night through without listening for footsteps.</li></warm>
       <cheerful><li>Look at it! You could hold off an army behind that.</li></cheerful>
-      <gloomy><li>It's done. Now we'll find out how good it is.</li></gloomy>
-      <cold><li>Perimeter complete and fireproof. Defenses adequate to the threat.</li></cold>
+      <gloomy><li>It's done. The first raid will tell us if it's any good.</li></gloomy>
+      <cold><li>The wall is finished and none of it will burn. From now on, raids cost them more than us.</li></cold>
     </achieved>
     <!-- With "Answers play out on the map": a fire lit by the new walls. -->
     <achievedEffects>
@@ -99,7 +99,7 @@
       <plain><li>Fifteen days and never a cold supper. The kitchen earned its keep.</li></plain>
       <warm><li>Every day this season, there was something hot waiting. Thank you, cooks.</li></warm>
       <cheerful><li>Fifteen days of hot food! I'm rounder and happier.</li></cheerful>
-      <cold><li>Meal buffer maintained for a full season.</li></cold>
+      <cold><li>Fifteen days and not one meal eaten raw. The cooks can be trusted with more.</li></cold>
     </achieved>
   </ColonyCouncil.AmbitionDef>
 
@@ -135,9 +135,9 @@
     </pitch>
     <achieved>
       <plain><li>The granary has never looked so good, and it stayed that way all season.</li></plain>
-      <warm><li>Nobody went to bed worried about food this season. That's the best thing we've made.</li></warm>
+      <warm><li>Not one of us went to bed worried about food this season.</li></warm>
       <cheerful><li>Full barns all season! I keep going in just to look at them.</li></cheerful>
-      <cold><li>Food security maintained for a full season.</li></cold>
+      <cold><li>We stayed twenty days ahead of hunger for a whole season. I'd like that to become the rule.</li></cold>
     </achieved>
   </ColonyCouncil.AmbitionDef>
 
@@ -174,7 +174,7 @@
       <plain><li>Two of our days kept, and kept well. The calendar means something here.</li></plain>
       <warm><li>We kept both days, all of us together. I'll remember the second one a long time.</li></warm>
       <cheerful><li>Two days, two celebrations! Next year we'll do even better.</li></cheerful>
-      <cold><li>Days observed as planned.</li></cold>
+      <cold><li>Both days kept. People worked better the morning after, which I hadn't expected.</li></cold>
     </achieved>
   </ColonyCouncil.AmbitionDef>
 
@@ -217,9 +217,9 @@
     </pitch>
     <achieved>
       <plain><li>The cache is full and sealed against the damp.</li></plain>
-      <warm><li>Everyone will eat this winter. That's what we worked for.</li></warm>
+      <warm><li>Everyone will eat this winter, even if the hunt fails.</li></warm>
       <cheerful><li>Sixty pemmican, all stacked up! I've already had to chase someone off them.</li></cheerful>
-      <cold><li>Winter stores complete.</li></cold>
+      <cold><li>The cache will feed the tribe until the thaw, if nobody gets greedy.</li></cold>
     </achieved>
   </ColonyCouncil.AmbitionDef>
 
@@ -262,8 +262,8 @@
     </pitch>
     <achieved>
       <plain><li>A hunters' year to tell the young about: meat in the smokehouse and hunters to be proud of.</li></plain>
-      <warm><li>Our hunters came home every time. That's the best of it.</li></warm>
-      <cheerful><li>Twelve! And I got three of them!</li></cheerful>
+      <warm><li>Every time the hunters went out, they all came home.</li></warm>
+      <cheerful><li>Twelve, and three of them were mine!</li></cheerful>
       <cold><li>Twelve kills and two good bows. The tribe can feed itself from the land now.</li></cold>
     </achieved>
     <!-- With "Answers play out on the map": the meat roasted round a fire. -->
@@ -311,7 +311,7 @@
     <achieved>
       <plain><li>Three new discoveries and three minds that hold them. The archive is safe.</li></plain>
       <warm><li>What we know will outlast any one of us now.</li></warm>
-      <cheerful><li>We did it! Everyone's so clever now it's slightly annoying.</li></cheerful>
+      <cheerful><li>Supper's all equations and star charts now, and I love it!</li></cheerful>
       <cold><li>Three people now understand what one did before.</li></cold>
     </achieved>
   </ColonyCouncil.AmbitionDef>
@@ -359,8 +359,8 @@
     <achieved>
       <plain><li>Clean beds, good light and medicine on the shelf. A hospital we can be proud of.</li></plain>
       <warm><li>Whoever needs it next will be in good hands.</li></warm>
-      <cheerful><li>It sparkles! I hope nobody needs it, but it sparkles.</li></cheerful>
-      <cold><li>Medical facility up to standard.</li></cold>
+      <cheerful><li>Everything in there is white and shining. I hope nobody needs it for a long time.</li></cheerful>
+      <cold><li>Spotless, stocked and staffed. Fewer of us will die after the next raid.</li></cold>
     </achieved>
   </ColonyCouncil.AmbitionDef>
 
@@ -404,7 +404,7 @@
     <achieved>
       <plain><li>Travelers talk about us on the roads now. We're the place to stop.</li></plain>
       <warm><li>Every guest who stayed went away a friend.</li></warm>
-      <cheerful><li>We're famous! Well, famous among travelers.</li></cheerful>
+      <cheerful><li>Our last guest asked to have the same bed next time!</li></cheerful>
       <cold><li>Guests ask for us by name now. That will be useful.</li></cold>
     </achieved>
   </ColonyCouncil.AmbitionDef>
@@ -453,7 +453,7 @@
       <plain><li>Traders know our name, the strongbox is full, and three peoples count us friends. A market town.</li></plain>
       <warm><li>People come here because they want to, not because the road happens to run past.</li></warm>
       <cheerful><li>A real market town! I'm going to start charging for directions.</li></cheerful>
-      <cold><li>Trade network established. Reserves adequate.</li></cold>
+      <cold><li>Three peoples trade with us and the strongbox is full. Now we set the prices.</li></cold>
     </achieved>
   </ColonyCouncil.AmbitionDef>
 

@@ -61,7 +61,7 @@
       <plain><li>A bed for everyone and a table we all eat at. It's a home now.</li></plain>
       <warm><li>Look at it. Somebody walking past would think we'd always lived here.</li></warm>
       <cheerful><li>Real beds and a real table! I've been smiling all through supper.</li></cheerful>
-      <cold><li>Basic living standards met. Now we can work on the rest.</li></cold>
+      <cold><li>Everyone sleeps and eats properly now. I can start asking more of them.</li></cold>
     </achieved>
   </ColonyCouncil.AmbitionDef>
 
@@ -113,7 +113,7 @@
       <warm><li>I looked down the table tonight and every seat had someone I'm fond of in it.</li></warm>
       <cheerful><li>We were so loud at supper the animals came to look!</li></cheerful>
       <gloomy><li>Everyone fits. Give it a year and we'll be short of chairs again.</li></gloomy>
-      <cold><li>Seating is sufficient for all. Good.</li></cold>
+      <cold><li>A chair for everyone. I counted the chairs, then I counted us.</li></cold>
     </achieved>
     <!-- With "Answers play out on the map": the first supper with a seat for everyone. -->
     <achievedEffects>
@@ -165,7 +165,7 @@
       <warm><li>I thanked each of you at breakfast this morning, and I meant it.</li></warm>
       <cheerful><li>Half a season without a single tantrum!</li></cheerful>
       <gloomy><li>Fifteen quiet days. I'll take them.</li></gloomy>
-      <cold><li>Stability achieved. Maintain it.</li></cold>
+      <cold><li>Fifteen days without a break. Let's not undo it the first time the food runs short.</li></cold>
     </achieved>
   </ColonyCouncil.AmbitionDef>
 
@@ -216,7 +216,7 @@
       <warm><li>A year of looking after each other. I couldn't ask for better people.</li></warm>
       <cheerful><li>A whole year! Somebody find a cake.</li></cheerful>
       <gloomy><li>A year without anyone breaking. I didn't think we'd make it.</li></gloomy>
-      <cold><li>Sixty days of stability. A new standard for the colony.</li></cold>
+      <cold><li>Sixty days without a break. I'll expect the same next year.</li></cold>
     </achieved>
   </ColonyCouncil.AmbitionDef>
 
@@ -264,8 +264,8 @@
     <achieved>
       <plain><li>Fifteen days without a cough or a fever. The infirmary is quiet for once.</li></plain>
       <warm><li>Everyone's well. I'd forgotten what that sounded like at breakfast.</li></warm>
-      <cheerful><li>Not one cough at supper tonight!</li></cheerful>
-      <cold><li>Colony health restored. Stores in place for next time.</li></cold>
+      <cheerful><li>I haven't heard a sneeze in days. I keep listening for one.</li></cheerful>
+      <cold><li>Everyone's fit for work again, and there's medicine set aside for the next time.</li></cold>
     </achieved>
   </ColonyCouncil.AmbitionDef>
 
@@ -325,7 +325,7 @@
       <plain><li>Medicine on the shelf, two clean beds, and a floor you could eat off. A proper infirmary.</li></plain>
       <warm><li>There's a stool by each bed now, for whoever sits up with the patient.</li></warm>
       <cheerful><li>I scrubbed it twice and it sparkles!</li></cheerful>
-      <gloomy><li>It's ready. Now someone will need it.</li></gloomy>
+      <gloomy><li>It's ready, which means someone's about to need it.</li></gloomy>
       <cold><li>Two clean beds and the medicine to hand. Infections should drop.</li></cold>
     </achieved>
   </ColonyCouncil.AmbitionDef>
@@ -373,7 +373,7 @@
       <plain><li>Three of us know the campers by name now. They waved when we passed.</li></plain>
       <warm><li>They're friends now, not strangers. I'll miss them when they go.</li></warm>
       <cheerful><li>They taught us a song and we taught them a worse one!</li></cheerful>
-      <cold><li>Relations established. They'll speak well of us.</li></cold>
+      <cold><li>They'll speak well of us to their people. I made sure of it.</li></cold>
     </achieved>
     <!-- With "Answers play out on the map": an evening at the camp's fire, with songs, if the camp is still here. -->
     <achievedEffects>
@@ -421,10 +421,10 @@
       </cold>
     </pitch>
     <achieved>
-      <plain><li>Everyone's dressed for the cold. Let it come.</li></plain>
+      <plain><li>Everyone's dressed for the cold, down to the last pair of mittens.</li></plain>
       <warm><li>Every one of us has a coat that fits. I checked the sleeves myself.</li></warm>
       <cheerful><li>We all look ridiculous and nobody's cold!</li></cheerful>
-      <cold><li>Cold-weather clothing distributed.</li></cold>
+      <cold><li>Everyone has a coat. I've written down who got the good ones.</li></cold>
     </achieved>
   </ColonyCouncil.AmbitionDef>
 
@@ -478,8 +478,8 @@
     <achieved>
       <plain><li>A lavish meal for every one of us, and a hall to eat it in. The cooks have earned a day off.</li></plain>
       <warm><li>I watched them all eat and couldn't stop smiling. Worth every hour in the kitchen.</li></warm>
-      <cheerful><li>Best feast ever! I can't move.</li></cheerful>
-      <cold><li>Feast prepared. Morale should benefit for some time.</li></cold>
+      <cheerful><li>I ate until I couldn't move, and then I had pudding!</li></cheerful>
+      <cold><li>That feast will keep people agreeable for weeks. I'd call it cheap.</li></cold>
     </achieved>
     <!-- With "Answers play out on the map": the lavish meals are eaten, together, in the hall. -->
     <achievedEffects>
@@ -536,7 +536,7 @@
       <plain><li>Two who can heal and two who can cook. We can lose a bad day now without losing everything.</li></plain>
       <warm><li>Our second cook made supper tonight without asking anyone a single question.</li></warm>
       <gloomy><li>Less fragile than we were.</li></gloomy>
-      <cold><li>Critical skills duplicated.</li></cold>
+      <cold><li>Any one of us could die now, and the rest would still eat and still be stitched up.</li></cold>
     </achieved>
   </ColonyCouncil.AmbitionDef>
 
@@ -588,7 +588,7 @@
       <plain><li>Two neighbors who'll answer when we call. We're not alone out here.</li></plain>
       <warm><li>Friends abroad. It changes how the night sounds.</li></warm>
       <cheerful><li>I've talked to more strangers this week than in my whole life!</li></cheerful>
-      <cold><li>Communications and relations established.</li></cold>
+      <cold><li>Two factions will answer when we call. I've written down what each of them wants.</li></cold>
     </achieved>
   </ColonyCouncil.AmbitionDef>
 
@@ -639,10 +639,10 @@
       </cold>
     </pitch>
     <achieved>
-      <plain><li>Food put by, everyone dressed for the cold, and medicine on the shelf. Let the year come.</li></plain>
+      <plain><li>Food put by, a coat on every back and medicine on the shelf.</li></plain>
       <warm><li>I walked through the storeroom and didn't find a single empty shelf.</li></warm>
-      <cheerful><li>Every list ticked off!</li></cheerful>
-      <cold><li>Preparations complete for all seasons.</li></cold>
+      <cheerful><li>Every list ticked off, and I've started a new one for next year.</li></cheerful>
+      <cold><li>Food, coats and medicine, all counted. The year can do as it likes.</li></cold>
     </achieved>
   </ColonyCouncil.AmbitionDef>
 
@@ -692,9 +692,9 @@
     </pitch>
     <achieved>
       <plain><li>Healroot hanging in bundles and two of us who know what to do with it.</li></plain>
-      <warm><li>Whoever gets hurt next has a better chance now.</li></warm>
+      <warm><li>The next time someone's hurt, I'll know which root to reach for.</li></warm>
       <gloomy><li>Something will still get us. Not a scratch, though.</li></gloomy>
-      <cold><li>Herbal stores and trained healers in place.</li></cold>
+      <cold><li>Twenty-five healroot, dried, and two people who won't waste it.</li></cold>
     </achieved>
   </ColonyCouncil.AmbitionDef>
 
@@ -737,7 +737,7 @@
     <achieved>
       <plain><li>All of them have what they lost back, near enough.</li></plain>
       <warm><li>Watching them walk without a crutch was worth all the work.</li></warm>
-      <cheerful><li>Everyone's whole again!</li></cheerful>
+      <cheerful><li>Someone challenged me to a race this morning, on their new leg!</li></cheerful>
       <cold><li>All replaceable losses replaced.</li></cold>
     </achieved>
   </ColonyCouncil.AmbitionDef>

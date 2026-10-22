@@ -170,7 +170,7 @@
     </pitch>
     <achieved>
       <plain><li>Let them bring their torches.</li></plain>
-      <cold><li>Fire risk reduced to acceptable levels.</li></cold>
+      <cold><li>A fire now costs us one room, not the colony. That's acceptable.</li></cold>
     </achieved>
   </ColonyCouncil.AmbitionDef>
 
