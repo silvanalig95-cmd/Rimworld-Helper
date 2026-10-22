@@ -31,7 +31,7 @@
     <achieved>
       <plain>
         <li>I counted my workings tonight and there are more than there were. The new ones are starting to feel like mine.</li>
-        <li>What used to take a long breath now takes a short one. I've come a long way this season.</li>
+        <li>What used to take a long breath now takes a short one.</li>
       </plain>
       <warm><li>Everything I've learned is for the people here. I hope I never need half of it.</li></warm>
       <cold><li>A wider repertoire. Useful.</li></cold>
@@ -50,11 +50,11 @@
     <sparks><li>battle</li><li>downed</li><li>thought:Council_Moment_ComparedForms</li></sparks>
     <chosen>
       <plain>
-        <li>I know my forms. I don't know enough of them. I'm going to learn more, and sharpen what I have.</li>
+        <li>I know my forms. I don't know enough of them, and the ones I know have gone dull.</li>
         <li>[spark:downed] I went down because I had one answer and the enemy had two. I need more answers.</li>
         <li>[spark:Council_Moment_ComparedForms] Watching another fighter's forms showed me how much I've let slide.</li>
       </plain>
-      <blunt><li>More techniques. Better ones. That's the goal.</li></blunt>
+      <blunt><li>More techniques. Better ones. Every morning until I have them.</li></blunt>
       <cold><li>A fighter with one trick dies to the second enemy. I'll learn {COUNT} more.</li></cold>
     </chosen>
     <achieved>
@@ -109,8 +109,8 @@
     <sparks><li>downed</li><li>loss</li><li>battle</li></sparks>
     <chosen>
       <plain>
-        <li>The gift I have is for mending. I'm going to use it on everyone who needs it, not only when it's easy.</li>
-        <li>[spark:loss] I couldn't save them. I'm going to make sure that happens as rarely as I can make it.</li>
+        <li>The gift I have is for mending. I'll use it on everyone who needs it, not only when it's easy.</li>
+        <li>[spark:loss] I couldn't save them. Next time I'll be better than I was.</li>
         <li>[spark:battle] Too many came back from that fight bleeding. I'll be ready for the next one.</li>
       </plain>
       <warm><li>Every hurt I can mend is one less someone has to carry. That's enough of a reason.</li></warm>

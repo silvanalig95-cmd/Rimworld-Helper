@@ -19,20 +19,20 @@
       <plain>
         <li>[inherited] {NAME} always said an animal that stands with you in a fight is worth ten that don't. I'll {GOAL}, for {NAME}.</li>
         <li>When the raiders come, I want something with teeth beside me that's there because it wants to be.</li>
-        <li>[sparked] I saw someone's animal go for a raider's throat yesterday to save its person. I want that kind of loyalty.</li>
+        <li>[sparked] In the fight I saw someone's animal go for a raider's throat to save its person. I want that kind of loyalty.</li>
       </plain>
       <warm><li>Not a weapon. A friend who'll stand with me when it's bad. I'll earn that.</li></warm>
       <blunt><li>I want an animal that bites the right people.</li></blunt>
       <cheerful><li>Me and a great big animal, side by side, in every story they tell about the raids!</li></cheerful>
-      <gloomy><li>Everyone dies alone out there. Unless something's got your back. I'd like that something.</li></gloomy>
+      <gloomy><li>Out there, alone, a person doesn't last. I'd like something at my side that won't run.</li></gloomy>
       <cold><li>A trained animal at one's side changes the arithmetic of a fight. I intend to have one.</li></cold>
     </chosen>
     <achieved>
       <plain>
         <li>Three fights, side by side. It knows where I'll be before I move. I've stopped being afraid of the raids.</li>
-        <li>Three times now it's stood with me when it could have run. I owe it more than I can say.</li>
+        <li>Three times now it's stood with me when it could have run. I save it the best scraps from every meal.</li>
       </plain>
-      <warm><li>It's not a weapon. It's the bravest friend I have.</li></warm>
+      <warm><li>The bravest friend I have sleeps at the foot of my bed.</li></warm>
       <blunt><li>Three fights. It held. So did I.</li></blunt>
       <cheerful><li>We're a team now. The raiders should be afraid of us!</li></cheerful>
     </achieved>
@@ -59,7 +59,7 @@
     </chosen>
     <achieved>
       <plain>
-        <li>It lowers its great head when I come into the pen, and waits for me to scratch behind its ear. I can't tell you how that feels.</li>
+        <li>It lowers its great head when I come into the pen and waits for me to scratch behind its ear.</li>
         <li>Children come from all over the colony to watch it eat from my hand.</li>
       </plain>
       <warm><li>Something that size could crush me without noticing, and it's careful where it puts its feet when I'm near.</li></warm>
@@ -83,14 +83,14 @@
         <li>[spring] The young ones are coming. If we keep them all, in two years we'll have a real herd.</li>
       </plain>
       <warm><li>A big herd means milk for the children and wool for the winter. I'd like to give the colony that.</li></warm>
-      <blunt><li>More animals. A proper herd. That's the goal.</li></blunt>
+      <blunt><li>More animals. A proper herd, not a pen of strays.</li></blunt>
       <cheerful><li>A whole herd, and I'll know every one of them by name!</li></cheerful>
       <cold><li>A herd of sufficient size feeds itself and the colony. I'll get us there.</li></cold>
     </chosen>
     <achieved>
       <plain>
-        <li>I stood at the gate this evening and counted them in. It took a while. That's the whole point.</li>
-        <li>A herd worth the name, and every one of them healthy. My grandmother would have been proud.</li>
+        <li>I stood at the gate this evening and counted them in. I lost count twice.</li>
+        <li>A herd worth the name, and every one of them healthy. My grandmother kept goats all her life and never had this many.</li>
       </plain>
       <warm><li>Milk enough for everyone, and the pens full of noise. This is what I wanted.</li></warm>
       <blunt><li>Real herd now. Done.</li></blunt>

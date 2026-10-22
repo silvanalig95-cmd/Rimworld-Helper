@@ -21,7 +21,7 @@
     <sparks><li>battle</li><li>fulfilled</li></sparks>
     <chosen>
       <plain>
-        <li>I know a handful of workings well and the rest badly. I want to reach level {COUNT} before the next winter is out.</li>
+        <li>There's a ceiling over my workings, and I keep knocking my head on it. Level {COUNT}, before next winter's out.</li>
         <li>[spark:battle] I held back in the fight because I didn't trust myself with more. That has to change.</li>
         <li>[inherited] {NAME} was teaching me the deeper workings when the end came. I'll {GOAL} and finish what we started.</li>
         <li>[trait:Druid|trait:TM_Shaman] The land has more to teach me than I've had the patience to learn. I'm listening now.</li>
@@ -35,9 +35,9 @@
         <li>Today a working came as easily as breathing, one I couldn't even attempt a year ago.</li>
         <li>I've reached level {COUNT}. The power answers faster now, and it tires me less.</li>
       </plain>
-      <warm><li>I'm stronger now, and all of it is for the people here.</li></warm>
+      <warm><li>I'm stronger now. The next time someone here needs me, I won't be guessing.</li></warm>
       <cold><li>Level {COUNT}. There is always more, and I'll take it.</li></cold>
-      <gloomy><li>I've grown stronger. I hope I never need all of it.</li></gloomy>
+      <gloomy><li>Stronger, and more dangerous to be near when it goes wrong.</li></gloomy>
     </achieved>
   </ColonyCouncil.AspirationDef>
 
@@ -52,8 +52,8 @@
     <sparks><li>battle</li><li>downed</li><li>fulfilled</li></sparks>
     <chosen>
       <plain>
-        <li>I know the forms, but I don't own them yet. I want to reach level {COUNT}.</li>
-        <li>[spark:downed] I went down too easily last time. I'm going to train until that can't happen again.</li>
+        <li>My drills have gone stale, and I can feel it. Level {COUNT} is where I'm headed.</li>
+        <li>[spark:downed] Last time I hit the ground too easily. I'll train until that can't happen again.</li>
         <li>[spark:battle] We won, but I was slow. Every morning from now on, I train.</li>
         <li>[inherited] {NAME} drilled me every morning until the end. I'll {GOAL}, the way {NAME} wanted.</li>
       </plain>
@@ -62,11 +62,11 @@
     </chosen>
     <achieved>
       <plain>
-        <li>The forms are mine now. My body knows them before I think of them.</li>
-        <li>Level {COUNT}. Years of drills, and today I felt every one of them pay off.</li>
+        <li>The forms are mine now. I stopped counting the steps a while ago.</li>
+        <li>Level {COUNT}. Every cold morning of drills, and today I felt them pay off.</li>
       </plain>
-      <blunt><li>Level {COUNT}. Next.</li></blunt>
-      <warm><li>Whatever comes over that wall now, I can stand in front of the others.</li></warm>
+      <blunt><li>Level {COUNT}. I'm not stopping there.</li></blunt>
+      <warm><li>When the next raid comes, the others can stand behind me.</li></warm>
     </achieved>
   </ColonyCouncil.AspirationDef>
 
@@ -82,7 +82,7 @@
     <chosen>
       <plain>
         <li>Being good at {SKILL} isn't enough anymore. I want to know one corner of it better than anyone.</li>
-        <li>[spark:fulfilled] I watched {NAME} become the colony's expert, and I knew I wanted that for myself.</li>
+        <li>[spark:fulfilled] {NAME} has become the colony's expert, and I've been jealous ever since. The good kind.</li>
         <li>[inherited] {NAME} was close to it, so close. I'll {GOAL} in {NAME}'s place.</li>
       </plain>
       <cold><li>Specialists are worth more than generalists. I'll specialize in {SKILL}.</li></cold>

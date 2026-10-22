@@ -19,9 +19,9 @@
     <who><passion>Medicine</passion></who>
     <chosen>
       <plain>
-        <li>[spark:loss] We buried one of ours this week. I'm going to save the next ten, or know the reason why.</li>
+        <li>[spark:loss] We lost one of ours this week. I'll save the next ten, or know the reason why.</li>
         <li>[spark:downed] Someone pulled me back from the edge once. I want to do that for ten people. Then I'll call it even.</li>
-        <li>[spark:Council_Ail_PulledThrough] I pulled one through this week, and I want that feeling again. Ten lives. That's the goal.</li>
+        <li>[spark:Council_Ail_PulledThrough] I nursed someone through the worst of it this week, and they lived. I want ten more like that.</li>
         <li>[spark:Council_Health_LostPatient] I lost a patient this week. The only answer I have is to get better, and save the next ones.</li>
         <li>[inherited] {NAME} kept count of every life {NAME} saved. I've started a count of my own.</li>
         <li>Ten people walking around who wouldn't be without me. That's what I want to be able to say.</li>
@@ -56,7 +56,7 @@
       <plain>
         <li>[spark:birth] A child was born here, and I want to be the one who catches the next ones. Five, to start.</li>
         <li>[spark:Council_Health_DeliveredBaby] I delivered a baby, and it was the best thing my hands have ever done. I want to do it again.</li>
-        <li>Every colony needs someone who knows what to do when the baby comes. I want that to be me, five times over.</li>
+        <li>Every colony needs someone who knows what to do when the baby comes. That's going to be me.</li>
         <li>[lowtech] My grandmother brought half a village into the world. I'd like to bring five into this one.</li>
       </plain>
       <warm><li>To be the first to hold someone, five times. I can't think of anything better.</li></warm>
@@ -65,7 +65,7 @@
     </chosen>
     <achieved>
       <plain>
-        <li>Five babies delivered. Five children running around here who came into the world through my hands.</li>
+        <li>Five children here came into the world through my hands. Their parents still stop me to say thank you.</li>
       </plain>
       <warm><li>Five little ones. I remember every first cry.</li></warm>
       <blunt><li>Five delivered. All alive. Good work.</li></blunt>
