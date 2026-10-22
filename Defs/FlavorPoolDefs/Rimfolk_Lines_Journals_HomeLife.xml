@@ -14,7 +14,7 @@
     <lines>
       <plain>
         <li>Mended my boots by lamplight and thought about the long table at home.</li>
-        <li>[summer] Long light evenings out here. I sit outside and count the days until the relief comes.</li>
+        <li>[summer] Long light evenings out here. I sit outside until the midges drive me in.</li>
         <li>[outpost:Mining] Found a good seam today. The others will want to hear about it when I'm back.</li>
         <li>[outpost:Mining] Rock dust in my food, my bed and my ears. The ore pile's bigger, though.</li>
         <li>[outpost:Logging] The stack of cut timber is taller than me now. I measured, out of boredom.</li>
@@ -28,7 +28,7 @@
         <li>[outpost:Trading] A trader tried to sell me the same knife twice in one day. I bought it the second time.</li>
         <li>[outpost:Trading] Counted the stores and the silver twice. Both came out right, which is a good day here.</li>
         <li>[outpost:Science] Filled another notebook. Half of it is questions I can't answer yet.</li>
-        <li>[outpost:Science] Took the same readings morning and evening for a week. Something is changing, slowly.</li>
+        <li>[outpost:Science] Took the same readings morning and evening for a week. The numbers are creeping, and I don't know why yet.</li>
         <li>[outpost:Town] Market day in town. I came back with less money and more news.</li>
         <li>[outpost:Town] Someone in town asked where I'm from. I told them about home and didn't stop for a while.</li>
         <li>[outpost:Scavenging] Pulled a whole crate out of the rubble today, unbroken. Most days it's just rust.</li>
@@ -42,7 +42,7 @@
         <li>[outpost:Artillery] Cleaned and checked the guns again. We haven't fired them in days. I hope it stays that way.</li>
       </plain>
       <warm>
-        <li>The others out here are good company. Still, I miss everyone at home.</li>
+        <li>The others out here are good company. I miss the noise at home, though.</li>
         <li>I've been saving the best stories from out here for when I get home.</li>
       </warm>
       <blunt>
@@ -50,7 +50,7 @@
         <li>Outpost's fine. I'm fine. Bored.</li>
       </blunt>
       <cheerful>
-        <li>Saw a herd crossing the plain at sunrise today! I wish everyone at home could have seen it.</li>
+        <li>Saw a herd crossing the plain at sunrise today! I wish the others at home had seen it.</li>
         <li>The outpost's doing well, and so am I! I've even learned to like the cooking.</li>
       </cheerful>
       <gloomy>
@@ -83,11 +83,11 @@
       </blunt>
       <cheerful>
         <li>Tried the new tea! It's either very good or very strange, and I'm having another cup to decide.</li>
-        <li>A cup of tea and a sit-down! Small pleasures are the best pleasures.</li>
+        <li>A cup of tea and a sit-down! I put my feet up on a sack of flour and nobody stopped me.</li>
       </cheerful>
       <gloomy>
         <li>Tea went cold while I was thinking. Drank it anyway.</li>
-        <li>A cup of tea. For a few minutes, nothing else mattered.</li>
+        <li>A cup of tea. For a few minutes I didn't have to be anywhere.</li>
       </gloomy>
       <cold>
         <li>A cup of tea before the evening's work. It helps me concentrate.</li>
@@ -113,7 +113,7 @@
     <defName>Council_Lines_Journal_Day_SoiledSelf</defName>
     <pool>Council_Journal_Day_SoiledSelf</pool>
     <lines>
-      <plain><li>Bad day. Washed my clothes out at the creek before anyone was up.</li></plain>
+      <plain><li>Washed my clothes out before anyone was up. I'm not writing down why.</li></plain>
       <warm><li>Someone found me a change of clothes and didn't say a word about why. I owe them.</li></warm>
       <blunt><li>Bad day. Clothes washed. Done.</li></blunt>
       <cheerful><li>Not my finest hour. I've decided it never happened, and tomorrow I'll believe it.</li></cheerful>
@@ -130,7 +130,7 @@
       <warm><li>Two of us waiting by the latrine, both pretending we weren't. We ended up laughing.</li></warm>
       <blunt><li>One latrine. Everyone. Bad plan.</li></blunt>
       <cheerful><li>I've learned to time my trips around everyone else's. It's practically an art.</li></cheerful>
-      <gloomy><li>Spent half the afternoon hopping from foot to foot. Dignity is a luxury here.</li></gloomy>
+      <gloomy><li>Spent half the afternoon hopping from foot to foot outside the latrine door.</li></gloomy>
       <cold><li>One latrine for this many people is a planning failure. I've raised it.</li></cold>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
@@ -140,7 +140,7 @@
     <pool>Council_Journal_Day_DirtyWater</pool>
     <lines>
       <plain><li>Boiled my water tonight after what happened yesterday. It still tasted of mud.</li></plain>
-      <warm><li>I strained the water through a cloth for the others before they drank. It's the least I could do.</li></warm>
+      <warm><li>I strained the water through a cloth for the others before they drank. Took most of the evening.</li></warm>
       <blunt><li>Water tastes like the ditch. Somebody fix it.</li></blunt>
       <cheerful><li>The water was brown, but I'm choosing to call it tea.</li></cheerful>
       <gloomy><li>Even the water here is trying to kill us.</li></gloomy>
@@ -156,7 +156,7 @@
         <li>A long hot soak after a long day. I fell asleep in the tub and woke up cold.</li>
         <li>Hot water and a scrub brush. I'm a different person.</li>
       </plain>
-      <warm><li>A hot bath, then I warmed more water for whoever came next. It's how I'd want to be treated.</li></warm>
+      <warm><li>A hot bath, then I warmed more water for whoever came next. Left the good soap out, too.</li></warm>
       <blunt><li>Bath was hot. Back's better.</li></blunt>
       <cheerful><li>The bath was so hot I turned pink, and I loved every minute!</li></cheerful>
       <gloomy><li>A hot bath. The ache came back as soon as I got out, but it was gone for a while.</li></gloomy>
@@ -194,7 +194,7 @@
         <li>[bad] Dirty. Busy. Too busy to care.</li>
       </blunt>
       <cheerful>
-        <li>[good] Clean hands, clean face, clean shirt! I feel like a new person.</li>
+        <li>[good] Clean face and a clean shirt! The cook didn't recognize me.</li>
         <li>[bad] I'm so dirty I could grow turnips on my neck!</li>
       </cheerful>
       <gloomy>
@@ -214,7 +214,7 @@
     <lines>
       <plain>
         <li>[good] A cold rinse after the fields. Felt like jumping in a river.</li>
-        <li>[bad] Cold water, cold room, cold feet. I washed what I had to and nothing more.</li>
+        <li>[bad] Cold water and a cold room. I washed what I had to.</li>
       </plain>
       <warm>
         <li>[good] Cold water and good company at the wash basin. We laughed at each other's yelps.</li>
@@ -225,7 +225,7 @@
         <li>[bad] Freezing. Again. Heat the water.</li>
       </blunt>
       <cheerful>
-        <li>[good] Cold splash in the morning. I yelled so loud the chickens scattered!</li>
+        <li>[good] Cold splash in the morning. I yelled so loud someone came running!</li>
         <li>[bad] The water was freezing, so I washed very, very quickly. Record time!</li>
       </cheerful>
       <gloomy>
@@ -248,11 +248,11 @@
         <li>[bad] The drain in my bathroom backs up. I've been bailing it with a cup.</li>
       </plain>
       <warm>
-        <li>[good] I let a friend use my bathroom while theirs is being fixed. It's nice to have something to share.</li>
+        <li>[good] Let a friend use my bathroom while theirs is being fixed. Came back to find it cleaner than I'd left it.</li>
         <li>[bad] My bathroom's grim, but at least it's mine. I'll fix it up bit by bit.</li>
       </warm>
       <blunt>
-        <li>[good] My bathroom. My time. Nobody waiting.</li>
+        <li>[good] My bathroom. My time. No queue.</li>
         <li>[bad] Bathroom smells. Needs work.</li>
       </blunt>
       <cheerful>
@@ -261,7 +261,7 @@
       </cheerful>
       <gloomy>
         <li>[good] A bathroom of my own. I keep waiting for someone to take it away.</li>
-        <li>[bad] My bathroom is dark and damp, like the rest of my life.</li>
+        <li>[bad] My bathroom is dark and damp. I wash by feel.</li>
       </gloomy>
       <cold>
         <li>[good] A private bathroom. It saves me a quarter of an hour every morning.</li>
