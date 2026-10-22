@@ -19,7 +19,7 @@
       <li>Council_Arc_FamilyStillAtOdds</li>
       <li>Council_Arc_CaughtBetween</li>
     </thoughts>
-    <fix>Two people they love still can't get along. Give the two a reason to work side by side, keep them out of the same small room, and a peacemaker on the council will step into their spats. It eases once the two are on speaking terms.</fix>
+    <fix>Two people they love still can't get along. It fades within a week. Give the two a reason to work side by side and keep them out of the same small room; a peacemaker on the council steps into their spats.</fix>
     <act>Get the two working together</act>
     <article>Council_Alm_C_Arcs</article>
   </ColonyCouncil.MoodHintDef>
@@ -27,8 +27,8 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_Lv_LostSeat</defName>
     <thoughts><li>Council_Arc_LostSeatEarly</li></thoughts>
-    <fix>They lost a seat on the council before they'd grown into it. It fades in a week. A word from the council, a wish granted or a seat at the next election helps.</fix>
-    <act>A kind word helps</act>
+    <fix>They lost a seat on the council before they'd grown into it. It fades in about a week; a wish granted helps, and they can stand again at the next election.</fix>
+    <act>Grant a wish to soften it</act>
     <actionable>false</actionable>
     <article>Council_Alm_C_Offices</article>
   </ColonyCouncil.MoodHintDef>
@@ -95,7 +95,7 @@
       <li>Council_DlmLv_WorriesIgnored</li>
       <li>Council_DlmLv_RecordsPrivate</li>
     </thoughts>
-    <fix>The cost of one of the council's answers, small and short. Nothing to do but let it pass; a kind word or a granted wish makes it shorter.</fix>
+    <fix>The cost of one of the council's answers, small and short. It passes on its own; a granted wish or a good evening makes up for it in the meantime.</fix>
     <act>Passes with time</act>
     <actionable>false</actionable>
     <article>Council_Alm_C_Dilemmas</article>
@@ -107,7 +107,7 @@
       <li>Council_Asp_GaveUpGoal</li>
       <li>Council_Asp_LastWishUnmet</li>
     </thoughts>
-    <fix>A life goal let go, or an old friend's last wish left undone. It fades in about a week. Help them toward the next goal they choose; someone may take up the last wish and finish it, which eases it for everyone.</fix>
+    <fix>A life goal let go, or an old friend's last wish left undone. It fades in about a week. Help them toward the next goal they choose; a friend often takes up a last wish to finish it.</fix>
     <act>Help them toward a new goal</act>
     <actionable>false</actionable>
     <article>Council_Alm_C_Goals</article>

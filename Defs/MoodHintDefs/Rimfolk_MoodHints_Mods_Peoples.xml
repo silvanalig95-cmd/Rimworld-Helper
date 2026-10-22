@@ -8,7 +8,7 @@
     <thoughts>
       <li>Council_WS_WarbandWatched</li>
     </thoughts>
-    <fix>It fades in a day or so, once the bands have gone by. A token paid to the gathering's envoy spares the colony the fright next time; solid walls and a manned gate make it smaller.</fix>
+    <fix>A warband passed close by after the colony refused its envoy. It fades within a day or two. Paying the envoy's token next time spares the colony the fright.</fix>
     <act>Passes in a day or so</act>
     <actionable>false</actionable>
     <councilTab>World</councilTab>
