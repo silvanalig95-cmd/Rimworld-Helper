@@ -417,7 +417,7 @@
     </thanks>
     <expired>
       <plain><li>Back to eating in shifts.</li></plain>
-      <blunt><li>I'll keep standing, then.</li></blunt>
+      <blunt><li>Standing it is. Again.</li></blunt>
       <gloomy><li>I'll eat on the step again. I'm used to it.</li></gloomy>
     </expired>
     <reminder>
@@ -471,14 +471,14 @@
     </request>
     <thanks>
       <plain><li>{OTHER_nameDef} is a quick study. We'll get there.</li></plain>
-      <warm><li>Thank you. My apprentice had three questions before we'd even begun.</li></warm>
+      <warm><li>My apprentice had three questions before we'd even begun. I'd forgotten what that's like.</li></warm>
       <blunt><li>Lessons start at dawn.</li></blunt>
       <cheerful><li>My own apprentice! I've already planned the first lesson.</li></cheerful>
       <gloomy><li>At least it won't all be lost.</li></gloomy>
       <cold><li>The apprentice will do. We'll see if that holds.</li></cold>
     </thanks>
     <expired>
-      <plain><li>I'll keep it all in my own head, then.</li></plain>
+      <plain><li>All of it stays in my head. Somebody will miss it one day.</li></plain>
       <blunt><li>{OTHER_nameDef} can learn the hard way.</li></blunt>
       <gloomy><li>It'll die with me. That's how it goes.</li></gloomy>
     </expired>
@@ -698,7 +698,7 @@
     </thanks>
     <expired>
       <plain><li>I'll keep squinting, then.</li></plain>
-      <blunt><li>I'll keep my eyes on the ground, then, like everyone else.</li></blunt>
+      <blunt><li>Eyes on the ground. Like everyone else.</li></blunt>
       <gloomy><li>Just as well. The sky only reminds me how far we are from anywhere.</li></gloomy>
     </expired>
     <reminder>
@@ -742,7 +742,7 @@
         <li>Everyone who works the bench would be glad of it, not just me.</li>
       </warm>
       <blunt>
-        <li>Build {THING}. My tools keep disappearing.</li>
+        <li>My tools keep disappearing. Put {THING} by the bench and they'll stop.</li>
       </blunt>
       <cheerful>
         <li>A place for every tool and every tool in its place! I'd paint an outline round each one.</li>
@@ -833,7 +833,7 @@
       <gloomy><li>We'll keep building things that don't last.</li></gloomy>
     </expired>
     <reminder>
-      <plain><li>Still no blocks cut.</li></plain>
+      <plain><li>Not one block cut yet. I checked.</li></plain>
     </reminder>
   </ColonyCouncil.WishDef>
 
@@ -940,7 +940,7 @@
         <li>We have friends out there, I'm sure of it. We just need a way to talk to them.</li>
       </warm>
       <blunt>
-        <li>Build {THING}. I'm tired of being cut off.</li>
+        <li>I'm tired of being cut off. Get us {THING}.</li>
       </blunt>
       <cheerful>
         <li>Voices from other settlements, right here in the colony! I'll do all the talking.</li>
@@ -1022,7 +1022,7 @@
     </request>
     <thanks>
       <plain><li>I came out of the first cycle and stood up without groaning. That hasn't happened in years.</li></plain>
-      <warm><li>Thank you. I'll be here a while longer, it seems.</li></warm>
+      <warm><li>I'll be here a while longer, it seems. I mean to make the years count.</li></warm>
       <blunt><li>Now I'll outlive the lot of you.</li></blunt>
       <cheerful><li>I feel a year younger. I'm going to go and run somewhere.</li></cheerful>
       <gloomy><li>It turns the clock back. It doesn't stop it.</li></gloomy>
@@ -1490,14 +1490,14 @@
     </request>
     <thanks>
       <plain><li>All of them inside the fence, eating where they should. I can finally sit down.</li></plain>
-      <warm><li>Thank you. They seem happier, I think.</li></warm>
+      <warm><li>They're calmer behind the fence. So am I.</li></warm>
       <blunt><li>No more chasing.</li></blunt>
       <cheerful><li>I counted them all in at dusk, every last one.</li></cheerful>
       <gloomy><li>One has already found a hole in the fence. I'll fix it.</li></gloomy>
       <cold><li>Livestock contained.</li></cold>
     </thanks>
     <expired>
-      <plain><li>Back to chasing them, then.</li></plain>
+      <plain><li>I'll be out with a stick again tomorrow, chasing them home.</li></plain>
       <blunt><li>When they eat the crops, don't look at me.</li></blunt>
       <gloomy><li>They'll wander off, and that'll be that.</li></gloomy>
     </expired>
@@ -1560,7 +1560,7 @@
     </thanks>
     <expired>
       <plain><li>Dirt floor it is, then.</li></plain>
-      <blunt><li>Fine. I'll sleep in the mud.</li></blunt>
+      <blunt><li>Mud it is. Don't come visiting.</li></blunt>
       <gloomy><li>Some of us live in rooms. Some of us live in the ground.</li></gloomy>
     </expired>
     <reminder>

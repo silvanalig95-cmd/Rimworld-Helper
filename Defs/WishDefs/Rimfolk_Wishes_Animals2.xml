@@ -73,7 +73,7 @@
     <expired>
       <plain><li>Maybe one day. They're still out there.</li></plain>
       <gloomy><li>Out past the fields, where they always are.</li></gloomy>
-      <blunt><li>Fine. I'll keep drawing them instead.</li></blunt>
+      <blunt><li>Then I'll keep drawing them. It's all I've got.</li></blunt>
     </expired>
     <reminder>
       <plain><li>I saw the tracks again this morning.</li></plain>
@@ -132,7 +132,7 @@
       <cold><li>Carrying capacity improved.</li></cold>
     </thanks>
     <expired>
-      <plain><li>I'll keep carrying it myself, then.</li></plain>
+      <plain><li>I'll carry it myself. I always have.</li></plain>
       <blunt><li>My back, my problem.</li></blunt>
     </expired>
   </ColonyCouncil.WishDef>

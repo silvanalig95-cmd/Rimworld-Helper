@@ -63,7 +63,7 @@
     </request>
     <thanks>
       <plain><li>Hot tea and the steam in my face. I feel half human again.</li></plain>
-      <warm><li>Thank you. That was the kindest thing anyone's done for me all week.</li></warm>
+      <warm><li>Kindest thing anyone's done for me all week, that pot.</li></warm>
       <blunt><li>Good. Another.</li></blunt>
       <cheerful><li>A whole pot just for me. Well, nearly.</li></cheerful>
       <gloomy><li>I'm no better. But my hands are warm.</li></gloomy>
@@ -71,7 +71,7 @@
     </thanks>
     <expired>
       <plain><li>Cold water it is.</li></plain>
-      <blunt><li>Fine. I'll cough.</li></blunt>
+      <blunt><li>I'll cough on whoever said no.</li></blunt>
       <gloomy><li>Sick and thirsty, then. It's how things go here.</li></gloomy>
     </expired>
     <reminder>
@@ -116,7 +116,7 @@
         <li>Everyone gathered round the grill, waiting their turn. That's the best kind of supper.</li>
       </warm>
       <blunt>
-        <li>Build {THING}. I'll do the cooking.</li>
+        <li>You build {THING}, I cook. Fair?</li>
       </blunt>
       <cheerful>
         <li>I've had skewers whittled and waiting all week. All I need is {THING}.</li>
@@ -193,7 +193,7 @@
     </request>
     <thanks>
       <plain><li>The guests had a real bed tonight. They thanked me twice.</li></plain>
-      <warm><li>Thank you. We're the kind of place people want to come back to now.</li></warm>
+      <warm><li>We're the kind of place people will want to come back to now.</li></warm>
       <blunt><li>Now they can't complain.</li></blunt>
       <cheerful><li>I put a flower on the pillow anyway.</li></cheerful>
       <gloomy><li>Now we just need visitors who don't try to kill us.</li></gloomy>
@@ -205,7 +205,7 @@
       <gloomy><li>Word gets round. They'll stop coming.</li></gloomy>
     </expired>
     <reminder>
-      <plain><li>Still no bed for guests.</li></plain>
+      <plain><li>If anyone comes tonight, they're on the floor again.</li></plain>
     </reminder>
   </ColonyCouncil.WishDef>
 

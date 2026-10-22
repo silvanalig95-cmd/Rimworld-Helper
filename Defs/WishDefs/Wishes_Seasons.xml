@@ -68,7 +68,7 @@
         <li>Warm all the way through, for once.</li>
         <li>Let it snow. I'm dressed for it now.</li>
       </plain>
-      <warm><li>Thank you. Whoever stitched this, I owe them a favor.</li></warm>
+      <warm><li>Whoever stitched this, I owe them a favor. Tell them that.</li></warm>
       <blunt><li>Now the cold can go and bother someone else.</li></blunt>
       <cheerful><li>I look like a walking haystack. A warm one!</li></cheerful>
       <gloomy><li>I can feel my fingers again. Mixed blessing. They hurt.</li></gloomy>
@@ -214,7 +214,7 @@
       <cold><li>Recovery improved.</li></cold>
     </thanks>
     <expired>
-      <plain><li>Back to stamping my feet by the fire, then.</li></plain>
+      <plain><li>I'll stamp my feet by the fire and call it a sauna.</li></plain>
       <blunt><li>Winter's long. I'll remember who said no.</li></blunt>
       <gloomy><li>Winter wins again.</li></gloomy>
     </expired>
