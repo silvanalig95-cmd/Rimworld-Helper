@@ -1238,7 +1238,9 @@ night, a lord's retinue staying by the gate).
 - **When they go** (`VisitorMath`, pure and tested): someone at the gate half an hour after the answer, or once an
   errand bringing them something has reached them (eight hours at most), or after two and a half days whatever
   happens; with nothing asked, after their hours. Guests at first light after their nights (`HoursToDawn`, at most
-  three), only if every one of them is safe in the temperature there with a margin for the night. Anyone hypothermic,
+  three), by the gate if every one of them is safe in the temperature there with a margin for the night, else in a
+  corner of the colony's dining or rec room that is (`Visitors.IndoorsCell`, `Rimfolk_VisitIndoors`: they keep within
+  four cells of it), else they go on. Anyone hypothermic,
   heatstruck, starving or malnourished: they all go, with a message. A held beat (`holdBeat`: "the retinue stayed the
   night") waits until they've gone.
 - **Limits.** At most three groups on a map at once (`MaxHere`), six people and eight animals in a group, eight

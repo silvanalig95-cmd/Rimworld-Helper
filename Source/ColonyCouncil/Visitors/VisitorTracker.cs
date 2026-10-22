@@ -277,7 +277,10 @@ namespace ColonyCouncil
                     if (t.stayNights > 0 && t.answeredAt >= 0)
                     {
                         if (BeginStay(t, now)) return;
+                        // Nowhere a night would do them no harm: they go on while there's light.
                         t.stayNights = 0;
+                        Leave(t, VisitEnd.Weather, false);
+                        return;
                     }
                     if (!t.saidWait && now - t.arrived > VisitorMath.TicksPerHour * 2 && (open || !hasLetter))
                     {
@@ -346,8 +349,15 @@ namespace ColonyCouncil
                 var c = Visitors.SpotFor(t.staySpot, t.map, t.spot);
                 if (c.IsValid && c.InBounds(t.map) && t.Standing.All(p => p.CanReach(c, PathEndMode.OnCell, Danger.Some))) at = c;
             }
-            if (!Visitors.SafeOvernight(t.Here, at, t.map)) return false;
-            if (at != t.spot && !Move(t, at)) return false;
+            bool indoors = false;
+            if (!Visitors.SafeOvernight(t.Here, at, t.map))
+            {
+                // Too cold (or hot) to sleep out by the wall: a corner inside, if the colony has one that's warm.
+                at = Visitors.IndoorsCell(t.map, t.Here);
+                if (!at.IsValid) return false;
+                indoors = true;
+            }
+            if ((at != t.spot || indoors) && !Move(t, at, indoors)) return false;
             t.kind = VisitKind.Stay;
             int hour = GenLocalDate.HourOfDay(t.map);
             t.leaveAt = now + VisitorMath.HoursToDawn(hour, t.stayNights) * VisitorMath.TicksPerHour + Rand.Range(0, VisitorMath.TicksPerHour * 2);
@@ -356,7 +366,7 @@ namespace ColonyCouncil
         }
 
         /// <summary>They go over to another spot to stay (a new group with the same people, walking there).</summary>
-        private bool Move(VisitorTrip t, IntVec3 to)
+        private bool Move(VisitorTrip t, IntVec3 to, bool indoors)
         {
             var party = t.Here;
             if (party.Count == 0) return false;
@@ -364,7 +374,7 @@ namespace ColonyCouncil
             {
                 foreach (var p in party) t.lord.RemovePawn(p);
                 t.spot = to;
-                t.lord = LordMaker.MakeNewLord(t.faction, new LordJob_RimfolkVisit(t.id, to, t.exit, t.animals.Count > 2 ? 9f : 6f), t.map, party);
+                t.lord = LordMaker.MakeNewLord(t.faction, new LordJob_RimfolkVisit(t.id, to, t.exit, indoors ? 2f : t.animals.Count > 2 ? 9f : 6f, indoors), t.map, party);
                 t.state = VisitState.Coming;
                 t.setOut = Now;
                 return true;

@@ -9,6 +9,7 @@ namespace ColonyCouncil
     public static class VisitorDefOf
     {
         public static DutyDef Rimfolk_VisitWait;
+        public static DutyDef Rimfolk_VisitIndoors;
         public static DutyDef Rimfolk_VisitBeasts;
 
         static VisitorDefOf()
@@ -30,6 +31,8 @@ namespace ColonyCouncil
         public IntVec3 spot;
         public IntVec3 exit = IntVec3.Invalid;
         public float radius = 5f;
+        /// <summary>Guests shown a corner inside for the night: they keep to it.</summary>
+        public bool indoors;
 
         public const string MemoLeave = "VisitLeave";
         public const string MemoHurry = "VisitHurry";
@@ -38,12 +41,13 @@ namespace ColonyCouncil
         {
         }
 
-        public LordJob_RimfolkVisit(int tripId, IntVec3 spot, IntVec3 exit, float radius)
+        public LordJob_RimfolkVisit(int tripId, IntVec3 spot, IntVec3 exit, float radius, bool indoors = false)
         {
             this.tripId = tripId;
             this.spot = spot;
             this.exit = exit;
             this.radius = radius;
+            this.indoors = indoors;
         }
 
         public override bool AddFleeToil => false;
@@ -55,7 +59,7 @@ namespace ColonyCouncil
             var graph = new StateGraph();
             var travel = new LordToil_Travel(spot);
             graph.StartingToil = travel;
-            var here = new LordToil_VisitHere(spot, radius, tripId);
+            var here = new LordToil_VisitHere(spot, radius, tripId, indoors);
             graph.AddToil(here);
             LordToil_Travel onward = exit.IsValid ? new LordToil_Travel(exit) : null;
             if (onward != null) graph.AddToil(onward);
@@ -135,6 +139,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref spot, "spot");
             Scribe_Values.Look(ref exit, "exit", IntVec3.Invalid);
             Scribe_Values.Look(ref radius, "radius", 5f);
+            Scribe_Values.Look(ref indoors, "indoors");
         }
     }
 
@@ -147,12 +152,14 @@ namespace ColonyCouncil
         private readonly IntVec3 spot;
         private readonly float radius;
         private readonly int tripId;
+        private readonly bool indoors;
 
-        public LordToil_VisitHere(IntVec3 spot, float radius, int tripId)
+        public LordToil_VisitHere(IntVec3 spot, float radius, int tripId, bool indoors)
         {
             this.spot = spot;
             this.radius = radius;
             this.tripId = tripId;
+            this.indoors = indoors;
         }
 
         public override IntVec3 FlagLoc => spot;
@@ -165,7 +172,7 @@ namespace ColonyCouncil
         {
             foreach (var p in lord.ownedPawns)
                 p.mindState.duty = p.RaceProps.Humanlike
-                    ? new PawnDuty(VisitorDefOf.Rimfolk_VisitWait, spot, radius)
+                    ? new PawnDuty(indoors ? VisitorDefOf.Rimfolk_VisitIndoors : VisitorDefOf.Rimfolk_VisitWait, spot, radius)
                     : new PawnDuty(VisitorDefOf.Rimfolk_VisitBeasts, spot, radius + 4f);
         }
 

@@ -328,6 +328,35 @@ namespace ColonyCouncil
         }
 
         /// <summary>
+        /// A corner inside for guests when a night out would hurt them: an open spot in the colony's dining room or rec
+        /// room (never a cell, a bedroom or a hospital), warm enough for every one of them, that they can all reach.
+        /// </summary>
+        public static IntVec3 IndoorsCell(Map map, List<Pawn> party)
+        {
+            if (map == null || party.NullOrEmpty()) return IntVec3.Invalid;
+            try
+            {
+                var rooms = RoomUtil.RoomsWithRole(map, RoomUtil.DiningRoom).Concat(RoomUtil.RoomsWithRole(map, RoomUtil.RecRoom))
+                    .Where(r => r != null && !r.IsPrisonCell && !r.PsychologicallyOutdoors && r.CellCount >= 12).OrderByDescending(r => r.CellCount);
+                foreach (var room in rooms)
+                {
+                    var middle = room.ExtentsClose.CenterCell;
+                    foreach (var c in room.Cells.OrderBy(x => x.DistanceToSquared(middle)).Take(30))
+                    {
+                        if (!c.Standable(map) || c.GetEdifice(map) != null || c.GetFirstPawn(map) != null) continue;
+                        if (!SafeOvernight(party, c, map, 0f)) break;
+                        if (party.All(p => p.CanReach(c, PathEndMode.OnCell, Danger.Some))) return c;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("visitor indoors", e);
+            }
+            return IntVec3.Invalid;
+        }
+
+        /// <summary>
         /// They eat what they brought, never the colony's food or its fields: someone hungry eats from their pack; with
         /// nothing left in it (and for their animals), they're kept fed out of sight, as travelers feed themselves.
         /// </summary>
@@ -360,8 +389,11 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>A night out by this spot won't hurt them: every one of them is safe in the temperature there.</summary>
-        public static bool SafeOvernight(IEnumerable<Pawn> party, IntVec3 at, Map map)
+        /// <summary>
+        /// A night out by this spot won't hurt them: every one of them is safe in the temperature there, with
+        /// <paramref name="margin"/> degrees for the night being colder than now (outdoors).
+        /// </summary>
+        public static bool SafeOvernight(IEnumerable<Pawn> party, IntVec3 at, Map map, float margin = 8f)
         {
             foreach (var p in party)
             {
@@ -371,7 +403,7 @@ namespace ColonyCouncil
                     // The night will be colder than now: a few degrees of margin.
                     var range = GenTemperature.SafeTemperatureRange(p);
                     float t = at.IsValid && at.InBounds(map) ? at.GetTemperature(map) : map.mapTemperature.OutdoorTemp;
-                    if (t - 8f < range.min || t > range.max) return false;
+                    if (t - margin < range.min || t > range.max) return false;
                 }
                 catch (Exception e)
                 {

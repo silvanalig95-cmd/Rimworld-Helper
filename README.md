@@ -445,7 +445,7 @@ instant again.
 the colony's answer walks in with the letter and stands by the gate until you answer; what you send is carried out to
 them, and what their people pay they set down themselves. The family asking to be taken in waits there with their
 children and their dog, and if you take them in, those are the people who join. Fed and sent on, they sleep by the
-wall and go at first light; snowbound travelers stay two nights, a stargazer three on the far hill. Drovers graze
+wall (or, on a bitter night, in a corner of the dining room) and go at first light; snowbound travelers stay two nights, a stargazer three on the far hill. Drovers graze
 their herd on the far meadow overnight, herders bring theirs down to the water, and mourners, a clan's band and a
 lord's progress pass along the road and go on to the far side of the map (42 beats of 27 world events, and a feud's
 warning rider and a debt collector; 87 lines of their own). Only peoples at peace with the colony come, only when
