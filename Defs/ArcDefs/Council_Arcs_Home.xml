@@ -12,6 +12,9 @@
     Fizzle lines are tagged with why: [timeout], [otherdead], [otherleft] or the worker's own; keep one untagged.
     The eulogy is written by the other person or whoever was closest, as {PAWN}, about the dead as {OTHER}.
 
+    The chronicle lines of every stage are read one after another in the letter that ends the story, so write them as
+    the beats of one short tale: a scene to open, a turn, and an ending of a different shape.
+
     This file: home and belonging. The long way home, somewhere to belong, a companion.
   -->
 
@@ -22,7 +25,7 @@
   <ColonyCouncil.ArcDef>
     <defName>Council_Arc_LongWayHome</defName>
     <label>the long way home</label>
-    <summary>Days out on the road, someone at home is missed. Home again, the two of them sit up while the whole journey is told.</summary>
+    <summary>Days out on the road, a traveler misses someone at home. Back again, the two of them sit up late while the whole journey is told.</summary>
     <workerClass>ColonyCouncil.ArcWorker_Away</workerClass>
     <children>true</children>
     <maxDays>80</maxDays>
@@ -33,31 +36,31 @@
         <journal>
           <plain>
             <li>{DAYS} days on the road now. I keep catching myself saving things up to tell {OTHER_nameDef}.</li>
-            <li>[partner] Slept on cold ground again. I miss the weight of {OTHER_nameDef}'s arm across me more than I'd say out loud.</li>
-            <li>[kin] Passed a farmhouse with washing on the line and thought of {OTHER_nameDef} straight away. Family does that to you.</li>
-            <li>[snow] The snow out here doesn't stop. I hope {OTHER_nameDef} is keeping the fire going at home.</li>
+            <li>[partner] Slept on cold ground again, with one arm out where {OTHER_nameDef} usually is.</li>
+            <li>[kin] Passed a homestead with washing on the line, and for a moment I was ten again and {OTHER_nameDef} was shouting at me to hold the other end of the sheet.</li>
+            <li>[snow] Snow all day. I hope {OTHER_nameDef} remembered to get the firewood under cover.</li>
             <li>Counted the days on my fingers this morning, then counted them again in case I'd got it wrong.</li>
           </plain>
           <warm>
-            <li>Picked up a smooth gray stone on the road for {OTHER_nameDef}. It fits in a pocket. I'll give it over when I'm home.</li>
-            <li>[partner] Every evening I tell {OTHER_nameDef} about the day, out loud, to nobody in particular. The others have stopped teasing me about it.</li>
+            <li>Picked up a smooth gray stone on the road for {OTHER_nameDef}. It's in my pocket. I check it's still there.</li>
+            <li>[partner] Every evening I tell {OTHER_nameDef} about the day, out loud, to the dark past the fire. The others have stopped teasing me about it.</li>
           </warm>
-          <blunt><li>Tired of walking. Tired of trail food. I want to be home, and I want {OTHER_nameDef} there when I get there.</li></blunt>
+          <blunt><li>Tired of walking. Tired of trail food. Want {OTHER_nameDef}, and my own bed.</li></blunt>
           <cheerful><li>Saw a bird out here with a tail like a fan. {OTHER_nameDef} would have loved it. I'm practicing its call for when I get back!</li></cheerful>
-          <gloomy><li>Too long away. Every night I picture something going wrong at home while I'm out here, and {OTHER_nameDef} facing it without me.</li></gloomy>
-          <cold><li>The journey is useful. Still, I find I'm keeping count of the days until I see {OTHER_nameDef} again. Noted.</li></cold>
+          <gloomy><li>Too long away. Every night I picture something going wrong at home, and {OTHER_nameDef} facing it without me.</li></gloomy>
+          <cold><li>The journey is useful. I have also been counting the days until I see {OTHER_nameDef}, which was not part of the plan.</li></cold>
         </journal>
         <otherJournal>
           <plain>
-            <li>{OTHER_nameDef} has been gone for days. The place is too quiet without {OTHER_objective}.</li>
-            <li>I keep looking down the road. No sign of {OTHER_nameDef} yet.</li>
+            <li>{OTHER_nameDef} has been gone for days. I look up every time the door opens.</li>
+            <li>No sign of {OTHER_nameDef} on the road yet. I check every morning before I start work.</li>
             <li>[partner] Slept on {OTHER_nameDef}'s side of the bed last night. It still smells of {OTHER_objective}.</li>
           </plain>
           <gloomy><li>Every dust cloud on the road could be {OTHER_nameDef} coming home. None of them have been.</li></gloomy>
         </otherJournal>
         <chronicle>
-          <li>{PAWN_nameDef} is far from home, and missing {OTHER_nameDef}.</li>
-          <li>Out on the road, {PAWN_nameDef} counts the days until {PAWN_pronoun} sees {OTHER_nameDef} again.</li>
+          <li>Somewhere out on the road, {PAWN_nameDef} has started keeping a tally of things to tell {OTHER_nameDef} when {PAWN_pronoun} gets home.</li>
+          <li>Each night on the road, {PAWN_nameDef} counts the days since {PAWN_pronoun} last saw {OTHER_nameDef}.</li>
         </chronicle>
         <gate><kind>Home</kind><minDays>0.5</minDays><timeoutDays>60</timeoutDays></gate>
       </li>
@@ -66,27 +69,27 @@
         <waiting>Next: {PAWN_nameDef} tells {OTHER_nameDef} about the road.</waiting>
         <journal>
           <plain>
-            <li>Home. The gate, the smell of the cookfire, {OTHER_nameDef} at the door. I didn't trust it was real until I'd sat down.</li>
-            <li>[partner] {OTHER_nameDef} held on to me so long the others started unloading the animals around us.</li>
+            <li>Home. The smell of the cookfire, {OTHER_nameDef} at the door. I didn't trust it was real until I'd sat down.</li>
+            <li>[partner] {OTHER_nameDef} held on to me so long the others started unpacking around us.</li>
             <li>Back, and my own bed tonight. I'll tell {OTHER_nameDef} everything tomorrow, once I've slept for a week.</li>
             <li>[kin] {OTHER_nameDef} looked me over like I was a child back from the river, checking for scrapes. I let {OTHER_objective}.</li>
           </plain>
-          <warm><li>Home, and {OTHER_nameDef} had kept my place at the table the whole time I was gone.</li></warm>
-          <blunt><li>Home. Finally. Nobody ask me to go anywhere for a while.</li></blunt>
+          <warm><li>Home, and {OTHER_nameDef} had kept my cup on its hook the whole time I was gone.</li></warm>
+          <blunt><li>Home. Finally. Don't anyone ask me to go anywhere.</li></blunt>
           <cheerful><li>Home! {OTHER_nameDef} saw me coming from halfway across the fields and ran the whole way.</li></cheerful>
           <gloomy><li>Back home, and it looks smaller than I remembered. {OTHER_nameDef} looks tired. I was gone too long.</li></gloomy>
-          <cold><li>Returned. {OTHER_nameDef} was visibly relieved. I find I was too.</li></cold>
+          <cold><li>Returned. {OTHER_nameDef} met me before I had reached the door, which I had not planned for.</li></cold>
         </journal>
         <otherJournal>
           <plain>
-            <li>{OTHER_nameDef} is home. Thinner, browner, and talking a lot. I don't mind.</li>
+            <li>{OTHER_nameDef} is home. Thinner, footsore, and talking without a break. I don't mind.</li>
             <li>{OTHER_nameDef} walked in as if {OTHER_pronoun}'d only been gone an afternoon. I'd been counting the days.</li>
             <li>[partner] {OTHER_nameDef} came back to me. I'd got so used to worrying I didn't know what to do with my hands.</li>
           </plain>
         </otherJournal>
         <chronicle>
-          <li>{PAWN_nameDef} came home after {DAYS} days away, and {OTHER_nameDef} was waiting.</li>
-          <li>After {DAYS} days on the road, {PAWN_nameDef} is home again.</li>
+          <li>{PAWN_nameDef} came home after {DAYS} days away. {OTHER_nameDef} was there before {PAWN_pronoun} had set anything down.</li>
+          <li>After {DAYS} days on the road, {PAWN_nameDef} slept in {PAWN_possessive} own bed.</li>
         </chronicle>
         <gate>
           <kind>Talk</kind>
@@ -101,25 +104,25 @@
         <label>the road told</label>
         <journal>
           <plain>
-            <li>Told {OTHER_nameDef} about the road last night: the river crossing, the trader with one ear, the night it hailed. We were up until the fire went out.</li>
+            <li>Told {OTHER_nameDef} about the road last night, starting with the trader who had one ear and tried to sell me a goat. We were up until the fire went out.</li>
             <li>I've unpacked. My boots are by the door where they belong.</li>
             <li>[partner] Fell asleep in the middle of the story about the pass, with {OTHER_nameDef} still listening. Woke up home.</li>
           </plain>
           <warm><li>{OTHER_nameDef} listened to every word about the journey, even the dull parts. Especially those, I think.</li></warm>
           <blunt><li>Told {OTHER_nameDef} all of it. Done with traveling for a while.</li></blunt>
-          <cheerful><li>Acted out the whole journey for {OTHER_nameDef}, river crossing and all. I used a bowl for the boat!</li></cheerful>
+          <cheerful><li>Acted out the whole journey for {OTHER_nameDef}, river crossing and all. I used a bowl for the boat.</li></cheerful>
           <gloomy><li>I'm home, and {OTHER_nameDef} is glad. I keep waiting for the next time someone has to go.</li></gloomy>
           <cold><li>Gave {OTHER_nameDef} an account of the journey. It was more pleasant than a report has any right to be.</li></cold>
         </journal>
         <otherJournal>
           <plain>
-            <li>{OTHER_nameDef} told me about the road, every mile of it. I didn't want it to end.</li>
+            <li>{OTHER_nameDef} told me about the road, every mile of it, drawing the hills in the ash with a stick.</li>
             <li>[partner] {OTHER_nameDef} fell asleep halfway through a story. I sat up a while just listening to {OTHER_objective} breathe.</li>
           </plain>
         </otherJournal>
         <chronicle>
-          <li>{PAWN_nameDef} told {OTHER_nameDef} everything about the road, late into the night.</li>
-          <li>Home for good, {PAWN_nameDef} spent an evening telling {OTHER_nameDef} about the journey.</li>
+          <li>It took most of a night for {PAWN_nameDef} to tell {OTHER_nameDef} about the road, and {OTHER_nameDef} asked to hear the worst night of it twice.</li>
+          <li>{PAWN_nameDef}'s boots are back by the door, and {OTHER_nameDef} has heard about every mile they walked.</li>
         </chronicle>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Arc_HomeTogether</thought><target>AAndB</target></li>
@@ -132,29 +135,29 @@
     <fizzle>
       <plain>
         <li>[timeout] I've been away so long the colony feels like a story someone told me. I'll write about it when I'm closer to home.</li>
-        <li>[otherdead] They told me about {OTHER_nameDef} when I got back. I had a whole bag of things to tell {OTHER_objective}.</li>
-        <li>[otherleft] I got home and {OTHER_nameDef} was gone. Nobody could say where to.</li>
+        <li>[otherdead] {OTHER_nameDef} is dead. I had a whole bag of things to tell {OTHER_objective}, and I've stopped adding to it.</li>
+        <li>[otherleft] {OTHER_nameDef} has gone from the colony. I'd been saving the road up for {OTHER_objective}, and now I don't know where to send it.</li>
         <li>Half of what I meant to tell {OTHER_nameDef} about the road, I've forgotten. It doesn't seem to matter now.</li>
       </plain>
-      <gloomy><li>[otherdead] I saved up the road for {OTHER_nameDef}, every mile of it. Now there's no one I want to tell.</li></gloomy>
-      <warm><li>[timeout] I've so much to tell {OTHER_nameDef} when I'm back. I'm keeping it all safe.</li></warm>
+      <gloomy><li>[otherdead] I saved up the road for {OTHER_nameDef}, mile by mile. There's no one else I want to tell it to.</li></gloomy>
+      <warm><li>[timeout] I've so much to tell {OTHER_nameDef} when I'm back. I'm keeping all of it.</li></warm>
       <blunt><li>[timeout] Still on the road. Still missing home.</li></blunt>
       <cheerful><li>[timeout] The road goes on and on! I'm collecting stories for when I'm home.</li></cheerful>
       <cold><li>[timeout] The journey has run longer than planned. I'll report when I return.</li></cold>
     </fizzle>
     <fizzleChronicle>
-      <li>[otherdead] {PAWN_nameDef} came home to find {OTHER_nameDef} gone for good.</li>
-      <li>[otherleft] {PAWN_nameDef} came home, but {OTHER_nameDef} had left the colony.</li>
-      <li>[timeout] {PAWN_nameDef} has been away too long for the homecoming {PAWN_pronoun} imagined.</li>
+      <li>[otherdead] {OTHER_nameDef} died before {PAWN_nameDef} could tell {OTHER_objective} a word about the road.</li>
+      <li>[otherleft] By the time {PAWN_nameDef} had stories to tell, {OTHER_nameDef} had left the colony.</li>
+      <li>[timeout] {PAWN_nameDef} has been on the road so long that the homecoming {PAWN_pronoun} kept picturing has worn thin.</li>
       <li>{PAWN_nameDef} never did tell {OTHER_nameDef} about the road.</li>
     </fizzleChronicle>
     <eulogy>
       <plain>
-        <li>{OTHER_nameDef} was on {OTHER_possessive} way home. I keep looking down the road anyway.</li>
-        <li>{OTHER_nameDef} never made it back. I'd kept {OTHER_possessive} place at the table the whole time, and I'm keeping it a while longer.</li>
-        <li>[partner] I sleep on {OTHER_nameDef}'s side of the bed now. {OTHER_nameDef} was supposed to come home.</li>
+        <li>{OTHER_nameDef} never told me the rest of the road. I'll have to guess how it ended.</li>
+        <li>I kept {OTHER_nameDef}'s place at the table the whole time {OTHER_pronoun} was away. I'm keeping it a while longer.</li>
+        <li>[partner] {OTHER_nameDef}'s spare shirt is still on the hook by our bed. I haven't moved it.</li>
       </plain>
-      <cold><li>{OTHER_nameDef} died short of home. I had prepared for a homecoming. Now I have to unprepare.</li></cold>
+      <cold><li>{OTHER_nameDef} is dead, with most of the road untold. I am writing down what I did hear before I lose it.</li></cold>
     </eulogy>
   </ColonyCouncil.ArcDef>
 
@@ -165,7 +168,7 @@
   <ColonyCouncil.ArcDef>
     <defName>Council_Arc_FindingHome</defName>
     <label>somewhere to belong</label>
-    <summary>A newcomer who doesn't feel at home yet finds a friendly face, a room of their own and, in time, a place among the others.</summary>
+    <summary>A newcomer who doesn't feel at home yet finds a friendly face, a corner of their own and, in time, a place among the others.</summary>
     <workerClass>ColonyCouncil.ArcWorker_Newcomer</workerClass>
     <weight>1.2</weight>
     <children>true</children>
@@ -177,20 +180,20 @@
         <journal>
           <plain>
             <li>Still don't know where anything is kept. I asked where the spare blankets were and three people pointed three different ways.</li>
-            <li>Everyone here has jokes I don't get yet. I laugh a beat late.</li>
+            <li>They all have jokes here that I don't get yet. I laugh a beat late.</li>
             <li>[night] Lay awake listening to the colony. Every noise is someone else's.</li>
-            <li>Ate supper at the end of the table. People were civil. That was all.</li>
+            <li>Ate supper at the end of the table. People passed me things when I asked.</li>
             <li>[child] I don't know where to sit at supper, and the big ones talk over my head.</li>
           </plain>
           <warm><li>The people here are decent to me. I just don't know them yet, and they don't know me.</li></warm>
           <blunt><li>New place, new faces, new rules. I'll manage. I always do.</li></blunt>
           <cheerful><li>Learned four names today! Only got one of them wrong.</li></cheerful>
-          <gloomy><li>This isn't my home. It's a place I sleep. Maybe that'll change, but not soon.</li></gloomy>
+          <gloomy><li>This isn't my home. It's a place I sleep.</li></gloomy>
           <cold><li>I am observing how this colony works. Who decides, who listens, who is listened to.</li></cold>
         </journal>
         <chronicle>
-          <li>{PAWN_nameDef} is still finding {PAWN_possessive} feet in the colony.</li>
-          <li>{PAWN_nameDef} hasn't quite settled in yet.</li>
+          <li>{PAWN_nameDef} still eats at the end of the table, and still has to ask where things are kept.</li>
+          <li>{PAWN_nameDef} hasn't settled in. When {PAWN_pronoun} talks about the colony, {PAWN_pronoun} still says "your".</li>
         </chronicle>
         <gate>
           <kind>Talk</kind>
@@ -206,12 +209,12 @@
         <waiting>Next: a room of {PAWN_possessive} own, or at least some good days in a row.</waiting>
         <journal>
           <plain>
-            <li>{OTHER_nameDef} showed me around today: the good well, the door that sticks, where the dog sleeps. It helped more than I'd have guessed.</li>
+            <li>{OTHER_nameDef} showed me around today, down to where the good knives are kept. It helped more than I'd have guessed.</li>
             <li>{OTHER_nameDef} asked where I came from and listened to the answer.</li>
             <li>Now that I know my way around, I'd like a corner of it that's mine. A door I can close.</li>
             <li>[child] {OTHER_nameDef} showed me the best hiding places. I'm not telling anyone where they are.</li>
           </plain>
-          <warm><li>{OTHER_nameDef} took me under {OTHER_possessive} wing without making a fuss of it. I won't forget that.</li></warm>
+          <warm><li>{OTHER_nameDef} introduced me to the others as if I'd been expected.</li></warm>
           <blunt><li>{OTHER_nameDef} showed me around. Good. Now I need somewhere to sleep that isn't everyone's.</li></blunt>
           <cheerful><li>{OTHER_nameDef} gave me the grand tour! I've already got a favorite spot to sit.</li></cheerful>
           <gloomy><li>{OTHER_nameDef} was kind to me today. I'm waiting to find out what it costs.</li></gloomy>
@@ -224,8 +227,8 @@
           </plain>
         </otherJournal>
         <chronicle>
-          <li>{OTHER_nameDef} has been showing {PAWN_nameDef} around the colony.</li>
-          <li>{PAWN_nameDef} has found a friendly face in {OTHER_nameDef}.</li>
+          <li>{OTHER_nameDef} spent an afternoon showing {PAWN_nameDef} around, down to the door that sticks in the damp.</li>
+          <li>{PAWN_nameDef} has a friend here now. It was {OTHER_nameDef} who made the first move.</li>
         </chronicle>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Arc_ShowedMeAround</thought></li>
@@ -248,20 +251,20 @@
         <waiting>Next: some good days, among people who are glad to have {PAWN_objective}.</waiting>
         <journal>
           <plain>
-            <li>A space of my own. I've put my things out where I can see them and moved the bed twice.</li>
+            <li>My things are out of the pack and up on a shelf, where I can see them. That took me longer than it should have.</li>
             <li>Planted something in a pot by my door. If it grows, I'm staying.</li>
             <li>Somebody asked my opinion at supper. I had one.</li>
             <li>[child] I have a box for my things now, and nobody else is allowed in it.</li>
           </plain>
           <warm><li>I've started saying "we" when I talk about the colony. I caught myself doing it today and didn't take it back.</li></warm>
-          <blunt><li>Got my own space. Better. Still learning the rest.</li></blunt>
-          <cheerful><li>My corner has a bed, a shelf and a very ugly chair that I love!</li></cheerful>
+          <blunt><li>Got a corner that's mine. Better.</li></blunt>
+          <cheerful><li>There's a very ugly chair in my corner and I love it!</li></cheerful>
           <gloomy><li>I've got a place of my own now. Let's see how long I get to keep it.</li></gloomy>
-          <cold><li>A room, a role, and a few people who seem pleased to see me. Adequate foundations.</li></cold>
+          <cold><li>I have a role here now, and a few people who seem pleased to see me. Adequate foundations.</li></cold>
         </journal>
         <chronicle>
-          <li>{PAWN_nameDef} has started to put down roots.</li>
-          <li>{PAWN_nameDef} has a place of {PAWN_possessive} own in the colony now.</li>
+          <li>{PAWN_nameDef}'s things are out of {PAWN_possessive} pack now, set on a shelf where {PAWN_pronoun} can see them.</li>
+          <li>{PAWN_nameDef} has a corner of the colony that is {PAWN_possessive} own, and has started to keep it.</li>
         </chronicle>
         <gate>
           <kind>Hold</kind>
@@ -279,23 +282,23 @@
         <label>home</label>
         <journal>
           <plain>
-            <li>Came in from the fields today and thought "home" without meaning to. So that's settled.</li>
-            <li>I know which step creaks, who snores and what everyone takes in their tea. I live here.</li>
+            <li>Came in from the fields today and thought "home" without meaning to.</li>
+            <li>I know who snores, and which of the cooks salts everything twice. I live here.</li>
             <li>If anyone new ever turns up, I'll show them where the blankets are. I know now.</li>
             <li>[child] This is my home. I told {OTHER_nameDef} so and {OTHER_pronoun} said "I know".</li>
           </plain>
           <warm><li>This is home. I couldn't say exactly when it happened. {OTHER_nameDef} had a lot to do with it.</li></warm>
           <blunt><li>I live here. Simple as that.</li></blunt>
-          <cheerful><li>I'm one of the old faces now! Well, one of the slightly worn ones.</li></cheerful>
-          <gloomy><li>It's home. That means it can be lost, but I'll take it.</li></gloomy>
+          <cheerful><li>I'm one of the old faces now. Well, one of the slightly worn ones.</li></cheerful>
+          <gloomy><li>It's home. That means it can be lost. I'll take it anyway.</li></gloomy>
           <cold><li>I have decided this colony is mine, as much as I am its.</li></cold>
         </journal>
         <otherJournal>
           <plain><li>{OTHER_nameDef} has settled in. You'd think {OTHER_pronoun}'d been here for years.</li></plain>
         </otherJournal>
         <chronicle>
-          <li>{PAWN_nameDef} calls the colony home now.</li>
-          <li>Whatever {PAWN_nameDef} left behind, {PAWN_possessive} home is here now.</li>
+          <li>Ask {PAWN_nameDef} where {PAWN_pronoun} is from, and these days {PAWN_pronoun} names the colony.</li>
+          <li>{PAWN_nameDef} is one of the colony's own now.</li>
         </chronicle>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Arc_HomeNow</thought></li>
@@ -310,15 +313,15 @@
         <li>[otherleft] {OTHER_nameDef} has left. I'd only just started to feel at home, and {OTHER_nameDef} was half the reason.</li>
         <li>I live here. I don't belong here yet. Those are different things.</li>
       </plain>
-      <warm><li>[timeout] Everyone's been kind. I just don't feel like I belong yet.</li></warm>
+      <warm><li>[timeout] They've all been kind. I just don't feel I belong yet.</li></warm>
       <blunt><li>[timeout] Still a stranger here. Fine.</li></blunt>
-      <cheerful><li>[timeout] Not quite home yet, but I've learned where the good blankets are!</li></cheerful>
+      <cheerful><li>[timeout] Not quite home yet, but I've found out where the good blankets are.</li></cheerful>
       <gloomy><li>[timeout] I keep waiting to feel at home. It hasn't come.</li></gloomy>
-      <cold><li>[timeout] I live here. Belonging is a separate question, and the answer is not yet.</li></cold>
+      <cold><li>[timeout] I am housed, fed and given work. I am not yet one of them.</li></cold>
     </fizzle>
     <fizzleChronicle>
       <li>[otherdead] With {OTHER_nameDef} gone, {PAWN_nameDef} feels like a stranger here again.</li>
-      <li>{PAWN_nameDef} still doesn't feel at home in the colony.</li>
+      <li>{PAWN_nameDef} still sits at the end of the table.</li>
     </fizzleChronicle>
     <eulogy>
       <plain>
@@ -346,19 +349,19 @@
         <waiting>Next: more hours together, {PAWN_nameDef} and {PET_nameDef}.</waiting>
         <journal>
           <plain>
-            <li>{PET_nameDef} has taken to following me everywhere. To the fields, to the woodpile, to bed if I let {PET_objective}.</li>
+            <li>{PET_nameDef} has taken to following me everywhere. To bed, too, if I let {PET_objective}.</li>
             <li>Every time I turn around, there's {PET_nameDef}, waiting to see what we're doing next.</li>
             <li>[night] {PET_nameDef} slept outside my door last night. I said nothing and left a blanket out.</li>
           </plain>
-          <warm><li>{PET_nameDef} brought me a stick this morning and waited. I threw it. That's how it starts, I suppose.</li></warm>
+          <warm><li>{PET_nameDef} waited by the door all morning until I came out, and then walked me to work.</li></warm>
           <blunt><li>{PET_nameDef} won't leave me alone. Fine. Stay, then.</li></blunt>
-          <cheerful><li>{PET_nameDef} has decided I'm the best person in the colony! {PET_nameDef} is right.</li></cheerful>
+          <cheerful><li>{PET_nameDef} trots after me all day, and I've given up pretending I mind!</li></cheerful>
           <gloomy><li>{PET_nameDef} follows me around as if I'm worth following. I hope I don't let {PET_objective} down.</li></gloomy>
           <cold><li>{PET_nameDef} has chosen me. I don't know on what grounds.</li></cold>
         </journal>
         <chronicle>
-          <li>{PAWN_nameDef} and {PET_nameDef} have been inseparable lately.</li>
-          <li>Wherever {PAWN_nameDef} goes these days, {PET_nameDef} is close behind.</li>
+          <li>{PET_nameDef} has started following {PAWN_nameDef} about the colony, out to work and back again.</li>
+          <li>Wherever {PAWN_nameDef} goes these days, {PET_nameDef} is a few steps behind.</li>
         </chronicle>
         <gate><kind>Hold</kind><hold>Near</hold><hours>18</hours><minDays>2</minDays><timeoutDays>25</timeoutDays></gate>
       </li>
@@ -374,10 +377,10 @@
           <blunt><li>{PET_nameDef}'s learning. So am I.</li></blunt>
           <cheerful><li>{PET_nameDef} came when I called. Well, eventually!</li></cheerful>
           <gloomy><li>I'm getting attached to {PET_nameDef}. I know how that tends to end, with animals.</li></gloomy>
-          <cold><li>{PET_nameDef} answers to me better than to anyone. I am more pleased by that than I expected.</li></cold>
+          <cold><li>{PET_nameDef} answers to me before anyone else. Useful, and not only useful.</li></cold>
         </journal>
         <chronicle>
-          <li>{PAWN_nameDef} has been spending long hours with {PET_nameDef}.</li>
+          <li>{PAWN_nameDef} spends the evenings with {PET_nameDef} now, with a pocket full of scraps.</li>
         </chronicle>
         <gate>
           <kind>Practice</kind>
@@ -396,17 +399,17 @@
         <journal>
           <plain>
             <li>{PET_nameDef} fell asleep with {PET_possessive} head on my foot while I ate. I finished my supper without moving.</li>
-            <li>[storm|rain] When the storm came, {PET_nameDef} came straight to me. Not to shelter. To me.</li>
+            <li>[storm|rain] When the weather turned, {PET_nameDef} came straight to me. Not to shelter. To me.</li>
             <li>Took {PET_nameDef} out past the fields today, just the two of us. {PET_nameDef} didn't wander off once.</li>
           </plain>
-          <warm><li>I trust {PET_nameDef}, and {PET_nameDef} trusts me. You can't ask more than that of anyone.</li></warm>
+          <warm><li>I trust {PET_nameDef}, and {PET_nameDef} trusts me. I can tell by how {PET_pronoun} sleeps, back turned to me and face to the door.</li></warm>
           <blunt><li>{PET_nameDef}'s mine. And I'm {PET_possessive}, I suppose.</li></blunt>
-          <cheerful><li>{PET_nameDef} has a spot by my bed now. It used to be my spot!</li></cheerful>
+          <cheerful><li>{PET_nameDef} has claimed the spot by my bed. I step over {PET_objective} every morning and say good morning.</li></cheerful>
           <gloomy><li>{PET_nameDef} would follow me into a fire. I'll have to make sure I never walk into one.</li></gloomy>
           <cold><li>{PET_nameDef} is the one creature here I'm sure of.</li></cold>
         </journal>
         <chronicle>
-          <li>{PAWN_nameDef} and {PET_nameDef} trust each other now.</li>
+          <li>When anyone else calls {PET_nameDef}, {PET_pronoun} looks to {PAWN_nameDef} first.</li>
         </chronicle>
         <gate>
           <kind>Bond</kind>
@@ -428,13 +431,13 @@
           </plain>
           <warm><li>{PET_nameDef} and I go everywhere together. I'm better company for it.</li></warm>
           <blunt><li>{PET_nameDef} and me. That's how it is.</li></blunt>
-          <cheerful><li>{PET_nameDef} and I are a team! A small, muddy team.</li></cheerful>
+          <cheerful><li>{PET_nameDef} and I are a team now! A muddy one, mostly.</li></cheerful>
           <gloomy><li>Animals don't live as long as we do. I'll have every day with {PET_nameDef} I can.</li></gloomy>
-          <cold><li>{PET_nameDef} needs me. From this one, I find I don't mind it.</li></cold>
+          <cold><li>{PET_nameDef} depends on me. I have decided to allow it.</li></cold>
         </journal>
         <chronicle>
-          <li>{PAWN_nameDef} and {PET_nameDef} go everywhere together now.</li>
-          <li>{PET_nameDef} has chosen {PAWN_nameDef}, and {PAWN_nameDef} has chosen back.</li>
+          <li>{PAWN_nameDef} and {PET_nameDef} are bonded now.</li>
+          <li>{PET_nameDef} chose {PAWN_nameDef}, and in the end {PAWN_nameDef} chose back.</li>
         </chronicle>
         <effects>
           <li Class="ColonyCouncil.ArcEffect_AnimalBond" />
@@ -449,9 +452,9 @@
         <li>[timeout] {PET_nameDef} has lost interest in me and taken up with the cook. I can't blame {PET_objective}.</li>
         <li>{PET_nameDef} and I never quite got there. Some animals keep to themselves.</li>
       </plain>
-      <warm><li>[timeout] {PET_nameDef} and I aren't there yet. I'll keep a treat in my pocket, just in case.</li></warm>
+      <warm><li>[timeout] {PET_nameDef} and I aren't there yet. I'll keep a scrap in my pocket, just in case.</li></warm>
       <blunt><li>[timeout] {PET_nameDef} doesn't care for me. Fine.</li></blunt>
-      <cheerful><li>[timeout] {PET_nameDef} prefers someone else for now, but I'm not giving up!</li></cheerful>
+      <cheerful><li>[timeout] {PET_nameDef} prefers someone else at the moment, but I'm not giving up.</li></cheerful>
       <gloomy><li>[timeout] Even {PET_nameDef} would rather be somewhere else.</li></gloomy>
       <cold><li>[timeout] {PET_nameDef} hasn't taken to me. Some animals don't.</li></cold>
     </fizzle>
