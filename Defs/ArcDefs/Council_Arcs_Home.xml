@@ -351,12 +351,12 @@
           <plain>
             <li>{PET_nameDef} has taken to following me everywhere. To bed, too, if I let {PET_objective}.</li>
             <li>Every time I turn around, there's {PET_nameDef}, waiting to see what we're doing next.</li>
-            <li>[night] {PET_nameDef} slept outside my door last night. I said nothing and left a blanket out.</li>
+            <li>[night] Found {PET_nameDef} asleep outside my door last night. I said nothing and left a blanket out.</li>
           </plain>
-          <warm><li>{PET_nameDef} waited by the door all morning until I came out, and then walked me to work.</li></warm>
+          <warm><li>All morning {PET_nameDef} waited by the door until I came out, and then walked me to work.</li></warm>
           <blunt><li>{PET_nameDef} won't leave me alone. Fine. Stay, then.</li></blunt>
-          <cheerful><li>{PET_nameDef} trots after me all day, and I've given up pretending I mind!</li></cheerful>
-          <gloomy><li>{PET_nameDef} follows me around as if I'm worth following. I hope I don't let {PET_objective} down.</li></gloomy>
+          <cheerful><li>Wherever I go, {PET_nameDef} trots after me, and I've given up acting as if I mind!</li></cheerful>
+          <gloomy><li>The way {PET_nameDef} follows me around, you'd think I was worth following. I hope I don't let {PET_objective} down.</li></gloomy>
           <cold><li>{PET_nameDef} has chosen me. I don't know on what grounds.</li></cold>
         </journal>
         <chronicle>
@@ -373,7 +373,7 @@
             <li>{PET_nameDef} knows the sound of my boots now. I know which noise means hungry and which means bored.</li>
             <li>Taught {PET_nameDef} to wait at the gate. It took most of the afternoon and a lot of scraps.</li>
           </plain>
-          <warm><li>{PET_nameDef} leaned against my legs while I worked today. Just leaned there. I didn't want to move.</li></warm>
+          <warm><li>While I worked today, {PET_nameDef} leaned against my legs. Just leaned there. I didn't want to move.</li></warm>
           <blunt><li>{PET_nameDef}'s learning. So am I.</li></blunt>
           <cheerful><li>{PET_nameDef} came when I called. Well, eventually!</li></cheerful>
           <gloomy><li>I'm getting attached to {PET_nameDef}. I know how that tends to end, with animals.</li></gloomy>
@@ -406,7 +406,7 @@
           <blunt><li>{PET_nameDef}'s mine. And I'm {PET_possessive}, I suppose.</li></blunt>
           <cheerful><li>{PET_nameDef} has claimed the spot by my bed. I step over {PET_objective} every morning and say good morning.</li></cheerful>
           <gloomy><li>{PET_nameDef} would follow me into a fire. I'll have to make sure I never walk into one.</li></gloomy>
-          <cold><li>{PET_nameDef} is the one creature here I'm sure of.</li></cold>
+          <cold><li>Of all the creatures here, {PET_nameDef} is the one I'm sure of.</li></cold>
         </journal>
         <chronicle>
           <li>When anyone else calls {PET_nameDef}, {PET_pronoun} looks to {PAWN_nameDef} first.</li>
@@ -429,9 +429,9 @@
             <li>Somebody asked whose animal {PET_nameDef} was. I said nobody's. {PET_nameDef} looked at me as if I'd told a lie.</li>
             <li>[child] {PET_nameDef} is my best friend. I'm allowed to have an animal for a best friend.</li>
           </plain>
-          <warm><li>{PET_nameDef} and I go everywhere together. I'm better company for it.</li></warm>
+          <warm><li>We go everywhere together now, {PET_nameDef} and I. I'm better company for it.</li></warm>
           <blunt><li>{PET_nameDef} and me. That's how it is.</li></blunt>
-          <cheerful><li>{PET_nameDef} and I are a team now! A muddy one, mostly.</li></cheerful>
+          <cheerful><li>A team now, {PET_nameDef} and me! A muddy one, mostly.</li></cheerful>
           <gloomy><li>Animals don't live as long as we do. I'll have every day with {PET_nameDef} I can.</li></gloomy>
           <cold><li>{PET_nameDef} depends on me. I have decided to allow it.</li></cold>
         </journal>

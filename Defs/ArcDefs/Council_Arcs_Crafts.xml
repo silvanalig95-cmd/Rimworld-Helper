@@ -37,7 +37,7 @@
           <blunt><li>Learning {SKILL} from {OTHER_nameDef}. Hard work. Good.</li></blunt>
           <cheerful><li>{OTHER_nameDef} said my last piece was "not terrible". I've been grinning about it since breakfast.</li></cheerful>
           <gloomy><li>Next to {OTHER_nameDef}'s work, mine looks like a child made it.</li></gloomy>
-          <cold><li>{OTHER_nameDef} knows things about {SKILL} that I want. I intend to take every one of them.</li></cold>
+          <cold><li>There are things about {SKILL} that {OTHER_nameDef} knows and I don't. I intend to take every one of them.</li></cold>
         </journal>
         <chronicle>
           <li>{PAWN_nameDef} hands {OTHER_nameDef} the tools now, and is learning {SKILL} by watching every move {OTHER_pronoun} makes.</li>
@@ -87,7 +87,7 @@
           <warm><li>{OTHER_nameDef} told me I'm ready. I don't know if I believe {OTHER_objective}, but I'm going to try.</li></warm>
           <blunt><li>Starting the real thing. Leave me alone at the bench.</li></blunt>
           <cheerful><li>I have an idea and it's a good one. My hands can hardly keep up with it.</li></cheerful>
-          <gloomy><li>{OTHER_nameDef} thinks I can make something fine. If it comes out badly, I'll have let {OTHER_objective} down.</li></gloomy>
+          <gloomy><li>If this piece comes out badly, I'll have let {OTHER_nameDef} down.</li></gloomy>
           <cold><li>I am ready to produce something worth keeping. I will not accept less.</li></cold>
         </journal>
         <chronicle>
@@ -208,10 +208,10 @@
           <plain>
             <li>[child] I asked {OTHER_nameDef} a hundred questions. {OTHER_nameDef} answered ninety of them.</li>
             <li>{OTHER_nameDef} said I can help, if I listen. I'm listening.</li>
-            <li>[teen] {OTHER_nameDef} showed me the basics today. It's harder than it looks. I like that it's hard.</li>
+            <li>[teen] Got shown the basics by {OTHER_nameDef} today. It's harder than it looks. I like that it's hard.</li>
           </plain>
           <warm><li>{OTHER_nameDef} takes me seriously. Not many grown-ups do.</li></warm>
-          <blunt><li>{OTHER_nameDef}'s teaching me. Good.</li></blunt>
+          <blunt><li>Being taught. By {OTHER_nameDef}. Good.</li></blunt>
           <cheerful><li>[child] I helped! {OTHER_nameDef} said I did a real job and not a pretend one.</li></cheerful>
           <gloomy><li>I made a mess of it today. {OTHER_nameDef} said everyone does at first.</li></gloomy>
           <cold><li>I am learning faster than {OTHER_nameDef} expected. I saw it on {OTHER_possessive} face.</li></cold>
@@ -377,13 +377,13 @@
         <waiting>Next: the last lessons, the ones that aren't written down anywhere.</waiting>
         <journal>
           <plain>
-            <li>{OTHER_nameDef} is good now. Not as good as me, but on the way. There are a few things left I haven't told {OTHER_objective}.</li>
+            <li>My student is good now. Not as good as me, but on the way. There are a few things left I haven't told {OTHER_nameDef}.</li>
             <li>Caught {OTHER_nameDef} fixing a mistake before I could point it out. That's when you know.</li>
           </plain>
           <warm><li>Watching {OTHER_nameDef} work is like watching myself years ago, only with better habits.</li></warm>
-          <blunt><li>{OTHER_nameDef}'s nearly there. A few more things.</li></blunt>
-          <cheerful><li>{OTHER_nameDef} corrected me today, and was right!</li></cheerful>
-          <gloomy><li>{OTHER_nameDef} won't need me much longer. I keep finding small things to correct.</li></gloomy>
+          <blunt><li>Nearly there, {OTHER_nameDef}. A few more things.</li></blunt>
+          <cheerful><li>Got corrected by my own student today, and {OTHER_nameDef} was right!</li></cheerful>
+          <gloomy><li>Soon {OTHER_nameDef} won't need me. I keep finding small things to correct.</li></gloomy>
           <cold><li>{OTHER_nameDef} has taken in most of what I can give. The rest is the hard part.</li></cold>
         </journal>
         <chronicle>
@@ -406,9 +406,9 @@
             <li>{OTHER_nameDef} knows what I know now, more or less. The rest {OTHER_pronoun}'ll find out alone, the way I did.</li>
           </plain>
           <warm><li>Whatever happens to me, what I know is safe with {OTHER_nameDef}. I slept well last night.</li></warm>
-          <blunt><li>{OTHER_nameDef} has it. My job's done.</li></blunt>
+          <blunt><li>My job's done. {OTHER_nameDef} has it.</li></blunt>
           <cheerful><li>My student is a master now! Well, nearly. Give it a year.</li></cheerful>
-          <gloomy><li>{OTHER_nameDef} doesn't need me any more. I'm glad, and sorry, both.</li></gloomy>
+          <gloomy><li>I'm not needed at {OTHER_nameDef}'s elbow any more. Glad, and sorry, both.</li></gloomy>
           <cold><li>The transfer is complete. My knowledge will outlast me. That was the objective.</li></cold>
         </journal>
         <otherJournal>
