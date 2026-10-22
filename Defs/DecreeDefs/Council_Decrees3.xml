@@ -36,9 +36,9 @@
       <li>The nervous and ascetics welcome it; night owls hate it, and those with a passion for talk mind it.</li>
     </effects>
     <support>
-      <plain><li>One quiet evening. That's all I'm asking. One.</li></plain>
+      <plain><li>One evening without somebody's music through the wall. Just one.</li></plain>
       <warm><li>Early to bed, everyone. We'll all be kinder in the morning.</li></warm>
-      <gloomy><li>I haven't slept through a night since the hammering started.</li></gloomy>
+      <gloomy><li>I haven't slept through a night in weeks. Every door in this place squeaks.</li></gloomy>
       <cold><li>Tired people quarrel. Rested people don't. Lights out.</li></cold>
     </support>
     <oppose>
@@ -78,7 +78,7 @@
     </effects>
     <support>
       <plain><li>We hardly see each other except in passing. Let's eat together.</li></plain>
-      <warm><li>One table, one pot, everybody. That's what a home is.</li></warm>
+      <warm><li>One table, one pot, everybody at it. I've missed that.</li></warm>
       <cheerful><li>Supper together every night! I'll bring the bread.</li></cheerful>
     </support>
     <oppose>
@@ -117,7 +117,7 @@
     </effects>
     <support>
       <plain><li>People keep working through fevers and making everyone else sick. Bed. Now.</li></plain>
-      <warm><li>Nobody should be hauling stone with a cough like that. Let them rest.</li></warm>
+      <warm><li>Let them rest. I'll carry their share of the stone, if that's what it takes.</li></warm>
       <cold><li>A sick worker infects two more. Isolation is cheaper.</li></cold>
     </support>
     <oppose>
@@ -156,7 +156,7 @@
     <support>
       <plain><li>The woodpile won't last the winter at this rate. Bank the fires.</li></plain>
       <cold><li>A quarter less wood burned is a quarter more winter survived.</li></cold>
-      <gloomy><li>Better cold now than freezing in a month.</li></gloomy>
+      <gloomy><li>We'll be burning the furniture by midwinter otherwise.</li></gloomy>
     </support>
     <oppose>
       <plain><li>I can see my breath in my own bed.</li></plain>
@@ -195,13 +195,13 @@
     </effects>
     <support>
       <plain><li>If only one of us can cook, we're one fever away from eating raw roots.</li></plain>
-      <warm><li>I'd love to teach someone what I know. Somebody should have it when I'm gone.</li></warm>
-      <cold><li>Too much depends on too few hands. Spread the skills.</li></cold>
+      <warm><li>I'd love to teach someone what I know. It's more fun with two at the bench.</li></warm>
+      <cold><li>Too much depends on too few hands. One fall from a ladder could cost us a whole trade.</li></cold>
     </support>
     <oppose>
       <plain><li>I can't get anything done with someone watching over my shoulder.</li></plain>
       <blunt><li>I'm not a teacher. Find someone else.</li></blunt>
-      <gloomy><li>They'll learn just enough to ruin the good tools.</li></gloomy>
+      <gloomy><li>I'll spend the week mending whatever they break while they learn.</li></gloomy>
     </oppose>
   </ColonyCouncil.DecreeDef>
 
@@ -237,7 +237,7 @@
       <warm><li>We've worked hard all season. Let's sit down together for once and eat well.</li></warm>
     </support>
     <oppose>
-      <plain><li>That's a week's food gone in a day.</li></plain>
+      <plain><li>The stores took all season to fill. Don't empty them in an afternoon.</li></plain>
       <cold><li>We'll regret every bite of it in the spring.</li></cold>
     </oppose>
     <!-- With "Answers play out on the map": at noon the colony sits down to the best of the stores, together. -->

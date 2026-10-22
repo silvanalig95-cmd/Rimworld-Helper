@@ -56,7 +56,7 @@
     </support>
     <oppose>
       <plain>
-        <li>A tenth of everything, every morning. It adds up faster than anyone admits.</li>
+        <li>A tenth of the silver, every morning. It adds up faster than anyone admits.</li>
         <li>We worked for that silver. Somebody else is going to spend it.</li>
       </plain>
       <blunt><li>Let them earn their own silver.</li></blunt>
@@ -156,7 +156,7 @@
     <oppose>
       <plain><li>Every evening, the same thrusts and the same shouting. I'd rather be fishing.</li></plain>
       <warm><li>I'll learn. I just don't like how easy it's getting.</li></warm>
-      <gloomy><li>Practising for the day it all goes wrong.</li></gloomy>
+      <gloomy><li>Practicing for the day it all goes wrong.</li></gloomy>
     </oppose>
     <!-- With "Answers play out on the map": the first evening, the muster on the green. -->
     <onEnact>
@@ -173,7 +173,7 @@
   <ColonyCouncil.DecreeDef>
     <defName>Council_Decree_Alms</defName>
     <label>alms for the poor</label>
-    <description>Bread and a bowl at the gate each morning for anyone who comes: a share of the raw food in store goes out to the poor of the nearest friendly village, and their people remember the colony for it. The kind love it and ascetics approve; the greedy hate seeing food walk out of the gate.</description>
+    <description>Bread for the poor: each morning a share of the raw food in store goes out to the poor of the nearest friendly village, and their people remember the colony for it. The kind love it and ascetics approve; the greedy hate seeing food leave the stores.</description>
     <requestWhen><li>Plenty</li><li>Winter</li></requestWhen>
     <order>23</order>
     <durationDays>7</durationDays>
@@ -197,17 +197,17 @@
     </effects>
     <support>
       <plain>
-        <li>The stores are full and there are people at the gate with nothing. That's not right.</li>
+        <li>The stores are full, and down the road there are people with nothing. That's not right.</li>
         <li>[winter] It's a hard winter for the villages. A bowl at the gate costs us very little.</li>
         <li>[devout] The faith asks it of us, and so do I.</li>
       </plain>
       <warm><li>I've been the one at somebody else's gate. Let's be the gate that opens.</li></warm>
-      <cold><li>Hungry neighbours become dangerous neighbours. Bread is cheaper than walls.</li></cold>
+      <cold><li>Hungry neighbors become dangerous neighbors. Bread is cheaper than walls.</li></cold>
     </support>
     <oppose>
       <plain><li>We had a lean year too, not long ago. Nobody fed us.</li></plain>
       <blunt><li>Feed them once and they'll be back with their cousins.</li></blunt>
-      <gloomy><li>We'll miss every bowl of it in the spring.</li></gloomy>
+      <gloomy><li>We'll give and give, and when we're the hungry ones, they'll have forgotten us.</li></gloomy>
     </oppose>
   </ColonyCouncil.DecreeDef>
 
@@ -249,7 +249,7 @@
     </support>
     <oppose>
       <plain><li>It isn't my faith, and now it's my three days.</li></plain>
-      <blunt><li>The walls don't build themselves while we pray.</li></blunt>
+      <blunt><li>Pray if you like. The walls still need building.</li></blunt>
       <gloomy><li>Praying hasn't fixed the roof yet.</li></gloomy>
     </oppose>
     <!-- With "Answers play out on the map": the first evening, the colony gathers for the faith's words. -->
@@ -287,7 +287,7 @@
     <support>
       <plain>
         <li>We've more than we can use and nothing we want. Let's call the traders in.</li>
-        <li>[medieval] A market day! Stalls by the gate and everyone out in their best.</li>
+        <li>[medieval] A market day! Everyone out in their best, haggling at the gate.</li>
         <li>[tribal] Send word to the other camps. We'll trade at the fire.</li>
       </plain>
       <cheerful><li>A market! I've been saving my silver for weeks.</li></cheerful>
@@ -374,7 +374,7 @@
     </effects>
     <support>
       <plain>
-        <li>The work goes faster with a song. Everyone knows that, and nobody sings any more.</li>
+        <li>The work goes faster with a song. Everyone knows that, and nobody sings anymore.</li>
         <li>[lowtech] My grandmother had a song for everything: sowing, reaping, hauling nets. Let's have some here.</li>
         <li>[fall] Harvest songs, for the harvest. It's the oldest custom there is.</li>
       </plain>
@@ -382,7 +382,7 @@
       <warm><li>When we sing together I forget my back hurts.</li></warm>
     </support>
     <oppose>
-      <plain><li>The same four lines since breakfast. I'm going to scream.</li></plain>
+      <plain><li>The same four lines, over and over, all day long. I'll go mad.</li></plain>
       <cold><li>I can't hold a calculation in my head with that racket.</li></cold>
       <blunt><li>Sing all you like. Somewhere else.</li></blunt>
     </oppose>
@@ -392,7 +392,7 @@
   <ColonyCouncil.DecreeDef>
     <defName>Council_Decree_Quarantine</defName>
     <label>quarantine</label>
-    <description>The sick sleep apart, the gate is closed to strangers, and everyone keeps their distance. Illnesses hardly pass between people sharing a bedroom, visitors and travellers are turned away (Rimfolk's visitor events come far less often), bodies fight off illness a little better, and everyone is a little lonelier for it. Only while a sickness goes round the region, or someone at home is ill. The sickly and doctors approve; the sociable hate keeping their distance.</description>
+    <description>The sick sleep apart, the gate is closed to strangers, and everyone keeps their distance. Illnesses hardly pass between people sharing a bedroom, visitors and travelers are turned away (Rimfolk's visitor events come far less often), bodies fight off illness a little better, and everyone is a little lonelier for it. Only while a sickness goes round the region, or someone at home is ill. The sickly and doctors approve; the sociable hate keeping their distance.</description>
     <situationKinds><li>sickness</li></situationKinds>
     <orWhen><li>Illness</li></orWhen>
     <requestWhen><li>Situation</li><li>Illness</li></requestWhen>
@@ -415,12 +415,12 @@
     </reactions>
     <effects>
       <li>Illnesses pass between people sharing a bedroom a fifth as often, and immunity builds 6% faster.</li>
-      <li>Visitors and travellers are turned away: Rimfolk's visitor events come about a third as often.</li>
+      <li>Visitors and travelers are turned away: Rimfolk's visitor events come about a third as often.</li>
       <li>Social impact down 10% and work 4% slower. The sickly and doctors approve; the sociable and the kind mind it.</li>
     </effects>
     <support>
       <plain>
-        <li>It's in the villages already. Close the gate before it's in here.</li>
+        <li>Whatever's going round, I don't want it in here. Close the gate.</li>
         <li>Keep the sick apart until this passes. One cough in a shared room and we'll all have it.</li>
         <li>[lowtech] The old way: smoke at the gate, the sick in their own hut, nobody in or out.</li>
       </plain>
@@ -429,7 +429,7 @@
     </support>
     <oppose>
       <plain><li>Eating alone, sleeping alone. It's like being in prison.</li></plain>
-      <warm><li>Turning people away at the gate when they're sick and frightened? That's not who we are.</li></warm>
+      <warm><li>Turning people away when they're sick and frightened. We were never like that.</li></warm>
       <blunt><li>I'm not sick. Stop treating me like I am.</li></blunt>
     </oppose>
   </ColonyCouncil.DecreeDef>
@@ -468,7 +468,7 @@
     <support>
       <plain>
         <li>They're boiling bark in the villages. We can spare a sack a day if we all eat a little less.</li>
-        <li>[winter] A famine winter. If we don't share now, who will they remember helped them?</li>
+        <li>[winter] A famine winter. They'll remember who shared, and who didn't.</li>
       </plain>
       <warm><li>Half a bowl for me, and the other half to a child down the road. That's a fair trade.</li></warm>
       <cold><li>Bread now buys friends for every lean year after. It's a sound investment.</li></cold>
@@ -484,7 +484,7 @@
   <ColonyCouncil.DecreeDef>
     <defName>Council_Decree_OpenGates</defName>
     <label>open gates</label>
-    <description>The gate stands open and the road is welcome in: travellers, traders and anyone passing are invited to stop. Rimfolk's visitor events come about half again as often, and everyone talks to strangers a little more easily. The opposite of a quarantine. The sociable and the kind love it; the nervous hate it.</description>
+    <description>The gate stands open and the road is welcome in: travelers, traders and anyone passing are invited to stop. Rimfolk's visitor events come about half again as often, and everyone talks to strangers a little more easily. The opposite of a quarantine. The sociable and the kind love it; the nervous hate it.</description>
     <requestWhen><li>ColonyHappy</li><li>Newcomer</li></requestWhen>
     <order>30</order>
     <durationDays>7</durationDays>
@@ -508,11 +508,11 @@
     </effects>
     <support>
       <plain>
-        <li>Nobody comes by any more. Let's let the road know we're friendly.</li>
+        <li>Nobody comes by anymore. Let's let the road know we're friendly.</li>
         <li>[newcomer] The last stranger who came through the gate is one of us now. There'll be others.</li>
       </plain>
       <cheerful><li>Open the gates! I want new faces at supper.</li></cheerful>
-      <cold><li>Travellers bring news, trade and recruits. We've been missing all three.</li></cold>
+      <cold><li>Travelers bring news, trade and recruits. We've been missing all three.</li></cold>
     </support>
     <oppose>
       <plain><li>Anyone could walk in. Anyone at all.</li></plain>
