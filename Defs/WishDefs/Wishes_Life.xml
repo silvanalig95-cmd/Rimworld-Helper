@@ -30,7 +30,7 @@
         <li>I'm wearing a dead man's shirt. It still smells like him. New clothes, please.</li>
         <li>I've let the hem out twice and patched both knees. There's nothing left to mend.</li>
         <li>[trigger:naked] I'm not wearing enough to be decent, let alone warm. Please, anything to put on.</li>
-        <li>[winter] It's winter, and my coat lets the wind straight through.</li>
+        <li>[winter] My coat lets the wind straight through. I've started wearing my blanket to work.</li>
         <li>[trait:Greedy] I deserve better than rags.</li>
         <li>[afterraid] My shirt got torn open in the fight. I need a new one.</li>
       </plain>
@@ -119,7 +119,7 @@
     <request>
       <plain>
         <li>{OTHER_nameDef} is still lying out there. Please, give {OTHER_objective} a proper grave.</li>
-        <li>I can't stop thinking about {OTHER_nameDef} lying out in the open. Let's bury {OTHER_objective}.</li>
+        <li>{OTHER_nameDef} deserves better than the open ground. Let's bury {OTHER_objective} properly.</li>
         <li>Whatever we can spare, let's spare it for {OTHER_nameDef}'s grave.</li>
         <li>[trigger:death] We haven't even buried {OTHER_nameDef} yet. Let's do it today, before dark.</li>
         <li>[trigger:death] I can't walk past that spot anymore. {OTHER_nameDef} deserves a grave.</li>
@@ -203,7 +203,7 @@
     <fulfilledWhen>{FOR_possessive} {SUBJECT} is replaced, for example with {THING}. Craft or buy one, then have a doctor install it.</fulfilledWhen>
     <request>
       <plain>
-        <li>Life without my {SUBJECT} is hard. I've heard we could get {THING}.</li>
+        <li>I've heard we could get {THING}. Life without my {SUBJECT} is harder than I let on.</li>
         <li>I keep reaching for things with a {SUBJECT} I don't have. Could the doctor fit me with {THING}?</li>
         <li>[trigger:injury] I keep forgetting it's gone. Then I try to use it.</li>
         <li>I want to be useful again, or as close to it as I can get.</li>
@@ -219,7 +219,7 @@
         <li>I've decided I want {THING}. I'm already practicing showing it off.</li>
       </cheerful>
       <gloomy>
-        <li>Every day I'm reminded of what I lost. Maybe {THING} would make it stop.</li>
+        <li>I dream I'm whole again. Waking up is the worst part of the day. Maybe {THING} would help.</li>
       </gloomy>
       <cold>
         <li>Without my {SUBJECT}, I do the work of half a person. Replace it and you'll have a whole one again.</li>
@@ -232,7 +232,7 @@
     </requestForOther>
     <thanks>
       <plain>
-        <li>It's not what I was born with, but it works. Thank you.</li>
+        <li>Good as new. Well, good as different. Thank you.</li>
         <li>I'll learn it. Give me a week and you won't know it isn't mine.</li>
       </plain>
       <cheerful>
@@ -353,7 +353,7 @@
         <li>[trigger:raid] We were lucky today. I don't want to count on that next time.</li>
         <li>[trigger:raid,lowtech] Spikes in the ground and a wall to hide behind. That's all I ask.</li>
         <li>[hurt] I've got the stitches to prove we need better defenses.</li>
-        <li>[night] I keep hearing things at night. I'd sleep better knowing we're ready.</li>
+        <li>[night] Every noise out there tonight sounds like boots. I'd like to know we're ready.</li>
       </plain>
       <warm>
         <li>I count heads after every raid. I'd like to stop counting. More {SUBJECT}, please.</li>

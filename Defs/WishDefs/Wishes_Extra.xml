@@ -93,7 +93,7 @@
         <li>Guess whose birthday it is soon! We should have cake, or whatever passes for cake around here.</li>
       </cheerful>
       <gloomy>
-        <li>Another year gone, and I can't say it was a good one. A decent meal might help.</li>
+        <li>I'll be a year older soon, and I can't say this one was good. A decent meal might help.</li>
       </gloomy>
       <cold>
         <li>My birthday approaches. A celebratory meal would be appropriate.</li>
@@ -154,7 +154,7 @@
         <li>A sculpture in my room! I'd say good morning to it every day.</li>
       </cheerful>
       <gloomy>
-        <li>There isn't much in my life that's beautiful. One piece of art in my room would be a start.</li>
+        <li>I wake up to bare walls and go to sleep facing them. One beautiful thing in there, please.</li>
       </gloomy>
       <cold>
         <li>Art increases room impressiveness. I would like mine increased.</li>
@@ -162,7 +162,7 @@
     </request>
     <thanks>
       <plain>
-        <li>I keep stopping to look at it on my way out in the morning.</li>
+        <li>I'll see it first thing every morning. That's the best part.</li>
       </plain>
       <cheerful>
         <li>I named it. It's called Gerald!</li>
@@ -295,7 +295,7 @@
       <plain>
         <li>I've been talking with {OTHER_nameDef} in the evenings. I think we should bring {OTHER_objective} in.</li>
         <li>{OTHER_nameDef} could be one of us. We could use the hands, and I could use the company.</li>
-        <li>[small] There are only a few of us. {OTHER_nameDef} would make a difference.</li>
+        <li>[small] There are only a few of us. With {OTHER_nameDef}, there'd be one more pair of hands at every job.</li>
       </plain>
       <warm>
         <li>{OTHER_nameDef} hasn't given the wardens any trouble since we took {OTHER_objective} in. Let's give {OTHER_objective} a place here.</li>
