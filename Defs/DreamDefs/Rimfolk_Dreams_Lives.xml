@@ -12,16 +12,16 @@
 
   <ColonyCouncil.DreamDef>
     <defName>Council_DreamLv_Disgust</defName>
-    <label>a dream of hands that won't come clean</label>
+    <label>a dream of something rotten</label>
     <kind>Nightmare</kind>
     <feelings><li>Disgust</li></feelings>
     <lines>
       <plain>
-        <li>Dreamt I was washing my hands at the well and the water kept coming up grey, no matter how long I scrubbed.</li>
+        <li>Dreamt I was washing at the well, and the water came up gray and thick, and the more I washed the worse I smelled.</li>
         <li>In the dream the food on every plate had gone bad, and everyone kept eating it, and smiling at me to do the same.</li>
-        <li>Dreamt the whole colony smelled of something rotten, and nobody else could smell it.</li>
+        <li>The whole colony smelled rotten, sweet and heavy, and the others kept saying what a fine day it was.</li>
       </plain>
-      <blunt><li>Dreamt of filth. Everywhere. Woke up and washed twice.</li></blunt>
+      <blunt><li>Filth, everywhere, in the dream. Washed twice this morning.</li></blunt>
       <gloomy><li>Dreamt I couldn't get clean. I'm still not sure I am.</li></gloomy>
       <cold><li>A dream of contamination. My stomach believed it. My mind did not.</li></cold>
     </lines>
@@ -37,13 +37,13 @@
     <minFeeling>0.25</minFeeling>
     <lines>
       <plain>
-        <li>Dreamt {LOST} was at supper in the usual chair, passing the salt, and nobody thought it strange but me.</li>
-        <li>In the dream I kept setting a place for {LOST}, and every time I turned round the plate was empty, as if it had been eaten.</li>
+        <li>{LOST} was at supper in the usual chair, and the others passed the bread along as if nothing had ever happened.</li>
+        <li>In the dream I kept setting a place for {LOST}, and every time I turned around the plate was clean, as if it had been eaten.</li>
         <li>Dreamt I heard {LOST} laughing in the next room. I didn't open the door. I didn't want to know.</li>
-        <li>[child] I dreamt {LOST} came to say goodnight like always. Then I woke up and remembered.</li>
+        <li>[child] {LOST} came to say goodnight like always. Then I woke up and remembered.</li>
       </plain>
       <warm><li>Dreamt {LOST} told me it was all right to be happy again. I'm trying to believe the dream.</li></warm>
-      <blunt><li>Dreamt of {LOST}. Woke up. {LOST}'s still gone.</li></blunt>
+      <blunt><li>{LOST}, in the dream, fixing the fence like any other day. Still gone.</li></blunt>
       <gloomy><li>Every night the same: {LOST}, alive, and then morning.</li></gloomy>
       <cold><li>{LOST} appeared in a dream. Grief has its own logic. I am learning it.</li></cold>
     </lines>
@@ -61,10 +61,10 @@
         <li>In my dream {OTHER_nameDef} said my name the way you say a word you like the sound of.</li>
         <li>Dreamt I was cold, and then {OTHER_nameDef} was there, and I wasn't.</li>
       </plain>
-      <warm><li>Dreamt of {OTHER_nameDef}, just sitting beside me. That was the whole dream. It was enough.</li></warm>
+      <warm><li>{OTHER_nameDef} was just sitting beside me, mending something. I watched {OTHER_possessive} hands the whole dream.</li></warm>
       <blunt><li>Dreamt about {OTHER_nameDef}. Not telling you the rest.</li></blunt>
       <cheerful><li>Dreamt {OTHER_nameDef} and I danced at a feast, and I didn't step on anyone's feet!</li></cheerful>
-      <gloomy><li>Dreamt {OTHER_nameDef} loved me back. Woke up afraid to find out.</li></gloomy>
+      <gloomy><li>{OTHER_nameDef} loved me back, in the dream. Now I'm afraid to find out.</li></gloomy>
     </lines>
   </ColonyCouncil.DreamDef>
 
@@ -76,12 +76,12 @@
     <feelings><li>Joy</li></feelings>
     <lines>
       <plain>
-        <li>Dreamt it was the longest day of summer and the sun simply didn't set, and nobody minded.</li>
-        <li>In the dream everyone I've ever loved was at one long table, laughing at the same joke.</li>
+        <li>Dreamt the river was full of light instead of water, and we all waded in up to our knees.</li>
+        <li>I was a kite on a long string in my dream, and someone I love was holding the other end.</li>
         <li>[child] I dreamt I could run so fast my feet left the ground and I didn't come down until supper.</li>
       </plain>
       <cheerful><li>Dreamt I was laughing so hard I woke myself up. Still laughing. No idea what at.</li></cheerful>
-      <warm><li>A dream with nothing wrong in it at all. I've been carrying it round all morning.</li></warm>
+      <warm><li>A dream with nothing wrong in it at all. I've been carrying it around all morning.</li></warm>
       <blunt><li>Good dream. Woke up happy. That's it.</li></blunt>
     </lines>
   </ColonyCouncil.DreamDef>
@@ -94,11 +94,11 @@
     <lines>
       <plain>
         <li>Dreamt I stood at the edge of the world and looked down, and there were stars below me as well as above.</li>
-        <li>In the dream a creature walked past the colony that was taller than the hills, and it was gentle, and it didn't see us.</li>
+        <li>In the dream the mountain behind us opened one eye, very slowly, and closed it again.</li>
         <li>Dreamt the sky opened like a door, and behind it was more sky, brighter.</li>
       </plain>
-      <warm><li>Dreamt of something so big and beautiful I cried in the dream. Woke up with wet cheeks.</li></warm>
-      <cold><li>A dream of scale beyond comprehension. I woke unusually calm.</li></cold>
+      <warm><li>Something so big and beautiful I cried in the dream, and didn't feel foolish about it.</li></warm>
+      <cold><li>A dream of scale beyond comprehension. I've been unusually calm since.</li></cold>
       <gloomy><li>Dreamt of something vast that didn't care whether we lived. Strangely comforting.</li></gloomy>
     </lines>
   </ColonyCouncil.DreamDef>
@@ -112,10 +112,10 @@
     <lines>
       <plain>
         <li>Dreamt I found the road back to where I grew up, and every step of it was exactly as I remembered.</li>
-        <li>In the dream I opened a door in the colony and it led straight into my mother's kitchen.</li>
-        <li>[child] I dreamt about my old bed, and the crack in the ceiling shaped like a fish.</li>
+        <li>In the dream I opened the storeroom door and it led straight into the kitchen I grew up in.</li>
+        <li>[child] My old bed, in the dream, and the crack in the ceiling shaped like a fish.</li>
       </plain>
-      <gloomy><li>Dreamt of home. The real one. Woke up here, which is a home too, I suppose.</li></gloomy>
+      <gloomy><li>Dreamt of home. The first one. This one's a home too, I suppose, only I didn't dream of it.</li></gloomy>
       <warm><li>Dreamt of the people I left behind. They were well. I hope it's true.</li></warm>
       <blunt><li>Dreamt of home. Miss it.</li></blunt>
     </lines>
@@ -132,22 +132,22 @@
         <li>In the dream I had to finish a job before morning, and every tool I picked up turned into a spoon.</li>
         <li>Dreamt I was explaining something simple to the council and they kept nodding and doing the opposite.</li>
       </plain>
-      <blunt><li>Dreamt about work going wrong. Woke up. Work's still going wrong.</li></blunt>
-      <cheerful><li>Dreamt my tools turned into spoons! Very frustrating. Also very funny, now I'm awake.</li></cheerful>
+      <blunt><li>Work going wrong, all night. Still going wrong.</li></blunt>
+      <cheerful><li>Every tool turned into a spoon in my dream! I laughed about it all through breakfast.</li></cheerful>
       <cold><li>A dream of futile labor. My waking hours have prepared me well.</li></cold>
     </lines>
   </ColonyCouncil.DreamDef>
 
   <ColonyCouncil.DreamDef>
     <defName>Council_DreamLv_Contentment</defName>
-    <label>a dream of an ordinary day</label>
+    <label>a dream of a quiet day</label>
     <kind>Sweet</kind>
     <children>true</children>
     <feelings><li>Contentment</li></feelings>
     <lines>
       <plain>
-        <li>Dreamt of an ordinary day here: bread, work, a bit of sun, supper. I woke up and it was that day.</li>
-        <li>In the dream I sat on the step and watched the colony go about its business, and I didn't have to do anything.</li>
+        <li>Dreamt of the yard on a still afternoon, the washing out, the dog asleep in the doorway.</li>
+        <li>In the dream I shelled peas on the step while the light moved across the yard, and that was all.</li>
         <li>[child] I dreamt about our house with all of us in it, and nothing happened, and it was nice.</li>
       </plain>
       <warm><li>Dreamt of nothing much, among people I love. The best kind of dream.</li></warm>
@@ -165,9 +165,9 @@
     <dreamer><tags>quirk:StormDread</tags></dreamer>
     <lines>
       <plain>
-        <li>Dreamt the storm came over the hills like a wall, and I was the only one who saw it, and nobody would listen.</li>
+        <li>The storm came over the hills like a wall, and I ran from door to door, and they all kept their shutters closed.</li>
         <li>In the dream the thunder had a voice, and it knew my name.</li>
-        <li>[rain|storm] Dreamt the rain on the roof was footsteps. Woke up. It's only rain. It's only rain.</li>
+        <li>[rain|storm] The rain on the roof was footsteps in my dream. It's only rain. I've told myself so three times.</li>
       </plain>
       <gloomy><li>Dreamt of the storm again. Every time it's closer.</li></gloomy>
       <blunt><li>Storm dream. Hate those.</li></blunt>
@@ -185,7 +185,7 @@
       <plain>
         <li>Dreamt the lamp went out and the dark came in like water, filling the room from the floor up.</li>
         <li>In the dream something stood in the corner where the light didn't reach, and waited, and waited.</li>
-        <li>[child] I dreamt my light went out and I couldn't find it, and then I woke up and it was still on.</li>
+        <li>[child] My light went out in my dream and I couldn't find it anywhere, and the dark was breathing.</li>
       </plain>
       <gloomy><li>Dreamt of the dark again. I always do, when I forget the light.</li></gloomy>
       <blunt><li>Dark dream. Lit the lamp. Went back to sleep.</li></blunt>
@@ -201,7 +201,7 @@
     <dreamer><tags>quirk:NightLight</tags></dreamer>
     <lines>
       <plain>
-        <li>Dreamt my little light grew and grew until the whole colony glowed, and nobody was ever afraid again.</li>
+        <li>Dreamt my little light grew and grew until the whole colony glowed, and no corner was dark ever again.</li>
         <li>[child] I dreamt my candle could talk, and it said it would stay awake so I didn't have to.</li>
       </plain>
       <warm><li>Dreamt of a lamp in a window, waiting for me to come home. I knew whose window it was.</li></warm>
@@ -237,9 +237,9 @@
       <plain>
         <li>Dreamt the plants finally answered me. They had a lot of opinions about the watering.</li>
         <li>In the dream the whole field turned to look at me as I passed, like a crowd at a feast.</li>
-        <li>Dreamt the seedlings told me which of them would make it. I didn't like the answer, so I woke up.</li>
+        <li>The seedlings told me which of them would make it. I've stopped looking at the ones that won't.</li>
       </plain>
-      <cheerful><li>Dreamt the potatoes thanked me personally. Lovely manners, potatoes.</li></cheerful>
+      <cheerful><li>Dreamt the corn thanked me personally. Lovely manners, corn.</li></cheerful>
       <cold><li>A dream in which the crops communicated. Their complaints were reasonable.</li></cold>
     </lines>
     <effects>
@@ -292,7 +292,7 @@
         <li>In the dream every story I ever told was a person, and they all came to visit at once.</li>
         <li>Dreamt I told a story that didn't end, and the children grew up listening to it.</li>
       </plain>
-      <warm><li>Dreamt all my old stories were sitting round a fire, telling each other. I just listened.</li></warm>
+      <warm><li>My old stories were all sitting around a fire, telling each other. I just listened.</li></warm>
       <cold><li>A dream composed entirely of proverbs. Several contradicted each other.</li></cold>
     </lines>
   </ColonyCouncil.DreamDef>
@@ -309,10 +309,10 @@
       <plain>
         <li>Dreamt of a wedding by the fields, with flowers in everyone's hair. I couldn't see who I was marrying, but I knew I was happy.</li>
         <li>In the dream someone saved me a seat by the fire, every night, and never once asked for anything back.</li>
-        <li>Dreamt I was loved, simply and completely, and woke up wanting it so much it hurt.</li>
+        <li>Dreamt I was loved, simply and completely. I want it so much it hurts.</li>
       </plain>
       <warm><li>Dreamt of growing old beside someone. Didn't see their face. Felt their hand.</li></warm>
-      <gloomy><li>Dreamt of love. Woke up alone. Still want to {GOAL}.</li></gloomy>
+      <gloomy><li>Dreamt of love, and then the empty bed. I still want to {GOAL}.</li></gloomy>
       <cheerful><li>Dreamt of my wedding! The food was excellent. I'll tell the cook.</li></cheerful>
     </lines>
   </ColonyCouncil.DreamDef>
@@ -327,10 +327,10 @@
       <plain>
         <li>Dreamt I walked over the hills and there was a sea on the other side, and a town, and a road going on.</li>
         <li>In the dream I had a pack on my back and nowhere to be until next spring.</li>
-        <li>Dreamt the road went on past everything I know, and I just kept walking.</li>
+        <li>Asleep under a cart in a town with no name, and the people talking in a tongue I was just starting to learn.</li>
       </plain>
       <cheerful><li>Dreamt I saw the whole world in a week! My feet are tired just thinking about it.</li></cheerful>
-      <gloomy><li>Dreamt of the road. Woke up behind the same walls.</li></gloomy>
+      <gloomy><li>The road, all night. And then the same walls.</li></gloomy>
     </lines>
   </ColonyCouncil.DreamDef>
 
@@ -344,11 +344,11 @@
     <lines>
       <plain>
         <li>Dreamt a wild animal walked out of the trees and lay down at my feet, as if it had been waiting for me.</li>
-        <li>[child] I dreamt I had a dog as big as a horse and I rode it to the river and back.</li>
+        <li>[child] I had a dog as big as a horse in my dream, and I rode it to the river and back.</li>
         <li>Dreamt I knew the name every animal in the colony calls itself, and they all came to me.</li>
       </plain>
-      <cheerful><li>Dreamt I had a pet that could talk! It mostly talked about food.</li></cheerful>
-      <warm><li>Dreamt of an animal that trusted me completely. Woke up wanting to earn it.</li></warm>
+      <cheerful><li>Dreamt I had a pet goat that followed me everywhere, even up ladders!</li></cheerful>
+      <warm><li>Dreamt of an animal that trusted me completely. I want to earn that.</li></warm>
     </lines>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Learn"><skill>Animals</skill><xp>150</xp></li>
@@ -385,9 +385,9 @@
       <plain>
         <li>Dreamt the raiders came and the walls simply held, and they went away, and we finished supper.</li>
         <li>In the dream I slept with the door open and nothing came through it but morning.</li>
-        <li>Dreamt I wasn't afraid. Just that. Woke up and remembered what it felt like.</li>
+        <li>Dreamt I wasn't afraid. Just that. I'd forgotten what it was like.</li>
       </plain>
-      <gloomy><li>Dreamt I felt safe. Woke up and checked the bolts anyway.</li></gloomy>
+      <gloomy><li>Dreamt I felt safe. Checked the bolts anyway this morning, twice.</li></gloomy>
       <warm><li>Dreamt everyone I care about was asleep and safe, and I was keeping watch, and it was easy.</li></warm>
     </lines>
   </ColonyCouncil.DreamDef>
@@ -402,7 +402,7 @@
       <plain>
         <li>Dreamt the children were grown and running the colony, and doing it better than we ever did.</li>
         <li>In the dream a grown stranger hugged me at the gate, and I realized it was one of the little ones, years from now.</li>
-        <li>[child] I dreamt I was a grown-up and everyone listened to me and I was allowed to stay up as late as I liked.</li>
+        <li>[child] I was a grown-up in my dream, as tall as the door, and I had to duck to come in.</li>
       </plain>
       <warm><li>Dreamt of the young ones grown, and kind. That's all I want from the years left.</li></warm>
       <gloomy><li>Dreamt of them grown. I wasn't there. I'd like to be.</li></gloomy>
@@ -437,8 +437,8 @@
     <lines>
       <plain>
         <li>Dreamt I was the knot in the middle of a rope, and two people I love were pulling on each end.</li>
-        <li>In the dream I carried a message back and forth across a river all night, and it changed a little every time.</li>
-        <li>Dreamt everyone I'm caught between was sitting at one table, eating in silence, passing everything through me.</li>
+        <li>In the dream I carried a message back and forth across a river all night, and it changed every time I crossed.</li>
+        <li>The ones I'm caught between were at one table, eating in silence, passing everything through me.</li>
       </plain>
       <warm><li>Dreamt the rope went slack, and the two ends came together, and I could put it down.</li></warm>
       <blunt><li>Dreamt I was stuck in the middle. Am stuck in the middle. Thanks, sleep.</li></blunt>
@@ -458,7 +458,7 @@
         <li>Dreamt of a spring that went on and on, and I wasn't tired at all.</li>
       </plain>
       <warm><li>Dreamt of spring, and everyone I love out in the fields. I'd like one more of those.</li></warm>
-      <gloomy><li>Dreamt of spring. Woke up to winter. There's still time.</li></gloomy>
+      <gloomy><li>Dreamt of spring. I want to see one more. There's still time.</li></gloomy>
     </lines>
   </ColonyCouncil.DreamDef>
 
@@ -472,7 +472,7 @@
       <plain>
         <li>Dreamt a letter came, in a hand I knew, and I opened it and every page was blank, and I read it anyway.</li>
         <li>In the dream I could see across all the miles at once, and everyone out there was going about their day, all right.</li>
-        <li>Dreamt a traveler came to the gate with news, and I woke up just before the news.</li>
+        <li>A traveler came to the gate with news, and opened his mouth, and the dream moved on to something about geese.</li>
       </plain>
       <gloomy><li>Dreamt of a letter with bad news in it. I couldn't read the words. I knew what they said.</li></gloomy>
       <warm><li>Dreamt of a letter that said: we're well, don't worry. I'm keeping that one.</li></warm>
@@ -481,7 +481,7 @@
 
   <ColonyCouncil.DreamDef>
     <defName>Council_DreamLv_StoryFlying</defName>
-    <label>a dream of flying</label>
+    <label>a dream of flying over it all</label>
     <kind>Sweet</kind>
     <children>true</children>
     <about>Story</about>
@@ -489,11 +489,11 @@
     <lines>
       <plain>
         <li>Dreamt I could fly, and the dark was just the sky with the sun turned down, and I wasn't scared of it at all.</li>
-        <li>[child] I dreamt I flew over the colony and everyone waved, and {OTHER_nameDef} waved the biggest.</li>
+        <li>[child] I flew over the colony in my dream and they all waved, and {OTHER_nameDef} waved the biggest.</li>
         <li>Dreamt I was bigger than the trouble. It was very small, from up there.</li>
       </plain>
       <cheerful><li>Dreamt I could fly! I'm going to try again tonight.</li></cheerful>
-      <warm><li>Dreamt I flew home, and someone had left the light on for me.</li></warm>
+      <warm><li>Dreamt I flew home, and someone was standing in the yard with a coat for me.</li></warm>
     </lines>
   </ColonyCouncil.DreamDef>
 
