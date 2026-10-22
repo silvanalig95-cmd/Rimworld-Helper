@@ -32,7 +32,7 @@
         <li>[skill:Artistic] My room's a blank canvas. I'm starting with {THING} and working outward.</li>
         <li>[lowmood] I need something in that room besides four walls and bad dreams.</li>
         <li>[child] I want {THING} in my room, a real one! I drew where it goes.</li>
-        <li>[old] At my age, you stop waiting for the right moment to make a place your own.</li>
+        <li>[old] At my age I'm done waiting for the right moment to fix up my room.</li>
         <li>I'd like my room to look like someone cares about it, starting with {THING}.</li>
       </plain>
       <warm>
@@ -69,7 +69,7 @@
         <li>[touch:plantpot] I'm going to name my plant before it's even planted!</li>
         <li>[touch:light] My very own light! I'll read in bed every night.</li>
         <li>[touch:endtable] A table for my bedside, for my cup and my lucky stone!</li>
-        <li>[touch:dresser] A dresser! Somewhere to hide all my odd socks.</li>
+        <li>[touch:dresser] A dresser! My good shirt finally gets a drawer of its own.</li>
       </cheerful>
       <gloomy>
         <li>I'll probably be dead before anyone builds it, but I've marked out {THING} anyway.</li>
@@ -128,7 +128,7 @@
         <li>About time, and it's not even crooked.</li>
         <li>[touch:light] Finally a light, and now I can see how dusty everything is.</li>
         <li>[touch:endtable] Good, my things have somewhere to go besides the floor.</li>
-        <li>It's done and it's mine.</li>
+        <li>Good, that's done.</li>
       </blunt>
       <cheerful>
         <li>My new {THINGBARE} is perfect and I've already shown it to three people!</li>
@@ -138,11 +138,11 @@
         <li>I keep finding excuses to go back to my room and look at it!</li>
       </cheerful>
       <gloomy>
-        <li>It's nice, and it'll outlast me, which is something.</li>
+        <li>Pretty enough, for a room I mostly lie awake in.</li>
         <li>It doesn't fix anything, but it's nice to look at.</li>
         <li>[touch:plantpot] The plant is doing better than I am.</li>
         <li>[touch:endtable] Nice table; it'll hold my things just fine after I'm gone.</li>
-        <li>It's nice, I'll give it that.</li>
+        <li>I'll give it this much, it doesn't wobble.</li>
       </gloomy>
       <cold>
         <li>Installed as planned; the room is measurably better.</li>
@@ -240,7 +240,7 @@
         <li>[trait:Greedy] If {OTHER_nameDef}'s getting it, I want my share written in from the start.</li>
         <li>I'll stand with {OTHER_nameDef} on this one.</li>
         <li>{OTHER_nameDef} speaks for me too, on "{WISH}".</li>
-        <li>Write my name down under {OTHER_nameDef}'s.</li>
+        <li>Same goes for me, whatever {OTHER_nameDef} asked for.</li>
       </plain>
       <warm>
         <li>{OTHER_nameDef} shouldn't have to ask alone, so I'm asking too.</li>
@@ -274,7 +274,7 @@
         <li>Supporting {OTHER_nameDef} costs me nothing and doubles the pressure, so count me in.</li>
         <li>{OTHER_nameDef}'s request benefits me as well, so I'm adding my weight to it.</li>
         <li>[promised] This was promised to {OTHER_nameDef}, and I'll be watching what that promise is worth.</li>
-        <li>Two requests carry more weight than one, so I'm adding mine.</li>
+        <li>A request with two names on it is harder to ignore, so add mine.</li>
         <li>I'll put my name to it, since it serves my interests too.</li>
       </cold>
     </lines>
