@@ -576,7 +576,7 @@
         <li>[again] Talking with {OTHER_nameDef} again, in my sleep. We should do it awake more often.</li>
       </plain>
       <warm><li>{OTHER_nameDef} said the same kind thing in my dream that {OTHER_pronoun} really said to me. I didn't mind hearing it twice.</li></warm>
-      <blunt><li>Talked with {OTHER_nameDef} all night in my sleep. Good talk.</li></blunt>
+      <blunt><li>Dreamt {OTHER_nameDef} and I talked all night. Good talk.</li></blunt>
       <cheerful><li>{OTHER_nameDef} and I talked the whole night through. We should do that for real, with tea.</li></cheerful>
       <gloomy><li>{OTHER_nameDef} was kind to me in my dream, the way {OTHER_pronoun} was the other day. I'm waiting for it to wear off.</li></gloomy>
       <cold><li>My conversation with {OTHER_nameDef} came back in a dream. Apparently it mattered to me. Interesting.</li></cold>
@@ -623,10 +623,10 @@
         <li>[winter] We danced so hard the snow melted.</li>
       </plain>
       <warm><li>The faces from the celebration were all in my dream last night, lit up like lanterns. I want to remember them like that.</li></warm>
-      <blunt><li>The party again, in my sleep. Good party.</li></blunt>
+      <blunt><li>The party again. Good party.</li></blunt>
       <cheerful><li>Dreamt the party went on for a week! Can we do that?</li></cheerful>
       <gloomy><li>In the dream the music stopped and I was cleaning up after the party alone.</li></gloomy>
-      <cold><li>The celebration came back in my sleep. I suppose I enjoyed it more than I let on.</li></cold>
+      <cold><li>The celebration came back last night. I suppose I enjoyed it more than I let on.</li></cold>
     </lines>
   </ColonyCouncil.DreamDef>
 
@@ -720,7 +720,7 @@
         <li>[again] The council dream again. Still standing at the back.</li>
       </plain>
       <warm><li>Shook hands with whoever has my seat now, in the dream. I don't know if I meant it. Maybe one day I will.</li></warm>
-      <blunt><li>Lost the vote again in my sleep. Once was enough.</li></blunt>
+      <blunt><li>Dreamt I lost the vote again. Once was enough.</li></blunt>
       <gloomy><li>They were all relieved I was gone, in the dream. They were smiling about it.</li></gloomy>
       <cold><li>Went over the vote in my sleep. The next one will go differently.</li></cold>
     </lines>
@@ -829,11 +829,11 @@
         <li>Dreamt {OTHER_nameDef} and I were back to back in the dark, surrounded, and I wasn't afraid at all.</li>
         <li>{OTHER_nameDef} and I held a bridge against an army, laughing the whole time.</li>
         <li>Fell in the mud in my dream, and {OTHER_nameDef} hauled me up without breaking stride.</li>
-        <li>[afterraid] The fight again, in my sleep, and {OTHER_nameDef} was always right where I needed {OTHER_objective}.</li>
+        <li>[afterraid] The fight again, and {OTHER_nameDef} was always right where I needed {OTHER_objective}.</li>
         <li>[tribal] Dreamt {OTHER_nameDef} and I hunted the great beast together and shared the first cut afterward.</li>
       </plain>
       <warm><li>In my dream {OTHER_nameDef} covered me while I pulled someone out of the line of fire. That's just how it is with us.</li></warm>
-      <blunt><li>A fight in my sleep, and {OTHER_nameDef} at my back. Good place for {OTHER_objective}.</li></blunt>
+      <blunt><li>Dreamt of a fight, and {OTHER_nameDef} at my back. Good place for {OTHER_objective}.</li></blunt>
       <cheerful><li>Took on a whole army with {OTHER_nameDef} last night, and we won!</li></cheerful>
       <cold><li>Fought alongside {OTHER_nameDef} in my sleep. Our coordination was excellent. It usually is.</li></cold>
     </lines>
@@ -903,7 +903,7 @@
       <blunt><li>Botched a lesson in my sleep. Practicing today.</li></blunt>
       <cheerful><li>Set {OTHER_nameDef}'s workbench on fire in my dream. I'll be extra careful today, just in case.</li></cheerful>
       <gloomy><li>Dreamt {OTHER_nameDef} finally realized I'll never be any good at {SKILL}.</li></gloomy>
-      <cold><li>Failed a lesson with {OTHER_nameDef} in my sleep. A useful warning against complacency.</li></cold>
+      <cold><li>Dreamt I failed a lesson with {OTHER_nameDef}. A useful warning against complacency.</li></cold>
     </lines>
     <changeTie>Mentor</changeTie>
     <change>2</change>
@@ -947,7 +947,7 @@
       <blunt><li>{OTHER_nameDef} in my dream, and the rest of the family. Wouldn't trade them.</li></blunt>
       <cheerful><li>Had a giant family picnic in my dream with {OTHER_nameDef}, and every cousin came!</li></cheerful>
       <gloomy><li>{OTHER_nameDef} and I were the last of our family, in the dream. We are, more or less.</li></gloomy>
-      <cold><li>{OTHER_nameDef} again, in my sleep. Shared blood apparently means more to me than I admit.</li></cold>
+      <cold><li>{OTHER_nameDef} again, last night. Shared blood apparently means more to me than I admit.</li></cold>
     </lines>
   </ColonyCouncil.DreamDef>
 

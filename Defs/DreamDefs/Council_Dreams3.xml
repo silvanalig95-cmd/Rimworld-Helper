@@ -185,7 +185,7 @@
     <feelings><li>Despair</li></feelings>
     <lines>
       <plain>
-        <li>Everything was gray, the food and the sky and the faces, and I was the only one who minded.</li>
+        <li>Everything was gray, the food and the sky and the faces, and it didn't seem to bother anyone else.</li>
         <li>Digging, all night, and the hole kept filling in behind me.</li>
         <li>Walking home to the colony, and it got further away with every step.</li>
         <li>The sun came up and went straight back down, and we all went back to bed.</li>
@@ -372,7 +372,7 @@
       <plain>
         <li>I dreamt I was lying awake. Then I woke up, and I was lying awake.</li>
         <li>Counted sheep, and the sheep counted me back.</li>
-        <li>The night went on for three days, and I was the only one who noticed.</li>
+        <li>The night went on for three days, and the others slept through all of it.</li>
         <li>I dreamt about sleeping. It looked lovely.</li>
       </plain>
       <blunt><li>Dreamt I couldn't sleep. Accurate.</li></blunt>
@@ -479,7 +479,7 @@
         <li>[child] I went to live with the camp people in my dream, and they let me ride their animals.</li>
       </plain>
       <warm><li>The colony and the camp ate together on blankets in the grass, and nobody counted the bowls.</li></warm>
-      <blunt><li>The camp, in my sleep. They're still out there.</li></blunt>
+      <blunt><li>Dreamt of the camp. They're still out there.</li></blunt>
       <cheerful><li>Had a dream the camp threw a festival and invited all of us. There were drums.</li></cheerful>
       <gloomy><li>The camp took everything and left in the night. In the dream, anyway.</li></gloomy>
       <cold><li>The strangers on our land walked through my sleep. I'll keep an eye on them awake as well.</li></cold>
@@ -524,7 +524,7 @@
       <blunt><li>Council dream. We argued. Same as awake.</li></blunt>
       <cheerful><li>Got elected to everything in my dream! I'd be terrible at it.</li></cheerful>
       <gloomy><li>Dreamt the council decided everything before I got there.</li></gloomy>
-      <cold><li>I argued the meeting over again in my sleep, and won this time. Irrelevant.</li></cold>
+      <cold><li>I argued the meeting over again and won this time. Asleep, so it doesn't count.</li></cold>
     </lines>
   </ColonyCouncil.DreamDef>
 
@@ -547,7 +547,7 @@
       </plain>
       <blunt><li>Council dream. Three hours of it. Tired now.</li></blunt>
       <cheerful><li>A nightmare about a meeting that never ended. At least the bread was good.</li></cheerful>
-      <gloomy><li>Another meeting in my sleep. I wasn't asked to that one either.</li></gloomy>
+      <gloomy><li>Another meeting, in a dream this time. I wasn't asked to that one either.</li></gloomy>
       <cold><li>A dream about procedure. Tedious, like the real thing.</li></cold>
     </lines>
   </ColonyCouncil.DreamDef>
