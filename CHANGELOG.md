@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Every event in its own voice
+
+*26 October 2026, later, version 0.10.0*
+
+- About 1,250 events, questions and stories were rewritten one at a time: storyteller events, world situations, council dilemmas, encounters, personal stories, missions, camps and secrets. Each now has the length its moment deserves, from a single line for a passing sight to a full letter for a disaster, and opens its own way.
+- Where the story gives a reason, people speak for themselves: a burned town's shaky message, a toll-keeper's terms chalked on a board, a plague doctor's printed form passed through the gate, an officer's summons, a hermit's six words, a reeve's hurried letter, a child's petition in charcoal.
+- Some events now arrive as what they are: the list found under a hoarder's bed, an elder's ledger read out column by column, a funeral plan in a colonist's own hand, a warlord's price, a work song, a playbill nailed by the road.
+- Outcomes say what happened instead of how everyone felt about it, and stop on an image rather than a moral. Each camp's people sound like themselves: terse hunters, a tired refugee family, cocky prospectors, theatrical players, precise surveyors.
+- When a personal story ends, its letter reads as one short tale (an opening, a turn, an ending) instead of a list of stages.
+- About sixty texts that contradicted the game were fixed: outcomes that told of days passing when they show at once, letters that showed an unfilled place name or began a sentence in lowercase, gifts said to be at the gate when they land elsewhere, carts, oxen and goats that never appear, and a default answer that claimed the council had ruled when it never answered.
+
 ## Panels that read right
 
 *26 October 2026, version 0.9.9*

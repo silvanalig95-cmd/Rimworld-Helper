@@ -205,7 +205,7 @@
         <options>
           <li>
             <label>Take {X_objective} as a paying guest ({COUNT} silver)</label>
-            <outcome>{X_nameDef} pays in full up front, unpacks a great deal of luggage, and before supper has asked {A_nameDef} three times where the water comes from. It's the most authentic thing {X_pronoun} has ever done, {X_nameDef} says.</outcome>
+            <outcome>{X_nameDef} pays in full up front, unpacks a great deal of luggage, and within the hour has asked {A_nameDef} three times where the water comes from. It's the most authentic thing {X_pronoun} has ever done, {X_nameDef} says.</outcome>
             <outcomes>
               <li>[winter] Within the hour of paying, {X_nameDef} is lying in the yard making a snow angel, which {X_pronoun} then photographs from every side.</li>
               <li>[trait:Greedy] Before the luggage is even unpacked, {A_nameDef} has sold {X_nameDef} a carved spoon for twice what it's worth.</li>

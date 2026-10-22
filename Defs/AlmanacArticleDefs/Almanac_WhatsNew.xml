@@ -31,6 +31,20 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.10.0</version>
+        <date>26 October 2026, later</date>
+        <title>Every event in its own voice</title>
+        <points>
+          <li>About 1,250 events, questions and stories were rewritten one at a time: storyteller events, world situations, council dilemmas, encounters, personal stories, missions, camps and secrets. Each now has the length its moment deserves, from a single line for a passing sight to a full letter for a disaster, and opens its own way.</li>
+          <li>Where the story gives a reason, people speak for themselves: a burned town's shaky message, a toll-keeper's terms chalked on a board, a plague doctor's printed form passed through the gate, an officer's summons, a hermit's six words, a reeve's hurried letter, a child's petition in charcoal.</li>
+          <li>Some events now arrive as what they are: the list found under a hoarder's bed, an elder's ledger read out column by column, a funeral plan in a colonist's own hand, a warlord's price, a work song, a playbill nailed by the road.</li>
+          <li>Outcomes say what happened instead of how everyone felt about it, and stop on an image rather than a moral. Each camp's people sound like themselves: terse hunters, a tired refugee family, cocky prospectors, theatrical players, precise surveyors.</li>
+          <li>When a personal story ends, its letter reads as one short tale (an opening, a turn, an ending) instead of a list of stages.</li>
+          <li>About sixty texts that contradicted the game were fixed: outcomes that told of days passing when they show at once, letters that showed an unfilled place name or began a sentence in lowercase, gifts said to be at the gate when they land elsewhere, carts, oxen and goats that never appear, and a default answer that claimed the council had ruled when it never answered.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.9.9</version>
         <date>26 October 2026</date>
         <title>Panels that read right</title>
