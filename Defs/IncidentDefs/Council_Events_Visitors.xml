@@ -23,13 +23,13 @@
           <li>[!lowtech] A traveling storyteller</li>
         </titles>
         <texts>
-          <li>[their:friend,tale] {X_nameDef}, a wandering bard of {FACTION}, would like supper and a bed for the night, and will pay in songs. Among {FACTION} there's a song about {FRIEND_nameDef}, {X_nameDef} says, and {X_pronoun} would very much like to meet the one it's about. On the road, the story of the colony goes like this: "{TALE}"</li>
-          <li>[lowtech,tale] {X_nameDef}, a wandering bard of {FACTION}, would like supper and a bed for the night, and will pay in songs and tales, as bards do. {X_nameDef} has already heard of this colony. On the road, the story goes like this: "{TALE}"</li>
+          <li>[their:friend,tale] There's a song among {FACTION} about {FRIEND_nameDef}, and {X_nameDef}, the bard who sings it, has come to meet the real one. {X_nameDef} will pay for supper and a bed in songs, and knows a story about the colony too, the way it's told on the road: "{TALE}"</li>
+          <li>[lowtech,tale] Bards pay for their supper in songs, and {X_nameDef} of {FACTION} has brought plenty, including one about this colony. It goes like this, more or less: "{TALE}"</li>
           <li>[lowtech,notale] {X_nameDef}, a wandering bard of {FACTION}, has come to spend an evening at the colony, trading tales and songs for supper and a bed, as bards always have.</li>
           <li>[!lowtech,tale] {X_nameDef} of {FACTION}, a traveling storyteller with a battered instrument and a hundred stories, is stopping for the night. {X_nameDef} already knows a story about this colony, and tells it like this: "{TALE}"</li>
           <li>[notale] {X_nameDef} of {FACTION} has come to the colony with a pack full of songs and a head full of tall tales. {X_nameDef} would like a meal and a place to sleep, and will pay in stories tonight.</li>
           <li>[tale] {X_nameDef} of {FACTION}, who tells stories for a living, has come to spend the night. {X_nameDef} has a new favorite, picked up on the road, about this very colony: "{TALE}" Tonight, {X_nameDef} promises, everyone gets the long version.</li>
-          <li>[!lowtech,notale] {X_nameDef} of {FACTION}, a traveling storyteller with a battered instrument and a hundred stories, is stopping for the night. There will be stories after supper for anyone who stays up.</li>
+          <li>[!lowtech,notale] {X_nameDef} of {FACTION} tunes a dented instrument by the door while asking for a bed. There'll be stories after supper, {X_nameDef} says, for anyone who stays up.</li>
         </texts>
         <lines>
           <li>...and the dragon said...</li>
@@ -37,7 +37,7 @@
           <li>...and that's why you never trust a muffalo...</li>
           <li>...the prince never saw it coming...</li>
           <li>...a storm like you've never seen...</li>
-          <li>...and they all lived. Mostly.</li>
+          <li>...and they all lived, more or less...</li>
           <li>...on the far side of the mountains...</li>
           <li>[!lowtech] ...the ship came down in flames...</li>
           <li>[!lowtech] ...on a glitterworld, they say...</li>
@@ -75,7 +75,7 @@
           <li>They knew {DEAD}</li>
         </titles>
         <texts>
-          <li>[their:grateful] Travelers from {FACTION} are on their way to the colony to visit the grave of {DEAD}. They knew {DEAD} before the colony did, and they say they are glad {DEAD} ended among people who did right by {FACTION}. They'll stand at the grave for a while, and then go.</li>
+          <li>[their:grateful] {DEAD} came from {FACTION} once, and {FACTION} haven't forgotten who buried {DEAD} properly. Some of them are on their way to stand at the grave, and say they're glad {DEAD} ended among people who did right by {FACTION}.</li>
           <li>Travelers from {FACTION} are on their way to the colony to visit the grave of {DEAD}. They knew {DEAD} long before the colony did, as family or close to it. They'll stand at the grave for a while, and then go.</li>
           <li>[lowtech] Word of {DEAD}'s death traveled farther than anyone thought. Kin from {FACTION} are walking in to pay their respects at the grave, as their custom is.</li>
           <li>[!lowtech] Someone from {FACTION} found {DEAD}'s name in a settlement record and has come all this way with family to see the grave. They won't stay long.</li>
@@ -114,10 +114,10 @@
         <texts>
           <li>[their:grateful] Pilgrims of {FACTION} are walking up to the colony, footsore and thin. They came this way on purpose, their leader says: among {FACTION}, the colony is spoken of as a place that does right by people on the road. They ask for a meal before they go on.</li>
           <li>[their:grudge] A small band of pilgrims of {FACTION} has stopped outside the colony, hungry enough to swallow their pride. {FACTION} don't speak well of this place, and the pilgrims know it. They ask for a meal anyway.</li>
-          <li>[lowtech] A small band of pilgrims of {FACTION}, footsore and thin, is walking up to the colony. Their road is long and their bags are empty, and they ask, very politely, for a meal before they go on.</li>
+          <li>[lowtech] The pilgrims of {FACTION} at the gate hold out their empty bowls, very politely. Their road is long and their bags are empty, and one meal would see them on to the next valley.</li>
           <li>[!lowtech] A handful of pilgrims of {FACTION} have stopped outside the colony on their way somewhere they hope will be better. Their rations ran out three days ago, and they'd be grateful for a meal.</li>
           <li>On the long walk to a place holy to them, pilgrims of {FACTION} have stopped by the colony. They carry very little and have eaten less, and ask if the colony can spare a meal. They'll pray for the colony in return.</li>
-          <li>[winter] Pilgrims of {FACTION} have come in out of the cold, half frozen and very hungry, asking for a hot meal and somewhere warm to sit before they go on.</li>
+          <li>[winter] Half frozen and very hungry, a few pilgrims of {FACTION} have come in out of the cold. They ask for a hot meal and somewhere warm to sit before they go on.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -143,7 +143,7 @@
           </li>
           <li>
             <label>Bread for the road, no more</label>
-            <outcome>The pilgrims get a loaf each and a full waterskin, and go on before dark. It isn't a meal, but they thank the colony for it.</outcome>
+            <outcome>The pilgrims get a loaf each at the gate and a full waterskin, and go on their way. It isn't a meal, but they thank the colony for it.</outcome>
             <outcomes>
               <li>[winter] A loaf each and a hot drink at the gate, then back on the road. The pilgrims bow and go on into the cold.</li>
               <li>[colony:Thrifty] Bread for the road and nothing more, as the colony's habit is. The pilgrims take it gratefully all the same.</li>
@@ -190,7 +190,7 @@
         <options>
           <li>
             <label>Host {X_objective} for the night</label>
-            <outcome>{X_nameDef} and {A_nameDef} talk until the small hours. By morning, the colony's work on {TALE} is a good deal further along.</outcome>
+            <outcome>{X_nameDef} and {A_nameDef} talk until the small hours, and the colony's work on {TALE} is a good deal further along for it.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Research"><share>0.3</share><max>1500</max></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_ScholarTalk</thought></li>
@@ -248,7 +248,7 @@
           <li>{X_nameDef} wants to learn</li>
         </titles>
         <texts>
-          <li>A young traveler named {X_nameDef} has come a long way to find {A_nameDef}. Word of {A_nameDef}'s skill at {SKILL} has spread farther than anyone here knew, and {X_nameDef} wants to learn from the best. {X_nameDef} asks to stay as {A_nameDef}'s apprentice.</li>
+          <li>{X_nameDef} has walked a long way to ask {A_nameDef} one thing, and asked it at the gate before even setting down {X_possessive} pack. Talk of {A_nameDef}'s skill at {SKILL} has spread farther than anyone here knew, and {X_nameDef} wants to stay and learn it from the best, as {A_nameDef}'s apprentice.</li>
           <li>[lowtech] {X_nameDef}, barely grown, has turned up asking for {A_nameDef}, the master of {SKILL} the whole valley talks about. {X_nameDef} will work for board and lessons, and asks to stay.</li>
         </texts>
         <defaultOption>1</defaultOption>
@@ -267,7 +267,7 @@
           </li>
           <li>
             <label>Send {X_objective} home</label>
-            <outcome>{X_nameDef} goes, disappointed. {A_nameDef} is quieter than usual that evening.</outcome>
+            <outcome>{X_nameDef} goes, disappointed. {A_nameDef} is quieter than usual for the rest of the day.</outcome>
           </li>
         </options>
       </li>
@@ -311,7 +311,7 @@
           </li>
           <li>
             <label>Not without answers</label>
-            <outcome>{X_nameDef} doesn't give any, and leaves.</outcome>
+            <outcome>{X_nameDef} waits a while longer, gives no answers, and leaves.</outcome>
             <ways><openness>-3</openness></ways>
           </li>
           <li>
@@ -369,7 +369,7 @@
         <options>
           <li>
             <label>Take {X_objective} home</label>
-            <outcome>{X_nameDef} is walked back toward {X_possessive} people, clutching a bit of bread and somebody's spare coat. {FACTION} won't forget this.</outcome>
+            <outcome>{X_nameDef} is walked back toward {X_possessive} people, clutching a bit of bread and somebody's spare coat. {FACTION} will hear who brought their child home.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>12</amount></li>
@@ -414,7 +414,7 @@
         <texts>
           <li>A stray {THING} has followed {A_nameDef} all the way home and refuses to leave {A_possessive} side. It's thin, it's filthy, and it has very clearly decided {A_nameDef} is its person now.</li>
           <li>[child] A stray {THING} followed {A_nameDef} home, and {A_nameDef} has already given it a name, a bowl and a corner of {A_possessive} bed. The look on {A_possessive} face says the matter is not up for discussion.</li>
-          <li>[hunter] A scrawny stray {THING} has been hanging around {A_nameDef} all day, bringing small dead things as gifts. It seems to think the colony could use a hunter.</li>
+          <li>[hunter] For a day now a scrawny stray {THING} has hung around {A_nameDef}, leaving small dead things at {A_possessive} feet. It seems to think the colony could use a hunter.</li>
         </texts>
         <defaultOption>0</defaultOption>
         <options>
