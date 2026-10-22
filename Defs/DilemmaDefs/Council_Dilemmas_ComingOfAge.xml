@@ -37,7 +37,7 @@
       </li>
       <li>
         <label>Put {A_nameDef} on the defenses</label>
-        <outcome>{A_nameDef} goes to the defenses: target practice at first light, a turn on the wall at night. {A_nameDef} says {A_pronoun} would have liked to be asked.</outcome>
+        <outcome>{A_nameDef} goes to the defenses, with target practice at first light and a turn on the wall at night. {A_nameDef} says {A_pronoun} would have liked to be asked.</outcome>
         <ways><openness>-3</openness><toil>3</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Shooting</skill><xp>3000</xp></li>

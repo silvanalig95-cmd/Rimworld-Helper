@@ -255,7 +255,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Unfair</thought><onlyTrait><li>Greedy</li><li>Jealous</li><li>Abrasive</li></onlyTrait></li>
         </effects>
         <riskChance>0.25</riskChance>
-        <riskOutcome>The council let it go. A few days later {A_nameDef} slipped up again, and {B_nameDef} was halfway through a new story before anyone checked.</riskOutcome>
+        <riskOutcome>A few days later {A_nameDef} slipped up again, and {B_nameDef} was halfway through a new story before anyone checked.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Unfair</thought><exceptTrait><li>Kind</li></exceptTrait><chance>0.5</chance></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>Others</target><amount>-3</amount></li>
@@ -667,7 +667,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>-7</amount></li>
         </effects>
         <riskChance>0.25</riskChance>
-        <riskOutcome>The council named {A_nameDef} as the builder, and {B_nameDef} went for {A_objective} at the next meal.</riskOutcome>
+        <riskOutcome>{B_nameDef} heard the ruling out, and then went for {A_nameDef} at the next meal.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Fight" />
         </riskEffects>
@@ -823,7 +823,7 @@
     </roleB>
     <texts>
       <li>{B_nameDef} has been watching the stores, and says the quartermaster's friends do better than everyone else: the fine meals, the warm coats, first pick of every trade. The quartermaster is {A_nameDef}, whom {B_nameDef} has despised for a long time.\n\n{B_nameDef} wants {A_nameDef} called to account. {A_nameDef} says {B_nameDef} would find favoritism in a bowl of plain rice.</li>
-      <li>{B_nameDef} brought the council a list: every extra ration, new coat and good bed that has gone to {A_nameDef}'s friends since {A_nameDef} took the quartermaster's keys. Some of it is true. Some of it looks like the work of a rival with time on {B_possessive} hands.\n\n{A_nameDef} has offered to light the fire with it.</li>
+      <li>{B_nameDef} brought the council a list of every extra ration, new coat and good bed that has gone to {A_nameDef}'s friends since {A_nameDef} took the quartermaster's keys. Some of it is true. Some of it looks like the work of a rival with time on {B_possessive} hands.\n\n{A_nameDef} has offered to light the fire with it.</li>
     </texts>
     <defaultOption>1</defaultOption>
     <options>

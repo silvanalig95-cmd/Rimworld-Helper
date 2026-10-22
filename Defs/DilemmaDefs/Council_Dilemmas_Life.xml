@@ -157,7 +157,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmL_SleepingNearIt</thought><onlyTrait><li>Wimp</li></onlyTrait></li>
         </effects>
         <riskChance>0.3</riskChance>
-        <riskOutcome>{A_nameDef} stays where {A_pronoun} is. Two of the others took their bedding out to the hall rather than share the room, and made sure everyone saw them do it.</riskOutcome>
+        <riskOutcome>{A_nameDef} stays where {A_pronoun} is. Two of the others took their bedding out to the hall rather than share the room, and made sure they were seen doing it.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmL_SleepingNearIt</thought><chance>0.4</chance></li>
         </riskEffects>
@@ -900,7 +900,7 @@
         </effects>
         <riskChance>0.35</riskChance>
         <riskReplaces>true</riskReplaces>
-        <riskOutcome>The council sat them down to talk it out. They talked it out, all of it, at the top of their voices, and left by different doors.</riskOutcome>
+        <riskOutcome>They talked it out, all of it, at the top of their voices, and left by different doors.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_ForcedTogether</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_Grudge</thought><chance>0.4</chance></li>
@@ -1169,7 +1169,7 @@
     <options>
       <li>
         <label>Make it up to {A_nameDef}</label>
-        <outcome>The council paid {A_nameDef} forty silver from the colony's purse for the trouble. {A_nameDef} counted it twice and put it away, and says the next promise had better be kept.</outcome>
+        <outcome>Forty silver from the colony's purse, for the trouble. {A_nameDef} counted it twice and put it away, and says the next promise had better be kept.</outcome>
         <ways><generosity>3</generosity></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>40</count></li>
@@ -1232,7 +1232,7 @@
       <thoughts><li>Council_Pressure_SameMeal</li></thoughts>
     </roleA>
     <texts>
-      <li>{A_nameDef} pushed the bowl away at supper and said, to the table at large, that if {A_pronoun} has to eat the same meal one more time {A_pronoun} will walk to the nearest town for something else. Nobody laughed. Most of the table had been thinking it.\n\nSomething different on the table, {A_nameDef} says. Even once a week would do.</li>
+      <li>{A_nameDef} pushed the bowl away at supper and said, to the table at large, that if {A_pronoun} has to eat the same meal one more time {A_pronoun} will walk to the nearest town for something else. Nobody laughed. Most of the table had been thinking it.\n\n{A_nameDef} isn't asking for a feast. Anything different, once a week.</li>
       <li>[winter] The winter stores are what they are, and the colony has eaten the same thing every day since the first snow. {A_nameDef} has started counting the days out loud at meals, and has asked the council for anything, anything at all, that tastes different.</li>
       <li>[trait:Gourmand] {A_nameDef} has written the council a list of eleven meals the colony could be eating instead, with the ingredients for each and where to find them. It is a long list. {A_nameDef} would settle for one.</li>
     </texts>
@@ -1430,7 +1430,7 @@
     <texts>
       <li>{A_nameDef} has been hanging around {B_nameDef}'s workbench every day, handing over tools before {B_nameDef} asks for them. Today {A_nameDef} asked to make something real, with real tools, start to finish.\n\n{B_nameDef} said to ask the council.</li>
       <li>{A_nameDef} took apart a broken chair this morning to see how it was made, and put most of it back together again. {B_nameDef} found the leftover pieces and the proud look, and came to the council to ask what to do with {A_objective}.</li>
-      <li>[lowtech] {A_nameDef} has been watching {B_nameDef} work at the bench for weeks, and today brought {B_objective} a spoon {A_pronoun} had carved on {A_possessive} own with a borrowed knife. It's crooked. It holds soup. {A_nameDef} wants to learn properly.</li>
+      <li>[lowtech] For weeks {A_nameDef} has been watching {B_nameDef} work at the bench, and today brought {B_objective} a spoon {A_pronoun} had carved on {A_possessive} own with a borrowed knife. It's crooked. It holds soup. {A_nameDef} wants to learn properly.</li>
     </texts>
     <defaultOption>3</defaultOption>
     <options>
@@ -1501,7 +1501,7 @@
     </roleB>
     <texts>
       <li>{B_nameDef} has been up three nights running with {A_nameDef}, who has {ILLNESS}, and it shows: this morning {B_nameDef} fell asleep sitting up at breakfast with the spoon in {B_possessive} hand. {A_nameDef} is no better and no worse. {B_nameDef} says {B_pronoun} can manage another night.</li>
-      <li>{B_nameDef} has been tending {A_nameDef}'s {ILLNESS} day and night, and this afternoon mixed up two jars on the shelf and had to start the dressing again. Nothing came of it. {B_nameDef} has asked the council to stop looking at {B_objective} like that.</li>
+      <li>This afternoon {B_nameDef} mixed up two jars on the shelf and had to start {A_nameDef}'s dressing again. Nothing came of it. {B_nameDef} has been tending {A_nameDef}'s {ILLNESS} day and night, and has asked the council to stop looking at {B_objective} like that.</li>
     </texts>
     <defaultOption>1</defaultOption>
     <options>

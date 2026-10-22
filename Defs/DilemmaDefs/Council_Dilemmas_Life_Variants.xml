@@ -139,7 +139,7 @@
     <defName>Council_Var_DlmL_CampHungry</defName>
     <dilemma>Council_DlmL_CampHungry</dilemma>
     <texts>
-      <li>[land:desert] Three lizards and a hare in ten days: that is what the {FACTION} camp's hunters have brought in from this dry country. {X_nameDef} came to {A_nameDef} with an empty sack and asked whether the colony could fill it.</li>
+      <li>[land:desert] Three lizards and a hare in ten days is all the {FACTION} camp's hunters have brought in from this dry country. {X_nameDef} came to {A_nameDef} with an empty sack and asked whether the colony could fill it.</li>
       <li>[fall] The {FACTION} camp planned to live off the land through the fall, and the land has not cooperated. {X_nameDef} came to ask {A_nameDef} for food until the hunting picks up, and promised to pay it back in meat.</li>
     </texts>
     <outcomes>
@@ -197,8 +197,8 @@
     <defName>Council_Var_DlmL_ElderRest</defName>
     <dilemma>Council_DlmL_ElderRest</dilemma>
     <texts>
-      <li>[lowtech] {A_nameDef} has carried water, cut wood and dug graves for this colony for longer than anyone. Today {A_nameDef} came to the council and set {A_possessive} spade against the wall. "Someone younger," {A_nameDef} said. {B_nameDef} is the someone younger the council has in mind.</li>
-      <li>[trait:Industrious|trait:HardWorker] {A_nameDef} has worked every day of {A_possessive} life and never complained. Yesterday {A_nameDef} sat down in the middle of a job and didn't get up again until supper. {A_nameDef} still hasn't asked to stop. The others are asking for {A_objective}.</li>
+      <li>[lowtech] Longer than anyone, {A_nameDef} has carried this colony's water and dug its graves. Today {A_nameDef} came to the council and set {A_possessive} spade against the wall. "Someone younger," {A_nameDef} said. {B_nameDef} is the someone younger the council has in mind.</li>
+      <li>[trait:Industrious|trait:HardWorker] Never once has {A_nameDef} complained about work. Yesterday {A_pronoun} sat down in the middle of a job and didn't get up again until supper, and still hasn't asked to stop. The others are asking for {A_objective}.</li>
     </texts>
     <outcomes>
       <li>
