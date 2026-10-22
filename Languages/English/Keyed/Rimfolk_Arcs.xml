@@ -9,7 +9,7 @@
   <CC_Arc_Moved>{PAWN_nameDef}'s story ({STORY}) moves on: {STAGE}.</CC_Arc_Moved>
   <CC_Arc_DoneLabel>{0}: {1}</CC_Arc_DoneLabel>
   <CC_Arc_DoneQuote>{PAWN_nameDef} wrote: "{LINE}"</CC_Arc_DoneQuote>
-  <CC_Arc_Fizzled>{PAWN_nameDef}'s story ({STORY}) has come to nothing, for now.</CC_Arc_Fizzled>
+  <CC_Arc_Fizzled>{PAWN_nameDef}'s story ({STORY}) has come to nothing.</CC_Arc_Fizzled>
   <CC_Arc_FizzledChronicle>{PAWN_nameDef}'s story ({STORY}) came to nothing.</CC_Arc_FizzledChronicle>
   <CC_Arc_DiedBefore>{PAWN_nameDef} died before {PAWN_possessive} story ({STORY}) was done.</CC_Arc_DiedBefore>
   <CC_Arc_LeftBefore>{PAWN_nameDef} left the colony before {PAWN_possessive} story ({STORY}) was done.</CC_Arc_LeftBefore>
