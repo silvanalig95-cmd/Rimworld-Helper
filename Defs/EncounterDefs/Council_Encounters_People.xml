@@ -24,8 +24,8 @@
     <texts>
       <li>Over a bowl of soup, {X_nameDef} told {A_nameDef} that two warlords up north are burning each other's fields again. Grain will be dear by winter.</li>
       <li>A town three weeks east has the coughing sickness, {X_nameDef} told {A_nameDef}, and they've started nailing the doors shut on the sick.</li>
-      <li>{A_nameDef} heard from {X_nameDef} that salt costs twice what it did last year, the bridge at the ford has washed out, and a village up north has made a goat its headman.</li>
-      <li>{A_nameDef} sat up with {X_nameDef} hearing who is at war, who is starving and who got hanged since the last caravan came through.</li>
+      <li>By supper {A_nameDef} had passed on everything {X_nameDef} said. Salt is twice last year's price, the ford bridge has washed out, and a village up north has made a goat its headman.</li>
+      <li>{A_nameDef} sat up late with {X_nameDef}, settlement by settlement, hearing who had married and who had been hanged since the last caravan came through.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_RoadNews</thought></li>
@@ -41,8 +41,8 @@
     <colonist><passion>Melee</passion></colonist>
     <texts>
       <li>There's a one-eyed swordswoman down south who has fought forty duels and lost none, according to {X_nameDef}. {A_nameDef} wanted to know how she held her blade, and where she stood.</li>
-      <li>{X_nameDef} once watched a duelist called the Heron cut a candle in half without tipping it over. {A_nameDef} spent the evening trying it with a kitchen knife and went through a dozen candles.</li>
-      <li>{A_nameDef} had {X_nameDef} describe a famous swordsman's footwork three times over, then practiced it in the yard until dark.</li>
+      <li>A duelist called the Heron, {X_nameDef} swears, once cut a candle in half without tipping it over. {A_nameDef} went through a dozen candles that evening trying it with a kitchen knife.</li>
+      <li>{A_nameDef} had {X_nameDef} describe a famous swordsman's footwork three times over, then went out to the yard and stepped it through, slowly, in the dark.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_BladeTales</thought></li>
@@ -61,7 +61,7 @@
     <texts>
       <li>{X_nameDef} showed {A_nameDef} how {FACTION} cooks stretch a stew over four days with salt and onion, and {A_nameDef} traded a trick for rice that doesn't stick.</li>
       <li>{A_nameDef} and {X_nameDef} argued all afternoon about whether berries belong in a meat pie. They settled it by baking one of each and eating both.</li>
-      <li>{X_nameDef} swears by a pinch of ash in the bread. {A_nameDef} tried it, made a face, and then baked a second batch the same way.</li>
+      <li>"A pinch of ash in the dough," {X_nameDef} said. {A_nameDef} tried it, made a face, and then baked a second batch the same way.</li>
       <li>{A_nameDef} traded {X_nameDef} a pemmican recipe for one that makes old muffalo chewable. Each of them is sure they got the better deal.</li>
     </texts>
     <effects>
@@ -83,7 +83,7 @@
     <colonist><passion>Construction</passion></colonist>
     <texts>
       <li>{X_nameDef} ran a hand along a wall {A_nameDef} had built and asked who laid it. {A_nameDef} admitted it was {A_objective}, and showed {X_objective} how the corners were tied in.</li>
-      <li>{X_nameDef} said the colony's walls were straighter than any {X_pronoun} had seen this side of the mountains, and {A_nameDef} went red to the ears.</li>
+      <li>"Straightest walls this side of the mountains," {X_nameDef} said, and {A_nameDef}, who had built most of them, went red to the ears.</li>
       <li>{X_nameDef} rapped a knuckle on a doorframe {A_nameDef} had hung, listened, and nodded.</li>
     </texts>
     <effects>
@@ -100,8 +100,8 @@
     <stranger><kind>Visitor</kind><adult>true</adult></stranger>
     <colonist><passion>Artistic</passion></colonist>
     <texts>
-      <li>{X_nameDef} stood in front of {A_nameDef}'s carving for a long while, then asked what it was. {A_nameDef} told {X_objective} about the person it was made for.</li>
-      <li>{X_nameDef} asked {A_nameDef} what the carving by the door would cost. It wasn't for sale, but {A_nameDef} was pleased all evening to have been asked.</li>
+      <li>For a long while {X_nameDef} stood in front of {A_nameDef}'s carving, and then asked who it was. {A_nameDef} told {X_objective} about the person it was made for.</li>
+      <li>"What do you want for that?" {X_nameDef} asked, pointing at {A_nameDef}'s carving by the door. It wasn't for sale, but {A_nameDef} was pleased all evening to have been asked.</li>
       <li>{X_nameDef} went still in front of {A_nameDef}'s work, wiped {X_possessive} eyes, and wouldn't say why.</li>
     </texts>
     <effects>
@@ -118,10 +118,10 @@
     <stranger><kind>Visitor</kind><child>true</child></stranger>
     <colonist><child>true</child></colonist>
     <texts>
-      <li>{A_nameDef} and {X_nameDef} played raiders and colonists behind the barn until they were called in for supper.</li>
+      <li>Behind the barn, {A_nameDef} and {X_nameDef} played raiders and colonists until they were called in for supper.</li>
       <li>{X_nameDef} taught {A_nameDef} a clapping song from the road, with a verse the grown-ups wouldn't like.</li>
       <li>{A_nameDef} and {X_nameDef} caught a frog, named it, lost it, and held a funeral for it by the well.</li>
-      <li>{A_nameDef} showed {X_nameDef} every hiding spot in the colony, and they took turns in each of them until dark.</li>
+      <li>{A_nameDef} showed {X_nameDef} every hiding spot in the colony except the best one.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_PlayFriend</thought></li>
@@ -141,8 +141,8 @@
     <children>true</children>
     <stranger><kind>Visitor</kind><adult>true</adult></stranger>
     <texts>
-      <li>{X_nameDef} sang a long song about a miller's daughter and a bear, and {A_nameDef} asked for it again from the start.</li>
-      <li>{X_nameDef} told ghost stories by the fire until {A_nameDef} jumped at a settling log. {X_nameDef} called it the best reaction yet and told another one.</li>
+      <li>"The miller's daughter went for water, and the bear went with her..." {X_nameDef} sang it all the way through, and {A_nameDef} asked for it again from the start.</li>
+      <li>Ghost stories, after dark. When a log shifted in the fire, {A_nameDef} jumped clean off the bench, and {X_nameDef} called it the best reaction yet and started another one.</li>
       <li>{X_nameDef} knew a drinking song with forty verses. {A_nameDef} had the chorus by the fifth and was bellowing it by the twentieth.</li>
       <li>{X_nameDef} told how {X_possessive} caravan once crossed a frozen lake and lost two muffalo through the ice, and {A_nameDef} sat forward the whole time.</li>
     </texts>
@@ -159,7 +159,7 @@
     <cooldownDays>8</cooldownDays>
     <stranger><kind>Visitor</kind><adult>true</adult></stranger>
     <texts>
-      <li>According to {X_nameDef}, {A_nameDef} has kind eyes for someone carrying that many knives. {A_nameDef} didn't know where to look.</li>
+      <li>"Kind eyes, for someone carrying that many knives," {X_nameDef} told {A_nameDef}, who didn't know where to look.</li>
       <li>{A_nameDef} offered to show {X_nameDef} the view from the wall, and they were up there until well after dark.</li>
       <li>{X_nameDef} laughed at every one of {A_nameDef}'s jokes, even the old one about the boomalope.</li>
       <li>{A_nameDef} and {X_nameDef} shared a bench and a jug of beer, and sat closer than the bench required. The caravan leaves tomorrow.</li>
@@ -180,8 +180,8 @@
     <stranger><kind>Visitor</kind><adult>true</adult></stranger>
     <colonist><anyTrait><li>Abrasive</li></anyTrait></colonist>
     <texts>
-      <li>{X_nameDef} called the colony "a mud fort with opinions", and {A_nameDef} had to be walked away from the gate.</li>
-      <li>{X_nameDef} said a settlement this small ought to pay {FACTION} for protection. {A_nameDef} said a great many things back, several of them about {X_nameDef}'s mother.</li>
+      <li>{X_nameDef} called the colony "a mud fort with opinions," and {A_nameDef} had to be walked away from the gate.</li>
+      <li>A settlement this small, {X_nameDef} said, ought to pay {FACTION} for protection. {A_nameDef} said a great many things back, several of them about {X_nameDef}'s mother.</li>
       <li>{A_nameDef} and {X_nameDef} argued about how strangers ought to be treated, loudly, at the gate, with other strangers listening.</li>
     </texts>
     <ways><openness>-2</openness></ways>
@@ -201,9 +201,9 @@
     <cooldownDays>15</cooldownDays>
     <stranger><kind>Visitor</kind><adult>true</adult></stranger>
     <texts>
-      <li>{X_nameDef} squinted at {A_nameDef} and asked, "You're that one, aren't you? From the stories?" {A_nameDef} didn't know which stories {X_pronoun} meant.</li>
+      <li>"You're that one, aren't you? From the stories?" {X_nameDef} squinted at {A_nameDef}, who had no idea which stories {X_pronoun} meant.</li>
       <li>{X_nameDef} said people on the road talk about {A_nameDef}, and not all of it is lies. {A_nameDef} spent dinner trying to find out which parts.</li>
-      <li>{X_nameDef} asked to touch {A_nameDef}'s sleeve for luck, and explained that there's a song going round the camps with {A_nameDef} in the second verse.</li>
+      <li>There's a song going round the camps with {A_nameDef} in the second verse. {X_nameDef} sang it for {A_objective}, then asked to touch {A_possessive} sleeve for luck.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_Recognized</thought></li>
@@ -221,8 +221,8 @@
     <colonist><anyTrait><li>Kind</li></anyTrait></colonist>
     <texts>
       <li>{A_nameDef} carried water for {X_nameDef}'s lame pack animal without being asked. Later, {X_nameDef} pressed some coins and a sprig of healroot into {A_possessive} hand and wouldn't take them back.</li>
-      <li>{A_nameDef} gave up {A_possessive} seat by the fire for {X_nameDef}, and on the way out {X_nameDef} handed {A_objective} a bundle with silver and healing herbs in it.</li>
-      <li>{A_nameDef} mended a torn strap on {X_nameDef}'s pack, and {X_nameDef} insisted on paying for it in silver and healroot.</li>
+      <li>Last night {A_nameDef} gave up the warm seat for {X_nameDef}. This morning {X_nameDef} handed {A_objective} a twist of cloth with silver and healing herbs inside.</li>
+      <li>{A_nameDef} mended a torn strap on {X_nameDef}'s pack, and was paid in silver and healroot whether {A_pronoun} liked it or not.</li>
     </texts>
     <ways><openness>2</openness></ways>
     <effects>
@@ -241,10 +241,10 @@
     <stranger><kind>Visitor</kind><adult>true</adult></stranger>
     <colonist><canFight>true</canFight></colonist>
     <texts>
-      <li>{A_nameDef} and {X_nameDef} compared scars over a jug of beer. {X_nameDef} won with an arrowhead still lodged in {X_possessive} shoulder, and let {A_nameDef} feel it.</li>
-      <li>{X_nameDef} showed {A_nameDef} how {FACTION} spearmen brace for a charge. {A_nameDef} showed {X_nameDef} where to hit someone who's bracing like that.</li>
-      <li>{A_nameDef} and {X_nameDef} didn't say much about the fighting itself. They named the people they'd lost and drank to each one.</li>
-      <li>{X_nameDef} has fought in three border wars, and {A_nameDef} has fought everything that came over the colony's walls. They talked tactics until the fire burned down.</li>
+      <li>Comparing scars, {X_nameDef} won easily with an arrowhead still lodged in {X_possessive} shoulder, and let {A_nameDef} feel it.</li>
+      <li>{X_nameDef} showed {A_nameDef} how {FACTION} fighters brace for a charge. {A_nameDef} showed {X_nameDef} where to hit someone who's bracing like that.</li>
+      <li>Neither {A_nameDef} nor {X_nameDef} said much about the fighting itself. They named the people they'd lost and drank to each one.</li>
+      <li>{X_nameDef} has fought in three border wars, and {A_nameDef} has fought everything that came over the colony's walls. They drew battle lines in the dirt with sticks and argued over them past midnight.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_FellowFighter</thought></li>
@@ -262,7 +262,7 @@
     <stranger><kind>Visitor</kind><adult>true</adult></stranger>
     <texts>
       <li>{X_nameDef} stared at {A_nameDef} all day, from the gate, from the well and across the supper table, and only said "what?" when {A_nameDef} asked about it.</li>
-      <li>{X_nameDef} watched {A_nameDef} chop wood all morning without a word, then spat and walked off. {A_nameDef} has been going over every swing since.</li>
+      <li>All morning {X_nameDef} watched {A_nameDef} chop wood without a word, then spat and walked off. {A_nameDef} has been going over every swing since.</li>
       <li>Wherever {A_nameDef} went today, {X_nameDef} was leaning on a wall nearby, watching. In the evening {X_nameDef} explained that {A_nameDef} looks very like {X_possessive} dead brother.</li>
     </texts>
     <effects>
@@ -279,7 +279,7 @@
     <stranger><kind>Visitor</kind><adult>true</adult></stranger>
     <texts>
       <li>{X_nameDef}'s dog followed {A_nameDef} around all afternoon and leaned on {A_possessive} legs whenever {A_pronoun} stopped. {X_nameDef} said it only does that with people it likes.</li>
-      <li>{X_nameDef}'s scruffy dog stole a sausage off {A_nameDef}'s plate and ate it looking {A_objective} in the eye, and {A_nameDef} gave it the crust as well.</li>
+      <li>A sausage went off {A_nameDef}'s plate and into {X_nameDef}'s scruffy dog, which ate it looking {A_nameDef} in the eye. {A_nameDef} gave it the crust as well.</li>
       <li>{A_nameDef} spent the afternoon picking burrs out of {X_nameDef}'s dog, a shaggy old thing called Captain.</li>
     </texts>
     <effects>
@@ -295,8 +295,8 @@
     <stranger><kind>Visitor</kind><adult>true</adult></stranger>
     <texts>
       <li>{X_nameDef} taught {A_nameDef} a dice game called Muffalo Knees and won every round, though {A_nameDef} was catching on by the end.</li>
-      <li>{A_nameDef} and {X_nameDef} played knucklebones for pebbles all evening, and {A_nameDef} went to bed with forty of them.</li>
-      <li>{X_nameDef} lost three rounds of dice to {A_nameDef} and blamed the dice, so they played on with {X_possessive} own set until the candle burned out.</li>
+      <li>Knucklebones for pebbles, all evening. {A_nameDef} went to bed with forty of them, and {X_nameDef} with none.</li>
+      <li>"Your dice are crooked," {X_nameDef} told {A_nameDef}. "Then use yours." {X_nameDef} did, and lost three more rounds.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_DiceNight</thought></li>
@@ -316,7 +316,7 @@
     <texts>
       <li>{A_nameDef} talked {X_nameDef} down on a bolt of cloth until the trader threw up {X_possessive} hands and called {A_objective} a bandit.</li>
       <li>{A_nameDef} pointed out a moth hole and a crooked seam in the coat, and {X_nameDef} knocked a third off the price.</li>
-      <li>{X_nameDef} asked forty silver, {A_nameDef} laughed, and after a long hour they settled at twenty-two.</li>
+      <li>Forty silver, {X_nameDef} asked. {A_nameDef} laughed, and after a long hour they settled at twenty-two.</li>
     </texts>
     <ways><generosity>-2</generosity></ways>
     <effects>
@@ -335,7 +335,7 @@
     <stranger><kind>Trader</kind></stranger>
     <texts>
       <li>{A_nameDef} haggled {X_nameDef} down from twenty silver to eighteen and walked off proud. Then {A_nameDef} watched someone else buy the same thing for nine.</li>
-      <li>{X_nameDef} talked {A_nameDef} into a copper pot with a crack in the bottom, which {A_nameDef} found the first time {A_pronoun} filled it.</li>
+      <li>The pot {A_nameDef} bought from {X_nameDef} has a crack in the bottom. {A_nameDef} found it with the first bucket of water.</li>
       <li>{A_nameDef} tried walking away from the deal, and {X_nameDef} let {A_objective} go. {A_nameDef} came back a few minutes later and paid full price.</li>
     </texts>
     <effects>
@@ -368,7 +368,7 @@
     <stranger><kind>Trader</kind></stranger>
     <texts>
       <li>The cask of beer {A_nameDef} bought from {X_nameDef} turned out to be half river water, and {X_nameDef} claimed to know nothing about it.</li>
-      <li>{X_nameDef}'s scales were off by a thumb's weight, and {A_nameDef} only noticed after the trade was done, three days' hauling short.</li>
+      <li>{A_nameDef} weighed the salt again after the trade and came up a thumb's weight short on every sack. {X_nameDef} blamed the damp.</li>
       <li>The leather boots {A_nameDef} bought from {X_nameDef} came apart at the first puddle. The soles had been stuck on with pitch.</li>
     </texts>
     <effects>
@@ -387,7 +387,7 @@
     <texts>
       <li>{X_nameDef} turned a knife over in {X_possessive} hands and asked if {A_nameDef} made it. {X_nameDef} sold one just like it last year, to a captain who wouldn't stop bragging about it.</li>
       <li>{X_nameDef} recognized {A_nameDef}'s stitching on a colonist's coat and said coats like that fetch a good price two towns over.</li>
-      <li>{X_nameDef} asked who made the colony's tools. When {A_nameDef} said it was {A_objective}, {X_nameDef} asked if {A_pronoun} had ever thought of leaving. {A_nameDef} said no.</li>
+      <li>"Who makes your tools?" {X_nameDef} asked. When {A_nameDef} said {A_pronoun} did, {X_nameDef} asked whether {A_pronoun} had ever thought of leaving. {A_nameDef} said no.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_WorkTraveled</thought></li>
@@ -403,8 +403,8 @@
     <cooldownDays>5</cooldownDays>
     <stranger><kind>Trader</kind></stranger>
     <texts>
-      <li>While they traded, {X_nameDef} passed on to {A_nameDef} the story of a settlement east of here that tried to rope a thrumbo and lost most of its fences doing it.</li>
-      <li>{X_nameDef} has been to every settlement within a week's ride, and knows which ones are broke, which are feuding and which still pay fair.</li>
+      <li>A settlement east of here tried to rope a thrumbo and lost most of its fences doing it. {X_nameDef} told the story twice while {A_nameDef} weighed out the trade.</li>
+      <li>{X_nameDef} has been to every settlement within a week's ride, and named the two that still pay fair.</li>
       <li>According to {X_nameDef}, the last colony {X_pronoun} visited paid in turnips and insults. {A_nameDef} took the hint and was very polite all afternoon.</li>
     </texts>
     <effects>
@@ -420,7 +420,7 @@
     <stranger><kind>Trader</kind></stranger>
     <texts>
       <li>{X_nameDef} let {A_nameDef} try a pinch of the spice {X_pronoun} was selling, and {A_nameDef} spent supper trying to describe the taste.</li>
-      <li>{X_nameDef} cut {A_nameDef} a sliver of hard cheese from three weeks south, and {A_nameDef} made it last as long as {A_pronoun} could.</li>
+      <li>A sliver of hard cheese from three weeks south, cut thin as a leaf by {X_nameDef}. {A_nameDef} made it last as long as {A_pronoun} could.</li>
       <li>{X_nameDef} poured {A_nameDef} a thimble of amber liquor from a stoppered flask. {A_nameDef} coughed until {A_possessive} eyes ran, then held out the thimble again.</li>
     </texts>
     <effects>
@@ -439,7 +439,7 @@
     <texts>
       <li>{A_nameDef} held up {X_nameDef}'s best cloak and asked how much {X_nameDef} would pay {A_objective} to take it away.</li>
       <li>{A_nameDef} sniffed {X_nameDef}'s dried meat and announced that the animal had died of old age. {X_nameDef} packed it away and didn't offer {A_nameDef} anything else.</li>
-      <li>{A_nameDef} told {X_nameDef}, loudly, that {FACTION} prices are the reason there are bandits on the roads.</li>
+      <li>"Prices like {FACTION}'s are why there are bandits on the roads," {A_nameDef} told {X_nameDef}, loudly.</li>
     </texts>
     <ways><openness>-2</openness></ways>
     <effects>
@@ -460,9 +460,9 @@
     <stranger><kind>Lodger</kind><royal>true</royal></stranger>
     <texts>
       <li>{X_nameDef} sent {A_nameDef} back to the kitchen twice, once because the soup was cold and once because it was too hot, then tipped {A_objective} eight silver for the trouble.</li>
-      <li>{X_nameDef} asked {A_nameDef} where the bath was, and when {A_nameDef} pointed at the river, {X_nameDef} complained about it for the rest of the day.</li>
-      <li>{X_nameDef} had {A_nameDef} turn the mattress three times, then complained about the view from the bed, which faces a wall.</li>
-      <li>{X_nameDef} called {A_nameDef} "you there" all day, and once "the hairy one".</li>
+      <li>Where was the bath, {X_nameDef} wanted to know. {A_nameDef} pointed at the well, and {X_nameDef} complained for the rest of the day, then paid {A_objective} eight silver for a bucket of hot water.</li>
+      <li>{X_nameDef} had {A_nameDef} turn the mattress three times, complained that the bed faces a wall, and paid eight silver for the inconvenience.</li>
+      <li>{X_nameDef} called {A_nameDef} "you there" all day, and once, "the hairy one."</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_TreatedLikeFurniture</thought></li>
@@ -479,8 +479,8 @@
     <stranger><kind>Lodger</kind><royal>true</royal></stranger>
     <texts>
       <li>{X_nameDef} watched {A_nameDef} settle a quarrel at dinner and said it was better done than in half the courts {X_pronoun} had sat in, then showed {A_objective} how to bow properly.</li>
-      <li>{X_nameDef} spent an evening teaching {A_nameDef} which fork is for what at a lord's table, and {A_nameDef} paid close attention, though the colony owns only the one kind.</li>
-      <li>{X_nameDef} told {A_nameDef} {A_pronoun} had the bearing of someone born to a better house, and that it was a shame about the clothes.</li>
+      <li>{A_nameDef} spent an evening learning from {X_nameDef} which fork is for what at a lord's table. The colony owns only the one kind.</li>
+      <li>"You have the bearing of someone born to a better house," {X_nameDef} told {A_nameDef}. "A shame about the clothes."</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Social</skill><xp>400</xp></li>
@@ -499,7 +499,7 @@
     <stranger><kind>Lodger</kind><adult>true</adult></stranger>
     <texts>
       <li>{X_nameDef} hadn't said ten words since arriving. Today {A_nameDef} brought {X_objective} a second bowl of stew without asking, and {X_nameDef} cried into it and said thank you, over and over.</li>
-      <li>{X_nameDef} told {A_nameDef} it was the first night in a month {X_pronoun} hadn't slept with {X_possessive} shoes on. {A_nameDef} didn't know what to say, and just nodded.</li>
+      <li>It was the first night in a month {X_nameDef} hadn't slept with {X_possessive} shoes on, {X_pronoun} told {A_nameDef}. {A_nameDef} just nodded.</li>
       <li>{X_nameDef} carved {A_nameDef} a small wooden bird with a borrowed knife, badly, and handed it over with both hands. "For the blanket," {X_nameDef} said.</li>
     </texts>
     <ways><generosity>2</generosity></ways>
@@ -521,7 +521,7 @@
     <stranger><kind>Lodger</kind><adult>true</adult></stranger>
     <texts>
       <li>{X_nameDef} got bored of being protected and felled a dead tree out back before {A_nameDef} noticed. "Beats sitting around waiting to be murdered," {X_nameDef} said.</li>
-      <li>{X_nameDef} insisted on helping {A_nameDef} cut and haul logs, and once {A_nameDef} had shown {X_objective} how to hold the axe, {X_pronoun} kept up all afternoon.</li>
+      <li>Once {A_nameDef} had shown {X_nameDef} how to hold an axe, there was no stopping {X_objective}. They cut and hauled logs together all afternoon.</li>
       <li>{A_nameDef} came back to find that {X_nameDef} had chopped a fallen trunk into logs and stacked them by size against the wall.</li>
     </texts>
     <effects>
@@ -539,7 +539,7 @@
     <stranger><kind>Lodger</kind><adult>true</adult></stranger>
     <texts>
       <li>{X_nameDef} woke {A_nameDef} at midnight to ask whether the gate was barred. It was. {X_nameDef} went to check anyway, and {A_nameDef} went too.</li>
-      <li>{X_nameDef} sat up all night facing the door with a kitchen knife in {X_possessive} lap, and {A_nameDef} sat up with {X_objective}.</li>
+      <li>All night {X_nameDef} sat facing the door with a kitchen knife in {X_possessive} lap. {A_nameDef} sat up too.</li>
       <li>In a low voice, {X_nameDef} told {A_nameDef} what the people hunting {X_objective} do to anyone who helps. Then {X_nameDef} thanked {A_objective} for the bed.</li>
     </texts>
     <effects>
@@ -559,9 +559,9 @@
     <stranger><kind>Prisoner</kind><adult>true</adult></stranger>
     <colonist><anyTrait><li>Kind</li></anyTrait></colonist>
     <texts>
-      <li>{A_nameDef} sat outside {X_nameDef}'s cell after supper and talked about the weather, the beans and a dog {A_pronoun} once had, until {X_nameDef} started talking back.</li>
+      <li>After supper {A_nameDef} sat outside {X_nameDef}'s cell and talked about the weather, the beans and a dog {A_pronoun} once had, until {X_nameDef} started talking back.</li>
       <li>{A_nameDef} slid an extra blanket under {X_nameDef}'s door and said goodnight. {X_nameDef} didn't answer, but the blanket was gone by morning.</li>
-      <li>{X_nameDef} asked {A_nameDef} why {A_pronoun} bothered being kind to a prisoner. {A_nameDef} shrugged and passed {X_objective} the rest of {A_possessive} bread.</li>
+      <li>"Why bother being kind to a prisoner?" {X_nameDef} asked. {A_nameDef} shrugged and passed {X_objective} the rest of {A_possessive} bread.</li>
     </texts>
     <ways><mercy>2</mercy></ways>
     <effects>
@@ -615,9 +615,9 @@
     <cooldownDays>15</cooldownDays>
     <stranger><kind>Prisoner</kind><adult>true</adult></stranger>
     <texts>
-      <li>{A_nameDef} and {X_nameDef} worked out they grew up two valleys apart, on the same bad bread and the same tax collectors. They talked through the bars until the candle died.</li>
+      <li>{A_nameDef} and {X_nameDef} grew up two valleys apart, on the same bad bread and under the same tax collectors. They talked through the bars for most of the night.</li>
       <li>{X_nameDef} hummed a work song in the cell, and {A_nameDef} sang the next line without thinking. They had worked the same mines, years apart.</li>
-      <li>{A_nameDef} and {X_nameDef} both ran away from home at twelve and slept in stables, and they swapped stories about it through the door until the watch changed.</li>
+      <li>{A_nameDef} ran away from home at twelve and slept in stables. So did {X_nameDef}. They traded stable stories through the door until the watch changed.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_SamePast</thought></li>
@@ -636,7 +636,7 @@
     <cooldownDays>10</cooldownDays>
     <stranger><kind>Prisoner</kind><nemesisOfA>true</nemesisOfA></stranger>
     <texts>
-      <li>{A_nameDef} stood at {X_nameDef}'s door for a long time without a word. {X_nameDef} looked up, recognized {A_objective}, and looked away first.</li>
+      <li>For a long time {A_nameDef} stood at {X_nameDef}'s door without a word. {X_nameDef} looked up, recognized {A_objective}, and looked away first.</li>
       <li>{X_nameDef} grinned at {A_nameDef} through the bars and asked how the scar was coming along. {A_nameDef} walked away before {A_possessive} hands could decide anything.</li>
       <li>{A_nameDef} carried {X_nameDef}'s dinner in personally, set it down, and said, "Now I know where you sleep, too."</li>
       <li>The last time they met, {A_nameDef} was on the ground and {X_nameDef} was standing over {A_objective}. Today {X_nameDef} is on a cell floor, and {A_nameDef} can't stop looking.</li>
@@ -661,7 +661,7 @@
     <texts>
       <li>{X_nameDef} sent {A_nameDef}'s bowl back licked clean, with word that the rats in the cell eat better.</li>
       <li>The food, {X_nameDef} told {A_nameDef}, was the worst part of being captured, worse than the wound.</li>
-      <li>With {X_possessive} mouth full, {X_nameDef} asked {A_nameDef} whether {A_pronoun} had ever cooked before or was just guessing.</li>
+      <li>"Have you cooked before, or are you guessing?" {X_nameDef} asked {A_nameDef}, with {X_possessive} mouth full.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_FoodInsulted</thought></li>
@@ -675,8 +675,8 @@
     <cooldownDays>10</cooldownDays>
     <stranger><kind>Prisoner</kind><adult>true</adult></stranger>
     <texts>
-      <li>{X_nameDef} offered {A_nameDef} a map to a buried chest of silver in exchange for one unlocked door, and drew it on the cell floor in porridge.</li>
-      <li>{X_nameDef} whispered to {A_nameDef} that {X_possessive} people pay well for friends on the inside, and named a sum of silver too large to believe.</li>
+      <li>A map to a buried chest of silver, drawn on the cell floor in porridge, was {X_nameDef}'s offer to {A_nameDef} for one unlocked door.</li>
+      <li>{X_nameDef} leaned close to the bars and told {A_nameDef} that {X_possessive} people pay well for friends on the inside. The sum {X_pronoun} named was too large to believe.</li>
       <li>{X_nameDef} promised {A_nameDef} a horse, a sword and a cousin's hand in marriage in exchange for the key.</li>
     </texts>
     <effects>
@@ -694,7 +694,7 @@
     <cooldownDays>4</cooldownDays>
     <stranger><kind>Fallen</kind><adult>true</adult></stranger>
     <texts>
-      <li>{X_nameDef} caught {A_nameDef}'s ankle from the dirt and begged, over and over, not to be left out there for the wolves.</li>
+      <li>{X_nameDef} caught {A_nameDef}'s ankle from the dirt and begged, over and over, not to be left out there overnight.</li>
       <li>Bleeding in the mud, {X_nameDef} recognized {A_nameDef} from a trade two seasons back and begged {A_objective} by name.</li>
       <li>{X_nameDef} promised {A_nameDef} silver, {X_possessive} boots, never coming back, anything at all, and was still promising when {A_nameDef} walked away.</li>
     </texts>
@@ -711,7 +711,7 @@
     <stranger><kind>Fallen</kind><adult>true</adult></stranger>
     <texts>
       <li>{X_nameDef} couldn't stand, but could still talk, and cursed {A_nameDef}'s mother, face and colony until {X_possessive} voice gave out.</li>
-      <li>{X_nameDef} spat blood at {A_nameDef}'s boots and swore {X_possessive} brothers would come for {A_objective}, then named every one of them.</li>
+      <li>"My brothers will come for you." {X_nameDef} spat blood at {A_nameDef}'s boots and named every one of them.</li>
       <li>{X_nameDef} lay in the mud cursing {A_nameDef} in a language {A_nameDef} didn't know, and kept at it until {A_nameDef} had gone.</li>
     </texts>
     <effects>
@@ -748,7 +748,7 @@
     <cooldownDays>5</cooldownDays>
     <stranger><kind>Fallen</kind><adult>true</adult></stranger>
     <texts>
-      <li>{X_nameDef} lay on {X_possessive} back praying, the same short line over and over, until {A_nameDef} realized {A_pronoun} had learned the words.</li>
+      <li>Over and over, {X_nameDef} prayed the same short line from where {X_pronoun} lay, until {A_nameDef} realized {A_pronoun} knew the words too.</li>
       <li>{X_nameDef} was praying to a god with a great many teeth, by the sound of it. {A_nameDef} hurried past and felt watched for the rest of the day.</li>
       <li>{X_nameDef} asked {A_nameDef} to pray with {X_objective}. {A_nameDef} didn't know the god or the words, but knelt in the mud for a minute anyway.</li>
     </texts>
@@ -765,7 +765,7 @@
     <cooldownDays>10</cooldownDays>
     <stranger><kind>Fallen</kind><adult>true</adult></stranger>
     <texts>
-      <li>{X_nameDef} grabbed {A_nameDef}'s sleeve and made {A_objective} repeat a name twice, Tamsin, at the mill by the black river, and promise to tell her it wasn't her fault.</li>
+      <li>"Tamsin. At the mill by the black river. Tell her it wasn't her fault." {X_nameDef} held on to {A_nameDef}'s sleeve until {A_nameDef} had said it back twice.</li>
       <li>{X_nameDef} told {A_nameDef} where {X_pronoun} had buried {X_possessive} mother's knife, so that somebody would know.</li>
       <li>Between gasps, {X_nameDef} asked {A_nameDef} to tell the others {X_pronoun} hadn't run. {A_nameDef} promised, without knowing who the others were.</li>
     </texts>
@@ -806,7 +806,7 @@
     <texts>
       <li>{X_nameDef} was sure this was the end and gave {A_nameDef} a long, trembling speech about {X_possessive} regrets, over what turned out to be a sprained ankle.</li>
       <li>{X_nameDef} forgave {A_nameDef}, forgave the world, and asked {A_objective} to sing {X_objective} out. {A_nameDef} pointed out that the wound was mostly bruise.</li>
-      <li>{X_nameDef} said goodbye to {A_nameDef}, to the sky and to someone called Bram, then fell asleep and snored.</li>
+      <li>Goodbye to {A_nameDef}, goodbye to the sky, goodbye to someone called Bram. Then {X_nameDef} fell asleep and snored.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_FarewellPostponed</thought></li>
