@@ -34,22 +34,22 @@
     <request>
       <plain>
         <li>I've loved them since I was small. I'd give a lot to have {SUBJECT} about the place.</li>
-        <li>They live round here, you know. I've seen the tracks. I'd like us to have {SUBJECT} of our own.</li>
-        <li>Of all the animals in the world, that's the one. I'd like to see {SUBJECT} in our herd one day.</li>
+        <li>They live round here, you know. I've seen the tracks. Why shouldn't we have {SUBJECT} of our own?</li>
+        <li>Some people love horses, some love dogs. For me it's always been {SUBJECT}.</li>
         <li>[child] Can we have {SUBJECT}? I'd look after it every single day.</li>
         <li>[lowmood] Just having {SUBJECT} around would make this place feel more like home.</li>
         <li>[spring] It's the time of year for young ones. If we were ever going to bring {SUBJECT} home, it's now.</li>
         <li>[old] I've wanted {SUBJECT} my whole life. I'd like to have one about before I'm done.</li>
       </plain>
       <warm>
-        <li>I'd look after it properly. It wouldn't want for anything, I promise you.</li>
+        <li>It would get the warmest corner I could find. I'd see to it every morning before I saw to myself.</li>
         <li>I don't need it to be mine. I'd just like to see it every morning.</li>
       </warm>
       <blunt>
         <li>Bring home {SUBJECT}. I've asked for less, but never wanted anything more.</li>
       </blunt>
       <cheerful>
-        <li>Imagine {SUBJECT}, here, with us! I've already thought of a name.</li>
+        <li>Picture {SUBJECT} trotting round the yard! I've already thought of a name.</li>
         <li>I've drawn them on every scrap of paper I've ever had. Now I'd like a real one.</li>
       </cheerful>
       <gloomy>
@@ -65,15 +65,15 @@
         <li>I've wanted one of these for as long as I can remember. Now we have one.</li>
       </plain>
       <warm><li>I'll look after it. I promised myself I would, years ago.</li></warm>
-      <blunt><li>Good. That's the one.</li></blunt>
-      <cheerful><li>Come and see! Come and see!</li></cheerful>
+      <blunt><li>That's the one.</li></blunt>
+      <cheerful><li>Come and see it! It's even better up close.</li></cheerful>
       <gloomy><li>I didn't think I'd ever really have one.</li></gloomy>
       <cold><li>Exactly what I wanted. Thank you.</li></cold>
     </thanks>
     <expired>
       <plain><li>Maybe one day. They're still out there.</li></plain>
       <gloomy><li>Out past the fields, where they always are.</li></gloomy>
-      <blunt><li>Fine. I'll keep drawing them instead.</li></blunt>
+      <blunt><li>Then I'll keep drawing them. It's all I've got.</li></blunt>
     </expired>
     <reminder>
       <plain><li>I saw the tracks again this morning.</li></plain>
@@ -106,7 +106,7 @@
         <li>Every trip to the far fields I'm hauling back and forth. With {SUBJECT} of my own, it would be one trip.</li>
         <li>[skill:Social] Someone who trades needs something to carry the goods. Give me {SUBJECT} and I'll do the talking.</li>
         <li>[lowmood] I'd like something that walks beside me and carries the load. It doesn't have to be clever.</li>
-        <li>[winter] Hauling wood through the snow on my own back, again. I'd like {SUBJECT} to share it with.</li>
+        <li>[winter] Hauling wood through the snow on my own back, again. Give me {SUBJECT} to share the load.</li>
       </plain>
       <warm>
         <li>I'd treat it well. It would earn its keep and get the best of the hay.</li>
@@ -127,12 +127,12 @@
     <thanks>
       <plain><li>It follows me now, loaded up and patient. Good animal.</li></plain>
       <warm><li>We'll get on, the two of us.</li></warm>
-      <blunt><li>Good. Load it up.</li></blunt>
+      <blunt><li>Load it up.</li></blunt>
       <cheerful><li>Look how much it can carry!</li></cheerful>
       <cold><li>Carrying capacity improved.</li></cold>
     </thanks>
     <expired>
-      <plain><li>I'll keep carrying it myself, then.</li></plain>
+      <plain><li>I'll carry it myself. I always have.</li></plain>
       <blunt><li>My back, my problem.</li></blunt>
     </expired>
   </ColonyCouncil.WishDef>

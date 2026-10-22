@@ -23,14 +23,14 @@
     <fulfilledWhen>The colony catches a Pokémon of a species it doesn't have yet. There's a wild {SUBJECT} out there, for a start.</fulfilledWhen>
     <request>
       <plain>
-        <li>There's a wild {SUBJECT} out by the tree line, and nobody here has one yet. Let me take a belt and go after it.</li>
+        <li>There's a wild {SUBJECT} out by the tree line, and we haven't got one. Let me take a belt and go after it.</li>
         <li>I've been watching that {SUBJECT} for two days. I know where it goes to drink.</li>
         <li>[winter] The {SUBJECT} comes down to the water on cold mornings. That's when I'd try for it.</li>
         <li>[child] Can I catch the {SUBJECT}? I'll be careful with the ball.</li>
         <li>[lowmood] I need something to work toward. That {SUBJECT} out there would do.</li>
       </plain>
       <warm>
-        <li>That {SUBJECT} would do well here. I'd make sure it's looked after.</li>
+        <li>That {SUBJECT} would be happy here. I'd see to it.</li>
       </warm>
       <blunt>
         <li>Give me a ball belt and an afternoon. The {SUBJECT} is coming home.</li>
@@ -42,7 +42,7 @@
         <li>If we wait, that {SUBJECT} will wander off, and we won't see another for a long time.</li>
       </gloomy>
       <cold>
-        <li>The colony has no {SUBJECT}. Catching one costs a ball and an afternoon.</li>
+        <li>The colony has no {SUBJECT}. I don't like gaps in a collection.</li>
       </cold>
     </request>
     <thanks>
@@ -50,18 +50,18 @@
         <li>It's in the ball. I'll let it out once it's calmer.</li>
         <li>That's one kind of creature the colony didn't have this morning.</li>
       </plain>
-      <warm><li>Thank you for letting me go after it. I'll look after it.</li></warm>
+      <warm><li>I'll take good care of it. You'll see.</li></warm>
       <cheerful><li>Come and see what I caught!</li></cheerful>
       <gloomy><li>Caught it. Now I have to keep it alive.</li></gloomy>
       <cold><li>Done. One more species for the colony.</li></cold>
     </thanks>
     <expired>
-      <plain><li>It's gone over the hills. Maybe it'll come back this way.</li></plain>
-      <blunt><li>It got away. Next time, let me go when I ask.</li></blunt>
-      <gloomy><li>Gone. I knew it would be.</li></gloomy>
+      <plain><li>By now it's probably gone over the hills. Maybe it'll come back this way.</li></plain>
+      <blunt><li>It'll get away now. Next time, let me go when I ask.</li></blunt>
+      <gloomy><li>It'll be gone by morning. I knew it would be.</li></gloomy>
     </expired>
     <reminder>
-      <plain><li>The {SUBJECT} is still out there. It won't be for long.</li></plain>
+      <plain><li>I saw tracks by the water this morning. That {SUBJECT} won't hang about forever.</li></plain>
       <warm><li>Whenever someone can spare me for an afternoon. The {SUBJECT} hasn't left yet.</li></warm>
     </reminder>
   </ColonyCouncil.WishDef>
@@ -96,8 +96,8 @@
         <li>[lowmood] I need something that's on my side. A Pokémon of my own would be a start.</li>
       </plain>
       <warm><li>That {SUBJECT} needs someone to look after it properly. I'd like to be the one.</li></warm>
-      <blunt><li>Give me the {SUBJECT}. I'll make something of it.</li></blunt>
-      <cheerful><li>A Pokémon of my very own, the {SUBJECT}. We'll be the best team in the colony!</li></cheerful>
+      <blunt><li>The {SUBJECT} has no trainer. Now it has me.</li></blunt>
+      <cheerful><li>I've already worked out our first trick, the {SUBJECT} and me! It just has to agree.</li></cheerful>
       <gloomy><li>Even the Pokémon have someone. I'd settle for the {SUBJECT}, if it would have me.</li></gloomy>
       <cold><li>A Pokémon without a trainer gains nothing in a fight. Assign the {SUBJECT} to me.</li></cold>
     </request>
@@ -105,7 +105,7 @@
       <plain><li>It looks at me before it does anything now. I think that means something.</li></plain>
       <warm><li>We'll look after each other, the two of us.</li></warm>
       <cheerful><li>Watch this! Well, it'll do it next time.</li></cheerful>
-      <cold><li>Training begins at dawn.</li></cold>
+      <cold><li>Training starts tomorrow. It will learn quickly, or not at all.</li></cold>
     </thanks>
     <expired>
       <plain><li>Never mind. Maybe a Pokémon has to pick its trainer, not the other way round.</li></plain>

@@ -30,20 +30,20 @@
       <plain>
         <li>Nobody gives {OTHER_nameDef} orders. Let me. I'll take {OTHER_objective} out every morning.</li>
         <li>I've been feeding {OTHER_nameDef} scraps for a week. I think we've already decided, the two of us.</li>
-        <li>[winter] Long cold days with nothing to do but chores. I'd like an animal to teach, and {OTHER_nameDef} needs somebody.</li>
+        <li>[winter] Long cold days with nothing to do but chores. Give me an animal to teach. {OTHER_nameDef} needs somebody.</li>
         <li>[lowmood] I'd like something that's glad to see me. {OTHER_nameDef} would do.</li>
       </plain>
       <warm><li>{OTHER_nameDef} follows whoever has food. I'd like to be the one {OTHER_pronoun} follows for no reason at all.</li></warm>
       <blunt><li>Make me {OTHER_nameDef}'s master. Nobody else is using {OTHER_objective}.</li></blunt>
       <cheerful><li>{OTHER_nameDef} and me, a team! I'll teach {OTHER_objective} everything.</li></cheerful>
-      <gloomy><li>Everyone here has someone. I'd settle for {OTHER_nameDef}.</li></gloomy>
+      <gloomy><li>{OTHER_nameDef} doesn't belong to anyone. Neither do I, really.</li></gloomy>
       <cold><li>An animal without a master learns nothing. Assign {OTHER_nameDef} to me and I'll train {OTHER_objective} properly.</li></cold>
     </request>
     <thanks>
       <plain><li>{OTHER_nameDef} came when I called. Well, {OTHER_pronoun} came eventually.</li></plain>
       <warm><li>{OTHER_nameDef} slept by my door last night. I think {OTHER_pronoun} knows.</li></warm>
       <cheerful><li>Mine. Well, ours. Mostly mine!</li></cheerful>
-      <cold><li>Good. Training starts tomorrow.</li></cold>
+      <cold><li>It will learn to obey me. They always do.</li></cold>
     </thanks>
     <expired>
       <plain><li>Never mind. {OTHER_nameDef} seems happy enough with the herd.</li></plain>
@@ -72,7 +72,7 @@
     <fulfilledWhen>A barn (a room for animals) with beds or sleeping spots for {TARGET} of the herd. Plan one from the barn layout.</fulfilledWhen>
     <request>
       <plain>
-        <li>The herd sleeps in the rain. A roof, some straw and a door that shuts. That's all a barn is.</li>
+        <li>The herd sleeps in the rain. A roof, some straw and a door that shuts would do.</li>
         <li>I counted the herd last night by lantern, standing in the mud. I'd like to count them dry next time.</li>
         <li>[winter] The animals huddle up against the wall in the snow. We lose condition on every one of them like that.</li>
         <li>[rain] Listen to it. The herd's out in that, all night.</li>
@@ -80,9 +80,9 @@
       </plain>
       <warm><li>They work for us all day. The least we can do is keep the rain off them at night.</li></warm>
       <blunt><li>Build the herd a barn before we lose one to the cold.</li></blunt>
-      <cheerful><li>A barn, with straw, and stalls, and a name over every one!</li></cheerful>
+      <cheerful><li>I'll paint a name over every stall in the barn! The animals won't read them, but I will.</li></cheerful>
       <gloomy><li>One cold night and we'll be burying one of them. Then we'll build the barn.</li></gloomy>
-      <cold><li>Livestock kept in the open loses weight and falls sick. A barn is the cheaper choice.</li></cold>
+      <cold><li>Livestock kept in the open loses weight and falls sick. I keep count of which ones.</li></cold>
     </request>
     <thanks>
       <plain><li>The whole herd under one roof. I stood in the doorway and listened to them settle.</li></plain>

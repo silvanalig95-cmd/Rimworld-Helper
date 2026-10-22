@@ -37,28 +37,28 @@
     <fulfilledWhen>The colony builds {THING}, or any other latrine or toilet.</fulfilledWhen>
     <request>
       <plain>
-        <li>I'd like {THING} somewhere I don't have to cross half the map to reach.</li>
-        <li>[trigger:outside] I had to go behind the woodpile again this morning. Could we build {THING}?</li>
-        <li>[winter] Squatting in the snow is a miserable way to start the day. {THING}, please.</li>
-        <li>[night] Going out alone in the dark to relieve myself is how people get eaten. {THING} near the beds would do.</li>
+        <li>Could we have {THING} closer in? I don't always make it across the yard in time.</li>
+        <li>[trigger:outside] I had to go behind the woodpile again. Could we build {THING}?</li>
+        <li>[winter] Squatting in the snow is a miserable way to start the day. Build {THING}, please.</li>
+        <li>[night] Going out alone in the dark to relieve myself is how people get eaten. Put {THING} near the beds.</li>
         <li>[large] There are too many of us for what we have. The line in the morning goes out the door.</li>
         <li>[rain] Came back soaked to the knees from a trip that should have taken a minute.</li>
         <li>[old] My knees don't like squatting anymore. A seat with walls around it would be a mercy.</li>
       </plain>
       <warm>
-        <li>It's not a glamorous thing to ask for, I know. {THING} would make everyone's mornings easier.</li>
+        <li>It's not a glamorous thing to ask for, I know. But {THING} would make everyone's mornings easier.</li>
       </warm>
       <blunt>
         <li>Build {THING}. I'm done with the bushes.</li>
       </blunt>
       <cheerful>
-        <li>Picture it: {THING}, with walls and a door. I'd even take my turn cleaning it.</li>
+        <li>I'd take my turn cleaning {THING} gladly, if only we had one with walls and a door.</li>
       </cheerful>
       <gloomy>
         <li>One day something will bite me out there while I'm squatting. Then maybe we'll get {THING}.</li>
       </gloomy>
       <cold>
-        <li>Waste left in the open draws flies and spreads sickness. {THING} costs less than an outbreak.</li>
+        <li>Waste left in the open draws flies and spreads sickness. Building {THING} costs less than an outbreak.</li>
       </cold>
     </request>
     <thanks>
@@ -69,17 +69,17 @@
       <warm><li>Thank you. I didn't think anyone wanted to hear about it.</li></warm>
       <blunt><li>Good. About time.</li></blunt>
       <cheerful><li>It has a door and everything!</li></cheerful>
-      <gloomy><li>One less thing to dread in the morning.</li></gloomy>
+      <gloomy><li>One less thing to dread.</li></gloomy>
       <cold><li>Sanitation sorted. Fewer of us will get sick.</li></cold>
     </thanks>
     <expired>
       <plain><li>Back to the bushes, then.</li></plain>
-      <blunt><li>Fine. I'll keep using the woodpile.</li></blunt>
+      <blunt><li>Woodpile it is. Mind where you step.</li></blunt>
       <gloomy><li>We'll all keep going outside until somebody gets sick.</li></gloomy>
     </expired>
     <reminder>
       <plain>
-        <li>Still going behind the woodpile. Still hoping for {THING}.</li>
+        <li>Another trip behind the woodpile today. I'm still hoping for {THING}.</li>
         <li>[promised] You said we'd get {THING}. I've been counting the days, and the trips.</li>
       </plain>
       <blunt><li>The {THINGBARE}. You remember.</li></blunt>
@@ -116,11 +116,11 @@
         <li>[work:Growing] I come in from the fields with half the field on me, and there's nowhere to wash it off.</li>
         <li>[child] I'm all sticky and there's nowhere to wash.</li>
       </plain>
-      <warm><li>{THING} would do for now. I'll fill it myself if I have to.</li></warm>
+      <warm><li>Even {THING} would do. I'll fill it myself if I have to.</li></warm>
       <blunt><li>I stink. Give me {THING}.</li></blunt>
       <cheerful><li>A tub of water is all I'm asking for. I'll even share it.</li></cheerful>
       <gloomy><li>I've started to smell like the midden. Maybe that's just who I am now.</li></gloomy>
-      <cold><li>Filth breeds disease, and {THING} is cheap.</li></cold>
+      <cold><li>Filth breeds disease, and I don't intend to die of something that stupid. Get {THING}.</li></cold>
     </request>
     <thanks>
       <plain><li>I scrubbed until the water went gray. Thank you.</li></plain>
@@ -173,11 +173,11 @@
         <li>[winter] Washing in cold water in winter is how people catch their death. We know how to heat it now.</li>
         <li>A boiler and {THING}. Then a bath would actually be a bath.</li>
       </plain>
-      <warm><li>Hot water would make the mornings kinder, for all of us.</li></warm>
+      <warm><li>Hot water would make the mornings kinder. People might even smile before breakfast.</li></warm>
       <blunt><li>Cold water again. Heat it.</li></blunt>
-      <cheerful><li>Hot water, with steam coming off it! Imagine.</li></cheerful>
+      <cheerful><li>Hot water, with steam coming off it! I'd stay in until I wrinkled.</li></cheerful>
       <gloomy><li>My teeth are still chattering from this morning's wash.</li></gloomy>
-      <cold><li>A cold wash puts people off washing. Heated water pays for itself.</li></cold>
+      <cold><li>People skip washing when the water's cold. I've noticed who.</li></cold>
     </request>
     <thanks>
       <plain><li>The water came out steaming this morning. Thank you.</li></plain>
@@ -185,14 +185,14 @@
       <blunt><li>Good. Hot.</li></blunt>
       <cheerful><li>It steams! I stayed in until somebody knocked.</li></cheerful>
       <gloomy><li>Warm, for once.</li></gloomy>
-      <cold><li>Good. Worth the wood.</li></cold>
+      <cold><li>Worth the fuel.</li></cold>
     </thanks>
     <expired>
-      <plain><li>Cold water it is.</li></plain>
+      <plain><li>Quick washes, then. Very quick.</li></plain>
       <blunt><li>Fine. I'll freeze.</li></blunt>
     </expired>
     <reminder>
-      <plain><li>The water's still cold.</li></plain>
+      <plain><li>Another cold wash this morning. I'm still waiting on that boiler.</li></plain>
     </reminder>
   </ColonyCouncil.WishDef>
 

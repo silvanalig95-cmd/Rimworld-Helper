@@ -42,34 +42,34 @@
         <li>[night] I can't do the long workings in my room. The others hear it through the wall, and it frightens them.</li>
         <li>[trait:InnerFire] There are scorch marks on the storeroom floor again. A proper circle would keep the fire where it belongs.</li>
         <li>[trait:Druid|trait:TM_Shaman] I can feel the land from anywhere. It's the rest of the work that needs a proper circle.</li>
-        <li>[trait:Necromancer] Nobody wants my work done near the kitchen, and I don't blame them. Give it a place of its own.</li>
+        <li>[trait:Necromancer] The cook won't have my work anywhere near the kitchen, and I can't say I blame them. Give it a place of its own.</li>
       </plain>
       <warm>
-        <li>It wouldn't only be for me. With {THING}, I could do a great deal more for everyone here.</li>
+        <li>With {THING}, I could do so much more for the people here. Please.</li>
       </warm>
       <blunt>
         <li>I can't do serious work without {THING}. Build one.</li>
       </blunt>
       <cheerful>
-        <li>Imagine it: {THING}, right here! I've already picked out the spot.</li>
+        <li>I've already picked out the spot for {THING}! Right where the light falls in the morning.</li>
       </cheerful>
       <gloomy>
         <li>Without {THING}, half of what I know is no use to anyone.</li>
       </gloomy>
       <cold>
-        <li>With {THING}, I'd be worth twice what I am to this colony. It's a sound use of the stone.</li>
+        <li>With {THING}, I'd be worth twice what I am to this colony. Think about what that's worth to you.</li>
       </cold>
     </request>
     <thanks>
       <plain><li>It's marked out and ready. I'll start with something small.</li></plain>
-      <warm><li>Thank you. The first working there is for all of us.</li></warm>
-      <cheerful><li>It hums a little when I stand in the middle of it! That's a good sign.</li></cheerful>
+      <warm><li>The first working I do there is for all of you.</li></warm>
+      <cheerful><li>It hums when I stand in the middle of it! That's a good sign.</li></cheerful>
       <gloomy><li>Now there's no excuse when it goes wrong.</li></gloomy>
-      <cold><li>Good. Now I can do real work.</li></cold>
+      <cold><li>Now I can do real work.</li></cold>
     </thanks>
     <expired>
       <plain><li>The dinner table it is, then.</li></plain>
-      <blunt><li>Fine. Don't complain about the scorch marks.</li></blunt>
+      <blunt><li>Don't complain about the scorch marks, then.</li></blunt>
       <gloomy><li>Magic was never going to come first here.</li></gloomy>
     </expired>
     <reminder>

@@ -16,7 +16,7 @@
   <CC_Season_SummerAhead>the summer ahead</CC_Season_SummerAhead>
   <CC_Season_Hot>the hot months</CC_Season_Hot>
   <CC_Progress_SeasonClothes>Comfortable to {0} now, {1} wanted</CC_Progress_SeasonClothes>
-  <CC_Promise_SeasonClothes>{FOR_nameDef} is fetching {ITEM} from the stores to put on.</CC_Promise_SeasonClothes>
+  <CC_Promise_SeasonClothes>{FOR_nameDef} goes to the stores to put on the {ITEM}.</CC_Promise_SeasonClothes>
 
   <!-- ===================== A sauna (Wishes/WishWorkers_Seasons.cs) ===================== -->
 
@@ -36,8 +36,8 @@
 
   <CC_Reason_Favourite>{PAWN_nameDef} has always loved {KINDS}, and they live on this land.</CC_Reason_Favourite>
   <CC_Reason_FavouriteHere>{PAWN_nameDef} has always loved {KINDS}, and there's one out on the land right now.</CC_Reason_FavouriteHere>
-  <CC_PW_Reason_Favourite>{KIND} has always been {PAWN_nameDef}'s favourite Pokémon, and they live round here.</CC_PW_Reason_Favourite>
-  <CC_PW_Reason_FavouriteHere>{KIND} has always been {PAWN_nameDef}'s favourite Pokémon, and there's a wild one out there now.</CC_PW_Reason_FavouriteHere>
+  <CC_PW_Reason_Favourite>{KIND} has always been {PAWN_nameDef}'s favorite Pokémon, and they live around here.</CC_PW_Reason_Favourite>
+  <CC_PW_Reason_FavouriteHere>{KIND} has always been {PAWN_nameDef}'s favorite Pokémon, and there's a wild one out there now.</CC_PW_Reason_FavouriteHere>
   <CC_Promise_FavouriteTame>The council marks {OTHER_definite} for taming, for {FOR_nameDef}'s sake.</CC_Promise_FavouriteTame>
   <CC_SelfHelp_Favourite>{PAWN_nameDef} picked out {OTHER_definite} and marked it for taming. If {PAWN_pronoun} isn't allowed to handle animals, someone else will have to.</CC_SelfHelp_Favourite>
   <CC_Favourite_Bonded>{ANIMAL_nameDef} has bonded with {PAWN_nameDef}: the very kind {PAWN_pronoun} always loved, and it chose {PAWN_objective}.</CC_Favourite_Bonded>

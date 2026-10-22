@@ -43,7 +43,7 @@
         <li>Clean floors. I walked through the whole place twice just to look at them.</li>
       </plain>
       <cold>
-        <li>Acceptable. Maintain it.</li>
+        <li>Acceptable. I'll be checking the corners.</li>
       </cold>
     </thanks>
     <expired>
@@ -91,7 +91,7 @@
         <li>Some sad songs would suit this place. I'd need {THING} for that.</li>
       </gloomy>
       <cold>
-        <li>Music measurably improves morale. Building {THING} would be an efficient investment.</li>
+        <li>I play well, and people are calmer when they're listening. Build {THING}.</li>
       </cold>
     </request>
     <thanks>
@@ -128,7 +128,7 @@
     </triggers>
     <request>
       <plain>
-        <li>I'm the one standing in front when they come. I'd like something between me and their weapons.</li>
+        <li>I'm the one standing in front when they come. Put something between me and their weapons.</li>
         <li>[trigger:raid] That shot went straight through my shirt. An inch to the left and you'd be burying me.</li>
         <li>[lowtech] Leather, plate, anything. I'm tired of fighting in a tunic.</li>
       </plain>
@@ -145,7 +145,7 @@
         <li>One of these raids is going to kill me. Armor would make it a later one.</li>
       </gloomy>
       <cold>
-        <li>My survival rate in combat would improve substantially with armor.</li>
+        <li>I've worked out my odds in the next raid. Armor improves them a great deal.</li>
       </cold>
     </request>
     <thanks>
@@ -153,7 +153,7 @@
         <li>It's heavy, but it fits. I'll get used to the weight.</li>
       </plain>
       <blunt>
-        <li>Good. Now point me at the next raider.</li>
+        <li>Now point me at the next raider.</li>
       </blunt>
     </thanks>
     <expired>

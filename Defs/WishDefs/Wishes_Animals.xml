@@ -33,7 +33,7 @@
         <li>{OTHER_nameDef} sleeps with me. Build a bed or I'll share mine.</li>
       </blunt>
       <cheerful>
-        <li>A little bed for {OTHER_nameDef}, right next to mine! With a blanket, and maybe a tiny pillow.</li>
+        <li>A bed for {OTHER_nameDef}, right next to mine! With a blanket, and maybe a tiny pillow.</li>
       </cheerful>
       <gloomy>
         <li>{OTHER_nameDef} has never once let me down. I'd sleep better with {OTHER_objective} in the room.</li>
@@ -87,12 +87,12 @@
         <li>{OTHER_nameDef} is lying in the straw, breathing shallow. I don't think {OTHER_pronoun} can wait much longer.</li>
       </gloomy>
       <cold>
-        <li>{OTHER_nameDef} took months to train. Losing {OTHER_objective} to an untended wound would be a waste.</li>
+        <li>Training {OTHER_nameDef} took time. Losing {OTHER_objective} to an untended wound would waste all of it.</li>
       </cold>
     </request>
     <thanks>
       <plain><li>{OTHER_nameDef} is up and limping around like nothing happened. Thank you.</li></plain>
-      <warm><li>{OTHER_nameDef} licked my face. That's from both of us.</li></warm>
+      <warm><li>{OTHER_nameDef} pushed {OTHER_possessive} head into my hand. That's from both of us.</li></warm>
       <gloomy><li>I'd already picked out a spot to bury the poor thing. I'm glad I didn't need it.</li></gloomy>
     </thanks>
     <expired>
