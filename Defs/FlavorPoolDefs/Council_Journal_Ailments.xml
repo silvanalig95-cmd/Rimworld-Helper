@@ -15,7 +15,7 @@
         <li>Feeling poorly today. Went to bed early.</li>
         <li>Not myself today. Did half the work and felt twice as tired.</li>
         <li>Under the weather. I'll be fine in a few days, but today was long.</li>
-        <li>[ail:HeadCold] Woke up with a stuffed nose and a throat like sandpaper. Half the dining room is sniffling.</li>
+        <li>[ail:HeadCold] Woke up with a stuffed nose and a throat like sandpaper.</li>
         <li>[ail:HeadCold] Sneezed into the soup by accident. I made sure it was my own bowl.</li>
         <li>[ail:HeadCold,child] I have a cold. My nose is red from wiping it.</li>
         <li>[ail:StomachBug] Spent the night running to the latrine. I can't look at food.</li>
@@ -43,7 +43,7 @@
         <li>[ail:RimrotCough] There's a cough in my chest that smells like the walls. That room is damp.</li>
         <li>[ail:AshLung] Coughed up gray all evening after the fire.</li>
         <li>[ail:Insomnia] Lay awake till the birds started. Counted the roof beams twice.</li>
-        <li>[ail:Insomnia] Third night running I've heard the night watch change. My eyes feel like sand.</li>
+        <li>[ail:Insomnia] Third night running I've watched the window go from black to gray. My eyes feel like sand.</li>
         <li>[ail:Migraine] A headache like a nail behind my left eye. Spent the afternoon in the dark with a wet cloth.</li>
         <li>[ail:Migraine] Skipped lunch and paid for it. The light hurt so much I worked with my eyes half shut.</li>
         <li>[ail:Heartburn] Ate too well tonight and my chest is burning for it. Worth it, mostly.</li>
@@ -60,11 +60,11 @@
         <li>[ail:Lice] Scratched my head all through dinner until somebody said the word: lice.</li>
         <li>[ail:Lice,child] I have lice, so they cut my hair really short.</li>
         <li>[ail:AthletesFoot] Between my toes is raw and itchy. Too many days in wet boots.</li>
-        <li>[ail:Hiccups] One drink and I got the hiccups. Everyone had a cure. None of them worked.</li>
+        <li>[ail:Hiccups] One drink and the hiccups started. Held my breath, drank from the wrong side of the cup, had someone shout at me. Still hiccuping.</li>
       </plain>
-      <warm><li>Feeling rough, but someone left a cup of something hot by my bed.</li></warm>
+      <warm><li>Feeling rough. A cup of hot broth turned up by my bed, and I don't know who left it.</li></warm>
       <blunt><li>Sick. Working anyway.</li></blunt>
-      <cheerful><li>Laid low by something small. Back on my feet in a day or two.</li></cheerful>
+      <cheerful><li>Laid low by a bug. Back on my feet in a day or two.</li></cheerful>
       <gloomy><li>Of course I'm ill. Why wouldn't I be.</li></gloomy>
       <cold><li>Minor illness. My work will be slower for a few days.</li></cold>
     </lines>
@@ -79,13 +79,13 @@
         <li>[ail:Tetanus] My jaw is stiff and won't open all the way. I remember that wound. I should have had it seen to.</li>
         <li>[ail:Pneumonia] Every breath hurts. They've propped me up on pillows so I can get the air in.</li>
         <li>[ail:Tuberculosis] Coughed blood into my hand this morning. I knew before anyone told me.</li>
-        <li>[ail:Tuberculosis] They've put me in a room by myself. I understand why. It's still lonely.</li>
+        <li>[ail:Tuberculosis] They'll want me in a room by myself. I understand why. It'll still be lonely.</li>
         <li>[ail:Typhus] Burning up, with a headache like a hammer. They say it was the lice.</li>
         <li>[ail:Meningitis] The light hurts and my head is splitting. I can barely hold the pen.</li>
         <li>[ail:Scurvy] My gums bleed when I eat. They say it's the food, or what's missing from it.</li>
         <li>[ail:Glassblood] There's a glitter in my veins. I keep holding my wrists up to the light.</li>
         <li>[ail:Cholera] I can't stop drinking and I can't keep any of it in. They say it was the water.</li>
-        <li>[ail:Cholera] Someone sits by the bed with a cup all night. Sip, wait, sip.</li>
+        <li>[ail:Cholera] Weak as water. I had to crawl the last bit back to bed.</li>
         <li>[ail:Appendicitis] The pain moved from my middle to low on my right side. The doctor pressed there and I nearly hit the ceiling.</li>
         <li>[ail:Rabies] The animal that bit me was foaming at the mouth. They treat the bite every day now, and I watch the doctor's face each time.</li>
         <li>[ail:Measles,child] I have spots everywhere and I'm not allowed to see anyone.</li>
@@ -109,10 +109,10 @@
         <li>Feeling like myself again.</li>
         <li>Ate a full meal today and kept it down. Better.</li>
         <li>[serious] I'm through the worst of it. I still can't climb a slope without stopping, but I'm here.</li>
-        <li>[serious] The fever broke last night. I slept through till morning and woke up hungry.</li>
+        <li>[serious] Slept through till morning for the first time in days, and woke up hungry.</li>
         <li>[ail:Pneumonia] I can breathe again. I keep taking deep breaths just because I can.</li>
         <li>[ail:Tetanus] My jaw opens. I ate bread today. Real bread, chewed.</li>
-        <li>[ail:Tuberculosis] The cough is gone. Weeks of treatment, every single day. I owe the doctor more than I can say.</li>
+        <li>[ail:Tuberculosis] The cough is gone. Weeks of treatment, every single day, and the doctor never missed one.</li>
         <li>[ail:Typhus] The rash has faded and I can think straight. I don't remember most of last week.</li>
         <li>[ail:Meningitis] I can look at the sun again without wincing. My legs are still weak.</li>
         <li>[ail:Scurvy] My gums have stopped bleeding. I never thought I'd be so glad to see a vegetable.</li>
@@ -131,10 +131,10 @@
         <li>[ail:Insomnia] Slept right through the night, and woke up not knowing where I was.</li>
         <li>[ail:Lice] The lice are gone. I still scratch out of habit.</li>
       </plain>
-      <warm><li>Back on my feet. Thank you to everyone who brought me soup.</li></warm>
+      <warm><li>Back on my feet. I have a lot of soup bowls to return.</li></warm>
       <blunt><li>Better. Back to work.</li></blunt>
       <cheerful><li>Healthy again! It's amazing what a few good nights' sleep can do.</li></cheerful>
-      <gloomy><li>Better, for now. Until the next thing.</li></gloomy>
+      <gloomy><li>Better. Until the next thing.</li></gloomy>
       <cold><li>Recovered. I lost some days of work.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -144,12 +144,12 @@
     <lines>
       <plain>
         <li>Treated {OTHER_nameDef} today. It should pass.</li>
-        <li>Saw to {OTHER_nameDef} this afternoon. Told {OTHER_objective} to rest, which {OTHER_pronoun} won't.</li>
+        <li>Saw to {OTHER_nameDef}. Told {OTHER_objective} to rest, which {OTHER_pronoun} won't.</li>
         <li>[serious] {OTHER_nameDef} is seriously ill. I've done what I can for today. Tomorrow I'll do it again.</li>
         <li>[serious] Sat up with {OTHER_nameDef} most of the night. The medicine is going faster than I'd like.</li>
         <li>[ail:Tetanus] Cleaned out {OTHER_nameDef}'s old wound again and kept the room dark. The spasms are hard to watch.</li>
         <li>[ail:Tuberculosis] Started {OTHER_nameDef} on the long course. Every day for weeks, and no skipping.</li>
-        <li>[ail:Meningitis] Tended {OTHER_nameDef} twice since noon, and I'll go again at dark. The first day decides it.</li>
+        <li>[ail:Meningitis] Tended {OTHER_nameDef}, and I'll go again at dark, and again after that. The first day decides it.</li>
         <li>[ail:Typhus] Burned {OTHER_nameDef}'s bedding and cut {OTHER_possessive} hair short. The lice first, then the fever.</li>
         <li>[ail:Pneumonia] Propped {OTHER_nameDef} up with every pillow we have. {OTHER_nameDef}'s breathing is wet and shallow.</li>
         <li>[ail:Toothache] Saw to a bad tooth for {OTHER_nameDef}. I wasn't thanked at the time.</li>
@@ -163,8 +163,8 @@
         <li>[ail:Shingles] Dressed the blisters round {OTHER_nameDef}'s ribs. {OTHER_nameDef} winced at every touch.</li>
         <li>[ail:HiveFever] Opened the swelling on {OTHER_nameDef}'s sting and drained it. The fever's high.</li>
         <li>[ail:Splinter] Picked a splinter out of {OTHER_nameDef}'s palm. It was longer than either of us expected.</li>
-        <li>[ail:Lice] Went through {OTHER_nameDef}'s hair with a fine comb for an hour. Then I boiled the comb.</li>
-        <li>[ail:Migraine] Drew the curtains for {OTHER_nameDef} and asked everyone to keep their voices down.</li>
+        <li>[ail:Lice] Went through {OTHER_nameDef}'s hair with a fine comb, strand by strand. Then I boiled the comb.</li>
+        <li>[ail:Migraine] Drew the curtains for {OTHER_nameDef} and asked the others to keep their voices down.</li>
       </plain>
       <warm><li>Looked after {OTHER_nameDef} today. I like being useful.</li></warm>
       <blunt><li>Tended {OTHER_nameDef}. Next.</li></blunt>
@@ -179,7 +179,7 @@
     <lines>
       <plain>
         <li>{OTHER_nameDef} is going to live. I sat down on the step outside and didn't get up for a while.</li>
-        <li>{OTHER_nameDef} walked to the dining room today. Some nights I wasn't sure {OTHER_pronoun} would.</li>
+        <li>{OTHER_nameDef} is sitting up and complaining about the food. Some nights I wasn't sure {OTHER_pronoun} ever would again.</li>
         <li>[ail:Rabies] {OTHER_nameDef}'s bite has healed and the danger has passed. Every day for weeks, and it worked.</li>
         <li>[ail:Cholera] {OTHER_nameDef} asked for real food today. I had to go outside for a minute.</li>
       </plain>
@@ -195,14 +195,14 @@
     <defName>Council_Journal_Ail_DoctorLost</defName>
     <lines>
       <plain>
-        <li>Lost {OTHER_nameDef} today. I keep going over what I could have done.</li>
+        <li>Lost {OTHER_nameDef}. I've gone over every dose and every hour, and I can't find where it went wrong.</li>
         <li>I did everything I knew for {OTHER_nameDef}. It wasn't enough.</li>
         <li>[ail:Rabies] We were too late with {OTHER_nameDef}. Once the fever came, all I could do was sit with {OTHER_objective}.</li>
       </plain>
       <warm><li>I held {OTHER_nameDef}'s hand at the end. I hope that counted for something.</li></warm>
       <blunt><li>{OTHER_nameDef} died. I couldn't stop it.</li></blunt>
       <cheerful><li>I'll remember {OTHER_nameDef} laughing at the table, not the last days.</li></cheerful>
-      <gloomy><li>{OTHER_nameDef} is gone. Sometimes medicine isn't enough.</li></gloomy>
+      <gloomy><li>{OTHER_nameDef} is gone. I washed the cups and put the medicine back on the shelf.</li></gloomy>
       <cold><li>{OTHER_nameDef} died of the illness. I'll need better medicine for the next one.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>

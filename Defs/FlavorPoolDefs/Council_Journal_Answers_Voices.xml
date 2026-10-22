@@ -15,8 +15,8 @@
         <li>[trait:Ascetic] They gave me what I asked for. I'll try not to ask for more.</li>
         <li>[trait:Jealous] Got mine at last. Now the others can watch me enjoy it for a change.</li>
         <li>[old] I've asked for things all my life and heard no more often than yes. Today was a yes.</li>
-        <li>[teen] They actually listened to me. I didn't think they took me seriously.</li>
-        <li>[hurt] Laid up and sore, and they still went and did it. I didn't expect that.</li>
+        <li>[teen] They actually listened to me. Like I was one of the grown-ups.</li>
+        <li>[hurt] Laid up and sore, and they went and did it anyway. I didn't expect that.</li>
         <li>[newcomer] I've barely been here, and they did what I asked anyway. I'll remember that.</li>
       </plain>
     </lines>
@@ -55,7 +55,7 @@
         <li>[trait:Wimp] I hid for most of it. I'm not proud. I'm alive.</li>
         <li>[trait:Tough] Took a hit and kept going. The others say I should rest. I'll rest tomorrow.</li>
         <li>[trait:Nervous] My hands haven't stopped shaking since it ended.</li>
-        <li>[old] I've seen too many of these. They don't get easier. They just get familiar.</li>
+        <li>[old] I've seen too many of these. My knees don't care for the running anymore.</li>
         <li>[lowtech] Arrows still stuck in the gate. I pulled them out one by one and kept the good ones.</li>
         <li>[!lowtech] The walls are pocked with bullet holes. I counted them on the way to supper.</li>
         <li>[newcomer] My first raid here. The others moved like they'd done it before, and I suppose they have.</li>
