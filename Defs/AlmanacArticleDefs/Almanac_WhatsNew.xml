@@ -31,6 +31,19 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.10.2</version>
+        <date>27 October 2026, later</date>
+        <title>The people in the letters</title>
+        <points>
+          <li>The people a world event's letter speaks of are there. The rider waits by the gate until you answer and takes what you send; the family asking for shelter waits with their dog or goat, and the ones you take in are the ones you met. Only people at peace with the colony come, only when it's safe, and they go home if the weather turns on them.</li>
+          <li>Guests given a night stay it, by the wall or in a corner of the dining room on a bitter night, and go on at first light. Drovers graze their herd on the far meadow overnight, and mourners, a clan's band or a lord's progress pass along the road.</li>
+          <li>More of what answers only told now happens: a night watch on the walls, a shearing day that shears the herd, a grieving colonist sitting at the grave, the long road told by the fire, a family supper at one table, and visitors shown round, taught from and sung with.</li>
+          <li>What answers name now exists: the apology carving and a repaid debt's gift are real sculptures signed by their maker, guests who cut wood leave real stumps and logs, the children's trees are saplings in the ground, and a staked-out room appears as building plans.</li>
+          <li>A visitor's dog only comes up when there is one, the traveling healer only for an old injury, and the animal in decline only when it's old or ill. A few event lines that could never show now can.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.10.1</version>
         <date>27 October 2026</date>
         <title>Goods carried by hand</title>

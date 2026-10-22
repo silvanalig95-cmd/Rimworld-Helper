@@ -1221,6 +1221,47 @@ Rimfolk's events move across the colony's edge is carried by people on the map (
   waiting is settled when more come), each with up to three people, a pack animal and the things it brings in a
   `ThingOwner`; ended trips are dropped once their people are gone, two days at most.
 
+### Visitors on the map
+
+The people a letter speaks of, there in person (Visitors/), under the same setting as the couriers. Three generic
+effects, wired from defs: `VisitEffect_AtGate` (in a beat's or an event's effects, which run just before the letter:
+the rider, driver, envoy or family walks in with it and waits at the gate), `VisitEffect_Stay` (in an answer: those
+waiting stay N nights, by the gate or moved to the far ground or the road) and `VisitEffect_Come` (a group comes in
+its hours: mourners or a band passing to the far edge, a herd grazing the far meadow or drinking at the water for a
+night, a lord's retinue staying by the gate).
+
+- **One record, one group.** A `VisitorTrip` (kept by `VisitorTracker`, a game component checked every 250 ticks at
+  tick 131 of the cycle, only while there are visits) is made when the effect runs; an AtGate group sets out at once
+  if the map is safe and has room, else the letter alone tells it. The people (the people's ordinary member, or a
+  caravan guard for an armed group; dressed for the weather; a family related and sharing a name; a robbed merchant
+  stripped to the shirt) and animals (a pack beast for peoples of the old ways, the family's dog or goat, a herd of
+  farm beasts that suit the weather, likelier those wild on this land) walk in as one `LordJob_RimfolkVisit`: travel
+  to the spot, keep close to it (`Rimfolk_VisitWait` for people, `Rimfolk_VisitBeasts` for animals: the game's own
+  `JobGiver_GetRest` within the flag radius, then wander near; never its food search, so nobody eats the colony's
+  meals or crops: `Visitors.Feed` has the hungry eat from their own packs, or keeps them fed out of sight), then walk
+  off, by the nearest edge or on to the far side (`VisitorMath.Opposite`). Hurt or turned hostile: they leave defending themselves. Danger: they leave at a jog.
+  Three and a half days at the spot, or the record gone: they leave whatever happens.
+- **The letter.** The effect keeps the letter's context (not saved) and finds its letter by it on the next frame, so
+  an answer given at once is still theirs; after a reload, by the letter whose X is one of them. The first of them is
+  the event's X when it has none, so `Couriers.TakeFor`, `WorldEffect_Silver` and `DilemmaEffect_Spawn` hand things
+  over in person and an answer's errand (`DilemmaEffect_CarryOut` without `to` Gate) carries what the colony sends to
+  them; where a cartload should bring porters, the rider is not X (`stranger` false) and the gate courier still comes.
+  If they go before the answer, the letter's X is cleared and it all goes the couriers' way. `WorldEffect_Join` takes
+  in the family waiting for the same letter (`Visitors.TakeIn`), with their animal, instead of making new people.
+- **When they go** (`VisitorMath`, pure and tested): someone at the gate half an hour after the answer, or once an
+  errand bringing them something has reached them (eight hours at most), or after two and a half days whatever
+  happens; with nothing asked, after their hours. Guests at first light after their nights (`HoursToDawn`, at most
+  three), by the gate if every one of them is safe in the temperature there with a margin for the night, else in a
+  corner of the colony's dining or rec room that is (`Visitors.IndoorsCell`, `Rimfolk_VisitIndoors`: they keep within
+  four cells of it), else they go on. Anyone hypothermic,
+  heatstruck, starving or malnourished: they all go, with a message. A held beat (`holdBeat`: "the retinue stayed the
+  night") waits until they've gone.
+- **Limits.** At most three groups on a map at once (`MaxHere`), six people and eight animals in a group, eight
+  records kept (`MaxTrips`; the oldest still waiting is dropped). Ended records go once their people are gone, a day at
+  most. What they were handed is cleared when they leave the map. Speech through `Speech.Say` (the pool
+  `Rimfolk_VisitorLines`, by moment and what they are); messages through `Notify` only for a group coming along the
+  road and for one the weather drove off.
+
 ## How the systems talk to each other
 
 Each of Rimfolk's systems was built to stand on its own, and many already read each other (feelings nudge wishes,
@@ -1971,6 +2012,7 @@ fights pass and the worn-out episode read from it. (A downed victim after a figh
 | 77 | A camp's phase, hunts and trees (only while a camp is there) | per camp member, prey and tree |
 | 89 | Missions: an accepted quest starts, a goal met is noticed (with a map) | per open mission |
 | 113 | The welcome letter (only until it's sent); answers playing out on the map (only while one waits or runs) | one check; per play-out |
+| 131 | Visitors on the map: each visit waiting to come or under way (only while there are any) | per visit: its hour, danger, the weather, its letter, its people |
 | 139 | Health stories: one tenth of the colonists (by ID), each once an hour (with convalescence or reputation on) | per colonist in the slice: limbs lost, bed rest, setbacks |
 | 167 | The colony news: what waits goes out (as the evening's digest, around six) | the waiting news |
 | 199 | The council window's memory: the day's trust sample, the dilemmas it watches | per colonist once a day |

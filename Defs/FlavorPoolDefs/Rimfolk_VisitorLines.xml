@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    What visitors say (Source/ColonyCouncil/Visitors/VisitorWords.cs), over their heads through Speech. Every line has
+    its moment: arrive (at the gate or their spot), wait (a while into waiting for the colony's answer), stay (given the
+    night), pass (going by on the road), leave. What they are: rider, runner, envoy, herald, driver, foreman, clerk,
+    family, families, travelers, merchant, exiles, captive, survivor, pilgrims, mourners, drovers, herders, hunters,
+    band, retinue, patrol, stargazer, singer, canvassers, surveyors, salvagers; animals (they brought some). Their people:
+    theirLowtech or theirHightech. The weather and the hour come from the speaker's moment (rain, snow, winter, night...).
+    Keep them short: only the first sentence shows as floating text.
+  -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_VisitorLines</defName>
+    <lines>
+      <plain>
+        <li>[arrive] I'll wait here for your answer.</li>
+        <li>[arrive,rider] I was told to wait for an answer.</li>
+        <li>[arrive,rider,theirLowtech] The elders want word back by tomorrow.</li>
+        <li>[arrive,runner] Ran the whole way. Can I sit?</li>
+        <li>[arrive,envoy] I'll stand here until your people have talked it over.</li>
+        <li>[arrive,herald] The lord's herald, at your service.</li>
+        <li>[arrive,driver,animals] Mind the beast. She bites strangers.</li>
+        <li>[arrive,driver,theirHightech] Ran it dry getting here. I'll wait.</li>
+        <li>[arrive,family] We can sleep anywhere. We've had practice.</li>
+        <li>[arrive,families] We won't keep you long. We're going home.</li>
+        <li>[arrive,travelers] The road's shut behind us and ahead.</li>
+        <li>[arrive,merchant] One boot. They left me one boot.</li>
+        <li>[arrive,exiles] We won't be any trouble.</li>
+        <li>[arrive,captive] Is this the colony they talk about?</li>
+        <li>[arrive,survivor] Water first, if you have it.</li>
+        <li>[arrive,pilgrims] Peace on this house.</li>
+        <li>[arrive,drovers] Keep your dogs in, would you?</li>
+        <li>[arrive,drovers,animals] Easy. Easy now. Stay together.</li>
+        <li>[arrive,herders] The animals smell water already.</li>
+        <li>[arrive,hunters] We'll keep clear of your fields.</li>
+        <li>[arrive,patrol] Seen anyone in uniform come through?</li>
+        <li>[arrive,stargazer] Clear sky tonight, if this holds.</li>
+        <li>[arrive,canvassers] I'm not with him.</li>
+        <li>[arrive,surveyors] Good level ground, this.</li>
+        <li>[arrive,salvagers] Plate steel, mostly. Some of it barely scorched.</li>
+        <li>[arrive,foreman] The river took everything but the stones.</li>
+        <li>[arrive,clerk] The assessment. I'm sorry about the amount.</li>
+        <li>[arrive,retinue] Make way for the lord's household.</li>
+        <li>[arrive,singer] I'll sing for my supper, if there's supper.</li>
+        <li>[arrive,winter] Cold enough to split stones out there.</li>
+        <li>[arrive,rain] Soaked through on the last mile.</li>
+        <li>[wait] Still waiting on an answer here.</li>
+        <li>[wait,night] I'll sleep by the wall, if nobody minds.</li>
+        <li>[wait,rider] They'll want to know what took so long.</li>
+        <li>[wait,family] The children can't sit still much longer.</li>
+        <li>[wait,envoy] I can wait as long as your council can talk.</li>
+        <li>[wait,pilgrims] We'll pray while we wait.</li>
+        <li>[wait,winter] Getting colder out here.</li>
+        <li>[stay] Thank you. We'll be gone at first light.</li>
+        <li>[stay,travelers] We'll pay you back when the road opens.</li>
+        <li>[stay,merchant] I won't forget this. I keep a ledger.</li>
+        <li>[stay,stargazer] I'll be up on the hill all night. Come and look.</li>
+        <li>[pass] Don't mind us. Just passing.</li>
+        <li>[pass,mourners] Slowly now. Keep the drum steady.</li>
+        <li>[pass,band] Keep walking. Don't stare at their walls.</li>
+        <li>[pass,retinue] Banners up. They're watching from the wall.</li>
+        <li>[pass,drovers] Keep them off the fields!</li>
+        <li>[pass,herders] Down to the water, all of you.</li>
+        <li>[leave] Time I was going.</li>
+        <li>[leave,theirLowtech] If I go now I'll be home by dark.</li>
+        <li>[leave,family] Come on. Pick up your things.</li>
+        <li>[leave,pilgrims] Stay well, and stay fed.</li>
+        <li>[leave,drovers] Up, all of you. Long road today.</li>
+        <li>[leave,herders] The well's done them good.</li>
+      </plain>
+      <warm>
+        <li>[arrive] Your people look well fed. That's a good sign.</li>
+        <li>[arrive,family] The little one's asleep. Is it all right if we sit?</li>
+        <li>[arrive,pilgrims] We pray for every house on this road.</li>
+        <li>[wait] Whatever you decide, thank you for hearing me out.</li>
+        <li>[stay] A roof for the night. You don't know what that's worth.</li>
+        <li>[stay,family] They haven't slept dry in a week.</li>
+        <li>[pass,mourners] Thank you for standing with us.</li>
+        <li>[leave] Keep well. All of you.</li>
+        <li>[leave,stargazer] Look up now and then. It's worth it.</li>
+      </warm>
+      <blunt>
+        <li>[arrive] Well? Who do I talk to?</li>
+        <li>[arrive,rider] Answer by tomorrow. That's all.</li>
+        <li>[wait] How long does a council take?</li>
+        <li>[stay] One night. We'll be gone before you're up.</li>
+        <li>[pass] Eyes front. Keep moving.</li>
+        <li>[leave] That's it, then. I'm going.</li>
+      </blunt>
+      <cheerful>
+        <li>[arrive] Found you on the first try!</li>
+        <li>[arrive,runner] I didn't stop once. Not once.</li>
+        <li>[wait] Nice view from your gate, this.</li>
+        <li>[stay] A fire and a wall to sleep against. Luxury.</li>
+        <li>[pass,drovers] Look at them go! Best herd on the road.</li>
+        <li>[leave] Off we go, then.</li>
+      </cheerful>
+      <gloomy>
+        <li>[arrive] Another gate, another answer.</li>
+        <li>[arrive,travelers] We'd have died out there. Simple as that.</li>
+        <li>[wait] I'll stand here till someone tells me otherwise.</li>
+        <li>[wait,night] Long night by a wall.</li>
+        <li>[pass,mourners] It's a long road to bury someone.</li>
+        <li>[leave] All that road again.</li>
+      </gloomy>
+      <cold>
+        <li>[arrive] I carry the message. Nothing more.</li>
+        <li>[arrive,clerk] Payment is expected in full.</li>
+        <li>[wait] I'll note how long this took.</li>
+        <li>[stay] One night. Then we're even.</li>
+        <li>[pass,band] We'll remember the way.</li>
+        <li>[leave] Done here.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

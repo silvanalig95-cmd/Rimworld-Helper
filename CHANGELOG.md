@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The people in the letters
+
+*27 October 2026, later, version 0.10.2*
+
+- The people a world event's letter speaks of are there. The rider waits by the gate until you answer and takes what you send; the family asking for shelter waits with their dog or goat, and the ones you take in are the ones you met. Only people at peace with the colony come, only when it's safe, and they go home if the weather turns on them.
+- Guests given a night stay it, by the wall or in a corner of the dining room on a bitter night, and go on at first light. Drovers graze their herd on the far meadow overnight, and mourners, a clan's band or a lord's progress pass along the road.
+- More of what answers only told now happens: a night watch on the walls, a shearing day that shears the herd, a grieving colonist sitting at the grave, the long road told by the fire, a family supper at one table, and visitors shown round, taught from and sung with.
+- What answers name now exists: the apology carving and a repaid debt's gift are real sculptures signed by their maker, guests who cut wood leave real stumps and logs, the children's trees are saplings in the ground, and a staked-out room appears as building plans.
+- A visitor's dog only comes up when there is one, the traveling healer only for an old injury, and the animal in decline only when it's old or ill. A few event lines that could never show now can.
+
 ## Goods carried by hand
 
 *27 October 2026, version 0.10.1*

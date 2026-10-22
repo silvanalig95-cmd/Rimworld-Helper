@@ -63,6 +63,9 @@
     <beats>
       <li>
         <key>herders</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>herders</what></li>
+        </effects>
         <day>2~5</day>
         <count>80~160</count>
         <wealthScaled>true</wealthScaled>
@@ -80,6 +83,7 @@
             <outcome>The herders bring their animals down at dusk, and stay out of the fields as they promised. Their thanks will reach {PLACE} before they do.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>8</amount></li>
+              <li Class="ColonyCouncil.VisitEffect_Come"><what>herders</what><count>2~3</count><armed>true</armed><livestock>5~8</livestock><spot>Water</spot><nights>1</nights><hourFrom>16</hourFrom><hourTo>21</hourTo><onward>true</onward></li>
             </effects>
             <flags><li>herders</li></flags>
             <help>1</help>
@@ -92,6 +96,7 @@
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Silver" />
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-2</amount></li>
+              <li Class="ColonyCouncil.VisitEffect_Come"><what>herders</what><count>2~3</count><armed>true</armed><livestock>5~8</livestock><spot>Water</spot><nights>1</nights><hourFrom>16</hourFrom><hourTo>21</hourTo><onward>true</onward></li>
             </effects>
             <ways><generosity>-1</generosity></ways>
           </li>
@@ -107,6 +112,9 @@
       </li>
       <li>
         <key>well</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>rider</what></li>
+        </effects>
         <day>5~10</day>
         <skill>Mining</skill>
         <minLevel>4</minLevel>
@@ -140,7 +148,7 @@
             <label>Pay for a well-digger ({COUNT} silver)</label>
             <outcome>A rider takes the silver from the gate in a locked box. A well-digger will be on the road to {PLACE} before the week is out.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the well-digger's silver</label><what>silver</what><tens>true</tens><steward>false</steward><to>Gate</to></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the well-digger's silver</label><what>silver</what><tens>true</tens><steward>false</steward></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>8</amount></li>
             </effects>
             <flags><li>well</li></flags>
@@ -156,6 +164,9 @@
       </li>
       <li>
         <key>food</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>rider</what><stranger>false</stranger></li>
+        </effects>
         <day>9~15</day>
         <count>40~80</count>
         <titles>
@@ -346,6 +357,9 @@
       </li>
       <li>
         <key>route</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>surveyors</what><count>2</count></li>
+        </effects>
         <day>5~9</day>
         <titles>
           <li>Where the road runs</li>
@@ -527,6 +541,9 @@
     <beats>
       <li>
         <key>alms</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>pilgrims</what><count>3~5</count><onward>true</onward></li>
+        </effects>
         <day>2~5</day>
         <count>25~50</count>
         <titles>
@@ -542,7 +559,7 @@
             <label>Feed them ({COUNT} food)</label>
             <outcome>The pilgrims eat at the gate, bless the colony in the old words, and go on toward {PLACE} singing.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the alms for the pilgrims</label><what>rawfood</what><to>Gate</to></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the alms for the pilgrims</label><what>rawfood</what></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>6</amount></li>
               <li Class="ColonyCouncil.WorldEffect_Thought"><thought>Council_WS_Blessed</thought></li>
             </effects>
@@ -721,6 +738,9 @@
     <beats>
       <li>
         <key>captive</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>captive</what><robbed>true</robbed></li>
+        </effects>
         <day>2~6</day>
         <titles>
           <li>Out of the band</li>
@@ -997,6 +1017,9 @@
       </li>
       <li>
         <key>food</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>rider</what><stranger>false</stranger></li>
+        </effects>
         <day>8~14</day>
         <count>40~80</count>
         <titles>
@@ -1138,6 +1161,9 @@
     <beats>
       <li>
         <key>salvage</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>salvagers</what><count>2</count><armed>true</armed></li>
+        </effects>
         <day>2~5</day>
         <count>120~220</count>
         <wealthScaled>true</wealthScaled>
@@ -1166,6 +1192,9 @@
       </li>
       <li>
         <key>survivor</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>survivor</what><robbed>true</robbed></li>
+        </effects>
         <day>4~9</day>
         <titles>
           <li>A survivor of {NAME}</li>

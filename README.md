@@ -448,6 +448,17 @@ when it's safe and leave at the first sign of danger; whatever they can't do is 
 hurts one of them, the deal holds only as far as it got. A setting (Events & world, on by default) makes it all
 instant again.
 
+**Visitors on the map.** The people a world event's letter speaks of are there too. The rider waiting at the gate for
+the colony's answer walks in with the letter and stands by the gate until you answer; what you send is carried out to
+them, and what their people pay they set down themselves. The family asking to be taken in waits there with their
+children and their dog, and if you take them in, those are the people who join. Fed and sent on, they sleep by the
+wall (or, on a bitter night, in a corner of the dining room) and go at first light; snowbound travelers stay two nights, a stargazer three on the far hill. Drovers graze
+their herd on the far meadow overnight, herders bring theirs down to the water, and mourners, a clan's band and a
+lord's progress pass along the road and go on to the far side of the map (42 beats of 27 world events, and a feud's
+warning rider and a debt collector; 87 lines of their own). Only peoples at peace with the colony come, only when
+it's safe, at most three groups at once; they go if hurt, if their people turn hostile, if raiders come, or if the
+cold or hunger gets to them. With the same setting off, or when nobody can come, the letter tells it as before.
+
 ### Ideoligions and the council
 With Ideology, a colony of many ideoligions gives the council something to work with (all of it off in classic mode,
 and with "Ideoligions in the colony" off). Every move goes through the game's own certainty: Rimfolk takes some away

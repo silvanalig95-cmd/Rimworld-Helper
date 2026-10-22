@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    People from outside who are really there (Source/ColonyCouncil/Visitors): a rider waiting at the gate for the
+    colony's answer, guests given a night, mourners and herds passing on the road. At their spot they keep close to it
+    and sleep on the ground when tired, and their animals rest nearby. They eat what they brought (the visit feeds
+    them from their own packs, never from the colony's stores or fields). Nothing else: no work, no wandering in.
+  -->
+  <DutyDef>
+    <defName>Rimfolk_VisitWait</defName>
+    <thinkNode Class="ThinkNode_Priority">
+      <subNodes>
+        <li Class="ThinkNode_ForbidOutsideFlagRadius">
+          <maxDistToSquadFlag>12</maxDistToSquadFlag>
+          <subNodes>
+            <li Class="JobGiver_GetRest" />
+          </subNodes>
+        </li>
+        <li Class="JobGiver_WanderNearDutyLocation">
+          <wanderRadius>4</wanderRadius>
+        </li>
+      </subNodes>
+    </thinkNode>
+  </DutyDef>
+
+  <!-- Guests given a corner inside for the night: they keep to the room they were shown. -->
+  <DutyDef>
+    <defName>Rimfolk_VisitIndoors</defName>
+    <thinkNode Class="ThinkNode_Priority">
+      <subNodes>
+        <li Class="ThinkNode_ForbidOutsideFlagRadius">
+          <maxDistToSquadFlag>4</maxDistToSquadFlag>
+          <subNodes>
+            <li Class="JobGiver_GetRest" />
+          </subNodes>
+        </li>
+        <li Class="JobGiver_WanderNearDutyLocation">
+          <wanderRadius>2</wanderRadius>
+        </li>
+      </subNodes>
+    </thinkNode>
+  </DutyDef>
+
+  <DutyDef>
+    <defName>Rimfolk_VisitBeasts</defName>
+    <thinkNode Class="ThinkNode_Priority">
+      <subNodes>
+        <li Class="ThinkNode_ForbidOutsideFlagRadius">
+          <maxDistToSquadFlag>16</maxDistToSquadFlag>
+          <subNodes>
+            <li Class="JobGiver_GetRest" />
+          </subNodes>
+        </li>
+        <li Class="JobGiver_WanderNearDutyLocation">
+          <wanderRadius>7</wanderRadius>
+        </li>
+      </subNodes>
+    </thinkNode>
+  </DutyDef>
+
+</Defs>

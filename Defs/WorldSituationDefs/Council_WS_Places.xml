@@ -42,6 +42,9 @@
     <beats>
       <li>
         <key>welcome</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>runner</what><young>true</young><gender>Female</gender></li>
+        </effects>
         <day>1~3</day>
         <count>150~250</count>
         <wealthScaled>true</wealthScaled>
@@ -58,7 +61,7 @@
             <label>Send a gift ({COUNT} silver)</label>
             <outcome>The runner takes the silver back to {PLACE}, where the settlers mean to spend it on a bell for the meeting hall.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the gift for {PLACE}</label><what>silver</what><tens>true</tens><steward>false</steward><to>Gate</to></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the gift for {PLACE}</label><what>silver</what><tens>true</tens><steward>false</steward></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>12</amount></li>
             </effects>
             <flags><li>gift</li></flags>
@@ -149,6 +152,9 @@
     <beats>
       <li>
         <key>refugees</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>family</what><count>2~3</count><family>true</family><pet>dog</pet></li>
+        </effects>
         <day>1~4</day>
         <titles>
           <li>Leaving {PLACE}</li>
@@ -173,8 +179,9 @@
             <label>Feed them and send them on</label>
             <outcome>They sleep a night in the barn and set off for {ITEM} at first light.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>food for the family from {PLACE}</label><what>rawfood</what><count>15</count><to>Gate</to></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>food for the family from {PLACE}</label><what>rawfood</what><count>15</count></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>3</amount></li>
+              <li Class="ColonyCouncil.VisitEffect_Stay"><nights>1</nights></li>
             </effects>
             <help>1</help>
             <flags><li>sheltered</li></flags>

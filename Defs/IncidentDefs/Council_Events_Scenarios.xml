@@ -19,6 +19,9 @@
         <group>Battle</group>
         <threat>true</threat>
         <answerDays>1.5</answerDays>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>rider</what><enemy>true</enemy><onlyLowtech>true</onlyLowtech></li>
+        </effects>
         <titles>
           <li>[loan,!late] The debt is due</li>
           <li>[loan,late] The debt, again</li>

@@ -991,6 +991,9 @@
         <threat>true</threat>
         <notable>false</notable>
         <answerDays>0.5</answerDays>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>rider</what><stranger>false</stranger></li>
+        </effects>
         <titles>
           <li>The {RELATION} family's revenge</li>
           <li>A warning from {PLACE}</li>

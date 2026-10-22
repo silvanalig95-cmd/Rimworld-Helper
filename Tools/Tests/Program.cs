@@ -424,6 +424,7 @@ Console.WriteLine($"Checked {PlayOutTests.Run(Check)} things about answers playi
 Console.WriteLine($"Checked {PlayOutGroupTests.Run(Check)} things about work parties, walks, vigils, searches, errands and hunts.");
 Console.WriteLine($"Checked {CourierTests.Run(Check)} things about goods and people that come and go on the map (who comes, how many, when, what's left).");
 Console.WriteLine($"Checked {OnMapTests.Run(Check)} things about what answers make real (felled wood, saplings, the era's things, a visitor's dog, an animal in decline).");
+Console.WriteLine($"Checked {VisitorTests.Run(Check)} things about people from outside who are really there (how many, when, a night's stay, the wait at the gate, the way on).");
 Console.WriteLine($"Checked {KeptTests.Run(Check)} things about granted wishes taken back (grace, timing, making it right).");
 Console.WriteLine($"Checked {SeasonWishTests.Run(Check)} things about the wishes of the land's year (clothes for the season, a sauna, hot country, the fields opening).");
 Console.WriteLine($"Checked {HeartNeedTests.Run(Check)} things about the heart's needs (what follows from them, and a lack that lasts).");

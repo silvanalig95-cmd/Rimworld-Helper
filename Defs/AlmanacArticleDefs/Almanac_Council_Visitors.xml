@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    People from outside who are really there (Source/ColonyCouncil/Visitors/): the rider, the family or the envoy a
+    letter speaks of waits at the gate; guests given a night stay it; herds and mourners pass on the road.
+  -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_C_Visitors</defName>
+    <label>visitors on the map</label>
+    <category>Council</category>
+    <order>22</order>
+    <summary>The rider, the family or the envoy a letter speaks of waits at the gate while you decide; guests stay their night, and herds and mourners pass on the road.</summary>
+    <tip>Keep the way from the map's edge to the gate open and the gate clear: someone who can't get there, or can't stand the weather by it, goes home, and the letter alone tells it.</tip>
+    <description>With "Goods and people come and go on the map" on (the Events and world page of the settings, on by default), the people Rimfolk's world events speak of are on the map. When a letter says a rider is waiting at the gate for the colony's answer, the rider walks in from the edge with it and stands by the gate until you answer, or until the letter runs out. A family asking to be taken in waits there with their children and their dog. Take them in and those are the people who join, right where they stand.
+
+What you send goes out to them by hand: a colonist carries the medicine or the sack of food to the rider at the gate, and what their people pay, they set down there themselves. Guests given a night sleep by the gate and go on at first light. Mourners, a clan's band or a lord's progress pass along the road outside the colony and go on to the far side of the map, and drovers bring their herd onto the far meadow for the night, or down to the water.</description>
+    <sections>
+      <li>
+        <heading>Who comes</heading>
+        <table>
+          <li>When | Who comes | What happens</li>
+          <li>A plague, a famine, a hard winter, a flood, a fire, a drought, a good harvest | A rider, or a driver with a beast from their carts | Waits at the gate for your answer. What you send goes out to them (for a cartload of timber or food, to the porters who come for it), and what their people pay they set down there</li>
+          <li>Refugees, exiles, a burned-out family, a freed captive, a survivor | The family or the person asking | Taken in, they join where they stand. Fed and sent on, they sleep by the wall and go at first light</li>
+          <li>A new town, a levy, a vote, a new road, the road's guards, envoys, a herald, a patrol, salvagers, two drovers with a heifer | One to three of them | Wait at the gate for the answer, then go home</li>
+          <li>Pilgrims asking alms, families walking home, hunters asking leave | A line of three to five of them | Wait for your answer, take what you send, and go on past the colony</li>
+          <li>Drovers, herders in a drought | One asks at the gate. Then two or three come with five to eight head | The herd grazes the far meadow, or drinks at the water, overnight and goes on at first light</li>
+          <li>Mourners, a clan's band, a lord's progress | Four to six, with a beast or horses | Pass along the road outside the colony and go on to the far side of the map</li>
+          <li>Snowbound travelers, a robbed merchant, a singer, a stargazer | One or two guests | Stay their nights (two for the travelers, three for the stargazer, on the far ground) and go on at first light</li>
+          <li>A feud's warning, a debt come due (in a colony of the old ways) | A rider | Waits at the gate while you decide</li>
+        </table>
+        <text>A lord's retinue that you host comes in the evening and stays the night by the gate, and the letter about their stay comes after they've gone. Not every letter's people come: those at war with the colony (a warlord's rider, a deserter's old unit), two peoples at war with each other, and people a world event keeps for later stay in the letter.</text>
+      </li>
+      <li>
+        <heading>When they don't come, and when they go early</heading>
+        <text>They come only from a people at peace with the colony, and only when the map is safe: no raiders, no bitter cold or heat, nothing in the air. At most three groups of them are on the map at once, each of at most six people and eight animals. If they can't come, or the setting is off, the letter tells it as before, and what you send is fetched by a courier instead (see "goods carried by hand").
+
+Hurt or arrest one of them, or let their people turn hostile, and they leave at once, defending themselves. If raiders come they leave at a jog. If the cold, the heat or hunger starts to get to them they go on, and a message says so. Someone at the gate waits two and a half days at most, and goes about half an hour after you answer, or once what you send has reached them. Guests sleep by the gate, or, when a night out would hurt them, in a corner of your dining room or rec room (they keep to it); with no warm room to offer, they go on, and a message says so. It all saves with the game, and a visit cut short by a reload or a lost map simply ends.</text>
+      </li>
+      <li>
+        <heading>Their own way</heading>
+        <text>Visitors eat what they brought and sleep on the ground near their spot; they don't wander into the colony or take anything, and a herd on the far meadow doesn't touch your fields. Their animals rest close by. What the colony hands them goes with them. Now and then one of them says a line: on arriving, while waiting, when given the night, when passing, and when leaving.</text>
+      </li>
+    </sections>
+    <keywords><li>visitor</li><li>rider</li><li>messenger</li><li>envoy</li><li>refugees</li><li>family</li><li>guest</li><li>herd</li><li>drovers</li><li>mourners</li><li>on the map</li></keywords>
+    <seeAlso><li>Council_Alm_C_Couriers</li><li>Council_Alm_C_PlayOut</li><li>Council_Alm_C_WorldSituations</li><li>Council_Alm_C_WorldEvents</li></seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+</Defs>

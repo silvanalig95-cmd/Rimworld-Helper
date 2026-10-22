@@ -49,6 +49,9 @@
     <beats>
       <li>
         <key>timber</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>driver</what><pack>true</pack></li>
+        </effects>
         <day>1~3</day>
         <count>70~130</count>
         <titles>
@@ -65,7 +68,7 @@
             <label>Send {COUNT} wood</label>
             <outcome>The wagon goes back to {PLACE} stacked to the rails, with the driver walking beside it to ease the load.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the wood for {PLACE}</label><what>WoodLog</what><to>Gate</to></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the wood for {PLACE}</label><what>WoodLog</what></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>10</amount></li>
             </effects>
             <help>2</help>
@@ -76,7 +79,7 @@
             <label>Sell it at a fair price</label>
             <outcome>The driver pays what timber is fetching this season, which is more than it fetched last month, and loads up.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the wood for {PLACE}</label><what>WoodLog</what><to>Gate</to></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the wood for {PLACE}</label><what>WoodLog</what></li>
               <li Class="ColonyCouncil.WorldEffect_Silver"><factor>1.2</factor></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>3</amount></li>
             </effects>
@@ -91,6 +94,9 @@
       </li>
       <li>
         <key>burned</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>family</what><count>2~3</count><family>true</family></li>
+        </effects>
         <day>3~7</day>
         <titles>
           <li>Burned out of {PLACE}</li>
@@ -115,9 +121,10 @@
             <label>Feed them and send them home</label>
             <outcome>In the morning they push the handcart back toward {PLACE} with a sack of food roped on top.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>a sack of food for the road home</label><what>rawfood</what><count>20</count><to>Gate</to></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>a sack of food for the road home</label><what>rawfood</what><count>20</count></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>4</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>sheltered</kind><about>place</about></li>
+              <li Class="ColonyCouncil.VisitEffect_Stay"><nights>1</nights></li>
             </effects>
             <help>1</help>
             <deed>fed a burned-out family from {PLACE}</deed>
@@ -530,6 +537,9 @@
       </li>
       <li>
         <key>scholar</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>stargazer</what><gender>Female</gender><ages>40~70</ages></li>
+        </effects>
         <day>3~7</day>
         <titles>
           <li>A watcher of the sky</li>
@@ -548,6 +558,7 @@
               <li Class="ColonyCouncil.WorldEffect_Learn"><skill>Intellectual</skill><xp>900</xp></li>
               <li Class="ColonyCouncil.DilemmaEffect_Research"><share>0.15</share><max>800</max><onlyIfChosen>true</onlyIfChosen></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>4</amount></li>
+              <li Class="ColonyCouncil.VisitEffect_Stay"><nights>3</nights><spot>Far</spot></li>
             </effects>
             <flags><li>studied</li></flags>
             <ways><openness>1</openness></ways>
@@ -555,6 +566,9 @@
           <li>
             <label>She can watch from the road</label>
             <outcome>The stargazer is told the hill isn't open to visitors. She sets up by the road instead, and in a few days she's gone.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.VisitEffect_Stay"><nights>2</nights><spot>Road</spot></li>
+            </effects>
             <ways><openness>-1</openness></ways>
           </li>
         </options>
@@ -643,6 +657,9 @@
     <beats>
       <li>
         <key>grain</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>driver</what><pack>true</pack></li>
+        </effects>
         <day>1~4</day>
         <count>120~220</count>
         <wealthScaled>true</wealthScaled>
@@ -792,6 +809,9 @@
     <beats>
       <li>
         <key>graze</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>drovers</what><armed>true</armed></li>
+        </effects>
         <day>1~4</day>
         <count>60~120</count>
         <wealthScaled>true</wealthScaled>
@@ -810,6 +830,7 @@
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Silver" />
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>2</amount></li>
+              <li Class="ColonyCouncil.VisitEffect_Come"><what>drovers</what><count>2</count><armed>true</armed><livestock>5~8</livestock><spot>Far</spot><nights>1</nights><hourFrom>0</hourFrom><hourTo>0</hourTo><delay>0.5~1.5</delay><onward>true</onward></li>
             </effects>
           </li>
           <li>
@@ -819,6 +840,7 @@
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>6</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>welcomed</kind><about>none</about></li>
               <li Class="ColonyCouncil.DilemmaEffect_Bonfire"><label>the drovers' evening</label><target>Colony</target><chance>0.7</chance></li>
+              <li Class="ColonyCouncil.VisitEffect_Come"><what>drovers</what><count>2</count><armed>true</armed><livestock>5~8</livestock><spot>Far</spot><nights>1</nights><hourFrom>0</hourFrom><hourTo>0</hourTo><delay>0.5~1.5</delay><onward>true</onward></li>
             </effects>
             <help>1</help>
             <ways><generosity>2</generosity><openness>1</openness></ways>
@@ -832,6 +854,9 @@
       </li>
       <li>
         <key>dispute</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>drovers</what><count>2</count><armed>true</armed><livestock>1</livestock><beast>Cow</beast></li>
+        </effects>
         <day>5~10</day>
         <skill>Animals</skill>
         <minLevel>5</minLevel>
