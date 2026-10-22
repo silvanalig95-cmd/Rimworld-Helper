@@ -70,6 +70,12 @@ namespace ColonyCouncil
         /// <summary>A change smaller than this a day counts as none.</summary>
         public const float Still = 0.0001f;
 
+        /// <summary>
+        /// A condition that can kill but is neither a wound, an illness nor in want of tending (hypothermia, heatstroke, a
+        /// gene's chemical dependency) shows from this share of the way: below it, it's nothing to act on yet.
+        /// </summary>
+        public const float LethalShowsFrom = 0.1f;
+
         /// <summary>At or past this share of its lethal severity, a condition that isn't recovering is "soon lethal".</summary>
         public const float SoonLethalAt = 0.75f;
 
@@ -90,7 +96,7 @@ namespace ColonyCouncil
             if (f.injury) return true;
             if (f.needsTend || (f.tendable && !f.tended)) return true;
             if (f.immunizable || f.sick) return true;
-            if (f.Lethal) return true;
+            if (f.Lethal && f.Progress >= LethalShowsFrom) return true;
             // Nothing changes and nothing can be done: a lasting effect, not something that passes.
             if (Math.Abs(f.severityPerDay) < Still && !f.tendable) return false;
             // Tended and still going: it passes with care.

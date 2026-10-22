@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Panels that read right
+
+*26 October 2026, version 0.9.9*
+
+- The health panel's summary line no longer runs words together ("Bruisetended 27%"): each condition and how it stands are spaced apart again, and so are the pieces of the mood line in the Needs tab. Something that can kill but isn't a wound or an illness (a gene's chemical dependency, hypothermia) shows once it's a tenth of the way, not from the first hour, and says "towards deadly".
+- Click "and 15 more" under any panel to show every row; "Rows before 'and more'" in the panel's options sets the limit again.
+
 ## The game's own words
 
 *25 October 2026, evening, version 0.9.8*

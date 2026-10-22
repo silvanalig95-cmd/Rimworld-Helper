@@ -33,7 +33,7 @@
   <CC_Pnl_EditHint>Drag each panel by its top bar; it snaps to the edges and to the others.</CC_Pnl_EditHint>
   <CC_Pnl_Done>Done</CC_Pnl_Done>
   <CC_Pnl_AndMore>and {0} more</CC_Pnl_AndMore>
-  <CC_Pnl_MoreLinesTip>Not every line fits, so the panel keeps what matters most. Allow more rows in its options to see them all.</CC_Pnl_MoreLinesTip>
+  <CC_Pnl_MoreLinesTip>The panel shows only so many rows and keeps what matters most. Click to show them all; "Rows before 'and more'" in its options sets the limit again.</CC_Pnl_MoreLinesTip>
 
   <!-- The mood board -->
   <CC_Pnl_NoOne>No colonists here.</CC_Pnl_NoOne>
@@ -151,7 +151,7 @@
   <CC_Pnl_H_HealedShare>{0} healed</CC_Pnl_H_HealedShare>
   <CC_Pnl_H_TendedQ>tended {0}</CC_Pnl_H_TendedQ>
   <CC_Pnl_H_HpLeft>{0} HP to heal</CC_Pnl_H_HpLeft>
-  <CC_Pnl_H_ToLethal>{0} of the way</CC_Pnl_H_ToLethal>
+  <CC_Pnl_H_ToLethal>{0} towards deadly</CC_Pnl_H_ToLethal>
   <CC_Pnl_H_LeftShort>{0} left</CC_Pnl_H_LeftShort>
   <CC_Pnl_H_WearsOffShort>(wears off {0})</CC_Pnl_H_WearsOffShort>
   <CC_Pnl_H_OverIn>over in {0}</CC_Pnl_H_OverIn>

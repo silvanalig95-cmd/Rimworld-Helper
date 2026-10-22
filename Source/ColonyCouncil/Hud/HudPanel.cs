@@ -359,6 +359,21 @@ namespace ColonyCouncil
         /// <summary>A click on <paramref name="r"/> (any button; Event.current.button says which). Never while painting.</summary>
         protected bool Clicked(Rect r) => !painting && Widgets.ButtonInvisible(r, false);
 
+        /// <summary>
+        /// The "and N more" line under a panel's rows: hover says why, and a click shows them all by raising the panel's
+        /// row limit (its options set it back).
+        /// </summary>
+        protected void MoreLine(Rect r, string text, int hiddenCount)
+        {
+            HudKit.Label(r, text, Over(r) ? Color.white : UiKit.Faint, GameFont.Tiny);
+            Tip(r, HudKit.T("CC_Pnl_MoreLinesTip"));
+            if (!Clicked(r) || hiddenCount <= 0) return;
+            var st = St;
+            if (st != null && st.maxRows > 0) st.maxRows += hiddenCount;
+            MarkDirty();
+            HudLayout.Save();
+        }
+
         /// <summary>The highlight while the mouse is over <paramref name="r"/>.</summary>
         protected void HighlightIfOver(Rect r)
         {

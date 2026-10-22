@@ -624,9 +624,10 @@ namespace ColonyCouncil
                         if (i > 0)
                         {
                             GUI.color = UiKit.Dim;
-                            float sw = Text.CalcSize("  ·  ").x;
-                            Widgets.Label(new Rect(x, r.y, sw + 2f, r.height), "  ·  ");
-                            x += sw;
+                            // Spaces measured between letters: the game measures a trailing space as nothing.
+                            float gap = Mathf.Max(3f, Text.CalcSize("x x").x - Text.CalcSize("xx").x) * 2f, dot = Text.CalcSize("·").x;
+                            Widgets.Label(new Rect(x + gap, r.y, dot + 2f, r.height), "·");
+                            x += dot + gap * 2f;
                         }
                         var (text, color) = line.parts[i];
                         float tw = Text.CalcSize(text).x;

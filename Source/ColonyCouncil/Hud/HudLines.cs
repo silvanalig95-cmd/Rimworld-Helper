@@ -138,8 +138,7 @@ namespace ColonyCouncil
             {
                 float my = compact ? y + (shown.Count + 1) / 2 * rh : y + shown.Count * rh;
                 var mr = new Rect(r.x + pad, my, r.width - pad * 2f, Mathf.Round(16f * s));
-                HudKit.Label(mr, moreText, UiKit.Faint, GameFont.Tiny);
-                Tip(mr, HudKit.T("CC_Pnl_MoreLinesTip"));
+                MoreLine(mr, moreText, hidden);
             }
         }
 

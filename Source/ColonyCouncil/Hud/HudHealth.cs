@@ -609,22 +609,21 @@ namespace ColonyCouncil
             if (moreText != null)
             {
                 var mr = new Rect(r.x + pad, y, r.width - pad * 2f, Mathf.Round(16f * s));
-                HudKit.Label(mr, moreText, UiKit.Faint, GameFont.Tiny);
-                Tip(mr, HudKit.T("CC_Pnl_MoreLinesTip"));
+                MoreLine(mr, moreText, hidden);
             }
         }
 
         /// <summary>The summary line: the pieces one after another in their colours, the last cut short where the room ends.</summary>
         private static void DrawSummary(Rect r, Row row, GameFont font)
         {
-            float x = r.x, sep = HudKit.Width(" · ", font), space = HudKit.Width(" ", font);
+            float x = r.x, space = HudKit.SpaceWidth(font), dot = HudKit.Width("·", font);
             for (int i = 0; i < row.segs.Count && x < r.xMax - 8f; i++)
             {
                 var g = row.segs[i];
                 if (i > 0)
                 {
-                    HudKit.Label(new Rect(x, r.y, sep, r.height), " · ", UiKit.Dim, font);
-                    x += sep;
+                    HudKit.Label(new Rect(x + space, r.y, dot + 1f, r.height), "·", UiKit.Dim, font);
+                    x += dot + space * 2f;
                 }
                 float lw = HudKit.Width(g.label, font);
                 HudKit.Label(new Rect(x, r.y, Mathf.Min(lw + 1f, r.xMax - x), r.height), g.label, g.labelColor, font);

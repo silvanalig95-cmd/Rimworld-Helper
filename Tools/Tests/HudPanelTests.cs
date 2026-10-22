@@ -63,6 +63,10 @@ public static class HudPanelTests
         Check(HudHealthMath.Shows(poisoning), "an illness without a race (food poisoning) shows");
         var hypothermia = new HediffFacts { bad = true, lethalSeverity = 1f, severity = 0.3f };
         Check(HudHealthMath.Shows(hypothermia), "something that can kill shows even when its severity is moved from outside (hypothermia)");
+        var dependencyEarly = new HediffFacts { bad = true, lethalSeverity = 1f, severity = 0.028f, severityPerDay = 0.02f };
+        Check(!HudHealthMath.Shows(dependencyEarly), "something that can kill shows only once it's some way along (a dependency at 3% doesn't)");
+        var dependencyLate = new HediffFacts { bad = true, lethalSeverity = 1f, severity = 0.3f, severityPerDay = 0.02f };
+        Check(HudHealthMath.Shows(dependencyLate), "the same at 30% shows");
         var cold = new HediffFacts { ailment = true, severity = 0.2f, severityPerDay = -0.2f };
         Check(HudHealthMath.Shows(cold), "Rimfolk's everyday ailments show: they pass");
         var lingering = new HediffFacts { ailment = true, bad = true, chronic = true };

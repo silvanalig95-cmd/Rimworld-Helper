@@ -350,8 +350,7 @@ namespace ColonyCouncil
             if (moreText != null)
             {
                 var mr = new Rect(r.x + pad, y, r.width - pad * 2f, Mathf.Round(16f * s));
-                HudKit.Label(mr, moreText, UiKit.Faint, GameFont.Tiny);
-                Tip(mr, HudKit.T("CC_Pnl_MoreLinesTip"));
+                MoreLine(mr, moreText, hidden);
             }
         }
 

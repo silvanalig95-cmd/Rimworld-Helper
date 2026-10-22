@@ -108,6 +108,9 @@ namespace ColonyCouncil
             Text.Font = oldFont;
         }
 
+        /// <summary>A space's width in a font, measured between two letters: the game measures a lone or trailing space as nothing.</summary>
+        public static float SpaceWidth(GameFont font) => Mathf.Max(3f, Width("x x", font) - Width("xx", font));
+
         public static float Width(string text, GameFont font)
         {
             if (text.NullOrEmpty()) return 0f;
