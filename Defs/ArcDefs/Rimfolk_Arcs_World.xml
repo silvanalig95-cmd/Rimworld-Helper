@@ -7,6 +7,8 @@
     the camp packing up and going (Custom), the seat on the council kept (it fizzles [officegone] if lost), the
     trouble out in the world ending (Custom; it fizzles [kindead] if the relative out there dies first).
     {NAME}: the camp's leader, the office, or the world's trouble. {LOST}: the relative far away. {FACTION}: their people.
+    The world's trouble is a situation's label ("famine", "a warlord rises", "the clans gather"), so a line about it
+    quotes it as the traders' news rather than building it into a sentence.
   -->
 
   <!-- ===================================================================================================== -->
@@ -35,7 +37,7 @@
           <blunt><li>The camp's people go where they like. I'm starting to envy that.</li></blunt>
           <cheerful><li>Another evening at the camp! I've learned two songs and a card game and the names of four rivers.</li></cheerful>
           <gloomy><li>Everyone at the camp is going somewhere. I'm only going to the fields tomorrow, and the day after.</li></gloomy>
-          <cold><li>The travelers' way of life has practical merits. I find I am weighing them more seriously than I expected.</li></cold>
+          <cold><li>The travelers carry everything they need and owe no one anything. I've been doing the sums on that.</li></cold>
         </journal>
         <chronicle>
           <li>{PAWN_nameDef} has been spending evenings at the travelers' camp, listening to {NAME}'s stories of the road.</li>
@@ -56,7 +58,7 @@
         <waiting>Next: the camp packs up and moves on, and {PAWN_nameDef} decides.</waiting>
         <journal>
           <plain>
-            <li>Told {OTHER_nameDef} I'd been thinking about leaving with the camp. {OTHER_nameDef} didn't argue. {OTHER_nameDef} just went very quiet.</li>
+            <li>Told {OTHER_nameDef} I'd been thinking about leaving with the camp. {OTHER_nameDef} didn't argue. {OTHER_nameDef} just went very still.</li>
             <li>I've half packed a bag. It's under my bed. I look at it in the mornings.</li>
             <li>{OTHER_nameDef} asked me what I'd be looking for out there. I couldn't say. That probably means something.</li>
           </plain>
@@ -67,7 +69,7 @@
           <cold><li>I have listed what I would gain and lose by leaving. The lists are close in length.</li></cold>
         </journal>
         <chronicle>
-          <li>{PAWN_nameDef} has been wondering aloud whether to go with the camp when it leaves.</li>
+          <li>There's a half-packed bag under {PAWN_nameDef}'s bed, for when the camp moves on.</li>
         </chronicle>
         <gate>
           <kind>Custom</kind>
@@ -85,17 +87,17 @@
           <plain>
             <li>The camp went this morning. I walked with them as far as the boundary stone, and then I came home. I unpacked the bag tonight.</li>
             <li>{NAME} shook my hand at the edge of our land and said the road would keep. It will. So will I.</li>
-            <li>I stayed. I thought it would feel like giving something up. It feels like choosing something instead.</li>
+            <li>I stayed. I hung the bag back on its hook and slept in my own bed, and slept well.</li>
           </plain>
           <warm><li>I stayed, and {OTHER_nameDef} had saved my seat at supper. That's what I'd have been leaving.</li></warm>
           <blunt><li>The camp's gone. I'm still here. Decided.</li></blunt>
-          <cheerful><li>I stayed! I'll have stories of the road anyway, second-hand, which is the safest kind.</li></cheerful>
+          <cheerful><li>I stayed. I'll have stories of the road anyway, second-hand, which is the safest kind.</li></cheerful>
           <gloomy><li>They've gone, and I watched them go. I'll always wonder. I'll wonder here, though.</li></gloomy>
           <cold><li>The camp has departed. I remain. On reflection, the colony's claims on me were the stronger.</li></cold>
         </journal>
         <chronicle>
           <li>When the camp moved on, {PAWN_nameDef} walked them to the boundary stone and came home.</li>
-          <li>{PAWN_nameDef} thought about leaving with the travelers, and stayed.</li>
+          <li>"The road will keep," the travelers told {PAWN_nameDef} when they left. {PAWN_nameDef} came home.</li>
         </chronicle>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Arc_StayedHome</thought></li>
@@ -109,7 +111,7 @@
       <plain>
         <li>[campfight] The travelers turned on us. All those evenings at their fire, and they turned on us. I don't know what I'd have become out there with them.</li>
         <li>[timeout] The camp's still here and so am I, and the bag is still under my bed. Some questions don't get answered.</li>
-        <li>I stopped going to the camp's fire. Whatever was calling me, it's gone quiet.</li>
+        <li>I stopped going to the camp's fire. Whatever was calling me has stopped.</li>
       </plain>
       <gloomy><li>[campfight] I trusted them. I was going to go with them. I feel like a fool.</li></gloomy>
       <blunt><li>[campfight] Glad I didn't go.</li></blunt>
@@ -121,7 +123,7 @@
     <eulogy>
       <plain>
         <li>{OTHER_nameDef} could have left with the travelers that season, and stayed with us instead. I hope it was worth it to {OTHER_objective}.</li>
-        <li>{OTHER_nameDef} used to talk about the road. I'll walk a little of it for {OTHER_objective} one day.</li>
+        <li>{OTHER_nameDef} used to talk about the road. I'll walk some of it for {OTHER_objective} one day.</li>
       </plain>
       <cold><li>{OTHER_nameDef} chose to stay. The choice is final now, in more ways than one.</li></cold>
     </eulogy>
@@ -152,10 +154,11 @@
           <blunt><li>I'm {NAME}. Fine. I'll learn the job.</li></blunt>
           <cheerful><li>I'm {NAME}! I have no idea what I'm doing, and it's wonderful and terrifying.</li></cheerful>
           <gloomy><li>Made {NAME}. Everyone will be watching for the first mistake. There'll be one soon.</li></gloomy>
-          <cold><li>I have been made {NAME}. I am reviewing the office's responsibilities. They are considerable.</li></cold>
+          <cold><li>Made {NAME}. I've written down what the office owes, and to whom. It's a long page. I'll get through it.</li></cold>
         </journal>
         <chronicle>
           <li>{PAWN_nameDef}, newly made {NAME}, isn't yet sure {PAWN_pronoun} can carry the office.</li>
+          <li>Three people came to {PAWN_nameDef} on {PAWN_possessive} first morning as {NAME}, and {PAWN_nameDef} promised all three to look into it.</li>
         </chronicle>
         <gate>
           <kind>Talk</kind>
@@ -174,14 +177,14 @@
             <li>{OTHER_nameDef} told me nobody is ready for a seat on the council, and everyone pretends. It helped more than it should have.</li>
             <li>Took {OTHER_nameDef}'s advice and asked for help with the things I don't know. Nobody laughed. Two people looked relieved.</li>
           </plain>
-          <warm><li>{OTHER_nameDef} sat with me half the night going over the office. I'll pass that kindness on one day.</li></warm>
+          <warm><li>{OTHER_nameDef} sat with me half the night going over the office. I'll pass that on to whoever sits here next.</li></warm>
           <blunt><li>{OTHER_nameDef} says everyone's bad at it at first. Good. I'm right on schedule.</li></blunt>
           <cheerful><li>{OTHER_nameDef} gave me some good advice, and I've written it all down! Somewhere.</li></cheerful>
           <gloomy><li>{OTHER_nameDef} tried to make me feel better. It worked until morning.</li></gloomy>
           <cold><li>{OTHER_nameDef}'s advice was practical. I have adopted most of it.</li></cold>
         </journal>
         <chronicle>
-          <li>{OTHER_nameDef} has been helping {PAWN_nameDef} learn what it means to be {NAME}.</li>
+          <li>"Nobody is ready for a seat on the council," {OTHER_nameDef} told {PAWN_nameDef}. "Everyone pretends."</li>
         </chronicle>
         <gate>
           <kind>Hold</kind>
@@ -206,7 +209,7 @@
           </plain>
           <warm><li>I had to say no to someone I care about today, as {NAME}. I explained why. I think they understood.</li></warm>
           <blunt><li>Made a hard call. Would make it again.</li></blunt>
-          <cheerful><li>Survived my first real decision as {NAME}! Nobody threw anything.</li></cheerful>
+          <cheerful><li>Survived my first real decision as {NAME}! Not a single bowl was thrown.</li></cheerful>
           <gloomy><li>I made the call. I'll find out in a week whether it was the wrong one.</li></gloomy>
           <cold><li>A difficult decision was required of me, and I made it. That is what the office is for.</li></cold>
         </journal>
@@ -234,13 +237,13 @@
           </plain>
           <warm><li>I've grown into the office. I hope I've grown into the kind of {NAME} people can come to.</li></warm>
           <blunt><li>I'm {NAME}. I'm good at it now. Next question.</li></blunt>
-          <cheerful><li>I'm a real {NAME} now, not a pretend one! Most days, anyway.</li></cheerful>
+          <cheerful><li>I'm a real {NAME} now, not a pretend one. Most days, anyway.</li></cheerful>
           <gloomy><li>I've got the hang of it. That means the hard part is just beginning, I expect.</li></gloomy>
           <cold><li>I have become competent in the office. Competence is not glamorous, but it is what was asked for.</li></cold>
         </journal>
         <chronicle>
           <li>{PAWN_nameDef} has grown into the office of {NAME}.</li>
-          <li>The seat of {NAME} fits {PAWN_nameDef} now.</li>
+          <li>{PAWN_nameDef} answers to "{NAME}" now without looking round to see who's meant.</li>
         </chronicle>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Arc_GrewIntoOffice</thought></li>
@@ -292,19 +295,19 @@
         <waiting>Next: {PAWN_nameDef} shares the worry with someone.</waiting>
         <journal>
           <plain>
-            <li>Word on the road is that {NAME} has reached the lands where {LOST} lives. I can't stop thinking about it.</li>
-            <li>{LOST} is out there among {FACTION}, and there's {NAME} out there too. I don't even know if {LOST} has heard my name in years.</li>
+            <li>The traders all say the same thing this season, "{NAME}", and the place they say it about is where {LOST} lives. I can't stop thinking about it.</li>
+            <li>{LOST} is out there among {FACTION}, in the middle of all that. I don't even know if {LOST} has heard my name in years.</li>
             <li>[night] Lay awake counting the days it would take to reach {LOST}. Too many. Far too many.</li>
           </plain>
           <warm><li>I hope someone out there is looking after {LOST}. I'd give a lot to be the one doing it.</li></warm>
-          <blunt><li>{NAME} out there. {LOST} out there. Nothing I can do. I hate that.</li></blunt>
+          <blunt><li>Bad news from out there, and {LOST} in it. Nothing I can do. I hate that.</li></blunt>
           <cheerful><li>{LOST} always lands on both feet. Always has. I'm sure it'll be the same this time.</li></cheerful>
-          <gloomy><li>{NAME}, and {LOST} somewhere in the middle of it. I already know how this ends.</li></gloomy>
-          <cold><li>{NAME} has reached {FACTION}. {LOST} is among them. I have no means of learning more.</li></cold>
+          <gloomy><li>The traders say "{NAME}" and won't meet my eye. {LOST} is out there in it. I already know how this ends.</li></gloomy>
+          <cold><li>The trouble out there has reached {FACTION}, and {LOST} is among them. I have no means of learning more.</li></cold>
         </journal>
         <chronicle>
-          <li>{PAWN_nameDef} fears for {LOST}, family out among {FACTION}, in the days of {NAME}.</li>
-          <li>News of {NAME} has {PAWN_nameDef} worried for {LOST}, far away.</li>
+          <li>The traders' news this season is "{NAME}", and {PAWN_nameDef} has family out in it: {LOST}, among {FACTION}.</li>
+          <li>{PAWN_nameDef} has family far away, {LOST}, and the news from the road is bad.</li>
         </chronicle>
         <gate>
           <kind>Talk</kind>
@@ -321,8 +324,8 @@
         <waiting>Next: the hard times out there end, or word comes some other way.</waiting>
         <journal>
           <plain>
-            <li>Told {OTHER_nameDef} about {LOST} last night, all of it. Saying it out loud didn't change anything, except it did, a little.</li>
-            <li>I've asked every trader and traveler about {FACTION}. Nobody knows anything about one person among so many.</li>
+            <li>Told {OTHER_nameDef} about {LOST} last night, all of it. Saying it out loud changed nothing, and still I slept better.</li>
+            <li>I've asked every trader and traveler about {FACTION}. Not one of them knows anything about one person among so many.</li>
             <li>Wrote a letter to {LOST}. No idea how it'll get there. The next trader took it, and a coin for luck.</li>
           </plain>
           <warm><li>{OTHER_nameDef} sat up with me and let me talk about {LOST}. I'm lucky in my friends here, even if I'm unlucky in where my family is.</li></warm>
@@ -345,7 +348,7 @@
         <label>word at last</label>
         <journal>
           <plain>
-            <li>The hard times out there have passed, and a trader brought word: {LOST} came through it. Thinner, older, alive. I sat down in the dirt and laughed.</li>
+            <li>The hard times out there have passed, and word came down the road: {LOST} came through it. Thinner, older, alive. I sat down in the dirt and laughed.</li>
             <li>{LOST} is alive. That's all the message said, and it's all I needed it to say.</li>
             <li>Word came back with the letter I sent: {LOST} read it. {LOST} is well. {LOST} sends love, and a recipe I'd forgotten.</li>
           </plain>
@@ -353,10 +356,10 @@
           <blunt><li>{LOST}'s alive. Good. I can sleep now.</li></blunt>
           <cheerful><li>{LOST} made it! Of course {LOST} did. I told everyone {LOST} would.</li></cheerful>
           <gloomy><li>{LOST} lived through it. I don't know what to do with good news. I'll learn.</li></gloomy>
-          <cold><li>{LOST} survived. I find I had been holding a breath for weeks. I have let it go.</li></cold>
+          <cold><li>{LOST} survived. I'd been holding my breath for weeks without noticing.</li></cold>
         </journal>
         <chronicle>
-          <li>Word reached {PAWN_nameDef} at last: {LOST} came through {NAME} alive.</li>
+          <li>Word reached {PAWN_nameDef} at last. {LOST} came through it alive.</li>
           <li>{PAWN_nameDef} has heard that {LOST}, far away among {FACTION}, is safe.</li>
         </chronicle>
         <effects>
@@ -368,26 +371,26 @@
     </stages>
     <fizzle>
       <plain>
-        <li>[kindead] Word came. {LOST} didn't come through {NAME}. I was here, far away, and I never even knew until it was over.</li>
+        <li>[kindead] Word came. {LOST} didn't come through it. I was here, far away, and never even knew until it was over.</li>
         <li>[kindead] {LOST} is dead. Somewhere among {FACTION} there's a grave I'll never see.</li>
         <li>[timeout] No word, still. I've stopped asking the traders. I haven't stopped hoping.</li>
         <li>I don't know what became of {LOST}. Perhaps I never will.</li>
       </plain>
       <warm><li>[kindead] {LOST} is gone. I hope someone held {LOST}'s hand at the end. I hope it wasn't lonely.</li></warm>
       <blunt><li>[kindead] {LOST}'s dead. Don't talk to me today.</li></blunt>
-      <gloomy><li>[kindead] I knew. I knew from the first day. Knowing doesn't help.</li></gloomy>
+      <gloomy><li>[kindead] I knew. From the first day the traders said it, I knew.</li></gloomy>
       <cold><li>[kindead] {LOST} did not survive. There was nothing I could have done from here. That is no comfort.</li></cold>
     </fizzle>
     <fizzleEffects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Arc_KinDiedFarAway</thought></li>
     </fizzleEffects>
     <fizzleChronicle>
-      <li>[kindead] {LOST}, family of {PAWN_nameDef}'s far away among {FACTION}, did not live through {NAME}.</li>
+      <li>[kindead] {LOST}, family of {PAWN_nameDef}'s far away among {FACTION}, did not live through the hard times.</li>
       <li>{PAWN_nameDef} never learned what became of {LOST}.</li>
     </fizzleChronicle>
     <eulogy>
       <plain>
-        <li>{OTHER_nameDef} spent {OTHER_possessive} last weeks worrying about family far away. I hope word reaches them, somehow, about {OTHER_objective}.</li>
+        <li>{OTHER_nameDef} spent {OTHER_possessive} last weeks worrying about family far away. I hope word of {OTHER_objective} reaches them one day.</li>
         <li>{OTHER_nameDef} wrote a letter to someone out there. I'll write the next one.</li>
       </plain>
       <cold><li>{OTHER_nameDef} died waiting for word from far away. Someone should send word back.</li></cold>
