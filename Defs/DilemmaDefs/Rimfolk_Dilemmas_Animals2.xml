@@ -21,12 +21,12 @@
       <bestAt>Animals</bestAt>
     </roleA>
     <texts>
-      <li>The wind has turned and there's ice at the edge of the trough. The herd is still out grazing, {PET_nameDef} furthest of all. {A_nameDef} wants everyone who can be spared to go out together and bring them in to the barn before the weather does it for them.</li>
+      <li>The wind has turned and there's ice at the edge of the trough. The herd is still out grazing, {PET_nameDef} furthest of all. {A_nameDef} wants as many hands as can be spared to go out together and bring them in to the barn while there's still light.</li>
       <li>{A_nameDef} has been watching the sky all morning. "They'll want to be under a roof tonight," {A_nameDef} says, and asks the council for a few hands: out to the herd with ropes, and every head of it home before dark.</li>
-      <li>[fall] The last of the grazing is going brown, and the nights are long now. Where {A_nameDef} grew up, the whole household brought the herd home on the same day each autumn, and ate together after. {A_nameDef} would like to do the same here.</li>
+      <li>[fall] The last of the grazing is going brown, and the nights are long now. Where {A_nameDef} grew up, the whole household brought the herd home on the same day each fall, and ate together after. {A_nameDef} would like to do the same here.</li>
       <li>[afterraid] The raid scattered the herd across the land: {PET_nameDef} is still out past the fields, and others with it. {A_nameDef} wants to gather them all in together before anything else finds them.</li>
       <li>[snow] Snow's coming in sideways and half the herd is still out in it. {A_nameDef} is already at the door with the ropes, waiting for the council to say how many can go.</li>
-      <li>[colony:Traditional] The cold is coming, and with it the day the colony brings the herd home. {A_nameDef} has the ropes coiled and ready.</li>
+      <li>[colony:Traditional] The cold is coming, and with it the day the colony brings the herd home. {A_nameDef} has had the ropes coiled by the door since breakfast, and has been humming the old herding call all morning.</li>
     </texts>
     <traditionOption>0</traditionOption>
     <traditionLabel>bringing the herd home</traditionLabel>
@@ -34,10 +34,10 @@
     <options>
       <li>
         <label>Bring the herd home together</label>
-        <outcome>Everyone who could be spared went out with a rope. One by one the herd came in out of the weather, {PET_nameDef} last and loudest, and the barn door was shut on all of them by dark.</outcome>
+        <outcome>Whoever could be spared went out with a rope. One by one the herd came in out of the weather, {PET_nameDef} last and loudest, and the barn door was shut on all of them by dark.</outcome>
         <outcomes>
           <li>[snow] They brought the herd in through the snow in a long line, people and animals both white to the knees, and stamped their feet in the barn doorway after.</li>
-          <li>[afterraid] They found the scattered ones in twos and threes across the land and walked them home past the marks the raid had left. Nobody said much. Everyone counted.</li>
+          <li>[afterraid] They found the scattered ones in twos and threes across the land and walked them home past the marks the raid had left, counting heads the whole way.</li>
         </outcomes>
         <ways><tradition>3</tradition><toil>1</toil></ways>
         <effects>

@@ -28,18 +28,18 @@
       <minOpinionOfA>20</minOpinionOfA>
     </roleB>
     <texts>
-      <li>Since {X_nameDef} died, {A_nameDef} has kept working: quiet, short with everyone, scrubbing the same table twice. This morning {A_nameDef} asked the council for a day away. No patients, no bandages, one day.\n\nThere is nobody else who can do what {A_nameDef} does if someone is hurt today. {B_nameDef} has offered to spend the day with {A_objective}, if the council agrees.</li>
+      <li>Since {X_nameDef} died, {A_nameDef} has kept working, short with anyone who speaks to {A_objective}, scrubbing the same table twice. This morning {A_nameDef} asked the council for a day away. No patients, no bandages. One day.\n\nIf someone is hurt today, there's no one else who can do what {A_nameDef} does. {B_nameDef} has offered to spend the day with {A_objective}, if the council agrees.</li>
       <li>[lowtech] {A_nameDef} washed {X_nameDef}'s body and sat by the grave until the fire went out. Now {A_pronoun} wants a day to walk the land alone before taking up the healer's work again.\n\n{B_nameDef} says {A_nameDef} shouldn't be alone at all.</li>
-      <li>[trait:Kind|trait:Nervous] {A_nameDef} hasn't slept properly since {X_nameDef} died under {A_possessive} care. {A_nameDef} jumps at every knock on the infirmary door and has asked, very quietly, for a day off.\n\n{B_nameDef} has offered to keep {A_objective} company.</li>
+      <li>[trait:Kind|trait:Nervous] {A_nameDef} hasn't slept properly since {X_nameDef} died under {A_possessive} care. {A_nameDef} jumps at every knock on the infirmary door, and has asked for a day off in a voice the council had to lean in to hear.\n\n{B_nameDef} has offered to keep {A_objective} company.</li>
     </texts>
     <defaultOption>1</defaultOption>
     <options>
       <li>
         <label>Give {A_nameDef} the day</label>
-        <outcome>{A_nameDef} walked out past the fields after breakfast and came back at dusk with mud to the knees. Nobody asked where {A_pronoun} had been. The next morning {A_nameDef} was at the infirmary before anyone else.</outcome>
+        <outcome>{A_nameDef} walked out past the fields after breakfast and came back at dusk with mud to the knees, and didn't say where {A_pronoun} had been. The next morning {A_nameDef} was at the infirmary before anyone else.</outcome>
         <outcomes>
-          <li>[winter] {A_nameDef} spent the day by the stove with a blanket and a book {A_pronoun} didn't read. By evening {A_nameDef} was eating again, and talking a little.</li>
-          <li>[lowtech] {A_nameDef} walked to the high ground and back, alone, as the old healers did after a death. {A_nameDef} came home quiet and lighter.</li>
+          <li>[winter] {A_nameDef} spent the day by the stove with a blanket and a book {A_pronoun} didn't read. By evening {A_nameDef} was eating again, and answering when spoken to.</li>
+          <li>[lowtech] {A_nameDef} walked to the high ground and back, alone, as the old healers did after a death, and came home with a stone from the top in {A_possessive} pocket.</li>
         </outcomes>
         <ways><mercy>2</mercy><toil>-1</toil></ways>
         <effects>
@@ -53,10 +53,10 @@
       </li>
       <li>
         <label>The colony needs its doctor</label>
-        <outcome>{A_nameDef} was told, kindly, that the colony can't spare a doctor. {A_nameDef} nodded and went back to the infirmary, and hasn't said much to anyone since.</outcome>
+        <outcome>The colony can't spare its doctor, even for a day. {A_nameDef} nodded and went back to the infirmary, and has said very little since.</outcome>
         <outcomes>
-          <li>[colony:Hardworking] Nobody here takes days off for grief, and {A_nameDef} knew that before asking. {A_nameDef} is back at work, and doing it well, and not looking at anyone.</li>
-          <li>[trait:Industrious|trait:HardWorker] {A_nameDef} said it was probably better to keep busy anyway. Maybe it is.</li>
+          <li>[colony:Hardworking] This colony doesn't stop for grief, and {A_nameDef} knew that before asking. {A_nameDef} is back at work, and doing it well, and not looking at anyone.</li>
+          <li>[trait:Industrious|trait:HardWorker] {A_nameDef} said keeping busy was probably better anyway, and was back in the infirmary within the hour, sleeves rolled up.</li>
         </outcomes>
         <ways><toil>2</toil><mercy>-1</mercy></ways>
         <effects>
@@ -69,7 +69,7 @@
         <label>{B_nameDef} keeps {A_nameDef} company for the day</label>
         <outcome>{B_nameDef} took {A_nameDef} fishing, or what they called fishing: two lines in the water and a long silence. Late in the afternoon {A_nameDef} started talking about {X_nameDef}, and {B_nameDef} listened.</outcome>
         <outcomes>
-          <li>[land:desert|land:tundra] {B_nameDef} and {A_nameDef} walked the edge of the colony all day and said perhaps twenty words between them. It was enough.</li>
+          <li>[land:desert|land:tundra] {B_nameDef} and {A_nameDef} walked the edge of the colony all day and said perhaps twenty words between them, and came home in step.</li>
           <li>[b:trait:Kind] {B_nameDef} cooked {A_nameDef}'s favorite meal and sat with {A_objective} on the step while {A_pronoun} ate it, and then they talked until dark.</li>
         </outcomes>
         <ways><mercy>3</mercy></ways>
@@ -98,8 +98,8 @@
       <adult>false</adult>
     </roleA>
     <texts>
-      <li>{A_nameDef} is still convalescing and can't climb the stairs without stopping halfway, but has been seen carrying sacks to the storeroom twice today. Asked about it, {A_nameDef} said lying in bed was making {A_objective} worse.\n\nThe doctor wants {A_objective} in bed. {A_nameDef} wants the council to say otherwise.</li>
-      <li>[trait:Industrious|trait:HardWorker] {A_nameDef} has never sat still for long, and convalescing hasn't changed that. This morning {A_nameDef} was found at the workbench before dawn, gray in the face and pretending not to be. {A_nameDef} says {A_pronoun} is ready.</li>
+      <li>{A_nameDef} is still convalescing and can't cross the yard without stopping halfway, but has been seen carrying sacks to the storeroom twice today. Asked about it, {A_nameDef} said lying in bed was making {A_objective} worse.\n\nThe doctor wants {A_objective} in bed. {A_nameDef} wants the council to say otherwise.</li>
+      <li>[trait:Industrious|trait:HardWorker] {A_nameDef} has never sat still for long, and convalescing hasn't changed that. This morning {A_nameDef} was found at the workbench before dawn, gray in the face, and announced that {A_pronoun} had never felt better.</li>
       <li>[child] {A_nameDef} is supposed to be resting while {A_pronoun} gets better, but keeps sneaking out to play with the others and coming back exhausted. The grown-ups want the council to say whether to keep {A_objective} in bed.</li>
       <li>[afterraid] The raid left the colony short of hands, and {A_nameDef}, still weak, wants to help with the repairs. The doctor says it will cost more days than it saves.</li>
     </texts>
@@ -107,7 +107,7 @@
     <options>
       <li>
         <label>Let {A_nameDef} back to light work</label>
-        <outcome>{A_nameDef} is back at work, on the light jobs only, and sits down when the doctor walks past. It's slow, but {A_nameDef} looks happier than {A_pronoun} has in days.</outcome>
+        <outcome>{A_nameDef} is back at work, on the light jobs only, and sits down whenever the doctor walks past. It's slow going, and {A_nameDef} has been whistling.</outcome>
         <outcomes>
           <li>[child] {A_nameDef} is allowed to play again, as long as it's sitting-down games. Most of them have turned into standing-up games.</li>
         </outcomes>
@@ -127,10 +127,10 @@
       </li>
       <li>
         <label>Bed until the strength comes back</label>
-        <outcome>The council sided with the doctor. {A_nameDef} is in bed with orders to stay there, and somebody brings {A_possessive} meals so there's no excuse to get up.</outcome>
+        <outcome>The doctor's word stands. {A_nameDef} is in bed with orders to stay there, and somebody brings {A_possessive} meals so there's no excuse to get up.</outcome>
         <outcomes>
           <li>[trait:Industrious|trait:HardWorker] {A_nameDef} took the decision badly and is now lying in bed, very still, radiating disapproval at the ceiling.</li>
-          <li>[trait:Lazy|trait:Slothful] {A_nameDef} accepted the council's decision with suspicious grace and asked for another pillow.</li>
+          <li>[trait:Lazy|trait:Slothful] {A_nameDef} took to bed rest with suspicious grace and asked for another pillow.</li>
         </outcomes>
         <ways><mercy>1</mercy><toil>-1</toil></ways>
         <effects>
@@ -141,10 +141,10 @@
       </li>
       <li>
         <label>Give {A_nameDef} something to do from bed</label>
-        <outcome>{A_nameDef} has a basket of mending, a pile of tools to sharpen and a board across the bed to work on. It isn't what {A_nameDef} wanted, but {A_possessive} hands are busy and the rest of {A_objective} is lying down.</outcome>
+        <outcome>{A_nameDef} has a basket of mending and a board across the bed to work on. It isn't what {A_nameDef} wanted, but {A_possessive} hands are busy and the rest of {A_objective} is lying down.</outcome>
         <outcomes>
-          <li>[skill:Intellectual] {A_nameDef} has the colony's books and ledgers propped on {A_possessive} knees and is finding mistakes in all of them. Everyone is a little nervous.</li>
-          <li>[skill:Artistic] {A_nameDef} has a block of wood and a knife, and the shavings are piling up on the blanket. Nobody knows what it's going to be yet.</li>
+          <li>[skill:Intellectual] {A_nameDef} has the colony's ledgers propped on {A_possessive} knees and has found three mistakes so far, one of them the council's.</li>
+          <li>[skill:Artistic] {A_nameDef} has a block of wood and a knife, and the shavings are piling up on the blanket. {A_nameDef} won't say what it's going to be.</li>
         </outcomes>
         <ways><toil>1</toil><mercy>1</mercy></ways>
         <effects>
@@ -168,16 +168,16 @@
       <adult>false</adult>
     </roleA>
     <texts>
-      <li>{A_nameDef} is to go under the knife soon, and {B_nameDef}, who is closer to {A_objective} than anyone, has come to the council about it. {B_nameDef} doesn't say the operation is wrong. {B_nameDef} says nobody asked {B_objective}, and every operation is a risk, and wants a day or two to talk it through with {A_nameDef} first.</li>
+      <li>{A_nameDef} is to go under the knife soon, and {B_nameDef}, who is closer to {A_objective} than anyone, has come to the council about it. {B_nameDef} doesn't say the operation is wrong. {B_nameDef} says every operation is a risk, that {B_pronoun} wasn't asked, and that {B_pronoun} wants a day or two to talk it through with {A_nameDef} first.</li>
       <li>[child] {A_nameDef} is to have an operation, and {B_nameDef} wants to be asked first, as family should be. {B_nameDef} has questions for the doctor, a lot of them, and wants the answers before anyone picks up a knife.</li>
-      <li>[lowtech] The healer has set a day to cut {A_nameDef}. {B_nameDef}, who is family, says in the old way the family sits together and agrees before such a thing is done, and nobody sat with {B_objective}.</li>
+      <li>[lowtech] The healer has set a day to cut {A_nameDef}. {B_nameDef}, who is family, says that in the old way the family sits together and agrees before such a thing is done. This time {B_nameDef} wasn't asked.</li>
       <li>[trait:Nervous|trait:Wimp] {A_nameDef} is to have an operation and is frightened of it. {B_nameDef} has asked the council to wait until the two of them have talked, and {A_nameDef} seems relieved that someone said it out loud.</li>
     </texts>
     <defaultOption>0</defaultOption>
     <options>
       <li>
         <label>Go ahead as planned</label>
-        <outcome>The council thanked {B_nameDef} for coming and said the operation goes ahead as planned. {A_nameDef} said it was better to get it over with. {B_nameDef} said nothing and left.</outcome>
+        <outcome>The operation goes ahead as planned. {A_nameDef} said it was better to get it over with. {B_nameDef} said nothing, and went to sit outside the infirmary door.</outcome>
         <ways><toil>1</toil><openness>-1</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmH_GetItOver</thought></li>
@@ -227,7 +227,7 @@
     <answerDays>2</answerDays>
     <texts>
       <li>{A_nameDef} has delivered most of the colony's babies so far, and says it's time someone else learned, before the night a baby comes and {A_nameDef} is ill, or away, or asleep after a raid. {A_nameDef} has picked {B_nameDef}, who has been hanging about the infirmary asking questions.\n\nTeaching takes time that would otherwise go to work.</li>
-      <li>[lowtech] {A_nameDef} knows the old ways of bringing a child into the world: the herbs, the warm water, when to wait and when not to. {A_nameDef} wants to pass them on to {B_nameDef} before they're forgotten.</li>
+      <li>[lowtech] {A_nameDef} knows the old ways of bringing a child into the world, which herbs to boil and when to wait and when not to. {A_nameDef} wants to pass them on to {B_nameDef} before they're forgotten.</li>
       <li>[old] {A_nameDef} has brought several of the colony's children into the world and says {A_possessive} hands won't be steady forever. {A_nameDef} wants {B_nameDef} to start learning now.</li>
     </texts>
     <defaultOption>1</defaultOption>
@@ -248,7 +248,7 @@
       </li>
       <li>
         <label>Not now</label>
-        <outcome>The council said there's too much work to spare two pairs of hands for lessons. {A_nameDef} shrugged. {B_nameDef} took it harder.</outcome>
+        <outcome>There's too much work to spare two pairs of hands for lessons. {A_nameDef} shrugged. {B_nameDef} went back to hanging about the infirmary, asking questions.</outcome>
         <ways><toil>1</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_DlmH_NotYet</thought></li>

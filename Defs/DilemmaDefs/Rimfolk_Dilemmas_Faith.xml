@@ -19,9 +19,9 @@
     <cooldownDays>30</cooldownDays>
     <minColonists>4</minColonists>
     <texts>
-      <li>The colony holds {COUNT} ideoligions now, and it shows. {A_nameDef} of {FAITH} and {B_nameDef} of {OTHERFAITH} both want the evenings for their own ideoligion, and neither will give way. {WHY}\n\nThey have asked the council to settle it.</li>
-      <li>{B_nameDef} says {FAITH} behaves as if the colony were already theirs. {A_nameDef} says {OTHERFAITH} could share a little more gracefully. {WHY}\n\nWith {COUNT} ideoligions under one roof, the council is asked how they should live together.</li>
-      <li>[b:faith:devout] {B_nameDef} has stopped coming to meals when {A_nameDef} says the words of {FAITH} over them. {WHY}\n\nThe council is asked to find a way for {COUNT} ideoligions to share one colony.</li>
+      <li>The colony holds {COUNT} ideoligions now, and it shows. {A_nameDef} of {FAITH} and {B_nameDef} of {OTHERFAITH} both want the evenings, and neither will give way. {WHY}\n\nThey have asked the council to settle it.</li>
+      <li>{B_nameDef} says {FAITH} behaves as if the colony were already theirs. {A_nameDef} says {OTHERFAITH} has never once offered to share. {WHY}\n\nWith {COUNT} ideoligions under one roof, the council is asked how they should live together.</li>
+      <li>[b:faith:devout] {B_nameDef} eats standing up in the kitchen now, rather than sit at the table while {A_nameDef} says the words of {FAITH} over the food. {WHY}\n\nThe council is asked to find a way for {COUNT} ideoligions to share one colony.</li>
       <li>[lowtech] There is one fire to gather at, and {COUNT} ideoligions that want it. {A_nameDef} speaks for {FAITH}, {B_nameDef} for {OTHERFAITH}. {WHY}\n\nThe council must say how the colony keeps its ideoligions.</li>
     </texts>
     <defaultOption>1</defaultOption>
@@ -30,7 +30,7 @@
         <label>Share the {ALTAR}: the ideoligions take turns</label>
         <outcome>The ideoligions take turns at the {ALTAR} now: {FAITH} in the evenings, {OTHERFAITH} at first light, the others as they ask. The open-minded call it the fairest thing the council has done in a while. The devout are less sure.</outcome>
         <outcomes>
-          <li>[b:faith:devout] The ideoligions take turns at the {ALTAR}. {B_nameDef} keeps {OTHERFAITH}'s hour to the minute, and makes a point of leaving the place cleaner than {B_pronoun} found it.</li>
+          <li>[b:faith:devout] {B_nameDef} keeps {OTHERFAITH}'s hour at the {ALTAR} to the minute now, and makes a point of leaving the place cleaner than {B_pronoun} found it.</li>
         </outcomes>
         <ways><openness>2</openness></ways>
         <effects>
@@ -40,7 +40,7 @@
       </li>
       <li>
         <label>A corner for each ideoligion</label>
-        <outcome>Each ideoligion has a corner of its own now, to keep as it likes. Nobody is entirely happy and nobody is unhappy, which the council takes as a good sign. A few of them cleared the corners together.</outcome>
+        <outcome>Each ideoligion has a corner of its own now, to keep as it likes. A few believers from different sides did the clearing out together, and argued only about where the broom should go.</outcome>
         <outcomes>
           <li>[lowtech] Each ideoligion has its own corner now, marked with a cloth or a carved post. The colony got on with clearing them out, side by side.</li>
         </outcomes>
@@ -53,10 +53,10 @@
       </li>
       <li>
         <label>Name {FAITH} the colony's ideoligion</label>
-        <outcome>The council has named {FAITH} the colony's ideoligion. Its believers stand a little taller. Everyone else has gone quiet, and some of the devout have gone very quiet indeed.</outcome>
+        <outcome>The council has named {FAITH} the colony's ideoligion. Its believers have taken to standing at the front. The rest have gone quiet, and the devout among them quieter still.</outcome>
         <outcomes>
-          <li>[b:faith:devout] The council has named {FAITH} the colony's ideoligion. {B_nameDef} heard it out, said nothing, and went straight to {B_possessive} room.</li>
-          <li>[b:persona:curious] The council has named {FAITH} the colony's ideoligion. {B_nameDef} took it better than anyone expected, and asked {A_nameDef} where to begin.</li>
+          <li>[b:faith:devout] {FAITH} is the colony's ideoligion now. {B_nameDef} heard it out, said nothing, and went straight to {B_possessive} room.</li>
+          <li>[b:persona:curious] So {FAITH} is the colony's ideoligion. {B_nameDef} took it better than anyone expected, and asked {A_nameDef} where to begin.</li>
         </outcomes>
         <ways><tradition>3</tradition><openness>-3</openness></ways>
         <effects>
@@ -94,7 +94,7 @@
       </li>
       <li>
         <label>An evening for those of {FAITH} only</label>
-        <outcome>The faithful of {FAITH} keep a quiet evening of their own, and nobody else need hear it. {A_nameDef} says that will do, for now.</outcome>
+        <outcome>The faithful of {FAITH} kept an evening of their own, and the rest of the colony left them to it.</outcome>
         <ways><tradition>2</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_FaithSteady"><amount>0.04</amount></li>
@@ -104,7 +104,7 @@
       </li>
       <li>
         <label>Not now</label>
-        <outcome>The council said not now. {A_nameDef} nodded and put away the notes {A_pronoun} had been making.</outcome>
+        <outcome>{A_nameDef} nodded and put away the notes {A_pronoun} had been making.</outcome>
         <ways><openness>-1</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-2</amount></li>
