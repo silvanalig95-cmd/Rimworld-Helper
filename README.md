@@ -1854,7 +1854,9 @@ panel, it gets the click and the tooltip:
   each condition says how it stands: tended and how well, and when the tending wears off, or untended in orange; how
   much of a wound has healed and roughly when it's healed, from the game's own healing; an illness's immunity against
   its severity and when it will be over, or "losing"; how long an ailment has left; the bleeding a day. As a summary
-  line under each name, or one line per condition.
+  line under each name, or one line per condition. With **icons and bars** (on by default; off for the plain text
+  look) each condition carries the Health tab's own icon, a tiny bar and its tending in red, yellow or green, the
+  summary wraps as small chips ("Bruise ×2", then "+N") with a tooltip each, and the status word takes its colour.
 - **Work and idle**: one row per colonist with what they're doing, a mark when idle and for how long, three small bars
   for food, rest and recreation (red when low), and drafted, down or in a break; starving or exhausted first, then
   idle, then busy. Above it, only when it matters: how many are idle, who needs food or sleep, and work waiting that

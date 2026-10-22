@@ -254,7 +254,7 @@ namespace ColonyCouncil
             HealthMark(row, p);
             Chips(row, hours, bleed);
             if (LineEach) Lines(row, hours, bleed);
-            row.tip = Tip(p, row, hours, bleed);
+            row.tip = RowTip(p, row, hours, bleed);
             return row;
         }
 
@@ -834,7 +834,7 @@ namespace ColonyCouncil
         }
 
         /// <summary>The row's tooltip: their health and pain as the Health tab says them, the bleeding, and each condition in full.</summary>
-        private string Tip(Pawn p, Row row, float bleedHours, float bleed)
+        private string RowTip(Pawn p, Row row, float bleedHours, float bleed)
         {
             var sb = new StringBuilder();
             sb.Append(p.LabelShortCap.Colorize(UiKit.HeaderColor));
