@@ -49,14 +49,14 @@
       <li>[lowtech] A few healers of {FACTION} came down the road with dried herbs in their packs and clay pots clinking at every step. They go from village to village seeing to whatever needs seeing to, {X_nameDef}, the eldest, told {A_nameDef}, and they'd like to camp {PLACE} a few days.</li>
       <li>[!lowtech] The traveling clinic of {FACTION} turns out to be a handful of tired medics, a folding table and a crate of supplies stenciled with somebody else's name. {X_nameDef}, who runs it, told {A_nameDef} they'll set up {PLACE} for a few days and see anyone who needs seeing.</li>
       <li>[ws:sickness] With {SITUATION} in every village, the healers of {FACTION} go where they're sent and sleep where they can. {X_nameDef}, gray with tiredness, asked {A_nameDef} whether they might rest {PLACE} a few days, and promised to see to anyone at the colony who's ailing while they're here.</li>
-      <li>[winter] Healers of {FACTION} came in out of the cold with frost on their packs. Winter is their busiest season, {X_nameDef} told {A_nameDef}: coughs, chilblains, falls on the ice. They'd like to camp {PLACE} for a few days and rest before the next village.</li>
+      <li>[winter] Healers of {FACTION} came in out of the cold with frost on their packs. Winter is their busiest season, {X_nameDef} told {A_nameDef}: coughs, chilblains, falls on the ice. They'd like to camp {PLACE} and rest before the next village.</li>
       <li>Healers of {FACTION} have stopped on the colony's land with a cart of remedies and a sign that says, in three languages, that they ask no questions. {X_nameDef} told {A_nameDef} they'll camp {PLACE} a few days, and the colony is welcome at their table.</li>
     </texts>
     <settled>
       <li>The healers from {FACTION} have their camp up {PLACE}, with a table of remedies by the fire and a torch to work by after dark.</li>
-      <li>[lowtech] The healers from {FACTION} have hung bundles of herbs to dry around their fire {PLACE}, and the smell of them carries to the colony.</li>
+      <li>[lowtech] Bundles of herbs hang drying around the healers' fire {PLACE}, and the smell of them carries to the colony.</li>
       <li>[!lowtech] The healers from {FACTION} have set out their table {PLACE}, with bottles in neat rows and a clean cloth over the instruments.</li>
-      <li>The healers from {FACTION} have their camp up {PLACE}, with a pot of something simmering that smells like medicine and a bench for the sick to wait on.</li>
+      <li>A pot of something that smells like medicine is simmering at the healers' camp {PLACE}, with a bench beside it for the sick to wait on.</li>
     </settled>
     <joinTexts>
       <li>"You need a healer more than the road does." {X_nameDef}, one of the healers camped {PLACE}, said it plainly, and asked whether {X_pronoun} might stay.</li>
@@ -130,14 +130,14 @@
       <li>A procession of {FACTION} has come singing up the road behind a carried shrine: the faithful of a dozen villages, bound for a holy place far beyond the colony. {X_nameDef}, who leads them, asked {A_nameDef} whether they might rest {PLACE} for a few days and keep their prayers.</li>
       <li>[ideology] Followers of {IDEO} from {FACTION} have come up the road carrying the relics of their faith on poles. {X_nameDef}, who walks at the front, asked {A_nameDef} for leave to camp {PLACE}, to rest and to pray.</li>
       <li>[ideology,sameFaith] A procession of {FACTION} has arrived singing hymns the colony knows: they keep {IDEO}, the colony's own ideoligion, and they've come out of their way to rest among their own. {X_nameDef} asked {A_nameDef} for a few days' camp {PLACE}.</li>
-      <li>[ws:faith] The faithful are out on every road for {SITUATION}, and a procession of {FACTION} has stopped by the colony on its way. {X_nameDef} asked {A_nameDef} whether they might camp {PLACE} for a few days.</li>
+      <li>[ws:faith] The faithful are out on every road for {SITUATION}, and a procession of {FACTION} has stopped by the colony on its way. {X_nameDef} asked {A_nameDef} whether they might camp {PLACE} on the way.</li>
       <li>[lowtech] The bells and drums came over the hill first, and then the procession of {FACTION} behind them, carrying a carved figure on a litter. {X_nameDef}, their leader, asked {A_nameDef} whether the figure and its people might rest {PLACE} a few nights on their long road.</li>
       <li>[colony:Devout] A procession of {FACTION} has come out of its way to pass the colony, which the faithful on the roads call a devout place. {X_nameDef} asked {A_nameDef} whether they might rest {PLACE} and pray a while among people who would understand it.</li>
     </texts>
     <settled>
       <li>The faithful from {FACTION} have set their shrine down {PLACE}, with a place cleared before it for prayer and their sleeping places in a ring around the fire.</li>
       <li>[ideology] The followers of {IDEO} have made their camp {PLACE}. Their relics stand on a cloth near the cookpot, and someone is always keeping watch over them.</li>
-      <li>The faithful from {FACTION} have their camp up {PLACE}, the shrine set facing the sunrise and their bells hung on a pole beside it.</li>
+      <li>At the procession's camp {PLACE}, the shrine is set facing the sunrise, with the bells hung on a pole beside it.</li>
     </settled>
     <joinTexts>
       <li>{X_nameDef}, one of the faithful camped {PLACE}, says the road has brought {X_objective} where {X_pronoun} was meant to be, and asks whether {X_pronoun} might stay with the colony instead of walking on.</li>
@@ -215,7 +215,7 @@
       <li>The players from {FACTION} have their camp up {PLACE}, with a stage of packed earth and a torch at each corner.</li>
       <li>[!lowtech] The circus from {FACTION} has strung lanterns between two poles {PLACE} and marked out a ring in the dirt. The juggler is still juggling.</li>
       <li>[tribal] The dancers from {FACTION} have cleared a dancing ground {PLACE} and beaten it flat. Their drums are already going at dusk.</li>
-      <li>The players from {FACTION} have their camp up {PLACE}, costumes hung on a line to air and a trunk of props open by the fire.</li>
+      <li>Costumes hang airing on a line at the players' camp {PLACE}, and a trunk of props stands open by the fire.</li>
     </settled>
     <joinTexts>
       <li>{X_nameDef}, one of the players camped {PLACE}, is tired of the road and of sleeping in a different field every week, and asks whether the colony has room for someone who can sing, juggle and lift heavy things.</li>
@@ -300,7 +300,7 @@
     <settled>
       <li>The surveyors from {FACTION} have their camp up {PLACE}, with a windbreak against the weather and their instruments wrapped in oilcloth.</li>
       <li>The surveyors' camp {PLACE} is up, with a torch to work their figures by at night and a line of stakes running off into the hills.</li>
-      <li>The surveyors from {FACTION} have their camp up {PLACE}, maps weighted down with stones and a long cord marked off in paces coiled by the fire.</li>
+      <li>At the surveyors' camp {PLACE}, maps are weighted down with stones and a long cord marked off in paces lies coiled by the fire.</li>
     </settled>
     <joinTexts>
       <li>{X_nameDef} from the surveyors' camp has walked every hill around the colony and decided {X_pronoun} likes this one best. {X_nameDef} asks whether the colony would take on someone who knows rock and distances.</li>

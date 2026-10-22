@@ -79,8 +79,8 @@
     </titles>
     <texts>
       <li>[lowtech] Salt, dried fish and coils of rope, bound from the coast for the hill towns. The caravan of {FACTION} has carried it all down the long road, and {X_nameDef}, the caravan master, told {A_nameDef} the beasts need a rest and the water barrels need filling, and asked whether they might camp {PLACE} for a few days.</li>
-      <li>[!lowtech] A convoy of {FACTION}'s long-haul traders has pulled off the road near the colony, its vehicles patched and its canvas gray with dust. {X_nameDef}, who runs it, told {A_nameDef} they're waiting on a part and would like to camp {PLACE} for a few days. They'll trade while they wait.</li>
-      <li>[ws:toll] The toll has sent {FACTION}'s caravan the long way round, and the long way round goes past the colony. {X_nameDef}, the caravan master, asked {A_nameDef} for a few days' camp {PLACE} to rest the animals before the hills.</li>
+      <li>[!lowtech] A convoy of {FACTION}'s long-haul traders has pulled off the road near the colony, its vehicles patched and its canvas gray with dust. {X_nameDef}, who runs it, told {A_nameDef} they're waiting on a part and would like to camp {PLACE} until it comes. They'll trade while they wait.</li>
+      <li>[ws:toll] The toll has sent {FACTION}'s caravan the long way round, and the long way round goes past the colony. {X_nameDef}, the caravan master, asked {A_nameDef} for a camp {PLACE} to rest the animals before the hills.</li>
       <li>[their:friend] A caravan of {FACTION} has stopped by the colony, and {X_nameDef}, its master, asked for {A_nameDef} by name: {FACTION} tell the story of what {A_pronoun} once did for them on every road they travel. They'd like to camp {PLACE} for a few days.</li>
       <li>[winter] A caravan of {FACTION}, caught by the weather between towns, has turned off the road toward the colony's smoke. {X_nameDef} asked {A_nameDef} for leave to camp {PLACE} until the beasts are rested and the road is clear.</li>
     </texts>
@@ -206,7 +206,7 @@
     <texts>
       <li>[lowtech] Merchants of {FACTION} have come from much further than {FACTION}'s own lands. Their clothes are cut strangely, and their packs smell of spices no one at the colony can name. {X_nameDef}, who speaks for them, asked {A_nameDef} whether they might camp {PLACE} for a few days and show their wares.</li>
       <li>[!lowtech] A small trading party of {FACTION} has turned up with crates stamped in alphabets no one here can read, and goods the colony has only ever seen in pictures. {X_nameDef} told {A_nameDef} they're on the way to the far markets and would like to camp {PLACE} for a few days, and trade if anyone's interested.</li>
-      <li>[ws:fair|ws:trade] With {SITUATION} on, merchants of {FACTION} from the far south have come up the road with rare goods. {X_nameDef} asked {A_nameDef} for a few days' camp {PLACE}, to rest and trade on the way.</li>
+      <li>[ws:fair|ws:trade] With {SITUATION} on, merchants of {FACTION} from the far south have come up the road with rare goods. {X_nameDef} asked {A_nameDef} whether they might rest {PLACE} on the way, and trade while they're at it.</li>
       <li>[lowtech] "May your wells stay sweet and your roofs stay dry." {X_nameDef} of {FACTION} bowed low to {A_nameDef} as {X_pronoun} said it, and then asked, in plainer words, whether the merchants might camp {PLACE} a few days and lay out their wares.</li>
     </texts>
     <settled>
@@ -308,7 +308,7 @@
     <texts>
       <li>Drovers of {FACTION} are walking a herd to market, and the herd is resting in the long grass beyond the ridge while the drovers see about a camp. {X_nameDef}, a lean old drover with a dog that never once took its eyes off {A_nameDef}, asked for leave to camp {PLACE} a few days.</li>
       <li>[ws:drove] Another herd is coming past the colony for {SITUATION}. {X_nameDef}, its head drover, asked {A_nameDef} whether {FACTION}'s drovers might camp {PLACE} a few days while the beasts graze beyond the ridge.</li>
-      <li>[their:grateful] The drovers of {FACTION} know the colony as a friendly stop on the drove road. {X_nameDef} asked {A_nameDef}, with a nod as if to an old friend, for a few days' camp {PLACE}.</li>
+      <li>[their:grateful] The drovers of {FACTION} know the colony as a friendly stop on the drove road. {X_nameDef} asked {A_nameDef}, with a nod as if to an old friend, for the usual camp {PLACE}.</li>
       <li>[winter] Drovers of {FACTION}, bringing a late herd down from the high pastures, have asked to camp {PLACE} out of the wind. {X_nameDef} promised {A_nameDef} the herd won't come near the colony's fields.</li>
     </texts>
     <settled>
@@ -529,7 +529,7 @@
       <li>Pilgrims of {IDEO}, from {FACTION}, have come to the colony's woods. They walk from grove to grove, {X_nameDef} told {A_nameDef}, singing to the old trees and listening for what the land wants. They ask to camp {PLACE} for a few days, and promise not to cut a single branch.</li>
       <li>[meme:TreeConnection] Tree-singers of {IDEO} have come up the road with their hands stained green and seeds in every pocket. {X_nameDef} told {A_nameDef} there is a tree near the colony they have come a long way to hear, and asked to camp {PLACE} near it.</li>
       <li>[meme:Structure_Animist] Everything that grows has a spirit, the pilgrims of {FACTION} believe, and they have come to greet the spirits of the colony's woods. {X_nameDef} asked {A_nameDef}, very politely, for leave to camp {PLACE} and do it properly.</li>
-      <li>[sameFaith] Word on the road is that the colony keeps its woods well, and pilgrims of {IDEO}, the colony's own ideoligion, have come to sing to its trees. {X_nameDef} asked {A_nameDef} to camp {PLACE} a few days.</li>
+      <li>[sameFaith] Word on the road is that the colony keeps its woods well, and pilgrims of {IDEO}, the colony's own ideoligion, have come to sing to its trees. {X_nameDef} asked {A_nameDef} whether they might camp {PLACE}, near the oldest of them.</li>
     </texts>
     <settled>
       <li>The tree-singers from {FACTION} have made camp {PLACE} without cutting so much as a twig. They sleep on moss and keep their fire in a ring of old stones, and they pray under the biggest tree.</li>
@@ -537,6 +537,7 @@
     </settled>
     <joinTexts>
       <li>{X_nameDef}, one of the tree-singers {PLACE}, says the land here has asked {X_objective} to stay, and {X_pronoun} would like the colony to ask too.</li>
+      <li>{X_nameDef} of the tree-singers {PLACE} has spent every evening this week under the same old tree at the edge of the colony's land. Tonight {X_pronoun} came to ask whether {X_pronoun} might stay near it for good.</li>
     </joinTexts>
     <farewell>
       <li>The tree-singers left at dawn, singing, and stopped at the edge of the woods to bow to the trees. They left a ring of planted seeds where their fire had been.</li>

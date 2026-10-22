@@ -143,7 +143,7 @@
       <li>The family from {FACTION} has a windbreak up {PLACE} and their beds laid out close around the fire, the way people sleep after a long time sleeping rough.</li>
       <li>[winter] The family from {FACTION} has dug their camp into the lee of a bank {PLACE}, with every blanket they own around the fire.</li>
       <li>The family's camp is up {PLACE}, and {X_nameDef} has already hung the washing out on the windbreak to dry.</li>
-      <li>The family from {FACTION} has their camp up {PLACE}, small and tidy, with a cookpot on the fire and not much in it.</li>
+      <li>The refugees' camp {PLACE} is small and tidy, their few things put away, and there's a cookpot on the fire with not much in it.</li>
     </settled>
     <joinTexts>
       <li>{X_nameDef}, from the family camped {PLACE}, came up to the colony this evening with a question {X_pronoun} had clearly been rehearsing. {X_nameDef} works hard, {X_pronoun} says, and would like to stay.</li>
@@ -216,7 +216,7 @@
     <settled>
       <li>The prospectors from {FACTION} have their camp up {PLACE}, with a windbreak against the weather and a torch to dig by after dark.</li>
       <li>The prospectors' camp {PLACE} is up, and the first test holes are already dug in a neat line toward the high ground.</li>
-      <li>The prospectors from {FACTION} have their camp up {PLACE}, with sieves stacked by the fire and a hand-drawn map pinned under a rock.</li>
+      <li>Sieves are stacked by the prospectors' fire {PLACE}, and a hand-drawn map is pinned flat under a rock beside them.</li>
     </settled>
     <joinTexts>
       <li>{X_nameDef} from the prospectors' camp is tired of digging holes for other people's fortunes, and asks whether the colony could use a steady pair of hands.</li>
@@ -428,7 +428,7 @@
     <settled>
       <li>The smith from {FACTION} has a work spot and a table of wares set up at the camp {PLACE}. The ringing of a hammer carries all the way to the colony.</li>
       <li>The smith's camp {PLACE} is up and the forge is lit, and two colonists have already found reasons to walk past it with bent tools.</li>
-      <li>The smith from {FACTION} has a fire going hot {PLACE} and a row of half-finished blades cooling on a flat stone.</li>
+      <li>A fire burns hot at the smith's camp {PLACE}, and a row of half-finished blades lies cooling on a flat stone.</li>
     </settled>
     <joinTexts>
       <li>{X_nameDef}, who has been working the smith's bellows, wants to stop moving, and asks whether the colony needs someone who knows metal.</li>
