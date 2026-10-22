@@ -298,7 +298,7 @@
   <ColonyCouncil.AmbitionDef>
     <defName>Council_Amb_LongStore</defName>
     <label>the long store</label>
-    <description>Put away 150 pemmican. It keeps for months without a freezer, so it's there for caravans, sieges and a winter that runs long.</description>
+    <description>Put away 150 pemmican. It keeps for months without cold storage, so it's there for caravans, sieges and a winter that runs long.</description>
     <days>20</days>
     <relevantCategories><li>Food</li></relevantCategories>
     <proposerSkills><li>Cooking</li></proposerSkills>

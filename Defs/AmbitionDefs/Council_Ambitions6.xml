@@ -126,7 +126,7 @@
   <ColonyCouncil.AmbitionDef>
     <defName>Council_Amb_CalmSeason</defName>
     <label>a calm season</label>
-    <description>Fifteen days in a row without anyone having a mental break. A break starts the count again. Days off, good food, parties and fewer frictions all help. Proposed when someone is close to breaking, or the colony is worn down.</description>
+    <description>Fifteen days in a row without anyone having a mental break. A break starts the count again. Days off, good food, parties and less friction all help. Proposed when someone is close to breaking, or the colony is worn down.</description>
     <days>25</days>
     <relevantCategories><li>Comfort</li></relevantCategories>
     <proposerSkills><li>Social</li><li>Medicine</li></proposerSkills>
