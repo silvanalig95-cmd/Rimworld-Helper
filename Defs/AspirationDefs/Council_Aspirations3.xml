@@ -26,18 +26,18 @@
       <plain>
         <li>[inherited] {NAME} knew every row in the fields by heart. I'll {GOAL}, starting with the rows {NAME} planted.</li>
         <li>Whatever else happens here, people have to eat. I mean to be the reason they do. Four hundred harvests.</li>
-        <li>[sparked] We were eating raw rice out of the sack yesterday. Never again, not while I can hold a hoe.</li>
+        <li>[sparked] I keep thinking about how close we've come to eating raw rice out of the sack. Never again, not while I can hold a hoe.</li>
         <li>[spring] The ground's soft and warm again. This is the year I fill the storeroom myself.</li>
-        <li>[tribal] My mother could read the soil like a face. I want to be that good before my hands give out.</li>
+        <li>[tribal] My mother could read the soil like a face. Before my hands give out, I'll read it as well as she did.</li>
       </plain>
       <warm><li>A full storeroom means nobody goes hungry. I'd like to be the one who fills it.</li></warm>
       <cheerful><li>Four hundred harvests! I'll grow so much food we'll have to build another storeroom.</li></cheerful>
-      <gloomy><li>Every crop could fail. Blight, frost, fire. So I'll plant more than we need, every season.</li></gloomy>
+      <gloomy><li>Any crop can fail, and one year one will. I'll plant more than we need, every season.</li></gloomy>
       <cold><li>Food production is the foundation of everything else here. I intend to master it.</li></cold>
     </chosen>
     <achieved>
       <plain>
-        <li>Four hundred harvests. My hands are rough as bark and I wouldn't change a thing.</li>
+        <li>My hands are rough as bark now, and there's dirt under my nails that will never wash out.</li>
         <li>[winter] The fields are under snow, but the storeroom is full, and most of it came through my hands.</li>
       </plain>
       <warm><li>Every meal at that table started in my fields. That's a good thing to know.</li></warm>
@@ -59,8 +59,8 @@
       <plain>
         <li>[inherited] {NAME}'s tools are still on the bench, worn to the shape of {NAME}'s hands. I'll {GOAL} with them.</li>
         <li>Everything here that works, someone made. I want a hundred and twenty of those things to be mine.</li>
-        <li>[sparked] A proper place for every tool. No more excuses now. I'm going to make things until my hands ache.</li>
-        <li>[medieval] Every village has its maker, the one people go to when something breaks. I'd like to be ours.</li>
+        <li>[sparked] I've no excuses left. I'll make things until my hands ache.</li>
+        <li>[medieval] Every village has its maker, the one people go to when something breaks. Ours is going to be me.</li>
       </plain>
       <warm><li>I like knowing that the things people use every day came from my bench.</li></warm>
       <blunt><li>A hundred and twenty things. Good ones. Starting now.</li></blunt>
@@ -69,7 +69,7 @@
     </chosen>
     <achieved>
       <plain>
-        <li>A hundred and twenty things made by my hands. I see my work everywhere I look now.</li>
+        <li>Someone brought me a chair to mend today, and it was one of mine.</li>
         <li>[work:Crafting] I finished another one today, and then counted. That was a hundred and twenty.</li>
       </plain>
       <warm><li>Half the gear in this colony passed through my hands. I hope it serves them well.</li></warm>
@@ -96,13 +96,13 @@
         <li>[spark:downed] I went down in the mud with a raider on top of me. I'm never going down like that again.</li>
         <li>I want raiders to see me coming and pick someone else.</li>
       </plain>
-      <blunt><li>Up close is where I'm best. I'm going to be the best there is.</li></blunt>
+      <blunt><li>Up close is where I'm best. Soon I'll be the best there is.</li></blunt>
       <cheerful><li>I'll practice until I can knock the knife out of anyone's hand!</li></cheerful>
       <gloomy><li>Someday it'll come down to me and someone with a blade. I'd like to be the one who walks away.</li></gloomy>
       <cold><li>At close range, skill decides everything. I intend to have more of it than anyone.</li></cold>
     </chosen>
     <achieved>
-      <plain><li>I sparred with everyone in the colony this week. Nobody laid a hand on me.</li></plain>
+      <plain><li>I sparred with anyone who'd stand up to me this week. Not one of them laid a hand on me.</li></plain>
       <blunt><li>Let them come close. I'm ready.</li></blunt>
       <cold><li>Few who reach me will leave. That was the goal.</li></cold>
     </achieved>
@@ -126,7 +126,7 @@
         <li>[spark:loss] I miss them. I want someone to talk to who'll still be here tomorrow.</li>
       </plain>
       <cheerful><li>I'm going to have a best friend! We'll have a secret handshake.</li></cheerful>
-      <gloomy><li>Nobody here really likes me. Maybe one day someone will.</li></gloomy>
+      <gloomy><li>The grown-ups like me because they have to. I want someone to like me who doesn't have to.</li></gloomy>
     </chosen>
     <achieved>
       <plain><li>I have a best friend now. We have a secret place and I'm not telling where it is.</li></plain>
@@ -148,8 +148,8 @@
     <chosen>
       <plain>
         <li>When I grow up I'm going to be really good at {SKILL}. I'm starting now so I'm ahead.</li>
-        <li>[sparked] The lessons are going well. I want to get so good at {SKILL} that the grown-ups ask me.</li>
-        <li>[inherited] {NAME} was teaching me {SKILL}. I'm going to keep going, so {NAME} would be proud.</li>
+        <li>[sparked] I want to get so good at {SKILL} that the grown-ups come to me with questions.</li>
+        <li>[inherited] {NAME} was teaching me {SKILL}. I'm going to keep practicing, the way {NAME} showed me.</li>
       </plain>
       <warm><li>If I get good at {SKILL}, I can help everyone. I want to help.</li></warm>
       <cheerful><li>I love {SKILL} more than anything, and I'm going to be amazing at it!</li></cheerful>
@@ -201,15 +201,15 @@
     <chosen>
       <plain>
         <li>My child is grown now, with a life of their own here. I'd like to hold a grandchild before I'm done.</li>
-        <li>[spark:birth] There's a new baby in the colony. I held it today and thought: I want one of my own blood to hold.</li>
-        <li>[sparked] Weddings make you think about what comes after. I'd like to see the next generation.</li>
+        <li>[spark:birth] There's a new baby in the colony. I held it today and kept wishing it were one of my own blood.</li>
+        <li>[sparked] Weddings make you think about what comes after. Grandchildren, in my case.</li>
       </plain>
       <warm><li>A grandchild, here, safe. That's all I want from the years I have left.</li></warm>
       <cheerful><li>I'm going to be the best grandparent anyone's ever had! I just need a grandchild.</li></cheerful>
-      <gloomy><li>I'm running out of time. I'd like to see my family go on before it's too late.</li></gloomy>
+      <gloomy><li>I'm running out of time, and my family has to go on somehow. A grandchild would settle it.</li></gloomy>
     </chosen>
     <achieved>
-      <plain><li>My grandchild. I held them all afternoon and didn't want to give them back.</li></plain>
+      <plain><li>My grandchild. I held them all afternoon and sang every song I could remember.</li></plain>
       <warm><li>Three generations under one roof. I never thought I'd see it out here.</li></warm>
       <cheerful><li>I'm a grandparent! I've already made a toy.</li></cheerful>
       <gloomy><li>I've seen my grandchild. Whatever happens now, something of me goes on.</li></gloomy>
@@ -229,10 +229,10 @@
       <plain>
         <li>I'm old. I don't ask for much now. One more year here, with these people. That'll do.</li>
         <li>[spark:downed] I nearly didn't get up this time. I want one more year. Just one.</li>
-        <li>[spark:loss] Another friend gone. I'd like to see one more spring, for both of us.</li>
-        <li>[winter] Winters are hard on old bones. I'd like to see the far side of this one, and a few more seasons after.</li>
+        <li>[spark:loss] Another friend gone. I'd like to see one more spring, and put flowers on the grave when it comes.</li>
+        <li>[winter] Winters are hard on old bones. Let me see the far side of this one, and a few more seasons after.</li>
       </plain>
-      <warm><li>Every day with these people is a gift. I'd like another year of them.</li></warm>
+      <warm><li>I'd like another year of these people. Even the loud ones.</li></warm>
       <cheerful><li>One more year! I've got stories I haven't told yet.</li></cheerful>
       <gloomy><li>I can feel it coming. A year more would be enough.</li></gloomy>
     </chosen>
@@ -255,9 +255,9 @@
     <sparks><li>thought:Council_GratefulStudent</li><li>loss</li><li>fulfilled</li></sparks>
     <chosen>
       <plain>
-        <li>Everything I know will die with me unless I teach it. I'd like two students who can carry it on.</li>
+        <li>Everything I know will die with me unless I teach it. Two students who can carry it on, that's what I need.</li>
         <li>[spark:loss] Another one of us gone, and everything they knew with them. Not me. I'll teach.</li>
-        <li>[inherited] {NAME} wanted to leave students behind and didn't get the chance. I'll teach two, for both of us.</li>
+        <li>[inherited] {NAME} wanted to leave students behind and never got the chance. I'll take on two, and tell them about {NAME} too.</li>
       </plain>
       <warm><li>The young ones deserve to know what I know. It's the best thing I can leave them.</li></warm>
       <cold><li>Knowledge that isn't passed on is wasted. Two students will do.</li></cold>
@@ -284,7 +284,7 @@
         <li>[spark:omen] The dream came true, just as I saw it. I think I'm meant to do more for my faith.</li>
         <li>[grieving] Only my faith got me through this. I want to stand up for it, properly.</li>
       </plain>
-      <warm><li>I want to help others find what I've found. A role in the faith would let me.</li></warm>
+      <warm><li>Others could find what I've found. A role in the faith would let me help them.</li></warm>
       <cheerful><li>I'd love to lead the rituals! I already know all the words.</li></cheerful>
       <gloomy><li>Someone has to keep the faith alive out here. It might as well be me.</li></gloomy>
       <cold><li>A role in the faith carries weight in a colony. I would use it well.</li></cold>
@@ -307,9 +307,9 @@
       <plain>
         <li>We live together, eat together and fight together. I'd like us to believe together too.</li>
         <li>[spark:loss] At the grave, half of us prayed and half of us didn't know how. That should change.</li>
-        <li>[newcomer] Not everyone here knows the truth yet. I'll be patient, and I'll talk to them.</li>
+        <li>[newcomer] I've only just arrived, and already I can see who here doesn't know the truth yet. I'll be patient with them.</li>
       </plain>
-      <warm><li>My faith has given me so much. I'd like everyone here to have it too.</li></warm>
+      <warm><li>My faith has given me so much. Everyone here should have the chance of it.</li></warm>
       <blunt><li>One colony, one ideoligion. It's simpler for everyone.</li></blunt>
       <gloomy><li>A colony that doesn't share an ideoligion comes apart when things go wrong.</li></gloomy>
       <cold><li>Shared belief makes a colony easier to hold together.</li></cold>
@@ -337,13 +337,13 @@
     <chosen>
       <plain>
         <li>I live here, but I'm not sure I belong here yet. I'd like to, some day soon.</li>
-        <li>[spark:Council_Soc_LeftOut] They all went off together and nobody thought of me. I want to be someone they'd think of.</li>
+        <li>[spark:Council_Soc_LeftOut] They all went off together and forgot to ask me. I'd like to be someone people remember to ask.</li>
         <li>[spark:Council_Granted_SeatsForAll] We all sat at one table tonight, and for a moment it felt like home. I want that every day.</li>
         <li>[newcomer] Still the new one. I'd like to wake up one morning and feel like I've always been here.</li>
       </plain>
       <warm><li>These people could be my people. I think I'm close to feeling it.</li></warm>
       <gloomy><li>I've never really belonged anywhere. Maybe here could be different.</li></gloomy>
-      <cold><li>I want a place in this colony, not just a bed in it.</li></cold>
+      <cold><li>A bed in this colony isn't enough. I mean to have a place in it.</li></cold>
     </chosen>
     <achieved>
       <plain><li>I came home from the fields today and someone had kept my seat. I'm home.</li></plain>
@@ -367,16 +367,16 @@
         <li>Same walls, same work, same faces. I want my days to feel like they're mine again.</li>
         <li>[spark:Council_Granted_Travel] Out on the road I remembered what it's like to breathe. I want to feel that here, too.</li>
         <li>[spark:Council_Granted_CampEvening] Those travelers go where they please. I don't need to leave. I just need to feel I could.</li>
-        <li>[winter] Shut in all winter. When it ends, I want some room to move.</li>
+        <li>[winter] Shut in all winter. When it ends, I need some room to move.</li>
       </plain>
       <blunt><li>I'm tired of being told where to be every hour. I want some of my days back.</li></blunt>
-      <cheerful><li>Open skies, free afternoons, and nobody telling me what to do! That's the life.</li></cheerful>
+      <cheerful><li>A free afternoon under open sky, with no one telling me what to do. That's all I'm after!</li></cheerful>
       <gloomy><li>I feel like I'm in a cage I helped build. I want out of it, without leaving.</li></gloomy>
     </chosen>
     <achieved>
       <plain><li>Ten days of my own time, open sky and work I chose. I feel like myself again.</li></plain>
       <cheerful><li>I'm free as a bird, and the bird lives here!</li></cheerful>
-      <gloomy><li>Free, for now. I'll enjoy it before something takes it away.</li></gloomy>
+      <gloomy><li>Free. I keep waiting for someone to take it back.</li></gloomy>
     </achieved>
   </ColonyCouncil.AspirationDef>
 
@@ -399,7 +399,7 @@
       </plain>
       <warm><li>I'd like to give something back. An idea everyone here works on together would do it.</li></warm>
       <blunt><li>I'm going to pitch until they listen.</li></blunt>
-      <cheerful><li>I've got a whole notebook of ideas! One of them has to win.</li></cheerful>
+      <cheerful><li>I've got ideas stacked up like firewood! One of them has to win.</li></cheerful>
       <cold><li>The council sets the colony's course. I intend to set some of it.</li></cold>
     </chosen>
     <achieved>
