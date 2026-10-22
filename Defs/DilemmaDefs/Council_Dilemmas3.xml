@@ -920,14 +920,14 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Envious</thought><onlyTrait><li>Jealous</li></onlyTrait></li>
         </effects>
         <riskChance>0.25</riskChance>
-        <riskOutcome>The council credits {A_nameDef} with saving the colony. {B_nameDef} wouldn't have it, and the argument turned into a fight.</riskOutcome>
+        <riskOutcome>{A_nameDef} got the credit, and {B_nameDef} wouldn't have it. The argument ended in a fight.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Fight" />
         </riskEffects>
       </li>
       <li>
         <label>It was {B_nameDef}</label>
-        <outcome>The council credits {B_nameDef} with saving the colony. {B_nameDef} tells the story at every meal, with more attackers each time, and {A_nameDef} has started eating elsewhere.</outcome>
+        <outcome>The credit is {B_nameDef}'s. {B_nameDef} tells the story at every meal, with more attackers each time, and {A_nameDef} has started eating elsewhere.</outcome>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_SavedTheColony</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>6</amount></li>
@@ -937,7 +937,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Envious</thought><onlyTrait><li>Jealous</li></onlyTrait></li>
         </effects>
         <riskChance>0.25</riskChance>
-        <riskOutcome>The council credits {B_nameDef} with saving the colony. {A_nameDef} picked a fight with {B_objective} in the yard that same afternoon.</riskOutcome>
+        <riskOutcome>{A_nameDef} heard that the credit was {B_nameDef}'s, and picked a fight with {B_objective} in the yard that same afternoon.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Fight" />
         </riskEffects>

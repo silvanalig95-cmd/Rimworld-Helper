@@ -49,7 +49,7 @@
     <dilemma>Council_DlmS_RudeGuest</dilemma>
     <texts>
       <li>[theirLowtech] {X_nameDef} of {FACTION} has called {A_nameDef} a dirt-eater twice today, once at the well and once at supper, and laughed both times. The other visitors have started laughing along.\n\n{A_nameDef} has asked the council whether a guest's tongue is the council's business.</li>
-      <li>[theirHightech] Today {X_nameDef} of {FACTION} asked {A_nameDef}, slowly and loudly, whether {A_pronoun} could read. It capped two days of remarks about the colony's beds and the colony's smell, most of them aimed at {A_nameDef}.\n\n{A_nameDef} wants the council to say something.</li>
+      <li>[theirHightech] Today {X_nameDef} of {FACTION} asked {A_nameDef}, slowly and loudly, whether {A_pronoun} could read. It capped two days of remarks about the colony's beds and the colony's smell, most of them aimed at {A_nameDef}.\n\n{A_nameDef} said yes, and has been counting the days until the visitors leave.</li>
       <li>[trait:Abrasive] {A_nameDef} and {X_nameDef} of {FACTION} took against each other at first sight, and both have said so. Today {X_nameDef} went further, and said something about {A_nameDef}'s family that stopped all talk at the table.\n\n{A_nameDef} wants the council to act. Several people think {A_nameDef} started it.</li>
       <li>[trait:Kind] {A_nameDef} has put up with {X_nameDef}'s remarks for two days without a word back. Tonight {X_nameDef} of {FACTION} made {A_nameDef} leave the dinner table in tears, and some of the others want the council to act even though {A_nameDef} won't ask.</li>
     </texts>
@@ -70,7 +70,7 @@
       <li>
         <option>2</option>
         <lines>
-          <li>[theirLowtech] The {FACTION} visitors rolled up their bedding and went. {X_nameDef} found something to shout back at the colony from every rise in the road.</li>
+          <li>[theirLowtech] The {FACTION} visitors rolled up their bedding and went. {X_nameDef} had a parting word to shout back at the colony from every rise in the road.</li>
         </lines>
       </li>
     </outcomes>
@@ -107,7 +107,7 @@
     <dilemma>Council_DlmS_PrisonerPlea</dilemma>
     <texts>
       <li>[theirLowtech] {X_nameDef} has been singing to {A_nameDef} through the cell door, songs from the {FACTION} villages about harvests and homecomings. Tonight {X_nameDef} stopped singing long enough to ask to be sent home, and {A_nameDef} brought the request straight to the council.</li>
-      <li>[winter] It's cold in the cells, and {X_nameDef} has been telling {A_nameDef} about the people of {FACTION} who'll go hungry this winter without {X_objective}. {A_nameDef} has asked the council to let {X_nameDef} go home before the snow gets deeper.</li>
+      <li>[winter] It's cold in the cells, and {X_nameDef} has been telling {A_nameDef} about the people of {FACTION} who'll go hungry this winter without {X_objective}. {A_nameDef} would like {X_nameDef} sent home before the snow gets any deeper.</li>
       <li>[x:old] {X_nameDef} is too old to have been raiding, {A_nameDef} says, and was only carrying water for the others. {X_nameDef} wants to go home to {FACTION} and see {X_possessive} grandchildren, and {A_nameDef} wants the council to let {X_objective}.</li>
     </texts>
     <outcomes>
@@ -262,8 +262,8 @@
     <dilemma>Council_DlmS_NobleSneer</dilemma>
     <texts>
       <li>[!lowtech] {X_nameDef} asked {A_nameDef} today whether the colony had heard of insulation, and then whether it had heard of architects. {A_nameDef} built the guest room {X_nameDef} sleeps in.\n\nA titled guest is good for the colony's standing. {A_nameDef} wants to know if it's worth this.</li>
-      <li>[lowtech] {X_nameDef} told the table at supper that in the capital even the stables have straight walls. {A_nameDef}, who raised most of the walls here, put down {A_possessive} cup and asked the council what it means to do about its guest.</li>
-      <li>[winter] {X_nameDef} has complained of a draft in the guest room every morning this week, and this morning said the draft was the only thing in the colony built with any skill. {A_nameDef} built the room.\n\n{A_nameDef} wants the council to say something to its guest.</li>
+      <li>[lowtech] {X_nameDef} told the table at supper that in the capital even the stables have straight walls. {A_nameDef}, who raised most of the walls here, finished {A_possessive} supper without a word and went out to look at them.</li>
+      <li>[winter] {X_nameDef} has complained of a draft in the guest room every morning this week, and this morning said the draft was the only thing in the colony built with any skill. {A_nameDef} built the room, and has started taking the draft personally.</li>
     </texts>
     <outcomes>
       <li>
@@ -282,7 +282,7 @@
     <texts>
       <li>[theirLowtech] {X_nameDef} of {FACTION} sells a tonic in clay jars, brewed from marsh roots by somebody's grandmother. It cures bad sleep, bad joints and bad luck, and the last jar costs one hundred silver.\n\n{A_nameDef} has been sleeping badly for weeks, and wants it.</li>
       <li>[theirHightech] {X_nameDef}'s tonic comes in a sealed glass vial with a printed label, and the label promises a great deal. {X_nameDef} wants one hundred silver for it. {A_nameDef}, who hasn't slept properly in weeks, has read the label four times.</li>
-      <li>[trait:Nervous] {A_nameDef} has been jumpy for days and sleeping worse each night. {X_nameDef}, the {FACTION} trader, noticed, and has a tonic for exactly that: one hundred silver for the bottle.\n\n{A_nameDef} wants the council to buy it.</li>
+      <li>[trait:Nervous] {A_nameDef} has been jumpy for days and sleeping worse each night. {X_nameDef}, the {FACTION} trader, noticed, and has a tonic for exactly that: one hundred silver for the bottle.\n\n{A_nameDef} has already worked out where {A_pronoun} would keep it.</li>
     </texts>
     <outcomes>
       <li>

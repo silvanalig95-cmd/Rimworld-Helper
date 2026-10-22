@@ -61,7 +61,7 @@
     <defName>Council_Var_Dlm_PetFading</defName>
     <dilemma>Council_Dilemma_PetFading</dilemma>
     <texts>
-      <li>[winter] The cold has been hard on {PET_nameDef}, who can barely stand in the mornings now. {B_nameDef} has looked {PET_objective} over and says it won't get better, whatever the season.\n\n{A_nameDef} has asked the council to help decide what happens now.</li>
+      <li>[winter] The cold has been hard on {PET_nameDef}, who can barely stand in the mornings now. {B_nameDef} has looked {PET_objective} over and says it won't get better, whatever the season.\n\n{A_nameDef} has wrapped {PET_objective} in {A_possessive} own blanket and is sleeping cold.</li>
       <li>[trait:Kind] {A_nameDef} has carried {PET_nameDef} out to the sun every morning this week and back in every night. {B_nameDef}, who knows animals best, says {PET_nameDef} is near the end.\n\n{A_nameDef} has asked the council what to do, and can hardly get the words out.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>
@@ -83,7 +83,7 @@
     <texts>
       <li>[lowtech] {A_nameDef} wrote a poem on a piece of bark and hid it in the woodpile for someone to find. {B_nameDef} found it first, and read it to the colony at supper, with feeling.\n\n{A_nameDef} hasn't come out of {A_possessive} room since. {B_nameDef} says it was only a bit of fun.</li>
       <li>[!lowtech] {A_nameDef} left a note on the workshop terminal for someone, and {B_nameDef} found it and printed copies. One is pinned to the dining room door.\n\n{A_nameDef} wants {B_nameDef} punished. {B_nameDef} has offered to sign the copies.</li>
-      <li>[b:trait:Abrasive] {B_nameDef} found {A_nameDef}'s love letter and read it out at dinner, then gave it marks out of ten. It got a four.\n\n{A_nameDef} has asked the council to do something about {B_nameDef}.</li>
+      <li>[b:trait:Abrasive] {B_nameDef} found {A_nameDef}'s love letter and read it out at dinner, then gave it marks out of ten. It got a four.\n\n{A_nameDef} hasn't come down to dinner since.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>
 
@@ -103,7 +103,7 @@
     <dilemma>Council_Dilemma_Sleepwalker</dilemma>
     <texts>
       <li>[winter] {B_nameDef} found {A_nameDef} at midnight standing barefoot in the snow by the well, fast asleep, holding a bucket. It's the fourth time this week.\n\n{A_nameDef} remembers none of it. {B_nameDef} wants something done before {A_nameDef} freezes.</li>
-      <li>[lowtech] Last night {A_nameDef} walked in {A_possessive} sleep straight into {B_nameDef}'s room, lit a candle, and started kneading dough on {B_nameDef}'s bed. There was no dough.\n\n{B_nameDef} has asked the council to put a stop to it.</li>
+      <li>[lowtech] Last night {A_nameDef} walked in {A_possessive} sleep straight into {B_nameDef}'s room, lit a candle, and started kneading dough on {B_nameDef}'s bed. There was no dough.\n\n{B_nameDef} would like {B_possessive} bed back, unkneaded.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>
 
@@ -113,7 +113,7 @@
     <dilemma>Council_Dilemma_SideDeal</dilemma>
     <texts>
       <li>[past:trader] {A_nameDef} used to trade for a living and hasn't stopped. {B_nameDef} caught {A_objective} doing business with the last caravan out of the colony's stores, and found {COUNT} {THING} in {A_possessive} boot afterward.\n\n{A_nameDef} calls it a good deal. {B_nameDef} wants the council to call it what it is.</li>
-      <li>[trait:Greedy] {B_nameDef} noticed the colony's spare tools were gone, and {A_nameDef} has a new purse with {COUNT} {THING} in it. {A_nameDef} says the tools weren't being used.\n\n{B_nameDef} has asked the council to deal with it.</li>
+      <li>[trait:Greedy] {B_nameDef} noticed the colony's spare tools were gone, and {A_nameDef} has a new purse with {COUNT} {THING} in it. {A_nameDef} says the tools weren't being used.\n\n{B_nameDef} has brought the empty tool box to the council as evidence.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>
 

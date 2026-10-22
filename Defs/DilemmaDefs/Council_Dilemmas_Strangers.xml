@@ -61,7 +61,7 @@
       </li>
       <li>
         <label>{X_nameDef} leaves with {X_possessive} people</label>
-        <outcome>{X_nameDef} left with {FACTION} at first light. {A_nameDef} found something to fix on the far side of the colony and stayed there all morning.</outcome>
+        <outcome>{X_nameDef} left with {FACTION} at first light. {A_nameDef} found a fence to fix on the far side of the colony and stayed there all morning.</outcome>
         <ways><openness>-4</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmS_LetThemGo</thought></li>
@@ -118,7 +118,7 @@
     <texts>
       <li>"Back home we feed that to the pigs," said {X_nameDef} of {FACTION} at dinner, looking at {A_nameDef}'s plate. Then {X_nameDef} looked at {A_nameDef} and said what they do back home with people like {A_nameDef}. Only the other visitors laughed.\n\n{A_nameDef} put down {A_possessive} spoon very slowly.</li>
       <li>{X_nameDef} has spent the whole visit telling anyone who'll listen what is wrong with {A_nameDef}, starting with the voice and working down to the family. {A_nameDef} has heard all of it. {X_nameDef} made sure of that.\n\nThe colony would like to stay on good terms with {FACTION}. {A_nameDef} would like to know whether a guest is allowed to say anything at all.</li>
-      <li>{X_nameDef} spat on the floor {A_nameDef} swept that morning and called {A_objective} something that made the cook drop a ladle. When {A_nameDef} asked {X_nameDef} to repeat it, {X_nameDef} did, slower.\n\nGuests are safe under this roof; that has always been the rule. {A_nameDef} has asked the council whether the rule works both ways.</li>
+      <li>{X_nameDef} spat on the floor {A_nameDef} swept that morning and called {A_objective} something that made the cook drop a ladle. When {A_nameDef} asked {X_nameDef} to repeat it, {X_nameDef} did, slower.\n\nGuests are safe under this roof; that has always been the rule. The way {A_nameDef} sees it, the rule ought to work both ways.</li>
     </texts>
     <defaultOption>1</defaultOption>
     <options>
@@ -209,7 +209,7 @@
     </stranger>
     <texts>
       <li>{X_nameDef}, the {FACTION} trader, has had {A_nameDef}'s heirloom in {X_possessive} hands for some time now, turning it to the light. "Good old work," {X_nameDef} says. "Collectors pay for this." It belonged to somebody now buried out back.\n\nThe offer is real silver, more than the thing is worth to anyone who didn't know its owner. {A_nameDef} hasn't said yes or no, and keeps glancing at the council.</li>
-      <li>Four offers so far, each better than the last. {X_nameDef} noticed the heirloom {A_nameDef} carries within a minute of arriving and keeps coming back to it.\n\nIt's one of the few things {A_nameDef} has left of the dead. {A_nameDef} has asked the council to decide.</li>
+      <li>Four offers so far, each better than the last. {X_nameDef} noticed the heirloom {A_nameDef} carries within a minute of arriving and keeps coming back to it.\n\nIt's one of the few things {A_nameDef} has left of the dead, and {A_nameDef} has left it to the council.</li>
     </texts>
     <defaultOption>2</defaultOption>
     <options>
@@ -397,7 +397,7 @@
     <options>
       <li>
         <label>Fill their sacks</label>
-        <outcome>{X_nameDef} tied the last sack shut, said thank you twice, and the {FACTION} people set off under the weight of it before dark. The cooks are already working out what to stretch.</outcome>
+        <outcome>{X_nameDef} tied the last sack shut, said thank you twice, and the {FACTION} people set off before dark, bent under the sacks. The cooks are already working out what to stretch.</outcome>
         <ways><generosity>8</generosity><openness>2</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the food for {FACTION}</label><what>rawfood</what><count>40</count></li>
@@ -869,7 +869,7 @@
     <options>
       <li>
         <label>Hunt it down now</label>
-        <outcome>The council marked {X_definite} for the hunters, and {A_nameDef} was the first to pick up a weapon.</outcome>
+        <outcome>A hunt, then. {A_nameDef} was the first to pick up a weapon.</outcome>
         <ways><mercy>-5</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Designate"><designation>Hunt</designation></li>
@@ -1013,7 +1013,7 @@
       </li>
       <li>
         <label>Not for sale</label>
-        <outcome>{X_nameDef} gave {PET_definite} one last scratch behind the ears and went back to {X_possessive} people. {A_nameDef} hasn't let {PET_objective} out of sight since.</outcome>
+        <outcome>{X_nameDef} gave {PET_definite} one last scratch behind the ears and went back to {X_possessive} people. {A_nameDef} is keeping {PET_nameDef} on a short lead until {X_nameDef} is well down the road.</outcome>
         <ways><mercy>3</mercy><openness>-2</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>-1</amount></li>

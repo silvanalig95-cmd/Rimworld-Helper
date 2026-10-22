@@ -30,7 +30,7 @@
         <label>Share the {ALTAR}: the ideoligions take turns</label>
         <outcome>The ideoligions take turns at the {ALTAR} now: {FAITH} in the evenings, {OTHERFAITH} at first light, the others as they ask. The open-minded call it the fairest thing the council has done in a while. The devout are less sure.</outcome>
         <outcomes>
-          <li>[b:faith:devout] The ideoligions take turns at the {ALTAR}. {B_nameDef} keeps {OTHERFAITH}'s hour to the minute, and makes a point of leaving the place cleaner than {B_pronoun} found it.</li>
+          <li>[b:faith:devout] {B_nameDef} keeps {OTHERFAITH}'s hour at the {ALTAR} to the minute now, and makes a point of leaving the place cleaner than {B_pronoun} found it.</li>
         </outcomes>
         <ways><openness>2</openness></ways>
         <effects>
@@ -55,8 +55,8 @@
         <label>Name {FAITH} the colony's ideoligion</label>
         <outcome>The council has named {FAITH} the colony's ideoligion. Its believers have taken to standing at the front. The rest have gone quiet, and the devout among them quieter still.</outcome>
         <outcomes>
-          <li>[b:faith:devout] The council has named {FAITH} the colony's ideoligion. {B_nameDef} heard it out, said nothing, and went straight to {B_possessive} room.</li>
-          <li>[b:persona:curious] The council has named {FAITH} the colony's ideoligion. {B_nameDef} took it better than anyone expected, and asked {A_nameDef} where to begin.</li>
+          <li>[b:faith:devout] {FAITH} is the colony's ideoligion now. {B_nameDef} heard it out, said nothing, and went straight to {B_possessive} room.</li>
+          <li>[b:persona:curious] So {FAITH} is the colony's ideoligion. {B_nameDef} took it better than anyone expected, and asked {A_nameDef} where to begin.</li>
         </outcomes>
         <ways><tradition>3</tradition><openness>-3</openness></ways>
         <effects>
