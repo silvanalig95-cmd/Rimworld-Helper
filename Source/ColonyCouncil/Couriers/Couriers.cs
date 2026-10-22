@@ -182,7 +182,7 @@ namespace ColonyCouncil
         /// Like <see cref="Deliver"/>, and the trip (to hold a letter for when they set it down: <see cref="TellWhenThere"/>).
         /// Null when nobody comes; <paramref name="handed"/>: the visitor handed it over at once.
         /// </summary>
-        public static bool DeliverTrip(Map map, List<Thing> things, Faction from, IntVec3 near, Pawn bearer, IntVec3? drop, out CourierTrip trip)
+        public static bool DeliverTrip(Map map, List<Thing> things, Faction from, IntVec3 near, Pawn bearer, IntVec3? drop, out CourierTrip trip, bool soon = false)
         {
             trip = null;
             handledInPerson = false;
@@ -216,7 +216,7 @@ namespace ColonyCouncil
                     return true;
                 }
                 if (!CanSend(map, from)) return false;
-                var t = New(CourierKind.Deliver, map, from, Later);
+                var t = New(CourierKind.Deliver, map, from, soon ? Soon : Later);
                 t.oldSpot = near;
                 t.bringLabel = Describe(things);
                 t.bringTag = TagOf(things.FirstOrDefault()?.def);
@@ -232,10 +232,10 @@ namespace ColonyCouncil
         }
 
         /// <summary>Silver for the colony, carried in (see <see cref="Deliver"/>); else left near the spot as before.</summary>
-        public static void PaySilver(Map map, IntVec3 near, int amount, Faction from, Pawn bearer = null)
+        public static void PaySilver(Map map, IntVec3 near, int amount, Faction from, Pawn bearer = null, IntVec3? drop = null)
         {
             if (map == null || amount <= 0) return;
-            if (!Deliver(map, Make(ThingDefOf.Silver, amount), from, near, bearer)) VarietyUtil.PaySilver(map, near, amount);
+            if (!Deliver(map, Make(ThingDefOf.Silver, amount), from, near, bearer, drop)) VarietyUtil.PaySilver(map, near, amount);
         }
 
         /// <summary>So many of a thing for the colony, carried in (see <see cref="Deliver"/>); else handed over near the spot as before.</summary>
@@ -246,10 +246,10 @@ namespace ColonyCouncil
         }
 
         /// <summary>Things of the colony's era for it (Loot), carried in; else as before (Loot.Deliver, never by pod here).</summary>
-        public static void Loot(List<Thing> things, Map map, IntVec3 near, Faction from, Pawn bearer = null)
+        public static void Loot(List<Thing> things, Map map, IntVec3 near, Faction from, Pawn bearer = null, IntVec3? drop = null)
         {
             if (things.NullOrEmpty() || map == null) return;
-            if (!Deliver(map, things, from, near, bearer)) ColonyCouncil.Loot.Deliver(things, map, near, false);
+            if (!Deliver(map, things, from, near, bearer, drop)) ColonyCouncil.Loot.Deliver(things, map, near, false);
         }
 
         /// <summary>So many of a thing as stacks, unspawned.</summary>
@@ -339,6 +339,47 @@ namespace ColonyCouncil
             {
                 CouncilLog.ErrorOnce("courier exchange", e);
                 return false;
+            }
+        }
+
+        /// <summary>
+        /// Silver (or things) a memo's people bring home some days on (a venture, a fair's takings, a campaign's share):
+        /// carried in, with the letter about it held until they set it down. False: nobody comes; the caller does it all now.
+        /// </summary>
+        public static bool BringHome(Map map, List<Thing> things, Faction from, IntVec3 near, HappeningContext ctx, List<string> titles, List<string> texts,
+            IEnumerable<string> tags, LetterDef letter, string item = null)
+        {
+            if (!DeliverTrip(map, things, from, near, null, null, out var trip, true) || trip == null) return false;
+            TellWhenThere(trip, ctx, titles, texts, tags, letter, item);
+            return true;
+        }
+
+        /// <summary>A sale collected on its day (a bulk order): they come soon, bring the price and take the goods; the trip, or null.</summary>
+        public static CourierTrip CollectOrder(Map map, ThingDef def, int count, int silver, Faction f)
+        {
+            if (map == null || def == null || count <= 0 || !On) return null;
+            try
+            {
+                if (!CanSend(map, f)) return null;
+                var t = New(silver > 0 ? CourierKind.Exchange : CourierKind.Collect, map, f, Soon);
+                t.def = def;
+                t.amount = count;
+                t.takeLabel = Amount(count, null, def);
+                t.takeTag = TagOf(def);
+                if (silver > 0)
+                {
+                    var pay = Make(ThingDefOf.Silver, silver);
+                    t.bringLabel = Describe(pay);
+                    t.bringTag = "silver";
+                    foreach (var thing in pay) t.goods.TryAdd(thing, true);
+                }
+                CourierTracker.Instance.Add(t);
+                return t;
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("courier order", e);
+                return null;
             }
         }
 

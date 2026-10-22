@@ -249,11 +249,12 @@ namespace ColonyCouncil
                             HappeningTracker.Safe(fx, ctx);
                 }
                 if (e.goodwill != 0) StoryChains.Goodwill(c.faction, e.goodwill);
-                if (e.gift > 0f) item = StoryChains.Gift(map, IntVec3.Invalid, c.value * e.gift, e.fancy, !Avail.IsPreIndustrial);
+                // From the chain's people: carried in by their courier (Couriers/), or by pod in an industrial colony.
+                if (e.gift > 0f) item = StoryChains.Gift(map, IntVec3.Invalid, c.value * e.gift, e.fancy, !Avail.IsPreIndustrial, c.faction);
                 if (e.silver > 0f)
                 {
                     int n = Mathf.Max(10, Mathf.RoundToInt(c.amount * e.silver / 10f) * 10);
-                    VarietyUtil.PaySilver(map, DropCellFinder.TradeDropSpot(map), n);
+                    Couriers.PaySilver(map, DropCellFinder.TradeDropSpot(map), n, c.faction);
                     ctx.count = n;
                     if (item == null) item = n.ToString();
                 }

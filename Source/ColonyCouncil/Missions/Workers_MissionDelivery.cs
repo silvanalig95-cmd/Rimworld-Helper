@@ -190,8 +190,12 @@ namespace ColonyCouncil
             var look = new LookTargets(new TargetInfo(spot, map));
             if (m.goals.All(g => g.have >= g.count))
             {
-                foreach (var g in m.goals) Missions.Take(map, g.what, g.count);
-                VarietyUtil.PaySilver(map, spot, m.reward);
+                // Their carts come for it and pay on the spot (Couriers/); else it's taken and paid at once.
+                if (!Couriers.CollectGoals(map, m.goals.Select(g => new KeyValuePair<string, int>(g.what, g.count)).ToList(), m.faction, m.reward))
+                {
+                    foreach (var g in m.goals) Missions.Take(map, g.what, g.count);
+                    VarietyUtil.PaySilver(map, spot, m.reward);
+                }
                 Missions.Goodwill(m, m.goodwill);
                 Interplay.Notify_Delivered(m);
                 Missions.Finish(m, MissionState.Done, "delivered", m.reward.ToString(), look);
@@ -200,9 +204,16 @@ namespace ColonyCouncil
             if (m.goals.All(g => g.have * 2 >= g.count))
             {
                 float worth = 0f;
-                foreach (var g in m.goals) worth += Missions.Take(map, g.what, g.count) * Missions.UnitValue(g.what);
+                foreach (var g in m.goals) worth += Mathf.Min(g.count, g.have) * Missions.UnitValue(g.what);
                 int pay = VarietyUtil.Round(Mathf.Max(10, Mathf.RoundToInt(worth)));
-                VarietyUtil.PaySilver(map, spot, pay);
+                // Their carts take what there is and pay for that (Couriers/); else it's taken and paid at once.
+                if (!Couriers.CollectGoals(map, m.goals.Select(g => new KeyValuePair<string, int>(g.what, Mathf.Min(g.count, g.have))).ToList(), m.faction, pay))
+                {
+                    worth = 0f;
+                    foreach (var g in m.goals) worth += Missions.Take(map, g.what, g.count) * Missions.UnitValue(g.what);
+                    pay = VarietyUtil.Round(Mathf.Max(10, Mathf.RoundToInt(worth)));
+                    VarietyUtil.PaySilver(map, spot, pay);
+                }
                 Missions.Finish(m, MissionState.Done, "partial", pay.ToString(), look, LetterDefOf.NeutralEvent);
                 return;
             }

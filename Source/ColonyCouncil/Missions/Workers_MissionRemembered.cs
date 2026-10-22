@@ -593,7 +593,7 @@ namespace ColonyCouncil
             var look = x.Spawned ? new LookTargets(x) : LookTargets.Invalid;
             if (m.misses == 0)
             {
-                VarietyUtil.PaySilver(map, x.Spawned && x.Map == map ? x.Position : IntVec3.Invalid, m.reward);
+                Couriers.PaySilver(map, x.Spawned && x.Map == map ? x.Position : IntVec3.Invalid, m.reward, m.faction, x);
                 Missions.Goodwill(m, m.goodwill);
                 FactionMemory.Note(m.faction, "dignitary", m.name);
                 var thought = StorytellerEvents.Thought("Council_Mem_DignitaryPleased");

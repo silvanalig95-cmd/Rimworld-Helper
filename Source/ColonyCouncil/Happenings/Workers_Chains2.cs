@@ -538,14 +538,21 @@ namespace ColonyCouncil
             if (change != 0) f.TryAffectGoodwillWith(Faction.OfPlayer, change, true, false);
         }
 
-        /// <summary>Things of the colony's era worth about <paramref name="value"/>, left near a spot; what they were, or null.</summary>
-        public static string Gift(Map map, IntVec3 near, float value, bool fancy, bool pod = false)
+        /// <summary>
+        /// Things of the colony's era worth about <paramref name="value"/>, left near a spot; what they were, or null.
+        /// From outsiders (<paramref name="from"/>): carried in by their courier, or by <paramref name="bearer"/> (someone
+        /// of theirs who is here) (Couriers/); by pod in an industrial colony when <paramref name="pod"/>.
+        /// </summary>
+        public static string Gift(Map map, IntVec3 near, float value, bool fancy, bool pod = false, Faction from = null, Pawn bearer = null)
         {
             if (map == null || value < 20f) return null;
             var things = Loot.Make(value, fancy);
             if (things.Count == 0) return null;
-            Loot.Deliver(things, map, near.IsValid ? near : DropCellFinder.TradeDropSpot(map), pod);
-            return Loot.Describe(things);
+            string what = Loot.Describe(things);
+            var at = near.IsValid ? near : DropCellFinder.TradeDropSpot(map);
+            if ((from != null || bearer != null) && !(pod && !Avail.IsPreIndustrial) && Couriers.Deliver(map, things, from ?? bearer?.Faction, at, bearer)) return what;
+            Loot.Deliver(things, map, at, pod);
+            return what;
         }
 
         public static void Give(Pawn p, string thought, IncidentDef def, Pawn about = null) => StorytellerEvents.Give(p, thought, def, about);
@@ -918,7 +925,7 @@ namespace ColonyCouncil
                     else if (option == 2 && LivingEvents.Friendly(c.faction) && map != null)
                     {
                         c.Set("sold");
-                        VarietyUtil.PaySilver(map, Near(ctx.a, map), c.amount);
+                        Couriers.PaySilver(map, Near(ctx.a, map), c.amount, c.faction, ctx.stranger);
                         StoryChains.Goodwill(c.faction, 2);
                         if (c.Has(Hoard)) StoryChains.Next(c, "end:grateful", 9f, 14f);
                         else if (c.Has(Casket) && MakeSleeper(c))
@@ -1023,7 +1030,7 @@ namespace ColonyCouncil
                         StoryChains.Goodwill(c.faction, 4);
                         StoryChains.End(c, "refunded", ctx);
                     }
-                    else if (option == 1 && VarietyUtil.TakeFromStores(map, ThingDefOf.Silver, c.amount / 2))
+                    else if (option == 1 && Couriers.TakeFromStoresFor(ctx, ThingDefOf.Silver, c.amount / 2))
                     {
                         StoryChains.Goodwill(c.faction, -3);
                         StoryChains.End(c, "halved", ctx);
@@ -1044,14 +1051,14 @@ namespace ColonyCouncil
             {
                 case "grateful":
                     if (!LivingEvents.Friendly(c.faction)) break;
-                    string item = StoryChains.Gift(map, IntVec3.Invalid, c.value * 0.3f, true, true);
+                    string item = StoryChains.Gift(map, IntVec3.Invalid, c.value * 0.3f, true, true, c.faction);
                     StoryChains.Goodwill(c.faction, 8);
                     StoryChains.End(c, key, null, item);
                     return;
                 case "returned":
                     if (!LivingEvents.Friendly(c.enemy)) break;
                     int fee = VarietyUtil.Round(Mathf.Max(20, Mathf.RoundToInt(c.value * 0.2f)));
-                    VarietyUtil.PaySilver(map, DropCellFinder.TradeDropSpot(map), fee);
+                    Couriers.PaySilver(map, DropCellFinder.TradeDropSpot(map), fee, c.enemy);
                     StoryChains.Goodwill(c.enemy, 15);
                     StoryChains.End(c, key, null, fee.ToString());
                     return;
@@ -1153,7 +1160,7 @@ namespace ColonyCouncil
                 }
                 case "debtrepaid":
                     if (!StoryChains.Visit(new[] { c.x }, map, c.x.Faction, GatheringSpot(map), Rand.Range(14f, 20f))) return false;
-                    ctx.tale = StoryChains.Gift(map, IntVec3.Invalid, c.value, false) ?? "";
+                    ctx.tale = StoryChains.Gift(map, IntVec3.Invalid, c.value, false, false, c.x?.Faction, c.x) ?? "";
                     return true;
                 case "debtgift":
                     return StoryChains.Visit(new[] { c.x }, map, c.x.Faction, GatheringSpot(map), Rand.Range(12f, 18f));
@@ -1211,7 +1218,7 @@ namespace ColonyCouncil
                     if (option == 2)
                     {
                         c.Set("sold");
-                        VarietyUtil.PaySilver(map, Near(ctx.a, map), c.amount);
+                        Couriers.PaySilver(map, Near(ctx.a, map), c.amount, c.faction, ctx.stranger);
                     }
                     StoryChains.Goodwill(c.faction, option == 2 ? 6 : 4);
                     if (!innocent) StoryChains.Next(c, "end:justice", 6f, 10f);
@@ -1233,7 +1240,7 @@ namespace ColonyCouncil
                 case "debtgift":
                     if (option == 0 && map != null)
                     {
-                        string item = StoryChains.Gift(map, Near(c.x, map), c.value, true);
+                        string item = StoryChains.Gift(map, Near(c.x, map), c.value, true, false, c.x?.Faction ?? c.faction, c.x);
                         if (risk) StoryChains.Goodwill(c.faction, -10);
                         StoryChains.End(c, risk ? "exposed" : "accepted", ctx, item);
                     }
@@ -1276,7 +1283,7 @@ namespace ColonyCouncil
                 case "thanks":
                 {
                     int n = StoryChains.Silver(map, 60f, 140f);
-                    VarietyUtil.PaySilver(map, DropCellFinder.TradeDropSpot(map), n);
+                    Couriers.PaySilver(map, DropCellFinder.TradeDropSpot(map), n, c.faction);
                     StoryChains.End(c, key, ctx, n.ToString());
                     return;
                 }
@@ -1289,7 +1296,7 @@ namespace ColonyCouncil
                     }
                     StoryChains.Goodwill(c.faction, 6);
                     int n = StoryChains.Silver(map, 60f, 120f);
-                    VarietyUtil.PaySilver(map, DropCellFinder.TradeDropSpot(map), n);
+                    Couriers.PaySilver(map, DropCellFinder.TradeDropSpot(map), n, c.faction);
                     StoryChains.End(c, key, ctx, n.ToString());
                     return;
                 }
@@ -1444,7 +1451,7 @@ namespace ColonyCouncil
                             break;
                         case 3:
                             c.Set("profit");
-                            VarietyUtil.PaySilver(map, Near(ctx.a, map), c.amount);
+                            Couriers.PaySilver(map, Near(ctx.a, map), c.amount, c.faction, ctx.stranger);
                             StoryChains.Next(c, "end:bloodsilver", 10f, 16f);
                             break;
                         default:
@@ -1521,7 +1528,7 @@ namespace ColonyCouncil
                 case "alliance":
                 {
                     StoryChains.Goodwill(c.faction, 10);
-                    string item = StoryChains.Gift(map, IntVec3.Invalid, Rand.Range(200f, 400f) * LivingEvents.WealthFactor(map), false);
+                    string item = StoryChains.Gift(map, IntVec3.Invalid, Rand.Range(200f, 400f) * LivingEvents.WealthFactor(map), false, false, c.faction);
                     StoryChains.End(c, key, ctx, item);
                     return;
                 }
@@ -1758,7 +1765,7 @@ namespace ColonyCouncil
                 case "prophethill":
                     if (option == 0)
                     {
-                        VarietyUtil.PaySilver(map, Near(ctx.group.FirstOrDefault(), map), c.amount);
+                        Couriers.PaySilver(map, Near(ctx.group.FirstOrDefault(), map), c.amount, c.faction, ctx.group.FirstOrDefault());
                         c.extra = 1;
                         StoryChains.Next(c, "Council_Story_ProphetPilgrims", 14f, 22f, "shrine");
                         return outcome;
@@ -1773,7 +1780,7 @@ namespace ColonyCouncil
         protected override void Told(StoryChain c, HappeningContext ctx)
         {
             if (Key != "prophetpilgrims") return;
-            VarietyUtil.PaySilver(ctx.map, DropCellFinder.TradeDropSpot(ctx.map), c.amount);
+            Couriers.PaySilver(ctx.map, DropCellFinder.TradeDropSpot(ctx.map), c.amount, c.faction, ctx.stranger ?? ctx.group.FirstOrDefault());
             c.extra++;
             StoryChains.Next(c, "end:shrine", 12f, 20f);
         }
@@ -1795,7 +1802,7 @@ namespace ColonyCouncil
                 {
                     if (!LivingEvents.Friendly(c.faction)) break;
                     int n = StoryChains.Silver(map, 100f, 200f);
-                    VarietyUtil.PaySilver(map, DropCellFinder.TradeDropSpot(map), n);
+                    Couriers.PaySilver(map, DropCellFinder.TradeDropSpot(map), n, c.faction);
                     StoryChains.End(c, key, ctx, n.ToString());
                     return;
                 }
@@ -1870,7 +1877,7 @@ namespace ColonyCouncil
                     ctx.b = ctx.group.FirstOrDefault();
                     if (!StoryChains.Visit(ctx.group.Prepend(c.x), map, c.faction, GatheringSpot(map), Rand.Range(16f, 24f))) return false;
                     bool alive = c.Has("alive");
-                    ctx.tale = StoryChains.Gift(map, IntVec3.Invalid, alive ? c.value : c.value * 0.6f, !alive) ?? "";
+                    ctx.tale = StoryChains.Gift(map, IntVec3.Invalid, alive ? c.value : c.value * 0.6f, !alive, false, c.faction, c.x) ?? "";
                     return true;
                 }
                 case "expeditionwarning":
@@ -1968,7 +1975,7 @@ namespace ColonyCouncil
                     {
                         StoryChains.Goodwill(c.faction, 6);
                         int n = StoryChains.Silver(map, 100f, 220f);
-                        VarietyUtil.PaySilver(map, DropCellFinder.TradeDropSpot(map), n);
+                        Couriers.PaySilver(map, DropCellFinder.TradeDropSpot(map), n, c.faction);
                         StoryChains.End(c, key, ctx, n.ToString());
                         return;
                     }
@@ -1976,7 +1983,7 @@ namespace ColonyCouncil
                 case "alone":
                     if (c.Has("alive") && LivingEvents.Friendly(c.faction))
                     {
-                        string item = StoryChains.Gift(map, IntVec3.Invalid, Rand.Range(150f, 300f) * LivingEvents.WealthFactor(map), false, true);
+                        string item = StoryChains.Gift(map, IntVec3.Invalid, Rand.Range(150f, 300f) * LivingEvents.WealthFactor(map), false, true, c.faction);
                         StoryChains.End(c, key, ctx, item);
                         return;
                     }

@@ -396,8 +396,9 @@ namespace ColonyCouncil
             var x = ctx.stranger;
             var near = x != null && x.Spawned && x.Map == ctx.map ? x.Position : VarietyUtil.Near(ctx.a, ctx.map);
             // Bought, or brought along by an adventurer who stays.
-            if ((option == 0 && !byDefault) || (option == 1 && !risk && x != null && x.Faction == Faction.OfPlayer))
-                Loot.Deliver(Loot.Make(ctx.variant, true), ctx.map, near, false);
+            // Bought: the adventurer hands the kit over (Couriers/); brought along by one who stays: set down as theirs.
+            if (option == 0 && !byDefault) Couriers.Loot(Loot.Make(ctx.variant, true), ctx.map, near, Couriers.PeopleOf(ctx), x);
+            else if (option == 1 && !risk && x != null && x.Faction == Faction.OfPlayer) Loot.Deliver(Loot.Make(ctx.variant, true), ctx.map, near, false);
             if (option == 1 && !risk && x != null && x.Faction == Faction.OfPlayer)
                 CouncilGameComponent.Instance?.happenings.Remember(StorytellerEvents.Adventurer, x, null, null, null, false, ctx.a);
             return base.Resolved(ctx, option, risk, byDefault, outcome);
@@ -626,7 +627,7 @@ namespace ColonyCouncil
         public override string Resolved(HappeningContext ctx, int option, bool risk, bool byDefault, string outcome)
         {
             if (option <= 1 && !byDefault && LivingEvents.AtHome(ctx.a, ctx.map) && Fit(ctx.a, out var part, out var limb)
-                && (option == 0 || VarietyUtil.TakeFromStores(ctx.map, ctx.thing, ctx.variant)))
+                && (option == 0 || Couriers.TakeFromStoresFor(ctx, ctx.thing, ctx.variant)))
             {
                 ctx.a.health.RestorePart(part);
                 ctx.a.health.AddHediff(limb, part);
@@ -691,7 +692,7 @@ namespace ColonyCouncil
 
         public override string Resolved(HappeningContext ctx, int option, bool risk, bool byDefault, string outcome)
         {
-            if (option <= 1 && !byDefault && ctx.stranger != null && VarietyUtil.TakeFromStores(ctx.map, ThingDefOf.Silver, Stake(ctx, option)))
+            if (option <= 1 && !byDefault && ctx.stranger != null && Couriers.TakeFromStoresFor(ctx, ThingDefOf.Silver, Stake(ctx, option)))
             {
                 // How it ends is settled now, and told when it's due.
                 int social = ctx.a?.skills?.GetSkill(SkillDefOf.Social)?.Level ?? 0;
@@ -719,15 +720,22 @@ namespace ColonyCouncil
             if (fate == "good")
             {
                 ctx.count = Mathf.RoundToInt(m.amount * Rand.Range(1.7f, 2.3f) / 5f) * 5;
-                VarietyUtil.PaySilver(map, spot, ctx.count);
                 StorytellerEvents.Give(m.other, "Council_Evt_VentureWon", def);
-                LivingEvents.Tell(ctx, more?.doneTitles, more?.done, new[] { "good" }, LetterDefOf.PositiveEvent, new LookTargets(new TargetInfo(spot, map)));
+                // Their carters bring it home, and the letter comes with them (Couriers/); else it's at the trade spot now.
+                if (!Couriers.BringHome(map, Couriers.Make(ThingDefOf.Silver, ctx.count), m.faction, spot, ctx, more?.doneTitles, more?.done, new[] { "good" }, LetterDefOf.PositiveEvent))
+                {
+                    VarietyUtil.PaySilver(map, spot, ctx.count);
+                    LivingEvents.Tell(ctx, more?.doneTitles, more?.done, new[] { "good" }, LetterDefOf.PositiveEvent, new LookTargets(new TargetInfo(spot, map)));
+                }
             }
             else if (fate == "lost")
             {
                 ctx.count = Mathf.Max(5, Mathf.RoundToInt(m.amount * Rand.Range(0.2f, 0.4f) / 5f) * 5);
-                VarietyUtil.PaySilver(map, spot, ctx.count);
-                LivingEvents.Tell(ctx, more?.doneTitles, more?.done, new[] { "lost" }, LetterDefOf.NeutralEvent, new LookTargets(new TargetInfo(spot, map)));
+                if (!Couriers.BringHome(map, Couriers.Make(ThingDefOf.Silver, ctx.count), m.faction, spot, ctx, more?.doneTitles, more?.done, new[] { "lost" }, LetterDefOf.NeutralEvent))
+                {
+                    VarietyUtil.PaySilver(map, spot, ctx.count);
+                    LivingEvents.Tell(ctx, more?.doneTitles, more?.done, new[] { "lost" }, LetterDefOf.NeutralEvent, new LookTargets(new TargetInfo(spot, map)));
+                }
             }
             else
             {
@@ -779,11 +787,16 @@ namespace ColonyCouncil
             if (option == 0 && !byDefault && Wanted(p))
             {
                 string name = p.LabelShort;
-                VarietyUtil.PaySilver(ctx.map, VarietyUtil.Near(ctx.a, ctx.map), ctx.count);
-                // Taken away by the neighbor's riders: out of the colony's hands for good.
-                p.DeSpawn();
-                p.guest?.SetGuestStatus(null);
-                if (!Find.WorldPawns.Contains(p)) Find.WorldPawns.PassToWorld(p, PawnDiscardDecideMode.Decide);
+                // The neighbor's riders come for them and pay once they have them (Couriers/); else out of the colony's hands
+                // at once, as before.
+                if (!Couriers.Fetch(ctx.map, p, ctx.faction, Couriers.Make(ThingDefOf.Silver, ctx.count), VarietyUtil.Near(ctx.a, ctx.map), true))
+                {
+                    VarietyUtil.PaySilver(ctx.map, VarietyUtil.Near(ctx.a, ctx.map), ctx.count);
+                    // Taken away by the neighbor's riders: out of the colony's hands for good.
+                    p.DeSpawn();
+                    p.guest?.SetGuestStatus(null);
+                    if (!Find.WorldPawns.Contains(p)) Find.WorldPawns.PassToWorld(p, PawnDiscardDecideMode.Decide);
+                }
                 var m = CouncilGameComponent.Instance?.happenings.Remember(StorytellerEvents.HandedOver, null, ctx.faction, null, name, false, ctx.a);
                 if (m != null && ctx.enemy != null) m.amount = ctx.enemy.loadID;
             }
@@ -861,9 +874,12 @@ namespace ColonyCouncil
             var things = Loot.Make(Rand.Range(120f, 300f) * LivingEvents.WealthFactor(map));
             if (things.Count == 0) return;
             var spot = DropCellFinder.TradeDropSpot(map);
-            Loot.Deliver(things, map, spot, false);
             var more = StorytellerEvents.More(def);
-            LivingEvents.Tell(ctx, more?.doneTitles, more?.done, null, LetterDefOf.PositiveEvent, new LookTargets(new TargetInfo(spot, map)), Loot.Describe(things));
+            string what = Loot.Describe(things);
+            // Brought to the gate by one of theirs, the letter with them (Couriers/); else there at once.
+            if (Couriers.BringHome(map, things, m.faction, spot, ctx, more?.doneTitles, more?.done, null, LetterDefOf.PositiveEvent, what)) return;
+            Loot.Deliver(things, map, spot, false);
+            LivingEvents.Tell(ctx, more?.doneTitles, more?.done, null, LetterDefOf.PositiveEvent, new LookTargets(new TargetInfo(spot, map)), what);
         }
     }
 
@@ -974,7 +990,7 @@ namespace ColonyCouncil
 
         public override string Resolved(HappeningContext ctx, int option, bool risk, bool byDefault, string outcome)
         {
-            if (option == 0 && !byDefault && ctx.thing != null && ctx.stranger != null && ctx.enemy != null && VarietyUtil.TakeFromStores(ctx.map, ctx.thing, ctx.variant))
+            if (option == 0 && !byDefault && ctx.thing != null && ctx.stranger != null && ctx.enemy != null && Couriers.TakeFromStoresFor(ctx, ctx.thing, ctx.variant))
             {
                 var m = StorytellerEvents.Schedule(StorytellerEvents.Campaign, null, ctx.faction, ctx.thing.defName, ctx.stranger.LabelShort, ctx.a, Rand.Range(7f, 12f));
                 if (m != null)
@@ -1005,10 +1021,15 @@ namespace ColonyCouncil
             {
                 float sent = Mathf.Max(150f, (ctx.thing?.BaseMarketValue ?? 1f) * m.amount);
                 var things = Loot.Make(sent * Rand.Range(1.5f, 2.5f));
-                Loot.Deliver(things, map, spot, false);
+                string what = Loot.Describe(things);
                 if (m.faction.HasGoodwill) m.faction.TryAffectGoodwillWith(Faction.OfPlayer, 8, true, false);
                 StorytellerEvents.Give(m.other, "Council_Evt_OldUnitWon", def);
-                LivingEvents.Tell(ctx, more?.doneTitles, more?.done, new[] { "won" }, LetterDefOf.PositiveEvent, new LookTargets(new TargetInfo(spot, map)), Loot.Describe(things));
+                // The colony's share is carried in, the letter with it (Couriers/); else there at once.
+                if (!Couriers.BringHome(map, things, m.faction, spot, ctx, more?.doneTitles, more?.done, new[] { "won" }, LetterDefOf.PositiveEvent, what))
+                {
+                    Loot.Deliver(things, map, spot, false);
+                    LivingEvents.Tell(ctx, more?.doneTitles, more?.done, new[] { "won" }, LetterDefOf.PositiveEvent, new LookTargets(new TargetInfo(spot, map)), what);
+                }
             }
             else
             {
@@ -1055,7 +1076,7 @@ namespace ColonyCouncil
             var near = x != null && x.Spawned && x.Map == ctx.map ? x.Position : VarietyUtil.Near(ctx.a, ctx.map);
             // The gift: accepted, or left behind by someone who can't stay.
             if (option == 0 || (option == 1 && risk))
-                Loot.Deliver(Loot.Make(ctx.variant), ctx.map, near, false);
+                Couriers.Loot(Loot.Make(ctx.variant), ctx.map, near, Couriers.PeopleOf(ctx), x);
             if (option == 2 && !byDefault)
                 foreach (var f in Find.FactionManager.AllFactionsListForReading.Where(f => !f.IsPlayer && !f.Hidden && !f.defeated && f.HasGoodwill && !f.HostileTo(Faction.OfPlayer)))
                     f.TryAffectGoodwillWith(Faction.OfPlayer, 3, false, false);
@@ -1115,8 +1136,12 @@ namespace ColonyCouncil
                     StorytellerEvents.Hand(ThingDefOf.ComponentIndustrial, risk ? 1 : 2, ctx.map, at);
                 else if (option == 2 && !byDefault)
                 {
-                    VarietyUtil.PaySilver(ctx.map, at, ctx.count);
-                    ctx.place.Destroy();
+                    // Their people come for the drone and pay for it on the spot (Couriers/); else gone and paid for at once.
+                    if (!Couriers.CollectThings(ctx.map, new List<Thing> { ctx.place }, ctx.faction, Couriers.Make(ThingDefOf.Silver, ctx.count)))
+                    {
+                        VarietyUtil.PaySilver(ctx.map, at, ctx.count);
+                        ctx.place.Destroy();
+                    }
                 }
             }
             return base.Resolved(ctx, option, risk, byDefault, outcome);
@@ -1323,7 +1348,7 @@ namespace ColonyCouncil
         public override string Resolved(HappeningContext ctx, int option, bool risk, bool byDefault, string outcome)
         {
             if (option == 0 && !byDefault && ctx.thing != null)
-                StorytellerEvents.Hand(ctx.thing, 1, ctx.map, VarietyUtil.Near(ctx.a, ctx.map));
+                Couriers.Hand(ctx.thing, 1, ctx.map, VarietyUtil.Near(ctx.a, ctx.map), Couriers.PeopleOf(ctx), ctx.stranger);
             return base.Resolved(ctx, option, risk, byDefault, outcome);
         }
     }
