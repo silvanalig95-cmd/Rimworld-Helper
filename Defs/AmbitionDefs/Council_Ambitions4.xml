@@ -31,14 +31,14 @@
         <li>We're too few to be enemies. One day it'll come down to one of us saving another, and they'll hesitate.</li>
       </gloomy>
       <cold>
-        <li>Feuds cost us fights, breakdowns and wasted hours. Eliminating them is pure gain.</li>
+        <li>Two people who hate each other cost us more work than one person with a broken leg.</li>
       </cold>
     </pitch>
     <achieved>
       <plain><li>No one's at anyone's throat for once. It's almost suspicious.</li></plain>
       <warm><li>Look at them all laughing at the same table.</li></warm>
       <cheerful><li>Not a single spoon thrown at dinner tonight!</li></cheerful>
-      <cold><li>Interpersonal conflict resolved. Productivity should follow.</li></cold>
+      <cold><li>No more feuds. I expect the work to go faster by the end of the week.</li></cold>
     </achieved>
   </ColonyCouncil.AmbitionDef>
 
@@ -78,7 +78,7 @@
     </pitch>
     <achieved>
       <plain><li>People bring their problems to the council again. That's the job.</li></plain>
-      <warm><li>People look us in the eye again when they bring us something.</li></warm>
+      <warm><li>Somebody brought me a petition today with a flower tucked into it.</li></warm>
       <cold><li>Trust restored. Use it carefully.</li></cold>
     </achieved>
   </ColonyCouncil.AmbitionDef>
@@ -104,7 +104,7 @@
         <li>I want every one of you free of it, and I don't want anyone judged for it.</li>
       </warm>
       <blunt>
-        <li>Junkies on the wall. That's our defense right now. Fix it.</li>
+        <li>Our guards are shaking on the wall, and not from the cold. Fix it.</li>
       </blunt>
       <cheerful>
         <li>Clear heads all round, and nothing stronger than water!</li>
@@ -113,13 +113,13 @@
         <li>The withdrawals will be ugly. The alternative is worse, and slower.</li>
       </gloomy>
       <cold>
-        <li>Addiction is a supply dependency we can't guarantee. Remove it.</li>
+        <li>Withdrawal costs us one slow season. Addiction costs us that every season.</li>
       </cold>
     </pitch>
     <achieved>
       <plain><li>No one shaking at breakfast, and no bottles hidden under the beds.</li></plain>
-      <warm><li>Every one of them made it through. I'm so proud of them.</li></warm>
-      <gloomy><li>Clean, for now. Keep the cupboard locked.</li></gloomy>
+      <warm><li>Every one of them made it through. Some nights I wasn't sure they would.</li></warm>
+      <gloomy><li>They're through it. Keep the cupboard locked anyway.</li></gloomy>
     </achieved>
   </ColonyCouncil.AmbitionDef>
 

@@ -287,12 +287,12 @@
   <CC_Ambition_History>Past meetings and ambitions</CC_Ambition_History>
   <CC_Ambition_Abandon>Abandon this ambition</CC_Ambition_Abandon>
   <CC_Ambition_AbandonConfirm>Give up on "{0}"? No penalty. The council will meet again in a few days.</CC_Ambition_AbandonConfirm>
-  <CC_Ambition_Chosen>The council chose: {0}, proposed by {1}.</CC_Ambition_Chosen>
+  <CC_Ambition_Chosen>The council takes up {1}'s idea: {0}.</CC_Ambition_Chosen>
   <CC_Ambition_ChosenSpeech>They picked my idea!</CC_Ambition_ChosenSpeech>
   <CC_Ambition_AchievedTitle>Ambition achieved: {0}</CC_Ambition_AchievedTitle>
-  <CC_Ambition_AchievedText>The colony set out to achieve "{0}" and did it in {1} days. Every colonist gets a mood boost.</CC_Ambition_AchievedText>
+  <CC_Ambition_AchievedText>It took {1} days to see "{0}" through. Every colonist is in better spirits for it, and whoever proposed it most of all.</CC_Ambition_AchievedText>
   <CC_Ambition_Inspired>{PAWN_nameDef} is inspired after seeing {PAWN_possessive} proposal come true.</CC_Ambition_Inspired>
-  <CC_Ambition_Failed>The colony fell short of its ambition "{0}" ({1} done). The council will meet again soon.</CC_Ambition_Failed>
+  <CC_Ambition_Failed>Time ran out on "{0}" with {1} of it done. The council will meet again soon.</CC_Ambition_Failed>
   <CC_Meeting_BusyAmbition>The colony is already working on an ambition.</CC_Meeting_BusyAmbition>
   <CC_Meeting_TooSoon>The council met very recently. Try again in {0}.</CC_Meeting_TooSoon>
   <CC_Meeting_NoOne>Nobody is free to attend a meeting right now.</CC_Meeting_NoOne>
@@ -446,14 +446,14 @@
   <CC_Log_Overruled>had the votes for {0}, but was overruled</CC_Log_Overruled>
   <CC_Log_IdeaChosen>their idea was chosen: {0}</CC_Log_IdeaChosen>
   <CC_Log_AmbitionHelped>a wish helped {0}</CC_Log_AmbitionHelped>
-  <CC_Ambition_WishHelped>That gets us closer to {0}!</CC_Ambition_WishHelped>
+  <CC_Ambition_WishHelped>That's a step toward "{0}".</CC_Ambition_WishHelped>
   <CC_Log_Gossip>listened to {0} complain about the council</CC_Log_Gossip>
   <CC_Log_ObjectionOverruled>objected to {0}, and was ignored</CC_Log_ObjectionOverruled>
   <CC_Log_ObjectionHeard>objected to {0}, and was heard</CC_Log_ObjectionHeard>
   <CC_ObjectionMessage>{PAWN_nameDef} objects to {OTHER_nameDef}'s wish for {WISH}.</CC_ObjectionMessage>
   <CC_Chronicle_Objection>{0} objected to {1}'s wish for {2}.</CC_Chronicle_Objection>
   <CC_ObjectorTag>opposed by {0}</CC_ObjectorTag>
-  <CC_Ambition_CheckIn>{PAWN_nameDef} on {AMBITION} ({PROGRESS} done):</CC_Ambition_CheckIn>
+  <CC_Ambition_CheckIn>{PAWN_nameDef} on "{AMBITION}" ({PROGRESS} done):</CC_Ambition_CheckIn>
   <CC_Log_NoneChosen>the council chose nothing</CC_Log_NoneChosen>
   <CC_Heckle_Plain>{PAWN_nameDef} wondered aloud whether {OTHER_nameDef}'s "{AMBITION}" was really the priority.</CC_Heckle_Plain>
   <CC_Heckle_Warm>{PAWN_nameDef} thanked everyone for coming, and said {OTHER_nameDef}'s idea ("{AMBITION}") sounded lovely.</CC_Heckle_Warm>

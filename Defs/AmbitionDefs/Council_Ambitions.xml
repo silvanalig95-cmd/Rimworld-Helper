@@ -28,8 +28,8 @@
     </goals>
     <pitch>
       <plain>
-        <li>I counted the stores this morning, and we won't get through the lean months on what's there. I want a month of food put by.</li>
-        <li>We plant extra this season, hunt when the herds pass through, and stack it all until the shelves are full.</li>
+        <li>We're eating what we harvest about as fast as we bring it in. Let's put a month of food by before the lean months.</li>
+        <li>An extra field this season, and a hunt whenever the herds come through. It all goes on the shelves until they're full.</li>
       </plain>
       <warm>
         <li>Whatever happens this year, I don't want anyone here going to bed hungry. Help me fill the storeroom.</li>
@@ -38,13 +38,13 @@
         <li>One bad harvest and we're eating bark. Fill the larder.</li>
       </blunt>
       <cheerful>
-        <li>Picture a storeroom so full we have to climb over the potatoes to get in!</li>
+        <li>Jars up to the rafters and a ham on every hook. That's the storeroom I want!</li>
       </cheerful>
       <gloomy>
-        <li>Winter always lasts longer than the food does. We should start putting it away now.</li>
+        <li>The lean months always last longer than the food does. We should start putting it away now.</li>
       </gloomy>
       <cold>
-        <li>Starvation is the largest single risk we face, and thirty days of reserves removes it.</li>
+        <li>A bad raid might cost us two people. An empty storeroom would cost us all of them.</li>
       </cold>
     </pitch>
     <achieved>
@@ -81,13 +81,13 @@
     </goals>
     <pitch>
       <plain>
-        <li>Every week I throw out food that's turned. With a freezer and a stack of meals in it, I wouldn't have to.</li>
+        <li>Raw meat lasts a few days on an open shelf. Give me a freezer and I'll keep thirty meals ready instead of racing the rot.</li>
       </plain>
       <warm>
-        <li>A cold room full of ready meals would mean the night shift eats when they come in, instead of waiting on me.</li>
+        <li>With a cold room full of ready meals, the night shift could eat the moment they come in. No more waiting on me.</li>
       </warm>
       <blunt>
-        <li>I'm sick of cooking food just to scrape it into the midden. Build a freezer.</li>
+        <li>I'm sick of cooking food just to scrape it into the midden.</li>
       </blunt>
       <cheerful>
         <li>A freezer full of meals, and I'll label every shelf!</li>
@@ -96,7 +96,7 @@
         <li>Everything rots here if you leave it long enough. We could at least save the food.</li>
       </gloomy>
       <cold>
-        <li>We lose more food to spoilage than to anything else. A stocked freezer fixes that.</li>
+        <li>We lose more food to rot than to raiders. That's the easier loss to stop.</li>
       </cold>
     </pitch>
     <achieved>
@@ -131,8 +131,8 @@
     </goals>
     <pitch>
       <plain>
-        <li>Last time someone was hurt, I patched them up on the floor next to the stove. We need a real hospital.</li>
-        <li>Three clean beds and a cabinet of medicine would save a life the next time a raid goes badly.</li>
+        <li>Our wounded lie wherever there's an empty bed. They need one clean room, with three beds and the medicine close by.</li>
+        <li>Three clean beds and a cabinet of medicine could save a life after the next bad raid.</li>
       </plain>
       <warm>
         <li>I don't want to lose anyone just because we weren't ready for them. A hospital, please.</li>
@@ -141,7 +141,7 @@
         <li>You people keep getting shot. Build me a hospital so I can keep you alive.</li>
       </blunt>
       <cheerful>
-        <li>A real hospital, with clean beds and a shelf of medicine! I'd love to run it.</li>
+        <li>I'd love to run a real hospital. I've already worked out which shelf the bandages go on.</li>
       </cheerful>
       <gloomy>
         <li>Someone will get badly hurt again; it's only a question of when. We should have beds ready.</li>
@@ -191,7 +191,7 @@
         <li>I'd like each of us to have a room to keep our own things in. It would feel more like home.</li>
       </warm>
       <blunt>
-        <li>I'm done with the barracks, and so are you. Build rooms.</li>
+        <li>I'm done sleeping with someone's feet by my head.</li>
       </blunt>
       <cheerful>
         <li>A room for each of us, with a name sign on every door!</li>
@@ -200,7 +200,7 @@
         <li>We can't get a night's peace from each other in there. Sooner or later someone will snap.</li>
       </gloomy>
       <cold>
-        <li>Private rooms mean better sleep and better moods. The materials are cheap by comparison.</li>
+        <li>I've listened at the barracks door at night. People in there wake every hour.</li>
       </cold>
     </pitch>
     <achieved>
@@ -216,7 +216,7 @@
   <ColonyCouncil.AmbitionDef>
     <defName>Council_Amb_GreatHall</defName>
     <label>a great hall</label>
-    <description>Turn the dining room into a hall worth gathering in: furnish and decorate it until it counts as impressive.</description>
+    <description>Turn the dining room into a hall worth gathering in, furnished and decorated until its impressiveness reaches 65.</description>
     <days>25</days>
     <template>Council_DiningRoom</template>
     <relevantCategories>
@@ -241,30 +241,30 @@
     </goals>
     <pitch>
       <plain>
-        <li>I'd like the dining room to be somewhere grand, with a good floor and some art on the walls.</li>
+        <li>I'd like the dining room to be grand, with a good floor and some art on the walls.</li>
       </plain>
       <warm>
-        <li>The dining room is where we see each other every day. It deserves better than a dirt floor and a wobbly table.</li>
+        <li>It's the one room where we're all together at once. It deserves better than a dirt floor and a wobbly table.</li>
       </warm>
       <blunt>
         <li>Our dining room looks like a pirate's latrine. Build a proper hall.</li>
       </blunt>
       <cheerful>
-        <li>A great hall with long tables and feasts! Well, simple meals at first, but in a great hall.</li>
+        <li>Banners on the walls, and a seat at the head of the table for whoever cooked!</li>
       </cheerful>
       <gloomy>
-        <li>We'll eat thousands of meals in that room before we're done. It might as well be a decent room.</li>
+        <li>We'll eat thousands of meals in that room before we're done.</li>
       </gloomy>
       <cold>
-        <li>An impressive dining room gives a mood bonus at every meal. It's a high-return project.</li>
+        <li>Every one of us sits in that room at least once a day. No other room we could improve reaches as many people.</li>
       </cold>
     </pitch>
     <achieved>
       <plain>
-        <li>Look at this hall. The next caravan will be talking about it for weeks.</li>
+        <li>The next caravan through will be talking about this hall for weeks.</li>
       </plain>
       <cheerful>
-        <li>The first feast in here is on me! Well, on the cook, but I'll make the toast.</li>
+        <li>I'm making the first toast in here, and it's going to be a long one!</li>
       </cheerful>
     </achieved>
     <!-- With "Answers play out on the map": the first feast in the new hall. -->
@@ -299,7 +299,7 @@
         <li>We work all day, and in the evenings the only entertainment is the cook's singing. I propose a rec room.</li>
       </plain>
       <warm>
-        <li>After a hard day we need somewhere to sit and laugh together. A rec room would give us that.</li>
+        <li>After a hard day I'd like somewhere to sit with all of you that isn't the dining table.</li>
       </warm>
       <blunt>
         <li>If I have to watch one more cloud, I'm going to set fire to the woodpile. Rec room.</li>
@@ -311,7 +311,7 @@
         <li>There's nothing to do here after dark but sit and think. That isn't good for any of us.</li>
       </gloomy>
       <cold>
-        <li>Varied recreation keeps people from breaking. A rec room costs less than a single breakdown.</li>
+        <li>People with nothing to do in the evening find something to do. I'd rather choose what it is.</li>
       </cold>
     </pitch>
     <achieved>
@@ -319,7 +319,7 @@
         <li>Game night is officially a colony tradition.</li>
       </plain>
       <blunt>
-        <li>I'm going to win at everything. Fair warning.</li>
+        <li>The rules are on the wall. Anyone caught cheating sweeps the room.</li>
       </blunt>
     </achieved>
     <!-- With "Answers play out on the map": a games night in the new rec room. -->
@@ -357,22 +357,22 @@
     <pitch>
       <plain>
         <li>The raids are getting bigger and our defenses aren't. We need to catch up before the next one.</li>
-        <li>I propose we spend the next few weeks on cover and weapons, and pick a place to make our stand.</li>
+        <li>I propose a few weeks on cover and weapons, and a place picked out to make our stand.</li>
       </plain>
       <warm>
         <li>None of us has slept a whole night since the last raid. Let's make the defenses solid enough that we can.</li>
       </warm>
       <blunt>
-        <li>Next time they come, I want them running back where they came from. Build defenses.</li>
+        <li>Every raid I end up crouched behind a sack of rice. Build me a real wall to crouch behind.</li>
       </blunt>
       <cheerful>
         <li>Let's make our home the last place any raider wants to visit!</li>
       </cheerful>
       <gloomy>
-        <li>They'll come again, with more people next time. We might as well make it cost them.</li>
+        <li>They'll come again, with more people next time. Let's make it cost them.</li>
       </gloomy>
       <cold>
-        <li>Our defensive capacity lags our wealth. That gap gets people killed.</li>
+        <li>We've grown rich faster than we've grown dangerous. Raiders notice that before we do.</li>
       </cold>
     </pitch>
     <achieved>
@@ -383,7 +383,7 @@
         <li>Now I almost want them to try something.</li>
       </blunt>
       <gloomy>
-        <li>We're safer than we were. Not safe, but safer.</li>
+        <li>We're safer than we were. I'll still sleep in my boots.</li>
       </gloomy>
     </achieved>
   </ColonyCouncil.AmbitionDef>
@@ -412,16 +412,16 @@
         <li>Turrets don't sleep, don't eat and don't panic. Let's put three on the main approaches.</li>
       </plain>
       <blunt>
-        <li>I want guns that shoot back even when we're asleep. Turrets.</li>
+        <li>I want guns that keep firing while we're asleep.</li>
       </blunt>
       <cheerful>
-        <li>Little robot guards! Okay, they're turrets. But I'm calling them guards.</li>
+        <li>Three little guards that never sleep! I'm giving them names.</li>
       </cheerful>
       <gloomy>
-        <li>There are too few of us to watch every approach, and whoever's on watch dozes off eventually.</li>
+        <li>There are too few of us to watch every approach, and whoever's on watch dozes off.</li>
       </gloomy>
       <cold>
-        <li>Turrets multiply our firepower at no cost in lives. Build them.</li>
+        <li>Every shot a turret fires is one none of us has to stand up to fire.</li>
       </cold>
     </pitch>
     <achieved>
@@ -455,16 +455,16 @@
     </goals>
     <pitch>
       <plain>
-        <li>Every raider who steps on a trap is one less we have to fight. Let's lay six along the approaches.</li>
+        <li>The raiders always come in by the same few paths. That's where the traps should go.</li>
       </plain>
       <warm>
         <li>I'd rather they get hurt out there than we get hurt in here. Let's set some traps.</li>
       </warm>
       <blunt>
-        <li>Spikes in the ground along the path they always take. Any questions?</li>
+        <li>Spikes in the ground along the path they always take. I'll dig the holes myself.</li>
       </blunt>
       <cheerful>
-        <li>Surprise party for our next visitors! The surprise is spikes.</li>
+        <li>I've drawn a map of where every trap should go, with little stars on it!</li>
       </cheerful>
       <gloomy>
         <li>It's ugly work, setting traps for people. Burying our own is worse.</li>
@@ -509,7 +509,7 @@
         <li>Every time the sun sets, the lights flicker. Let's build batteries and stop holding our breath at dusk.</li>
       </plain>
       <blunt>
-        <li>The power keeps cutting out at the worst moments. Build batteries.</li>
+        <li>The power keeps cutting out at the worst moments. I'm always the one sent out to check the wires.</li>
       </blunt>
       <cheerful>
         <li>Let's store up enough power to keep every lamp lit all night!</li>
@@ -518,7 +518,7 @@
         <li>One eclipse and the freezer thaws, and then we're eating spoiled meat. I'd like batteries.</li>
       </gloomy>
       <cold>
-        <li>Unbuffered power is a single point of failure. Storage fixes it.</li>
+        <li>Every night this colony runs on luck until sunrise. I'd rather it ran on stored power.</li>
       </cold>
     </pitch>
     <achieved>
@@ -550,7 +550,7 @@
     </goals>
     <pitch>
       <plain>
-        <li>Our clothes, tools and weapons all have to be made somewhere, and right now that's a corner of the storeroom.</li>
+        <li>Everything we wear gets made in a corner of the storeroom, between the potato sacks.</li>
       </plain>
       <warm>
         <li>I'd keep all of you in decent boots and coats if I had a real workshop to work in.</li>
@@ -565,12 +565,12 @@
         <li>Everything we own is falling apart, and there's nowhere decent to make new things.</li>
       </gloomy>
       <cold>
-        <li>Production capacity is our bottleneck. A workshop removes it.</li>
+        <li>Every order I take waits days for a free bench. Those are days of work we never get back.</li>
       </cold>
     </pitch>
     <achieved>
       <plain>
-        <li>The workshop is open for business.</li>
+        <li>Benches are in and the tools are hung. Bring me your torn boots.</li>
       </plain>
     </achieved>
   </ColonyCouncil.AmbitionDef>
@@ -597,19 +597,19 @@
         <li>Three sculptures in the dining room, where we'll see them every day. I've already picked the spots.</li>
       </plain>
       <warm>
-        <li>Something beautiful in the room where we eat would do us all good, after the year we've had.</li>
+        <li>It's been a hard year, and all I've made in it are walls and coffins. Let me make art for once.</li>
       </warm>
       <blunt>
         <li>The dining room is depressing. Let me put some art in it.</li>
       </blunt>
       <cheerful>
-        <li>A gallery! I already have so many ideas. One of them is a squirrel.</li>
+        <li>A gallery. I've got sketches for twenty pieces and room for three, so I'll have to choose.</li>
       </cheerful>
       <gloomy>
         <li>Most days here are gray and the same. Some art on the walls would help.</li>
       </gloomy>
       <cold>
-        <li>Beauty increases mood and colony value. I propose three pieces.</li>
+        <li>Art raises what the colony is worth and how people feel in it, and it doesn't eat.</li>
       </cold>
     </pitch>
     <achieved>
@@ -642,7 +642,7 @@
     </goals>
     <pitch>
       <plain>
-        <li>The animals out there could pull carts, give milk, or just be good company. Let's tame a few and build them a barn.</li>
+        <li>Some of the animals out there could haul for us, and some would give milk. Let's tame three and build them a barn.</li>
       </plain>
       <warm>
         <li>I miss hearing animals in the morning. A few around the place would make it feel alive.</li>
@@ -657,7 +657,7 @@
         <li>Animals don't argue and they don't lie. I could use their company.</li>
       </gloomy>
       <cold>
-        <li>Tamed animals provide labor, food and defense. The return is excellent.</li>
+        <li>A tamed animal will carry, guard and breed, and it asks for nothing but hay.</li>
       </cold>
     </pitch>
     <achieved>
@@ -665,7 +665,7 @@
         <li>Listen to them. That's the sound of a real homestead.</li>
       </plain>
       <cheerful>
-        <li>I've named all of them! Some of them twice.</li>
+        <li>I've named every one of them, and two already come when I call!</li>
       </cheerful>
     </achieved>
   </ColonyCouncil.AmbitionDef>
@@ -709,7 +709,7 @@
         <li>We won't survive on what we know now. We have to learn more.</li>
       </gloomy>
       <cold>
-        <li>Research compounds. Every project makes the next one more valuable.</li>
+        <li>Every project we finish opens the way to two more. The sooner we start, the further it goes.</li>
       </cold>
     </pitch>
     <achieved>
@@ -739,22 +739,22 @@
     </goals>
     <pitch>
       <plain>
-        <li>If we grow food indoors, the seasons stop deciding whether we eat. We should build a greenhouse.</li>
+        <li>Under lamps, indoors, we could bring in a harvest in the middle of winter.</li>
       </plain>
       <warm>
         <li>Fresh greens on the table in the middle of winter. I'd love to see that.</li>
       </warm>
       <blunt>
-        <li>Crops under a roof don't freeze. Build a greenhouse.</li>
+        <li>Crops under a roof don't freeze.</li>
       </blunt>
       <cheerful>
         <li>A whole room of growing things that smells like spring all year!</li>
       </cheerful>
       <gloomy>
-        <li>One bad season would finish us. Growing indoors is the only way around it I can see.</li>
+        <li>We're one bad season away from eating the seed grain. Growing indoors is the only way around it I can see.</li>
       </gloomy>
       <cold>
-        <li>Year-round production eliminates seasonal risk.</li>
+        <li>The fields feed us half the year. A greenhouse would feed us the other half.</li>
       </cold>
     </pitch>
     <achieved>
@@ -796,7 +796,7 @@
         <li>The cold doesn't kill you all at once. It wears you down over a season.</li>
       </gloomy>
       <cold>
-        <li>Hypothermia is preventable. Prevent it.</li>
+        <li>The cold kills slowly and predictably. That makes it the easiest thing here to stop.</li>
       </cold>
     </pitch>
     <achieved>
@@ -828,27 +828,27 @@
     </goals>
     <pitch>
       <plain>
-        <li>The fields, the kitchen and the watch all need people, and we're stretched thin. One more colonist would help.</li>
+        <li>Whoever cooks also hauls, and whoever hauls also stands the night watch. We need one more of us.</li>
       </plain>
       <warm>
         <li>There are people out there with nowhere to go. Let's give one of them a home.</li>
       </warm>
       <blunt>
-        <li>We need more people. I don't care how we get them.</li>
+        <li>We need more people, and I'm not fussy about where they come from.</li>
       </blunt>
       <cheerful>
-        <li>A new friend! I'll even give them my second-best spoon.</li>
+        <li>A new friend. I'll even give them my second-best spoon.</li>
       </cheerful>
       <gloomy>
         <li>There aren't enough of us to survive what's coming.</li>
       </gloomy>
       <cold>
-        <li>Our labor shortage is critical. Recruitment is the fastest fix.</li>
+        <li>We have more work than workers, and the work isn't getting smaller.</li>
       </cold>
     </pitch>
     <achieved>
       <plain>
-        <li>Welcome to the colony. We're glad you're here.</li>
+        <li>Welcome. Pick yourself a bed, and supper's at dusk.</li>
       </plain>
     </achieved>
   </ColonyCouncil.AmbitionDef>
@@ -890,7 +890,7 @@
         <li>Someone's going to snap soon. I've seen how people look at each other over supper.</li>
       </gloomy>
       <cold>
-        <li>Low morale reduces output and invites breakdowns. Raise it.</li>
+        <li>When people are this unhappy, one breakdown sets off the next. I'd rather not find out how many.</li>
       </cold>
     </pitch>
     <achieved>
@@ -926,7 +926,7 @@
         <li>When the next trader comes, I want to buy what we need, not beg. Let's save up silver.</li>
       </plain>
       <warm>
-        <li>Silver in the vault could buy medicine or a ransom one day. I'd feel better with some put aside.</li>
+        <li>Silver put aside could buy medicine the week someone's sick and the shelf is empty.</li>
       </warm>
       <blunt>
         <li>Traders laugh at what we have to offer. Save some silver.</li>
@@ -938,7 +938,7 @@
         <li>Someday we'll need to buy our way out of trouble. Better have the silver.</li>
       </gloomy>
       <cold>
-        <li>Liquidity provides options. I propose we accumulate some.</li>
+        <li>Silver doesn't rot and doesn't need feeding. More of what we own should be silver.</li>
       </cold>
     </pitch>
     <achieved>
@@ -977,19 +977,19 @@
         <li>Give me a real kitchen and good ingredients and I'll give you meals worth fighting for.</li>
       </plain>
       <warm>
-        <li>I'd love to cook for all of you the way my mother cooked for us, with herbs and a slow fire.</li>
+        <li>I'd love to cook for you all the way my mother cooked for us. Herbs and a slow fire.</li>
       </warm>
       <blunt>
-        <li>I'm a cook, not a miracle worker. Give me a kitchen.</li>
+        <li>I'm cooking on a stove wedged into a corridor. Give me a kitchen.</li>
       </blunt>
       <cheerful>
         <li>Fine dining out here on the Rim, garnish and all!</li>
       </cheerful>
       <gloomy>
-        <li>If every day is a struggle, at least dinner shouldn't be.</li>
+        <li>We eat the same mush day after day, and I've started to taste the despair in it.</li>
       </gloomy>
       <cold>
-        <li>Fine meals give a lasting mood bonus. The kitchen pays for itself.</li>
+        <li>A fine meal costs a cook an hour and buys a day of good temper from whoever eats it.</li>
       </cold>
     </pitch>
     <achieved>

@@ -39,7 +39,7 @@
     <pitch>
       <plain>
         <li>Half a wall is a door for raiders. Let's finish the ring, then make it stone, then make it hold.</li>
-        <li>Wood burns. Stone doesn't. One stage at a time, but let's build a wall we don't have to worry about.</li>
+        <li>Our wall has more gaps than wall. A raider could lead a muffalo through it.</li>
         <li>[afterraid] They walked straight through the gap. Next time there won't be one.</li>
         <li>[medieval] Every town worth the name has walls. Let's raise ours properly.</li>
         <li>[tribal] A palisade first, then stone where the palisade is weakest. My people's camps were never caught open.</li>
@@ -48,14 +48,14 @@
       <blunt><li>Walls. Stone walls. Then guards on them.</li></blunt>
       <cheerful><li>A great big ring of stone round all of us! I'll carry the first block.</li></cheerful>
       <gloomy><li>They'll come again. They always do. Let them find stone.</li></gloomy>
-      <cold><li>A finished, fireproof perimeter halves the cost of every raid. Build it in order.</li></cold>
+      <cold><li>A finished wall that won't burn halves what every raid costs us. Build it in order.</li></cold>
     </pitch>
     <achieved>
-      <plain><li>Stone all the way round, and people on it who know what they're doing. Let them come.</li></plain>
-      <warm><li>I slept through the night for the first time in a long while. The walls did that.</li></warm>
+      <plain><li>Stone all the way round, and people on it who know what they're doing.</li></plain>
+      <warm><li>I slept the whole night through without listening for footsteps.</li></warm>
       <cheerful><li>Look at it! You could hold off an army behind that.</li></cheerful>
-      <gloomy><li>It's done. Now we'll find out how good it is.</li></gloomy>
-      <cold><li>Perimeter complete and fireproof. Defenses adequate to the threat.</li></cold>
+      <gloomy><li>It's done. The first raid will tell us if it's any good.</li></gloomy>
+      <cold><li>The wall is finished and none of it will burn. From now on, raids cost them more than us.</li></cold>
     </achieved>
     <!-- With "Answers play out on the map": a fire lit by the new walls. -->
     <achievedEffects>
@@ -84,22 +84,22 @@
     </goals>
     <pitch>
       <plain>
-        <li>Half the time someone comes in from the fields and there's nothing cooked. A hot meal waiting, every day, for a whole season.</li>
+        <li>Too often someone comes in from the fields and there's nothing cooked. A hot meal waiting, every day, for a whole season.</li>
         <li>Two meals a head in store, every day. That's all. For fifteen days.</li>
-        <li>[winter] Nobody should come in out of the snow to raw potatoes. Let's keep the pots full.</li>
+        <li>[winter] Coming in out of the snow to raw potatoes is no way to live. Let's keep the pots full.</li>
         <li>[lowtech] A full cooking pot over the fire, all season long. That's what a home smells like.</li>
       </plain>
       <warm><li>I'd like everyone to know there's a hot meal waiting, whatever kind of day they've had.</li></warm>
-      <blunt><li>Cook more. Keep cooking. Fifteen days.</li></blunt>
-      <cheerful><li>Something hot in the pot every day! I'll be the happiest cook alive.</li></cheerful>
+      <blunt><li>Yesterday's supper was a raw turnip. Cook more.</li></blunt>
+      <cheerful><li>I love the smell of a pot that's been going all day. Let's never let it go cold.</li></cheerful>
       <gloomy><li>The day we run out of cooked food is always the day everything goes wrong. Let's not run out.</li></gloomy>
-      <cold><li>Raw food costs us health and time. A buffer of cooked meals pays for itself.</li></cold>
+      <cold><li>Raw food makes people sick and slow. Two cooked meals each, waiting, costs us almost nothing.</li></cold>
     </pitch>
     <achieved>
-      <plain><li>A whole season and never a cold supper. The kitchen earned its keep.</li></plain>
+      <plain><li>Fifteen days and never a cold supper. The kitchen earned its keep.</li></plain>
       <warm><li>Every day this season, there was something hot waiting. Thank you, cooks.</li></warm>
       <cheerful><li>Fifteen days of hot food! I'm rounder and happier.</li></cheerful>
-      <cold><li>Meal buffer maintained for a full season.</li></cold>
+      <cold><li>Fifteen days and not one meal eaten raw. The cooks can be trusted with more.</li></cold>
     </achieved>
   </ColonyCouncil.AmbitionDef>
 
@@ -127,17 +127,17 @@
         <li>[poor] We've never had a season where nobody worried about food. I'd like one.</li>
         <li>[lowtech] My grandmother said a full granary is the only wealth that matters. Let's be rich.</li>
       </plain>
-      <warm><li>I want a season where nobody lies awake counting sacks.</li></warm>
-      <blunt><li>Full stores. Keep them full.</li></blunt>
-      <cheerful><li>A whole season of full bellies and full barns! It's like a story.</li></cheerful>
-      <gloomy><li>Hunger always comes back. Let's be ready when it does.</li></gloomy>
-      <cold><li>A twenty-day reserve held steady means the next blight is an inconvenience, not a disaster.</li></cold>
+      <warm><li>One season where the cook never has to say there's less tonight. That's all I'm asking.</li></warm>
+      <blunt><li>Every time the weather turns, we start rationing. Keep the stores full.</li></blunt>
+      <cheerful><li>Full bellies and full barns all season long! It's like something out of a story.</li></cheerful>
+      <gloomy><li>Hunger always comes back, and it never sends word first.</li></gloomy>
+      <cold><li>With twenty days held in reserve, the next blight is an inconvenience, not a disaster.</li></cold>
     </pitch>
     <achieved>
-      <plain><li>A whole season of plenty. The granary has never looked so good.</li></plain>
-      <warm><li>Nobody went to bed worried about food this season. That's the best thing we've made.</li></warm>
+      <plain><li>The granary has never looked so good, and it stayed that way all season.</li></plain>
+      <warm><li>Not one of us went to bed worried about food this season.</li></warm>
       <cheerful><li>Full barns all season! I keep going in just to look at them.</li></cheerful>
-      <cold><li>Food security maintained for a full season.</li></cold>
+      <cold><li>We stayed twenty days ahead of hunger for a whole season. I'd like that to become the rule.</li></cold>
     </achieved>
   </ColonyCouncil.AmbitionDef>
 
@@ -159,22 +159,22 @@
     </goals>
     <pitch>
       <plain>
-        <li>We let the last day go by without marking it. Let's keep the next ones properly, all of us.</li>
-        <li>Two of our days are coming round. A colony that keeps its days is a colony that means to stay.</li>
+        <li>We let the last day go by without marking it, and I felt it all week.</li>
+        <li>Two of our days are coming round. Let's have the tables out and every one of us there.</li>
         <li>Keep a day three years running and it's a tradition. Let's start counting, and not lose count.</li>
         <li>[lowtech] The old villages kept their days whatever the year brought. So can we.</li>
       </plain>
       <warm><li>Those days are ours. Nobody else in the world keeps them. I'd hate to lose them.</li></warm>
       <blunt><li>Mark the days. Properly.</li></blunt>
-      <cheerful><li>Two feast days coming! I'm already planning the menu.</li></cheerful>
+      <cheerful><li>Two days to celebrate, and I'm in charge of the decorations!</li></cheerful>
       <gloomy><li>If we stop keeping our days, we'll forget why we're here.</li></gloomy>
-      <cold><li>Shared days hold a colony together for very little cost. Keep them.</li></cold>
+      <cold><li>A day off now and then is cheap, and people remember who gave it to them.</li></cold>
     </pitch>
     <achieved>
       <plain><li>Two of our days kept, and kept well. The calendar means something here.</li></plain>
-      <warm><li>We kept our days together. That's what makes a place home.</li></warm>
+      <warm><li>We kept both days, all of us together. I'll remember the second one a long time.</li></warm>
       <cheerful><li>Two days, two celebrations! Next year we'll do even better.</li></cheerful>
-      <cold><li>Days observed as planned.</li></cold>
+      <cold><li>Both days kept. People worked better the morning after, which I hadn't expected.</li></cold>
     </achieved>
   </ColonyCouncil.AmbitionDef>
 
@@ -204,22 +204,22 @@
     </goals>
     <pitch>
       <plain>
-        <li>The old way: gather everything the land gives before the cold, then pound it into pemmican that keeps all winter.</li>
+        <li>Gather everything the land gives before the cold, the old way. Then pound it into pemmican that keeps all winter.</li>
         <li>Berries, roots, grain, all of it, and then the cache. My people never went hungry in the snow.</li>
         <li>[fall] The land is giving now. In a month it won't be. Let's take what it gives.</li>
         <li>[winter] We were hungry last winter. A proper cache, and we never will be again.</li>
       </plain>
-      <warm><li>I want the little ones fed all winter, whatever the hunters bring home.</li></warm>
+      <warm><li>I want every belly in this tribe full all winter, whatever the hunters bring home.</li></warm>
       <blunt><li>Gather. Pound. Store. Eat in winter.</li></blunt>
-      <cheerful><li>A cache full of pemmican! It tastes terrible and I love it.</li></cheerful>
+      <cheerful><li>A cache full of pemmican, enough to chew on until the thaw!</li></cheerful>
       <gloomy><li>The snow will come whether we're ready or not.</li></gloomy>
       <cold><li>Pemmican keeps without cold. It's the most reliable store we can make.</li></cold>
     </pitch>
     <achieved>
-      <plain><li>The cache is full. Let the snow come.</li></plain>
-      <warm><li>Everyone will eat this winter. That's what we worked for.</li></warm>
-      <cheerful><li>Sixty pemmican, all stacked up! I counted them twice.</li></cheerful>
-      <cold><li>Winter stores complete.</li></cold>
+      <plain><li>The cache is full and sealed against the damp.</li></plain>
+      <warm><li>Everyone will eat this winter, even if the hunt fails.</li></warm>
+      <cheerful><li>Sixty pemmican, all stacked up! I've already had to chase someone off them.</li></cheerful>
+      <cold><li>The cache will feed the tribe until the thaw, if nobody gets greedy.</li></cold>
     </achieved>
   </ColonyCouncil.AmbitionDef>
 
@@ -250,21 +250,21 @@
     <pitch>
       <plain>
         <li>The herds are out there and we're eating roots. Let's train real hunters and bring the meat home.</li>
-        <li>Twelve animals and two hunters worth the name. Then nobody goes hungry when the crops fail.</li>
+        <li>Twelve kills and two hunters worth the name, so a failed crop doesn't mean hunger.</li>
         <li>[spring] The herds are fat from the new grass. It's the hunters' season.</li>
         <li>[afterraid] A band that can hunt can fight. We need both.</li>
       </plain>
       <warm><li>I want the young ones to learn to hunt properly, the way I was taught.</li></warm>
-      <blunt><li>Hunt more. Shoot better.</li></blunt>
+      <blunt><li>The deer walk right past our camp and we eat roots. Go and get them.</li></blunt>
       <cheerful><li>Meat at every meal and hunting stories round the fire! Count me in.</li></cheerful>
-      <gloomy><li>A bad hunting year ends tribes. Let's not have one.</li></gloomy>
+      <gloomy><li>A bad hunting year ends tribes. I've seen the empty camps.</li></gloomy>
       <cold><li>Game is free food. Skilled hunters turn it into a reliable supply.</li></cold>
     </pitch>
     <achieved>
-      <plain><li>A hunters' year to tell the young about: meat in the smokehouse and hunters to be proud of.</li></plain>
-      <warm><li>Our hunters came home every time. That's the best of it.</li></warm>
-      <cheerful><li>Twelve! And I got three of them!</li></cheerful>
-      <cold><li>Hunting capacity established.</li></cold>
+      <plain><li>A hunters' year to tell the young about. Meat in the smokehouse, and hunters to be proud of.</li></plain>
+      <warm><li>Every time the hunters went out, they all came home.</li></warm>
+      <cheerful><li>Twelve, and three of them were mine!</li></cheerful>
+      <cold><li>Twelve kills and two good bows. The tribe can feed itself from the land now.</li></cold>
     </achieved>
     <!-- With "Answers play out on the map": the meat roasted round a fire. -->
     <achievedEffects>
@@ -300,19 +300,19 @@
       <plain>
         <li>Everything our ancestors knew about the stars is in a few heads and a few databanks. Let's make it more than a few.</li>
         <li>Three projects finished, three minds that understand them. Then it can't be lost.</li>
-        <li>[small] With so few of us, losing one scholar would set us back a century. Let's train more.</li>
+        <li>[small] With so few of us, losing one scholar would set us back a century.</li>
       </plain>
       <warm><li>I'd like to teach what I know before it's too late to.</li></warm>
-      <blunt><li>Research more. Teach more people to research.</li></blunt>
-      <cheerful><li>A whole archive of starlight! We'll be the cleverest colony on the rim.</li></cheerful>
+      <blunt><li>One person here understands half of what we've built, and they won't live forever.</li></blunt>
+      <cheerful><li>Imagine a room where everything we know is written down and kept safe. I'd live in there!</li></cheerful>
       <gloomy><li>Knowledge out here is fragile. One raid, one fever, and it's gone.</li></gloomy>
-      <cold><li>Redundancy in expertise is as important as redundancy in power.</li></cold>
+      <cold><li>If our one researcher dies, so does everything only they understood.</li></cold>
     </pitch>
     <achieved>
       <plain><li>Three new discoveries and three minds that hold them. The archive is safe.</li></plain>
       <warm><li>What we know will outlast any one of us now.</li></warm>
-      <cheerful><li>We did it! Everyone's so clever now it's slightly annoying.</li></cheerful>
-      <cold><li>Knowledge redundancy achieved.</li></cold>
+      <cheerful><li>Supper's all equations and star charts now, and I love it!</li></cheerful>
+      <cold><li>Three people now understand what one did before.</li></cold>
     </achieved>
   </ColonyCouncil.AmbitionDef>
 
@@ -350,7 +350,7 @@
         <li>Proper beds, a clean room, medicine we made ourselves. Then nobody dies of something we could have fixed.</li>
         <li>[hurt] I've been patched up on a dirty table. I'd rather the next person wasn't.</li>
       </plain>
-      <warm><li>When one of us is hurt, I want them to wake up somewhere that feels safe.</li></warm>
+      <warm><li>The sick should wake up to clean white walls and someone they know beside them.</li></warm>
       <blunt><li>Clean room. Good beds. Medicine. Done.</li></blunt>
       <cheerful><li>A gleaming hospital! I'll polish the beds myself.</li></cheerful>
       <gloomy><li>Somebody will need it badly, one day. Let it be ready.</li></gloomy>
@@ -359,8 +359,8 @@
     <achieved>
       <plain><li>Clean beds, good light and medicine on the shelf. A hospital we can be proud of.</li></plain>
       <warm><li>Whoever needs it next will be in good hands.</li></warm>
-      <cheerful><li>It sparkles! I hope nobody needs it, but it sparkles.</li></cheerful>
-      <cold><li>Medical facility up to standard.</li></cold>
+      <cheerful><li>Everything in there is white and shining. I hope nobody needs it for a long time.</li></cheerful>
+      <cold><li>Spotless, stocked and staffed. Fewer of us will die after the next raid.</li></cold>
     </achieved>
   </ColonyCouncil.AmbitionDef>
 
@@ -369,7 +369,7 @@
   <ColonyCouncil.AmbitionDef>
     <defName>Council_Amb_RenownedHosts</defName>
     <label>renowned hosts</label>
-    <description>Become the colony every traveller hopes to stop at, in stages: three guest beds in rooms indoors, then a guest room worth sleeping in (impressiveness 50 or more), then two peoples abroad who think well of the colony (goodwill 50 or more). Only with Hospitality.</description>
+    <description>Become the colony every traveler hopes to stop at, in stages: three guest beds in rooms indoors, then a guest room worth sleeping in (impressiveness 50 or more), then two peoples abroad who think well of the colony (goodwill 50 or more). Only with Hospitality.</description>
     <days>50</days>
     <weight>1.2</weight>
     <staged>true</staged>
@@ -390,22 +390,22 @@
     </goals>
     <pitch>
       <plain>
-        <li>Travellers pass us by because there's nowhere to sleep. Beds first, then a room worth the walk, and the roads will learn our name.</li>
+        <li>Travelers pass us by because there's nowhere to sleep. Beds first, then a room worth the walk, and the roads will learn our name.</li>
         <li>I'd like guests to leave here telling everyone about us. Let's give them something to tell.</li>
         <li>[medieval] Every road needs a good inn. Let's be it.</li>
-        <li>[large] With this many of us, there's always someone to look after guests. Let's do it properly.</li>
+        <li>[large] With this many of us, there's always someone free to look after guests.</li>
       </plain>
       <warm><li>I want every stranger who comes through our gate to feel like they've come home.</li></warm>
-      <blunt><li>Guest beds. A good guest room. Then they'll come back with silver.</li></blunt>
-      <cheerful><li>The best guest house on the rim! I'll fold the blankets into swans.</li></cheerful>
+      <blunt><li>Travelers have silver and nowhere to sleep. Give them a bed and take the silver.</li></blunt>
+      <cheerful><li>The best guest house on the Rim! I'll fold the blankets into swans.</li></cheerful>
       <gloomy><li>If people don't like us, they'll stop coming. Then we're alone out here.</li></gloomy>
-      <cold><li>Well-treated guests bring trade, recruits and goodwill. It's a sound investment.</li></cold>
+      <cold><li>A guest who sleeps well tells their people, and their people come to trade.</li></cold>
     </pitch>
     <achieved>
-      <plain><li>Travellers talk about us on the roads now. We're the place to stop.</li></plain>
+      <plain><li>Travelers talk about us on the roads now. We're the place to stop.</li></plain>
       <warm><li>Every guest who stayed went away a friend.</li></warm>
-      <cheerful><li>We're famous! Well, famous among travellers.</li></cheerful>
-      <cold><li>Hospitality reputation established.</li></cold>
+      <cheerful><li>Our last guest asked to have the same bed next time!</li></cheerful>
+      <cold><li>Guests ask for us by name now. That will be useful.</li></cold>
     </achieved>
   </ColonyCouncil.AmbitionDef>
 
@@ -444,16 +444,16 @@
         <li>[medieval] A charter, a market cross, a fair once a year. Well, the market first.</li>
       </plain>
       <warm><li>I'd like our gate to be somewhere people are glad to arrive at.</li></warm>
-      <blunt><li>Trade more. Save more. Make friends who buy.</li></blunt>
-      <cheerful><li>A market town! Stalls and coins and gossip from everywhere!</li></cheerful>
+      <blunt><li>We've got goods piling up in the storeroom and empty purses. Fix that.</li></blunt>
+      <cheerful><li>A market town! Stalls and coins and gossip from everywhere.</li></cheerful>
       <gloomy><li>Silver doesn't stop raiders, but it buys the people who do.</li></gloomy>
-      <cold><li>Trade turns our surplus into security. Let's build the habit and the reputation.</li></cold>
+      <cold><li>Everything we make beyond what we eat is silver we haven't collected yet.</li></cold>
     </pitch>
     <achieved>
       <plain><li>Traders know our name, the strongbox is full, and three peoples count us friends. A market town.</li></plain>
-      <warm><li>People come here because they want to. That means something.</li></warm>
+      <warm><li>People come here because they want to, not because the road happens to run past.</li></warm>
       <cheerful><li>A real market town! I'm going to start charging for directions.</li></cheerful>
-      <cold><li>Trade network established. Reserves adequate.</li></cold>
+      <cold><li>Three peoples trade with us and the strongbox is full. Now we set the prices.</li></cold>
     </achieved>
   </ColonyCouncil.AmbitionDef>
 

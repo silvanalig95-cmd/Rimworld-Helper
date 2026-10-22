@@ -18,9 +18,9 @@
     <pitch>
       <plain>
         <li>Everyone out there is either selling to us or shooting at us. I'd like at least one faction we can count on.</li>
-        <li>A few gifts, a favor or two and some honest trading, and in a month one of the factions could be on our side.</li>
+        <li>A few gifts, a favor or two, some honest trading. In a month one of the factions could be on our side.</li>
         <li>[afterraid] We held them off alone. Next time I'd like someone to call.</li>
-        <li>[small] There are a handful of us and a whole planet of them. We need friends.</li>
+        <li>[small] There are a handful of us and a whole world of them. We need friends.</li>
       </plain>
       <warm>
         <li>I keep thinking about the traders who came through. They had families too. Let's be good neighbors.</li>
@@ -49,10 +49,10 @@
         <li>If we sent for help now, someone would actually come.</li>
       </plain>
       <warm><li>We have real friends out there now. I'm going to wave at their next caravan until my arm hurts.</li></warm>
-      <blunt><li>Good. Now we've got someone to borrow soldiers from.</li></blunt>
+      <blunt><li>Now we've got someone to borrow soldiers from.</li></blunt>
       <cheerful><li>Allies! Somebody send them a fruitcake.</li></cheerful>
-      <gloomy><li>They're our allies for now. People change their minds, but it's better than nothing.</li></gloomy>
-      <cold><li>Alliance secured. Their soldiers cost us nothing until we need them.</li></cold>
+      <gloomy><li>They're our allies until they change their minds. I've seen that happen overnight.</li></gloomy>
+      <cold><li>Their soldiers cost us nothing until the day we need them.</li></cold>
     </achieved>
   </ColonyCouncil.AmbitionDef>
 
@@ -80,20 +80,20 @@
         <li>[tribal|medieval] Our grandparents' grandparents made things that lasted. We can too.</li>
       </plain>
       <warm>
-        <li>I want to make something lovely for this place. Something people stop and touch on their way past.</li>
+        <li>Let me make something lovely for this place. People should want to touch it on their way past.</li>
       </warm>
       <blunt>
         <li>I'm sick of chairs that wobble. Give me time and good material and I'll stop complaining.</li>
-        <li>Our stuff is ugly. Give the crafters time and good material.</li>
+        <li>Our stuff is ugly, and visitors notice.</li>
       </blunt>
       <cheerful>
-        <li>Let's fill the place with things that are useful and pretty!</li>
+        <li>Every time a trader shows us a pretty bowl, I think we could have made that.</li>
       </cheerful>
       <gloomy>
         <li>Long after we're gone, someone will find whatever we leave behind. Let's leave something good.</li>
       </gloomy>
       <cold>
-        <li>Excellent work lasts longer, works better and sells for far more than its materials.</li>
+        <li>An excellent chair is a chair we never have to build again.</li>
       </cold>
     </pitch>
     <achieved>
@@ -139,17 +139,17 @@
         <li>Everything we build burns eventually. I'd like to make one thing that's worth crying over.</li>
       </gloomy>
       <cold>
-        <li>A masterwork is worth several times the same item at normal quality. It's the best return on materials we'll get.</li>
+        <li>A masterwork sells for several times what an ordinary one does. Same wood, same nails.</li>
         <li>[trait:Greedy] One masterwork is worth a whole caravan of ordinary goods. I've seen what traders pay.</li>
       </cold>
     </pitch>
     <achieved>
       <plain><li>That's it. That's the one. Everybody come and look.</li></plain>
       <warm><li>It's for all of us. Everyone helped, even if they only cooked dinner.</li></warm>
-      <blunt><li>Told you. Wash your hands before you touch it.</li></blunt>
+      <blunt><li>Wash your hands before you touch it. Both of them.</li></blunt>
       <cheerful><li>A masterwork, made right here! I need to sit down.</li></cheerful>
       <gloomy><li>It's perfect. I'll probably never make anything this good again.</li></gloomy>
-      <cold><li>Masterwork confirmed. Its value alone covers the materials many times over.</li></cold>
+      <cold><li>It's worth many times what went into it. I've told the trader not to bother asking.</li></cold>
     </achieved>
   </ColonyCouncil.AmbitionDef>
 
@@ -183,7 +183,7 @@
         <li>A big woodpile, crackling fires and hot soup all winter! I'll bring snacks for whoever's chopping.</li>
       </cheerful>
       <gloomy>
-        <li>Last winter I dreamed I was frozen to my bed. I'd rather not find out if it was a prophecy.</li>
+        <li>Last winter I dreamed I was frozen to my bed. I woke up shivering, and I haven't forgotten it.</li>
         <li>[winter] Winter's here and the pile's already low. I've seen colonies end this way.</li>
       </gloomy>
       <cold>
@@ -193,10 +193,10 @@
     <achieved>
       <plain><li>Now that's a woodpile. We'll have fires all winter.</li></plain>
       <warm><li>We'll all sleep warm this winter, even whoever gets the bed by the door.</li></warm>
-      <blunt><li>Good. Nobody freezes this year.</li></blunt>
+      <blunt><li>Stack it higher if you like. I'm done chopping.</li></blunt>
       <cheerful><li>Look at it, it's taller than me! We're going to be so toasty.</li></cheerful>
       <gloomy><li>Enough to last the winter. If the winter plays fair.</li></gloomy>
-      <cold><li>Fuel reserves sufficient. Heating is no longer a limiting factor.</li></cold>
+      <cold><li>Three hundred logs. I've worked out how many nights that is, and it's enough.</li></cold>
     </achieved>
   </ColonyCouncil.AmbitionDef>
 
