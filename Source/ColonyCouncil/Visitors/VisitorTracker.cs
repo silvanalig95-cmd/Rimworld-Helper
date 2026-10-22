@@ -239,6 +239,7 @@ namespace ColonyCouncil
                 Leave(t, VisitEnd.Weather, true);
                 return;
             }
+            Visitors.Feed(t);
             if (t.state == VisitState.Coming)
             {
                 if (t.lord.CurLordToil is LordToil_VisitHere)

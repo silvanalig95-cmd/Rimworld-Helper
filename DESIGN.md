@@ -1223,9 +1223,10 @@ night, a lord's retinue staying by the gate).
   caravan guard for an armed group; dressed for the weather; a family related and sharing a name; a robbed merchant
   stripped to the shirt) and animals (a pack beast for peoples of the old ways, the family's dog or goat, a herd of
   farm beasts that suit the weather, likelier those wild on this land) walk in as one `LordJob_RimfolkVisit`: travel
-  to the spot, keep close to it (`Rimfolk_VisitWait` for people, `Rimfolk_VisitGraze` for animals: the game's own
-  `SatisfyBasicNeeds` within the flag radius, then wander near), then walk off, by the nearest edge or on to the far
-  side (`VisitorMath.Opposite`). Hurt or turned hostile: they leave defending themselves. Danger: they leave at a jog.
+  to the spot, keep close to it (`Rimfolk_VisitWait` for people, `Rimfolk_VisitBeasts` for animals: the game's own
+  `JobGiver_GetRest` within the flag radius, then wander near; never its food search, so nobody eats the colony's
+  meals or crops: `Visitors.Feed` has the hungry eat from their own packs, or keeps them fed out of sight), then walk
+  off, by the nearest edge or on to the far side (`VisitorMath.Opposite`). Hurt or turned hostile: they leave defending themselves. Danger: they leave at a jog.
   Three and a half days at the spot, or the record gone: they leave whatever happens.
 - **The letter.** The effect keeps the letter's context (not saved) and finds its letter by it on the next frame, so
   an answer given at once is still theirs; after a reload, by the letter whose X is one of them. The first of them is

@@ -327,6 +327,39 @@ namespace ColonyCouncil
             return p.needs?.food != null && p.needs.food.Starving;
         }
 
+        /// <summary>
+        /// They eat what they brought, never the colony's food or its fields: someone hungry eats from their pack; with
+        /// nothing left in it (and for their animals), they're kept fed out of sight, as travelers feed themselves.
+        /// </summary>
+        public static void Feed(VisitorTrip t)
+        {
+            foreach (var p in t.Here)
+            {
+                var food = p.needs?.food;
+                if (food == null || food.CurLevelPercentage > 0.3f || p.Downed || !p.Awake() || p.CurJobDef == JobDefOf.Ingest) continue;
+                try
+                {
+                    if (p.RaceProps.Humanlike)
+                    {
+                        var meal = p.inventory?.innerContainer?.FirstOrDefault(x => x.def.IsNutritionGivingIngestible && !x.def.IsDrug && FoodUtility.WillEat(p, x));
+                        if (meal != null)
+                        {
+                            var job = JobMaker.MakeJob(JobDefOf.Ingest, meal);
+                            job.count = Math.Max(1, Math.Min(meal.stackCount, FoodUtility.WillIngestStackCountOf(p, meal.def, meal.GetStatValue(StatDefOf.Nutrition))));
+                            p.jobs.StartJob(job, JobCondition.InterruptForced, null, false, true);
+                            continue;
+                        }
+                    }
+                    food.CurLevelPercentage = 0.8f;
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("visitor food", e);
+                    food.CurLevelPercentage = 0.8f;
+                }
+            }
+        }
+
         /// <summary>A night out by this spot won't hurt them: every one of them is safe in the temperature there.</summary>
         public static bool SafeOvernight(IEnumerable<Pawn> party, IntVec3 at, Map map)
         {

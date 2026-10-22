@@ -9,7 +9,7 @@ namespace ColonyCouncil
     public static class VisitorDefOf
     {
         public static DutyDef Rimfolk_VisitWait;
-        public static DutyDef Rimfolk_VisitGraze;
+        public static DutyDef Rimfolk_VisitBeasts;
 
         static VisitorDefOf()
         {
@@ -166,7 +166,7 @@ namespace ColonyCouncil
             foreach (var p in lord.ownedPawns)
                 p.mindState.duty = p.RaceProps.Humanlike
                     ? new PawnDuty(VisitorDefOf.Rimfolk_VisitWait, spot, radius)
-                    : new PawnDuty(VisitorDefOf.Rimfolk_VisitGraze, spot, radius + 4f);
+                    : new PawnDuty(VisitorDefOf.Rimfolk_VisitBeasts, spot, radius + 4f);
         }
 
         public override void LordToilTick()
