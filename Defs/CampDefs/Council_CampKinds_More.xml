@@ -204,7 +204,7 @@
     </titles>
     <texts>
       <li>[lowtech] A troupe of {FACTION}'s players has come up the road with a painted wagon and a trunk of masks. {X_nameDef}, who does the talking, swept off a feathered hat to {A_nameDef} and asked to camp {PLACE} a few nights. They'll put on shows for anyone who comes, for whatever anyone wants to give.</li>
-      <li>[!lowtech] A small circus of {FACTION} has pulled up by the colony: a handful of performers, a striped tent rolled up on a trailer, and a juggler who hasn't stopped juggling since they arrived. {X_nameDef} told {A_nameDef} they'll camp {PLACE} for a few nights and perform every evening.</li>
+      <li>[!lowtech] A small circus of {FACTION} has pulled up by the colony with a striped tent rolled up on a trailer and a juggler who hasn't stopped juggling since they arrived. {X_nameDef} told {A_nameDef} they'll camp {PLACE} for a few nights and perform every evening.</li>
       <li>Players of {FACTION} have stopped at the colony with costumes in a trunk and a play they're sick of performing. {X_nameDef} asked {A_nameDef} if they could camp {PLACE} a few nights, rehearse something new, and try it out on the colony.</li>
       <li>[winter] Players of {FACTION} came in out of the snow in their stage clothes, which are warmer than they look. There are no audiences on the roads in winter, {X_nameDef} told {A_nameDef}; they'd like to camp {PLACE} for a few nights and play for the colony instead.</li>
       <li>[tribal] Dancers and drummers of {FACTION} have come to the colony already painted for the dance. They go from camp to camp dancing the old stories, {X_nameDef} told {A_nameDef}, and would like to stay {PLACE} a few nights.</li>
@@ -223,7 +223,7 @@
       <li>{X_nameDef}, who plays the villains for the troupe camped {PLACE}, says {X_pronoun} would like to be nobody's villain for a while, and asks to stay.</li>
     </joinTexts>
     <farewell>
-      <li>The players from {FACTION} packed their costumes into the trunk and went on to the next town, waving from the wagon until they were out of sight.</li>
+      <li>The players from {FACTION} packed their costumes into the trunk and went on to the next town, one of them on the tailboard still running lines at the top of their voice.</li>
       <li>The players' camp {PLACE} is empty, except for a painted backdrop of a castle they decided they didn't need.</li>
       <li>The players from {FACTION} took a last bow at the gate and went on to the next town, still arguing about the second act.</li>
     </farewell>
@@ -243,7 +243,7 @@
       <li>[show] The players {PLACE} put on a play at their fire this evening, a comedy about a lord who loses his trousers, and the colony was invited. {X_nameDef} played the lord.</li>
       <li>[show,!lowtech] The circus {PLACE} put on its full show tonight: juggling, a tightrope between two poles, and a strongman who lifted {A_nameDef} over his head. The colony laughed itself hoarse.</li>
       <li>[show,tribal] The dancers {PLACE} danced the story of the first hunt tonight, round the fire, with the colony watching from the dark. {X_nameDef} danced the beast.</li>
-      <li>[show,lowtech] The mummers {PLACE} played the old story of the fool and the dragon tonight, and {X_nameDef}'s dragon chased the colony's children all round the fire.</li>
+      <li>[show,lowtech] The mummers {PLACE} played the old story of the fool and the dragon tonight, and {X_nameDef}'s dragon chased the colony's youngest all round the fire.</li>
       <li>[show] The players camped {PLACE} tried their new play out on the colony tonight. {X_nameDef} forgot a whole scene and made up another on the spot, and the colony liked it better.</li>
     </helpTexts>
   </ColonyCouncil.CampKindDef>

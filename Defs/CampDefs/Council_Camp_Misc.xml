@@ -148,7 +148,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>4</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>good neighbors for a while</label><description>The people who camped near us traded with us, helped where they could, and left on good terms.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>good neighbors for a while</label><description>The people who camped near us traded fair and helped where they could. We parted on good terms.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -156,7 +156,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>2</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>strangers on our land</label><description>They cut our trees and shoot our game, and nobody asked us first.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>strangers on our land</label><description>They cut our trees and shoot our game, and they never once asked.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -201,10 +201,10 @@
         <li>[friend,fallout] The camp left angry. {X_nameDef} didn't say goodbye to me, and I'm not sure I blame {X_objective}.</li>
         <li>[friend,hired] One of the camp stayed on with us when the rest left. I'd hoped it would be {X_nameDef}.</li>
         <li>[resent] The camp is gone, and so are a good many of the trees out that way.</li>
-        <li>[resent] Strangers shooting deer within sight of our fields, for days. Nobody asked us.</li>
+        <li>[resent] Strangers shooting deer within sight of our fields for days, as if the place were theirs.</li>
         <li>[resent,forced] We ran the camp off today. About time.</li>
         <li>[resent,fallout] The camp left in a temper. I won't miss them.</li>
-        <li>[resent,fight] They chose to fight us over a patch of woods. Now that's done.</li>
+        <li>[resent,fight] They chose to fight us over a patch of woods. I still don't understand it.</li>
         <li>[resent,helped] The camp left us some meat once. It was our meat to begin with, if you think about it.</li>
       </plain>
       <warm>
@@ -220,7 +220,7 @@
         <li>[friend] {X_nameDef} taught me a song from the road. I've been humming it all day.</li>
       </cheerful>
       <gloomy>
-        <li>[friend] {X_nameDef} moved on with the camp. People always move on.</li>
+        <li>[friend] {X_nameDef} moved on with the camp. I should have known better than to get used to {X_objective}.</li>
         <li>[resent] Another lot of strangers living off our land. Next time it'll be raiders.</li>
       </gloomy>
       <cold>
