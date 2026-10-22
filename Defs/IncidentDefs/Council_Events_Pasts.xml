@@ -39,7 +39,7 @@
         </titles>
         <texts>
           <li>[soldier,lowtech] There's a weathered traveler on the road with a soldier's walk, asking for {A_nameDef} by name. {X_nameDef} served beside {A_objective} in the old wars, through the same mud and the same terrible marching songs. {X_nameDef} has no war left to fight and nowhere left to go, and would like a place here.</li>
-          <li>[soldier,!lowtech] {A_nameDef} knew the walk before the face. The drifter in the faded uniform on the road below is {X_nameDef}, who served in {A_possessive} unit years ago and a long way from here. {X_nameDef} heard {A_nameDef} had settled down, and came to see it. Now {X_nameDef} would like to stay.</li>
+          <li>[soldier,!lowtech] {A_nameDef} knew the walk before the face. The drifter in the faded uniform out past the fields is {X_nameDef}, who served in {A_possessive} unit years ago and a long way from here. {X_nameDef} heard {A_nameDef} had settled down, and came to see it. Now {X_nameDef} would like to stay.</li>
           <li>[outlaw] {X_nameDef} is waiting outside the colony, asking for {A_nameDef}. The two of them ran together in the bad old days. "I'm done with all that," {X_nameDef} says. "Same as you, I hear. Any room for one more honest soul?"</li>
           <li>{X_nameDef} sent word up from the road this morning, asking for {A_nameDef}. They knew each other years ago, before either of them came out here. {X_nameDef} is tired of the road, by the sound of it, and asks if there's room for one more.</li>
         </texts>
@@ -92,7 +92,7 @@
         <texts>
           <li>A traveler on the road asked for {A_nameDef} and wouldn't say why. When {A_nameDef} walked down to see, neither of them spoke for a long moment. It's {X_nameDef}, {A_possessive} {RELATION}, and each thought the other was dead. {X_nameDef} has come a very long way, and asks to stay.</li>
           <li>[lowtech] A pilgrim with nothing but a walking stick has been asking along every road for someone called {A_nameDef}, and today someone said yes. {X_nameDef}, {A_possessive} {RELATION}, is waiting by the fields, and would like to stay.</li>
-          <li>[!lowtech] For weeks a message has been passed along the trade roads, asking after someone named {A_nameDef}. The one who sent it has caught up with it now. {X_nameDef}, {A_possessive} {RELATION}, followed a rumor across half a continent and is waiting on the road below the colony, asking to stay.</li>
+          <li>[!lowtech] For weeks a message has been passed along the trade roads, asking after someone named {A_nameDef}. The one who sent it has caught up with it now. {X_nameDef}, {A_possessive} {RELATION}, followed a rumor across half a continent and has stopped at the edge of the colony's land, asking to stay.</li>
         </texts>
         <defaultOption>0</defaultOption>
         <options>
@@ -187,7 +187,7 @@
         <texts>
           <li>[quit] It's a rehearsed speech, and {X_nameDef} gets through all of it. The one who walked out on the colony is standing beyond the fields with {X_possessive} pack, saying that life out there was harder than expected, and that {X_pronoun} was wrong "about some things." {X_nameDef} asks to come home. {A_nameDef} heard first, and is waiting on the council's answer.</li>
           <li>[banished] {X_nameDef}, who was banished from the colony, has come back thinner and quieter, asking to be let in. "I know how it ended," {X_nameDef} says. "I'm asking anyway." {A_nameDef} was the first to hear, and wants to know what the council decides.</li>
-          <li>{X_nameDef} lived here once. Now {X_nameDef} is on the road below the colony, asking to be let back in, and {A_nameDef}, who heard first, has been watching the road ever since.</li>
+          <li>{X_nameDef} lived here once. Now {X_nameDef} is back at the edge of the colony's land, asking to be let in again, and {A_nameDef}, who heard first, has been watching the road ever since.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>

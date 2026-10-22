@@ -14,7 +14,7 @@
     <texts>
       <li>[soldier,winter] A traveler in an old army greatcoat came through the snow asking for {A_nameDef}. It's {X_nameDef}, who shared a tent with {A_objective} through the worst winter of the war. {X_nameDef} has nowhere to spend this one, and asks to stay.</li>
       <li>[outlaw,lowtech] Word came up from the road that someone was asking for {A_nameDef} by an old nickname, one {A_nameDef} hasn't answered to in years. It's {X_nameDef}, who ran the roads with {A_objective} years ago. {X_nameDef} says {X_pronoun} is honest now, and would like a place here.</li>
-      <li>[soldier,partner] {A_nameDef}'s partner has heard a great deal about {X_nameDef} over the years, not all of it flattering. Now {X_nameDef}, who served beside {A_nameDef} in the old days, is on the road below the colony with a pack and a hopeful look, asking to stay.</li>
+      <li>[soldier,partner] {A_nameDef}'s partner has heard a great deal about {X_nameDef} over the years, not all of it flattering. Now {X_nameDef}, who served beside {A_nameDef} in the old days, is waiting out past the fields with a pack and a hopeful look, asking to stay.</li>
     </texts>
     <outcomes>
       <li>
