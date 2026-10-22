@@ -17,10 +17,10 @@
     <chosen>
       <plain>
         <li>[inherited] {NAME} kept the Pokédex like a diary. I'll {GOAL} and write {NAME}'s name in the margin.</li>
-        <li>Every empty line in the Pokédex is something out there nobody here has seen up close. I want to fill ten of them.</li>
+        <li>Every empty line in the Pokédex is something out there none of us has seen up close. I'd like to fill ten.</li>
         <li>[child] I'm going to catch them all. Well, ten. Then all.</li>
       </plain>
-      <warm><li>Every species is different, the way it moves, what it eats, how it looks at you. I want to know ten more.</li></warm>
+      <warm><li>Every species moves differently, and looks at you differently. I want to know ten more of them.</li></warm>
       <blunt><li>Ten more in the Pokédex. Then ten more after that.</li></blunt>
       <cheerful><li>Ten new kinds. I've already started a list of the ones I want most!</li></cheerful>
       <gloomy><li>There are so many we'll never see. I'd like to see ten of them before I'm done.</li></gloomy>
@@ -43,7 +43,7 @@
     <workerClass>ColonyCouncil.AspirationWorker_PokemonLevel</workerClass>
     <amount>50</amount>
     <weight>0.9</weight>
-    <goal>raise a Pokémon of their own to level {COUNT}</goal>
+    <goal>raise a Pokémon to level {COUNT}</goal>
     <forbiddenBy><li>NoPets</li></forbiddenBy>
     <sparks><li>battle</li></sparks>
     <chosen>

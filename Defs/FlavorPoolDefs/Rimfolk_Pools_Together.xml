@@ -266,7 +266,7 @@
   </ColonyCouncil.FlavorPoolDef>
 
   <!-- Someone who reached a life goal tells a friend about it. {PAWN} the one who reached it, {OTHER} the friend,
-       {GOAL} what they set out to do ("make a best friend", "see their nemesis brought down"): after "to". -->
+       {GOAL} what they set out to do ("make a best friend", "see an old enemy brought down"): after "to". -->
   <ColonyCouncil.FlavorPoolDef>
     <defName>Council_Pool_Together_GoalShared</defName>
     <lines>

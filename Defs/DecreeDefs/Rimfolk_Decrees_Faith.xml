@@ -37,7 +37,7 @@
     <support>
       <plain>
         <li>A colony needs one ideoligion to hold it together. Let it be ours.</li>
-        <li>[faith:majority] Most of us already share an ideoligion. Why pretend otherwise?</li>
+        <li>[faith:majority] Most of us already share an ideoligion. The council might as well say so.</li>
       </plain>
       <warm><li>Nobody will be made to believe. We'd only like to be heard.</li></warm>
       <cold><li>Every ideoligion its own holy days and its own rules, and no agreement on anything. Pick one.</li></cold>
@@ -45,7 +45,7 @@
     <oppose>
       <plain>
         <li>The council doesn't get to choose what I believe.</li>
-        <li>Every meeting opens with their prayers now. It isn't my colony any more.</li>
+        <li>Every meeting opens with their prayers now. It isn't my colony anymore.</li>
         <li>[faith:devout] I'll hold to my faith whatever the council names. Lift this.</li>
         <li>[faith:minority] There are few enough of us as it is. This decree makes us fewer.</li>
       </plain>

@@ -42,7 +42,7 @@
         <li>I read a whole page today without asking anyone. It was about soil. I didn't care, I read it.</li>
         <li>I can do sums faster than some grown-ups now. I'm not saying which ones.</li>
       </plain>
-      <cheerful><li>I can read! Everything! Signs and labels and the backs of crates!</li></cheerful>
+      <cheerful><li>I can read! Signs and labels and the backs of crates, everything.</li></cheerful>
       <cold><li>I can read and reckon now. It is extremely useful and I don't understand why everyone doesn't.</li></cold>
     </achieved>
   </ColonyCouncil.AspirationDef>
@@ -55,16 +55,16 @@
     <level>5</level>
     <gain>2</gain>
     <weight>0.9</weight>
-    <goal>grow something of their very own</goal>
+    <goal>grow something from seed, start to finish</goal>
     <who><child>true</child></who>
     <growsInto>Council_Asp3_Grower</growsInto>
     <chosen>
       <plain>
-        <li>I want to grow the biggest vegetable anyone has ever seen. I'm going to learn how, and then I'll do it.</li>
+        <li>I'm going to grow the biggest vegetable anyone has ever seen. First I have to learn how.</li>
         <li>I planted a seed in a cup and it came up. Now I want a whole row.</li>
         <li>[spring] Everything's coming up green. I want some of it to be mine.</li>
       </plain>
-      <cheerful><li>I'm going to have my own garden! With a fence! For keeping out the chickens!</li></cheerful>
+      <cheerful><li>I'm going to have my own garden, with a fence for keeping out the chickens!</li></cheerful>
       <gloomy><li>My seed didn't come up. I'm going to find out why, and then it'll come up.</li></gloomy>
       <warm><li>I want to grow something and give it to everyone at supper.</li></warm>
     </chosen>
@@ -113,7 +113,7 @@
     <label>an animal of my very own</label>
     <workerClass>ColonyCouncil.AspirationWorker_OwnAnimal</workerClass>
     <weight>1</weight>
-    <goal>have an animal of their very own</goal>
+    <goal>have a pet that comes when called</goal>
     <forbiddenBy><li>NoPets</li></forbiddenBy>
     <who><child>true</child></who>
     <growsInto>Council_Asp_Tamer</growsInto>
@@ -124,7 +124,7 @@
         <li>[sparked] Someone's dog follows them everywhere. I want one that follows me everywhere.</li>
       </plain>
       <cheerful><li>I'm going to have a pet and name it something brilliant! I've got a list of names already.</li></cheerful>
-      <warm><li>I want to look after an animal. Feed it and keep it warm and be its friend.</li></warm>
+      <warm><li>I'd look after an animal really well. Feed it and keep it warm and be its friend.</li></warm>
       <gloomy><li>The animals all like somebody else better. I'm going to change that.</li></gloomy>
     </chosen>
     <achieved>
@@ -160,7 +160,7 @@
         <li>One of the grown-ups called me "a credit to the colony" today. I asked what it meant. It means good.</li>
         <li>They talk about me at supper now. The nice kind of talking.</li>
       </plain>
-      <cheerful><li>Everybody's proud of me! I'm proud of me too!</li></cheerful>
+      <cheerful><li>Everybody's proud of me, and I'm proud of me too!</li></cheerful>
       <warm><li>The grown-ups are glad I'm here. They told me so.</li></warm>
     </achieved>
   </ColonyCouncil.AspirationDef>
@@ -181,7 +181,7 @@
     <lostThought>Council_Asp_GaveUpGoal</lostThought>
     <chosen>
       <plain>
-        <li>I'm tired of being given the easy jobs. I'm going to get good enough at {SKILL} that they have to give me the hard ones.</li>
+        <li>Always the easy jobs. I'll get good enough at {SKILL} that they have to give me the hard ones.</li>
         <li>I want to be the one they ask, not the one they ask to fetch the one they ask.</li>
         <li>[sparked] They wouldn't let me near the real work today. Fine. I'll be so good they can't stop me.</li>
       </plain>
@@ -192,11 +192,11 @@
     </chosen>
     <achieved>
       <plain>
-        <li>They gave me a real job in {SKILL} today, the kind they give the grown-ups. Nobody checked my work afterwards.</li>
+        <li>They gave me a real job in {SKILL} today, the kind they give the grown-ups. Nobody checked my work afterward.</li>
         <li>Someone came to me with a {SKILL} problem today. To me. On purpose.</li>
       </plain>
       <blunt><li>They trust me with the real work now. About time.</li></blunt>
-      <cheerful><li>I'm trusted! With grown-up work! I'm trying very hard not to show off.</li></cheerful>
+      <cheerful><li>I'm trusted with grown-up work! I'm trying very hard not to show off.</li></cheerful>
     </achieved>
   </ColonyCouncil.AspirationDef>
 
@@ -215,19 +215,19 @@
     <chosen>
       <plain>
         <li>When I talk at supper, the grown-ups smile and carry on with what they were saying. I want them to stop and listen.</li>
-        <li>I've got ideas. Good ones. I want somebody to hear them without patting me on the head.</li>
+        <li>I've got ideas. Good ones. If only somebody would hear them without patting me on the head.</li>
         <li>[sparked] They decided it all without asking me. Next time they'll ask. I'll make sure of it.</li>
       </plain>
       <blunt><li>I want the grown-ups to listen to me. Properly.</li></blunt>
       <cheerful><li>I'm going to be so sensible that the grown-ups will ask ME for advice!</li></cheerful>
-      <gloomy><li>Nobody takes the young seriously. I'm going to be the first.</li></gloomy>
+      <gloomy><li>They'll still think of me as a child when I'm forty. Unless I give them a reason not to.</li></gloomy>
     </chosen>
     <achieved>
       <plain>
         <li>One of the grown-ups asked what I thought, and then waited for the answer. Then did what I said.</li>
-        <li>They argue with me now, instead of humouring me. I count that as winning.</li>
+        <li>They argue with me now, instead of humoring me. I count that as winning.</li>
       </plain>
-      <cheerful><li>The grown-ups listen to me now! Even the grumpy ones!</li></cheerful>
+      <cheerful><li>The grown-ups listen to me now, even the grumpy ones!</li></cheerful>
       <cold><li>My opinion is now weighed rather than tolerated. Satisfactory.</li></cold>
     </achieved>
   </ColonyCouncil.AspirationDef>
@@ -246,19 +246,19 @@
     <sparks><li>thought:Council_Granted_Travel</li></sparks>
     <chosen>
       <plain>
-        <li>I've never been further than the edge of the fields. I want to go with the next caravan and see something new.</li>
+        <li>I've never been further than the edge of the fields. Next caravan out, I'm asking to go along.</li>
         <li>There's a whole world past those hills and I've only ever heard about it. I want to see it.</li>
       </plain>
-      <cheerful><li>I'm going to go on a journey! A real one! With a pack and everything!</li></cheerful>
+      <cheerful><li>I'm going on a journey, a real one, with a pack and everything!</li></cheerful>
       <gloomy><li>I'll be old before they let me leave the walls. I'll go anyway, one day.</li></gloomy>
       <blunt><li>Want to see the world. Or at least the next valley.</li></blunt>
     </chosen>
     <achieved>
       <plain>
-        <li>I've been past the hills. There's another valley, and then more hills. I want to see what's past those now.</li>
+        <li>I've been past the hills. There's another valley, and then more hills. Now I need to see what's past those.</li>
         <li>Five days on the road. My feet are ruined and I've never been happier.</li>
       </plain>
-      <cheerful><li>I've seen the world! A bit of it! The best bit, probably!</li></cheerful>
+      <cheerful><li>I've seen the world! Well, a bit of it. The best bit, probably.</li></cheerful>
       <gloomy><li>I went past the hills, and home looks smaller now. I don't know if that's good.</li></gloomy>
     </achieved>
   </ColonyCouncil.AspirationDef>
@@ -277,10 +277,10 @@
     <chosen>
       <plain>
         <li>Everyone in the songs falls in love. I'd like to know what it's like, before I'm old.</li>
-        <li>[sparked] At the wedding everyone was so happy. I want somebody to look at me the way they looked at each other.</li>
+        <li>[sparked] At the wedding I couldn't stop watching how they held hands. I'd like someone to hold mine like that.</li>
       </plain>
       <cheerful><li>I want to fall in love! Not with anyone in particular. Yet.</li></cheerful>
-      <gloomy><li>Nobody will ever look at me like that. I want them to anyway.</li></gloomy>
+      <gloomy><li>Nobody's ever going to fall for me. I'd like to be wrong about that.</li></gloomy>
       <warm><li>I'd like to love somebody, and be good to them, and have them be good to me.</li></warm>
     </chosen>
     <achieved>
@@ -288,7 +288,7 @@
         <li>So this is what the songs are about. They didn't get it right. They didn't get it nearly right enough.</li>
         <li>I'm in love, and they love me back, and I keep forgetting what I came into rooms for.</li>
       </plain>
-      <cheerful><li>I'm in love! Everyone can tell! I don't care!</li></cheerful>
+      <cheerful><li>I'm in love, everyone can tell, and I don't care!</li></cheerful>
       <gloomy><li>I'm in love. I'm terrified. I wouldn't change it.</li></gloomy>
     </achieved>
   </ColonyCouncil.AspirationDef>
@@ -307,7 +307,7 @@
     <chosen>
       <plain>
         <li>[!inherited] I'd like to see {NAME} grown. That's all. Just to see the grown-up {NAME} becomes.</li>
-        <li>[sparked,!inherited] I came close to the end this week. Now there's one thing I want before it: to see {NAME} grow up.</li>
+        <li>[sparked,!inherited] This week set me counting the years I might have left. I want enough of them to see {NAME} grow up.</li>
         <li>[inherited] {NAME} wanted to see the little one grown. I'll do the watching for both of us.</li>
       </plain>
       <warm><li>I won't see everything the young ones do. I'd like to see the start, at least.</li></warm>
@@ -319,7 +319,7 @@
         <li>The child I worried over is grown, and grown well. I can rest easy about that, at least.</li>
         <li>I saw them come of age. They looked at me across the table like an equal. Worth every year.</li>
       </plain>
-      <warm><li>They're grown, and kind, and capable. I had a little to do with that. I'll take it.</li></warm>
+      <warm><li>They're grown, and kind with it. I had some small part in that.</li></warm>
       <gloomy><li>I lived to see it. I didn't think I would.</li></gloomy>
     </achieved>
   </ColonyCouncil.AspirationDef>
@@ -339,12 +339,12 @@
     <chosen>
       <plain>
         <li>My hands aren't what they were. I'd like them to make one more fine thing before they stop, something the colony keeps.</li>
-        <li>[sparked] Lost someone this week, and all they left behind was a few tools. I want to leave something better.</li>
+        <li>[sparked] I've been wondering what's left of a person once they're gone. It ought to be something better than a few tools.</li>
         <li>[inherited] {NAME} never made that last fine piece. I'll make it, and put {NAME}'s mark on it next to mine.</li>
       </plain>
       <warm><li>Something to leave behind that people will use and think, someone made this with care.</li></warm>
       <blunt><li>One more good piece. Then I'll rest.</li></blunt>
-      <gloomy><li>My hands shake. I'm going to make one fine thing anyway, while they still do as they're told.</li></gloomy>
+      <gloomy><li>My hands shake. I'll make one fine thing anyway, while they still do as they're told.</li></gloomy>
       <cold><li>I wish to leave one object of real quality. It is a practical form of memory.</li></cold>
     </chosen>
     <achieved>
@@ -352,8 +352,8 @@
         <li>Finished it. The best thing I've made in years, maybe ever. It'll be here when I'm not.</li>
         <li>I made something fine today. I sat and looked at it for a long while, and then I let them take it away to use.</li>
       </plain>
-      <warm><li>Somebody will use it every day long after I'm gone, and that's exactly what I wanted.</li></warm>
-      <gloomy><li>My last fine piece. I knew it while I made it. It's good. That's enough.</li></gloomy>
+      <warm><li>Somebody will use it every day long after I'm gone.</li></warm>
+      <gloomy><li>I knew while I was making it that it would be my last fine piece. It's good.</li></gloomy>
     </achieved>
   </ColonyCouncil.AspirationDef>
 
@@ -372,8 +372,8 @@
     <chosen>
       <plain>
         <li>I don't want to take a grudge into the ground with me. There's someone I need to make peace with, while there's time.</li>
-        <li>[sparked] Nearly died this week. Lying there, I wasn't thinking about my rival at all. That told me something.</li>
-        <li>[inherited] {NAME} wanted to die with no grudges. {NAME} didn't manage it. I'll settle mine instead, for both of us.</li>
+        <li>[sparked] With death so close this week, the old quarrel looked very small. I want it finished.</li>
+        <li>[inherited] {NAME} wanted to die with no grudges, and didn't manage it. I'll settle mine while I still can.</li>
       </plain>
       <warm><li>Life's too short for old quarrels, and mine is getting shorter. I want to put this one down.</li></warm>
       <blunt><li>One old quarrel to settle. Then I'm square with everyone.</li></blunt>
@@ -381,7 +381,7 @@
     </chosen>
     <achieved>
       <plain>
-        <li>We made our peace, the two of us. Neither of us could remember what the fight was about. It doesn't matter now.</li>
+        <li>We made our peace, the two of us. Neither of us could remember what the fight was about.</li>
         <li>No grudges left. I'm lighter than I've been in years.</li>
       </plain>
       <warm><li>We shook hands and meant it. I can go whenever I go, now, with nothing owing.</li></warm>
@@ -402,10 +402,10 @@
     <chosen>
       <plain>
         <li>There are things between me and my family that should have been mended years ago. I'd like to mend them while I can.</li>
-        <li>[sparked] A brush with the end makes you count who you'd want at your bedside. I want my family there, and glad to be.</li>
+        <li>[sparked] A week like this one makes you count who you'd want at your bedside. I want my family there, and glad to be.</li>
         <li>[inherited] {NAME} wanted the family at peace. I'll see to it.</li>
       </plain>
-      <warm><li>Family is family. I want us to be able to sit at one table, all of us, before I'm gone.</li></warm>
+      <warm><li>Family is family. Before I'm gone, we're going to sit at one table, all of us.</li></warm>
       <blunt><li>Going to fix things with my family. Overdue.</li></blunt>
       <gloomy><li>Too many years, too many hard words. I'll try anyway.</li></gloomy>
       <cold><li>Unresolved family disputes are a poor legacy. I intend to resolve them.</li></cold>
@@ -413,9 +413,9 @@
     <achieved>
       <plain>
         <li>All of us at one table, and every one of them glad to be there. I didn't think I'd see it.</li>
-        <li>My family and I are at peace. Whatever comes, they'll remember me kindly. That was all I wanted.</li>
+        <li>My family and I are at peace. Whatever comes, they'll remember me kindly.</li>
       </plain>
-      <warm><li>We're a family again, properly. I cried at supper. They pretended not to notice.</li></warm>
+      <warm><li>We're a family again, properly. I cried at supper, and somebody passed me the bread without a word.</li></warm>
       <gloomy><li>We mended it. I wish I hadn't waited so long.</li></gloomy>
     </achieved>
   </ColonyCouncil.AspirationDef>
@@ -428,26 +428,26 @@
     <workerClass>ColonyCouncil.AspirationWorker_Certainty</workerClass>
     <amount>0.9</amount>
     <weight>1.2</weight>
-    <goal>find their faith again</goal>
+    <goal>find faith again</goal>
     <forbiddenBy><li>NoReligion</li></forbiddenBy>
     <sparks><li>loss</li><li>omen</li></sparks>
     <lostThought>Council_Asp_GaveUpGoal</lostThought>
     <chosen>
       <plain>
         <li>I used to be sure of what I believed. Somewhere along the way I stopped being sure. I want it back.</li>
-        <li>[sparked] When I lost them, I lost my faith too. I'd like to find it again. It's the only thing that ever helped.</li>
+        <li>[sparked] Whatever this week was, it sent me looking for my faith again. It's the only thing that ever helped.</li>
         <li>[spark:omen] My dream came true, and I don't know what to make of it except that I should start listening again.</li>
       </plain>
-      <warm><li>I miss believing. I'm going to try to find my way back to it, slowly.</li></warm>
+      <warm><li>I miss believing. I mean to find my way back to it, slowly.</li></warm>
       <gloomy><li>I don't know if there's anything to find. I'm going to look anyway.</li></gloomy>
       <cold><li>My certainty has eroded. I would prefer it restored. I will examine the matter.</li></cold>
     </chosen>
     <achieved>
       <plain>
-        <li>I prayed tonight and meant every word. It's back, and it's stronger for having been lost.</li>
-        <li>My faith came back the way spring does: slowly, then all at once.</li>
+        <li>I prayed tonight and meant every word of it.</li>
+        <li>My faith came back the way spring does. One morning I noticed it was simply there.</li>
       </plain>
-      <warm><li>I believe again. It's like coming home after a long journey.</li></warm>
+      <warm><li>I believe again. I'd forgotten how quiet my head goes when I pray.</li></warm>
       <gloomy><li>My doubts haven't gone. My faith is just bigger than them now.</li></gloomy>
     </achieved>
   </ColonyCouncil.AspirationDef>
@@ -457,13 +457,13 @@
     <label>sharing the faith</label>
     <workerClass>ColonyCouncil.AspirationWorker_FaithGrows</workerClass>
     <weight>1</weight>
-    <goal>bring someone else to their ideoligion</goal>
+    <goal>win someone else over to the ideoligion</goal>
     <forbiddenBy><li>NoReligion</li></forbiddenBy>
     <sparks><li>omen</li><li>birth</li></sparks>
     <chosen>
       <plain>
         <li>What I believe has carried me through everything. I'd like someone else here to have that too.</li>
-        <li>[sparked] My dream came true. It felt like a sign. I want to share what I believe with someone who needs it.</li>
+        <li>[sparked] Lately everything feels like a sign to me. I want to share what I believe with someone who needs it.</li>
       </plain>
       <warm><li>I'm not going to push anyone. I'm just going to live my faith openly and answer when they ask.</li></warm>
       <blunt><li>Going to bring someone round to the faith. Somebody here needs it.</li></blunt>
@@ -475,7 +475,7 @@
         <li>There's one more of us now. I didn't convince them. I just kept the door open.</li>
       </plain>
       <warm><li>Welcome, I told them. I meant it more than I've meant anything.</li></warm>
-      <cold><li>Another colonist shares the faith. The community is stronger for it.</li></cold>
+      <cold><li>Another colonist shares the faith. That is one less argument at supper.</li></cold>
     </achieved>
   </ColonyCouncil.AspirationDef>
 
@@ -494,13 +494,13 @@
     <lostThought>Council_Asp_GaveUpGoal</lostThought>
     <chosen>
       <plain>
-        <li>I'm tired of going to bed alone and waking up alone. I'd like someone to love. Is that so much?</li>
-        <li>[sparked] Watching them at the wedding, I realized I want that. Not the wedding. The way they looked at each other.</li>
+        <li>I'm tired of going to bed alone and waking up alone. I'd like someone to love, that's all.</li>
+        <li>[sparked] Lately I keep noticing couples, how they sit together and look at each other. I want that.</li>
         <li>[spark:loss] We lose people here so fast. I don't want to go without having loved someone.</li>
       </plain>
       <warm><li>I have a lot of love to give and nobody to give it to. I'd like to change that.</li></warm>
       <blunt><li>Want someone. Not anyone. Someone.</li></blunt>
-      <gloomy><li>Nobody here would have me. I want someone anyway.</li></gloomy>
+      <gloomy><li>I'm not much of a catch. I'd like someone anyway.</li></gloomy>
       <cold><li>Companionship would improve my life. I have decided to pursue it.</li></cold>
     </chosen>
     <achieved>
@@ -508,7 +508,7 @@
         <li>I found someone. I didn't know I could feel like this, this late. I'm not complaining.</li>
         <li>There's someone who saves me a seat now. That's all I wanted, and it's more than I expected.</li>
       </plain>
-      <warm><li>I love someone, and they love me, and the whole colony looks brighter for it.</li></warm>
+      <warm><li>I love someone and they love me, and I've started whistling at work.</li></warm>
       <gloomy><li>I'm loved. I keep waiting for the catch. There isn't one, so far.</li></gloomy>
     </achieved>
   </ColonyCouncil.AspirationDef>
@@ -527,10 +527,10 @@
     <chosen>
       <plain>
         <li>I jump at every noise now. I'd like to sleep a whole night without listening for the walls being breached.</li>
-        <li>[sparked] Since the fighting, I don't feel safe anywhere. I want that back more than anything.</li>
+        <li>[sparked] Since the fighting, I don't feel safe anywhere, not even in bed.</li>
         <li>[spark:nemesis] As long as that one is out there, I'll never feel safe. But I want to.</li>
       </plain>
-      <warm><li>I want to feel safe here, and I want everyone else to feel safe too.</li></warm>
+      <warm><li>I'd like to feel safe here again, and see everyone else feel it too.</li></warm>
       <blunt><li>Want to stop looking over my shoulder.</li></blunt>
       <gloomy><li>Nowhere is safe. I'd like to believe otherwise for a few days running.</li></gloomy>
       <cold><li>My sense of security is impaired. I would like ten consecutive days without alarm.</li></cold>
@@ -538,10 +538,10 @@
     <achieved>
       <plain>
         <li>Ten days and nights without the old fear. I slept through a thunderstorm last night and woke up smiling.</li>
-        <li>I feel safe here again. The walls hold. The people hold. I hold.</li>
+        <li>I feel safe here again. I've stopped sleeping with my boots on.</li>
       </plain>
       <warm><li>I'm safe, and I know it, deep down where the fear used to live.</li></warm>
-      <gloomy><li>Safe, for now. I'll take it. I'll take every day of it.</li></gloomy>
+      <gloomy><li>Safe. I don't trust it to last, but I'll take every day of it.</li></gloomy>
     </achieved>
   </ColonyCouncil.AspirationDef>
 
@@ -558,8 +558,8 @@
     <lostThought>Council_Asp_GaveUpGoal</lostThought>
     <chosen>
       <plain>
-        <li>I work all day and I don't know what any of it is for. I want to find something that matters, and do it.</li>
-        <li>[sparked] They took the seat from me, and I realized it was the only thing that made me feel useful. I need something else.</li>
+        <li>I work all day and I don't know what any of it is for. There has to be something that matters.</li>
+        <li>[sparked] I've lost what made me feel useful here. I need to find something else.</li>
       </plain>
       <warm><li>I want my days to mean something to someone. That's all.</li></warm>
       <blunt><li>Need a reason to get up. A real one.</li></blunt>
@@ -571,7 +571,7 @@
         <li>I get up in the mornings now because I want to. I know what I'm for here.</li>
         <li>Ten good days of work that mattered. I'd forgotten what that felt like.</li>
       </plain>
-      <warm><li>I matter here, and the work matters. That's enough for anyone.</li></warm>
+      <warm><li>People come to me now when it matters. I'd missed that.</li></warm>
       <cold><li>My activity now has purpose. The improvement is measurable.</li></cold>
     </achieved>
   </ColonyCouncil.AspirationDef>
@@ -589,16 +589,16 @@
     <chosen>
       <plain>
         <li>The grief sits on my chest every morning. I don't want to forget them. I just want to be able to breathe.</li>
-        <li>[sparked] Another loss. I can't carry them all like this. I need to learn to put the weight down.</li>
+        <li>[sparked] Another loss. I can't carry them all like this, not and still get up in the mornings.</li>
       </plain>
-      <warm><li>They wouldn't want me like this. I'm going to try to live the way they'd want.</li></warm>
-      <blunt><li>Need to stop drowning in it. Somehow.</li></blunt>
+      <warm><li>They wouldn't want me like this. I'll try to live the way they'd have wanted.</li></warm>
+      <blunt><li>Need to stop drowning in it. Don't know how yet.</li></blunt>
       <gloomy><li>I don't know how to stop grieving. I'm going to have to learn.</li></gloomy>
       <cold><li>The grief is impairing my function. I will work through it, methodically.</li></cold>
     </chosen>
     <achieved>
       <plain>
-        <li>I thought about them today and smiled before I cried. That's new. That's what I wanted.</li>
+        <li>I thought about them today and smiled before I cried. That's new.</li>
         <li>The grief has gone quiet. They haven't. I talk to them sometimes, and it doesn't hurt like it did.</li>
       </plain>
       <warm><li>I carry them with me now, gently, instead of being crushed under them.</li></warm>
@@ -613,14 +613,14 @@
     <feeling>Shame</feeling>
     <amount>10</amount>
     <weight>1.1</weight>
-    <goal>forgive themselves</goal>
+    <goal>let go of an old shame</goal>
     <who><notTrait><li>Psychopath</li></notTrait></who>
     <chosen>
       <plain>
         <li>I can't stop going over what I did. Everyone else has moved on. I'd like to, too.</li>
         <li>I keep apologizing to people who've already forgiven me. Maybe the one I need to hear it from is me.</li>
       </plain>
-      <warm><li>I'd forgive anyone else for it. I'm going to try to give myself the same.</li></warm>
+      <warm><li>I'd forgive anyone else for it. I'll try to give myself the same.</li></warm>
       <blunt><li>Done beating myself up. Or trying to be.</li></blunt>
       <gloomy><li>I don't deserve to be forgiven. I'd like to anyway.</li></gloomy>
       <cold><li>My self-reproach has outlasted its usefulness. I will set it aside.</li></cold>
@@ -628,9 +628,9 @@
     <achieved>
       <plain>
         <li>I thought about it today and it didn't burn. It's just a thing I did, once, and learned from.</li>
-        <li>I've forgiven myself. It took longer than anyone else's forgiveness, and it was the one that mattered.</li>
+        <li>I've forgiven myself. It took longer than anyone else's forgiveness did.</li>
       </plain>
-      <warm><li>I'm kinder to myself now. I think it makes me kinder to everyone.</li></warm>
+      <warm><li>I'm kinder to myself now. I laughed at my own mistake at supper, and it was fine.</li></warm>
       <gloomy><li>I've let it go. I still remember. That's probably right.</li></gloomy>
     </achieved>
   </ColonyCouncil.AspirationDef>
@@ -648,10 +648,10 @@
     <lostThought>Council_Asp_GaveUpGoal</lostThought>
     <chosen>
       <plain>
-        <li>I have friends. I want one friend I'd trust with my life, and who'd trust me with theirs.</li>
-        <li>[sparked] I lost my closest friend. I want to have that again, someone who knows me all the way down.</li>
+        <li>I have friends. What I want is one who'd know something was wrong before I said a word.</li>
+        <li>[sparked] It's struck me lately how few people really know me. I want one who does, all the way down.</li>
       </plain>
-      <warm><li>I want a friend I can tell anything to. And be that friend back.</li></warm>
+      <warm><li>A friend I can tell anything to, and be that friend back. That's what I'm hoping for.</li></warm>
       <blunt><li>Want one real friend. The kind you keep.</li></blunt>
       <gloomy><li>Everyone here is friendly. Nobody here is my friend. I want that to change.</li></gloomy>
       <cold><li>I would value a single relationship of complete trust. I intend to cultivate one.</li></cold>
@@ -659,7 +659,7 @@
     <achieved>
       <plain>
         <li>I have a friend for life now. We don't even need to talk most of the time. That's how I know.</li>
-        <li>There's someone here I'd walk into fire for, and who'd walk in after me. That's all I wanted.</li>
+        <li>There's someone here who knows when to leave me be and when not to.</li>
       </plain>
       <warm><li>My friend and I are like family now. Better, some days.</li></warm>
       <cold><li>I have a friend I trust completely. It is worth more than I estimated.</li></cold>
@@ -671,7 +671,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Asp_GaveUpGoal</defName>
     <durationDays>8</durationDays>
-    <stages><li><label>gave up on a dream</label><description>I set my heart on something and had to let it go. It's quieter in there now, and not in a good way.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+    <stages><li><label>gave up on a dream</label><description>I set my heart on something and had to let it go. I still catch myself reaching for it.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">

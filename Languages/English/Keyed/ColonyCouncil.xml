@@ -1268,11 +1268,11 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <!-- Life goals -->
   <CC_Settings_Aspirations>Life goals</CC_Settings_Aspirations>
   <CC_Settings_Aspirations_Tip>After settling in, each colonist sets their heart on something to do before they die: master a craft, marry, raise a child, earn a name, teach someone everything they know, see the colony grow. Achieving it is a big moment (a lasting good mood, trust, maybe an inspiration). Dying before achieving it is mourned.</CC_Settings_Aspirations_Tip>
-  <CC_Asp_Chosen>{PAWN_nameDef} has set {PAWN_possessive} heart on a life goal: to {GOAL}.</CC_Asp_Chosen>
-  <CC_Asp_FulfilledLabel>A life goal: {0}</CC_Asp_FulfilledLabel>
-  <CC_Asp_FulfilledText>{PAWN_nameDef} has done what {PAWN_pronoun} set out to do: {GOAL}.</CC_Asp_FulfilledText>
+  <CC_Asp_Chosen>{PAWN_nameDef} has made it {PAWN_possessive} life goal to {GOAL}.</CC_Asp_Chosen>
+  <CC_Asp_FulfilledLabel>Life goal reached: {0}</CC_Asp_FulfilledLabel>
+  <CC_Asp_FulfilledText>{PAWN_nameDef} set out to {GOAL}, and now {PAWN_pronoun} has.</CC_Asp_FulfilledText>
   <CC_Asp_DiedBefore>{PAWN_nameDef} died before {PAWN_pronoun} could {GOAL}.</CC_Asp_DiedBefore>
-  <CC_Asp_FulfilledFor>{PAWN_nameDef} has done what {NAME} never got to: {GOAL}.</CC_Asp_FulfilledFor>
+  <CC_Asp_FulfilledFor>{NAME} died before getting to {GOAL}. {PAWN_nameDef} took it up, and has seen it through.</CC_Asp_FulfilledFor>
   <CC_Asp_Spark_battle>after a battle</CC_Asp_Spark_battle>
   <CC_Asp_Spark_downed>after a brush with death</CC_Asp_Spark_downed>
   <CC_Asp_Spark_loss>after losing someone</CC_Asp_Spark_loss>

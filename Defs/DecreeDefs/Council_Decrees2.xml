@@ -26,12 +26,12 @@
       <li>Growers like it; the lazy and undergrounders hate it.</li>
     </effects>
     <support>
-      <plain><li>If we don't get the corn in this week, we'll be eating bark by midwinter.</li></plain>
+      <plain><li>If we don't get the harvest in this week, we'll be eating bark by midwinter.</li></plain>
       <cheerful><li>Dirt under my fingernails all week. My favorite kind of week!</li></cheerful>
-      <cold><li>Yield per day up a third. Correct priority.</li></cold>
+      <cold><li>Yield per day up nearly a third. Correct priority.</li></cold>
     </support>
     <oppose>
-      <plain><li>I'll be picking corn in my dreams.</li></plain>
+      <plain><li>I'll be pulling weeds in my dreams.</li></plain>
       <blunt><li>My back's done. Find someone younger.</li></blunt>
       <gloomy><li>Bent double for days, and the blight will come anyway.</li></gloomy>
     </oppose>
@@ -68,7 +68,7 @@
       <cold><li>Two finished rooms are worth more than five half-built ones.</li></cold>
     </support>
     <oppose>
-      <plain><li>I've had rock dust in my teeth for three days straight.</li></plain>
+      <plain><li>Rock dust in my teeth, rock dust in my bed.</li></plain>
       <warm><li>I'll help. I just wish someone would build a bath first.</li></warm>
       <blunt><li>I've laid enough stone this year.</li></blunt>
     </oppose>
@@ -100,13 +100,13 @@
     </effects>
     <support>
       <plain><li>Be polite to the traders. We need better prices than we got last time.</li></plain>
-      <warm><li>It's nice, everyone being nice. Can we keep it?</li></warm>
+      <warm><li>We've been short with each other for weeks. A few days of kindness would do us good.</li></warm>
       <cold><li>Courtesy is a negotiating tool. Use it.</li></cold>
     </support>
     <oppose>
       <blunt><li>If I have to say "please" one more time, I'll bite someone.</li></blunt>
-      <plain><li>My face hurts from all the smiling.</li></plain>
-      <gloomy><li>Smiling at strangers all day. I'm worn out by noon.</li></gloomy>
+      <plain><li>My face is going to ache from all the smiling.</li></plain>
+      <gloomy><li>Smiling at strangers all day. I'll be worn out by noon.</li></gloomy>
     </oppose>
   </ColonyCouncil.DecreeDef>
 
@@ -215,7 +215,7 @@
       <cold><li>Fewer infections means fewer graves to dig.</li></cold>
     </support>
     <oppose>
-      <plain><li>I've scrubbed the kitchen floor three times today.</li></plain>
+      <plain><li>The kitchen floor will be spotless, and my knees will be ruined.</li></plain>
       <blunt><li>I've lived with dirt all my life. I'm fine.</li></blunt>
       <cheerful><li>I'm making it a game. Whoever finds the most mud wins!</li></cheerful>
     </oppose>
@@ -249,15 +249,35 @@
       <li>Most colonists are glad of it, the lazy most of all; the industrious would rather work.</li>
     </effects>
     <support>
-      <plain><li>Three days. That's all I'm asking for. Three days with my boots off.</li></plain>
-      <warm><li>Look at us. We're running on fumes. Let's stop for a few days.</li></warm>
-      <gloomy><li>If we don't rest now, we'll be resting in the graveyard.</li></gloomy>
+      <plain>
+        <li>Three days. That's all I'm asking for. Three days with my boots off.</li>
+        <li>My hands shake by the end of the day now. Three short days would put that right.</li>
+        <li>Everyone's tired, and it shows in the work. Give us the days.</li>
+      </plain>
+      <warm>
+        <li>Look at us. Half of us are asleep on our feet. Let's stop for a few days.</li>
+        <li>Long evenings together would do us more good than any amount of work.</li>
+      </warm>
+      <gloomy>
+        <li>If we don't rest now, we'll be resting in the graveyard.</li>
+        <li>I don't remember the last time I slept enough.</li>
+      </gloomy>
       <cold><li>Tired hands make mistakes. A short rest costs less than a long recovery.</li></cold>
     </support>
     <oppose>
-      <plain><li>The fields won't tend themselves while we nap.</li></plain>
-      <blunt><li>Rest when the work's done.</li></blunt>
-      <cheerful><li>Rest? I've been looking forward to finishing the north wall!</li></cheerful>
+      <plain>
+        <li>The fields won't tend themselves while we nap.</li>
+        <li>Short days now means long days later. The work doesn't go anywhere.</li>
+        <li>I can't rest anyway. I just lie there and think.</li>
+      </plain>
+      <blunt>
+        <li>Rest when the work's done.</li>
+        <li>Three slow days means three days' work waiting after.</li>
+      </blunt>
+      <cheerful>
+        <li>Rest? I've been looking forward to finishing the north wall!</li>
+        <li>I'll rest when I'm old! Hand me something to do.</li>
+      </cheerful>
     </oppose>
     <!-- With "Answers play out on the map": the rest of the first day's work hours are free time for everyone. -->
     <onEnact>

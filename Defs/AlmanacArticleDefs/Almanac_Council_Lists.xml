@@ -323,7 +323,7 @@ Some run for a whole season: so many days in a row with something kept up, where
           <li>earn a seat on the council, serve as marshal, physician, steward or quartermaster | Anyone, each office by who suits it; a lost election.</li>
           <li>have an idea chosen by the council | Anyone grown; being left out of a decision, a meeting.</li>
           <li>earn a name the colony remembers | Anyone; a friend's name.</li>
-          <li>make friends among travelers and guests, see their nemesis brought down | With strangers on; a nemesis.</li>
+          <li>make friends among travelers and guests, see an old enemy brought down | With strangers on; a nemesis.</li>
           <li>dream something that comes true | Anyone; an omen.</li>
         </table>
       </li>
@@ -337,7 +337,7 @@ Some run for a whole season: so many days in a row with something kept up, where
           <li>feel at home here | Anyone whose belonging is below 70, until it stays at 70 or more for 10 days in a row; being left out, a shared table, a loss.</li>
           <li>feel free again | Anyone whose freedom is below 70, until it stays at 70 or more for 10 days in a row; a journey, an evening at the strangers' camp.</li>
           <li>feel safe again, find something worth doing | Anyone whose safety (or purpose) is below 70, until it stays at 70 or more for 10 days in a row; a battle, a brush with death, a nemesis (safety); a lost seat or election, a loss (purpose).</li>
-          <li>let the grief go, forgive themselves | Anyone grieving (or ashamed) strongly now, until the feeling stays faint for 12 (or 10) days in a row; a loss.</li>
+          <li>let the grief go, let go of an old shame | Anyone grieving (or ashamed) strongly now, until the feeling stays faint for 12 (or 10) days in a row; a loss.</li>
           <li>find someone to love, make a friend for life | Anyone 20 or more with no lover; a bond of friendship of 90 or more; a wedding, a loss, being left out.</li>
         </table>
         <after>The heart's goals need feelings and strain switched on, and are looked at once a day.</after>
@@ -360,9 +360,9 @@ Some run for a whole season: so many days in a row with something kept up, where
         <table>
           <li>Goal | Who, and what it grows into</li>
           <li>learn letters and numbers properly | Children (Intellectual to 5). Grows into becoming a true scholar.</li>
-          <li>grow something of their very own | Children (Plants to 5). Grows into four hundred harvests.</li>
+          <li>grow something from seed, start to finish | Children (Plants to 5). Grows into four hundred harvests.</li>
           <li>learn to build a proper den | Children (Construction to 4). Grows into raising a hundred and fifty structures.</li>
-          <li>have an animal of their very own | Children: an animal bonded to them (answering to them is halfway). Grows into taming five animals.</li>
+          <li>have a pet that comes when called | Children: an animal bonded to them (answering to them is halfway). Grows into taming five animals.</li>
           <li>make the grown-ups proud | Children: the grown-ups' opinion of them, on average, 30 or more. Grows into earning a name the colony remembers.</li>
           <li>be trusted with a grown-up's work in a skill | 13 to 19, with a passion (to 8, or 3 levels more). Grows into mastering it.</li>
           <li>be taken seriously by the grown-ups | 13 to 19: the grown-ups' opinion of them 25 or more; being left out of a decision. Grows into having an idea chosen by the council.</li>
@@ -385,10 +385,10 @@ Some run for a whole season: so many days in a row with something kept up, where
         <heading>Ideoligion and other mods</heading>
         <table>
           <li>Goal | Who, and what sparks it</li>
-          <li>take on a role in their ideoligion | Believers with some certainty, when their ideoligion has a role open (Ideology); an omen.</li>
+          <li>take on a role in the ideoligion | Believers with some certainty, when their ideoligion has a role open (Ideology); an omen.</li>
           <li>see the whole colony share one ideoligion | Devout believers in a colony of 3 or more (Ideology); a loss, an omen.</li>
-          <li>find their faith again | Believers whose certainty has fallen below 60% (Ideology), until it's back at 90% in the same ideoligion; a loss, an omen.</li>
-          <li>bring someone else to their ideoligion | Believers in a colony where some don't share it (Ideology); an omen, a birth.</li>
+          <li>find faith again | Believers whose certainty has fallen below 60% (Ideology), until it's back at 90% in the same ideoligion; a loss, an omen.</li>
+          <li>win someone else over to the ideoligion | Believers in a colony where some don't share it (Ideology); an omen, a birth.</li>
           <li>reach a level as a mage or a fighter | A RimWorld of Magic's classes; a battle.</li>
           <li>learn or deepen six workings | A RimWorld of Magic's mages; a battle, comparing workings with another mage.</li>
           <li>learn or sharpen six techniques | A RimWorld of Magic's fighters; a battle, a brush with death, comparing forms.</li>
