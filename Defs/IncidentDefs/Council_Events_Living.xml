@@ -26,7 +26,7 @@
           <li>[again] {FACTION}'s usual order</li>
         </titles>
         <texts>
-          <li>[once,lowtech] The rider from {FACTION} is back, smiling this time. Last time's goods were counted twice over at home and came out right, with nothing spoiled, so they want the same again: {TALE}, for {COUNT} silver. The rider has brought a small gift for the colony's trouble.\n\nAs before, they'll send for it in five days, and it's the whole order or none of it.</li>
+          <li>[once,lowtech] The rider from {FACTION} is back, smiling this time. Last time's goods were counted at home and came out right, with nothing spoiled, so they want the same again: {TALE}, for {COUNT} silver. The rider has brought a small gift for the colony's trouble.\n\nAs before, they'll send for it in five days, and it's the whole order or none of it.</li>
           <li>[once,!lowtech] {FACTION}'s new order came in today, written on the back of the old one.\n\n"Received in good condition, count correct. Same again: {TALE}, {COUNT} silver on collection. Collecting in five days. Full order or nothing. Something for your trouble comes with this note."</li>
           <li>[again] By now {FACTION}'s quartermaster doesn't bother to haggle. The order came with a small gift, as it always does, and reads much like the last one: {TALE}, {COUNT} silver, collected in five days.</li>
           <li>[again,winter] Winter has made {FACTION} steady customers. Their rider stamped the snow off at the gate, handed over a small gift, and asked for {TALE} again, at {COUNT} silver.\n\nThey'll send for it in five days, the whole order or none of it.</li>
@@ -336,7 +336,7 @@
           <li>[sided,lowtech] A rider of {FACTION} came by today leading a pack horse, and unloaded {TALE} with their people's thanks. When {FACTION} quarreled with {ENEMY}, the colony took their side. They haven't forgotten.\n\nBy all accounts, neither have {ENEMY}.</li>
           <li>[sided,!lowtech] A drop pod came down from {FACTION} with {TALE} inside and a note in a heavy hand.\n\n"We remember who stood with us against {ENEMY}."\n\nTraders say {ENEMY} still bring it up whenever the colony is mentioned.</li>
           <li>[middle,mediator] The middle way {A_nameDef} found between {FACTION} and {ENEMY} has held all season. Both peoples sent word, and something with it: {TALE}.\n\n{A_nameDef} has pinned the two messages up side by side.</li>
-          <li>[middle,!mediator,lowtech] Neither {FACTION} nor {ENEMY} has broken the peace the colony worked out between them, and both have sent word to say so. With the word came {TALE}, from the two of them together.</li>
+          <li>[middle,!mediator,lowtech] Neither {FACTION} nor {ENEMY} has broken the peace the colony worked out between them, and both have sent word to say so. With the word came {TALE}, sent by both.</li>
           <li>[middle,!mediator,!lowtech] {FACTION} and {ENEMY} have both sent word, which hasn't happened since their quarrel. The colony's settlement is holding, and a drop pod has come down with {TALE} from the two of them.</li>
         </texts>
       </li>
@@ -672,7 +672,7 @@
           <li>[their:grateful] {FACTION}'s crier came to the colony before anywhere else, to say that the harvest fair at {PLACE} opens this week and that friends of {FACTION} are wanted there.\n\nA cart of {TALE} would sell well. {A_nameDef}, who grew most of it, thinks the best of it could take a prize.</li>
           <li>[lowtech] "Harvest fair at {PLACE}, three days, judging on the last day." {FACTION}'s crier shouted it from the road without stopping, and went on to the next farm.\n\nThere'll be buyers from three valleys. The colony could send a cart of {TALE}, and {A_nameDef}, who grew most of it, has an eye on the judging.</li>
           <li>[!lowtech] {FACTION} have invited the colony to their harvest fair at {PLACE}. There'll be buyers from all over, a few too many speeches, and a judging for the best produce.\n\nA cartload of {TALE} would sell well there, and {A_nameDef} wants to enter the best of it for the judging.</li>
-          <li>[harvesthome] Harvest home is close, and {FACTION} have sent word of their own harvest fair at {PLACE}. The colony could send a cart of {TALE}. {A_nameDef} has already been through the crop twice, setting the best of it aside for the judges.</li>
+          <li>[harvesthome] Harvest home is close, and {FACTION} have sent word of their own harvest fair at {PLACE}. The colony could send a cart of {TALE}. {A_nameDef} has already been through the crop, setting the best of it aside for the judges.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -700,7 +700,7 @@
         </doneTitles>
         <done>
           <li>[prize] The cart came back from {PLACE} empty, with {COUNT} silver and a ribbon. {A_nameDef}'s {THING} took the prize for the best of the harvest, and {A_nameDef} has pinned the ribbon up over the door.</li>
-          <li>[prize] First prize at {PLACE}. {FACTION} brought back the colony's share, {COUNT} silver, and the news that {A_nameDef}'s {THING} won the judging outright. {A_nameDef} has asked to hear every word the judges said, twice.</li>
+          <li>[prize] First prize at {PLACE}. {FACTION} brought back the colony's share, {COUNT} silver, and the news that {A_nameDef}'s {THING} won the judging outright. {A_nameDef} has asked to hear every word the judges said.</li>
           <li>[noprize] The cart came back from the fair at {PLACE} empty, with {COUNT} silver for the colony's {THING}. A farmer from the hills took the prize this year, for the third year running.</li>
           <li>[noprize] The colony's {THING} sold before noon on the first day of the fair at {PLACE}, and {FACTION} have brought back {COUNT} silver for it. The judges gave their prize to someone else.</li>
         </done>

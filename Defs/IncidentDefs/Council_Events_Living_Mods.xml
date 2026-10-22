@@ -124,7 +124,7 @@
         <options>
           <li>
             <label>Let them, for {COUNT} silver</label>
-            <outcome>The travelers take turns until long after dark, and leave {COUNT} silver by the bath. One of them is singing.</outcome>
+            <outcome>The travelers take turns until long after dark, and leave {COUNT} silver by the bath. The water will want changing.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>4</amount></li>
             </effects>
@@ -203,9 +203,9 @@
         </doneTitles>
         <done>
           <li>[great] {X_nameDef} of {FACTION} arrived today and was shown to the guest room, which is {ITEM}. {X_nameDef} stood in the doorway a while before going in, and has praised it to each colonist {X_pronoun} has met since. There's a gift left in the room for the colony, and {FACTION} will hear about the visit.</li>
-          <li>[good] {X_nameDef} of {FACTION} has arrived and been shown to the guest room. It's {ITEM}, and {X_nameDef} seems pleased with it. {FACTION} will hear good things.</li>
+          <li>[good] Shown to the guest room today, {X_nameDef} of {FACTION} found it {ITEM}, and seems pleased. {FACTION} will hear good things.</li>
           <li>[poor] {X_nameDef} of {FACTION} has arrived and been shown to the guest room. It's {ITEM}. {X_nameDef} was polite about it, and said very little else.</li>
-          <li>[noroom] {X_nameDef} of {FACTION} has arrived, and been shown to a guest bed with no room around it. {X_nameDef} was polite about it. {FACTION} will hear about that too.</li>
+          <li>[noroom] The only guest bed the colony had for {X_nameDef} of {FACTION} stands with no proper room around it. {X_nameDef} was polite about it. {FACTION} will hear about that too.</li>
         </done>
         <cancelled>
           <li>{X_nameDef} of {FACTION} won't be coming to stay after all.</li>

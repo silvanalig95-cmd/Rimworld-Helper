@@ -44,7 +44,7 @@
         <options>
           <li>
             <label>Send our best grower to pick the good ones</label>
-            <outcome>{B_nameDef} came back at dusk with two full baskets, every cap turned over and checked twice. The rest were left where they grew.</outcome>
+            <outcome>{B_nameDef} came back at dusk with two full baskets, every cap turned over and checked. The rest were left where they grew.</outcome>
             <outcomes>
               <li>[b:past:farmer] {B_nameDef} grew up picking mushrooms on the family's land and knew every kind by its smell. The baskets came back full before noon.</li>
               <li>[lowtech] {B_nameDef} cut each mushroom at the stem with a knife, so the ring would come up again next year, and came back with the baskets full.</li>
