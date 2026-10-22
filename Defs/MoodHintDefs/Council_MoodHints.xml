@@ -14,7 +14,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_Hunger</defName>
     <workers><li>ThoughtWorker_NeedFood</li></workers>
-    <fix>Make sure they can get to food: meals in stock, food allowed in their area and food policy, and a cook at work. It vanishes as soon as they eat.</fix>
+    <fix>Make sure they can reach food: meals in stock, a food policy that allows what you have, and food inside their allowed area. A cook at work keeps meals coming. It goes as soon as they eat.</fix>
     <act>Let them get to food</act>
     <article>Council_Alm_1_01_DailyNutrition</article>
     <signal>Council_Adv_Food</signal>
@@ -23,7 +23,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_Rest</defName>
     <workers><li>ThoughtWorker_NeedRest</li></workers>
-    <fix>Give them enough sleep in their schedule and a bed not too far from where they work. Tired colonists also work slower.</fix>
+    <fix>Give them enough sleep hours in the Schedule tab, and a bed close to where they work so the night isn't spent walking. It goes once they've slept.</fix>
     <act>Give them time to sleep</act>
     <article>Council_Alm_5_03_Sleep</article>
     <signal>Council_Adv_Beds</signal>
@@ -32,9 +32,9 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_Recreation</defName>
     <workers><li>ThoughtWorker_NeedJoy</li></workers>
-    <fix>Give them free time in their schedule and several kinds of recreation: games, music, a garden, socializing. Doing the same thing over and over gets dull.</fix>
+    <fix>Give them recreation hours in the Schedule tab and several kinds of recreation to choose from, such as horseshoes, a chess table or an instrument. The same kind over and over stops satisfying them.</fix>
     <act>Give them free time and recreation</act>
-    <keep>Keep recreation varied and give them free time every day.</keep>
+    <keep>Keep several kinds of recreation, and some free time in every day.</keep>
     <article>Council_Alm_2_13_Recreation</article>
     <signal>Council_Adv_Recreation</signal>
   </ColonyCouncil.MoodHintDef>
@@ -60,7 +60,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_Outdoors</defName>
     <workers><li>ThoughtWorker_NeedOutdoors</li></workers>
-    <fix>Give them a reason to go out: outdoor work, a walk, a garden. Long stretches indoors or underground wear on them.</fix>
+    <fix>Give them time under the open sky: outdoor work such as growing, hauling or hunting, or recreation outside. Long stretches indoors, and under a mountain most of all, wear on them.</fix>
     <act>Give them time outside</act>
     <article>Council_Alm_2_18_CabinFever</article>
   </ColonyCouncil.MoodHintDef>
@@ -91,7 +91,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_Dark</defName>
     <workers><li>ThoughtWorker_Dark</li></workers>
-    <fix>Light the places where they work and walk after dark: torches, braziers, candles or lamps.</fix>
+    <fix>Light the places where they work and walk after dark: torches, braziers or lamps.</fix>
     <act>Light where they work and walk</act>
     <article>Council_Alm_2_17_Light</article>
     <signal>Council_Adv_Darkness</signal>
@@ -100,7 +100,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_Temperature</defName>
     <workers><li>ThoughtWorker_Hot</li><li>ThoughtWorker_Cold</li></workers>
-    <fix>Heat or cool the places they use: a campfire, hearth or heater in winter, a passive cooler or shade in summer. Warmer or lighter clothes help too.</fix>
+    <fix>Heat or cool the rooms they use: a campfire or heater in the cold, a passive cooler or a cooler in the heat. Clothes suited to the season widen the range they're comfortable in.</fix>
     <act>Heat or cool their rooms</act>
     <article>Council_Alm_2_19_TemperatureComfort</article>
     <signal>Council_Adv_Temperature</signal>
@@ -109,8 +109,8 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_Rot</defName>
     <workers><li>ThoughtWorker_RotStink</li><li>ThoughtWorker_RotStinkLingering</li></workers>
-    <fix>Clear away rotting corpses and food. Bury or burn them well away from where people live and work.</fix>
-    <act>Clear away the rot</act>
+    <fix>Rotting corpses give off a stink that hangs in the air. Haul them away and bury or burn them well clear of where people live and work; the air clears soon after.</fix>
+    <act>Bury or burn the corpses</act>
     <article>Council_Alm_2_20_CorpsesAndFilth</article>
     <signal>Council_Adv_Corpses</signal>
   </ColonyCouncil.MoodHintDef>
@@ -118,7 +118,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_Unburied</defName>
     <workers><li>ThoughtWorker_ColonistLeftUnburied</li></workers>
-    <fix>Give the fallen a resting place: dig a grave or build a sarcophagus, and have someone carry them there.</fix>
+    <fix>Give the fallen a resting place: dig a grave or build a sarcophagus, and have someone carry them there. Cremating them ends it too.</fix>
     <act>Bury the fallen</act>
     <article>Council_Alm_9_18_Crypt</article>
     <signal>Council_Adv_Corpses</signal>
@@ -127,7 +127,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_Corpses</defName>
     <thoughts><li>ObservedLayingCorpse</li><li>ObservedLayingRottingCorpse</li></thoughts>
-    <fix>Haul corpses out of sight: a dumping zone or graves away from paths and rooms. It fades in a few days.</fix>
+    <fix>Haul corpses out of sight, into graves or a dumping zone away from paths and rooms. The memory fades on its own.</fix>
     <act>Haul the corpses out of sight</act>
     <article>Council_Alm_2_20_CorpsesAndFilth</article>
     <signal>Council_Adv_Corpses</signal>
@@ -144,7 +144,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_Event</defName>
     <workers><li>ThoughtWorker_GameCondition</li><li>ThoughtWorker_PsychicDrone</li><li>ThoughtWorker_ToxicFallout</li><li>ThoughtWorker_NoxiousHaze</li></workers>
-    <fix>A world event is weighing on them. It ends when the event does; until then, soften it with good meals, recreation and rest.</fix>
+    <fix>A condition across the whole map is weighing on them: a psychic drone, toxic fallout, a noxious haze. It ends when that does. Until then, good meals, recreation and rest make up for it.</fix>
     <act>Ends when the event does</act>
     <actionable>false</actionable>
     <article>Council_Alm_3_16_ToxicFallout</article>
@@ -207,7 +207,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_SharedBed</defName>
     <workers><li>ThoughtWorker_SharedBed</li></workers>
-    <fix>Give each colonist their own bed. Only lovers want to share.</fix>
+    <fix>Give each colonist their own bed. Only lovers and spouses want to share.</fix>
     <act>Give them their own bed</act>
     <article>Council_Alm_8_12_SharedBedrooms</article>
   </ColonyCouncil.MoodHintDef>
@@ -215,7 +215,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_Lovers</defName>
     <workers><li>ThoughtWorker_WantToSleepWithSpouseOrLover</li></workers>
-    <fix>Give the couple a double bed in the same room.</fix>
+    <fix>Assign the couple to one double bed in a room of their own.</fix>
     <act>Give the couple a double bed</act>
     <article>Council_Alm_9_01_Bedroom</article>
   </ColonyCouncil.MoodHintDef>
@@ -257,7 +257,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_Raw</defName>
     <thoughts><li>AteRawFood</li><li>AteNutrientPasteMeal</li></thoughts>
-    <fix>Cook proper meals: a cook at a campfire or stove, with raw food left off their food policy.</fix>
+    <fix>Give them cooked meals: a cook at a campfire or stove, raw food left off their food policy, and the nutrient paste dispenser kept for hard times.</fix>
     <act>Cook proper meals</act>
     <article>Council_Alm_1_26_MealMoods</article>
     <signal>Council_Adv_Kitchen</signal>
@@ -266,7 +266,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_Rotten</defName>
     <thoughts><li>AteRottenFood</li></thoughts>
-    <fix>Keep food cold or eat it fresh, and keep rotting food out of the stockpiles.</fix>
+    <fix>Store food in a freezer or a cold room, and keep rotten food out of the stockpiles so it doesn't get eaten.</fix>
     <act>Keep food cold and fresh</act>
     <article>Council_Alm_1_28_SpoilageAndDeterioration</article>
     <signal>Council_Adv_Spoiled</signal>
@@ -308,14 +308,14 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_Tattered</defName>
     <workers><li>ThoughtWorker_ApparelDamaged</li></workers>
-    <fix>Replace tattered clothes: set their outfit to drop apparel below about half condition, and keep a tailor busy.</fix>
+    <fix>Replace worn clothes: set their apparel policy to drop anything below half condition, and keep a tailor at work.</fix>
     <act>Replace their worn clothes</act>
   </ColonyCouncil.MoodHintDef>
 
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_DeadMan</defName>
     <workers><li>ThoughtWorker_DeadMansApparel</li></workers>
-    <fix>Set outfits to refuse clothes taken from the dead; burn or sell those clothes.</fix>
+    <fix>Set apparel policies to refuse clothes taken from the dead, then burn or sell those clothes.</fix>
     <act>Refuse clothes from the dead</act>
   </ColonyCouncil.MoodHintDef>
 
@@ -330,7 +330,7 @@
     <defName>Council_Mood_Naked</defName>
     <thoughts><li>Naked</li></thoughts>
     <workers><li>ThoughtWorker_PsychologicallyNude</li></workers>
-    <fix>Give them clothes: check their outfit and make sure there is apparel to wear.</fix>
+    <fix>Give them clothes: check their apparel policy, and make sure there's something in store for them to wear.</fix>
     <act>Give them clothes</act>
   </ColonyCouncil.MoodHintDef>
 
@@ -364,7 +364,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_Craving</defName>
     <workers><li>ThoughtWorker_DrugDesireUnsatisfied</li><li>ThoughtWorker_GeneticChemicalDependency</li></workers>
-    <fix>They crave a drug. Allow a little of it (beer counts) in their drug policy, or wait it out.</fix>
+    <fix>Their body wants a drug it depends on. Allow some in their drug policy; for an addiction, sitting out the withdrawal also ends it.</fix>
     <act>Allow some, or wait it out</act>
     <article>Council_Alm_4_18_DrugPolicies</article>
   </ColonyCouncil.MoodHintDef>
@@ -372,8 +372,8 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_Surgery</defName>
     <thoughts><li>BotchedMySurgery</li></thoughts>
-    <fix>Let your best doctor operate, in a clean and well-lit operating room. The memory fades.</fix>
-    <act>Let the best doctor operate</act>
+    <fix>An operation on them went wrong. The memory fades. Next time, let your best doctor operate, with good medicine, in a clean, well-lit room.</fix>
+    <act>Use the best doctor next time</act>
     <actionable>false</actionable>
     <article>Council_Alm_4_09_SurgerySuccess</article>
   </ColonyCouncil.MoodHintDef>
@@ -381,7 +381,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_Grief</defName>
     <thoughts><li>KnowColonistDied</li><li>ColonistLost</li><li>PawnWithGoodOpinionDied</li><li>PawnWithGoodOpinionLost</li><li>WitnessedDeathAlly</li><li>WitnessedDeathFamily</li><li>FailedToRescueRelative</li></thoughts>
-    <fix>Grief takes time. A proper grave or funeral and good moments help; the council's days of mourning decree makes it pass faster.</fix>
+    <fix>Grief takes time. A proper grave or funeral helps, and good moments in between. The days of mourning decree, on the Decrees page, makes it fade faster.</fix>
     <act>Grief takes time</act>
     <actionable>false</actionable>
     <article>Council_Alm_C_Decrees</article>
@@ -427,13 +427,13 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_Together</defName>
     <thoughts><li>AttendedParty</li><li>AttendedWedding</li><li>AttendedConcert</li><li>GotMarried</li><li>HoneymoonPhase</li><li>GotSomeLovin</li><li>Nuzzled</li><li>Catharsis</li></thoughts>
-    <keep>Throw a party now and then. Moments like this lift everyone's mood.</keep>
+    <keep>Parties, weddings and time with loved ones come on their own when people are content. A good room to gather in, and a double bed for each couple, help them along.</keep>
   </ColonyCouncil.MoodHintDef>
 
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_NewColony</defName>
     <thoughts><li>NewColonyOptimism</li><li>NewColonyHope</li></thoughts>
-    <keep>The fresh-start glow fades in a few weeks. Get beds, a dining table and recreation in place before it does.</keep>
+    <keep>The fresh-start glow wears off soon. Get beds, a dining table and recreation in place before it does.</keep>
     <article>Council_Alm_Basics_FirstSeason</article>
   </ColonyCouncil.MoodHintDef>
 
@@ -471,7 +471,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RoyalRooms</defName>
     <workers><li>ThoughtWorker_BedroomRequirementsNotMet</li><li>ThoughtWorker_NoPersonalBedroom</li></workers>
-    <fix>Their title demands a better bedroom. Read their Royalty tab for what is missing.</fix>
+    <fix>Their title demands a better bedroom. Hover over the mood to see which requirements are missing.</fix>
     <act>Meet their title's bedroom needs</act>
     <article>Council_Alm_7_03_NobleBedrooms</article>
   </ColonyCouncil.MoodHintDef>
@@ -479,7 +479,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_Throne</defName>
     <workers><li>ThoughtWorker_ThroneRoomRequirementsNotMet</li><li>ThoughtWorker_NoThroneroom</li></workers>
-    <fix>Their title demands a proper throne room. Read their Royalty tab for what is missing.</fix>
+    <fix>Their title demands a proper throne room. Hover over the mood to see which requirements are missing.</fix>
     <act>Build a proper throne room</act>
     <article>Council_Alm_7_02_ThroneRoomRequirements</article>
   </ColonyCouncil.MoodHintDef>
@@ -488,7 +488,7 @@
     <defName>Council_Mood_RoyalApparel</defName>
     <thoughts><li>AteFoodInappropriateForTitle</li></thoughts>
     <workers><li>ThoughtWorker_RoyalTitleApparelRequirementNotMet</li><li>ThoughtWorker_RoyalTitleApparelMinQualityNotMet</li></workers>
-    <fix>Their title demands certain clothes and meals. Read their Royalty tab for what is missing.</fix>
+    <fix>Their title demands certain clothes and meals. Hover over their title in the Character tab to see everything it asks for.</fix>
     <act>Meet their title's demands</act>
     <article>Council_Alm_7_04_NobleApparelAndMeals</article>
   </ColonyCouncil.MoodHintDef>
@@ -496,7 +496,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RoyalDecree</defName>
     <thoughts><li>DecreeUnmet</li></thoughts>
-    <fix>A noble made a demand. Fulfill it while there is time; their Royalty tab says what they want.</fix>
+    <fix>A noble made a demand. Fulfill it while there's time; the letter that announced it says what they want.</fix>
     <act>Do what the noble asked</act>
     <article>Council_Alm_7_01_TitlesAndHonor</article>
   </ColonyCouncil.MoodHintDef>
@@ -505,7 +505,7 @@
     <defName>Council_Mood_Precept</defName>
     <workers><li>ThoughtWorker_Precept</li><li>ThoughtWorker_Precept_AlwaysActive</li></workers>
     <fix>This comes from their ideoligion. Honor the belief, or change it when the ideoligion is next reformed.</fix>
-    <act>Their ideoligion asks it</act>
+    <act>Honor their ideoligion</act>
     <actionable>false</actionable>
     <keep>Their beliefs approve. Keep honoring them.</keep>
     <article>Council_Alm_7_10_PreceptsAndRoles</article>
@@ -545,7 +545,7 @@
     <defName>Council_Mood_RF_Decree</defName>
     <thoughts><li>Council_Decree_Again</li></thoughts>
     <thoughtClasses><li>Thought_Decree</li></thoughtClasses>
-    <fix>Repeal the decree on the Decrees page, or wait for it to end. Repeating it soon makes this worse.</fix>
+    <fix>They dislike a decree in force. Repeal it on the Decrees page, or wait for it to run out. Declaring the same decree again soon after makes it sting more each time.</fix>
     <act>Repeal the decree, or wait</act>
     <keep>It lasts while the decree is in force.</keep>
     <article>Council_Alm_C_Decrees</article>
@@ -555,7 +555,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RF_Strain</defName>
     <thoughtClasses><li>Thought_HeartStrain</li></thoughtClasses>
-    <fix>Strain drains with quiet nights in a warm bed, free time, parties, long talks with friends and days without fighting. The Heart section of this tab says what built it. Days of rest (a decree) makes it drain about twice as fast.</fix>
+    <fix>Strain drains with quiet nights in a warm bed, free time, parties, long talks with friends and days without fighting. The Heart section of their Mood tab says what built it. The days of rest decree makes it drain about twice as fast.</fix>
     <act>Give them rest and free time</act>
     <article>Council_Alm_C_Heart</article>
     <councilTab>Decrees</councilTab>
@@ -592,7 +592,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RF_Wish</defName>
     <nameContains><li>council_wish</li><li>council_promise</li></nameContains>
-    <fix>Check their wish on the Wishes page, and grant or promise it before it runs out.</fix>
+    <fix>Their wish is waiting on the Wishes page. Grant it or promise it before it runs out.</fix>
     <act>Grant or promise their wish</act>
     <article>Council_Alm_C_Wishes</article>
     <councilTab>Wishes</councilTab>
@@ -601,7 +601,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RF_Granted</defName>
     <nameContains><li>council_granted_</li></nameContains>
-    <keep>A granted wish is remembered for a while. Promised wishes count the most.</keep>
+    <keep>Grant more of what they ask for. A promise kept earns more trust than a wish granted without one.</keep>
     <article>Council_Alm_C_Wishes</article>
     <councilTab>Wishes</councilTab>
   </ColonyCouncil.MoodHintDef>
@@ -621,7 +621,7 @@
     <defName>Council_Mood_RF_Secrets</defName>
     <workers><li>ThoughtWorker_Vendetta</li></workers>
     <nameContains><li>council_secret</li><li>council_vendetta</li></nameContains>
-    <fix>Secrets and vendettas fade with time, or end when the score is settled.</fix>
+    <fix>Secrets fade with time. A vendetta ends when the score is settled, or when it's laid down.</fix>
     <act>Passes, or settle the score</act>
     <actionable>false</actionable>
     <article>Council_Alm_C_Secrets</article>
@@ -632,8 +632,8 @@
     <defName>Council_Mood_RF_Dreams</defName>
     <thoughtClasses><li>Thought_Dream</li></thoughtClasses>
     <nameContains><li>council_dream</li></nameContains>
-    <fix>Only a dream. It fades by evening.</fix>
-    <act>Gone by evening</act>
+    <fix>Only a dream. It fades within a day.</fix>
+    <act>Gone within a day</act>
     <actionable>false</actionable>
     <article>Council_Alm_C_Dreams</article>
     <councilTab>Dreams</councilTab>
@@ -642,7 +642,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RF_Strangers</defName>
     <nameContains><li>council_enc</li><li>council_nemesis</li><li>council_pet_</li></nameContains>
-    <fix>A moment with a stranger, a nemesis or an animal. It fades; a nemesis captured or slain lifts it for good.</fix>
+    <fix>A moment with a stranger, a nemesis or an animal. It fades on its own. A nemesis taken prisoner or killed won't come back to frighten them again.</fix>
     <act>Passes with time</act>
     <actionable>false</actionable>
     <article>Council_Alm_C_Strangers</article>
@@ -652,7 +652,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RF_Dilemma</defName>
     <nameContains><li>council_dlm</li></nameContains>
-    <fix>The council's decision weighs on them. It fades; answering the next dilemma their way helps.</fix>
+    <fix>They didn't like how the council answered a dilemma. It fades on its own; answering the next one the way they would helps.</fix>
     <act>Answer the next one their way</act>
     <actionable>false</actionable>
     <keep>They approved of the council's decision.</keep>
@@ -697,7 +697,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RF_Promise</defName>
     <thoughts><li>Council_BrokenPromise</li></thoughts>
-    <fix>A promised wish ran out unanswered. Promise only what the colony can grant soon; a promise broken hurts more than a wish ignored.</fix>
+    <fix>A promised wish ran out unanswered. It fades; from now on, promise only what the colony can grant in time. A promise broken hurts more than a wish ignored.</fix>
     <act>Promise only what you can grant</act>
     <actionable>false</actionable>
     <article>Council_Alm_C_Wishes</article>
@@ -707,7 +707,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RF_Favoritism</defName>
     <thoughts><li>Council_Favoritism</li></thoughts>
-    <fix>They've watched the same colonist get a second wish granted while theirs still waits. Spread granted wishes more fairly, and grant theirs next.</fix>
+    <fix>They've watched one colonist get a second wish granted while their own still waits. Grant theirs next, and spread granted wishes more evenly.</fix>
     <act>Grant their wish next</act>
     <article>Council_Alm_C_Wishes</article>
     <councilTab>Wishes</councilTab>
@@ -716,7 +716,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RF_Objections</defName>
     <thoughts><li>Council_ObjectionIgnored</li><li>Council_ObjectionHeard</li><li>Council_HeardAtMeeting</li><li>Council_Refused</li></thoughts>
-    <fix>They spoke up and weren't heard. Next time, weigh their objection, or give them something they asked for.</fix>
+    <fix>They spoke up and weren't heard: an objection overruled, or a request refused. Next time, weigh their objection, or grant something they've asked for.</fix>
     <act>Weigh their objection next time</act>
     <actionable>false</actionable>
     <keep>Being heard at the council matters to them.</keep>
@@ -727,8 +727,8 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RF_Offices</defName>
     <thoughts><li>Council_ElectedToOffice</li><li>Council_LostElection</li><li>Council_LostOffice</li></thoughts>
-    <fix>Losing a seat stings and fades. A wish granted or a kind word from the council softens it.</fix>
-    <act>A granted wish softens it</act>
+    <fix>Losing a seat stings, and it fades. A wish granted in the meantime softens it, and they can stand again at the next election.</fix>
+    <act>Grant a wish to soften it</act>
     <actionable>false</actionable>
     <keep>A seat on the council is an honor. Keep them in it while they do the job well.</keep>
     <article>Council_Alm_C_Offices</article>
@@ -738,7 +738,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RF_DecreeTalk</defName>
     <thoughts><li>Council_DecreeHeeded</li><li>Council_DecreeArgument</li></thoughts>
-    <fix>An argument over a decree. It fades; repealing the decree they hate ends the cause.</fix>
+    <fix>They argued over a decree. It fades on its own; repealing the decree on the Decrees page ends the quarrel.</fix>
     <act>Repeal the decree they hate</act>
     <actionable>false</actionable>
     <keep>The council declared what they asked for.</keep>
@@ -749,7 +749,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RF_Ambition</defName>
     <thoughts><li>Council_AmbitionAchieved</li><li>Council_MyAmbitionAchieved</li><li>Council_AmbitionFailed</li></thoughts>
-    <fix>The colony missed its ambition. It fades; pick a next ambition the colony can reach in time.</fix>
+    <fix>The colony missed its ambition. It fades on its own; pick the next one on the Ambition page with time enough to reach it.</fix>
     <act>Pick a reachable next ambition</act>
     <actionable>false</actionable>
     <keep>The colony reached its ambition together. Set the next one.</keep>
@@ -836,8 +836,8 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RF_EvtTurnedAway</defName>
     <thoughts><li>Council_Evt_KinTurnedAway</li><li>Council_Evt_FriendTurnedAway</li><li>Council_Evt_GaveUpOneOfUs</li></thoughts>
-    <fix>The council turned away (or gave up) someone they cared about. It fades with time; a granted wish or a kind word from the council helps their trust recover.</fix>
-    <act>A kind word helps</act>
+    <fix>The council turned away, or gave up, someone they cared about. It fades with time; granting one of their wishes helps their trust recover.</fix>
+    <act>Grant a wish to ease it</act>
     <actionable>false</actionable>
     <article>Council_Alm_C_WorldEvents</article>
     <councilTab>Wishes</councilTab>
@@ -862,7 +862,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RF_EvtHail</defName>
     <thoughts><li>Council_Evt_Hail</li></thoughts>
-    <fix>Caught out in the hail. It passes in hours. Roofed walkways and greenhouses keep both people and crops out of it.</fix>
+    <fix>Caught out in the hail. It passes within half a day. Roofed walkways keep people out of the next one.</fix>
     <act>Passes in hours</act>
     <actionable>false</actionable>
     <priority>5</priority>
@@ -880,7 +880,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RF_EvtTribute</defName>
     <thoughts><li>Council_Evt_PaidTribute</li></thoughts>
-    <fix>The colony paid tribute, and it stings. Stronger defenses make the next demand easier to refuse.</fix>
+    <fix>The colony paid tribute, and it stings for a few days. Stronger defenses make the next demand easier to refuse.</fix>
     <act>Build up the defenses</act>
     <actionable>false</actionable>
     <signal>Council_Adv_Defense</signal>
@@ -890,7 +890,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_TakenBack</defName>
     <thoughts><li>Council_TakenBack</li></thoughts>
-    <fix>Something the council granted them was taken away and not put back in time; the "why" line says what. Put it back within a few days and the council makes it right: the mood ends and half the trust comes back. Moving or rebuilding a thing is fine, as long as it's back before the grace period runs out.</fix>
+    <fix>Something the council granted them was taken away and not put back in time; the Why line says what. Put it back within five days and the council makes it right: the mood ends and half the lost trust comes back. A thing being moved or rebuilt still counts as there.</fix>
     <act>Put back what was taken</act>
     <article>Council_Alm_C_Wishes</article>
     <councilTab>Wishes</councilTab>
