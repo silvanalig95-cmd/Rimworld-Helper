@@ -336,6 +336,22 @@ things stand:
 | Negative moods | 603 thoughts with a bad side (589 → 603); 43 setbacks from play (2 at the pens; 8 council, 3 gatherings, 10 work, 7 home, 6 worries, 7 between people) | setbacks for camps, world events and the calendar, more from mod content (a mod's bench, crop or ritual gone wrong) |
 
 ### Asked for by the player (queued after the current fixes)
+- **To do, waiting for the player's word: the text pass, round two.** Start it only when the player says they have
+  tokens to spare, or asks to use some up; it is large (the first round hit their usage limit once). Round one
+  (0.10.0) rewrote every event's text one def at a time; round two does the same for the rest:
+
+  | In this order | Defs | Where |
+  |---|---|---|
+  | 1. Wishes, life goals, decrees, council ambitions | ~360 | WishDefs, AspirationDefs, DecreeDefs, AmbitionDefs |
+  | 2. Thoughts and mood hints | ~1,800 | ThoughtDefs, MoodHintDefs |
+  | 3. Dreams and journals | ~190 + pools | DreamDefs, the journal pools in FlavorPoolDefs |
+  | 4. Talk lines, conversations, social events, groups, personality marks, quirks | ~1,900 | FlavorPoolDefs, InteractionDefs, SocialEventDefs, GroupDefs, PersonaDefs, QuirkDefs |
+
+  Not the Almanac, settings or tooltips: those explain, and stay plain. How: the brief is `docs/briefs/text-pass.md`
+  (with `docs/briefs/agents.md` and STYLE.md), one writer per slice of about 200 KB of XML, a few at a time, each
+  merged and checked (`Tools/textcheck.py --base` the commit before the round, DefValidator, `Tools/labelcheck.py`,
+  the tests, `Tools/playout_audit.py --candidates`, `Tools/variety_report.py`). Ask the player first whether the event
+  text of round one landed, and fold what they say into the brief.
 - Done: a defense planner (Colony → Defenses). The council reads the map: the edges raiders can reach home from
   and the ways they walk (the easiest path from a sample of edge cells, doors costing extra), the narrow places on
   them (passes, gaps between rock and water, bridges, the colony's own gates) with their width and the share of raids
