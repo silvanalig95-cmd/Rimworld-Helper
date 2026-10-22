@@ -16,14 +16,14 @@
     <lines>
       <plain>
         <li>[spring] Planting from first light to last. My back gave out before the light did.</li>
-        <li>[spring] The days are getting longer, and somehow so is the work.</li>
+        <li>[spring] Longer days, and the work stretches to fill every hour of them.</li>
         <li>[spring] Mud on everything and tired to the bone. Spring is hard on the legs.</li>
         <li>[summer] Up at dawn to beat the heat, and still working when it came. Asleep on my feet by supper.</li>
-        <li>[summer] The long light makes you think you can do more. You can't.</li>
+        <li>[summer] Kept working because it was still light, and it stayed light far too long.</li>
         <li>[summer] Too hot to sleep last night, and too much to do today to make up for it.</li>
         <li>[fall] Harvest. I carried more baskets today than I could count, and I tried.</li>
         <li>[fall] Brought in the last of the field before the frost. I could sleep for a week.</li>
-        <li>[fall] Everyone's racing the cold. I'm racing on nothing.</li>
+        <li>[fall] Racing the frost on no sleep and cold porridge.</li>
         <li>[winter] Hauled firewood until dark. My arms are still shaking.</li>
         <li>[winter] The cold wears you out even sitting still.</li>
         <li>[winter] Dark at both ends of the day, and I worked through both.</li>
@@ -31,7 +31,7 @@
         <li>[trait:Nervous] Lay awake worrying, then worked all day on no sleep. Tomorrow will be worse.</li>
       </plain>
       <warm>
-        <li>Tired out. I'd do it all again to see that wall finished, though.</li>
+        <li>Tired out. Still, I got done what I said I would.</li>
       </warm>
       <blunt>
         <li>Slept four hours. Worked twelve. Bad sums.</li>
@@ -53,7 +53,7 @@
     <pool>Council_Journal_Day_Pain</pool>
     <lines>
       <plain>
-        <li>[spring] Damp spring air, and the wound aches every time the weather turns.</li>
+        <li>[spring] Damp spring air, and it aches every time the weather turns.</li>
         <li>[spring] Watched the others plant from the doorway. Walking that far still hurts.</li>
         <li>[spring] The rain set it throbbing all night.</li>
         <li>[summer] Sweat gets under the dressing and stings. I changed it twice today.</li>
@@ -62,7 +62,7 @@
         <li>[fall] Harvest time, and I can barely carry a bowl. I counted the baskets instead.</li>
         <li>[fall] The cold mornings set it aching before I'm out of bed.</li>
         <li>[fall] Tried to help in the fields and had to stop before noon.</li>
-        <li>[winter] The cold gets into the wound and settles there.</li>
+        <li>[winter] The cold gets in where it hurts and settles there.</li>
         <li>[winter] Lay close to the fire all evening, turning the bad side toward it.</li>
         <li>[winter] Every step on the frozen ground jars it.</li>
         <li>[hurt] The doctor says it's healing. It doesn't feel like it.</li>
@@ -91,12 +91,12 @@
     <pool>Council_Journal_Day_Barracks</pool>
     <lines>
       <plain>
-        <li>[spring] The barracks windows are open again. Fresh air, and everyone snoring at once.</li>
+        <li>[spring] The barracks windows are open again. Fresh air, and a dozen snores to go with it.</li>
         <li>[spring] Mud on every boot in the barracks. Someone needs to sweep, and it won't be me.</li>
         <li>[spring] Woke to birdsong and somebody's elbow.</li>
-        <li>[summer] The barracks are stifling. Everyone breathing the same hot air all night.</li>
+        <li>[summer] The barracks are stifling. All of us breathing the same hot air all night.</li>
         <li>[summer] Someone left the barracks door open for the breeze and let the insects in.</li>
-        <li>[summer] Slept on top of the blanket in the barracks, and so did everyone else.</li>
+        <li>[summer] Slept on top of the blanket in the barracks, and so did the rest of them.</li>
         <li>[fall] The barracks smell of wet coats now. They'll smell of wet coats until spring.</li>
         <li>[fall] One cough has gone round the whole barracks.</li>
         <li>[fall] Fought over the bed by the warm wall again. Lost.</li>
@@ -139,7 +139,7 @@
         <li>[fall] Spent the afternoon sorting the harvest by feel.</li>
         <li>[winter] We go easy on the light in winter. My eyes ache by evening.</li>
         <li>[winter] Dark all day in the workshop and dark all night outside it.</li>
-        <li>[winter] Snow over the windows. It's been dusk indoors since morning.</li>
+        <li>[winter] Shutters closed against the cold. It's been dusk indoors since morning.</li>
         <li>[lowtech] One torch for the whole storeroom. I worked in the half of the room it reached.</li>
         <li>[!lowtech] The light in the corridor flickers. I counted the flickers instead of working.</li>
       </plain>
@@ -176,9 +176,9 @@
         <li>[fall] The wind's picking up and my clothes are giving up.</li>
         <li>[fall] Snagged my shirt on the fence and lost half the back of it.</li>
         <li>[winter] My coat is more holes than coat, and it's winter.</li>
-        <li>[winter] Stuffed straw into my boots to fill the holes. It helps a little.</li>
+        <li>[winter] Stuffed straw into my boots to fill the holes. It helps, some.</li>
         <li>[winter] I'm wearing two worn shirts to make one whole one.</li>
-        <li>[poor] Everyone here is in rags. Mine are only a little worse.</li>
+        <li>[poor] We're all in rags here. Mine are just worse.</li>
       </plain>
       <warm>
         <li>Gave my last good shirt to the newcomer. I've got patches; they had nothing.</li>
@@ -209,7 +209,7 @@
         <li>[summer] Ate outside on the grass, because there's nowhere better inside.</li>
         <li>[summer] Ate standing up in the shade. The ants found my bowl before I did.</li>
         <li>[summer] Supper on a stump in the yard. Too hot to mind much.</li>
-        <li>[fall] Ate sitting on a sack of the harvest. At least it was soft.</li>
+        <li>[fall] Ate sitting on a sack of the harvest. Soft, and it smelled of grain.</li>
         <li>[fall] The wind blew leaves into my bowl while I ate on the step.</li>
         <li>[fall] We sat on the floor around the harvest baskets and ate from our laps.</li>
         <li>[winter] Ate crouched by the fire with the bowl on my knees. My legs went numb.</li>
@@ -218,7 +218,7 @@
         <li>[afterraid] No table and no chairs since the fight. We ate wherever we sat down.</li>
       </plain>
       <warm>
-        <li>We ate shoulder to shoulder on the floor tonight, elbows in each other's bowls, and it was fine.</li>
+        <li>We ate shoulder to shoulder on the floor tonight, elbows in each other's bowls, and I laughed more than I have all week.</li>
       </warm>
       <blunt>
         <li>A table. Planks. Legs. Do it.</li>
@@ -227,10 +227,10 @@
         <li>Floor supper again. I've named my favorite floorboard.</li>
       </cheerful>
       <gloomy>
-        <li>Another meal off my knees. It's the small indignities that wear you down.</li>
+        <li>Another meal off my knees. I've stopped minding, and that's worse.</li>
       </gloomy>
       <cold>
-        <li>We have the wood for a table. We don't have the will, which tells me something.</li>
+        <li>We have the wood for a table. What we lack is anyone who'll build it.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
@@ -249,13 +249,13 @@
         <li>[fall] Harvest supper in the dining room. Every seat full, and every plate too.</li>
         <li>[fall] Rain on the windows and a warm meal at a good table.</li>
         <li>[fall] The dining room smells of woodsmoke and bread this time of year.</li>
-        <li>[winter] Snow outside, and inside the long table, warm and full.</li>
+        <li>[winter] Frost on the windows, and the long table warm and full.</li>
         <li>[winter] Stayed in the dining room long after supper, putting off the walk out into the cold.</li>
         <li>[winter] The dining room was the brightest place in the colony tonight.</li>
-        <li>[highmood] Good supper, good room, good people. That's a good day.</li>
+        <li>[highmood] Stayed at the table till the candles were stubs. Didn't want the evening to end.</li>
       </plain>
       <warm>
-        <li>Passed the bread down the long table and it came back empty. That's how supper should be.</li>
+        <li>Passed the bread down the long table and it came back empty. I didn't mind one bit.</li>
       </warm>
       <blunt>
         <li>Good table. Good chairs. More of this.</li>
@@ -264,7 +264,7 @@
         <li>Supper in the dining room again. I could get used to being civilized.</li>
       </cheerful>
       <gloomy>
-        <li>A fine room to eat in. I keep waiting for something to spoil it.</li>
+        <li>A fine room to eat in. I ate fast anyway, out of habit.</li>
       </gloomy>
       <cold>
         <li>A proper dining room keeps people talking at the table. I learn a great deal there.</li>
@@ -279,14 +279,14 @@
       <plain>
         <li>[spring] Rain all week, and nothing to do inside but wait for it to stop.</li>
         <li>[spring] Everyone's busy with the planting but me. I've swept the same floor three times.</li>
-        <li>[spring] Watched the clouds for an hour. One looked like a muffalo. That was the best part of the day.</li>
+        <li>[spring] Watched the clouds all afternoon. One looked like a muffalo.</li>
         <li>[summer] Too hot to work and nothing to do instead. Lay in the shade counting flies.</li>
         <li>[summer] Sat outside after supper with nothing to do until the insects drove me in.</li>
         <li>[summer] Skipped stones on the water by myself until the light went.</li>
         <li>[fall] Rainy evening. I've cleaned every tool I own.</li>
         <li>[fall] The harvest's in and suddenly there's nothing to do. I miss it.</li>
         <li>[fall] Sat and watched the leaves come down. It took all evening.</li>
-        <li>[winter] Snowed in. I've read the labels on every jar in the kitchen.</li>
+        <li>[winter] Nothing to do but sit indoors. I've counted the jars in the kitchen. Forty-one.</li>
         <li>[winter] Long winter night. I tied knots in a rope and untied them again.</li>
         <li>[winter] Too cold to go out, nothing to do in. I talked to the fire.</li>
         <li>[lowtech] No one has played a tune in days. I tried humming one and lost interest halfway.</li>
@@ -326,7 +326,7 @@
         <li>[winter] Sleet all afternoon. It finds the gap at your collar every time.</li>
         <li>[winter] Melting snow dripped through the roof onto my bed.</li>
         <li>[winter] Wet clothes freeze stiff out here. My sleeves crackle when I bend my arms.</li>
-        <li>[rain] The rain stopped for an hour this afternoon. I didn't trust it.</li>
+        <li>[rain] The rain stopped long enough for me to wring out my socks. Then it started again.</li>
       </plain>
       <warm>
         <li>Came in soaked, and someone had kept the fire going for whoever came in last.</li>
@@ -362,7 +362,7 @@
         <li>[fall] The roof leaks now, and someone moved a bucket under it, loudly, in the middle of the night.</li>
         <li>[winter] People kept getting up to feed the fire. Every time: the door, the cold, the door.</li>
         <li>[winter] Someone's cough kept the whole room up.</li>
-        <li>[winter] Snow slid off the roof in the night and woke everyone at once.</li>
+        <li>[winter] Snow slid off the roof in the night with a thump like a falling cow.</li>
         <li>[storm] Thunder rattled the walls, and someone counted the seconds out loud.</li>
       </plain>
       <warm>
@@ -432,12 +432,12 @@
         <li>[summer] Long light evening. We played until we couldn't see the board.</li>
         <li>[summer] Played games until midnight, since it was too warm to sleep anyway.</li>
         <li>[fall] The harvest's in. We celebrated in the games room until late.</li>
-        <li>[fall] Wet evening. Half the colony in the rec room, and the other half wishing they were.</li>
+        <li>[fall] Wet evening, and the rec room so full I sat on the windowsill.</li>
         <li>[fall] Played dice with the old hands and lost a week's worth of bragging rights.</li>
-        <li>[winter] Snow outside, games inside. The rec room is the place to be in winter.</li>
+        <li>[winter] Cold outside, dice inside. I won twice and lost my socks.</li>
         <li>[winter] Long winter evening in the games room. We played until the fire was down to coals.</li>
-        <li>[winter] Played cards by the fire until the fire went out.</li>
-        <li>[highmood] Good games and good company. I'm in a good mood and I plan to stay in it.</li>
+        <li>[winter] Someone taught me a new card game. I still don't know the rules, and I won.</li>
+        <li>[highmood] Laughed so hard at the games table that I had to go outside to stop.</li>
       </plain>
       <warm>
         <li>Let the young one win at cards tonight. They knew, I think. They didn't mind.</li>
@@ -463,7 +463,7 @@
     <lines>
       <plain>
         <li>[spring] Last year's stores are nearly gone and this year's crop isn't in. The hungry season.</li>
-        <li>[spring] Ate wild greens off the riverbank. Bitter, but something.</li>
+        <li>[spring] Ate wild greens off the riverbank. Bitter, but it's food.</li>
         <li>[spring] Planting all day on a thin breakfast. My stomach complained the whole time.</li>
         <li>[summer] The garden's growing, but nothing's ripe yet. I keep checking.</li>
         <li>[summer] Too hot to eat at noon, then hungry all night.</li>
@@ -473,7 +473,7 @@
         <li>[fall] Smelled bread baking all afternoon and didn't get any.</li>
         <li>[winter] The stew is thin and getting thinner.</li>
         <li>[winter] I dream about food now. Last night it was a whole roast.</li>
-        <li>[winter] Everyone's hungry and nobody's saying so.</li>
+        <li>[winter] We're all hungry, and not one of us says so at the table.</li>
         <li>[lowmood] Hungry and miserable, and I can't tell which is causing which.</li>
       </plain>
       <warm>
@@ -489,7 +489,7 @@
         <li>Hungry again. I've stopped mentioning it.</li>
       </gloomy>
       <cold>
-        <li>Less food in, the same work out. Something will give, and it won't be the work.</li>
+        <li>Less food in, the same work out. Those sums don't hold for long.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
@@ -504,7 +504,7 @@
         <li>[spring] Woke shivering. The fire was out and the window was open.</li>
         <li>[summer] Even now the room goes cold after midnight, and I'd put the blanket away.</li>
         <li>[summer] Slept with the window open for the heat and woke up frozen.</li>
-        <li>[summer] A cold snap in summer, and nobody had their winter things out.</li>
+        <li>[summer] A cold snap in summer, and our winter things packed away at the bottom of the chest.</li>
         <li>[fall] First frost on the inside of the window. Winter's coming.</li>
         <li>[fall] Brought out the winter blankets. They're already not enough.</li>
         <li>[fall] The wind has turned northerly, and my blanket is no match for it.</li>
@@ -563,7 +563,7 @@
         <li>Lay in my own sweat all night. I'm too tired to be angry about it.</li>
       </gloomy>
       <cold>
-        <li>The room has no draught through it. A window at each end would fix it, and I've said so twice.</li>
+        <li>The room has no draft through it. A window at each end would fix it, and I've said so twice.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
@@ -574,12 +574,12 @@
     <lines>
       <plain>
         <li>[spring] Watered the first rows this morning. I can't wait to see what comes up.</li>
-        <li>[spring] Our first spring here. Everything feels possible.</li>
+        <li>[spring] Our first spring here. I keep walking out to look at the seedlings.</li>
         <li>[summer] Built a bench outside the door today. We sat on it in the evening as if we'd always lived here.</li>
         <li>[summer] Swam in the river after work. This place has good water.</li>
         <li>[fall] Stacked the first firewood for winter. It looked like more than it was, but it's a start.</li>
         <li>[fall] The first harvest is small, but it's ours.</li>
-        <li>[winter] Snow on our own roof. That's new.</li>
+        <li>[winter] Frost on our own roof. That's new.</li>
         <li>[winter] We kept the fire going all night between us. I think we can do this.</li>
         <li>[highmood] Good day, good people. I'm hopeful, and I'm not used to that.</li>
       </plain>
@@ -606,20 +606,20 @@
     <pool>Council_Journal_Day_FineMeal</pool>
     <lines>
       <plain>
-        <li>[spring] Fresh eggs and wild greens for breakfast. A good start to a long day.</li>
+        <li>[spring] Flatbread and wild greens for breakfast, still warm from the pan. A good start to a long day.</li>
         <li>[spring] Fresh meat and the first herbs of spring tonight. The cook was proud of it, and rightly.</li>
-        <li>[spring] Ate supper outside for the first time this year. It tasted better for it.</li>
+        <li>[spring] First supper outdoors this year. It tasted better for it.</li>
         <li>[summer] Fresh berries after supper. I could have eaten twice as many.</li>
-        <li>[summer] A cold supper on a hot evening: fruit, bread and cheese. Just right.</li>
+        <li>[summer] Bread and cold fruit on the step, once the heat had gone out of the day.</li>
         <li>[summer] Roast corn straight from the fire, with butter running down my chin.</li>
         <li>[fall] Harvest stew, thick enough to stand a spoon in.</li>
         <li>[fall] Baked squash and fresh bread tonight. The kitchen smelled of it all afternoon.</li>
         <li>[fall] We ate the first of the new potatoes, and someone made a little speech about them.</li>
-        <li>[winter] Hot stew after a day in the snow. I held the bowl just for the warmth.</li>
-        <li>[winter] The cook opened a jar of the summer preserves tonight. It tasted of summer.</li>
+        <li>[winter] Hot stew after a day in the cold. I held the bowl just for the warmth.</li>
+        <li>[winter] The cook opened a jar of the summer preserves tonight. It tasted of long evenings.</li>
         <li>[winter] Meat pie on a cold night. Nothing better.</li>
         <li>[clear] Ate on the step under a clear sky, with a full bowl and nowhere to be.</li>
-        <li>[highmood] Good food, and I was in the mood to enjoy every bite.</li>
+        <li>[highmood] Had seconds, then thirds, then sat back with my hands on my belly like an old king.</li>
       </plain>
       <warm>
         <li>Saved the best piece for the one who cooked it. They tried to give it back.</li>
@@ -628,7 +628,7 @@
         <li>Ate well. Wanted more. Got more.</li>
       </blunt>
       <cheerful>
-        <li>Best meal in weeks. I licked my fingers like a child.</li>
+        <li>Best meal in weeks! I asked the cook what was in it and got told to mind my own business.</li>
       </cheerful>
       <gloomy>
         <li>A good meal. I made it last, the way you do when you don't know when the next one is coming.</li>
@@ -644,19 +644,19 @@
     <pool>Council_Journal_Day_DeepTalk</pool>
     <lines>
       <plain>
-        <li>[spring] {OTHER_nameDef} and I talked through a whole morning of planting and hardly noticed the work.</li>
-        <li>[spring] Walked the fence line with {OTHER_nameDef} after supper. We talked about the people we used to be.</li>
+        <li>[spring] {OTHER_nameDef} told me about {OTHER_possessive} mother while we mended the fence. I'd never asked.</li>
+        <li>[spring] On the woodpile with {OTHER_nameDef} after supper, talking about the people we used to be.</li>
         <li>[spring] Sat out in the spring evening with {OTHER_nameDef} until the frogs drowned us out.</li>
         <li>[summer] {OTHER_nameDef} and I sat in the shade at noon and told each other things we'd never told anyone.</li>
         <li>[summer] Swam in the river with {OTHER_nameDef} and talked on the bank until dark.</li>
-        <li>[summer] {OTHER_nameDef} and I watched the sun go down and talked about where we'd go if we could go anywhere.</li>
+        <li>[summer] Watched the sun go down with {OTHER_nameDef}, talking about where we'd go if we could go anywhere.</li>
         <li>[fall] Husking corn with {OTHER_nameDef}, and somewhere in the middle of the pile we started talking about home.</li>
         <li>[fall] {OTHER_nameDef} told me about someone {OTHER_pronoun} lost long ago. We sat with that for a while.</li>
-        <li>[fall] Rainy evening by the fire with {OTHER_nameDef}. We talked until the fire was coals.</li>
-        <li>[winter] Snowed in with {OTHER_nameDef}. We talked about everything, then about nothing, then slept.</li>
+        <li>[fall] Rainy evening by the fire with {OTHER_nameDef}. We talked until it needed feeding, and then kept on.</li>
+        <li>[winter] Shut in by the cold with {OTHER_nameDef}. We talked about everything, then about nothing, then slept.</li>
         <li>[winter] {OTHER_nameDef} and I shared a blanket by the fire and talked about what we're afraid of.</li>
-        <li>[winter] Long night with {OTHER_nameDef}, talking about the ones we've buried.</li>
-        <li>[clear] Lay on the grass with {OTHER_nameDef} under a clear sky and talked about the stars and whatever is past them.</li>
+        <li>[winter] Long night with {OTHER_nameDef}, talking about the winters we nearly didn't get through.</li>
+        <li>[clear] Lay on the grass with {OTHER_nameDef} under a clear sky, naming the stars wrong on purpose.</li>
       </plain>
       <warm>
         <li>I told {OTHER_nameDef} I was glad {OTHER_pronoun} came here, and {OTHER_nameDef} said the same, and meant it.</li>
@@ -668,7 +668,7 @@
         <li>{OTHER_nameDef} and I stayed up talking so late we watched the sun come up.</li>
       </cheerful>
       <gloomy>
-        <li>{OTHER_nameDef} asked me what I'm afraid of, and I told the truth. I feel lighter and more exposed at once.</li>
+        <li>{OTHER_nameDef} asked me what I'm afraid of, and I told the truth. I feel lighter. I also feel like I've left a door open.</li>
       </gloomy>
       <cold>
         <li>{OTHER_nameDef} trusts me now. I'll be worthy of it, or careful with it.</li>
@@ -685,22 +685,22 @@
       <plain>
         <li>[good,spring] Wildflowers along every path this week. Somebody's been planting them on purpose.</li>
         <li>[good,summer] The garden is at its best, and so is the colony, for once.</li>
-        <li>[good,winter] Snow on the roofs and a clean, swept hall. The colony looked like a picture tonight.</li>
+        <li>[good,winter] Frost on the roofs and a clean, swept hall. The colony looked like a picture tonight.</li>
         <li>[bad,spring] The thaw has turned the yard to mud, and the mud has got everywhere.</li>
         <li>[bad,summer] Flies over the refuse heap. You can smell it from the kitchen door.</li>
-        <li>[bad,fall] Dead leaves in every corner of the hall, and nobody sweeping them.</li>
+        <li>[bad,fall] Dead leaves in every corner of the hall, and the broom nowhere to be found.</li>
       </plain>
       <warm>
         <li>[good] Someone has been sweeping the paths every morning. I'd like to know who, to thank them.</li>
         <li>[good] The new carving by the door makes people smile on their way in. I've watched.</li>
         <li>[good] Sat on the bench outside after supper and just looked at the place for a while.</li>
-        <li>[good] Someone put flowers in a cup on every table. It's a small thing, and it made the whole day.</li>
-        <li>[good] The colony looks cared for, and it's because everyone cares a bit. I'm proud of that.</li>
+        <li>[good] Someone's put a cup of water and two flowers on every sill. I counted them on my way to bed.</li>
+        <li>[good] The colony looks cared for. A bit of that is my doing, and I'm proud of my bit.</li>
         <li>[good] The hall is clean and bright tonight. I said so to the cook, who did most of it.</li>
         <li>[bad] Carried the rubble out of the hall myself, one basket at a time, before supper.</li>
         <li>[bad] The yard's a mess. I'll ask if a few of us can spend a morning on it together.</li>
         <li>[bad] It's grim around here lately. I put the one nice thing I own where everyone can see it.</li>
-        <li>[bad] The place is worn down, like the rest of us. We'll mend it when we're mended.</li>
+        <li>[bad] The place is worn down, like the rest of us. I patched the doorframe tonight, which is a start.</li>
         <li>[bad] Scrubbed a stain off the hall floor tonight. One down.</li>
         <li>[bad] The walls are bare and the floor is dirt. I keep thinking of ways to make it nicer.</li>
       </warm>
@@ -738,27 +738,27 @@
         <li>[good] The flowers by the door are out. I looked at them and thought of someone who isn't here.</li>
         <li>[good] Clean and pretty for once. I almost forgot what's out past the walls.</li>
         <li>[good] It's a nice place now. I'm not sure I've earned living in it.</li>
-        <li>[good] The garden's blooming. Everything here is, except me.</li>
-        <li>[bad] Grime and rubble in every corner, and I haven't the heart to clear it.</li>
-        <li>[bad] Ugly walls, ugly floors, ugly weather. It all runs together.</li>
+        <li>[good] The garden's blooming. I walked through it twice and still felt tired.</li>
+        <li>[bad] Grime and rubble in every corner. I stepped over the same pile four times today.</li>
+        <li>[bad] Ugly walls, ugly weather. It all runs together.</li>
         <li>[bad] There's a stain on the hall floor that's been there since the fight. We all step round it.</li>
-        <li>[bad] The place is falling apart a little at a time, the way places do.</li>
+        <li>[bad] Another board came loose in the hall today. The last one's still loose too.</li>
         <li>[bad] Mud and refuse. It's hard to feel like a person in a place like this.</li>
         <li>[bad] Everything here is gray, and getting grayer.</li>
       </gloomy>
       <cold>
         <li>[good] The colony's looks are improving. Our trading position will follow.</li>
         <li>[good] Clean halls, decent art. People behave better in pleasant rooms. I've seen it.</li>
-        <li>[good] The place looks prosperous. That's worth something, and it costs something.</li>
+        <li>[good] The place looks prosperous. Visitors will price us accordingly.</li>
         <li>[good] A good-looking colony keeps its people. That's the practical case for flowers.</li>
         <li>[good] The hall looks well kept. I know who keeps it, and I've made a note of it.</li>
         <li>[good] Pleasant surroundings today. I worked faster in them.</li>
         <li>[bad] The yard is a disgrace. Anyone visiting would think we're failing.</li>
-        <li>[bad] Filth slows people down and makes them sick. We have plenty of both.</li>
+        <li>[bad] Filth slows people down and makes them sick. I've seen both this week.</li>
         <li>[bad] Ugly rooms make for short tempers. I've counted three arguments this week.</li>
         <li>[bad] Rubble left where it fell. Somebody decided it wasn't their job.</li>
         <li>[bad] The colony looks neglected, and neglect invites trouble.</li>
-        <li>[bad] Dirt in the hall for days. A small thing that says a great deal.</li>
+        <li>[bad] Dirt in the hall for days. I know who walks through it most.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
@@ -768,7 +768,7 @@
     <pool>Council_Journal_Day_Bedroom</pool>
     <lines>
       <plain>
-        <li>[good,spring] Opened the window in my room for the first time this year. Slept with the smell of rain.</li>
+        <li>[good,spring] Opened the window in my room at last. Slept with the smell of rain.</li>
         <li>[good,fall] My room is warm and dry while the wind tries the shutters. I fell asleep listening to it fail.</li>
         <li>[bad,spring] Water came under the wall of my room in the night. My boots were floating.</li>
         <li>[bad,fall] Leaves blew in under my door again. My room's half outside.</li>
@@ -776,12 +776,12 @@
       <warm>
         <li>[good] My room is starting to feel like mine. I put the little carving from a friend on the shelf.</li>
         <li>[good] Woke up rested in my own room, with the light coming in just right.</li>
-        <li>[good] Someone fixed the draught in my room while I was out. I'll find out who.</li>
+        <li>[good] Someone fixed the draft in my room while I was out. I'll find out who.</li>
         <li>[good] Lay in bed a few minutes longer than I should have, just because I could.</li>
         <li>[good] My room's quiet and warm. I said a small thank-you before I slept.</li>
         <li>[good] Put a blanket from home on the bed. Now the room smells right.</li>
         <li>[bad] My room's cold and plain, but it's a start. I'll make something of it.</li>
-        <li>[bad] Slept badly in that room again. I won't complain, but I did notice.</li>
+        <li>[bad] The wall by my bed weeps when it rains. I've hung a cloth over it.</li>
         <li>[bad] The roof drips over my bed, so I moved the bed. Small room, small problem.</li>
         <li>[bad] It isn't much of a room. Someone offered to help me fix the walls, which helped already.</li>
         <li>[bad] My room's dark and damp. I left the door open to share the hall's warmth.</li>
@@ -797,7 +797,7 @@
         <li>[bad] Room's cold. Fix the wall.</li>
         <li>[bad] Damp bed again.</li>
         <li>[bad] My room's a box. A bad one.</li>
-        <li>[bad] Leaky roof. Over my head. Literally.</li>
+        <li>[bad] Leaky roof. Right over the pillow.</li>
         <li>[bad] Can't sleep in that room. Moving out.</li>
         <li>[bad] Bare walls, cold floor, no sleep.</li>
       </blunt>
@@ -809,18 +809,18 @@
         <li>[good] My room is my favorite place in the world, and I've been to a few places.</li>
         <li>[good] There's a bird that sits on my windowsill every morning. I think it likes my room too.</li>
         <li>[bad] My room's drafty, so I sleep in my coat. It's like camping, but with a roof.</li>
-        <li>[bad] Tiny room. I can touch both walls at once, which is a good trick for parties.</li>
+        <li>[bad] Tiny room. I can touch both walls from the bed, which is a good trick for parties.</li>
         <li>[bad] The roof leaks right over my bed, so now I have a water clock.</li>
         <li>[bad] My room is ugly, so I've given every crack in the wall a name.</li>
-        <li>[bad] Cold room, warm blankets. Two out of three isn't bad.</li>
+        <li>[bad] Cold room, warm blankets. I'm calling that a draw!</li>
         <li>[bad] My room smells of damp, so I filled it with pine branches. Now it smells of damp pine.</li>
       </cheerful>
       <gloomy>
-        <li>[good] Slept well. I'm not used to it, and I don't trust it yet.</li>
+        <li>[good] Slept the whole night through. Woke up not knowing where I was.</li>
         <li>[good] A good room. It's the one thing here I'd be sorry to lose.</li>
         <li>[good] Quiet night in my room. For a few hours I wasn't afraid of anything.</li>
-        <li>[good] My room is warm. Somehow that made me think of everyone who's cold tonight.</li>
-        <li>[good] Woke rested for once. I lay there waiting for something to go wrong.</li>
+        <li>[good] My room is warm. I lay there thinking of the ones out on watch.</li>
+        <li>[good] Woke rested for once, and lay there a long while before getting up to face it all.</li>
         <li>[good] The room is nice. I keep it tidy as if someone might come and take it.</li>
         <li>[bad] Cold room, damp blanket, long night.</li>
         <li>[bad] My room smells of mildew. So do I, now.</li>
@@ -833,7 +833,7 @@
         <li>[good] My room is in order. A person who sleeps well makes fewer mistakes.</li>
         <li>[good] The door locks and the walls hold heat. That's all I ask of a room.</li>
         <li>[good] Good rest in a good room. The council got this one right.</li>
-        <li>[good] I've arranged my room exactly to my liking. Nobody is to move anything.</li>
+        <li>[good] I've arranged my room exactly to my liking. Anyone who moves anything will hear from me.</li>
         <li>[good] My room is better than most. I'm aware of it, and so is everyone else.</li>
         <li>[good] Slept seven hours without a sound. A well-built room.</li>
         <li>[bad] My room is substandard. I've measured it against the others.</li>
