@@ -14,12 +14,12 @@
         <li>According to {X_nameDef}, out on the road we're known as "the place that lets them go." There are worse names.</li>
         <li>A traveler asked me if it's true we patch up raiders and send them home. I said yes. {X_nameDef} looked at me as if I'd said we feed wolves by hand.</li>
         <li>[trait:Kind] {X_nameDef} told me {X_pronoun} slept soundly here because {X_pronoun} knew we spare our prisoners. I was glad to hear it.</li>
-        <li>[afterraid] The fighting was two days ago, and {X_nameDef} has already heard that we tended their wounded.</li>
+        <li>[afterraid] The fighting's barely over, and {X_nameDef} has already heard that we tended their wounded.</li>
         <li>[old] I've lived in a lot of hard places. This is the first one people call soft. I don't mind it.</li>
         <li>[trait:Bloodlust|trait:Psychopath] {X_nameDef} called us merciful to my face, as if it were a compliment. I smiled and said nothing.</li>
       </plain>
       <warm>
-        <li>{X_nameDef} thanked me for the prisoners we let go last season, though {X_pronoun} never met any of them.</li>
+        <li>{X_nameDef} thanked me for the prisoners we've let go, though {X_pronoun} never met any of them.</li>
       </warm>
       <blunt>
         <li>Word is we don't kill prisoners. It's true. I don't see why it's news.</li>
@@ -110,7 +110,7 @@
         <li>{X_nameDef} offered to pay for a cup of water. A cup of water. I'm still annoyed.</li>
       </blunt>
       <cheerful>
-        <li>Showed {X_nameDef} we're not stingy at all! I sent {X_objective} off with a full waterskin and two apples.</li>
+        <li>Showed {X_nameDef} we're not stingy at all! I sent {X_objective} off with a full waterskin and the heel of a loaf.</li>
       </cheerful>
       <gloomy>
         <li>Maybe we have become misers. Maybe I only noticed today.</li>
@@ -130,7 +130,7 @@
         <li>An old traveler sang our evening song with us, and knew a verse we'd lost.</li>
         <li>[old] {X_nameDef} said we keep the old ways better than the towns do. I've been saying that for years.</li>
         <li>[teen] A traveler got teary over the way we say grace. I've never really listened to the words.</li>
-        <li>[evening] We sang the old song at supper, and the stranger at the end of the table knew every word.</li>
+        <li>[evening] The old traveler at supper said our blessing along with us, a word ahead the whole way.</li>
       </plain>
       <warm>
         <li>{X_nameDef} thanked us for keeping the old customs going. It meant a lot to {X_objective}, I could tell.</li>
@@ -162,7 +162,7 @@
         <li>[skill:Crafting|skill:Construction] {X_nameDef} asked how we built the new oven and wrote my answer down word for word.</li>
       </plain>
       <warm>
-        <li>I hope {X_nameDef} takes some of our ideas home. I drew {X_objective} a plan of the new oven to carry along.</li>
+        <li>I hope {X_nameDef} takes some of our ideas home. I scratched {X_objective} a plan of the drying racks on a strip of bark.</li>
       </warm>
       <blunt>
         <li>{X_nameDef} asked why we change everything. Because the old way was worse. Next question.</li>
@@ -220,7 +220,7 @@
         <li>[afterraid] After the last raid, every visitor gets looked over at the gate. {X_nameDef} understood. It wasn't pleasant for either of us.</li>
       </plain>
       <warm>
-        <li>I brought {X_nameDef} a cup of hot tea, since {X_pronoun} wasn't allowed any further in. {X_nameDef} thanked me three times.</li>
+        <li>I brought {X_nameDef} a cup of hot broth, since {X_pronoun} wasn't allowed any further in. {X_nameDef} thanked me three times.</li>
       </warm>
       <blunt>
         <li>Strangers stay where we put them. That's the rule. It's a good rule.</li>
