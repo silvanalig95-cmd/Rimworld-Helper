@@ -1784,8 +1784,8 @@ Those against it ({WHO}) will trust the council less and resent it more than usu
   <CC_Evt_ContestLostTitle>{A_nameDef} is beaten</CC_Evt_ContestLostTitle>
   <CC_Evt_ContestWon>{A_nameDef} beat {X_nameDef} at {2} while the colonists cheered.</CC_Evt_ContestWon>
   <CC_Evt_ContestWonStake>{A_nameDef} beat {X_nameDef} at {2} and won the colony {3} silver.</CC_Evt_ContestWonStake>
-  <CC_Evt_ContestLost>{X_nameDef} beat {A_nameDef} at {2}, fair and square. {A_nameDef} took it well, mostly, and learned a lot.</CC_Evt_ContestLost>
-  <CC_Evt_ContestLostStake>{X_nameDef} beat {A_nameDef} at {2}, fair and square, and walked off with the colony's {3} silver. {A_nameDef} learned a lot, at least.</CC_Evt_ContestLostStake>
+  <CC_Evt_ContestLost>{X_nameDef} beat {A_nameDef} at {2}, fair and square. {A_nameDef} shook hands on it, and came away knowing a good deal more than before.</CC_Evt_ContestLost>
+  <CC_Evt_ContestLostStake>{X_nameDef} beat {A_nameDef} at {2}, fair and square, and walked off with the colony's {3} silver. {A_nameDef} watched every move, and won't lose the same way twice.</CC_Evt_ContestLostStake>
   <CC_Evt_BeastSlainTitle>{0} is dead</CC_Evt_BeastSlainTitle>
   <CC_Evt_BeastSlain>{PAWN_nameDef} has brought down {0}, the great beast. The colonists will be telling this one for years.</CC_Evt_BeastSlain>
   <CC_Evt_BeastDied>{0}, the great beast, is dead.</CC_Evt_BeastDied>
@@ -1799,8 +1799,8 @@ Those against it ({WHO}) will trust the council less and resent it more than usu
   <CC_Evt_Found>Inside: {0}.</CC_Evt_Found>
   <CC_Cause_Tales>an evening of {0}'s tales.</CC_Cause_Tales>
   <CC_Cause_Mourners>mourners at {0}'s grave.</CC_Cause_Mourners>
-  <CC_Evt_Mourners>Mourners stopped at {0}'s grave to pay their respects, then moved on.</CC_Evt_Mourners>
-  <CC_Evt_MournersGift>Mourners stopped at {0}'s grave to pay their respects, and left {1} silver there for the colony that buried {0} properly.</CC_Evt_MournersGift>
+  <CC_Evt_Mourners>The mourners have stood at {0}'s grave and said what they came to say.</CC_Evt_Mourners>
+  <CC_Evt_MournersGift>The mourners stood a while at {0}'s grave, and left {1} silver beside it for the colony that buried {0} properly.</CC_Evt_MournersGift>
   <CC_SkillNoun_Shooting>shooting</CC_SkillNoun_Shooting>
   <CC_SkillNoun_Melee>fighting</CC_SkillNoun_Melee>
   <CC_SkillNoun_Construction>building</CC_SkillNoun_Construction>

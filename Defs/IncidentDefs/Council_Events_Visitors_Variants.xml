@@ -16,8 +16,8 @@
     <incident>Council_Evt_Storyteller</incident>
     <texts>
       <li>[tale,winter] {X_nameDef}, a storyteller of {FACTION}, came in out of the snow asking for a seat near the hearth, and offers a winter's worth of stories in exchange. One of them is about this colony: "{TALE}"</li>
-      <li>[notale,summer] {X_nameDef} of {FACTION}, a storyteller with a sunburned nose and a hat full of feathers, would like to spend the evening. There'll be stories in the yard after supper, while it's still light enough to see faces.</li>
-      <li>[notale,skill:Social] {X_nameDef} of {FACTION} tells stories for a living, and has already found {A_nameDef}, who tells them for free. The two of them have agreed to take turns tonight.</li>
+      <li>[notale,summer] With a sunburned nose and a hat full of feathers, {X_nameDef}, a storyteller of {FACTION}, would like to spend the evening. There'll be stories in the yard after supper, while it's still light enough to see faces.</li>
+      <li>[notale,skill:Social] {X_nameDef} of {FACTION} tells stories for a living, and has already found {A_nameDef}, who tells them for nothing. They've agreed to take turns tonight, and to argue about the endings.</li>
       <li>[tale,lowtech] A bard of {FACTION} named {X_nameDef} has come to the gate with a harp on {X_possessive} back. {X_nameDef} has made a song about the colony out of what people say on the road, and wants to try it on the people it's about: "{TALE}"</li>
       <li>[tale,!lowtech] {X_nameDef} of {FACTION} collects stories from the settlements and tells them at the next one. The colony is in {X_possessive} collection now, told like this: "{TALE}" {X_nameDef} would like supper and a bed, and to hear the colony's side.</li>
       <li>[notale,colony:Open] {X_nameDef}, a storyteller of {FACTION}, heard on the road that this colony welcomes travelers, and has come to see. {X_nameDef} will pay for supper and a bed in stories, as many as anyone wants to hear.</li>
@@ -30,8 +30,8 @@
     <incident>Council_Evt_Mourners</incident>
     <texts>
       <li>[winter] Travelers from {FACTION} are coming through the snow to stand at {DEAD}'s grave. They knew {DEAD} long before the colony did, and say they won't stay past the evening.</li>
-      <li>[spring] {FACTION} people are on their way with the first spring flowers for {DEAD}'s grave. They knew {DEAD} before the colony did, and would like a little while at the grave before they go.</li>
-      <li>[colony:Traditional] Kin of {DEAD} from {FACTION} are coming to honor the grave, and have asked whether the colony keeps the old rites for its dead. It does, mostly. They'll stay the afternoon.</li>
+      <li>[spring] People of {FACTION} are on their way with the first spring flowers for {DEAD}'s grave. They knew {DEAD} before the colony did, and would like a little while at the grave before they go.</li>
+      <li>[colony:Traditional] Kin of {DEAD} from {FACTION} are coming to honor the grave, and sent ahead to ask whether the colony keeps the old rites for its dead. It keeps the ones it can. They'll stay the afternoon.</li>
       <li>[!lowtech] A message came from {FACTION}: family of {DEAD} are on the road and would like to see the grave. They'll be quiet, and gone by evening.</li>
       <li>[lowtech] An old friend of {DEAD} is walking in from {FACTION}'s lands with a few others, carrying a jug of the drink {DEAD} liked. They want to pour some on the grave, the way it's done where {DEAD} came from.</li>
     </texts>
@@ -77,7 +77,7 @@
     <defName>Council_Var_Evt_Scholar</defName>
     <incident>Council_Evt_Scholar</incident>
     <texts>
-      <li>[medieval] {X_nameDef} of {FACTION}, a master from one of the great libraries, travels with a mule loaded with books and asks for a bed for the night. {A_nameDef} mentioned the colony's work on {TALE}, and {X_nameDef} has been leafing through {X_possessive} books for something on it ever since.</li>
+      <li>[medieval] A mule loaded with books stands at the gate. Its owner, {X_nameDef} of {FACTION}, a master from one of the great libraries, asks for a bed for the night. {A_nameDef} mentioned the colony's work on {TALE}, and {X_nameDef} has been leafing through {X_possessive} books for something on it ever since.</li>
       <li>[spacer] {X_nameDef} of {FACTION}, a research lead between postings, asks for a bunk for the night. On hearing about the colony's work on {TALE}, {X_nameDef} asks to see the notes, and then for a pencil.</li>
       <li>[winter] {X_nameDef}, a traveling scholar of {FACTION}, has been caught out by the snow and asks to wait out the night. {X_nameDef} noticed the colony's notes on {TALE} on the table and has offered to pay for the bed with a few ideas.</li>
       <li>[skill:Intellectual] {A_nameDef} has been stuck on {TALE} for days. Tonight a traveling scholar, {X_nameDef} of {FACTION}, asked for a bed, and {A_nameDef} has already pulled up a second chair at the desk.</li>
@@ -87,8 +87,8 @@
       <li>
         <option>0</option>
         <lines>
-          <li>[skill:Intellectual] {A_nameDef} and {X_nameDef} filled the table with notes and were still arguing about {TALE} when the cook came in at dawn.</li>
-          <li>[lowtech] {X_nameDef} talked {A_nameDef} through the old writings by candlelight. By morning the work on {TALE} had come a long way.</li>
+          <li>[skill:Intellectual] {A_nameDef} and {X_nameDef} filled the table with notes, and were still arguing about {TALE} long after the rest of the colony had gone to bed.</li>
+          <li>[lowtech] {X_nameDef} talked {A_nameDef} through the old writings by candlelight, and the work on {TALE} came a long way that night.</li>
         </lines>
       </li>
       <li>
@@ -119,7 +119,7 @@
       <li>
         <option>0</option>
         <lines>
-          <li>{X_nameDef} moved in that evening. {A_nameDef} set the first lesson for dawn, and {X_nameDef} was waiting before it.</li>
+          <li>{X_nameDef} moved in with one bag, and was at the first lesson before {A_nameDef} was.</li>
         </lines>
       </li>
       <li>
@@ -138,14 +138,14 @@
     <texts>
       <li>[winter] A stranger has been sheltering against the colony wall since the snow started, and asks to come in and stay. {X_nameDef} gives a name and nothing else. {A_nameDef} found {X_objective} first, half frozen, and thinks {X_nameDef} is running from something.</li>
       <li>[outlaw] {A_nameDef} knows the look of someone running from the law, having worn it once. {X_nameDef} has it. {X_nameDef} turned up at the gate this morning, asks to stay, and won't say where from.</li>
-      <li>[soldier] {X_nameDef} walked in this morning and asked to stay, standing straight the whole time like someone trained to it for years. {A_nameDef}, who soldiered once, noticed. {X_nameDef} won't talk about the past.</li>
+      <li>[soldier] {X_nameDef} walked in and asked to stay, standing straight the whole time like someone trained to it for years. {A_nameDef}, who soldiered once, noticed. {X_nameDef} won't talk about the past.</li>
       <li>[colony:Open] Word on the road is that this colony takes people in. {X_nameDef} heard it and has come to ask to stay. {X_nameDef} is polite and strong, and says almost nothing about where {X_pronoun} has been.</li>
     </texts>
     <outcomes>
       <li>
         <option>0</option>
         <lines>
-          <li>[winter] {X_nameDef} came in out of the cold and stayed. Whatever {X_nameDef} was running from hasn't followed, yet.</li>
+          <li>[winter] {X_nameDef} came in out of the cold and stayed. Whatever {X_nameDef} was running from hasn't followed {X_objective} here.</li>
         </lines>
       </li>
       <li>
@@ -189,7 +189,7 @@
       <li>
         <option>1</option>
         <lines>
-          <li>{A_nameDef} carried the {THING} out to the road and left it with a bit of food. It was still sitting there at dusk.</li>
+          <li>{A_nameDef} carried the {THING} out to the road and left it with a bit of food. It was still sitting there when {A_nameDef} looked back.</li>
         </lines>
       </li>
     </outcomes>

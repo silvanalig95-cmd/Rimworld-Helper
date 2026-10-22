@@ -25,9 +25,9 @@
         </titles>
         <texts>
           <li>[spring] The thaw loosened the hillside {PLACE}, and early this morning it came down. A long tongue of broken rock now lies across the low ground there, and that way is closed until someone digs through it.\n\nWhere the slope tore open, {A_nameDef} spotted a seam of {THING} in the fresh rock.</li>
-          <li>[summer|fall] Days of rain soaked the hills {PLACE} until a slope gave way in the night, with a roar that woke {A_nameDef} from a sound sleep. Broken rock now covers a stretch of ground there, and it will have to be mined away before anyone gets through.\n\nThe slide also opened up the hillside, and there's a seam of {THING} showing in the new rock face.</li>
+          <li>[summer|fall] Days of rain soaked the hills {PLACE} until a slope gave way in the night, with a roar that woke {A_nameDef}. The rubble will have to be mined away before anyone gets through.\n\nIn the torn hillside behind it, a seam of {THING} shows in the rock.</li>
           <li>[winter] Frost worked into the cracks of the hills {PLACE} all season, and last night a slab of hillside broke away. The rubble has closed off a stretch of ground there until someone mines a way through.\n\n{A_nameDef} went out to look and came back with news: the broken face shows a seam of {THING}.</li>
-          <li>A slope came down in the hills {PLACE} with a long, grinding rumble, well away from anyone. The heap of broken rock closes off the ground there until it's mined away.\n\nThe torn slope shows a seam of {THING}, and {A_nameDef} has already been out to chip at it.</li>
+          <li>Rocks came down in the hills {PLACE} with a grinding rumble that went on for a long time, well away from anyone. The rubble closes off that ground until it's mined away, and {A_nameDef} has already been out to chip at the seam of {THING} it uncovered.</li>
         </texts>
       </li>
     </modExtensions>
@@ -52,8 +52,8 @@
         </titles>
         <texts>
           <li>[lowtech] The ground shook for a moment in the night, and by morning there was steam rising from the land {PLACE}. A crack has opened there, and the water welling up out of it is warm enough to soak in.\n\n{A_nameDef} has already been out to put {A_possessive} feet in it.</li>
-          <li>[lowtech,winter] A tremor in the night opened a crack in the frozen ground {PLACE}. By dawn it was steaming, and the snow around it had melted back to bare mud. The water bubbling up is warm.\n\nPeople have been finding reasons to walk past it all day.</li>
-          <li>[!lowtech] A small tremor rattled the colony in the night. This morning {A_nameDef} found a new steam vent {PLACE}, hissing out of a fresh crack in the ground.\n\nIt's the kind of vent a geothermal generator is built over.</li>
+          <li>[lowtech,winter] A tremor in the night opened a crack in the frozen ground {PLACE}. By dawn it was steaming, and the snow around it had melted back to bare mud. The water bubbling up is warm.\n\nPeople have been finding reasons to go out that way all day.</li>
+          <li>[!lowtech] A small tremor rattled the colony in the night. Since then a new steam vent has been hissing out of a fresh crack in the ground {PLACE}, and {A_nameDef} has already paced out where a geothermal generator would go.</li>
           <li>[!lowtech] Steam has been rising from the ground {PLACE} since a tremor in the small hours: a new geyser, venting in long, hot breaths. A geothermal generator built over it would run day and night.</li>
         </texts>
         <effects>
@@ -88,16 +88,16 @@
           <li>[tribal] Struck by the sky</li>
         </titles>
         <texts>
-          <li>Lightning hit the old {BEAST} near the colony in the night's storm and split it down the middle. The tree is dead, but the heartwood has dried hard and dark, with a grain {A_nameDef} says {A_pronoun} has never seen in timber.\n\n{A_nameDef} wants to carve something from it. It would also cut into about {COUNT} wood of seasoned timber, or it could be left standing as it is.</li>
+          <li>Lightning hit the old {BEAST} near the colony in the night's storm and split it down the middle. The tree is dead, but the heartwood has dried hard and dark, with a grain {A_nameDef} says {A_pronoun} has never seen in timber.\n\n{A_nameDef} wants to carve from it. Cut up, it's about {COUNT} wood of seasoned timber. Left as it is, it's a landmark.</li>
           <li>[tribal] The storm's lightning came down on the old {BEAST} by the camp and split it from crown to root. The elders say a tree the sky has touched is not like other wood. Its heartwood has burned dark and hard.\n\n{A_nameDef} wants to carve something from it. Felled, it would give about {COUNT} wood, or it could be left to stand as a mark of the place.</li>
-          <li>[medieval] Lightning struck the old {BEAST} by the colony in last night's storm and split it in two. Folk say lightning-wood is lucky, and {A_nameDef} has been running {A_possessive} hands over the scorched heartwood all morning.\n\n{A_nameDef} wants to carve something from it. Felled, it would give about {COUNT} wood of seasoned timber, or it could be left standing.</li>
-          <li>[summer] A dry storm came over the colony last night, more lightning than rain, and one bolt split the old {BEAST} near the fields. The heartwood has baked hard and dark.\n\n{A_nameDef} wants to carve from it. It would also cut into about {COUNT} wood, or it could be left standing.</li>
+          <li>[medieval] Lightning struck the old {BEAST} by the colony in last night's storm and split it in two. Folk say lightning-wood is lucky, and {A_nameDef} has been running {A_possessive} hands over the scorched heartwood all morning.\n\n{A_nameDef} wants to carve from it. The woodcutters see about {COUNT} wood of seasoned timber, and some would leave it standing for the luck.</li>
+          <li>[summer] A dry storm last night, more lightning than rain. One bolt split the old {BEAST} near the fields and baked its heartwood hard and dark.\n\n{A_nameDef} wants to carve from it. Otherwise it's about {COUNT} wood, or a split tree left standing.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
           <li>
             <label>Let {A_nameDef} carve from the heartwood</label>
-            <outcome>{A_nameDef} spends the day splitting out the best of the heartwood, and comes back with it under one arm and an idea {A_pronoun} can't stop talking about. The rest of the tree is cut for wood.</outcome>
+            <outcome>{A_nameDef} splits out the best of the heartwood and comes back with it under one arm, and an idea {A_pronoun} can't stop talking about. The rest of the tree is cut for wood.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Inspiration"><inspiration>Inspired_Creativity</inspiration></li>
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><skill>Artistic</skill><xp>300</xp></li>
@@ -151,7 +151,7 @@
         </titles>
         <texts>
           <li>[fields] A wild swarm has settled in a hollow tree near the fields. On a warm afternoon the hum carries all the way to the houses.\n\n{A_nameDef}, the colony's best hand with animals, thinks {A_pronoun} could smoke them out and take the comb, if they don't take offense first. Left alone, they'll work the colony's fields all season.</li>
-          <li>[spring,fields] A swarm of wild bees came over the colony in a dark, buzzing cloud this morning and settled in a hollow tree by the fields. They've been carrying pollen back and forth ever since.\n\n{A_nameDef} thinks {A_pronoun} could smoke them out and take the comb. Left alone, they'll work the colony's crops until fall.</li>
+          <li>[spring,fields] A swarm of wild bees came over the colony in a dark, buzzing cloud and settled in a hollow tree by the fields. They've been carrying pollen back and forth ever since.\n\n{A_nameDef} has a smoky fire in mind, and a bucket for the comb. Left alone, the bees will work the crops until fall.</li>
           <li>[nofields] Wild bees have moved into a hollow tree near the colony, and the hollow is already heavy with comb. {A_nameDef} thinks {A_pronoun} could smoke them out and take it, if {A_pronoun} is careful.\n\nOr they could be left alone.</li>
         </texts>
         <defaultOption>1</defaultOption>
@@ -224,10 +224,10 @@
         <options>
           <li>
             <label>Let {A_nameDef} forge a {TALE} (the metal may crack)</label>
-            <outcome>{A_nameDef} works the star-iron for two days and quenches it at dusk.</outcome>
+            <outcome>{A_nameDef} works the star-iron at the forge and quenches it.</outcome>
             <riskChance>0.5</riskChance>
             <riskReplaces>true</riskReplaces>
-            <riskOutcome>{A_nameDef} works the star-iron for two days, but it cracks in the quench. What's left goes into the stores as ordinary steel.</riskOutcome>
+            <riskOutcome>{A_nameDef} works the star-iron, and it cracks in the quench with a sound like a dropped bell. What's left is ordinary steel.</riskOutcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_StarBlade</thought></li>
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><skill>Crafting</skill><xp>1000</xp></li>
@@ -239,7 +239,7 @@
           </li>
           <li>
             <label>Break it up for the metal</label>
-            <outcome>The fallen star is broken up and carried in: good steel for the colony's stores.</outcome>
+            <outcome>The fallen star is broken up where it fell. The pieces are good steel, and wait there to be hauled in.</outcome>
             <ways><toil>1</toil></ways>
           </li>
           <li>
@@ -256,8 +256,8 @@
       <li Class="ColonyCouncil.HappeningLivingText">
         <!-- Told instead of the first answer's outcome when the forging works ({ITEM}: how good the blade is). -->
         <outcomes>
-          <li>{A_nameDef} works the star-iron for two days and quenches it at dusk. The {TALE} that comes out of the water is {ITEM}, with a faint ripple in the steel that no ordinary blade has.</li>
-          <li>{A_nameDef} hardly sleeps for two days. The {TALE} that comes off the anvil is {ITEM}, dark gray, and rings for a long time when it's struck.</li>
+          <li>{A_nameDef} works the star-iron at the forge and quenches it. The {TALE} that comes out of the water is {ITEM}, with a faint ripple in the steel that no ordinary blade has.</li>
+          <li>{A_nameDef} doesn't stop to eat until it's done. The {TALE} that comes off the anvil is {ITEM}, dark gray, and rings for a long time when it's struck.</li>
         </outcomes>
       </li>
     </modExtensions>
@@ -286,8 +286,8 @@
         </titles>
         <texts>
           <li>[spring,wood] The river ran high with meltwater all week and has finally dropped back between its banks. It left driftwood stranded all along them, {COUNT} wood in all, from whole logs to bundles of branches.</li>
-          <li>[fall,wood] Days of autumn rain sent the river over its banks. Now the water has gone down again, and the banks are littered with driftwood: {COUNT} wood, for whoever hauls it in.</li>
-          <li>[snag] The river ran high and brown for days, and when it fell back it left driftwood all along its banks, {COUNT} wood in all. Caught in one of the piles was something else, which {A_nameDef} pulled out of the mud: {TALE}.</li>
+          <li>[fall,wood] Days of fall rain sent the river over its banks. Now the water has gone down again, and the banks are littered with driftwood: {COUNT} wood, for whoever hauls it in.</li>
+          <li>[snag] For days the river ran high and brown. When it fell back it left driftwood all along its banks, {COUNT} wood in all, and caught in one of the piles was something else, which {A_nameDef} pulled out of the mud: {TALE}.</li>
           <li>[wood] High water on the river carried down a winter's worth of fallen timber and left it on the banks when it dropped. {A_nameDef} counts {COUNT} wood there for the hauling.</li>
         </texts>
       </li>
@@ -319,16 +319,16 @@
         <texts>
           <li>[tribal] At first light an old {BEAST} walked out of the mist and stopped just short of the camp. It has stood there since, watching the colony, and it doesn't run when people come near. The old ones would have called it a sign.\n\n{A_nameDef} thinks it wants to be followed. It could also be left an offering, or hunted.</li>
           <li>[medieval] An old {BEAST} came out of the trees at dawn and stopped by the fields, looking at the colony. It didn't bolt when the dogs barked, and it hasn't moved since. People are calling it an omen, and arguing over what kind.\n\n{A_nameDef} wants to follow it when it goes. Some want to leave it an offering, and the hunters want it for the pot.</li>
-          <li>[winter] In the blue light before dawn, a lone {BEAST} came across the snow almost to the gate and stood still, breath steaming, looking at the houses. It's still there.\n\n{A_nameDef} wants to follow it when it moves. It could also be left an offering, or hunted.</li>
+          <li>[winter] In the blue light before dawn, a lone {BEAST} came across the snow almost to the gate and stood still, breath steaming, looking at the houses. It's still there.\n\n{A_nameDef} has {A_possessive} boots on, ready to follow it when it moves. Others talk of leaving it an offering, or of the cooking pot.</li>
         </texts>
         <defaultOption>3</defaultOption>
         <options>
           <li>
             <label>Let {A_nameDef} follow it (it may lose the trail)</label>
-            <outcome>{A_nameDef} follows the {BEAST} into the hills, and comes back at dusk with something to show for it.</outcome>
+            <outcome>{A_nameDef} follows the {BEAST} into the hills, and comes back with something to show for it.</outcome>
             <riskChance>0.45</riskChance>
             <riskReplaces>true</riskReplaces>
-            <riskOutcome>{A_nameDef} follows the {BEAST} into the hills, but loses it in a thicket around noon and walks home empty-handed.</riskOutcome>
+            <riskOutcome>{A_nameDef} follows the {BEAST} into the hills, but loses it in a thicket and walks home empty-handed.</riskOutcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_FollowedSign</thought></li>
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><skill>Animals</skill><xp>300</xp></li>
@@ -339,7 +339,7 @@
           </li>
           <li>
             <label>Leave it an offering</label>
-            <outcome>A share of the colony's food is set out past the fields. By evening the {BEAST} is gone, and so is the food.</outcome>
+            <outcome>A share of the colony's food is set out past the fields. When anyone looks again, the {BEAST} is gone, and so is the food.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_SignHonored</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
@@ -348,7 +348,7 @@
           </li>
           <li>
             <label>Hunt it</label>
-            <outcome>The {BEAST} is marked for the hunters. Not everyone is happy about it.</outcome>
+            <outcome>The {BEAST} is marked for the hunters. Some at the colony think it's bad luck, and say so.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Designate"><designation>Hunt</designation></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_SignHunted</thought><chance>0.5</chance><exceptTrait><li>Psychopath</li><li>Bloodlust</li></exceptTrait></li>
@@ -358,14 +358,14 @@
           </li>
           <li>
             <label>Let it go its way</label>
-            <outcome>The {BEAST} is left alone. Sometime after noon it turns and walks back the way it came.</outcome>
+            <outcome>The {BEAST} is left alone. Before long it turns and walks back the way it came.</outcome>
           </li>
         </options>
       </li>
       <li Class="ColonyCouncil.HappeningLivingText">
         <!-- Told instead of the first answer's outcome: where the animal led. -->
         <outcomes>
-          <li>[herbs] {A_nameDef} follows the {BEAST} into the hills until midday, when it vanishes into a hollow thick with healing herbs. {A_nameDef} comes home with an armful of them.</li>
+          <li>[herbs] {A_nameDef} follows the {BEAST} into the hills until it vanishes into a hollow thick with healing herbs. {A_nameDef} comes home with an armful of them.</li>
           <li>[offering] {A_nameDef} follows the {BEAST} until it stops beside an old ring of stones, half buried in moss, and walks off. Under the stones is a cache of offerings left long ago: {TALE}.</li>
         </outcomes>
       </li>
