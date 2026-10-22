@@ -5,7 +5,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RF_Meetings</defName>
     <thoughts><li>Council_MissedMeeting</li><li>Council_DecidedWithoutMe</li><li>Council_WokenForMeeting</li><li>Council_HeardAtMeetingLate</li></thoughts>
-    <fix>They missed the council meeting, or were woken for it. Hold meetings when they're home and awake; the Ambition page can put one off a day.</fix>
+    <fix>They missed the council meeting, had their idea turned down while they were away, or were woken for it. Hold meetings when they're home and awake; the Ambition page can put one off a day.</fix>
     <act>Hold meetings when they're home</act>
     <actionable>false</actionable>
     <keep>Getting to the council, even late, matters to them.</keep>

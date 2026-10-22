@@ -9,7 +9,7 @@
   <ColonyCouncil.MoodHintDef MayRequire="dubwise.dubsbadhygiene">
     <defName>Council_Mood_DBH_Clean</defName>
     <thoughts><li>HygieneLevel</li></thoughts>
-    <fix>They need to wash: somewhere to do it (a water tub, bathtub or shower) with water in it. Keep the water tubs filled and the baths supplied.</fix>
+    <fix>They need to wash: a water tub, basin, bathtub or shower with water in it, and the time to use it. Keep the tubs filled by hand or by rain, or plumb in a supply.</fix>
     <act>Give them somewhere to wash</act>
     <keep>Keep the water coming and the baths free, and they'll stay clean.</keep>
     <signal>Council_Adv_Washing</signal>
@@ -33,7 +33,7 @@
   <ColonyCouncil.MoodHintDef MayRequire="dubwise.dubsbadhygiene">
     <defName>Council_Mood_DBH_ColdWater</defName>
     <thoughts><li>ColdWater</li></thoughts>
-    <fix>There was no hot water. A campfire next to a bathtub heats it; with the Heating research, a log boiler and a hot water tank heat the pipes.</fix>
+    <fix>There was no hot water. A campfire or log boiler placed next to a bathtub heats it; once Heating is researched, a log boiler and hot water tanks heat the plumbing.</fix>
     <act>Heat the bath water</act>
   </ColonyCouncil.MoodHintDef>
 
@@ -48,7 +48,7 @@
   <ColonyCouncil.MoodHintDef MayRequire="dubwise.dubsbadhygiene">
     <defName>Council_Mood_DBH_Bathroom</defName>
     <thoughts><li>UsedPrivateBathroom</li></thoughts>
-    <fix>Their bathroom is a grim place. It is rated like a bedroom: clean it, lay a floor and give it something nice to look at.</fix>
+    <fix>Their bathroom is a grim place. It's rated like a bedroom: clean it, lay a floor and give it something nice to look at.</fix>
     <act>Clean and improve their bathroom</act>
     <keep>Their bathroom impresses them. Keep it clean.</keep>
   </ColonyCouncil.MoodHintDef>
