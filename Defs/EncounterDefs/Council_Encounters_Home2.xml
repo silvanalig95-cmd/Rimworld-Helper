@@ -17,12 +17,12 @@
     <cooldownDays>4</cooldownDays>
     <thought>Council_Nuisance_FilthyRoom</thought>
     <texts>
-      <li>{A_nameDef} sat down and stood straight back up again. Something on the bench was sticky.</li>
+      <li>{A_nameDef} sat down and stood straight back up again. The bench was sticky.</li>
       <li>{A_nameDef} picked a hair out of {A_possessive} food and stopped eating.</li>
       <li>{A_nameDef} stepped in something on the floor and decided not to look at what.</li>
       <li>{A_nameDef} wiped {A_possessive} hands on {A_possessive} shirt, and they came away dirtier.</li>
       <li>The floor was gritty under {A_nameDef}'s boots, and the corners were worse.</li>
-      <li>{A_nameDef} looked around the room and wondered when anyone had last swept it.</li>
+      <li>"When was this place last swept?" {A_nameDef} asked the room at large.</li>
       <li>[child] {A_nameDef} drew a face in the dust on the table.</li>
       <li>[summer|hot] Flies circled the grime in the corner while {A_nameDef} tried to work.</li>
     </texts>
@@ -39,13 +39,13 @@
     <texts>
       <li>{A_nameDef} worked indoors in a coat, breath showing in the air.</li>
       <li>{A_nameDef} kept stopping to blow on {A_possessive} fingers. The room never warmed up.</li>
-      <li>{A_nameDef} pulled a blanket round {A_possessive} shoulders and kept working.</li>
+      <li>Blanket round the shoulders, {A_nameDef} kept working.</li>
       <li>{A_nameDef} stamped {A_possessive} feet under the table to keep them from going numb.</li>
-      <li>[winter] Frost had crept along the inside of the wall, and {A_nameDef} could see {A_possessive} breath.</li>
+      <li>[winter] Frost had crept up the inside of the wall by {A_nameDef}'s bench.</li>
       <li>[night] {A_nameDef} couldn't get warm in there and went to bed early just to be under a blanket.</li>
       <li>[child] {A_nameDef} wore two hats indoors and still complained about the cold.</li>
       <li>{A_nameDef} sat as close to the fire as {A_pronoun} could get and still felt the draft on {A_possessive} back.</li>
-      <li>{A_nameDef} found the water in {A_possessive} cup had a skin of ice on it.</li>
+      <li>The water in {A_nameDef}'s cup was cold enough to hurt {A_possessive} teeth.</li>
     </texts>
   </ColonyCouncil.NuisanceDef>
 
@@ -61,7 +61,7 @@
       <li>{A_nameDef} propped the door open, but the room was still like an oven.</li>
       <li>Sweat ran into {A_nameDef}'s eyes while {A_pronoun} worked.</li>
       <li>{A_nameDef} fanned {A_possessive} face with whatever was to hand. The air didn't move.</li>
-      <li>{A_nameDef} drank a whole jug of water and was thirsty again within the hour.</li>
+      <li>A whole jug of water, and {A_nameDef} was thirsty again within the hour.</li>
       <li>The air in the room was thick and still, and {A_nameDef} kept stepping outside for a breath.</li>
       <li>{A_nameDef}'s shirt stuck to {A_possessive} back the whole afternoon.</li>
       <li>[night] {A_nameDef} lay on top of the blankets in the heat, waiting for the night to cool down.</li>
@@ -77,12 +77,12 @@
     <cooldownDays>5</cooldownDays>
     <thought>Council_Nuisance_AnimalInBed</thought>
     <texts>
-      <li>{A_nameDef} found {THING} curled up on {A_possessive} bed, and the blanket covered in hair.</li>
-      <li>Something under {A_nameDef}'s bed turned out to be a half-chewed bone. {THING} had been busy.</li>
-      <li>{A_nameDef} had to shove {THING} off the bed before {A_pronoun} could lie down.</li>
-      <li>{A_nameDef} shook a heap of hair out of {A_possessive} blanket and gave {THING} a look.</li>
-      <li>{A_nameDef} found muddy prints all over {A_possessive} pillow. {THING} looked innocent.</li>
-      <li>[child] {A_nameDef} let {THING} sleep on the bed again and got told off for it.</li>
+      <li>{A_nameDef}'s bed is more {THING} than bed these days.</li>
+      <li>There was a half-chewed bone under {A_nameDef}'s bed this morning, and it wasn't {A_nameDef}'s.</li>
+      <li>{A_nameDef} had to shove a warm, heavy animal off the bed before {A_pronoun} could lie down.</li>
+      <li>{A_nameDef}'s blanket smells of {THING} now, and so does the pillow.</li>
+      <li>Muddy prints all over {A_nameDef}'s pillow, and the animal asleep at the foot of the bed looking innocent.</li>
+      <li>[child] {A_nameDef} let the animal sleep on the bed again, and got told off for it.</li>
     </texts>
   </ColonyCouncil.NuisanceDef>
 
@@ -96,9 +96,9 @@
     <thought>Council_Nuisance_BuildingNoise</thought>
     <texts>
       <li>The hammering on the new {THING} went on next to {A_nameDef}'s room from dawn to dusk.</li>
-      <li>{A_nameDef} found sawdust in {A_possessive} bed from the work on the {THING}.</li>
+      <li>{A_nameDef} found grit and shavings in {A_possessive} bed from the work on the {THING}.</li>
       <li>{A_nameDef} tripped over a pile of materials left for the {THING} right outside {A_possessive} door.</li>
-      <li>{A_nameDef} asked how much longer the {THING} would take, and got a shrug.</li>
+      <li>"How much longer?" {A_nameDef} asked about the {THING}, and got a shrug.</li>
       <li>{A_nameDef} couldn't get any peace in {A_possessive} room for the banging next door.</li>
       <li>[morning] The builders started on the {THING} at first light, right by where {A_nameDef} sleeps.</li>
     </texts>
@@ -115,12 +115,12 @@
     <texts>
       <li>{A_nameDef} chased a wild {THING} out of the room with a broom.</li>
       <li>{A_nameDef} found that a wild {THING} had been at the food, and the droppings to prove it.</li>
-      <li>{A_nameDef} heard scratching behind the wall and found a wild {THING} nesting there.</li>
+      <li>The scratching behind {A_nameDef}'s wall was a wild {THING}, and it had built a nest.</li>
       <li>{A_nameDef} jumped when a wild {THING} shot out from under the table.</li>
       <li>[night] {A_nameDef} lay listening to a wild {THING} rustling about in the dark.</li>
       <li>[child] {A_nameDef} tried to keep the wild {THING} as a pet and was told no.</li>
       <li>{A_nameDef} set a trap for the wild {THING} and caught nothing but {A_possessive} own thumb.</li>
-      <li>{A_nameDef} found the bread nibbled through. A wild {THING} had got to it first.</li>
+      <li>The bread was nibbled through, and {A_nameDef} knew which wild {THING} to blame.</li>
     </texts>
   </ColonyCouncil.NuisanceDef>
 
@@ -137,7 +137,7 @@
       <li>{A_nameDef} shook the dirt out of {A_possessive} blanket again. The bare earth floor gets into everything.</li>
       <li>{A_nameDef} swept the earth floor of {A_possessive} room, which only moved the dirt around.</li>
       <li>{A_nameDef}'s boots left a trail of dust from {A_possessive} room to the table.</li>
-      <li>{A_nameDef} found a beetle in {A_possessive} bed, come up through the earth floor.</li>
+      <li>A beetle in {A_nameDef}'s bed, come up through the earth floor.</li>
       <li>[rain] Water seeped up through the earth floor in {A_nameDef}'s room and turned it to mud.</li>
       <li>[winter] The bare earth floor in {A_nameDef}'s room was cold as stone through {A_possessive} socks.</li>
       <li>{A_nameDef} dropped a button on the earth floor of {A_possessive} room and never found it again.</li>
