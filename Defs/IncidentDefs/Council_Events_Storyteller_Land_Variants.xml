@@ -31,10 +31,10 @@
     <defName>Council_Var_Evt_ChildFind</defName>
     <incident>Council_Evt_ChildFind</incident>
     <texts>
-      <li>[fossil] {A_nameDef} found a stone by the stream with a pattern of ridges on it, and after a lot of scrubbing it turned out to be a fern, older than anything. {A_nameDef} has been carrying it around in both hands.\n\n{B_nameDef} could tell {A_objective} what it is, if there's time.</li>
+      <li>[fossil] A stone by the stream with a pattern of ridges on it turned out, after a lot of scrubbing, to be a fern, older than anything. {A_nameDef} has been carrying it around in both hands.\n\n{B_nameDef} could tell {A_objective} what it is, if there's time.</li>
       <li>[coin,lowtech] {A_nameDef} turned up a coin in the vegetable patch, thin and bent, with a king on it whose name has worn away. {A_nameDef} wants to know which king, and where his kingdom went.\n\n{B_nameDef} might know.</li>
       <li>[coin,!lowtech] {A_nameDef} dug up an old coin by the gate, stamped with a ship and a date from before anyone's grandparents. {A_nameDef} keeps asking what the ship was.\n\n{B_nameDef} might be able to tell {A_objective}.</li>
-      <li>[skull] {A_nameDef} found a small animal's skull under the hedge, clean and white, with teeth that still meet. It has a name already, and {A_nameDef} wants to know what it was.\n\n{B_nameDef} has offered to look at it with {A_objective}.</li>
+      <li>[skull] Under the hedge, {A_nameDef} found a small animal's skull, clean and white, with teeth that still meet. It has a name already, and {A_nameDef} wants to know what it was.\n\n{B_nameDef} has offered to look at it with {A_objective}.</li>
       <li>[geode,winter] {A_nameDef} found a round stone under the snow by the stream and cracked it on the step. Inside it was hollow and full of crystal, like frost that doesn't melt.\n\n{B_nameDef} could explain how it got there.</li>
       <li>[machine] {A_nameDef} found a small machine in the scrap pile with a wheel that still turns, and has been turning it all day. {A_nameDef} wants to know what it did.\n\n{B_nameDef} could take it apart with {A_objective} and find out.</li>
     </texts>

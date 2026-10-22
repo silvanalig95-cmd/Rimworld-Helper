@@ -121,7 +121,7 @@
         <options>
           <li>
             <label>Pay for a survey ({COUNT} silver)</label>
-            <outcome>{X_nameDef} takes the silver and goes up into the hills. The map {X_pronoun} leaves the colony is a single sheet, with one place circled twice.</outcome>
+            <outcome>{X_nameDef} takes the silver and goes up into the hills. The map {X_pronoun} leaves the colony fits on one sheet, with one place circled twice.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what></li>
               <li Class="ColonyCouncil.DilemmaEffect_SendAway" />

@@ -59,7 +59,7 @@
           </li>
           <li>
             <label>Sell them the materials ({COUNT} silver)</label>
-            <outcome>The merchants pay {COUNT} silver for {TALE}, mend what they can by the roadside and go on.</outcome>
+            <outcome>The merchants pay {COUNT} silver for {TALE}, fix what they can by the roadside and go on.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>4</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_SendAway" />

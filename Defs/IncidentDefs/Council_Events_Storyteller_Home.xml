@@ -248,10 +248,10 @@
         <!-- {TALE}: who the colonist used to be ("a smuggler"). -->
         <texts>
           <li>[outlaw] Mending the lining of an old coat, {A_nameDef} found a map folded into the seam. {A_nameDef} drew it years ago, as {TALE}, to mark where a share of the takings was buried, and had forgotten it was there.\n\nThe place is a few days' travel from the colony. Whether the takings are still in the ground is another matter.</li>
-          <li>[soldier] In the bottom of an old kitbag, {A_nameDef} found a map from the war, with a supply cache marked on it in a hand {A_pronoun} doesn't recognize. The unit that buried it never came back for it, as far as {A_nameDef} knows.\n\nIt's a few days' travel from here.</li>
-          <li>[trader] {A_nameDef} found an old ledger at the bottom of a chest, and pressed between its pages a map from {A_possessive} trading days, with a stash of goods marked on it. It's a few days' travel, and {A_nameDef} never told anyone else where it was.</li>
+          <li>[soldier] In the bottom of an old kitbag, {A_nameDef} found a map from the war, with a supply cache marked on it in a hand {A_pronoun} doesn't recognize. The unit that buried it never came back for it, as far as {A_nameDef} knows.\n\nIt's several days' march from here.</li>
+          <li>[trader] {A_nameDef} found an old ledger at the bottom of a chest, and pressed between its pages a map from {A_possessive} trading days, with a stash of goods marked on it. It's some days from here, and {A_nameDef} never told anyone else where it was.</li>
           <li>[noble] Among the few things {A_nameDef} brought from {A_possessive} family's house is a book of old estate maps. Tucked in the back is one {A_nameDef} had never noticed: an old lodge a few days' travel from the colony, with something marked beneath its cellar.</li>
-          <li>[scholar] Sorting through old notes, {A_nameDef} found a map copied from an archive years ago, of a ruin {A_pronoun} always meant to visit. It's a few days' travel from the colony, and the archive's notes say something was left there.</li>
+          <li>[scholar] Sorting through old notes, {A_nameDef} found a map copied from an archive years ago, of a ruin {A_pronoun} always meant to visit. It lies a few days off, and the archive's notes say something was left there.</li>
           <li>A cross in faded ink, a few days' travel from the colony, is all the old map in {A_nameDef}'s things has to say. {A_nameDef} can't remember who gave it to {A_objective}, or why {A_pronoun} kept it.</li>
         </texts>
         <defaultOption>1</defaultOption>
@@ -310,7 +310,7 @@
         <options>
           <li>
             <label>Let {B_nameDef} study it with {A_objective}</label>
-            <outcome>{B_nameDef} and {A_nameDef} bend over it together, and {A_nameDef} comes away with a head full of questions and a page of drawings.</outcome>
+            <outcome>{B_nameDef} and {A_nameDef} bend over it side by side, and {A_nameDef} comes away with a head full of questions and a page of drawings.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><skill>Intellectual</skill><xp>500</xp></li>
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Intellectual</skill><xp>200</xp></li>

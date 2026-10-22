@@ -30,7 +30,7 @@
     <defName>Council_Var_Evt_SilentMonk</defName>
     <incident>Council_Evt_SilentMonk</incident>
     <texts>
-      <li>[troubled,winter] {X_nameDef} of {FACTION} asked by gestures to sit near the colony for a day or two, then sat down in the snow to wait for the answer. {A_nameDef}, who has been struggling lately, took {X_objective} a blanket and stayed out there a while.</li>
+      <li>[troubled,winter] By gestures, {X_nameDef} of {FACTION} asked to sit near the colony for a day or two, then sat down in the snow to wait for the answer. {A_nameDef}, who has been struggling lately, took {X_objective} a blanket and stayed out there a while.</li>
       <li>[industrial] {X_nameDef} of {FACTION} hands over a printed card at the gate: a vow of silence, three years kept, and a request for a place to sit near people for a day or two.\n\n{A_nameDef} read it and has gone back to read it again.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>
@@ -42,12 +42,12 @@
       <li>[lowtech] A woodcarver of limbs</li>
     </titles>
     <texts>
-      <li>[leg,lowtech] {X_nameDef} of {FACTION} carves peg legs from seasoned ash and fits them with leather straps, and noticed {A_nameDef} on {A_possessive} crutch across the yard. Before leaving, {X_nameDef} would like to fit {A_objective} with a {TALE}.\n\n{X_nameDef} wants {COUNT} silver for it, or {PLACE}, which would go into the next one.</li>
+      <li>[leg,lowtech] Seasoned ash and leather straps are all {X_nameDef} of {FACTION} needs to make a peg leg, and {X_nameDef} noticed {A_nameDef} on {A_possessive} crutch across the yard. Before leaving, {X_nameDef} would like to fit {A_objective} with a {TALE}.\n\n{X_nameDef} wants {COUNT} silver for it, or {PLACE}, which would go into the next one.</li>
       <li>[leg,!lowtech] {X_nameDef}, a limb-maker of {FACTION}, unfolds a workbench from the side of {X_possessive} cart and opens a box of knee joints, sorted by size. {X_nameDef} could have {A_nameDef} walking on a {TALE} by tonight.\n\n{COUNT} silver, or {PLACE}.</li>
       <li>[arm] {X_nameDef} of {FACTION} lost an arm once and makes them now. {X_nameDef} rolled up a sleeve to show {A_nameDef} {X_possessive} own, then offered to fit {A_objective} with a {TALE}.\n\nIt would cost {COUNT} silver, or {PLACE} in materials.</li>
       <li>[jaw] {X_nameDef}, who makes false teeth and jaws for {FACTION}, noticed {A_nameDef} soaking {A_possessive} bread at supper and has offered to fit {A_objective} with a {TALE}. {X_nameDef} asks {COUNT} silver, or {PLACE} in materials.</li>
-      <li>[foot] {X_nameDef} of {FACTION} has fitted feet to half the farmers in {FACTION}'s valleys and, once, to a very old horse. {X_nameDef} has offered {A_nameDef} a {TALE}, measured and fitted before dark.\n\nThe price is {COUNT} silver, or {PLACE} in materials.</li>
-      <li>[winter] {X_nameDef} of {FACTION} makes limbs, and is waiting out the cold here. Rather than sit idle, {X_nameDef} offers to fit {A_nameDef} with a {TALE} for {COUNT} silver, or {PLACE} in materials.</li>
+      <li>[foot] Half the farmers in {FACTION}'s valleys walk on feet {X_nameDef} made, and so, once, did a very old horse. {X_nameDef} has offered {A_nameDef} a {TALE}, measured and fitted before dark.\n\nThe price is {COUNT} silver, or {PLACE} in materials.</li>
+      <li>[winter] Waiting out the cold here, {X_nameDef}, a limb-maker of {FACTION}, would rather work than sit idle, and offers to fit {A_nameDef} with a {TALE} for {COUNT} silver, or {PLACE} in materials.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>
 

@@ -16,7 +16,7 @@
     <incident>Council_Evt_Storyteller</incident>
     <texts>
       <li>[tale,winter] {X_nameDef}, a storyteller of {FACTION}, came in out of the snow asking for a seat near the hearth, and offers a winter's worth of stories in exchange. One of them is about this colony: "{TALE}"</li>
-      <li>[notale,summer] {X_nameDef} of {FACTION}, a storyteller with a sunburned nose and a hat full of feathers, would like to spend the evening. There'll be stories in the yard after supper, while it's still light enough to see faces.</li>
+      <li>[notale,summer] With a sunburned nose and a hat full of feathers, {X_nameDef}, a storyteller of {FACTION}, would like to spend the evening. There'll be stories in the yard after supper, while it's still light enough to see faces.</li>
       <li>[notale,skill:Social] {X_nameDef} of {FACTION} tells stories for a living, and has already found {A_nameDef}, who tells them for nothing. They've agreed to take turns tonight, and to argue about the endings.</li>
       <li>[tale,lowtech] A bard of {FACTION} named {X_nameDef} has come to the gate with a harp on {X_possessive} back. {X_nameDef} has made a song about the colony out of what people say on the road, and wants to try it on the people it's about: "{TALE}"</li>
       <li>[tale,!lowtech] {X_nameDef} of {FACTION} collects stories from the settlements and tells them at the next one. The colony is in {X_possessive} collection now, told like this: "{TALE}" {X_nameDef} would like supper and a bed, and to hear the colony's side.</li>
@@ -77,7 +77,7 @@
     <defName>Council_Var_Evt_Scholar</defName>
     <incident>Council_Evt_Scholar</incident>
     <texts>
-      <li>[medieval] {X_nameDef} of {FACTION}, a master from one of the great libraries, travels with a mule loaded with books and asks for a bed for the night. {A_nameDef} mentioned the colony's work on {TALE}, and {X_nameDef} has been leafing through {X_possessive} books for something on it ever since.</li>
+      <li>[medieval] A mule loaded with books stands at the gate. Its owner, {X_nameDef} of {FACTION}, a master from one of the great libraries, asks for a bed for the night. {A_nameDef} mentioned the colony's work on {TALE}, and {X_nameDef} has been leafing through {X_possessive} books for something on it ever since.</li>
       <li>[spacer] {X_nameDef} of {FACTION}, a research lead between postings, asks for a bunk for the night. On hearing about the colony's work on {TALE}, {X_nameDef} asks to see the notes, and then for a pencil.</li>
       <li>[winter] {X_nameDef}, a traveling scholar of {FACTION}, has been caught out by the snow and asks to wait out the night. {X_nameDef} noticed the colony's notes on {TALE} on the table and has offered to pay for the bed with a few ideas.</li>
       <li>[skill:Intellectual] {A_nameDef} has been stuck on {TALE} for days. Tonight a traveling scholar, {X_nameDef} of {FACTION}, asked for a bed, and {A_nameDef} has already pulled up a second chair at the desk.</li>

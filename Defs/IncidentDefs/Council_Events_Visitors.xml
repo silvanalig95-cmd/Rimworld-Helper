@@ -26,10 +26,10 @@
           <li>[their:friend,tale] There's a song among {FACTION} about {FRIEND_nameDef}, and {X_nameDef}, the bard who sings it, has come to meet the real one. {X_nameDef} will pay for supper and a bed in songs, and knows a story about the colony too, the way it's told on the road: "{TALE}"</li>
           <li>[lowtech,tale] Bards pay for their supper in songs, and {X_nameDef} of {FACTION} has brought plenty, including one about this colony. It goes like this, more or less: "{TALE}"</li>
           <li>[lowtech,notale] {X_nameDef}, a wandering bard of {FACTION}, has come to spend an evening at the colony, trading tales and songs for supper and a bed, as bards always have.</li>
-          <li>[!lowtech,tale] {X_nameDef} of {FACTION}, a traveling storyteller with a battered instrument and a hundred stories, is stopping for the night. {X_nameDef} already knows a story about this colony, and tells it like this: "{TALE}"</li>
-          <li>[notale] {X_nameDef} of {FACTION} has come to the colony with a pack full of songs and a head full of tall tales. {X_nameDef} would like a meal and a place to sleep, and will pay in stories tonight.</li>
+          <li>[!lowtech,tale] There's a story about this colony going round on the road, and {X_nameDef} of {FACTION}, a traveling storyteller with a battered instrument, has carried it here for the night. It goes like this: "{TALE}"</li>
+          <li>[notale] A pack full of songs and a head full of tall tales came up the road with {X_nameDef} of {FACTION}, who would like a meal and a place to sleep, and will pay in stories tonight.</li>
           <li>[tale] {X_nameDef} of {FACTION}, who tells stories for a living, has come to spend the night. {X_nameDef} has a new favorite, picked up on the road, about this very colony: "{TALE}" Tonight, {X_nameDef} promises, everyone gets the long version.</li>
-          <li>[!lowtech,notale] {X_nameDef} of {FACTION} tunes a dented instrument by the door while asking for a bed. There'll be stories after supper, {X_nameDef} says, for anyone who stays up.</li>
+          <li>[!lowtech,notale] Tuning a dented instrument by the door, {X_nameDef} of {FACTION} asks for a bed. There'll be stories after supper, {X_nameDef} says, for anyone who stays up.</li>
         </texts>
         <lines>
           <li>...and the dragon said...</li>
