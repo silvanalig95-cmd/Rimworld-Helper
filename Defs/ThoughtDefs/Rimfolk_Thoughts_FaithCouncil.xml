@@ -12,7 +12,7 @@
     <defName>Council_Faith_GoodEvening</defName>
     <durationDays>2</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>an ideoligion evening</label><description>We sat and listened while an ideoligion was spoken for. Whatever I believe, it was good to sit there with the others.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>an ideoligion evening</label><description>An evening of someone's faith, spoken out loud for anyone who'd come. I sat with the others and listened.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt><joy>0.12</joy><feelings><li>Fellowship</li></feelings></li></modExtensions>
   </ThoughtDef>
 
@@ -27,7 +27,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Granted_LearnFaith</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>heard another ideoligion out</label><description>I asked to hear about another ideoligion, and I was given an evening for it. I have a lot to think about.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>heard another ideoligion out</label><description>I spent an evening hearing another ideoligion out, with every question answered. I lay awake afterward going over it.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.HeartTags"><feelings><li>Curiosity</li></feelings><weight>0.4</weight></li></modExtensions>
   </ThoughtDef>
 

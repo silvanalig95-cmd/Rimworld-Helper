@@ -11,7 +11,7 @@
     <defName>Rimfolk_Faith_PreachedAt</defName>
     <durationDays>4</durationDays>
     <stackLimitForSameOtherPawn>2</stackLimitForSameOtherPawn>
-    <stages><li><label>preached at me</label><description>They pressed their faith on me. Where I come from, a person's faith is their own business.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>-5</baseOpinionOffset></li></stages>
+    <stages><li><label>preached at me</label><description>They pressed their faith on me halfway through a perfectly good talk. Mine teaches that you don't do that to people.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>-5</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
 </Defs>
