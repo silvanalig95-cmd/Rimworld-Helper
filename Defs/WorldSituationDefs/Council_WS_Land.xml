@@ -98,7 +98,7 @@
           <li>{X_nameDef} moves on</li>
         </titles>
         <texts>
-          <li>{X_nameDef} has left the region, and the crowds that followed the healer from town to town have gone home. The songs will last longer than the visit did.</li>
+          <li>{X_nameDef} has left the region, and the crowds that followed the healer from town to town have gone home. In the towns they are already arguing over which of the cures really happened.</li>
         </texts>
         <chronicle>{X_nameDef}, the famous healer, passed through the region.</chronicle>
       </li>
@@ -206,7 +206,7 @@
           <li>The herds pass</li>
         </titles>
         <texts>
-          <li>[allowed] The herds have passed, and the hunters of {FACTION} have gone home with full packs. They sent their thanks on the way, and a promise to remember the welcome.</li>
+          <li>[allowed] The herds have passed, and the hunters of {FACTION} have gone home with full packs. Their horn-blower sounded three long notes as they passed the colony, which among hunters means thanks.</li>
           <li>[!allowed] The herds have passed, and the land around the colony is quiet again: trampled in places, greener in others. They'll be back in a few years.</li>
         </texts>
         <chronicle>The great herds passed through the region.</chronicle>

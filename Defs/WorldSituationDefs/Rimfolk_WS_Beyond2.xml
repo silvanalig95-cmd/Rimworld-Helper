@@ -707,7 +707,7 @@
         </titles>
         <texts>
           <li>The exiles of {PLACE} have scattered: some to far towns, some to cousins, and some to places nobody knows. {FACTION} have stopped saying their names.</li>
-          <li>[harboured] The exiles of {PLACE} are still exiles, and some of them are the colony's people now. {FACTION} have not forgotten that, and the exiles have not forgotten either.</li>
+          <li>[harboured] The exiles of {PLACE} are still exiles, and some of them are the colony's people now. {FACTION} have not forgotten it. One of the exiles has planted a row of beans by the wall, from seed brought out of {PLACE}.</li>
           <li>[refused] The exiles of {PLACE} found shelter elsewhere, or didn't. The colony's gate was shut to them, and {FACTION} counted that in its favor.</li>
         </texts>
         <chronicle>The exiles of {PLACE} went their ways.</chronicle>

@@ -171,7 +171,7 @@
           </li>
           <li>
             <label>Feed them and send them on</label>
-            <outcome>They eat, sleep a night and go on toward {ITEM} in the morning.</outcome>
+            <outcome>They sleep a night in the barn and set off for {ITEM} at first light.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>food for the family from {PLACE}</label><what>rawfood</what><count>15</count><to>Gate</to></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>3</amount></li>
@@ -350,9 +350,9 @@
           <li>The trading season ends</li>
         </titles>
         <texts>
-          <li>[toll] The trading season is winding down, and the caravans are going home. The colony's toll jar did well. The merchants have been telling every town on the road about it, and not kindly.</li>
-          <li>[reststop] The trading season is winding down. The merchants who warmed themselves at the colony's fire will be back next year, and they will bring friends.</li>
-          <li>[!toll,!reststop] The trading season is winding down, and the caravans are going home with lighter wagons and heavier purses. The roads will be quieter for a while.</li>
+          <li>[toll] The caravans are going home for the season, and the colony's toll jar did well out of them. The merchants have been telling every town on the road about it, and not kindly.</li>
+          <li>[reststop] The last caravans of the season stopped at the colony's shelter on their way home and left the trough full. The merchants who warmed themselves at that fire will be back next year, and they will bring friends.</li>
+          <li>[!toll,!reststop] The caravans are going home with lighter wagons and heavier purses, and the roads will be quieter for a while.</li>
         </texts>
         <chronicle>A busy trading season came to an end.</chronicle>
         <effects>
@@ -727,9 +727,9 @@
           <li>The rush moves on</li>
         </titles>
         <texts>
-          <li>[share] The rush has moved on to the next valley. The prospectors who worked the colony's creeks left the colony's share at the gate on their way out: {COUNT} silver, counted twice in front of witnesses.</li>
+          <li>[share] On their way over the ridge to the next valley, the prospectors who worked the colony's creeks stopped at the gate with the colony's share: {COUNT} silver, counted twice in front of witnesses.</li>
           <li>[fee] The rush has moved on to the next valley, and the prospectors with it. The colony was paid up front. Whether they found more than that, they didn't say.</li>
-          <li>[!share,!fee] The rush has moved on to the next valley. The colony's hills are quiet again, and still full of whatever was or wasn't in them.</li>
+          <li>[!share,!fee] The colony's hills are quiet again, and still full of whatever was or wasn't in them. The rush has gone over the ridge to the next valley.</li>
         </texts>
         <chronicle>The silver rush moved on.</chronicle>
       </li>

@@ -280,7 +280,7 @@
         </effects>
         <message>true</message>
         <texts>
-          <li>A band of {FACTION} came along the road at a walk this afternoon, looking hard at the walls. The colony is keeping its gate shut and its lamps low, and the night watch has been doubled.</li>
+          <li>A band of {FACTION} came along the road slowly this afternoon, looking hard at the walls. The colony is keeping its gate shut and its lamps low, and the night watch has been doubled.</li>
           <li>[warned] {FACTION}'s warriors went by slowly today, looking hard at the walls. Somewhere along the road the colony's warning is being cursed, and the colony knows it.</li>
         </texts>
       </li>

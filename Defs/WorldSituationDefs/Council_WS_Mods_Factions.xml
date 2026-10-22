@@ -139,7 +139,7 @@
           <li>The levy is raised</li>
         </titles>
         <texts>
-          <li>The Empire's campaign has its silver and has moved on. Life around {PLACE} goes back to what it was.</li>
+          <li>The Empire's campaign has its silver and has moved on. At {PLACE} the levy notices have come down, and a notice for a horse fair has gone up in their place.</li>
         </texts>
         <chronicle>The Empire raised a levy around {PLACE}.</chronicle>
       </li>
@@ -417,7 +417,7 @@
       <li>A strike near {PLACE}</li>
     </titles>
     <texts>
-      <li>Somebody from {PLACE} found gold in a creek bed last month, and now every settler with a pan and a mule is heading for the hills. {FACTION}'s mayor has given up trying to keep the town's blacksmith at his forge.\n\nProspectors are on every road. Most of them will find nothing. All of them will need beans, rope and somewhere to sleep.</li>
+      <li>Somebody from {PLACE} found gold in a creek bed last month, and now every settler with a pan and a mule is heading for the hills. {FACTION}'s mayor has given up trying to keep the town's blacksmith at his forge.\n\nProspectors are on every road, and every one of them needs beans, rope and somewhere to sleep.</li>
     </texts>
     <summaries>
       <li>Travelers and traders come by more often. Prospectors may ask to try their luck on the colony's land.</li>
