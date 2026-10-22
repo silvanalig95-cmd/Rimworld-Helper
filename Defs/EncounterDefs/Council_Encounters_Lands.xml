@@ -93,7 +93,7 @@
     <weight>1.2</weight>
     <cooldownDays>8</cooldownDays>
     <texts>
-      <li>{A_nameDef} followed a line of fresh tracks over the rise, and at the end of them found {X_indefinite} digging through the crust for whatever grows beneath.</li>
+      <li>Fresh tracks led over the rise, and at the end of them {A_nameDef} found {X_indefinite} digging through the crust for whatever grows beneath.</li>
       <li>[skill:Animals] {A_nameDef} read the tracks in the snow like a page, and half a mile on found {X_indefinite} exactly where {A_pronoun} had said it would be.</li>
       <li>[child] {A_nameDef} followed the little holes in the snow all the way to the trees, found {X_indefinite} at the end of them, and ran back with frost on {A_possessive} eyelashes to tell the grown-ups.</li>
     </texts>
@@ -271,7 +271,7 @@
     <cooldownDays>8</cooldownDays>
     <texts>
       <li>{X_nameDef} of {FACTION} came over the high pass to get here, and told {A_nameDef} about the cold at the top, the kind that gets into your teeth.</li>
-      <li>{X_nameDef} drew the mountains in the dirt for {A_nameDef} with a stick, every valley and saddle, and marked where the snow closes the road in winter and where the rockfalls come in spring.</li>
+      <li>With a stick in the dirt, {X_nameDef} drew {A_nameDef} the mountains, every valley and saddle, and marked where the snow closes the road in winter and where the rockfalls come in spring.</li>
       <li>[winter] {X_nameDef} said the high pass closed behind {FACTION}'s party the day after they came through it, and they'll be going the long way round. {A_nameDef} heard all about the long way round.</li>
     </texts>
     <effects>
@@ -446,7 +446,7 @@
     <cooldownDays>8</cooldownDays>
     <texts>
       <li>{X_nameDef} came in from the cold blue to the lips, and {A_nameDef} put a hot cup in {X_possessive} hands before {X_pronoun} could say a word. They sat by the stove until the color came back.</li>
-      <li>{A_nameDef} found {X_nameDef} of {FACTION} trying to thaw {X_possessive} fingers on a lamp, and brought {X_objective} a bowl of something hot and a dry pair of socks.</li>
+      <li>Trying to thaw {X_possessive} fingers on a lamp, {X_nameDef} of {FACTION} got a bowl of something hot from {A_nameDef}, and a dry pair of socks.</li>
       <li>[snow] {X_nameDef} came through the gate with snow piled on {X_possessive} hood and shoulders, and {A_nameDef} brushed it off, sat {X_objective} by the stove and fetched the kettle.</li>
     </texts>
     <effects>

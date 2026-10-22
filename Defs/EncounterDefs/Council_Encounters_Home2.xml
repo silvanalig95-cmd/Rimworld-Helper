@@ -113,8 +113,8 @@
     <cooldownDays>4</cooldownDays>
     <thought>Council_Nuisance_Vermin</thought>
     <texts>
-      <li>{A_nameDef} chased a wild {THING} out of the room with a broom.</li>
-      <li>{A_nameDef} found that a wild {THING} had been at the food, and the droppings to prove it.</li>
+      <li>Broom in hand, {A_nameDef} chased a wild {THING} out of the room.</li>
+      <li>A wild {THING} had been at the food, and {A_nameDef} found the droppings to prove it.</li>
       <li>The scratching behind {A_nameDef}'s wall was a wild {THING}, and it had built a nest.</li>
       <li>{A_nameDef} jumped when a wild {THING} shot out from under the table.</li>
       <li>[night] {A_nameDef} lay listening to a wild {THING} rustling about in the dark.</li>
@@ -134,7 +134,7 @@
     <cooldownDays>6</cooldownDays>
     <thought>Council_Nuisance_DirtFloor</thought>
     <texts>
-      <li>{A_nameDef} shook the dirt out of {A_possessive} blanket again. The bare earth floor gets into everything.</li>
+      <li>Dirt in the blanket again. The bare earth floor in {A_nameDef}'s room gets into everything.</li>
       <li>{A_nameDef} swept the earth floor of {A_possessive} room, which only moved the dirt around.</li>
       <li>{A_nameDef}'s boots left a trail of dust from {A_possessive} room to the table.</li>
       <li>A beetle in {A_nameDef}'s bed, come up through the earth floor.</li>

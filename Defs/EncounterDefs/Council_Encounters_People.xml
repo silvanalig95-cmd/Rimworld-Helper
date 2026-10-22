@@ -162,7 +162,7 @@
       <li>"Kind eyes, for someone carrying that many knives," {X_nameDef} told {A_nameDef}, who didn't know where to look.</li>
       <li>{A_nameDef} offered to show {X_nameDef} the view from the wall, and they were up there until well after dark.</li>
       <li>{X_nameDef} laughed at every one of {A_nameDef}'s jokes, even the old one about the boomalope.</li>
-      <li>{A_nameDef} and {X_nameDef} shared a bench and a jug of beer, and sat closer than the bench required. The caravan leaves tomorrow.</li>
+      <li>{A_nameDef} and {X_nameDef} shared a bench and a jug of beer, and sat closer than the bench required. Neither of them mentioned that {X_nameDef} would be leaving soon.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_Flirted</thought></li>
@@ -220,7 +220,7 @@
     <stranger><kind>Visitor</kind><adult>true</adult></stranger>
     <colonist><anyTrait><li>Kind</li></anyTrait></colonist>
     <texts>
-      <li>{A_nameDef} carried water for {X_nameDef}'s lame pack animal without being asked. Later, {X_nameDef} pressed some coins and a sprig of healroot into {A_possessive} hand and wouldn't take them back.</li>
+      <li>{A_nameDef} carried {X_nameDef}'s heavy pack up from the gate without being asked. Later, {X_nameDef} pressed some coins and a sprig of healroot into {A_possessive} hand and wouldn't take them back.</li>
       <li>Last night {A_nameDef} gave up the warm seat for {X_nameDef}. This morning {X_nameDef} handed {A_objective} a twist of cloth with silver and healing herbs inside.</li>
       <li>{A_nameDef} mended a torn strap on {X_nameDef}'s pack, and was paid in silver and healroot whether {A_pronoun} liked it or not.</li>
     </texts>

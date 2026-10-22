@@ -39,7 +39,7 @@
       <li>{A_nameDef} worked on in the rain, shirt stuck flat to {A_possessive} back.</li>
       <li>Rain ran off {A_nameDef}'s hair and down inside {A_possessive} collar. A coat would have helped, if anyone had made {A_objective} one.</li>
       <li>{A_nameDef} wrung out {A_possessive} sleeves at the end of the job and got about a cup of water from each.</li>
-      <li>{A_nameDef} squelched with every step and gave up trying to stay dry.</li>
+      <li>Every step squelched. {A_nameDef} gave up trying to stay dry.</li>
       <li>{A_nameDef} watched someone go by in a good coat and kept working in the downpour.</li>
       <li>[child] {A_nameDef} came in dripping and stood at the hearth until the floor around {A_objective} was a puddle.</li>
     </texts>

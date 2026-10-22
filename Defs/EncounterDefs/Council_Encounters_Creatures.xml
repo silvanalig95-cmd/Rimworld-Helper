@@ -196,7 +196,7 @@
     <texts>
       <li>{A_nameDef} chased {X_definite} round the yard all afternoon, then {X_definite} chased {A_nameDef}, and at sundown the two of them lay flat in the dirt.</li>
       <li>{A_nameDef} tied a ribbon round {X_definite}'s neck and declared {X_objective} a knight of the colony. By supper the knight had eaten the ribbon.</li>
-      <li>{A_nameDef} built {X_definite} a house out of sticks and an old blanket, and spent the evening trying to coax {X_objective} inside.</li>
+      <li>A house of sticks and an old blanket, built by {A_nameDef} for {X_definite}, who spent the evening refusing to go inside.</li>
       <li>All afternoon {A_nameDef} held up fingers in front of {X_definite}, trying to teach {X_objective} to count.</li>
     </texts>
     <effects>
@@ -339,9 +339,9 @@
     <weight>0.7</weight>
     <cooldownDays>12</cooldownDays>
     <texts>
-      <li>A traveler reached out to clap {A_nameDef} on the shoulder and found {X_definite} in the way, standing very still and watching the hand.</li>
+      <li>The last traveler who reached out to clap {A_nameDef} on the shoulder found {X_definite} in the way, standing very still and watching the hand.</li>
       <li>{A_nameDef} never asked {X_definite} to guard {A_objective}. But whenever a stranger comes near, there {X_pronoun} is, standing just in front of {A_nameDef}, as if by accident.</li>
-      <li>Words got sharp between {A_nameDef} and an outsider at the gate, and before the second sentence {X_definite} was planted between them, silent, eyes fixed on the stranger.</li>
+      <li>The last time words got sharp between {A_nameDef} and an outsider at the gate, {X_definite} was planted between them before the second sentence, silent, eyes fixed on the stranger.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncC_Guarded</thought></li>
@@ -387,7 +387,7 @@
     <texts>
       <li>Work stopped all over the colony when {X_indefinite} crossed the far meadow, slow and enormous. {A_nameDef} had seen {X_objective} first and called the others out to look.</li>
       <li>{A_nameDef} looked up from {A_possessive} work and saw {X_indefinite} among the trees, looking back. Neither of them moved until {X_pronoun} turned and walked off.</li>
-      <li>{A_nameDef} watched {X_definite} drink from the stream for most of the morning and got nothing else done.</li>
+      <li>{A_nameDef} lost most of the morning to watching {X_definite} drink from the stream.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncC_GreatBeast</thought></li>
@@ -590,7 +590,7 @@
     <cooldownDays>8</cooldownDays>
     <texts>
       <li>{A_nameDef} has been leaving crusts on the same flat stone every day. Today {X_indefinite} was already waiting beside it, looking pointedly at {A_possessive} pocket.</li>
-      <li>{A_nameDef} crouched with a handful of grain held out until {A_possessive} knees ached, and at last {X_indefinite} ate from {A_possessive} palm, then bolted.</li>
+      <li>Grain held out on a flat palm until {A_nameDef}'s knees ached, and at last {X_indefinite} ate from it, then bolted.</li>
       <li>Each noon this week {A_nameDef} has split {A_possessive} lunch with {X_indefinite} beside the field, and each day {X_pronoun} sits a step closer.</li>
     </texts>
     <ways><generosity>2</generosity></ways>
@@ -687,7 +687,7 @@
     <weight>1.5</weight>
     <cooldownDays>10</cooldownDays>
     <texts>
-      <li>{A_nameDef} saw {X_definite} at the tree line today, in the same spot as on the day of the attack. They looked at each other until {X_pronoun} turned away.</li>
+      <li>At the tree line today, in the same spot as on the day of the attack, stood {X_definite}, looking at {A_nameDef}. {A_nameDef} looked back until {X_pronoun} turned away.</li>
       <li>{A_nameDef} dropped a full bucket in the yard and didn't notice. Out past the fence, {X_definite} was pacing slowly back and forth.</li>
       <li>Even at that distance, {A_nameDef} knew {X_definite} by the way {X_pronoun} moved, nosing along the tree line as if the land were {X_possessive}.</li>
     </texts>

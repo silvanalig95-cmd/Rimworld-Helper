@@ -60,7 +60,7 @@
     <defName>Council_Var_EncP_StaringGuard</defName>
     <encounter>Council_EncP_StaringGuard</encounter>
     <texts>
-      <li>[eating] {X_nameDef} watched {A_nameDef} eat every spoonful of supper without blinking. {A_nameDef} finished fast and took the bowl outside.</li>
+      <li>[eating] Every spoonful of {A_nameDef}'s supper, {X_nameDef} watched without blinking. {A_nameDef} finished fast and took the bowl outside.</li>
       <li>[working] {X_nameDef} leaned on the fence and watched {A_nameDef} work all morning, and nodded once at the end, which was worse than if {X_pronoun} had said something.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>
@@ -97,7 +97,7 @@
     <defName>Council_Var_EncP_HaggleLoss</defName>
     <encounter>Council_EncP_HaggleLoss</encounter>
     <texts>
-      <li>[trait:Kind] {X_nameDef} told {A_nameDef} a long story about a sick child at home, and {A_nameDef} paid more than the asking price. {X_nameDef} was whistling as the caravan left.</li>
+      <li>[trait:Kind] {X_nameDef} told {A_nameDef} a long story about a sick child at home, and {A_nameDef} paid more than the asking price. {X_nameDef} whistled for the rest of the day.</li>
       <li>[rain] {A_nameDef} bought a rain cape from {X_nameDef} in a downpour, at twice the going rate. It leaked by evening.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>
@@ -117,7 +117,7 @@
     <encounter>Council_EncP_FreeSample</encounter>
     <texts>
       <li>[winter] {X_nameDef} gave {A_nameDef} a dried apricot from somewhere it's still summer, and {A_nameDef} ate it very slowly.</li>
-      <li>[trait:Gourmand] One taste of {X_nameDef}'s smoked sausage, and {A_nameDef} bought the whole string before the caravan had unpacked.</li>
+      <li>[trait:Gourmand] One taste of {X_nameDef}'s smoked sausage, and {A_nameDef} was asking the price of the whole string.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>
 
@@ -144,7 +144,7 @@
     <encounter>Council_EncP_KindWords</encounter>
     <texts>
       <li>[winter] {A_nameDef} brought a hot stone wrapped in cloth down to {X_nameDef}'s cell and pushed it under the door. Later, {X_nameDef} asked {A_possessive} name.</li>
-      <li>[night] {A_nameDef} sat outside {X_nameDef}'s cell after dark and told {X_objective} the names of the stars you can see from the yard.</li>
+      <li>[night] After dark, sitting outside {X_nameDef}'s cell, {A_nameDef} named the stars you can see from the yard, one by one.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>
 
@@ -152,7 +152,7 @@
     <defName>Council_Var_EncP_Taunts</defName>
     <encounter>Council_EncP_Taunts</encounter>
     <texts>
-      <li>[night] {X_nameDef} whistled the same three notes through the cell bars every time {A_nameDef} passed in the dark. {A_nameDef} has started carrying a lamp.</li>
+      <li>[night] The same three notes, whistled through the cell bars by {X_nameDef}, every time {A_nameDef} passed in the dark. {A_nameDef} has started carrying a lamp.</li>
       <li>[eating] {X_nameDef} told {A_nameDef} exactly what was in {A_possessive} stew, and what {X_nameDef} had done in the bucket that morning. {A_nameDef} pushed the bowl away.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>
@@ -227,7 +227,7 @@
     <defName>Council_Var_EncC_ChildAndAnimal</defName>
     <encounter>Council_EncC_ChildAndAnimal</encounter>
     <texts>
-      <li>[snow] {A_nameDef} and {X_definite} rolled in the snow until {A_nameDef} was wet through and {X_definite} was white all over.</li>
+      <li>[snow] By the time they came in, {A_nameDef} was wet through from rolling in the snow and {X_definite} was white all over.</li>
       <li>[rain] {A_nameDef} and {X_definite} splashed through every puddle in the yard, and both of them were sent to dry off by the stove.</li>
       <li>[summer] {A_nameDef} fell asleep in the shade with {X_definite} curled against {A_possessive} back, and the two of them were left there until supper.</li>
     </texts>
@@ -325,7 +325,7 @@
     <encounter>Council_EncC_FedWild</encounter>
     <texts>
       <li>[snow] {A_nameDef} has been clearing a patch of snow by the fence and leaving grain in it. This morning {X_indefinite} was there first, waiting.</li>
-      <li>[trait:Kind] {A_nameDef} saved the end of {A_possessive} loaf again today for {X_indefinite} by the fields, who came closer than ever to take it.</li>
+      <li>[trait:Kind] The end of {A_nameDef}'s loaf went to {X_indefinite} by the fields again today, and it came closer than ever to take it.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>
 
