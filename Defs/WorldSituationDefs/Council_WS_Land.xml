@@ -24,7 +24,7 @@
       <li>A famous healer</li>
     </titles>
     <texts>
-      <li>[theirLowtech] {X_nameFull} is touring the region. Twenty years ago {X_nameDef} was a village healer; now there are songs about {X_objective}, and people walk for days to be seen. {X_nameDef} is in {PLACE} this week and will move on soon.\n\nThey say {X_nameDef} has put back a hand that was gone and cured fevers nobody else could name. Some of that may even be true.</li>
+      <li>[theirLowtech] {X_nameFull} is touring the region. Twenty years ago {X_nameDef} was a village healer; now there are songs about {X_objective}, and people walk for days to be seen. {X_nameDef} is in {PLACE} this week and will move on soon.\n\nThey say {X_nameDef} once put back a hand that was gone, and cured a fever no other healer could name. The line outside {X_possessive} door in {PLACE} starts before dawn.</li>
       <li>[theirHightech] {X_nameFull}, the surgeon, is touring the region with a van full of equipment and a waiting list longer than the road. {X_nameDef} is in {PLACE} this week and will move on soon.\n\nThey say {X_nameDef} has rebuilt a hand that was gone and cured things other doctors had given up on. Some of that may even be true.</li>
     </texts>
     <summaries>
@@ -47,7 +47,7 @@
         <options>
           <li>
             <label>Invite {X_objective} ({COUNT} silver)</label>
-            <outcome>The silver goes to {PLACE} with a rider. {X_nameDef} will come within a few days.</outcome>
+            <outcome>The assistant's rider takes the fee back to {PLACE}. {X_nameDef} will come within a few days.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the healer's fee</label><what>silver</what><tens>true</tens><steward>false</steward><to>Gate</to></li>
             </effects>
@@ -98,7 +98,7 @@
           <li>{X_nameDef} moves on</li>
         </titles>
         <texts>
-          <li>{X_nameDef} has left the region, and the crowds that followed the healer from town to town have gone home. The songs will last longer than the visit did.</li>
+          <li>{X_nameDef} has left the region, and the crowds that followed the healer from town to town have gone home. In the towns they are already arguing over which of the cures really happened.</li>
         </texts>
         <chronicle>{X_nameDef}, the famous healer, passed through the region.</chronicle>
       </li>
@@ -129,8 +129,8 @@
     </titles>
     <texts>
       <li>Every few years the herds of the region move together, and this is one of those years. The ground shakes at dusk, the birds follow the dust, and the hunters of {FACTION} have come out of {PLACE} in force.\n\nThere will be meat for anyone who wants it, and trouble for anyone who gets in the way.</li>
-      <li>[fall] The herds are going south ahead of the cold, all of them together, the way they do every few years. The hunters of {FACTION} have come out of {PLACE} to meet them, and the valleys are full of dust and noise.</li>
-      <li>[spring] The herds are coming back north with the new grass, all of them together, the way they do every few years. The hunters of {FACTION} have come out of {PLACE} to meet them.</li>
+      <li>[fall] The herds are going south ahead of the cold, all of them at once. From the colony's wall the dust can be seen a day before the animals, and {FACTION}'s hunters are already camped along the valleys out of {PLACE}.</li>
+      <li>[spring] The herds are coming back north with the new grass, so many that the far hills seem to move. The hunters of {FACTION} have come out of {PLACE} to meet them, their winter stores nearly gone.</li>
     </texts>
     <summaries>
       <li>Herds pass the colony far more often, and rare beasts with them. {FACTION}'s hunters may ask to hunt on the colony's land.</li>
@@ -165,7 +165,7 @@
         <options>
           <li>
             <label>Let them hunt</label>
-            <outcome>The hunters thank the colony and go after the herds. Their horns can be heard at dawn for days.</outcome>
+            <outcome>The party thanks the colony and goes after the herds. For days afterward their horns can be heard at dawn.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>6</amount></li>
             </effects>
@@ -176,7 +176,7 @@
           </li>
           <li>
             <label>Let them hunt, for {COUNT} silver</label>
-            <outcome>The hunters pay without arguing and go after the herds.</outcome>
+            <outcome>Their headman pays without arguing, and the party goes after the herds.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Silver" />
             </effects>
@@ -206,7 +206,7 @@
           <li>The herds pass</li>
         </titles>
         <texts>
-          <li>[allowed] The herds have passed, and the hunters of {FACTION} have gone home with full packs. They sent their thanks on the way, and a promise to remember the welcome.</li>
+          <li>[allowed] The herds have passed, and the hunters of {FACTION} have gone home with full packs. Their horn-blower sounded three long notes as they passed the colony, which among hunters means thanks.</li>
           <li>[!allowed] The herds have passed, and the land around the colony is quiet again: trampled in places, greener in others. They'll be back in a few years.</li>
         </texts>
         <chronicle>The great herds passed through the region.</chronicle>
@@ -239,7 +239,7 @@
     </titles>
     <texts>
       <li>Something has driven the strange beasts of the far country into the region: animals the old hunters of {FACTION} only know from stories, moving in loose bands and eating anything green.\n\nSome are harmless, and some very much aren't. The hunters of {PLACE} are staying close to home until they know which are which.</li>
-      <li>[winter] The cold has driven the strange beasts of the far country down out of the high places: animals nobody in {PLACE} has a name for, moving in loose bands through the snow.\n\nSome are harmless, and some very much aren't.</li>
+      <li>[winter] The cold has driven the strange beasts of the far country down out of the high places: animals nobody in {PLACE} has a name for, moving in loose bands through the snow.\n\nOne of them stood at the edge of {PLACE}'s fields all yesterday, watching the houses, and then walked away.</li>
     </texts>
     <summaries>
       <li>Strange creatures turn up far more often, with herds behind them. A skilled handler may win one over; a careless one may regret trying.</li>
@@ -323,7 +323,7 @@
     </titles>
     <texts>
       <li>The ley lines are restless. Mages in {PLACE} report spells going wrong and spells going far too right, and on clear nights the sky is streaked with colors nobody can name.\n\n{FACTION} have shut their mage towers until it passes. Anyone with the gift will feel it.</li>
-      <li>[winter] The winter nights have turned strange. The sky over the region burns green and violet after dark, mages in {PLACE} wake up with frost on the inside of their windows, and {FACTION} have shut their mage towers until it passes.\n\nAnyone with the gift will feel it.</li>
+      <li>[winter] The winter nights have turned strange. The sky over the region burns green and violet after dark, mages in {PLACE} wake up with frost on the inside of their windows, and {FACTION} have shut their mage towers until it passes.\n\nEvery mage in the region is sleeping badly, and dreaming in the same colors.</li>
     </texts>
     <summaries>
       <li>Shards fall from the sky more often, and the colony's mages may learn more in these weeks than in a year, if they dare to study the surge.</li>
@@ -357,7 +357,7 @@
         <options>
           <li>
             <label>Let {A_objective} study it</label>
-            <outcome>{A_nameDef} comes back from the stones after three nights, red-eyed and talking too fast, with a notebook full of things nobody else at the colony can read.</outcome>
+            <outcome>{A_nameDef} comes back from the stones after three nights, red-eyed and talking too fast, with a notebook full of diagrams that make the others' eyes ache.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Learn"><skill>Intellectual</skill><xp>2000</xp></li>
               <li Class="ColonyCouncil.DilemmaEffect_Inspiration" />
@@ -392,7 +392,7 @@
           <li>The ley lines settle</li>
         </titles>
         <texts>
-          <li>The sky has gone back to its usual colors, and the mages of {PLACE} have opened their towers again. Whatever stirred the ley lines has settled, for now.</li>
+          <li>The sky has gone back to its usual colors, and the mages of {PLACE} have opened their towers again. Whatever stirred the ley lines has gone still, and the mages are already arguing about what it was.</li>
         </texts>
         <chronicle>A season of wild magic passed.</chronicle>
       </li>
