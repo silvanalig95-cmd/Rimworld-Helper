@@ -230,7 +230,7 @@
     <stages>
       <li><label>pneumonia coming on</label><description>I'm hot, then cold, and it hurts to breathe in.</description><baseMoodEffect>-4</baseMoodEffect></li>
       <li><label>pneumonia</label><description>The fever's high and every breath hurts. I'm scared.</description><baseMoodEffect>-6</baseMoodEffect></li>
-      <li><label>struggling to breathe</label><description>I can't get enough air. I'm so tired.</description><baseMoodEffect>-9</baseMoodEffect></li>
+      <li><label>struggling to breathe</label><description>I can't get enough air, however hard I pull.</description><baseMoodEffect>-9</baseMoodEffect></li>
       <li><label>the pneumonia crisis</label><description>I can't breathe. I don't know if I'll see tomorrow.</description><baseMoodEffect>-12</baseMoodEffect></li>
     </stages>
   </ThoughtDef>
@@ -250,7 +250,7 @@
     <defName>Council_Ail_Typhus_Mood</defName>
     <hediff>Council_Ail_Typhus</hediff>
     <stages>
-      <li><label>typhus fever</label><description>My head is pounding and I'm burning up.</description><baseMoodEffect>-4</baseMoodEffect></li>
+      <li><label>typhus fever</label><description>My head is pounding, and the sweat won't stop.</description><baseMoodEffect>-4</baseMoodEffect></li>
       <li><label>typhus rash</label><description>There's a rash spreading over my chest, and the fever won't break.</description><baseMoodEffect>-6</baseMoodEffect></li>
       <li><label>typhus stupor</label><description>I keep losing hours. I blink, and the light has moved across the floor.</description><baseMoodEffect>-8</baseMoodEffect></li>
       <li><label>typhus delirium</label><description>They keep talking to me, but I can't make sense of the words.</description><baseMoodEffect>-10</baseMoodEffect></li>
@@ -261,7 +261,7 @@
     <defName>Council_Ail_Meningitis_Mood</defName>
     <hediff>Council_Ail_Meningitis</hediff>
     <stages>
-      <li><label>a crushing headache</label><description>My head is splitting and the light hurts my eyes.</description><baseMoodEffect>-5</baseMoodEffect></li>
+      <li><label>a crushing headache</label><description>Light stabs at my eyes, and the headache won't let up.</description><baseMoodEffect>-5</baseMoodEffect></li>
       <li><label>meningitis</label><description>My neck won't bend and the headache is the worst pain I've known.</description><baseMoodEffect>-8</baseMoodEffect></li>
       <li><label>confused</label><description>I don't know where I am. Who are these people?</description><baseMoodEffect>-10</baseMoodEffect></li>
       <li><label>seizures</label><description>My body keeps seizing up. I'm terrified.</description><baseMoodEffect>-12</baseMoodEffect></li>
@@ -283,7 +283,7 @@
     <defName>Council_Ail_Glassblood_Mood</defName>
     <hediff>Council_Ail_Glassblood</hediff>
     <stages>
-      <li><label>glittering fever</label><description>There's a glitter under my skin, and I'm burning up.</description><baseMoodEffect>-4</baseMoodEffect></li>
+      <li><label>glittering fever</label><description>There's a glitter under my skin, and a fever behind it.</description><baseMoodEffect>-4</baseMoodEffect></li>
       <li><label>stiffening joints</label><description>My joints are stiffening. They click like glass.</description><baseMoodEffect>-6</baseMoodEffect></li>
       <li><label>glass joints</label><description>I can barely bend my fingers. I'm turning to glass.</description><baseMoodEffect>-8</baseMoodEffect></li>
       <li><label>crystallizing</label><description>My chest feels like it's full of broken glass.</description><baseMoodEffect>-10</baseMoodEffect></li>
@@ -489,7 +489,7 @@
     <hediff>Council_Ail_HiveFever</hediff>
     <stages>
       <li><label>a swollen sting</label><description>The insect wound has gone hot and hard.</description><baseMoodEffect>-3</baseMoodEffect></li>
-      <li><label>hive fever</label><description>I'm burning up, and the skin around the wound has gone purple.</description><baseMoodEffect>-6</baseMoodEffect></li>
+      <li><label>hive fever</label><description>The fever's up, and the skin around the wound has gone purple.</description><baseMoodEffect>-6</baseMoodEffect></li>
       <li><label>the hum</label><description>A hum in my ears, day and night. It sounds like the hive.</description><baseMoodEffect>-9</baseMoodEffect></li>
       <li><label>hive convulsions</label><description>My body won't stop shaking, and I can still hear them.</description><baseMoodEffect>-12</baseMoodEffect></li>
     </stages>
