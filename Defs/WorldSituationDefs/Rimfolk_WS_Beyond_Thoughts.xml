@@ -10,7 +10,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>4</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>good neighbours</label><description>When things went wrong down the road, the colony did its part. That's the kind of place I want to live in.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>good neighbors</label><description>When trouble came to the people down the road, we sent help instead of shutting the gate. I'd want the same if it were us.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><trust>1</trust><felt>3</felt><feelings><li>Pride</li></feelings></li></modExtensions>
   </ThoughtDef>
 
@@ -19,7 +19,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>3</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>watched the comet</label><description>We sat up on the hill and watched the comet cross the dark, with its long tail like a torn sheet. Nobody said much. Nobody had to.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>watched the comet</label><description>We sat up on the hill in blankets and watched the comet drag its tail across the dark like a torn sheet. My neck still aches from looking up.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.1</joy><joyKind>Meditative</joyKind><felt>3</felt><feelings><li>Awe</li></feelings></li></modExtensions>
   </ThoughtDef>
 
@@ -37,7 +37,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>3</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>stood with the mourners</label><description>We stood by the road with our heads bare while they carried their dead past. I didn't know the one they mourned. It still felt right to be there.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>stood with the mourners</label><description>We stood by the road while they carried their dead past, with the drum going once every ten steps. I never met the one in the cart.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt><journal>true</journal><feelings><li>Fellowship</li></feelings></li></modExtensions>
   </ThoughtDef>
 
@@ -55,7 +55,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>3</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>thanked for the hard year</label><description>They came all this way to say thank you for what we did when it was bad for them. It's good to know it mattered.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>thanked for the hard year</label><description>They came all this way just to thank us for what we did in their bad year. One of them shook my hand twice.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><trust>1</trust><felt>3</felt><feelings><li>Gratitude</li></feelings></li></modExtensions>
   </ThoughtDef>
 
@@ -99,7 +99,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>5</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>the lost child went home</label><description>We found the neighbours' child out in the hills, cold and frightened, and their mother came to take them home. I keep seeing her face when she saw them.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>the lost child went home</label><description>We found the neighbors' child out in the hills, cold and frightened, and their mother came to take them home. I keep seeing her face when she saw them.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
