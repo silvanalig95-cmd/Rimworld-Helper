@@ -69,7 +69,7 @@
           </plain>
           <warm><li>{LOST} would hate all this moping. I can hear {LOST} saying so. I'm trying.</li></warm>
           <blunt><li>Need to talk about {LOST}. Not yet. Soon.</li></blunt>
-          <cheerful><li>Found something {LOST} carved into the doorframe and laughed out loud before I could stop myself.</li></cheerful>
+          <cheerful><li>Found {LOST}'s initials carved into the doorframe and laughed out loud before I could stop myself.</li></cheerful>
           <gloomy><li>Some hours now I forget, and then I remember all over again.</li></gloomy>
           <cold><li>I have started to remember {LOST} on purpose, in order. It is better than being ambushed by it.</li></cold>
         </journal>
@@ -94,7 +94,7 @@
         <waiting>Next: a run of better days.</waiting>
         <journal>
           <plain>
-            <li>Ate something good today and noticed it was good. I hadn't noticed anything in a while.</li>
+            <li>Ate a good meal today and noticed it was good. I hadn't noticed anything in a while.</li>
             <li>Worked all morning without thinking of {LOST} once, felt bad about it, and then less bad.</li>
             <li>Talked about {LOST} until late. Mostly the daft things, the ones I'd half forgotten.</li>
           </plain>
@@ -181,7 +181,7 @@
             <li>Somebody asked about my life before the colony. I changed the subject. I'm good at changing the subject.</li>
             <li>[goodsecret] I did something once that I've never told anyone about. Not because I'm ashamed. Because it wasn't about me.</li>
           </plain>
-          <warm><li>I've been carrying something a long time. I'd like to set it down, if I could find the courage.</li></warm>
+          <warm><li>I've been carrying this a long time. I'd like to set it down, if I could find the courage.</li></warm>
           <blunt><li>Got a secret. Everyone does. Mine's heavier.</li></blunt>
           <cheerful><li>They all think they know me here, and they mostly do!</li></cheerful>
           <gloomy><li>If they knew what I've kept from them, they'd look at me differently. I'm sure of it.</li></gloomy>

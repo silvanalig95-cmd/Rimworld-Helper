@@ -85,7 +85,7 @@
         <otherJournal>
           <plain>
             <li>{OTHER_nameDef} told me my work was good today. I've been chewing on it ever since.</li>
-            <li>Strange day. {OTHER_nameDef} and I agreed about something.</li>
+            <li>Strange day. {OTHER_nameDef} and I agreed on how a job should be done.</li>
           </plain>
         </otherJournal>
         <chronicle>
@@ -359,7 +359,7 @@
             <li>I owe {OTHER_nameDef}. Not silver. Something better than silver.</li>
             <li>[child] {OTHER_nameDef} helped me when I was scared. I'm going to make {OTHER_objective} something.</li>
           </plain>
-          <warm><li>Every time I see {OTHER_nameDef}, I remember what {OTHER_pronoun} did for me. I want to give something back.</li></warm>
+          <warm><li>Every time I see {OTHER_nameDef}, I remember what {OTHER_pronoun} did for me. I want to give back more than thanks.</li></warm>
           <blunt><li>I owe {OTHER_nameDef}. I pay my debts.</li></blunt>
           <cheerful><li>I'm going to surprise {OTHER_nameDef}! Don't ask me how yet. I'm working on it.</li></cheerful>
           <gloomy><li>{OTHER_nameDef} helped me and I've done nothing back. That sits badly.</li></gloomy>
@@ -385,7 +385,7 @@
             <li>[arcskill:Construction] I'm building {OTHER_nameDef} a shelf for {OTHER_possessive} things, the kind with a lip so nothing falls off.</li>
             <li>[arcskill:Plants] I've been growing something for {OTHER_nameDef} in a corner of the field, watered morning and night.</li>
           </plain>
-          <warm><li>Working on something for {OTHER_nameDef}. I picture {OTHER_possessive} face when I hand it over, and keep going.</li></warm>
+          <warm><li>Working on {OTHER_nameDef}'s gift again tonight. I picture {OTHER_possessive} face when I hand it over, and keep going.</li></warm>
           <blunt><li>Making {OTHER_nameDef} a thing. Don't tell {OTHER_objective}.</li></blunt>
           <cheerful><li>The gift for {OTHER_nameDef} is coming along. I've only had to start it over twice.</li></cheerful>
           <gloomy><li>Whatever I make for {OTHER_nameDef}, it won't be enough. I'm making it anyway.</li></gloomy>
@@ -535,7 +535,7 @@
         <journal>
           <plain>
             <li>I was wrong about the council. Not entirely, but enough.</li>
-            <li>Asked the council for something today, and expected an answer. That's new.</li>
+            <li>Put a wish to the council today, and expected an answer. That's new.</li>
           </plain>
           <warm><li>I've decided to give the council another chance. It gave me one.</li></warm>
           <blunt><li>Council's all right. Some of the time.</li></blunt>

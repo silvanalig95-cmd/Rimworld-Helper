@@ -129,7 +129,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Arc_DebtSettled</defName>
     <durationDays>6</durationDays>
-    <stages><li><label>paid back what I owed</label><description>Someone helped me when I needed it. I've finally done something in return.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>paid back what I owed</label><description>Someone helped me when I needed it. I've finally paid it back.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <!-- ===================== A secret told ===================== -->

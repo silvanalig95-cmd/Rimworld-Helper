@@ -287,13 +287,13 @@
       </plain>
       <warm><li>[timeout] {OTHER_nameDef} was patient with me. I'm sorry it didn't stick.</li></warm>
       <blunt><li>[timeout] Not for me, {SKILL}. Moving on.</li></blunt>
-      <cheerful><li>[timeout] I'm going to try something else next. Maybe everything else.</li></cheerful>
+      <cheerful><li>[timeout] I'm going to try a different trade next. Maybe all of them.</li></cheerful>
       <gloomy><li>[timeout] I thought {SKILL} was my thing. Maybe I don't have a thing.</li></gloomy>
       <cold><li>[timeout] The work doesn't suit me. Better to know now.</li></cold>
     </fizzle>
     <fizzleChronicle>
       <li>[otherdead] {PAWN_nameDef} lost {PAWN_possessive} teacher, {OTHER_nameDef}, too soon.</li>
-      <li>{PAWN_nameDef} has lost interest in {SKILL} and moved on to something else.</li>
+      <li>{PAWN_nameDef} has lost interest in {SKILL}.</li>
     </fizzleChronicle>
     <eulogy>
       <plain>

@@ -66,7 +66,7 @@
         <li>r_logentry->[INITIATOR_nameDef] admitted to [RECIPIENT_nameDef] that [RECIPIENT_pronoun] was better at it, and [RECIPIENT_nameDef] allowed that this was sometimes true.</li>
         <li>r_logentry->For once, [INITIATOR_nameDef] and [RECIPIENT_nameDef] stopped glaring long enough to compare notes.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] admitted, one after the other, that they had each learned something from watching the other work.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] found something to agree on, and were both too proud to say so out loud.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] found a point to agree on, and were both too proud to say so out loud.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] worked the same job without a cross word, and the others noticed.</li>
       </rulesStrings>
     </logRulesInitiator>
@@ -205,8 +205,8 @@
         <li>r_logentry->Something passed between [INITIATOR_nameDef] and [RECIPIENT_nameDef] that neither of them will repeat.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] stopped talking when someone came in, and started again once they'd gone.</li>
         <li>r_logentry->On the far side of the storeroom, [INITIATOR_nameDef] and [RECIPIENT_nameDef] talked until the light changed.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about something that had been weighing on one of them, and it weighed less after.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] went for a long walk and came back with something settled between them.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about what had been weighing on one of them, and it weighed less after.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] went for a long walk and came back with the matter settled between them.</li>
       </rulesStrings>
     </logRulesInitiator>
   </InteractionDef>
@@ -221,7 +221,7 @@
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] went through the dream once more, and between them an idea came out of it.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] agreed the dream wanted something, and argued over what.</li>
         <li>r_logentry->So it wouldn't change in the telling, [INITIATOR_nameDef] and [RECIPIENT_nameDef] wrote the dream down together.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] compared the dream with what had happened that week and found something that matched.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] compared the dream with what had happened that week and found a piece that matched.</li>
         <li>r_logentry->In daylight, where it seemed smaller, [INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about the dream.</li>
       </rulesStrings>
     </logRulesInitiator>
