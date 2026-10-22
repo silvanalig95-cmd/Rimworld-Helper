@@ -86,7 +86,7 @@
       </plain>
       <warm>
         <li>{OTHER_nameDef} grabbed my collar and pulled me back behind cover just in time. I owe {OTHER_objective}.</li>
-        <li>When it was over, {OTHER_nameDef} came looking for me first.</li>
+        <li>{OTHER_nameDef}'s hands were shaking worse than mine afterward. I held them till they stopped.</li>
       </warm>
       <blunt>
         <li>{OTHER_nameDef} didn't run. That's enough for me.</li>
@@ -195,7 +195,7 @@
         <li>Don't really talk to {OTHER_nameDef} now. No fight, no story.</li>
       </blunt>
       <cheerful>
-        <li>{OTHER_nameDef} and I drifted apart, but people do. We'll still share a laugh now and then, I'm sure of it!</li>
+        <li>We drifted apart, {OTHER_nameDef} and I, but people do. We'll still share a laugh now and then, I'm sure of it!</li>
         <li>{OTHER_nameDef} still waves at me across the yard. We aren't close anymore, but I'll take a wave!</li>
       </cheerful>
       <gloomy>
@@ -295,7 +295,7 @@
       </blunt>
       <cheerful>
         <li>No more {SKILL} lessons with {OTHER_nameDef}. We gave it a proper go, and I learned plenty about teaching!</li>
-        <li>{OTHER_nameDef} and I are taking a break from {SKILL}, possibly a long one. We'll still eat lunch together!</li>
+        <li>Taking a break from {SKILL}, {OTHER_nameDef} and I, possibly a long one. We'll still eat lunch together!</li>
       </cheerful>
       <gloomy>
         <li>Gave up on teaching {OTHER_nameDef}. Another thing I wasn't good enough at.</li>
