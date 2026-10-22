@@ -12,14 +12,14 @@
     <decree>Council_Decree_Tithes</decree>
     <support>
       <plain>
-        <li>The village down the road sent us seed in our first spring. It's time we gave something back.</li>
+        <li>The villages down the road have had hard years too. It's time we gave something back.</li>
         <li>A tenth is small enough that we won't miss it and large enough that they'll notice.</li>
       </plain>
-      <warm><li>Giving makes a colony feel like a home, not a fort.</li></warm>
+      <warm><li>I'd like the villages to know our name for something besides our walls.</li></warm>
       <blunt><li>We can afford it. So give it.</li></blunt>
-      <cheerful><li>Let's be known as the people who share.</li></cheerful>
+      <cheerful><li>Imagine the traders saying our name and smiling!</li></cheerful>
       <gloomy><li>One day we'll need friends. Better to make them while we can.</li></gloomy>
-      <cold><li>A tithe buys standing that silver in a box never will.</li></cold>
+      <cold><li>Forty silver a day at most, to a neighbor who'll owe us for it. Reasonable.</li></cold>
     </support>
     <oppose>
       <plain>
@@ -27,7 +27,7 @@
         <li>I'd rather we chose who to help than hand a tenth over blind.</li>
       </plain>
       <warm><li>I'd sooner give to the faces I know than send it off down the road.</li></warm>
-      <cheerful><li>Tithes are lovely, as long as it's someone else's tenth.</li></cheerful>
+      <cheerful><li>I was saving for a new coat! I suppose a tenth of a coat is still a sleeve.</li></cheerful>
       <cold><li>A tenth every day for nothing in hand. Show me the return.</li></cold>
     </oppose>
   </ColonyCouncil.FlavorExtensionDef>
@@ -50,8 +50,8 @@
         <li>Some of the work only gets done after dark, and now it won't.</li>
       </plain>
       <warm><li>I'll miss sitting up with friends by the fire.</li></warm>
-      <gloomy><li>Barred in at night like animals. That's where this ends.</li></gloomy>
-      <cold><li>A curfew wastes hours we could use. Somebody should count them.</li></cold>
+      <gloomy><li>Barred in at night like animals. Next it'll be the days.</li></gloomy>
+      <cold><li>Seven hours a night for five nights. Thirty-five hours lost, for each of us.</li></cold>
     </oppose>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -65,12 +65,12 @@
       </plain>
       <warm><li>I'd like everyone to be able to look after themselves, and each other.</li></warm>
       <gloomy><li>They'll come again. Better to meet them with practiced hands.</li></gloomy>
-      <cold><li>A colony where everyone can fight is a poor target. That's the point.</li></cold>
+      <cold><li>A colony where everyone can fight is a poor target for raiders.</li></cold>
     </support>
     <oppose>
       <plain>
         <li>An hour every evening adds up to a lot of hours.</li>
-        <li>I came here to farm, not to march about with a spear.</li>
+        <li>My hoe and my spear want the same hours, and it's the hoe that feeds us.</li>
       </plain>
       <blunt><li>I can fight already. Leave me out.</li></blunt>
       <cheerful><li>Drills again? My aim's terrible and everyone knows it.</li></cheerful>
@@ -83,21 +83,21 @@
     <decree>Council_Decree_Alms</decree>
     <support>
       <plain>
-        <li>A bowl at the gate costs us less than the guilt of turning people away.</li>
+        <li>A few sacks a day costs us less than the guilt of doing nothing.</li>
         <li>They're hungry and we're not. That's the whole of the argument.</li>
       </plain>
       <blunt><li>Feed them. We can.</li></blunt>
-      <cheerful><li>Bread at the gate! People will remember us kindly for it.</li></cheerful>
+      <cheerful><li>Bread for the village! They'll remember us kindly for it.</li></cheerful>
       <gloomy><li>We were hungry once. We'll be hungry again. Feed them now.</li></gloomy>
     </support>
     <oppose>
       <plain>
         <li>Every sack that goes out the gate is one we don't have in spring.</li>
-        <li>I'd help a neighbor in need. I'm not sure about anyone who turns up.</li>
+        <li>I'd help a neighbor I know. Sending food off to strangers is another thing.</li>
       </plain>
       <warm><li>I want to help them. I just want our own children fed first.</li></warm>
       <cheerful><li>Alms are lovely until the stores are empty.</li></cheerful>
-      <cold><li>Free food draws a crowd, and a crowd at the gate is a risk.</li></cold>
+      <cold><li>Feed a village once and they'll count on it every winter after.</li></cold>
     </oppose>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -152,12 +152,12 @@
     <decree>Council_Decree_Fast</decree>
     <support>
       <plain>
-        <li>Two days of bread and water, and the stores last a week longer.</li>
+        <li>Two days of bread and water, and the stores go further than you'd think.</li>
         <li>A fast clears the head. I've done it before and I'll do it again.</li>
       </plain>
       <blunt><li>Two days without. We'll live.</li></blunt>
-      <cheerful><li>A fast, then a feast! I like the sound of the second part.</li></cheerful>
-      <gloomy><li>Better to choose hunger now than have it choose us later.</li></gloomy>
+      <cheerful><li>Fasting! I've heard it makes you sharper. I'll let you know.</li></cheerful>
+      <gloomy><li>I've gone hungry for worse reasons than this.</li></gloomy>
     </support>
     <oppose>
       <plain>
@@ -197,7 +197,7 @@
     <decree>Council_Decree_Quarantine</decree>
     <support>
       <plain>
-        <li>A few lonely weeks are better than a fever through the barracks.</li>
+        <li>A lonely week is better than a fever through every bed in the place.</li>
         <li>The sick get better faster when they're kept apart and quiet.</li>
       </plain>
       <warm><li>It's to protect the little ones and the old. That's reason enough.</li></warm>
@@ -206,12 +206,12 @@
     </support>
     <oppose>
       <plain>
-        <li>Nobody's coughing. I don't see why we're all locked away.</li>
+        <li>I'm not the one coughing. I don't see why I'm locked away.</li>
         <li>The sick need company as much as rest.</li>
       </plain>
       <cheerful><li>Quarantine? I'll go mad with only myself to talk to.</li></cheerful>
       <gloomy><li>Shut away from everyone. It's like being buried early.</li></gloomy>
-      <cold><li>Turning away every trader costs us more than the risk.</li></cold>
+      <cold><li>Turning away every visitor costs us more than the risk.</li></cold>
     </oppose>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -229,7 +229,7 @@
     </support>
     <oppose>
       <plain>
-        <li>Famines spread. Ours could be next, and then what?</li>
+        <li>Famines spread. Ours could be next, with half our stores already given away.</li>
         <li>I'll give what I can spare. I can't spare a share every morning.</li>
       </plain>
       <warm><li>My heart says yes. My stomach and my children say no.</li></warm>
@@ -243,7 +243,7 @@
     <decree>Council_Decree_OpenGates</decree>
     <support>
       <plain>
-        <li>The road brings people, and people bring news, trade and the odd new pair of hands.</li>
+        <li>Some of the best people here came in off the road. There'll be more.</li>
         <li>We've kept the gate shut long enough. Let's see who comes.</li>
       </plain>
       <warm><li>A traveler should find a welcome here. That's the kind of place I want.</li></warm>
