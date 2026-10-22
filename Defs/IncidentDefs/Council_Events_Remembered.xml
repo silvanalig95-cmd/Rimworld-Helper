@@ -40,24 +40,24 @@
           <li>An envoy from {PLACE}</li>
         </titles>
         <texts>
-          <li>[their:freedbyA] {X_nameDef} of {FACTION} has come from {PLACE} and asked for {A_nameDef} at the gate, by name. The colony {TALE}, and among {FACTION} it's {A_nameDef}'s face they picture when they tell it.\n\n{X_nameDef} has brought a gift worth about {COUNT} silver to settle the debt, and would like to put it in {A_nameDef}'s own hands.</li>
-          <li>[their:tendedbyA] {X_nameDef} of {FACTION} has come from {PLACE} with a gift worth about {COUNT} silver and one question at the gate: is {A_nameDef} here? The colony {TALE}, and it was {A_nameDef}'s hands that did the stitching. {FACTION} want to pay what they owe to the right person.</li>
-          <li>[theirLowtech] {X_nameDef} has walked from {PLACE} beside a laden pack animal, with a speech {X_pronoun} rehearsed the whole way. {FACTION} have not forgotten that the colony {TALE}, and their elders sent {X_nameDef} to settle the debt.\n\nThe gift is worth about {COUNT} silver. {X_nameDef} has been told not to bring it home again.</li>
-          <li>[theirHightech] {X_nameDef}, an envoy of {FACTION}, has driven up from {PLACE} with a crate in the back. {FACTION} keep accounts, {X_nameDef} says, and one of them has stood open since the colony {TALE}.\n\nThe crate holds goods worth about {COUNT} silver, and {X_nameDef} would like to close the account today.</li>
-          <li>[deed:released,named] {X_nameDef} of {FACTION} has come from {PLACE} on behalf of a family there. The colony {TALE}, and that family has talked about little else since.\n\nThey have sent a gift worth about {COUNT} silver, with their thanks, and {X_nameDef} to see it delivered.</li>
-          <li>[deed:tended] {X_nameDef} of {FACTION} has come from {PLACE} with a gift and a message. The colony {TALE}, back when nobody else on the road would stop, and {FACTION} pay what they owe.\n\nThe gift is worth about {COUNT} silver.</li>
-          <li>[deed:hardship] When times were hard at {PLACE}, the colony {TALE}. {FACTION} have had a better year since, and {X_nameDef} has come to say so, with a gift worth about {COUNT} silver.</li>
-          <li>[longago] It has been a long time since the colony {TALE}, long enough that {A_nameDef} had to be reminded of it. {FACTION} had not forgotten. Their envoy, {X_nameDef}, has come from {PLACE} with a gift worth about {COUNT} silver to settle the matter.</li>
-          <li>{X_nameDef} of {FACTION} has come from {PLACE} to settle an old debt. The colony {TALE}, {X_nameDef} reminds {A_nameDef}, and {FACTION} don't like owing anyone.\n\nThe gift is worth about {COUNT} silver.</li>
+          <li>[their:freedbyA] {X_nameDef} won't hand the bundle to just anyone. It is for {A_nameDef}, by name, from {FACTION} at {PLACE}. The colony {TALE}, and when {FACTION} tell that story it's {A_nameDef}'s face they picture.\n\nThe bundle holds goods worth about {COUNT} silver, sent to settle the debt.</li>
+          <li>[their:tendedbyA] Before {X_nameDef} would even set the pack down, there was one question: is {A_nameDef} here? The colony {TALE}, and {FACTION} remember whose hands did the stitching.\n\n{X_nameDef} has carried a gift worth about {COUNT} silver from {PLACE}, and wants to pay it to the right person.</li>
+          <li>[theirLowtech] The speech was rehearsed the whole way from {PLACE}, and {X_nameDef} gets through every word of it before setting down the heavy pack. {FACTION} have not forgotten that the colony {TALE}, and their elders sent {X_nameDef} to settle the debt.\n\nThe pack holds goods worth about {COUNT} silver. {X_nameDef} has been told not to carry it home again.</li>
+          <li>[theirHightech] {FACTION} keep accounts, and one of them has stood open since the colony {TALE}. {X_nameDef} has come from {PLACE} to close it, with a crate of goods worth about {COUNT} silver and a receipt for someone to sign.</li>
+          <li>[deed:released,named] A family at {PLACE} has been putting things by since the colony {TALE}. {X_nameDef} of {FACTION} has carried their gift up the road, worth about {COUNT} silver, along with their thanks and a list of every one of them who wanted to be named.</li>
+          <li>[deed:tended] The colony {TALE}. {FACTION} were in no state to pay for it then. They are now.\n\n{X_nameDef} has brought the payment up from {PLACE}, in goods worth about {COUNT} silver.</li>
+          <li>[deed:hardship] {PLACE} has had its first good year in five. {FACTION} haven't forgotten that the colony {TALE}, and {X_nameDef} has walked up to say so, with a gift worth about {COUNT} silver.</li>
+          <li>[longago] {A_nameDef} had to be reminded. It was a long time ago that the colony {TALE}, and most here had let it go. {FACTION} had not.\n\nTheir envoy, {X_nameDef}, has come from {PLACE} with a gift worth about {COUNT} silver to settle the matter at last.</li>
+          <li>{FACTION} don't like owing anyone, {X_nameDef} tells {A_nameDef}, and they have owed the colony since it {TALE}. {X_nameDef} has brought a gift worth about {COUNT} silver up from {PLACE} to put that right.</li>
         </texts>
         <defaultOption>0</defaultOption>
         <options>
           <li>
             <label>Accept the gift</label>
-            <outcome>{X_nameDef} unloads the gift beside the gate and declares the debt settled. {FACTION} consider the matter closed, with some pride.</outcome>
+            <outcome>{X_nameDef} sets the gift down and says the words {FACTION} use to close a debt. Then {X_nameDef} asks for a cup of water before the long walk home.</outcome>
             <outcomes>
               <li>[theirLowtech] {X_nameDef} lays the gift out on a blanket, names each thing in turn, and declares the debt paid.</li>
-              <li>[theirHightech] {X_nameDef} has {A_nameDef} sign for the crate, which {A_nameDef} finds very strange, and declares the account closed.</li>
+              <li>[theirHightech] {X_nameDef} has {A_nameDef} sign for the crate, in two places, and declares the account closed.</li>
             </outcomes>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Gift" />
@@ -68,9 +68,9 @@
           </li>
           <li>
             <label>Accept it, and feast their envoy (20 raw food)</label>
-            <outcome>The colony takes the gift and seats {X_nameDef} at the head of the table. Stories go back and forth until late, and {X_nameDef} leaves in the morning full and pleased, with good things to say at {PLACE}.</outcome>
+            <outcome>The gift goes into the stores and {X_nameDef} goes to the head of the table. By the second bowl {X_nameDef} is telling the colony how the story of what it did is told at {PLACE}, with parts in it the colony doesn't remember at all. {X_nameDef} leaves in the morning with good things to say at {PLACE}.</outcome>
             <outcomes>
-              <li>[winter] The gift goes into the stores and {X_nameDef} goes to the warmest seat by the fire. The talk runs late, and {X_nameDef} leaves in the morning with good things to say at {PLACE}.</li>
+              <li>[winter] The gift goes into the stores and {X_nameDef} gets the seat nearest the hearth. The talk runs late, and {X_nameDef} leaves in the morning with good things to say at {PLACE}.</li>
               <li>[trait:Kind] {A_nameDef} sees to {X_nameDef}'s place at the table personally, and to {X_possessive} second helping. {X_nameDef} leaves in the morning with good things to say at {PLACE}.</li>
             </outcomes>
             <effects>
@@ -86,7 +86,7 @@
           </li>
           <li>
             <label>Tell them they owe nothing</label>
-            <outcome>{A_nameDef} tells {X_nameDef} that the colony only did what anyone should have, and sends the gift home. {X_nameDef} looks at {A_objective} for a long moment, then promises that {FACTION} will hear exactly that.</outcome>
+            <outcome>{A_nameDef} tells {X_nameDef} the colony did what anyone should have, and won't be paid for it. {X_nameDef} says the words back slowly, to be sure of carrying them home right, and shoulders the gift again.</outcome>
             <outcomes>
               <li>[colony:Generous] {A_nameDef} tells {X_nameDef} the colony doesn't keep accounts with its neighbors. {X_nameDef} takes the gift home, along with a story {FACTION} will tell for years.</li>
             </outcomes>
@@ -98,7 +98,7 @@
           </li>
           <li>
             <label>Ask for something the colony needs instead (a good talker)</label>
-            <outcome>{B_nameDef} sat down with {X_nameDef} over the gift and talked it into something better suited to the colony. {X_nameDef} took it in good part, and even seemed to enjoy the haggling.</outcome>
+            <outcome>{B_nameDef} sat down with {X_nameDef} and went through the gift piece by piece, trading the fine things the colony has no use for against plain things it does. By the end {X_nameDef} was making suggestions of {X_possessive} own.</outcome>
             <riskChance>0.3</riskChance>
             <riskSkill>Social</riskSkill>
             <riskReplaces>true</riskReplaces>
@@ -150,19 +150,19 @@
           <li>A messenger from {PLACE}</li>
         </titles>
         <texts>
-          <li>{X_nameDef} has come from {PLACE} with a request, and is too polite to remind anyone why the colony should listen. {A_nameDef} remembers anyway: {FACTION} {TALE}.\n\nNow {PLACE} is short after a bad season, and {FACTION} ask for {COUNT} silver, or whatever help the colony can give.</li>
-          <li>[deed:aid] When the colony called for help, {FACTION} sent their fighters and asked nothing at the time. Now {X_nameDef} has come from {PLACE} to ask something back: {COUNT} silver toward the town's walls, or whatever help the colony can give.</li>
-          <li>[deed:relief] Not long ago {FACTION} {TALE}. Now it's {PLACE} that's struggling, after a fire in their granary, and {X_nameDef} has come to ask for {COUNT} silver, or whatever help the colony can give.</li>
-          <li>[deed:taught] {FACTION} {TALE}, and asked nothing for it. Now {X_nameDef} has come from {PLACE} with a favor to ask in return: {COUNT} silver toward a new well, or whatever help the colony can give.</li>
-          <li>[deed:granted] {X_nameDef} has ridden from {PLACE} with {FACTION}'s seal on a letter, and a reminder nobody at the colony needed: {FACTION} {TALE}. Now the lord asks {COUNT} silver toward the year's levy, or whatever help the colony can give.</li>
-          <li>[winter] {X_nameDef} came up the frozen road from {PLACE} with a list. {FACTION} {TALE}, and they've come to call in the favor: {COUNT} silver to see the town through the cold, or whatever help the colony can give.</li>
-          <li>[theirHightech] A courier from {PLACE}, {X_nameDef}, has brought a formal request from {FACTION}. Their records note that they {TALE}. They now ask the colony for {COUNT} silver toward repairs after a storm, or help of another kind.</li>
+          <li>{X_nameDef} has come from {PLACE} with a request, and is too polite to remind anyone why the colony should listen. {A_nameDef} remembers anyway that {FACTION} {TALE}.\n\nA bad season has left {PLACE} short of nearly everything. {FACTION} would be grateful for {COUNT} silver, or whatever help the colony can give.</li>
+          <li>[deed:aid] {FACTION} sent their fighters when the colony called, and never sent a bill. {X_nameDef} has come from {PLACE} with one now, politely. The town's walls need work, and {FACTION} ask {COUNT} silver toward them, or whatever else the colony can do.</li>
+          <li>[deed:relief] The granary at {PLACE} burned to the ground ten days ago, with most of the winter's grain inside. Not long ago {FACTION} {TALE}, and now {X_nameDef} has come to ask the same of the colony: {COUNT} silver, or any help it can spare.</li>
+          <li>[deed:taught] The well at {PLACE} has gone bad, and {X_nameDef} has come to ask for help with a new one: {COUNT} silver, or whatever the colony can put toward it. {FACTION} {TALE}, as {X_nameDef} is careful to mention, and never charged for the lessons.</li>
+          <li>[deed:granted] The letter {X_nameDef} carried from {PLACE} is short, and sealed in {FACTION}'s wax. It reminds the colony that {FACTION} {TALE}. It notes that the year's levy has come in light. It asks for {COUNT} silver, or such other help as the colony sees fit to give, and it does not say please.</li>
+          <li>[winter] {X_nameDef} came up the frozen road from {PLACE} with a list of everything the town has run out of, and it is a long list. {FACTION} {TALE}, and they've come to call in the favor: {COUNT} silver to see {PLACE} through the cold, or what help the colony can manage.</li>
+          <li>[theirHightech] The request {X_nameDef} carries from {PLACE} is typed, numbered and signed by three people of {FACTION}.\n\nItem one: {FACTION} {TALE}.\nItem two: a storm has taken the roof off the pump house.\nItem three: {COUNT} silver, or assistance in kind.</li>
         </texts>
         <defaultOption>3</defaultOption>
         <options>
           <li>
             <label>Send {COUNT} silver</label>
-            <outcome>{X_nameDef} counts the silver twice, thanks the colony on behalf of {FACTION}, and sets off for {PLACE} before dark. The favor is returned.</outcome>
+            <outcome>{X_nameDef} ties the purse inside {X_possessive} coat and sets off for {PLACE} before dark. Between the colony and {FACTION}, the account is square.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Pay" />
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>6</amount></li>
@@ -172,7 +172,7 @@
           </li>
           <li>
             <label>Send medicine instead (8)</label>
-            <outcome>The colony sends medicine instead of silver. {X_nameDef} says the healers at {PLACE} will be glad of it, and that the favor is returned.</outcome>
+            <outcome>{X_nameDef} packs the medicine in straw for the road. The healers at {PLACE} will be gladder of it than of silver, {X_pronoun} says, and the favor is returned.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Medicine"><count>8</count></li>
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>6</amount></li>
@@ -182,9 +182,9 @@
           </li>
           <li>
             <label>Draw up plans for their rebuilding (a builder)</label>
-            <outcome>{B_nameDef} spends the evening with {X_nameDef} over a lamp, drawing walls, roofs and a better granary for {PLACE}. {X_nameDef} rolls up the plans and says {FACTION} could not have asked for more.</outcome>
+            <outcome>{B_nameDef} and {X_nameDef} spent the evening bent over the table, {X_nameDef} describing {PLACE} from memory and {B_nameDef} drawing it better. {X_nameDef} rolled the plans up as carefully as if they were money, and said {FACTION} could not have asked for more.</outcome>
             <outcomes>
-              <li>[b:trait:TooSmart] {B_nameDef} redraws {PLACE}'s granary three times, each one better than the last, and explains all three. {X_nameDef} takes the last one home, and the favor is returned.</li>
+              <li>[b:trait:TooSmart] {B_nameDef} redraws the plans for {PLACE} three times, each better than the last, and explains all three. {X_nameDef} takes the last one home, and the favor is returned.</li>
             </outcomes>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Needs"><target>Colony</target><skill>Construction</skill><minLevel>8</minLevel><asB>true</asB><reason>Nobody here builds well enough to draw up plans for a town.</reason></li>
@@ -197,7 +197,7 @@
           </li>
           <li>
             <label>The colony can't help this time</label>
-            <outcome>{X_nameDef} nods, says {FACTION} understand, and leaves. They won't forget that they asked.</outcome>
+            <outcome>{X_nameDef} says {FACTION} will understand, and starts back down the road within the hour. They won't forget that they asked.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>-4</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>refused</kind><about>none</about></li>
@@ -239,25 +239,25 @@
           <li>[medicine] Medicine from {PLACE}</li>
         </titles>
         <texts>
-          <li>[food,their:friend] A cart from {PLACE} has come up the road with {X_nameDef} of {FACTION} beside it. Word reached them that times are hard here, and that {FRIEND_nameDef} might be going hungry, and that was enough: the colony {TALE}, and {FACTION} have sent {COUNT} {THING}.\n\n{X_nameDef} won't hear of a price.</li>
-          <li>[medicine,their:friend] {X_nameDef} of {FACTION} has ridden from {PLACE} with medicine in the saddlebags and a question for {FRIEND_nameDef}: are you well? The colony {TALE}, and {FACTION} have sent {COUNT} {THING}, no payment wanted.</li>
-          <li>[food] A cart from {PLACE} has come up the road with {X_nameDef} of {FACTION} walking beside it. Word reached them that times are hard here. {FACTION} remember that the colony {TALE}, and they've sent {COUNT} {THING} to help.\n\n{X_nameDef} says there's no price, and won't hear of one.</li>
-          <li>[medicine,sick] {X_nameDef} of {FACTION} has ridden from {PLACE} with saddlebags full of medicine. They heard people here were sick. {FACTION} remember that the colony {TALE}, and they've sent {COUNT} {THING}, no payment wanted.</li>
+          <li>[food,their:friend] Word got to {PLACE} that {FRIEND_nameDef} might be going hungry, and for {FACTION} that was enough. The colony {TALE}, and they have sent {X_nameDef} up the road with {COUNT} {THING}.\n\n{X_nameDef} won't hear of a price.</li>
+          <li>[medicine,their:friend] {X_nameDef}'s first question is for {FRIEND_nameDef}: are you well? The second is where to put the medicine. The colony {TALE}, and {FACTION} have sent {COUNT} {THING} from {PLACE}, no payment wanted.</li>
+          <li>[food] {COUNT} {THING} have come up the road from {PLACE}, carried by {X_nameDef} and the others {FACTION} sent along. Word reached them that times are hard here, and they remember that the colony {TALE}.\n\n{X_nameDef} says there's no price, and won't hear of one.</li>
+          <li>[medicine,sick] {FACTION} heard that people here were sick. They didn't send a letter. They sent {X_nameDef}, from {PLACE}, with {COUNT} {THING}, because they remember that the colony {TALE}, and {X_nameDef} won't take a coin for it.</li>
           <li>[medicine,plague] With the plague moving through the region, every healer is counting doses. {FACTION} counted theirs and found {COUNT} {THING} to spare for the colony, which once {TALE}. {X_nameDef} has brought it from {PLACE}, and won't take silver for it.</li>
-          <li>[food,famine] With the famine on, every town is counting its sacks. {FACTION} counted theirs and found some to spare for the colony, which once {TALE}. {X_nameDef} has brought it up from {PLACE}: {COUNT} {THING}.\n\n{X_nameDef} won't take silver for it.</li>
-          <li>[food,winter] The road from {PLACE} is half snowed in, and {X_nameDef} of {FACTION} came up it anyway with a sled of {COUNT} {THING}. {FACTION} remember that the colony {TALE}. They thought it might be a hard winter here too.</li>
-          <li>[food,hungry] Someone at {PLACE} heard the colony's stores were running low. {FACTION} remember that the colony {TALE}, and {X_nameDef} has come with {COUNT} {THING} on a cart. It's a gift, {X_nameDef} says, and that's the end of it.</li>
-          <li>[deed:released,named] {X_nameDef} of {FACTION} has brought {COUNT} {THING} up from {PLACE}. The colony {TALE}, and that family has waited for a chance to repay it. Times are hard here now, so this is the chance.</li>
-          <li>[deed:hardship] When {PLACE} had its hard year, the colony stood by it. Now the colony's turn has come, and {FACTION} have sent {X_nameDef} with {COUNT} {THING}.</li>
+          <li>[food,famine] Half the region is going hungry this year, {PLACE} with it. {FACTION} have sent {X_nameDef} up the road anyway, with {COUNT} {THING} they can barely spare, for the colony that once {TALE}.\n\n{X_nameDef} won't take silver for it.</li>
+          <li>[food,winter] The road from {PLACE} is half snowed in, and {X_nameDef} of {FACTION} came up it anyway, dragging a sled of {COUNT} {THING}. {FACTION} remember that the colony {TALE}. They thought it might be a hard winter here too.</li>
+          <li>[food,hungry] Someone at {PLACE} heard the colony's stores were running low. {FACTION} remember that the colony {TALE}, and {X_nameDef} has come with {COUNT} {THING}. It's a gift, {X_nameDef} says, and that's the end of it.</li>
+          <li>[deed:released,named] The colony {TALE}, and a family at {PLACE} has been waiting for a way to repay it ever since. Hard times here are their chance. {X_nameDef} of {FACTION} has brought {COUNT} {THING}, with the family's love.</li>
+          <li>[deed:hardship] When {PLACE} had its hard year, the colony stood by it. This is the colony's hard year. {FACTION} have sent {X_nameDef} with {COUNT} {THING}.</li>
         </texts>
         <defaultOption>0</defaultOption>
         <options>
           <li>
             <label>Accept it with thanks</label>
-            <outcome>{X_nameDef} and the carters unload the {THING} by the gate, share a drink, and head home to {PLACE}. {FACTION} have repaid an old kindness, and now the colony owes them one.</outcome>
+            <outcome>The {THING} is stacked inside the gate, and the colony pours {X_nameDef}'s people a drink before they turn for {PLACE}. Now it's the colony that owes {FACTION}.</outcome>
             <outcomes>
-              <li>[winter] The {THING} is carried in out of the snow, and {X_nameDef}'s people warm their hands for an hour before turning back to {PLACE}. Now the colony owes {FACTION} one.</li>
-              <li>[trait:Greedy] {A_nameDef} counts the {THING} twice before saying thank you. {X_nameDef} pretends not to notice, and heads home to {PLACE}.</li>
+              <li>[winter] The {THING} is carried in out of the snow, and {X_nameDef}'s people warm their hands at the colony's hearth before turning back to {PLACE}. Now the colony owes {FACTION} one.</li>
+              <li>[trait:Greedy] {A_nameDef} counts the {THING} before saying thank you, then counts it again. {X_nameDef} lets that pass, and heads home to {PLACE}.</li>
             </outcomes>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Goods" />
@@ -269,7 +269,7 @@
           </li>
           <li>
             <label>Accept it, and send them home with silver (60)</label>
-            <outcome>The colony takes the {THING} and presses a purse into {X_nameDef}'s hands for the road. {X_nameDef} protests, then gives in.</outcome>
+            <outcome>The colony takes the {THING} and tries to press a purse into {X_nameDef}'s hands for the road. {X_nameDef} pushes it back twice. The third time, {X_nameDef} keeps it.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>60</count></li>
               <li Class="ColonyCouncil.DilemmaEffect_Goods" />
@@ -281,7 +281,7 @@
           </li>
           <li>
             <label>Feed their carters before the road home (a cook, 15 raw food)</label>
-            <outcome>{B_nameDef} cooks for the carters from {PLACE}, and they eat like people who've been on the road since dawn. They leave the {THING}, and a good word for the colony.</outcome>
+            <outcome>{B_nameDef} cooks for the people from {PLACE}, and they eat like people who've been on the road since dawn, which they have. They leave the {THING}, and a good word for the colony.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Needs"><target>Colony</target><skill>Cooking</skill><minLevel>4</minLevel><asB>true</asB></li>
               <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>15</count></li>
@@ -295,7 +295,7 @@
           </li>
           <li>
             <label>Thank them, and ask them to give it to someone worse off</label>
-            <outcome>{X_nameDef} looks surprised, then pleased. The cart turns back down the road toward people who need it more, and {FACTION} will hear what the colony said.</outcome>
+            <outcome>{X_nameDef} knows a village two days on that is worse off than the colony. The load goes there instead, and {FACTION} will hear whose idea it was.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>6</amount></li>
             </effects>
@@ -328,26 +328,26 @@
         <answerDays>1.5</answerDays>
         <titles>
           <li>{FACTION} want peace</li>
-          <li>An old enemy at the gate</li>
+          <li>An old enemy waits</li>
           <li>[tribal] A pipe from {FACTION}</li>
           <li>[medieval] A white flag from {FACTION}</li>
         </titles>
         <texts>
-          <li>{X_nameDef}, an old envoy of {FACTION}, waits outside the colony with empty hands held where the guards can see them. The feud between them has gone quiet a long while, {X_nameDef} says, and nobody at home can say any more what it was for.\n\n{FACTION} offer peace, and ask nothing for it.</li>
-          <li>[ourwrong] {X_nameDef} of {FACTION} has come alone to the edge of the colony's land. {FACTION} have not forgotten that the colony {TALE}, {X_nameDef} says, and they don't ask the colony to forget what they did either. But the young ones who swore the feud are graying now.\n\n{FACTION} offer peace, and ask nothing for it.</li>
-          <li>[theirwrong] {X_nameDef}, an envoy of {FACTION}, waits at the edge of the colony's land. {FACTION} know what they did: they {TALE}. They don't ask the colony to forget it. They are asking for an end to it.\n\n{FACTION} offer peace, freely.</li>
-          <li>[killedours] {X_nameDef} of {FACTION} waits outside the colony under a white cloth. {X_nameDef} knows the name {DEAD}; among {FACTION}, everyone does. It has been a long time, and {FACTION} want the feud to end with this generation.\n\n{FACTION} offer peace. {A_nameDef} thinks the colony could ask for more than words.</li>
-          <li>[tribal] A pipe-bearer of {FACTION}, {X_nameDef}, has sat down in the grass beyond the fields with a carved pipe across {X_possessive} knees. The pipe is unlit. There has been no blood between {FACTION} and the colony for a long time now, and {FACTION} would like to light it together.\n\nThey ask nothing for peace.</li>
-          <li>[theirHightech] A negotiator of {FACTION}, {X_nameDef}, has walked up to the colony's perimeter unarmed. {FACTION} have new leaders since the last fighting, and the new leaders want the old hostilities closed.\n\nThey offer peace, without conditions.</li>
+          <li>{X_nameDef} waits beyond the fields with both hands open and held away from {X_possessive} sides. The envoy is old, and so is the feud between {FACTION} and the colony. Half the young people at home, {X_nameDef} says, couldn't tell you what it was about.\n\n{FACTION} offer peace, and ask nothing for it.</li>
+          <li>[ourwrong] Alone and on foot, {X_nameDef} of {FACTION} has come as far as the edge of the colony's land, and no further. {FACTION} have not forgotten that the colony {TALE}, {X_nameDef} says, and they don't ask the colony to forget what they did either. But the young ones who swore the feud are going gray now.\n\n{FACTION} offer peace, and ask nothing for it.</li>
+          <li>[theirwrong] {FACTION} {TALE}. {X_nameDef} says so first, before anything else, standing at the edge of the colony's land, with no excuses and no talk of what the colony did back. {FACTION} want it ended.\n\nThey offer peace, freely.</li>
+          <li>[killedours] {DEAD}. {X_nameDef} of {FACTION} knows that name; among {FACTION}, everyone does. The envoy waits outside the colony under a white cloth, and says {FACTION} want the feud to end with this generation, and not pass to the next.\n\n{FACTION} offer peace. {A_nameDef} thinks the colony could ask for more than words.</li>
+          <li>[tribal] A pipe-bearer of {FACTION}, {X_nameDef}, has sat down in the grass beyond the fields with a carved pipe across {X_possessive} knees. The pipe is unlit. There has been no blood between {FACTION} and the colony for many moons, and {FACTION} would like to light it together.\n\nThey ask nothing for peace.</li>
+          <li>[theirHightech] "The present council of {FACTION} regards the old hostilities as closed." {X_nameDef}, their negotiator, reads it off a card at the edge of the colony's land, unarmed, then puts the card away. "They want peace," {X_nameDef} says. "No conditions. I'd take it."</li>
         </texts>
         <defaultOption>3</defaultOption>
         <options>
           <li>
             <label>Make peace</label>
-            <outcome>{X_nameDef} and {A_nameDef} clasp hands at the edge of the fields. By nightfall word has gone back to {FACTION}: the feud is over.</outcome>
+            <outcome>{A_nameDef} walks out to the edge of the fields and takes {X_nameDef}'s hand. Neither of them says much. {FACTION} will have the news by nightfall.</outcome>
             <outcomes>
-              <li>[tribal] The pipe is lit and passed between {X_nameDef} and {A_nameDef} until it goes out. By nightfall word has gone back to {FACTION}: the feud is over.</li>
-              <li>[trait:Bloodlust] {A_nameDef} takes {X_nameDef}'s hand as if it might bite. The peace is made all the same, and word goes back to {FACTION} by nightfall.</li>
+              <li>[tribal] The pipe is lit at last, and passed between {X_nameDef} and {A_nameDef} until the bowl is ash. {X_nameDef} carries the cold pipe home to {FACTION} to show them.</li>
+              <li>[trait:Bloodlust] {A_nameDef} takes {X_nameDef}'s hand as if it might bite. The peace is made all the same, and {X_nameDef} is gone toward {FACTION} before anyone can think better of it.</li>
             </outcomes>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_MakePeace"><goodwill>5</goodwill></li>
@@ -359,7 +359,7 @@
           </li>
           <li>
             <label>Make peace, and ask weregild for the colony's dead (a good talker)</label>
-            <outcome>{B_nameDef} names {DEAD} and the price, and doesn't look away. After a long silence {X_nameDef} agrees. The silver comes with the peace: {COUNT}.</outcome>
+            <outcome>{B_nameDef} says {DEAD}'s name, then the price, and holds {X_nameDef}'s eye through the silence after. {X_nameDef} agrees. {COUNT} silver will come with the peace.</outcome>
             <riskChance>0.35</riskChance>
             <riskSkill>Social</riskSkill>
             <riskReplaces>true</riskReplaces>
@@ -375,7 +375,7 @@
           </li>
           <li>
             <label>Make peace over a meal (25 raw food)</label>
-            <outcome>The colony carries a meal out to where {X_nameDef} waits, and {A_nameDef} sits down to eat with {X_objective}. Old enemies share bread, carefully at first. {X_nameDef} goes home with the peace and a full belly.</outcome>
+            <outcome>The colony carries bread and stew out to where {X_nameDef} waits, and {A_nameDef} sits down in the grass across from {X_objective}. They eat slowly, and talk more as the bowls empty. {X_nameDef} goes home with the peace and a full belly.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>25</count></li>
               <li Class="ColonyCouncil.DilemmaEffect_MakePeace"><goodwill>15</goodwill></li>
@@ -427,16 +427,16 @@
         </titles>
         <texts>
           <li>{X_nameDef}, an elder of {FACTION}, and an envoy of {ENEMY} have come to the colony together, which shows how far things have gone. The two peoples are quarreling over {TALE}, and neither will take the other's word for anything.\n\n{FACTION} trust the colony, {X_nameDef} says, and {ENEMY} have agreed to accept its judgment.</li>
-          <li>[grateful] {FACTION} haven't forgotten the colony's help, so it's the colony they've come to now. {X_nameDef} of {FACTION} and a sour-faced envoy of {ENEMY} stand at the gate. The quarrel is over {TALE}.\n\nThey ask the colony to judge between them.</li>
+          <li>[grateful] "You tell them," {X_nameDef} of {FACTION} says to the envoy of {ENEMY}. "It's your quarrel."\n"It's yours," says the envoy.\n\nIt's over {TALE}. {FACTION} remember the colony's help, and have asked it to judge between them; {ENEMY} have agreed to abide by that, with bad grace.</li>
           <li>[theirLowtech] Two elders, one of {FACTION} and one of {ENEMY}, have walked to the colony together without a word to each other the whole way. Their peoples have quarreled over {TALE} since the last moon.\n\nThey've agreed on one thing: the colony should judge.</li>
           <li>[theirHightech] {X_nameDef}, an administrator of {FACTION}, has arrived with a counterpart from {ENEMY} and two folders of documents about {TALE}. Neither side accepts the other's papers. Both have agreed to accept the colony's word.\n\nThey ask the colony to arbitrate.</li>
-          <li>[colony:Merciful|colony:Open] Word of the colony's fair dealing has spread. {X_nameDef} of {FACTION} has come with an envoy of {ENEMY}, and a quarrel over {TALE} that has gone on long enough. They want the colony to settle it.</li>
+          <li>[colony:Merciful|colony:Open] The colony's name for fair dealing has reached {FACTION}. {X_nameDef} has come with an envoy of {ENEMY} and a quarrel over {TALE} that has gone on long enough, and they want the colony to settle it.</li>
         </texts>
         <defaultOption>3</defaultOption>
         <options>
           <li>
             <label>Side with {FACTION}</label>
-            <outcome>The colony finds for {FACTION}. {X_nameDef} thanks {A_nameDef} warmly. The envoy of {ENEMY} leaves without a word, and {ENEMY} will remember it.</outcome>
+            <outcome>The colony finds for {FACTION}. {X_nameDef} shakes {A_nameDef}'s hand twice over. The envoy of {ENEMY} is on the road before the handshaking is done, and {ENEMY} will remember it.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>8</amount></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><who>Enemy</who><amount>-8</amount></li>
@@ -484,7 +484,7 @@
           </li>
           <li>
             <label>It's not the colony's quarrel</label>
-            <outcome>The colony says it won't judge. The envoys walk home separately, and the quarrel goes on without it.</outcome>
+            <outcome>The colony won't judge. The two envoys share the road home as far as the first fork, without a word between them.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-2</amount></li>
             </effects>
@@ -507,6 +507,8 @@
           <li>[winter] a stand of firewood both of them claim</li>
           <li>[industrial|spacer] a road one of them wants to build through the other's fields</li>
           <li>[hills] grazing on the hills between them</li>
+          <li>who should pay to mend the bridge both of them use</li>
+          <li>a bull that broke through a fence, and the calves it sired on the other side</li>
         </matters>
       </li>
     </modExtensions>

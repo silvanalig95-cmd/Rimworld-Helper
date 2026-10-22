@@ -29,14 +29,14 @@
           <li>Something from {A_nameDef}'s old life</li>
         </titles>
         <texts>
-          <li>{X_nameDef}, a peddler of {FACTION}, spread the wares out on a blanket by the gate, and {A_nameDef} stopped dead in front of a small jar of something dark and pickled. It's a food from where {A_nameDef} grew up, and {A_nameDef} hasn't seen it, or smelled it, in years.\n\n{X_nameDef} wants {COUNT} silver for the jar and the rest of the crate it came from.</li>
-          <li>[past:farmer] Among {X_nameDef}'s wares is a sack of grain, and {A_nameDef} knew it by the smell before the sack was open: the same kind {A_possessive} family grew, from the same valley. {A_nameDef} has had a handful of it in {A_possessive} pocket all morning.\n\n{X_nameDef}, a peddler of {FACTION}, wants {COUNT} silver for the sack and the jars of preserves that came with it.</li>
-          <li>[past:soldier] Among the wares of {X_nameDef}, a peddler of {FACTION}, {A_nameDef} found a tin of the hard biscuit {A_possessive} old regiment lived on for years. Anyone else would call it inedible. {A_nameDef} is holding it like a letter from home.\n\n{X_nameDef} wants {COUNT} silver for the tin and the crate it came in.</li>
-          <li>[past:noble] {X_nameDef}, a peddler of {FACTION}, has a box of tea among the wares, the same tea {A_nameDef} drank as a child in a house with servants and a walled garden. {A_nameDef} hasn't said a word about that house in all the time {A_pronoun} has been here, and is saying a great deal now.\n\n{X_nameDef} wants {COUNT} silver for the tea and the rest of the box.</li>
-          <li>[past:trader] {A_nameDef} used to trade in exactly this spice, a long way from here, and caught the smell of it from across the yard. {X_nameDef}, a peddler of {FACTION}, has a whole sack of it, and wants {COUNT} silver.\n\n{A_nameDef} hasn't haggled. That's how {A_nameDef} knows it's serious.</li>
-          <li>[lowtech] {X_nameDef}, a peddler of {FACTION}, has a basket of honey cakes made the way they make them in {A_nameDef}'s home valley, with seeds on top and a burnt edge. {A_nameDef} bought one on the spot, and wants the basket, for {COUNT} silver.</li>
-          <li>[spacer] {X_nameDef}, a peddler of {FACTION}, has a crate of tinned fish with a label {A_nameDef} hasn't seen since leaving {A_possessive} home system. It probably isn't good fish. {A_nameDef} wants it anyway, all of it, for {COUNT} silver.</li>
-          <li>[industrial] There's a crate of a sweet brown paste among {X_nameDef}'s wares that no one else at the colony would touch, and {A_nameDef} grew up on it. {X_nameDef}, a peddler of {FACTION}, wants {COUNT} silver for the crate.</li>
+          <li>A small jar of something dark and pickled stopped {A_nameDef} dead in front of the peddler's blanket. It's a food from where {A_nameDef} grew up, and {A_pronoun} hasn't seen it, or smelled it, in years.\n\n{X_nameDef} of {FACTION}, who spread the blanket out by the gate this morning, wants {COUNT} silver for the jar and the rest of the crate it came from.</li>
+          <li>[past:farmer] {A_nameDef} knew the grain by its smell before the sack was even open. It's the same kind {A_possessive} family grew, from the same valley, and {A_nameDef} has had a handful of it in {A_possessive} pocket all morning.\n\n{X_nameDef}, a peddler of {FACTION}, wants {COUNT} silver for the sack and the jars of preserves that came with it.</li>
+          <li>[past:soldier] At the bottom of a peddler's crate, {A_nameDef} found a tin of the hard biscuit {A_possessive} old regiment lived on for years. Anyone else would call it inedible. {A_nameDef} is holding it like a letter from home.\n\n{X_nameDef} of {FACTION}, the peddler, wants {COUNT} silver for the tin and the crate it came in.</li>
+          <li>[past:noble] "We drank this in the garden," {A_nameDef} says, turning the box of tea over in {A_possessive} hands, "every afternoon, under the pear tree." It's the first word {A_nameDef} has said about that house since coming here.\n\n{X_nameDef}, a peddler of {FACTION}, wants {COUNT} silver for the tea and the rest of the box.</li>
+          <li>[past:trader] {A_nameDef} used to trade in this spice, a long way from here, and caught the smell of it from across the yard. {X_nameDef}, a peddler of {FACTION}, has a whole sack of it, and wants {COUNT} silver.\n\n{A_nameDef}, who haggles over everything, hasn't haggled over this.</li>
+          <li>[lowtech] Honey cakes, made the way they make them in {A_nameDef}'s home valley, with seeds on top and a burnt edge. {X_nameDef}, a peddler of {FACTION}, has a basket of them. {A_nameDef} bought one on the spot, ate it in three bites, and wants the basket, for {COUNT} silver.</li>
+          <li>[spacer] The label on the tins is one {A_nameDef} hasn't seen since leaving {A_possessive} home system. {X_nameDef}, a peddler of {FACTION}, has a whole crate of them. It probably isn't good fish. {A_nameDef} wants it anyway, all of it, for {COUNT} silver.</li>
+          <li>[industrial] The rest of the colony won't go near the sweet brown paste in {X_nameDef}'s crate. {A_nameDef} grew up on it, and has already had a finger in the first jar. {X_nameDef}, a peddler of {FACTION}, wants {COUNT} silver for the crate.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -44,7 +44,7 @@
             <label>Buy it for {A_nameDef} ({COUNT} silver)</label>
             <outcome>{A_nameDef} ate the first of it standing up at the gate, and has been rationing the rest ever since.</outcome>
             <outcomes>
-              <li>[trait:Kind] {A_nameDef} took the crate round the colony and made everyone try some, explaining each time exactly what it was and where it came from.</li>
+              <li>[trait:Kind] {A_nameDef} took the crate round the colony and made each of them try some, explaining every time exactly what it was and where it came from.</li>
               <li>[trait:Greedy] {A_nameDef} carried the crate straight to {A_possessive} room and has not been seen sharing any of it.</li>
               <li>[past:soldier] {A_nameDef} ate one of the biscuits with water, the old way, and didn't say anything for a long while afterwards.</li>
             </outcomes>
@@ -56,7 +56,7 @@
           </li>
           <li>
             <label>Buy it, and let {A_nameDef} cook it for everyone ({COUNT} silver, 10 food)</label>
-            <outcome>{A_nameDef} took over the kitchen for an evening and made the colony a supper from home, explaining every dish. Not everyone liked all of it. Everyone ate it.</outcome>
+            <outcome>{A_nameDef} took over the kitchen for an evening and made the colony a supper from home, standing at the end of the table to explain each dish as it came out. The colony asked for the sour one again.</outcome>
             <outcomes>
               <li>[lowtech] {A_nameDef} cooked the way {A_possessive} grandmother did, on hot stones, and told the story of every dish while it was eaten.</li>
               <li>[trait:Gourmand] {A_nameDef} cooked for most of the day and tasted everything twice. The colony ate well, and {A_nameDef} ate better.</li>
@@ -108,29 +108,29 @@
           <li>{X_nameDef} asks for {A_nameDef}</li>
         </titles>
         <texts>
-          <li>{X_nameDef} of {FACTION} came to the gate asking for {A_nameDef} by name, and {A_nameDef} went very still on hearing it. They knew each other once, before the colony, and it didn't end well.\n\n{X_nameDef} says the journey here was long, and was made to apologize, and to put something right if {A_nameDef} will allow it.</li>
-          <li>[past:soldier] {X_nameDef} of {FACTION} fought on the other side, in the war {A_nameDef} doesn't talk about. They met once, across a field, and both of them remember it.\n\n{X_nameDef} has come a long way to say what {X_pronoun} couldn't say then, and asks for an hour of {A_nameDef}'s time.</li>
-          <li>[past:outlaw] {X_nameDef} of {FACTION} sold {A_nameDef} out to the law years ago, for a reward and a pardon. {A_nameDef} did time for it. {X_nameDef} has come to the gate with a bundle under one arm and asks, very quietly, to talk.</li>
-          <li>[past:noble] {X_nameDef} of {FACTION} ruined {A_nameDef}'s family at court with a rumor that wasn't true, and everyone involved knew it. {X_nameDef} is old now, and has come all this way to ask {A_nameDef}'s forgiveness in person.</li>
-          <li>[past:trader] {X_nameDef} of {FACTION} cheated {A_nameDef} out of a whole cargo once, and left {A_objective} in debt for years. Now {X_nameDef} is at the gate with a purse and an apology, asking for {A_nameDef}.</li>
-          <li>[past:healer] {X_nameDef} of {FACTION} once blamed {A_nameDef} for a patient who died, loudly, with everyone who mattered listening. It wasn't {A_nameDef}'s fault, and {X_nameDef} has come a long way to say so.</li>
-          <li>[past:scholar] {X_nameDef} of {FACTION} stole {A_nameDef}'s work once and put {X_possessive} own name on it. It made {X_nameDef}'s career. {X_nameDef} has come to the colony to admit it, and to ask what can be done now.</li>
-          <li>[past:artisan] {X_nameDef} of {FACTION} copied {A_nameDef}'s designs years ago and sold them for twice the price. {A_nameDef} lost the workshop over it. {X_nameDef} is at the gate now, hat in hand, asking to talk.</li>
+          <li>{A_nameDef} went very still when the name was said. {X_nameDef} of {FACTION} is at the gate, asking for {A_objective}. They knew each other once, before the colony, and it didn't end well.\n\n{X_nameDef} wants to apologize, and to put something right, if {A_nameDef} will allow it.</li>
+          <li>[past:soldier] In the war {A_nameDef} doesn't talk about, {X_nameDef} fought on the other side. They met once, across a field, and both of them remember it.\n\n{X_nameDef} is with {FACTION} now, and has walked for weeks to say what {X_pronoun} couldn't say then. {X_nameDef} asks for an hour of {A_nameDef}'s time.</li>
+          <li>[past:outlaw] Years ago, {X_nameDef} sold {A_nameDef} out to the law for a reward and a pardon, and {A_nameDef} did time for it. Now {X_nameDef}, who is with {FACTION} these days, is at the gate with a bundle under one arm, asking very quietly to talk.</li>
+          <li>[past:noble] The rumor {X_nameDef} spread at court wasn't true, everyone involved knew it, and it ruined {A_nameDef}'s family all the same. {X_nameDef} of {FACTION} is old now, and has come all this way to ask {A_nameDef}'s forgiveness in person.</li>
+          <li>[past:trader] "I owe you a cargo," {X_nameDef} says at the gate, "and eleven years." {X_nameDef} of {FACTION} cheated {A_nameDef} out of that cargo once, and left {A_objective} in debt for most of those years. Now {X_nameDef} has a purse and an apology, and is asking for {A_nameDef}.</li>
+          <li>[past:healer] A patient died, years ago, and {X_nameDef} of {FACTION} blamed {A_nameDef} for it, loudly, with everyone who mattered listening. It wasn't {A_nameDef}'s fault. {X_nameDef} has come to say so, years late.</li>
+          <li>[past:scholar] The work that made {X_nameDef}'s name was {A_nameDef}'s. {X_nameDef} of {FACTION} put {X_possessive} own name on it and built a career on top. Now {X_nameDef} has come to the colony to admit it, and to ask what can be done.</li>
+          <li>[past:artisan] {A_nameDef} lost a workshop because of {X_nameDef} of {FACTION}, who copied {A_possessive} designs years ago and sold them for twice the price. {X_nameDef} is at the gate now, hat in hand, asking to talk.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
           <li>
             <label>Let {A_nameDef} hear {X_objective} out</label>
-            <outcome>{A_nameDef} and {X_nameDef} talked behind a closed door for most of the afternoon. When they came out, {X_nameDef} left a bundle on the table and walked away looking lighter. {A_nameDef} hasn't said much, but hasn't stopped smiling either.</outcome>
+            <outcome>{A_nameDef} and {X_nameDef} talked behind a closed door for most of the afternoon. When they came out, {X_nameDef} left a bundle on the table and went. {A_nameDef} was humming at supper.</outcome>
             <outcomes>
-              <li>[past:soldier] They talked about the field, and the day, and who they'd each lost there. {X_nameDef} left something on the table before going. {A_nameDef} slept well for the first time in a while.</li>
+              <li>[past:soldier] They talked about the field, and the day, and who they'd each lost there. {X_nameDef} left something on the table before going. That night {A_nameDef} slept straight through.</li>
               <li>[past:trader] {X_nameDef} counted out what the old cargo was worth, with interest, on the table between them. {A_nameDef} counted it again, then shook {X_nameDef}'s hand.</li>
               <li>[trait:Kind] {A_nameDef} forgave {X_nameDef} before {X_nameDef} had finished the apology, and then made {X_objective} finish it anyway.</li>
             </outcomes>
             <riskChance>0.25</riskChance>
             <riskSkill>Social</riskSkill>
             <riskReplaces>true</riskReplaces>
-            <riskOutcome>It didn't go well. The old wound was deeper than either of them thought, and {A_nameDef} came out of the room before the hour was up and asked {X_nameDef} to leave. {X_nameDef} did.</riskOutcome>
+            <riskOutcome>It didn't go well. The old wound went deeper than either of them thought, and {A_nameDef} came out of the room before the hour was up and asked {X_nameDef} to leave. {X_nameDef} did.</riskOutcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_MadePeacePast</thought></li>
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><skill>Social</skill><xp>300</xp></li>
@@ -197,12 +197,12 @@
           <li>Names in stone</li>
         </titles>
         <texts>
-          <li>A stonecutter of {FACTION}, {X_nameDef}, stopped at the colony's graves on the way in and stood there a while. The colony's dead are marked with sticks and rough stones, {X_nameDef} says. For {COUNT} silver, each could have a proper headstone, with the name cut deep enough to last.</li>
+          <li>On the way in, {X_nameDef} stopped at the colony's graves and stood there a while with {X_possessive} hat in {X_possessive} hands. {X_nameDef} cuts stone for {FACTION}, and says the colony's dead are marked with sticks and rough stones. For {COUNT} silver, each could have a proper headstone, with the name cut deep enough to last.</li>
           <li>[tribal] {X_nameDef} of {FACTION} raises cairns over the dead, the way the old tribes do, carrying the stones a long way so the spirits know they were loved. {X_nameDef} has walked past the colony's graves twice now, slowly, and offers to raise a proper cairn over each one, for {COUNT} silver or its worth in goods.</li>
-          <li>[medieval] {X_nameDef}, a stonemason of {FACTION}, has a cart of dressed stone and a mallet worn smooth by years of lettering. The colony's graves are marked with whatever came to hand, {X_nameDef} says, and the dead deserve better. For {COUNT} silver, {X_nameDef} will cut a proper stone for each, with the name on it.</li>
-          <li>[industrial] {X_nameDef} of {FACTION} engraves headstones and memorial plaques, and travels with a cart of slate and a box of chisels. {X_nameDef} looked at the colony's graves with professional disapproval, and offers to mark every one properly for {COUNT} silver.</li>
-          <li>[spacer] {X_nameDef}, a memorial-maker of {FACTION}, carries a laser etcher and a stack of polished stone blanks. For {COUNT} silver, every grave in the colony will have a proper marker by tomorrow: name, dates and a line about each, if someone will say what it should be.</li>
-          <li>{X_nameDef} of {FACTION} cuts stone for the dead, and has stopped at the colony on the way through. {X_nameDef} has looked over the graves, made a list in chalk, and named a price: {COUNT} silver for a proper marker on every one.</li>
+          <li>[medieval] {X_nameDef}, a stonemason of {FACTION}, carries a mallet worn smooth by years of lettering. The colony's graves are marked with whatever came to hand, {X_nameDef} says, and the dead deserve better. For {COUNT} silver, there will be a proper stone for each, with the name on it.</li>
+          <li>[industrial] {X_nameDef} of {FACTION} engraves headstones, and travels with a box of chisels and a roll of rubbings taken from other people's graveyards. {X_nameDef} looked at the colony's graves with professional disapproval, and offers to mark every one properly for {COUNT} silver.</li>
+          <li>[spacer] {X_nameDef}, a memorial-maker of {FACTION}, carries a laser etcher and a stack of polished stone blanks. For {COUNT} silver, every grave in the colony will have a proper marker by tomorrow: a name, two dates and a line about each, if someone will say what it should be.</li>
+          <li>{X_nameDef} of {FACTION} cuts stone for the dead, and has already been round the colony's graves once with a stick of chalk, marking the head of each. The price is {COUNT} silver for a proper marker on every one.</li>
           <li>A traveler of {FACTION}, {X_nameDef}, asked who was buried in the colony's graveyard, and listened to every name. For {COUNT} silver, {X_nameDef} offers to cut each of those names in stone, so the next people to come this way will know them too.</li>
         </texts>
         <defaultOption>2</defaultOption>
@@ -211,7 +211,7 @@
             <label>A proper marker for every grave ({COUNT} silver)</label>
             <outcome>{X_nameDef} worked through the evening and into the next morning, and {A_nameDef} sat by the graves telling the stonecutter about each of the dead, so the stones would say the right thing.</outcome>
             <outcomes>
-              <li>[tribal] {X_nameDef} raised a cairn over every grave, and the colony carried the stones up from the river to help. By dark the graveyard looked like a place someone had cared for.</li>
+              <li>[tribal] {X_nameDef} raised a cairn over every grave, and the colony carried stones to {X_objective} all afternoon. By dark the graveyard looked like a place someone had cared for.</li>
               <li>[spacer] The etcher hummed all evening. By morning every grave had a polished stone with a name, two dates, and a line {A_nameDef} chose for each.</li>
               <li>[colony:Traditional] The colony gathered at the graves when the last stone was set, and {A_nameDef} read the names out, one by one.</li>
             </outcomes>
@@ -227,7 +227,7 @@
             <label>Have {X_objective} teach our best crafter how (half that)</label>
             <outcome>{X_nameDef} showed {B_nameDef} how to split a stone along its grain and cut a letter that won't weather away. {B_nameDef} has been practicing on offcuts since, and means to mark the graves personally.</outcome>
             <outcomes>
-              <li>[b:skill:Artistic] {B_nameDef} took to the chisel like {B_pronoun} was born holding one. {X_nameDef} said so, twice, which {B_nameDef} will be repeating for weeks.</li>
+              <li>[b:skill:Artistic] {B_nameDef} took to the chisel as if born holding one. {X_nameDef} said so, twice, which {B_nameDef} will be repeating for weeks.</li>
             </outcomes>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Needs"><target>Colony</target><skill>Artistic</skill><minLevel>3</minLevel><asB>true</asB></li>
@@ -277,23 +277,23 @@
           <li>A builder wanted</li>
         </titles>
         <texts>
-          <li>A rider from {FACTION} came in this morning with a request. High water took out the bridge below {PLACE}, and the timber to rebuild it is cut and waiting, but none of them knows how to make a span that won't fall into the river again.\n\nThey ask to borrow the colony's best builder for a day of advice and drawings, and will pay {COUNT} silver.</li>
-          <li>[lowtech] The rope bridge over the gorge near {PLACE} snapped in the last storm, and {FACTION} are cut off from their summer pastures. Their elders have sent a runner: does the colony have someone who knows how to hang a bridge that will hold a laden mule? They will pay {COUNT} silver for a day of that someone's advice.</li>
+          <li>High water took out the bridge below {PLACE}. {FACTION} have the timber cut and waiting, but none of them knows how to make a span that won't go into the river again.\n\nA rider brought their request this morning: the colony's best builder, for a day of advice and drawings, for {COUNT} silver.</li>
+          <li>[lowtech] The rope bridge over the gorge near {PLACE} snapped in the last storm, and {FACTION} are cut off from their summer pastures. The runner their elders sent wants to know whether the colony has someone who can hang a bridge that will hold a laden mule. They'll pay {COUNT} silver for a day of that someone's advice.</li>
           <li>[medieval] The mill wheel at {PLACE} has broken its axle, and {FACTION}'s miller says there'll be no flour until it's set right. Their carpenters have the timber but not the know-how. Could the colony lend them a builder for a day, to look at the drawings and tell them how? They'll pay {COUNT} silver.</li>
-          <li>[industrial] The water tower at {PLACE} has started to lean, and {FACTION} are afraid to go near it. They've sent the drawings over with a courier and ask whether the colony's best builder would look them over and tell their crew what to do, for {COUNT} silver.</li>
+          <li>[industrial] The note that came with {FACTION}'s drawings reads, in full: "Water tower at {PLACE} leaning. Crew won't climb it. Need a builder's eye, one day. Will pay {COUNT} silver."</li>
           <li>[spacer] A storm buckled the mast of the wind turbine at {PLACE}, and {FACTION} have been running on batteries since. Their crew have the parts and not the experience. They'll pay {COUNT} silver for a day of advice from the colony's best builder.</li>
           <li>[winter] The roof of the meeting hall at {PLACE} came down under the snow, and {FACTION} want it back up before the next fall of it. They've sent their plans and a request: a day of advice from the colony's best builder, for {COUNT} silver.</li>
-          <li>Word has come from {FACTION}: the crossing near {PLACE} has washed out, and their builders can't agree how to put it back. They ask whether the colony's best builder could spend a day with them and settle it, and they'll pay {COUNT} silver.</li>
-          <li>A messenger from {FACTION} is waiting at the gate with a roll of drawings under one arm. Something they built near {PLACE} has failed, and they want someone who knows building to tell them why. For a day of advice, they offer {COUNT} silver.</li>
+          <li>{FACTION}'s builders have been arguing for a week about how to rebuild the washed-out crossing near {PLACE}, and the crossing is still washed out. They'd like the colony's best builder to spend a day with them and settle it, and they'll pay {COUNT} silver.</li>
+          <li>A roll of drawings came up from {PLACE} this morning, with {FACTION}'s mark on the outside and a question inside. Something they built has failed, and they want someone who knows building to tell them why. For a day of advice, they offer {COUNT} silver.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
           <li>
             <label>Lend them our best builder</label>
-            <outcome>{B_nameDef} spent the day over {FACTION}'s drawings with their carpenters, redrew half of them and sent them home with a plan that will stand. The silver came back with the rider.</outcome>
+            <outcome>{B_nameDef} spent the day over {FACTION}'s drawings with their carpenters, redrew half of them and sent them home with a plan that will stand. The silver came back with their messenger.</outcome>
             <outcomes>
               <li>[b:trait:Abrasive] {B_nameDef} told {FACTION}'s carpenters exactly what was wrong with their plans, and they didn't enjoy it. The plan {B_nameDef} drew them will stand, though, and they paid.</li>
-              <li>[b:past:artisan] {B_nameDef} built bridges for a living once, and it showed. {FACTION}'s carpenters went home with a set of drawings they'll be copying for years.</li>
+              <li>[b:past:artisan] {B_nameDef} learned the trade in a proper workshop, and it showed. {FACTION}'s carpenters went home with a set of drawings they'll be copying for years.</li>
             </outcomes>
             <riskChance>0.3</riskChance>
             <riskSkill>Construction</riskSkill>
@@ -315,7 +315,7 @@
           </li>
           <li>
             <label>Send them timber instead (80 wood)</label>
-            <outcome>A cart of the colony's timber went out to {PLACE} with the rider. {FACTION} paid what they could for it, and will have to work out the rest themselves.</outcome>
+            <outcome>The colony hauled the timber down to the gate for {FACTION} to collect and take to {PLACE}. They paid what they could for it, and will have to work out the rest themselves.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the timber for {PLACE}</label><what>wood</what><count>80</count><to>Gate</to></li>
               <li Class="ColonyCouncil.WorldEffect_Silver"><factor>0.4</factor></li>
@@ -325,7 +325,7 @@
           </li>
           <li>
             <label>We can't spare anyone</label>
-            <outcome>The rider goes home to {PLACE} empty-handed. {FACTION} will manage, or they won't.</outcome>
+            <outcome>Word goes back to {PLACE} that the colony can't spare anyone. {FACTION} will manage, or they won't.</outcome>
           </li>
         </options>
       </li>
@@ -357,12 +357,12 @@
           <li>A herder asks for help</li>
         </titles>
         <texts>
-          <li>{X_nameDef}, a herder of {FACTION}, has come to the colony in a hurry. Half the herd is off its feed and coughing, and {X_nameDef} has heard the colony has someone who's good with animals.\n\n{X_nameDef} would pay {COUNT} silver for a look at them, or take whatever medicine the colony can spare.</li>
-          <li>[lowtech] {X_nameDef} of {FACTION} drives goats along the high pastures, and three days ago the goats started to sicken: dull eyes, runny noses, no appetite. {X_nameDef} has brought the herd down to the colony's road and is asking for anyone who knows animals. {COUNT} silver, {X_nameDef} says, for a look.</li>
+          <li>Half of {X_nameDef}'s herd is off its feed and coughing, and the rest won't be far behind. {X_nameDef}, a herder of {FACTION}, came at a run when someone on the road said the colony has a hand with animals.\n\n{X_nameDef} would pay {COUNT} silver for a look at them, or take whatever medicine the colony can spare.</li>
+          <li>[lowtech] {X_nameDef} of {FACTION} drives goats along the high pastures, and three days ago the goats started to sicken: dull eyes, runny noses, no appetite. {X_nameDef} has left the herd in the lee of a hill and come down to the colony alone, asking for anyone who knows animals. {COUNT} silver, {X_nameDef} says, for a look.</li>
           <li>[!lowtech] {X_nameDef}, a herder of {FACTION}, came to the gate with a list of symptoms written on the back of a feed receipt. The herd's vet died last winter and the replacement never came. {X_nameDef} would pay {COUNT} silver for someone who knows animals to come and look.</li>
-          <li>[tundra] {X_nameDef} of {FACTION} herds reindeer, and the reindeer are coughing. The nearest help is a week's walk, {X_nameDef} says, and the colony is right here. {COUNT} silver for a look at them, or a little medicine.</li>
-          <li>[desert] {X_nameDef}, a camel driver of {FACTION}, has stopped the string outside the colony. Two of the camels have a fever and the rest are going the same way. {X_nameDef} would pay {COUNT} silver for someone who knows animals.</li>
-          <li>[spring] It's the birthing season, and the herd of {X_nameDef}, a herder of {FACTION}, has a sickness running through it at the worst possible time. {X_nameDef} asks if the colony's best with animals could come and look, for {COUNT} silver.</li>
+          <li>[tundra] The reindeer are coughing. {X_nameDef} of {FACTION} herds them, and the nearest help is a week's walk away, {X_nameDef} says, while the colony is right here. {COUNT} silver for a look at them, or a little medicine.</li>
+          <li>[desert] {X_nameDef}, a camel driver of {FACTION}, has left the string hobbled down the road. Two of the camels have a fever and the rest are going the same way. {X_nameDef} would pay {COUNT} silver for someone who knows animals.</li>
+          <li>[spring] It's the birthing season, the worst time for a sickness to get into a herd, and one has got into {X_nameDef}'s. {X_nameDef}, a herder of {FACTION}, asks if the colony's best with animals could come and look, for {COUNT} silver.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -434,10 +434,10 @@
           <li>An invitation from the camp</li>
         </titles>
         <texts>
-          <li>The people camped {PLACE} have something to celebrate, and {X_nameDef} came over to say so: a good day, a good week, and the camp means to mark it with whatever is in the pot. The colony is invited to the fire tonight.</li>
+          <li>{X_nameDef} walked over from the camp {PLACE} to say it's been a good week out there, and the camp means to mark it with whatever is in the pot. The colony is invited to the fire tonight.</li>
           <li>[camp:Hunters] The hunters camped {PLACE} brought down something big this morning, and tonight they're roasting it whole. {X_nameDef} came over to say the colony is welcome at the fire.</li>
           <li>[camp:Pilgrims] It's a holy day for the pilgrims camped {PLACE}, and on holy days they feed whoever comes. {X_nameDef} has invited the colony to eat with them tonight.</li>
-          <li>[camp:Market] Business has been good at the traders' stall {PLACE}, and {X_nameDef} wants to celebrate it. There'll be food and drink at the camp tonight, and the colony is invited.</li>
+          <li>[camp:Market] "Best week we've had since the coast," {X_nameDef} says, and the traders' stall {PLACE} is closing early to mark it. There'll be food and drink at the camp tonight, and the colony is invited.</li>
           <li>[camp:Refugees] The family camped {PLACE} has little enough, but it's {X_nameDef}'s birthday, and they mean to mark it. They've asked the colony to come and share what they have.</li>
           <li>[camp:Smith] The smith camped {PLACE} finished a piece today that {X_nameDef} says is the best of the year, and the camp means to drink to it tonight. The colony is invited.</li>
           <li>[camp:Prospectors] The prospectors camped {PLACE} found color in the pan this morning, real color, and they're celebrating as if they'd struck it rich. {X_nameDef} came over to invite the colony.</li>
@@ -450,7 +450,7 @@
             <outcome>The colony walked over at dusk with a sack of food, and the camp made room at the fire. It was a long, loud evening, and the walk home was a slow one.</outcome>
             <outcomes>
               <li>[camp:Hermit] The colony turned up with food and a song, and {X_nameDef} didn't know what to do with either. By the end of the night {X_nameDef} was singing too.</li>
-              <li>[winter] The colony brought food over through the snow, and the camp's fire was built so high that everyone sat in shirtsleeves.</li>
+              <li>[winter] The colony brought food over through the snow, and the camp's fire was built so high that the guests sat in shirtsleeves.</li>
             </outcomes>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>20</count></li>
@@ -463,7 +463,7 @@
           </li>
           <li>
             <label>Go, and enjoy their hospitality</label>
-            <outcome>The colony went over at dusk and ate the camp's food at the camp's fire. It was a good evening, and the camp was glad of the company.</outcome>
+            <outcome>The colony went over at dusk empty-handed and was fed anyway, from the camp's pot, at the camp's fire. Before the evening was out the camp had taught the colony one of its songs.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_CampMood"><tension>-6</tension><warm>1</warm></li>
               <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.12</amount></li>
@@ -474,7 +474,7 @@
           </li>
           <li>
             <label>Send thanks, but stay home</label>
-            <outcome>The colony sends its thanks. The camp feasts on its own, with fewer guests than it hoped for.</outcome>
+            <outcome>The colony sends its thanks and stays in. The camp's fire burns late, and the singing carries across the fields.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_CampMood"><tension>5</tension></li>
             </effects>
@@ -511,9 +511,9 @@
           <li>{A_nameDef} and the camp</li>
         </titles>
         <texts>
-          <li>{A_nameDef} and {X_nameDef} from the camp {PLACE} had words this morning over a tree. {A_nameDef} had marked it for the colony's fence, and {X_nameDef} felled it for the camp's fire before {A_nameDef} got there with an axe.\n\nThey both came to the council about it, separately, within the hour.</li>
+          <li>The tree is down, which is half the trouble. {A_nameDef} had marked it for the colony's fence, and {X_nameDef} from the camp {PLACE} felled it for the camp's fire before {A_nameDef} got there with an axe.\n\nThey both came to the council about it, separately, within the hour.</li>
           <li>[camp:Hunters] {A_nameDef} tracked a deer all morning and was lining up the shot when {X_nameDef} from the hunters' camp {PLACE} took it first. Now they both claim the carcass, loudly, and the camp and the colony are watching to see what the council says.</li>
-          <li>[river] {X_nameDef} from the camp {PLACE} has been drawing water from the colony's side of the river, and {A_nameDef} has had enough of it. Words were said at the water's edge this morning, and both of them want the council to settle it.</li>
+          <li>[river] {X_nameDef} from the camp {PLACE} has been drawing water from the colony's side of the river, and {A_nameDef} has had enough of it. There were words at the water's edge this morning, and both of them want the council to settle it.</li>
           <li>[summer] It's hot, tempers are short, and {A_nameDef} caught {X_nameDef} from the camp {PLACE} picking berries the colony had been waiting on for a week. The argument could be heard from the fields.</li>
           <li>[winter] Firewood is precious in winter, and {A_nameDef} found {X_nameDef} from the camp {PLACE} gathering deadwood the colony had stacked to dry. {X_nameDef} says it was lying loose. {A_nameDef} says it was a stack.</li>
           <li>[camp:Prospectors] {X_nameDef} from the prospectors' camp {PLACE} dug a test hole right across the path {A_nameDef} uses to the fields, and {A_nameDef} found it in the dark, with one leg. {A_nameDef} isn't hurt, but wants the council to say something.</li>
@@ -522,7 +522,7 @@
         <options>
           <li>
             <label>Back {A_nameDef}: the camp must make it good</label>
-            <outcome>The council took {A_nameDef}'s side, and {X_nameDef} went back to the camp with a face like thunder. They'll make it good, they say. Things have cooled between the camp and the colony.</outcome>
+            <outcome>The council took {A_nameDef}'s side, and {X_nameDef} went back to the camp with a face like thunder. They'll make it good, they say. The camp has been cooler toward the colony since.</outcome>
             <outcomes>
               <li>[camp:Hunters] The council gave the deer to {A_nameDef}. The hunters took it badly, and the colony's dogs are being growled at.</li>
             </outcomes>

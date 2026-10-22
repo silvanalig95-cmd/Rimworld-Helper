@@ -29,16 +29,16 @@
           <li>Something rare in the grass</li>
         </titles>
         <texts>
-          <li>[new] {A_nameDef} came running in from the fields: there's {X_indefinite} on the colony's land, a rare one, the kind trainers spend years looking for. Nobody here has ever caught one. It's grazing along the ridge as if it has all the time in the world, and it won't stay more than a day or two.</li>
-          <li>[known] There's {X_indefinite} on the colony's land, a rare one, and a fine one too. The colony has caught its kind before, but never one like this. {A_nameDef} has been watching it from the ridge since dawn. It will be gone in a day or two.</li>
-          <li>[trainer] {A_nameDef}'s Pokémon noticed it first, ears up, quivering: {X_indefinite}, a rare one, out past the fields. {A_nameDef} has a hand on {A_possessive} belt already. It won't stay long.</li>
-          <li>[shiny] {A_nameDef} couldn't believe it at first: {X_indefinite}, rare enough already, and this one shining in the wrong colours, catching the light like a coin. It's on the colony's land for a day or two, no more.</li>
+          <li>[new] "Out past the fields," {A_nameDef} says, still out of breath from running in. "A rare one. Come and look." It's {X_indefinite}, the kind trainers spend years looking for, and the colony has never caught one. It's taking its time out there, and it won't stay more than a day or two.</li>
+          <li>[known] Since dawn, {A_nameDef} has been watching {X_indefinite} out on the colony's land, a rare one and a fine one. The colony has caught its kind before, but never one like this. It will be gone in a day or two.</li>
+          <li>[trainer] {A_nameDef}'s Pokémon noticed it first and went very still. Then {A_nameDef} saw it too: {X_indefinite}, a rare one, out past the fields. {A_nameDef} has a hand on {A_possessive} belt already. It won't stay long.</li>
+          <li>[shiny] {A_nameDef} couldn't believe it at first. It's {X_indefinite}, rare enough already, and this one is shining in the wrong colors, catching the light like a coin. It's on the colony's land for a day or two, no more.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
           <li>
             <label>Everyone out to see it</label>
-            <outcome>Half the colony crept up the ridge together and lay in the grass to watch the rare one go about its business. Nobody spoke above a whisper.</outcome>
+            <outcome>A handful of colonists crept out together and lay flat in the grass to watch the rare one go about its business. They came back with grass stains, and a story that grew on the way home.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Procession"><label>a look at the rare one</label><to>Stranger</to><count>5</count><hours>8~18</hours></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_PW_SawRareOne</thought><chance>0.6</chance></li>
@@ -56,7 +56,7 @@
           </li>
           <li>
             <label>Let it pass</label>
-            <outcome>The colony lets the rare one be. It grazed along the ridge for a while, looked down at the walls once, and went on its way.</outcome>
+            <outcome>The colony lets the rare one be. It stayed out at the edge of the land for a while, looked toward the walls once, and went on its way.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_PW_RareOneMissed</thought></li>
             </effects>
