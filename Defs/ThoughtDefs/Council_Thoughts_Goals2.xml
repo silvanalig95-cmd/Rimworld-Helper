@@ -11,7 +11,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmGoal_GivenTime</defName>
     <durationDays>6</durationDays>
-    <stages><li><label>time for my dream</label><description>The council took me off the dull work so I can chase what matters to me. I'm not wasting a minute of it.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+    <stages><li><label>time for my dream</label><description>The council took me off the hauling so I can chase my dream. I'm not wasting a minute of it.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -23,7 +23,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmGoal_Backed</defName>
     <durationDays>8</durationDays>
-    <stages><li><label>the council backed my dream</label><description>They put the colony's own silver behind what I want to do. Now I have to deserve it.</description><baseMoodEffect>6</baseMoodEffect></li></stages>
+    <stages><li><label>the council backed my dream</label><description>They put the colony's own silver behind my dream. I'm keeping a tally of every coin.</description><baseMoodEffect>6</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -49,7 +49,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmGoal_AskedToTeach</defName>
     <durationDays>5</durationDays>
-    <stages><li><label>asked to teach</label><description>I've been asked to teach what I know, and my evenings are cleared for it. It's flattering.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+    <stages><li><label>asked to teach</label><description>I've been asked to teach what I know, and my evenings are cleared for it. I've started saying "my student."</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <!-- ===================== Doubters and rivals ===================== -->
@@ -69,14 +69,14 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmGoal_Bet</defName>
     <durationDays>6</durationDays>
-    <stages><li><label>an easy bet</label><description>I bet a week of dinners that their dream will come to nothing. Easy winnings.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>an easy bet</label><description>If they pull it off, I cook for a week and apologize at dinner. I'm not worried.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><journal>true</journal><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmGoal_SharedDream</defName>
     <durationDays>6</durationDays>
-    <stages><li><label>dreaming side by side</label><description>We share a workbench and talk over our plans late into the night. It's better with company.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+    <stages><li><label>dreaming side by side</label><description>We're up late most nights now over the same bench, planning both our dreams at once.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <!-- ===================== Leaving ===================== -->
@@ -96,7 +96,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmGoal_FriendStayed</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>a friend almost left</label><description>A friend nearly left with the next caravan, but they're staying. I'm so relieved.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>a friend almost left</label><description>A friend nearly left with the next caravan, and now their pack is back under the bed.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <!-- ===================== Giving up ===================== -->
@@ -124,7 +124,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmGoal_Remembered</defName>
     <durationDays>10</durationDays>
-    <stages><li><label>my dream will be remembered</label><description>My dream has been written into the colony's records. Whatever happens to me, they'll know what I was trying to do.</description><baseMoodEffect>6</baseMoodEffect></li></stages>
+    <stages><li><label>my dream will be remembered</label><description>Whatever happens to me now, they'll know what I was trying to do. I held on to that all through dinner.</description><baseMoodEffect>6</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -136,7 +136,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmGoal_Promised</defName>
     <durationDays>10</durationDays>
-    <stages><li><label>carrying a promise</label><description>I promised to finish a friend's dream if they can't. It weighs more than I expected.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>carrying a promise</label><description>I promised to finish a friend's dream if they can't. They held on to my hand a long while after.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
