@@ -74,7 +74,7 @@
           <cold><li>I have started to remember {LOST} on purpose, in order. It is better than being ambushed by it.</li></cold>
         </journal>
         <chronicle>
-          <li>{PAWN_nameDef} has started to say {LOST}'s name again, though not yet all the way through a story.</li>
+          <li>{LOST}'s name is back in {PAWN_nameDef}'s talk, though {PAWN_pronoun} can't yet get all the way through a story.</li>
         </chronicle>
         <gate>
           <kind>Talk</kind>
@@ -108,7 +108,7 @@
           <plain><li>{OTHER_nameDef} and I talked about {LOST} today. Neither of us had said the name aloud in days.</li></plain>
         </otherJournal>
         <chronicle>
-          <li>{PAWN_nameDef} laughed at supper the other night, and didn't stop {PAWN_objective}self.</li>
+          <li>At supper the other night, {PAWN_nameDef} laughed, and didn't stop {PAWN_objective}self.</li>
         </chronicle>
         <gate><kind>Hold</kind><hold>Mood</hold><value>0.45</value><hours>72</hours><minDays>4</minDays><timeoutDays>35</timeoutDays></gate>
       </li>
@@ -208,7 +208,7 @@
           <cold><li>{OTHER_nameDef} is the safest first listener. I'll judge the reaction there.</li></cold>
         </journal>
         <chronicle>
-          <li>{PAWN_nameDef} keeps looking for a moment alone with {OTHER_nameDef}, and keeps letting it pass.</li>
+          <li>Twice now, {PAWN_nameDef} has found a moment alone with {OTHER_nameDef} and let it pass.</li>
         </chronicle>
         <gate>
           <kind>Talk</kind>
@@ -263,7 +263,7 @@
           <plain><li>{OTHER_nameDef} has told the rest of them. I know what that cost {OTHER_objective}.</li></plain>
         </otherJournal>
         <chronicle>
-          <li>{PAWN_nameDef} told {PAWN_possessive} secret in {PAWN_possessive} own words, before anyone else could tell it for {PAWN_objective}.</li>
+          <li>Before anyone else could tell it for {PAWN_objective}, {PAWN_nameDef} told {PAWN_possessive} secret in {PAWN_possessive} own words.</li>
           <li>With {OTHER_nameDef} behind {PAWN_objective}, {PAWN_nameDef} stopped keeping {PAWN_possessive} secret.</li>
         </chronicle>
         <effects>
@@ -538,12 +538,12 @@
           </plain>
           <warm><li>Saying the dream out loud helped. Now I want to give it a shape the others can see.</li></warm>
           <blunt><li>Making the dream into a thing. Then sleeping.</li></blunt>
-          <cheerful><li>I'm going to make my dream real, with {SKILL}. I've already started sketching it on the wall.</li></cheerful>
+          <cheerful><li>I'm going to make my dream real, with {SKILL}. I've already started scratching it out in the dirt.</li></cheerful>
           <gloomy><li>Maybe if I make it, it will leave me alone. It's worth a try.</li></gloomy>
           <cold><li>Giving the image a physical form may end the recurrence. I'll test that.</li></cold>
         </journal>
         <chronicle>
-          <li>{PAWN_nameDef} has decided to make the dream with {PAWN_possessive} own hands, and see if it lets go.</li>
+          <li>With {PAWN_possessive} own hands, {PAWN_nameDef} means to make the dream real, and see if it lets go.</li>
         </chronicle>
         <gate>
           <kind>Made</kind>

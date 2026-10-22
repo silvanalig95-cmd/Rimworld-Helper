@@ -122,7 +122,7 @@
         <li>r_logentry->[INITIATOR_nameDef] sat with [RECIPIENT_nameDef] and let [RECIPIENT_objective] talk about the one who is gone.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] laughed about something the dead used to do, and then went quiet.</li>
         <li>r_logentry->Going through the things the dead left behind, [INITIATOR_nameDef] and [RECIPIENT_nameDef] decided what to keep.</li>
-        <li>r_logentry->Talking with [RECIPIENT_nameDef], [INITIATOR_nameDef] came round to the last good day with the one who is gone.</li>
+        <li>r_logentry->Talking with [RECIPIENT_nameDef], [INITIATOR_nameDef] came around to the last good day with the one who is gone.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] said the name of the one they lost out loud, and it was easier the second time.</li>
       </rulesStrings>
     </logRulesInitiator>

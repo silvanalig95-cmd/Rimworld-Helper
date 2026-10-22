@@ -264,7 +264,7 @@
         </journal>
         <chronicle>
           <li>{PAWN_nameDef}'s things are out of {PAWN_possessive} pack now, set on a shelf where {PAWN_pronoun} can see them.</li>
-          <li>{PAWN_nameDef} has a corner of the colony that is {PAWN_possessive} own, and has started to keep it.</li>
+          <li>{PAWN_nameDef} has a corner of the colony that is {PAWN_possessive} own now, and keeps it swept.</li>
         </chronicle>
         <gate>
           <kind>Hold</kind>
