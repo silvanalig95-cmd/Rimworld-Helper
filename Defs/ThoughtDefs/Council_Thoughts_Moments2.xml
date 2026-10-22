@@ -18,19 +18,19 @@
 
   <ThoughtDef ParentName="Council_Moment2Base">
     <defName>Council_Moment_FriendlyDisagreement</defName>
-    <stages><li><label>a friendly disagreement</label><description>We never see things the same way. It's good to argue it out with someone who listens.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>2</baseOpinionOffset></li></stages>
+    <stages><li><label>a friendly disagreement</label><description>Whatever I say about tomorrow, they say the opposite. We had a good long argument about it.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>2</baseOpinionOffset></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>1</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_Moment2Base">
     <defName>Council_Moment_NightCompany</defName>
-    <stages><li><label>company in the small hours</label><description>Someone else who's awake when the rest are asleep. The night went quicker with two.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>4</baseOpinionOffset></li></stages>
+    <stages><li><label>company in the small hours</label><description>Two of us awake while the colony slept. The night went quicker for the company.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>4</baseOpinionOffset></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.06</joy><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_Moment2Base">
     <defName>Council_Moment_UnderTheMountain</defName>
-    <stages><li><label>a fellow under the mountain</label><description>Someone else who likes rock overhead. We could sit in those tunnels all day.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>4</baseOpinionOffset></li></stages>
+    <stages><li><label>a fellow under the mountain</label><description>They like rock overhead as much as I do. We sat in the cool of the tunnels and didn't miss the sky.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>4</baseOpinionOffset></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>1</felt></li></modExtensions>
   </ThoughtDef>
 
@@ -43,7 +43,7 @@
   <ThoughtDef ParentName="Council_Moment2Base">
     <defName>Council_Moment_FeltSafer</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>someone will stand in front</label><description>They said that next time I can stand behind them. I feel a little safer.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>5</baseOpinionOffset></li></stages>
+    <stages><li><label>someone will stand in front</label><description>They promised to be close by if trouble comes again. My hands have stopped shaking.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>5</baseOpinionOffset></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
@@ -62,7 +62,7 @@
 
   <ThoughtDef ParentName="Council_Moment2Base">
     <defName>Council_Moment_AMindToMatch</defName>
-    <stages><li><label>a mind to match mine</label><description>We talked about things nobody else here cares about, and they kept up.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>4</baseOpinionOffset></li></stages>
+    <stages><li><label>a mind to match mine</label><description>We talked through a problem the others gave up following hours ago. They kept up with every step.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>4</baseOpinionOffset></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><skill>Intellectual</skill><xp>100</xp><felt>1</felt></li></modExtensions>
   </ThoughtDef>
 
@@ -83,13 +83,13 @@
   <ThoughtDef ParentName="Council_Moment2Base">
     <defName>Council_Moment_VisitedWhileIll</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>visited while I was ill</label><description>I felt rotten, and they came by to sit with me for a while.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>5</baseOpinionOffset></li></stages>
+    <stages><li><label>visited while I was ill</label><description>I felt rotten, and they came by to sit with me and tell me all the news.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>5</baseOpinionOffset></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_Moment2Base">
     <defName>Council_Moment_SickTogether</defName>
-    <stages><li><label>sick together</label><description>We're both feeling poorly. Somehow it's easier to complain to someone who knows.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>3</baseOpinionOffset></li></stages>
+    <stages><li><label>sick together</label><description>We're both feeling poorly, so we sat and sniffled at each other across the table.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>3</baseOpinionOffset></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>1</felt></li></modExtensions>
   </ThoughtDef>
 
@@ -109,7 +109,7 @@
 
   <ThoughtDef ParentName="Council_Moment2Base">
     <defName>Council_Moment_TalkedOverMeeting</defName>
-    <stages><li><label>talked over the meeting</label><description>We went over the council meeting again afterward. I understand it better now.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>2</baseOpinionOffset></li></stages>
+    <stages><li><label>talked over the meeting</label><description>We went over the council meeting point by point on the way out. I know what I should have said now.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>2</baseOpinionOffset></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><trust>1</trust><felt>1</felt></li></modExtensions>
   </ThoughtDef>
 
@@ -124,25 +124,25 @@
   <ThoughtDef ParentName="Council_Moment2Base">
     <defName>Council_Moment_SaidItOutLoud</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>said it out loud</label><description>I told someone what's been weighing on me. It isn't gone, but it's lighter.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>5</baseOpinionOffset></li></stages>
+    <stages><li><label>said it out loud</label><description>I told them what I've been afraid of lately. They didn't laugh, and they didn't try to fix it.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>5</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_Moment2Base">
     <defName>Council_Moment_HeardTheirWorries</defName>
-    <stages><li><label>trusted with their worries</label><description>They told me what's been keeping them up at night. I'm glad it was me they told.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>4</baseOpinionOffset></li></stages>
+    <stages><li><label>trusted with their worries</label><description>They walked the walls with me and talked through what's been worrying them. I'll keep it to myself.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>4</baseOpinionOffset></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>1</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_Moment2Base">
     <defName>Council_Moment_ThankedAgain</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>thanked again</label><description>They still remember what I did for them, and they made sure I knew it.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>5</baseOpinionOffset></li></stages>
+    <stages><li><label>thanked again</label><description>They thanked me again for what I did. I told them to stop, but I didn't mean it.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>5</baseOpinionOffset></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_Moment2Base">
     <defName>Council_Moment_RepaidAKindness</defName>
-    <stages><li><label>repaid a kindness</label><description>I did something for them in return. It's a start.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>3</baseOpinionOffset></li></stages>
+    <stages><li><label>repaid a kindness</label><description>They did me a good turn once. Today I did one back.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>3</baseOpinionOffset></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>1</felt></li></modExtensions>
   </ThoughtDef>
 
@@ -179,7 +179,7 @@
   <ThoughtDef ParentName="Council_FrictionThoughtBase">
     <defName>Council_Friction_FireWorry</defName>
     <durationDays>0.5</durationDays>
-    <stages><li><label>keeping an eye on the fire-lover</label><description>Someone has to watch where they put the tinder. Apparently that someone is me.</description><baseMoodEffect>-1</baseMoodEffect><baseOpinionOffset>-2</baseOpinionOffset></li></stages>
+    <stages><li><label>keeping an eye on the fire-lover</label><description>I keep catching them staring into the hearth. I've moved the lamp oil somewhere higher.</description><baseMoodEffect>-1</baseMoodEffect><baseOpinionOffset>-2</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_FrictionThoughtBase">
