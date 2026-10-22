@@ -159,7 +159,7 @@
     </goals>
     <pitch>
       <plain>
-        <li>We let the last day go by without marking it. Let's keep the next ones properly, all of us.</li>
+        <li>We let the last day go by without marking it, and I felt it all week.</li>
         <li>Two of our days are coming round. Let's have the tables out and every one of us there.</li>
         <li>Keep a day three years running and it's a tradition. Let's start counting, and not lose count.</li>
         <li>[lowtech] The old villages kept their days whatever the year brought. So can we.</li>
@@ -250,7 +250,7 @@
     <pitch>
       <plain>
         <li>The herds are out there and we're eating roots. Let's train real hunters and bring the meat home.</li>
-        <li>Twelve animals and two hunters worth the name. Then nobody goes hungry when the crops fail.</li>
+        <li>Twelve kills and two hunters worth the name, so a failed crop doesn't mean hunger.</li>
         <li>[spring] The herds are fat from the new grass. It's the hunters' season.</li>
         <li>[afterraid] A band that can hunt can fight. We need both.</li>
       </plain>
@@ -300,7 +300,7 @@
       <plain>
         <li>Everything our ancestors knew about the stars is in a few heads and a few databanks. Let's make it more than a few.</li>
         <li>Three projects finished, three minds that understand them. Then it can't be lost.</li>
-        <li>[small] With so few of us, losing one scholar would set us back a century. Let's train more.</li>
+        <li>[small] With so few of us, losing one scholar would set us back a century.</li>
       </plain>
       <warm><li>I'd like to teach what I know before it's too late to.</li></warm>
       <blunt><li>One person here understands half of what we've built, and they won't live forever.</li></blunt>
@@ -393,7 +393,7 @@
         <li>Travelers pass us by because there's nowhere to sleep. Beds first, then a room worth the walk, and the roads will learn our name.</li>
         <li>I'd like guests to leave here telling everyone about us. Let's give them something to tell.</li>
         <li>[medieval] Every road needs a good inn. Let's be it.</li>
-        <li>[large] With this many of us, there's always someone to look after guests. Let's do it properly.</li>
+        <li>[large] With this many of us, there's always someone free to look after guests.</li>
       </plain>
       <warm><li>I want every stranger who comes through our gate to feel like they've come home.</li></warm>
       <blunt><li>Travelers have silver and nowhere to sleep. Give them a bed and take the silver.</li></blunt>

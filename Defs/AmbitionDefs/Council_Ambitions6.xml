@@ -87,7 +87,7 @@
     <pitch>
       <plain>
         <li>We eat in shifts, like a barracks. I'd like us all at one table, once a day.</li>
-        <li>Some of us eat standing up, plate in one hand. Let's build chairs until everyone has one.</li>
+        <li>Some of us eat standing up, plate in one hand. We need chairs, and enough of them.</li>
         <li>[evening] Supper should be the best hour of the day. Right now it's a scramble for chairs.</li>
         <li>[large] There are a lot of us now. We should still be able to sit down together.</li>
         <li>[afterraid] After a day like today, I want everyone round one table where I can see them.</li>
@@ -142,10 +142,10 @@
         <li>Let's look after each other for a while. Rest, decent food, fewer arguments. See how long we can go.</li>
         <li>[lowmood] I'm not doing well, and I'm not the only one. Let's slow down before someone breaks.</li>
         <li>[afterraid] The raid shook everyone. Give us half a season of calm to get over it.</li>
-        <li>[winter] Winter wears on people. Let's get through this one without anyone falling apart.</li>
+        <li>[winter] Winter wears on people. I'd like to reach the thaw with all of us in one piece.</li>
       </plain>
       <warm>
-        <li>If you're struggling, say so, and one of us will sit with you. Let's watch out for each other until things settle.</li>
+        <li>If you're struggling, say so, and one of us will sit with you until it passes.</li>
       </warm>
       <blunt>
         <li>Too many people are close to cracking. Fix that before it costs us.</li>
@@ -190,13 +190,13 @@
     </goals>
     <pitch>
       <plain>
-        <li>We've lasted a year out here. Let's make the next one a year where nobody breaks.</li>
+        <li>We've lasted a year out here. I'd like the next one to go by without anyone breaking.</li>
         <li>A whole year without anyone losing their head. It's never been done here. I'd like to try.</li>
         <li>[highmood] Things are good right now. Let's keep them good, for a full year.</li>
         <li>[spring] New year, new start. Let's see if we can get to next spring with steady nerves.</li>
       </plain>
       <warm>
-        <li>We know each other well enough now to see when someone's struggling. Let's use that.</li>
+        <li>We know each other well enough now to see someone struggling before they say a word.</li>
       </warm>
       <blunt>
         <li>Sixty days without anyone losing it. I'll do my part, and I expect you to do yours.</li>
@@ -240,13 +240,13 @@
     </goals>
     <pitch>
       <plain>
-        <li>People are sniffling at every meal, and the rest will be soon. Let's get them well and keep them well.</li>
+        <li>People are sniffling at every meal, and the rest of us will be soon.</li>
         <li>Rest for the sick, warm beds, clean floors. Then fifteen days with nobody coughing.</li>
         <li>[winter] Winter is when it spreads. We can't stop the cold, but we can stop passing things around.</li>
         <li>[lowtech] Clean water, rest, and the sick kept apart. That's how the old healers did it.</li>
       </plain>
       <warm>
-        <li>I hate seeing people suffer through it. Let's look after the sick properly this time.</li>
+        <li>I hate seeing people cough their way through a shift. The sick should be in bed, with someone bringing them broth.</li>
       </warm>
       <blunt>
         <li>Sick people don't work. Get them well. Keep them well.</li>
@@ -303,7 +303,7 @@
         <li>Medicine first, then beds for the sick, then a room clean enough to cut someone open in.</li>
         <li>[hurt] Look at this scar. That's what a dirty floor does to a clean cut.</li>
         <li>[afterraid] We patched people up in the dining room again. That can't keep happening.</li>
-        <li>[small] With so few of us, one wound gone bad could empty a job nobody else knows how to do. Let's do this properly.</li>
+        <li>[small] With so few of us, one wound gone bad could empty a job nobody else knows how to do.</li>
       </plain>
       <warm>
         <li>I'd like whoever's hurt to have a door to close, and someone sitting with them.</li>
@@ -569,7 +569,7 @@
         <li>[small] As few as we are, we need friends more than walls.</li>
       </plain>
       <warm>
-        <li>There are good people out there. Let's find them and say hello.</li>
+        <li>There are good people out there somewhere. I'd like to hear their voices.</li>
       </warm>
       <blunt>
         <li>We sit out here as if we were the last people alive. Build the console and talk to someone.</li>
@@ -713,7 +713,7 @@
     </goals>
     <pitch>
       <plain>
-        <li>Some of us are missing an arm or an eye, and we have what it takes to give them back. Let's do it.</li>
+        <li>Some of us are missing an arm or an eye, and we have what it takes to give them back.</li>
         <li>Nobody here should have to limp when we can make them a leg.</li>
         <li>[hurt] I know what it's like to lose part of yourself. Let's give back what we can.</li>
         <li>[spacer] We have the means to make people whole. Leaving them broken is a choice.</li>
