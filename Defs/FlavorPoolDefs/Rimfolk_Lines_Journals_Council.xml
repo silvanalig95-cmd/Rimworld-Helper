@@ -207,7 +207,7 @@
     <pool>Council_Journal_PromiseBroken</pool>
     <lines>
       <plain>
-        <li>"{WISH}", they promised. The days ran out, and not one of them came to say sorry.</li>
+        <li>"{WISH}", they promised. I'd already told my friends it was coming.</li>
         <li>They broke their promise. I'll still do my work. I'll just do it without believing them.</li>
       </plain>
       <warm><li>I'm not angry, only sad. I'd really thought "{WISH}" was coming.</li></warm>
