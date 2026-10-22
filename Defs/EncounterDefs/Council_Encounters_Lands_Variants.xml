@@ -83,7 +83,7 @@
     <defName>Council_Var_EncLand_FarPlaces</defName>
     <encounter>Council_EncP_FarPlaces</encounter>
     <texts>
-      <li>[land:desert] {X_nameDef} has crossed this desert eleven times and told {A_nameDef} about the worst of them, the week-long sandstorm and the night the camels ran.</li>
+      <li>[land:desert] {X_nameDef} has crossed this desert eleven times. The worst was the week of sandstorm, and after that the night the camels ran, and {A_nameDef} heard about both.</li>
       <li>[land:jungle|land:swamp] {X_nameDef} told {A_nameDef} about the river towns downstream, built on stilts over the water, where children learn to swim before they walk.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>

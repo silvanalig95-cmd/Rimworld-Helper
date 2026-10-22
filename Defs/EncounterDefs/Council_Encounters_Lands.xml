@@ -138,7 +138,7 @@
     <texts>
       <li>"Dry grass in the boots, changed every evening. And sleep with tomorrow's socks inside your shirt." {X_nameDef} of {FACTION} had been watching {A_nameDef} stamp {A_possessive} feet all morning.</li>
       <li>{X_nameDef} rubbed a smear of fat into {A_nameDef}'s cheeks and nose against the wind, the way {FACTION} mothers do for their children, and laughed at the face {A_nameDef} made.</li>
-      <li>[theirLowtech] {X_nameDef} showed {A_nameDef} how to make mittens the {FACTION} way, rabbit fur turned inward and the pair tied on a cord so neither gets lost in the snow.</li>
+      <li>[theirLowtech] {A_nameDef} copied {X_nameDef}'s mittens before supper, rabbit fur turned inward and the pair tied on a cord the {FACTION} way, so neither gets lost in the snow.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncL_ColdTrick</thought></li>
@@ -185,7 +185,7 @@
     <texts>
       <li>{X_nameDef} of {FACTION} pinned four broad leaves together with thorns and hung them over {A_nameDef}'s shoulders. It kept the rain off better than {A_nameDef}'s coat.</li>
       <li>Caught out in the downpour with {A_nameDef}, {X_nameDef} folded two huge leaves into hoods, and they walked back to the colony dry from the neck up.</li>
-      <li>[theirLowtech] {X_nameDef} showed {A_nameDef} how {FACTION} people weave a rain cape from palm fronds, overlapping like roof thatch. {A_nameDef} made one before supper, a bit lopsided.</li>
+      <li>[theirLowtech] By supper {A_nameDef} had a rain cape of palm fronds, overlapping like roof thatch, woven the {FACTION} way under {X_nameDef}'s eye. It was a bit lopsided.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncL_LeafCape</thought></li>

@@ -15,9 +15,9 @@
     <defName>Council_Var_EncP_RoadNews</defName>
     <encounter>Council_EncP_RoadNews</encounter>
     <texts>
-      <li>[winter] The north pass closed early this year, {X_nameDef} told {A_nameDef}, and two caravans are stuck on the far side of it until spring.</li>
+      <li>[winter] {X_nameDef} got over the north pass a day before it closed, and told {A_nameDef} about the two caravans stuck on the far side until spring.</li>
       <li>[theirLowtech] According to {X_nameDef}, the lord across the river has hanged his own tax collector, and nobody up there knows yet whether that's good news.</li>
-      <li>[theirHightech] {X_nameDef} told {A_nameDef} that a ship came down hard in the eastern hills, and every scavenger for a week's walk is heading for it.</li>
+      <li>[theirHightech] A ship came down hard in the eastern hills. {X_nameDef} saw the smoke from the road, and warned {A_nameDef} that every scavenger for a week's walk is heading that way.</li>
       <li>[rain] Under the eaves, waiting for the rain to ease, {X_nameDef} gave {A_nameDef} the state of every road and bridge for three days' walk.</li>
       <li>[x:old] {X_nameDef} has walked the roads for forty years and told {A_nameDef} which settlements have changed hands since the last time {X_pronoun} came this way. Most of them have.</li>
       <li>[past:trader] {A_nameDef} pressed {X_nameDef} for prices up and down the road, and wrote them on the back of {A_possessive} hand to copy out later.</li>
@@ -108,7 +108,7 @@
     <texts>
       <li>[theirHightech] {X_nameDef} told {A_nameDef} which outposts have working comms, which have working guns, and which only say they do.</li>
       <li>[theirLowtech] Two of the river villages have chosen the same man as headman, {X_nameDef} told {A_nameDef}, and neither will give him up.</li>
-      <li>[winter] According to {X_nameDef}, two settlements up the valley ran out of firewood last month and have been burning their fences.</li>
+      <li>[winter] {X_nameDef} came past two settlements up the valley that ran out of firewood last month. They're burning their fences now.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>
 
