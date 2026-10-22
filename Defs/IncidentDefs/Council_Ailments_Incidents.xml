@@ -34,7 +34,7 @@
       <li Class="ColonyCouncil.AilmentIncident">
         <weight>1.5</weight>
         <coldSeasonFactor>1.5</coldSeasonFactor>
-        <letter>A cold is going round the colony. So far these colonists have it:</letter>
+        <letter>Runny noses at breakfast, sneezing at the workbench. A cold is going round, and so far these colonists have it:</letter>
         <letterAfter>It spreads by coughs, sneezes and shared cups, and should be gone in about a week.</letterAfter>
       </li>
     </modExtensions>
@@ -50,7 +50,7 @@
     <letterLabel>A stomach bug</letterLabel>
     <modExtensions>
       <li Class="ColonyCouncil.AilmentIncident">
-        <letter>A stomach bug is going round. These colonists are already sick:</letter>
+        <letter>Pale faces, and plates left half eaten. A stomach bug is going round, and these colonists are already sick:</letter>
         <letterAfter>It passes from hands to food and cups. It should be over in two or three days.</letterAfter>
       </li>
     </modExtensions>
@@ -67,7 +67,7 @@
     <modExtensions>
       <li Class="ColonyCouncil.AilmentIncident">
         <maxOutdoorTemp>5</maxOutdoorTemp>
-        <letter>The cold weather has brought a chest cold with it. These colonists have a cough that keeps them up at night:</letter>
+        <letter>Coughing through the walls all night. The cold weather has brought a chest cold with it, and these colonists have the cough:</letter>
         <letterAfter>Keep them warm. The cough can last a couple of weeks.</letterAfter>
       </li>
     </modExtensions>
@@ -108,7 +108,7 @@
     <modExtensions>
       <li Class="ColonyCouncil.AilmentIncident">
         <weight>0.7</weight>
-        <letter>Pinkeye is going round. These colonists have red, weeping eyes:</letter>
+        <letter>Red, weeping eyes, crusted shut in the mornings. It's pinkeye, and these colonists have it:</letter>
         <letterAfter>It spreads by hands and shared towels, and clears in about a week.</letterAfter>
       </li>
     </modExtensions>
@@ -145,7 +145,7 @@
     <letterDef>NegativeEvent</letterDef>
     <modExtensions>
       <li Class="ColonyCouncil.AilmentIncident">
-        <letter>{PAWN_nameDef} has had a cough for weeks and has started coughing blood. It's tuberculosis.\n\nIt spreads through the air to anyone who sleeps in the same room. Untreated, it slowly wastes a person over a month or two. With treatment every day for weeks, and a room of their own, {PAWN_nameDef} can be cured.</letter>
+        <letter>Blood on the cloth {PAWN_nameDef} coughs into, after a cough that has hung on for weeks. It's tuberculosis.\n\nIt spreads through the air to anyone who sleeps in the same room. Untreated, it slowly wastes a person over a month or two. With treatment every day for weeks, and a room of their own, {PAWN_nameDef} can be cured.</letter>
       </li>
     </modExtensions>
   </IncidentDef>
@@ -178,7 +178,7 @@
     <modExtensions>
       <li Class="ColonyCouncil.AilmentIncident">
         <minOutdoorTemp>18</minOutdoorTemp>
-        <letter>{PAWN_nameDef} has cholera. It came on in the night: watery diarrhea and vomiting that won't stop, and {PAWN_nameDef} is drying out by the hour. Something {PAWN_pronoun} drank or ate was fouled.\n\nUntreated, cholera can kill in two or three days. Kept drinking, a sip at a time, and tended steadily, most people are over it within a week. It spreads in dirty rooms, so clean the place {PAWN_nameDef} sleeps.</letter>
+        <letter>It came on in the night: watery diarrhea and vomiting that won't stop, and {PAWN_nameDef} is drying out by the hour. It's cholera, from something {PAWN_pronoun} drank or ate that was fouled.\n\nUntreated, cholera can kill in two or three days. Kept drinking, a sip at a time, and tended steadily, most people are over it within a week. It spreads in dirty rooms, so clean the place {PAWN_nameDef} sleeps.</letter>
       </li>
     </modExtensions>
   </IncidentDef>
@@ -231,7 +231,7 @@
       <li Class="ColonyCouncil.AilmentIncident">
         <weight>0.8</weight>
         <hotFactor>2</hotFactor>
-        <letter>{PAWN_nameDef} is doubled up with pain in the side and back, coming in waves, and has been sick twice. It's a kidney stone.\n\nIt isn't dangerous, and most stones pass on their own within a week, but the pain is terrible. Plenty to drink and a doctor to ease the pain will help it along.</letter>
+        <letter>Pain in the side and back, coming in waves, bad enough that {PAWN_nameDef} is doubled up with it and has been sick twice. It's a kidney stone.\n\nIt isn't dangerous, and most stones pass on their own within a week, but the pain is terrible. Plenty to drink and a doctor to ease the pain will help it along.</letter>
       </li>
     </modExtensions>
   </IncidentDef>
@@ -250,7 +250,7 @@
       <li Class="ColonyCouncil.AilmentIncident">
         <weight>0.7</weight>
         <minAge>50</minAge>
-        <letter>{PAWN_nameDef} has a band of red blisters around one side of {PAWN_possessive} ribs, and says it burns like fire. It's shingles: the chickenpox {PAWN_nameDef} had as a child, back after all these years.\n\nIt isn't dangerous and heals in two or three weeks, but it's painful. Treatment eases it, and modern medicine shortens it.</letter>
+        <letter>{PAWN_nameDef} has a band of red blisters around one side of {PAWN_possessive} ribs, and says it burns like fire. It's shingles: the chickenpox {PAWN_nameDef} had as a child, back after all these years.\n\nIt isn't dangerous and heals in two or three weeks, but it's painful. Treatment eases it, and medicine better than herbs shortens it a good deal.</letter>
       </li>
     </modExtensions>
   </IncidentDef>

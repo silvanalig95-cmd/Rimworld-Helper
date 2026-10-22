@@ -23,13 +23,13 @@
         <titles>
           <li>{ENEMY} found {A_nameDef}</li>
           <li>{ENEMY} come for {A_nameDef}</li>
-          <li>The past catches up</li>
+          <li>The deserter's old unit</li>
         </titles>
         <texts>
-          <li>[lowtech] Riders in the colors of {ENEMY} have been asking at every village and crossroads for a deserter, and today they reached the colony. {A_nameDef} went pale at the sound of {A_possessive} own name. They want {A_objective} back to answer for it. They'll take {COUNT} silver in {A_possessive} place, or take {A_objective} by force.</li>
+          <li>[lowtech] {A_nameDef} went white at the sound of {A_possessive} own name. Riders in the colors of {ENEMY} have been asking for a deserter at every village and crossroads, and today they asked at the colony's gate. They want {A_objective} back to answer for it.\n\nThey'll take {COUNT} silver in {A_possessive} place. Otherwise they'll take {A_objective}, by force.</li>
           <li>[!lowtech,tribalfoe] A runner of {ENEMY} came out of the trees with a short message. They know {A_nameDef} is here, and a warrior who runs from the war band still belongs to it. The colony can hand {A_objective} over, buy out {A_possessive} oath for {COUNT} silver, or watch them come and take {A_objective}.</li>
-          <li>[!lowtech,!tribalfoe] {ENEMY} have sent a short message over the comms. They know {A_nameDef} is here, and as far as they're concerned, a deserter belongs to the unit until the unit says otherwise. Hand {A_objective} over, buy out {A_possessive} service for {COUNT} silver, or they'll come and take {A_objective}.</li>
-          <li>[winter] Three riders of {ENEMY} came through the snow under a white rag and asked for {A_nameDef} by name. They know {A_pronoun} ran, and they've come to take {A_objective} back. Or the colony can buy out {A_possessive} service for {COUNT} silver. Or they'll come back with more riders.</li>
+          <li>[!lowtech,!tribalfoe] "Deserter {A_nameDef} is to be returned to the unit to answer for desertion. Compensation of {COUNT} silver will be accepted in lieu. Failing either, the unit will recover {A_objective} by force."\n\nThe message came over the comms from {ENEMY}, and the signal cut before anyone could answer.</li>
+          <li>[winter] Three riders of {ENEMY} came through the snow under a white rag and asked for {A_nameDef} by name. They know {A_pronoun} ran, and they mean to take {A_objective} back, or take {COUNT} silver for {A_possessive} service. Refused both, they'll come back with more riders.</li>
           <li>[trait:Nervous] {A_nameDef} has been sleeping badly for weeks, and today the reason rode up to the gate: an officer of {ENEMY}, with the old muster roll and {A_nameDef}'s name on it. Hand {A_objective} over, buy out {A_possessive} service for {COUNT} silver, or {ENEMY} will take {A_objective} by force.</li>
         </texts>
         <defaultOption>0</defaultOption>
@@ -38,8 +38,8 @@
             <label>{A_nameDef} is one of us</label>
             <outcome>{A_nameDef} says nothing, but checks {A_possessive} weapon twice. {ENEMY} will be here within hours.</outcome>
             <outcomes>
-              <li>{A_nameDef} goes very quiet, then goes to help shore up the walls. {ENEMY} will be here within hours.</li>
-              <li>[trait:Kind] {A_nameDef} thanks the council, one by one, then gets ready for the fight. {ENEMY} will be here within hours.</li>
+              <li>{A_nameDef} goes very quiet, then goes to help shore up the walls. The raid is a few hours off at most.</li>
+              <li>[trait:Kind] {A_nameDef} shakes a few hands, slowly, then goes to get ready. {ENEMY} won't be long.</li>
             </outcomes>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_StoodByMe</thought><onlyIfChosen>true</onlyIfChosen></li>
@@ -69,7 +69,7 @@
           </li>
           <li>
             <label>Hand {A_nameDef} back</label>
-            <outcome>{A_nameDef} walks out to them without a word and doesn't look back. Supper that night is a quiet one.</outcome>
+            <outcome>{A_nameDef} walks out to them without a word and doesn't look back. Supper tonight will be a quiet one.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Evt_GaveUpOneOfUs</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>10</amount><enemy>true</enemy></li>
@@ -105,9 +105,9 @@
           <li>[winter] A visitor out of the snow</li>
         </titles>
         <texts>
-          <li>A young traveler of {FACTION} has come asking for {A_nameDef} by name. It takes {A_objective} a moment to place the face. It's {X_nameDef}, the lost child the colony once walked home, grown up now. {X_nameDef} has brought a gift, and would like to know if there's room here to stay.</li>
-          <li>[lowtech] A young traveler of {FACTION} walked up to the gate with a pack and asked for {A_nameDef}. It took {A_nameDef} a long look to see it: {X_nameDef}, the lost child the colony once walked home, a head taller now and brown from the road.\n\n{X_nameDef} has brought a gift, and wonders whether there's room here to stay.</li>
-          <li>[!lowtech] A young traveler of {FACTION} came in along the trade road with a duffel bag over one shoulder and asked for {A_nameDef} by name. {A_nameDef} didn't know the voice, but knew the grin: {X_nameDef}, the lost child the colony once walked home, grown up.\n\n{X_nameDef} has brought a gift, and would like to know if there's a place here.</li>
+          <li>A young traveler of {FACTION} has come asking for {A_nameDef} by name, and it takes {A_nameDef} a moment to place the face. It's {X_nameDef}, the lost child the colony once took home, all grown up. {X_nameDef} has brought a gift, and would like to know if there's room here to stay.</li>
+          <li>[lowtech] A head taller now and brown from the road, but after a long look {A_nameDef} knew {X_nameDef}, the lost child the colony walked home years ago. {X_nameDef} of {FACTION} has come back with a pack and a gift.\n\nAnd a question. {X_nameDef} wonders whether there's room here to stay.</li>
+          <li>[!lowtech] {A_nameDef} didn't know the voice, but knew the grin. {X_nameDef} of {FACTION} came in along the trade road with a duffel bag over one shoulder and asked for {A_nameDef} by name. It's the lost child from years ago, grown up.\n\n{X_nameDef} has brought a gift, and would like to know if there's a place here.</li>
           <li>[trait:Kind] {X_nameDef}, the lost child {A_nameDef} found by the fields years ago, is back, grown and taller than {A_nameDef}. The first thing {X_nameDef} did was hug {A_objective}. The second was to hand over a gift.\n\n{X_nameDef} would like to know if there's a place here, or at least a bed for the night.</li>
           <li>[winter] {X_nameDef} came in out of the snow, stamping {X_possessive} boots at the gate: the lost child the colony once walked home, grown up now. {X_nameDef} still remembers the soup {A_nameDef} made that first night, and has brought a gift in return.\n\n{X_nameDef} asks if there might be room here.</li>
         </texts>
@@ -121,8 +121,8 @@
             <label>Ask {X_objective} to stay</label>
             <outcome>{X_nameDef} stays. {A_nameDef} spends the evening showing {X_objective} everything that has changed since {X_pronoun} was small.</outcome>
             <outcomes>
-              <li>[trait:Kind] {X_nameDef} stays. {A_nameDef} has already found {X_objective} a bed and a spare coat, and keeps telling everyone how small {X_nameDef} was.</li>
-              <li>{X_nameDef} stays. {A_nameDef} spends the evening telling {X_objective} about everyone who came and went while {X_pronoun} was growing up.</li>
+              <li>[trait:Kind] {A_nameDef} has already found {X_nameDef} a bed and a spare coat, and keeps telling people how small {X_nameDef} used to be.</li>
+              <li>{X_nameDef} is staying. {A_nameDef} spends the evening telling {X_objective} about the people who came and went while {X_pronoun} was growing up.</li>
             </outcomes>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Join" />
@@ -135,7 +135,7 @@
             <label>Thank {X_objective} and wish {X_objective} well</label>
             <outcome>{X_nameDef} stays for supper, talks about home until late, and leaves in the morning with a full pack. {FACTION} speak well of the colony.</outcome>
             <outcomes>
-              <li>{X_nameDef} stays for supper, tells stories about home until the lamps burn low, and leaves at first light with a full pack. {FACTION} speak well of the colony.</li>
+              <li>{X_nameDef} eats two helpings at supper, falls asleep at the table, and will be off at first light with a full pack. {FACTION} speak well of the colony.</li>
               <li>[trait:Kind] {A_nameDef} walks {X_nameDef} to the edge of the colony's land in the morning, the way they walked together years ago. {FACTION} speak well of the colony.</li>
             </outcomes>
             <effects>
@@ -193,12 +193,12 @@
           <li>Back for a rematch</li>
         </titles>
         <texts>
-          <li>[won] {X_nameDef} of {FACTION}, who lost to the colony at {SKILL}, is back and has clearly been practicing. {X_nameDef} wants a rematch against {A_nameDef}, on the same terms as before. It's a friendly contest, and the colony can put silver on it if it likes.</li>
+          <li>[won] {X_nameDef} of {FACTION} is back, the one who lost to the colony at {SKILL}, and has clearly been practicing. A rematch against {A_nameDef}, same terms as before, is all {X_nameDef} asks. It's a friendly contest, though the colony can put silver on it.</li>
           <li>[lost] {X_nameDef} of {FACTION}, who beat the colony at {SKILL} last time, is back to defend the title against {A_nameDef}, and seems very relaxed about it. The colony can put silver on the match if it likes its chances this time.</li>
-          <li>[won] {X_nameDef} of {FACTION} is back at the gate, and says {X_pronoun} hasn't slept well since losing to {A_nameDef} at {SKILL}. {X_nameDef} wants a rematch, same terms. The colony can put silver on it if it likes.</li>
-          <li>[won,trait:Abrasive] {X_nameDef} of {FACTION} has come back for a rematch at {SKILL}, and {A_nameDef} has already told {X_objective} how it will end. {X_nameDef} only smiled. The colony can put silver on the match if it likes.</li>
-          <li>[lost] {X_nameDef} of {FACTION}, who beat {A_nameDef} at {SKILL} last time, has come by again and offers {A_nameDef} the chance to even the score. {A_nameDef} has been practicing. The colony can put silver on the match if it likes.</li>
-          <li>[lost,trait:Nervous] {X_nameDef} of {FACTION} is back, the one who beat {A_nameDef} at {SKILL}, and offers a rematch. {A_nameDef} has gone pale, but hasn't said no. The colony can put silver on it if it likes.</li>
+          <li>[won] "I haven't slept right since," says {X_nameDef} of {FACTION}, who lost to {A_nameDef} at {SKILL} and is back at the gate for a rematch. Same terms as before, with silver on it if the colony wants.</li>
+          <li>[won,trait:Abrasive] {X_nameDef} of {FACTION} has come back for a rematch at {SKILL}, and {A_nameDef} has already told {X_objective} how it will end. {X_nameDef} only smiled.</li>
+          <li>[lost] {A_nameDef} has been practicing. Now {X_nameDef} of {FACTION}, who beat {A_nameDef} at {SKILL} last time, has come by again and offers the chance to even the score, with silver on it if the colony likes.</li>
+          <li>[lost,trait:Nervous] {X_nameDef} of {FACTION} is back, the one who beat {A_nameDef} at {SKILL}, and offers a rematch, with silver on it if the colony likes. {A_nameDef} has gone pale, but hasn't said no.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -206,7 +206,7 @@
             <label>Accept: {COUNT} silver on {A_nameDef}</label>
             <outcome>The rematch is on, with silver riding on it. It starts in a couple of hours.</outcome>
             <outcomes>
-              <li>The rematch is on, and the silver is counted out on a barrel head where everyone can see it. It starts in a couple of hours.</li>
+              <li>The rematch is on, and the silver is counted out on a barrel head where everyone can see it. Two hours to go.</li>
             </outcomes>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Contest"><stake>true</stake></li>
@@ -216,7 +216,7 @@
             <label>Accept, for honor only</label>
             <outcome>The rematch is on, for bragging rights only. Both sides want this one badly.</outcome>
             <outcomes>
-              <li>The rematch is on, for bragging rights only. Half the colony has already found a spot to watch from.</li>
+              <li>The rematch is on, for bragging rights only. Spectators are already picking their spots.</li>
             </outcomes>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Contest" />
@@ -257,10 +257,10 @@
           <li>A great beast's heir</li>
         </titles>
         <texts>
-          <li>Hunters have seen {BEAST}, the young of {DEAD}, the great beast the colony brought down. It's nearly as big as its parent was, just as tough, and roaming the colony's land now. It will move on in a few days, unless someone hunts it first.</li>
+          <li>Hunters have seen {BEAST} on the colony's land. It's the young of {DEAD}, the great beast the colony brought down, nearly as big now as its parent was and just as tough, and it will be gone in a few days.</li>
           <li>[lowtech] The old hunters always said {DEAD} had young somewhere out there, and now {BEAST} has come down onto the colony's land, already scarred and growing into its parent's size. It will move on in a few days. {A_nameDef} has already been out to look at its tracks.</li>
-          <li>[winter] Tracks in the snow, wider than a man's two hands: {BEAST}, the young of {DEAD}, has come onto the colony's land. It's almost grown into its parent's size. It will move on in a few days, unless someone hunts it first.</li>
-          <li>[skill:Animals] {A_nameDef} spotted {BEAST} at the tree line this morning and knew it at once: the young of {DEAD}, the great beast the colony brought down, with the same walk and the same scar-bitten hide. It will move on in a few days, unless someone hunts it first.</li>
+          <li>[winter] Tracks in the snow, wider than two spread hands. {BEAST}, the young of {DEAD}, has come onto the colony's land, almost grown into its parent's size, and will be off again within a few days.</li>
+          <li>[skill:Animals] {A_nameDef} spotted {BEAST} at the tree line this morning and knew it at once: the young of {DEAD}, the great beast the colony brought down, with the same walk and the same scar-bitten hide. It won't stay more than a few days.</li>
           <li>[!lowtech] The trail cameras caught it at dawn: {BEAST}, the young of {DEAD}, as big now as its parent was. It's roaming the colony's land and will move on in a few days, unless someone hunts it first.</li>
         </texts>
       </li>
@@ -285,11 +285,11 @@
           <li>The pilgrims remember</li>
         </titles>
         <texts>
-          <li>[lowtech] A peddler has arrived with a bundle and a message. The pilgrims of {FACTION} the colony once fed made it to the end of their road, and they've sent back what they could spare, with their blessings.</li>
+          <li>[lowtech] A peddler left a bundle at the gate with a message tied to it. The pilgrims of {FACTION} the colony once fed made it to the end of their road, and they've sent back what they could spare, with their blessings.</li>
           <li>[!lowtech] A drop pod has come down with a short note from the pilgrims of {FACTION} the colony once fed. They made it where they were going, and they've sent what they could spare.</li>
-          <li>A traveler stopped at the gate with a sack and a message from the pilgrims of {FACTION} the colony once fed. They reached the end of their road, and they haven't forgotten the meal. The sack holds what they could spare.</li>
-          <li>[winter] A bundle came with a passing trader, wrapped against the snow and addressed to "the colony that fed us." The pilgrims of {FACTION} made it home, and they've sent what they could spare, with their thanks.</li>
-          <li>[spring] The pilgrims of {FACTION} the colony once fed have sent a gift back by a passing trader, with a blessing written out in a careful hand. They made it to the end of their road and prayed for the colony there.</li>
+          <li>The pilgrims of {FACTION} the colony once fed reached the end of their road, and they haven't forgotten the meal. What they could spare has found its way back to the colony, with their thanks.</li>
+          <li>[winter] A gift has come from the pilgrims of {FACTION}, wrapped against the snow and addressed to "the colony that fed us." They made it home, and this is what they could spare.</li>
+          <li>[spring] The gift from the pilgrims of {FACTION} came with a blessing written out in a careful hand. They made it to the end of their road, they write, and prayed there for the colony that once fed them.</li>
         </texts>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Loot"><value>200~500</value><pod>true</pod></li>

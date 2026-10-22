@@ -33,13 +33,13 @@
           <li>[fled] {X_nameDef} got away after the last fight, and has spent the time since gathering a war party of {ENEMY}. They are marching on the colony now.</li>
           <li>[hunts] {X_nameDef} of {ENEMY} swore to hunt down {DEAD}, and never stopped looking. Now {X_nameDef} has found the colony, and brought a war party.</li>
           <li>[robbed] {X_nameDef} hasn't forgotten the money. {ENEMY} are marching on the colony with {X_nameDef} at their head, asking for {DEAD} by name.</li>
-          <li>[betrayed] {X_nameDef} turned the crew against {DEAD} and had {DEAD} put off the ship. Now {X_nameDef} has come with {ENEMY} to finish the job.</li>
+          <li>[betrayed] {X_nameDef} turned the crew against {DEAD} and had {DEAD} put off the ship. Now {X_nameDef} has followed {DEAD} here, with {ENEMY} at {X_possessive} back.</li>
           <li>[enslaved] {X_nameDef}, who once held {DEAD} in chains, is coming back with {ENEMY} to take back what {X_pronoun} still thinks is {X_possessive}.</li>
           <li>[victim,lowtech] {A_nameDef} heard the war horns first and knew them. {X_nameDef}, who left {A_objective} in the dirt last time, is at the head of a war party of {ENEMY}, painted for a fight.</li>
           <li>[victim,!lowtech] {A_nameDef} picked out the voice on the open channel before anyone else did. {X_nameDef}, who left {A_objective} on the ground last time, is leading {ENEMY} back to finish what {X_pronoun} started.</li>
           <li>[downed] {X_nameDef}, who put {DEAD} on the ground in the last fight, is back at the head of a war party of {ENEMY}. {DEAD} hasn't forgotten, and neither has {X_nameDef}.</li>
-          <li>[killed,lowtech] Scouts saw the war party a long way off: {ENEMY}, with {X_nameDef} at the front. The colony buried {DEAD} because of {X_nameDef}. Nobody here needs to be told who that is.</li>
-          <li>[killed,!lowtech] The motion sensors caught them at the edge of the map: {ENEMY}, and walking in front, {X_nameDef}, who killed {DEAD}. The colony knows the name.</li>
+          <li>[killed,lowtech] Scouts saw the war party a long way off: {ENEMY}, with {X_nameDef} at the front. The colony buried {DEAD} because of {X_nameDef}.</li>
+          <li>[killed,!lowtech] The motion sensors caught them at the edge of the colony's land: {ENEMY}, and walking in front, {X_nameDef}, who killed {DEAD}. The colony knows the name.</li>
           <li>[maimed] {X_nameDef}, who left {DEAD} with wounds that never healed right, is back with {ENEMY}. {DEAD} still feels the old injury on cold mornings.</li>
           <li>[fled] {X_nameDef} ran from the colony's guns last time, and has had a long while to brood on it. {ENEMY} are with {X_objective} now, and they're coming.</li>
         </texts>
@@ -71,7 +71,7 @@
           <li>{ENEMY} have not forgotten {DEAD}, who died in the colony's hands. A war party has come to settle the matter.</li>
           <li>[lowtech] {DEAD} died a prisoner here. Among {ENEMY}, a death like that is paid for in blood, and {DEAD}'s kin have come with a war party to collect.</li>
           <li>[!lowtech] {ENEMY} are marching on the colony, broadcasting the same name over and over on an open channel. It belongs to {DEAD}, who died a prisoner here, and they've come to make someone pay for it.</li>
-          <li>{DEAD} died a prisoner here, and {ENEMY} have come to answer for it. Their war party is already on the colony's land.</li>
+          <li>{DEAD} died a prisoner here, and {ENEMY} have come for an answer. Their war party is already on the colony's land.</li>
           <li>[tribal] The drums started at dusk. {ENEMY} have come for {DEAD}, who died as the colony's prisoner, and they won't go home until someone has paid for it.</li>
           <li>[winter] {ENEMY} have marched through the snow to settle the matter of {DEAD}, who died in the colony's hands. They mean to be paid in blood.</li>
         </texts>
@@ -100,21 +100,21 @@
           <li>{X_nameDef} asks for shelter</li>
         </titles>
         <texts>
-          <li>[lowtech] A young soldier in the colors of {ENEMY} stumbles up to the colony with empty hands raised. {X_nameDef} has deserted, and {ENEMY} hang deserters. {X_nameDef} begs to be taken in. {A_nameDef} found {X_objective} first, and thinks the fear is real.</li>
-          <li>[!lowtech] A figure in {ENEMY} gear walks up to the colony with hands raised and weapon slung. {X_nameDef} has had enough of {ENEMY}, and they are not the forgiving kind. {X_nameDef} asks for shelter. {A_nameDef} found {X_objective} first, and believes the story.</li>
+          <li>[lowtech] Empty hands raised high, a young soldier in the colors of {ENEMY} came stumbling toward the colony and stopped well short of the gate. {X_nameDef} has deserted, and {ENEMY} hang deserters.\n\n{X_nameDef} begs to be taken in. {A_nameDef} went out to {X_objective} first, and thinks the fear is real.</li>
+          <li>[!lowtech] Hands up, weapon slung, a figure in {ENEMY} gear is waiting out past the fields to be noticed. {X_nameDef} has had enough of {ENEMY}, and {ENEMY} are not the forgiving kind. {X_nameDef} asks for shelter, and {A_nameDef}, who went out to talk, believes the story.</li>
           <li>{X_nameDef}, who fought for {ENEMY} until three days ago, is hiding in the scrub near the colony and has asked {A_nameDef} for help. Deserters don't live long among {ENEMY}. {X_nameDef} asks for shelter, and swears {X_pronoun} is done with fighting for anyone but friends.</li>
-          <li>[winter] {X_nameDef} came out of the snow in a torn {ENEMY} coat, hands raised and shaking with cold. {X_nameDef} says {X_pronoun} walked away from {ENEMY} in the night and has been sleeping in ditches since. {A_nameDef} found {X_objective} first, and thinks the story is true.</li>
-          <li>[tribal] A young warrior of {ENEMY} laid a spear at the colony's gate and sat down beside it. {X_nameDef} has left the war band, and {ENEMY} don't let anyone leave. {X_nameDef} asks to be taken in. {A_nameDef} found {X_objective} first, and believes {X_objective}.</li>
+          <li>[winter] {X_nameDef} came out of the snow in a torn {ENEMY} coat, hands raised and shaking with cold, and says {X_pronoun} walked away from {ENEMY} in the night and has been sleeping in ditches since. {A_nameDef} brought out a blanket before anyone had decided anything.</li>
+          <li>[tribal] A young warrior of {ENEMY} laid a spear at the colony's gate and sat down beside it. {X_nameDef} has left the war band, and {ENEMY} don't let anyone leave. {X_nameDef} asks to be taken in, and hasn't touched the spear since.</li>
           <li>[trait:Kind] {A_nameDef} found {X_nameDef} at the edge of the fields, a soldier of {ENEMY} barely older than a child, hiding from {X_possessive} own side. {X_nameDef} ran from {ENEMY} two nights ago and begs for shelter. {A_nameDef} has already given {X_objective} {A_possessive} coat.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
           <li>
             <label>Take {X_objective} in</label>
-            <outcome>{X_nameDef} is one of us now. With any luck, {ENEMY} will never learn where {X_pronoun} went.</outcome>
+            <outcome>{X_nameDef} is one of the colony now. With any luck, {ENEMY} will never learn where {X_pronoun} went.</outcome>
             <outcomes>
-              <li>[trait:Kind] {A_nameDef} finds {X_nameDef} a bed and a coat that doesn't carry {ENEMY}'s colors. {X_nameDef} is one of us now.</li>
-              <li>{X_nameDef} burns {X_possessive} old colors in the cookfire that night. {X_nameDef} is one of us now.</li>
+              <li>[trait:Kind] {A_nameDef} finds {X_nameDef} a bed and a coat that doesn't carry {ENEMY}'s colors.</li>
+              <li>{X_nameDef} burns {X_possessive} old colors in the cookfire that night, one strip at a time.</li>
             </outcomes>
             <riskChance>0.45</riskChance>
             <riskOutcome>{X_nameDef} is one of us now, but {ENEMY} won't let it go. They'll come looking for {X_objective} within a few days.</riskOutcome>
@@ -137,7 +137,7 @@
             <outcome>{X_nameDef} goes back out into the wild, alone.</outcome>
             <outcomes>
               <li>{A_nameDef} gives {X_nameDef} a day's food and points out the road. {X_nameDef} goes without looking back.</li>
-              <li>[trait:Kind] {A_nameDef} slips {X_nameDef} a loaf and a blanket at the gate. {X_nameDef} goes back out into the wild, alone.</li>
+              <li>[trait:Kind] {A_nameDef} slips {X_nameDef} a loaf and a blanket, and watches {X_objective} out of sight.</li>
             </outcomes>
             <ways><mercy>-2</mercy></ways>
           </li>

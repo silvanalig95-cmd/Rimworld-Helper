@@ -33,23 +33,23 @@
           <li>[!lowtech] A hatch in the rock</li>
         </titles>
         <texts>
-          <li>[lowtech] {A_nameDef} came back from the hills {PLACE} with mud to the knees and something to tell the council. Half a day's walk out, where the rains brought down part of a slope, there is a door: a single slab of dressed stone set into the hillside, carved with a closed eye, its edges sealed with lead.\n\nNobody in the colony has seen stonework like it. The lead has never been cut. Whoever sealed that door meant it to stay shut, or meant to come back for what was behind it.</li>
-          <li>[!lowtech] {A_nameDef} came back from the hills {PLACE} with mud to the knees and something to tell the council. Half a day's walk out, where a slope came down in the rains, there's a hatch of gray steel set flush into the bedrock, with a dead keypad and a faded number stenciled across it: 7.\n\nIt's older than anything the colony knows of, and the seal still holds. Whoever closed it expected to come back, and never did.</li>
+          <li>[lowtech] Where the rains brought half a slope down in the hills {PLACE}, {A_nameDef} found a door. One slab of dressed stone, set flush into the rock, with a single closed eye carved in the middle and lead poured into the seam all the way round. The lead has never been cut.\n\n{A_nameDef} came home with clay to the knees and a charcoal rubbing of the eye, and spread it on the table for the council to see.</li>
+          <li>[!lowtech] Hatch 7. That's all the stencil says, in paint gone the color of rust, on a slab of gray steel set flush into the bedrock half a day's walk {PLACE}. A slope came down in the rains and uncovered it, and {A_nameDef} found it on the way back from the hills.\n\nThe keypad beside it is dead. The seal still holds. {A_nameDef} knocked on it, for want of anything better to do, and the knock came back hollow.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
           <li>
             <label>Open it now</label>
-            <outcome>{A_nameDef} picks two others and sets out at first light with picks, bars and lamps. They expect to be through the seal by tomorrow.</outcome>
+            <outcome>{A_nameDef} takes two others and a sack of pry bars, and leaves before it's light. They mean to be through the seal by tomorrow.</outcome>
             <ways><openness>1</openness></ways>
           </li>
           <li>
             <label>Study it first ({A_nameDef}, a few days)</label>
-            <outcome>{A_nameDef} takes paper, charcoal and a few days' food out to the hill. The seal stays as it is until the door has been read.</outcome>
+            <outcome>{A_nameDef} packs charcoal and a few days' food and heads back out to the hill. The seal stays shut until every mark on that door has been read.</outcome>
           </li>
           <li>
             <label>Sell the way to it to {FACTION} ({COUNT} silver)</label>
-            <outcome>{FACTION} pay {COUNT} silver for a rough map and the colony's word that its people will keep away from the door.</outcome>
+            <outcome>{FACTION}'s rider counts out {COUNT} silver for a rough map and the colony's promise to keep its people away from the door.</outcome>
           </li>
         </options>
       </li>
@@ -66,7 +66,7 @@
         </coming>
         <remembered>
           <li>[doorowners] Every crate the colony carried home from the hill bears the sign of {ENEMY}.</li>
-          <li>[doorowners] The crates from the hill are stacked in the colony's storeroom, each burned with the sign of {ENEMY}.</li>
+          <li>[doorowners] Traders on the road have started asking about the crates from the hill, the ones with {ENEMY}'s sign on the lids.</li>
         </remembered>
         <endingTitles>
           <li>[lesson] The writing in the hill</li>
@@ -87,39 +87,39 @@
           <li>[kept] A door, as promised</li>
         </endingTitles>
         <endings>
-          <li>[lesson,research] {A_nameDef} spent three days inside the door in the hill with a lamp and a stack of paper, and came home with every wall copied down. Most of it is lists: grain, water, names, and a count of days that stops partway down a column.\n\nThe rest is how its builders did things, and some of it is better than how the colony does them. The colony's research has gone faster since.</li>
-          <li>[lesson,noresearch] {A_nameDef} spent three days inside the door in the hill with a lamp and a stack of paper, and came home with every wall copied down. Most of it is lists: grain, water, names, and a count of days that stops partway down a column.\n\n{A_nameDef} has been reading the copies every night since, and has started correcting other people's sums.</li>
-          <li>[resealed] There was nothing behind the door worth carrying home, only writing on the walls in an old hand none of them could read, and the council decided to leave it where it was. The slab went back into its frame and the gap was packed with clay.\n\n{A_nameDef} marked the place on the colony's map with a small closed eye.</li>
-          <li>[sleeping] The casket was left where it lay, and the door was sealed behind it with fresh clay. {A_nameDef} was the last one out, and stood there a while with a hand on the stone.\n\nSomewhere under the hill {PLACE}, the sleeper is still breathing, slow and even.</li>
-          <li>[joined,!buyer] {X_nameDef}, the sleeper from the door in the hill, walked out of the guest room this morning and asked, in the old slow way of speaking {X_pronoun} woke with, whether there was work to be done. There was. {A_nameDef} found {X_objective} a coat and a place at the table.\n\n{X_nameDef} is one of the colony now. Some mornings {X_nameDef} still asks what year it is.</li>
-          <li>[joined,buyer] {X_nameDef}, the sleeper {FACTION} found behind the door in the hill, is staying. {A_nameDef} found {X_objective} a coat, a bed and a place at the table, and listened to stories of a world nobody else remembers until the lamp went out.\n\n{X_nameDef} is one of the colony now. Some mornings {X_nameDef} still asks what year it is.</li>
-          <li>[parted] {X_nameDef} left at dawn with a pack of food and directions to the nearest road, to find out what became of the world {X_pronoun} fell asleep in. On the table in the guest room {X_nameDef} left the only things {X_pronoun} had to give: {ITEM}.\n\n{A_nameDef} walked {X_objective} as far as the river.</li>
+          <li>[lesson,research] {A_nameDef} spent three days inside the door in the hill with a lamp and a stack of paper, and came home with every wall copied down. Most of it is lists of grain and water and names, and a count of days that stops partway down a column.\n\nThe rest is how its builders did things. Some of it is better than how the colony does them, and the research in hand has jumped ahead on the strength of it.</li>
+          <li>[lesson,noresearch] Three days in the vault with a lamp, and {A_nameDef} came back with every wall of it on paper: tallies of grain, rows of names, a count of days that runs down a column and stops halfway.\n\n{A_nameDef} reads the copies at night now, and has started correcting other people's sums.</li>
+          <li>[resealed] Nothing behind the door was worth carrying home, only walls of writing in a hand none of them could read, so the council left it where it was. The door went shut again and {A_nameDef} packed the seam with clay.\n\n{A_nameDef} has marked the place on the colony's map with a small drawing of a door and a line through it.</li>
+          <li>[sleeping] The casket was left where it lay, and the door sealed behind it with fresh clay. {A_nameDef} was the last one out, and stood a while with a hand flat on the door.\n\nSomewhere under the hill {PLACE}, the sleeper is still breathing, slow and even.</li>
+          <li>[joined,!buyer] {X_nameDef}, the sleeper from the door in the hill, has taken the colony's offer, and asked straight away, in the old slow way of speaking {X_pronoun} woke with, whether there was work to be done. There was. {A_nameDef} found {X_objective} a coat and a place at the table.\n\nSome mornings {X_nameDef} still asks what year it is.</li>
+          <li>[joined,buyer] {X_nameDef} is staying. {FACTION}'s diggers woke {X_objective} behind the door in the hill, but the colony is where {X_pronoun} has chosen to be, and {A_nameDef} has already found {X_objective} a bed.\n\nThey sat up late, and {A_nameDef} heard about a city with a bridge for every street, or possibly a canal. The old words don't always come across.</li>
+          <li>[parted] {X_nameDef} is going, with a pack of food and directions to the nearest road, to find out what became of the world {X_pronoun} fell asleep in. On the guest room table {X_nameDef} left what {X_pronoun} had carried out of the casket, and asked the colony to keep it: {ITEM}.\n\n{A_nameDef} is going with {X_objective} as far as the river.</li>
           <li>[fled] The sleeper woke in the night, shouting in a language none of them knew, and backed away from every hand held out. By the time the others came with a lamp, {X_nameDef} was through the gate and gone into the dark.\n\n{A_nameDef} followed the tracks as far as the river {PLACE}, where they ended.</li>
-          <li>[share] The colony carried off what it could use and left the rest stacked as it was found, under the sign of {ENEMY}: {ITEM}.\n\nThe door was sealed again with clay. If anyone ever comes looking, most of the hoard is still there.</li>
-          <li>[paid,ownershostile] {ENEMY} counted the silver twice, said nothing, and rode off the way they came. The hoard is the colony's now, bought and paid for.\n\nIt cost {COUNT} silver to keep the peace, about half of what the hoard was worth.</li>
-          <li>[paid,!ownershostile] {ENEMY} took the {COUNT} silver as the hoard's worth and went home satisfied. Their elders say the hoard was put away by their grandparents against a famine that never came, and they're glad somebody found a use for it.\n\nThey think well of the colony for paying without being made to.</li>
-          <li>[refused] {ENEMY} left with nothing but a grievance. Their elders say the colony robbed their grandparents' stores, and they'll be saying it at every market for years.\n\nThe hoard stays with the colony.</li>
-          <li>[fought] {ENEMY} heard the colony's answer and turned back toward the hills without a word. They'll be back, and not to talk.\n\nThe hoard is staying where it is, and so are the people guarding it.</li>
-          <li>[cursed] {ENEMY} shouted their curses from across the fields and rode away. The hoard is the colony's now, along with a people who won't forget where it went.</li>
-          <li>[returned] {ENEMY} sent a cart and six people for the hoard in the hill, and they loaded it crate by crate, with great care. Before they left, their eldest pressed {ITEM} silver into {A_nameDef}'s hands as a finder's fee.\n\nThey'll be telling the story at home for years: the colony that found their grandparents' hoard and sent word instead of taking it.</li>
-          <li>[grateful] {FACTION}'s diggers found a hoard behind the door in the hill, worth far more than they paid the colony for the way to it. They've sent a share back by way of thanks: {ITEM}.\n\nThe rest went home with them.</li>
-          <li>[refunded] {FACTION} took their silver back, and the matter is closed. Their diggers swear the vault was empty from the start, except for writing on the walls they couldn't read.\n\nThey still think the colony knew. They're less sure than they were.</li>
-          <li>[halved] {FACTION} took back half of what they paid, {TALE} silver, and left grumbling about a week of wasted digging.\n\nNeither side thinks the other was fair, but neither will be telling the story as a robbery.</li>
-          <li>[kept] {FACTION} went home without their silver. They bought the way to a door and they got one, as {A_nameDef} put it, and they didn't like hearing it.\n\nThey'll remember this the next time the colony comes to trade.</li>
+          <li>[share] Two loads came down the hill: {ITEM}. The rest of the crates are still stacked in the dark where they were found, under the sign of {ENEMY}, with the door shut on them again.\n\nIf {ENEMY} ever come looking, most of it is there.</li>
+          <li>[paid,ownershostile] {ENEMY} counted the silver twice, said nothing, and rode off the way they came. The hoard is the colony's now, bought and paid for: {COUNT} silver, about half of what was in the crates.</li>
+          <li>[paid,!ownershostile] {ENEMY} took the {COUNT} silver and went home satisfied. Their grandparents put the hoard away against a famine that never came, their elders say, and they're glad somebody found a use for it.\n\nThey think the better of the colony for paying without being made to.</li>
+          <li>[refused] {ENEMY} left with nothing but a grievance. The colony robbed their grandparents' stores, their elders say, and they'll be saying it at every market for years.\n\nThe crates stay in the colony's storeroom, sign and all.</li>
+          <li>[fought] {ENEMY}'s riders heard the answer and left at a gallop, back toward the hills.\n\nWithin a few hours there will be more of them, and this time they won't be bringing an empty crate.</li>
+          <li>[cursed] {ENEMY} stood at the edge of the fields and cursed the colony, its crops and its children's children, then rode home. The hoard is the colony's.</li>
+          <li>[returned] {ENEMY} sent a cart and six people up to the hill, and they loaded the hoard crate by crate, with great care. On the way home their eldest stopped at the colony and left {ITEM} silver at the gate as a finder's fee.\n\nAt home they'll tell it for years, how a colony found their grandparents' hoard and sent word instead of helping itself.</li>
+          <li>[grateful] The door in the hill was hiding a hoard, and {FACTION}'s diggers have spent a week carrying it home. It was worth far more than they paid the colony for the way to it, and they've sent a share back, which they didn't have to do: {ITEM}.</li>
+          <li>[refunded] {FACTION}'s foreman counted the silver back into the bag and called the matter closed. The diggers still swear the vault was empty from the start, bare walls and old writing.\n\nSome of them still think the colony knew.</li>
+          <li>[halved] {FACTION} took back half of what they paid, {TALE} silver, and left grumbling about a week of wasted digging.\n\nNeither side thinks the other was fair. Neither will be telling it as a robbery, either.</li>
+          <li>[kept] {FACTION} went home without their silver. They bought the way to a door and they got one, as {A_nameDef} put it, and they didn't like hearing it.\n\nThe next {FACTION} trader to come by will have heard all about it.</li>
         </endings>
         <summaries>
           <li>[lesson] {A_nameDef} copied out the writing on the walls of the empty vault.</li>
           <li>[resealed] The vault was empty but for writing on the walls, and the colony sealed it again.</li>
-          <li>[sleeping] The colony found a sleeper behind the door and left them sleeping.</li>
+          <li>[sleeping] A sleeper was found behind the door, and left to sleep.</li>
           <li>[joined] {X_nameDef}, the sleeper from the hill, woke and joined the colony.</li>
           <li>[parted] {X_nameDef}, the sleeper from the hill, woke and went on {X_possessive} way.</li>
           <li>[fled] The sleeper from the hill woke wild and fled into the night.</li>
-          <li>[share] The colony took a share of the hoard of {ENEMY} and left the rest.</li>
+          <li>[share] A share of the hoard of {ENEMY} came home to the colony; the rest was left in the hill.</li>
           <li>[paid] The colony paid {ENEMY} {COUNT} silver for the hoard it took.</li>
           <li>[refused] The colony refused to pay {ENEMY} for their grandparents' hoard.</li>
-          <li>[fought] The colony refused to give the hoard back to {ENEMY}, who will come for it.</li>
+          <li>[fought] {ENEMY} were refused their grandparents' hoard, and will come for it.</li>
           <li>[cursed] {ENEMY} cursed the colony for keeping their hoard.</li>
-          <li>[returned] The colony sent word to {ENEMY} about their hoard, and was paid a finder's fee.</li>
+          <li>[returned] {ENEMY} got their grandparents' hoard back, and paid the colony a finder's fee.</li>
           <li>[grateful] {FACTION} found a hoard behind the door and sent the colony a share.</li>
           <li>[refunded] The vault {FACTION} bought was empty, and the colony gave back their silver.</li>
           <li>[halved] The vault {FACTION} bought was empty, and the colony gave back half their silver.</li>
@@ -131,7 +131,7 @@
         </raidTitles>
         <raid>
           <li>[doorowners] {ENEMY} have come for the hoard the colony carried out of the hill. Every crate bore their sign, and they mean to have them back.</li>
-          <li>[doorowners] {ENEMY} are marching on the colony, and they say they've come for what was taken from the hill. Their grandparents' sign was on every crate.</li>
+          <li>[doorowners] {ENEMY} are on the colony's land, and they've come for what was taken out of the hill.</li>
         </raid>
         <good>
           <li>lesson</li>
@@ -171,15 +171,15 @@
           <li>[studied] What the door says</li>
         </titles>
         <texts>
-          <li>[opened,lowtech] The seal took a day to cut. Behind the door, {A_nameDef} found a long room cut into the rock, dry as bone and empty except for dust and a few broken jars. Whatever was kept here was taken away long ago.\n\nBut every wall is covered in writing, small and careful, in a script none of the colony can read. {A_nameDef} wants to copy all of it before the air gets in and the paint starts to flake.</li>
+          <li>[opened,lowtech] The seal took a day to cut. Behind the door is a long room cut into the rock, dry as bone and empty except for dust and a few broken jars. Whatever was kept here was taken away long ago.\n\nThe walls are another matter. Every one is covered in writing, small and careful, in a script none of the colony can read, and {A_nameDef} wants to copy all of it before the air gets in and the paint starts to flake.</li>
           <li>[opened,!lowtech] It took a day and two bent pry bars to get the hatch open. Behind it is a concrete room the size of a barn, steel shelves bolted to the walls, every shelf empty. Whoever stocked this place came back for all of it.\n\nThey left the walls, though. Every one is covered in writing: stencils, handwriting, charts and tallies. {A_nameDef} wants to copy it all before the damp gets in.</li>
-          <li>[studied] {A_nameDef} came back from the hill with a satchel of copied carvings and the answer. The door was built to keep a store safe through a war. The carvings on the frame are a tally of everything that went in and everything that came out again, and by the last line, nothing was left.\n\nThe vault is empty, but the carvings say its walls hold its builders' records. {A_nameDef} has worked out how to open the door without breaking it, and would like to copy what's inside.</li>
+          <li>[studied] The writing round the door is a storekeeper's tally, {A_nameDef} says: everything that went into the vault and everything that came out of it, line by line, through some long war. The last line leaves nothing.\n\nSo the vault is empty. But the tally also says its builders kept their records on the walls inside, and {A_nameDef} has worked out how to open the door without breaking it.</li>
         </texts>
         <defaultOption>0</defaultOption>
         <options>
           <li>
             <label>Copy the writing ({A_nameDef}, a few days)</label>
-            <outcome>{A_nameDef} goes back to the hill with paper and a lamp.</outcome>
+            <outcome>{A_nameDef} heads back up to the hill with paper and a lamp.</outcome>
             <ways><openness>1</openness></ways>
           </li>
           <li>
@@ -212,9 +212,9 @@
           <li>[studied] A sleeper in the hill</li>
         </titles>
         <texts>
-          <li>[opened,lowtech] Behind the door there is one small room, cold as a cellar in midwinter, and in it a long box of frosted glass and gray metal unlike anything the colony could make. Tiny lights still glow along one side of it, like embers.\n\nSomeone is lying inside. {A_nameDef} held a lamp to the glass for a long while before saying so: whoever it is, they're breathing, very slowly, as if they had all the time in the world.</li>
-          <li>[opened,!lowtech] Behind the hatch, in a room no bigger than a pantry, the opening party found an old cryptosleep casket, still drawing power from a source the opening party couldn't find. The readout on its side is in a script none of them recognize, but the figure behind the frosted glass is clear enough.\n\nSomeone is in there, alive, and has been asleep since before the colony's oldest stories.</li>
-          <li>[studied] {A_nameDef} has read the door. The carvings on its frame are a warning and a set of instructions: someone sleeps inside, put there to wait out something terrible, and they must be woken slowly, kept warm, and held down until they know where they are.\n\n{A_nameDef} thinks it can be done safely. The colony could carry the sleeper home and wake them the careful way, or seal the door again and leave them to their sleep.</li>
+          <li>[opened,lowtech] Behind the door there is one small room, cold as a cellar in midwinter, and in it a long box of frosted glass and gray metal unlike anything the colony could make. Tiny lights still glow along one side of it, like embers.\n\nSomeone is lying inside. {A_nameDef} held a lamp to the frost for a long while before saying so, and then said the rest: they're breathing. Very slowly, but breathing.</li>
+          <li>[opened,!lowtech] A room no bigger than a pantry, and in it a cryptosleep casket, humming. Something under the floor is still feeding it power, though the opening party can't find what. The readout on its side is in a script none of them know.\n\nThe figure behind the frosted glass is easier to read. Someone is in there, alive, and has been since before the colony's oldest stories.</li>
+          <li>[studied] {A_nameDef} has read the door, and most of it is a warning. Someone sleeps inside, put there to wait out something terrible, and the last lines are instructions: wake them slowly, keep them warm, hold them fast until they know where they are.\n\n{A_nameDef} thinks it can be done safely, here at home, the careful way. Or the door can be sealed again and the sleeper left to sleep.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -254,25 +254,25 @@
           <li>[studied] What the door hides</li>
         </titles>
         <texts>
-          <li>[opened,ownershostile] Behind the door are crates, row after row of them stacked to the roof, dry and whole and packed with goods untouched for generations. Every lid is burned with the same sign, and {A_nameDef} knows it: it's the mark {ENEMY} paint on their shields.\n\nThe colony could carry it all home. {ENEMY} may not know the hoard is here, or they may know exactly where it is, and be waiting for someone to open it.</li>
-          <li>[opened,!ownershostile] Behind the door are crates, row after row of them stacked to the roof, dry and whole and packed with goods untouched for generations. Every lid is burned with the same sign: the mark of {ENEMY}, whose traders still come this way.\n\nIt's theirs, or it was their grandparents'. The colony could carry it home, take a share and leave the rest, or send word to {ENEMY} that their hoard has been found.</li>
-          <li>[studied,ownershostile] The carvings on the door are an inventory, and {A_nameDef} has read every line of it: grain, cloth, tools, weapons and silver, laid up against hard times by the people who now call themselves {ENEMY}. Its owners never came back for it.\n\n{ENEMY} are not people to share with. They're not people to cross, either.</li>
-          <li>[studied,!ownershostile] The carvings on the door are an inventory, and {A_nameDef} has read every line of it: grain, cloth, tools, weapons and silver, laid up against hard times by the people who now call themselves {ENEMY}. Its owners never came back for it.\n\n{ENEMY} still trade along this road. The colony could take the hoard, take a share and leave the rest, or send word to them.</li>
+          <li>[opened,ownershostile] Crates. Row on row of them, stacked to the roof, dry and whole and packed with goods nobody has touched in generations. Every lid is burned with the same sign, and {A_nameDef} knows it: it's the mark {ENEMY} paint on their shields.\n\nThe colony could carry it all home. {ENEMY} may not know the hoard is here. Or they may know exactly where it is, and be waiting for someone to open it.</li>
+          <li>[opened,!ownershostile] The opening party had to squeeze past the first crate to see the rest: row after row of them, stacked to the roof, dry and whole. Every lid carries the mark of {ENEMY}, whose traders still come this way.\n\nIt's theirs, or it was their grandparents'. The colony could carry it home, take a share and leave the rest, or send word to {ENEMY} that their hoard has been found.</li>
+          <li>[studied,ownershostile] The writing on the door is an inventory, and {A_nameDef} has read it to the council line by line. Grain, sealed, forty measures. Cloth, twenty bolts. Tools, weapons, salt. Silver, one chest. Laid up against hard times by the people who now call themselves {ENEMY}, who never came back for it.\n\n{ENEMY} are not people to share with. They're not people to cross, either.</li>
+          <li>[studied,!ownershostile] By {A_nameDef}'s reading, the writing on the door is a list of stores: grain and cloth, tools and weapons and silver, put by against a famine by the grandparents of {ENEMY}. Whoever was meant to come back for it never did.\n\n{ENEMY} still trade along this road. The colony could take the hoard, take a share and leave the rest, or send word to them.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
           <li>
             <label>Carry it all home</label>
-            <outcome>It takes two days and every strong back in the colony to carry the hoard down the hill. In the stores now: {ITEM}.</outcome>
+            <outcome>Two days and every strong back in the colony, and the hoard is down the hill: {ITEM}.</outcome>
             <ways><generosity>-2</generosity></ways>
           </li>
           <li>
             <label>Take a share and leave the rest</label>
-            <outcome>The colony takes what it can use.</outcome>
+            <outcome>Enough comes home to be worth the climb. The rest is left where it lies.</outcome>
           </li>
           <li>
             <label>Send word to {ENEMY}</label>
-            <outcome>Word goes out to {ENEMY}: their grandparents' hoard has been found in the hill, and the colony has touched none of it.</outcome>
+            <outcome>A runner leaves for {ENEMY} with the news, and the colony's word that not a lid has been lifted.</outcome>
             <ways><generosity>3</generosity></ways>
           </li>
         </options>
@@ -303,10 +303,10 @@
           <li>Out of the long sleep</li>
         </titles>
         <texts>
-          <li>[friend,studied,!buyer] {X_nameDef} opened {X_possessive} eyes this morning just as the carvings said: slowly, cold to the bone, and calm. {A_nameDef} was there with blankets and broth, and by evening {X_nameDef} could sit up and talk, in an old slow way of speaking that takes some getting used to.\n\n{X_nameDef} remembers being put to sleep, and a war, and very little else. There's nothing left to go back to. {X_nameDef} asks if the colony has a place for one more, or failing that, a road out.</li>
-          <li>[friend,!studied,!buyer] The sleeper woke in the night, shaking and frightened, and {A_nameDef} sat up until dawn talking {X_objective} down. By morning {X_nameDef}, as {X_pronoun} turned out to be called, was eating porridge and asking questions {A_nameDef} couldn't answer.\n\n{X_nameDef} remembers being put to sleep, and a war, and very little else. There's nothing left to go back to. {X_nameDef} asks if the colony has a place for one more, or failing that, a road out.</li>
-          <li>[wary,studied] {X_nameDef} woke fighting, exactly as the carvings warned, and found {X_possessive} wrists tied to the bed frame with soft rope. It took {A_nameDef} two days of talking, broth and patience before {X_nameDef} would let anyone near enough to untie {X_objective}.\n\n{X_nameDef} is calm now, and ashamed of the noise. The war {X_pronoun} remembers ended long before anyone here was born. {X_nameDef} asks if there's a place here, or a road out.</li>
-          <li>[buyer] {FACTION}'s diggers found more than they bargained for behind the door in the hill: a casket, and someone asleep in it. They woke {X_objective}, and {X_nameDef} has been a puzzle to them ever since, asking questions in an old tongue none of them can follow.\n\nSince it was the colony's door, they've brought {X_nameDef} here. {X_nameDef} would like to stay, if there's room, or else to be shown the road.</li>
+          <li>[friend,studied,!buyer] {X_nameDef} woke this morning exactly as the door said {X_pronoun} would: slowly, cold to the bone, and calm. {A_nameDef} was there with blankets and broth, and by evening {X_nameDef} could sit up and talk, in an old slow way of speaking that takes some getting used to.\n\n{X_nameDef} remembers being put to sleep, and a war, and very little else. Whatever {X_pronoun} left behind is long gone. {X_nameDef} asks whether the colony has a place for one more, or failing that, a road out.</li>
+          <li>[friend,!studied,!buyer] "Is it over?" were the sleeper's first words, in the middle of the night, and it took {A_nameDef} until dawn to work out that {X_pronoun} meant a war. By morning {X_nameDef}, as {X_pronoun} turned out to be called, was eating porridge and asking questions {A_nameDef} couldn't answer.\n\nThere is nothing for {X_nameDef} to go back to. {X_nameDef} would like to stay, if the colony will have {X_objective}, or else to be shown the road.</li>
+          <li>[wary,studied] {X_nameDef} woke fighting, exactly as the door warned, and found {X_possessive} wrists tied to the bed frame with soft rope. It took {A_nameDef} two days of talking, broth and patience before {X_nameDef} would let anyone near enough to untie {X_objective}.\n\nNow {X_nameDef} is calm, and ashamed of the noise. The war {X_pronoun} remembers ended long before anyone here was born. {X_nameDef} asks for a place here, or a road out.</li>
+          <li>[buyer] {FACTION}'s diggers found more than they bargained for behind the door in the hill: a casket, and someone asleep in it. They woke {X_objective}, and {X_nameDef} has been a puzzle to them ever since, asking questions in an old tongue none of them can follow.\n\nIt was the colony's door, so they've brought the sleeper to the colony. {X_nameDef} asks to stay, if there's room, or else to be shown the road.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -347,14 +347,14 @@
           <li>Owners of the hoard</li>
         </titles>
         <texts>
-          <li>[ownershostile] Riders of {ENEMY} are waiting across the fields, and they've brought one of the crates from the hill, empty, with their sign burned in the lid. They know the colony took their hoard.\n\nThey'll take {COUNT} silver for it, about half of what it was worth, and call the matter settled. Refuse, and they'll come back with more than riders.</li>
-          <li>[!ownershostile] A delegation of {ENEMY} has come to the colony, polite and grim. Their elders have heard that the colony found a hoard in the hill with their sign on every crate, and carried it home.\n\nThey want its worth back: {COUNT} silver, about half of what it was. It was put away by their grandparents against a famine, they say, and it was never the colony's to take.</li>
+          <li>[ownershostile] An empty crate stands in the field outside the gate, its lid turned so the colony can see the sign burned into it. The riders of {ENEMY} who left it there are waiting at the tree line.\n\n{COUNT} silver, they say, about half of what the hoard was worth, and the matter is settled. Refuse, and they'll come back with more than riders.</li>
+          <li>[!ownershostile] A delegation of {ENEMY} has come to the colony, polite and grim. Their elders know about the hoard in the hill, and which way the crates went.\n\n"Our grandparents put it by against a famine," says the eldest of them. "It was never yours to take." They want its worth back: {COUNT} silver, about half of what was in the crates.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
           <li>
             <label>Pay them ({COUNT} silver)</label>
-            <outcome>The silver is counted out.</outcome>
+            <outcome>The silver is counted out on the table, coin by coin.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what></li>
             </effects>
@@ -362,7 +362,7 @@
           </li>
           <li>
             <label>Refuse</label>
-            <outcome>The colony keeps the hoard.</outcome>
+            <outcome>No silver goes out.</outcome>
           </li>
         </options>
       </li>
@@ -392,15 +392,15 @@
           <li>The diggers come back</li>
         </titles>
         <texts>
-          <li>The diggers {FACTION} sent to the door in the hill have come back by way of the colony, dusty and in a bad mood. They got the door open after a week's work and found an empty room with writing on the walls.\n\nThey want their {COUNT} silver back. {A_nameDef} points out that they bought the way to a door, not whatever was behind it. They don't see it that way.</li>
-          <li>[lowtech] {FACTION}'s diggers are back from the hill with sore backs, blunt picks and nothing else. Behind the door, after a week of cutting, they found one long room, bare to the stone, with writing on every wall and not a single crate.\n\nThey'd like their {COUNT} silver back. {A_nameDef} reminds them that the colony sold the way to a door, and said nothing about what was behind it. They don't find that funny.</li>
-          <li>[!lowtech] {FACTION}'s diggers came back down the hill road with their cutting torches and an empty cart. The vault behind the hatch was bare: steel shelves, concrete floor and a lot of writing on the walls.\n\nThey want their {COUNT} silver back. {A_nameDef} points out that a door was sold and a door was found. The diggers' foreman doesn't see the joke.</li>
+          <li>"A week of digging," says {FACTION}'s foreman, "for a room full of scribbles." The diggers {FACTION} sent to the door in the hill have come back by way of the colony, dusty and in a bad mood, and they want their {COUNT} silver back.\n\n{A_nameDef} has already pointed out that they bought the way to a door, not whatever was behind it. The foreman doesn't see it that way.</li>
+          <li>[lowtech] {FACTION}'s diggers came down off the hill with their picks blunted and their cart empty. Behind the door, after a week of cutting, they found one long room, bare to the stone, with writing on every wall.\n\nThey'd like their {COUNT} silver back. The colony sold them the way to a door, {A_nameDef} reminds them, and a door is what they found.</li>
+          <li>[!lowtech] The vault behind the hatch was bare: steel shelves, a concrete floor and a great deal of writing on the walls. {FACTION}'s diggers have come back down the hill road with their cutting torches and an empty cart, wanting their {COUNT} silver back.\n\nThe colony sold them the way to a hatch, {A_nameDef} points out, and the hatch was exactly where the map said it would be.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
           <li>
             <label>Give it all back ({COUNT} silver)</label>
-            <outcome>The silver goes back.</outcome>
+            <outcome>The silver goes back with the foreman.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what></li>
             </effects>
@@ -408,11 +408,11 @@
           </li>
           <li>
             <label>Give back half ({TALE} silver)</label>
-            <outcome>Half the silver goes back.</outcome>
+            <outcome>Half the silver goes back with the foreman.</outcome>
           </li>
           <li>
             <label>Keep the silver</label>
-            <outcome>The colony keeps the silver.</outcome>
+            <outcome>The silver stays where it is.</outcome>
             <ways><generosity>-2</generosity></ways>
           </li>
         </options>
@@ -446,10 +446,10 @@
           <li>{X_nameDef} at the gate</li>
         </titles>
         <texts>
-          <li>[lowtech] Long after dark, {A_nameDef} heard someone at the gate: a young traveler named {X_nameDef}, soaked to the knees from fording the river, with a pack and no torch. {X_nameDef} asked for something to eat, a dry place to sleep and a change of coat.\n\n"Someone is following me," {X_nameDef} said. "If they ask, I was never here." {X_nameDef} will say nothing more unless the colony asks.</li>
-          <li>[!lowtech] Long after dark, {A_nameDef} heard someone at the gate: a young traveler named {X_nameDef}, soaked to the knees from fording the river, with a pack and a dead flashlight. {X_nameDef} asked for something to eat, a dry place to sleep and a change of coat.\n\n"Someone is following me," {X_nameDef} said. "If they ask, I was never here." {X_nameDef} will say nothing more unless the colony asks.</li>
-          <li>[winter] Long after dark, {A_nameDef} heard knocking at the gate: a young traveler named {X_nameDef}, blue with cold, snow to the knees and no coat worth the name. {X_nameDef} asked for a meal, a warm corner and a coat.\n\n"Someone is following me," {X_nameDef} said. "If they ask, I was never here." {X_nameDef} won't say more unless the colony asks.</li>
-          <li>[trait:Kind] {A_nameDef} found {X_nameDef} sitting against the gate long after dark, too tired to knock, wet to the knees from the river. {A_nameDef} had {X_objective} indoors with a bowl of something hot before asking a single question.\n\n"Someone is following me," {X_nameDef} said at last. "If they ask, I was never here." {X_nameDef} will say nothing more unless the colony asks.</li>
+          <li>[lowtech] The knocking came long after dark. {A_nameDef} went out with a lamp and found a young traveler at the gate, soaked to the knees from fording the river, with a pack and no torch, who gave the name {X_nameDef} and asked for something to eat, a dry corner and a change of coat.\n\n"Someone is following me," {X_nameDef} said. "If they ask, I was never here." {X_nameDef} won't say more unless the colony asks.</li>
+          <li>[!lowtech] {X_nameDef} came to the gate long after the colony had gone to bed, with a dead flashlight in one hand and river water to the knees. {A_nameDef} was the one who heard the knocking. Food and a dry corner were the first things {X_nameDef} asked for.\n\nThe second was quieter. "There are people behind me. If they come asking, you never saw me."</li>
+          <li>[winter] Snow to the knees and no coat worth the name. The traveler {A_nameDef} found knocking at the gate after dark was blue with cold, and asked for a hot meal and a warm corner before {A_nameDef} could ask anything.\n\n"Someone's following me," said {X_nameDef}, through chattering teeth. "If they ask, I was never here."</li>
+          <li>[trait:Kind] {A_nameDef} found {X_nameDef} sitting against the gate long after dark, too tired to knock and wet to the knees from the river, and brought out a bowl of something hot before asking a single question.\n\n"Someone is following me," {X_nameDef} said at last. "If they ask, I was never here." That is all {X_nameDef} will say, unless the colony asks.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -476,10 +476,10 @@
         <start>true</start>
         <!-- What the stranger says when asked. -->
         <outcomes>
-          <li>[asked,innocent,lowtech] {X_nameDef} talks over a bowl of stew. {X_nameDef} was in service at {PLACE}, and saw the lord's son do something he would hang anyone else for. The lord would rather the witness disappeared. {A_nameDef} believes every word.</li>
-          <li>[asked,innocent,!lowtech] {X_nameDef} talks over a bowl of stew. {X_nameDef} worked for the mayor's household at {PLACE}, and saw the mayor's son do something that would put anyone else in prison. The mayor would rather the witness disappeared. {A_nameDef} believes every word.</li>
+          <li>[asked,innocent,lowtech] "I was in service at {PLACE}," {X_nameDef} says over a bowl of stew, "and I saw the lord's son do something they'd hang anyone else for. The lord would rather I'd seen nothing." {A_nameDef} believes every word.</li>
+          <li>[asked,innocent,!lowtech] {X_nameDef} kept house for the mayor of {PLACE}, and one night saw the mayor's son do something that would put anyone else in a cell. Now there are people on the road who'd like the only witness gone. {A_nameDef} watched {X_objective} tell it, and doesn't doubt a word.</li>
           <li>[asked,guilty,lowtech] {X_nameDef} doesn't bother lying. The pack holds a silver reliquary {X_nameDef} lifted from the chapel at {PLACE}, and the people following want it back. {X_nameDef} will be gone before light, either way.</li>
-          <li>[asked,guilty,!lowtech] {X_nameDef} doesn't bother lying. The pack holds a case of medicine {X_nameDef} lifted from the clinic at {PLACE}, worth more than a year's wages, and the people following want it back. {X_nameDef} will be gone before light, either way.</li>
+          <li>[asked,guilty,!lowtech] {X_nameDef} opens the pack without being asked twice: a case of medicine from the clinic at {PLACE}, worth more than a year's wages, and the people following want it back. "I'll be gone before light," {X_nameDef} says. "Whatever you decide."</li>
         </outcomes>
         <remembered>
           <li>[pursuers] Someone is following {X_nameDef}, the stranger who came to the gate at night.</li>
@@ -503,34 +503,34 @@
           <li>[paidoff] Settled</li>
         </endingTitles>
         <endings>
-          <li>[repaidjoined] {X_nameDef} has unpacked in the same corner by the stove where the colony hid {X_objective} the night {FACTION}'s riders came looking. {X_nameDef} says it's the only place {X_pronoun} has slept soundly in a year.\n\n{A_nameDef} has a friend for life, and the colony has one more pair of hands.</li>
-          <li>[repaid] {X_nameDef} stayed one night, ate well, and left in the morning with a full pack and the colony's good wishes. What {X_nameDef} brought stays: {TALE}.\n\nThe debt is paid, and then some.</li>
-          <li>[accepted] The colony kept {X_nameDef}'s gift, and {X_nameDef} went on {X_possessive} way well pleased. The fine things are in the stores now: {ITEM}.\n\n{FACTION} need never know where they ended up.</li>
-          <li>[exposed] A trader from {PLACE} saw {X_nameDef}'s gift in the colony's stores and knew it for what was taken, and the story was all along the road within a week. {FACTION} think less of the colony now.\n\nThe colony kept the gift all the same: {ITEM}.</li>
-          <li>[refusedgift] {X_nameDef} wrapped the gift back up without arguing and left before supper, more hurt than offended.\n\nWhatever happened at {PLACE}, the colony has taken no part of it.</li>
-          <li>[sentback] The colony took {X_nameDef}'s gift and sent it on to {PLACE} with a rider and a short message. {FACTION} were glad to have their things back, and said so.\n\n{X_nameDef} won't be coming back this way.</li>
-          <li>[thanks] A peddler stopped at the gate with a message from {X_nameDef}, the stranger the colony turned away and then lied for. {X_nameDef} heard what the colony told the riders, and got clean away because of it. The peddler also handed over {ITEM} silver, wrapped in a rag.\n\nThe colony never let {X_nameDef} in, but it kept the secret, and that was enough.</li>
-          <li>[gone] Word came up the road that {X_nameDef}, the stranger the colony lied for, was seen in a town three valleys away, spending silver freely. {FACTION}'s riders never caught up with {X_objective}.\n\nThe colony may never know what {X_nameDef} took, or whether it should have kept quiet.</li>
-          <li>[justice] {FACTION}'s riders caught {X_nameDef} two days up the road, with the stolen things still in {X_possessive} pack. They've sent their thanks to the colony, and {ITEM} silver for its help.</li>
-          <li>[caught] Word came from {PLACE}: {FACTION}'s riders followed the tracks from the colony's gate and caught {X_nameDef} at the river crossing. They know the colony hid {X_objective}, and they aren't pleased.\n\n{A_nameDef} took the news badly.</li>
-          <li>[cursed] {X_nameDef}, the stranger the colony gave up to {FACTION}'s riders, slipped away from them at the river. A message found its way back to the colony's gate: {X_nameDef} knows who pointed the way, and won't forget it.\n\n{X_nameDef} had stolen nothing. The riders were sent to silence a witness, and the colony helped them.</li>
-          <li>[revenge] No silver went out, and {X_nameDef}'s answer came back the same day: {X_nameDef} and {ENEMY} are on their way.\n\n{X_nameDef} had stolen nothing. The riders were sent to silence a witness, and the colony helped them.</li>
-          <li>[paidoff] {X_nameDef} took the {COUNT} silver and gave {X_possessive} word that the matter is closed. A rider saw {X_nameDef} heading south with {ENEMY} a day later.\n\n{X_nameDef} had stolen nothing. The riders were sent to silence a witness, and the colony helped them. The silver was the least it owed.</li>
+          <li>[repaidjoined] {X_nameDef} has unpacked in the same corner by the stove where the colony hid {X_objective} the night before {FACTION}'s riders came looking. It's the only place {X_pronoun} has slept soundly in a year, {X_nameDef} says.\n\n{A_nameDef} has given up trying to talk {X_objective} into a proper bed.</li>
+          <li>[repaid] {X_nameDef} will stay the night and go on in the morning, with a full pack and the colony's good wishes. What {X_pronoun} brought is the colony's to keep: {TALE}.</li>
+          <li>[accepted] {X_nameDef}'s gift stays, and {X_nameDef} is well pleased. The fine things are the colony's now: {ITEM}.\n\n{FACTION} need never know where they ended up.</li>
+          <li>[exposed] {X_nameDef} had barely unwrapped the gift when a trader from {PLACE}, at the gate on other business, saw it and knew it for what was taken. The story will be all along the road within a week, and {FACTION} already think less of the colony.\n\nThe gift stays all the same: {ITEM}.</li>
+          <li>[refusedgift] {X_nameDef} wrapped the gift back up without arguing and left before supper, more hurt than offended.\n\nWhatever happened at {PLACE}, none of it is in the colony's stores.</li>
+          <li>[sentback] The gift is going back to {PLACE} with a rider and a short note, and {X_nameDef} has gone, quickly, without saying goodbye. {FACTION} will be glad to have their things back.\n\n{X_nameDef} won't be coming this way again.</li>
+          <li>[thanks] A peddler stopped at the gate with a note, folded small, and {ITEM} silver wrapped in a rag. "You didn't let me in. You didn't give me up either. That was enough."\n\nIt's from {X_nameDef}, the stranger the colony turned away and then lied for.</li>
+          <li>[gone] A trader passing through mentioned a young stranger in a town three valleys away, spending silver freely and buying drinks for people {X_pronoun} had just met. From the description, it was {X_nameDef}, the one the colony lied for. {FACTION}'s riders never caught up.</li>
+          <li>[justice] {FACTION}'s riders caught {X_nameDef} two days up the road, with the stolen things still in {X_possessive} pack. One of them came back by the colony to say so, and left {ITEM} silver for its help.</li>
+          <li>[caught] A carter from {PLACE} brought the news. {FACTION}'s riders followed the tracks from the colony's gate and caught {X_nameDef} at the river crossing, and they know now that the colony hid {X_objective}.\n\n{A_nameDef} took it badly.</li>
+          <li>[cursed] A message turned up at the gate, with no one to say who brought it. {X_nameDef}, the stranger the colony gave up to {FACTION}'s riders, got away from them at the river, and knows who pointed the way.\n\nThe riders' story was a lie. {X_nameDef} had stolen nothing; {X_pronoun} had seen something {X_pronoun} shouldn't have, and the colony helped them hunt a witness.</li>
+          <li>[revenge] No silver went out. {X_nameDef}'s answer came back within the hour: {ENEMY} are on their way, and {X_nameDef} is riding with them.\n\nThe theft was never real. The riders were sent to silence a witness, and the colony helped them.</li>
+          <li>[paidoff] {X_nameDef}'s runner took the {COUNT} silver and brought back a single line: the matter is closed.\n\n{X_nameDef} had stolen nothing, it turns out. The riders were sent after a witness, and the colony pointed the way.</li>
         </endings>
         <summaries>
           <li>[repaidjoined] {X_nameDef}, the stranger the colony hid, came back to repay the debt and stayed.</li>
           <li>[repaid] {X_nameDef}, the stranger the colony hid, came back to repay the debt.</li>
-          <li>[accepted] The colony kept the gift {X_nameDef} brought, whatever its past.</li>
+          <li>[accepted] {X_nameDef}'s gift was kept, whatever its past.</li>
           <li>[exposed] {X_nameDef}'s gift turned out to be stolen from {PLACE}, and {FACTION} heard of it.</li>
-          <li>[refusedgift] The colony refused {X_nameDef}'s gift of stolen goods.</li>
-          <li>[sentback] The colony returned the goods {X_nameDef} had stolen from {PLACE}.</li>
+          <li>[refusedgift] {X_nameDef}'s gift of stolen goods was refused.</li>
+          <li>[sentback] The goods {X_nameDef} had stolen from {PLACE} went back to their owners.</li>
           <li>[thanks] {X_nameDef} sent thanks to the colony for keeping quiet.</li>
           <li>[gone] {X_nameDef} got away, and the colony never learned what was taken.</li>
           <li>[justice] {FACTION}'s riders caught {X_nameDef}, a thief, with the colony's help.</li>
           <li>[caught] {FACTION}'s riders caught {X_nameDef} on tracks leading from the colony.</li>
           <li>[cursed] {X_nameDef}, an innocent the colony gave up, swore not to forget it.</li>
           <li>[revenge] {X_nameDef}, an innocent the colony gave up, came back with {ENEMY} for revenge.</li>
-          <li>[paidoff] The colony paid off {X_nameDef}, the innocent it had given up.</li>
+          <li>[paidoff] {X_nameDef}, the innocent the colony gave up, was paid off with silver.</li>
         </summaries>
         <raidTitles>
           <li>[debtrevenge] {X_nameDef}'s revenge</li>
@@ -577,10 +577,10 @@
           <li>The hunt for {X_nameDef}</li>
         </titles>
         <texts>
-          <li>[hid,!asked] Riders of {FACTION} came up the road this morning from {PLACE}, mud to the stirrups. They're asking at every farm and camp along the way about a young traveler, and their description of {X_nameDef} is a good one. They call {X_objective} a thief, and they're offering {COUNT} silver to anyone who helps them find {X_objective}.\n\n{X_nameDef} left before dawn, as promised. The riders don't know {X_nameDef} slept here, unless someone tells them.</li>
-          <li>[hid,asked,innocent] Riders of {FACTION} came up the road this morning from {PLACE}, mud to the stirrups. They're asking at every farm and camp along the way about a young traveler, and their description of {X_nameDef} is a good one. They call {X_objective} a thief, and they're offering {COUNT} silver to anyone who helps them find {X_objective}.\n\n{A_nameDef} heard {X_nameDef}'s side of it last night, and it wasn't theft. {X_nameDef} left before dawn.</li>
-          <li>[hid,asked,guilty] Riders of {FACTION} came up the road this morning from {PLACE}, mud to the stirrups. They're asking at every farm and camp along the way about a young traveler, and their description of {X_nameDef} is a good one. They call {X_objective} a thief, and they're offering {COUNT} silver to anyone who helps them find {X_objective}.\n\nThat's the truth, as far as {A_nameDef} knows: {X_nameDef} said as much last night, before leaving at dawn.</li>
-          <li>[turned] Riders of {FACTION} came up the road this morning from {PLACE}, mud to the stirrups. They're asking at every farm and camp along the way about a young traveler, and their description of {X_nameDef} is a good one. They call {X_objective} a thief, and they're offering {COUNT} silver to anyone who helps them find {X_objective}.\n\nThe colony turned {X_nameDef} away, so there's nothing to hide here. But {A_nameDef} knows which way {X_nameDef} went.</li>
+          <li>[hid,!asked] Riders of {FACTION} came up the road from {PLACE} this morning, mud to the stirrups, asking at every farm and camp for a young traveler. Their description of {X_nameDef} is a good one, down to the coat. A thief, they say, and there's {COUNT} silver for whoever helps them find {X_objective}.\n\n{X_nameDef} was gone before dawn, as promised. The riders don't know {X_pronoun} slept here, unless someone tells them.</li>
+          <li>[hid,asked,innocent] "A thief," says the rider in front. "Young, about so high, came this way from {PLACE}. There's {COUNT} silver in it for whoever points us right." The riders of {FACTION} have been asking at every farm along the road, and their description of {X_nameDef} is a good one.\n\n{A_nameDef} heard a different story last night, over a bowl of stew, and there was no theft in it. {X_nameDef} left before dawn.</li>
+          <li>[hid,asked,guilty] The riders at the gate this morning are from {PLACE}, sent by {FACTION} after a young thief, and they're offering {COUNT} silver to whoever helps them find {X_objective}. They describe {X_nameDef} well.\n\nThey're telling the truth, as far as {A_nameDef} knows. {X_nameDef} said as much last night, and left before dawn with the pack.</li>
+          <li>[turned] By midmorning there were riders of {FACTION} at the gate, come up the road from {PLACE} after a young traveler they call a thief. They describe {X_nameDef} down to the coat, and they're offering {COUNT} silver to anyone who helps.\n\nThe colony turned {X_nameDef} away last night, so there's nothing here to hide. But {A_nameDef} knows which way {X_nameDef} went.</li>
         </texts>
         <defaultOption>0</defaultOption>
         <options>
@@ -593,11 +593,11 @@
           </li>
           <li>
             <label>Tell them which way {X_nameDef} went</label>
-            <outcome>{A_nameDef} points the riders up the road {X_nameDef} took. They thank the colony and ride hard.</outcome>
+            <outcome>{A_nameDef} points the riders up the road {X_nameDef} took. They're gone before the dust settles.</outcome>
           </li>
           <li>
             <label>Tell them, for the reward ({COUNT} silver)</label>
-            <outcome>The riders count out {COUNT} silver and ride hard on the trail {A_nameDef} gives them.</outcome>
+            <outcome>The lead rider counts {COUNT} silver into {A_nameDef}'s hand, and they ride hard on the trail {A_nameDef} gives them.</outcome>
             <ways><mercy>-2</mercy></ways>
           </li>
         </options>
@@ -624,14 +624,14 @@
         <addsPeople>true</addsPeople>
         <answerDays>0.6</answerDays>
         <titles>
-          <li>{X_nameDef} comes back</li>
+          <li>{X_nameDef}, in a good coat</li>
           <li>{X_nameDef}, cleared</li>
           <li>An old guest, well dressed</li>
         </titles>
         <texts>
-          <li>[lowtech] {X_nameDef}, the stranger the colony hid one night and kept quiet about, came back up the road this morning on a good horse and in a good coat. The lord's son at {PLACE} was caught at last at something he couldn't buy his way out of, and {X_nameDef}'s name has been cleared.\n\n{X_nameDef} has brought what {X_pronoun} owes the colony, and more: {TALE}. If the colony will have {X_objective}, {X_nameDef} would like to stay.</li>
-          <li>[!lowtech] {X_nameDef}, the stranger the colony hid one night and kept quiet about, came back up the road this morning in a good coat and new boots. The mayor's son at {PLACE} was caught at last at something he couldn't buy his way out of, and {X_nameDef}'s name has been cleared.\n\n{X_nameDef} has brought what {X_pronoun} owes the colony, and more: {TALE}. If the colony will have {X_objective}, {X_nameDef} would like to stay.</li>
-          <li>{X_nameDef}, the stranger the colony hid one night and never gave away, walked up to the gate this morning looking ten years younger. The truth came out at {PLACE}: the theft was someone else's, someone with friends, and {X_nameDef}'s name is clean.\n\n{X_nameDef} has come to pay what {X_pronoun} owes the colony, and then some: {TALE}. If there's room, {X_nameDef} would like to stay.</li>
+          <li>[lowtech] The rider at the gate this morning had a good horse and a better coat, and it took the colony a moment to see {X_nameDef} under them: the stranger the colony hid one night and never gave away. The lord's son at {PLACE} was finally caught at something money couldn't fix, and {X_nameDef}'s name is clean.\n\n{X_nameDef} has brought what {X_pronoun} owes, and more: {TALE}. If the colony will have {X_objective}, {X_nameDef} would like to stay.</li>
+          <li>[!lowtech] {X_nameDef} is back, the stranger who slept one night by the colony's stove and was gone by morning. This time {X_nameDef} came up the road in daylight, in new boots. The mayor's son at {PLACE} is in a cell at last, for something else entirely, and the witness has nothing left to run from.\n\n{X_nameDef} has brought what {X_pronoun} owes the colony, and then some: {TALE}. {X_nameDef} would like to stay, if there's room.</li>
+          <li>{X_nameDef}, the stranger the colony hid one night and never gave away, came up to the gate this morning looking ten years younger. The truth came out at {PLACE}: the theft was someone else's, someone with friends, and {X_nameDef}'s name is clean.\n\n{X_nameDef} has come to pay what {X_pronoun} owes the colony, and then some: {TALE}. And if there's a bed going, {X_nameDef} would like it.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -667,20 +667,20 @@
         <notable>false</notable>
         <answerDays>0.6</answerDays>
         <titles>
-          <li>{X_nameDef} comes back</li>
+          <li>{X_nameDef}, doing well</li>
           <li>A gift too fine</li>
           <li>{X_nameDef}'s thanks</li>
         </titles>
         <texts>
-          <li>{X_nameDef}, the stranger the colony kept quiet about, has come back to say thank you, and has done well since, judging by the boots. The gift is wrapped in good cloth: fine things, finer than an honest traveler could have come by.\n\n{FACTION} are still asking along the road about what was taken from {PLACE}. The colony could accept the gift, refuse it, or take it and send it back where it came from.</li>
-          <li>[lowtech] {X_nameDef} rode in on a horse {X_pronoun} certainly didn't own last time, to thank the colony for keeping quiet. The gift is wrapped in embroidered cloth: silver work, fine and old, of the kind that goes missing from the houses of the rich.\n\n{FACTION}'s riders are still asking along the road about what was taken from {PLACE}. The colony could accept the gift, refuse it, or take it and send it back where it came from.</li>
-          <li>[!lowtech] {X_nameDef} turned up in a clean jacket and good boots to thank the colony for keeping quiet, with a gift in a padded case. Inside are fine things, the kind that come with a serial number and an owner.\n\n{FACTION} are still asking along the road about what went missing from {PLACE}. The colony could accept the gift, refuse it, or take it and send it back where it came from.</li>
+          <li>Judging by the boots, {X_nameDef} has done well since the colony kept quiet for {X_objective}, and has come back to say thank you. The gift is wrapped in good cloth, and the things inside are finer than any honest traveler comes by.\n\n{FACTION} are still asking along the road about what was taken from {PLACE}.</li>
+          <li>[lowtech] {X_nameDef} rode in on a horse {X_pronoun} certainly didn't own last time, to thank the colony for keeping quiet. The gift is wrapped in embroidered cloth: silver work, fine and old, of the kind that goes missing from the houses of the rich.\n\n{FACTION}'s riders are still asking up and down the road about what went missing from {PLACE}. The colony could keep the gift, refuse it, or send it home to them.</li>
+          <li>[!lowtech] {X_nameDef} turned up in a clean jacket and good boots, with a gift in a padded case and thanks for the colony's silence. Inside are fine things, the kind that come with a serial number and an owner.\n\nSomeone at {PLACE} is missing them, and {FACTION} have been asking about it along the road ever since.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
           <li>
             <label>Accept the gift</label>
-            <outcome>The colony keeps the gift.</outcome>
+            <outcome>The gift stays.</outcome>
             <riskChance>0.4</riskChance>
             <ways><generosity>-1</generosity></ways>
           </li>
@@ -728,8 +728,8 @@
           <li>The one the colony gave up</li>
         </titles>
         <texts>
-          <li>[lowtech] {X_nameDef}, the stranger the colony gave up to {FACTION}'s riders, got away from them at the river and has spent the weeks since finding friends among {ENEMY}. A message came tied to an arrow in the gatepost: {X_nameDef} remembers who pointed the way, and is coming to settle it.\n\n{X_nameDef} will call it even for {COUNT} silver. Otherwise, {X_nameDef} and {ENEMY} are coming.</li>
-          <li>[!lowtech] {X_nameDef}, the stranger the colony gave up to {FACTION}'s riders, got away from them at the river and has spent the weeks since finding friends among {ENEMY}. The message came over the comms, short and calm: {X_nameDef} remembers who pointed the way, and is coming to settle it.\n\n{X_nameDef} will call it even for {COUNT} silver. Otherwise, {X_nameDef} and {ENEMY} are coming.</li>
+          <li>[lowtech] An arrow in the gatepost this morning, with a strip of cloth tied round the shaft. {X_nameDef}, the stranger the colony gave up to {FACTION}'s riders, got away from them at the river and has spent the weeks since finding friends among {ENEMY}.\n\nThe message on the cloth is short. {COUNT} silver, and {X_nameDef} will call it even. Otherwise {X_nameDef} is coming, and {ENEMY} are coming too.</li>
+          <li>[!lowtech] The message came over the comms, short and calm. "You pointed them my way. I got loose at the river, no thanks to you, and I've made friends since." It's {X_nameDef}, the stranger the colony gave up to {FACTION}'s riders, and the friends are {ENEMY}.\n\n{COUNT} silver, and {X_nameDef} will call it even. Otherwise they're coming.</li>
           <li>[winter] A runner came through the snow with a message from {X_nameDef}, the stranger the colony gave up to {FACTION}'s riders. {X_nameDef} slipped them at the river and has spent the cold months making friends among {ENEMY}.\n\n{X_nameDef} will call the matter closed for {COUNT} silver. Otherwise, {X_pronoun} is coming back with {ENEMY}, and won't be asking for shelter this time.</li>
         </texts>
         <defaultOption>1</defaultOption>
@@ -743,7 +743,7 @@
           </li>
           <li>
             <label>Let {X_objective} come</label>
-            <outcome>The colony sends nothing.</outcome>
+            <outcome>Nothing is sent.</outcome>
           </li>
         </options>
       </li>
@@ -780,28 +780,28 @@
           <li>An old quarrel comes calling</li>
         </titles>
         <texts>
-          <li>[mill] {X_nameDef} and {B_nameDef}, heads of the two oldest families in {PLACE}, rode into the colony together this morning and haven't said a word to each other since. The {DEAD} family and the {BEAST} family have been at odds since the mill burned three winters ago, and each says the other set the fire.\n\nNow {X_nameDef}'s son and {B_nameDef}'s daughter want to marry, and both fathers have come to ask for the colony's help, or its backing. {A_nameDef} has heard them both out, separately, twice.</li>
-          <li>[orchard] {X_nameDef} and {B_nameDef}, heads of the two oldest families in {PLACE}, rode into the colony together this morning and haven't said a word to each other since. The {DEAD} family put a fence through the middle of the old orchard ten years ago, the {BEAST} family took it down by night, and it has gone up and come down every year since.\n\nNow {X_nameDef}'s son and {B_nameDef}'s daughter want to marry, and both fathers have come to ask for the colony's help, or its backing. {A_nameDef} has heard them both out, separately, twice.</li>
-          <li>[ford] {X_nameDef} and {B_nameDef}, heads of the two oldest families in {PLACE}, rode into the colony together this morning and haven't said a word to each other since. A {BEAST} cousin drowned at the ford one spring, on a night after the {DEAD} family had moved the stepping stones, and neither side has let it go.\n\nNow {X_nameDef}'s son and {B_nameDef}'s daughter want to marry, and both fathers have come to ask for the colony's help, or its backing. {A_nameDef} has heard them both out, separately, twice.</li>
+          <li>[mill] The {DEAD} family and the {BEAST} family have each said, for three winters now, that the other burned the mill at {PLACE}. Their heads, {X_nameDef} and {B_nameDef}, rode into the colony together this morning and haven't said a word to each other since.\n\n{X_nameDef}'s son wants to marry {B_nameDef}'s daughter. Both heads of house have come for the colony's help, or failing that its backing, and {A_nameDef} has heard each of them out twice, separately.</li>
+          <li>[orchard] A fence through the middle of the old orchard at {PLACE}. The {DEAD} family put it up ten years ago, the {BEAST} family pulled it down by night, and it has gone up and come down every year since.\n\nNow a wedding is in the way of it. {X_nameDef}'s son and {B_nameDef}'s daughter mean to marry, fence or no fence, and the two heads of house are sitting at opposite ends of the colony's yard, each waiting for a word with {A_nameDef}.</li>
+          <li>[ford] "Ask {X_nameDef} about the stepping stones," {B_nameDef} told {A_nameDef}, before anything else. A {BEAST} cousin drowned at the ford below {PLACE} one spring night, after the {DEAD} family had moved the stones, and the two houses haven't spoken since.\n\nNow {X_nameDef}'s son wants to marry {B_nameDef}'s daughter, and both heads of house have ridden in to ask the colony to help make peace, or to take a side.</li>
         </texts>
         <defaultOption>4</defaultOption>
         <options>
           <li>
             <label>{A_nameDef} offers to mediate</label>
-            <outcome>{A_nameDef} rides back to {PLACE} with them to arrange a first meeting. Neither father likes the idea. Both agree to it.</outcome>
+            <outcome>{A_nameDef} will ride back to {PLACE} with them to arrange a first meeting. Neither of them likes the idea. Both agree to it.</outcome>
             <ways><mercy>1</mercy><openness>1</openness></ways>
           </li>
           <li>
             <label>Back the {DEAD} family</label>
-            <outcome>The colony sides with {X_nameDef}. {B_nameDef} leaves without a word, and {X_nameDef} shakes every hand in the colony before riding home.</outcome>
+            <outcome>The council sides with {X_nameDef}. {B_nameDef} leaves without a word, and {X_nameDef} shakes every hand in the colony before riding home.</outcome>
           </li>
           <li>
             <label>Back the {BEAST} family</label>
-            <outcome>The colony sides with {B_nameDef}. {X_nameDef} leaves without a word, and {B_nameDef} shakes every hand in the colony before riding home.</outcome>
+            <outcome>The council sides with {B_nameDef}. {X_nameDef} rides off alone without a backward look, and {B_nameDef} thanks the council one by one.</outcome>
           </li>
           <li>
             <label>Sell supplies to both sides ({COUNT} silver)</label>
-            <outcome>Both fathers buy what the colony can spare, each without knowing the other has. {COUNT} silver goes into the colony's stores.</outcome>
+            <outcome>Each of them buys what the colony can spare, at opposite ends of the yard, and neither knows about the other. The colony is {COUNT} silver richer.</outcome>
             <ways><generosity>-3</generosity></ways>
           </li>
           <li>
@@ -838,16 +838,16 @@
           <li>[goeson] The feud goes on</li>
         </endingTitles>
         <endings>
-          <li>[wedding] {X_nameDef}'s son and {B_nameDef}'s daughter were married at the colony at sundown, with the families on either side of the yard and the colony in between. Both fathers made speeches. By the end of the night {X_nameDef} and {B_nameDef} were seen sharing a bottle on the same bench.\n\n{PLACE} has one feud fewer, and both families say the colony will always have a seat at their table.</li>
-          <li>[weddinggift] The couple were married in {PLACE} a few days later. The colony's gift stood on the table at the feast, and both families drank to the colony's health.\n\nThe {DEAD} and {BEAST} families are neighbors again.</li>
-          <li>[weddingwished] The couple were married at home in {PLACE}, with both families at the same table and neither father storming out. The colony was thanked in the speeches for its part in the peace.\n\nThe {DEAD} and {BEAST} families are speaking to each other again.</li>
-          <li>[alliance] The {RELATION} family took the colony's gift, and their anger cooled. They've stopped talking about the colony and started talking about next year's harvest.\n\nThe {TALE} family leads {PLACE} now, and doesn't forget its friends. Its first cart of the season came to the colony: {ITEM}.</li>
-          <li>[vendetta] The colony won't buy off {ENEMY}. They're on the road now, paid by the {RELATION} family to burn the colony out.\n\nThe {TALE} family has sent word that it stands with the colony, whatever comes.</li>
+          <li>[wedding] The wedding is set for sundown, here at the colony, with one family down each side of the yard and the colony in between. {X_nameDef} and {B_nameDef} have each written a speech, and neither will let the other see it.\n\n{PLACE} will have one feud fewer by morning, and both families say the colony will always have a seat at their table.</li>
+          <li>[weddinggift] The wedding party is riding home with the colony's gift, and the couple will be married in {PLACE} within the week. Both families mean to drink the colony's health at the feast.\n\nThe {DEAD} and {BEAST} families are neighbors again.</li>
+          <li>[weddingwished] The couple will be married at home in {PLACE}, with the {DEAD} and {BEAST} families at one table for the first time in years. The colony will get a mention in the speeches.</li>
+          <li>[alliance] The {RELATION} family took the colony's gift, and their anger cooled. They've stopped talking about the colony and started talking about next year's harvest.\n\nThe {TALE} family leads {PLACE} now, and the first cart of its harvest came to the colony: {ITEM}.</li>
+          <li>[vendetta] No silver for {ENEMY}, then. They're on the road now, paid by the {RELATION} family to burn the colony out.\n\nThe {TALE} family has sent word that it stands with the colony, whatever comes.</li>
           <li>[boughtoff] {ENEMY} took the silver and turned back on the road, and the {RELATION} family's plan came to nothing. In {PLACE}, the story going round is that the colony outbid them.\n\nThe {RELATION} family has gone quiet. The {TALE} family is still grateful.</li>
-          <li>[grudge] The {RELATION} family won't trade with the colony, won't let its people past their gate, and tells anyone in {PLACE} who will listen that the colony bought the town's decision.\n\nIt's one family. In a town the size of {PLACE}, that's enough to be felt.</li>
-          <li>[blood] The talks failed, and the feud came back worse than before. At the market in {PLACE}, two of the {DEAD} sons and a {BEAST} cousin came to blows over nothing, and one of them will walk with a limp for the rest of his life. The wedding is off.\n\nBoth families blame the colony for talks that went nowhere, and {A_nameDef} blames {A_objective}self.</li>
+          <li>[grudge] The {RELATION} family won't trade with the colony, won't let its people past their gate, and tells anyone in {PLACE} who will listen that the colony bought the town's decision.\n\nWhen the colony's people pass through {PLACE} now, the {RELATION} cousins turn their backs.</li>
+          <li>[blood] A fight at the market in {PLACE}, over nothing much: two {DEAD} sons and a {BEAST} cousin, and one of them will walk with a limp for the rest of his life. The talks are over, and the wedding is off.\n\nBoth families blame the colony for talks that went nowhere, and {A_nameDef} blames {A_objective}self.</li>
           <li>[bloodsilver] The {DEAD} and {BEAST} families came to blows in the streets of {PLACE}, armed with what they'd bought from the colony. Now both know where the other's supplies came from, and so does the rest of the town.\n\n{FACTION} think less of the colony for it.</li>
-          <li>[ownpeace] Word from {PLACE}: the {DEAD} and {BEAST} families made their peace without anyone's help, and the son and daughter were married last week.\n\nThe colony wasn't invited.</li>
+          <li>[ownpeace] A peddler from {PLACE} mentioned it in passing: the {DEAD} and {BEAST} families made their peace without anyone's help, and the son and daughter were married last week.\n\nThe colony wasn't invited.</li>
           <li>[goeson] The feud in {PLACE} goes on as it has for years. The son and daughter are still waiting, and the {DEAD} and {BEAST} families still cross the street rather than share it.\n\nThe colony stayed out of it, and {PLACE} hasn't asked it again.</li>
         </endings>
         <summaries>
@@ -905,8 +905,8 @@
           <li>Peace talks</li>
         </titles>
         <texts>
-          <li>[good] {A_nameDef} is back from {PLACE}. The first meeting between the {DEAD} and {BEAST} families went better than anyone hoped: neither father walked out, and by the end {X_nameDef} and {B_nameDef} were arguing about the price of seed like ordinary neighbors.\n\nThey'll meet once more to settle it. {A_nameDef} thinks it should be at the colony, on ground that belongs to neither family, with a good meal on the table.</li>
-          <li>[bad] {A_nameDef} is back from {PLACE}, tired. The first meeting went badly: {B_nameDef} walked out halfway through, and the two families' sons nearly came to blows in the yard.\n\nThere's one more chance. {A_nameDef} wants to bring both fathers to the colony, on ground that belongs to neither family, and put a good meal in front of them. Left alone, the families will go back to what they were doing.</li>
+          <li>[good] Neither of them walked out. That's the first thing {A_nameDef} said on getting back from {PLACE}, and the rest was better still: by the end of the meeting, {X_nameDef} and {B_nameDef} were arguing about the price of seed like ordinary neighbors.\n\nThey'll meet once more to settle it. {A_nameDef} thinks it should be here, on ground that belongs to neither family, with a good meal on the table.</li>
+          <li>[bad] {A_nameDef} came back from {PLACE} tired and hoarse. {B_nameDef} walked out of the first meeting halfway through, and the two families' sons nearly came to blows in the yard.\n\nThere's one more chance. {A_nameDef} wants both heads of house at the colony, on ground that belongs to neither family, with a good meal in front of them. Left alone, the families will go back to what they were doing.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -920,7 +920,7 @@
           </li>
           <li>
             <label>Leave it to them now</label>
-            <outcome>The colony has done what it can. The families will finish the matter themselves, one way or the other.</outcome>
+            <outcome>Word goes to both houses that the colony has done what it can. The rest is up to them.</outcome>
           </li>
         </options>
       </li>
@@ -950,15 +950,15 @@
           <li>The colony's word, remembered</li>
         </titles>
         <texts>
-          <li>[mill] The elders of {PLACE} have settled the matter of the burned mill in favor of the {TALE} family, and everyone in the valley knows the colony's word tipped it. {X_nameDef} sent a rider with the family's thanks.\n\nThe {RELATION} family has taken it hard. {B_nameDef} has been heard saying the colony will pay for its part, and some of the {RELATION} cousins have been seen drinking with rough company. A peace gift now might cool things down.</li>
-          <li>[orchard] The elders of {PLACE} have drawn the line through the old orchard where the {TALE} family wanted it, and everyone in the valley knows the colony's word tipped it. {X_nameDef} sent a rider with the family's thanks.\n\nThe {RELATION} family has taken it hard. {B_nameDef} has been heard saying the colony will pay for its part, and some of the {RELATION} cousins have been seen drinking with rough company. A peace gift now might cool things down.</li>
-          <li>[ford] The elders of {PLACE} have ruled that the drowning at the ford was nobody's fault, as the {TALE} family always said, and everyone in the valley knows the colony's word tipped it. {X_nameDef} sent a rider with the family's thanks.\n\nThe {RELATION} family has taken it hard. {B_nameDef} has been heard saying the colony will pay for its part, and some of the {RELATION} cousins have been seen drinking with rough company. A peace gift now might cool things down.</li>
+          <li>[mill] The elders of {PLACE} have ruled on the burned mill, and the {TALE} family has won. The whole valley knows whose word tipped it. {X_nameDef} sent a rider with the family's thanks.\n\nThe {RELATION} family has taken it hard. {B_nameDef} has been heard saying the colony will pay for its part, and some of the {RELATION} cousins have been seen drinking with rough company. A peace gift now might cool things down.</li>
+          <li>[orchard] The new fence through the old orchard at {PLACE} runs where the {TALE} family always wanted it, and the elders put it there on the colony's word. {X_nameDef}'s thanks came by rider the same day.\n\n{B_nameDef} has not taken it well. The {RELATION} cousins are cursing the colony in the taverns, and drinking with people who carry knives for a living. A peace gift might still cool things down.</li>
+          <li>[ford] The elders of {PLACE} have ruled on the drowning at the ford, the way the {TALE} family always wanted, and the whole valley knows the colony's word tipped it. {X_nameDef} sent a rider with thanks. The {RELATION} family sent nothing.\n\n{B_nameDef} has been heard saying the colony will answer for its part, and there are rough strangers drinking with the {RELATION} cousins. A peace gift now might be enough to stop it there.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
           <li>
             <label>Send the {RELATION} family a peace gift ({COUNT} silver)</label>
-            <outcome>A rider takes the gift to {B_nameDef}'s door. {B_nameDef} took it, and said nothing. Whether it was enough will be clear in a few days.</outcome>
+            <outcome>The silver goes off with a rider, bound for {B_nameDef}'s door. Whether it's enough will show in a few days.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the peace gift</label><what>silver</what><to>Gate</to></li>
             </effects>
@@ -966,7 +966,7 @@
           </li>
           <li>
             <label>Stand by the {TALE} family</label>
-            <outcome>The colony stands by its word. The {TALE} family is grateful, and says so to anyone who'll listen.</outcome>
+            <outcome>The colony's word stands. The {TALE} family is grateful, and says so to anyone who'll listen.</outcome>
           </li>
         </options>
       </li>
@@ -997,9 +997,9 @@
           <li>Blades for hire</li>
         </titles>
         <texts>
-          <li>[lowtech] A {RELATION} cousin, drunk and talkative in the tavern at {PLACE}, let it slip: the family has hired {ENEMY} to burn the colony out for the part it played in their ruin, and paid half up front.\n\nA rider from the {TALE} family brought the warning, and one more piece of news: {ENEMY} would turn back for {COUNT} silver, double what they were paid. Or the colony can meet them when they come.</li>
+          <li>[lowtech] The {TALE} family's rider didn't get off the horse. "The {RELATION} family has hired {ENEMY} to burn you out, and paid them half already. One of the cousins said it in the tavern, drunk, in front of a room full of people."\n\n{ENEMY} would turn back for {COUNT} silver, the rider says, double what they were paid. Or the colony can meet them when they come.</li>
           <li>[!lowtech] A {RELATION} cousin, drunk and talkative in a bar in {PLACE}, let it slip: the family has hired {ENEMY} to burn the colony out for the part it played in their ruin, and paid half up front.\n\nA rider from the {TALE} family brought the warning, and one more piece of news: {ENEMY} would turn back for {COUNT} silver, double what they were paid. Or the colony can meet them when they come.</li>
-          <li>[winter] A rider from the {TALE} family came through the snow with a warning: the {RELATION} family has hired {ENEMY} to burn the colony out for the part it played in their ruin, and paid them half in advance.\n\n{ENEMY} would turn back for {COUNT} silver, double what they were paid, the rider says. Or the colony can be ready for them.</li>
+          <li>[winter] A rider from the {TALE} family came through the snow with a warning: the {RELATION} family has hired {ENEMY} to burn the colony out, and paid them half in advance.\n\n{ENEMY} would turn back for {COUNT} silver, double their fee, the rider says. Or the colony can be ready for them.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -1012,7 +1012,7 @@
           </li>
           <li>
             <label>Let them come</label>
-            <outcome>The colony gets ready.</outcome>
+            <outcome>The gate is shut and the walls are watched.</outcome>
           </li>
         </options>
       </li>
@@ -1042,9 +1042,9 @@
           <li>The feud's end</li>
         </titles>
         <texts>
-          <li>The {DEAD} and {BEAST} families of {PLACE} have made their peace, and the wedding is set. They've come to the colony together, both fathers and the young couple in their best clothes, with a request: they'd like to be married here, where the peace was made.\n\nA wedding feast would take 40 raw food from the colony's stores. Or the colony could send them home with a gift and its blessing.</li>
-          <li>[spring|summer] Both families from {PLACE} rode in together this morning, the {DEAD} family and the {BEAST} family side by side, with the young couple in flowers at the front. The peace has held, the wedding is set, and they'd like it held here, where the peace was made.\n\nA wedding feast would take 40 raw food from the colony's stores. Or the colony could send them home with a gift and its blessing.</li>
-          <li>[fall|winter] The {DEAD} and {BEAST} families of {PLACE} have come to the colony together, in their warmest best, with the young couple between them. The peace was made here, they say, and they'd like the wedding to be held here too.\n\nA wedding feast would take 40 raw food from the colony's stores. Or the colony could send them home with a gift and its blessing.</li>
+          <li>They came in their best clothes, both heads of house and the young couple between them, and the request is a simple one. The {DEAD} and {BEAST} families of {PLACE} have made their peace, and they'd like to be married at the colony that brought them to the table.\n\nA wedding feast would take 40 raw food from the colony's stores. Or the colony could send them home with a gift and its blessing.</li>
+          <li>[spring|summer] Both families from {PLACE} rode in together this morning, the {DEAD} family and the {BEAST} family side by side, with the young couple in flowers at the front. The peace has held and the wedding is set, and they'd like it to be here.\n\nA feast here would take 40 raw food from the stores. A gift, or simply the colony's blessing, would send them home happy enough.</li>
+          <li>[fall|winter] Breath steaming, cheeks red, the {DEAD} and {BEAST} families of {PLACE} came up to the gate together in their warmest best, with the young couple between them. The colony helped make the peace, they say, so it should see the wedding.\n\nFeeding them all would take 40 raw food from the stores. Or they can go home with a gift and the colony's blessing.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -1104,9 +1104,9 @@
           <li>A voice on the road</li>
         </titles>
         <texts>
-          <li>[ideo] A preacher named {X_nameDef} has stopped on the road by the colony with two followers and a handcart, and has been preaching to anyone who passes. {X_nameDef} speaks for {TALE}, and speaks well: {A_nameDef} went to listen for a few minutes and stayed until dark.\n\nThey'd like to stay a day or two and preach to the colony's people. Some here are curious. Others want them gone.</li>
-          <li>[!ideo,lowtech] A preacher named {X_nameDef} has stopped on the road by the colony with two followers and a handcart, and has been preaching to anyone who passes. {X_nameDef} teaches that every hardship on the rim is sent to be borne, and that grumbling about it is the only real sin. {A_nameDef} went to listen for a few minutes and stayed until dark.\n\nThey'd like to stay a day or two and preach to the colony's people. Some here are curious. Others want them gone.</li>
-          <li>[!ideo,!lowtech] A preacher named {X_nameDef} has stopped on the road by the colony with two followers and a handcart, preaching through a battered megaphone to anyone who passes. {X_nameDef} teaches that every hardship on the rim is sent to be borne, and that grumbling about it is the only real sin. {A_nameDef} went to listen for a few minutes and stayed until dark.\n\nThey'd like to stay a day or two and preach to the colony's people. Some here are curious. Others want them gone.</li>
+          <li>[ideo] {A_nameDef} went out to the road to hear the preacher for a few minutes, and came back after dark. The preacher is {X_nameDef}, who speaks for {TALE} and speaks well, and who has stopped by the colony with two followers and a handcart.\n\nThey'd like a day or two to preach to the colony's people. Some here are curious. Others want them gone.</li>
+          <li>[!ideo,lowtech] "Every hardship on the rim is sent to be borne," {X_nameDef} tells whoever stops to listen, "and grumbling is the only sin." The preacher has set up on the road outside the colony with two followers and a handcart, and {A_nameDef} has already been out to hear {X_objective} twice.\n\n{X_nameDef} would like a day or two to preach to the colony itself. Some here want to hear more. Some would rather not.</li>
+          <li>[!ideo,!lowtech] The preacher's battered megaphone carries all the way to the fields. {X_nameDef} has set up on the road by the colony with two followers and a handcart, teaching that hardship is sent to be borne and grumbling is the only real sin, and {A_nameDef} went to listen for a few minutes and stayed until dark.\n\nThey'd like a day or two to preach to the colony's people. Opinions in the dining room are divided.</li>
         </texts>
         <defaultOption>0</defaultOption>
         <options>
@@ -1161,14 +1161,14 @@
           <li>[movedon] The preacher moves on</li>
         </endingTitles>
         <endings>
-          <li>[humbled,follower] {X_nameDef} conceded the argument at midnight, shook {A_nameDef}'s hand, and left at dawn, quieter than {X_pronoun} came. One of the followers didn't go: {RELATION} asked to stay and learn from the people who had out-argued the preacher.\n\n{A_nameDef} has been in a fine mood all week.</li>
-          <li>[humbled,nofollower] {X_nameDef} conceded the argument at midnight, shook {A_nameDef}'s hand, and left at dawn with the followers and the handcart, quieter than {X_pronoun} came.\n\nThe colony talked about the argument for days. {A_nameDef} didn't mind that at all.</li>
+          <li>[humbled,follower] {X_nameDef} conceded the argument at midnight, shook {A_nameDef}'s hand, and will leave at dawn, quieter than {X_pronoun} came. One of the followers isn't going: {RELATION} has asked to stay and learn from the people who out-argued the preacher.\n\n{A_nameDef} hasn't stopped smiling since.</li>
+          <li>[humbled,nofollower] It went on until the lamps burned low, with a crowd watching, and in the end {X_nameDef} conceded, shook {A_nameDef}'s hand and went to bed. The preacher will leave at dawn with the followers and the handcart, quieter than {X_pronoun} came.\n\nThe colony will be talking about it for days. {A_nameDef} doesn't mind that at all.</li>
           <li>[convert] A pilgrim brought word from {B_nameDef}, who left the colony to walk the road with {X_nameDef}. {B_nameDef} is well, thinner, and happier than {B_pronoun} was here, the pilgrim says, and preaches now in the market squares between the towns.\n\n{B_nameDef} asked to be remembered to everyone, and to {A_nameDef} most of all.</li>
-          <li>[stayed] {X_nameDef} took the council's request with good grace and moved on up the road. {B_nameDef} watched the handcart go from the gate, and hasn't said much since.\n\n{B_nameDef} is staying. For now, {B_pronoun} says.</li>
-          <li>[newvoice] {X_nameDef} moved into the colony with a bundle of books and a handcart, and has been no trouble at all. {X_nameDef} works hard, eats little, preaches only when asked, and is asked more often than anyone expected.\n\n{B_nameDef} is staying too.</li>
-          <li>[healed] {A_nameDef} called everyone into the dining room and let them talk, one at a time, until there was nothing left to say. It took most of the night.\n\nThe arguments haven't stopped, but they've gone back to being arguments. People pass each other the salt again.</li>
+          <li>[stayed] {X_nameDef} took the council's request with good grace and moved on up the road. {B_nameDef} watched the handcart out of sight from the gate.\n\n{B_nameDef} is staying, and says {B_pronoun} won't be going out to the road in the evenings anymore.</li>
+          <li>[newvoice] {X_nameDef} has moved into the colony with a bundle of books and the handcart, and says {X_pronoun} will preach only when asked. {B_nameDef} means to ask often.\n\n{B_nameDef} is staying too.</li>
+          <li>[healed] It ended over something small. At supper someone passed {A_nameDef} the salt from the other end of the table without being asked, and {A_nameDef} said thank you. The arguments haven't stopped since, but they've gone back to being arguments.</li>
           <li>[split] The arguments never really ended. Those who took {X_nameDef}'s words to heart sit at one end of the table now, the rest at the other, and supper is quieter and colder for it.\n\nIt may mend in time. It hasn't yet.</li>
-          <li>[turnedaway] The pilgrims were turned away at the gate and went on up the road to {X_nameDef}'s hill without stopping. The ones who came after them didn't ask.\n\nThe pilgrims walk past the colony now, and keep their eyes on the road.</li>
+          <li>[turnedaway] The pilgrims took their sore feet on up the road to {X_nameDef}'s hill without another word. The next band will have heard, and won't stop to ask.\n\nThey'll walk past the colony now, with their eyes on the road.</li>
           <li>[shrine] The pilgrims keep coming, and the colony has become the last stop before {X_nameDef}'s hill. The latest band left {ITEM} silver and a carved token to hang on the gate.\n\n{X_nameDef} still lives up there alone, preaching to whoever makes the climb, and sends down a blessing with every band that passes.</li>
           <li>[movedon] {X_nameDef} and the followers preached along the road for a few more evenings, then moved on toward the next town. A few of their songs stayed behind; {A_nameDef} has caught people humming them while they work.</li>
         </endings>
@@ -1179,7 +1179,7 @@
           <li>[newvoice] {X_nameDef}, a wandering preacher, settled in the colony.</li>
           <li>[healed] The colony mended the split {X_nameDef}'s preaching left behind.</li>
           <li>[split] {X_nameDef}'s preaching left the colony divided.</li>
-          <li>[turnedaway] The colony turned away the pilgrims going to {X_nameDef}'s hill.</li>
+          <li>[turnedaway] Pilgrims bound for {X_nameDef}'s hill were turned away at the colony's gate.</li>
           <li>[shrine] The colony became the last stop for pilgrims on the way to {X_nameDef}'s hill.</li>
           <li>[movedon] {X_nameDef}, a wandering preacher, preached by the colony for a while and moved on.</li>
         </summaries>
@@ -1215,14 +1215,14 @@
           <li>A call to the road</li>
         </titles>
         <texts>
-          <li>[ideo] {X_nameDef} and the followers have been preaching up and down the road for days, and {B_nameDef} has gone to listen every evening. Last night {B_nameDef} came to the council: {B_nameDef} wants to take up {TALE}, leave with them, and walk the road.\n\n{X_nameDef} has offered {B_nameDef} a place among the followers. The colony could let {B_objective} go, ask the preacher to move on, or ask {X_nameDef} to settle here instead, which might keep {B_nameDef} home, and might bring {X_nameDef}'s sermons to every supper.</li>
-          <li>[!ideo] {X_nameDef} and the followers have been preaching up and down the road for days, and {B_nameDef} has gone to listen every evening. Last night {B_nameDef} came to the council: {B_nameDef} wants to leave with them and walk the road, owning nothing and grumbling about nothing.\n\n{X_nameDef} has offered {B_nameDef} a place among the followers. The colony could let {B_objective} go, ask the preacher to move on, or ask {X_nameDef} to settle here instead, which might keep {B_nameDef} home, and might bring {X_nameDef}'s sermons to every supper.</li>
+          <li>[ideo] Every evening for days, {B_nameDef} has gone out to the road to hear {X_nameDef} preach. Last night {B_nameDef} came to the council and said it plainly: {B_pronoun} wants to take up {TALE}, leave with the followers, and walk the road.\n\n{X_nameDef} has offered {B_objective} a place. The colony could let {B_objective} go, ask the preacher to move on, or ask {X_nameDef} to settle here instead, which might keep {B_nameDef} home and might bring a sermon to every supper.</li>
+          <li>[!ideo] "I want to own nothing and grumble about nothing," {B_nameDef} told the council last night, after days of evenings out on the road listening to {X_nameDef}. {B_nameDef} wants to leave with the followers and walk the road.\n\n{X_nameDef} would take {B_objective}. Or the preacher could be asked to move on, or asked to settle here for good, which might keep {B_nameDef} home and might put a sermon on the table every night.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
           <li>
             <label>Let {B_nameDef} go</label>
-            <outcome>{B_nameDef} packs light and walks out to the road at dawn. {X_nameDef} is waiting with the handcart.</outcome>
+            <outcome>{B_nameDef} packs light and walks out to the road, where {X_nameDef} is waiting with the handcart.</outcome>
             <ways><openness>2</openness></ways>
           </li>
           <li>
@@ -1263,7 +1263,7 @@
         </titles>
         <texts>
           <li>[lost] Since {A_nameDef} lost the argument with {X_nameDef}, the colony has talked of little else. {B_nameDef} says the preacher was right and has started living by it; {A_nameDef} says {B_nameDef} has lost {B_possessive} mind. Supper has turned into a debate, and the debates have turned into shouting.\n\n{A_nameDef} wants to call everyone together and talk it out. Others think it will burn itself out if it's left alone.</li>
-          <li>[!lost] Since {X_nameDef} settled in, the colony has split in two. Those who listen have started living {X_nameDef}'s way, and {B_nameDef} is the loudest of them; the rest want the preaching kept out of the dining room. {A_nameDef} and {B_nameDef} haven't spoken in two days.\n\n{A_nameDef} wants to call everyone together and talk it out. Others think it will burn itself out if it's left alone.</li>
+          <li>[!lost] Since {X_nameDef} settled in, the colony has split in two. Those who listen have started living {X_nameDef}'s way, and {B_nameDef} is the loudest of them; the rest want the preaching kept out of the dining room. {A_nameDef} and {B_nameDef} haven't spoken in two days.\n\n{A_nameDef} wants everyone in one room to talk it out. Others would leave it alone to cool.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -1277,7 +1277,7 @@
           </li>
           <li>
             <label>Let it burn itself out</label>
-            <outcome>The colony waits.</outcome>
+            <outcome>Nothing is said, and the colony waits.</outcome>
           </li>
         </options>
       </li>
@@ -1307,9 +1307,9 @@
           <li>Footsore travelers</li>
         </titles>
         <texts>
-          <li>Three pilgrims of {FACTION} stopped at the colony's gate this morning, footsore, asking for water. They're walking to a hill a day's walk from here, where {X_nameDef}, the preacher the colony sent on, has been living alone ever since, preaching to the wind and to anyone who makes the climb. Word of {X_objective} has spread.\n\nThey'll pay {COUNT} silver for a meal and a dry floor for the night, and they say more are coming. Or the colony could turn them away.</li>
-          <li>[winter] Three pilgrims of {FACTION} came to the gate this morning with frost in their hair. They're climbing to the hill where {X_nameDef}, the preacher the colony sent away, lives alone now and preaches to whoever makes the climb, snow or no snow.\n\nThey'll pay {COUNT} silver for a hot meal and a dry floor, and they say more are on the road behind them. Or the colony could turn them away.</li>
-          <li>[summer] A handful of pilgrims of {FACTION} stopped at the gate this morning, sunburned and dusty, asking for water. They're bound for a hill a day's walk off, where {X_nameDef}, the preacher the colony sent on, has been preaching from a rock to anyone who will climb up and listen.\n\nThey'll pay {COUNT} silver for a meal and a place to sleep, and they say others are coming. Or the colony could turn them away.</li>
+          <li>{X_nameDef}, the preacher the colony sent on, never went far. There's a hill a day's walk from here where {X_pronoun} has been living alone, preaching to the wind and to anyone who makes the climb, and three pilgrims of {FACTION} stopped at the gate this morning on their way up to hear {X_objective}.\n\nThey'll pay {COUNT} silver for a meal and a dry floor tonight. More are coming, they say.</li>
+          <li>[winter] Three pilgrims of {FACTION} came to the gate this morning with frost in their hair. They're climbing to the hill where {X_nameDef}, the preacher the colony sent away, lives alone now and preaches to whoever makes the climb, snow or no snow.\n\nThey'll pay {COUNT} silver for a hot meal and a dry floor, and there are more on the road behind them.</li>
+          <li>[summer] Sunburned and dusty, a handful of pilgrims of {FACTION} asked at the gate for water. They're bound for a hill a day's walk off, where {X_nameDef}, the preacher the colony sent on, preaches from a rock to anyone who will climb up and listen.\n\nThey'll pay {COUNT} silver for a meal and a place to sleep, and they say others are coming. Or the colony could turn them away.</li>
         </texts>
         <defaultOption>0</defaultOption>
         <options>
@@ -1351,8 +1351,8 @@
         </titles>
         <texts>
           <li>Another band of pilgrims of {FACTION} came by on the way to {X_nameDef}'s hill, and paid {COUNT} silver for their bread and a night under the colony's roof. The hill has a name now among the faithful, they say, and so does the colony: the last door before the climb.</li>
-          <li>More pilgrims of {FACTION} stopped on their way up to {X_nameDef}'s hill. They ate well, slept on the colony's floor and left {COUNT} silver on the table in the morning. One of them asked {A_nameDef} whether the colony was where the preacher first stopped. {A_nameDef} said it was.</li>
-          <li>[winter] A band of pilgrims came through the snow on their way to {X_nameDef}'s hill and paid {COUNT} silver for soup and a night by the colony's fire. They left singing, which {A_nameDef} says is a lot to manage on that climb in this weather.</li>
+          <li>Pilgrims again, of {FACTION}, on their way up to {X_nameDef}'s hill. They've paid {COUNT} silver for bread and a floor for the night. One of them asked {A_nameDef} whether this was where the preacher first stopped, and {A_nameDef} said it was.</li>
+          <li>[winter] A band of pilgrims came through the snow on their way to {X_nameDef}'s hill and paid {COUNT} silver for soup and a night by the colony's fire. They mean to start the climb singing, which {A_nameDef} says is a lot to manage in this weather.</li>
         </texts>
       </li>
       <li Class="ColonyCouncil.StoryText">
@@ -1387,14 +1387,14 @@
           <li>Help for the lost</li>
         </titles>
         <texts>
-          <li>[!adventurer] {X_nameDef} of {FACTION} came in from the hills alone, half-starved and feverish, with a leather map case {X_nameDef} wouldn't let go of even to eat. Five of them set out for {PLACE} at the start of the season, to map it and bring back what they could carry. A rockfall sealed the way out behind them, and {X_nameDef} was the only one small enough to squeeze through and fetch help.\n\nThe other four were alive when {X_nameDef} left them, with food for a few weeks. {X_nameDef} could lead a rescue back, with food and hired guides. Or the colony could send word to {FACTION} and let them see to their own.</li>
-          <li>[adventurer] {X_nameDef} of {FACTION} came in from the hills alone, half-starved and feverish, with a leather map case {X_nameDef} wouldn't let go of even to eat. Five of them set out for {PLACE} at the start of the season, to map it and bring back what they could carry. A rockfall sealed the way out behind them, and {X_nameDef} was the only one small enough to squeeze through and fetch help.\n\nThe other four were alive when {X_nameDef} left them, with food for a few weeks. {A_nameDef}, who walked a good many roads before settling here, has been to {PLACE} once, and has already drawn a better map than {X_nameDef}'s. {X_nameDef} could lead a rescue back with it, with food and hired guides. Or the colony could send word to {FACTION} and let them see to their own.</li>
+          <li>[!adventurer] The leather map case never leaves {X_nameDef}'s hands, not even to eat. {X_nameDef} of {FACTION} came in from the hills alone, half-starved and feverish, one of five who set out for {PLACE} at the start of the season to map it. A rockfall sealed the way out behind them, and {X_nameDef} was the only one small enough to squeeze through.\n\nThe other four were alive when {X_nameDef} left them, with food for a few weeks. {X_nameDef} could lead a rescue back, with food and hired guides. Or the colony could send word to {FACTION} and let them see to their own.</li>
+          <li>[adventurer] "I've been to {PLACE}," {A_nameDef} said, before {X_nameDef} had finished the story. {X_nameDef} of {FACTION} had come in from the hills alone, half-starved and feverish: one of five who went into {PLACE} at the start of the season, and the only one small enough to squeeze out past the rockfall that sealed the way behind them.\n\nThe other four were alive when {X_nameDef} left them, with food for a few weeks. {A_nameDef}, who walked a good many roads before settling here, has already drawn a better map than the one in {X_nameDef}'s case. A rescue could go back with it, with food and hired guides. Or the colony could send word to {FACTION} and let them see to their own.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
           <li>
             <label>Outfit a rescue (40 raw food, {COUNT} silver for guides)</label>
-            <outcome>{X_nameDef} rests a night, then leads the rescue party out at dawn with the colony's food on their backs and the map case under {X_possessive} arm.</outcome>
+            <outcome>{X_nameDef} sets off again with the hired guides, the colony's food on their backs and the map case under {X_possessive} arm.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the food for the rescue</label><what>rawfood</what><count>40</count></li>
               <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what></li>
@@ -1446,25 +1446,25 @@
           <li>[lostall] No word from {PLACE}</li>
         </endingTitles>
         <endings>
-          <li>[joined,alive] The rescue party went home to {FACTION} with the lost four, all but {B_nameDef}, who has a bed in the colony now and a story {A_nameDef} has asked to hear three times.\n\n{FACTION} won't forget who paid for the rescue.</li>
-          <li>[joined,half] {B_nameDef} stays with the colony. {RELATION} went home to {FACTION} with the news of the others, and left {B_nameDef} in {A_nameDef}'s care.\n\nSome nights {B_nameDef} sits up late by the window, facing the hills.</li>
-          <li>[home,alive] The expedition went home to {FACTION}, the lost and the rescuers together, singing on the road. {FACTION} won't forget who paid for the rescue.</li>
-          <li>[home,half] {RELATION} and {B_nameDef} went home to {FACTION} with the news, and the colony's share of the finds stays here. {FACTION} send their thanks, and their grief.</li>
+          <li>[joined,alive] The rescue party will go home to {FACTION} with the lost, all but {B_nameDef}, who has a bed in the colony now and a story {A_nameDef} has already asked to hear twice.\n\n{FACTION} know who paid for the rescue.</li>
+          <li>[joined,half] {B_nameDef} stays with the colony. {RELATION} will take the news of the others home to {FACTION}, and leaves {B_nameDef} in {A_nameDef}'s care.\n\n{B_nameDef} has asked for a bed by a window that faces the hills.</li>
+          <li>[home,alive] The expedition goes home to {FACTION} tomorrow, the lost and the rescuers together, and they've been singing since they came through the gate. {FACTION} won't forget who paid for the rescue.</li>
+          <li>[home,half] {RELATION} and {B_nameDef} will take the news home to {FACTION}, and the colony's share of the finds stays here. {FACTION} send their thanks, and their grief.</li>
           <li>[guardians,!noenemy] {B_nameDef} is safe inside the colony now, and {ENEMY} are on the road behind, following the tracks out of {PLACE}. The colony has a few hours.\n\n{B_nameDef} has asked for a weapon.</li>
           <li>[warned] {B_nameDef} has a bed in the colony now, and the nightmares that come with it. Nothing followed {B_objective} out of {PLACE}, as far as anyone can tell.\n\n{RELATION} has not been heard of since.</li>
           <li>[followed] The colony sent {B_nameDef} on with food and a blanket, but {ENEMY} weren't following {B_nameDef}. They were following the tracks, and the tracks lead here.</li>
           <li>[passedby] {B_nameDef} went on toward home with the colony's food in {B_possessive} pack. If anything followed {B_objective} out of {PLACE}, it followed {B_objective} past the colony.\n\n{RELATION} has not been heard of since.</li>
           <li>[theirrescue,alive] {FACTION} dug their people out of {PLACE}, all four alive and furious about the food. They've sent the colony {ITEM} silver for the warning, and their thanks.</li>
-          <li>[theirrescue,half] {FACTION} dug their way into {PLACE}, and found one of the four alive. They've sent the colony {ITEM} silver for the warning, and their thanks.</li>
+          <li>[theirrescue,half] {FACTION} dug their way into {PLACE} and found one of the four alive. Their messenger left {ITEM} silver at the gate for the warning.</li>
           <li>[theirrescue,lost] {FACTION}'s rescue reached {PLACE} too late: the way in had come down completely, and their calls went unanswered. They've thanked the colony for the warning all the same.</li>
-          <li>[alone,alive] A trader brought word from {RELATION}: the four were dug out alive, half-starved, and are all home now. {RELATION} sent a parcel along for the colony: {ITEM}.</li>
+          <li>[alone,alive] Good news from {RELATION}, by way of a trader: all four were dug out alive, half-starved, and are home now. A parcel came for the colony too: {ITEM}.</li>
           <li>[alone,half] A trader brought word from {RELATION}: only one of the four was alive when {RELATION} got back to them. {RELATION} sent word anyway, to say thank you for the food.</li>
           <li>[alone,lost] There has been no word from {RELATION} since the day {RELATION} set off back toward {PLACE} alone. A trader who came that way says the road past the ruin is empty.</li>
           <li>[lostall] The rescue party never came back from {PLACE}, and nothing has been heard of {RELATION} or the lost four since. The colony's food and silver went with them.</li>
         </endings>
         <summaries>
           <li>[joined] The colony rescued the lost expedition from {PLACE}, and {B_nameDef} stayed.</li>
-          <li>[home] The colony rescued the lost expedition from {PLACE}.</li>
+          <li>[home] The lost expedition was brought home from {PLACE} by the colony's rescue.</li>
           <li>[guardians] A survivor of the expedition to {PLACE} was followed to the colony by {ENEMY}.</li>
           <li>[warned] The only survivor of the expedition to {PLACE} found shelter at the colony.</li>
           <li>[followed] {ENEMY} followed the tracks of a survivor from {PLACE} to the colony.</li>
@@ -1513,7 +1513,7 @@
           <li>[half] Back from {PLACE}</li>
         </titles>
         <texts>
-          <li>[alive] The rescue party is back from {PLACE}, and the lost are with them: thin, bearded and grinning. It took two days of digging to reach them. {X_nameDef} insisted on carrying out what the expedition found inside, and has left a share with the colony: {TALE}.\n\nThe youngest of them, {B_nameDef}, has been looking around the colony all morning, and asks if there might be a place here.</li>
+          <li>[alive] The rescue party is back from {PLACE}, and the lost are with them, thin and filthy and grinning. It took two days of digging to reach them. {X_nameDef} insisted on carrying out what the expedition found inside, and has left a share with the colony: {TALE}.\n\nThe youngest of them, {B_nameDef}, has been looking around the colony all morning, and asks if there might be a place here.</li>
           <li>[half] The rescue party came back from {PLACE} slower than it went. They dug through to the others too late for all but one: {B_nameDef}, who hasn't said much since.\n\n{X_nameDef} carried out what the expedition found, and has left the best of it with the colony for its trouble: {TALE}. {B_nameDef} has nowhere much to go back to, and asks if there's a place here.</li>
         </texts>
         <defaultOption>1</defaultOption>
@@ -1557,7 +1557,7 @@
         </titles>
         <texts>
           <li>[!noenemy] {B_nameDef} stumbled up to the gate at dusk: one of the four who were left in {PLACE}, and the only one coming back. The rescue party reached them and dug them out, {B_nameDef} says, and then {ENEMY}, who claim the ruin as their own, found them all inside.\n\n{B_nameDef} ran, and thinks {ENEMY} followed the tracks. {RELATION} led the others out another way, and {B_nameDef} doesn't know if they made it. {B_nameDef} is asking for shelter.</li>
-          <li>[noenemy] {B_nameDef} stumbled up to the gate at dusk: one of the four who were left in {PLACE}, and the only one coming back. The rescue party reached them and dug them out, {B_nameDef} says, and then the roof of the ruin came down on them all.\n\n{RELATION} was on the other side of the fall, and {B_nameDef} doesn't know if anyone else got out. {B_nameDef} is asking for shelter.</li>
+          <li>[noenemy] Gray with rock dust from head to foot, {B_nameDef} reached the gate at dusk: one of the four who were left in {PLACE}, and the only one coming back. The rescue party reached them and dug them out, {B_nameDef} says, and then the roof of the ruin came down on them all.\n\n{RELATION} was on the other side of the fall, and {B_nameDef} doesn't know if anyone else got out. {B_nameDef} is asking for shelter.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
