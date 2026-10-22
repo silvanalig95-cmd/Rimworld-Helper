@@ -47,6 +47,11 @@ namespace ColonyCouncil
         private int paintedFrame = -1;
         private readonly List<(Rect rect, TipSignal tip)> tips = new List<(Rect, TipSignal)>();
         private float hoverGrace;
+        // Taller than the screen allows: the body stops at the game's button bar and its content scrolls.
+        private bool scrolls, scrollDragging, clipping;
+        private float scrollY, scrollDragMouse, scrollDragStart;
+        private Vector2 clipOrigin, clipSize;
+        private const float ScrollBarW = 5f, WheelStep = 26f;
         private bool dragging;
         private Vector2 dragOffset, dragFrom;
         private float nextRefresh = -1f;
@@ -204,6 +209,14 @@ namespace ColonyCouncil
                 }
             }
             float hh = HeaderH;
+            // Never past the bottom of the screen: down to the game's button bar (and room for the bar under it when it
+            // shows below), the rest scrolls.
+            var fit = HudMath.FitOnScreen(new HudBox(body.x, body.y, body.width, body.height), size.y, sh - (HudMath.HeaderAbove(
+                new HudBox(body.x, body.y, body.width, body.height), hh) ? 0f : hh));
+            body = new Rect(fit.x, fit.y, fit.w, fit.h);
+            scrolls = size.y > body.height + 0.5f;
+            scrollY = scrolls ? HudMath.ClampScroll(scrollY, size.y, body.height) : 0f;
+            if (scrollDragging && !Input.GetMouseButton(0)) scrollDragging = false;
             bool overFrame = mouse && frame.Contains(m);
             // The game's own interface (the colonist bar, the resource list, the inspect pane's tabs...) is drawn over the
             // panel there: the window steps aside, so that interface gets the mouse, its tooltips and its clicks.
@@ -262,7 +275,7 @@ namespace ColonyCouncil
                 return;
             }
             // Behind another window where the mouse is: the clicks, drags and wheel are that window's, never the panel's.
-            if ((cur.isMouse || cur.type == EventType.ScrollWheel) && !dragging && Find.WindowStack.GetWindowAt(UI.MousePositionOnUIInverted) != this) return;
+            if ((cur.isMouse || cur.type == EventType.ScrollWheel) && !dragging && !scrollDragging && Find.WindowStack.GetWindowAt(UI.MousePositionOnUIInverted) != this) return;
             Contents(false);
         }
 
@@ -301,7 +314,8 @@ namespace ColonyCouncil
                 var bodyLocal = BodyLocal;
                 float scale = HudMath.ClampScale(Scale);
                 HudKit.Panel(bodyLocal, St.opacity, hovered || dragging);
-                DrawBody(bodyLocal, scale);
+                if (scrolls) DrawScrolled(bodyLocal, scale, paint);
+                else DrawBody(bodyLocal, scale);
                 if (HudManager.editing) Widgets.DrawBox(bodyLocal.ContractedBy(1f), 1, HudManager.EditLineTex);
                 if (showHeader) DrawHeader(new Rect(0f, headerAbove ? 0f : body.height, body.width, hh));
                 if (!paint) WindowExtras(false);
@@ -334,6 +348,67 @@ namespace ColonyCouncil
             }
         }
 
+        /// <summary>
+        /// A body taller than the screen allows: its content drawn through the visible part, moved by the wheel or the thin
+        /// bar at the right (drag it, or click above or below the handle).
+        /// </summary>
+        private void DrawScrolled(Rect view, float scale, bool paint)
+        {
+            float contentH = size.y;
+            var track = new Rect(view.xMax - ScrollBarW - 1f, view.y + 2f, ScrollBarW, Mathf.Max(8f, view.height - 4f));
+            float handleH = Mathf.Max(18f, track.height * view.height / Mathf.Max(1f, contentH));
+            float range = Mathf.Max(1f, contentH - view.height);
+            var handle = new Rect(track.x, track.y + (track.height - handleH) * (scrollY / range), track.width, handleH);
+            var ev = Event.current;
+            if (!paint)
+            {
+                if (ev.type == EventType.ScrollWheel && Mouse.IsOver(view))
+                {
+                    scrollY = HudMath.ClampScroll(scrollY + ev.delta.y * WheelStep, contentH, view.height);
+                    ev.Use();
+                }
+                else if (ev.type == EventType.MouseDown && ev.button == 0 && Mouse.IsOver(track.ExpandedBy(3f, 0f)))
+                {
+                    // Off the handle: jump there; then drag from where it is.
+                    if (!handle.Contains(ev.mousePosition))
+                        scrollY = HudMath.ClampScroll((ev.mousePosition.y - track.y - handleH / 2f) / Mathf.Max(1f, track.height - handleH) * range, contentH, view.height);
+                    scrollDragging = true;
+                    scrollDragMouse = ev.mousePosition.y;
+                    scrollDragStart = scrollY;
+                    ev.Use();
+                }
+                else if (scrollDragging && ev.type == EventType.MouseDrag)
+                {
+                    float per = range / Mathf.Max(1f, track.height - handleH);
+                    scrollY = HudMath.ClampScroll(scrollDragStart + (ev.mousePosition.y - scrollDragMouse) * per, contentH, view.height);
+                    ev.Use();
+                }
+                else if (scrollDragging && ev.rawType == EventType.MouseUp)
+                {
+                    scrollDragging = false;
+                    ev.Use();
+                }
+            }
+            GUI.BeginGroup(view);
+            clipping = true;
+            clipOrigin = view.position;
+            clipSize = view.size;
+            try
+            {
+                DrawBody(new Rect(0f, -scrollY, view.width - ScrollBarW - 2f, contentH), scale);
+            }
+            finally
+            {
+                clipping = false;
+                GUI.EndGroup();
+            }
+            if (ev.type == EventType.Repaint)
+            {
+                Widgets.DrawBoxSolid(track, new Color(1f, 1f, 1f, 0.05f));
+                Widgets.DrawBoxSolid(handle, UiKit.WithAlpha(UiKit.Gold, scrollDragging || Over(track.ExpandedBy(3f, 0f)) ? 0.75f : 0.4f));
+            }
+        }
+
         /// <summary>The body in the panel's own coordinates (below the bar when the bar is above it).</summary>
         protected Rect BodyLocal => new Rect(0f, showHeader && headerAbove ? HeaderH : 0f, body.width, body.height);
 
@@ -354,10 +429,16 @@ namespace ColonyCouncil
         protected bool Painting => painting;
 
         /// <summary>The mouse is over <paramref name="r"/> on this panel (and no other window covers it there).</summary>
-        protected bool Over(Rect r) => painting ? mouseHere && r.Contains(Event.current.mousePosition) : Mouse.IsOver(r);
+        protected bool Over(Rect r) => (painting ? mouseHere && r.Contains(Event.current.mousePosition) : Mouse.IsOver(r)) && InClip(Event.current.mousePosition);
 
         /// <summary>A click on <paramref name="r"/> (any button; Event.current.button says which). Never while painting.</summary>
-        protected bool Clicked(Rect r) => !painting && Widgets.ButtonInvisible(r, false);
+        protected bool Clicked(Rect r) => !painting && InClip(Event.current.mousePosition) && Widgets.ButtonInvisible(r, false);
+
+        /// <summary>While a scrolled body is drawn: whether a point (in its coordinates) is in the part that shows.</summary>
+        private bool InClip(Vector2 m) => !clipping || (m.x >= 0f && m.y >= 0f && m.x <= clipSize.x && m.y <= clipSize.y);
+
+        /// <summary>How far the body is scrolled (0 when it fits), for what a panel draws outside its body (the search box).</summary>
+        protected float ScrollY => scrolls ? scrollY : 0f;
 
         /// <summary>
         /// The "and N more" line under a panel's rows: hover says why, and a click shows them all by raising the panel's
@@ -395,8 +476,10 @@ namespace ColonyCouncil
         protected void Tip(Rect r, TipSignal tip)
         {
             if (Event.current.type != EventType.Repaint) return;
+            var m = Event.current.mousePosition;
+            if (!InClip(m)) return;
             if (!painting) TooltipHandler.TipRegion(r, tip);
-            else if (r.Contains(Event.current.mousePosition)) tips.Add((r, tip));
+            else if (r.Contains(m)) tips.Add((clipping ? new Rect(r.x + clipOrigin.x, r.y + clipOrigin.y, r.width, r.height) : r, tip));
         }
 
         /// <summary>A small picture button whose colour lights up under the mouse; true when clicked.</summary>

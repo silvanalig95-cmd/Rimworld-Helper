@@ -251,6 +251,42 @@ namespace ColonyCouncil
             return new HudBox(left, paneTop - tabHeight, paneWidth - left, tabHeight);
         }
 
+        /// <summary>The space kept clear above the screen's bottom edge: the game's button bar and a small gap.</summary>
+        public const float BottomReserve = 39f;
+
+        /// <summary>A panel never gets shorter than this when the screen is short: room for a few rows to scroll through.</summary>
+        public const float MinScrollHeight = 120f;
+
+        /// <summary>
+        /// Fits a panel's body on the screen: at most down to the button bar, moved up if it would start too low; the
+        /// height is the content's (<paramref name="contentH"/>) when it fits, else what's left, and then it scrolls.
+        /// </summary>
+        public static HudBox FitOnScreen(HudBox b, float contentH, float sh)
+        {
+            float bottom = sh - BottomReserve;
+            float h = Math.Min(contentH, Math.Max(MinScrollHeight, bottom - Math.Max(0f, b.y)));
+            h = Math.Min(h, Math.Max(20f, bottom));
+            float y = Math.Max(0f, Math.Min(b.y, bottom - h));
+            return new HudBox(b.x, y, b.w, h);
+        }
+
+        /// <summary>Where scrolling may go: from 0 down to the content's overflow.</summary>
+        public static float ClampScroll(float scroll, float contentH, float viewH) => Math.Max(0f, Math.Min(scroll, Math.Max(0f, contentH - viewH)));
+
+        /// <summary>A generous width for one inspect tab: the game's are 72 pixels, other mods' (RimHUD's) up to about 100.</summary>
+        public const float AnyTabWidth = 110f;
+
+        /// <summary>
+        /// The whole row of inspect tabs over the pane (<paramref name="paneTop"/>), however they're laid out: from the
+        /// left edge across the pane, or across as many tabs as there are at their widest, up to <paramref name="maxRight"/>.
+        /// </summary>
+        public static HudBox TabRowAll(float paneWidth, float paneTop, int tabs, float tabHeight, float maxRight)
+        {
+            if (tabs <= 0 || paneWidth <= 0f) return new HudBox(0f, paneTop - tabHeight, 0f, 0f);
+            float w = Math.Min(Math.Max(paneWidth, tabs * AnyTabWidth), Math.Max(paneWidth, maxRight));
+            return new HudBox(0f, paneTop - tabHeight - 2f, w, tabHeight + 2f);
+        }
+
         /// <summary>The letters against the right edge, from the top of the last one, and the date, time and play settings under them.</summary>
         public static HudBox RightColumn(float sw, float sh, float lettersTop, float width)
         {

@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Panels that stay on the screen
+
+*29 October 2026, version 0.10.5*
+
+- A panel taller than the screen (the inventory with every row shown) now stops at the game's button bar and scrolls: the mouse wheel over it, or the thin bar at its right edge, which you can drag or click above and below. The inventory's search box scrolls with it.
+- The panels' options show all of their settings again. The inventory's were cut off after its first look, so its rows, order, pins and the rest couldn't be set.
+- The inspect tabs over the colonist's pane (Story, Mood, Gear and the rest) take your clicks again where a panel lies behind them, also when another mod such as RimHUD draws them wider or from the left edge.
+
 ## Turn the line
 
 *28 October 2026, later, version 0.10.4*

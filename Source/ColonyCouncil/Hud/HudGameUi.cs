@@ -129,16 +129,17 @@ namespace ColonyCouncil
             if (Find.MainTabsRoot?.OpenTab != MainButtonDefOf.Inspect || !(MainButtonDefOf.Inspect.TabWindow is MainTabWindow_Inspect pane)) return;
             float width = InspectPaneUtility.PaneWidthFor(pane);
             int tabs = 0;
-            bool open = false;
             var cur = pane.CurTabs;
             if (cur != null)
                 foreach (var t in cur)
-                {
-                    if (t == null || !t.IsVisible || t.Hidden) continue;
-                    tabs++;
-                    if (t.GetType() == pane.OpenTabType) open = true;
-                }
-            Add(HudMath.TabRow(width, pane.PaneTopY, tabs, open, InspectPaneUtility.TabWidth, InspectPaneUtility.TabHeight));
+                    if (t != null && t.IsVisible && !t.Hidden)
+                        tabs++;
+            // The whole row of tabs over the pane, whoever draws them: the game's run right to left inside the pane's width,
+            // other mods' (RimHUD's) start at the left edge and can be wider, and a taller pane than the game's moves them up.
+            float top = pane.PaneTopY;
+            var wr = pane.windowRect;
+            if (wr.height > 1f && wr.y < top) top = wr.y;
+            Add(HudMath.TabRowAll(width, top, tabs, InspectPaneUtility.TabHeight, sw - GlobalControls.Width));
             float gizmos = GizmoGridDrawer.HeightDrawnRecently;
             if (gizmos > 0f) Add(new HudBox(width, sh - MainButtonsHeight - gizmos - 6f, Mathf.Max(0f, sw - 147f - width), gizmos + 6f));
         }

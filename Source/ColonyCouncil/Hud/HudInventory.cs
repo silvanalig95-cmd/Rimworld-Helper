@@ -638,7 +638,14 @@ namespace ColonyCouncil
             float s = HudMath.ClampScale(Scale);
             float pad = Mathf.Round(4f * s);
             var body = BodyLocal;
-            var r = new Rect(body.x + pad, body.y + pad, body.width - pad * 2f, Mathf.Round(24f * s));
+            var r = new Rect(body.x + pad, body.y + pad - ScrollY, body.width - pad * 2f, Mathf.Round(24f * s));
+            // Scrolled out of sight with the rows above it: not drawn (and not typed in) until it's back.
+            if (r.y < body.y)
+            {
+                if (search.CurrentlyFocused()) search.Unfocus();
+                searchFocused = false;
+                return;
+            }
             search.OnGUI(r, MarkDirty, MarkDirty);
             searchFocused = search.CurrentlyFocused();
         }

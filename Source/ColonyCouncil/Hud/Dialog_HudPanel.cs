@@ -78,7 +78,9 @@ namespace ColonyCouncil
             var outRect = new Rect(inRect.x, inRect.y + 38f, inRect.width, inRect.height - 38f - 40f);
             var view = new Rect(0f, 0f, outRect.width - 16f, viewHeight);
             Widgets.BeginScrollView(outRect, ref scroll, view);
-            var l = new Listing_Standard();
+            // One column: past its height the game's listing would start a second column out of sight, and the
+            // options below the fold were lost (the inventory's).
+            var l = new Listing_Standard { maxOneColumn = true };
             l.Begin(view);
             try
             {

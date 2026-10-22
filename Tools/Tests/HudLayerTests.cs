@@ -19,6 +19,24 @@ public static class HudLayerTests
         }
         bool Near(float a, float b, float eps = 0.01f) => Math.Abs(a - b) < eps;
 
+        // ---------- Whoever draws the inspect tabs, the whole row is the game's ----------
+        var all = HudMath.TabRowAll(432f, 880f, 7, 30f, 1800f);
+        Check(Near(all.x, 0f) && all.XMax >= 7 * 92f && Near(all.YMax, 880f), "seven tabs a mod draws wider (RimHUD's) from the left edge are all covered");
+        var few = HudMath.TabRowAll(432f, 880f, 2, 30f, 1800f);
+        Check(Near(few.x, 0f) && Near(few.w, 432f), "a couple of tabs: at least the pane's width");
+        var capped = HudMath.TabRowAll(432f, 880f, 30, 30f, 1000f);
+        Check(capped.XMax <= 1000f + 0.01f, "never past the letters' column");
+
+        // ---------- Never past the bottom of the screen: the rest scrolls ----------
+        var tall = HudMath.FitOnScreen(new HudBox(0f, 0f, 230f, 1400f), 1400f, 1080f);
+        Check(Near(tall.h, 1080f - HudMath.BottomReserve) && Near(tall.y, 0f), "a list taller than the screen stops at the game's button bar");
+        var fits = HudMath.FitOnScreen(new HudBox(0f, 100f, 230f, 400f), 400f, 1080f);
+        Check(Near(fits.h, 400f) && Near(fits.y, 100f), "one that fits keeps its size and place");
+        var low = HudMath.FitOnScreen(new HudBox(0f, 1000f, 230f, 400f), 400f, 1080f);
+        Check(low.h >= HudMath.MinScrollHeight - 0.01f && low.YMax <= 1080f - HudMath.BottomReserve + 0.01f, "one placed too low moves up to keep room for a few rows");
+        Check(Near(HudMath.ClampScroll(-5f, 1400f, 1041f), 0f) && Near(HudMath.ClampScroll(9999f, 1400f, 1041f), 359f) && Near(HudMath.ClampScroll(50f, 300f, 400f), 0f),
+            "scrolling stays between the top and the content's overflow, and doesn't when it fits");
+
         // ---------- The game's interface over the panels ----------
         var row = HudMath.TabRow(432f, 880f, 3, false, 72f, 30f);
         Check(Near(row.x, 432f - 216f) && Near(row.XMax, 432f) && Near(row.y, 850f) && Near(row.h, 30f),

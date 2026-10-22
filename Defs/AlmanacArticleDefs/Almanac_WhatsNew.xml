@@ -31,6 +31,17 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.10.5</version>
+        <date>29 October 2026</date>
+        <title>Panels that stay on the screen</title>
+        <points>
+          <li>A panel taller than the screen (the inventory with every row shown) now stops at the game's button bar and scrolls: the mouse wheel over it, or the thin bar at its right edge, which you can drag or click above and below. The inventory's search box scrolls with it.</li>
+          <li>The panels' options show all of their settings again. The inventory's were cut off after its first look, so its rows, order, pins and the rest couldn't be set.</li>
+          <li>The inspect tabs over the colonist's pane (Story, Mood, Gear and the rest) take your clicks again where a panel lies behind them, also when another mod such as RimHUD draws them wider or from the left edge.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.10.4</version>
         <date>28 October 2026, later</date>
         <title>Turn the line</title>
