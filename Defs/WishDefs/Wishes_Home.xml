@@ -335,7 +335,7 @@
     <thanks>
       <plain>
         <li>{OTHER_nameDef} steals the blankets. I don't mind at all.</li>
-        <li>We share a bed now. I slept better last night than I have all season.</li>
+        <li>We share a bed now. I'll sleep better tonight than I have all season.</li>
         <li>[night] Goodnight, {OTHER_nameDef}. It's nice to say it without calling across the room.</li>
       </plain>
       <warm>
@@ -483,7 +483,7 @@
         <li>The shadows stay in the corners now.</li>
       </gloomy>
       <cheerful>
-        <li>It's so cozy now! I've been reading in bed every night.</li>
+        <li>It's so cozy now! I'm going to read in bed every night.</li>
       </cheerful>
     </thanks>
     <expired>
@@ -559,9 +559,9 @@
     </requestForOther>
     <thanks>
       <plain>
-        <li>I slept through the whole night for once.</li>
-        <li>[winter] I was warm all night and woke up with my nose still working.</li>
-        <li>[summer] Cool air at night. I slept like a stone.</li>
+        <li>My room will be fit to sleep in tonight. About time.</li>
+        <li>[winter] Warm all night, at last. My nose will still work in the morning.</li>
+        <li>[summer] Cool air at night. I'll sleep like a stone.</li>
       </plain>
       <blunt>
         <li>Finally, a decent night's sleep.</li>
@@ -716,7 +716,7 @@
     </request>
     <thanks>
       <plain>
-        <li>Something new to do. I've already lost twice.</li>
+        <li>Something new to do. I'm going to lose at it a lot, I can tell.</li>
         <li>[winter] Let the snow pile up. We've got a game to finish.</li>
       </plain>
       <cheerful>
@@ -775,7 +775,7 @@
     </request>
     <thanks>
       <plain>
-        <li>I water it every morning before work.</li>
+        <li>I'll water it every morning before work.</li>
         <li>[winter] A bit of green in the middle of winter. That'll do.</li>
       </plain>
       <gloomy>
