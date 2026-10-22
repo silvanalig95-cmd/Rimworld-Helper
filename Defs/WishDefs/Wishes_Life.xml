@@ -28,14 +28,14 @@
       <plain>
         <li>My clothes are more holes than cloth at this point. Could someone make me something new?</li>
         <li>I'm wearing a dead man's shirt. It still smells like him. New clothes, please.</li>
-        <li>These clothes are only held together by the patches. A new set would be welcome.</li>
+        <li>I've let the hem out twice and patched both knees. There's nothing left to mend.</li>
         <li>[trigger:naked] I'm not wearing enough to be decent, let alone warm. Please, anything to put on.</li>
-        <li>[winter] It's winter, and my coat lets the wind straight through.</li>
+        <li>[winter] My coat lets the wind straight through. I've started wearing my blanket to work.</li>
         <li>[trait:Greedy] I deserve better than rags.</li>
         <li>[afterraid] My shirt got torn open in the fight. I need a new one.</li>
       </plain>
       <warm>
-        <li>When the tailor has a moment, I'd be so grateful for a new shirt, or anything that fits.</li>
+        <li>When the tailor has a moment, a new shirt would be lovely. Anything that fits, really.</li>
       </warm>
       <blunt>
         <li>I look like a scarecrow that lost a fight. Get me some clothes.</li>
@@ -47,7 +47,7 @@
         <li>Every time I get dressed I think about who wore these last, and how they died.</li>
       </gloomy>
       <cold>
-        <li>Damaged clothing reduces protection and morale. Replace mine.</li>
+        <li>Replace my clothes. I'm tired of people looking at the holes instead of at me.</li>
       </cold>
     </request>
     <requestForOther>
@@ -73,10 +73,10 @@
     <expired>
       <plain>
         <li>I'll patch these up one more time.</li>
-        <li>[winter] I'll just shiver, then.</li>
+        <li>[winter] I'll shiver. I'm good at it by now.</li>
       </plain>
       <gloomy>
-        <li>Rags it is. They suit this place.</li>
+        <li>I'll wear these till they rot off me.</li>
       </gloomy>
     </expired>
   </ColonyCouncil.WishDef>
@@ -119,7 +119,7 @@
     <request>
       <plain>
         <li>{OTHER_nameDef} is still lying out there. Please, give {OTHER_objective} a proper grave.</li>
-        <li>I can't stop thinking about {OTHER_nameDef} lying out in the open. Let's bury {OTHER_objective}.</li>
+        <li>{OTHER_nameDef} deserves better than the open ground. Let's bury {OTHER_objective} properly.</li>
         <li>Whatever we can spare, let's spare it for {OTHER_nameDef}'s grave.</li>
         <li>[trigger:death] We haven't even buried {OTHER_nameDef} yet. Let's do it today, before dark.</li>
         <li>[trigger:death] I can't walk past that spot anymore. {OTHER_nameDef} deserves a grave.</li>
@@ -128,7 +128,7 @@
         <li>[old] I've buried a lot of people over the years. Every one of them got a grave, and this one should too.</li>
       </plain>
       <warm>
-        <li>{OTHER_nameDef} meant so much to me. I'll dig the grave myself if I have to.</li>
+        <li>I'll dig the grave myself if I have to. {OTHER_nameDef} would have done it for me.</li>
       </warm>
       <blunt>
         <li>{OTHER_nameDef} is rotting in the dirt while we go about our day. Bury {OTHER_objective}. Now.</li>
@@ -140,13 +140,13 @@
         <li>Every time I walk past, there's {OTHER_nameDef}. I can't keep seeing that.</li>
       </gloomy>
       <cold>
-        <li>An unburied body draws predators and sours the mood. Bury {OTHER_nameDef}.</li>
+        <li>An unburied body brings scavengers. I'd rather not watch {OTHER_nameDef} go that way.</li>
       </cold>
     </request>
     <thanks>
       <plain>
         <li>{OTHER_nameDef} is at rest now. Thank you for that.</li>
-        <li>I stood at the grave a while and said goodbye.</li>
+        <li>I said my goodbyes, and I said them out loud.</li>
         <li>Rest well, {OTHER_nameDef}. We'll take it from here.</li>
         <li>[rain] At least the rain can't reach {OTHER_nameDef} now.</li>
       </plain>
@@ -154,13 +154,13 @@
         <li>Thank you for giving {OTHER_nameDef} the farewell {OTHER_pronoun} deserved.</li>
       </warm>
       <blunt>
-        <li>It's done. Good.</li>
+        <li>It's done.</li>
       </blunt>
       <gloomy>
         <li>At least {OTHER_nameDef} doesn't have to lie out there anymore.</li>
       </gloomy>
       <cold>
-        <li>That was done with dignity. Good.</li>
+        <li>That was done properly.</li>
       </cold>
     </thanks>
     <expired>
@@ -203,7 +203,7 @@
     <fulfilledWhen>{FOR_possessive} {SUBJECT} is replaced, for example with {THING}. Craft or buy one, then have a doctor install it.</fulfilledWhen>
     <request>
       <plain>
-        <li>Life without my {SUBJECT} is hard. I've heard we could get {THING}.</li>
+        <li>I've heard we could get {THING}. Life without my {SUBJECT} is harder than I let on.</li>
         <li>I keep reaching for things with a {SUBJECT} I don't have. Could the doctor fit me with {THING}?</li>
         <li>[trigger:injury] I keep forgetting it's gone. Then I try to use it.</li>
         <li>I want to be useful again, or as close to it as I can get.</li>
@@ -219,10 +219,10 @@
         <li>I've decided I want {THING}. I'm already practicing showing it off.</li>
       </cheerful>
       <gloomy>
-        <li>Every day I'm reminded of what I lost. Maybe {THING} would make it stop.</li>
+        <li>I dream I'm whole again. Waking up is the worst part of the day. Maybe {THING} would help.</li>
       </gloomy>
       <cold>
-        <li>A missing {SUBJECT} limits my usefulness. Replacing it is efficient.</li>
+        <li>Without my {SUBJECT}, I do the work of half a person. Replace it and you'll have a whole one again.</li>
       </cold>
     </request>
     <requestForOther>
@@ -232,7 +232,7 @@
     </requestForOther>
     <thanks>
       <plain>
-        <li>It's not what I was born with, but it works. Thank you.</li>
+        <li>Good as new. Well, good as different. Thank you.</li>
         <li>I'll learn it. Give me a week and you won't know it isn't mine.</li>
       </plain>
       <cheerful>
@@ -242,7 +242,7 @@
         <li>It's not the same, but it's close enough to be going on with.</li>
       </gloomy>
       <cold>
-        <li>Function restored. Good work, doctor.</li>
+        <li>It works. Tell the doctor I've no complaints.</li>
       </cold>
     </thanks>
     <expired>
@@ -278,7 +278,7 @@
         <li>There's a {SUBJECT} wandering around out there. I think it wants to come home with us.</li>
         <li>Could I try taming that {SUBJECT}? I'd look after it, I swear.</li>
         <li>[winter] A warm animal to curl up next to would get me through this winter.</li>
-        <li>[lowmood] I'd like an animal to look after. It would give me a reason to get up in the morning.</li>
+        <li>[lowmood] An animal to look after would give me a reason to get up in the morning.</li>
         <li>[child] Can we have a pet? I'll feed it every day, I promise.</li>
       </plain>
       <warm>
@@ -294,7 +294,7 @@
         <li>I get on better with animals than with people. Let me tame that {SUBJECT}.</li>
       </gloomy>
       <cold>
-        <li>A tamed {SUBJECT} would earn its keep, and I'm good with animals.</li>
+        <li>That {SUBJECT} comes to the same spot every dusk. Give me a few days and it'll come to me.</li>
       </cold>
     </request>
     <thanks>
@@ -311,7 +311,7 @@
     </thanks>
     <expired>
       <plain>
-        <li>Maybe next time I'll get the chance.</li>
+        <li>It wandered off. I watched it go.</li>
       </plain>
     </expired>
   </ColonyCouncil.WishDef>
@@ -353,10 +353,10 @@
         <li>[trigger:raid] We were lucky today. I don't want to count on that next time.</li>
         <li>[trigger:raid,lowtech] Spikes in the ground and a wall to hide behind. That's all I ask.</li>
         <li>[hurt] I've got the stitches to prove we need better defenses.</li>
-        <li>[night] I keep hearing things at night. I'd sleep better knowing we're ready.</li>
+        <li>[night] Every noise out there tonight sounds like boots. I'd like to know we're ready.</li>
       </plain>
       <warm>
-        <li>I just want us all to be safe. Could we build some more {SUBJECT}?</li>
+        <li>I count heads after every raid. I'd like to stop counting. More {SUBJECT}, please.</li>
       </warm>
       <blunt>
         <li>We're sitting ducks. Build more {SUBJECT} before they come back.</li>
@@ -368,7 +368,7 @@
         <li>They'll come again, and we're not ready for them.</li>
       </gloomy>
       <cold>
-        <li>Our defensive capacity is inadequate. More {SUBJECT} will fix that.</li>
+        <li>I've walked the approaches the way a raider would. I know where I'd come in. Put more {SUBJECT} there.</li>
       </cold>
     </request>
     <thanks>
@@ -380,15 +380,15 @@
         <li>Ha! I almost feel sorry for the next raiders.</li>
       </cheerful>
       <gloomy>
-        <li>Safer than we were, at least.</li>
+        <li>Safer than we were. Not safe.</li>
       </gloomy>
       <cold>
-        <li>Defensive position improved. Good.</li>
+        <li>They'll lose more people getting in now.</li>
       </cold>
     </thanks>
     <expired>
       <plain>
-        <li>I'll keep my weapon close, then.</li>
+        <li>I'll sleep with my weapon by the bed.</li>
         <li>[afterraid] We'll do it the hard way, then. With blood.</li>
       </plain>
       <gloomy>
@@ -435,7 +435,7 @@
     </request>
     <thanks>
       <plain>
-        <li>At last, quarters befitting my station.</li>
+        <li>At last, rooms befitting my station.</li>
       </plain>
       <cheerful>
         <li>It's magnificent! I feel positively regal.</li>
@@ -446,7 +446,7 @@
     </thanks>
     <expired>
       <plain>
-        <li>I shall endure this indignity. For now.</li>
+        <li>I shall endure this indignity. I shall also remember it.</li>
       </plain>
     </expired>
   </ColonyCouncil.WishDef>

@@ -44,6 +44,7 @@
       <plain>
         <li>I'm married. I keep saying it to myself to hear how it sounds.</li>
         <li>[spring] A spring wedding, with flowers in everyone's hair. Best day I've had here.</li>
+        <li>Married.</li>
       </plain>
       <cheerful>
         <li>We're married! Did you see? I want to tell everyone who missed it.</li>
@@ -52,6 +53,7 @@
     <expired>
       <plain>
         <li>We'll put the wedding off a while longer.</li>
+        <li>Another season engaged, then. We've waited this long.</li>
       </plain>
     </expired>
   </ColonyCouncil.WishDef>
@@ -78,7 +80,7 @@
         <li>Another year older, and still alive out here. That deserves a proper meal, doesn't it?</li>
         <li>[old] At my age, every birthday is one more than I expected. Let's eat well for it.</li>
         <li>[child] It's my birthday soon! Can we have a party, with everybody there?</li>
-        <li>[winter] My birthday always falls in the cold months, when the food's thinnest. A good meal this year would mean a lot.</li>
+        <li>[winter] My birthday always falls in the cold months, when the food's thinnest. A good meal this year would make up for a few of them.</li>
         <li>[lowmood] I'd like one day this season that feels good. My birthday would do.</li>
       </plain>
       <warm>
@@ -91,7 +93,7 @@
         <li>Guess whose birthday it is soon! We should have cake, or whatever passes for cake around here.</li>
       </cheerful>
       <gloomy>
-        <li>Another year gone, and I can't say it was a good one. A decent meal might help.</li>
+        <li>I'll be a year older soon, and I can't say this one was good. A decent meal might help.</li>
       </gloomy>
       <cold>
         <li>My birthday approaches. A celebratory meal would be appropriate.</li>
@@ -101,6 +103,7 @@
       <plain>
         <li>Best birthday I've had in years.</li>
         <li>[old] I've had a lot of birthdays. This one I'll remember.</li>
+        <li>Full belly and good company. That'll do me for a year.</li>
       </plain>
       <cheerful>
         <li>Thank you! Same again next year?</li>
@@ -111,7 +114,7 @@
     </thanks>
     <expired>
       <plain>
-        <li>Just another day, then.</li>
+        <li>Just another day.</li>
         <li>[child] I thought somebody would remember my birthday.</li>
       </plain>
     </expired>
@@ -151,7 +154,7 @@
         <li>A sculpture in my room! I'd say good morning to it every day.</li>
       </cheerful>
       <gloomy>
-        <li>There isn't much in my life that's beautiful. One piece of art in my room would be a start.</li>
+        <li>I wake up to bare walls and go to sleep facing them. One beautiful thing in there, please.</li>
       </gloomy>
       <cold>
         <li>Art increases room impressiveness. I would like mine increased.</li>
@@ -159,7 +162,7 @@
     </request>
     <thanks>
       <plain>
-        <li>I keep stopping to look at it on my way out in the morning.</li>
+        <li>I'll see it first thing every morning. That's the best part.</li>
       </plain>
       <cheerful>
         <li>I named it. It's called Gerald!</li>
@@ -190,28 +193,28 @@
         <li>I haven't had a moment to myself in days. Could I have a few hours off?</li>
         <li>Work, sleep, work. I need something in between.</li>
         <li>[trait:Industrious|trait:HardWorker] I know, it's not like me to ask. Just one afternoon.</li>
-        <li>[winter] It's a long winter. Let me spend some of it doing something other than work.</li>
+        <li>[winter] It's a long winter. Let me spend an afternoon of it on anything but work.</li>
         <li>[afterraid] We just survived another attack. Let me sit down for a while before the next job.</li>
       </plain>
       <warm>
-        <li>I'll work all the harder afterward, I promise. I just need some rest.</li>
+        <li>I'll work all the harder afterward, I promise. I'm only asking for an afternoon.</li>
       </warm>
       <blunt>
         <li>I'm tired. Give me time off or watch me fall asleep on the job.</li>
       </blunt>
       <cheerful>
-        <li>A whole afternoon of doing nothing! Wouldn't that be lovely?</li>
+        <li>Give me an afternoon off and I'll spend it doing absolutely nothing, beautifully!</li>
       </cheerful>
       <gloomy>
         <li>I'm running on empty. I keep making mistakes I wouldn't make rested.</li>
       </gloomy>
       <cold>
-        <li>Productivity declines without rest. I am requesting rest.</li>
+        <li>Some hours that belong to me, please. I'll tell you what I do with them, if you ask.</li>
       </cold>
     </request>
     <thanks>
       <plain>
-        <li>An afternoon to myself. I slept, then I ate, then I slept again.</li>
+        <li>An afternoon to myself. I'll sleep, then eat, then sleep again.</li>
       </plain>
       <cheerful>
         <li>Free time! I'm going to waste it magnificently.</li>
@@ -220,6 +223,7 @@
     <expired>
       <plain>
         <li>I'll keep working until I drop, I suppose.</li>
+        <li>My feet hurt just thinking about tomorrow.</li>
       </plain>
     </expired>
   </ColonyCouncil.WishDef>
@@ -259,7 +263,7 @@
         <li>Everything's easier to bear with a drink in hand.</li>
       </gloomy>
       <cold>
-        <li>Recreational substances reduce stress. Ours are depleted.</li>
+        <li>We're out. I've checked every crate twice.</li>
       </cold>
     </request>
     <thanks>
@@ -291,7 +295,7 @@
       <plain>
         <li>I've been talking with {OTHER_nameDef} in the evenings. I think we should bring {OTHER_objective} in.</li>
         <li>{OTHER_nameDef} could be one of us. We could use the hands, and I could use the company.</li>
-        <li>[small] There are only a few of us. {OTHER_nameDef} would make a difference.</li>
+        <li>[small] There are only a few of us. With {OTHER_nameDef}, there'd be one more pair of hands at every job.</li>
       </plain>
       <warm>
         <li>{OTHER_nameDef} hasn't given the wardens any trouble since we took {OTHER_objective} in. Let's give {OTHER_objective} a place here.</li>
@@ -306,12 +310,13 @@
         <li>We need every pair of hands we can get, even ones that were shooting at us last week.</li>
       </gloomy>
       <cold>
-        <li>{OTHER_nameDef} has useful skills. Recruitment is the efficient outcome.</li>
+        <li>{OTHER_nameDef} is good with {OTHER_possessive} hands. Better those hands work for us.</li>
       </cold>
     </request>
     <thanks>
       <plain>
         <li>Welcome, {OTHER_nameDef}. I'll show you where everything is.</li>
+        <li>One more at the table tonight, {OTHER_nameDef}. Sit by me.</li>
       </plain>
     </thanks>
     <expired>
