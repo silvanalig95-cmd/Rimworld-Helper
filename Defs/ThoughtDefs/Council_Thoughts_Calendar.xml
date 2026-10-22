@@ -13,7 +13,7 @@
     <stages>
       <li>
         <label>a day of remembrance</label>
-        <description>We set the day aside to remember. I still miss them, and I'm glad we didn't let the day go by.</description>
+        <description>We kept a quiet hour for the day it happened. I still miss them.</description>
         <baseMoodEffect>2</baseMoodEffect>
       </li>
     </stages>
@@ -80,7 +80,7 @@
     <stages>
       <li>
         <label>a day of gifts</label>
-        <description>Everyone gave a small gift and got one. Mine was better than I deserved.</description>
+        <description>We swapped small gifts after supper. I didn't expect anyone to have thought so hard about mine.</description>
         <baseMoodEffect>0</baseMoodEffect>
       </li>
     </stages>
@@ -93,7 +93,7 @@
     <stages>
       <li>
         <label>a hunting day</label>
-        <description>Out with the hunters from first light for the day's game. My legs ache and my eye is sharper.</description>
+        <description>Out with the hunters from first light after the day's game. My aim's steadier for it.</description>
         <baseMoodEffect>0</baseMoodEffect>
       </li>
     </stages>
@@ -106,7 +106,7 @@
     <stages>
       <li>
         <label>a day of rest</label>
-        <description>Nobody had to work today. I slept late and didn't do one useful thing.</description>
+        <description>No work today. I slept late and didn't do one useful thing.</description>
         <baseMoodEffect>2</baseMoodEffect>
       </li>
     </stages>

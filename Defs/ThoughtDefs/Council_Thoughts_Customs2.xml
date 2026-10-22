@@ -12,7 +12,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>3</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>the sun's return</label><description>We stood round the fire in the dark and watched the sun come back over the ridge. The winter is over. I felt it go.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>the sun's return</label><description>I watched the sun come back over the ridge after the long dark. Winter's over. I felt it go.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -29,7 +29,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>3</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>the waters blessed</label><description>We gave the water its loaf and asked it for a kind year. Whatever comes from it now, we started the year right.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>the waters blessed</label><description>The water had its loaf, and the words were said over it. It floated a long way before it sank.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><trust>1.5</trust><feelings><li>Hope</li></feelings><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
@@ -38,7 +38,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>2</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>the marsh lights</label><description>We walked the bounds with smoking torches after dark, the whole colony coughing and laughing. The lights went all the way round.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>the marsh lights</label><description>Smoking torches after dark to keep the marsh off us. My eyes stung, and the insects kept their distance for once.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -46,7 +46,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>3</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>the high watch</label><description>From the high ground the whole colony fits in one look: every roof and field and wall. We made all of that.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>the high watch</label><description>From the high ground I could cover the whole colony with one hand held out. Every roof and field down there, we made.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.08</joy><feelings><li>Awe</li><li>Pride</li></feelings><felt>3</felt></li></modExtensions>
   </ThoughtDef>
 
@@ -55,7 +55,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>3</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>the night vigil</label><description>We kept the vigil through the longest night, the words said and answered until the first light. I feel lighter than I have in weeks.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>the night vigil</label><description>I kept the vigil through the longest night, trimming the lamp and saying the words. By first light my voice was hoarse.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -63,7 +63,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>2</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>the tree-singing</label><description>We sang to the old tree all afternoon, and I'd swear it listened.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>the tree-singing</label><description>We sang to the old tree, and I'd swear the leaves moved without any wind.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.12</joy><feelings><li>Awe</li></feelings><felt>3</felt></li></modExtensions>
   </ThoughtDef>
 
@@ -72,7 +72,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>3</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>supper with the dead</label><description>A place laid for every one of them, and their names said before we ate. It was sad, and it was good, and they felt very near.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>supper with the dead</label><description>Their names were said before supper, one after another, and cups went up for each. For an evening they felt very near.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
 </Defs>

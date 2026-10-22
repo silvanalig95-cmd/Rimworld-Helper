@@ -8,7 +8,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>4</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>the planting day</label><description>We sowed the fields together the day they opened, and said a few words at the edge when it was done. Whatever comes up this year, we started it right.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>the planting day</label><description>The first seed of the year went in with care, the way it should. Whatever comes up, we started it right.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <!-- The planting day gives hope, practice and a journal line rather than mood. -->
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>3</felt><skill>Plants</skill><xp>200</xp><journal>true</journal><feelings><li>Hope</li></feelings></li></modExtensions>
   </ThoughtDef>
@@ -18,7 +18,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>4</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>remembered our dead</label><description>We walked to the graves together and said their names out loud. It was sad, and it was good to do.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>remembered our dead</label><description>We walked out to the graves at dusk and tidied them, and I heard stories about them I'd never been told.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -26,7 +26,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>2</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>the midsummer swim</label><description>A whole afternoon in the water with everyone, on the hottest day of the year. I'm still a little sunburnt.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+    <stages><li><label>the midsummer swim</label><description>A whole afternoon in the water on the hottest day of the year. My shoulders are still pink from it.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -42,7 +42,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>2</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>first-frost soup</label><description>Hot soup from the big pot on the first cold day, all of us standing round it with our breath steaming.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+    <stages><li><label>first-frost soup</label><description>Hot soup from the big pot on the first cold day. I ate mine standing up, with my breath steaming over the bowl.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -50,7 +50,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>3</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>lantern night</label><description>Every window lit at once in the dark of winter. We looked like somewhere worth coming home to.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+    <stages><li><label>lantern night</label><description>Lantern light at dusk in the dead of winter. From outside, we looked like somewhere worth coming home to.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
 </Defs>

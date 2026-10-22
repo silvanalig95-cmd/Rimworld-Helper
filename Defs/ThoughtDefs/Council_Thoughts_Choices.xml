@@ -27,13 +27,13 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Choice_TalkFailed</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>couldn't talk them round</label><description>The council sent me to settle it with our guests, and I made it worse.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>couldn't talk them round</label><description>The council sent me to settle things with our guests. I said the wrong thing early and never got it back.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Choice_TreatedAtHome</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>treated by one of our own</label><description>Our own doctor took a proper look at my old injury, with our own medicine. It aches less now.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+    <stages><li><label>treated by one of our own</label><description>Our own doctor took a proper look at my old injury, instead of some stranger. It aches less already.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -47,25 +47,25 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Evt_SawPlayers</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>an evening at the play</label><description>A traveling player put on a show for us after supper, playing every part. I laughed until my ribs hurt, and I'm still humming the song from the end.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+    <stages><li><label>an evening at the play</label><description>The traveling player did every part in the show after supper. I'm still humming the song from the end.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Evt_NamedAfterMe</defName>
     <durationDays>8</durationDays>
-    <stages><li><label>a child named after me</label><description>Somebody back home named their baby after me. I don't know what I did to deserve it, but I'll take it.</description><baseMoodEffect>6</baseMoodEffect></li></stages>
+    <stages><li><label>a child named after me</label><description>A baby out there carries my name now. I keep wondering what they'll be like.</description><baseMoodEffect>6</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Evt_WeddingNews</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>a wedding back home</label><description>Someone I grew up with got married. The invitation came months too late, but they remembered me.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>a wedding back home</label><description>Someone from my old life got married, and they thought of me. I'd have liked to dance at that wedding.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Evt_OldTradeRemembers</defName>
     <durationDays>5</durationDays>
-    <stages><li><label>they still talk about my work</label><description>People in my old trade still talk about something I made years ago. I didn't think anyone remembered.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+    <stages><li><label>they still talk about my work</label><description>Far from here, people still talk about my work from years back. I thought all that was long forgotten.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
 </Defs>

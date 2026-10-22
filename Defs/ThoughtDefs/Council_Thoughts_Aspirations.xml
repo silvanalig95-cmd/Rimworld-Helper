@@ -7,14 +7,14 @@
     <durationDays>10</durationDays>
     <stackLimit>1</stackLimit>
     <showBubble>true</showBubble>
-    <stages><li><label>lived my dream</label><description>I finally did what I always said I would. I'm proud of it.</description><baseMoodEffect>6</baseMoodEffect></li></stages>
+    <stages><li><label>reached my life goal</label><description>I've done what I always said I'd do. I keep turning it over in my head, just to feel it again.</description><baseMoodEffect>6</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
     <defName>Council_Asp_InReach</defName>
     <workerClass>ColonyCouncil.ThoughtWorker_GoalInReach</workerClass>
     <validWhileDespawned>true</validWhileDespawned>
-    <stages><li><label>my goal is within reach</label><description>I'm close to what I've been working toward. Not much longer now.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>my goal is within reach</label><description>I've nearly done what I set my heart on. I think about it every night before I sleep.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
 </Defs>
