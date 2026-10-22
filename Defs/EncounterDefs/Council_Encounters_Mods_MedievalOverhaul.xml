@@ -22,7 +22,7 @@
     <texts>
       <li>{A_nameDef} cut {X_nameDef} a slice of the colony's cheese. {X_nameDef} chewed slowly, said nothing, and held out {X_possessive} hand for another.</li>
       <li>{X_nameDef} asked {A_nameDef} how long the colony ages its cheese, and the two of them ended up in the cellar arguing about rinds.</li>
-      <li>{A_nameDef} traded {X_nameDef} a wheel of the colony's cheese for news and a pouch of salt. Both thought they'd done well.</li>
+      <li>For a slice of the colony's best cheese, {X_nameDef} gave {A_nameDef} the news from three villages and {X_possessive} grandmother's way with pickled onions.</li>
       <li>[skill:Cooking] {X_nameDef} wanted to know what {A_nameDef} puts in the brine. {A_nameDef} told {X_objective} everything except the important part.</li>
     </texts>
     <effects>
@@ -140,7 +140,7 @@
     <texts>
       <li>{X_nameDef} asked to see the colony's books, and {A_nameDef} showed {X_objective} every one, including the one with the candle burn on the cover.</li>
       <li>{X_nameDef} can read, which is rarer than it should be, and spent the afternoon at the scribe's table with {A_nameDef}, comparing letters.</li>
-      <li>{A_nameDef} copied out a page of {X_nameDef}'s little book of remedies in exchange for one of the colony's maps. Both of them think they got the better of it.</li>
+      <li>{A_nameDef} copied out a page of {X_nameDef}'s little book of remedies and drew {X_objective} the colony's map of the roads in return, and they argued over the spelling of every village on it.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncM_Books</thought></li>

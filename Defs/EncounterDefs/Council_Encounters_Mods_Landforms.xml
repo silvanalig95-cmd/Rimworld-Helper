@@ -27,7 +27,7 @@
     <cooldownDays>8</cooldownDays>
     <texts>
       <li>{A_nameDef} called a name across the canyon to see what would happen. The rock threw it back three times, and on a ledge across the gap {X_indefinite} lifted its head at each one.</li>
-      <li>At the bottom of the canyon the sky was a strip of blue far overhead. {A_nameDef} looked up and saw {X_indefinite} on a ledge halfway up the wall, looking down at {A_objective} with mild interest.</li>
+      <li>At the bottom of the canyon the sky is a strip of blue. Halfway up the wall, {X_indefinite} stood on a ledge looking down at {A_nameDef} with mild interest.</li>
       <li>[morning] The sun reaches the canyon floor late. {A_nameDef} waited for it on a cold rock, and {X_indefinite} came down the scree to wait for it too, a few paces off.</li>
       <li>[child] {A_nameDef} shouted into the canyon and the canyon shouted back, and {X_indefinite} on the far side jumped every time. {A_nameDef} thought this was the best game there was.</li>
     </texts>
@@ -68,7 +68,7 @@
     <weight>1</weight>
     <cooldownDays>10</cooldownDays>
     <texts>
-      <li>{X_nameDef} of {FACTION} had come in by the only easy way and told {A_nameDef} there were two more, one of them a goat track nobody uses twice. {A_nameDef} asked where it starts.</li>
+      <li>There are three ways in, {X_nameDef} of {FACTION} told {A_nameDef}, and {X_pronoun} had come by the only easy one. The other two are a dry streambed and a goat track nobody uses twice. {A_nameDef} asked where the goat track starts.</li>
       <li>{X_nameDef} looked up at the walls around the colony and told {A_nameDef} it was a fine place to live and a terrible place to be found by raiders. Then {X_pronoun} showed {A_objective} where a lookout would see the whole approach.</li>
       <li>[rain] The rain came down the valley sides in a hundred little streams. {X_nameDef} watched them with {A_nameDef} and said that in {FACTION}'s country they dig a ditch above every house for exactly this.</li>
     </texts>
@@ -96,7 +96,7 @@
       <li>{A_nameDef} walked the whole way round the island before supper, and at every turn there was the sea. Halfway, {X_indefinite} fell in behind {A_objective} for a while, as if it was doing the same thing.</li>
       <li>From the high point of the island {A_nameDef} could see water on every side and nothing else, and {X_indefinite} grazing at {A_possessive} feet as though that were perfectly ordinary.</li>
       <li>[storm] Spray came right over the island in the storm. {A_nameDef} and {X_indefinite} both sheltered in the lee of the same rock, soaked and blinking.</li>
-      <li>[evening] The sun went down into the sea on one side of the island while the moon came up out of it on the other. {A_nameDef} sat between them with {X_indefinite} not far off.</li>
+      <li>[evening] The sun went down into the sea on one side of the island, and the dark came up out of it on the other. {A_nameDef} sat on the rocks between them with {X_indefinite} not far off.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncL_SeaAllRound</thought></li>
@@ -141,7 +141,7 @@
     <cooldownDays>8</cooldownDays>
     <texts>
       <li>{A_nameDef} walked along the foot of the cliffs, where the stones that fall end up, and met {X_indefinite} picking its way the other way. They passed each other with the polite distance of strangers on a narrow street.</li>
-      <li>The cliff face turns gold in the late afternoon. {A_nameDef} stopped work to look at it, and noticed {X_indefinite} at the bottom of it, gold too.</li>
+      <li>The sun came out from behind a cloud and lit the cliff face gold. {A_nameDef} stopped work to look at it, and noticed {X_indefinite} at the bottom of it, gold too.</li>
       <li>[rain] After the rain, water ran down the cliff in thin silver lines. {A_nameDef} and {X_indefinite} both drank from the pool at the bottom, at opposite ends.</li>
     </texts>
     <effects>
@@ -164,7 +164,7 @@
     <texts>
       <li>Everything that lives for a day's walk around comes to the oasis to drink. {A_nameDef} sat in the shade of the palms and watched {X_indefinite} come down to the water, careful and thirsty.</li>
       <li>{A_nameDef} filled the buckets at the green water and found {X_indefinite} drinking on the far side, so close across the pool that {A_pronoun} could hear it swallow.</li>
-      <li>[night] By moonlight the oasis was busy. {A_nameDef} counted the shapes that came to drink, and {X_indefinite} was the last and boldest of them.</li>
+      <li>[night] After dark the oasis was busy. {A_nameDef} counted the shapes that came to drink, and {X_indefinite} was the last and boldest of them.</li>
       <li>[hot] In the worst of the heat, the only green for miles and the only cool. {A_nameDef} and {X_indefinite} shared it without fuss.</li>
     </texts>
     <effects>
@@ -210,7 +210,7 @@
     <cooldownDays>6</cooldownDays>
     <texts>
       <li>Two rainbows stood over the colony together, one inside the other, the inner one bright and the outer one faint and backwards. {A_nameDef} stopped dead to look, and so, for no reason anyone could give, did {X_indefinite}.</li>
-      <li>{A_nameDef} came out after the rain and found the sky crossed by a double rainbow, with {X_indefinite} grazing right under the near end of it as if that were nothing special.</li>
+      <li>{A_nameDef} came out after the rain and found the sky crossed by a double rainbow, with {X_indefinite} grazing right under the near end of it.</li>
       <li>[child] {A_nameDef} ran to tell everyone there were two rainbows, and then ran back in case they'd gone. They hadn't, and {X_indefinite} was still standing under them.</li>
     </texts>
     <effects>
@@ -259,7 +259,7 @@
     <cooldownDays>8</cooldownDays>
     <texts>
       <li>When the dust came over, {A_nameDef} pulled a cloth over {A_possessive} face and ducked into the lee of the wall, where {X_indefinite} had had the same idea. They waited it out side by side with their eyes shut.</li>
-      <li>The dust turned the sun into a dull orange coin. {A_nameDef} could just make out {X_indefinite} through it, standing head down and tail to the wind, waiting for it to pass like everyone else.</li>
+      <li>The dust turned the sun into a dull orange coin. {A_nameDef} could just make out {X_indefinite} through it, standing head down and tail to the wind, waiting it out.</li>
       <li>[hot] Hot wind and grit in everything. {A_nameDef} and {X_indefinite} both gave up and lay flat in the shade of the storehouse until the worst blew through.</li>
     </texts>
     <effects>
