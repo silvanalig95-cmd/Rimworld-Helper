@@ -26,7 +26,7 @@
     <texts>
       <li>The days are lengthening at last. {A_nameDef} wants everyone up before dawn tomorrow on the highest ground near the walls, with a fire going, to watch the sun come back after the long dark.</li>
       <li>{A_nameDef} has been counting the minutes of daylight on a notched stick all winter, and says tomorrow the sun will clear the far ridge for the first time. {A_nameDef} wants everyone out to see it, with a fire to stand round.</li>
-      <li>[lowtech] Where {A_nameDef} grew up, the first sunrise of spring was greeted with a fire and every voice in the village. {A_nameDef} would like to do the same here.</li>
+      <li>[lowtech] In {A_nameDef}'s village the first spring sunrise was met with a fire on the hill and every voice in the place shouting it up. {A_nameDef} has already started carrying wood up to the high ground.</li>
       <li>[devout] {A_nameDef} wants the colony to greet the returning sun with a fire and the faith's morning words, the way the faithful of the cold lands always have.</li>
     </texts>
     <traditionOption>0</traditionOption>
@@ -86,7 +86,7 @@
     <texts>
       <li>It's raining, really raining, for the first time in weeks. {A_nameDef} is standing in the middle of the yard with {A_possessive} face turned up, and asks if everyone could put down their tools and come out into it.</li>
       <li>Rain at last, dark spots spreading on the dust. {A_nameDef} has already put every pot and bucket the colony owns out under the eaves, and wants the colony out in it together to welcome it, as desert people do.</li>
-      <li>[tribal] Among {A_nameDef}'s people, the first rain was danced in, the whole camp together, so that it would come back. {A_nameDef} would like the colony to dance it in.</li>
+      <li>[tribal] Rain has to be danced in, or it won't come back. Every child among {A_nameDef}'s people knows that, and {A_nameDef} is already barefoot in the yard.</li>
       <li>[devout] {A_nameDef} says the rain is a gift, and gifts are given thanks for, out loud and together.</li>
     </texts>
     <traditionOption>0</traditionOption>
@@ -147,7 +147,7 @@
     <texts>
       <li>The ice is off the water and the spring flood has gone down. {A_nameDef} wants the colony to walk down to the water together in the morning, say a few words over it and give it a loaf, for the fish and the crossings and the drinking water of the year.</li>
       <li>{A_nameDef} has baked a small round loaf with a mark on top and asks the council for one morning: everyone at the water's edge, the loaf given to the water, and a word for a kind year from it.</li>
-      <li>[lowtech] In {A_nameDef}'s village, the boats weren't put out in spring until the water had been blessed and given its bread. {A_nameDef} would like the colony to do the same.</li>
+      <li>[lowtech] No boat went out in {A_nameDef}'s village until the water had been blessed and given its bread. {A_nameDef} has the loaf baked already.</li>
       <li>[devout] {A_nameDef} wants the faith's blessing said over the water at the start of the year, with everyone there to hear it.</li>
     </texts>
     <traditionOption>0</traditionOption>
@@ -206,7 +206,7 @@
     <texts>
       <li>The fever season is here, the air thick with insects every evening. {A_nameDef} wants the colony to walk the bounds after dark with torches of green wood, the smoke driving the biting things back into the wet dark beyond the fields, and the lights telling whatever lives out there that this ground is taken.</li>
       <li>{A_nameDef} has been tying bundles of wet wood and reeds all week. Lit, they smoke like anything. {A_nameDef} wants everyone out one evening to carry them round the colony's edge.</li>
-      <li>[lowtech] Where {A_nameDef} comes from, the marsh villages walk their bounds with smoking torches on the longest evening of the fever season. {A_nameDef} would like the colony to keep the custom.</li>
+      <li>[lowtech] The marsh villages {A_nameDef} grew up among walk their bounds with smoking torches on the longest evening of the fever season, to keep off the biting things and the fevers with them. By {A_nameDef}'s count, that evening is tonight.</li>
     </texts>
     <traditionOption>0</traditionOption>
     <traditionLabel>the marsh lights</traditionLabel>
@@ -266,7 +266,7 @@
     <texts>
       <li>The harvest is in and the air is clear enough to see for miles. {A_nameDef} wants the colony to climb to the high ground one evening, all of them, and look out over everything the colony has made and everything around it, before the winter closes the view.</li>
       <li>{A_nameDef} found a ledge above the colony where you can see every field and wall at once, and the far hills beyond. {A_nameDef} says they should all see it together, once a year.</li>
-      <li>[lowtech] Hill people, {A_nameDef} says, climb to the high stones every autumn to see their land whole and count what they have. {A_nameDef} would like the colony to keep that custom.</li>
+      <li>[lowtech] Hill people climb to the high stones every autumn, {A_nameDef} says, to see their land whole and count what they have. {A_nameDef} has found the right stones already.</li>
     </texts>
     <traditionOption>0</traditionOption>
     <traditionLabel>the high watch</traditionLabel>
@@ -323,7 +323,7 @@
     </roleA>
     <texts>
       <li>The longest nights are here. {A_nameDef} asks that the faithful keep a vigil, as the faith has always kept one in the dark of the year: a lamp lit at dusk, the old words said through the night, and the colony gathered until the first light.</li>
-      <li>{A_nameDef} has trimmed every lamp in the colony and asks the council for one night: a vigil of the faith, from dusk till dawn, so the colony begins the turn of the year awake and together.</li>
+      <li>{A_nameDef} spent the afternoon trimming every lamp in the colony. Tonight, if the council allows it, they'd burn from dusk till dawn for a vigil of the faith, so the colony begins the turn of the year awake and together.</li>
       <li>[lowtech] {A_nameDef} remembers the vigils of {A_possessive} childhood: candles, the words said and answered, the cold coming in under the door. {A_nameDef} would like to keep one here.</li>
     </texts>
     <traditionOption>0</traditionOption>
@@ -391,7 +391,7 @@
     <texts>
       <li>The trees are in full leaf. {A_nameDef} asks that the colony go out to the oldest tree near the walls one afternoon and sing to it, all together, as the faith teaches: the land was here first, and it should hear that the colony knows it.</li>
       <li>{A_nameDef} has been sitting under the big tree every evening this week, humming the same tune. Asked about it, {A_nameDef} sang the council the words: "We took your shade and we took your wood, and we thank you for both." {A_nameDef} wants them all out there once a year to sing it properly.</li>
-      <li>[tribal] {A_nameDef}'s people sang to the trees each spring, so that the forest would go on feeding them. {A_nameDef} would like the colony to sing too.</li>
+      <li>[tribal] "Every spring, a song for the trees." {A_nameDef}'s grandmother said it, and her people before her, so the forest would go on feeding them. {A_nameDef} would like the colony to sing too.</li>
     </texts>
     <traditionOption>0</traditionOption>
     <traditionLabel>the tree-singing</traditionLabel>
@@ -450,8 +450,8 @@
     </roleA>
     <texts>
       <li>The year is turning. {A_nameDef} asks for a supper with a place laid for each of the colony's dead: their bowl filled, their names said at the start, and the faith's words for those who went before. It would take about {COUNT} raw food.</li>
-      <li>{A_nameDef} has been carving little name-boards for the colony's dead and asks the council for one evening: a long table with a place for every one of them, so they eat with the living once a year. About {COUNT} raw food, {A_nameDef} reckons.</li>
-      <li>[lowtech] In {A_nameDef}'s village, the dead were fed once a year, a full bowl at the head of the table, and the door left open. {A_nameDef} would like the colony to do the same. It would take about {COUNT} raw food.</li>
+      <li>{A_nameDef} has been carving little name-boards for the colony's dead, one for each, to set at a long table so they can eat with the living once a year. One evening and about {COUNT} raw food, {A_nameDef} reckons.</li>
+      <li>[lowtech] Once a year, in {A_nameDef}'s village, the dead were fed: a full bowl at the head of the table, and the door left open so they could come in. {A_nameDef} would like to lay that table here, with about {COUNT} raw food.</li>
     </texts>
     <traditionOption>0</traditionOption>
     <traditionLabel>the ancestors' supper</traditionLabel>

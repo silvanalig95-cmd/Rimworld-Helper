@@ -55,8 +55,8 @@
     <defName>Council_Var_Dlm_Goal_Caravan</defName>
     <dilemma>Council_Dilemma_Goal_Caravan</dilemma>
     <texts>
-      <li>[spring] The roads are open again, and the first caravan of the spring is due any day. {A_nameDef} has been watching for it. {A_nameDef} wants to {GOAL}, and has started to think it might happen somewhere else.\n\n{A_nameDef} has asked for the council's blessing to go.</li>
-      <li>[past:trader] {A_nameDef} spent years on the roads before the colony, and the itch has come back. {A_nameDef} wants to {GOAL}, and thinks the next caravan might be the way to do it.\n\n{A_nameDef} wants to know what the council thinks before deciding.</li>
+      <li>[spring] The roads are open again, and the first caravan of the spring is due any day. {A_nameDef} has been watching the road for it, and has started to think {A_pronoun} might {GOAL} somewhere else, if not here.\n\n{A_nameDef} has asked for the council's blessing to go.</li>
+      <li>[past:trader] {A_nameDef} spent years on the roads before the colony, and the itch has come back. {A_nameDef} wants to {GOAL}, and thinks the next caravan might be the way to do it.\n\nBefore deciding anything, {A_nameDef} wants to hear what the council thinks.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>
 

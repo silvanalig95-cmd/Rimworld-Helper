@@ -21,7 +21,7 @@
     <texts>
       <li>A petition, in charcoal, on the back of a feed sack:\n\n"We ask for a snow day. No chores. No lessons. Everybody outside. Signed {A_nameDef}, and also two grown-ups who said not to put their names."\n\nIt's the good kind of snow, too, the kind that packs.</li>
       <li>{A_nameDef} woke the whole colony at dawn shouting that it had snowed. Now {A_nameDef} is standing in front of the council in three coats, asking for the day off for everyone, to build the biggest snowman the colony has ever seen.</li>
-      <li>[lowtech] Where {A_nameDef}'s parents came from, the first deep snow was a holiday: everyone out sliding on the hill, and a hot drink after. {A_nameDef} asks if it could be the same here.</li>
+      <li>[lowtech] First deep snow of the year. Where {A_nameDef}'s parents came from, that meant a holiday, with everyone out sliding on the hill and a hot drink after, and {A_nameDef} has already found a board to slide on.</li>
     </texts>
     <traditionOption>0</traditionOption>
     <traditionLabel>the snow day</traditionLabel>
@@ -75,7 +75,7 @@
     <texts>
       <li>{A_nameDef} has marked out a race course round the fields with sticks and string, and wants the whole colony to come and watch the children run it one evening. There will be a prize. The prize is to be decided.</li>
       <li>{A_nameDef} says {A_pronoun} is the fastest runner in the colony and wants it settled properly: a race, all the children, everyone watching, at midsummer. The other children have agreed, with conditions.</li>
-      <li>[lowtech] Back where {A_nameDef}'s family came from, the children ran the bounds of the fields every summer, so they'd know the land. {A_nameDef} would like to run them here, with everyone cheering.</li>
+      <li>[lowtech] {A_nameDef} wants to run the bounds of the fields, the whole way round, the way the children of {A_possessive} family did every summer so they'd know their land. With the grown-ups cheering, if the council allows.</li>
     </texts>
     <traditionOption>0</traditionOption>
     <traditionLabel>the children's race</traditionLabel>
@@ -124,7 +124,7 @@
     <roleA><child>true</child></roleA>
     <texts>
       <li>The harvest is in, and {A_nameDef} has noticed how much is left lying in the stubble. {A_nameDef} asks if the children could glean the fields after the harvesters, and have what they find counted as their own.</li>
-      <li>{A_nameDef} has a basket and a plan: every child in the colony walks the harvested fields, picks up what was missed, and the colony makes something with it that's the children's own. {A_nameDef} has asked the council.</li>
+      <li>{A_nameDef} has a basket and a plan: every child in the colony walks the harvested fields and picks up what was missed, and whatever they find is the children's own.</li>
       <li>[lowtech] In the old days, {A_nameDef} has been told, the gleanings belonged to the children and the poor, by right. {A_nameDef} would like that to be true here too.</li>
     </texts>
     <traditionOption>0</traditionOption>
@@ -174,7 +174,7 @@
     <texts>
       <li>{A_nameDef} wants to plant a tree. Not just any tree: {A_possessive} tree, at the edge of the fields, with {A_possessive} name on a stone beside it. And then every child gets one. {A_nameDef} has thought this through.</li>
       <li>{A_nameDef} found a sapling growing in a crack by the wall and wants to give it a proper home. The idea grew in the telling: every spring, every child plants a tree, and the colony grows a grove of them.</li>
-      <li>[lowtech] Where {A_nameDef}'s mother grew up, every child planted a tree in their first spring that could walk, and you could find anyone's age by the trunk. {A_nameDef} would like to start that here.</li>
+      <li>[lowtech] You could tell anyone's age by their tree, where {A_nameDef}'s mother grew up: every child planted one the first spring they could walk. {A_nameDef} would like to start that here.</li>
     </texts>
     <traditionOption>0</traditionOption>
     <traditionLabel>the children's trees</traditionLabel>

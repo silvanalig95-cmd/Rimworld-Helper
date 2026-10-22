@@ -505,7 +505,7 @@
         <outcome>The whole colony gathered in the evening, and {A_nameDef} told the story of the colony from the first day, the hard winters and the good harvests and the people who aren't here anymore. It went on long past the usual bedtime, and some of the young ones cried at parts they'd never heard.</outcome>
         <outcomes>
           <li>[quirk:Proverbs] {A_nameDef} told the colony's story with a saying for every hard year. By the end the whole room was saying them along with {A_objective}.</li>
-          <li>[quirk:WrongLaugh] {A_nameDef} told the colony's story and laughed at all the wrong places, the sad ones especially. By the end everyone was laughing with {A_objective}, and crying a little, at the same time.</li>
+          <li>[quirk:WrongLaugh] {A_nameDef} told the colony's story and laughed at all the wrong places, the sad ones especially. By the end the room was laughing with {A_objective}, and some of them crying too.</li>
           <li>[lowtech] {A_nameDef} told it the old way, by the fire, with a stick to point at the shadows. The children will be telling it to their children.</li>
         </outcomes>
         <ways><tradition>4</tradition></ways>
@@ -728,7 +728,7 @@
       </li>
       <li>
         <label>{B_nameDef} talks it through with {A_nameDef}</label>
-        <outcome>{B_nameDef} sat down with {A_nameDef} and went through the list, item by item, and what the colony would do about each. By the end {A_nameDef} was laughing at some of them. {A_nameDef} still checks the doors, but only twice.</outcome>
+        <outcome>{B_nameDef} sat down with {A_nameDef} and went through every fear, one at a time, and what the colony would do about each. By the end {A_nameDef} was laughing at some of them. {A_nameDef} still checks the doors, but only twice.</outcome>
         <ways><mercy>1</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmLv_Reassured</thought></li>
@@ -781,7 +781,7 @@
       </li>
       <li>
         <label>Read out the good parts at supper</label>
-        <outcome>The council asked {A_nameDef} to read out the kindest pages at supper. It turned out there were a lot of them. {B_nameDef} came out of it rather well, and asked for a copy.</outcome>
+        <outcome>The council asked {A_nameDef} to read out the kindest pages at supper. There were a good many of them. {B_nameDef} came out of it rather well, and asked for a copy.</outcome>
         <ways><openness>2</openness><mercy>1</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_DlmLv_KindPages</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>

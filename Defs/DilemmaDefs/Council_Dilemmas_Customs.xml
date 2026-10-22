@@ -29,8 +29,8 @@
     </roleA>
     <texts>
       <li>The ground has thawed, and the fields are bare and waiting. {A_nameDef} wants to make a day of the sowing: everyone who can be spared out in the fields with the seed, all of it in by evening, and a few words at the field's edge when it's done.\n\n"Where I'm from, you never sowed alone on the first day," {A_nameDef} says.</li>
-      <li>{A_nameDef} has been sorting seed by the window all week, and has asked the council for one day: the whole colony at the furrows together, the first rows in before noon, and then a word over the fields at dusk.\n\nIt would cost the colony a day's other work.</li>
-      <li>[lowtech] Back in {A_nameDef}'s village, the first sowing of the year was done by everyone together, with a little grain thrown to the birds so they'd leave the rest. {A_nameDef} would like a planting day here, the old way.</li>
+      <li>{A_nameDef} has been sorting seed by the window all week and wants one day for the sowing: every hand at the furrows, the first rows in before noon, and a word over the fields at dusk.\n\nIt would cost the colony a day's other work.</li>
+      <li>[lowtech] "A handful for the birds, so they leave the rest." That's how the first sowing began in {A_nameDef}'s village, with every soul out in the fields together, and {A_nameDef} would like a planting day here, the old way.</li>
       <li>[rain] Soft rain on the open fields, the best weather for seed there is. {A_nameDef} wants everyone out in it tomorrow for a planting day: the whole crop in at once, and a word together when it's done.</li>
       <li>[colony:Traditional] The fields are open again, and {A_nameDef} has the seed ready. The colony keeps its customs, and {A_nameDef} asks for the planting day: all hands out to sow, and a few words at the field's edge.</li>
       <li>[small] There aren't many of them, and the fields are wide. {A_nameDef} says that's the reason to do it together: one day, everyone, every row.</li>
@@ -215,7 +215,7 @@
     <texts>
       <li>The fields are bare and the stores are full, and {A_nameDef} wants a dance: the floor swept, the tables pushed back, someone on a drum, and everyone up on their feet until they can't stand.\n\nIt would cost nothing but a late night and a slow morning.</li>
       <li>For a week now there's been stamping in the barn after supper. {A_nameDef} has been teaching a couple of the others an old harvest dance, and would like the council to make a night of it for everyone.</li>
-      <li>[lowtech] Where {A_nameDef} grew up, the last sheaf was carried in on someone's shoulders and the whole village danced around it. {A_nameDef} would like a dance here too, sheaf and all.</li>
+      <li>[lowtech] The last sheaf is still standing in the far field. {A_nameDef} has asked that it stay there until tonight, so it can be carried in on someone's shoulders and danced around, the way it was done at home.</li>
       <li>[trait:Kind] {A_nameDef} noticed how tired the harvesters looked by the end, and asked the council for one night of music and dancing to make up for it.</li>
     </texts>
     <traditionOption>0</traditionOption>
@@ -249,7 +249,7 @@
       </li>
       <li>
         <label>There's work in the morning</label>
-        <outcome>No dance. {A_nameDef} hummed the tune under {A_possessive} breath all through supper.</outcome>
+        <outcome>{A_nameDef} hummed the dance tune under {A_possessive} breath all through supper, and tapped it out on the table after.</outcome>
         <ways><tradition>-2</tradition><toil>4</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_NoCelebration</thought><exceptTrait><li>Ascetic</li></exceptTrait></li>
@@ -332,7 +332,7 @@
     <texts>
       <li>The nights are long and black, and {A_nameDef} wants one of them to be different: a lantern in every window and along every path, all lit at once at dusk, so the colony can be seen glowing from the hills.\n\nIt would burn a fair bit of wood.</li>
       <li>There are forty-one lanterns under {A_nameDef}'s bed, made from scraps over the winter evenings. {A_nameDef} would like one night to light them all.</li>
-      <li>[lowtech] Back home, on the darkest night of the year, every house set a candle in the window so the dead could find their way. {A_nameDef} asks if the colony could do the same.</li>
+      <li>[lowtech] On the darkest night of the year, {A_nameDef} says, a candle goes in every window so the dead can find their way home. {A_nameDef} has been saving candle ends since the fall.</li>
       <li>[!lowtech] {A_nameDef} wants the lamps off for one winter night and lanterns lit instead, real flames, the way {A_pronoun} remembers it from childhood.</li>
     </texts>
     <traditionOption>0</traditionOption>

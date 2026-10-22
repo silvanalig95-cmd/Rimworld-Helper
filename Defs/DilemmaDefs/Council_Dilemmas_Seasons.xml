@@ -168,7 +168,7 @@
       <notTrait><li>Ascetic</li></notTrait>
     </roleA>
     <texts>
-      <li>It started as a joke at dinner, the idea that the new year needs a name, and now the colony is arguing about it. {A_nameDef} has proposed "the year of {A_nameDef}," loudly and often.\n\nThe council has been asked to settle it.</li>
+      <li>It started as a joke at dinner, the idea that the new year needs a name, and now the colony is arguing about it. {A_nameDef} has proposed "the year of {A_nameDef}," loudly and often, and has already started dating things that way.</li>
       <li>Chalked on the wall by the door, as of this morning:\n\nThe year of {A_nameDef}: one vote, in {A_nameDef}'s handwriting.\nThe year of our dead: several.\nThe year of the muffalo: more than anyone expected.\n\nThe council has been asked to settle it.</li>
     </texts>
     <traditionOption>2</traditionOption>

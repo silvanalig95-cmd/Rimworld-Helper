@@ -89,7 +89,7 @@
       <li>[lowtech] The longest night has come, and the hall fire is the only warm place left. {A_nameDef} wants to keep it the old way: everyone in one room, extra food, and a story from each.</li>
       <li>[!lowtech] The heaters have run flat out since noon and the rooms are still cold. It's the longest night of the year, and {A_nameDef} thinks this is the night to bring everyone into one room, with extra rations and every lamp lit.</li>
       <li>[snow] Snow has been falling since morning on the longest night of the year. {A_nameDef} has asked the council to mark it with extra food and a long evening together, before everyone scatters to their cold rooms.</li>
-      <li>[trait:Kind] {A_nameDef} has been going room to room all evening with blankets. It's midwinter, {A_nameDef} tells the council, and no night to spend alone: could there be extra food and one big fire?</li>
+      <li>[trait:Kind] {A_nameDef} has been going room to room all evening with blankets. It's midwinter, {A_nameDef} tells the council, and no night to spend alone. Extra food, one big fire, and all of them round it until late.</li>
       <li>[colony:Traditional] Midwinter again. The colony has its ways for the longest night, and {A_nameDef} wants to know if the council means to keep them this year: extra rations and a long evening around the fire.</li>
     </texts>
     <outcomes>

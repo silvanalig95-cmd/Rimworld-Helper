@@ -398,8 +398,8 @@
       <maxMood>0.7</maxMood>
     </roleA>
     <texts>
-      <li>{A_nameDef} has been restless for weeks. {A_nameDef} wants to {GOAL}, and here it seems further away every day. A trader's stories about the settlements to the east did the rest, and now {A_nameDef} wants to leave with the next caravan and see whether life is kinder somewhere else.\n\n{A_nameDef} has asked for the council's blessing, though the others suspect {A_pronoun} also hopes to be talked out of it.</li>
-      <li>A pack has been sitting half full by {A_nameDef}'s bed for days. Late last night {A_nameDef} admitted to thinking about leaving with the next caravan. {A_nameDef} wants to {GOAL}, and no longer believes it can happen here.\n\n{A_nameDef} wants to know what the council thinks.</li>
+      <li>{A_nameDef} has been restless for weeks. The dream is to {GOAL}, and here it seems further away every day; a trader's stories about the settlements to the east did the rest. Now {A_nameDef} wants to leave with the next caravan and see whether life is kinder somewhere else.\n\n{A_nameDef} has asked for the council's blessing, though the others suspect {A_pronoun} also hopes to be talked out of it.</li>
+      <li>A pack has been sitting half full by {A_nameDef}'s bed for days. Late last night {A_nameDef} admitted to thinking about leaving with the next caravan. {A_nameDef} wants to {GOAL}, and no longer believes it can happen here.\n\nNothing is decided yet. {A_nameDef} would like the council's word first.</li>
     </texts>
     <defaultOption>3</defaultOption>
     <options>

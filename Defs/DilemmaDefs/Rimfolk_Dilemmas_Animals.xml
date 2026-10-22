@@ -45,7 +45,7 @@
       </li>
       <li>
         <label>Tighten everyone's belts</label>
-        <outcome>The herd stays. Everyone eats a little less until the stores come back, {B_nameDef} loudest about it, and {A_nameDef} quietly thanking each of them.</outcome>
+        <outcome>The herd stays, and the people eat less until the stores recover. {B_nameDef} complains at every meal. {A_nameDef} has been thanking them one at a time, down at the pens.</outcome>
         <ways><mercy>3</mercy><generosity>1</generosity></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmA_HerdSpared</thought></li>
@@ -105,7 +105,7 @@
     </stranger>
     <texts>
       <li>Something has found the colony's fields, {X_indefinite}, and it likes them. {A_nameDef} came in this morning with a handful of chewed stalks and a face like thunder.\n\n{A_nameDef} wants it dealt with. {B_nameDef} thinks an animal that bold might be worth taming.</li>
-      <li>Every night something gets into the crops, and this morning {A_nameDef} caught it at it: {X_indefinite}, standing in the middle of the field with its mouth full, not in the least sorry.\n\nThe hunters could have it in the pot by supper. Or someone could sit out in the fields at night and drive it off.</li>
+      <li>Every night something gets into the crops, and this morning {A_nameDef} caught it in the act: {X_indefinite}, standing in the middle of the field with its mouth full, not in the least sorry.\n\nThe hunters could have it in the pot by supper. Or someone could sit out in the fields at night and drive it off.</li>
       <li>[skill:Plants] {A_nameDef} has been nursing that field since the thaw. Now {X_indefinite} is eating it a row at a time, and {A_nameDef} has asked the council, very politely, for permission to do something drastic.</li>
     </texts>
     <defaultOption>3</defaultOption>
@@ -152,7 +152,7 @@
       </li>
       <li>
         <label>Let it eat</label>
-        <outcome>The council let the raider be. It ate its fill and wandered off at noon, and {A_nameDef} went out to see what was left.</outcome>
+        <outcome>The council let the raider be. It ate its fill and wandered off at noon, and {A_nameDef} went out afterward to count what was left.</outcome>
         <ways><mercy>3</mercy><toil>-2</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_CropsEaten"><count>8</count></li>
@@ -176,7 +176,7 @@
       <bestAt>Medicine</bestAt>
     </roleB>
     <texts>
-      <li>{PET_nameDef} is sick, {X_possessive} breathing short and hot: {THEIRILLNESS}. {A_nameDef} has been sitting with {X_objective} since dawn.\n\n{B_nameDef} says the good medicine might pull {PET_nameDef} through, but there isn't much of it, and nobody knows who'll need it next.</li>
+      <li>{PET_nameDef} is sick, {X_possessive} breathing short and hot: {THEIRILLNESS}. {A_nameDef} has been sitting with {X_objective} since dawn.\n\n{B_nameDef} says the good medicine might pull {PET_nameDef} through, but there isn't much of it, and no one can say who'll need it next.</li>
       <li>{A_nameDef} asked {B_nameDef} to look at {PET_nameDef}, and {B_nameDef} came back grave: {THEIRILLNESS}. "I can treat it," {B_nameDef} told the council, "if you'll let me use what's left in the cupboard on an animal."</li>
       <li>[winter] {PET_nameDef} has {THEIRILLNESS}, and the cold isn't helping. {A_nameDef} wants the doctors to use the good medicine. The doctors want to know if the council agrees, with winter still to come.</li>
     </texts>
@@ -265,7 +265,7 @@
     <options>
       <li>
         <label>Hunt it down</label>
-        <outcome>The hunters have marked {X_definite}, and {B_nameDef} has gone out with them. {A_nameDef} is staying with the herd until it's done.</outcome>
+        <outcome>The hunters have marked {X_definite}, and {B_nameDef} has asked to be first out after it. {A_nameDef} is staying with the herd until it's done.</outcome>
         <ways><mercy>-2</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Designate"><designation>Hunt</designation></li>
@@ -275,7 +275,7 @@
       </li>
       <li>
         <label>Keep watch at the pens</label>
-        <outcome>{A_nameDef} and {B_nameDef} will sit up at the pens tonight with lanterns and something to bang. Predators don't like a fuss.</outcome>
+        <outcome>{A_nameDef} and {B_nameDef} will sit up at the pens tonight with a fire going and everything in the colony that makes a noise.</outcome>
         <ways><mercy>2</mercy><toil>2</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Vigil"><label>the watch at the pens</label><target>AAndB</target><to>Person</to><whom>Pet</whom><hours>20~4</hours></li>
@@ -306,7 +306,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Ignored</thought></li>
         </effects>
         <riskChance>0.45</riskChance>
-        <riskOutcome>The council left {X_definite} alone. It didn't return the favour: the pen was broken into in the night, and one of the herd is gone.</riskOutcome>
+        <riskOutcome>The council left {X_definite} alone. It didn't return the favor. The pen was broken into in the night, and one of the herd is gone.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_LoseAnimal" />
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Setback_AnimalLost</thought></li>
@@ -328,7 +328,7 @@
     </roleA>
     <texts>
       <li>{B_nameDef}'s ideoligion holds that a bond between a person and an animal is a wrong done to both of them, and {A_nameDef} and {PET_nameDef} are never apart. {B_nameDef} has asked the council to say something.\n\n{A_nameDef} has asked the council, very quietly, not to.</li>
-      <li>{B_nameDef} found {PET_nameDef} asleep on {A_nameDef}'s bed and said a prayer over it, loudly, the kind you say over something unclean. {A_nameDef} hasn't spoken to {B_nameDef} since.\n\nThe council is asked to settle it.</li>
+      <li>{B_nameDef} found {PET_nameDef} asleep on {A_nameDef}'s bed and said a prayer over it, loudly, the kind you say over something unclean. {A_nameDef} hasn't spoken to {B_nameDef} since, and shuts the door at night now.</li>
     </texts>
     <defaultOption>1</defaultOption>
     <options>
@@ -344,14 +344,14 @@
       </li>
       <li>
         <label>{PET_nameDef} keeps out of {B_nameDef}'s way</label>
-        <outcome>{PET_nameDef} stays out of {B_nameDef}'s rooms and off the dining table, and {B_nameDef} says {B_possessive} prayers more quietly. Nobody is happy. Nobody is shouting.</outcome>
+        <outcome>{PET_nameDef} stays out of {B_nameDef}'s rooms and off the dining table, and {B_nameDef} says {B_possessive} prayers more softly. Neither of them is happy. Neither is shouting.</outcome>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_Compromise</thought></li>
         </effects>
       </li>
       <li>
         <label>{PET_nameDef} goes to someone else</label>
-        <outcome>{PET_nameDef} answers to someone else now. {A_nameDef} still sees {PET_objective} every day, across the yard, and {B_nameDef} has thanked the council for honouring the faith.</outcome>
+        <outcome>{PET_nameDef} answers to someone else now. {A_nameDef} still sees {PET_objective} every day, across the yard, and {B_nameDef} has thanked the council for honoring the faith.</outcome>
         <ways><tradition>3</tradition><mercy>-2</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_PassAnimal" />
@@ -404,7 +404,7 @@
     <options>
       <li>
         <label>Keep the lambing watch together</label>
-        <outcome>The colony takes turns at the pens through the night, lanterns low, voices lower. The young ones come in the small hours, one after another.</outcome>
+        <outcome>The colony takes turns at the pens through the night, lanterns low, voices lower. Whenever the young come, someone will be in the straw to meet them.</outcome>
         <ways><tradition>4</tradition><toil>-1</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Vigil"><label>the lambing watch</label><target>Colony</target><count>3</count><to>Person</to><whom>Pet</whom><hours>20~4</hours></li>
@@ -449,7 +449,7 @@
       <bestAt>Animals</bestAt>
     </roleA>
     <texts>
-      <li>The herd's coats are heavy and the days are warm. {A_nameDef} wants to make a day of the shearing and the milking: everyone out at the pens, the work done together, and something to eat in the sun afterwards.</li>
+      <li>The herd's coats are heavy and the days are warm. {A_nameDef} wants to make a day of the shearing and the milking: everyone out at the pens, the work done together, and something to eat in the sun afterward.</li>
       <li>{A_nameDef} remembers shearing days from long ago: a whole village in a yard, laughing at the ones that got away. {A_nameDef} would like one here.</li>
       <li>[colony:Traditional] It's the time of year for the shearing day. {A_nameDef} has the shears out already, and an eye on the weather.</li>
     </texts>
