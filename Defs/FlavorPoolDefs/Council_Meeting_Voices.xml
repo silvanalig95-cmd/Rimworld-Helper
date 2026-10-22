@@ -11,14 +11,14 @@
     <pool>Council_Pool_MeetingSupport</pool>
     <lines>
       <plain>
-        <li>[summer] Long days ahead. A good time to start on "{AMBITION}".</li>
-        <li>[trait:Industrious|trait:HardWorker] Give me the hardest part of "{AMBITION}". I'll start tomorrow.</li>
+        <li>[summer] Long days ahead, a good time to start on "{AMBITION}".</li>
+        <li>[trait:Industrious|trait:HardWorker] Give me the hardest part of "{AMBITION}" and I'll start tomorrow.</li>
         <li>[trait:Lazy|trait:Slothful] Yes to "{AMBITION}", as long as someone else does the lifting.</li>
         <li>[trait:Greedy] If "{AMBITION}" leaves us better off, I'm for it.</li>
         <li>[old] I'd like to see "{AMBITION}" finished while I'm still around.</li>
         <li>[child] I vote yes! Can I help?</li>
-        <li>[trusting] {OTHER_nameDef} hasn't steered us wrong yet. Yes.</li>
-        <li>[skill:Construction] Give me a few strong backs and I'll get it started.</li>
+        <li>[trusting] {OTHER_nameDef} hasn't steered us wrong yet, so yes.</li>
+        <li>[skill:Construction] A few strong backs and I'll have it started by the end of the week.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
@@ -28,12 +28,12 @@
     <pool>Council_Pool_MeetingDoubt</pool>
     <lines>
       <plain>
-        <li>[summer] In this heat? Let's talk again in the fall.</li>
-        <li>[trait:Lazy|trait:Slothful] That sounds like a lot of work. No.</li>
-        <li>[trait:Ascetic] We don't need "{AMBITION}". We need less, not more.</li>
-        <li>[old] I've seen plans like this before. They end in a pile of half-cut stone.</li>
+        <li>[summer] Let's talk about it again in the fall, not in this heat.</li>
+        <li>[trait:Lazy|trait:Slothful] That sounds like a lot of work, so no.</li>
+        <li>[trait:Ascetic] We don't need "{AMBITION}"; we need less, not more.</li>
+        <li>[old] I've seen plans like this end in a pile of half-cut stone.</li>
         <li>[doubtful] The council's last plan isn't finished yet, is it?</li>
-        <li>[bitter] Another grand idea. And who gets ignored while we build it?</li>
+        <li>[bitter] Another grand idea, and who gets ignored while we build it?</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
@@ -43,7 +43,7 @@
     <pool>Council_Pool_MeetingAside</pool>
     <lines>
       <warm>
-        <li>Someone pass the blanket down to the end. It's cold over there.</li>
+        <li>Someone pass the blanket down to the end, it's cold over there.</li>
         <li>Make room on the bench for the new one.</li>
       </warm>
       <cold>
