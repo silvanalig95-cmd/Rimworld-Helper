@@ -15,12 +15,12 @@
         <li>[winter] Hot porridge with honey this morning, while the frost was still on the window.</li>
         <li>[summer] Cold meat and fresh greens for supper, too hot for anything else. It was just right.</li>
         <li>[spring] The first fresh greens of the year in the stew tonight. They tasted of the field.</li>
-        <li>[spring] Eggs for breakfast, and enough for everyone. The hens have started laying again.</li>
+        <li>[spring] Eggs for breakfast, and enough to go round for once.</li>
         <li>[fall] Supper from the new harvest tonight, with more on the table than we could finish.</li>
         <li>[fall] Baked roots and smoked meat after a day in the fields. I slept the moment I lay down.</li>
         <li>[hurt] Someone cut my meat for me without being asked. It was a good supper, and I ate all of it.</li>
         <li>[skill:Cooking] Ate a dish I'd never thought to make. I'm going to try it myself, with a few changes.</li>
-        <li>Ate with my back to the wall and my feet up, and nobody needed me for a whole meal.</li>
+        <li>Ate with my back to the wall and my feet up, and not one person needed me for the whole meal.</li>
       </plain>
       <warm>
         <li>The cook remembered I don't like onions and left them out of my bowl. Small thing. I noticed.</li>
@@ -61,20 +61,20 @@
         <li>[newcomer] {OTHER_nameDef} asked where I came from and actually wanted to know. I talked more than I have since I got here.</li>
       </plain>
       <warm>
-        <li>{OTHER_nameDef} and I sat up late and talked about the people we love. I'm glad {OTHER_pronoun} is here.</li>
+        <li>Sat up late with {OTHER_nameDef}, talking about the people we love. Some of them are here and some aren't.</li>
         <li>I told {OTHER_nameDef} something I was ashamed of, and {OTHER_pronoun} didn't flinch.</li>
       </warm>
       <blunt>
         <li>Talked with {OTHER_nameDef} half the night. Tired today. Worth it.</li>
-        <li>{OTHER_nameDef} is all right. More than all right.</li>
+        <li>{OTHER_nameDef} talks sense. Didn't expect that.</li>
       </blunt>
       <cheerful>
         <li>{OTHER_nameDef} and I traded stories about our worst haircuts and laughed until we couldn't breathe.</li>
         <li>I found out {OTHER_nameDef} used to want to be a singer! I've asked for a song tomorrow.</li>
       </cheerful>
       <gloomy>
-        <li>{OTHER_nameDef} and I talked about the friends we've buried. It helped, and it hurt.</li>
-        <li>Talked late with {OTHER_nameDef}. It's easier to say the hard things in the dark.</li>
+        <li>{OTHER_nameDef} and I talked about the friends we've buried, one at a time, by name.</li>
+        <li>Talked late with {OTHER_nameDef}, with the lamp out. I said things I wouldn't have said with it lit.</li>
       </gloomy>
       <cold>
         <li>{OTHER_nameDef} told me about {OTHER_possessive} family tonight. I'll be careful with what I know now.</li>
@@ -92,7 +92,7 @@
         <li>[bad] Somebody left a heap of dirty rags by the kitchen door, and it's been there since yesterday.</li>
       </plain>
       <warm>
-        <li>[good] Someone put a sprig of flowers on the supper table. Nobody said anything, but everyone saw.</li>
+        <li>[good] Someone put a sprig of flowers on the supper table. I moved it so I could see it from my seat.</li>
         <li>[good] The hall looks lovely since the new rug went down. I sat on it with my back to the wall for a while.</li>
         <li>[bad] Picked up the scraps by the door on my way past. Somebody has to start.</li>
         <li>[bad] The place has gotten shabby, but I don't blame anyone. We've all been so busy.</li>
@@ -112,13 +112,13 @@
       <gloomy>
         <li>[good] It's pretty here now. That only makes it worse to think about losing it.</li>
         <li>[good] The painting in the hall is good. I stood in front of it longer than I meant to.</li>
-        <li>[bad] Stains, rubble and a wall half built. That's about how I feel too.</li>
-        <li>[bad] Nobody's cleaned the hall in days. Maybe nobody has the heart.</li>
+        <li>[bad] Stains on the floor and a wall half built. About how I feel.</li>
+        <li>[bad] The hall hasn't been cleaned in days. Maybe none of us has the heart.</li>
       </gloomy>
       <cold>
         <li>[good] The colony looks cared for. Cared-for places are better defended.</li>
         <li>[good] The new art is well placed. I'll grant the sculptor that.</li>
-        <li>[bad] The yard is a mess, and a messy yard is a sign of a colony that's lost its grip.</li>
+        <li>[bad] The yard is a mess. I've started noting who walks past it without picking anything up.</li>
         <li>[bad] Dirt spreads if it's left. I've written down where it started.</li>
       </cold>
     </lines>
@@ -130,13 +130,13 @@
     <lines>
       <plain>
         <li>[good] Changed the straw in my mattress today. Slept like a stone.</li>
-        <li>[bad] Something in my room creaks every time the wind picks up. I lay awake waiting for it.</li>
+        <li>[bad] The shutter in my room creaks every time the wind picks up. I lay awake waiting for it.</li>
       </plain>
       <warm>
         <li>[good] My room's small, but it's mine, and I've put the things people gave me where I can see them.</li>
         <li>[good] Fell asleep tonight feeling safe, in a room I'm starting to love.</li>
         <li>[bad] My room needs work, but I've got time, and people have offered to help.</li>
-        <li>[bad] Slept badly in that cold room. I'll ask someone about it gently tomorrow.</li>
+        <li>[bad] Slept badly again in that poky room. I'll mention it tomorrow, nicely.</li>
       </warm>
       <blunt>
         <li>[good] Warm room, quiet night. Good.</li>
