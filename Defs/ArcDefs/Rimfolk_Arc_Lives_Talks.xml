@@ -13,18 +13,20 @@
     <logRulesInitiator>
       <rulesStrings>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] took the long way back from the fields, and neither of them hurried.</li>
-        <li>r_logentry->[INITIATOR_nameDef] saved [RECIPIENT_nameDef] the warm seat by the fire, and [RECIPIENT_nameDef] noticed.</li>
+        <li>r_logentry->[INITIATOR_nameDef] saved [RECIPIENT_nameDef] the warm seat at supper, and [RECIPIENT_nameDef] noticed.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about [topic] until the others had gone to bed.</li>
         <li>topic->nothing in particular</li>
         <li>topic->where they'd each like to be in ten years</li>
         <li>topic->the stars, badly</li>
         <li>topic->the best meal either of them had ever eaten</li>
-        <li>r_logentry->[INITIATOR_nameDef] brought [RECIPIENT_nameDef] [gift], and pretended it was nothing.</li>
+        <li>r_logentry->[INITIATOR_nameDef] brought [RECIPIENT_nameDef] [gift], and said it was nothing.</li>
         <li>gift->a sprig of something that smelled sweet</li>
         <li>gift->the last of the good bread</li>
         <li>gift->a smooth stone from the river</li>
         <li>r_logentry->[INITIATOR_nameDef] made [RECIPIENT_nameDef] laugh twice at supper, and looked pleased with [INITIATOR_objective]self both times.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] did the washing up together, slowly.</li>
+        <li>r_logentry->Long after supper, [INITIATOR_nameDef] and [RECIPIENT_nameDef] were still at the washing-up.</li>
+        <li>topic->the songs they knew as children</li>
+        <li>gift->a bird whittled from a stick</li>
       </rulesStrings>
     </logRulesInitiator>
   </InteractionDef>
@@ -38,10 +40,10 @@
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] both turned up to help with the same small job, and stared at each other over it.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef], quite politely, to keep [RECIPIENT_possessive] distance. [RECIPIENT_nameDef] said the same back.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] agreed, stiffly, that whoever was chosen, they'd shake hands on it.</li>
-        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] straight out what [RECIPIENT_possessive] intentions were. [RECIPIENT_nameDef] asked the same thing back.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] straight out what [RECIPIENT_possessive] intentions were, and got a straight answer.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] had a short, careful conversation about nothing, while both of them watched the same door.</li>
         <li>r_logentry->[INITIATOR_nameDef] admitted to [RECIPIENT_nameDef] that this was ridiculous. [RECIPIENT_nameDef] agreed, and neither of them backed down.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] found they had a great deal in common, which made it worse.</li>
+        <li>r_logentry->Stuck on the same job all morning, [INITIATOR_nameDef] and [RECIPIENT_nameDef] were scrupulously polite to each other.</li>
       </rulesStrings>
     </logRulesInitiator>
   </InteractionDef>
@@ -52,11 +54,11 @@
     <logRulesInitiator>
       <rulesStrings>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] went over the day's work, the teacher and the student, every piece of it.</li>
-        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether the other student got more attention. The answer was long and honest.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about what each of them was best at, and it turned out to be different things.</li>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that a teacher doesn't have favourites. It was nearly true.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about whether the other student got more attention, at length and honestly.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked through what the student does better than anyone, and what still needs work.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] had it out about favorites at the bench, and came away agreeing there weren't any.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] sat over a spoiled piece of work and worked out where it went wrong, without blame.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] agreed on what the student would practise next, and why.</li>
+        <li>r_logentry->Before supper, [INITIATOR_nameDef] and [RECIPIENT_nameDef] agreed on what the student would practice next, and why.</li>
       </rulesStrings>
     </logRulesInitiator>
   </InteractionDef>
@@ -70,7 +72,7 @@
         <li>r_logentry->[INITIATOR_nameDef] showed [RECIPIENT_nameDef] a trick the teacher hadn't. [RECIPIENT_nameDef] showed one back.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] stopped competing for a whole afternoon and got twice as much done.</li>
         <li>r_logentry->[INITIATOR_nameDef] admitted to [RECIPIENT_nameDef] that [RECIPIENT_pronoun] had the steadier hand. [RECIPIENT_nameDef] admitted [INITIATOR_nameDef] had the better eye.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] laughed together about the teacher's sayings, fondly.</li>
+        <li>r_logentry->Out of the teacher's earshot, [INITIATOR_nameDef] and [RECIPIENT_nameDef] traded the teacher's favorite sayings and laughed.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] fixed each other's mistakes before the teacher could see them.</li>
       </rulesStrings>
     </logRulesInitiator>
@@ -82,11 +84,11 @@
     <logRulesInitiator>
       <rulesStrings>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef], parent and child, sat on the step and talked about the quarrel in the family.</li>
-        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] to tell [INITIATOR_possessive] side of it, all of it, without being interrupted. Nobody interrupted.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] went through the whole quarrel, one side at a time, without interrupting each other.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about brothers and sisters, and what they owe each other.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] went for a walk to the edge of the fields and came back calmer.</li>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] a story about the family from long ago, with a quarrel in it that ended well.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked it through over a shared job, which is easier than talking it through over nothing.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] walked out past the fields and came back calmer.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] remembered an old family quarrel that had ended well, and how.</li>
+        <li>r_logentry->Over a basket of mending, [INITIATOR_nameDef] and [RECIPIENT_nameDef] talked the quarrel through without looking up much.</li>
       </rulesStrings>
     </logRulesInitiator>
   </InteractionDef>
@@ -100,7 +102,7 @@
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] not to make anyone choose sides. [RECIPIENT_nameDef] said that was fair.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] agreed that it had gone on long enough, and couldn't agree on who should say so first.</li>
         <li>r_logentry->[INITIATOR_nameDef] carried a word from one friend to another and told [RECIPIENT_nameDef] it faithfully, with the sharp bits left out.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about the old days, when the three of them got on.</li>
+        <li>r_logentry->Over supper, [INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about the old days, when the three of them got on.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] how tiring it was to be in the middle. [RECIPIENT_nameDef] hadn't thought of that.</li>
       </rulesStrings>
     </logRulesInitiator>
@@ -116,7 +118,7 @@
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] sat on the wall and looked at the camp's smoke, and talked about roads.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] what the camp's people had said about the lands to the south. [RECIPIENT_nameDef] said it sounded like a lot of walking.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about what keeps a person in one place, and listed it, and the list was longer than either expected.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked late about the road, and about home, and which was which.</li>
+        <li>r_logentry->Late into the evening, [INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about the road, and about home.</li>
       </rulesStrings>
     </logRulesInitiator>
   </InteractionDef>
@@ -131,7 +133,7 @@
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] went over the office's duties together, one by one, over a pot of something hot.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that nobody is ready for a seat on the council, and everybody has to pretend.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about the first mistake each of them made in charge of something.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] worked out who to ask about what, and wrote it on the back of a tally.</li>
+        <li>r_logentry->On the back of an old tally, [INITIATOR_nameDef] and [RECIPIENT_nameDef] wrote down who to ask about what.</li>
       </rulesStrings>
     </logRulesInitiator>
   </InteractionDef>
@@ -145,7 +147,7 @@
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about someone [INITIATOR_pronoun] hasn't seen in years, and couldn't stop.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] went over every scrap of news from the road, looking for good in it.</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] how you stop worrying about people you can't reach. [RECIPIENT_nameDef] didn't know either, and said so.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] sat up late with the worry between them, which made it lighter, a little.</li>
+        <li>r_logentry->Long after the others were asleep, [INITIATOR_nameDef] and [RECIPIENT_nameDef] sat up with the worry between them.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] wrote out a letter together, to be sent with the next trader who would take it.</li>
       </rulesStrings>
     </logRulesInitiator>
@@ -160,7 +162,7 @@
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about what lives in the dark, and decided together that nothing much does.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] made up a story about a brave mouse, which went on for some time.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] checked under the bed, and behind the door, and agreed it was all clear.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] counted the sounds of the colony at night until one of them fell asleep.</li>
+        <li>r_logentry->Lying in the dark, [INITIATOR_nameDef] and [RECIPIENT_nameDef] counted the sounds of the colony at night until one of them fell asleep.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] left a small light burning, and talked about the morning instead.</li>
       </rulesStrings>
     </logRulesInitiator>
@@ -174,7 +176,7 @@
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] argued about the work, and for once it was an argument between equals.</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] for [RECIPIENT_possessive] opinion, and then actually listened to it.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about what [INITIATOR_nameDef] had made, plainly, without "for your age" anywhere in it.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] both said sorry for the shouting, at the same moment, and then laughed.</li>
+        <li>r_logentry->Halfway through a job, [INITIATOR_nameDef] and [RECIPIENT_nameDef] both said sorry for the shouting at the same moment, and laughed.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked late, the young one and the old one, about what each wanted from the other.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] worked out a fair share of the work between them, like two grown people.</li>
       </rulesStrings>
@@ -188,9 +190,9 @@
       <rulesStrings>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] took turns walking the baby up and down until it slept.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] everything [INITIATOR_pronoun] knew about babies, which was less than [INITIATOR_pronoun] thought.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked in whispers by the cradle, about nothing, for an hour.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked in whispers by the cradle about nothing much, so as not to wake it.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] agreed that the baby looks like everyone in the family and no one at all.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] shared a cold supper while the baby slept, and called it a feast.</li>
+        <li>r_logentry->While the baby slept, [INITIATOR_nameDef] and [RECIPIENT_nameDef] shared a cold supper and called it a feast.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] worked out who would take the baby which nights, and wrote it down so nobody could argue.</li>
       </rulesStrings>
     </logRulesInitiator>
@@ -203,9 +205,9 @@
       <rulesStrings>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about what should happen to the old one's things, when the time comes. It wasn't sad, mostly.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] walked to the place by the graves where the old one would like to lie, and agreed it had a good view.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] went through a box of old things, one at a time, and the stories came out with them.</li>
+        <li>r_logentry->One by one, [INITIATOR_nameDef] and [RECIPIENT_nameDef] went through a box of old things, and the stories came out with them.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about who should have the tools, and who would only lose them.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] sat quietly together for a long while, and then talked about the weather.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] sat together without saying much, then talked about the weather.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about what the old one wanted said, and what they'd rather was left out.</li>
       </rulesStrings>
     </logRulesInitiator>
@@ -218,9 +220,9 @@
       <rulesStrings>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] remembered the first winter here, and argued about which of them was colder.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] named the people who were here when they came, one by one, and who was left.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] complained about how the young ones do everything, and enjoyed it very much.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] complained at length about how the young ones do everything wrong.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] remembered the same raid differently, and agreed to disagree on the details.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] sat in the sun and said very little, which was the point.</li>
+        <li>r_logentry->In the sun by the wall, [INITIATOR_nameDef] and [RECIPIENT_nameDef] sat out an afternoon and said very little.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about an old quarrel between them and couldn't remember what it had been about.</li>
       </rulesStrings>
     </logRulesInitiator>
