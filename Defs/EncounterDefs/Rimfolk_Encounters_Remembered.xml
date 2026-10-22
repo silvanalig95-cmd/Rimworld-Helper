@@ -17,8 +17,8 @@
     <moment>their:rescued</moment>
     <stranger><kind>Visitor</kind><adult>true</adult></stranger>
     <texts>
-      <li>{X_nameDef} asked {A_nameDef} whether this was the colony that helped {FACTION} folk when they had nowhere else to turn. When {A_nameDef} said it was, {X_nameDef} shook {A_possessive} hand for a long time and didn't let go.</li>
-      <li>{X_nameDef} told {A_nameDef} that a cousin of {X_possessive} owes this colony a life, and that the whole family knows the colony's name because of it.</li>
+      <li>"Is this the place that took in {FACTION} folk when they had nowhere to go?" {X_nameDef} asked. When {A_nameDef} said it was, {X_nameDef} took {A_possessive} hand and held on to it for a long time.</li>
+      <li>A cousin of {X_nameDef}'s owes this colony a life, {X_pronoun} told {A_nameDef}, and the whole family knows the colony's name because of it.</li>
       <li>Over supper {X_nameDef} told the table, and {A_nameDef} in particular, what {FACTION} say about this place: that it took in their people when it didn't have to.</li>
     </texts>
     <ways><openness>1</openness></ways>
@@ -37,8 +37,8 @@
     <stranger><kind>Trader</kind></stranger>
     <texts>
       <li>{X_nameDef} knocked a good part off the price before {A_nameDef} had even started to haggle. "{FACTION} remember their friends," {X_pronoun} said, and wouldn't hear another word about it.</li>
-      <li>{X_nameDef} set aside the best of the goods for {A_nameDef} and threw in a little extra, for what the colony once did for {FACTION}.</li>
-      <li>{A_nameDef} went to haggle with {X_nameDef} and found there was nothing to haggle over: the price was already fair, and then some.</li>
+      <li>{X_nameDef} set aside the best of the goods for {A_nameDef} and threw in some silver besides, for what the colony once did for {FACTION}.</li>
+      <li>{A_nameDef} went to haggle with {X_nameDef} and found nothing to haggle over. The price was fair before {A_pronoun} opened {A_possessive} mouth, and {X_nameDef} counted back more change than {A_pronoun} was owed.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>Silver</thing><count>15</count></li>
@@ -56,7 +56,7 @@
     <texts>
       <li>{X_nameDef} served {A_nameDef} last, after everyone else, and named a price twice what it should have been. "{FACTION} have long memories," was all {X_pronoun} said.</li>
       <li>{X_nameDef} wouldn't haggle with {A_nameDef} at all, and put the goods away the moment {A_nameDef} said where {A_pronoun} was from.</li>
-      <li>{A_nameDef} spent an afternoon talking {X_nameDef} round to an ordinary price. It took everything {A_pronoun} had. {FACTION} haven't forgotten what this colony did.</li>
+      <li>It took {A_nameDef} most of an afternoon to talk {X_nameDef} round to an ordinary price, and {X_nameDef} brought up what this colony did to {FACTION} twice along the way.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Social</skill><xp>250</xp></li>
@@ -71,7 +71,7 @@
     <moment>their:grudge</moment>
     <stranger><kind>Visitor</kind><adult>true</adult></stranger>
     <texts>
-      <li>{X_nameDef} wouldn't sit at the same table as {A_nameDef} and took {X_possessive} supper outside. Something about what this colony did to {FACTION}, someone said.</li>
+      <li>{X_nameDef} wouldn't sit at the same table as {A_nameDef} and took {X_possessive} supper outside. It was over what this colony did to {FACTION}, one of the other visitors said.</li>
       <li>{A_nameDef} offered {X_nameDef} a cup of water at the gate. {X_nameDef} looked at it, then at {A_nameDef}, and walked past.</li>
       <li>{X_nameDef} asked {A_nameDef}, quite politely, whether the colony still does the kind of thing it did to {FACTION}. {A_nameDef} didn't know what to answer.</li>
     </texts>
@@ -87,7 +87,7 @@
     <stranger><kind>Visitor</kind><adult>true</adult></stranger>
     <texts>
       <li>{X_nameDef} mentioned, lightly, that {FACTION} once helped this colony when it needed it, and wondered aloud whether anyone here remembered.</li>
-      <li>{X_nameDef} told {A_nameDef} that {FACTION} don't keep accounts of what they give their neighbours, and then told {A_objective} exactly what they had given this colony.</li>
+      <li>{FACTION} don't keep accounts of what they give their neighbors, {X_nameDef} told {A_nameDef}, and then told {A_objective} exactly what they had given this colony.</li>
     </texts>
     <ways><generosity>-1</generosity></ways>
   </ColonyCouncil.EncounterDef>
