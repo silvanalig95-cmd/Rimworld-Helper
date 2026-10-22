@@ -41,7 +41,7 @@
       </li>
       <li>
         <label>my best work destroyed</label>
-        <description>That was the best thing I ever made here. Now it's broken pieces on the floor.</description>
+        <description>That was the best thing I ever made here. Now it's in pieces.</description>
         <baseMoodEffect>-6</baseMoodEffect>
       </li>
     </stages>
@@ -109,7 +109,7 @@
       </li>
       <li>
         <label>awful work</label>
-        <description>I made something truly bad, in the one craft I care about. I'd melt it down if I could.</description>
+        <description>I made something truly bad, in the one craft I care about. I'd break it up and start again if I could.</description>
         <baseMoodEffect>-2</baseMoodEffect>
       </li>
     </stages>
@@ -161,7 +161,7 @@
     </modExtensions>
     <stages>
       <li>
-        <label>hauling halfway across the map</label>
+        <label>long hauls all day</label>
         <description>Load after load carried from one end of the colony to the other. My arms will remember today.</description>
         <baseMoodEffect>-1</baseMoodEffect>
       </li>
@@ -178,7 +178,7 @@
     <stages>
       <li>
         <label>left waiting for a doctor</label>
-        <description>I lay there hurting for hours while people walked past. Nobody came to see to me.</description>
+        <description>I lay there hurting for hours while people walked past, with a doctor at home the whole time.</description>
         <baseMoodEffect>-2</baseMoodEffect>
       </li>
     </stages>
@@ -227,7 +227,7 @@
     <stages>
       <li>
         <label>they sold my animal</label>
-        <description>I trained that animal and fed it every day. Now it's walking off behind a trader's wagon.</description>
+        <description>I trained that animal and fed it every day. Now it's gone with a trader, for silver.</description>
         <baseMoodEffect>-2</baseMoodEffect>
       </li>
     </stages>
@@ -248,7 +248,7 @@
     <stages>
       <li>
         <label>outshone at my own craft</label>
-        <description>That was my work, the thing I was best at here. Now there's someone better at it, and everyone knows.</description>
+        <description>That was my work, the thing I was best at here. Now there's someone better at it, and they all know it.</description>
         <baseMoodEffect>-2</baseMoodEffect>
         <baseOpinionOffset>-3</baseOpinionOffset>
       </li>
@@ -285,7 +285,7 @@
     <stages>
       <li>
         <label>kept up by the noise next door</label>
-        <description>Banging and scraping through the wall half the night. Some of us sleep at night.</description>
+        <description>Banging and scraping through the wall until all hours. Some of us sleep at night.</description>
         <baseMoodEffect>-1</baseMoodEffect>
         <baseOpinionOffset>-2</baseOpinionOffset>
       </li>
@@ -301,7 +301,7 @@
 
   <ThoughtDef ParentName="Council_FrictionThoughtBase">
     <defName>Council_Friction_Mocked</defName>
-    <stages><li><label>laughed at my bad day</label><description>I wasn't myself for a while, and they've turned it into a joke. Everyone heard it.</description><baseMoodEffect>-2</baseMoodEffect><baseOpinionOffset>-6</baseOpinionOffset></li></stages>
+    <stages><li><label>laughed at my bad day</label><description>I wasn't myself for a while, and they've turned it into a joke. They told it at supper.</description><baseMoodEffect>-2</baseMoodEffect><baseOpinionOffset>-6</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_FrictionThoughtBase">

@@ -54,7 +54,7 @@
       </li>
       <li>
         <label>the vote was for my idea</label>
-        <description>Most of the meeting backed my idea. The council chose another one anyway. What was the vote for, then?</description>
+        <description>Most of the meeting backed my idea, and the council chose another one anyway. I'd like to know what the vote was for.</description>
         <baseMoodEffect>-4</baseMoodEffect>
       </li>
     </stages>
@@ -92,7 +92,7 @@
       </li>
       <li>
         <label>sick of this decree</label>
-        <description>Every day under the {DECREE} is a day I'd rather have had back. Nobody seems to be listening.</description>
+        <description>Every day under the {DECREE} is a day I'd rather have had back. I've said so, and I'll keep saying it.</description>
         <baseMoodEffect>-2</baseMoodEffect>
       </li>
     </stages>
@@ -132,8 +132,8 @@
     </modExtensions>
     <stages>
       <li>
-        <label>my rival honoured</label>
-        <description>Of all the people here, they had to honour that one. I could list what they've done wrong, and it's not short.</description>
+        <label>my rival honored</label>
+        <description>Of all the people here, that's the one they chose to honor. I could list what they've done wrong, and it isn't a short list.</description>
         <baseMoodEffect>-2</baseMoodEffect>
         <baseOpinionOffset>-4</baseOpinionOffset>
       </li>
@@ -190,7 +190,7 @@
     <stages>
       <li>
         <label>missed the gathering</label>
-        <description>Everyone else was there. I heard about it afterwards.</description>
+        <description>They all went, and I was somewhere else. I heard about it afterward, in bits.</description>
         <baseMoodEffect>-1</baseMoodEffect>
       </li>
     </stages>
@@ -358,7 +358,7 @@
     <stages>
       <li>
         <label>no research under way</label>
-        <description>The research bench sits there and nobody has picked anything to work on. There's so much we don't know yet.</description>
+        <description>The research bench has sat idle all day with nothing picked to study. I could be working on something.</description>
         <baseMoodEffect>-1</baseMoodEffect>
       </li>
     </stages>
@@ -374,7 +374,7 @@
     <stages>
       <li>
         <label>thinking of home</label>
-        <description>It's been a hard week. I keep thinking about where I came from, and the people there.</description>
+        <description>It's been a hard week. I've been thinking about where I came from, and the people I left there.</description>
         <baseMoodEffect>-2</baseMoodEffect>
       </li>
     </stages>
