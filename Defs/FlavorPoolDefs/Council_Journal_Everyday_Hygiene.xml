@@ -13,7 +13,7 @@
         <li>Went out past the fields to relieve myself, and took the long way back so I wouldn't have to explain.</li>
         <li>[winter] Squatted in the snow this morning. My legs still haven't warmed up.</li>
         <li>[night] Went out in the dark to relieve myself and heard something moving in the brush. I didn't stay long.</li>
-        <li>[child] I had to go in the bushes. A beetle crawled on my foot.</li>
+        <li>[child] I had to go in the bushes, and the leaves were prickly.</li>
       </plain>
       <warm><li>Went out behind the storeroom at dawn. Not the worst view of the sunrise, I'll admit.</li></warm>
       <blunt><li>Bushes again. We need somewhere to go.</li></blunt>
@@ -27,14 +27,14 @@
     <defName>Council_Journal_Day_SoiledSelf</defName>
     <lines>
       <plain>
-        <li>Didn't make it in time today. Washed my trousers out and said nothing to anyone.</li>
+        <li>Didn't make it in time today. Washed my pants out and said nothing to anyone.</li>
         <li>An accident on the way to the latrine. I'd rather not write more than that.</li>
         <li>[old] My body doesn't give me as much warning as it used to. Today it gave me none.</li>
         <li>[child] I had an accident. I didn't want anybody to see.</li>
       </plain>
-      <warm><li>Had an accident today. Nobody laughed, and I won't forget that.</li></warm>
+      <warm><li>Had an accident today. The one who found me fetched water and never said a word about it.</li></warm>
       <blunt><li>Didn't make it. Not talking about it.</li></blunt>
-      <cheerful><li>Worst day in a while. Tomorrow can only be better.</li></cheerful>
+      <cheerful><li>Had an accident. Clean clothes now, and I'm walking with my head up.</li></cheerful>
       <gloomy><li>Soiled myself, at my age. I hid until dark.</li></gloomy>
       <cold><li>Too far from a toilet, and too much work to leave. Next time the work can wait.</li></cold>
     </lines>
@@ -123,7 +123,7 @@
       </plain>
       <warm>
         <li>[good] Clean at last. I lent my comb to whoever wanted it.</li>
-        <li>[bad] I'm grimy, but so is everyone I work with.</li>
+        <li>[bad] I'm grimy, but so are the others on my shift. We stink together.</li>
       </warm>
       <blunt>
         <li>[good] Clean.</li>
@@ -148,7 +148,7 @@
     <defName>Council_Journal_Day_DirtyWater</defName>
     <lines>
       <plain>
-        <li>The water tasted wrong today. I drank it anyway; I was too thirsty not to.</li>
+        <li>The water tasted wrong today. I was too thirsty to care.</li>
         <li>Drank water that smelled of the latrine. My stomach's been grumbling since.</li>
         <li>[hot] It was so hot I drank whatever I could find. I'm trying not to think about where it came from.</li>
         <li>[child] The water tasted like dirt.</li>
@@ -179,7 +179,7 @@
         <li>[bad] The bathroom's awful.</li>
       </blunt>
       <cheerful>
-        <li>[good] I sang in the bath. The room has a nice echo.</li>
+        <li>[good] Sang in the bath with the door shut, as loud as I liked.</li>
         <li>[bad] My bathroom's grim. I sing louder to make up for it.</li>
       </cheerful>
       <gloomy>
@@ -188,7 +188,7 @@
       </gloomy>
       <cold>
         <li>[good] A good bathroom. Worth what it cost.</li>
-        <li>[bad] The bathroom is substandard. I'll raise it with the council.</li>
+        <li>[bad] The bathroom is substandard. I've seen better at a roadside inn.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
