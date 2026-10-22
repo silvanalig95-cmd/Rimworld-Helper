@@ -597,9 +597,9 @@
       <plain><li>Every caravan that leaves here thinks better or worse of us than when it came. Let's make it better.</li></plain>
       <warm><li>The next time a trader's caravan limps in hungry, let's feed them and send them off with extra.</li></warm>
       <blunt><li>Somewhere out there is a faction with more guns than sense. I'd like them on our side.</li></blunt>
-      <cheerful><li>People who wave when they see us coming, instead of shooting!</li></cheerful>
-      <gloomy><li>When a raid comes that we can't handle, no one out there will send help unless we've given them a reason to.</li></gloomy>
-      <cold><li>Friendly factions are free reinforcements and reliable buyers. Cultivate one.</li></cold>
+      <cheerful><li>Traders who stay for supper, and neighbors who wave instead of shooting.</li></cheerful>
+      <gloomy><li>Every faction out there has a reason to raid us, and not one of them has a reason to help.</li></gloomy>
+      <cold><li>Goodwill costs silver now and saves lives later. I like that exchange.</li></cold>
     </pitch>
     <achieved>
       <plain><li>Their last caravan brought us a gift. I didn't know what to say.</li></plain>
@@ -631,7 +631,7 @@
       <plain><li>I've made a hundred things that were fine. I'd like to make one that's perfect.</li></plain>
       <warm><li>I want to make something that makes visitors ask who made it, so I can tell them it was all of us.</li></warm>
       <blunt><li>I'm wasting my hands on chairs and coats. Let me make something worth stealing.</li></blunt>
-      <cheerful><li>I've dreamed about it three nights running! I just need the material, the time and some luck.</li></cheerful>
+      <cheerful><li>I've dreamed about it three nights running. I just need the material, the time and a bit of luck.</li></cheerful>
       <gloomy><li>Inspiration comes once in a while, and it never stays. If it comes, I want to be ready.</li></gloomy>
       <cold><li>Traders judge us by the best thing we've made. A masterwork shows them what we can do.</li></cold>
     </pitch>
