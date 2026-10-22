@@ -21,7 +21,7 @@
     <who><canFight>true</canFight></who>
     <chosen>
       <plain>
-        <li>[inherited] {NAME} never once ran from a mechanoid. I'll {GOAL} and try to be as stubborn.</li>
+        <li>[inherited] {NAME} never once ran from a mechanoid. I'll {GOAL}, and I won't run either.</li>
         <li>I saw what the machines did to the last place I lived. Ten of them in the dirt, to start with.</li>
         <li>[afterraid] The ground outside is still scorched from the attack. When the machines come next, I'll be waiting for them. Ten, at least.</li>
       </plain>
@@ -145,7 +145,7 @@
         <li>[afterraid] There's still blood on the floor from the attack, and people just step around it. Not anymore.</li>
       </plain>
       <blunt><li>This place is filthy and no one else seems to care. Fine. I'll do it.</li></blunt>
-      <cheerful><li>I'm going to make this place sparkle! Four hundred messes, gone.</li></cheerful>
+      <cheerful><li>This place is going to sparkle! Four hundred messes, gone.</li></cheerful>
     </chosen>
     <achieved>
       <plain>
@@ -225,7 +225,7 @@
     <chosen>
       <plain>
         <li>[inherited] Whenever there was smoke, {NAME} was first to run toward it. That's my job now, and I'll {GOAL}.</li>
-        <li>Everything here burns sooner or later. I'd like to be the one who's ready when it does.</li>
+        <li>Everything here burns sooner or later. When it does, I'll be ready.</li>
         <li>[summer] The grass is dry and the lightning's close. Fires are coming. I want to be the one standing in front of them.</li>
       </plain>
       <blunt><li>Somebody has to stand in the smoke with a beater. Might as well be someone who's decided to be good at it.</li></blunt>
@@ -430,7 +430,7 @@
     <chosen>
       <plain>
         <li>[inherited] On the bad days, {NAME} was the one who got us laughing again. I'll {GOAL} and try to do the same.</li>
-        <li>Somebody needs to remember birthdays and plan the feasts. I'd like to be the one who keeps our spirits up.</li>
+        <li>Somebody needs to remember birthdays, plan the feasts and keep our spirits up. That somebody could be me.</li>
         <li>[trait:Ascetic] People here want too much and end up disappointed too often. I'd teach them to enjoy what we have. Steward suits me.</li>
       </plain>
       <warm>
@@ -486,7 +486,7 @@
     <who><notTrait><li>Psychopath</li></notTrait></who>
     <chosen>
       <plain>
-        <li>[inherited] There wasn't room for all the mourners at {NAME}'s grave. I'll {GOAL}, and try to deserve them the way {NAME} did.</li>
+        <li>[inherited] There wasn't room for all the mourners at {NAME}'s grave. I'll {GOAL}, and hope to be missed half as much as {NAME}.</li>
         <li>I have friends here, but I'd like a table so full that somebody has to sit on a crate.</li>
         <li>[newcomer] I barely know anyone's name yet. By the time I'm done here, five of them will be friends.</li>
       </plain>

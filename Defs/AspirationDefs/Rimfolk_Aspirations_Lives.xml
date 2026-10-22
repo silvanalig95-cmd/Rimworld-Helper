@@ -339,12 +339,12 @@
     <chosen>
       <plain>
         <li>My hands aren't what they were. I'd like them to make one more fine thing before they stop, something the colony keeps.</li>
-        <li>[sparked] After this week I keep thinking about what's left of a person once they're gone. It ought to be something better than a few tools.</li>
+        <li>[sparked] This week set me wondering what's left of a person once they're gone. It ought to be something better than a few tools.</li>
         <li>[inherited] {NAME} never made that last fine piece. I'll make it, and put {NAME}'s mark on it next to mine.</li>
       </plain>
       <warm><li>Something to leave behind that people will use and think, someone made this with care.</li></warm>
       <blunt><li>One more good piece. Then I'll rest.</li></blunt>
-      <gloomy><li>My hands shake. I'm going to make one fine thing anyway, while they still do as they're told.</li></gloomy>
+      <gloomy><li>My hands shake. I'll make one fine thing anyway, while they still do as they're told.</li></gloomy>
       <cold><li>I wish to leave one object of real quality. It is a practical form of memory.</li></cold>
     </chosen>
     <achieved>
@@ -438,7 +438,7 @@
         <li>[sparked] Whatever this week was, it sent me looking for my faith again. It's the only thing that ever helped.</li>
         <li>[spark:omen] My dream came true, and I don't know what to make of it except that I should start listening again.</li>
       </plain>
-      <warm><li>I miss believing. I'm going to try to find my way back to it, slowly.</li></warm>
+      <warm><li>I miss believing. I mean to find my way back to it, slowly.</li></warm>
       <gloomy><li>I don't know if there's anything to find. I'm going to look anyway.</li></gloomy>
       <cold><li>My certainty has eroded. I would prefer it restored. I will examine the matter.</li></cold>
     </chosen>
@@ -591,7 +591,7 @@
         <li>The grief sits on my chest every morning. I don't want to forget them. I just want to be able to breathe.</li>
         <li>[sparked] Another loss. I can't carry them all like this, not and still get up in the mornings.</li>
       </plain>
-      <warm><li>They wouldn't want me like this. I'm going to try to live the way they'd want.</li></warm>
+      <warm><li>They wouldn't want me like this. I'll try to live the way they'd have wanted.</li></warm>
       <blunt><li>Need to stop drowning in it. Don't know how yet.</li></blunt>
       <gloomy><li>I don't know how to stop grieving. I'm going to have to learn.</li></gloomy>
       <cold><li>The grief is impairing my function. I will work through it, methodically.</li></cold>
@@ -620,7 +620,7 @@
         <li>I can't stop going over what I did. Everyone else has moved on. I'd like to, too.</li>
         <li>I keep apologizing to people who've already forgiven me. Maybe the one I need to hear it from is me.</li>
       </plain>
-      <warm><li>I'd forgive anyone else for it. I'm going to try to give myself the same.</li></warm>
+      <warm><li>I'd forgive anyone else for it. I'll try to give myself the same.</li></warm>
       <blunt><li>Done beating myself up. Or trying to be.</li></blunt>
       <gloomy><li>I don't deserve to be forgiven. I'd like to anyway.</li></gloomy>
       <cold><li>My self-reproach has outlasted its usefulness. I will set it aside.</li></cold>

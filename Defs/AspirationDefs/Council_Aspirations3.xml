@@ -73,7 +73,7 @@
         <li>[work:Crafting] I finished another one today, and then counted. That was a hundred and twenty.</li>
       </plain>
       <warm><li>Half the gear in this colony passed through my hands. I hope it serves them well.</li></warm>
-      <blunt><li>A hundred and twenty. My hands are tired. I'm going to make another.</li></blunt>
+      <blunt><li>Done. My hands are tired, and I've already started the next one.</li></blunt>
     </achieved>
   </ColonyCouncil.AspirationDef>
 
@@ -205,7 +205,7 @@
         <li>[sparked] Weddings make you think about what comes after. Grandchildren, in my case.</li>
       </plain>
       <warm><li>A grandchild, here, safe. That's all I want from the years I have left.</li></warm>
-      <cheerful><li>I'm going to be the best grandparent anyone's ever had! I just need a grandchild.</li></cheerful>
+      <cheerful><li>I've already whittled a rattle! All I need now is a grandchild.</li></cheerful>
       <gloomy><li>I'm running out of time, and my family has to go on. A grandchild would settle it.</li></gloomy>
     </chosen>
     <achieved>
@@ -376,7 +376,7 @@
     <achieved>
       <plain><li>Ten days of my own time, open sky and work I chose. I feel like myself again.</li></plain>
       <cheerful><li>I'm free as a bird, and the bird lives here!</li></cheerful>
-      <gloomy><li>Free. I keep waiting for someone to take it back.</li></gloomy>
+      <gloomy><li>Free. Someone will take it back eventually, and until then I'm out in the sun.</li></gloomy>
     </achieved>
   </ColonyCouncil.AspirationDef>
 

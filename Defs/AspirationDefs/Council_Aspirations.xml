@@ -36,7 +36,7 @@
     <achieved>
       <plain>
         <li>Someone watched me at {SKILL} today and asked how I do it. I told them without having to stop and think.</li>
-        <li>I'm a master of {SKILL} now. I keep waiting for someone to tell me I'm not.</li>
+        <li>I'm a master of {SKILL} now. Half the time I expect someone to tell me I'm not.</li>
       </plain>
       <warm><li>I've mastered {SKILL}. Now I want to teach it to anyone who'll listen.</li></warm>
       <gloomy><li>I'm a master of {SKILL} now. I thought I'd feel more different than I do.</li></gloomy>
@@ -87,12 +87,12 @@
       <plain>
         <li>[spark:birth] I held the new baby today and didn't want to give it back. I want one of my own.</li>
         <li>[inherited] {NAME} kept a list of names for children who never came. I'll {GOAL}, and I'll use one of the names.</li>
-        <li>I keep thinking about a child of my own. Someone to teach, who'll still be here after me.</li>
+        <li>I've started picturing a child of my own. Someone to teach, who'll still be here after me.</li>
         <li>One day I'd like to hear a baby crying in this colony and know it's mine.</li>
       </plain>
       <gloomy>
         <li>Even here, I want a child. One of us ought to leave more behind than graves.</li>
-        <li>[afterraid] We nearly lost this place. If we keep it, somebody ought to inherit it, and it might as well be my child.</li>
+        <li>[afterraid] We nearly lost this place. If we keep it, somebody ought to inherit it. I'd like that to be my child.</li>
       </gloomy>
       <warm><li>A child of my own, someone small to show how you plant a seed and wait for it to come up.</li></warm>
     </chosen>
@@ -124,7 +124,7 @@
       </plain>
       <blunt><li>I'm told I'm hard to like. I'll find three people who disagree.</li></blunt>
       <gloomy><li>I'm lonely. There, I wrote it. I'm going to do something about it.</li></gloomy>
-      <cheerful><li>I'm going to make three best friends! I'll be so friendly they won't stand a chance.</li></cheerful>
+      <cheerful><li>Three best friends, that's the plan! I'll be so friendly they won't stand a chance.</li></cheerful>
     </chosen>
     <achieved>
       <plain>
@@ -216,7 +216,7 @@
     </chosen>
     <achieved>
       <plain>
-        <li>They chose me. I have a seat on the council now. I'm going to try very hard not to waste it.</li>
+        <li>They chose me. I have a seat on the council now, and I'll try very hard not to waste it.</li>
       </plain>
       <blunt><li>Got the seat. About time.</li></blunt>
       <cheerful><li>I'm on the council! It's the same chair I always sat in, but it feels different now.</li></cheerful>
@@ -295,7 +295,7 @@
         <li>[old] I've outlived most of the people I started out with. Three more years. Then I'll negotiate for three more.</li>
       </plain>
       <gloomy><li>Three more years without dying. It sounds simple enough written down.</li></gloomy>
-      <cheerful><li>Three more years here! I'm going to enjoy every one of them, even the winters.</li></cheerful>
+      <cheerful><li>Three more years here! I'll make the most of them, winters and all.</li></cheerful>
     </chosen>
     <achieved>
       <plain>
@@ -317,7 +317,7 @@
     <sparks><li>birth</li></sparks>
     <chosen>
       <plain>
-        <li>[spark:birth] A baby was born here today. I'd like to see this colony full of children.</li>
+        <li>[spark:birth] A baby was born here today. Imagine this place full of children.</li>
         <li>[inherited] {NAME} used to count the empty beds and talk about who might fill them one day. I'll {GOAL}.</li>
         <li>I'd like to see this place full, with noise at dinner and arguments over chores, like a real town.</li>
       </plain>
@@ -521,7 +521,7 @@
         <li>It came true. My dream came true. I don't know whether to be proud or frightened.</li>
       </plain>
       <cold><li>A dream preceded the event with enough accuracy to rule out chance. Mostly. I'm troubled.</li></cold>
-      <gloomy><li>My dream came true. I wish it had been a happier one.</li></gloomy>
+      <gloomy><li>It came true, every bit of it. I wish it had been a happier dream.</li></gloomy>
     </achieved>
   </ColonyCouncil.AspirationDef>
 

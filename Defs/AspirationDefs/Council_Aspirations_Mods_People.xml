@@ -86,7 +86,7 @@
         <li>[inherited] {NAME} was close to it, so close. I'll {GOAL} in {NAME}'s place.</li>
       </plain>
       <cold><li>Specialists are worth more than generalists. I'll specialize in {SKILL}.</li></cold>
-      <cheerful><li>I'm going to be the person everyone comes to about {SKILL}!</li></cheerful>
+      <cheerful><li>Soon everyone will be coming to me about {SKILL}!</li></cheerful>
     </chosen>
     <achieved>
       <plain>
