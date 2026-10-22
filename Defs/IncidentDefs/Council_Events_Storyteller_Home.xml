@@ -33,8 +33,8 @@
         </titles>
         <!-- {TALE}: who the colonist used to be, from their backstory ("a smuggler"). -->
         <texts>
-          <li>{X_nameDef}, a traveler of {FACTION}, stopped {A_nameDef} by the well and said a name {A_nameDef} hasn't used in years. {X_nameDef} remembers the face from the wanted posters, from when {A_nameDef} was {TALE}, and remembers the reward on it.\n\n{X_nameDef} would forget all about it for {COUNT} silver.</li>
-          <li>[lowtech] A traveler of {FACTION}, {X_nameDef}, kept staring at {A_nameDef} all morning, and finally took {A_objective} aside. There used to be a price on {A_nameDef}'s head, back when {A_pronoun} was {TALE}, and {X_nameDef} still remembers the drawing on the notice.\n\nFor {COUNT} silver, {X_nameDef} will forget it.</li>
+          <li>{X_nameDef}, a traveler of {FACTION}, stopped {A_nameDef} in the yard and said a name {A_nameDef} hasn't used in years. {X_nameDef} remembers the face from the wanted posters, from when {A_nameDef} was {TALE}, and remembers the reward on it.\n\n{X_nameDef} would forget all about it for {COUNT} silver.</li>
+          <li>[lowtech] "It was a good likeness," {X_nameDef} of {FACTION} told {A_nameDef}, once they were alone. "The price under it was better."\n\nThe notice went up years ago, when {A_nameDef} was {TALE}. {X_nameDef} would forget ever seeing it, for {COUNT} silver.</li>
           <li>[!lowtech] {X_nameDef} of {FACTION} spent a long time looking at {A_nameDef} across the yard before coming over. {X_nameDef} has seen that face on a bounty list, from when {A_nameDef} was {TALE}, and thinks keeping it off the comms is worth {COUNT} silver.</li>
         </texts>
         <defaultOption>1</defaultOption>
@@ -51,10 +51,10 @@
           </li>
           <li>
             <label>Call the bluff (they may talk)</label>
-            <outcome>The colony tells {X_nameDef} to say whatever {X_pronoun} likes. {X_nameDef} shrugs and leaves without another word, and that seems to be the end of it.</outcome>
+            <outcome>{X_nameDef} is told to say whatever {X_pronoun} likes, to whoever {X_pronoun} likes. {X_nameDef} shrugs and goes, and so far that seems to be the end of it.</outcome>
             <riskChance>0.5</riskChance>
             <riskReplaces>true</riskReplaces>
-            <riskOutcome>The colony tells {X_nameDef} to say whatever {X_pronoun} likes, and {X_pronoun} does. Within days {FACTION} have heard all about what {A_nameDef} used to be.</riskOutcome>
+            <riskOutcome>{X_nameDef} is told to say whatever {X_pronoun} likes, and takes the colony at its word. By the end of the week, all of {FACTION} will know what {A_nameDef} used to be.</riskOutcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
             </effects>
@@ -117,15 +117,15 @@
         </titles>
         <!-- {X}: the commander (never seen, only written about); {TALE}: what they ask for. -->
         <texts>
-          <li>A rider of {FACTION} brought a letter for {A_nameDef}, sealed with an old unit badge. It's from {X_nameDef}, who commanded {A_objective} years ago and now leads {FACTION}'s fighters against {ENEMY}. The campaign is short of supplies, and {X_nameDef} asks, as a favor to an old comrade, for {TALE}.\n\nIf it goes well, {X_nameDef} writes, the colony will get a share of the spoils.</li>
-          <li>[lowtech] A rider brought {A_nameDef} a letter in a hand {A_pronoun} knew from the first line: {X_nameDef}, {A_possessive} old captain, who now leads the fighters of {FACTION} against {ENEMY}. They're short of everything, {X_nameDef} writes, and {TALE} would make a difference.\n\nA share of the spoils will come back to the colony, if they win.</li>
-          <li>[!lowtech] {A_nameDef}'s old commander, {X_nameDef}, has sent a message over the comms. {X_nameDef} now leads {FACTION}'s militia against {ENEMY}, and the campaign is short of supplies: {TALE} would keep them going.\n\nA share of whatever they take will come back to the colony, if they win.</li>
+          <li>The seal on the letter is an old unit badge, and {A_nameDef} knew it before the letter was open. It's from {X_nameDef}, who commanded {A_objective} once.\n\n"I'm fighting {ENEMY} for {FACTION} these days, and we're short of everything but stubbornness. If your people can spare {TALE}, send it back with my rider. Win or lose, you'll hear from me, and if we win you'll have a share of the spoils."</li>
+          <li>[lowtech] {X_nameDef}, who was {A_nameDef}'s captain once, leads the fighters of {FACTION} against {ENEMY} now, and the campaign has run short. The letter a rider brought asks for {TALE}, for old times' sake.\n\nA share of the spoils will come back to the colony, if they win.</li>
+          <li>[!lowtech] The message on the comms is signed {X_nameDef}, {A_nameDef}'s old commander, and reads like a field order.\n\n{FACTION} engaged with {ENEMY}. Supplies short. Request {TALE}. Share of spoils to follow on success.\n\n{A_nameDef} read it twice, and stood up straighter the second time.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
           <li>
             <label>Send {TALE} (they may lose)</label>
-            <outcome>The supplies go out with {FACTION}'s rider, along with a note from {A_nameDef} to {A_possessive} old commander.</outcome>
+            <outcome>The supplies go out with {FACTION}'s rider, along with a few lines in {A_nameDef}'s hand for {A_possessive} old commander.</outcome>
             <ways><generosity>2</generosity></ways>
           </li>
           <li>
@@ -148,8 +148,8 @@
           <li>[lost] Bad news from the campaign</li>
         </doneTitles>
         <done>
-          <li>[won,lowtech] {TALE} has written from the field: {FACTION} broke {ENEMY}'s line, and the supplies from the colony helped do it. A wagon came with the letter, loaded with the colony's share of the spoils: {ITEM}.</li>
-          <li>[won,!lowtech] A message from {TALE}: {FACTION}'s militia drove {ENEMY} back, and the colony's supplies kept them going when it counted. The colony's share of the spoils came with it: {ITEM}.</li>
+          <li>[won,lowtech] "We broke their line," {TALE} writes, "and your supplies were in our bellies when we did it." {FACTION} have beaten {ENEMY} in the field, and the colony's share of the spoils came with the letter: {ITEM}.</li>
+          <li>[won,!lowtech] {FACTION}'s militia has driven {ENEMY} back, {TALE} reports, and the colony's supplies kept them going when it counted. A share of the spoils has come with the news: {ITEM}.</li>
           <li>[lost] {TALE} has written from the field, briefly. The campaign against {ENEMY} went badly, and {FACTION} have fallen back to their own lands. The colony's supplies were well used, {TALE} writes, and won't be forgotten.</li>
         </done>
         <cancelled>
@@ -184,9 +184,9 @@
           <li>An old debt of thanks</li>
         </titles>
         <texts>
-          <li>[healer] {X_nameDef} of {FACTION} walked a long way to find {A_nameDef}. Years ago, when {A_nameDef} was still a healer by trade, {A_pronoun} set {X_nameDef}'s broken leg and sat up three nights with the fever after. {X_nameDef} never forgot it, and has come with a gift.</li>
-          <li>[doctor] A traveler of {FACTION}, {X_nameDef}, asked at the gate for {A_nameDef} by name. {A_nameDef} pulled {X_nameDef} through a bad fever on the road, years ago, and had nearly forgotten. {X_nameDef} hadn't, and has come with a gift.</li>
-          <li>{X_nameDef} of {FACTION} has come to see {A_nameDef}, who once saved {X_possessive} life with a needle, a lamp and a long night. {X_nameDef} has brought a gift, and says the debt is bigger than any gift.</li>
+          <li>[healer] {X_nameDef} of {FACTION} has walked a long way, with a slight hitch in {X_possessive} stride, to find {A_nameDef}. Years ago, when {A_nameDef} was still a healer by trade, {A_pronoun} set that leg and sat up three nights with the fever after. {X_nameDef} has brought a gift.</li>
+          <li>[doctor] "You won't remember me," {X_nameDef} of {FACTION} told {A_nameDef} at the gate, and at first {A_nameDef} didn't. Then it came back: a bad fever on the road, years ago, and a long night pulling {X_nameDef} through it.\n\n{X_nameDef} has brought a gift.</li>
+          <li>{X_nameDef} of {FACTION} has come to see {A_nameDef}, who once saved {X_possessive} life with a needle, a lamp and a long night. The gift {X_nameDef} brought is wrapped in good cloth, and was plainly saved up for.</li>
         </texts>
         <defaultOption>0</defaultOption>
         <options>
@@ -202,7 +202,7 @@
             <outcome>{X_nameDef} says yes before the question is finished, and asks {A_nameDef} where {X_pronoun} can sleep.</outcome>
             <riskChance>0.4</riskChance>
             <riskReplaces>true</riskReplaces>
-            <riskOutcome>{X_nameDef} would like nothing better, but there's family waiting at home. The gift stays, though, and so does the thanks.</riskOutcome>
+            <riskOutcome>{X_nameDef} would like nothing better, but there's family at home expecting {X_objective} back before the season turns. {X_nameDef} leaves the gift on the table anyway.</riskOutcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Join" />
               <li Class="ColonyCouncil.DilemmaEffect_Tie"><kind>Friends</kind><amount>20</amount></li>
@@ -215,7 +215,7 @@
           </li>
           <li>
             <label>Ask {X_objective} to spread the word</label>
-            <outcome>{X_nameDef} promises to tell every settlement on the road home about the colony's healer. The neighbors will hear of {A_nameDef}.</outcome>
+            <outcome>Every settlement on {X_nameDef}'s road home will hear about the colony's healer, {X_pronoun} promises, whether they ask or not. The neighbors will know {A_nameDef}'s name.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_FormerPatient</thought></li>
             </effects>
@@ -247,12 +247,12 @@
         </titles>
         <!-- {TALE}: who the colonist used to be ("a smuggler"). -->
         <texts>
-          <li>[outlaw] Mending the lining of an old coat, {A_nameDef} found a map folded into the seam. {A_nameDef} drew it years ago, as {TALE}, to mark where a share of the takings was buried, and had forgotten it was there.\n\nThe place is a few days' travel from the colony. Whatever was hidden there may still be there.</li>
+          <li>[outlaw] Mending the lining of an old coat, {A_nameDef} found a map folded into the seam. {A_nameDef} drew it years ago, as {TALE}, to mark where a share of the takings was buried, and had forgotten it was there.\n\nThe place is a few days' travel from the colony. Whether the takings are still in the ground is another matter.</li>
           <li>[soldier] In the bottom of an old kitbag, {A_nameDef} found a map from the war, with a supply cache marked on it in a hand {A_pronoun} doesn't recognize. The unit that buried it never came back for it, as far as {A_nameDef} knows.\n\nIt's a few days' travel from here.</li>
           <li>[trader] {A_nameDef} found an old ledger at the bottom of a chest, and pressed between its pages a map from {A_possessive} trading days, with a stash of goods marked on it. It's a few days' travel, and {A_nameDef} never told anyone else where it was.</li>
           <li>[noble] Among the few things {A_nameDef} brought from {A_possessive} family's house is a book of old estate maps. Tucked in the back is one {A_nameDef} had never noticed: an old lodge a few days' travel from the colony, with something marked beneath its cellar.</li>
           <li>[scholar] Sorting through old notes, {A_nameDef} found a map copied from an archive years ago, of a ruin {A_pronoun} always meant to visit. It's a few days' travel from the colony, and the archive's notes say something was left there.</li>
-          <li>{A_nameDef} found an old map among {A_possessive} things, from before {A_pronoun} came here. A spot is marked on it, a few days' travel from the colony. {A_nameDef} can't remember who drew it, but it still looks like it means something.</li>
+          <li>A cross in faded ink, a few days' travel from the colony, is all the old map in {A_nameDef}'s things has to say. {A_nameDef} can't remember who gave it to {A_objective}, or why {A_pronoun} kept it.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -263,7 +263,7 @@
           </li>
           <li>
             <label>Keep it as a keepsake</label>
-            <outcome>{A_nameDef} folds the map back up and puts it away with {A_possessive} things.</outcome>
+            <outcome>{A_nameDef} folds the map back up along its old creases and puts it away with {A_possessive} things.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_OldMapKept</thought></li>
             </effects>
@@ -304,7 +304,7 @@
           <li>[coin] {A_nameDef} dug an old coin out of the mud by the path, green with age, stamped with a face that none of the adults recognize.\n\n{A_nameDef} has polished it on {A_possessive} sleeve until it shines, and wants to know whose face it is. {B_nameDef} might be able to guess.</li>
           <li>[skull] {A_nameDef} brought home a bird's skull from the woods, white and light as paper, and set it beside {A_possessive} plate at supper. {A_nameDef} wants to know what kind of bird it was and how it flew.\n\n{B_nameDef} has offered to look at it with {A_objective}.</li>
           <li>[geode] {A_nameDef} cracked open a round gray stone by the stream and found it full of purple crystal inside. {A_nameDef} has shown it to every person in the colony at least twice.\n\n{B_nameDef} could explain how the crystals got in there.</li>
-          <li>[machine] {A_nameDef} pulled something out of an old junk pile: a scorched circuit board with a tiny screen that still glows faintly when it's tilted. {A_nameDef} is sure it's important.\n\n{B_nameDef} could take it apart with {A_objective} and explain what it was.</li>
+          <li>[machine] {A_nameDef} pulled a scorched circuit board out of an old junk pile, with a tiny screen that still glows when it's tilted. "It's a robot's brain," {A_pronoun} told {B_nameDef}, very seriously.\n\n{B_nameDef} could take it apart with {A_objective} and find out what it really was.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -328,7 +328,7 @@
           </li>
           <li>
             <label>Trade it ({COUNT} silver)</label>
-            <outcome>The find goes to the next trader for {COUNT} silver. {A_nameDef} watches it go.</outcome>
+            <outcome>It sells for {COUNT} silver. {A_nameDef} hands it over without a word, and is very quiet for the rest of the day.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_FindSold</thought></li>
             </effects>
@@ -358,11 +358,11 @@
           <li>Good {PET_nameDef}</li>
         </titles>
         <texts>
-          <li>[game] {PET_nameDef} trotted in from the fields with {BEAST} in {PET_possessive} jaws and laid it at {A_nameDef}'s feet. {A_nameDef} has been praising {PET_objective} all morning, and there's fresh meat for the pot.</li>
-          <li>[herbs] {PET_nameDef} came back from the woods with a muddy mouthful of healing herbs, roots and all, and dropped them in {A_nameDef}'s lap. {A_nameDef} is telling anyone who'll listen that {PET_nameDef} knew exactly what {PET_pronoun} was doing.</li>
-          <li>[purse] {PET_nameDef} came home with a small leather purse, chewed at one corner, and wouldn't give it up until {A_nameDef} traded a bone for it. Inside: {COUNT} silver. Some traveler on the road will be patting their pockets tonight.</li>
+          <li>[game] There was a thump at {A_nameDef}'s door, and on the step stood {PET_nameDef} with {BEAST} hanging from {PET_possessive} jaws. Fresh meat for the pot, and a very pleased animal.</li>
+          <li>[herbs] {PET_nameDef} came back from the woods and dropped a muddy mouthful of healing herbs in {A_nameDef}'s lap, roots and all. {A_nameDef} is telling anyone who'll listen that {PET_nameDef} knew exactly what {PET_pronoun} was doing.</li>
+          <li>[purse] A small leather purse, chewed at one corner, is the latest thing {PET_nameDef} has brought home, and {PET_nameDef} wouldn't give it up until {A_nameDef} traded a bone for it. {COUNT} silver inside. Somewhere on the road, a traveler will be patting their pockets tonight.</li>
           <li>[component] {PET_nameDef} dug something out of the scrap heap and carried it proudly to {A_nameDef}: a component, slightly chewed and still in working order.</li>
-          <li>[nothing] {PET_nameDef} came back from the fields carrying an old boot that doesn't belong to anyone in the colony, and laid it at {A_nameDef}'s feet like a trophy. {A_nameDef} has put it on a shelf.</li>
+          <li>[nothing] An old boot that belongs to no one in the colony now sits on {A_nameDef}'s shelf. {PET_nameDef} brought it in from the fields and laid it at {A_nameDef}'s feet like a trophy, and it seemed rude to throw it out.</li>
         </texts>
       </li>
     </modExtensions>
@@ -387,10 +387,10 @@
           <li>[lowtech] An iron-bound chest</li>
         </titles>
         <texts>
-          <li>[lowtech,other] {A_nameDef} struck wood while digging and uncovered an old chest bound in iron, its lock rusted solid. It's heavy, and something inside shifts when it's tilted.\n\n{B_nameDef} thinks the lock can be worked open without damage, given time. It could also be broken open, or sold sealed to a rider of {FACTION} for {COUNT} silver.</li>
-          <li>[!lowtech,other] {A_nameDef} turned up a sealed supply crate, buried long ago, with a dead keypad and its seals intact. Whatever is inside has been dry all this time.\n\n{B_nameDef} could try to open it properly. It could also be pried open, or sold to {FACTION} for {COUNT} silver, unopened.</li>
-          <li>[mining,other] Cutting into the hillside, {A_nameDef} broke into a small hollow with a crate in it, sealed and stacked as neatly as the day someone left it there.\n\n{B_nameDef} thinks the lock can be opened without breaking anything. It could also be broken open, or sold sealed to {FACTION} for {COUNT} silver.</li>
-          <li>[same] Digging outside, {A_nameDef} found an old sealed crate with a stubborn lock. {A_nameDef} has the best hands in the colony, and thinks the lock could be worked open without breaking anything.\n\nIt could also be broken open, or sold sealed to {FACTION} for {COUNT} silver.</li>
+          <li>[lowtech,other] {A_nameDef} struck wood while digging and uncovered an old chest bound in iron, its lock rusted solid. It's heavy, and something inside shifts when it's tilted.\n\n{B_nameDef} thinks the lock will give to patience and a thin pick. An axe would be quicker and might ruin what's inside. A rider of {FACTION} would pay {COUNT} silver for it as it is.</li>
+          <li>[!lowtech,other] Under {A_nameDef}'s shovel was the lid of a supply crate, stenciled with a word too faded to read. The keypad is dead and the seals are whole, so whatever is inside has been dry all this time.\n\n{B_nameDef} wants a go at opening it properly. A crowbar is quicker. {FACTION} would pay {COUNT} silver for it unopened.</li>
+          <li>[mining,other] Cutting into the hillside, {A_nameDef} broke into a small hollow with a crate in it, sealed, and set down as neatly as the day someone left it there.\n\n{B_nameDef} thinks the lock can be opened without breaking anything, or it could just be broken. If the colony would rather not know, {FACTION} will pay {COUNT} silver for it sealed.</li>
+          <li>[same] {A_nameDef} found an old sealed crate while digging outside, and has been fiddling with its lock ever since. With the best hands in the colony and an afternoon, {A_nameDef} thinks it will open clean.\n\nThe quick way is a hammer. {FACTION} would give {COUNT} silver for it sealed.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
