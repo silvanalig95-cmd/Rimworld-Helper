@@ -82,7 +82,7 @@
       </plain>
       <warm><li>{OTHER_nameDef} and I swapped lives for a day, and by evening we both wanted our own back.</li></warm>
       <blunt><li>Had what {OTHER_nameDef} has, in the dream. Didn't feel as good as I thought.</li></blunt>
-      <cheerful><li>I had a dream I was the colony's favorite! For once it was {OTHER_nameDef} looking on.</li></cheerful>
+      <cheerful><li>I had a dream I was the colony's favorite. For once it was {OTHER_nameDef} looking on.</li></cheerful>
       <gloomy><li>Dreamt {OTHER_nameDef}'s luck was a pile of firewood and mine was one damp stick.</li></gloomy>
       <cold><li>A dream of envy, about {OTHER_nameDef}. Noted, and set aside.</li></cold>
     </lines>
@@ -149,7 +149,7 @@
       </plain>
       <warm><li>Dreamt I told everyone what I did, and they were kinder about it than I am.</li></warm>
       <blunt><li>What I did, all night, over and over. Didn't help.</li></blunt>
-      <cheerful><li>My worst secret came out in my dream, and they all just laughed and passed the salt!</li></cheerful>
+      <cheerful><li>My worst secret came out in my dream, and they all just laughed and passed the salt.</li></cheerful>
       <gloomy><li>The dream told everyone what I already know about myself.</li></gloomy>
       <cold><li>A shame dream. Unpleasant, and it taught me nothing.</li></cold>
     </lines>
@@ -239,7 +239,7 @@
       </plain>
       <warm><li>The people I care about were all in my dream, older and grayer and happier, eating outside under a tree.</li></warm>
       <blunt><li>Good dream. Things worked out in it.</li></blunt>
-      <cheerful><li>Dreamt everything turned out fine! I'm holding the dream to it.</li></cheerful>
+      <cheerful><li>Dreamt everything turned out fine. I'm holding the dream to it.</li></cheerful>
       <gloomy><li>A hopeful dream. I'll try not to trust it too much.</li></gloomy>
       <cold><li>The colony as a town, in the dream. Possible, with work. Perhaps twenty years of it.</li></cold>
     </lines>
@@ -356,7 +356,7 @@
       </plain>
       <warm><li>Someone in my dream spread cool mud on my arms until the itching stopped.</li></warm>
       <blunt><li>Itched in my sleep. Itching now.</li></blunt>
-      <cheerful><li>Dreamt I jumped into a cold river, and the itch floated off downstream!</li></cheerful>
+      <cheerful><li>Dreamt I jumped into a cold river, and the itch floated off downstream like a leaf.</li></cheerful>
       <gloomy><li>Bugs in the dream, bugs in the blanket.</li></gloomy>
       <cold><li>The itching shaped my dreams. Expected.</li></cold>
     </lines>
@@ -480,7 +480,7 @@
       </plain>
       <warm><li>The colony and the camp ate together on blankets in the grass, and nobody counted the bowls.</li></warm>
       <blunt><li>The camp, in my sleep. They're still out there.</li></blunt>
-      <cheerful><li>Had a dream the camp threw a festival and invited the whole colony!</li></cheerful>
+      <cheerful><li>Had a dream the camp threw a festival and invited all of us. There were drums.</li></cheerful>
       <gloomy><li>The camp took everything and left in the night. In the dream, anyway.</li></gloomy>
       <cold><li>The strangers on our land walked through my sleep. I'll keep an eye on them awake as well.</li></cold>
     </lines>
@@ -546,7 +546,7 @@
         <li>They decided everything while I slept, and when I woke inside the dream, the colony belonged to someone else.</li>
       </plain>
       <blunt><li>Council dream. Three hours of it. Tired now.</li></blunt>
-      <cheerful><li>A nightmare about a meeting that never ended! At least the bread was good.</li></cheerful>
+      <cheerful><li>A nightmare about a meeting that never ended. At least the bread was good.</li></cheerful>
       <gloomy><li>Another meeting in my sleep. I wasn't asked to that one either.</li></gloomy>
       <cold><li>A dream about procedure. Tedious, like the real thing.</li></cold>
     </lines>
@@ -629,7 +629,7 @@
         <li>The banners on the road changed every morning, and we never knew whose side we were on.</li>
       </plain>
       <warm><li>The riders went by, and one of them lifted a hand to me, and I lifted mine.</li></warm>
-      <blunt><li>Fighting on the roads, all night. Sharpened my knife this morning.</li></blunt>
+      <blunt><li>Fighting on the roads, all night. My knife's sharp now.</li></blunt>
       <cheerful><li>Dreamt the riders went right past and waved!</li></cheerful>
       <gloomy><li>They came, in the dream. Sooner or later they will.</li></gloomy>
       <cold><li>A dream about the fighting in the region. I'd rather it stayed out there.</li></cold>
@@ -677,7 +677,7 @@
       </plain>
       <warm><li>Dreamt of a summer evening with everyone outside, and nobody in a hurry to go in.</li></warm>
       <blunt><li>Hot dream. Hot morning.</li></blunt>
-      <cheerful><li>A whole day in the river, in my dream, and I came out wrinkled as a raisin!</li></cheerful>
+      <cheerful><li>A whole day in the river, in my dream, and I came out wrinkled as a raisin.</li></cheerful>
       <gloomy><li>Dreamt the sun would never set. It felt like a threat.</li></gloomy>
       <cold><li>A summer dream. The heat gets into everything.</li></cold>
     </lines>

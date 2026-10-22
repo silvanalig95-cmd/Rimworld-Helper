@@ -25,7 +25,7 @@
         <li>[beast] {NAME} was breathing under the floor all night, slow and patient.</li>
       </plain>
       <warm><li>Dreamt {NAME} came back, and everyone I love stood between us without being asked.</li></warm>
-      <blunt><li>Dreamt of {NAME}. Woke up with my fists shut.</li></blunt>
+      <blunt><li>{NAME}, all night. My hands are still fists.</li></blunt>
       <gloomy><li>{NAME} is out there. In the dream, {NAME} was in here.</li></gloomy>
       <cold><li>{NAME} at the gate, in the dream. I'm taking it as practice.</li></cold>
     </lines>
@@ -68,7 +68,7 @@
         <li>I held the key to {NAME}'s cell, and it got heavier every hour, and I couldn't put it down.</li>
       </plain>
       <warm><li>Dreamt I brought {NAME} a bowl of soup and we said nothing, and that was the end of something.</li></warm>
-      <blunt><li>Dreamt of {NAME} in the cells. Checked the lock this morning.</li></blunt>
+      <blunt><li>Dreamt of {NAME} in the cells. The lock's fine. I checked.</li></blunt>
       <gloomy><li>Dreamt {NAME} was the free one and I was in the cell, and the others brought {NAME} my supper.</li></gloomy>
       <cold><li>A dream about the prisoner. The lock held, as locks do.</li></cold>
     </lines>

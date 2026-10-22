@@ -46,7 +46,7 @@
       </blunt>
       <cheerful>
         <li>Had a dream we'd built a proper town here, with a bakery on the corner. We could, you know.</li>
-        <li>I was home in my dream, and they'd all saved me a seat! My sister had even made the plum cake.</li>
+        <li>I was home in my dream, and they'd all saved me a seat, and my sister had made the plum cake.</li>
         <li>My old bed and my new one were the same bed, and I could roll from home to here and back.</li>
       </cheerful>
       <gloomy>
@@ -478,7 +478,7 @@
         <li>In the dream {PET_nameDef} and I ran across open country, nothing chasing us and nowhere to be.</li>
         <li>Dreamt {PET_nameDef} curled up on my chest, heavy as a sack of grain, and I didn't move till morning.</li>
       </plain>
-      <cheerful><li>{PET_nameDef} was the size of a house, and we went everywhere together!</li></cheerful>
+      <cheerful><li>{PET_nameDef} was the size of a house, and I rode on top and waved at everyone.</li></cheerful>
     </lines>
   </ColonyCouncil.DreamDef>
 
