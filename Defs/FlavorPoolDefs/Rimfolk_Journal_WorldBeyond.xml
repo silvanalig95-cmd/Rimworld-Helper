@@ -11,13 +11,14 @@
     <defName>Council_Journal_KinGreeted</defName>
     <lines>
       <plain>
-        <li>A stranger knew my name today. Not from a wanted poster, for once. From something I did right.</li>
-        <li>{X_nameDef} thanked me for something I'd half forgotten. I've been thinking about it all evening. You never know what stays with people.</li>
-        <li>I don't know what to do with being thanked like that. I said it was nothing. It wasn't nothing to them.</li>
-        <li>[trait:Kind] There are people out there who think of this colony and think of me. That's a strange and good thing to carry about.</li>
-        <li>[skill:Medicine] Saw my own stitches today on a stranger's arm, healed clean. Best thing I've seen all season.</li>
+        <li>A stranger knew my name today, and said it like it was good news.</li>
+        <li>{X_nameDef} thanked me for something I'd half forgotten. I've spent the evening trying to remember that day properly.</li>
+        <li>I said it was nothing. It wasn't nothing to them, I could see that.</li>
+        <li>[trait:Kind] Somewhere out there, people say my name over supper. I keep turning that over.</li>
+        <li>[skill:Medicine] A stranger thanked me today, and I caught myself checking their color and their breathing out of habit. Healthy. Good.</li>
         <li>[trait:Abrasive] Got thanked by a stranger and didn't know where to look. Told them to stop it. Didn't mean it.</li>
         <li>[child] A grown-up from far away said my name like it was important. I'm going to remember it forever.</li>
+        <li>{X_nameDef} shook my hand like it was worth something.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
