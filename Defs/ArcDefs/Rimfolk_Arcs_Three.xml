@@ -21,7 +21,7 @@
   <ColonyCouncil.ArcDef>
     <defName>Council_Arc_Suitors</defName>
     <label>a rival in love</label>
-    <summary>Two colonists are fond of the same person, and both of them know it. Walks, words between the rivals, and in the end a choice, made the game's own way or by the heart over time.</summary>
+    <summary>Two colonists are fond of the same person, and both of them know it. Walks together, a few stiff words between the rivals, then the choice: a romance with one of them, or, if none comes in time, whichever of the two is liked better, or neither.</summary>
     <workerClass>ColonyCouncil.ArcWorker_Suitors</workerClass>
     <withThird>true</withThird>
     <weight>0.9</weight>
@@ -29,23 +29,23 @@
     <stages>
       <li>
         <label>smitten</label>
-        <waiting>Next: a little time alone with {OTHER_nameDef}.</waiting>
+        <waiting>Next: some time alone with {OTHER_nameDef}.</waiting>
         <journal>
           <plain>
             <li>I keep finding reasons to be wherever {OTHER_nameDef} is working. I've run out of good reasons and started using bad ones.</li>
-            <li>{OTHER_nameDef} laughed at something I said at supper. I've been thinking about it all day, which is ridiculous.</li>
+            <li>{OTHER_nameDef} laughed at what I said about the rain at supper. A real laugh, not a polite one. I've been turning it over all day.</li>
             <li>[night] Can't sleep. Thinking about {OTHER_nameDef}, which isn't helping.</li>
             <li>Every time {OTHER_nameDef} walks into a room I forget what I came in for.</li>
           </plain>
-          <warm><li>I'd like to make {OTHER_nameDef}'s days a little easier. I'd like to be the reason {OTHER_pronoun} smiles. That's all, for now.</li></warm>
+          <warm><li>Mended {OTHER_nameDef}'s boot strap this morning before {OTHER_pronoun} was up. I didn't say it was me.</li></warm>
           <blunt><li>I like {OTHER_nameDef}. More than like. There, I've written it down.</li></blunt>
-          <cheerful><li>I made {OTHER_nameDef} laugh twice today! I'm keeping count, which I know is silly.</li></cheerful>
-          <gloomy><li>Of course I've gone and fallen for {OTHER_nameDef}. Of course I have. Nothing good ever came of this.</li></gloomy>
-          <cold><li>I find myself thinking about {OTHER_nameDef} at inconvenient times. I am treating it as a fact to be dealt with.</li></cold>
+          <cheerful><li>I made {OTHER_nameDef} laugh twice today! I'm keeping count.</li></cheerful>
+          <gloomy><li>I've gone and fallen for {OTHER_nameDef}. This sort of thing has never once ended well for me.</li></gloomy>
+          <cold><li>{OTHER_nameDef} has become a distraction. Mornings, meals, any room {OTHER_pronoun} is in. I'll have to decide what to do about it.</li></cold>
         </journal>
         <chronicle>
-          <li>{PAWN_nameDef} has fallen for {OTHER_nameDef}, and everyone but {OTHER_nameDef} seems to know it.</li>
-          <li>{PAWN_nameDef} has been finding reasons to spend time with {OTHER_nameDef}.</li>
+          <li>{PAWN_nameDef} has taken to saving {OTHER_nameDef} a seat at supper, and to walking the long way round to wherever {OTHER_nameDef} is working.</li>
+          <li>{PAWN_nameDef} is sweet on {OTHER_nameDef}. The cooks have noticed. {OTHER_nameDef} hasn't, yet.</li>
         </chronicle>
         <gate>
           <kind>Talk</kind>
@@ -64,16 +64,16 @@
         <waiting>Next: a word between {PAWN_nameDef} and {THIRD_nameDef}, who is fond of {OTHER_nameDef} too.</waiting>
         <journal>
           <plain>
-            <li>{THIRD_nameDef} brought {OTHER_nameDef} a cup of something hot this morning. I saw {THIRD_objective} do it. I saw {OTHER_nameDef} smile.</li>
+            <li>{THIRD_nameDef} brought {OTHER_nameDef} a bowl of hot broth this morning. I saw {THIRD_objective} do it. I saw {OTHER_nameDef} smile.</li>
             <li>I'm not the only one. {THIRD_nameDef} looks at {OTHER_nameDef} the way I do, and doesn't hide it as well as {THIRD_pronoun} thinks.</li>
-            <li>{THIRD_nameDef} and I keep turning up to help {OTHER_nameDef} with the same small jobs. It's getting embarrassing for all three of us.</li>
+            <li>{THIRD_nameDef} and I both offered to carry {OTHER_nameDef}'s basket in from the field. There was one basket.</li>
             <li>[night] Lay awake listing everything {THIRD_nameDef} has that I don't. It was a long list and I didn't sleep.</li>
           </plain>
-          <warm><li>{THIRD_nameDef} is fond of {OTHER_nameDef} too, and {THIRD_nameDef} is a good person. That's the worst part.</li></warm>
+          <warm><li>{THIRD_nameDef} is fond of {OTHER_nameDef} too. I can't even dislike {THIRD_objective} properly; {THIRD_pronoun} gave me the last of the bread yesterday.</li></warm>
           <blunt><li>{THIRD_nameDef} wants {OTHER_nameDef} too. Fine. Let {OTHER_nameDef} choose.</li></blunt>
-          <cheerful><li>So {THIRD_nameDef} has noticed {OTHER_nameDef} as well. Healthy competition! I'm going to be very charming.</li></cheerful>
-          <gloomy><li>Of course there's someone else. {THIRD_nameDef}. I know how this goes, and it doesn't go my way.</li></gloomy>
-          <cold><li>{THIRD_nameDef} is a rival for {OTHER_nameDef}'s affection. I will not do anything underhanded. I will be better than {THIRD_objective}.</li></cold>
+          <cheerful><li>So {THIRD_nameDef} has noticed {OTHER_nameDef} as well. Fine by me. I'm going to be very, very charming.</li></cheerful>
+          <gloomy><li>There's someone else, naturally. {THIRD_nameDef}, with {THIRD_possessive} easy laugh. I know how this goes.</li></gloomy>
+          <cold><li>{THIRD_nameDef} wants {OTHER_nameDef} as well. I won't stoop to tricks. I'll simply be the better choice, and make sure {OTHER_nameDef} sees it.</li></cold>
         </journal>
         <thirdJournal>
           <plain>
@@ -84,8 +84,8 @@
           <gloomy><li>I should have said something to {THIRD_nameDef} months ago. Now there's {OTHER_nameDef}.</li></gloomy>
         </thirdJournal>
         <chronicle>
-          <li>{PAWN_nameDef} and {THIRD_nameDef} are both fond of {OTHER_nameDef}, and both of them know it.</li>
-          <li>There is a quiet rivalry in the colony: {PAWN_nameDef} and {THIRD_nameDef}, over {OTHER_nameDef}.</li>
+          <li>There are two of them now. {THIRD_nameDef} is fond of {OTHER_nameDef} as well, and {PAWN_nameDef} knows it.</li>
+          <li>{THIRD_nameDef} has started bringing {OTHER_nameDef} hot broth in the mornings, and {PAWN_nameDef} has started getting up earlier.</li>
         </chronicle>
         <gate>
           <kind>Talk</kind>
@@ -105,23 +105,23 @@
         <waiting>Next: {OTHER_nameDef} chooses one of them, or time and {OTHER_possessive} heart decide it.</waiting>
         <journal>
           <plain>
-            <li>{THIRD_nameDef} and I had it out, quietly. We agreed it's {OTHER_nameDef}'s choice, not ours, and we'd both live with it. I hope I can.</li>
-            <li>Nothing to do now but wait and be myself, which is harder than it sounds.</li>
+            <li>{THIRD_nameDef} and I had it out behind the storehouse. It's {OTHER_nameDef}'s choice, not ours, and we'll both live with it. I said that out loud, so now I have to.</li>
+            <li>Nothing to do now but wait. I've cleaned my boots twice.</li>
             <li>I asked {OTHER_nameDef} to walk with me after supper, and {OTHER_pronoun} said yes, and then said nothing for a long time, and then said it was a nice evening.</li>
           </plain>
           <warm><li>Whatever {OTHER_nameDef} decides, I want {OTHER_objective} to be happy. I keep saying that to myself until I mean it.</li></warm>
           <blunt><li>I've said my piece to {OTHER_nameDef}. Now I wait.</li></blunt>
-          <cheerful><li>I've told {OTHER_nameDef} how I feel, out loud! Now I can't sleep, but in a good way.</li></cheerful>
-          <gloomy><li>I told {OTHER_nameDef}. I wish I hadn't. At least before, I didn't know.</li></gloomy>
-          <cold><li>I have made my intentions clear to {OTHER_nameDef}. The decision is out of my hands.</li></cold>
+          <cheerful><li>I told {OTHER_nameDef} how I feel, out loud, in actual words. I haven't slept, and I don't mind.</li></cheerful>
+          <gloomy><li>I told {OTHER_nameDef}. Now every look {OTHER_pronoun} gives me, I read twice.</li></gloomy>
+          <cold><li>{OTHER_nameDef} knows where I stand. What {OTHER_pronoun} does with it isn't mine to arrange.</li></cold>
         </journal>
         <otherJournal>
           <plain>
-            <li>Two people in this colony are being very kind to me at once, and I know why, and I don't know what to do about it.</li>
+            <li>Two people in this colony are being very kind to me at the same time, and I know why, and I don't know what to do about it.</li>
             <li>{OTHER_nameDef} asked me to walk with {OTHER_objective} tonight. So did {THIRD_nameDef}, yesterday. I need to think.</li>
           </plain>
-          <warm><li>Whoever I choose, someone gets hurt. I wish there were a kinder way to do this.</li></warm>
-          <cheerful><li>I seem to be very popular this season! I'm flattered, and a little frightened.</li></cheerful>
+          <warm><li>Whoever I choose, the other one will be sitting across the table from us every night.</li></warm>
+          <cheerful><li>I seem to be very popular this season! Flattering. Also alarming.</li></cheerful>
         </otherJournal>
         <thirdJournal>
           <plain>
@@ -130,8 +130,8 @@
           <gloomy><li>We shook hands on it, {OTHER_nameDef} and I. I've a feeling I know whose hand I'll be shaking.</li></gloomy>
         </thirdJournal>
         <chronicle>
-          <li>{PAWN_nameDef} and {THIRD_nameDef} have agreed to let {OTHER_nameDef} choose between them.</li>
-          <li>The colony is waiting to see whom {OTHER_nameDef} will choose: {PAWN_nameDef} or {THIRD_nameDef}.</li>
+          <li>"It's {OTHER_nameDef}'s choice, not ours," {PAWN_nameDef} and {THIRD_nameDef} agreed, and shook on it.</li>
+          <li>The rivals have stopped circling. {PAWN_nameDef} and {THIRD_nameDef} have left it to {OTHER_nameDef}, and promised to wish the winner well.</li>
         </chronicle>
         <gate>
           <kind>Custom</kind>
@@ -149,11 +149,11 @@
             <li>[lost] {OTHER_nameDef} chose {THIRD_nameDef}. I said all the right things. Then I went and split wood until my arms gave out.</li>
             <li>[lost] I shook {THIRD_nameDef}'s hand, like we agreed. It was the hardest thing I've done this year.</li>
             <li>[neither] {OTHER_nameDef} didn't choose either of us, in the end. {THIRD_nameDef} and I ended up drinking to that, which I didn't expect.</li>
-            <li>[neither] Nothing came of it, for me or for {THIRD_nameDef}. {OTHER_nameDef} is still {OTHER_nameDef}, and we're all still friends. Mostly.</li>
+            <li>[neither] Nothing came of it, for me or for {THIRD_nameDef}. {OTHER_nameDef} still sits between the two of us at supper, as if the whole season never happened.</li>
           </plain>
           <warm>
             <li>[won] {OTHER_nameDef} chose me, and I've promised myself to deserve it. I'll be gentle with {THIRD_nameDef} for a while.</li>
-            <li>[lost] {OTHER_nameDef} is happy with {THIRD_nameDef}. I can see it. I'm glad, and I'm sad, and I'll be all right.</li>
+            <li>[lost] {OTHER_nameDef} is happy with {THIRD_nameDef}. I can see it from across the yard. I'll be all right in a while.</li>
           </warm>
           <blunt>
             <li>[won] {OTHER_nameDef} picked me. Good.</li>
@@ -162,7 +162,7 @@
           </blunt>
           <cheerful>
             <li>[won] {OTHER_nameDef} said yes! I've been grinning all day and the others are sick of it.</li>
-            <li>[neither] Nobody won, so nobody lost! {THIRD_nameDef} and I are friends again, and that's something.</li>
+            <li>[neither] No winner, then. {THIRD_nameDef} and I shook on that too, and laughed about the whole silly season.</li>
           </cheerful>
           <gloomy>
             <li>[lost] I knew it would be {THIRD_nameDef}. I knew it the whole time and I hoped anyway.</li>
@@ -184,13 +184,13 @@
           <plain>
             <li>[won] {THIRD_nameDef} chose {OTHER_nameDef}. I shook {OTHER_possessive} hand, like we agreed. I'm going for a long walk.</li>
             <li>[lost] {THIRD_nameDef} chose me. I keep catching myself smiling at nothing.</li>
-            <li>[neither] {THIRD_nameDef} chose neither of us. {OTHER_nameDef} and I got a little drunk about it, together.</li>
+            <li>[neither] {THIRD_nameDef} chose neither of us. {OTHER_nameDef} and I drank to it together, more than we should have.</li>
           </plain>
         </thirdJournal>
         <chronicle>
-          <li>[won] {OTHER_nameDef} chose {PAWN_nameDef}, and {THIRD_nameDef} shook {PAWN_possessive} hand on it.</li>
+          <li>[won] {OTHER_nameDef} chose {PAWN_nameDef}. {THIRD_nameDef} kept the bargain, and held out a hand that same evening.</li>
           <li>[lost] {OTHER_nameDef} chose {THIRD_nameDef}, and {PAWN_nameDef} kept {PAWN_possessive} word and wished them well.</li>
-          <li>[neither] In the end {OTHER_nameDef} chose neither {PAWN_nameDef} nor {THIRD_nameDef}, and the two rivals made their peace.</li>
+          <li>[neither] In the end {OTHER_nameDef} chose neither. {PAWN_nameDef} and {THIRD_nameDef} made their peace over a jug that night.</li>
         </chronicle>
         <effects>
           <li Class="ColonyCouncil.ArcEffect_Cast">
@@ -233,22 +233,22 @@
     <fizzle>
       <plain>
         <li>[elsewhere] {OTHER_nameDef} has taken up with someone else altogether. {THIRD_nameDef} and I looked at each other across the table and nearly laughed.</li>
-        <li>[otherdead] {OTHER_nameDef} is dead. Whatever I hoped for, I never said it all.</li>
+        <li>[otherdead] {OTHER_nameDef} is dead. I never told {OTHER_objective} the half of it.</li>
         <li>[otherleft] {OTHER_nameDef} is gone from the colony. I never found out what {OTHER_pronoun} would have said.</li>
         <li>[thirddead] {THIRD_nameDef} is dead. We wanted the same thing, and now I can't want it the same way.</li>
         <li>[thirdleft] {THIRD_nameDef} has left the colony. It doesn't feel like winning.</li>
-        <li>[timeout] It's gone quiet, all of it. {OTHER_nameDef} is kind to both of us and promises nothing.</li>
-        <li>Whatever was between {OTHER_nameDef} and me has faded into an ordinary friendship. It might be for the best.</li>
+        <li>[timeout] It's gone still, all of it. {OTHER_nameDef} is kind to both of us and promises nothing.</li>
+        <li>Whatever was between {OTHER_nameDef} and me has settled into an ordinary friendship. We talk about the weather now.</li>
       </plain>
       <warm><li>[elsewhere] {OTHER_nameDef} has found someone, and it isn't either of us. I'm glad for {OTHER_objective}. I mean that.</li></warm>
       <blunt><li>[elsewhere] {OTHER_nameDef} picked someone else entirely. So much for that.</li></blunt>
-      <gloomy><li>[elsewhere] Neither of us, then. Someone else. Of course.</li></gloomy>
+      <gloomy><li>[elsewhere] Neither of us, then. Someone neither of us even thought to worry about.</li></gloomy>
     </fizzle>
     <fizzleChronicle>
       <li>[elsewhere] {OTHER_nameDef} took up with someone else, and the rivalry between {PAWN_nameDef} and {THIRD_nameDef} came to nothing.</li>
       <li>[otherdead] {OTHER_nameDef} died before choosing between {PAWN_nameDef} and {THIRD_nameDef}.</li>
-      <li>[thirddead] {THIRD_nameDef} died, and {PAWN_nameDef}'s rivalry with {THIRD_objective} died too.</li>
-      <li>The rivalry between {PAWN_nameDef} and {THIRD_nameDef} over {OTHER_nameDef} has quietly ended.</li>
+      <li>[thirddead] With {THIRD_nameDef} dead, {PAWN_nameDef} has no rival left, and no heart for the contest.</li>
+      <li>The rivalry between {PAWN_nameDef} and {THIRD_nameDef} over {OTHER_nameDef} has worn itself out.</li>
     </fizzleChronicle>
     <eulogy>
       <plain>
@@ -266,7 +266,7 @@
   <ColonyCouncil.ArcDef>
     <defName>Council_Arc_TwoStudents</defName>
     <label>torn between two students</label>
-    <summary>A teacher with two students in the same craft, both wanting the teacher's eye. Jealousy, a fair word for each, the two of them making it up, and both coming on.</summary>
+    <summary>A teacher with two students in the same craft, both wanting the teacher's eye. Jealousy, a fair word for each, the two students making it up between themselves, and both coming on.</summary>
     <workerClass>ColonyCouncil.ArcWorker_TwoStudents</workerClass>
     <withThird>true</withThird>
     <masterLevel>11</masterLevel>
@@ -279,14 +279,14 @@
           <plain>
             <li>Two students in {SKILL} now: {OTHER_nameDef} and {THIRD_nameDef}. Two pairs of eyes on every move I make, and two sets of questions.</li>
             <li>{OTHER_nameDef} and {THIRD_nameDef} both want to be the one I praise. I've caught them watching which of them I look at first.</li>
-            <li>Teaching one student is a pleasure. Teaching two who are counting each other's compliments is a job.</li>
+            <li>One of them asked me today, very casually, how long I'd spent on the other one's work yesterday.</li>
             <li>[mentor] Two students at the same bench, both mine. I hadn't thought about how they'd feel about each other.</li>
           </plain>
           <warm><li>{OTHER_nameDef} and {THIRD_nameDef} both have it in them. I want to give each of them enough, and I'm not sure I have enough to give.</li></warm>
           <blunt><li>Two students. Both sulk when I help the other one. Grow up, the pair of you.</li></blunt>
-          <cheerful><li>Two students! The workshop is never quiet now. I'm loving it, mostly.</li></cheerful>
+          <cheerful><li>Two students now. Twice the questions, twice the mess, and I'm enjoying every bit of it.</li></cheerful>
           <gloomy><li>Whichever of them I help, the other one notices. I'm going to get this wrong.</li></gloomy>
-          <cold><li>Two students in {SKILL}. Their rivalry could be useful if it's managed. I intend to manage it.</li></cold>
+          <cold><li>They compete over every scrap of {SKILL} I show them. Competition makes people work. I'll let it run a while before I step in.</li></cold>
         </journal>
         <otherJournal>
           <plain>
@@ -301,7 +301,7 @@
           <blunt><li>{THIRD_nameDef} is good. I'll be better.</li></blunt>
         </thirdJournal>
         <chronicle>
-          <li>{PAWN_nameDef} is teaching two students in {SKILL}, {OTHER_nameDef} and {THIRD_nameDef}, and they both want {PAWN_possessive} eye.</li>
+          <li>{PAWN_nameDef} has two students in {SKILL} now, {OTHER_nameDef} and {THIRD_nameDef}, and each of them watches whom {PAWN_nameDef} looks at first.</li>
           <li>{OTHER_nameDef} and {THIRD_nameDef} are learning {SKILL} side by side from {PAWN_nameDef}, and keeping score.</li>
         </chronicle>
         <gate>
@@ -318,7 +318,7 @@
         <waiting>Next: a fair word for {THIRD_nameDef}, the second student.</waiting>
         <journal>
           <plain>
-            <li>Sat down with {OTHER_nameDef} and went over everything, honestly. Now I owe {THIRD_nameDef} the same.</li>
+            <li>Sat down with {OTHER_nameDef} and went through every piece {OTHER_pronoun}'s made this month. Now I owe {THIRD_nameDef} the same hour.</li>
             <li>{OTHER_nameDef} asked me straight whether I liked {THIRD_nameDef}'s work better. I said they're good at different things. It's true.</li>
           </plain>
           <warm><li>I told {OTHER_nameDef} what {OTHER_pronoun} does better than anyone. Tomorrow I'll find the words for {THIRD_nameDef}.</li></warm>
@@ -328,7 +328,8 @@
           <cold><li>{OTHER_nameDef} has been told plainly where {OTHER_pronoun} stands. {THIRD_nameDef} is owed the same courtesy.</li></cold>
         </journal>
         <chronicle>
-          <li>{PAWN_nameDef} sat down with {OTHER_nameDef} and was honest about {OTHER_possessive} work, and {THIRD_nameDef}'s.</li>
+          <li>{PAWN_nameDef} spent an evening going over {OTHER_nameDef}'s work with {OTHER_objective}, the good and the bad, and didn't mention {THIRD_nameDef} once.</li>
+          <li>{OTHER_nameDef} has had a fair hearing at {PAWN_nameDef}'s bench. {THIRD_nameDef} is next.</li>
         </chronicle>
         <gate>
           <kind>Talk</kind>
@@ -352,7 +353,7 @@
           <blunt><li>Told them both. Now they can sort it out themselves.</li></blunt>
           <cheerful><li>I caught {OTHER_nameDef} lending {THIRD_nameDef} a tool today. Without being asked!</li></cheerful>
           <gloomy><li>They're still keeping score. Maybe they always will.</li></gloomy>
-          <cold><li>I have done what a teacher can. The students' relationship is theirs to settle.</li></cold>
+          <cold><li>I've said what a teacher should say. If they still want to fight, they can do it on their own time, not at my bench.</li></cold>
         </journal>
         <otherJournal>
           <plain><li>{OTHER_nameDef} says {THIRD_nameDef} and I are good at different things. I've started to see what {OTHER_pronoun} means.</li></plain>
@@ -361,7 +362,7 @@
           <plain><li>{THIRD_nameDef} told me I have a better eye than {OTHER_nameDef}. Then told me {OTHER_nameDef} has a steadier hand. I'm not sure that was a compliment.</li></plain>
         </thirdJournal>
         <chronicle>
-          <li>{OTHER_nameDef} and {THIRD_nameDef}, {PAWN_nameDef}'s two students, are learning to share the bench.</li>
+          <li>"Different hands, different gifts," {PAWN_nameDef} told {THIRD_nameDef}, as {PAWN_pronoun} had told {OTHER_nameDef}. The rest is between the two students.</li>
         </chronicle>
         <gate>
           <kind>Talk</kind>
@@ -386,12 +387,12 @@
           </plain>
           <warm><li>They're helping each other now. I didn't make that happen. I just got out of the way.</li></warm>
           <blunt><li>They've stopped squabbling and started working. About time.</li></blunt>
-          <cheerful><li>My two students are a team now! A noisy, opinionated team.</li></cheerful>
-          <gloomy><li>They get on now. I keep waiting for it to fall apart. It hasn't.</li></gloomy>
-          <cold><li>The rivalry has become a collaboration. Their output has improved accordingly.</li></cold>
+          <cheerful><li>My two students are a team now. A noisy, opinionated team, and I like the noise.</li></cheerful>
+          <gloomy><li>They get on now. I give it a season.</li></gloomy>
+          <cold><li>They help each other now, which saves me a good deal of correcting.</li></cold>
         </journal>
         <chronicle>
-          <li>{PAWN_nameDef}'s two students, {OTHER_nameDef} and {THIRD_nameDef}, have stopped competing and started helping each other.</li>
+          <li>These days {OTHER_nameDef} and {THIRD_nameDef} check each other's work before either of them brings it to {PAWN_nameDef}.</li>
         </chronicle>
         <gate>
           <kind>Practice</kind>
@@ -409,13 +410,13 @@
             <li>[otherahead] {OTHER_nameDef} has pulled ahead in {SKILL} this season, and {THIRD_nameDef} was the first to say so. I'm proud of both of them for different reasons.</li>
             <li>[thirdahead] {THIRD_nameDef} came on furthest this season, and {OTHER_nameDef} helped {THIRD_objective} do it. That's the part I'll remember.</li>
             <li>[even] Neither of them is ahead. They've come on together, step for step, and they know it.</li>
-            <li>I've had two students in {SKILL} and never had to choose between them. That was the whole trick: not choosing.</li>
+            <li>Two students in {SKILL}, and I never had to choose between them. I didn't think that was possible when I started.</li>
           </plain>
           <warm><li>Two students, both standing on their own feet, both friends. I couldn't ask for more.</li></warm>
           <blunt><li>Both of them are good now. My work's mostly done.</li></blunt>
           <cheerful><li>Both my students are doing brilliantly, and they get on! Best season at the bench I've had.</li></cheerful>
-          <gloomy><li>They don't need me as much now, either of them. That's the point. It still stings a little.</li></gloomy>
-          <cold><li>Both students have reached a satisfactory standard. Neither was neglected. I count it a success.</li></cold>
+          <gloomy><li>They don't need me as much now, either of them. I sat at the bench alone this afternoon and didn't care for it.</li></gloomy>
+          <cold><li>Two competent students, and neither of them can say I favored the other. That was the job.</li></cold>
         </journal>
         <otherJournal>
           <plain>
@@ -430,7 +431,7 @@
         <chronicle>
           <li>[otherahead] {OTHER_nameDef} has come on furthest of {PAWN_nameDef}'s two students, with {THIRD_nameDef}'s help.</li>
           <li>[thirdahead] {THIRD_nameDef} has come on furthest of {PAWN_nameDef}'s two students, with {OTHER_nameDef}'s help.</li>
-          <li>{PAWN_nameDef}'s two students in {SKILL} have both come into their own, and become friends along the way.</li>
+          <li>{PAWN_nameDef}'s two students have both come into their own in {SKILL}. They share a bench by choice now.</li>
         </chronicle>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Arc_BothMyStudents</thought></li>
@@ -453,7 +454,7 @@
     <fizzle>
       <plain>
         <li>[fight] {OTHER_nameDef} and {THIRD_nameDef} came to blows at the bench today. I've failed them both, somewhere.</li>
-        <li>[otherdead] {OTHER_nameDef} is dead. {THIRD_nameDef} works alone at the bench now, and so quietly.</li>
+        <li>[otherdead] {OTHER_nameDef} is dead. {THIRD_nameDef} works alone at the bench now and hardly says a word.</li>
         <li>[thirddead] {THIRD_nameDef} is dead. {OTHER_nameDef} keeps setting out two of everything.</li>
         <li>[otherleft] {OTHER_nameDef} has left the colony, and with {OTHER_objective} half of what I was teaching.</li>
         <li>[thirdleft] {THIRD_nameDef} has gone. {OTHER_nameDef} has the bench to {OTHER_objective}self and doesn't seem to want it.</li>
@@ -471,7 +472,7 @@
     </fizzleChronicle>
     <eulogy>
       <plain>
-        <li>{OTHER_nameDef} taught two of us at once, and never let either of us feel second. I don't know how {OTHER_pronoun} did it.</li>
+        <li>{OTHER_nameDef} taught two of us side by side, and never let either of us feel second. I don't know how {OTHER_pronoun} did it.</li>
         <li>{OTHER_nameDef} left two students behind. We'll keep the bench going between us.</li>
       </plain>
       <cold><li>{OTHER_nameDef}'s teaching was unfinished. The students will have to finish it themselves.</li></cold>
@@ -503,9 +504,9 @@
           </plain>
           <warm><li>I love both of them. I wish they could see in each other what I see in them.</li></warm>
           <blunt><li>{OTHER_nameDef} and {THIRD_nameDef} need their heads knocked together. Figuratively.</li></blunt>
-          <cheerful><li>My two are bickering again. I suppose it means they care what the other thinks!</li></cheerful>
+          <cheerful><li>My two are bickering again. I'm choosing to take it as proof they care what the other thinks.</li></cheerful>
           <gloomy><li>My children can't stand each other. I must have done something wrong, long ago.</li></gloomy>
-          <cold><li>The friction between my children is affecting the household. It needs addressing.</li></cold>
+          <cold><li>My children's quarrel is costing the household sleep and work. I'll deal with it the way I'd deal with a leak in the roof.</li></cold>
         </journal>
         <otherJournal>
           <plain><li>{THIRD_nameDef} started it. {THIRD_nameDef} always starts it, and {OTHER_nameDef} always takes {THIRD_possessive} side.</li></plain>
@@ -515,8 +516,8 @@
           <plain><li>{THIRD_nameDef} gets away with everything. {OTHER_nameDef} never sees it.</li></plain>
         </thirdJournal>
         <chronicle>
-          <li>{OTHER_nameDef} and {THIRD_nameDef} have been at odds, and their parent {PAWN_nameDef} is caught between them.</li>
-          <li>The quarrel between {PAWN_nameDef}'s children, {OTHER_nameDef} and {THIRD_nameDef}, is wearing on everyone.</li>
+          <li>Supper has gone silent at {PAWN_nameDef}'s end of the table. {OTHER_nameDef} and {THIRD_nameDef} aren't speaking, and each of them wants {PAWN_nameDef} on their side.</li>
+          <li>The quarrel between {PAWN_nameDef}'s children, {OTHER_nameDef} and {THIRD_nameDef}, has gone on for days.</li>
         </chronicle>
         <gate>
           <kind>Talk</kind>
@@ -532,8 +533,8 @@
         <waiting>Next: a quiet word with {THIRD_nameDef}.</waiting>
         <journal>
           <plain>
-            <li>Had it out with {OTHER_nameDef}, gently. We both cried a little, then laughed. Now {THIRD_nameDef}.</li>
-            <li>{OTHER_nameDef} told me {OTHER_possessive} side of it. It's not the side I'd heard. There's always another side.</li>
+            <li>Had it out with {OTHER_nameDef}, gently. We both cried, then laughed at ourselves for crying. Now {THIRD_nameDef}.</li>
+            <li>{OTHER_nameDef} told me {OTHER_possessive} side of it. It's not the side I'd heard at supper.</li>
             <li>[young] Sat {OTHER_nameDef} on my knee and asked what was really wrong. It wasn't the stick.</li>
           </plain>
           <warm><li>{OTHER_nameDef} just wanted to be heard. I can do that much. {THIRD_nameDef} deserves the same.</li></warm>
@@ -546,7 +547,7 @@
           <plain><li>Talked with {OTHER_nameDef} today. Properly. I didn't know {OTHER_pronoun} worried about us that much.</li></plain>
         </otherJournal>
         <chronicle>
-          <li>{PAWN_nameDef} sat down with {OTHER_nameDef} and heard {OTHER_possessive} side of the family quarrel.</li>
+          <li>{OTHER_nameDef} has had {OTHER_possessive} say, all of it, with {PAWN_nameDef} listening.</li>
         </chronicle>
         <gate>
           <kind>Talk</kind>
@@ -570,14 +571,14 @@
           <warm><li>They're trying, both of them. I can see it. I'm so proud I could burst.</li></warm>
           <blunt><li>Quiet in the house. Long may it last.</li></blunt>
           <cheerful><li>No shouting today, and not a single door slammed!</li></cheerful>
-          <gloomy><li>It's quiet, for now. It never lasts.</li></gloomy>
-          <cold><li>A truce of sorts has been observed. I am monitoring it.</li></cold>
+          <gloomy><li>It's calm. It won't last. It never has.</li></gloomy>
+          <cold><li>No shouting for two days. I've said nothing about it to either of them, so they can't say I arranged it.</li></cold>
         </journal>
         <thirdJournal>
           <plain><li>{OTHER_nameDef} sat me down and listened to all of it. I said things I've never said. I think {OTHER_pronoun} understands now.</li></plain>
         </thirdJournal>
         <chronicle>
-          <li>An uneasy peace holds between {OTHER_nameDef} and {THIRD_nameDef}.</li>
+          <li>{THIRD_nameDef} has had {THIRD_possessive} say too. An uneasy peace holds between {OTHER_nameDef} and {THIRD_nameDef}.</li>
         </chronicle>
         <gate>
           <kind>Hold</kind>
@@ -590,7 +591,7 @@
       </li>
       <li>
         <label>one table</label>
-        <waiting>Next: {OTHER_nameDef} and {THIRD_nameDef} thinking a little better of each other, or a talk of their own.</waiting>
+        <waiting>Next: {OTHER_nameDef} and {THIRD_nameDef} thinking better of each other, or a talk of their own.</waiting>
         <journal>
           <plain>
             <li>Three days and not a cross word between them. I don't trust it yet. I want to.</li>
@@ -599,11 +600,11 @@
           <warm><li>My two are finding their way back to each other. I mustn't hurry them.</li></warm>
           <blunt><li>Still quiet. Good.</li></blunt>
           <cheerful><li>They're laughing together again! I'd forgotten what that sounds like.</li></cheerful>
-          <gloomy><li>Still no fighting. I keep waiting for it to start again.</li></gloomy>
-          <cold><li>The peace is holding. Now it needs to become something more than the absence of quarrels.</li></cold>
+          <gloomy><li>Still no fighting. I sleep lighter now than I did when they were shouting.</li></gloomy>
+          <cold><li>The peace is holding. I've stopped sitting between them at meals, to see if it holds without me.</li></cold>
         </journal>
         <chronicle>
-          <li>{OTHER_nameDef} and {THIRD_nameDef} have gone days without quarrelling, and {PAWN_nameDef} is starting to hope.</li>
+          <li>Three days without a cross word between {OTHER_nameDef} and {THIRD_nameDef}. {PAWN_nameDef} is letting {PAWN_objective}self hope.</li>
         </chronicle>
         <gate>
           <kind>Hold</kind>
@@ -623,15 +624,15 @@
         <label>family</label>
         <journal>
           <plain>
-            <li>All three of us at one table tonight, and nobody left it angry. It's a small thing. It isn't small to me.</li>
+            <li>All three of us ate at one table tonight. The bread went round without a single remark, and I kept my mouth shut in case I spoiled it.</li>
             <li>{OTHER_nameDef} and {THIRD_nameDef} went off to work together this morning, arguing about something, the friendly way.</li>
             <li>[young] My two built something together in the yard. I'm not allowed to see it yet. They're allies now, against me.</li>
             <li>[grown] My children are friends again. They'll outlive me, and they'll have each other. That was what I wanted.</li>
           </plain>
-          <warm><li>My family is whole again. I didn't fix it. They did. I just held the door open.</li></warm>
+          <warm><li>My family is whole again. They did it themselves, in the end. I only kept asking.</li></warm>
           <blunt><li>Family's back together. Took long enough.</li></blunt>
           <cheerful><li>We had supper together, the three of us, and it was loud and silly and wonderful.</li></cheerful>
-          <gloomy><li>They're getting on now. I'll treasure it while it lasts.</li></gloomy>
+          <gloomy><li>They're getting on now. I'm too worn out from the last month to enjoy it yet.</li></gloomy>
           <cold><li>The household is at peace. I consider it the most important work I have done this year.</li></cold>
         </journal>
         <otherJournal>
@@ -707,15 +708,15 @@
         <waiting>Next: a talk with {OTHER_nameDef} about the falling-out.</waiting>
         <journal>
           <plain>
-            <li>{OTHER_nameDef} and {THIRD_nameDef} have fallen out, and somehow I'm the one both of them come to with it.</li>
-            <li>{OTHER_nameDef} wants me to agree {THIRD_nameDef} is impossible. {THIRD_nameDef} wants me to agree about {OTHER_nameDef}. I agree with nobody and get glared at by both.</li>
+            <li>{OTHER_nameDef} and {THIRD_nameDef} have fallen out, and I'm the one both of them come to with it.</li>
+            <li>{OTHER_nameDef} wants me to agree {THIRD_nameDef} is impossible. {THIRD_nameDef} wants me to agree about {OTHER_nameDef}. I agree with neither and get glared at by both.</li>
             <li>Ate supper between {OTHER_nameDef} and {THIRD_nameDef} tonight. Neither of them spoke to the other. I spoke to both, alternately, like a ferry.</li>
           </plain>
           <warm><li>I love them both. I won't choose, and I won't let them make me.</li></warm>
           <blunt><li>My two friends hate each other now. Wonderful.</li></blunt>
           <cheerful><li>I'm the colony's official go-between now! The pay is terrible.</li></cheerful>
           <gloomy><li>Whatever I say to one of them, the other hears about it and holds it against me.</li></gloomy>
-          <cold><li>Two of my friends are in conflict. I am being used as an intermediary. I will set terms.</li></cold>
+          <cold><li>My two friends each want me as a witness against the other. I'll listen. I won't testify.</li></cold>
         </journal>
         <otherJournal>
           <plain><li>{OTHER_nameDef} is the only one who understands what {THIRD_nameDef} did. At least I hope {OTHER_pronoun} does.</li></plain>
@@ -725,6 +726,7 @@
         </thirdJournal>
         <chronicle>
           <li>{OTHER_nameDef} and {THIRD_nameDef} have fallen out, and {PAWN_nameDef}, a friend to both, is caught in the middle.</li>
+          <li>At supper {PAWN_nameDef} sits between {OTHER_nameDef} and {THIRD_nameDef}, who used to be friends, and passes things across.</li>
         </chronicle>
         <gate>
           <kind>Talk</kind>
@@ -745,8 +747,8 @@
           </plain>
           <warm><li>{OTHER_nameDef} doesn't hate {THIRD_nameDef}, only hurts. Those are different things.</li></warm>
           <blunt><li>Got {OTHER_nameDef}'s side. Now {THIRD_nameDef}'s. Then I'm done carrying messages.</li></blunt>
-          <cheerful><li>Half the peace treaty is drafted! The other half is {THIRD_nameDef}.</li></cheerful>
-          <gloomy><li>{OTHER_nameDef} talked for an hour. I feel like I carried it all home with me.</li></gloomy>
+          <cheerful><li>Half the peace treaty is drafted. The other half is {THIRD_nameDef}, who is harder.</li></cheerful>
+          <gloomy><li>{OTHER_nameDef} talked until the candle was a stub. I feel like I carried all of it home with me.</li></gloomy>
           <cold><li>One party's grievances recorded. The other's are next.</li></cold>
         </journal>
         <chronicle>
@@ -768,19 +770,19 @@
         <journal>
           <plain>
             <li>I've heard both of them out, and told each what the other wouldn't say. Now I've stepped back. They'll have to do the rest.</li>
-            <li>Told {OTHER_nameDef} and {THIRD_nameDef}, both at once, that I'm done carrying messages. They looked at me, then at each other.</li>
+            <li>Told {OTHER_nameDef} and {THIRD_nameDef}, both together, that I'm done carrying messages. They looked at me, then at each other.</li>
           </plain>
           <warm><li>I've done what a friend can. The rest is theirs. I hope they find their way.</li></warm>
           <blunt><li>No more messages. They can talk to each other.</li></blunt>
-          <cheerful><li>I've retired as go-between! Now we wait and see.</li></cheerful>
+          <cheerful><li>I've retired as go-between. I'm taking up whittling instead.</li></cheerful>
           <gloomy><li>I've stepped back. If it falls apart now, at least it won't be in my hands.</li></gloomy>
-          <cold><li>I have withdrawn from mediation. The outcome depends on them.</li></cold>
+          <cold><li>I've withdrawn. They have each other's grievances, word for word, and nobody left to hide behind.</li></cold>
         </journal>
         <thirdJournal>
           <plain><li>{THIRD_nameDef} says {OTHER_nameDef} misses me. I don't know whether to believe it. I want to.</li></plain>
         </thirdJournal>
         <chronicle>
-          <li>{PAWN_nameDef} has stepped back, and left {OTHER_nameDef} and {THIRD_nameDef} to settle it themselves.</li>
+          <li>"I'm done carrying messages," {PAWN_nameDef} told {OTHER_nameDef} and {THIRD_nameDef}, and left the two of them standing there.</li>
         </chronicle>
         <gate>
           <kind>Talk</kind>
@@ -804,18 +806,19 @@
           </plain>
           <warm><li>My friends are friends again. I'd almost forgotten how easy things are when nobody's keeping score.</li></warm>
           <blunt><li>They made up. I'm off duty.</li></blunt>
-          <cheerful><li>Peace in our time! The three of us had supper together and nobody stormed off.</li></cheerful>
+          <cheerful><li>The three of us had supper together and not one of us stormed off! I'd forgotten what that's like.</li></cheerful>
           <gloomy><li>They've made up. I'm relieved. I'm also tired in a way I didn't know I could be.</li></gloomy>
-          <cold><li>The conflict is resolved. My time is my own again.</li></cold>
+          <cold><li>The conflict is resolved. My evenings are my own again.</li></cold>
         </journal>
         <otherJournal>
           <plain><li>{THIRD_nameDef} and I have made up. {OTHER_nameDef} stood between us the whole time and never once took a side. I owe {OTHER_objective}.</li></plain>
         </otherJournal>
         <thirdJournal>
-          <plain><li>{THIRD_nameDef} and I are friends again. {OTHER_nameDef} carried both our tempers for weeks. We bought {OTHER_objective} a drink.</li></plain>
+          <plain><li>{THIRD_nameDef} and I are friends again. {OTHER_nameDef} carried both our tempers for weeks. We poured {OTHER_objective} a drink.</li></plain>
         </thirdJournal>
         <chronicle>
           <li>{OTHER_nameDef} and {THIRD_nameDef} have made up, and {PAWN_nameDef} is out of the middle at last.</li>
+          <li>{OTHER_nameDef} and {THIRD_nameDef} sat down to supper together, and kept the seat between them for {PAWN_nameDef}.</li>
         </chronicle>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Arc_OutOfTheMiddle</thought></li>
@@ -858,7 +861,7 @@
         <li>{OTHER_nameDef} spent weeks carrying messages between two people who wouldn't speak. One of them was me. I'm sorry, {OTHER_nameDef}.</li>
         <li>{OTHER_nameDef} never once took a side. I didn't understand what that cost until now.</li>
       </plain>
-      <cold><li>{OTHER_nameDef} was a fair go-between. The colony is shorter one of those now.</li></cold>
+      <cold><li>{OTHER_nameDef} was a fair go-between. The colony is short one of those now.</li></cold>
     </eulogy>
   </ColonyCouncil.ArcDef>
 

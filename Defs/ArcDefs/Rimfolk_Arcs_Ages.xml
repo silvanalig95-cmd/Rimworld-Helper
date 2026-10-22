@@ -31,21 +31,21 @@
             <li>[fear] I don't like the dark since the fighting. I pretend I'm asleep so nobody knows I'm not.</li>
             <li>I keep my eyes open as long as I can so the dream can't get in. It gets in anyway.</li>
           </plain>
-          <warm><li>I don't want to wake anybody up. Everybody works so hard. I'll just be scared quietly.</li></warm>
+          <warm><li>I don't want to wake anybody up. Everybody works so hard. I hold the blanket over my mouth so I don't make any noise.</li></warm>
           <blunt><li>Bad dream. Again. I hate it.</li></blunt>
-          <cheerful><li>I had a scary dream but I'm brave, mostly. I only cried a little bit.</li></cheerful>
+          <cheerful><li>I had a scary dream but I'm brave, mostly. I only cried a bit, and then I counted the roof beams.</li></cheerful>
           <gloomy><li>The bad dream always comes back. It's going to come back tonight.</li></gloomy>
           <cold><li>I have had the same nightmare four times. I am counting them.</li></cold>
         </journal>
         <otherJournal>
           <plain>
             <li>{OTHER_nameDef} has dark rings under {OTHER_possessive} eyes and jumps at loud noises. Something's frightening that child at night.</li>
-            <li>Heard {OTHER_nameDef} crying in the night and went to look. Pretended to be asleep when I got there. I know that trick. I used it myself.</li>
+            <li>Heard {OTHER_nameDef} crying in the night and went to look. {OTHER_nameDef} pretended to be asleep. I know that trick. I used it at that age.</li>
           </plain>
           <warm><li>{OTHER_nameDef} isn't sleeping. I'm going to sit up with {OTHER_objective} tonight, whatever the work in the morning.</li></warm>
         </otherJournal>
         <chronicle>
-          <li>{PAWN_nameDef} has been having bad nights, and {OTHER_nameDef} has noticed.</li>
+          <li>Someone has been crying at night and pretending to be asleep when anyone comes to look. It's {PAWN_nameDef}, and {OTHER_nameDef} has noticed.</li>
           <li>Nightmares have been keeping young {PAWN_nameDef} awake.</li>
         </chronicle>
         <gate>
@@ -62,13 +62,13 @@
         <waiting>Next: some good days, or a better dream.</waiting>
         <journal>
           <plain>
-            <li>{OTHER_nameDef} sat up with me and we checked under the bed and behind the door. Nothing there. {OTHER_nameDef} left a little light burning.</li>
+            <li>{OTHER_nameDef} sat up with me and we checked under the bed and behind the door. Nothing there. {OTHER_nameDef} left a candle burning.</li>
             <li>{OTHER_nameDef} said everybody has bad dreams, even grown-ups. Even {OTHER_nameDef}. I didn't know that.</li>
             <li>{OTHER_nameDef} told me a story about a brave mouse until I fell asleep. I didn't hear the end. I'll ask tomorrow.</li>
           </plain>
           <warm><li>{OTHER_nameDef} stayed until I was asleep. When I woke up {OTHER_nameDef} was asleep in the chair. I put my blanket on {OTHER_objective}.</li></warm>
           <blunt><li>{OTHER_nameDef} stayed up with me. The dream didn't come. Good.</li></blunt>
-          <cheerful><li>I have a night light now! It's the best thing I own.</li></cheerful>
+          <cheerful><li>I have my own lamp now, for nights! It's the best thing I own.</li></cheerful>
           <gloomy><li>{OTHER_nameDef} was nice to me, but {OTHER_nameDef} can't stay up every night. The dream knows that.</li></gloomy>
           <cold><li>With a light burning and {OTHER_nameDef} near, the nightmare did not come. I will repeat the experiment.</li></cold>
         </journal>
@@ -76,7 +76,7 @@
           <plain><li>Sat up with {OTHER_nameDef} until the shaking stopped. We made up a story about a mouse who wasn't afraid of anything. It was a long story.</li></plain>
         </otherJournal>
         <chronicle>
-          <li>{OTHER_nameDef} sat up with {PAWN_nameDef} through the bad nights.</li>
+          <li>{OTHER_nameDef} sat up with {PAWN_nameDef}, checked under the bed and behind the door, and left a light burning.</li>
         </chronicle>
         <gate>
           <kind>Hold</kind>
@@ -109,7 +109,7 @@
           <plain><li>{OTHER_nameDef} slept the whole night through and came to breakfast hungry. I didn't realize how worried I'd been until it stopped.</li></plain>
         </otherJournal>
         <chronicle>
-          <li>{PAWN_nameDef}'s bad nights are over, thanks in part to {OTHER_nameDef}.</li>
+          <li>{PAWN_nameDef} sleeps through the night again, and {OTHER_nameDef} has gone back to {OTHER_possessive} own bed.</li>
           <li>Young {PAWN_nameDef} sleeps through the night again.</li>
         </chronicle>
         <effects>
@@ -123,7 +123,7 @@
     </stages>
     <fizzle>
       <plain>
-        <li>[otherdead] {OTHER_nameDef} used to sit up with me when the bad dreams came. Now there's nobody in the chair.</li>
+        <li>[otherdead] {OTHER_nameDef} used to sit up with me when the bad dreams came. Now the chair is empty.</li>
         <li>[otherleft] {OTHER_nameDef} is gone. I keep the light on by myself now.</li>
         <li>[timeout] The bad dreams still come sometimes. I've got used to them, which isn't the same as them going away.</li>
         <li>I still have bad nights. Not every night. Some.</li>
@@ -137,7 +137,7 @@
     <eulogy>
       <plain>
         <li>{OTHER_nameDef} was only small, and so frightened of the dark. I sat up with {OTHER_objective}. I'd sit up every night for the rest of my life to have that back.</li>
-        <li>{OTHER_nameDef}'s little light is still by the bed. Nobody can bring themselves to put it out.</li>
+        <li>{OTHER_nameDef}'s light is still by the bed. None of us can bring ourselves to put it out.</li>
       </plain>
       <cold><li>{OTHER_nameDef} was a child. There is nothing else to say that would help.</li></cold>
     </eulogy>
@@ -157,10 +157,10 @@
     <stages>
       <li>
         <label>treated like a child</label>
-        <waiting>Next: hard work at {SKILL}, to prove a point.</waiting>
+        <waiting>Next: hard work at {SKILL}, enough to be noticed.</waiting>
         <journal>
           <plain>
-            <li>{OTHER_nameDef} checked my work again today, in front of everybody, like I'm still small. I'm not small.</li>
+            <li>{OTHER_nameDef} checked my work again today, out loud, at the bench, like I'm still small. I'm not small.</li>
             <li>Every time I have an idea, {OTHER_nameDef} says "when you're older". I am older. I'm older every single day.</li>
             <li>I'll show {OTHER_nameDef}. I'll get so good at {SKILL} that nobody can say anything.</li>
             <li>[kin] My own parent still treats me like I'm five. {OTHER_nameDef} doesn't see me at all, just who I used to be.</li>
@@ -178,7 +178,7 @@
           <blunt><li>{OTHER_nameDef} wants to be treated like a grown-up. Then {OTHER_nameDef} can act like one.</li></blunt>
         </otherJournal>
         <chronicle>
-          <li>{PAWN_nameDef} is tired of being treated like a child by {OTHER_nameDef}, and means to prove otherwise.</li>
+          <li>"When you're older," {OTHER_nameDef} keeps telling {PAWN_nameDef}. {PAWN_nameDef} has decided not to wait.</li>
           <li>Young {PAWN_nameDef} has been throwing {PAWN_objective}self into {SKILL}, to show {OTHER_nameDef} a thing or two.</li>
         </chronicle>
         <gate>
@@ -204,10 +204,10 @@
           <blunt><li>I'm good at {SKILL} now. Everyone can see it.</li></blunt>
           <cheerful><li>Somebody asked ME for help with {SKILL} today. A grown-up!</li></cheerful>
           <gloomy><li>I've worked so hard. {OTHER_nameDef} still hasn't said anything. Maybe {OTHER_pronoun} never will.</li></gloomy>
-          <cold><li>The quality of my work is now evident. It remains for {OTHER_nameDef} to acknowledge it.</li></cold>
+          <cold><li>My work is good now, and {OTHER_nameDef} knows it. I'm waiting for {OTHER_objective} to say so.</li></cold>
         </journal>
         <chronicle>
-          <li>{PAWN_nameDef} has been getting good at {SKILL}, and {OTHER_nameDef} has noticed.</li>
+          <li>{OTHER_nameDef} looked over {PAWN_nameDef}'s work in {SKILL} today and found nothing to correct.</li>
         </chronicle>
         <gate>
           <kind>Talk</kind>
@@ -228,15 +228,15 @@
           </plain>
           <warm><li>{OTHER_nameDef} said sorry for treating me like a child. I said sorry for acting like one. We both laughed.</li></warm>
           <blunt><li>{OTHER_nameDef} talked to me like a grown-up. About time.</li></blunt>
-          <cheerful><li>{OTHER_nameDef} and I had a proper talk, like two people! I'm walking about a foot taller.</li></cheerful>
-          <gloomy><li>{OTHER_nameDef} talked to me properly today. I don't know if it'll last.</li></gloomy>
+          <cheerful><li>{OTHER_nameDef} and I had a proper talk, like two people. I'm walking about a foot taller.</li></cheerful>
+          <gloomy><li>{OTHER_nameDef} talked to me properly today. Tomorrow {OTHER_pronoun}'ll probably check my work again anyway.</li></gloomy>
           <cold><li>{OTHER_nameDef} has revised {OTHER_possessive} estimate of me. The conversation was overdue.</li></cold>
         </journal>
         <otherJournal>
           <plain><li>Talked with {OTHER_nameDef} today and realized halfway through I was talking to a grown person. When did that happen?</li></plain>
         </otherJournal>
         <chronicle>
-          <li>{OTHER_nameDef} and {PAWN_nameDef} talked as equals for the first time.</li>
+          <li>{OTHER_nameDef} asked {PAWN_nameDef}'s opinion, and then listened to the answer.</li>
         </chronicle>
         <gate>
           <kind>Hold</kind>
@@ -257,7 +257,7 @@
           </plain>
           <warm><li>{OTHER_nameDef} and I are friends now, I think. That's better than being proved right.</li></warm>
           <blunt><li>They treat me like a grown-up now. Good. I am one.</li></blunt>
-          <cheerful><li>I'm grown! Not officially. But everyone acts like it.</li></cheerful>
+          <cheerful><li>I'm grown! Not officially. But they've stopped checking my work.</li></cheerful>
           <gloomy><li>Being treated like a grown-up means grown-up work. I'm not sure I wanted it this much.</li></gloomy>
           <cold><li>My standing in the colony has changed. I intend to deserve it.</li></cold>
         </journal>
@@ -301,7 +301,7 @@
         <li>{OTHER_nameDef} was so close to grown. I treated {OTHER_objective} like a child, and now I'll never get to treat {OTHER_objective} like anything else.</li>
         <li>{OTHER_nameDef} wanted so badly to be taken seriously. I take {OTHER_objective} seriously now. Too late.</li>
       </plain>
-      <cold><li>{OTHER_nameDef} died young, with a great deal left to prove. That is the whole of the tragedy.</li></cold>
+      <cold><li>{OTHER_nameDef} died young, before any of us had got round to taking {OTHER_objective} seriously.</li></cold>
     </eulogy>
   </ColonyCouncil.ArcDef>
 
@@ -324,7 +324,7 @@
         <journal>
           <plain>
             <li>{NAME} is here. Small, loud, perfect. I haven't slept since. I may never sleep again.</li>
-            <li>I held {NAME} for an hour this morning and forgot to eat, forgot to work, forgot my own name.</li>
+            <li>I held {NAME} all morning and forgot to eat. Forgot I had work. Someone had to come and find me.</li>
             <li>[night] {NAME} cried for three hours. I walked up and down until the floorboards learned my name.</li>
           </plain>
           <warm><li>I look at {NAME} and want to be a better person, immediately, today. I'm too tired for most of it.</li></warm>
@@ -351,16 +351,16 @@
         <journal>
           <plain>
             <li>I fell asleep standing up at the workbench. Someone has to take {NAME} for a few hours or I'll drop.</li>
-            <li>Everyone gives advice. Nobody offers to walk {NAME} up and down at three in the morning.</li>
+            <li>Plenty of advice going round. Not one offer to walk {NAME} up and down at three in the morning.</li>
           </plain>
           <warm><li>I don't like asking for help. I'm going to have to learn.</li></warm>
           <blunt><li>Need sleep. Need someone to hold {NAME}. Anyone.</li></blunt>
-          <cheerful><li>{NAME} has the loudest voice in the colony! Very proud. Very tired.</li></cheerful>
+          <cheerful><li>{NAME} has the loudest voice in the colony. I've never been so proud of a noise.</li></cheerful>
           <gloomy><li>I'm doing it all wrong. {NAME} cries and I can't make it stop.</li></gloomy>
-          <cold><li>I am operating on insufficient sleep. Assistance would improve outcomes for everyone.</li></cold>
+          <cold><li>I've slept four hours in three days and I'm making mistakes at work. That has to be fixed before it costs someone.</li></cold>
         </journal>
         <chronicle>
-          <li>{PAWN_nameDef} could use a pair of hands with little {NAME}.</li>
+          <li>{PAWN_nameDef} fell asleep on {PAWN_possessive} feet at work today. Someone needs to take little {NAME} for a night.</li>
         </chronicle>
         <gate>
           <kind>Talk</kind>
@@ -384,10 +384,10 @@
           <blunt><li>{OTHER_nameDef} took the baby. I slept. Saved my life.</li></blunt>
           <cheerful><li>{OTHER_nameDef} sang {NAME} to sleep! I'm learning the song.</li></cheerful>
           <gloomy><li>{OTHER_nameDef} helped. I should be able to do this myself.</li></gloomy>
-          <cold><li>{OTHER_nameDef}'s assistance was decisive. I have recovered most of my faculties.</li></cold>
+          <cold><li>{OTHER_nameDef} took the night. I owe {OTHER_objective} one, and I'll pay it.</li></cold>
         </journal>
         <chronicle>
-          <li>{OTHER_nameDef} has been helping {PAWN_nameDef} with little {NAME}.</li>
+          <li>{OTHER_nameDef} walked little {NAME} up and down until dawn so that {PAWN_nameDef} could sleep.</li>
         </chronicle>
         <gate>
           <kind>Hold</kind>
@@ -409,9 +409,9 @@
           </plain>
           <warm><li>I'm going to give {NAME} the best of everything I have, and I have more than I thought.</li></warm>
           <blunt><li>Baby's sleeping. I'm sleeping. We'll manage.</li></blunt>
-          <cheerful><li>{NAME} and I have a routine now! It falls apart every day at noon, but it's ours.</li></cheerful>
-          <gloomy><li>We're doing all right. I keep waiting for it to go wrong. It hasn't.</li></gloomy>
-          <cold><li>{NAME} and I have reached an equilibrium. I find it unexpectedly satisfying.</li></cold>
+          <cheerful><li>{NAME} and I have a routine now. It falls apart every day at noon, but it's ours.</li></cheerful>
+          <gloomy><li>We're doing all right. I still get up twice a night to listen to the baby breathe.</li></gloomy>
+          <cold><li>{NAME} and I have a routine that works. I didn't expect to like it this much.</li></cold>
         </journal>
         <chronicle>
           <li>{PAWN_nameDef} has found {PAWN_possessive} feet as a parent, and little {NAME} is thriving.</li>
@@ -427,7 +427,7 @@
     <fizzle>
       <plain>
         <li>[babygone] There are no words for this. I'm not going to write any.</li>
-        <li>[timeout] Still tired. Still a parent. Still learning. That's all there is to say about it for now.</li>
+        <li>[timeout] Still tired. Still a parent. Still learning.</li>
         <li>I'm getting through the days with {NAME}. That will have to do.</li>
       </plain>
       <cold><li>[babygone] I will not write about this.</li></cold>
@@ -468,13 +468,13 @@
           </plain>
           <warm><li>I've had a long life and a good one, mostly. I'd like to leave things tidy for the people I love.</li></warm>
           <blunt><li>Getting old. Body's quitting on me. Time to sort things out.</li></blunt>
-          <cheerful><li>I creak like an old door now! A door with a great many stories in it.</li></cheerful>
-          <gloomy><li>So this is how it starts. Slowly, then all at once. I'll do what I can while I can.</li></gloomy>
+          <cheerful><li>I creak like an old door now. A good door, mind, with a lot of stories behind it.</li></cheerful>
+          <gloomy><li>So this is how it starts. A stair at a time. I'll do what I can while I can.</li></gloomy>
           <cold><li>My health is declining. I intend to make arrangements while I am still able to.</li></cold>
         </journal>
         <chronicle>
-          <li>{PAWN_nameDef} has begun, quietly, to put {PAWN_possessive} affairs in order.</li>
-          <li>{PAWN_nameDef}, feeling {PAWN_possessive} years, has been thinking about what comes after.</li>
+          <li>{PAWN_nameDef} has been slow on the stairs lately, and slower in the mornings, and has started to think about what comes after.</li>
+          <li>{PAWN_nameDef} has begun to put {PAWN_possessive} affairs in order, without any fuss.</li>
         </chronicle>
         <gate>
           <kind>Time</kind>
@@ -499,7 +499,7 @@
           <cold><li>My instructions need a keeper. {OTHER_nameDef} is reliable.</li></cold>
         </journal>
         <chronicle>
-          <li>{PAWN_nameDef} has been deciding who should have {PAWN_possessive} things when the time comes.</li>
+          <li>{PAWN_nameDef} has made a list of who gets the good knife, who gets the coat, and who gets the chair by the door.</li>
         </chronicle>
         <gate>
           <kind>Talk</kind>
@@ -523,13 +523,13 @@
           <blunt><li>Told {OTHER_nameDef}. Done. One more job and then I rest.</li></blunt>
           <cheerful><li>One last masterpiece! Well, one last piece. We'll see about the master part.</li></cheerful>
           <gloomy><li>My hands shake now. I'm going to make one more thing anyway.</li></gloomy>
-          <cold><li>My wishes are recorded. I have one task left that I wish to complete personally.</li></cold>
+          <cold><li>My wishes are written down. One job left, and I won't hand it to anyone else.</li></cold>
         </journal>
         <otherJournal>
           <plain><li>{OTHER_nameDef} told me what {OTHER_pronoun} wants done when the time comes. I wrote it all down. I'll keep it safe, and I hope I won't need it for a long while.</li></plain>
         </otherJournal>
         <chronicle>
-          <li>{PAWN_nameDef} has told {OTHER_nameDef} what {PAWN_pronoun} wants done, and turned to one last piece of work.</li>
+          <li>"Write it down," {PAWN_nameDef} told {OTHER_nameDef}, and {OTHER_nameDef} did. Then {PAWN_nameDef} went off to make one last good thing.</li>
         </chronicle>
         <gate>
           <kind>Practice</kind>
@@ -554,10 +554,10 @@
           <blunt><li>Work's done. Sitting down now.</li></blunt>
           <cheerful><li>Done! Now I'm going to be a terrible nuisance and give everyone advice.</li></cheerful>
           <gloomy><li>It's finished. I don't quite know what to do with my hands.</li></gloomy>
-          <cold><li>My final project is complete. I find the absence of obligation agreeable.</li></cold>
+          <cold><li>The last job's done. I have nothing to do and no one waiting on me, and I don't mind it.</li></cold>
         </journal>
         <chronicle>
-          <li>{PAWN_nameDef} has finished one last piece of work in {SKILL}, and taken to sitting in the sun.</li>
+          <li>{PAWN_nameDef}'s last work in {SKILL} is done, and {PAWN_pronoun} has carried a chair out into the sun.</li>
         </chronicle>
         <gate>
           <kind>Hold</kind>
@@ -582,9 +582,9 @@
           </plain>
           <warm><li>I'm at peace. The people here will look after each other. That's all I ever wanted to know.</li></warm>
           <blunt><li>Everything's sorted. I'm content. Leave me be.</li></blunt>
-          <cheerful><li>I've never felt better about feeling worse! Every day now is a gift, and I mean to unwrap them all.</li></cheerful>
+          <cheerful><li>I've never felt better about feeling worse! I've started planting a tree I'll never sit under. I'm enjoying the digging.</li></cheerful>
           <gloomy><li>I've made my peace. Some days that's a comfort. Most days, actually.</li></gloomy>
-          <cold><li>There is nothing left undone that I can do. I find the condition restful.</li></cold>
+          <cold><li>Everything I can do is done. The rest isn't my concern.</li></cold>
         </journal>
         <chronicle>
           <li>{PAWN_nameDef} has put {PAWN_possessive} affairs in order and is at peace, and in no hurry.</li>
@@ -640,15 +640,15 @@
           </plain>
           <warm><li>{OTHER_nameDef} and I have never got on. I'm too old to remember exactly why.</li></warm>
           <blunt><li>{OTHER_nameDef} is a stubborn old fool. So am I. That's the trouble.</li></blunt>
-          <cheerful><li>{OTHER_nameDef} and I had our usual argument about the weather! It's the most reliable thing in the colony.</li></cheerful>
-          <gloomy><li>Everyone who knew me when I was young is gone, except {OTHER_nameDef}. Of course it's {OTHER_nameDef}.</li></gloomy>
+          <cheerful><li>{OTHER_nameDef} and I had our usual argument about the weather. It's the most reliable thing in the colony.</li></cheerful>
+          <gloomy><li>Everyone who knew me when I was young is gone, except {OTHER_nameDef}. It would be.</li></gloomy>
           <cold><li>{OTHER_nameDef} and I have been at odds for longer than some colonists have been alive. It has become habit more than conviction.</li></cold>
         </journal>
         <otherJournal>
           <plain><li>{OTHER_nameDef} glared at me across the yard again. I glared back. Some things never change, and I'm glad of it, almost.</li></plain>
         </otherJournal>
         <chronicle>
-          <li>{PAWN_nameDef} and {OTHER_nameDef}, the colony's two oldest hands, are still at odds after all these years.</li>
+          <li>{OTHER_nameDef} has taken {PAWN_nameDef}'s chair in the sun again. The two oldest hands in the colony have been at odds for years.</li>
         </chronicle>
         <gate>
           <kind>Hold</kind>
@@ -667,14 +667,14 @@
             <li>{OTHER_nameDef} and I ended up on the same bench in the sun today. Neither of us would move. We sat there all afternoon, out of spite, and then it was pleasant.</li>
             <li>One of the young ones asked about the first winter, and {OTHER_nameDef} and I answered at the same time, and both got it wrong in the same place.</li>
           </plain>
-          <warm><li>{OTHER_nameDef} remembers the same things I do. Nobody else here does. That's worth something.</li></warm>
+          <warm><li>{OTHER_nameDef} remembers the same things I do. The young ones weren't there. That's worth something.</li></warm>
           <blunt><li>Sat near {OTHER_nameDef} all day. Didn't kill each other. Progress.</li></blunt>
           <cheerful><li>{OTHER_nameDef} laughed at one of my jokes! By accident, but it counts.</li></cheerful>
           <gloomy><li>Sat with {OTHER_nameDef}. We were both thinking about the ones who are gone.</li></gloomy>
           <cold><li>{OTHER_nameDef} and I shared a bench without incident. Noted.</li></cold>
         </journal>
         <chronicle>
-          <li>{PAWN_nameDef} and {OTHER_nameDef} have been seen sharing the same bench in the sun.</li>
+          <li>Neither would give up the bench in the sun, so {PAWN_nameDef} and {OTHER_nameDef} shared it all afternoon, without a word.</li>
         </chronicle>
         <gate>
           <kind>Talk</kind>
@@ -694,7 +694,7 @@
             <li>We named everyone who was here at the start, {OTHER_nameDef} and I. It took a long time. We were the only two left at the end of the list.</li>
           </plain>
           <warm><li>{OTHER_nameDef} and I have been fools for years, and I think we both know it now.</li></warm>
-          <blunt><li>Talked to {OTHER_nameDef}. Turns out {OTHER_pronoun}'s all right.</li></blunt>
+          <blunt><li>Talked to {OTHER_nameDef}. {OTHER_nameDef}'s all right, it seems.</li></blunt>
           <cheerful><li>{OTHER_nameDef} and I told the young ones the story of the first winter, together, with sound effects.</li></cheerful>
           <gloomy><li>{OTHER_nameDef} and I wasted so many years. There aren't many left to make up for it.</li></gloomy>
           <cold><li>The original cause of our dispute could not be established. It has been set aside.</li></cold>
@@ -719,14 +719,14 @@
         <journal>
           <plain>
             <li>{OTHER_nameDef} saved me the chair in the sun today. My chair. I let {OTHER_objective} keep it and we shared the bench.</li>
-            <li>The last two of us. We might as well be friends. Turns out we always were, under all that.</li>
-            <li>{OTHER_nameDef} and I are teaching the young ones the old songs. We disagree about the words. That's half the fun.</li>
+            <li>The last two of us. We might as well be friends. I think we were, under all the glaring.</li>
+            <li>{OTHER_nameDef} and I are teaching the young ones the old songs. We still can't agree on the words of the second verse.</li>
           </plain>
           <warm><li>{OTHER_nameDef} is my oldest friend. It took us long enough to notice.</li></warm>
           <blunt><li>{OTHER_nameDef}'s my friend now. Don't make a fuss about it.</li></blunt>
-          <cheerful><li>{OTHER_nameDef} and I are the colony's grumpiest double act! We're very popular.</li></cheerful>
+          <cheerful><li>{OTHER_nameDef} and I are the colony's grumpiest double act. The children follow us about to hear us bicker.</li></cheerful>
           <gloomy><li>Friends at last, {OTHER_nameDef} and I. I only wish we had more years to spend on it.</li></gloomy>
-          <cold><li>{OTHER_nameDef} and I have concluded that our rivalry was wasteful. We are friends now. It is efficient.</li></cold>
+          <cold><li>{OTHER_nameDef} and I have agreed that our rivalry was a poor use of what time we have left. We are friends now.</li></cold>
         </journal>
         <otherJournal>
           <plain><li>{OTHER_nameDef} and I sat up talking about everyone we've buried. Then about everyone we haven't, yet. We're the last two. I'm glad it's us.</li></plain>
@@ -747,7 +747,7 @@
       <plain>
         <li>[fight] {OTHER_nameDef} and I came to blows. At our age. Neither of us could lift our arms afterwards.</li>
         <li>[otherdead] {OTHER_nameDef} is dead. The last one who remembered the old days with me. Now it's only me.</li>
-        <li>[otherleft] {OTHER_nameDef} has gone. Nobody left to argue about the first winter with.</li>
+        <li>[otherleft] {OTHER_nameDef} has gone. There's no one left to argue about the first winter with.</li>
         <li>[timeout] {OTHER_nameDef} and I went back to glaring at each other. Old habits.</li>
         <li>{OTHER_nameDef} and I never quite made it up. There's still time, I tell myself.</li>
       </plain>

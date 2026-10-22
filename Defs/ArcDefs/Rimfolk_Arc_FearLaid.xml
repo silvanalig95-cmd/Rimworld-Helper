@@ -29,8 +29,8 @@
             <li>[dead,beast] They brought {NAME} down at last. I went to look at the body, to be sure. It looked smaller than I remembered.</li>
             <li>[released] We let {NAME} go. I understand why. I still check the road every morning.</li>
             <li>[joined] {NAME} eats at our table now. I sit at the far end and watch {NAME}'s hands.</li>
-            <li>[gone] Nobody has seen {NAME} in months. That should help. It doesn't, quite.</li>
-            <li>It's over. Everyone keeps telling me so.</li>
+            <li>[gone] {NAME} hasn't been seen in months. That should help. It doesn't, quite.</li>
+            <li>It's over. I've been told so four times today.</li>
           </plain>
           <warm><li>It's over, and the others keep checking on me. I wish I could tell them it's working.</li></warm>
           <blunt>
@@ -42,7 +42,7 @@
           <cold><li>The threat is resolved. The fear is a habit now, and habits can be broken.</li></cold>
         </journal>
         <chronicle>
-          <li>[captured] {PAWN_nameDef} hasn't been easy since {NAME} was put in the colony's cells.</li>
+          <li>[captured] {PAWN_nameDef} walks the long way round now, so as not to pass the cell where {NAME} is kept.</li>
           <li>{PAWN_nameDef} is still afraid of {NAME}, though it's over.</li>
         </chronicle>
         <gate><kind>Time</kind><days>3</days><minDays>2</minDays></gate>
@@ -59,10 +59,10 @@
           <warm><li>{OTHER_nameDef} keeps asking how I am, gently. I think I'm going to answer properly.</li></warm>
           <blunt><li>Need to talk about it. Will.</li></blunt>
           <gloomy><li>Telling it means living it again. I'll do it anyway.</li></gloomy>
-          <cold><li>A full account to someone I trust should take the weight off.</li></cold>
+          <cold><li>A full account, to someone I trust, once. Then I can stop rehearsing it at night.</li></cold>
         </journal>
         <chronicle>
-          <li>{PAWN_nameDef} has been trying to talk about what {NAME} did.</li>
+          <li>There are things about {NAME} that {PAWN_nameDef} has never told anyone.</li>
         </chronicle>
         <gate>
           <kind>Talk</kind>
@@ -76,7 +76,7 @@
         </gate>
       </li>
       <li>
-        <label>quiet nights</label>
+        <label>said out loud</label>
         <waiting>Next: a few good days and quiet nights for {PAWN_nameDef}.</waiting>
         <journal>
           <plain>
@@ -86,12 +86,12 @@
           </plain>
           <warm><li>{OTHER_nameDef} listened to the whole thing and then just sat with me. That was the part that helped.</li></warm>
           <blunt><li>Said it. Better.</li></blunt>
-          <cheerful><li>Talking helped! Who knew. Everyone, apparently.</li></cheerful>
+          <cheerful><li>Talking helped! I ate a whole breakfast this morning, the first in a while.</li></cheerful>
           <gloomy><li>I said it all out loud. It sounded smaller than it felt.</li></gloomy>
           <cold><li>The account is given. The rest is sleep and time.</li></cold>
         </journal>
         <chronicle>
-          <li>{PAWN_nameDef} has told the whole story of {NAME}, at last.</li>
+          <li>Late one evening {PAWN_nameDef} told the whole of it, everything {NAME} did, start to finish.</li>
         </chronicle>
         <gate>
           <kind>Hold</kind>
@@ -113,14 +113,14 @@
             <li>Slept the whole night through, and didn't dream of {NAME}. I didn't notice until breakfast.</li>
             <li>[captured] Walked past {NAME}'s door today without changing my step. That's the end of it.</li>
             <li>[dead] {NAME} is dead, and I'm alive, and today that's simply true.</li>
-            <li>[joined] Passed {NAME} the salt at supper. Our hands touched, and nothing happened. Nothing at all.</li>
+            <li>[joined] {NAME} handed me a bowl at supper and I took it without thinking. I only noticed afterwards.</li>
             <li>[gone,beast] I walked out past the trees where {NAME} used to wait, and only birds came out of them.</li>
           </plain>
           <warm><li>I'm not afraid any more. I keep wanting to thank everyone, and I don't know how to say it.</li></warm>
           <blunt><li>Not afraid. Done.</li></blunt>
           <cheerful><li>The fear's gone! I'd thought it had moved in for good.</li></cheerful>
-          <gloomy><li>It's gone. I'll miss having something to blame, a little.</li></gloomy>
-          <cold><li>The fear has run its course. I am functioning normally again.</li></cold>
+          <gloomy><li>It's gone. I'm not sure what I'll blame my bad moods on now.</li></gloomy>
+          <cold><li>The fear has run its course. I sleep through the night and work through the day, as before.</li></cold>
         </journal>
         <chronicle>
           <li>{PAWN_nameDef} has laid the fear of {NAME} to rest.</li>
@@ -138,7 +138,7 @@
         <li>[escaped] {NAME} is out. Of course {NAME} is out. The fear was right all along.</li>
         <li>I tried to put the fear of {NAME} down. Not yet, it seems.</li>
       </plain>
-      <warm><li>[timeout] The fear's still with me, but so are the others. That will have to do for now.</li></warm>
+      <warm><li>[timeout] The fear's still with me, but so are the others. That will have to do.</li></warm>
       <blunt><li>[escaped] {NAME} got out. Here we go again.</li></blunt>
       <gloomy><li>[timeout] I tried to put it down. It's heavier than I thought.</li></gloomy>
     </fizzle>
@@ -160,7 +160,7 @@
       <rulesStrings>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked late about the enemy who once hurt one of them, and the day it happened.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] went over the old fight from start to finish, slowly, until it was only a story.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] sat by the fire and talked about the one who got away, and what it had left behind.</li>
+        <li>r_logentry->Over the washing-up, [INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about an old enemy, and the bad nights since.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about being afraid, and agreed it was nothing to be ashamed of.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] said the enemy's name out loud between them until it was just a name.</li>
       </rulesStrings>
@@ -170,7 +170,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Arc_FearLaid</defName>
     <durationDays>6</durationDays>
-    <stages><li><label>laid the fear to rest</label><description>The one who hurt me can't any more, and at last the rest of me believes it. I slept the whole night through.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>laid the fear to rest</label><description>The one who hurt me can't any more, and at last my hands believe it too.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
 </Defs>

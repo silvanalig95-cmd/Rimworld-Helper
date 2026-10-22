@@ -24,14 +24,14 @@
             <li>{PET_nameDef} turns away whenever I call. Every trainer starts somewhere, I'm told.</li>
             <li>[child] {PET_nameDef} is my Pokémon now! {PET_nameDef} doesn't know that yet.</li>
           </plain>
-          <warm><li>I sat with {PET_nameDef} all evening and didn't ask anything of {PET_objective}. Tomorrow I'll ask a little.</li></warm>
+          <warm><li>I sat with {PET_nameDef} all evening and didn't ask anything of {PET_objective}. Tomorrow I'll ask for something small.</li></warm>
           <blunt><li>New Pokémon. Doesn't listen. Yet.</li></blunt>
           <cheerful><li>{PET_nameDef} and me, a team from today! {PET_nameDef} just has to agree.</li></cheerful>
           <gloomy><li>{PET_nameDef} would rather be back in the wild. I can't say I blame {PET_objective}.</li></gloomy>
           <cold><li>{PET_nameDef}'s friendship is low. That will change with time and good handling.</li></cold>
         </journal>
         <chronicle>
-          <li>{PAWN_nameDef} has a new Pokémon to train: {PET_nameDef}, who isn't sure about it.</li>
+          <li>{PET_nameDef} won't come when {PAWN_nameDef} calls. Trainer and Pokémon, so far, in name only.</li>
         </chronicle>
         <gate><kind>Hold</kind><hold>Near</hold><hours>12</hours><minDays>1</minDays><timeoutDays>20</timeoutDays><timeoutPasses>true</timeoutPasses></gate>
       </li>
@@ -50,7 +50,7 @@
           <cold><li>{PET_nameDef} responds to commands more reliably. Progress is measurable.</li></cold>
         </journal>
         <chronicle>
-          <li>{PAWN_nameDef} has been training hard with {PET_nameDef}.</li>
+          <li>Every day, one move at a time, {PAWN_nameDef} has been working through what {PET_nameDef} can do.</li>
         </chronicle>
         <gate>
           <kind>Practice</kind>
@@ -69,7 +69,7 @@
         <journal>
           <plain>
             <li>We're ready, I think, {PET_nameDef} and me. Whatever comes over the wall next, we'll meet it together.</li>
-            <li>{PET_nameDef} stands between me and the gate now when strangers come. Nobody taught {PET_objective} that.</li>
+            <li>{PET_nameDef} stands between me and the gate now when strangers come. I never taught {PET_objective} that.</li>
           </plain>
           <warm><li>I hope we never need to fight. If we do, I know {PET_nameDef} will be there.</li></warm>
           <blunt><li>Ready for a fight. Both of us.</li></blunt>
@@ -78,7 +78,7 @@
           <cold><li>{PET_nameDef} is combat-ready. Only a real fight will tell us how ready.</li></cold>
         </journal>
         <chronicle>
-          <li>{PAWN_nameDef} and {PET_nameDef} are ready to stand together.</li>
+          <li>The next time raiders come, {PET_nameDef} will be at {PAWN_nameDef}'s side.</li>
         </chronicle>
         <gate>
           <kind>Battle</kind>
@@ -98,7 +98,7 @@
             <li>{PET_nameDef} came out of {PET_possessive} ball on {PET_possessive} own this morning, just to sit next to me.</li>
             <li>After the fight, {PET_nameDef} wouldn't leave my side until I'd been bandaged. Then {PET_pronoun} slept against my bed.</li>
           </plain>
-          <warm><li>Something's changed between us. You can feel it, like a door opening.</li></warm>
+          <warm><li>Something's changed between us. I can see it in the way the creature waits for me at the gate.</li></warm>
           <blunt><li>{PET_nameDef} likes me now. I like {PET_objective}.</li></blunt>
           <cheerful><li>{PET_nameDef} is happy to see me. Every time. Every single time!</li></cheerful>
           <gloomy><li>I didn't think {PET_nameDef} would ever trust me. I'm trying not to ruin it.</li></gloomy>
@@ -117,9 +117,9 @@
             <li>People say {PET_nameDef} is my Pokémon. I'd say we belong to each other.</li>
             <li>[child] {PET_nameDef} is my partner. The best partner in the whole world!</li>
           </plain>
-          <warm><li>Everything I know about trust, I learned from {PET_nameDef}.</li></warm>
+          <warm><li>{PET_nameDef} turns {PET_possessive} back to me in a fight now, trusting me to cover it. I didn't know how that would feel.</li></warm>
           <blunt><li>Partners. Me and {PET_nameDef}.</li></blunt>
-          <cheerful><li>We did it. A real team. Nobody can beat us now!</li></cheerful>
+          <cheerful><li>We did it. A real team. Let anyone try us now!</li></cheerful>
           <gloomy><li>I've found my partner. I'd better keep {PET_objective} safe.</li></gloomy>
           <cold><li>{PET_nameDef} and I work as one. It took longer than I expected, and was worth it.</li></cold>
         </journal>

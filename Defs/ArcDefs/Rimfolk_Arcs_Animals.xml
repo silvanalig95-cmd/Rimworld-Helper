@@ -15,7 +15,7 @@
   <ColonyCouncil.ArcDef>
     <defName>Council_Arc_OldCompanion</defName>
     <label>an old companion</label>
-    <summary>A bonded animal has grown old. Its person notices the grey at its muzzle, gives it slow afternoons and one more good day, and keeps every morning it gets up. Its death, when it comes, is the story's end.</summary>
+    <summary>A bonded animal has grown old. Its person notices the gray at its muzzle, gives it slow afternoons and one more good day, and keeps every morning it gets up. Its death, when it comes, is the story's end.</summary>
     <workerClass>ColonyCouncil.ArcWorker_OldCompanion</workerClass>
     <children>true</children>
     <weight>1.2</weight>
@@ -23,24 +23,24 @@
     <otherDeathEnds>true</otherDeathEnds>
     <stages>
       <li>
-        <label>grey at the muzzle</label>
+        <label>gray at the muzzle</label>
         <waiting>Next: some quiet hours together, {PAWN_nameDef} and {PET_nameDef}.</waiting>
         <journal>
           <plain>
-            <li>{PET_nameDef} took three goes at the step this morning. When did {PET_possessive} muzzle go grey? I didn't see it happen.</li>
+            <li>{PET_nameDef} took three goes at the step this morning. When did {PET_possessive} muzzle go gray? I didn't see it happen.</li>
             <li>{PET_nameDef} sleeps most of the afternoon now, in the one patch of sun that reaches the door.</li>
             <li>[winter] The cold gets into {PET_nameDef}'s joints now. I've moved the blanket closer to the fire.</li>
             <li>[child] {PET_nameDef} is old now. Older than me, in animal years. I didn't know animals could get old so fast.</li>
           </plain>
           <warm><li>{PET_nameDef} still comes to meet me at the door. Slower, but every time.</li></warm>
           <blunt><li>{PET_nameDef}'s getting old. Nothing to be done about that.</li></blunt>
-          <cheerful><li>{PET_nameDef} is a distinguished old thing now, with a grey beard and opinions about drafts.</li></cheerful>
+          <cheerful><li>{PET_nameDef} is a distinguished old thing now, with a gray beard and opinions about drafts.</li></cheerful>
           <gloomy><li>Animals don't get the years we do. I knew that when I took {PET_objective} on. It doesn't help.</li></gloomy>
           <cold><li>{PET_nameDef} is past four fifths of a normal span. I've adjusted {PET_possessive} rations.</li></cold>
         </journal>
         <chronicle>
           <li>{PAWN_nameDef}'s {PET_nameDef} has grown old.</li>
-          <li>{PAWN_nameDef} has noticed how grey {PET_nameDef} has grown.</li>
+          <li>{PET_nameDef} has gone gray about the muzzle, and {PAWN_nameDef} has noticed.</li>
         </chronicle>
         <gate><kind>Hold</kind><hold>Near</hold><hours>12</hours><minDays>2</minDays><timeoutDays>20</timeoutDays><timeoutPasses>true</timeoutPasses></gate>
       </li>
@@ -59,7 +59,7 @@
           <cold><li>{PET_nameDef} needs less exercise and more warmth now. I've arranged both.</li></cold>
         </journal>
         <chronicle>
-          <li>{PAWN_nameDef} spends the afternoons with old {PET_nameDef} these days.</li>
+          <li>In the afternoons {PAWN_nameDef} sits with {PET_nameDef} in the one patch of sun by the door.</li>
         </chronicle>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Visit"><whom>Pet</whom><hours>13~17</hours><duration>1.5~2</duration></li>
@@ -72,17 +72,17 @@
         <journal>
           <plain>
             <li>I took the day off and took {PET_nameDef} everywhere {PET_pronoun} used to like going. We were slow. We got there.</li>
-            <li>[summer] One more long warm day, the two of us out by the water. {PET_nameDef} even swam a little.</li>
+            <li>[summer] One more long warm day, the two of us out by the water. {PET_nameDef} even got {PET_possessive} feet wet.</li>
             <li>[winter] One more good day: the fire, a blanket, and {PET_nameDef}'s old head in my lap until dark.</li>
           </plain>
           <warm><li>I wanted {PET_nameDef} to have one more perfect day. I think {PET_pronoun} did. I know I did.</li></warm>
           <blunt><li>Day off with {PET_nameDef}. Worth it.</li></blunt>
-          <cheerful><li>The best day! {PET_nameDef} found a stick {PET_pronoun} liked and carried it all the way home.</li></cheerful>
-          <gloomy><li>A good day. I kept thinking it might be the last, and that spoiled it a little, and then it didn't.</li></gloomy>
-          <cold><li>I gave {PET_nameDef} a day of everything {PET_pronoun} once enjoyed. It seemed the least I could do.</li></cold>
+          <cheerful><li>The best day. {PET_nameDef} found a stick {PET_pronoun} liked and carried it all the way home, very slowly, very proud.</li></cheerful>
+          <gloomy><li>A good day. I kept thinking it might be the last, and that spoiled the middle of it, and then it didn't.</li></gloomy>
+          <cold><li>I gave {PET_nameDef} a day of everything {PET_pronoun} once enjoyed. The work can wait one day.</li></cold>
         </journal>
         <chronicle>
-          <li>{PAWN_nameDef} took a day off to give old {PET_nameDef} one more good day.</li>
+          <li>{PAWN_nameDef} took a whole day off to give {PET_nameDef} one more good one.</li>
         </chronicle>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Rest" />
@@ -95,17 +95,17 @@
         <journal>
           <plain>
             <li>{PET_nameDef} is still here. Slower every week, and still here. I've stopped counting the days and started keeping them.</li>
-            <li>Every morning {PET_nameDef} gets up is a morning I'm grateful for. That's how I live now.</li>
-            <li>[child] {PET_nameDef} is still my best friend. Old friends are the best kind, grandmother says.</li>
+            <li>Every morning I lie still until I hear {PET_nameDef} stir. Then I get up.</li>
+            <li>[child] {PET_nameDef} is still my best friend. Old friends are the best kind, the grown-ups say.</li>
           </plain>
           <warm><li>However long we have, {PET_nameDef} won't spend a day of it alone.</li></warm>
           <blunt><li>{PET_nameDef}'s still here. Good.</li></blunt>
-          <cheerful><li>Still going! The oldest, toughest, greyest animal in the colony, and mine.</li></cheerful>
-          <gloomy><li>I know how this ends. I've decided to love the middle anyway.</li></gloomy>
-          <cold><li>{PET_nameDef} remains in reasonable health for {PET_possessive} age. I find I'm glad of it.</li></cold>
+          <cheerful><li>Still going! The oldest, toughest, grayest animal in the colony, and mine.</li></cheerful>
+          <gloomy><li>I know how this ends. I'm not going to spend the days we have left looking at it.</li></gloomy>
+          <cold><li>{PET_nameDef} remains in reasonable health for {PET_possessive} age. I'm gladder of it than I'd admit to anyone.</li></cold>
         </journal>
         <chronicle>
-          <li>Old {PET_nameDef} is still with {PAWN_nameDef}, and {PAWN_nameDef} keeps every day of it.</li>
+          <li>{PET_nameDef} is still with {PAWN_nameDef}, slower every week, and {PAWN_nameDef} keeps every day of it.</li>
         </chronicle>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Arc_EveryDayAGift</thought></li>
@@ -120,9 +120,9 @@
         <li>[timeout] {PET_nameDef} is old and slow and still here. We'll take it a day at a time.</li>
         <li>{PET_nameDef} and I had our slow afternoons, for as long as they lasted. I'm glad of every one.</li>
       </plain>
-      <warm><li>[otherdead] {PET_nameDef} went quietly, with my hand on {PET_possessive} side. Thank you for every day, old friend.</li></warm>
+      <warm><li>[otherdead] {PET_nameDef} went with my hand on {PET_possessive} side. Thank you for every day, old friend.</li></warm>
       <blunt><li>[otherdead] {PET_nameDef}'s gone. Old age. Buried {PET_objective} myself.</li></blunt>
-      <cheerful><li>[otherdead] {PET_nameDef} is gone. I'm going to tell everyone the funniest {PET_nameDef} stories at supper, because {PET_pronoun} deserves laughing, not crying. Then I'll cry.</li></cheerful>
+      <cheerful><li>[otherdead] {PET_nameDef} is gone. I'm going to tell all the best {PET_nameDef} stories at supper tonight. {PET_nameDef} deserves laughing as well as crying.</li></cheerful>
       <gloomy><li>[otherdead] {PET_nameDef} is dead. I knew it was coming. Knowing didn't help at all.</li></gloomy>
       <cold><li>[otherdead] {PET_nameDef} died of old age this morning. A good span. I'm finding it harder than I expected.</li></cold>
     </fizzle>
@@ -161,12 +161,12 @@
           </plain>
           <warm><li>{PET_nameDef} sleeps against my neck. Every time {PET_pronoun} stirs, so do I.</li></warm>
           <blunt><li>Orphan. Mine now. Feeding every three hours.</li></blunt>
-          <cheerful><li>I've adopted {PET_nameDef}! Who needs sleep anyway?</li></cheerful>
+          <cheerful><li>I've adopted {PET_nameDef}! Sleep was overrated anyway.</li></cheerful>
           <gloomy><li>Orphans don't always make it. I'm going to do everything I can, and I'm still scared.</li></gloomy>
           <cold><li>Without its mother, {PET_nameDef} will need feeding by hand for some weeks. I've set a schedule.</li></cold>
         </journal>
         <chronicle>
-          <li>{PAWN_nameDef} has taken on {PET_nameDef}, a young animal whose mother is gone.</li>
+          <li>There's a nest of sacking by {PAWN_nameDef}'s bed now, and in it {PET_nameDef}, who has lost {PET_possessive} mother.</li>
           <li>{PAWN_nameDef} is raising the orphaned {PET_nameDef} by hand.</li>
         </chronicle>
         <effects>
@@ -186,11 +186,11 @@
           <warm><li>{PET_nameDef} cries if I'm out of sight. I've started leaving my old shirt in {PET_possessive} nest.</li></warm>
           <blunt><li>{PET_nameDef}'s eating on {PET_possessive} own. Good.</li></blunt>
           <cheerful><li>{PET_nameDef} ran. Badly, sideways, into a bucket. But ran!</li></cheerful>
-          <gloomy><li>{PET_nameDef} is stronger. I can almost stop holding my breath every morning.</li></gloomy>
-          <cold><li>{PET_nameDef} is gaining weight on schedule. The hand-feeding can be reduced.</li></cold>
+          <gloomy><li>Stronger every day, {PET_nameDef}. I can almost stop holding my breath every morning.</li></gloomy>
+          <cold><li>Weighed {PET_nameDef} again. On schedule, so the hand-feeding can be reduced.</li></cold>
         </journal>
         <chronicle>
-          <li>{PAWN_nameDef}'s orphan {PET_nameDef} is up on its own legs.</li>
+          <li>{PET_nameDef} follows {PAWN_nameDef} everywhere now, tripping over {PET_possessive} own feet.</li>
         </chronicle>
         <gate>
           <kind>Practice</kind>
@@ -213,9 +213,9 @@
           </plain>
           <warm><li>Growing up, and still mine. I'm going to miss the small days.</li></warm>
           <blunt><li>{PET_nameDef}'s nearly grown.</li></blunt>
-          <cheerful><li>Look how big {PET_nameDef} is. I did that. Well, the milk did. And me!</li></cheerful>
+          <cheerful><li>Look how big {PET_nameDef} is. I did that. Well, the milk did. And me.</li></cheerful>
           <gloomy><li>Soon {PET_nameDef} won't need me. That's the point, I know.</li></gloomy>
-          <cold><li>{PET_nameDef} is approaching adult size. A satisfactory outcome.</li></cold>
+          <cold><li>Nearly adult size, {PET_nameDef}. A satisfactory outcome.</li></cold>
         </journal>
         <chronicle>
           <li>{PAWN_nameDef}'s orphan {PET_nameDef} is nearly grown.</li>
@@ -227,7 +227,7 @@
         <journal>
           <plain>
             <li>{PET_nameDef} is grown. I fed {PET_objective} from a rag when {PET_pronoun} was small enough to hold in one hand. Look at {PET_objective} now.</li>
-            <li>{PET_nameDef} is a grown animal and still runs to me when I come through the gate. Some things you don't grow out of.</li>
+            <li>{PET_nameDef} is a grown animal and still runs to me when I come through the gate.</li>
             <li>[child] I raised {PET_nameDef} all by myself. Well, mostly. {PET_nameDef} is grown up now and so am I, nearly.</li>
           </plain>
           <warm><li>{PET_nameDef} made it. We both did. I'll never forget those nights.</li></warm>
@@ -237,7 +237,7 @@
           <cold><li>{PET_nameDef} reached adulthood in good health. I'm more attached than I planned to be.</li></cold>
         </journal>
         <chronicle>
-          <li>{PAWN_nameDef} raised the orphaned {PET_nameDef} by hand, and {PET_nameDef} is grown.</li>
+          <li>{PET_nameDef}, who once fit in {PAWN_nameDef}'s two hands, is grown.</li>
         </chronicle>
         <effects>
           <li Class="ColonyCouncil.ArcEffect_AnimalBond" />
@@ -282,22 +282,22 @@
     <maxDays>30</maxDays>
     <stages>
       <li>
-        <label>a visitor at the edge</label>
+        <label>a visitor at dusk</label>
         <waiting>Next: a few days. Will it stay?</waiting>
         <journal>
           <plain>
-            <li>There's {PET_indefinite} that keeps coming to the edge of the colony at dusk. It watches us. I watch it back.</li>
+            <li>There's {PET_indefinite} that keeps turning up at dusk, always the same distance from the door. It watches us. I watch it back.</li>
             <li>Same {PET_label} again by the woodpile, third evening running. I think it's hungry.</li>
             <li>[child] There's an animal that comes to see us every evening! Nobody else has noticed. It's my secret.</li>
           </plain>
           <warm><li>It looks so thin. I wonder whose it was, or if it was ever anyone's.</li></warm>
           <blunt><li>Stray's back. Skinny thing.</li></blunt>
           <cheerful><li>We have a visitor! It sits by the gate like it's waiting to be invited in.</li></cheerful>
-          <gloomy><li>Another hungry thing out there in the cold. I know how it feels.</li></gloomy>
-          <cold><li>A wild animal has been loitering at the colony's edge. It shows no aggression.</li></cold>
+          <gloomy><li>Another hungry thing out there. I know how it feels.</li></gloomy>
+          <cold><li>A wild animal has been loitering near the colony. It shows no aggression.</li></cold>
         </journal>
         <chronicle>
-          <li>{PAWN_nameDef} has noticed a stray hanging about the edge of the colony.</li>
+          <li>A stray has been turning up at dusk, always the same distance from the door, and {PAWN_nameDef} has started watching for it.</li>
         </chronicle>
         <gate><kind>Time</kind><days>2</days><minDays>1.5</minDays></gate>
       </li>
@@ -311,12 +311,12 @@
           </plain>
           <warm><li>It took the bread from the step while I sat still in the doorway. Didn't take its eyes off me once.</li></warm>
           <blunt><li>Feeding the stray. Don't tell the cook.</li></blunt>
-          <cheerful><li>It ate the whole bowl and looked at me like I was the best person in the world!</li></cheerful>
+          <cheerful><li>It ate the whole bowl, then looked at me as if I'd invented food.</li></cheerful>
           <gloomy><li>It keeps coming back. I hope I'm not just teaching it to trust something that'll let it down.</li></gloomy>
-          <cold><li>A little food each evening keeps the stray close. I'm curious how close it will come.</li></cold>
+          <cold><li>A handful of scraps each evening keeps the stray close. I'm curious how close it will come.</li></cold>
         </journal>
         <chronicle>
-          <li>{PAWN_nameDef} has been leaving scraps out for the stray.</li>
+          <li>Every evening {PAWN_nameDef} leaves scraps by the back door, and every morning the bowl is empty.</li>
         </chronicle>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>4</count></li>
@@ -333,12 +333,12 @@
           </plain>
           <warm><li>It's ready to come in, I think. It just needs someone to open the door.</li></warm>
           <blunt><li>Told the handlers to tame it. It's practically ours already.</li></blunt>
-          <cheerful><li>Today's the day. I've asked the handlers to bring it in!</li></cheerful>
+          <cheerful><li>Today's the day. I've asked the handlers to bring it in, and I've saved it the best scraps.</li></cheerful>
           <gloomy><li>If they scare it off now, I'll never forgive myself for asking.</li></gloomy>
           <cold><li>The stray is habituated. I've had it marked for taming.</li></cold>
         </journal>
         <chronicle>
-          <li>{PAWN_nameDef} has asked the handlers to bring in the stray.</li>
+          <li>The stray lets {PAWN_nameDef} close now, and {PAWN_nameDef} has asked the handlers to bring it in.</li>
         </chronicle>
         <effects>
           <li Class="ColonyCouncil.ArcEffect_TameStray" />
@@ -350,7 +350,7 @@
         <journal>
           <plain>
             <li>The stray is ours. It still sleeps by the back door where the scraps used to be, as if it isn't sure.</li>
-            <li>It came for the scraps, and it stayed for us. That's how most of us got here, really.</li>
+            <li>It came for the scraps and stayed. The handlers say it's the calmest animal they've ever brought in.</li>
             <li>[child] My secret animal lives here now! It isn't a secret any more. Everyone loves it.</li>
           </plain>
           <warm><li>Welcome home, you scruffy thing.</li></warm>
@@ -420,7 +420,7 @@
         </journal>
         <chronicle>
           <li>{PET_nameDef} has taken against {PAWN_nameDef}, for reasons of {PET_possessive} own.</li>
-          <li>{PAWN_nameDef} and {PET_nameDef} have fallen out.</li>
+          <li>{PAWN_nameDef} and {PET_nameDef} have fallen out, and the doorway is no longer safe.</li>
         </chronicle>
         <gate><kind>Time</kind><days>2</days><minDays>2</minDays></gate>
       </li>
@@ -435,11 +435,11 @@
           <warm><li>I tried offering {PET_nameDef} a treat. It was taken, and then my foot was sat on.</li></warm>
           <blunt><li>War. I'm winning. Probably.</li></blunt>
           <cheerful><li>Score so far: {PET_nameDef} four, me one. I'm catching up!</li></cheerful>
-          <gloomy><li>Everyone laughs. Nobody takes my side. Not even {PET_nameDef}'s owner.</li></gloomy>
+          <gloomy><li>The others laugh. Not one of them takes my side, not even {PET_nameDef}'s owner.</li></gloomy>
           <cold><li>I've moved my things to where {PET_nameDef} cannot reach them. {PET_nameDef} has adapted.</li></cold>
         </journal>
         <chronicle>
-          <li>The feud between {PAWN_nameDef} and {PET_nameDef} is the colony's favourite entertainment.</li>
+          <li>The colony has started keeping score in the feud between {PAWN_nameDef} and {PET_nameDef}. {PET_nameDef} is ahead.</li>
         </chronicle>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Arc_FeudWithAnimal</thought></li>
@@ -456,13 +456,13 @@
             <li>I gave {PET_nameDef} the crust off my bread. {PET_nameDef} accepted it with great dignity.</li>
           </plain>
           <warm><li>I think we're both tired of fighting, {PET_nameDef} and me.</li></warm>
-          <blunt><li>Truce with {PET_nameDef}. For now.</li></blunt>
+          <blunt><li>Truce with {PET_nameDef}. I'm still watching my boots.</li></blunt>
           <cheerful><li>Peace talks are going well. {PET_nameDef} only bit me once!</li></cheerful>
           <gloomy><li>A truce. {PET_nameDef} is just waiting for me to let my guard down.</li></gloomy>
           <cold><li>{PET_nameDef} and I have reached an understanding. I'll observe whether it holds.</li></cold>
         </journal>
         <chronicle>
-          <li>{PAWN_nameDef} and {PET_nameDef} have called a truce.</li>
+          <li>{PET_nameDef} accepted the crust off {PAWN_nameDef}'s bread today. A truce, of sorts.</li>
         </chronicle>
         <gate><kind>Hold</kind><hold>Near</hold><hours>8</hours><minDays>2</minDays><timeoutDays>15</timeoutDays><timeoutPasses>true</timeoutPasses></gate>
       </li>
@@ -474,11 +474,11 @@
             <li>Someone shouted at {PET_nameDef} today and I told them to leave {PET_objective} alone. I don't know who was more surprised.</li>
             <li>[child] {PET_nameDef} and me are friends now. We still fight sometimes. That's what friends do.</li>
           </plain>
-          <warm><li>Turns out {PET_nameDef} just wanted to be noticed. I notice {PET_objective} now.</li></warm>
+          <warm><li>{PET_nameDef} only ever wanted to be noticed, I think. I notice {PET_objective} now.</li></warm>
           <blunt><li>{PET_nameDef}'s all right.</li></blunt>
-          <cheerful><li>Best of enemies, best of friends. {PET_nameDef} saved me a place by the fire!</li></cheerful>
-          <gloomy><li>I suppose I'll miss the war a little. Don't tell {PET_nameDef}.</li></gloomy>
-          <cold><li>{PET_nameDef} and I have concluded hostilities. I find I enjoy {PET_possessive} company.</li></cold>
+          <cheerful><li>{PET_nameDef} saved me the warm spot on the step tonight. Best of enemies, best of friends.</li></cheerful>
+          <gloomy><li>I'll miss the war, a bit. Don't tell {PET_nameDef}.</li></gloomy>
+          <cold><li>{PET_nameDef} and I have concluded hostilities. I've come to like the creature, against my better judgment.</li></cold>
         </journal>
         <chronicle>
           <li>{PAWN_nameDef} and {PET_nameDef} made their peace, and now they're never apart.</li>
