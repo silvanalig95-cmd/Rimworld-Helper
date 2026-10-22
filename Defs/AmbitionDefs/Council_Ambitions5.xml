@@ -34,7 +34,7 @@
         <li>Some of us won't come back. Most of them won't either. That's the trade.</li>
       </gloomy>
       <cold>
-        <li>A raid base within striking distance is a recurring cost. Remove it and the cost goes away.</li>
+        <li>Every raid from that place costs us a week of repairs and sometimes a grave. One long walk ends it.</li>
         <li>[trait:Psychopath] Their settlement has supplies, weapons, people to take. Opportunity, not revenge.</li>
       </cold>
     </pitch>
@@ -43,7 +43,7 @@
       <warm><li>It's over. I hope it's over. Let's go home.</li></warm>
       <blunt><li>Told you. Fire solves things.</li></blunt>
       <gloomy><li>We won, and it doesn't feel like winning.</li></gloomy>
-      <cold><li>Threat neutralized. The spoils should cover the ammunition.</li></cold>
+      <cold><li>Threat removed. Their stores should cover what the trip cost us.</li></cold>
     </achieved>
   </ColonyCouncil.AmbitionDef>
 
@@ -63,28 +63,28 @@
       <plain>
         <li>Offers keep coming in from out there, and we keep ignoring them. Let's take on a couple.</li>
         <li>Out there, people pay for help. We could use the pay, and the friends.</li>
-        <li>[small] We're a handful of people on a big planet. Let's make sure someone out there knows our name.</li>
+        <li>[small] We're a handful of people in a big world. Let's make sure someone out there knows our name.</li>
       </plain>
       <warm>
         <li>Somebody out there needs help, and we're able to give it. That feels like reason enough.</li>
       </warm>
       <blunt>
-        <li>Quests mean loot, and loot means we eat better this winter.</li>
+        <li>Jobs out there mean loot, and loot means we eat better next season.</li>
       </blunt>
       <cheerful>
         <li>Adventure and rewards! Possibly some danger, but mostly the other things.</li>
       </cheerful>
       <gloomy>
-        <li>Everything out there wants to kill us. Might as well get paid to find out how.</li>
+        <li>Everything out there wants to kill us. We could at least get paid while it tries.</li>
       </gloomy>
       <cold>
-        <li>Quest rewards are high relative to risk, and goodwill compounds. It's a sound investment.</li>
+        <li>The rewards they offer are worth more than the risk, most of the time. I've read the offers.</li>
       </cold>
     </pitch>
     <achieved>
       <plain><li>People out there know who we are now. Travelers stop here on purpose.</li></plain>
       <cheerful><li>We're famous, sort of! A traveler knew the cook's name.</li></cheerful>
-      <cold><li>Reputation established. Leverage it.</li></cold>
+      <cold><li>People know our name now. That counts in every bargain we make.</li></cold>
     </achieved>
   </ColonyCouncil.AmbitionDef>
 

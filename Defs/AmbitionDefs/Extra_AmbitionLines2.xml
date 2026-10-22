@@ -29,7 +29,7 @@
         <li>[lowmood] I'm one snide remark away from throwing furniture, and I'm not even in the feud.</li>
       </blunt>
       <cheerful>
-        <li>We throw parties, one after another, until no one remembers what they were angry about!</li>
+        <li>We throw parties, one after another, until no one remembers what they were angry about.</li>
         <li>[spring] Spring's for fresh starts! New crops, new leaves, and people saying good morning to each other again.</li>
       </cheerful>
       <gloomy>
@@ -48,8 +48,8 @@
       </plain>
       <warm><li>I saw those two sharing a bench after supper tonight. They weren't talking, just sitting together.</li></warm>
       <blunt><li>Good. Whoever starts the next feud hauls corpses for a season.</li></blunt>
-      <cheerful><li>We all sat at one table tonight, and there weren't enough chairs!</li></cheerful>
-      <gloomy><li>Everyone's getting along. I give it until the next long winter, but I'll enjoy it while it lasts.</li></gloomy>
+      <cheerful><li>We all sat at one table, and there weren't enough chairs!</li></cheerful>
+      <gloomy><li>Everyone's getting along. I give it until the next long winter.</li></gloomy>
       <cold><li>Nobody is wasting work hours on grudges anymore. I've kept a list, in case it starts again.</li></cold>
     </achieved>
   </ColonyCouncil.FlavorExtensionDef>
@@ -70,12 +70,12 @@
         <li>[trusting] I still believe in this council. I'd like some company in that.</li>
       </warm>
       <blunt>
-        <li>People stop listening to a council that doesn't listen to them.</li>
+        <li>I brought a complaint to the last meeting and was told to wait. I'm still waiting.</li>
         <li>[bitter] You promised me a lot of things. I've written them down. Start at the top.</li>
         <li>[trait:Abrasive] People complain about the council to me because they think I'll be rude about it to your faces. I'm being rude about it to your faces.</li>
       </blunt>
       <cheerful>
-        <li>I want people lining up outside the meeting with requests, so many we need a queue!</li>
+        <li>People lining up outside the meeting with requests! We'd need extra benches.</li>
         <li>[highmood] I'm in a fantastic mood and I'd like to spread it around! Let's start by keeping one promise and see how it feels.</li>
       </cheerful>
       <gloomy>
@@ -117,7 +117,7 @@
       </warm>
       <blunt>
         <li>Someone's been drinking the beer and topping the bottles up with water. I can taste it. Lock it all up.</li>
-        <li>Half the stockpile walks off at night in somebody's pockets. Lock it up and sit on the key.</li>
+        <li>The stockpile goes missing at night, one pocketful at a time. Sit on the key if you have to.</li>
         <li>[trait:Teetotaler] Half of you smell like a still at morning muster. I've been breathing through my mouth for a month.</li>
       </blunt>
       <cheerful>

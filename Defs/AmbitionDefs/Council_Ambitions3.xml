@@ -80,7 +80,7 @@
         <li>[tribal|medieval] Our grandparents' grandparents made things that lasted. We can too.</li>
       </plain>
       <warm>
-        <li>Let me make something lovely for this place, the kind of thing people touch on their way past.</li>
+        <li>Let me make something lovely for this place. People should want to touch it on their way past.</li>
       </warm>
       <blunt>
         <li>I'm sick of chairs that wobble. Give me time and good material and I'll stop complaining.</li>
@@ -139,7 +139,7 @@
         <li>Everything we build burns eventually. I'd like to make one thing that's worth crying over.</li>
       </gloomy>
       <cold>
-        <li>A masterwork is worth several times the same thing made the ordinary way, out of the same wood.</li>
+        <li>A masterwork sells for several times what an ordinary one does. Same wood, same nails.</li>
         <li>[trait:Greedy] One masterwork is worth a whole caravan of ordinary goods. I've seen what traders pay.</li>
       </cold>
     </pitch>
