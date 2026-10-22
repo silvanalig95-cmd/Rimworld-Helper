@@ -136,7 +136,7 @@
           <li>{NAME} is buried, and {FACTION} have put away their gray. When the elders of {PLACE} name the neighbors who honored {NAME}, the colony is among them.</li>
           <li>[stood] {NAME} is buried. {FACTION} say the colony stood by the road bareheaded when the mourners passed, and that {NAME} would have liked that, being someone who always stopped to talk.</li>
         </texts>
-        <chronicle>{FACTION} buried {NAME}; the colony honoured the dead.</chronicle>
+        <chronicle>{FACTION} buried {NAME}; the colony honored the dead.</chronicle>
         <effects>
           <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>4</amount></li>
         </effects>
@@ -254,7 +254,7 @@
           </li>
           <li>
             <label>The colony has work to do</label>
-            <outcome>{NAME} goes by on the road below. Someone at the gate hears a snatch of a song on the wind, and nothing more.</outcome>
+            <outcome>{NAME} goes by on the road below. Someone at the gate catches a snatch of a song on the wind before it's gone.</outcome>
           </li>
         </options>
       </li>
@@ -451,6 +451,7 @@
         </titles>
         <texts>
           <li>{FACTION}'s smith has come up from {PLACE} with a purse and a list. {FACTION} need {COUNT} steel for nails and hinges before the season ends, and will pay twice what it's worth.\n\nIt's a good price. It's also the colony's steel.</li>
+          <li>A note came up from {PLACE} in a smith's big square hand, signed for {FACTION}, with a hammer drawn under the name:\n\n"Need {COUNT} steel. Will pay double. Nails, hinges, a plow for the widow at the mill. Can send a cart."</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -579,7 +580,7 @@
           <li>Exiles at the gate</li>
         </titles>
         <texts>
-          <li>A man and a woman from {PLACE}, the exiles everyone has heard about, are standing at the colony's gate with a bundle each. They ask for very little: a few nights' shelter, or a place for good if the colony will have them.\n\n{FACTION} will hear of whatever the colony does.</li>
+          <li>A man and a woman from {PLACE}, the exiles everyone has heard about, are standing at the colony's gate with a bundle each. They ask for very little: a few nights' shelter, or a place for good if the colony will have them.\n\nThe woman does the talking. The man keeps looking back down the road toward {PLACE}.</li>
           <li>[their:grudge] Exiles from {PLACE} are at the gate. They chose the colony on purpose, they say: {FACTION} don't love it either, so they hope it might love them a little.</li>
         </texts>
         <defaultOption>2</defaultOption>

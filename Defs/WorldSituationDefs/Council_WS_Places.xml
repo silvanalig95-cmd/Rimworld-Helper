@@ -50,6 +50,7 @@
         </titles>
         <texts>
           <li>The settlers of {PLACE} have sent a runner to ask whether they may count the colony among their friends. A neighbor's gift is the custom at a time like this, and it's remembered.\n\nThey are short of timber too, and would pay a fair price for some.</li>
+          <li>A girl of about twelve ran all the way from {PLACE} with a message learned by heart, and said it at the gate without stopping for breath: the settlers would like to count the colony among their friends, they are short of timber and can pay for it, and could she please have some water.\n\nA neighbor's gift is the custom at a time like this, and it's remembered.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -293,6 +294,7 @@
         </titles>
         <texts>
           <li>Merchants have started cutting across the colony's land to save half a day on the road to {PLACE}. They are polite about it. They also leave gates open and drink from the well.\n\nSome at the colony think the merchants should pay for the privilege; a toll would bring in about {COUNT} silver. Others think a rest stop with water and a fire would make friends of every trader in the region.</li>
+          <li>A merchant's boy came up to the gate this morning to ask, very politely, whether his master's wagons might water at the colony's well again on their way to {PLACE}. They have been doing it all week without asking. So have most of the caravans.\n\nA toll on the track across the colony's land would bring in about {COUNT} silver. A rest stop with water and a fire would make friends of every trader in the region.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -396,7 +398,7 @@
     </titles>
     <texts>
       <li>{FACTION} are holding {NAME} at {PLACE}, the biggest in years. Traders, players, cooks and craftsmen are coming from every town in the region, and there will be contests on the green: the best shot, the best cook, the finest work.\n\nThe colony has been invited, along with everyone else.</li>
-      <li>[theirHightech] {FACTION} have announced {NAME} at {PLACE}: market stalls, music, a contest in every trade worth having, and floodlights so it can run all night.\n\nThe colony has been invited, along with everyone else in the region.</li>
+      <li>[theirHightech] {FACTION} have announced {NAME} at {PLACE}: market stalls, music, a contest in every trade worth having, and floodlights so it can run all night.\n\nThe colony's invitation came on stiff card, printed in two colors, with its name spelled nearly right.</li>
     </texts>
     <summaries>
       <li>The colony can send a cart of its surplus to sell at fair prices, and put its best forward in a contest. Visitors and traders come more often while it lasts.</li>
@@ -418,6 +420,7 @@
         </titles>
         <texts>
           <li>{FACTION} have offered the colony a stall at {NAME}. The colony has {COUNT} {THING} it doesn't need, and fair prices are better than any trader's.\n\nThe fair's carts are going around the villages for stall goods, and would bring the takings back when the fair closes.</li>
+          <li>{FACTION}'s fair steward has written with a spare stall at {NAME}, and a good eye for what the colony has too much of: {COUNT} {THING}, the letter suggests, would sell well there, and at a better price than any trader pays.\n\nOne of the fair's carts would come for the goods, and bring the takings back when the fair closes.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -506,7 +509,7 @@
     </titles>
     <texts>
       <li>Once in a generation, the faithful of {FACTION} walk to the old shrine at {PLACE}, and this is that year. They are on every road, in twos and threes and in long singing columns, and many of them pass the colony.\n\nMost carry little and ask for less. All of them will remember where they were welcomed.</li>
-      <li>[theirHightech] Some walk and some ride in the backs of trucks, and all of them are singing. The faithful of {FACTION} are on their way to the old shrine at {PLACE}, as they are once in a generation, and the colony sits on one of their roads.\n\nMost carry little and ask for less. All of them will remember where they were welcomed.</li>
+      <li>[theirHightech] Some walk and some ride in the backs of trucks, and all of them are singing. The faithful of {FACTION} are on their way to the old shrine at {PLACE}, as they are once in a generation, and the colony sits on one of their roads.\n\nThe trucks stop for anyone who waves them down. They will stop at the colony's gate too, if it's open.</li>
       <li>[colony:Devout] The faithful of {FACTION} are walking to the old shrine at {PLACE} this year, as they do once in a generation, and the talk on the roads is that the colony keeps its own faith well. More than a few of them mean to stop there on the way.\n\nMost carry little, and will ask for less.</li>
     </texts>
     <summaries>

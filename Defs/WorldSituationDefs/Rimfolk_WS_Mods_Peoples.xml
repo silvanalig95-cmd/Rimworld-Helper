@@ -41,7 +41,7 @@
       <li>[faction:Outland_VathunNobles] The lord of {FACTION}'s forest court is traveling the country, as the Vathun's lords do every few summers, to be seen and to see. Servants walk ahead to sweep the road; poets walk behind to describe it.\n\nThe progress will pass near the colony on its way from {PLACE}.</li>
       <li>[faction:Outland_Empire] A magistrate of the Eastborn Empire is touring the borderlands in a lacquered palanquin, with a long line of bearers, scribes and a tea-master. {FACTION} say the magistrate has held the post for three hundred years and has never once hurried.\n\nThe tour passes near the colony on its way from {PLACE}.</li>
       <li>[factionmod:athelas.medievaltotalrim.france|factionmod:athelas.medievaltotalrim.hre|factionmod:athelas.medievaltotalrim.poland|factionmod:athelas.medievaltotalrim.russia] A count of {FACTION} is riding through the region with his household knights, his falcons and his confessor, holding court in every town that will have him.\n\nHis road from {PLACE} passes close to the colony.</li>
-      <li>[factionmod:athelas.medievaltotalrim.byzantium|factionmod:athelas.medievaltotalrim.turks|factionmod:athelas.medievaltotalrim.iberia] A governor of {FACTION} is travelling the region with clerks, guards and a string of camels, counting everything and admiring nothing out loud.\n\nThe road from {PLACE} passes close to the colony.</li>
+      <li>[factionmod:athelas.medievaltotalrim.byzantium|factionmod:athelas.medievaltotalrim.turks|factionmod:athelas.medievaltotalrim.iberia] A governor of {FACTION} is traveling the region with clerks, guards and a string of camels, counting everything and admiring nothing out loud.\n\nThe road from {PLACE} passes close to the colony.</li>
       <li>[factionmod:athelas.medievaltotalrim.mongols] A prince of {FACTION} is riding the region's roads with his guard, his hawks and more horses than men, visiting the towns that pay the khaganate its due.\n\nHis road from {PLACE} passes close to the colony.</li>
     </texts>
     <summaries>
@@ -234,7 +234,7 @@
         <options>
           <li>
             <label>Pay the token ({COUNT} silver)</label>
-            <outcome>The envoy weighed the silver in one hand, nodded, and rode off without a backward glance. Word will go round the gathering that this colony knows its manners.</outcome>
+            <outcome>The envoy weighed the silver in one hand, nodded, and rode off without a backward glance. Word will go around the gathering that this colony knows its manners.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the token for the gathering</label><what>silver</what><tens>true</tens><steward>false</steward><to>Gate</to></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>12</amount></li>
@@ -268,7 +268,7 @@
         <message>true</message>
         <texts>
           <li>A band of {FACTION} went by on the road today, close enough to count. They looked the colony over and kept going.</li>
-          <li>[paid] A band of {FACTION} went by on the road today. One of them raised a spear to the colony's wall as they passed, which the lookout decided to take as a greeting.</li>
+          <li>[paid] Riders of {FACTION} went past the colony at midday. One of them raised a spear to the wall as they passed, which the lookout decided to take as a greeting.</li>
         </texts>
       </li>
       <li>
@@ -280,8 +280,8 @@
         </effects>
         <message>true</message>
         <texts>
-          <li>A band of {FACTION} went by on the road today, slowly, looking hard at the walls. The colony is keeping its gate shut and its lamps low, and the night watch has been doubled.</li>
-          <li>[warned] A band of {FACTION} went by on the road today, slowly, looking hard at the walls. Somewhere along the road, the colony's warning is being cursed, and the colony knows it.</li>
+          <li>A band of {FACTION} came along the road at a walk this afternoon, looking hard at the walls. The colony is keeping its gate shut and its lamps low, and the night watch has been doubled.</li>
+          <li>[warned] {FACTION}'s warriors went by slowly today, looking hard at the walls. Somewhere along the road the colony's warning is being cursed, and the colony knows it.</li>
         </texts>
       </li>
     </beats>

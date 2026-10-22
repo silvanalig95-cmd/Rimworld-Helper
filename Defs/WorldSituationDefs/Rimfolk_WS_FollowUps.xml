@@ -36,10 +36,10 @@
       <li>After {TALE}</li>
     </titles>
     <texts>
-      <li>{TALE} is over, and {FACTION} are counting what it cost them. Burned barns, broken bridges, fields trampled to mud, and at {PLACE} a wall with a hole in it the size of a house.\n\nThey are starting again. They will need timber, stone, skilled hands and a great deal of soup.</li>
+      <li>{FACTION} are counting what {TALE} cost them. Burned barns, broken bridges, fields trampled to mud, and at {PLACE} a wall with a hole in it the size of a house.\n\nThey are starting again. They will need timber, stone, skilled hands and a great deal of soup.</li>
       <li>[theirLowtech] The fighting of {TALE} has moved on, and {FACTION} are coming back to their villages around {PLACE}: what's left of them. The old people say it will take a generation. The young people have already started on the bridge.</li>
       <li>[theirHightech] {FACTION} have published a rebuilding plan for {PLACE} after {TALE}: a long list of everything that was broken, and a shorter list of everything they have to mend it with. They are asking every neighbor for help with the difference.</li>
-      <li>[afterHelped] {TALE} is over, and {FACTION} have not forgotten that the colony stood by them through it. Now they are rebuilding, and the colony is the first place they've sent to.</li>
+      <li>[afterHelped] {FACTION} have not forgotten that the colony stood by them through {TALE}. Now they are rebuilding, and the colony is the first place they've sent to.</li>
       <li>[their:friend] {FACTION} are rebuilding after {TALE}. Their message to the colony ends with a line for {FRIEND_nameDef}: there's a new house going up at {PLACE}, and they'd like {FRIEND_objective} to see it finished.</li>
     </texts>
     <summaries>
@@ -230,7 +230,7 @@
       <li>[after:Council_WS_Flood] The water has gone down and the fords are passable again after {TALE}. The river road is open, muddy and crowded with every trader who waited it out.</li>
       <li>[after:Council_WS_Plague] The quarantine is over. {TALE} has burned out, the gates of the towns are open again, and the traders who were shut out for weeks are hurrying back to their old routes.</li>
       <li>[after:Council_WS_BanditRoad|after:Council_WS_BanditLordFalls|after:Council_WS_Warlord] The road is safe again after {TALE}. The first caravan through didn't believe it and came with twice the usual guards. The second came with its music playing.</li>
-      <li>[after:Council_WS_Toll] The toll chain is off the road, and the traders who went the long way round are coming back the short way, all of them, at once.</li>
+      <li>[after:Council_WS_Toll] The toll chain is off the road, and the traders who went the long way around are coming back the short way, all of them, at once.</li>
     </texts>
     <summaries>
       <li>Trader caravans and visitors come much more often for a while. Merchants may want a place to rest, or a standing order from the colony.</li>

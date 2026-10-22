@@ -239,7 +239,7 @@
     </titles>
     <texts>
       <li>Something has driven the strange beasts of the far country into the region: animals the old hunters of {FACTION} only know from stories, moving in loose bands and eating anything green.\n\nSome are harmless, and some very much aren't. The hunters of {PLACE} are staying close to home until they know which are which.</li>
-      <li>[winter] The cold has driven the strange beasts of the far country down out of the high places: animals nobody in {PLACE} has a name for, moving in loose bands through the snow.\n\nSome are harmless, and some very much aren't.</li>
+      <li>[winter] The cold has driven the strange beasts of the far country down out of the high places: animals nobody in {PLACE} has a name for, moving in loose bands through the snow.\n\nOne of them stood at the edge of {PLACE}'s fields all yesterday, watching the houses, and then walked away.</li>
     </texts>
     <summaries>
       <li>Strange creatures turn up far more often, with herds behind them. A skilled handler may win one over; a careless one may regret trying.</li>
@@ -323,7 +323,7 @@
     </titles>
     <texts>
       <li>The ley lines are restless. Mages in {PLACE} report spells going wrong and spells going far too right, and on clear nights the sky is streaked with colors nobody can name.\n\n{FACTION} have shut their mage towers until it passes. Anyone with the gift will feel it.</li>
-      <li>[winter] The winter nights have turned strange. The sky over the region burns green and violet after dark, mages in {PLACE} wake up with frost on the inside of their windows, and {FACTION} have shut their mage towers until it passes.\n\nAnyone with the gift will feel it.</li>
+      <li>[winter] The winter nights have turned strange. The sky over the region burns green and violet after dark, mages in {PLACE} wake up with frost on the inside of their windows, and {FACTION} have shut their mage towers until it passes.\n\nEvery mage in the region is sleeping badly, and dreaming in the same colors.</li>
     </texts>
     <summaries>
       <li>Shards fall from the sky more often, and the colony's mages may learn more in these weeks than in a year, if they dare to study the surge.</li>
@@ -357,7 +357,7 @@
         <options>
           <li>
             <label>Let {A_objective} study it</label>
-            <outcome>{A_nameDef} comes back from the stones after three nights, red-eyed and talking too fast, with a notebook full of things only {A_nameDef} can read.</outcome>
+            <outcome>{A_nameDef} comes back from the stones after three nights, red-eyed and talking too fast, with a notebook full of diagrams that make the others' eyes ache.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Learn"><skill>Intellectual</skill><xp>2000</xp></li>
               <li Class="ColonyCouncil.DilemmaEffect_Inspiration" />
