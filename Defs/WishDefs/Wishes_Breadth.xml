@@ -548,7 +548,7 @@
         <li>Every winter someone says we'll be fine. Then we aren't.</li>
       </gloomy>
       <cold>
-        <li>A reserve of preserved food is insurance against a failed harvest.</li>
+        <li>When a harvest fails, people start looking at each other differently. I'd rather we had a reserve.</li>
       </cold>
     </request>
     <thanks>
@@ -615,7 +615,7 @@
         <li>The fish will be there long after we're gone. We might as well eat a few first.</li>
       </gloomy>
       <cold>
-        <li>The water holds food we aren't using. Marking a fishing zone costs nothing.</li>
+        <li>Food is swimming past and we're letting it. That's careless.</li>
       </cold>
     </request>
     <thanks>
@@ -673,7 +673,7 @@
         <li>[trait:TooSmart] I've been charting the sky by hand, and I need {THING} to check my numbers.</li>
       </plain>
       <warm>
-        <li>It wouldn't be just for me. Anyone who couldn't sleep could come out and look.</li>
+        <li>I'd wake you for anything worth seeing. A comet, a falling star.</li>
       </warm>
       <blunt>
         <li>I want {THING}. The sky is the only thing here that isn't trying to kill us.</li>
@@ -685,7 +685,7 @@
         <li>The stars don't care about us. I'd still like to look at them.</li>
       </gloomy>
       <cold>
-        <li>Observing the sky has value for navigation and for knowledge. The cost is small.</li>
+        <li>I like knowing things other people don't. The sky is full of them.</li>
       </cold>
     </request>
     <thanks>
@@ -739,7 +739,7 @@
         <li>[trait:HardWorker|trait:Industrious] I could finish twice as much if I weren't digging through scrap for a hammer.</li>
       </plain>
       <warm>
-        <li>Everyone who works the bench would be glad of it, not just me.</li>
+        <li>I'd keep it tidy for everyone, and put things back where they go. I promise.</li>
       </warm>
       <blunt>
         <li>My tools keep disappearing. Put {THING} by the bench and they'll stop.</li>
@@ -804,7 +804,7 @@
         <li>[summer] Summer's the time to cut stone, while the days are long and the ground is dry.</li>
       </plain>
       <warm>
-        <li>With blocks to hand, I could build something that lasts. For all of us.</li>
+        <li>I'd like to build something for this place that's still standing long after I'm gone.</li>
       </warm>
       <blunt>
         <li>Cut stone. Lots of it. Then let me build.</li>
@@ -816,7 +816,7 @@
         <li>Everything we build out of wood ends up burned or rotten.</li>
       </gloomy>
       <cold>
-        <li>Stone construction lowers the risk of fire and the cost of repairs.</li>
+        <li>Wood burns. I've watched it. Stone is the sensible choice.</li>
       </cold>
     </request>
     <thanks>
@@ -882,7 +882,7 @@
         <li>Probably nothing down there but rock. I'd still like to find out.</li>
       </gloomy>
       <cold>
-        <li>The resources underground are untapped. A deep drill pays for itself.</li>
+        <li>There's metal under our feet doing nothing. Waste bothers me.</li>
       </cold>
     </request>
     <thanks>
@@ -949,7 +949,7 @@
         <li>If we're overrun one night, it could be a season before anyone out there hears of it.</li>
       </gloomy>
       <cold>
-        <li>Communication enables trade, alliances and requests for aid.</li>
+        <li>I want to know what the neighbors are planning before they arrive.</li>
       </cold>
     </request>
     <thanks>
@@ -1005,7 +1005,7 @@
         <li>[spacer] On the worlds I grew up on, nobody my age had to hobble. Build {THING}.</li>
       </plain>
       <warm>
-        <li>It wouldn't only be for me. Everyone here will be my age one day.</li>
+        <li>I'd like a few more years with all of you. That's the whole of it.</li>
       </warm>
       <blunt>
         <li>I'm old. Build {THING}.</li>
@@ -1017,7 +1017,7 @@
         <li>I can feel the end coming. A few more years would be something.</li>
       </gloomy>
       <cold>
-        <li>Reversing my age extends my working life. The colony benefits.</li>
+        <li>I have no intention of dying of old age. A pod is the obvious start.</li>
       </cold>
     </request>
     <thanks>
@@ -1417,7 +1417,7 @@
         <li>Someone's going to faint out in the fields soon. Probably me.</li>
       </gloomy>
       <cold>
-        <li>Heatstroke is preventable. Cooling costs less than treatment.</li>
+        <li>Someone will collapse in this heat. I'd rather it wasn't me.</li>
       </cold>
     </request>
     <thanks>
@@ -1547,7 +1547,7 @@
         <li>I sleep on dirt like an animal. I'd like to stop.</li>
       </gloomy>
       <cold>
-        <li>A floor makes a room cleaner and more pleasant. It's a few hours of work.</li>
+        <li>Dirt gets into everything I own. A floor is a few hours of work. Do it.</li>
       </cold>
     </request>
     <thanks>

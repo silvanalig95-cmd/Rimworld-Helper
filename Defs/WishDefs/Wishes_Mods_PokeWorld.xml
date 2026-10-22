@@ -30,7 +30,7 @@
         <li>[lowmood] I need something to work toward. That {SUBJECT} out there would do.</li>
       </plain>
       <warm>
-        <li>That {SUBJECT} would do well here. I'd make sure it's looked after.</li>
+        <li>That {SUBJECT} would be happy here. I'd see to it.</li>
       </warm>
       <blunt>
         <li>Give me a ball belt and an afternoon. The {SUBJECT} is coming home.</li>
@@ -42,7 +42,7 @@
         <li>If we wait, that {SUBJECT} will wander off, and we won't see another for a long time.</li>
       </gloomy>
       <cold>
-        <li>The colony has no {SUBJECT}. Catching one costs a ball and an afternoon.</li>
+        <li>The colony has no {SUBJECT}. I don't like gaps in a collection.</li>
       </cold>
     </request>
     <thanks>

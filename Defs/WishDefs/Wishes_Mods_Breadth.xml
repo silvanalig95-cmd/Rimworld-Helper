@@ -58,7 +58,7 @@
         <li>It won't cure me. It'll make being sick less miserable.</li>
       </gloomy>
       <cold>
-        <li>A warm drink eases the symptoms. The cost is minor.</li>
+        <li>I'm no use to anyone like this. Tea, and I'll be back at work sooner.</li>
       </cold>
     </request>
     <thanks>
@@ -125,7 +125,7 @@
         <li>Summer's short. We should enjoy at least one evening of it.</li>
       </gloomy>
       <cold>
-        <li>Grilled meals lift morale cheaply.</li>
+        <li>People are easier to manage after a good meal. A grill would help with that.</li>
       </cold>
     </request>
     <thanks>
@@ -188,7 +188,7 @@
         <li>If we treat visitors badly, they'll stop coming. Then it's just us.</li>
       </gloomy>
       <cold>
-        <li>Well-treated guests bring trade and goodwill. A bed is cheap.</li>
+        <li>Guests remember how they slept. It's useful to be remembered well.</li>
       </cold>
     </request>
     <thanks>
@@ -254,7 +254,7 @@
         <li>We grow it, they eat it. That's been the story all season.</li>
       </gloomy>
       <cold>
-        <li>Crop losses to small animals are measurable. A scarecrow ends most of them.</li>
+        <li>I've counted what the animals took this season. It's more than you'd think.</li>
       </cold>
     </request>
     <thanks>

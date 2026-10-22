@@ -45,7 +45,7 @@
         <li>[trait:Necromancer] The cook won't have my work anywhere near the kitchen, and I can't say I blame them. Give it a place of its own.</li>
       </plain>
       <warm>
-        <li>It wouldn't only be for me. With {THING}, I could do a great deal more for everyone here.</li>
+        <li>With {THING}, I could do so much more for the people here. Please.</li>
       </warm>
       <blunt>
         <li>I can't do serious work without {THING}. Build one.</li>
@@ -57,7 +57,7 @@
         <li>Without {THING}, half of what I know is no use to anyone.</li>
       </gloomy>
       <cold>
-        <li>With {THING}, I'd be worth twice what I am to this colony. It's a sound use of the stone.</li>
+        <li>With {THING}, I'd be worth twice what I am to this colony. Think about what that's worth to you.</li>
       </cold>
     </request>
     <thanks>

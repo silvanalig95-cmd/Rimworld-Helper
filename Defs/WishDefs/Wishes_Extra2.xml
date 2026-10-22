@@ -91,7 +91,7 @@
         <li>Some sad songs would suit this place. I'd need {THING} for that.</li>
       </gloomy>
       <cold>
-        <li>Music measurably improves morale. Building {THING} would be an efficient investment.</li>
+        <li>I play well, and people are calmer when they're listening. Build {THING}.</li>
       </cold>
     </request>
     <thanks>
@@ -145,7 +145,7 @@
         <li>One of these raids is going to kill me. Armor would make it a later one.</li>
       </gloomy>
       <cold>
-        <li>My survival rate in combat would improve substantially with armor.</li>
+        <li>I've worked out my odds in the next raid. Armor improves them a great deal.</li>
       </cold>
     </request>
     <thanks>

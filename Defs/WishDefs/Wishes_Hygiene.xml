@@ -120,7 +120,7 @@
       <blunt><li>I stink. Give me {THING}.</li></blunt>
       <cheerful><li>A tub of water is all I'm asking for. I'll even share it.</li></cheerful>
       <gloomy><li>I've started to smell like the midden. Maybe that's just who I am now.</li></gloomy>
-      <cold><li>Filth breeds disease, and {THING} is cheap.</li></cold>
+      <cold><li>Filth breeds disease, and I don't intend to die of something that stupid. Get {THING}.</li></cold>
     </request>
     <thanks>
       <plain><li>I scrubbed until the water went gray. Thank you.</li></plain>
@@ -173,11 +173,11 @@
         <li>[winter] Washing in cold water in winter is how people catch their death. We know how to heat it now.</li>
         <li>A boiler and {THING}. Then a bath would actually be a bath.</li>
       </plain>
-      <warm><li>Hot water would make the mornings kinder, for all of us.</li></warm>
+      <warm><li>Hot water would make the mornings kinder. People might even smile before breakfast.</li></warm>
       <blunt><li>Cold water again. Heat it.</li></blunt>
       <cheerful><li>Hot water, with steam coming off it! Imagine.</li></cheerful>
       <gloomy><li>My teeth are still chattering from this morning's wash.</li></gloomy>
-      <cold><li>A cold wash puts people off washing. Heated water pays for itself.</li></cold>
+      <cold><li>People skip washing when the water's cold. I've noticed who.</li></cold>
     </request>
     <thanks>
       <plain><li>The water came out steaming this morning. Thank you.</li></plain>
