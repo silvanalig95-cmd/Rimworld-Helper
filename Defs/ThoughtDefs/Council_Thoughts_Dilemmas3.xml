@@ -198,7 +198,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_Morbid</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>planning their own funeral</label><description>One of us is getting ready for their own funeral, and seems to enjoy it. It gives me the creeps.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>someone's planning their funeral</label><description>One of us is getting ready for their own funeral, and seems to enjoy it. It gives me the creeps.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">

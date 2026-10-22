@@ -68,7 +68,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmSoc_Meddled</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>meddled in my friendships</label><description>Now the council has opinions about who I spend my evenings with. That's none of their business.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+    <stages><li><label>the council's meddling</label><description>Now the council has opinions about who I spend my evenings with. That's none of their business.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
