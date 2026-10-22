@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Wishes in their own words
+
+*28 October 2026, version 0.10.3*
+
+- Every wish, life goal, decree and council ambition was reread line by line. Colonists ask in more ways (a hint, a demand, a bargain, a complaint), the cold voice bargains or unsettles instead of reciting costs, and thanks can be a single word.
+- Wish lines fit every way a wish comes true: thanks are said the moment it's granted, a lapsed wish no longer claims the trouble passed or that the council said no, and a room of one's own fits someone with no bed as well as someone in the barracks.
+- Life goals read right in a letter ("let go of an old shame", "find faith again"), each line fits whatever set the goal off, and the letter when a goal or an ambition is reached is a plain sentence about who did it and how long it took.
+- Decree lines hold whether they're said in a petition, when the decree is declared or while it runs, and the curfew's grumbling counts the hours.
+
 ## The people in the letters
 
 *27 October 2026, later, version 0.10.2*

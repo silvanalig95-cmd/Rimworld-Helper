@@ -31,6 +31,18 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.10.3</version>
+        <date>28 October 2026</date>
+        <title>Wishes in their own words</title>
+        <points>
+          <li>Every wish, life goal, decree and council ambition was reread line by line. Colonists ask in more ways (a hint, a demand, a bargain, a complaint), the cold voice bargains or unsettles instead of reciting costs, and thanks can be a single word.</li>
+          <li>Wish lines fit every way a wish comes true: thanks are said the moment it's granted, a lapsed wish no longer claims the trouble passed or that the council said no, and a room of one's own fits someone with no bed as well as someone in the barracks.</li>
+          <li>Life goals read right in a letter ("let go of an old shame", "find faith again"), each line fits whatever set the goal off, and the letter when a goal or an ambition is reached is a plain sentence about who did it and how long it took.</li>
+          <li>Decree lines hold whether they're said in a petition, when the decree is declared or while it runs, and the curfew's grumbling counts the hours.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.10.2</version>
         <date>27 October 2026, later</date>
         <title>The people in the letters</title>
