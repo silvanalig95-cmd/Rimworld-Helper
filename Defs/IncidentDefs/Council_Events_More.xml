@@ -24,13 +24,13 @@
         </titles>
         <texts>
           <li>[!lowtech] A cargo pod streaked down and thumped into the ground beyond the colony's fields. The markings say it belongs to {FACTION}, and a message from them is already waiting: it went astray, and they'd like it back, please. The colony could, of course, simply not have seen it.</li>
-          <li>[lowtech] A pack mule bolted from a caravan of {FACTION}, shed its load on the colony's land and vanished over the hills. A rider from {FACTION} is already asking after the goods. The colony can send them back, or keep them and say nothing.</li>
+          <li>[lowtech] "Brown mule, white blaze, about so high. Bolted with half our load on its back." The rider from {FACTION} who came asking is still out of breath.\n\nThe mule is long gone over the hills, but its load is lying on the colony's land where it shed it. The colony can send the goods back, or keep them and say nothing.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
           <li>
             <label>Send it back</label>
-            <outcome>The cargo goes back to {FACTION}, with the colony's compliments. They won't forget it.</outcome>
+            <outcome>The cargo goes back to {FACTION} with the colony's compliments. They won't forget it.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>12</amount></li>
             </effects>
@@ -88,8 +88,8 @@
         </titles>
         <texts>
           <li>[!lowtech] A recruiter from {FACTION}, with polished boots and a polished smile, has heard about {A_nameDef}'s {SKILL}. {FACTION} would pay the colony {COUNT} silver to take over {A_possessive} contract, and pay {A_objective} a fine wage besides. The recruiter is very sure {A_nameDef} will say yes.</li>
-          <li>[lowtech,!tribal] A steward of {FACTION} has come with an offer. The steward's lord has heard of {A_nameDef}'s {SKILL}, and would pay the colony {COUNT} silver to take {A_objective} into service. It's a good post in a great house, the steward says, with room and board.</li>
-          <li>[tribal] Elders of {FACTION} have sent word. They've heard of {A_nameDef}'s {SKILL}, and would give the colony {COUNT} silver if {A_nameDef} came to live among them and teach their young.</li>
+          <li>[lowtech,!tribal] "My lord has heard of the {SKILL} of one {A_nameDef}, and would take {A_objective} into service." The steward of {FACTION} says it as if reading it, and perhaps is.\n\nThe lord offers the colony {COUNT} silver for {A_nameDef}, and {A_nameDef} a good post in a great house, with room and board.</li>
+          <li>[tribal] Word has come from the elders of {FACTION}, who have heard of {A_nameDef}'s {SKILL}. If {A_nameDef} will come to live among them and teach their young, they'll give the colony {COUNT} silver.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -150,7 +150,7 @@
           <li>[lowtech] A chronicler</li>
         </titles>
         <texts>
-          <li>[!lowtech] {X_nameDef}, a journalist of {FACTION} with a notebook and a camera, wants to write about the colony: how it lives, what it stands for and what it's known for. The piece will be widely read, and {X_nameDef} would like the tour.</li>
+          <li>[!lowtech] {X_nameDef}, a journalist of {FACTION}, had a notebook out before the gate was even open. {X_nameDef} is writing about the colony, what it stands for and what it's known for, for a piece that will be widely read, and would like the tour.</li>
           <li>[lowtech] {X_nameDef}, a chronicler of {FACTION}, travels the land recording the deeds of its settlements, and would like to record the colony's. What {X_nameDef} writes will be copied and read far from here, if the colony agrees to show {X_objective} around.</li>
         </texts>
         <defaultOption>1</defaultOption>
@@ -213,7 +213,7 @@
           <li>[lowtech] A wandering herbalist</li>
         </titles>
         <texts>
-          <li>[!lowtech] {X_nameDef}, a traveling doctor of {FACTION}, is going from settlement to settlement with a case of vaccines. For {COUNT} silver, everyone in the colony gets a shot, and for a month they'll fight off sickness noticeably better.</li>
+          <li>[!lowtech] {X_nameDef}, a traveling doctor of {FACTION}, is going from settlement to settlement with a case of vaccines. For {COUNT} silver, every colonist gets a shot, and for a month they'll fight off sickness noticeably better.</li>
           <li>[lowtech] {X_nameDef}, a wandering herbalist of {FACTION}, sells a bitter tonic said to keep the coughing sickness away. For {COUNT} silver there's enough for every colonist, and for a month they would shake off sickness faster. The herbalist's last customers swear by it.</li>
         </texts>
         <defaultOption>1</defaultOption>
@@ -270,7 +270,7 @@
           <li>Old tunes</li>
         </titles>
         <texts>
-          <li>[!lowtech] The comms console, left scanning overnight, picked up a far-off station that plays very old records, with one host and no ads. Colonists keep finding reasons to work within earshot.</li>
+          <li>[!lowtech] The comms console, left scanning overnight, picked up a far-off station that plays very old records, with one host who never says where the station is. Colonists keep finding reasons to work within earshot.</li>
           <li>[lowtech] Minstrels have made camp on the hill beyond the fields, and in the evenings their music drifts down over the colony. People linger outside after supper to listen.</li>
         </texts>
         <effects>
