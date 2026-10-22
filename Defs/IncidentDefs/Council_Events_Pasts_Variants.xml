@@ -13,8 +13,8 @@
     <incident>Council_Evt_OldComrade</incident>
     <texts>
       <li>[soldier,winter] A traveler in an old army greatcoat came through the snow asking for {A_nameDef}. It's {X_nameDef}, who shared a tent with {A_objective} through the worst winter of the war. {X_nameDef} has nowhere to spend this one, and asks to stay.</li>
-      <li>[outlaw,lowtech] {X_nameDef} rode up to the gate on a stolen-looking horse and asked for {A_nameDef} by an old nickname. They ran together on the roads, years ago. {X_nameDef} says {X_pronoun} is honest now, and would like a place here.</li>
-      <li>[soldier,partner] {X_nameDef}, who served beside {A_nameDef} years ago, has turned up at the gate with a pack and a hopeful look. {A_nameDef}'s partner has heard a great deal about {X_nameDef} over the years, not all of it flattering. {X_nameDef} asks to stay.</li>
+      <li>[outlaw,lowtech] Word came up from the road that someone was asking for {A_nameDef} by an old nickname, one {A_nameDef} hasn't answered to in years. It's {X_nameDef}, who ran the roads with {A_objective} years ago. {X_nameDef} says {X_pronoun} is honest now, and would like a place here.</li>
+      <li>[soldier,partner] {A_nameDef}'s partner has heard a great deal about {X_nameDef} over the years, not all of it flattering. Now {X_nameDef}, who served beside {A_nameDef} in the old days, is on the road below the colony with a pack and a hopeful look, asking to stay.</li>
     </texts>
     <outcomes>
       <li>
@@ -31,7 +31,7 @@
     <incident>Council_Evt_LostKin</incident>
     <texts>
       <li>[winter] A figure came out of the snow at dusk and asked for {A_nameDef}. It's {X_nameDef}, {A_possessive} {RELATION}, who heard a rumor last autumn that {A_nameDef} was alive and has been walking ever since. {X_nameDef} asks to stay.</li>
-      <li>[farmer] {X_nameDef}, {A_nameDef}'s {RELATION}, has found {A_objective} at last. After the farm was lost, the family scattered, and {X_nameDef} has been asking for {A_nameDef} in every market town since. {X_nameDef} would like to stay.</li>
+      <li>[farmer] After the farm was lost, the family scattered, and {X_nameDef} has been asking for {A_nameDef} in every market town since. Now {A_nameDef}'s {RELATION} has found {A_objective} at last, and would like to stay.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>
 
@@ -39,8 +39,8 @@
     <defName>Council_Var_Evt_OldFlame</defName>
     <incident>Council_Evt_OldFlame</incident>
     <texts>
-      <li>[lowtech] {X_nameDef} came to the gate with a bundle on {X_possessive} back and asked for {A_nameDef}. They were sweethearts once, in another village, before everything went wrong. {X_nameDef} has no one else to go to, and asks to stay.</li>
-      <li>[!lowtech,partner] {X_nameDef} has turned up at the colony, asking for {A_nameDef}. They lived together once, before the colony, and parted badly. {A_nameDef}'s partner was in the room when the name was said, and hasn't said a word since.</li>
+      <li>[lowtech] Sweethearts once, in another village, before everything went wrong. Now {X_nameDef} is on the road below the colony with a bundle on {X_possessive} back, asking for {A_nameDef}, with no one else to go to.</li>
+      <li>[!lowtech,partner] {X_nameDef} is outside the colony, asking for {A_nameDef}. They lived together once, before the colony, and parted badly. {A_nameDef}'s partner was in the room when the name was said, and hasn't said a word since.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>
 
@@ -48,8 +48,8 @@
     <defName>Council_Var_Evt_Prodigal</defName>
     <incident>Council_Evt_Prodigal</incident>
     <texts>
-      <li>[quit,winter] {X_nameDef}, who walked out on the colony, has walked back in out of the snow, thin and cold and not proud anymore. {X_nameDef} asks to come home. {A_nameDef} found {X_objective} at the gate and brought the request in.</li>
-      <li>[banished,winter] {X_nameDef}, who was sent away, has spent the winter somewhere hard and come back to the gate asking for one more chance. {A_nameDef} brought out a blanket before anyone could decide anything.</li>
+      <li>[quit,winter] {X_nameDef}, who walked out on the colony, has come back through the snow, thin and cold and not proud anymore, and is waiting on the road below. {X_nameDef} asks to come home. {A_nameDef} brought the request in.</li>
+      <li>[banished,winter] {X_nameDef}, who was sent away, has spent the winter somewhere hard and come back to the colony's road asking for one more chance. {A_nameDef} has put a blanket aside already, before anyone has decided anything.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>
 
@@ -58,7 +58,7 @@
     <incident>Council_Evt_Creditor</incident>
     <texts>
       <li>[trader,!lowtech] A man in a good suit and bad boots has come up the road with a ledger. {A_nameDef} owes his employers {COUNT} silver from a deal that went sour years ago, and the interest, he says, has been very patient.</li>
-      <li>[outlaw,lowtech] A one-eyed stranger has come to the gate asking for {A_nameDef}, and {A_nameDef} went pale at the sight of the stranger. {A_nameDef} owes {COUNT} silver to the band {A_pronoun} used to ride with, and they've sent someone to collect.</li>
+      <li>[outlaw,lowtech] A one-eyed stranger on the road has been asking for {A_nameDef}, and {A_nameDef} went pale when told what the stranger looks like. {A_nameDef} owes {COUNT} silver to the band {A_pronoun} used to ride with, and they've sent someone to collect.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>
 
@@ -66,9 +66,9 @@
     <defName>Council_Var_Evt_Inheritance</defName>
     <incident>Council_Evt_Inheritance</incident>
     <texts>
-      <li>[farmer] Word has come that the old farmer {A_nameDef} worked for as a youngster has died, and left {A_nameDef} a share of what the farm was worth. A cart brought it to the gate this morning.</li>
-      <li>[artisan] {A_nameDef}'s old master has died and left {A_objective} a chest from the workshop. It came with the next caravan and a short note in the master's hand: "For the one who listened."</li>
-      <li>[trader] An old trading partner of {A_nameDef}'s has died, and the will names {A_objective}. A courier brought the bequest to the gate, with a list of debts the partner swore were all paid.</li>
+      <li>[farmer] The old farmer {A_nameDef} worked for as a youngster has died, and left {A_nameDef} a share of what the farm was worth. It has been sent on, with a note in a neighbor's hand.</li>
+      <li>[artisan] {A_nameDef}'s old master has died and left {A_objective} a chest from the workshop. It has come a long way, with a short note in the master's hand: "For the one who listened."</li>
+      <li>[trader] An old trading partner of {A_nameDef}'s has died, and the will names {A_objective}. The bequest came with a list of debts the partner swore were all paid.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>
 
@@ -87,8 +87,8 @@
     <defName>Council_Var_Evt_GoodNews</defName>
     <incident>Council_Evt_GoodNews</incident>
     <texts>
-      <li>[scholar] A letter has caught up with {A_nameDef}: the library where {A_pronoun} studied survived the troubles, and someone there still has {A_possessive} old notes on a shelf.</li>
-      <li>[healer] Word has come that the clinic {A_nameDef} once worked in has reopened, and the people there still speak of {A_objective}.</li>
+      <li>[scholar] The library where {A_nameDef} studied came through the troubles, a letter says, and someone there still keeps {A_possessive} old notes on a shelf.</li>
+      <li>[healer] The clinic {A_nameDef} once worked in has reopened, and the people there still speak of {A_objective}.</li>
       <li>[artisan] {A_nameDef} heard from a traveler that the workshop {A_pronoun} trained in is busier than ever, and the old master still uses {A_nameDef}'s work to show apprentices how it's done.</li>
       <li>[trader] News came with a caravan: the trading house {A_nameDef} worked for has paid off every debt it had, and {A_nameDef}'s name is on the list of people it thanks.</li>
     </texts>
@@ -98,8 +98,8 @@
     <defName>Council_Var_Evt_HomeLost</defName>
     <incident>Council_Evt_HomeLost</incident>
     <texts>
-      <li>[farmer] A traveler told {A_nameDef} that the farm country {A_pronoun} came from has gone back to scrub. The families left one by one after the bad years, and the last of them went this spring.</li>
-      <li>[lowtech,winter] News came with the winter's last traveler: the town {A_nameDef} grew up in was emptied by sickness, and nobody lives there now.</li>
+      <li>[farmer] The farm country {A_nameDef} came from has gone back to scrub, a traveler says. The families left one by one after the bad years, and the last of them went this spring.</li>
+      <li>[lowtech,winter] News came with the winter's last traveler. The town {A_nameDef} grew up in was emptied by sickness. Its houses stand open to the weather now.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>
 
