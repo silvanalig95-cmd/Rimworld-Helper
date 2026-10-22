@@ -867,7 +867,7 @@
     <defName>Council_Journal_Day_Wet</defName>
     <lines>
       <plain>
-        <li>Soaked to the skin. My boots squelched all the way back from the field.</li>
+        <li>Soaked to the skin by the time I got back from the field.</li>
         <li>Got caught in the rain hauling wood. Everything I'm wearing is still damp.</li>
         <li>[winter] Wet and cold at the same time. My fingers wouldn't bend when I got in.</li>
         <li>[child] I got soaking wet. I jumped in every puddle on the way back.</li>
@@ -880,28 +880,28 @@
       </plain>
       <warm>
         <li>Came in dripping. The cook gave me something hot to hold while my clothes dried.</li>
-        <li>Came in soaked, and someone had already hung a towel by the door for me.</li>
+        <li>Someone had left a dry cloth by the door for whoever came in wet. Best thing I saw all day.</li>
         <li>Got wet through, but I got the washing in before the worst of it.</li>
       </warm>
       <blunt>
         <li>Soaked. I hate rain.</li>
-        <li>Soaked. Need dry clothes.</li>
+        <li>Need dry socks.</li>
         <li>Rain. All day. In it.</li>
       </blunt>
       <cheerful>
-        <li>Got drenched! I stayed out in it a while longer, since I was already wet.</li>
-        <li>Soaked to the bone! I danced in the rain, since I couldn't get any wetter.</li>
+        <li>Got drenched, so I stayed out in it a while longer. Can't get wetter than wet.</li>
+        <li>Came in so wet I left a puddle the shape of me on the floor!</li>
         <li>Wet as a fish today, but the rain smelled wonderful.</li>
       </cheerful>
       <gloomy>
         <li>My clothes haven't been dry in three days.</li>
         <li>Wet and cold and miserable. My boots will never dry.</li>
-        <li>Rain again, wet again. It's the third day running.</li>
+        <li>Wet again. I've given up wringing anything out.</li>
       </gloomy>
       <cold>
         <li>Wet through at work. Cold hands are slow hands, and I lost most of the afternoon.</li>
         <li>Working wet lowers output. We need covered walkways.</li>
-        <li>Soaked through. I hope someone is tracking how much work the weather costs us.</li>
+        <li>Soaked. I stood in the doorway and watched the others run for cover. Some of them are faster than they let on.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -922,7 +922,7 @@
       <warm>
         <li>In pain today. The others kept bringing me water without being asked.</li>
         <li>The pain's bad today. Someone sat with me after supper and talked until I forgot about it.</li>
-        <li>It hurts, but I'm alive and the others are looking after me.</li>
+        <li>Hurts today. I still went down to supper, because they'd have worried.</li>
       </warm>
       <blunt>
         <li>It hurts. Don't ask.</li>
@@ -931,8 +931,8 @@
       </blunt>
       <cheerful>
         <li>Hurts a lot today, but less than yesterday, so I'm counting that!</li>
-        <li>Ow, all day! But I can wiggle my toes again.</li>
-        <li>It hurts, but a bit less every day, and I'm keeping count!</li>
+        <li>Ow, all day. But I can wiggle my toes again.</li>
+        <li>I've given the ache a name. Talking to it seems to help.</li>
       </cheerful>
       <gloomy>
         <li>The pain is worse at night. I lie there and feel my heartbeat in it.</li>
@@ -941,7 +941,7 @@
       </gloomy>
       <cold>
         <li>Constant pain. I can still work. I'll say so if that changes.</li>
-        <li>In pain. I'll need longer to heal than the doctor said.</li>
+        <li>Pain. I've learned to keep my face still, so no one fusses.</li>
         <li>The pain affects my concentration. I've moved myself to simple work until it passes.</li>
       </cold>
     </lines>
@@ -964,18 +964,18 @@
       </plain>
       <warm>
         <li>Clothes in tatters. I'll ask the tailor nicely when there's time.</li>
-        <li>Torn clothes, but I'll wait my turn. The tailor has enough on.</li>
+        <li>Someone saw the hole in my sleeve and stitched it shut while I ate. Didn't even ask.</li>
         <li>Patched a hole in someone else's shirt along with mine. Might as well, while the needle's out.</li>
       </warm>
       <blunt>
         <li>These clothes are rags. I need new ones.</li>
-        <li>Rags. New clothes, please.</li>
+        <li>Holes everywhere. New clothes, please.</li>
         <li>My boots are done. So am I.</li>
       </blunt>
       <cheerful>
         <li>My pants are more patch than pants now!</li>
-        <li>My pants have so many patches they're practically a quilt!</li>
-        <li>Ripped my shirt again! I'm calling it a window.</li>
+        <li>Sewed a patch on my knee in the shape of a star. Now I want more holes.</li>
+        <li>Ripped my shirt again. I'm calling it a window.</li>
       </cheerful>
       <gloomy>
         <li>Rags. I look like what's left behind after a raid.</li>
@@ -983,8 +983,8 @@
         <li>Threadbare clothes and a cold wind. I'm tired of being cold.</li>
       </gloomy>
       <cold>
-        <li>People judge you by your clothes, whatever they say. Mine are falling apart.</li>
-        <li>Ragged clothes mark you as someone who doesn't matter. I won't wear these much longer.</li>
+        <li>My clothes are falling apart. I've noticed people speak to me differently in them.</li>
+        <li>Took a good shirt off the drying line. Mine was ruined, and its owner has two.</li>
         <li>Damaged clothing. I've asked the tailor twice now.</li>
       </cold>
     </lines>
@@ -999,7 +999,7 @@
         <li>Washed the shirt twice. It still feels like someone else's.</li>
         <li>[child] My new shirt belonged to someone who died. It's too big and it smells funny.</li>
         <li>Put on a jacket off a dead raider. There was still a heel of bread in the pocket.</li>
-        <li>Wearing boots taken off a body. They're the best I've had.</li>
+        <li>Wearing boots taken off a body. They were already broken in.</li>
       </plain>
       <warm>
         <li>This coat belonged to someone who didn't make it. I'll take good care of it.</li>
@@ -1015,11 +1015,11 @@
       </cheerful>
       <gloomy>
         <li>Dead man's shirt. One day someone will be wearing mine.</li>
-        <li>I'm wearing a dead man's coat. It still smells of its owner.</li>
+        <li>I'm wearing a dead stranger's coat. It still smells of whoever had it last.</li>
       </gloomy>
       <cold>
         <li>The previous owner has no use for it. Good stitching.</li>
-        <li>The clothes fit. Their owner has no complaints.</li>
+        <li>Took the coat off the body myself. It saved someone else the job.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -1028,7 +1028,7 @@
     <defName>Council_Journal_Day_Naked</defName>
     <lines>
       <plain>
-        <li>No clothes today. I kept to the back rooms as much as I could.</li>
+        <li>Kept to the back rooms all day. Nothing to wear.</li>
         <li>Spent the day without a stitch on. The wind found places I'd forgotten about.</li>
         <li>[winter] It's winter and I have nothing to wear. I kept moving so I wouldn't freeze.</li>
         <li>[child] My clothes got ruined and now I don't have any. I hid behind the crates.</li>
@@ -1040,15 +1040,15 @@
       </warm>
       <blunt>
         <li>I'm naked. Someone make me some pants.</li>
-        <li>Need clothes. Now.</li>
+        <li>Naked. Not funny.</li>
       </blunt>
       <cheerful>
-        <li>Naked as the day I was born! It's not so bad when the sun's out.</li>
-        <li>No clothes! I've been dodging people all day like it's a game.</li>
+        <li>Naked as the day I was born! At least there's nothing to wash.</li>
+        <li>No clothes, so I've been dodging people all day like it's a game.</li>
       </cheerful>
       <gloomy>
         <li>Naked. Hard to keep any dignity in a place like this.</li>
-        <li>Naked and cold and ashamed. Not a good day.</li>
+        <li>Spent the day with my arms crossed over myself.</li>
       </gloomy>
       <cold>
         <li>No clothes. I know exactly who stared.</li>
@@ -1065,13 +1065,13 @@
         <li>Passed a corpse on the path this morning. The birds had found it first.</li>
         <li>[summer] The body past the wall has started to smell. It needs burying.</li>
         <li>[child] I saw a dead person lying in the grass. I didn't look at the face.</li>
-        <li>The body by the road is still there. Someone ought to do something.</li>
-        <li>Saw a dead raider by the path again today. The crows have been at it.</li>
+        <li>Still a body lying by the road. I know which way its boots point now.</li>
+        <li>A body lying face down by the storeroom. I didn't turn it over.</li>
         <li>[summer] The smell from the body by the wall reached the kitchen today.</li>
       </plain>
       <warm>
         <li>That body is still by the gate. I laid a sack over the face before I went in.</li>
-        <li>I covered the dead stranger's face with my coat this morning. They deserved that much.</li>
+        <li>Didn't know who it was lying by the path, but I closed the eyes.</li>
         <li>I said a few words over the body by the path before going on.</li>
       </warm>
       <blunt>
@@ -1081,8 +1081,8 @@
       </blunt>
       <cheerful>
         <li>A body by the gate this morning. Ugh! I sang all the way to the field so I wouldn't think about it.</li>
-        <li>Walked past a dead body again. I've started taking the long way so it doesn't spoil my morning!</li>
-        <li>There's a corpse by the gate, but the sun's out and I'm alive, so I'm counting my blessings.</li>
+        <li>Took the long way to the fields so I wouldn't pass the body again. Nicer walk anyway.</li>
+        <li>There's a corpse by the gate, but I'm alive and it's nearly supper. I'll take that.</li>
       </cheerful>
       <gloomy>
         <li>Another body in the grass. One day it'll be one of us.</li>
@@ -1091,7 +1091,7 @@
       </gloomy>
       <cold>
         <li>Corpse near the path. Bad for morale, and it draws scavengers. It should have been hauled yesterday.</li>
-        <li>Unburied corpse. It's bad for morale and it draws scavengers.</li>
+        <li>Stopped to look at the body by the path. I wanted to see how quickly it goes.</li>
         <li>A body by the gate, and it still hasn't been dealt with.</li>
       </cold>
     </lines>
@@ -1104,7 +1104,7 @@
     <lines>
       <plain>
         <li>Talked with {OTHER_nameDef} until the fire burned down. I didn't know half of what {OTHER_pronoun} told me.</li>
-        <li>{OTHER_nameDef} and I got talking about where we grew up. We have more in common than I thought.</li>
+        <li>{OTHER_nameDef} and I got talking about where we grew up. We both had a grandmother who kept goats.</li>
         <li>{OTHER_nameDef} and I sat up talking about what we'd do if this place ever got safe.</li>
         <li>Long talk with {OTHER_nameDef} about the people we left behind. I told {OTHER_objective} things I haven't told anyone here.</li>
         <li>Found out today that {OTHER_nameDef} was afraid of the dark as a child, and still sleeps facing the door.</li>
@@ -1117,7 +1117,7 @@
       <warm>
         <li>I like {OTHER_nameDef} more every time we really talk. Tonight we really talked.</li>
         <li>{OTHER_nameDef} told me something today that I don't think {OTHER_pronoun} has ever said out loud. I'll keep it safe.</li>
-        <li>Talked with {OTHER_nameDef} after supper. By the end I felt I'd known {OTHER_objective} for years.</li>
+        <li>Talked with {OTHER_nameDef} after supper until the cook shooed us out.</li>
         <li>{OTHER_nameDef} listened to me go on about home without once looking bored.</li>
       </warm>
       <blunt>
@@ -1128,7 +1128,7 @@
       </blunt>
       <cheerful>
         <li>{OTHER_nameDef} told me the whole story of how {OTHER_pronoun} ended up here! I'd have listened all night.</li>
-        <li>Stayed up talking with {OTHER_nameDef}, and we planned a whole garden for when things calm down!</li>
+        <li>Stayed up talking with {OTHER_nameDef}, and we planned a whole garden for when things calm down.</li>
         <li>{OTHER_nameDef} and I found out we were born in the same month. We talked until supper went cold.</li>
         <li>Had the best talk with {OTHER_nameDef}. I think we're friends now, properly.</li>
       </cheerful>
@@ -1139,7 +1139,7 @@
         <li>{OTHER_nameDef} and I talked about home. Neither of us has one to go back to.</li>
       </gloomy>
       <cold>
-        <li>Long conversation with {OTHER_nameDef}. I understand {OTHER_objective} better now, which is useful.</li>
+        <li>Long conversation with {OTHER_nameDef}. {OTHER_nameDef} is lonelier than {OTHER_pronoun} lets on.</li>
         <li>{OTHER_nameDef} talks freely once you let a silence go on long enough. I learned a lot tonight.</li>
         <li>I let {OTHER_nameDef} do most of the talking. People tell you more that way.</li>
         <li>{OTHER_nameDef} wanted someone to confide in. I listened, and I'll remember all of it.</li>
@@ -1155,23 +1155,23 @@
         <li>Got told my work was sloppy by {OTHER_nameDef}, loud enough for the others to hear.</li>
         <li>Still going over what {OTHER_nameDef} said this morning, and what I should have said back.</li>
         <li>[child] {OTHER_nameDef} said I was a baby. I'm not.</li>
-        <li>{OTHER_nameDef} made a crack about my work with the others listening.</li>
-        <li>{OTHER_nameDef} said my cooking tasted like boot leather. I'll remember that at supper.</li>
+        <li>{OTHER_nameDef} laughed at the way I talk. I've been listening to myself all afternoon.</li>
+        <li>{OTHER_nameDef} said I walk like a wet hen. I don't even know what that means.</li>
       </plain>
       <warm>
         <li>Short words from {OTHER_nameDef} today. I'll assume {OTHER_pronoun} had a bad morning.</li>
-        <li>{OTHER_nameDef} said something cruel today. I hope {OTHER_pronoun} feels better tomorrow.</li>
+        <li>{OTHER_nameDef} snapped at me today. I'll bring {OTHER_objective} something hot to drink tomorrow and see.</li>
         <li>I'm not going to let {OTHER_nameDef} spoil my day. I'll try, anyway.</li>
       </warm>
       <blunt>
         <li>{OTHER_nameDef} has a mouth on {OTHER_objective}. Next time I'll answer it.</li>
         <li>{OTHER_nameDef} insulted me. I won't forget it.</li>
-        <li>{OTHER_nameDef} had something to say. So will I, next time.</li>
+        <li>{OTHER_nameDef} can say it to my face next time, not over my shoulder.</li>
       </blunt>
       <cheerful>
         <li>Got an earful from {OTHER_nameDef} today, but I've already forgotten most of it!</li>
-        <li>{OTHER_nameDef} called me a fool. I'm choosing to take it as a joke!</li>
-        <li>An insult from {OTHER_nameDef} today. I've already forgiven it, mostly!</li>
+        <li>{OTHER_nameDef} called me a fool. I'm choosing to take it as a joke.</li>
+        <li>{OTHER_nameDef} insulted my hat. It's a good hat.</li>
       </cheerful>
       <gloomy>
         <li>Maybe {OTHER_nameDef} only said what the others think.</li>
@@ -1196,14 +1196,14 @@
         <li>[child] {OTHER_nameDef} said I was brave. I'm going to remember that.</li>
         <li>{OTHER_nameDef} noticed I'd fixed the door and thanked me for it.</li>
         <li>{OTHER_nameDef} told me I'm good at what I do. I wrote it down so I'd remember.</li>
-        <li>Passed {OTHER_nameDef} on the path and got a smile and a kind word.</li>
+        <li>{OTHER_nameDef} told the others at supper that I'd done the hard part of the job. I hadn't, really.</li>
         <li>{OTHER_nameDef} said it's good to have me here. I didn't know what to say.</li>
         <li>[child] {OTHER_nameDef} said I'm a good helper. I helped all afternoon after that.</li>
       </plain>
       <warm>
         <li>At supper {OTHER_nameDef} said something kind to me, and it carried me through the evening.</li>
         <li>{OTHER_nameDef} thanked me today. I'll find a way to thank {OTHER_objective} back.</li>
-        <li>Kind words from {OTHER_nameDef} at the end of a long day. That's what I'll remember about today.</li>
+        <li>Kind words from {OTHER_nameDef} at the end of a long day. I said them over to myself on the way to bed.</li>
       </warm>
       <blunt>
         <li>Got a compliment from {OTHER_nameDef}. Didn't hate it.</li>
@@ -1212,11 +1212,11 @@
       </blunt>
       <cheerful>
         <li>{OTHER_nameDef} told me I have a nice laugh! I've been laughing at everything since.</li>
-        <li>{OTHER_nameDef} said I brighten the place up! I'm going to try to live up to it.</li>
+        <li>{OTHER_nameDef} said I brighten the place up. I'm going to try to live up to it.</li>
         <li>A compliment from {OTHER_nameDef}! I've been grinning all evening.</li>
       </cheerful>
       <gloomy>
-        <li>{OTHER_nameDef} was kind to me today. I didn't know what to say, so I just nodded.</li>
+        <li>{OTHER_nameDef} was kind to me today. I said thank you too late, after {OTHER_pronoun}'d gone.</li>
         <li>{OTHER_nameDef} said something nice about my work. I didn't believe it, but I kept it.</li>
         <li>{OTHER_nameDef} was kind to me today. It's been a while since anyone was.</li>
       </gloomy>
@@ -1241,7 +1241,7 @@
       </plain>
       <warm>
         <li>{OTHER_nameDef} fell asleep first, like always. I lay there listening to {OTHER_objective} breathe.</li>
-        <li>I woke before {OTHER_nameDef} and lay watching {OTHER_objective} sleep for a while.</li>
+        <li>{OTHER_nameDef} tucked the blanket round my feet in the night. I was awake, and didn't say.</li>
         <li>{OTHER_nameDef} held my hand all night. I didn't want morning to come.</li>
       </warm>
       <blunt>
@@ -1249,17 +1249,17 @@
         <li>Good night with {OTHER_nameDef}.</li>
       </blunt>
       <cheerful>
-        <li>A lovely night with {OTHER_nameDef}! I've been humming all day.</li>
+        <li>Been humming all day. {OTHER_nameDef} keeps catching me at it.</li>
         <li>{OTHER_nameDef}! That's all I'm writing today.</li>
-        <li>I've been smiling since breakfast, and {OTHER_nameDef} knows why!</li>
+        <li>I've been smiling since breakfast, and {OTHER_nameDef} knows why.</li>
       </cheerful>
       <gloomy>
         <li>A good night with {OTHER_nameDef}. I'd like a lot more of them before this place gets us.</li>
-        <li>A good night with {OTHER_nameDef}. I keep thinking about how easily all of this could end.</li>
+        <li>Lay awake after {OTHER_nameDef} fell asleep, thinking how easily all of this could end.</li>
       </gloomy>
       <cold>
         <li>Night with {OTHER_nameDef}. Pleasant, and good for both our tempers.</li>
-        <li>{OTHER_nameDef} and I spent the night together. It settled us both.</li>
+        <li>{OTHER_nameDef} talks in {OTHER_possessive} sleep. I listened.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -1284,7 +1284,7 @@
       </blunt>
       <cheerful>
         <li>{OTHER_nameDef} said no. Oh well! I'm still a catch.</li>
-        <li>{OTHER_nameDef} turned me down, but very politely! I'll survive.</li>
+        <li>{OTHER_nameDef} turned me down, but went red doing it, so I'm counting it as a maybe.</li>
       </cheerful>
       <gloomy>
         <li>I knew {OTHER_nameDef} would turn me down, and I asked anyway.</li>
@@ -1311,7 +1311,7 @@
       </plain>
       <warm>
         <li>Fought with {OTHER_nameDef}. I'm sorry for my part in it, and I'll tell {OTHER_objective} so tomorrow.</li>
-        <li>Fought with {OTHER_nameDef}. I'll bring {OTHER_objective} something warm to drink tomorrow and apologize.</li>
+        <li>Couldn't eat supper after the fight with {OTHER_nameDef}. I'll make it right in the morning.</li>
       </warm>
       <blunt>
         <li>{OTHER_nameDef} started it. I finished it.</li>
@@ -1319,11 +1319,11 @@
       </blunt>
       <cheerful>
         <li>Had a scrap with {OTHER_nameDef}! We're both fine, and I think I won.</li>
-        <li>Got into a scrap with {OTHER_nameDef}! We shook hands afterward and had supper together.</li>
+        <li>{OTHER_nameDef} has a good right hook. I told {OTHER_objective} so afterward.</li>
       </cheerful>
       <gloomy>
         <li>Another fight, this time with {OTHER_nameDef}. We're all wound too tight in here.</li>
-        <li>Fought with {OTHER_nameDef}. We're all on edge in here.</li>
+        <li>Fought with {OTHER_nameDef}. I can't even remember what started it.</li>
       </gloomy>
       <cold>
         <li>Fought {OTHER_nameDef}. {OTHER_nameDef} bruises easily. Worth knowing.</li>
@@ -1338,9 +1338,9 @@
       <plain>
         <li>I went down today, and {OTHER_nameDef} carried me in. I don't remember much of it.</li>
         <li>Woke up in my bed with no idea how I got there. {OTHER_nameDef} carried me, they tell me.</li>
-        <li>Couldn't stand, so {OTHER_nameDef} dragged me back by the arms. My heels left two lines in the dirt.</li>
+        <li>Couldn't stand, so {OTHER_nameDef} got me over one shoulder and carried me back. I remember the ground going past upside down.</li>
         <li>[child] I got hurt and {OTHER_nameDef} carried me all the way home.</li>
-        <li>I don't remember much after I went down. {OTHER_nameDef} was there when I woke.</li>
+        <li>There's a smear of my blood on {OTHER_nameDef}'s sleeve from carrying me in.</li>
         <li>{OTHER_nameDef} carried me in while it was still dangerous out there. I owe {OTHER_objective} my life.</li>
       </plain>
       <warm>
@@ -1353,14 +1353,14 @@
       </blunt>
       <cheerful>
         <li>{OTHER_nameDef} carried me home like a sack of potatoes! I'm alive, so I'm not complaining.</li>
-        <li>Alive, thanks to {OTHER_nameDef}! I'm going to find a way to thank {OTHER_objective} properly.</li>
+        <li>Alive, thanks to {OTHER_nameDef}. I'm going to find a way to thank {OTHER_objective} properly.</li>
       </cheerful>
       <gloomy>
         <li>Carried in by {OTHER_nameDef} today. Next time there might be no one to do it.</li>
         <li>{OTHER_nameDef} got me out. I keep thinking about what would have happened if {OTHER_pronoun} hadn't.</li>
       </gloomy>
       <cold>
-        <li>{OTHER_nameDef} retrieved me when I was down. A useful person to keep alive.</li>
+        <li>{OTHER_nameDef} carried me in when I was down. A useful person to keep alive.</li>
         <li>{OTHER_nameDef} retrieved me at some risk. I'll repay it when the chance comes.</li>
       </cold>
     </lines>
@@ -1376,18 +1376,20 @@
         <li>Learned from {OTHER_nameDef} which plants you can eat and which ones make you sick.</li>
         <li>{OTHER_nameDef} showed me how to tie my boots so they don't come undone.</li>
         <li>{OTHER_nameDef} taught me the names of the stars. I already forgot two.</li>
+        <li>Spelled my name in the dirt for {OTHER_nameDef}. Two of the letters were backward.</li>
+        <li>{OTHER_nameDef} showed me how to count on my fingers past ten. You use your toes.</li>
       </plain>
       <warm>
         <li>{OTHER_nameDef} is a good teacher and never gets cross when I get it wrong.</li>
-        <li>I like lessons with {OTHER_nameDef}. {OTHER_nameDef} never laughs when I get it wrong.</li>
+        <li>I like lessons with {OTHER_nameDef}. I brought {OTHER_objective} a pretty stone to say thank you.</li>
       </warm>
       <blunt>
         <li>Had lessons. {OTHER_nameDef} talks a lot, but I learned stuff.</li>
-        <li>Lessons again. I learned stuff.</li>
+        <li>Lessons. Long ones.</li>
       </blunt>
       <cheerful>
         <li>{OTHER_nameDef} taught me to tie a proper knot! I've tied it on everything.</li>
-        <li>{OTHER_nameDef} taught me how to whistle, and I've been doing it all day!</li>
+        <li>{OTHER_nameDef} taught me how to whistle, and I've been doing it all day.</li>
       </cheerful>
       <gloomy>
         <li>Lessons with {OTHER_nameDef} all morning. I tried hard and I still don't get it.</li>
@@ -1409,17 +1411,18 @@
         <li>Showed {OTHER_nameDef} how to hold a hammer without hitting a thumb.</li>
         <li>{OTHER_nameDef} asked me why the sky is blue in the middle of the lesson. I made something up.</li>
         <li>Taught {OTHER_nameDef} to plant seeds at the right depth. Half of them, anyway.</li>
+        <li>{OTHER_nameDef} fell asleep halfway through the lesson. I let {OTHER_objective} sleep.</li>
       </plain>
       <warm>
         <li>{OTHER_nameDef} asked me questions all through the lesson. I answered the ones I could.</li>
-        <li>{OTHER_nameDef} remembered everything from last time. I was so proud.</li>
+        <li>{OTHER_nameDef} remembered everything from last time and recited it back to me, word for word.</li>
       </warm>
       <blunt>
         <li>Taught {OTHER_nameDef}. Kid's sharp.</li>
-        <li>Lesson with {OTHER_nameDef}. The kid listens. Good.</li>
+        <li>Lesson with {OTHER_nameDef}. Fidgets, but listens.</li>
       </blunt>
       <cheerful>
-        <li>Lesson with {OTHER_nameDef} today! {OTHER_nameDef} got every sum right by the end.</li>
+        <li>Lesson with {OTHER_nameDef} today. {OTHER_nameDef} got every sum right by the end.</li>
         <li>Taught {OTHER_nameDef} a song today, and now I can't get it out of my head!</li>
       </cheerful>
       <gloomy>
@@ -1453,21 +1456,21 @@
       <blunt>
         <li>Nuzzled by {OTHER_nameDef} today. Good animal.</li>
         <li>Got nuzzled. Good day.</li>
-        <li>Animals have more sense than people. Today was proof, thanks to {OTHER_nameDef}.</li>
+        <li>Prefer {OTHER_nameDef} to most of the people here.</li>
       </blunt>
       <cheerful>
         <li>Got a big nuzzle from {OTHER_nameDef} today! Best part of my day.</li>
-        <li>I think I'm {OTHER_nameDef}'s favorite now. I got nuzzled twice today!</li>
-        <li>Smelled like animal all day, and I don't care one bit!</li>
+        <li>I think I'm {OTHER_nameDef}'s favorite now. Twice today.</li>
+        <li>Went back to the pen after supper hoping for another one. Got it, too!</li>
       </cheerful>
       <gloomy>
-        <li>Only {OTHER_nameDef} seems pleased to see me lately.</li>
-        <li>At least {OTHER_nameDef} is happy to see me.</li>
+        <li>At least {OTHER_nameDef} doesn't ask me how I'm doing.</li>
+        <li>Sat in the pen with {OTHER_nameDef} instead of going in to supper.</li>
         <li>Today the only one glad to see me was {OTHER_nameDef}.</li>
       </gloomy>
       <cold>
         <li>I've been feeding {OTHER_nameDef} scraps, and today {OTHER_pronoun} nuzzled me. It's working.</li>
-        <li>The animal seeks me out. Feeding it was a sound decision.</li>
+        <li>Let the animal nuzzle me while I worked out what it would fetch from a trader.</li>
         <li>Affection from {OTHER_nameDef}. Animals are simpler than people.</li>
       </cold>
     </lines>
@@ -1484,27 +1487,27 @@
         <li>Walked the baby up and down the hall until those little fists unclenched.</li>
         <li>[child] The baby cried and cried. I put my pillow over my head.</li>
         <li>The baby was teething and let all of us know about it.</li>
-        <li>Rocked the baby while the parents slept. It took most of an hour.</li>
+        <li>Rocked the baby until the crying stopped. It took most of an hour.</li>
         <li>[child] The baby cried all through my story, so I stopped telling it.</li>
       </plain>
       <warm>
         <li>Sang to the baby until the little one fell asleep on my shoulder.</li>
-        <li>Took a turn walking the baby so the parents could get some sleep.</li>
+        <li>Took a turn walking the baby so someone else could sleep.</li>
         <li>The baby wouldn't settle until I hummed. I hummed for a long time.</li>
       </warm>
       <blunt>
         <li>Baby screamed for hours. My ears are ringing.</li>
-        <li>Baby screamed all night. I'm exhausted.</li>
+        <li>Baby. All night.</li>
         <li>Someone feed that baby.</li>
       </blunt>
       <cheerful>
         <li>What lungs on that baby! That's a singer in the making.</li>
         <li>The baby cried, so I made faces until the crying turned into giggling!</li>
-        <li>Tiny, but that baby has the loudest voice in the colony!</li>
+        <li>Held the baby up to the window to look at the birds. The crying stopped for nearly a minute.</li>
       </cheerful>
       <gloomy>
         <li>Crying on and off all day. None of us will get any rest until the baby's older.</li>
-        <li>Crying again. I don't know how the parents stand it.</li>
+        <li>Crying again. I put my hands over my ears and it still got in.</li>
         <li>The baby cries, and I can't sleep, and then I can't work.</li>
       </gloomy>
       <cold>
@@ -1529,17 +1532,17 @@
       </plain>
       <warm>
         <li>Good party tonight. I'd forgotten some of these people could sing.</li>
-        <li>The party was lovely. I watched the newcomers loosen up and start laughing.</li>
+        <li>The party was lovely. I watched the quiet ones loosen up and start laughing.</li>
         <li>We were all there tonight, together, for once.</li>
       </warm>
       <blunt>
         <li>Party. Ate, drank, went to bed.</li>
-        <li>Party. Good beer. Bed.</li>
+        <li>Too loud. Good beer, though.</li>
         <li>Went. Danced once. Left.</li>
       </blunt>
       <cheerful>
         <li>What a party! I danced until my feet gave out.</li>
-        <li>Danced until my feet hurt and then danced some more!</li>
+        <li>Taught three people a dance from back home. One of them got it.</li>
         <li>Best party yet! I'm still humming.</li>
       </cheerful>
       <gloomy>
@@ -1550,7 +1553,7 @@
       <cold>
         <li>Went to the party. Useful for seeing who talks to whom.</li>
         <li>Attended the party. People talk freely after a few drinks.</li>
-        <li>A useful evening. I learned who dislikes whom.</li>
+        <li>Drank less than anyone else at the party. I always do.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -1562,7 +1565,7 @@
         <li>There was music tonight. I sat at the back with my eyes closed.</li>
         <li>Went to the concert after supper. I didn't know any of the songs. The slow one was my favorite.</li>
         <li>[!lowtech] Piano concert tonight. One key sticks, and the player found a way around it.</li>
-        <li>[child] I clapped all through the music. I want to learn to play when I'm bigger.</li>
+        <li>[child] I want to learn to play when I'm bigger. I asked, and they said maybe.</li>
         <li>Music tonight. I tapped my foot so hard my shoe came off.</li>
         <li>Somebody played a song from my home. I didn't know anyone else knew it.</li>
         <li>[child] I sat at the front for the music and clapped in the wrong places.</li>
@@ -1570,7 +1573,7 @@
       <warm>
         <li>Music after supper, with my friends on either side of me. I didn't want it to end.</li>
         <li>Music tonight. I watched the faces around me more than the player.</li>
-        <li>The concert put us all in a good mood. Supper was loud and happy.</li>
+        <li>After the music, people kept humming bits of it at supper. Different bits, all at once.</li>
       </warm>
       <blunt>
         <li>Concert. Good music. Better than hauling.</li>
@@ -1578,19 +1581,19 @@
         <li>Concert. Liked it.</li>
       </blunt>
       <cheerful>
-        <li>A concert! I hummed the tune all the way to bed.</li>
+        <li>Hummed the tune all the way to bed, and I'm humming it now.</li>
         <li>I sang along to every song I knew, and some I didn't!</li>
-        <li>What a night of music! My ears are still ringing.</li>
+        <li>My ears are still ringing. What a night.</li>
       </cheerful>
       <gloomy>
         <li>Sad songs at the concert. Those were the ones I liked.</li>
-        <li>The music was sad tonight. I liked it more than I can say.</li>
+        <li>They played a tune my mother used to hum. I left before the end.</li>
         <li>The concert was beautiful. I went to bed lonelier than before.</li>
       </gloomy>
       <cold>
         <li>Attended the concert. Competent playing. Morale should hold for a few days.</li>
         <li>The concert was well played. I noticed who didn't come.</li>
-        <li>Good music lifts the colony's mood. It was worth the hours.</li>
+        <li>The player missed two notes and covered both. I doubt anyone else caught it.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -1610,27 +1613,27 @@
       <warm>
         <li>Our leader spoke about the ones we lost and the ones still here. I was glad I went.</li>
         <li>A good speech. I looked around while it was going on, and we were all listening.</li>
-        <li>Our leader spoke about what we've built here. I felt proud.</li>
+        <li>Three of us stayed behind after the speech to talk it over. That went on longer than the speech did.</li>
       </warm>
       <blunt>
         <li>Good speech. Back to work.</li>
         <li>Speech was fine. A bit long.</li>
-        <li>Words are good. Work is better.</li>
+        <li>Didn't need a speech, but I listened.</li>
       </blunt>
       <cheerful>
         <li>Wonderful speech today! I want to go and build something big.</li>
-        <li>A rousing speech! I cheered louder than anyone.</li>
-        <li>I'm going to remember that speech for a long time!</li>
+        <li>A rousing speech. I cheered louder than anyone.</li>
+        <li>Wrote down the best line of the speech so I can read it again tomorrow.</li>
       </cheerful>
       <gloomy>
         <li>Inspiring speech. I'll feel it for a day or two, anyway.</li>
         <li>A fine speech. I've heard fine speeches before.</li>
-        <li>Inspiring words. They'll have faded by the end of the week.</li>
+        <li>The cheering at the end of the speech went on a while. I clapped, so as not to be the only one who didn't.</li>
       </gloomy>
       <cold>
-        <li>A well-made speech. People will work harder this week.</li>
+        <li>A well-made speech. I counted the promises in it. Four.</li>
         <li>The speech was effective. People are already working harder.</li>
-        <li>A competent speech. I took note of what was promised.</li>
+        <li>A competent speech. The pauses fell in the right places. Someone practiced.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -1650,7 +1653,7 @@
       <warm>
         <li>The others have been gentle with me since it happened. I feel like myself again.</li>
         <li>I thanked the ones who put up with me last week. They brushed it off.</li>
-        <li>I feel steadier today. The others made room for me while I wasn't myself.</li>
+        <li>Someone left a bowl of stew by my door while I was shut away. I've washed the bowl and given it back.</li>
       </warm>
       <blunt>
         <li>Lost it. Got it out. Feel better.</li>
@@ -1658,18 +1661,18 @@
         <li>That's over. Good.</li>
       </blunt>
       <cheerful>
-        <li>Feeling much better today! I ate a huge breakfast.</li>
+        <li>Feeling much better. Ate a huge breakfast and asked for more.</li>
         <li>I feel like I've had a bath on the inside. Wonderful!</li>
-        <li>Woke up light as a feather today!</li>
+        <li>Woke up light as a feather.</li>
       </cheerful>
       <gloomy>
-        <li>Better, since the breakdown. It'll build up again, but for now my head is clear.</li>
+        <li>Better, since the breakdown. I know where the cracks are now.</li>
         <li>Better now, for a while. It'll come back. It always does.</li>
-        <li>The weight's off for now. I don't trust it to stay off.</li>
+        <li>Clear-headed today. I don't trust it to last.</li>
       </gloomy>
       <cold>
         <li>The episode has passed. I'm functional, and I'd prefer it not be mentioned.</li>
-        <li>The episode is over. I've resumed full duties.</li>
+        <li>Back at work. I noticed who kept their distance while I wasn't well.</li>
         <li>I've recovered. Some apologies were owed, and I made them.</li>
       </cold>
     </lines>
@@ -1680,7 +1683,7 @@
     <lines>
       <plain>
         <li>Early days here. The walls are half up and the fields are bare, but it feels like a start.</li>
-        <li>We've got some seed, some tools, and a plan. That's more than I've had in a while.</li>
+        <li>We've got seed for one field and a plan for the rest. That's more than I've had in a while.</li>
         <li>Woke up this morning and remembered where I was, and I didn't mind.</li>
         <li>[child] We have a new home. I picked the spot for my bed.</li>
         <li>Paced out where the walls will go. It took longer than it should have because I kept stopping to look at the view.</li>
@@ -1691,7 +1694,7 @@
       </plain>
       <warm>
         <li>Good people and a patch of land. I think we'll be all right here.</li>
-        <li>We're a small group, but a good one. I'm glad to be in it.</li>
+        <li>Learned everyone's name by supper, and who snores.</li>
         <li>Shared out the first jobs today, and not one person complained.</li>
       </warm>
       <blunt>
@@ -1702,11 +1705,11 @@
       <cheerful>
         <li>A whole new place to call ours! I walked all the way around it just to look.</li>
         <li>It's ours! Every rock and weed of it.</li>
-        <li>Picked out the spot for a garden today, and a well, and a bench to sit on in the evenings!</li>
+        <li>Picked out where the garden will go, and a bench for the evenings.</li>
       </cheerful>
       <gloomy>
         <li>Hopeful days, for now. I've seen new starts go bad, but this one hasn't yet.</li>
-        <li>A fresh start. I've had a few of those. We'll see how this one goes.</li>
+        <li>Smiles all round. I'm keeping my bag packed anyway.</li>
         <li>Spirits are high. I'll enjoy it while it lasts.</li>
       </gloomy>
       <cold>
