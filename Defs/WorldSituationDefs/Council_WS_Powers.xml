@@ -252,7 +252,7 @@
           <li>{X_nameDef} takes the seat</li>
         </titles>
         <texts>
-          <li>{X_nameDef} is the new {TITLE} of {FACTION}. {DEAD} died the night it was settled, and {OTHER_nameDef} has left {PLACE} for good. The roads are quiet, and the traders are relieved.</li>
+          <li>{DEAD} died the night it was settled, and {X_nameDef} is the new {TITLE} of {FACTION}. {OTHER_nameDef} has left {PLACE} for good, the roads are quiet, and the traders are relieved.</li>
         </texts>
         <chronicle>{X_nameDef} took {FACTION}'s seat.</chronicle>
       </li>
@@ -291,7 +291,7 @@
           <li>{OTHER_nameDef} takes the seat</li>
         </titles>
         <texts>
-          <li>{OTHER_nameDef} holds {FACTION}'s seat. The garrisons marched into {PLACE} the day {DEAD} died, and {X_nameDef} is in exile. {FACTION} will be harder neighbors under {OTHER_objective}, to everyone.</li>
+          <li>{FACTION} will be harder neighbors under {OTHER_nameDef}, to everyone. The garrisons marched into {PLACE} the day {DEAD} died, and {X_nameDef} is in exile.</li>
         </texts>
         <chronicle>{OTHER_nameDef} took {FACTION}'s seat.</chronicle>
         <effects>
@@ -428,10 +428,10 @@
         </titles>
         <texts>
           <li>[sideFaction] The preachers have gone home and the markets are quiet again. {FACTION} remember that the colony stood with {TALE} when it counted. {ENEMY} remember it too.</li>
-          <li>[sideEnemy] The preachers have gone home and the markets are quiet again. {ENEMY} remember that the colony stood with {ITEM} when it counted. {FACTION} remember it too.</li>
+          <li>[sideEnemy] The markets are quiet again, and the preachers have gone home. {ENEMY} remember that the colony stood with {ITEM} when it counted. {FACTION} remember it too.</li>
           <li>[debate] The quarrel between {TALE} and {ITEM} has cooled, and some in both camps say it cooled at the colony's table.</li>
           <li>[debateFailed] The quarrel between {TALE} and {ITEM} has burned itself out, no thanks to the colony's debate, which both sides still bring up.</li>
-          <li>[!sideFaction,!sideEnemy,!debate,!debateFailed] The preachers have gone home, and the quarrel between {TALE} and {ITEM} has cooled. The colony stayed out of it, which neither side much liked, and neither side much minded.</li>
+          <li>[!sideFaction,!sideEnemy,!debate,!debateFailed] The last preacher has left the markets, and the quarrel between {TALE} and {ITEM} has cooled. The colony stayed out of it, which neither side much liked, and neither side much minded.</li>
         </texts>
         <chronicle>The quarrel between {TALE} and {ITEM} cooled.</chronicle>
       </li>
@@ -582,7 +582,7 @@
     </titles>
     <texts>
       <li>A mercenary company, {NAME}, has come down from the hills and made camp a day's march from the colony. Their captain, {X_nameFull}, has been to every settlement in the region looking for work.\n\nThey are good, by all accounts, and expensive, and not particular about who pays.</li>
-      <li>[againstWarlord] A mercenary company, {NAME}, has come into the region with the smell of a war on the wind. Their captain, {X_nameFull}, has heard about the warlord of {ENEMY}, and about what's been happening to the neighbors.\n\n{X_nameDef} thinks there's money to be made in it, and is already asking who in the region has silver.</li>
+      <li>[againstWarlord] There's a war on the wind, and {NAME} has followed it into the region. Their captain, {X_nameFull}, has heard about the warlord of {ENEMY} and what's been happening to the neighbors.\n\n{X_nameDef} thinks there's money to be made in it, and is already asking who in the region has silver.</li>
     </texts>
     <summaries>
       <li>{X_nameDef} will offer the company's swords for hire against {ENEMY}. It ends when they ride on, with or without the colony's silver.</li>

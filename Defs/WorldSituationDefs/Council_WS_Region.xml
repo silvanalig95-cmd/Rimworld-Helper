@@ -205,7 +205,7 @@
         </titles>
         <texts>
           <li>The rain came at last, three days of it, soaking and steady. At {PLACE} people stood out in it with their faces up. {NAME} is over.\n\n{FACTION} got through it, with help from the colony, and they know exactly how much.</li>
-          <li>[well] The rain has come back to {FACTION}'s country, and the new well at {PLACE} is still running sweet. They've named it after the colony.\n\n{NAME} is over.</li>
+          <li>[well] The new well at {PLACE} is still running sweet now that the rain is back, and {FACTION} have named it after the colony.\n\n{NAME} is over.</li>
         </texts>
         <chronicle>{NAME} broke at last; {FACTION} remember the colony's help.</chronicle>
         <effects>
@@ -221,7 +221,7 @@
           <li>The rains come back</li>
         </titles>
         <texts>
-          <li>The rains came back to {FACTION}'s country, late but heavy. {NAME} cost them a harvest, and {FACTION} remember the colony's share in getting through it.</li>
+          <li>Late but heavy, the rains came back to {FACTION}'s country. {NAME} cost them a harvest, and {FACTION} remember the colony's share in getting through it.</li>
         </texts>
         <chronicle>{NAME} broke, and the colony had done its share.</chronicle>
         <effects>
@@ -248,7 +248,7 @@
           <li>The drought breaks</li>
         </titles>
         <texts>
-          <li>The rain came back to {FACTION}'s country, and {NAME} is over. {PLACE} lost a harvest and a good many animals.\n\nWhen {FACTION} talk about who stood by them that year, the colony doesn't come up.</li>
+          <li>{NAME} is over, and {PLACE} lost a harvest and a good many animals to it.\n\nWhen {FACTION} talk about who stood by them that year, the colony doesn't come up.</li>
         </texts>
         <chronicle>{NAME} ran its course; the colony kept to itself.</chronicle>
       </li>
@@ -457,7 +457,7 @@
           <li>{NAME} opens</li>
         </titles>
         <texts>
-          <li>{NAME} is open, swinging around behind the hill as the colony asked. On a still night, the carts can just be heard.</li>
+          <li>{NAME} runs behind the hill, as the colony asked, and opened this week. On a still night, the carts can just be heard.</li>
         </texts>
         <chronicle>{NAME} opened, passing behind the hill.</chronicle>
         <effects>
@@ -470,7 +470,7 @@
           <li>{NAME} opens</li>
         </titles>
         <texts>
-          <li>{NAME} is open, and {FACTION}'s carts are already on it. It isn't the colony's road, but the colony will use it.</li>
+          <li>{FACTION}'s carts are already on {NAME}. It isn't the colony's road, but the colony will use it.</li>
         </texts>
         <chronicle>{NAME} opened near the colony.</chronicle>
         <effects>
@@ -1171,7 +1171,7 @@
           <li>A survivor of {NAME}</li>
         </titles>
         <texts>
-          <li>Someone has walked out of the hills to the colony's gate in the rags of a ship's uniform: a survivor of {NAME}, who climbed out of the wreck before the salvagers came and has been walking ever since. They ask for water first, and then whether the colony takes in strays.</li>
+          <li>A survivor of {NAME} is at the colony's gate, still in the rags of a ship's uniform. They climbed out of the wreck before the salvagers came and have been walking ever since.\n\nThey ask for water first, and then whether the colony takes in strays.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>

@@ -33,7 +33,7 @@
     </titles>
     <texts>
       <li>[their:friend] {NAME} is in {PLACE}, and the first rider {FACTION} sent out came straight to the colony and asked at the gate for {FRIEND_nameDef} by name. They have not forgotten what {FRIEND_nameDef} once did for them.\n\nThey aren't asking for anything yet. They wanted a friend to hear it first. Their caravans have stopped, and the roads will fill with people getting away from it.</li>
-      <li>[their:grudge] {NAME} is in {PLACE}. The rider of {FACTION} who brought the news read it off a list of every neighbor they are asking for medicine, and the colony was near the bottom of it.\n\nThe rider left before anyone at the gate could answer.</li>
+      <li>[their:grudge] The rider of {FACTION} read the news off a list: {NAME} is in {PLACE}, and they are asking every neighbor for medicine. The colony was near the bottom of the list.\n\nThe rider left before anyone at the gate could answer.</li>
       <li>[theirLowtech,!winter] It started with one family by the river in {PLACE}. Now smoke fires burn outside the walls day and night, the gates are shut to strangers, and {FACTION} have a name for it: {NAME}.\n\nTheir riders are going to every neighbor for herbs and medicine. No traders or pilgrims go in. The only traffic on the roads is people leaving with what they can carry.</li>
       <li>[theirHightech,!winter] {PLACE} has closed its roads. {NAME} came in on a trader's truck three weeks ago, and {FACTION}'s doctors have stopped counting the sick by the house and started counting them by the street.\n\nTheir couriers carry one question to every settlement they can reach: how much medicine, and how soon. Before long the frightened will be on the roads, and some of the sick with them.</li>
       <li>[winter] {NAME} is moving through the towns of {FACTION} with the cold. In {PLACE}, half the houses have someone sick in them, and the other half have nobody well enough to help.\n\n{FACTION} are asking anyone who will listen for medicine. Their traders are staying home, and the roads belong to people leaving.</li>
@@ -796,7 +796,7 @@
           <li>Flooded out of {PLACE}</li>
         </titles>
         <texts>
-          <li>A family from {PLACE} came up the river path this morning, wet to the waist, with a goat and a sack of seed and nothing else. Their house is gone.\n\nThey ask whether the colony has room. They are not proud about it.</li>
+          <li>Wet to the waist, a family from {PLACE} came up the river path this morning with a goat and a sack of seed. Their house is gone.\n\nThey ask whether the colony has room. They are not proud about it.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -891,7 +891,7 @@
         </titles>
         <texts>
           <li>[helped] The river is back in its bed, and {PLACE} is half rebuilt. {FACTION} have put a mark on the new mill where the water reached, and next to it, they say, the colony's name.</li>
-          <li>[ignored] The river is back in its bed, and {FACTION} are rebuilding {PLACE} on higher ground. It will take years.</li>
+          <li>[ignored] {FACTION} are rebuilding {PLACE} on higher ground, now that the river is back in its bed. It will take years.</li>
         </texts>
         <chronicle>The flood at {PLACE} went down.</chronicle>
         <effects>

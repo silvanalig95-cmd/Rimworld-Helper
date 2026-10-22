@@ -182,7 +182,7 @@
         </titles>
         <texts>
           <li>[hunters] {X_nameDef} is in the colony's cells, and {NAME} has nobody to lead it. Word travels fast: by morning, everyone between here and {PLACE} will know.\n\n{ENEMY} have sent a rider to ask for {X_objective}. They have a long list of grievances and mean to try {X_objective} for every one. {FACTION} have sent a rider too, with {COUNT} silver, to buy {X_objective} back.</li>
-          <li>[!hunters] {X_nameDef} is in the colony's cells, and {NAME} has nobody to lead it.\n\n{FACTION} have sent a rider with {COUNT} silver to buy {X_objective} back. The colony can take the silver, or keep {X_nameDef} and decide what to do about {X_objective} in its own time.</li>
+          <li>[!hunters] The colony has {X_nameDef} in a cell, and {NAME} has nobody to lead it.\n\n{FACTION} have sent a rider with {COUNT} silver to buy {X_objective} back. The colony can take the silver, or keep {X_nameDef} and decide what to do about {X_objective} in its own time.</li>
         </texts>
         <defaultOption>0</defaultOption>
         <options>
@@ -324,7 +324,7 @@
         </titles>
         <texts>
           <li>[named,takenAlive,lowtech] {OTHER_nameDef}, a bounty hunter out of {PLACE}, brought {X_nameDef} in alive, tied across a saddle. The colony's notice was the reason, and the colony's silver paid for it.\n\n{NAME} has broken up. The roads are quieter already.</li>
-          <li>[named,takenAlive,!lowtech] {OTHER_nameDef}, a bounty hunter out of {PLACE}, brought {X_nameDef} in alive, in the back of a truck. The colony's notice was the reason, and the colony's silver paid for it.\n\n{NAME} has broken up. The roads are quieter already.</li>
+          <li>[named,takenAlive,!lowtech] {X_nameDef} came in alive, in the back of a truck driven by {OTHER_nameDef}, a bounty hunter out of {PLACE}. The colony's notice was the reason, and the colony's silver paid for it.\n\n{NAME} has broken up. The roads are quieter already.</li>
           <li>[named,!takenAlive] {OTHER_nameDef}, a bounty hunter working out of {PLACE}, tracked {X_nameDef} for nine days and brought {X_objective} down on the tenth. The colony's silver has changed hands, and {NAME} has broken up for good.</li>
           <li>[!named] A hunter the colony has never seen brought {X_nameDef} down and collected the bounty, with proof enough for the trader holding the silver.\n\n{NAME} has broken up. The roads are quieter already.</li>
         </texts>
