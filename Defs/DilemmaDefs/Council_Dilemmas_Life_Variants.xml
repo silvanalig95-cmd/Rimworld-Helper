@@ -12,23 +12,23 @@
     <defName>Council_Var_DlmL_LastMedicine</defName>
     <dilemma>Council_DlmL_LastMedicine</dilemma>
     <texts>
-      <li>[winter] Winter is the season for {ILLNESS}, and {A_nameDef} has it. The medicine shelf holds a few doses at most, and there are months of cold still to come. The council has to decide whether {A_nameDef} gets one of them now.</li>
+      <li>[winter] Frost on the inside of the shutters this morning, and {A_nameDef} still in bed with {ILLNESS}. The medicine shelf has a few doses on it, and the winter has a long way to run.</li>
       <li>[child] {A_nameDef} has {ILLNESS} and lies in bed asking for {A_possessive} mother, or anyone. There are only a few doses of medicine left, and the grown-ups at the table have been very quiet about who should get them.</li>
       <li>[afterraid] The raid used up most of the medicine, and now {A_nameDef} is down with {ILLNESS}. What's left on the shelf would treat {A_objective}, or the next person who comes home bleeding.</li>
-      <li>[trait:Kind] {A_nameDef} has {ILLNESS} and has told everyone not to waste the last of the medicine on {A_objective}. The person who has been sitting with {A_nameDef} at night disagrees, and has brought it to the council.</li>
+      <li>[trait:Kind] "Keep it for someone worse off," {A_nameDef} says of the last few doses of medicine, flat on {A_possessive} back with {ILLNESS}. The one who has been sitting up with {A_objective} at night doesn't agree, and has brought it to the council.</li>
     </texts>
     <outcomes>
       <li>
         <option>1</option>
         <lines>
-          <li>[winter] The medicine stays on the shelf for the hard months ahead. {A_nameDef} has a bed by the hearth and a pot of broth, and has been told to stay in both.</li>
-          <li>[child] The medicine stays put. {A_nameDef} has a bed by the stove and someone reading to {A_objective} in the evenings, and is mending slowly.</li>
+          <li>[winter] The doses go back in the chest for the deep of winter. {A_nameDef} gets the bed nearest the hearth and a pot of broth that never quite empties.</li>
+          <li>[child] No medicine, then. {A_nameDef} has a bed by the stove and someone to read to {A_objective} in the evenings, and is mending slowly.</li>
         </lines>
       </li>
       <li>
         <option>2</option>
         <lines>
-          <li>[land:coast] {B_nameDef} came back from the rocks with salt-wet leaves and a root {B_pronoun} swore by. Boiled, it smelled of the sea and tasted worse. {A_nameDef} is breathing easier.</li>
+          <li>[land:coast] Boiled up, the salt-wet leaves {B_nameDef} brought off the rocks smelled of the sea and tasted worse. {A_nameDef} drank it, and is sleeping easier.</li>
           <li>[land:tundra|land:boreal] {B_nameDef} found a patch of bitter moss under the pines and a handful of last year's berries. The tea was foul. {A_nameDef} drank it, and slept through the night for once.</li>
         </lines>
       </li>
@@ -39,9 +39,9 @@
     <defName>Council_Var_DlmL_Quarantine</defName>
     <dilemma>Council_DlmL_Quarantine</dilemma>
     <texts>
-      <li>[winter] Everyone is shut in together for the winter, and {A_nameDef} has {ILLNESS}. The others are watching each cough the way they'd watch smoke under a door. They want {A_nameDef} moved somewhere apart, and {A_nameDef} wants to stay by the fire with everyone else.</li>
+      <li>[winter] {A_nameDef} has {ILLNESS}, and with the household shut in for the winter, the others watch every cough the way they'd watch smoke under a door. They want {A_objective} moved somewhere apart. {A_nameDef} wants to stay where it's warm.</li>
       <li>[lowtech] The old ones say sickness travels on the breath, and they want {A_nameDef}, who has {ILLNESS}, out of the sleeping room until it's gone. {A_nameDef} says the old ones say a lot of things.</li>
-      <li>[small] There are only a few people in the colony, and {A_nameDef} is one of them, sick with {ILLNESS}. If it goes through everyone, nobody will be left on their feet to bring the water. Someone has suggested a bed apart.</li>
+      <li>[small] In a colony this small, if {ILLNESS} goes through the lot of them there won't be anyone left on their feet to haul water. {A_nameDef} has it. Someone has suggested a bed apart.</li>
     </texts>
     <outcomes>
       <li>
@@ -63,14 +63,14 @@
     <defName>Council_Var_DlmL_SickCook</defName>
     <dilemma>Council_DlmL_SickCook</dilemma>
     <texts>
-      <li>[lowtech] {A_nameDef} has {ILLNESS} and won't leave the cooking fire. "Who else will tend it?" {A_nameDef} asked, between coughs into the smoke. The others have started taking their bowls to the far end of the hall.</li>
-      <li>[trait:Industrious|trait:HardWorker] {A_nameDef} has {ILLNESS} and has not missed a single meal, and does not intend to. Some people think that's admirable. The people who have to eat the meals aren't sure.</li>
+      <li>[lowtech] "Who else will tend it?" {A_nameDef} asked, coughing into the smoke of the cooking fire. {A_nameDef} has {ILLNESS} and won't leave the pot, and the others have started taking their bowls to the far end of the hall.</li>
+      <li>[trait:Industrious|trait:HardWorker] Not a meal missed: {A_nameDef} has {ILLNESS} and has cooked every one of them anyway, and means to keep going. Some call that admirable. The ones eating the meals aren't sure.</li>
     </texts>
     <outcomes>
       <li>
         <option>1</option>
         <lines>
-          <li>[lowtech] {A_nameDef} cooks with a wet cloth tied over {A_possessive} face and washes in the stream between meals. The food is as good as ever, and the people who were worried are eating slower.</li>
+          <li>[lowtech] {A_nameDef} cooks with a wet cloth tied over {A_possessive} face and plunges {A_possessive} hands in the water barrel between pots. The worried ones still eat, more slowly than before.</li>
         </lines>
       </li>
     </outcomes>
@@ -82,14 +82,14 @@
     <texts>
       <li>[winter] {B_nameDef} wants to bury {A_nameDef} up to the neck in a bed of warm ashes for a night, which is how {B_possessive} village treated {ILLNESS} in the cold months. {A_nameDef} hasn't said yes. {A_nameDef} hasn't said no.</li>
       <li>[medieval] {B_nameDef} remembers how the cunning woman in {B_possessive} home village cured {ILLNESS}: a hot brick wrapped in flannel at the feet, a cup of elderflower and a word said over the bed. {B_nameDef} wants to try all three, and won't say what the word is.</li>
-      <li>[!lowtech] {B_nameDef} doesn't trust the medicine kit, and wants to treat {A_nameDef}'s {ILLNESS} the way {B_possessive} family always has: honey, hot whiskey and a scarf round the throat. {A_nameDef} is very interested in the whiskey.</li>
+      <li>[!lowtech] {B_nameDef} doesn't trust the medicine kit, and wants to treat {A_nameDef}'s {ILLNESS} the way {B_possessive} family always has: honey, hot whiskey and a scarf around the throat. {A_nameDef} is very interested in the whiskey.</li>
     </texts>
     <outcomes>
       <li>
         <option>0</option>
         <lines>
-          <li>[medieval] {B_nameDef} did everything as the cunning woman did, word and all. In the morning {A_nameDef} was better, and {B_nameDef} still won't say what the word was.</li>
-          <li>[!lowtech] The honey and hot whiskey did something, though nobody can agree whether it was to the {ILLNESS} or to {A_nameDef}'s mood. {A_nameDef} is up and about.</li>
+          <li>[medieval] {B_nameDef} did everything as the cunning woman did, word and all. By the time the candle burned down {A_nameDef} was resting easier, and {B_nameDef} still won't say what the word was.</li>
+          <li>[!lowtech] The honey and hot whiskey did something, though it's hard to say whether to the {ILLNESS} or to {A_nameDef}'s spirits. {A_nameDef} has been singing in bed since.</li>
         </lines>
       </li>
     </outcomes>
@@ -99,8 +99,8 @@
     <defName>Council_Var_DlmL_StrangerMedicine</defName>
     <dilemma>Council_DlmL_StrangerMedicine</dilemma>
     <texts>
-      <li>[winter] {X_nameDef} of {FACTION} came in from the snow coughing and has {THEIRILLNESS}. The road on from here is long and cold. {X_nameDef} asked {A_nameDef} whether the colony has any medicine to spare, and the colony has very little.</li>
-      <li>[colony:Generous] Word on the road is that this colony shares what it has, so {X_nameDef} of {FACTION}, who has {THEIRILLNESS}, came straight to {A_nameDef} and asked for medicine. There are a few doses left. Generosity has a limit, and the council has to find it.</li>
+      <li>[winter] {X_nameDef} of {FACTION} came in from the snow with {THEIRILLNESS} and a long cold road still ahead. {X_nameDef} asked {A_nameDef} for medicine, and the colony has very little.</li>
+      <li>[colony:Generous] Word on the road is that this colony shares what it has, so {X_nameDef} of {FACTION}, who has {THEIRILLNESS}, came straight to {A_nameDef} to ask for medicine. The colony earned that name with fuller shelves than it has now.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>
 
@@ -110,13 +110,13 @@
     <texts>
       <li>[land:desert] {X_nameDef} of {FACTION} says the cure for {ILLNESS} out here is to bury the sick to the chest in hot sand at noon and let the sun draw it out. {A_nameDef} looked at the sun, then at the sand, and asked for time to think.</li>
       <li>[land:coast] {X_nameDef} says the sea cures {ILLNESS}: three dips in cold salt water at sunrise, then a bowl of fish broth with the heads left in. {A_nameDef} is sure about the broth and has doubts about the dips.</li>
-      <li>[x:old] {X_nameDef}, the oldest of the {FACTION} visitors, says {X_pronoun} has cured more cases of {ILLNESS} than the colony has people, with nothing but a hot stone, a cold cloth and a prayer to a saint nobody here has heard of.</li>
+      <li>[x:old] {X_nameDef}, the oldest of the {FACTION} visitors, says {X_pronoun} has cured more cases of {ILLNESS} than the colony has people, with nothing but a hot stone, a cold cloth and a prayer to a saint the colony has never heard of.</li>
     </texts>
     <outcomes>
       <li>
         <option>0</option>
         <lines>
-          <li>[land:desert] {A_nameDef} spent the noon hours buried to the chest in hot sand, with a wet cloth on {A_possessive} head and {X_nameDef} sitting beside {A_objective} telling stories. By evening the {ILLNESS} had eased.</li>
+          <li>[land:desert] {A_nameDef} spent the noon hours buried to the chest in hot sand, with a wet cloth on {A_possessive} head and {X_nameDef} sitting beside {A_objective} telling stories. {A_nameDef} came out of it red as a brick, with the {ILLNESS} eased.</li>
           <li>[land:coast] Three cold dips at dawn and a bowl of fish-head broth, and {A_nameDef} was on {A_possessive} feet by the afternoon. {A_nameDef} refuses to say which part did it.</li>
         </lines>
         <riskLines>
@@ -130,7 +130,7 @@
     <defName>Council_Var_DlmL_CampSick</defName>
     <dilemma>Council_DlmL_CampSick</dilemma>
     <texts>
-      <li>[rain] It has rained on the {FACTION} camp for three days, and now half of them are coughing. {X_nameDef} came to the colony soaked to the skin to ask {A_nameDef} for medicine, dry blankets, or both.</li>
+      <li>[rain] It has rained on the {FACTION} camp for three days, and now there's someone coughing in most of their tents. {X_nameDef} came to the colony soaked to the skin to ask {A_nameDef} for medicine, dry blankets, or both.</li>
       <li>[theirHightech] {X_nameDef} of {FACTION} came over from the camp with an empty medical kit and a list of symptoms. Their supplies ran out a week ago, {X_nameDef} told {A_nameDef}, and the fever didn't.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>
@@ -139,14 +139,14 @@
     <defName>Council_Var_DlmL_CampHungry</defName>
     <dilemma>Council_DlmL_CampHungry</dilemma>
     <texts>
-      <li>[land:desert] Game is scarce in dry country at the best of times, and the {FACTION} camp has caught almost nothing. {X_nameDef} came to {A_nameDef} with an empty sack and asked if the colony could fill it.</li>
+      <li>[land:desert] Three lizards and a hare in ten days: that is what the {FACTION} camp's hunters have brought in from this dry country. {X_nameDef} came to {A_nameDef} with an empty sack and asked whether the colony could fill it.</li>
       <li>[fall] The {FACTION} camp planned to live off the land through the fall, and the land has not cooperated. {X_nameDef} came to ask {A_nameDef} for food until the hunting picks up, and promised to pay it back in meat.</li>
     </texts>
     <outcomes>
       <li>
         <option>2</option>
         <lines>
-          <li>[lowtech] The camp's people spent two days at the colony's woodpile with their own axes, and took home a sack of food each evening. The woodpile is taller than it has ever been.</li>
+          <li>[lowtech] The camp's people came over with their own axes and worked at the colony's woodpile until dark, and took home a sack of food for it. The woodpile is higher than it has ever been.</li>
         </lines>
       </li>
     </outcomes>
@@ -156,8 +156,8 @@
     <defName>Council_Var_DlmL_CampLostChild</defName>
     <dilemma>Council_DlmL_CampLostChild</dilemma>
     <texts>
-      <li>[rain|storm] A child from the {FACTION} camp ran off when the thunder started and hasn't come back. {X_nameDef} came through the rain to the colony's gate to ask for searchers before the light goes.</li>
-      <li>[land:mountains|land:hills] A child from the {FACTION} camp went up the slope after a goat and didn't come down. {X_nameDef} has been calling up the hillside since noon, and asked {A_nameDef} for people who know the paths.</li>
+      <li>[rain|storm] The thunder scattered the {FACTION} camp's goats, and a child ran after them and hasn't come back. {X_nameDef} came through the rain to the colony's gate to ask for searchers before the light goes.</li>
+      <li>[land:mountains|land:hills] Since noon {X_nameDef} has been calling up the hillside for a child of the {FACTION} camp, who went up after a goat and didn't come down. {X_nameDef} has asked {A_nameDef} for people who know the paths.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>
 
@@ -216,13 +216,13 @@
     <texts>
       <li>[night] {A_nameDef} should have been asleep hours ago. Instead {A_nameDef} came to the council in {A_possessive} nightclothes and asked why the stars don't fall down, and whether anyone has ever been up there to check.</li>
       <li>[grieving] {A_nameDef} wants to know why grown-ups cry when someone dies but won't talk about the person afterward. {A_nameDef} asked it plainly, at supper, and the table went quiet.</li>
-      <li>[lowtech] {A_nameDef} asked where the colony's tools come from: not who made them, but who made the first one, and how they made it without a tool. Nobody has a good answer, and {A_nameDef} has asked the council.</li>
+      <li>[lowtech] {A_nameDef} asked where the colony's tools come from: not who made them, but who made the first one, and how they made it without a tool. None of the grown-ups has a good answer, so {A_nameDef} has asked the council.</li>
     </texts>
     <outcomes>
       <li>
         <option>1</option>
         <lines>
-          <li>[night] {A_nameDef} got a story about the stars instead of an answer, and fell asleep halfway through it. The council carried {A_objective} to bed.</li>
+          <li>[night] {A_nameDef} got a story about the stars instead of an answer, and fell asleep halfway through it. Someone carried {A_objective} to bed.</li>
         </lines>
       </li>
     </outcomes>
