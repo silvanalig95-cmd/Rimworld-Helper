@@ -132,10 +132,10 @@
       <li>[lowtech] A handcart with one bad wheel has stopped at the edge of the colony's land, and a family of {FACTION} sat down beside it as if they couldn't push it another step. {X_nameDef} asked {A_nameDef} whether anyone would mind if they camped {PLACE} for a time.</li>
       <li>[!lowtech] "A few days. A week at most." {X_nameDef} of {FACTION} said it twice to {A_nameDef}, as if the family behind {X_objective} needed to hear it too. They walked here with what they could carry, and would like to camp {PLACE} while they work out where to go next.</li>
       <li>[ws:hunger] The farms in {FACTION}'s country stand empty after {SITUATION}, and one family of them has walked as far as the colony, thin as rails. {X_nameDef} asked {A_nameDef} for leave to camp {PLACE} until they know where they're going.</li>
-      <li>[ws:sickness] Every village on their road turned them away for fear of {SITUATION}. {X_nameDef}, of {FACTION}, swears none of the family is sick, and asks only to camp {PLACE} a while, well apart from the colony.</li>
+      <li>[ws:sickness] Every village on their road turned them away for fear of {SITUATION}. {X_nameDef}, of {FACTION}, swears none of the family is sick, and asks only to camp {PLACE} a while and keep to themselves.</li>
       <li>[ws:war] {X_nameDef} doesn't know whether their house is still standing. When {SITUATION} came through the valley, this family of {FACTION} left with what would fit on a handcart, and they'd like to camp {PLACE} until it's safe to go back.</li>
       <li>[ws:water] The water took their house in {SITUATION}, and a family of {FACTION} has walked up out of the valley with what they carried out of it. {X_nameDef} asked {A_nameDef} for a dry patch of ground {PLACE} to camp on.</li>
-      <li>[ws:drought] First the well went dry, then the fields. A family of {FACTION} held out through most of {SITUATION} before they gave up and took to the road, and {X_nameDef} has asked {A_nameDef} whether they might camp {PLACE}, near the colony's water, for a while.</li>
+      <li>[ws:drought] First the well went dry, then the fields. A family of {FACTION} held out through most of {SITUATION} before they gave up and took to the road, and {X_nameDef} has asked {A_nameDef} whether they might camp {PLACE} for a while, near water.</li>
       <li>[ws:weather] A family of {FACTION} came down out of the hills half frozen, driven out by {SITUATION}. {X_nameDef} could barely get the words out for the cold. They want a sheltered spot {PLACE} to camp until the worst of it passes.</li>
       <li>[colony:Hospitable] A family of {FACTION} has come a long way on the word of strangers, who told them the colony takes people in and sends them on their way fed. {X_nameDef} asked {A_nameDef} whether it was true, and whether they might camp {PLACE} for a while.</li>
     </texts>
@@ -359,7 +359,7 @@
     </settled>
     <joinTexts>
       <li>{X_nameDef}, who carries the traders' packs, has had enough of the road, and asks whether the colony would take on someone who can count and lift.</li>
-      <li>"Best market on the road," {X_nameDef} keeps calling the colony. Tonight {X_nameDef}, who minds the traders' stall {PLACE}, asked whether {X_pronoun} might stop moving and be part of it.</li>
+      <li>"Best market on the road," {X_nameDef} from the traders' stall {PLACE} keeps calling the colony, and tonight {X_pronoun} asked whether {X_pronoun} might stop moving and be part of it.</li>
       <li>{X_nameDef}, who keeps the traders' accounts, has decided the colony needs someone who can tell a fair price from a bad one, and would like to be that someone.</li>
     </joinTexts>
     <farewell>

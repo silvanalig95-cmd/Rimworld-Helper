@@ -44,7 +44,7 @@
   <CC_CampAsk_NoBeast>None of their beasts would do well in this weather.</CC_CampAsk_NoBeast>
   <!-- Their good turns, when the kind has no line of its own -->
   <CC_Camp_Help_song>There was music at the fire {PLACE} this evening, and it carried across to the colony until well after dark.</CC_Camp_Help_song>
-  <CC_Camp_Help_milk>{X_nameDef} from the camp {PLACE} set out {COUNT} of {THING} at the edge of the camp for the colony.</CC_Camp_Help_milk>
+  <CC_Camp_Help_milk>{X_nameDef} from the camp {PLACE} set out {COUNT} {THING} at the edge of the camp for the colony.</CC_Camp_Help_milk>
   <CC_Camp_Help_goods>{X_nameDef} from the camp {PLACE} put a few things aside for the colony, by way of thanks for the welcome: {THING}.</CC_Camp_Help_goods>
   <CC_Camp_Help_tales>{A_nameDef} sat at the camp's fire {PLACE} until late, while {X_nameDef} told the news of the road.</CC_Camp_Help_tales>
 

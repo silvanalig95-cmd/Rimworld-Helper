@@ -358,7 +358,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>3</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>a healer from the camp saw to me</label><description>One of the healers camped nearby saw I was poorly and saw to it, for nothing. I feel better already.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+    <stages><li><label>a healer from the camp saw to me</label><description>One of the healers camped nearby noticed I was poorly and saw to it, for nothing. I feel better already.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -366,7 +366,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>2</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>a show at the camp</label><description>The people camped nearby put on a show at their fire, and we were all invited. I laughed until it hurt.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+    <stages><li><label>a show at the camp</label><description>The people camped nearby put on a show at their fire, and we were all invited. I keep thinking about the ending.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>

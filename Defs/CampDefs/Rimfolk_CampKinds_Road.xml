@@ -214,7 +214,7 @@
       <li>The merchants' camp {PLACE} has a striped awning over the stall and a smell of strange spices over everything.</li>
     </settled>
     <joinTexts>
-      <li>{X_nameDef}, who has walked with the merchants {PLACE} all the way from the far south, says {X_pronoun} is tired of roads that go nowhere {X_pronoun} wants to be, and asks whether {X_pronoun} might stay with the colony.</li>
+      <li>{X_nameDef}, who has walked with the merchants all the way from the far south, says {X_pronoun} is tired of roads that go nowhere {X_pronoun} wants to be, and asks whether {X_pronoun} might stay with the colony.</li>
       <li>{X_nameDef}, who translates for the merchants {PLACE}, has run out of new words to learn on the road and would like to learn the colony's. {X_nameDef} asks to stay.</li>
     </joinTexts>
     <farewell>
@@ -302,7 +302,7 @@
       <li><role>light</role><defs><li>TorchLamp</li></defs></li>
     </structures>
     <titles>
-      <li>Drovers make camp</li>
+      <li>Drovers and their dogs</li>
       <li>A herd on the road</li>
     </titles>
     <texts>
@@ -333,8 +333,8 @@
       <li>Mind the bull.</li>
     </lines>
     <helpTexts>
-      <li>[milk] The drovers {PLACE} had more than they could carry, and {X_nameDef} set the rest out at the edge of their camp for the colony: {COUNT} of {THING}.</li>
-      <li>[milk] {X_nameDef} from the drovers' camp left {COUNT} of {THING} from the herd on the colony's side of the camp, and nodded toward it when a colonist passed.</li>
+      <li>[milk] The drovers {PLACE} had more than they could carry, and {X_nameDef} set the rest out at the edge of their camp for the colony: {COUNT} {THING}.</li>
+      <li>[milk] {X_nameDef} from the drovers' camp left {COUNT} {THING} from the herd on the colony's side of the camp, and nodded toward it when a colonist passed.</li>
       <li>[tales] {A_nameDef} sat with the drovers at their dung-smoke fire and heard about every road, river and bad-tempered bull between here and the market. {A_nameDef} came back smelling of cows and full of stories.</li>
     </helpTexts>
     <asks>
@@ -417,10 +417,10 @@
       <li>[meme:Guilty] Every stone in the penitents' packs stands for a wrong they mean to set down at the end of the road. These penitents of {FACTION} came to the colony barefoot, and {X_nameDef} asked to camp {PLACE} for a few nights, promising they would be no trouble to anyone but themselves.</li>
       <li>[meme:PainIsVirtue] Penitents of {IDEO} have come up the road with their feet bound in rags and their backs straight. The road is the point, {X_nameDef} told {A_nameDef}; the shrine is only where it ends. They ask to camp {PLACE} a few nights.</li>
       <li>[meme:Proselytizer] {X_nameDef} warned {A_nameDef}, with a smile, that the penitents of {IDEO} will talk about their faith to anyone who stands still long enough. Then {X_pronoun} asked for leave to camp {PLACE}.</li>
-      <li>[ws:sickness] Penitents of {FACTION} are walking to the shrine to pray for the end of {SITUATION}. {X_nameDef} asked {A_nameDef} whether they might rest {PLACE} a few nights, well apart from the colony.</li>
+      <li>[ws:sickness] Penitents of {FACTION} are walking to the shrine to pray for the end of {SITUATION}. {X_nameDef} asked {A_nameDef} whether they might rest {PLACE} a few nights, keeping well apart.</li>
     </texts>
     <settled>
-      <li>The penitents from {FACTION} have made the barest camp the colony has ever seen {PLACE}. There is a fire and a cleared place for prayer, and they sleep on the ground.</li>
+      <li>The penitents from {FACTION} have made camp {PLACE}, the barest camp the colony has ever seen. There is a fire and a cleared place for prayer, and they sleep on the ground.</li>
       <li>[ideology] The penitents of {IDEO} have set out their few holy things on a cloth {PLACE}, and sit before them morning and evening in silence.</li>
     </settled>
     <joinTexts>
@@ -630,7 +630,7 @@
     </titles>
     <texts>
       <li>[lowtech] An old healer of {FACTION} has come down the road with a staff, a bag of herbs and an apprentice carrying the rest. {X_nameDef} told {A_nameDef} {X_pronoun} goes where {X_pronoun} is needed, and asked to camp {PLACE} a few days in case the colony needs {X_objective}.</li>
-      <li>[!lowtech] A country doctor of {FACTION} has stopped at the colony on a long round of the outlying farms, with a battered bag and a notebook full of other people's coughs. There's room in the notebook for the colony's too, {X_nameDef} says, if the doctor might camp {PLACE} a few days.</li>
+      <li>[!lowtech] A country doctor of {FACTION} has stopped at the colony on a long round of the outlying farms, with a battered bag and a notebook full of other people's coughs. There's room in the notebook for the colony's coughs too, {X_nameDef} says, if {X_pronoun} may camp {PLACE} a few days.</li>
       <li>[ws:sickness] Every healer in the region is on the road for {SITUATION}, and {X_nameDef} of {FACTION} has stopped at the colony between one bad village and the next. A few days' rest {PLACE} is all {X_nameDef} asks, and anyone ailing can come by while {X_pronoun} is here.</li>
       <li>[their:rescued] {X_nameDef}, a healer of {FACTION}, has come out of {X_possessive} way to meet the people who tended {FACTION}'s wounded when no one else would. {X_nameDef} would like to camp {PLACE} a few days, if the colony will have {X_objective}.</li>
     </texts>
@@ -664,7 +664,7 @@
       <li>
         <key>sick</key>
         <label>Ask the healer to see {A_nameDef}</label>
-        <tip>The travelling healer looks at whoever in the colony is ill or ailing, and does what can be done. It eases it; it doesn't work miracles.</tip>
+        <tip>The traveling healer looks at whoever in the colony is ill or ailing, and does what can be done. It eases it; it doesn't work miracles.</tip>
         <needs>sick</needs>
         <once>false</once>
         <tension>-3</tension>
@@ -733,12 +733,12 @@
       <li><role>light</role><defs><li>TorchLamp</li></defs></li>
     </structures>
     <titles>
-      <li>Minstrels make camp</li>
+      <li>Fiddles at dusk</li>
       <li>Music on the road</li>
     </titles>
     <texts>
       <li>[lowtech] A band of minstrels of {FACTION} has come up the road with a fiddle, a drum, a hurdy-gurdy and a boy who sings like a bird. {X_nameDef}, who plays the fiddle and does the talking, asked {A_nameDef} whether they might camp {PLACE} a few nights. They play for their supper, and play well.</li>
-      <li>[!lowtech] A little band of {FACTION}'s musicians has pulled up by the colony in a van painted with stars, guitars and an accordion in the back, and a singer whose cracked voice can quiet a room. {X_nameDef} asked {A_nameDef} for a few nights' camp {PLACE}. They'll play every evening.</li>
+      <li>[!lowtech] A little band of {FACTION}'s musicians has pulled up by the colony in a van painted with stars. They have guitars, an accordion and a singer whose cracked voice can quiet a room. {X_nameDef} asked {A_nameDef} for a few nights' camp {PLACE}. They'll play every evening.</li>
       <li>[ws:songs] With {SITUATION} going round the region, every minstrel is on the road, and a band of {FACTION}'s has stopped at the colony. {X_nameDef} swore to {A_nameDef} that they know all the new songs, and asked to camp {PLACE} a few nights.</li>
       <li>[their:friend] Minstrels of {FACTION} have come to the colony, and {X_nameDef}, their fiddler, asked for {A_nameDef} by name: there's a song about {A_objective} going round {FACTION}'s towns, and they'd like to play it for {A_objective}. They ask to camp {PLACE} a few nights.</li>
     </texts>
@@ -871,7 +871,7 @@
     </settled>
     <joinTexts>
       <li>{X_nameDef}, one of the mourners {PLACE}, says there's nothing left at home now but the grave they're carrying their dead to, and the others can see it filled without {X_objective}. {X_nameDef} asks whether there might be a place here.</li>
-      <li>{X_nameDef}, who has sat by the cart {PLACE} every night, says the one they carry always meant to settle somewhere like this. {X_nameDef} would like to do it for them, if the colony will allow it.</li>
+      <li>{X_nameDef}, who sits up by the cart every night, says the one they carry always meant to settle somewhere like this. {X_nameDef} would like to do it for them, if the colony will allow it.</li>
     </joinTexts>
     <farewell>
       <li>The mourners from {FACTION} went on at first light with their cart, walking slowly, the lamp still lit beside it.</li>
