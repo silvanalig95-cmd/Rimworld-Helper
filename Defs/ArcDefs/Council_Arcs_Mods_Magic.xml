@@ -32,14 +32,14 @@
           <warm><li>I don't want to burden {OTHER_nameDef} with it. But I think {OTHER_pronoun} would want to know.</li></warm>
           <blunt><li>Stuck. Same place, every day. Need help.</li></blunt>
           <cheerful><li>Well, I've found the edge of what I can do! Now I just need to find a way over it.</li></cheerful>
-          <gloomy><li>Maybe this is as far as I go. Some people simply stop, and nobody tells them why.</li></gloomy>
+          <gloomy><li>Maybe this is as far as I go. Some people simply stop, and never find out why.</li></gloomy>
           <cold><li>My progress has halted. Someone further along will have an answer. I intend to get it.</li></cold>
         </journal>
         <otherJournal>
           <plain><li>{OTHER_nameDef} has had a face like thunder all week, practicing the same thing over and over. I know that look. I wore it for a year.</li></plain>
         </otherJournal>
         <chronicle>
-          <li>{PAWN_nameDef} has come up against a wall in {PAWN_possessive} art.</li>
+          <li>{PAWN_nameDef} has come up against a wall in {PAWN_possessive} art, and has spent a week walking into it.</li>
           <li>{PAWN_nameDef} has stopped getting better at {PAWN_possessive} art, and knows it.</li>
         </chronicle>
         <gate>
@@ -56,10 +56,10 @@
         <waiting>Next: {PAWN_nameDef} grows a level stronger in {PAWN_possessive} art.</waiting>
         <journal>
           <plain>
-            <li>{OTHER_nameDef} said the wall isn't in my hands, it's in my breathing. Practiced with that in mind until supper, and something shifted.</li>
+            <li>{OTHER_nameDef} watched me try it once and told me to mind my breathing. Practiced with that in mind until supper, and something shifted.</li>
             <li>Up before the others to practice. Again after supper. The forms are starting to feel like mine instead of borrowed.</li>
             <li>{OTHER_nameDef} told me to stop trying so hard. I didn't understand it until today, when I stopped, and it worked once.</li>
-            <li>[friend] {OTHER_nameDef} didn't understand half of what I told {OTHER_objective}, and still said the one thing I needed: keep going.</li>
+            <li>[friend] {OTHER_nameDef} didn't understand half of what I told {OTHER_objective}, and still told me to keep going, which was the one thing I needed.</li>
             <li>[winter] Practiced out in the cold until my fingers wouldn't bend. Back indoors, with feeling in my fingers again, the working came easier than it has in weeks.</li>
           </plain>
           <warm><li>{OTHER_nameDef} checks on my practice every evening. I'd hate to disappoint {OTHER_objective}, so I don't skip it.</li></warm>
@@ -72,7 +72,7 @@
           <plain><li>{OTHER_nameDef} has been out practicing before dawn every day since we talked. I didn't tell {OTHER_objective} to do that. I'm glad of it.</li></plain>
         </otherJournal>
         <chronicle>
-          <li>{PAWN_nameDef} has been practicing {PAWN_possessive} art every day, early and late.</li>
+          <li>Early and late, {PAWN_nameDef} goes through the same forms of {PAWN_possessive} art, over and over.</li>
           <li>Since talking with {OTHER_nameDef}, {PAWN_nameDef} has thrown {PAWN_objective}self into training.</li>
         </chronicle>
         <gate><kind>Custom</kind><gain>1</gain><minDays>2</minDays><timeoutDays>30</timeoutDays></gate>
@@ -97,8 +97,8 @@
           <plain><li>{OTHER_nameDef} came to find me grinning like a child. Didn't need to say a word. I remember the day it happened to me.</li></plain>
         </otherJournal>
         <chronicle>
-          <li>{PAWN_nameDef} has broken through the wall in {PAWN_possessive} art.</li>
-          <li>{PAWN_nameDef} is a level stronger in {PAWN_possessive} art after weeks of practice.</li>
+          <li>The wall gave way. {PAWN_nameDef} is through it, and a level stronger in {PAWN_possessive} art.</li>
+          <li>After weeks of the same practice, {PAWN_nameDef} is a level stronger in {PAWN_possessive} art.</li>
         </chronicle>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Arc_PM_Breakthrough</thought></li>
@@ -115,7 +115,7 @@
             <li>Showed {OTHER_nameDef} what I can do now and got a single nod. From {OTHER_nameDef}, that's a speech.</li>
             <li>[friend] Sat with {OTHER_nameDef} in the evening and tried to explain what changed. Couldn't. {OTHER_nameDef} said it showed anyway.</li>
           </plain>
-          <warm><li>Whatever comes next in the art, I know I won't face it alone. That's the thing I learned, more than any working.</li></warm>
+          <warm><li>Whatever comes next in the art, I'll ask for help sooner this time. I lost a month to being proud.</li></warm>
           <blunt><li>Stronger. Steadier. Ready for the next wall.</li></blunt>
           <cheerful><li>I'm good at this! I mean properly good, the way I always hoped I would be.</li></cheerful>
           <gloomy><li>It's mine now. I suppose I'll have to work just as hard to keep it.</li></gloomy>
@@ -129,7 +129,7 @@
         </otherJournal>
         <chronicle>
           <li>{PAWN_nameDef} has made {PAWN_possessive} art {PAWN_possessive} own.</li>
-          <li>{PAWN_nameDef} came through a long stretch of training stronger, with {OTHER_nameDef} beside {PAWN_objective}.</li>
+          <li>{PAWN_nameDef} came out of the long training stronger, and {OTHER_nameDef} was there for all of it.</li>
         </chronicle>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Arc_PM_OwnArt</thought></li>
@@ -147,14 +147,14 @@
         <li>I've let the practice slide. The wall can wait. Maybe I'll be ready for it another year.</li>
       </plain>
       <warm><li>[timeout] Not yet. {OTHER_nameDef} says some walls take a season. I'll try again in the spring.</li></warm>
-      <blunt><li>[timeout] Still stuck. Stopping for now.</li></blunt>
+      <blunt><li>[timeout] Still stuck. Stopping.</li></blunt>
       <cheerful><li>[timeout] The wall won this round! There'll be another round.</li></cheerful>
       <gloomy><li>[timeout] I knew it. Some people go further, and some people stop here.</li></gloomy>
       <cold><li>[timeout] The method failed. I will find a different one.</li></cold>
     </fizzle>
     <fizzleChronicle>
       <li>[otherdead] {OTHER_nameDef} died before {PAWN_nameDef} could get past the wall in {PAWN_possessive} art.</li>
-      <li>{PAWN_nameDef} has put {PAWN_possessive} training aside for now.</li>
+      <li>{PAWN_nameDef} has put {PAWN_possessive} training aside, with the wall still standing.</li>
     </fizzleChronicle>
     <eulogy>
       <plain>
@@ -178,8 +178,8 @@
         <li>advice->to stop trying so hard for a day</li>
         <li>advice->the answer is usually in the part that feels easiest</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] practiced side by side until supper, saying very little.</li>
-        <li>r_logentry->[INITIATOR_nameDef] watched [RECIPIENT_nameDef] go through the forms and pointed out one small thing that changed everything.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] sat up late talking about how each of them first came to the art.</li>
+        <li>r_logentry->[INITIATOR_nameDef] watched [RECIPIENT_nameDef] go through the forms, said nothing for a long while, and then pointed out the one small thing that was wrong.</li>
+        <li>r_logentry->Long into the evening, [INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about how each of them first came to the art.</li>
         <li>r_logentry->[INITIATOR_nameDef] admitted to [RECIPIENT_nameDef] how stuck [INITIATOR_pronoun] had been, and felt lighter for it.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] argued over the right way to [task], and both learned something.</li>
         <li>task->begin a working</li>
@@ -193,13 +193,13 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Arc_PM_Breakthrough</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>broke through the wall</label><description>Weeks of the same working failing at the same place, and then this morning it simply went right.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+    <stages><li><label>broke through the wall</label><description>Weeks stuck at the same place in the art, and now I'm past it. I keep trying it again to be sure.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Arc_PM_OwnArt</defName>
     <durationDays>10</durationDays>
-    <stages><li><label>my art is my own</label><description>The forms aren't something I'm trying to remember any more. They're how I move.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>my art is my own</label><description>I don't have to think my way through the forms any more. I just move.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>

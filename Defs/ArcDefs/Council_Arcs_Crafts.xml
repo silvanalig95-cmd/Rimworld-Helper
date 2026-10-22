@@ -35,7 +35,7 @@
           </plain>
           <warm><li>{OTHER_nameDef} is a patient teacher. More patient than I deserve, some days.</li></warm>
           <blunt><li>Learning {SKILL} from {OTHER_nameDef}. Hard work. Good.</li></blunt>
-          <cheerful><li>{OTHER_nameDef} said my last piece was "not terrible". From {OTHER_objective}, that's a medal.</li></cheerful>
+          <cheerful><li>{OTHER_nameDef} said my last piece was "not terrible". I've been grinning about it since breakfast.</li></cheerful>
           <gloomy><li>Next to {OTHER_nameDef}'s work, mine looks like a child made it.</li></gloomy>
           <cold><li>{OTHER_nameDef} knows things about {SKILL} that I want. I intend to take every one of them.</li></cold>
         </journal>
