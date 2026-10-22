@@ -35,12 +35,12 @@
           </plain>
           <warm><li>{OTHER_nameDef} is a patient teacher. More patient than I deserve, some days.</li></warm>
           <blunt><li>Learning {SKILL} from {OTHER_nameDef}. Hard work. Good.</li></blunt>
-          <cheerful><li>{OTHER_nameDef} said my last piece was "not terrible"! That's high praise, from {OTHER_objective}.</li></cheerful>
+          <cheerful><li>{OTHER_nameDef} said my last piece was "not terrible". I've been grinning about it since breakfast.</li></cheerful>
           <gloomy><li>Next to {OTHER_nameDef}'s work, mine looks like a child made it.</li></gloomy>
-          <cold><li>{OTHER_nameDef} knows things about {SKILL} that I want. I intend to take every one of them.</li></cold>
+          <cold><li>There are things about {SKILL} that {OTHER_nameDef} knows and I don't. I intend to take every one of them.</li></cold>
         </journal>
         <chronicle>
-          <li>{PAWN_nameDef} has started learning {SKILL} at {OTHER_nameDef}'s elbow.</li>
+          <li>{PAWN_nameDef} hands {OTHER_nameDef} the tools now, and is learning {SKILL} by watching every move {OTHER_pronoun} makes.</li>
           <li>{PAWN_nameDef} has taken {OTHER_nameDef} as {PAWN_possessive} teacher in {SKILL}.</li>
         </chronicle>
         <effects>
@@ -58,12 +58,12 @@
           </plain>
           <warm><li>I'm not ashamed of my work any more. I'd like {OTHER_nameDef} to see it.</li></warm>
           <blunt><li>Getting there. {OTHER_nameDef} can tell me what's wrong with it.</li></blunt>
-          <cheerful><li>My joints are tighter and my edges are straighter. {OTHER_nameDef} has to see this!</li></cheerful>
+          <cheerful><li>My joins are tighter and my edges are straighter. {OTHER_nameDef} has to see this!</li></cheerful>
           <gloomy><li>I'm better than I was. {OTHER_nameDef} will still find a hundred things wrong.</li></gloomy>
           <cold><li>My work has improved measurably. {OTHER_nameDef}'s assessment is the next step.</li></cold>
         </journal>
         <chronicle>
-          <li>{PAWN_nameDef} has come on at {SKILL}, and {OTHER_nameDef} has noticed.</li>
+          <li>{PAWN_nameDef} is getting better at {SKILL}. {OTHER_nameDef} has stopped standing over {PAWN_objective} while {PAWN_pronoun} works.</li>
         </chronicle>
         <gate>
           <kind>Talk</kind>
@@ -86,12 +86,12 @@
           </plain>
           <warm><li>{OTHER_nameDef} told me I'm ready. I don't know if I believe {OTHER_objective}, but I'm going to try.</li></warm>
           <blunt><li>Starting the real thing. Leave me alone at the bench.</li></blunt>
-          <cheerful><li>I have an idea and it's a good one. My hands can hardly keep up with it!</li></cheerful>
-          <gloomy><li>{OTHER_nameDef} thinks I can make something fine. If it comes out badly, I'll have let {OTHER_objective} down.</li></gloomy>
+          <cheerful><li>I have an idea and it's a good one. My hands can hardly keep up with it.</li></cheerful>
+          <gloomy><li>If this piece comes out badly, I'll have let {OTHER_nameDef} down.</li></gloomy>
           <cold><li>I am ready to produce something worth keeping. I will not accept less.</li></cold>
         </journal>
         <chronicle>
-          <li>{PAWN_nameDef} is working on something {PAWN_pronoun} won't let anyone see yet.</li>
+          <li>Something is taking shape under {PAWN_nameDef}'s hands, and {PAWN_pronoun} won't let anyone see it yet, not even {PAWN_possessive} teacher.</li>
         </chronicle>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Inspiration"><inspiration>Inspired_Creativity</inspiration></li>
@@ -106,7 +106,7 @@
             <li>Finished it. {OTHER_nameDef} looked at it for a long time, turned it over, and couldn't find anything to say. That's never happened.</li>
             <li>It's the best thing I've ever made. I keep going back to look at it, in case it's changed.</li>
           </plain>
-          <warm><li>I showed {OTHER_nameDef} the piece. {OTHER_nameDef} put a hand on my shoulder and said nothing at all, which was the right thing to say.</li></warm>
+          <warm><li>I showed {OTHER_nameDef} the piece. {OTHER_nameDef} put a hand on my shoulder and kept it there.</li></warm>
           <blunt><li>Made something good. Really good. {OTHER_nameDef} says so too.</li></blunt>
           <cheerful><li>I made a beautiful thing, me, with these two hands!</li></cheerful>
           <gloomy><li>It's good. I don't know if I can ever do it again.</li></gloomy>
@@ -119,8 +119,8 @@
           </plain>
         </otherJournal>
         <chronicle>
-          <li>{PAWN_nameDef} made a piece {OTHER_nameDef} couldn't find fault with.</li>
-          <li>The apprentice {PAWN_nameDef} has made {PAWN_possessive} masterwork.</li>
+          <li>{PAWN_nameDef} finished the piece at last. {OTHER_nameDef} has been showing it to people.</li>
+          <li>The apprentice {PAWN_nameDef} has made the best piece of {PAWN_possessive} life.</li>
         </chronicle>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Arc_MyBestWork</thought></li>
@@ -133,20 +133,20 @@
     </stages>
     <fizzle>
       <plain>
-        <li>[timeout] The piece won't come right. I've stopped trying for now. Maybe I'm not ready.</li>
+        <li>[timeout] The piece won't come right. I've put it away under a sack. Maybe I'm not ready.</li>
         <li>[otherdead] {OTHER_nameDef} is dead. I'll never know what {OTHER_pronoun} would have thought of my best work.</li>
         <li>[otherleft] {OTHER_nameDef} has gone. I'll have to find the rest of {SKILL} on my own.</li>
-        <li>I've gone as far as I can with {OTHER_nameDef} for now. Maybe later.</li>
+        <li>I've gone as far as I can with {OTHER_nameDef}. The rest can wait.</li>
       </plain>
       <warm><li>[timeout] My best piece is still somewhere ahead of me. {OTHER_nameDef} says I'll get there.</li></warm>
       <blunt><li>[timeout] Can't get it right. Putting it down.</li></blunt>
-      <cheerful><li>[timeout] The masterpiece will have to wait! I'm still learning, and that's fine.</li></cheerful>
+      <cheerful><li>[timeout] The big piece will have to wait. I've still got a lot to learn, and I like learning it.</li></cheerful>
       <gloomy><li>[timeout] I've stared at the half-finished piece for days. It stares back.</li></gloomy>
       <cold><li>[timeout] The work isn't ready, and neither am I. I'll return to it when the conditions improve.</li></cold>
     </fizzle>
     <fizzleChronicle>
       <li>[otherdead] {OTHER_nameDef} died before {PAWN_nameDef} could show {OTHER_objective} {PAWN_possessive} best work.</li>
-      <li>{PAWN_nameDef}'s masterwork will have to wait.</li>
+      <li>{PAWN_nameDef}'s best piece will have to wait.</li>
     </fizzleChronicle>
     <eulogy>
       <plain>
@@ -177,7 +177,7 @@
             <li>[child] I watched {OTHER_nameDef} doing {SKILL} today. I want to do that.</li>
             <li>[child] {OTHER_nameDef} let me hold the tools. They're heavy. I didn't drop any.</li>
             <li>I keep ending up wherever {OTHER_nameDef} is working. I like watching how {OTHER_pronoun} does it.</li>
-            <li>[teen] Everyone keeps asking what I want to do when I'm grown. I think I might know.</li>
+            <li>[teen] The grown-ups keep asking what I want to do with myself. I think I might know.</li>
           </plain>
           <warm><li>{OTHER_nameDef} didn't shoo me away. {OTHER_nameDef} showed me instead.</li></warm>
           <blunt><li>I want to learn {SKILL}. From {OTHER_nameDef}.</li></blunt>
@@ -189,7 +189,7 @@
           <plain><li>{OTHER_nameDef} keeps following me around while I work. I don't mind. I was the same, once.</li></plain>
         </otherJournal>
         <chronicle>
-          <li>{PAWN_nameDef} has been hanging around {OTHER_nameDef} while {OTHER_pronoun} works.</li>
+          <li>{PAWN_nameDef} has been turning up wherever {OTHER_nameDef} works, and sitting just out of the way to watch.</li>
           <li>Young {PAWN_nameDef} has taken an interest in {SKILL}.</li>
         </chronicle>
         <gate>
@@ -208,10 +208,10 @@
           <plain>
             <li>[child] I asked {OTHER_nameDef} a hundred questions. {OTHER_nameDef} answered ninety of them.</li>
             <li>{OTHER_nameDef} said I can help, if I listen. I'm listening.</li>
-            <li>[teen] {OTHER_nameDef} showed me the basics today. It's harder than it looks. I like that it's hard.</li>
+            <li>[teen] Got shown the basics by {OTHER_nameDef} today. It's harder than it looks. I like that it's hard.</li>
           </plain>
           <warm><li>{OTHER_nameDef} takes me seriously. Not many grown-ups do.</li></warm>
-          <blunt><li>{OTHER_nameDef}'s teaching me. Good.</li></blunt>
+          <blunt><li>Being taught. By {OTHER_nameDef}. Good.</li></blunt>
           <cheerful><li>[child] I helped! {OTHER_nameDef} said I did a real job and not a pretend one.</li></cheerful>
           <gloomy><li>I made a mess of it today. {OTHER_nameDef} said everyone does at first.</li></gloomy>
           <cold><li>I am learning faster than {OTHER_nameDef} expected. I saw it on {OTHER_possessive} face.</li></cold>
@@ -223,7 +223,7 @@
           </plain>
         </otherJournal>
         <chronicle>
-          <li>{OTHER_nameDef} has been showing {PAWN_nameDef} the beginnings of {SKILL}.</li>
+          <li>Worn down by questions, {OTHER_nameDef} has started showing {PAWN_nameDef} the beginnings of {SKILL}.</li>
         </chronicle>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Learn"><xp>400</xp></li>
@@ -240,12 +240,12 @@
           </plain>
           <warm><li>I love this. I didn't know you could love a kind of work.</li></warm>
           <blunt><li>Practicing. Getting better.</li></blunt>
-          <cheerful><li>I'm getting good at {SKILL}. Not as good as {OTHER_nameDef}, but good!</li></cheerful>
+          <cheerful><li>I'm getting good at {SKILL}. Not {OTHER_nameDef} good, but good!</li></cheerful>
           <gloomy><li>It's slow. Everything's slow when you're young.</li></gloomy>
-          <cold><li>Progress is steady. I expect to surpass my teacher eventually.</li></cold>
+          <cold><li>Progress is steady. At this rate I will surpass my teacher in a few years.</li></cold>
         </journal>
         <chronicle>
-          <li>{PAWN_nameDef} has been practicing {SKILL} every chance {PAWN_pronoun} gets.</li>
+          <li>{PAWN_nameDef} practices {SKILL} in every spare hour now, and gets up early for more.</li>
         </chronicle>
         <gate><kind>Skill</kind><gain>1</gain><minDays>2</minDays><timeoutDays>40</timeoutDays></gate>
       </li>
@@ -287,13 +287,13 @@
       </plain>
       <warm><li>[timeout] {OTHER_nameDef} was patient with me. I'm sorry it didn't stick.</li></warm>
       <blunt><li>[timeout] Not for me, {SKILL}. Moving on.</li></blunt>
-      <cheerful><li>[timeout] I'm going to try something else next! Maybe everything else.</li></cheerful>
+      <cheerful><li>[timeout] I'm going to try a different trade next. Maybe all of them.</li></cheerful>
       <gloomy><li>[timeout] I thought {SKILL} was my thing. Maybe I don't have a thing.</li></gloomy>
       <cold><li>[timeout] The work doesn't suit me. Better to know now.</li></cold>
     </fizzle>
     <fizzleChronicle>
       <li>[otherdead] {PAWN_nameDef} lost {PAWN_possessive} teacher, {OTHER_nameDef}, too soon.</li>
-      <li>{PAWN_nameDef}'s interest in {SKILL} has faded, for now.</li>
+      <li>{PAWN_nameDef} has lost interest in {SKILL}.</li>
     </fizzleChronicle>
     <eulogy>
       <plain>
@@ -323,11 +323,11 @@
           <plain>
             <li>[elder] My hands aren't what they were. Everything I know about {SKILL} is in my head, and my head won't last forever.</li>
             <li>[oldhand] I've been here longer than nearly anyone. If I go, everything I've learned about {SKILL} goes with me.</li>
-            <li>Watched {OTHER_nameDef} work today. Clumsy, keen, and the right sort of stubborn. {OTHER_nameDef} could learn this.</li>
+            <li>Watched {OTHER_nameDef} work today. Clumsy, and the right sort of stubborn. {OTHER_nameDef} could learn this.</li>
           </plain>
           <warm><li>I'd like to pass on what I know to someone who'll care for it. {OTHER_nameDef}, maybe.</li></warm>
           <blunt><li>Somebody should learn {SKILL} properly before I'm gone. {OTHER_nameDef} will do.</li></blunt>
-          <cheerful><li>I've picked out an apprentice! {OTHER_nameDef} doesn't know yet.</li></cheerful>
+          <cheerful><li>I've picked out an apprentice! Now to find out if {OTHER_nameDef} wants to be picked.</li></cheerful>
           <gloomy><li>I won't live forever out here. {OTHER_nameDef} had better learn what I know while there's time.</li></gloomy>
           <cold><li>My knowledge of {SKILL} is an asset to the colony. It should not be buried with me.</li></cold>
         </journal>
@@ -365,7 +365,7 @@
           </plain>
         </otherJournal>
         <chronicle>
-          <li>{PAWN_nameDef} has taken {OTHER_nameDef} on as {PAWN_possessive} student in {SKILL}.</li>
+          <li>Mornings now, {PAWN_nameDef} teaches {OTHER_nameDef} {SKILL}, from the beginning and with no shortcuts.</li>
         </chronicle>
         <effects>
           <li Class="ColonyCouncil.ArcEffect_Mentorship"><aTeaches>true</aTeaches></li>
@@ -377,17 +377,17 @@
         <waiting>Next: the last lessons, the ones that aren't written down anywhere.</waiting>
         <journal>
           <plain>
-            <li>{OTHER_nameDef} is good now. Not as good as me, but on the way. There are a few things left I haven't told {OTHER_objective}.</li>
+            <li>My student is good now. Not as good as me, but on the way. There are a few things left I haven't told {OTHER_nameDef}.</li>
             <li>Caught {OTHER_nameDef} fixing a mistake before I could point it out. That's when you know.</li>
           </plain>
           <warm><li>Watching {OTHER_nameDef} work is like watching myself years ago, only with better habits.</li></warm>
-          <blunt><li>{OTHER_nameDef}'s nearly there. A few more things.</li></blunt>
-          <cheerful><li>{OTHER_nameDef} corrected me today, and was right!</li></cheerful>
-          <gloomy><li>{OTHER_nameDef} won't need me much longer. That's the point, I know.</li></gloomy>
+          <blunt><li>Nearly there, {OTHER_nameDef}. A few more things.</li></blunt>
+          <cheerful><li>Got corrected by my own student today, and {OTHER_nameDef} was right!</li></cheerful>
+          <gloomy><li>Soon {OTHER_nameDef} won't need me. I keep finding small things to correct.</li></gloomy>
           <cold><li>{OTHER_nameDef} has taken in most of what I can give. The rest is the hard part.</li></cold>
         </journal>
         <chronicle>
-          <li>{OTHER_nameDef} has come a long way under {PAWN_nameDef}'s teaching.</li>
+          <li>{OTHER_nameDef} has come a long way under {PAWN_nameDef}'s teaching. There isn't much left to tell {OTHER_objective}.</li>
         </chronicle>
         <gate>
           <kind>Talk</kind>
@@ -405,10 +405,10 @@
             <li>Gave {OTHER_nameDef} my old tools today. {OTHER_nameDef} held them as if they might break. They won't. They've been through worse.</li>
             <li>{OTHER_nameDef} knows what I know now, more or less. The rest {OTHER_pronoun}'ll find out alone, the way I did.</li>
           </plain>
-          <warm><li>Whatever happens to me, what I know is safe with {OTHER_nameDef}. I can rest easier.</li></warm>
-          <blunt><li>{OTHER_nameDef} has it. My job's done.</li></blunt>
+          <warm><li>Whatever happens to me, what I know is safe with {OTHER_nameDef}. I slept well last night.</li></warm>
+          <blunt><li>My job's done. {OTHER_nameDef} has it.</li></blunt>
           <cheerful><li>My student is a master now! Well, nearly. Give it a year.</li></cheerful>
-          <gloomy><li>{OTHER_nameDef} doesn't need me any more. I'm glad, and sorry, both.</li></gloomy>
+          <gloomy><li>I'm not needed at {OTHER_nameDef}'s elbow any more. Glad, and sorry, both.</li></gloomy>
           <cold><li>The transfer is complete. My knowledge will outlast me. That was the objective.</li></cold>
         </journal>
         <otherJournal>
@@ -418,7 +418,7 @@
           </plain>
         </otherJournal>
         <chronicle>
-          <li>{PAWN_nameDef} has passed on what {PAWN_pronoun} knows of {SKILL} to {OTHER_nameDef}.</li>
+          <li>{PAWN_nameDef} has handed down the last of what {PAWN_pronoun} knows of {SKILL}, and {OTHER_nameDef} has it all now.</li>
           <li>{OTHER_nameDef} carries {PAWN_nameDef}'s craft now.</li>
         </chronicle>
         <effects>
@@ -437,7 +437,7 @@
       </plain>
       <warm><li>[timeout] I'll keep teaching anyone who wants to learn. The door's open.</li></warm>
       <blunt><li>[timeout] Lessons stopped. {OTHER_nameDef} wasn't ready.</li></blunt>
-      <cheerful><li>[timeout] The lessons have paused, but I've written down everything, just in case!</li></cheerful>
+      <cheerful><li>[timeout] The lessons have paused, but I've written it all down, in case anyone wants it.</li></cheerful>
       <gloomy><li>[timeout] Everything I know will go into the ground with me, the way it's going.</li></gloomy>
       <cold><li>[timeout] {OTHER_nameDef} isn't the right student. I'll choose more carefully next time.</li></cold>
     </fizzle>

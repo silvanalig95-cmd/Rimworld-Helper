@@ -26,7 +26,7 @@
     <durationDays>10</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>showed me around</label><description>They showed me where everything is kept and how things are done here. I felt less of a stranger afterwards.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>8</baseOpinionOffset></li></stages>
+    <stages><li><label>showed me around</label><description>They showed me where everything is kept and how things are done here. I felt less of a stranger after.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>8</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -49,7 +49,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Arc_RespectEarned</defName>
     <durationDays>6</durationDays>
-    <stages><li><label>no longer rivals</label><description>We spent so long at each other's throats. That's over, and I feel lighter for it.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>no longer rivals</label><description>We spent so long at each other's throats. That's over, and supper is a lot easier.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <!-- ===================== Old wounds ===================== -->
@@ -60,13 +60,13 @@
     <durationDays>15</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>heard me out</label><description>We finally talked about what went wrong between us. It was hard, and it was worth it.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>15</baseOpinionOffset></li></stages>
+    <stages><li><label>heard me out</label><description>We finally talked about what went wrong between us, and neither of us walked off.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>15</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Arc_Mended</defName>
     <durationDays>8</durationDays>
-    <stages><li><label>made it right</label><description>The old quarrel is behind us. I didn't know how much it weighed until I put it down.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+    <stages><li><label>made it right</label><description>The old quarrel is behind us. I can sit anywhere I like at supper now.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <!-- ===================== The apprentice's masterwork, a calling, passing it on ===================== -->
@@ -74,7 +74,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Arc_MyBestWork</defName>
     <durationDays>10</durationDays>
-    <stages><li><label>made my best work</label><description>I made something even my teacher couldn't fault. I keep going back to look at it.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+    <stages><li><label>made my best work</label><description>I made something even my teacher couldn't fault. My hands still remember how.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -104,7 +104,7 @@
     <durationDays>30</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>taught me all they knew</label><description>They took the time to teach me everything they know. I owe them more than I can say.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>18</baseOpinionOffset></li></stages>
+    <stages><li><label>taught me all they knew</label><description>They took the time to teach me everything they know, and never once made me feel slow.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>18</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <!-- ===================== A long grief ===================== -->
@@ -123,13 +123,13 @@
     <durationDays>15</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>repaid an old kindness</label><description>I'd half forgotten what I did for them. They hadn't, and they made me something to say so.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>15</baseOpinionOffset></li></stages>
+    <stages><li><label>an old kindness repaid</label><description>I'd half forgotten what I did for them. They hadn't, and they made me something to say so.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>15</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Arc_DebtSettled</defName>
     <durationDays>6</durationDays>
-    <stages><li><label>paid back what I owed</label><description>Someone helped me when I needed it. I've finally done something in return.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>paid back what I owed</label><description>Someone helped me when I needed it. Now they know I haven't forgotten.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <!-- ===================== A secret told ===================== -->
@@ -186,7 +186,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Arc_LetItGo</defName>
     <durationDays>8</durationDays>
-    <stages><li><label>let the grudge go</label><description>I've stopped waiting for revenge. Not because they earned it. Because I want my days back.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+    <stages><li><label>let the grudge go</label><description>I've stopped waiting for revenge. I want my days back.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <!-- ===================== Within reach ===================== -->
