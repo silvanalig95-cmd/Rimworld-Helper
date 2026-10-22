@@ -112,7 +112,7 @@
     <stages>
       <li><label>ashamed of our ways</label><description>This isn't the colony I wanted to belong to. I hear what people say about us, and they're right.</description><baseMoodEffect>-4</baseMoodEffect></li>
       <li><label>uneasy about our ways</label><description>I don't much like the way this colony is going.</description><baseMoodEffect>-2</baseMoodEffect></li>
-      <li><label>like our ways</label><description>This colony does things the way I would.</description><baseMoodEffect>2</baseMoodEffect></li>
+      <li><label>like our ways</label><description>This colony does things the way I would. I don't have to bite my tongue.</description><baseMoodEffect>2</baseMoodEffect></li>
       <li><label>proud of our ways</label><description>People know what this colony stands for. When a trader asks where I'm from, I say it straight out.</description><baseMoodEffect>4</baseMoodEffect></li>
     </stages>
   </ThoughtDef>

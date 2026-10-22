@@ -69,7 +69,7 @@
     <stages>
       <li>
         <label>my idea worked out</label>
-        <description>I told the council what we should aim for, and we actually did it. I'll be insufferable about this for weeks.</description>
+        <description>I told the council what we should aim for, and we actually did it. I may mention whose idea it was, now and then.</description>
         <baseMoodEffect>8</baseMoodEffect>
       </li>
     </stages>
@@ -246,7 +246,7 @@
     <stages>
       <li>
         <label>safer behind the new defenses</label>
-        <description>We put up the new defenses. I sleep better knowing they're there.</description>
+        <description>The new defenses are up. I sleep better with them between us and whatever's out there.</description>
         <baseMoodEffect>3</baseMoodEffect>
       </li>
     </stages>
@@ -452,7 +452,7 @@
     <stages>
       <li>
         <label>real food</label>
-        <description>We're eating proper meals now, not whatever we can scrounge.</description>
+        <description>Proper meals again, cooked and hot, not whatever we can scrounge.</description>
         <baseMoodEffect>4</baseMoodEffect>
       </li>
     </stages>
@@ -476,7 +476,7 @@
     <stages>
       <li>
         <label>decent clothes</label>
-        <description>I have clean clothes now that didn't come off a corpse. I feel like a person again.</description>
+        <description>I have clean clothes now that didn't come off a corpse. I keep smoothing the sleeves.</description>
         <baseMoodEffect>3</baseMoodEffect>
       </li>
     </stages>

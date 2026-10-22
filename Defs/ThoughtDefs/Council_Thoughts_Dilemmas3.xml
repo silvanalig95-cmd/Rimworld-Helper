@@ -222,7 +222,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_LockedIn</defName>
     <durationDays>5</durationDays>
-    <stages><li><label>bolted in at night</label><description>They bolt my door from the outside at night because I sleepwalk. I feel like a prisoner.</description><baseMoodEffect>-5</baseMoodEffect></li></stages>
+    <stages><li><label>bolted in at night</label><description>They bolt my door from the outside at night because I sleepwalk. In the mornings I lie there waiting to hear the bolt.</description><baseMoodEffect>-5</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">

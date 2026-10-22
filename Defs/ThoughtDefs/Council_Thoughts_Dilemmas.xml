@@ -37,7 +37,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_Vindicated</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>the council took my side</label><description>I brought it to the council, and they agreed I was right.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+    <stages><li><label>the council took my side</label><description>The council heard both sides and said I was right. I didn't even have to raise my voice.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
