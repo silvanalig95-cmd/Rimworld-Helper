@@ -11,8 +11,8 @@
     <defName>Council_Var_Dlm_Goal_Excused</defName>
     <dilemma>Council_Dilemma_Goal_Excused</dilemma>
     <texts>
-      <li>[winter] Winter is when the colony has the least to do in the fields and the most to do everywhere else. {A_nameDef} wants to spend it trying to {GOAL}, and has asked the council to take {A_objective} off the chore roster until spring.\n\nThe others would have to cover, and they've noticed.</li>
-      <li>[colony:Hardworking] Nobody in this colony gets let off chores, and {A_nameDef} knows it. {A_nameDef} is asking anyway: a season off the roster, to finally {GOAL}.\n\nThe others are waiting to see what the council says.</li>
+      <li>[winter] In winter there's the least to do in the fields and the most to do everywhere else. {A_nameDef} wants to spend this one trying to {GOAL}, off the chore roster until the thaw.\n\nThe others would have to cover, and they've noticed.</li>
+      <li>[colony:Hardworking] This colony doesn't let people off chores, and {A_nameDef} knows it. {A_nameDef} is asking anyway: a season off the roster, to finally {GOAL}.\n\nThe others are waiting to see what the council says.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>
 
@@ -20,7 +20,7 @@
     <defName>Council_Var_Dlm_Goal_Purse</defName>
     <dilemma>Council_Dilemma_Goal_Purse</dilemma>
     <texts>
-      <li>[colony:Thrifty] {A_nameDef} knows how the colony feels about spending, and has brought a plan anyway: 150 silver from the purse for what {A_pronoun} needs to {GOAL}, with every coin accounted for on a sheet of paper.</li>
+      <li>[colony:Thrifty] {A_nameDef} knows how this colony feels about spending, and has brought a plan anyway: 150 silver from the purse for what {A_pronoun} needs to {GOAL}, accounted for down to the last coin.</li>
       <li>[trait:Greedy] {A_nameDef} wants 150 silver from the colony's purse to {GOAL}, and has made a list of what it will buy. Some of the others have read the list and are asking pointed questions about the third item.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>
@@ -29,7 +29,7 @@
     <defName>Council_Var_Dlm_Goal_Mentor</defName>
     <dilemma>Council_Dilemma_Goal_Mentor</dilemma>
     <texts>
-      <li>[b:past:soldier] {B_nameDef} once ran a company of soldiers, and {A_nameDef} has decided that someone who can organize a war can organize anything. {A_nameDef} wants {B_nameDef}'s help to {GOAL}, every evening, for a season.\n\n{B_nameDef} has been asked, and has asked for time to think.</li>
+      <li>[b:past:soldier] {B_nameDef} was a soldier once, and {A_nameDef} has decided that anyone who got through a war can get {A_objective} through this. {A_nameDef} wants {B_nameDef}'s help to {GOAL}, every evening, for a season.\n\n{B_nameDef} has been asked, and has asked for time to think.</li>
       <li>[b:past:scholar] {B_nameDef} used to teach, before the colony, and {A_nameDef} has found out. {A_nameDef} wants {B_nameDef}'s evenings to learn how to {GOAL}.\n\n{B_nameDef} would like the council to decide whether {B_pronoun} has any say in it.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>
@@ -55,8 +55,8 @@
     <defName>Council_Var_Dlm_Goal_Caravan</defName>
     <dilemma>Council_Dilemma_Goal_Caravan</dilemma>
     <texts>
-      <li>[spring] The roads are open again, and the first caravan of the spring is due any day. {A_nameDef} has been watching for it. {A_nameDef} wants to {GOAL}, and has started to think it might happen somewhere else.\n\n{A_nameDef} has asked for the council's blessing to go.</li>
-      <li>[past:trader] {A_nameDef} spent years on the roads before the colony, and the itch has come back. {A_nameDef} wants to {GOAL}, and thinks the next caravan might be the way to do it.\n\n{A_nameDef} wants to know what the council thinks before deciding.</li>
+      <li>[spring] The roads are open again, and the first caravan of the spring is due any day. {A_nameDef} has been watching the road for it, and has started to think {A_pronoun} might {GOAL} somewhere else, if not here.\n\n{A_nameDef} has asked for the council's blessing to go.</li>
+      <li>[past:trader] {A_nameDef} spent years on the roads before the colony, and the itch has come back. {A_nameDef} wants to {GOAL}, and thinks the next caravan might be the way to do it.\n\nBefore deciding anything, {A_nameDef} wants to hear what the council thinks.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>
 
@@ -72,7 +72,7 @@
     <defName>Council_Var_Dlm_Goal_Remember</defName>
     <dilemma>Council_Dilemma_Goal_Remember</dilemma>
     <texts>
-      <li>[afterraid] After the last attack, {A_nameDef} came to the council with a request. If the next one takes {A_objective} before {A_pronoun} can {GOAL}, {A_nameDef} wants the colony to remember it was the dream.\n\n{B_nameDef} was in the room, and hasn't said a word since.</li>
+      <li>[afterraid] The blood was barely scrubbed off the yard when {A_nameDef} came to the council. If the next attack takes {A_objective} before {A_pronoun} can {GOAL}, {A_nameDef} wants the colony to remember that was the dream.\n\n{B_nameDef} heard it too, and went out without finishing {B_possessive} supper.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>
 

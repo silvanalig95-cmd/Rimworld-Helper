@@ -11,8 +11,8 @@
     <cooldownDays>50</cooldownDays>
     <seasons><li>Summer</li><li>PermanentSummer</li></seasons>
     <texts>
-      <li>It's the shortest night of the year, and {A_nameDef} wants a bonfire, a proper one taller than the roof, with singing and drinking and the night shift let off for once.\n\nIt would burn through a good stack of firewood.</li>
-      <li>{A_nameDef} has spent a week stacking logs behind the barn for midsummer, and has finally asked the council for permission to light them.</li>
+      <li>Shortest night of the year, and {A_nameDef} wants a bonfire: a proper one, taller than the roof, with singing and drinking and the night shift let off until dawn.\n\nIt would burn through a good stack of firewood.</li>
+      <li>A stack of logs has been growing behind the barn all week, a few at a time, mostly after dark. It's {A_nameDef}'s. Midsummer is tomorrow, and {A_nameDef} would like permission to set fire to it.</li>
     </texts>
     <traditionOption>0</traditionOption>
     <traditionLabel>the midsummer bonfire</traditionLabel>
@@ -33,7 +33,7 @@
       </li>
       <li>
         <label>Save the wood this year</label>
-        <outcome>No bonfire. {A_nameDef} sat on the log pile all evening, looking at it.</outcome>
+        <outcome>{A_nameDef} sat on the unlit log pile all evening, looking at it.</outcome>
         <ways><generosity>-3</generosity><toil>4</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_NoCelebration</thought><exceptTrait><li>Ascetic</li></exceptTrait></li>
@@ -66,8 +66,8 @@
     </roleA>
     <thingCount>25</thingCount>
     <texts>
-      <li>The last of the crops are in. {A_nameDef}, who planted most of them, wants a harvest supper with second helpings for everyone. It would cost about {COUNT} raw food.\n\nThe stores will have to last the winter either way.</li>
-      <li>{A_nameDef} has spent the whole season in the fields and is asking for one night to celebrate, a harvest home costing about {COUNT} raw food. "We grew it," {A_nameDef} says. "We should get to taste it."</li>
+      <li>The last of the crop is in. {A_nameDef}, who planted most of it, wants a harvest supper with second helpings all round, about {COUNT} raw food's worth.\n\nThe stores have to last the winter either way.</li>
+      <li>"We grew it. We ought to get to taste it." {A_nameDef} has been in the fields since the thaw and wants one night for a harvest home, which would cost about {COUNT} raw food.</li>
     </texts>
     <traditionOption>0</traditionOption>
     <traditionLabel>harvest home</traditionLabel>
@@ -87,7 +87,7 @@
       </li>
       <li>
         <label>Store every scrap for winter</label>
-        <outcome>Every grain went into storage for the winter. {A_nameDef} thinks a season's work deserved better.</outcome>
+        <outcome>Every grain went into storage. {A_nameDef} stood in the barn doorway a long while that evening, looking at the sacks.</outcome>
         <ways><generosity>-5</generosity><toil>3</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_NoCelebration</thought><exceptTrait><li>Ascetic</li></exceptTrait></li>
@@ -117,8 +117,8 @@
     <cooldownDays>50</cooldownDays>
     <seasons><li>Winter</li><li>PermanentWinter</li></seasons>
     <texts>
-      <li>It's the longest night of the year, dark by mid-afternoon and bitterly cold. {A_nameDef} thinks the colony should mark it the way people did back home, with extra food and a long evening around the fire.</li>
-      <li>Last night {A_nameDef} found the colonists huddled in separate rooms, each alone with the cold. "It's midwinter," {A_nameDef} told the council. "We should be together for it."</li>
+      <li>Dark by mid-afternoon, and colder every hour after. It's the longest night of the year, and {A_nameDef} thinks it should be marked the way it was back home, with extra food and a long evening around the fire.</li>
+      <li>Last night {A_nameDef} went round the rooms and found each colonist in a different one, alone with the cold. "It's midwinter," {A_nameDef} told the council. "We should be in one place for it."</li>
     </texts>
     <traditionOption>0</traditionOption>
     <traditionLabel>the midwinter supper</traditionLabel>
@@ -168,8 +168,8 @@
       <notTrait><li>Ascetic</li></notTrait>
     </roleA>
     <texts>
-      <li>It started as a joke at dinner, the idea that the new year needs a name, and now the colony is arguing about it. {A_nameDef} has proposed "the year of {A_nameDef}," loudly and often.\n\nThe council has been asked to settle it.</li>
-      <li>Someone decided the annals need a name for the new year. {A_nameDef} has put forward {A_possessive} own name, with a straight face. Others want to name it for the colony's dead, and one person keeps suggesting the muffalo.</li>
+      <li>It started as a joke at dinner, the idea that the new year needs a name, and now the colony is arguing about it. {A_nameDef} has proposed "the year of {A_nameDef}," loudly and often, and has already started dating things that way.</li>
+      <li>Chalked on the wall by the door, as of this morning:\n\nThe year of {A_nameDef}: one vote, in {A_nameDef}'s handwriting.\nThe year of our dead: several.\nThe year of the muffalo: more than anyone expected.\n\nThe council has been asked to settle it.</li>
     </texts>
     <traditionOption>2</traditionOption>
     <traditionLabel>naming the year after a muffalo</traditionLabel>
@@ -187,7 +187,7 @@
       </li>
       <li>
         <label>Name it for those we lost</label>
-        <outcome>The year carries the names of the dead, and the arguing stopped.</outcome>
+        <outcome>The year is named for the dead. That evening the colony walked out to the graves and said each name once, and the arguing stopped there.</outcome>
         <ways><tradition>6</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_YearOfTheDead</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
@@ -220,8 +220,8 @@
       <bestAt>Shooting</bestAt>
     </roleA>
     <texts>
-      <li>The raiders left plenty behind: boots, coats, a weapon or two still in good shape. {A_nameDef} did most of the shooting and thinks that earns {A_objective} first pick.\n\nSome of the others disagree.</li>
-      <li>The bodies are still warm, and the argument over their gear has already started. {A_nameDef}, who killed three of them, has claimed the best of it.</li>
+      <li>The raiders' gear is heaped by the gate, and some of it is better than anything the colony owns. {A_nameDef} did most of the shooting and thinks that earns {A_objective} first pick.\n\nSome of the others disagree, out loud.</li>
+      <li>The bodies are hardly cold and the argument over their boots has already started. {A_nameDef}, who brought down more of them than anyone, has claimed the best of it.</li>
     </texts>
     <defaultOption>1</defaultOption>
     <options>
@@ -246,7 +246,7 @@
       </li>
       <li>
         <label>The fighters get the spoils</label>
-        <outcome>Everyone who fought got a share. Those who stayed inside got nothing but the cleanup, and some of them resent it.</outcome>
+        <outcome>Whoever fought took a share. Whoever stayed inside got a bucket and the yard to scrub.</outcome>
         <ways><generosity>-2</generosity><tradition>2</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_FairShares</thought></li>
@@ -259,8 +259,8 @@
         <label>Let the quartermaster share it out</label>
         <outcome>{B_nameDef} sorted the spoils by need: coats to whoever was cold, boots to whoever's had worn through. {A_nameDef} got one good thing out of it and has stopped arguing.</outcome>
         <outcomes>
-          <li>[lowtech] {B_nameDef} laid the spoils out on the threshing floor and handed them out one by one, by need. {A_nameDef} got the bow {A_pronoun} wanted and nothing else, and seems content with that.</li>
-          <li>[!lowtech] {B_nameDef} wrote every item down, then shared them out by need. {A_nameDef} got the rifle {A_pronoun} wanted and has stopped arguing.</li>
+          <li>[lowtech] {B_nameDef} laid the spoils out on the threshing floor and handed them out one by one, by need. {A_nameDef} got the bow {A_pronoun} wanted and let the rest go without a fuss.</li>
+          <li>[!lowtech] {B_nameDef} wrote every item down, then shared them out by need. {A_nameDef} got the rifle {A_pronoun} wanted, signed for it, and hasn't put it down since.</li>
           <li>[b:trait:Kind] {B_nameDef} gave the warmest coats to the ones who stood watch longest, and the rest by need. Even {A_nameDef} said it was fair.</li>
         </outcomes>
         <riskChance>0.35</riskChance>
@@ -288,7 +288,7 @@
     <cooldownDays>20</cooldownDays>
     <withinDaysOfThreat>2</withinDaysOfThreat>
     <texts>
-      <li>The raiders lie where they fell. {A_nameDef} asks what the council wants done with them: graves, a pyre, or the treeline and the scavengers.\n\nThe colony is divided on it, and loudly.</li>
+      <li>The raiders lie where they fell. Graves, a pyre, or the treeline and the scavengers: {A_nameDef} wants the council to choose, and the colony is split three ways on it.</li>
       <li>{A_nameDef} has been standing over the bodies outside the wall since the fighting stopped. "They were people," {A_nameDef} says. "Somebody's people. What do we do with them?"</li>
     </texts>
     <traditionOption>0</traditionOption>
@@ -297,7 +297,7 @@
     <options>
       <li>
         <label>Give them graves</label>
-        <outcome>The raiders were buried outside the colony, which took most of a day. Some colonists slept better for it; others resent the work.</outcome>
+        <outcome>It took the afternoon and every shovel in the colony, but the raiders are in the ground outside the wall. Some slept better for it. Others want to know why the colony dug graves for people who came to kill it.</outcome>
         <ways><mercy>6</mercy><tradition>3</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_DecentBurial</thought><onlyTrait><li>Kind</li></onlyTrait></li>
@@ -350,7 +350,7 @@
     <withinDaysOfThreat>1.5</withinDaysOfThreat>
     <thingCount>20</thingCount>
     <texts>
-      <li>The colony has come through the attack, and everyone still standing is giddy with relief. {A_nameDef} wants to celebrate properly with a victory feast tonight, using about {COUNT} raw food.\n\nThe repairs would have to wait until morning.</li>
+      <li>The attack is over, and people are laughing too loudly at things that aren't funny, the way they do after. {A_nameDef} wants a victory feast tonight, about {COUNT} raw food, while the feeling lasts.\n\nThe repairs would wait until morning.</li>
       <li>The fighting stopped an hour ago, and {A_nameDef} is already asking the council for a feast. "We earned it," {A_nameDef} says, wiping someone else's blood off {A_possessive} sleeve.</li>
     </texts>
     <traditionOption>0</traditionOption>
