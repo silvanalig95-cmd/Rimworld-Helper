@@ -147,7 +147,7 @@
         <label>Keep {A_nameDef} where {A_pronoun} is</label>
         <outcome>{A_nameDef} stays in {A_possessive} own bed, with the window open and a bucket of water by the door for washing hands. The others are being very polite about it.</outcome>
         <outcomes>
-          <li>[colony:Merciful] This colony doesn't put its sick out of the room, and the council said so. {A_nameDef} stays. The others have moved their beds a foot farther away.</li>
+          <li>[colony:Merciful] This colony doesn't put its sick out of the room. {A_nameDef} stays. The others have moved their beds a foot farther away.</li>
         </outcomes>
         <ways><mercy>3</mercy></ways>
         <effects>
@@ -462,7 +462,7 @@
       </li>
       <li>
         <label>Thank {X_nameDef}, and decline</label>
-        <outcome>{A_nameDef} thanked {X_nameDef} and said no. {X_nameDef} shrugged and put the cure away, and {A_nameDef} has been wondering about it ever since.</outcome>
+        <outcome>{A_nameDef} thanked {X_nameDef} and said no. {X_nameDef} shrugged and put the cure away, and {A_nameDef} watched it all the way back into the pack.</outcome>
         <ways><openness>-3</openness><tradition>1</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmS_WhatIfItWorked</thought><chance>0.6</chance></li>
@@ -490,7 +490,7 @@
     <options>
       <li>
         <label>Send them medicine</label>
-        <outcome>{A_nameDef} carried two doses over to the camp and stayed to show {X_nameDef} how to use them. The coughing from their tents was quieter that night than it has been all week.</outcome>
+        <outcome>{A_nameDef} carried two doses over to the camp and stayed to show {X_nameDef} how to use them. By the time {A_nameDef} left, the coughing in their tents had quieted.</outcome>
         <outcomes>
           <li>[lowtech] {A_nameDef} took two bundles of healroot over to the camp and showed them how to steep it: a fistful to the pot, and never at a hard boil. {A_nameDef} made them say it back twice.</li>
         </outcomes>
@@ -576,7 +576,7 @@
     <options>
       <li>
         <label>Fill their pot</label>
-        <outcome>{A_nameDef} carried out enough food for a week and put it into {X_nameDef}'s arms. There was singing at the camp that night.</outcome>
+        <outcome>{A_nameDef} carried out enough food for a week and put it into {X_nameDef}'s arms. Before {A_nameDef} was back through the gate, someone at the camp had started singing.</outcome>
         <outcomes>
           <li>[colony:Generous] It's what this colony does, and everyone knew it before the council said so. {X_nameDef} went back with a full pot and a sack besides.</li>
         </outcomes>
@@ -591,10 +591,10 @@
       </li>
       <li>
         <label>Have our best tracker show their hunters the game</label>
-        <outcome>{B_nameDef} took two of their hunters out before dawn and showed them the trails and the watering places. They came back at dusk carrying a carcass between them, and the camp ate well.</outcome>
+        <outcome>{B_nameDef} walked two of their hunters out to the trails and the watering places and showed them where to wait. They went back to the camp arguing happily over which trail to try first.</outcome>
         <outcomes>
-          <li>[land:desert] {B_nameDef} took their hunters to the one spring for a day's walk, where the animals come at dusk. They waited in the rocks until dark and came home with meat.</li>
-          <li>[land:tundra|land:boreal] {B_nameDef} showed their hunters how to read the tracks in the crust of the snow and where the herds shelter from the wind. The camp ate meat that night.</li>
+          <li>[land:desert] {B_nameDef} took their hunters to the one spring within reach, where the animals come at dusk, and showed them where to wait in the rocks.</li>
+          <li>[land:tundra|land:boreal] {B_nameDef} showed their hunters how to read the tracks in the crust of the snow and where the herds shelter from the wind. {B_nameDef} came back half frozen and pleased with them.</li>
         </outcomes>
         <ways><openness>2</openness><toil>1</toil></ways>
         <effects>
@@ -608,7 +608,7 @@
         <riskChance>0.3</riskChance>
         <riskSkill>Animals</riskSkill>
         <riskReplaces>true</riskReplaces>
-        <riskOutcome>{B_nameDef} walked their hunters all over the land for a day and they didn't see so much as a rabbit. They came back empty-handed but on better terms.</riskOutcome>
+        <riskOutcome>{B_nameDef} walked their hunters all over the land for hours and they didn't see so much as a rabbit. They came back empty-handed but on better terms.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Animals</skill><xp>150</xp></li>
           <li Class="ColonyCouncil.DilemmaEffect_CampTension"><amount>-2</amount></li>
@@ -627,7 +627,7 @@
       </li>
       <li>
         <label>We have nothing to spare</label>
-        <outcome>Nothing to spare, {A_nameDef} told {X_nameDef}. {X_nameDef} took the answer back to the camp, and the fire there was small that night.</outcome>
+        <outcome>Nothing to spare, {A_nameDef} told {X_nameDef}. {X_nameDef} took the answer back to the camp, and the fire there is small tonight.</outcome>
         <ways><generosity>-4</generosity></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_CampTension"><amount>6</amount></li>
@@ -674,7 +674,7 @@
         <riskChance>0.3</riskChance>
         <riskSkill>Animals</riskSkill>
         <riskReplaces>true</riskReplaces>
-        <riskOutcome>{B_nameDef} searched all night with the camp's people. Near dawn one of their own found the child under a hedge, cold and sulking and fine. {B_nameDef} came home stiff and tired, and the camp was grateful for the help.</riskOutcome>
+        <riskOutcome>{B_nameDef} searched with the camp's people for hours. In the end one of their own found the child under a hedge, cold and sulking and fine. {B_nameDef} came home stiff and tired, and the camp was grateful for the help.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>B</target><hediff>Council_Dlm_Sleepless</hediff></li>
           <li Class="ColonyCouncil.DilemmaEffect_CampTension"><amount>-8</amount></li>
@@ -747,9 +747,9 @@
       </li>
       <li>
         <label>What was decided stands</label>
-        <outcome>The decisions stand. {A_nameDef} heard it without a word, left the room, and has been short with everyone since.</outcome>
+        <outcome>The decisions stand, and {A_nameDef} has been short with everyone since.</outcome>
         <outcomes>
-          <li>[colony:Hardworking] "In a colony this busy, meetings happen when they happen," the council told {A_nameDef}. "Then I'll stop working late," {A_nameDef} said.</li>
+          <li>[colony:Hardworking] "In a colony this busy, meetings happen when they happen," one of the others told {A_nameDef}. "Then I'll stop working late," {A_nameDef} said.</li>
         </outcomes>
         <ways><tradition>1</tradition></ways>
         <effects>
@@ -812,9 +812,9 @@
     <options>
       <li>
         <label>Give {A_nameDef} the days</label>
-        <outcome>{A_nameDef} has a few days off, by order of the council. {A_nameDef} slept most of the first one, sat in the sun for the second, and on the third came to supper and laughed at something.</outcome>
+        <outcome>{A_nameDef} has a few days off, by order of the council, and slept through the first afternoon of them. At supper {A_pronoun} laughed at something, and the table looked up.</outcome>
         <outcomes>
-          <li>[afterraid] The walls can wait two days, the council decided. {A_nameDef} slept through the first of them and woke up looking ten years younger.</li>
+          <li>[afterraid] The walls can wait two days. {A_nameDef} slept the afternoon away and woke up looking ten years younger.</li>
           <li>[fall] The others are bringing in the harvest without {A_nameDef}, and a few of them are making a point of how hard it is. {A_nameDef} is sleeping through it.</li>
         </outcomes>
         <ways><toil>-3</toil><mercy>2</mercy></ways>
@@ -839,7 +839,7 @@
       </li>
       <li>
         <label>Ask {A_nameDef} to hold on until the rush is over</label>
-        <outcome>{A_nameDef} nodded when the council asked {A_objective} to hold on a while longer, went back to work, and hasn't said much to anyone since.</outcome>
+        <outcome>No days off, then. {A_nameDef} went back to work and hasn't said much to anyone since.</outcome>
         <ways><toil>3</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmL_HoldOn</thought></li>
@@ -847,7 +847,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Strain"><target>A</target><amount>5</amount></li>
         </effects>
         <riskChance>0.3</riskChance>
-        <riskOutcome>An hour after the council asked {A_objective} to hold on, {A_nameDef} put down {A_possessive} tools and walked off without a word, and didn't come back until dark.</riskOutcome>
+        <riskOutcome>An hour after going back to work, {A_nameDef} put down {A_possessive} tools and walked off without a word, and didn't come back until dark.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_MentalState"><target>A</target><mentalState>Wander_Sad</mentalState></li>
         </riskEffects>
@@ -1006,7 +1006,7 @@
       </li>
       <li>
         <label>Not yet; we need every hand</label>
-        <outcome>{A_nameDef} took the answer without arguing and picked the tools back up, and works slower than before.</outcome>
+        <outcome>{A_nameDef} picked the tools back up without arguing, and works slower than before.</outcome>
         <ways><toil>3</toil><mercy>-2</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmL_NotYet</thought></li>
@@ -1049,7 +1049,7 @@
         <label>Tell {A_nameDef} a story instead</label>
         <outcome>Instead of an answer, {A_nameDef} got a story: an old one, with a long road in it, a wise animal and a hard lesson at the end. {A_nameDef} has asked to hear it again three times.</outcome>
         <outcomes>
-          <li>[lowtech] {A_nameDef} got the story the old ones tell around the fire, the one about the first winter and the people who walked through it. {A_nameDef} fell asleep before the end and asked for the ending in the morning.</li>
+          <li>[lowtech] {A_nameDef} got the story the old ones tell around the fire, the one about the first winter and the people who walked through it. {A_nameDef} fell asleep before the end, and has been promised the rest.</li>
         </outcomes>
         <ways><tradition>3</tradition></ways>
         <effects>
@@ -1082,7 +1082,7 @@
       </li>
       <li>
         <label>That's a question for when you're older</label>
-        <outcome>"When you're older," the council told {A_nameDef}. {A_nameDef} said that's what grown-ups say when they don't know, and went off to ask someone else.</outcome>
+        <outcome>"When you're older," the grown-ups told {A_nameDef}. {A_nameDef} said that's what grown-ups say when they don't know, and went off to ask someone else.</outcome>
         <ways><tradition>2</tradition><openness>-2</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmL_TooYoungToAsk</thought></li>
@@ -1110,7 +1110,7 @@
     <options>
       <li>
         <label>Send it home to {FACTION}</label>
-        <outcome>The journal went to {FACTION} with the next traveler heading that way, with a note saying where it was found. Word came back that the family had been waiting eleven years to know.</outcome>
+        <outcome>The journal will go to {FACTION} with the next traveler heading that way, wrapped in a note saying where it was found. The last entry in it is eleven years old.</outcome>
         <ways><generosity>2</generosity><openness>2</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>6</amount></li>
@@ -1211,7 +1211,7 @@
       </li>
       <li>
         <label>The council owes nothing for it</label>
-        <outcome>The council told {A_nameDef} that promises are made in good faith and sometimes can't be kept, and that's the end of it. {A_nameDef} said {A_pronoun} would remember that.</outcome>
+        <outcome>Nothing more will be made of the broken promise. {A_nameDef} said {A_pronoun} would remember that.</outcome>
         <ways><generosity>-2</generosity><mercy>-2</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmL_WordWorthNothing</thought></li>
@@ -1281,7 +1281,7 @@
         <riskChance>0.3</riskChance>
         <riskSkill>Plants</riskSkill>
         <riskReplaces>true</riskReplaces>
-        <riskOutcome>{B_nameDef} searched all day and came back with a handful of sour leaves and a bad temper. Supper was the same as always.</riskOutcome>
+        <riskOutcome>{B_nameDef} searched for hours and came back with a handful of sour leaves and a bad temper. Supper was the same as always.</riskOutcome>
         <riskOutcomes>
           <li>[winter] {B_nameDef} went out into the snow to look for anything fresh and came back hours later with nothing but frozen boots.</li>
         </riskOutcomes>
@@ -1292,7 +1292,7 @@
       </li>
       <li>
         <label>Food is food</label>
-        <outcome>Food is food, the council said, and the colony is lucky to have it. {A_nameDef} agreed that the colony is lucky, and ate the same meal again, slowly.</outcome>
+        <outcome>Food is food, and the colony is lucky to have it. {A_nameDef} agreed that the colony is lucky, and ate the same meal again, slowly.</outcome>
         <ways><generosity>-2</generosity><toil>1</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmL_FoodIsFood</thought><exceptTrait><li>Ascetic</li></exceptTrait></li>
@@ -1349,7 +1349,7 @@
       </li>
       <li>
         <label>Someone has to do it</label>
-        <outcome>{A_nameDef} went back to the same corner and the same wall, with the council's thanks for doing the job better than anyone else could.</outcome>
+        <outcome>{A_nameDef} went back to the same corner and the same wall. Someone has to do it, and {A_nameDef} does it best.</outcome>
         <ways><toil>2</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmL_SomeoneHasTo</thought></li>
@@ -1406,7 +1406,7 @@
       </li>
       <li>
         <label>Everyone is crowded</label>
-        <outcome>{A_nameDef} was told that everyone is crowded and {A_pronoun} will have to put up with it like the rest. {A_nameDef} went back to eating outside.</outcome>
+        <outcome>Everyone is crowded, and {A_nameDef} will have to put up with it like the rest. {A_nameDef} went back to eating outside.</outcome>
         <ways><toil>1</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmL_EveryoneCrowded</thought></li>
@@ -1474,7 +1474,7 @@
       </li>
       <li>
         <label>Play is a child's work</label>
-        <outcome>The council told {A_nameDef} there's time enough for work when {A_pronoun} is grown, and sent {A_objective} off to play. {A_nameDef} went, and played at being a carpenter.</outcome>
+        <outcome>There's time enough for work when {A_nameDef} is grown. {A_nameDef} went off to play, and played at being a carpenter.</outcome>
         <ways><tradition>1</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmL_SentToPlay</thought></li>
@@ -1507,7 +1507,7 @@
     <options>
       <li>
         <label>{B_nameDef} sleeps; someone else sits up</label>
-        <outcome>{B_nameDef} was sent to bed and slept fourteen hours. Someone else sat up with {A_nameDef}, following {B_nameDef}'s written instructions to the letter, and woke {B_objective} only once.</outcome>
+        <outcome>{B_nameDef} was sent to bed and was asleep before {B_possessive} boots were off. Someone else sat up with {A_nameDef}, following {B_nameDef}'s written instructions to the letter, and woke {B_objective} only once.</outcome>
         <ways><mercy>2</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Needs"><target>Others</target><skill>Medicine</skill><minLevel>2</minLevel><reason>Needs someone else who knows some doctoring (Medicine 2 or more)</reason></li>

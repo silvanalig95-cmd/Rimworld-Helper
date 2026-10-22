@@ -53,7 +53,7 @@
       <li>
         <option>1</option>
         <lines>
-          <li>[small] With only a handful of them, the council decided they're all in it together anyway. {A_nameDef} stays. The others wash their hands so often their knuckles are cracked.</li>
+          <li>[small] With only a handful of them, they're all in it together anyway. {A_nameDef} stays. The others wash their hands so often their knuckles are cracked.</li>
         </lines>
       </li>
     </outcomes>
@@ -181,7 +181,7 @@
       <li>
         <option>0</option>
         <lines>
-          <li>[trait:Industrious|trait:HardWorker] {A_nameDef} took the days off and spent the first one trying to work anyway. On the second, {A_pronoun} gave up and slept until noon.</li>
+          <li>[trait:Industrious|trait:HardWorker] {A_nameDef} took the days off and spent the first hours of them trying to work anyway, then gave up and slept.</li>
         </lines>
       </li>
       <li>

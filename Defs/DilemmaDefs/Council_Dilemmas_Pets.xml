@@ -30,7 +30,7 @@
       </li>
       <li>
         <label>It's only an animal</label>
-        <outcome>The council shrugged. {B_nameDef} has started eating with one arm around the bowl.</outcome>
+        <outcome>It's only an animal, and that's that. {B_nameDef} has started eating with one arm around the bowl.</outcome>
         <ways><mercy>2</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Unfair</thought></li>

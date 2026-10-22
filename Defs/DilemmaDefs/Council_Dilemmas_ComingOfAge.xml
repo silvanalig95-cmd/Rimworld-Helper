@@ -46,7 +46,7 @@
       </li>
       <li>
         <label>Let {A_nameDef} choose</label>
-        <outcome>{A_nameDef} took a long time to answer the council, and when the answer came it was clearly one {A_pronoun} had been turning over for a while.</outcome>
+        <outcome>{A_nameDef} took a long time over the choice, and when it was made it was clearly one {A_pronoun} had been turning over for a while.</outcome>
         <ways><tradition>-4</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Path_Chosen</thought></li>
@@ -89,7 +89,7 @@
       </li>
       <li>
         <label>Let {A_nameDef} choose</label>
-        <outcome>{A_nameDef} was asked, and thanked the council for asking.</outcome>
+        <outcome>The choice is left to {A_nameDef}, who seems glad of it.</outcome>
         <ways><tradition>-4</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Path_Chosen</thought></li>
@@ -130,7 +130,7 @@
       </li>
       <li>
         <label>Let {A_nameDef} choose</label>
-        <outcome>The council let {A_nameDef} decide, and {A_nameDef} already knew what {A_pronoun} wanted.</outcome>
+        <outcome>{A_nameDef} already knew what {A_pronoun} wanted, long before anyone asked.</outcome>
         <ways><tradition>-4</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Path_Chosen</thought></li>

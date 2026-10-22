@@ -61,7 +61,7 @@
       </li>
       <li>
         <label>Ask {X_objective} to come back another season</label>
-        <outcome>The council told {X_nameDef} the colony would be glad to see {X_objective} again, but not this time. {X_nameDef} took it well. {A_nameDef} walked {X_objective} out past the fields and came back quiet.</outcome>
+        <outcome>{X_nameDef} will be welcome another season, but not this time. {X_nameDef} took it well. {A_nameDef} walked {X_objective} out past the fields and came back quiet.</outcome>
         <ways><openness>-2</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmH_ComeBackLater</thought></li>
@@ -134,7 +134,7 @@
       </li>
       <li>
         <label>They can take it or leave it</label>
-        <outcome>"This isn't an inn on the high road," {X_nameDef} was told. {X_nameDef} went off muttering, and {A_nameDef} was left to hear the rest of it.</outcome>
+        <outcome>"This isn't an inn on the high road," {A_nameDef} told {X_nameDef}. {X_nameDef} went off muttering, and {A_nameDef} was left to hear the rest of it.</outcome>
         <ways><openness>-2</openness><generosity>-1</generosity></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_DlmH_ComplaintIgnored</thought></li>
