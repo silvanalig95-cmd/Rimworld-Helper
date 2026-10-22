@@ -18,8 +18,8 @@
     <nemesis>loose</nemesis>
     <lines>
       <plain>
-        <li>[person] {NAME} was standing at the gate in the dream, just standing, and nobody else could see.</li>
-        <li>[person] I dreamt the fight again, and this time {NAME} turned at the edge of the trees and smiled at me.</li>
+        <li>[person] {NAME} was standing at the gate in the dream, just standing, and the others walked past without looking.</li>
+        <li>[person] The fight again, and this time {NAME} turned at the edge of the trees and smiled at me.</li>
         <li>[person,kin] Dreamt {NAME} came to the funeral and stood at the back, and I couldn't make my legs move.</li>
         <li>[beast] Something big moved in the dark at the edge of the fields all night in my dream. I knew it was {NAME}.</li>
         <li>[beast] Dreamt I heard {NAME} breathing under the floor, slow and patient.</li>
@@ -43,10 +43,10 @@
     </feelings>
     <lines>
       <plain>
-        <li>[person] In the dream {NAME} came at me and I didn't step back. I woke up before either of us moved again.</li>
+        <li>[person] In the dream {NAME} came at me and I didn't step back, and we stood there nose to nose until the dream ran out.</li>
         <li>[person] Dreamt I found {NAME} asleep by a fire, and stood there a long time deciding.</li>
         <li>[beast] Dreamt I followed {NAME}'s tracks through the snow until they ended in my own footprints.</li>
-        <li>[kin] I dreamt I told {NAME} the name of the one {NAME} killed, and made {NAME} say it back.</li>
+        <li>[kin] I told {NAME} the name of the one {NAME} killed, and made {NAME} say it back.</li>
       </plain>
       <blunt><li>Dreamt I faced {NAME}. Didn't run. Good.</li></blunt>
       <cheerful><li>Dreamt I chased {NAME} clean off the map, shouting. Very satisfying.</li></cheerful>
@@ -65,11 +65,11 @@
       <plain>
         <li>Dreamt I went down to the cells, and {NAME}'s door was open, and the room was full of my own things.</li>
         <li>In the dream {NAME} talked to me through the wall all night in a voice I'd never heard {NAME} use.</li>
-        <li>I dreamt I held the key to {NAME}'s cell, and it got heavier every hour, and I couldn't put it down.</li>
+        <li>I held the key to {NAME}'s cell, and it got heavier every hour, and I couldn't put it down.</li>
       </plain>
       <warm><li>Dreamt I brought {NAME} a bowl of soup and we said nothing, and that was the end of something.</li></warm>
       <blunt><li>Dreamt of {NAME} in the cells. Checked the lock this morning.</li></blunt>
-      <gloomy><li>Dreamt {NAME} was the free one and I was in the cell, and nobody noticed the difference.</li></gloomy>
+      <gloomy><li>Dreamt {NAME} was the free one and I was in the cell, and the others brought {NAME} my supper.</li></gloomy>
       <cold><li>A dream about the prisoner. The lock held, as locks do.</li></cold>
     </lines>
   </ColonyCouncil.DreamDef>
@@ -83,12 +83,12 @@
     <nemesisDays>20</nemesisDays>
     <lines>
       <plain>
-        <li>Dreamt of {NAME}, and felt nothing at all, and woke up rested for the first time in a long while.</li>
+        <li>Dreamt of {NAME}, and felt nothing at all. I slept the rest of the night like a stone.</li>
         <li>In the dream I walked the place where it happened, and it was just a field, with flowers in it.</li>
         <li>[beast] Dreamt I walked under the trees where {NAME} used to wait, and only birds came out of them.</li>
         <li>[kin] Dreamt the one {NAME} took from us came and sat by my bed and said it was all right now.</li>
       </plain>
-      <warm><li>Dreamt of everyone who stood with me against {NAME}, at one table, laughing about something else.</li></warm>
+      <warm><li>Dreamt of the ones who stood with me against {NAME}, out in the yard, laughing about something else entirely.</li></warm>
       <blunt><li>Dreamt about {NAME}. Didn't care. Good dream.</li></blunt>
       <cheerful><li>Dreamt {NAME} was a very small dog. I've decided that's how I'll remember it.</li></cheerful>
       <gloomy><li>Dreamt it was over. It is. I keep needing to be told.</li></gloomy>
