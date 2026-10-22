@@ -22,7 +22,7 @@
         <li>My legs have forgotten what they're for. Walked to the table for supper anyway.</li>
         <li>[bed] So many days in bed that the floor feels strange under my feet.</li>
         <li>[bed] I could draw the ceiling over that bed from memory. I'm glad to be looking at a different one.</li>
-        <li>[bed,winter] Out of bed at last, in the middle of winter. Even the cold air smells good.</li>
+        <li>[bed,winter] Out of bed at last, and it's winter out there. Even the cold air smells good.</li>
         <li>[limb] I keep reaching with the hand that isn't there. Then I remember.</li>
         <li>[limb] Learning to do everything a new way. Buttons are the worst.</li>
         <li>[limb] I lost part of myself out there. The rest of me is still here, and it's tired.</li>
@@ -102,18 +102,18 @@
     <defName>Council_Journal_Health_Visited</defName>
     <lines>
       <plain>
-        <li>{OTHER_nameDef} came by and sat with me. We talked about the harvest and who's feuding with whom.</li>
+        <li>Company today. {OTHER_nameDef} came by, and we talked about the harvest and who's feuding with whom.</li>
         <li>{OTHER_nameDef} pulled up a chair and stayed most of the afternoon. I hadn't realized how long the days in bed had been.</li>
-        <li>{OTHER_nameDef} brought the news, and a cup of something hot, and a bad joke. All three helped.</li>
-        <li>{OTHER_nameDef} sat by the bed and read to me until I fell asleep.</li>
-        <li>[convalescing] {OTHER_nameDef} looked in on me today and said I'm looking less like a ghost. High praise.</li>
+        <li>The news, a cup of something hot and a bad joke, all from {OTHER_nameDef}. All three helped.</li>
+        <li>Fell asleep while {OTHER_nameDef} was reading to me. I'll have to ask how it ended.</li>
+        <li>[convalescing] Less like a ghost today, says {OTHER_nameDef}. High praise.</li>
         <li>[winter] {OTHER_nameDef} came in stamping snow off {OTHER_possessive} boots and stayed until the candle burned down.</li>
         <li>[child] {OTHER_nameDef} came to see me and told me a story. It was a good one.</li>
       </plain>
-      <warm><li>{OTHER_nameDef} sat with me today. I'm lucky in my friends.</li></warm>
+      <warm><li>I'm lucky in my friends. {OTHER_nameDef} sat with me half the day.</li></warm>
       <blunt><li>{OTHER_nameDef} visited. Good.</li></blunt>
       <cheerful><li>{OTHER_nameDef} did impressions of the whole council until my sides hurt.</li></cheerful>
-      <gloomy><li>{OTHER_nameDef} sat with me a while. It's easier being ill with company.</li></gloomy>
+      <gloomy><li>It's easier being ill with someone in the chair by the bed. Today it was {OTHER_nameDef}.</li></gloomy>
       <cold><li>{OTHER_nameDef} visited. A courtesy I'll remember.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -160,7 +160,7 @@
       </plain>
       <warm><li>{OTHER_nameDef} squeezed my hand before going under. I'm glad I could give {OTHER_objective} good news when {OTHER_pronoun} woke.</li></warm>
       <blunt><li>Operated on {OTHER_nameDef}. Clean.</li></blunt>
-      <cheerful><li>{OTHER_nameDef}'s operation went perfectly. I could get used to days like this.</li></cheerful>
+      <cheerful><li>{OTHER_nameDef}'s operation went perfectly. I'd like more days like this one.</li></cheerful>
       <gloomy><li>{OTHER_nameDef} lived through the knife. Not everyone does.</li></gloomy>
       <cold><li>Procedure on {OTHER_nameDef} completed without complications.</li></cold>
     </lines>

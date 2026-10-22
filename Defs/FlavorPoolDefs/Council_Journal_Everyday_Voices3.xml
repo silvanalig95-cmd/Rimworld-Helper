@@ -74,7 +74,7 @@
     <lines>
       <cheerful>
         <li>{OTHER_nameDef} is ignoring me, so I've been extra friendly. It's driving {OTHER_objective} mad!</li>
-        <li>{OTHER_nameDef} won't speak to me. Very well, I'll talk enough for both of us.</li>
+        <li>Not a word from {OTHER_nameDef} all day. Very well, I'll talk enough for both of us.</li>
       </cheerful>
       <cold>
         <li>{OTHER_nameDef} is freezing me out. I can wait longer than {OTHER_pronoun} can.</li>
@@ -176,7 +176,7 @@
     <pool>Council_Journal_Day_Party</pool>
     <lines>
       <plain>
-        <li>[winter] A party in the middle of winter, and the hall was warm for once.</li>
+        <li>[winter] A winter party, and the hall was warm for once.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>

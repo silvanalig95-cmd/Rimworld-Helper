@@ -98,8 +98,8 @@
         <li>[trait:Ugly] {OTHER_nameDef} said I have kind eyes. I've never been told that before.</li>
         <li>[newcomer] {OTHER_nameDef} told me I'm fitting in well here. I hope it's true.</li>
         <li>[lowmood] {OTHER_nameDef} said something kind when I needed it. I don't think {OTHER_pronoun} knew how much.</li>
-        <li>[old] {OTHER_nameDef} said I still have the steadiest hands in the colony. At my age that means something.</li>
-        <li>[teen] {OTHER_nameDef} said I did the work of a grown-up today. I acted like it didn't matter.</li>
+        <li>[old] The steadiest hands in the colony, {OTHER_nameDef} says, still. At my age that means something.</li>
+        <li>[teen] Did the work of a grown-up today, {OTHER_nameDef} said. I acted like it didn't matter.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>

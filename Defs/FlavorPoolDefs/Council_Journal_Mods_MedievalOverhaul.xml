@@ -171,13 +171,13 @@
       <plain>
         <li>Slop from the slop pot. Gray, warm, and not something I'd describe to anyone.</li>
         <li>A bowl of slop for supper. I ate it fast so I wouldn't have to look at it.</li>
-        <li>[afterraid] Slop the day after the raid. The cooks didn't have it in them.</li>
+        <li>[afterraid] The day after the raid, slop. The cooks didn't have it in them.</li>
         <li>[child] The gray stuff again. I hid half of mine under the table.</li>
       </plain>
       <warm><li>Slop for supper. The cook looked so tired I said it was fine.</li></warm>
-      <blunt><li>Slop. Again.</li></blunt>
-      <cheerful><li>Slop for supper! Well. It's food.</li></cheerful>
-      <gloomy><li>Slop. I don't even mind anymore, and that's the worst part.</li></gloomy>
+      <blunt><li>Slop. I ate it.</li></blunt>
+      <cheerful><li>Supper was slop! Well. It's food.</li></cheerful>
+      <gloomy><li>Slop. I ate it all and didn't notice until the bowl was empty.</li></gloomy>
       <cold><li>The slop keeps us alive. That's all it's for.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -263,7 +263,7 @@
         <li>An hour in the library with a candle and a book about rivers. I don't care about rivers. I read the whole thing.</li>
         <li>Read in the library today. Quiet, and it smells of paper and wax.</li>
         <li>[skill:Intellectual] Found a book in the library I'd missed. Copied out a page of it.</li>
-        <li>[rain] Rain on the roof and a book in the library. A perfect afternoon.</li>
+        <li>[rain] Rain drumming outside, and a book in the library. Perfect.</li>
         <li>[child] I read a book in the library all by myself. It had pictures of a dragon.</li>
       </plain>
       <warm><li>Read aloud in the library to whoever wanted to listen. Two stayed until the end.</li></warm>

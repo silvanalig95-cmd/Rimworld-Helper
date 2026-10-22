@@ -69,7 +69,7 @@
         <li>Ate raw today so the cook could rest. I don't mind, once in a while.</li>
       </warm>
       <blunt>
-        <li>Raw again. Who's meant to be cooking?</li>
+        <li>Raw again. My jaw aches.</li>
         <li>Ate it raw. I want a cook.</li>
         <li>Raw rice. Never again.</li>
       </blunt>
@@ -80,7 +80,7 @@
       </cheerful>
       <gloomy>
         <li>Chewed raw rice straight from the sack. My stomach's been complaining since noon.</li>
-        <li>Raw again. Nothing tastes of anything when it's raw.</li>
+        <li>Nothing tastes of anything when it's raw.</li>
         <li>Ate it raw because I was too tired to wait. My belly's paying for it.</li>
       </gloomy>
       <cold>
@@ -194,7 +194,7 @@
       </warm>
       <blunt>
         <li>Paste. I want real food.</li>
-        <li>Paste. Again.</li>
+        <li>Paste. Fourth day.</li>
         <li>I'd trade a day's work for real bread.</li>
       </blunt>
       <cheerful>
@@ -256,7 +256,7 @@
       <cold>
         <li>An empty stomach slows my work. Someone should account for that.</li>
         <li>I'm hungry, which means someone planned the food badly.</li>
-        <li>Hungry. I've started noting who eats twice.</li>
+        <li>I've started noting who eats twice. I'm hungry, and they aren't.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -297,7 +297,7 @@
       </cheerful>
       <gloomy>
         <li>Cold again. I've stopped expecting to be warm.</li>
-        <li>Cold seeps up through the floor at night. I can't remember the last time my feet were warm.</li>
+        <li>Cold seeps up through the floor at night. My feet are blocks of ice by morning.</li>
         <li>Another freezing night. I lay awake wishing the morning would hurry up.</li>
       </gloomy>
       <cold>
@@ -313,7 +313,7 @@
     <lines>
       <plain>
         <li>Too hot to sleep. I lay on top of the blanket and sweated through it anyway.</li>
-        <li>Woke up three times in the night, soaked. The air in that room doesn't move.</li>
+        <li>Woke up soaked, over and over. The air in that room doesn't move.</li>
         <li>[summer] Another sticky night. I slept with my feet pressed against the cool wall.</li>
         <li>[child] It was too hot to sleep. I lay with my arms and legs out like a star.</li>
         <li>Lay awake in the heat listening to the insects. Got up twice to splash water on my face.</li>
@@ -388,7 +388,7 @@
       <cold>
         <li>Slept on the ground. I've started counting the nights, and I'll have the number ready when I bring it up.</li>
         <li>No bed. I sleep lightly on the ground, which has its uses.</li>
-        <li>Slept rough. I can't work well after nights like this.</li>
+        <li>Rough night. I can't work well after nights like this.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -447,7 +447,7 @@
         <li>So many people breathing in one room. You'd think I'd be used to it by now.</li>
         <li>Woke up with someone's foot hanging off the next bed onto mine.</li>
         <li>I keep my things in a sack under my pillow. It's the only part of the barracks that's mine.</li>
-        <li>[child] I made a tent out of my blanket in the big room. Now it's like having my own room.</li>
+        <li>[child] My blanket is a tent now, in the big room. It's like having my own room.</li>
       </plain>
       <warm>
         <li>The barracks are crowded, but there's always someone awake if you can't sleep.</li>
@@ -465,7 +465,7 @@
         <li>Woke up to somebody's terrible singing at the far end, so I joined in.</li>
       </cheerful>
       <gloomy>
-        <li>Another night in the barracks. I can't remember the last time I was alone.</li>
+        <li>Another night in the barracks. I haven't been alone in weeks.</li>
         <li>Still in the barracks. I've given up asking when that'll change.</li>
         <li>Someone three beds down coughed all night. I lay there counting.</li>
       </gloomy>
@@ -524,7 +524,7 @@
       </cheerful>
       <gloomy>
         <li>[good] A fine room and a good night's sleep. I keep waiting for someone to take it away.</li>
-        <li>[bad] Filthy, cramped room. I'm too tired to do anything about it.</li>
+        <li>[bad] Filthy, cramped room. I haven't the strength to do anything about it.</li>
         <li>[good] Nice room, soft bed. I still woke at every sound.</li>
         <li>[good] I slept, for once. It must be the room.</li>
         <li>[bad] Lay on my bed and watched the damp patch spread across the ceiling.</li>
@@ -616,7 +616,7 @@
       </cheerful>
       <gloomy>
         <li>The dining room is lovely. I still ate the same old stew in it.</li>
-        <li>The dining room's very fine. I sat in it and thought about who isn't here to see it.</li>
+        <li>Sat in the fine new dining room and thought about who isn't here to see it.</li>
         <li>Supper in the good room. In there it's easy to forget what's outside.</li>
       </gloomy>
       <cold>
@@ -895,7 +895,7 @@
       </cheerful>
       <gloomy>
         <li>My clothes haven't been dry in three days.</li>
-        <li>Wet and cold and miserable. My boots will never dry.</li>
+        <li>Cold and miserable and wet through. My boots will never dry.</li>
         <li>Wet again. I've given up wringing anything out.</li>
       </gloomy>
       <cold>
@@ -951,7 +951,7 @@
     <defName>Council_Journal_Day_Ragged</defName>
     <lines>
       <plain>
-        <li>My pants split at the knee today. I've run out of places to patch.</li>
+        <li>Split my pants at the knee today. I've run out of places to patch.</li>
         <li>Patched my coat with a scrap of sack. It looks it.</li>
         <li>[winter] The wind goes straight through the holes in my shirt.</li>
         <li>[child] I tore my shirt climbing. Now you can see my belly.</li>
@@ -959,7 +959,7 @@
         <li>The sole of my boot is flapping. I can hear it with every step.</li>
         <li>Found a new hole in my coat this morning. I don't know where it came from.</li>
         <li>Mended my shirt again. There's more thread in it than shirt now.</li>
-        <li>[winter] My mittens have holes in every finger.</li>
+        <li>[winter] Holes in every finger of my mittens.</li>
         <li>[child] My knees are poking out of my pants.</li>
       </plain>
       <warm>
@@ -1153,9 +1153,9 @@
       <plain>
         <li>{OTHER_nameDef} called me lazy today. I'd been up since before dawn.</li>
         <li>Got told my work was sloppy by {OTHER_nameDef}, loud enough for the others to hear.</li>
-        <li>Still going over what {OTHER_nameDef} said this morning, and what I should have said back.</li>
+        <li>Still going over what {OTHER_nameDef} said, and what I should have said back.</li>
         <li>[child] {OTHER_nameDef} said I was a baby. I'm not.</li>
-        <li>{OTHER_nameDef} laughed at the way I talk. I've been listening to myself all afternoon.</li>
+        <li>Caught {OTHER_nameDef} laughing at the way I talk. I've been listening to myself all afternoon.</li>
         <li>{OTHER_nameDef} said I walk like a wet hen. I don't even know what that means.</li>
       </plain>
       <warm>
@@ -1180,7 +1180,7 @@
       </gloomy>
       <cold>
         <li>After what {OTHER_nameDef} said today, I'll be less helpful to {OTHER_objective}.</li>
-        <li>{OTHER_nameDef} insulted me. I'll be civil with {OTHER_objective} and nothing more.</li>
+        <li>I'll be civil with {OTHER_nameDef} from now on, and nothing more.</li>
         <li>Noted {OTHER_nameDef}'s remark. It tells me what {OTHER_pronoun} really thinks.</li>
       </cold>
     </lines>
@@ -1190,14 +1190,14 @@
     <defName>Council_Journal_Day_KindWords</defName>
     <lines>
       <plain>
-        <li>{OTHER_nameDef} said I'd done good work on the wall. I've been thinking about it all evening.</li>
+        <li>Good work on the wall, {OTHER_nameDef} said. I've been turning it over all evening.</li>
         <li>Kind words from {OTHER_nameDef} today, out of nowhere.</li>
         <li>On the path today, {OTHER_nameDef} stopped me to say thanks for the other day. I'd forgotten what I did.</li>
         <li>[child] {OTHER_nameDef} said I was brave. I'm going to remember that.</li>
-        <li>{OTHER_nameDef} noticed I'd fixed the door and thanked me for it.</li>
-        <li>{OTHER_nameDef} told me I'm good at what I do. I wrote it down so I'd remember.</li>
+        <li>Fixed the door last week. Today {OTHER_nameDef} noticed, and thanked me for it.</li>
+        <li>Writing this down so I keep it. {OTHER_nameDef} says I'm good at what I do.</li>
         <li>{OTHER_nameDef} told the others at supper that I'd done the hard part of the job. I hadn't, really.</li>
-        <li>{OTHER_nameDef} said it's good to have me here. I didn't know what to say.</li>
+        <li>It's good to have me here, according to {OTHER_nameDef}. I didn't know what to say.</li>
         <li>[child] {OTHER_nameDef} said I'm a good helper. I helped all afternoon after that.</li>
       </plain>
       <warm>
@@ -1212,13 +1212,13 @@
       </blunt>
       <cheerful>
         <li>{OTHER_nameDef} told me I have a nice laugh! I've been laughing at everything since.</li>
-        <li>{OTHER_nameDef} said I brighten the place up. I'm going to try to live up to it.</li>
+        <li>Apparently I brighten the place up. {OTHER_nameDef} said so, and I'm going to try to live up to it.</li>
         <li>A compliment from {OTHER_nameDef}! I've been grinning all evening.</li>
       </cheerful>
       <gloomy>
         <li>{OTHER_nameDef} was kind to me today. I said thank you too late, after {OTHER_pronoun}'d gone.</li>
-        <li>{OTHER_nameDef} said something nice about my work. I didn't believe it, but I kept it.</li>
-        <li>{OTHER_nameDef} was kind to me today. It's been a while since anyone was.</li>
+        <li>A nice word about my work from {OTHER_nameDef}. I didn't believe it, but I kept it.</li>
+        <li>It's been a while since anyone was kind to me. Today {OTHER_nameDef} was.</li>
       </gloomy>
       <cold>
         <li>Praise from {OTHER_nameDef}. Either it's sincere or {OTHER_pronoun} wants something. I'll find out which.</li>
@@ -1616,7 +1616,7 @@
         <li>Three of us stayed behind after the speech to talk it over. That went on longer than the speech did.</li>
       </warm>
       <blunt>
-        <li>Good speech. Back to work.</li>
+        <li>Good speech. Now let's see it done.</li>
         <li>Speech was fine. A bit long.</li>
         <li>Didn't need a speech, but I listened.</li>
       </blunt>
@@ -1657,7 +1657,7 @@
       </warm>
       <blunt>
         <li>Lost it. Got it out. Feel better.</li>
-        <li>Head's clear. Back to work.</li>
+        <li>Head's clear. Back at it.</li>
         <li>That's over. Good.</li>
       </blunt>
       <cheerful>
