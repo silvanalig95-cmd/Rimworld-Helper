@@ -77,7 +77,7 @@
     <lines>
       <plain>
         <li>[opt0] My {RELATION} {X_nameDef} came to visit, and the council asked {X_objective} to stay. {X_nameDef} said yes before supper was over.</li>
-        <li>[opt1] My {RELATION} {X_nameDef} came all this way to see me. We talked all day, and tomorrow {X_nameDef} heads home.</li>
+        <li>[opt1] My {RELATION} {X_nameDef} is here for a visit. We talked all day, and tomorrow {X_nameDef} heads home.</li>
         <li>[opt1] {X_nameDef} brought news from home and a bag of things I'd forgotten I missed. We walked the fields until dark.</li>
       </plain>
       <warm><li>[opt1] {X_nameDef} visited today. I didn't realize how much I'd missed my {RELATION}'s laugh.</li></warm>

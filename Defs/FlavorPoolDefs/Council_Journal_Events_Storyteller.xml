@@ -16,7 +16,7 @@
         <li>[opt1,safe] {X_nameDef} is staying. Forty years on the road, and {X_pronoun} picked us.</li>
         <li>[opt1,risk] Asked {X_nameDef} to stay. {X_nameDef} has a sister to see first. I think {X_pronoun} might come back.</li>
         <li>[opt2] Stayed up late listening to {X_nameDef}. Half the stories can't be true. I'd still like to hear them again.</li>
-        <li>[opt3] An old adventurer came through and the council sent {X_objective} on. I'd have liked to hear a story or two.</li>
+        <li>[opt3] An old adventurer came through and the council sent {X_objective} on. A story or two would have been nice.</li>
       </plain>
       <warm><li>[opt1,safe] {X_nameDef} unpacked by the window so {X_pronoun} can see the road. Old habit, {X_pronoun} says.</li></warm>
       <cheerful><li>[opt2] {X_nameDef} once fought a bear with a frying pan, apparently! I'm choosing to believe it.</li></cheerful>
@@ -32,7 +32,7 @@
         <li>[opt0] We paid a mapmaker to walk our hills. {X_nameDef} works with a chain and a compass and doesn't talk much.</li>
         <li>[opt1,safe] Up in the hills all day with {X_nameDef}. I know how to read a contour line now, and we know where to dig.</li>
         <li>[opt1,risk] A whole day guiding {X_nameDef} over every rock we own. Not one seam worth digging. My feet hurt.</li>
-        <li>[opt2] A mapmaker offered to survey the land, and folded up the charts and went on. I'd have liked to see how it's done.</li>
+        <li>[opt2] A mapmaker offered to survey the land, and folded up the charts and went on. I wanted to see how it's done.</li>
       </plain>
       <cheerful><li>[opt1,safe] {X_nameDef} let me hold the compass for most of the day!</li></cheerful>
       <gloomy><li>[opt1,risk] Walked every hill for nothing. The hills don't care what we need.</li></gloomy>
@@ -232,7 +232,7 @@
     <defName>Council_Journal_Evt_FormerPatient</defName>
     <lines>
       <plain>
-        <li>[opt0] {X_nameDef} came all this way to thank me for something I'd forgotten I did. I remember now. It was a long night.</li>
+        <li>[opt0] {X_nameDef} walked a long road to thank me for something I'd forgotten I did. I remember now. It was a long night.</li>
         <li>[opt1,safe] {X_nameDef}, who I patched up years ago, is staying with us. I'll have to make sure {X_pronoun} doesn't need patching again.</li>
         <li>[opt1,risk] Asked {X_nameDef} to stay. There's family waiting for {X_objective}. Good. That's what I kept {X_objective} alive for.</li>
         <li>[opt2] {X_nameDef} is going to tell the whole road about me. I'm not sure how I feel about that.</li>

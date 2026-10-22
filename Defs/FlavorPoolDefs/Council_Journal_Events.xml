@@ -14,7 +14,7 @@
       <plain>
         <li>[opt0] {X_nameDef} turned up today, after all these years, and the council let {X_objective} stay. We talked until well past midnight.</li>
         <li>[opt0] {X_nameDef} knew me before all this. I didn't have to explain a single thing to {X_objective} all evening. I'd forgotten what that's like.</li>
-        <li>[opt1] {X_nameDef} found me after all these years, and had to go back down the road. I walked {X_objective} out past the fields and gave {X_objective} what food I had on me.</li>
+        <li>[opt1] {X_nameDef} found me after all these years, and had to go back down the road. I walked {X_objective} to the road and gave {X_objective} what food I had on me.</li>
       </plain>
       <warm><li>[opt0] {X_nameDef} is staying. I put an extra blanket on {X_possessive} bed while {X_pronoun} was still at supper.</li></warm>
       <blunt><li>[opt1] {X_nameDef} went back down the road. I'd have trusted {X_objective} over most people here.</li></blunt>
@@ -164,7 +164,7 @@
     <lines>
       <plain>
         <li>[opt0] I have an apprentice. {X_nameDef} walked all this way to learn {SKILL} from me, because of stories {X_pronoun} heard on the road. I hope I live up to them.</li>
-        <li>[opt1] A youngster came all this way to learn {SKILL} from me, and went home without a single lesson. I'd already been thinking about what to show {X_objective} first.</li>
+        <li>[opt1] A youngster walked for days to learn {SKILL} from me, and went home without a single lesson. I'd already been thinking about what to show {X_objective} first.</li>
       </plain>
       <warm><li>[opt0] {X_nameDef} has a good eye already. Give it a year, and I'll be learning from {X_objective}.</li></warm>
       <blunt><li>[opt0] New apprentice. Clumsy, keen, asks too many questions. I was exactly the same.</li></blunt>
@@ -176,10 +176,10 @@
     <lines>
       <plain>
         <li>[opt0] A stray followed me home, and it's staying. It sleeps across my feet and snores.</li>
-        <li>[opt1] The council said no to the stray. I walked it back out past the fields, and it sat down there and watched me leave.</li>
+        <li>[opt1] The council said no to the stray. I walked it to the edge of the fields, and it sat down there and watched me leave.</li>
       </plain>
       <cheerful><li>[opt0] The stray can stay! It follows me everywhere now, even to the latrine.</li></cheerful>
-      <gloomy><li>[opt1] The stray was still sitting out past the fields at dusk. Gone by morning.</li></gloomy>
+      <gloomy><li>[opt1] The stray is still sitting where I left it. I've stopped looking.</li></gloomy>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -251,7 +251,7 @@
       <plain>
         <li>[opt0] A deserter from {ENEMY} came to us for shelter, and the council took {X_objective} in. I hope we don't regret it.</li>
         <li>[opt1] The deserter went back out into the wild, alone. I hope {X_pronoun} finds somewhere else.</li>
-        <li>[opt2] We handed the deserter back to {ENEMY}. I keep thinking about {X_possessive} face when {X_pronoun} understood.</li>
+        <li>[opt2] We handed the deserter back to {ENEMY}. I can't get {X_possessive} face out of my head, the moment {X_pronoun} understood.</li>
       </plain>
       <warm><li>[opt0] {X_nameDef} ran from {ENEMY} straight to us, and we took {X_objective} in. Whatever comes of it, I'm glad we did.</li></warm>
       <cold><li>[opt2] Returning the deserter improved relations with {ENEMY}. It was the practical choice.</li></cold>

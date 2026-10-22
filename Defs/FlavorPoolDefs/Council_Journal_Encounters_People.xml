@@ -341,7 +341,7 @@
         <li>{X_nameDef} cried into the stew I brought. I sat there and let {X_objective}.</li>
         <li>{X_nameDef} sleeps with {X_possessive} shoes on, ready to run. Last night {X_nameDef} took them off. I noticed.</li>
         <li>[winter] Gave {X_nameDef} my spare blanket. I'll be cold tonight.</li>
-        <li>[trait:Kind] {X_nameDef} thanked me for a bowl of stew like I'd handed over a kingdom. I didn't know what to do with my hands.</li>
+        <li>[trait:Kind] {X_nameDef} thanked me for a bowl of stew like I'd handed over a kingdom. I had to look at the floor.</li>
         <li>[grieving] I've lost someone too. I didn't tell {X_nameDef}. I sat with {X_objective} for a while instead.</li>
         <li>{X_nameDef} carved me a bird. It looks like a potato with a beak. It's on my shelf, front and center.</li>
         <li>[afterraid] After this week I understand better what {X_nameDef} ran from. I'm glad there's a wall between us and them.</li>

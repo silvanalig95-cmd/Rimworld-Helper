@@ -100,7 +100,7 @@
       </plain>
       <warm>
         <li>I can't stay angry at an animal that looks that pleased with itself. I tried.</li>
-        <li>It's only leather. I've said so three times today.</li>
+        <li>They're only things. I've said so three times today.</li>
       </warm>
       <blunt>
         <li>One more chewed boot and that animal sleeps outside. I mean it this time.</li>
@@ -305,7 +305,7 @@
       </blunt>
       <cheerful>
         <li>Had company all day, {X_indefinite} trailing me from the trees. I waved at it once!</li>
-        <li>Being stalked is good exercise. I've never fetched water so fast!</li>
+        <li>Had a predator watching me all day, and I still got my work done. Proud of that!</li>
       </cheerful>
       <gloomy>
         <li>It's out there being patient, and it's more patient than we are.</li>
@@ -392,7 +392,7 @@
       </gloomy>
       <cold>
         <li>Approached {X_definite} to test {X_possessive} temper. Results inconclusive. Further testing advised, ideally by someone else.</li>
-        <li>The others called it reckless. It was a measured risk. I measured it afterward.</li>
+        <li>Its breath was warm and smelled of grass. I'd like to know how close I could get to a hungry one.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>

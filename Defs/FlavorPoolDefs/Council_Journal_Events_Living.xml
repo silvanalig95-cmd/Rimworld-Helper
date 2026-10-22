@@ -58,7 +58,7 @@
       <plain>
         <li>[opt0] {X_nameDef} walked all the way from {FACTION} to ask for me by name. I gave {X_objective} the whole day.</li>
         <li>[opt0] They call me {TALE} on the roads now. I'm not sure when that started.</li>
-        <li>[opt1] Someone came a long way to see me, and I couldn't spare the day. I keep thinking about it.</li>
+        <li>[opt1] Someone came a long way to see me, and I couldn't spare the day. It's bothered me all evening.</li>
       </plain>
       <warm><li>[opt0] Helped {X_nameDef}. It's good to be of use to someone outside these walls.</li></warm>
       <cheerful><li>[opt0] People come from other villages to ask for me now! Today it was {X_nameDef}.</li></cheerful>
@@ -128,7 +128,7 @@
       <plain>
         <li>[opt0,safe] I won over the strange creature by the fields. It was eating out of my hand by sundown.</li>
         <li>[opt0,risk] I got close to the strange creature, a few steps away, and then it bolted.</li>
-        <li>[opt1] There was a strange creature grazing near the fields. We let it be. I'd have liked to try.</li>
+        <li>[opt1] There was a strange creature grazing near the fields. We let it be. I wanted to try.</li>
       </plain>
       <warm><li>[opt0,safe] It nuzzled my hand once it trusted me. I'm going to remember that.</li></warm>
       <cheerful><li>[opt0,safe] The strange creature from the fields follows me everywhere now! It needs a name.</li></cheerful>
