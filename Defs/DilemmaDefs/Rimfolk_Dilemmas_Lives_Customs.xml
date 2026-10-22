@@ -191,6 +191,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_DlmLv_TreesPlanted</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
           <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Plants</skill><xp>200</xp></li>
           <li Class="ColonyCouncil.DilemmaEffect_Words"><label>the planting of the children's trees</label><organizer>A</organizer><spots><li>Fields</li><li>Outdoors</li></spots><hours>6~11</hours><duration>0.75~1.25</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Plant"><children>true</children></li>
         </effects>
       </li>
       <li>
@@ -199,7 +200,8 @@
         <ways><tradition>1</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmLv_TreesPlanted</thought></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Visit"><who>A</who><to>Walk</to><hours>7~12</hours><duration>1~1.5</duration><label>planting a tree</label></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><who>A</who><to>Outdoors</to><orTo><li>Fields</li></orTo><hours>7~12</hours><duration>1~1.5</duration><label>planting a tree</label></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Plant"><near>Outdoors</near></li>
         </effects>
       </li>
       <li>

@@ -110,6 +110,7 @@
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncR_FedATraveler</thought><exceptTrait><li>Greedy</li></exceptTrait></li>
+      <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>a bowl for {X_nameDef}</label><what>meals</what><count>2</count><steward>false</steward><ifHave>true</ifHave></li>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncR_AnotherMouth</thought><onlyTrait><li>Greedy</li></onlyTrait></li>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_GoodCompany</thought></li>
       <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>1</amount><chance>0.5</chance></li>
@@ -173,6 +174,7 @@
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncR_ProvedAPoint</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>looking after {X_nameDef}</label><to>Stranger</to><waitHours>2</waitHours><duration>0.75~1.25</duration></li>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_GoodCompany</thought></li>
     </effects>
     <ways><generosity>2</generosity></ways>
@@ -278,6 +280,7 @@
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncR_GuestsAtEase</thought></li>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_EncR_GuestsAtEase</thought><chance>0.25</chance></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>an evening of songs and news with {X_nameDef}</label><music>true</music><spots><li>Stranger</li><li>Fire</li><li>Rec</li></spots><hours>17~23</hours><duration>1.5~2</duration></li>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_GoodCompany</thought></li>
       <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>1</amount><chance>0.5</chance></li>
     </effects>

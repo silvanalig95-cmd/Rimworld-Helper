@@ -132,6 +132,7 @@
         </chronicle>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Arc_GriefEased</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>sitting where they used to sit</label><to>Grave</to><orTo><li>Walk</li></orTo><hours>10~18</hours><duration>1~1.5</duration></li>
           <li Class="ColonyCouncil.ArcEffect_Strain"><amount>-12</amount></li>
           <li Class="ColonyCouncil.ArcEffect_Quirk"><quirk>Council_Quirk_ExtraPlace</quirk><chance>0.35</chance></li>
         </effects>

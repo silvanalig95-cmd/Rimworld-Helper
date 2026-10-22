@@ -450,6 +450,8 @@
             <outcome>A few of the colony's people show themselves near the camp, then turn for home without hurrying. {ENEMY} take the bait. They'll be here within hours, and {A_nameDef} is ready.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_VendettaChance</thought><onlyIfChosen>true</onlyIfChosen></li>
+              <!-- The walk out comes back well before they do (it waits an hour at most, and the band follows two to four hours after the answer). -->
+              <li Class="ColonyCouncil.DilemmaEffect_Procession"><label>showing themselves to {ENEMY}</label><count>3</count><to>Gate</to><hours>6~22</hours><waitHours>1</waitHours><duration>0.5~0.75</duration><onlyIfChosen>true</onlyIfChosen></li>
               <li Class="ColonyCouncil.DilemmaEffect_RaidLater">
                 <forA>true</forA>
                 <label>{ENEMY} take the bait</label>

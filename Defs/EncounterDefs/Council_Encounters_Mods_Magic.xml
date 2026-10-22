@@ -68,6 +68,7 @@
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncMg_WanderingBlade</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Lesson"><label>footwork in the yard</label><teacher>X</teacher><student>A</student><skill>Melee</skill><xpPerHour>80</xpPerHour><hours>7~19</hours><waitHours>2</waitHours><duration>1~1.5</duration></li>
       <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Melee</skill><xp>400</xp></li>
     </effects>
     <journal>Council_Journal_EncMg_Traveler</journal>

@@ -526,6 +526,15 @@ namespace ColonyCouncil
             return null;
         }
 
+        /// <summary>The grave of someone a personal story remembers by name only (the one they grieve), or null.</summary>
+        public static Thing GraveNamed(Map map, string name)
+        {
+            if (map == null || name.NullOrEmpty()) return null;
+            foreach (var t in map.listerThings.ThingsInGroup(ThingRequestGroup.Grave))
+                if (t is Building_Grave g && g.Spawned && g.HasCorpse && g.Corpse?.InnerPawn?.LabelShort == name) return g;
+            return null;
+        }
+
         public static string GraveWords(Thing grave)
         {
             var dead = (grave as Building_Grave)?.Corpse?.InnerPawn;

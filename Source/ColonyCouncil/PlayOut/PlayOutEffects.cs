@@ -100,6 +100,8 @@ namespace ColonyCouncil
         public bool music;
         public string pool;
         [MustTranslate] public List<string> lines;
+        /// <summary>A personal story of three: its third person comes too (a supper for the three of them).</summary>
+        public bool third;
 
         public DilemmaEffect_Gathering()
         {
@@ -115,6 +117,7 @@ namespace ColonyCouncil
         protected override bool Fill(PlayOut p, DilemmaContext ctx)
         {
             p.invited = Everyone(ctx);
+            if (third && (ctx as ArcEffectContext)?.third is Pawn t && PlayOuts.OurPerson(t) && !p.invited.Contains(t)) p.invited.Add(t);
             var lead = PlayOuts.Who(organizer, ctx);
             if (lead != null && PlayOuts.OurPerson(lead) && !p.invited.Contains(lead)) p.invited.Add(lead);
             if (p.invited.Count == 0) return false;
@@ -221,9 +224,10 @@ namespace ColonyCouncil
     /// <summary>
     /// One colonist (<see cref="who"/>, A unless given) goes somewhere for a while: to a person (<see cref="whom"/>: B
     /// unless given, A or the stranger X), keeping them company wherever they are (at their bedside, if they're in
-    /// bed); to a grave (the event's own, else one of the colony's dead); to the camp's fire; or on a long walk. A visit to
-    /// a place on their own (the water, the fields, the gate, the open air) may name others to go to when that one can't
-    /// be had (<see cref="orTo"/>: no water near the colony, no fields).
+    /// bed); to a grave (the event's own, the grave of the one a personal story grieves, else one of the colony's dead);
+    /// to the camp's fire; or on a long walk. A visit to a place on their own (the water, the fields, the gate, the open
+    /// air) or to a grave may name others to go to when that one can't be had (<see cref="orTo"/>: no water near the
+    /// colony, no fields, no grave; for a grave, a long walk out too).
     /// </summary>
     public class DilemmaEffect_Visit : DilemmaEffect_PlayOut
     {
@@ -250,7 +254,7 @@ namespace ColonyCouncil
             if (v == null || v.Dead || v.RaceProps == null || !v.RaceProps.Humanlike) return false;
             p.visitor = v;
             p.to = to;
-            p.spots = OwnPlace(to) && orTo != null ? orTo.Where(OwnPlace).ToList() : new List<PlaySpot>();
+            p.spots = (OwnPlace(to) || to == PlaySpot.Grave) && orTo != null ? orTo.Where(s => Instead(to, s)).ToList() : new List<PlaySpot>();
             if (to == PlaySpot.Person || to == PlaySpot.Stranger)
             {
                 // B going to someone means going to A, unless the effect says otherwise.
@@ -261,8 +265,14 @@ namespace ColonyCouncil
                 p.to = PlaySpot.Person;
             }
             p.place = (ctx as HappeningContext)?.place;
+            // A personal story about someone lost: their own grave, when the colony buried them here.
+            if (to == PlaySpot.Grave && p.place == null && ctx is ArcEffectContext ac && !(ac.arc?.lostName).NullOrEmpty())
+                p.place = PlaySpots.GraveNamed(ctx.map, ac.arc.lostName);
             return true;
         }
+
+        /// <summary>A place a visit may go instead of <paramref name="to"/>: another place on their own; for a grave, a long walk out too.</summary>
+        public static bool Instead(PlaySpot to, PlaySpot s) => OwnPlace(s) || (to == PlaySpot.Grave && s == PlaySpot.Walk);
 
         protected override string DefaultLabel(DilemmaContext ctx) => ("CC_Play_Label_" + Kind).Translate().Resolve();
 

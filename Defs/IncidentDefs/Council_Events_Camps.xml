@@ -73,6 +73,9 @@
             <outcomes>
               <li>The strangers don't wait to argue. They're gone within the hour, and their fire is still burning.</li>
             </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Procession"><label>the walk out to the camp</label><count>3</count><to>Camp</to><hours>6~21</hours><waitHours>2</waitHours><duration>0.5~0.75</duration><onlyIfChosen>true</onlyIfChosen></li>
+            </effects>
             <ways><mercy>-3</mercy><openness>-3</openness></ways>
           </li>
         </options>

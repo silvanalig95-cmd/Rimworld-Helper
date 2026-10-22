@@ -381,6 +381,7 @@
           <li>Spring</li>
           <li>Summer</li>
           <li>PermanentSummer</li>
+          <li>Fall</li>
         </seasons>
         <minTemp>10</minTemp>
         <maxTemp>38</maxTemp>
@@ -419,6 +420,7 @@
         <seasons>
           <li>Spring</li>
           <li>Fall</li>
+          <li>Winter</li>
         </seasons>
         <minTemp>-12</minTemp>
         <maxTemp>12</maxTemp>

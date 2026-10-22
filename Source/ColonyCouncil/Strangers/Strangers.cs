@@ -84,6 +84,8 @@ namespace ColonyCouncil
         public List<string> races;
         /// <summary>Who they are, as tags (see PeopleTags): "mage", "fighter|healer", "trait:Psychopath".</summary>
         public string tags;
+        /// <summary>People: a dog of their own people's is with them, close by (<see cref="Strangers.DogOf"/>).</summary>
+        public bool withDog;
     }
 
     public static class Strangers
@@ -145,6 +147,16 @@ namespace ColonyCouncil
             return set;
         }
 
+        /// <summary>A dog travelling with someone: an animal of their people's, of a dog kind (OnMapMath.DogKind), a few steps from them.</summary>
+        public static Pawn DogOf(Pawn x)
+        {
+            if (x?.Faction == null || !x.Spawned || x.Map == null) return null;
+            foreach (var a in x.Map.mapPawns.SpawnedPawnsInFaction(x.Faction))
+                if (a != x && a.RaceProps != null && a.RaceProps.Animal && !a.Dead && a.Position.InHorDistOf(x.Position, 20f) && OnMapMath.DogKind(a.def.defName, a.def.label))
+                    return a;
+            return null;
+        }
+
         public static bool IsMajestic(Pawn x) =>
             x?.RaceProps != null && x.RaceProps.Animal && (x.RaceProps.baseBodySize >= 2.5f || x.GetStatValue(StatDefOf.Wildness) >= 0.95f);
 
@@ -167,6 +179,7 @@ namespace ColonyCouncil
                 if (r.adult && x.DevelopmentalStage.Juvenile()) return false;
                 if (r.royal && x.royalty?.MostSeniorTitle == null) return false;
                 if (!r.anyTrait.NullOrEmpty() && (x.story?.traits == null || !r.anyTrait.Any(x.story.traits.HasTrait))) return false;
+                if (r.withDog && DogOf(x) == null) return false;
                 if (a != null && x.relations != null && a.relations != null)
                 {
                     int of = x.relations.OpinionOf(a), from = a.relations.OpinionOf(x);

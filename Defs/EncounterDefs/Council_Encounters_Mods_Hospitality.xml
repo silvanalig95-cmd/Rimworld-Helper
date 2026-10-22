@@ -77,6 +77,7 @@
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncH_ShowedAround</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>showing {X_nameDef} round the colony</label><to>Stranger</to><hours>7~19</hours><waitHours>2</waitHours><duration>1~1.5</duration></li>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_GoodCompany</thought></li>
       <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Social</skill><xp>200</xp></li>
     </effects>

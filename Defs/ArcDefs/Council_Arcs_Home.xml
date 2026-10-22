@@ -126,6 +126,7 @@
         </chronicle>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Arc_HomeTogether</thought><target>AAndB</target></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Bonfire"><label>the road told by the fire</label><target>AAndB</target><build>false</build><spots><li>Fire</li><li>Rec</li><li>Dining</li></spots><hours>19~23</hours><duration>2~3</duration></li>
           <li Class="ColonyCouncil.ArcEffect_Tie"><kind>Friends</kind><amount>8</amount></li>
           <li Class="ColonyCouncil.ArcEffect_Epithet"><epithet>Council_Epithet_Wanderer</epithet><minAwayDays>15</minAwayDays></li>
           <li Class="ColonyCouncil.ArcEffect_Quirk"><quirk>Council_Quirk_RoadStories</quirk><chance>0.3</chance></li>
@@ -382,6 +383,9 @@
         <chronicle>
           <li>{PAWN_nameDef} spends the evenings with {PET_nameDef} now, with a pocket full of scraps.</li>
         </chronicle>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><whom>Pet</whom><hours>17~21</hours><duration>1~1.5</duration></li>
+        </effects>
         <gate>
           <kind>Practice</kind>
           <amount>2000</amount>

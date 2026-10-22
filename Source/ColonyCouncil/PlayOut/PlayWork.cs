@@ -45,6 +45,7 @@ namespace ColonyCouncil
                 case WorkTask.Sow: return name == "WorkGiver_GrowerSow";
                 case WorkTask.Harvest: return name == "WorkGiver_GrowerHarvest" || name == "WorkGiver_PlantsCut";
                 case WorkTask.Cut: return name == "WorkGiver_PlantsCut";
+                case WorkTask.Tend: return name == "WorkGiver_Shear" || name == "WorkGiver_Milk";
                 default: return false;
             }
         }
@@ -97,8 +98,9 @@ namespace ColonyCouncil
         public static bool Allowed(WorkTask t, Pawn x)
         {
             if (t == WorkTask.Cut && Beliefs.Forbids(x, Belief.NoTreeCutting)) return false;
-            if ((t == WorkTask.Sow || t == WorkTask.Harvest || t == WorkTask.Cut || t == WorkTask.Snow || t == WorkTask.Herd) && Beliefs.Forbids(x, Belief.Indoors)) return false;
-            if (t == WorkTask.Herd && Beliefs.Forbids(x, Belief.NoRanching)) return false;
+            if ((t == WorkTask.Sow || t == WorkTask.Harvest || t == WorkTask.Cut || t == WorkTask.Snow || t == WorkTask.Herd || t == WorkTask.Tend)
+                && Beliefs.Forbids(x, Belief.Indoors)) return false;
+            if ((t == WorkTask.Herd || t == WorkTask.Tend) && Beliefs.Forbids(x, Belief.NoRanching)) return false;
             return true;
         }
 
@@ -117,7 +119,8 @@ namespace ColonyCouncil
         private static bool InScope(WorkTask t, IntVec3 c, Map map, IntVec3 center)
         {
             if (!c.InBounds(map) || c.Fogged(map)) return false;
-            if (t == WorkTask.Sow || t == WorkTask.Harvest) return true;
+            // The fields and the pens are wherever the colony keeps them.
+            if (t == WorkTask.Sow || t == WorkTask.Harvest || t == WorkTask.Tend) return true;
             return map.areaManager.Home[c] || c.InHorDistOf(center, 40f);
         }
 
@@ -285,6 +288,9 @@ namespace ColonyCouncil
                     return cell.IsValid;
                 case WorkTask.Herd:
                     return target is Pawn a && (a.Destroyed || a.Dead || HerdHome.Home(a));
+                case WorkTask.Tend:
+                    // Sheared or milked: whatever it carried is no longer full.
+                    return target is Pawn animal && (animal.Destroyed || animal.Dead || !animal.AllComps.OfType<CompHasGatherableBodyResource>().Any(c => c.ActiveAndFull));
                 default:
                     return target != null && (target.Destroyed || !target.Spawned);
             }

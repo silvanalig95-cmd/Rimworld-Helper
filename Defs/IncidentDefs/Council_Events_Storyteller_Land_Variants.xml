@@ -128,7 +128,7 @@
     <defName>Council_Var_Evt_HighWater</defName>
     <incident>Council_Evt_HighWater</incident>
     <texts>
-      <li>[wood,summer] A storm up in the hills sent the river over its banks for a day. It's back where it belongs now, and has left {COUNT} wood strewn along the banks.</li>
+      <li>[wood] A storm up in the hills sent the river over its banks for a day. It's back where it belongs now, and has left {COUNT} wood strewn along the banks.</li>
       <li>[snag,lowtech] The flood went down and left the banks heaped with driftwood, {COUNT} wood in all. Wedged in the roots of one log was something else, and {A_nameDef} fished it out: {TALE}.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>
@@ -137,7 +137,7 @@
     <defName>Council_Var_Evt_OmenBeast</defName>
     <incident>Council_Evt_OmenBeast</incident>
     <texts>
-      <li>[!lowtech] An old {BEAST} walked out of the morning fog and stopped by the fence, looking at the colony. It hasn't moved since, and even people who don't believe in signs have been out to look at it.\n\n{A_nameDef} wants to follow it when it goes. It could also be left an offering, or hunted.</li>
+      <li>[lowtech] An old {BEAST} walked out of the morning fog and stopped by the fence, looking at the colony. It hasn't moved since, and even people who don't believe in signs have been out to look at it.\n\n{A_nameDef} wants to follow it when it goes. It could also be left an offering, or hunted.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>
 

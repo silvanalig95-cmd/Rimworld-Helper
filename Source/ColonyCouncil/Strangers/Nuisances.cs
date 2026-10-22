@@ -40,7 +40,7 @@ namespace ColonyCouncil
         ChillyRoom,
         /// <summary>The closed room they're in is above 29 °C.</summary>
         StuffyRoom,
-        /// <summary>One of the colony's animals is in their bedroom with them ({THING} is the animal).</summary>
+        /// <summary>One of the colony's animals is in their bedroom with them ({THING} is the animal: "the husky", or its name).</summary>
         PetInBed,
         /// <summary>Something of ours is being built a few steps from their bed ({THING} is what).</summary>
         BuildingWork,
@@ -366,7 +366,8 @@ namespace ColonyCouncil
             var things = room.ContainedAndAdjacentThings;
             for (int i = 0; i < things.Count && i < MaxThingsLooked; i++)
                 if (things[i] is Pawn animal && animal != p && animal.RaceProps.Animal && animal.Faction == Faction.OfPlayer && !animal.Dead && animal.GetRoom() == room)
-                    return animal.LabelShort;
+                    // Definite: "the husky", or its name.
+                    return Find.ActiveLanguageWorker.WithDefiniteArticle(animal.LabelShort, animal.gender, false, animal.Name != null && !animal.Name.Numerical);
             return null;
         }
 

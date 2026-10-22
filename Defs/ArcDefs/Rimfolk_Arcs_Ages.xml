@@ -78,6 +78,9 @@
         <chronicle>
           <li>{OTHER_nameDef} sat up with {PAWN_nameDef}, checked under the bed and behind the door, and left a light burning.</li>
         </chronicle>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Vigil"><label>sitting up by {A_nameDef}'s bed</label><target>B</target><to>Person</to><whom>A</whom><hours>20~23</hours><duration>1.5~2</duration></li>
+        </effects>
         <gate>
           <kind>Hold</kind>
           <hold>Mood</hold>
@@ -501,6 +504,9 @@
         <chronicle>
           <li>{PAWN_nameDef} has made a list of who gets the good knife, who gets the coat, and who gets the chair by the door.</li>
         </chronicle>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>a look at the spot by the graves</label><to>Grave</to><orTo><li>Outdoors</li></orTo><hours>10~17</hours><duration>0.75~1.25</duration></li>
+        </effects>
         <gate>
           <kind>Talk</kind>
           <talk>Council_Arc_Talk_LastWishes</talk>
@@ -559,6 +565,9 @@
         <chronicle>
           <li>{PAWN_nameDef}'s last work in {SKILL} is done, and {PAWN_pronoun} has carried a chair out into the sun.</li>
         </chronicle>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>a seat in the sun</label><to>Outdoors</to><orTo><li>Fields</li></orTo><hours>10~16</hours><duration>2~3</duration></li>
+        </effects>
         <gate>
           <kind>Hold</kind>
           <hold>Mood</hold>
@@ -737,6 +746,7 @@
         </chronicle>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Arc_OldFriendsAfterAll</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>the bench in the sun</label><target>AAndB</target><spots><li>Outdoors</li><li>Gather</li></spots><hours>10~17</hours><duration>1.5~2</duration></li>
           <li Class="ColonyCouncil.ArcEffect_Tie"><kind>Rivals</kind><amount>-100</amount></li>
           <li Class="ColonyCouncil.ArcEffect_Tie"><kind>Friends</kind><amount>14</amount></li>
           <li Class="ColonyCouncil.ArcEffect_Strain"><amount>-6</amount><target>AAndB</target></li>

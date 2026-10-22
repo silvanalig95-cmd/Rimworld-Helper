@@ -65,6 +65,21 @@ namespace ColonyCouncil
         /// <summary>The illness to name in a letter ("head cold"), or "".</summary>
         public static string IllnessLabel(Pawn p) => Illness(p)?.def?.label ?? "";
 
+        /// <summary>An old injury that still troubles them: a scar or an old wound that never healed clean, or a bad back.</summary>
+        public static bool OldInjury(Pawn p)
+        {
+            var hediffs = p?.health?.hediffSet?.hediffs;
+            if (hediffs == null) return false;
+            for (int i = 0; i < hediffs.Count; i++)
+            {
+                var h = hediffs[i];
+                if (h?.def == null || !h.Visible) continue;
+                if (h is Hediff_Injury inj && inj.IsPermanent()) return true;
+                if (h.def.defName == "BadBack") return true;
+            }
+            return false;
+        }
+
         /// <summary>
         /// Whether one of these is on their mind: a memory no older than <paramref name="days"/> (about
         /// <paramref name="about"/>, when given), or a mood that holds right now (the pressures, a decree). A name ending

@@ -227,6 +227,22 @@
               <li Class="ColonyCouncil.ArcEffect_Tie"><kind>Rivals</kind><amount>-20</amount></li>
             </effects>
           </li>
+          <!-- On the map: the loser goes over to shake the winner's hand; with no winner, the two rivals share a jug. -->
+          <li Class="ColonyCouncil.ArcEffect_Cast">
+            <ifTag>won</ifTag>
+            <a>Third</a><b>Colonist</b>
+            <effects><li Class="ColonyCouncil.DilemmaEffect_Visit"><label>a handshake</label><hours>8~21</hours><duration>0.25~0.5</duration></li></effects>
+          </li>
+          <li Class="ColonyCouncil.ArcEffect_Cast">
+            <ifTag>lost</ifTag>
+            <a>Colonist</a><b>Third</b>
+            <effects><li Class="ColonyCouncil.DilemmaEffect_Visit"><label>a handshake</label><hours>8~21</hours><duration>0.25~0.5</duration></li></effects>
+          </li>
+          <li Class="ColonyCouncil.ArcEffect_Cast">
+            <ifTag>neither</ifTag>
+            <a>Colonist</a><b>Third</b>
+            <effects><li Class="ColonyCouncil.DilemmaEffect_Toast"><label>a jug between the two of them</label><target>AAndB</target><spots><li>Dining</li><li>Rec</li><li>Fire</li></spots><hours>18~23</hours><duration>1~1.5</duration></li></effects>
+          </li>
         </effects>
       </li>
     </stages>
@@ -647,6 +663,7 @@
         </chronicle>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Arc_FamilyMended</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>supper at one table</label><target>AAndB</target><third>true</third><hours>17~21</hours><duration>1.5~2</duration></li>
           <li Class="ColonyCouncil.ArcEffect_Strain"><amount>-8</amount></li>
           <li Class="ColonyCouncil.ArcEffect_Cast">
             <a>Other</a><b>Third</b><together>true</together>
@@ -822,6 +839,7 @@
         </chronicle>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Arc_OutOfTheMiddle</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>supper for the three of them</label><target>AAndB</target><third>true</third><hours>17~21</hours><duration>1.5~2</duration></li>
           <li Class="ColonyCouncil.ArcEffect_Strain"><amount>-6</amount></li>
           <li Class="ColonyCouncil.ArcEffect_Cast">
             <a>Other</a><b>Third</b><together>true</together>

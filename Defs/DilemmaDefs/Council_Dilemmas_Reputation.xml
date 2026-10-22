@@ -274,7 +274,7 @@
         <outcome>From now on, anyone who comes for a bowl splits wood for it first. Most of them do, and the woodpile is thirty logs higher. A few of the hungry have stopped coming.</outcome>
         <ways><generosity>-2</generosity><toil>3</toil></ways>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>WoodLog</thing><count>30</count></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Felled"><count>30</count><near>Gate</near><fell>false</fell></li>
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>1</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmR_FoodForWork</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
@@ -502,7 +502,7 @@
         <outcome>{X_nameDef} was handed an axe and told that guests who live like family can work like family. {X_nameDef} grumbled the whole time, and the woodpile is twenty-five logs higher for it.</outcome>
         <ways><openness>2</openness><toil>3</toil></ways>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>WoodLog</thing><count>25</count></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Felled"><count>25</count><near>Stranger</near></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmR_GuestEarnedIt</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
         </effects>

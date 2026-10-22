@@ -101,6 +101,7 @@
         </chronicle>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Arc_StayedHome</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>the walk to the edge of the land</label><to>Gate</to><waitHours>3</waitHours><duration>0.5~0.75</duration></li>
           <li Class="ColonyCouncil.ArcEffect_Strain"><amount>-6</amount></li>
           <li Class="ColonyCouncil.ArcEffect_Tie"><kind>Friends</kind><amount>6</amount></li>
           <li Class="ColonyCouncil.ArcEffect_Quirk"><quirk>Council_Quirk_RoadStories</quirk><chance>0.2</chance></li>

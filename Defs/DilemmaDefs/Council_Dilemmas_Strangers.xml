@@ -1035,6 +1035,9 @@
     <cooldownDays>50</cooldownDays>
     <minColonists>2</minColonists>
     <answerDays>0.6</answerDays>
+    <roleA>
+      <oldInjury>true</oldInjury>
+    </roleA>
     <roleB>
       <passion>Medicine</passion>
     </roleB>

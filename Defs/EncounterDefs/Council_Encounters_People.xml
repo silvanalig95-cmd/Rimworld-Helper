@@ -149,6 +149,7 @@
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_FireSongs</thought></li>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_EncP_FireSongs</thought><chance>0.3</chance></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Bonfire"><label>songs by the fire with {X_nameDef}</label><music>true</music><build>false</build><spots><li>Fire</li><li>Stranger</li></spots><hours>20~1</hours><waitHours>1</waitHours><duration>1~1.5</duration></li>
     </effects>
   </ColonyCouncil.EncounterDef>
 
@@ -276,7 +277,7 @@
     <weight>0.8</weight>
     <cooldownDays>7</cooldownDays>
     <children>true</children>
-    <stranger><kind>Visitor</kind><adult>true</adult></stranger>
+    <stranger><kind>Visitor</kind><adult>true</adult><withDog>true</withDog></stranger>
     <texts>
       <li>{X_nameDef}'s dog followed {A_nameDef} around all afternoon and leaned on {A_possessive} legs whenever {A_pronoun} stopped. {X_nameDef} said it only does that with people it likes.</li>
       <li>{A_nameDef}'s sausage ended up in {X_nameDef}'s scruffy dog, which ate it looking {A_objective} straight in the eye. {A_nameDef} gave it the crust as well.</li>
@@ -525,7 +526,7 @@
       <li>{A_nameDef} came back to find that {X_nameDef} had chopped a fallen trunk into logs and stacked them by size against the wall.</li>
     </texts>
     <effects>
-      <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>WoodLog</thing><count>20</count></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Felled"><count>20</count><near>Stranger</near></li>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_GuestPitchedIn</thought></li>
     </effects>
   </ColonyCouncil.EncounterDef>
