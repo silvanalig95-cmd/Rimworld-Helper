@@ -12,14 +12,14 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncP_RoadNews</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>news from the road</label><description>A visitor told me who's at war, who's sick and what salt costs these days. The world's still out there, being terrible without us.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>news from the road</label><description>A visitor went through all the news from the road with me, settlement by settlement. Most of it was bad, and I wanted every word.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><journal>true</journal><felt>1</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncP_BladeTales</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>tales of a famous blade</label><description>A visitor told me about a duelist who can cut a candle in half without tipping it over. I'm going to need more candles.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>tales of a famous blade</label><description>A visitor told me about a famous swordfighter down south. I went out to the yard after dark to try the footwork.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><journal>true</journal><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
@@ -51,14 +51,14 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncP_FireSongs</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>songs from a traveler</label><description>A traveler sang for us last night. The chorus is still stuck in my head.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>songs from a traveler</label><description>A traveler had songs and stories I'd never heard. I've got one of the choruses already.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.1</joy><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncP_Flirted</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>flirted with a visitor</label><description>A visitor laughed at my jokes and sat close to me. I keep thinking about it.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>flirted with a visitor</label><description>A visitor laughed at all my jokes, even the old ones, and sat closer than they needed to.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -70,7 +70,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncP_StrangersThanks</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>a stranger's thanks</label><description>I helped a traveler with something small, and they paid me back in silver and herbs.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>a stranger's thanks</label><description>I did a traveler a small favor, and they pressed silver and herbs into my hand and wouldn't take them back.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -83,7 +83,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncP_DiceNight</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>dice with a stranger</label><description>I played dice with a traveler all evening, for pebbles. I didn't think about raiders once.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>dice with a stranger</label><description>Dice with a traveler all evening, for pebbles. We argued over every throw.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.1</joy><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
@@ -104,7 +104,7 @@
     <stackLimit>5</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
     <stackedEffectMultiplier>0.5</stackedEffectMultiplier>
-    <stages><li><label>a fellow fighter</label><description>We've both stood in a battle line and lost friends. We understand each other.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>12</baseOpinionOffset></li></stages>
+    <stages><li><label>a fellow fighter</label><description>We've both stood in a battle line and lost friends. We didn't have to explain much.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>12</baseOpinionOffset></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
@@ -127,7 +127,7 @@
     <stackLimit>5</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
     <stackedEffectMultiplier>0.5</stackedEffectMultiplier>
-    <stages><li><label>good company</label><description>They made my stop at their colony a pleasant one.</description><baseOpinionOffset>10</baseOpinionOffset></li></stages>
+    <stages><li><label>good company</label><description>Good company on a long road. I'll stop in again if I'm passing.</description><baseOpinionOffset>10</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -210,21 +210,21 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncP_CaravanGossip</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>caravan gossip</label><description>The trader told me who's gone broke and who's feuding out there. We're doing all right by comparison.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>caravan gossip</label><description>The trader told me who's gone broke out there, and which settlements still pay fair.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><journal>true</journal><felt>1</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncP_FreeSample</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>a free taste</label><description>The trader let me taste a spice from very far away. I'm still thinking about it.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>a free taste</label><description>The trader gave me a taste of their goods from very far south. I spent supper trying to describe it.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.06</joy><joyKind>Gluttonous</joyKind><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncP_FreeSampleGourmand</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>a taste of somewhere else</label><description>The trader let me taste a spice from three weeks south. Everything we cook tastes bland next to it.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+    <stages><li><label>a taste of somewhere else</label><description>The trader let me taste a delicacy from three weeks south. Everything we cook tastes of nothing next to it.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <!-- ===================== Lodgers ===================== -->
@@ -236,13 +236,13 @@
     <stackLimit>5</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
     <stackedEffectMultiplier>0.5</stackedEffectMultiplier>
-    <stages><li><label>treats me like furniture</label><description>They snap their fingers at me, sent the soup back twice, and have never once used my name.</description><baseMoodEffect>-1</baseMoodEffect><baseOpinionOffset>-10</baseOpinionOffset></li></stages>
+    <stages><li><label>treats me like furniture</label><description>They snap their fingers at me and send the soup back, and they've never once used my name.</description><baseMoodEffect>-1</baseMoodEffect><baseOpinionOffset>-10</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncP_NobleNotice</defName>
     <durationDays>5</durationDays>
-    <stages><li><label>noticed by a noble</label><description>A noble told me I'd do well at court. I don't know what a court is for, but apparently I'd do well at it.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>noticed by a noble</label><description>A noble showed me how to bow properly and said I'd do well at court. I've been practicing behind the barn.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -267,7 +267,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncP_KeptWatch</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>kept watch for a guest</label><description>Our guest was too scared to sleep, so I stayed up with them.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>kept watch for a guest</label><description>Our guest was too scared to sleep, so I sat up with them, facing the door.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><feelings><li>Tenderness</li></feelings><felt>3</felt></li></modExtensions>
   </ThoughtDef>
 
@@ -347,7 +347,7 @@
     <stackLimit>5</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
     <stackedEffectMultiplier>0.5</stackedEffectMultiplier>
-    <stages><li><label>tried to bribe me</label><description>They offered me buried treasure for the key to their cell. As if I'd fall for that.</description><baseOpinionOffset>-5</baseOpinionOffset></li></stages>
+    <stages><li><label>tried to bribe me</label><description>They offered me a fortune for the key to their cell. As if I'd fall for that.</description><baseOpinionOffset>-5</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <!-- ===================== The fallen ===================== -->
@@ -355,7 +355,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncP_Begged</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>an enemy begged me</label><description>A downed raider begged me not to leave them out there. I can still feel the hand on my ankle.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>an enemy begged me</label><description>A downed raider begged me not to leave them out there, and kept begging while I walked away.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -367,7 +367,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncP_GaveWater</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>gave water to an enemy</label><description>A wounded raider asked for water, and I gave it to them. It felt like the right thing to do.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>gave water to an enemy</label><description>A wounded raider asked for water, and I held the cup while they drank. We didn't talk about the fight.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
@@ -396,7 +396,7 @@
     <stackLimit>5</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
     <stackedEffectMultiplier>0.5</stackedEffectMultiplier>
-    <stages><li><label>spat on a helpless enemy</label><description>They spat on a raider who was down and bleeding. Whatever the raider did, that wasn't right.</description><baseOpinionOffset>-8</baseOpinionOffset></li></stages>
+    <stages><li><label>spat on a helpless enemy</label><description>They spat on a raider who was down and bleeding, and walked off whistling.</description><baseOpinionOffset>-8</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
