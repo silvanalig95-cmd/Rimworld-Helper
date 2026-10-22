@@ -222,8 +222,9 @@ namespace ColonyCouncil
 
     /// <summary>
     /// An errand: someone (<see cref="who"/>, A unless given; anyone free and able to carry if they aren't) takes real
-    /// things from the stores and carries them out: to the visitor (X), if they're here; else to the gate, where a rider
-    /// or a cart waits; or to the camp (<see cref="to"/> Camp). What goes, and how much, is as the answer's own taking
+    /// things from the stores and carries them out: to the visitor (X), if they're here; else to the gate, where someone
+    /// of the people it's for waits to take it (a courier, Couriers/; with nobody to send, a rider or a cart, told only);
+    /// or to the camp (<see cref="to"/> Camp). What goes, and how much, is as the answer's own taking
     /// was: <see cref="what"/> ("silver", "rawfood", "medicine", "meals", "wood", or a thing's defName; empty: the event's
     /// thing), <see cref="count"/> (else the letter's {COUNT}, or with <see cref="variant"/> the event's other number:
     /// the food or medicine its letter names besides a price) times <see cref="factor"/>, less the quartermaster's
@@ -280,7 +281,24 @@ namespace ColonyCouncil
                 CouncilLog.ErrorOnce("play out errand", e);
             }
             // Nothing set going: the things leave the stores now, as an answer's taking always did.
-            if (p == null) PlayCarry.Take(map, what, Def(ctx), Need(ctx));
+            if (p == null)
+            {
+                PlayCarry.Take(map, what, Def(ctx), Need(ctx));
+                return;
+            }
+            // Carried out to the gate (no visitor here to take it): someone of the people it's for comes and waits
+            // there to receive it (Couriers/). Nobody can come: the errand goes to the gate as before.
+            if (p.to != PlaySpot.Camp && (p.to == PlaySpot.Gate || p.other == null))
+            {
+                try
+                {
+                    Couriers.Await(p, ctx.faction ?? (ctx.stranger?.Faction is Faction f && !f.IsPlayer ? f : null));
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("errand courier", e);
+                }
+            }
         }
 
         protected override bool Fill(PlayOut p, DilemmaContext ctx)

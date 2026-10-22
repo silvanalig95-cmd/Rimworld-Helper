@@ -279,11 +279,26 @@ namespace ColonyCouncil
             }
             LocalTargetInfo to = LocalTargetInfo.Invalid;
             var x = p.other;
+            // Someone of the people it's for may be waiting at the gate for it (Couriers/), or on their way there.
+            bool coming = false;
+            var courier = p.to != PlaySpot.Camp ? Couriers.ReceiverFor(p, out coming) : null;
             if (p.to != PlaySpot.Gate && p.to != PlaySpot.Camp && x != null && !x.Dead && x.Spawned && x.Map == p.map && x.Faction != Faction.OfPlayer
                 && carrier.CanReach(x, PathEndMode.Touch, Danger.Some))
             {
                 to = x;
                 where = x.LabelShort;
+            }
+            else if (courier != null && carrier.CanReach(courier, PathEndMode.Touch, Danger.Some))
+            {
+                // Someone of the people it's for waits at the gate (Couriers/): it's handed to them.
+                to = courier;
+                where = "CC_Play_To_Gate".Translate();
+            }
+            else if (coming)
+            {
+                // They're on their way to the gate: the errand waits for them.
+                p.waitReason = "CC_Courier_Why_NotYet".Translate();
+                return false;
             }
             else
             {
@@ -586,7 +601,9 @@ namespace ColonyCouncil
             if (!given) carrier.carryTracker.DestroyCarriedThing();
             p.tally += n;
             int rest = p.amount - p.tally;
-            if (rest > 0) PlayCarry.Take(p.map, p.what, p.thing, rest, carrier);
+            // Handed to a courier waiting at the gate: they fetch the rest from the stores themselves (Couriers/).
+            bool fetched = given && Couriers.Received(p, to, n, rest);
+            if (rest > 0 && !fetched) PlayCarry.Take(p.map, p.what, p.thing, rest, carrier);
             p.tally = Math.Max(p.tally, p.amount);
             var h = p.Hand(carrier);
             if (h != null) h.counted = true;
@@ -724,14 +741,18 @@ namespace ColonyCouncil
         public static void FellThrough(PlayOutTracker t, PlayOut p, string why, bool quiet)
         {
             foreach (var h in p.hands) Stop(p, h.pawn, true);
-            if (p.kind == PlayKind.Carry) PlayCarry.Settle(p);
+            // An errand that never went: the courier waiting for it (Couriers/), if one is coming or at the gate, fetches
+            // the things from the stores instead; else they leave the stores at once, as always.
+            bool fetched = p.kind == PlayKind.Carry && Couriers.TakeOver(p);
+            if (fetched) p.tally = p.amount;
+            if (p.kind == PlayKind.Carry && !fetched) PlayCarry.Settle(p);
             // What the answer promised a search would find turns up all the same, as it always did.
             if (p.kind == PlayKind.Search) GiveFind(p, null);
             if (quiet || p.label.NullOrEmpty()) return;
             string text = why.NullOrEmpty()
                 ? "CC_Play_FellThroughPlain".Translate(p.label.CapitalizeFirst()).Resolve()
                 : "CC_Play_FellThrough".Translate(p.label.CapitalizeFirst(), why).Resolve();
-            if (p.kind == PlayKind.Carry) text += " " + "CC_Play_FellThrough_Carry".Translate(p.amount, PlayCarry.Label(p.what, p.thing)).Resolve();
+            if (p.kind == PlayKind.Carry && !fetched) text += " " + "CC_Play_FellThrough_Carry".Translate(p.amount, PlayCarry.Label(p.what, p.thing)).Resolve();
             News.Post(text, null, NewsKind.Colony, MessageTypeDefOf.NeutralEvent, Importance.Notable);
             PlayWords.Missed(p);
         }
