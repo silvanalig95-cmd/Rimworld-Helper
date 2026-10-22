@@ -81,7 +81,7 @@
     <defName>Council_Journal_Evt_Scribe</defName>
     <lines>
       <plain>
-        <li>[opt0] A scribe wrote my letter home today. I said more than I meant to, and {X_nameDef} wrote all of it down.</li>
+        <li>[opt0] A scribe wrote my letter home. I said more than I meant to, and {X_nameDef} wrote all of it down.</li>
         <li>[opt1] Told the colony's story to a scribe, from the first day on. It sounded bigger told out loud.</li>
         <li>[opt2] The scribe taught us our letters. I can write my name now. I wrote it four times on the table.</li>
         <li>[opt3] A scribe came and went. I'd have liked to send a letter.</li>

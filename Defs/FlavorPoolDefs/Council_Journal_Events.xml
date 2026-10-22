@@ -72,7 +72,7 @@
     <lines>
       <plain>
         <li>[opt0] The colony paid my old debt, every coin of it. I've started keeping a tally of what I owe them now.</li>
-        <li>[opt1,safe] I talked the collector out of an old debt today. It took most of the afternoon and every trick I used to know.</li>
+        <li>[opt1,safe] Talked the collector out of an old debt. It took most of the afternoon and every trick I used to know.</li>
         <li>[opt1,risk] I tried to talk the collector down and made it worse. They'll be back, with friends. That's on me.</li>
         <li>[opt2,safe] The debt went unpaid, and the collector just left. I've checked the road a dozen times since.</li>
         <li>[opt2,risk] The collector left swearing to come back with help. I've started sleeping in my boots.</li>
@@ -190,7 +190,7 @@
         <li>{X_nameDef} came a long way to beat me at {SKILL}. It was close. {X_nameDef} shook my hand at the end and asked how I'd done the last part.</li>
         <li>Beat a traveling champion at {SKILL} today. I've been going over the last round in my head all evening.</li>
       </plain>
-      <cheerful><li>I beat a real traveling champion today! I'm still grinning.</li></cheerful>
+      <cheerful><li>I beat a real traveling champion! I'm still grinning.</li></cheerful>
       <cold><li>Defeated a traveling champion at {SKILL}. Their technique had obvious flaws.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -211,7 +211,7 @@
     <defName>Council_Journal_Evt_Beast</defName>
     <lines>
       <plain>
-        <li>I brought down {BEAST} today, the one from the old stories. I've been out to look at the body three times.</li>
+        <li>I brought down {BEAST}, the one from the old stories. I've been out to look at the body three times.</li>
         <li>{BEAST} is dead, and I killed it. I've told the story six times today. It was a lot messier than I've been making it sound.</li>
       </plain>
       <cheerful><li>I killed {BEAST}! I'll be telling this one until I'm old and the others groan when I start.</li></cheerful>
@@ -237,10 +237,10 @@
     <defName>Council_Journal_Evt_Cache</defName>
     <lines>
       <plain>
-        <li>I found a buried cache today. Somebody hid it and never came back. I wonder who they were, and what happened to them.</li>
-        <li>Dug up a buried stash today. Real treasure, like in the stories. I'm going to be unbearable about it for weeks.</li>
+        <li>Found a buried cache. Somebody hid it and never came back. I wonder who they were, and what happened to them.</li>
+        <li>Dug up a stash with my own two hands. Real treasure, like in the stories. I'm going to be unbearable about it for weeks.</li>
       </plain>
-      <cheerful><li>I found treasure today, real buried treasure!</li></cheerful>
+      <cheerful><li>Real buried treasure, and I'm the one who found it!</li></cheerful>
       <gloomy><li>Found a stash somebody buried and never came back for. I doubt they meant to leave it.</li></gloomy>
     </lines>
   </ColonyCouncil.FlavorPoolDef>

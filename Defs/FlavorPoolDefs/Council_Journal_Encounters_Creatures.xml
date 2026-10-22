@@ -206,7 +206,7 @@
     <defName>Council_Journal_EncC_Majestic</defName>
     <lines>
       <plain>
-        <li>Saw {X_indefinite} today. Really saw one, close. I keep holding my arms out to show people the size, and my arms aren't long enough.</li>
+        <li>Saw {X_indefinite}. Really saw one, close. I hold my arms out to show people the size, and my arms aren't long enough.</li>
         <li>Plenty of things out here have wanted to kill me. Today I saw {X_indefinite} that didn't care either way, and it was the most beautiful thing I've seen in years.</li>
         <li>[skill:Animals] I've spent my whole life with animals. None of them prepared me for {X_definite}.</li>
         <li>[morning] Before breakfast I saw {X_indefinite} among the trees, steam rising off {X_possessive} back. I forgot I was hungry.</li>
@@ -226,7 +226,7 @@
         <li>The others stood around gawking at {X_definite} like they'd never seen an animal. I gawked too.</li>
       </blunt>
       <cheerful>
-        <li>I saw {X_indefinite} today and I've decided we're friends now. I just have to tell {X_objective}!</li>
+        <li>Saw {X_indefinite} and decided we're friends now. I just have to tell {X_objective}!</li>
         <li>So big! I ran out of words and just pointed for a while.</li>
       </cheerful>
       <gloomy>
@@ -295,7 +295,7 @@
         <li>[fog] Fog all day. I couldn't see {X_definite}, but the back of my neck knew where {X_pronoun} was.</li>
       </plain>
       <warm>
-        <li>Called the others in early today and said it was for supper. It was because of {X_definite}.</li>
+        <li>Called the others in early and said it was for supper. It was because of {X_definite}.</li>
         <li>I hope {X_definite} finds easier prey and moves on, for both our sakes.</li>
       </warm>
       <blunt>

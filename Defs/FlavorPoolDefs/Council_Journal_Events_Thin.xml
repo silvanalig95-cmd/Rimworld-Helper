@@ -9,7 +9,7 @@
     <pool>Council_Journal_Evt_KinLetter</pool>
     <lines>
       <plain>
-        <li>[opt2] Sent a parcel home today, the coin sewn in where no thief would look. I hope it gets there before winter.</li>
+        <li>[opt2] Sent a parcel home, the coin sewn in where no thief would look. I hope it gets there before winter.</li>
         <li>[opt3] I read {X_nameDef}'s letter out at supper. Now the others ask after people they've never met, and I love them for it.</li>
         <li>[winter] A letter from {X_nameDef}, with frost on the wrapping. I read it close to the fire to make it last.</li>
         <li>[opt0] Wrote back to {X_nameDef} by lamplight. It took me three tries to stop it sounding like a report.</li>
@@ -32,7 +32,7 @@
       <plain>
         <li>[winter] Went down on the ice today and got up again. The cards said bad luck. I say that was it.</li>
         <li>[trait:Nervous] I've been jumping at every noise since the fortune teller came. Today something nearly happened, and didn't. I can breathe again.</li>
-        <li>Missed by a hand's width today. If that was the bad fortune, it was a poor one.</li>
+        <li>Missed by a hand's width. If that was the bad fortune, it was a poor one.</li>
       </plain>
       <warm><li>The others made me sit down with something hot after my fright, and wouldn't let me up until I'd drunk all of it.</li></warm>
       <cheerful><li>Bad fortune: used up. I'm walking under every ladder in the colony tomorrow.</li></cheerful>

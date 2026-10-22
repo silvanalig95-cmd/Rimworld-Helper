@@ -47,7 +47,7 @@
       <plain>
         <li>[opt0] I found an old grave today. We buried them again properly, with a stone at the head. I wonder who they were.</li>
         <li>[opt1] Found an old grave. The council kept what was buried with them. I can't stop thinking about those bones going back in the ground with nothing.</li>
-        <li>[opt2] Found an old grave today. We filled it in again and left it as it was.</li>
+        <li>[opt2] Filled the old grave in again and left it as it was. Whoever it is can go on sleeping.</li>
       </plain>
       <warm><li>[opt0] We gave the stranger in the old grave a proper burial. I put a few wildflowers on it.</li></warm>
       <blunt><li>[opt1] Grave goods. Somebody has to use them. Better us than the rats.</li></blunt>

@@ -41,12 +41,12 @@
       <plain>
         <li>Snow up to my knees and still coming. Saw tracks I didn't know, and followed them.</li>
         <li>[morning] Everything frozen and quiet this morning. My breath hung in the air like smoke.</li>
-        <li>Learned a trick against the cold today. My feet have been warm all day.</li>
+        <li>Learned a trick against the cold. My feet have been warm since noon.</li>
         <li>The cold out here gets into your teeth. The animals manage. I'm working on it.</li>
         <li>[snow] Snowed all day. The world went white and small.</li>
       </plain>
       <warm>
-        <li>Somebody showed me how to keep warm today, for nothing. I'll pass it on.</li>
+        <li>Somebody showed me how to keep warm, and wanted nothing for it. I'll pass it on.</li>
       </warm>
       <blunt>
         <li>Cold. Colder tomorrow.</li>
@@ -94,7 +94,7 @@
     <defName>Council_Journal_EncL_Heights</defName>
     <lines>
       <plain>
-        <li>Looked up from my work today and there was something on the ridge, watching the valley. Then it was gone over the top.</li>
+        <li>Looked up from my work and there was something on the ridge, watching the valley. Then it was gone over the top.</li>
         <li>Heard about the high passes today. I'd like to see the top of these mountains one day.</li>
         <li>[morning] The sun hits the peaks an hour before it reaches us. I watched it come down the slope.</li>
         <li>Found a crack in the rock with cold air coming out of it. Didn't go in. Thought about it all day.</li>
@@ -106,7 +106,7 @@
         <li>Steep. Rocky. Good view.</li>
       </blunt>
       <cheerful>
-        <li>Shouted across the valley today and the mountain shouted back!</li>
+        <li>Shouted across the valley, and the mountain shouted back!</li>
       </cheerful>
       <gloomy>
         <li>The mountains were here long before us and won't notice when we're gone.</li>
@@ -122,7 +122,7 @@
     <lines>
       <plain>
         <li>Walked the shore at low tide. The sea leaves something different on the sand every day.</li>
-        <li>Got a shell today. It's on the sill by my bed now, and I keep picking it up.</li>
+        <li>Got a shell. It's on the sill by my bed, and I pick it up every time I pass.</li>
         <li>[storm] Watched the sea in the storm. The waves came up the rocks higher than the roof.</li>
         <li>[fog] Sea fog all morning. I could hear the waves and nothing else.</li>
       </plain>

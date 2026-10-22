@@ -254,7 +254,7 @@
       <warm><li>{OTHER_nameDef} and I are married. Whatever comes next, it comes for both of us now.</li></warm>
       <blunt><li>Married {OTHER_nameDef}. Best decision I've made out here.</li></blunt>
       <cheerful><li>Married to {OTHER_nameDef}! I've been smiling so long my face hurts.</li></cheerful>
-      <gloomy><li>Married {OTHER_nameDef} today. I'm trying not to wait for it to go wrong.</li></gloomy>
+      <gloomy><li>We're married now, {OTHER_nameDef} and I. I'm trying not to wait for it to go wrong.</li></gloomy>
       <cold><li>Formalized my partnership with {OTHER_nameDef}. A sensible arrangement. My hands shook during the vows, which I hadn't planned for.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -286,7 +286,7 @@
       </plain>
       <warm><li>Welcome, {BABY_nameDef}. We'll make this place worth growing up in.</li></warm>
       <blunt><li>{BABY_nameDef} was born today. Loud. Mine.</li></blunt>
-      <cheerful><li>{BABY_nameDef} was born today! I keep telling people, even the ones who were there.</li></cheerful>
+      <cheerful><li>A baby, {BABY_nameDef}! I keep telling people, even the ones who were there.</li></cheerful>
       <gloomy><li>{BABY_nameDef} was born into all this. I'll have to be better than the world is.</li></gloomy>
       <cold><li>{BABY_nameDef} arrived today. Breathing well, a fair weight. I held {BABY_objective} longer than I needed to.</li></cold>
     </lines>
@@ -320,7 +320,7 @@
       <warm><li>{OTHER_nameDef} had a terrible day. Tomorrow I'll sit with {OTHER_objective}, whether {OTHER_pronoun} wants company or not.</li></warm>
       <blunt><li>{OTHER_nameDef} cracked. Can't blame {OTHER_objective}, the way things are.</li></blunt>
       <cheerful><li>{OTHER_nameDef} had a really bad day. Tomorrow I'm baking {OTHER_objective} a berry pie.</li></cheerful>
-      <gloomy><li>{OTHER_nameDef} broke today. I wonder which of us is next.</li></gloomy>
+      <gloomy><li>Watched {OTHER_nameDef} come apart. I wonder which of us is next.</li></gloomy>
       <cold><li>{OTHER_nameDef} broke down. The signs were there. I'll pay closer attention.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>

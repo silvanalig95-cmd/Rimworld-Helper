@@ -12,7 +12,7 @@
     <defName>Council_Journal_Evt_OldAdventurer</defName>
     <lines>
       <plain>
-        <li>[opt0] We bought an old adventurer's gear today. {X_nameDef} told us where every dent came from, which took a while.</li>
+        <li>[opt0] We bought an old adventurer's gear. {X_nameDef} told us where every dent came from, which took a while.</li>
         <li>[opt1,safe] {X_nameDef} is staying. Forty years on the road, and {X_pronoun} picked us.</li>
         <li>[opt1,risk] Asked {X_nameDef} to stay. {X_nameDef} has a sister to see first. I think {X_pronoun} might come back.</li>
         <li>[opt2] Stayed up late listening to {X_nameDef}. Half the stories can't be true. I'd still like to hear them again.</li>
@@ -109,7 +109,7 @@
       <plain>
         <li>[opt0] A reeve came for a tithe and we paid. I could have argued, if anyone had asked me to.</li>
         <li>[opt1] We paid the lord's tithe in sacks. {X_nameDef} counted every one into the ledger, and the lord's carters will get the good ones, of course.</li>
-        <li>[opt2,safe] I argued the reeve out of the tithe today, boundary stone by boundary stone. I've never been so tired from talking.</li>
+        <li>[opt2,safe] Argued the reeve out of the tithe, boundary stone by boundary stone. I've never been so tired from talking.</li>
         <li>[opt2,risk] I argued, and {X_nameDef} had the deed. Now we're paying a fine for my trouble.</li>
         <li>[opt3] The reeve got no tithe from us. {X_nameDef} wrote a long line in the ledger and underlined it twice.</li>
       </plain>

@@ -124,7 +124,7 @@
       <plain>
         <li>[first] A year since {DEAD} died. I kept expecting to hear {DEAD} at supper.</li>
         <li>[years] {YEARS} years without {DEAD}. Some days I can't remember the voice. Today I could.</li>
-        <li>Went to {DEAD}'s grave today and told {DEAD} what's happened since. It took a while.</li>
+        <li>Went to {DEAD}'s grave and told {DEAD} what's happened since. It took a while.</li>
         <li>We kept the day for {DEAD}. Someone told the story about the burnt stew and the whole table laughed.</li>
         <li>[kin] It's the day {DEAD} died. I didn't get much work done, and no one pushed me.</li>
         <li>[kin,years] {YEARS} years. I still keep some of {DEAD}'s things in a box under my bed.</li>
@@ -139,7 +139,7 @@
       </blunt>
       <cheerful><li>We remembered {DEAD} today with stories instead of tears, mostly.</li></cheerful>
       <gloomy>
-        <li>Remembered {DEAD} today. Remembering doesn't bring anyone back.</li>
+        <li>{DEAD}'s day again. I went through the motions.</li>
         <li>[kin] The day {DEAD} died. I stayed at the grave until it got dark.</li>
       </gloomy>
       <cold><li>The day {DEAD} died. I observed it. The others seemed to need me to.</li></cold>

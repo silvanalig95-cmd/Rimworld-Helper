@@ -13,7 +13,7 @@
     <lines>
       <plain>
         <li>Feeling poorly today. Went to bed early.</li>
-        <li>Not myself today. Did half the work and felt twice as tired.</li>
+        <li>Not myself. Did half the work and felt twice as tired.</li>
         <li>Under the weather. I'll be fine in a few days, but today was long.</li>
         <li>[ail:HeadCold] Woke up with a stuffed nose and a throat like sandpaper.</li>
         <li>[ail:HeadCold] Sneezed into the soup by accident. I made sure it was my own bowl.</li>
@@ -107,7 +107,7 @@
     <lines>
       <plain>
         <li>Feeling like myself again.</li>
-        <li>Ate a full meal today and kept it down. Better.</li>
+        <li>Ate a full meal and kept it down. Better.</li>
         <li>[serious] I'm through the worst of it. I still can't climb a slope without stopping, but I'm here.</li>
         <li>[serious] Slept through till morning for the first time in days, and woke up hungry.</li>
         <li>[ail:Pneumonia] I can breathe again. I keep taking deep breaths just because I can.</li>
@@ -166,7 +166,7 @@
         <li>[ail:Lice] Went through {OTHER_nameDef}'s hair with a fine comb, strand by strand. Then I boiled the comb.</li>
         <li>[ail:Migraine] Drew the curtains for {OTHER_nameDef} and asked the others to keep their voices down.</li>
       </plain>
-      <warm><li>Looked after {OTHER_nameDef} today. I like being useful.</li></warm>
+      <warm><li>Looked after {OTHER_nameDef}. I like having hands that know what to do.</li></warm>
       <blunt><li>Tended {OTHER_nameDef}. Next.</li></blunt>
       <cheerful><li>Patched up {OTHER_nameDef}. Good as new in a few days.</li></cheerful>
       <gloomy><li>Another patient. {OTHER_nameDef} this time. There's always another.</li></gloomy>
