@@ -156,7 +156,7 @@
       </plain>
       <warm><li>[opt0,safe] We shook hands at the end. I think we both meant it.</li></warm>
       <blunt><li>[opt1] Made to work beside someone I don't like. We stacked wood. Badly.</li></blunt>
-      <cheerful><li>[opt0,safe] Half a night of talking, and we're talking again tomorrow too!</li></cheerful>
+      <cheerful><li>[opt0,safe] Half a night at that table with the peacemaker, and we came out of it laughing!</li></cheerful>
       <gloomy><li>[opt0,risk] Some things don't mend. I knew that before the peacemaker came.</li></gloomy>
       <cold><li>[opt0] A stranger arbitrated my grievances. It was efficient, I'll give {X_objective} that.</li></cold>
     </lines>
