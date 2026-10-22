@@ -62,7 +62,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmL_SleepingNearIt</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>sleeping next to a cough</label><description>Someone in my room is sick and nobody will do anything about it. I sleep with my blanket over my face.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>sleeping next to a cough</label><description>Someone in my room is sick, and the council has left them there. I sleep with my blanket over my face.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -80,7 +80,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmL_StillCooking</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>cooked through it</label><description>I kept cooking while I was sick, with a cloth over my face and my hands scrubbed raw. Nobody missed a meal.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>cooked through it</label><description>I kept cooking while I was sick, with a cloth over my face and my hands scrubbed raw. Every meal went out on time.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><journal>true</journal><felt>1</felt></li></modExtensions>
   </ThoughtDef>
 
@@ -135,7 +135,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmL_HelpedStranger</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>helped a sick traveler</label><description>A stranger came to us sick and we had something to give. It wasn't much. It was enough.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>helped a sick traveler</label><description>A stranger came to us sick, and we gave them a dose from our own shelf. They shook my hand twice.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -159,7 +159,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmL_OddCureFlop</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>a cure that didn't</label><description>I let a stranger try a cure on me. I'm just as sick, and now everyone has a story about it.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+    <stages><li><label>a cure that didn't</label><description>I let a stranger try a cure on me. I'm just as sick, and now I'm the story at supper.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -179,7 +179,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmL_HelpedTheCamp</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>we helped our neighbors</label><description>The people camped near us were in trouble and we helped. That's how it should be out here.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>we helped our neighbors</label><description>The people camped near us were in trouble, and we didn't pretend not to see it.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -217,7 +217,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmL_HeardOut</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>the council heard me out</label><description>I wasn't there when they decided, so they let me have my say afterward. It counts for something.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>the council heard me out</label><description>I wasn't there when they decided, so they let me have my say afterward. That's fair.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -253,7 +253,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmL_PublicApology</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>an apology at the table</label><description>The council stood up at supper and said they'd let me down. Everyone heard it. That mattered more than I thought it would.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>an apology at the table</label><description>The council stood up at supper and said they'd let me down. The whole table heard it. That mattered more than I thought it would.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -277,7 +277,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmL_LightDuties</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>lighter duties</label><description>I'm on light work for a while: mending, sorting, sitting down for most of it. It isn't a rest, but it's something.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>lighter duties</label><description>I'm on light work for a while: mending, sorting, sitting down for most of it. It isn't a rest, but my back thanks me.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><journal>true</journal><felt>1</felt></li></modExtensions>
   </ThoughtDef>
 
@@ -290,7 +290,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmL_TurnsResting</defName>
     <durationDays>1.5</durationDays>
-    <stages><li><label>a half day each</label><description>Everyone gets a half day off in turn until the worst is over. Mine was this afternoon. I lay in the grass.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>a half day each</label><description>We each get a half day off in turn until the worst is over. Mine was this afternoon. I lay in the grass.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.08</joy><joyKind>Meditative</joyKind><felt>1</felt></li></modExtensions>
   </ThoughtDef>
 
@@ -317,7 +317,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmL_StraightAnswer</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>a straight answer</label><description>I asked the grown-ups something hard and they told me the truth. I've been thinking about it all day.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>a straight answer</label><description>I asked the grown-ups a hard question and they told me the truth. I've been thinking about it all day.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -348,7 +348,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmL_MadeItMyself</defName>
     <durationDays>5</durationDays>
-    <stages><li><label>made it myself</label><description>I made something from start to finish, by myself, and it works. I keep going back to look at it.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+    <stages><li><label>made it myself</label><description>I made a thing from start to finish, all by myself, and it works. I keep going back to look at it.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -387,7 +387,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmL_LaidToRest</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>laid it to rest</label><description>We buried the traveler's journal under a marker with their name on it. It felt like the right thing to do.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>laid it to rest</label><description>We buried the traveler's journal under a marker with their name scratched on it.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><journal>true</journal><felt>1</felt></li></modExtensions>
   </ThoughtDef>
 
@@ -396,19 +396,19 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmL_SomethingNew</defName>
     <durationDays>1.5</durationDays>
-    <stages><li><label>something new on the table</label><description>Supper was something different for once. I ate it slowly to make it last.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>something new on the table</label><description>Supper was different for once. I ate it slowly to make it last.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmL_KitchenExperiment</defName>
     <durationDays>1</durationDays>
-    <stages><li><label>a kitchen experiment</label><description>The cook tried something new tonight. I'd like the old meal back now, please.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+    <stages><li><label>a kitchen experiment</label><description>The cook tried a new dish tonight. I'd like the old meal back now, please.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmL_FoodIsFood</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>food is food, they said</label><description>I asked for something different to eat and the council told me food is food. Then they went and ate the same thing I did.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>food is food, they said</label><description>I asked for a change at mealtimes and the council told me food is food. Then they went and ate the same thing I did.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -420,13 +420,13 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmL_LearningATrade</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>learning a new trade</label><description>I'm learning something I've never done before, from someone who knows it well. I'm bad at it, and it's the best part of my day.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>learning a new trade</label><description>I'm learning a trade I've never tried, from someone who knows it well. I'm bad at it, and it's the best part of my day.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmL_ChoresRotated</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>chores in rotation</label><description>Everyone takes a turn at everything now. I'm no good at half of it, but at least it's different.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>chores in rotation</label><description>We all take turns at everything now. I'm no good at half of it, but at least it's different.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><journal>true</journal><felt>1</felt></li></modExtensions>
   </ThoughtDef>
 
@@ -445,7 +445,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmL_TwoSittings</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>supper in two sittings</label><description>We eat in two sittings now. There's room for my elbows, and I can hear myself think.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>supper in two sittings</label><description>We eat in two sittings now. There's room for my elbows, and I can finish a sentence.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><comfort>0.1</comfort><felt>1</felt></li></modExtensions>
   </ThoughtDef>
 
