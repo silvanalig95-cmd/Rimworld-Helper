@@ -1469,7 +1469,7 @@ medieval things). Many ask the council what to do, with a day or so to answer.
   ailment, a **procession of the faithful** who bless the colony (naming their creed with Ideology), **traveling
   players** who put on a show, **surveyors** who may show you a seam of ore, a **salt caravan** or **merchants from
   afar** with a stall, **drovers** with a herd, barefoot **penitents**, **tree-singers** (Ideology, of an ideoligion that
-  holds trees sacred), a **travelling healer**, a band of **minstrels** whose music the colony walks over to hear, and
+  holds trees sacred), a **traveling healer**, a band of **minstrels** whose music the colony walks over to hear, and
   **mourners** carrying their dead home. Refugees come more often while a famine, plague, war, flood, drought, hard
   winter or great fire runs in the region, and say what they fled; pilgrims follow a holy year, surveyors a new road
   or a rush, minstrels a season of songs, mourners a people's mourning. The newer camps can be asked for something

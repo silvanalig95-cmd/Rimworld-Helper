@@ -1012,7 +1012,7 @@ play out (A and B are the dilemma's or event's people, X its stranger):
 - **whose den is it** (`Council_DlmLv_ChildrenQuarrel`): "They share it, and that's that": A keeps B company ("playing in the den together").
 - **a youngster who wants to see the world** (`Council_DlmLv_TeenRoad`): "A long walk past the fields with B, first": A goes for a long walk.
 - **one last look at the hills** (`Council_DlmLv_ElderWalk`): "B goes with A for the day": A goes for a long walk; B keeps A company ("keeping A company") · "Let A go alone, as A asks": A goes for a long walk.
-- **won't see the doctor** (`Council_DlmLv_ElderDoctor`): "Insist: B sees to A today": B keeps A company ("seeing to A") · "Strike a bargain: a check-up for a favour": B keeps A company ("seeing to A").
+- **won't see the doctor** (`Council_DlmLv_ElderDoctor`): "Insist: B sees to A today": B keeps A company ("seeing to A") · "Strike a bargain: a check-up for a favor": B keeps A company ("seeing to A").
 - **the old one's tale** (`Council_DlmLv_ElderTale`): "Everyone gathers to hear it": gathering to hear it, A speaks ("the colony's story") · "B writes it all down": B keeps A company ("writing down A's story").
 - **the old one and the little one** (`Council_DlmLv_ElderAndChild`): "Let A teach B": B learns at A's side.
 - **cold in the bones** (`Council_DlmLv_ElderCold`): "B sits with A by the fire in the evenings": B keeps A company ("an evening by the fire").
@@ -1022,7 +1022,7 @@ play out (A and B are the dilemma's or event's people, X its stranger):
 
 **Rimfolk_Dilemmas_Lives_Customs**
 
-- **the snow day** (`Council_Dilemma_SnowDay`): "A snow day for everyone": time off for the colony; gathering ("the snow day") · "The children can play; the rest of us work": time off for A · "Snow means more work, not less": a work party up to 4 (snow, haul, clean) ("the shovelling").
+- **the snow day** (`Council_Dilemma_SnowDay`): "A snow day for everyone": time off for the colony; gathering ("the snow day") · "The children can play; the rest of us work": time off for A · "Snow means more work, not less": a work party up to 4 (snow, haul, clean) ("the shoveling").
 - **the children's race** (`Council_Dilemma_ChildrensRace`): "Everyone comes out to cheer": gathering in the fields ("the children's race") · "The children can race on their own": A goes out to the fields ("the children's race").
 - **the children's gleaning** (`Council_Dilemma_Gleaning`): "The gleanings are the children's": gathering to hear it, A speaks ("the gleaning") · "Glean, but it goes to the stores": A goes out to the fields ("the gleaning").
 - **a tree for every child** (`Council_Dilemma_ChildTrees`): "Every child plants a tree": gathering to hear it, A speaks ("the planting of the children's trees") · "Just A's tree, this year": A goes for a long walk.
