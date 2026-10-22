@@ -43,7 +43,7 @@
         <li>Clean floors. I walked through the whole place twice just to look at them.</li>
       </plain>
       <cold>
-        <li>Acceptable. Maintain it.</li>
+        <li>Acceptable. I'll be checking the corners.</li>
       </cold>
     </thanks>
     <expired>
@@ -128,7 +128,7 @@
     </triggers>
     <request>
       <plain>
-        <li>I'm the one standing in front when they come. I'd like something between me and their weapons.</li>
+        <li>I'm the one standing in front when they come. Put something between me and their weapons.</li>
         <li>[trigger:raid] That shot went straight through my shirt. An inch to the left and you'd be burying me.</li>
         <li>[lowtech] Leather, plate, anything. I'm tired of fighting in a tunic.</li>
       </plain>
@@ -153,7 +153,7 @@
         <li>It's heavy, but it fits. I'll get used to the weight.</li>
       </plain>
       <blunt>
-        <li>Good. Now point me at the next raider.</li>
+        <li>Now point me at the next raider.</li>
       </blunt>
     </thanks>
     <expired>
