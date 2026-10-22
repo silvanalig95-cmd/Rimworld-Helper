@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## A health panel at a glance
+
+*29 October 2026, later, version 0.10.6*
+
+- The health panel speaks the Health tab's language: each condition carries the game's own icon (tended well, tended poorly, needs tending, the blood drop), a tiny bar for how far a wound has healed or how an illness's immunity race stands, and its tending in red, yellow or green.
+- Conditions are small chips that wrap onto a second line instead of being cut off ("Bruise ×2", then "+N"), each with its own tooltip. Each colonist gets a small health bar by the name, a coloured word (healing green, getting worse orange, bleeding red) and their pain on hover. "Icons and bars" in the panel's options gives the plain look back.
+
 ## Panels that stay on the screen
 
 *29 October 2026, version 0.10.5*

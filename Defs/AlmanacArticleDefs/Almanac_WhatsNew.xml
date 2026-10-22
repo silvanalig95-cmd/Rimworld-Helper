@@ -31,6 +31,16 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.10.6</version>
+        <date>29 October 2026, later</date>
+        <title>A health panel at a glance</title>
+        <points>
+          <li>The health panel speaks the Health tab's language: each condition carries the game's own icon (tended well, tended poorly, needs tending, the blood drop), a tiny bar for how far a wound has healed or how an illness's immunity race stands, and its tending in red, yellow or green.</li>
+          <li>Conditions are small chips that wrap onto a second line instead of being cut off ("Bruise ×2", then "+N"), each with its own tooltip. Each colonist gets a small health bar by the name, a coloured word (healing green, getting worse orange, bleeding red) and their pain on hover. "Icons and bars" in the panel's options gives the plain look back.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.10.5</version>
         <date>29 October 2026</date>
         <title>Panels that stay on the screen</title>

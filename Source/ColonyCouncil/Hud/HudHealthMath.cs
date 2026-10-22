@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace ColonyCouncil
 {
@@ -56,6 +57,60 @@ namespace ColonyCouncil
         Losing,
         /// <summary>Immune: it's on its way out.</summary>
         Immune
+    }
+
+    /// <summary>How the health panel colours a word, a figure or a bar: by what it means (the panel picks the colour).</summary>
+    public enum HealthTone
+    {
+        /// <summary>Nothing to say: faint.</summary>
+        Quiet,
+        /// <summary>Healing, well tended, in good health: green.</summary>
+        Good,
+        /// <summary>Worth a look: tended so-so, something to tend: yellow.</summary>
+        Fair,
+        /// <summary>Getting worse, losing a race: orange.</summary>
+        Warn,
+        /// <summary>Bleeding, soon deadly, tended badly: red.</summary>
+        Bad
+    }
+
+    /// <summary>What a colonist's row says in its right-hand word, most pressing last.</summary>
+    public enum HealthStatus
+    {
+        Healing,
+        Untended,
+        Worsening,
+        Losing,
+        Danger,
+        Bleeding
+    }
+
+    /// <summary>What a condition's little bar shows.</summary>
+    public enum HealthBar
+    {
+        None,
+        /// <summary>How far a wound has healed (green).</summary>
+        Healed,
+        /// <summary>The immunity race: immunity (green) over the severity (orange).</summary>
+        Race,
+        /// <summary>How far through its course something that passes is (an ailment): the time it has had against the time left.</summary>
+        Passing,
+        /// <summary>How far towards deadly.</summary>
+        Lethal
+    }
+
+    /// <summary>Where one chip sits on a row's chip lines: its line, its left edge and its width.</summary>
+    public struct ChipSpot
+    {
+        public int line;
+        public float x, w;
+    }
+
+    /// <summary>How a row's chips were laid out: how many show, how many are left for "+N" (and where it goes), and the lines used.</summary>
+    public struct ChipFlow
+    {
+        public int shown, more, lines, moreLine;
+        public float moreX;
     }
 
     /// <summary>
@@ -248,6 +303,162 @@ namespace ColonyCouncil
             if (bleedingHours >= 0f) score = Math.Max(score, HudRank.Bleeding(bleedingHours));
             if (untended > 0) score = Math.Max(score, HudRank.Untended(untended));
             return score;
+        }
+
+        // ---------------- Colours, chips and their lines ----------------
+
+        /// <summary>Tending below this quality is poor (red).</summary>
+        public const float TendPoorBelow = 0.35f;
+
+        /// <summary>Tending from this quality is good (green); between the two it's so-so (yellow).</summary>
+        public const float TendGoodFrom = 0.7f;
+
+        /// <summary>How well something was tended, as a colour: red below 35%, yellow below 70%, green from there.</summary>
+        public static HealthTone TendTone(float quality) =>
+            quality < TendPoorBelow ? HealthTone.Bad : quality < TendGoodFrom ? HealthTone.Fair : HealthTone.Good;
+
+        /// <summary>
+        /// The row's right-hand word: bleeding first, then a condition close to killing, then something to tend, then
+        /// losing an immunity race, then anything else getting worse; otherwise healing.
+        /// </summary>
+        public static HealthStatus StatusOf(bool bleeding, float topScore, int untended, bool topLosing)
+        {
+            if (bleeding) return HealthStatus.Bleeding;
+            if (topScore >= HudRank.LifeFloor) return HealthStatus.Danger;
+            if (untended > 0) return HealthStatus.Untended;
+            if (topLosing) return HealthStatus.Losing;
+            if (topScore >= HudRank.SoonFloor) return HealthStatus.Worsening;
+            return HealthStatus.Healing;
+        }
+
+        /// <summary>The status word's colour: healing green, something to tend yellow, getting worse or losing orange, bleeding or in danger red.</summary>
+        public static HealthTone ToneOf(HealthStatus status)
+        {
+            switch (status)
+            {
+                case HealthStatus.Bleeding:
+                case HealthStatus.Danger:
+                    return HealthTone.Bad;
+                case HealthStatus.Losing:
+                case HealthStatus.Worsening:
+                    return HealthTone.Warn;
+                case HealthStatus.Untended:
+                    return HealthTone.Fair;
+                default:
+                    return HealthTone.Good;
+            }
+        }
+
+        /// <summary>The little health mark by a name, from the game's summary health (0..1): green from 80%, yellow from 55%, orange from 30%, red below.</summary>
+        public static HealthTone HealthToneOf(float summaryHealth) =>
+            summaryHealth >= 0.8f ? HealthTone.Good : summaryHealth >= 0.55f ? HealthTone.Fair : summaryHealth >= 0.3f ? HealthTone.Warn : HealthTone.Bad;
+
+        /// <summary>
+        /// How far along a condition is towards being over (0..1): how much of it has healed when that's known; else the
+        /// time it has had against the time it still needs (<paramref name="ageDays"/>, <paramref name="daysLeft"/>).
+        /// Under 0 when neither can be said (it isn't getting better).
+        /// </summary>
+        public static float Along(float healed, float ageDays, float daysLeft)
+        {
+            if (healed >= 0f) return Math.Min(1f, healed);
+            if (daysLeft < 0f || ageDays < 0f) return -1f;
+            if (ageDays + daysLeft <= 0f) return 0f;
+            return ageDays / (ageDays + daysLeft);
+        }
+
+        /// <summary>
+        /// Groups equal keys (the same condition in the same state: two tended bruises), in the order each first
+        /// appears: returns each key's group, and <paramref name="counts"/> each group's size.
+        /// </summary>
+        public static int[] Group(IList<string> keys, out int[] counts)
+        {
+            int n = keys?.Count ?? 0;
+            var groupOf = new int[n];
+            var first = new Dictionary<string, int>();
+            var sizes = new List<int>();
+            for (int i = 0; i < n; i++)
+            {
+                string k = keys[i] ?? "";
+                if (!first.TryGetValue(k, out int g))
+                {
+                    g = sizes.Count;
+                    first[k] = g;
+                    sizes.Add(0);
+                }
+                groupOf[i] = g;
+                sizes[g]++;
+            }
+            counts = sizes.ToArray();
+            return groupOf;
+        }
+
+        /// <summary>
+        /// Lays chips of <paramref name="widths"/> out left to right on lines <paramref name="lineWidth"/> wide,
+        /// <paramref name="gap"/> apart, wrapping to the next line when one doesn't fit, on at most
+        /// <paramref name="maxLines"/> lines. A chip wider than a whole line gets a line of its own, cut to it. What
+        /// doesn't fit is counted for a "+N" at the end of the last line (<paramref name="moreWidth"/> wide), with chips
+        /// taken off the end until it fits (the last one cut instead when it's alone on its line and a fair part still fits).
+        /// </summary>
+        public static ChipFlow Flow(IList<float> widths, float lineWidth, float gap, int maxLines, float moreWidth, List<ChipSpot> spots)
+        {
+            spots.Clear();
+            var flow = new ChipFlow();
+            int n = widths?.Count ?? 0;
+            if (n == 0) return flow;
+            if (maxLines < 1 || lineWidth <= 0f)
+            {
+                flow.more = n;
+                flow.lines = 1;
+                return flow;
+            }
+            int line = 0;
+            float x = 0f;
+            for (int i = 0; i < n; i++)
+            {
+                float w = Math.Max(0f, Math.Min(widths[i], lineWidth));
+                if (x > 0f && x + w > lineWidth + 0.01f)
+                {
+                    line++;
+                    x = 0f;
+                }
+                if (line >= maxLines) break;
+                spots.Add(new ChipSpot { line = line, x = x, w = w });
+                x += w + gap;
+            }
+            flow.shown = spots.Count;
+            flow.more = n - spots.Count;
+            if (flow.more == 0)
+            {
+                flow.lines = spots[spots.Count - 1].line + 1;
+                return flow;
+            }
+            // Room for "+N" at the end of the last line.
+            int moreLine = spots[spots.Count - 1].line;
+            while (spots.Count > 0)
+            {
+                var last = spots[spots.Count - 1];
+                if (last.line != moreLine) break;
+                float room = lineWidth - moreWidth - gap - last.x;
+                if (last.w <= room + 0.01f) break;
+                if (last.x <= 0f && room >= lineWidth * 0.3f)
+                {
+                    last.w = room;
+                    spots[spots.Count - 1] = last;
+                    break;
+                }
+                spots.RemoveAt(spots.Count - 1);
+            }
+            flow.shown = spots.Count;
+            flow.more = n - spots.Count;
+            flow.moreLine = moreLine;
+            if (spots.Count > 0 && spots[spots.Count - 1].line == moreLine)
+            {
+                var last = spots[spots.Count - 1];
+                flow.moreX = last.x + last.w + gap;
+            }
+            else flow.moreX = 0f;
+            flow.lines = moreLine + 1;
+            return flow;
         }
     }
 }

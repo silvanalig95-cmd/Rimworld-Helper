@@ -82,7 +82,7 @@ Until you move it, the panel sits where the game's alert list does, just above t
           <li>Rimfolk's everyday ailments and anything else that eases by itself: the days left.</li>
           <li>Bleeding: how much a day, and how long until it kills, as the game reckons it.</li>
         </points>
-        <after>Shown as a summary line under each name ("Cut 60% healed · Flu immunity 62% vs 40% · Lice untended"), or, in the panel's options, as one line for each condition. The ranking stays the same either way.</after>
+        <after>Shown as a summary line under each name ("Cut 60% healed · Flu immunity 62% vs 40% · Lice untended"), or, in the panel's options, as one line for each condition. The ranking stays the same either way. With "Icons and bars" (on unless you switch it off) each condition wears the Health tab's own icon, a tiny bar for how far along it is and its tending in red, yellow or green; the summary becomes small chips that wrap onto a second line, each with its own tooltip.</after>
       </li>
       <li>
         <heading>Work and idle</heading>
