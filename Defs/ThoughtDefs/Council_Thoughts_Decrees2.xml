@@ -9,9 +9,9 @@
     <thoughtClass>ColonyCouncil.Thought_Decree</thoughtClass>
     <stages>
       <li><label>slaving in the fields</label><description>I'm bent over in the fields from dawn to dusk. I'm a person, not a plow.</description><baseMoodEffect>-10</baseMoodEffect></li>
-      <li><label>harvest push</label><description>We're all out in the fields all day. My back aches.</description><baseMoodEffect>-5</baseMoodEffect></li>
-      <li><label>good growing days</label><description>We're all out working the fields together. I like it.</description><baseMoodEffect>3</baseMoodEffect></li>
-      <li><label>a great harvest</label><description>We're all in the fields, and the crops look good. This is my kind of work.</description><baseMoodEffect>6</baseMoodEffect></li>
+      <li><label>harvest push</label><description>Out in the fields all day with the rest of them. I can't straighten my back at night.</description><baseMoodEffect>-5</baseMoodEffect></li>
+      <li><label>good growing days</label><description>All of us working the rows together, talking across them. I like it out there.</description><baseMoodEffect>3</baseMoodEffect></li>
+      <li><label>a great harvest</label><description>The rows are full and heavy, and we're all out in them. This is my kind of work.</description><baseMoodEffect>6</baseMoodEffect></li>
     </stages>
   </ThoughtDef>
 
@@ -20,10 +20,10 @@
     <workerClass>ColonyCouncil.ThoughtWorker_Decree</workerClass>
     <thoughtClass>ColonyCouncil.Thought_Decree</thoughtClass>
     <stages>
-      <li><label>hauling stone all day</label><description>I haul stone all day, every day. My hands are torn up.</description><baseMoodEffect>-9</baseMoodEffect></li>
+      <li><label>hauling stone all day</label><description>Nothing but hauling and hammering, every day. My hands are torn up, and my shoulders are worse.</description><baseMoodEffect>-9</baseMoodEffect></li>
       <li><label>building season</label><description>We're all on construction now. There's dust in my food and my bed.</description><baseMoodEffect>-4</baseMoodEffect></li>
       <li><label>raising walls</label><description>I like watching the new walls go up.</description><baseMoodEffect>3</baseMoodEffect></li>
-      <li><label>building something great</label><description>Every day the place gets bigger and better. I love it.</description><baseMoodEffect>6</baseMoodEffect></li>
+      <li><label>building something great</label><description>Every evening I walk round to see what went up that day. The place is growing under our hands.</description><baseMoodEffect>6</baseMoodEffect></li>
     </stages>
   </ThoughtDef>
 
@@ -33,8 +33,8 @@
     <thoughtClass>ColonyCouncil.Thought_Decree</thoughtClass>
     <stages>
       <li><label>forced politeness</label><description>I have to smile and say thank you all day long. I'm about to snap.</description><baseMoodEffect>-8</baseMoodEffect></li>
-      <li><label>best behavior</label><description>Minding my manners all day long. It's tiring.</description><baseMoodEffect>-3</baseMoodEffect></li>
-      <li><label>a civil colony</label><description>We're all minding our manners. It's pleasant.</description><baseMoodEffect>3</baseMoodEffect></li>
+      <li><label>best behavior</label><description>Minding my manners with every trader and prisoner. It's tiring.</description><baseMoodEffect>-3</baseMoodEffect></li>
+      <li><label>a civil colony</label><description>We're all minding our manners, even with the prisoners. It makes the days easier.</description><baseMoodEffect>3</baseMoodEffect></li>
       <li><label>warmth all round</label><description>People say please and thank you around here now. I love it.</description><baseMoodEffect>6</baseMoodEffect></li>
     </stages>
   </ThoughtDef>
@@ -44,10 +44,10 @@
     <workerClass>ColonyCouncil.ThoughtWorker_Decree</workerClass>
     <thoughtClass>ColonyCouncil.Thought_Decree</thoughtClass>
     <stages>
-      <li><label>wasted mourning days</label><description>The work is piling up while we sit around grieving.</description><baseMoodEffect>-5</baseMoodEffect></li>
+      <li><label>wasted mourning days</label><description>We sit around grieving while the work waits. That won't bring anyone back.</description><baseMoodEffect>-5</baseMoodEffect></li>
       <li><label>idle mourning</label><description>I respect the dead, but I'd rather honor them by working.</description><baseMoodEffect>-2</baseMoodEffect></li>
-      <li><label>days of mourning</label><description>We stopped work to remember the dead. I'm glad we did.</description><baseMoodEffect>3</baseMoodEffect></li>
-      <li><label>grieving together</label><description>We all stopped to grieve together. I'm not alone with this.</description><baseMoodEffect>8</baseMoodEffect></li>
+      <li><label>days of mourning</label><description>We set the work down to remember them. It feels right to go slowly for a while.</description><baseMoodEffect>3</baseMoodEffect></li>
+      <li><label>grieving together</label><description>We all stopped to grieve together. When I cry now, someone sits down next to me.</description><baseMoodEffect>8</baseMoodEffect></li>
     </stages>
   </ThoughtDef>
 
@@ -71,7 +71,7 @@
       <li><label>endless scrubbing</label><description>My hands are raw from scrubbing floors that were already clean.</description><baseMoodEffect>-7</baseMoodEffect></li>
       <li><label>clean sweep</label><description>It's mops and buckets all day. I'd rather be doing real work.</description><baseMoodEffect>-3</baseMoodEffect></li>
       <li><label>a clean colony</label><description>The place is clean, and fewer of us are getting sick.</description><baseMoodEffect>3</baseMoodEffect></li>
-      <li><label>spotless</label><description>Every floor is spotless. I can finally relax.</description><baseMoodEffect>5</baseMoodEffect></li>
+      <li><label>spotless</label><description>Every floor is spotless, and the bedding smells of soap. I can finally relax.</description><baseMoodEffect>5</baseMoodEffect></li>
     </stages>
   </ThoughtDef>
 
@@ -96,7 +96,7 @@
     <durationDays>8</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>lost the vote to them</label><description>I should have won that seat. They got the votes instead.</description><baseMoodEffect>-3</baseMoodEffect><baseOpinionOffset>-8</baseOpinionOffset></li></stages>
+    <stages><li><label>lost the vote to them</label><description>That seat should have been mine. I counted the votes twice.</description><baseMoodEffect>-3</baseMoodEffect><baseOpinionOffset>-8</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -113,7 +113,7 @@
       <li><label>ashamed of our ways</label><description>This isn't the colony I wanted to belong to. I hear what people say about us, and they're right.</description><baseMoodEffect>-4</baseMoodEffect></li>
       <li><label>uneasy about our ways</label><description>I don't much like the way this colony is going.</description><baseMoodEffect>-2</baseMoodEffect></li>
       <li><label>like our ways</label><description>This colony does things the way I would.</description><baseMoodEffect>2</baseMoodEffect></li>
-      <li><label>proud of our ways</label><description>People know what this colony stands for. I'm proud to be part of it.</description><baseMoodEffect>4</baseMoodEffect></li>
+      <li><label>proud of our ways</label><description>People know what this colony stands for. When a trader asks where I'm from, I say it straight out.</description><baseMoodEffect>4</baseMoodEffect></li>
     </stages>
   </ThoughtDef>
 

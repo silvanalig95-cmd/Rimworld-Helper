@@ -11,7 +11,7 @@
       <li><label>sent to bed at sundown</label><description>The best hours of the day are after dark, and the council has banned them.</description><baseMoodEffect>-7</baseMoodEffect></li>
       <li><label>quiet hours</label><description>Lamps out and no talking after dark. The evenings are long and dull.</description><baseMoodEffect>-3</baseMoodEffect></li>
       <li><label>peaceful evenings</label><description>No banging, no shouting after dark. I sleep better.</description><baseMoodEffect>2</baseMoodEffect></li>
-      <li><label>blessed quiet</label><description>For once the colony is quiet at night, and I can hear myself think. I sleep through till morning.</description><baseMoodEffect>5</baseMoodEffect></li>
+      <li><label>blessed quiet</label><description>For once the colony is quiet at night. I lie there listening to the wind and sleep through till morning.</description><baseMoodEffect>5</baseMoodEffect></li>
     </stages>
   </ThoughtDef>
 
@@ -34,8 +34,8 @@
     <stages>
       <li><label>ordered to lie down</label><description>The council would put me to bed over a sniffle. There's work to do and I'm being made to watch it pile up.</description><baseMoodEffect>-6</baseMoodEffect></li>
       <li><label>the sick-bay rule</label><description>Too many of us are in bed with something, and the rest are covering for them.</description><baseMoodEffect>-2</baseMoodEffect></li>
-      <li><label>looking after the sick</label><description>The sick rest and the well cover for them. That's how it should be.</description><baseMoodEffect>2</baseMoodEffect></li>
-      <li><label>allowed to get better</label><description>When I'm ill, I'm allowed to stay in bed until I'm well. Nobody looks at me sideways for it.</description><baseMoodEffect>4</baseMoodEffect></li>
+      <li><label>looking after the sick</label><description>The sick rest and the well cover for them. I'd want the same, if it were me in that bed.</description><baseMoodEffect>2</baseMoodEffect></li>
+      <li><label>allowed to get better</label><description>When I'm ill, I'm allowed to stay in bed until I'm well, and not a word said about it.</description><baseMoodEffect>4</baseMoodEffect></li>
     </stages>
   </ThoughtDef>
 
@@ -58,8 +58,8 @@
     <stages>
       <li><label>stuck teaching fools</label><description>Somebody is always at my elbow asking how, and doing it wrong. I can't get my own work done.</description><baseMoodEffect>-6</baseMoodEffect></li>
       <li><label>lessons every day</label><description>Lessons in everything, every day, on top of my own work.</description><baseMoodEffect>-2</baseMoodEffect></li>
-      <li><label>learning from each other</label><description>Everyone is teaching everyone something. I've learned more this week than in the last season.</description><baseMoodEffect>2</baseMoodEffect></li>
-      <li><label>passing on the trades</label><description>I'm teaching what I know and learning what others know. This colony will be better for it.</description><baseMoodEffect>4</baseMoodEffect></li>
+      <li><label>learning from each other</label><description>Somebody's always showing somebody how. I've learned more this week than in the whole last season.</description><baseMoodEffect>2</baseMoodEffect></li>
+      <li><label>passing on the trades</label><description>I'm handing on what I know before it's lost. Someone here will be better at it than me one day.</description><baseMoodEffect>4</baseMoodEffect></li>
     </stages>
   </ThoughtDef>
 
