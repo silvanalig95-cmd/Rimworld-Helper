@@ -72,13 +72,15 @@ namespace ColonyCouncil
         /// A line at a cell the player picked: the facing of the gap it's in (or next to), else away from the colony's
         /// middle; the cells across the way there.
         /// </summary>
-        public DefenseLine AtCell(IntVec3 cell)
+        public DefenseLine AtCell(IntVec3 cell, int chosenFacing = -1)
         {
             var s = DefenseSurvey.For(map);
             if (s?.grid == null || !cell.InBounds(map)) return null;
             var choke = s.chokes.Where(c => c.cell.DistanceTo(cell) <= 10f).OrderBy(c => c.cell.DistanceTo(cell)).FirstOrDefault();
             int facing;
-            if (choke != null) facing = choke.c.facing;
+            // The way the player turned it, when they did; else the gap's way, or away from the colony.
+            if (chosenFacing >= 0) facing = DefenseLineMath.Norm(chosenFacing);
+            else if (choke != null) facing = choke.c.facing;
             else
             {
                 var from = s.bedCenter.IsValid ? s.bedCenter : s.center;

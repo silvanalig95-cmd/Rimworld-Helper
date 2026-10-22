@@ -259,8 +259,9 @@
   <CC_DefLine_Offer_Yes>Make it a defense line</CC_DefLine_Offer_Yes>
   <CC_DefLine_Offer_No>Not now</CC_DefLine_Offer_No>
   <CC_DefLine_PickSpot>Pick the spot</CC_DefLine_PickSpot>
-  <CC_DefLine_PickSpot_Tip>Click the cell where raiders cross: a gap, a bridge, a gate. The line faces the way that gap faces, or else away from the colony.</CC_DefLine_PickSpot_Tip>
-  <CC_DefLine_PickSpot_Msg>Click where raiders cross to start a defense line there. Right-click to stop.</CC_DefLine_PickSpot_Msg>
+  <CC_DefLine_PickSpot_Tip>Click the cell where raiders cross: a gap, a bridge, a gate. The line faces the way that gap faces, or else away from the colony; turn it with the rotate keys or the buttons above the menu.</CC_DefLine_PickSpot_Tip>
+  <CC_DefLine_PickSpot_Msg>Click where raiders cross to start a defense line there; the rotate keys turn which way it faces. Right-click to stop.</CC_DefLine_PickSpot_Msg>
+  <CC_DefLine_PickSpot_Turn>{0} / {1} to turn it</CC_DefLine_PickSpot_Turn>
   <CC_DefLine_PickSpot_NotHere>Nobody can walk here.</CC_DefLine_PickSpot_NotHere>
   <CC_DefLine_PickSpot_Taken>There's a defense line here already.</CC_DefLine_PickSpot_Taken>
 

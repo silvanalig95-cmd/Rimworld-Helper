@@ -31,6 +31,16 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.10.4</version>
+        <date>28 October 2026, later</date>
+        <title>Turn the line</title>
+        <points>
+          <li>Picking a spot for a new defense line by hand can now turn the line: the rotate keys (or the game's rotate buttons above the menu) turn which way it faces from the way the helper worked out, and the cursor says which way it faces and how to turn it.</li>
+          <li>Placing a defense plan by hand ("Place it myself") shows the same rotate buttons beside its keys.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.10.3</version>
         <date>28 October 2026</date>
         <title>Wishes in their own words</title>

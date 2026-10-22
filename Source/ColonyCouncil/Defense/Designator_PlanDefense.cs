@@ -454,6 +454,8 @@ namespace ColonyCouncil
             HandleKeys();
         }
 
+        public override void DoExtraGuiControls(float leftX, float bottomY) => RotateControls.Draw(leftX, bottomY, Rotate);
+
         public void HandleKeys()
         {
             if (Event.current == null || Event.current.type != EventType.KeyDown) return;

@@ -7,12 +7,15 @@ namespace ColonyCouncil
 {
     /// <summary>
     /// "Pick a spot on the map" for a new defense line: click the cell where raiders cross. The line faces the way the
-    /// gap it's in faces (a narrow place the survey found close by), else away from the colony's middle; the cells
-    /// across the way there are its span. Then the Defenses page opens on it.
+    /// gap it's in faces (a narrow place the survey found close by), else away from the colony's middle; the rotate keys
+    /// or buttons turn it from there. The cells across the way it faces are its span. Then the Defenses page opens on it.
     /// </summary>
     public class Designator_PickLineSpot : Designator
     {
         private static readonly Color SpanColor = new Color(1f, 0.85f, 0.35f);
+
+        /// <summary>Quarter turns the player has given the line from the facing worked out for the spot.</summary>
+        private int turn;
 
         public Designator_PickLineSpot()
         {
@@ -39,6 +42,25 @@ namespace ColonyCouncil
             DefenseOverlay.planning = false;
         }
 
+        /// <summary>Which way the line at this cell faces: the gap's way (or away from the colony), turned as the player turned it.</summary>
+        private int FacingAt(DefenseSurvey s, IntVec3 c)
+        {
+            var choke = s.chokes.Where(x => x.cell.DistanceTo(c) <= 10f).OrderBy(x => x.cell.DistanceTo(c)).FirstOrDefault();
+            var from = s.bedCenter.IsValid ? s.bedCenter : s.center;
+            int facing = choke != null ? choke.c.facing : DefenseLineMath.FacingOf(c.x - from.x, c.z - from.z);
+            return DefenseLineMath.Norm(facing + turn);
+        }
+
+        public override void SelectedProcessInput(Event ev)
+        {
+            base.SelectedProcessInput(ev);
+            int dir = RotateControls.FromKeys();
+            if (dir != 0) turn = DefenseLineMath.Norm(turn + dir);
+        }
+
+        public override void DoExtraGuiControls(float leftX, float bottomY) =>
+            RotateControls.Draw(leftX, bottomY, dir => turn = DefenseLineMath.Norm(turn + dir));
+
         public override AcceptanceReport CanDesignateCell(IntVec3 c)
         {
             if (!c.InBounds(Map) || c.Fogged(Map)) return false;
@@ -53,7 +75,8 @@ namespace ColonyCouncil
         public override void DesignateSingleCell(IntVec3 c)
         {
             var comp = DefenseLines.Of(Map);
-            made = comp?.AtCell(c);
+            var survey = DefenseSurvey.Kept(Map);
+            made = comp?.AtCell(c, survey?.grid != null ? FacingAt(survey, c) : -1);
             if (made == null)
             {
                 Messages.Message("CC_Def_NoSurvey".Translate(), MessageTypeDefOf.RejectInput, false);
@@ -79,9 +102,7 @@ namespace ColonyCouncil
             var c = UI.MouseCell();
             var s = DefenseSurvey.Kept(map);
             if (map == null || s?.grid == null || !c.InBounds(map)) return;
-            var choke = s.chokes.Where(x => x.cell.DistanceTo(c) <= 10f).OrderBy(x => x.cell.DistanceTo(c)).FirstOrDefault();
-            var from = s.bedCenter.IsValid ? s.bedCenter : s.center;
-            int facing = choke != null ? choke.c.facing : DefenseLineMath.FacingOf(c.x - from.x, c.z - from.z);
+            int facing = FacingAt(s, c);
             var span = DefenseLineMath.SpanAcross(s.grid, c.x, c.z, facing, DefenseMath.MaxSpanSide);
             GenDraw.DrawFieldEdges(span.Select(i => new IntVec3(i % s.grid.w, 0, i / s.grid.w)).ToList(), SpanColor);
             var tip = c + IntVec3.North.RotatedBy(new Rot4(facing)) * 5;
@@ -98,10 +119,9 @@ namespace ColonyCouncil
                 base.DrawMouseAttachments();
                 return;
             }
-            var choke = s.chokes.Where(x => x.cell.DistanceTo(c) <= 10f).OrderBy(x => x.cell.DistanceTo(c)).FirstOrDefault();
-            var from = s.bedCenter.IsValid ? s.bedCenter : s.center;
-            int facing = choke != null ? choke.c.facing : DefenseLineMath.FacingOf(c.x - from.x, c.z - from.z);
-            GenUI.DrawMouseAttachment(icon, "CC_Def_Faces".Translate(DefenseSurvey.FacingWord(facing)));
+            int facing = FacingAt(s, c);
+            GenUI.DrawMouseAttachment(icon, "CC_Def_Faces".Translate(DefenseSurvey.FacingWord(facing)) + "\n" +
+                "CC_DefLine_PickSpot_Turn".Translate(KeyBindingDefOf.Designator_RotateLeft.MainKeyLabel, KeyBindingDefOf.Designator_RotateRight.MainKeyLabel));
         }
     }
 }

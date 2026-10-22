@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Turn the line
+
+*28 October 2026, later, version 0.10.4*
+
+- Picking a spot for a new defense line by hand can now turn the line: the rotate keys (or the game's rotate buttons above the menu) turn which way it faces from the way the helper worked out, and the cursor says which way it faces and how to turn it.
+- Placing a defense plan by hand ("Place it myself") shows the same rotate buttons beside its keys.
+
 ## Wishes in their own words
 
 *28 October 2026, version 0.10.3*
