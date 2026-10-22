@@ -15,8 +15,8 @@
       <plain>
         <li>{A_nameDef} and {B_nameDef} argued about who lit the first fire on founding day.</li>
         <li>{A_nameDef} told {B_nameDef} what the {PLACE} looked like when the colony first came.</li>
-        <li>{A_nameDef} and {B_nameDef} worked out how many years it has been since the founding, and got different answers.</li>
-        <li>[years] {A_nameDef} told {B_nameDef} the story of the first night, the way it's told every founding day.</li>
+        <li>{A_nameDef} and {B_nameDef} counted the years since the founding on their fingers.</li>
+        <li>[years] {A_nameDef} told {B_nameDef} the story of the first night, word for word as it's told every year.</li>
         <li>{A_nameDef} asked {B_nameDef} what the colony's first winter was like.</li>
       </plain>
     </lines>
@@ -27,9 +27,9 @@
     <lines>
       <plain>
         <li>{A_nameDef} and {B_nameDef} talked about the first harvest, and which field did best.</li>
-        <li>{A_nameDef} told {B_nameDef} how close the first crop came to failing.</li>
-        <li>{A_nameDef} and {B_nameDef} traded opinions on this year's crops, and agreed on very little.</li>
-        <li>{A_nameDef} showed {B_nameDef} the sheaf hanging over the door for harvest day.</li>
+        <li>{A_nameDef} told {B_nameDef} about weeding the first field by hand.</li>
+        <li>{A_nameDef} and {B_nameDef} compared this year's crops with last year's.</li>
+        <li>{A_nameDef} and {B_nameDef} talked about what to plant next year.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -38,10 +38,10 @@
     <defName>Council_Cal_Talk_FirstSnow</defName>
     <lines>
       <plain>
-        <li>{A_nameDef} and {B_nameDef} talked about the first snow and how long the winter will be.</li>
+        <li>{A_nameDef} and {B_nameDef} guessed how long the winter will last.</li>
         <li>{A_nameDef} told {B_nameDef} about the snows back home.</li>
         <li>{A_nameDef} and {B_nameDef} argued about who threw the first snowball.</li>
-        <li>{A_nameDef} brushed the snow off {B_nameDef}'s shoulders and said it was a good day for games.</li>
+        <li>{A_nameDef} brushed the snow off {B_nameDef}'s shoulders.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -51,11 +51,11 @@
     <lines>
       <plain>
         <li>[clean] {A_nameDef} showed {B_nameDef} where the line held against {ENEMY}.</li>
-        <li>[clean] {A_nameDef} and {B_nameDef} went over the battle with {ENEMY} again, and it went better in the telling.</li>
-        <li>[fallen] {A_nameDef} and {B_nameDef} talked quietly about {DEAD}, who fell fighting {ENEMY}.</li>
+        <li>[clean] {A_nameDef} and {B_nameDef} went over the battle with {ENEMY} again, each remembering it differently.</li>
+        <li>[fallen] {A_nameDef} and {B_nameDef} talked about {DEAD}, who fell fighting {ENEMY}.</li>
         <li>[fallen] {A_nameDef} told {B_nameDef} what {DEAD} did in the battle with {ENEMY}.</li>
         <li>[nemesis] {A_nameDef} told {B_nameDef} how {ENEMY} was finally brought down.</li>
-        <li>{A_nameDef} and {B_nameDef} talked about the fight with {ENEMY}, and how near a thing it was.</li>
+        <li>{A_nameDef} and {B_nameDef} talked about the fight with {ENEMY}, and how close it came.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -66,9 +66,9 @@
       <plain>
         <li>{A_nameDef} told {B_nameDef} a story about {DEAD} that {B_nameDef} had never heard.</li>
         <li>{A_nameDef} and {B_nameDef} remembered {DEAD} together.</li>
-        <li>{A_nameDef} and {B_nameDef} talked about {DEAD}'s laugh, and both went quiet for a while.</li>
-        <li>{A_nameDef} asked {B_nameDef} what {B_nameDef} remembered most about {DEAD}.</li>
-        <li>{A_nameDef} showed {B_nameDef} something {DEAD} had made.</li>
+        <li>{A_nameDef} and {B_nameDef} tried to remember {DEAD}'s laugh.</li>
+        <li>{A_nameDef} asked {B_nameDef} what {B_pronoun} remembered most about {DEAD}.</li>
+        <li>{A_nameDef} showed {B_nameDef} a keepsake of {DEAD}'s.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -79,7 +79,7 @@
       <plain>
         <li>[couple] {A_nameDef} and {B_nameDef} talked about their wedding day, and laughed about the parts that went wrong.</li>
         <li>[couple] {A_nameDef} told {B_nameDef} that {A_pronoun} would marry {B_objective} all over again.</li>
-        <li>[couple] {A_nameDef} and {B_nameDef} slipped away from the others to sit together for a while.</li>
+        <li>[couple] {A_nameDef} and {B_nameDef} slipped away from the others to sit together.</li>
         <li>[!couple] {A_nameDef} told {B_nameDef} about {A_possessive} wedding day.</li>
         <li>[!couple] {B_nameDef} wished {A_nameDef} another good year of marriage.</li>
       </plain>
@@ -114,7 +114,7 @@
     <defName>Council_Cal_Talk_Feast</defName>
     <lines>
       <plain>
-        <li>{A_nameDef} and {B_nameDef} talked about the feast for {NAME} and what they'd eaten.</li>
+        <li>{A_nameDef} and {B_nameDef} talked about the best feast either of them could remember, and whether {NAME} would beat it.</li>
         <li>{A_nameDef} told {B_nameDef} that {NAME} was the best day of the season.</li>
         <li>{A_nameDef} and {B_nameDef} argued about who ate the most on {NAME}.</li>
         <li>{A_nameDef} saved {B_nameDef} a seat at the table for {NAME}.</li>
@@ -128,8 +128,8 @@
       <plain>
         <li>{A_nameDef} and {B_nameDef} talked about the colony's dead on {NAME}.</li>
         <li>{A_nameDef} told {B_nameDef} about someone {A_pronoun} had lost.</li>
-        <li>{A_nameDef} and {B_nameDef} stood together at the graves for a while.</li>
-        <li>{A_nameDef} asked {B_nameDef} who {B_nameDef} thinks of on {NAME}.</li>
+        <li>{A_nameDef} and {B_nameDef} stood together at the graves.</li>
+        <li>{A_nameDef} asked {B_nameDef} who {B_pronoun} thinks of on {NAME}.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -168,7 +168,7 @@
         <li>[way:feast] {A_nameDef} and {B_nameDef} talked about what might be on the table tomorrow for {NAME}.</li>
         <li>[way:games] {A_nameDef} told {B_nameDef} about {A_possessive} plans to win the games tomorrow.</li>
         <li>[way:rest] {A_nameDef} and {B_nameDef} made plans to do nothing at all tomorrow.</li>
-        <li>[way:remembrance] {A_nameDef} told {B_nameDef} that tomorrow is {NAME}, and went quiet.</li>
+        <li>[way:remembrance] {A_nameDef} reminded {B_nameDef} to keep an hour free tomorrow for {NAME}.</li>
         <li>[kind:death,first] {A_nameDef} told {B_nameDef} that tomorrow it will be a year since {DEAD} died.</li>
         <li>[kind:death,years] {A_nameDef} told {B_nameDef} that tomorrow it will be {YEARS} years since {DEAD} died.</li>
         <li>[tradition] {A_nameDef} and {B_nameDef} talked about how the colony keeps {NAME} every year.</li>
