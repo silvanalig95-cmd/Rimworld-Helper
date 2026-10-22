@@ -198,7 +198,7 @@
     <dilemma>Council_DlmL_ElderRest</dilemma>
     <texts>
       <li>[lowtech] {A_nameDef} has carried water, cut wood and dug graves for this colony for longer than anyone. Today {A_nameDef} came to the council and set {A_possessive} spade against the wall. "Someone younger," {A_nameDef} said. {B_nameDef} is the someone younger the council has in mind.</li>
-      <li>[trait:Industrious|trait:HardWorker] {A_nameDef} has worked every day of {A_possessive} life and never complained. Yesterday {A_nameDef} sat down in the middle of a job and didn't get up again until supper. Today {A_pronoun} asked the council, haltingly, if {A_pronoun} might stop.</li>
+      <li>[trait:Industrious|trait:HardWorker] {A_nameDef} has worked every day of {A_possessive} life and never complained. Yesterday {A_nameDef} sat down in the middle of a job and didn't get up again until supper. {A_nameDef} still hasn't asked to stop. The others are asking for {A_objective}.</li>
     </texts>
     <outcomes>
       <li>
@@ -216,7 +216,7 @@
     <texts>
       <li>[night] {A_nameDef} should have been asleep hours ago. Instead {A_nameDef} came to the council in {A_possessive} nightclothes and asked why the stars don't fall down, and whether anyone has ever been up there to check.</li>
       <li>[grieving] {A_nameDef} wants to know why grown-ups cry when someone dies but won't talk about the person afterward. {A_nameDef} asked it plainly, at supper, and the table went quiet.</li>
-      <li>[lowtech] {A_nameDef} asked where the colony's tools come from: not who made them, but who made the first one, and how they made it without a tool. None of the grown-ups has a good answer, so {A_nameDef} has asked the council.</li>
+      <li>[lowtech] {A_nameDef} asked where the colony's tools come from: not who made them, but who made the first one, and how they made it without a tool. None of the grown-ups has a good answer.</li>
     </texts>
     <outcomes>
       <li>
@@ -242,7 +242,7 @@
     <dilemma>Council_DlmL_SameMeal</dilemma>
     <texts>
       <li>[lowtech] It has been the same pot of boiled grain and meat every day for longer than anyone can remember. {A_nameDef} turned {A_possessive} bowl upside down on the table at supper and asked the council, very politely, for anything else.</li>
-      <li>[!lowtech] {A_nameDef} has taken to carving a mark on the table leg for every day of the same meal. The table leg is running out of room. {A_nameDef} has asked the council for a change before it has to start on the second leg.</li>
+      <li>[!lowtech] {A_nameDef} has taken to carving a mark on the table leg for every day of the same meal. The table leg is running out of room. {A_nameDef} would like a change before it has to start on the second leg.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>
 

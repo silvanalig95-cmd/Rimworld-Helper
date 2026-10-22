@@ -11,8 +11,8 @@
     <defName>Council_Var_Dlm_Soc_SwornRivals</defName>
     <dilemma>Council_Dilemma_Soc_SwornRivals</dilemma>
     <texts>
-      <li>[winter] Snowed in for a week, the colony has had nowhere to go but between {A_nameDef} and {B_nameDef}, whose feud now runs through every room. Yesterday it was the soup, today the shovel by the door.\n\nBoth of them came to the council and want it ended, each on their own terms.</li>
-      <li>[lowtech] {A_nameDef} and {B_nameDef} have been feuding so long the colony has songs about it, sung only when neither is in the room. Now they've come to the council together and want it finished, one way or another.</li>
+      <li>[winter] Snowed in for a week, the colony has had nowhere to go but between {A_nameDef} and {B_nameDef}, whose feud now runs through every room. Yesterday it was the soup, today the shovel by the door.\n\nEach has been to the council separately, wanting it ended on their own terms.</li>
+      <li>[lowtech] {A_nameDef} and {B_nameDef} have been feuding so long the colony has songs about it, sung only when neither is in the room. The newest verse has the council in it.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>
 
@@ -30,7 +30,7 @@
     <dilemma>Council_Dilemma_Soc_CoverUp</dilemma>
     <texts>
       <li>[winter] The colony lost a night's heat last week when the stove went out, and {B_nameDef} said the flue had blocked. It came out today that {A_nameDef} fell asleep on watch over it, and {B_nameDef} covered for {A_objective}.\n\n{A_nameDef} is ashamed. {B_nameDef} says a friend is a friend. The colony wants to know whom the council blames.</li>
-      <li>[lowtech] When the mule got loose and trampled the herb beds, {B_nameDef} swore a fox had spooked it. It was {A_nameDef} who left the gate open, and {B_nameDef} knew.\n\n{A_nameDef} has owned up. {B_nameDef} hasn't, and the council has to decide what matters more, the gate or the story.</li>
+      <li>[lowtech] When the mule got loose and trampled the herb beds, {B_nameDef} swore a fox had spooked it. It was {A_nameDef} who left the gate open, and {B_nameDef} knew.\n\n{A_nameDef} has owned up. {B_nameDef} is still describing the fox, in some detail.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>
 
@@ -65,7 +65,7 @@
     <dilemma>Council_Dilemma_Soc_LeftBehind</dilemma>
     <texts>
       <li>[winter] {A_nameDef} and {B_nameDef} used to spend the winter evenings together. This winter {A_nameDef} sits with a different crowd near the stove, and {B_nameDef} sits by the window with a cold cup.\n\n{B_nameDef} has asked the council for help, and hates having had to.</li>
-      <li>[b:trait:Kind] {B_nameDef} has kept {A_nameDef}'s seat at supper empty for a week, just in case. {A_nameDef} has been eating with new friends. {B_nameDef} came to the council at last, red-faced, to ask if anything could be done.</li>
+      <li>[b:trait:Kind] {B_nameDef} has kept {A_nameDef}'s seat at supper empty for a week, just in case. {A_nameDef} has been eating with new friends, and {B_nameDef} still sets out a cup at the empty place.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>
 
@@ -82,8 +82,8 @@
     <defName>Council_Var_Dlm_Soc_WhoseWork</defName>
     <dilemma>Council_Dilemma_Soc_WhoseWork</dilemma>
     <texts>
-      <li>[lowtech] The new granary is the first building in the colony the rats can't get into. {A_nameDef} says it was {A_possessive} idea and {A_possessive} back that built it. {B_nameDef} says the same.\n\nThey both want the council to name the builder.</li>
-      <li>[!lowtech] The new generator housing hasn't leaked once all season, and {A_nameDef} and {B_nameDef} both say it was their design. Each has drawings to prove it, and the drawings look suspiciously similar.\n\nThe council has been asked to settle it.</li>
+      <li>[lowtech] The new granary is the first building in the colony the rats can't get into. {A_nameDef} says it was {A_possessive} idea and {A_possessive} back that built it. {B_nameDef} says the same, and has the splinters to show for it.</li>
+      <li>[!lowtech] The new generator housing hasn't leaked once all season, and {A_nameDef} and {B_nameDef} both say it was their design. Each has drawings to prove it, and the drawings look suspiciously similar.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>
 

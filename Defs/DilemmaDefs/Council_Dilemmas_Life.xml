@@ -1232,7 +1232,7 @@
       <thoughts><li>Council_Pressure_SameMeal</li></thoughts>
     </roleA>
     <texts>
-      <li>{A_nameDef} pushed the bowl away at supper and said, to the table at large, that if {A_pronoun} has to eat the same meal one more time {A_pronoun} will walk to the nearest town for something else. Nobody laughed. Most of the table had been thinking it.\n\n{A_nameDef} has asked the council for something different on the table, even once a week.</li>
+      <li>{A_nameDef} pushed the bowl away at supper and said, to the table at large, that if {A_pronoun} has to eat the same meal one more time {A_pronoun} will walk to the nearest town for something else. Nobody laughed. Most of the table had been thinking it.\n\nSomething different on the table, {A_nameDef} says. Even once a week would do.</li>
       <li>[winter] The winter stores are what they are, and the colony has eaten the same thing every day since the first snow. {A_nameDef} has started counting the days out loud at meals, and has asked the council for anything, anything at all, that tastes different.</li>
       <li>[trait:Gourmand] {A_nameDef} has written the council a list of eleven meals the colony could be eating instead, with the ingredients for each and where to find them. It is a long list. {A_nameDef} would settle for one.</li>
     </texts>

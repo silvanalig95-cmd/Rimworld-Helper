@@ -24,7 +24,7 @@
     </roleB>
     <texts>
       <li>Somebody carved a line down the middle of the dining table this week. {A_nameDef} eats on one side of it and {B_nameDef} on the other, and the rest of the colony has had to pick a side to sit on. Neither of them can say anymore how the feud started.\n\n{A_nameDef} and {B_nameDef} came to the council together, which has never happened before. Each wants it ended for good, and each has a clear idea of who should lose.</li>
-      <li>Work crews are picked by side now. Jokes are told at one or the other's expense, and the dining room goes quiet whenever {A_nameDef} and {B_nameDef} are both in it.\n\nBoth have demanded that the council settle it. {A_nameDef} wants {B_nameDef} put in {B_possessive} place, and {B_nameDef} wants the same for {A_nameDef}.</li>
+      <li>Work crews are picked by side now. Jokes are told at one or the other's expense, and the dining room goes quiet whenever {A_nameDef} and {B_nameDef} are both in it. Yesterday someone asked, only half joking, which side the council was on.</li>
     </texts>
     <defaultOption>3</defaultOption>
     <options>
@@ -112,7 +112,7 @@
     </roleB>
     <texts>
       <li>{A_nameDef} and {B_nameDef} have become the kind of friends who finish each other's sentences and steal each other's food. For weeks they've been swapping shifts behind the council's back to work together, and the roster no longer makes sense to anyone else.\n\nNow they're asking openly for the same shifts and the same crews, for good. The people stuck covering the gaps want to know why a friendship should earn anyone special treatment.</li>
-      <li>Every time the council posts a roster, {A_nameDef} and {B_nameDef} rearrange it so they end up side by side. The work still gets done, more or less, so no one has complained out loud yet.\n\n{A_nameDef} and {B_nameDef} would like it made official: same hours, same jobs, no more sneaking. A few of the others would like it stopped.</li>
+      <li>"Same hours, same jobs, and we stop sneaking about," {A_nameDef} told the council, with {B_nameDef} nodding along. The two of them have been rearranging every roster the council posts so they end up side by side, and the work still gets done, more or less.\n\nA few of the others would like it stopped.</li>
     </texts>
     <defaultOption>2</defaultOption>
     <options>
@@ -362,7 +362,7 @@
     </roleB>
     <texts>
       <li>{B_nameDef} stood up at dinner and announced that {A_nameDef} has been stealing silver from the stores. {B_nameDef} has no proof, only a feeling, a rough count of the silver and a long history of hating {A_nameDef}.\n\n{B_nameDef} wants {A_nameDef} punished. {A_nameDef} wants {B_nameDef} to take it back, in front of the same people who heard it.</li>
-      <li>A knife, some silver and a good pair of boots have gone missing this month. {B_nameDef} says {A_nameDef} took them, and says it loudly and often, though no one else has seen anything.\n\n{B_nameDef} wants the council to act. {A_nameDef} points out that {B_nameDef} would blame {A_objective} for the weather if it rained.</li>
+      <li>Gone missing this month: a knife, some silver, a good pair of boots. {B_nameDef} says {A_nameDef} took them, and says it loudly and often, though no one else has seen a thing.\n\n{A_nameDef} says {B_nameDef} would blame {A_objective} for the rain.</li>
     </texts>
     <defaultOption>2</defaultOption>
     <options>
@@ -462,7 +462,7 @@
     </roleB>
     <texts>
       <li>{A_nameDef} and {B_nameDef} used to be inseparable. Lately {A_nameDef} has fallen in with a different crowd, and {B_nameDef} eats alone, goes to bed early and says nothing's wrong when anyone asks.\n\n{B_nameDef} finally came to the council, embarrassed, to ask for help. {A_nameDef} doesn't see a problem, since people are allowed more than one friend.</li>
-      <li>{B_nameDef} has started turning up wherever {A_nameDef} is, too casually, and leaving too quickly when {A_nameDef}'s new friends arrive. The others have noticed, and it's hard to watch.\n\n{B_nameDef} wants the old friendship back and doesn't know how to ask. {A_nameDef} wants to choose {A_possessive} own company without a council meeting about it.</li>
+      <li>{B_nameDef} has started turning up wherever {A_nameDef} is, too casually, and leaving too quickly when {A_nameDef}'s new friends arrive. It's hard to watch.\n\n{B_nameDef} would never have brought it to the council. One of the others did, and {A_nameDef} is not pleased to find {A_possessive} friendships on the council's table.</li>
     </texts>
     <defaultOption>3</defaultOption>
     <options>
@@ -559,7 +559,7 @@
     </roleB>
     <texts>
       <li>{B_nameDef} and {B_possessive} friends have claimed the best table and the warm corner, and they go quiet whenever {A_nameDef} walks in. None of them has been rude, exactly, which makes it hard to complain about.\n\n{A_nameDef} is complaining anyway, and wants the council to break the circle open. {B_nameDef} says who {B_pronoun} sits with is {B_possessive} own business.</li>
-      <li>There's a group in this colony that eats together, works together and laughs at jokes no one else understands. {A_nameDef} isn't in it, and {B_nameDef}, who can't stand {A_nameDef}, is most of the reason why.\n\n{A_nameDef} has asked the council to do something about it. {B_nameDef} wants to know since when friendship needs the council's permission.</li>
+      <li>There's a group in this colony that eats together, works together and laughs at jokes no one else understands. {A_nameDef} isn't in it, and {B_nameDef}, who can't stand {A_nameDef}, is most of the reason why.\n\n"Since when does friendship need the council's permission?" was {B_nameDef}'s answer when {A_nameDef} brought it up.</li>
     </texts>
     <defaultOption>3</defaultOption>
     <options>
@@ -651,8 +651,8 @@
       <minTie>30</minTie>
     </roleB>
     <texts>
-      <li>The colony finally has a storeroom the rain doesn't get into, and the harvest keeps better for it. {A_nameDef} says it was {A_possessive} idea and {A_possessive} labor. {B_nameDef} says the same, nearly word for word.\n\nEach wants the council to say publicly whose work it was, and each is sure the other is lying.</li>
-      <li>The new defenses on the east side are the best work the colony has done all season. {A_nameDef} and {B_nameDef} both claim the design, and both have the calluses to prove they did the labor.\n\nThey've asked the council to settle it. Both have hinted that they'll take a wrong answer badly.</li>
+      <li>The colony finally has a storeroom the rain doesn't get into, and the harvest keeps better for it. {A_nameDef} says it was {A_possessive} idea and {A_possessive} labor. {B_nameDef} tells it the other way round.\n\nEach wants the council to say publicly whose work it was, and each is sure the other is lying.</li>
+      <li>The new defenses on the east side are the best work the colony has done all season. {A_nameDef} and {B_nameDef} both claim the design, and both have the calluses to prove they did the labor. Both have hinted that they'll take a wrong answer badly.</li>
     </texts>
     <defaultOption>3</defaultOption>
     <options>
@@ -737,7 +737,7 @@
     </roleB>
     <texts>
       <li>{A_nameDef} broke one of the council's standing orders, openly, in front of witnesses. The punishment ought to be simple. But {B_nameDef} came to the council last night and begged for mercy on {A_possessive} behalf, and {B_nameDef} doesn't beg.\n\n{B_nameDef} wants {A_nameDef} spared. Several others want to know whether the rules bend for people with good friends.</li>
-      <li>{A_nameDef} broke the rules this week and hasn't tried to deny it. Then {B_nameDef} turned up at the council's door at dawn, asking to speak for {A_objective}.\n\n{B_nameDef} wants mercy. Most of the colony wants the rules to mean something.</li>
+      <li>{A_nameDef} broke the rules this week and hasn't tried to deny it. Then {B_nameDef} turned up at the council's door at dawn, asking to speak for {A_objective}, with the look of someone who had been rehearsing all night.</li>
     </texts>
     <defaultOption>1</defaultOption>
     <options>
@@ -823,7 +823,7 @@
     </roleB>
     <texts>
       <li>{B_nameDef} has been watching the stores, and says the quartermaster's friends do better than everyone else: the fine meals, the warm coats, first pick of every trade. The quartermaster is {A_nameDef}, whom {B_nameDef} has despised for a long time.\n\n{B_nameDef} wants {A_nameDef} called to account. {A_nameDef} says {B_nameDef} would find favoritism in a bowl of plain rice.</li>
-      <li>{B_nameDef} brought the council a list of every extra ration, new coat and good bed that has gone to {A_nameDef}'s friends since {A_nameDef} took the quartermaster's keys. Some of it is true. Some of it looks like the work of a rival with time on {B_possessive} hands.\n\n{B_nameDef} wants the keys taken away. {A_nameDef} wants the list thrown on the fire.</li>
+      <li>{B_nameDef} brought the council a list: every extra ration, new coat and good bed that has gone to {A_nameDef}'s friends since {A_nameDef} took the quartermaster's keys. Some of it is true. Some of it looks like the work of a rival with time on {B_possessive} hands.\n\n{A_nameDef} has offered to light the fire with it.</li>
     </texts>
     <defaultOption>1</defaultOption>
     <options>
