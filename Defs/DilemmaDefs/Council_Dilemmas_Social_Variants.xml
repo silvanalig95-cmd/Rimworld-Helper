@@ -11,7 +11,7 @@
     <defName>Council_Var_Dlm_Soc_SwornRivals</defName>
     <dilemma>Council_Dilemma_Soc_SwornRivals</dilemma>
     <texts>
-      <li>[winter] Snowed in for a week, the colony has had nowhere to go but between {A_nameDef} and {B_nameDef}, whose feud now runs through every room. Yesterday it was the woodpile, today the soup.\n\nBoth of them came to the council and want it ended, each on their own terms.</li>
+      <li>[winter] Snowed in for a week, the colony has had nowhere to go but between {A_nameDef} and {B_nameDef}, whose feud now runs through every room. Yesterday it was the soup, today the shovel by the door.\n\nBoth of them came to the council and want it ended, each on their own terms.</li>
       <li>[lowtech] {A_nameDef} and {B_nameDef} have been feuding so long the colony has songs about it, sung only when neither is in the room. Now they've come to the council together and want it finished, one way or another.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>
@@ -20,7 +20,7 @@
     <defName>Council_Var_Dlm_Soc_Inseparable</defName>
     <dilemma>Council_Dilemma_Soc_Inseparable</dilemma>
     <texts>
-      <li>[summer] {A_nameDef} and {B_nameDef} spent the whole of the harvest working the same rows, laughing at things nobody else heard. Now they want it made permanent: same shifts, same crews. The ones covering the gaps they left want a word too.</li>
+      <li>[summer] {A_nameDef} and {B_nameDef} spent the whole of the harvest working the same rows, laughing at things the rest of the crew missed. Now they want it made permanent: same shifts, same crews. The ones covering the gaps they left want a word too.</li>
       <li>[colony:Hardworking] In a colony that takes its roster seriously, {A_nameDef} and {B_nameDef} have been rearranging it behind the council's back to work together. They're asking the council to let them do it openly, and some of the others would like the council to say no.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>
@@ -45,7 +45,7 @@
       <li>
         <option>0</option>
         <lines>
-          <li>[past:soldier] They told it the old way: start to finish, a name for each cup, and a silence at the end. Some of the colony cried, and {A_nameDef} pretended not to.</li>
+          <li>[past:soldier] They told it the old way: start to finish, a name for each cup, and a silence at the end. Some of them cried. {A_nameDef} stared into {A_possessive} cup until it passed.</li>
         </lines>
       </li>
     </outcomes>
@@ -73,7 +73,7 @@
     <defName>Council_Var_Dlm_Soc_ClosedCircle</defName>
     <dilemma>Council_Dilemma_Soc_ClosedCircle</dilemma>
     <texts>
-      <li>[winter] {B_nameDef} and {B_possessive} friends have claimed the benches nearest the stove for the winter, and there's never room when {A_nameDef} comes in from the cold. {A_nameDef} has asked the council to do something about it.</li>
+      <li>[winter] {B_nameDef} and {B_possessive} friends have claimed the benches nearest the stove for the winter, and there's never room when {A_nameDef} comes in from the cold. {A_nameDef} has been eating by the door with {A_possessive} coat still on.</li>
       <li>[newcomer] {A_nameDef} hasn't been here long, and has found out that the colony has a circle, and that {B_nameDef} keeps its door shut. {A_nameDef} has asked the council whether that's how things are done here.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>

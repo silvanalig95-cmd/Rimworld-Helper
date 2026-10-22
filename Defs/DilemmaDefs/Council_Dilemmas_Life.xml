@@ -1349,7 +1349,7 @@
       </li>
       <li>
         <label>Someone has to do it</label>
-        <outcome>The council told {A_nameDef} that someone has to do the work, and {A_nameDef} does it best. {A_nameDef} went back to the same corner and the same wall.</outcome>
+        <outcome>{A_nameDef} went back to the same corner and the same wall, with the council's thanks for doing the job better than anyone else could.</outcome>
         <ways><toil>2</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmL_SomeoneHasTo</thought></li>
@@ -1406,7 +1406,7 @@
       </li>
       <li>
         <label>Everyone is crowded</label>
-        <outcome>The council told {A_nameDef} that everyone is crowded and {A_nameDef} will have to put up with it like everyone else. {A_nameDef} went back to eating outside.</outcome>
+        <outcome>{A_nameDef} was told that everyone is crowded and {A_pronoun} will have to put up with it like the rest. {A_nameDef} went back to eating outside.</outcome>
         <ways><toil>1</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmL_EveryoneCrowded</thought></li>
