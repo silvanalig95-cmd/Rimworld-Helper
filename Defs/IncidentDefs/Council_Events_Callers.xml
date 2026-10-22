@@ -30,10 +30,10 @@
           <li>Letters written, for a price</li>
         </titles>
         <texts>
-          <li>{X_nameDef}, a traveling scribe of {FACTION}, has set up at the colony's table with a box of quills, a pot of ink and a stack of good paper. For {COUNT} silver, {X_nameDef} will write a letter for anyone who wants one, to anywhere a road goes, and see it carried by the next rider.\n\n{A_nameDef} has already started thinking about who to write to.</li>
-          <li>A scribe of {FACTION} named {X_nameDef} has come up the road with a writing desk strapped on like a peddler's pack. Most folk can't read or write, {X_nameDef} says, and most folk have someone they'd like to tell something to. For {COUNT} silver, the whole colony can send word home.</li>
+          <li>A board propped by the gate says, in careful chalk, "Letters written and read. Fair hand, fair price." It belongs to {X_nameDef}, a scribe of {FACTION}, who has set up at the colony's table with quills, ink and a stack of good paper.\n\nFor {COUNT} silver, {X_nameDef} will write a letter for anyone who wants one, to anywhere a road goes, and see it carried by the next rider. {A_nameDef} has already started thinking about who to write to.</li>
+          <li>A scribe of {FACTION} named {X_nameDef} has come up the road with a writing desk strapped on like a peddler's pack. Most folk can't read or write, {X_nameDef} says, and most folk have someone they'd like to tell something to. For {COUNT} silver, anyone here can send word home.</li>
           <li>[winter] {X_nameDef}, a scribe of {FACTION}, came in out of the snow with the ink frozen in its pot and asked to sit by the hearth until it thawed. In return, for {COUNT} silver, {X_nameDef} offers to write the colony's letters, one for anyone who wants to send word somewhere.</li>
-          <li>[colony:Traditional] {X_nameDef}, a scribe of {FACTION}, has heard the colony keeps its customs and its records, and has come to offer a service: letters for anyone who wants to send word home, or a fair copy of the colony's own story, for {COUNT} silver.</li>
+          <li>[colony:Traditional] Word on the road is that the colony keeps its customs and its records. So {X_nameDef}, a scribe of {FACTION}, has come to offer a fair copy of the colony's own story, or letters home for anyone who wants them, for {COUNT} silver.</li>
           <li>[trait:TooSmart] {X_nameDef}, a traveling scribe of {FACTION}, has set up at the colony's table. {A_nameDef} has already read everything {X_nameDef} brought and corrected two of the spellings. For {COUNT} silver, {X_nameDef} will still write the colony's letters.</li>
         </texts>
         <defaultOption>3</defaultOption>
@@ -55,7 +55,7 @@
             <label>A fair copy of the colony's story (half that)</label>
             <outcome>{A_nameDef} spent the evening telling the colony's story from the beginning, and {X_nameDef} wrote it down in a fair round hand. The copy is bound in leather and kept on the shelf now.</outcome>
             <outcomes>
-              <li>[colony:Traditional] {X_nameDef} wrote the colony's story out fair, with the names of the dead in red ink. It sits on the shelf by the hearth, where everyone can see it.</li>
+              <li>[colony:Traditional] {X_nameDef} wrote the colony's story out fair, with the names of the dead in red ink. It sits on the shelf by the hearth, open at the first page.</li>
             </outcomes>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><factor>0.5</factor></li>
@@ -114,18 +114,18 @@
         </titles>
         <texts>
           <li>[industrial] {X_nameDef} of {FACTION} came up the road with a wooden tripod over one shoulder and a camera the size of a bread box. Pictures of settlements are how {X_nameDef} makes a living, and the colony is the first place in weeks where anyone looks willing to stand still.\n\nFor {COUNT} silver, {X_nameDef} will take a picture of everyone at the colony and leave a print to hang on the wall.</li>
-          <li>[spacer] {X_nameDef} of {FACTION} travels the rim taking pictures on film, on purpose, because files get lost and paper lasts. For {COUNT} silver, {X_nameDef} will take one of everyone together and leave a print, a real one, the kind that fades slowly in a frame.</li>
-          <li>A photographer of {FACTION}, {X_nameDef}, has set up a tripod by the gate and is squinting at the colony through the lens. {X_nameDef} would like to take its picture: everyone out front, standing still, for {COUNT} silver and a print to keep.</li>
-          <li>[children] {X_nameDef}, a photographer of {FACTION}, is having a hard time with the colony's children, who want to look through the camera, touch the camera and stand in front of the camera at the same time. For {COUNT} silver, {X_nameDef} will take a picture of everyone, if they can all be made to stand still.</li>
+          <li>[spacer] {X_nameDef} of {FACTION} travels the rim taking pictures on film, on purpose, because files get lost and paper lasts. For {COUNT} silver, {X_nameDef} will take one of all of them together and leave a print, a real one, the kind that fades slowly in a frame.</li>
+          <li>There's a tripod by the gate, and {X_nameDef} of {FACTION} behind it, squinting at the colony through the lens. {X_nameDef} would like to take its picture, the whole lot of it out front and standing still, for {COUNT} silver and a print to keep.</li>
+          <li>[children] {X_nameDef}, a photographer of {FACTION}, is having a hard time with the colony's children, who want to look through the camera, touch the camera and stand in front of the camera at the same time. For {COUNT} silver, {X_nameDef} will take a picture of the colony, if it can be made to stand still.</li>
           <li>[colony:Hardworking] {X_nameDef} of {FACTION} takes pictures of people at work, and has heard the colony never stops working. For {COUNT} silver, {X_nameDef} will take one of everyone out front, tools in hand.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
           <li>
             <label>Everyone out front ({COUNT} silver)</label>
-            <outcome>It took the better part of an hour to get everyone still at the same moment, and {A_nameDef} blinked anyway. The print is drying on the kitchen wall.</outcome>
+            <outcome>It took the better part of an hour to get the whole lot of them still at the same moment, and {A_nameDef} blinked anyway. The print is drying on the kitchen wall.</outcome>
             <outcomes>
-              <li>[children] The children could not be made to stand still, so they're a blur at the front of the picture. Everyone agrees it's the best part.</li>
+              <li>[children] The children wouldn't stand still, so they're a blur across the front of the picture. It's the part people look at first.</li>
               <li>[colony:Hardworking] The colony stood for the picture in its work clothes, tools in hand, because none of them would take the time to change. The print hangs in the workshop now.</li>
               <li>[trait:Ugly] {A_nameDef} stood at the very back, half behind someone else. It's still a good picture.</li>
             </outcomes>
@@ -138,7 +138,7 @@
           </li>
           <li>
             <label>Let {X_objective} take pictures for {FACTION}'s papers</label>
-            <outcome>{X_nameDef} spent the day photographing the colony at work, and paid {COUNT} silver, half up front, for the right to print the best of them in {FACTION}'s papers.</outcome>
+            <outcome>{X_nameDef} spent the day photographing the colony at work, and paid half of {COUNT} silver for the right to print the best of them in {FACTION}'s papers.</outcome>
             <riskChance>0.25</riskChance>
             <riskReplaces>true</riskReplaces>
             <riskOutcome>The picture that ran in {FACTION}'s paper was of the latrine, from an unfortunate angle, with {A_nameDef} coming out of it. At least the silver was paid.</riskOutcome>
@@ -196,7 +196,7 @@
         </titles>
         <texts>
           <li>{X_nameDef} has come a very long way to be uncomfortable. A traveler from a glitterworld, by way of {FACTION}, {X_nameDef} paid a guide to bring {X_objective} to a real rim colony, and would like to stay two days and live as the colonists live.\n\n{X_nameDef} will pay {COUNT} silver for it, and has brought four cases of luggage.</li>
-          <li>[spacer] A shuttle from {FACTION} set down by the gate and left behind {X_nameDef}, who has a sun hat, a camera and a guide to the rim with the colony's region circled. {X_nameDef} would like to stay two days and experience real frontier life, and will pay {COUNT} silver to do it.</li>
+          <li>[spacer] A shuttle from {FACTION} set down beyond the hills, and {X_nameDef} walked the rest of the way in a sun hat, with a camera and a guide to the rim that has the colony's region circled. {X_nameDef} would like to stay two days and experience real frontier life, and will pay {COUNT} silver to do it.</li>
           <li>[industrial] {X_nameDef}, a wealthy traveler from somewhere much nicer, arrived in the company of {FACTION}'s traders with a hired guide and a crate of bottled water. {X_nameDef} wants to spend two days living the rim life at the colony, and offers {COUNT} silver for the privilege.</li>
           <li>[summer] {X_nameDef}, a tourist from a glitterworld traveling with {FACTION}, has already been bitten by something and is delighted about it. {X_nameDef} would like to stay two days at the colony and do whatever the colonists do, and will pay {COUNT} silver.</li>
           <li>[winter] {X_nameDef} has come from a glitterworld where the weather is decided by committee, and has never seen snow fall on its own. {X_nameDef} would like to stay two days at the colony, cold and all, and will pay {COUNT} silver for it.</li>
@@ -205,10 +205,10 @@
         <options>
           <li>
             <label>Take {X_objective} as a paying guest ({COUNT} silver)</label>
-            <outcome>{X_nameDef} stayed two days, asked {A_nameDef} where the water comes from eleven times, and paid in full. {X_nameDef} says it was the most authentic experience of {X_possessive} life.</outcome>
+            <outcome>{X_nameDef} pays in full up front, unpacks a great deal of luggage, and before supper has asked {A_nameDef} three times where the water comes from. It's the most authentic thing {X_pronoun} has ever done, {X_nameDef} says.</outcome>
             <outcomes>
-              <li>[winter] {X_nameDef} stayed two days, made a snow angel in the yard and photographed it from every side, and paid in full. {X_nameDef} says it was worth every silver.</li>
-              <li>[trait:Greedy] {X_nameDef} stayed two days and paid in full, and {A_nameDef} sold {X_objective} a carved spoon for twice what it's worth on the way out.</li>
+              <li>[winter] {X_nameDef} pays in full, and within the hour is lying in the yard making a snow angel, which {X_pronoun} then photographs from every side.</li>
+              <li>[trait:Greedy] {X_nameDef} pays in full, and before the luggage is unpacked {A_nameDef} has sold {X_objective} a carved spoon for twice what it's worth.</li>
             </outcomes>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Silver" />
@@ -220,7 +220,7 @@
             <label>Put {X_objective} to work, as promised</label>
             <outcome>{B_nameDef} put {X_nameDef} on the barn, the woodpile and the latrine, in that order. {X_nameDef} hated every minute, said so, and paid extra on the way out for the stories it would make.</outcome>
             <outcomes>
-              <li>[b:trait:Kind] {B_nameDef} found {X_nameDef} the easiest of the hard jobs and kept {X_objective} company while doing them. {X_nameDef} left tired, filthy and happy, and paid a little extra.</li>
+              <li>[b:trait:Kind] {B_nameDef} found {X_nameDef} the easiest of the hard jobs and kept {X_objective} company while doing them. {X_nameDef} left tired, filthy and happy, and paid extra.</li>
             </outcomes>
             <riskChance>0.35</riskChance>
             <riskSkill>Social</riskSkill>
@@ -276,10 +276,10 @@
           <li>A song for the land</li>
         </titles>
         <texts>
-          <li>{X_nameDef} of {FACTION} has walked into the colony with a drum on {X_possessive} back and bells braided into {X_possessive} hair. A spirit-singer, {A_nameDef} says: one who goes from camp to camp singing to the spirits of the land, so they stay friendly to the people living on it.\n\n{X_nameDef} would sing for the colony tonight, for a meal and a place by the fire.</li>
+          <li>{X_nameDef} of {FACTION} has walked into the colony with a drum on {X_possessive} back and bells braided into {X_possessive} hair. A spirit-singer, {A_nameDef} says: one who goes from camp to camp singing to the spirits of the land, so they stay friendly to the people living on it.\n\n{X_nameDef} would sing for the colony tonight, for a meal and a place at the fire.</li>
           <li>[grave] A spirit-singer of {FACTION}, {X_nameDef}, came to the colony at dusk and went straight to the graves, and stood among them a long while before saying a word. When {X_nameDef} did speak, it was to {A_nameDef}: the colony's dead are restless, and would sleep better for a song.</li>
           <li>[winter] {X_nameDef}, a spirit-singer of {FACTION}, came out of the snow with frost in {X_possessive} hair and a drum wrapped in hide against the cold. Winter is when the spirits are hungriest, {X_nameDef} says, and offers to sing to them tonight on the colony's behalf, for a bowl of something hot.</li>
-          <li>[colony:Traditional] Word has reached {FACTION} of a colony that keeps the old ways. {X_nameDef}, one of their spirit-singers, has walked a long way to sing at its fire, and asks only for food and a place to sleep.</li>
+          <li>[colony:Traditional] "This land has not been sung to in a long time. I can hear it." {X_nameDef}, a spirit-singer of {FACTION}, has walked a long way because word reached {X_possessive} people of a colony that keeps the old ways. {X_nameDef} would sing at its fire tonight, for food and a place to sleep.</li>
           <li>[river] {X_nameDef}, a spirit-singer of {FACTION}, has come up from the river with wet feet and a drum. The river spirit is old and easily offended, {X_nameDef} says, and has been neglected here. {X_nameDef} would sing to it tonight, and to the land, for a meal.</li>
         </texts>
         <defaultOption>2</defaultOption>
@@ -289,7 +289,7 @@
             <outcome>{X_nameDef} sang until the fire burned down, low and steady, one long song with the drum under it like a heartbeat. In the morning the spirit-singer was gone, and the bowl was licked clean.</outcome>
             <outcomes>
               <li>[winter] {X_nameDef} sang to the winter spirits through the coldest part of the night, and the colony sat close round the fire to listen.</li>
-              <li>[river] {X_nameDef} sang down at the riverbank in the dark, with the colonists standing on the bank behind. In the morning the water looked no different, but everyone looked at it differently.</li>
+              <li>[river] {X_nameDef} sang down at the riverbank in the dark, with the colonists standing on the bank behind. In the morning the water looked no different, but more than one of them stopped on the way past to look at it.</li>
             </outcomes>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>10</count></li>
@@ -355,19 +355,19 @@
         <texts>
           <li>[lowtech] {X_nameDef} of {FACTION} has come to the gate with a roll of knives and a sack of spices none of the colonists can name. Cooking for whoever will feed {X_objective} is how {X_nameDef} gets by on the road, and {X_nameDef} has an offer: the run of the kitchen and the stores for a day, and the colony will eat better tonight than it has all year.\n\nOr, for {COUNT} silver, {X_nameDef} will teach whoever cooks here a few things they don't know.</li>
           <li>[!lowtech] {X_nameDef}, a cook of {FACTION} who gave up a restaurant kitchen for the road, wants a day in the colony's kitchen. Give {X_nameDef} the stores and a free hand, and the colony will remember the meal.\n\nOr, for {COUNT} silver, {X_nameDef} will spend the day teaching the colony's own cook.</li>
-          <li>[colony:Thrifty] A traveling cook of {FACTION}, {X_nameDef}, took one look in the colony's stores and laughed: all those good things, and everyone eats the same stew every night. {X_nameDef} offers to show the colony what its stores can do, or to teach its cook for {COUNT} silver.</li>
-          <li>[trait:Gourmand] {X_nameDef}, a traveling cook of {FACTION}, has barely put down {X_possessive} bags and {A_nameDef} is already asking what's for supper. {X_nameDef} would cook a feast from the colony's stores tonight, or teach the colony's cook for {COUNT} silver.</li>
-          <li>[fall] {X_nameDef} of {FACTION} cooks harvest feasts for whoever will have {X_objective}, and has come to the colony at the right time of year. The stores are full, {X_nameDef} says, and it would be a crime not to do something with them.</li>
+          <li>[colony:Thrifty] A traveling cook of {FACTION}, {X_nameDef}, took one look in the colony's stores and laughed: all those good things, and the same stew on the table every night. {X_nameDef} offers to show the colony what its stores can do, or to teach its cook for {COUNT} silver.</li>
+          <li>[trait:Gourmand] {A_nameDef} has been hovering by the kitchen door since {X_nameDef}, a traveling cook of {FACTION}, put down {X_possessive} bags, and has asked twice already what's for supper. {X_nameDef} would cook a feast from the colony's stores tonight, or teach the colony's cook for {COUNT} silver.</li>
+          <li>[fall] The stores are full, and {X_nameDef} of {FACTION}, who cooks harvest feasts for whoever will have {X_objective}, says it would be a crime not to do something with them. It's the right time of year for it.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
           <li>
             <label>Give {X_objective} the kitchen (40 food)</label>
-            <outcome>{X_nameDef} took over the kitchen for the day with {B_nameDef} chopping and fetching, and the colony ate something it will still be talking about next season.</outcome>
+            <outcome>{X_nameDef} took over the kitchen for the day with {B_nameDef} chopping and fetching, and the colony ate a supper it will still be talking about next season.</outcome>
             <outcomes>
               <li>[lowtech] {X_nameDef} dug a pit, lined it with hot stones and buried half the stores in it, and at sundown dug it all back up again, cooked. {B_nameDef} wrote nothing down and remembers all of it.</li>
               <li>[!lowtech] {X_nameDef} used every pot in the kitchen and a few things that aren't pots. {B_nameDef} washed up for three hours afterwards and says it was worth it.</li>
-              <li>[fall] {X_nameDef} made a harvest supper of seven dishes, with {B_nameDef} running between the pots, and the colony ate until nobody could move.</li>
+              <li>[fall] {X_nameDef} made a harvest supper of seven dishes, with {B_nameDef} running between the pots, and the colony ate until it couldn't move.</li>
             </outcomes>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Needs"><target>Colony</target><skill>Cooking</skill><minLevel>0</minLevel><asB>true</asB></li>
@@ -434,11 +434,11 @@
         </titles>
         <texts>
           <li>[lowtech] {X_nameDef}, a bone-setter and herb-healer of {FACTION}, stopped at the gate on the way through, took one look at {A_nameDef} and asked how long the {TALE} had been bothering {A_objective}.\n\nFor {COUNT} silver, or a few doses of medicine to take on the road, {X_nameDef} would see to it today.</li>
-          <li>[industrial] {X_nameDef} of {FACTION} travels the settlements with a doctor's bag and a tired horse, seeing to whatever the town doctors won't. {X_nameDef} spotted {A_nameDef}'s {TALE} from across the yard, and offers to treat it today, for {COUNT} silver or a little medicine.</li>
+          <li>[industrial] {X_nameDef} of {FACTION} travels the settlements with a doctor's bag and a tired horse, seeing to whatever the town doctors won't. {X_nameDef} spotted {A_nameDef}'s {TALE} from across the yard, and offers to treat it today, for {COUNT} silver or a few doses of medicine.</li>
           <li>[spacer] {X_nameDef}, a traveling medic of {FACTION}, ran a hand scanner over {A_nameDef} without being asked, frowned at the readout, and pronounced it a {TALE}. {X_nameDef} can deal with that in an afternoon, for {COUNT} silver or a few doses of medicine for the road.</li>
-          <li>[ail:StrainedBack] {X_nameDef}, a bone-setter of {FACTION}, watched {A_nameDef} bend down for a bucket and straighten up again very slowly. {X_nameDef} has hands like a blacksmith's and a name for fixing backs, and offers to put {A_nameDef}'s right, for {COUNT} silver or some medicine for the road.</li>
+          <li>[ail:StrainedBack] {A_nameDef} bent for a bucket and straightened up again very slowly, and {X_nameDef}, a bone-setter of {FACTION} passing through, saw it from the gate. {X_nameDef} has hands like a blacksmith's and a name for fixing backs, and offers to put {A_nameDef}'s right, for {COUNT} silver or some medicine for the road.</li>
           <li>[ail:Toothache] {X_nameDef} of {FACTION} pulls teeth, among other things, and the swelling on {A_nameDef}'s jaw caught {X_possessive} eye straight away. For {COUNT} silver, or a few doses of medicine, {X_nameDef} will deal with it before supper.</li>
-          <li>[ail:SprainedAnkle] {X_nameDef}, a healer of {FACTION}, saw {A_nameDef} limping across the yard and was kneeling at {A_possessive} foot before {A_nameDef} could object. A proper strapping and a poultice would have it right in days, {X_nameDef} says, for {COUNT} silver or a little medicine.</li>
+          <li>[ail:SprainedAnkle] {X_nameDef}, a healer of {FACTION}, saw {A_nameDef} limping across the yard and was kneeling at {A_possessive} foot before {A_nameDef} could object. A proper strapping and a poultice would have it right in days, {X_nameDef} says, for {COUNT} silver or some medicine in trade.</li>
           <li>[ail:HeadCold|ail:ChestCold] {X_nameDef}, an herb-healer of {FACTION}, heard {A_nameDef} coughing from the road and came in to see about it. {X_nameDef} has a tea for that, and a rub for the chest, and will leave {A_nameDef} with both for {COUNT} silver or a few doses of medicine.</li>
           <li>[ail:Sunburn|ail:Blisters] {X_nameDef} of {FACTION} sells salves on the road, and took one look at {A_nameDef}'s {TALE} and reached into the bag. For {COUNT} silver, or some medicine in trade, {X_nameDef} will see to it properly.</li>
         </texts>
@@ -519,11 +519,11 @@
           <li>A traveling musician</li>
         </titles>
         <texts>
-          <li>[medieval] {X_nameDef}, a wandering fiddler of {FACTION}, has stopped for the night. {X_nameDef} noticed {A_nameDef} across the yard, gray in the face and short with everyone, and has offered to play something for {A_objective} alone tonight. That, {X_nameDef} says, is what musicians are for.</li>
+          <li>[medieval] {X_nameDef}, a wandering fiddler of {FACTION}, has stopped for the night. {X_nameDef} noticed {A_nameDef} across the yard, gray in the face and short with whoever speaks to {A_objective}, and has offered to play a tune for {A_objective} alone tonight. That, {X_nameDef} says, is what musicians are for.</li>
           <li>[tribal] {X_nameDef} of {FACTION} plays the bone flute, and came to the colony's fire at dusk to play for supper. {X_nameDef} hasn't taken {X_possessive} eyes off {A_nameDef}, who looks like {A_pronoun} hasn't slept in a week. Some songs are for a whole camp, {X_nameDef} says, and some are for one person.</li>
-          <li>[industrial|spacer] {X_nameDef} of {FACTION} drifts from settlement to settlement with a battered guitar and plays for a meal. Tonight {X_nameDef} has noticed {A_nameDef}, worn thin and snapping at everyone, and has offered, without any fuss, to play just for {A_objective} after supper.</li>
+          <li>[industrial|spacer] {X_nameDef} of {FACTION} drifts from settlement to settlement with a battered guitar and plays for a meal. Tonight {X_nameDef} has noticed {A_nameDef}, worn thin and snapping at whoever comes near, and has offered, without any fuss, to play just for {A_objective} after supper.</li>
           <li>[worn|breaking] {A_nameDef} has been holding together by a thread for days. A traveling musician of {FACTION}, {X_nameDef}, sat beside {A_objective} at supper and didn't say much, and afterwards asked the council if {X_nameDef} could play for {A_nameDef} tonight, somewhere quiet.</li>
-          <li>A musician of {FACTION}, {X_nameDef}, has come in for the night and offered to play after supper. {X_nameDef} would play for everyone for {COUNT} silver, or, for nothing at all, for {A_nameDef}, who looks like {A_pronoun} needs it most.</li>
+          <li>After supper, if the council likes, {X_nameDef} of {FACTION} will play. For {COUNT} silver it can be for the whole table. For nothing at all, it can be for {A_nameDef}, who looks like {A_pronoun} needs it most.</li>
           <li>{X_nameDef}, a traveling musician of {FACTION}, has asked for a bed for the night and offered to play for it. {X_nameDef} has already picked out the face that needs a song most: {A_nameDef}'s, tired and gray. {X_nameDef} would play for {A_objective} alone, for nothing, or for everyone, for {COUNT} silver.</li>
           <li>A singer of {FACTION}, {X_nameDef}, came in with the evening and sat by the door to listen to the colony before playing a note. {X_nameDef} says {A_nameDef} sounds like someone who needs a quiet song, and offers one.</li>
         </texts>
@@ -535,7 +535,7 @@
             <outcomes>
               <li>[tribal] {X_nameDef} played the bone flute for {A_nameDef} alone, out past the firelight, until the stars wheeled round. {A_nameDef} came back to bed quiet and slept through till morning.</li>
               <li>[trait:Abrasive] {A_nameDef} told {X_nameDef} to leave {A_objective} alone, twice. {X_nameDef} played anyway, and by the third song {A_nameDef} had stopped complaining.</li>
-              <li>[breaking] {X_nameDef} sat with {A_nameDef} half the night, playing and not talking. Near the end {A_nameDef} cried a little, and then slept.</li>
+              <li>[breaking] {X_nameDef} sat with {A_nameDef} half the night, playing and not talking. Near the end {A_nameDef} cried, and then slept.</li>
             </outcomes>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_StrainRelief"><amount>15</amount></li>
@@ -558,7 +558,7 @@
           </li>
           <li>
             <label>Thank {X_objective}, and let {X_objective} go on</label>
-            <outcome>{X_nameDef} plays a little for the supper table anyway, and is gone in the morning.</outcome>
+            <outcome>{X_nameDef} played two or three tunes at supper anyway, and was gone in the morning.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>{X_nameDef}'s tunes at supper</label><music>true</music><organizer>None</organizer><spots><li>Dining</li><li>Stranger</li><li>Rec</li></spots><hours>17~22</hours><duration>1~1.5</duration></li>
             </effects>
@@ -603,7 +603,7 @@
         <texts>
           <li>{X_nameDef} and a few others of {FACTION} have come to the colony with an unusual request. Word has reached {PLACE} that the colony decides things in council, by talking it through and voting, and {FACTION} would like to see how that's done.\n\nThey ask to stay a day, talk to whoever will talk to them, and sit at the back if the council meets.</li>
           <li>[theirLowtech] Among {FACTION}, the eldest decides and the rest listen. {X_nameDef}, who has come from {PLACE} with company, has heard that the colony does things differently, with a council where everyone has a say, and would like to see it for {X_objective}self.</li>
-          <li>[theirHightech] {FACTION} are run by a board that hasn't met in person in years. {X_nameDef}, one of their administrators, has come from {PLACE} to see how a colony with a council actually runs, and asks to stay a day and watch.</li>
+          <li>[theirHightech] The request came ahead of them, typed and stamped: "Delegation from {PLACE} requests permission to observe the colony's council in session. Duration one day. No interference intended."\n\n{FACTION} are run by a board that hasn't met in person in years. {X_nameDef}, who signed the request, is at the gate now, with a notebook already open.</li>
           <li>[colony:Open] {X_nameDef} of {FACTION} has heard the colony is open with its neighbors, and has come from {PLACE} with company to ask a favor: to sit in on the colony's council and learn how it's done.</li>
         </texts>
         <defaultOption>2</defaultOption>
@@ -684,7 +684,7 @@
           <li>[lowtech] {X_nameDef} of {FACTION} carries a peace-staff, which among {X_possessive} people means anyone at odds may ask for a hearing. {X_nameDef} has heard about {A_nameDef} and {B_nameDef} already, from three different people, and offers to hear them both out.</li>
           <li>[!lowtech] {X_nameDef} of {FACTION} is a mediator, and has a mediator's way of noticing things. Within an hour of arriving, {X_nameDef} had asked {A_nameDef} what the trouble with {B_nameDef} was, and asked {B_nameDef} the same about {A_nameDef}.\n\nThe answers didn't match. {X_nameDef} would like to sit them down together.</li>
           <li>[colony:Easygoing] {X_nameDef}, a peacemaker of {FACTION}, says the colony is a pleasant place with one sore spot in it, and the sore spot is {A_nameDef} and {B_nameDef}. {X_nameDef} offers to do something about it before moving on.</li>
-          <li>{X_nameDef} of {FACTION} travels from place to place mending quarrels, and has a good eye for one. {X_nameDef} watched {A_nameDef} and {B_nameDef} pass each other at supper without a word, and has offered to sit them down together before moving on.</li>
+          <li>"Those two," said {X_nameDef} of {FACTION} at supper, with a nod at {A_nameDef} and {B_nameDef}, who were eating at opposite ends of the table. "How long has that been going on?"\n\n{X_nameDef} has spent thirty years mending quarrels up and down the roads, and offers to sit the two of them down together before moving on.</li>
           <li>A quiet traveler of {FACTION}, {X_nameDef}, says {X_pronoun} has settled worse feuds than the one between {A_nameDef} and {B_nameDef}, and offers to try tonight, if the council agrees.</li>
         </texts>
         <defaultOption>2</defaultOption>

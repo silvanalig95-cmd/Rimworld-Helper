@@ -27,7 +27,7 @@
         </titles>
         <texts>
           <li>[mage] Before dawn, {A_nameDef} woke the colony to say something was coming down. Soon after, pale lights fell out of a clear sky and struck the ground beyond the walls without a sound.\n\nWhere they landed there's unrefined magicyte, {COUNT} pieces in all, still faintly warm. {A_nameDef} is out there already, turning the pieces over in {A_possessive} hands.</li>
-          <li>[nomage] Last night pale lights came down out of a clear sky and struck the ground near the colony without a sound. In the morning {A_nameDef} found unrefined magicyte where they fell: {COUNT} pieces in all, faintly warm to the touch.</li>
+          <li>[nomage] Pale lights came down out of a clear sky in the night and struck the ground near the colony without a sound. {A_nameDef} went out to look and found unrefined magicyte where they fell, {COUNT} pieces in all.\n\nThe ground around each piece has frosted over, though the night was mild.</li>
           <li>[nomage,winter] Pale lights fell into the snow near the colony last night, and the snow didn't melt where they landed. {A_nameDef} dug down this morning and found unrefined magicyte, {COUNT} pieces in all.</li>
         </texts>
         <effects>
@@ -67,7 +67,7 @@
         <options>
           <li>
             <label>Let {A_nameDef} try</label>
-            <outcome>{A_nameDef} spends the afternoon sitting still near the creature with a handful of food. By evening it's eating from {A_possessive} hand, and it follows {A_objective} home.</outcome>
+            <outcome>{A_nameDef} sat still near the creature all afternoon with a handful of food held out. By evening it was eating from {A_possessive} hand, and when {A_nameDef} got up to go home, it followed.</outcome>
             <riskChance>0.5</riskChance>
             <riskReplaces>true</riskReplaces>
             <riskOutcome>{A_nameDef} gets within a few steps of it before something startles it, and it bolts. It won't be back.</riskOutcome>
@@ -82,7 +82,7 @@
           </li>
           <li>
             <label>Leave it be</label>
-            <outcome>The colony leaves the creature alone. It grazes near the fields for a day or so, then moves on.</outcome>
+            <outcome>The creature is left alone. It grazes by the fields for a day or so, watched from every window, and then it's gone.</outcome>
           </li>
         </options>
       </li>
@@ -118,13 +118,13 @@
           <li>[sauna] {X_nameDef} and the others of {FACTION} have been on the road for weeks, and have heard about the colony's sauna from traders. They're standing at the gate, filthy and hopeful, and offer {COUNT} silver for an evening in the heat and a place to wash.</li>
           <li>[hottub] Word of the colony's hot tub has reached {FACTION}. A few of their travelers, {X_nameDef} among them, have come off the road for it, and offer {COUNT} silver for a soak and a wash.</li>
           <li>[pool] Travelers of {FACTION}, {X_nameDef} among them, heard the colony has a swimming pool and didn't believe it. They've come to see it, and would pay {COUNT} silver to swim and wash off the road.</li>
-          <li>[tub] {X_nameDef} and the others of {FACTION} have been sleeping rough for weeks. They've heard the colony has a proper bathtub and hot water, and offer {COUNT} silver for a turn each.</li>
+          <li>[tub] "Is it true there's hot water?" {X_nameDef} of {FACTION} asked at the gate, before hello. {X_nameDef}'s party has been sleeping rough for weeks, and they'll pay {COUNT} silver for a turn each in the colony's bathtub.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
           <li>
             <label>Let them, for {COUNT} silver</label>
-            <outcome>The travelers take turns until long after dark and pay their {COUNT} silver gladly. They leave the next morning looking like different people.</outcome>
+            <outcome>The travelers take turns until long after dark, and leave {COUNT} silver by the bath. One of them is singing.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>4</amount></li>
             </effects>
@@ -132,7 +132,7 @@
           </li>
           <li>
             <label>Let them, free of charge</label>
-            <outcome>The travelers wash off weeks of road and can't thank the colony enough. {FACTION} will hear about it.</outcome>
+            <outcome>The travelers wash off weeks of road and come out pink and grateful. {FACTION} will hear about it.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>8</amount></li>
             </effects>
@@ -172,8 +172,8 @@
           <li>A letter from {PLACE}</li>
         </titles>
         <texts>
-          <li>[lowtech] A rider brought a sealed letter from {PLACE}. {X_nameDef}, an elder of {FACTION} known well beyond their own lands, will be passing this way in a few days and asks to stay a night in the colony's guest room.\n\nGuests of {X_nameDef}'s standing talk about where they stay.</li>
-          <li>[!lowtech] {X_nameDef}, one of the better-known people among {FACTION}, sent a message from {PLACE}. {X_nameDef} will be traveling past the colony in a few days, and would like to stay a night in its guest room.\n\nWord of how {X_nameDef} is received will get around.</li>
+          <li>[lowtech] A rider brought a sealed letter from {PLACE}, in a careful hand.\n\n"To the council of the colony. I will pass your way in a few days, and would be grateful for a night under your roof, in your guest room if you keep one. {X_nameDef}, elder of {FACTION}."\n\n{X_nameDef} is known well beyond {FACTION}'s own lands, and guests of that standing talk about where they stay.</li>
+          <li>[!lowtech] The message from {PLACE} is short and polite. {X_nameDef}, one of the better-known people among {FACTION}, will be traveling past the colony in a few days, and would like a night in its guest room.\n\nWord of how {X_nameDef} is received will get around.</li>
         </texts>
         <defaultOption>0</defaultOption>
         <options>
@@ -202,10 +202,10 @@
           <li>[poor|noroom] A guest arrives</li>
         </doneTitles>
         <done>
-          <li>[great] {X_nameDef} of {FACTION} arrived today and was shown to the guest room. The room is {ITEM}, and {X_nameDef} has said so to everyone {X_pronoun} has met since. {X_nameDef} left a gift in the room for the colony, and {FACTION} will hear about the visit.</li>
-          <li>[good] {X_nameDef} of {FACTION} has arrived and been shown to the guest room. The room is {ITEM}, and {X_nameDef} seems pleased with it. {FACTION} will hear good things.</li>
-          <li>[poor] {X_nameDef} of {FACTION} has arrived and been shown to the guest room. The room is {ITEM}. {X_nameDef} was polite about it.</li>
-          <li>[noroom] {X_nameDef} of {FACTION} has arrived, and been shown to a guest bed with no room around it. {X_nameDef} was polite about it, and {FACTION} will hear about that too.</li>
+          <li>[great] {X_nameDef} of {FACTION} arrived today and was shown to the guest room, which is {ITEM}. {X_nameDef} stood in the doorway a while before going in, and has praised it to each colonist {X_pronoun} has met since. There's a gift left in the room for the colony, and {FACTION} will hear about the visit.</li>
+          <li>[good] {X_nameDef} of {FACTION} has arrived and been shown to the guest room. It's {ITEM}, and {X_nameDef} seems pleased with it. {FACTION} will hear good things.</li>
+          <li>[poor] {X_nameDef} of {FACTION} has arrived and been shown to the guest room. It's {ITEM}. {X_nameDef} was polite about it, and said very little else.</li>
+          <li>[noroom] {X_nameDef} of {FACTION} has arrived, and been shown to a guest bed with no room around it. {X_nameDef} was polite about it. {FACTION} will hear about that too.</li>
         </done>
         <cancelled>
           <li>{X_nameDef} of {FACTION} won't be coming to stay after all.</li>
