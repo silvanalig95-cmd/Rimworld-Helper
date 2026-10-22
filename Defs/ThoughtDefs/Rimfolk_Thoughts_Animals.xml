@@ -138,7 +138,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmA_WatchAtThePens</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>kept watch at the pens</label><description>A night at the pens with a lantern, a fire and a stick, listening to the dark. The herd slept through it.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>kept watch at the pens</label><description>A night at the pens with a lantern, a fire and a stick, watching the long grass move. The herd slept through it.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt><feelings><li>Resolve</li></feelings></li></modExtensions>
   </ThoughtDef>
 
@@ -146,7 +146,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmA_BondShamed</defName>
     <durationDays>5</durationDays>
-    <stages><li><label>told my bond is wrong</label><description>They called my bond with my animal a sin and refused to bless it, with the whole yard listening. I walked out, and it walked out with me.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+    <stages><li><label>told my bond is wrong</label><description>They called my bond with my animal a sin and refused to bless it, standing right there at the blessing. I walked out, and it walked out with me.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.HeartTags"><feelings><li>Shame</li></feelings><weight>0.3</weight></li></modExtensions>
   </ThoughtDef>
 

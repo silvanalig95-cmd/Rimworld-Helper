@@ -55,7 +55,7 @@
     <durationDays>10</durationDays>
     <stackLimit>2</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>looked after me</label><description>When everything was awful, they stayed with me through all of it. I sit next to them at every meal now.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>12</baseOpinionOffset></li></stages>
+    <stages><li><label>looked after me</label><description>When everything was awful, they stayed with me through all of it. I follow them about the place now.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>12</baseOpinionOffset></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt><feelings><li>Tenderness</li></feelings></li></modExtensions>
   </ThoughtDef>
 
@@ -75,7 +75,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmLv_LeftAloneWithIt</defName>
     <durationDays>5</durationDays>
-    <stages><li><label>left alone with it</label><description>They said time would help, so I go to bed early and lie there waiting for it to.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+    <stages><li><label>left alone with it</label><description>They said time would help. So I go to bed early and lie there, waiting for it.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -116,7 +116,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmLv_WorriedForThem</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>worried for my young one</label><description>My young one is going out with the next journey, and the council said yes. I'll worry until they're home again.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+    <stages><li><label>worried for my young one</label><description>My young one is going out with the next journey, by the council's leave. I'll worry until they're home again.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -147,7 +147,7 @@
     <durationDays>8</durationDays>
     <stackLimit>2</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>walked to the hills with them</label><description>I walked them out to the hills and heard how this place began, back when there was nothing here but grass.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>8</baseOpinionOffset></li></stages>
+    <stages><li><label>walked to the hills with them</label><description>I walked them out to the hills and heard about the first days, when there was nothing here but grass.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>8</baseOpinionOffset></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>1</felt></li></modExtensions>
   </ThoughtDef>
 
@@ -230,7 +230,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmLv_PushedAside</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>pushed aside</label><description>Children belong with children, they said, as if the old belong on a shelf. The little one still comes to my chair in the evenings.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>pushed aside</label><description>Children belong with children, they said, as if the old belong on a shelf. The little one still turns up at my chair in the evenings.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">

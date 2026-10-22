@@ -22,7 +22,7 @@
     <durationDays>3</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>remembered the old days</label><description>We sat on the bench by the wall and talked about the old days, aches and all. Some of it only the two of us remember.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>5</baseOpinionOffset></li></stages>
+    <stages><li><label>remembered the old days</label><description>We sat on the bench by the wall and talked about the old days, aches and all, and names no one else here would know.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>5</baseOpinionOffset></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>1</felt><joy>0.06</joy><feelings><li>Nostalgia</li><li>Fellowship</li></feelings></li></modExtensions>
   </ThoughtDef>
 
@@ -32,7 +32,7 @@
     <durationDays>2</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>played an old game</label><description>We played a game with pebbles and lines in the dirt, the old kind, until the light went.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>5</baseOpinionOffset></li></stages>
+    <stages><li><label>played an old game</label><description>We played a game with pebbles and lines in the dirt, the old kind, until it was too dark to see the lines.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>5</baseOpinionOffset></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>1</felt><joy>0.08</joy><joyKind>Gaming_Dexterity</joyKind></li></modExtensions>
   </ThoughtDef>
 
@@ -96,7 +96,7 @@
 
   <ThoughtDef ParentName="Council_FrictionThoughtBase">
     <defName>Council_Friction_LightMocked</defName>
-    <stages><li><label>my light complained about</label><description>They want me to sleep in the dark. They don't know what the dark is like for me.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>-2</baseOpinionOffset></li></stages>
+    <stages><li><label>complained about my light</label><description>They want me to sleep in the dark. They don't know what the dark is like for me.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>-2</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
 </Defs>

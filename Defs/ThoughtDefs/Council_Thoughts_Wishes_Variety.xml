@@ -273,7 +273,7 @@
     <stages>
       <li>
         <label>a fountain in the colony</label>
-        <description>We have a fountain, of all things, and it does nothing but splash. I stop by and listen whenever I can.</description>
+        <description>A fountain, of all things, doing nothing but splash. I stop by and listen whenever I can.</description>
         <baseMoodEffect>5</baseMoodEffect>
       </li>
     </stages>

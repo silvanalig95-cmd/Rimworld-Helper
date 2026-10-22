@@ -73,7 +73,7 @@
   <ThoughtDef ParentName="Rimfolk_TalkThoughtBase">
     <defName>Rimfolk_Talk_RememberedLoss</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>carries it with me</label><description>We talked about what we lost, late, with the fire going down. They remember it the way I do.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>4</baseOpinionOffset></li></stages>
+    <stages><li><label>carries it with me</label><description>We talked about what we lost, and they remember it the way I do, down to the small things.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>4</baseOpinionOffset></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>1</felt><feelings><li>Fellowship</li></feelings></li></modExtensions>
   </ThoughtDef>
 

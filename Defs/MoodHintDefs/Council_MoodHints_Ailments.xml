@@ -149,7 +149,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RF_AilRabies</defName>
     <thoughts><li>Council_Ail_Rabies_Mood</li></thoughts>
-    <fix>Treat the bite every day, without a gap, until the danger has passed: treatment only works before the fever comes. Industrial medicine or better works fastest.</fix>
+    <fix>Treat the bite every day, without a gap, until the danger has passed; treatment only works before the fever comes. Industrial medicine or better works fastest.</fix>
     <act>Treat the bite every day</act>
     <article>Council_Alm_4_25_Ailments</article>
   </ColonyCouncil.MoodHintDef>

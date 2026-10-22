@@ -36,7 +36,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RF_SetbackFriendLetDown</defName>
     <thoughts><li>Council_Setback_FriendLetDown</li></thoughts>
-    <fix>The council let a friend's promised wish lapse. It fades in a few days. Promise only what the colony can do in time, and check promised wishes on the Wishes page before they run out.</fix>
+    <fix>The council let a friend's promised wish lapse; the hurt fades in a few days. Promise only what the colony can do in time, and check promised wishes on the Wishes page before they run out.</fix>
     <act>Keep your promises</act>
     <actionable>false</actionable>
     <article>Council_Alm_C_Setbacks</article>
@@ -80,7 +80,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RF_SetbackWorkLost</defName>
     <thoughts><li>Council_Setback_WorkTornDown</li><li>Council_Setback_WorkWrecked</li></thoughts>
-    <fix>Something they built is gone. It fades in a few days. Walls and firefighting keep work standing, and think twice before tearing down anything built in the last 60 days; taking a building down to put a better one in its place doesn't count.</fix>
+    <fix>A building they put up is gone. It fades in a few days. Walls and firefighting keep work standing, and think twice before tearing down anything built in the last 60 days; taking a building down to put a better one in its place doesn't count.</fix>
     <act>Defend what matters</act>
     <actionable>false</actionable>
     <article>Council_Alm_C_Setbacks</article>
@@ -110,7 +110,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RF_SetbackSurgery</defName>
     <thoughts><li>Council_Setback_BotchedSurgery</li></thoughts>
-    <fix>An operation they did went wrong. It fades in a few days; a better doctor, good medicine, a clean hospital bed and a sterile room make operations go wrong less often.</fix>
+    <fix>An operation they did went wrong, and the memory fades in a few days. A better doctor, good medicine, a clean hospital bed and a sterile room make operations go wrong less often.</fix>
     <act>Use a better doctor next time</act>
     <actionable>false</actionable>
     <article>Council_Alm_C_Setbacks</article>
@@ -157,7 +157,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RF_SetbackSold</defName>
     <thoughts><li>Council_Setback_ArtSold</li><li>Council_Setback_AnimalSold</li></thoughts>
-    <fix>Something of theirs was sold. It fades in a few days. Art by people no longer here, or by the greedy, can be sold without hurt feelings; an animal with a master is missed by them, so sell the ones that answer to nobody.</fix>
+    <fix>Their art, or an animal they looked after, was sold. It fades in a few days. Art by people no longer here, or by the greedy, can be sold without hurt feelings; an animal with a master is missed by them, so sell the ones that answer to nobody.</fix>
     <act>Fades in a few days</act>
     <actionable>false</actionable>
     <article>Council_Alm_C_Setbacks</article>
@@ -259,8 +259,8 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RF_SetbackHomesick</defName>
     <thoughts><li>Council_Setback_Homesick</li></thoughts>
-    <fix>A hard week has them thinking of home. It fades in two days; something good helps it pass: a fine meal, a party, time with friends.</fix>
-    <act>Something good helps it pass</act>
+    <fix>A hard week has them thinking of home. It fades in two days; a fine meal, a party or time with friends helps it pass.</fix>
+    <act>A good evening helps it pass</act>
     <actionable>false</actionable>
     <article>Council_Alm_C_Setbacks</article>
   </ColonyCouncil.MoodHintDef>

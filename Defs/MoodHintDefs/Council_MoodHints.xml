@@ -257,7 +257,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_Raw</defName>
     <thoughts><li>AteRawFood</li><li>AteNutrientPasteMeal</li></thoughts>
-    <fix>Give them cooked meals: a cook at a campfire or stove, raw food left off their food policy, and the nutrient paste dispenser kept for hard times.</fix>
+    <fix>Cook proper meals: a cook at a campfire or stove, raw food left off their food policy, and the nutrient paste dispenser kept for hard times.</fix>
     <act>Cook proper meals</act>
     <article>Council_Alm_1_26_MealMoods</article>
     <signal>Council_Adv_Kitchen</signal>
@@ -330,7 +330,7 @@
     <defName>Council_Mood_Naked</defName>
     <thoughts><li>Naked</li></thoughts>
     <workers><li>ThoughtWorker_PsychologicallyNude</li></workers>
-    <fix>Give them clothes: check their apparel policy, and make sure there's something in store for them to wear.</fix>
+    <fix>Give them clothes: check their apparel policy, and make sure there are clothes in store for them.</fix>
     <act>Give them clothes</act>
   </ColonyCouncil.MoodHintDef>
 

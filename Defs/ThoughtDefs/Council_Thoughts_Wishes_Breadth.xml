@@ -50,7 +50,7 @@
     <stages>
       <li>
         <label>hot tea while I was sick</label>
-        <description>Hot tea while I was ill, held in both hands under the blanket until it went cold.</description>
+        <description>Hot tea when I was laid up, held in both hands under the blanket until it went cold.</description>
         <baseMoodEffect>3</baseMoodEffect>
       </li>
     </stages>
@@ -62,7 +62,7 @@
     <stages>
       <li>
         <label>a way to turn back the years</label>
-        <description>We have a biosculpter pod now. I put my hand on the lid and thought about my knees at twenty.</description>
+        <description>A biosculpter pod, here in the colony. I put my hand on the lid and thought about my knees at twenty.</description>
         <baseMoodEffect>5</baseMoodEffect>
       </li>
     </stages>
