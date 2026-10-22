@@ -13,8 +13,8 @@
     <lines>
       <plain>
         <li>Sat through {GATHERING} with an empty plate. Nothing on the table was anything I could eat.</li>
-        <li>Everyone ate well at {GATHERING}. I had water and the company, and the company was most of it.</li>
-        <li>I went to {GATHERING} and ate nothing. I'll find something in the stores tomorrow.</li>
+        <li>The others ate well at {GATHERING}. I had water and the company, and the company was most of it.</li>
+        <li>I went to {GATHERING} and ate nothing. I'll go through the stores tomorrow.</li>
         <li>[diet:fungusinsect] Not one dish at {GATHERING} had fungus or insect meat in it. I sat and listened, and ate later.</li>
         <li>[diet:fungusinsect] The cooks made a good spread for {GATHERING}. None of it would have stayed down, so I left it.</li>
         <li>[diet:vegetarian] Every plate at {GATHERING} had meat in it. I passed them along and stayed for the talk.</li>
@@ -26,7 +26,7 @@
       </plain>
       <warm>
         <li>Nothing at {GATHERING} was for me, but they kept a seat for me all the same. That mattered more.</li>
-        <li>[diet:vegetarian] Someone noticed my empty plate at {GATHERING} and said next time there'd be something without meat. I believe them.</li>
+        <li>[diet:vegetarian] Someone noticed my empty plate at {GATHERING} and said next time there'd be a dish without meat. I believe them.</li>
         <li>[diet:fungusinsect] I couldn't eat a thing at {GATHERING}, but I wouldn't have missed the stories.</li>
       </warm>
       <blunt>
@@ -35,7 +35,7 @@
         <li>[diet:carnivore] They call that a feast? Not a scrap of meat on the table.</li>
       </blunt>
       <cheerful>
-        <li>Ate nothing at {GATHERING} and still had the best evening in weeks. Good company fills you up too.</li>
+        <li>Ate nothing at {GATHERING} and still had the best evening in weeks. I'll raid the stores later.</li>
       </cheerful>
       <gloomy>
         <li>Everyone ate at {GATHERING} but me. I watched the plates go round.</li>
