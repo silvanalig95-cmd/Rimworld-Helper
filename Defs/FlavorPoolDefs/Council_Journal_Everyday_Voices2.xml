@@ -17,7 +17,7 @@
         <li>[old] The cold settles in my joints now. This morning I couldn't close my hand until noon.</li>
         <li>[snow] Snow blew in under the door in the night and drifted against my bed.</li>
         <li>[lowtech] The fire went out before midnight. I lay there telling myself to get up and feed it, and didn't.</li>
-        <li>[!lowtech] The heater in our room is broken again. I slept in my boots.</li>
+        <li>[!lowtech] The heater in our room clicked off around midnight and never came back on.</li>
         <li>[hurt] The cold got into my wound last night. It ached until morning.</li>
         <li>[trait:NightOwl] Too cold to sleep, so I worked through the night to keep warm.</li>
       </plain>
@@ -83,7 +83,7 @@
         <li>[skill:Artistic] Nothing to do, so I drew the others at supper on the back of an old sack.</li>
         <li>[trait:Industrious] An evening with nothing to do. I found some work instead.</li>
         <li>[teen] Nothing to do here, and no one my age to do it with.</li>
-        <li>[lowtech] No dice, no games, no music. I listened to the fire crackle until I fell asleep.</li>
+        <li>[lowtech] Not even a pair of dice in the place. I listened to the fire crackle until I fell asleep.</li>
         <li>[!lowtech] Sat in front of the television without really watching it.</li>
       </plain>
     </lines>
@@ -126,7 +126,7 @@
       <plain>
         <li>[trait:Recluse] Another night in a room full of people. I lay with my face to the wall until morning.</li>
         <li>[trait:Ascetic] The barracks suit me. A bed is a bed.</li>
-        <li>[trait:Greedy] The others have rooms of their own, and I sleep in a row with the newcomers.</li>
+        <li>[trait:Greedy] The others have rooms of their own, and I sleep in a row with whoever else they couldn't be bothered to house.</li>
         <li>[trait:Jealous] Walked past someone's bedroom on my way to the barracks. Their door was open and they had a rug.</li>
         <li>[old] I'm too old to be sleeping in a row like a recruit.</li>
         <li>[teen] The barracks are full of snoring grown-ups. I'd rather sleep in the barn.</li>
@@ -142,7 +142,7 @@
     <pool>Council_Journal_Day_Dining</pool>
     <lines>
       <plain>
-        <li>[trait:Ascetic] The dining room is too grand for me. I took my bowl out to the step.</li>
+        <li>[trait:Ascetic] The dining room is too grand for me. I ate quickly and went back out.</li>
         <li>[trait:Greedy] The good dining room is the one place here that feels like it suits me.</li>
         <li>[trait:Gourmand] Food tastes better on a good table. I had three helpings to be sure.</li>
         <li>[skill:Artistic] Studied the sculpture in the dining room all through supper. I'd like to try one like it.</li>
@@ -193,7 +193,7 @@
         <li>[old] Getting down to sit on the floor is the hard part. Getting up again is worse.</li>
         <li>[rain] Ate in the rain under the eaves, holding my bowl close.</li>
         <li>[lowtech] Ate squatting next to the cookfire with my bowl in my lap, the same as the others.</li>
-        <li>[hurt] Ate on the floor. Getting down there with this wound was the hard part.</li>
+        <li>[hurt] Ate on the floor, with my bad side propped against the wall.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
@@ -238,7 +238,7 @@
         <li>[lowtech] Someone brought out the drums tonight. I danced until I couldn't feel my feet.</li>
         <li>[trait:TooSmart] Won every game of chess tonight. Tomorrow I'll have to play against myself.</li>
         <li>[trait:Recluse] Went to the games room late, when it was empty, and had the place to myself.</li>
-        <li>[skill:Social] Spent the evening in the games room getting to know the newer ones.</li>
+        <li>[skill:Social] Spent the evening in the games room getting the quiet ones talking.</li>
         <li>[old] Taught the young ones an old card game. They cheat worse than I did at their age.</li>
         <li>[teen] Spent all evening in the rec room. Somebody said I was hogging the table.</li>
       </plain>
@@ -257,7 +257,7 @@
         <li>[tribal] We set the first stones of our camp and asked the spirits to watch over them.</li>
         <li>[medieval] Drove the first stake of the palisade today, and we cheered.</li>
         <li>[spacer] Solid ground under my feet and real air. After the ship, this is a palace.</li>
-        <li>[old] I've started over more times than I can count. This time feels different.</li>
+        <li>[old] I've started over more times than I can count. My knees remember every one.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>

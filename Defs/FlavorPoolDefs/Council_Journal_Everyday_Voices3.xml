@@ -16,7 +16,7 @@
       </plain>
       <cheerful>
         <li>Lost the argument with {OTHER_nameDef} and got the pots. I'll be the best pot-scrubber this colony has ever seen!</li>
-        <li>{OTHER_nameDef} and I squabbled over the dishes, so I made up a song about it. I thought it was very good!</li>
+        <li>{OTHER_nameDef} and I squabbled over the dishes, so I made up a song about it and sang it while I washed.</li>
       </cheerful>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
@@ -26,7 +26,7 @@
     <pool>Council_Journal_Day_BadNight</pool>
     <lines>
       <warm>
-        <li>{OTHER_nameDef} can't help snoring. I'll find something to stuff in my ears.</li>
+        <li>{OTHER_nameDef} can't help it. I'll find something to stuff in my ears.</li>
         <li>Bad night, thanks to {OTHER_nameDef}. {OTHER_nameDef} looked so sorry at breakfast that I didn't say anything.</li>
       </warm>
       <cold>
@@ -58,7 +58,7 @@
     <pool>Council_Journal_Day_NotReturned</pool>
     <lines>
       <warm>
-        <li>{OTHER_nameDef} still has my comb. I'll ask again, nicely.</li>
+        <li>{OTHER_nameDef} still has my spoon. I'll ask again, nicely.</li>
         <li>I don't mind lending {OTHER_nameDef} things. I'd just like them back eventually.</li>
       </warm>
       <blunt>
@@ -74,7 +74,7 @@
     <lines>
       <cheerful>
         <li>{OTHER_nameDef} is ignoring me, so I've been extra friendly. It's driving {OTHER_objective} mad!</li>
-        <li>{OTHER_nameDef} won't speak to me. Very well, I'll talk enough for both of us!</li>
+        <li>{OTHER_nameDef} won't speak to me. Very well, I'll talk enough for both of us.</li>
       </cheerful>
       <cold>
         <li>{OTHER_nameDef} is freezing me out. I can wait longer than {OTHER_pronoun} can.</li>
@@ -125,7 +125,7 @@
     <pool>Council_Journal_Day_LavishMeal</pool>
     <lines>
       <plain>
-        <li>[winter] Roast and gravy on a freezing night. I couldn't have asked for better.</li>
+        <li>[winter] Roast and gravy on a freezing night, with the shutters rattling.</li>
         <li>[trait:Ascetic] A lavish supper. I ate a plain part of it and left the rest for the others.</li>
       </plain>
     </lines>
@@ -136,7 +136,7 @@
     <pool>Council_Journal_Day_Outside</pool>
     <lines>
       <plain>
-        <li>[winter] Slept outside in the cold and woke up as stiff as a plank.</li>
+        <li>[winter] Slept rough in the cold and woke up stiff as a plank.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
@@ -156,7 +156,7 @@
     <pool>Council_Journal_Day_Corpse</pool>
     <lines>
       <plain>
-        <li>[winter] There's a frozen body in the snow by the gate. It's been there for days.</li>
+        <li>[winter] There's been a body by the gate for days. In this cold it hardly changes.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
