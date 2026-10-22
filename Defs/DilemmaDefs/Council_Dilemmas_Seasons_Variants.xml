@@ -15,11 +15,11 @@
     <defName>Council_Var_Dlm_Midsummer</defName>
     <dilemma>Council_Dilemma_Midsummer</dilemma>
     <texts>
-      <li>[lowtech] Midsummer is here, and {A_nameDef} has dragged half a dead tree into the yard for the fire. Back home, {A_nameDef} says, people jumped the midsummer fire for luck, and {A_pronoun} would like to try it here.\n\nIt would burn a good stack of firewood.</li>
-      <li>[!lowtech] The days are as long as they get. {A_nameDef} wants a bonfire to mark it, with the lamps off for once and everyone outside until the sky goes pale again.\n\nIt would burn a good stack of firewood.</li>
-      <li>[rain] It's midsummer and it has rained since breakfast, but {A_nameDef} still wants the bonfire tonight. {A_nameDef} has kept a stack of logs dry under the eaves for a week, just in case.</li>
+      <li>[lowtech] Midsummer is here, and {A_nameDef} has dragged half a dead tree into the yard for the fire. Back home, {A_nameDef} says, people jumped the midsummer fire for luck, and {A_pronoun} would like to try it here.\n\nThe woodpile would be a good deal lower by morning.</li>
+      <li>[!lowtech] {A_nameDef} wants the lamps off on the shortest night of the year, and a bonfire in the yard instead, with everyone out around it until the sky goes pale.\n\nIt would burn a good stack of firewood.</li>
+      <li>[rain] Rain since breakfast, on midsummer of all days. {A_nameDef} still wants the bonfire tonight, and has kept a stack of logs dry under the eaves all week in case it came to this.</li>
       <li>[trait:Pyromaniac] {A_nameDef} has a plan for a midsummer bonfire: where the logs go, how high, which way the wind will take the sparks. The council would rather {A_nameDef} lit it with permission than without.</li>
-      <li>[colony:Traditional] The colony keeps its seasons, and {A_nameDef} has asked that midsummer be kept too: a bonfire taller than the roof, singing, and the night shift let off until morning.\n\nThe woodpile would feel it.</li>
+      <li>[colony:Traditional] Midsummer, and the colony keeps its seasons. {A_nameDef} has the kindling laid already and only wants the council's word to light it.</li>
     </texts>
     <outcomes>
       <li>
@@ -27,7 +27,7 @@
         <lines>
           <li>[lowtech] The fire burned until dawn, and {A_nameDef} jumped it three times for luck.</li>
           <li>[rain] The rain let up an hour after sunset and the fire caught at the first try. They stayed out until the logs were ash.</li>
-          <li>The bonfire went up taller than the roof. {A_nameDef} was the last one to bed, and the first one asking about next year.</li>
+          <li>Sparks went up past the roof half the night. {A_nameDef} kept feeding the fire long after the singing stopped, until there was nothing left to feed it.</li>
         </lines>
       </li>
       <li>
@@ -40,7 +40,7 @@
         <option>2</option>
         <lines>
           <li>A small fire and an early night. {A_nameDef} sat up with the embers after the others had gone in.</li>
-          <li>[lowtech] A fire the size of a cartwheel, some stories, and bed. {A_nameDef} took a coal home in a pot, for luck.</li>
+          <li>[lowtech] A fire no bigger than a cartwheel, and an early bed. {A_nameDef} carried a coal home in a pot, for luck.</li>
         </lines>
       </li>
     </outcomes>
@@ -52,9 +52,9 @@
     <dilemma>Council_Dilemma_HarvestHome</dilemma>
     <texts>
       <li>[lowtech] The last cart of the harvest came in at dusk. {A_nameDef}, who sowed most of it by hand, asks for a harvest supper tonight with everyone at one table. It would cost about {COUNT} raw food.</li>
-      <li>[!lowtech] The last of the crop is in the freezer, weighed and logged. {A_nameDef} would like one night of eating it before it all goes into storage: a harvest home, about {COUNT} raw food.</li>
+      <li>[!lowtech] The last crate of the harvest is weighed and logged. {A_nameDef} would like the colony to eat some of it before it all disappears into storage: a harvest home, about {COUNT} raw food.</li>
       <li>[trait:Gourmand] {A_nameDef} has been planning the harvest supper since the seedlings came up: what to roast, what to stew, who sits where. It would cost about {COUNT} raw food, and {A_nameDef} has already started peeling.</li>
-      <li>[colony:Thrifty] The harvest is in. {A_nameDef} knows this colony isn't one for feasts, and is asking anyway: one supper for the people who brought it in, about {COUNT} raw food.\n\nThe stores will have to last the winter either way.</li>
+      <li>[colony:Thrifty] The harvest is in. {A_nameDef} knows this colony isn't one for feasts, and is asking anyway: one supper for the people who brought it in, about {COUNT} raw food.</li>
       <li>[rain] The last field was harvested in the rain, and everyone who worked it is soaked and sore. {A_nameDef} asks for a harvest supper tonight, about {COUNT} raw food, and a fire to dry out by.</li>
     </texts>
     <outcomes>
@@ -87,7 +87,7 @@
     <dilemma>Council_Dilemma_Midwinter</dilemma>
     <texts>
       <li>[lowtech] The longest night has come, and the hall fire is the only warm place left. {A_nameDef} wants to keep it the old way: everyone in one room, extra food, and a story from each.</li>
-      <li>[!lowtech] It's the longest night of the year and the heaters are struggling. {A_nameDef} thinks this is the night to bring everyone into one room, with extra rations and every lamp lit.</li>
+      <li>[!lowtech] The heaters have run flat out since noon and the rooms are still cold. It's the longest night of the year, and {A_nameDef} thinks this is the night to bring everyone into one room, with extra rations and every lamp lit.</li>
       <li>[snow] Snow has been falling since morning on the longest night of the year. {A_nameDef} has asked the council to mark it with extra food and a long evening together, before everyone scatters to their cold rooms.</li>
       <li>[trait:Kind] {A_nameDef} has been going room to room all evening with blankets. It's midwinter, {A_nameDef} tells the council, and no night to spend alone: could there be extra food and one big fire?</li>
       <li>[colony:Traditional] Midwinter again. The colony has its ways for the longest night, and {A_nameDef} wants to know if the council means to keep them this year: extra rations and a long evening around the fire.</li>
@@ -121,7 +121,7 @@
     <defName>Council_Var_Dlm_NameTheYear</defName>
     <dilemma>Council_Dilemma_NameTheYear</dilemma>
     <texts>
-      <li>Spring is here, and the colony wants a name for the new year. {A_nameDef} has suggested {A_possessive} own name and repeats it at every meal. The other favorites are the colony's dead and, for some reason, the muffalo.</li>
+      <li>Spring, and the new year still has no name. {A_nameDef} has suggested {A_possessive} own and repeats it at every meal. The other favorites are the colony's dead and, for reasons no one has explained, the muffalo.</li>
       <li>[lowtech] By old custom the year gets its name at the first planting. {A_nameDef} has carved a candidate into the dining table: {A_possessive} own name. Someone else has carved a muffalo next to it.\n\nThe council has been asked to choose before the table runs out of room.</li>
       <li>[trait:Jealous] {A_nameDef} heard that the year might be named after someone else and has started a campaign: {A_possessive} own name, written on a board by the door. Others want the year named for the dead. A few want the muffalo.</li>
     </texts>
@@ -141,7 +141,7 @@
       <li>
         <option>2</option>
         <lines>
-          <li>The year of the muffalo, then. Someone tied a ribbon to the muffalo's horn, and it ate the ribbon. {A_nameDef} is sulking.</li>
+          <li>The year of the muffalo, then. Someone tied a ribbon to the muffalo's horn, and by supper it had eaten the ribbon.</li>
         </lines>
       </li>
     </outcomes>
