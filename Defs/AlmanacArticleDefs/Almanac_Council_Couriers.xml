@@ -27,7 +27,7 @@ They come a few hours after the answer, by day, and never while there are enemie
           <li>Waiting at the gate | One of their people | They wait while one of your colonists carries the answer's errand out to them, then take it home</li>
           <li>Someone handed over | Two or more of them | They come for a prisoner they paid for, or an animal given back, pay once they have them, and lead them away</li>
         </table>
-        <text>The number depends on the load: a purse of silver brings one runner, 250 corn two porters, a cart's worth of timber three. For a big load they bring a pack animal from their own caravans (a muffalo, a dromedary, whatever their traders use and the land allows). What's called "runner", "porter" or "courier" follows their people: tribes send runners, medieval folk porters, everyone later couriers. When the event's visitor is already at the colony, they hand the things over themselves; if they're still walking in, they carry it with them and set it down when they arrive.</text>
+        <text>The number depends on the load: a purse of silver brings one runner, 250 corn two porters, a cart's worth of timber three. For a big load they bring a pack animal from their own caravans (a muffalo, a dromedary, whatever their traders use and the land allows). What's called "runner", "porter" or "courier" follows their people: tribes send runners, medieval folk porters, everyone later couriers. When the event's visitor is already at the colony, they hand the things over themselves; if they're still walking in, they carry it with them and set it down when they arrive. The same goes for the rider or driver a world event's letter brings to the gate (see "visitors on the map"): what the answer sends goes out to them, and only a cartload brings porters.</text>
       </li>
       <li>
         <heading>When it doesn't go to plan</heading>
@@ -41,7 +41,7 @@ Hurt, arrest or kill one of them and the deal holds only as far as it got: what 
       </li>
     </sections>
     <keywords><li>courier</li><li>porter</li><li>runner</li><li>pack animal</li><li>delivery</li><li>gift</li><li>payment</li><li>sale</li><li>silver</li><li>on the map</li></keywords>
-    <seeAlso><li>Council_Alm_C_PlayOut</li><li>Council_Alm_C_WorldEvents</li><li>Council_Alm_C_WorldSituations</li><li>Council_Alm_C_Dilemmas</li></seeAlso>
+    <seeAlso><li>Council_Alm_C_Visitors</li><li>Council_Alm_C_PlayOut</li><li>Council_Alm_C_WorldEvents</li><li>Council_Alm_C_WorldSituations</li><li>Council_Alm_C_Dilemmas</li></seeAlso>
   </ColonyCouncil.AlmanacArticleDef>
 
 </Defs>
