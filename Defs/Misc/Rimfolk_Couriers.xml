@@ -26,6 +26,13 @@
   </JobDef>
 
   <JobDef>
+    <defName>Council_CourierFetch</defName>
+    <driverClass>ColonyCouncil.JobDriver_CourierFetch</driverClass>
+    <reportString>coming for TargetA.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+  <JobDef>
     <defName>Council_CourierLoad</defName>
     <driverClass>ColonyCouncil.JobDriver_CourierLoad</driverClass>
     <reportString>loading up TargetA.</reportString>

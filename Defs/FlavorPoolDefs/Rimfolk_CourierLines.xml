@@ -51,6 +51,11 @@
         <li>[leave] Long walk home.</li>
         <li>[leave,theirLowtech] Back before the moon's up, if we hurry.</li>
         <li>[leave,rain] Back out into the wet, then.</li>
+        <li>[fetch,person] On your feet. You're coming with us.</li>
+        <li>[fetch,person,theirLowtech] The elders will want a word with you.</li>
+        <li>[fetch,person,theirHightech] You'll answer for it where you belong.</li>
+        <li>[fetch,animal] There you are. Come on, home.</li>
+        <li>[fetch,animal] Easy now. Easy.</li>
         <li>[inperson,silver] Here. As we agreed.</li>
         <li>[inperson] This is yours now.</li>
         <li>[inperson,goods] Yours. Look it over.</li>
@@ -64,6 +69,7 @@
         <li>[receive] We won't forget who sent this.</li>
         <li>[leave] Keep well, all of you.</li>
         <li>[inperson] For your trouble, and with thanks.</li>
+        <li>[fetch,animal] They've missed you at home, you know.</li>
       </warm>
       <blunt>
         <li>[arrive] Where do you want it?</li>
@@ -73,6 +79,7 @@
         <li>[await] I don't have all day.</li>
         <li>[receive] Good. I'm off.</li>
         <li>[inperson] Take it.</li>
+        <li>[fetch,person] Up. Walk.</li>
       </blunt>
       <cheerful>
         <li>[arrive] Made good time on the road!</li>
@@ -94,6 +101,7 @@
         <li>[collect] As agreed. No more, no less.</li>
         <li>[receive] Received. We'll be on our way.</li>
         <li>[inperson] The agreed amount.</li>
+        <li>[fetch,person] Don't make this harder than it needs to be.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>

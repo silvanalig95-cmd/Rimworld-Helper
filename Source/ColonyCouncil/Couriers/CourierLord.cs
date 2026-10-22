@@ -11,6 +11,7 @@ namespace ColonyCouncil
         public static DutyDef Council_CourierWork;
         public static JobDef Council_CourierDrop;
         public static JobDef Council_CourierLoad;
+        public static JobDef Council_CourierFetch;
 
         static CourierDefOf()
         {

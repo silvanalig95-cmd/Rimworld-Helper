@@ -76,6 +76,38 @@ namespace ColonyCouncil
         public string takeLabel;
         public string takeTag;
 
+        /// <summary>Where the goods come from: the stores by PlayCarry's words (null), or a mission's goods ("mission": Missions.Matching).</summary>
+        public string source;
+
+        // ---- Someone handed over to them ----
+
+        /// <summary>A prisoner sold to them, an animal given back: they come for them, and they leave with them.</summary>
+        public Pawn fetch;
+        public bool fetchPrisoner;
+        /// <summary>A prisoner's own people, given back to them once they're off the map.</summary>
+        public Faction fetchFaction;
+        public bool fetched;
+        /// <summary>The one they came for was gone (dead, freed, recruited): they don't pay, and go.</summary>
+        public bool fetchFailed;
+
+        // ---- The event's own visitor, carrying it in ----
+
+        /// <summary>
+        /// Not a courier at all: the event's own visitor (people[0], in their own group) has it in their pack and sets it
+        /// down when they reach the colony (at <see cref="spot"/> if given).
+        /// </summary>
+        public bool bearerTrip;
+        public int nextTry;
+
+        // ---- A letter that waits for them ----
+
+        /// <summary>A letter about what they bring (a venture come home, a fair's takings), sent when they set it down.</summary>
+        public string letterLabel;
+        public string letterText;
+        public LetterDef letterDef;
+        public string chronicle;
+        public Pawn chroniclePawn;
+
         // ---- An errand's courier ----
 
         /// <summary>The errand (PlayOut) whose things a colonist carries out to them.</summary>
@@ -106,6 +138,9 @@ namespace ColonyCouncil
         public bool Brings => kind == CourierKind.Deliver || kind == CourierKind.Exchange || !bringLabel.NullOrEmpty();
 
         public bool Takes => kind == CourierKind.Collect || kind == CourierKind.Exchange;
+
+        /// <summary>Waiting to take someone away: they pay and finish once that's done.</summary>
+        public bool FetchPending => fetch != null && !fetched && !fetchFailed;
 
         /// <summary>Still owed from the stores (or of the particular things).</summary>
         public int LeftToTake => CourierMath.Left(amount, taken);
@@ -170,6 +205,19 @@ namespace ColonyCouncil
             Scribe_Collections.Look(ref things, "things", LookMode.Reference);
             Scribe_Values.Look(ref takeLabel, "takeLabel");
             Scribe_Values.Look(ref takeTag, "takeTag");
+            Scribe_Values.Look(ref source, "source");
+            Scribe_References.Look(ref fetch, "fetch");
+            Scribe_Values.Look(ref fetchPrisoner, "fetchPrisoner");
+            Scribe_References.Look(ref fetchFaction, "fetchFaction");
+            Scribe_Values.Look(ref fetched, "fetched");
+            Scribe_Values.Look(ref fetchFailed, "fetchFailed");
+            Scribe_Values.Look(ref bearerTrip, "bearerTrip");
+            Scribe_Values.Look(ref nextTry, "nextTry");
+            Scribe_Values.Look(ref letterLabel, "letterLabel");
+            Scribe_Values.Look(ref letterText, "letterText");
+            Scribe_Defs.Look(ref letterDef, "letterDef");
+            Scribe_Values.Look(ref chronicle, "chronicle");
+            Scribe_References.Look(ref chroniclePawn, "chroniclePawn");
             Scribe_Values.Look(ref playId, "playId", -1);
             Scribe_Values.Look(ref received, "received");
             Scribe_Collections.Look(ref people, "people", LookMode.Reference);

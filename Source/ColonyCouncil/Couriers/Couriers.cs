@@ -169,20 +169,50 @@ namespace ColonyCouncil
 
         /// <summary>
         /// Things for the colony from outsiders (silver, a gift, goods, a payment owed): carried in some hours later and
-        /// set down by the gate. Someone of the event already here (<paramref name="bearer"/>) hands them over at once
-        /// instead. False: nobody will bring them (the setting off, nobody to send): the caller sets them down the old way.
+        /// set down by the gate. Someone of the event already here (<paramref name="bearer"/>) hands them over at once if
+        /// they're at the colony, or carries them in and sets them down when they get there (at <paramref name="drop"/>
+        /// if given). False: nobody will bring them (the setting off, nobody to send): the caller sets them down the old way.
         /// </summary>
-        public static bool Deliver(Map map, List<Thing> things, Faction from, IntVec3 near, Pawn bearer = null)
+        public static bool Deliver(Map map, List<Thing> things, Faction from, IntVec3 near, Pawn bearer = null, IntVec3? drop = null) =>
+            DeliverTrip(map, things, from, near, bearer, drop, out _) || handledInPerson;
+
+        [ThreadStatic] private static bool handledInPerson;
+
+        /// <summary>
+        /// Like <see cref="Deliver"/>, and the trip (to hold a letter for when they set it down: <see cref="TellWhenThere"/>).
+        /// Null when nobody comes; <paramref name="handed"/>: the visitor handed it over at once.
+        /// </summary>
+        public static bool DeliverTrip(Map map, List<Thing> things, Faction from, IntVec3 near, Pawn bearer, IntVec3? drop, out CourierTrip trip)
         {
+            trip = null;
+            handledInPerson = false;
             things = things?.Where(t => t != null && !t.Destroyed && !t.Spawned && t.holdingOwner == null).ToList();
             if (map == null || things.NullOrEmpty() || !On) return false;
             try
             {
                 if (InPerson(bearer, map))
                 {
-                    // They're here: handed over at the colony, or (still out by the edge) left as before.
-                    if (!AtColony(bearer)) return false;
-                    ByHand(bearer, things, map);
+                    // They're here: handed over now if they're at the colony, else carried in and set down when they arrive.
+                    if (AtColony(bearer) && drop == null)
+                    {
+                        ByHand(bearer, things, map);
+                        handledInPerson = true;
+                        return false;
+                    }
+                    if (CourierTracker.Instance == null) return false;
+                    var b = New(CourierKind.Deliver, map, bearer.Faction, Soon);
+                    b.bearerTrip = true;
+                    b.faction = bearer.Faction;
+                    b.people = new List<Pawn> { bearer };
+                    b.oldSpot = near;
+                    b.spot = drop ?? IntVec3.Invalid;
+                    b.bringLabel = Describe(things);
+                    b.bringTag = TagOf(things.FirstOrDefault()?.def);
+                    foreach (var thing in things) b.goods.TryAdd(thing, true);
+                    CourierTracker.Instance.Add(b);
+                    b.state = CourierState.Working;
+                    b.arrived = Now;
+                    trip = b;
                     return true;
                 }
                 if (!CanSend(map, from)) return false;
@@ -191,7 +221,7 @@ namespace ColonyCouncil
                 t.bringLabel = Describe(things);
                 t.bringTag = TagOf(things.FirstOrDefault()?.def);
                 foreach (var thing in things) t.goods.TryAdd(thing, true);
-                Register(t);
+                trip = Register(t);
                 return true;
             }
             catch (Exception e)
@@ -359,7 +389,7 @@ namespace ColonyCouncil
         /// A new trip, or, when the same answer already set one going for the same people (a purchase: the silver paid
         /// and the goods bought, two effects), one visit for both: they bring the one and take the other.
         /// </summary>
-        private static void Register(CourierTrip t)
+        private static CourierTrip Register(CourierTrip t)
         {
             var tracker = CourierTracker.Instance;
             var same = tracker.trips.FirstOrDefault(x => x.state == CourierState.Pending && !x.settled && x.created == t.created && x.map == t.map
@@ -376,12 +406,12 @@ namespace ColonyCouncil
                 waiting.bringLabel = Describe(waiting.goods.ToList());
                 waiting.bringTag = t.bringTag;
                 if (!waiting.oldSpot.IsValid) waiting.oldSpot = t.oldSpot;
-                return;
+                return waiting;
             }
             if (same == null)
             {
                 tracker.Add(t);
-                return;
+                return t;
             }
             if (t.goods.Count > 0)
             {
@@ -409,6 +439,7 @@ namespace ColonyCouncil
             bool bring = same.goods.Count > 0, take = same.amount > 0 || same.things.Count > 0;
             same.kind = bring && take ? CourierKind.Exchange : bring ? CourierKind.Deliver : CourierKind.Collect;
             if (!same.oldSpot.IsValid) same.oldSpot = t.oldSpot;
+            return same;
         }
 
         /// <summary>Two trips can be one visit: they take at most one kind of goods (the same, or only one of them takes).</summary>
@@ -455,6 +486,108 @@ namespace ColonyCouncil
                 }
             }
             return Collect(map, what, def, n, PeopleOf(ctx));
+        }
+
+        /// <summary>
+        /// Like VarietyUtil.TakeFromStores, for goods an event's people take (sold, paid, given): false (nothing taken)
+        /// when the stores hold fewer; else carried out to the visitor or fetched by a courier (TakeFor), or taken now.
+        /// </summary>
+        public static bool TakeFromStoresFor(DilemmaContext ctx, ThingDef def, int n)
+        {
+            var map = ctx?.map;
+            if (map == null || def == null || n <= 0) return false;
+            if (VarietyUtil.InStores(map, def) < n) return false;
+            if (TakeFor(ctx, null, def, n)) return true;
+            return VarietyUtil.TakeFromStores(map, def, n);
+        }
+
+        /// <summary>
+        /// A mission's order collected by their carts (Missions' own words for goods: meals, art, blocks...): one party
+        /// per kind of goods, the first bringing the pay. Soon after, since the day was named. False: nobody comes.
+        /// </summary>
+        public static bool CollectGoals(Map map, List<KeyValuePair<string, int>> goals, Faction f, int silver)
+        {
+            if (map == null || goals.NullOrEmpty() || !On) return false;
+            try
+            {
+                if (!CanSend(map, f)) return false;
+                bool paid = silver <= 0;
+                foreach (var g in goals.Where(g => g.Value > 0))
+                {
+                    var t = New(paid ? CourierKind.Collect : CourierKind.Exchange, map, f, Soon);
+                    t.source = "mission";
+                    t.what = g.Key;
+                    t.amount = g.Value;
+                    t.takeLabel = "CC_Courier_Amount".Translate(g.Value, Missions.GoalLabel(new MissionGoal { what = g.Key, count = g.Value })).Resolve();
+                    t.takeTag = g.Key == "meals" || g.Key == "rawfood" ? "food" : g.Key == "medicine" ? "medicine" : "goods";
+                    if (!paid)
+                    {
+                        var pay = Make(ThingDefOf.Silver, silver);
+                        t.bringLabel = Describe(pay);
+                        t.bringTag = "silver";
+                        foreach (var thing in pay) t.goods.TryAdd(thing, true);
+                        paid = true;
+                    }
+                    CourierTracker.Instance.Add(t);
+                }
+                return true;
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("courier mission", e);
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Someone handed over to outsiders: a prisoner they paid for (<paramref name="prisoner"/>), an animal given back.
+        /// They come for them (with <paramref name="pay"/>, set down once they have them) and leave with them; the
+        /// prisoner goes back to their own people once off the map. False: nobody comes, and the caller does it the old way.
+        /// </summary>
+        public static bool Fetch(Map map, Pawn x, Faction to, List<Thing> pay, IntVec3 near, bool prisoner)
+        {
+            if (map == null || x == null || x.Dead || !x.Spawned || x.Map != map || !On || to == null) return false;
+            try
+            {
+                if (!CanSend(map, to) || Choose(to, map) != to) return false;
+                var t = New(CourierKind.Deliver, map, to, Later);
+                t.fetch = x;
+                t.fetchPrisoner = prisoner;
+                t.oldSpot = near;
+                t.takeLabel = x.LabelShort;
+                t.takeTag = prisoner ? "person" : "animal";
+                if (!pay.NullOrEmpty())
+                {
+                    t.bringLabel = Describe(pay);
+                    t.bringTag = TagOf(pay[0].def);
+                    foreach (var thing in pay) t.goods.TryAdd(thing, true);
+                }
+                CourierTracker.Instance.Add(t);
+                return true;
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("courier fetch", e);
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// The letter about what a trip brings (a venture come home, a fair's takings), held until they set it down, so
+        /// the letter comes when they do. Composed now (the event's lines and tags), as LivingEvents.Tell would.
+        /// </summary>
+        public static void TellWhenThere(CourierTrip t, HappeningContext ctx, List<string> titles, List<string> texts, IEnumerable<string> tags, LetterDef letter, string item = null)
+        {
+            if (t == null || ctx == null) return;
+            string text = VarietyUtil.Line(texts, ctx, tags, item);
+            if (text.NullOrEmpty()) return;
+            string title = VarietyUtil.Line(titles, ctx, tags, item) ?? ctx.incident?.LabelCap.ToString() ?? "";
+            t.letterLabel = title;
+            t.letterText = text;
+            t.letterDef = letter ?? LetterDefOf.NeutralEvent;
+            int cut = text.IndexOf('\n');
+            t.chronicle = title + ": " + (cut > 0 ? text.Substring(0, cut) : text);
+            t.chroniclePawn = ctx.a != null && !ctx.a.Dead && ctx.a.IsColonist ? ctx.a : null;
         }
 
         // ---------------- An errand's courier (PlayOut) ----------------

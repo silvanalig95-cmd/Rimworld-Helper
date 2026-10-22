@@ -34,6 +34,15 @@ namespace ColonyCouncil
             var t = CourierTracker.Instance?.TripOf(pawn);
             if (t == null || t.state != CourierState.Working || t.settled) return null;
             var map = pawn.Map;
+            // Someone to take away first (they pay once they have them): the first of them goes for them.
+            if (t.FetchPending)
+            {
+                var x = t.fetch;
+                if (t.Bearers.FirstOrDefault() != pawn || !CourierTracker.FetchOk(t) || !pawn.CanReach(x, PathEndMode.Touch, Danger.Some)) return null;
+                var fetch = JobMaker.MakeJob(CourierDefOf.Council_CourierFetch, x);
+                fetch.locomotionUrgency = LocomotionUrgency.Walk;
+                return fetch;
+            }
             if (t.toUnload.Contains(pawn))
                 return Drop(new LocalTargetInfo(t.spot));
             // The pack animal's load: the first of them still about unloads it, wherever it stands.
@@ -82,9 +91,8 @@ namespace ColonyCouncil
         {
             var map = pawn.Map;
             if (map == null) return null;
-            bool particular = t.things.Count > 0;
-            var cands = particular ? t.things.Where(x => x != null && !x.Destroyed && x.Spawned && x.Map == map)
-                : PlayCarry.Stock(map, t.what, t.def).Where(x => x != null && x.Spawned && !x.IsForbidden(Faction.OfPlayer));
+            bool particular = CourierStock.Particular(t);
+            var cands = particular ? CourierStock.Of(t, map) : CourierStock.Of(t, map).Where(x => x != null && x.Spawned && !x.IsForbidden(Faction.OfPlayer));
             var spot = t.spot;
             foreach (var x in cands.OrderByDescending(x => x.IsInAnyStorage()).ThenBy(x => x.Position.DistanceToSquared(spot)).Take(40))
             {
@@ -145,6 +153,43 @@ namespace ColonyCouncil
             };
             drop.defaultCompleteMode = ToilCompleteMode.Instant;
             yield return drop;
+        }
+    }
+
+    /// <summary>A courier walks to the one they came for (a prisoner sold to them, an animal given back) and takes them along.</summary>
+    public class JobDriver_CourierFetch : JobDriver
+    {
+        private CourierTrip Trip => CourierTracker.Instance?.TripOf(pawn);
+
+        public override bool TryMakePreToilReservations(bool errorOnFailed) => true;
+
+        public override string GetReport()
+        {
+            var x = job.targetA.Thing as Pawn;
+            return x != null ? "CC_Courier_Report_Fetch".Translate(x.LabelShort).Resolve() : base.GetReport();
+        }
+
+        protected override IEnumerable<Toil> MakeNewToils()
+        {
+            this.FailOn(() => Trip == null || Trip.settled || !Trip.FetchPending);
+            this.FailOnDespawnedOrNull(TargetIndex.A);
+            yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.Touch);
+            var wait = Toils_General.Wait(120, TargetIndex.A);
+            yield return wait;
+            var take = ToilMaker.MakeToil("CourierFetch");
+            take.initAction = () =>
+            {
+                try
+                {
+                    CourierTracker.Instance?.Fetched(Trip, pawn);
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("courier fetch job", e);
+                }
+            };
+            take.defaultCompleteMode = ToilCompleteMode.Instant;
+            yield return take;
         }
     }
 

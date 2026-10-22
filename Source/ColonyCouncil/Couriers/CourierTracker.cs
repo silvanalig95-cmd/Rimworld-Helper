@@ -6,6 +6,7 @@ using UnityEngine;
 using Verse;
 using Verse.AI;
 using Verse.AI.Group;
+using RimWorld.Planet;
 
 namespace ColonyCouncil
 {
@@ -68,8 +69,16 @@ namespace ColonyCouncil
             return null;
         }
 
-        /// <summary>The trip someone is on (by their group).</summary>
-        public CourierTrip TripOf(Pawn p) => p?.GetLord()?.LordJob is LordJob_Courier j ? Get(j.tripId) : null;
+        /// <summary>The trip someone is on: by their group, or, for an event's visitor carrying something in, by name.</summary>
+        public CourierTrip TripOf(Pawn p)
+        {
+            if (p == null) return null;
+            if (p.GetLord()?.LordJob is LordJob_Courier j) return Get(j.tripId);
+            foreach (var t in trips)
+                if (t.bearerTrip && t.state == CourierState.Working && t.people.Contains(p))
+                    return t;
+            return null;
+        }
 
         public void Add(CourierTrip t)
         {
@@ -142,7 +151,8 @@ namespace ColonyCouncil
                 }
                 case CourierState.Coming:
                 case CourierState.Working:
-                    StepHere(t, now);
+                    if (t.bearerTrip) StepBearer(t, now);
+                    else StepHere(t, now);
                     return;
                 case CourierState.Leaving:
                 case CourierState.Done:
@@ -214,10 +224,19 @@ namespace ColonyCouncil
                     var first = t.Bearers.FirstOrDefault();
                     if (first != null) CourierWords.Say(first, t, t.kind == CourierKind.Await ? "await" : "arrive");
                 }
-                else if (now - t.created > CourierMath.GiveUpTicks * 2 || (t.arrived < 0 && now - t.due > CourierMath.TicksPerDay))
+                else if (now - t.due > CourierMath.TicksPerDay)
                 {
                     End(t, CourierEnd.TimedOut);
                 }
+                return;
+            }
+            // The one they came for is gone (dead, freed, taken in): they don't pay, and go.
+            if (t.FetchPending && !FetchOk(t))
+            {
+                t.fetchFailed = true;
+                Forfeit(t);
+                CourierWords.FetchGone(t);
+                Leave(t, CourierEnd.Done);
                 return;
             }
             // At the gate: is the business done?
@@ -226,7 +245,8 @@ namespace ColonyCouncil
                 if (t.doneTick < 0)
                 {
                     t.doneTick = now;
-                    CourierWords.Done(t);
+                    // A letter that waited for them comes now; else a word on what they did.
+                    if (!CourierWords.SendLetter(t, null)) CourierWords.Done(t);
                 }
                 if (now - t.doneTick >= CourierMath.LingerTicks) Leave(t, CourierEnd.Done);
                 return;
@@ -237,16 +257,61 @@ namespace ColonyCouncil
 
         private static bool BusinessDone(CourierTrip t)
         {
+            if (t.FetchPending) return false;
             if (t.Brings && t.StillCarrying) return false;
             if (t.kind == CourierKind.Await) return t.received;
             if (t.Takes)
             {
                 // Taken all, or the colony has none of it left at all.
-                int stock = t.things.Count > 0 ? t.things.Count(x => x != null && x.Spawned && x.Map == t.map) : PlayCarry.Have(t.map, t.what, t.def);
-                if (t.things.Count > 0 && stock == 0) return true;
+                int stock = CourierStock.Have(t);
+                if (CourierStock.Particular(t) && stock == 0) return true;
                 return CourierMath.CollectDone(t.amount, t.taken, stock);
             }
             return true;
+        }
+
+        /// <summary>
+        /// An event's own visitor carrying something in: once they're at the colony, they set it down (at the trip's spot
+        /// if it has one, else where they stand). Gone, or a day on: what's left is settled the old way.
+        /// </summary>
+        private void StepBearer(CourierTrip t, int now)
+        {
+            if (!t.MapThere)
+            {
+                End(t, CourierEnd.MapGone);
+                return;
+            }
+            var x = t.people.FirstOrDefault();
+            if (t.goods.Count == 0)
+            {
+                t.settled = true;
+                t.state = CourierState.Done;
+                t.endTick = now;
+                t.people.Clear();
+                return;
+            }
+            if (!Couriers.On)
+            {
+                End(t, CourierEnd.SettingOff);
+                return;
+            }
+            if (!Couriers.InPerson(x, t.map))
+            {
+                End(t, CourierEnd.Lost);
+                return;
+            }
+            if (now - t.created > CourierMath.TicksPerDay)
+            {
+                End(t, CourierEnd.TimedOut);
+                return;
+            }
+            if (now < t.nextTry || x.CurJobDef == CourierDefOf.Council_CourierDrop || !x.Awake() || t.map.dangerWatcher.DangerRating != StoryDanger.None) return;
+            if (!Couriers.AtColony(x) && !(t.spot.IsValid && x.Position.InHorDistOf(t.spot, 25f))) return;
+            t.nextTry = now + CourierMath.TicksPerHour;
+            var at = t.spot.IsValid && t.spot.InBounds(t.map) && x.CanReach(t.spot, PathEndMode.OnCell, Danger.Some) ? t.spot : x.Position;
+            var job = JobMaker.MakeJob(CourierDefOf.Council_CourierDrop, at);
+            job.locomotionUrgency = LocomotionUrgency.Walk;
+            x.jobs.StartJob(job, JobCondition.InterruptForced, null, true, true);
         }
 
         // ---------------- Setting out ----------------
@@ -255,7 +320,8 @@ namespace ColonyCouncil
         private bool SetOut(CourierTrip t)
         {
             var map = t.map;
-            var f = Couriers.Choose(t.preferred, map);
+            // Someone sold or given back goes only to the people who paid: nobody else comes for them.
+            var f = t.fetch != null ? (Couriers.Usable(t.preferred) ? t.preferred : null) : Couriers.Choose(t.preferred, map);
             if (f == null) return false;
             var spot = PlaySpots.GateCell(map, null);
             bool gate = spot.IsValid;
@@ -270,6 +336,8 @@ namespace ColonyCouncil
             var animalKind = Couriers.AnimalKind(f, map);
             bool animal = t.kind != CourierKind.Await && CourierMath.PackAnimal(bulk, animalKind != null);
             int n = t.kind == CourierKind.Await ? 1 : CourierMath.PeopleWithAnimal(bulk, animal);
+            // Taking a prisoner away: never fewer than two.
+            if (t.fetchPrisoner) n = Math.Max(2, n);
             var people = new List<Pawn>();
             Pawn beast = null;
             try
@@ -335,14 +403,14 @@ namespace ColonyCouncil
             foreach (var thing in t.goods)
                 bring += CourierMath.Bulk(thing.GetStatValue(StatDefOf.Mass) * thing.stackCount, thing.stackCount / (float)Mathf.Max(1, thing.def.stackLimit));
             float take = 0f;
-            if (t.things.Count > 0)
+            if (CourierStock.Particular(t))
             {
                 foreach (var thing in t.things.Where(x => x != null && !x.Destroyed))
                     take += CourierMath.Bulk(thing.GetStatValue(StatDefOf.Mass) * thing.stackCount, thing.stackCount / (float)Mathf.Max(1, thing.def.stackLimit));
             }
             else if (t.amount > 0)
             {
-                var d = t.def ?? PlayCarry.Stock(t.map, t.what, null).FirstOrDefault()?.def;
+                var d = t.def ?? CourierStock.Of(t, t.map).FirstOrDefault()?.def;
                 if (d != null) take = CourierMath.Bulk(d.GetStatValueAbstract(StatDefOf.Mass) * t.amount, t.amount / (float)Mathf.Max(1, d.stackLimit));
                 else take = t.amount * 0.1f;
             }
@@ -382,11 +450,28 @@ namespace ColonyCouncil
 
         /// <summary>
         /// Someone of the trip sets down what <paramref name="from"/> (themselves, or the pack animal beside them) carries
-        /// for the colony, by <paramref name="at"/>. What's set down is the colony's.
+        /// for the colony, by <paramref name="at"/>. What's set down is the colony's. An event's visitor sets down what
+        /// they carried in.
         /// </summary>
         public void Unload(CourierTrip t, Pawn by, Pawn from, IntVec3 at)
         {
-            if (t == null || from == null || !t.toUnload.Contains(from)) return;
+            if (t == null) return;
+            if (t.bearerTrip)
+            {
+                var map = by?.Map ?? t.map;
+                var placed = new List<Thing>();
+                foreach (var thing in t.goods.ToList())
+                    if (t.goods.TryDrop(thing, at, map, ThingPlaceMode.Near, thing.stackCount, out var lying))
+                    {
+                        lying?.SetForbidden(false, false);
+                        if (lying != null) placed.Add(lying);
+                    }
+                if (by != null) CourierWords.SayInPerson(by, t.bringTag);
+                if (!CourierWords.SendLetter(t, placed.Count > 0 ? new LookTargets(placed) : null))
+                    CourierWords.HandedOver(t, by, placed);
+                return;
+            }
+            if (from == null || !t.toUnload.Contains(from)) return;
             int n = DropAll(t, from, at);
             t.toUnload.Remove(from);
             t.unloaded += n;
@@ -422,6 +507,86 @@ namespace ColonyCouncil
             if (first && by != null) CourierWords.Say(by, t, "collect");
         }
 
+        /// <summary>Still there to be taken away: the colony's prisoner, or the colony's animal, on this map.</summary>
+        public static bool FetchOk(CourierTrip t)
+        {
+            var x = t.fetch;
+            if (x == null || x.Dead || !x.Spawned || x.Map != t.map) return false;
+            return t.fetchPrisoner ? x.IsPrisonerOfColony : x.Faction == Faction.OfPlayer;
+        }
+
+        /// <summary>The one they came for is handed over: theirs now, and they walk off with the group.</summary>
+        public void Fetched(CourierTrip t, Pawn by)
+        {
+            if (t == null || !t.FetchPending || !FetchOk(t) || t.lord == null) return;
+            var x = t.fetch;
+            try
+            {
+                x.jobs?.StopAll();
+                x.GetLord()?.RemovePawn(x);
+                x.roping?.BreakAllRopes();
+                if (x.playerSettings != null && !x.RaceProps.Humanlike) x.playerSettings.Master = null;
+                if (t.fetchPrisoner)
+                {
+                    t.fetchFaction = x.Faction;
+                    x.guest?.SetGuestStatus(null);
+                }
+                if (x.Faction != t.faction) x.SetFaction(t.faction);
+                if (t.lord.CanAddPawn(x)) t.lord.AddPawn(x);
+                t.fetched = true;
+                if (by != null) CourierWords.Say(by, t, "fetch");
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("courier fetched", e);
+                t.fetchFailed = true;
+            }
+        }
+
+        /// <summary>The old way of handing someone over (no courier, or one who never got to them): gone at once.</summary>
+        private static void FetchNow(CourierTrip t)
+        {
+            var x = t.fetch;
+            if (!FetchOk(t)) return;
+            try
+            {
+                if (t.fetchPrisoner)
+                {
+                    x.DeSpawn();
+                    x.guest?.SetGuestStatus(null);
+                    if (!Find.WorldPawns.Contains(x)) Find.WorldPawns.PassToWorld(x, PawnDiscardDecideMode.Decide);
+                }
+                else
+                {
+                    // An animal given back walks off by itself.
+                    x.GetLord()?.RemovePawn(x);
+                    x.roping?.BreakAllRopes();
+                    if (x.playerSettings != null) x.playerSettings.Master = null;
+                    var to = t.preferred ?? t.faction;
+                    if (to != null && x.Faction != to) x.SetFaction(to);
+                    if (!x.Downed && ReachabilityUtility.CanReachMapEdge(x))
+                        LordMaker.MakeNewLord(x.Faction, new LordJob_ExitMapBest(LocomotionUrgency.Walk, false, false), x.Map, new List<Pawn> { x });
+                    else
+                    {
+                        x.DeSpawn();
+                        if (!Find.WorldPawns.Contains(x)) Find.WorldPawns.PassToWorld(x, PawnDiscardDecideMode.Decide);
+                    }
+                }
+                t.fetched = true;
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("courier fetch now", e);
+            }
+        }
+
+        /// <summary>They don't pay (the one they came for is gone): nothing left in their packs is set down.</summary>
+        private static void Forfeit(CourierTrip t)
+        {
+            t.toUnload.Clear();
+            if (t.goods.Count > 0) t.goods.ClearAndDestroyContents();
+        }
+
         // ---------------- Ending ----------------
 
         /// <summary>A trip that never came (or couldn't): what it brought is set down and what it was to take is taken, the old way, now.</summary>
@@ -442,11 +607,13 @@ namespace ColonyCouncil
                 if (!t.settled) Settle(t, end);
                 return;
             }
-            bool wasHere = t.state == CourierState.Coming || t.state == CourierState.Working;
+            bool wasHere = (t.state == CourierState.Coming || t.state == CourierState.Working) && !t.bearerTrip;
             Settle(t, end);
+            // The event's own visitor goes about their own business, as before.
+            if (t.bearerTrip) t.people.Clear();
             if (end == CourierEnd.Harmed || end == CourierEnd.Hostile || !wasHere)
             {
-                // A group that fights its way out (or never came) goes on its own.
+                // A group that fights its way out (or never came, or the event's own visitor) goes on its own.
                 t.state = wasHere ? CourierState.Leaving : CourierState.Done;
                 t.endTick = Now;
                 return;
@@ -477,7 +644,10 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>The rest of the deal, once: goods still owed to the colony set down, goods still owed by it taken.</summary>
+        /// <summary>
+        /// The rest of the deal, once: goods still owed to the colony set down, goods still owed by it taken, someone
+        /// still to be handed over handed over; and a held letter sent.
+        /// </summary>
         private void Settle(CourierTrip t, CourierEnd end)
         {
             if (t.settled) return;
@@ -486,6 +656,21 @@ namespace ColonyCouncil
             var map = t.MapThere ? t.map : null;
             var look = new List<Thing>();
             bool incoming = false, outgoing = false;
+            // Someone they came for and never took: handed over the old way (and then they pay), unless the deal broke.
+            if (map != null && t.FetchPending && CourierMath.SettleOutgoing(end))
+            {
+                if (FetchOk(t))
+                {
+                    FetchNow(t);
+                    outgoing = true;
+                }
+                else
+                {
+                    t.fetchFailed = true;
+                    Forfeit(t);
+                }
+            }
+            else if (t.FetchPending) Forfeit(t);
             // Owed to the colony.
             if (map != null && CourierMath.SettleIncoming(end))
             {
@@ -505,7 +690,10 @@ namespace ColonyCouncil
                 t.toUnload.Clear();
                 if (t.goods.Count > 0)
                 {
-                    var at = t.oldSpot.IsValid && t.oldSpot.InBounds(map) ? t.oldSpot : DropCellFinder.TradeDropSpot(map);
+                    // The event's visitor who never got to the colony leaves it at their feet if they're still about.
+                    var x = t.bearerTrip ? t.people.FirstOrDefault() : null;
+                    var at = x != null && x.Spawned && x.Map == map && map.reachability.CanReachColony(x.Position) ? x.Position
+                        : t.oldSpot.IsValid && t.oldSpot.InBounds(map) ? t.oldSpot : DropCellFinder.TradeDropSpot(map);
                     foreach (var thing in t.goods.ToList())
                         if (t.goods.TryDrop(thing, at, map, ThingPlaceMode.Near, thing.stackCount, out var lying))
                         {
@@ -522,22 +710,14 @@ namespace ColonyCouncil
                 int left = t.LeftToTake;
                 if (left > 0)
                 {
-                    int got;
-                    if (t.things.Count > 0)
-                    {
-                        got = 0;
-                        foreach (var thing in t.things.Where(x => x != null && !x.Destroyed && x.Spawned).ToList())
-                        {
-                            got += thing.stackCount;
-                            thing.Destroy();
-                        }
-                    }
-                    else got = PlayCarry.Take(map, t.what, t.def, left);
+                    int got = CourierStock.TakeNow(t, left);
                     if (got > 0) outgoing = true;
                     t.taken += got;
                 }
             }
-            if (!t.quiet && (incoming || outgoing)) CourierWords.Settled(t, end, incoming, outgoing, look);
+            // A letter that waited for them comes now, whatever happened (it tells of something already decided).
+            bool lettered = map != null && CourierWords.SendLetter(t, look.Count > 0 ? new LookTargets(look.Where(x => x.Spawned)) : null);
+            if (!t.quiet && !lettered && (incoming || outgoing)) CourierWords.Settled(t, end, incoming, outgoing, look);
         }
 
         /// <summary>One of them was lost to the group (from its LordJob).</summary>
@@ -547,6 +727,13 @@ namespace ColonyCouncil
             if (t == null || p == null) return;
             try
             {
+                if (p == t.fetch)
+                {
+                    // The one they took away, off the map: back to their own people.
+                    if (cond == PawnLostCondition.ExitedMap && t.fetchFaction != null && !t.fetchFaction.defeated && p.Faction != t.fetchFaction)
+                        p.SetFaction(t.fetchFaction);
+                    return;
+                }
                 switch (cond)
                 {
                     case PawnLostCondition.MadePrisoner:
@@ -587,9 +774,10 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>Those who have gone off the map (alive) have their packs cleared.</summary>
+        /// <summary>Couriers who have gone off the map (alive) have their packs cleared (never an event's own visitor's).</summary>
         private static void ClearGone(CourierTrip t)
         {
+            if (t.bearerTrip) return;
             foreach (var p in t.Party)
                 if (!p.Dead && !p.Spawned && !p.Discarded && p.Faction != Faction.OfPlayer && !p.IsPrisoner) Clear(p);
         }
@@ -605,8 +793,8 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref nextId, "nextId", 1);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
-                if (trips == null) trips = new List<CourierTrip>();
                 // A group lost in loading (a mod gone, an old save) is noticed on the trip's next turn: settled, and let go.
+                if (trips == null) trips = new List<CourierTrip>();
                 trips.RemoveAll(t => t == null);
             }
         }

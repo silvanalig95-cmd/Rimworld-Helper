@@ -122,7 +122,8 @@ namespace ColonyCouncil
             try
             {
                 string who = People(t, false, out bool many);
-                string kind = t.kind == CourierKind.Await && !t.bringLabel.NullOrEmpty() ? "AwaitPay" : t.kind.ToString();
+                string kind = t.fetch != null ? (t.bringLabel.NullOrEmpty() ? "Fetch" : "FetchPay")
+                    : t.kind == CourierKind.Await && !t.bringLabel.NullOrEmpty() ? "AwaitPay" : t.kind.ToString();
                 string text = ("CC_Courier_Arrive_" + kind + (many ? "_Many" : "_One"))
                     .Translate(who, FactionName(t), t.takeLabel ?? t.bringLabel ?? "", t.bringLabel ?? "").Resolve();
                 Notify.Message(text, Look(t), MessageTypeDefOf.NeutralEvent, Importance.Notable);
@@ -144,6 +145,13 @@ namespace ColonyCouncil
                 string where = (t.atGate ? "CC_Courier_ByGate" : "CC_Courier_NearColony").Translate().Resolve();
                 string took = t.Takes ? (t.things.Count > 0 || t.taken >= t.amount ? t.takeLabel : Couriers.Amount(t.taken, t.what, t.def)) : t.takeLabel;
                 string text;
+                if (t.fetch != null)
+                {
+                    text = t.bringLabel.NullOrEmpty() ? "CC_Courier_Done_Fetch".Translate(who, faction, t.takeLabel ?? "").Resolve()
+                        : "CC_Courier_Done_FetchPay".Translate(who, faction, t.takeLabel ?? "", where, t.bringLabel).Resolve();
+                    Notify.Message(text, Look(t), MessageTypeDefOf.NeutralEvent, Importance.Notable);
+                    return;
+                }
                 switch (t.kind)
                 {
                     case CourierKind.Deliver:
@@ -168,6 +176,61 @@ namespace ColonyCouncil
             {
                 CouncilLog.ErrorOnce("courier done words", e);
             }
+        }
+
+        /// <summary>The one they came for is gone (dead, freed, taken in): they leave without paying.</summary>
+        public static void FetchGone(CourierTrip t)
+        {
+            if (t == null || t.quiet) return;
+            try
+            {
+                string who = People(t, true, out _);
+                Notify.Message("CC_Courier_FetchGone".Translate(who, FactionName(t), t.takeLabel ?? "").Resolve(), Look(t), MessageTypeDefOf.NeutralEvent, Importance.Notable);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("courier fetch gone words", e);
+            }
+        }
+
+        /// <summary>The event's own visitor has set down what they carried in.</summary>
+        public static void HandedOver(CourierTrip t, Pawn by, List<Thing> placed)
+        {
+            if (t == null || t.quiet || by == null) return;
+            try
+            {
+                var look = new List<Thing> { by };
+                if (placed != null) look.AddRange(placed.Where(x => x.Spawned));
+                Notify.Message("CC_Courier_Done_Bearer".Translate(by.Named("PAWN"), (t.bringLabel ?? "").Named("GOODS")).Resolve(), new LookTargets(look),
+                    MessageTypeDefOf.PositiveEvent, Importance.Notable);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("courier handed words", e);
+            }
+        }
+
+        /// <summary>
+        /// A letter that waited for the trip (a venture come home, a fair's takings) comes now, when they set it down (or
+        /// when it was settled another way). True if there was one.
+        /// </summary>
+        public static bool SendLetter(CourierTrip t, LookTargets look)
+        {
+            if (t == null || t.letterText.NullOrEmpty()) return false;
+            try
+            {
+                if (look == null || !look.IsValid) look = Look(t);
+                Find.LetterStack.ReceiveLetter(t.letterLabel ?? "", t.letterText, t.letterDef ?? LetterDefOf.NeutralEvent, look ?? LookTargets.Invalid);
+                if (!t.chronicle.NullOrEmpty())
+                    CouncilGameComponent.Instance?.AddChronicle(new ChronicleEntry(ChronicleKind.World, t.chronicle,
+                        t.chroniclePawn != null && !t.chroniclePawn.Dead && t.chroniclePawn.IsColonist ? t.chroniclePawn : null));
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("courier letter", e);
+            }
+            t.letterText = null;
+            return true;
         }
 
         /// <summary>What was left of a deal went another way: they never came, or left before they were done.</summary>

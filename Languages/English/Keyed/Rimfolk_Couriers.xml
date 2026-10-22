@@ -35,6 +35,10 @@
   <CC_Courier_Arrive_Exchange_Many>{0} from {1} have come with {3}, to take {2} back with them.</CC_Courier_Arrive_Exchange_Many>
   <CC_Courier_Arrive_Await_One>{0} from {1} is walking up to the gate to wait for {2}.</CC_Courier_Arrive_Await_One>
   <CC_Courier_Arrive_Await_Many>{0} from {1} are walking up to the gate to wait for {2}.</CC_Courier_Arrive_Await_Many>
+  <CC_Courier_Arrive_Fetch_One>{0} from {1} has come for {2}.</CC_Courier_Arrive_Fetch_One>
+  <CC_Courier_Arrive_Fetch_Many>{0} from {1} have come for {2}.</CC_Courier_Arrive_Fetch_Many>
+  <CC_Courier_Arrive_FetchPay_One>{0} from {1} has come with {3} for {2}.</CC_Courier_Arrive_FetchPay_One>
+  <CC_Courier_Arrive_FetchPay_Many>{0} from {1} have come with {3} for {2}.</CC_Courier_Arrive_FetchPay_Many>
   <CC_Courier_Arrive_AwaitPay_One>{0} from {1} is walking up to the gate with {3}, to wait for {2}.</CC_Courier_Arrive_AwaitPay_One>
   <CC_Courier_Arrive_AwaitPay_Many>{0} from {1} are walking up to the gate with {3}, to wait for {2}.</CC_Courier_Arrive_AwaitPay_Many>
 
@@ -43,6 +47,10 @@
   <CC_Courier_Done_Exchange>{0} from {1} set down {4} {3} and loaded up {2}.</CC_Courier_Done_Exchange>
   <CC_Courier_Done_Await>{0} from {1} took {2} and turned for home.</CC_Courier_Done_Await>
   <CC_Courier_Done_Collect>{0} from {1} loaded up {2} from the stores.</CC_Courier_Done_Collect>
+  <CC_Courier_Done_Fetch>{0} from {1} are taking {2} away with them.</CC_Courier_Done_Fetch>
+  <CC_Courier_Done_FetchPay>{0} from {1} set down {4} {3} and are taking {2} away with them.</CC_Courier_Done_FetchPay>
+  <CC_Courier_Done_Bearer>{PAWN_nameDef} set down {GOODS} for the colony.</CC_Courier_Done_Bearer>
+  <CC_Courier_FetchGone>{0} from {1} came for {2}, who is no longer the colony's to give. They left without paying.</CC_Courier_FetchGone>
   <CC_Courier_Done_Nothing>{0} from {1} found none of what they came for left in the stores.</CC_Courier_Done_Nothing>
 
   <!-- What was left of a deal went another way -->
@@ -58,6 +66,7 @@
   <CC_Courier_Report_Drop>setting down what they brought.</CC_Courier_Report_Drop>
   <CC_Courier_Report_Unload>unloading the pack animal.</CC_Courier_Report_Unload>
   <CC_Courier_Report_Load>loading up {0}.</CC_Courier_Report_Load>
+  <CC_Courier_Report_Fetch>coming for {0}.</CC_Courier_Report_Fetch>
 
   <!-- An errand waiting for its courier -->
   <CC_Courier_Why_NotYet>the one who'll take it hasn't reached the gate yet</CC_Courier_Why_NotYet>
