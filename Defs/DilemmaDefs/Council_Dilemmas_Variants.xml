@@ -13,16 +13,16 @@
     <dilemma>Council_Dilemma_Thief</dilemma>
     <texts>
       <li>[winter] With the snow piled up and the stores running low, {B_nameDef} caught {A_nameDef} in the storeroom at night with a sack of food. {A_nameDef} says {A_pronoun} was cold and hungry.\n\n{B_nameDef} says so is every other colonist, and wants the council to deal with it.</li>
-      <li>[trait:Greedy] {B_nameDef} found a hoard under {A_nameDef}'s bed: dried meat, a sack of grain, the last of the berries. {A_nameDef} says it's only a little extra, for later.\n\n{B_nameDef} has asked the council to decide what happens to {A_objective}.</li>
-      <li>[trait:Gourmand] {A_nameDef} was caught at the larder again, this time by {B_nameDef}, with jam on {A_possessive} chin and an empty jar in hand. {A_nameDef} says it was a small jar.\n\n{B_nameDef} wants the council to do something about it.</li>
-      <li>[past:outlaw] {A_nameDef} has taken food from the stores three nights running, and {B_nameDef} finally caught {A_objective} at it. Old habits, {A_nameDef} says, from years when stealing was the only way to eat.\n\n{B_nameDef} isn't moved, and wants the council to deal with it.</li>
+      <li>[trait:Greedy] {B_nameDef} lifted the lid of {A_nameDef}'s clothes chest and found the last of the berries in it, with a sack of grain and enough dried meat for a week.\n\n"For later," {A_nameDef} said.</li>
+      <li>[trait:Gourmand] {A_nameDef} was caught at the larder again, this time by {B_nameDef}, with jam on {A_possessive} chin and an empty jar in hand. {A_nameDef} says it was a small jar.</li>
+      <li>[past:outlaw] {A_nameDef} has taken food from the stores three nights running, and {B_nameDef} finally caught {A_objective} at it. Old habits, {A_nameDef} says, from years when stealing was the only way to eat.\n\n{B_nameDef} isn't moved.</li>
       <li>[colony:Harsh] {B_nameDef} caught {A_nameDef} stealing from the stores, and the colony knows how it usually deals with thieves. {A_nameDef} has asked the council for mercy this time.</li>
     </texts>
     <outcomes>
       <li>
         <option>0</option>
         <lines>
-          <li>[trait:Greedy] {A_nameDef} got off with a warning, and was seen counting the sacks in the storeroom that evening. {B_nameDef} has started locking the door.</li>
+          <li>[trait:Greedy] {A_nameDef} got off with a warning, and was seen in the storeroom that same evening, counting the sacks.</li>
         </lines>
       </li>
       <li>
@@ -45,16 +45,16 @@
     <defName>Council_Var_Dlm_Stash</defName>
     <dilemma>Council_Dilemma_Stash</dilemma>
     <texts>
-      <li>[winter] Clearing snow off the old shed roof, {A_nameDef} found a crate wedged under the eaves: {COUNT} {THING}, still good. Somebody hid it there a long time ago.\n\nThe colony is arguing over what to do with it.</li>
-      <li>[trait:ChemicalInterest] {A_nameDef} found {COUNT} {THING} hidden behind a loose stone in the wall, and is very keen to share it out tonight. Others aren't so sure.\n\nThe council has been asked to decide.</li>
+      <li>[winter] Clearing snow off the old shed roof, {A_nameDef} found a crate wedged under the eaves, and in it {COUNT} {THING}, half frozen and still good. Whoever hid it there did it a long time ago.</li>
+      <li>[trait:ChemicalInterest] {A_nameDef} found {COUNT} {THING} hidden behind a loose stone in the wall, and is very keen to share it out tonight. Others aren't so sure.</li>
       <li>[trait:Teetotaler] {A_nameDef} found {COUNT} {THING} hidden in the old shed and brought it straight to the council, holding it at arm's length. {A_nameDef} would like it gone. Others have other ideas.</li>
-      <li>[lowtech] {A_nameDef} found {COUNT} {THING} in a clay jar sealed with wax, buried under the old storehouse floor. Whoever hid it never came back.\n\nThe colony can't agree what to do with it.</li>
+      <li>[lowtech] {A_nameDef} found {COUNT} {THING} in a clay jar sealed with wax, buried under the old storehouse floor. Whoever hid it never came back for it.</li>
     </texts>
     <outcomes>
       <li>
         <option>0</option>
         <lines>
-          <li>The {THING} went round the table after supper. The ones who don't touch it went to bed early, and the rest stayed up singing.</li>
+          <li>The {THING} went round after supper, and the colony found out which of its people sing once they've had some.</li>
         </lines>
       </li>
       <li>
@@ -71,17 +71,17 @@
     <defName>Council_Var_Dlm_Feud</defName>
     <dilemma>Council_Dilemma_Feud</dilemma>
     <texts>
-      <li>[winter] Shut in together by the snow, {A_nameDef} and {B_nameDef} have run out of patience with each other. Today it was the last chair near the stove. Yesterday it was who let the draft in.\n\nBoth want the council to settle it.</li>
+      <li>[winter] Shut in together by the snow, {A_nameDef} and {B_nameDef} have run out of patience with each other. The latest argument was over the chair nearest the stove, and it ended with neither of them in it.</li>
       <li>[trait:Abrasive] {A_nameDef} told {B_nameDef} exactly what {A_pronoun} thinks of {B_objective}, at length, at supper. {B_nameDef} has come to the council to complain, and {A_nameDef} has come to complain about the complaint.</li>
       <li>[b:trait:Abrasive] {B_nameDef} hasn't said a kind word to {A_nameDef} in a week, and today said several unkind ones in the workshop. {A_nameDef} has had enough and wants the council to step in. {B_nameDef} says {A_nameDef} started it.</li>
       <li>[colony:Traditional] The colony has an old way of settling quarrels: both sides speak, the council decides, and that's the end of it. {A_nameDef} and {B_nameDef} have been at each other for days, and have both asked for it.</li>
-      <li>[summer] It's too hot for anyone's temper, and {A_nameDef} and {B_nameDef} have been snapping at each other since sunrise. It came to shouting at the well this afternoon, over whose turn it was to draw water.\n\nThe council has been asked to settle it.</li>
+      <li>[summer] It's too hot for anyone's temper, and {A_nameDef} and {B_nameDef} have been snapping at each other since sunrise. It came to shouting at the well this afternoon, over whose turn it was to draw water.</li>
     </texts>
     <outcomes>
       <li>
         <option>2</option>
         <lines>
-          <li>[winter] A week of shared shifts clearing snow, and {A_nameDef} and {B_nameDef} have settled into a cold, polite silence. It's better than shouting.</li>
+          <li>[winter] One shift of clearing snow side by side, and {A_nameDef} and {B_nameDef} have settled into a cold, polite silence. It beats shouting.</li>
         </lines>
       </li>
       <li>
@@ -129,19 +129,19 @@
       <li>[winter] {A_nameDef} hasn't been out of bed before noon in a week, and finally told the council why: the winter dark has got into {A_objective}, and {A_pronoun} can't shake it.\n\n{B_nameDef} has offered to help.</li>
       <li>[trait:Nervous] {A_nameDef} has jumped at every noise for days, and today broke down in the workshop over a dropped hammer. {A_nameDef} told the council {A_pronoun} needs a rest.\n\n{B_nameDef} has offered to look after {A_objective}.</li>
       <li>[trait:Industrious] {A_nameDef}, who never stops working, stopped this morning and couldn't start again. {A_nameDef} came to the council red-eyed, embarrassed to say {A_pronoun} is worn out.\n\n{B_nameDef} has been keeping an eye on {A_objective}.</li>
-      <li>[lowmood] {A_nameDef} hasn't eaten with the others in days. Tonight {A_nameDef} came to the council and said it plainly: {A_pronoun} isn't coping.\n\n{B_nameDef} has offered to help.</li>
+      <li>[lowmood] {A_nameDef} hasn't eaten with the others in days. Tonight {A_nameDef} sat down across from the council and said it plainly: {A_pronoun} isn't coping.\n\n{B_nameDef} has offered to help.</li>
     </texts>
     <outcomes>
       <li>
         <option>0</option>
         <lines>
-          <li>{A_nameDef} is taking it easy for a few days, mostly sleeping. A few of the others have noticed the empty place on the work roster.</li>
+          <li>{A_nameDef} slept most of the first easy day away, and woke up asking what was for supper.</li>
         </lines>
       </li>
       <li>
         <option>2</option>
         <lines>
-          <li>[winter] {B_nameDef} has been sitting up with {A_nameDef} by the stove in the evenings. Both of them look a little better for it.</li>
+          <li>[winter] {B_nameDef} sat up with {A_nameDef} by the stove until the fire was low, and they talked about the spring.</li>
         </lines>
       </li>
     </outcomes>

@@ -33,7 +33,7 @@
     <options>
       <li>
         <label>Take {X_objective} in</label>
-        <outcome>{X_nameDef} slept inside the walls that night and has joined the colony. The {FACTION} party left at dawn one carrier short, and its leader made it plain this would be remembered.</outcome>
+        <outcome>{X_nameDef} is one of the colony now, and sleeps inside the walls tonight. The {FACTION} party will go home one carrier short, and its leader has made it plain this will be remembered.</outcome>
         <ways><mercy>6</mercy><openness>3</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Recruit" />
@@ -46,7 +46,7 @@
       </li>
       <li>
         <label>Tell {FACTION} what {X_nameDef} asked</label>
-        <outcome>The council told the {FACTION} leader what {X_nameDef} had asked. {X_nameDef} left with them in the morning, walking at the front, where someone could keep an eye on {X_objective}. People on the road will hear about this one too.</outcome>
+        <outcome>The council told the {FACTION} leader what {X_nameDef} had asked. When the party moves on, {X_nameDef} will walk at the front, where someone can keep an eye on {X_objective}. People on the road will hear about this one too.</outcome>
         <ways><mercy>-8</mercy><openness>-2</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>5</amount></li>
@@ -59,7 +59,7 @@
       </li>
       <li>
         <label>A night's rest, then the road</label>
-        <outcome>{X_nameDef} got a warm corner, a full bowl and a night's sleep without anyone shouting at {X_objective}. In the morning {X_nameDef} left with {FACTION}, with a loaf of the colony's bread in {X_possessive} pack.</outcome>
+        <outcome>{X_nameDef} gets a warm corner, a full bowl and one night's sleep with no one shouting, and then the road home with {FACTION}. Someone has already slipped a loaf of the colony's bread into {X_possessive} pack.</outcome>
         <ways><mercy>2</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_DlmR_NightsRest</thought></li>
@@ -86,7 +86,7 @@
     </stranger>
     <texts>
       <li>{X_nameDef} has heard what travelers say about the colony, that it lets its prisoners go, and is acting like it. {X_nameDef} lies on the cell bed with {X_possessive} feet up, sends back the porridge, and tells {A_nameDef} through the bars to hurry up with the release.\n\n{A_nameDef} is tired of being laughed at by a prisoner, and has asked the council what the colony's mercy is actually for.</li>
-      <li>"You lot let everybody go," {X_nameDef} told {A_nameDef} this morning, cheerfully, through the cell door. "Might as well do it now and save the bread." {X_nameDef} has said some version of this every day since the capture, and some of the wardens have started to wonder whether {X_nameDef} is right.\n\n{A_nameDef} wants the council to settle whether the colony's mercy is a promise or a choice.</li>
+      <li>"You lot let everybody go," {X_nameDef} told {A_nameDef} this morning, cheerfully, through the cell door. "Might as well do it now and save the bread." {X_nameDef} has said some version of this every day since the capture, and some of the wardens have started to wonder whether {X_nameDef} is right.\n\n{A_nameDef} would like to know whether the colony's mercy is a promise or a choice.</li>
     </texts>
     <defaultOption>2</defaultOption>
     <options>
@@ -103,7 +103,7 @@
       </li>
       <li>
         <label>Let {X_objective} go, then</label>
-        <outcome>The wardens have orders to release {X_nameDef}, who grinned at them all the way to the door. Word will get around that the stories are true.</outcome>
+        <outcome>The wardens have orders to release {X_nameDef}, who hasn't stopped grinning since {X_pronoun} heard. Word will get around that the stories are true.</outcome>
         <ways><mercy>5</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_PrisonerOrder"><mode>Release</mode></li>
@@ -137,15 +137,15 @@
       <anyTrait><li>Kind</li></anyTrait>
     </roleA>
     <texts>
-      <li>The last caravan brought back what people say about the colony on the roads. In the villages of {FACTION}, mothers use its name to get their children indoors before dark. {A_nameDef} heard it and has been troubled ever since.\n\n{FACTION} has had a hard season, with fever in the villages and not enough to eat. {A_nameDef} has asked the council to send them food and ask nothing for it, so that the next story told about this place is a different one.</li>
-      <li>{A_nameDef} has never liked what the colony is known for, and this week a trader said it to {A_possessive} face: hard people behind hard walls, who give nothing and spare no one. {A_nameDef} wants the council to do one merciful thing that people will hear about.\n\n{FACTION} is short of food after a bad harvest. {A_nameDef} thinks a few sacks of grain, sent with no price attached, would be talked about from one village to the next.</li>
+      <li>The last caravan brought back what people say about the colony on the roads. In the villages of {FACTION}, mothers use its name to get their children indoors before dark. {A_nameDef} heard that, and hasn't let it go since.\n\n{FACTION} has had a hard season, with fever in the villages and not enough to eat. {A_nameDef} has asked the council to send them food and ask nothing for it, so that the next story told about this place is a different one.</li>
+      <li>{A_nameDef} has never liked what the colony is known for, and this week a trader said it to {A_possessive} face: hard people behind hard walls, who give nothing and spare no one. {A_nameDef} wants one merciful thing done that people will hear about.\n\n{FACTION} is short of food after a bad harvest. {A_nameDef} thinks a few sacks of grain, sent with no price attached, would be talked about from one village to the next.</li>
       <li>{A_nameDef} found a child of {FACTION} hiding behind the woodpile, too frightened to come out. The child had heard what this colony does to strangers. {A_nameDef} walked the child back to the road, then came straight to the council.\n\nThe child's people are hungry this year. "Send them food," {A_nameDef} said. "Once. Let one of them grow up telling a different story about us."</li>
     </texts>
     <defaultOption>2</defaultOption>
     <options>
       <li>
         <label>Send food, and ask nothing</label>
-        <outcome>Sacks of the colony's food went out the gate for {FACTION}, with no letter and no price. {A_nameDef} helped load them, and seemed lighter for it.</outcome>
+        <outcome>Sacks of the colony's food went out the gate for {FACTION}, with no letter and no price. {A_nameDef} carried the first one down, and stood at the gate a while after the last.</outcome>
         <ways><mercy>8</mercy><generosity>4</generosity></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the food for {FACTION}</label><what>rawfood</what><count>30</count><to>Gate</to></li>
@@ -157,7 +157,7 @@
       </li>
       <li>
         <label>Send silver instead</label>
-        <outcome>Eighty silver went to {FACTION} with a passing caravan. It will buy them bread. {A_nameDef} would rather it had been food from the colony's own stores.</outcome>
+        <outcome>Eighty silver went to {FACTION}. It will buy them bread from someone else's ovens, and {A_nameDef} wishes it had been the colony's own.</outcome>
         <ways><mercy>4</mercy><generosity>3</generosity></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>80</count></li>
@@ -205,7 +205,7 @@
     <options>
       <li>
         <label>Flog {X_objective}</label>
-        <outcome>{A_nameDef} did it in the yard, in front of both peoples. The {FACTION} leader thanked the council. {X_nameDef} walked out with the caravan in the morning, stiffly, and didn't look back.</outcome>
+        <outcome>{A_nameDef} did it in the yard, in front of both peoples, and didn't look up once. The {FACTION} leader thanked the council. {X_nameDef} hasn't looked at anyone since.</outcome>
         <ways><mercy>-6</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>6</amount></li>
@@ -218,7 +218,7 @@
       </li>
       <li>
         <label>Pardon {X_objective}</label>
-        <outcome>The council pardoned {X_nameDef} and untied {X_possessive} hands. The {FACTION} leader spat in the dirt and walked off. Before the caravan left, {X_nameDef} came back to the gate to thank the council.</outcome>
+        <outcome>The council pardoned {X_nameDef} and untied {X_possessive} hands. The {FACTION} leader spat in the dirt and walked off. {X_nameDef} rubbed {X_possessive} wrists and said thank you to the council, twice.</outcome>
         <ways><mercy>6</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>-3</amount></li>
@@ -251,9 +251,9 @@
       <bestAt>Cooking</bestAt>
     </roleA>
     <texts>
-      <li>Word has spread that there's always a bowl at this colony's gate. Hungry people from {FACTION} have come four times this month, more of them each time, and some bring cousins.\n\n{A_nameDef} has been feeding them, and has brought the storeroom tally to the council. The colony can keep giving for a while, but not forever.</li>
-      <li>Another knock at the gate, another thin face from {FACTION} and a story about a burned granary or a lame ox. {A_nameDef}, who does the cooking and most of the counting, has started hiding the good bread.\n\n"It's not that I mind," {A_nameDef} told the council. "It's that it's every day now. And the cold months are still coming."</li>
-      <li>{A_nameDef} counted the bowls handed out at the gate this season and stopped at sixty. Word on the road is that the colony never says no, and {FACTION} has clearly heard it.\n\nThe storeroom isn't empty yet. {A_nameDef} wants the council to decide how much more goes out before it is.</li>
+      <li>{A_nameDef}'s tally, from the back of the storeroom door:\n\nFirst lot from {FACTION}, four. Fed.\nSecond lot, seven. Fed.\nThird lot, eleven, some of them cousins. Fed.\nFourth lot, fifteen. Fed.\n\nWord has spread that there's always a bowl at this colony's gate. {A_nameDef} wants the council to say how long that stays true.</li>
+      <li>Another knock at the gate, another thin face from {FACTION} and a story about a burned granary or a lame ox. {A_nameDef}, who does the cooking and most of the counting, has started hiding the good bread.\n\n"I don't mind feeding them," {A_nameDef} told the council. "But it's every day now, and the shelves go down faster than they fill."</li>
+      <li>"They said on the road you never say no," the woman from {FACTION} told {A_nameDef} at the gate this morning, holding out her bowl. She was the sixtieth this season.\n\nThe storeroom isn't empty yet. {A_nameDef} would like to keep it that way.</li>
     </texts>
     <defaultOption>1</defaultOption>
     <options>
@@ -282,7 +282,7 @@
       </li>
       <li>
         <label>Close the gate to beggars</label>
-        <outcome>The next hungry family from {FACTION} was sent on with nothing, and so was the one after that. The storeroom will last the winter. Travelers will have something new to say about the colony.</outcome>
+        <outcome>The gate is shut to anyone asking for food. The next hungry family from {FACTION} will be sent on with nothing, and the storeroom will last. Travelers will have something new to say about the colony.</outcome>
         <ways><generosity>-8</generosity><openness>-3</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>-5</amount></li>
@@ -313,13 +313,13 @@
     </stranger>
     <texts>
       <li>{X_nameDef}, the {FACTION} trader, weighed {A_nameDef}'s silver twice, bit a coin, and asked loudly whether the colony charged guests for the well water too. "Word is you lot count every grain," {X_nameDef} said. "Thought I'd save you the bother."\n\nThe caravan guards laughed. {A_nameDef} went red to the ears, and wants the council to answer it one way or another.</li>
-      <li>{X_nameDef} of {FACTION} has heard the colony is tight with its silver, and keeps making jokes about it: mice starving in the storeroom, guests charged for well water. {A_nameDef} laughed the first time.\n\nBy the fifth time {A_nameDef} had stopped laughing, and has asked the council to do something to shut {X_nameDef} up. A gift, perhaps, that no one could call mean.</li>
+      <li>The mice in this colony's storeroom have taken a vow of fasting. The candles are lit one at a time and passed round. {X_nameDef} of {FACTION} has heard the colony is tight with its silver, and has a joke about it for anyone standing near the trade goods.\n\n{A_nameDef} laughed at the first one. By the fifth {A_nameDef} had stopped, and asked the council for something that would shut {X_nameDef} up. A gift, perhaps, that no one could call mean.</li>
     </texts>
     <defaultOption>1</defaultOption>
     <options>
       <li>
         <label>Send {X_nameDef} off with a gift</label>
-        <outcome>The council gave {X_nameDef} fifty silver "for the road", in front of the caravan guards. {X_nameDef} looked at the purse for a long moment and made no more jokes that evening.</outcome>
+        <outcome>{X_nameDef} was handed fifty silver "for the road", in front of the caravan guards. {X_nameDef} weighed the purse in one hand, didn't bite any of it, and made no more jokes that day.</outcome>
         <ways><generosity>6</generosity></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>50</count></li>
@@ -333,7 +333,7 @@
       </li>
       <li>
         <label>Let {X_objective} laugh</label>
-        <outcome>{X_nameDef} kept up the jokes until the caravan left, and {A_nameDef} stayed in {A_possessive} room until it was out of sight.</outcome>
+        <outcome>{X_nameDef} has kept the jokes coming, and {A_nameDef} has gone to {A_possessive} room to wait for the caravan to leave.</outcome>
         <ways><generosity>-3</generosity></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmR_Mocked</thought></li>
@@ -343,7 +343,7 @@
       </li>
       <li>
         <label>Charge {X_objective} for the well water, then</label>
-        <outcome>The council took the joke and made it policy: {X_nameDef}'s pack animals drank at two silver a bucket, twenty silver in all. {X_nameDef} paid and left in a temper. {A_nameDef} wishes {A_pronoun} had never brought it up.</outcome>
+        <outcome>Two silver a bucket for the pack animals, the council ruled, twenty silver in all. {X_nameDef} paid without a word, which was worse than the jokes. {A_nameDef} wishes {A_pronoun} had never brought it up.</outcome>
         <ways><generosity>-6</generosity></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>Silver</thing><count>20</count></li>
@@ -370,13 +370,13 @@
     <texts>
       <li>Supper here follows old rules. No one eats until everyone is seated, no one leaves before the last bowl is scraped, and a full bowl is set at the head of the table for the dead. {A_nameDef} has started eating standing up by the kitchen door, and called the bowl for the dead a waste of good stew where {B_nameDef} could hear.\n\n{B_nameDef} has brought it to the council. {A_nameDef} says it's only a bowl of stew. {B_nameDef} says the bowl is for the people buried out back, and {A_nameDef} knows it.</li>
       <li>When the season turns, the colony gathers at the graves at dusk and says the names of the dead. The custom is older than most of the walls. {A_nameDef} skipped it last time to finish a job, and has said {A_pronoun} will skip it again, since the dead won't notice and the work will.\n\n{B_nameDef} is angry about it, and has asked the council to remind {A_nameDef} what kind of place this is.</li>
-      <li>Every newcomer to this colony is met at the gate with bread and salt, and all hands turn out for it. {A_nameDef} didn't come down for the last one, and told {B_nameDef} afterward that standing in a line holding bread is theater, not work.\n\n{B_nameDef} has asked the council to settle it. Either the customs here are kept, {B_nameDef} says, or there's no point in having them.</li>
+      <li>Every newcomer to this colony is met at the gate with bread and salt, and all hands turn out for it. {A_nameDef} didn't come down for the last one, and told {B_nameDef} afterward that standing in a line holding bread is theater, and there was work to do.\n\nEither the customs here are kept, {B_nameDef} says, or there's no point in having them.</li>
     </texts>
     <defaultOption>0</defaultOption>
     <options>
       <li>
         <label>The custom stands, for everyone</label>
-        <outcome>The council ruled that the custom stands, for everyone, every time. {A_nameDef} turned up the next time and went through it with a sour face. {B_nameDef} says that will do for now.</outcome>
+        <outcome>The custom stands, the council ruled, for everyone and every time. {A_nameDef} agreed to be there in the voice of someone agreeing to have a tooth pulled, and {B_nameDef} will be watching.</outcome>
         <ways><tradition>6</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmR_MadeToConform</thought></li>
@@ -398,7 +398,7 @@
       </li>
       <li>
         <label>Have {B_nameDef} tell {A_objective} why it matters</label>
-        <outcome>{B_nameDef} sat {A_nameDef} down and told {A_objective} who the custom was for and how it started. {A_nameDef} came out quieter, and was there the next time, on time.</outcome>
+        <outcome>{B_nameDef} sat {A_nameDef} down and told {A_objective} who the custom was for and how it started. {A_nameDef} came away quieter, and has promised to be there next time, on time.</outcome>
         <ways><tradition>3</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_MadeUp</thought></li>
@@ -425,7 +425,7 @@
     <texts>
       <li>When the first frost came, the colony used to eat together at one long table. Somebody sang badly, and someone told the story of how the place was founded. Between the new kiln, the new fields and every other new project, it stopped happening.\n\n{A_nameDef} wants it back. The others aren't against it. They're just busy with whatever comes next.</li>
       <li>The fields go in new rows every season and the kitchen changes its bread every week. Somewhere along the way, the evenings when each person told one story stopped happening.\n\n{A_nameDef} has asked the council to bring those evenings back, and to keep them this time. "We can try new things," {A_nameDef} said. "We could also keep one old one."</li>
-      <li>Travelers call this the colony that never sits still, and {A_nameDef} is tired of it. There used to be a harvest supper here, with one long table and a toast to the first people who broke this ground. Ask around and people disagree about when the last one was.\n\n{A_nameDef} has asked the council to bring it back.</li>
+      <li>Travelers call this the colony that never sits still, and {A_nameDef} is tired of it. There used to be a harvest supper here, with one long table and a toast to the first people who broke this ground. Ask around and people disagree about when the last one was.\n\n{A_nameDef} would like to settle the question by holding one.</li>
     </texts>
     <defaultOption>2</defaultOption>
     <options>
@@ -443,7 +443,7 @@
       </li>
       <li>
         <label>Bring it back, with a few changes</label>
-        <outcome>The old custom is back with changes: the same table, new songs, and a different dish each time. {A_nameDef} says it isn't how it was, but hasn't missed one yet.</outcome>
+        <outcome>The same long table, new songs, and a dish the cook had never made before. {A_nameDef} said all evening that it wasn't how it used to be, and stayed to the end.</outcome>
         <ways><tradition>3</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmR_OldCustomNewTwist</thought></li>
@@ -454,7 +454,7 @@
       </li>
       <li>
         <label>Let the old ways rest</label>
-        <outcome>The council said the colony has outgrown it. {A_nameDef} didn't argue, but left supper early that night and went to bed without a word.</outcome>
+        <outcome>The colony has outgrown it, the council said. {A_nameDef} didn't argue, and was in bed before the plates were cleared.</outcome>
         <ways><tradition>-4</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmR_OldWaysGone</thought></li>
@@ -482,13 +482,13 @@
     <texts>
       <li>The colony's gate is always open, and {X_nameDef} of {FACTION} has made the most of it. In two days {X_nameDef} has eaten at every table, borrowed {A_nameDef}'s good cloak without asking, and twice been found asleep in {A_nameDef}'s bed.\n\n{A_nameDef} isn't angry, exactly, but has asked the council where a welcome is supposed to end.</li>
       <li>{X_nameDef} came in with the {FACTION} visitors and no longer acts like a visitor. {X_nameDef} gives the cook advice, tells the haulers where to put things, and has started calling the storeroom "ours." Yesterday {A_nameDef} came back from the fields to find {X_nameDef} rearranging {A_possessive} workbench.\n\nThe colony is known for its welcome. {A_nameDef} would like to know how far it goes.</li>
-      <li>Travelers say a stranger is always welcome here, and {X_nameDef} of {FACTION} has taken them at their word. {X_nameDef} has drunk most of a cask, borrowed {A_nameDef}'s boots, and given a long speech at supper about how the colony ought to be run.\n\n{A_nameDef} has asked the council, politely, whether there's a limit.</li>
+      <li>Travelers say a stranger is always welcome here, and {X_nameDef} of {FACTION} has taken them at their word. {X_nameDef} has drunk most of a cask and given a long speech at supper about how the colony ought to be run. {A_nameDef}'s boots went missing the same evening, and turned up on {X_nameDef}.\n\n{A_nameDef} wants the boots back, and to know whether there's a limit.</li>
     </texts>
     <defaultOption>0</defaultOption>
     <options>
       <li>
         <label>Guests are guests</label>
-        <outcome>The council said a welcome with conditions isn't much of a welcome. {X_nameDef} carried on as before, and {A_nameDef} has started locking {A_possessive} things away.</outcome>
+        <outcome>The council said a welcome with conditions isn't much of a welcome. {X_nameDef} carries on as before, and {A_nameDef} has taken to sleeping with {A_possessive} door barred.</outcome>
         <ways><openness>4</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmR_GuestInMyBed</thought></li>
@@ -499,7 +499,7 @@
       </li>
       <li>
         <label>Put {X_objective} to work</label>
-        <outcome>{X_nameDef} was handed an axe and told that guests who live like family can work like family. {X_nameDef} grumbled, but split a good pile of wood before supper and slept in {X_possessive} own bedroll that night.</outcome>
+        <outcome>{X_nameDef} was handed an axe and told that guests who live like family can work like family. {X_nameDef} grumbled the whole time, and the woodpile is twenty-five logs higher for it.</outcome>
         <ways><openness>2</openness><toil>3</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>WoodLog</thing><count>25</count></li>
@@ -517,7 +517,7 @@
       </li>
       <li>
         <label>Ask the {FACTION} visitors to move on</label>
-        <outcome>The council thanked the {FACTION} party for its visit and asked them to be on their way by noon. {X_nameDef} complained all the way to the gate, and {A_nameDef} changed the sheets.</outcome>
+        <outcome>The council thanked the {FACTION} party for its visit and asked them to be on their way. {X_nameDef} is complaining all the way to the gate, and {A_nameDef} is changing the sheets.</outcome>
         <ways><openness>-6</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
@@ -554,7 +554,7 @@
     <options>
       <li>
         <label>Open the gate for {X_objective}</label>
-        <outcome>The gate opened for {X_nameDef}, who ate at the colony's table next to {A_nameDef} and talked late into the night about people from before. In the morning the watch checked the storeroom twice. Nothing was missing.</outcome>
+        <outcome>The gate opened for {X_nameDef}, and {A_nameDef} sat up late with {X_objective}, talking about people from before. The watch counted the storeroom twice before going to bed.</outcome>
         <ways><openness>6</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmR_FriendLetIn</thought></li>
@@ -568,7 +568,7 @@
       </li>
       <li>
         <label>The rule is the rule</label>
-        <outcome>The gate stayed shut. {A_nameDef} passed a bowl of stew and a blanket over the wall, and in the morning {X_nameDef} passed back the bowl, empty.</outcome>
+        <outcome>The gate stays shut. {A_nameDef} has passed a bowl of stew and a blanket over the wall to {X_nameDef}, and is waiting up for the empty bowl to come back.</outcome>
         <ways><openness>-4</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmR_FriendShutOut</thought></li>
@@ -604,14 +604,14 @@
     </roleA>
     <texts>
       <li>{A_nameDef} fell asleep on {A_possessive} feet at the threshing floor this morning and went down hard. This colony is known for working from before sunrise to after dark, and for being proud of it.\n\n{A_nameDef} has asked the council for one day off. Not a sick day, just a day to sit somewhere and do nothing, without anyone keeping count.</li>
-      <li>The colony has a name for hard work, and {A_nameDef} has worked harder than most. It shows in {A_possessive} shaking hands and short temper, and this week {A_nameDef} dropped a full bucket down the well and just stood there staring after it.\n\n{A_nameDef} came to the council and asked, barely above a whisper, whether anyone here is ever allowed a day of rest.</li>
-      <li>Traders say this colony works dark to dark, and they mean it as praise. {A_nameDef} has been working dark to dark for a season, and has started to hear it differently.\n\n"One day," {A_nameDef} told the council. "I'm not asking for a week. I'm asking for one day where nobody needs me for anything."</li>
+      <li>The colony has a name for hard work, and {A_nameDef} has worked harder than most. It shows in {A_possessive} shaking hands and short temper, and this week {A_nameDef} dropped a full bucket down the well and just stood there staring after it.\n\n{A_nameDef} came to the council and asked, in a voice they had to lean in to hear, whether anyone here is ever allowed a day of rest.</li>
+      <li>Traders say this colony works dark to dark, and they mean it as praise. {A_nameDef} has been working dark to dark for a season, and has started to hear it differently.\n\n"One day," {A_nameDef} told the council. "One whole day where no one needs me for anything."</li>
     </texts>
     <defaultOption>2</defaultOption>
     <options>
       <li>
         <label>Give {A_objective} the day</label>
-        <outcome>{A_nameDef} has a few easy days, by order of the council. On the first, {A_nameDef} sat by the water from breakfast to supper, did nothing useful at all, and came in looking rested for once.</outcome>
+        <outcome>{A_nameDef} has a few easy days, by order of the council. On the first, {A_nameDef} walked out to the water, sat there doing nothing useful at all, and came back looking rested for once.</outcome>
         <ways><toil>-4</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>A</target><hediff>Council_Dlm_Rest</hediff></li>
@@ -623,7 +623,7 @@
       </li>
       <li>
         <label>A day of rest for everyone</label>
-        <outcome>The council declared a day of rest for the whole colony. People wandered about in the morning, unsure what to do with themselves. By afternoon they were lying in the grass, arguing about the shapes of clouds.</outcome>
+        <outcome>The council declared a day of rest for the whole colony, and people are standing about the yard, unsure what to do with their hands.</outcome>
         <ways><toil>-10</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_DlmR_RestDay</thought></li>
@@ -641,7 +641,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-3</amount></li>
         </effects>
         <riskChance>0.25</riskChance>
-        <riskOutcome>The council said the work won't wait. {A_nameDef} went back out, put the tools down halfway across the yard, and walked off toward the trees. Somebody will have to go after {A_objective}.</riskOutcome>
+        <riskOutcome>{A_nameDef} went back out, put the tools down halfway across the yard, and walked off toward the trees. Somebody will have to go after {A_objective}.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_MentalState"><target>A</target><mentalState>Wander_Sad</mentalState></li>
         </riskEffects>
@@ -663,13 +663,13 @@
     <texts>
       <li>This colony is known for taking its time, and most people here are happy to live up to it. {A_nameDef} has been bringing in the crops more or less alone while the others nap in the shade, and today threw a sickle down in the middle of the yard.\n\n"I'm not carrying all of you through another winter," {A_nameDef} told the council. Several people looked up from their naps to listen.</li>
       <li>Visitors envy the colony's easy pace. {A_nameDef} has stopped finding it charming. The fields are {A_nameDef}'s, most of the hauling is {A_nameDef}'s, and this morning {A_nameDef} found the woodpile empty and three colonists asleep against it.\n\n{A_nameDef} wants the council to make everyone pull their weight, or at least to say out loud who's been pulling it.</li>
-      <li>{A_nameDef} counted. Of everything sown and brought in this season, most went through {A_nameDef}'s hands, and the colony's long lunches got longer the whole time.\n\n"I don't mind work," {A_nameDef} told the council. "I mind being the only one doing it."</li>
+      <li>{A_nameDef} counted. Of everything sown and brought in this season, most went through {A_nameDef}'s hands, and the colony's long lunches got longer the whole time.\n\n{A_nameDef} has laid the numbers out in front of the council, and is waiting to see who reads them.</li>
     </texts>
     <defaultOption>2</defaultOption>
     <options>
       <li>
         <label>Everyone pulls their weight</label>
-        <outcome>Chores were handed out by name and posted by the kitchen door. The naps got shorter and the grumbling got louder, and {A_nameDef} finally got a full night's sleep.</outcome>
+        <outcome>Chores are handed out by name now, on a list by the kitchen door. The naps are shorter and the grumbling louder, and {A_nameDef} is sleeping through the night again.</outcome>
         <ways><toil>8</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmR_BackedUp</thought></li>
@@ -681,7 +681,7 @@
       </li>
       <li>
         <label>Thank {A_nameDef} at supper</label>
-        <outcome>The council stood up at supper and thanked {A_nameDef} by name for the season's harvest. {A_nameDef} turned red, said it was nothing, and was back in the fields at dawn in better spirits.</outcome>
+        <outcome>The council stood up at supper and thanked {A_nameDef} by name for the season's harvest. {A_nameDef} turned red, said it was nothing, and drank to it anyway.</outcome>
         <ways><toil>2</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmR_ThankedByName</thought></li>
@@ -692,7 +692,7 @@
       </li>
       <li>
         <label>Tell {A_objective} to slow down too</label>
-        <outcome>The council told {A_nameDef} the work would still be there tomorrow. {A_nameDef} said that was what worried {A_objective}, but took a few days in the shade anyway, scowling at the fields.</outcome>
+        <outcome>The work will still be there tomorrow, the council told {A_nameDef}. {A_nameDef} said that was exactly what worried {A_objective}, and went to sit in the shade, scowling at the fields.</outcome>
         <ways><toil>-4</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>A</target><hediff>Council_Dlm_Rest</hediff></li>
