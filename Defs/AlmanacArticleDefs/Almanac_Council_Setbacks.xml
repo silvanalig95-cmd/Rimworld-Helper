@@ -23,8 +23,8 @@ None of them comes from nowhere, and none is a flat penalty. Each names its caus
           <li>My idea turned down | They proposed an idea at the meeting (and were there) and another was chosen; more if theirs had the clear majority | -2 to -4, 3 days | Choose what the meeting backed</li>
           <li>The vote went the other way | They voted for another idea | -1, 1.5 days | -</li>
           <li>A decree that drags on | A decree they dislike, 2 days in; hate, or a request to lift it ignored for a day, for more | -1 to -2, while it lasts | Lift it, or let it run out</li>
-          <li>They broke their word | A promised wish of a close friend lapsed; a partner's or family member's for more | -3 to -5, 5 days | Keep promises</li>
-          <li>My rival honoured | A rival was given a name or took a seat on the council | -2, opinion -4, 4 days | Mend the rivalry</li>
+          <li>They let my friend down (or someone I love) | A promised wish of a close friend lapsed; a partner's or family member's for more | -3 to -5, 5 days | Keep promises</li>
+          <li>My rival honored | A rival was given a name or took a seat on the council | -2, opinion -4, 4 days | Mend the rivalry</li>
           <li>Not my choice | An answer went against their nature (a harsh answer for the kind, a generous one for the greedy) | -1 to -2, 2 days | -</li>
           <li>I said it would go wrong | An answer they were against was a gamble, and it went wrong | -2, 3 days | -</li>
         </table>
@@ -42,7 +42,7 @@ None of them comes from nowhere, and none is a flat penalty. Each names its caus
           <li>Poor work | Something they made in their passion came out poor (skill 8 or more) or awful (skill 4 or more) | -1 to -2, 1.5 days | -</li>
           <li>Making do | Work at a crafting or butcher spot or a campfire, when a proper bench can be built | -1, 1 day | Build the bench</li>
           <li>An operation went wrong | A surgery failed in their hands; more for a keen doctor | -3 to -4, 4 days | Better doctors and medicine</li>
-          <li>Hauling across the map | Long hauls (60 cells or more) twice in a day | -1, 1 day | Stockpiles near the work</li>
+          <li>Long hauls all day | Long hauls (60 cells or more) twice in a day | -1, 1 day | Stockpiles near the work</li>
           <li>Left waiting for a doctor | 3 hours hurt in bed, untended, with a doctor at home | -2, 1.5 days | More doctors</li>
           <li>No research under way | A burning passion for research, a bench at home, and no project picked for a day | -1, while it lasts | Pick a project</li>
           <li>A cold meal outside | A meal eaten in the open in freezing cold, rain or snow | -1, half a day | A dining room</li>

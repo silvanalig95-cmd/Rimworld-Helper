@@ -9,13 +9,13 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Nuisance_FilthyRoom</defName>
     <durationDays>0.5</durationDays>
-    <stages><li><label>a filthy room</label><description>Everything in that room is sticky or gritty. Somebody needs to clean it, and soon.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+    <stages><li><label>a filthy room</label><description>The bench in that room was sticky, and I didn't want to know what with.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Nuisance_ChillyRoom</defName>
     <durationDays>1</durationDays>
-    <stages><li><label>a cold room</label><description>The cold gets in through the walls. I worked with my hands in my armpits half the day.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+    <stages><li><label>a cold room</label><description>The cold gets in through the walls. I could see my breath while I worked.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">

@@ -59,7 +59,7 @@
     <durationDays>10</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>my student is ready</label><description>Everything I know, they know now, and some of it better than me. I'm proud of them.</description><baseMoodEffect>5</baseMoodEffect><baseOpinionOffset>15</baseOpinionOffset></li></stages>
+    <stages><li><label>my student is ready</label><description>Everything I know, they know now, and some of it better than me. I watched them work today and had nothing to correct.</description><baseMoodEffect>5</baseMoodEffect><baseOpinionOffset>15</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -68,7 +68,7 @@
     <durationDays>10</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>they taught me</label><description>I didn't know how to do any of this a season ago. They took the time. I won't forget it.</description><baseMoodEffect>4</baseMoodEffect><baseOpinionOffset>20</baseOpinionOffset></li></stages>
+    <stages><li><label>they taught me</label><description>I didn't know how to do any of this a season ago. They took the time, every day, even when I was slow.</description><baseMoodEffect>4</baseMoodEffect><baseOpinionOffset>20</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <!-- Social events -->
@@ -79,7 +79,7 @@
     <durationDays>2</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>2</stackLimitForSameOtherPawn>
-    <stages><li><label>a good talk</label><description>We talked half the night. I'd forgotten what that feels like.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>6</baseOpinionOffset></li></stages>
+    <stages><li><label>a good talk</label><description>We got talking and lost all track of the time. I'd forgotten what that's like.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>6</baseOpinionOffset></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>3</felt></li></modExtensions>
   </ThoughtDef>
 
@@ -126,7 +126,7 @@
     <durationDays>4</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>had my back</label><description>When it mattered, they stood with me. I won't forget it.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>12</baseOpinionOffset></li></stages>
+    <stages><li><label>had my back</label><description>When it mattered, they stood with me, and didn't have to be asked.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>12</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -135,7 +135,7 @@
     <durationDays>4</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>a little gift</label><description>They made me something. Small, and a bit crooked, and I love it.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>8</baseOpinionOffset></li></stages>
+    <stages><li><label>a little gift</label><description>They made me something with their own hands. I've put it where I'll see it every morning.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>8</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -153,7 +153,7 @@
     <durationDays>2</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>a good lesson</label><description>It finally clicked today. All that patience paid off.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>5</baseOpinionOffset></li></stages>
+    <stages><li><label>a good lesson</label><description>It finally clicked today, after all those tries.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>5</baseOpinionOffset></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
@@ -163,7 +163,7 @@
     <durationDays>3</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>outdone by my rival</label><description>My rival beat me, of all people. I'll get them next time.</description><baseMoodEffect>-3</baseMoodEffect><baseOpinionOffset>-5</baseOpinionOffset></li></stages>
+    <stages><li><label>outdone by my rival</label><description>My rival beat me, and made sure I saw it. I'll get them next time.</description><baseMoodEffect>-3</baseMoodEffect><baseOpinionOffset>-5</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>

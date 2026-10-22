@@ -9,7 +9,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>4</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>an old kindness repaid</label><description>Their envoy came all this way to pay back something we did a long time ago. I'd half forgotten it. They hadn't.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>an old kindness repaid</label><description>An envoy came up the road to repay something we did for their people long ago. I'd nearly forgotten we did it.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -17,7 +17,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>5</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>help from old friends</label><description>When things got hard, the neighbors we once helped sent help back. Their carts came up the road loaded.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+    <stages><li><label>help from old friends</label><description>Things got hard here, and people we once helped sent help up the road. They wouldn't take a coin for it.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -25,7 +25,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>6</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>the old feud is over</label><description>We've made peace with people we fought for years. I keep looking at the treeline out of habit.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+    <stages><li><label>the old feud is over</label><description>We've made peace with people we fought for years. I'll need a while to stop watching the treeline.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -33,7 +33,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>5</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>settled a quarrel between peoples</label><description>Two peoples brought me their quarrel, and both went home thinking the answer was fair.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+    <stages><li><label>judged a quarrel fairly</label><description>Two peoples brought me their quarrel, and both went home thinking the answer was fair.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -41,7 +41,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>6</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>a guest at the neighbors' feast</label><description>We walked for days to sit at their tables, and they fed us until we couldn't move. There was music half the night.</description><baseMoodEffect>6</baseMoodEffect></li></stages>
+    <stages><li><label>a guest at the neighbors' feast</label><description>We walked for days to sit at their tables, and they fed us until we couldn't move. One of their songs is still in my head.</description><baseMoodEffect>6</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -49,7 +49,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>8</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>learned from a master</label><description>Days at a real master's side. I do half of what I do differently now, and better.</description><baseMoodEffect>6</baseMoodEffect></li></stages>
+    <stages><li><label>learned from a master</label><description>Days at a real master's side, watching their hands. I'll never do the work the old way again.</description><baseMoodEffect>6</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -57,7 +57,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>4</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>an honored guest went home pleased</label><description>A guest of rank stayed with us, and left saying good things about the place. Word gets around.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>an honored guest left pleased</label><description>A guest of rank stayed with us and found nothing to complain about but the road here.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -65,7 +65,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>5</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>saw the refugees through</label><description>People with nowhere else to go ate at our table and slept under our roof until they could go on. One of them held my hands for a long time when they left.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+    <stages><li><label>saw the refugees through</label><description>People with nowhere else to go ate at our table and slept under our roof until they could go on. One of them held my hands at the gate and wouldn't let go.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
 </Defs>

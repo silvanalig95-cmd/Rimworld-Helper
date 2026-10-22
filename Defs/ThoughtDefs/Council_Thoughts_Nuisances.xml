@@ -58,19 +58,19 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Nuisance_AnimalFilth</defName>
     <durationDays>0.5</durationDays>
-    <stages><li><label>stepped in animal filth</label><description>I stepped right in it. Somebody should be cleaning up after the animals.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+    <stages><li><label>stepped in animal filth</label><description>Stepped right in it on my way through. Whoever looks after the animals can scrape my boots.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Nuisance_Clutter</defName>
     <durationDays>0.5</durationDays>
-    <stages><li><label>things lying everywhere</label><description>Nothing's where it should be. I spent the morning looking for things and tripping over others.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+    <stages><li><label>things lying everywhere</label><description>Nothing's been put away in days. I tripped over a coil of rope looking for a saw.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Nuisance_ShoddyClothes</defName>
     <durationDays>1</durationDays>
-    <stages><li><label>shoddy clothes</label><description>Whoever made these was in a hurry. They pinch, they itch, and they come apart at the seams.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+    <stages><li><label>shoddy clothes</label><description>Whoever made these was in a hurry. The seams have split twice already.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">

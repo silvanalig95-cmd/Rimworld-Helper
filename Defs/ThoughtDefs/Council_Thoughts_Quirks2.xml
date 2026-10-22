@@ -5,12 +5,12 @@
 
   <ThoughtDef ParentName="Council_QuirkBase">
     <defName>Council_Quirk_Hums</defName>
-    <stages><li><label>humming at work</label><description>I hum while I work. I don't always notice I'm doing it. The work goes by easier.</description><baseMoodEffect>1</baseMoodEffect></li></stages>
+    <stages><li><label>humming at work</label><description>I've been humming at work again. I only notice when someone hums along.</description><baseMoodEffect>1</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_QuirkBase">
     <defName>Council_Quirk_PrettyStones</defName>
-    <stages><li><label>my stones on the sill</label><description>I keep the stones I find lined up on the sill, smallest to biggest. I like looking at them.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>my stones on the sill</label><description>I keep the stones I find lined up on the sill, smallest to biggest. There's a green one from this week.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_QuirkBase">
@@ -28,7 +28,7 @@
 
   <ThoughtDef ParentName="Council_QuirkBase">
     <defName>Council_Quirk_RedLuck</defName>
-    <stages><li><label>wearing red</label><description>I'm wearing red. Red is bad luck. I know it's silly. I still don't like it.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+    <stages><li><label>wearing red</label><description>I've got red on, and red is bad luck. I know it's silly, and I still keep looking over my shoulder.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_QuirkBase">
@@ -38,7 +38,7 @@
 
   <ThoughtDef ParentName="Council_QuirkBase">
     <defName>Council_Quirk_TidyTable</defName>
-    <stages><li><label>this place is a mess</label><description>Crumbs, mud, things left where they fell. I can't think straight in a room like this.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>this place is a mess</label><description>Crumbs on the table and mud on the floor. I can't think straight in a room like this.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_QuirkBase">
@@ -48,7 +48,7 @@
 
   <ThoughtDef ParentName="Council_QuirkBase">
     <defName>Council_Quirk_Stargazer</defName>
-    <stages><li><label>under the stars</label><description>I come out most nights to look at the stars. I know some of them by now, in my own way.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>under the stars</label><description>I come out most nights to look at the stars. I've given the bright ones names of my own.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_QuirkBase">

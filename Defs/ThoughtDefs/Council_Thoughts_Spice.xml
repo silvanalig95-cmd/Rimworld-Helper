@@ -19,7 +19,7 @@
     <stages>
       <li>
         <label>we showed mercy</label>
-        <description>We let the prisoner go free. I'm glad we're not the kind of people who'd keep them caged.</description>
+        <description>The prisoner is out of that cell for good. I'm glad we're not the kind to keep someone caged.</description>
         <baseMoodEffect>5</baseMoodEffect>
       </li>
     </stages>
@@ -31,7 +31,7 @@
     <stages>
       <li>
         <label>we needed that party</label>
-        <description>I asked for one good night, and we had it.</description>
+        <description>I wanted one good night, and we had it.</description>
         <baseMoodEffect>3</baseMoodEffect>
       </li>
     </stages>
@@ -67,7 +67,7 @@
     <stages>
       <li>
         <label>good hunt</label>
-        <description>I got out in the open with a weapon and made a clean shot. I needed that.</description>
+        <description>I got out in the open, tracked it down and made a clean kill. I needed that.</description>
         <baseMoodEffect>4</baseMoodEffect>
       </li>
     </stages>
@@ -97,19 +97,19 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Granted_Fix</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>supply secured</label><description>There's enough to keep the shakes away. For now.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>supply secured</label><description>There's enough in the stores to keep the shakes away. I've counted it twice.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Granted_Quit</defName>
     <durationDays>15</durationDays>
-    <stages><li><label>got clean</label><description>I beat my addiction. The others kept it from me when I couldn't stop myself. I feel like myself again.</description><baseMoodEffect>10</baseMoodEffect></li></stages>
+    <stages><li><label>got clean</label><description>I'm clean. The others kept it out of my reach when I couldn't keep my own hands off it.</description><baseMoodEffect>10</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Granted_Separate</defName>
     <durationDays>5</durationDays>
-    <stages><li><label>sleeping in peace</label><description>I don't have to share a room with someone I can't stand anymore.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+    <stages><li><label>sleeping in peace</label><description>I don't have to share a room with someone I can't stand anymore. I slept the whole night through.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -130,7 +130,7 @@
     <durationDays>3</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>a friend's anniversary</label><description>Another year with them around. I'm glad of it.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>5</baseOpinionOffset></li></stages>
+    <stages><li><label>a friend's anniversary</label><description>Another year with them around. I'd raise a cup to that.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>5</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -164,7 +164,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Granted_HurtAnimal</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>my animal was patched up</label><description>They took care of my animal like it mattered. It does.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+    <stages><li><label>my animal was patched up</label><description>They took care of my animal as if it were one of us. It's back on its feet.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
   </ThoughtDef>
 
 </Defs>

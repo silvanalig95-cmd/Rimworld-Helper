@@ -10,7 +10,7 @@
     <durationDays>90</durationDays>
     <stackLimit>100</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>family</label><description>Whatever happens out here, we stick together. We always have.</description><baseOpinionOffset>20</baseOpinionOffset></li></stages>
+    <stages><li><label>family</label><description>We've shared a table since long before we came out here, and we'll go on sharing one.</description><baseOpinionOffset>20</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -49,7 +49,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Scen_DebtPaid</defName>
     <durationDays>5</durationDays>
-    <stages><li><label>debt paid</label><description>Our debt is paid off, and we don't owe anyone anything. What a relief.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+    <stages><li><label>debt paid</label><description>Our debt is paid, down to the last coin. No more counting the days until they come to collect.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
   </ThoughtDef>
 
 </Defs>

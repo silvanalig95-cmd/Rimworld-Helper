@@ -8,7 +8,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>2</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>a day done properly</label><description>The keeper of days saw to it that it was done the way it should be. It felt like an occasion.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>a day done properly</label><description>The keeper of days had it all worked out beforehand, down to who stands where and what gets said. It felt like an occasion.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
 </Defs>

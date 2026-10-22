@@ -10,90 +10,90 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncH_RoomPraised</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>a guest liked our room</label><description>A guest said our guest room was the best bed on the road. I helped make it.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>a guest liked our room</label><description>A guest slept better here than anywhere else on the road, and made a point of telling me so.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncH_RoomFaulted</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>a guest found fault</label><description>A guest let me know what they thought of where we put them. It wasn't much.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+    <stages><li><label>a guest found fault</label><description>Where we put our guest to sleep wasn't good enough, and they told me all about it. Some of it was fair.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncH_ShowedAround</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>showed a guest around</label><description>I walked a guest round the colony. It looks better when you show it to someone.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>showed a guest around</label><description>I walked a guest round the colony, pens and workshops and all. They had a question for every corner.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncH_HomeStories</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>a guest's stories of home</label><description>A guest told me all about where they come from. I could picture it.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>a guest's stories of home</label><description>All through supper, a guest talked about home. I think I could find my way round the place now.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.08</joy><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncH_NightTalk</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>sat up with a guest</label><description>A guest couldn't sleep, so we talked half the night.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>sat up with a guest</label><description>Our guest couldn't settle in a strange bed, so I kept them company until the small hours.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncH_LentAHand</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>a guest lent a hand</label><description>A guest pitched in with my work without being asked.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>a guest lent a hand</label><description>Our guest wouldn't be waited on. They worked beside me all afternoon like one of us.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><journal>true</journal><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncH_Haggled</defName>
     <durationDays>1.5</durationDays>
-    <stages><li><label>a good haggle</label><description>I haggled with a guest over a price. We both enjoyed it.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>a good haggle</label><description>A guest and I haggled over a price long after either of us cared what it came to.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><journal>true</journal><felt>1</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncH_Thanks</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>a guest's thanks</label><description>A guest thanked me for their stay, and meant it.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+    <stages><li><label>a guest's thanks</label><description>Before leaving, a guest came looking for me to say thank you for the stay.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmH_GuestStayed</defName>
     <durationDays>8</durationDays>
-    <stages><li><label>our guest is staying</label><description>The council let our guest stay on as one of us. I'm glad.</description><baseMoodEffect>6</baseMoodEffect></li></stages>
+    <stages><li><label>our guest is staying</label><description>The council said yes. Our guest won't be leaving with the others after all.</description><baseMoodEffect>6</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmH_ComeBackLater</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>maybe another season</label><description>The council asked our guest to come back another time. Maybe they will.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>maybe another season</label><description>I walked our guest out as far as the fields. Another season, the council said. I'll believe it when I see them on the road.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmH_ComeBackLater_Guest</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>welcome another time</label><description>They couldn't take me in this time, but they said I'd be welcome back.</description><baseMoodEffect>1</baseMoodEffect></li></stages>
+    <stages><li><label>welcome another time</label><description>Not this time, they said, but I'd be welcome another season. One of them walked me out past the fields.</description><baseMoodEffect>1</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmH_TurnedDown</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>they wouldn't have me</label><description>I asked to stay, and the colony said no.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
+    <stages><li><label>they wouldn't have me</label><description>I asked to stay, and they said no. I didn't go to supper after that.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmH_ComplaintHeard</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>my complaint was heard</label><description>I told them what was wrong with my stay, and they put it right.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+    <stages><li><label>my complaint was heard</label><description>They heard out every complaint I had about my stay. By the end I'd half forgotten what I was angry about.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmH_ComplaintIgnored</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>brushed off</label><description>I complained about my stay and they told me to take it or leave it.</description><baseMoodEffect>-5</baseMoodEffect></li></stages>
+    <stages><li><label>brushed off</label><description>I told them what was wrong with my stay. All I got back was talk.</description><baseMoodEffect>-5</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <!-- ===================== The Empire and the Vanilla Expanded peoples ===================== -->
@@ -108,7 +108,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncF_CourtNews</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>news from court</label><description>A visitor told me all the gossip from the Empire's court. Dukes, moons, scandals.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>news from court</label><description>There's a new duke at the Empire's court, a visitor told me, and an old one sent off to a moon. I lost track of the names halfway through.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
@@ -122,35 +122,35 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncF_Masonry</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>a mason's tricks</label><description>A visitor from the republic showed me how their builders set an arch. I want to try it.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>a mason's tricks</label><description>Talked stone and mortar with a visitor from the republic until dark. I want to try building their way.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncF_SettlerTales</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>a settler's tall tales</label><description>A settler told me stories about cattle drives and bandits. Half of them were lies, and all of them were good.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>a settler's tall tales</label><description>A settler told me stories from their country, and every one grew in the telling. I didn't want them to stop.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.08</joy><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncF_RopeTrick</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>learned a rope trick</label><description>A settler taught me how ranchers handle animals. I caught a goat.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>learned a rancher's trick</label><description>A settler showed me how their ranchers handle animals. I've been practicing on anything with four legs.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_WS_LevyNamed</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>named in the dispatches</label><description>The Empire listed our colony among those who paid the levy in full. It's something, being named.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>named in the dispatches</label><description>Our colony is in the Empire's dispatches, listed between a mining town and a monastery. Paid in full.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><journal>true</journal><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_WS_HandedOver</defName>
     <durationDays>5</durationDays>
-    <stages><li><label>we handed over a deserter</label><description>That soldier came to us for help, and we sold them to the Empire. I keep thinking about the face.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
+    <stages><li><label>we handed over a deserter</label><description>That soldier came to us with empty hands, and we handed them over for the reward. They didn't even fight when the patrol came.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <!-- ===================== Medieval Overhaul ===================== -->
@@ -158,20 +158,20 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncM_CraftPraised</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>a visitor liked what we make</label><description>A traveler tried what this colony makes and asked for more. We're getting good at this.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>a visitor liked what we make</label><description>A traveler tasted what we make here and held out a hand for more.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncM_Hearth</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>an evening by the hearth</label><description>I sat by the hearth with a traveler. A warm fire and company.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>an evening by the hearth</label><description>A traveler and I sat at the hearth and watched the logs settle. We didn't need to say much.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><comfort>0.12</comfort><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncM_Books</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>shared our books</label><description>A visitor who could read wanted to see our books. We traded pages.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>shared our books</label><description>It's rare to meet anyone who reads. This visitor did, and sat with me over our books all afternoon, comparing letters.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><research>60</research><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
@@ -183,7 +183,7 @@
     <durationDays>1</durationDays>
     <stackLimit>2</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>talked shop</label><description>We went over how a mage and a fighter work together. I know where to stand next time.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>4</baseOpinionOffset></li></stages>
+    <stages><li><label>talked tactics</label><description>We went over how a mage and a fighter work together. I know where to stand next time.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>4</baseOpinionOffset></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
@@ -193,7 +193,7 @@
     <durationDays>1</durationDays>
     <stackLimit>2</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>compared workings</label><description>Another mage and I compared how our schools do things. We disagreed about nearly everything, and I enjoyed it.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>3</baseOpinionOffset></li></stages>
+    <stages><li><label>compared workings</label><description>Another mage and I compared how our schools do things. We disagreed about nearly all of it. I'd do it again tomorrow.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>3</baseOpinionOffset></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
@@ -219,14 +219,14 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncMg_SawWorking</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>a traveling mage's working</label><description>A traveler with the gift showed me a little of what they can do.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>a traveling mage's working</label><description>A traveler with the gift did a working just for me. I've gone over it in my head all day.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><inspiration>0.03</inspiration><feelings><li>Awe</li></feelings><felt>4</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncMg_OtherSchool</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>met a mage of another school</label><description>A traveling mage and I compared our workings. Theirs are strange, and I learned from them.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>met a mage of another school</label><description>A traveling mage and I traded workings until late. Theirs come at everything from the wrong side, and they still work.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -241,21 +241,21 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncA_Wonder</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>a strange creature up close</label><description>I saw a creature today I'd only heard about. I keep picturing it.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>a strange creature up close</label><description>Saw one of the strange animals of these parts up close today. I'd only ever heard them described.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><feelings><li>Awe</li></feelings><felt>4</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncA_Feather</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>watched a great bird</label><description>One of those huge running birds went by. I kept a feather.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>watched a great bird</label><description>I got a good look at one of those huge running birds. Its feathers are longer than my arm.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><journal>true</journal><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncA_NightEyes</defName>
     <durationDays>1</durationDays>
-    <stages><li><label>eyes in the dark</label><description>Something watched me cross the yard last night. It was only an animal. Probably.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+    <stages><li><label>eyes in the dark</label><description>A pair of eyes watched me cross the yard after dark. Only an animal, but I walked the rest of the way faster.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -267,7 +267,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncA_StrangeLand</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>this strange land</label><description>The land here is like nowhere else. Some days that's a wonder.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>this strange land</label><description>Everything out here grows to the wrong size. I stopped to stare three times today.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><feelings><li>Curiosity</li></feelings><felt>3</felt></li></modExtensions>
   </ThoughtDef>
 
@@ -280,7 +280,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Granted_GuestRoom</defName>
     <durationDays>5</durationDays>
-    <stages><li><label>a guest room worth the name</label><description>We have a guest room we can be proud of. The next travelers will sleep well.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+    <stages><li><label>a guest room worth the name</label><description>Our guest room is fit for a guest at last. I'd sleep in it myself.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
 </Defs>
