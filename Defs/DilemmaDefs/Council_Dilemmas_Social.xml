@@ -24,13 +24,13 @@
     </roleB>
     <texts>
       <li>Somebody carved a line down the middle of the dining table this week. {A_nameDef} eats on one side of it and {B_nameDef} on the other, and the rest of the colony has had to pick a side to sit on. Neither of them can say anymore how the feud started.\n\n{A_nameDef} and {B_nameDef} came to the council together, which has never happened before. Each wants it ended for good, and each has a clear idea of who should lose.</li>
-      <li>The feud between {A_nameDef} and {B_nameDef} has spread to the rest of the colony. Work crews are picked by side, jokes are told at one or the other's expense, and the dining room goes quiet whenever both of them walk in.\n\nBoth have demanded that the council settle it. {A_nameDef} wants {B_nameDef} put in {B_possessive} place, and {B_nameDef} wants the same for {A_nameDef}.</li>
+      <li>Work crews are picked by side now. Jokes are told at one or the other's expense, and the dining room goes quiet whenever {A_nameDef} and {B_nameDef} are both in it. Yesterday someone asked, only half joking, which side the council was on.</li>
     </texts>
     <defaultOption>3</defaultOption>
     <options>
       <li>
         <label>Settle it in the yard, by the rules, once</label>
-        <outcome>{A_nameDef} and {B_nameDef} fought it out in the yard under the council's rules, and both swore to let it drop afterward. They came away bruised and limping, and so far they have mostly kept their word.</outcome>
+        <outcome>The fight in the yard went by the council's rules and lasted until neither {A_nameDef} nor {B_nameDef} could lift an arm. Both swore afterward to let it drop, and so far have mostly kept their word.</outcome>
         <ways><mercy>-4</mercy><tradition>3</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Fight" />
@@ -41,7 +41,7 @@
         </effects>
         <riskChance>0.35</riskChance>
         <riskReplaces>true</riskReplaces>
-        <riskOutcome>{A_nameDef} and {B_nameDef} fought it out in the yard under the council's rules. Both claim to have won, and both have started training for the rematch.</riskOutcome>
+        <riskOutcome>Both {A_nameDef} and {B_nameDef} claim to have won the fight in the yard, and both have started training for the rematch.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Fight" />
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>AAndB</target><amount>-2</amount></li>
@@ -50,7 +50,7 @@
       </li>
       <li>
         <label>Keep them apart: separate shifts, separate meals</label>
-        <outcome>{A_nameDef} and {B_nameDef} now work different hours, eat at different times and only meet by accident. The rest of the colony had its week rearranged to make it work, and isn't happy about it.</outcome>
+        <outcome>{A_nameDef} works the mornings now and {B_nameDef} the afternoons, and meals are taken in shifts so they only meet by accident. The others had their weeks rearranged to make it work, and mention it often.</outcome>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_DlmSoc_Separated</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>AAndB</target><amount>-1</amount></li>
@@ -58,14 +58,14 @@
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>Others</target><amount>-1</amount></li>
         </effects>
         <riskChance>0.25</riskChance>
-        <riskOutcome>{A_nameDef} and {B_nameDef} were kept apart for nine whole days, until a narrow doorway and bad timing put them face to face.</riskOutcome>
+        <riskOutcome>{A_nameDef} and {B_nameDef} were meant to be kept apart, but the first narrow doorway and some bad timing put them face to face.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Fight" />
         </riskEffects>
       </li>
       <li>
         <label>Make them teach each other their trades</label>
-        <outcome>{A_nameDef} and {B_nameDef} spent a week teaching each other their trades through gritted teeth. Both learned something, and by the end of it they could get through a lesson without shouting.</outcome>
+        <outcome>{A_nameDef} and {B_nameDef} are teaching each other their trades, through gritted teeth. Both are learning something, and the first lesson ended without anyone shouting.</outcome>
         <ways><toil>3</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_DlmSoc_TaughtByRival</thought></li>
@@ -75,7 +75,7 @@
         </effects>
         <riskChance>0.35</riskChance>
         <riskReplaces>true</riskReplaces>
-        <riskOutcome>The lessons lasted one morning. {B_nameDef} called {A_nameDef} hopeless, {A_nameDef} demonstrated a technique on {B_nameDef}'s nose, and that was the end of the lessons.</riskOutcome>
+        <riskOutcome>The first lesson didn't last an hour. {B_nameDef} called {A_nameDef} hopeless, {A_nameDef} demonstrated a technique on {B_nameDef}'s nose, and that was the end of the lessons.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Fight" />
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_DlmSoc_TaughtByRival</thought></li>
@@ -83,14 +83,14 @@
       </li>
       <li>
         <label>Tell them to grow up</label>
-        <outcome>Told to settle it like adults, {A_nameDef} and {B_nameDef} have done nothing of the kind. The line down the middle of the colony is still there, and getting deeper.</outcome>
+        <outcome>Left to settle it like adults, {A_nameDef} and {B_nameDef} have done nothing of the kind. The line down the middle of the colony is still there, and getting deeper.</outcome>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_Ignored</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>AAndB</target><amount>-3</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmSoc_LivingInAFeud</thought><exceptTrait><li>Psychopath</li></exceptTrait><chance>0.6</chance></li>
         </effects>
         <riskChance>0.4</riskChance>
-        <riskOutcome>The council told them to grow up. {A_nameDef} and {B_nameDef} took that as permission and settled it with their fists across the dinner table.</riskOutcome>
+        <riskOutcome>With nobody stopping them, {A_nameDef} and {B_nameDef} settled it with their fists across the dinner table.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Fight" />
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>Others</target><amount>-2</amount></li>
@@ -112,7 +112,7 @@
     </roleB>
     <texts>
       <li>{A_nameDef} and {B_nameDef} have become the kind of friends who finish each other's sentences and steal each other's food. For weeks they've been swapping shifts behind the council's back to work together, and the roster no longer makes sense to anyone else.\n\nNow they're asking openly for the same shifts and the same crews, for good. The people stuck covering the gaps want to know why a friendship should earn anyone special treatment.</li>
-      <li>Every time the council posts a roster, {A_nameDef} and {B_nameDef} rearrange it so they end up side by side. The work still gets done, more or less, so no one has complained out loud yet.\n\n{A_nameDef} and {B_nameDef} would like it made official: same hours, same jobs, no more sneaking. A few of the others would like it stopped.</li>
+      <li>"Same hours, same jobs, and we stop sneaking about," {A_nameDef} told the council, with {B_nameDef} nodding along. The two of them have been rearranging every roster the council posts so they end up side by side, and the work still gets done, more or less.\n\nA few of the others would like it stopped.</li>
     </texts>
     <defaultOption>2</defaultOption>
     <options>
@@ -158,7 +158,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_FairsFair</thought><degreeTrait>Industriousness</degreeTrait><minDegree>1</minDegree></li>
         </effects>
         <riskChance>0.25</riskChance>
-        <riskOutcome>The council kept the roster as it was, and {A_nameDef} and {B_nameDef} went on swapping shifts behind its back. The roster is now so tangled that people keep turning up for the wrong jobs.</riskOutcome>
+        <riskOutcome>The roster stayed as it was, and {A_nameDef} and {B_nameDef} went on swapping shifts behind the council's back. The roster is now so tangled that people keep turning up for the wrong jobs.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmSoc_Reshuffled</thought><chance>0.5</chance></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>AAndB</target><amount>-2</amount></li>
@@ -176,7 +176,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Harsh</thought><onlyTrait><li>Kind</li></onlyTrait></li>
         </effects>
         <riskChance>0.35</riskChance>
-        <riskOutcome>The council put {A_nameDef} and {B_nameDef} on opposite shifts, so they started meeting in secret in the small hours. They're closer than ever, and short on sleep.</riskOutcome>
+        <riskOutcome>Put on opposite shifts, {A_nameDef} and {B_nameDef} started meeting in secret in the small hours. They're closer than ever, and short on sleep.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_Bonded</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>AAndB</target><hediff>Council_Dlm_Sleepless</hediff></li>
@@ -219,7 +219,7 @@
       </li>
       <li>
         <label>Punish {A_nameDef} for the mistake</label>
-        <outcome>{A_nameDef} is working off the damage. {B_nameDef} got off free, and seems uncomfortable about it.</outcome>
+        <outcome>{A_nameDef} is working off the damage alone. {B_nameDef}, who told the lie, got off free and can't seem to settle to anything.</outcome>
         <ways><mercy>-2</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>A</target><hediff>Council_Dlm_Penance</hediff></li>
@@ -255,7 +255,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Unfair</thought><onlyTrait><li>Greedy</li><li>Jealous</li><li>Abrasive</li></onlyTrait></li>
         </effects>
         <riskChance>0.25</riskChance>
-        <riskOutcome>The council let it go. A few days later {A_nameDef} slipped up again, and {B_nameDef} was halfway through a new story before anyone checked.</riskOutcome>
+        <riskOutcome>{A_nameDef} has already slipped up again, and {B_nameDef} was halfway through a new story before anyone checked.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Unfair</thought><exceptTrait><li>Kind</li></exceptTrait><chance>0.5</chance></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>Others</target><amount>-3</amount></li>
@@ -311,7 +311,7 @@
       </li>
       <li>
         <label>Only those who fought may come</label>
-        <outcome>The ones who fought held their own night behind a closed door. The rest of the colony could hear them laughing through the wall.</outcome>
+        <outcome>The ones who fought held their own night behind a closed door. Those left out could hear them laughing through the wall.</outcome>
         <ways><generosity>-2</generosity><tradition>3</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>12</count></li>
@@ -325,7 +325,7 @@
       </li>
       <li>
         <label>No. The stores are for the living</label>
-        <outcome>The council said no. {A_nameDef} and {B_nameDef} drank to the fight alone, out by the wall, and haven't been as quick to volunteer since.</outcome>
+        <outcome>{A_nameDef} and {B_nameDef} drank to the fight alone, out by the wall, and haven't been as quick to volunteer since.</outcome>
         <ways><generosity>-4</generosity><tradition>-4</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_DlmSoc_Unremembered</thought></li>
@@ -335,7 +335,7 @@
         </effects>
         <riskChance>0.3</riskChance>
         <riskReplaces>true</riskReplaces>
-        <riskOutcome>The council said no, so {A_nameDef} and {B_nameDef} held the remembrance anyway, after dark, on food taken from the stores. A good number of people turned up.</riskOutcome>
+        <riskOutcome>{A_nameDef} and {B_nameDef} held the remembrance anyway, after dark, on food taken from the stores. A good number of people turned up.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>15</count></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_DlmSoc_Remembrance</thought></li>
@@ -362,7 +362,7 @@
     </roleB>
     <texts>
       <li>{B_nameDef} stood up at dinner and announced that {A_nameDef} has been stealing silver from the stores. {B_nameDef} has no proof, only a feeling, a rough count of the silver and a long history of hating {A_nameDef}.\n\n{B_nameDef} wants {A_nameDef} punished. {A_nameDef} wants {B_nameDef} to take it back, in front of the same people who heard it.</li>
-      <li>A knife, some silver and a good pair of boots have gone missing this month. {B_nameDef} says {A_nameDef} took them, and says it loudly and often, though no one else has seen anything.\n\n{B_nameDef} wants the council to act. {A_nameDef} points out that {B_nameDef} would blame {A_objective} for the weather if it rained.</li>
+      <li>Gone missing this month: a knife, some silver, a good pair of boots. {B_nameDef} says {A_nameDef} took them, and says it loudly and often, though no one else has seen a thing.\n\n{A_nameDef} says {B_nameDef} would blame {A_objective} for the rain.</li>
     </texts>
     <defaultOption>2</defaultOption>
     <options>
@@ -379,7 +379,7 @@
         </effects>
         <riskChance>0.3</riskChance>
         <riskReplaces>true</riskReplaces>
-        <riskOutcome>The council searched {A_nameDef}'s things and found forty silver hidden under the bedroll. The silver went back to the stores, {A_nameDef} is working off the theft, and {B_nameDef} hasn't stopped talking about it.</riskOutcome>
+        <riskOutcome>Forty silver, rolled up in a sock under {A_nameDef}'s bedroll. It went back to the stores, {A_nameDef} is working off the theft, and {B_nameDef} hasn't stopped talking about it.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>Silver</thing><count>40</count></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Humiliated</thought></li>
@@ -393,7 +393,7 @@
       </li>
       <li>
         <label>Take {B_nameDef}'s word for it</label>
-        <outcome>On {B_nameDef}'s word alone, {A_nameDef} is working off a theft no one saw. {A_nameDef}'s friends think it was badly unfair, and have told {B_nameDef} so.</outcome>
+        <outcome>On {B_nameDef}'s word alone, {A_nameDef} is working off a theft no one saw. {A_nameDef}'s friends have told {B_nameDef} what they think of that.</outcome>
         <ways><mercy>-7</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmSoc_Condemned</thought></li>
@@ -419,7 +419,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>-5</amount></li>
         </effects>
         <riskChance>0.25</riskChance>
-        <riskOutcome>The council threw the accusation out for want of proof. A week later forty more silver went missing, and {B_nameDef} has been saying "I told you so" ever since.</riskOutcome>
+        <riskOutcome>The case was thrown out, and within the hour another forty silver had gone missing. {B_nameDef} has said "I told you so" to anyone who will stand still for it.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>40</count></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Unfair</thought><chance>0.5</chance></li>
@@ -461,14 +461,14 @@
       <maxMood>0.6</maxMood>
     </roleB>
     <texts>
-      <li>{A_nameDef} and {B_nameDef} used to be inseparable. Lately {A_nameDef} has fallen in with a different crowd, and {B_nameDef} eats alone, goes to bed early and tells anyone who asks that it's fine.\n\n{B_nameDef} finally came to the council, embarrassed, to ask for help. {A_nameDef} doesn't see a problem, since people are allowed more than one friend.</li>
-      <li>{B_nameDef} has started turning up wherever {A_nameDef} is, too casually, and leaving too quickly when {A_nameDef}'s new friends arrive. The others have noticed, and it's hard to watch.\n\n{B_nameDef} wants the old friendship back and doesn't know how to ask. {A_nameDef} wants to choose {A_possessive} own company without a council meeting about it.</li>
+      <li>{A_nameDef} and {B_nameDef} used to be inseparable. Lately {A_nameDef} has fallen in with a different crowd, and {B_nameDef} eats alone, goes to bed early and says nothing's wrong when anyone asks.\n\n{B_nameDef} finally came to the council, embarrassed, to ask for help. {A_nameDef} doesn't see a problem, since people are allowed more than one friend.</li>
+      <li>{B_nameDef} has started turning up wherever {A_nameDef} is, too casually, and leaving too quickly when {A_nameDef}'s new friends arrive. It's hard to watch.\n\n{B_nameDef} would never have brought it to the council. One of the others did, and {A_nameDef} is not pleased to find {A_possessive} friendships on the council's table.</li>
     </texts>
     <defaultOption>3</defaultOption>
     <options>
       <li>
         <label>Ask {A_nameDef} to make time for {B_nameDef}</label>
-        <outcome>{A_nameDef} has been setting evenings aside for {B_nameDef}, on the council's advice. The first few were stiff, but the two of them have started laughing together again.</outcome>
+        <outcome>{A_nameDef} set an evening aside for {B_nameDef}, on the council's advice. It started stiff, and ended with the two of them laughing over a story from years back.</outcome>
         <ways><mercy>3</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmSoc_Meddled</thought></li>
@@ -519,21 +519,21 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_DlmSoc_Abandoned</thought></li>
         </effects>
         <riskChance>0.25</riskChance>
-        <riskOutcome>The council handed {B_nameDef} a project to fill the evenings, and {B_nameDef} poured everything into it. This week {B_nameDef} has had the look of someone onto a good idea.</riskOutcome>
+        <riskOutcome>{B_nameDef} poured everything into the project the council found for {B_objective}, and has the look of someone onto a good idea.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Inspiration"><target>B</target></li>
         </riskEffects>
       </li>
       <li>
         <label>Leave them to it</label>
-        <outcome>The council stayed out of it. {A_nameDef} has new friends now, and {B_nameDef} has an empty seat at dinner.</outcome>
+        <outcome>{A_nameDef} has new friends now, and {B_nameDef} has an empty seat beside {B_objective} at dinner.</outcome>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_DlmSoc_Abandoned</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Ignored</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>-4</amount></li>
         </effects>
         <riskChance>0.2</riskChance>
-        <riskOutcome>The council stayed out of it. {B_nameDef} went to bed straight after dinner and didn't come out again.</riskOutcome>
+        <riskOutcome>{B_nameDef} went to {B_possessive} room straight after dinner and didn't come out again.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_MentalState"><target>B</target><mentalState>Wander_OwnRoom</mentalState></li>
         </riskEffects>
@@ -559,7 +559,7 @@
     </roleB>
     <texts>
       <li>{B_nameDef} and {B_possessive} friends have claimed the best table and the warm corner, and they go quiet whenever {A_nameDef} walks in. None of them has been rude, exactly, which makes it hard to complain about.\n\n{A_nameDef} is complaining anyway, and wants the council to break the circle open. {B_nameDef} says who {B_pronoun} sits with is {B_possessive} own business.</li>
-      <li>There's a group in this colony that eats together, works together and laughs at jokes no one else understands. {A_nameDef} isn't in it, and {B_nameDef}, who can't stand {A_nameDef}, is most of the reason why.\n\n{A_nameDef} has asked the council to do something about it. {B_nameDef} wants to know since when friendship needs the council's permission.</li>
+      <li>There's a group in this colony that eats together, works together and laughs at jokes no one else understands. {A_nameDef} isn't in it, and {B_nameDef}, who can't stand {A_nameDef}, is most of the reason why.\n\n"Since when does friendship need the council's permission?" was {B_nameDef}'s answer when {A_nameDef} brought it up.</li>
     </texts>
     <defaultOption>3</defaultOption>
     <options>
@@ -599,7 +599,7 @@
       </li>
       <li>
         <label>Have {A_nameDef} host a supper for everyone</label>
-        <outcome>{A_nameDef} hosted a supper for the colony, and people came, even some of the circle. {A_nameDef} was still smiling the next morning.</outcome>
+        <outcome>{A_nameDef} hosted a supper for the colony, and people came, even some of the circle. {A_nameDef} was still smiling when the last plate was cleared.</outcome>
         <ways><generosity>5</generosity><openness>3</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>15</count></li>
@@ -621,7 +621,7 @@
       </li>
       <li>
         <label>Let people choose their own friends</label>
-        <outcome>The council ruled that no one can be ordered to like anyone. {B_nameDef} agreed warmly, and {A_nameDef} ate dinner alone again.</outcome>
+        <outcome>No one can be ordered to like anyone. {B_nameDef} has been saying so warmly, and {A_nameDef} ate dinner alone again.</outcome>
         <ways><tradition>3</tradition><openness>-4</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Soc_LeftOut</thought></li>
@@ -631,7 +631,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>2</amount></li>
         </effects>
         <riskChance>0.25</riskChance>
-        <riskOutcome>The council ruled that no one can be ordered to like anyone. {A_nameDef} walked out of the meeting and didn't come back until dark.</riskOutcome>
+        <riskOutcome>{A_nameDef} walked off past the fields and didn't come back until dark.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_MentalState"><target>A</target><mentalState>Wander_Sad</mentalState></li>
         </riskEffects>
@@ -651,14 +651,14 @@
       <minTie>30</minTie>
     </roleB>
     <texts>
-      <li>The colony finally has a storeroom the rain doesn't get into, and the harvest keeps better for it. {A_nameDef} says the idea and most of the labor were {A_possessive}. {B_nameDef} says they were {B_possessive}.\n\nEach wants the council to say publicly whose work it was, and each is sure the other is lying.</li>
-      <li>The new defenses on the east side are the best work the colony has done all season. {A_nameDef} and {B_nameDef} both claim the design, and both have the calluses to prove they did the labor.\n\nThey've asked the council to settle it. Both have hinted that they'll take a wrong answer badly.</li>
+      <li>The colony finally has a storeroom the rain doesn't get into, and the harvest keeps better for it. {A_nameDef} says it was {A_possessive} idea and {A_possessive} labor. {B_nameDef} tells it the other way round.\n\nEach wants the council to say publicly whose work it was, and each is sure the other is lying.</li>
+      <li>The new defenses on the east side are the best work the colony has done all season. {A_nameDef} and {B_nameDef} both claim the design, and both have the calluses to prove they did the labor. Both have hinted that they'll take a wrong answer badly.</li>
     </texts>
     <defaultOption>3</defaultOption>
     <options>
       <li>
         <label>Credit {A_nameDef}</label>
-        <outcome>The council named {A_nameDef} as the builder. {A_nameDef} has been giving tours, and {B_nameDef} has been leaving during them.</outcome>
+        <outcome>The council named {A_nameDef} as the builder. {A_nameDef} gave the first tour within the hour, and {B_nameDef} walked out of it.</outcome>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmSoc_Credited</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>5</amount></li>
@@ -667,7 +667,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>-7</amount></li>
         </effects>
         <riskChance>0.25</riskChance>
-        <riskOutcome>The council named {A_nameDef} as the builder, and {B_nameDef} went for {A_objective} at the next meal.</riskOutcome>
+        <riskOutcome>{B_nameDef} heard the ruling out, and then went for {A_nameDef} across the table.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Fight" />
         </riskEffects>
@@ -683,7 +683,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-7</amount></li>
         </effects>
         <riskChance>0.25</riskChance>
-        <riskOutcome>The council named {B_nameDef} as the builder. {A_nameDef} found {B_nameDef} in the yard that evening, and the two of them fought over it.</riskOutcome>
+        <riskOutcome>{A_nameDef} found {B_nameDef} in the yard that evening, and the two of them fought over it.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Fight" />
         </riskEffects>
@@ -699,7 +699,7 @@
         </effects>
         <riskChance>0.3</riskChance>
         <riskReplaces>true</riskReplaces>
-        <riskOutcome>The council had both names carved into it. By evening {A_nameDef} had scratched out {B_nameDef}'s name, and the two of them came to blows over it.</riskOutcome>
+        <riskOutcome>By evening {A_nameDef} had scratched out {B_nameDef}'s half of the carving, and the two of them came to blows over it.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_Compromise</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Fight" />
@@ -707,7 +707,7 @@
       </li>
       <li>
         <label>Credit the colony as a whole</label>
-        <outcome>The council ruled that the work belongs to the colony, not to anyone in it. {A_nameDef} and {B_nameDef} both sulked through supper, at opposite ends of the table.</outcome>
+        <outcome>It's colony work, then, and not any one person's. {A_nameDef} and {B_nameDef} both sulked through supper, at opposite ends of the table.</outcome>
         <ways><generosity>2</generosity></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_DlmSoc_Uncredited</thought></li>
@@ -715,7 +715,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_FairsFair</thought><chance>0.3</chance></li>
         </effects>
         <riskChance>0.3</riskChance>
-        <riskOutcome>The council ruled it was colony work. Somebody carved {A_nameDef}'s name into it that night, and somebody else carved over it by morning.</riskOutcome>
+        <riskOutcome>Somebody has already carved {A_nameDef}'s name into it, and somebody else has carved over it.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_Grudge</thought></li>
         </riskEffects>
@@ -737,7 +737,7 @@
     </roleB>
     <texts>
       <li>{A_nameDef} broke one of the council's standing orders, openly, in front of witnesses. The punishment ought to be simple. But {B_nameDef} came to the council last night and begged for mercy on {A_possessive} behalf, and {B_nameDef} doesn't beg.\n\n{B_nameDef} wants {A_nameDef} spared. Several others want to know whether the rules bend for people with good friends.</li>
-      <li>{A_nameDef} broke the rules this week and hasn't tried to deny it. Then {B_nameDef} turned up at the council's door at dawn, asking to speak for {A_objective}.\n\n{B_nameDef} wants mercy. Most of the colony wants the rules to mean something.</li>
+      <li>{A_nameDef} broke the rules this week and hasn't tried to deny it. Then {B_nameDef} turned up at the council's door at dawn, asking to speak for {A_objective}, with the look of someone who had been rehearsing all night.</li>
     </texts>
     <defaultOption>1</defaultOption>
     <options>
@@ -756,7 +756,7 @@
       </li>
       <li>
         <label>Punish {A_nameDef} as the rules say</label>
-        <outcome>The council heard {B_nameDef} out, then punished {A_nameDef} anyway. {B_nameDef} has decided the council's door isn't worth knocking on again.</outcome>
+        <outcome>{A_nameDef} is being punished as the rules say, plea or no plea. {B_nameDef} has decided the council's door isn't worth knocking on again.</outcome>
         <ways><mercy>-5</mercy><tradition>4</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>A</target><hediff>Council_Dlm_Penance</hediff></li>
@@ -797,7 +797,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_FairsFair</thought><onlyTrait><li>Abrasive</li><li>Jealous</li></onlyTrait></li>
         </effects>
         <riskChance>0.25</riskChance>
-        <riskOutcome>The council doubled {A_nameDef}'s punishment for the attempt to sway it. {B_nameDef} walked out of the hearing and kept walking, out past the fields.</riskOutcome>
+        <riskOutcome>{B_nameDef} walked out of the hearing and kept walking, out past the fields.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_MentalState"><target>B</target><mentalState>Wander_Sad</mentalState></li>
         </riskEffects>
@@ -823,7 +823,7 @@
     </roleB>
     <texts>
       <li>{B_nameDef} has been watching the stores, and says the quartermaster's friends do better than everyone else: the fine meals, the warm coats, first pick of every trade. The quartermaster is {A_nameDef}, whom {B_nameDef} has despised for a long time.\n\n{B_nameDef} wants {A_nameDef} called to account. {A_nameDef} says {B_nameDef} would find favoritism in a bowl of plain rice.</li>
-      <li>{B_nameDef} brought the council a list of every extra ration, new coat and good bed that has gone to {A_nameDef}'s friends since {A_nameDef} took the quartermaster's keys. Some of it is true. Some of it looks like the work of a rival with time on {B_possessive} hands.\n\n{B_nameDef} wants the keys taken away. {A_nameDef} wants the list thrown on the fire.</li>
+      <li>{B_nameDef} brought the council a list of every extra ration, new coat and good bed that has gone to {A_nameDef}'s friends since {A_nameDef} took the quartermaster's keys. Some of it is true. Some of it looks like the work of a rival with time on {B_possessive} hands.\n\n{A_nameDef} has offered to light the fire with it.</li>
     </texts>
     <defaultOption>1</defaultOption>
     <options>
@@ -840,7 +840,7 @@
         </effects>
         <riskChance>0.35</riskChance>
         <riskReplaces>true</riskReplaces>
-        <riskOutcome>The council counted the stores and found the list was mostly true. {A_nameDef} was taken down a peg in front of the colony, and the quartermaster's friends now eat the same as everyone else.</riskOutcome>
+        <riskOutcome>The count bore out most of the list. {A_nameDef} was taken down a peg in front of the colony, and the quartermaster's friends now eat the same as everyone else.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Humiliated</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Grudge</thought><about>B</about></li>
@@ -853,7 +853,7 @@
       </li>
       <li>
         <label>Back the quartermaster</label>
-        <outcome>The council backed {A_nameDef} without reading the list. The quartermaster's friends were relieved, and {B_nameDef} added the council to the list.</outcome>
+        <outcome>{A_nameDef} keeps the keys, and the list went unread. The quartermaster's friends were relieved, and {B_nameDef} added the council to the list.</outcome>
         <ways><tradition>3</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Vindicated</thought></li>
@@ -877,7 +877,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_ForcedTogether</thought></li>
         </effects>
         <riskChance>0.35</riskChance>
-        <riskOutcome>{B_nameDef} now checks every ration {A_nameDef} hands out. On the second day there was a disagreement over a potato, and the ledger was used as a weapon.</riskOutcome>
+        <riskOutcome>{B_nameDef} now checks every ration {A_nameDef} hands out. Within the hour there was a disagreement over a potato, and the ledger was used as a weapon.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Fight" />
         </riskEffects>

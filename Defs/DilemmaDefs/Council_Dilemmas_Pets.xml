@@ -13,7 +13,7 @@
       <minOpinionOfA>-100</minOpinionOfA>
     </roleB>
     <texts>
-      <li>{B_nameDef} cooked a special dinner, left it on the table for a minute, and came back to find {PET_nameDef} licking the plate clean. {PET_nameDef} belongs to {A_nameDef}.\n\n{B_nameDef} wants the animal dealt with. {A_nameDef} thinks {B_nameDef} is making too much of it.</li>
+      <li>One minute on the table, that was all. {B_nameDef} turned around from the stove to find {PET_nameDef} licking the plate clean of the dinner {B_pronoun} had spent all afternoon on.\n\n{A_nameDef}, whose animal it is, says it was only a plate.</li>
       <li>{PET_nameDef} got into {B_nameDef}'s food again, the third time this season. {B_nameDef} has come to the council with what's left of the bowl.\n\n{A_nameDef} says {PET_nameDef} was only hungry. {B_nameDef} points out that {B_pronoun} was hungry too.</li>
     </texts>
     <defaultOption>1</defaultOption>
@@ -30,7 +30,7 @@
       </li>
       <li>
         <label>It's only an animal</label>
-        <outcome>The council shrugged. {B_nameDef} has started eating with one arm around the bowl.</outcome>
+        <outcome>It's only an animal, and that's that. {B_nameDef} has started eating with one arm around the bowl.</outcome>
         <ways><mercy>2</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Unfair</thought></li>
@@ -40,7 +40,7 @@
       </li>
       <li>
         <label>Turn {PET_nameDef} loose in the wild</label>
-        <outcome>{PET_nameDef} was led far out into the wilds and left there. {A_nameDef} has hardly said a word to anyone since.</outcome>
+        <outcome>{PET_nameDef} was turned loose and answers to no one now. {A_nameDef} has hardly said a word since.</outcome>
         <ways><mercy>-7</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_ReleasePet" />
@@ -91,12 +91,12 @@
       </li>
       <li>
         <label>Let them sort it out</label>
-        <outcome>The council stayed out of it. {A_nameDef} and {B_nameDef} are barely speaking, and {PET_nameDef} still wanders into the kitchen.</outcome>
+        <outcome>Left to sort it out between them, {A_nameDef} and {B_nameDef} are barely speaking, and {PET_nameDef} still wanders into the kitchen.</outcome>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_Ignored</thought></li>
         </effects>
         <riskChance>0.3</riskChance>
-        <riskOutcome>The council stayed out of it, and {A_nameDef} and {B_nameDef} came to blows over {PET_nameDef}, who watched from under the table.</riskOutcome>
+        <riskOutcome>{A_nameDef} and {B_nameDef} came to blows over {PET_nameDef}, who watched it all from under the table.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Fight" />
         </riskEffects>

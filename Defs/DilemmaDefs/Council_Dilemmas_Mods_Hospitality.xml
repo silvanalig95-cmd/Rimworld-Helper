@@ -27,10 +27,10 @@
       <minOpinionFromA>15</minOpinionFromA>
     </stranger>
     <texts>
-      <li>{X_nameDef} came with the {FACTION} guests to rest a few days, and has spent most of them with {A_nameDef}: at the workbench, at supper, out on the wall at dusk. Now {X_nameDef} has asked the council whether a guest can stop being a guest.\n\n{FACTION} won't be glad to lose {X_objective}. {A_nameDef} is doing a poor job of pretending not to care how the council answers.</li>
-      <li>On the last night of the visit, {X_nameDef} came to the council with {X_possessive} pack still unpacked and asked to stay. The guest bed, the food, the people: {X_pronoun} says {X_pronoun} hasn't felt this much at home in years, and {A_nameDef} most of all has made it so.\n\n{A_nameDef} has offered to share {A_possessive} rations until {X_nameDef} finds {X_possessive} feet.</li>
-      <li>[x:roomgood] {X_nameDef} has stayed in the guest room three nights running and says it's the best bed {X_pronoun} has slept in since leaving home. Tonight {X_pronoun} asked {A_nameDef}, in front of the council, whether the room could be {X_possessive} for good.\n\n{FACTION} would rather have {X_objective} back. {A_nameDef} would rather {X_pronoun} stayed.</li>
-      <li>[winter] The {FACTION} guests leave tomorrow, into the snow. {X_nameDef} doesn't want to go. {X_pronoun} has been splitting wood for the colony every morning without being asked, and {A_nameDef} says that's the sort of person you keep.</li>
+      <li>{X_nameDef} came with the {FACTION} guests to rest a few days, and has spent most of them with {A_nameDef}: at the workbench, at supper, out on the wall at dusk. Now {X_nameDef} has asked the council whether a guest can stop being a guest.\n\n{FACTION} won't be glad to lose {X_objective}. {A_nameDef} has been very careful not to look at the council while it's discussed.</li>
+      <li>"I haven't felt this much at home in years." On the last night of the visit, {X_nameDef} came to the council with {X_possessive} pack still unpacked and asked to stay, and said it was {A_nameDef}, most of all, who had made it so.\n\n{A_nameDef} has offered to share {A_possessive} rations until {X_nameDef} finds {X_possessive} feet.</li>
+      <li>[x:roomgood] {X_nameDef} has stayed in the guest room three nights running and says it's the best bed {X_pronoun} has slept in since leaving home. Tonight {X_pronoun} asked {A_nameDef}, in front of the council, whether {X_pronoun} could keep the room for good.\n\nThe rest of the {FACTION} party have stopped speaking to {X_objective}. {A_nameDef} has already said yes, though it isn't {A_possessive} answer to give.</li>
+      <li>[winter] The {FACTION} guests leave tomorrow, into the snow, and {X_nameDef} doesn't want to go with them. Every morning of the visit {X_nameDef} has split wood for the colony without being asked. {A_nameDef} says that's the sort of person you keep.</li>
     </texts>
     <defaultOption>2</defaultOption>
     <options>
@@ -48,7 +48,7 @@
       </li>
       <li>
         <label>Take {X_objective} in, with a gift to {FACTION}</label>
-        <outcome>The council sent the {FACTION} party off with a hundred and fifty silver and its thanks, and {X_nameDef} stayed behind. The parting was warmer than anyone expected.</outcome>
+        <outcome>A hundred and fifty silver went out to the {FACTION} party at the gate with the council's thanks, and {X_nameDef} stayed behind. The parting was warmer than anyone expected.</outcome>
         <ways><openness>4</openness><generosity>3</generosity></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the gift for {FACTION}</label><what>silver</what><count>150</count><to>Gate</to></li>
@@ -61,7 +61,7 @@
       </li>
       <li>
         <label>Ask {X_objective} to come back another season</label>
-        <outcome>The council told {X_nameDef} the colony would be glad to see {X_objective} again, but not this time. {X_nameDef} took it well. {A_nameDef} walked {X_objective} to the edge of the fields and came back quiet.</outcome>
+        <outcome>{X_nameDef} will be welcome another season, but not this time. {X_nameDef} took it well. {A_nameDef} walked {X_objective} out past the fields and came back quiet.</outcome>
         <ways><openness>-2</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmH_ComeBackLater</thought></li>
@@ -72,7 +72,7 @@
       </li>
       <li>
         <label>No</label>
-        <outcome>The council said no. {X_nameDef} nodded, went back to the guest room, and didn't come down for supper.</outcome>
+        <outcome>{X_nameDef} nodded at the answer, went back to the guest room, and didn't come out for supper.</outcome>
         <ways><openness>-4</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmS_LetThemGo</thought></li>
@@ -98,15 +98,15 @@
       <adult>true</adult>
     </stranger>
     <texts>
-      <li>{X_nameDef} of {FACTION} has had enough of the visit and has said so to {A_nameDef}, at length: the food, the bed, the noise from the workshop at dawn. {X_pronoun} wants to know what the colony means to do about it, or {X_pronoun} will tell everyone on the road.</li>
-      <li>[x:roompoor|x:nobed] {X_nameDef} paid for a bed and got a cold corner, by {X_possessive} account. {X_pronoun} cornered {A_nameDef} this morning and asked for {X_possessive} silver back.\n\n{FACTION} are neighbors the colony would like to keep.</li>
+      <li>The food, the bed, the hammering from the workshop at dawn: {X_nameDef} of {FACTION} has been through all of it with {A_nameDef}, at length. {X_nameDef} wants to know what the colony means to do about it before {X_pronoun} tells everyone on the road.</li>
+      <li>[x:roompoor|x:nobed] {X_nameDef} paid for a bed and got a cold corner, by {X_possessive} account, and this morning caught {A_nameDef} by the sleeve to ask for the silver back.\n\n{FACTION} are neighbors the colony would like to keep.</li>
       <li>{X_nameDef} has been miserable since {X_pronoun} arrived, and has decided it's the colony's fault. This morning {X_pronoun} told {A_nameDef} that {FACTION} will hear what kind of welcome this place gives.</li>
     </texts>
     <defaultOption>2</defaultOption>
     <options>
       <li>
         <label>Give back the fee, and a good meal</label>
-        <outcome>The council returned {X_nameDef}'s silver and sat {X_objective} down to the best meal the kitchen could manage. {X_nameDef} ate every bite and allowed that the place had its good points.</outcome>
+        <outcome>{X_nameDef}'s silver was counted back into {X_possessive} hand, and the kitchen sent out the best plate it could manage. {X_nameDef} ate every bite and allowed that the place had its good points.</outcome>
         <ways><generosity>3</generosity><openness>1</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>{X_nameDef}'s silver</label><what>silver</what><count>40</count></li>
@@ -116,10 +116,10 @@
       </li>
       <li>
         <label>Have our best talker smooth it over</label>
-        <outcome>{B_nameDef} spent an hour with {X_nameDef}, listening more than talking. By the end {X_nameDef} was laughing about the workshop at dawn.</outcome>
+        <outcome>{B_nameDef} spent an hour with {X_nameDef}, listening more than talking. By the end {X_nameDef} was laughing at {X_possessive} own complaints.</outcome>
         <riskChance>0.4</riskChance>
         <riskSkill>Social</riskSkill>
-        <riskOutcome>{B_nameDef} tried, but {X_nameDef} heard every soothing word as another insult. {X_pronoun} is angrier than before.</riskOutcome>
+        <riskOutcome>{B_nameDef} tried, but {X_nameDef} heard every soothing word as another insult, and is angrier than before.</riskOutcome>
         <ways><openness>1</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Needs"><target>Others</target><skill>Social</skill><minLevel>8</minLevel><asB>true</asB></li>
@@ -134,7 +134,7 @@
       </li>
       <li>
         <label>They can take it or leave it</label>
-        <outcome>The council told {X_nameDef} the colony isn't an inn on the high road. {X_nameDef} went off muttering, and {A_nameDef} was left to hear the rest of it.</outcome>
+        <outcome>"This isn't an inn on the high road," {A_nameDef} told {X_nameDef}. {X_nameDef} went off muttering, and {A_nameDef} was left to hear the rest of it.</outcome>
         <ways><openness>-2</openness><generosity>-1</generosity></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_DlmH_ComplaintIgnored</thought></li>
