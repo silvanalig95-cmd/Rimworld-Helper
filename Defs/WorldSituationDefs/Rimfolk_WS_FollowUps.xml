@@ -129,6 +129,9 @@
       </li>
       <li>
         <key>homecoming</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>families</what><count>3~5</count><family>true</family><onward>true</onward></li>
+        </effects>
         <day>7~12</day>
         <count>20~35</count>
         <titles>
@@ -143,7 +146,7 @@
             <label>Feed them on their way</label>
             <outcome>The colony sets out bread and soup at the gate, and {FACTION}'s families eat standing up, the children first, then walk on toward {PLACE} with full bellies.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the food set out at the gate</label><what>rawfood</what><to>Gate</to></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the food set out at the gate</label><what>rawfood</what></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>5</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>sheltered</kind><about>place</about></li>
             </effects>

@@ -61,6 +61,9 @@
     <beats>
       <li>
         <key>herald</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>herald</what></li>
+        </effects>
         <day>1~3</day>
         <count>200~400</count>
         <wealthScaled>true</wealthScaled>
@@ -82,6 +85,7 @@
               <li Class="ColonyCouncil.WorldEffect_Pay" />
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>12</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>the sweeping of the yard</label><count>4</count><tasks><li>Clean</li><li>Haul</li></tasks><hours>7~18</hours><duration>1.5~2</duration></li>
+              <li Class="ColonyCouncil.VisitEffect_Come"><what>retinue</what><count>4~6</count><pack>true</pack><spot>Gate</spot><nights>1</nights><hourFrom>15</hourFrom><hourTo>20</hourTo><delay>3~8</delay><holdBeat>stayed</holdBeat></li>
             </effects>
             <flags><li>hosted</li></flags>
             <help>2</help>
@@ -124,11 +128,14 @@
       </li>
       <li>
         <key>passing</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_Come"><what>retinue</what><count>4~6</count><pack>true</pack><livestock>2</livestock><beast>Horse</beast><spot>Road</spot><onward>true</onward><hourFrom>0</hourFrom><hourTo>0</hourTo><delay>0~0.5</delay></li>
+        </effects>
         <day>5~8</day>
         <forbids><li>hosted</li></forbids>
         <message>true</message>
         <texts>
-          <li>The lord's progress passed by on the high road this morning: banners, horses, a long dust cloud and a good deal of trumpeting. The colony watched it go by from the wall.</li>
+          <li>The lord's progress passed by on the high road today: banners, horses, a long dust cloud and a good deal of trumpeting. The colony watched it go by from the wall.</li>
           <li>[gift] The progress passed by on the high road. As it went, a rider broke off and brought the colony a sealed letter of thanks from the lord.</li>
         </texts>
       </li>
@@ -218,6 +225,9 @@
     <beats>
       <li>
         <key>envoy</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>envoy</what><armed>true</armed></li>
+        </effects>
         <day>2~4</day>
         <count>150~300</count>
         <wealthScaled>true</wealthScaled>
@@ -236,7 +246,7 @@
             <label>Pay the token ({COUNT} silver)</label>
             <outcome>The envoy weighed the silver in one hand, nodded, and rode off without a backward glance. Word will go around the gathering that this colony knows its manners.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the token for the gathering</label><what>silver</what><tens>true</tens><steward>false</steward><to>Gate</to></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the token for the gathering</label><what>silver</what><tens>true</tens><steward>false</steward></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>12</amount></li>
             </effects>
             <flags><li>paid</li></flags>
@@ -263,6 +273,9 @@
       </li>
       <li>
         <key>passing</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_Come"><what>band</what><count>3~5</count><armed>true</armed><spot>Road</spot><onward>true</onward><hourFrom>0</hourFrom><hourTo>0</hourTo><delay>0~0.5</delay></li>
+        </effects>
         <day>6~9</day>
         <forbids><li>refused</li></forbids>
         <message>true</message>
@@ -277,6 +290,7 @@
         <requires><li>refused</li></requires>
         <effects>
           <li Class="ColonyCouncil.WorldEffect_Thought"><thought>Council_WS_WarbandWatched</thought></li>
+          <li Class="ColonyCouncil.VisitEffect_Come"><what>band</what><count>4~6</count><armed>true</armed><spot>Road</spot><onward>true</onward><stopHours>1~2</stopHours><hourFrom>0</hourFrom><hourTo>0</hourTo><delay>0~1</delay></li>
         </effects>
         <message>true</message>
         <texts>

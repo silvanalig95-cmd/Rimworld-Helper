@@ -38,10 +38,13 @@ namespace ColonyCouncil
         /// <summary>A world event's flags: only when set / not when set.</summary>
         public string requires;
         public string forbids;
+        /// <summary>Only in a colony of the old ways (where the letter's own [lowtech] lines bring a rider, the others the comms).</summary>
+        public bool onlyLowtech;
 
         protected bool Gate(DilemmaContext ctx)
         {
             if (!Visitors.On || ctx == null) return false;
+            if (onlyLowtech && !Avail.IsPreIndustrial) return false;
             if (chance < 1f && !Rand.Chance(chance)) return false;
             if (requires.NullOrEmpty() && forbids.NullOrEmpty()) return true;
             var s = SituationEffectUtil.Of(ctx);

@@ -93,6 +93,9 @@
       </li>
       <li>
         <key>road</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_Come"><what>mourners</what><count>4~6</count><pack>true</pack><spot>Road</spot><onward>true</onward><hourFrom>13</hourFrom><hourTo>18</hourTo><delay>1~3</delay></li>
+        </effects>
         <day>4~8</day>
         <titles>
           <li>The mourners pass</li>
@@ -229,6 +232,9 @@
       </li>
       <li>
         <key>visit</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>singer</what></li>
+        </effects>
         <day>6~11</day>
         <titles>
           <li>{NAME} passes near</li>
@@ -246,6 +252,7 @@
               <li Class="ColonyCouncil.DilemmaEffect_Bonfire"><label>{NAME}'s evening</label><music>true</music><target>Colony</target></li>
               <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.12</amount></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>4</amount></li>
+              <li Class="ColonyCouncil.VisitEffect_Stay"><nights>1</nights></li>
             </effects>
             <flags><li>sang</li></flags>
             <help>1</help>
@@ -575,6 +582,9 @@
     <beats>
       <li>
         <key>ask</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>exiles</what><count>2</count><family>true</family></li>
+        </effects>
         <day>1~4</day>
         <titles>
           <li>Exiles at the gate</li>
@@ -600,7 +610,8 @@
             <label>Feed them and send them on</label>
             <outcome>The exiles eat, sleep one night in the barn and go on in the morning with what the colony could spare.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>food for the exiles</label><what>rawfood</what><count>15</count><to>Gate</to></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>food for the exiles</label><what>rawfood</what><count>15</count></li>
+              <li Class="ColonyCouncil.VisitEffect_Stay"><nights>1</nights></li>
             </effects>
             <ways><mercy>1</mercy></ways>
           </li>
@@ -617,6 +628,9 @@
       </li>
       <li>
         <key>envoy</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>envoy</what></li>
+        </effects>
         <day>6~10</day>
         <titles>
           <li>{FACTION} warn the neighbors</li>

@@ -152,6 +152,9 @@
       </li>
       <li>
         <key>hunters</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>hunters</what><count>2~3</count><armed>true</armed><onward>true</onward></li>
+        </effects>
         <day>2~5</day>
         <count>80~150</count>
         <wealthScaled>true</wealthScaled>

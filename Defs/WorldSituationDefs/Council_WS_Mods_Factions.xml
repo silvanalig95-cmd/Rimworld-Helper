@@ -49,6 +49,9 @@
     <beats>
       <li>
         <key>demand</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>clerk</what></li>
+        </effects>
         <day>1~3</day>
         <count>250~500</count>
         <wealthScaled>true</wealthScaled>
@@ -66,7 +69,7 @@
             <label>Pay in full ({COUNT} silver)</label>
             <outcome>The clerk counts the silver twice, writes the colony's name in his ledger with a flourish, and rides back to {PLACE}.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the levy</label><what>silver</what><tens>true</tens><steward>false</steward><to>Gate</to></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the levy</label><what>silver</what><tens>true</tens><steward>false</steward></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>10</amount></li>
             </effects>
             <flags><li>paid</li></flags>
@@ -78,7 +81,7 @@
             <label>Pay half, with apologies</label>
             <outcome>The clerk accepts half, writes something careful in his ledger, and assures the colony that the steward is an understanding man.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>half the levy</label><what>silver</what><factor>0.5</factor><tens>true</tens><steward>false</steward><to>Gate</to></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>half the levy</label><what>silver</what><factor>0.5</factor><tens>true</tens><steward>false</steward></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>3</amount></li>
             </effects>
             <flags><li>paidhalf</li></flags>
@@ -231,6 +234,9 @@
       </li>
       <li>
         <key>patrol</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>patrol</what><count>2~3</count><armed>true</armed><hours>1~2</hours></li>
+        </effects>
         <day>5~9</day>
         <requires><li>sheltered</li></requires>
         <message>true</message>
@@ -295,6 +301,9 @@
     <beats>
       <li>
         <key>canvass</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>canvassers</what><count>2</count></li>
+        </effects>
         <day>1~4</day>
         <count>150~300</count>
         <wealthScaled>true</wealthScaled>
@@ -311,7 +320,7 @@
             <label>Back the reformers ({COUNT} silver)</label>
             <outcome>The reformer pockets the silver, shakes every hand in the colony, and promises that {FACTION} won't forget its friends.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the silver for the reformers</label><what>silver</what><tens>true</tens><steward>false</steward><to>Gate</to></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the silver for the reformers</label><what>silver</what><tens>true</tens><steward>false</steward></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>3</amount></li>
             </effects>
             <flags><li>reform</li><li>backed</li></flags>
@@ -323,7 +332,7 @@
             <label>Back the old families ({COUNT} silver)</label>
             <outcome>The canvasser for the old families accepts the silver as if it were owed, and leaves a letter of thanks with a heavy seal.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the silver for the old families</label><what>silver</what><tens>true</tens><steward>false</steward><to>Gate</to></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the silver for the old families</label><what>silver</what><tens>true</tens><steward>false</steward></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>3</amount></li>
             </effects>
             <flags><li>oldfamilies</li><li>backed</li></flags>

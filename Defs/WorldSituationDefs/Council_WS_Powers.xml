@@ -719,6 +719,9 @@
     <beats>
       <li>
         <key>guards</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>rider</what></li>
+        </effects>
         <day>1~4</day>
         <count>400~700</count>
         <wealthScaled>true</wealthScaled>
@@ -734,7 +737,7 @@
             <label>Pay for guards ({COUNT} silver)</label>
             <outcome>The rider takes the silver back to {PLACE} the long way around, well clear of the road. The guards will be out within days.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the silver for the guards</label><what>silver</what><tens>true</tens><steward>false</steward><to>Gate</to></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the silver for the guards</label><what>silver</what><tens>true</tens><steward>false</steward></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>6</amount></li>
             </effects>
             <flags><li>paid</li></flags>
@@ -766,6 +769,9 @@
       </li>
       <li>
         <key>robbed</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>merchant</what><robbed>true</robbed></li>
+        </effects>
         <day>3~9</day>
         <titles>
           <li>Robbed on the road</li>
@@ -781,6 +787,7 @@
             <outcome>The merchant leaves in the morning in borrowed boots, promising to pay them back.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>5</amount></li>
+              <li Class="ColonyCouncil.VisitEffect_Stay"><nights>1</nights></li>
             </effects>
             <help>1</help>
             <deed>looked after a robbed merchant</deed>
