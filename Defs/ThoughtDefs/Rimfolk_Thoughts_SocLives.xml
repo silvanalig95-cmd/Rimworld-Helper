@@ -12,7 +12,7 @@
     <durationDays>3</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>heard about the old days</label><description>They told me how things were here before I came. It changes how I see the place.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>4</baseOpinionOffset></li></stages>
+    <stages><li><label>heard about the old days</label><description>They told me how this place looked before the walls went up, with a name for every corner of it.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>4</baseOpinionOffset></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>1</felt><joy>0.05</joy><feelings><li>Nostalgia</li></feelings></li></modExtensions>
   </ThoughtDef>
 
@@ -22,7 +22,7 @@
     <durationDays>3</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>remembered the old days</label><description>We sat and remembered people nobody else here ever met. It's good to have someone who knew them too.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>5</baseOpinionOffset></li></stages>
+    <stages><li><label>remembered the old days</label><description>We sat on the bench by the wall and talked about the old days, aches and all. Some of it only the two of us remember.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>5</baseOpinionOffset></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>1</felt><joy>0.06</joy><feelings><li>Nostalgia</li><li>Fellowship</li></feelings></li></modExtensions>
   </ThoughtDef>
 
@@ -32,7 +32,7 @@
     <durationDays>2</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>played an old game</label><description>An old game with stones and lines in the dirt. Older than either of us remembers, and still good.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>5</baseOpinionOffset></li></stages>
+    <stages><li><label>played an old game</label><description>We played a game with pebbles and lines in the dirt, the old kind, until the light went.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>5</baseOpinionOffset></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>1</felt><joy>0.08</joy><joyKind>Gaming_Dexterity</joyKind></li></modExtensions>
   </ThoughtDef>
 
@@ -42,7 +42,7 @@
     <durationDays>2</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>an old saying that helped</label><description>They answered my fretting with an old saying, and it was the right one. Annoyingly.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>4</baseOpinionOffset></li></stages>
+    <stages><li><label>an old saying that helped</label><description>They answered my grumbling with an old saying, and I've been chewing on it all afternoon.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>4</baseOpinionOffset></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>1</felt><rest>0.05</rest></li></modExtensions>
   </ThoughtDef>
 
@@ -52,7 +52,7 @@
     <durationDays>2</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>a story at bedtime</label><description>A story with a fox in it, and the fox won. I want it again tomorrow.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>6</baseOpinionOffset></li></stages>
+    <stages><li><label>a story at bedtime</label><description>A story before bed, with all the voices. I want another one tomorrow.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>6</baseOpinionOffset></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>1</felt><joy>0.08</joy><rest>0.05</rest></li></modExtensions>
   </ThoughtDef>
 
@@ -62,7 +62,7 @@
     <durationDays>3</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>a worry eased</label><description>They checked it with me, beam by beam, until I believed it. I slept that night.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>6</baseOpinionOffset></li></stages>
+    <stages><li><label>a worry eased</label><description>They went over it with me, every bit of it, until I believed it. I slept that night.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>6</baseOpinionOffset></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>1</felt><rest>0.15</rest><feelings><li>Relief</li></feelings></li></modExtensions>
   </ThoughtDef>
 

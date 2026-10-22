@@ -13,7 +13,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncO_EastbornTea</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>tea with the Eastborn</label><description>An Eastborn visitor made me tea and wouldn't let me drink it until I'd looked at it properly. It was very good tea.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>tea with the Eastborn</label><description>An afternoon with an Eastborn guest, all slow manners and careful words. I've caught myself bowing at the table since.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.06</joy><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
@@ -27,7 +27,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncO_PactHaggle</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>haggled with the Pact</label><description>Bargained with a goblin of the Redburn Pact and came out even. I'm told that's practically a friendship, with them.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>haggled with the Pact</label><description>Spent an afternoon with a goblin of the Pact, haggling and trading stories. I came away with my purse and all my fingers.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><skill>Social</skill><xp>120</xp><felt>1</felt></li></modExtensions>
   </ThoughtDef>
 
@@ -41,7 +41,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncM_KnightOnTheRoad</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>a knight's tales</label><description>A knight on the road told me about vows, far kingdoms and how to keep mail from rusting. Mostly the mail.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>a knight's tales</label><description>A knight on the road talked with me till dusk. I know how to keep mail from rusting now, and more about vows than I expected.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.06</joy><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
@@ -55,7 +55,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncM_Scholar</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>a learned traveller</label><description>A traveller who had read more books than I've seen showed me how to tell the hour by the stars, and a quicker way to count.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>a learned traveler</label><description>A traveler who had read more books than I've ever seen showed me how to tell the hour by the stars, and a quicker way to count.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><research>30</research><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
@@ -107,7 +107,7 @@
     <durationDays>1</durationDays>
     <stackLimit>2</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>sat for a sketch</label><description>Someone drew me. I didn't know I looked like that. I think I like it.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>4</baseOpinionOffset></li></stages>
+    <stages><li><label>sat for a sketch</label><description>I sat for a sketch and saw my own face from the outside. I didn't know I frowned like that.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>4</baseOpinionOffset></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.04</joy><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
@@ -127,7 +127,7 @@
     <durationDays>1</durationDays>
     <stackLimit>2</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>talked ranching</label><description>Leaned on the fence and talked about herds and grazing until the light went.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>3</baseOpinionOffset></li></stages>
+    <stages><li><label>talked ranching</label><description>Talked herds and grazing and rope work until the light went. I can nearly throw a loop now.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>3</baseOpinionOffset></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><skill>Animals</skill><xp>120</xp><felt>1</felt></li></modExtensions>
   </ThoughtDef>
 
@@ -146,7 +146,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_WS_ProgressHosted</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>hosted a lord</label><description>A lord's whole retinue stayed the night with us. Someone lost a boot and the cook took our bread recipe. We'll be talking about it for years.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>hosted a lord</label><description>A lord's whole retinue stayed the night with us, banners propped against our walls and strangers asleep in every corner.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.08</joy><felt>3</felt><journal>true</journal></li></modExtensions>
   </ThoughtDef>
 
