@@ -80,7 +80,7 @@
       </gloomy>
       <cold>
         <li>An ordinary anxiety dream. Late for something, teeth coming loose. I've had it before.</li>
-        <li>A dream of being unprepared. I've gone over today's tasks twice since.</li>
+        <li>I've gone over today's tasks twice since waking. The dream was about being unprepared.</li>
       </cold>
     </lines>
   </ColonyCouncil.DreamDef>
@@ -113,7 +113,7 @@
         <li>Worked all night in my sleep. Tired now.</li>
       </blunt>
       <cheerful>
-        <li>Dreamt every job in the colony was done and we all went swimming!</li>
+        <li>Every job in the colony was done, and we all went swimming!</li>
         <li>In my dream the work did itself, and I walked along behind it, humming.</li>
       </cheerful>
       <gloomy>
@@ -186,7 +186,7 @@
       <blunt><li>Fire dream. Checked where the water is. Not taking chances.</li></blunt>
       <cheerful><li>I beat out a fire with my hat in my dream!</li></cheerful>
       <gloomy><li>Dreamt the colony burned to the ground. I stood and watched it go.</li></gloomy>
-      <cold><li>A dream about fire. I'll check how long it would take us to put one out.</li></cold>
+      <cold><li>Fire, in the dream, in the storeroom. I'll time how long it takes us to reach it with water.</li></cold>
     </lines>
   </ColonyCouncil.DreamDef>
 
@@ -290,7 +290,7 @@
         <li>Dreamt of the meals we used to have. Then it was porridge.</li>
       </gloomy>
       <cold>
-        <li>A dream about food. Hunger, presumably. I'll eat early.</li>
+        <li>Bread, all night. Hunger, presumably. I'll eat early.</li>
         <li>Food dreams again. I'll have a word with the cook about the rations.</li>
       </cold>
     </lines>
@@ -626,7 +626,7 @@
       <blunt><li>The party again, in my sleep. Good party.</li></blunt>
       <cheerful><li>Dreamt the party went on for a week! Can we do that?</li></cheerful>
       <gloomy><li>In the dream the music stopped and I was cleaning up after the party alone.</li></gloomy>
-      <cold><li>A dream about the celebration. I suppose I enjoyed it more than I let on.</li></cold>
+      <cold><li>The celebration came back in my sleep. I suppose I enjoyed it more than I let on.</li></cold>
     </lines>
   </ColonyCouncil.DreamDef>
 
@@ -903,7 +903,7 @@
       <blunt><li>Botched a lesson in my sleep. Practicing today.</li></blunt>
       <cheerful><li>Set {OTHER_nameDef}'s workbench on fire in my dream! I'll be careful today.</li></cheerful>
       <gloomy><li>Dreamt {OTHER_nameDef} finally realized I'll never be any good at {SKILL}.</li></gloomy>
-      <cold><li>A dream about failing a lesson with {OTHER_nameDef}. A useful warning against complacency.</li></cold>
+      <cold><li>Failed a lesson with {OTHER_nameDef} in my sleep. A useful warning against complacency.</li></cold>
     </lines>
     <changeTie>Mentor</changeTie>
     <change>2</change>
@@ -925,7 +925,7 @@
       <warm><li>I couldn't reach {OTHER_nameDef} in my dream. This morning I made sure to find {OTHER_objective} before work.</li></warm>
       <blunt><li>Dreamt I couldn't get to {OTHER_nameDef}. Got there this morning. Problem solved.</li></blunt>
       <gloomy><li>In the dream {OTHER_nameDef} finally saw me clearly, and left. I keep waiting for it.</li></gloomy>
-      <cold><li>A dream of separation from {OTHER_nameDef}. Disquieting. I'll spend more time with {OTHER_objective}.</li></cold>
+      <cold><li>{OTHER_nameDef} and I were kept apart in my dream. Disquieting. I'll spend more time with {OTHER_objective}.</li></cold>
     </lines>
   </ColonyCouncil.DreamDef>
 
@@ -947,7 +947,7 @@
       <blunt><li>{OTHER_nameDef} in my dream, and the rest of the family. Wouldn't trade them.</li></blunt>
       <cheerful><li>Had a giant family picnic in my dream with {OTHER_nameDef}, and every cousin came!</li></cheerful>
       <gloomy><li>{OTHER_nameDef} and I were the last of our family, in the dream. We are, more or less.</li></gloomy>
-      <cold><li>A dream about {OTHER_nameDef}. Shared blood apparently means more to me than I admit.</li></cold>
+      <cold><li>{OTHER_nameDef} again, in my sleep. Shared blood apparently means more to me than I admit.</li></cold>
     </lines>
   </ColonyCouncil.DreamDef>
 
@@ -1130,7 +1130,7 @@
       <blunt><li>Dreamt I was a mountain. Feel like one. Bring it.</li></blunt>
       <cheerful><li>I was a mountain last night! I still feel like one.</li></cheerful>
       <gloomy><li>Nothing could hurt me in the dream. It won't last, but I'll take today.</li></gloomy>
-      <cold><li>A dream of being immovable. My nerves have settled. Good.</li></cold>
+      <cold><li>My nerves settled overnight. In the dream I couldn't be moved.</li></cold>
     </lines>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>A</target><hediff>Council_Dream_Steeled</hediff></li>
@@ -1179,7 +1179,7 @@
       <warm><li>In my dream the council had forgotten all of us. I hope that's not true.</li></warm>
       <blunt><li>Dreamt the council was a row of empty chairs. Not much different.</li></blunt>
       <gloomy><li>No one was in charge at all, in my dream. I'm not sure it was a dream.</li></gloomy>
-      <cold><li>A dream of an absent council. Possibly accurate. I'll watch them more closely.</li></cold>
+      <cold><li>The council's chairs were empty in my dream. Possibly accurate. I'll watch them more closely.</li></cold>
     </lines>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-1</amount></li>
@@ -1294,7 +1294,7 @@
       </plain>
       <blunt><li>Dreamt of animals coming for us. Mad ones. Keep the doors shut.</li></blunt>
       <gloomy><li>The animals all hated us in my dream. Maybe they always did.</li></gloomy>
-      <cold><li>A dream of a stampede aimed at the colony. Keep the doors closed for a few days. It costs nothing.</li></cold>
+      <cold><li>Keep the doors closed for a few days. I dreamt of a stampede aimed at the colony, and caution costs nothing.</li></cold>
     </lines>
     <omen><incident>ManhunterPack</incident><days>2~4</days><pointsFactor>0.8</pointsFactor><good>false</good></omen>
   </ColonyCouncil.DreamDef>

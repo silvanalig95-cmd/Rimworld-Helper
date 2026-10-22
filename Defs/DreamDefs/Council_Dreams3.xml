@@ -35,7 +35,7 @@
       </blunt>
       <cheerful><li>Won an argument with {OTHER_nameDef} in my dream! It doesn't count, but still.</li></cheerful>
       <gloomy><li>Even asleep I can't get away from {OTHER_nameDef}.</li></gloomy>
-      <cold><li>A dream about my grievance with {OTHER_nameDef}. My mind is still chewing on it.</li></cold>
+      <cold><li>My grievance with {OTHER_nameDef} followed me into sleep. I'd like it to stay out.</li></cold>
     </lines>
     <changeTie>Rivals</changeTie>
     <change>2</change>
@@ -60,7 +60,7 @@
       <blunt><li>Dreamt I paid {OTHER_nameDef} back. Should do that awake.</li></blunt>
       <cheerful><li>Gave {OTHER_nameDef} a present in my dream so good {OTHER_pronoun} cried!</li></cheerful>
       <gloomy><li>Dreamt I owed {OTHER_nameDef} more than I'll ever be able to give back.</li></gloomy>
-      <cold><li>A dream about what I owe {OTHER_nameDef}. I'll settle it.</li></cold>
+      <cold><li>I owe {OTHER_nameDef}. The dream was a reminder. I'll settle it.</li></cold>
     </lines>
     <changeTie>Friends</changeTie>
     <change>3</change>
@@ -129,7 +129,7 @@
       <blunt><li>Bad dream. Something coming. Checked the walls.</li></blunt>
       <cheerful><li>Dreamt something awful was coming over the hill, and it was a very large goat.</li></cheerful>
       <gloomy><li>Something's coming. The dream just said it out loud.</li></gloomy>
-      <cold><li>A dream of dread. I'll check the stores anyway.</li></cold>
+      <cold><li>Something coming, in the dream, nothing I could name. I'll check the stores anyway.</li></cold>
     </lines>
   </ColonyCouncil.DreamDef>
 
@@ -149,7 +149,7 @@
       </plain>
       <warm><li>Dreamt I told everyone what I did, and they were kinder about it than I am.</li></warm>
       <blunt><li>What I did, all night, over and over. Didn't help.</li></blunt>
-      <cheerful><li>Dreamt everyone found out my worst secret, and they just laughed and passed the salt!</li></cheerful>
+      <cheerful><li>My worst secret came out in my dream, and they all just laughed and passed the salt!</li></cheerful>
       <gloomy><li>The dream told everyone what I already know about myself.</li></gloomy>
       <cold><li>A shame dream. Unpleasant, and it taught me nothing.</li></cold>
     </lines>
@@ -218,7 +218,7 @@
       <blunt><li>Dreamt I was good at {SKILL}. I am.</li></blunt>
       <cheerful><li>They put up a statue of me in my dream! The nose was wrong, but I loved it.</li></cheerful>
       <gloomy><li>I was proud of myself in the dream. Strange feeling. It didn't last.</li></gloomy>
-      <cold><li>A dream of recognition. Gratifying, and it changes nothing.</li></cold>
+      <cold><li>Strangers admired my work all night. Gratifying, and it changes nothing.</li></cold>
     </lines>
   </ColonyCouncil.DreamDef>
 
@@ -241,7 +241,7 @@
       <blunt><li>Good dream. Things worked out in it.</li></blunt>
       <cheerful><li>Dreamt everything turned out fine! I'm holding the dream to it.</li></cheerful>
       <gloomy><li>A hopeful dream. I'll try not to trust it too much.</li></gloomy>
-      <cold><li>A dream of better times. Possible, with work.</li></cold>
+      <cold><li>The colony as a town, in the dream. Possible, with work. Perhaps twenty years of it.</li></cold>
     </lines>
   </ColonyCouncil.DreamDef>
 
@@ -328,7 +328,7 @@
         <li>[child] I lost all my teeth in my dream and had to eat soup forever.</li>
       </plain>
       <blunt><li>Teeth dream. Tooth still hurts.</li></blunt>
-      <cheerful><li>Dreamt my teeth fell out and grew back golden!</li></cheerful>
+      <cheerful><li>My teeth fell out and grew back golden!</li></cheerful>
       <gloomy><li>Dreamt I lost all my teeth. Not far off.</li></gloomy>
       <cold><li>The toothache followed me into my sleep.</li></cold>
     </lines>
@@ -378,7 +378,7 @@
       <blunt><li>Dreamt I couldn't sleep. Accurate.</li></blunt>
       <cheerful><li>I finally slept, at least in my dream!</li></cheerful>
       <gloomy><li>Even my dreams are about not sleeping.</li></gloomy>
-      <cold><li>A dream about insomnia. The mind runs out of ideas.</li></cold>
+      <cold><li>Dreamt of insomnia, during insomnia. My mind has run out of material.</li></cold>
     </lines>
   </ColonyCouncil.DreamDef>
 
@@ -482,7 +482,7 @@
       <blunt><li>The camp, in my sleep. They're still out there.</li></blunt>
       <cheerful><li>Had a dream the camp threw a festival and invited the whole colony!</li></cheerful>
       <gloomy><li>The camp took everything and left in the night. In the dream, anyway.</li></gloomy>
-      <cold><li>A dream about the strangers on our land. I'll keep an eye on them.</li></cold>
+      <cold><li>The strangers on our land walked through my sleep. I'll keep an eye on them awake as well.</li></cold>
     </lines>
   </ColonyCouncil.DreamDef>
 
@@ -503,7 +503,7 @@
       <blunt><li>Camp dream. They're gone. That's that.</li></blunt>
       <cheerful><li>Dreamt the camp people moved in for good!</li></cheerful>
       <gloomy><li>The road was empty all the way to the horizon.</li></gloomy>
-      <cold><li>A dream about the camp that left. Sentiment.</li></cold>
+      <cold><li>The camp that left. Sentiment, nothing more.</li></cold>
     </lines>
   </ColonyCouncil.DreamDef>
 
@@ -524,7 +524,7 @@
       <blunt><li>Council dream. We argued. Same as awake.</li></blunt>
       <cheerful><li>Got elected to everything in my dream! I'd be terrible at it.</li></cheerful>
       <gloomy><li>Dreamt the council decided everything before I got there.</li></gloomy>
-      <cold><li>A dream about the meeting. My mind was still rehearsing its arguments.</li></cold>
+      <cold><li>I argued the meeting over again in my sleep, and won this time. Irrelevant.</li></cold>
     </lines>
   </ColonyCouncil.DreamDef>
 
@@ -568,9 +568,9 @@
       </plain>
       <warm><li>Dreamt our doctor went to the towns and came back with everyone well.</li></warm>
       <blunt><li>Dreamt about the sickness out there. Washed my hands twice this morning.</li></blunt>
-      <cheerful><li>Dreamt the sickness went around us, like a storm going around the hill!</li></cheerful>
+      <cheerful><li>The sickness went right around us, like a storm going around the hill!</li></cheerful>
       <gloomy><li>Dreamt the sickness came here. Only a matter of time.</li></gloomy>
-      <cold><li>A dream about the sickness in the region. We'll keep strangers at a distance.</li></cold>
+      <cold><li>We should keep strangers at a distance while the sickness is out there. The dream only confirmed it.</li></cold>
     </lines>
   </ColonyCouncil.DreamDef>
 
@@ -588,9 +588,9 @@
       </plain>
       <warm><li>Dreamt we shared what we had with the hungry, and there was enough to go around.</li></warm>
       <blunt><li>Hunger dream. Counted the stores this morning.</li></blunt>
-      <cheerful><li>Dreamt the famine ended with a rain of bread rolls!</li></cheerful>
+      <cheerful><li>The famine ended with a rain of bread rolls! I caught six.</li></cheerful>
       <gloomy><li>The stores ran out in my dream. One day they will.</li></gloomy>
-      <cold><li>A dream about the famine. Our stores are adequate. I'll count them again tomorrow.</li></cold>
+      <cold><li>Our stores are adequate. I dreamt otherwise, so I'll count them again tomorrow.</li></cold>
     </lines>
   </ColonyCouncil.DreamDef>
 
@@ -612,7 +612,7 @@
       <blunt><li>Good dream about the gathering. We should go.</li></blunt>
       <cheerful><li>Dreamt I won every prize at the fair! Even the pie one.</li></cheerful>
       <gloomy><li>Dreamt of the gathering. We weren't invited.</li></gloomy>
-      <cold><li>A dream about the gathering in the region. Possibly worth attending, for trade.</li></cold>
+      <cold><li>The gathering in my dream had good prices. Possibly worth attending, for trade.</li></cold>
     </lines>
   </ColonyCouncil.DreamDef>
 
@@ -655,7 +655,7 @@
       </plain>
       <warm><li>Dreamt we all walked out on the first warm day and lay in the new grass.</li></warm>
       <blunt><li>Spring dream. Fields need work.</li></blunt>
-      <cheerful><li>Dreamt of spring flowers everywhere, even on the roof!</li></cheerful>
+      <cheerful><li>Spring flowers everywhere, even on the roof!</li></cheerful>
       <gloomy><li>Dreamt of spring. The mud's real enough.</li></gloomy>
       <cold><li>A seasonal dream. Planting is due.</li></cold>
     </lines>
@@ -677,7 +677,7 @@
       </plain>
       <warm><li>Dreamt of a summer evening with everyone outside, and nobody in a hurry to go in.</li></warm>
       <blunt><li>Hot dream. Hot morning.</li></blunt>
-      <cheerful><li>Dreamt I spent the whole day in the river!</li></cheerful>
+      <cheerful><li>A whole day in the river, in my dream, and I came out wrinkled as a raisin!</li></cheerful>
       <gloomy><li>Dreamt the sun would never set. It felt like a threat.</li></gloomy>
       <cold><li>A summer dream. The heat gets into everything.</li></cold>
     </lines>
@@ -701,7 +701,7 @@
       <blunt><li>Harvest dream. Then the harvest.</li></blunt>
       <cheerful><li>Dreamt of the biggest pumpkin anyone's ever grown, and it was ours!</li></cheerful>
       <gloomy><li>Dreamt of the harvest, and then the long winter after it.</li></gloomy>
-      <cold><li>A harvest dream. My mind is counting the stores again.</li></cold>
+      <cold><li>A harvest dream, mostly arithmetic. Bushels, jars, days to winter.</li></cold>
     </lines>
   </ColonyCouncil.DreamDef>
 
@@ -722,9 +722,9 @@
       </plain>
       <warm><li>Dreamt we all slept in one room by the fire, piled up like puppies, while the snow came down.</li></warm>
       <blunt><li>Snow dream. Snow outside.</li></blunt>
-      <cheerful><li>Dreamt of sledding down the biggest hill in the world!</li></cheerful>
+      <cheerful><li>Sledding down the biggest hill in the world, all night!</li></cheerful>
       <gloomy><li>Dreamt the winter never ended.</li></gloomy>
-      <cold><li>A winter dream. The season gets into the mind.</li></cold>
+      <cold><li>Snow, in the dream, silent and very even. I found it restful.</li></cold>
     </lines>
   </ColonyCouncil.DreamDef>
 

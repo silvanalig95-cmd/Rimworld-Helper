@@ -368,7 +368,7 @@
         <li>Dreamt my teacher stood behind me at the bench and said nothing, which was the highest praise there was.</li>
       </plain>
       <warm><li>Dreamt the thing I made was being used, years from now, by someone I'll never meet.</li></warm>
-      <cold><li>A dream of the work completed. I noted the method. It may help.</li></cold>
+      <cold><li>The piece was finished in my dream. I noted the method. It may help.</li></cold>
     </lines>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Inspiration"><chance>0.1</chance><inspiration>Inspired_Creativity</inspiration></li>

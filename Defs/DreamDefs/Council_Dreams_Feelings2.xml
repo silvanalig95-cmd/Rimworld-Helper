@@ -83,7 +83,7 @@
       <warm><li>Dreamt I found {OTHER_nameDef} at last, sitting by a fire, perfectly fine and wondering what the fuss was about.</li></warm>
       <blunt><li>{OTHER_nameDef} again. Didn't sleep much after.</li></blunt>
       <gloomy><li>Dreamt {OTHER_nameDef} didn't come back. I've told myself three times since that it was only a dream.</li></gloomy>
-      <cold><li>A dream about {OTHER_nameDef}'s safety. Worry, translated into images. Unproductive.</li></cold>
+      <cold><li>{OTHER_nameDef} in danger, all night. Worry, translated into pictures. I'll check on {OTHER_objective}.</li></cold>
     </lines>
   </ColonyCouncil.DreamDef>
 

@@ -26,7 +26,7 @@
       <blunt><li>Sat at the camp's fire in my sleep. Good people.</li></blunt>
       <cheerful><li>Dreamt the camp threw a dance and I was very good at it. Not true. Nice dream.</li></cheerful>
       <gloomy><li>Dreamt of the camp's fire. They'll be gone soon.</li></gloomy>
-      <cold><li>A dream about the camp. My mind seems to have filed them as friends.</li></cold>
+      <cold><li>The camp's people were in my dream, at ease. Apparently I count them as friends now.</li></cold>
     </lines>
   </ColonyCouncil.DreamDef>
 
@@ -93,7 +93,7 @@
       <warm><li>Dreamt we shared what we had with the hungry on the road, and it stretched, like bread in a story, to all of them.</li></warm>
       <blunt><li>Crops failed in my dream. They haven't. I looked.</li></blunt>
       <gloomy><li>Dreamt the hunger in the region came here. Hard to say it won't.</li></gloomy>
-      <cold><li>A dream about our stores running out. I'll count them again today.</li></cold>
+      <cold><li>Empty stores, in the dream. I'll start rationing earlier than planned.</li></cold>
     </lines>
   </ColonyCouncil.DreamDef>
 
@@ -150,7 +150,7 @@
       <warm><li>Dreamt everyone who has ever helped me stood in one room, and I had time to thank each of them.</li></warm>
       <blunt><li>We owe them. Even my sleep knows it.</li></blunt>
       <gloomy><li>Dreamt I never got to thank them. I'd better, while I can.</li></gloomy>
-      <cold><li>A dream about the debt of gratitude. It should be settled.</li></cold>
+      <cold><li>They helped us. In the dream I paid it back with interest. That seems fair.</li></cold>
     </lines>
   </ColonyCouncil.DreamDef>
 
