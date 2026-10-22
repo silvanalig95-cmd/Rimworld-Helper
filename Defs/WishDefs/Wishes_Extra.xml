@@ -44,6 +44,7 @@
       <plain>
         <li>I'm married. I keep saying it to myself to hear how it sounds.</li>
         <li>[spring] A spring wedding, with flowers in everyone's hair. Best day I've had here.</li>
+        <li>Married.</li>
       </plain>
       <cheerful>
         <li>We're married! Did you see? I want to tell everyone who missed it.</li>
@@ -52,6 +53,7 @@
     <expired>
       <plain>
         <li>We'll put the wedding off a while longer.</li>
+        <li>Another season engaged, then. We've waited this long.</li>
       </plain>
     </expired>
   </ColonyCouncil.WishDef>
@@ -78,7 +80,7 @@
         <li>Another year older, and still alive out here. That deserves a proper meal, doesn't it?</li>
         <li>[old] At my age, every birthday is one more than I expected. Let's eat well for it.</li>
         <li>[child] It's my birthday soon! Can we have a party, with everybody there?</li>
-        <li>[winter] My birthday always falls in the cold months, when the food's thinnest. A good meal this year would mean a lot.</li>
+        <li>[winter] My birthday always falls in the cold months, when the food's thinnest. A good meal this year would make up for a few of them.</li>
         <li>[lowmood] I'd like one day this season that feels good. My birthday would do.</li>
       </plain>
       <warm>
@@ -101,6 +103,7 @@
       <plain>
         <li>Best birthday I've had in years.</li>
         <li>[old] I've had a lot of birthdays. This one I'll remember.</li>
+        <li>Full belly and good company. That'll do me for a year.</li>
       </plain>
       <cheerful>
         <li>Thank you! Same again next year?</li>
@@ -206,7 +209,7 @@
         <li>I'm running on empty. I keep making mistakes I wouldn't make rested.</li>
       </gloomy>
       <cold>
-        <li>Productivity declines without rest. I am requesting rest.</li>
+        <li>I'd like some hours that belong to me. I'll tell you what I do with them, if you ask.</li>
       </cold>
     </request>
     <thanks>
@@ -220,6 +223,7 @@
     <expired>
       <plain>
         <li>I'll keep working until I drop, I suppose.</li>
+        <li>My feet hurt just thinking about tomorrow.</li>
       </plain>
     </expired>
   </ColonyCouncil.WishDef>
@@ -259,7 +263,7 @@
         <li>Everything's easier to bear with a drink in hand.</li>
       </gloomy>
       <cold>
-        <li>Recreational substances reduce stress. Ours are depleted.</li>
+        <li>We're out. I've checked every crate twice.</li>
       </cold>
     </request>
     <thanks>
@@ -306,12 +310,13 @@
         <li>We need every pair of hands we can get, even ones that were shooting at us last week.</li>
       </gloomy>
       <cold>
-        <li>{OTHER_nameDef} has useful skills. Recruitment is the efficient outcome.</li>
+        <li>{OTHER_nameDef} is good with {OTHER_possessive} hands. Better those hands work for us.</li>
       </cold>
     </request>
     <thanks>
       <plain>
         <li>Welcome, {OTHER_nameDef}. I'll show you where everything is.</li>
+        <li>One more at the table tonight, {OTHER_nameDef}. Sit by me.</li>
       </plain>
     </thanks>
     <expired>
