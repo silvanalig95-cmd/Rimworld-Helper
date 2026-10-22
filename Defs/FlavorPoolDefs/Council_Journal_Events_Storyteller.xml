@@ -21,7 +21,7 @@
       <warm><li>[opt1,safe] {X_nameDef} unpacked by the window so {X_pronoun} can see the road. Old habit, {X_pronoun} says.</li></warm>
       <cheerful><li>[opt2] {X_nameDef} once fought a bear with a frying pan, apparently! I'm choosing to believe it.</li></cheerful>
       <blunt><li>[opt0] Good gear, fair price. The stories were free.</li></blunt>
-      <cold><li>[opt0] Bought a dead career's equipment. Sound purchase.</li></cold>
+      <cold><li>[opt0] Bought forty years of someone's career, by the piece. Sound purchase.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -30,11 +30,11 @@
     <lines>
       <plain>
         <li>[opt0] We paid a mapmaker to walk our hills. {X_nameDef} works with a chain and a compass and doesn't talk much.</li>
-        <li>[opt1,safe] Two days in the hills with {X_nameDef}. I know how to read a contour line now, and we know where to dig.</li>
-        <li>[opt1,risk] Two days guiding {X_nameDef} over every rock we own. Not one seam worth digging. My feet hurt.</li>
-        <li>[opt2] A mapmaker offered to survey the land. The council said no. I'd have liked to see how it's done.</li>
+        <li>[opt1,safe] Up in the hills all day with {X_nameDef}. I know how to read a contour line now, and we know where to dig.</li>
+        <li>[opt1,risk] A whole day guiding {X_nameDef} over every rock we own. Not one seam worth digging. My feet hurt.</li>
+        <li>[opt2] A mapmaker offered to survey the land, and folded up the charts and went on. I'd have liked to see how it's done.</li>
       </plain>
-      <cheerful><li>[opt1,safe] {X_nameDef} let me hold the compass the whole second day!</li></cheerful>
+      <cheerful><li>[opt1,safe] {X_nameDef} let me hold the compass for most of the day!</li></cheerful>
       <gloomy><li>[opt1,risk] Walked every hill for nothing. The hills don't care what we need.</li></gloomy>
       <blunt><li>[opt1,safe] Learned surveying. Useful.</li></blunt>
     </lines>
@@ -60,12 +60,12 @@
     <defName>Council_Journal_Evt_LimbMaker</defName>
     <lines>
       <plain>
-        <li>[opt0] A limb-maker fitted me with a {TALE} today. I walked to the end of the fields and back just because I could.</li>
+        <li>[opt0] A limb-maker fitted me with a {TALE} today. I've been trying it out on everything since.</li>
         <li>[opt1] The colony paid in materials for my {TALE}. I'm going to earn every bit of it back.</li>
-        <li>[opt0] It rubs where it's strapped on, and I don't care. I have a {TALE}.</li>
-        <li>[opt2] A limb-maker came by and the council turned {X_objective} away. I'll manage as I am.</li>
+        <li>[opt0] It rubs, and I don't care. I have a {TALE}.</li>
+        <li>[opt2] The limb-maker went on with {X_possessive} cart. I'll manage as I am.</li>
       </plain>
-      <cheerful><li>[opt0] New {TALE}! I keep finding reasons to walk past people.</li></cheerful>
+      <cheerful><li>[opt0] New {TALE}! I keep finding reasons to show it to people.</li></cheerful>
       <warm><li>[opt1] Whoever thought to spend our stores on me, thank you.</li></warm>
       <gloomy><li>[opt2] There was a {TALE} on that cart that would have fit me. I watched it go.</li></gloomy>
       <blunt><li>[opt0] Got a {TALE}. Works.</li></blunt>
@@ -81,7 +81,7 @@
         <li>[opt2] Turned down {X_nameDef}'s venture. Twice the stake in ten days is the kind of promise I don't trust.</li>
       </plain>
       <cheerful><li>[opt0] We're investors now! I've already spent the profit in my head.</li></cheerful>
-      <gloomy><li>[opt0] I keep looking down the road for {X_nameDef}'s caravan. It isn't due for days.</li></gloomy>
+      <gloomy><li>[opt0] I'll be watching the road for {X_nameDef}'s caravan from tomorrow. It isn't due for ten days.</li></gloomy>
       <cold><li>[opt1] Hedged the bet. Sensible.</li></cold>
       <blunt><li>[opt2] Smelled like a swindle. Said no.</li></blunt>
     </lines>
@@ -93,7 +93,7 @@
       <plain>
         <li>[opt0,safe] I found {X_nameDef} bleeding in the brush, and now {X_pronoun} is asleep in one of our beds.</li>
         <li>[opt0,risk] We took {X_nameDef} in, and the people who hurt {X_objective} are coming. I'd find {X_objective} again and do the same.</li>
-        <li>[opt1] I left {X_nameDef} food and bandages and walked away. In the morning the hollow was empty.</li>
+        <li>[opt1] I left {X_nameDef} bread and clean bandages where {X_pronoun} could reach them, and came home. I'll go and look tomorrow.</li>
         <li>[opt2] I found someone hurt out past the fields and the council said to leave them. I did.</li>
       </plain>
       <warm><li>[opt0,safe] {X_nameDef} squeezed my hand when we carried {X_objective} in. Didn't say a word.</li></warm>
@@ -108,10 +108,10 @@
     <lines>
       <plain>
         <li>[opt0] A reeve came for a tithe and we paid. I could have argued, if anyone had asked me to.</li>
-        <li>[opt1] We paid the lord's tithe in sacks of food. {X_nameDef}'s men took the good sacks, of course.</li>
+        <li>[opt1] We paid the lord's tithe in sacks. {X_nameDef} counted every one into the ledger, and the lord's carters will get the good ones, of course.</li>
         <li>[opt2,safe] I argued the reeve out of the tithe today, boundary stone by boundary stone. I've never been so tired from talking.</li>
         <li>[opt2,risk] I argued, and {X_nameDef} had the deed. Now we're paying a fine for my trouble.</li>
-        <li>[opt3] We told the reeve no. {X_nameDef} wrote it down in the ledger very slowly.</li>
+        <li>[opt3] The reeve got no tithe from us. {X_nameDef} wrote a long line in the ledger and underlined it twice.</li>
       </plain>
       <cheerful><li>[opt2,safe] Beat a reeve with nothing but my mouth! {X_nameDef} looked like {X_pronoun} had swallowed a lemon.</li></cheerful>
       <gloomy><li>[opt2,risk] I lost the argument and it cost us extra. I should have kept quiet.</li></gloomy>
@@ -128,7 +128,7 @@
         <li>[opt0,risk] I answered the signal, and it was bait. That's on me.</li>
         <li>[opt1,safe] Traced the signal without saying a word into it. It led somewhere on our own land.</li>
         <li>[opt1,risk] Lost the signal after hours of chasing it. It just faded, like it had never been there.</li>
-        <li>[opt2] A signal came in on the comms and the council said leave it. I listened to it loop until it stopped.</li>
+        <li>[opt2] A signal came in on the comms, and we left it alone. I listened to it loop until it stopped.</li>
       </plain>
       <cheerful><li>[opt1,safe] Found the source of a mystery signal! It's the best afternoon of work I've had.</li></cheerful>
       <gloomy><li>[opt0,risk] I keep hearing that laughter on the channel. I gave us away.</li></gloomy>
@@ -160,7 +160,7 @@
         <li>[opt1] We left the wild bees alone. They're busy in the fields from dawn to dusk.</li>
       </plain>
       <cheerful><li>[opt0,safe] Honeycomb for supper, and I'm the one who got it!</li></cheerful>
-      <gloomy><li>[opt0,risk] Chased across a field by bees, in full view of the colony. I'll be hearing about it for a year.</li></gloomy>
+      <gloomy><li>[opt0,risk] Chased halfway home by bees. I'll be hearing about it for a year.</li></gloomy>
       <blunt><li>[opt1] Left the bees. They earn their keep.</li></blunt>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -169,12 +169,12 @@
     <defName>Council_Journal_Evt_StarIron</defName>
     <lines>
       <plain>
-        <li>[opt0,safe] I made a {TALE} from a fallen star. I keep picking it up just to feel the weight of it.</li>
-        <li>[opt0,risk] The star-iron cracked in the quench. Two days of work, and it's ordinary steel now.</li>
+        <li>[opt0,safe] I made a {TALE} from a fallen star. I've picked it up a dozen times tonight just to hold it.</li>
+        <li>[opt0,risk] The star-iron cracked in the quench. All that work, and it's ordinary steel now.</li>
         <li>[opt1] We broke up the fallen star for its metal. Good steel. Still, it fell out of the sky.</li>
         <li>[opt2] We left the fallen star where it landed. I go out and look at it in the evenings.</li>
       </plain>
-      <cheerful><li>[opt0,safe] A blade made from a star, and I made it! Well, it's the colony's, but still.</li></cheerful>
+      <cheerful><li>[opt0,safe] Forged from a fallen star, and I did it! Well, it's the colony's, but still.</li></cheerful>
       <gloomy><li>[opt0,risk] It cracked. Of course it cracked.</li></gloomy>
       <blunt><li>[opt0,safe] Forged star-iron. Best work I've done.</li></blunt>
       <cold><li>[opt1] Meteoric iron, reduced to stock. Practical.</li></cold>
@@ -188,11 +188,11 @@
         <li>[opt0,safe] The {BEAST} at the gate led me into the hills, and it knew where it was going. I came home with something to show for it.</li>
         <li>[opt0,risk] Followed the {BEAST} all morning and lost it in a thicket. Maybe I wasn't meant to see where it went.</li>
         <li>[opt1] We left the {BEAST} an offering, and in the evening it was gone, and so was the food.</li>
-        <li>[opt2] The council had the {BEAST} hunted. I didn't like it.</li>
+        <li>[opt2] The council marked the {BEAST} for the hunters. I didn't like it.</li>
         <li>[opt3] The {BEAST} stood at the gate half the day and then walked away. I wish I knew what it wanted.</li>
       </plain>
       <warm><li>[opt1] Leaving the offering felt right. My grandmother would have done the same.</li></warm>
-      <gloomy><li>[opt2] We hunted the sign. Nothing good comes of that.</li></gloomy>
+      <gloomy><li>[opt2] We're hunting the sign. Nothing good comes of that.</li></gloomy>
       <blunt><li>[opt0,risk] Lost it. Walked home.</li></blunt>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -201,13 +201,13 @@
     <defName>Council_Journal_Evt_Recognized</defName>
     <lines>
       <plain>
-        <li>[opt0] {X_nameDef} knew my face from the old posters. The colony paid to keep it quiet. I owe them for that.</li>
-        <li>[opt1,safe] {X_nameDef} said a name I haven't used in years. We called the bluff, and {X_pronoun} left. I didn't sleep.</li>
+        <li>[opt0] {X_nameDef} knew me from the old days. The colony paid to keep it quiet. I owe them for that.</li>
+        <li>[opt1,safe] {X_nameDef} said a name I haven't used in years, got no silver for it, and left. I didn't sleep.</li>
         <li>[opt1,risk] {X_nameDef} told {FACTION} what I was. I used to be {TALE}. I'm not any more, but that's not what they'll hear.</li>
         <li>[opt2,safe] I took {X_nameDef} for a walk and we talked. {X_nameDef} won't be bothering anyone.</li>
         <li>[opt2,risk] I tried talking to {X_nameDef}. It went badly, and now {FACTION} will know.</li>
       </plain>
-      <gloomy><li>[opt1,risk] You can leave a life behind. It doesn't leave you.</li></gloomy>
+      <gloomy><li>[opt1,risk] By the end of the week they'll all know what I was. I'd nearly forgotten it myself.</li></gloomy>
       <cold><li>[opt2,safe] Explained the situation to {X_nameDef}. {X_nameDef} understood.</li></cold>
       <blunt><li>[opt0] Paid a blackmailer. Hate it.</li></blunt>
       <warm><li>[opt0] The council paid for my past without asking me a single question about it.</li></warm>
@@ -220,7 +220,7 @@
       <plain>
         <li>[opt0] A letter from {X_nameDef}, my old commander. {X_nameDef} is fighting {ENEMY} now, and we sent what we could.</li>
         <li>[opt0] We sent supplies to {X_nameDef}'s campaign. I wrote a note to go with them and tore up three versions first.</li>
-        <li>[opt1] {X_nameDef} asked for help against {ENEMY}, and the council sent good wishes. Just good wishes.</li>
+        <li>[opt1] {X_nameDef} asked for help against {ENEMY}, and all we sent was good wishes.</li>
       </plain>
       <warm><li>[opt0] {X_nameDef} still signs letters the way {X_pronoun} did in the old days. I'd know that hand anywhere.</li></warm>
       <gloomy><li>[opt1] My old commander asked me for help, and I sent a letter. I'll have to live with that.</li></gloomy>
@@ -251,7 +251,7 @@
         <li>[opt1] Found an old map in my things from my life before. I've put it away. I take it out at night sometimes.</li>
       </plain>
       <cheerful><li>[opt0] An old map and a cross on it! I feel like a child again.</li></cheerful>
-      <gloomy><li>[opt1] Some places are better left on old maps.</li></gloomy>
+      <gloomy><li>[opt1] Folded the map back along its old creases. There are places on it I don't want to see again.</li></gloomy>
       <cold><li>[opt0] Located an old cache. Worth retrieving.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
