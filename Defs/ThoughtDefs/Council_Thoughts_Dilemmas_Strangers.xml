@@ -11,13 +11,13 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmS_TheyStayed</defName>
     <durationDays>8</durationDays>
-    <stages><li><label>they stayed</label><description>They could have left with their own people, but they stayed here. I think I'm part of the reason.</description><baseMoodEffect>6</baseMoodEffect></li></stages>
+    <stages><li><label>they stayed</label><description>Their people packed up and left without them. We ate breakfast together, same as every morning since they came.</description><baseMoodEffect>6</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmS_PaidForAPerson</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>silver for a stranger</label><description>We paid good silver for one more mouth at the table. I hope the new one can at least cook.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>silver for a stranger</label><description>We paid the visitors good silver so one of them could stay. I've been working out what else it would have bought.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -29,7 +29,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmS_NotWanted</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>not wanted there</label><description>I asked those people for a place among them, and they turned me down. Their walls are ugly anyway.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
+    <stages><li><label>not wanted there</label><description>I asked to stay, and they sent me off with my own people. I'd already learned their animals' names.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <!-- ===================== A guest's tongue ===================== -->
@@ -37,7 +37,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmS_GotApology</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>an apology, of sorts</label><description>The guest apologized to me through gritted teeth. It was a terrible apology, but I'll take it.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+    <stages><li><label>an apology, of sorts</label><description>The guest mumbled an apology at the floor. I heard it, and so did the rest of the table.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -46,7 +46,7 @@
     <durationDays>10</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>made me grovel</label><description>I was made to apologize in front of a room full of mud farmers. I won't forget whose face I was looking at.</description><baseMoodEffect>-2</baseMoodEffect><baseOpinionOffset>-12</baseOpinionOffset></li></stages>
+    <stages><li><label>made me grovel</label><description>I was made to apologize to a room full of mud farmers. I won't forget whose face I was looking at.</description><baseMoodEffect>-2</baseMoodEffect><baseOpinionOffset>-12</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -58,13 +58,13 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmS_Doormats</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>we let guests walk on us</label><description>A visitor insulted one of ours at dinner, and we all just kept eating.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+    <stages><li><label>we let guests walk on us</label><description>A guest called one of ours names over dinner, and the council told us to let it go. I'd have had words with them.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmS_Defended</defName>
     <durationDays>5</durationDays>
-    <stages><li><label>the council threw them out for me</label><description>A guest insulted me, and the council sent their whole party off our land for it.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+    <stages><li><label>guests thrown out for me</label><description>The council sent the whole party packing over what that guest said to me. I watched them all the way to the gate.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -78,13 +78,13 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmS_SoldTheHeirloom</defName>
     <durationDays>12</durationDays>
-    <stages><li><label>sold what they left me</label><description>It was the last thing I had of them, and I sold it to a trader. The silver spends just fine, and that's the worst part.</description><baseMoodEffect>-6</baseMoodEffect></li></stages>
+    <stages><li><label>sold what they left me</label><description>I sold the last thing I had of them to a trader. I counted the silver twice and couldn't have told you what it came to.</description><baseMoodEffect>-6</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmS_HeirloomKept</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>kept the heirloom</label><description>A trader wanted my heirloom, but I kept it. It isn't for sale.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>kept the heirloom</label><description>A trader kept raising the offer for my heirloom. It's back where it lives, wrapped in its cloth.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -93,7 +93,7 @@
     <durationDays>8</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>wouldn't sell</label><description>They wouldn't sell, not even at my price. I respect that.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>10</baseOpinionOffset></li></stages>
+    <stages><li><label>wouldn't sell</label><description>Turned down good silver for an old trinket, even at my price. You don't meet many like that out here.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>10</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -105,7 +105,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmS_SilverInHand</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>silver in the stores</label><description>One of us finally sold an old keepsake to a trader. You can't eat a keepsake.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>silver in the stores</label><description>One of us finally took a trader's offer, and real silver went into the stores. I don't see why they're sulking.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><journal>true</journal><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
@@ -114,7 +114,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmS_SetThemFree</defName>
     <durationDays>6</durationDays>
-    <stages><li><label>my prisoner went home</label><description>I asked the council to free a prisoner, and they did. They're on their way home now because I spoke up.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+    <stages><li><label>my prisoner went home</label><description>The prisoner I carried meals to is walking home. They took my hand in both of theirs before they went.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -150,7 +150,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmS_GoodRiddance</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>one less raider</label><description>We gave a dying raider a quick end. One less of them.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>one less raider</label><description>The raider begging in the dirt got a quick end. I'd have done it without being told.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -168,7 +168,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmS_LeftToBleed</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>left them to bleed</label><description>A wounded raider was calling for help all afternoon, and we left them to it.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+    <stages><li><label>left them to bleed</label><description>We left a wounded raider calling for help all afternoon. I heard it stop around supper.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <!-- ===================== Hungry at the gate ===================== -->
@@ -176,14 +176,14 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmS_FedTheHungry</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>we fed the hungry</label><description>Hungry people came to the gate, and we fed them. I watched them eat.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>we fed the hungry</label><description>Hungry people came to the gate and went home with full sacks. They said thank you twice.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><feelings><li>Pride</li></feelings><felt>4</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmS_GaveItAway</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>gave our stores away</label><description>We worked all season for that food, and the council gave it away to strangers.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>gave our stores away</label><description>We worked all season for what's in those stores, and the council handed it to strangers at the gate.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -197,7 +197,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmS_PaidForTheBite</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>paid for my animal's bite</label><description>We paid a stranger silver because they put their fingers near my animal's mouth. It wasn't my animal's fault.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>paid for my animal's bite</label><description>That visitor put a hand in my animal's mouth, and the council paid them silver for it. I'd like to know what they expected.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -218,7 +218,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmS_AnimalGivenAway</defName>
     <durationDays>15</durationDays>
-    <stages><li><label>my animal given away</label><description>They gave my animal to a stranger to settle a bite. It got loose on the way out, and now it's out there somewhere.</description><baseMoodEffect>-6</baseMoodEffect></li></stages>
+    <stages><li><label>my animal given away</label><description>My animal was handed over to the stranger it bit, to settle things. Its bowl is still by my door.</description><baseMoodEffect>-6</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <!-- ===================== The den in the brush ===================== -->
@@ -226,7 +226,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmS_TheHunt</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>the hunt is on</label><description>There's a big predator denning nearby, and we're going after it. Finally, a reason to get up early.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>the hunt is on</label><description>There's a big predator out past the fields, and we're going after it. I've had my weapon cleaned since dawn.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><feelings><li>Resolve</li></feelings><felt>3</felt></li></modExtensions>
   </ThoughtDef>
 
@@ -239,7 +239,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmS_WorthTaming</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>a predator worth taming</label><description>That predator would make the best guard animal we've ever had, if it doesn't eat me first.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>a predator worth taming</label><description>I get to try taming the predator out in the brush. I've got a bucket of scraps and a lot of patience.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -251,7 +251,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmS_SomethingWatching</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>something watching from the brush</label><description>There's a predator denning in sight of the colony, and the council decided to leave it be. I count heads at dinner now.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>watched from the brush</label><description>There's a predator denning in sight of the colony, and the council decided to leave it be. I count heads at dinner now.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <!-- ===================== Can I keep it ===================== -->
@@ -300,7 +300,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmS_ToldTheNobleOff</defName>
     <durationDays>5</durationDays>
-    <stages><li><label>told a noble what's what</label><description>I told that noble exactly what their title is worth out here. My hands are still shaking.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+    <stages><li><label>answered a noble back</label><description>I told that noble exactly what their title is worth out here. My hands are still shaking.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -317,19 +317,19 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmS_TonicWorked</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>that tonic actually worked</label><description>The trader's tonic tasted like a swamp in a boot, but I slept like a log. I want the recipe.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+    <stages><li><label>that tonic actually worked</label><description>The trader's tonic tasted like a swamp in a boot. I slept through the night and half the morning.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmS_TonicSwindle</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>paid silver for pond water</label><description>That tonic was just colored water in a pretty bottle, and we paid silver for it.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+    <stages><li><label>paid silver for pond water</label><description>Good silver for sugar water that tasted of old boots, and now they call me the alchemist.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmS_WastedSilver</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>silver down someone's throat</label><description>We spent good silver on a trader's tonic. I'd bet it was pond water.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>silver down someone's throat</label><description>Good silver went on one little bottle from a trader. I could have filled it at the rain barrel.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -343,7 +343,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmS_BoughtSilence</defName>
     <durationDays>5</durationDays>
-    <stages><li><label>my past, bought back</label><description>The council paid a stranger to keep quiet about my past, and never asked what it was. I owe them for that.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>my past, bought back</label><description>That visitor was paid to keep quiet, and the council never once asked me what about. I slept the whole night.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -361,7 +361,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmS_ScaredThemOff</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>they scared my past away</label><description>A visitor tried to sell what they knew about me, and our people ran them off. I didn't think they'd do that for me.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>they scared my past away</label><description>A visitor from my old life tried to sell what they knew about me. A few of ours had a word with them by the woodpile, and they've kept quiet since.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -370,13 +370,13 @@
     <durationDays>15</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>threatened over an old debt</label><description>I offered a fair trade and got cornered behind the storeroom for it. I still know what I know about them.</description><baseMoodEffect>-3</baseMoodEffect><baseOpinionOffset>-20</baseOpinionOffset></li></stages>
+    <stages><li><label>threatened to keep quiet</label><description>I offered a fair trade and got cornered by the woodpile for it. I still know what I know about them.</description><baseMoodEffect>-3</baseMoodEffect><baseOpinionOffset>-20</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmS_StrongArmed</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>we lean on visitors now</label><description>A few of ours took a guest behind the storeroom and threatened them. I didn't think we were that kind of colony.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>we lean on visitors now</label><description>A few of ours took a guest round by the woodpile and threatened them. I didn't think we were that kind of colony.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <!-- ===================== The beast at the tree line ===================== -->
@@ -384,7 +384,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmS_HuntingTheBeast</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>going after the beast</label><description>The animal that mauled one of ours is back, and this time we're hunting it.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>going after the beast</label><description>The animal that mauled one of ours is back at the tree line, and this time we're going after it. I was first to the weapons.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -410,13 +410,13 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmS_GrimSatisfaction</defName>
     <durationDays>10</durationDays>
-    <stages><li><label>my nemesis will answer for it</label><description>The order's been given. Soon the one who hurt me will be gone.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+    <stages><li><label>my nemesis will answer for it</label><description>The wardens have their orders. I asked to be there when it happens, and they said yes.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmS_ExecutionOrdered</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>an execution on the schedule</label><description>We're going to execute a prisoner in chains. I know what they did, but I don't want to watch.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+    <stages><li><label>an execution ordered</label><description>We're going to execute a prisoner in chains. I know what they did, but I don't want to watch.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -428,7 +428,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmS_RecruitingMyNemesis</defName>
     <durationDays>10</durationDays>
-    <stages><li><label>they want my nemesis as one of us</label><description>The council wants to recruit the one who nearly killed me. They could end up sleeping down the hall from me.</description><baseMoodEffect>-6</baseMoodEffect></li></stages>
+    <stages><li><label>recruiting my nemesis</label><description>The council wants to recruit the one who nearly killed me. They could end up sleeping down the hall from me.</description><baseMoodEffect>-6</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -442,13 +442,13 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmS_SoldMyAnimal</defName>
     <durationDays>12</durationDays>
-    <stages><li><label>my animal was sold</label><description>My animal was sold to a stranger. It slipped its rope past the fields, and now it's out there on its own.</description><baseMoodEffect>-6</baseMoodEffect></li></stages>
+    <stages><li><label>my animal was sold</label><description>They sold my animal to a stranger. I still get up at feeding time.</description><baseMoodEffect>-6</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmS_GoodPriceThough</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>sold my animal, at a good price</label><description>I miss my animal, but we got a lot of silver for it. I miss it a little less every time I count it.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+    <stages><li><label>sold my animal, at a good price</label><description>I miss that animal. It fetched a very good price, though, and I keep doing the sum.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -468,7 +468,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmS_QuackHealer</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>mud rubbed in for silver</label><description>We paid good silver for a healer to rub mud into my old injury. It hurts just the same, and the mud is still there.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>mud rubbed in for silver</label><description>A healer rubbed something brown into my old injury, hummed over it, and left with our silver before supper. It hurts the same.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -480,13 +480,13 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmS_PracticeDummy</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>the healer's practice dummy</label><description>The healer used me to teach the others, poking and prodding all afternoon. My old injury is no better.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>the healer's practice dummy</label><description>The healer used my old injury to teach our doctor, poking and prodding all afternoon. It's no better for it.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmS_StillAches</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>it still aches</label><description>There was a healer right here, and the council decided my old injury wasn't worth the silver. It still aches.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>it still aches</label><description>A real healer came through, and my old injury aches just as it did before. I make sure the council sees me rubbing it.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
 </Defs>
