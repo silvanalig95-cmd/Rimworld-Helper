@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- People from outside who are really there (Source/ColonyCouncil/Visitors). {0}: their people's name. -->
+
+  <!-- A group coming along the road (someone at the gate with a letter needs no message: the letter points at them) -->
+  <CC_Visit_Come>People of {0} are coming by the colony.</CC_Visit_Come>
+  <CC_Visit_Come_mourners>The mourners of {0} are coming along the road.</CC_Visit_Come_mourners>
+  <CC_Visit_Come_band>A band of {0} is coming along the road.</CC_Visit_Come_band>
+  <CC_Visit_Come_retinue>The lord's retinue is coming along the road from {0}'s country.</CC_Visit_Come_retinue>
+  <CC_Visit_Come_drovers>The drovers of {0} are bringing their herd onto the far meadow for the night.</CC_Visit_Come_drovers>
+  <CC_Visit_Come_herders>The herders of {0} are bringing their animals down to the water.</CC_Visit_Come_herders>
+
+  <!-- They had to go before their business was done -->
+  <CC_Visit_Weather>The visitors from {0} couldn't stay out in this weather any longer, and have gone on.</CC_Visit_Weather>
+
+</LanguageData>

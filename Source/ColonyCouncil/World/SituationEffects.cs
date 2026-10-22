@@ -174,6 +174,15 @@ namespace ColonyCouncil
         {
             var map = SituationEffectUtil.MapOf(ctx);
             if (map == null || !Gate(ctx)) return;
+            // The family waiting at the gate with the letter (Visitors/) are the ones taken in, with their animal.
+            var waiting = Visitors.TakeIn(ctx, !animal.NullOrEmpty());
+            var met = waiting.FirstOrDefault(p => p.RaceProps.Humanlike);
+            if (met != null)
+            {
+                if (ctx is SituationContext sx && sx.stranger == null) sx.stranger = met;
+                if (!animal.NullOrEmpty() && !waiting.Any(p => p.RaceProps.Animal)) Bring(met, map);
+                return;
+            }
             var f = ctx.faction != null && !ctx.faction.defeated ? ctx.faction : null;
             var kind = f != null ? Arrivals.PersonKind(f) : null;
             if (kind == null || Avail.IsPreIndustrial && f.def.techLevel > TechLevel.Medieval) kind = Arrivals.JoinerKind();

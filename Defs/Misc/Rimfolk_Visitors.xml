@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    People from outside who are really there (Source/ColonyCouncil/Visitors): a rider waiting at the gate for the
+    colony's answer, guests given a night, mourners and herds passing on the road. At their spot they keep close to it:
+    they eat what they brought and sleep on the ground when tired, and their animals graze and rest nearby. Nothing
+    else: no work, no wandering into the colony.
+  -->
+  <DutyDef>
+    <defName>Rimfolk_VisitWait</defName>
+    <thinkNode Class="ThinkNode_Priority">
+      <subNodes>
+        <li Class="ThinkNode_ForbidOutsideFlagRadius">
+          <maxDistToSquadFlag>12</maxDistToSquadFlag>
+          <subNodes>
+            <li Class="ThinkNode_Subtree">
+              <treeDef>SatisfyBasicNeeds</treeDef>
+            </li>
+          </subNodes>
+        </li>
+        <li Class="JobGiver_WanderNearDutyLocation">
+          <wanderRadius>4</wanderRadius>
+        </li>
+      </subNodes>
+    </thinkNode>
+  </DutyDef>
+
+  <DutyDef>
+    <defName>Rimfolk_VisitGraze</defName>
+    <thinkNode Class="ThinkNode_Priority">
+      <subNodes>
+        <li Class="ThinkNode_ForbidOutsideFlagRadius">
+          <maxDistToSquadFlag>16</maxDistToSquadFlag>
+          <subNodes>
+            <li Class="ThinkNode_Subtree">
+              <treeDef>SatisfyBasicNeeds</treeDef>
+            </li>
+          </subNodes>
+        </li>
+        <li Class="JobGiver_WanderNearDutyLocation">
+          <wanderRadius>7</wanderRadius>
+        </li>
+      </subNodes>
+    </thinkNode>
+  </DutyDef>
+
+</Defs>
