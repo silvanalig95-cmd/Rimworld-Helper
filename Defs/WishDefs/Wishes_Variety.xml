@@ -133,7 +133,7 @@
         <li>Somebody propped up a table with a book. I know who. Build {THING} before I have words with them.</li>
       </blunt>
       <cheerful>
-        <li>I'd sort the books by color, then by size, then by how sad they are. I just need a shelf!</li>
+        <li>If we build a shelf, I'll make the labels for it myself! I've got the neatest handwriting here.</li>
       </cheerful>
       <gloomy>
         <li>[lowmood] Books are the only company here that never lets me down. They deserve better than the floor.</li>
@@ -1238,7 +1238,7 @@
         <li>I need somewhere to pray that isn't next to the latrine. Build {THING}.</li>
       </blunt>
       <cheerful>
-        <li>I've been collecting pretty pebbles for people to leave at a shrine. Now we just need the shrine!</li>
+        <li>I've already carved a figure to stand on the shrine. Now we just need the shrine!</li>
       </cheerful>
       <gloomy>
         <li>There's probably no one listening. If there is, I want a proper place to complain.</li>
@@ -1394,7 +1394,7 @@
       <warm><li>No more going hungry between hunts. Thank you.</li></warm>
       <cheerful><li>Everything smells like smoke now, me included! I love it.</li></cheerful>
       <gloomy><li>Meat that keeps. That's one problem fewer.</li></gloomy>
-      <cold><li>Nothing goes to the flies now. I'll keep the tally anyway.</li></cold>
+      <cold><li>Nothing goes to the flies now. That was the point.</li></cold>
     </thanks>
     <expired>
       <plain><li>More meat for the flies.</li></plain>
@@ -1517,7 +1517,7 @@
         <li>I want a fountain. Yes, it's useless. It would be pretty, which is more than I can say for this yard.</li>
       </blunt>
       <cheerful>
-        <li>If we build a fountain, I'll toss a pebble in every morning and make a wish on it!</li>
+        <li>If we build a fountain, I'll be the first one to splash in it!</li>
       </cheerful>
       <gloomy>
         <li>We're all going to die here anyway. It might as well be somewhere with a fountain.</li>
@@ -1653,7 +1653,7 @@
         <li>Build {THING}. The next person who leaves a weapon on the dining table loses it.</li>
       </blunt>
       <cheerful>
-        <li>I'd polish every weapon on it each morning. It would look like a real fort in here!</li>
+        <li>Give me a rack and I'll polish every weapon on it each morning. It would look like a real fort in here!</li>
       </cheerful>
       <gloomy>
         <li>Last raid I lost half a minute looking for my weapon. One day that half minute will be somebody's life.</li>
@@ -1727,7 +1727,7 @@
         <li>Everything we build here is built to keep us alive. A statue would be the first thing built for looking at.</li>
       </gloomy>
       <cold>
-        <li>Visitors judge us by what's on our walls. At the moment, they judge us harshly.</li>
+        <li>Visitors judge us by what they see when they walk in. At the moment, they judge us harshly.</li>
       </cold>
     </request>
     <thanks>

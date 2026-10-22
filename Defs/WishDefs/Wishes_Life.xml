@@ -146,7 +146,7 @@
     <thanks>
       <plain>
         <li>{OTHER_nameDef} is at rest now. Thank you for that.</li>
-        <li>I said my goodbyes. It was done right.</li>
+        <li>I said my goodbyes, and I said them out loud.</li>
         <li>Rest well, {OTHER_nameDef}. We'll take it from here.</li>
         <li>[rain] At least the rain can't reach {OTHER_nameDef} now.</li>
       </plain>
@@ -294,7 +294,7 @@
         <li>I get on better with animals than with people. Let me tame that {SUBJECT}.</li>
       </gloomy>
       <cold>
-        <li>I've watched that {SUBJECT} for three days. It comes to the same spot at dusk. It'll come to me.</li>
+        <li>That {SUBJECT} comes to the same spot every dusk. Give me a few days and it'll come to me.</li>
       </cold>
     </request>
     <thanks>
