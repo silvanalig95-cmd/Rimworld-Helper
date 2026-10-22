@@ -77,7 +77,7 @@
     <lines>
       <plain>
         <li>The river was full of light instead of water, and we all waded in up to our knees.</li>
-        <li>I was a kite on a long string in my dream, and someone I love was holding the other end.</li>
+        <li>I was a kite on a long string, and someone I love was holding the other end.</li>
         <li>[child] I dreamt I could run so fast my feet left the ground and I didn't come down until supper.</li>
       </plain>
       <cheerful><li>Dreamt I was laughing so hard I woke myself up. Still laughing. No idea what at.</li></cheerful>
@@ -95,7 +95,7 @@
       <plain>
         <li>I stood at the edge of the world and looked down, and there were stars below me as well as above.</li>
         <li>The mountain behind us opened one eye, very slowly, and closed it again.</li>
-        <li>Dreamt the sky opened like a door, and behind it was more sky, brighter.</li>
+        <li>The sky opened like a door, and behind it was more sky, brighter.</li>
       </plain>
       <warm><li>Something so big and beautiful I cried in the dream, and didn't feel foolish about it.</li></warm>
       <cold><li>A dream of scale beyond comprehension. I've been unusually calm since.</li></cold>
@@ -128,8 +128,8 @@
     <feelings><li>Frustration</li></feelings>
     <lines>
       <plain>
-        <li>Dreamt I built a wall all day and every time I looked back the first stones had walked off.</li>
-        <li>In the dream I had to finish a job before morning, and every tool I picked up turned into a spoon.</li>
+        <li>Built a wall all day, and every time I looked back the first stones had walked off.</li>
+        <li>I had to finish a job before morning, and every tool I picked up turned into a spoon.</li>
         <li>Explaining something simple to the council, all night, and they kept nodding and doing the opposite.</li>
       </plain>
       <blunt><li>Work going wrong, all night. Still going wrong.</li></blunt>
@@ -185,7 +185,7 @@
       <plain>
         <li>The lamp went out and the dark came in like water, filling the room from the floor up.</li>
         <li>In the dream something stood in the corner where the light didn't reach, and waited, and waited.</li>
-        <li>[child] My light went out in my dream and I couldn't find it anywhere, and the dark was breathing.</li>
+        <li>[child] My light went out and I couldn't find it anywhere, and the dark was breathing.</li>
       </plain>
       <gloomy><li>Dreamt of the dark again. I always do, when I forget the light.</li></gloomy>
       <blunt><li>Dark dream. Lit the lamp. Went back to sleep.</li></blunt>
@@ -217,7 +217,7 @@
     <lines>
       <plain>
         <li>Climbed the tallest tree and kept climbing until I was among the stars, and they were warm, like coals.</li>
-        <li>In the dream the stars rearranged themselves into a map, and I almost understood where it led.</li>
+        <li>The stars rearranged themselves into a map, and I almost understood where it led.</li>
         <li>Dreamt I named a new star, and in the morning it was still there.</li>
       </plain>
       <warm><li>Dreamt I showed everyone the stars, and for once they all looked up at the same time.</li></warm>
@@ -236,7 +236,7 @@
     <lines>
       <plain>
         <li>The plants finally answered me last night. They had a lot of opinions about the watering.</li>
-        <li>In the dream the whole field turned to look at me as I passed, like a crowd at a feast.</li>
+        <li>The whole field turned to look at me as I passed, like a crowd at a feast.</li>
         <li>The seedlings told me which of them would make it. I've stopped looking at the ones that won't.</li>
       </plain>
       <cheerful><li>Dreamt the corn thanked me personally. Lovely manners, corn.</li></cheerful>
@@ -273,7 +273,7 @@
     <lines>
       <plain>
         <li>Last night every stray I ever fed came to the gate at once, a whole parade of them, and every one remembered me.</li>
-        <li>In the dream I had a name for every creature in the world, and they all came when called.</li>
+        <li>I had a name for every creature in the world, and they all came when called.</li>
         <li>[child] I dreamt my hurt bird got better and brought all its friends to say thank you.</li>
       </plain>
       <warm><li>Dreamt there wasn't a hungry animal anywhere. I could have stayed in that dream forever.</li></warm>
@@ -289,8 +289,8 @@
     <lines>
       <plain>
         <li>My grandmother sat at the end of my bed and told me a saying I'd never heard, and I've forgotten it, and I want it back.</li>
-        <li>In the dream every story I ever told was a person, and they all came to visit at once.</li>
-        <li>Dreamt I told a story that didn't end, and the children grew up listening to it.</li>
+        <li>Every story I ever told was a person, and they all came to visit at once.</li>
+        <li>I told a story that didn't end, and the children grew up listening to it.</li>
       </plain>
       <warm><li>My old stories were all sitting around a fire, telling each other. I just listened.</li></warm>
       <cold><li>A dream composed entirely of proverbs. Several contradicted each other.</li></cold>
@@ -344,7 +344,7 @@
     <lines>
       <plain>
         <li>Dreamt a wild animal walked out of the trees and lay down at my feet, as if it had been waiting for me.</li>
-        <li>[child] I had a dog as big as a horse in my dream, and I rode it to the river and back.</li>
+        <li>[child] I had a dog as big as a horse, and I rode it to the river and back.</li>
         <li>I knew the name every animal in the colony calls itself, and they all came to me.</li>
       </plain>
       <cheerful><li>Dreamt I had a pet goat that followed me everywhere, even up ladders!</li></cheerful>
@@ -437,7 +437,7 @@
     <lines>
       <plain>
         <li>I was the knot in the middle of a rope, and two people I love were pulling on each end.</li>
-        <li>In the dream I carried a message back and forth across a river all night, and it changed every time I crossed.</li>
+        <li>Carried a message back and forth across a river all night, and it changed every time I crossed.</li>
         <li>The ones I'm caught between were at one table, eating in silence, passing everything through me.</li>
       </plain>
       <warm><li>Dreamt the rope went slack, and the two ends came together, and I could put it down.</li></warm>
@@ -455,7 +455,7 @@
       <plain>
         <li>The snow went off the fields in a single morning, and everything came up green at once, and I was there to see it.</li>
         <li>In the dream I was young, and sitting in the sun outside the first house we built, and {OTHER_nameDef} was young too.</li>
-        <li>Dreamt of a spring that went on and on, and I wasn't tired at all.</li>
+        <li>A spring that went on and on, and I wasn't tired at all.</li>
       </plain>
       <warm><li>Dreamt of spring, and everyone I love out in the fields. I'd like one more of those.</li></warm>
       <gloomy><li>Dreamt of spring. I want to see one more. There's still time.</li></gloomy>
@@ -471,7 +471,7 @@
     <lines>
       <plain>
         <li>A letter came, in a hand I knew, and I opened it and every page was blank, and I read it anyway.</li>
-        <li>In the dream I could see across all the miles at once, and everyone out there was going about their day, all right.</li>
+        <li>I could see across all the miles at once, and everyone out there was going about their day, all right.</li>
         <li>A traveler came to the gate with news, and opened his mouth, and the dream moved on to something about geese.</li>
       </plain>
       <gloomy><li>A letter with bad news in it. I couldn't read the words. I knew what they said.</li></gloomy>
@@ -489,7 +489,7 @@
     <lines>
       <plain>
         <li>I could fly, and the dark was just the sky with the sun turned down, and I wasn't scared of it at all.</li>
-        <li>[child] I flew over the colony in my dream and they all waved, and {OTHER_nameDef} waved the biggest.</li>
+        <li>[child] I flew over the colony and they all waved, and {OTHER_nameDef} waved the biggest.</li>
         <li>Dreamt I was bigger than the trouble. It was very small, from up there.</li>
       </plain>
       <cheerful><li>Dreamt I could fly! I'm going to try again tonight.</li></cheerful>

@@ -52,7 +52,7 @@
       <plain>
         <li>In the dream {OTHER_nameDef} was in trouble, and for once I was the one who could help.</li>
         <li>Built {OTHER_nameDef} a house with my own hands last night, with a window on every side.</li>
-        <li>{OTHER_nameDef} walked beside me in my dream, carrying half of everything I carried.</li>
+        <li>{OTHER_nameDef} walked beside me all night, carrying half of everything I carried.</li>
         <li>I found the words to thank {OTHER_nameDef} properly in my dream. They were simple ones. I should be able to manage them awake.</li>
         <li>[child] {OTHER_nameDef} was a giant, and I rode in {OTHER_possessive} pocket over the fields.</li>
       </plain>
@@ -80,7 +80,7 @@
         <li>Had a dream they gave me {OTHER_nameDef}'s work, and I did it better, and the whole time they were watching {OTHER_objective}.</li>
         <li>[trait:Greedy|trait:Jealous] I took {OTHER_nameDef}'s things one at a time, and each one turned to sand in my hands.</li>
       </plain>
-      <warm><li>Dreamt {OTHER_nameDef} and I swapped lives for a day, and by evening we both wanted our own back.</li></warm>
+      <warm><li>{OTHER_nameDef} and I swapped lives for a day, and by evening we both wanted our own back.</li></warm>
       <blunt><li>Had what {OTHER_nameDef} has, in the dream. Didn't feel as good as I thought.</li></blunt>
       <cheerful><li>I had a dream I was the colony's favorite! For once it was {OTHER_nameDef} looking on.</li></cheerful>
       <gloomy><li>Dreamt {OTHER_nameDef}'s luck was a pile of firewood and mine was one damp stick.</li></gloomy>
@@ -99,9 +99,9 @@
         <li>Footsteps one corner behind me, all night, stopping when I stopped.</li>
         <li>Hid under the floor all night while footsteps went back and forth over my head.</li>
         <li>Running, and my legs wouldn't work. The ground kept pulling at them.</li>
-        <li>Dreamt the walls had holes in them I'd never noticed, and something was looking through each one.</li>
+        <li>The walls had holes in them I'd never noticed, and something was looking through each one.</li>
         <li>[child] There was a monster under my bed and it knew my name.</li>
-        <li>[afterraid] The raiders were back in my dream, and every door I shut behind me opened again on its own.</li>
+        <li>[afterraid] The raiders were back, and every door I shut behind me opened again on its own.</li>
         <li>[tribal] The wolves had our scent, and the drums wouldn't stop.</li>
       </plain>
       <warm><li>I was hiding in my dream, and someone took my hand and led me somewhere safe. I never saw who.</li></warm>
@@ -119,7 +119,7 @@
     <feelings><li>Dread</li></feelings>
     <lines>
       <plain>
-        <li>There was a cloud on the horizon in my dream that got bigger every time I looked up from my work.</li>
+        <li>A cloud on the horizon that got bigger every time I looked up from my work.</li>
         <li>Dreamt the whole colony was waiting at the gate for something, holding its breath, and it never came, and we couldn't stop waiting.</li>
         <li>Drums, far off and getting closer, and the others went on eating as if they couldn't hear.</li>
         <li>I was marking the days on a wall, and there was no more wall.</li>
@@ -143,7 +143,7 @@
       <plain>
         <li>They all knew what I'd done, in the dream. Not a word, just looking.</li>
         <li>My mistake was carved over the dining room door, and I had to walk under it to eat.</li>
-        <li>Dreamt I stood before the council while they read out every wrong thing I've ever done. It took all night.</li>
+        <li>Stood before the council while they read out every wrong thing I've ever done. It took all night.</li>
         <li>Scrubbing my hands all night, and the water kept running dirty.</li>
         <li>[child] I broke something in my dream and everyone saw.</li>
       </plain>
@@ -187,7 +187,7 @@
       <plain>
         <li>Everything was gray, the food and the sky and the faces, and I was the only one who minded.</li>
         <li>Digging, all night, and the hole kept filling in behind me.</li>
-        <li>Dreamt I was walking home to the colony, and it got further away with every step.</li>
+        <li>Walking home to the colony, and it got further away with every step.</li>
         <li>The sun came up and went straight back down, and we all went back to bed.</li>
         <li>[again] The gray dream again. It's getting harder to tell it from the mornings.</li>
       </plain>
@@ -233,9 +233,9 @@
         <li>Dreamt the colony had grown into a town, with lanterns along the paths and children I didn't know.</li>
         <li>The first warm morning after a long winter, and everything smelled green.</li>
         <li>We were planting trees that wouldn't bear for twenty years, and none of us minded the wait.</li>
-        <li>Dreamt the road in front of the colony was full of people coming to stay.</li>
+        <li>The road in front of the colony was full of people coming to stay.</li>
         <li>[winter] Dreamt of the thaw: water running under the ice, and the first green on the hill.</li>
-        <li>[lowtech] In the dream our fields ran all the way to the river, and the granary was too small for the harvest.</li>
+        <li>[lowtech] Our fields ran all the way to the river, and the granary was too small for the harvest.</li>
       </plain>
       <warm><li>The people I care about were all in my dream, older and grayer and happier, eating outside under a tree.</li></warm>
       <blunt><li>Good dream. Things worked out in it.</li></blunt>
@@ -254,7 +254,7 @@
     <lines>
       <plain>
         <li>A door in the hill behind the colony, and stairs going down past where the light could follow.</li>
-        <li>Dreamt I could read every book ever written, but only one page of each.</li>
+        <li>I could read every book ever written, but only one page of each.</li>
         <li>I took the sky apart to see how it worked. There were gears behind the clouds.</li>
         <li>Followed a strange bird to the edge of the world, and past it there was more world, folded up like a blanket.</li>
         <li>[trait:TooSmart] I solved something enormous in my dream and wrote it on my arm. It's just scribbles.</li>
@@ -263,7 +263,7 @@
       <warm><li>I found a secret garden and showed it to the others, and they loved it as much as I did.</li></warm>
       <blunt><li>A door in the dream. Didn't open it. Annoying.</li></blunt>
       <cheerful><li>There was a secret room under the kitchen in my dream! I'm knocking on the walls today.</li></cheerful>
-      <gloomy><li>I found a door in my dream, and it opened onto the same room, over and over.</li></gloomy>
+      <gloomy><li>Found a door, and it opened onto the same room, over and over.</li></gloomy>
       <cold><li>A curious dream. I've written down the parts that might mean something.</li></cold>
     </lines>
   </ColonyCouncil.DreamDef>
@@ -323,7 +323,7 @@
     <lines>
       <plain>
         <li>My teeth came loose one at a time, and I kept putting them in my pocket.</li>
-        <li>Dreamt I bit into an apple and it was made of stone.</li>
+        <li>Bit into an apple and it was made of stone.</li>
         <li>My mouth was full of pebbles, and I had to give a speech.</li>
         <li>[child] I lost all my teeth in my dream and had to eat soup forever.</li>
       </plain>
@@ -349,9 +349,9 @@
     </hediffs>
     <lines>
       <plain>
-        <li>Dreamt I was lying in an ants' nest and couldn't get up.</li>
+        <li>Lying in an ants' nest, and I couldn't get up.</li>
         <li>My blanket was woven out of nettles, and it wouldn't come off.</li>
-        <li>Something was crawling under my skin in my dream, mapping me.</li>
+        <li>Something was crawling under my skin, mapping me.</li>
         <li>Scratched until I came apart at the seams like an old sack.</li>
       </plain>
       <warm><li>Someone in my dream spread cool mud on my arms until the itching stopped.</li></warm>
@@ -372,7 +372,7 @@
       <plain>
         <li>I dreamt I was lying awake. Then I woke up, and I was lying awake.</li>
         <li>Counted sheep, and the sheep counted me back.</li>
-        <li>Dreamt the night went on for three days, and I was the only one who noticed.</li>
+        <li>The night went on for three days, and I was the only one who noticed.</li>
         <li>I dreamt about sleeping. It looked lovely.</li>
       </plain>
       <blunt><li>Dreamt I couldn't sleep. Accurate.</li></blunt>
@@ -400,8 +400,8 @@
       <plain>
         <li>Carrying a millstone up a hill, and every time I set it down it climbed back onto my back.</li>
         <li>I was made of wood, and I creaked whenever I moved.</li>
-        <li>I was wading through deep water in my dream, slower with every step.</li>
-        <li>Dreamt I was trying to get up off the floor, and the floor had other ideas.</li>
+        <li>Wading through deep water, slower with every step.</li>
+        <li>Trying to get up off the floor all night, and the floor had other ideas.</li>
         <li>[old] I was young again in my dream, and nothing hurt. I ran for the joy of it.</li>
       </plain>
       <warm><li>Dreamt someone carried me home on their back, the whole way.</li></warm>
@@ -427,11 +427,11 @@
     </hediffs>
     <lines>
       <plain>
-        <li>Dreamt I was breathing through a reed at the bottom of a pond.</li>
+        <li>Breathing through a reed at the bottom of a pond.</li>
         <li>The air was thick as porridge, and we all had to chew it.</li>
         <li>I was a fish, gulping at the surface.</li>
         <li>My head was a bucket full of wool.</li>
-        <li>[child] My nose was a tap in my dream and it wouldn't turn off.</li>
+        <li>[child] My nose was a tap and it wouldn't turn off.</li>
       </plain>
       <blunt><li>Cold dream. Stuffy. Still stuffy.</li></blunt>
       <cheerful><li>Breathed through my nose all night in the dream! What a luxury.</li></cheerful>
@@ -515,7 +515,7 @@
     <lines>
       <plain>
         <li>The council table went on for a mile, and every person I've ever known had a seat at it.</li>
-        <li>Dreamt we voted on whether the sun should come up tomorrow. It was close.</li>
+        <li>We voted on whether the sun should come up tomorrow. It was close.</li>
         <li>I gave the speech of my life at the council in my dream, and when I sat down nobody could remember a word of it, me included.</li>
         <li>The council met up in the treetops, and we passed the motions up and down in a basket.</li>
         <li>[trait:Kind] In the dream everyone at the council table agreed, and then we all went for a walk.</li>
@@ -541,7 +541,7 @@
     <lines>
       <plain>
         <li>The council meeting lasted a hundred years. The candles burned down and grew back.</li>
-        <li>Dreamt I was trying to get into the council meeting, and every door led back outside.</li>
+        <li>Every door into the council meeting led back outside.</li>
         <li>In my dream the council voted on me, and I couldn't hear the count.</li>
         <li>They decided everything while I slept, and when I woke inside the dream, the colony belonged to someone else.</li>
       </plain>
@@ -647,7 +647,7 @@
     <seasons><li>Spring</li></seasons>
     <lines>
       <plain>
-        <li>Dreamt I could hear the ice cracking on the river, and the whole valley turned green in an afternoon.</li>
+        <li>The ice cracked on the river, and the whole valley turned green in an afternoon.</li>
         <li>The seeds came up the moment I put them in, and I couldn't plant fast enough.</li>
         <li>Lambs in the fields, so many I had to step over them.</li>
         <li>Opened every window in the colony and let the winter out.</li>
@@ -692,7 +692,7 @@
     <seasons><li>Fall</li></seasons>
     <lines>
       <plain>
-        <li>Dreamt the harvest was so big we had to sleep in the fields beside it.</li>
+        <li>The harvest was so big we had to sleep in the fields beside it.</li>
         <li>Every leaf on the trees was a different color, and they all came down at once.</li>
         <li>We brought in the last of the crops, and sang all the way back.</li>
         <li>Dreamt the larder was full to the ceiling, and I could smell every jar.</li>
@@ -715,10 +715,10 @@
     <lines>
       <plain>
         <li>The snow came up to the roof, and we lived in tunnels under it, warm as mice.</li>
-        <li>Dreamt I was walking across a frozen lake at night, and I could see fish asleep under the ice.</li>
+        <li>Walking across a frozen lake at night, and I could see fish asleep under the ice.</li>
         <li>The cold had a voice, and it was asking to come in.</li>
         <li>Dreamt the whole world was white and silent, and the only footprints in it were mine.</li>
-        <li>[child] I had a sled pulled by a muffalo in my dream, and we went so fast the snow couldn't keep up.</li>
+        <li>[child] I had a sled pulled by a muffalo, and we went so fast the snow couldn't keep up.</li>
       </plain>
       <warm><li>Dreamt we all slept in one room by the fire, piled up like puppies, while the snow came down.</li></warm>
       <blunt><li>Snow dream. Snow outside.</li></blunt>

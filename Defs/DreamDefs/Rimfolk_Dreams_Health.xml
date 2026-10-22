@@ -18,8 +18,8 @@
       <plain>
         <li>In the dream I was running across the fields, and my legs did everything I asked of them.</li>
         <li>Dreamt I carried a whole load of stone up the hill, and set it down, and went back for another.</li>
-        <li>The first warm day of spring, in the dream, and I walked out past the last field just to see what was there.</li>
-        <li>[child] I could run faster than anyone in my dream, even the dogs.</li>
+        <li>The first warm day of spring, and I walked out past the last field just to see what was there.</li>
+        <li>[child] I could run faster than anyone, even the dogs.</li>
       </plain>
       <warm><li>Dreamt I was well again and went around to each of their doors with something I'd made.</li></warm>
       <blunt><li>Running dream. Legs aren't ready. Will be.</li></blunt>
@@ -37,10 +37,10 @@
     <hediffs><li>Council_Ail_Convalescent</li></hediffs>
     <lines>
       <plain>
-        <li>In the dream my bed was in the middle of the yard, and the whole colony went about its day around me.</li>
-        <li>Dreamt the bed went on and on, longer every time I tried to reach the end of it.</li>
+        <li>My bed was in the middle of the yard, and the whole colony went about its day around me.</li>
+        <li>The bed went on and on, longer every time I tried to reach the end of it.</li>
         <li>The seasons changed outside the window while I lay there, spring, summer, snow, all in one night.</li>
-        <li>[child] My bed grew legs in my dream and walked me all around the colony to say hello.</li>
+        <li>[child] My bed grew legs and walked me all around the colony to say hello.</li>
       </plain>
       <warm><li>Dreamt that everyone took turns sitting by my bed, all night, and none of them were tired.</li></warm>
       <blunt><li>Bed dream. Done with the bed.</li></blunt>
@@ -117,9 +117,9 @@
     <withinDays>4</withinDays>
     <lines>
       <plain>
-        <li>All night in the dream I counted the medicine on the shelf, and the number came out different every time.</li>
-        <li>Dreamt I was reading a book that explained exactly how to cure it, and the pages were blank when I turned them.</li>
-        <li>In the dream my patient's fever was a fire in the hearth, and I kept carrying water to it.</li>
+        <li>All night I counted the medicine on the shelf, and the number came out different every time.</li>
+        <li>A book that explained exactly how to cure it, and the pages went blank as I turned them.</li>
+        <li>My patient's fever was a fire in the hearth, and I kept carrying water to it.</li>
       </plain>
       <warm><li>Dreamt the patient's mother sat at the foot of the bed knitting, and with every row she finished the fever went down.</li></warm>
       <blunt><li>The case, all night. Still the case.</li></blunt>

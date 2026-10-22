@@ -22,7 +22,7 @@
         <li>[person] The fight again, and this time {NAME} turned at the edge of the trees and smiled at me.</li>
         <li>[person,kin] Dreamt {NAME} came to the funeral and stood at the back, and I couldn't make my legs move.</li>
         <li>[beast] Something big moved in the dark at the edge of the fields all night in my dream. I knew it was {NAME}.</li>
-        <li>[beast] Dreamt I heard {NAME} breathing under the floor, slow and patient.</li>
+        <li>[beast] {NAME} was breathing under the floor all night, slow and patient.</li>
       </plain>
       <warm><li>Dreamt {NAME} came back, and everyone I love stood between us without being asked.</li></warm>
       <blunt><li>Dreamt of {NAME}. Woke up with my fists shut.</li></blunt>
@@ -45,7 +45,7 @@
       <plain>
         <li>[person] In the dream {NAME} came at me and I didn't step back, and we stood there nose to nose until the dream ran out.</li>
         <li>[person] Dreamt I found {NAME} asleep by a fire, and stood there a long time deciding.</li>
-        <li>[beast] Dreamt I followed {NAME}'s tracks through the snow until they ended in my own footprints.</li>
+        <li>[beast] I followed {NAME}'s tracks through the snow until they ended in my own footprints.</li>
         <li>[kin] I told {NAME} the name of the one {NAME} killed, and made {NAME} say it back.</li>
       </plain>
       <blunt><li>Faced {NAME} in my sleep. Didn't run.</li></blunt>
@@ -63,7 +63,7 @@
     <nemesis>captured</nemesis>
     <lines>
       <plain>
-        <li>Dreamt I went down to the cells, and {NAME}'s door was open, and the room was full of my own things.</li>
+        <li>Went down to the cells, and {NAME}'s door was open, and the room inside was full of my own things.</li>
         <li>In the dream {NAME} talked to me through the wall all night in a voice I'd never heard {NAME} use.</li>
         <li>I held the key to {NAME}'s cell, and it got heavier every hour, and I couldn't put it down.</li>
       </plain>
@@ -85,7 +85,7 @@
       <plain>
         <li>Dreamt of {NAME}, and felt nothing at all. I slept the rest of the night like a stone.</li>
         <li>In the dream I walked the place where it happened, and it was just a field, with flowers in it.</li>
-        <li>[beast] Dreamt I walked under the trees where {NAME} used to wait, and only birds came out of them.</li>
+        <li>[beast] I walked under the trees where {NAME} used to wait, and only birds came out of them.</li>
         <li>[kin] Dreamt the one {NAME} took from us came and sat by my bed and said it was all right now.</li>
       </plain>
       <warm><li>Dreamt of the ones who stood with me against {NAME}, out in the yard, laughing about something else entirely.</li></warm>

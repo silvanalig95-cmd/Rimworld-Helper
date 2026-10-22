@@ -33,12 +33,12 @@
     <dreamer><passion>Animals</passion></dreamer>
     <lines>
       <plain>
-        <li>In my dream the animals could talk, and they'd been talking about us all along. They weren't impressed.</li>
-        <li>Dreamt an old muffalo sat me down and explained, very slowly, everything I'd been doing wrong with the herd.</li>
+        <li>The animals could talk, and they'd been talking about us all along. They weren't impressed.</li>
+        <li>An old muffalo sat me down and explained, very slowly, everything I'd been doing wrong with the herd.</li>
         <li>[child] I dreamt the animals had a council too, and the goat was in charge, and nobody could vote against the goat.</li>
       </plain>
       <blunt><li>Dreamt the animals talked. Didn't like what the pigs had to say.</li></blunt>
-      <gloomy><li>The animals could talk in my dream. They asked why we keep them. I didn't have an answer.</li></gloomy>
+      <gloomy><li>The animals asked me why we keep them. I didn't have an answer.</li></gloomy>
       <cold><li>Dreamt the herd discussed its own management. Some of the points were valid.</li></cold>
     </lines>
   </ColonyCouncil.DreamDef>
@@ -93,7 +93,7 @@
     <lines>
       <plain>
         <li>I rode on the back of the biggest animal in the world, so high I could see over the walls and all the way to the sea.</li>
-        <li>Dreamt I had a horse that could run faster than the wind, and it was mine, and we went everywhere.</li>
+        <li>I had a horse that could run faster than the wind, and it was mine, and we went everywhere.</li>
         <li>[winter] I dreamt I rode through the snow on a great shaggy animal, and I wasn't cold at all.</li>
       </plain>
       <cheerful><li>I rode a thrumbo in my dream. It was soft and it smelled of hay and it let me hold its horn!</li></cheerful>

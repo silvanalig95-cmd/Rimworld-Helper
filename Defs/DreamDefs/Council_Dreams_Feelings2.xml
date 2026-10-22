@@ -54,7 +54,7 @@
     <feelings><li>Tenderness</li></feelings>
     <lines>
       <plain>
-        <li>Dreamt I was holding something small and warm in both hands, and if I kept very still it would be all right.</li>
+        <li>Something small and warm in both hands, and if I kept very still it would be all right.</li>
         <li>In my dream I tucked a blanket around someone who was sleeping, and they smiled without waking.</li>
         <li>Sitting up by a sickbed all night, in the dream, and the fever broke just before dawn.</li>
         <li>[child] I dreamt I had a baby bird and I fed it and it grew up and it remembered me.</li>
@@ -75,7 +75,7 @@
     <feelingTarget>true</feelingTarget>
     <lines>
       <plain>
-        <li>I was looking for {OTHER_nameDef} all night in my dream, room after room, and every room was empty.</li>
+        <li>Looking for {OTHER_nameDef} all night, room after room, and every room was empty.</li>
         <li>Dreamt {OTHER_nameDef} was calling for me from the other side of a river, and I couldn't find the bridge.</li>
         <li>In the dream {OTHER_nameDef} kept walking away, and however fast I ran I stayed the same distance behind.</li>
         <li>[again] The searching dream again. {OTHER_nameDef} was nearer this time.</li>
@@ -96,7 +96,7 @@
     <lines>
       <plain>
         <li>Dreamt of a table so long it went out of the hall and across the fields, with everyone I know sitting at it.</li>
-        <li>In the dream we were all singing the same song, and nobody knew the words, and it didn't matter.</li>
+        <li>We were all singing the same song, and nobody knew the words, and it didn't matter.</li>
         <li>Dreamt we built a house in one night, all of us, each carrying something, and no one was tired after.</li>
         <li>[child] Everybody played with me at once in my dream, and nobody had to go and work.</li>
       </plain>
@@ -115,14 +115,14 @@
     <feelings><li>Resolve</li></feelings>
     <lines>
       <plain>
-        <li>Dreamt a storm was trying to push me off a hill, and I simply wouldn't go.</li>
-        <li>In the dream I was climbing a cliff with no top, and every handhold held.</li>
+        <li>A storm was trying to push me off a hill, and I simply wouldn't go.</li>
+        <li>Climbing a cliff with no top, and every handhold held.</li>
         <li>Something huge came at me out of the dark, and I planted my feet, and it went around me like water around a stone.</li>
         <li>[again] The dream about the hill again. The wind is weaker every time.</li>
       </plain>
       <warm><li>Dreamt I was the wall, and everyone I love was on the other side of me, safe.</li></warm>
       <blunt><li>Dreamt I didn't back down. I won't.</li></blunt>
-      <cheerful><li>Wrestled a thrumbo in my dream and won! Ready for anything today.</li></cheerful>
+      <cheerful><li>Wrestled a thrumbo in my dream and won. Ready for anything today.</li></cheerful>
       <gloomy><li>It all went wrong in the dream and I kept going anyway, one foot, then the other.</li></gloomy>
       <cold><li>A dream of endurance. Instructive. I've noted the parts that applied.</li></cold>
     </lines>
