@@ -30,7 +30,7 @@
     <durationDays>6</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>trusted with a secret</label><description>They trusted me with their secret. It's safe with me.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>10</baseOpinionOffset></li></stages>
+    <stages><li><label>trusted with a secret</label><description>Late at night they told me what they've kept from the rest of us. It stays with me.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>10</baseOpinionOffset></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>3</felt></li></modExtensions>
   </ThoughtDef>
 
@@ -201,7 +201,7 @@
     <durationDays>3</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>learned from my student</label><description>My student showed me something I didn't know. I had them go through it twice.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>6</baseOpinionOffset></li></stages>
+    <stages><li><label>learned from my student</label><description>My student showed me a better way to do it. I had them go through it twice.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>6</baseOpinionOffset></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>3</felt></li></modExtensions>
   </ThoughtDef>
 

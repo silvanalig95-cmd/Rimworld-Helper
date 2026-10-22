@@ -219,7 +219,7 @@
     <durationDays>2</durationDays>
     <stackLimit>2</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>the lessons are paying off</label><description>We've been at these lessons day after day, and today we could both see it working.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>5</baseOpinionOffset></li></stages>
+    <stages><li><label>the lessons are paying off</label><description>Day after day at these lessons, and today it finally showed. Neither of us had to say anything twice.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>5</baseOpinionOffset></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><skillFrom>theirs</skillFrom><xp>200</xp><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 

@@ -148,7 +148,7 @@
 
   <ThoughtDef ParentName="Council_Moment2Base">
     <defName>Council_Moment_PlansAhead</defName>
-    <stages><li><label>plans for the years ahead</label><description>We talked about what this place could be in ten years. I want to see it.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>3</baseOpinionOffset></li></stages>
+    <stages><li><label>plans for the years ahead</label><description>We talked about what this place could be in ten years, down to where the orchard goes. I want to be here to see it.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>3</baseOpinionOffset></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><feelings><li>Hope</li></feelings><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 

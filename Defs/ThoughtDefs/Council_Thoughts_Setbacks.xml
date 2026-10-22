@@ -266,7 +266,7 @@
     <stages>
       <li>
         <label>worried about the caravan</label>
-        <description>{OTHER_nameDef} is out there with the caravan, and things aren't going well for them. There's nothing I can do from here.</description>
+        <description>{OTHER_nameDef} is out there with the caravan, and they're in trouble. I can't do a thing from here.</description>
         <baseMoodEffect>-2</baseMoodEffect>
       </li>
     </stages>
@@ -302,7 +302,7 @@
     <stages>
       <li>
         <label>a debt unpaid</label>
-        <description>{FACTION} helped us when we needed it, and we've done nothing for them since. It doesn't sit right with me.</description>
+        <description>{FACTION} helped us when we needed it, and we've sent them nothing since, not even thanks.</description>
         <baseMoodEffect>-1</baseMoodEffect>
       </li>
     </stages>

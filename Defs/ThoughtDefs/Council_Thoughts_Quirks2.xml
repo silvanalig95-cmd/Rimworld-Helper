@@ -10,7 +10,7 @@
 
   <ThoughtDef ParentName="Council_QuirkBase">
     <defName>Council_Quirk_PrettyStones</defName>
-    <stages><li><label>my stones on the sill</label><description>I keep the stones I find lined up on the sill, smallest to biggest. I like looking at them.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>my stones on the sill</label><description>I keep the stones I find lined up on the sill, smallest to biggest. There's a green one from this week.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_QuirkBase">

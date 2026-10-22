@@ -109,7 +109,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Granted_Separate</defName>
     <durationDays>5</durationDays>
-    <stages><li><label>sleeping in peace</label><description>I don't have to share a room with someone I can't stand anymore.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+    <stages><li><label>sleeping in peace</label><description>I don't have to share a room with someone I can't stand anymore. I slept the whole night through.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">

@@ -467,7 +467,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmR_CustomUpheld</defName>
     <durationDays>5</durationDays>
-    <stages><li><label>the custom upheld</label><description>Some things here are older than any of us, and the council remembered that.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>the custom upheld</label><description>The custom stands, for everyone and every time. I'll be watching that it's kept.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -646,7 +646,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmR_ThankedByName</defName>
     <durationDays>5</durationDays>
-    <stages><li><label>thanked at supper</label><description>They stood up at supper and thanked me by name for all the work I've been doing.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>thanked at supper</label><description>They stood up at supper and thanked me by name for the season's work. I said it was nothing, and drank to it anyway.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
