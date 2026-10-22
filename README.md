@@ -406,8 +406,9 @@ a youngster who wants to see the world, an elder who wants one last walk in the 
 tale to tell or feels the cold in their bones. Many answers call on whoever is
 best placed (the doctor, a forager, a tracker, the best talker), and their skill decides how it goes.
 
-**Answers play out on the map.** When an answer describes something people do, they do it (413 answers of 131
-dilemmas and 123 Rimfolk events, stories and world events, plus calendar days, six decrees and nine ambitions). A
+**Answers play out on the map.** When an answer describes something people do, they do it (421 answers of 133
+dilemmas and 125 Rimfolk events, stories and world events, plus calendar days, six decrees and nine ambitions, 15
+stages of personal stories and 7 moments with visitors). A
 victory feast is eaten at the dining table, each guest sent to eat a cooked meal from the stores, the finest first
 they may eat. The midsummer bonfire is lit (a campfire laid for the evening if the colony has none, burned down to ash
 after), a toast is raised, an apology or a reading is heard round the table, a friend sits with someone who is ill, a
@@ -424,6 +425,12 @@ danger, sleep, a meal or a sickbed, nothing starts with enemies about, and dange
 it. The answer's good moods come to those who were there once it's over; if it never happens within a few hours,
 everyone gets them anyway, as before. This week lists what's coming, the dilemmas page says how each went, and those
 who took part write about it. A setting (Events & world) turns it off.
+
+What an answer says now exists is made real where that's safe: the apology carving and the gift that settles an old
+debt are signed sculptures set down beside the one they're for, the hat bought on the side is a real hat, a guest who
+cut wood leaves real stumps and logs beside them, the children's trees are saplings at the edge of the fields, a room
+staked out is placed as building plans through the room planner, and a relapsed colonist's stash burns in the yard.
+Shearing day is a real shearing and milking party. Only things of the colony's own era and DLCs, and nobody is hurt.
 
 **Goods and people come and go on the map.** What Rimfolk's events move between the colony and the outside world is
 carried by people you can see. When a village buys 250 corn, two porters walk in from the edge a few hours later, by
