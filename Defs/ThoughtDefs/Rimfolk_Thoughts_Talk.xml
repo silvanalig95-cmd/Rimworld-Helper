@@ -23,13 +23,13 @@
 
   <ThoughtDef ParentName="Rimfolk_TalkThoughtBase">
     <defName>Rimfolk_Talk_Debated</defName>
-    <stages><li><label>a good argument</label><description>We don't see it the same way, and we had a good go at each other about it. Nobody got hurt.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>2</baseOpinionOffset></li></stages>
+    <stages><li><label>a good argument</label><description>We don't see it the same way, and we had a good go at each other about it, and shook on it after.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>2</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Rimfolk_TalkThoughtBase">
     <defName>Rimfolk_Talk_Argued</defName>
     <stackLimit>6</stackLimit>
-    <stages><li><label>argued with me</label><description>We argued, and it got heated. I'm still turning over what they said.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>-4</baseOpinionOffset></li></stages>
+    <stages><li><label>argued with me</label><description>We argued, and it got heated. What they said is still going round in my head.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>-4</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Rimfolk_TalkThoughtBase">
@@ -41,7 +41,7 @@
   <ThoughtDef ParentName="Rimfolk_TalkThoughtBase">
     <defName>Rimfolk_Talk_TeasedFine</defName>
     <durationDays>1</durationDays>
-    <stages><li><label>pulled my leg</label><description>They pulled my leg, and I gave it back. It was funny.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>2</baseOpinionOffset></li></stages>
+    <stages><li><label>pulled my leg</label><description>They pulled my leg, and I pulled theirs right back.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>2</baseOpinionOffset></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.02</joy><felt>1</felt></li></modExtensions>
   </ThoughtDef>
 
@@ -60,20 +60,20 @@
 
   <ThoughtDef ParentName="Rimfolk_TalkThoughtBase">
     <defName>Rimfolk_Talk_Comforter</defName>
-    <stages><li><label>opened up to me</label><description>They let me in when things were bad for them. That means something.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>2</baseOpinionOffset></li></stages>
+    <stages><li><label>opened up to me</label><description>They talked to me when things were bad for them, and didn't hold anything back.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>2</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Rimfolk_TalkThoughtBase">
     <defName>Rimfolk_Talk_Remembered</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>remembered it together</label><description>We went back over something only we lived through. Nobody else remembers it the way we do.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>3</baseOpinionOffset></li></stages>
+    <stages><li><label>remembered it together</label><description>We went back over something only the two of us lived through, and laughed at the same parts.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>3</baseOpinionOffset></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>1</felt><feelings><li>Nostalgia</li></feelings></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Rimfolk_TalkThoughtBase">
     <defName>Rimfolk_Talk_RememberedLoss</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>carries it with me</label><description>We talked about what we lost. It still hurts, but it hurts less with someone who understands.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>4</baseOpinionOffset></li></stages>
+    <stages><li><label>carries it with me</label><description>We talked about what we lost, and they remember it the way I do, down to the small things.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>4</baseOpinionOffset></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>1</felt><feelings><li>Fellowship</li></feelings></li></modExtensions>
   </ThoughtDef>
 
@@ -86,7 +86,7 @@
   <ThoughtDef ParentName="Rimfolk_TalkThoughtBase">
     <defName>Rimfolk_Talk_OldJoke</defName>
     <durationDays>1</durationDays>
-    <stages><li><label>that old joke again</label><description>They brought up our old joke again. It's not as funny as it was, but it's ours.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>1</baseOpinionOffset></li></stages>
+    <stages><li><label>that old joke again</label><description>They brought up our old joke again. I've heard it a hundred times, and I still smiled.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>1</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
 </Defs>

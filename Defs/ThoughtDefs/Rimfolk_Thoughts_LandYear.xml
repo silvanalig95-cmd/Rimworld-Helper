@@ -20,14 +20,14 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Granted_FavouriteAnimal</defName>
     <durationDays>5</durationDays>
-    <stages><li><label>my favourite animal</label><description>There's one of my favourite kind of animal here now, ours, in the herd. I keep finding reasons to walk past it.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>my favorite animal</label><description>We have one of my favorite kind of animal now, and it's ours. I keep finding reasons to walk past it.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>3</felt><joy>0.1</joy><journal>true</journal><feelings><li>Joy</li></feelings></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Granted_FavouriteBond</defName>
     <durationDays>6</durationDays>
-    <stages><li><label>it chose me</label><description>Of everyone here, it picked me. It comes when I whistle and sleeps where it can see me. I've wanted one like it all my life.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>it chose me</label><description>Of everyone here, it picked me. It sleeps where it can see me, and I've wanted one like it all my life.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>4</felt><comfort>0.1</comfort><journal>true</journal><feelings><li>Tenderness</li></feelings></li></modExtensions>
   </ThoughtDef>
 
@@ -54,7 +54,7 @@
     <defName>Council_Planting_GoodStart</defName>
     <durationDays>4</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>a good start</label><description>The fields we sowed together on the planting day are ripe, every row of them. It started right, and it came right.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>a good start</label><description>The fields we sowed together on the planting day are ripe, every row of them. I walked the length of them this morning just to look.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt><skill>Plants</skill><xp>150</xp><journal>true</journal><feelings><li>Pride</li></feelings></li></modExtensions>
   </ThoughtDef>
 
@@ -70,7 +70,7 @@
     <defName>Council_Cal_PlantingDay</defName>
     <durationDays>4</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>the planting day</label><description>We kept the planting day: out in the fields together with the seed, and a few words at the edge when it was done. Whatever comes up this year, we started it together.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>the planting day</label><description>We kept the planting day, all of us out in the fields together. Now the year has properly started.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>3</felt><skill>Plants</skill><xp>200</xp><journal>true</journal><feelings><li>Hope</li></feelings></li></modExtensions>
   </ThoughtDef>
 
@@ -80,7 +80,7 @@
     <defName>Council_Dlm_Trad_HerdHome</defName>
     <durationDays>3</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>brought the herd home</label><description>We walked the whole herd in before the weather turned, one rope at a time. They're under a roof tonight, and so are we.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>brought the herd home</label><description>We brought the whole herd in with ropes, one head at a time, and shut the barn door on them by dark.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt><skill>Animals</skill><xp>150</xp><feelings><li>Contentment</li></feelings></li></modExtensions>
   </ThoughtDef>
 

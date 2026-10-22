@@ -31,6 +31,17 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.10.7</version>
+        <date>30 October 2026</date>
+        <title>Moods in their own words</title>
+        <points>
+          <li>About 1,600 moods were reread one at a time. Each now says what happened in this colony with one concrete thing from the moment ("I still get up at feeding time"), and holds for every answer, variant or risk that gives it, including half-hearted customs and verdicts the council reuses.</li>
+          <li>Moods no longer claim what the game didn't do: a sold animal leaves with its buyer instead of running loose, a reburied grave doesn't moralize, and a story's mood fits however the story went. About 35 mood names were clarified or shortened to fit the mood list.</li>
+          <li>The "what helps" tips were checked against the game's own numbers (how long things last, who is spared, what really helps) and use the interface's own names.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.10.6</version>
         <date>29 October 2026, later</date>
         <title>A health panel at a glance</title>

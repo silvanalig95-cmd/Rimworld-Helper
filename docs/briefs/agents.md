@@ -33,7 +33,7 @@ Claude-Session: https://claude.ai/code/session_01BPumbqQfw465PjV9qCCwHZ
   - a small good moment should usually give something else (`ColonyCouncil.RewardInstead` on the ThoughtDef: recreation, rest, practice, trust, an inspiration chance, a feeling, a journal line);
   - new bad outcomes and setbacks are welcome;
   - keep big good moods rare.
-- **Prose style:** plain, warm, concrete, in the style of the existing text. No exclamation-mark spam, no stock phrases, British/neutral spelling as in the existing files.
+- **Prose style:** plain, warm, concrete, in the style of the existing text. No exclamation-mark spam, no stock phrases, American spelling, as the game uses (see STYLE.md).
 
 ## Learn the system before adding to it
 

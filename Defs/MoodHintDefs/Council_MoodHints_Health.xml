@@ -17,7 +17,7 @@
       <li>Council_Health_LostPatient</li>
       <li>Council_Health_LostRun</li>
     </thoughts>
-    <fix>Time, and company: a friend's visit or a good talk helps. Good medicine and a clean hospital bed make the next loss less likely. A dilemma may let the doctor take a day away.</fix>
+    <fix>A doctor who lost a patient, or several. It fades with time; a friend's visit or a good talk helps in the meantime. Good medicine and clean hospital beds make the next loss less likely, and the council may be asked to give the doctor a day away.</fix>
     <act>Company and time help</act>
     <actionable>false</actionable>
     <article>Council_Alm_4_25_Ailments</article>
@@ -31,7 +31,7 @@
       <li>Council_Health_SatWithFriend</li>
       <li>Council_Health_DeliveredBaby</li>
     </thoughts>
-    <keep>A doctor the colony trusts puts patients at ease each time they tend them; friends who visit the sickbed lift both moods.</keep>
+    <keep>Good doctoring and good company. A doctor the colony trusts puts patients at ease each time they tend them, and friends who visit the sickbed lift both moods.</keep>
     <article>Council_Alm_4_25_Ailments</article>
   </ColonyCouncil.MoodHintDef>
 

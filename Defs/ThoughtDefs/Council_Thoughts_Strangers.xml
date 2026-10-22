@@ -9,7 +9,7 @@
     <stages>
       <li>
         <label>they got away</label>
-        <description>The one who did this to me is still out there, eating and sleeping like nothing happened. I keep seeing their face.</description>
+        <description>The one who hurt me got away, and is out there right now, eating and sleeping. I keep seeing that face.</description>
         <baseMoodEffect>-4</baseMoodEffect>
       </li>
     </stages>
@@ -33,7 +33,7 @@
     <stages>
       <li>
         <label>let them come</label>
-        <description>They came back, and this time I'm ready for them.</description>
+        <description>They came back. I've been waiting for this, and my hands are steady.</description>
         <baseMoodEffect>4</baseMoodEffect>
       </li>
     </stages>
@@ -57,7 +57,7 @@
     <stages>
       <li>
         <label>I had my revenge</label>
-        <description>I killed the one who hurt me, with my own hands. I feel lighter than I have in years.</description>
+        <description>The one who hurt me is dead, and mine was the hand that did it. The nightmares have stopped.</description>
         <baseMoodEffect>11</baseMoodEffect>
       </li>
     </stages>

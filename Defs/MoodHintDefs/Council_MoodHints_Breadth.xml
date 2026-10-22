@@ -12,7 +12,7 @@
       <li>Council_Cal_RestDay</li>
       <li>Council_Cal_Birthday</li>
     </thoughts>
-    <keep>Days on the colony calendar come round once a year. Keep them, and in three years they become traditions everyone looks forward to; a keeper of days on the council makes each one a little more of an occasion.</keep>
+    <keep>Days on the colony calendar come round once a year. Keep one three years running and it becomes a tradition people look forward to; a keeper of days on the council makes each one more of an occasion.</keep>
     <article>Council_Alm_C_Calendar</article>
     <councilTab>Calendar</councilTab>
   </ColonyCouncil.MoodHintDef>
@@ -23,7 +23,7 @@
       <li>Council_Cal_Remembered</li>
       <li>Council_Dlm_Trad_Walk</li>
     </thoughts>
-    <keep>A day of remembrance is sad and good at once. Keep it each year, and keep the graves tidy and close, so there's somewhere for it to go.</keep>
+    <keep>A day of remembrance, sad and good at once. Keep it each year, and keep the graves tidy and near enough to walk to.</keep>
     <article>Council_Alm_C_Calendar</article>
     <councilTab>Calendar</councilTab>
   </ColonyCouncil.MoodHintDef>
@@ -34,7 +34,7 @@
       <li>Council_Anniversary</li>
       <li>Council_FriendAnniversary</li>
     </thoughts>
-    <keep>Every year a colonist stays is marked, and their friends are glad of it too. Nothing to do but keep them here.</keep>
+    <keep>Each year a colonist stays is marked, and their friends are glad of it too. It comes round on its own.</keep>
     <article>Council_Alm_C_Names</article>
   </ColonyCouncil.MoodHintDef>
 
@@ -66,7 +66,7 @@
       <li>Council_Story_PlayFamous</li>
       <li>Council_Mission_Shrine</li>
     </thoughts>
-    <keep>A story in stages that ended well. The World page shows the stories still unfolding; the answer the council gives at each stage decides how the next one goes.</keep>
+    <keep>A story in several parts that ended well. The World page shows the stories still unfolding, and the council's answer at each stage decides how the next one goes.</keep>
     <article>Council_Alm_C_WorldEvents</article>
     <councilTab>World</councilTab>
   </ColonyCouncil.MoodHintDef>
@@ -81,8 +81,8 @@
       <li>Council_Story_Schism</li>
       <li>Council_Story_SeedsChoked</li>
     </thoughts>
-    <fix>A story that went badly. It fades in a few days; a friend's company or a good evening helps it pass. Next time, the World page shows what's still unfolding, and the colony's answers decide the next stage.</fix>
-    <act>Company helps it pass</act>
+    <fix>A story that went badly. It fades on its own within ten days, and good moments in between make up for it. The World page shows the stories still unfolding, and the council's answer at each stage decides how the next one goes.</fix>
+    <act>Fades within ten days</act>
     <actionable>false</actionable>
     <article>Council_Alm_C_WorldEvents</article>
     <councilTab>World</councilTab>
@@ -110,10 +110,10 @@
       <li>Council_Scen_HuntOver</li>
       <li>Council_Scen_DebtPaid</li>
     </thoughts>
-    <fix>A feeling the colony started the game with. It fades over a month or more; shared work, shared meals and a common enemy bring feuding families together sooner.</fix>
+    <fix>A feeling the colony started the game with, and slow to fade. Between feuding families, shared work, shared meals and a common enemy build better opinions in the meantime.</fix>
     <act>Shared work brings them round</act>
     <actionable>false</actionable>
-    <keep>Something the colony started the game with. It lasts for a season or more, and the bonds it began can grow into lasting friendships on the Bonds page.</keep>
+    <keep>Something the colony started the game with, and it lasts for months. The bonds it began can grow into lasting friendships; the Bonds page shows them.</keep>
     <article>Council_Alm_C_Scenarios</article>
     <councilTab>Bonds</councilTab>
   </ColonyCouncil.MoodHintDef>
@@ -128,7 +128,7 @@
       <li>Council_Dlm_Trad_FrostSoup</li>
       <li>Council_Dlm_Trad_Lanterns</li>
     </thoughts>
-    <keep>A seasonal custom kept, or a day marked properly. Choose the same answer two years running and it becomes a tradition that comes round every year; a keeper of days on the council makes each kept day a small occasion.</keep>
+    <keep>A seasonal custom kept, or a day marked properly. Give the same answer two years running and it becomes a tradition that comes round every year; a keeper of days on the council makes each kept day more of an occasion.</keep>
     <article>Council_Alm_C_Traditions</article>
     <councilTab>Decrees</councilTab>
   </ColonyCouncil.MoodHintDef>
@@ -138,7 +138,7 @@
     <thoughts>
       <li>Council_ColonyTraitPride</li>
     </thoughts>
-    <keep>The colony is known for the work this colonist loves. It holds as long as the work goes on; the Our ways page shows how close the colony is to each name, and where it stands.</keep>
+    <keep>The colony is known for the work this colonist loves, and it holds while the work goes on. The Our ways page shows how close the colony is to each name.</keep>
     <article>Council_Alm_C_Ways</article>
     <councilTab>Ways</councilTab>
   </ColonyCouncil.MoodHintDef>

@@ -1204,7 +1204,7 @@ for one deed *Roof-Raiser*, *Feud-Breaker*, *Bridge-Builder*, *the Finder* or *R
 the ideoligion and in the colony bring more: *Old Doc* and *Old Iron* (two years as physician or marshal), *the Unbeaten*
 (three terms as speaker without ever losing a vote), *the Celebrant* and *the Shepherd* (rituals led and years as
 moral guide, with Ideology), *the Founder* (ten years since the first day), *the Last of the First*, *the Firstborn*
-and *the Annalist*, who keeps the pen. They show in play: travellers ask for Old Doc or the Celebrant by name, the
+and *the Annalist*, who keeps the pen. They show in play: travelers ask for Old Doc or the Celebrant by name, the
 founding day's letter names the last of the founders. 63 names in all. Each
 year since a colonist joined, they
 mark the anniversary in their own words, and their friends share it. And when the moment fits (food running low,
@@ -1390,7 +1390,7 @@ the mod's own def names (the tests hold the list):
 - **Outland's peoples:** an Eastborn visitor makes tea and won't let it be drunk unlooked-at, a Motz sits with a
   colonist just past the lamplight, a goblin of the Redburn Pact haggles over a skull, a Vathun noble asks
   everyone's caste. **Medieval Total Rim's nations** visit in their own words (a knight on the road from France, the
-  Empire, Poland, Iberia, Muscovy or Byzantium; a rider of the Mongol steppe; a learned traveller from the Ottomans,
+  Empire, Poland, Iberia, Muscovy or Byzantium; a rider of the Mongol steppe; a learned traveler from the Ottomans,
   Byzantium or Iberia). Rimfolk knows Medieval Total Rim's nations by their mod (its def names aren't published), so
   every nation pack counts.
 - **Two world events for them:** a lord's progress (a Vathun, Eastborn or Medieval Total Rim lord passes by: host the

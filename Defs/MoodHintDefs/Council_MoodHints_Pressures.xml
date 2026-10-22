@@ -15,7 +15,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RF_PressureWork</defName>
     <thoughts><li>Council_Pressure_SameWork</li></thoughts>
-    <fix>Give them a second kind of work in the Work tab, even a few hours a day. One varied day ends the run. Industrious and hard-working colonists, and anyone with a burning passion for the work, don't mind.</fix>
+    <fix>Give them a second kind of work in the Work tab, even a few hours a day; one varied day ends the run. Hard workers, the industrious, workaholics, children and anyone with a burning passion for the work don't mind.</fix>
     <act>Add a second kind of work</act>
     <article>Council_Alm_C_Pressures</article>
   </ColonyCouncil.MoodHintDef>
@@ -39,7 +39,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RF_PressureUnfinished</defName>
     <thoughts><li>Council_Pressure_Unfinished</li></thoughts>
-    <fix>Finish the frames that are waiting (often for materials), or cancel what you don't need. Lazy colonists and slobs don't care.</fix>
+    <fix>Finish the frames that are waiting (often for materials), or cancel what you don't need. Lazy and slothful colonists, and slobs, don't care.</fix>
     <act>Finish or cancel the frames</act>
     <article>Council_Alm_C_Pressures</article>
   </ColonyCouncil.MoodHintDef>

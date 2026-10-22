@@ -31,7 +31,7 @@
   <ThoughtDef ParentName="Council_FrictionThoughtBase">
     <defName>Rimfolk_Friction_FightJibe</defName>
     <durationDays>1.5</durationDays>
-    <stages><li><label>a jibe about the fighting</label><description>They asked whether I'd be staying for the next raid, and laughed when I walked off.</description><baseMoodEffect>-2</baseMoodEffect><baseOpinionOffset>-5</baseOpinionOffset></li></stages>
+    <stages><li><label>a jibe about the fighting</label><description>Another crack about where I'll be hiding when the raiders come. I know what they think of me in a fight.</description><baseMoodEffect>-2</baseMoodEffect><baseOpinionOffset>-5</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_FrictionThoughtBase">
@@ -41,12 +41,12 @@
 
   <ThoughtDef ParentName="Council_FrictionThoughtBase">
     <defName>Rimfolk_Friction_HandedWork</defName>
-    <stages><li><label>handed work, pointedly</label><description>They put a broom in my hands without a word, as if I never lift a finger.</description><baseMoodEffect>-1</baseMoodEffect><baseOpinionOffset>-3</baseOpinionOffset></li></stages>
+    <stages><li><label>handed work, pointedly</label><description>Handed me a job and a look to go with it, as if I never lift a finger.</description><baseMoodEffect>-1</baseMoodEffect><baseOpinionOffset>-3</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_FrictionThoughtBase">
     <defName>Rimfolk_Friction_Tiptoed</defName>
-    <stages><li><label>treated like a lit fuse</label><description>They chose every word around me as if I might go off. Maybe I would have.</description><baseMoodEffect>-1</baseMoodEffect><baseOpinionOffset>-3</baseOpinionOffset></li></stages>
+    <stages><li><label>treated like a lit fuse</label><description>They chose every word around me like I was a pot about to boil over.</description><baseMoodEffect>-1</baseMoodEffect><baseOpinionOffset>-3</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
 </Defs>

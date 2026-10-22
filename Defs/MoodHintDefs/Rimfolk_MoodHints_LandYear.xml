@@ -6,7 +6,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RF_PlantingSkipped</defName>
     <thoughts><li>Council_Dlm_PlantingSkipped</li></thoughts>
-    <fix>The council let the planting day go when the fields opened. It fades in a few days. Next spring, make a day of it (it can become a tradition), or put a planting day on the calendar yourself: Calendar → a new day, kept as a planting day.</fix>
+    <fix>The council let the planting day go when the fields opened. It fades in a few days. Next spring, make a day of it (kept two years running, it becomes a tradition), or put a planting day on the calendar yourself (in the Calendar, add a new day and keep it as a planting day).</fix>
     <act>Make a planting day next spring</act>
     <actionable>false</actionable>
     <article>Council_Alm_C_Traditions</article>
@@ -16,7 +16,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RF_HerdLeftOut</defName>
     <thoughts><li>Council_Dlm_HerdLeftOut</li></thoughts>
-    <fix>The council left the herd out in the weather. It fades in a few days. Bring them in: a barn with animal beds (or a pen) keeps them sheltered, and next time the council can send people out to bring the herd home.</fix>
+    <fix>The council left the herd out in the weather. It fades in a few days. Bring them in: a barn with animal beds, or a pen, keeps them sheltered, and next time the council can send people out to bring the herd home.</fix>
     <act>Bring the herd in</act>
     <actionable>false</actionable>
     <article>Council_Alm_C_Animals</article>

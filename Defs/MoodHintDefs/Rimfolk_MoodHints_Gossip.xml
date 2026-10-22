@@ -12,8 +12,8 @@
       <li>Rimfolk_Friction_HandedWork</li>
       <li>Rimfolk_Friction_Tiptoed</li>
     </thoughts>
-    <fix>Someone is reacting to what they've heard about this colonist: their name in the colony ("What people say about them" on the character page). It passes in a day or so. Talk dies down over a month or a few, and a new deed (standing in a fight, days at the wounded's side, a secret kept) changes what people say.</fix>
-    <act>Passes in a day or so</act>
+    <fix>Someone is reacting to what they've heard about this colonist, shown under "What people say about them" on their character page. It passes within a day or two. Old talk fades slowly, over many seasons, and a new deed (standing in a fight, days at the wounded's side, a secret kept) changes what people say.</fix>
+    <act>Passes within a day or two</act>
     <actionable>false</actionable>
     <article>Rimfolk_Alm_C_Reputation</article>
   </ColonyCouncil.MoodHintDef>

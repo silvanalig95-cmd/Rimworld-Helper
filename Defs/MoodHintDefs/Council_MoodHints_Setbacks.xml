@@ -8,7 +8,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RF_SetbackWaiting</defName>
     <thoughts><li>Council_Setback_StillWaiting</li></thoughts>
-    <fix>Answer their wish on the Wishes page: grant it, promise it (a promise reassures them), or say no honestly. It goes the moment it isn't waiting any more.</fix>
+    <fix>Answer their wish on the Wishes page: grant it, promise it, or turn it down. It goes as soon as the wish isn't waiting any more, and a promise is enough.</fix>
     <act>Answer their wish</act>
     <article>Council_Alm_C_Setbacks</article>
     <councilTab>Wishes</councilTab>
@@ -17,7 +17,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RF_SetbackMeeting</defName>
     <thoughts><li>Council_Setback_IdeaPassedOver</li><li>Council_Setback_OutVoted</li></thoughts>
-    <fix>A meeting has to choose one idea. It fades in a few days; choosing the idea most of the meeting backed avoids the bigger sting, and their idea can come back at the next meeting.</fix>
+    <fix>A meeting has to choose one idea. It fades within three days. Choosing the idea most of the meeting backed avoids the bigger sting, and their idea can come back at the next meeting.</fix>
     <act>Their idea can come back</act>
     <actionable>false</actionable>
     <article>Council_Alm_C_Setbacks</article>
@@ -27,8 +27,8 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RF_SetbackDecree</defName>
     <thoughts><li>Council_Setback_DecreeDrags</li></thoughts>
-    <fix>Lift the decree on the Decrees page, or let it run out. It weighs more on those who hate it, and on anyone whose request to lift it has been ignored for a day.</fix>
-    <act>Lift the decree or wait</act>
+    <fix>Repeal the decree on the Decrees page, or let it run out. It's felt from a disliked decree's second day, and more by those who hate it or whose request to repeal it has waited a day.</fix>
+    <act>Repeal it, or wait it out</act>
     <article>Council_Alm_C_Setbacks</article>
     <councilTab>Decrees</councilTab>
   </ColonyCouncil.MoodHintDef>
@@ -36,7 +36,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RF_SetbackFriendLetDown</defName>
     <thoughts><li>Council_Setback_FriendLetDown</li></thoughts>
-    <fix>It fades in a few days. Keeping promises avoids it: promise only what the colony can do in time, and check promised wishes on the Wishes page before they run out.</fix>
+    <fix>The council let a friend's promised wish lapse; the hurt fades in a few days. Promise only what the colony can do in time, and check promised wishes on the Wishes page before they run out.</fix>
     <act>Keep your promises</act>
     <actionable>false</actionable>
     <article>Council_Alm_C_Setbacks</article>
@@ -46,7 +46,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RF_SetbackRival</defName>
     <thoughts><li>Council_Setback_RivalHonoured</li><li>Council_Setback_Outshone</li></thoughts>
-    <fix>Envy fades in a few days. Mending the rivalry helps most: keep the two apart for a while, or let them work through it. Kind colonists don't feel it, and the jealousy setting turns it off.</fix>
+    <fix>Envy of a rival who was honored, or who now outdoes them at their own craft. It fades in a few days, and stops coming once the two aren't rivals; time apart helps mend a rivalry. Kind colonists don't feel it, and the jealousy setting turns it off.</fix>
     <act>Mend the rivalry</act>
     <actionable>false</actionable>
     <article>Council_Alm_C_Setbacks</article>
@@ -56,7 +56,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RF_SetbackAnswer</defName>
     <thoughts><li>Council_Setback_NotAgreed</li><li>Council_Setback_ToldThemSo</li></thoughts>
-    <fix>Not everyone will agree with every answer. It fades in two or three days. A colony whose answers keep going one way will keep upsetting those whose nature goes the other; the Ways page shows who minds what.</fix>
+    <fix>Not everyone will agree with every answer. It fades in two or three days. A colony whose answers keep going one way will keep upsetting those whose nature goes the other; the Our ways page shows who minds what.</fix>
     <act>Passes in a few days</act>
     <actionable>false</actionable>
     <article>Council_Alm_C_Setbacks</article>
@@ -68,7 +68,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RF_SetbackGathering</defName>
     <thoughts><li>Council_Setback_MissedGathering</li><li>Council_Setback_NoPlate</li><li>Council_Setback_RainedOut</li></thoughts>
-    <fix>Small, and gone in a day. Keep enough cooked meals in the stores for everyone before a feast, hold gatherings under a roof in wet weather, and bring people home before one if you can.</fix>
+    <fix>Small, and gone in a day. Before a feast, have enough cooked meals in store for everyone; hold gatherings under a roof in wet weather, and bring people home for them if you can.</fix>
     <act>Gone in a day</act>
     <actionable>false</actionable>
     <article>Council_Alm_C_Setbacks</article>
@@ -80,7 +80,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RF_SetbackWorkLost</defName>
     <thoughts><li>Council_Setback_WorkTornDown</li><li>Council_Setback_WorkWrecked</li></thoughts>
-    <fix>It fades in a few days. Defend what matters (walls and firefighting keep work standing), and think twice before tearing down something built in the last two months. Taking a building down to put a better one in its place doesn't count.</fix>
+    <fix>A building they put up is gone. It fades in a few days. Walls and firefighting keep work standing, and think twice before tearing down anything built in the last 60 days; taking a building down to put a better one in its place doesn't count.</fix>
     <act>Defend what matters</act>
     <actionable>false</actionable>
     <article>Council_Alm_C_Setbacks</article>
@@ -90,7 +90,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RF_SetbackCrop</defName>
     <thoughts><li>Council_Setback_CropLost</li></thoughts>
-    <fix>Cut blighted plants at once so it doesn't spread, and harvest or grow cold-hardy crops before the first frost. A greenhouse keeps a field safe from both.</fix>
+    <fix>Cut blighted plants at once so the blight doesn't spread, and harvest before the first frost, or sow crops that ripen in time. A greenhouse keeps a field safe from frost.</fix>
     <act>Cut blight, harvest before frost</act>
     <actionable>false</actionable>
     <article>Council_Alm_C_Setbacks</article>
@@ -100,7 +100,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RF_SetbackCraft</defName>
     <thoughts><li>Council_Setback_BotchedBuild</li><li>Council_Setback_ShoddyWork</li><li>Council_Setback_MakingDo</li></thoughts>
-    <fix>Give the work to whoever is best at it, and build a proper bench where the colony can (a spot or a campfire is slow and makeshift). Only those who care about the craft mind.</fix>
+    <fix>Give the work to whoever is best at it, and build a proper workbench where the colony can; a crafting spot is slow and makeshift. Only those who care about the craft mind.</fix>
     <act>Let the best hand do it</act>
     <actionable>false</actionable>
     <article>Council_Alm_C_Setbacks</article>
@@ -110,7 +110,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RF_SetbackSurgery</defName>
     <thoughts><li>Council_Setback_BotchedSurgery</li></thoughts>
-    <fix>It fades in a few days. A better doctor, good medicine, a clean hospital bed and a sterile room make operations go wrong less often.</fix>
+    <fix>An operation they did went wrong, and the memory fades in a few days. A better doctor, good medicine, a clean hospital bed and a sterile room make operations go wrong less often.</fix>
     <act>Use a better doctor next time</act>
     <actionable>false</actionable>
     <article>Council_Alm_C_Setbacks</article>
@@ -157,7 +157,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RF_SetbackSold</defName>
     <thoughts><li>Council_Setback_ArtSold</li><li>Council_Setback_AnimalSold</li></thoughts>
-    <fix>It fades in a few days. Sell work by people no longer here, or by the greedy, who don't mind; keep the animals someone trained if you can spare them.</fix>
+    <fix>Their art, or an animal they looked after, was sold. It fades in a few days. Art by people no longer here, or by the greedy, can be sold without hurt feelings; an animal with a master is missed by them, so sell the ones that answer to nobody.</fix>
     <act>Fades in a few days</act>
     <actionable>false</actionable>
     <article>Council_Alm_C_Setbacks</article>
@@ -175,7 +175,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RF_SetbackNuisance</defName>
     <thoughts><li>Council_Nuisance_SpoiltStores</li><li>Council_Nuisance_NoCoat</li><li>Council_Nuisance_UglyBedroom</li></thoughts>
-    <fix>Fix the cause: a freezer for the food and rotten stock cleared out, a duster or parka for whoever works in the rain, and junk hauled out of bedrooms.</fix>
+    <fix>Fix the cause: a freezer for the food and the rotten stock cleared out, a duster or parka for whoever works in the rain, and junk hauled out of the bedrooms.</fix>
     <act>Fix the nuisance behind it</act>
     <article>Council_Alm_C_Setbacks</article>
     <signal>Council_Adv_Freezer</signal>
@@ -186,7 +186,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RF_SetbackDrifted</defName>
     <thoughts><li>Council_Setback_DriftedApart</li></thoughts>
-    <fix>It fades in a few days. Friendships drift when opinions fall: time together (meals, recreation, the same work) can bring them back.</fix>
+    <fix>A friendship gone cold. It fades in a few days. Friendships drift when opinions fall; time together (meals, recreation, the same work) can bring them back.</fix>
     <act>Give them time together</act>
     <actionable>false</actionable>
     <article>Council_Alm_C_Social</article>
@@ -204,8 +204,8 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RF_Frictions</defName>
     <nameContains><li>council_friction_</li></nameContains>
-    <fix>A small friction between two people who live too close: a borrowed thing, a seat, a joke, a snore. It fades in a day or so. Bedrooms of their own, enough room at the table and in the rec room, and keeping those who dislike each other apart mean fewer of them.</fix>
-    <act>Fades in a day or so</act>
+    <fix>A small friction between two people who live too close: a borrowed thing, a seat, a joke, a snore. It fades within a day or two. Bedrooms of their own, enough room at the table and in the rec room, and keeping those who dislike each other apart mean fewer of them.</fix>
+    <act>Fades within a day or two</act>
     <actionable>false</actionable>
     <article>Council_Alm_C_Social</article>
   </ColonyCouncil.MoodHintDef>
@@ -213,8 +213,8 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RF_SetbackSlight</defName>
     <thoughts><li>Council_Friction_CookingCriticised</li><li>Council_Friction_Mocked</li><li>Council_Friction_CreditTaken</li><li>Council_Friction_ReturnedBroken</li></thoughts>
-    <fix>A friction that followed something real. It fades in a day or so. A clean kitchen and a skilled cook prevent food poisoning, the commonest cause.</fix>
-    <act>Fades in a day or so</act>
+    <fix>A friction that followed something real: a meal that made people sick, a mental break, shared work, a lent tool. It fades within a day or two. A clean kitchen and a skilled cook prevent the food poisoning behind the first.</fix>
+    <act>Fades within a day or two</act>
     <actionable>false</actionable>
     <article>Council_Alm_C_Social</article>
   </ColonyCouncil.MoodHintDef>
@@ -224,7 +224,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RF_SetbackSick</defName>
     <thoughts><li>Council_Setback_SickFriend</li></thoughts>
-    <fix>Care for the one who is ill: a hospital bed, a good doctor, medicine. It goes when they recover.</fix>
+    <fix>Someone they care about is ill. Care for them: a hospital bed, a good doctor, medicine. It goes when they recover.</fix>
     <act>Care for their sick friend</act>
     <article>Council_Alm_C_Setbacks</article>
     <signal>Council_Adv_Medical</signal>
@@ -233,7 +233,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RF_SetbackCaravan</defName>
     <thoughts><li>Council_Setback_CaravanTrouble</li></thoughts>
-    <fix>Bring the caravan home, buy or forage food on the way, or rest until whoever is down can walk.</fix>
+    <fix>Someone they care about is with a caravan in trouble. Bring the caravan home, buy or forage food on the way, or rest until whoever is down can walk.</fix>
     <act>Bring the caravan home</act>
     <article>Council_Alm_C_Setbacks</article>
   </ColonyCouncil.MoodHintDef>
@@ -241,7 +241,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RF_SetbackNemesis</defName>
     <thoughts><li>Council_Setback_NemesisAtLarge</li></thoughts>
-    <fix>It ends when the nemesis is captured or killed, and fades two months after what they did. Steady colonists don't feel it.</fix>
+    <fix>It ends when the nemesis is captured or killed, and fades 60 days after what they did. Steadfast and iron-willed colonists, and psychopaths, don't feel it.</fix>
     <act>Capture or kill the nemesis</act>
     <article>Council_Alm_C_Strangers</article>
     <councilTab>World</councilTab>
@@ -250,7 +250,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RF_SetbackDebt</defName>
     <thoughts><li>Council_Setback_Debt</li></thoughts>
-    <fix>Do that people a good turn: a gift, a prisoner set free, help when they ask. The World page shows what they remember.</fix>
+    <fix>A people helped the colony and haven't been paid back, and kind colonists mind. Do them a good turn: a gift, a prisoner set free, help when they ask. The World page shows what they remember.</fix>
     <act>Do that people a good turn</act>
     <article>Council_Alm_C_Setbacks</article>
     <councilTab>World</councilTab>
@@ -259,8 +259,8 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RF_SetbackHomesick</defName>
     <thoughts><li>Council_Setback_Homesick</li></thoughts>
-    <fix>It fades in two days. Something good helps it pass: a fine meal, a party, time with friends.</fix>
-    <act>Something good helps it pass</act>
+    <fix>A hard week has them thinking of home. It fades in two days; a fine meal, a party or time with friends helps it pass.</fix>
+    <act>A good evening helps it pass</act>
     <actionable>false</actionable>
     <article>Council_Alm_C_Setbacks</article>
   </ColonyCouncil.MoodHintDef>
@@ -268,7 +268,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RF_SetbackQuiet</defName>
     <thoughts><li>Council_Setback_QuietDays</li></thoughts>
-    <fix>Build a new kind of recreation (horseshoes, a game table, an instrument), or hold a party. It goes once there are as many kinds at home as they expect, or as soon as there's a gathering.</fix>
+    <fix>Fewer kinds of recreation at home than they expect, and no party or gathering in ten days. Build a new kind of recreation (horseshoes, a chess table, an instrument), or bring people together: any party, feast or gathering ends it.</fix>
     <act>Build a new kind of recreation</act>
     <article>Council_Alm_C_Setbacks</article>
     <signal>Council_Adv_Recreation</signal>
