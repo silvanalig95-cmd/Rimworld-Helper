@@ -66,13 +66,13 @@
         <li>[newcomer] I'm new, so maybe I'm wrong. But when I ask people what the council is for, they shrug.</li>
       </plain>
       <warm>
-        <li>Somebody asked for a shelf by their bed and we spent half a meeting arguing about the wood. Let's just give people the shelf.</li>
+        <li>Somebody asked for a shelf by their bed, and we argued about the wood for half a meeting. Let's just give people the shelf.</li>
         <li>[trusting] I still believe in this council. I'd like some company in that.</li>
       </warm>
       <blunt>
         <li>I brought a complaint to the last meeting and was told to wait. I'm still waiting.</li>
         <li>[bitter] You promised me a lot of things. I've written them down. Start at the top.</li>
-        <li>[trait:Abrasive] People complain about the council to me because they think I'll be rude about it to your faces. I'm being rude about it to your faces.</li>
+        <li>[trait:Abrasive] People complain about the council to me, thinking I'll be rude about it to your faces. So here I am, being rude about it to your faces.</li>
       </blunt>
       <cheerful>
         <li>People lining up outside the meeting with requests! We'd need extra benches.</li>
@@ -129,7 +129,7 @@
         <li>[lowmood] Some days the only thing that gets me through is the thing I'm proposing we take away. That's how I know we have to.</li>
       </gloomy>
       <cold>
-        <li>Every dose we swallow is a dose we can't sell, and every addict works half the hours with twice the complaints.</li>
+        <li>Every dose we swallow is a dose we can't sell. And every addict works half the hours with twice the complaints.</li>
         <li>[trait:Psychopath] Addicts are predictable in the worst way. They'll trade anything we own for the next dose, including each other.</li>
       </cold>
     </pitch>
@@ -142,7 +142,7 @@
       <blunt><li>Congratulations. You're all boring now. It's an improvement.</li></blunt>
       <cheerful><li>Everybody's clean! I'm so proud I could drink a whole barrel of water.</li></cheerful>
       <gloomy><li>Clean. They say the cravings come back on bad days. We have a lot of bad days.</li></gloomy>
-      <cold><li>No dependencies left. Our productivity no longer relies on a trader's inventory.</li></cold>
+      <cold><li>Not one of us needs a trader to turn up on time anymore. Good.</li></cold>
     </achieved>
   </ColonyCouncil.FlavorExtensionDef>
 

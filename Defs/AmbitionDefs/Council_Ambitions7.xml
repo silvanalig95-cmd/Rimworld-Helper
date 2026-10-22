@@ -131,7 +131,7 @@
       <blunt><li>Every time the weather turns, we start rationing. Keep the stores full.</li></blunt>
       <cheerful><li>Full bellies and full barns all season long! It's like something out of a story.</li></cheerful>
       <gloomy><li>Hunger always comes back, and it never sends word first.</li></gloomy>
-      <cold><li>A twenty-day reserve held steady means the next blight is an inconvenience, not a disaster.</li></cold>
+      <cold><li>With twenty days held in reserve, the next blight is an inconvenience, not a disaster.</li></cold>
     </pitch>
     <achieved>
       <plain><li>The granary has never looked so good, and it stayed that way all season.</li></plain>
@@ -204,7 +204,7 @@
     </goals>
     <pitch>
       <plain>
-        <li>The old way: gather everything the land gives before the cold, then pound it into pemmican that keeps all winter.</li>
+        <li>Gather everything the land gives before the cold, the old way. Then pound it into pemmican that keeps all winter.</li>
         <li>Berries, roots, grain, all of it, and then the cache. My people never went hungry in the snow.</li>
         <li>[fall] The land is giving now. In a month it won't be. Let's take what it gives.</li>
         <li>[winter] We were hungry last winter. A proper cache, and we never will be again.</li>
@@ -261,7 +261,7 @@
       <cold><li>Game is free food. Skilled hunters turn it into a reliable supply.</li></cold>
     </pitch>
     <achieved>
-      <plain><li>A hunters' year to tell the young about: meat in the smokehouse and hunters to be proud of.</li></plain>
+      <plain><li>A hunters' year to tell the young about. Meat in the smokehouse, and hunters to be proud of.</li></plain>
       <warm><li>Every time the hunters went out, they all came home.</li></warm>
       <cheerful><li>Twelve, and three of them were mine!</li></cheerful>
       <cold><li>Twelve kills and two good bows. The tribe can feed itself from the land now.</li></cold>

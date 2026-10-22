@@ -54,7 +54,7 @@
         <li>Last raid I was stitching someone up on the dining table, between the salt and the bread. We need real beds for this.</li>
         <li>[afterraid] Count the bandages we used this week. Now count what's left. That's why I'm asking for a hospital.</li>
       </plain>
-      <warm><li>When one of us gets hurt, they should wake up somewhere clean, with someone watching over them.</li></warm>
+      <warm><li>When one of us gets hurt, they should wake up somewhere clean. Someone should be watching over them.</li></warm>
       <blunt><li>I'm tired of doing surgery on a dirty floor. Someone has to hold the lamp and someone has to hold the patient.</li></blunt>
       <cheerful><li>Clean sheets on three beds and a whole shelf of medicine! It'll be the nicest room in the colony.</li></cheerful>
       <gloomy><li>Everyone ends up on a sickbed sooner or later. Mine should at least be clean.</li></gloomy>
@@ -340,7 +340,7 @@
       <warm><li>It's been weeks since I heard anyone laugh at supper.</li></warm>
       <blunt><li>I'm sick of everybody's moods, mine included. Let's sort it out before someone throws a punch.</li></blunt>
       <cheerful><li>Let's make this the happiest place on the Rim, starting with a proper meal and a day off.</li></cheerful>
-      <gloomy><li>I'd like to remember what this place felt like when we first got here, before it got heavy.</li></gloomy>
+      <gloomy><li>I'd like to remember how this place felt when we first got here, before it got heavy.</li></gloomy>
       <cold><li>I've been keeping a note of who's close to breaking. The list is getting long.</li></cold>
     </pitch>
     <achieved>
@@ -467,7 +467,7 @@
     <pitch>
       <plain><li>After dark I can't tell the storeroom from the bedroom, and I've slept in the wrong one.</li></plain>
       <warm><li>I hate watching people feel their way to bed along the walls.</li></warm>
-      <blunt><li>Last night I tripped over someone asleep in the corridor, and they swung at me.</li></blunt>
+      <blunt><li>I tripped over someone asleep in the corridor, and they swung at me.</li></blunt>
       <cheerful><li>No more dark corners, and no more guessing what I just stepped in.</li></cheerful>
       <gloomy><li>Things move in the dark corners. I'd rather see what they are.</li></gloomy>
       <cold><li>The dark is where the accidents happen. I'd rather they happened nowhere.</li></cold>
@@ -483,7 +483,7 @@
     <defName>Council_Ext_Amb_MasterHealer</defName>
     <ambition>Council_Amb_MasterHealer</ambition>
     <pitch>
-      <plain><li>One of these days it'll be a wound near the heart, and the hands holding the needle will matter more than anything.</li></plain>
+      <plain><li>One of these days it'll be a wound near the heart. Then the hands holding the needle will matter more than anything.</li></plain>
       <warm><li>I've watched someone die because none of us knew what to do. I want to know what to do.</li></warm>
       <blunt><li>Whoever stitched my arm last time did it like they were angry at it. Let someone actually learn.</li></blunt>
       <cheerful><li>I'll practice my stitches on fruit first, then on volunteers.</li></cheerful>
@@ -595,7 +595,7 @@
     <ambition>Council_Amb_FriendsAbroad</ambition>
     <pitch>
       <plain><li>Every caravan that leaves here thinks better or worse of us than when it came. Let's make it better.</li></plain>
-      <warm><li>The next time a trader's caravan limps in hungry, let's feed them and send them off with extra.</li></warm>
+      <warm><li>The next time a caravan limps in hungry, let's feed them and send them off with extra.</li></warm>
       <blunt><li>Somewhere out there is a faction with more guns than sense. I'd like them on our side.</li></blunt>
       <cheerful><li>Traders who stay for supper, and neighbors who wave instead of shooting.</li></cheerful>
       <gloomy><li>Every faction out there has a reason to raid us, and not one of them has a reason to help.</li></gloomy>
@@ -629,7 +629,7 @@
     <ambition>Council_Amb_Masterwork</ambition>
     <pitch>
       <plain><li>I've made a hundred things that were fine. I'd like to make one that's perfect.</li></plain>
-      <warm><li>I want to make something that makes visitors ask who made it, so I can tell them it was all of us.</li></warm>
+      <warm><li>I want to make something visitors ask about. Then I can tell them all of us made it.</li></warm>
       <blunt><li>I'm wasting my hands on chairs and coats. Let me make something worth stealing.</li></blunt>
       <cheerful><li>I've dreamed about it three nights running. I just need the material, the time and a bit of luck.</li></cheerful>
       <gloomy><li>Inspiration comes once in a while, and it never stays. If it comes, I want to be ready.</li></gloomy>

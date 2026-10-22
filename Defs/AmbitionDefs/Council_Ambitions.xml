@@ -84,7 +84,7 @@
         <li>Raw meat lasts a few days on an open shelf. Give me a freezer and I'll keep thirty meals ready instead of racing the rot.</li>
       </plain>
       <warm>
-        <li>A cold room full of ready meals would mean the night shift eats when they come in, instead of waiting on me.</li>
+        <li>With a cold room full of ready meals, the night shift could eat the moment they come in. No more waiting on me.</li>
       </warm>
       <blunt>
         <li>I'm sick of cooking food just to scrape it into the midden.</li>
@@ -132,7 +132,7 @@
     <pitch>
       <plain>
         <li>Our wounded lie wherever there's an empty bed. They need one clean room, with three beds and the medicine close by.</li>
-        <li>Three clean beds and a cabinet of medicine would save a life the next time a raid goes badly.</li>
+        <li>Three clean beds and a cabinet of medicine could save a life after the next bad raid.</li>
       </plain>
       <warm>
         <li>I don't want to lose anyone just because we weren't ready for them. A hospital, please.</li>
@@ -241,7 +241,7 @@
     </goals>
     <pitch>
       <plain>
-        <li>I'd like the dining room to be somewhere grand, with a good floor and some art on the walls.</li>
+        <li>I'd like the dining room to be grand, with a good floor and some art on the walls.</li>
       </plain>
       <warm>
         <li>It's the one room where we're all together at once. It deserves better than a dirt floor and a wobbly table.</li>
@@ -357,7 +357,7 @@
     <pitch>
       <plain>
         <li>The raids are getting bigger and our defenses aren't. We need to catch up before the next one.</li>
-        <li>I propose we spend the next few weeks on cover and weapons, and pick a place to make our stand.</li>
+        <li>I propose a few weeks on cover and weapons, and a place picked out to make our stand.</li>
       </plain>
       <warm>
         <li>None of us has slept a whole night since the last raid. Let's make the defenses solid enough that we can.</li>
@@ -418,7 +418,7 @@
         <li>Three little guards that never sleep! I'm giving them names.</li>
       </cheerful>
       <gloomy>
-        <li>There are too few of us to watch every approach, and whoever's on watch dozes off eventually.</li>
+        <li>There are too few of us to watch every approach, and whoever's on watch dozes off.</li>
       </gloomy>
       <cold>
         <li>Every shot a turret fires is one none of us has to stand up to fire.</li>
@@ -977,7 +977,7 @@
         <li>Give me a real kitchen and good ingredients and I'll give you meals worth fighting for.</li>
       </plain>
       <warm>
-        <li>I'd love to cook for all of you the way my mother cooked for us, with herbs and a slow fire.</li>
+        <li>I'd love to cook for you all the way my mother cooked for us. Herbs and a slow fire.</li>
       </warm>
       <blunt>
         <li>I'm cooking on a stove wedged into a corridor. Give me a kitchen.</li>
