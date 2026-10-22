@@ -90,7 +90,7 @@
         <li>[lowtech] A full cooking pot over the fire, all season long. That's what a home smells like.</li>
       </plain>
       <warm><li>I'd like everyone to know there's a hot meal waiting, whatever kind of day they've had.</li></warm>
-      <blunt><li>Cook more. Keep cooking. Fifteen days.</li></blunt>
+      <blunt><li>I came in from the fields yesterday and there was nothing hot. Cook more.</li></blunt>
       <cheerful><li>I love the smell of a pot that's been going all day. Let's never let it go cold.</li></cheerful>
       <gloomy><li>The day we run out of cooked food is always the day everything goes wrong. Let's not run out.</li></gloomy>
       <cold><li>Raw food makes people sick and slow. Two cooked meals each, waiting, costs us almost nothing.</li></cold>
@@ -128,9 +128,9 @@
         <li>[lowtech] My grandmother said a full granary is the only wealth that matters. Let's be rich.</li>
       </plain>
       <warm><li>One season where the cook never has to say there's less tonight. That's all I'm asking.</li></warm>
-      <blunt><li>Full stores. Keep them full.</li></blunt>
+      <blunt><li>I'm tired of rationing every time the weather turns. Keep the stores full.</li></blunt>
       <cheerful><li>Full bellies and full barns all season long! It's like something out of a story.</li></cheerful>
-      <gloomy><li>Hunger always comes back. Let's be ready when it does.</li></gloomy>
+      <gloomy><li>Hunger always comes back, and it never sends word first.</li></gloomy>
       <cold><li>A twenty-day reserve held steady means the next blight is an inconvenience, not a disaster.</li></cold>
     </pitch>
     <achieved>
@@ -255,9 +255,9 @@
         <li>[afterraid] A band that can hunt can fight. We need both.</li>
       </plain>
       <warm><li>I want the young ones to learn to hunt properly, the way I was taught.</li></warm>
-      <blunt><li>Hunt more. Shoot better.</li></blunt>
+      <blunt><li>The deer walk right past our camp and we eat roots. Go and get them.</li></blunt>
       <cheerful><li>Meat at every meal and hunting stories round the fire! Count me in.</li></cheerful>
-      <gloomy><li>A bad hunting year ends tribes. Let's not have one.</li></gloomy>
+      <gloomy><li>A bad hunting year ends tribes. I've seen the empty camps.</li></gloomy>
       <cold><li>Game is free food. Skilled hunters turn it into a reliable supply.</li></cold>
     </pitch>
     <achieved>
@@ -303,7 +303,7 @@
         <li>[small] With so few of us, losing one scholar would set us back a century. Let's train more.</li>
       </plain>
       <warm><li>I'd like to teach what I know before it's too late to.</li></warm>
-      <blunt><li>Research more. Teach more people to research.</li></blunt>
+      <blunt><li>One person here understands half of what we've built, and they won't live forever.</li></blunt>
       <cheerful><li>Imagine a room where everything we know is written down and kept safe. I'd live in there!</li></cheerful>
       <gloomy><li>Knowledge out here is fragile. One raid, one fever, and it's gone.</li></gloomy>
       <cold><li>If our one researcher dies, so does everything only they understood.</li></cold>
@@ -396,7 +396,7 @@
         <li>[large] With this many of us, there's always someone to look after guests. Let's do it properly.</li>
       </plain>
       <warm><li>I want every stranger who comes through our gate to feel like they've come home.</li></warm>
-      <blunt><li>Guest beds. A good guest room. Then they'll come back with silver.</li></blunt>
+      <blunt><li>Travelers have silver and nowhere to sleep. Give them a bed and take the silver.</li></blunt>
       <cheerful><li>The best guest house on the Rim! I'll fold the blankets into swans.</li></cheerful>
       <gloomy><li>If people don't like us, they'll stop coming. Then we're alone out here.</li></gloomy>
       <cold><li>A guest who sleeps well tells their people, and their people come to trade.</li></cold>
@@ -444,7 +444,7 @@
         <li>[medieval] A charter, a market cross, a fair once a year. Well, the market first.</li>
       </plain>
       <warm><li>I'd like our gate to be somewhere people are glad to arrive at.</li></warm>
-      <blunt><li>Trade more. Save more. Make friends who buy.</li></blunt>
+      <blunt><li>We've got goods piling up in the storeroom and empty purses. Fix that.</li></blunt>
       <cheerful><li>A market town! Stalls and coins and gossip from everywhere.</li></cheerful>
       <gloomy><li>Silver doesn't stop raiders, but it buys the people who do.</li></gloomy>
       <cold><li>Everything we make beyond what we eat is silver we haven't collected yet.</li></cold>
