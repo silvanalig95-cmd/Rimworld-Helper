@@ -27,9 +27,9 @@
       <notGuest>true</notGuest>
     </stranger>
     <texts>
-      <li>{X_nameDef} came in with the {FACTION} party three days ago and has spent most of that time at {A_nameDef}'s elbow, hauling with {A_objective}, eating with {A_objective}, laughing at {A_possessive} jokes. Tonight {X_nameDef} asked the council at supper whether there is room for one more.\n\n{FACTION} won't thank anyone for keeping a pair of its hands. {A_nameDef} is studying the floor and trying hard not to look as if the answer matters.</li>
+      <li>"Is there room for one more?" {X_nameDef} asked it at supper, to the whole table, but it was {A_nameDef} {X_pronoun} was looking at. The two of them have hardly been apart since the {FACTION} party arrived three days ago.\n\n{FACTION} won't part with one of its people for nothing. {A_nameDef} is studying the floor and trying hard not to look as if the answer matters.</li>
       <li>Every evening since the {FACTION} people made camp by the colony, {X_nameDef} and {A_nameDef} have ended up at the same fire and stayed long after it burned down. Now {X_nameDef} wants to stay when the rest of them move on.\n\nWhoever speaks for the group has made it clear that {X_nameDef} owes them, and that they will remember who kept {X_objective}. {A_nameDef} hasn't asked the council for anything, but it's plain what {A_pronoun} wants.</li>
-      <li>The {FACTION} visitors leave at first light, and {X_nameDef} would rather not go with them. In two days {X_nameDef} has mended {A_nameDef}'s boots, learned the names of most of the colony's animals, and told the council plainly that nothing back home is worth the walk.\n\n{A_nameDef} says the colony could use the extra hands, though it's clear that isn't the only reason.</li>
+      <li>The {FACTION} visitors leave at first light, and {X_nameDef} would rather not go with them. In two days {X_nameDef} has mended {A_nameDef}'s boots and learned most of the animals by name. Nothing back home is worth the walk, {X_nameDef} says.\n\n{A_nameDef} says the colony could use another pair of hands. It's clear that isn't the only reason.</li>
     </texts>
     <defaultOption>2</defaultOption>
     <options>
@@ -47,7 +47,7 @@
       </li>
       <li>
         <label>Pay {FACTION} to let {X_objective} go</label>
-        <outcome>The council paid {FACTION} two hundred silver for the trouble, and {X_nameDef} stayed. Some here think that's a lot of silver to pay for one person.</outcome>
+        <outcome>Two hundred silver went to {FACTION} for the trouble, and {X_nameDef} stayed. One or two people have been working out what else that silver would have bought.</outcome>
         <ways><generosity>4</generosity><openness>5</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>200</count></li>
@@ -69,14 +69,14 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_DlmS_NotWanted</thought></li>
         </effects>
         <riskChance>0.2</riskChance>
-        <riskOutcome>{X_nameDef} left with {FACTION} at first light. {A_nameDef} walked with them a good way down the road, and kept going alone after they had parted.</riskOutcome>
+        <riskOutcome>{A_nameDef} walked {X_nameDef} and the {FACTION} party a good way down the road at first light. When they parted, {A_nameDef} kept walking, alone, and not toward anything in particular.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_MentalState"><target>A</target><mentalState>Wander_Sad</mentalState></li>
         </riskEffects>
       </li>
       <li>
         <label>Ask our best talker to square it with {FACTION}</label>
-        <outcome>{B_nameDef} sat down with whoever speaks for {FACTION} and talked it through: a debt forgiven here, a promise there. {X_nameDef} stayed, and {FACTION} left on decent terms.</outcome>
+        <outcome>{B_nameDef} sat down with whoever speaks for {FACTION} and talked until a debt had been forgiven and a promise made. {X_nameDef} stayed, and {FACTION} left on decent terms.</outcome>
         <outcomes>
           <li>[theirLowtech] {B_nameDef} shared a pipe with the {FACTION} elders and talked until the fire burned low. {X_nameDef} stayed, and the elders left without hard feelings.</li>
           <li>[b:past:trader] {B_nameDef} haggled with {FACTION} as if {X_nameDef} were a bolt of cloth, which seemed to be what they understood. {X_nameDef} stayed, and they parted on decent terms.</li>
@@ -116,15 +116,15 @@
       <maxOpinionOfA>-10</maxOpinionOfA>
     </stranger>
     <texts>
-      <li>At dinner {X_nameDef} of {FACTION} looked at {A_nameDef}'s plate, then at {A_nameDef}, and said loudly that back home they feed that to the pigs. Then {X_nameDef} explained what they do with people like {A_nameDef}. Only the other visitors laughed.\n\n{A_nameDef} put down {A_possessive} spoon very slowly, and has asked the council what it intends to do about its guest.</li>
-      <li>{X_nameDef} has spent the whole visit telling anyone who'll listen what is wrong with {A_nameDef}: the voice, the walk, the smell, the sort of family that produces a person like that. {A_nameDef} has heard every word of it, because {X_nameDef} made sure of it.\n\nThe colony wants to stay on good terms with {FACTION}. {A_nameDef} wants to know whether a guest is allowed to say anything at all.</li>
-      <li>{X_nameDef} spat on the floor {A_nameDef} swept that morning and called {A_objective} something that made the cook drop a ladle. When {A_nameDef} asked {X_nameDef} to repeat it, {X_nameDef} did, slower.\n\nThe {FACTION} visitors are guests, and guests are supposed to be safe here. {A_nameDef} has asked the council whether that still holds for this one.</li>
+      <li>"Back home we feed that to the pigs," said {X_nameDef} of {FACTION} at dinner, looking at {A_nameDef}'s plate. Then {X_nameDef} looked at {A_nameDef} and said what they do back home with people like {A_nameDef}. Only the other visitors laughed.\n\n{A_nameDef} put down {A_possessive} spoon very slowly.</li>
+      <li>{X_nameDef} has spent the whole visit telling anyone who'll listen what is wrong with {A_nameDef}, starting with the voice and working down to the family. {A_nameDef} has heard all of it. {X_nameDef} made sure of that.\n\nThe colony would like to stay on good terms with {FACTION}. {A_nameDef} would like to know whether a guest is allowed to say anything at all.</li>
+      <li>{X_nameDef} spat on the floor {A_nameDef} swept that morning and called {A_objective} something that made the cook drop a ladle. When {A_nameDef} asked {X_nameDef} to repeat it, {X_nameDef} did, slower.\n\nGuests are safe under this roof; that has always been the rule. {A_nameDef} has asked the council whether the rule works both ways.</li>
     </texts>
     <defaultOption>1</defaultOption>
     <options>
       <li>
         <label>Demand an apology</label>
-        <outcome>{X_nameDef} was made to apologize to {A_nameDef} at supper, and managed it without once looking up from {X_possessive} plate. {A_nameDef} was satisfied.</outcome>
+        <outcome>{X_nameDef} apologized to {A_nameDef} the next morning, every word of it addressed to {X_possessive} boots.</outcome>
         <ways><openness>-2</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmS_GotApology</thought></li>
@@ -133,7 +133,7 @@
         </effects>
         <riskChance>0.35</riskChance>
         <riskReplaces>true</riskReplaces>
-        <riskOutcome>{X_nameDef} was told to apologize, laughed in {A_nameDef}'s face, and a minute later the two of them were rolling in the dirt. {FACTION} won't be pleased when it hears.</riskOutcome>
+        <riskOutcome>{X_nameDef} was told to apologize and laughed in {A_nameDef}'s face. A minute later the two of them were rolling in the dirt, and {FACTION} will hear about that too.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Fight"><withStranger>true</withStranger></li>
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>-5</amount></li>
@@ -163,15 +163,15 @@
       </li>
       <li>
         <label>Ask our best talker to settle it</label>
-        <outcome>{B_nameDef} had a quiet word with the {FACTION} visitors, and {X_nameDef} kept to the guests' fire for the rest of the stay. {A_nameDef} was satisfied.</outcome>
+        <outcome>{B_nameDef} had a word with whoever leads the {FACTION} visitors. {X_nameDef} kept to the guests' side of the yard for the rest of the stay.</outcome>
         <outcomes>
           <li>[theirLowtech] {B_nameDef} went to the {FACTION} elders with a jug of something strong. By evening {X_nameDef} had been told off by {X_possessive} own people, and {A_nameDef} got a gruff nod across the yard.</li>
-          <li>[b:office:Speaker] The colony's speaker took the {FACTION} visitors aside and spoke for the colony. {X_nameDef} said nothing more to {A_nameDef} for the rest of the stay.</li>
+          <li>[b:office:Speaker] The colony's speaker took the {FACTION} visitors aside and chose every word with care. {X_nameDef} said nothing more to {A_nameDef} for the rest of the stay.</li>
         </outcomes>
         <riskChance>0.4</riskChance>
         <riskSkill>Social</riskSkill>
         <riskReplaces>true</riskReplaces>
-        <riskOutcome>The {FACTION} visitors heard {B_nameDef} out and took {X_nameDef}'s side. They left a day early, and {A_nameDef} is still angry.</riskOutcome>
+        <riskOutcome>The {FACTION} visitors heard {B_nameDef} out and took {X_nameDef}'s side. {X_nameDef} has been grinning at {A_nameDef} across the yard ever since.</riskOutcome>
         <ways><openness>2</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Needs"><target>Others</target><skill>Social</skill><minLevel>8</minLevel><asB>true</asB></li>
@@ -208,8 +208,8 @@
       <kind>Trader</kind>
     </stranger>
     <texts>
-      <li>{X_nameDef}, the {FACTION} trader, has been turning over the heirloom {A_nameDef} carries, the one that belonged to somebody now buried out back. {X_nameDef} calls it good old work, the kind collectors pay for.\n\nThe offer is real silver, more than the thing is worth to anyone who didn't know its owner. {A_nameDef} hasn't said yes or no, and keeps glancing at the council.</li>
-      <li>{X_nameDef} noticed the heirloom {A_nameDef} carries within a minute of arriving, and has come back to it four times since, each time with a better offer.\n\nThe colony is short of silver. The heirloom is one of the few things {A_nameDef} has left of the dead, and {A_nameDef} wants the council to decide.</li>
+      <li>{X_nameDef}, the {FACTION} trader, has had {A_nameDef}'s heirloom in {X_possessive} hands for some time now, turning it to the light. "Good old work," {X_nameDef} says. "Collectors pay for this." It belonged to somebody now buried out back.\n\nThe offer is real silver, more than the thing is worth to anyone who didn't know its owner. {A_nameDef} hasn't said yes or no, and keeps glancing at the council.</li>
+      <li>Four offers so far, each better than the last. {X_nameDef} noticed the heirloom {A_nameDef} carries within a minute of arriving and keeps coming back to it.\n\nIt's one of the few things {A_nameDef} has left of the dead. {A_nameDef} has asked the council to decide.</li>
     </texts>
     <defaultOption>2</defaultOption>
     <options>
@@ -227,7 +227,7 @@
       </li>
       <li>
         <label>Haggle until it hurts</label>
-        <outcome>{A_nameDef} haggled until {X_nameDef} was sweating, and got {COUNT} silver for it. The heirloom went into the trader's pack, and {A_nameDef} went off to be alone.</outcome>
+        <outcome>{A_nameDef} haggled until {X_nameDef} was sweating, and got {COUNT} silver for it. {A_nameDef} watched it go into the trader's pack and didn't say another word all day.</outcome>
         <ways><generosity>-3</generosity><tradition>-5</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_SellHeirloom"><priceFactor>2.5</priceFactor></li>
@@ -275,7 +275,7 @@
       <adult>true</adult>
     </stranger>
     <texts>
-      <li>{X_nameDef} has been talking to {A_nameDef} through the cell door every night, about the people waiting back with {FACTION}, a field that won't plant itself, and how none of this was ever {X_possessive} idea. {A_nameDef} believes every word.\n\nNow {A_nameDef} is asking the council to let {X_nameDef} go home. The ones who caught {X_nameDef} remember things differently.</li>
+      <li>Every night, through the cell door, {X_nameDef} tells {A_nameDef} about a field back with {FACTION} that won't plant itself, and about how none of this was ever {X_possessive} idea. {A_nameDef} believes every word.\n\nNow {A_nameDef} is asking the council to let {X_nameDef} go home. The ones who caught {X_nameDef} remember things differently.</li>
       <li>{A_nameDef} carried {X_nameDef}'s meal down this morning and came back without the bowl and with a request. {X_nameDef} has a child back with {FACTION}, or says so, and begged {A_nameDef} to ask the council for {X_possessive} freedom.\n\nIt might be true. Prisoners say a great many things, and {A_nameDef} has never been good at telling the true ones from the rest.</li>
     </texts>
     <defaultOption>2</defaultOption>
@@ -295,7 +295,7 @@
       </li>
       <li>
         <label>Hear {X_objective} out properly</label>
-        <outcome>{A_nameDef} sat by the cell door for three evenings and listened to all of it. {X_nameDef} has stopped glaring at the wardens, and {A_nameDef} has started saving {X_objective} the better bread.</outcome>
+        <outcome>{A_nameDef} sat by the cell door until late and listened to all of it. {X_nameDef} has stopped glaring at the wardens, and {A_nameDef} has started saving {X_objective} the better bread.</outcome>
         <ways><mercy>2</mercy><openness>3</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Resistance"><resistance>-10</resistance></li>
@@ -336,8 +336,8 @@
       <adult>true</adult>
     </stranger>
     <texts>
-      <li>The fighting is over, and one of the {FACTION} attackers is still alive in the dirt not far from {A_nameDef}, holding a wound that won't stop bleeding. {X_nameDef} is asking {A_nameDef} for help in a voice that keeps cracking. A few minutes ago {X_nameDef} was trying to kill {A_objective}.\n\n{A_nameDef} is looking to the council, and {X_nameDef} doesn't have long.</li>
-      <li>{A_nameDef} was walking among the fallen when one of them grabbed {A_possessive} ankle. It was {X_nameDef} of {FACTION}, alive and bleeding badly, begging for someone to decide what happens to {X_objective}.\n\nThe choices are a prison bed, a quick blade, or leaving {X_objective} where {X_pronoun} lies. {X_nameDef} is losing blood the whole time the council thinks about it.</li>
+      <li>{X_nameDef} of {FACTION} is still alive, a few steps from {A_nameDef}, both hands pressed to a wound that won't stop bleeding. A few minutes ago {X_nameDef} was trying to kill {A_objective}. Now {X_nameDef} is asking {A_objective} for help, in a voice that keeps cracking.\n\n{X_nameDef} doesn't have long.</li>
+      <li>{A_nameDef} was walking among the fallen when a hand closed on {A_possessive} ankle. It was {X_nameDef} of {FACTION}, alive and bleeding badly, begging for someone to decide what happens to {X_objective}.\n\nThe choices are a prison bed, a quick blade, or leaving {X_objective} where {X_pronoun} lies. {X_nameDef} is losing blood the whole time the council thinks about it.</li>
     </texts>
     <defaultOption>2</defaultOption>
     <options>
@@ -397,7 +397,7 @@
     <options>
       <li>
         <label>Fill their sacks</label>
-        <outcome>The {FACTION} people left with their sacks full of the colony's food, and {X_nameDef} promised they would remember it. The cooks have started stretching the winter stores to make up the difference.</outcome>
+        <outcome>{X_nameDef} tied the last sack shut, said thank you twice, and the {FACTION} people set off under the weight of it before dark. The cooks are already working out what to stretch.</outcome>
         <ways><generosity>8</generosity><openness>2</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the food for {FACTION}</label><what>rawfood</what><count>40</count></li>
@@ -408,7 +408,7 @@
       </li>
       <li>
         <label>Give them silver instead</label>
-        <outcome>The council gave {X_nameDef} sixty silver and directions to the nearest market. It's a long walk, but they left in better spirits than they came.</outcome>
+        <outcome>{X_nameDef} got sixty silver and directions to the nearest market. It's a long way on empty stomachs.</outcome>
         <ways><generosity>4</generosity></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the silver for {FACTION}</label><what>silver</what><count>60</count></li>
@@ -431,7 +431,7 @@
         <outcome>{B_nameDef} spent the afternoon with {X_nameDef} going over what grows where and when, and sent {X_objective} home with a sack of food and a pouch of seed. {FACTION} should eat better next year.</outcome>
         <outcomes>
           <li>[winter] {B_nameDef} sent {X_nameDef} home with enough food to get through the cold and a pouch of seed for the thaw, and drew {X_objective} a map of where to plant it.</li>
-          <li>[b:past:farmer] {B_nameDef} grew up on a farm and talked {X_nameDef} through it the way {B_possessive} own parents would have: soil, water, rotation. {FACTION} went home with seed and a sack of food.</li>
+          <li>[b:past:farmer] {B_nameDef} grew up on a farm and talked {X_nameDef} through it the way {B_possessive} own parents would have, starting with the soil and ending with the weather. {FACTION} went home with seed and a sack of food.</li>
         </outcomes>
         <ways><generosity>5</generosity><openness>3</openness></ways>
         <effects>
@@ -461,8 +461,8 @@
       <kind>Visitor</kind>
     </stranger>
     <texts>
-      <li>This afternoon {PET_nameDef} bit {X_nameDef}, one of the {FACTION} visitors, hard enough to draw blood. {X_nameDef} says it came out of nowhere. {A_nameDef}, whose animal it is, says {X_nameDef} tried to take something out of {PET_possessive} mouth.\n\n{FACTION} would like compensation. {A_nameDef} would like the council to remember whose side it's on.</li>
-      <li>{X_nameDef} is showing everyone the teeth marks in {X_possessive} hand. They're from {PET_definite}, {A_nameDef}'s animal, and {A_nameDef} says anyone who pats a sleeping animal on the head gets what's coming.\n\nThe {FACTION} visitors want silver for the bite. One or two of them want {PET_definite} as well.</li>
+      <li>"I was only reaching past it," says {X_nameDef}, one of the {FACTION} visitors, holding up a bleeding hand.\n\n"You were reaching into {PET_possessive} mouth," says {A_nameDef}, whose animal {PET_nameDef} is.\n\n{FACTION} would like compensation. {A_nameDef} would like the council to remember whose side it's on.</li>
+      <li>{X_nameDef} has shown the teeth marks in {X_possessive} hand to anyone who will look. They're from {PET_definite}, {A_nameDef}'s animal, and {A_nameDef} says anyone who pats a sleeping animal on the head gets what's coming.\n\nThe {FACTION} visitors want silver for the bite. One or two of them want {PET_definite} as well.</li>
     </texts>
     <defaultOption>1</defaultOption>
     <options>
@@ -478,7 +478,7 @@
       </li>
       <li>
         <label>Stand by {PET_definite}</label>
-        <outcome>The council ruled that guests should keep their hands off other people's animals. {FACTION} took that badly, and {A_nameDef} gave {PET_definite} an extra helping at dinner.</outcome>
+        <outcome>Guests keep their hands off other people's animals, and that was the end of it. {FACTION} took that badly, and {A_nameDef} gave {PET_definite} an extra helping at dinner.</outcome>
         <ways><generosity>-3</generosity><openness>-3</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>-8</amount></li>
@@ -489,7 +489,7 @@
       </li>
       <li>
         <label>Hand {PET_definite} over to them</label>
-        <outcome>{X_nameDef} led {PET_definite} away on a rope, rubbing the bite. {A_nameDef} watched them all the way to the tree line and is not speaking to the council.</outcome>
+        <outcome>{X_nameDef} took {PET_definite} on a length of rope, keeping the bitten hand well out of reach. {A_nameDef} left the council table before the matter was closed.</outcome>
         <ways><mercy>-3</mercy><openness>3</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_GivePet" />
@@ -522,14 +522,14 @@
       <maxBodySize>2.6</maxBodySize>
     </stranger>
     <texts>
-      <li>{A_nameDef} came back from work pale: {X_indefinite} has made a den close to the colony and has been watching the paths. It hasn't attacked anyone yet, but it killed something large last night, and {A_nameDef} found what was left.\n\n{B_nameDef}, who handles the colony's animals, wants to try taming it. Others want it dead before it decides people are food.</li>
+      <li>What was left of last night's kill is lying in the brush not far from the colony. {A_nameDef} found it, and further on, a den under the roots. The den belongs to {X_indefinite}, which has taken to watching the paths.\n\n{B_nameDef}, who handles the colony's animals, wants to try taming it. Others want it dead before it decides people are food.</li>
       <li>{A_nameDef} nearly stepped on {X_indefinite} sleeping in the brush near the colony. Its tracks go right past the storeroom, and twice now it has followed the haulers home, keeping a careful distance.\n\nThe council can send hunters, send {B_nameDef} out with a bucket of food, or hope it gets bored and wanders off.</li>
     </texts>
     <defaultOption>2</defaultOption>
     <options>
       <li>
         <label>Hunt it</label>
-        <outcome>The council marked {X_definite} for the hunters. {B_nameDef} called it a waste of a fine animal, and was overruled.</outcome>
+        <outcome>The council marked {X_definite} for the hunters. {B_nameDef} called it a waste of a fine animal.</outcome>
         <ways><mercy>-4</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Designate"><designation>Hunt</designation></li>
@@ -551,13 +551,13 @@
       </li>
       <li>
         <label>Leave it alone</label>
-        <outcome>The council left {X_definite} to its own business. So far it has kept to its den, and the haulers have started carrying sticks.</outcome>
+        <outcome>Left to its own business, {X_definite} has kept to its den so far. The haulers have started carrying sticks.</outcome>
         <ways><mercy>2</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_DlmS_SomethingWatching</thought><exceptTrait><li>Psychopath</li></exceptTrait><chance>0.5</chance></li>
         </effects>
         <riskChance>0.3</riskChance>
-        <riskOutcome>The council left {X_definite} alone, and for two days it returned the favor. On the third it came out of the brush at a dead run, straight for the nearest person.</riskOutcome>
+        <riskOutcome>The council left {X_definite} alone. It didn't return the favor: it came out of the brush at a dead run, straight for the nearest person.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_MentalState"><target>X</target><mentalState>Manhunter</mentalState></li>
         </riskEffects>
@@ -585,7 +585,7 @@
       <maxDistance>60</maxDistance>
     </stranger>
     <texts>
-      <li>{A_nameDef} has been feeding {X_indefinite} behind the storeroom for a week, out of {A_possessive} own dinner, and has given it a name no one else is allowed to say. Today {A_nameDef} came to the council with a speech that had clearly been practiced. It's very clean, it's very quiet, and {A_nameDef} promises to do all the work.\n\nThe adults suspect the feeding and cleaning will end up with the handlers.</li>
+      <li>"It's very clean and it's very quiet and I'll do all the work and you won't even know it's there." {A_nameDef} said it to the council in one breath, and had clearly practiced. It is {X_indefinite}, and {A_nameDef} has been feeding it behind the storeroom for a week, out of {A_possessive} own dinner.\n\nIt has a name, which only {A_nameDef} is allowed to say. The adults suspect the feeding and cleaning will end up with the handlers.</li>
       <li>There is {X_indefinite} following {A_nameDef} around the colony at a careful distance. {A_nameDef} swears it came on its own, though the trail of berries says otherwise.\n\n{A_nameDef} wants to keep it. It's another mouth, it's wild, and it will chew something important. {A_nameDef} has heard all of that and is still standing there.</li>
     </texts>
     <defaultOption>2</defaultOption>
@@ -613,14 +613,14 @@
       </li>
       <li>
         <label>No, and that's final</label>
-        <outcome>The answer was no. {A_nameDef} has been sulking, loudly, in whichever room the council happens to be in.</outcome>
+        <outcome>No pet. {A_nameDef} has been sulking, loudly, in whichever room the council happens to be in.</outcome>
         <ways><tradition>4</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmS_NotAllowed</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-3</amount></li>
         </effects>
         <riskChance>0.25</riskChance>
-        <riskOutcome>{A_nameDef} was told no, and went missing for half a day. Someone finally found {A_objective} out past the fields, sitting next to {X_definite}, not speaking to anyone.</riskOutcome>
+        <riskOutcome>{A_nameDef} was told no, and set off past the fields toward wherever {X_definite} sleeps, without looking back.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_MentalState"><target>A</target><mentalState>Wander_Sad</mentalState></li>
         </riskEffects>
@@ -646,8 +646,8 @@
       <royal>true</royal>
     </stranger>
     <texts>
-      <li>{X_nameDef}, the titled guest, inspected the room {A_nameDef} built, ran a finger along the wall, and asked whether the colony keeps pigs in it the rest of the year. {A_nameDef} spent days on that room.\n\n{X_nameDef}'s patrons will hear how {X_nameDef} was treated here. {A_nameDef} wants to know whether the council will stand up for the work.</li>
-      <li>Over supper {X_nameDef} explained to the whole table that the servants' quarters back home are better built than the finest room in this colony, and looked straight at {A_nameDef} while saying it. {A_nameDef} raised most of the walls in the place.\n\nNo one has answered yet. {A_nameDef}, hammer still in hand, has asked the council whether a title means you get to say that.</li>
+      <li>{X_nameDef}, the titled guest, ran a finger along the wall of the room {A_nameDef} built and studied the finger. "Charming," {X_nameDef} said. "And the rest of the year, I suppose, you keep pigs in it?" {A_nameDef} spent days on that room.\n\n{X_nameDef}'s patrons will hear how {X_nameDef} was treated here. {A_nameDef} wants to know whether the council will stand up for the work.</li>
+      <li>Over supper {X_nameDef} explained to the whole table that the servants' quarters back home are better built than the finest room in this colony, and looked straight at {A_nameDef} while saying it. {A_nameDef} raised most of the walls in the place.\n\nNo one at the table answered. Afterward {A_nameDef} came to the council to ask whether a title means you get to say that.</li>
     </texts>
     <defaultOption>0</defaultOption>
     <options>
@@ -664,7 +664,7 @@
       </li>
       <li>
         <label>Let {A_nameDef} answer back</label>
-        <outcome>{A_nameDef} told {X_nameDef} exactly what a title is worth out here. {X_nameDef} left the table, and {FACTION} will hear about it.</outcome>
+        <outcome>{A_nameDef} told {X_nameDef} that out here a title won't keep the rain off, and that {A_nameDef}'s walls will. {X_nameDef} left the table, and {FACTION} will hear of it.</outcome>
         <ways><tradition>-3</tradition><openness>-5</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmS_ToldTheNobleOff</thought></li>
@@ -675,7 +675,7 @@
       </li>
       <li>
         <label>Ask what would please {X_objective}</label>
-        <outcome>{A_nameDef} asked {X_nameDef}, politely, what a proper room would look like. The answer took all afternoon, and since then {A_nameDef} has been looking at the colony's rooms with a far more critical eye.</outcome>
+        <outcome>{A_nameDef} asked {X_nameDef}, politely, what a proper room would look like. The answer took all afternoon. Since then {A_nameDef} has been frowning at the colony's rooms, one corner at a time.</outcome>
         <ways><openness>4</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Standards"><target>A</target><amount>0.05</amount></li>
@@ -705,14 +705,14 @@
       <kind>Trader</kind>
     </stranger>
     <texts>
-      <li>{X_nameDef}, the {FACTION} trader, has a small green bottle and a loud voice. The tonic inside cures aching joints, bad dreams, low spirits and baldness, {X_nameDef} says, and makes the old feel thirty again. It's the last bottle, and it costs one hundred silver.\n\n{A_nameDef} has been suffering from most of those things lately, and can't stop looking at it.</li>
+      <li>"Aching joints, bad dreams, low spirits, baldness." {X_nameDef}, the {FACTION} trader, has a small green bottle and a voice that carries. "One swallow, and the old feel thirty again." It's the last bottle, and it costs one hundred silver.\n\n{A_nameDef} has been suffering from most of those things lately, and can't stop looking at it.</li>
       <li>{A_nameDef} hasn't slept properly in weeks, and {X_nameDef} the trader spotted it right away. Now there's a stoppered bottle on the table between them, and {X_nameDef} is explaining that it was brewed by hermits from a root that only grows on graves.\n\nIt costs one hundred silver. {A_nameDef} wants it, and the council holds the purse.</li>
     </texts>
     <defaultOption>2</defaultOption>
     <options>
       <li>
         <label>Buy {A_objective} the tonic</label>
-        <outcome>{A_nameDef} drank the tonic in one swallow, pulled a terrible face, and slept fourteen hours straight. {A_nameDef} woke up feeling better than {A_pronoun} has in weeks.</outcome>
+        <outcome>{A_nameDef} drank the tonic in one swallow, pulled a terrible face, and slept fourteen hours straight. {A_nameDef} woke up better than {A_pronoun} has been in weeks, and won't hear a word against the stuff.</outcome>
         <ways><generosity>4</generosity><openness>2</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>100</count></li>
@@ -748,7 +748,7 @@
       </li>
       <li>
         <label>Keep the silver</label>
-        <outcome>{X_nameDef} put the bottle away with a sigh and told {A_nameDef} it might still be there next time. {A_nameDef} keeps wondering whether it would have worked.</outcome>
+        <outcome>{X_nameDef} put the bottle away with a sigh. "Next time, maybe," {X_nameDef} told {A_nameDef}, "if there's any left."</outcome>
         <ways><generosity>-4</generosity></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmS_WhatIfItWorked</thought><chance>0.6</chance></li>
@@ -790,7 +790,7 @@
       <adult>true</adult>
     </stranger>
     <texts>
-      <li>{X_nameDef} came in with the {FACTION} party and recognized {A_nameDef} across the yard. They knew each other before, somewhere else, when {A_nameDef} was living a different life, and {X_nameDef} knows all about it ({SECRET}).\n\n{X_nameDef} has been very friendly about it, and has mentioned that keeping quiet is a kind of work, and work should be paid. One hundred and fifty silver ought to cover it.</li>
+      <li>{X_nameDef} of {FACTION} knew {A_nameDef}'s face from across the yard. They met before, somewhere else, when {A_nameDef} was living a different life, and {X_nameDef} knows all about it ({SECRET}).\n\n"Keeping quiet is work," {X_nameDef} told {A_nameDef}, very friendly, "and work gets paid." One hundred and fifty silver ought to cover it.</li>
       <li>{A_nameDef} went white when {X_nameDef} of {FACTION} walked in, and has been finding reasons to be elsewhere ever since. Tonight {A_nameDef} came to the council in private. {X_nameDef} knew {A_objective} before the colony, and knows something no one here does ({SECRET}).\n\n{X_nameDef} wants one hundred and fifty silver to keep it that way. {A_nameDef} can't pay that. The colony can.</li>
     </texts>
     <defaultOption>1</defaultOption>
@@ -807,7 +807,7 @@
         </effects>
         <riskChance>0.2</riskChance>
         <riskReplaces>true</riskReplaces>
-        <riskOutcome>The council paid {X_nameDef} a hundred and fifty silver to keep quiet. By the next evening, {X_nameDef} had told the story over supper anyway.</riskOutcome>
+        <riskOutcome>The council paid {X_nameDef} a hundred and fifty silver to keep quiet. {X_nameDef} pocketed it and told the story anyway, while the coins were still warm.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>150</count></li>
           <li Class="ColonyCouncil.DilemmaEffect_RevealSecret" />
@@ -816,7 +816,7 @@
       </li>
       <li>
         <label>Let {X_objective} talk</label>
-        <outcome>The council refused to pay. {X_nameDef} shrugged and told the whole dining room over dinner, including details {A_nameDef} had managed to forget.</outcome>
+        <outcome>No silver, then. {X_nameDef} shrugged and told it to the first people {X_pronoun} could find, with details {A_nameDef} had managed to forget.</outcome>
         <ways><mercy>-4</mercy><generosity>-2</generosity></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_RevealSecret" />
@@ -826,7 +826,7 @@
       </li>
       <li>
         <label>Threaten {X_objective}</label>
-        <outcome>A few of the colony's bigger people had a word with {X_nameDef} behind the storeroom. {X_nameDef} has kept the secret since, and doesn't say much to anyone.</outcome>
+        <outcome>A few of the colony's bigger people had a word with {X_nameDef} by the woodpile. {X_nameDef} has kept the secret since, and doesn't say much to anyone.</outcome>
         <ways><mercy>-4</mercy><openness>-6</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>-10</amount></li>
@@ -837,7 +837,7 @@
         </effects>
         <riskChance>0.4</riskChance>
         <riskReplaces>true</riskReplaces>
-        <riskOutcome>{A_nameDef} explained to {X_nameDef} why talking would be unwise. {X_nameDef} told everyone anyway, at the top of {X_possessive} voice, and a moment later the two of them were trading blows across the dining table.</riskOutcome>
+        <riskOutcome>{A_nameDef} explained to {X_nameDef} why talking would be unwise. {X_nameDef} answered by shouting the whole story across the yard, and a moment later the two of them were trading blows.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>-10</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_RevealSecret" />
@@ -862,14 +862,14 @@
       <nemesis>true</nemesis>
     </stranger>
     <texts>
-      <li>{A_nameDef} saw it at the tree line this morning: {X_definite}, the beast that mauled one of the colonists and limped off into the wild. It's back, pacing past the fields as if waiting for a door to be left open.\n\nThe colony wants it dealt with, but people can't agree whether that means hunting it, taming it, or staying indoors until it loses interest.</li>
-      <li>There are tracks around the colony again, deep ones, and {A_nameDef} knows whose they are. They belong to {X_definite}, the animal that tore into a colonist, got away, and earned itself a name.\n\nSome want it dead today. Some want it tamed, which doesn't sit well with the one it mauled. They all want the council to decide soon.</li>
+      <li>It's back. {A_nameDef} saw {X_definite} at the tree line this morning, pacing the edge of the fields as if waiting for a door to be left open. It's the beast that mauled one of the colonists and limped off into the wild.</li>
+      <li>There are tracks around the colony again, deep ones, and {A_nameDef} knows whose they are. They belong to {X_definite}, the animal that tore into a colonist, got away, and earned itself a name.\n\nSome want it dead today. Some want it tamed, which doesn't sit well with the one it mauled.</li>
     </texts>
     <defaultOption>1</defaultOption>
     <options>
       <li>
         <label>Hunt it down now</label>
-        <outcome>The council marked {X_definite} for death, and {A_nameDef} was the first to pick up a weapon. The others are staying indoors until it's done.</outcome>
+        <outcome>The council marked {X_definite} for the hunters, and {A_nameDef} was the first to pick up a weapon.</outcome>
         <ways><mercy>-5</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Designate"><designation>Hunt</designation></li>
@@ -881,7 +881,7 @@
       </li>
       <li>
         <label>Keep everyone inside</label>
-        <outcome>Everyone stays indoors until {X_definite} wanders off. The work is piling up, and people are getting on each other's nerves.</outcome>
+        <outcome>People are keeping close to the buildings until {X_definite} wanders off. The work is piling up, and tempers are getting short.</outcome>
         <ways><toil>-3</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_DlmS_CabinFever</thought><exceptTrait><li>Undergrounder</li></exceptTrait></li>
@@ -889,14 +889,14 @@
       </li>
       <li>
         <label>Try to tame it</label>
-        <outcome>The council marked {X_definite} for taming. If the handlers manage it, the colony will have the fiercest animal for miles around, and plenty of people are nervous about the attempt.</outcome>
+        <outcome>The council marked {X_definite} for taming. If the handlers manage it, the colony will own the fiercest animal for miles. The handlers have gone very quiet since they heard.</outcome>
         <ways><mercy>4</mercy><tradition>-2</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Designate"><designation>Tame</designation></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmS_TamingAMonster</thought><exceptTrait><li>Psychopath</li></exceptTrait><chance>0.5</chance></li>
         </effects>
         <riskChance>0.35</riskChance>
-        <riskOutcome>The council marked {X_definite} for taming. The first handler got halfway across the clearing before it charged. Now it's loose among the buildings, hunting people.</riskOutcome>
+        <riskOutcome>The first handler got halfway across the clearing before {X_definite} charged. Now it's loose among the buildings, hunting people.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_MentalState"><target>X</target><mentalState>Manhunter</mentalState></li>
         </riskEffects>
@@ -946,7 +946,7 @@
       </li>
       <li>
         <label>Try to recruit {X_objective}</label>
-        <outcome>The wardens have started trying to win {X_nameDef} over. {A_nameDef} feels betrayed, and so do {A_possessive} friends.</outcome>
+        <outcome>The wardens have begun working on {X_nameDef}. When {A_nameDef} heard, {A_pronoun} put down {A_possessive} spoon and left the table, and a few of {A_possessive} friends went with {A_objective}.</outcome>
         <ways><mercy>6</mercy><openness>5</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_PrisonerOrder"><mode>AttemptRecruit</mode></li>
@@ -974,14 +974,14 @@
       <adult>true</adult>
     </stranger>
     <texts>
-      <li>{X_nameDef} of {FACTION} has fallen hard for {PET_nameDef}, {A_nameDef}'s animal, and has offered one hundred and twenty silver on the spot. With the storeroom as bare as it is, that's a very good price.\n\n{A_nameDef} has been standing between {X_nameDef} and {PET_nameDef} ever since.</li>
-      <li>Every time the {FACTION} visitors pass {PET_nameDef}, {X_nameDef} stops to scratch an ear and mutters about money. Today {X_nameDef} made a real offer: one hundred and twenty silver, right now, and {PET_nameDef} goes home with {X_nameDef}.\n\nThe colony could use the silver. Some say {PET_nameDef} would be safer somewhere that gets raided less. {A_nameDef} hasn't said a word, but hasn't let go of the lead either.</li>
+      <li>One hundred and twenty silver, on the spot. {X_nameDef} of {FACTION} has fallen hard for {PET_nameDef}, {A_nameDef}'s animal, and it's a very good price.\n\n{A_nameDef} has been standing between {X_nameDef} and {PET_nameDef} ever since the offer was made.</li>
+      <li>Every time the {FACTION} visitors pass {PET_nameDef}, {X_nameDef} stops to scratch an ear and mutters about money. Today {X_nameDef} made a real offer: one hundred and twenty silver, right now, and {PET_nameDef} goes home with {X_nameDef}.\n\nThe colony could use the silver. Some say {PET_nameDef} would be safer somewhere that gets raided less. {A_nameDef} hasn't said a word, and has started brushing {PET_nameDef} very thoroughly.</li>
     </texts>
     <defaultOption>2</defaultOption>
     <options>
       <li>
         <label>Sell {PET_objective}</label>
-        <outcome>{X_nameDef} counted out the silver and led {PET_definite} off on a rope. On the way out {PET_definite} looked back twice, and {A_nameDef} watched until they were out of sight.</outcome>
+        <outcome>{X_nameDef} counted the silver into {A_nameDef}'s hand and took {PET_definite} by the lead. {PET_nameDef} went along without a fuss. {A_nameDef} kept the silver shut in {A_possessive} fist for a long while afterward.</outcome>
         <ways><mercy>-3</mercy><openness>3</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>Silver</thing><count>120</count></li>
@@ -1005,7 +1005,7 @@
         </effects>
         <riskChance>0.6</riskChance>
         <riskReplaces>true</riskReplaces>
-        <riskOutcome>The council asked two hundred and fifty silver. {X_nameDef} called it robbery and went back to {X_possessive} people empty-handed, as the council had hoped.</riskOutcome>
+        <riskOutcome>"Robbery," said {X_nameDef}, at two hundred and fifty silver, and went back to {X_possessive} people empty-handed, as the council had hoped.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>-2</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmS_KeptMyAnimal</thought></li>
@@ -1044,13 +1044,13 @@
     </stranger>
     <texts>
       <li>{X_nameDef} travels with the {FACTION} party and carries a bag of dried roots and bone needles. {X_nameDef} took one look at the way {A_nameDef} moves and offered to see to the old injury, for eighty silver.\n\n{B_nameDef}, who does most of the colony's doctoring, wants to watch and learn, though {B_pronoun} suspects half of what's in that bag is dirt.</li>
-      <li>Word got around that {X_nameDef}, one of the {FACTION} visitors, is a healer. {A_nameDef}, who has been favoring an old injury for as long as anyone can remember, went to ask and came back with a price. For eighty silver, {X_nameDef} will see what can be done.\n\n{B_nameDef} has offered to assist, mostly to keep an eye on what goes into {A_nameDef}.</li>
+      <li>{A_nameDef} has favored an old injury for as long as anyone can remember. When it came out that {X_nameDef}, one of the {FACTION} visitors, is a healer, {A_nameDef} went to ask and came back with a price. For eighty silver, {X_nameDef} will see what can be done.\n\n{B_nameDef} has offered to assist, mostly to keep an eye on what goes into {A_nameDef}.</li>
     </texts>
     <defaultOption>2</defaultOption>
     <options>
       <li>
         <label>Pay the healer</label>
-        <outcome>{X_nameDef} worked on {A_nameDef} with hot stones and strong hands for most of the afternoon while {B_nameDef} watched every move. The old injury still aches, but less, and {A_nameDef} is grateful.</outcome>
+        <outcome>{X_nameDef} worked on {A_nameDef} with hot stones and strong hands for most of the afternoon while {B_nameDef} watched every move. The old injury still aches, but less.</outcome>
         <ways><generosity>3</generosity><openness>4</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>80</count></li>
@@ -1084,7 +1084,7 @@
       </li>
       <li>
         <label>Keep the silver</label>
-        <outcome>The council kept its silver. {X_nameDef} went back to the {FACTION} camp, and {A_nameDef} went on favoring the old injury, making sure the council saw it.</outcome>
+        <outcome>{X_nameDef} went back to the {FACTION} camp with the bag still tied shut, and {A_nameDef} went on favoring the old injury, making sure the council saw it.</outcome>
         <ways><generosity>-4</generosity><openness>-3</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmS_StillAches</thought></li>
@@ -1093,7 +1093,7 @@
       </li>
       <li>
         <label>Let {B_nameDef} treat it, with our own medicine</label>
-        <outcome>{B_nameDef} worked on {A_nameDef}'s old injury all afternoon with the colony's own medicine, while {X_nameDef} watched and offered advice nobody asked for. It aches less now.</outcome>
+        <outcome>{B_nameDef} worked on {A_nameDef}'s old injury all afternoon with the colony's own medicine, while {X_nameDef} watched and offered advice {B_nameDef} hadn't asked for. It aches less now.</outcome>
         <outcomes>
           <li>[lowtech] {B_nameDef} made a poultice from the colony's herbs and bound {A_nameDef}'s old injury in clean linen. {X_nameDef} looked at the work and said it would do.</li>
           <li>[b:trait:Kind] {B_nameDef} took {B_possessive} time over {A_nameDef}'s old injury and explained every step. It aches less, and {A_nameDef} says it was the explaining that helped.</li>
@@ -1101,7 +1101,7 @@
         <riskChance>0.5</riskChance>
         <riskSkill>Medicine</riskSkill>
         <riskReplaces>true</riskReplaces>
-        <riskOutcome>{B_nameDef} tried, and used up good medicine doing it, but the old injury aches the same. {X_nameDef} said nothing, which was worse.</riskOutcome>
+        <riskOutcome>{B_nameDef} tried, and used up good medicine doing it, but the old injury aches the same. {X_nameDef} watched the whole thing with {X_possessive} arms folded.</riskOutcome>
         <ways><tradition>2</tradition><openness>-1</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Needs"><target>B</target><skill>Medicine</skill><minLevel>8</minLevel></li>
