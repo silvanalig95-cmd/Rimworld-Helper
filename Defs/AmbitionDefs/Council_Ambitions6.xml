@@ -48,7 +48,7 @@
         <li>My back hurts from the floor. Beds. Then a table. That's my plan.</li>
       </blunt>
       <cheerful>
-        <li>Beds for everyone, and then a dining room! We'll feel like proper settlers.</li>
+        <li>I've already picked where my bed goes, and I'm going to sleep in it for a week.</li>
       </cheerful>
       <gloomy>
         <li>We might not last. If we do, I'd rather not have spent it sleeping in the dirt.</li>
@@ -105,7 +105,7 @@
         <li>We hardly see each other except at work. Meals are all we have left.</li>
       </gloomy>
       <cold>
-        <li>Shared meals cut down on friction. It's a cheap way to keep the peace.</li>
+        <li>People who eat together argue less. I've watched it go both ways.</li>
       </cold>
     </pitch>
     <achieved>
@@ -151,7 +151,7 @@
         <li>Too many people are close to cracking. Fix that before it costs us.</li>
       </blunt>
       <cheerful>
-        <li>Fifteen calm days! We'll eat well, rest a lot and be nice to each other.</li>
+        <li>Let's all be nice to each other on purpose for fifteen days and see what happens!</li>
       </cheerful>
       <gloomy>
         <li>Somebody's going to break soon. I'd like to be wrong about that.</li>
@@ -252,13 +252,13 @@
         <li>Sick people don't work. Get them well. Keep them well.</li>
       </blunt>
       <cheerful>
-        <li>Fifteen days without a single sneeze! We can do it.</li>
+        <li>I'll make soup for whoever's sick and keep it coming until they're up again.</li>
       </cheerful>
       <gloomy>
         <li>It's going round again. It always comes back if we don't deal with it.</li>
       </gloomy>
       <cold>
-        <li>Illness costs work days and spreads in shared rooms. Contain it and stock up.</li>
+        <li>Sickness travels along the dinner table and through the barracks. Cut it off, and keep medicine back for the next one.</li>
       </cold>
     </pitch>
     <achieved>
@@ -312,7 +312,7 @@
         <li>People die of dirty wounds. Build an infirmary and keep it clean.</li>
       </blunt>
       <cheerful>
-        <li>A real infirmary, with clean sheets and medicine on the shelf! We'll be the healthiest colony around.</li>
+        <li>I've been saving a bolt of clean cloth for exactly this. Bandages, sheets, the lot!</li>
       </cheerful>
       <gloomy>
         <li>We've lost people to wounds that should have healed. I don't want to lose any more that way.</li>
@@ -466,7 +466,7 @@
         <li>A feast. Lavish meals for all of us. I'll cook.</li>
       </blunt>
       <cheerful>
-        <li>The biggest feast this colony has ever seen! I'm already planning the menu.</li>
+        <li>I've been writing menus in my head for weeks. Seven courses, and a pudding at the end!</li>
       </cheerful>
       <gloomy>
         <li>Who knows how many more chances we'll get. Let's have one good feast while we can.</li>
@@ -523,7 +523,7 @@
         <li>Two healers. Two cooks. No more jobs that only one of us can do.</li>
       </blunt>
       <cheerful>
-        <li>Everybody learns something new! I'll teach anyone who wants to learn.</li>
+        <li>I'll teach anyone who'll sit still long enough, and I'll bring biscuits.</li>
       </cheerful>
       <gloomy>
         <li>We're one bad day away from nobody knowing how to do anything important.</li>
@@ -681,7 +681,7 @@
         <li>Grow healroot. Learn to use it. Stop dying of small things.</li>
       </blunt>
       <cheerful>
-        <li>A whole garden of medicine! It smells terrible and I love it already.</li>
+        <li>Healroot smells like wet socks, and I want a whole garden of it!</li>
       </cheerful>
       <gloomy>
         <li>Without medicine, a scratch can kill you out here. I've seen it happen.</li>
@@ -725,7 +725,7 @@
         <li>Replace the missing parts. We have the means.</li>
       </blunt>
       <cheerful>
-        <li>New legs, new hands! Everyone back on their feet.</li>
+        <li>I want to see everyone running again. Races at the next party!</li>
       </cheerful>
       <gloomy>
         <li>Every fight takes something from someone. At least this part we can fix.</li>

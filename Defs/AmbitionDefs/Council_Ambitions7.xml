@@ -91,7 +91,7 @@
       </plain>
       <warm><li>I'd like everyone to know there's a hot meal waiting, whatever kind of day they've had.</li></warm>
       <blunt><li>Cook more. Keep cooking. Fifteen days.</li></blunt>
-      <cheerful><li>Something hot in the pot every day! I'll be the happiest cook alive.</li></cheerful>
+      <cheerful><li>I love the smell of a pot that's been going all day. Let's never let it go cold.</li></cheerful>
       <gloomy><li>The day we run out of cooked food is always the day everything goes wrong. Let's not run out.</li></gloomy>
       <cold><li>Raw food makes people sick and slow. Two cooked meals each, waiting, costs us almost nothing.</li></cold>
     </pitch>
@@ -168,7 +168,7 @@
       <blunt><li>Mark the days. Properly.</li></blunt>
       <cheerful><li>Two days to celebrate, and I'm in charge of the decorations!</li></cheerful>
       <gloomy><li>If we stop keeping our days, we'll forget why we're here.</li></gloomy>
-      <cold><li>Shared days hold a colony together for very little cost. Keep them.</li></cold>
+      <cold><li>A day off now and then is cheap, and people remember who gave it to them.</li></cold>
     </pitch>
     <achieved>
       <plain><li>Two of our days kept, and kept well. The calendar means something here.</li></plain>
@@ -304,7 +304,7 @@
       </plain>
       <warm><li>I'd like to teach what I know before it's too late to.</li></warm>
       <blunt><li>Research more. Teach more people to research.</li></blunt>
-      <cheerful><li>A whole archive of starlight! We'll be the cleverest colony on the Rim.</li></cheerful>
+      <cheerful><li>Imagine a room where everything we know is written down and kept safe. I'd live in there!</li></cheerful>
       <gloomy><li>Knowledge out here is fragile. One raid, one fever, and it's gone.</li></gloomy>
       <cold><li>If our one researcher dies, so does everything only they understood.</li></cold>
     </pitch>

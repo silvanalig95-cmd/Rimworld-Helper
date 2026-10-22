@@ -188,7 +188,7 @@
       <blunt><li>I'm sick of eating dinner in the dark because the wind dropped.</li></blunt>
       <cheerful><li>Two little boxes full of lightning, humming away in the corner. I love that.</li></cheerful>
       <gloomy><li>When the heaters stop at night, you find out how thin the walls really are.</li></gloomy>
-      <cold><li>Each blackout costs us spoiled food and stalled work. Two batteries cost less than the next one.</li></cold>
+      <cold><li>I've timed the blackouts. We lose an hour of work in each, and the freezer creeps up a few degrees.</li></cold>
     </pitch>
     <achieved>
       <plain><li>Batteries are full and humming. I checked them three times before bed.</li></plain>
@@ -302,7 +302,7 @@
       <blunt><li>I'm not freezing in my bed so we can save on firewood.</li></blunt>
       <cheerful><li>Imagine waking up warm, without your breath frozen to the blanket.</li></cheerful>
       <gloomy><li>I've seen people go to sleep cold and not wake up. I'd rather not see it again.</li></gloomy>
-      <cold><li>A colonist who sleeps cold works slowly and falls sick. Heat costs less than either.</li></cold>
+      <cold><li>A colonist who sleeps cold works slowly the next day. I watched it happen all last winter.</li></cold>
     </pitch>
     <achieved>
       <plain><li>I slept with my arms outside the blanket last night. That's how warm it is.</li></plain>
@@ -341,7 +341,7 @@
       <blunt><li>I'm sick of everybody's moods, mine included. Let's sort it out before someone throws a punch.</li></blunt>
       <cheerful><li>Let's make this the happiest place on the Rim, starting with a proper meal and a day off.</li></cheerful>
       <gloomy><li>I'd like to remember what this place felt like when we first got here, before it got heavy.</li></gloomy>
-      <cold><li>Every breakdown costs days of work and sometimes a wall. Raise morale before it costs more.</li></cold>
+      <cold><li>I've been keeping a note of who's close to breaking. The list is getting long.</li></cold>
     </pitch>
     <achieved>
       <plain><li>Somebody hummed at supper. I haven't heard that in a long time.</li></plain>
@@ -581,7 +581,7 @@
       <blunt><li>The kids know eleven words for raider and none for please. Fix that.</li></blunt>
       <cheerful><li>Little faces at little desks, trying to look like they're paying attention. I can't wait.</li></cheerful>
       <gloomy><li>We won't be here forever. Somebody has to know how to keep this place going.</li></gloomy>
-      <cold><li>An educated child is an asset that pays out for decades.</li></cold>
+      <cold><li>A child we teach now will still be working for us when the rest of us have slowed down.</li></cold>
     </pitch>
     <achieved>
       <plain><li>Three desks. The children complained immediately, which means it's working.</li></plain>
@@ -616,7 +616,7 @@
       <blunt><li>Everything here looks like it was built during a raid. Mostly because it was.</li></blunt>
       <cheerful><li>Two beautiful things to start with, then four, then a museum!</li></cheerful>
       <gloomy><li>Most days I can't tell if anything we do matters. A well-made thing would.</li></gloomy>
-      <cold><li>Quality goods sell for several times their materials. Shoddy goods sell as firewood.</li></cold>
+      <cold><li>Shoddy goods sell as firewood. I'd like us to stop making firewood.</li></cold>
     </pitch>
     <achieved>
       <blunt><li>Finally, something in this colony that doesn't wobble.</li></blunt>
