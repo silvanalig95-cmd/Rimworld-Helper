@@ -71,7 +71,7 @@
         <li>Every raider we capture is a friend who doesn't know it yet! All we need is a cell and some patience.</li>
       </cheerful>
       <gloomy>
-        <li>There are too few of us, and the only strangers who come here are the ones shooting at us. We might as well keep some.</li>
+        <li>There are too few of us, and the only strangers who come here are the ones shooting at us. So we keep some.</li>
       </gloomy>
       <cold>
         <li>Captured raiders are labor, information, or ransom. A cell lets us decide which.</li>
@@ -79,7 +79,7 @@
     </pitch>
     <achieved>
       <plain><li>One cell with a bed and a lock. All it needs now is someone in it.</li></plain>
-      <cold><li>The cell is ready. The next raid should be more productive.</li></cold>
+      <cold><li>The cell is ready. The wounded ones are worth carrying in now.</li></cold>
     </achieved>
   </ColonyCouncil.AmbitionDef>
 
@@ -110,7 +110,7 @@
         <li>A drink at the end of a hard week would do us all good. Let's brew some.</li>
       </plain>
       <warm>
-        <li>When we make it through another winter, I'd like us to have something to toast with.</li>
+        <li>When we make it through another hard season, I'd like us to have something to toast with.</li>
       </warm>
       <blunt>
         <li>I'm not getting through another raid sober. Build the barrels.</li>
@@ -119,7 +119,7 @@
         <li>Our own beer, with our own name on the barrel! I've already got ideas for the name.</li>
       </cheerful>
       <gloomy>
-        <li>If we're all going to die out here, we might as well have a drink first.</li>
+        <li>We're all going to die out here. I'd like a drink or two before then.</li>
       </gloomy>
       <cold>
         <li>Beer improves morale at low cost, and every trader who comes through will buy it.</li>
@@ -165,7 +165,7 @@
         <li>I keep dreaming about fire. Stone walls would let me sleep.</li>
       </gloomy>
       <cold>
-        <li>Flammable walls are a structural liability. Replace them.</li>
+        <li>A fire in one room should stay in one room. Right now it wouldn't.</li>
       </cold>
     </pitch>
     <achieved>
@@ -251,7 +251,7 @@
       </cold>
     </pitch>
     <achieved>
-      <plain><li>We've got a real doctor now. Try not to make work for them.</li></plain>
+      <plain><li>Our doctor could close a wound in the dark now. Try not to make work for them.</li></plain>
     </achieved>
   </ColonyCouncil.AmbitionDef>
 
@@ -275,7 +275,7 @@
         <li>Give me the bench and the materials, and in a season I'll make armor you'd trust your life to.</li>
       </plain>
       <warm>
-        <li>I want to make things that keep you all safe. Let me practice.</li>
+        <li>Let me practice at the bench. Somebody here has to make the things that keep you safe.</li>
       </warm>
       <blunt>
         <li>Our gear is garbage. I can fix that if you let me.</li>
@@ -284,14 +284,14 @@
         <li>I've got so many ideas for things to make, if I can only get good enough!</li>
       </cheerful>
       <gloomy>
-        <li>The raiders have better gear every time. One day that'll be the difference.</li>
+        <li>The last thing I made fell apart in a week. One day it'll be armor that falls apart.</li>
       </gloomy>
       <cold>
-        <li>Item quality scales with skill. Investing in one crafter pays back across the whole colony.</li>
+        <li>Everything we make, we make badly, and we pay for it in torn coats and lost fights.</li>
       </cold>
     </pitch>
     <achieved>
-      <plain><li>Look at the stitching on that. That's craftsmanship.</li></plain>
+      <plain><li>Look at the joins on that. Not a gap anywhere.</li></plain>
     </achieved>
   </ColonyCouncil.AmbitionDef>
 
@@ -314,7 +314,7 @@
     <pitch>
       <plain>
         <li>Pemmican tastes like a boot that went to war, but it lasts for months. Let's make a hundred and fifty packs of it.</li>
-        <li>If the meat spoils or the winter runs long, I want food that keeps.</li>
+        <li>If the meat spoils or the lean months run long, I want food that keeps.</li>
       </plain>
       <warm>
         <li>I'd sleep easier knowing there's food put away for the hard times.</li>
@@ -326,10 +326,10 @@
         <li>A hundred and fifty snacks that never go bad!</li>
       </cheerful>
       <gloomy>
-        <li>The lean times always come. Better to be ready.</li>
+        <li>We'll be eating this the week everything else has gone. I'd rather it was there.</li>
       </gloomy>
       <cold>
-        <li>Preserved rations keep us fed whatever the weather does. I recommend it.</li>
+        <li>A caravan that carries its own food can go twice as far.</li>
       </cold>
     </pitch>
     <achieved>
@@ -367,10 +367,10 @@
         <li>It's not cheerful, I know. But a quiet garden for the departed could be lovely.</li>
       </cheerful>
       <gloomy>
-        <li>We'll all need one eventually. Might as well be ready.</li>
+        <li>We'll all need one eventually. I'd like mine dug by someone who cared.</li>
       </gloomy>
       <cold>
-        <li>Unburied corpses depress morale. Graves are efficient.</li>
+        <li>Corpses in the open cost us more in nerves than three graves cost in digging.</li>
       </cold>
     </pitch>
     <achieved>
@@ -414,7 +414,7 @@
         <li>Our noble's mood gets worse every week without a throne room. I'd rather not find out where that ends.</li>
       </gloomy>
       <cold>
-        <li>Unmet title requirements cost us goodwill and mood. A throne room resolves it.</li>
+        <li>Our noble's title demands a throne room. Every day without one, we pay for it in temper.</li>
       </cold>
     </pitch>
     <achieved>
@@ -444,7 +444,7 @@
         <li>The kids are the colony in twenty years. Let's teach them something.</li>
       </plain>
       <warm>
-        <li>I want them to grow up knowing more than we did.</li>
+        <li>They should grow up knowing more than we did.</li>
       </warm>
       <blunt>
         <li>The children are running feral. Give them desks and lessons.</li>
@@ -456,7 +456,7 @@
         <li>If we don't teach them, they'll learn the hard way, like we did.</li>
       </gloomy>
       <cold>
-        <li>Educated children become productive adults faster.</li>
+        <li>A child who can read learns a trade in half the time.</li>
       </cold>
     </pitch>
     <achieved>
