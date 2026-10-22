@@ -29,11 +29,11 @@
           <li>News of a birth</li>
         </titles>
         <texts>
-          <li>[lowtech] A traveler brought {A_nameDef} word from the people {A_pronoun} left behind: a baby was born there this spring, and they named the child after {A_objective}. {A_nameDef} made the traveler say it twice.</li>
+          <li>[lowtech] A traveler brought {A_nameDef} word from the people {A_pronoun} left behind: a baby was born there not long ago, and they named the child after {A_objective}. {A_nameDef} made the traveler say it twice.</li>
           <li>[!lowtech] A short letter has caught up with {A_nameDef} after months on the road. Someone from {A_possessive} old life has had a child and named it after {A_nameDef}, "for luck," the letter says.</li>
-          <li>[soldier] Word has come from one of {A_nameDef}'s old comrades: the first child of the family has {A_nameDef}'s name, after the night {A_nameDef} carried {A_possessive} comrade back to the lines.</li>
+          <li>[soldier] A letter for {A_nameDef} from an old comrade, in a hand that never could keep a straight line.\n\n"The first child has your name. After the night you carried me back to the lines, there was never any question."</li>
           <li>[healer] A family {A_nameDef} once nursed through a fever has sent word: their new baby is named after {A_objective}. The letter came with a lock of very fine hair.</li>
-          <li>[farmer] The neighbors from the old farm have had a child, and named it after {A_nameDef}. The news came with a sack of seed from the old fields, as a gift.</li>
+          <li>[farmer] The neighbors from the old farm have had a child, and named it after {A_nameDef}. The news came with a pressed sprig of barley from the old fields, folded into the letter.</li>
           <li>[outlaw] Of all the people {A_nameDef} knew in the bad old days, one went straight, married, and has named a child after {A_objective}. {A_nameDef} isn't sure whether to be proud or worried.</li>
         </texts>
         <effects>
@@ -68,7 +68,7 @@
           <li>[!lowtech] An invitation to a wedding has reached {A_nameDef}, five months late and stamped by every relay between here and home. A friend from {A_possessive} old life got married, and kept a seat for {A_objective}.</li>
           <li>[noble] A sealed letter has reached {A_nameDef}: a cousin has married into one of the great houses, and the family thought {A_nameDef} should know. There's a pressed flower from the wedding inside.</li>
           <li>[trader] Word came with a caravan that {A_nameDef}'s old trading partner finally married the innkeeper's daughter, after nine years of saying {A_pronoun} never would. {A_nameDef} laughed until {A_pronoun} had to sit down.</li>
-          <li>{A_nameDef} has heard, late and secondhand, that an old friend from before the colony got married this year. The friend sent a message, and the message found its way here.</li>
+          <li>An old friend of {A_nameDef}'s from before the colony got married this year. The message saying so went to three wrong places first, and arrived with somebody else's name crossed out on the front.</li>
         </texts>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_WeddingNews</thought></li>
@@ -97,17 +97,17 @@
           <li>A maker's mark</li>
         </titles>
         <texts>
-          <li>[Crafting] A trader passing through had a knife {A_nameDef} made years ago, before the colony, and recognized the maker's mark. The trader says people on the road still ask where to get another one like it.</li>
+          <li>[Crafting] The knife on a passing trader's belt had {A_nameDef}'s mark on the blade, made years ago, before the colony. People on the road still ask where to get another like it, the trader says.</li>
           <li>[Construction] A traveler told {A_nameDef} that a bridge {A_pronoun} helped build, a long way from here, is still standing after a flood that took every other bridge on the river.</li>
           <li>[Artistic] A visitor described a carving in a town square far from here, and {A_nameDef} realized halfway through that it was {A_possessive} own, made years ago. People still leave flowers at its foot.</li>
-          <li>[Cooking] A traveler asked {A_nameDef} if {A_pronoun} was the cook from a certain inn on the coast road. They still serve {A_possessive} stew there, under {A_possessive} name, and the traveler had eaten it.</li>
-          <li>[Medicine] A trader stopped to tell {A_nameDef} that a patient {A_pronoun} once stitched up on the road is alive and well, and tells everyone about the healer who saved the leg.</li>
-          <li>[Plants] A traveler mentioned that the orchard {A_nameDef} planted long ago, far from here, has finally come into fruit. The village sends its thanks, a little late.</li>
+          <li>[Cooking] "Aren't you the cook from the inn on the coast road?" a traveler asked {A_nameDef}. They still serve {A_possessive} stew there, under {A_possessive} name, and the traveler swears by it.</li>
+          <li>[Medicine] A trader stopped to tell {A_nameDef} that a patient {A_pronoun} once stitched up on the road is alive and well, and tells anyone who'll listen about the healer who saved the leg.</li>
+          <li>[Plants] The orchard {A_nameDef} planted long ago, in a village far from here, has finally come into fruit. A traveler from those parts brought the news, and the village's thanks.</li>
           <li>[Shooting|Melee] A traveler recognized {A_nameDef} from an old tournament and said people still argue about that final round. {A_nameDef} said it was a long time ago, and then told the whole story anyway.</li>
           <li>[Intellectual] A trader brought news that a paper {A_nameDef} wrote years ago, on {SKILL}, is still copied and passed around. Someone has added notes in the margins, mostly arguing with it.</li>
           <li>[Social] A traveler told {A_nameDef} that a quarrel {A_pronoun} once settled between two villages is still settled, and both of them still tell the story of how.</li>
           <li>[Animals] A herder passing through said a breed of dog {A_nameDef} raised years ago has spread up and down the valley, and they still call them by {A_nameDef}'s name.</li>
-          <li>A traveler recognized {A_nameDef}'s name from the old days. Something {A_nameDef} did with {SKILL}, years ago and far from here, is still talked about on the road.</li>
+          <li>The traveler at supper knew {A_nameDef}'s name from the old days. People on the road still talk about {A_possessive} {SKILL}, years later and far from where it happened.</li>
         </texts>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_OldTradeRemembers</thought></li>
@@ -138,17 +138,17 @@
         </titles>
         <texts>
           <li>[lowtech,notale] {X_nameDef} of {FACTION} travels alone with a handcart of masks and a drum, and plays every part in the show {X_pronoun} carries from town to town. {X_nameDef} would like supper and a dry place to sleep, and will perform after dark.</li>
-          <li>[lowtech,tale] {X_nameDef} of {FACTION}, a mummer who plays every part {X_pronoun} so much as hears about, has made a play out of what people say about this colony on the road: "{TALE}" {X_nameDef} would like to perform it tonight, for supper and a bed.</li>
+          <li>[lowtech,tale] The play {X_nameDef} of {FACTION} has brought is about this colony, or about what people on the road say of it.\n\n"{TALE}"\n\n{X_nameDef}, a mummer who plays every part {X_pronoun} so much as hears about, would like to perform it tonight, for supper and a bed.</li>
           <li>[!lowtech,notale] {X_nameDef} of {FACTION} is a traveling player with a painted backdrop rolled up on {X_possessive} back and a play with eleven parts, all of them {X_possessive}. {X_nameDef} will perform it tonight in exchange for supper and somewhere to sleep.</li>
-          <li>[!lowtech,tale] {X_nameDef} of {FACTION} performs short plays in every settlement on the road, and has written one about the colony from a story going around: "{TALE}" {X_nameDef} would like to try it out tonight, on an audience who know how it really went.</li>
+          <li>[!lowtech,tale] "{TALE}"\n\nThat's the story going round the settlements, and {X_nameDef} of {FACTION} has made a short play of it. {X_nameDef} would like to try it out tonight, on an audience who know how it really went.</li>
           <li>[winter,notale] {X_nameDef} of {FACTION}, a traveling player, came in out of the snow with {X_possessive} costumes in a sack. {X_nameDef} will perform tonight, if the colony will feed {X_objective} and let {X_objective} sleep somewhere warm.</li>
           <li>[summer,notale] {X_nameDef} of {FACTION} has set up a stage of two planks and a blanket in the yard, in the long light after supper. All {X_nameDef} asks is a meal and a place to sleep.</li>
         </texts>
         <lines>
           <li>Hark!</li>
           <li>...and lo, the dragon!</li>
-          <li>Exit, pursued by a muffalo.</li>
-          <li>Wherefore art thou?</li>
+          <li>And now I am the muffalo.</li>
+          <li>Who knocks at my door so late?</li>
           <li>...the third son, of course.</li>
           <li>Louder, for the ones at the back!</li>
           <li>[lowtech] ...the false king falls!</li>
