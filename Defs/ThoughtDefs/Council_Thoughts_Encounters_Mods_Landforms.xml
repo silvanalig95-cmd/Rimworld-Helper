@@ -24,7 +24,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncL_KnowTheWays</defName>
     <durationDays>1.5</durationDays>
-    <stages><li><label>learned the ways in and out</label><description>A traveler showed me the ways in and out of this place, and where a lookout would see them all.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>learned the ways in and out</label><description>The traveler knew every way in and out of this place, and showed me where a lookout would see them all.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><feelings><li>Curiosity</li></feelings><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
@@ -38,7 +38,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncL_CaveBreath</defName>
     <durationDays>1</durationDays>
-    <stages><li><label>the cave's cold breath</label><description>The cave breathes out cold air at dusk. I stood in it to cool off and something came out of the dark past me.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>the cave's cold breath</label><description>The cave breathes out cold air at dusk. I stood in it to cool off, and an animal came out of the dark behind me without so much as a glance.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><comfort>0.08</comfort><felt>1</felt></li></modExtensions>
   </ThoughtDef>
 
@@ -59,7 +59,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncL_CraterStory</defName>
     <durationDays>1.5</durationDays>
-    <stages><li><label>a story about the crater</label><description>A traveler told me what made the great bowl of land we live in. I look at the rim differently now.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>a story about the crater</label><description>The traveler had their own story about the crater we live in. That makes three stories now, and none of them agree.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><feelings><li>Curiosity</li></feelings><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 

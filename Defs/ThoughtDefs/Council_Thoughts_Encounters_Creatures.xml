@@ -8,27 +8,27 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_Greeted</defName>
     <durationDays>1</durationDays>
-    <stages><li><label>my animal was glad to see me</label><description>I came home filthy and worn out, and my animal acted like I'd hung the moon.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>my animal was glad to see me</label><description>I came in filthy and worn out, and my animal was waiting by the door as if I'd been gone a year.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><feelings><li>Contentment</li></feelings><felt>4</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_WarmFeet</defName>
     <durationDays>1.5</durationDays>
-    <stages><li><label>warm feet</label><description>My animal sleeps across my feet at night. It snores, but my feet stay warm.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>warm feet</label><description>My animal sleeps across my feet every night, snoring. I haven't had cold toes since.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><rest>0.1</rest><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_LunchStolen</defName>
     <durationDays>0.5</durationDays>
-    <stages><li><label>lost my dinner to an animal</label><description>I looked away for one breath and an animal ate my dinner. Not all of it, just the good part.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+    <stages><li><label>lost my dinner to an animal</label><description>I looked away for one breath, and one of our animals had the best of my dinner.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_GourmandRobbed</defName>
     <durationDays>1</durationDays>
-    <stages><li><label>the best bite, stolen</label><description>An animal took the piece I'd been saving for last and swallowed it whole. What a waste of a good bite.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+    <stages><li><label>the best bite, stolen</label><description>I was saving the best piece for last, and one of the animals swallowed it without even chewing.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -41,14 +41,14 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_GrimGift</defName>
     <durationDays>1</durationDays>
-    <stages><li><label>a gift from my animal</label><description>My animal dropped a dead rat at my feet and looked very proud of itself.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>a gift from my animal</label><description>My animal left me a dead rat this morning and sat beside it, waiting to be thanked.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>1</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_TaughtTrick</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>taught my animal a trick</label><description>It took days and pocketfuls of scraps, but my animal does its trick when I ask now. I'm proud of us both.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>taught my animal a trick</label><description>It took pocketfuls of scraps, but my animal does its trick when I ask now. I've shown it to anyone who'd stand still.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -60,7 +60,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_ThingsChewed</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>my things got chewed</label><description>An animal chewed my things into damp pieces. I know exactly who did it, and it knows I know.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>my things got chewed</label><description>My things are in damp, chewed pieces, and the one who did it is asleep on top of them.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -79,7 +79,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_ChosenByAnimal</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>an animal chose me</label><description>One of the animals has taken to me. It follows me everywhere and waits for me at the door.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>an animal chose me</label><description>One of the animals has picked me, and I've never even fed it. It sleeps across my doorway now.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -92,7 +92,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_HatedByAnimal</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>an animal hates me</label><description>One of the animals hates me. It growls whenever I walk past, and I've never done anything to it.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>an animal hates me</label><description>One of the animals goes for my ankles every time I pass. I've tried scraps, and I've tried being nice.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -139,13 +139,13 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_NightNerves</defName>
     <durationDays>1</durationDays>
-    <stages><li><label>noises in the dark</label><description>Every sound outside last night had me sure something was coming for me. I barely slept.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+    <stages><li><label>noises in the dark</label><description>Every sound outside last night was a raider or a beast, as far as I could tell. I barely slept.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_EerieNight</defName>
     <durationDays>1</durationDays>
-    <stages><li><label>calls in the dark</label><description>An animal past the fields called all night, and another one farther off answered it. I couldn't sleep.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+    <stages><li><label>calls in the dark</label><description>An animal past the fields called all night, and another one farther off answered it. I went out twice to check the gate.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -171,14 +171,14 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_QuietMorning</defName>
     <durationDays>1</durationDays>
-    <stages><li><label>a quiet morning</label><description>I was up before the others and saw an animal standing in the morning mist. It was beautiful.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>a quiet morning</label><description>Up before the others, I watched an animal graze in the mist past the fence. I could hear it tearing at the grass.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.06</joy><joyKind>Meditative</joyKind><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_HerdPassed</defName>
     <durationDays>1</durationDays>
-    <stages><li><label>watched a herd go by</label><description>A herd went past, taking its time, and I stopped to watch it go by.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>watched a herd go by</label><description>A herd took most of the afternoon to pass the colony. I gave up counting at forty.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.06</joy><joyKind>Meditative</joyKind><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
@@ -198,7 +198,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_PreyFeeling</defName>
     <durationDays>1.5</durationDays>
-    <stages><li><label>I felt like prey</label><description>I felt like prey out there today. I keep watching the long grass, waiting for it to move.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>I felt like prey</label><description>An animal lay in the long grass watching me all afternoon. Now I can't stop looking at the grass.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -229,7 +229,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_TouchedTheBeast</defName>
     <durationDays>1.5</durationDays>
-    <stages><li><label>touched a wild beast</label><description>I walked right up to a wild beast and put my hand on it. The others said I was mad. My heart is still pounding.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>touched a wild beast</label><description>I walked right up to a wild beast and put my hand on it. My heart is still pounding.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
