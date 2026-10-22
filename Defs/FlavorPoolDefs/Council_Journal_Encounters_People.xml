@@ -15,17 +15,17 @@
         <li>{X_nameDef} showed me a trick with onions I'd never seen. Years of cooking, and I felt like a child holding the spoon wrong.</li>
         <li>Traded kitchen secrets with {X_nameDef}. I'm trying {X_possessive} first thing tomorrow.</li>
         <li>[winter] {X_nameDef} says where {X_pronoun} comes from they bury cabbages in the snow and dig them up sour in spring. I've buried six behind the kitchen to try it.</li>
-        <li>[trait:Gourmand] {X_nameDef} let me taste a sauce made from scraps I'd have thrown to the pigs. I've thought about little else since.</li>
+        <li>[trait:Gourmand] {X_nameDef} let me taste a sauce made from scraps I'd have thrown to the pigs. I can still taste it.</li>
         <li>[lowmood] Rotten week. Then {X_nameDef} showed me how to fry bread in a hot pan with a smear of fat, and for ten minutes the world was all right.</li>
         <li>Argued with {X_nameDef} all afternoon about seasoning. Best afternoon I've had in weeks.</li>
-        <li>[rain] Rained all day, so {X_nameDef} and I stayed in the kitchen and cooked our way through half the larder. We ate well tonight.</li>
+        <li>[rain] Rain all day. {X_nameDef} and I cooked our way through half the larder.</li>
         <li>[morning] {X_nameDef} was in my kitchen before dawn, kneading dough. I was annoyed until the bread came out.</li>
         <li>[large] With this many mouths to feed, {X_nameDef}'s way with the stockpot will save me an hour a day.</li>
         <li>[skill:Plants] {X_nameDef} pointed out three herbs I'd been pulling up as weeds. They're going in the soup now.</li>
       </plain>
       <warm>
         <li>{X_nameDef} stood over me, patient, until I folded the dumplings right. I hope the road feeds {X_objective} as well.</li>
-        <li>I gave {X_nameDef} a bag of my flatbread for the road. It felt right to send a bit of this place along.</li>
+        <li>Gave {X_nameDef} a bag of my flatbread for the road.</li>
         <li>[highmood] {X_nameDef} wrote my dumplings into {X_possessive} book of recipes from the road. Someone far from here will be eating them one day.</li>
       </warm>
       <blunt>
