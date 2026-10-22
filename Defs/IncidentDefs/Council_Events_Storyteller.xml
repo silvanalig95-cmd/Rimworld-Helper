@@ -439,7 +439,7 @@
           </li>
           <li>
             <label>Release {X_objective} instead</label>
-            <outcome>The wardens are told to let {X_nameDef} go. {FACTION}'s people leave without another word.</outcome>
+            <outcome>The wardens are told to let {X_nameDef} go. When {FACTION} hear of it, they have nothing more to say to the colony.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_PrisonerOrder"><mode>Release</mode></li>
               <li Class="ColonyCouncil.DilemmaEffect_FairGoodwill"><amount>-4</amount></li>
@@ -448,7 +448,7 @@
           </li>
           <li>
             <label>Keep {X_objective} here</label>
-            <outcome>The colony keeps its prisoner. {FACTION}'s riders leave the way they came, with their silver and a grudge.</outcome>
+            <outcome>The colony keeps its prisoner, and {FACTION} keep their silver, and a grudge.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_FairGoodwill"><amount>-2</amount><onlyIfChosen>true</onlyIfChosen></li>
             </effects>
