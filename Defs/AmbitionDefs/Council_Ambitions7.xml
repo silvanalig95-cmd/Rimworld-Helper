@@ -39,7 +39,7 @@
     <pitch>
       <plain>
         <li>Half a wall is a door for raiders. Let's finish the ring, then make it stone, then make it hold.</li>
-        <li>Last night I walked the edge of the colony. I counted every place a raider could just stroll in.</li>
+        <li>Our wall has more gaps than wall. A raider could lead a muffalo through it.</li>
         <li>[afterraid] They walked straight through the gap. Next time there won't be one.</li>
         <li>[medieval] Every town worth the name has walls. Let's raise ours properly.</li>
         <li>[tribal] A palisade first, then stone where the palisade is weakest. My people's camps were never caught open.</li>
@@ -96,7 +96,7 @@
       <cold><li>Raw food makes people sick and slow. Two cooked meals each, waiting, costs us almost nothing.</li></cold>
     </pitch>
     <achieved>
-      <plain><li>A whole season and never a cold supper. The kitchen earned its keep.</li></plain>
+      <plain><li>Fifteen days and never a cold supper. The kitchen earned its keep.</li></plain>
       <warm><li>Every day this season, there was something hot waiting. Thank you, cooks.</li></warm>
       <cheerful><li>Fifteen days of hot food! I'm rounder and happier.</li></cheerful>
       <cold><li>Meal buffer maintained for a full season.</li></cold>
@@ -129,12 +129,12 @@
       </plain>
       <warm><li>One season where the cook never has to say there's less tonight. That's all I'm asking.</li></warm>
       <blunt><li>Full stores. Keep them full.</li></blunt>
-      <cheerful><li>A whole season of full bellies and full barns! It's like a story.</li></cheerful>
+      <cheerful><li>Full bellies and full barns all season long! It's like something out of a story.</li></cheerful>
       <gloomy><li>Hunger always comes back. Let's be ready when it does.</li></gloomy>
       <cold><li>A twenty-day reserve held steady means the next blight is an inconvenience, not a disaster.</li></cold>
     </pitch>
     <achieved>
-      <plain><li>A whole season of plenty. The granary has never looked so good.</li></plain>
+      <plain><li>The granary has never looked so good, and it stayed that way all season.</li></plain>
       <warm><li>Nobody went to bed worried about food this season. That's the best thing we've made.</li></warm>
       <cheerful><li>Full barns all season! I keep going in just to look at them.</li></cheerful>
       <cold><li>Food security maintained for a full season.</li></cold>
