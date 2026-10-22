@@ -1150,11 +1150,63 @@ Outcomes that describe something people do but can't sensibly become one afterno
   with its person at the fence, feeding a wild animal past the wall: animals aren't led about by answers.
 - **It was already real.** Contests and rematches (the match happens on the map), taming an animal, a stranger
   joining, recruiting, sending away, mentorships, the meeting itself. Gifts of silver, food or medicine with nobody
-  on the map to take them are still taken from the stores at once; where a visitor or a rider waits, they are carried
-  out.
+  on the map to take them are fetched from the stores by a courier (below); where a visitor waits, they are carried
+  out to them.
 - **Other systems.** World events play out now (their answers' gifts and payments are carried to the gate, the
   locusts' harvest and watch are real). Personal stories, social events, dreams and encounters are moments that have
   already happened (interactions and moods), not answers to carry out.
+
+## Goods and people that come and go on the map
+
+The player gave 250 corn to a village and later got silver back: the corn vanished from the stockpile and the silver
+appeared by the trade spot. With **Goods and people come and go on the map** (Events & world, on by default) whatever
+Rimfolk's events move across the colony's edge is carried by people on the map (Couriers/). Off, it's all instant.
+
+- **One shared system.** `Couriers` is the API the effects and workers call: `Deliver`/`PaySilver`/`Hand`/`Loot`
+  (things for the colony), `Collect`/`TakeFromStores`/`TakeFor`/`TakeFromStoresFor` (goods it gives, sells or pays),
+  `Exchange`/`Sell`/`CollectOrder`/`CollectThings`/`CollectGoals` (both in one visit; a neighbour's cargo; a mission's
+  order in the missions' own words for goods), `Fetch` (a prisoner sold, an animal given back), `Await` (an errand's
+  courier at the gate), `BringHome`/`TellWhenThere` (a letter held until the goods are set down). Each returns false
+  when nobody will come, and the caller does exactly what it did before, so no event changes when the setting is off.
+- **A trip** (`CourierTrip`, kept by `CourierTracker`, a game component checked every 250 ticks at tick 59 of the
+  cycle, only while there are trips) waits 3 to 9 hours (an errand's or an order's courier under an hour and a half),
+  comes only by day (7:00 to 18:00) and only when the map is safe (no danger, no toxic fallout, -25 to 45 degrees),
+  and gives up after three days. Its people walk in from an edge cell that can reach the gate (`PlaySpots.GateCell`,
+  else `DropCellFinder.TradeDropSpot`) as a `LordJob_Courier`: travel, then work at the gate (`Council_CourierWork`
+  duty: `JobGiver_CourierWork` sets down what they carry with `JobDriver_CourierDrop`, fetches from the stores with
+  `JobDriver_CourierLoad`, takes someone along with `JobDriver_CourierFetch`, else they wander within three cells),
+  then exit. Harmed by the colony or their people turned hostile, they leave defending themselves. A pack animal waits
+  by the gate (`WanderClose`).
+- **Who and how many** (`CourierMath`, pure and tested): the event's own people if usable, else the nearest of a
+  fitting tech (a pre-industrial colony: tribes and medieval folk; otherwise a step either side), always on foot.
+  People come from their trader group's lighter guards (combat power 75 or less, never a trader), else the faction's
+  ordinary member (`Arrivals.PersonKind`); a pack animal from the trader group's carriers that the biome allows and
+  the season suits. One person per 35 "bulk" (kilograms plus 10 per stack), at most three; an animal when their
+  caravans use them and the load is more than one person's, which spares one porter. Their own inventory is cleared
+  when they're made, so everything they carry is the trip's; the load is shared by carrying capacity.
+- **Robustness.** Every end is a `CourierEnd`, settled once (`settled`): goods still owed to the colony are set down
+  (at the courier's feet if the colony can reach it, else where traders leave goods) unless the colony hurt them or
+  the map is gone; goods owed by it leave the stores the old way unless the colony hurt them, their people turned
+  hostile or the map is gone. Can't reach the stores: six hours at the gate, then settled. Goods used up meanwhile:
+  they take what there is and the deal stands. Someone they came for who is gone: they don't pay. Exiting couriers'
+  packs are cleared (`Notify_PawnLost`, and every pass for anyone already gone). A trip whose record is gone (mod
+  removed) sends its group home from the lord's own toil. The setting turned off mid-trip: settled at once, and they go.
+- **Merging.** Effects of one answer that go to the same people the same tick are one visit: paying for goods bought
+  (`WorldEffect_Pay` + `DilemmaEffect_Spawn`) is an exchange; the silver paid for an errand's goods rides with the
+  courier who waits at the gate for them.
+- **Visitors in person.** An event's own visitor at the colony hands things over at once (at their feet, with a line);
+  one still walking in carries it and sets it down when they arrive (a bearer trip: the goods stay in the trip until
+  then, so the visitor's own pack is never touched). Goods for a visitor who is here go by errand (a colonist carries
+  them out, PlayOut/), never by a courier.
+- **Which effects.** `<by>Outsiders</by>` marks the uses of `DilemmaEffect_Consume` (75), `DilemmaEffect_Spawn` (9),
+  `DilemmaEffect_Loot` (9), `WorldEffect_Pay` (4) and `WorldEffect_Medicine` (1) where the goods cross the colony's
+  edge; the rest are used up or found at home (a feast, fuel, medicine for a patient, a find). `WorldEffect_Loot`
+  defaults to outsiders and its four finds say `<by>Home</by>`. `WorldEffect_Silver`, `_Sell`, the owed payout,
+  `DilemmaEffect_Gift`, `_Goods` and `_SellHeirloom` always come from outsiders. Pods stay pods in an industrial colony.
+- **Speech** goes through `Speech.Say` (the pool `Rimfolk_CourierLines`, by moment, goods and their people's era);
+  messages through `Notify` with LookTargets. **Saved:** at most `CourierMath.MaxTrips` (12) trips at once (the oldest
+  waiting is settled when more come), each with up to three people, a pack animal and the things it brings in a
+  `ThingOwner`; ended trips are dropped once their people are gone, two days at most.
 
 ## How the systems talk to each other
 

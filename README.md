@@ -425,6 +425,22 @@ it. The answer's good moods come to those who were there once it's over; if it n
 everyone gets them anyway, as before. This week lists what's coming, the dilemmas page says how each went, and those
 who took part write about it. A setting (Events & world) turns it off.
 
+**Goods and people come and go on the map.** What Rimfolk's events move between the colony and the outside world is
+carried by people you can see. When a village buys 250 corn, two porters walk in from the edge a few hours later, by
+day, take it from the stockpile with their own hands and walk off; when the silver comes back at the end of the year,
+a runner brings it and sets it down at the gate. Payments, gifts, debts settled, rewards, a venture's or a fair's
+takings, relief grain and lost cargo all come and go this way (98 answers' takings and gifts marked as crossing the
+colony's edge, the 74 errands carried out to the gate or a visitor, every world event's silver and sale, the story
+chains' and missions' rewards, mission orders collected by their carts). A
+purse brings one runner, a cart's worth of timber three porters and a pack animal from their own caravans; tribes send
+runners, medieval folk porters, everyone later couriers, always from the event's own people or the nearest of a
+fitting era. An errand carried out to the gate is handed to one of them waiting there; a prisoner sold to a neighbor
+is fetched by their riders, a runaway animal handed back is led off by their herder, and a visitor who pays or brings
+a gift carries it in and sets it down. Letters about a venture, a market or a fair come with the goods. They come only
+when it's safe and leave at the first sign of danger; whatever they can't do is settled the old way, and if the colony
+hurts one of them, the deal holds only as far as it got. A setting (Events & world, on by default) makes it all
+instant again.
+
 ### Ideoligions and the council
 With Ideology, a colony of many ideoligions gives the council something to work with (all of it off in classic mode,
 and with "Ideoligions in the colony" off). Every move goes through the game's own certainty: Rimfolk takes some away
