@@ -61,33 +61,33 @@
     <defName>Council_Pool_PetFarewell</defName>
     <lines>
       <plain>
-        <li>{PAWN_nameDef} sat a long time with {PET_definite} before letting anyone take the body.</li>
+        <li>{PAWN_nameDef} is sitting with {PET_definite} and won't let anyone take the body yet.</li>
         <li>{PET_nameDef} is gone. {PAWN_nameDef} put the bowl away and then took it back out again.</li>
-        <li>[quiet] {PET_nameDef} died in the night, curled up in the usual spot. {PAWN_nameDef} found it in the morning and didn't eat breakfast.</li>
+        <li>[quiet] {PET_nameDef} died curled up in its usual spot. {PAWN_nameDef} left supper untouched.</li>
         <li>[quiet] {PAWN_nameDef} keeps saying {PET_nameDef} had a good life, for out here.</li>
-        <li>[hero] {PET_nameDef} went down in front of {PAWN_nameDef}, between {PAWN_objective} and the enemy. That's where it always stood.</li>
-        <li>[hero] {PAWN_nameDef} carried {PET_definite} back from the fighting alone and wouldn't let anyone help.</li>
-        <li>[winter] {PAWN_nameDef} wanted to bury {PET_nameDef}, but the ground was frozen. {PAWN_nameDef} dug anyway.</li>
-        <li>[rain] {PAWN_nameDef} stood in the rain for a long time, at the spot where {PET_nameDef} used to wait for {PAWN_objective}.</li>
-        <li>[pokemon] {PAWN_nameDef} kept {PET_nameDef}'s ball. It sits empty on the shelf by {PAWN_possessive} bed, and nobody is to touch it.</li>
-        <li>[pokemon,hero] {PET_nameDef} fainted once too often, standing in front of {PAWN_nameDef}. This time it didn't get up.</li>
-        <li>[oldage] {PET_nameDef} died of old age, warm and fed, with {PAWN_nameDef} beside it. Out here that's the best ending there is.</li>
-        <li>[oldage] {PET_nameDef} had grown slow and grey, and went quietly in the end. {PAWN_nameDef} said it had earned the rest.</li>
+        <li>[hero] {PET_nameDef} went down in the fighting. {PAWN_nameDef} says it never once backed off.</li>
+        <li>[hero] {PAWN_nameDef} won't leave {PET_definite} lying out where the fighting was. Not for anyone.</li>
+        <li>[winter] The ground is frozen hard. {PAWN_nameDef} says {PET_nameDef} gets a proper grave, frozen or not.</li>
+        <li>[rain] {PAWN_nameDef} is out in the rain at the spot where {PET_nameDef} used to wait for {PAWN_objective}.</li>
+        <li>[pokemon] {PAWN_nameDef} is keeping {PET_nameDef}'s ball. It goes on the shelf by {PAWN_possessive} bed, and it isn't to be touched.</li>
+        <li>[pokemon,hero] {PET_nameDef} fainted once too often, fighting for {PAWN_nameDef}. This time it didn't get up.</li>
+        <li>[oldage] {PET_nameDef} died of old age, warm and well fed. {PAWN_nameDef} wants the grave somewhere that gets the sun.</li>
+        <li>[oldage] {PET_nameDef} had gone slow and gray these last seasons. {PAWN_nameDef} says it earned the rest.</li>
       </plain>
       <warm>
         <li>{PAWN_nameDef} thanked {PET_nameDef} out loud, for everything, and then asked to be left alone for a minute.</li>
-        <li>[hero] {PAWN_nameDef} says {PET_nameDef} saved {PAWN_possessive} life out there, and it's true.</li>
+        <li>[hero] {PAWN_nameDef} says {PET_nameDef} was the bravest one out there.</li>
       </warm>
       <blunt>
-        <li>{PAWN_nameDef} punched a wall when {PET_nameDef} died and split {PAWN_possessive} knuckles open.</li>
-        <li>[hero] "It went for them like it was twice its size," {PAWN_nameDef} said, and then stopped talking for the day.</li>
+        <li>{PAWN_nameDef} kicked the feed trough over when {PET_nameDef} died, then set it straight again.</li>
+        <li>[hero] "It went for them like it was twice its size," {PAWN_nameDef} said, and then said nothing more.</li>
       </blunt>
       <cheerful>
-        <li>{PAWN_nameDef} told funny stories about {PET_nameDef} all evening, and laughed until {PAWN_pronoun} cried.</li>
+        <li>{PAWN_nameDef} is telling stories about {PET_nameDef} to anyone who'll listen, laughing through most of them.</li>
       </cheerful>
       <gloomy>
         <li>{PAWN_nameDef} says the good ones always go first out here, and {PET_nameDef} was a good one.</li>
-        <li>[quiet] {PAWN_nameDef} buried {PET_nameDef} and said it was the only one here who never wanted anything from {PAWN_objective}.</li>
+        <li>[quiet] {PAWN_nameDef} says {PET_nameDef} was the only one here who never wanted anything from {PAWN_objective}.</li>
       </gloomy>
       <cold>
         <li>{PAWN_nameDef} wrote {PET_nameDef}'s death in the ledger with the date and the cause, and went back to work.</li>
@@ -102,7 +102,7 @@
     <defName>Council_Journal_NemesisEscaped</defName>
     <lines>
       <plain>
-        <li>{X_nameDef}. I learned the name from the others. I'm going to remember it for the rest of my life.</li>
+        <li>{X_nameDef}. I got the name from the others. I won't forget it.</li>
         <li>The one who did this ran when it turned. I watched {X_objective} go over the ridge and couldn't stand up to follow.</li>
         <li>[hurt] Everything hurts, and somewhere out there {X_nameDef} is walking around on two good legs.</li>
         <li>[night] I keep waking at every footstep outside. It's never {X_nameDef}.</li>
@@ -111,7 +111,7 @@
         <li>{X_nameDef} got away. Next time {X_pronoun} won't.</li>
       </blunt>
       <gloomy>
-        <li>{X_nameDef} will come back. People like that always do.</li>
+        <li>{X_nameDef} will come back. That sort always does.</li>
       </gloomy>
       <warm>
         <li>I'm trying not to hate {X_nameDef}. I'd settle for never seeing {X_objective} again.</li>
@@ -128,8 +128,8 @@
       <plain>
         <li>They're calling it {X_nameDef} now. It got that name from what it did to me.</li>
         <li>I can still smell it. Whatever I eat tastes like that breath.</li>
-        <li>[night] There was movement at the tree line tonight. I watched until dawn, and it didn't come again.</li>
-        <li>[winter] Tracks in the snow outside the wall this morning. Too big. Too close.</li>
+        <li>[night] Something moved out past the fields just now. I'm sitting up until it's light.</li>
+        <li>[winter] Fresh tracks in the frozen mud past the fields. Too big. Too close.</li>
       </plain>
       <cheerful>
         <li>I got mauled by an animal with its own name! That's a story for the grandchildren, if I live to have any.</li>
@@ -148,7 +148,7 @@
     <lines>
       <plain>
         <li>{X_nameDef} is back. I saw {X_objective} before anyone else did. I always knew I would.</li>
-        <li>Same face. Same walk. {X_nameDef} came back with friends this time.</li>
+        <li>I knew {X_nameDef} by the walk alone, from clear across the fields.</li>
         <li>[trait:Bloodlust] {X_nameDef} came back. I sharpened everything twice.</li>
         <li>[trait:Wimp] {X_nameDef} is here and I hid in the pantry and I'm writing this in the pantry.</li>
       </plain>
@@ -170,13 +170,13 @@
       <plain>
         <li>{X_nameDef} is in a cell now. I went and looked, and {X_pronoun} was smaller than I remembered.</li>
         <li>They brought {X_nameDef} in bleeding. I didn't help. I didn't stop anyone helping, either.</li>
-        <li>[night] I can't sleep knowing {X_nameDef} is under the same roof. I can't sleep any better when I imagine {X_objective} out there, either.</li>
+        <li>[night] Can't sleep with {X_nameDef} under the same roof. Couldn't sleep with {X_objective} out there, either.</li>
       </plain>
       <warm>
         <li>I brought {X_nameDef} water. I don't know why. My hands did it before I decided.</li>
       </warm>
       <blunt>
-        <li>{X_nameDef} gets bread and water. I get to watch. Seems fair.</li>
+        <li>{X_nameDef} in a cell. Good. Let {X_objective} sit there.</li>
       </blunt>
       <cold>
         <li>{X_nameDef} is contained. The council will decide what that's worth. I already have.</li>
@@ -189,7 +189,7 @@
     <lines>
       <plain>
         <li>It was me. {X_nameDef} looked at me at the end, and I think {X_pronoun} remembered.</li>
-        <li>{X_nameDef} is dead and I did it. I keep washing my hands. They're clean. I keep washing them.</li>
+        <li>{X_nameDef} is dead and I did it. I've washed my hands three times. They were clean the first time.</li>
         <li>[hurt] I'm still not healed from the first time. Doesn't matter. {X_nameDef} won't heal at all.</li>
       </plain>
       <cheerful>
@@ -210,12 +210,14 @@
       <plain>
         <li>{X_nameDef} is dead. {OTHER_nameDef} did it. I should thank {OTHER_objective}. I will, when I can say it without shaking.</li>
         <li>They told me {X_nameDef} is dead and I asked them to say it again, slower.</li>
+        <li>I want to see the body. I need to be sure it's {X_nameDef}.</li>
       </plain>
       <warm>
         <li>{OTHER_nameDef} ended it for me. I'm cooking {OTHER_objective} dinner every night this week whether {OTHER_pronoun} likes it or not.</li>
       </warm>
       <blunt>
         <li>Wanted to do it myself. Dead is dead, though.</li>
+        <li>Crossed the name out. Done.</li>
       </blunt>
       <gloomy>
         <li>{X_nameDef} is dead and I feel exactly the same. I was told I'd feel different.</li>
@@ -228,16 +230,16 @@
     <lines>
       <plain>
         <li>The one I brought down today was {X_nameDef}, the one who hurt {VICTIM}. I didn't know until after. Glad it was me.</li>
-        <li>{VICTIM} hugged me today, hard, and didn't say anything.</li>
+        <li>That one was for {VICTIM}, though I didn't know it at the time.</li>
       </plain>
       <blunt>
         <li>Killed {X_nameDef}. Apparently that's a big deal. It felt like any other fight.</li>
       </blunt>
       <cheerful>
-        <li>{VICTIM} says I'm a hero! Then {VICTIM} cried all over my shirt, the good kind of crying.</li>
+        <li>I got the one who hurt {VICTIM}! I keep telling people, and they keep letting me.</li>
       </cheerful>
       <cold>
-        <li>{X_nameDef} is removed. {VICTIM} is grateful. Gratitude is a useful currency.</li>
+        <li>{X_nameDef} is removed. A debt owed to {VICTIM}, settled by me. People will remember who settled it.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -246,14 +248,14 @@
     <defName>Council_Journal_PetFarewell</defName>
     <lines>
       <plain>
-        <li>{PET_nameDef} is gone. I keep saving the scraps from my plate anyway.</li>
-        <li>Buried {PET_nameDef} today. Somebody scratched the name into a board for the grave. I didn't ask them to.</li>
+        <li>{PET_nameDef} is gone. I saved the scraps from my plate anyway.</li>
+        <li>I'll dig {PET_nameDef}'s grave myself. I know the spot it liked.</li>
         <li>[night] The room is too quiet. I didn't know an animal could breathe that loudly until it stopped.</li>
         <li>[child] They say {PET_nameDef} went to sleep and won't wake up. I'm not stupid. I know what dead is.</li>
         <li>[pokemon] I kept the ball. I don't know why. There's nothing in it now.</li>
         <li>[pokemon] All those levels, all that training, and it was the quiet times I'll miss. {PET_nameDef} asleep on my feet.</li>
         <li>[oldage] {PET_nameDef} grew old here. Not many things get to, out here. I'm glad it was one of them.</li>
-        <li>[oldage] It was slow at the end, and gentle. I held {PET_nameDef} until it was over.</li>
+        <li>[oldage] Slow at the end, and gentle. {PET_nameDef} slept more and more, and then didn't wake.</li>
       </plain>
       <warm>
         <li>Thank you, {PET_nameDef}, for waiting at the door every single day.</li>
@@ -275,11 +277,11 @@
     <lines>
       <plain>
         <li>When they came at me, {PET_nameDef} came at them. I've never seen it move like that.</li>
-        <li>{PET_nameDef} gets the best cut of meat tonight, and every night this week.</li>
-        <li>[hurt] I'm patched up and sore, and {PET_nameDef} won't leave my side. Neither of us is complaining.</li>
+        <li>{PET_nameDef} gets fed first tonight, and the best of it. Every night this week.</li>
+        <li>[hurt] Sore all over, and {PET_nameDef} won't leave my side. I'm not complaining.</li>
       </plain>
       <cheerful>
-        <li>{PET_nameDef} is a warrior! I'm making it a tiny helmet.</li>
+        <li>{PET_nameDef} is a warrior! I'm making it a helmet out of an old pot.</li>
       </cheerful>
       <blunt>
         <li>{PET_nameDef} fought better than most of the people here. I said so at dinner.</li>
