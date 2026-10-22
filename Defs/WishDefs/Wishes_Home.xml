@@ -316,20 +316,20 @@
         <li>[afterraid] After today, I want to fall asleep next to {OTHER_nameDef}, not across the colony.</li>
       </plain>
       <warm>
-        <li>{OTHER_nameDef} and I would push two beds together ourselves, if that's allowed.</li>
+        <li>I'd push two beds together myself, if that's allowed. {OTHER_nameDef} would help.</li>
         <li>Life out here is hard. Waking up next to {OTHER_nameDef} would make it a lot softer.</li>
       </warm>
       <blunt>
-        <li>{OTHER_nameDef} and I are together. We'd like to sleep together. Get us {THING}.</li>
+        <li>{OTHER_nameDef} is my partner, not my neighbor. Get us {THING}.</li>
       </blunt>
       <cheerful>
-        <li>{OTHER_nameDef} and I would love a bed for two! We'd be the happiest people in the colony.</li>
+        <li>A bed for two, for {OTHER_nameDef} and me! We'd be the happiest people in the colony.</li>
       </cheerful>
       <gloomy>
         <li>I lie there at night and {OTHER_nameDef} is right there, and still so far away.</li>
       </gloomy>
       <cold>
-        <li>{OTHER_nameDef} and I are partners. Separate beds make no sense. Assign us one.</li>
+        <li>Separate beds for partners make no sense. Assign {OTHER_nameDef} and me one.</li>
       </cold>
     </request>
     <thanks>
@@ -354,7 +354,7 @@
     <expired>
       <plain>
         <li>Separate beds again tonight.</li>
-        <li>{OTHER_nameDef} and I will go on meeting in the hallway.</li>
+        <li>Back to meeting {OTHER_nameDef} in the hallway, like we're still courting.</li>
       </plain>
       <warm>
         <li>{OTHER_nameDef} and I will manage. We always have.</li>
@@ -387,7 +387,7 @@
       <plain>
         <li>I put my cup on the floor at night and kick it over every morning. I'd like {THING} by the bed.</li>
         <li>Could someone build me {THING}? Just something to put my things on.</li>
-        <li>My clothes live in a pile on the floor. I'd like them to live somewhere better.</li>
+        <li>My clothes live in a pile on the floor. They deserve better, and so do I.</li>
         <li>[trait:Greedy] A proper bedroom has proper furniture. Mine has a bed.</li>
       </plain>
       <warm>

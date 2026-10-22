@@ -266,7 +266,7 @@
         <li>I've been training against the wall, and my knuckles show it. Put up {THING} and the wall can rest.</li>
         <li>Between raids I get slow, and then I'm slow when the raid comes.</li>
         <li>[afterraid] I missed three times out there. Three. I want somewhere to practice before the next lot shows up.</li>
-        <li>[hurt] I got hurt because I was a step slow. I'd like to be a step faster next time.</li>
+        <li>[hurt] I got hurt because I was a step slow. Next time I mean to be a step faster.</li>
         <li>[skill:Shooting,clear] Clear day, good light, and nothing to aim at that isn't a person or the livestock.</li>
         <li>[skill:Melee,morning] I've been doing my morning drills against a tree stump. It isn't the same.</li>
         <li>[trait:Bloodlust] I need something to stab between raids. Build {THING}. It's safer for the rest of you.</li>
@@ -570,7 +570,7 @@
         <li>Honey on bread, honey on roast meat, honey on everything! I've got plans for it.</li>
       </cheerful>
       <gloomy>
-        <li>Life out here is bitter enough. I'd like one thing in it that isn't.</li>
+        <li>Life out here is bitter enough without the food joining in.</li>
       </gloomy>
       <cold>
         <li>Honey doesn't spoil and it trades well. I also want to eat it.</li>
@@ -693,7 +693,7 @@
         <li>My scalp's peeling from the sun. Any hat would do.</li>
         <li>People look more capable in a hat. I could do with some of that.</li>
         <li>[rain] Rain's been running down the back of my neck since breakfast. Could I have something for my head?</li>
-        <li>[hot] My head's hot enough to cook on. I'd like something between it and the sun.</li>
+        <li>[hot] My head's hot enough to cook on. Put something between it and the sun.</li>
         <li>[snow] My ears are numb by midmorning. A hat would sort that out.</li>
         <li>[trait:Ugly] I've been told my face is a lot. A hat would cover at least some of it.</li>
       </plain>
@@ -1192,7 +1192,7 @@
       <gloomy><li>So it's mud and potatoes again.</li></gloomy>
     </expired>
     <reminder>
-      <plain><li>The flowerbeds are still just dirt.</li></plain>
+      <plain><li>The spot by the door is still just dirt.</li></plain>
       <cheerful><li>I'm still thinking about those flowers! Even one pot by the door would do.</li></cheerful>
     </reminder>
   </ColonyCouncil.WishDef>
@@ -1296,7 +1296,7 @@
         <li>I can smell myself from across the room, and so can the rest of you. We need {THING}.</li>
         <li>[winter] I washed in the trough this morning and had to break the ice first. A hot bath, please.</li>
         <li>[hot] It's sweltering, and we all smell like the inside of a boot. We need a bath.</li>
-        <li>[afterraid] There's still blood under my fingernails from the raid. I'd like to soak until it's gone.</li>
+        <li>[afterraid] There's still blood under my fingernails from the raid. Let me soak until it's gone.</li>
         <li>[old] My back aches every morning. A long soak in hot water would quiet it down.</li>
         <li>[rain] Mud up to the knees again. Let me sit in hot water until it's all soaked off.</li>
       </plain>
@@ -1403,7 +1403,7 @@
     </expired>
     <reminder>
       <plain><li>Threw out more meat today.</li></plain>
-      <cold><li>Another haunch went to the midden today. I wrote it down.</li></cold>
+      <cold><li>That's eleven haunches to the midden since I asked. I've kept count.</li></cold>
     </reminder>
   </ColonyCouncil.WishDef>
 
@@ -1707,7 +1707,7 @@
     <request>
       <plain>
         <li>We've got walls and roofs and nothing worth looking at. One more sculpture would help.</li>
-        <li>I'd like to carve a statue, or watch someone else carve one. Either way, we need another sculpture.</li>
+        <li>Let me carve a statue, or watch someone else carve one. Either way, we need another sculpture.</li>
         <li>[rich,day] We're not scraping by anymore. Let's put a statue on display to show it.</li>
         <li>[afterraid] We've cleaned up the blood. Now let's put up something worth looking at.</li>
         <li>[evening] The common room looks so bare in the evening light. One more sculpture would catch it nicely.</li>
