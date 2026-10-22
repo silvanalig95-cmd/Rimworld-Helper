@@ -8,15 +8,15 @@
     <defName>Council_Journal_Arrival</defName>
     <lines>
       <plain>
-        <li>First night here. I want to write down what I make of the place now, before I get used to it.</li>
-        <li>They gave me a bed and a bowl of bean stew. I've had worse first days.</li>
+        <li>First night here. Putting down what I make of the place before I get used to it. Low roofs. Loud snoring.</li>
+        <li>They gave me a bed and a bowl of stew. I've had worse first days.</li>
         <li>[winter] Came in out of the snow with my boots soaked through. They put a hot bowl in my hands and didn't ask many questions.</li>
       </plain>
-      <warm><li>The people here look worn out, and they still made room for me at the table. I think I'll like it.</li></warm>
+      <warm><li>They look worn out, every one of them, and they still shifted down the bench to make room for me.</li></warm>
       <blunt><li>Day one. They need hands, I need a roof. Fair trade.</li></blunt>
       <cheerful><li>First day here! I've learned most of their names already, and which one makes the bread.</li></cheerful>
-      <gloomy><li>Another place to start over. I hope this one holds together longer than the last.</li></gloomy>
-      <cold><li>The colony is understaffed and poorly defended. It will do for now.</li></cold>
+      <gloomy><li>Another place to start over. The last one lasted two winters.</li></gloomy>
+      <cold><li>Understaffed, badly defended, decent food. It will do.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -25,9 +25,9 @@
     <lines>
       <plain>
         <li>One of the others keeps a journal, so I'm trying it. I'm not sure what goes in one.</li>
-        <li>Starting a journal. If I die, at least someone will know what I thought of the rice.</li>
+        <li>If I die, at least whoever reads this will know what I thought of the rice. That seems worth a few pages.</li>
       </plain>
-      <warm><li>I want to remember these people. Writing them down seemed like the way to do it.</li></warm>
+      <warm><li>I want to remember these people as they are now. Who hums at the workbench. Who always takes the heel of the loaf.</li></warm>
       <blunt><li>Started a journal. Don't expect much.</li></blunt>
       <cheerful><li>Dear journal! I'm going to fill every page of you, starting with today's very good soup.</li></cheerful>
       <gloomy><li>A record, for whoever finds it. Hello, whoever you are.</li></gloomy>
@@ -40,35 +40,35 @@
     <lines>
       <plain>
         <li>They came through on "{WISH}". I hadn't expected them to bother.</li>
-        <li>I asked, and they did it. That goes in the journal, since it doesn't happen often.</li>
+        <li>Asked, and they did it. That goes in here, since it doesn't happen often.</li>
         <li>[bitter] They finally did one thing I asked: {WISH}. It doesn't make up for the rest.</li>
         <li>Wrote "{WISH}" in here a while ago as something I wanted. Now I can cross it out.</li>
-        <li>Got what I asked for. I went and looked at it twice before supper.</li>
-        <li>The council came through. I'm writing it down so I can remember it on a bad day.</li>
+        <li>Got what I asked for. Slept well, for once.</li>
+        <li>Good news from the council. I ate my supper slowly, so the day would last.</li>
       </plain>
       <warm>
         <li>They listened to me. I had to go and sit down for a while afterward.</li>
-        <li>Someone worked hard on it for me. I want to find a way to pay it back.</li>
-        <li>They did it. I'm lucky to be among people like these.</li>
+        <li>I'll find out who did the work on it and bring them something from the kitchen.</li>
+        <li>They did it, and they didn't make me ask twice.</li>
       </warm>
       <blunt>
         <li>Got what I wanted. About time.</li>
         <li>Asked. Got it. Good.</li>
-        <li>Took them long enough, but it's done.</li>
+        <li>Done. Should have been done a month ago.</li>
       </blunt>
       <cheerful>
         <li>They said yes! I've been grinning at people all day like an idiot.</li>
-        <li>It's done, it's real, and it's mine! I've told the cook twice.</li>
-        <li>Best day in a while. They said yes!</li>
+        <li>It's done, it's real! I've told the cook twice.</li>
+        <li>Best day in ages. I sang at the washbasin.</li>
       </cheerful>
       <gloomy>
-        <li>Got a yes from the council. I keep waiting for the catch.</li>
-        <li>They said yes. I don't quite trust it yet.</li>
+        <li>A yes from the council. There'll be a catch.</li>
+        <li>They said yes. I don't trust it yet.</li>
         <li>A good day. I'm writing it down so I can read it on the bad ones.</li>
       </gloomy>
       <cold>
         <li>Request fulfilled. The council is more reliable than I estimated.</li>
-        <li>The council delivered. I'll be more inclined to cooperate with them now.</li>
+        <li>Delivered. I'll be more inclined to cooperate with them.</li>
         <li>Granted. Asking politely worked, which is useful to know.</li>
       </cold>
     </lines>
@@ -79,11 +79,11 @@
     <lines>
       <plain>
         <li>They promised, and they did it. I'm putting it here for the next time I doubt them.</li>
-        <li>They kept the promise about "{WISH}". It took a while, but they kept it.</li>
+        <li>They kept the promise about "{WISH}". Slow, but kept.</li>
       </plain>
       <warm><li>They kept their word. I went round after supper and thanked each of them.</li></warm>
       <blunt><li>They said they would. They did. Good.</li></blunt>
-      <cheerful><li>They kept their promise! I've told three people already.</li></cheerful>
+      <cheerful><li>They kept their promise! I could have hugged the lot of them.</li></cheerful>
       <gloomy><li>A promise kept. I'd almost stopped believing in those.</li></gloomy>
       <cold><li>Commitment honored. Trust adjusted upward.</li></cold>
     </lines>
@@ -94,10 +94,10 @@
     <lines>
       <plain>
         <li>I asked and waited, and nothing came of it. I'll stop asking soon.</li>
-        <li>The days ran out and the council never got to it. So that's how it is.</li>
+        <li>The days ran out and the council never got to it. I'd been marking them off on the wall by my bed.</li>
         <li>[repeat] Asked a second time and got ignored a second time. I'm keeping count in here.</li>
-        <li>The time ran out on my request without a word from anyone.</li>
-        <li>So that's that. I asked, I waited, and the days went by.</li>
+        <li>Not one word from anyone, and now the time's run out.</li>
+        <li>So that's that.</li>
       </plain>
       <warm>
         <li>I know they're busy. It still stings.</li>
@@ -111,7 +111,7 @@
       </blunt>
       <cheerful>
         <li>Oh well, no luck this time! I'll ask again after the harvest.</li>
-        <li>No luck! I'll find another way to brighten my days.</li>
+        <li>Nothing came of it. I went and helped in the kitchen instead, and felt better for it.</li>
         <li>Didn't happen. Never mind, there's always next time!</li>
       </cheerful>
       <gloomy>
@@ -121,8 +121,8 @@
       </gloomy>
       <cold>
         <li>Request lapsed. Lowering expectations accordingly.</li>
-        <li>Unanswered. I know now how much weight my requests carry.</li>
-        <li>The council let it lapse. I'll remember that when they ask something of me.</li>
+        <li>Unanswered. Now I know where I stand with them.</li>
+        <li>The council let it lapse. I've stopped doing the extra hours.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -137,7 +137,7 @@
       <warm><li>I believed them because I wanted to. I don't know what to think now.</li></warm>
       <blunt><li>Liars, the lot of them.</li></blunt>
       <cheerful><li>They broke their promise. Well, there's still stew tonight, and the weather's held.</li></cheerful>
-      <gloomy><li>Of course they broke it. What else was ever going to happen?</li></gloomy>
+      <gloomy><li>Of course they broke it.</li></gloomy>
       <cold><li>Promise broken. I won't take the council's word at face value again.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -148,33 +148,33 @@
       <plain>
         <li>They said no, to my face. Better than being strung along for weeks.</li>
         <li>Refused. I'll get by without it.</li>
-        <li>They turned me down. At least they looked at me when they said it.</li>
-        <li>A no from the council today. I'll think about why, and then I'll stop thinking about it.</li>
+        <li>Turned down. Spent the evening sharpening every knife in the kitchen.</li>
+        <li>A no from the council. I'll think about why, and then I'll stop thinking about it.</li>
       </plain>
       <warm>
         <li>A clear no. I can respect that, even if I don't like it.</li>
-        <li>They said no kindly. I'll be kind back.</li>
+        <li>A kind no, at least. I'll be kind back.</li>
         <li>I understand. There's only so much to go around.</li>
       </warm>
       <blunt>
         <li>No, they said. Fine. Their loss.</li>
         <li>No. Noted.</li>
-        <li>They said no. I've stopped asking nicely.</li>
+        <li>No again. I've stopped asking nicely.</li>
       </blunt>
       <cheerful>
         <li>They said no! Oh well. I'll ask again after they've had a good dinner.</li>
-        <li>A no isn't the end of the world! There's always a better idea around the corner.</li>
+        <li>A no. Fine! I've got three other ideas, and one of them's better.</li>
         <li>No, they said. Well, I'll find something else to want!</li>
       </cheerful>
       <gloomy>
-        <li>They said no. It's still better than being ignored.</li>
+        <li>A no. Still better than being ignored.</li>
         <li>Turned down. I should have known better than to ask.</li>
         <li>It's what I expected, so it hurts less. Not much less.</li>
       </gloomy>
       <cold>
         <li>Request declined. A clear answer, at least. I can plan around a clear answer.</li>
         <li>Refused. I'll find out who argued against it.</li>
-        <li>They said no. I've adjusted my plans.</li>
+        <li>No, then. I'll adjust my plans.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -186,9 +186,9 @@
         <li>Finally, {DECREE}. I've been saying we needed it for weeks.</li>
         <li>They declared {DECREE} today. There was grumbling at dinner, but not from me.</li>
       </plain>
-      <warm><li>A good decision today. I hope the others come round to it.</li></warm>
+      <warm><li>A good decision. I hope the others come round to it once they see it working.</li></warm>
       <blunt><li>So it's {DECREE}. Finally. The complainers can complain.</li></blunt>
-      <cheerful><li>Good news today, it's {DECREE}! I whistled through every chore.</li></cheerful>
+      <cheerful><li>Good news, it's {DECREE}! I whistled through every chore.</li></cheerful>
       <gloomy><li>For once the council did what I'd have done. It won't last.</li></gloomy>
       <cold><li>They chose {DECREE}. Correct.</li></cold>
     </lines>
@@ -199,7 +199,7 @@
     <lines>
       <plain>
         <li>Now it's {DECREE}. They didn't ask what I thought.</li>
-        <li>The council declared {DECREE} today. Counting the days until it ends.</li>
+        <li>The council declared {DECREE}. I've started counting the days until it ends.</li>
       </plain>
       <warm><li>I'll go along with it for the others' sake. I don't like it.</li></warm>
       <blunt><li>Whoever came up with {DECREE} can do my share.</li></blunt>
@@ -214,8 +214,8 @@
     <lines>
       <plain>
         <li>The council declared {DECREE} again and I couldn't take it. I don't remember all of what I did. I'm not as sorry as I should be.</li>
-        <li>We'd barely got through {DECREE} and they ordered it again. I'd had enough, and I let them all know it.</li>
-        <li>[night] Can't sleep. Keep thinking about the council, and {DECREE}, and the look on their faces when I snapped.</li>
+        <li>We'd barely got through {DECREE} and they ordered it again. I came apart.</li>
+        <li>[night] Can't sleep. I think about the council, and {DECREE}, and the look on their faces when I snapped.</li>
       </plain>
       <warm><li>I lost my temper over {DECREE}. Tomorrow I'll apologize to the ones I frightened.</li></warm>
       <blunt><li>They pushed {DECREE} on us one time too many. Now they know.</li></blunt>
@@ -229,16 +229,16 @@
     <defName>Council_Journal_SelfHelp</defName>
     <lines>
       <plain>
-        <li>I stopped waiting for the council and sorted it out myself. Took the afternoon.</li>
-        <li>Stopped complaining and did it myself. My back hurts, but it's done.</li>
-        <li>[night] Sorted out the thing that's been nagging at me. Maybe tonight I'll actually sleep.</li>
-        <li>[child] I did it all by myself, without asking a grown-up.</li>
+        <li>Stopped waiting on the council and marked out the fix myself. Now it only wants building.</li>
+        <li>Paced out my corner after supper and planned what it needs. Cheaper than another week of complaining.</li>
+        <li>[night] Planned the fix for the thing that's been nagging at me. Once it's built, maybe I'll sleep.</li>
+        <li>[child] I made a plan all by myself, without asking a grown-up.</li>
       </plain>
-      <warm><li>Sorted it out myself today, then put a pot of tea on for whoever walked by.</li></warm>
-      <blunt><li>Fixed it myself. Done.</li></blunt>
-      <cheerful><li>Took matters into my own hands today! It was a small matter, but it's sorted.</li></cheerful>
-      <gloomy><li>I fixed one thing myself. There are a hundred more like it.</li></gloomy>
-      <cold><li>I resolved it myself rather than wait on the council. Faster, and no favors owed.</li></cold>
+      <warm><li>Marked out the fix myself. I hope whoever ends up building it doesn't mind the extra work.</li></warm>
+      <blunt><li>Planned it myself. Done waiting.</li></blunt>
+      <cheerful><li>Took matters into my own hands! Small matter, small plan, but it's mine.</li></cheerful>
+      <gloomy><li>Planned one fix myself. It'll probably sit there unbuilt for a month.</li></gloomy>
+      <cold><li>I drew up the plan myself rather than wait on the council. No favors owed.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -247,7 +247,7 @@
     <lines>
       <plain>
         <li>Married {OTHER_nameDef} today. I keep looking at my hands as if they should look different.</li>
-        <li>We said our vows outside, with the others watching. {OTHER_nameDef} said them louder than I did.</li>
+        <li>We said our vows with the others watching. {OTHER_nameDef} said them louder than I did.</li>
         <li>[night] Married. The word still sounds like it belongs to someone else.</li>
         <li>{OTHER_nameDef} wore flowers in {OTHER_possessive} hair. I wore my only clean shirt.</li>
       </plain>
@@ -264,8 +264,8 @@
     <lines>
       <plain>
         <li>{A_nameDef} and {B_nameDef} are married. I cried more than I expected to.</li>
-        <li>Watched {A_nameDef} and {B_nameDef} wed today. The colony felt like a village for an afternoon.</li>
-        <li>Ate too much at {A_nameDef} and {B_nameDef}'s wedding. My feet still ache from the dancing.</li>
+        <li>Watched {A_nameDef} and {B_nameDef} wed. The colony felt like a village for an afternoon.</li>
+        <li>Ate too much at {A_nameDef} and {B_nameDef}'s wedding and nearly nodded off on the bench.</li>
       </plain>
       <warm><li>{A_nameDef} and {B_nameDef} married today. I hadn't seen {A_nameDef} smile like that before.</li></warm>
       <blunt><li>{A_nameDef} and {B_nameDef} got married. Good for them. The food was decent.</li></blunt>
@@ -280,15 +280,15 @@
     <lines>
       <plain>
         <li>{BABY_nameDef} is here. So small. I counted the fingers twice.</li>
-        <li>I'm a parent now. {BABY_nameDef} hasn't stopped crying, and I haven't stopped looking.</li>
-        <li>[night] {BABY_nameDef} is asleep at last. I'm too afraid to breathe in case it wakes them.</li>
-        <li>{BABY_nameDef} grabbed my finger today and wouldn't let go.</li>
+        <li>{BABY_nameDef} hasn't stopped crying, and I haven't stopped looking.</li>
+        <li>[night] {BABY_nameDef} is asleep at last. I hardly dare breathe in case I wake {BABY_objective}.</li>
+        <li>{BABY_nameDef} grabbed my finger and wouldn't let go.</li>
       </plain>
       <warm><li>Welcome, {BABY_nameDef}. We'll make this place worth growing up in.</li></warm>
-      <blunt><li>{BABY_nameDef} was born today. Healthy. Loud. Mine.</li></blunt>
+      <blunt><li>{BABY_nameDef} was born today. Loud. Mine.</li></blunt>
       <cheerful><li>{BABY_nameDef} was born today! I keep telling people, even the ones who were there.</li></cheerful>
       <gloomy><li>{BABY_nameDef} was born into all this. I'll have to be better than the world is.</li></gloomy>
-      <cold><li>{BABY_nameDef} arrived today, healthy and a good weight. I held {BABY_objective} longer than I needed to.</li></cold>
+      <cold><li>{BABY_nameDef} arrived today. Breathing well, a fair weight. I held {BABY_objective} longer than I needed to.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -301,11 +301,11 @@
         <li>[winter] Home, out of the cold at last. {DAYS} of bad roads and worse weather, and I'd still go again.</li>
         <li>Back after {DAYS}. I ate two bowls of stew standing up in the kitchen.</li>
       </plain>
-      <warm><li>Home after {DAYS}. They came out to the gate to meet us. I hadn't known I'd missed them this much.</li></warm>
+      <warm><li>Home after {DAYS}. My blanket had been washed while I was away. I don't know who did it.</li></warm>
       <blunt><li>Back after {DAYS}. Long trip. Good to be home.</li></blunt>
       <cheerful><li>Home after {DAYS}, and I have so many stories! I started telling them before I'd put my pack down.</li></cheerful>
       <gloomy><li>Home after {DAYS}. Nothing burned down while we were gone. I'd half expected it to.</li></gloomy>
-      <cold><li>Returned after {DAYS}. The expedition met most of its aims. I slept nine hours.</li></cold>
+      <cold><li>Returned after {DAYS}. Slept nine hours.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -315,13 +315,13 @@
       <plain>
         <li>{OTHER_nameDef} broke today. I saw it coming and kept my mouth shut.</li>
         <li>I'm worried about {OTHER_nameDef}. It's been building for weeks, and today it all came out.</li>
-        <li>Found {OTHER_nameDef} sitting out behind the storeroom tonight. I sat down too, and we didn't talk.</li>
+        <li>Couldn't do anything for {OTHER_nameDef} except keep the others out of the way.</li>
       </plain>
       <warm><li>{OTHER_nameDef} had a terrible day. Tomorrow I'll sit with {OTHER_objective}, whether {OTHER_pronoun} wants company or not.</li></warm>
       <blunt><li>{OTHER_nameDef} cracked. Can't blame {OTHER_objective}, the way things are.</li></blunt>
       <cheerful><li>{OTHER_nameDef} had a really bad day. Tomorrow I'm baking {OTHER_objective} a berry pie.</li></cheerful>
       <gloomy><li>{OTHER_nameDef} broke today. I wonder which of us is next.</li></gloomy>
-      <cold><li>{OTHER_nameDef} broke down today. The signs were there. I'll pay closer attention.</li></cold>
+      <cold><li>{OTHER_nameDef} broke down. The signs were there. I'll pay closer attention.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -329,14 +329,14 @@
     <defName>Council_Journal_Anniversary</defName>
     <lines>
       <plain>
-        <li>{YEARS} year(s) here today. I've stopped thinking of anywhere else as home.</li>
-        <li>Anniversary today. A couple of the others remembered, which I didn't expect.</li>
+        <li>That's year {YEARS} done. I've stopped thinking of anywhere else as home.</li>
+        <li>My anniversary here. A couple of the others remembered, which I didn't expect.</li>
       </plain>
-      <warm><li>Another year with these people. I'm lucky, and I know it.</li></warm>
+      <warm><li>Another year with these people. I'd choose them again.</li></warm>
       <blunt><li>Another year here. Still alive.</li></blunt>
-      <cheerful><li>Happy anniversary to me! The cook gave me an extra helping.</li></cheerful>
+      <cheerful><li>Happy anniversary to me! I gave myself an extra helping at supper.</li></cheerful>
       <gloomy><li>Another year survived. I don't know how many more I've got in me.</li></gloomy>
-      <cold><li>Today makes {YEARS} year(s). I've given this colony more than most.</li></cold>
+      <cold><li>Year {YEARS} complete. I've given this colony more than most of them have.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -345,7 +345,7 @@
     <lines>
       <plain>
         <li>They've taken to calling me {TITLE}. I didn't let on that I'd heard.</li>
-        <li>Someone said "{TITLE}" today and meant me. I've earned that.</li>
+        <li>Somebody said "{TITLE}" at supper and meant me. I've earned that.</li>
       </plain>
       <warm><li>They call me {TITLE}. I hope I live up to it.</li></warm>
       <blunt><li>Known as {TITLE} now. Took them long enough.</li></blunt>
@@ -377,11 +377,11 @@
         <li>I told them I'm leaving in three days. They just nodded.</li>
         <li>Packing tonight. Not everything. Just what's mine.</li>
       </plain>
-      <warm><li>I don't want to go. Someone, please, give me a reason to stay.</li></warm>
+      <warm><li>I don't want to go. If one of them gave me a reason to stay, I would.</li></warm>
       <blunt><li>I'm leaving. They had their chances.</li></blunt>
       <cheerful><li>Leaving in three days, for a new start somewhere else! I'm trying to only think about that part.</li></cheerful>
       <gloomy><li>I'll probably die out there. It'll still be better than being ignored in here.</li></gloomy>
-      <cold><li>Departure scheduled. Remaining here is no longer rational.</li></cold>
+      <cold><li>Departure in three days. Remaining here is no longer rational.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -390,36 +390,36 @@
     <lines>
       <plain>
         <li>They came again and we're still here, most of us. My hands are still shaking.</li>
-        <li>Another raid. I can still smell the smoke on my sleeves.</li>
+        <li>Another attack. I can smell the smoke on my sleeves.</li>
         <li>[hurt] Got hurt in the fighting. It hurts to write, so this is all for today.</li>
-        <li>We held. I keep counting heads to make sure.</li>
-        <li>Spent the evening helping carry the bodies out past the wall. Theirs, thank goodness.</li>
+        <li>We held. I counted heads twice to make sure.</li>
+        <li>Spent the evening hauling bodies out past the wall. I scrubbed my hands raw afterward and they still don't feel clean.</li>
         <li>Fighting until noon, then cleaning up until dark. I can't stop yawning and I can't sleep.</li>
       </plain>
       <warm>
-        <li>We looked after each other today. That's the part I want to remember.</li>
-        <li>I checked on every one of us before I lay down. All accounted for.</li>
+        <li>We looked after each other. That's the part I want to remember.</li>
+        <li>I checked on every one of us before I lay down.</li>
         <li>We shared out the dressings and the water, and every wound got seen to.</li>
       </warm>
       <blunt>
         <li>They came, we fought them off. Same as last time.</li>
-        <li>Raid. Over. Bed.</li>
+        <li>Attack. Over. Bed.</li>
         <li>They'll be back. We'll be ready.</li>
       </blunt>
       <cheerful>
-        <li>We won! The people I care about are all still breathing.</li>
+        <li>We won! I went round hugging people whether they wanted it or not.</li>
         <li>They ran, and we didn't! I'm too wound up to sleep.</li>
-        <li>Still here, all of us!</li>
+        <li>Still here!</li>
       </cheerful>
       <gloomy>
         <li>One day they'll win. Today we were lucky.</li>
-        <li>Another raid survived. I wonder how many more we have in us.</li>
+        <li>Another attack survived. I wonder how many more we have in us.</li>
         <li>I can still hear it when I close my eyes.</li>
       </gloomy>
       <cold>
-        <li>Raid repelled. Losses acceptable. The perimeter needs work.</li>
-        <li>Attack repelled. I noted who froze and who didn't.</li>
-        <li>The raiders were badly led. The next lot may not be.</li>
+        <li>Attack repelled. The perimeter needs work.</li>
+        <li>I noted who froze and who didn't.</li>
+        <li>That one was clumsy. The next may not be.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -428,16 +428,16 @@
     <defName>Council_Journal_Grief</defName>
     <lines>
       <plain>
-        <li>{OTHER_nameDef} is gone. I keep starting sentences with "we should tell {OTHER_nameDef}".</li>
-        <li>Lost {OTHER_nameDef} today. Writing the name here so it's written somewhere.</li>
-        <li>Took {OTHER_nameDef}'s cup down from the shelf by mistake this morning. Put it back.</li>
-        <li>{OTHER_nameDef}'s seat at supper stayed empty. None of us could bring ourselves to take it.</li>
-        <li>I keep thinking I hear {OTHER_nameDef} in the next room.</li>
+        <li>{OTHER_nameDef} is gone. I keep turning round to tell {OTHER_objective} things.</li>
+        <li>Writing {OTHER_nameDef}'s name here, so it's written somewhere.</li>
+        <li>Walked past where {OTHER_nameDef} used to sleep and had to stop.</li>
+        <li>Ate supper without tasting it. {OTHER_nameDef} should be here.</li>
+        <li>Thought I heard {OTHER_nameDef} in the next room.</li>
       </plain>
       <warm>
         <li>{OTHER_nameDef}, wherever you are, thank you. I didn't say it enough while you were here.</li>
-        <li>I'll look after the things {OTHER_nameDef} cared about. It's the least I can do.</li>
-        <li>{OTHER_nameDef} was kind to me when I needed it. I'll try to be that for someone else.</li>
+        <li>I'll keep {OTHER_nameDef}'s name in this book, and say it out loud now and then.</li>
+        <li>{OTHER_nameDef} was good to me when I needed it. I'll try to be that for someone else.</li>
       </warm>
       <blunt>
         <li>{OTHER_nameDef} died. There's nothing to write that would help.</li>
@@ -445,8 +445,8 @@
         <li>{OTHER_nameDef} is gone. Back to work tomorrow, because that's what's left.</li>
       </blunt>
       <cheerful>
-        <li>I can't be cheerful today. {OTHER_nameDef} would tell me to try. Tomorrow.</li>
-        <li>{OTHER_nameDef} would hate to see us moping, so I made myself smile at supper. It didn't last.</li>
+        <li>I can't be cheerful tonight. Tomorrow, maybe, for {OTHER_nameDef}'s sake.</li>
+        <li>Tried to think of {OTHER_nameDef} on a good day instead. It helped, for a minute or two.</li>
         <li>I'm going to remember the good things about {OTHER_nameDef}. There are a lot of them.</li>
       </cheerful>
       <gloomy>
@@ -467,13 +467,13 @@
     <defName>Council_Journal_TraditionBorn</defName>
     <lines>
       <plain>
-        <li>We held {TRADITION} again this year, so I suppose it's a tradition now.</li>
-        <li>Someone said "like every year" about {TRADITION} today. I think that makes it ours.</li>
-        <li>The children were talking about {TRADITION} as if we'd always done it.</li>
+        <li>We kept {TRADITION} again this year. I suppose that makes it a tradition.</li>
+        <li>Someone said "like every year" about {TRADITION}. I think that makes it ours.</li>
+        <li>The newer ones talk about {TRADITION} as if we'd always done it.</li>
       </plain>
-      <warm><li>A tradition of our own: {TRADITION}. I hope the children remember it long after we're gone.</li></warm>
+      <warm><li>A tradition of our own, {TRADITION}. I hope whoever comes after us keeps it.</li></warm>
       <blunt><li>Apparently {TRADITION} is a tradition now. Fine by me, as long as there's food.</li></blunt>
-      <cheerful><li>We have a real tradition now, {TRADITION}! I'm already planning next year's.</li></cheerful>
+      <cheerful><li>We have a real tradition now, {TRADITION}! I'm already planning the next one.</li></cheerful>
       <gloomy><li>So {TRADITION} is ours now. One day someone will keep it up without knowing who started it.</li></gloomy>
       <cold><li>Ritual stabilizes morale. Formalizing {TRADITION} is sensible.</li></cold>
     </lines>
@@ -486,9 +486,9 @@
       <plain>
         <li>They made me {OFFICE}. I didn't even put my name forward.</li>
         <li>New title: {OFFICE}. Same boots, same mud, more people looking at me.</li>
-        <li>Two people came to me with complaints before breakfast. I suppose that's the job, now that I'm {OFFICE}.</li>
+        <li>I'm {OFFICE} now. The complaints start tomorrow, I expect, before breakfast.</li>
       </plain>
-      <warm><li>They trust me as {OFFICE}. I won't let them down.</li></warm>
+      <warm><li>They trust me to be their {OFFICE}. I'll try to deserve it.</li></warm>
       <blunt><li>Made {OFFICE}. Anyone with complaints can form a line.</li></blunt>
       <cheerful><li>I'm the {OFFICE}! Practiced my serious face in the washbasin tonight.</li></cheerful>
       <gloomy><li>So I'm {OFFICE}. Now it's my fault when things go wrong.</li></gloomy>
@@ -501,14 +501,14 @@
     <lines>
       <plain>
         <li>I'm not {OFFICE} anymore. I'm told it's nothing personal. It feels personal.</li>
-        <li>Lost the seat. Someone else is {OFFICE} now. I'll be watching how they do.</li>
-        <li>Got up this morning ready to go about my work as {OFFICE}, and then remembered.</li>
+        <li>Lost the seat. I'll be watching how the next {OFFICE} does.</li>
+        <li>Tomorrow I'll get up ready to go about my work as {OFFICE}, and then I'll remember.</li>
       </plain>
-      <warm><li>No longer {OFFICE}. I hope whoever has it does better than I did.</li></warm>
-      <blunt><li>Kicked out as {OFFICE}. Their mistake.</li></blunt>
+      <warm><li>No longer {OFFICE}. I hope whoever has it next does better than I did.</li></warm>
+      <blunt><li>Thrown out as {OFFICE}. Their mistake.</li></blunt>
       <cheerful><li>Not {OFFICE} anymore, so I get my evenings back!</li></cheerful>
       <gloomy><li>They took it away, of course. I was only just getting used to it.</li></gloomy>
-      <cold><li>Removed as {OFFICE}. Noted who voted against me.</li></cold>
+      <cold><li>Removed as {OFFICE}. I've noted who was behind it.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
