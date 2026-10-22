@@ -8,7 +8,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>8</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>laid it down</label><description>I've stopped carrying the hatred around. I still miss them. It's lighter, that's all.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>laid it down</label><description>I've stopped keeping the tally of what they owe us. The one we lost is still gone, and I'm sleeping again.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -16,7 +16,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>8</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>they came home</label><description>The one they took is back with us. Nothing else they did matters as much as that.</description><baseMoodEffect>6</baseMoodEffect></li></stages>
+    <stages><li><label>they came home</label><description>The one they took is back at our table. I keep finding excuses to sit next to them at meals.</description><baseMoodEffect>6</baseMoodEffect></li></stages>
   </ThoughtDef>
 
 </Defs>

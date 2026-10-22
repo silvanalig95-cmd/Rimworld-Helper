@@ -14,7 +14,7 @@
     <stages>
       <li>
         <label>a bed for when I was sick</label>
-        <description>When I was ill, there was a bed set aside for me and someone looked in on me. It made it easier to bear.</description>
+        <description>While I was ill I had a sickbed of my own, and someone looked in on me every few hours with water.</description>
         <baseMoodEffect>4</baseMoodEffect>
       </li>
     </stages>
@@ -26,7 +26,7 @@
     <stages>
       <li>
         <label>healroot put by</label>
-        <description>There's healroot hanging to dry, enough for the next fever. I feel better about the winter.</description>
+        <description>Bundles of healroot drying in the storeroom, enough for the next fever and the one after.</description>
         <baseMoodEffect>3</baseMoodEffect>
       </li>
     </stages>
@@ -38,7 +38,7 @@
     <stages>
       <li>
         <label>something fresh in the stores</label>
-        <description>There's something fresh to eat in the stores again. Even raw, it tastes like a feast day.</description>
+        <description>Vegetables and grain in the stores again, after weeks of nothing but meat. Even the plain stuff tastes like a feast day.</description>
         <baseMoodEffect>3</baseMoodEffect>
       </li>
     </stages>
@@ -50,7 +50,7 @@
     <stages>
       <li>
         <label>hot tea while I was sick</label>
-        <description>When I was sick, someone made sure there was hot tea. It's a small thing, and I won't forget it.</description>
+        <description>Hot tea while I was ill, held in both hands under the blanket until it went cold.</description>
         <baseMoodEffect>3</baseMoodEffect>
       </li>
     </stages>
@@ -61,8 +61,8 @@
     <durationDays>8</durationDays>
     <stages>
       <li>
-        <label>years turned back</label>
-        <description>There's a biosculpter pod in the colony now. I can think about the years ahead without dreading them.</description>
+        <label>a way to turn back the years</label>
+        <description>We have a biosculpter pod now. I put my hand on the lid and thought about my knees at twenty.</description>
         <baseMoodEffect>5</baseMoodEffect>
       </li>
     </stages>
@@ -76,7 +76,7 @@
     <stages>
       <li>
         <label>an evening at the strangers' fire</label>
-        <description>I sat at the campers' fire and heard about roads I've never walked. It was good to hear new voices.</description>
+        <description>Sat at the campers' fire till late, listening to news from places I'll never see. They passed their pot around and I took a turn.</description>
         <baseMoodEffect>4</baseMoodEffect>
       </li>
     </stages>
@@ -88,7 +88,7 @@
     <stages>
       <li>
         <label>the council sat down together</label>
-        <description>I asked for a meeting and we had one. I said my piece, and people listened.</description>
+        <description>I asked for a meeting and got one. I said my piece from start to finish without being cut off.</description>
         <baseMoodEffect>3</baseMoodEffect>
       </li>
     </stages>
@@ -100,7 +100,7 @@
     <stages>
       <li>
         <label>everyone at one table</label>
-        <description>We all sat down together at supper, nobody standing and nobody waiting. It felt like a family meal.</description>
+        <description>Supper with a chair for each of us, all of us eating at once. You had to shout to be heard down the table.</description>
         <baseMoodEffect>4</baseMoodEffect>
       </li>
     </stages>
@@ -112,7 +112,7 @@
     <stages>
       <li>
         <label>someone to teach</label>
-        <description>I have someone to pass on what I know. It makes the years I spent learning it feel worth something.</description>
+        <description>I have an apprentice now. They make every mistake I made at that age, and they're learning fast.</description>
         <baseMoodEffect>5</baseMoodEffect>
       </li>
     </stages>
@@ -123,8 +123,8 @@
     <durationDays>6</durationDays>
     <stages>
       <li>
-        <label>food put by for winter</label>
-        <description>There's food in the stores that won't spoil before spring. Whatever happens, we won't starve.</description>
+        <label>food that keeps</label>
+        <description>The stores have food in them that won't spoil, stacked and counted. If the fields fail, we'll still eat.</description>
         <baseMoodEffect>3</baseMoodEffect>
       </li>
     </stages>
@@ -136,7 +136,7 @@
     <stages>
       <li>
         <label>a voice from outside</label>
-        <description>We can talk to the rest of the world now. It feels less lonely out here.</description>
+        <description>A trader's voice came over the console last night, from somewhere far past the hills. I stayed up listening to the static afterward.</description>
         <baseMoodEffect>3</baseMoodEffect>
       </li>
     </stages>
@@ -148,7 +148,7 @@
     <stages>
       <li>
         <label>a bed for our guests</label>
-        <description>Visitors who come to us have a proper bed now. I'm proud that we can offer it.</description>
+        <description>There's a bed made up for guests now, with a folded blanket at the foot. Whoever knocks next won't sleep on the floor.</description>
         <baseMoodEffect>3</baseMoodEffect>
       </li>
     </stages>
@@ -174,7 +174,7 @@
     <stages>
       <li>
         <label>the stars up close</label>
-        <description>I spent a night at the telescope looking at things nobody here has seen before. The world feels bigger.</description>
+        <description>A whole night at the telescope. There's a ringed world up there, and a smudge of light that might be a thousand stars.</description>
         <baseMoodEffect>4</baseMoodEffect>
       </li>
     </stages>
@@ -186,7 +186,7 @@
     <stages>
       <li>
         <label>my tools in their place</label>
-        <description>Every tool hangs where I left it now. Work at the bench goes smoothly.</description>
+        <description>Every tool hangs on its own hook in the cabinet now. I reached for the small file today without looking.</description>
         <baseMoodEffect>3</baseMoodEffect>
       </li>
     </stages>
@@ -198,7 +198,7 @@
     <stages>
       <li>
         <label>stone ready to build with</label>
-        <description>There's a stack of cut stone waiting. I keep planning what to build with it.</description>
+        <description>A good stack of cut stone, squared and waiting. I've already drawn the new wall in the dirt twice.</description>
         <baseMoodEffect>3</baseMoodEffect>
       </li>
     </stages>
@@ -222,7 +222,7 @@
     <stages>
       <li>
         <label>the animals penned</label>
-        <description>Our animals have a proper pen now. I know where they all are, and they look content.</description>
+        <description>The animals have a proper pen now. I counted them in at dusk and the number came out right.</description>
         <baseMoodEffect>3</baseMoodEffect>
       </li>
     </stages>
@@ -233,8 +233,8 @@
     <durationDays>5</durationDays>
     <stages>
       <li>
-        <label>a summer evening at the grill</label>
-        <description>We cooked over the grill outside on a warm evening, everyone gathered round. That's what summer is for.</description>
+        <label>a grill in the yard</label>
+        <description>The grill's built. The first meat off it was smoky and black at the edges, the way I'd pictured it all week.</description>
         <baseMoodEffect>3</baseMoodEffect>
       </li>
     </stages>
@@ -248,7 +248,7 @@
     <stages>
       <li>
         <label>somewhere cool in the heat</label>
-        <description>On the worst of the hot days there's somewhere cool to go. I can breathe again.</description>
+        <description>On the worst afternoons I go and stand by the cooler with my eyes shut. I can breathe again.</description>
         <baseMoodEffect>3</baseMoodEffect>
       </li>
     </stages>
@@ -259,8 +259,8 @@
     <durationDays>5</durationDays>
     <stages>
       <li>
-        <label>a sauna in winter</label>
-        <description>There's a sauna to sweat the cold out of me. I come out warm all the way through.</description>
+        <label>a sauna for the cold</label>
+        <description>We built a sauna, and I was the first one in. I sat on the hot bench until my ears went red.</description>
         <baseMoodEffect>4</baseMoodEffect>
       </li>
     </stages>
@@ -272,7 +272,7 @@
     <stages>
       <li>
         <label>a soft chair for old bones</label>
-        <description>There's a soft chair where I can rest my old bones at the end of the day. It's the best part of my evening.</description>
+        <description>An armchair at last, soft enough to sink into, with arms to push myself up from.</description>
         <baseMoodEffect>3</baseMoodEffect>
       </li>
     </stages>
@@ -284,7 +284,7 @@
     <stages>
       <li>
         <label>a resting place ready</label>
-        <description>My resting place is built and waiting. It's a strange thing to say, but it gives me peace.</description>
+        <description>My resting place is built and waiting. I went to look at it this morning, and the work on the lid is good.</description>
         <baseMoodEffect>4</baseMoodEffect>
       </li>
     </stages>
@@ -298,7 +298,7 @@
     <stages>
       <li>
         <label>a grown-up is teaching me</label>
-        <description>One of the grown-ups is teaching me something I love. I'm getting better every day.</description>
+        <description>I'm getting lessons from the best one in the whole colony. I got it right three times today.</description>
         <baseMoodEffect>5</baseMoodEffect>
       </li>
     </stages>
@@ -310,7 +310,7 @@
     <stages>
       <li>
         <label>a new animal to look after</label>
-        <description>There's a new animal in the colony and I get to help look after it. Best day in a long time.</description>
+        <description>We've got a new animal and I'm helping look after it. I've already picked a name, but I'm not telling.</description>
         <baseMoodEffect>5</baseMoodEffect>
       </li>
     </stages>
@@ -322,7 +322,7 @@
     <stages>
       <li>
         <label>new stories to read</label>
-        <description>There are new books in the colony, and I'm reading every one. I can't put this one down.</description>
+        <description>New books, ones I've never read. I read the first one twice before supper.</description>
         <baseMoodEffect>4</baseMoodEffect>
       </li>
     </stages>
@@ -336,7 +336,7 @@
     <stages>
       <li>
         <label>a real floor at last</label>
-        <description>My room has a proper floor now instead of bare ground. It finally feels like a room.</description>
+        <description>My room has a proper floor now, not bare dirt. I walked across it barefoot just to feel it.</description>
         <baseMoodEffect>3</baseMoodEffect>
       </li>
     </stages>
@@ -348,7 +348,7 @@
     <stages>
       <li>
         <label>a scarecrow in the fields</label>
-        <description>There's a scarecrow watching over the fields now, and the crops are ours again.</description>
+        <description>The scarecrow's up, in an old hat with its arms out over the rows. The crops look like ours again.</description>
         <baseMoodEffect>3</baseMoodEffect>
       </li>
     </stages>

@@ -8,7 +8,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>4</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>the lost letters got home</label><description>Letters that lay by the road for years finally reached the people they were for, because we sent them on.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>the lost letters got home</label><description>The letters we found by the old road got where they were going at last, years late. I like to think of them being opened at someone's kitchen table.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -16,7 +16,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>5</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>the stranger's garden</label><description>We grew a plant from a stranger's seeds, the last of its kind, and it's thriving here. Something saved.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>the stranger's garden</label><description>The stranger's seeds came up strong in our soil, the last of their kind. We've been saving the seed in a jar on the shelf.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -32,7 +32,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>3</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>saw the play about us</label><description>A troupe played our own story to us in the yard. It was strange, watching someone pretend to be us, and I liked it.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+    <stages><li><label>saw the play about us</label><description>The troupe played our own story for us in the yard, painted flats and all. Watching strangers play us was the oddest thing, and I clapped until my hands stung.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -40,7 +40,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>6</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>they put us on the stage</label><description>There's a play about our colony, and it's a hit. Strangers on the road know our names.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>they put us on the stage</label><description>The play about our colony is a hit in the towns along the road. People who've never set foot here know our names now.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
 </Defs>

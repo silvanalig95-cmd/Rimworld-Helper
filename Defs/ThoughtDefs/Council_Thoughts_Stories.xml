@@ -11,7 +11,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>6</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>copied the old writing</label><description>Three days in the vault in the hill, copying out the walls by lamplight. I keep thinking about the people who wrote it all down and never came back to read it.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+    <stages><li><label>copied the old writing</label><description>Three days in the hill, copying the vault walls by lamplight. Every line is on paper now, and my hand still won't straighten.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -19,7 +19,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>8</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>the sleeper stayed</label><description>The sleeper from the hill woke up and decided to stay with us. I was the one sitting by the bed.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+    <stages><li><label>the sleeper stayed</label><description>The sleeper from the hill is staying with us. Every day there's a new question about a war that ended before I was born.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <!-- ===================== The fugitive's debt ===================== -->
@@ -29,7 +29,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>8</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>a debt repaid</label><description>The stranger we hid that night came back to pay what was owed, and more. I told the others they would.</description><baseMoodEffect>6</baseMoodEffect></li></stages>
+    <stages><li><label>a debt repaid</label><description>The stranger we hid that night came back with a clean name and paid us more than was owed. I'd stopped expecting to see that face again.</description><baseMoodEffect>6</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -37,7 +37,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>10</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>gave up an innocent</label><description>We pointed the riders up the road. The stranger they were chasing had done nothing wrong, and we helped them anyway.</description><baseMoodEffect>-5</baseMoodEffect></li></stages>
+    <stages><li><label>gave up an innocent</label><description>We told the riders which way the stranger ran, and the stranger had done nothing wrong. I'd give a lot to take that answer back.</description><baseMoodEffect>-5</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <!-- ===================== Bad blood ===================== -->
@@ -47,7 +47,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>5</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>a wedding at our place</label><description>Two families who couldn't stand each other got married under our roof. I danced until my feet hurt.</description><baseMoodEffect>6</baseMoodEffect></li></stages>
+    <stages><li><label>a wedding at our place</label><description>The couple from the feuding families were married here, with both heads of house sharing the feast. I danced until my feet hurt.</description><baseMoodEffect>6</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -74,7 +74,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>6</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>won the argument</label><description>I argued with the wandering preacher until the lamps burned low, and the preacher gave in first.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+    <stages><li><label>won the argument</label><description>I took on the preacher with a crowd watching, and it was the preacher who ran out of answers first.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -82,7 +82,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>6</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>lost the argument</label><description>The preacher had an answer for everything I said. People have been looking at me differently since.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
+    <stages><li><label>lost the argument</label><description>The preacher had an answer ready for everything I said, with the whole yard listening. I've thought of three good replies since.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -90,7 +90,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>8</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>kept from following</label><description>I wanted to go with the preacher, and the council sent the preacher away instead. They didn't ask me what I thought.</description><baseMoodEffect>-5</baseMoodEffect></li></stages>
+    <stages><li><label>kept from following</label><description>I was ready to walk the road with the preacher. The preacher's gone on without me, and my bag is still packed under the bed.</description><baseMoodEffect>-5</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -106,7 +106,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>6</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>talked it out</label><description>We sat up most of the night and talked it all out, the preacher's words and everything else. We're eating at the same table again.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+    <stages><li><label>talked it out</label><description>The quarrel over the preacher's words has run its course. Both sides ate together at supper and passed each other the bread.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <!-- ===================== The lost expedition ===================== -->
@@ -116,7 +116,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>6</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>the rescue came back</label><description>We paid for a rescue for strangers, and it came back with people who would have died in that ruin.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+    <stages><li><label>the rescue came back</label><description>The rescue we outfitted dug through the rockfall and brought the living out of that ruin. I keep picturing them stepping out into the daylight.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <!-- ===================== Missions ===================== -->
@@ -126,7 +126,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>5</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>pilgrims at our shrine</label><description>Pilgrims walked all the way from their town and stopped to pray at the sculpture we put up. I didn't think anyone would care that much about it.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+    <stages><li><label>pilgrims at our shrine</label><description>Pilgrims knelt in a ring around the sculpture we put up and prayed there, a long way from home. One of them laid a hand on it before they left.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
 </Defs>
