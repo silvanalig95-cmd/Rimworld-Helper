@@ -17,8 +17,8 @@
     <feelings><li>Disgust</li></feelings>
     <lines>
       <plain>
-        <li>Dreamt I was washing at the well, and the water came up gray and thick, and the more I washed the worse I smelled.</li>
-        <li>In the dream the food on every plate had gone bad, and everyone kept eating it, and smiling at me to do the same.</li>
+        <li>Washing at the well, and the water came up gray and thick, and the more I washed the worse I smelled.</li>
+        <li>The food on every plate had gone bad, and they all kept eating it, and smiling at me to do the same.</li>
         <li>The whole colony smelled rotten, sweet and heavy, and the others kept saying what a fine day it was.</li>
       </plain>
       <blunt><li>Filth, everywhere, in the dream. Washed twice this morning.</li></blunt>
@@ -39,7 +39,7 @@
       <plain>
         <li>{LOST} was at supper in the usual chair, and the others passed the bread along as if nothing had ever happened.</li>
         <li>In the dream I kept setting a place for {LOST}, and every time I turned around the plate was clean, as if it had been eaten.</li>
-        <li>Dreamt I heard {LOST} laughing in the next room. I didn't open the door. I didn't want to know.</li>
+        <li>Last night I heard {LOST} laughing in the next room. I didn't open the door. I didn't want to know.</li>
         <li>[child] {LOST} came to say goodnight like always. Then I woke up and remembered.</li>
       </plain>
       <warm><li>Dreamt {LOST} told me it was all right to be happy again. I'm trying to believe the dream.</li></warm>
@@ -57,7 +57,7 @@
     <feelingTarget>true</feelingTarget>
     <lines>
       <plain>
-        <li>Dreamt {OTHER_nameDef} and I were walking somewhere with no name, and neither of us wanted to arrive.</li>
+        <li>{OTHER_nameDef} and I were walking somewhere with no name, and neither of us wanted to arrive.</li>
         <li>In my dream {OTHER_nameDef} said my name the way you say a word you like the sound of.</li>
         <li>Dreamt I was cold, and then {OTHER_nameDef} was there, and I wasn't.</li>
       </plain>
@@ -76,7 +76,7 @@
     <feelings><li>Joy</li></feelings>
     <lines>
       <plain>
-        <li>Dreamt the river was full of light instead of water, and we all waded in up to our knees.</li>
+        <li>The river was full of light instead of water, and we all waded in up to our knees.</li>
         <li>I was a kite on a long string in my dream, and someone I love was holding the other end.</li>
         <li>[child] I dreamt I could run so fast my feet left the ground and I didn't come down until supper.</li>
       </plain>
@@ -93,8 +93,8 @@
     <feelings><li>Awe</li></feelings>
     <lines>
       <plain>
-        <li>Dreamt I stood at the edge of the world and looked down, and there were stars below me as well as above.</li>
-        <li>In the dream the mountain behind us opened one eye, very slowly, and closed it again.</li>
+        <li>I stood at the edge of the world and looked down, and there were stars below me as well as above.</li>
+        <li>The mountain behind us opened one eye, very slowly, and closed it again.</li>
         <li>Dreamt the sky opened like a door, and behind it was more sky, brighter.</li>
       </plain>
       <warm><li>Something so big and beautiful I cried in the dream, and didn't feel foolish about it.</li></warm>
@@ -111,8 +111,8 @@
     <feelings><li>Homesick</li></feelings>
     <lines>
       <plain>
-        <li>Dreamt I found the road back to where I grew up, and every step of it was exactly as I remembered.</li>
-        <li>In the dream I opened the storeroom door and it led straight into the kitchen I grew up in.</li>
+        <li>Last night I found the road back to where I grew up, and every step of it was exactly as I remembered.</li>
+        <li>I opened the storeroom door and it led straight into the kitchen I grew up in.</li>
         <li>[child] My old bed, in the dream, and the crack in the ceiling shaped like a fish.</li>
       </plain>
       <gloomy><li>Dreamt of home. The first one. This one's a home too, I suppose, only I didn't dream of it.</li></gloomy>
@@ -130,7 +130,7 @@
       <plain>
         <li>Dreamt I built a wall all day and every time I looked back the first stones had walked off.</li>
         <li>In the dream I had to finish a job before morning, and every tool I picked up turned into a spoon.</li>
-        <li>Dreamt I was explaining something simple to the council and they kept nodding and doing the opposite.</li>
+        <li>Explaining something simple to the council, all night, and they kept nodding and doing the opposite.</li>
       </plain>
       <blunt><li>Work going wrong, all night. Still going wrong.</li></blunt>
       <cheerful><li>Every tool turned into a spoon in my dream! I laughed about it all through breakfast.</li></cheerful>
@@ -146,7 +146,7 @@
     <feelings><li>Contentment</li></feelings>
     <lines>
       <plain>
-        <li>Dreamt of the yard on a still afternoon, the washing out, the dog asleep in the doorway.</li>
+        <li>The yard on a still afternoon, the washing out, the dog asleep in the doorway.</li>
         <li>In the dream I shelled peas on the step while the light moved across the yard, and that was all.</li>
         <li>[child] I dreamt about our house with all of us in it, and nothing happened, and it was nice.</li>
       </plain>
@@ -166,7 +166,7 @@
     <lines>
       <plain>
         <li>The storm came over the hills like a wall, and I ran from door to door, and they all kept their shutters closed.</li>
-        <li>In the dream the thunder had a voice, and it knew my name.</li>
+        <li>The thunder had a voice, and it knew my name.</li>
         <li>[rain|storm] The rain on the roof was footsteps in my dream. It's only rain. I've told myself so three times.</li>
       </plain>
       <gloomy><li>Dreamt of the storm again. Every time it's closer.</li></gloomy>
@@ -183,7 +183,7 @@
     <dreamer><tags>quirk:DarkFear|quirk:NightLight</tags></dreamer>
     <lines>
       <plain>
-        <li>Dreamt the lamp went out and the dark came in like water, filling the room from the floor up.</li>
+        <li>The lamp went out and the dark came in like water, filling the room from the floor up.</li>
         <li>In the dream something stood in the corner where the light didn't reach, and waited, and waited.</li>
         <li>[child] My light went out in my dream and I couldn't find it anywhere, and the dark was breathing.</li>
       </plain>
@@ -201,7 +201,7 @@
     <dreamer><tags>quirk:NightLight</tags></dreamer>
     <lines>
       <plain>
-        <li>Dreamt my little light grew and grew until the whole colony glowed, and no corner was dark ever again.</li>
+        <li>Had a dream my little light grew and grew until the whole colony glowed, and no corner was dark ever again.</li>
         <li>[child] I dreamt my candle could talk, and it said it would stay awake so I didn't have to.</li>
       </plain>
       <warm><li>Dreamt of a lamp in a window, waiting for me to come home. I knew whose window it was.</li></warm>
@@ -216,7 +216,7 @@
     <dreamer><tags>quirk:Stargazer|quirk:OpenSky</tags></dreamer>
     <lines>
       <plain>
-        <li>Dreamt I climbed the tallest tree and kept climbing until I was among the stars, and they were warm, like coals.</li>
+        <li>Climbed the tallest tree and kept climbing until I was among the stars, and they were warm, like coals.</li>
         <li>In the dream the stars rearranged themselves into a map, and I almost understood where it led.</li>
         <li>Dreamt I named a new star, and in the morning it was still there.</li>
       </plain>
@@ -235,7 +235,7 @@
     <dreamer><tags>quirk:TalksToPlants|quirk:FeedsBirds</tags></dreamer>
     <lines>
       <plain>
-        <li>Dreamt the plants finally answered me. They had a lot of opinions about the watering.</li>
+        <li>The plants finally answered me last night. They had a lot of opinions about the watering.</li>
         <li>In the dream the whole field turned to look at me as I passed, like a crowd at a feast.</li>
         <li>The seedlings told me which of them would make it. I've stopped looking at the ones that won't.</li>
       </plain>
@@ -254,9 +254,9 @@
     <dreamer><tags>quirk:Worrier</tags></dreamer>
     <lines>
       <plain>
-        <li>Dreamt I was checking the bolts on the gate, and every time I finished, there was another gate.</li>
+        <li>Checking the bolts on the gate, and every time I finished, there was another gate.</li>
         <li>In the dream I counted everyone at supper and came up one short, and counted again, and again.</li>
-        <li>Dreamt of a list of everything that could go wrong. It went down to the floor and out of the door.</li>
+        <li>A list of everything that could go wrong. It went down to the floor and out of the door.</li>
       </plain>
       <gloomy><li>The list dream. The list is always longer.</li></gloomy>
       <blunt><li>Worry dream. Got up and checked the door. It was locked.</li></blunt>
@@ -272,7 +272,7 @@
     <dreamer><tags>quirk:SoftSpot|quirk:NamesAnimals</tags></dreamer>
     <lines>
       <plain>
-        <li>Dreamt every stray animal I ever fed came to the gate at once, a whole parade of them, and every one remembered me.</li>
+        <li>Last night every stray I ever fed came to the gate at once, a whole parade of them, and every one remembered me.</li>
         <li>In the dream I had a name for every creature in the world, and they all came when called.</li>
         <li>[child] I dreamt my hurt bird got better and brought all its friends to say thank you.</li>
       </plain>
@@ -288,7 +288,7 @@
     <dreamer><tags>quirk:Proverbs|quirk:Storyteller</tags></dreamer>
     <lines>
       <plain>
-        <li>Dreamt my grandmother sat at the end of my bed and told me a saying I'd never heard, and I've forgotten it, and I want it back.</li>
+        <li>My grandmother sat at the end of my bed and told me a saying I'd never heard, and I've forgotten it, and I want it back.</li>
         <li>In the dream every story I ever told was a person, and they all came to visit at once.</li>
         <li>Dreamt I told a story that didn't end, and the children grew up listening to it.</li>
       </plain>
@@ -307,7 +307,7 @@
     <dreamer><tags>goal:Marry|goal:TeenLove|goal:HeartLove</tags></dreamer>
     <lines>
       <plain>
-        <li>Dreamt of a wedding by the fields, with flowers in everyone's hair. I couldn't see who I was marrying, but I knew I was happy.</li>
+        <li>A wedding by the fields, with flowers in everyone's hair. I couldn't see who I was marrying, but I knew I was happy.</li>
         <li>In the dream someone saved me a seat by the fire, every night, and never once asked for anything back.</li>
         <li>Dreamt I was loved, simply and completely. I want it so much it hurts.</li>
       </plain>
@@ -325,7 +325,7 @@
     <dreamer><tags>goal:TeenRoad|goal:Freedom</tags></dreamer>
     <lines>
       <plain>
-        <li>Dreamt I walked over the hills and there was a sea on the other side, and a town, and a road going on.</li>
+        <li>I walked over the hills and there was a sea on the other side, and a town, and a road going on.</li>
         <li>In the dream I had a pack on my back and nowhere to be until next spring.</li>
         <li>Asleep under a cart in a town with no name, and the people talking in a tongue I was just starting to learn.</li>
       </plain>
@@ -345,7 +345,7 @@
       <plain>
         <li>Dreamt a wild animal walked out of the trees and lay down at my feet, as if it had been waiting for me.</li>
         <li>[child] I had a dog as big as a horse in my dream, and I rode it to the river and back.</li>
-        <li>Dreamt I knew the name every animal in the colony calls itself, and they all came to me.</li>
+        <li>I knew the name every animal in the colony calls itself, and they all came to me.</li>
       </plain>
       <cheerful><li>Dreamt I had a pet goat that followed me everywhere, even up ladders!</li></cheerful>
       <warm><li>Dreamt of an animal that trusted me completely. I want to earn that.</li></warm>
@@ -363,7 +363,7 @@
     <dreamer><tags>goal:ElderLastPiece|goal:Maker|goal:Artist</tags></dreamer>
     <lines>
       <plain>
-        <li>Dreamt I was making the finest thing I've ever made, and my hands knew what to do before I did.</li>
+        <li>I was making the finest thing I've ever made, and my hands knew what to do before I did.</li>
         <li>In the dream the piece I'm working on was finished and standing in the hall, and people stopped to touch it as they passed.</li>
         <li>Dreamt my teacher stood behind me at the bench and said nothing, which was the highest praise there was.</li>
       </plain>
@@ -388,7 +388,7 @@
         <li>Dreamt I wasn't afraid. Just that. I'd forgotten what it was like.</li>
       </plain>
       <gloomy><li>Dreamt I felt safe. Checked the bolts anyway this morning, twice.</li></gloomy>
-      <warm><li>Dreamt everyone I care about was asleep and safe, and I was keeping watch, and it was easy.</li></warm>
+      <warm><li>The ones I care about were asleep and safe, and I was keeping watch, and it was easy.</li></warm>
     </lines>
   </ColonyCouncil.DreamDef>
 
@@ -400,7 +400,7 @@
     <dreamer><tags>goal:ElderSeeGrown|goal:Grandchild|goal:GrowUp</tags></dreamer>
     <lines>
       <plain>
-        <li>Dreamt the children were grown and running the colony, and doing it better than we ever did.</li>
+        <li>The children were grown and running the colony, and doing it better than we ever did.</li>
         <li>In the dream a grown stranger hugged me at the gate, and I realized it was one of the little ones, years from now.</li>
         <li>[child] I was a grown-up in my dream, as tall as the door, and I had to duck to come in.</li>
       </plain>
@@ -419,9 +419,9 @@
     <dreamer><tags>story:Suitors|instory:Suitors</tags></dreamer>
     <lines>
       <plain>
-        <li>Dreamt of two doors, and {OTHER_nameDef} behind one of them, and I couldn't choose, and then the doors chose for me.</li>
+        <li>Two doors, and {OTHER_nameDef} behind one of them, and I couldn't choose, and then the doors chose for me.</li>
         <li>In the dream {OTHER_nameDef} was speaking, but I couldn't hear the words over my own heart.</li>
-        <li>Dreamt I was racing someone across the fields and neither of us knew where the finish was.</li>
+        <li>Racing someone across the fields all night, and neither of us knew where the finish was.</li>
       </plain>
       <gloomy><li>Dreamt {OTHER_nameDef} looked straight through me, at someone behind me.</li></gloomy>
       <cheerful><li>Dreamt {OTHER_nameDef} picked a flower and handed it to me! Or past me. Hard to tell in dreams.</li></cheerful>
@@ -436,7 +436,7 @@
     <dreamer><tags>story:Siblings|story:Between|story:TwoStudents</tags></dreamer>
     <lines>
       <plain>
-        <li>Dreamt I was the knot in the middle of a rope, and two people I love were pulling on each end.</li>
+        <li>I was the knot in the middle of a rope, and two people I love were pulling on each end.</li>
         <li>In the dream I carried a message back and forth across a river all night, and it changed every time I crossed.</li>
         <li>The ones I'm caught between were at one table, eating in silence, passing everything through me.</li>
       </plain>
@@ -453,7 +453,7 @@
     <dreamer><tags>story:OneMoreSpring|story:LastTwo</tags></dreamer>
     <lines>
       <plain>
-        <li>Dreamt the snow went off the fields in a single morning, and everything came up green at once, and I was there to see it.</li>
+        <li>The snow went off the fields in a single morning, and everything came up green at once, and I was there to see it.</li>
         <li>In the dream I was young, and sitting in the sun outside the first house we built, and {OTHER_nameDef} was young too.</li>
         <li>Dreamt of a spring that went on and on, and I wasn't tired at all.</li>
       </plain>
@@ -470,7 +470,7 @@
     <dreamer><tags>story:FarNews|story:LongWayHome|story:RoadCalls</tags></dreamer>
     <lines>
       <plain>
-        <li>Dreamt a letter came, in a hand I knew, and I opened it and every page was blank, and I read it anyway.</li>
+        <li>A letter came, in a hand I knew, and I opened it and every page was blank, and I read it anyway.</li>
         <li>In the dream I could see across all the miles at once, and everyone out there was going about their day, all right.</li>
         <li>A traveler came to the gate with news, and opened his mouth, and the dream moved on to something about geese.</li>
       </plain>
@@ -488,7 +488,7 @@
     <dreamer><tags>story:BadNights|story:NotAChild|story:Calling</tags></dreamer>
     <lines>
       <plain>
-        <li>Dreamt I could fly, and the dark was just the sky with the sun turned down, and I wasn't scared of it at all.</li>
+        <li>I could fly, and the dark was just the sky with the sun turned down, and I wasn't scared of it at all.</li>
         <li>[child] I flew over the colony in my dream and they all waved, and {OTHER_nameDef} waved the biggest.</li>
         <li>Dreamt I was bigger than the trouble. It was very small, from up there.</li>
       </plain>
