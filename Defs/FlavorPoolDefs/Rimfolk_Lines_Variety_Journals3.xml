@@ -12,7 +12,7 @@
     <pool>Council_Journal_Day_Tired</pool>
     <lines>
       <plain>
-        <li>[lowmood] Tired of the work, tired of the cold, tired of myself.</li>
+        <li>[lowmood] Tired of the work, and tired of myself.</li>
         <li>[lowmood] Slept ten hours and woke up wanting ten more.</li>
       </plain>
     </lines>
@@ -59,7 +59,7 @@
         <li>[clear] {OTHER_nameDef} and I sat on the wall in the last of the light and talked until the stars came out.</li>
         <li>[rain] Stuck indoors by the rain with {OTHER_nameDef}, and we talked about everything we'd been putting off saying.</li>
         <li>[lowmood] I was having a bad day, and {OTHER_nameDef} noticed, and sat down, and let me talk.</li>
-        <li>[lowmood] Told {OTHER_nameDef} how low I've been. Saying it out loud made it smaller.</li>
+        <li>[lowmood] Told {OTHER_nameDef} how low I've been. {OTHER_nameDef} didn't try to fix it, just nodded.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
@@ -69,7 +69,7 @@
     <pool>Council_Journal_Day_Dining</pool>
     <lines>
       <plain>
-        <li>[highmood] Laughed so much at supper my face hurt. The dining room does that to people.</li>
+        <li>[highmood] Laughed so much at supper my face hurt. Somebody told the one about the boar again.</li>
         <li>[highmood] In a good mood all through supper. The room helped, and the company more.</li>
       </plain>
     </lines>
@@ -80,8 +80,8 @@
     <pool>Council_Journal_Day_Disturbed</pool>
     <lines>
       <plain>
-        <li>[clear] Fine night, so half the colony was up late outside, and the other half was kept awake by them.</li>
-        <li>[clear] Not a cloud, not a breath of wind, and somehow still no sleep. Doors, all night.</li>
+        <li>[clear] Fine night, so some of them stayed up late outside, laughing under my window.</li>
+        <li>[clear] Not a cloud, not a breath of wind, and still no sleep. Doors, all night.</li>
         <li>[lowmood] Broken sleep on top of a bad week. I'm running on very little.</li>
       </plain>
     </lines>
@@ -92,9 +92,9 @@
     <pool>Council_Journal_Day_FineMeal</pool>
     <lines>
       <plain>
-        <li>[clear] Supper outside on a fine evening. Everything tastes better with a clear sky over it.</li>
+        <li>[clear] Supper outside on a fine evening, with the sky going orange over the fields.</li>
         <li>[clear] We carried the table out into the sun at lunch. Good food, good light.</li>
-        <li>[highmood] Laughed through the whole meal. The food was good and so was everything else.</li>
+        <li>[highmood] Ate slowly, for once, with nowhere to hurry to.</li>
         <li>[highmood] A fine supper on a fine day. I couldn't ask for more, so I asked for seconds.</li>
       </plain>
     </lines>
@@ -115,7 +115,7 @@
     <pool>Council_Journal_Day_Hungry</pool>
     <lines>
       <plain>
-        <li>[lowmood] Hungry and low. Hard to say which came first today.</li>
+        <li>[lowmood] Gave my bread to someone who looked hungrier. Regretted it by dark.</li>
         <li>[lowmood] Didn't have the heart to go and ask for more. Went to bed hungry.</li>
       </plain>
     </lines>
@@ -149,7 +149,7 @@
     <lines>
       <plain>
         <li>[highmood] Whistled all day. It's a good feeling, building something from the ground up.</li>
-        <li>[highmood] Everything went right today. Small things, but all of them.</li>
+        <li>[highmood] Every small thing went right today. The door hung straight and the fire caught first time.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
@@ -171,7 +171,7 @@
     <lines>
       <plain>
         <li>[highmood] Played until late and laughed most of the way through.</li>
-        <li>[highmood] A good mood and a good evening in the rec room. Those two go together.</li>
+        <li>[highmood] Won three games of horseshoes in a row and crowed about it all evening.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
@@ -183,16 +183,16 @@
     <pool>Council_Journal_Granted</pool>
     <lines>
       <plain>
-        <li>[clear] Fine weather, and "{WISH}" done. I went and stood in the sun next to it.</li>
+        <li>[clear] Fine weather, and "{WISH}" done. I sat out in the sun with nothing left to ask for.</li>
         <li>[clear] Not a cloud in the sky, and the council came through. Good day.</li>
         <li>[highmood] I was already in a good mood, and then "{WISH}" happened. Now I'm unbearable.</li>
-        <li>[highmood] Everything's going well, and "{WISH}" is part of it.</li>
+        <li>[highmood] "{WISH}" on top of a good week. I've run out of things to grumble about.</li>
         <li>[promised] They promised "{WISH}", and here it is. I'll trust the next promise sooner.</li>
         <li>[promised] A promise kept, and on time. I'm writing that down twice.</li>
-        <li>[petition] We asked together, and together we got it. Everyone who signed came to look.</li>
+        <li>[petition] We asked together, and together we got it. All of us who signed went to have a look.</li>
         <li>[petition] The others who asked for "{WISH}" with me are as pleased as I am. More, maybe.</li>
-        <li>[forother] Someone asked for this on my behalf. I'll find them and thank them properly.</li>
-        <li>[forother] I didn't ask for it myself. Somebody else spoke up for me, and the council listened.</li>
+        <li>[forother] Someone asked for this on my behalf. I've got a short list of who it might be.</li>
+        <li>[forother] I never asked. I'd have been too proud to.</li>
         <li>[repeat] Asked more than once, and this time it happened. Persistence, I suppose.</li>
         <li>[repeat] I'd asked before and been passed over. Not this time.</li>
       </plain>
@@ -212,7 +212,7 @@
         <li>[night] The nights are the worst. That's when I remember {OTHER_nameDef} is gone.</li>
       </plain>
       <warm>
-        <li>[spring] The first flowers are out. I picked some for {OTHER_nameDef}'s grave.</li>
+        <li>[spring] The first flowers are out. I picked some for {OTHER_nameDef}.</li>
         <li>[spring] {OTHER_nameDef} loved this time of year. I planted something where {OTHER_pronoun} used to sit.</li>
       </warm>
       <cheerful>
@@ -220,7 +220,7 @@
         <li>[rain] Listened to the rain and remembered {OTHER_nameDef} dancing in it once. I smiled, then I didn't.</li>
       </cheerful>
       <gloomy>
-        <li>[lowmood] {OTHER_nameDef} is gone, and the dark I've been in got darker.</li>
+        <li>[lowmood] {OTHER_nameDef} is gone. I haven't eaten since I heard.</li>
         <li>[lowmood] I don't know how to carry this on top of everything else.</li>
       </gloomy>
     </lines>
@@ -234,9 +234,9 @@
         <li>[repeat] Asked again and heard nothing again. It's getting to be a habit, theirs and mine.</li>
         <li>[winter] Winter's half gone and so is my patience. Nothing came of "{WISH}".</li>
         <li>[winter] Cold days, and no answer. I'll stop hoping until the thaw.</li>
-        <li>[trusting] I was sure they'd get to it. They're usually good about these things.</li>
+        <li>[trusting] They usually come through. This time they didn't, and I don't know why.</li>
         <li>[trusting] I'll give them the benefit of the doubt. They must have had a reason.</li>
-        <li>[forother] I asked on someone else's behalf, and now I have to tell them it came to nothing.</li>
+        <li>[forother] Now I have to tell the one I asked for that it came to nothing.</li>
         <li>[forother] It wasn't my wish to begin with. Still, I'd asked, and I feel foolish now.</li>
       </plain>
       <blunt>
@@ -248,7 +248,7 @@
         <li>[fall] Didn't happen. The harvest's good, though, and I'm counting that instead.</li>
       </cheerful>
       <gloomy>
-        <li>[lowmood] Of course nothing came of it. Nothing has, lately.</li>
+        <li>[lowmood] Of course it came to nothing. A yes would have surprised me more.</li>
         <li>[lowmood] I can't even be angry. I'm too tired for it.</li>
       </gloomy>
     </lines>
@@ -265,8 +265,8 @@
         <li>[night] Lay awake counting the days they had, and how many they used.</li>
         <li>[doubtful] I had my doubts, and I let them talk me out of them.</li>
         <li>[doubtful] I knew it, and I still hoped. That's on me.</li>
-        <li>[winter] They promised before the snows. The snows came and the promise didn't.</li>
-        <li>[winter] Cold outside, and colder in here since they broke their word.</li>
+        <li>[winter] They promised before the cold set in. The cold came and the promise didn't.</li>
+        <li>[winter] A broken promise and a frozen water bucket, both in one morning.</li>
       </plain>
       <gloomy>
         <li>[winter] A promise broken in the dark half of the year. It fits.</li>
@@ -286,7 +286,7 @@
         <li>[trusting] I never doubted it. Well, once. Briefly.</li>
       </plain>
       <warm>
-        <li>[winter] Even with the snow up to the door, they kept their promise. I won't forget it.</li>
+        <li>[winter] Even in the worst of the cold, they kept their promise. I won't forget it.</li>
         <li>[winter] A cold season, and a warm thing done. Thank you, whoever did the work.</li>
       </warm>
       <gloomy>
@@ -304,17 +304,17 @@
         <li>[clear] Clear day, so we saw them coming a long way off. It didn't make the waiting easier.</li>
         <li>[clear] Not a cloud all day. Strange to fight under a sky that pretty.</li>
         <li>[clear] Good light for it, at least. We could see every one of them.</li>
-        <li>[spring] The raid came with the thaw. The ground was so soft we left deep prints all the way to the wall.</li>
+        <li>[spring] They came with the thaw. The ground was so soft their tracks are still there in the mud.</li>
         <li>[summer] Fought in the long grass. I'm still pulling seeds out of my clothes.</li>
         <li>[fall] They came at harvest, when every hand was in the fields. Half of us ran back with sickles.</li>
-        <li>[winter] Fought until the snow was trampled to slush. The stars were out by the time we stopped.</li>
+        <li>[winter] Fought until the frozen ground was churned to mud. The stars were out by the time we stopped.</li>
       </plain>
       <cheerful>
-        <li>[highmood] We beat them! I was in a good mood this morning and I refuse to let a raid change that.</li>
-        <li>[highmood] Raid's done, everyone's whole, and I'm still grinning.</li>
+        <li>[highmood] We beat them! I was in a good mood this morning and I refuse to let them change that.</li>
+        <li>[highmood] It's over, I'm whole, and I'm still grinning.</li>
       </cheerful>
       <gloomy>
-        <li>[lowmood] Another raid. I fought, and then I sat down and couldn't get up for a while.</li>
+        <li>[lowmood] They came again. I fought, and then I sat down and couldn't get up for a while.</li>
         <li>[lowmood] They came, and I didn't care much whether I came back. I did.</li>
       </gloomy>
     </lines>
@@ -327,8 +327,8 @@
       <plain>
         <li>[repeat] Asked again, and no again. I'll find another way.</li>
         <li>[repeat] They've said no to "{WISH}" twice now. I'm starting to take the hint.</li>
-        <li>[forother] I asked on someone else's behalf, and they said no. I'll be the one to break it to them.</li>
-        <li>[forother] Not even for me, and still refused. I hope they had a good reason.</li>
+        <li>[forother] It wasn't even for me. Now I get to carry the no back to the one who wanted it.</li>
+        <li>[forother] Refused, and it was for someone who never asks for anything.</li>
         <li>[trusting] If the council says no, I'll accept it. They've earned that from me.</li>
         <li>[trusting] Refused, but I trust they weighed it fairly.</li>
       </plain>
@@ -337,7 +337,7 @@
         <li>[trusting] I'm sure they had their reasons. I'll ask what they were, kindly.</li>
       </warm>
       <cheerful>
-        <li>[clear] Refused, but it's a lovely clear evening, and I'm going to enjoy it anyway.</li>
+        <li>[clear] Refused. I took my sulk out under the stars and lost it somewhere.</li>
         <li>[clear] They said no. The sky said yes. I'll go with the sky.</li>
       </cheerful>
       <gloomy>
