@@ -25,7 +25,7 @@
       </li>
       <li>
         <label>at the end of my rope</label>
-        <description>I can't keep carrying all of this. Something has to give, and soon.</description>
+        <description>I snap at people and can't remember why. One more thing and I don't know what I'll do.</description>
         <baseMoodEffect>-8</baseMoodEffect>
       </li>
     </stages>
@@ -39,7 +39,7 @@
     <stages>
       <li>
         <label>let it all out</label>
-        <description>I took a day to myself and let it all out. I feel lighter than I have in a while.</description>
+        <description>I put my work down and went off on my own until it had all come out. My shoulders have finally come down.</description>
         <baseMoodEffect>6</baseMoodEffect>
       </li>
     </stages>
@@ -53,8 +53,8 @@
     <stages>
       <li><label>idle days</label><description>Everyone's lying around while the work piles up. I can't stand it.</description><baseMoodEffect>-4</baseMoodEffect></li>
       <li><label>slow days</label><description>Short days and long evenings. I'd rather be doing something.</description><baseMoodEffect>-2</baseMoodEffect></li>
-      <li><label>a few easy days</label><description>Shorter days and long evenings. I'm sleeping better already.</description><baseMoodEffect>3</baseMoodEffect></li>
-      <li><label>a real rest</label><description>No early mornings, nobody shouting for help with the stone. I needed this more than I knew.</description><baseMoodEffect>6</baseMoodEffect></li>
+      <li><label>a few easy days</label><description>Evenings that go on and no early start. I'm sleeping better already.</description><baseMoodEffect>3</baseMoodEffect></li>
+      <li><label>a real rest</label><description>No early mornings, nobody shouting for help with the stone. I slept until the sun was in my eyes.</description><baseMoodEffect>6</baseMoodEffect></li>
     </stages>
   </ThoughtDef>
 

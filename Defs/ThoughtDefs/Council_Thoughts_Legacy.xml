@@ -8,8 +8,8 @@
     <workerClass>ColonyCouncil.ThoughtWorker_Heirloom</workerClass>
     <validWhileDespawned>true</validWhileDespawned>
     <stages>
-      <li><label>carrying {LOST}'s {ITEM}</label><description>It used to be theirs. When I hold it, it's like they're still with me.</description><baseMoodEffect>4</baseMoodEffect></li>
-      <li><label>carrying {LOST}'s {ITEM}</label><description>This belonged to someone we lost. I try to be worthy of it.</description><baseMoodEffect>2</baseMoodEffect></li>
+      <li><label>carrying {LOST}'s {ITEM}</label><description>It used to be theirs. I keep it close, the way they did.</description><baseMoodEffect>4</baseMoodEffect></li>
+      <li><label>carrying {LOST}'s {ITEM}</label><description>This belonged to someone we lost. I take better care of it than I do of my own things.</description><baseMoodEffect>2</baseMoodEffect></li>
     </stages>
   </ThoughtDef>
 
@@ -27,7 +27,7 @@
     <durationDays>10</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>my child is grown</label><description>My child is all grown up. I'm so proud of them.</description><baseMoodEffect>6</baseMoodEffect><baseOpinionOffset>10</baseOpinionOffset></li></stages>
+    <stages><li><label>my child is grown</label><description>My child is grown now and making their own way. I still check they've eaten.</description><baseMoodEffect>6</baseMoodEffect><baseOpinionOffset>10</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -61,7 +61,7 @@
     <durationDays>10</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>trusted with a student</label><description>The council asked me to teach them. I won't waste that.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>8</baseOpinionOffset></li></stages>
+    <stages><li><label>trusted with a student</label><description>The council asked me to teach them. I've already written out where we'll start.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>8</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
 </Defs>
