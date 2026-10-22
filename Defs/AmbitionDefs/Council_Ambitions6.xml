@@ -39,7 +39,7 @@
         <li>Right now this is a camp with walls. I'd like it to be a place we live.</li>
         <li>[rain] Another night on a wet floor. Proper beds, please, and a roof over the table.</li>
         <li>[small] There aren't many of us. That makes it easier to give every one of us a bed.</li>
-        <li>[tribal] A people with a home tell stories by its fire. Let's build one worth telling stories in.</li>
+        <li>[tribal] A people with a home tell stories by its fire. We're still telling ours on the bare ground.</li>
       </plain>
       <warm>
         <li>Everyone should wake up in a real bed and sit down to a real table. It isn't much to ask.</li>
@@ -70,7 +70,7 @@
   <ColonyCouncil.AmbitionDef>
     <defName>Council_Amb_TableForAll</defName>
     <label>a table for everyone</label>
-    <description>Seat everyone together: a chair at a table indoors for everyone who eats, in a dining room people are glad to sit in. A colony that eats together holds together.</description>
+    <description>Seat everyone together: a chair at an indoor table for everyone who eats, in a dining room with an impressiveness of at least 35.</description>
     <days>20</days>
     <minColonists>4</minColonists>
     <relevantCategories><li>Comfort</li></relevantCategories>
@@ -87,13 +87,13 @@
     <pitch>
       <plain>
         <li>We eat in shifts, like a barracks. I'd like us all at one table, once a day.</li>
-        <li>Half of us eat standing up. Let's build chairs until everyone has one.</li>
-        <li>[evening] Supper should be the best hour of the day. Right now it's a queue.</li>
+        <li>Some of us eat standing up, plate in one hand. Let's build chairs until everyone has one.</li>
+        <li>[evening] Supper should be the best hour of the day. Right now it's a scramble for chairs.</li>
         <li>[large] There are a lot of us now. We should still be able to sit down together.</li>
         <li>[afterraid] After a day like today, I want everyone round one table where I can see them.</li>
       </plain>
       <warm>
-        <li>People who share a table look out for each other. I'd like us to be that.</li>
+        <li>At one table I'd see who's gone quiet and who isn't eating. Across three rooms, I can't.</li>
       </warm>
       <blunt>
         <li>More chairs, a bigger table, and a room worth eating in. Done.</li>
@@ -112,7 +112,7 @@
       <plain><li>Everyone at one table, and room to spare.</li></plain>
       <warm><li>I looked down the table tonight and every seat had someone I'm fond of in it.</li></warm>
       <cheerful><li>We were so loud at supper the animals came to look!</li></cheerful>
-      <gloomy><li>Everyone fits. I'll enjoy it before someone else joins.</li></gloomy>
+      <gloomy><li>Everyone fits. Give it a year and we'll be short of chairs again.</li></gloomy>
       <cold><li>Seating is sufficient for all. Good.</li></cold>
     </achieved>
     <!-- With "Answers play out on the map": the first supper with a seat for everyone. -->
@@ -145,7 +145,7 @@
         <li>[winter] Winter wears on people. Let's get through this one without anyone falling apart.</li>
       </plain>
       <warm>
-        <li>Nobody here should have to carry it alone. Let's watch out for each other until things settle.</li>
+        <li>If you're struggling, say so, and one of us will sit with you. Let's watch out for each other until things settle.</li>
       </warm>
       <blunt>
         <li>Too many people are close to cracking. Fix that before it costs us.</li>
@@ -157,14 +157,14 @@
         <li>Somebody's going to break soon. I'd like to be wrong about that.</li>
       </gloomy>
       <cold>
-        <li>A mental break costs days of work and sometimes lives. Preventing them is efficient.</li>
+        <li>When someone breaks, the rest of us spend days cleaning up after it. I'd rather spend them working.</li>
       </cold>
     </pitch>
     <achieved>
-      <plain><li>Fifteen days and nobody broke. We're steadier than we were.</li></plain>
-      <warm><li>I'm proud of all of us. We got through it together.</li></warm>
+      <plain><li>Fifteen days, and not one break. We're steadier than we were.</li></plain>
+      <warm><li>I thanked each of you at breakfast this morning, and I meant it.</li></warm>
       <cheerful><li>Half a season without a single tantrum!</li></cheerful>
-      <gloomy><li>Calm for now. I'll take it.</li></gloomy>
+      <gloomy><li>Fifteen quiet days. I'll take them.</li></gloomy>
       <cold><li>Stability achieved. Maintain it.</li></cold>
     </achieved>
   </ColonyCouncil.AmbitionDef>
@@ -212,7 +212,7 @@
       </cold>
     </pitch>
     <achieved>
-      <plain><li>A full year and nobody broke. We should write that down somewhere.</li></plain>
+      <plain><li>A full year without a single breakdown. We should write that down somewhere.</li></plain>
       <warm><li>A year of looking after each other. I couldn't ask for better people.</li></warm>
       <cheerful><li>A whole year! Somebody find a cake.</li></cheerful>
       <gloomy><li>A year without anyone breaking. I didn't think we'd make it.</li></gloomy>
@@ -240,7 +240,7 @@
     </goals>
     <pitch>
       <plain>
-        <li>Three of us are sniffling and the rest will be soon. Let's get everyone well and keep them well.</li>
+        <li>People are sniffling at every meal, and the rest will be soon. Let's get them well and keep them well.</li>
         <li>Rest for the sick, warm beds, clean floors. Then fifteen days with nobody coughing.</li>
         <li>[winter] Winter is when it spreads. We can't stop the cold, but we can stop passing things around.</li>
         <li>[lowtech] Clean water, rest, and the sick kept apart. That's how the old healers did it.</li>
@@ -262,7 +262,7 @@
       </cold>
     </pitch>
     <achieved>
-      <plain><li>Fifteen days and nobody sick. The infirmary is quiet for once.</li></plain>
+      <plain><li>Fifteen days without a cough or a fever. The infirmary is quiet for once.</li></plain>
       <warm><li>Everyone's well. I'd forgotten what that sounded like at breakfast.</li></warm>
       <cheerful><li>Not one cough at supper tonight!</li></cheerful>
       <cold><li>Colony health restored. Stores in place for next time.</li></cold>
@@ -301,12 +301,12 @@
       <plain>
         <li>Right now our infirmary is wherever somebody falls down. I'd like a proper one.</li>
         <li>Medicine first, then beds for the sick, then a room clean enough to cut someone open in.</li>
-        <li>[hurt] I've been stitched up on a dirty floor. I'd rather the next person wasn't.</li>
+        <li>[hurt] Look at this scar. That's what a dirty floor does to a clean cut.</li>
         <li>[afterraid] We patched people up in the dining room again. That can't keep happening.</li>
-        <li>[small] With so few of us, losing one to an infection would be terrible. Let's do this properly.</li>
+        <li>[small] With so few of us, one wound gone bad could empty a job nobody else knows how to do. Let's do this properly.</li>
       </plain>
       <warm>
-        <li>When one of us is hurt, I want them to wake up somewhere clean and quiet.</li>
+        <li>I'd like whoever's hurt to have a door to close, and someone sitting with them.</li>
       </warm>
       <blunt>
         <li>People die of dirty wounds. Build an infirmary and keep it clean.</li>
@@ -315,18 +315,18 @@
         <li>A real infirmary, with clean sheets and medicine on the shelf! We'll be the healthiest colony around.</li>
       </cheerful>
       <gloomy>
-        <li>Someone's going to get badly hurt sooner or later. I'd like a place ready for them.</li>
+        <li>We've lost people to wounds that should have healed. I don't want to lose any more that way.</li>
       </gloomy>
       <cold>
-        <li>Infection rates fall sharply in a clean room. The return on this is obvious.</li>
+        <li>Most of the dead I've seen out here died of a wound gone bad, days after the fight.</li>
       </cold>
     </pitch>
     <achieved>
       <plain><li>Medicine on the shelf, two clean beds, and a floor you could eat off. A proper infirmary.</li></plain>
-      <warm><li>Whoever needs it next will be looked after properly.</li></warm>
+      <warm><li>There's a stool by each bed now, for whoever sits up with the patient.</li></warm>
       <cheerful><li>I scrubbed it twice and it sparkles!</li></cheerful>
       <gloomy><li>It's ready. Now someone will need it.</li></gloomy>
-      <cold><li>Medical facility complete. Infection risk reduced.</li></cold>
+      <cold><li>Two clean beds and the medicine to hand. Infections should drop.</li></cold>
     </achieved>
   </ColonyCouncil.AmbitionDef>
 
@@ -335,7 +335,7 @@
   <ColonyCouncil.AmbitionDef>
     <defName>Council_Amb_CampFriends</defName>
     <label>friends at the camp</label>
-    <description>Strangers are camped on the map. Before they move on, three colonists should spend enough time at their fire to know them: they talk with whoever comes by. Friendly neighbors trade, share and remember.</description>
+    <description>Strangers are camped on the map. Before they move on, three colonists should spend enough time at their fire to know them; the campers talk with whoever comes by.</description>
     <days>8</days>
     <weight>1.5</weight>
     <proposerSkills><li>Social</li></proposerSkills>
@@ -366,7 +366,7 @@
         <li>Better to have them as friends than as strangers watching us from the trees.</li>
       </gloomy>
       <cold>
-        <li>Their people will hear how we treated them. Goodwill is cheap now and valuable later.</li>
+        <li>Their people will hear how we treated them. I'd like what they hear to be useful to us.</li>
       </cold>
     </pitch>
     <achieved>
@@ -398,14 +398,14 @@
     </goals>
     <pitch>
       <plain>
-        <li>The first frost came early. Half of us are still dressed for summer.</li>
+        <li>The first frost came early, and most of us are still dressed for summer.</li>
         <li>Coats for everyone before the snow, or we'll be losing fingers by midwinter.</li>
-        <li>[fall] Winter's on its way. I want everyone wrapped up warm before it gets here.</li>
+        <li>[fall] The birds are leaving and I can see my breath in the mornings. Coats, before the snow.</li>
         <li>[tribal] Skins and furs, sewn double. That's how my people got through the long cold.</li>
         <li>[medieval] Wool cloaks and hoods for every one of us. The tailor will be busy.</li>
       </plain>
       <warm>
-        <li>I don't want anyone shivering through this winter. Not one of us.</li>
+        <li>I'd like to see us all come in from the fields with red cheeks and warm hands.</li>
       </warm>
       <blunt>
         <li>Warm clothes. Everyone. Before winter.</li>
@@ -422,7 +422,7 @@
     </pitch>
     <achieved>
       <plain><li>Everyone's dressed for the cold. Let it come.</li></plain>
-      <warm><li>Nobody will freeze this winter. That's a good feeling.</li></warm>
+      <warm><li>Every one of us has a coat that fits. I checked the sleeves myself.</li></warm>
       <cheerful><li>We all look ridiculous and nobody's cold!</li></cheerful>
       <cold><li>Cold-weather clothing distributed.</li></cold>
     </achieved>
@@ -472,11 +472,11 @@
         <li>Who knows how many more chances we'll get. Let's have one good feast while we can.</li>
       </gloomy>
       <cold>
-        <li>A colony-wide feast lifts morale for days. The ingredients are an investment.</li>
+        <li>A feast costs us a week of ingredients and buys a month of people not complaining.</li>
       </cold>
     </pitch>
     <achieved>
-      <plain><li>A lavish meal for every one of us, and a hall to eat it in. A night to remember.</li></plain>
+      <plain><li>A lavish meal for every one of us, and a hall to eat it in. The cooks have earned a day off.</li></plain>
       <warm><li>I watched them all eat and couldn't stop smiling. Worth every hour in the kitchen.</li></warm>
       <cheerful><li>Best feast ever! I can't move.</li></cheerful>
       <cold><li>Feast prepared. Morale should benefit for some time.</li></cold>
@@ -529,12 +529,12 @@
         <li>We're one bad day away from nobody knowing how to do anything important.</li>
       </gloomy>
       <cold>
-        <li>Redundancy in critical skills is the difference between a setback and a collapse.</li>
+        <li>Lose our only cook and we'd be eating raw corn within the week. That's one arrow away.</li>
       </cold>
     </pitch>
     <achieved>
       <plain><li>Two who can heal and two who can cook. We can lose a bad day now without losing everything.</li></plain>
-      <warm><li>Everyone learned something. I'm proud of all of them.</li></warm>
+      <warm><li>Our second cook made supper tonight without asking anyone a single question.</li></warm>
       <gloomy><li>Less fragile than we were.</li></gloomy>
       <cold><li>Critical skills duplicated.</li></cold>
     </achieved>
@@ -565,7 +565,7 @@
       <plain>
         <li>Nobody out there knows we exist, and we can't call anyone. That's how colonies vanish.</li>
         <li>A comms console and a couple of friendly neighbors. Then if trouble comes, someone answers.</li>
-        <li>[afterraid] We fought that one alone. I'd like the next one to be different.</li>
+        <li>[afterraid] We could have used help yesterday, and there was no way to ask for it.</li>
         <li>[small] As few as we are, we need friends more than walls.</li>
       </plain>
       <warm>
@@ -575,13 +575,13 @@
         <li>Build the console. Make some friends. Stop being alone out here.</li>
       </blunt>
       <cheerful>
-        <li>Voices on the radio and traders on call! We'll be the best-connected place for miles.</li>
+        <li>Voices on the console every evening, and traders who know our name!</li>
       </cheerful>
       <gloomy>
-        <li>If we all died tomorrow, nobody would even hear about it.</li>
+        <li>We could shout all night out here and only the wind would hear us.</li>
       </gloomy>
       <cold>
-        <li>Allies and trade partners multiply our options at no cost but goodwill.</li>
+        <li>A console costs a few components. Not having one could cost us the colony.</li>
       </cold>
     </pitch>
     <achieved>
@@ -597,7 +597,7 @@
   <ColonyCouncil.AmbitionDef>
     <defName>Council_Amb_YearRound</defName>
     <label>ready for every season</label>
-    <description>A long project, in stages: food for thirty days put by, then everyone dressed for the cold, then medicine on the shelf. A colony that has all three can face whatever the year brings.</description>
+    <description>A long project, in stages: food for thirty days put by, then everyone dressed for the cold, then medicine on the shelf, so the year can't catch the colony short.</description>
     <days>60</days>
     <weight>0.6</weight>
     <staged>true</staged>
@@ -617,7 +617,7 @@
     </goals>
     <pitch>
       <plain>
-        <li>Every year it's the same: we scramble for food in fall, for coats at first frost, for medicine when someone's sick. Let's get ahead of it.</li>
+        <li>Every year we scramble for food in fall and coats at the first frost. Let's get ahead of it.</li>
         <li>Food, warm clothes, medicine. One after another, and then the year can do its worst.</li>
         <li>[spring] It's the start of the year. If we plan now, we won't be caught out by the end of it.</li>
         <li>[poor] We can't afford to be caught short again. Let's put by what we need for the whole year.</li>
@@ -640,7 +640,7 @@
     </pitch>
     <achieved>
       <plain><li>Food put by, everyone dressed for the cold, and medicine on the shelf. Let the year come.</li></plain>
-      <warm><li>Whatever happens this year, we're ready for it together.</li></warm>
+      <warm><li>I walked through the storeroom and didn't find a single empty shelf.</li></warm>
       <cheerful><li>Every list ticked off!</li></cheerful>
       <cold><li>Preparations complete for all seasons.</li></cold>
     </achieved>
@@ -725,17 +725,17 @@
         <li>Replace the missing parts. We have the means.</li>
       </blunt>
       <cheerful>
-        <li>New legs, new hands! Everyone back on their feet, literally.</li>
+        <li>New legs, new hands! Everyone back on their feet.</li>
       </cheerful>
       <gloomy>
         <li>Every fight takes something from someone. At least this part we can fix.</li>
       </gloomy>
       <cold>
-        <li>A colonist with a missing limb works at half capacity. Replacement pays for itself.</li>
+        <li>A one-handed colonist does half the work and eats the whole meal.</li>
       </cold>
     </pitch>
     <achieved>
-      <plain><li>Everyone who lost something has it back, near enough.</li></plain>
+      <plain><li>All of them have what they lost back, near enough.</li></plain>
       <warm><li>Watching them walk without a crutch was worth all the work.</li></warm>
       <cheerful><li>Everyone's whole again!</li></cheerful>
       <cold><li>All replaceable losses replaced.</li></cold>
