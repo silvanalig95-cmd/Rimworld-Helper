@@ -211,9 +211,11 @@ namespace ColonyCouncil
             if (pet == null || pet.Dead || pet.Faction != Faction.OfPlayer) return;
             if (x == null || x.Dead || !x.Spawned || x.Faction == null || x.Faction.IsPlayer)
             {
-                // Nobody to take it: it's turned loose instead.
+                // Nobody to take it: it's turned loose instead, and moves on off the land within a few hours.
                 if (pet.Spawned) pet.jobs?.StopAll();
                 pet.SetFaction(null);
+                if (pet.Spawned && pet.mindState != null && !pet.RaceProps.Humanlike)
+                    pet.mindState.exitMapAfterTick = Find.TickManager.TicksGame + Rand.Range(GenDate.TicksPerHour, GenDate.TicksPerHour * 4);
                 return;
             }
             if (pet.Spawned) pet.jobs?.StopAll();
