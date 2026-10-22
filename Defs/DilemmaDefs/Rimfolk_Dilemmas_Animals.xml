@@ -463,7 +463,8 @@
         <ways><tradition>4</tradition><toil>-2</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>5</count></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>shearing day</label><spots><li>Outdoors</li><li>Gather</li></spots><hours>9~16</hours></li>
+          <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>the shearing at the pens</label><count>6</count><tasks><li>Tend</li></tasks><hours>7~12</hours><duration>2~3</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>shearing day</label><spots><li>Outdoors</li><li>Gather</li></spots><hours>12~17</hours></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Trad_Shearing</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>3</amount></li>
         </effects>
@@ -473,6 +474,7 @@
         <outcome>{A_nameDef} did the shearing with whoever could be spared, quickly and well, and had the wool in by noon.</outcome>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Animals</skill><xp>300</xp></li>
+          <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>the shearing</label><count>3</count><tasks><li>Tend</li></tasks><hours>6~11</hours><duration>2~3</duration></li>
         </effects>
       </li>
       <li>

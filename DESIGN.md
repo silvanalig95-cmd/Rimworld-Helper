@@ -660,6 +660,19 @@ gives those taking part come once it's over (PlayOut/).
   drafting, downing, a mental state, a lord, hunger or exhaustion ends a member's part; danger ends the group (an
   errand goes back to waiting). At most eight on one, two groups at once, four hours (eight for a vigil); a plan never
   runs more than three hours past its length. Everything is saved (`PlayHand` per member).
+- **Beyond answers, and things made real.** A personal story's stage and an encounter list their effects the same way
+  (`ArcTracker.Apply`, `EncounterTracker.Fire`), without holding moods: a grave visit for the one a story grieves
+  (`PlaySpots.GraveNamed`, falling back to the visit's `orTo`, which for a grave may be a long walk out), a supper for
+  the three people of a story of three (`_Gathering.third`), lessons and songs with a visitor, a bowl carried out only
+  when the stores have it (`_CarryOut.ifHave`). Work parties shear and milk (`WorkTask.Tend`: the game's
+  `WorkGiver_Shear` and `WorkGiver_Milk`, counted done when the animal is no longer full). What an answer says now
+  exists is made by `OnMapThings.cs` (pure part `OnMapMath`): `_Made` (the first of a list of things this game has
+  and the colony's era allows, its quality from the maker's skill, art signed by them, minified, set down beside the
+  one it's for), `_Felled` (the nearest ordinary wild trees outside home and zones felled for the wood a guest cut,
+  stumps left, the logs shared out beside them; never with a tree-respecting faith at home), `_Plant` (saplings of
+  the biome's commonest timber tree by the fields), `_PlanRoom` (the room planner's `FindSpot`, `Plan` and `Execute`
+  on a copy of the player's config) and `_BurnFound` (addictive drugs on someone and in a bedroom of their own, with
+  ash in the yard). Each is wrapped, and does nothing when it can't.
 - **The moods.** While an answer's effects run, a good memory (`DilemmaEffect_Thought`) given to someone taking part
   in what the answer set going is held with the plan (`PlayOuts.Hold`) and given when it's over to those who were
   there long enough (a quarter of a gathering, at most half an hour; half a visit) or ate at the feast. Bad memories,

@@ -103,7 +103,9 @@ namespace ColonyCouncil
         /// <summary>Plants and trees marked for cutting.</summary>
         Cut,
         /// <summary>The herd walked home on a rope, into the barn or the pen (Animals/HerdHome.cs).</summary>
-        Herd
+        Herd,
+        /// <summary>The colony's animals that are ready for it sheared and milked (the game's own shearing and milking).</summary>
+        Tend
     }
 
     /// <summary>One person on a work party, a walk, a vigil, a search, an errand or a hunt: how long, how far, what they've done.</summary>

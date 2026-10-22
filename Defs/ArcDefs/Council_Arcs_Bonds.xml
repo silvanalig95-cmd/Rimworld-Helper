@@ -451,6 +451,7 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Arc_DebtRepaid</thought><target>B</target></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Arc_DebtSettled</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Made"><things>SculptureSmall</things><maker>A</maker><forWhom>B</forWhom></li>
           <li Class="ColonyCouncil.ArcEffect_Tie"><kind>Friends</kind><amount>12</amount></li>
         </effects>
       </li>

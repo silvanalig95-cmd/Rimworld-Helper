@@ -192,4 +192,16 @@
   <CC_Week_PlayCarry>{0} {1}, carried out from the stores.</CC_Week_PlayCarry>
   <CC_Week_PlayHunt>After {0}.</CC_Week_PlayHunt>
 
+  <!-- Work parties: shearing and milking -->
+  <CC_Play_Task_Tend>shearing and milking</CC_Play_Task_Tend>
+
+  <!-- Things an answer says now exist (PlayOut/OnMapThings.cs) -->
+  <CC_Made_By>{MAKER_nameDef}'s work, {THING}, was set down beside {PAWN_nameDef}.</CC_Made_By>
+  <CC_Made_Here>{PAWN_nameDef} has a new {THING}.</CC_Made_Here>
+  <CC_Felled_Wood>{0} wood lies where it was cut.</CC_Felled_Wood>
+  <CC_Saplings_One>The new sapling is in the ground.</CC_Saplings_One>
+  <CC_Saplings_Many>{0} new saplings are in the ground.</CC_Saplings_Many>
+  <CC_PlanRoom_Marked>The new room for {PAWN_nameDef} is marked out as building plans ({ROOM}). It will take materials and hands to build.</CC_PlanRoom_Marked>
+  <CC_Burned_Found>{WHAT} from {PAWN_nameDef}'s room went on a fire in the yard.</CC_Burned_Found>
+
 </LanguageData>

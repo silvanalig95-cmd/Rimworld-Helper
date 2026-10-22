@@ -149,8 +149,10 @@ namespace ColonyCouncil
             {
                 int rep = Reputation();
                 string known = CouncilGameComponent.Instance?.character.Describe();
-                outcome = (rep > 0 ? "CC_Evt_Article_Good" : rep < 0 ? "CC_Evt_Article_Bad" : "CC_Evt_Article_Plain")
+                // The answer's own words first ("X writes it all down"), then what the piece says.
+                string article = (rep > 0 ? "CC_Evt_Article_Good" : rep < 0 ? "CC_Evt_Article_Bad" : "CC_Evt_Article_Plain")
                     .Translate(ctx.stranger?.LabelShort ?? "?", known ?? "CC_Evt_Article_Unknown".Translate().ToString()).Resolve();
+                outcome = outcome.NullOrEmpty() ? article : outcome + " " + article;
                 int goodwill = rep > 0 ? 4 : rep < 0 ? -3 : 1;
                 foreach (var f in Find.FactionManager.AllFactionsListForReading.Where(f => !f.IsPlayer && !f.Hidden && !f.defeated && f.HasGoodwill && !f.HostileTo(Faction.OfPlayer)))
                     f.TryAffectGoodwillWith(Faction.OfPlayer, goodwill, false, false);

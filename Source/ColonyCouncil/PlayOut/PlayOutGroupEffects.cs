@@ -243,6 +243,11 @@ namespace ColonyCouncil
         public bool variant;
         public PlayWho who = PlayWho.A;
         public PlaySpot to = PlaySpot.Stranger;
+        /// <summary>
+        /// Only when the stores hold all of it, else nothing at all (a moment told after it happened, an encounter, where
+        /// nothing is greyed out beforehand: a bowl fetched only if there's a meal to fetch).
+        /// </summary>
+        public bool ifHave;
 
         public DilemmaEffect_CarryOut()
         {
@@ -271,6 +276,7 @@ namespace ColonyCouncil
             var map = ctx?.map ?? HappeningTracker.HomeMap();
             if (map == null) return;
             if (ctx.map == null) ctx.map = map;
+            if (ifHave && PlayCarry.Have(map, what, Def(ctx)) < Need(ctx)) return;
             PlayOut p = null;
             try
             {

@@ -43,6 +43,7 @@
         <outcome>{PET_nameDef} was turned loose and answers to no one now. {A_nameDef} has hardly said a word since.</outcome>
         <ways><mercy>-7</mercy></ways>
         <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>a last walk with {PET_nameDef}</label><whom>Pet</whom><waitHours>1</waitHours><duration>0.5~0.75</duration></li>
           <li Class="ColonyCouncil.DilemmaEffect_ReleasePet" />
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_PetReleased</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-15</amount></li>

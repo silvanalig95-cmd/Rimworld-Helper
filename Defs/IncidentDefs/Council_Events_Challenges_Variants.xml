@@ -132,6 +132,7 @@
       <li>[industrial] {FACTION} have written, on good paper, about {A_nameDef}'s {SKILL}. They would pay the colony {COUNT} silver for {A_nameDef} to come and work for them, with a proper wage and a room of {A_possessive} own.</li>
       <li>[medieval] Word of {A_nameDef}'s {SKILL} has reached a lord of {FACTION}. The lord's steward has sent word: {COUNT} silver for the colony, if {A_nameDef} will take service in the great house.</li>
       <li>[colony:Hardworking] Word of the colony's work has spread, and {FACTION} want some of it. They'll pay {COUNT} silver for {A_nameDef}, whose {SKILL} they've heard about, to come and work for them instead.</li>
+      <li>[noble] {FACTION} know {A_nameDef}'s family name, and now they've heard of {A_possessive} {SKILL} as well. They offer the colony {COUNT} silver to have {A_objective} back among people of {A_possessive} own sort.</li>
     </texts>
     <outcomes>
       <li>

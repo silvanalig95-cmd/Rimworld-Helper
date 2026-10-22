@@ -132,6 +132,7 @@
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Animals</skill><xp>400</xp></li>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncF_RopeTrick</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Lesson"><label>rope tricks in the yard</label><teacher>X</teacher><student>A</student><skill>Animals</skill><xpPerHour>80</xpPerHour><hours>7~19</hours><waitHours>2</waitHours><duration>1~1.5</duration></li>
     </effects>
     <journal>Council_Journal_EncF_Settlers</journal>
   </ColonyCouncil.EncounterDef>

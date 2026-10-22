@@ -539,6 +539,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Flattered</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>3</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_MadeUp</thought><chance>0.5</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Made"><things>SculptureSmall</things><maker>A</maker><forWhom>B</forWhom><skill>Artistic</skill></li>
         </effects>
         <riskChance>0.3</riskChance>
         <riskReplaces>true</riskReplaces>
@@ -548,6 +549,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Mocked</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Grudge</thought><about>A</about></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_GoodLaugh</thought><exceptTrait><li>Kind</li></exceptTrait><chance>0.5</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Made"><things>SculptureSmall</things><maker>A</maker><forWhom>B</forWhom><skill>Artistic</skill></li>
         </riskEffects>
       </li>
     </options>

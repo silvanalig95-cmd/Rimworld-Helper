@@ -77,7 +77,7 @@
     <cooldownDays>5</cooldownDays>
     <thought>Council_Nuisance_AnimalInBed</thought>
     <texts>
-      <li>{A_nameDef}'s bed is more {THING} than bed these days.</li>
+      <li>These days {A_nameDef}'s bed belongs mostly to {THING}.</li>
       <li>There was a half-chewed bone under {A_nameDef}'s bed this morning, and it wasn't {A_nameDef}'s.</li>
       <li>{A_nameDef} had to shove a warm, heavy animal off the bed before {A_pronoun} could lie down.</li>
       <li>{A_nameDef}'s blanket smells of {THING} now, and so does the pillow.</li>

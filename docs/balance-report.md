@@ -20,15 +20,15 @@ The targets are in DESIGN.md ("Balance targets").
 
 | | Target | 6 colonists | 12 colonists | 6 colonists before |
 |---|---|---|---|---|
-| Rimfolk's mood, well run | +3 to +6 | +3.6 | +3.0 | +2.9 |
+| Rimfolk's mood, well run | +3 to +6 | +3.6 | +2.9 | +2.9 |
 | Rimfolk's mood, average | 0 to +3 | +0.6 | +0.4 | -0.3 |
 | Rimfolk's mood, neglectful | -4 to -10 | -8.8 | -8.1 | -11.3 |
-| Rimfolk's good moods at a high point (P99), well run | well short of the top | +15.1 | +14.2 | +15.0 |
+| Rimfolk's good moods at a high point (P99), well run | well short of the top | +15.2 | +14.2 | +15.0 |
 | Time with +12 or more from Rimfolk's good moods, well run | rare | 10% | 5% | 10% |
 | Questions (decision letters) per day, average | 1 every 2-3 days (0.33-0.5) | 0.48 | 0.51 | 0.53 |
 | Questions and wishes voiced per day, average | (for reference) | 0.93 | 1.01 | 0.98 |
 | Questions within 12 hours of another, average | few | 8% | 9% | 18% |
-| Time with an everyday ailment, average | 10-15% | 18% | 16% | 24% |
+| Time with an everyday ailment, average | 10-15% | 17% | 16% | 24% |
 | Time with an everyday ailment, well run | under 10-15% | 11% | 11% | 17% |
 
 ## Before and after the balance pass
@@ -37,27 +37,27 @@ The same simulator on the code and defs as they were before the pass, and as the
 
 | | 6 before | 6 after | 12 before | 12 after |
 |---|---|---|---|---|
-| Rimfolk's mood, well run | +2.9 | +3.6 | +2.5 | +3.0 |
-|   good memories (raw), well run | +4.7 (+5.5) | +4.5 (+5.0) | +4.1 (+4.6) | +3.9 (+4.2) |
+| Rimfolk's mood, well run | +2.9 | +3.6 | +2.5 | +2.9 |
+|   good memories (raw), well run | +4.7 (+5.5) | +4.5 (+5.0) | +4.1 (+4.6) | +3.8 (+4.2) |
 |   bad memories and steady bad, well run | -5.3 | -4.5 | -4.6 | -3.8 |
 | Rimfolk's mood, average | -0.3 | +0.6 | -0.5 | +0.4 |
-|   good memories (raw), average | +5.9 (+6.6) | +5.6 (+6.0) | +5.2 (+5.7) | +4.9 (+5.3) |
+|   good memories (raw), average | +5.9 (+6.6) | +5.6 (+6.0) | +5.2 (+5.7) | +5.0 (+5.3) |
 |   bad memories and steady bad, average | -8.1 | -6.8 | -7.4 | -6.2 |
 | Rimfolk's mood, neglectful | -11.3 | -8.8 | -10.1 | -8.1 |
-|   good memories (raw), neglectful | +4.1 (+4.4) | +4.0 (+4.2) | +3.7 (+3.9) | +3.5 (+3.6) |
+|   good memories (raw), neglectful | +4.1 (+4.4) | +4.0 (+4.2) | +3.7 (+3.9) | +3.5 (+3.7) |
 |   bad memories and steady bad, neglectful | -16.0 | -13.5 | -14.4 | -12.1 |
-| Rimfolk's good moods at a high point (P99), well run | +15.0 | +15.1 | +14.4 | +14.2 |
+| Rimfolk's good moods at a high point (P99), well run | +15.0 | +15.2 | +14.4 | +14.2 |
 | Time with +12 or more from Rimfolk's good moods, well run | 10% | 10% | 6% | 5% |
-| Trust, year's average, average play | +13 | +13 | +10 | +11 |
+| Trust, year's average, average play | +13 | +14 | +10 | +11 |
 | Questions per day, average play | 0.53 | 0.48 | 0.56 | 0.51 |
 | Questions within 12 hours of another, average play | 18% | 8% | 19% | 9% |
 | Days with two or more questions, average play | 9% | 5% | 10% | 7% |
-| Wishes voiced per day, average play | 0.45 | 0.45 | 0.50 | 0.50 |
+| Wishes voiced per day, average play | 0.45 | 0.44 | 0.50 | 0.50 |
 | Letters that only tell, per day, average play | 0.41 | 0.40 | 0.49 | 0.48 |
 | News lines per day (one evening letter), average play | 1.66 | 1.68 | 2.29 | 2.35 |
 | Time with an everyday ailment, well run | 17% | 11% | 17% | 11% |
-| Time with an everyday ailment, average | 24% | 18% | 23% | 16% |
-| Time with an everyday ailment, neglectful | 44% | 37% | 44% | 39% |
+| Time with an everyday ailment, average | 24% | 17% | 23% | 16% |
+| Time with an everyday ailment, neglectful | 44% | 38% | 44% | 39% |
 | Ailment days per colonist per year, average play | 14.4 | 10.6 | 13.8 | 10.0 |
 
 ## Rimfolk's mood per colonist
@@ -68,20 +68,20 @@ colony's ways, pressures, ailments, waiting and strain. P10 and P90: a hard and 
 
 | Case | Good memories (raw) | Bad memories | Steady good | Steady bad | **Net** | P10 / P90 | Good moods on the mind | Mood | Standards |
 |---|---|---|---|---|---|---|---|---|---|
-| 6 colonists, well run | +4.5 (+5.0) | -3.0 | +3.5 | -1.5 | **+3.6** | -2.5 / +9.2 | 2.3 | 70% | 0.93 |
-| 6 colonists, average | +5.6 (+6.0) | -3.5 | +1.8 | -3.3 | **+0.6** | -7.0 / +8.3 | 1.7 | 63% | 0.16 |
-| 6 colonists, neglectful | +4.0 (+4.2) | -4.6 | +0.6 | -8.8 | **-8.8** | -16.9 / -1.0 | 1.2 | 37% | 0.00 |
-| 12 colonists, well run | +3.9 (+4.2) | -2.6 | +2.9 | -1.2 | **+3.0** | -2.6 / +8.3 | 1.9 | 69% | 0.91 |
-| 12 colonists, average | +4.9 (+5.3) | -3.0 | +1.7 | -3.2 | **+0.4** | -6.6 / +7.7 | 1.5 | 63% | 0.14 |
-| 12 colonists, neglectful | +3.5 (+3.6) | -4.0 | +0.5 | -8.1 | **-8.1** | -15.4 / -0.8 | 1.1 | 38% | 0.00 |
+| 6 colonists, well run | +4.5 (+5.0) | -3.0 | +3.5 | -1.4 | **+3.6** | -2.5 / +9.2 | 2.3 | 70% | 0.93 |
+| 6 colonists, average | +5.6 (+6.0) | -3.5 | +1.8 | -3.3 | **+0.6** | -7.0 / +8.2 | 1.7 | 63% | 0.16 |
+| 6 colonists, neglectful | +4.0 (+4.2) | -4.6 | +0.6 | -8.8 | **-8.8** | -16.9 / -0.9 | 1.2 | 37% | 0.00 |
+| 12 colonists, well run | +3.8 (+4.2) | -2.6 | +2.9 | -1.2 | **+2.9** | -2.6 / +8.3 | 1.9 | 69% | 0.91 |
+| 12 colonists, average | +5.0 (+5.3) | -3.0 | +1.7 | -3.2 | **+0.4** | -6.6 / +7.7 | 1.5 | 63% | 0.14 |
+| 12 colonists, neglectful | +3.5 (+3.7) | -4.0 | +0.5 | -8.1 | **-8.1** | -15.4 / -0.8 | 1.1 | 38% | 0.00 |
 
 Over the year (net, in five 10-day stretches plus one; good and bad in brackets), 6 colonists:
 
 | Play | days 0-9 | days 10-19 | days 20-29 | days 30-39 | days 40-49 | days 50-59 |
 |---|---|---|---|---|---|---|
-| well run | +3.5 (+7.9 / -4.4) | +3.5 (+8.0 / -4.5) | +3.6 (+8.1 / -4.5) | +3.4 (+7.9 / -4.6) | +3.7 (+8.2 / -4.5) | +3.8 (+8.2 / -4.4) |
-| average | +0.7 (+7.4 / -6.7) | +0.8 (+7.6 / -6.8) | +0.7 (+7.5 / -6.8) | +0.3 (+7.0 / -6.7) | +0.3 (+7.3 / -6.9) | +0.7 (+7.6 / -6.8) |
-| neglectful | -7.7 (+4.7 / -12.4) | -8.3 (+4.6 / -12.9) | -9.0 (+4.7 / -13.6) | -9.0 (+4.6 / -13.6) | -9.4 (+4.6 / -14.0) | -9.7 (+4.5 / -14.2) |
+| well run | +3.5 (+7.8 / -4.3) | +3.6 (+8.0 / -4.4) | +3.7 (+8.1 / -4.5) | +3.4 (+7.9 / -4.5) | +3.6 (+8.1 / -4.5) | +3.7 (+8.2 / -4.5) |
+| average | +0.7 (+7.4 / -6.7) | +0.9 (+7.6 / -6.8) | +0.8 (+7.6 / -6.8) | +0.2 (+7.0 / -6.8) | +0.3 (+7.2 / -6.9) | +0.7 (+7.5 / -6.8) |
+| neglectful | -7.8 (+4.7 / -12.5) | -8.2 (+4.6 / -12.8) | -8.9 (+4.7 / -13.6) | -9.0 (+4.6 / -13.6) | -9.5 (+4.5 / -14.0) | -9.6 (+4.6 / -14.2) |
 
 Where it comes from (6 colonists): what each source adds to a colonist's mood on average. Good memories are
 shown as they count after the budget.
@@ -89,32 +89,32 @@ shown as they count after the budget.
 | Source | well run | average | neglectful |
 |---|---|---|---|
 | pressures | +0.68 | -0.94 | -2.37 |
-| trust | +1.50 | +0.37 | -2.11 |
-| setbacks (bad) | -0.98 | -1.13 | -1.59 |
-| setbacks (lasting) | -0.51 | -0.72 | -1.40 |
-| meetings | +1.02 | +1.19 | +0.44 |
-| strain | -0.06 | -0.33 | -1.14 |
-| wishes | +1.12 | +0.79 | +0.24 |
-| ailments | -0.25 | -0.40 | -1.07 |
-| moments | +0.55 | +0.98 | +1.04 |
-| life and honours | +0.69 | +0.97 | +0.83 |
-| wishes (bad) | -0.32 | -0.50 | -0.85 |
-| frictions (bad) | -0.79 | -0.81 | -0.68 |
-| social events | +0.22 | +0.41 | +0.47 |
-| dilemmas | +0.40 | +0.45 | +0.19 |
+| trust | +1.50 | +0.39 | -2.11 |
+| setbacks (bad) | -0.98 | -1.14 | -1.59 |
+| setbacks (lasting) | -0.51 | -0.71 | -1.41 |
+| meetings | +1.02 | +1.17 | +0.43 |
+| strain | -0.06 | -0.33 | -1.12 |
+| wishes | +1.11 | +0.80 | +0.24 |
+| ailments | -0.24 | -0.41 | -1.09 |
+| moments | +0.55 | +0.98 | +1.07 |
+| life and honours | +0.70 | +0.96 | +0.84 |
+| wishes (bad) | -0.32 | -0.49 | -0.85 |
+| frictions (bad) | -0.79 | -0.81 | -0.67 |
+| social events | +0.22 | +0.41 | +0.48 |
+| dilemmas | +0.40 | +0.43 | +0.19 |
+| life goals | +0.34 | +0.42 | +0.25 |
 | the colony's ways | +0.42 | +0.16 | -0.34 |
-| life goals | +0.34 | +0.41 | +0.26 |
-| dilemmas (bad) | -0.19 | -0.22 | -0.36 |
+| dilemmas (bad) | -0.17 | -0.24 | -0.34 |
 | stories | +0.16 | +0.28 | +0.33 |
 | dreams (bad) | -0.19 | -0.20 | -0.32 |
-| meetings (bad) | -0.13 | -0.20 | -0.31 |
-| nuisances (bad) | -0.05 | -0.16 | -0.28 |
-| calendar | +0.09 | +0.17 | +0.21 |
-| social events (bad) | -0.20 | -0.14 | -0.13 |
-| events | +0.14 | +0.18 | +0.16 |
-| health | -0.05 | -0.07 | -0.12 |
-| encounters | +0.06 | +0.11 | +0.10 |
-| encounters (bad) | -0.09 | -0.08 | -0.08 |
+| meetings (bad) | -0.14 | -0.20 | -0.31 |
+| nuisances (bad) | -0.05 | -0.17 | -0.28 |
+| calendar | +0.09 | +0.17 | +0.20 |
+| social events (bad) | -0.20 | -0.13 | -0.13 |
+| events | +0.13 | +0.19 | +0.15 |
+| health | -0.05 | -0.07 | -0.11 |
+| encounters | +0.06 | +0.11 | +0.09 |
+| encounters (bad) | -0.09 | -0.08 | -0.07 |
 
 What the shared budget and fading sooner take off (6 colonists):
 
@@ -130,11 +130,11 @@ Average trust in the council (-100 to 100; trusting from 25, devoted from 60, do
 
 | Case | Start of year | End of year | Year's average | Trusting or devoted | Doubtful or bitter | By stretch |
 |---|---|---|---|---|---|---|
-| 6 colonists, well run | +36 | +72 | +59 | 90% | 0% | +41, +51, +58, +63, +67, +71 |
-| 6 colonists, average | +9 | +16 | +13 | 27% | 7% | +10, +12, +13, +14, +15, +16 |
-| 6 colonists, neglectful | -15 | -40 | -29 | 0% | 78% | -17, -23, -28, -31, -35, -39 |
+| 6 colonists, well run | +36 | +72 | +59 | 91% | 0% | +41, +50, +58, +63, +68, +71 |
+| 6 colonists, average | +9 | +17 | +14 | 28% | 6% | +10, +12, +14, +14, +15, +16 |
+| 6 colonists, neglectful | -15 | -40 | -29 | 0% | 79% | -17, -23, -28, -32, -35, -39 |
 | 12 colonists, well run | +21 | +46 | +36 | 67% | 0% | +24, +30, +35, +39, +42, +45 |
-| 12 colonists, average | +7 | +13 | +11 | 17% | 4% | +8, +10, +11, +12, +12, +13 |
+| 12 colonists, average | +7 | +13 | +11 | 17% | 3% | +8, +10, +11, +12, +12, +13 |
 | 12 colonists, neglectful | -11 | -26 | -20 | 0% | 60% | -12, -16, -19, -21, -23, -26 |
 
 ## Letters and messages per day
@@ -144,11 +144,11 @@ offered, a world event's question). Wishes are letters that ask without buttons.
 on screen as they happen; the evening's colony news gathers the rest into one letter a day. Flavour news (the
 smaller encounters, moments and dreams) isn't shown at the default message level and isn't counted.
 
-**6 colonists, average play**: 0.48 questions, 0.45 wishes voiced, 0.40 letters, 0.66 messages and 1.68 news lines a day.
+**6 colonists, average play**: 0.48 questions, 0.44 wishes voiced, 0.40 letters, 0.68 messages and 1.68 news lines a day.
 
 | System | Questions | Wishes | Letters | Messages | News lines |
 |---|---|---|---|---|---|
-| wishes | 0.00 | 0.35 | 0.03 | 0.00 | 0.42 |
+| wishes | 0.00 | 0.35 | 0.03 | 0.00 | 0.41 |
 | event wishes | 0.00 | 0.10 | 0.00 | 0.00 | 0.00 |
 | dilemmas | 0.10 | 0.00 | 0.00 | 0.00 | 0.00 |
 | dilemmas (after a raid) | 0.04 | 0.00 | 0.00 | 0.00 | 0.00 |
@@ -159,11 +159,11 @@ smaller encounters, moments and dreams) isn't shown at the default message level
 | ailments | 0.00 | 0.00 | 0.03 | 0.00 | 0.14 |
 | health | 0.00 | 0.00 | 0.01 | 0.00 | 0.11 |
 | calendar | 0.10 | 0.00 | 0.03 | 0.00 | 0.00 |
-| stories | 0.00 | 0.00 | 0.04 | 0.00 | 0.13 |
+| stories | 0.00 | 0.00 | 0.04 | 0.00 | 0.12 |
 | camps | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 |
 | world events | 0.04 | 0.00 | 0.02 | 0.00 | 0.00 |
 | missions | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 |
-| play-outs | 0.00 | 0.00 | 0.00 | 0.36 | 0.00 |
+| play-outs | 0.00 | 0.00 | 0.00 | 0.38 | 0.00 |
 | meetings | 0.06 | 0.00 | 0.03 | 0.00 | 0.03 |
 | decrees | 0.00 | 0.00 | 0.00 | 0.13 | 0.00 |
 | dreams | 0.00 | 0.00 | 0.00 | 0.00 | 0.02 |
@@ -171,7 +171,7 @@ smaller encounters, moments and dreams) isn't shown at the default message level
 | colony | 0.00 | 0.00 | 0.04 | 0.17 | 0.00 |
 | world | 0.00 | 0.00 | 0.01 | 0.00 | 0.00 |
 
-**12 colonists, average play**: 0.51 questions, 0.50 wishes voiced, 0.48 letters, 0.68 messages and 2.35 news lines a day.
+**12 colonists, average play**: 0.51 questions, 0.50 wishes voiced, 0.48 letters, 0.70 messages and 2.35 news lines a day.
 
 | System | Questions | Wishes | Letters | Messages | News lines |
 |---|---|---|---|---|---|
@@ -181,15 +181,16 @@ smaller encounters, moments and dreams) isn't shown at the default message level
 | dilemmas (after a raid) | 0.04 | 0.00 | 0.00 | 0.00 | 0.00 |
 | dilemmas (strangers) | 0.07 | 0.00 | 0.00 | 0.00 | 0.00 |
 | events | 0.06 | 0.00 | 0.04 | 0.00 | 0.00 |
-| encounters | 0.00 | 0.00 | 0.00 | 0.00 | 0.29 |
+| encounters | 0.00 | 0.00 | 0.00 | 0.00 | 0.30 |
 | social events | 0.00 | 0.00 | 0.00 | 0.00 | 0.52 |
 | ailments | 0.00 | 0.00 | 0.03 | 0.00 | 0.28 |
-| health | 0.00 | 0.00 | 0.01 | 0.00 | 0.18 |
+| health | 0.00 | 0.00 | 0.01 | 0.00 | 0.19 |
 | calendar | 0.13 | 0.00 | 0.05 | 0.00 | 0.00 |
 | stories | 0.00 | 0.00 | 0.07 | 0.00 | 0.19 |
+| camps | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 |
 | world events | 0.04 | 0.00 | 0.02 | 0.00 | 0.00 |
 | missions | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 |
-| play-outs | 0.00 | 0.00 | 0.00 | 0.39 | 0.00 |
+| play-outs | 0.00 | 0.00 | 0.00 | 0.41 | 0.00 |
 | meetings | 0.06 | 0.00 | 0.03 | 0.00 | 0.03 |
 | decrees | 0.00 | 0.00 | 0.00 | 0.13 | 0.00 |
 | dreams | 0.00 | 0.00 | 0.00 | 0.00 | 0.03 |
@@ -201,9 +202,9 @@ By play style (6 colonists):
 
 | Play | Questions | Wishes | Letters | Messages | News lines | Questions within 12 h of another | Days with two or more questions |
 |---|---|---|---|---|---|---|---|
-| well run | 0.50 | 0.65 | 0.50 | 0.72 | 1.73 | 8% | 6% |
-| average | 0.48 | 0.45 | 0.40 | 0.66 | 1.68 | 8% | 5% |
-| neglectful | 0.47 | 0.52 | 0.40 | 0.59 | 2.01 | 8% | 6% |
+| well run | 0.50 | 0.65 | 0.49 | 0.73 | 1.73 | 8% | 6% |
+| average | 0.48 | 0.44 | 0.40 | 0.68 | 1.68 | 8% | 5% |
+| neglectful | 0.47 | 0.52 | 0.40 | 0.61 | 1.99 | 8% | 6% |
 
 ## Ailments
 
@@ -212,31 +213,31 @@ out the smallest (a stiff neck, hiccups, a smoke cough), which only a player who
 
 | Case | Ailment days per colonist | Time with one | Time with one, not quiet | Caught, per colony | Circumstance, per colony | Serious, per colony |
 |---|---|---|---|---|---|---|
-| 6 colonists, well run | 7.1 | 11% | 9% | 1.7 | 37.8 | 0.3 |
-| 6 colonists, average | 10.6 | 18% | 15% | 1.9 | 31.5 | 0.4 |
-| 6 colonists, neglectful | 22.5 | 37% | 33% | 1.6 | 41.6 | 1.9 |
-| 12 colonists, well run | 6.9 | 11% | 9% | 1.7 | 75.2 | 0.3 |
-| 12 colonists, average | 10.0 | 16% | 13% | 1.7 | 62.8 | 0.8 |
-| 12 colonists, neglectful | 23.3 | 39% | 34% | 1.7 | 83.7 | 3.5 |
+| 6 colonists, well run | 6.9 | 11% | 9% | 1.6 | 37.3 | 0.2 |
+| 6 colonists, average | 10.6 | 17% | 14% | 1.7 | 31.8 | 0.5 |
+| 6 colonists, neglectful | 22.8 | 38% | 33% | 1.6 | 41.1 | 1.8 |
+| 12 colonists, well run | 6.9 | 11% | 9% | 1.6 | 74.7 | 0.3 |
+| 12 colonists, average | 10.0 | 16% | 13% | 1.7 | 62.4 | 0.8 |
+| 12 colonists, neglectful | 23.3 | 39% | 34% | 1.6 | 83.6 | 3.5 |
 
 What fills the time (days per colonist per year, 6 colonists):
 
 | Ailment | well run | average | neglectful |
 |---|---|---|---|
-| Lice | 0.0 | 0.6 | 5.8 |
-| RimrotCough | 0.0 | 0.7 | 3.5 |
-| Convalescent | 0.3 | 0.7 | 3.0 |
-| Insomnia | 0.2 | 0.5 | 1.6 |
-| ChestCold | 0.7 | 0.8 | 0.8 |
+| Lice | 0.0 | 0.6 | 6.0 |
+| RimrotCough | 0.0 | 0.7 | 3.7 |
+| Convalescent | 0.4 | 0.7 | 3.0 |
+| Insomnia | 0.2 | 0.6 | 1.7 |
 | SmokeCough | 0.0 | 0.5 | 1.8 |
-| StrainedBack | 0.5 | 0.7 | 1.0 |
-| HeadCold | 0.7 | 0.8 | 0.6 |
-| Toothache | 0.3 | 0.5 | 0.8 |
-| ColdSore | 0.2 | 0.4 | 1.0 |
-| Heartburn | 1.0 | 0.5 | 0.1 |
-| Dreamfever | 0.3 | 0.4 | 0.4 |
+| ChestCold | 0.7 | 0.7 | 0.7 |
+| StrainedBack | 0.5 | 0.7 | 0.9 |
+| HeadCold | 0.7 | 0.7 | 0.6 |
+| Toothache | 0.3 | 0.5 | 0.9 |
+| Heartburn | 0.9 | 0.5 | 0.1 |
+| ColdSore | 0.2 | 0.4 | 0.9 |
+| Dreamfever | 0.3 | 0.4 | 0.3 |
 | Chilblains | 0.3 | 0.4 | 0.3 |
-| Splinter | 0.1 | 0.3 | 0.5 |
+| Splinter | 0.1 | 0.4 | 0.5 |
 | SoreHands | 0.3 | 0.3 | 0.3 |
 | StiffNeck | 0.0 | 0.1 | 0.7 |
 
@@ -247,54 +248,54 @@ The style presets of the settings window, applied as the window applies them (6 
 | Preset | Play | Net | Good memories | Bad + steady bad | Questions per day | Wishes per day | Time ill |
 |---|---|---|---|---|---|---|---|
 | default | well run | +3.6 | +4.5 | -4.5 | 0.50 | 0.65 | 11% |
-| default | average | +0.6 | +5.6 | -6.8 | 0.48 | 0.45 | 18% |
-| default | neglectful | -8.8 | +4.0 | -13.5 | 0.47 | 0.52 | 37% |
+| default | average | +0.6 | +5.6 | -6.8 | 0.48 | 0.44 | 17% |
+| default | neglectful | -8.8 | +4.0 | -13.5 | 0.47 | 0.52 | 38% |
 | lightTouch | well run | +5.6 | +3.6 | -0.9 | 0.44 | 0.33 | 6% |
-| lightTouch | average | +4.0 | +4.7 | -2.3 | 0.45 | 0.27 | 9% |
-| lightTouch | neglectful | -0.7 | +3.7 | -5.0 | 0.43 | 0.36 | 19% |
-| storyRich | well run | +3.7 | +4.8 | -4.7 | 0.58 | 0.64 | 11% |
-| storyRich | average | +1.2 | +6.4 | -7.2 | 0.56 | 0.45 | 17% |
-| storyRich | neglectful | -8.8 | +4.5 | -13.9 | 0.53 | 0.53 | 38% |
-| demanding | well run | +0.6 | +3.9 | -6.5 | 0.49 | 0.69 | 10% |
-| demanding | average | -3.3 | +4.8 | -9.9 | 0.48 | 0.51 | 17% |
+| lightTouch | average | +4.0 | +4.7 | -2.3 | 0.45 | 0.26 | 9% |
+| lightTouch | neglectful | -0.7 | +3.7 | -5.0 | 0.42 | 0.36 | 19% |
+| storyRich | well run | +3.6 | +4.8 | -4.7 | 0.58 | 0.64 | 11% |
+| storyRich | average | +1.1 | +6.3 | -7.1 | 0.57 | 0.45 | 17% |
+| storyRich | neglectful | -8.9 | +4.5 | -14.0 | 0.53 | 0.52 | 39% |
+| demanding | well run | +0.6 | +3.9 | -6.5 | 0.49 | 0.70 | 11% |
+| demanding | average | -3.4 | +4.8 | -9.9 | 0.49 | 0.50 | 17% |
 | demanding | neglectful | -14.9 | +3.2 | -18.6 | 0.46 | 0.65 | 40% |
 
 ## How often things happen (per colony per year)
 
 | What | 6, well run | 6, average | 6, neglectful | 12, well run | 12, average | 12, neglectful |
 |---|---|---|---|---|---|---|
-| after-effects | 0.6 | 0.8 | 2.2 | 1.0 | 1.4 | 4.4 |
-| ailments | 37.8 | 31.5 | 41.6 | 75.2 | 62.8 | 83.7 |
-| ambitions reached | 2.8 | 1.9 | 0.7 | 2.8 | 1.9 | 0.5 |
+| after-effects | 0.6 | 0.8 | 2.1 | 1.0 | 1.4 | 4.4 |
+| ailments | 37.3 | 31.8 | 41.1 | 74.7 | 62.4 | 83.6 |
+| ambitions reached | 2.8 | 1.9 | 0.6 | 2.8 | 1.9 | 0.5 |
 | calendar days | 8.0 | 8.0 | 8.0 | 11.0 | 11.0 | 11.0 |
 | camps | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.1 |
-| catching ailments | 1.7 | 1.9 | 1.6 | 1.7 | 1.7 | 1.7 |
-| convalescence | 2.4 | 3.6 | 5.9 | 5.2 | 8.1 | 12.1 |
-| days of one faith for the colony | 2.7 | 2.8 | 2.8 | 3.2 | 2.7 | 2.3 |
-| decree requests | 7.4 | 7.8 | 8.2 | 8.0 | 7.6 | 8.1 |
-| dilemmas | 13.6 | 12.9 | 11.7 | 13.5 | 12.8 | 11.7 |
-| dreams | 108.7 | 107.3 | 108.3 | 217.1 | 215.7 | 216.3 |
-| encounters | 54.8 | 54.1 | 48.7 | 54.0 | 52.7 | 48.6 |
-| evenings of faith | 1.5 | 1.8 | 1.8 | 2.0 | 1.6 | 1.5 |
-| events | 6.2 | 6.0 | 6.0 | 6.0 | 5.7 | 5.7 |
-| friction moments | 202.5 | 264.6 | 359.0 | 406.7 | 532.2 | 719.7 |
-| meetings | 3.8 | 3.8 | 3.7 | 3.8 | 3.8 | 3.8 |
+| catching ailments | 1.6 | 1.7 | 1.6 | 1.6 | 1.7 | 1.6 |
+| convalescence | 2.5 | 3.7 | 5.8 | 5.4 | 8.2 | 12.2 |
+| days of one faith for the colony | 2.7 | 2.8 | 2.8 | 3.1 | 2.7 | 2.3 |
+| decree requests | 7.4 | 7.9 | 8.0 | 8.0 | 7.7 | 7.8 |
+| dilemmas | 13.5 | 12.9 | 11.5 | 13.6 | 12.9 | 11.8 |
+| dreams | 108.1 | 108.1 | 108.7 | 216.5 | 216.0 | 216.8 |
+| encounters | 55.1 | 53.7 | 48.1 | 53.6 | 53.5 | 48.3 |
+| evenings of faith | 1.6 | 1.7 | 1.9 | 2.0 | 1.5 | 1.5 |
+| events | 6.1 | 6.3 | 6.1 | 5.9 | 5.9 | 5.9 |
+| friction moments | 203.4 | 265.3 | 358.1 | 406.3 | 531.1 | 719.8 |
+| meetings | 3.8 | 3.7 | 3.8 | 3.9 | 3.8 | 3.8 |
 | missions | 0.3 | 0.3 | 0.3 | 0.2 | 0.2 | 0.2 |
-| moments | 712.3 | 664.0 | 592.2 | 1421.0 | 1324.7 | 1182.4 |
-| nuisances | 26.5 | 81.8 | 139.5 | 53.8 | 163.4 | 283.4 |
-| personal touches | 10.1 | 9.9 | 10.1 | 9.9 | 10.0 | 10.0 |
-| play-outs | 7.3 | 5.5 | 3.2 | 7.4 | 5.6 | 3.4 |
-| serious illnesses | 0.3 | 0.4 | 1.9 | 0.3 | 0.8 | 3.5 |
-| social events | 71.8 | 71.5 | 71.0 | 117.7 | 117.4 | 117.8 |
-| stories | 3.3 | 3.3 | 3.3 | 5.2 | 5.0 | 5.0 |
-| wishes granted | 32.5 | 13.7 | 3.8 | 33.5 | 16.0 | 4.9 |
-| wishes lapsed | 6.4 | 13.3 | 27.6 | 7.1 | 14.1 | 34.3 |
-| wishes made | 39.2 | 27.0 | 31.4 | 40.7 | 30.0 | 39.3 |
-| world events | 1.1 | 1.0 | 1.1 | 1.1 | 1.0 | 1.0 |
+| moments | 712.3 | 663.4 | 593.4 | 1422.2 | 1325.7 | 1184.3 |
+| nuisances | 26.8 | 82.8 | 138.9 | 53.4 | 164.2 | 283.7 |
+| personal touches | 10.0 | 9.9 | 10.0 | 9.9 | 10.0 | 10.0 |
+| play-outs | 7.8 | 6.0 | 3.9 | 7.8 | 6.2 | 4.1 |
+| serious illnesses | 0.2 | 0.5 | 1.8 | 0.3 | 0.8 | 3.5 |
+| social events | 71.8 | 71.6 | 71.2 | 117.7 | 117.6 | 117.9 |
+| stories | 3.3 | 3.3 | 3.3 | 5.3 | 5.1 | 5.1 |
+| wishes granted | 32.3 | 13.8 | 3.9 | 33.7 | 15.9 | 4.9 |
+| wishes lapsed | 6.5 | 12.8 | 27.5 | 7.0 | 14.0 | 34.3 |
+| wishes made | 39.1 | 26.7 | 31.4 | 40.9 | 29.9 | 39.2 |
+| world events | 1.1 | 1.0 | 1.1 | 1.1 | 0.9 | 1.0 |
 
 ## What the model reads and assumes
 
-From the defs: 1617 moods, 165 dilemmas, 185 events and missions, 134 encounters,
+From the defs: 1618 moods, 165 dilemmas, 185 events and missions, 134 encounters,
 97 social events, 131 moments, 181 dreams, 22 nuisances, 106 wishes,
 58 ailments and illnesses, 13 catching ones, 40 world events (515 defs for other mods left out).
 

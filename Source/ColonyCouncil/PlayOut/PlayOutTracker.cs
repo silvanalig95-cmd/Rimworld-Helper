@@ -329,6 +329,13 @@ namespace ColonyCouncil
                     var grave = PlaySpots.GraveFor(p);
                     if (grave == null)
                     {
+                        // No grave to go to: the place the answer allows instead (the open air, a long walk out), if any.
+                        if (!p.spots.NullOrEmpty())
+                        {
+                            if (InsteadOfGrave(p, v, out target, out begin)) break;
+                            p.waitReason = "CC_Play_Why_Place".Translate();
+                            return;
+                        }
                         Fallback(p, "CC_Play_Why_NoGrave".Translate(), false);
                         return;
                     }
@@ -433,6 +440,26 @@ namespace ColonyCouncil
                 return;
             }
             Messages.Message(begin, new LookTargets(v), MessageTypeDefOf.NeutralEvent, false);
+        }
+
+        /// <summary>A visit to a grave with no grave to go to: the first place the answer allows instead that can be had now.</summary>
+        private static bool InsteadOfGrave(PlayOut p, Pawn v, out LocalTargetInfo target, out string begin)
+        {
+            target = LocalTargetInfo.Invalid;
+            begin = null;
+            foreach (var alt in p.spots)
+            {
+                if (!DilemmaEffect_Visit.Instead(PlaySpot.Grave, alt)) continue;
+                string where = null;
+                var c = alt == PlaySpot.Walk ? PlaySpots.WalkCell(p.map, v) : PlaySpots.FocusCell(p, alt, v, out where);
+                if (!c.IsValid) continue;
+                p.to = alt;
+                target = c;
+                begin = alt == PlaySpot.Walk ? "CC_Play_Begin_Walk".Translate(v.Named("PAWN")).Resolve()
+                    : "CC_Play_Begin_Spot".Translate(v.Named("PAWN"), (where ?? "").Named("WHERE")).Resolve();
+                return true;
+            }
+            return false;
         }
 
         // ---------------- Ending ----------------

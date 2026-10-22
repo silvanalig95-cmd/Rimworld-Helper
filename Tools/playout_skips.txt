@@ -28,7 +28,7 @@ Council_Dilemma_PetBite [option 2] an animal's part: the pet is let go (ReleaseP
 Council_Dilemma_PetPot [option 0] a ruling; habit
 Council_Dilemma_PetPot [option 1] extra rations for one colonist, not a meal from the stores
 Council_Dilemma_LoveLetter [option 3] nothing done
-Council_Dilemma_OwnFuneral [option 0] a coffin made: crafting, no play-out kind; others stop visiting is a habit
+Council_Dilemma_OwnFuneral [option 0] a coffin made: the game has no coffin to make (graves and sarcophagi only), no play-out kind; others stop visiting is a habit
 Council_Dilemma_OwnFuneral [option 3] not answered; the risk is a mental state (wandering), already real
 Council_Dilemma_Sleepwalker [option 3] not answered; the risk is a mental state, already real
 Council_Dilemma_Credit [option 1] a ruling; story told at meals is a habit; the risk is a fight, already real
@@ -66,7 +66,7 @@ Council_DlmL_SickCook [option 1] cooking with a cloth: a habit
 Council_DlmL_SickCook [option 2] cold suppers for days: a habit, not one meal
 Council_DlmL_OldRemedy [option 1] treatment from the stores by the game's doctor, told
 Council_DlmL_StrangerMedicine [option 2] a refusal
-Council_DlmL_CampHungry [option 2] the camp's people work for two days: a stranger's part
+Council_DlmL_CampHungry [option 2] the camp's people work for two days: a stranger's part (the trees they fell and the logs by the stumps are real)
 Council_DlmL_CampLostChild [option 1] the camp's own people search
 Council_DlmL_CampLostChild [option 3] a refusal
 Council_DlmL_EmptyChair [option 1] a ruling
@@ -97,7 +97,7 @@ Council_DlmR_TheirThief [option 1] a stranger's part: the pardoned thief thanks 
 Council_DlmR_SkipCustom [option 0] a ruling for every supper: a habit
 Council_DlmR_OldCustom [option 2] a refusal
 Council_DlmR_Overstay [option 0] nothing done
-Council_DlmR_Overstay [option 1] a guest's part: the guest chops wood
+Council_DlmR_Overstay [option 1] a guest's part: the guest chops wood (the trees felled near them and the logs are real)
 Council_DlmR_Overstay [option 2] already real: the visitors are sent away
 Council_DlmR_DayOfRest [option 2] a refusal; the risk is a mental state, already real
 Council_DlmR_CarryingEveryone [option 0] a chore roster: a habit
@@ -115,11 +115,10 @@ Council_Dilemma_Secret_LooseTongue [option 0] an order; nothing done
 Council_Dilemma_Secret_LooseTongue [option 3] nothing done
 Council_Dilemma_Secret_KindnessFound [option 2] a roster: a habit
 Council_Dilemma_Secret_Sickness [option 0] a quarantine: the colony's beds and care are the player's
-Council_Dilemma_Secret_Sickness [option 1] two days of examinations: takes days
 Council_Dilemma_Secret_Sickness [option 2] nothing done
 Council_Dilemma_Secret_OneMoreBout [option 0] already real: the bout is a fight on the map
 Council_Dilemma_Secret_OneMoreBout [option 2] a refusal; the risk is a fight, already real
-Council_Dilemma_Secret_UsingAgain [option 1] searching a room and burning a stash: the player's to order
+Council_Dilemma_Secret_UsingAgain [option 1] searching a room: no play-out kind; what is found in the room burns for real in the yard
 Council_Dilemma_Secret_WhatCameOut [option 1] an order; nothing done
 Council_Dilemma_Secret_WhatCameOut [option 2] nothing done
 
@@ -189,7 +188,6 @@ Council_Evt_Bonesetter [option 2] a refusal; the bone-setter moves on
 
 # Defs/IncidentDefs/Council_Events_Camps.xml
 Council_Evt_Camp [option 0] the camp is the event's own code; the pot carried out is one variant's flavour
-Council_Evt_Camp [option 4] the camp driven off: the event's own code
 
 # Defs/IncidentDefs/Council_Events_Chains.xml
 Council_Evt_DeserterFound [option 2] already real: the colonist leaves

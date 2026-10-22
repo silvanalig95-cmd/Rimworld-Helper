@@ -129,7 +129,7 @@ namespace Balance
         public static readonly Dictionary<string, float> StrangerGates = new Dictionary<string, float>
         {
             ["ofA"] = 0.7f, ["bondedToA"] = 0.3f, ["nemesis"] = 0.05f, ["nemesisOfA"] = 0.03f, ["majestic"] = 0.15f, ["named"] = 0.4f, ["predator"] = 0.4f,
-            ["royal"] = 0.1f, ["child"] = 0.2f, ["anyTrait"] = 0.3f
+            ["royal"] = 0.1f, ["child"] = 0.2f, ["anyTrait"] = 0.3f, ["withDog"] = 0.05f
         };
 
         /// <summary>
@@ -142,7 +142,9 @@ namespace Balance
         {
             ["DilemmaWorker_Famine"] = 0.1f, ["DilemmaWorker_CropRaider"] = 0.3f, ["DilemmaWorker_SickAnimal"] = 0.25f,
             ["DilemmaWorker_PenStalker"] = 0.3f, ["DilemmaWorker_BondFaith"] = 0.05f, ["DilemmaWorker_HerdCustom"] = 0.4f,
-            ["DilemmaWorker_FaithClash"] = FaithSplitColony * 0.7f, ["DilemmaWorker_FaithEvening"] = FaithSplitColony * 0.6f
+            ["DilemmaWorker_FaithClash"] = FaithSplitColony * 0.7f, ["DilemmaWorker_FaithEvening"] = FaithSplitColony * 0.6f,
+            // An animal in decline: A's own animal, old for its kind or with a lasting condition (Animals/FadingPet.cs).
+            ["DilemmaWorker_FadingPet"] = 0.25f
         };
 
         // ---------------- Faith and the council (Faith/, with Ideology) ----------------

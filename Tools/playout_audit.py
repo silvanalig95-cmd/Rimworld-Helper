@@ -7,7 +7,8 @@ and their options, decrees, ambitions) and:
 
   * counts the answers that play out on the map (an effect of PlayOut/: a feast, a gathering, a bonfire, a toast, words,
     a visit, a lesson, a day off, a hunt, a work party, a walk together, a vigil, a search, a gift carried out), by
-    source and by kind, for the README and the ROADMAP;
+    source and by kind, for the README and the ROADMAP; and, on a line of their own, the stages of personal stories and
+    the encounters that play out (not answers, so never candidates);
   * lists the answers whose words describe a physical activity (a meal, a vigil, a party, a visit, a lesson, a work
     party, a search, a funeral, a hunt, a procession, a gift carried out, a cleaning, a rebuilding...) and have no
     play-out, as candidates. Not every candidate fits: some happen far from the map ("half a day's walk out"), some are
@@ -159,10 +160,29 @@ def walk():
             elif tag == "ColonyCouncil.AmbitionDef":
                 kinds = [PLAY.get((li.get("Class") or "").replace("ColonyCouncil.", "")) for li in lis(d, "achievedEffects")]
                 answers.append(Answer("ambition", defname, "achieved", text_of(d.find("label")), text_of(d.find("description")), [k for k in kinds if k], rel))
+            elif tag == "ColonyCouncil.ArcDef":
+                # Not answers: a personal story's stages, counted apart (never candidates).
+                for i, st in enumerate(lis(d, "stages")):
+                    kinds = []
+                    for li in lis(st, "effects"):
+                        cls = (li.get("Class") or "").replace("ColonyCouncil.", "")
+                        if cls in PLAY:
+                            kinds.append(PLAY[cls])
+                        elif cls == "ArcEffect_Cast":
+                            kinds += [PLAY[c] for c in ((x.get("Class") or "").replace("ColonyCouncil.", "") for x in lis(li, "effects")) if c in PLAY]
+                    answers.append(Answer("arc", defname, "stage %d" % i, text_of(st.find("label")), "", kinds, rel))
+            elif tag == "ColonyCouncil.EncounterDef":
+                answers.append(Answer("encounter", defname, "moment", text_of(d.find("label")), "", effect_kinds(d), rel))
     return answers
 
 
+# Not answers to a question: counted on their own line, never listed as candidates.
+APART = ("arc", "encounter")
+
+
 def counts(answers):
+    apart = [a for a in answers if a.kinds and a.source in APART]
+    answers = [a for a in answers if a.source not in APART]
     played = [a for a in answers if a.kinds]
     by_source = defaultdict(lambda: [0, set()])
     for a in played:
@@ -180,6 +200,9 @@ def counts(answers):
     print("By kind (answers using it):")
     for k, n in kinds.most_common():
         print("  %-16s %4d" % (k, n))
+    arcs = [a for a in apart if a.source == "arc"]
+    enc = [a for a in apart if a.source == "encounter"]
+    print("Besides answers: %d stages of %d personal stories, and %d encounters" % (len(arcs), len({a.defname for a in arcs}), len(enc)))
 
 
 def load_skips():
@@ -205,7 +228,7 @@ def candidates(answers, flt, skips):
     rows = []
     skipped = 0
     for a in answers:
-        if a.kinds or a.source in ("decree", "ambition"):
+        if a.kinds or a.source in ("decree", "ambition") + APART:
             continue
         hits = sorted(set(m.group(0).lower() for m in ACTIVITY.finditer(a.words)))
         if not hits:

@@ -210,6 +210,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>15</count></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_SecretFriend</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>5</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>the evening ration past the wall</label><to>Gate</to><hours>17~20</hours><duration>0.5~1</duration></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Overruled</thought><exceptTrait><li>Kind</li></exceptTrait></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_FeedingWildlife</thought><onlyTrait><li>Greedy</li><li>Gourmand</li></onlyTrait></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_FairsFair</thought><onlyTrait><li>Kind</li></onlyTrait></li>
@@ -356,7 +357,7 @@
     <defName>Council_Dilemma_PetFading</defName>
     <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>an animal in decline</label>
-    <workerClass>ColonyCouncil.DilemmaWorker_Pet</workerClass>
+    <workerClass>ColonyCouncil.DilemmaWorker_FadingPet</workerClass>
     <weight>0.6</weight>
     <cooldownDays>60</cooldownDays>
     <roleB>
@@ -860,6 +861,7 @@
         <riskOutcome>In {A_possessive} first official deal, {A_nameDef} traded {COUNT} {THING} from the stores for a fancy hat, and insists it was a sound investment.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume" />
+          <li Class="ColonyCouncil.DilemmaEffect_Made"><things>Apparel_HatTop|Apparel_BowlerHat|Apparel_CowboyHat</things><forWhom>A</forWhom><quality>Good</quality><stuff>Cloth</stuff></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_InCharge</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Vindicated</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Squandered</thought><onlyTrait><li>Greedy</li></onlyTrait></li>

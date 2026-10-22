@@ -144,6 +144,8 @@ namespace ColonyCouncil
         public float thoughtDays = 3f;
         /// <summary>Role B only: the memory is about A.</summary>
         public bool thoughtAboutA;
+        /// <summary>An old injury that still troubles them: a scar, an old wound, a bad back (see <see cref="LifeChecks.OldInjury"/>).</summary>
+        public bool oldInjury;
 
         private bool Extras(Pawn p)
         {
@@ -158,6 +160,7 @@ namespace ColonyCouncil
         private bool Life(Pawn p, Pawn a)
         {
             if ((sick || !illness.NullOrEmpty()) && !LifeChecks.HasIllness(p, illness)) return false;
+            if (oldInjury && !LifeChecks.OldInjury(p)) return false;
             if (minStrain > 0f && (!Heart.On || Heart.StrainOf(p) < minStrain)) return false;
             if (minAge > 0f || maxAge < 9999f)
             {

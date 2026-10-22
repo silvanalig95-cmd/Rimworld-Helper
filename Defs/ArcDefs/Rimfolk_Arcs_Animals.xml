@@ -320,6 +320,7 @@
         </chronicle>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>4</count></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>scraps at the back door</label><whom>Pet</whom><hours>17~21</hours><duration>0.75~1</duration></li>
         </effects>
         <gate><kind>Time</kind><days>3</days><minDays>2</minDays></gate>
       </li>
