@@ -29,22 +29,22 @@
           <li>[!camp,!lowtech] A patient for the hospital</li>
         </titles>
         <texts>
-          <li>[camp] {X_nameDef} of {FACTION}, from the camp, came up to the gate this morning with a {TALE} and asked for the colony's doctor. The camp has been watching {A_nameDef} at work, {X_nameDef} says, and nobody among them knows half as much.</li>
+          <li>[camp] {X_nameDef} of {FACTION} came over from the camp this morning with a {TALE}, asking for the colony's doctor. They've been watching {A_nameDef} at work from across the fields, {X_nameDef} says, and the camp has no one half as good.</li>
           <li>[camp] The camp's people have been talking about the colony's doctor. This morning {X_nameDef} of {FACTION} walked over with a {TALE}, cap in hand, and asked whether {A_nameDef} would take a look.</li>
           <li>[!camp,known,lowtech] {X_nameDef} of {FACTION} has walked a long way with a {TALE}, because people on the road say the colony's sickroom turns nobody away. {X_nameDef} asks whether {A_nameDef} would see to it.</li>
-          <li>[!camp,known,!lowtech] {X_nameDef} of {FACTION} has come to the gate with a {TALE}. Travellers say the colony's hospital is a good one, {X_nameDef} explains, and the nearest doctor on {X_possessive} road is days away.</li>
-          <li>[!camp,renowned] {X_nameDef} of {FACTION} has come a long way with a {TALE}, on the strength of the colony's name: across the region they say there's no better place to fall ill. {X_nameDef} would like to see {A_nameDef}, if there's time.</li>
-          <li>[!camp] {X_nameDef}, a traveller of {FACTION}, stopped at the colony with a {TALE} and asked for its doctor by name: {A_nameDef}. Someone on the road had told {X_objective} to.</li>
+          <li>[!camp,known,!lowtech] The nearest doctor on {X_nameDef}'s road is days away, and travelers say the colony's hospital is a good one. So {X_nameDef} of {FACTION} has come to the gate with a {TALE}, and asks for a doctor.</li>
+          <li>[!camp,renowned] Across the region they have a saying now: if you must fall ill, fall ill near the colony. {X_nameDef} of {FACTION} has taken it at its word, and come a long way with a {TALE}. {X_nameDef} would like to see {A_nameDef}, if there's time.</li>
+          <li>[!camp] {X_nameDef}, a traveler of {FACTION}, stopped at the colony with a {TALE} and asked for its doctor by name: {A_nameDef}. Someone on the road had told {X_objective} to.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
           <li>
             <label>{A_nameDef} sees to {X_objective} (1 medicine)</label>
-            <outcome>{A_nameDef} sat {X_nameDef} down, looked at the {TALE} properly and treated it. {X_nameDef} went away with instructions and a lighter step, and {FACTION} will hear where the help came from.</outcome>
+            <outcome>{A_nameDef} sat {X_nameDef} down, looked at the {TALE} properly and treated it. {X_nameDef} went away with instructions to follow, and {FACTION} will hear where the help came from.</outcome>
             <outcomes>
-              <li>[camp] {A_nameDef} went over to the camp with a bag and treated {X_nameDef}'s {TALE} by their fire, with half the camp watching. They've been calling {A_objective} "the doctor" ever since, as if there were no other.</li>
+              <li>[camp] {A_nameDef} went over to the camp with a bag and treated {X_nameDef}'s {TALE} by their fire, with most of the camp watching. They've been calling {A_objective} "the doctor" ever since, as if there were no other.</li>
               <li>[lowtech] {A_nameDef} ground something bitter, wrapped something warm, and sent {X_nameDef} off with instructions for the {TALE} and a pouch of herbs for the road.</li>
-              <li>[!lowtech] {A_nameDef} examined {X_nameDef}, treated the {TALE} and wrote out what to do for the next few days in a clear hand. {X_nameDef} folded the paper as if it were money.</li>
+              <li>[!lowtech] {A_nameDef} examined {X_nameDef}, treated the {TALE} and wrote out what to do for the next few days in a clear hand. {X_nameDef} folded the paper into {X_possessive} shirt pocket and patted it twice.</li>
             </outcomes>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>medicine</what><count>1</count></li>
