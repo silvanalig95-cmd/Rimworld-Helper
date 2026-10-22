@@ -173,7 +173,7 @@
   <CC_Pnl_H_HideFacts>Hide the details</CC_Pnl_H_HideFacts>
   <CC_Pnl_H_Opt_Rows>Each colonist's conditions</CC_Pnl_H_Opt_Rows>
   <CC_Pnl_H_Opt_Summary>Summary per colonist</CC_Pnl_H_Opt_Summary>
-  <CC_Pnl_H_Opt_Summary_Tip>One faint line under each name with every condition and what matters most about it: "Cut 60% healed · Flu immunity 62% vs 40% · Lice untended".</CC_Pnl_H_Opt_Summary_Tip>
+  <CC_Pnl_H_Opt_Summary_Tip>Under each name, every condition and what matters most about it, on up to two lines: "Cut 60% healed · Flu immunity 62% vs 40% · Lice untended". With icons and bars each is a small chip with the Health tab's icon and a little bar; hover one for all of it.</CC_Pnl_H_Opt_Summary_Tip>
   <CC_Pnl_H_Opt_Lines>One line per condition</CC_Pnl_H_Opt_Lines>
   <CC_Pnl_H_Opt_Lines_Tip>A line for each condition under the name, with where it is, how well it was tended and when that wears off, how far it has healed and roughly when it's healed, or the immunity race as two small bars.</CC_Pnl_H_Opt_Lines_Tip>
   <CC_Pnl_InCaravan>in a caravan</CC_Pnl_InCaravan>
@@ -435,4 +435,10 @@
   <CC_Pnl_I_Sort_Name>By name</CC_Pnl_I_Sort_Name>
   <CC_Pnl_I_Sort_Count>The most first</CC_Pnl_I_Sort_Count>
   <CC_Pnl_I_Sort_Change>The biggest change since yesterday first</CC_Pnl_I_Sort_Change>
+  <!-- The health panel's icons and bars -->
+  <CC_Pnl_Part_visuals>Icons and bars: the Health tab's icons, how far along, the tending in colour</CC_Pnl_Part_visuals>
+  <CC_Pnl_H_ShowVisuals>Show icons and bars</CC_Pnl_H_ShowVisuals>
+  <CC_Pnl_H_HideVisuals>Hide icons and bars</CC_Pnl_H_HideVisuals>
+  <CC_Pnl_H_HealthTip>Health {0}</CC_Pnl_H_HealthTip>
+  <CC_Pnl_H_PainTip>Pain: {0}</CC_Pnl_H_PainTip>
 </LanguageData>

@@ -17,6 +17,12 @@ namespace ColonyCouncil
         public static readonly Texture2D Temperature = Load("Temperature");
         public static readonly Texture2D Research = Load("Research");
 
+        /// <summary>
+        /// The game's own drop of blood, the one its Health tab shows by a bleeding wound (HealthCardUtility's BleedingIcon):
+        /// the health panel marks bleeding with it. Null if the game ever moves it; the panel then draws no icon.
+        /// </summary>
+        public static readonly Texture2D Bleeding = ContentFinder<Texture2D>.Get("UI/Icons/Medical/Bleeding", false);
+
         private static Texture2D Load(string name) => ContentFinder<Texture2D>.Get("ColonyCouncil/Icons/" + name, false);
     }
 }
