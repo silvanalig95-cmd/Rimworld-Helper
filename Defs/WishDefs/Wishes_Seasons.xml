@@ -178,7 +178,7 @@
         <li>[snow] It's snowing again. Picture coming in from that to a hot sauna.</li>
         <li>[old] My joints ache all winter. Heat is the only thing that helps.</li>
         <li>[lowtech] Hot stones and a ladle of water. People have done it since before anyone wrote things down.</li>
-        <li>[lowtech] A little hut with a fire, sealed up tight, and a bench to sweat on. My people built one wherever they wintered.</li>
+        <li>[lowtech] A low hut with a fire, sealed up tight, and a bench to sweat on. My people built one wherever they wintered.</li>
         <li>[evening] I'd like to end a cold day somewhere hot, just once, before bed.</li>
       </plain>
       <warm>
@@ -191,7 +191,7 @@
       </blunt>
       <cheerful>
         <li>Steam, heat, and a roll in the snow afterwards! I'll go first.</li>
-        <li>Imagine it: sweating like a pig in midwinter. I can't wait.</li>
+        <li>Sweating like a pig in the middle of winter! I can't wait.</li>
       </cheerful>
       <gloomy>
         <li>It's going to be a long, cold winter. A sauna would make it bearable.</li>
@@ -215,7 +215,7 @@
     </thanks>
     <expired>
       <plain><li>I'll stamp my feet by the fire and call it a sauna.</li></plain>
-      <blunt><li>Winter's long. I'll remember who said no.</li></blunt>
+      <blunt><li>Winter's long. I'll remember who let this slide.</li></blunt>
       <gloomy><li>Winter wins again.</li></gloomy>
     </expired>
     <reminder>

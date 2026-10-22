@@ -52,7 +52,7 @@
         <li>Build {THING}. I'm done with the bushes.</li>
       </blunt>
       <cheerful>
-        <li>Picture it: {THING}, with walls and a door. I'd even take my turn cleaning it.</li>
+        <li>I'd take my turn cleaning {THING} gladly, if only we had one with walls and a door.</li>
       </cheerful>
       <gloomy>
         <li>One day something will bite me out there while I'm squatting. Then maybe we'll get {THING}.</li>
