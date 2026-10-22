@@ -44,7 +44,7 @@
       </li>
       <li>
         <label>One free afternoon in three</label>
-        <outcome>Every third afternoon is {A_nameDef}'s own now. It isn't what {A_pronoun} asked for. {A_nameDef} took the first one anyway, and was gone before the lunch things were cleared.</outcome>
+        <outcome>Every third afternoon is {A_nameDef}'s own now. It isn't what {A_pronoun} asked for. {A_nameDef} took the first one anyway, and was gone before anyone could hand {A_objective} a broom.</outcome>
         <ways><toil>-2</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Compromise</thought></li>
@@ -100,7 +100,7 @@
         </effects>
         <riskChance>0.2</riskChance>
         <riskReplaces>true</riskReplaces>
-        <riskOutcome>{A_nameDef} spent all 150 silver at the traders' wagons and carried home a crate that was packing straw under the first layer. The silver is gone. {A_nameDef} has hardly come out of {A_possessive} room since.</riskOutcome>
+        <riskOutcome>{A_nameDef} spent all 150 silver at the traders' wagons and came home with a crate that was packing straw under the first layer. The silver is gone. {A_nameDef} has hardly come out of {A_possessive} room since.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>150</count></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmGoal_Swindled</thought></li>
@@ -295,7 +295,7 @@
       </li>
       <li>
         <label>Stay out of it</label>
-        <outcome>{B_nameDef} took the council's silence as permission. The jokes go on at every meal, and {A_nameDef} has stopped mentioning the dream at all.</outcome>
+        <outcome>{B_nameDef} took the council's silence as permission. The jokes have kept coming, and {A_nameDef} has stopped mentioning the dream at all.</outcome>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_Ignored</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmGoal_Doubted</thought><chance>0.5</chance></li>

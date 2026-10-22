@@ -24,7 +24,7 @@
       <notTrait><li>Psychopath</li></notTrait>
     </roleA>
     <texts>
-      <li>The days are lengthening at last. {A_nameDef} wants the whole colony up before dawn tomorrow, on the highest ground near the walls, with a fire going, to watch the sun come back over the {PLACE} after the long dark.</li>
+      <li>The days are lengthening at last. {A_nameDef} wants everyone up before dawn tomorrow on the highest ground near the walls, with a fire going, to watch the sun come back after the long dark.</li>
       <li>{A_nameDef} has been counting the minutes of daylight on a notched stick all winter, and says tomorrow the sun will clear the far ridge for the first time. {A_nameDef} wants everyone out to see it, with a fire to stand round.</li>
       <li>[lowtech] Where {A_nameDef} grew up, the first sunrise of spring was greeted with a fire and every voice in the village. {A_nameDef} would like to do the same here.</li>
       <li>[devout] {A_nameDef} wants the colony to greet the returning sun with a fire and the faith's morning words, the way the faithful of the cold lands always have.</li>
@@ -35,9 +35,9 @@
     <options>
       <li>
         <label>Everyone up to greet the sun</label>
-        <outcome>The colony stood round a fire on the high ground in the blue before dawn, stamping their feet, until the sun cleared the ridge and turned the snow gold. Nobody said anything for a while.</outcome>
+        <outcome>The colony stood round a fire on the high ground in the blue before dawn, stamping their feet, until the sun cleared the ridge. They stood in it a while, faces turned up, before anyone thought of breakfast.</outcome>
         <outcomes>
-          <li>[snow] It was snowing when they climbed up and clear when the sun came, which {A_nameDef} declared the best possible sign.</li>
+          <li>[snow] It was snowing when they climbed up and clear when the sun came. {A_nameDef} took it as a promise.</li>
         </outcomes>
         <ways><tradition>4</tradition><toil>-2</toil></ways>
         <effects>
@@ -85,7 +85,7 @@
     <seasons><li>Spring</li><li>Summer</li><li>PermanentSummer</li></seasons>
     <texts>
       <li>It's raining, really raining, for the first time in weeks. {A_nameDef} is standing in the middle of the yard with {A_possessive} face turned up, and asks if everyone could put down their tools and come out into it.</li>
-      <li>Rain on the {PLACE}. {A_nameDef} has already put every pot and bucket the colony owns out under the eaves, and wants the colony out in the rain together to welcome it, as desert people do.</li>
+      <li>Rain at last, dark spots spreading on the dust. {A_nameDef} has already put every pot and bucket the colony owns out under the eaves, and wants the colony out in it together to welcome it, as desert people do.</li>
       <li>[tribal] Among {A_nameDef}'s people, the first rain was danced in, the whole camp together, so that it would come back. {A_nameDef} would like the colony to dance it in.</li>
       <li>[devout] {A_nameDef} says the rain is a gift, and gifts are given thanks for, out loud and together.</li>
     </texts>
@@ -95,7 +95,7 @@
     <options>
       <li>
         <label>Everyone out in the rain</label>
-        <outcome>The whole colony stood out in the rain until they were soaked through, laughing, catching it in their hands, and {A_nameDef} started a dance that nobody knew the steps to. It didn't matter.</outcome>
+        <outcome>The colony stood out in the rain until they were soaked through, laughing, catching it in their hands. {A_nameDef} started a dance with no particular steps, which made it easy to join.</outcome>
         <outcomes>
           <li>[tribal] {A_nameDef} led the rain dance round the yard, and one by one the colony joined in, splashing, until the rain eased off as if it had been satisfied.</li>
         </outcomes>
@@ -108,7 +108,7 @@
       </li>
       <li>
         <label>Catch it in every pot, then back to work</label>
-        <outcome>Every pot, bucket and trough in the colony went out under the eaves, and everyone went back to work listening to it drum.</outcome>
+        <outcome>Every pot, bucket and trough in the colony went out under the eaves, and work went on to the sound of it drumming.</outcome>
         <ways><tradition>1</tradition><toil>2</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.08</amount></li>
@@ -204,7 +204,7 @@
     <cooldownDays>50</cooldownDays>
     <seasons><li>Summer</li><li>PermanentSummer</li></seasons>
     <texts>
-      <li>The fever season is here, the air thick with insects every evening. {A_nameDef} wants the colony to walk the bounds after dark with torches of green wood, the smoke driving the biting things back into the {PLACE}, and the lights telling whatever lives out there that this ground is taken.</li>
+      <li>The fever season is here, the air thick with insects every evening. {A_nameDef} wants the colony to walk the bounds after dark with torches of green wood, the smoke driving the biting things back into the wet dark beyond the fields, and the lights telling whatever lives out there that this ground is taken.</li>
       <li>{A_nameDef} has been tying bundles of wet wood and reeds all week. Lit, they smoke like anything. {A_nameDef} wants everyone out one evening to carry them round the colony's edge.</li>
       <li>[lowtech] Where {A_nameDef} comes from, the marsh villages walk their bounds with smoking torches on the longest evening of the fever season. {A_nameDef} would like the colony to keep the custom.</li>
     </texts>
@@ -214,7 +214,7 @@
     <options>
       <li>
         <label>Everyone out with the torches</label>
-        <outcome>A long line of smoking torches wound round the colony's edge after dark, the whole colony coughing and laughing. The insects stayed away for a night, and the lights could be seen far out over the water.</outcome>
+        <outcome>A line of smoking torches wound round the colony's edge after dark, with the colonists coughing and laughing behind them. The insects kept off for a night, and the lights could be seen a long way out into the dark.</outcome>
         <ways><tradition>4</tradition><toil>-2</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>WoodLog</what><count>20</count></li>
@@ -225,7 +225,7 @@
       </li>
       <li>
         <label>One torch at each door</label>
-        <outcome>A smoking torch went up at every door. The insects were thinner that night, a little.</outcome>
+        <outcome>A smoking torch went up at every door. The insects were thinner that night, if only just.</outcome>
         <ways><tradition>1</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>WoodLog</what><count>6</count></li>
@@ -235,7 +235,7 @@
       </li>
       <li>
         <label>Keep the wood for the fires</label>
-        <outcome>No torches. {A_nameDef} sat up late slapping at the insects and muttering.</outcome>
+        <outcome>{A_nameDef} sat up late slapping at insects and muttering about green wood.</outcome>
         <ways><tradition>-3</tradition><generosity>-1</generosity></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_NoCelebration</thought></li>
@@ -265,7 +265,7 @@
     </roleA>
     <texts>
       <li>The harvest is in and the air is clear enough to see for miles. {A_nameDef} wants the colony to climb to the high ground one evening, all of them, and look out over everything the colony has made and everything around it, before the winter closes the view.</li>
-      <li>{A_nameDef} found a ledge above the colony where you can see every field and wall at once, and the far hills beyond. {A_nameDef} says everyone should see it, together, once a year.</li>
+      <li>{A_nameDef} found a ledge above the colony where you can see every field and wall at once, and the far hills beyond. {A_nameDef} says they should all see it together, once a year.</li>
       <li>[lowtech] Hill people, {A_nameDef} says, climb to the high stones every autumn to see their land whole and count what they have. {A_nameDef} would like the colony to keep that custom.</li>
     </texts>
     <traditionOption>0</traditionOption>
@@ -285,7 +285,7 @@
       </li>
       <li>
         <label>Those who want to can climb</label>
-        <outcome>{A_nameDef} and a few others went up at sunset and came back after dark, talking quietly.</outcome>
+        <outcome>{A_nameDef} and a few others went up at sunset and came back after dark, talking low.</outcome>
         <ways><tradition>1</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Trad_HighWatch</thought><chance>0.4</chance></li>
@@ -295,7 +295,7 @@
       </li>
       <li>
         <label>We can see enough from here</label>
-        <outcome>Nobody climbed. {A_nameDef} looked up at the high ground now and then all evening.</outcome>
+        <outcome>The high ground stayed empty. {A_nameDef} kept glancing up at it all evening.</outcome>
         <ways><tradition>-2</tradition><toil>2</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_NoCelebration</thought></li>
@@ -324,7 +324,7 @@
     <texts>
       <li>The longest nights are here. {A_nameDef} asks that the faithful keep a vigil, as the faith has always kept one in the dark of the year: a lamp lit at dusk, the old words said through the night, and the colony gathered until the first light.</li>
       <li>{A_nameDef} has trimmed every lamp in the colony and asks the council for one night: a vigil of the faith, from dusk till dawn, so the colony begins the turn of the year awake and together.</li>
-      <li>[lowtech] {A_nameDef} remembers the vigils of {A_possessive} childhood: candles, the words said and answered, the cold creeping in and nobody minding. {A_nameDef} would like to keep one here.</li>
+      <li>[lowtech] {A_nameDef} remembers the vigils of {A_possessive} childhood: candles, the words said and answered, the cold coming in under the door. {A_nameDef} would like to keep one here.</li>
     </texts>
     <traditionOption>0</traditionOption>
     <traditionLabel>the night vigil</traditionLabel>
@@ -332,7 +332,7 @@
     <options>
       <li>
         <label>Keep the vigil together</label>
-        <outcome>The colony gathered as the light went and kept the vigil, the words said and answered, the lamps trimmed through the dark hours. Some slept sitting up. At first light {A_nameDef} said the last words, and everyone went to bed lighter than they'd been in weeks.</outcome>
+        <outcome>The colony gathered as the light went and kept the vigil deep into the night, the words said and answered, the lamps trimmed twice. A few fell asleep sitting up and were left to it. By first light only {A_nameDef} was still awake to say the last words.</outcome>
         <ways><tradition>5</tradition><toil>-2</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Trad_NightVigil</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
@@ -344,7 +344,7 @@
       </li>
       <li>
         <label>A short vigil, then bed</label>
-        <outcome>The words were said at dusk with the lamps lit, and the colony went to bed at the usual hour. {A_nameDef} kept the rest of the night alone.</outcome>
+        <outcome>The words were said at dusk with the lamps lit, and the colony went to bed at the usual hour. {A_nameDef}'s lamp was still burning in the morning.</outcome>
         <ways><tradition>2</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Faith"><amount>0.03</amount></li>
@@ -355,7 +355,7 @@
       </li>
       <li>
         <label>Everyone needs their sleep</label>
-        <outcome>No vigil. {A_nameDef} lit one lamp by {A_possessive} bed and kept it burning till morning.</outcome>
+        <outcome>{A_nameDef} lit one lamp by {A_possessive} bed and sat up beside it, saying the words alone.</outcome>
         <ways><tradition>-3</tradition><toil>2</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_NoCelebration</thought></li>
@@ -390,7 +390,7 @@
     </roleA>
     <texts>
       <li>The trees are in full leaf. {A_nameDef} asks that the colony go out to the oldest tree near the walls one afternoon and sing to it, all together, as the faith teaches: the land was here first, and it should hear that the colony knows it.</li>
-      <li>{A_nameDef} has been sitting under the big tree every evening this week, humming. {A_nameDef} wants everyone there once a year, singing properly, to give thanks to the living things the colony takes from.</li>
+      <li>{A_nameDef} has been sitting under the big tree every evening this week, humming the same tune. Asked about it, {A_nameDef} sang the council the words: "We took your shade and we took your wood, and we thank you for both." {A_nameDef} wants them all out there once a year to sing it properly.</li>
       <li>[tribal] {A_nameDef}'s people sang to the trees each spring, so that the forest would go on feeding them. {A_nameDef} would like the colony to sing too.</li>
     </texts>
     <traditionOption>0</traditionOption>
@@ -421,7 +421,7 @@
       </li>
       <li>
         <label>Trees don't listen</label>
-        <outcome>No singing. {A_nameDef} went out alone after dark and sat a long while with {A_possessive} back to the old tree.</outcome>
+        <outcome>{A_nameDef} went out alone after dark and sat a long while with {A_possessive} back to the old tree.</outcome>
         <ways><tradition>-3</tradition><toil>3</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_NoCelebration</thought></li>
@@ -459,7 +459,7 @@
     <options>
       <li>
         <label>A place at the table for every one of them</label>
-        <outcome>The long table was laid with a place for each of the colony's dead, a full bowl at each, and {A_nameDef} said every name before anyone ate. Stories came out that nobody had told in years. The door stood open the whole evening.</outcome>
+        <outcome>The long table was laid with a place for each of the colony's dead, a full bowl at each, and {A_nameDef} said every name before anyone ate. Someone laughed at a story about one of them, and after that the stories kept coming. The door stood open the whole evening.</outcome>
         <ways><tradition>5</tradition><generosity>2</generosity></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what></li>
@@ -482,7 +482,7 @@
       </li>
       <li>
         <label>The dead don't need feeding</label>
-        <outcome>Supper as usual. {A_nameDef} set one small bowl on the windowsill afterwards, and left it there all night.</outcome>
+        <outcome>Supper as usual. {A_nameDef} set one small bowl on the windowsill afterward, and left it there all night.</outcome>
         <ways><tradition>-4</tradition><generosity>-1</generosity></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_NoCelebration</thought></li>

@@ -87,7 +87,7 @@
       </li>
       <li>
         <label>Store every scrap for winter</label>
-        <outcome>Every grain went into storage. {A_nameDef} ate supper standing in the barn doorway, looking at the sacks.</outcome>
+        <outcome>Every grain went into storage. {A_nameDef} stood in the barn doorway a long while that evening, looking at the sacks.</outcome>
         <ways><generosity>-5</generosity><toil>3</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_NoCelebration</thought><exceptTrait><li>Ascetic</li></exceptTrait></li>
@@ -260,7 +260,7 @@
         <outcome>{B_nameDef} sorted the spoils by need: coats to whoever was cold, boots to whoever's had worn through. {A_nameDef} got one good thing out of it and has stopped arguing.</outcome>
         <outcomes>
           <li>[lowtech] {B_nameDef} laid the spoils out on the threshing floor and handed them out one by one, by need. {A_nameDef} got the bow {A_pronoun} wanted and let the rest go without a fuss.</li>
-          <li>[!lowtech] {B_nameDef} wrote every item down, then shared them out by need. {A_nameDef} got the rifle {A_pronoun} wanted, signed for it, and went off to clean it.</li>
+          <li>[!lowtech] {B_nameDef} wrote every item down, then shared them out by need. {A_nameDef} got the rifle {A_pronoun} wanted, signed for it, and hasn't put it down since.</li>
           <li>[b:trait:Kind] {B_nameDef} gave the warmest coats to the ones who stood watch longest, and the rest by need. Even {A_nameDef} said it was fair.</li>
         </outcomes>
         <riskChance>0.35</riskChance>

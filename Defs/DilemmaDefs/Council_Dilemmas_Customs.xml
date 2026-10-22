@@ -28,11 +28,11 @@
       <bestAt>Plants</bestAt>
     </roleA>
     <texts>
-      <li>The ground has thawed, and the fields are bare and waiting. {A_nameDef} wants to make a day of the sowing: everyone who can be spared out in the fields with the seed, all of it in by evening, and a few words at the field's edge when it's done.\n\n"Where I'm from, nobody sowed alone on the first day," {A_nameDef} says.</li>
+      <li>The ground has thawed, and the fields are bare and waiting. {A_nameDef} wants to make a day of the sowing: everyone who can be spared out in the fields with the seed, all of it in by evening, and a few words at the field's edge when it's done.\n\n"Where I'm from, you never sowed alone on the first day," {A_nameDef} says.</li>
       <li>{A_nameDef} has been sorting seed by the window all week, and has asked the council for one day: the whole colony at the furrows together, the first rows in before noon, and then a word over the fields at dusk.\n\nIt would cost the colony a day's other work.</li>
       <li>[lowtech] Back in {A_nameDef}'s village, the first sowing of the year was done by everyone together, with a little grain thrown to the birds so they'd leave the rest. {A_nameDef} would like a planting day here, the old way.</li>
       <li>[rain] Soft rain on the open fields, the best weather for seed there is. {A_nameDef} wants everyone out in it tomorrow for a planting day: the whole crop in at once, and a word together when it's done.</li>
-      <li>[colony:Traditional] The fields are open again, and {A_nameDef} has the seed ready. The colony keeps its customs, and {A_nameDef} asks for the planting day: everyone out to sow, and a few words at the field's edge.</li>
+      <li>[colony:Traditional] The fields are open again, and {A_nameDef} has the seed ready. The colony keeps its customs, and {A_nameDef} asks for the planting day: all hands out to sow, and a few words at the field's edge.</li>
       <li>[small] There aren't many of them, and the fields are wide. {A_nameDef} says that's the reason to do it together: one day, everyone, every row.</li>
     </texts>
     <traditionOption>0</traditionOption>
@@ -43,7 +43,7 @@
         <label>Make a day of the planting</label>
         <outcome>The colony went out to the fields with the seed and sowed together, row by row, until the light went. At dusk {A_nameDef} stood at the edge and said a few words over the furrows.</outcome>
         <outcomes>
-          <li>[rain] It rained all through the sowing, which {A_nameDef} declared the best possible sign. Everyone came in soaked to the knees and pleased with themselves.</li>
+          <li>[rain] It rained all through the sowing, and {A_nameDef} called it luck. They came in at dusk soaked to the knees, with mud to the elbows.</li>
           <li>[lowtech] {A_nameDef} threw the first handful of grain to the birds, and then everyone set to the furrows. By dusk the fields were in.</li>
         </outcomes>
         <ways><tradition>4</tradition><toil>1</toil></ways>
@@ -67,7 +67,7 @@
       </li>
       <li>
         <label>The seed goes in like any other work</label>
-        <outcome>No planting day. The seed will go in between the other jobs, the way it usually does. {A_nameDef} planted the first row a little more carefully than the rest, and didn't say why.</outcome>
+        <outcome>The seed will go in between the other jobs, as it always has. {A_nameDef} planted the first row more carefully than the rest, and didn't say why.</outcome>
         <ways><tradition>-3</tradition><toil>3</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_PlantingSkipped"><thought>Council_Dlm_PlantingSkipped</thought></li>
@@ -89,8 +89,8 @@
       <notTrait><li>Psychopath</li></notTrait>
     </roleA>
     <texts>
-      <li>The snow has gone from the graves, and {A_nameDef} has been out to clear the winter's leaves off them. {A_nameDef} asks whether the colony might walk out there together one evening, everyone, and say the names of the dead out loud.</li>
-      <li>{A_nameDef} found weeds growing over one of the graves this morning and pulled them by hand. Now {A_nameDef} wants a day each spring when the whole colony walks to the graves together, tidies them, and remembers.</li>
+      <li>Green shoots are coming up between the graves, and {A_nameDef} has been out clearing last year's leaves off the stones. {A_nameDef} would like the colony to walk out there together one evening and say the names of the dead out loud.</li>
+      <li>{A_nameDef} found weeds growing over one of the graves this morning and pulled them by hand. Now {A_nameDef} wants a day for it each spring, with all of them out at the graves together to tidy them and say the names.</li>
       <li>[trait:Kind] {A_nameDef} has picked the first flowers of the year, one for every grave, and asks the council if everyone could come and lay them down together.</li>
     </texts>
     <traditionOption>0</traditionOption>
@@ -99,10 +99,10 @@
     <options>
       <li>
         <label>Walk to the graves together</label>
-        <outcome>The colony walked to the graves at dusk, tidied them, and said every name out loud. A few stories came out that nobody had heard before.</outcome>
+        <outcome>The colony walked to the graves at dusk, tidied them, and said every name out loud. A few stories came out that hadn't been told before.</outcome>
         <outcomes>
-          <li>[trait:Kind] Everyone laid a flower on a grave, and {A_nameDef} said a few words for each of the dead. It took a long time, and nobody hurried it.</li>
-          <li>[rain] They walked out in the rain and stood at the graves anyway, saying the names over the noise of it. It felt right, somehow.</li>
+          <li>[trait:Kind] Each of them laid a flower on a grave, and {A_nameDef} said a few words for every one of the dead. The light was gone before the last name.</li>
+          <li>[rain] They walked out in the rain anyway and stood at the graves with water running off their hoods, saying the names over the noise of it.</li>
         </outcomes>
         <ways><tradition>5</tradition><mercy>1</mercy></ways>
         <effects>
@@ -124,7 +124,7 @@
       </li>
       <li>
         <label>The living have work to do</label>
-        <outcome>No walk. {A_nameDef} went out alone after dark and came back with mud on {A_possessive} knees.</outcome>
+        <outcome>{A_nameDef} went out to the graves alone after dark and came back with mud on {A_possessive} knees.</outcome>
         <ways><tradition>-4</tradition><toil>2</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_NoCelebration</thought></li>
@@ -153,7 +153,7 @@
     </roleA>
     <texts>
       <li>It's the hottest day yet, and {A_nameDef} wants the whole colony down at the water for the afternoon: tools down, boots off, and nobody back until they've been in up to the neck.</li>
-      <li>{A_nameDef} came back from the water this morning dripping and grinning, and has asked the council to let everyone have an afternoon of it. "One day a year," {A_nameDef} says. "That's all."</li>
+      <li>{A_nameDef} came back from the water this morning dripping and grinning, and wants the rest of them to have an afternoon of it. "One day a year," {A_nameDef} says. "That's all."</li>
       <li>[trait:Ascetic] Even {A_nameDef}, who usually wants nothing, has asked for this: an afternoon in the water for everyone, on the hottest day of the year.</li>
     </texts>
     <traditionOption>0</traditionOption>
@@ -176,7 +176,7 @@
       </li>
       <li>
         <label>A swim once the day's work is done</label>
-        <outcome>Work first, then the water. The light was going by the time they got there, but it was still warm, and nobody hurried back.</outcome>
+        <outcome>Work first, then the water. The light was going by the time they got there, but the water was still warm, and they stayed in until the first stars.</outcome>
         <ways><tradition>1</tradition><toil>2</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.12</amount></li>
@@ -214,9 +214,9 @@
     </roleA>
     <texts>
       <li>The fields are bare and the stores are full, and {A_nameDef} wants a dance: the floor swept, the tables pushed back, someone on a drum, and everyone up on their feet until they can't stand.\n\nIt would cost nothing but a late night and a slow morning.</li>
-      <li>{A_nameDef} has been teaching a couple of the others an old harvest dance in the barn when they think nobody's watching, and has finally asked the council to make a night of it for everyone.</li>
+      <li>For a week now there's been stamping in the barn after supper. {A_nameDef} has been teaching a couple of the others an old harvest dance, and would like the council to make a night of it for everyone.</li>
       <li>[lowtech] Where {A_nameDef} grew up, the last sheaf was carried in on someone's shoulders and the whole village danced around it. {A_nameDef} would like a dance here too, sheaf and all.</li>
-      <li>[trait:Kind] {A_nameDef} noticed how tired everyone looked bringing in the harvest, and asked the council for one night of music and dancing to make up for it.</li>
+      <li>[trait:Kind] {A_nameDef} noticed how tired the harvesters looked by the end, and asked the council for one night of music and dancing to make up for it.</li>
     </texts>
     <traditionOption>0</traditionOption>
     <traditionLabel>the harvest dance</traditionLabel>
@@ -296,7 +296,7 @@
       </li>
       <li>
         <label>Soup for those working outside</label>
-        <outcome>A smaller pot went out to the ones working in the cold. The rest smelled it from indoors and were jealous.</outcome>
+        <outcome>A smaller pot went out to the ones working in the cold. The ones indoors smelled it and kept finding reasons to step outside.</outcome>
         <ways><generosity>1</generosity><toil>1</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><factor>0.4</factor></li>
@@ -331,7 +331,7 @@
     <seasons><li>Winter</li><li>PermanentWinter</li></seasons>
     <texts>
       <li>The nights are long and black, and {A_nameDef} wants one of them to be different: a lantern in every window and along every path, all lit at once at dusk, so the colony can be seen glowing from the hills.\n\nIt would burn a fair bit of wood.</li>
-      <li>{A_nameDef} has been making lanterns out of scraps in the evenings, dozens of them, and asks the council for one night to light them all.</li>
+      <li>There are forty-one lanterns under {A_nameDef}'s bed, made from scraps over the winter evenings. {A_nameDef} would like one night to light them all.</li>
       <li>[lowtech] Back home, on the darkest night of the year, every house set a candle in the window so the dead could find their way. {A_nameDef} asks if the colony could do the same.</li>
       <li>[!lowtech] {A_nameDef} wants the lamps off for one winter night and lanterns lit instead, real flames, the way {A_pronoun} remembers it from childhood.</li>
     </texts>
@@ -341,9 +341,9 @@
     <options>
       <li>
         <label>A lantern in every window</label>
-        <outcome>At dusk the lanterns were lit all at once, and the colony stood outside in the cold to look at itself glowing. Nobody wanted to go in.</outcome>
+        <outcome>At dusk the lanterns were lit all at once, and the colony stood outside in the cold to look at itself glowing. It was a long while before anyone went in.</outcome>
         <outcomes>
-          <li>[snow] The lanterns lit up the falling snow, and for an hour the colony looked like something out of a story.</li>
+          <li>[snow] The lanterns lit up the falling snow. They stood out in it, looking, until their feet went numb.</li>
           <li>[lowtech] A candle burned in every window until dawn. {A_nameDef} sat up to keep them lit, and said a name at each one.</li>
         </outcomes>
         <ways><tradition>4</tradition><toil>-2</toil></ways>
