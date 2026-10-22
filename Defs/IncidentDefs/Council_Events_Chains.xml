@@ -39,7 +39,7 @@
             <outcome>{A_nameDef} says nothing, but checks {A_possessive} weapon twice. {ENEMY} will be here within hours.</outcome>
             <outcomes>
               <li>{A_nameDef} goes very quiet, then goes to help shore up the walls. The raid is a few hours off at most.</li>
-              <li>[trait:Kind] {A_nameDef} thanks the council, one by one, then goes to get ready. {ENEMY} won't be long.</li>
+              <li>[trait:Kind] {A_nameDef} shakes a few hands, slowly, then goes to get ready. {ENEMY} won't be long.</li>
             </outcomes>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_StoodByMe</thought><onlyIfChosen>true</onlyIfChosen></li>
@@ -69,7 +69,7 @@
           </li>
           <li>
             <label>Hand {A_nameDef} back</label>
-            <outcome>{A_nameDef} walks out to them without a word and doesn't look back. Supper that night is a quiet one.</outcome>
+            <outcome>{A_nameDef} walks out to them without a word and doesn't look back. Supper tonight will be a quiet one.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Evt_GaveUpOneOfUs</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>10</amount><enemy>true</enemy></li>
@@ -135,7 +135,7 @@
             <label>Thank {X_objective} and wish {X_objective} well</label>
             <outcome>{X_nameDef} stays for supper, talks about home until late, and leaves in the morning with a full pack. {FACTION} speak well of the colony.</outcome>
             <outcomes>
-              <li>{X_nameDef} eats two helpings at supper, falls asleep at the table, and is gone at first light with a full pack. {FACTION} speak well of the colony.</li>
+              <li>{X_nameDef} eats two helpings at supper, falls asleep at the table, and will be off at first light with a full pack. {FACTION} speak well of the colony.</li>
               <li>[trait:Kind] {A_nameDef} walks {X_nameDef} to the edge of the colony's land in the morning, the way they walked together years ago. {FACTION} speak well of the colony.</li>
             </outcomes>
             <effects>

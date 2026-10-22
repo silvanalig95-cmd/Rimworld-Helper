@@ -54,7 +54,7 @@
           </li>
           <li>
             <label>Refuse to pay</label>
-            <outcome>The answer is no. {ENEMY} will come for what they're owed within a day or so, and they'll keep coming.</outcome>
+            <outcome>No silver goes out. {ENEMY} will come for what they're owed within a day or so, and they'll keep coming.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_RaidLater">
                 <points>0.6~0.8</points>

@@ -306,7 +306,7 @@
           <li>[friend,studied,!buyer] {X_nameDef} woke this morning exactly as the door said {X_pronoun} would: slowly, cold to the bone, and calm. {A_nameDef} was there with blankets and broth, and by evening {X_nameDef} could sit up and talk, in an old slow way of speaking that takes some getting used to.\n\n{X_nameDef} remembers being put to sleep, and a war, and very little else. Whatever {X_pronoun} left behind is long gone. {X_nameDef} asks whether the colony has a place for one more, or failing that, a road out.</li>
           <li>[friend,!studied,!buyer] "Is it over?" were the sleeper's first words, in the middle of the night, and it took {A_nameDef} until dawn to work out that {X_pronoun} meant a war. By morning {X_nameDef}, as {X_pronoun} turned out to be called, was eating porridge and asking questions {A_nameDef} couldn't answer.\n\nThere is nothing for {X_nameDef} to go back to. {X_nameDef} would like to stay, if the colony will have {X_objective}, or else to be shown the road.</li>
           <li>[wary,studied] {X_nameDef} woke fighting, exactly as the door warned, and found {X_possessive} wrists tied to the bed frame with soft rope. It took {A_nameDef} two days of talking, broth and patience before {X_nameDef} would let anyone near enough to untie {X_objective}.\n\nNow {X_nameDef} is calm, and ashamed of the noise. The war {X_pronoun} remembers ended long before anyone here was born. {X_nameDef} asks for a place here, or a road out.</li>
-          <li>[buyer] {FACTION}'s diggers found more than they bargained for behind the door in the hill: a casket, and someone asleep in it. They woke {X_objective}, and {X_nameDef} has been a puzzle to them ever since, asking questions in an old tongue none of them can follow.\n\nIt was the colony's door, so they've brought the sleeper to the colony. {X_nameDef} would like to stay, if there's room, or else to be shown the road.</li>
+          <li>[buyer] {FACTION}'s diggers found more than they bargained for behind the door in the hill: a casket, and someone asleep in it. They woke {X_objective}, and {X_nameDef} has been a puzzle to them ever since, asking questions in an old tongue none of them can follow.\n\nIt was the colony's door, so they've brought the sleeper to the colony. {X_nameDef} asks to stay, if there's room, or else to be shown the road.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -674,7 +674,7 @@
         <texts>
           <li>Judging by the boots, {X_nameDef} has done well since the colony kept quiet for {X_objective}, and has come back to say thank you. The gift is wrapped in good cloth, and the things inside are finer than any honest traveler comes by.\n\n{FACTION} are still asking along the road about what was taken from {PLACE}.</li>
           <li>[lowtech] {X_nameDef} rode in on a horse {X_pronoun} certainly didn't own last time, to thank the colony for keeping quiet. The gift is wrapped in embroidered cloth: silver work, fine and old, of the kind that goes missing from the houses of the rich.\n\n{FACTION}'s riders are still asking up and down the road about what went missing from {PLACE}. The colony could keep the gift, refuse it, or send it home to them.</li>
-          <li>[!lowtech] {X_nameDef} turned up in a clean jacket and good boots to thank the colony for keeping quiet, with a gift in a padded case. Inside are fine things, the kind that come with a serial number and an owner.\n\nSomeone at {PLACE} is missing them, and {FACTION} have been asking about it along the road ever since.</li>
+          <li>[!lowtech] {X_nameDef} turned up in a clean jacket and good boots, with a gift in a padded case and thanks for the colony's silence. Inside are fine things, the kind that come with a serial number and an owner.\n\nSomeone at {PLACE} is missing them, and {FACTION} have been asking about it along the road ever since.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -966,7 +966,7 @@
           </li>
           <li>
             <label>Stand by the {TALE} family</label>
-            <outcome>The council stands by its word. The {TALE} family is grateful, and says so to anyone who'll listen.</outcome>
+            <outcome>The colony's word stands. The {TALE} family is grateful, and says so to anyone who'll listen.</outcome>
           </li>
         </options>
       </li>
@@ -1277,7 +1277,7 @@
           </li>
           <li>
             <label>Let it burn itself out</label>
-            <outcome>The council says nothing, and waits.</outcome>
+            <outcome>Nothing is said, and the colony waits.</outcome>
           </li>
         </options>
       </li>
@@ -1309,7 +1309,7 @@
         <texts>
           <li>{X_nameDef}, the preacher the colony sent on, never went far. There's a hill a day's walk from here where {X_pronoun} has been living alone, preaching to the wind and to anyone who makes the climb, and three pilgrims of {FACTION} stopped at the gate this morning on their way up to hear {X_objective}.\n\nThey'll pay {COUNT} silver for a meal and a dry floor tonight. More are coming, they say.</li>
           <li>[winter] Three pilgrims of {FACTION} came to the gate this morning with frost in their hair. They're climbing to the hill where {X_nameDef}, the preacher the colony sent away, lives alone now and preaches to whoever makes the climb, snow or no snow.\n\nThey'll pay {COUNT} silver for a hot meal and a dry floor, and there are more on the road behind them.</li>
-          <li>[summer] Sunburned and dusty, a handful of pilgrims of {FACTION} stopped at the gate this morning for water. They're bound for a hill a day's walk off, where {X_nameDef}, the preacher the colony sent on, preaches from a rock to anyone who will climb up and listen.\n\nThey'll pay {COUNT} silver for a meal and a place to sleep, and they say others are coming. Or the colony could turn them away.</li>
+          <li>[summer] Sunburned and dusty, a handful of pilgrims of {FACTION} asked at the gate for water. They're bound for a hill a day's walk off, where {X_nameDef}, the preacher the colony sent on, preaches from a rock to anyone who will climb up and listen.\n\nThey'll pay {COUNT} silver for a meal and a place to sleep, and they say others are coming. Or the colony could turn them away.</li>
         </texts>
         <defaultOption>0</defaultOption>
         <options>
