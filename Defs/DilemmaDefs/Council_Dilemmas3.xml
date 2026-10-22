@@ -23,13 +23,13 @@
     </roleB>
     <texts>
       <li>{A_nameDef} has been following {B_nameDef} out to the hunting grounds every morning, twenty paces behind, "secretly." Today {A_nameDef} stopped hiding and asked to be taught to shoot.\n\n{B_nameDef} said to ask the council. {A_nameDef} has been waiting outside the council's door ever since, standing as tall as {A_pronoun} can.</li>
-      <li>{A_nameDef} brought a drawing to dinner of a raider stuck full of arrows, with a small figure in the corner doing the shooting. The small figure had {A_nameDef}'s name written under it.\n\n{B_nameDef}, the colony's best shot, has been asked for lessons nine times today. Most people out here learn to shoot sooner or later. The council has to decide whether {A_nameDef} starts now.</li>
+      <li>{A_nameDef} brought a drawing to dinner of a raider stuck full of arrows, with a small figure in the corner doing the shooting. The small figure had {A_nameDef}'s name written under it.\n\n{B_nameDef}, the colony's best shot, has been asked for lessons nine times today. Most people out here learn to shoot sooner or later, and {A_nameDef} would like it to be sooner.</li>
     </texts>
     <defaultOption>2</defaultOption>
     <options>
       <li>
         <label>Teach {A_nameDef} to shoot</label>
-        <outcome>{B_nameDef} is teaching {A_nameDef} to shoot, starting with how to hold the weapon and where never to point it. {A_nameDef} hit the target on the second day and hasn't stopped talking about it.</outcome>
+        <outcome>{B_nameDef} started with how to hold the weapon and where never to point it, and only then let {A_nameDef} shoot. {A_nameDef} hit the target once, near the end, and hasn't stopped talking about it.</outcome>
         <ways><tradition>-5</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_LearnedToShoot</thought></li>
@@ -42,7 +42,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Lesson"><skill>Shooting</skill></li>
         </effects>
         <riskChance>0.2</riskChance>
-        <riskOutcome>Lessons have begun. The second one ended with a shot through the storeroom door, a hand's width from {B_nameDef}'s ear. {B_nameDef} is still shaken, and some of the others think the lessons should stop.</riskOutcome>
+        <riskOutcome>The lesson ended early, with a shot through the storeroom door a hand's width from {B_nameDef}'s ear. {B_nameDef}'s hands were still shaking at supper, and some of the others think it should be the last lesson.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>B</target><hediff>Council_Dlm_Rattled</hediff></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_ChildArmed</thought><exceptTrait><li>Bloodlust</li><li>Psychopath</li><li>Tough</li></exceptTrait><chance>0.5</chance></li>
@@ -50,7 +50,7 @@
       </li>
       <li>
         <label>{A_nameDef} carries the game bags, nothing more</label>
-        <outcome>{A_nameDef} goes out with the hunters now, carrying the bags and asking detailed questions about guts. {B_nameDef} spends most of each hunt telling {A_objective} to stay down.</outcome>
+        <outcome>{A_nameDef} went out with {B_nameDef} and carried the bags, asking detailed questions about guts the whole way. {B_nameDef} spent most of the hunt telling {A_objective} to stay down.</outcome>
         <ways><toil>3</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_TaggedAlong</thought></li>
@@ -62,7 +62,7 @@
       </li>
       <li>
         <label>Not until {A_nameDef} is older</label>
-        <outcome>The answer was no. {A_nameDef} took it well in front of the council, then slammed every door on the way to bed.</outcome>
+        <outcome>{A_nameDef} took the no well enough at the table, then slammed every door on the way to bed.</outcome>
         <ways><tradition>5</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_TooYoung</thought></li>
@@ -71,7 +71,7 @@
         </effects>
         <riskChance>0.25</riskChance>
         <riskReplaces>true</riskReplaces>
-        <riskOutcome>The council said no, so {A_nameDef} slipped out at dawn with a sharpened stick and came back with a dead squirrel and a skinned knee. {B_nameDef} spent half the morning searching for {A_objective}.</riskOutcome>
+        <riskOutcome>Told to wait, {A_nameDef} slipped out at dawn with a sharpened stick and came back with a dead squirrel and a skinned knee. {B_nameDef} spent half the morning searching for {A_objective}.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_ProvedThem</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-2</amount></li>
@@ -91,7 +91,7 @@
         </effects>
         <riskChance>0.4</riskChance>
         <riskReplaces>true</riskReplaces>
-        <riskOutcome>{B_nameDef} walked {A_nameDef} through skinning the day's kill, step by step, and {A_nameDef} loved it. {A_nameDef} now follows {B_nameDef} everywhere, asking when the next hunt is.</riskOutcome>
+        <riskOutcome>{A_nameDef} watched the skinning without blinking, asked to hold the knife, and now follows {B_nameDef} everywhere asking when the next hunt is.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_TaggedAlong</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Babysat</thought></li>
@@ -122,7 +122,7 @@
     <options>
       <li>
         <label>Say the dead go somewhere warm</label>
-        <outcome>{B_nameDef} told {A_nameDef} the dead go somewhere warm, with good food and no raiders. {A_nameDef} seemed comforted, and asked whether the food there is better than the colony's. A few of the adults think it was a kind lie.</outcome>
+        <outcome>{B_nameDef} told {A_nameDef} the dead go somewhere warm, with good food and no raiders. {A_nameDef} thought about it for a while, then asked whether the food there is better than the colony's.</outcome>
         <ways><mercy>2</mercy><tradition>5</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Comforted</thought></li>
@@ -151,7 +151,7 @@
       </li>
       <li>
         <label>Hold a funeral for the animal</label>
-        <outcome>The colony stopped work to bury the animal in a small wooden box, with speeches. {A_nameDef} gave the longest one. Some of the adults were moved; others thought it a waste of a working afternoon.</outcome>
+        <outcome>The colony stopped work to bury the animal in a small wooden box, with speeches. {A_nameDef} gave the longest. The shortest came from the cook, who had left a pot on.</outcome>
         <ways><tradition>6</tradition><toil>-3</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>WoodLog</what><count>10</count></li>
@@ -167,13 +167,13 @@
       </li>
       <li>
         <label>Change the subject</label>
-        <outcome>{A_nameDef} never got an answer, and has added it to the list of things the adults won't talk about.</outcome>
+        <outcome>{A_nameDef} has added it to the list of things the adults won't talk about.</outcome>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Unanswered</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-3</amount></li>
         </effects>
         <riskChance>0.35</riskChance>
-        <riskOutcome>{A_nameDef} never got an answer, so {A_pronoun} has been asking the question at every meal since, of anyone who will sit still for it.</riskOutcome>
+        <riskOutcome>{A_nameDef} asks the question at every meal now, of anyone who will sit still for it.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_AwkwardQuestions</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_AwkwardQuestions</thought><exceptTrait><li>Psychopath</li></exceptTrait><chance>0.6</chance></li>
@@ -197,7 +197,7 @@
       <bestAt>Shooting</bestAt>
     </roleB>
     <texts>
-      <li>Food has been disappearing from the stores, a potato one day, a strip of jerky the next. {B_nameDef} followed the trail past the wall and found {A_nameDef} hand-feeding a scruffy wild animal, which bolted as soon as it saw {B_objective}.\n\n{A_nameDef} has given it a name, and won't say it in front of {B_nameDef}.</li>
+      <li>Missing from the stores this week: four potatoes, three strips of jerky, a fistful of corn. {B_nameDef} followed the crumbs past the wall and found {A_nameDef} hand-feeding a scruffy wild animal, which bolted the moment it saw {B_objective}.\n\n{A_nameDef} has given it a name, and won't say it in front of {B_nameDef}.</li>
       <li>{A_nameDef} has made a friend. It lives in the scrub past the wall, has a lot of teeth, and eats whatever {A_nameDef} can smuggle out of the stores in a sleeve.\n\n{B_nameDef} has seen the tracks, and wants the council's say before doing anything about the animal.</li>
     </texts>
     <defaultOption>3</defaultOption>
@@ -224,7 +224,7 @@
       </li>
       <li>
         <label>Chase it off for good</label>
-        <outcome>{B_nameDef} chased the animal off with a lot of shouting and one thrown boot. {A_nameDef} watched from the wall and has not spoken to {B_nameDef} since.</outcome>
+        <outcome>{B_nameDef} chased the animal off with a lot of shouting and one thrown boot. {A_nameDef} brought the boot back without a word and set it down at {B_nameDef}'s feet.</outcome>
         <ways><mercy>-3</mercy><generosity>-3</generosity></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_FriendGone</thought></li>
@@ -263,7 +263,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>-3</amount></li>
         </effects>
         <riskChance>0.3</riskChance>
-        <riskOutcome>The council said nothing, and the animal grew bold enough to come over the wall at night and clear out a shelf of the storeroom by itself.</riskOutcome>
+        <riskOutcome>The animal grew bold enough to come over the wall one night and clear a shelf of the storeroom by itself.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>20</count></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_FeedingWildlife</thought><exceptTrait><li>Kind</li></exceptTrait></li>
@@ -284,7 +284,7 @@
       <minOpinionOfA>-100</minOpinionOfA>
     </roleB>
     <texts>
-      <li>{PET_nameDef} bit {B_nameDef} this morning. Not a nip, but a proper bite, the kind that needs a bandage and a sit-down.\n\n{B_nameDef} says it came out of nowhere. {A_nameDef} says {B_nameDef} stepped on {PET_nameDef} first, and doesn't see why the animal should be punished for it.</li>
+      <li>{PET_nameDef} bit {B_nameDef} today. Not a nip, but a proper bite, the kind that needs a bandage and a sit-down.\n\n{B_nameDef} says it came out of nowhere. {A_nameDef} says {B_nameDef} stepped on {PET_nameDef} first, and doesn't see why the animal should be punished for it.</li>
       <li>{B_nameDef} came to the council holding up a bandaged hand. {PET_nameDef} did that, and {A_nameDef} isn't nearly as sorry as {B_nameDef} would like.\n\n"It's never bitten anyone before," {A_nameDef} says. "No one's ever given it a reason."</li>
     </texts>
     <defaultOption>3</defaultOption>
@@ -333,7 +333,7 @@
       </li>
       <li>
         <label>Let it go</label>
-        <outcome>{PET_nameDef} goes unpunished. {B_nameDef} keeps well clear of the animal now, and isn't speaking to {A_nameDef}.</outcome>
+        <outcome>{PET_nameDef} goes unpunished. {B_nameDef} gives {PET_nameDef} a wide berth now, wherever the animal happens to be lying.</outcome>
         <ways><mercy>3</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Ignored</thought></li>
@@ -341,7 +341,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Grudge</thought><about>A</about><chance>0.5</chance></li>
         </effects>
         <riskChance>0.25</riskChance>
-        <riskOutcome>The council let it go. A few days later {PET_nameDef} bit {B_nameDef} again, on the other hand.</riskOutcome>
+        <riskOutcome>{PET_nameDef} went unpunished, and bit {B_nameDef} again before the day was out, on the other hand.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_BittenAgain</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>-3</amount></li>
@@ -364,7 +364,7 @@
     </roleB>
     <texts>
       <li>{PET_nameDef} is stiff in the mornings, off {PET_possessive} food, and sleeps in the sun most of the day. {B_nameDef}, who knows animals better than anyone here, looked {PET_objective} over and said it isn't the kind of sickness that gets better.\n\n{A_nameDef} has asked the council what to do, and begged them not to say it out loud.</li>
-      <li>{A_nameDef} has been helping {PET_nameDef} to {PET_possessive} feet every morning, because {PET_nameDef} can't manage it alone anymore. {B_nameDef} says it will only get harder for both of them.\n\nNo medicine will fix this. {A_nameDef} has asked the council to help decide what happens now.</li>
+      <li>{A_nameDef} has been helping {PET_nameDef} to {PET_possessive} feet every morning, because {PET_nameDef} can't manage it alone anymore. {B_nameDef} says it will only get harder for both of them.\n\nNo medicine will fix this.</li>
     </texts>
     <defaultOption>3</defaultOption>
     <options>
@@ -419,7 +419,7 @@
         </effects>
         <riskChance>0.5</riskChance>
         <riskReplaces>true</riskReplaces>
-        <riskOutcome>{B_nameDef} looked at {PET_nameDef} for a long time, then took {PET_objective} out for one last walk. {A_nameDef} had agreed to let {B_nameDef} decide, and is taking it hard.</riskOutcome>
+        <riskOutcome>{B_nameDef} looked at {PET_nameDef} for a long time, then took {PET_objective} out for one last walk. {A_nameDef} had said {B_nameDef} could decide, and stood by it, and went to bed early.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_ReleasePet" />
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_LastWalk</thought></li>
@@ -431,7 +431,7 @@
       </li>
       <li>
         <label>Let {PET_nameDef} be</label>
-        <outcome>Nothing was decided. {PET_nameDef} sleeps in the sun with {A_nameDef} beside {PET_objective}, and each morning it takes {PET_objective} longer to get up.</outcome>
+        <outcome>{PET_nameDef} sleeps in the sun with {A_nameDef} beside {PET_objective}, and each morning it takes {PET_objective} longer to get up.</outcome>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_PetFading</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-2</amount></li>
@@ -460,7 +460,7 @@
     <options>
       <li>
         <label>{PET_nameDef} is family</label>
-        <outcome>The council ruled that {PET_nameDef} is family. {B_nameDef} accepted the ruling, and still licks {B_possessive} lips when {PET_nameDef} walks past.</outcome>
+        <outcome>{PET_nameDef} is family, and family isn't eaten. {B_nameDef} accepted it, and still licks {B_possessive} lips when {PET_nameDef} walks past.</outcome>
         <ways><mercy>5</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Vindicated</thought></li>
@@ -469,7 +469,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>-4</amount></li>
         </effects>
         <riskChance>0.2</riskChance>
-        <riskOutcome>The council ruled that {PET_nameDef} is family. That night {A_nameDef} found {B_nameDef} by the pen with a knife, and has slept out there ever since.</riskOutcome>
+        <riskOutcome>{PET_nameDef} is family. That night {A_nameDef} found {B_nameDef} by the pen with a knife, and has slept out there ever since.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>A</target><hediff>Council_Dlm_Sleepless</hediff></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Grudge</thought><about>B</about></li>
@@ -477,7 +477,7 @@
       </li>
       <li>
         <label>Feed {B_nameDef} extra rations instead</label>
-        <outcome>{B_nameDef} gets an extra portion at every meal, on the understanding that {PET_nameDef} stays off the menu. So far it's working.</outcome>
+        <outcome>{B_nameDef} gets an extra portion at every meal, on the understanding that {PET_nameDef} stays off the menu. {B_nameDef} eats it slowly, watching {PET_nameDef}.</outcome>
         <ways><generosity>4</generosity></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>15</count></li>
@@ -489,7 +489,7 @@
       </li>
       <li>
         <label>Fetch the pot</label>
-        <outcome>The council said yes, but {PET_nameDef} got over the wall before the water boiled and hasn't come back. {A_nameDef} hasn't forgiven the council for it.</outcome>
+        <outcome>The council said yes, but {PET_nameDef} got over the wall before the water boiled and hasn't come back. {A_nameDef} left the gate open all night.</outcome>
         <ways><mercy>-8</mercy><generosity>-3</generosity></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_ReleasePet" />
@@ -605,7 +605,7 @@
       </li>
       <li>
         <label>Leave it be</label>
-        <outcome>{B_nameDef} wasn't punished. {A_nameDef} hasn't written anything down since, and is plainly looking for a way to get even.</outcome>
+        <outcome>{B_nameDef} wasn't punished. {A_nameDef} hasn't written a word since, and has been seen going through {B_nameDef}'s laundry.</outcome>
         <ways><mercy>-3</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_LetterRead</thought></li>
@@ -630,7 +630,7 @@
       <maxMood>0.5</maxMood>
     </roleA>
     <texts>
-      <li>{A_nameDef} has started planning {A_possessive} own funeral. There's a list: the spot, the wood for the box, who carries it, and who is not allowed to speak.\n\n"Out here, that's just good sense," {A_nameDef} told the council, and asked for help getting it all ready now.</li>
+      <li>{A_nameDef} has brought the council a list. Across the top, in {A_possessive} best hand, it says "My funeral."\n\nThe spot (out of the wind)\nThe wood for the box\nWho carries it\nWho is not allowed to speak\n\n"Out here, that's just good sense," {A_nameDef} says, and would like it all made ready now.</li>
       <li>{A_nameDef} came to the council and asked, as calmly as if asking for the salt, for a coffin to be built now, while {A_nameDef} can still check the fit.\n\nAs far as anyone knows, {A_nameDef} isn't sick. {A_nameDef} says it's simply better to be ready, and the calm way {A_pronoun} says it worries people.</li>
     </texts>
     <defaultOption>3</defaultOption>
@@ -650,7 +650,7 @@
       </li>
       <li>
         <label>Hold a living funeral</label>
-        <outcome>The colony gathered to say kind things about {A_nameDef}, who was there to hear every word. {A_nameDef} cried through most of it, and seemed lighter afterward.</outcome>
+        <outcome>The colony gathered to say kind things about {A_nameDef}, who was there to hear every word. {A_nameDef} cried through most of it and ate two helpings after.</outcome>
         <ways><tradition>-4</tradition><toil>-3</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>10</count></li>
@@ -685,13 +685,13 @@
       </li>
       <li>
         <label>Say nothing and hope it passes</label>
-        <outcome>The council gave no answer. {A_nameDef} said "all right" and left, and hasn't brought it up again.</outcome>
+        <outcome>{A_nameDef} said "all right" to the room in general, and hasn't brought it up again.</outcome>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Ignored</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-5</amount></li>
         </effects>
         <riskChance>0.2</riskChance>
-        <riskOutcome>The council gave no answer, so {A_nameDef} walked out past the fields to choose a spot alone, and hasn't come back yet.</riskOutcome>
+        <riskOutcome>With no answer to wait for, {A_nameDef} has gone out past the fields to choose a spot alone.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_MentalState"><target>A</target><mentalState>Wander_Sad</mentalState></li>
         </riskEffects>
@@ -734,7 +734,7 @@
       </li>
       <li>
         <label>{B_nameDef} sits up with {A_nameDef} at night</label>
-        <outcome>{B_nameDef} sits up at night now, steering {A_nameDef} back to bed whenever the wandering starts. The two of them talk in between, and they get along better than they used to.</outcome>
+        <outcome>{B_nameDef} sits up at night now, steering {A_nameDef} back to bed whenever the wandering starts. In between, the two of them talk, mostly about nothing, until one of them nods off.</outcome>
         <ways><mercy>5</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>B</target><hediff>Council_Dlm_NightWatch</hediff></li>
@@ -780,7 +780,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>B</target><hediff>Council_Dlm_Sleepless</hediff></li>
         </effects>
         <riskChance>0.25</riskChance>
-        <riskOutcome>The council let it go. At dawn {A_nameDef} was found well past the fields, still walking, still not entirely awake.</riskOutcome>
+        <riskOutcome>{A_nameDef} has wandered off well past the fields, eyes open, not entirely awake.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_MentalState"><target>A</target><mentalState>Wander_Sad</mentalState></li>
         </riskEffects>
@@ -803,14 +803,14 @@
     <things><li>Silver</li></things>
     <thingCount>45</thingCount>
     <texts>
-      <li>When the last trader came through, {B_nameDef} saw {A_nameDef} behind the pack animals, handing over a sack of the colony's things. {A_nameDef} came back {COUNT} {THING} richer and didn't mention it.\n\n{A_nameDef} says it was junk the colony wouldn't miss. {B_nameDef} has started a list of what's missing.</li>
+      <li>{B_nameDef}'s list of what's missing from the stores runs to a page and a half, starting with two good knives and ending with a cooking pot. All of it went into a sack that {A_nameDef} handed to the last trader, behind the pack animals, and {A_nameDef} came back {COUNT} {THING} richer.\n\n{A_nameDef} says it was junk the colony wouldn't miss.</li>
       <li>{B_nameDef} counted the stores twice, then searched {A_nameDef}'s room and found {COUNT} {THING} under the bedroll. {A_nameDef} admits to some private trading: "some cloth, a few odds and ends, a very good price."\n\n{A_nameDef} calls it initiative. {B_nameDef} calls it theft, and a good number of the others agree.</li>
     </texts>
     <defaultOption>3</defaultOption>
     <options>
       <li>
         <label>Confiscate the {THING}</label>
-        <outcome>The {COUNT} {THING} went into the common stores. {A_nameDef} feels the colony has robbed {A_objective}.</outcome>
+        <outcome>The {COUNT} {THING} went into the common stores. {A_nameDef} handed it over a coin at a time and made the council wait for each one.</outcome>
         <ways><openness>-3</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Spawn" />
@@ -829,7 +829,7 @@
       </li>
       <li>
         <label>Take the {THING} and put {A_nameDef} to work</label>
-        <outcome>The {THING} went into the stores, and {A_nameDef} was put on the dirtiest shifts in the colony. It will be a while before anyone else tries trading on the side.</outcome>
+        <outcome>The {THING} went into the stores, and {A_nameDef} went onto the dirtiest shifts in the colony, starting with the floor under the butcher's table.</outcome>
         <ways><mercy>-5</mercy><openness>-4</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Spawn" />
@@ -868,7 +868,7 @@
       </li>
       <li>
         <label>Let the deal stand</label>
-        <outcome>{A_nameDef} keeps the {THING}. {B_nameDef} is furious, and still keeps a count of what goes missing from the stores.</outcome>
+        <outcome>{A_nameDef} keeps the {THING}. {B_nameDef} has started writing down everything that leaves the stores, and who took it.</outcome>
         <ways><openness>3</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_GotAway</thought></li>
@@ -878,7 +878,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Unfair</thought><onlyTrait><li>Greedy</li><li>Jealous</li></onlyTrait></li>
         </effects>
         <riskChance>0.25</riskChance>
-        <riskOutcome>The council let {A_nameDef} keep the {THING}. A week later, two more colonists were caught behind a trader's pack animals, each with a sack.</riskOutcome>
+        <riskOutcome>{A_nameDef} keeps the {THING}, and two more colonists have started filling sacks of their own for the next trader.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Unfair</thought><exceptTrait><li>Greedy</li><li>Jealous</li></exceptTrait><chance>0.5</chance></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>Colony</target><amount>-3</amount></li>
@@ -903,7 +903,7 @@
       <maxOpinionOfA>30</maxOpinionOfA>
     </roleB>
     <texts>
-      <li>The fighting is over, and the story is already being told two ways. In {A_nameDef}'s version, {A_nameDef} held the line alone while {B_nameDef} hung back where it was safe. In {B_nameDef}'s version, it's the other way around.\n\nBoth want the council to settle it before one version sticks.</li>
+      <li>"I held the line," says {A_nameDef}. "{B_nameDef} hung back where it was safe."\n\n"{A_nameDef} hung back," says {B_nameDef}. "I held the line."\n\nBoth want the council to settle it before one version sticks.</li>
       <li>{A_nameDef} and {B_nameDef} each say they're the one who saved the colony in the last fight. Each has a fresh bruise to show and a witness who is "pretty sure."\n\nThe argument has gone on through two dinners and is starting on a third.</li>
     </texts>
     <defaultOption>3</defaultOption>
@@ -927,7 +927,7 @@
       </li>
       <li>
         <label>It was {B_nameDef}</label>
-        <outcome>The council credits {B_nameDef} with saving the colony. {B_nameDef} tells the story at every meal, with more raiders each time, and {A_nameDef} has started eating elsewhere.</outcome>
+        <outcome>The council credits {B_nameDef} with saving the colony. {B_nameDef} tells the story at every meal, with more attackers each time, and {A_nameDef} has started eating elsewhere.</outcome>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_SavedTheColony</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>6</amount></li>
@@ -944,7 +944,7 @@
       </li>
       <li>
         <label>Ask the witnesses</label>
-        <outcome>After some discussion, the witnesses agreed it was mostly luck and poor aim on the raiders' part. Neither {A_nameDef} nor {B_nameDef} liked hearing it, but they've stopped arguing with each other.</outcome>
+        <outcome>After some discussion, the witnesses agreed it was mostly luck, and the other side's poor aim. Neither {A_nameDef} nor {B_nameDef} liked hearing it, and they've stopped arguing.</outcome>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_Deflated</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_MadeUp</thought><chance>0.5</chance></li>
@@ -962,7 +962,7 @@
       </li>
       <li>
         <label>Credit everyone who fought</label>
-        <outcome>The credit went to everyone who fought. Most of the colony was satisfied with that; {A_nameDef} and {B_nameDef} were not.</outcome>
+        <outcome>In the end the credit went to all who fought, by name. Most of them were satisfied with that. {A_nameDef} and {B_nameDef} were not.</outcome>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_Compromise</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>AAndB</target><amount>-2</amount></li>
@@ -983,13 +983,13 @@
     </roleA>
     <texts>
       <li>{A_nameDef} came to the council after dark and admitted, as if confessing to a theft, that {A_pronoun} has a spouse back home, a long way from here, who almost certainly thinks {A_nameDef} is dead.\n\n{A_nameDef} wants to send word. Getting a message that far costs silver, and it's the colony's silver.</li>
-      <li>It came out over a late drink. {A_nameDef} was married once, far from here, and as far as {A_nameDef} knows still is. Back there, {A_possessive} spouse must think {A_nameDef} is dead.\n\n{A_nameDef} has asked the council to pay for a message, passed hand to hand by travelers heading that way. Out here, that isn't cheap.</li>
+      <li>It came out over a late drink: {A_nameDef} was married once, far from here, and as far as {A_nameDef} knows still is. The message is already written and folded small. "I'm alive. I'm sorry it took so long to say so."\n\n{A_nameDef} wants it passed hand to hand by travelers heading that way, and out here that isn't cheap.</li>
     </texts>
     <defaultOption>2</defaultOption>
     <options>
       <li>
         <label>Send word properly: 60 silver</label>
-        <outcome>The message went out, paid for with sixty silver and written in {A_nameDef}'s best hand. {A_nameDef} is glad it's done, though some of the others worry about who else might read it.</outcome>
+        <outcome>Sixty silver, and the message went out in {A_nameDef}'s best hand, sealed twice. A few of the more nervous colonists have asked who else might read it on the way.</outcome>
         <ways><generosity>6</generosity><openness>2</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>60</count></li>
@@ -1022,7 +1022,7 @@
         </effects>
         <riskChance>0.4</riskChance>
         <riskReplaces>true</riskReplaces>
-        <riskOutcome>A short note went out with the next traveler, who came back through a week later with the note still in a pocket, and apologized.</riskOutcome>
+        <riskOutcome>The twenty silver went to a traveler who swore the note would get there. The note turned up the next morning, trodden into the mud by the gate.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>20</count></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_NoWord</thought></li>
@@ -1031,7 +1031,7 @@
       </li>
       <li>
         <label>No: a message can be followed back</label>
-        <outcome>The council refused, since a message can be followed back to whoever sent it. {A_nameDef} understood, but has been taking {A_possessive} meals alone since.</outcome>
+        <outcome>{A_nameDef} said {A_pronoun} understood why not, and took {A_possessive} supper out to the step to eat it alone.</outcome>
         <ways><mercy>-2</mercy><openness>-6</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_NoWord</thought></li>
@@ -1040,7 +1040,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Harsh</thought><onlyTrait><li>Kind</li></onlyTrait></li>
         </effects>
         <riskChance>0.2</riskChance>
-        <riskOutcome>The council refused. {A_nameDef} took it badly, walked out of the gate after dark, and was found at dawn staring at the road.</riskOutcome>
+        <riskOutcome>{A_nameDef} took it badly, and has gone out of the gate and a long way down the road, in the direction home would be.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_MentalState"><target>A</target><mentalState>Wander_Sad</mentalState></li>
         </riskEffects>

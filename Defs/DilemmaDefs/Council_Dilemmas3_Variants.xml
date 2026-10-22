@@ -12,15 +12,15 @@
     <defName>Council_Var_Dlm_YoungHunter</defName>
     <dilemma>Council_Dilemma_YoungHunter</dilemma>
     <texts>
-      <li>[lowtech] {A_nameDef} has made a bow out of a bent stick and some twine and has been shooting it at the fence posts all week. Today {A_nameDef} asked {B_nameDef}, the colony's best shot, for a real one, and lessons.\n\n{B_nameDef} said to ask the council, and {A_nameDef} has.</li>
-      <li>[!lowtech] {A_nameDef} has been cleaning {B_nameDef}'s rifle without being asked, every evening, very carefully, and today asked to be taught to fire it. {B_nameDef} said it's up to the council.\n\n{A_nameDef} is waiting outside, holding the cleaning rag.</li>
-      <li>[winter] Hunting is how the colony eats this winter, and {A_nameDef} wants to help. {A_nameDef} has asked {B_nameDef}, the best shot here, to take {A_objective} out and teach {A_objective} properly.\n\nThe council has to decide whether {A_nameDef} is old enough.</li>
+      <li>[lowtech] {A_nameDef} has made a bow out of a bent stick and some twine and has been shooting it at the fence posts all week. Today {A_nameDef} asked {B_nameDef}, the colony's best shot, for a real one, and lessons.\n\n{B_nameDef} looked at the stick bow for a long time before saying it was up to the council.</li>
+      <li>[!lowtech] {A_nameDef} has been cleaning {B_nameDef}'s rifle without being asked, every evening, very carefully, and today asked to be taught to fire it. {B_nameDef} said that wasn't {B_possessive} decision to make.\n\n{A_nameDef} is waiting outside, holding the cleaning rag.</li>
+      <li>[winter] Hunting is how the colony eats this winter, and {A_nameDef} wants to help. {A_nameDef} has asked {B_nameDef}, the best shot here, to take {A_objective} out and teach {A_objective} properly.\n\n{A_nameDef} has already picked out a coat for it, the warmest one, two sizes too big.</li>
     </texts>
     <outcomes>
       <li>
         <option>2</option>
         <lines>
-          <li>[winter] The answer was no. {A_nameDef} watched the hunters go out into the snow from the window, and stayed there until they came back.</li>
+          <li>[winter] {A_nameDef} watched the hunters go out into the snow from the window, and stayed there until they came back.</li>
         </lines>
       </li>
     </outcomes>
@@ -32,7 +32,7 @@
     <dilemma>Council_Dilemma_WhereTheDeadGo</dilemma>
     <texts>
       <li>[winter] {A_nameDef} found a frozen bird under the eaves and brought it in to warm it up by the stove. It didn't wake. Now {A_nameDef} is asking {B_nameDef} where it went, the part that made it a bird.\n\n{B_nameDef} has passed the question to the council.</li>
-      <li>[grieving] Since the colony buried one of its own, {A_nameDef} has been asking the adults where the dead go. Today {A_nameDef} asked {B_nameDef}, and {B_nameDef} couldn't find an answer.\n\nThe council has been asked to agree on one before bedtime.</li>
+      <li>[grieving] Since the colony buried one of its own, {A_nameDef} has been asking the adults where the dead go. Today {A_nameDef} asked {B_nameDef}, at the graveside, and {B_nameDef} couldn't find an answer that would do.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>
 
@@ -41,8 +41,8 @@
     <defName>Council_Var_Dlm_WildFriend</defName>
     <dilemma>Council_Dilemma_WildFriend</dilemma>
     <texts>
-      <li>[winter] {A_nameDef} has been leaving scraps past the wall in the snow, and something has been eating them every night: a thin wild animal that waits for {A_objective} now. {B_nameDef} saw the tracks this morning.\n\n{B_nameDef} wants the council's say before doing anything about it.</li>
-      <li>[skill:Animals] {A_nameDef} has a way with animals, and has used it on a wild one that lives in the scrub past the wall. It takes food from {A_nameDef}'s hand now, and nobody else's.\n\n{B_nameDef} has seen it, and wants the council to decide what's done about it.</li>
+      <li>[winter] {A_nameDef} has been leaving scraps past the wall in the snow, and something has been eating them every night: a thin wild animal that waits for {A_objective} now. {B_nameDef} saw its tracks this morning, and the small boot prints beside them.</li>
+      <li>[skill:Animals] {A_nameDef} has a way with animals, and has used it on a wild one that lives in the scrub past the wall. It takes food from {A_nameDef}'s hand now, and nobody else's.\n\n{B_nameDef} has seen it too, from further off, and didn't like the look of its teeth.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>
 
@@ -71,7 +71,7 @@
     <defName>Council_Var_Dlm_PetPot</defName>
     <dilemma>Council_Dilemma_PetPot</dilemma>
     <texts>
-      <li>[winter] The stores are thin this winter, and {B_nameDef} has started saying out loud what {PET_nameDef} would be worth in the pot. {A_nameDef} has started sleeping next to {PET_nameDef}.\n\nBoth of them want the council to settle it.</li>
+      <li>[winter] The stores are thin this winter, and {B_nameDef} has started saying out loud what {PET_nameDef} would be worth in the pot. {A_nameDef} has started sleeping next to {PET_nameDef}, with one eye open.</li>
       <li>[b:trait:Gourmand] {B_nameDef} has been leafing through recipes with {PET_nameDef}'s name penciled in the margins. {A_nameDef} found the notes and brought them straight to the council.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>
@@ -82,7 +82,7 @@
     <dilemma>Council_Dilemma_LoveLetter</dilemma>
     <texts>
       <li>[lowtech] {A_nameDef} wrote a poem on a piece of bark and hid it in the woodpile for someone to find. {B_nameDef} found it first, and read it to the colony at supper, with feeling.\n\n{A_nameDef} hasn't come out of {A_possessive} room since. {B_nameDef} says it was only a bit of fun.</li>
-      <li>[!lowtech] {A_nameDef} left a note on the workshop terminal for someone, and {B_nameDef} found it and printed copies. One is pinned to the dining room door.\n\n{A_nameDef} wants {B_nameDef} punished. {B_nameDef} says it was a joke.</li>
+      <li>[!lowtech] {A_nameDef} left a note on the workshop terminal for someone, and {B_nameDef} found it and printed copies. One is pinned to the dining room door.\n\n{A_nameDef} wants {B_nameDef} punished. {B_nameDef} has offered to sign the copies.</li>
       <li>[b:trait:Abrasive] {B_nameDef} found {A_nameDef}'s love letter and read it out at dinner, then gave it marks out of ten. It got a four.\n\n{A_nameDef} has asked the council to do something about {B_nameDef}.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>
@@ -131,7 +131,7 @@
       <li>
         <option>3</option>
         <lines>
-          <li>[lowtech] The council named every fighter in turn at supper. {A_nameDef} and {B_nameDef} were named last, together, and neither of them enjoyed it.</li>
+          <li>[lowtech] Every fighter was named in turn at supper. {A_nameDef} and {B_nameDef} were named last, together, and neither of them enjoyed it.</li>
         </lines>
       </li>
     </outcomes>
