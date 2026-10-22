@@ -51,10 +51,10 @@
           </li>
           <li>
             <label>Call the bluff (they may talk)</label>
-            <outcome>{X_nameDef} is told to say whatever {X_pronoun} likes, to whoever {X_pronoun} likes. {X_nameDef} shrugs and goes, and so far that seems to be the end of it.</outcome>
+            <outcome>{X_nameDef} gets no silver, shrugs, and goes on {X_possessive} way. So far that seems to be the end of it.</outcome>
             <riskChance>0.5</riskChance>
             <riskReplaces>true</riskReplaces>
-            <riskOutcome>{X_nameDef} is told to say whatever {X_pronoun} likes, and takes the colony at its word. By the end of the week, all of {FACTION} will know what {A_nameDef} used to be.</riskOutcome>
+            <riskOutcome>{X_nameDef} gets no silver, and takes it badly. By the end of the week, all of {FACTION} will know what {A_nameDef} used to be.</riskOutcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
             </effects>
@@ -192,7 +192,7 @@
         <options>
           <li>
             <label>Accept the gift</label>
-            <outcome>{X_nameDef} sets the gift out on {A_nameDef}'s table piece by piece, and won't hear a word against it.</outcome>
+            <outcome>{X_nameDef} unpacks the gift for {A_nameDef} piece by piece, and won't hear a word against it.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_FormerPatient</thought></li>
             </effects>
@@ -202,7 +202,7 @@
             <outcome>{X_nameDef} says yes before the question is finished, and asks {A_nameDef} where {X_pronoun} can sleep.</outcome>
             <riskChance>0.4</riskChance>
             <riskReplaces>true</riskReplaces>
-            <riskOutcome>{X_nameDef} would like nothing better, but there's family at home expecting {X_objective} back before the season turns. {X_nameDef} leaves the gift on the table anyway.</riskOutcome>
+            <riskOutcome>{X_nameDef} would like nothing better, but there's family at home expecting {X_objective} back before the season turns. {X_nameDef} leaves the gift behind anyway.</riskOutcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Join" />
               <li Class="ColonyCouncil.DilemmaEffect_Tie"><kind>Friends</kind><amount>20</amount></li>
@@ -310,7 +310,7 @@
         <options>
           <li>
             <label>Let {B_nameDef} study it with {A_objective}</label>
-            <outcome>{B_nameDef} and {A_nameDef} spend the evening bent over it, and {A_nameDef} goes to bed with a head full of questions and a page of drawings.</outcome>
+            <outcome>{B_nameDef} and {A_nameDef} bend over it together, and {A_nameDef} comes away with a head full of questions and a page of drawings.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><skill>Intellectual</skill><xp>500</xp></li>
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Intellectual</skill><xp>200</xp></li>
@@ -358,7 +358,7 @@
           <li>Good {PET_nameDef}</li>
         </titles>
         <texts>
-          <li>[game] There was a thump at {A_nameDef}'s door, and on the step stood {PET_nameDef} with {BEAST} hanging from {PET_possessive} jaws. Fresh meat for the pot, and a very pleased animal.</li>
+          <li>[game] {PET_nameDef} came trotting back with {BEAST} hanging from {PET_possessive} jaws, and wouldn't put it down until {A_nameDef} came to look. Fresh meat for the pot, and a very pleased animal.</li>
           <li>[herbs] {PET_nameDef} came back from the woods and dropped a muddy mouthful of healing herbs in {A_nameDef}'s lap, roots and all. {A_nameDef} is telling anyone who'll listen that {PET_nameDef} knew exactly what {PET_pronoun} was doing.</li>
           <li>[purse] A small leather purse, chewed at one corner, is the latest thing {PET_nameDef} has brought home, and {PET_nameDef} wouldn't give it up until {A_nameDef} traded a bone for it. {COUNT} silver inside. Somewhere on the road, a traveler will be patting their pockets tonight.</li>
           <li>[component] {PET_nameDef} dug something out of the scrap heap and carried it proudly to {A_nameDef}: a component, slightly chewed and still in working order.</li>

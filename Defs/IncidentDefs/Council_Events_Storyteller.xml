@@ -69,7 +69,7 @@
           </li>
           <li>
             <label>An evening of stories</label>
-            <outcome>{X_nameDef} talks until late, mostly about bad roads and the one time {X_pronoun} nearly got rich. The pack leaves with {X_objective} in the morning, still full.</outcome>
+            <outcome>{X_nameDef} talks until late, mostly about bad roads and the one time {X_pronoun} nearly got rich. Nothing from the pack changes hands.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.12</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_AdventurerTales</thought></li>
@@ -121,7 +121,7 @@
         <options>
           <li>
             <label>Pay for a survey ({COUNT} silver)</label>
-            <outcome>{X_nameDef} is out on the hills until dark, and leaves the colony its land drawn on a single sheet, with one place circled twice.</outcome>
+            <outcome>{X_nameDef} takes the silver and goes up into the hills. The map {X_pronoun} leaves the colony is a single sheet, with one place circled twice.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what></li>
               <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
@@ -129,7 +129,7 @@
           </li>
           <li>
             <label>Let {A_nameDef} guide {X_objective} (may find nothing)</label>
-            <outcome>{A_nameDef} spends a long day on the hills with {X_nameDef}, holding the far end of the line and asking questions. The survey is rough, and it cost nothing.</outcome>
+            <outcome>{A_nameDef} goes up into the hills with {X_nameDef}, holding the far end of the line and asking questions. The survey is rough, and it cost nothing.</outcome>
             <riskChance>0.45</riskChance>
             <riskReplaces>true</riskReplaces>
             <riskOutcome>Every face of rock {A_nameDef} and {X_nameDef} look at is plain and gray. There's nothing worth digging, though {A_nameDef} comes back able to read a map properly.</riskOutcome>
@@ -196,7 +196,7 @@
         <options>
           <li>
             <label>Let {X_objective} stay</label>
-            <outcome>{X_nameDef} sits by the fields from dawn until dark, hands folded. People find themselves going over to sit nearby for a while, and coming back calmer.</outcome>
+            <outcome>{X_nameDef} settles by the fields with folded hands. People find themselves going over to sit nearby for a while, and coming back calmer.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_QuietGuest</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
             </effects>
@@ -204,7 +204,7 @@
           </li>
           <li>
             <label>Ask {X_objective} to sit with {A_nameDef}</label>
-            <outcome>{X_nameDef} and {A_nameDef} sit side by side for most of a day without a word between them. That night {A_nameDef} sleeps straight through until morning.</outcome>
+            <outcome>{X_nameDef} and {A_nameDef} sit side by side for hours without a word between them. {A_nameDef} comes away with {A_possessive} shoulders down, and yawning.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_SatWithMonk</thought></li>
               <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><duration>4~5</duration></li>
@@ -226,9 +226,9 @@
           <li>Something left behind</li>
         </doneTitles>
         <done>
-          <li>[sat] {TALE} has gone on without a sound, the way {TALE} came. Where the silent guest used to sit there is a parting gift, {ITEM}, and it was {A_nameDef} who found it.</li>
-          <li>[stayed] The silent guest has left the way {TALE} arrived, without a word to anyone. In {TALE}'s place, for the colony, there is {ITEM}.</li>
-          <li>{TALE} has gone. The only sign the silent guest was ever here is {ITEM}, set down neatly where {TALE} used to sit.</li>
+          <li>[sat] {TALE} has gone on without a sound, the way {TALE} came. The silent guest left a parting gift, {ITEM}, and it was {A_nameDef} who found it.</li>
+          <li>[stayed] The silent guest has left the way {TALE} arrived, without a word to anyone. Left behind for the colony there is {ITEM}.</li>
+          <li>{TALE} has gone. The only sign the silent guest was ever here is {ITEM}, set down neatly for the colony to find.</li>
         </done>
       </li>
     </modExtensions>
@@ -267,7 +267,7 @@
         <options>
           <li>
             <label>Pay {COUNT} silver</label>
-            <outcome>{X_nameDef} measures, carves and fits for most of the day, and by evening {A_nameDef} has a {TALE}.</outcome>
+            <outcome>{X_nameDef} measures, carves and fits, and {A_nameDef} has a {TALE}.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what></li>
             </effects>
@@ -275,7 +275,7 @@
           </li>
           <li>
             <label>Pay in materials ({PLACE})</label>
-            <outcome>{X_nameDef} sorts through the materials, takes what {X_pronoun} needs and gets to work. By evening {A_nameDef} has a {TALE}.</outcome>
+            <outcome>{X_nameDef} sorts through the materials, takes what {X_pronoun} needs and gets to work, and {A_nameDef} has a {TALE}.</outcome>
             <ways><mercy>1</mercy></ways>
           </li>
           <li>
@@ -309,10 +309,10 @@
         </extra>
         <!-- Told instead of the outcome above, by what was fitted. -->
         <outcomes>
-          <li>[leg] {X_nameDef} spends the day on the fitting and the padding. By evening {A_nameDef} is walking the length of the colony on the new {TALE}, slowly at first, then again, faster.</li>
-          <li>[foot] {X_nameDef} has the {TALE} fitted by midday. {A_nameDef} spends the afternoon walking back and forth across the yard, trying it on every kind of ground.</li>
-          <li>[arm] {X_nameDef} works on the fitting until dark. By the end of it {A_nameDef} can pick up a cup with the new {TALE}, and has picked up every cup in the kitchen to be sure.</li>
-          <li>[jaw] {X_nameDef} fits the {TALE} in an afternoon. At supper {A_nameDef} eats the toughest piece of meat in the pot, slowly and with great satisfaction.</li>
+          <li>[leg] {X_nameDef} fits and pads the new {TALE}, and {A_nameDef} walks the length of the colony on it, slowly at first, then again, faster.</li>
+          <li>[foot] {X_nameDef} fits the {TALE}, and {A_nameDef} walks back and forth across the yard on it, trying it on every kind of ground.</li>
+          <li>[arm] {X_nameDef} fits the new {TALE}, and {A_nameDef} picks up a cup with it, then every other cup in the kitchen to be sure.</li>
+          <li>[jaw] {X_nameDef} fits the {TALE}. At supper {A_nameDef} means to eat the toughest piece of meat in the pot, slowly and with great satisfaction.</li>
         </outcomes>
       </li>
     </modExtensions>
@@ -366,7 +366,7 @@
           </li>
           <li>
             <label>No, thank you</label>
-            <outcome>{X_nameDef} shrugs, says the colony will hear how it went, and goes to try the next settlement down the road.</outcome>
+            <outcome>{X_nameDef} shrugs and goes to try the next settlement down the road.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
             </effects>
@@ -511,7 +511,7 @@
           </li>
           <li>
             <label>Leave food and bandages (may be repaid)</label>
-            <outcome>{A_nameDef} leaves bread and clean bandages within reach and goes home. Next morning the spot is empty, bandages and all.</outcome>
+            <outcome>{A_nameDef} sets bread and clean bandages within {X_nameDef}'s reach and comes home. What happens now is up to the stranger.</outcome>
             <ways><mercy>1</mercy></ways>
           </li>
           <li>
@@ -526,12 +526,12 @@
       </li>
       <li Class="ColonyCouncil.HappeningLivingText">
         <doneTitles>
-          <li>A bundle at the gate</li>
+          <li>A bundle left behind</li>
         </doneTitles>
         <done>
-          <li>[lowtech] A bundle has turned up at the gate, wrapped in oilcloth and tied with a strip of old bandage. Inside is {ITEM}, and a piece of bark with one name cut into it: {TALE}.</li>
-          <li>[!lowtech] The watch found a bundle at the gate, tied with a length of old bandage. In it was {ITEM}, and a scrap of paper. "For the bread. {TALE}."</li>
-          <li>Whoever left the bundle at the gate didn't stay to be thanked. It holds {ITEM}, and it's tied with one of the colony's own bandages, the kind that was left for {TALE}.</li>
+          <li>[lowtech] A bundle has turned up for the colony, wrapped in oilcloth and tied with a strip of old bandage. Inside is {ITEM}, and a piece of bark with one name cut into it: {TALE}.</li>
+          <li>[!lowtech] The watch found a bundle left for the colony, tied with a length of old bandage. In it was {ITEM}, and a scrap of paper. "For the bread. {TALE}."</li>
+          <li>Whoever left the bundle didn't stay to be thanked. It holds {ITEM}, and it's tied with one of the colony's own bandages, the kind that was left for {TALE}.</li>
         </done>
       </li>
     </modExtensions>
@@ -648,7 +648,7 @@
           </li>
           <li>
             <label>Pay in kind ({TALE})</label>
-            <outcome>The sacks are counted at the gate, every one of them entered in the ledger, and set aside for the lord's carters.</outcome>
+            <outcome>The sacks are counted, every one of them entered in the ledger, and set aside for the lord's carters.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>4</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_TithePaid</thought><exceptTrait><li>Ascetic</li></exceptTrait></li>
@@ -730,7 +730,7 @@
           </li>
           <li>
             <label>Let {A_nameDef} pull its memory (it may wipe itself)</label>
-            <outcome>{A_nameDef} gets into the memory before it can wipe, and spends the evening copying survey data. Some of it bears on what the colony is researching, and a couple of components come out of the casing besides.</outcome>
+            <outcome>{A_nameDef} gets into the memory before it can wipe, and copies out reams of survey data. Some of it bears on what the colony is researching, and a couple of components come out of the casing besides.</outcome>
             <riskChance>0.5</riskChance>
             <riskReplaces>true</riskReplaces>
             <riskOutcome>{A_nameDef} gets the casing open, but the core wipes itself the moment {A_pronoun} touches it. One component is all that's left worth having.</riskOutcome>
@@ -803,7 +803,7 @@
           </li>
           <li>
             <label>Let {A_nameDef} trace it without answering</label>
-            <outcome>{A_nameDef} narrows the signal down over a long afternoon, to a spot out on the colony's own land.</outcome>
+            <outcome>{A_nameDef} narrows the signal down to a spot out on the colony's own land.</outcome>
             <riskChance>0.5</riskChance>
             <riskReplaces>true</riskReplaces>
             <riskOutcome>{A_nameDef} chases the signal across three bands until it fades into static and doesn't come back.</riskOutcome>
@@ -816,7 +816,7 @@
           </li>
           <li>
             <label>Leave it</label>
-            <outcome>The signal is left to repeat itself. By evening it has stopped.</outcome>
+            <outcome>The signal is left to repeat itself, and before long it stops.</outcome>
             <ways><openness>-1</openness></ways>
           </li>
         </options>

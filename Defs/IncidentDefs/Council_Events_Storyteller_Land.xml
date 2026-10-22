@@ -97,7 +97,7 @@
         <options>
           <li>
             <label>Let {A_nameDef} carve from the heartwood</label>
-            <outcome>{A_nameDef} spends the day splitting out the best of the heartwood, and comes back with it under one arm and an idea {A_pronoun} can't stop talking about. The rest of the tree is cut for wood.</outcome>
+            <outcome>{A_nameDef} splits out the best of the heartwood and comes back with it under one arm, and an idea {A_pronoun} can't stop talking about. The rest of the tree is cut for wood.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Inspiration"><inspiration>Inspired_Creativity</inspiration></li>
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><skill>Artistic</skill><xp>300</xp></li>
@@ -224,10 +224,10 @@
         <options>
           <li>
             <label>Let {A_nameDef} forge a {TALE} (the metal may crack)</label>
-            <outcome>{A_nameDef} works the star-iron from first light and quenches it at dusk.</outcome>
+            <outcome>{A_nameDef} works the star-iron at the forge and quenches it.</outcome>
             <riskChance>0.5</riskChance>
             <riskReplaces>true</riskReplaces>
-            <riskOutcome>{A_nameDef} works the star-iron until dusk, and it cracks in the quench with a sound like a dropped bell. What's left is ordinary steel.</riskOutcome>
+            <riskOutcome>{A_nameDef} works the star-iron, and it cracks in the quench with a sound like a dropped bell. What's left is ordinary steel.</riskOutcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_StarBlade</thought></li>
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><skill>Crafting</skill><xp>1000</xp></li>
@@ -256,7 +256,7 @@
       <li Class="ColonyCouncil.HappeningLivingText">
         <!-- Told instead of the first answer's outcome when the forging works ({ITEM}: how good the blade is). -->
         <outcomes>
-          <li>{A_nameDef} works the star-iron from first light and quenches it at dusk. The {TALE} that comes out of the water is {ITEM}, with a faint ripple in the steel that no ordinary blade has.</li>
+          <li>{A_nameDef} works the star-iron at the forge and quenches it. The {TALE} that comes out of the water is {ITEM}, with a faint ripple in the steel that no ordinary blade has.</li>
           <li>{A_nameDef} doesn't stop to eat until it's done. The {TALE} that comes off the anvil is {ITEM}, dark gray, and rings for a long time when it's struck.</li>
         </outcomes>
       </li>
@@ -325,10 +325,10 @@
         <options>
           <li>
             <label>Let {A_nameDef} follow it (it may lose the trail)</label>
-            <outcome>{A_nameDef} follows the {BEAST} into the hills, and comes back at dusk with something to show for it.</outcome>
+            <outcome>{A_nameDef} follows the {BEAST} into the hills, and comes back with something to show for it.</outcome>
             <riskChance>0.45</riskChance>
             <riskReplaces>true</riskReplaces>
-            <riskOutcome>{A_nameDef} follows the {BEAST} into the hills, but loses it in a thicket around noon and walks home empty-handed.</riskOutcome>
+            <riskOutcome>{A_nameDef} follows the {BEAST} into the hills, but loses it in a thicket and walks home empty-handed.</riskOutcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_FollowedSign</thought></li>
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><skill>Animals</skill><xp>300</xp></li>
@@ -339,7 +339,7 @@
           </li>
           <li>
             <label>Leave it an offering</label>
-            <outcome>A share of the colony's food is set out past the fields. By evening the {BEAST} is gone, and so is the food.</outcome>
+            <outcome>A share of the colony's food is set out past the fields. When anyone looks again, the {BEAST} is gone, and so is the food.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_SignHonored</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
@@ -358,14 +358,14 @@
           </li>
           <li>
             <label>Let it go its way</label>
-            <outcome>The {BEAST} is left alone. Sometime after noon it turns and walks back the way it came.</outcome>
+            <outcome>The {BEAST} is left alone. Before long it turns and walks back the way it came.</outcome>
           </li>
         </options>
       </li>
       <li Class="ColonyCouncil.HappeningLivingText">
         <!-- Told instead of the first answer's outcome: where the animal led. -->
         <outcomes>
-          <li>[herbs] {A_nameDef} follows the {BEAST} into the hills until midday, when it vanishes into a hollow thick with healing herbs. {A_nameDef} comes home with an armful of them.</li>
+          <li>[herbs] {A_nameDef} follows the {BEAST} into the hills until it vanishes into a hollow thick with healing herbs. {A_nameDef} comes home with an armful of them.</li>
           <li>[offering] {A_nameDef} follows the {BEAST} until it stops beside an old ring of stones, half buried in moss, and walks off. Under the stones is a cache of offerings left long ago: {TALE}.</li>
         </outcomes>
       </li>
