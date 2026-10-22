@@ -11,10 +11,10 @@
     <defName>Council_Journal_EncL_Desert</defName>
     <lines>
       <plain>
-        <li>Sand in my bread, sand in my boots, sand in my bed. Saw something worth seeing today, though.</li>
+        <li>Sand in my bread and sand in my boots. Saw something worth seeing today, though.</li>
         <li>The heat broke at sundown and I sat on the wall until the stars came out. They come out fast here.</li>
-        <li>[hot] Too hot to work after noon. Too hot to sleep. Too hot to write much.</li>
-        <li>Learned something about living out here today. The dry country has its own rules, and I'm still learning them.</li>
+        <li>[hot] Too hot to work after noon and too hot to sleep after dark. This is all I'm writing.</li>
+        <li>The dry country has its own rules. Today I learned one more.</li>
         <li>[night] Cold enough at night to see my breath, in the same place that nearly cooked me at noon.</li>
       </plain>
       <warm>
@@ -73,7 +73,7 @@
         <li>My boots haven't been dry since we came here. My feet have given up hoping.</li>
       </plain>
       <warm>
-        <li>The green out here is full of life. Every time I look closely, something is looking back.</li>
+        <li>There's more alive in one patch of this green than in whole towns I've lived in.</li>
       </warm>
       <blunt>
         <li>Wet. Muddy. Bitten. Fine.</li>
@@ -149,8 +149,8 @@
     <lines>
       <plain>
         <li>[rain] Sat out the rain in a doorway with my animal and watched the yard turn into a pond.</li>
-        <li>[storm] Thunder all night. Neither of us slept, my animal and me, so we kept each other company.</li>
-        <li>[snow] My animal had never seen snow come down this hard. Neither had I. It was wonderful.</li>
+        <li>[storm] Thunder rolling over us for hours. Neither of us could settle, my animal and me, so we kept each other company.</li>
+        <li>[snow] Snow coming down hard, and the animals going daft in it. I joined in for a while.</li>
         <li>[fog] Something came at me out of the fog today. Only an animal. My heart took the rest of the morning to settle.</li>
       </plain>
       <warm>
