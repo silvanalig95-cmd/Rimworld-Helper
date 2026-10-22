@@ -28,7 +28,7 @@
         <li>Lying here all day, I've run out of things to think about. {OTHER_nameDef} always has something to say.</li>
         <li>[winter] The nights are long in here. Ask {OTHER_nameDef} to sit with me one evening.</li>
         <li>[child] Can {OTHER_nameDef} come and see me? Please?</li>
-        <li>[old] At my age a sickbed gets lonely. I'd like {OTHER_nameDef} to visit.</li>
+        <li>[old] At my age a sickbed gets lonely fast. Send {OTHER_nameDef} by, would you?</li>
       </plain>
       <warm>
         <li>I miss {OTHER_nameDef}. Just an hour would do me more good than the medicine.</li>
@@ -40,7 +40,7 @@
         <li>I'm bored out of my mind! Send {OTHER_nameDef} over before I start talking to the wall.</li>
       </cheerful>
       <gloomy>
-        <li>Nobody comes in here. I'd hoped {OTHER_nameDef} might.</li>
+        <li>The door hasn't opened all day except for the doctor. I'd hoped {OTHER_nameDef} might come.</li>
       </gloomy>
       <cold>
         <li>I'd like to speak with {OTHER_nameDef}. I have time, for once.</li>
@@ -52,10 +52,10 @@
         <li>That was the best hour I've had since I took to this bed.</li>
       </plain>
       <cheerful>
-        <li>{OTHER_nameDef} came by! I feel better already.</li>
+        <li>I laughed for the first time in days! {OTHER_nameDef} does the best voices.</li>
       </cheerful>
       <gloomy>
-        <li>{OTHER_nameDef} came after all. It helped.</li>
+        <li>I didn't think {OTHER_nameDef} would come. It helped.</li>
       </gloomy>
     </thanks>
     <expired>

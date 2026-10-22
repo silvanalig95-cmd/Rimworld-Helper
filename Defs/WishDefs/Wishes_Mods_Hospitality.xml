@@ -29,15 +29,15 @@
     <request>
       <plain>
         <li>When travelers stop here, they should get a bed in a room we'd be glad to sleep in ourselves. Something {SUBJECT}, at least.</li>
-        <li>Our guests talk about us on the road. I'd like them to talk about the room, and not the draught.</li>
+        <li>Our guests talk about us on the road. Let them talk about the room, not the draft.</li>
         <li>The last guests paid for a bed and got a corner. I was embarrassed for all of us.</li>
-        <li>[winter] Nobody should come in from the snow to a cold corner. Let's make the guest room {SUBJECT}.</li>
+        <li>[winter] Coming in from the snow to a cold corner is no welcome. Let's make the guest room {SUBJECT}.</li>
         <li>[skill:Social] People remember how they were welcomed. I want the guest room to be {SUBJECT}.</li>
         <li>[trait:Kind] A guest who has walked for weeks deserves a good bed. Could we fix up the guest room?</li>
       </plain>
-      <warm><li>I'd like every guest to leave here feeling they were wanted. A {SUBJECT} room would go a long way.</li></warm>
+      <warm><li>Every guest should leave here feeling they were wanted. Make the room {SUBJECT} and they will.</li></warm>
       <blunt><li>The guest room is an embarrassment. Fix it.</li></blunt>
-      <cheerful><li>A proper guest room! Flowers, a soft bed, a lamp. Guests will come just to sleep in it.</li></cheerful>
+      <cheerful><li>A proper guest room! Flowers by the bed and a lamp by the door. Guests will come just to sleep in it.</li></cheerful>
       <gloomy><li>Guests leave here thinking we live like animals. Maybe they're right, but they don't have to see it.</li></gloomy>
       <cold><li>A good guest room costs a few days' work and pays in goodwill and fees for years. Make it {SUBJECT}.</li></cold>
     </request>
@@ -47,7 +47,7 @@
         <li>Now when travelers come, we have a room to be proud of.</li>
       </plain>
       <warm><li>Thank you. Whoever comes next will sleep well here.</li></warm>
-      <blunt><li>Good. Now we're hosts, not a barn.</li></blunt>
+      <blunt><li>Now we're hosts, not a barn.</li></blunt>
       <cheerful><li>I put a flower by the bed! The next guest is going to love it.</li></cheerful>
       <gloomy><li>A nice room. I hope the guests don't break anything.</li></gloomy>
       <cold><li>Done. The fees will cover it within a season.</li></cold>
@@ -55,7 +55,7 @@
     <expired>
       <plain><li>Guests will just have to make do, then.</li></plain>
       <blunt><li>Fine. They can sleep with the animals.</li></blunt>
-      <gloomy><li>Nobody here cares what strangers think of us. I suppose I'll stop caring too.</li></gloomy>
+      <gloomy><li>This colony doesn't care what strangers think of it. I suppose I'll stop caring too.</li></gloomy>
     </expired>
     <reminder>
       <plain>

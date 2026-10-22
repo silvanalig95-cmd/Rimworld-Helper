@@ -26,7 +26,7 @@
     <fulfilledWhen>{FOR_nameDef} is master of an animal that can be ridden (Giddy-Up says which). Something like {SUBJECT} would do.</fulfilledWhen>
     <request>
       <plain>
-        <li>I walk to the edge of the map and back twice a day. Something with four legs could do it in half the time.</li>
+        <li>I walk to the far fields and back twice a day. Something with four legs could do it in half the time.</li>
         <li>Give me {SUBJECT} to ride and I'll bring the game home before it spoils.</li>
         <li>[skill:Shooting] A rider sees the herd before the herd sees the rider. I'd hunt better from a saddle.</li>
         <li>I need to get out past the hills sometimes. On foot it's a day there and back.</li>
@@ -40,7 +40,7 @@
     <thanks>
       <plain><li>Rode out to the river and back before breakfast. My legs are going to hate me.</li></plain>
       <cheerful><li>Did you see us? Did everyone see us?</li></cheerful>
-      <cold><li>Good. Faster patrols from tomorrow.</li></cold>
+      <cold><li>Faster patrols from tomorrow.</li></cold>
     </thanks>
     <expired>
       <plain><li>On foot again, then.</li></plain>
