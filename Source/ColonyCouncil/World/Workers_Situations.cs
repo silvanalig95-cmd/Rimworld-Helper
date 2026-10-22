@@ -440,7 +440,7 @@ namespace ColonyCouncil
                 {
                     // Nothing left to mend (it healed, or they're gone): the healer won't take the colony's silver.
                     s.flags.AddDistinct("nothingToMend");
-                    VarietyUtil.PaySilver(map, IntVec3.Invalid, s.Num("price"));
+                    Couriers.PaySilver(map, IntVec3.Invalid, s.Num("price"), s.ctx.faction, x);
                 }
                 if (ctx.b != null)
                 {

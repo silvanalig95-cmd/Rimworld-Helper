@@ -496,7 +496,7 @@
         </outcomes>
         <ways><generosity>4</generosity><mercy>2</mercy></ways>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>medicine</what><count>2</count></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>medicine</what><count>2</count><by>Outsiders</by></li>
           <li Class="ColonyCouncil.DilemmaEffect_CampTension"><amount>-15</amount><gift>true</gift></li>
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>6</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmL_HelpedTheCamp</thought></li>
@@ -538,7 +538,7 @@
         <outcome>The colony sent over a sack of food and every spare blanket. The sick at the camp are warm and fed, and getting better slowly, the way people do.</outcome>
         <ways><generosity>2</generosity></ways>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>15</count></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>15</count><by>Outsiders</by></li>
           <li Class="ColonyCouncil.DilemmaEffect_CampTension"><amount>-6</amount><gift>true</gift></li>
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>2</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Camp</to><duration>0.75~1</duration></li>
@@ -619,7 +619,7 @@
         <outcome>The camp's people spent two days chopping and stacking wood for the colony, and went home each evening with full sacks. Everyone agrees it was a fair trade, and nobody quite says thank you.</outcome>
         <ways><toil>3</toil><generosity>1</generosity></ways>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>20</count></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>20</count><by>Outsiders</by></li>
           <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>WoodLog</thing><count>40</count></li>
           <li Class="ColonyCouncil.DilemmaEffect_CampTension"><amount>-3</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>1</amount></li>

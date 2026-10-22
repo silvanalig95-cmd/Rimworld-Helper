@@ -102,7 +102,8 @@ namespace ColonyCouncil
             goods = new ThingOwner<Thing>(this);
         }
 
-        public bool Brings => kind == CourierKind.Deliver || kind == CourierKind.Exchange;
+        /// <summary>They bring something (a delivery, a sale's payment, an errand's courier bringing the price).</summary>
+        public bool Brings => kind == CourierKind.Deliver || kind == CourierKind.Exchange || !bringLabel.NullOrEmpty();
 
         public bool Takes => kind == CourierKind.Collect || kind == CourierKind.Exchange;
 

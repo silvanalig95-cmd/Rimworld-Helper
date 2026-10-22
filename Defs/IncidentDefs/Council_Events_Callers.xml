@@ -46,7 +46,7 @@
               <li>[trait:Kind] {A_nameDef} went last, and asked {X_nameDef} to write to the family of someone {A_pronoun} once knew, to say they were remembered.</li>
             </outcomes>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><by>Outsiders</by></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_WroteHome</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
             </effects>
             <ways><generosity>1</generosity><tradition>1</tradition></ways>
@@ -58,7 +58,7 @@
               <li>[colony:Traditional] {X_nameDef} wrote the colony's story out fair, with the names of the dead in red ink. It sits on the shelf by the hearth, where everyone can see it.</li>
             </outcomes>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><factor>0.5</factor></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><factor>0.5</factor><by>Outsiders</by></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_StoryWritten</thought></li>
               <li Class="ColonyCouncil.DilemmaEffect_Words"><label>the telling of the colony's story</label><hours>17~23</hours><duration>2~3</duration></li>
             </effects>
@@ -68,7 +68,7 @@
             <label>Have {X_objective} teach reading to anyone who'll sit still (half that)</label>
             <outcome>{X_nameDef} sat the colony down round the table with chalk and a board, and by the end of the evening most of them could write their own names, and a few could read someone else's.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><factor>0.5</factor></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><factor>0.5</factor><by>Outsiders</by></li>
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>Colony</target><skill>Intellectual</skill><xp>300</xp></li>
               <li Class="ColonyCouncil.DilemmaEffect_Words"><label>{X_nameDef}'s reading lesson</label><organizer>None</organizer><spots><li>Dining</li><li>Rec</li><li>Stranger</li></spots><hours>16~22</hours><duration>1.5~2</duration></li>
             </effects>
@@ -130,7 +130,7 @@
               <li>[trait:Ugly] {A_nameDef} stood at the very back, half behind someone else. It's still a good picture.</li>
             </outcomes>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><by>Outsiders</by></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_OurPicture</thought></li>
               <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>the photograph</label><spots><li>Outdoors</li><li>Stranger</li><li>Gather</li></spots><duration>0.75~1</duration></li>
             </effects>
@@ -292,7 +292,7 @@
               <li>[river] {X_nameDef} sang down at the riverbank in the dark, with the colonists standing on the bank behind. In the morning the water looked no different, but everyone looked at it differently.</li>
             </outcomes>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>10</count></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>10</count><by>Outsiders</by></li>
               <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.15</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_SpiritSong</thought></li>
               <li Class="ColonyCouncil.DilemmaEffect_Bonfire"><label>{X_nameDef}'s song</label><music>true</music><spots><li>Fire</li><li>Stranger</li><li>Outdoors</li></spots><hours>17~23</hours></li>
@@ -306,7 +306,7 @@
               <li>[trait:Psychopath] {X_nameDef} sang at every grave in turn. {A_nameDef} watched the others more than the singer.</li>
             </outcomes>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>10</count></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>10</count><by>Outsiders</by></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_DeadSungFor</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
               <li Class="ColonyCouncil.DilemmaEffect_StrainRelief"><target>Colony</target><amount>5</amount><onlyStrained>true</onlyStrained></li>
               <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>{X_nameDef}'s songs for the dead</label><music>true</music><spots><li>Grave</li><li>Stranger</li><li>Outdoors</li></spots><pool>Council_Pool_PlayRemembrance</pool><hours>16~22</hours><duration>1~1.5</duration></li>
@@ -387,7 +387,7 @@
             </outcomes>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Needs"><target>Colony</target><skill>Cooking</skill><minLevel>2</minLevel><asB>true</asB></li>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><by>Outsiders</by></li>
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Cooking</skill><xp>1800</xp></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Evt_CookLessons</thought></li>
               <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>X</teacher><student>B</student><skill>Cooking</skill><duration>3~4</duration></li>
@@ -453,7 +453,7 @@
               <li>[spacer] {X_nameDef} gave {A_nameDef} an injection and a strip of pills, and told {A_objective} to stop being so hard on {A_objective}self. The first part is working.</li>
             </outcomes>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><by>Outsiders</by></li>
               <li Class="ColonyCouncil.DilemmaEffect_EaseAilment"><factor>0.3</factor></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_HealerSawMe</thought></li>
             </effects>
@@ -467,7 +467,7 @@
             </outcomes>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Needs"><target>Others</target><skill>Medicine</skill><minLevel>0</minLevel><asB>true</asB></li>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>medicine</what><count>2</count></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>medicine</what><count>2</count><by>Outsiders</by></li>
               <li Class="ColonyCouncil.DilemmaEffect_EaseAilment"><factor>0.3</factor></li>
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Medicine</skill><xp>800</xp></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_HealerSawMe</thought></li>
@@ -548,7 +548,7 @@
             <label>A song for everyone after supper ({COUNT} silver)</label>
             <outcome>{X_nameDef} played for the whole colony after supper: fast ones first, then slow ones, until the fire was low. {A_nameDef} sat near the front and sang along to one of them.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><by>Outsiders</by></li>
               <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.2</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_Music</thought></li>
               <li Class="ColonyCouncil.DilemmaEffect_StrainRelief"><target>Colony</target><amount>5</amount><onlyStrained>true</onlyStrained></li>

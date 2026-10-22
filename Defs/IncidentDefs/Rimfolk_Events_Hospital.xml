@@ -60,7 +60,7 @@
             <label>Medicine for the road (1)</label>
             <outcome>{A_nameDef} handed over a dose of medicine and some advice about the {TALE}, and {X_nameDef} went on {X_possessive} way grateful.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>medicine</what><count>1</count></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>medicine</what><count>1</count><by>Outsiders</by></li>
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>3</amount></li>
             </effects>
             <ways><generosity>1</generosity></ways>

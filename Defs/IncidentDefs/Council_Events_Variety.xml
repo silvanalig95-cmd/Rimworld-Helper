@@ -47,7 +47,7 @@
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><skill>Crafting</skill><xp>800</xp></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_GoodTurn</thought></li>
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>8</amount></li>
-              <li Class="ColonyCouncil.DilemmaEffect_Loot"><value>120~300</value></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Loot"><value>120~300</value><by>Outsiders</by></li>
               <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
             </effects>
             <riskEffects>
@@ -177,7 +177,7 @@
             <label>Pay {COUNT} silver</label>
             <outcome>{X_nameDef} works through the pile until long after dark. By morning every piece is mended: seams closed, straps replaced, edges ground true.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><by>Outsiders</by></li>
             </effects>
           </li>
           <li>
@@ -194,7 +194,7 @@
               <li>[lowtech] {X_nameDef} sat {A_nameDef} down with an awl and a pot of glue and went through the tinker's tricks one by one. The mending is {A_nameDef}'s job now.</li>
             </outcomes>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><factor>0.35</factor></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><factor>0.35</factor><by>Outsiders</by></li>
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><skill>Crafting</skill><xp>1500</xp></li>
               <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>X</teacher><student>A</student><skill>Crafting</skill><hours>16~22</hours></li>
             </effects>
@@ -629,7 +629,7 @@
         </texts>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_FamilyVisited</thought></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Loot"><value>80~200</value></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Loot"><value>80~200</value><by>Outsiders</by></li>
         </effects>
         <defaultOption>1</defaultOption>
         <options>
@@ -684,7 +684,7 @@
             <label>Pay {COUNT} silver</label>
             <outcome>{X_nameDef} reads fortunes until late, and every one of them is good.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><by>Outsiders</by></li>
               <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>the fortune-telling</label><spots><li>Stranger</li><li>Rec</li><li>Dining</li></spots><hours>17~23</hours></li>
             </effects>
           </li>
@@ -705,13 +705,13 @@
             <riskReplaces>true</riskReplaces>
             <riskOutcome>{X_nameDef} turned over {A_nameDef}'s last card, looked at it for a long time, and put it away without a word. {A_nameDef} has been asking about it ever since.</riskOutcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><factor>0.25</factor></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><factor>0.25</factor><by>Outsiders</by></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_GoodFortune</thought></li>
               <li Class="ColonyCouncil.DilemmaEffect_Joy"><amount>0.12</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><hours>17~23</hours><duration>1~1</duration></li>
             </effects>
             <riskEffects>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><factor>0.25</factor></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><factor>0.25</factor><by>Outsiders</by></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_BadFortune</thought></li>
             </riskEffects>
           </li>

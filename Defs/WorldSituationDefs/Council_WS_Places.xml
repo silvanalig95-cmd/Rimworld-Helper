@@ -201,7 +201,7 @@
             <label>Salvage what's left</label>
             <outcome>The colony's carts come back loaded with what {PLACE} left behind.</outcome>
             <effects>
-              <li Class="ColonyCouncil.WorldEffect_Loot"><value>250~500</value></li>
+              <li Class="ColonyCouncil.WorldEffect_Loot"><value>250~500</value><by>Home</by></li>
             </effects>
             <flags><li>salvaged</li></flags>
             <ways><tradition>-1</tradition><toil>1</toil></ways>
@@ -477,7 +477,7 @@
         </texts>
         <chronicle>{NAME} at {PLACE} closed.</chronicle>
         <effects>
-          <li Class="ColonyCouncil.WorldEffect_Loot"><value>300~600</value><fancy>true</fancy><requires>prize</requires></li>
+          <li Class="ColonyCouncil.WorldEffect_Loot"><value>300~600</value><fancy>true</fancy><requires>prize</requires><by>Home</by></li>
           <li Class="ColonyCouncil.WorldEffect_ThoughtFor"><thought>Council_WS_FairPrize</thought><b>true</b><requires>prize</requires></li>
           <li Class="ColonyCouncil.WorldEffect_ThoughtFor"><thought>Council_WS_FairLost</thought><b>true</b><requires>noPrize</requires></li>
         </effects>

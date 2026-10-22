@@ -122,7 +122,7 @@ namespace ColonyCouncil
             try
             {
                 string who = People(t, false, out bool many);
-                string kind = t.kind.ToString();
+                string kind = t.kind == CourierKind.Await && !t.bringLabel.NullOrEmpty() ? "AwaitPay" : t.kind.ToString();
                 string text = ("CC_Courier_Arrive_" + kind + (many ? "_Many" : "_One"))
                     .Translate(who, FactionName(t), t.takeLabel ?? t.bringLabel ?? "", t.bringLabel ?? "").Resolve();
                 Notify.Message(text, Look(t), MessageTypeDefOf.NeutralEvent, Importance.Notable);
@@ -153,7 +153,8 @@ namespace ColonyCouncil
                         text = "CC_Courier_Done_Exchange".Translate(who, faction, took ?? "", where, t.bringLabel ?? "").Resolve();
                         break;
                     case CourierKind.Await:
-                        text = "CC_Courier_Done_Await".Translate(who, faction, t.takeLabel ?? "").Resolve();
+                        text = t.bringLabel.NullOrEmpty() ? "CC_Courier_Done_Await".Translate(who, faction, t.takeLabel ?? "").Resolve()
+                            : "CC_Courier_Done_Exchange".Translate(who, faction, t.takeLabel ?? "", where, t.bringLabel).Resolve();
                         break;
                     default:
                         text = t.taken <= 0 ? "CC_Courier_Done_Nothing".Translate(who, faction).Resolve()

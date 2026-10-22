@@ -244,7 +244,7 @@
             <label>Pay the {COUNT} silver</label>
             <outcome>The creditor counts every coin twice and leaves. {A_nameDef} looks ten years younger.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><by>Outsiders</by></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_DebtPaid</thought></li>
               <li Class="ColonyCouncil.DilemmaEffect_Trust"><amount>5</amount></li>
             </effects>
@@ -379,7 +379,7 @@
           <li>[noble,!tribal] Lawyers have found {A_nameDef} at last. An aunt the family never liked has died, and of all her relatives, she remembered {A_nameDef}. The estate has been sent on, with the lawyers' compliments and their fee already deducted.</li>
         </texts>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Loot"><value>400~1000</value><fancy>true</fancy><pod>true</pod></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Loot"><value>400~1000</value><fancy>true</fancy><pod>true</pod><by>Outsiders</by></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_Inheritance</thought></li>
         </effects>
       </li>

@@ -370,7 +370,8 @@ namespace ColonyCouncil
             if (chance < 1f && !Rand.Chance(chance)) return;
             var things = Loot.Make(ctx.count * factor, fancy);
             var near = ctx.stranger != null && ctx.stranger.Spawned && ctx.stranger.Map == ctx.map ? ctx.stranger.Position : DropCellFinder.TradeDropSpot(ctx.map);
-            Loot.Deliver(things, ctx.map, near, false);
+            // The visitor sets it down if they're here; else their people's courier brings it (Couriers/).
+            Couriers.Loot(things, ctx.map, near, Couriers.PeopleOf(ctx), ctx.stranger);
         }
     }
 
@@ -385,7 +386,7 @@ namespace ColonyCouncil
             if (ctx.map == null || ctx.thing == null || n <= 0) return;
             if (chance < 1f && !Rand.Chance(chance)) return;
             var near = ctx.stranger != null && ctx.stranger.Spawned && ctx.stranger.Map == ctx.map ? ctx.stranger.Position : IntVec3.Invalid;
-            StorytellerEvents.Hand(ctx.thing, n, ctx.map, near);
+            Couriers.Hand(ctx.thing, n, ctx.map, near, Couriers.PeopleOf(ctx), ctx.stranger);
         }
     }
 

@@ -659,8 +659,8 @@
             <label>Buy it (a third of the price)</label>
             <outcome>The grain is unloaded into the colony's stores, and the carter goes home lighter and pleased.</outcome>
             <effects>
-              <li Class="ColonyCouncil.WorldEffect_Pay"><factor>0.35</factor></li>
-              <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>RawCorn</thing></li>
+              <li Class="ColonyCouncil.WorldEffect_Pay"><factor>0.35</factor><by>Outsiders</by></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>RawCorn</thing><by>Outsiders</by></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>2</amount></li>
             </effects>
           </li>

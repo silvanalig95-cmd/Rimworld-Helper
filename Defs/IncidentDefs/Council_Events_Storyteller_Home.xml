@@ -43,7 +43,7 @@
             <label>Pay {X_objective} {COUNT} silver</label>
             <outcome>{X_nameDef} pockets the silver, nods to {A_nameDef} and leaves before supper.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><by>Outsiders</by></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_PaidForSilence</thought></li>
               <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
             </effects>

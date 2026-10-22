@@ -10,6 +10,17 @@ using Verse.AI.Group;
 namespace ColonyCouncil
 {
     /// <summary>
+    /// Whose hands goods taken by an effect go into (DilemmaEffect_Consume, WorldEffect_Pay, WorldEffect_Medicine) or
+    /// come out of (DilemmaEffect_Spawn): used up or found at home (the default: fuel burned, a feast eaten, a find), or
+    /// handed over to outsiders, who come for them, or bring them, on the map (Couriers/).
+    /// </summary>
+    public enum GoodsBy
+    {
+        Home,
+        Outsiders
+    }
+
+    /// <summary>
     /// Goods that come and go on the map ("Goods and people come and go on the map" in the settings, on by default):
     /// when one of Rimfolk's events gives the colony silver, goods, a gift or a payment owed, or takes goods it gave,
     /// sold or paid, a few people of a fitting people walk in from the edge some hours later, by day, unannounced, and
@@ -118,6 +129,18 @@ namespace ColonyCouncil
             x != null && !x.Dead && x.Spawned && x.Map == map && !x.Downed && x.RaceProps != null && x.RaceProps.Humanlike && x.Faction != null
             && !x.Faction.IsPlayer && !x.Faction.HostileTo(Faction.OfPlayer) && !x.IsPrisoner && !x.InMentalState;
 
+        /// <summary>Someone standing at the colony (on its home ground, or near one of its people), not just in from the edge.</summary>
+        public static bool AtColony(Pawn p)
+        {
+            var map = p?.Map;
+            if (map == null) return false;
+            if (map.areaManager?.Home != null && map.areaManager.Home[p.Position]) return true;
+            foreach (var c in map.mapPawns.FreeColonistsSpawned)
+                if (c.Position.InHorDistOf(p.Position, 20f))
+                    return true;
+            return false;
+        }
+
         /// <summary>A courier could be sent at all: the setting on, a home map, someone to send.</summary>
         public static bool CanSend(Map map, Faction preferred)
         {
@@ -157,6 +180,8 @@ namespace ColonyCouncil
             {
                 if (InPerson(bearer, map))
                 {
+                    // They're here: handed over at the colony, or (still out by the edge) left as before.
+                    if (!AtColony(bearer)) return false;
                     ByHand(bearer, things, map);
                     return true;
                 }
@@ -166,7 +191,7 @@ namespace ColonyCouncil
                 t.bringLabel = Describe(things);
                 t.bringTag = TagOf(things.FirstOrDefault()?.def);
                 foreach (var thing in things) t.goods.TryAdd(thing, true);
-                CourierTracker.Instance.Add(t);
+                Register(t);
                 return true;
             }
             catch (Exception e)
@@ -231,7 +256,7 @@ namespace ColonyCouncil
                 t.amount = count;
                 t.takeLabel = Amount(count, what, t.def);
                 t.takeTag = TagOf(what, t.def);
-                CourierTracker.Instance.Add(t);
+                Register(t);
                 return true;
             }
             catch (Exception e)
@@ -277,7 +302,7 @@ namespace ColonyCouncil
                     foreach (var thing in pay) t.goods.TryAdd(thing, true);
                 }
                 else t.kind = CourierKind.Collect;
-                CourierTracker.Instance.Add(t);
+                Register(t);
                 return true;
             }
             catch (Exception e)
@@ -320,7 +345,7 @@ namespace ColonyCouncil
                     t.bringTag = TagOf(pay[0].def);
                     foreach (var thing in pay) t.goods.TryAdd(thing, true);
                 }
-                CourierTracker.Instance.Add(t);
+                Register(t);
                 return true;
             }
             catch (Exception e)
@@ -328,6 +353,108 @@ namespace ColonyCouncil
                 CouncilLog.ErrorOnce("courier collect things", e);
                 return false;
             }
+        }
+
+        /// <summary>
+        /// A new trip, or, when the same answer already set one going for the same people (a purchase: the silver paid
+        /// and the goods bought, two effects), one visit for both: they bring the one and take the other.
+        /// </summary>
+        private static void Register(CourierTrip t)
+        {
+            var tracker = CourierTracker.Instance;
+            var same = tracker.trips.FirstOrDefault(x => x.state == CourierState.Pending && !x.settled && x.created == t.created && x.map == t.map
+                                                          && x.preferred == t.preferred && x.kind != CourierKind.Await && x.playId < 0 && CanMerge(x, t));
+            // The same answer sends something to the gate and is paid for it (medicine carried out, silver for it): the
+            // one who comes to wait for the errand brings the payment.
+            var waiting = same == null && t.kind == CourierKind.Deliver
+                ? tracker.trips.FirstOrDefault(x => x.state == CourierState.Pending && !x.settled && x.created == t.created && x.map == t.map
+                                                    && x.preferred == t.preferred && x.kind == CourierKind.Await)
+                : null;
+            if (waiting != null)
+            {
+                t.goods.TryTransferAllToContainer(waiting.goods, true);
+                waiting.bringLabel = Describe(waiting.goods.ToList());
+                waiting.bringTag = t.bringTag;
+                if (!waiting.oldSpot.IsValid) waiting.oldSpot = t.oldSpot;
+                return;
+            }
+            if (same == null)
+            {
+                tracker.Add(t);
+                return;
+            }
+            if (t.goods.Count > 0)
+            {
+                t.goods.TryTransferAllToContainer(same.goods, true);
+                same.bringLabel = Describe(same.goods.ToList());
+                if (same.bringTag == null) same.bringTag = t.bringTag;
+            }
+            if (t.amount > 0 || t.things.Count > 0)
+            {
+                if (same.amount > 0 || same.things.Count > 0)
+                {
+                    same.amount += t.amount;
+                    same.takeLabel = Amount(same.amount, same.what, same.def);
+                }
+                else
+                {
+                    same.what = t.what;
+                    same.def = t.def;
+                    same.amount = t.amount;
+                    same.things = t.things;
+                    same.takeLabel = t.takeLabel;
+                    same.takeTag = t.takeTag;
+                }
+            }
+            bool bring = same.goods.Count > 0, take = same.amount > 0 || same.things.Count > 0;
+            same.kind = bring && take ? CourierKind.Exchange : bring ? CourierKind.Deliver : CourierKind.Collect;
+            if (!same.oldSpot.IsValid) same.oldSpot = t.oldSpot;
+        }
+
+        /// <summary>Two trips can be one visit: they take at most one kind of goods (the same, or only one of them takes).</summary>
+        private static bool CanMerge(CourierTrip a, CourierTrip b)
+        {
+            bool at = a.amount > 0 || a.things.Count > 0, bt = b.amount > 0 || b.things.Count > 0;
+            if (!at || !bt) return true;
+            return a.things.Count == 0 && b.things.Count == 0 && a.what == b.what && a.def == b.def;
+        }
+
+        // ---------------- For an event's effects ----------------
+
+        /// <summary>The event's own people (its faction, else the stranger's), if any and not the colony's.</summary>
+        public static Faction PeopleOf(DilemmaContext ctx)
+        {
+            var f = ctx?.faction;
+            if (f != null && !f.IsPlayer) return f;
+            f = ctx?.stranger?.Faction;
+            return f != null && !f.IsPlayer ? f : null;
+        }
+
+        /// <summary>
+        /// An effect's goods go to outsiders: carried out by a colonist to the event's visitor when they're here (an
+        /// errand, PlayOut/), else collected by a courier of the event's people. False: neither can happen, and the caller
+        /// takes them the old way.
+        /// </summary>
+        public static bool TakeFor(DilemmaContext ctx, string what, ThingDef def, int n)
+        {
+            var map = ctx?.map ?? HappeningTracker.HomeMap();
+            if (map == null || n <= 0) return false;
+            if (ctx != null && ctx.map == null) ctx.map = map;
+            if (InPerson(ctx?.stranger, map) && PlayOuts.On)
+            {
+                try
+                {
+                    // The colony hands it to them (the errand takes it from the stores itself if it can't happen).
+                    var errand = new DilemmaEffect_CarryOut { what = what.NullOrEmpty() ? def?.defName : what, count = n, steward = false, who = PlayWho.A, to = PlaySpot.Stranger };
+                    errand.Apply(ctx);
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("courier errand", e);
+                }
+            }
+            return Collect(map, what, def, n, PeopleOf(ctx));
         }
 
         // ---------------- An errand's courier (PlayOut) ----------------
@@ -379,7 +506,12 @@ namespace ColonyCouncil
                 coming = true;
                 return null;
             }
-            if (t.state != CourierState.Working) return null;
+            // Still setting down what they brought (the price of it): the errand waits until their hands are free.
+            if (t.state != CourierState.Working || t.StillCarrying)
+            {
+                coming = t.state == CourierState.Working;
+                return null;
+            }
             return t.Bearers.FirstOrDefault();
         }
 

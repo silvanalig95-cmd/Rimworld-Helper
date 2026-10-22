@@ -474,7 +474,7 @@
         </outcomes>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Camp</to><duration>0.75~1.25</duration></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>15</count></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>15</count><by>Outsiders</by></li>
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>3</amount></li>
         </effects>
       </li>
@@ -932,7 +932,7 @@
         </outcomes>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Camp</to><duration>0.75~1.25</duration></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>15</count></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>15</count><by>Outsiders</by></li>
         </effects>
       </li>
     </asks>

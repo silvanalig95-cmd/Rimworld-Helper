@@ -154,7 +154,7 @@
             <riskChance>0.3</riskChance>
             <riskOutcome>{A_nameDef} digs where the map says, then digs again a few paces over, and finds nothing but stones in either hole. The silver is gone.</riskOutcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><by>Outsiders</by></li>
             </effects>
             <riskEffects>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_Swindled</thought></li>
@@ -179,7 +179,7 @@
             </riskOutcomes>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Needs"><target>Colony</target><skill>Intellectual</skill><minLevel>6</minLevel><asB>true</asB></li>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><by>Outsiders</by></li>
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>-3</amount></li>
             </effects>
             <riskEffects>

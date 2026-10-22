@@ -35,6 +35,8 @@
   <CC_Courier_Arrive_Exchange_Many>{0} from {1} have come with {3}, to take {2} back with them.</CC_Courier_Arrive_Exchange_Many>
   <CC_Courier_Arrive_Await_One>{0} from {1} is walking up to the gate to wait for {2}.</CC_Courier_Arrive_Await_One>
   <CC_Courier_Arrive_Await_Many>{0} from {1} are walking up to the gate to wait for {2}.</CC_Courier_Arrive_Await_Many>
+  <CC_Courier_Arrive_AwaitPay_One>{0} from {1} is walking up to the gate with {3}, to wait for {2}.</CC_Courier_Arrive_AwaitPay_One>
+  <CC_Courier_Arrive_AwaitPay_Many>{0} from {1} are walking up to the gate with {3}, to wait for {2}.</CC_Courier_Arrive_AwaitPay_Many>
 
   <!-- Their business is done: {0} who, {1} their people, {2} what they took (or set down), {3} where, {4} what they set down -->
   <CC_Courier_Done_Deliver>{0} from {1} set down {2} {3}.</CC_Courier_Done_Deliver>

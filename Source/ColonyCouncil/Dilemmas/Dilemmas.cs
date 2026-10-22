@@ -665,12 +665,17 @@ namespace ColonyCouncil
         }
     }
 
-    /// <summary>Puts the dilemma's thing (or a given one) on the ground next to A.</summary>
+    /// <summary>
+    /// Puts the dilemma's thing (or a given one) on the ground next to A. With <see cref="by"/> Outsiders (goods bought,
+    /// paid or given by someone from outside), they bring it: the event's visitor sets it down if they're here, else a
+    /// courier of the event's people carries it in (Couriers/); as before when nobody can.
+    /// </summary>
     public class DilemmaEffect_Spawn : DilemmaEffect
     {
         public ThingDef thing;
         public int count;
         public bool forbidden;
+        public GoodsBy by;
 
         public override void Apply(DilemmaContext ctx)
         {
@@ -679,6 +684,7 @@ namespace ColonyCouncil
             var at = ctx.a != null && ctx.a.Spawned ? ctx.a : ctx.Colonists.FirstOrDefault();
             if (def == null || n <= 0 || at == null) return;
             if (chance < 1f && !Rand.Chance(chance)) return;
+            if (by == GoodsBy.Outsiders && Couriers.Deliver(at.Map, Couriers.Make(def, n), Couriers.PeopleOf(ctx), at.Position, ctx.stranger)) return;
             while (n > 0)
             {
                 var t = ThingMaker.MakeThing(def, def.MadeFromStuff ? GenStuff.DefaultStuffFor(def) : null);
@@ -690,7 +696,12 @@ namespace ColonyCouncil
         }
     }
 
-    /// <summary>Takes something from the stockpiles: silver, raw food, medicine, or a named thing. Disables the option if there isn't enough.</summary>
+    /// <summary>
+    /// Takes something from the stockpiles: silver, raw food, medicine, or a named thing. Disables the option if there
+    /// isn't enough. With <see cref="by"/> Outsiders (paid, given or sold to someone from outside), it is handed over on
+    /// the map: carried out to the event's visitor if they're here, else fetched from the stores by a courier of the
+    /// event's people (Couriers/); taken at once, as before, when neither can be.
+    /// </summary>
     public class DilemmaEffect_Consume : DilemmaEffect
     {
         /// <summary>"silver", "rawfood", "medicine" (any kind, the plainest first), or a ThingDef defName; empty = the dilemma's thing.</summary>
@@ -698,6 +709,7 @@ namespace ColonyCouncil
         public int count;
         /// <summary>A share of the amount (half the tribute, after haggling).</summary>
         public float factor = 1f;
+        public GoodsBy by;
 
         /// <summary>A quartermaster stretches the stores.</summary>
         private int Need(DilemmaContext ctx) => UnityEngine.Mathf.Max(1, UnityEngine.Mathf.RoundToInt((count > 0 ? count : ctx.count) * factor * (CouncilGameComponent.Instance?.offices.CostFactor ?? 1f)));
@@ -750,6 +762,11 @@ namespace ColonyCouncil
         {
             if (ctx.map == null) return;
             int left = Need(ctx);
+            if (by == GoodsBy.Outsiders)
+            {
+                var def = what.NullOrEmpty() ? ctx.thing : null;
+                if (Couriers.TakeFor(ctx, what.NullOrEmpty() ? null : what, def, left)) return;
+            }
             IEnumerable<Thing> things;
             if (what == "silver") things = ctx.map.listerThings.ThingsOfDef(ThingDefOf.Silver);
             else if (what == "rawfood") things = ctx.map.listerThings.ThingsInGroup(ThingRequestGroup.FoodSourceNotPlantOrTree).Where(t => IsRawFood(t, ctx.map));

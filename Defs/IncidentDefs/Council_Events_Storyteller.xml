@@ -46,7 +46,7 @@
             <label>Buy the gear ({COUNT} silver)</label>
             <outcome>{X_nameDef} counts the silver and hands the gear over piece by piece, explaining where each dent came from.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><by>Outsiders</by></li>
             </effects>
             <ways><toil>1</toil></ways>
           </li>
@@ -123,7 +123,7 @@
             <label>Pay for a survey ({COUNT} silver)</label>
             <outcome>{X_nameDef} spends two days on the hills with chain and compass, and leaves a hand-drawn map of the colony's land with one place circled.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><by>Outsiders</by></li>
               <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
             </effects>
           </li>
@@ -269,7 +269,7 @@
             <label>Pay {COUNT} silver</label>
             <outcome>{X_nameDef} measures, carves and fits for most of the day, and by evening {A_nameDef} has a {TALE}.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><by>Outsiders</by></li>
             </effects>
             <ways><mercy>1</mercy></ways>
           </li>
@@ -293,7 +293,7 @@
             </outcomes>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Needs"><target>Others</target><skill>Crafting</skill><minLevel>6</minLevel><asB>true</asB></li>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><factor>0.3</factor></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><factor>0.3</factor><by>Outsiders</by></li>
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Crafting</skill><xp>1500</xp></li>
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Medicine</skill><xp>300</xp></li>
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>2</amount></li>
@@ -639,7 +639,7 @@
             <label>Pay {COUNT} silver</label>
             <outcome>{X_nameDef} weighs the silver, writes the colony into the ledger and rides off.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><by>Outsiders</by></li>
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>4</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_TithePaid</thought><exceptTrait><li>Ascetic</li></exceptTrait></li>
               <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
@@ -669,7 +669,7 @@
               <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
             </effects>
             <riskEffects>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><factor>1.25</factor></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><factor>1.25</factor><by>Outsiders</by></li>
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><skill>Social</skill><xp>300</xp></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_TithePaid</thought><exceptTrait><li>Ascetic</li></exceptTrait></li>
               <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
@@ -874,7 +874,7 @@
             <label>Buy it ({COUNT} silver)</label>
             <outcome>{X_nameDef} unwraps the book, lets {A_nameDef} hold it for a moment and takes the silver.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><by>Outsiders</by></li>
             </effects>
           </li>
           <li>

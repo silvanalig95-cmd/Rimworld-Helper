@@ -878,7 +878,7 @@
           <li>The water has dropped enough to walk the bank, and the flood has left things in the reeds: crates, a cart wheel, a door with the paint still on it. {A_nameDef} pulled out what was worth keeping and brought it up to the colony.\n\nSome of it was somebody's in {PLACE}. There's no telling whose.</li>
         </texts>
         <effects>
-          <li Class="ColonyCouncil.WorldEffect_Loot"><value>150~350</value></li>
+          <li Class="ColonyCouncil.WorldEffect_Loot"><value>150~350</value><by>Home</by></li>
         </effects>
       </li>
     </beats>
