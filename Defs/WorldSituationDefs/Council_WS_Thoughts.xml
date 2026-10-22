@@ -10,7 +10,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>8</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>the warlord is finished</label><description>The warlord who had the colony on a list is finished. I've stopped listening for horses on the road at night.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+    <stages><li><label>the warlord is finished</label><description>The warlord who had the colony on a list is finished. I've stopped lying awake listening to the road.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -18,7 +18,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>12</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>the warlord paid for it</label><description>The warlord whose raiders hurt me has paid for it. I still have the scar. It aches less.</description><baseMoodEffect>8</baseMoodEffect></li></stages>
+    <stages><li><label>the warlord paid for it</label><description>The warlord whose raiders hurt me has paid for it. Last night I slept straight through.</description><baseMoodEffect>8</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -60,7 +60,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>6</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>we stood by our neighbors</label><description>When things were bad for the neighbors, the colony helped. I'm glad we're that kind of place.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>we stood by our neighbors</label><description>When the neighbors had a bad year, we sent help. I'd hope someone would do the same for us.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -111,7 +111,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>10</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>won at the great fair</label><description>I beat the best the whole region had, in front of everyone. I still have the prize where I can see it.</description><baseMoodEffect>8</baseMoodEffect></li></stages>
+    <stages><li><label>won at the great fair</label><description>I beat the best the region had, with a crowd watching. I keep the prize where I can see it.</description><baseMoodEffect>8</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>

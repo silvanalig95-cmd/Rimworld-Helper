@@ -8,7 +8,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>6</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>kept the holy year</label><description>A day of silence, and a day of work for everyone else. I kept the holy year the way the pilgrims do, and I feel steadier for it.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+    <stages><li><label>kept the holy year</label><description>A day of silence, then a day of fetching and mending for the others. I kept the holy year the way the pilgrims do, and my head is clearer than it's been in months.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
 </Defs>
