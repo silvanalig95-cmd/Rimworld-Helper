@@ -56,9 +56,9 @@
       <cold><li>Done. One more species for the colony.</li></cold>
     </thanks>
     <expired>
-      <plain><li>It's gone over the hills. Maybe it'll come back this way.</li></plain>
-      <blunt><li>It got away. Next time, let me go when I ask.</li></blunt>
-      <gloomy><li>Gone. I knew it would be.</li></gloomy>
+      <plain><li>By now it's probably gone over the hills. Maybe it'll come back this way.</li></plain>
+      <blunt><li>It'll get away now. Next time, let me go when I ask.</li></blunt>
+      <gloomy><li>It'll be gone by morning. I knew it would be.</li></gloomy>
     </expired>
     <reminder>
       <plain><li>I saw tracks by the water this morning. That {SUBJECT} won't hang about forever.</li></plain>

@@ -53,7 +53,7 @@
     </triggers>
     <request>
       <plain>
-        <li>I've been coughing all night in the barracks, and nobody else is sleeping either. Could one bed be kept for the sick?</li>
+        <li>I've been coughing all night, and the walls aren't thick enough for anyone else to sleep either. Could one bed be kept for the sick?</li>
         <li>When you're ill here, you lie wherever you usually lie and hope someone remembers you. Mark a bed for the sick.</li>
         <li>[trigger:sick] I'm burning up. Put me somewhere the doctor will think to look.</li>
         <li>[winter] Sick in the middle of winter, and my bed is by the door. A proper sickbed somewhere warm is all I'm asking.</li>
@@ -71,7 +71,7 @@
         <li>Let me be ill properly, in a bed of my own with a blanket and someone bringing soup. I'd be up in no time.</li>
       </cheerful>
       <gloomy>
-        <li>If this gets worse, I'd rather not die in the barracks between two snorers.</li>
+        <li>If this gets worse, I'd rather not die in a bed nobody checks.</li>
       </gloomy>
       <cold>
         <li>The sick in shared rooms spread it to the healthy. One bed set apart stops that.</li>
@@ -87,7 +87,7 @@
     </thanks>
     <expired>
       <plain><li>I'm sweating it out in my own bed, then, with people stepping over my boots all day.</li></plain>
-      <blunt><li>Got better on my own. No thanks to anyone.</li></blunt>
+      <blunt><li>Sick all week, and not one bed set aside. Remember that.</li></blunt>
       <gloomy><li>Next time I'll just lie down in the yard.</li></gloomy>
     </expired>
     <reminder>
@@ -385,10 +385,10 @@
       <plain>
         <li>We eat in turns, like soldiers. One table, all of us, once a day. That's all.</li>
         <li>Somebody always eats standing up by the door. There should be a chair for everyone.</li>
-        <li>[evening] Supper's the only time we're all in one place. It would be nice if we could all sit down for it.</li>
+        <li>[evening] Supper's the only time we're all in one place, and some of us still eat it standing.</li>
         <li>[large] We've grown. The table hasn't. Time we built more chairs.</li>
         <li>[newcomer] I don't know where I'm meant to sit, so I eat by the stove.</li>
-        <li>[trait:Kind] The youngest always ends up eating on the floor. Let's make room for everyone.</li>
+        <li>[trait:Kind] Whoever comes in last ends up eating on the floor. Let's make room for everyone.</li>
         <li>[lowtech] Even a long bench would do. We're one people, we ought to eat like one.</li>
       </plain>
       <warm>
@@ -765,7 +765,7 @@
     <expired>
       <plain><li>Back to searching the floor.</li></plain>
       <blunt><li>Don't complain when the work is slow.</li></blunt>
-      <gloomy><li>Someone will have walked off with the saw again by tomorrow.</li></gloomy>
+      <gloomy><li>I'll be hunting for the same hammer until I die.</li></gloomy>
     </expired>
     <reminder>
       <plain><li>Lost another hour looking for a file today.</li></plain>
@@ -870,7 +870,7 @@
         <li>[winter] Nothing to farm in winter, but the ground is still full of metal.</li>
       </plain>
       <warm>
-        <li>Steel, components, whatever is down there, it would help everyone.</li>
+        <li>Whatever's down there, it would be for all of us. I just want to be the one who finds it.</li>
       </warm>
       <blunt>
         <li>Build {THING}. I'll do the rest.</li>
@@ -896,7 +896,7 @@
     <expired>
       <plain><li>The ore stays where it is.</li></plain>
       <blunt><li>Run short of steel, then. Don't come to me.</li></blunt>
-      <gloomy><li>There was probably nothing there anyway.</li></gloomy>
+      <gloomy><li>We'll never know what was down there.</li></gloomy>
     </expired>
     <reminder>
       <plain><li>I put my ear to the ground today. Don't laugh.</li></plain>
@@ -1065,7 +1065,7 @@
       <plain>
         <li>At my age, a wooden stool is a punishment. One soft chair is all I'm asking for.</li>
         <li>I'd like somewhere to sit at the end of the day that doesn't make my back worse.</li>
-        <li>[winter] Cold days, long evenings. Somewhere comfortable to sit them out would mean a lot.</li>
+        <li>[winter] Cold days, long evenings, and nowhere soft to sit them out.</li>
         <li>[evening] When the work's done, I just want to sink into something soft and watch the others.</li>
         <li>[hurt] Everything aches more than it used to. A good chair would help.</li>
       </plain>
@@ -1161,7 +1161,7 @@
     </thanks>
     <expired>
       <plain><li>I'll leave it to whoever's left, then.</li></plain>
-      <blunt><li>Put me wherever, then.</li></blunt>
+      <blunt><li>Put me wherever. I won't be complaining.</li></blunt>
       <gloomy><li>I'll end up in whatever hole is quickest to dig.</li></gloomy>
     </expired>
     <reminder>
@@ -1208,7 +1208,7 @@
         <li>When I grow up I'm going to be the best at {SUBJECT}! I just need someone to teach me.</li>
       </cheerful>
       <gloomy>
-        <li>I asked before. Everyone was busy.</li>
+        <li>Grown-ups always say later. Later never comes.</li>
       </gloomy>
       <cold>
         <li>If {OTHER_nameDef} teaches me now, I'll be useful sooner.</li>
@@ -1329,7 +1329,7 @@
         <li>[rain] Rainy days are for reading, but there's nothing left to read.</li>
       </plain>
       <warm>
-        <li>I could read them out loud to the little ones too.</li>
+        <li>I could read them out loud at supper. Everyone likes a story.</li>
       </warm>
       <blunt>
         <li>I want new books.</li>
@@ -1411,7 +1411,7 @@
         <li>Build {THING}. I'm melting.</li>
       </blunt>
       <cheerful>
-        <li>Build a cool room and I'll move in. You can all visit me there.</li>
+        <li>If there were one cool room, I'd move in. You could all visit me there.</li>
       </cheerful>
       <gloomy>
         <li>Someone's going to faint out in the fields soon. Probably me.</li>
@@ -1560,7 +1560,7 @@
     </thanks>
     <expired>
       <plain><li>Dirt floor it is, then.</li></plain>
-      <blunt><li>Mud it is. Don't come visiting.</li></blunt>
+      <blunt><li>I didn't want your planks anyway.</li></blunt>
       <gloomy><li>Some of us live in rooms. Some of us live in the ground.</li></gloomy>
     </expired>
     <reminder>
