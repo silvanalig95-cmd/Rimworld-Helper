@@ -16,9 +16,9 @@
     <colonyIs><li>Hospitable</li></colonyIs>
     <stranger><kind>Visitor</kind><adult>true</adult></stranger>
     <texts>
-      <li>{X_nameDef} told {A_nameDef} that {FACTION} had been told three times on the road to stop here, by people who had never met each other. "A warm fire and nobody asks your business," {X_nameDef} said. {X_pronoun} left something on the table for the next guest.</li>
-      <li>{X_nameDef} said a camp of drovers had sent {X_objective} this way: the colony feeds strangers, they said, and sees them off with bread. {A_nameDef} said that was about right. {X_nameDef} pressed a few coins on {A_objective} for the next ones.</li>
-      <li>Over supper {X_nameDef} told {A_nameDef} that the colony's name is good on the road now, the kind of place people plan a journey around. {FACTION} would remember it, {X_pronoun} said.</li>
+      <li>Three times on the road, {X_nameDef} of {FACTION} had been told to stop here, by three people who had never met. "A warm fire, and nobody asks your business," {X_nameDef} said to {A_nameDef}, and pressed what {X_pronoun} could spare into {A_possessive} hand for the next guest.</li>
+      <li>A camp of drovers had sent {X_nameDef} this way. "They said you feed strangers and see them off with bread," {X_pronoun} told {A_nameDef}. {A_nameDef} said that was about right, and {X_nameDef} insisted on leaving something toward the next ones.</li>
+      <li>People plan their journeys around this colony now, {X_nameDef} told {A_nameDef} over supper; its name is good on the road. {FACTION} would remember the welcome, {X_pronoun} said.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>2</amount></li>
@@ -34,9 +34,9 @@
     <colonyIs><li>Devout</li></colonyIs>
     <stranger><kind>Visitor</kind><adult>true</adult></stranger>
     <texts>
-      <li>{X_nameDef} of {FACTION} asked {A_nameDef} where the colony keeps its rituals, and went to stand there a while in silence. {X_pronoun} said the road talks of this place as one where the old words are still said properly. {A_nameDef} came away steadier in {A_possessive} own faith.</li>
+      <li>{X_nameDef} of {FACTION} asked where the colony keeps its rituals, and went to stand there a while in silence. On the road, {X_pronoun} told {A_nameDef} afterward, this is known as a place where the old words are still said properly. That night {A_nameDef} said them with more care than usual.</li>
       <li>{X_nameDef} had heard that the colony keeps its faith, and wanted to know how: the feasts, the funerals, who leads them. {A_nameDef} told {X_objective}, and found, telling it, that {A_pronoun} believed it more than {A_pronoun} had that morning.</li>
-      <li>{X_nameDef} asked {A_nameDef} to say a few of the colony's words over {X_objective} before {X_pronoun} went on. {A_nameDef} did, a little awkwardly, and both of them were glad of it.</li>
+      <li>Before going on, {X_nameDef} asked {A_nameDef} to say a few of the colony's words over {X_objective}. {A_nameDef} did, stumbling once, and {X_nameDef} went off down the road with {X_possessive} head still bowed.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Faith"><target>A</target><amount>0.06</amount></li>
@@ -52,9 +52,9 @@
     <colonyIs><li>LongMemoried</li></colonyIs>
     <stranger><kind>Visitor</kind><adult>true</adult></stranger>
     <texts>
-      <li>{X_nameDef} of {FACTION} had heard that the colony keeps its days, and asked {A_nameDef} which ones and why. {A_nameDef} told {X_objective} about the founding, the battles and the dead, and got better at the telling as the evening went on.</li>
-      <li>{X_nameDef} asked {A_nameDef} whether it was true that the colony still marks the day of every fight it has won and every person it has lost. {A_nameDef} said it was, and went through them, one by one. {X_nameDef} listened to all of it.</li>
-      <li>{X_nameDef} said {FACTION} have a saying about the colony: that it never forgets a kindness or a wrong. {A_nameDef} said that was mostly true, and told {X_objective} a story to prove it.</li>
+      <li>{X_nameDef} of {FACTION} had heard that the colony keeps its days, and asked {A_nameDef} which ones and why. {A_nameDef} told {X_objective} about the founding and the dead, and got better at the telling as the evening went on.</li>
+      <li>"Is it true you mark the day of every fight you've won?" {X_nameDef} asked. "And every one of yours you've lost?" {A_nameDef} said it was, and went through them one by one, and {X_nameDef} listened to all of it.</li>
+      <li>{X_nameDef} said {FACTION} have a saying about the colony, that it never forgets a kindness or a wrong. {A_nameDef} said that was mostly true, and told {X_objective} a story to prove it.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Social</skill><xp>250</xp></li>

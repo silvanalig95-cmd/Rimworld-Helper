@@ -156,7 +156,7 @@
   <CC_Mission_Refugees_Coming>{0} refugees arrive in {1}.</CC_Mission_Refugees_Coming>
   <CC_Mission_Refugees_Staying>Days fed and sheltered: {0}. Days short: {1}.</CC_Mission_Refugees_Staying>
   <CC_Mission_Refugees_Beds>Free beds or sleeping spots under a roof: {0} (they need {1}).</CC_Mission_Refugees_Beds>
-  <CC_Mission_Refugees_Hungry>The refugees from {0} went short today: the stores didn't hold two meals each for them.</CC_Mission_Refugees_Hungry>
-  <CC_Mission_Refugees_NoRoof>The refugees from {0} had nowhere to sleep under a roof today: not enough free beds or sleeping spots.</CC_Mission_Refugees_NoRoof>
-  <CC_Mission_Refugees_Neither>The refugees from {0} went short of food today, and had nowhere to sleep under a roof.</CC_Mission_Refugees_Neither>
+  <CC_Mission_Refugees_Hungry>The refugees from {0} went short today. The stores didn't hold two meals each for them, so they ate what they had carried.</CC_Mission_Refugees_Hungry>
+  <CC_Mission_Refugees_NoRoof>The refugees from {0} had no roof over them today. There aren't enough free beds or sleeping spots for all of them.</CC_Mission_Refugees_NoRoof>
+  <CC_Mission_Refugees_Neither>The refugees from {0} went hungry today and had no roof to sleep under, and are making do with what they carried.</CC_Mission_Refugees_Neither>
 </LanguageData>

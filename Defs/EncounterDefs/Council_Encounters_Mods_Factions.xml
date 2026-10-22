@@ -19,8 +19,8 @@
     <stranger><kind>Visitor</kind><adult>true</adult><factions><li>Empire</li></factions></stranger>
     <texts>
       <li>{X_nameDef} of the Empire gently corrected the way {A_nameDef} bowed, then showed {A_objective} the right one, and the one for a knight, and the one you never use.</li>
-      <li>{A_nameDef} asked {X_nameDef} what all the Empire's titles mean. {X_nameDef} began with yeoman and had reached baron by the end of supper.</li>
-      <li>{X_nameDef} told {A_nameDef} that at court, a guest who finishes everything on the plate is saying the host was mean with the portions. {A_nameDef} finished everything anyway.</li>
+      <li>"What does a yeoman actually do?" {A_nameDef} asked. {X_nameDef} began there, and had worked up to baron by the end of supper.</li>
+      <li>At court, {X_nameDef} told {A_nameDef}, a guest who clears the plate is telling the host the portions were mean. {A_nameDef} cleared {A_possessive} plate anyway.</li>
       <li>[x:royal] {X_nameDef} let {A_nameDef} address {X_objective} without the title, just this once, and seemed to enjoy it more than {X_pronoun} let on.</li>
       <li>[lowtech] {X_nameDef} looked around the colony's hall and said, kindly, that the Empire's halls were much the same once, a very long time ago.</li>
     </texts>
@@ -39,9 +39,9 @@
     <cooldownDays>8</cooldownDays>
     <stranger><kind>Visitor</kind><adult>true</adult><factions><li>Empire</li></factions></stranger>
     <texts>
-      <li>{X_nameDef} told {A_nameDef} the news from court: a count has been made a duke, a duke has been sent to a moon, and nobody is saying why.</li>
-      <li>According to {X_nameDef}, the high stellarch has a new favorite, and half the Empire is pretending not to notice. {A_nameDef} wanted every detail.</li>
-      <li>{X_nameDef} told {A_nameDef} about a feast at court that lasted nine days, and about the man who tried to stay awake for all of it.</li>
+      <li>A count has been made a duke and a duke has been sent to a moon, {X_nameDef} told {A_nameDef}, and the court isn't saying why.</li>
+      <li>According to {X_nameDef}, the High Stellarch has a new favorite, and every courtier in the Empire is pretending not to notice. {A_nameDef} wanted every detail.</li>
+      <li>{X_nameDef} described a feast at court that lasted nine days, and the guest who tried to stay awake for all of it. {A_nameDef} asked whether the guest managed it. Until the sixth night, {X_nameDef} said.</li>
       <li>[x:royal] {X_nameDef}, who holds a title of {X_possessive} own, told {A_nameDef} which courtiers to trust, which to flatter, and which to avoid in corridors.</li>
     </texts>
     <effects>
@@ -61,8 +61,8 @@
     <stranger><kind>Visitor</kind><adult>true</adult><factions><li>VFEC_CentralRepublic</li><li>VFEC_WesternRepublic</li><li>VFEC_EasternRepublic</li></factions></stranger>
     <texts>
       <li>{X_nameDef} of {FACTION} explained to {A_nameDef} how the senate votes: by tribe, then by century, then by whoever is still awake. {A_nameDef} said the council was simpler. {X_nameDef} looked doubtful.</li>
-      <li>{X_nameDef} told {A_nameDef} that in {FACTION} every citizen can speak in the forum, and most of them do, at once.</li>
-      <li>{A_nameDef} asked {X_nameDef} who really runs {FACTION}. {X_nameDef} laughed and said the grain merchants, but not to tell the senators.</li>
+      <li>In {FACTION}, {X_nameDef} told {A_nameDef}, every citizen may speak in the forum, and most of them do, at once.</li>
+      <li>"Who really runs {FACTION}?" {A_nameDef} asked. "The grain merchants," {X_nameDef} said, laughing. "Don't tell the senators."</li>
       <li>[colony:Open] {X_nameDef} said the colony's council reminded {X_objective} of the republic's early days, before the old families bought it.</li>
     </texts>
     <effects>
@@ -83,7 +83,7 @@
     <colonist><passion>Construction</passion></colonist>
     <texts>
       <li>{X_nameDef} of {FACTION} looked at the colony's walls for a long time, then showed {A_nameDef} how the republic's builders set an arch so it holds itself up.</li>
-      <li>{X_nameDef} drew a column in the dust for {A_nameDef}: base, shaft and capital, and the little swell in the middle that makes it look straight.</li>
+      <li>In the dust, {X_nameDef} drew {A_nameDef} a column: base, shaft and capital, and the slight swell in the middle that makes it look straight.</li>
       <li>{A_nameDef} and {X_nameDef} argued about mortar until dark. {X_nameDef}'s people put ash from a volcano in theirs; {A_nameDef} is now looking for a volcano.</li>
     </texts>
     <effects>
@@ -104,9 +104,9 @@
     <stranger><kind>Visitor</kind><adult>true</adult><factions><li>SettlerCivil</li><li>SettlerRough</li></factions></stranger>
     <texts>
       <li>{X_nameDef} told {A_nameDef} about a cattle drive across the salt flats, two hundred head and one canteen. The canteen grew more heroic every time {X_pronoun} told it.</li>
-      <li>{X_nameDef} swore to {A_nameDef} that back home there's a mule that can count to five and only works for the mayor.</li>
-      <li>{X_nameDef} let {A_nameDef} taste the chemshine {FACTION} brews. {A_nameDef} is still coughing, and still talking about it.</li>
-      <li>[night] By the fire, {X_nameDef} told {A_nameDef} about the bandit who robbed the same stagecoach eleven times and was finally hired to guard it.</li>
+      <li>Back home, {X_nameDef} swore to {A_nameDef}, there's a mule that can count to five and will only work for the mayor.</li>
+      <li>{X_nameDef} let {A_nameDef} taste the chemshine {FACTION} brews. {A_nameDef} coughed until {A_possessive} eyes ran, then asked how it's made.</li>
+      <li>[night] Long after dark, {X_nameDef} told {A_nameDef} about the bandit who robbed the same stagecoach eleven times and was finally hired to guard it.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncF_SettlerTales</thought></li>

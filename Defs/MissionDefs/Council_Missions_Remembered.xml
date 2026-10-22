@@ -37,16 +37,16 @@
         </titles>
         <texts>
           <li>[wedding,lowtech] A rider from {PLACE} has brought an invitation. {DEAD} of {FACTION} is to be married, and {FACTION} want the colony's people at the wedding: at their tables, at the dancing, and in the speeches, if anyone wants to make one.\n\nNot every neighbor gets asked.</li>
-          <li>[wedding,!lowtech] A courier from {PLACE} has brought a written invitation: {DEAD} of {FACTION} is getting married, and the colony is asked to send guests. There will be food, music and a great many speeches.\n\nNot every neighbor gets asked.</li>
-          <li>[feast] {FACTION} hold a feast at {PLACE} when the harvest is in, and this year the colony is invited. {DEAD}, who gives the feast, sent the invitation with a rider and a note at the bottom: bring an appetite.</li>
-          <li>[midwinter] {FACTION} keep the longest night with a feast at {PLACE}, and {DEAD}, who keeps the hall, has sent a rider through the snow to invite the colony's people. They'd be welcome at the fire.</li>
-          <li>[feast,trait:Gourmand] An invitation has come from {PLACE}: {FACTION} hold a feast when the harvest is in, and the colony is asked to send guests. {A_nameDef} read the word "feast" and has already volunteered.</li>
+          <li>[wedding,!lowtech] The card came by courier from {PLACE}, written in a careful hand: {FACTION} request the company of the colony's people at the wedding of {DEAD}. There will be food and music and, the courier warned, a great many speeches.\n\nNot every neighbor gets a card.</li>
+          <li>[feast] {FACTION} hold a feast at {PLACE} when the harvest is in, and this year the colony is invited. {DEAD}, who gives the feast, sent the invitation by rider, with a line added at the bottom in a different hand: bring an appetite.</li>
+          <li>[midwinter] {FACTION} keep the longest night with a feast at {PLACE}. {DEAD}, who keeps the hall, has sent a rider through the snow to say that the colony's people would be welcome at the fire.</li>
+          <li>[feast,trait:Gourmand] An invitation has come from {PLACE}: {FACTION} hold a feast when the harvest is in, and the colony is asked to send guests. {A_nameDef} read as far as the word "feast" and volunteered.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
           <li>
             <label>Accept the invitation</label>
-            <outcome>The colony will send guests.</outcome>
+            <outcome>Places will be set for the colony's guests.</outcome>
           </li>
           <li>
             <label>Decline politely</label>
@@ -56,18 +56,18 @@
       </li>
       <li Class="ColonyCouncil.MissionText">
         <terms>
-          <li>What they ask: at least two of the colony's people at {PLACE} by caravan within {DAYS} of the colony agreeing (it's about {TALE} away), staying for the feast, about half a day at the town. The caravan only needs to reach the town and wait there.\n\nThe guests go home with a gift worth about {COUNT} silver, and {FACTION} won't forget who came. If nobody comes, they'll notice.</li>
+          <li>At least two of the colony's people at {PLACE} by caravan within {DAYS} of the colony agreeing (it's about {TALE} away), staying for the feast, about half a day at the town. The caravan only needs to reach the town and wait there.\n\nThe guests go home with a gift worth about {COUNT} silver, and {FACTION} will remember who came. If no one does, they'll notice that too.</li>
         </terms>
         <accepted>
           <li>The colony will send guests to {PLACE}. Form a caravan of at least two and send it there within {DAYS}.</li>
           <li>[wedding] The colony will be at {DEAD}'s wedding. Send a caravan of at least two to {PLACE} within {DAYS}.</li>
         </accepted>
         <ready>
-          <li>The colony's guests have reached {PLACE}, and the feast has begun. It ends in {DAYS}: keep the caravan there until then.</li>
+          <li>The colony's guests have reached {PLACE} and been given seats near the head of the table. The feast ends in {DAYS}: keep the caravan there until then.</li>
           <li>[wedding] The colony's guests have reached {PLACE} in time for {DEAD}'s wedding. Keep the caravan there for {DAYS}, until the dancing ends.</li>
         </ready>
         <reminder>
-          <li>The feast at {PLACE} is in {DAYS}, and the colony's guests haven't arrived yet.</li>
+          <li>The feast at {PLACE} is in {DAYS}, and the colony's guests haven't arrived.</li>
           <li>[wedding] {DEAD}'s wedding is in {DAYS}. The colony's guests aren't at {PLACE} yet.</li>
         </reminder>
         <doneTitles>
@@ -75,9 +75,9 @@
           <li>[brief] A short visit to {PLACE}</li>
         </doneTitles>
         <done>
-          <li>[attended,feast] The colony's guests ate and drank at {PLACE} until late, and {FACTION} sent them off with gifts: {ITEM}. They'll be talking about the colony's guests at {PLACE} for a while.</li>
+          <li>[attended,feast] The colony's guests ate and drank at {PLACE} until the benches emptied, and {FACTION} loaded the caravan with gifts for the road home: {ITEM}.</li>
           <li>[attended,wedding] The colony's guests saw {DEAD} married, ate at the long tables, and danced until the musicians gave up. {FACTION} sent them home with gifts: {ITEM}.</li>
-          <li>[attended,midwinter] The colony's guests sat out the longest night at the fire in {PLACE}, with food, songs and stories until dawn. {FACTION} sent them home with gifts: {ITEM}.</li>
+          <li>[attended,midwinter] The colony's guests sat out the longest night at the fire in {PLACE}, with songs and stories until the windows went gray. {FACTION} sent them home with gifts: {ITEM}.</li>
           <li>[brief] The colony's guests reached {PLACE} but didn't stay to the end. {FACTION} were glad they came at all, though the cooks took it personally.</li>
         </done>
         <failTitles>
@@ -85,7 +85,7 @@
           <li>[cancelled] The invitation</li>
         </failTitles>
         <fail>
-          <li>[absent] The feast at {PLACE} went on without the colony. {FACTION} kept places at the table for its guests until late, and noticed when nobody came.</li>
+          <li>[absent] The feast at {PLACE} went on without the colony. {FACTION} kept places at the table for its guests until late, and then cleared them away.</li>
           <li>[absent,wedding] {DEAD} was married without any guests from the colony. {FACTION} noticed the empty places.</li>
         </fail>
         <cancelled>
@@ -117,21 +117,21 @@
           <li>A master of {TALE}</li>
         </titles>
         <texts>
-          <li>{DEAD}, a master of {TALE} at {PLACE}, has sent word through {FACTION}: {DEAD} would take one of the colony's people as an apprentice for a few days, and teach what can be taught in that time.\n\n{A_nameDef} is the obvious choice, and has been pretending not to want it since the rider arrived.</li>
+          <li>{DEAD}, a master of {TALE} at {PLACE}, has sent word through {FACTION}: {DEAD} would take one of the colony's people as an apprentice for a few days, and teach what can be taught in that time.\n\n{A_nameDef} is the obvious choice, and has asked twice already whether anyone else is going.</li>
           <li>[Cooking] {DEAD} keeps the kitchen at {PLACE}, and {FACTION} say nobody in the region cooks better. {DEAD} has offered to take {A_nameDef} into that kitchen for a few days and show {A_objective} what to do with a pot.</li>
-          <li>[Medicine] {DEAD}, the healer at {PLACE}, has offered through {FACTION} to teach one of the colony's people for a few days. {A_nameDef} has already started a list of questions.</li>
+          <li>[Medicine] {FACTION}'s healer at {PLACE}, {DEAD}, would teach one of the colony's people for a few days, if the colony asks. {A_nameDef} has already started a list of questions.</li>
           <li>[Artistic] {DEAD}, whose carvings stand in every hall of {FACTION}, has offered to take {A_nameDef} as an apprentice for a few days at {PLACE}.</li>
-          <li>[Plants] {FACTION} grow the best crops for miles around, and {DEAD}, who taught most of them how, has offered to take {A_nameDef} into the fields at {PLACE} for a few days.</li>
-          <li>[Animals] {DEAD} breeds and trains animals at {PLACE}, and has offered through {FACTION} to let {A_nameDef} work at {DEAD}'s side for a few days.</li>
-          <li>[Construction] {DEAD} built half of {PLACE}, and the other half needs fixing. {FACTION} say {A_nameDef} can come and learn from {DEAD} for a few days, if the colony can spare {A_objective}.</li>
-          <li>[Crafting] {DEAD}, the best maker at {PLACE}, has offered through {FACTION} to take {A_nameDef} into the workshop for a few days.</li>
-          <li>[Intellectual] {DEAD} keeps the books and the instruments at {PLACE}, and has offered through {FACTION} to teach {A_nameDef} for a few days.</li>
+          <li>[Plants] {FACTION} grow the best crops for miles around, and {DEAD}, who taught most of them how, has offered to take {A_nameDef} into the fields at {PLACE} for a spell.</li>
+          <li>[Animals] {DEAD} breeds and trains animals at {PLACE}. Word came through {FACTION} that {A_nameDef} could work at {DEAD}'s side for a few days, if {A_pronoun} doesn't mind being kicked now and then.</li>
+          <li>[Construction] {DEAD} built half of {PLACE}, and the other half needs fixing. {FACTION} say {A_nameDef} can come and learn from {DEAD} for a while, if the colony can spare {A_objective}.</li>
+          <li>[Crafting] The best maker at {PLACE} is {DEAD}, and {FACTION} say {DEAD} has room at the workbench for {A_nameDef}, for a few days.</li>
+          <li>[Intellectual] {DEAD} keeps the books and the instruments at {PLACE}, and has offered through {FACTION} to teach {A_nameDef} for as long as the colony can spare {A_objective}. The message came with a reading list.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
           <li>
             <label>Send {A_nameDef}</label>
-            <outcome>{A_nameDef} is going to {PLACE}.</outcome>
+            <outcome>{A_nameDef} has started packing for {PLACE}.</outcome>
           </li>
           <li>
             <label>Decline</label>
@@ -141,7 +141,7 @@
       </li>
       <li Class="ColonyCouncil.MissionText">
         <terms>
-          <li>What they ask: {A_nameDef} goes to {PLACE} by caravan within {DAYS} of the colony agreeing, and stays at {DEAD}'s side for a day and a half or so while the caravan waits there. Only time at the town counts.\n\n{A_nameDef} will come back a good deal better at {TALE}. {FACTION} ask nothing for it but the colony's good word.</li>
+          <li>{A_nameDef} goes to {PLACE} by caravan within {DAYS} of the colony agreeing, and stays at {DEAD}'s side for a day and a half or so while the caravan waits there. Only time at the town counts.\n\n{A_nameDef} will come back a good deal better at {TALE}. {FACTION} ask nothing for it but the colony's good word.</li>
         </terms>
         <accepted>
           <li>{A_nameDef} will go to {PLACE} to learn {TALE} from {DEAD}. Send {A_objective} by caravan within {DAYS}.</li>
@@ -158,7 +158,7 @@
         </doneTitles>
         <done>
           <li>[learned] {A_nameDef} worked at {DEAD}'s side at {PLACE} until there was nothing more {DEAD} could show in the time, and is ready to come home a good deal better at {TALE}. {FACTION} won't hear of payment.</li>
-          <li>[learned,Cooking] {A_nameDef} spent the days in {DEAD}'s kitchen at {PLACE}, burned a finger, ruined one stew and got the next one right. {A_nameDef} is ready to come home a much better cook.</li>
+          <li>[learned,Cooking] {A_nameDef} spent the days in {DEAD}'s kitchen at {PLACE}, scorched one pot, ruined one stew and got the next one right. {A_nameDef} is ready to come home a much better cook.</li>
           <li>[learned,Medicine] {A_nameDef} sat up with {DEAD}'s patients at {PLACE}, washed a great many hands and asked a great many questions. {A_nameDef} is ready to come home a better healer.</li>
           <li>[partial] {A_nameDef} had only part of the time at {DEAD}'s side, but learned something from it all the same.</li>
         </done>
@@ -169,7 +169,7 @@
         </failTitles>
         <fail>
           <li>[missed] The colony's apprentice never got enough time at {DEAD}'s side, and the offer has lapsed. {FACTION} are disappointed.</li>
-          <li>[lost] The colony's apprentice is gone, and {DEAD} at {PLACE} is left waiting for nobody.</li>
+          <li>[lost] The colony's apprentice is gone, and {DEAD} at {PLACE} has stopped keeping a place at the bench.</li>
         </fail>
         <cancelled>
           <li>{FACTION} are no longer on terms with the colony, and the apprenticeship at {PLACE} is off.</li>
@@ -202,15 +202,15 @@
         <texts>
           <li>[elder] {DEAD}, one of the oldest and most respected of {FACTION}, means to travel to the colony and stay a few days, to see the place everyone at {PLACE} talks about.\n\n{FACTION} ask only that there be a room fit for {DEAD}: a bedroom that's at least {TALE}, with one bed, kept for {DEAD} alone.</li>
           <li>[official] {DEAD}, who speaks for {FACTION} at {PLACE}, is touring the region and would like to stay at the colony for a few days. {FACTION}'s messenger was polite, but clear about the room: a bedroom that's at least {TALE}, with one bed, kept for {DEAD} alone.</li>
-          <li>[official,theirHightech] {FACTION} are sending {DEAD}, an official from {PLACE}, to see the colony for a few days. The advance note asks for suitable accommodation: a private bedroom, at least {TALE}, for {DEAD}'s sole use.</li>
-          <li>{DEAD} of {FACTION} has heard a good deal about the colony and would like to see it, and stay a few days. {DEAD} is used to a certain standard: a bedroom that's at least {TALE}, with a bed nobody else sleeps in.</li>
+          <li>[official,theirHightech] An advance note from {FACTION} at {PLACE}:\n\n"{DEAD} will visit the colony for several days as part of an official tour. Suitable accommodation is requested: a private bedroom, at least {TALE}, for {DEAD}'s sole use. Please confirm."</li>
+          <li>{DEAD} of {FACTION} has heard a good deal about the colony and would like to see it, and stay a few days. {DEAD} is used to a certain standard, and the message says so twice: a bedroom that's at least {TALE}, with a bed nobody else sleeps in.</li>
           <li>[colony:Traditional] {FACTION} know the colony keeps its customs, and {DEAD}, an elder of theirs, would like to stay a few days and see them kept. The one thing {FACTION} ask is a proper room: a bedroom that's at least {TALE}, with one bed, kept for {DEAD} alone.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
           <li>
             <label>Accept the visit</label>
-            <outcome>The colony will host {DEAD}.</outcome>
+            <outcome>The colony will host {DEAD}, and someone has already started sweeping.</outcome>
           </li>
           <li>
             <label>Decline</label>
@@ -220,13 +220,13 @@
       </li>
       <li Class="ColonyCouncil.MissionText">
         <terms>
-          <li>What they ask: a bedroom with one bed nobody else sleeps in (no colonist's, no prisoner's, no sickbed), at least {TALE}, ready when {DEAD} arrives a couple of days after the colony agrees, and kept for {DEAD} until the stay ends, {DAYS} after the colony agrees. The room is looked at every hour of the stay.\n\nKept well, {DEAD} will leave a gift of about {COUNT} silver, and {FACTION} will hear good things. If there's no fit room when {DEAD} comes, {DEAD} leaves the next morning, slighted.</li>
+          <li>A bedroom with one bed nobody else sleeps in (no colonist's, no prisoner's, no sickbed), at least {TALE}, ready when {DEAD} arrives a couple of days after the colony agrees, and kept for {DEAD} until the stay ends, {DAYS} after the colony agrees. The room is looked at every hour of the stay.\n\nKept well, {DEAD} will leave a gift of about {COUNT} silver, and {FACTION} will hear good things. If there's no fit room when {DEAD} comes, {DEAD} leaves the next morning, slighted.</li>
         </terms>
         <accepted>
           <li>The colony will host {DEAD} of {FACTION}. Have a bedroom ready: at least {TALE}, with one bed nobody else uses.</li>
         </accepted>
         <ready>
-          <li>{DEAD} of {FACTION} has arrived and been shown the room set aside for the visit. The stay ends in {DAYS}.</li>
+          <li>{DEAD} has arrived, and been shown to the room the colony set aside for {FACTION}'s guest. The stay ends in {DAYS}.</li>
         </ready>
         <reminder>
           <li>{DEAD} of {FACTION} arrives in {DAYS}. The room needs to be at least {TALE}, with one bed nobody else uses.</li>
@@ -236,9 +236,9 @@
           <li>[fair] {DEAD}'s visit</li>
         </doneTitles>
         <done>
-          <li>[honored] {DEAD} of {FACTION} left this morning after a comfortable stay, and left {ITEM} silver on the table as thanks. {FACTION} will hear that the colony knows how to treat a guest.</li>
+          <li>[honored] {DEAD} has gone home after a comfortable stay, leaving {ITEM} silver behind as thanks. {FACTION} will hear that the colony knows how to treat a guest.</li>
           <li>[honored,elder] {DEAD} slept well, ate well, and spent the afternoons on a bench in the sun telling anyone who'd listen about the old days. {DEAD} left {ITEM} silver as thanks, and {FACTION} will hear that the colony honors its elders.</li>
-          <li>[fair] {DEAD} of {FACTION} has gone home. The room wasn't always ready during the stay, and {DEAD} noticed, but the visit went well enough.</li>
+          <li>[fair] {DEAD} has gone home to {FACTION}. The room wasn't always ready during the stay, and {DEAD} noticed, but the visit went well enough.</li>
         </done>
         <failTitles>
           <li>[noroom] No room for {DEAD}</li>
@@ -247,12 +247,12 @@
           <li>[cancelled] The visit</li>
         </failTitles>
         <fail>
-          <li>[noroom] {DEAD} of {FACTION} arrived to find no room fit for a guest, and will leave in the morning. {FACTION} will hear how the colony keeps its word.</li>
-          <li>[slighted] {DEAD} of {FACTION} has gone home early. The room kept for {DEAD} was hardly ever ready, and {FACTION} will hear how the colony treats its guests.</li>
+          <li>[noroom] {DEAD} of {FACTION} arrived to find no room fit for a guest, spent the night sitting up in a chair, and will leave in the morning.</li>
+          <li>[slighted] {DEAD} of {FACTION} has gone home early. The room kept for {DEAD} was hardly ever ready, and {DEAD} said so, at length, to anyone in earshot on the way out.</li>
           <li>[harmed] {DEAD} of {FACTION} came as the colony's guest and was harmed here. {FACTION} will not forget it.</li>
         </fail>
         <cancelled>
-          <li>{FACTION} are no longer on terms with the colony, and {DEAD}'s visit is off.</li>
+          <li>{DEAD} won't be coming now that {FACTION} have broken with the colony.</li>
         </cancelled>
       </li>
     </modExtensions>
@@ -279,35 +279,35 @@
           <li>A roof for the homeless</li>
         </titles>
         <texts>
-          <li>[fire] Fire took a whole street of {PLACE} three nights ago. {DEAD} of {FACTION} has come to the colony on behalf of {TALE} people who lost everything in it: the town can't house them all, and the colony is the nearest place with a roof to spare.\n\nThey ask to be fed and sheltered here for a few days, until {PLACE} can take them back.</li>
-          <li>[plague] {DEAD} of {FACTION} has come with {TALE} people who left {PLACE} before the plague reached their street. None of them is sick, {DEAD} says, but nobody on the road will let them near a fire.\n\nThey ask to be fed and sheltered at the colony for a few days, until {PLACE} opens its gates again.</li>
-          <li>[famine] {PLACE} can't feed everyone this year. {DEAD} of {FACTION} has come to the colony with {TALE} of the people the town couldn't keep, and asks the colony to feed and shelter them for a few days, until the carts from the south come in.</li>
-          <li>[flood] The river took the lower town at {PLACE}. {DEAD} of {FACTION} has come with {TALE} people whose houses went with it, and asks the colony to feed and shelter them for a few days, until the water goes down.</li>
-          <li>[winter] The cold cracked the roofs of half a street at {PLACE}. {DEAD} of {FACTION} has come through the snow with {TALE} people who have nowhere warm to sleep, and asks the colony to take them in for a few days.</li>
-          <li>[abandoned] {PLACE} is emptying, and not everyone has somewhere to go. {DEAD} of {FACTION} has come with {TALE} of the last to leave, and asks the colony to feed and shelter them for a few days while they find their feet.</li>
-          <li>[war] Raiders burned the farms outside {PLACE}. {DEAD} of {FACTION} has come with {TALE} of the people who lived on them, and asks the colony to feed and shelter them for a few days, until it's safe to go back.</li>
+          <li>[fire] Fire took a whole street of {PLACE} three nights ago. {DEAD} of {FACTION} has sent a runner ahead on behalf of {TALE} people who lost everything in it: the town can't house them all, and the colony is the nearest place with a roof to spare.\n\nThey ask to be fed and sheltered here for a few days, until {PLACE} can take them back.</li>
+          <li>[plague] {DEAD} of {FACTION} is on the road with {TALE} people who left {PLACE} before the plague reached their street. None of them is sick, {DEAD}'s runner swears, but nobody on the road will let them near a fire.\n\nThey ask to be fed and sheltered at the colony for a few days, until {PLACE} opens its gates again.</li>
+          <li>[famine] {PLACE} can't feed everyone this year. {DEAD} of {FACTION} is leading {TALE} of the people the town couldn't keep toward the colony, and has sent ahead to ask: would it feed and shelter them for a few days, until the carts from the south come in?</li>
+          <li>[flood] The river took the lower town at {PLACE}, and the houses of {TALE} people went with it. {DEAD} of {FACTION} is bringing them this way, and asks whether the colony will take them in until the water goes down.</li>
+          <li>[winter] The cold cracked the roofs of half a street at {PLACE}. {DEAD} of {FACTION} is coming through the snow with {TALE} people who have nowhere warm to sleep, and has sent word ahead asking for a few nights under the colony's roofs.</li>
+          <li>[abandoned] {PLACE} is emptying, and not everyone has somewhere to go. {DEAD} of {FACTION} is walking with {TALE} of the last to leave, and asks the colony to feed and shelter them for a few days while they find their feet.</li>
+          <li>[war] Raiders burned the farms outside {PLACE}. {DEAD} of {FACTION} has gathered {TALE} of the people who lived on them, and sent word asking the colony for a few days' food and shelter, until it's safe to go back.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
           <li>
             <label>Take them in</label>
-            <outcome>The colony will take them in.</outcome>
+            <outcome>The runner has gone back to tell them to come.</outcome>
           </li>
           <li>
             <label>Decline</label>
-            <outcome>{DEAD} thanks the colony for listening, and goes to ask somewhere else.</outcome>
+            <outcome>{DEAD}'s runner thanked the colony for listening, and went on to ask somewhere else.</outcome>
           </li>
         </options>
       </li>
       <li Class="ColonyCouncil.MissionText">
         <terms>
-          <li>What they ask: {TALE} people fed and sheltered at the colony for a few days. They arrive about a day after the colony agrees, and leave {DAYS} after it. Each day they need two meals each from the colony's stores (simple meals or better; raw food will do, ten for a meal), {ITEM} in all, and a roof: free beds or sleeping spots under a roof that nobody else uses, enough for all of them.\n\nThey have nothing to pay with. {FACTION} will remember who took them in.</li>
+          <li>{TALE} people fed and sheltered at the colony for a few days. They arrive about a day after the colony agrees, and leave {DAYS} after it. Each day they need two meals each from the colony's stores (simple meals or better; raw food will do, ten for a meal), {ITEM} in all, and a roof: free beds or sleeping spots under a roof that nobody else uses, enough for all of them.\n\nThey have nothing to pay with. {FACTION} will remember who took them in.</li>
         </terms>
         <accepted>
           <li>The colony will take in {TALE} people from {PLACE}. Have meals in the stores, and free beds or sleeping spots under a roof for all of them: they arrive in about a day.</li>
         </accepted>
         <ready>
-          <li>The refugees from {PLACE} have arrived, {DEAD} at their head. They stay for {DAYS}.</li>
+          <li>The refugees from {PLACE} have come in, {DEAD} at their head, carrying what they could. They stay for {DAYS}.</li>
         </ready>
         <reminder>
           <li>The refugees from {PLACE} arrive in {DAYS}. They'll need two meals each a day, and free beds or sleeping spots under a roof.</li>
@@ -318,8 +318,8 @@
         </doneTitles>
         <done>
           <li>[seen] The refugees from {PLACE} have gone home, fed every day and dry every night of their stay. {DEAD} shook every hand in the colony before leaving, and {FACTION} will hear all of it.</li>
-          <li>[seen,fire] The burned-out families have gone home to {PLACE}, where the new roofs are going up. {DEAD} shook every hand in the colony before leaving, and {FACTION} will hear all of it.</li>
-          <li>[seen,winter] The thaw came, and the refugees from {PLACE} went home under a clear sky, fed and rested. {DEAD} shook every hand in the colony before leaving.</li>
+          <li>[seen,fire] The burned-out families are on their way home to {PLACE}, where {FACTION} have the new roofs going up. {DEAD} walked at the back of the line, and stopped at the gate to look round once more.</li>
+          <li>[seen,winter] The refugees from {PLACE} are going home through the snow, fed and rested, warmer than they've been in weeks. {DEAD} thanked the colony on behalf of every one of them.</li>
           <li>[partly] The refugees from {PLACE} have gone home. Some days were leaner than others and some nights colder, but they got through, and they're grateful for that.</li>
         </done>
         <failTitles>
@@ -328,8 +328,8 @@
           <li>[cancelled] The refugees</li>
         </failTitles>
         <fail>
-          <li>[hungry] The refugees from {PLACE} have gone, hungrier than they came and tired of sleeping rough. {DEAD} thanked the colony stiffly. {FACTION} will hear about it.</li>
-          <li>[harmed] The refugees from {PLACE} came to the colony for shelter, and were hurt here instead. {FACTION} will not forget it.</li>
+          <li>[hungry] The refugees from {PLACE} have gone, hungrier than they came and tired of sleeping rough. {DEAD} thanked the colony stiffly on behalf of {FACTION}, and didn't look back.</li>
+          <li>[harmed] The refugees from {PLACE} came to the colony for shelter, and were hurt here instead. {FACTION} will remember where it happened.</li>
         </fail>
         <cancelled>
           <li>{FACTION} are no longer on terms with the colony, and their refugees will look for shelter elsewhere.</li>

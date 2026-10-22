@@ -41,62 +41,62 @@
           <li>[wedding] A wedding at {PLACE}</li>
         </titles>
         <texts>
-          <li>[funeral,lowtech] Old {DEAD}, who led {PLACE} for thirty years, died in the night at a great age, and {FACTION} mean to give the old headman the burial the town has talked about for years: a feast for every mourner, and a grave fit for the one who kept them all alive through the bad winters.\n\nThey can't make it all in time. A rider has come to the colony with a list, asking it to supply what the town can't, by the day of the burial.</li>
-          <li>[funeral,!lowtech] {DEAD}, mayor of {PLACE} for thirty years, died in the night at a great age, and {FACTION} mean to give the old mayor the funeral the town has talked about for years: a feast for every mourner, and a grave fit for the one who kept them all going through the bad winters.\n\nThey can't make it all in time. A rider has come to the colony with a list, asking it to supply what the town can't, by the day of the funeral.</li>
-          <li>[wedding,lowtech] {DEAD}, the only daughter of {PLACE}'s headman, is to be married, and {FACTION} want a wedding the valley will remember: food for every guest, drink, and something fine for the couple's new house.\n\nThey can't make it all in time. A rider has come to the colony with a list, asking it to supply what the town can't, by the day of the wedding.</li>
-          <li>[wedding,!lowtech] {DEAD}, the only daughter of {PLACE}'s mayor, is to be married, and {FACTION} want a wedding the region will remember: food for every guest, drink, and something fine for the couple's new house.\n\nThey can't make it all in time. A rider has come to the colony with a list, asking it to supply what the town can't, by the day of the wedding.</li>
+          <li>[funeral,lowtech] Old {DEAD} is dead. Thirty winters {DEAD} led {PLACE}, and kept the town fed through the worst of them, and {FACTION} mean to bury their headman the way the old songs say a headman should be buried: a grave dug deep with a stone over it, and a meal for every mourner who walks in from the hills.\n\nThe town can't make it all by the burial day. Their rider stood at the colony's gate holding the list out in both hands.</li>
+          <li>[funeral,!lowtech] {DEAD}, mayor of {PLACE} for thirty years, died in the night at a great age. {FACTION} have been half planning this funeral for a decade: every mourner fed, and a proper grave for the one who kept the town going through the bad winters.\n\nNow the day has come and the town is short. A courier has brought the colony a list of what's missing, and a date.</li>
+          <li>[wedding,lowtech] {DEAD}, the only daughter of {PLACE}'s headman, is to be married, and {FACTION} want a wedding the valley will talk about until the next one: food for every guest, drink enough for the dancing, and something fine for the couple's new house.\n\nThe headman's rider brought the colony a list, and a message to go with it: "We have the will, but not the hands."</li>
+          <li>[wedding,!lowtech] {DEAD}, only daughter of the mayor of {PLACE}, is getting married, and the mayor has promised the whole region a wedding to remember. {FACTION}'s own kitchens have already said it can't be done in time.\n\nA courier brought the colony the shortfall, item by item, with a delivery date and a polite request not to mention it to the bride.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
           <li>
             <label>Accept the terms</label>
-            <outcome>The colony has agreed.</outcome>
+            <outcome>The rider went home with the colony's yes.</outcome>
           </li>
           <li>
             <label>Decline</label>
-            <outcome>{FACTION} will look elsewhere.</outcome>
+            <outcome>{FACTION} will take their list to the next village.</outcome>
           </li>
         </options>
       </li>
       <li Class="ColonyCouncil.MissionText">
         <terms>
-          <li>What they need: {ITEM}. Everything has to be in the colony's stockpiles (sculptures can be anywhere on the map, as long as they aren't forbidden) within {DAYS} of the colony agreeing.\n\nFor all of it, {FACTION} will pay {COUNT} silver, well over its worth. If at least half of everything is ready, they'll take that and pay its plain worth. With less, they'll go elsewhere, and think less of the colony for it.</li>
+          <li>The list: {ITEM}, all of it in the colony's stockpiles within {DAYS} of the colony agreeing (sculptures can stand anywhere on the map, as long as they aren't forbidden).\n\nFor everything, {FACTION} will pay {COUNT} silver, well over its worth. If at least half of each thing is ready, they'll take what there is at its plain worth. Less than that, and they'll go elsewhere and think less of the colony for it.</li>
         </terms>
         <accepted>
-          <li>[funeral] The colony has agreed to provide for {DEAD}'s funeral at {PLACE}: {ITEM}, within {DAYS}. {FACTION}'s carts will come for it.</li>
-          <li>[wedding] The colony has agreed to provide for {DEAD}'s wedding at {PLACE}: {ITEM}, within {DAYS}. {FACTION}'s carts will come for it.</li>
+          <li>[funeral] {DEAD}'s funeral at {PLACE} will have the colony's goods: {ITEM}, ready within {DAYS}. {FACTION}'s carts will come to collect.</li>
+          <li>[wedding] The colony has promised {ITEM} for {DEAD}'s wedding at {PLACE}, ready within {DAYS}. {FACTION}'s carts will come to collect.</li>
         </accepted>
         <ready>
-          <li>Everything {FACTION} asked for is ready. Their carts will come for it in {DAYS}.</li>
-          <li>[funeral] Everything for {DEAD}'s funeral is stacked and ready. {FACTION}'s carts will come for it in {DAYS}.</li>
-          <li>[wedding] Everything for {DEAD}'s wedding is stacked and ready. {FACTION}'s carts will come for it in {DAYS}.</li>
+          <li>Everything on {FACTION}'s list is in the stockpiles. Their carts are due within {DAYS}.</li>
+          <li>[funeral] The last of the goods for {DEAD}'s funeral is stacked and counted. {FACTION}'s carts are on the road, due within {DAYS}.</li>
+          <li>[wedding] Everything for {DEAD}'s wedding is stacked and ready, and someone has tied a ribbon round the pile. {FACTION}'s carts are due within {DAYS}.</li>
         </ready>
         <reminder>
-          <li>{FACTION}'s carts come for the goods within {DAYS}: {ITEM}.</li>
-          <li>[funeral] {DEAD}'s funeral is in {DAYS}, and {FACTION} are still counting on the colony for {ITEM}.</li>
-          <li>[wedding] {DEAD}'s wedding is in {DAYS}, and {FACTION} are still counting on the colony for {ITEM}.</li>
+          <li>{FACTION}'s carts come within {DAYS}, and the list still isn't filled: {ITEM}.</li>
+          <li>[funeral] {DEAD} will be buried in {DAYS}, and {FACTION} are still counting on the colony for {ITEM}.</li>
+          <li>[wedding] {DEAD}'s wedding is in {DAYS}. {FACTION} have sent to ask, politely, how the colony is getting on with {ITEM}.</li>
         </reminder>
         <doneTitles>
-          <li>[delivered] The goods for {PLACE}</li>
-          <li>[partial] Part of the goods for {PLACE}</li>
+          <li>[delivered] Everything for {PLACE}</li>
+          <li>[partial] Half a load for {PLACE}</li>
         </doneTitles>
         <done>
-          <li>[delivered,funeral] {FACTION}'s carts came at dawn and loaded everything the colony had set aside, and their driver counted out {ITEM} silver. {DEAD} was buried two days later, with every family of {PLACE} at the graveside and food enough for all of them.\n\n{FACTION} won't forget who made it possible.</li>
-          <li>[delivered,wedding] {FACTION}'s carts came at dawn and loaded everything the colony had set aside, and their driver counted out {ITEM} silver. {DEAD} was married two days later, and people in {PLACE} say it was the best wedding they've ever been to.\n\n{FACTION} won't forget who made it possible.</li>
-          <li>[partial] {FACTION}'s carts came for the goods and found only part of them ready. They loaded what there was, paid its plain worth, {ITEM} silver, and drove off to find the rest somewhere else.</li>
+          <li>[delivered,funeral] {FACTION}'s carts took everything the colony had set aside, and their driver counted out {ITEM} silver before turning for home.\n\nWhen {DEAD} is buried, every family of {PLACE} will be at the graveside, and there will be food enough for all of them.</li>
+          <li>[delivered,wedding] {FACTION}'s carts went home loaded to the rails with everything the colony had set aside, and {ITEM} silver stayed behind in payment. Every guest from {PLACE} at {DEAD}'s wedding will know whose food is on the tables.</li>
+          <li>[partial] {FACTION}'s carts came and found the list half filled. They took what there was, paid its plain worth, {ITEM} silver, and went on to the next village for the rest.</li>
         </done>
         <failTitles>
           <li>[missed] Nothing for {PLACE}</li>
           <li>[cancelled] The order is off</li>
         </failTitles>
         <fail>
-          <li>[missed,funeral] {FACTION}'s carts came for the goods and found far too little ready. They left empty, and went looking for what they needed elsewhere. {DEAD}'s funeral will be a smaller one than the town hoped for.\n\n{FACTION} think less of the colony for the broken promise.</li>
-          <li>[missed,wedding] {FACTION}'s carts came for the goods and found far too little ready. They left empty, and went looking for what they needed elsewhere. {DEAD}'s wedding will be a smaller one than the town hoped for.\n\n{FACTION} think less of the colony for the broken promise.</li>
+          <li>[missed,funeral] {FACTION}'s carts came and went away empty; there wasn't near enough ready to be worth loading. {DEAD} will be buried with what the town could scrape together.\n\n{FACTION} had counted on the colony.</li>
+          <li>[missed,wedding] {FACTION}'s carts went home empty. {DEAD}'s wedding will go ahead on bread and borrowed benches, and {FACTION} know whose promise fell through.</li>
         </fail>
         <cancelled>
           <li>{FACTION} are no longer on terms with the colony, and the order for {PLACE} is off.</li>
           <li>[funeral] {FACTION} have broken with the colony, and will bury {DEAD} without its help.</li>
-          <li>[wedding] {FACTION} have broken with the colony, and {DEAD}'s wedding will go on without its help.</li>
+          <li>[wedding] {FACTION} have broken with the colony. {DEAD} will be married without anything of the colony's on the tables.</li>
         </cancelled>
       </li>
     </modExtensions>
@@ -122,16 +122,16 @@
           <li>{FACTION}'s prize {THING}</li>
         </titles>
         <texts>
-          <li>[lowtech] A herder of {FACTION} came to the colony out of breath. {BEAST}, the prize {THING} of {PLACE}, broke through a fence three nights ago and has run wild onto the colony's land, and none of the town's people can get near {BEAST}.\n\nIf the colony can tame {BEAST} and hand {BEAST} back, {FACTION} will pay {COUNT} silver, and be grateful besides. {A_nameDef} thinks it can be done.</li>
-          <li>[!lowtech] A herder of {FACTION} came to the colony out of breath. {BEAST}, a breeder's prize {THING} from {PLACE}, jumped a fence three nights ago and has run wild onto the colony's land, and none of the town's people can get near {BEAST}.\n\nIf the colony can tame {BEAST} and hand {BEAST} back, {FACTION} will pay {COUNT} silver, and be grateful besides. {A_nameDef} thinks it can be done.</li>
-          <li>[skill:Animals] {A_nameDef} saw it before the herder arrived: a {THING} with a good coat and a braided halter, grazing at the edge of the colony's land as if it owned the place. Then {FACTION}'s herder came puffing up the road. It's {BEAST}, the prize of {PLACE}, three days loose, and the town's people can't get within a stone's throw.\n\nIf the colony can tame {BEAST} and hand {BEAST} back, {FACTION} will pay {COUNT} silver. {A_nameDef} is already watching how {BEAST} moves.</li>
-          <li>[winter] A herder of {FACTION} came through the snow to the colony, worried sick. {BEAST}, the prize {THING} of {PLACE}, broke out in a storm and has run onto the colony's land, and won't let anyone from the town come near.\n\nIf the colony can tame {BEAST} and hand {BEAST} back before the cold gets worse, {FACTION} will pay {COUNT} silver. {A_nameDef} thinks it can be done.</li>
+          <li>[lowtech] "Have you seen {BEAST}?" The herder from {PLACE} had run most of the way and could barely get it out. {BEAST} is the town's prize {THING}, and three nights ago went through a fence and kept going, onto the colony's land, and none of {FACTION} can get a rope near {BEAST}.\n\nIf the colony can tame {BEAST} and hand {BEAST} back, {FACTION} will pay {COUNT} silver, and be grateful besides. {A_nameDef} thinks it can be done.</li>
+          <li>[!lowtech] {FACTION}'s breeders at {PLACE} have lost {BEAST}, a prize {THING} with a pedigree going back six generations. {BEAST} jumped a fence three nights ago, has run wild on the colony's land ever since, and won't let any of their people near.\n\nIf the colony can tame {BEAST} and hand {BEAST} back, {FACTION} will pay {COUNT} silver. {A_nameDef} thinks it can be done.</li>
+          <li>[skill:Animals] {A_nameDef} saw it before the herder arrived: a {THING} with a good coat and a braided halter, grazing on the colony's land as if it owned the place. Then {FACTION}'s herder came puffing up the road. It's {BEAST}, the prize of {PLACE}, three days loose, and the town's people can't get within a stone's throw.\n\nIf the colony can tame {BEAST} and hand {BEAST} back, {FACTION} will pay {COUNT} silver. {A_nameDef} is already watching how {BEAST} moves.</li>
+          <li>[winter] The herder from {PLACE} came through the snow with a coil of rope and no animal on the end of it. {BEAST}, the prize {THING} of {FACTION}, broke out in the last storm and has run onto the colony's land, and the cold is coming on.\n\nIf the colony can tame {BEAST} and hand {BEAST} back before the worst of it, {FACTION} will pay {COUNT} silver. {A_nameDef} thinks it can be done.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
           <li>
             <label>Accept the terms</label>
-            <outcome>The colony has agreed.</outcome>
+            <outcome>The herder went home to wait for word.</outcome>
           </li>
           <li>
             <label>Decline</label>
@@ -155,23 +155,23 @@
           <li>Sorrel</li>
         </names>
         <terms>
-          <li>What they ask: tame {BEAST} within {DAYS} of the colony agreeing. {BEAST} will be loose somewhere on the colony's land; mark {BEAST} to be tamed, and send {A_nameDef} or another good handler.\n\nHanded back unharmed, {BEAST} is worth {COUNT} silver to {FACTION}. If {BEAST} gets away, they'll be disappointed. If {BEAST} is killed, they'll take it hard.</li>
+          <li>Tame {BEAST} within {DAYS} of the colony agreeing. {BEAST} will be loose somewhere on the colony's land: mark {BEAST} to be tamed, and send {A_nameDef} or another good handler.\n\nHanded back unharmed, {BEAST} is worth {COUNT} silver to {FACTION}. If {BEAST} gets away, they'll be disappointed; if {BEAST} is killed, they'll take it hard.</li>
         </terms>
         <accepted>
-          <li>The colony will try to tame {BEAST} for {FACTION}. {BEAST} is somewhere on the colony's land now: mark {BEAST} to be tamed. Time: {DAYS}.</li>
+          <li>Somewhere on the colony's land, {BEAST} is running loose, and {FACTION} are waiting. Mark {BEAST} to be tamed within {DAYS}.</li>
           <li>{A_nameDef} has promised {FACTION}'s herder to bring {BEAST} in. Mark {BEAST} to be tamed before {DAYS} are out.</li>
         </accepted>
         <reminder>
           <li>{BEAST} is still wild, and will wander off for good unless tamed within {DAYS}.</li>
-          <li>{FACTION}'s herder keeps asking after {BEAST}. Mark {BEAST} to be tamed: {DAYS} left.</li>
+          <li>{FACTION}'s herder has sent to ask after {BEAST} again. {DAYS} left to tame {BEAST}.</li>
         </reminder>
         <doneTitles>
           <li>[returned] {BEAST} goes home</li>
           <li>[bought] {BEAST} stays</li>
         </doneTitles>
         <done>
-          <li>[returned] {FACTION}'s herder came for {BEAST} at dawn and led {BEAST} home on a rope. The herder left {ITEM} silver at the gate, and the thanks of {PLACE}.</li>
-          <li>[bought] {FACTION} took the colony's silver for {BEAST}, and {BEAST} is the colony's now, bought and paid for. The herder walked home alone, and didn't seem to mind.</li>
+          <li>[returned] {BEAST} went home at an easy walk, as tame as a dog, to where {FACTION}'s herder was waiting down the road. {ITEM} silver came back the other way, with the thanks of {PLACE}.</li>
+          <li>[bought] {FACTION} took the colony's silver, and {BEAST} is the colony's now, bought and paid for. Their herder sent word asking the colony to keep {BEAST} out of the barley.</li>
         </done>
         <failTitles>
           <li>[killed] {BEAST} is dead</li>
@@ -181,13 +181,13 @@
           <li>[cancelled] The runaway</li>
         </failTitles>
         <fail>
-          <li>[killed] {BEAST}, the prize {THING} of {PLACE}, lies dead on the colony's land. {FACTION} took the news badly: {BEAST} was worth more to them than silver.</li>
-          <li>[escaped] {BEAST} slipped away into the hills before anyone could win {BEAST} over. {FACTION} are disappointed, and say so.</li>
-          <li>[lost] {BEAST} is gone from the colony's land, and {FACTION} have no idea where. They're disappointed, and say so.</li>
+          <li>[killed] {BEAST}, the prize {THING} of {PLACE}, is dead on the colony's land. {FACTION} took the news hard; {BEAST} was worth more to them than silver.</li>
+          <li>[escaped] Before anyone could win {BEAST} over, {BEAST} was off into the hills and gone. {FACTION} have sent word that they're disappointed.</li>
+          <li>[lost] {BEAST} is gone from the colony's land, and {FACTION} have no idea where. Their herder is out looking again, alone.</li>
           <li>[kept] The colony tamed {BEAST} and kept {BEAST} without paying a thing. {FACTION} will be telling that story at every market for years.</li>
         </fail>
         <cancelled>
-          <li>{FACTION} are no longer on terms with the colony. Whatever becomes of {BEAST} now is the colony's own business.</li>
+          <li>{FACTION} have turned against the colony. Whatever becomes of {BEAST} now is the colony's own business.</li>
           <li>Word came that {FACTION} want nothing more to do with the colony. {BEAST} is the colony's own problem now.</li>
         </cancelled>
       </li>
@@ -214,9 +214,9 @@
           <li>The herder's rope</li>
         </titles>
         <texts>
-          <li>{BEAST} has been tamed, and follows the colony's handlers around the yard as if {BEAST} had always lived here. {FACTION}'s herder is waiting at the gate with a rope.\n\nThe colony can hand {BEAST} back for the {TALE} silver promised, or keep {BEAST}: {FACTION} would sell {BEAST} for {COUNT} silver. Keeping {BEAST} without paying would be another thing entirely.</li>
-          <li>[skill:Animals] {A_nameDef} has {BEAST} eating out of {A_possessive} hand, quite literally, and {BEAST} has stopped trying to kick the fence down. {FACTION}'s herder has come up the road with a rope and a hopeful face.\n\nThe colony can hand {BEAST} back for the {TALE} silver promised, or keep {BEAST}: {FACTION} would sell {BEAST} for {COUNT} silver. Keeping {BEAST} without paying would be another thing entirely.</li>
-          <li>{BEAST} is tame now, and has taken to following the colony's handlers to the well and back. The herder from {PLACE} is waiting at the gate.\n\nThe colony can hand {BEAST} back for the {TALE} silver promised, or buy {BEAST} from {FACTION} for {COUNT} silver. Keeping {BEAST} without paying would be another thing entirely.</li>
+          <li>{BEAST} has been tamed, and follows the colony's handlers around the yard as if {BEAST} had always lived here. {FACTION}'s herder has heard, and sent word that the rope is ready.\n\nHand {BEAST} back, and the {TALE} silver promised is the colony's. Or the colony could keep {BEAST}: {FACTION} would part with {BEAST} for {COUNT} silver. Keeping {BEAST} without paying would be another matter.</li>
+          <li>[skill:Animals] {A_nameDef} has {BEAST} eating out of {A_possessive} hand, quite literally, and {BEAST} has stopped trying to kick the fence down. {FACTION}'s herder is on the way up the road with a rope and a hopeful face.\n\n{TALE} silver if {BEAST} goes home, as promised. {COUNT} silver, paid to {FACTION}, if the colony would rather keep {BEAST}. Or the colony could simply keep {BEAST}, and send the herder home with an empty rope.</li>
+          <li>Tame at last, {BEAST} has taken to following the colony's handlers to the well and back. The herder from {PLACE} has sent to ask when to come.\n\nThe herder will take {BEAST} home and pay the {TALE} silver promised. If the colony has grown fond of {BEAST}, {FACTION} would sell for {COUNT} silver, and the herder added, carefully, that they'd hate to think anyone would keep {BEAST} for nothing.</li>
         </texts>
         <defaultOption>0</defaultOption>
         <options>
@@ -227,14 +227,14 @@
           </li>
           <li>
             <label>Keep {BEAST}, and pay {COUNT} silver</label>
-            <outcome>{BEAST} stays.</outcome>
+            <outcome>{BEAST} stays, paid for.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what></li>
             </effects>
           </li>
           <li>
             <label>Keep {BEAST} without paying</label>
-            <outcome>{BEAST} stays.</outcome>
+            <outcome>{BEAST} stays, unpaid for.</outcome>
             <ways><generosity>-3</generosity></ways>
           </li>
         </options>
@@ -262,15 +262,15 @@
           <li>The pilgrims' road</li>
         </titles>
         <texts>
-          <li>[lowtech] Every year, pilgrims of {FACTION} walk from {PLACE} to a holy spring in the far hills, and their road passes the colony. The elders of {PLACE} have sent to ask a favor: a place on the colony's land where the pilgrims can stop and pray, marked with something made by human hands and open to the sky.\n\nIf a shrine is waiting for them, the pilgrims will pray there, leave an offering, and remember who raised it. {A_nameDef} already has an idea for it.</li>
-          <li>[!lowtech] Every year, pilgrims of {FACTION} walk from {PLACE} to an old monastery in the far hills, and their road passes the colony. The elders of {PLACE} have sent to ask a favor: a place on the colony's land where the pilgrims can stop and pray, marked with something made by human hands and open to the sky.\n\nIf a shrine is waiting for them, the pilgrims will pray there, leave an offering, and remember who raised it. {A_nameDef} already has an idea for it.</li>
+          <li>[lowtech] The elders of {PLACE} send greetings, and a request. Every year the pilgrims of {FACTION} walk from {PLACE} to the holy spring in the far hills, and every year their road crosses the colony's land with nowhere on it to kneel. Would the colony raise them something? Made by hands, the elders ask, and under the open sky.\n\nIf a shrine is waiting, the pilgrims will pray there, leave an offering, and remember who raised it. {A_nameDef} already has an idea for it.</li>
+          <li>[!lowtech] Pilgrims of {FACTION} walk from {PLACE} to an old monastery in the far hills every year, and the road they take crosses the colony's land. This year the elders of {PLACE} have written to ask whether the colony would put up a shrine along the way: a carving or a statue, out in the open, where the walkers can stop and pray.\n\nThe pilgrims would leave an offering, and remember who raised it. {A_nameDef} already has an idea for it.</li>
           <li>[skill:Artistic] A messenger from the elders of {PLACE} came with a request that made {A_nameDef} sit up. Pilgrims of {FACTION} pass the colony every year on their way to the far hills, and the elders would like a shrine on the colony's land for them to pray at: something made by human hands, under the open sky.\n\nIf it's there when the pilgrims come, they'll pray, leave an offering and remember who raised it. {A_nameDef} has started sketching.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
           <li>
             <label>Accept the terms</label>
-            <outcome>The colony has agreed.</outcome>
+            <outcome>The messenger went back to the elders with the colony's promise.</outcome>
           </li>
           <li>
             <label>Decline</label>
@@ -280,19 +280,19 @@
       </li>
       <li Class="ColonyCouncil.MissionText">
         <terms>
-          <li>What they ask: a sculpture of {TALE} quality or better, standing under the open sky (not under a roof) on the colony's land, within {DAYS} of the colony agreeing. As soon as it stands, word goes out and the pilgrims set out; they arrive a day or so later.\n\nTheir offering will be about {COUNT} silver, and {FACTION} will think well of the colony. If there's no shrine when they come, they'll walk on past, and their elders will hear of it.</li>
+          <li>A sculpture of {TALE} quality or better, standing under the open sky (no roof over any part of it) on the colony's land, within {DAYS} of the colony agreeing. Once it stands, word goes out and the pilgrims set off; they arrive a day or so later.\n\nTheir offering will come to about {COUNT} silver, and {FACTION} will think well of the colony. If there's no shrine when they come, they'll walk on past, and their elders will hear of it.</li>
         </terms>
         <accepted>
           <li>The colony will raise a shrine for the pilgrims of {FACTION}: a sculpture of {TALE} quality or better, under the open sky, within {DAYS}.</li>
-          <li>{A_nameDef} has the colony's word to pass on to {PLACE}: a shrine for the pilgrims, a sculpture of {TALE} quality or better under the open sky, within {DAYS}.</li>
+          <li>{A_nameDef} has sent the colony's word to {PLACE}. A shrine for the pilgrims, a sculpture of {TALE} quality or better under the open sky, within {DAYS}.</li>
         </accepted>
         <ready>
-          <li>Word of the colony's shrine has reached {PLACE}: {ITEM} stands ready, and the pilgrims have set out. They'll arrive in about {DAYS}.</li>
-          <li>The shrine is finished, and a rider has gone to {PLACE} to say so: {ITEM} stands under the sky waiting. The pilgrims should arrive in about {DAYS}.</li>
+          <li>Word of the colony's shrine has reached {PLACE}. {ITEM} stands ready, and the pilgrims are on the road; they'll arrive in about {DAYS}.</li>
+          <li>A rider has gone to {PLACE} to tell the elders that {ITEM} stands waiting under the sky. The pilgrims should arrive in about {DAYS}.</li>
         </ready>
         <reminder>
           <li>The pilgrims of {FACTION} are coming within {DAYS}, and there's no shrine for them yet: a sculpture of {TALE} quality or better, under the open sky.</li>
-          <li>The pilgrims of {FACTION} set out soon, and there's still no shrine: a sculpture of {TALE} quality or better, open to the sky. {DAYS} left.</li>
+          <li>Still no shrine for the pilgrims of {FACTION}, and {DAYS} left to raise one: a sculpture of {TALE} quality or better, open to the sky.</li>
         </reminder>
         <doneTitles>
           <li>[blessed] Pilgrims at the shrine</li>
@@ -300,7 +300,7 @@
         </doneTitles>
         <done>
           <li>[blessed] The pilgrims of {FACTION} came singing up the road and stopped at the colony's shrine to pray, as their elders asked. They left an offering at its foot, {ITEM} silver, and will carry word of the colony home to {PLACE}.\n\nThey say they'll stop here every year now.</li>
-          <li>[blessed] The pilgrims of {FACTION} came at dusk with lamps, knelt at the colony's shrine and prayed until the stars were out. In the morning their offering lay at its foot, {ITEM} silver, and they went on their way singing.\n\nThe elders of {PLACE} will hear of it, and the pilgrims mean to stop here every year.</li>
+          <li>[blessed] The pilgrims of {FACTION} have come, dusty from the road, and are kneeling at the colony's shrine with their heads bare. Their offering, {ITEM} silver, already lies at its foot.\n\nThe elders of {PLACE} will hear of it, and the pilgrims mean to stop here every year.</li>
         </done>
         <failTitles>
           <li>[noshrine] No shrine</li>
@@ -308,11 +308,11 @@
           <li>[cancelled] The pilgrims</li>
         </failTitles>
         <fail>
-          <li>[noshrine] The pilgrims of {FACTION} came up the road and found no shrine waiting for them. They prayed by the roadside and walked on, and the elders of {PLACE} will hear of it.</li>
-          <li>[gone] The pilgrims of {FACTION} came to pray at the colony's shrine and found it gone. They walked on, puzzled, and the elders of {PLACE} will hear of it.</li>
+          <li>[noshrine] The pilgrims of {FACTION} came up the road and found no shrine waiting for them. They prayed by the roadside, as they always have, and walked on. The elders of {PLACE} will hear of it.</li>
+          <li>[gone] The pilgrims of {FACTION} came to pray at the colony's shrine and found only the place where it had stood. They walked on, puzzled, and the elders of {PLACE} will hear of that too.</li>
         </fail>
         <cancelled>
-          <li>{FACTION} are no longer on terms with the colony, and their pilgrims will take another road.</li>
+          <li>With {FACTION} at odds with the colony, their pilgrims will take another road.</li>
           <li>Word came that {FACTION} want nothing more to do with the colony. The pilgrims of {PLACE} will walk another road this year.</li>
         </cancelled>
       </li>

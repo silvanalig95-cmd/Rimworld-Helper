@@ -49,7 +49,7 @@
   <CC_Camp_Help_tales>{A_nameDef} sat at the camp's fire {PLACE} until late, while {X_nameDef} told the news of the road.</CC_Camp_Help_tales>
 
   <!-- ===================== Missions of the road (Source/ColonyCouncil/Missions/Workers_MissionRoad.cs) ===================== -->
-  <CC_Mission_Escort_Set>{NAME} has set off for {PLACE} with the colony's caravan, at {A_nameDef}'s side.</CC_Mission_Escort_Set>
+  <CC_Mission_Escort_Set>{NAME} has taken up the staff again and set off for {PLACE} with the colony's caravan, at {A_nameDef}'s side.</CC_Mission_Escort_Set>
   <CC_Mission_Escort_Coming>{0} comes to the colony in {1}.</CC_Mission_Escort_Coming>
   <CC_Mission_Escort_Waiting>{0} is waiting at the colony: send a caravan with one of the colony's people to {1} (about {2} away).</CC_Mission_Escort_Waiting>
   <CC_Mission_Escort_OnRoad>{0} is on the road to {2} with {1}'s caravan.</CC_Mission_Escort_OnRoad>

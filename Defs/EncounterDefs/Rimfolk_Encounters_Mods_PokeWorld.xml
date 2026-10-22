@@ -19,8 +19,8 @@
     <weight>1.1</weight>
     <cooldownDays>6</cooldownDays>
     <texts>
-      <li>{A_nameDef} looked up from {A_possessive} work and found {X_indefinite} sitting on a rock a little way off, watching with great interest. When {A_nameDef} waved, it tilted its head.</li>
-      <li>All afternoon {A_nameDef} had the feeling of being watched, and at last caught {X_definite} peering from the long grass. It ducked out of sight, then peered out again.</li>
+      <li>{A_nameDef} looked up from {A_possessive} work and found {X_indefinite} sitting on a rock a few paces off, watching with great interest. When {A_nameDef} waved, it tilted its head.</li>
+      <li>{A_nameDef} had the feeling of being watched for a long while before catching {X_definite} peering out of the long grass. It ducked out of sight, then peered out again.</li>
       <li>While {A_nameDef} worked, {X_indefinite} crept closer and closer, until it was near enough to sniff {A_possessive} boot. Then it bolted, very pleased with itself.</li>
     </texts>
     <effects>
@@ -40,8 +40,8 @@
     <cooldownDays>15</cooldownDays>
     <notable>true</notable>
     <texts>
-      <li>{A_nameDef} saw it first: {X_indefinite}, but the wrong colour, its coat catching the light like a coin. {A_nameDef} stood very still and didn't breathe until it moved on.</li>
-      <li>There was a sparkle in the grass beyond the fields, and when {A_nameDef} went to look, there was {X_indefinite} unlike any {A_pronoun} had seen, shining strangely, as if somebody had painted it.</li>
+      <li>{A_nameDef} looked twice at {X_indefinite} in the grass. It was the wrong color, and its coat caught the light like a new coin. {A_nameDef} stood very still and didn't breathe until it moved on.</li>
+      <li>Past the fields, the grass sparkled. When {A_nameDef} went to look, {A_pronoun} found {X_indefinite} unlike any {A_pronoun} had ever seen, shining as if someone had painted it.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_PW_SawRareOne</thought></li>
@@ -59,8 +59,8 @@
     <weight>1.5</weight>
     <cooldownDays>12</cooldownDays>
     <texts>
-      <li>At the far edge of the land, {A_nameDef} saw {X_indefinite} crossing the ridge, unhurried, the kind trainers talk about for years. {A_nameDef} watched until it was out of sight.</li>
-      <li>{A_nameDef} came back from the fields breathless: {X_indefinite}, a rare one, drinking at the water as calmly as a goat. By the time anyone else looked, it was gone into the trees.</li>
+      <li>Far off on the ridge, {A_nameDef} saw {X_indefinite} crossing, unhurried, the kind trainers talk about for years. {A_nameDef} watched until it was out of sight.</li>
+      <li>{A_nameDef} came back from the fields out of breath, having seen {X_indefinite} drinking at the water as calmly as a goat. By the time anyone else looked, it had gone into the trees.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_PW_SawRareOne</thought></li>
@@ -84,7 +84,7 @@
     <cooldownDays>8</cooldownDays>
     <texts>
       <li>{A_nameDef} sat very still at the edge of the field holding out a berry, and after a long while {X_indefinite} came and took it from {A_possessive} hand. {A_nameDef} hasn't stopped talking about it.</li>
-      <li>{A_nameDef} and {X_indefinite} played chase along the fence for most of the afternoon. It wasn't clear who was chasing whom.</li>
+      <li>{A_nameDef} and {X_indefinite} played chase along the fence for most of the afternoon, taking turns at being chased.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncPW_SmallFriend</thought></li>

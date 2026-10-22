@@ -21,10 +21,10 @@
     <children>true</children>
     <texts>
       <li>{A_nameDef} stood very still while {X_indefinite} settled on the fence beside {A_objective}, its wings opening and closing like slow breathing.</li>
-      <li>On the way back from the fields, {A_nameDef} walked into a cloud of color: {X_indefinite}, drifting from flower to flower, unbothered.</li>
-      <li>[x:race:AA_AuroraSylph] After dark, {A_nameDef} watched {X_indefinite} hang above the field like a curtain of green light, and didn't go in until it faded.</li>
-      <li>[x:race:AA_EmpressButterfly] Where {X_definite} had passed, every flower in the bed seemed to stand a little straighter. {A_nameDef} swears it wasn't imagination.</li>
-      <li>[child] {A_nameDef} chased {X_definite} across the yard and never caught it, which was the point.</li>
+      <li>On the way back from the fields, {A_nameDef} walked straight into {X_indefinite} drifting from flower to flower, and had dust from its wings on {A_possessive} sleeve for the rest of the day.</li>
+      <li>[x:race:AA_AuroraSylph] After dark, {A_nameDef} watched {X_indefinite} hang above the field like a curtain of green light, and stayed out until it drifted away.</li>
+      <li>[x:race:AA_EmpressButterfly] {A_nameDef} followed {X_definite} along the garden beds, and could have sworn the soil was darker wherever it had landed.</li>
+      <li>[child] {A_nameDef} chased {X_definite} across the yard with both hands cupped, and came back with empty hands and no breath left.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncA_Wonder</thought></li>
@@ -42,11 +42,11 @@
     <stranger><kind>Wild</kind><races><li>AA_MeadowAve</li><li>AA_RoyalAve</li><li>AA_FrostAve</li><li>AA_DesertAve</li></races></stranger>
     <children>true</children>
     <texts>
-      <li>{A_nameDef} watched {X_indefinite} go past at a dead run, faster than any horse, and found one of its feathers in the grass afterwards, longer than {A_possessive} arm.</li>
+      <li>At a dead run, faster than any horse, {X_indefinite} went past {A_nameDef} and was gone. Afterwards {A_nameDef} found one of its feathers in the grass, longer than {A_possessive} arm.</li>
       <li>{A_nameDef} came over the rise and nearly walked into {X_indefinite}. They looked at each other for a long moment; then the bird snapped its beak once and strolled off.</li>
-      <li>[x:race:AA_RoyalAve] {A_nameDef} found a plume from {X_definite} caught on a bush, so bright it looked dyed. It's pinned over {A_possessive} bed now.</li>
+      <li>[x:race:AA_RoyalAve] Caught on a bush was a plume from {X_definite}, so bright it looked dyed. {A_nameDef} has pinned it over {A_possessive} bed.</li>
       <li>[x:race:AA_FrostAve] Against the wind, {X_definite} fluffed itself up until it was twice its size, and {A_nameDef} laughed out loud.</li>
-      <li>[skill:Animals] {A_nameDef} spent the afternoon watching how {X_definite} moves and eats, and has decided the colony should own one.</li>
+      <li>[skill:Animals] {A_nameDef} spent the afternoon watching how {X_definite} moves and eats, and came back sketching a pen big enough to keep one.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncA_Feather</thought></li>
@@ -63,10 +63,10 @@
     <stranger><kind>Wild</kind><races><li>AA_Gigantelope</li><li>AA_Thunderox</li><li>AA_Radyak</li><li>AA_ChameleonYak</li><li>AA_NightMule</li><li>AA_GreyCoatedMouflon</li><li>AA_SpinedGow</li></races></stranger>
     <texts>
       <li>{A_nameDef} watched {X_indefinite} graze its way along the edge of the fields, unhurried, as if the colony were a strange kind of rock.</li>
-      <li>[x:race:AA_Thunderox] Out in the pasture, {X_definite} lifted its head and bellowed. {A_nameDef} has heard the old saying, and started bringing the washing in. The storm came an hour later.</li>
-      <li>[x:race:AA_ChameleonYak] {A_nameDef} lost sight of {X_definite} against the hillside three times in one afternoon. Its coat had gone the color of the grass.</li>
-      <li>[x:race:AA_Radyak] The crystals along the back of {X_definite} caught the evening light, and {A_nameDef} stood watching until it moved on.</li>
-      <li>[x:race:AA_GreyCoatedMouflon] Standing near {X_definite}, {A_nameDef} felt oddly calm, as if someone had taken a weight off {A_possessive} shoulders. It lasted until the animal wandered off.</li>
+      <li>[x:race:AA_Thunderox] Out in the pasture, {X_definite} lifted its head and bellowed. {A_nameDef} knows what a thunderox's call is said to mean, and went to bring the washing in before the sky could turn.</li>
+      <li>[x:race:AA_ChameleonYak] Three times in one afternoon {A_nameDef} lost sight of {X_definite} against the hillside. Its coat had gone the color of the grass.</li>
+      <li>[x:race:AA_Radyak] The crystals growing through the hide of {X_definite} glittered every time it lowered its head to graze. {A_nameDef} stood watching until it moved on.</li>
+      <li>[x:race:AA_GreyCoatedMouflon] Standing near {X_definite}, {A_nameDef} felt {A_possessive} jaw unclench and {A_possessive} shoulders drop. The feeling went when the animal wandered off.</li>
       <li>[x:race:AA_Gigantelope] Past the wall walked {X_indefinite}, its head higher than the roof. {A_nameDef} worked out how much it could carry, and sighed.</li>
     </texts>
     <effects>
@@ -87,7 +87,7 @@
       <li>{A_nameDef} spent a good while watching {X_indefinite} drag its rock across the yard, one patient sideways step at a time.</li>
       <li>[x:race:AA_PebbleMit] Wherever {X_definite} went, it left a trail of loose stone, and {A_nameDef} followed it round collecting the pieces for the builders.</li>
       <li>[x:race:AA_CrystalMit] {A_nameDef} caught {X_definite} eating the gravel off the path and couldn't decide whether to be annoyed or impressed.</li>
-      <li>[x:race:AA_SummitCrab] Something the size of a hill moved at the edge of the map. It was {X_indefinite}, carrying what looked like half a mountain. {A_nameDef} didn't go any closer.</li>
+      <li>[x:race:AA_SummitCrab] A hill on the colony's land got up and moved. It was {X_indefinite}, carrying what looked like half a mountain on its back, and {A_nameDef} went no closer.</li>
       <li>[child] {A_nameDef} sat on a rock for ten minutes before the rock got up and walked away. It was {X_indefinite}.</li>
     </texts>
     <effects>
@@ -105,10 +105,10 @@
     <stranger><kind>Wild</kind><races><li>AA_Skyeel</li><li>AA_Aerofleet</li><li>AA_ColossalAerofleet</li></races></stranger>
     <children>true</children>
     <texts>
-      <li>{A_nameDef} looked up from {A_possessive} work and saw {X_indefinite} drifting overhead, quite slowly, as if it had all the time in the world.</li>
+      <li>A shadow slid over {A_nameDef}'s work. Overhead, {X_indefinite} was drifting above the roofs, slow as a cloud.</li>
       <li>[x:race:AA_ColossalAerofleet] With a soft thump, {X_indefinite} bounced off the colony's wall, turned, bounced off it again, and floated away. {A_nameDef} watched the whole thing with {A_possessive} mouth open.</li>
       <li>[x:race:AA_Skyeel] With a faint crackle, {X_definite} flicked past {A_nameDef} through the air, and the hairs on {A_possessive} arms stood up.</li>
-      <li>[child] {A_nameDef} tried to throw a pebble over {X_definite}. It went under.</li>
+      <li>[child] {A_nameDef} lay on {A_possessive} back in the grass and followed {X_definite} across the sky until {A_possessive} neck hurt.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncA_Wonder</thought></li>
@@ -124,10 +124,10 @@
     <nightOnly>true</nightOnly>
     <stranger><kind>Wild</kind><races><li>AA_NightRam</li><li>AA_DuskRat</li><li>AA_Murkling</li><li>AA_CrepuscularBeetle</li></races></stranger>
     <texts>
-      <li>Crossing the yard after dark, {A_nameDef} saw a pair of eyes watching from the edge of the light. It was {X_indefinite}, and it didn't move until {A_pronoun} did.</li>
-      <li>[x:race:AA_DuskRat] Four small eyes glowed at {A_nameDef} from under the storeroom door. {A_nameDef} has counted them twice and it is definitely four.</li>
+      <li>Crossing the yard after dark, {A_nameDef} met a pair of eyes just beyond the lamplight. They belonged to {X_indefinite}, which held still until {A_nameDef} moved first.</li>
+      <li>[x:race:AA_DuskRat] Four small eyes glowed at {A_nameDef} from under the storeroom door, two pairs, one above the other. Come morning, {A_nameDef} went through the grain sacks looking for holes.</li>
       <li>[x:race:AA_NightRam] Once the sun was gone, {X_definite} came down to graze, and {A_nameDef} sat on the wall and watched it, both of them quiet.</li>
-      <li>[x:race:AA_CrepuscularBeetle] In the dark, {X_definite} trundled past the colony like a cart with no driver. {A_nameDef} stepped aside to let it by.</li>
+      <li>[x:race:AA_CrepuscularBeetle] Through the dark, {X_definite} trundled past the colony like a cart with no driver. {A_nameDef} stepped aside to let it by.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncA_NightEyes</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
@@ -144,7 +144,7 @@
     <notable>true</notable>
     <stranger><kind>Wild</kind><races><li>AA_Gallatross</li></races></stranger>
     <texts>
-      <li>The ground shook, and {A_nameDef} looked up to see {X_indefinite} walking past the colony, taller than anything the colony has ever built. {A_nameDef} put down {A_possessive} tools and watched until it was gone.</li>
+      <li>The ground shook. {A_nameDef} looked up to see {X_indefinite} walking past the colony, taller than anything the colony has ever built, and put down {A_possessive} tools until it had gone.</li>
       <li>{A_nameDef} watched {X_definite} from the wall until it was only a shape on the horizon. Afterwards {A_pronoun} couldn't say how long it had taken.</li>
     </texts>
     <effects>
@@ -166,7 +166,7 @@
     <stranger><kind>Wild</kind><notPredator>true</notPredator></stranger>
     <texts>
       <li>Out on the mudflats, {A_nameDef} watched {X_indefinite} pick its way between ribs as tall as trees, the bones of something that came here to die long ago.</li>
-      <li>{A_nameDef} found {X_indefinite} sheltering from the sun in the hollow of an enormous skull, and left it in peace.</li>
+      <li>In the hollow of an enormous skull, out of the sun, {A_nameDef} found {X_indefinite} sheltering, and left it in peace.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncA_StrangeLand</thought></li>
@@ -201,8 +201,8 @@
     <cooldownDays>12</cooldownDays>
     <stranger><kind>Wild</kind><notPredator>true</notPredator></stranger>
     <texts>
-      <li>{A_nameDef} ducked under a mushroom cap the size of a roof to get out of the rain, and found {X_indefinite} had had the same idea.</li>
-      <li>In the green half-light under the giant mushrooms, {A_nameDef} watched {X_indefinite} nose through the spores on the ground. Both of them sneezed.</li>
+      <li>{A_nameDef} ducked under a mushroom cap the size of a roof for a moment's shade, and found {X_indefinite} had had the same idea.</li>
+      <li>In the green half-light under the giant mushrooms, {A_nameDef} watched {X_indefinite} nose through the white threads on the ground, and kept well clear of the big caps and their spores.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncA_StrangeLand</thought></li>
@@ -218,8 +218,8 @@
     <cooldownDays>12</cooldownDays>
     <stranger><kind>Wild</kind><notPredator>true</notPredator></stranger>
     <texts>
-      <li>{A_nameDef} saw {X_indefinite} freeze among the trees, ears up. A dozen eyes on the nearest trunk had turned to look at it. Then they turned to look at {A_nameDef}.</li>
-      <li>Every time the eyes in the bark blinked, {X_definite} flinched, and so did {A_nameDef}. Neither of them stayed long.</li>
+      <li>{A_nameDef} saw {X_indefinite} freeze among the trees. A dozen eyes on the nearest trunk had turned to look at it. Then they turned to look at {A_nameDef}.</li>
+      <li>In the red haze under the trees, every time the eyes in the bark blinked, {X_definite} flinched, and so did {A_nameDef}. Neither of them stayed long.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncA_Watched</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
