@@ -107,6 +107,61 @@ public static class HudPanelTests
         Check(HudHealthMath.PawnScore(-1f, sHealing, 3) > HudHealthMath.PawnScore(-1f, sHealing, 1), "more to tend ranks higher");
         Check(HudHealthMath.PawnScore(-1f, 0f, 0) == 0f, "nothing to say, nothing to rank");
 
+        // ---------- Health: colours ----------
+        Check(HudHealthMath.TendTone(0.15f) == HealthTone.Bad && HudHealthMath.TendTone(0.44f) == HealthTone.Fair && HudHealthMath.TendTone(0.85f) == HealthTone.Good,
+            "tending 15% is red, 44% yellow, 85% green");
+        Check(HudHealthMath.TendTone(HudHealthMath.TendPoorBelow) == HealthTone.Fair && HudHealthMath.TendTone(HudHealthMath.TendGoodFrom) == HealthTone.Good,
+            "the tending thresholds belong to the better colour");
+        Check(HudHealthMath.StatusOf(true, 0f, 2, true) == HealthStatus.Bleeding, "bleeding is said first");
+        Check(HudHealthMath.StatusOf(false, sSoonLethal, 1, false) == HealthStatus.Danger, "then soon deadly");
+        Check(HudHealthMath.StatusOf(false, sUntended, 1, true) == HealthStatus.Untended, "then something to tend");
+        Check(HudHealthMath.StatusOf(false, sLosing, 0, true) == HealthStatus.Losing, "then losing a race");
+        Check(HudHealthMath.StatusOf(false, sWorsening, 0, false) == HealthStatus.Worsening, "then getting worse");
+        Check(HudHealthMath.StatusOf(false, sHealing, 0, false) == HealthStatus.Healing, "else healing");
+        Check(HudHealthMath.ToneOf(HealthStatus.Healing) == HealthTone.Good && HudHealthMath.ToneOf(HealthStatus.Worsening) == HealthTone.Warn
+                                                                          && HudHealthMath.ToneOf(HealthStatus.Losing) == HealthTone.Warn
+                                                                          && HudHealthMath.ToneOf(HealthStatus.Bleeding) == HealthTone.Bad
+                                                                          && HudHealthMath.ToneOf(HealthStatus.Danger) == HealthTone.Bad
+                                                                          && HudHealthMath.ToneOf(HealthStatus.Untended) == HealthTone.Fair,
+            "healing green, to tend yellow, getting worse or losing orange, bleeding or in danger red");
+        Check(HudHealthMath.HealthToneOf(0.95f) == HealthTone.Good && HudHealthMath.HealthToneOf(0.6f) == HealthTone.Fair
+                                                                   && HudHealthMath.HealthToneOf(0.4f) == HealthTone.Warn && HudHealthMath.HealthToneOf(0.1f) == HealthTone.Bad,
+            "the health mark by a name goes from green to red");
+
+        // ---------- Health: how far along ----------
+        Check(Math.Abs(HudHealthMath.Along(0.4f, 3f, 1f) - 0.4f) < 0.001f, "a wound's healed share is used when it's known");
+        Check(Math.Abs(HudHealthMath.Along(-1f, 3f, 1f) - 0.75f) < 0.001f, "else three days had and one to go is three quarters along");
+        Check(HudHealthMath.Along(-1f, 3f, -1f) < 0f, "not getting better: nothing to show");
+        Check(HudHealthMath.Along(-1f, 0f, 0f) == 0f && HudHealthMath.Along(1.3f, 0f, 0f) == 1f, "along stays between 0 and 1");
+
+        // ---------- Health: grouping the same condition ----------
+        var groupOf = HudHealthMath.Group(new[] { "Bruise|t", "Bite|t", "Bruise|t", "Bruise|u" }, out var groupSizes);
+        Check(groupOf.SequenceEqual(new[] { 0, 1, 0, 2 }) && groupSizes.SequenceEqual(new[] { 2, 1, 1 }),
+            "two tended bruises make one chip (Bruise ×2), in the order first seen; an untended one stays apart");
+        Check(HudHealthMath.Group(new string[0], out var noSizes).Length == 0 && noSizes.Length == 0, "nothing to group, no groups");
+
+        // ---------- Health: chips wrap onto lines ----------
+        var spots = new List<ChipSpot>();
+        var flow3 = HudHealthMath.Flow(new[] { 50f, 50f, 50f }, 200f, 5f, 2, 20f, spots);
+        Check(flow3.shown == 3 && flow3.more == 0 && flow3.lines == 1 && spots[1].x == 55f && spots[2].x == 110f && spots[2].line == 0,
+            "three short chips sit on one line, a gap apart");
+        var flow5 = HudHealthMath.Flow(new[] { 60f, 60f, 60f, 60f, 60f }, 200f, 5f, 2, 20f, spots);
+        Check(flow5.shown == 5 && flow5.more == 0 && flow5.lines == 2 && spots[3].line == 1 && spots[3].x == 0f,
+            "the fourth chip that doesn't fit wraps to a second line");
+        var flow8 = HudHealthMath.Flow(new[] { 60f, 60f, 60f, 60f, 60f, 60f, 60f, 60f }, 200f, 5f, 2, 20f, spots);
+        Check(flow8.lines == 2 && flow8.shown == 5 && flow8.more == 3 && flow8.moreLine == 1 && Math.Abs(flow8.moreX - 130f) < 0.01f,
+            "past two lines the rest is \"+N\", a chip taken off the end to make room for it");
+        Check(flow8.moreX + 20f <= 200f, "\"+N\" fits on the line");
+        var flowWide = HudHealthMath.Flow(new[] { 40f, 300f, 40f }, 200f, 5f, 3, 20f, spots);
+        Check(flowWide.shown == 3 && spots[1].line == 1 && spots[1].x == 0f && spots[1].w == 200f && spots[2].line == 2,
+            "a chip wider than the line gets a line of its own, cut to it");
+        var flowOne = HudHealthMath.Flow(new[] { 300f, 40f }, 200f, 5f, 1, 20f, spots);
+        Check(flowOne.shown == 1 && flowOne.more == 1 && spots[0].w + 5f + 20f <= 200.01f && flowOne.moreLine == 0,
+            "a long chip alone on the last line is cut to leave room for \"+N\"");
+        Check(HudHealthMath.Flow(new float[0], 200f, 5f, 2, 20f, spots).lines == 0 && spots.Count == 0, "no chips, no lines");
+        var flowNone = HudHealthMath.Flow(new[] { 50f, 50f }, 0f, 5f, 2, 20f, spots);
+        Check(flowNone.shown == 0 && flowNone.more == 2, "no room at all: everything is \"+N\"");
+
         // ---------- Work and idle ----------
         string[] cutAt = { " to ", " at ", " from ", " into " };
         Check(HudWorkMath.ShortReport("Hauling steel to stockpile zone 1.", cutAt) == "Hauling steel", "a haul report is cut at its destination");
