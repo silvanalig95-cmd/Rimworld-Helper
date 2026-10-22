@@ -156,6 +156,10 @@ namespace ColonyCouncil
                     return;
                 case CourierState.Leaving:
                 case CourierState.Done:
+                    // Settled from inside their group's own bookkeeping (one walked off early): the rest go too.
+                    if (t.state == CourierState.Leaving && t.lord != null && t.MapThere && t.map.lordManager.lords.Contains(t.lord)
+                        && (t.lord.CurLordToil is LordToil_CourierWork || t.lord.CurLordToil is LordToil_Travel))
+                        t.lord.ReceiveMemo(LordJob_Courier.MemoLeave);
                     ClearGone(t);
                     if (t.state == CourierState.Leaving && AllGone(t))
                     {
@@ -311,7 +315,7 @@ namespace ColonyCouncil
             var at = t.spot.IsValid && t.spot.InBounds(t.map) && x.CanReach(t.spot, PathEndMode.OnCell, Danger.Some) ? t.spot : x.Position;
             var job = JobMaker.MakeJob(CourierDefOf.Council_CourierDrop, at);
             job.locomotionUrgency = LocomotionUrgency.Walk;
-            x.jobs.StartJob(job, JobCondition.InterruptForced, null, true, true);
+            x.jobs.StartJob(job, JobCondition.InterruptForced, null, false, true);
         }
 
         // ---------------- Setting out ----------------
@@ -459,6 +463,8 @@ namespace ColonyCouncil
             if (t.bearerTrip)
             {
                 var map = by?.Map ?? t.map;
+                if (!at.IsValid || map == null || !at.InBounds(map)) at = by != null && by.Spawned ? by.Position : t.oldSpot;
+                if (map == null || !at.IsValid) return;
                 var placed = new List<Thing>();
                 foreach (var thing in t.goods.ToList())
                     if (t.goods.TryDrop(thing, at, map, ThingPlaceMode.Near, thing.stackCount, out var lying))
@@ -743,8 +749,17 @@ namespace ColonyCouncil
                         break;
                     case PawnLostCondition.ExitedMap:
                         // Off the map before their business was settled (the group's own clock): settle it first, from
-                        // what they still carry, then clear their packs.
-                        if (!t.settled) End(t, t.harmed ? CourierEnd.Harmed : CourierEnd.Lost);
+                        // what they still carry, then clear their packs. The rest of the group is sent on its way from the
+                        // next pass, not from inside the group's own bookkeeping.
+                        if (!t.settled)
+                        {
+                            Settle(t, t.harmed ? CourierEnd.Harmed : CourierEnd.Lost);
+                            if (t.state == CourierState.Coming || t.state == CourierState.Working)
+                            {
+                                t.state = CourierState.Leaving;
+                                t.endTick = Now;
+                            }
+                        }
                         Clear(p);
                         break;
                 }

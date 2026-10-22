@@ -241,9 +241,9 @@ namespace ColonyCouncil
             {
                 string faction = FactionName(t);
                 string text;
-                if (t.people.Count == 0)
+                if (t.people.Count == 0 || t.bearerTrip)
                 {
-                    // They never came.
+                    // They never came (or the visitor carrying it never got to the colony).
                     var parts = new List<string>();
                     if (incoming) parts.Add("CC_Courier_Fell_In".Translate(t.bringLabel ?? "", faction).Resolve().CapitalizeFirst());
                     if (outgoing) parts.Add("CC_Courier_Fell_Out".Translate(t.takeLabel ?? "", faction).Resolve().CapitalizeFirst());

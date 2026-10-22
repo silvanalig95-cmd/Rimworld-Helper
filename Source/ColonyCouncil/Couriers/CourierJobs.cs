@@ -38,7 +38,9 @@ namespace ColonyCouncil
             if (t.FetchPending)
             {
                 var x = t.fetch;
-                if (t.Bearers.FirstOrDefault() != pawn || !CourierTracker.FetchOk(t) || !pawn.CanReach(x, PathEndMode.Touch, Danger.Some)) return null;
+                // Not while they're down or out of their mind: they wait (and in the end it's done the old way).
+                if (t.Bearers.FirstOrDefault() != pawn || !CourierTracker.FetchOk(t) || x.Downed || x.InMentalState
+                    || !pawn.CanReach(x, PathEndMode.Touch, Danger.Some)) return null;
                 var fetch = JobMaker.MakeJob(CourierDefOf.Council_CourierFetch, x);
                 fetch.locomotionUrgency = LocomotionUrgency.Walk;
                 return fetch;
@@ -139,7 +141,8 @@ namespace ColonyCouncil
                     var tracker = CourierTracker.Instance;
                     if (t == null || tracker == null) return;
                     var from = job.targetA.Thing as Pawn ?? pawn;
-                    var at = job.targetA.HasThing ? from.Position : t.spot;
+                    var at = job.targetA.HasThing ? from.Position : job.targetA.Cell;
+                    if (!at.IsValid) at = pawn.Position;
                     tracker.Unload(t, pawn, from, at);
                     // Their own pack and the animal's, when it waits beside them.
                     if (from == pawn && t.animal != null && t.toUnload.Contains(t.animal) && t.animal.Spawned && t.animal.Map == pawn.Map

@@ -46,7 +46,7 @@ namespace ColonyCouncil
         /// <summary>A people that can send someone: at peace with the colony, of people, still standing, with people to send.</summary>
         public static bool Usable(Faction f) =>
             f != null && !f.IsPlayer && !f.Hidden && !f.defeated && !f.temporary && f.def != null && f.def.humanlikeFaction
-            && !f.HostileTo(Faction.OfPlayer) && PersonKind(f) != null;
+            && !f.HostileTo(Faction.OfPlayer) && (Porters(f).Any() || Arrivals.PersonKind(f) != null);
 
         /// <summary>
         /// Who sends the courier: the event's own people when they can; else a people of a fitting tech level whose town
@@ -98,11 +98,15 @@ namespace ColonyCouncil
         public static PawnKindDef PersonKind(Faction f)
         {
             if (f?.def == null) return null;
-            var guards = TraderGroups(f).Where(g => g.guards != null).SelectMany(g => g.guards)
-                .Where(o => o?.kind?.RaceProps != null && o.kind.RaceProps.Humanlike && !o.kind.trader && o.kind.combatPower <= 75f).ToList();
+            var guards = Porters(f).ToList();
             if (guards.Count > 0) return guards.RandomElementByWeight(o => Mathf.Max(0.01f, o.selectionWeight)).kind;
             return Arrivals.PersonKind(f);
         }
+
+        /// <summary>The lighter guards of a people's caravans: people, not traders, not heavy troopers.</summary>
+        private static IEnumerable<PawnGenOption> Porters(Faction f) =>
+            TraderGroups(f).Where(g => g.guards != null).SelectMany(g => g.guards)
+                .Where(o => o?.kind?.RaceProps != null && o.kind.RaceProps.Humanlike && !o.kind.trader && o.kind.combatPower <= 75f);
 
         /// <summary>A pack animal their caravans use that suits this land and weather, or null (they don't use them here).</summary>
         public static PawnKindDef AnimalKind(Faction f, Map map)
