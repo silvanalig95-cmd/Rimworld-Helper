@@ -393,7 +393,7 @@
         <options>
           <li>
             <label>Lend them {A_nameDef} for a day</label>
-            <outcome>{A_nameDef} spent the day in the river with the road gang, and the footing {A_pronoun} set is still standing. {FACTION}'s foreman brought the silver up afterwards, as promised.</outcome>
+            <outcome>{A_nameDef} spent the day in the river with the road gang, and the footing {A_pronoun} set is still standing. {FACTION}'s foreman brought the silver up afterward, as promised.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Learn"><skill>Construction</skill><xp>1200</xp></li>
               <li Class="ColonyCouncil.WorldEffect_Silver" />
@@ -726,7 +726,7 @@
           <li>Out of the band</li>
         </titles>
         <texts>
-          <li>One of the stragglers at the gate was never a bandit. Taken from a farm of {FACTION} years ago, they have been kept to cook and carry ever since, and there's nobody left on that farm to go home to.\n\nThey ask the colony for a place.</li>
+          <li>One of the stragglers at the gate was never a bandit. Taken from a farm of {FACTION} years ago, they have been kept to cook and carry ever since, and the farm they were taken from is gone.\n\nThey ask the colony for a place.</li>
           <li>[winter] Someone has walked out of the snow to the colony's gate, thin and ragged in a bandit's coat. They were {ENEMY}'s captive, not one of them, taken from {FACTION}'s country as a child. The band is gone, and they ask the colony for a place to stay.</li>
         </texts>
         <defaultOption>1</defaultOption>
@@ -826,7 +826,7 @@
             <label>Send food for the tables (20 food)</label>
             <outcome>A cart from {PLACE} collects the colony's share at the gate. At the feast, the colony's name is called out with the rest.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the cart for the tables</label><what>rawfood</what><count>20</count><to>Gate</to></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the food for the tables</label><what>rawfood</what><count>20</count><to>Gate</to></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>6</amount></li>
             </effects>
             <help>1</help>
@@ -971,7 +971,7 @@
           <li>{FACTION} ask for {A_nameDef}</li>
         </titles>
         <texts>
-          <li>Word has reached {PLACE} that {A_nameDef} knows animals as well as anyone in the region. {FACTION}'s herders are losing animals faster than they can bury them, and they ask whether {A_nameDef} would look at the sick ones and tell them what to do.\n\n{A_nameDef} would have to keep well apart from the colony's own animals for a few days afterwards.</li>
+          <li>Word has reached {PLACE} that {A_nameDef} knows animals as well as anyone in the region. {FACTION}'s herders are losing animals faster than they can bury them, and they ask whether {A_nameDef} would look at the sick ones and tell them what to do.\n\n{A_nameDef} would have to keep well apart from the colony's own animals for a few days afterward.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>

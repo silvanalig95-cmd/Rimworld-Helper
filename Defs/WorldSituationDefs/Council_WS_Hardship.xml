@@ -109,7 +109,7 @@
           <li>Refugees from {PLACE}</li>
         </titles>
         <texts>
-          <li>A family from {PLACE} is at the gate with a handcart piled with bedding. They got out before {NAME} reached their street, and none of them is sick, but nobody on the road will let them near a fire.\n\nThey ask to stay. For a while, they say, or for good, if the colony will have them.</li>
+          <li>A family from {PLACE} is at the gate with a handcart piled with bedding. They got out before {NAME} reached their street, and none of them is sick, but the people they met on the road wouldn't let them near a fire.\n\nThey ask to stay. For a while, they say, or for good, if the colony will have them.</li>
           <li>[winter] The family at the gate has slept in the open for four nights. They left {PLACE} ahead of {NAME}, and every farm on the way kept its door shut to them, just in case.\n\nThey ask to come in out of the snow, for as long as the colony will have them.</li>
         </texts>
         <defaultOption>2</defaultOption>
@@ -213,7 +213,7 @@
           <li>The end of {NAME}</li>
         </titles>
         <texts>
-          <li>{NAME} is over. {PLACE} lost more people than it should have, and {FACTION} count the colony among the neighbors who sent something.</li>
+          <li>{NAME} is over. {PLACE} lost more people than it should have, and {FACTION} count the colony among the neighbors who sent help.</li>
         </texts>
         <chronicle>{NAME} ended; the colony sent what it could.</chronicle>
         <effects>
@@ -402,7 +402,7 @@
         </titles>
         <texts>
           <li>The first new grain is in at {PLACE}, and the worst is over for {FACTION}.\n\nSome of what they ate came up the road from the colony, and in {PLACE} they have started calling it the bread road.</li>
-          <li>[winter] Spring is still weeks away, but a relief caravan reached {PLACE} at last, and nobody there is boiling leather any more.\n\nUntil it came, {FACTION} lived partly on the colony's food, and they have not been quiet about it.</li>
+          <li>[winter] Spring is still weeks away, but a relief caravan reached {PLACE} at last, and the people there have stopped boiling leather.\n\nUntil it came, {FACTION} lived partly on the colony's food, and they have not been quiet about it.</li>
         </texts>
         <chronicle>The famine among {FACTION} ended; they remember the colony's food.</chronicle>
         <effects>
@@ -622,7 +622,7 @@
       <li>A swarm on the wind</li>
     </titles>
     <texts>
-      <li>{FACTION} lost every field around {PLACE} in a single afternoon. The cloud that did it is still out there: a swarm of locusts as wide as a valley, drifting wherever the wind takes it.\n\nWhether it comes this way is up to the wind.</li>
+      <li>{FACTION} lost every field around {PLACE} in a single afternoon. The cloud that did it is still out there: a swarm of locusts as wide as a valley, and it hasn't settled yet.\n\nWhether it comes this way is up to the wind.</li>
       <li>[summer] The sky to the south went brown at midday, and a few minutes later came the sound, like rain that doesn't stop. Locusts. By evening a rider had brought word that {PLACE} was stripped to the dirt.\n\nThe swarm is still in the air.</li>
     </texts>
     <summaries>
