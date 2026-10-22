@@ -40,13 +40,13 @@
     <request>
       <plain>
         <li>My throat feels like gravel. A hot cup of tea would do more than any medicine.</li>
-        <li>When I was sick as a child, someone always brought me tea. I'd like that now.</li>
-        <li>[cold] I'm cold, I'm coughing, and I'd like something hot to hold.</li>
+        <li>When I was sick as a child, someone always brought me tea.</li>
+        <li>[cold] I'm cold, I'm coughing, and my hands want something hot to hold.</li>
         <li>[night] I can't sleep for coughing. A cup of tea might settle it.</li>
         <li>[winter] Winter colds are the worst. Tea with honey, if there's any honey.</li>
       </plain>
       <warm>
-        <li>If someone could brew a pot, I'd share it. Half of us are sniffling.</li>
+        <li>If someone could brew a pot, I'd share it round. I'm not the only one sniffling.</li>
       </warm>
       <blunt>
         <li>Tea. Hot. Soon, if possible.</li>
@@ -66,13 +66,13 @@
       <warm><li>Thank you. That was the kindest thing anyone's done for me all week.</li></warm>
       <blunt><li>Good. Another.</li></blunt>
       <cheerful><li>A whole pot just for me. Well, nearly.</li></cheerful>
-      <gloomy><li>Still sick. Less miserable.</li></gloomy>
+      <gloomy><li>Still sick. But warm.</li></gloomy>
       <cold><li>Symptoms improved.</li></cold>
     </thanks>
     <expired>
       <plain><li>Cold water it is.</li></plain>
       <blunt><li>Fine. I'll cough.</li></blunt>
-      <gloomy><li>Nobody brings tea to the sick here.</li></gloomy>
+      <gloomy><li>Sick and thirsty, then. It's how things go here.</li></gloomy>
     </expired>
     <reminder>
       <plain><li>Still coughing. Still no tea.</li></plain>
@@ -119,7 +119,7 @@
         <li>Build {THING}. I'll do the cooking.</li>
       </blunt>
       <cheerful>
-        <li>Skewers, sausages, grilled corn! I'll need {THING} for all of it.</li>
+        <li>I've had skewers whittled and waiting all week. All I need is {THING}.</li>
       </cheerful>
       <gloomy>
         <li>Summer's short. We should enjoy at least one evening of it.</li>
@@ -131,10 +131,10 @@
     <thanks>
       <plain><li>Everyone came out when they smelled it. I didn't have to call anyone.</li></plain>
       <warm><li>The first skewer is yours, since you built it.</li></warm>
-      <blunt><li>Good. Stand back from the coals.</li></blunt>
+      <blunt><li>Stand back from the coals.</li></blunt>
       <cheerful><li>I've burned three things and they were all delicious.</li></cheerful>
       <gloomy><li>Grilled everything. Summer will be over soon.</li></gloomy>
-      <cold><li>Meal quality improved.</li></cold>
+      <cold><li>Cheap meat, better moods. A fair trade.</li></cold>
     </thanks>
     <expired>
       <plain><li>Back to the stove, then.</li></plain>
@@ -168,7 +168,7 @@
     <fulfilledWhen>A bed in the colony is set aside for guests.</fulfilledWhen>
     <request>
       <plain>
-        <li>The visitors slept in the barn last night. We can do better than that.</li>
+        <li>The visitors slept on the floor last night. We can do better than that.</li>
         <li>People who come in peace should have somewhere to sleep. Let's keep one bed for guests.</li>
         <li>[trait:Kind] They'd walked for days to get here, and we gave them the floor.</li>
         <li>[night] Visitors are bedding down in the yard. It's cold out there tonight.</li>
@@ -176,7 +176,7 @@
         <li>[small] We need friends out here more than most. Being good hosts is how we make them.</li>
       </plain>
       <warm>
-        <li>A warm bed and a hot meal. That's all it takes to make a friend.</li>
+        <li>Remember arriving here with nothing? I'd have given anything for a warm bed that first night.</li>
       </warm>
       <blunt>
         <li>Guests on the floor make us look poor. Set a bed aside.</li>
@@ -194,7 +194,7 @@
     <thanks>
       <plain><li>The guests had a real bed tonight. They thanked me twice.</li></plain>
       <warm><li>Thank you. We're the kind of place people want to come back to now.</li></warm>
-      <blunt><li>Good. Now they can't complain.</li></blunt>
+      <blunt><li>Now they can't complain.</li></blunt>
       <cheerful><li>I put a flower on the pillow anyway.</li></cheerful>
       <gloomy><li>Now we just need visitors who don't try to kill us.</li></gloomy>
       <cold><li>Hospitality established. Expect better relations.</li></cold>
@@ -202,7 +202,7 @@
     <expired>
       <plain><li>The floor will have to do for them.</li></plain>
       <blunt><li>Fine. Let them sleep in the mud.</li></blunt>
-      <gloomy><li>Nobody will want to visit us now.</li></gloomy>
+      <gloomy><li>Word gets round. They'll stop coming.</li></gloomy>
     </expired>
     <reminder>
       <plain><li>Still no bed for guests.</li></plain>
@@ -235,8 +235,8 @@
     </wants>
     <request>
       <plain>
-        <li>Something has been eating the rice right down to the roots. I'd like a scarecrow out there.</li>
-        <li>Hares in the corn again. A scarecrow would keep the small ones away.</li>
+        <li>Something has been at the seedlings again, right down to the roots. Put a scarecrow out there.</li>
+        <li>Hares in the rows again. A scarecrow would keep the small ones away.</li>
         <li>[morning] I went out at dawn and there were deer in the field, bold as anything. We need {THING}.</li>
         <li>[fall] The harvest is nearly in. I'd hate to lose the last of it to the birds and the hares.</li>
         <li>[poor] We can't afford to share our crops with every animal on the map.</li>
@@ -260,7 +260,7 @@
     <thanks>
       <plain><li>Not a hare in the field this morning. It's working.</li></plain>
       <warm><li>Thank you. I gave it my old hat.</li></warm>
-      <blunt><li>Good. Now the crops are ours.</li></blunt>
+      <blunt><li>The crops are ours now.</li></blunt>
       <cheerful><li>I named it after the council. It looks just like you.</li></cheerful>
       <gloomy><li>The birds will figure it out eventually. For now, it works.</li></gloomy>
       <cold><li>Crop losses reduced.</li></cold>
@@ -271,7 +271,7 @@
       <gloomy><li>Half the field for us, half for them.</li></gloomy>
     </expired>
     <reminder>
-      <plain><li>Something ate the seedlings again last night.</li></plain>
+      <plain><li>Hoof prints between the rows again this morning.</li></plain>
     </reminder>
   </ColonyCouncil.WishDef>
 

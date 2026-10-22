@@ -68,9 +68,9 @@
         <li>Warm all the way through, for once.</li>
         <li>Let it snow. I'm dressed for it now.</li>
       </plain>
-      <warm><li>Thank you. Whoever stitched this, I owe them a favour.</li></warm>
+      <warm><li>Thank you. Whoever stitched this, I owe them a favor.</li></warm>
       <blunt><li>Now the cold can go and bother someone else.</li></blunt>
-      <cheerful><li>I look like a walking haystack and I've never been happier!</li></cheerful>
+      <cheerful><li>I look like a walking haystack. A warm one!</li></cheerful>
       <gloomy><li>I can feel my fingers again. Mixed blessing. They hurt.</li></gloomy>
       <cold><li>Dressed for the season. Good.</li></cold>
     </thanks>
@@ -112,7 +112,7 @@
         <li>Something with a brim, something light. I can't spend {SUBJECT} squinting and sweating.</li>
         <li>[summer] By noon my shirt's soaked through and stuck to my back. There must be something better to wear.</li>
         <li>[hot] The sun's like a hand pressing down on my head. A hat, a duster, anything that keeps it off.</li>
-        <li>[lowtech] Where I'm from, people wore loose cloth against the sun, head to foot. I'd like the same here.</li>
+        <li>[lowtech] Where I'm from, people wore loose cloth against the sun, head to foot. We could do the same here.</li>
         <li>[old] Heat like this is hard on me. Something cooler to wear would help more than you'd think.</li>
         <li>[day] Midday, and I'm wearing the wrong clothes for it again.</li>
       </plain>
@@ -172,7 +172,7 @@
     <fulfilledWhen>The colony has a sauna.</fulfilledWhen>
     <request>
       <plain>
-        <li>A sauna. Hot stones, steam, and nothing to do but sweat out the cold. That's my wish.</li>
+        <li>A sauna. Hot stones, steam, and nothing to do but sweat out the cold.</li>
         <li>My bones are frozen through. An evening in a sauna would thaw them.</li>
         <li>One small room, kept hot, with somewhere to sit. That's all a sauna is, and it would change the winter.</li>
         <li>[snow] It's snowing again. Picture coming in from that to a hot sauna.</li>
@@ -182,7 +182,7 @@
         <li>[evening] I'd like to end a cold day somewhere hot, just once, before bed.</li>
       </plain>
       <warm>
-        <li>We could all sit in there together, talking and sweating. It brings people close.</li>
+        <li>We could all sit in there together, talking and sweating, the way my family used to.</li>
         <li>Somewhere warm to go when the cold wears everyone down. It would do us all good.</li>
       </warm>
       <blunt>
@@ -208,14 +208,14 @@
         <li>I went in frozen and came out pink. Thank you.</li>
       </plain>
       <warm><li>Come and sit. There's room for everyone.</li></warm>
-      <blunt><li>Good. Close the door, you're letting the heat out.</li></blunt>
+      <blunt><li>Close the door, you're letting the heat out.</li></blunt>
       <cheerful><li>I ran out into the snow afterwards and shouted, then ran straight back in.</li></cheerful>
       <gloomy><li>Warm at last. I'll be cold again tomorrow, but I know where to go now.</li></gloomy>
       <cold><li>Recovery improved.</li></cold>
     </thanks>
     <expired>
-      <plain><li>I'll stay frozen, then.</li></plain>
-      <blunt><li>Enjoy your cold winter.</li></blunt>
+      <plain><li>Back to stamping my feet by the fire, then.</li></plain>
+      <blunt><li>Winter's long. I'll remember who said no.</li></blunt>
       <gloomy><li>Winter wins again.</li></gloomy>
     </expired>
     <reminder>

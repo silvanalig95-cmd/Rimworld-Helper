@@ -628,7 +628,7 @@
     </thanks>
     <expired>
       <plain><li>The fish will have to wait.</li></plain>
-      <blunt><li>Enjoy the stew.</li></blunt>
+      <blunt><li>Then don't complain about the stew.</li></blunt>
       <gloomy><li>Plenty of fish out there. None for us.</li></gloomy>
     </expired>
     <reminder>
@@ -698,7 +698,7 @@
     </thanks>
     <expired>
       <plain><li>I'll keep squinting, then.</li></plain>
-      <blunt><li>Fine. I'll keep my eyes on the ground like everyone else.</li></blunt>
+      <blunt><li>I'll keep my eyes on the ground, then, like everyone else.</li></blunt>
       <gloomy><li>Just as well. The sky only reminds me how far we are from anywhere.</li></gloomy>
     </expired>
     <reminder>
@@ -895,7 +895,7 @@
     </thanks>
     <expired>
       <plain><li>The ore stays where it is.</li></plain>
-      <blunt><li>Fine. Run short of steel, then.</li></blunt>
+      <blunt><li>Run short of steel, then. Don't come to me.</li></blunt>
       <gloomy><li>There was probably nothing there anyway.</li></gloomy>
     </expired>
     <reminder>
@@ -1095,7 +1095,7 @@
     </thanks>
     <expired>
       <plain><li>The stool, then. My back sends its regards.</li></plain>
-      <blunt><li>Fine. I'll complain about my back instead.</li></blunt>
+      <blunt><li>I'll complain about my back instead. Every day.</li></blunt>
       <gloomy><li>Old bones don't count for much here.</li></gloomy>
     </expired>
     <reminder>
@@ -1354,7 +1354,7 @@
     </thanks>
     <expired>
       <plain><li>I'll read the old ones again.</li></plain>
-      <blunt><li>Fine. I'll make up my own stories.</li></blunt>
+      <blunt><li>I'll make up my own stories, then. Better ones.</li></blunt>
       <gloomy><li>Same stories, same endings.</li></gloomy>
     </expired>
     <reminder>
@@ -1423,7 +1423,7 @@
     <thanks>
       <plain><li>Cool air. I stood in it for a while and didn't think about anything at all.</li></plain>
       <warm><li>Everyone has been coming to sit in here. I don't blame them.</li></warm>
-      <blunt><li>Close the door. You're letting the heat in.</li></blunt>
+      <blunt><li>About time. I'm sleeping in here.</li></blunt>
       <cheerful><li>It's lovely in here. I'm never leaving.</li></cheerful>
       <gloomy><li>It'll give out in the worst week. Things always do.</li></gloomy>
       <cold><li>Temperature acceptable.</li></cold>
